@@ -1,0 +1,81 @@
+{{! Please keep this navigation clean with simple list items. Do not introduce additional divs, spans, or other unneccesary elements.}}
+<div class="nav" style="border: 2px dashed orange; overflow: hidden; display: inline-block;">
+    <nav>
+
+        {{!---- profile picture & name ----}}
+        {{!-- > hbs/Html/Body/header/navigation/profileLink --}}
+        {{!---- /profile picture & name ----}}
+
+        <ul>
+            {{!---- sign-in link ----}}
+            {{#unless model.header.isUserLoggedIn}}
+                {{#if model.header.showLoginLink}}
+                    <li>
+                        <span class="sudo-link sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.signInURL --}}">{{i18n "header.menu.sign.in"}}</span>
+                    </li>
+                {{/if}}
+            {{/unless}}
+
+            {{!---- watchlist ----}}
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.watchListUrl --}}">{{i18n "header.menu.my.watchlist"}}</span>
+            </li>
+
+            {{!---- message ----}}
+            {{#if model.header.isMessageCenterEnabled}}
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myMessageUrl --}}">
+                    {{i18n "mc.menu.title"}} 
+                    {{#ifGt model.header.totaConversationCount 0}}
+                        (<span class="tolalCurMsg">{{model.header.totaConversationCount}}</span>)
+                    {{/ifGt}}
+                </span>
+            </li>
+            {{/if}}
+            
+            {{!---- saved search ----}}
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.mySavedSearchUrl --}}">{{i18n "header.menu.my.savedsearch"}}</span>
+            </li>
+
+            {{!---- my ads ----}}
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myAdsURL --}}">{{i18n "header.menu.your.ads"}}</span>
+            </li>
+
+            {{!---- promote my ads ----}}
+            {{#if model.header.promoteAdsUrl}}
+                <li>
+                    <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="{{!-- obfuscateUrl model.header.promoteAdsUrl --}}">{{i18n "header.menu.promote.ads"}}</span>
+                </li>
+            {{/if}}
+
+            {{#each model.header.quickLinks}}
+                <li>
+                    <span class="sudo-link sudo-link-toConvert link-{{@index}} link menu-text" data-o-uri="{{!-- obfuscateUrl this.link --}}">{{this.localizedName}}</span>
+                </li>
+            {{/each}}
+
+            {{!---- my profile ----}}
+            {{#if model.header.isUserLoggedIn}}
+                <li>
+                    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myProfileUrl --}}">{{i18n "header.menu.my.profile"}}</span>
+                </li>
+            {{/if}}
+
+            {{!---- logout ----}}
+            {{#if model.header.isUserLoggedIn}}
+                <li>
+                    <a class="sudo-link menu-text" href="{{model.header.signOutURL}}">{{i18n "header.menu.signout"}}</a>
+                </li>
+            {{/if}}
+
+            {{#unless model.header.isUserLoggedIn}}
+                <li>
+                    <span class="sudo-link sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.registerURL --}}">{{i18n "header.menu.register"}}</span>
+                </li>
+            {{/unless}}
+
+        </ul>
+    </nav>
+</div>

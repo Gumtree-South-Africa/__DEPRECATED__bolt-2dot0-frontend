@@ -1,0 +1,17 @@
+<div style="border: 1px dashed blue;overflow: hidden; display: inline-block;">
+POST BUTTON COMPONENT!!!
+{{#unless model.content.disablePostAdButton}}
+    <div class="post">
+        <a class="sudo-link sudo-link post-btn postcommercial" data-gtm="pc|PostAdBegin" href="/post.html">
+            <span>
+                {{#if model.header.isIncludeContentForMobile}}
+                    {{i18n "header.postad-medium"}}
+                {{else}}
+                    {{i18n "header.postad-long"}}
+                {{/if}}
+            </span>
+        </a>
+    </div>
+{{/unless}}
+
+</div>

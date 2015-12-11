@@ -1,0 +1,14 @@
+{    
+    "sites": {
+        "gumtree.co.za": {
+            "name": "Gumtree ZA",            
+            "locale": "en_ZA",            
+            "hostname": "gumtree.co.za"
+        },
+        "vivanuncios.com.mx": {
+            "name": "Vivanuncios",            
+            "locale": "es_MX",            
+            "hostname": "vivanuncios.com.mx"
+        }
+    }
+}

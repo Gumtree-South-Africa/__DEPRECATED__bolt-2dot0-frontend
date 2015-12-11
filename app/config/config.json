@@ -1,0 +1,39 @@
+{
+
+    "express": {
+        "view cache": false,
+        "view engine": "js",
+        "views": "path:./.build/templates"
+    },
+    
+    "i18n": {
+        "contentPath": "path:./locales",
+        "fallback": "en-US"
+    },    
+
+    "specialization": {
+    },
+
+    "middleware": {
+        "static": {
+            "module": {
+                "arguments": [ "path:./.build" ]
+            }
+        },
+
+        "router": {
+            "module": {
+                "arguments": [{ "directory": "path:./controllers" }]
+            }
+        }
+    },
+
+    "sites": {
+        "gumtree.co.za": {
+            "name": "Gumtree ZA",            
+            "locale": "en_ZA",            
+            "hostname": "gumtree.co.za"
+        }
+    }
+
+}

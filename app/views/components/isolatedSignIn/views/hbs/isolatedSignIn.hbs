@@ -1,0 +1,15 @@
+<div style="border: 1px dashed green;overflow: hidden; display: inline-block;">
+
+ISOLATED SIGN IN COMPONENT!!!
+
+{{#if model.header.headerConfig.isolatedLoginLink}}
+    {{#unless model.header.isUserLoggedIn}}
+        {{#if model.header.showLoginLink}}
+            <div class="signin">
+                <span class="sudo-link sudo-link-toConvert" data-o-uri="{{obfuscateUrl model.header.signInURL}}">{{i18n "header.menu.sign.in"}}</span>
+            </div>
+        {{/if}}
+    {{/unless}}
+{{/if}}
+
+</div>
