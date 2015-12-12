@@ -3,18 +3,58 @@
     <head>
         <meta charset="utf-8" />
         <title>Gumtree ZA</title>   
-        <!--<link rel="stylesheet" href="/css/app.css"> -->
+        <!-- <link rel="stylesheet" href="css/{{site}}/{{locale}}/{{pagename}}.css"/>  -->
     </head>
     <body>
 
         <!-- From Body.html -->
         <div class="viewport" id="div-gpt-oop">
+            {{> header}}
 
-                                {{{body}}}                    
+            <div class="containment">
+
+                {{#block "messaging-full-width"}}{{/block}}
+
+                <div class="page {{!-- #ifEq model.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
+
+                    {{#block "messaging"}}{{/block}}
+
+                    {{#block "breadcrumbs"}}
+                    {{!-- > hbs/Html/Breadcrumbs --}}
+                    {{/block}}
+
+                    <div class="content">
+                        <section role="content">
+                            <div id="wrapper" class="wrap">
+                                {{! page content goes here. Override this in each pages}}
+
+                                {{{body}}}
+
+                                {{#block "content" this}}OVERRIDE THIS!!!{{/block}}
+                                <div class="clear"></div>
+                            </div>
+                        </section>
+                    </div>
+
+                   {{#block "comscore"}}{{/block}}
+                     
+                    <div class="footer" style="border: 1px solid blue; display: block; overflow: hidden;">
+                        <footer>
+                        FOOTER SECTION CONTENTS
+                        {{> footer}}
+                        {{#block "footerp"}}
+                            <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
+                        {{/block}}
+                        </footer>
+                    </div>
+                    
+                </div>
+                
+            </div>
         </div>
 
         <!-- End from Body.html -->
-        <script data-main="/js/app" src="/components/requirejs/require.js"></script>
+      <!--  <script data-main="/js/app" src="/components/requirejs/require.js"></script> -->
     
     </body>
 </html>

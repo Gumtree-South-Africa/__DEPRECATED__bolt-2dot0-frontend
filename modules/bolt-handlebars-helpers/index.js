@@ -1,5 +1,5 @@
 var express = require('express');
-var kraken  =require('kraken-js');
+//var kraken  =require('kraken-js');
 var config = require('./handlebars-helpers');
 
 /* Code that we use to retrieve the object bound to a function */
@@ -12,41 +12,40 @@ Object.defineProperty(Function.prototype, 'bind', {
     }
 });
 
+//TODO: read this is from app config
+var hbsConfig = {
+    "arguments": [
+        {
+        	"defaultLayout" : "../../app/views/templates/layouts/hbs/main",
+        	"partialsDir": ["./app/views/templates/hbs/partials"],
+        	"extname": ".hbs",
+        	"i18n" : "config:i18n"
+        }
+    ]
+};
+
 module.exports = function (app) {
-    var engines; 
+    var engineExt = app.get('view engine'),
+		engine,
+	    module = require('express-handlebars');
 
-	app.on("start", function () {
-		engines = app.kraken.get('view engines') || {};
+	var args = Array.isArray(hbsConfig['arguments']) ? hbsConfig['arguments'].slice() : [];
 
-	    Object.keys(engines).forEach(function (ext) {
-	        var spec, module, args, engine;
-	        spec = engines[ext];
-	        module = require(spec.module);
+	// Merge the handlebars helper methods
+	args[0] = Object.assign(args[0], config(module));
 
-			// if(Object.isObject(spec.renderer) && spec.isCustom){
-			if ((typeof spec.renderer === "object") && spec.isCustom) {
-	            //added case
-	            args = Array.isArray(spec.renderer['arguments']) ? spec.renderer['arguments'].slice() : [];
+	// Create the handlebars instance
+	engine = module.apply(null, args);
 
-	            // Merge the handlebars helper methods
-	            args[0] = Object.assign(args[0], config(module));
+	// Get a hold of the object bound to the engine function.
+	module.instance = engine.boundObject;
 
-	            // Create the handlebars instance
-	            engine = module.apply(null, args);
+	// Register the locale specific partials
+	config.registerLocalePartials(module);
 
-	            // Get a hold of the object bound to the engine function.
-	            module.instance = engine.boundObject;
 
-	            // Register the locale specific partials
-	            config.registerLocalePartials(module);
-	        }
-	        else {
-	            engine = module;
-	        }
-
-	        app.engine(ext, engine);
-	    });
-	});
+	app.engine(engineExt, engine);
+	   
 
     return app;
 };

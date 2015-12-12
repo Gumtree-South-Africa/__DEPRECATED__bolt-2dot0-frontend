@@ -12,7 +12,7 @@ var methodOverride = require('method-override');
 var path = require('path');
 var glob = require('glob');
 
-// var hbshelp = require("../../modules/bolt-handlebars-helpers");
+var hbshelp = require("../../modules/bolt-handlebars-helpers");
 
 var config = {
     root: process.cwd()
@@ -44,13 +44,12 @@ function BuildApp() {
 
     //Setup controllers
     var controllers = glob.sync(config.root + '/app/controllers/**/*.js');
-    console.log('controllers: ',controllers);
     controllers.forEach(function (controller) {
         require(controller)(app);
     });
 
     // Add BOLT 2.0 Handlebars helpers for view engine
-    // hbshelp(app);
+    hbshelp(app);
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc
