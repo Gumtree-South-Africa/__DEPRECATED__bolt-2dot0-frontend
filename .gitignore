@@ -43,7 +43,7 @@ npm-debug.log
 .sass-cache
 .build
 build
-#app/locales/json
+app/locales/json
 public/css
 public/maps
 screenshots
