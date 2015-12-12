@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "dev": "npm install && grunt build && gulp",
     "start": "node ./bin/www",
     "test": "grunt test",
     "build": "npm install && grunt build"
