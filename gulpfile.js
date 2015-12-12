@@ -31,6 +31,8 @@ gulp.task('develop', function () {
   });
 });
 
+gulp.task('build', ['sass']);
+
 gulp.task('default', [
   'sass',
   'develop',

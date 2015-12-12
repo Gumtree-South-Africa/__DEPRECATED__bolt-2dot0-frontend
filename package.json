@@ -6,7 +6,7 @@
     "dev": "npm install && grunt build && gulp",
     "start": "node ./bin/www",
     "test": "grunt test",
-    "build": "npm install && grunt build"
+    "build": "npm install && grunt build && gulp build"
   },
   "dependencies": {
     "async": "^1.5.0",
