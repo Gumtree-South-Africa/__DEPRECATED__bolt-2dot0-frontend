@@ -44,6 +44,8 @@ npm-debug.log
 .build
 build
 locales/json
+public/css
+public/maps
 screenshots
 logs
 dist

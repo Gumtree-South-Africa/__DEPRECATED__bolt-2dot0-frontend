@@ -1,0 +1,2698 @@
+{
+	"DO_NOT_EDIT": "GENERATED_FILE. For details see toJson.js",
+	"greeting": "Pozdrowienia z Doliny Krzemowej",
+	"welcome": "Witamy Bolt 2.0",
+	"author": "Tom Anthony",
+	"coworkers": {
+		"nacer": "Nacer Polski",
+		"ulises": "Pomylony Polski Ulises"
+	},
+	"currency": {
+		"name": "z\\u0142oty",
+		"code": "PLN",
+		"number": "985",
+		"minor_unit": "2",
+		"major_unit": "3",
+		"decimal": ",",
+		"placeholder": ".",
+		"symbol": "z\\u0142",
+		"format": "z\\u0142 {0}"
+	},
+	"cookie": {
+		"banner": {
+			"message": "Aby zapewni\\u0107 najwy\\u017Csz\\u0105 jako\\u015B\\u0107 us\\u0142ug i wygodne korzystanie z serwisu, u\\u017Cywamy informacji zapisanych w przegl\\u0105darce za pomoc\\u0105 plik\\u00F3w cookies (pol.\\: ciasteczek). Korzystaj\\u0105c z serwisu wyra\\u017Casz zgod\\u0119 na stosowanie plik\\u00F3w <a href\\=\"http\\://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies\" target\\=\"_blank\">cookies</a>. W ka\\u017Cdej chwili mo\\u017Cesz je zablokowa\\u0107 korzystaj\\u0105c z ustawie\\u0144 swojej przegl\\u0105darki internetowej."
+		}
+	},
+	"my-ads": {
+		"active": {
+			"until": "Aktywne do:"
+		},
+		"button": {
+			"post": "Dodaj og\\u0142oszenie\\!"
+		},
+		"column": {
+			"my-ads": "Moje og\\u0142oszenia",
+			"price": "Cena",
+			"posted": "Dodane",
+			"status": "Status",
+			"activity": "Aktywno\\u015B\\u0107",
+			"options": "Opcje"
+		},
+		"Active": {
+			"title": {
+				"$$": "Aktywne",
+				"all": "Wszystkie"
+			},
+			"checking": "Prosz\\u0119 czeka\\u0107"
+		},
+		"Pending": {
+			"title": "Oczekuj\\u0105ce"
+		},
+		"Expired": {
+			"title": "Wygas\\u0142e"
+		},
+		"Aktywne": {
+			"until": "Aktywne do"
+		},
+		"created": {
+			"on": "Dodane :"
+		},
+		"expired": {
+			"on": "Wygas\\u0142o"
+		},
+		"expire": {
+			"message": "Obecnie oferujemy dost\\u0119p do og\\u0142osze\\u0144, kt\\u00F3re wygas\\u0142y w ci\\u0105gu ostatnich 60 dni."
+		},
+		"category": "Kategoria: {0}",
+		"location": "Lokalizacja: {0}",
+		"replies": "Odpowiedzi: <span>{0}</span>",
+		"views": "Wizyty: <span>{0}</span>",
+		"phone": {
+			"calls": "Ods\\u0142ony telefonu\\: <span>{0}</span>"
+		},
+		"edit": "Edytuj",
+		"delete": "Usu\\u0144",
+		"repost": "Od\\u015Bwie\\u017C",
+		"promote": "Wypromuj og\\u0142oszenia",
+		"reactivate": "Aktywuj ponownie",
+		"emptystatemessage": "Nie masz aktywnych og\\u0142osze\\u0144. <br/><a data-gtm\\=\"pc|PostAdBegin\" href\\=\"{0}\">Dlaczego nie zamie\\u015Bcisz?</a>",
+		"ad": {
+			"status": {
+				"active": "Aktywne",
+				"pending": "Oczekuj\\u0105ce",
+				"mailed": "Oczekuj\\u0105ce",
+				"delayed": "Oczekuj\\u0105ce",
+				"deleted": "Usuni\\u0119te"
+			},
+			"page": {
+				"number": "Strona: {0}"
+			},
+			"active": {
+				"since": "Aktywne od: {0}"
+			},
+			"activate": {
+				"link": "Aktywuj"
+			}
+		},
+		"until": "do",
+		"sellerbadge": {
+			"title": "Aby pom\\u00F3c w promocji, wszystkim zarejestrowanym U\\u017Cytkownikom proponujemy Odznak\\u0119 Super Sprzedawcy na Gumtree. Wystarczy skopiowa\\u0107 i wklei\\u0107 kod html, aby zintegrowa\\u0107 Odznak\\u0119 Super Sprzedawcy na Gumtree ze swoim blogiem lub inn\\u0105 stron\\u0105 internetow\\u0105. Twoje og\\u0142oszenia b\\u0119d\\u0105 \\u0142atwiej wyszukiwane przez potencjalnych nabywc\\u00F3w.",
+			"icon-title": "Og\\u0142oszenia na Gumtree",
+			"description": "Odznaka Super Sprzedawcy na Gumtree",
+			"label": {
+				"large": "du\\u017Cy",
+				"small": "ma\\u0142y"
+			}
+		}
+	},
+	"my": {
+		"subscriptions": {
+			"page": {
+				"breadcrumb": {
+					"$$": "{0} Artyku\\u0142y",
+					"single": "Jeden artyku\\u0142",
+					"plural": "{0} Artyku\\u0142\\u00F3w"
+				},
+				"title": {
+					"text": "Moje Subskrypcje"
+				},
+				"header": {
+					"title": "Moje og\\u0142oszenia",
+					"column1": "Wstrzymaj / Wzn\\u00F3w"
+				},
+				"emptystatemessage": "Nie masz aktywnych og\\u0142osze\\u0144. <br/><a href\\=\"{0}\">Dlaczego nie zamie\\u015Bcisz?</a>"
+			}
+		},
+		"profile": {
+			"page": {
+				"title": "M\\u00F3j profil",
+				"account": {
+					"header": "Szczeg\\u00F3\\u0142y konta"
+				},
+				"username": "Nazwa u\\u017Cytkownika",
+				"email": "Email",
+				"change": {
+					"password": {
+						"$$": "Zmie\\u0144 has\\u0142o",
+						"save": "Twoje has\\u0142o zosta\\u0142o zmienione.",
+						"verify": "Twoje has\\u0142o jest nieprawid\\u0142owe. Upewnij si\\u0119, \\u017Ce w polu \\u201EWeryfikacja has\\u0142a\\u201D wpisujesz w\\u0142a\\u015Bciwe has\\u0142o.",
+						"mismatch": "Zmiana has\\u0142a. Has\\u0142o nie zosta\\u0142o wpisane prawid\\u0142owo."
+					},
+					"profile": {
+						"save": "Twoje konto zosta\\u0142o zaktualizowane."
+					}
+				},
+				"new": {
+					"password": "Nowe has\\u0142o"
+				},
+				"confirm": {
+					"password": "Wpisz ponownie has\\u0142o"
+				},
+				"notification": "Chc\\u0119 otrzymywa\\u0107 newslettery i oferty promocyjne",
+				"emailUpsell": "Wysy\\u0142aj informacje o moich og\\u0142oszeniach i aktualizacjach Gumtree",
+				"verify": {
+					"password": "Wpisz swoje aktualne has\\u0142o, aby zapisa\\u0107 zmiany"
+				},
+				"save": "Zapisz zmiany",
+				"profileImage": "Zdj\\u0119cie profilowe",
+				"gender": {
+					"$$": "P\\u0142e\\u0107",
+					"male": "M\\u0119\\u017Cczyzna",
+					"girl": "Kobieta"
+				},
+				"phone1": "Telefon",
+				"phone2": "Telefon 2",
+				"phone3": "Telefon 3",
+				"webSiteUrl": "URL strony",
+				"aboutYou": "O Tobie",
+				"viewadcounter": "Ukryj licznik wizyt w og\\u0142oszeniach",
+				"phone": {
+					"type": {
+						"Landline": "Stacjonarny",
+						"mobile": "Kom\\u00F3rkowy",
+						"home": "Domowy",
+						"work": "Biznesowy",
+						"main": "G\\u0142\\u00F3wny",
+						"alternative": "Dodatkowy",
+						"fax": "Fax",
+						"pager": "Pager",
+						"other": "Inny",
+						"$$": "Rodzaj numeru"
+					}
+				},
+				"date": {
+					"birth": "Data urodzenia"
+				},
+				"display": {
+					"gender": "Wy\\u015Bwietli\\u0107 p\\u0142e\\u0107 ?",
+					"date": {
+						"birth": "Wy\\u015Bwietl dat\\u0119 urodzenia ?"
+					}
+				},
+				"interest": "Zainteresowania",
+				"pwd": {
+					"setup": "Ustawienie has\\u0142a"
+				},
+				"sub": {
+					"title": "Szczeg\\u00F3\\u0142y profilu"
+				},
+				"char": {
+					"count": "Dost\\u0119pnych znak\\u00F3w\\: {0}"
+				},
+				"location": "Lokalizacja",
+				"upload": "Dodaj",
+				"oneTouchPayment": {
+					"change": {
+						"failed": "P\\u0142atno\\u015B\\u0107 One Touch zmiana nie uda\\u0142a si\\u0119",
+						"success": "P\\u0142atno\\u015B\\u0107 One Touch zmieniono pomy\\u015Blnie"
+					}
+				},
+				"about": {
+					"you": {
+						"too": {
+							"long": "Tekst \\u201Co mnie\\u201D jest za d\\u0142ugi. Opis nie mo\\u017Ce przekracza\\u0107 350 znak\\u00F3w."
+						}
+					}
+				},
+				"interests": {
+					"long": "Tekst \\u201Czainteresowania\\u201D jest za d\\u0142ugi Opis nie mo\\u017Ce przekracza\\u0107 350 znak\\u00F3w."
+				}
+			}
+		},
+		"ads": {
+			"page": {
+				"title": {
+					"text": "Moje og\\u0142oszenia"
+				}
+			}
+		},
+		"promote": {
+			"page": {
+				"title": {
+					"text": "Wypromuj swoje og\\u0142oszenia"
+				},
+				"pay": {
+					"now": "Zap\\u0142a\\u0107 teraz"
+				},
+				"total": "\\u0141\\u0105cznie\\:"
+			}
+		},
+		"watchlist": {
+			"title": "Zachowane og\\u0142oszenia",
+			"syncbutton": {
+				"inactive": "Zapisane",
+				"active": "Zapisz"
+			},
+			"email": "Email",
+			"clearAll": "Usu\\u0144 wszystkie"
+		},
+		"messages": {
+			"page": {
+				"title": {
+					"text": "Moje wiadomo\\u015Bci"
+				}
+			}
+		},
+		"alerts": {
+			"page": {
+				"title": {
+					"text": "Powiadomienia Gumtree"
+				}
+			}
+		}
+	},
+	"postad": {
+		"error": {
+			"title": {
+				"too": {
+					"long": "Prosimy skr\\u00F3ci\\u0107 tytu\\u0142 do 100 znak\\u00F3w. Obecnie przekracza on limit.",
+					"short": "Prosimy poda\\u0107 tytu\\u0142, minimum 2 s\\u0142owa",
+					"many": {
+						"cap": {
+							"letter": "Prosimy zmniejszy\\u0107 ilo\\u015B\\u0107 WIELKICH liter w tytule"
+						}
+					}
+				},
+				"no": {
+					"alpha": {
+						"num": "Prosimy poda\\u0107 przynajmniej jedn\\u0105 liter\\u0119 lub cyfr\\u0119"
+					}
+				}
+			},
+			"ATVModel": {
+				"too": {
+					"long": "Prosimy skr\\u00F3ci\\u0107 do 30 znak\\u00F3w. Obecnie limit jest przekroczony."
+				}
+			},
+			"BoatsModel": {
+				"too": {
+					"long": "Prosimy skr\\u00F3ci\\u0107 do 30 znak\\u00F3w. Obecnie limit jest przekroczony."
+				}
+			},
+			"wrong": {
+				"ATVModel": {
+					"format": "Prosimy poda\\u0107 model prawid\\u0142owo  {0}"
+				},
+				"BoatsModel": {
+					"format": "Prosimy poda\\u0107 model prawid\\u0142owo {0}"
+				},
+				"car": {
+					"year": {
+						"format": "Prosimy poda\\u0107 w\\u0142a\\u015Bciwy rocznik pomi\\u0119dzy 1900 do obecnego"
+					}
+				},
+				"phone": {
+					"format": "Prosimy wpisa\\u0107 prawid\\u0142owo {0}"
+				},
+				"Km": {
+					"format": "Prosimy poda\\u0107 prawid\\u0142owo {0}"
+				},
+				"email": {
+					"format": "Email jest nieprawid\\u0142owy"
+				},
+				"url": {
+					"format": "Podany adres URL jest nieprawid\\u0142owy. Prosimy wpisa\\u0107 ponownie."
+				}
+			},
+			"header": "Popraw nast\\u0119puj\\u0105ce dane w og\\u0142oszeniu i dodaj ponownie, gdy b\\u0119dzie gotowe.",
+			"attribute": {
+				"notNumber": "Prosimy poda\\u0107 prawid\\u0142owy numer",
+				"notANumeric": "Prosimy poda\\u0107 prawid\\u0142owo {0}",
+				"date": {
+					"invalid": "Prosimy poda\\u0107 prawid\\u0142owo {0}"
+				},
+				"past_date": "Prosimy poda\\u0107 dzisiejsz\\u0105 lub p\\u00F3\\u017Aniejsz\\u0105 dat\\u0119",
+				"end_date_before_start_date": "Prosimy poda\\u0107 w\\u0142a\\u015Bciw\\u0105 dat\\u0119, p\\u00F3\\u017Aniejsz\\u0105 ni\\u017C pocz\\u0105tkowa",
+				"start_date_after_end_date": "Prosimy poda\\u0107 w\\u0142a\\u015Bciw\\u0105 dat\\u0119, wcze\\u015Bniejsz\\u0105 ni\\u017C ko\\u0144cowa",
+				"future_birth_date": "Prosimy poda\\u0107 dzisiejsz\\u0105 lub wcze\\u015Bniejsz\\u0105 dat\\u0119"
+			},
+			"description": {
+				"too": {
+					"short": "Prosimy uzupe\\u0142ni\\u0107 opis, minimum 10 znak\\u00F3w",
+					"long": {
+						"$$": "Prosimy ograniczy\\u0107 opis do 4000 znak\\u00F3w. Obecnie przekracza on dopuszczalny limit.",
+						"partner": "Prosimy ograniczy\\u0107 opis do {0} znak\\u00F3w. Obecnie przekracza on dopuszczalny limit."
+					}
+				}
+			},
+			"negative": {
+				"price": "Prosimy wpisa\\u0107 prawid\\u0142owo kwot\\u0119"
+			},
+			"price": {
+				"too": {
+					"large": "Cena jest za wysoka"
+				}
+			},
+			"user": {
+				"name": {
+					"too": {
+						"long": "Prosimy poda\\u0107 nazw\\u0119, maksymalnie do 50 znak\\u00F3w"
+					},
+					"no": {
+						"url": "Prosimy nie u\\u017Cywa\\u0107 nazwy URL."
+					}
+				}
+			},
+			"make": {
+				"no": {
+					"selection": "Prosimy wybra\\u0107 mark\\u0119 samochodu"
+				}
+			},
+			"model": {
+				"no": {
+					"selection": "Prosimy wybra\\u0107 model"
+				}
+			},
+			"post": {
+				"field": {
+					"required": "Wymagane"
+				}
+			}
+		},
+		"notice": {
+			"title": "W tytule podaj minimum 2 s\\u0142owa; do 100 znak\\u00F3w. <span class\\=\"counter-text\"><span class\\=\"brakuje-chars\">  Dost\\u0119pnych\\: <span class\\=\"charcount\">100</span> </span>"
+		},
+		"image": {
+			"network": {
+				"error": "Wyst\\u0105pi\\u0142 b\\u0142\\u0105d podczas wczytywania zdj\\u0119cia. Spr\\u00F3buj ponownie."
+			},
+			"upload": {
+				"important": "Wa\\u017Cne\\:",
+				"instruction": "Tylko og\\u0142oszenia ze zdj\\u0119ciami s\\u0105 widoczne w Galerii.",
+				"errors": "Mo\\u017Cesz doda\\u0107 do o\\u015Bmiu zdj\\u0119\\u0107 w formacie BMP, JPG, PNG lub GIF i wielko\\u015Bci do 4MB lub 4000 x 3000 pikseli ka\\u017Cde.",
+				"success": "Gotowe!",
+				"failure": {
+					"$$": "Niestety, wyst\\u0105pi\\u0142 b\\u0142\\u0105d podczas wczytywania zdj\\u0119cia.",
+					"invalid": {
+						"size": "Uwaga\\: Wielko\\u015B\\u0107 zdj\\u0119cia nie mo\\u017Ce przekracza\\u0107 12 MB.",
+						"dimensions": "Uwaga\\: Zdj\\u0119cia powinny by\\u0107 wielko\\u015Bci min 20x20 pikseli i max 9000x9000",
+						"types": "Przepraszamy, akceptujemy tylko zdj\\u0119cia w formacie\\: bmp, jpg, gif, png, i tif."
+					},
+					"picture": {
+						"down": "Wczytywanie nie powiod\\u0142o si\\u0119. Prosimy spr\\u00F3bowa\\u0107 ponownie."
+					}
+				},
+				"resize": "Przygotowanie zdj\\u0119cia do przesy\\u0142ania...",
+				"network": {
+					"firewall": "Uwaga\\: wczytywanie nie powiod\\u0142o si\\u0119.  Prosimy wy\\u0142\\u0105czy\\u0107 firewall, ad blocker i spyware blocker."
+				},
+				"colorspace": "Przepraszamy, ale zdj\\u0119cia zapisane w CMYK nie s\\u0105 obs\\u0142ugiwane i nie mog\\u0105 by\\u0107 zamieszczone.",
+				"data": {
+					"corrupt": "Uwaga\\: Plik zdj\\u0119ciowy jest uszkodzony."
+				},
+				"drag": {
+					"and": {
+						"drop": "Przeci\\u0105gnij i dodaj tu swoje zdj\\u0119cia"
+					}
+				},
+				"no": {
+					"browser": {
+						"support": "Twoja przegl\\u0105darka nie obs\\u0142uguje przesy\\u0142ania plik\\u00F3w"
+					}
+				},
+				"or": "lub",
+				"text": "Zdj\\u0119cia"
+			},
+			"loading": "Przesy\\u0142anie zdj\\u0119cia...",
+			"uploading": "Wczytywanie zdj\\u0119cia...",
+			"drag": {
+				"reorder": "Zmie\\u0144 kolejno\\u015B\\u0107 przeci\\u0105gaj\\u0105c zdj\\u0119cia"
+			},
+			"click": {
+				"featured": "Kliknij, aby ustawi\\u0107 jako zdj\\u0119cie g\\u0142\\u00F3wne"
+			},
+			"featured": "Wybrane zdj\\u0119cie"
+		},
+		"see": {
+			"all": "See All"
+		},
+		"current": {
+			"location": {
+				"$$": "Twoja aktualna lokalizacja",
+				"or": "lub",
+				"msg": "Ups...\\!  Nie mo\\u017Cemy rozpozna\\u0107 lokalizacji. Prosimy wybra\\u0107 jedn\\u0105 z poni\\u017Cszych.",
+				"finding": "Wyszukiwanie lokalizacji..."
+			}
+		},
+		"data": {
+			"for": {
+				"ad": "Informacje o og\\u0142oszeniu"
+			}
+		},
+		"add": {
+			"image": "Do\\u0142\\u0105cz zdj\\u0119cia",
+			"eight": "Do 12 zdj\\u0119\\u0107",
+			"photo": "Wybierz zdj\\u0119cia"
+		},
+		"price": {
+			"fraction": ",00"
+		},
+		"require": {
+			"legend": "* Wymagane informacje"
+		},
+		"optional": {
+			"fields": {
+				"label": "Uzupe\\u0142nij og\\u0142oszenie o dodatkowe informacje"
+			}
+		},
+		"post": {
+			"text": "Dodaj og\\u0142oszenie"
+		},
+		"preview": {
+			"text": "Podgl\\u0105d"
+		},
+		"change": {
+			"text": "Zmie\\u0144"
+		},
+		"select": {
+			"location": "Wybierz lokalizacj\\u0119",
+			"category": {
+				"$$": "Wybierz kategori\\u0119",
+				"sampleSearch": "Ex.: Komputer"
+			},
+			"all": {
+				"feature": {
+					"options": "Wybierz wszystkie opcje"
+				}
+			}
+		},
+		"contact": {
+			"name": "Imi\\u0119",
+			"password": "Has\\u0142o",
+			"email": "email",
+			"edit": "Edytuj",
+			"change": "Zmie\\u0144",
+			"welcome": "Witamy ponownie {0}!"
+		},
+		"cat": {
+			"search": "Co chcesz opublikowa\\u0107?",
+			"suggestions": "Sugerowane:",
+			"showall": "lub wybierz jedn\\u0105 z kategorii\\:",
+			"no": {
+				"results": {
+					"showall": "Nie znale\\u017Ali\\u015Bmy sugestii. Wybierz jedn\\u0105 z kategorii\\:"
+				}
+			}
+		},
+		"terms": {
+			"and": {
+				"condition": "Dodaj\\u0105c og\\u0142oszenie, wyra\\u017Casz zgod\\u0119 na nasze <a href\\=\"{0}\" target\\=\"_blank\"> Zasady korzystania</a> i <a href\\=\"{1}\" target\\=\"_blank\"> Polityk\\u0119 prywatno\\u015Bci</a> oraz zgadzasz si\\u0119 na otrzymywanie naszych newsletter\\u00F3w i ofert promocyjnych."
+			}
+		},
+		"your": {
+			"free": {
+				"ad": {
+					"text": "Dodaj og\\u0142oszenie"
+				}
+			}
+		},
+		"a": {
+			"free": {
+				"ad": {
+					"text": "Zobacz swoje og\\u0142oszenie"
+				}
+			}
+		},
+		"matching": {
+			"address": {
+				"text": "Prosimy wybra\\u0107 w\\u0142a\\u015Bciwy adres"
+			}
+		},
+		"promote": {
+			"my": {
+				"ad": "Wypromuj og\\u0142oszenie"
+			}
+		},
+		"bump": {
+			"up": {
+				"$$": "Podbij do g\\u00F3ry",
+				"text": "Podbij swoj\\u0105 ofert\\u0119 na sam\\u0105 g\\u00F3r\\u0119 bezp\\u0142atnych og\\u0142osze\\u0144\\!"
+			}
+		},
+		"top": {
+			"ad": {
+				"$$": "Og\\u0142oszenie wyr\\u00F3\\u017Cnione",
+				"text": "Wyr\\u00F3\\u017Cnij swoje og\\u0142oszenie i poka\\u017C je na g\\u00F3rze kategorii. Oferty wy\\u015Bwietlane s\\u0105 rotacyjnie."
+			}
+		},
+		"hpg": {
+			"ad": {
+				"$$": "Galeria na stronie g\\u0142\\u00F3wnej",
+				"text": "Og\\u0142oszenie wy\\u015Bwietlane na g\\u0142\\u00F3wnej stronie Gumtree b\\u0119dzie widziane przez tysi\\u0105ce os\\u00F3b. Zamie\\u015B\\u0107 zdj\\u0119cie, aby skorzysta\\u0107 z tej opcji\\!"
+			}
+		},
+		"learn": {
+			"more": "Dowiedz si\\u0119 wi\\u0119cej ?"
+		},
+		"email": {
+			"suggestionPrefix": "Mia\\u0142e\\u015B na my\\u015Bli\\:",
+			"yes": "Tak",
+			"no": "Nie",
+			"okmessage": "Rozumiem!"
+		},
+		"completeness": {
+			"adqualitytitle": "Walory og\\u0142oszenia",
+			"sellingtips": "Porady sprzeda\\u017Cy",
+			"template": "Twoje og\\u0142oszenie otrzyma\\u0142o (percentage)%. Mo\\u017Cesz je jeszcze udoskonali\\u0107\\: (message)",
+			"templateComplete": "Nasze og\\u0142oszenie otrzyma\\u0142o (percentage)%",
+			"addtitle": "Podaj\\u0105c tytu\\u0142 og\\u0142oszenia",
+			"addname": "Podaj\\u0105c swoje imi\\u0119, uczynisz og\\u0142oszenie bardziej osobistym i zach\\u0119cisz kupuj\\u0105cych",
+			"addemail": "Podaj\\u0105c sw\\u00F3j adres e-mail, aby kupuj\\u0105cy mogli si\\u0119 z tob\\u0105 skontatkowa\\u0107",
+			"addimage": "Dodaj\\u0105c zdj\\u0119cie",
+			"adddetails": "Dodaj\\u0105c opis w og\\u0142oszeniu",
+			"moredetails": "Podaj\\u0105c w opisie wi\\u0119cej szczeg\\u00F3\\u0142\\u00F3w",
+			"moreimages": "Dodaj\\u0105c wi\\u0119cej zdj\\u0119\\u0107 innych uj\\u0119\\u0107, zbli\\u017Cenie lub pokazuj\\u0105ce szczeg\\u00F3\\u0142y",
+			"addtelephone": "Podaj\\u0105c numer telefonu i udost\\u0119pniaj\\u0105c kupuj\\u0105cym dodatkow\\u0105 form\\u0119 kontaktu z tob\\u0105",
+			"addprice": "Wpisuj\\u0105c kwot\\u0119 lub wybieraj\\u0105c opcj\\u0119 cenow\\u0105",
+			"addaddress": "Podaj\\u0105c adres",
+			"moreinfo": "Udzielaj\\u0105c wi\\u0119cej informacji o ofercie korzystaj\\u0105c z poni\\u017Cszych form"
+		},
+		"insertionfee": {
+			"warning": "Pami\\u0119taj, \\u017Ce za dodanie og\\u0142oszenia w tej kategorii pobieramy op\\u0142at\\u0119 w wysoko\\u015Bci xxx"
+		},
+		"websiteurl": {
+			"notice": "Dodaj link URL do swojej strony"
+		},
+		"info": {
+			"2": {
+				"title": "Uroczy 3 sypialniowy domek wypoczynkowy"
+			},
+			"4": {
+				"title": "Czerwony Krzy\\u017C potrzebuje wolontariuszy"
+			},
+			"5": {
+				"title": "15\" Felgi aluminiowe"
+			},
+			"6": {
+				"title": "Zagin\\u0105\\u0142 rudy kot w okolicy wa\\u0142\\u00F3w"
+			},
+			"8": {
+				"title": "Agent nieruchomo\\u015Bci"
+			},
+			"9": {
+				"title": "Konserwacja i architektura krajobrazu"
+			},
+			"9067": {
+				"title": "Bankiet dobroczynny na pomoc dla ch\\u00F3ru"
+			},
+			"9101": {
+				"title": "Ponton z silnikiem elektrycznym \\u2013 jak nowy\\!"
+			},
+			"9122": {
+				"title": "Urocze szczeni\\u0119ta rasy Seter Irlandzki"
+			},
+			"9171": {
+				"title": "Toster Bosch w doskona\\u0142ym stanie"
+			},
+			"9175": {
+				"title": "Nowe nawil\\u017Cacze ultrad\\u017Awi\\u0119kowe"
+			},
+			"9176": {
+				"title": "Fotelik samochodowy w idealnym stanie"
+			},
+			"9177": {
+				"title": "Nowe suknie \\u015Blubne"
+			},
+			"9178": {
+				"title": "Samsung Galaxy Tab 2 \\u2013 doskona\\u0142y stan\\!"
+			},
+			"9179": {
+				"title": "Jak nowy rower trekingowy CrossWind"
+			},
+			"9389": {
+				"title": "Do\\u015Bwiadczony trener komputerowy dla doros\\u0142ych"
+			},
+			"description": "Opisz przedmiot w 2-5 liniach.",
+			"pictures": "Do 12 zdj\\u0119\\u0107"
+		},
+		"forexample": "np."
+	},
+	"credit": {
+		"card": {
+			"security": {
+				"code": {
+					"empty": "B\\u0142\\u0105d\\! Musisz poda\\u0107 informacje w pod\\u015Bwietlonych polach.",
+					"invalid": "Prosimy poda\\u0107 wa\\u017Cny kod bezpiecze\\u0144stwa"
+				}
+			},
+			"holder": {
+				"name": {
+					"empty": "B\\u0142\\u0105d\\! Musisz poda\\u0107 informacje w pod\\u015Bwietlonych polach.",
+					"too": {
+						"long": "Przepraszamy, ale nasz limit to {0} znak\\u00F3w. Prosimy poda\\u0107 kr\\u00F3tsz\\u0105 nazw\\u0119."
+					}
+				}
+			},
+			"number": {
+				"empty": "B\\u0142\\u0105d\\! Musisz poda\\u0107 informacje w pod\\u015Bwietlonych polach.",
+				"too": {
+					"long": "Przepraszamy, ale nasz limit to {0} znak\\u00F3w. Prosimy poda\\u0107 kr\\u00F3tszy numer."
+				},
+				"invalid": "Prosimy poda\\u0107 wa\\u017Cny numer karty"
+			},
+			"type": {
+				"invalid": "Prosimy poda\\u0107 wa\\u017Cny rodzaj karty"
+			},
+			"exp": {
+				"month": {
+					"invalid": "Prosimy sprawdzi\\u0107 miesi\\u0105c wa\\u017Cno\\u015Bci karty kredytowej"
+				},
+				"year": {
+					"invalid": "Prosimy sprawdzi\\u0107 rok wa\\u017Cno\\u015Bci karty kredytowej"
+				},
+				"expired": "Wa\\u017Cno\\u015B\\u0107 karty wygas\\u0142a"
+			}
+		},
+		"car": {
+			"exp": {
+				"month": {
+					"jan": "1 - Stycze\\u0144",
+					"feb": "2 - Luty",
+					"mar": "3 - Marzec",
+					"apr": "4 - Kwiecie\\u0144",
+					"may": "5 - Maj",
+					"jun": "6 - Czerwiec",
+					"jul": "7 - Lipiec",
+					"aug": "8 - Sierpie\\u0144",
+					"sep": "9 - Wrzesie\\u0144",
+					"oct": "10 - Pa\\u017Adziernik",
+					"nov": "11 - Listopad",
+					"dec": "12 - Grudzie\\u0144"
+				}
+			}
+		}
+	},
+	"myorders": {
+		"page": {
+			"title": "Moje P\\u0142atno\\u015Bci"
+		},
+		"detail": {
+			"export": {
+				"pdf": "Brak informacji",
+				"print": "Drukuj"
+			},
+			"field": {
+				"features": {
+					"adId": "Numer og\\u0142oszenia",
+					"featureAmt": "Koszt",
+					"featureId": "Numer produktu",
+					"featureName": "Nazwa produktu",
+					"$$": "Szczeg\\u00F3\\u0142y zam\\u00F3wienia"
+				},
+				"orderDateStr": "Data",
+				"orderId": "Numer referencyjny",
+				"payerEmail": "E-mail u\\u017Cytkownika",
+				"paymentMethod": "Forma p\\u0142atno\\u015Bci",
+				"vatId": "Numer VAT"
+			},
+			"totals": {
+				"subTotal": "\\u0141\\u0105cznie (bez VAT)\\:",
+				"vatTotal": "VAT:",
+				"orderTotal": "\\u0141\\u0105cznie (razem z VAT)\\:"
+			}
+		},
+		"export": {
+			"csv": "CSV",
+			"json": "JSON",
+			"xml": {
+				"nodes": {
+					"item": "Produkt",
+					"oamt": "Koszt",
+					"odt": "Rachunek",
+					"oid": "Numer referencyjny",
+					"root": "Zam\\u00F3wienia"
+				},
+				"$$": "XML"
+			}
+		},
+		"filters": {
+			"month": "Miesi\\u0105c",
+			"year": "Rok"
+		},
+		"list": {
+			"columns": {
+				"oamt": "Koszt",
+				"odt": "Data",
+				"oid": "Numer referencyjny"
+			},
+			"nodata": "Brak danych"
+		},
+		"months": "stycze\\u0144,luty,marzec,kwiecie\\u0144,maj,czerwiec,lipiec,sierpie\\u0144,wrzesie\\u0144,pa\\u017Adziernik,listopad,grudzie\\u0144",
+		"print": {
+			"title": "Rachunek",
+			"client": {
+				"$$": "Informacje o kliencie:",
+				"name": "Nazwa u\\u017Cytkownika\\:",
+				"address": "Adres:",
+				"nip": "NIP:",
+				"vat": "Numer VAT:"
+			},
+			"payment": {
+				"$$": "Informacje o p\\u0142atno\\u015Bci\\:",
+				"ref": "Numer referencyjny:",
+				"date": "Z\\u0142o\\u017Cono zam\\u00F3wienie\\:",
+				"email": "Adres e\\u00ADmail\\:",
+				"type": "Forma p\\u0142atno\\u015Bci\\:",
+				"address": {
+					"$$": "Informacje o sprzedawcy:",
+					"vatid": "VAT ID:"
+				}
+			},
+			"details": {
+				"$$": "Szczeg\\u00F3\\u0142y zam\\u00F3wienia",
+				"subject": "Przedmiot",
+				"title": "Numer og\\u0142oszenia",
+				"cost": "Koszt",
+				"total": "Zap\\u0142acono \\u0141\\u0105cznie\\:"
+			},
+			"fineprint": "To jest elektroniczny zapis dokonania zakupu Wydrukuj t\\u0119 stron\\u0119 i zachowaj j\\u0105."
+		}
+	},
+	"payment": {
+		"processing": "Przetwarzanie p\\u0142atno\\u015Bci, prosimy czeka\\u0107 ...",
+		"subheader": "Zap\\u0142a\\u0107 za zam\\u00F3wione promocje",
+		"header": "Twoje zam\\u00F3wienie",
+		"feature": {
+			"select_method": {
+				"$$": "Wybierz opcj\\u0119 p\\u0142atno\\u015Bci",
+				"none": "Brak",
+				"eft": "Przelewy Online",
+				"credit_debit": "Karta Kredytowa"
+			},
+			"total": "\\u0141\\u0105cznie",
+			"autorenew": {
+				"$$": "Automatyczne odnowienie",
+				"moreinfo": "Wi\\u0119cej informacji",
+				"lessinfo": "Mniej informacji",
+				"description": "<h3>Zapisz si\\u0119 na automatyczne przed\\u0142u\\u017Cenie </h3><p> Wa\\u017Cne jest, aby zrozumie\\u0107 poni\\u017Csze informacje\\:<ol><li><em> Po wyga\\u015Bni\\u0119ciu terminu promocji, zostanie ona automatycznie przed\\u0142u\\u017Cona.</em></li><li><em> Zostanie pobrana kwota zgodna z cen\\u0105 wybranej promocji. </em></li><li><em> Za ka\\u017Cd\\u0105 transakcj\\u0119 automatycznie b\\u0119dzie wygenerowany rachunek, kt\\u00F3ry b\\u0119dzie dost\\u0119pny na koncie.</em></li><li><em> Z opcji Automatycznego przed\\u0142u\\u017Cania promocji mo\\u017Cna w ka\\u017Cdej chwili zrezygnowa\\u0107, opcja dost\\u0119pna jest na stronie zarz\\u0105dzania subskrypcjami.</em></li><li><em> Je\\u017Celi ceny ulegn\\u0105 zmianie, zostaniesz o tym poinformowany oddzielnym e-mailem. B\\u0119dziesz m\\u00F3g\\u0142 w\\u00F3wczas zdecydowa\\u0107 czy chcesz nadal korzysta\\u0107 z serwisu Automatycznego przed\\u0142u\\u017Cania promocji. </em></li></ol></p>"
+			}
+		},
+		"credit_debit": {
+			"$$": "Wybierz kart\\u0119",
+			"details": {
+				"name": "Imi\\u0119 i nazwisko posiadacza karty",
+				"submit": "Zap\\u0142a\\u0107 teraz",
+				"number": "Numer karty kredytowej",
+				"exp": "Data wa\\u017Cno\\u015Bci",
+				"cvv": {
+					"$$": "Kod weryfikacji karty (CVV)",
+					"base": "Ostatnie 3 cyfry na odwrocie karty",
+					"amex": "4-cyfrowy numer na przedniej stronie karty"
+				}
+			}
+		},
+		"eft": {
+			"description": "<p class\\='sid-lead-paragraph'>SID pozwala na szybkie i bezpieczne dokonanie p\\u0142atno\\u015Bci przez EFT.</p><p>Banki obs\\u0142ugiwane przez Absa, FNB, Nedbank i Standard Bank.</p><p>Klikni\\u0119cie poni\\u017Cszego przycisku otworzy stron\\u0119 SID, na kt\\u00F3rej mo\\u017Cna sprawdzi\\u0107 prawid\\u0142owo\\u015B\\u0107 zam\\u00F3wienia. Ostatni krok to zako\\u0144czenie transakcji na stronie Twojego banku.</p>",
+			"proceed": "Przejd\\u017A do SID",
+			"marketing": "",
+			"submit": "Przejd\\u017A do SID"
+		},
+		"for": {
+			"feature": {
+				"success": "Gratulacje\\! Twoja promocja zosta\\u0142a wykupiona.",
+				"fail": "Przykro nam, ale p\\u0142atno\\u015B\\u0107 nie mo\\u017Ce by\\u0107 teraz zrealizowana. Prosimy sprawdzi\\u0107 szczeg\\u00F3\\u0142y p\\u0142atno\\u015Bci i spr\\u00F3bowa\\u0107 ponownie p\\u00F3\\u017Aniej.",
+				"expired": "Przykro nam, ale p\\u0142atno\\u015B\\u0107 nie mo\\u017Ce by\\u0107 teraz zrealizowana. Prosimy sprawdzi\\u0107 szczeg\\u00F3\\u0142y p\\u0142atno\\u015Bci i spr\\u00F3bowa\\u0107 ponownie p\\u00F3\\u017Aniej.",
+				"pending": "Dzi\\u0119kujemy za wys\\u0142anie p\\u0142atno\\u015Bci. Zam\\u00F3wienie jest w trakcie realizacji. Promocja/oferta b\\u0119dzie aktywowana po otrzymaniu przelewu.",
+				"cancel": "Transakcja zosta\\u0142a anulowana"
+			}
+		},
+		"error": {
+			"user": {
+				"name": {
+					"too": {
+						"long": "Imi\\u0119 jest za d\\u0142ugie."
+					}
+				}
+			},
+			"customer": {
+				"address": {
+					"too": {
+						"long": "adres jest za d\\u0142ugie."
+					}
+				},
+				"vat": {
+					"too": {
+						"long": "vat jest za d\\u0142ugie."
+					}
+				}
+			}
+		},
+		"vat": {
+			"message": "Zawiera VAT"
+		}
+	},
+	"phone": {
+		"type": {
+			"fixed": "Stacjonarny",
+			"mobile": "Kom\\u00F3rkowy",
+			"home": "Domowy",
+			"work": "Biznesowy",
+			"main": "G\\u0142\\u00F3wny",
+			"alternative": "Dodatkowy",
+			"fax": "Fax",
+			"pager": "Pager",
+			"other": "Inny"
+		},
+		"no": {
+			"email": "At znaki (@) nie s\\u0105 dozwolone"
+		}
+	},
+	"sort": {
+		"override": {
+			"price": "Jako pierwsze pokazane s\\u0105 og\\u0142oszenia z najwy\\u017Csz\\u0105 cen\\u0105. Aby zmieni\\u0107 opcje, u\\u017Cyj &\\#39; Sortuj wed\\u0142ug&\\#39."
+		}
+	},
+	"home": {
+		"$$": "Strona g\\u0142\\u00F3wna",
+		"h1Tag": "Gumtree Polska - Bezp\\u0142atne og\\u0142oszenia lokalne",
+		"provinces": "Wojew\\u00F3dztwa",
+		"main-locations": "Popularne miasta",
+		"popular-searches": "Popularne",
+		"trending-searches": "Najnowsze",
+		"user": {
+			"registered": "Gratulujemy i witamy na Gumtree!"
+		},
+		"ad": {
+			"notyetactive": "Ups..., og\\u0142oszenie, kt\\u00F3rego szukasz nie jest dost\\u0119pne. Sprawd\\u017A ponownie za jaki\\u015B czas\\!"
+		},
+		"reset": {
+			"password": {
+				"success": "Twoje has\\u0142o zosta\\u0142o zmienione."
+			}
+		},
+		"lastweekpostedAD": "<b>{0}</b> Nowe og\\u0142oszenia w <b>{1}</b> z ostatnich 7 dni\\!",
+		"blogs": {
+			"title": "Najnowsze wpisy na Blogu Gumtree",
+			"backupcontent": "Witamy na Gumtree\\! Odwied\\u017A nasz blog\\!  Znajdziesz tam historie z \\u017Cycia wzi\\u0119te, porady dotycz\\u0105ce sprzeda\\u017C na Gumtree, informacje o konkursach i inicjatywach, subskrypcje, aktualne wiadomo\\u015Bci i mn\\u00F3stwo innych ciekawostek. <a href\\=\"http\\://blog.gumtree.pl\" target\\=\"_blank\">Odwied\\u017A nasz blog\\!</a> Je\\u015Bli potrzebujesz wskaz\\u00F3wek dotycz\\u0105cych korzystania z naszych stron, prosimy odwied\\u017A dzia\\u0142 pomocy <a href\\=\"http\\://help.gumtree.pl\" target\\=\"_blank\">Help</a>."
+		},
+		"all": {
+			"cat": {
+				"name": "Wszystkie kategorie"
+			}
+		},
+		"swap-trade": {
+			"url": {
+				"prefix": "Wymiana/zamiana"
+			},
+			"$$": "Wymiana/zamiana"
+		},
+		"freebies": {
+			"url": {
+				"prefix": "Oddam za darmo"
+			},
+			"$$": "Oddam za darmo"
+		},
+		"page": {
+			"host": "Gumtree Polska",
+			"desc": {
+				"tag": "Zapraszamy na Gumtree Polska, lokalnej strony og\\u0142oszeniowej, aktualnych ofert\\: {0}. Zamieszczaj bezp\\u0142atnie og\\u0142oszenia lub kupuj i sprzedawaj ca\\u0142kowicie za darmo\\!"
+			},
+			"live": {
+				"ad": {
+					"count": {
+						"label": "Aktywnych og\\u0142osze\\u0144\\: <span class\\=\"ad-count\">{0}</span>"
+					}
+				}
+			}
+		}
+	},
+	"AdNotFound": "Ups..., Nie znale\\u017Ali\\u015Bmy twojego og\\u0142oszenia {0}",
+	"AdDeleted": "Twoje og\\u0142oszenie {0} zosta\\u0142o usuni\\u0119te",
+	"AdNotDeleted": "Ups..., Twoje og\\u0142oszenie {0} nie mo\\u017Ce by\\u0107 usuni\\u0119te",
+	"title": {
+		"empty": "Tytu\\u0142 jest wymagany"
+	},
+	"email": {
+		"empty": "Tw\\u00F3j e-mail jest wymagany",
+		"address": {
+			"too": {
+				"long": "Tw\\u00F3j adres e-mail jest zbyt d\\u0142ugi."
+			}
+		},
+		"greeting": {
+			"attention": "Witaj {0}!",
+			"post": {
+				"ad": {
+					"attention": "Witaj {0}!",
+					"confirm": {
+						"attention": "Witaj {0}!"
+					}
+				}
+			},
+			"normal": "Witaj {0}",
+			"forgotpwd": "Witaj {0},"
+		},
+		"registration": {
+			"greeting": "Witaj!",
+			"confirm": {
+				"footer": "Dzi\\u0119kujemy, <br/>Zesp\\u00F3\\u0142 Gumtree.pl<br/><br/>"
+			}
+		},
+		"post": {
+			"ad": {
+				"footer": "Dzi\\u0119kujemy za skorzystanie z {0} i \\u017Cyczymy powodzenia z og\\u0142oszeniami\\! <br /><br />Zesp\\u00F3\\u0142 {0}<br />",
+				"confirm": {
+					"footer": "Dzi\\u0119kujemy za skorzystanie z {0} i \\u017Cyczymy powodzenia z og\\u0142oszeniami\\! <br /><br />Zesp\\u00F3\\u0142 {0}<br />"
+				}
+			}
+		},
+		"footer": {
+			"forgotpwd": "Dzi\\u0119kujemy\\! <br /><br /> Zesp\\u00F3\\u0142 Gumtree.pl <br /> {0}"
+		},
+		"forgot": {
+			"password": {
+				"content": "Kliknij poni\\u017Cej, aby zmieni\\u0107 has\\u0142o na swoim koncie Gumtree\\: <br/><br/> <a href\\=\"{0}\"> Nowe has\\u0142o</a><br/><br/> Je\\u015Bli klikni\\u0119cie powy\\u017Cszego linku nie dzia\\u0142a, wpisz lub skopiuj i wklej ten adres do swojej przegl\\u0105darki.<br/><br/> {0}<br/><br/> Je\\u015Bli nie zg\\u0142asza\\u0142e\\u015B pro\\u015Bby o zmian\\u0119 has\\u0142a, zignoruj t\\u0119 wiadomo\\u015B\\u0107.",
+				"subject": "Zmie\\u0144 swoje has\\u0142o na Gumtree"
+			}
+		},
+		"title": {
+			"text": "Tytu\\u0142"
+		},
+		"category": {
+			"text": "Kategoria"
+		},
+		"description": {
+			"text": "Opis"
+		},
+		"send": {
+			"by": {
+				"email": {
+					"text": "Email Od"
+				}
+			}
+		},
+		"payment": {
+			"receipt": {
+				"subject": "Potwierdzenie zam\\u00F3wienia \\#{0}"
+			},
+			"success": {
+				"message": ""
+			},
+			"renewal": {
+				"failed": {
+					"subject": "Wyst\\u0105pi\\u0142 problem z p\\u0142atno\\u015Bci\\u0105. Promocja og\\u0142oszenia wy\\u0142\\u0105czona."
+				}
+			}
+		},
+		"abandonedorder": {
+			"reminder": {
+				"subject": "Zauwa\\u017Cyli\\u015Bmy, \\u017Ce Twoje og\\u0142oszenie nie jest jeszcze dodane / promowane"
+			}
+		},
+		"voucher": {
+			"receipt": {
+				"subject": ""
+			}
+		},
+		"subject": {
+			"savedsearch": {
+				"activate": "Aktywuj swoje Powiadomienie Gumtree",
+				"activateLog": "Utworzy\\u0142e\\u015B subskrypcj\\u0119 Powiadomienia Gumtree"
+			}
+		}
+	},
+	"max": {
+		"title": {
+			"word": {
+				"count": "5"
+			}
+		}
+	},
+	"price": {
+		"has": {
+			"char": "Cena nie mo\\u017Ce zawiera\\u0107 specjalnych liter ani znak\\u00F3w"
+		},
+		"type": {
+			"not": {
+				"valid": "Wymagana jest prawid\\u0142owa cena"
+			},
+			"text": "Rodzaj oferty",
+			"empty": "Prosimy poda\\u0107 informacje w polu {0}"
+		},
+		"empty": "Cena musi by\\u0107 podana",
+		"not": {
+			"empty": "Prosimy nie podawa\\u0107 kwoty je\\u015Bli cena jest do negocjacji"
+		}
+	},
+	"not": {
+		"leaf": {
+			"category": "Prosimy wybra\\u0107 podkategori\\u0119",
+			"location": "Prosimy wybra\\u0107 lokalizacj\\u0119"
+		}
+	},
+	"picture": {
+		"description": {
+			"too": {
+				"long": "Opis zdj\\u0119cia jest zbyt d\\u0142ugi"
+			}
+		}
+	},
+	"currencyNotValid": "Nieprawid\\u0142owa waluta",
+	"learnmore": {
+		"show": "Zobacz wi\\u0119cej...",
+		"less": "Zobacz mniej"
+	},
+	"searchbar": {
+		"locationDisplayname": {
+			"prefix": "Polska"
+		}
+	},
+	"onetouch": {
+		"cardinfo": "{0} koniec {1}",
+		"confirm": "Potwierd\\u017A",
+		"paynow": "Kliknij aby potwierdzi\\u0107",
+		"savepayment": "Zapisz p\\u0142atno\\u015B\\u0107 w One Touch",
+		"usecredit": "U\\u017Cyj innej karty do zap\\u0142aty",
+		"useonetouch": "U\\u017Cyj p\\u0142atno\\u015Bci One Touch"
+	},
+	"features": {
+		"see": {
+			"all": "Zobacz wszystkie"
+		}
+	},
+	"post": {
+		"thanks": "<h1 class\\='header'> Sprawd\\u017A sw\\u00F3j e-mail, aby aktywowa\\u0107 og\\u0142oszenie.</h1><p> Gumtree wys\\u0142a\\u0142o e-mail zatytu\\u0142owany <b>Aktywuj swoje og\\u0142oszenie na Gumtree\\: \"{1}\"</b>. Je\\u017Celi nie widzisz tej wiadomo\\u015Bci od razu, sprawd\\u017A folder SPAM.</p>",
+		"gotowebdomain": "Id\\u017A do {0}",
+		"desc": {
+			"placeholder": "Aby uzyska\\u0107 dok\\u0142adniejsze odpowiedzi, podaj jak najwi\\u0119cej szczeg\\u00F3\\u0142\\u00F3w.  Nie zapomnij sprawdzi\\u0107 pisowni.  \\:)"
+		},
+		"upsell": {
+			"activate": {
+				"ad": {
+					"success": {
+						"not": {
+							"yet": {
+								"active": "Sprawd\\u017A sw\\u00F3j e-mail, aby aktywowa\\u0107 og\\u0142oszenie. Otw\\u00F3rz {0} e-mail i kliknij link aktywacyjny."
+							}
+						}
+					}
+				}
+			}
+		},
+		"other": {
+			"ads": {
+				"edit": "Edytuj",
+				"delete": "Usu\\u0144",
+				"repost": "Zamie\\u015B\\u0107"
+			}
+		},
+		"ad": {
+			"payment": {
+				"for": {
+					"insertionfee": {
+						"success": "Dzi\\u0119kujemy\\! Twoja p\\u0142atno\\u015B\\u0107 zosta\\u0142a przes\\u0142ana. Og\\u0142oszenie wkr\\u00F3tce powinno si\\u0119 ukaza\\u0107.Je\\u015Bli nie widzisz swojej oferty na stronie, od\\u015Bwie\\u017C przegl\\u0105dark\\u0119. Prosimy pami\\u0119ta\\u0107, \\u017Ce czasami mo\\u017Ce up\\u0142yn\\u0105\\u0107 wi\\u0119cej czasu zanim og\\u0142oszenie b\\u0119dzie aktywowane."
+					},
+					"feature": {
+						"success": {
+							"$$": "Dzi\\u0119kujemy\\! Twoja p\\u0142atno\\u015B\\u0107 zosta\\u0142a przes\\u0142ana. Otrzymali\\u015Bmy pro\\u015Bb\\u0119 o aktywacj\\u0119. Og\\u0142oszenie wkr\\u00F3tce powinno si\\u0119 ukaza\\u0107 i by\\u0107 promowane zgodnie z wyborem. Je\\u015Bli nie widzisz swojej oferty w\\u015Br\\u00F3d promowanych, od\\u015Bwie\\u017C przegl\\u0105dark\\u0119. Czasami mo\\u017Ce up\\u0142yn\\u0105\\u0107 kilka/na\\u015Bcie minut zanim oferta i/lub promocja b\\u0119dzie aktywowana.",
+							"editrepost": "Gratulacje\\! Twoja p\\u0142atno\\u015B\\u0107 zosta\\u0142a przes\\u0142ana. Og\\u0142oszenie wkr\\u00F3tce powinno by\\u0107 promowane.Je\\u015Bli nie widzisz swojej oferty w\\u015Br\\u00F3d promowanych, od\\u015Bwie\\u017C przegl\\u0105dark\\u0119. Czasami mo\\u017Ce up\\u0142yn\\u0105\\u0107 kilka/na\\u015Bcie minut zanim promocja b\\u0119dzie aktywowana."
+						},
+						"pending": "Dzi\\u0119kujemy za wys\\u0142anie p\\u0142atno\\u015Bci. Zam\\u00F3wienie jest w trakcie realizacji. Promocja/oferta b\\u0119dzie aktywowana po otrzymaniu przelewu."
+					},
+					"non": {
+						"loggedin": {
+							"feature": {
+								"success": "Gratulacje\\! Twoja p\\u0142atno\\u015B\\u0107 zosta\\u0142a przes\\u0142ana. Sprawd\\u017A sw\\u00F3j e-mail i aktywuj og\\u0142oszenie, aby mog\\u0142o by\\u0107 publikowane i/lub promowane zgodnie z wyborem."
+							}
+						}
+					}
+				}
+			},
+			"insertionfee": {
+				"payment": {
+					"warning": "Pami\\u0119taj, \\u017Ce za dodanie og\\u0142oszenia w tej kategorii pobieramy op\\u0142at\\u0119 w wysoko\\u015Bci {0}."
+				}
+			}
+		}
+	},
+	"pass": {
+		"empty": "Wpisz swoje has\\u0142o",
+		"too": {
+			"short": "Has\\u0142o jest zbyt kr\\u00F3tkie.",
+			"long": "Has\\u0142o jest za d\\u0142ugie."
+		},
+		"dont": {
+			"match": "Has\\u0142a musz\\u0105 si\\u0119 zgadza\\u0107."
+		}
+	},
+	"terms": {
+		"not": {
+			"accepted": "Aby zarejestrowa\\u0107 si\\u0119, zaakceptuj warunki."
+		},
+		"and": {
+			"conditions": "Zasady korzystania"
+		}
+	},
+	"token": {
+		"expired": "Twoja rezerwacja wygas\\u0142a lub jest nieprawid\\u0142owa."
+	},
+	"securitycode": {
+		"expired": "Tw\\u00F3j kod zabezpieczaj\\u0105cy wygas\\u0142 lub jest nieprawid\\u0142owy."
+	},
+	"user": {
+		"not": {
+			"registered": "Prosimy o zarejestrowanie konta."
+		},
+		"already": {
+			"registered": "Ten e-mail jest ju\\u017C zarejestrowany. Prosimy zalogowa\\u0107 si\\u0119 na Gumtree."
+		},
+		"name": {
+			"no": {
+				"email": "Prosimy poda\\u0107 prawid\\u0142ow\\u0105 nazw\\u0119"
+			},
+			"empty": "Nazwa u\\u017Cytkownika jest wymagana"
+		},
+		"email": {
+			"unsubscribe": {
+				"ask": "Czy na pewno chcesz zrezygnowa\\u0107 z subskrypcji, newsletter\\u00F3w i promocji?",
+				"success": "Pomy\\u015Blnie wypisa\\u0142e\\u015B si\\u0119 z listy powiadomie\\u0144 Gumtree.Przykro nam, \\u017Ce nas opuszczasz. Zawsze mo\\u017Cesz odwiedzi\\u0107 nas ponownie. user.email.unsubscribe.failed\\=Ups... Jeden z naszych serwer\\u00F3w dosta\\u0142 czkawki. Spr\\u00F3bujSystem hiccup. Spr\\u00F3buj wypisa\\u0107 si\\u0119 p\\u00F3\\u017Aniej.",
+				"notfound": "To dziwne. Nie znale\\u017Ali\\u015Bmy Twojego adresu e-mail. Prosimy spr\\u00F3bowa\\u0107 ponownie."
+			}
+		}
+	},
+	"remember": {
+		"me": "Zapami\\u0119taj mnie"
+	},
+	"bad": {
+		"credentials": "Nieprawid\\u0142owe has\\u0142o lub adres e-mail."
+	},
+	"customer": {
+		"name": {
+			"empty": "Imi\\u0119 jest wymagane"
+		},
+		"address": {
+			"empty": "Adres jest wymagane"
+		},
+		"vat": {
+			"empty": "jest wymagane"
+		}
+	},
+	"buyer": {
+		"name": {
+			"empty": "Imi\\u0119 jest wymagane",
+			"too": {
+				"long": "Nazwa jest za d\\u0142uga"
+			},
+			"no": {
+				"url": "Prosimy nie podawa\\u0107 link\\u00F3w",
+				"email": "At znaki (@) nie s\\u0105 dozwolone",
+				"percent": "Procent symbol (%) nie s\\u0105 dozwolone"
+			}
+		},
+		"email": {
+			"empty": "Tw\\u00F3j e-mail jest wymagany"
+		},
+		"phone": {
+			"empty": "Prosimy poda\\u0107 prawid\\u0142owy numer telefonu.",
+			"invalid": {
+				"$$": "Prosimy wpisa\\u0107 prawid\\u0142owy 10-cyfrowy numer telefonu zaczynaj\\u0105cy si\\u0119 od 0",
+				"less": {
+					"digits": "Prosimy poda\\u0107 prawid\\u0142owy i kompletny numer telefonu."
+				},
+				"exceeds": {
+					"max": {
+						"char": "Numer wydaje si\\u0119 by\\u0107 za d\\u0142ugi. Prosimy poda\\u0107 prawid\\u0142owy numer telefonu."
+					}
+				}
+			}
+		}
+	},
+	"reply": {
+		"message": {
+			"empty": "Tre\\u015B\\u0107 jest wymagana",
+			"too": {
+				"long": "Wiadomo\\u015B\\u0107 mo\\u017Ce zawiera\\u0107 maksymalnie 4,096 znak\\u00F3w"
+			},
+			"center": {
+				"subject": "Gumtree - Odpowied\\u017A na og\\u0142oszenie\\: \\#{1} - {0}",
+				"message": {
+					"from": "",
+					"more": {
+						"info": ""
+					}
+				}
+			},
+			"default": {
+				"user": {
+					"name": ""
+				},
+				"buyer": {
+					"name": ""
+				},
+				"seller": {
+					"name": ""
+				}
+			}
+		},
+		"phone": {
+			"regex": "^([\\\\s-.\\\\(\\\\)\\\\+x,\\\\d])*$"
+		},
+		"email": {
+			"useful": {
+				"information": "{0} Porady dotycz\\u0105ce bezpiecze\\u0144stwa<ul><li>Kieruj si\\u0119 zdrowym rozs\\u0105dkiem\\: Je\\u015Bli co\\u015B wydaje si\\u0119 zbyt pi\\u0119kne, aby mog\\u0142o by\\u0107 prawdziwe, to prawdopodobnie tak jest.</li><li>Nigdy nie akceptuj p\\u0142atno\\u015Bci z zagranicy.</li><li> Nigdy nie akceptuj p\\u0142atno\\u015Bci przy u\\u017Cyciu b\\u0142yskawicznych przelew\\u00F3w got\\u00F3wki, takich jak Western Union, MoneyGram lub innych anonimowych form.</li></ul>"
+			}
+		},
+		"success": "Twoja wiadomo\\u015B\\u0107 zosta\\u0142a wys\\u0142ana",
+		"on": {
+			"your": {
+				"ad": {
+					"email": {
+						"text": "Poni\\u017Cej znajduje si\\u0119 odpowied\\u017A na Twoje og\\u0142oszenie {1}\\: \"{0}\""
+					}
+				}
+			}
+		},
+		"send": {
+			"by": {
+				"email": {
+					"text": "Odpowied\\u017A od"
+				}
+			}
+		},
+		"ad": {
+			"attachment": {
+				"error": {
+					"filesizeexceed": "Przesy\\u0142anie pliku nie powiod\\u0142o si\\u0119. Rozmiar pliku przekracza 2 MB.",
+					"$$": "Przesy\\u0142anie pliku nie powiod\\u0142o si\\u0119.",
+					"fileformatnotsupported": "Przesy\\u0142anie pliku nie powiod\\u0142o si\\u0119. Ten format pliku nie jest obs\\u0142ugiwany."
+				},
+				"choose-file": "Wybierz plik",
+				"remove": "Usu\\u0144",
+				"uploading": "Przesy\\u0142anie"
+			}
+		}
+	},
+	"srp": {
+		"reply": {
+			"contact": "Kontakt"
+		},
+		"no-results-title-Desktop": "Niestety, nie znale\\u017Ali\\u015Bmy \\u017Cadnych wynik\\u00F3w. Szukaj\\u0105c og\\u0142osze\\u0144 skorzystaj z poni\\u017Cszych sugestii.",
+		"no-results-title-Mobile": "Niestety, nie znale\\u017Ali\\u015Bmy og\\u0142osze\\u0144, kt\\u00F3re odpowiada\\u0142yby wybranym kryteriom.",
+		"no-results-tip-title": "Porady, kt\\u00F3re uznali\\u015Bmy za przydatne\\:",
+		"no-results-tip-item1": "Sprawd\\u017A pisowni\\u0119 wpisanych s\\u0142\\u00F3w kluczowych",
+		"no-results-tip-item2": "U\\u017Cyj bardziej og\\u00F3lnych lub mniej s\\u0142\\u00F3w kluczowych",
+		"no-results-tip-item3": "Spr\\u00F3buj przejrze\\u0107 kategori\\u0119",
+		"no-results-tip-Mobile": "Wybierz odpowiedni\\u0105 kategori\\u0119",
+		"order-by": "Sortuj",
+		"order-by-date-desc": "Najnowsze",
+		"order-by-price-asc": "Najni\\u017Csza cena",
+		"order-by-price-desc": "Najwy\\u017Csza cena",
+		"free": "Za darmo",
+		"locations": "Lokalizacja",
+		"other": {
+			"locations": "Inne lokalizacje"
+		},
+		"categories": "Kategoria",
+		"category_in_location": "w",
+		"section": {
+			"top-ads": "Og\\u0142oszenia wyr\\u00F3\\u017Cnione",
+			"gallery-ads": "Galeria na Stronie G\\u0142\\u00F3wnej",
+			"ads": "Og\\u0142oszenia",
+			"list": "Lista",
+			"grid": "Galeria",
+			"relatedProducts": "Podobne produkty",
+			"relatedArticles": "Podobne artyku\\u0142y"
+		},
+		"control": {
+			"found": "znaleziono"
+		},
+		"filter": {
+			"maxPeople": "Liczba os\\u00F3b",
+			"minNights": "Ilo\\u015B\\u0107 nocy",
+			"any": "Wszystkie",
+			"showall": "Wszystkie",
+			"showmore": "Poka\\u017C wi\\u0119cej",
+			"showless": "Poka\\u017C mniej",
+			"currency": {
+				"symbol": "z\\u0142"
+			},
+			"pricetype": "Rodzaj oferty",
+			"gtmax": "&gt;10k<!-- translation must be smaller than five characters -->"
+		},
+		"result": {
+			"snippet": {
+				"kmandmile": "km"
+			}
+		},
+		"pagination": {
+			"pages": "Strony"
+		},
+		"top": {
+			"models": {
+				"header": {
+					"titile": "Najpopularniejsze modele samochod\\u00F3w"
+				},
+				"more": {
+					"text": "Poka\\u017C wi\\u0119cej"
+				},
+				"less": {
+					"text": "Poka\\u017C mniej"
+				}
+			}
+		},
+		"blogs": {
+			"title": "Najnowsze wpisy"
+		},
+		"ad": {
+			"date-format": {
+				"one-minute-ago": "{0} min temu",
+				"minutes-ago": "{0} min temu",
+				"one-hour-ago": "{0} godz temu",
+				"hours-ago": "{0} godz temu"
+			}
+		},
+		"sort-by": "Sortuj wed\\u0142ug",
+		"refine": {
+			"button": "Zmie\\u0144 filtry"
+		},
+		"cancel": {
+			"button": "Anuluj"
+		},
+		"ref": {
+			"search": ""
+		},
+		"paid": {
+			"url": "Odwied\\u017A stron\\u0119"
+		},
+		"locationZoomout": {
+			"Title": "Og\\u0142oszenia w innych lokalizacjach"
+		},
+		"photo": {
+			"count": "Zdj\\u0119\\u0107\\: {0}"
+		},
+		"no-results": {
+			"$$": "Niestety, nie znale\\u017Ali\\u015Bmy \\u017Cadnych wynik\\u00F3w",
+			"desc": "Czy chcesz otrzymywa\\u0107 powiadomienie e-mail o nowych wynikach Twojego poszukiwania?"
+		},
+		"email-alert": {
+			"desc": "Otrzymuj codziennie e-mail z najnowszymi og\\u0142oszeniami\\:",
+			"button": "Utw\\u00F3rz powiadomienie",
+			"notify": "Prawie gotowe\\! Wys\\u0142ali\\u015Bmy do Ciebie e-mail. Kliknij za\\u0142\\u0105czony link, aby potwierdzi\\u0107 i zacz\\u0105\\u0107 otrzymywanie powiadomie\\u0144.",
+			"aftalert": "Gotowe\\! Twoje Powiadomienia Gumtree s\\u0105 aktywne.",
+			"unsubscribe": {
+				"$$": "Twoja subskrypcja na Gumtree zosta\\u0142a anulowana.",
+				"allalerts": "Twoje subskrypcje na Gumtree zosta\\u0142y anulowane."
+			},
+			"policymsg": "Klikaj\\u0105c \\u201CDodaj powiadomienie\\u201D, wyra\\u017Casz zgod\\u0119 na nasze <span class\\='sudo-link' data-o-uri\\=\"{0}\" data-target\\=\"_self\"> Zasady korzystania</span> i <span class\\='sudo-link' data-o-uri\\=\"{1}\" data-target\\=\"_self\">Polityk\\u0119 prywatno\\u015Bci</span> oraz zgadzasz si\\u0119 na otrzymywanie naszych newsletter\\u00F3w i ofert promocyjnych.",
+			"title": "Powiadomienia Gumtree",
+			"descriptiontitle": "Filtry powiadomienia:",
+			"description": "Otrzymuj codziennie e-mail z najnowszymi og\\u0142oszeniami, kt\\u00F3re Ci\\u0119 interesuj\\u0105.",
+			"btnmessage": {
+				"collapsed": "Utw\\u00F3rz Powiadomienie",
+				"expanded": "Utw\\u00F3rz Powiadomienie"
+			},
+			"placehoderbtn": "Email"
+		}
+	},
+	"delete": {
+		"ad": {
+			"success": "Twoje og\\u0142oszenie zosta\\u0142o usuni\\u0119te.",
+			"fail": "Twoje og\\u0142oszenie nie mo\\u017Ce by\\u0107 usuni\\u0119te.",
+			"confirm": {
+				"dlg": "Czy na pewno chcesz usun\\u0105\\u0107 to og\\u0142oszenie?",
+				"header": "Twoje og\\u0142oszenie zosta\\u0142o usuni\\u0119te"
+			}
+		}
+	},
+	"ad": {
+		"already": {
+			"activated": "Twoje og\\u0142oszenie jest ju\\u017C aktywne."
+		},
+		"flagged": "Dzi\\u0119kujemy za zg\\u0142oszenie nam tej oferty.",
+		"posted": {
+			"survey": {
+				"request": "<br/> Podziel si\\u0119 swoimi uwagami <a class\\='survey' href\\=\"https\\://www.surveymonkey.com/s/7KJRX8D\">start survey.</a><br />Chcesz aby wi\\u0119cej potencjalnych nabywc\\u00F3w zobaczy\\u0142o to og\\u0142oszenie? Udost\\u0119pnij je w serwisach spo\\u0142eczno\\u015Bciowych, korzystaj\\u0105c z poni\\u017Cszych opcji\\!"
+			}
+		},
+		"confirmed": {
+			"email": {
+				"content": "\\u015Awietnie\\! Twoje og\\u0142oszenie <b>\"{0}\"</b>  jest aktywne\\!  <br/><br/> Mo\\u017Ce up\\u0142yn\\u0105\\u0107 kilka minut zanim og\\u0142oszenie b\\u0119dzie widoczne dla innych u\\u017Cytkownik\\u00F3w \\u2013 nie martw si\\u0119, po prostu sprawd\\u017A ponownie za kilka chwil. <br/><br/> Zarz\\u0105dzaj swoimi og\\u0142oszeniami poprzez <a href\\=\"{5}\">Moje Gumtree</a><br/><br/> Zachowaj ten e-mail, aby zarz\\u0105dza\\u0107 swoimi og\\u0142oszeniami poprzez nast\\u0119puj\\u0105ce linki\\:<br/><br/> <ul><li><a href\\=\"{2}\">Wypromuj og\\u0142oszenie</a></li><li><a href\\=\"{2}\">Edytuj og\\u0142oszenie</a></li><li><a href\\=\"{1}\">Zobacz og\\u0142oszenie</a></li><li><a href\\=\"{3}\">Usu\\u0144 og\\u0142oszenie</a></li></ul>"
+			}
+		}
+	},
+	"activate": {
+		"ad": {
+			"fail": "Twoje og\\u0142oszenie nie mo\\u017Ce by\\u0107 aktywowane",
+			"success": {
+				"$$": "Gratulacje\\! Twoje og\\u0142oszenie zosta\\u0142o zamieszczone na Gumtree. Mo\\u017Ce up\\u0142yn\\u0105\\u0107 kilka minut zanim b\\u0119dzie ono widoczne dla innych u\\u017Cytkownik\\u00F3w.<br />Chcesz aby wi\\u0119cej potencjalnych nabywc\\u00F3w zobaczy\\u0142o to og\\u0142oszenie? Udost\\u0119pnij je w serwisach spo\\u0142eczno\\u015Bciowych, korzystaj\\u0105c z poni\\u017Cszych opcji\\!",
+				"not": {
+					"yet": {
+						"active": "Dzi\\u0119kujemy\\! Otrzymali\\u015Bmy pro\\u015Bb\\u0119 o aktywacj\\u0119. Twoje og\\u0142oszenie wkr\\u00F3tce uka\\u017Ce si\\u0119 na {0}"
+					}
+				}
+			}
+		},
+		"email": {
+			"content": "Twoje og\\u0142oszenie \"{0}\" na Gumtree oczekuje na aktywacj\\u0119. <br /><br /> <a href\\=\"{1}\">Kliknij tutaj, aby aktywowa\\u0107 swoje og\\u0142oszenie</a> <br/><br/> Je\\u015Bli klikni\\u0119cie powy\\u017Cszego linku nie dzia\\u0142a, wpisz lub skopiuj i wklej ten adres do swojej przegl\\u0105darki. <br /> {1}"
+		},
+		"your": {
+			"ad": {
+				"email": {
+					"subject": "Aktywuj og\\u0142oszenie {1}\\: \"{0}\""
+				}
+			}
+		},
+		"feature": {
+			"success": "Gratulacje\\! Twoja p\\u0142atno\\u015B\\u0107 zosta\\u0142a przes\\u0142ana. Og\\u0142oszenie wkr\\u00F3tce powinno by\\u0107 promowane.Je\\u015Bli nie widzisz swojej oferty w\\u015Br\\u00F3d promowanych, od\\u015Bwie\\u017C przegl\\u0105dark\\u0119. Czasami mo\\u017Ce up\\u0142yn\\u0105\\u0107 kilka/na\\u015Bcie minut zanim promocja b\\u0119dzie aktywowana."
+		}
+	},
+	"edit": {
+		"ad": {
+			"success": {
+				"$$": "Gratulacje\\! Twoje og\\u0142oszenie zosta\\u0142o zmienione i wkr\\u00F3tce b\\u0119dzie widoczne dla innych u\\u017Cytkownik\\u00F3w.",
+				"not": {
+					"yet": {
+						"active": "Dzi\\u0119kujemy\\! Otrzymali\\u015Bmy pro\\u015Bb\\u0119 edycji. Twoje og\\u0142oszenie wkr\\u00F3tce uka\\u017Ce si\\u0119 na {0}."
+					}
+				}
+			}
+		},
+		"expired": {
+			"ad": {
+				"failure": "Przykro nam, ale pr\\u00F3bujesz edytowa\\u0107 og\\u0142oszenie, kt\\u00F3re wygas\\u0142o. Prosimy doda\\u0107 now\\u0105 ofert\\u0119."
+			}
+		}
+	},
+	"repost": {
+		"ad": {
+			"success": "Gratulacje\\! Twoje og\\u0142oszenie zosta\\u0142o opublikowane."
+		}
+	},
+	"saved": {
+		"your": {
+			"ad": {
+				"email": {
+					"subject": "og\\u0142oszenie zapisane \\#"
+				}
+			}
+		},
+		"search": {
+			"push": {
+				"sent": "Twoje wyszukane",
+				"clickToView": "nowe wyniki wyszukiwania. Kliknij, aby je zobaczy\\u0107."
+			},
+			"success": {
+				"email": {
+					"sent": "Prawie gotowe\\! Wys\\u0142ali\\u015Bmy do Ciebie e-mail. Kliknij za\\u0142\\u0105czony link, aby potwierdzi\\u0107 i zacz\\u0105\\u0107 otrzymywanie powiadomie\\u0144."
+				},
+				"saved": "Gotowe\\! Twoje Powiadomienia Gumtree s\\u0105 aktywne. Mo\\u017Cesz nimi zarz\\u0105dza\\u0107 na stronie \\u201CMoje Powiadomienia\\u201D.",
+				"activated": {
+					"$$": "Twoje Powiadomienia Gumtree s\\u0105 aktywne. Zarejestruj si\\u0119, aby m\\u00F3c nimi zarz\\u0105dza\\u0107.",
+					"zero": {
+						"results": "Dzi\\u0119kujemy\\! Twoja subskrypcja na Gumtree zosta\\u0142a aktywowana. Obecnie nie ma na stronie og\\u0142osze\\u0144, kt\\u00F3re odpowiadaj\\u0105 wybranym przez Ciebie kryteriom.Zarejestruj si\\u0119, aby m\\u00F3c zarz\\u0105dza\\u0107 swoimi subskrypcjami."
+					}
+				},
+				"renewed": "Gotowe\\! Odnowili\\u015Bmy Twoje Powiadomienia na kolejne 60 dni. S\\u0105 wa\\u017Cne do {0}.",
+				"deleted": {
+					"this": "Twoja subskrypcja na Gumtree zosta\\u0142a anulowana.",
+					"all": "Twoje subskrypcje na Gumtree zosta\\u0142y anulowane"
+				}
+			},
+			"error": {
+				"delete": {
+					"invalidid": "B\\u0142\\u0119dny identyfikator, nie znale\\u017Ali\\u015Bmy danych",
+					"unauthorize": "U\\u017Cytkownik nie mo\\u017Ce usun\\u0105\\u0107 w tej lokalizacji"
+				},
+				"find": {
+					"invalidid": "Nieprawid\\u0142owy numer subskrypcji",
+					"retrieve": "Nie mo\\u017Cna odzyska\\u0107 subskrypcji id -"
+				},
+				"update": {
+					"find": "Zapisanej subskrypcji nie mo\\u017Cna odszuka\\u0107 przez id -",
+					"norecord": "Nie ma zapami\\u0119tanej subskrypcji do zapisania",
+					"exception": "Podczas aktualizacji subskrypcji wyst\\u0105pi\\u0142y pewne anomalia"
+				}
+			},
+			"range_value": {
+				"no_upperbound": "Od {0}",
+				"no_lowerbound": "Do {0}",
+				"no_upperbound_Price": "Od z\\u0142{0}",
+				"no_lowerbound_Price": "Do z\\u0142{0}"
+			},
+			"category": {
+				"in": {
+					"location": "{0}, {1}"
+				}
+			},
+			"all": {
+				"location": "Polska",
+				"categories": "Wszystkie kategorie"
+			},
+			"range_Price": "z\\u0142{0} - z\\u0142{1}",
+			"keyword": "Has\\u0142o\\: \"{0}\"",
+			"duplicate": "Identyczny filtr ju\\u017C istniej",
+			"in": "w",
+			"countexceeded": "Przekroczona zosta\\u0142a maksymalna liczba subskrypcji"
+		}
+	},
+	"your": {
+		"ad": {
+			"activated": {
+				"email": {
+					"subject": "{1} og\\u0142oszenie aktywowane - \"{0}\""
+				}
+			}
+		}
+	},
+	"respond": {
+		"to": {
+			"buyer": {
+				"email": {
+					"text": "Mo\\u017Cesz odpisa\\u0107 {0} < {1} > odpowiadaj\\u0105c na ten e-mail <br/></br/>"
+				}
+			}
+		}
+	},
+	"link": {
+		"to": {
+			"ad": {
+				"email": {
+					"text": "Link do og\\u0142oszenia"
+				}
+			}
+		}
+	},
+	"copy": {
+		"of": {
+			"your": {
+				"reply": {
+					"email": {
+						"text": "Odpowiedzia\\u0142e\\u015B na to og\\u0142oszenie {1}\\: \"{0}\""
+					}
+				}
+			}
+		}
+	},
+	"optional": {
+		"text": "Opcjonalnie"
+	},
+	"required": {
+		"text": "*"
+	},
+	"username": {
+		"text": "Nazwa u\\u017Cytkownika"
+	},
+	"previewad": {
+		"notice": {
+			"text": "Twoje og\\u0142oszenie nie jest jeszcze aktywne, sprawd\\u017A je i dodaj."
+		},
+		"edit": {
+			"text": "Edytuj"
+		},
+		"postyourad": {
+			"text": "Dodaj swoje og\\u0142oszenie"
+		}
+	},
+	"repostad": {
+		"your": {
+			"free": {
+				"ad": {
+					"text": "Od\\u015Bwie\\u017C swoje og\\u0142oszenie"
+				}
+			}
+		},
+		"post": {
+			"text": "Od\\u015Bwie\\u017C"
+		}
+	},
+	"map": {
+		"dlg": {
+			"title": {
+				"1": "Nie znale\\u017Ali\\u015Bmy podanego adresu",
+				"2": "Prosimy wybra\\u0107 jedn\\u0105 z opcji\\:",
+				"3": "Lub skorzysta\\u0107 z wpisanego przez siebie adresu\\:",
+				"4": "Kliknij \\u201C anuluj \\u201D aby spr\\u00F3bowa\\u0107 ponownie"
+			},
+			"cancel": "Anuluj"
+		}
+	},
+	"header": {
+		"logo": {
+			"altTag": "Darmowe Og\\u0142oszenia"
+		},
+		"interlink": {
+			"title": "Darmowe Og\\u0142oszenia {0}"
+		},
+		"breadcrumb-search": "| {0}",
+		"breadcrumb-result": "Aktywnych og\\u0142osze\\u0144\\: {0}",
+		"popular-search": {
+			"popular": "Popularne"
+		},
+		"related-search": {
+			"items": "Podobne",
+			"relatedvip": "Podobne",
+			"vipitems": "Podobne przedmioty Vip"
+		},
+		"popular-trending": {
+			"items": "Najnowsze"
+		},
+		"postad-long": "Dodaj og\\u0142oszenie",
+		"postad-medium": "Dodaj og\\u0142oszenie",
+		"postad-short": "Dodaj og\\u0142oszenie",
+		"search-help_center": "Pomoc",
+		"search-keyword": "Czego szukasz?",
+		"search-go": "Szukaj",
+		"search-category": "Kategoria",
+		"search-location": "Polska",
+		"search-all-categories": "Wszystkie kategorie",
+		"search-all-locations": "Polska",
+		"clear-recent-searches": "Wyczy\\u015B\\u0107",
+		"menu": {
+			"sign": {
+				"in": "Zaloguj si\\u0119"
+			},
+			"my": {
+				"gumtree": "Moje Gumtree",
+				"watchlist": "Zachowane og\\u0142oszenia",
+				"savedsearch": "Moje powiadomienia",
+				"profile": "M\\u00F3j profil"
+			},
+			"your": {
+				"ads": "Moje og\\u0142oszenia"
+			},
+			"promote": {
+				"ads": "Wypromuj og\\u0142oszenia"
+			},
+			"contact": "Napisz do nas",
+			"signout": "Wyloguj si\\u0119",
+			"register": "Zarejestruj si\\u0119",
+			"termCond": "Zasady korzystania"
+		},
+		"suggested-links": "Proponowane",
+		"published": ""
+	},
+	"mc": {
+		"menu": {
+			"title": "Moje Wiadomo\\u015Bci"
+		},
+		"you": "Ciebie:",
+		"no": {
+			"converastion": {
+				"msg": "Nie masz wiadomo\\u015Bci."
+			}
+		},
+		"reply": {
+			"report": {
+				"conv": "Zg\\u0142o\\u015B rozmow\\u0119"
+			},
+			"message": {
+				"$$": "Reply to Message:",
+				"placeholder": "Wpisz swoj\\u0105 wiadomo\\u015B\\u0107..."
+			}
+		},
+		"to": {
+			"all": {
+				"messages": "Wr\\u00F3\\u0107 do Moich Wiadomo\\u015Bci"
+			}
+		},
+		"report": {
+			"conversation": {
+				"warning": {
+					"disabled": "Czy chcesz zg\\u0142osi\\u0107 t\\u0119 konwersacj\\u0119?",
+					"$$": "Czy chcesz zg\\u0142osi\\u0107 t\\u0119 rozmow\\u0119? Je\\u015Bli tak, w tej konwersacji nie b\\u0119dziesz ju\\u017C m\\u00EF\\u00BF\\u00BDg\\u0142 wys\\u0142a\\u0107 \\u017Cadnych wiadomo\\u015Bci."
+				}
+			}
+		},
+		"delete": {
+			"conversation": {
+				"message": {
+					"$$": "Czy na pewno chcesz usun\\u0105\\u0107 t\\u0119 rozmow\\u0119?",
+					"yes": "Tak",
+					"no": "Nie",
+					"ok": "Kontynuowa\\u0107"
+				}
+			}
+		},
+		"anonymous": "Anonimowy U\\u017Cytkownik",
+		"chat": {
+			"with": "Rozmawiaj z"
+		},
+		"ad": {
+			"prefix": "Og\\u0142oszenie"
+		},
+		"loadmore": {
+			"messages": "Wcze\\u015Bniejsza korespondencja"
+		},
+		"warning": {
+			"by": {
+				"me": {
+					"message": "Zg\\u0142osi\\u0142e\\u015B t\\u0105 rozmow\\u0119, nie mo\\u017Cna ju\\u017C tu wys\\u0142a\\u0107 nowych wiadomo\\u015Bci."
+				},
+				"other": {
+					"message": "Drugi u\\u017Cytkownik zaznaczy\\u0142 t\\u0119 rozmow\\u0119 jako zamkni\\u0119t\\u0105."
+				}
+			}
+		}
+	},
+	"tooltip": {
+		"message": {
+			"delete": "Usun\\u0105\\u0107 konwersacj\\u0119",
+			"report": "Zg\\u0142o\\u015B rozmowy",
+			"reported": "rozmowa zg\\u0142aszane"
+		}
+	},
+	"promote-my-ads": {
+		"photo": {
+			"needed": {
+				"for": {
+					"hp": {
+						"gallery": "Najpierw dodaj zdj\\u0119cie"
+					}
+				}
+			}
+		}
+	},
+	"vat": {
+		"isNotBusinessCustomer": "Jestem zarejestrowanym p\\u0142atnikiem VATu",
+		"description": "Prosimy poda\\u0107 poni\\u017csze informacje.",
+		"customerAddress": "Adres",
+		"customerNIP": "NIP",
+		"customerName": "Nazwa",
+		"vATNumber": {
+			"$$": "Numer VATu",
+			"error": "Numer VATu nie zosta\\u0142 potwierdzony.  Prosimy sprawdzi\\u0107 numer i upewni\\u0107 si\\u0119, \\u017ce jest wpisany prawid\\u0142owo.",
+			"placeholder": "PL xxx-xxx-xx-xx"
+		},
+		"btn": {
+			"save": "Zapisz",
+			"cancel": "Anuluj"
+		},
+		"save": {
+			"success": "Dzi\\u0119kujemy, informacje zosta\\u0142y zapisane."
+		}
+	},
+	"vip": {
+		"verified": {
+			"email": "E-mail Potwierdzony"
+		},
+		"non-verified": {
+			"email": "Brak Potwierdzenia"
+		},
+		"num-total-ads": "Wszystkie",
+		"num-active-ads": "Aktywne",
+		"of": {
+			"text": "z"
+		},
+		"favorite": "Ulubione",
+		"share": "Udost\\u0119pnij",
+		"like": "Polub",
+		"follow-us": "\\u015Aled\\u017A",
+		"print": "Drukuj",
+		"report": "Zg\\u0142o\\u015B",
+		"posted-on": "{0}",
+		"send-email": "E-mail",
+		"send": {
+			"$$": "Wy\\u015Blij",
+			"to": {
+				"seller": "Wy\\u015Blij do og\\u0142oszeniodawcy"
+			}
+		},
+		"send-email-short": "E-mail",
+		"cancel": "Anuluj",
+		"reply": {
+			"your": {
+				"name": "Imi\\u0119",
+				"email": "E-mail",
+				"phoneNumber": "Telefon",
+				"phoneNumberOptional": "Opcjonalnie"
+			},
+			"message": "Wiadomo\\u015B\\u0107",
+			"send": {
+				"me": {
+					"copy": {
+						"email": "Wy\\u015Blij mi kopi\\u0119 e-maila"
+					}
+				}
+			},
+			"attachmentUpload": {
+				"title": "Do\\u0142\\u0105cz plik",
+				"help": "(maksymalnie 2MB)"
+			},
+			"optional": {
+				"text": "Opcjonalnie"
+			},
+			"canned": {
+				"imInterested": "Zainteresowa\\u0142a mnie ta oferta. Prosz\\u0119 o kontakt.",
+				"whenAndWhereCanISeeIt": "Gdzie i kiedy mo\\u017Cemy si\\u0119 spotka\\u0107?",
+				"whenWhereICanSeeIt": "Gdzie i kiedy mog\\u0119 to zobaczy\\u0107?"
+			}
+		},
+		"policymessage": "Klikaj\\u0105c \"Wy\\u015Blij\", wyra\\u017Casz zgod\\u0119 na nasze <span class\\='sudo-link' data-o-uri\\=\"{0}\" data-target\\=\"_self\"> Zasady korzystania</span> i <span class\\='sudo-link' data-o-uri\\=\"{1}\" data-target\\=\"_self\">Polityk\\u0119 prywatno\\u015Bci</span> oraz zgadzasz si\\u0119 na otrzymywanie naszych newsletter\\u00F3w i ofert promocyjnych.",
+		"map": "Mapa",
+		"results": "Wr\\u00F3\\u0107",
+		"user": {
+			"$$": "U\\u017Cytkownik",
+			"since": {
+				"date": {
+					"format": "MM-yyyy"
+				}
+			}
+		},
+		"seller": {
+			"user": "U\\u017Cytkownik Gumtree"
+		},
+		"breadcrumb": "og\\u0142oszenie {0}",
+		"see": {
+			"seller": {
+				"ads": "Zobacz wi\\u0119cej og\\u0142osze\\u0144"
+			}
+		},
+		"discription": "Wiadomo\\u015B\\u0107",
+		"message-sent": "Twoja wiadomo\\u015B\\u0107 zosta\\u0142a wys\\u0142ana",
+		"security-tips": "Porady Bezpiecze\\u0144stwa",
+		"security-tips-desc": "- Twoje bezpiecze\\u0144stwo jest dla nas wa\\u017Cne, zach\\u0119camy do zachowania czujno\\u015Bci.",
+		"security-tips-learn-more": "Dowiedz si\\u0119 wi\\u0119cej",
+		"similar-ads-title": "Podobne og\\u0142oszenia, kt\\u00F3re mog\\u0105 Ci\\u0119 zainteresowa\\u0107.",
+		"similar-ads-more-ads": "Wi\\u0119cej og\\u0142osze\\u0144",
+		"expired": "Witaj\\! Niestety, ale to og\\u0142oszenie wygas\\u0142o. Dla u\\u0142atwienia, poni\\u017Cej proponujemy niekt\\u00F3re podobne oferty, kt\\u00F3re mog\\u0105 Ci\\u0119 zainteresowa\\u0107.",
+		"active-user": "U\\u017Cytkownik od",
+		"related-search-title": "Podobne wyniki",
+		"seo": {
+			"alt-tag": {
+				"image": "{0} z {1}, zdj\\u0119cie\\: {2}",
+				"thumbnail": "{0} z {1}, miniatura: {2}",
+				"related-ad": "{0} z {1}, zobacz zdj\\u0119cie"
+			}
+		},
+		"show-phone": "Poka\\u017C numer telefonu",
+		"show-phone-withstar": "*** Poka\\u017C numer telefonu",
+		"phone-short": "Po\\u0142\\u0105czenia",
+		"visitCount": "Wizyty:",
+		"edit": {
+			"message": "Og\\u0142oszenia zawieraj\\u0105ce wi\\u0119cej informacji, zdj\\u0119\\u0107 i mo\\u017Cliwo\\u015Bci kontaktu daj\\u0105 lepsze rezultaty. <a data-gtm\\=\"pc|EditAdBegin\" href\\=\"{0}\">Popraw swoje og\\u0142oszenie edytuj\\u0105c je</a>."
+		},
+		"repost": {
+			"message": "Og\\u0142oszenia zawieraj\\u0105ce wi\\u0119cej informacji, zdj\\u0119\\u0107 i mo\\u017Cliwo\\u015Bci kontaktu daj\\u0105 lepsze rezultaty. <a data-gtm\\=\"pc|EditAdBegin\" href\\=\"{0}\">Popraw i dodaj ponownie swoje og\\u0142oszenie</a>."
+		},
+		"post-it-yourself": "Dodaj takie og\\u0142oszenie\\!",
+		"attribute": {
+			"label": {
+				"creationdate": {
+					"$$": "Data dodania",
+					"onempty": "Og\\u0142oszenie b\\u0119dzie wkr\\u00F3tce aktywowane."
+				},
+				"location": "Lokalizacja"
+			}
+		},
+		"flagad": {
+			"title": "Zg\\u0142o\\u015B og\\u0142oszenie",
+			"anuncioReportado": "Og\\u0142oszenie zg\\u0142oszone",
+			"reason": "Pow\\u00F3d",
+			"email": "E-mail",
+			"comments": "Komentarz",
+			"captcha": {
+				"request": "Wpisz numer"
+			},
+			"enable": {
+				"images": "W\\u0142\\u0105cz zdj\\u0119cia"
+			},
+			"report": "Zg\\u0142o\\u015B",
+			"termCond": "Wysy\\u0142aj\\u0105c Zg\\u0142oszenie, wyra\\u017Casz zgod\\u0119 na nasze <a href\\=\"{0}\"> Zasady korzystania</a> z Gumtree.",
+			"contact": {
+				"text": "W przypadku jakichkolwiek pyta\\u0144 prosimy o kontakt"
+			},
+			"error": {
+				"email": "Prosimy poda\\u0107 e-mail",
+				"comments": "Prosimy wpisa\\u0107 komentarz"
+			}
+		},
+		"flagadSuccess": "Dzi\\u0119kujemy za zg\\u0142oszenie. Sprawdzimy t\\u0119 ofert\\u0119 najszybciej jak to mo\\u017Cliwe."
+	},
+	"footer": {
+		"getToKnowUs": {
+			"title": "Poznaj nas",
+			"about": "O Gumtree",
+			"rules": "Zasady zamieszczania",
+			"blog": "Gumtree Blog"
+		},
+		"explore": {
+			"title": "Zobacz wi\\u0119cej",
+			"bestof": "Najlepsze og\\u0142oszenia",
+			"topSearches": "Najpopularniejsze wyszukiwania",
+			"mobilesite": "Stara strona",
+			"sitemap": "Tematy Gumtree",
+			"locations": "Lokalizacje",
+			"interlink": "Sie\\u0107 stron eBaya",
+			"propertyPriceChecker": "Ceny Nieruchomo\\u015Bci"
+		},
+		"legalbits": {
+			"title": "Sprawy prawne",
+			"terms": "Zasady korzystania",
+			"privacy": "Polityka Prywatno\\u015Bci",
+			"cookie": "Informacje o Cookies"
+		},
+		"tips-help": {
+			"title": "Pomoc i porady",
+			"helpContact": "Pomoc",
+			"staySafe": "Pozosta\\u0144 bezpiecznym",
+			"writeToUs": "Napisz do nas",
+			"promotingAds": "Promowanie og\\u0142osze\\u0144",
+			"giveFeedback": "Prze\\u015Blij opini\\u0119"
+		},
+		"followUs": {
+			"title": "\\u015Aled\\u017A nas",
+			"facebook": "Facebook",
+			"google": "Google+",
+			"twitter": "Twitter",
+			"youTube": "YouTube",
+			"pinterest": "Pinterest"
+		},
+		"motors": {
+			"title": "Auta na Gumtree",
+			"a-c": "Samochody A-C",
+			"d-g": "Samochody D-G",
+			"h-l": "Samochody H-L",
+			"m-o": "Samochody M-O",
+			"p-z": "Samochody P-Z"
+		},
+		"copyright": "Copyright \\u00A9 2014-2015 eBay.  Wszelkie Prawa zastrze\\u017Cone.",
+		"twitter": "@gumtreecoza",
+		"facebook": "Polub",
+		"googleplus": "Pole\\u0107",
+		"pinterest": "Pinterest",
+		"youtube": "Youtube",
+		"blog": "Nowo\\u015Bci, ciekawostki,  wydarzenia z \\u017Cycia Gumtree. <a href\\=\"{0}\"> Gumtree Blog </a>"
+	},
+	"error404": {
+		"message": "Przepraszamy, ale ta strona nie istnieje\" <br /><a href\\=\"{0}\"> Prosimy przej\\u015B\\u0107 do strony g\\u0142\\u00F3wnej </a>"
+	},
+	"error410": {
+		"message": "Przepraszamy, ta oferta jest ju\\u017C nieaktualna."
+	},
+	"error500": {
+		"message": "Niestety, jeden z naszych serwer\\u00F3w dosta\\u0142 czkawki. <br /><a href\\=\"{0}\"> Prosimy przej\\u015B\\u0107 do strony g\\u0142\\u00F3wnej </a>"
+	},
+	"default": {
+		"home": {
+			"page": {
+				"title": {
+					"text": "Darmowe Og\\u0142oszenia na Gumtree Polska"
+				}
+			}
+		}
+	},
+	"private": {
+		"policy": "Polityka Prywatno\\u015Bci"
+	},
+	"security": {
+		"tips": "Porady Bezpiecze\\u0144stwa"
+	},
+	"prohibited": {
+		"content": {
+			"policy": "Zasady zamieszczania"
+		}
+	},
+	"notice": {
+		"of": {
+			"claimed": {
+				"infringement": "Powiadomienie o naruszeniu (NOCI)"
+			}
+		}
+	},
+	"vip_title": "\\u007C Gumtree Polska",
+	"seo": {
+		"allTheAds": "wszystkie-the-reklamy",
+		"sellerListings": "oferty-sprzedazy",
+		"content": {
+			"learn": {
+				"more": "Dowiedz si\\u0119 wi\\u0119cej"
+			}
+		}
+	},
+	"ourvip": {
+		"flagad": {
+			"contact": {
+				"link": "pomoc techniczna"
+			}
+		}
+	},
+	"register": {
+		"page": {
+			"title": "Zarejestruj si\\u0119 na Gumtree"
+		},
+		"title": "Rejestracja",
+		"facebook": "Zarejestruj si\\u0119 przez Facebook",
+		"or": "lub zarejestruj si\\u0119.",
+		"register-with-email": "Je\\u015Bli wolisz, zarejestruj si\\u0119 za pomoc\\u0105 e-mail\\:",
+		"placeholder-email": "E-mail",
+		"accept-terms": "Klikaj\\u0105c \"Zarejestruj si\\u0119\", wyra\\u017Casz zgod\\u0119 na nasze <a href\\=\"{0}\">\"Zasady korzystania\"</a> i potwierdzasz, \\u017Ce przeczyta\\u0142e\\u015B nasz\\u0105 <a href\\=\"{1}\"> Polityk\\u0119 prywatno\\u015Bci</a> i informacje o plikach <a href\\=\"{2}\">Cookies</a>.",
+		"marketing-opt-in": "Tak, chc\\u0119, aby Gumtree oraz firmy z rodziny eBay Inc. powiadamia\\u0142y mnie o wydarzeniach, aktualno\\u015Bciach, nowych funkcjach i promocjach.",
+		"continue": "Zarejestruj si\\u0119",
+		"toggle-label": "Masz ju\\u017C konto na Gumtree?",
+		"toggle-link": "Zaloguj si\\u0119\\!",
+		"benefits": "Rejestracja nie jest wymagana, ale pozwala na dodawanie i zarz\\u0105dzanie og\\u0142oszeniami bez potwierdzania ka\\u017Cdego dzia\\u0142ania poprzez e-mail, oraz na zastrze\\u017Cenie w\\u0142asnej nazwy u\\u017Cytkownika. Aby rozpocz\\u0105\\u0107 rejestracj\\u0119, podaj poni\\u017Cej sw\\u00F3j adres e-mail.",
+		"continue-message": "<h1>Sprawd\\u017A swoj\\u0105 poczt\\u0119\\!</h1><p>Wys\\u0142ali\\u015Bmy Ci link, kt\\u00F3ry pozwoli doko\\u0144czy\\u0107 rejestracj\\u0119 konta.</p>",
+		"error": {
+			"wrongemail": "Nieprawid\\u0142owy e-mail",
+			"acceptterms": "Aby kontynuowa\\u0107, zaakceptuj Zasady korzystania"
+		},
+		"confirm": {
+			"page": {
+				"title": "Zako\\u0144cz rejestracj\\u0119 na Gumtree"
+			},
+			"title": "Zako\\u0144cz rejestracj\\u0119",
+			"name": "Imi\\u0119",
+			"email": "Email",
+			"password": "Has\\u0142o",
+			"password-confirm": "Wpisz ponownie has\\u0142o",
+			"submit": "Wy\\u015Blij"
+		}
+	},
+	"login": {
+		"page": {
+			"title": "Witamy na Gumtree!"
+		},
+		"title": "Zaloguj si\\u0119 na konto",
+		"facebook": "Zaloguj si\\u0119 przez Facebook",
+		"or": "or",
+		"signin-with-email": "Je\\u015Bli wolisz, zarejestruj si\\u0119 za pomoc\\u0105 e-mail\\:",
+		"placeholder-email": "Email",
+		"placeholder-password": "Has\\u0142o",
+		"forgot-password": "Nie pami\\u0119tasz has\\u0142a?",
+		"toggle-label": "Nie masz konta?",
+		"toggle-link": "Za\\u0142\\u00F3\\u017C\\!",
+		"signin-button": "Zaloguj si\\u0119",
+		"remember-me": "Zapami\\u0119taj mnie",
+		"cookie": {
+			"is": {
+				"disabled": "Do logowania wymagane s\\u0105 Cookies (Ciasteczka). W\\u0142\\u0105cz cookies w preferencjach przegl\\u0105darki i spr\\u00F3buj ponownie."
+			}
+		}
+	},
+	"forgot": {
+		"password": {
+			"page": {
+				"title": "Gumtree\\: Zapomniane has\\u0142o"
+			},
+			"title": "Zapomniane has\\u0142o",
+			"name": "Nazwa u\\u017Cytkownika\\:",
+			"email": "adres e-mail",
+			"password": "Nowe has\\u0142o\\:",
+			"password-confirm": "Wpisz ponownie nowe has\\u0142o\\:",
+			"submit": "Zmie\\u0144 has\\u0142o",
+			"continue-message": "<h1>Sprawd\\u017A poczt\\u0119\\!</h1><p> Na podany adres zosta\\u0142a wys\\u0142ana wiadomo\\u015B\\u0107 i link, kt\\u00F3ry pozwoli Ci zmieni\\u0107 has\\u0142o. </p>",
+			"instruction": {
+				"message": "Podaj sw\\u00F3j adres e-mail, a wy\\u015Blemy Ci wiadomo\\u015B\\u0107 umo\\u017Cliwiaj\\u0105c\\u0105 zmian\\u0119 has\\u0142a.  Nie zapomnij, \\u017Ce mo\\u017Cesz dodawa\\u0107 og\\u0142oszenia bez zalogowania si\\u0119."
+			},
+			"send": {
+				"email": "Wy\\u015Blij e-mail"
+			}
+		}
+	},
+	"reset": {
+		"password": {
+			"page": {
+				"title": "Zmie\\u0144 has\\u0142o"
+			},
+			"title": "Zmie\\u0144 has\\u0142o",
+			"email": "Email"
+		}
+	},
+	"flag": {
+		"email": {
+			"empty": "Tw\\u00F3j e-mail jest wymagany"
+		},
+		"ad": {
+			"type": {
+				"empty": "Rodzaj og\\u0142oszenia jest wymagany",
+				"invalid": "Nieprawid\\u0142owy rodzaj og\\u0142oszenia"
+			}
+		},
+		"captcha": {
+			"invalid": "Nieprawid\\u0142owy kod. Spr\\u00F3buj ponownie."
+		},
+		"comments": {
+			"too": {
+				"long": "Komentarz mo\\u017Ce zawiera\\u0107 maksymalnie 4096 znak\\u00F3w"
+			}
+		},
+		"type": {
+			"InappropriateContent": "Nieodpowiednia tre\\u015B\\u0107",
+			"PossibleFraud": "Mo\\u017Cliwe oszustwo",
+			"WrongCategory": "Z\\u0142a kategoria",
+			"DuplicateSpam": "Duplikat/Spam",
+			"NotRelevant": "Nieaktualne"
+		}
+	},
+	"adsense": {
+		"title": "Linki sponsorowane"
+	},
+	"feature": {
+		"displayname": {
+			"bumpup": "Podbite",
+			"topad": "Wyr\\u00F3\\u017Cnione",
+			"topad7": "Wyr\\u00F3\\u017Cnienie - 7 dni",
+			"topad15": "Wyr\\u00F3\\u017Cnienie - 15 dni",
+			"topad31": "Wyr\\u00F3\\u017Cnienie - 31 dni",
+			"hpgallery": "Galeria G\\u0142\\u00F3wna",
+			"hpgallery7": "Galeria G\\u0142\\u00F3wna - 7 dni",
+			"hpgallery15": "Galeria G\\u0142\\u00F3wna - 15 dni",
+			"hpgallery31": "Galeria G\\u0142\\u00F3wna - 31 dni",
+			"urgent": "Pilne",
+			"urgent7": "Pilne - 7 dni",
+			"highlight": "Pod\\u015Bwietlone",
+			"highlight7": "Pod\\u015Bwietlone - 7 dni",
+			"insertionfee": "Op\\u0142ata za og\\u0142oszenie",
+			"websiteurl": "URL strony",
+			"srpgallery": "Galeria Kategorii",
+			"srpgallery7": "Galeria Kategorii - 7 dni",
+			"srpgallery15": "Galeria Kategorii - 15 dni",
+			"srpgallery31": "Galeria Kategorii - 31 dni",
+			"bumpupXY": "Podbite"
+		},
+		"post": {
+			"urgent": "Pilne"
+		},
+		"duration": {
+			"small": "1 Raz",
+			"medium": "7 Dnia",
+			"large": "7 lub 31 Dni",
+			"hr12": "Co 12 Godzin"
+		},
+		"description": {
+			"bumpup": "Przesu\\u0144 swoje og\\u0142oszenie na sam\\u0105 g\\u00F3r\\u0119 bezp\\u0142atnych og\\u0142osze\\u0144\\!",
+			"topad": "Wyr\\u00F3\\u017Cnij og\\u0142oszenie i poka\\u017C je na g\\u00F3rze kategorii. Og\\u0142oszenia wy\\u015Bwietlane s\\u0105 rotacyjnie.",
+			"hpgallery": "Wy\\u015Bwietl swoje og\\u0142oszenie z pi\\u0119knym zdj\\u0119ciem na g\\u0142\\u00F3wnej stronie Gumtree i pozw\\u00F3l, aby by\\u0142o zauwa\\u017Cone przez tysi\\u0105ce os\\u00F3b.",
+			"urgent": "Powiadom u\\u017Cytkownik\\u00F3w, \\u017Ce zale\\u017Cy Ci na szybkim kontakcie w sprawie oferty.",
+			"highlight": "Pod\\u015Bwietl swoje og\\u0142oszenie, aby \\u0142atwiej i szybciej by\\u0142o zauwa\\u017Cone.",
+			"insertionfee": "Op\\u0142ata za og\\u0142oszenie",
+			"websiteurl": "Website URL",
+			"srpgallery": "Poka\\u017C swoje og\\u0142oszenie w najbardziej widocznym miejscu na g\\u0142\\u00F3wnej stronie.",
+			"bumpupXY": "Podbij swoje og\\u0142oszenie co {0} {1} dni"
+		},
+		"option": {
+			"description": {
+				"bumpup": "",
+				"topad7": "na {0} dni",
+				"topad15": "na {0} dni",
+				"topad31": "na {0} dni",
+				"hpgallery": "na {0} dni",
+				"hpgallery7": "na {0} dni",
+				"hpgallery15": "na {0} dni",
+				"hpgallery31": "na {0} dni",
+				"urgent": "na {0} dni",
+				"urgent7": "na {0} dni",
+				"urgent15": "na {0} dni",
+				"urgent31": "na {0} dni",
+				"highlight": "na {0} dni",
+				"highlight7": "na {0} dni",
+				"highlight15": "na {0} dni",
+				"highlight31": "na {0} dni",
+				"srpgallery": "na {0} dni",
+				"srpgallery7": "na {0} dni",
+				"srpgallery15": "na {0} dni",
+				"srpgallery31": "na {0} dni",
+				"bumpup_xy": "na {0} dni"
+			},
+			"duration": "{0} dni",
+			"bestdealInfo": "Zwi\\u0119ksz 10x szanse na pozytywny odzew na swoje og\\u0142oszenie",
+			"bestdealIcon": "Najlepsza okazja"
+		},
+		"legend": {
+			"banner": {
+				"headline": {
+					"1": {
+						"$$": "Wypromuj swoje og\\u0142oszenie, aby zwr\\u00F3ci\\u0142o na siebie uwag\\u0119.",
+						"disabledPayment": ""
+					},
+					"2": {
+						"$$": "Promowane na Gumtree oferty sprzedaj\\u0105 si\\u0119 5x szybciej.",
+						"disabledPayment": ""
+					}
+				}
+			},
+			"mobile": {
+				"banner": {
+					"headline": {
+						"1": {
+							"$$": "Promuj swoje og\\u0142oszenia",
+							"disabledPayment": ""
+						},
+						"2": {
+							"$$": "Daj si\\u0119 zauwa\\u017Cy\\u0107 i sprzedaj 5x szybciej",
+							"disabledPayment": ""
+						}
+					}
+				}
+			},
+			"tip": "Rada:",
+			"bumpup": {
+				"name": "Podbite",
+				"short": {
+					"description": "Poka\\u017C swoje og\\u0142oszenie nowym u\\u017Cytkownikom, przenie\\u015B je na pierwsz\\u0105 stron\\u0119\\!"
+				},
+				"description": {
+					"list": {
+						"1": "Niskie koszty, szybkie wyniki.",
+						"2": "Podbij swoje og\\u0142oszenie na g\\u00F3r\\u0119 pierwszej strony. Pozostanie ono tam, dop\\u00F3ki nie zostan\\u0105 dodane nowe og\\u0142oszenia lub kto\\u015B inny nie podbije swojej oferty."
+					},
+					"tip": {
+						"text": "Nie otrzymujesz wystarczaj\\u0105co du\\u017Co odpowiedzi? Skorzystaj z podbicia, aby wi\\u0119cej os\\u00F3b zobaczy\\u0142o Twoje og\\u0142oszenie."
+					}
+				}
+			},
+			"urgent": {
+				"name": "Pilne",
+				"short": {
+					"description": "Oczekujesz niezw\\u0142ocznie odpowiedzi? Poka\\u017C, \\u017Ce zale\\u017Cy Ci na szybkim kontakcie."
+				},
+				"description": {
+					"list": {
+						"1": "Og\\u0142oszenia pilne to najlepszy spos\\u00F3b, aby pokaza\\u0107, \\u017Ce zale\\u017Cy Ci na szybkim kontakcie.",
+						"2": "Kolorowe ramki przyci\\u0105gaj\\u0105 wzrok."
+					},
+					"tip": {
+						"text": "Je\\u015Bli chcesz szybko sprzeda\\u0107, nie zapomnij doda\\u0107 zdj\\u0119cia. Aby ofert\\u0119 zobaczy\\u0142o wi\\u0119cej os\\u00F3b, PODBIJ te\\u017C swoje og\\u0142oszenie."
+					}
+				}
+			},
+			"highlight": {
+				"name": "Pod\\u015Bwietlone",
+				"short": {
+					"description": "Pod\\u015Bwietl og\\u0142oszenie, aby wyr\\u00F3\\u017Cnia\\u0142o w\\u015Br\\u00F3d innych, a otrzymasz wi\\u0119cej odpowiedzi."
+				},
+				"description": {
+					"list": {
+						"1": "\\u017Bywe i kontrastowe kolory przyci\\u0105gaj\\u0105 uwag\\u0119 do og\\u0142oszenia."
+					},
+					"tip": {
+						"text": "Aby jeszcze bardziej zwr\\u00F3ci\\u0107 uwag\\u0119 na swoje og\\u0142oszenie, po\\u0142\\u0105cz promocje i dodaj og\\u0142oszenie Pod\\u015Bwietlone i Pilne."
+					}
+				}
+			},
+			"websiteurl": {
+				"name": "URL strony",
+				"description": {
+					"list": {
+						"1": "Je\\u015Bli masz swoj\\u0105 stron\\u0119 internetow\\u0105, poka\\u017C j\\u0105 i reklamuj w\\u015Br\\u00F3d u\\u017Cytkownik\\u00F3w Gumtree, dodaj\\u0105c link w swoim og\\u0142oszeniu",
+						"2": "U\\u017Cytkownicy Gumtree b\\u0119d\\u0105 mogli klikn\\u0105\\u0107 adres i przej\\u015B\\u0107 do strony bezpo\\u015Brednio z Twojego og\\u0142oszenia",
+						"3": "Twoje og\\u0142oszenie b\\u0119dzie pojawia\\u0107 si\\u0119 na stronie w wynikach wyszukiwania i dzi\\u0119ki temu o wiele wi\\u0119cej u\\u017Cytkownik\\u00F3w Gumtree b\\u0119dzie mog\\u0142o odwiedzi\\u0107 stron\\u0119"
+					}
+				}
+			},
+			"topads": {
+				"name": "Wyr\\u00F3\\u017Cnione",
+				"short": {
+					"description": "Wyr\\u00F3\\u017Cnij swoje og\\u0142oszenie, aby d\\u0142u\\u017Cej pozosta\\u0142o na pierwszej stronie."
+				},
+				"description": {
+					"list": {
+						"1": "Przez czas promocji og\\u0142oszenia s\\u0105 rotacyjnie wy\\u015Bwietlane na pierwszej stronie w wybranej kategorii.Oferty wyr\\u00F3\\u017Cnione s\\u0105 bardziej widoczne i u\\u017Cytkownicy cz\\u0119\\u015Bciej je czytaj\\u0105.",
+						"2": "\\u0141atwo je znale\\u017A\\u0107 i \\u0142atwo na nie odpowiedzie\\u0107."
+					},
+					"tip": {
+						"text": "Aby by\\u0142o skuteczne, upewnij si\\u0119, \\u017Ce jest czytelne, opis wyra\\u017Anie okre\\u015Bla co oferujesz, podaj jak najwi\\u0119cej informacji i dodaj dobre zdj\\u0119cie."
+					}
+				}
+			},
+			"hopepage": {
+				"name": {
+					"1": "",
+					"2": "Galeria G\\u0142\\u00F3wna"
+				}
+			},
+			"homepage": {
+				"short": {
+					"description": "Og\\u0142oszenia w Galerii na stronie g\\u0142\\u00F3wnej s\\u0105 najbardziej widoczne."
+				},
+				"description": {
+					"list": {
+						"1": "Oferty w Galerii na stronie g\\u0142\\u00F3wnej widoczne s\\u0105 dla U\\u017Cytkownik\\u00F3w w ca\\u0142ej Polsce.",
+						"2": "To najlepsza forma promocji ofert, w kt\\u00F3rych mo\\u017Cna u\\u017Cy\\u0107 wsp\\u00F3\\u0142czesne technologie komunikacji."
+					},
+					"tip": {
+						"text": "Pami\\u0119taj - dobre zdj\\u0119cie to 1000 s\\u0142\\u00F3w!"
+					}
+				}
+			},
+			"catgallery": {
+				"name": {
+					"1": "",
+					"2": "Galeria Kategorii"
+				},
+				"short": {
+					"description": "Zapewnia najlepsz\\u0105 widoczno\\u015B\\u0107 og\\u0142oszenia na poziomie kategorii."
+				},
+				"description": {
+					"list": {
+						"1": "To najskuteczniejsza forma promocji! Og\\u0142oszenia w danej kategorii wy\\u015Bwietlane s\\u0105 rotacyjnie na g\\u00F3rze ka\\u017Cdej strony.",
+						"2": "Promocja dost\\u0119pna jest tylko w wybranych kategoriach."
+					},
+					"tip": {
+						"text": "Aby zaoszcz\\u0119dzi\\u0107, wybierz odpowiedni czas promocji. Nie zapomnij o dobrym zdj\\u0119ciu."
+					}
+				}
+			},
+			"bumpupXY": {
+				"name": "Podbij co {0`} na {1} dni",
+				"short": {
+					"description": "Pom\\u00F3\\u017C ludziom znale\\u017A\\u0107 swoje og\\u0142oszenie, przenie\\u015B je na pierwsz\\u0105 stron\\u0119\\!"
+				},
+				"description": {
+					"list": {
+						"1": "Niskie koszty, szybkie wyniki",
+						"2": "Podbij swoje og\\u0142oszenie na g\\u00F3r\\u0119 pierwszej strony. Pozostanie ono tam, dop\\u00F3ki nie zostan\\u0105 dodane nowe og\\u0142oszenia lub kto\\u015B inny nie podbije swojej oferty. Podbijaj co {0}."
+					},
+					"tip": {
+						"text": "Nie otrzymujesz wystarczaj\\u0105co du\\u017Co odpowiedzi? Skorzystaj z podbicia, aby wi\\u0119cej os\\u00F3b zobaczy\\u0142o Twoje og\\u0142oszenie."
+					}
+				}
+			},
+			"learnmore": "Dowiedz si\\u0119 wi\\u0119cej[?]",
+			"close": "Zamknij"
+		},
+		"no": {
+			"permission": "Nie mo\\u017Cesz skorzysta\\u0107 z tej promocji"
+		},
+		"not": {
+			"supported": "{0} Ta promocja nie mo\\u017Ce by\\u0107 u\\u017Cyta w\\: {1}"
+		},
+		"multiplead": {
+			"about": {
+				"to": {
+					"renew": {
+						"email": {
+							"subject": "Twoje promocje wkr\\u00F3tce zostan\\u0105 automatycznie odnowione"
+						}
+					}
+				}
+			}
+		},
+		"singlead": {
+			"about": {
+				"to": {
+					"renew": {
+						"email": {
+							"subject": "Twoja promocja og\\u0142oszenia {0} zostanie wkr\\u00F3tce automatycznie odnowiona"
+						}
+					}
+				}
+			}
+		}
+	},
+	"FeatureNotSupported": "{0} Ta promocja nie jest obs\\u0142ugiwana",
+	"TargetNotSupported": "Tych promocji nie mo\\u017Cesz u\\u017Cy\\u0107 w {0}",
+	"FeatureAlreadyEnabled": "{0} Promocja jest ju\\u017C w\\u0142\\u0105czona w og\\u0142oszeniu {1}",
+	"social": {
+		"media": {
+			"follow": {
+				"us": "\\u015Aled\\u017A nas",
+				"$$": "\\u015Aled\\u017A"
+			},
+			"share": "Udost\\u0119pnij",
+			"twitterPrefix": "Sprawd\\u017A co dzieje si\\u0119 na Gumtree\\! {0}",
+			"email": {
+				"body": "Witaj\\! My\\u015Bl\\u0119, \\u017Ce to og\\u0142oszenie na Gumtree mo\\u017Ce Ci\\u0119 zainteresowa\\u0107. {0} %0D%0ADo\\u0142\\u0105cz do spo\\u0142eczno\\u015Bci Gumtree\\:%0D%0AFacebook\\: https\\://www.facebook.com/GumtreePolska %0D%0A Google+\\: https\\://plus.google.com/103950977256553454134/posts %0D%0A Twitter\\: https\\://twitter.com/gumtreepolska",
+				"subject": "To mo\\u017Ce Ci\\u0119 zainteresowa\\u0107\\! {0}"
+			}
+		}
+	},
+	"error": {
+		"attribute": {
+			"invalid": "Nieprawid\\u0142owa warto\\u015B\\u0107",
+			"empty": "Prosimy poda\\u0107 informacje w polu {0}"
+		}
+	},
+	"too": {
+		"many": {
+			"cap": {
+				"letter": "Prosimy zmniejszy\\u0107 ilo\\u015B\\u0107 WIELKICH liter w opisie"
+			}
+		}
+	},
+	"wrong": {
+		"price": {
+			"format": "Prosimy u\\u017Cywa\\u0107 tylko cyfr, aby wpisa\\u0107 cen\\u0119",
+			"decimal": "Prosimy poda\\u0107 tylko 2 cyfry po przecinku"
+		},
+		"my": {
+			"profile": {
+				"phone": {
+					"type": "Prosimy poda\\u0107 prawid\\u0142owy rodzaj telefonu",
+					"format": "Prosimy poda\\u0107 prawid\\u0142owy numer telefonu"
+				},
+				"gender": {
+					"type": "Prosimy poda\\u0107 prawid\\u0142ow\\u0105 p\\u0142e\\u0107"
+				},
+				"birth": {
+					"day": "Prosimy u\\u017Cy\\u0107 formatu MM/DD/YYYY"
+				},
+				"future": {
+					"date": "Prosimy poda\\u0107 dzisiejsz\\u0105 lub wcze\\u015Bniejsz\\u0105 dat\\u0119"
+				}
+			}
+		}
+	},
+	"pricetype": {
+		"fixed": "Cena",
+		"free": "Za darmo",
+		"make_offer": "Do negocjacji",
+		"contact_me": "Prosz\\u0119 o kontakt",
+		"barter_swap": "Wymiana/zamiana"
+	},
+	"description": {
+		"empty": "Opis musi zawiera\\u0107 przynajmniej 50 znak\\u00F3w"
+	},
+	"swrong": {
+		"phone": {
+			"format": "Numer telefonu nie mo\\u017Ce zawiera\\u0107 specjalnych liter ani znak\\u00F3w"
+		}
+	},
+	"picYour": {
+		"discription": {
+			"too": {
+				"long": "Opis zdj\\u0119cia jest za d\\u0142ugi"
+			}
+		}
+	},
+	"autocomplete": {
+		"category": {
+			"in": ">"
+		},
+		"display": {
+			"text": "{0} > {1}"
+		}
+	},
+	"no": {
+		"picture": {
+			"hpg": "W Galerii na Stronie G\\u0142\\u00F3wnej promowane s\\u0105 tylko og\\u0142oszenia ze zdj\\u0119ciami. Do\\u0142\\u0105cz zdj\\u0119cie i kliknij ponownie \"Dodaj og\\u0142oszenie\".",
+			"srp": "W Galerii Kategorii promowane s\\u0105 tylko og\\u0142oszenia ze zdj\\u0119ciami.  Do\\u0142\\u0105cz zdj\\u0119cie i kliknij ponownie \"Dodaj og\\u0142oszenie\"."
+		}
+	},
+	"CarMileageInKms": {
+		"0": "10,000 lub mniej",
+		"10000": "20,000",
+		"20000": "30,000",
+		"30000": "40,000",
+		"40000": "50,000",
+		"50000": "60,000",
+		"60000": "70,000",
+		"70000": "80,000",
+		"80000": "90,000",
+		"90000": "100,000",
+		"AFTER": "100,001 lub wi\\u0119cej"
+	},
+	"sitemap": {
+		"locations": {
+			"url": {
+				"prefix": "gumtree-poland"
+			},
+			"breadcrumbs": {
+				"root": "Lokalizacja"
+			},
+			"title": {
+				"left-panel": "Lokalizacja w Polsce",
+				"right-panel": "Kategorie w {0}"
+			},
+			"filter": {
+				"button": "Filtr"
+			},
+			"label": {
+				"show-more": "Poka\\u017C wi\\u0119cej",
+				"show-less": "Poka\\u017C mniej"
+			},
+			"title-tag": "{0} Og\\u0142oszenia | {0} Gumtree",
+			"description-tag": "Og\\u0142oszenia na Gumtree {0} | Znajd\\u017A prawie wszystko w {0}",
+			"cat-in-loc": "{0} w {1}"
+		}
+	},
+	"bestof": {
+		"url": {
+			"prefix": "Najlepsze og\\u0142oszenia"
+		},
+		"mainpage": {
+			"title": "Najlepsze na Gumtree Polska",
+			"subtitle": {
+				"overall": "Najlepsze ze wszystkich og\\u0142osze\\u0144",
+				"bestofcategory": "Najlepsze w {0}"
+			}
+		},
+		"overall": {
+			"more-ads": "Wi\\u0119cej najlepszych ze wszystkich og\\u0142osze\\u0144..."
+		},
+		"category": {
+			"more-ads": "Wi\\u0119cej najlepszych og\\u0142osze\\u0144 w {0}"
+		},
+		"catpage": {
+			"title": "Najlepsze w {0}",
+			"navlink": {
+				"back": "Wr\\u00F3\\u0107",
+				"browseall": "Przegl\\u0105daj wszystkie og\\u0142oszenia w {0}"
+			}
+		}
+	},
+	"pagination": {
+		"page": {
+			"result": {
+				"description": "Wyniki {0} do {1} z {2} og\\u0142osze\\u0144"
+			}
+		}
+	},
+	"watchlist": {
+		"title": "Zachowane og\\u0142oszenia",
+		"itemCount": "Ilo\\u015B\\u0107",
+		"clearAll": "Usu\\u0144 wszystkie",
+		"viewAll": "Poka\\u017C wszystkie",
+		"syncbutton": {
+			"inactive": "Zapisane",
+			"active": "Zapisz",
+			"tooltip": "Zapisanie listy Zachowanych og\\u0142osze\\u0144 pozwala na udost\\u0119pnienie jej w r\\u00F3\\u017Cnych przegl\\u0105darkach i urz\\u0105dzeniach przeno\\u015Bnych"
+		},
+		"emailbutton": "lub, e-mail",
+		"emailSubject": "Moje Zachowane og\\u0142oszenia na Gumtree",
+		"emailBody": "Witaj,|| Chc\\u0119 podzieli\\u0107 si\\u0119 moj\\u0105 najnowsz\\u0105 list\\u0105 Zachowanych og\\u0142osze\\u0144 na Gumtree.|{0}||Zapraszam do obejrzenia\\!|| Dzi\\u0119ki uprzejmo\\u015Bci Zespo\\u0142u Gumtree |http\\://www.gumtree.pl/",
+		"noADHint_part1": "Kliknij gwiazdk\\u0119 w ulubionym og\\u0142oszeniu, aby doda\\u0107 ofert\\u0119 do listy Zachowanych og\\u0142osze\\u0144",
+		"noADHint_part2": "lub,                                    l",
+		"noADHint_part3": "Zaloguj si\\u0119",
+		"noADHint_part4": "Aby zobaczy\\u0107 oferty dodane do swojej listy Zachowanych og\\u0142osze\\u0144",
+		"star": {
+			"add": "Dodaj do Zachowanych",
+			"added": "Dodane do Zachowanych"
+		},
+		"notification": {
+			"adding": "Gratulacje\\! Dodali\\u015Bmy to og\\u0142oszenie do Twojej listy Zachowanych",
+			"removing": "Usun\\u0119li\\u015Bmy to og\\u0142oszenie z Twojej listy Zachowanych.",
+			"sync": "\\u015Awietnie\\!  Twoja lista Obserwowanych og\\u0142osze\\u0144 jest zsynchronizowana z kontem Moje Gumtree oraz przegl\\u0105darkami i urz\\u0105dzeniami mobilnymi. Zaloguj si\\u0119 na Moje Gumtree, aby zobaczy\\u0107 oferty."
+		},
+		"ads": {
+			"page": {
+				"title": {
+					"text": "Zachowane og\\u0142oszenia"
+				}
+			}
+		}
+	},
+	"my-watchlist": {
+		"emptystatemessage": "<br />lub, <a href\\=\"{0}\">zaloguj si\\u0119</a> aby doda\\u0107 do listy wcze\\u015Bniej Zachowanych og\\u0142osze\\u0144",
+		"emptysigninmessage": "Kliknij gwiazdk\\u0119 w ulubionym og\\u0142oszeniu, aby doda\\u0107 ofert\\u0119 do listy Zachowanych og\\u0142osze\\u0144"
+	},
+	"top-searches": {
+		"breadcrumbs": {
+			"root": "Najcz\\u0119\\u015Bciej szukane"
+		},
+		"nocat-noloc": {
+			"header": "Najpopularniejsze wyszukiwania | Gumtree Polska",
+			"subheader": {
+				"top": "Najpopularniejsze bie\\u017C\\u0105ce wyszukiwania | Gumtree Polska",
+				"popular": "Najpopularniejsze wyszukiwania | Gumtree Polska"
+			}
+		},
+		"cat-noloc": {
+			"header": "Najcz\\u0119\\u015Bciej szukane | {0}",
+			"subheader": {
+				"top": "Obecnie najcz\\u0119\\u015Bciej szukane | {0}",
+				"popular": "Popularne wyszukiwania | {0}"
+			}
+		},
+		"nocat-loc": {
+			"header": "Najcz\\u0119\\u015Bciej szukane | {0}",
+			"subheader": {
+				"top": "Obecnie najcz\\u0119\\u015Bciej szukane | {0}",
+				"popular": "Popularne wyszukiwania | {0}"
+			}
+		},
+		"cat-loc": {
+			"header": "Najcz\\u0119\\u015Bciej szukane | {0} | {1}",
+			"subheader": {
+				"top": "Obecnie najcz\\u0119\\u015Bciej szukane | {0} | {1}",
+				"popular": "Popularne wyszukiwania | {0} | {1}"
+			}
+		}
+	},
+	"topsearches": {
+		"title": {
+			"category-location": "Kategoria / Lokalizacja"
+		},
+		"filter": {
+			"button": "Filtry"
+		},
+		"url": {
+			"prefix": "wyszukiwarka-gory",
+			"all-ads": "wszystkie-ogloszenia"
+		},
+		"label": {
+			"show-more": "Poka\\u017C wi\\u0119cej",
+			"show-less": "Poka\\u017C mniej"
+		}
+	},
+	"msite-prompt": {
+		"welcome": "Witamy na Gumtree",
+		"please-choose": "Zdecyduj co chcesz wybra\\u0107\\:",
+		"normal-link": "Zosta\\u0107 na nowej stronie Gumtree",
+		"old-link": "Przej\\u015B\\u0107 do starej mobilnej strony Gumtree",
+		"remember": "zapami\\u0119taj preferencje dla kolejnych wizyt"
+	},
+	"ssp": {
+		"header": {
+			"items": "Liczba subskrypcji:",
+			"filter": {
+				"title": "Moje powiadomienia"
+			},
+			"occurrence": {
+				"title": "Powiadomienia e-mail*"
+			},
+			"delete": {
+				"title": "Usu\\u0144"
+			}
+		},
+		"message": {
+			"warning": "*Otrzymasz powiadomienie tylko wtedy, je\\u015Bli znajdziemy oferty spe\\u0142niaj\\u0105ce kryteria wyszukiwania"
+		},
+		"localizedInword": "w",
+		"all": {
+			"ads": {
+				"text": "Wszystkie og\\u0142oszenia"
+			}
+		}
+	},
+	"CarEngineDisplacement": {
+		"25": "0 - 50cc",
+		"100": "051cc - 125cc",
+		"225": "126cc - 250cc",
+		"475": "251cc - 500cc",
+		"AFTER": "501cc lub wi\\u0119ksza"
+	},
+	"abandonedorder": {
+		"adFeaturePaid": {
+			"one_ad": "Wygl\\u0105da, \\u017Ce to og\\u0142oszenie jest ju\\u017C promowane. Powodzenia\\!",
+			"multiple_ads": "Wygl\\u0105da, \\u017Ce jedno z og\\u0142osze\\u0144 jest ju\\u017C promowane. Powodzenia\\!"
+		},
+		"adNotActive": "Jedno z og\\u0142osze\\u0144 w zam\\u00F3wieniu ju\\u017C wygas\\u0142o."
+	},
+	"select": {
+		"all": {
+			"feature": {
+				"options": "Wybierz wszystkie opcje"
+			}
+		}
+	},
+	"password": {
+		"strength": {
+			"short": "Za kr\\u00F3tkie",
+			"weak": "S\\u0142abe",
+			"fair": "Takie sobie",
+			"good": "Dobre",
+			"strong": "Mocne"
+		}
+	}
+}

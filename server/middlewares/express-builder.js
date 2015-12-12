@@ -10,8 +10,13 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var methodOverride = require('method-override');
 var path = require('path');
+var glob = require('glob');
 
 // var hbshelp = require("../../modules/bolt-handlebars-helpers");
+
+var config = {
+    root: process.cwd()
+};
 
 function BuildApp() {
     var app = express();
@@ -24,18 +29,28 @@ function BuildApp() {
     app.use(cookieParser());
     app.use(compress());
     app.use(methodOverride());
-    app.use(express.static(path.join(__dirname, 'public')));
+    app.use(express.static(config.root + '/public'));
 
-    // view engine setup
-    app.set('views', path.join(__dirname, '../../app/views'));
-    app.engine('.hbs', exphbs({defaultLayout: '../../app/views/templates/layouts/hbs/main', extname: '.hbs'}));
-    app.set('view engine', '.hbs');
+    //Setup Views
+    app.engine('hbs', exphbs({
+        layoutsDir: config.root + '/app/views/templates/layouts/hbs/',
+        extname: '.hbs',
+        defaultLayout: 'main',
+        partialsDir: [config.root + '/app/views/templates/partials/hbs/']
+    }));  
+    app.set('views', config.root + '/app/views/templates/pages/');
+    app.set('view engine', 'hbs');
+
+
+    //Setup controllers
+    var controllers = glob.sync(config.root + '/app/controllers/**/*.js');
+    console.log('controllers: ',controllers);
+    controllers.forEach(function (controller) {
+        require(controller)(app);
+    });
 
     // Add BOLT 2.0 Handlebars helpers for view engine
     // hbshelp(app);
-
-    // Set Routes
-    require('../../app/routes')(app);
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc
