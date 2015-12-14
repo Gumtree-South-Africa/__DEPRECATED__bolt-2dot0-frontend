@@ -37,7 +37,9 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
-  sassO = require('gulp-ruby-sass');
+  sassO = require('gulp-ruby-sass'),
+  handlebars = require('gulp-handlebars'),
+  declare = require('gulp-declare');
 
 
 // ////////////////////////////////////////////////
@@ -87,13 +89,43 @@ gulp.task('styles', function() {
 
 
 // ////////////////////////////////////////////////
+// Hbs (Handlebars) Tasks
+// ///////////////////////////////////////////////
+
+gulp.task('hbs', function() {
+  gulp.src('./app/views/**/*.hbs')
+    .pipe(livereload());
+});
+
+
+
+// ////////////////////////////////////////////////
+// Handlebars (template) Tasks
+// // /////////////////////////////////////////////
+gulp.task('templates', function () {
+    gulp.src(['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
+              './app/views/templates/pages/homepage/views/hbs/PreCompile/b.hbs'],
+              {base : './app/views/templates'})
+    // gulp.src('templates/*.hbs')
+      .pipe(handlebars())
+    //  .pipe(wrap('Handlebars.template(<%= contents %>)'))
+      .pipe(declare({
+          namespace: 'Handlebars.templates',
+          noRedeclare: true, // Avoid duplicate declarations
+      }))
+      .pipe(concat('templates.js'))
+      .pipe(gulp.dest('./public/javascripts/precompiled/'));
+});
+
+
+// ////////////////////////////////////////////////
 // Watch Tasks
 // // /////////////////////////////////////////////
 
 gulp.task ('watch', function(){
   gulp.watch('./public/styles/**/**/*.scss', ['styles']);
   gulp.watch('./public/js', ['scripts']);
-  //gulp.watch('app/**/*.html', ['html']);
+  gulp.watch('./app/views/**/*.hbs', ['hbs']);
 });
 
 
@@ -101,7 +133,7 @@ gulp.task('develop', function () {
   livereload.listen();
   nodemon({
     script: './bin/server',
-    ext: 'js coffee handlebars',
+    ext: 'js coffee hbs',
     stdout: false
   }).on('readable', function () {
     this.stdout.on('data', function (chunk) {
@@ -116,7 +148,7 @@ gulp.task('develop', function () {
 
 gulp.task('build', ['styles']);
 
-gulp.task('default', ['scripts', 'styles', 'develop', 'watch']);
+gulp.task('default', ['scripts', 'styles', 'hbs', 'develop', 'watch', 'templates']);
 
 
 
