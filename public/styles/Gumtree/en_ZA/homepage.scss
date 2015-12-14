@@ -1,0 +1,9 @@
+@import 
+	'../partials/partialTest';
+
+$color: red;
+
+body{
+	background-color: $bgColor;
+	color: $textColor;
+}
