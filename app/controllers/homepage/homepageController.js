@@ -12,13 +12,13 @@ router.get('/', function (req, res, next) {
     var extraData = 
     {
         env: 'public',
-        locale: 'en_ZA',
+        locale: res.config.locale,
         site: 'Gumtree',
         pagename: 'homepage'
     };
 
     model.then(function (result) {
       var  pageData = _.extend(result, extraData);
-      res.render('homepage/views/hbs/homepage_es_MX', pageData);
+      res.render('homepage/views/hbs/homepage_' + res.config.locale, pageData);
   });
 });
