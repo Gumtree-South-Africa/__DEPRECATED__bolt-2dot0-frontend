@@ -7,12 +7,14 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
+  console.log("in controller");
+  console.dir(res.config);
   var articles = [new Article(), new Article()];
-    res.render('homepage/views/hbs/homepage_es_MX', {
+    res.render('homepage/views/hbs/homepage_' + res.config.locale, {
       	title: 'Generator-Express MVC',
       	articles: articles,
 		env: 'public',
-		locale: 'en_ZA',
+		locale: res.config.locale,
 		site: 'Gumtree',
 		pagename: 'homepage'
     });
