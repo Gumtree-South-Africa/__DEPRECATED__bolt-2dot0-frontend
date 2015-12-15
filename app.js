@@ -1,5 +1,6 @@
 'use strict';
 
+var glob = require('glob');
 var http = require('http');
 var i18n = require("i18next");
 var path = require('path');
@@ -8,6 +9,7 @@ var vhost = require('vhost');
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
 
+var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
 
 
@@ -31,7 +33,7 @@ var siteApp = null;
       siteApp.config.name = siteObj.name;
       siteApp.config.locale = siteObj.locale;
       siteApp.config.hostname = siteObj.hostname;
-      siteApp.config.hostnameRegex = '/^[\\.-\\w]*' + siteObj.hostname + '[\\.-\\w]*$/';
+      siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
 
       // register i18n
       i18n.init({
@@ -51,9 +53,19 @@ var siteApp = null;
       // register bolt site checking middleware
       siteApp.use(checksite(siteApp));
 
+      //Setup controllers
+      controllers.forEach(function (controller) {
+          require(controller)(siteApp);
+      });
+
       // Setup Vhost per supported site
-      app.use(vhost(siteApp.config.hostnameRegex, siteApp));
+      app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
   });
 })(siteApp);
+
+//Setup controllers
+controllers.forEach(function (controller) {
+    require(controller)(app);
+});
 
 module.exports = app;

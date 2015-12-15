@@ -6,11 +6,11 @@ var exphbs = require('express-handlebars');
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var cookieParser = require('cookie-parser');
+var expressUncapitalize = require('express-uncapitalize');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var methodOverride = require('method-override');
 var path = require('path');
-var glob = require('glob');
 
 var hbshelp = require("../../modules/bolt-handlebars-helpers");
 
@@ -18,7 +18,7 @@ var config = {
     root: process.cwd()
 };
 
-function BuildApp() {
+function BuildApp(siteObj) {
     var app = express();
 
     // uncomment after placing your favicon in /public
@@ -30,6 +30,7 @@ function BuildApp() {
     app.use(compress());
     app.use(methodOverride());
     app.use(express.static(config.root + '/public'));
+    app.use(expressUncapitalize());
 
     //Setup Views
     app.engine('hbs', exphbs({
@@ -40,13 +41,6 @@ function BuildApp() {
     }));  
     app.set('views', config.root + '/app/views/templates/pages/');
     app.set('view engine', 'hbs');
-
-
-    //Setup controllers
-    var controllers = glob.sync(config.root + '/app/controllers/**/*.js');
-    controllers.forEach(function (controller) {
-        require(controller)(app);
-    });
 
     // Add BOLT 2.0 Handlebars helpers for view engine
     hbshelp(app);

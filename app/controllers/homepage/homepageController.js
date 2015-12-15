@@ -8,17 +8,17 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-      var model = HomepageModel();
-      var extraData = 
-      {
-          env: 'public',
-          locale: 'en_ZA',
-          site: 'Gumtree',
-          pagename: 'homepage'
-      };
+    var model = HomepageModel();
+    var extraData = 
+    {
+        env: 'public',
+        locale: 'en_ZA',
+        site: 'Gumtree',
+        pagename: 'homepage'
+    };
 
-      model.then(function (result) {
-        var  pageData = _.extend(result, extraData);
-        res.render('homepage/views/hbs/homepage_es_MX', pageData);
-    });
+    model.then(function (result) {
+      var  pageData = _.extend(result, extraData);
+      res.render('homepage/views/hbs/homepage_es_MX', pageData);
+  });
 });
