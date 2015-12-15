@@ -20,9 +20,9 @@ exports.registerLocalePartials = regLocPartials;
  * @param {Object} module The module Object from which to get the hb instance
  * @public
  */
-function regLocPartials (module) {
+function regLocPartials (module, locale) {
     // @todo: Parameterize the code below:
-    var country_sufix = 'es_MX', // en_ZA',
+    var country_sufix = locale,
         country_sufix_repl = '_' + country_sufix,
         configPath = '../../app/config/'+ country_sufix,
         partialsConfig = require(configPath),

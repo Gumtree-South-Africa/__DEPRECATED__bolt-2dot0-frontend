@@ -24,7 +24,7 @@ var hbsConfig = {
     ]
 };
 
-module.exports = function (app) {
+module.exports = function (app, locale) {
     var engineExt = app.get('view engine'),
 		engine,
 	    module = require('express-handlebars');
@@ -41,8 +41,9 @@ module.exports = function (app) {
 	module.instance = engine.boundObject;
 
 	// Register the locale specific partials
-	config.registerLocalePartials(module);
-
+    if (locale) {
+	   config.registerLocalePartials(module, locale);
+    }
 
 	app.engine(engineExt, engine);
 	   

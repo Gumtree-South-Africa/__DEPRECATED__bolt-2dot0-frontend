@@ -22,11 +22,12 @@ var app = new expressbuilder().getApp();
 /*
  * Create Site Apps
  */
-var siteApp = null;
-(function(siteApp) {
+// var siteApp = null;
+// (function(siteApp) {
   Object.keys(config.sites).forEach(function(siteKey) {
-      var siteObj = config.sites[siteKey];
-      siteApp = new expressbuilder().getApp();
+    var siteObj = config.sites[siteKey];
+    (function(siteObj) {
+      var siteApp = new expressbuilder(siteObj.locale).getApp();
 
       // send site information along
       siteApp.config = {};
@@ -34,7 +35,7 @@ var siteApp = null;
       siteApp.config.locale = siteObj.locale;
       siteApp.config.hostname = siteObj.hostname;
       siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
-
+      
       // register i18n
       i18n.init({
           debug: true,
@@ -53,15 +54,12 @@ var siteApp = null;
       // register bolt site checking middleware
       siteApp.use(checksite(siteApp));
 
-      //Setup controllers
-      controllers.forEach(function (controller) {
-          require(controller)(siteApp);
-      });
-
       // Setup Vhost per supported site
       app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
+    })(siteObj);
+
   });
-})(siteApp);
+// })(siteApp);
 
 //Setup controllers
 controllers.forEach(function (controller) {

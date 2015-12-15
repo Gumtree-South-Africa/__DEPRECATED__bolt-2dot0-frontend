@@ -18,7 +18,7 @@ var config = {
     root: process.cwd()
 };
 
-function BuildApp(siteObj) {
+function BuildApp(locale) {
     var app = express();
 
     // uncomment after placing your favicon in /public
@@ -43,7 +43,7 @@ function BuildApp(siteObj) {
     app.set('view engine', 'hbs');
 
     // Add BOLT 2.0 Handlebars helpers for view engine
-    hbshelp(app);
+    hbshelp(app, locale);
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc
