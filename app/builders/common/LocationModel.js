@@ -24,12 +24,10 @@ var LocationModel = function () {
 // This function will be executed at the end of the list of functions
 // for waterfall demo.
 LocationModel.tomAntonyFn = function(myData, myPromise) {
-	setTimeout(function () {
 		if (myPromise) {
 			myData = _.extend(myData, {"boss" : "Tom Antony"});
 			myPromise.resolve(myData);
 		}
-	}, 5000);
 };
 
 LocationModel.getWaterfallCalls = function() {
@@ -64,7 +62,7 @@ LocationModel.getWaterfallCalls = function() {
 
 			callback(null, data);
 		},
-
+/*
 		function (arg1, callback) {
 			var data = {};
 
@@ -107,7 +105,7 @@ LocationModel.getWaterfallCalls = function() {
 			// D.setIgnoreError(false);
 			D.prepareGet();
 		},
-
+*/
 		function (arg1, callback) {
 			var data = {};
 

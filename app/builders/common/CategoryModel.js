@@ -23,16 +23,15 @@ CategoryModel.getRESTCalls = function () {
 				return;
 			}
 
-    		setTimeout( function() { 
-        		data = {
-        			a : { "id" : "1233", name : "Autos" },
-        			b : { "id" : "12", name : "Property" },
-        			c : { "id" : "9023", name : "Jobs" },
-        			d : { "id" : "45", name : "Home and Garden" },
-        			e : { "id" : "19", name : "Electronics" }
-        		};
-        		callback(null, data);
-    		}, 5000);
+    		data = {
+    			a : { "id" : "1233", name : "Autos" },
+    			b : { "id" : "12", name : "Property" },
+    			c : { "id" : "9023", name : "Jobs" },
+    			d : { "id" : "45", name : "Home and Garden" },
+    			e : { "id" : "19", name : "Electronics" }
+    		};
+    		callback(null, data);
+    		
 		},  
 
 		function second(callback) {
@@ -41,15 +40,13 @@ CategoryModel.getRESTCalls = function () {
 				return;
 			}
 
-    		setTimeout( function() { 
-        		data = {
-        			o : { "id" : "30", name : "Services" },
-        			p : { "id" : "321", name : "B2B" },
-        			q : { "id" : "836", name : "Baby/Kids" },
-        			s : { "id" : "7", name : "Fashion" }
-        		};
-        		callback(null, data);
-    		}, 5000); 
+    		data = {
+    			o : { "id" : "30", name : "Services" },
+    			p : { "id" : "321", name : "B2B" },
+    			q : { "id" : "836", name : "Baby/Kids" },
+    			s : { "id" : "7", name : "Fashion" }
+    		};
+    		callback(null, data);
 		} 
 	];
 
