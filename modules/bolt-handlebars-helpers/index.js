@@ -2,6 +2,8 @@ var express = require('express');
 //var kraken  =require('kraken-js');
 var config = require('./handlebars-helpers');
 
+var Handlebars = require("handlebars");
+
 /* Code that we use to retrieve the object bound to a function */
 var _bind = Function.prototype.apply.bind(Function.prototype.bind);
 Object.defineProperty(Function.prototype, 'bind', {
@@ -24,10 +26,13 @@ var hbsConfig = {
     ]
 };
 
-module.exports = function (app, locale) {
+module.exports = function (app, locale, module) {
     var engineExt = app.get('view engine'),
-		engine,
-	    module = require('express-handlebars');
+		engine; // ,
+	    // module = require('express-handlebars');
+
+    // Create a new instance of handlebars
+    hbsConfig["arguments"][0]["handlebars"] = Handlebars.create();
 
 	var args = Array.isArray(hbsConfig['arguments']) ? hbsConfig['arguments'].slice() : [];
 
@@ -45,8 +50,7 @@ module.exports = function (app, locale) {
 	   config.registerLocalePartials(module, locale);
     }
 
-	app.engine(engineExt, engine);
-	   
+	app.engine(engineExt, engine); 
 
     return app;
 };

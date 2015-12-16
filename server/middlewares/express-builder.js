@@ -1,8 +1,6 @@
 'use strict';
 
 var express = require("express");
-var exphbs = require('express-handlebars');
-
 var bodyParser = require('body-parser');
 var compress = require('compression');
 var cookieParser = require('cookie-parser');
@@ -20,6 +18,7 @@ var config = {
 
 function BuildApp(locale) {
     var app = express();
+    var exphbs = null;
 
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -33,17 +32,14 @@ function BuildApp(locale) {
     app.use(expressUncapitalize());
 
     //Setup Views
-    app.engine('hbs', exphbs({
-        layoutsDir: config.root + '/app/views/templates/layouts/hbs/',
-        extname: '.hbs',
-        defaultLayout: 'main',
-        partialsDir: [config.root + '/app/views/templates/partials/hbs/']
-    }));  
-    app.set('views', config.root + '/app/views/templates/pages/');
-    app.set('view engine', 'hbs');
+    if (locale) {
+        exphbs = require('express-handlebars');
+        app.set('views', config.root + '/app/views/templates/pages/');
+        app.set('view engine', 'hbs');
 
-    // Add BOLT 2.0 Handlebars helpers for view engine
-    hbshelp(app, locale);
+        // Add BOLT 2.0 Handlebars helpers for view engine
+        hbshelp(app, locale, exphbs);
+    }
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc
