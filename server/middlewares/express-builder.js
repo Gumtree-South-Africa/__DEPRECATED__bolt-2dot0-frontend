@@ -13,6 +13,7 @@ var methodOverride = require('method-override');
 var path = require('path');
 
 var hbshelp = require("../../modules/bolt-handlebars-helpers");
+var writeHeader = require("./write-header");
 
 var config = {
     root: process.cwd()
@@ -31,6 +32,9 @@ function BuildApp(locale) {
     app.use(methodOverride());
     app.use(express.static(config.root + '/public'));
     app.use(expressUncapitalize());
+
+    // Use custom middlewares
+    app.use(writeHeader('X-Powered-By', 'Bolt'));
 
     //Setup Views
     app.engine('hbs', exphbs({
