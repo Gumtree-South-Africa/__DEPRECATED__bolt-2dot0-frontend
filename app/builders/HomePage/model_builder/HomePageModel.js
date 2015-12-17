@@ -26,10 +26,12 @@ var HomePageModel = function () {
 
     // console.log("^^^^ WATERFALL DEMO ^^^^");
     Q(m1.processWaterfall())
-    	.then(function (dataS) {
+    	.then(function (dataW) {
     		// console.log("*** The final data is:");
 			// console.log(dataS);
-    		homepageDeferred.resolve(dataS);
+    		m2 = CategoryModel();
+    		m2.processParallel(); 
+    		homepageDeferred.resolve(dataW);    		
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
 		});

@@ -39,7 +39,8 @@ var gulp = require('gulp'),
   livereload = require('gulp-livereload'),
   sassO = require('gulp-ruby-sass'),
   handlebars = require('gulp-handlebars'),
-  declare = require('gulp-declare');
+  declare = require('gulp-declare'),
+  env = require('gulp-env');
 
 
 // ////////////////////////////////////////////////
@@ -51,6 +52,16 @@ function errorlog(err){
   this.emit('end');
 }
 
+//////////////////////////////////////////////////
+//Set Environment Tasks
+/////////////////////////////////////////////////
+gulp.task('set-env', function () {
+  env({
+    vars: {
+    	NODE_CONFIG_DIR: process.cwd() + "/server/config"
+    }
+  })
+});
 
 // ////////////////////////////////////////////////
 // Scripts Tasks
@@ -166,9 +177,9 @@ gulp.task('develop', function () {
   });
 });
 
-gulp.task('build', ['styles']);
+gulp.task('build', ['set-env', 'styles']);
 
-gulp.task('default', ['scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile']);
+gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile']);
 
 
 
