@@ -19,7 +19,6 @@ router.get('/', function (req, res, next) {
 
     model.then(function (result) {
       var  pageData = _.extend(result, extraData);
-      // res.header({ 'content-type' : 'application/json; charset=utf-8' });
       res.render('homepage/views/hbs/homepage_' + res.config.locale, pageData);
   });
 });
