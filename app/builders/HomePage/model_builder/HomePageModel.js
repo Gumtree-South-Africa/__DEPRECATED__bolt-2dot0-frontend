@@ -21,10 +21,9 @@ var HomePageModel = function () {
 		m3;
 	var homepageDeferred = Q.defer();
 
-	console.log("CREATING HOMEPAGE MODEL !!!!");
+	//console.log("CREATING HOMEPAGE MODEL !!!!");
     m1 = LocationModel();
 
-    // console.log("^^^^ WATERFALL DEMO ^^^^");
     Q(m1.processWaterfall())
     	.then(function (dataS) {
     		// console.log("*** The final data is:");
