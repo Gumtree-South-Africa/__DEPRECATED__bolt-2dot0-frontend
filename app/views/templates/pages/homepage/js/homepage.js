@@ -9,8 +9,8 @@ BOLT.Homepage = (function () {
 		getTemplateData : function () {
 			var html = "";
 			var dataObj = {
-				name : "Ulises",
-				title : "MS"
+				name : "User Precompiled",
+				title : "Success!"
 			};
 
 			var template = Handlebars.template;
@@ -22,9 +22,8 @@ BOLT.Homepage = (function () {
 			if (typeof homepageTemplate === "function") {
 				html = homepageTemplate(dataObj);
 			}
-			
-			console.log("The result of HB injection is:");
-			console.log(html);
+
+			$(".precompiled").html(html);
 
 			return html;
 		}
