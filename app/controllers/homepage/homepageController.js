@@ -17,6 +17,8 @@ router.get('/', function (req, res, next) {
         pagename: 'homepage'
     };
 
+console.log("Extra data json:", extraData);
+
     model.then(function (result) {
       var  pageData = _.extend(result, extraData);
       res.render('homepage/views/hbs/homepage_' + res.config.locale, pageData);

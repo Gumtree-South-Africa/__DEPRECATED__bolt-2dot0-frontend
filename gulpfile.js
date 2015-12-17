@@ -103,11 +103,70 @@ gulp.task('hbs', function() {
 // Pre-compilation of Handlebars template Tasks
 // // /////////////////////////////////////////////
 gulp.task('precompile', function () {
+/*
     var precompileMap = {
-      'homepage' : ['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
-                    './app/views/templates/pages/homepage/views/hbs/PreCompile/b.hbs']
+      'homepage' : ['./app/views/templates/precompile/hbs/common/a.hbs',
+                    './app/views/templates/precompile/hbs/common/b.hbs',
+                    './app/views/templates/precompile/hbs/common/DateInput.hbs'
+                    ]
+    };
+*/
+
+    var srcPrecompDir = './app/views/templates/precompile/hbs';
+    var precompileMap = {
+      files : [
+        {
+            dest : "alaMaula/es_AR/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+
+        {
+            dest : "Gumtree/en_ZA/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+
+        {
+            dest : "Vivanuncios/es_MX/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        }     
+
+      ]
     };
 
+    var pagesArr, idx, pageJson, srcFiles, destFile;
+    
+    pagesArr = precompileMap.files;
+    for (idx = 0; idx < pagesArr.length; ++idx) {
+      pageJson = pagesArr[idx];
+      srcFiles = pageJson.src; // Arr with all the source files
+      destFile = pageJson.dest;
+
+      // Read each key/value(array)
+      gulp.src(srcFiles, {base : './app/views/templates/precompile/hbs'})
+          .pipe(handlebars())
+          //  .pipe(wrap('Handlebars.template(<%= contents %>)'))
+          .pipe(declare({
+            namespace: 'Handlebars.templates',
+            noRedeclare: true, // Avoid duplicate declarations
+          }))
+          .pipe(concat(destFile))
+          .pipe(gulp.dest('./public/js/precompiled/'));
+
+    }
+
+/*
     for (var pageKey in precompileMap) {
         // Read each key/value(array)
         gulp.src(precompileMap[pageKey], {base : './app/views/templates'})
@@ -120,6 +179,7 @@ gulp.task('precompile', function () {
           .pipe(concat(pageKey + '.html.js'))
           .pipe(gulp.dest('./public/js/precompiled/'));
     }
+*/
 
   /*
     gulp.src(['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
