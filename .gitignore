@@ -46,7 +46,7 @@ build
 app/locales/json
 public/css
 public/maps
-public/javascripts/precompiled
+public/js/precompiled
 screenshots
 logs
 dist
