@@ -1,5 +1,6 @@
 var BOLT = BOLT || {};
 
+alert("california!");
 BOLT.Homepage = (function () {
 
 	return {

@@ -100,9 +100,28 @@ gulp.task('hbs', function() {
 
 
 // ////////////////////////////////////////////////
-// Handlebars (template) Tasks
+// Pre-compilation of Handlebars template Tasks
 // // /////////////////////////////////////////////
-gulp.task('templates', function () {
+gulp.task('precompile', function () {
+    var precompileMap = {
+      'homepage' : ['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
+                    './app/views/templates/pages/homepage/views/hbs/PreCompile/b.hbs']
+    };
+
+    for (var pageKey in precompileMap) {
+        // Read each key/value(array)
+        gulp.src(precompileMap[pageKey], {base : './app/views/templates'})
+          .pipe(handlebars())
+          //  .pipe(wrap('Handlebars.template(<%= contents %>)'))
+          .pipe(declare({
+            namespace: 'Handlebars.templates',
+            noRedeclare: true, // Avoid duplicate declarations
+          }))
+          .pipe(concat(pageKey + '.html.js'))
+          .pipe(gulp.dest('./public/js/precompiled/'));
+    }
+
+  /*
     gulp.src(['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
               './app/views/templates/pages/homepage/views/hbs/PreCompile/b.hbs'],
               {base : './app/views/templates'})
@@ -114,7 +133,8 @@ gulp.task('templates', function () {
           noRedeclare: true, // Avoid duplicate declarations
       }))
       .pipe(concat('templates.js'))
-      .pipe(gulp.dest('./public/javascripts/precompiled/'));
+      .pipe(gulp.dest('./public/js/precompiled/'));
+  */
 });
 
 
@@ -148,7 +168,7 @@ gulp.task('develop', function () {
 
 gulp.task('build', ['styles']);
 
-gulp.task('default', ['scripts', 'styles', 'hbs', 'develop', 'watch', 'templates']);
+gulp.task('default', ['scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile']);
 
 
 
