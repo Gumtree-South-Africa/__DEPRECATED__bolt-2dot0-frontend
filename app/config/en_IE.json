@@ -2,32 +2,32 @@
     
     "homepage": {
     	"partialsDir": [
-            "./app/views/components/logo/views/hbs/logo_en_ZA.hbs",
-            "./app/views/components/postButton/views/hbs/postButton_en_ZA.hbs",
-            "./app/views/components/helpLink/views/hbs/helpLink_en_ZA.hbs",
-            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_en_ZA.hbs",
-            "./app/views/components/title/views/hbs/title_en_ZA.hbs",
-            "./app/views/components/searchbar/views/hbs/searchbar_en_ZA.hbs",
-            "./app/views/components/navigation/views/hbs/navigation_en_ZA.hbs",
-            "./app/views/components/header/views/hbs/header_en_ZA.hbs",
-            "./app/views/components/footer/views/hbs/footer_en_ZA.hbs",
+            "./app/views/components/logo/views/hbs/logo_en_IE.hbs",
+            "./app/views/components/postButton/views/hbs/postButton_en_IE.hbs",
+            "./app/views/components/helpLink/views/hbs/helpLink_en_IE.hbs",
+            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_en_IE.hbs",
+            "./app/views/components/title/views/hbs/title_en_IE.hbs",
+            "./app/views/components/searchbar/views/hbs/searchbar_en_IE.hbs",
+            "./app/views/components/navigation/views/hbs/navigation_en_IE.hbs",
+            "./app/views/components/header/views/hbs/header_en_IE.hbs",
+            "./app/views/components/footer/views/hbs/footer_en_IE.hbs",
 
-            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs"              
+            "./app/views/templates/pages/homepage/views/hbs/homepage_en_IE.hbs"              
     	]
     },
 	"messagepage": {
     	"partialsDir": [
-            "./app/views/components/logo/views/hbs/logo_en_ZA.hbs",
-            "./app/views/components/postButton/views/hbs/postButton_en_ZA.hbs",
-            "./app/views/components/helpLink/views/hbs/helpLink_en_ZA.hbs",
-            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_en_ZA.hbs",
-            "./app/views/components/title/views/hbs/title_en_ZA.hbs",
-            "./app/views/components/searchbar/views/hbs/searchbar_en_ZA.hbs",
-            "./app/views/components/navigation/views/hbs/navigation_en_ZA.hbs",  
-            "./app/views/components/header/views/hbs/header_en_ZA.hbs",
-            "./app/views/components/footer/views/hbs/footer_en_ZA.hbs",
+            "./app/views/components/logo/views/hbs/logo_en_IE.hbs",
+            "./app/views/components/postButton/views/hbs/postButton_en_IE.hbs",
+            "./app/views/components/helpLink/views/hbs/helpLink_en_IE.hbs",
+            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_en_IE.hbs",
+            "./app/views/components/title/views/hbs/title_en_IE.hbs",
+            "./app/views/components/searchbar/views/hbs/searchbar_en_IE.hbs",
+            "./app/views/components/navigation/views/hbs/navigation_en_IE.hbs",  
+            "./app/views/components/header/views/hbs/header_en_IE.hbs",
+            "./app/views/components/footer/views/hbs/footer_en_IE.hbs",
 
-            "./app/views/templates/pages/message/views/hbs/message_en_ZA.hbs"     
+            "./app/views/templates/pages/message/views/hbs/message_en_IE.hbs"     
     	]
     }
 

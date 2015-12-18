@@ -1,25 +1,31 @@
 var BOLT = BOLT || {};
 
-alert ("Homepage!");
-
 BOLT.Homepage = (function () {
-
 	return {
 		setUp : function () {
 			this.getTemplateData();
 		},
 
 		getTemplateData : function () {
+			var html = "";
 			var dataObj = {
-				name : "Ulises",
-				title : "MS"
+				name : "User Precompiled",
+				title : "Success!"
 			};
 
-			var homepageTemplate = Handlebars.templates['HomePage.html'];
-			var html = homepageTemplate(dataObj);
+			var template = Handlebars.template;
+			var homepageTemplate = Handlebars.templates['a'];
+			if (typeof homepageTemplate === "object") {
+				homepageTemplate = template(homepageTemplate);
+			}
 
-			console.log("The result of HB injection is:");
-			console.log(html);
+			if (typeof homepageTemplate === "function") {
+				html = homepageTemplate(dataObj);
+			}
+
+			$(".precompiled").html(html);
+
+			return html;
 		}
 	};
 

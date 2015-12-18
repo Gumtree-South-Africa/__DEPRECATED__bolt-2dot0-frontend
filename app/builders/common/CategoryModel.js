@@ -7,6 +7,8 @@ var BasePageModel = require("./BasePageModel");
 var BAPICall = require("../lib/BAPICall");
 var BAPIUrl= require("../lib/BAPIUrl");
 
+var categoryService = require(process.cwd() + "/server/services/category");
+
 /** 
  * @description A class that Handles the HomePage Model
  * @constructor
@@ -47,7 +49,21 @@ CategoryModel.getRESTCalls = function () {
     			s : { "id" : "7", name : "Fashion" }
     		};
     		callback(null, data);
-		} 
+		},
+		
+		function third(callback) {
+			var data = {};
+			if (typeof callback !== "function") {
+				return;
+			}
+			
+			console.log("Calling CategoryService");
+		    data = categoryService.getHomePageCategories();
+		    console.dir(data);
+		    console.log("Calling Returned");
+		    
+		    callback(null, data);
+		}
 	];
 
 	return arrFunctions;

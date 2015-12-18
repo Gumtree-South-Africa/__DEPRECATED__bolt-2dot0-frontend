@@ -1,15 +1,9 @@
-<!-- THE TITLE IN HOMEPAGE IS: {{title}}
 
-<script src="/js/libraries/handlebars/handlebars.js"></script>
-<script src="/js/precompiled/templates.js"></script>
-<script src="/js/common/homepage.js"></script>
--->
 {{#partial "content"}}
-<div style="border: 2px solid green ;overflow: hidden; display: block;">
-	<div class="precompiled hello">
-
-	</div>
-	<h1>HOME PAGE CONTENTS ==> {{title}} hello {{v1}}
+<div style="overflow: hidden; display: block;">
+	<div class="precompiled"></div>
+	<h1>Welcome to {{site}}!
+	<br>
 	<span class="hp-live_ads_msg">{{{i18n "home.h1Tag"}}}</span>
 	</h1>
 	<a href='/message'>MC Page Link</a>
@@ -94,9 +88,23 @@
 		
 		<input type="hidden" name="NcatId" value="{{model.content.ad.ad.categoryId}}" />
 		<input type="hidden" name="NlocId" value="{{model.content.ad.ad.locationId}}" />
+
 	{{/block}}
 
 </div>
+
+<!-- Move this to footer partial -->
+<!-- Remove this when using require.js -->
+<script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
+<script src="/js/libraries/handlebars/handlebars.js"></script>
+<script src="/views/templates/pages/homepage/js/homepage.js"></script>
+	{{#if site}}{{#if locale}}
+		<script src="/js/precompiled/{{site}}/{{locale}}/homepage.html.js"></script>
+		<script>
+			BOLT.Homepage.getTemplateData();
+		</script>
+	{{/if}}{{/if}}
+
 {{/partial}}
 
 {{!-- > hbs/Html --}}

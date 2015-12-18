@@ -39,8 +39,9 @@ var gulp = require('gulp'),
   declare = require('gulp-declare'),
   copy = require('gulp-copy'),
   path = require('path'),
-  walkdir = require('walkdir');
-  argv = require('yargs').argv;
+  env = require('gulp-env'),
+  walkdir = require('walkdir'),
+  argv = require('yargs').argv,
   browserSync = require('browser-sync'),
   reload = browserSync.reload;
 
@@ -54,6 +55,16 @@ function errorlog(err){
   this.emit('end');
 }
 
+//////////////////////////////////////////////////
+//Set Environment Tasks
+/////////////////////////////////////////////////
+gulp.task('set-env', function () {
+  env({
+    vars: {
+    	NODE_CONFIG_DIR: process.cwd() + "/server/config"
+    }
+  })
+});
 
 // ////////////////////////////////////////////////
 // Component Tasks : to create components
@@ -138,21 +149,81 @@ gulp.task('hbs', function() {
 
 
 // ////////////////////////////////////////////////
-// Handlebars (template) Tasks
+// Pre-compilation of Handlebars template Tasks
 // // /////////////////////////////////////////////
-gulp.task('templates', function () {
-    gulp.src(['./app/views/templates/pages/homepage/views/hbs/PreCompile/a.hbs',
-              './app/views/templates/pages/homepage/views/hbs/PreCompile/b.hbs'],
-              {base : './app/views/templates'})
-    // gulp.src('templates/*.hbs')
-      .pipe(handlebars())
-    //  .pipe(wrap('Handlebars.template(<%= contents %>)'))
-      .pipe(declare({
-          namespace: 'Handlebars.templates',
-          noRedeclare: true, // Avoid duplicate declarations
-      }))
-      .pipe(concat('templates.js'))
-      .pipe(gulp.dest('./public/javascripts/precompiled/'));
+gulp.task('precompile', function () {
+    var pagesArr, idx, pageJson, srcFiles, destFile;
+    var srcPrecompDir = './app/views/templates/precompile/hbs';
+    var precompileMap = {
+      files : [
+        {
+            dest : "alaMaula/es_AR/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+        {
+            dest : "Vivanuncios/es_MX/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+        {
+            dest : "Gumtree/en_ZA/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+        {
+            dest : "Gumtree/en_IE/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+        {
+            dest : "Gumtree/en_SG/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        },
+        {
+            dest : "Gumtree/pl_PL/homepage.html.js",
+            src : [
+              srcPrecompDir + '/common/a.hbs',
+              srcPrecompDir + '/common/b.hbs',
+              srcPrecompDir + '/common/DateInput.hbs'
+            ]
+        }
+      ]
+    };
+
+    pagesArr = precompileMap.files;
+    for (idx = 0; idx < pagesArr.length; ++idx) {
+      pageJson = pagesArr[idx];
+      srcFiles = pageJson.src; // Arr with all the source files
+      destFile = pageJson.dest;
+
+      // Read each key/value(array)
+      gulp.src(srcFiles, {base : './app/views/templates/precompile/hbs'})
+          .pipe(handlebars())
+          .pipe(declare({
+            namespace: 'Handlebars.templates',
+            noRedeclare: true, // Avoid duplicate declarations
+          }))
+          .pipe(concat(destFile))
+          .pipe(gulp.dest('./public/js/precompiled/'));
+
+    }
 });
 
 
@@ -184,9 +255,9 @@ gulp.task('develop', function () {
   });
 });
 
-gulp.task('build', ['styles']);
+gulp.task('build', ['set-env', 'styles']);
 
-gulp.task('default', ['scripts', 'styles', 'hbs', 'develop', 'watch', 'templates']);
+gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile']);
 
 
 

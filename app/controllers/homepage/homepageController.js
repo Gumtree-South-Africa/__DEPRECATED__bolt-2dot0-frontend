@@ -13,7 +13,7 @@ router.get('/', function (req, res, next) {
     {
         env: 'public',
         locale: res.config.locale,
-        site: 'Gumtree',
+        site: res.config.name,
         pagename: 'homepage'
     };
 

@@ -29,7 +29,12 @@ function BuildApp(locale) {
     app.use(cookieParser());
     app.use(compress());
     app.use(methodOverride());
-    app.use(express.static(config.root + '/public'));
+    app.use('/', express.static(config.root + '/public'));
+    // app.use("/app/views", express.static(config.root + '/app/views'));
+
+    // @TODO: Remove these 2 lines when minification/aggregation is in place.
+    app.use('/views/components/', express.static(config.root + '/app/views/components/'));
+    app.use('/views/templates/', express.static(config.root + '/app/views/templates/'));
     app.use(expressUncapitalize());
 
     // Use custom middlewares
