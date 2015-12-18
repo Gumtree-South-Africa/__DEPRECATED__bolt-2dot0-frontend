@@ -68,6 +68,7 @@ gulp.task('set-env', function () {
 
 // ////////////////////////////////////////////////
 // Component Tasks : to create components
+// Script to create: gulp component -n [name-of-the-component]
 // ///////////////////////////////////////////////
 var treeDepth = 4,
     componentExist = false,
