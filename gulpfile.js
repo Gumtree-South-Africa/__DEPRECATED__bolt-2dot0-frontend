@@ -155,6 +155,7 @@ gulp.task('hbs', function() {
 gulp.task('precompile', function () {
     var pagesArr, idx, pageJson, srcFiles, destFile;
     var srcPrecompDir = './app/views/templates/precompile/hbs';
+    //TODO: remove this to a config file
     var precompileMap = {
       files : [
         {
