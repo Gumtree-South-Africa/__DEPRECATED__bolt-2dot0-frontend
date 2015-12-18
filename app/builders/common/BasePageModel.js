@@ -99,6 +99,7 @@ BasePageModel.prototype = {
 			if (typeof data !== "undefined" && data && !_.isEmpty(data)) {
 				self.data = data;
 			}
+			
 			// Expose this via resolved promise
 			deferredObj.resolve(self.data);
 		}
@@ -172,7 +173,7 @@ BasePageModel.prototype = {
 	processParallel : function () {
 		var self = this,
 			deferred = Q.defer(),
-			done = self.getDoneFunction(deferred);
+			done = self.getDoneFunction(deferred); 
 		// Calls the functions in parallel
 	    async.parallel(self.arrFunctions, done);
 

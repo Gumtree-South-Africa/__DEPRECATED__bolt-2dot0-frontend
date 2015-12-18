@@ -3,8 +3,6 @@
 var http = require("http");
 
 var BasePageModel = require("../../common/BasePageModel");
-var BAPICall = require("../../lib/BAPICall");
-var BAPIUrl= require("../../lib/BAPIUrl");
 
 /** 
  * @description A class that Handles the HomePage Model

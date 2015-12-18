@@ -13,14 +13,14 @@ var config = require('config');
 var CategoryService = function() {};
 
 //Gets a list of categories for the homepage
-CategoryService.prototype.getHomePageCategories = function() {
+CategoryService.prototype.getCategoriesData = function(depth) {
 	console.log("Inside CategoryService");
 	console.log(config.get('BAPI.server.host'));
 	
 	var data = {
-			x : { "id" : "1204", name : "Videep 1" },
-			y : { "id" : "1510", name : "Videep 2" },
-			z : { "id" : "1846", name : "Videep 3" }
+			a : { "id" : "1204", name : "cat 1" },
+			b : { "id" : "1510", name : "cat 2" },
+			c : { "id" : "1846", name : "cat 3" }
 		};
 	return data;
 	

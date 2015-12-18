@@ -16,25 +16,49 @@ var CarouselGalleryModel = require("./CarouselGalleryModel");
  * @constructor
  */
 var HomePageModel = function () {
-	var m1,
-		m2,
-		m3;
+	var loc = new LocationModel(2),
+		cat = new CategoryModel(2);
+
+	var locationFunction = function(callback) { 
+		var locationDeferred = Q.defer();
+		Q(loc.processParallel())
+	    	.then(function (dataL) {
+	    		console.log("inside homepagemodel locations");
+	    		console.dir(dataL);
+	    		locationDeferred.resolve(dataL[0]);
+	    		callback(null, dataL[0]);
+			}).fail(function (err) {
+				locationDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	}
+	
+	var categoryFunction = function(callback) { 	
+		var categoryDeferred = Q.defer();
+		Q(cat.processParallel())
+	    	.then(function (dataC) {
+	    		console.log("inside homepagemodel categories");
+	    		console.dir(dataC);
+	    		categoryDeferred.resolve(dataC[0]);
+	    		callback(null, dataC[0]);
+			}).fail(function (err) {
+				categoryDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	}
+	
+	var arrFunctions = [ locationFunction, categoryFunction];
+	var homepageModel = new BasePageModel(arrFunctions);
+
 	var homepageDeferred = Q.defer();
-
-	//console.log("CREATING HOMEPAGE MODEL !!!!");
-    m1 = LocationModel();
-
-    Q(m1.processWaterfall())
-    	.then(function (dataW) {
-    		// console.log("*** The final data is:");
-			// console.log(dataS);
-    		m2 = CategoryModel();
-    		m2.processParallel(); 
-    		homepageDeferred.resolve(dataW);    		
+	Q(homepageModel.processParallel())
+    	.then(function (data) {
+    		console.log("inside homepagemodel Combined");
+    		console.dir(data);
+    		homepageDeferred.resolve(data);    		
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
 		});
-
 	return homepageDeferred.promise;
 };
 
