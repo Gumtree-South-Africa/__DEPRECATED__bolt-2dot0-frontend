@@ -24,6 +24,7 @@
     "gulp": "^3.9.0",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-concat": "^2.6.0",
+    "gulp-copy": "0.0.2",
     "gulp-livereload": "^3.8.0",
     "gulp-nodemon": "^2.0.2",
     "gulp-plumber": "^1.0.0",
@@ -42,7 +43,8 @@
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
     "url-parse": "^1.0.5",
-    "vhost": "^3.0.2"
+    "vhost": "^3.0.2",
+    "yargs": "^3.31.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
@@ -67,7 +69,9 @@
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
     "mocha": "^1.18.0",
+    "path": "^0.12.7",
     "supertest": "^0.9.0",
-    "time-grunt": "^1.2.2"
+    "time-grunt": "^1.2.2",
+    "walkdir": "0.0.11"
   }
 }

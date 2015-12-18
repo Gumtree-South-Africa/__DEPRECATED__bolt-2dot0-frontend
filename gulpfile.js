@@ -6,8 +6,8 @@
 // buildFilesFoldersRemove => list of files to remove when running final build
 // // //////////////////////////////////////////////
 
-var jsFiles = require('./app/config/components_en_ZA.json');
-var jsNeededForPage = {};
+var jsFiles = require('./app/config/components_en_ZA.json'),
+    jsNeededForPage = {};
 
 
 //converting to actual path
@@ -28,8 +28,6 @@ var gulp = require('gulp'),
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   autoprefixer = require('gulp-autoprefixer'),
-  browserSync = require('browser-sync'),
-  reload = browserSync.reload,
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
   rename = require('gulp-rename'),
@@ -37,9 +35,14 @@ var gulp = require('gulp'),
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
   livereload = require('gulp-livereload'),
-  sassO = require('gulp-ruby-sass'),
   handlebars = require('gulp-handlebars'),
-  declare = require('gulp-declare');
+  declare = require('gulp-declare'),
+  copy = require('gulp-copy'),
+  path = require('path'),
+  walkdir = require('walkdir');
+  argv = require('yargs').argv;
+  browserSync = require('browser-sync'),
+  reload = browserSync.reload;
 
 
 // ////////////////////////////////////////////////
@@ -50,6 +53,41 @@ function errorlog(err){
   console.error(err.message);
   this.emit('end');
 }
+
+
+// ////////////////////////////////////////////////
+// Component Tasks : to create components
+// ///////////////////////////////////////////////
+var treeDepth = 4,
+    componentExist = false,
+    err = {
+      'message': 'There already is a component with the same name' 
+    };
+ 
+gulp.task('component', function() {
+  
+  var componentName = argv.n;
+  
+  var emitter = walkdir('./app/views/components', {no_recurse: true}, function(dir, stat, depth){
+    var base = path.basename(dir);
+    if(componentName.toString() == base){
+      console.log(new Error(err.message));
+      componentExist = true;
+      this.end();
+    } 
+  });
+
+  emitter.on('end', function(){
+    if(!componentExist){
+      return gulp.src('./app/views/components/__default/**/*',
+        {
+           base: './app/views/components/__default'
+        })
+       .pipe(gulp.dest('./app/views/components/'+ componentName))
+    }
+  });
+
+});
 
 
 // ////////////////////////////////////////////////
