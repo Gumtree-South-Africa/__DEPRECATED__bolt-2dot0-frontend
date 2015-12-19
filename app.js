@@ -67,9 +67,6 @@ var siteCount = 0;
     siteCount = siteCount + 1;
  });
  
- console.dir(siteCount);
- console.dir(i18nclone);
-
 //Setup controllers
 controllers.forEach(function (controller) {
     require(controller)(app);
