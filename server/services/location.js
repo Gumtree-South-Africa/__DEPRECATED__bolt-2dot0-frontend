@@ -34,17 +34,18 @@ LocationService.prototype.getLocationsData = function(depth) {
 	/**
 	 * Make BAPI call
 	 */
-	var D = new BAPICall(self.bapiOptions, arg1, callback);
-	var locationBapi = Q.defer();
-	Q(D.prepareGet())
+	this.bapiOptions.path = "/locations/";
+	var bapi = new BAPICall(this.bapiOptions, arg1, callback);
+	var locationBapiDeferred = Q.defer();
+	Q(bapi.prepareGet())
     	.then(function (data) {
     		console.log("inside location service");
     		console.dir(data);
-    		locationBapi.resolve(data);    		
+    		locationBapiDeferred.resolve(data);    		
 		}).fail(function (err) {
-			locationBapi.reject(new Error(err));
+			locationBapiDeferred.reject(new Error(err));
 		});
-	return locationBapi.promise;
+	return locationBapiDeferred.promise;
 }
 
 module.exports = new LocationService();
