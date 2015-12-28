@@ -154,60 +154,8 @@ gulp.task('hbs', function() {
 // // /////////////////////////////////////////////
 gulp.task('precompile', function () {
     var pagesArr, idx, pageJson, srcFiles, destFile;
-    var srcPrecompDir = './app/views/templates/precompile/hbs';
     //TODO: remove this to a config file
-    var precompileMap = {
-      files : [
-        {
-            dest : "alaMaula/es_AR/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        },
-        {
-            dest : "Vivanuncios/es_MX/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        },
-        {
-            dest : "Gumtree/en_ZA/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        },
-        {
-            dest : "Gumtree/en_IE/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        },
-        {
-            dest : "Gumtree/en_SG/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        },
-        {
-            dest : "Gumtree/pl_PL/homepage.html.js",
-            src : [
-              srcPrecompDir + '/common/a.hbs',
-              srcPrecompDir + '/common/b.hbs',
-              srcPrecompDir + '/common/DateInput.hbs'
-            ]
-        }
-      ]
-    };
+    var precompileMap = require('./app/config/precompile');
 
     pagesArr = precompileMap.files;
     for (idx = 0; idx < pagesArr.length; ++idx) {
