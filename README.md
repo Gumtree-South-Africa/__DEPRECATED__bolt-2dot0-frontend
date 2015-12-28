@@ -67,9 +67,9 @@ Below are some of the tasks that get triggered on source changes. [All watchers 
 - FE JS files
     - Will trigger a linter for JS files, rebuild all the modules for that page and refresh the Node server
 - Precompilation files
-    - Will precompile HTML files, process ```precompile``` dependencies imports and refresh the Node server
+    - Will precompile HTML files, process ```gulp precompile``` dependencies imports and refresh the Node server
 - SASS files
-    - Will run the ```styles``` tasks in paralell and apply the run CSS post-processor
+    - Will run the ```gulp styles``` tasks in paralell and apply the run CSS post-processor
 
 #### Dependencies
 
@@ -77,6 +77,6 @@ FE dependencies are managed using [Bower](http://bower.io). BE's and Gulp's are 
 
 #### Create a Component 
 To do so:
-You Will run the ```component [name-of-the-component]``` tasks and it will create a base folder structure for that component under ./app/views/components
+You will have to run the ```gulp component -n [name-of-the-component]``` tasks and it will create a base folder structure for that component under ./app/views/components
 
 
