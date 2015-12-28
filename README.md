@@ -33,7 +33,6 @@ http://www.gumtree.co.za.localhost:8000
 ```
 gulp jshint 
 gulp jsonlint
-
 ```
 
 ## Development
@@ -51,7 +50,6 @@ or
 
 ```
 npm run dev
-
 ```
 
 ```npm run dev``` performs a quick development build and start a development Node+Express server. The develop task 'finishes' with a watcher. It will listen for all source changes and re run all needed build steps.
@@ -77,7 +75,7 @@ Below are some of the tasks that get triggered on source changes. [All watchers 
 
 FE dependencies are managed using [Bower](http://bower.io). BE's and Gulp's are managed by [npm](http://npmjs.org).
 
-### Create a Component 
+#### Create a Component 
 To do so:
 You Will run the ```component [name-of-the-component]``` tasks and it will create a base folder structure for that component under ./app/views/components
 
