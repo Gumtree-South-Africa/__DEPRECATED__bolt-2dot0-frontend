@@ -34,17 +34,18 @@ CategoryService.prototype.getCategoriesData = function(depth) {
 	/**
 	 * Make BAPI call
 	 */
-	var D = new BAPICall(self.bapiOptions, arg1, callback);
-	var categoryBapi = Q.defer();
-	Q(D.prepareGet())
+	this.bapiOptions.path = "/categories/";
+	var bapi = new BAPICall(this.bapiOptions, arg1, callback);
+	var categoryBapiDeferred = Q.defer();
+	Q(bapi.prepareGet())
     	.then(function (data) {
     		console.log("inside category service");
     		console.dir(data);
-    		categoryBapi.resolve(data);    		
+    		categoryBapiDeferred.resolve(data);    		
 		}).fail(function (err) {
-			categoryBapi.reject(new Error(err));
+			categoryBapiDeferred.reject(new Error(err));
 		});
-	return categoryBapi.promise;
+	return categoryBapiDeferred.promise;
 }
 
 module.exports = new CategoryService();
