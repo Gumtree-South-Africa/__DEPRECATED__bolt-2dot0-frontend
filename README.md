@@ -40,7 +40,7 @@ gulp jsonlint
 
 ### Starting the development server
 
-The first time you make a development build it is required that you build the grunt icons and styles.
+The first time you make a development build it is required that you build the styles and and the precompiled template.
 
 ```
 [sudo] npm install
@@ -75,7 +75,7 @@ Below are some of the tasks that get triggered on source changes. [All watchers 
 
 #### Dependencies
 
-FE dependencies are managed using [Bower](http://bower.io). BE's and Grunt's are managed by [npm](http://npmjs.org).
+FE dependencies are managed using [Bower](http://bower.io). BE's and Gulp's are managed by [npm](http://npmjs.org).
 
 ### Create a Component 
 To do so:
