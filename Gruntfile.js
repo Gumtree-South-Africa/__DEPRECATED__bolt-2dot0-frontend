@@ -36,9 +36,8 @@ module.exports = function (grunt) {
     });
     
     // Register group tasks
-    grunt.registerTask('build', ['properties', 'newer:jshint', 'newer:jsonlint', 'makara-amdify', 'newer:sass', 'newer:requirejs', 'copyto']);
-    grunt.registerTask('test', [ 'newer:jshint', 'newer:mochacli' ]);
-    grunt.registerTask('git-commit', ['jshint', 'jsonlint']);
+    grunt.registerTask('build', ['properties', 'copyto']);
+    grunt.registerTask('test', [ 'newer:mochacli' ]);
 
     // grunt.registerTask('styles', 'groups svgmin and grunticon', ['concurrent:compass', 'copy:styles']);
 
