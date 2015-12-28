@@ -24,7 +24,6 @@ DEBUG=bolt-2dot0-frontend:* npm start
 ```
 
 Then access:
-Then access:
 http://www.vivanuncios.com.mx.localhost:8000
 http://www.gumtree.co.za.localhost:8000
 
@@ -60,7 +59,7 @@ npm run dev
 ### Process differences
 Gulp automates building during development, meaning that when a source file changes it will trigger an automatic 'rebuild' when it applies.
 
-Below are some of the tasks that get triggered on source changes. [All watchers are defined here]('./gulfile.js')
+Below are some of the tasks that get triggered on source changes. [All watchers/tasks are defined here]('gulfile.js')
 
 - BE JS files
     - Will trigger a linter for JS files and refresh the Node server
