@@ -1,3 +1,5 @@
+'use strict';
+
 var express = require('express'),
   router = express.Router();
   //Article = require('../../builders/model_builder/article');

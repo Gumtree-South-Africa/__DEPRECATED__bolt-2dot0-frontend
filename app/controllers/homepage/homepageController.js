@@ -1,7 +1,9 @@
+'use strict';
+
 var express = require('express'),
-    _ = require("underscore"),
+    _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require("../../builders/HomePage/model_builder/HomePageModel");
+    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel');
 
 module.exports = function (app) {
   app.use('/', router);

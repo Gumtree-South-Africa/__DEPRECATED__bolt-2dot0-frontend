@@ -34,6 +34,8 @@ var gulp = require('gulp'),
   del = require('del');
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
+  jshint = require('gulp-jshint'),
+  jsonlint = require('gulp-jsonlint'),
   livereload = require('gulp-livereload'),
   handlebars = require('gulp-handlebars'),
   declare = require('gulp-declare'),
@@ -43,6 +45,7 @@ var gulp = require('gulp'),
   walkdir = require('walkdir'),
   argv = require('yargs').argv,
   browserSync = require('browser-sync'),
+  map = require('map-stream'),
   reload = browserSync.reload;
 
 
@@ -141,7 +144,6 @@ gulp.task('styles', function() {
 // ////////////////////////////////////////////////
 // Hbs (Handlebars) Tasks
 // ///////////////////////////////////////////////
-
 gulp.task('hbs', function() {
   gulp.src('./app/views/**/*.hbs')
     .pipe(livereload());
@@ -177,6 +179,44 @@ gulp.task('precompile', function () {
 });
 
 
+
+// ////////////////////////////////////////////////
+// JS Hint Tasks
+// // /////////////////////////////////////////////
+gulp.task('jshint', function() {
+  var exitOnJshintError = map(function (file, cb) {
+    if (!file.jshint.success) {
+      console.error('jshint failed');
+      process.exit(1);
+    }
+  });
+  return gulp.src(['./app/builder/**/*.js', './app/controllers/**/*.js',
+    './app/components/**/*/js'])
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
+    //.pipe(jshint.reporter('fail'))
+    .pipe(exitOnJshintError);
+});
+
+
+// ////////////////////////////////////////////////
+// JSON Lint Tasks
+// // /////////////////////////////////////////////
+gulp.task('jsonlint', function() {
+  var exitOnJsonlintError = map(function (file, cb) {
+    if (!file.jsonlint.success) {
+      console.error('jsonlint failed');
+      process.exit(1);
+    }
+  });
+  return gulp.src("./app/config/*.json")
+      .pipe(jsonlint())
+      .pipe(jsonlint.reporter('fail'))
+      .pipe(exitOnJsonlintError);
+});
+
+
+
 // ////////////////////////////////////////////////
 // Watch Tasks
 // // /////////////////////////////////////////////
@@ -207,7 +247,7 @@ gulp.task('develop', function () {
 
 gulp.task('build', ['set-env', 'styles']);
 
-gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile']);
+gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile', 'jshint', 'jsonlint']);
 
 
 
