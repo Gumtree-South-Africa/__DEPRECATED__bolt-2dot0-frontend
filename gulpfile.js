@@ -216,7 +216,6 @@ gulp.task('jsonlint', function() {
 });
 
 
-
 // ////////////////////////////////////////////////
 // Watch Tasks
 // // /////////////////////////////////////////////
@@ -245,9 +244,11 @@ gulp.task('develop', function () {
   });
 });
 
-gulp.task('build', ['set-env', 'styles']);
+gulp.task('git-commit', ['jshint', 'jsonlint']);
 
-gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint']);
+
+gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
 
 
 
