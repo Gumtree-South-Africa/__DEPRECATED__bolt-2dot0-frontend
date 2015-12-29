@@ -1,6 +1,6 @@
 "use strict";
 
-var http = require('http');
+var http = require("http");
 var Q = require("q");
 
 var BasePageModel = require("./BasePageModel");
