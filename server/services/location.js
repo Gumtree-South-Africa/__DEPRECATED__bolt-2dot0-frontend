@@ -1,8 +1,9 @@
 "use strict";
 
 var Q = require("q");
-
 var config = require('config');
+
+var BAPICall = require("./lib/BAPICall");
 
 /** 
  * @description A service class that talks to Location BAPI
@@ -13,6 +14,7 @@ var LocationService = function() {
 	this.bapiOptions = {
    		host : config.get('BAPI.server.host'),
     	port : config.get('BAPI.server.port'),
+    	parameters : config.get('BAPI.server.parameters'),
     	path : "/",
     	method : "GET"
 	};
@@ -21,8 +23,6 @@ var LocationService = function() {
 //Gets a list of locations
 LocationService.prototype.getLocationsData = function(depth) {
 	console.log("Inside LocationService");
-	console.log(config.get('BAPI.server.host'));
-	console.log(this.bapiOptions);
 	
 	var data = {
 			x : { "id" : "201", name : "loc 1" },
@@ -34,12 +34,18 @@ LocationService.prototype.getLocationsData = function(depth) {
 	/**
 	 * Make BAPI call
 	 */
-	this.bapiOptions.path = "/locations/";
-	var bapi = new BAPICall(this.bapiOptions, arg1, callback);
+	this.bapiOptions.path = "/locations";
+	if (this.bapiOptions.parameters != undefined) {
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
+	}
+	var bapi = new BAPICall(this.bapiOptions);
+	console.log("LocationService: About to call location BAPI");
+	console.dir(bapi);
+	
 	var locationBapiDeferred = Q.defer();
 	Q(bapi.prepareGet())
     	.then(function (data) {
-    		console.log("inside location service");
+    		console.log("LocationService: Return from location BAPI");
     		console.dir(data);
     		locationBapiDeferred.resolve(data);    		
 		}).fail(function (err) {

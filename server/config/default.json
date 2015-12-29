@@ -3,7 +3,8 @@
   "BAPI": {
     "server": {
       "host": "localhost",
-      "port": 5000
+      "port": 5000,
+      "parameters": "_forceExample=true&_statusCode=200"
     }
   }
 }

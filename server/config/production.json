@@ -3,7 +3,8 @@
   "BAPI": {
     "server": {
       "host": "http://bolt-api.ebay.com",
-      "port": 8000
+      "port": 8000,
+      "parameters": null
     }
   }
 }

@@ -23,7 +23,7 @@ var HomePageModel = function () {
 		var locationDeferred = Q.defer();
 		Q(loc.processParallel())
 	    	.then(function (dataL) {
-	    		console.log("inside homepagemodel locations");
+	    		console.log("Inside homepagemodel locations");
 	    		console.dir(dataL);
 	    		locationDeferred.resolve(dataL[0]);
 	    		callback(null, dataL[0]);
@@ -37,7 +37,7 @@ var HomePageModel = function () {
 		var categoryDeferred = Q.defer();
 		Q(cat.processParallel())
 	    	.then(function (dataC) {
-	    		console.log("inside homepagemodel categories");
+	    		console.log("Inside homepagemodel categories");
 	    		console.dir(dataC);
 	    		categoryDeferred.resolve(dataC[0]);
 	    		callback(null, dataC[0]);
@@ -53,7 +53,7 @@ var HomePageModel = function () {
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
-    		console.log("inside homepagemodel Combined");
+    		console.log("Inside homepagemodel Combined");
     		console.dir(data);
     		homepageDeferred.resolve(data);    		
 		}).fail(function (err) {
