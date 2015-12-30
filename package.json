@@ -12,7 +12,7 @@
     "test": "grunt test",
     "start": "node ./bin/www"
   },
-  "precommit": "gulp precommit",
+  "precommit": "npm install && grunt build && gulp precommit",
   "dependencies": {
     "async": "^1.5.0",
     "body-parser": "~1.13.2",
