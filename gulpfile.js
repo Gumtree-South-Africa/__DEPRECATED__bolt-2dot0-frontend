@@ -34,10 +34,12 @@ var gulp = require('gulp'),
   del = require('del');
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
+  jscs = require('gulp-jscs'),
   jshint = require('gulp-jshint'),
   jsonlint = require('gulp-jsonlint'),
   livereload = require('gulp-livereload'),
   handlebars = require('gulp-handlebars'),
+  notify = require('gulp-notify'),
   declare = require('gulp-declare'),
   copy = require('gulp-copy'),
   path = require('path'),
@@ -179,6 +181,18 @@ gulp.task('precompile', function () {
 });
 
 
+//////////////////////////////////////////////////
+//JSCS Coding Style
+//// /////////////////////////////////////////////
+gulp.task('jscs', function() {
+    gulp.src(['gulpfile.js', 'app/**/*.js', 'server/**/*.js'])
+        .pipe(jscs('.jscsrc'))
+        .pipe(notify({
+            title: 'JSCS',
+            message: 'Coding Style checking is Passed. Wonderful!'
+        }));
+});
+
 
 // ////////////////////////////////////////////////
 // JS Hint Tasks
@@ -194,7 +208,6 @@ gulp.task('jshint', function() {
     './app/components/**/*/js'])
     .pipe(jshint())
     .pipe(jshint.reporter('jshint-stylish'))
-    //.pipe(jshint.reporter('fail'))
     .pipe(exitOnJshintError);
 });
 
@@ -244,11 +257,11 @@ gulp.task('develop', function () {
   });
 });
 
-gulp.task('git-commit', ['jshint', 'jsonlint']);
+gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
-gulp.task('build', ['set-env', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint']);
 
-gulp.task('default', ['set-env', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
 
 
 
