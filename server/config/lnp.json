@@ -2,9 +2,9 @@
   // BAPI config
   "BAPI": {
     "server": {
-      "host": "http://bolt-api.lnp.ebay.com",
-      "port": 8000,
-      "parameters": null
+    	"host": "http://bolt-api.lnp.ebay.com",
+    	"port": 8000,
+    	"parameters": null
     }
   }
 }

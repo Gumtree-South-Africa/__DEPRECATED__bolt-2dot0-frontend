@@ -29,12 +29,12 @@ CategoryService.prototype.getCategoriesData = function(depth) {
 			b : { "id" : "1510", name : "cat 2" },
 			c : { "id" : "1846", name : "cat 3" }
 		};
-	 return data;
+	return data;
 	
 	/**
 	 * Make BAPI call
 	 */
-	this.bapiOptions.path = "/categories";
+	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
 	}

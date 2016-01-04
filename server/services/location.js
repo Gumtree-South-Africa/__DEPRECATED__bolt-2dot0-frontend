@@ -34,7 +34,7 @@ LocationService.prototype.getLocationsData = function(depth) {
 	/**
 	 * Make BAPI call
 	 */
-	this.bapiOptions.path = "/locations";
+	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
 	}

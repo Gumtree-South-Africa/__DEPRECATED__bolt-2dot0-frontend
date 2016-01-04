@@ -2,9 +2,9 @@
   // BAPI config for your VM
   "BAPI": {
     "server": {
-      "host": "http://bolt-api.vm.ebay.com",
-      "port": 8000,
-      "parameters": null
+    	"host": "http://bolt-api.vm.ebay.com",
+    	"port": 8000,
+    	"parameters": null
     }
   }
 }
