@@ -50,7 +50,6 @@ function errorlog(err){
 
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
 gulp.task('styles', getTask('styles'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('hbs', getTask('hbs'));
@@ -62,8 +61,8 @@ gulp.task('watch', getTask('Watch'));
 gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('jscs', getTask('jscs'));
-gulp.task('build', ['set-env', 'styles']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'develop', 'watch', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
 
 
 
