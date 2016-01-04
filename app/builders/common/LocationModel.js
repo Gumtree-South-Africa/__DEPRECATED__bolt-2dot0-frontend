@@ -27,7 +27,7 @@ LocationModel.prototype.getLocations = function(depth) {
 				return;
 			}
 			
-		    if (typeof depth != "undefined") {
+		    if (typeof depth !== "undefined") {
 		    	locationDeferred = Q.defer();
 				console.log("Calling LocationService");
 			    

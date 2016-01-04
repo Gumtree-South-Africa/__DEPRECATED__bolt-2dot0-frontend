@@ -31,7 +31,7 @@ var HomePageModel = function () {
 				locationDeferred.reject(new Error(err));
 				callback(null, {});
 			});
-	}
+	};
 	
 	var categoryFunction = function(callback) { 	
 		var categoryDeferred = Q.defer();
@@ -45,7 +45,7 @@ var HomePageModel = function () {
 				categoryDeferred.reject(new Error(err));
 				callback(null, {});
 			});
-	}
+	};
 	
 	var arrFunctions = [ locationFunction, categoryFunction];
 	var homepageModel = new BasePageModel(arrFunctions);

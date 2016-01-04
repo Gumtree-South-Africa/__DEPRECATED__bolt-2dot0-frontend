@@ -27,7 +27,7 @@ CategoryModel.prototype.getCategories = function (depth) {
 				return;
 			}
 			
-			if (typeof depth != "undefined") {
+			if (typeof depth !== "undefined") {
 				categoryDeferred = Q.defer();
 				console.log("Calling CategoryService");
 			    
