@@ -29,6 +29,8 @@ var gulp = require('gulp'),
   browserSync = require('browser-sync'),
   map = require('map-stream'),
   plugins = require('gulp-load-plugins')(),
+  props = require('gulp-props2json'),
+  fs = require('fs'),
   reload = browserSync.reload;
 
 
@@ -60,9 +62,10 @@ gulp.task('develop', getTask('develop'));
 gulp.task('watch', getTask('Watch'));
 gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
+gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
 
 
 
