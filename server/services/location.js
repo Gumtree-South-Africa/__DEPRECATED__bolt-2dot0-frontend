@@ -20,37 +20,36 @@ var LocationService = function() {
 	};
 };
 
-//Gets a list of locations
+/**
+ * Gets a list of locations
+ */
 LocationService.prototype.getLocationsData = function(depth) {
 	console.log("Inside LocationService");
 	
-	var data = {
-			x : { "id" : "201", name : "loc 1" },
-			y : { "id" : "350", name : "loc 2" },
-			z : { "id" : "466", name : "loc 3" }
-		};
-	return data;
-	
-	/**
-	 * Make BAPI call
-	 */
+	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
 	}
-	var bapi = new BAPICall(this.bapiOptions);
-	console.log("LocationService: About to call location BAPI");
-	console.dir(bapi);
 	
+	// Create Promise
 	var locationBapiDeferred = Q.defer();
-	Q(bapi.prepareGet())
-    	.then(function (data) {
-    		console.log("LocationService: Return from location BAPI");
-    		console.dir(data);
-    		locationBapiDeferred.resolve(data);    		
-		}).fail(function (err) {
-			locationBapiDeferred.reject(new Error(err));
-		});
+	
+	// Instantiate BAPI and callback to resolve promise
+	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
+		console.log("LocationService: Callback from location BAPI");
+		if(typeof output === undefined) {
+			locationBapiDeferred.reject(new Error("Error in calling location BAPI"));
+		} else {
+			locationBapiDeferred.resolve(output);
+		}
+	});
+	
+	// Invoke BAPI request
+	console.log("LocationService: About to call location BAPI");
+	bapi.doGet();
+	
+	// Return Promise Data
 	return locationBapiDeferred.promise;
 }
 
