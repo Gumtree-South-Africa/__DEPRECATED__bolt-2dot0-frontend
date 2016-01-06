@@ -23,34 +23,31 @@ var CategoryService = function() {
 //Gets a list of categories for the homepage
 CategoryService.prototype.getCategoriesData = function(depth) {
 	console.log("Inside CategoryService");
-	
-	var data = {
-			a : { "id" : "1204", name : "cat 1" },
-			b : { "id" : "1510", name : "cat 2" },
-			c : { "id" : "1846", name : "cat 3" }
-		};
-	return data;
-	
-	/**
-	 * Make BAPI call
-	 */
+
+	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
 	}
-	var bapi = new BAPICall(this.bapiOptions);
-	console.log("CategoryService: About to call category BAPI");
-	console.dir(bapi);
 	
+	// Create Promise
 	var categoryBapiDeferred = Q.defer();
-	Q(bapi.prepareGet())
-    	.then(function (data) {
-    		console.log("CategoryService: Return from category BAPI");
-    		console.dir(data);
-    		categoryBapiDeferred.resolve(data);    		
-		}).fail(function (err) {
-			categoryBapiDeferred.reject(new Error(err));
-		});
+	
+	// Instantiate BAPI and callback to resolve promise
+	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
+		console.log("CategoryService: Callback from category BAPI");
+		if(typeof output === undefined) {
+			categoryBapiDeferred.reject(new Error("Error in calling category BAPI"));
+		} else {
+			categoryBapiDeferred.resolve(output);
+		}
+	});
+	
+	// Invoke BAPI request
+	console.log("CategoryService: About to call category BAPI");
+	bapi.doGet();
+	
+	// Return Promise Data
 	return categoryBapiDeferred.promise;
 }
 
