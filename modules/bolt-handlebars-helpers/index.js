@@ -19,7 +19,10 @@ var hbsConfig = {
     "arguments": [
         {
         	"defaultLayout" : "../../app/views/templates/layouts/hbs/main",
-        	"partialsDir": ["./app/views/templates/hbs/partials"],
+        	"partialsDir": [
+                "./app/views/templates/partials",
+                "./app/views/components/searchbar/views/dependencies"
+            ],
         	"extname": ".hbs",
         	"i18n" : "config:i18n"
         }

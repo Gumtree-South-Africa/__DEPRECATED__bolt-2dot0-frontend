@@ -1,7 +1,7 @@
 {{#unless model.content.disableSearchbar}}
     <div class="searchbar">
         <section role="search">
-            <div class="wrap" style="padding-bottom: 3em;">
+            <div class="wrap">
                 <form action='{{model.header.searchPageUrl}}' class="has-location-{{model.header.navigationConfig.locationSelection}}"
                         data-instant-search="{{model.header.navigationConfig.instantSearch}}"
                         data-clear-searches-message='{{i18n "header.clear-recent-searches"}}'
@@ -10,28 +10,28 @@
                         data-auto-complete-api="{{model.header.autoCompleteUrl}}">
                     <fieldset>
                         {{!-------------- keyword --------------}}
-                        {{!-- > hbs/Html/Body/searchbar/keyword --}}
+                                        {{> keyword}}
                         {{!-------------- /keyword --------------}}
 
                         {{!-------------- categories --------------}}
-                        {{!-- > hbs/Html/Body/searchbar/categories --}}
+                                        {{> categories}}
                         {{!-------------- /categories --------------}}
 
                         {{!-------------- locations --------------}}
-                        {{!-- > hbs/Html/Body/searchbar/locations --}}
+                                        {{> locations}}
                         {{!-------------- locations --------------}}
 
                         {{!-------------- button --------------}}
-                        {{!-- > hbs/Html/Body/searchbar/button --}}
+                                        {{> button}}
                         {{!-------------- /button --------------}}
                     </fieldset>
 
                     {{!-------------- geoLocator --------------}}
-                    {{!-- > hbs/Html/Body/searchbar/geoLocator --}}
+                                        {{> geoLocator}}
                     {{!-------------- /geoLocator --------------}}
 
                     {{!-------------- existing search --------------}}
-                    {{!-- > hbs/Html/Body/searchbar/hiddenFields --}}
+                                        {{> hiddenFields}}
                     {{!-------------- /existing search --------------}}
 
                 </form>

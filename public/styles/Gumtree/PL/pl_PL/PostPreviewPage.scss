@@ -1,8 +1,0 @@
-@import 'ViewPage';
-
-@import
-	"../theme";
-
-@import "../../../partials/pages/PostPreviewPage/pageMain";
-@include hide_header_post_ad_button;
-@include hide_breadcrumbs;

@@ -64,6 +64,42 @@ gulp.task('compass', function(){
       .pipe(gulp.dest('./public/css'));
 })
 
+// ////////////////////////////////////////////////
+// Browser-Sync Tasks
+// ////////////////////////////////////////////////
+gulp.task('browserSync', function() {
+    browserSync({
+        server: {
+            baseDir: "./"
+        },
+        proxy: {
+        target: "localhost:8000",
+        reqHeaders: function (config) {
+            return {
+                "host": config.urlObj.host,
+                "accept-encoding": "identity",
+                "agent":           false
+            }
+        }
+}
+        
+        // proxy: {
+        //   target: "http://www.gumtree.co.za.localhost:8000",
+        //   ws: true
+        // }
+    });
+});
+
+
+// ////////////////////////////////////////////////
+// HTML Tasks
+// ////////////////////////////////////////////////
+gulp.task('browerSyncHbs', function() {
+  return gulp.src('app/views/**/*.hbs')
+    .pipe(reload({stream:true}));
+});
+
+
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 //gulp.task('styles', getTask('styles'));
