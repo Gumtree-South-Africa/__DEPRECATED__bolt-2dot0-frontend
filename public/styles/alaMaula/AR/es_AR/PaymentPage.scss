@@ -1,0 +1,186 @@
+@import
+    "../../theme",
+    "../../theme-my-pages",
+    "../partials/main/VNS_Styles",
+    "../../../partials/common/form";
+
+@import
+    "../../../partials/pages/PaymentPage/pageMain",
+    "../../../partials/pages/PaymentPage/creditCardForm",
+    "../../../partials/pages/PaymentPage/creditCardType";
+
+@import
+    "../../../Vivanuncios/partials/pages/PaymentPage/pageMain",
+    "../../../Vivanuncios/partials/pages/PaymentPage/page-main",
+    "../../../Vivanuncios/partials/pages/PaymentPage/orderSummary",
+    "../../../Vivanuncios/partials/pages/PaymentPage/order-summary";
+
+@import
+    "../../../alaMaula/partials/pages/PaymentPage/pageMain";
+
+@import
+    "../../../alaMaula/partials/pages/PaymentPage/payment-container";
+
+@mixin fix_radio_styles_for_firefox {
+
+  @-moz-document url-prefix() {
+
+    input[type='radio'] {
+      display: none;
+    }
+
+    .radio-placeholder {
+      display: inline-block;
+      height: 1.5em;
+      width: 1.5em;
+
+      position: relative;
+      left: -1.75em;
+      top: 0.5em;
+
+      border: 1px solid #ccc;
+      border-radius: 100%;
+      background-color: #fff;
+    }
+
+    input[type='radio']:checked + .radio-placeholder:before {
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+
+      content: " ";
+
+      border: 6px solid #86c900;
+      border-radius: 100%;
+      background-color: #fff;
+    }
+
+  }
+
+}
+
+// -----------------------------------------------------
+// Mobile First Styles
+// -----------------------------------------------------
+
+@include creditcardtype_default;
+@include creditcardform_default;
+@include fix_radio_styles_for_firefox;
+@include creditcardCheckBoxBorder;
+
+// HIDE PAYMENT TYPE SELECTOR
+.payment-block {
+    [name=facadePaymentType],
+    &> label{
+        display:none;
+    }
+}
+
+.creditcard_nps {
+    #credit-card-type {
+        text-align:center;
+        line-height: 1em;
+        .card {
+            text-align: left;
+            margin: 1em;
+        }
+        .details {
+            border:1px solid #CCC;
+            padding: 1em;
+            margin: 1em 0;
+            background-color: white;
+            font-size: 0.9em;
+            display:none;
+            &.pago_facil {
+                //border-color:#FFCC00;
+                .steps {
+                    font-size: 0.8em;
+                    font-size: 14px;
+                    white-space: normal;
+                    width: 109px;
+                    display: inline-block;
+                    vertical-align: top;
+                    margin: 1em 0;
+                    .pic {
+                        background: url(../../../../../images/pagofacil_steps.jpg) no-repeat top left;
+                        height:100px;
+                        width:100%;
+                    }
+                }
+                .step1 .pic{
+                    background-position: 50% 0;
+                }
+                .step2 .pic {
+                    background-position: 50% -125px;
+                }
+                .step3 .pic {
+                    background-position: 50% -270px;
+                }
+                .step4 .pic {
+                    background-position: 50% -390px;
+                }
+            }
+            &.other {
+                //border-color:#4DB740;
+                iframe {
+                    height: 750px;
+                    width: 100%;
+                    padding:0;
+                    margin:0;
+                    overflow: hidden;
+                }
+            }
+        }
+        .actions {
+            text-align:right;
+            .btn {
+                display: inline-block;
+                color: white;
+                border-radius: 5px;
+                padding: 0.75em 1em;
+                text-decoration: none;
+                user-select: none;
+                cursor: pointer;
+                margin: 1em 0.25em;
+                &.primary {
+                    background-color:#4EBB49;
+                }
+                &.secondary {
+                    background-color:#666;
+                }
+            }
+            .help-line {
+                text-align:left;
+                display:block;
+                color:#999;
+                margin:1em;
+            }
+        }
+    }
+}
+
+@include in-breakpoint($no-break) {
+    .page {
+        padding-left :0;
+        padding-right :0;
+    }
+}
+
+// -----------------------------------------------------
+// Tablet, Desktop Styles
+// -----------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+    @include creditcardtype_medium;
+    @include creditcardform_medium;
+    .creditcard_nps {
+        #credit-card-type {
+            .details {
+                &.pago_facil {
+                    .steps {
+                        width: 215px;
+                    }
+                }
+            }
+        }
+    }
+}

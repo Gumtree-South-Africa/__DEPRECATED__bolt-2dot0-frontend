@@ -1,0 +1,101 @@
+.MyOrdersContentPrint {
+	background-color:#FFF;
+	font:10pt Helvetica, sans-serif;
+	color:#666;
+	margin:.5em;
+	h1, h2 {
+		font-size:12pt;
+		color:#333;
+		margin:.5em 0
+	}
+	h1 {
+		font-size:14pt;
+	}
+	label {
+		color:#333;
+		font-weight:bold;
+	}
+	button {
+		position:absolute;
+		right:1em;
+		top:17em;
+		background:white;
+	}
+	.logo {
+		float:right;
+	}
+
+	.features {
+		width:100%;
+		tr {
+			background: #DDD;
+			&:nth-child(odd) {
+				background: #EEE;
+			}
+			th {
+				border-right: 1px solid rgba(255,255,255,.15);
+				background:#468100;
+				color:#FFF;
+			}
+			th, td {
+				font-size:7pt;
+				padding: 4px 10px;
+			}
+		}
+	}
+	tr .amt {
+		text-align:right;
+		white-space:nowrap;
+	}
+
+
+}
+@media (min-width: 500px) {
+	.MyOrdersContentPrint {
+		font-size:12pt;
+		margin:2em;
+		h1, h2 {
+			font-size:14pt;
+			margin:2em 0 1em
+		}
+		h2 {
+			font-size:14pt;
+			font-weight:bold;
+		}
+		.textarea {
+			width:100%;
+			min-height:8em;
+			border:1px solid #CCC;
+		}
+		.features {
+			width:100%;
+			tr {
+				th, td {
+					font-size:14pt;
+					padding: 4px 1em;
+				}
+			}
+		}
+		.info {
+			.client {
+				width:35%;
+			}
+			.client,
+			.payment {
+				display:inline-block;
+				margin:1em;
+				vertical-align:top;
+			}
+		}
+	}
+}
+@media print {
+	.MyOrdersContentPrint {
+		button {
+			display:none;
+		}
+		.textarea {
+			border:none;
+		}
+	}
+}

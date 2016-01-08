@@ -1,0 +1,10 @@
+$locale:"en_ZA";
+@import "../../theme";
+@import "../../../partials/common/pagination";
+@import "../../../partials/pages/MyMessagePage/pageMain";
+
+@import "../../../partials/widget/tooltip";
+
+.sticky-mc .thumbnail .img{
+	background-image: url("../../../../../images/en_ZA/no-photo.jpg");
+}

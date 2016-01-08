@@ -1,0 +1,45 @@
+.vip-contact {
+
+    .submit-reply {
+        .icon-envelope-alt-white {
+            display: inline-block;
+        }
+    }
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+    .reply_controls {
+        .telephone {
+            float: none;
+            width: 100%;
+            padding: 0;
+        }
+
+        .title {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    .vip-contact .telephone #phone-number,
+    .vip-contact span.label {
+        display: inline;
+    }
+
+    .srp-reply-container {
+        .vip-contact {
+            form {
+                .buyerName,
+                .email {
+                    display: block;
+                    width: 48%;
+                    float: left;
+                }
+
+                .buyerName {
+                    margin-right: 4%;
+                }
+            }
+        }
+    }
+}

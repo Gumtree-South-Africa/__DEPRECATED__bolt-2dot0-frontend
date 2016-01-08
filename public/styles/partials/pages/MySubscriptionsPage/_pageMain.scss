@@ -1,0 +1,101 @@
+@import "../../../partials/pages/MySubscriptionsPage/thumbnail";
+@import '../../../partials/common/column-labels';
+@import '../../../partials/main/toggleCheckbox';
+.smartStickyTop,
+#subheader {
+	display:none;
+}
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	.column-labels {
+		background: $rowHead2-bg-color;
+		color:$rowHead2-color;
+	}
+	#feature-header.smartStickyTop {
+		width: 100%;
+		max-width: 71.5em;
+		margin: 0 auto;
+		.meta-and-features.feature-options.topAd {
+			width: 12%;
+		}
+	}
+}
+.feature {
+	margin:1em;
+}
+.breadcrumb {
+	padding: 17px 0 5px 0;
+	font-weight: bold;
+	a {
+		font-size:inherit;
+		font-weight: bold;
+	}
+}
+.commercial {
+	padding:0.5em 1em;
+	border-bottom:2px solid #DDD
+}
+.commercial .title {
+	color:#0000CC;
+	font-weight:bold;
+	font-size:1em
+}
+.adFeatures {
+	width:100%;
+}
+.meta {
+	width:100%;
+}
+.column-labels {
+	width:100%;
+	div {
+		display:inline-block;
+		width:35%;
+		padding:0 1em;
+	}
+	.label {
+		width:60%;
+	}
+}
+.feature {
+	width:100%;
+	h2 {
+		display:inline-block;
+		width:60%;
+		vertical-align:top;
+		font-size:1.1em
+	}
+	.renewal {
+		width:35%;
+		display:inline-block;
+		position:relative;
+		&.spinner{
+			// @include opacity(.25); // make it look disabled
+			&:after {
+				display:none; // BOLT-12680 display: inline-block; TODO : revert-me
+				position: absolute;
+				top: 8px;
+				left: 88px;
+				width: 16px;
+				height: 16px;
+				background: url(../../../../../images/loading-small.gif) no-repeat;
+				background-repeat: no-repeat;
+				content: "";
+				&.eft-margin {
+					top: 8px;
+				}
+			}
+		}
+	}
+}
+.toggle.spinner:after {
+	display: inline-block;
+	position: relative;
+	top: 24px;
+	width: 16px;
+	height: 16px;
+	background: url(../../../../../images/loading-small.gif) no-repeat;
+	background-repeat: no-repeat;
+	&.eft-margin {
+		top: 8px;
+	}
+}

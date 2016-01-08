@@ -1,0 +1,41 @@
+form{
+	label{
+		input[type="checkbox"]{
+		    width: 1em;
+		    height: 1em;
+		    border:none;
+        }
+	}
+}
+.toggle-section-link span{
+    display:block;
+}
+
+#register label span{
+	font-size: 0.81em;
+	color: $vivaGray;
+}
+
+@include in-breakpoint($lt-ie10-class-name){
+	#login-button, #register button, #login button{
+		height: 34px;
+		padding-top: 0.1em;
+	}
+}
+
+@include in-breakpoint($large-break, $lt-ie10-class-name){
+	
+     .left-content { 
+            float:none;
+            width:auto;
+            display:block;
+      }
+      form {
+        input[type="email"], input[type="password"], input[type="text"],
+        .progress {
+            width:34%
+        }
+      }
+      
+}
+

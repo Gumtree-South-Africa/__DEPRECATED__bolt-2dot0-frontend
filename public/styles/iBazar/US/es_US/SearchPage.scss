@@ -1,0 +1,42 @@
+@import
+	"../../theme",
+ 
+
+	// other files to import for this page
+	"../../../partials/pages/SearchPage/filters",
+	"../../../partials/pages/SearchPage/controls",
+	"../../../partials/pages/SearchPage/results",
+	"../../../partials/common/categoryListBase",
+	"../../../partials/pages/SearchPage/searchSummary",
+	"../../../partials/pages/SearchPage/noResult",
+	"../../../partials/common/adSense",
+	"../../../partials/common/moreSearches",
+	"../../../partials/pages/SearchPage/skyscraper",
+	"../../../partials/pages/SearchPage/brandingList",
+	"../../../partials/pages/ViewPage/sendEmail",   // Generic
+	"../partials/pages/ViewPage/sendEmail"; // US-specific
+
+ @import "../../../partials/pages/SearchPage/pageMain",
+         "../partials/pages/SearchPage/controls",
+         "../partials/pages/SearchPage/filters",
+         "../partials/pages/SearchPage/emailAlert";
+
+
+@include in-breakpoint($no-break) {
+  .category-location {
+    // Fixes BOLT-11320.
+    .locationName.parent {
+      width: 200px;
+      display: block;
+      @include ellipsis;
+    }
+  }
+}
+
+/* Large */
+@media (min-width: 53em) {
+
+  #gallery {
+     height: 220px;
+  }
+}

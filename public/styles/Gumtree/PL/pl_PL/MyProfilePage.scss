@@ -1,0 +1,19 @@
+@import
+    "../theme",
+    "../../../partials/SinglePageNotification",
+    "../../../partials/pages/MyPage/pageMain",
+    "../../../partials/pages/PaymentPage/creditCardType",
+    "../../../partials/pages/PaymentPage/creditCardForm";
+
+@import "../../../partials/pages/MyProfilePage/pageMain",
+    "../../../partials/pages/MyProfilePage/editPayment",
+    "../../../partials/common/pswdStrength";
+
+
+@include creditcardform_default;
+@include creditcardtype_default;
+@include editpayment_default;
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+    @include creditcardform_medium;
+}

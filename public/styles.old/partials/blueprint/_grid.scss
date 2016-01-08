@@ -1,0 +1,91 @@
+$total-columns: 3;
+$column-width: 5em;
+$gutter-width: 1em;
+$grid-padding: $gutter-width;
+$container-style: magic;
+$show-susy-grid: false !default;
+
+
+
+$ie8-class-name: ie8;
+$ie9-class-name: ie9;
+$lt-ie9-class-name: lt-ie9;
+$lt-ie10-class-name: lt-ie10;
+
+$small-break: 6;
+$medium-break: 9;
+$large-break: 12;
+$ie-break: $large-break $lt-ie9-class-name;
+
+
+
+
+@mixin full-page-width(){
+	margin: {
+		left: 0 - $grid-padding;
+		right: 0 - $grid-padding;
+	}
+	padding: {
+		left: $grid-padding;
+		right: $grid-padding;
+	};
+}
+
+@mixin revert-full-page-width(){
+	margin: {
+		left: 0;
+		right: 0;
+	}
+	padding: {
+		left: 0;
+		right: 0;
+	};
+}
+
+
+
+
+
+
+
+
+@import "media/mixins";
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// IMPORTANT NOTE!!!!
+// The mixins have been passed to _global.css
+// so they're only included once
+
+
+
+
+// 320-768
+// 768-960
+// 960-1300
+// 1300+
+
+// $legacy-support-for-ie	: <boolean>;
+// $legacy-support-for-ie6 : <boolean>;
+// $legacy-support-for-ie7 : <boolean>;
+// $legacy-support-for-ie	: true;
+// $legacy-support-for-ie6 : $legacy-support-for-ie;
+// $legacy-support-for-ie7 : $legacy-support-for-ie;

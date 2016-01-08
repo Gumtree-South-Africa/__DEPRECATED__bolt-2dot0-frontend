@@ -1,0 +1,75 @@
+@mixin sellerbadges_default {
+
+	.sellerBadge_title {
+		margin: $large-margin 0 ;
+		padding: $small-padding $small-padding;
+		background: darken($color-white, 10%);
+		font-weight:bold;
+		@include box-shadow(0px 1px 3px transparentize($color-black, 0.75));
+	}
+
+	.sellerBadge_icon {
+		width:100%;
+		text-align:center;
+		margin: $small-margin 0 ;
+	}
+
+	.sellerBadge_item {
+		margin:$large-margin 0;
+	}
+
+	.sellerBadge_msg {
+		border: 1em solid darken($color-white, 10%);
+		padding:$small-padding;
+		font-size:.9em;
+	}
+
+}
+
+
+
+@mixin sellerbadges_medium {
+
+  .sellerBadge_item{
+	@include clearfix;
+  }
+
+  .sellerBadge_icon{
+	width:17em;
+	float:left;
+	padding-left:2em;
+	text-align:left;
+	margin: $medium-margin 0;
+	img{
+	  vertical-align:middle;
+	}
+  }
+
+  .sellerBadge_msg {
+	float:left;
+	width:60%;
+  }
+
+  .sellerBadge_icon_small,
+  .sellerBadge_icon_large {
+  	height:auto;
+  }
+
+}
+
+@mixin sellerbadges_large {
+
+  .sellerBadge_icon {
+	margin:0;
+  }
+
+  .sellerBadge_icon_large {
+	height:200px;
+  }
+
+  .sellerBadge_icon_small {
+	height:auto;
+  }
+
+}
+

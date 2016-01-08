@@ -1,0 +1,215 @@
+ p.error {
+	color: $form-element-error-color;
+	margin: 0em;
+ }
+
+.left-o-alertEmail {
+	background-color: #f2f2f2;
+	padding-bottom: 0.3em;
+	@include border-radius(5px);
+
+	&.loading {
+		background-image: url('../../../../../images/loading.gif');
+		background-position: 40% 37%;
+		background-repeat: no-repeat;
+		opacity: 0.6;
+	}
+
+	.title-alertEmail-left {
+		background-color: #d9d9d9;
+		font-weight: bold;
+		margin-top: 1em;
+		padding: 0.5em .5em .5em 1em;
+		// commenting this as a fix to BOLT-13638
+		//color: white;
+		@include border-radius(5px 5px 0 0);
+
+		.icon-envelope-alt-white {
+			display:none;
+		}
+
+		.icon-envelope-alt-blue {
+			display:inline-block ;
+			background-size:contain;
+			width: 1em;
+			height:1.3em;
+			vertical-align: middle;
+			margin-top:-.1em;
+
+			+ span {
+				//font-size: 14pt;
+				color: black;
+			}
+		}
+
+		+ div.other-text {
+			margin: 0.9em;
+
+			+ div {
+				margin: 0.9em;
+
+				div.other-details:first-child {
+					margin-bottom: 0.5em;
+					margin-left: 0.2em;
+					font-weight: bold;
+				}
+			}
+		}
+	}
+
+
+	.descriptionTitle {
+		margin-bottom: 1px;
+		color: black;
+	}
+
+	.textinput-left {
+		border: none;
+		border-width: 0px;
+		outline: none;
+		@include border-radius(5px);
+		@include box-shadow(0px 0px 5px rgba(51, 51, 51, 0.45) inset);
+		@include appearance(none);
+		//font-size: 1em;
+		margin-bottom: 0.5em;
+		padding: 0.5em;
+		width: 100%;
+	}
+
+	#createAlertButton-left {
+		@include email-alert-button;
+		width: 100%;
+		height: 37px;
+		margin-bottom: 0.8em;
+	}
+
+	.other-details {
+	  	 display: none;
+	}
+
+	.other-text .description {
+		color: gray;
+		//font-size:$fontSize-text;
+	}
+
+	.filterCatLoc {
+		font-weight: 100;
+		margin-left: 0.25em;
+	}
+
+	.alert_msg {
+		color: gray;
+	}
+
+}
+
+.btm-alertEmail {
+	border-top:1px solid #CBCBCB;
+	border-bottom:1px solid #CBCBCB;
+	width:100%;
+	overflow: hidden;
+	margin: .5em 0em;
+	background-color: #f2f2f2;
+	padding: 0em 0.5em 0.3em 1em;
+
+
+	.email_msg {
+		padding-top: 0.75em;
+	}
+	.icon-envelope-alt-blue {
+			display:inline-block ;
+			background-size:contain;
+			width: 1em;
+			height:1.3em;
+			vertical-align: middle;
+			margin-top:-.1em;
+	}
+
+	.description {
+		padding-left: 0.5em;
+		font-weight:bold;
+	}
+
+	.textinput {
+		  border: 1px solid #CBCBCB;
+		  @include border-radius(5px);
+		  margin: 0.75em 0 0.75em 0;
+		  padding: 0.5em;
+		  width: 50%;
+	}
+
+	.textinput.error {
+	   border: 1px solid $form-element-error-color;
+		color: $form-element-error-color;
+	}
+
+	.filterCatLoc {
+		color: #000000;
+		margin-left: 0.25em;
+	}
+
+	span.filterCatLoc {
+		//font-size:$fontSize-text;
+	}
+
+	.email_btn {
+	   display: inline-block;
+	   padding-left: 1em;
+	   vertical-align: middle;
+	   margin-top:-.3em;
+	}
+
+	.createAlertButton {
+		@include email-alert-button;
+		margin-top:0px;
+		width: 100%;
+		padding: 0.375em 4em;
+	}
+
+	.alert_msg {
+	    color: #000000;
+		padding-bottom: 0.5em;
+		font-size: $font-size-micro;
+	}
+}
+
+
+@include to-breakpoint($no-break) {
+	.left-o-alertEmail {
+		display:none;
+	}
+
+	.btm-alertEmail {
+		.textinput {
+			width: 100%;
+		}
+
+		.email_btn {
+			display:block;
+			padding-left: 0em;
+			margin-top: 0.25em;
+		}
+
+		.alert_msg{
+			padding: 1em 0em;
+		}
+	}
+}
+
+@include in-breakpoint($small-break) {
+	.left-o-alertEmail{
+		display:none;
+	}
+}
+@include in-breakpoint($lt-ie9-class-name) {
+	.icon-envelope-alt-white, .icon-envelope-alt-blue{
+		width: 2em !important;
+		height:2em !important;
+	}
+}
+@include in-breakpoint($lt-ie10-class-name) {
+	input[name=email].placeholder {
+		color: #999!important;
+	}
+}
+

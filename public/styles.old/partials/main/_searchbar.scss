@@ -1,0 +1,89 @@
+$searchbar-background: none !default;
+$searchbar-width: auto !default;
+$searchbar-border: none !default;
+$searchbar-border-left: $searchbar-border !default;
+$searchbar-border-top: $searchbar-border !default;
+$searchbar-border-bottom: $searchbar-border !default;
+$searchbar-border-right: $searchbar-border !default;
+
+.searchbar{ max-width:$searchbar-width; margin:0 auto; background:$searchbar-background; position:relative; z-index:10;
+    border:{
+        left:$searchbar-border-left;
+        right:$searchbar-border-right;
+        top:$searchbar-border-top;
+        bottom:$searchbar-border-bottom;
+    }
+
+    @import
+        "./searchbar/searchWrap",
+        "./searchbar/containers",
+        "./searchbar/inputs",
+        "./searchbar/button",
+        "./searchbar/lists",
+        "./searchbar/autocomplete";
+}
+
+
+@import "./searchbar/geoLocator";
+
+
+
+
+// fix for IE (because it doesn't support the CSS3 columns attribute)
+// when lists float over the page and we need to split them into 2 columns
+@include in-breakpoint($lt-ie10-class-name){
+    .searchbar .location .options ul li ul{
+        &.size-l,
+        &.size-xl{
+            li{ float:left; width:50%; height:2em; }
+        }
+    }
+}
+
+
+// Fixes for BOLT-15027
+.searchbar form .location .options li a,
+.searchbar form .category .options li a{
+  font-size:0.9em;
+  color:$color-black;
+  &:hover {
+    color: $color-white;
+  }
+}
+
+// BOLT-15029
+// Pulling all search bar related fixes for ie8 out in searchbar file as it puts ie related class names after searchbar.
+// till we update the mixin to move ie related classes in the beginning.
+@include to-breakpoint($lt-ie9-class-name) {
+  .searchbar {
+    .category, .location {
+      .icon-caret-down {
+        width: 1.5em;
+        height: 1.5em;
+        top: 10%;
+        position: absolute;
+        right: 0.2em;
+        display: inline-block;
+      }
+    }
+    input[type=text] {
+      padding-top: 0.25em !important;
+    }
+    .icon-header-search-out, .icon-header-search-over, .icon-header-categories {
+      top: 0.15em !important;
+    }
+  }
+}
+
+/*
+@include to-breakpoint($lt-ie10-class-name) {
+  .category,
+  .location,
+  .keyword{
+
+    input {
+      padding-top:0.25em;
+    }
+  }
+}
+*/

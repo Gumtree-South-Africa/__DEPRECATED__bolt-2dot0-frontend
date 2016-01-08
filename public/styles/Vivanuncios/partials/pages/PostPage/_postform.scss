@@ -1,0 +1,11 @@
+//
+// display currency only for certain price types
+//
+.fieldcontain.price {
+    &[data-option="MAKE_OFFER"] {
+        .price-field,
+        #currencyValues {
+            display: block;
+        }
+    }
+}

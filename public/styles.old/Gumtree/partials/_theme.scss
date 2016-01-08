@@ -1,0 +1,1256 @@
+@import "typography-scale";
+@import "../../partials/base", "../../partials/main/theme";
+
+
+$container-width: 83.428571429em;
+
+$gtorange:#F46F00;
+$gtltorange:#F89400;
+$gtltyellow:#fff1ad;
+$gtwhite:#FFFFEE;
+$gtdkgreen:#468100;
+$gtgreen:#8FBA31;
+$gtltgreen:#E6EEAD;
+
+$gumtree-dark-grey: #888;
+$gumtree-green: #468100;
+$gumtree-light-green: #90bf00;
+$gumtree-pale-green: #ebeeb9;
+$gumtree-replyform: #e3e6c9;
+
+$default-transition-time:400ms;
+
+$rowHead-bg-color:#ebeeb9;
+$rowHead-color:#333333;
+$rowHead2-bg-color:$gtdkgreen;
+$rowHead2-color:#FFF;
+$row0-bg-color:transparent;
+$row1-bg-color:#f9f9f9;
+$postad-btn-color: #f89301;
+
+// Generic form element styles
+$form-element-error-color: $color-red;
+$form-element-error-bgcolor: #EFDBD6;
+$form-element-border-color: #E6E6E6;
+$form-element-valid-color:#336234;
+$form-element-valid-bgcolor:#F0FFC1;
+
+// Category and Location dropdowns
+$menu-hover-parent-bg-color: $gumtree-pale-green;
+$menu-hover-parent-text-color: $color-black;
+$menu-hover-current-bg-color: $gumtree-green;
+$menu-hover-current-text-color: $color-white;
+
+// PAGE
+$search-bg-color:$gtltorange;
+$search-color:$gtwhite;
+$banner-bg-color:$gtgreen;
+$banner-color:$gtwhite;
+
+// CAROUSEL
+$carousel-arrow-color:$gtwhite;
+$carousel-bg-color:tint($gtltyellow,80%);
+$carousel-border:1px solid $gtltgreen;
+$carousel-button-border:1px solid $gtorange;
+$carousel-button-color:$gtwhite;
+$carousel-button-bg-color:$gtorange;
+$carousel-button-bg-gradient:linear-gradient(top left, $gtltorange 0%, $gtorange 100%);
+$carousel-nav-active-bg-color:$gtgreen;
+$carousel-nav-active-gradient:linear-gradient(bottom left, $gtgreen 0%, $gtltgreen 100%);
+$carousel-nav-inactive-bg-color:$gtwhite;
+$carousel-nav-inactive-gradient:linear-gradient(bottom left, lighten($gtgreen,20%) 0%, lighten($gtltgreen,20%) 100%);
+$carousel-see-all-color:$gtdkgreen;
+$carousel-see-all-bg-color:$gtltyellow;
+$carousel-title-color:$gtdkgreen;
+
+// COLUMN-STATUS
+$column-status-feature-icon-width:35px;
+$column-status-feature-icon-height:35px;
+$column-status-feature-icon-border:1px solid transparent;
+
+//TOOLTIP
+$tooltip-content-color:white;
+$tooltip-background-color:#90bf00;
+
+//MESSACE-CENTER
+$mc-ad-title: black;
+$mc-ad-price:#468100;
+$mc-preview-buyer-bg-response:#EEF4D2;
+$mc-preview-seller-bg-response:white;
+$mc-username-color:#468100;
+$mc-base-link-color:#468100;
+$mc-base-no-link-color:#E6EEAD;
+$mc-buyer-spec-color-response:#91B93E;
+$mc-buyer-color-response: white;
+$mc-button:$gtdkgreen;
+$mc-bg-color80:$gumtree-pale-green;
+$mc-bg-color:#fffee0;
+$mc-report-color: #468100;
+$mc-max-width: 83.41em;
+
+// FEATURE LEGEND
+$feature-legend-shadow:-1px 1px 1px rgba(black,0.75);
+$feature-legend-icon-width:96px;
+$feature-legend-icon-height:96px;
+$feature-legend-small-icon-width:64px;
+$feature-legend-small-icon-height:64px;
+$feature-legend-popup-icon-height:420px;
+$feature-legend-popup-width:395px;
+$feature-legend-popup-icon-width:$feature-legend-popup-width;
+$feature-legend-bg-color: #E3E3C9;
+$feature-legend-separator-color:#D0C6E1;
+$feature-legend-color-light-accent: #90bf00;
+$feature-legend-color-title-accent: #7f699F;
+$feature-legend-dialog-title-bg-color:#7F699F;
+$feature-legend-tip-color: #7F699F;
+$feature-legend-popup-icon-bumpup:url('../../../../../images/en_ZA/promoteAds/tooltip_bumpUp.png');
+$feature-legend-popup-icon-urgent:url('../../../../../images/en_ZA/promoteAds/tooltip_urgent.png');
+$feature-legend-popup-icon-highlight:url('../../../../../images/en_ZA/promoteAds/tooltip_highlight.png');
+$feature-legend-popup-icon-topads:url('../../../../../images/en_ZA/promoteAds/tooltip_top.png');
+$feature-legend-popup-icon-homepage-gallery:url('../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
+$feature-legend-popup-icon-category-gallery:url('../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
+$feature-legend-popup-icon-websiteurl:url('../../../../../images/en_ZA/promoteAds/tooltip_sellerURL.png');
+$controls-bg-color: $gtdkgreen;
+$controls-color: $gtwhite;
+
+$brand-text-color:#468100;
+$srp-ad-title-color:#000;
+$section-divider-bg-color: $gtltgreen;
+$content-link-bg-color: $gtltyellow;
+$srp-nophoto-imageurl: url('../../../../../images/en_ZA/no-photo.jpg') !default;
+$selectall-hl-color: #d0c6df;
+$selectall-text-color: $gtwhite;
+
+$savedsearch-btn-on: $gumtree-light-green;
+$savedsearch-btn-off: $gumtree-pale-green;
+$savedsearch-control-bg: $gumtree-green;
+$ssp-column-label-color: white;
+
+$alert-color: $gumtree-light-green;
+$link-color: $gumtree-green;
+$link-hover-color: #569110;
+
+$loading-url:url(../../../../../images/loading-za.gif);
+
+// -------------------------------
+// ----------  Global  -----------
+// -------------------------------
+
+$button-secondary-text-color: $gumtree-green;
+$checkbox-bg-color: $gumtree-green;
+
+$post-page-nav-item-color: $gumtree-green;
+$post-page-image-add-color: $gumtree-green;
+$post-page-checked-radio-color: $gumtree-green;
+
+// -------------------------------
+// Post Ad Preview page
+// -------------------------------
+$preview-gallery-image-padding-top: 4em;
+$preview-gallery-image-padding-left: 2em;
+$preview-gallery-image-padding-bottom:3em;
+$preview-gallery-image-padding-right: 2em;
+$preview-image-gallery-right-margin: 40px;
+
+// ------------------------------------------
+// BOX GLOBAL CLASS
+// ------------------------------------------
+$boxBorderWidth: 1px !default;
+$boxBorderStyle: solid !default;
+$boxBorderColor: #dcdcdc !default;
+$boxBorderRadius: 3px !default;
+$boxBGColor: #FFFFFF !default;
+$boxRowBGColor: #FFFFFF !default;
+%box {
+	border: $boxBorderWidth $boxBorderStyle $boxBorderColor;
+	@include border-radius($boxBorderRadius);
+}
+@include in-breakpoint($no-break) {
+	%box {
+		background-color: $boxBGColor;
+		padding: .75em;
+	}
+}
+
+@include from-breakpoint($small-break) {
+	%box,
+	%box-from-small-break {
+		background-color: $boxBGColor;
+		padding: 1em;
+	}
+}
+
+@include in-breakpoint($no-break) {
+	%box-row {
+		background-color: $boxRowBGColor;
+		padding: .75em;
+	}
+}
+// ------------------------------------------
+
+
+@mixin post-page-nav-item-hover {
+  color: $link-hover-color;
+  text-decoration:underline;
+}
+
+@mixin post-page-preview-button {
+	@include secondary-button;
+	@include border-radius(5px);
+	font-size: 1em;
+	padding: $medium-padding $large-padding * 2;
+	margin-top: $large-margin;
+	text-shadow: none;
+}
+
+@mixin viewport-background {
+  background-color:#fffee0;
+
+  // TODO can probably be removed in which case this mixin can be a variable
+  background-image: none;
+  border-bottom-color: yellow;
+  @include to-breakpoint($no-break){
+		border-bottom-color: green;
+	}
+
+	@include in-breakpoint($small-break, $medium-break){
+		border-bottom-color: red;
+	}
+
+	@include from-breakpoint($large-break, $lt-ie9-class-name){
+		border-bottom-color: yellow;
+	}
+}
+
+// NOTE standardizing mixins on the <element>-style
+@mixin containment {
+  background-color: #fffee0;
+  border-width: 0;
+  border-left: 1px solid #eaeacf;
+  border-right: 1px solid #eaeacf;
+}
+
+$content-background-color: rgba(255,255,255,0);
+
+// NOTE the following three rules come from compass and must be explicitely overridden
+
+a,
+[data-uri],
+[data-o-uri],
+.sudo-link,
+span[href] {
+	text-decoration: none;
+	color: $link-color;
+
+	&:hover {
+		color: $link-hover-color;
+		text-decoration:underline;
+	}
+
+	&:visited {
+		color: $link-color;
+	}
+}
+
+.post-btn.postcommercial{
+	  color:$gtwhite;
+}
+
+// TODO this appears to be a new rule requiring a default and override here
+// find out what the default is and refactor
+
+.searchSummariesContainer,
+.content {
+	a {
+		&:hover, &:focus {
+			color: #393;
+			background-color: $content-link-bg-color;
+		}
+	}
+}
+
+// -------------------------------
+// ---------  Masthead  ----------
+// -------------------------------
+
+$header-link-top-margin: 1.6em;
+$header-list-hover-color: #fde47c;
+
+::selection {
+	background: $gumtree-light-green;
+	color: white;
+}
+
+@mixin set-masthead-fonts() {
+  #tags, #cat-q, #catSelect, #searchbar-locFilter,
+  #search_bar button, .search form fieldset button {
+	font-size: $font-size-medium;
+  }
+}
+
+@mixin set-masthead-margins() {
+
+  .header .links .menu-items {
+	max-width: 10.5em;
+  }
+
+  @include from-breakpoint($small-break) {
+	.header .links .menu-items {
+	  right: 11.5em;
+	}
+	.header .links .signin {
+	  right: 22em;
+	}
+  }
+
+  @include from-breakpoint($large-break) {
+	.header .links .menu-items {
+	  right: 17.5em;
+	}
+
+	.header .links .signin {
+	  right: 28em;
+	}
+  }
+
+  @include in-breakpoint($lt-ie9-class-name) {
+	.header .links .menu-items {
+	  right: 19.5em;
+	}
+
+	.header .links .signin {
+	  right: 28em;
+	}
+  }
+
+}
+
+// -------------------------------
+// ---------  Search Bar ---------
+// -------------------------------
+
+
+	.search form{
+		.select {
+			ul:hover {
+				li {
+					a {
+						&.active {
+							background-color: $color-white;
+							color: $color-black;
+						}
+					}
+				}
+
+			}
+
+		}
+	}
+
+
+
+// -------------------------------
+// ------------  SRP  ------------
+// -------------------------------
+
+$controls-background-color: $gumtree-pale-green;
+$controls-column-background-color: $gumtree-pale-green;
+$filters-color: $gumtree-green;
+
+$section-title-color: $color-black;
+
+@mixin filter-field-button {
+  color: #fff;
+  background-color: $gumtree-green;
+  text-decoration: none;
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.1);
+  background-image: none;
+  border: none;
+}
+
+/* TODO determine if this should be filter specific */
+$icon-caret-color: #8fba31;
+$filter-title-hover-background: #ffffff;
+$filter-count-color: $brand-text-color;
+
+@mixin srp-price-color {
+	color: $color-white;
+	background-color: $gumtree-green;
+}
+
+@mixin srp-result-structure {
+	line-height: 1.5em;
+	padding: 0;
+	display: block;
+
+	&:first-child{
+		padding-top: 0;
+		border-top: none;
+	}
+}
+
+@mixin srp-result-link-structure {
+	padding: 1em 16px;
+}
+
+@mixin srp-result-link-bg-color {
+	background-color: $color-white;
+
+	&:hover,
+	&:focus {
+		background-color: rgba(255,255,255,0.7);
+	}
+}
+
+
+// -------------------------------
+// ------------  VIP  ------------
+// -------------------------------
+
+$price-color:#468100;
+$vip-similar-ads-price-bg: $gumtree-green;
+$vip-title-posted-location-color: #666;
+$vip-name-color: $gumtree-dark-grey;
+$vip-icon-user-color: #d3d3a9;
+$vip-contact-form-background-color: transparent;
+$vip-title-lower-element-bottom-margin: 1.2em;
+$vip-title-right-element-right-margin: 0.8em;
+
+@mixin vip-seller-med {}
+
+@mixin vip-contact-med {
+	@include user-interactionform-toggle("on");
+	&.state-changed {
+		@include user-interactionform-toggle("on");
+	}
+}
+
+@mixin vip-title-med {
+	background-color: $gumtree-replyform;
+	color: #555;
+	font-weight: bold;
+	background-image: none;
+	border: 0;
+	border-bottom: 1px solid #cccccc;
+	text-shadow: none;
+	box-shadow: none;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	text-align: left;
+	padding: .25em 0;
+	margin-bottom: .5em;
+
+	.icon-envelope-alt {
+		color: #90bf00;
+		margin-right: .3em;
+	}
+
+	&:hover {
+		background-color: $gumtree-replyform;
+		color: #555;
+	}
+}
+@mixin usr-interaction-in-small {
+	width: auto;
+	float: none;
+	margin: 0;
+	display: block;
+	margin-left: -10px;
+	margin-right: -10px;
+}
+
+@mixin usr-interactions-lrg {
+	width: auto;
+	float: none;
+	display: block;
+	clear: none;
+	margin-right: 0;
+}
+
+@mixin vip-seller-container {
+	background: #e3e6c9;
+	border: 1px solid rgba(0,0,0,0.15);
+	@include border-radius(5px);
+	padding: .8em 15px;
+}
+
+@mixin vip-seller-container-med {
+
+	.vip-seller {
+		.usersince {
+			font-size: $font-size-micro;
+			margin-top: -.2em;
+			color: black;
+		}
+	}
+
+	.vip-contact,
+	.vip-flagad {
+		.telephone {
+			margin-bottom: 0.6em;
+		}
+	}
+
+}
+
+@mixin vip-form-border {
+	border: 0;
+}
+
+@mixin vip-form-button-submit-states {
+  background-color: #f89301;
+  color: #fff;
+  font-weight:bold;
+  border: 1px solid #fff;
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+  box-shadow: -1px 1px 1px rgba(0,0,0,0.15);
+  background: #f89301; /* Old browsers */
+  background: -moz-linear-gradient(top,  #f89301 0%, #f26121 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#f89301), color-stop(100%,#f26121)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(top,  #f89301 0%,#f26121 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(top,  #f89301 0%,#f26121 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(top,  #f89301 0%,#f26121 100%); /* IE10+ */
+  background: linear-gradient(to bottom,  #f89301 0%,#f26121 100%); /* W3C */
+  text-shadow: -1px -1px 0 rgba(0,0,0,0.25);
+}
+
+@mixin vip-flagad-title {
+	@include secondary-button;
+	color: $gumtree-green;
+	background-color: #fff;
+	text-shadow:none;
+}
+
+$vip-telephone-states-color: $gumtree-green;
+$vip-gallery-wrap-background-color: #fafae0;
+
+@mixin list-sell-menu-columns {
+  -webkit-columns: 2;
+  -moz-columns: 2;
+  -ms-columns: 2;
+  -o-columns: 2;
+  columns: 2;
+  -webkit-column-rule-style: none;
+  -moz-column-rule-style: none;
+  -ms-column-rule-style: none;
+  -o-column-rule-style: none;
+  column-rule-style: none;
+}
+
+$vip-details-sponsored-border-bottom: 1px solid #bbb;
+
+@mixin vip-contact-form-button {
+}
+
+@mixin vip-contact-telephone-form-button {
+	@include form-submit-button;
+	margin-bottom: 1em;
+}
+
+@mixin vip-contact-title-form-button {
+	@include form-submit-button;
+}
+
+
+@mixin vip-contact-form {
+	background-color: $vip-contact-form-background-color;
+	height: auto;
+	overflow: hidden;
+	@include vip-form-border;
+
+}
+
+@mixin vip-similar-ads-bottom {
+  &.bottom {
+
+	.ad {
+	  background-color: $color-white;
+	  background-image:none;
+	  border-bottom: 1px solid #eee;
+	  border-top: none;
+
+	  &:first-child {
+		border-top: none;
+	  }
+
+	  a {
+		font-weight:bold;
+		color: $font-color;
+	  }
+	}
+  }
+}
+
+@mixin security-tips-border-and-background {
+  border: 1px solid #e6e6e6;
+  background-color: $color-white;
+}
+
+
+// -------------------------------
+// ----------  Login  ------------
+// -------------------------------
+$toggle-section-link-bg-color: #e8eba2;
+$form-label-color: $gumtree-dark-grey;
+
+.toggle-section-link {
+	background-color: $toggle-section-link-bg-color;
+}
+
+@mixin hover-box-shadow {
+	-webkit-box-shadow: -1px 1px 1px rgba(0,0,0,0.35);
+	-moz-box-shadow: -1px 1px 1px rgba(0,0,0,0.35);
+	box-shadow: -1px 1px 1px rgba(0,0,0,0.35);
+}
+
+@mixin button-style-hover($text:$color-white) {
+	&:hover,
+	&:focus {
+		color: $text;
+		text-decoration: none;
+		@include hover-box-shadow;
+	}
+}
+
+@mixin form-button {
+	@include vip-form-button-submit-states;
+	@include border-radius(5px);
+	padding: $medium-padding $large-padding * 2;
+	margin-top: $large-margin;
+	cursor: pointer;
+}
+
+@mixin form-submit-button {
+	margin-top:10px;
+	@include primary-button;
+	@include vip-form-button-submit-states;
+	display: block;
+	width: 100%;
+	@include button-style-hover;
+}
+@mixin form-submit-button-disabled {
+	@include background-image(linear-gradient(#ddd, #ccc));
+}
+
+@mixin promote-ad-button {
+	@include form-submit-button;
+	margin-bottom: 1px;
+	margin-left: 1px;
+}
+
+@mixin email-alert-button {
+   @include form-submit-button;
+   font-size: $font-size-medium;
+   font-family: $blueprint-font-family;
+   text-decoration:none;
+   border: 0 none;
+}
+
+@mixin homepage-postad {
+	@include form-submit-button;
+	margin-bottom: 1em;
+}
+
+@mixin hide_header_post_ad_button {
+  .post-btn {
+	display: none !important;
+  }
+
+  .header .links .signin {
+	right:8em;
+  }
+
+  .header .links .menu-items {
+	right: 0;
+  }
+}
+
+.myads-title {
+	color: #468100;
+}
+
+
+#menu-link .active {
+	background-color: #468100;
+	color: white;
+}
+
+#menu-link .active .bold{
+	color:#fff !important;
+}
+#menu-link .active .bold a{
+	color: #468100 !important;
+	font-weight:normal !important;
+}
+#menu-link a {
+	text-decoration: none;
+	color: #468100;
+}
+
+@media screen and (max-width: 34.8em) {
+	 #menu-link #menu ul {
+		background-color: white !important;
+	 }
+}
+
+
+@media screen and (min-width: 32em) {
+   .header-myad .fLeft {
+		   float:none !important;
+	   }
+	   
+	   .header-myad .fRight {
+		   float:none !important;
+	   }
+}
+
+
+
+@media screen and (min-width: 48em) {
+	   .header-myad .fLeft {
+		   float:left !important;
+	   }
+	   
+	   .header-myad .fRight {
+		   float:right !important;
+	   }
+	.myads-title {
+		display:inline-block;
+		position: relative;
+		top: 3em;
+	}
+
+	.header-myad {
+		display: block;
+		height: 6.5em;
+	}
+
+	#menu .serperator{
+	border-left:0.1em solid #468100;
+	}
+}
+
+@media screen and (min-width: 69em) {
+	.expire-msg {
+		float:right !important;
+	}
+}
+
+@include in-breakpoint($lt-ie9-class-name) {
+	ul li .serperator{border-left:0.1em solid #468100; padding-right:1em;}
+}
+
+.vip-seller-form-details .reported-ad span{ color: darken($button-disabled-text-color, 25%);}
+
+// -----------------------------------------
+// POSTAD BUTTON OVERRIDES
+// ------------------------------------------
+
+//.post-btn.postcommercial {
+//  background-color: $postad-btn-color;
+//}
+
+#profile-cnt input[type='radio']:checked:before {
+	   border: 4px solid $gumtree-green;
+}
+#profile {
+	color: #74A35E;
+}
+
+#profile-cnt {
+
+	.btn {
+			 background:#90bf00;
+			 border: 5px solid #90bf00;
+			 &:not(.disabled):hover, &:not(.disabled):focus {
+			  background: #90bf00;
+			 }
+		
+	 }
+}
+
+// These rules are for BOLT-15687 (Cookie Banner)
+// Cookie Banner container "as is" - no Ad replacement.
+#cookieWarning {
+  // Main banner
+  display: none;
+  background: #F0F0F0;
+  border: 1px solid #C0C0C0;
+
+  // Message Ctr.
+  div.messageContainer {
+	text-align: center;
+	margin: 0 15px 0 0;
+	padding: 8px;
+	background: #F0F0F0;
+  }
+
+  // Close button
+  .accept {
+	position: absolute;
+	top: 0;
+	right: 10px;
+	margin: 0;
+
+	text-decoration: none;
+	font-weight: bold;
+	font-size: 120%;
+	cursor: pointer;
+  }
+}
+
+/*
+// Banner Cookie that replaces Ad.
+#home_topbanner.bannerCookie {
+  height: 90px;
+  line-height: 90px;
+  overflow: visible;
+
+  #cookieWarning div.messageContainer {
+	height: 90px;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	.accept {
+	  top: -30px;
+	}
+  }
+}
+*/
+
+// --------------------------
+// Override Smart Banner defaults: See : /scss/partials/main/_jquerySmartbanner.scss
+// See: BOLT-16174
+// --------------------------
+#smartbanner,
+#smartbanner.android {
+  margin-top: 0;
+  color: #000;
+  background: #FFFFFF;
+  font-size: 12px;
+  border-top: none;
+
+  .sb-icon {
+	left: 25px;
+	background: none;
+  }
+
+  .sb-info {
+	top: 10px;
+	left: 90px;
+	font-size: 10px;
+  }
+
+  .sb-info,
+  .sb-info strong {
+	color: #000;
+	text-shadow: none;
+	font-weight: normal;
+	line-height: 16px;
+  }
+
+  .sb-info strong {
+	font-size: 12px;
+  }
+
+  .sb-close {
+	background: none;
+	text-shadow: none;
+	box-shadow: none;
+	color: #B0B0B0;
+	font-size: 20px;
+  }
+
+  .sb-button {
+	border: 0;
+	right: 15px;
+	text-decoration: none;
+	text-shadow: none;
+  }
+}
+
+#smartbanner.android .sb-button:active span, #smartbanner.android .sb-button:hover span { background: #FF9721; }
+
+#smartbanner .sb-button {
+  padding: 0;
+  text-transform: none;
+}
+
+#smartbanner .sb-button span,
+#smartbanner.android .sb-button span {
+  @include border-radius(5px);
+  font-weight: normal;
+  font-size: 1em;
+  padding: 10px;
+  color: #FFFFFF;
+  background-color: #FF9721;
+  background-image: none;
+  -webkit-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.32);
+  -moz-box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.32);
+  box-shadow: 1px 1px 1px 1px rgba(0,0,0,0.32);
+}
+
+/*
+@include from-breakpoint($no-break, $small-break) {
+  @media screen and (orientation: portrait) {
+	#smartbanner.ios.shown {
+	  height: 75px !important;
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+  }
+
+  @media screen and (orientation: landscape) {
+	#smartbanner.ios.shown {
+	  height: 75px !important;
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+  }
+}
+*/
+
+// --------------------------------------
+// ----- End Smartbanner overrides ------
+// --------------------------------------
+
+// --------------------------------------
+// ----- Begin Interstitial overrides ---
+// --------------------------------------
+
+#smartbanner.interstitial,
+#smartbanner.interstitial.android {
+  height: 100% !important; // 570px !important;
+
+  // Interstitial images : top
+  div.top-section {
+	display: block;
+	position: relative;
+	top: 25px;
+	background-image: url(../../../../../images/en_ZA/interstitial/interstitial-01.png);
+	background-repeat: no-repeat;
+	width: 100%; // 320px;
+	height: 178px;
+	margin: 0 auto;
+  }
+
+  // Cross "X"
+  .sb-close {
+	font-size: 30px;
+  }
+
+  .sb-info {
+	top: 290px;
+	left: auto; // left: 130px;
+	right: 70px !important;
+	width: 50%;
+	white-space: nowrap;
+	.sb-close {
+	  font-size: 14px;
+	  font-weight: bold;
+	}
+  }
+
+  // Interstitial section : medium
+  // Icon
+  .sb-icon {
+	left: 15px; // 40px;
+	top: 220px; // 195px;
+	width: 85px;
+	height: 85px;
+	background: none;
+	background-repeat: no-repeat;
+	background-position: center;
+	box-shadow: none;
+	z-index: 1;
+  }
+
+  .sb-icon.gloss:after {
+	background: none;
+	border: none;
+  }
+
+  //Download button
+  a.sb-button {
+	position: relative;
+	// right: 0;
+	top: 70px; //  60px; // 45px;
+	left: 5px; // 10px; //  70px;
+	margin: 0 auto;
+	border: none;
+	background: none;
+	display: block;
+	span {
+	  width: 150px;
+	  font-size: 1.5em;
+	  padding: 8px 8px 8px 70px;
+	}
+  }
+
+  // Interstitial section : bottom
+  div.bottom-section {
+	display: block;
+	position: relative;
+	top: 110px; // 86px;
+	background-image: url(../../../../../images/en_ZA/interstitial/interstitial-03.png);
+	background-repeat: no-repeat;
+	width: 100%; // 320px;
+	height: 300px;
+
+	margin: 0 auto;
+  }
+}
+
+// --------------------------------------
+// ----- End Interstitial overrides ---
+// --------------------------------------
+
+// ---------------------------------------------------------------
+// -----  Mobile responsive portrait, landscape modes (iOS) ------
+// ----- For both Smart banner (top) and Interstitial ------------
+// ---------------------------------------------------------------
+
+
+
+// ---------------------------------------------------------------
+// ****** BEGIN: REFACTOR: COMMON CODE BETWEEN MX AND THIS ONE ****
+// -----  Mobile responsive portrait, landscape modes (iOS) ------
+// ----- For both Smart banner (top) and Interstitial ------------
+// ---------------------------------------------------------------
+@include from-breakpoint($no-break, $small-break) {
+
+  // *****************************************
+  // ******* PORTRAIT MODE (banners) ********
+  // *****************************************
+  @media screen and (orientation: portrait) {
+
+	#smartbanner.ios.shown {
+	  height: 75px !important;
+
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+
+  // iOS Interstitial Portrait Mode
+	#smartbanner.interstitial.ios.shown {
+	  height: 100% !important;
+	  margin: 0 auto;
+
+	  div.top-section, div.bottom-section {
+		background-position: center;
+	  }
+
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 25px;
+	  }
+
+	  // Container
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+
+  // Android Interstitial Portrait Mode
+	#smartbanner.interstitial.android.shown {
+	  height: 100% !important;
+	  margin: 0 auto;
+
+	  div.top-section, div.bottom-section {
+		background-position: center;
+	  }
+
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 25px;
+	  }
+
+	  // Text Area
+	  .sb-info {
+		top: 300px;
+	  }
+
+	  a.sb-button span {
+		width: 90%;
+		font-size: 1.5em;
+		margin: 0 auto;
+		white-space: nowrap;
+	  }
+
+	  // Container
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+  }
+
+  // *****************************************
+  // ******* LANDSCAPE MODE (banners) ********
+  // *****************************************
+  @media screen and (orientation: landscape) {
+	#smartbanner.ios.shown {
+	  height: 75px !important;
+
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+
+  // iOS Interstitial Landscape Mode
+	#smartbanner.interstitial.ios.shown {
+	  height: 100% !important;
+	  margin: 0 auto;
+
+	  div.top-section, div.bottom-section {
+		background-position: center;
+	  }
+
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 25%;
+	  }
+
+	  // Text Area
+	  .sb-info {
+		top: 300px;
+		left: 180px;
+	  }
+
+	  a.sb-button span {
+		padding-left: 4em;
+	  }
+
+	  // Container
+	  .sb-container {
+		-webkit-transform: none !important;
+	  }
+	}
+
+  // Android Interstitial Landscape Mode
+	#smartbanner.interstitial.android.shown {
+	  height: 100% !important;
+	  margin: 0 auto;
+
+	  div.top-section, div.bottom-section {
+		background-position: center;
+	  }
+
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 25%;
+	  }
+
+	  // Text Area
+	  .sb-info {
+		top: 300px;
+		left: 40%;
+	  }
+
+	  a.sb-button span {
+		width: 60%;
+		padding-left: 4em;
+		font-size: 1.5em;
+		margin: 0 auto;
+	  }
+	}
+  }
+
+  @media screen and (min-width: 23em) and (orientation: portrait) {
+	#smartbanner.interstitial.ios.shown .sb-icon {
+	  left: 15%;
+	}
+  }
+
+  @media screen and (min-width: 40em) and (orientation: landscape) {
+	#smartbanner.interstitial.ios.shown {
+	  .sb-icon {
+		left: 30%;
+	  }
+	  .sb-info {
+		left: 40%;
+	  }
+	}
+  }
+
+} // End Mobile for smartbanners.
+// ****** END: REFACTOR: COMMON CODE BETWEEN MX AND THIS ONE ****
+
+/*
+ **********************************************************
+ *** Overrides from common code for Interstitial banner ***
+ **********************************************************
+*/
+
+#smartbanner.interstitial,
+#smartbanner.interstitial.android {
+  // Interstitial section : medium
+  // Icon
+  .sb-icon {
+	background-size: 57px 80px;
+  }
+}
+
+@include from-breakpoint($no-break, $small-break) {
+  // Portrait mode overrides
+  @media screen and (orientation: portrait) {
+	// iOS Interstitial Portrait Mode
+	#smartbanner.interstitial.ios.shown {
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 15px;
+	  }
+
+	  a.sb-button span {
+		padding-right: 3.3em;
+		font-size: 1.2em;
+	  }
+	}
+  }
+
+  // Landscape mode overrides
+  @media screen and (orientation: landscape) {
+  // iOS Interstitial Landscape Mode
+	#smartbanner.interstitial.ios.shown {
+	  // Interstitial section : medium : Icon
+	  .sb-icon {
+		left: 20%;
+	  }
+
+	  a.sb-button span {
+		padding-right: 1em;
+	  }
+	}
+  }
+
+  @media screen and (min-width: 23em) and (orientation: portrait) {
+	#smartbanner.interstitial.ios.shown .sb-icon {
+	  left: 10%;
+	}
+  }
+
+  @media screen and (min-width: 23em) and (orientation: portrait) {
+	#smartbanner.interstitial.ios.shown .sb-icon {
+	  left: 15%;
+	}
+  }
+
+  @media screen and (min-width: 35em) and (orientation: landscape) {
+	#smartbanner.interstitial.ios.shown .sb-icon {
+	  left: 25%;
+	}
+  }
+
+  @media screen and (min-width: 40em) and (orientation: landscape) {
+	#smartbanner.interstitial.ios.shown .sb-icon {
+	  left: 30%;
+	}
+  }
+
+}
+

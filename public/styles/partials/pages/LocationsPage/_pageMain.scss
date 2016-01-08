@@ -1,0 +1,175 @@
+/*
+ * Common rules for the Top Searches Page
+*/
+
+// Main Container
+.content {
+  margin-top: -1em;
+}
+
+// Top Searches Container.
+.topsearches {
+  margin-top: 1em;
+
+  .kw-count {
+    color: #BEBEBE;
+  }
+
+  overflow: auto;
+  // border-bottom: 1px solid #BEBEBE;
+}
+
+// Breakpoints for Category / Location sections on the left side
+@include to-breakpoint($no-break){
+  .category-list{
+    border-top: 1px solid $color-black-10;
+  }
+
+  #topmodels {
+    background-color: #FFF;
+    margin: 0.5em 10px;
+    border-bottom: 1px solid #BEBEBE;
+
+    .subheader {
+      background-color: #D9D9D9;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    li {
+      padding-left: 10px;
+    }
+
+    .show-more {
+      cursor: pointer;
+      margin-left: 12px;
+    }
+
+    .show-more div {
+      display: inline-block;
+    }
+  }
+}
+
+// Mobile breakpoint
+@include from-breakpoint($small-break,$lt-ie9-class-name){
+  .category-list{
+    display:none;
+  }
+
+  #topmodels {
+    background-color: #FFF;
+    margin: 0.5em 10px;
+    border-bottom: 1px solid #BEBEBE;
+
+    .top-models-header {
+      background-color: #D9D9D9;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    li {
+      padding-left: 10px;
+      float: left;
+      width: 50%;
+    }
+
+    .show-more {
+      display: none;
+    }
+  }
+
+}
+
+@include to-breakpoint($no-break){
+  .content{
+    margin:{
+      left: 0 - $grid-padding;
+      right: 0 - $grid-padding;
+    }
+  }
+
+  #topmodels {
+    background-color: #FFF;
+    margin: 0.5em 10px;
+    border-bottom: 1px solid #BEBEBE;
+
+    .top-models-header {
+      background-color: #D9D9D9;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    li {
+      padding-left: 10px;
+    }
+  }
+}
+
+// large break
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  #topmodels {
+    background-color: #FFF;
+    margin: 0.5em 0;
+    border-bottom: 1px solid #BEBEBE;
+
+    .top-models-header {
+      background-color: #D9D9D9;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    li {
+      padding-left: 10px;
+      float: left;
+      width: 25%;
+    }
+
+    .show-more {
+      display: none;
+    }
+  }
+}
+
+// medium break
+@include in-breakpoint($medium-break){
+  #topmodels {
+    background-color: #FFF;
+    margin: 0.5em 0;
+    border-bottom: 1px solid #BEBEBE;
+
+    .top-models-header {
+      background-color: #D9D9D9;
+      font-weight: bold;
+      padding-left: 10px;
+    }
+
+    li {
+      padding-left: 10px;
+      float: left;
+      width: 33%;
+    }
+
+    .show-more {
+      display: none;
+    }
+  }
+}
+
+
+.result-link{
+  // cursor: pointer;
+}
+
+
+.wrap {
+  position: relative;
+
+  > h3,
+  > h1 {
+    display: inline;
+  }
+}
+
+
+///////////////////////////////////////////////

@@ -1,0 +1,30 @@
+@import
+"../../theme",
+"../../../partials/common/popup",
+"../../../partials/pages/ViewPage/gallery",
+"../../../partials/pages/ViewPage/sliderize",
+"../../../partials/common/moreSearches",
+"../../../partials/common/adcompletenessProgress";
+
+@import "../../../partials/pages/ViewPage/pageMain",
+"../../../partials/pages/ViewPage/shareVisitBar",
+"../../partials/pages/ViewPage/replyFormExtention",
+"../../partials/pages/ViewPage/shareVisitBar",
+"../../partials/pages/ViewPage/postItYourself",
+"../../partials/pages/ViewPage/sendEmail",
+"../../partials/pages/ViewPage/singlePageNotifications",
+"../../partials/pages/ViewPage/attributes",
+"../../partials/pages/ViewPage/sellerReputation",
+"../../partials/common/adSense",
+"../../partials/pages/ViewPage/pageMain";
+
+@include abt1-seller-reputation;
+
+.abt1.vip-seller-container span.username {
+  float: none;
+}
+
+.phonenum .showphoneno{
+   cursor:pointer;
+   font-weight:bold;
+  }

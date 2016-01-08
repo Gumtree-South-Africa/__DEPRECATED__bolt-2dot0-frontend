@@ -1,0 +1,34 @@
+
+.controls{
+    .right-column
+    {
+        .watchlist
+        {
+            &.open
+            {
+                .controlButton
+                {
+                    background-color: $color-navy;
+                }
+            }
+            
+            .list
+            {
+              
+                .title
+                {
+                    background-color: $color-navy;
+                }
+                .info
+                {
+                    h2
+                    {
+                        color: $color-navy;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+

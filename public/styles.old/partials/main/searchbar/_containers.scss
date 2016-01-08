@@ -1,0 +1,53 @@
+$searchbar-caret-color:cyan !default;
+
+
+fieldset{ position:relative;
+
+    > div{ float:left; border-width:0 0.25em; border-style:solid; border-color:transparent; width:25%; position:relative;
+
+        @include from-breakpoint($medium-break){
+            &:first-child{ border-left:0;}
+            &:last-child{ border-right:0;}
+        }
+    }
+}
+
+
+.keyword{ width:35%; }
+.category{ width:25%; }
+.location{ width:25%; }
+.button{ width:15%; }
+.has-location-false{
+    .keyword{ width:50%; }
+    .category{ width:35%; }
+    .button{ width:15%; }
+}
+
+@include to-breakpoint($medium-break){
+    .location{ display:none;}
+    .has-location-false .keyword,
+    .keyword{ width:50%; }
+    .has-location-false .category,
+    .category{ width:30%; }
+    .has-location-false .button,
+    .button{ width:20%; }
+}
+
+@include to-breakpoint($small-break){
+    .category{ display:none;}
+    .has-location-false .keyword,
+    .keyword{ width:100%; }
+    .has-location-false .button,
+
+    // make it look mobile by putting the container on top of the keyword
+    .button{ width:15%; position:absolute; height:2em; top:50%; margin-top:-1em; right:0.25em; padding:{ left:0; right:0; } }
+}
+
+
+.location,
+.category{
+
+    &:after{ content:" ";  border-top:0.4em solid $searchbar-caret-color; border-left:0.4em solid transparent; border-right:0.4em solid transparent; position:absolute; right:0.75em; top:50%; margin-top:-0.25em; width:0; height:0; }
+}
+
+

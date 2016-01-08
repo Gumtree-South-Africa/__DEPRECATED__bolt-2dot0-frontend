@@ -1,0 +1,77 @@
+@import
+    "../../theme",
+    "../../theme-my-pages",
+
+    "../../../partials/SinglePageNotification",
+    "../../../partials/pages/PaymentPage/creditCardType",
+    "../../../partials/pages/PaymentPage/creditCardForm";
+
+
+@import
+    "../../../partials/pages/MyProfilePage/editPayment",
+    "../../../partials/common/pswdStrength";
+
+
+// Viva level styles
+@import
+    "../../../Vivanuncios/partials/common/my-top-navigation",
+    "../../../Vivanuncios/partials/pages/MyProfilePage/pageMain";
+
+
+
+@include creditcardform_default;
+@include creditcardtype_default;
+@include editpayment_default;
+
+h2,
+#profile-cnt .fileUpload,
+input[name='username'], label[for='username'],
+input[name='email'], label[for='email'],
+input[name='suggest'], label[for='location'],
+input[name='webSiteUrl'], label[for='webSiteUrl'],
+#phone label, #phone select, #phone1, #phone2, #phone3,
+#aboutYou, label[for='aboutYou'],
+input[type="password"], #pwd-span {
+  font-size: $font-size-medium;
+}
+
+h2 {
+  font-weight: bold;
+}
+
+.charCount {
+  font-size: $font-size-small;
+}
+
+.content #profile-img-cnt img{
+    width:100px;
+    height:100px;
+}
+
+// Password strength progress bars
+.progress .bar-cont {
+  width: 23%;
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+    @include creditcardform_medium;
+}
+
+@include in-breakpoint($no-break) {
+  .page{
+      padding-left :0;
+      padding-right :0;
+  }
+
+  .page-title {
+    display: none;
+  }
+}
+
+@include from-breakpoint($large-break){
+    #profile-cnt {
+        #gender-chbx {
+            margin-left: 4.6em;
+        }
+    }
+}

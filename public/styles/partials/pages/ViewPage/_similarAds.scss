@@ -1,0 +1,398 @@
+//TO DO: There is lots of unwanted CSS, to be refactored .  Tom 4/29/2014
+.vip-similar-ads{
+
+&.bottom, &.top{
+	.hellip{
+		color: $color-navy;
+		font-weight: bold;
+		cursor: pointer;
+		@include border-radius($medium-border-radius);
+		padding: 0 $small-padding;
+
+		&:hover,
+		&:focus{
+			background-color: $color-navy;
+			color: $color-white;
+		}
+	}
+}
+
+	&.top{
+		 margin-bottom: $large-margin;
+
+		.ads{
+			border: 1px solid $color-black-15;
+			@include border-radius(0px 0px $medium-border-radius $medium-border-radius);
+			clear: both;
+			background-color: #fafafa;
+			text-align: center;
+			cursor: pointer;
+			overflow: hidden;
+
+
+			> .wrap{
+				white-space: nowrap;
+				overflow: auto;
+				@include fancy-scrollbar;
+			}
+
+			.ad{
+				display: inline-block;
+				vertical-align: top;
+				padding: 10px;
+
+				.wrap{
+					background-color: $color-white;
+					padding: $medium-padding;
+					text-align: left;
+					position: relative;
+					overflow: hidden;
+
+					&:hover{
+						@include box-shadow(0px 0px 5px rgba(0,0,0,0.25) inset);
+					}
+
+					&:nth-child(2){
+						margin-left: 3%;
+						margin-right: 3%;
+					}
+
+					a{
+						margin: $small-margin 0px $medium-margin 0px;
+						border-bottom: 1px dotted lighten($color-black, 70%);
+						padding-bottom: $medium-margin;
+						display: block;
+						line-height: 1.25em;
+						@include ellipsis;
+					}
+
+					.description{
+						color: lighten($color-black, 30%);
+						//font-size: 0.85em;
+						line-height: 1.5em;
+						text-align: justify;
+						display: block;
+						white-space: normal;
+
+						p{ margin:0; }
+					}
+
+					.price{
+						background: $color-navy;
+						position: absolute;
+						padding: 0 $large-padding;
+						font-weight: bold;
+						color: $color-white;
+						top: 0;
+						right: 0;
+						@include border-radius($medium-border-radius 0px);
+						@include box-shadow(0px 2px 5px $color-black-45);
+						@include transition(top 500ms);
+					}
+
+					.thumb{
+						border: 1px solid #ddd;
+						width: 100%;
+						text-align: center;
+						position: relative;
+						background: {
+							color: #eee;
+							position: center;
+							size: cover;
+							repeat: no-repeat;
+						}
+						@include transition(height 500ms);
+
+						span{
+							display: block;
+							width: 30px;
+							height: 30px;
+							//font-size: 30px;
+							left: 50%;
+							top: 50%;
+							position: absolute;
+							margin: -15px 0 0 -15px;
+							color: $color-white;
+						}
+					}
+
+
+				}
+
+			}
+
+
+		}
+
+
+		.more-ads{ display: none; }
+
+	}
+
+	&.bottom{
+
+		margin-top: $large-margin;
+		position: relative;
+		margin-bottom: 1em;
+
+		$light-gray-color: darken($color-white, 8%);
+
+		.ads{
+			@include border-radius(0px 0px 5px 5px);
+		}
+
+		.ad{
+			border-bottom: 5px solid $color-white;
+			padding: 10px 10px 10px 135px;
+			position: relative;
+			background-color: $light-gray-color;
+			display: none;
+			@include background-image( linear-gradient(left, $color-white, $light-gray-color) );
+
+			&:first-child{
+				border-top: 5px solid $color-white;
+			}
+
+			.wrap{
+				min-height: 80px;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				width: 100%;
+				padding-left: 5px;
+			}
+
+			a{ @include ellipsis; }
+
+			&.index-0,
+			&.index-1,
+			&.index-2{
+				display: block;
+			}
+		}
+
+		.thumb{
+			width: 120px;
+			height: 100%;
+			max-height: 145px;
+			position: absolute;
+			left: 0;
+			top: 0;
+			padding-top:10px;
+			margin-left: 10px;
+			cursor: pointer;
+			background: {
+				position: center;
+				size: cover;
+			}
+
+			.no-photo {
+				  border: none !important;
+				  background-image: $srp-nophoto-imageurl;
+				  // http://stackoverflow.com/a/6353808
+				  //filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(
+				  //    src=$srp-nophoto-imageurl, sizingMethod='scale');
+
+				  background-position: center center;
+				  background-repeat: no-repeat;
+				  background-size: cover;
+				  width: 120px;
+				  height:80px;
+			}
+		}
+
+
+
+		.description p{
+			margin: 0;
+		}
+
+		.price{
+		  font-weight: bold;
+		  color: $vip-similar-ads-price-bg;
+		  border-radius: 0px 0px 0px 5px;
+		}
+
+		.more-ads{
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			font-weight: bold;
+			background: darken($light-gray-color, 50%);
+			color: $color-white;
+			padding: 0px $large-padding * 3;
+			@include border-radius(5px 0px 5px 0px);
+
+			&:hover,
+			&:focus{
+				background-color: $color-yellow;
+			}
+		}
+
+	}
+
+  @include vip-similar-ads-bottom;
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+@include in-breakpoint($no-break){
+	.vip-similar-ads.top .ads .ad{
+		width:50%;
+		padding: 5px;
+
+		.thumb{ height: 75px;
+
+			span{
+				width: 18px;
+				height: 18px;
+				//font-size: 18px;
+				margin: -9px 0 0 -9px;
+			}
+		}
+
+		.wrap{
+			//height:110px;
+
+			a{ border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+			.price{ width:100%; }
+			.description{ display:none; }
+
+			&.items-1 .ad{ width:100%; }
+		}
+	}
+
+	.vip-similar-ads.bottom{
+		width:100%;
+
+		.ad{
+			line-height: 1.15em;
+			padding-left:10px;
+			padding:{
+				top: 5px;
+				bottom: 5px;
+			}
+
+			.wrap{
+				//height:80px;
+				padding-bottom: 10px;
+				min-height:50px;
+
+				a{ white-space: normal; }
+			}
+		}
+		 .description{ display:none; }
+		.thumb{ display: none; }
+		.more-ads,
+		.price{
+			padding-top: 0;
+			padding-bottom: 0;
+			bottom: 0;
+			top: auto;
+			@include border-radius(5px 0px 5px 0px);
+		}
+		.more-ads{
+			left: 0;
+			right: auto;
+			@include border-radius(0px 5px 0px 5px);
+		}
+	}
+
+}
+
+
+@include in-breakpoint($small-break){
+	.vip-similar-ads.top .ads .ad{
+		width:33%;
+
+		.price{ top: 80px; }
+		.thumb{ height: 100px; }
+		.wrap{
+			//height: 210px;
+			&.items-1 .ad{ width:100%; }
+			&.items-2 .ad{ width:50%; }
+		}
+	}
+	.vip-similar-ads.bottom{
+		.ad{
+			padding-left: 110px;
+			padding-top:12px;
+
+			//.wrap{
+				 //height:90px;
+			//}
+		}
+		.thumb{
+		   width:100px;
+		   .no-photo {
+			 width:100px;
+
+		   }
+
+		}
+		.more-ads,
+		.price{
+			//font-size: 0.80em;
+			padding-top: 0;
+			padding-bottom: 0;
+		}
+	}
+}
+
+
+
+
+
+
+@include in-breakpoint($medium-break){
+	.vip-similar-ads.top .ads .ad{
+		width:25%;
+
+		.price{ top: 130px; }
+		.thumb{ height: 150px; }
+		.wrap{
+			//height:210px;
+			&.items-1 .ad{ width:100%; }
+			&.items-2 .ad{ width:50%; }
+			&.items-3 .ad{ width:33%; }
+		}
+	}
+}
+
+
+
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.vip-similar-ads.top .ads .ad{
+		width:20%;
+
+		.price{ top: 150px; }
+		.thumb{ height: 140px; }
+		.wrap{
+			//height: 290px;
+			&.items-1 .ad{ width:100%; }
+			&.items-2 .ad{ width:50%; }
+			&.items-3 .ad{ width:33%; }
+			&.items-4 .ad{ width:25%; }
+		}
+	}
+}
+
+
+
+@include in-breakpoint($lt-ie9-class-name){
+	.vip-similar-ads.top .ads .ad{
+		.thumb{ height: 145px; }
+	}
+}

@@ -1,0 +1,131 @@
+.payment-container {
+    max-width:725px;
+    .payment-methods {
+        @extend %box;
+        // overriding _creditCardForm.scss
+        margin: 0;
+        // overriding _creditCardForm.scss
+
+        label {
+            @extend %p-regular;
+            display: block;
+        }
+
+        #credit-card-type {
+            label {
+                &.card {
+                    margin-right: 2em;
+                }
+            }
+            #mastercard {
+                background-position: 0 -99px;
+            }
+            #visa {
+                background-position: 0 -231px;
+            }
+        }
+
+        #credit-card-details {
+            // overriding _creditCardForm.scss
+            border: 0;
+            // overriding _creditCardForm.scss
+
+            .cvv-icon {
+                display: none;
+            }
+            .cvv-hint {
+                @extend %p-small;
+                color: $vivaBlue;
+                padding-left: 24px;
+                background-size: 16px;
+                background-position: center left;
+                clear: both;
+            }
+            #security-code {
+                margin-bottom: .5em;
+            }
+
+            label {
+                &.error {
+                    padding-left: 24px;
+                    // overriding _creditCardForm.scss
+                    margin: .5em 0;
+                    color: $vivaRed60;
+                    // overriding _creditCardForm.scss
+                }
+            }
+
+            input {
+                &.error {
+                    @include box-shadow(none);
+                    border-color: $vivaRed60;
+                }
+
+                &[type=checkbox] {
+                    top: 2px;
+                    margin-right: .5em;
+                }
+            }
+            button.submit {
+                @extend %p-regular;
+                @extend %button-primary;
+                // overriding _creditCardForm.scss
+                margin: 0;
+                margin-bottom: 1em;
+                @include box-shadow(none);
+                text-shadow: none;
+                // overriding _creditCardForm.scss
+                padding: .75em;
+                color: #fff;
+
+                &:hover {
+                    // overriding _creditCardForm.scss
+                    background-image: none;
+                    // overriding _creditCardForm.scss
+                }
+
+                &.disabled {
+                    background-color: lighten($cheddar, 50%);
+                }
+            }
+        }
+    }
+
+
+    // overriding _creditCardForm.scss
+    .payment-info {
+        outline: none;
+
+        .OneTouchComponent {
+            div {
+                -webkit-transition: none;
+                -moz-transition: none;
+                -ms-transition: none;
+                transition: none;
+                border-width: 1px;
+            }
+
+            &.state_active .main_button,
+            &.state_confirm .confirm_button {
+                background-image: none;
+                background-color: $orange-button-color;
+
+                &:hover {
+                    background-color: $orange-button-color-hover;
+                }
+                &:active {
+                    background-color: $orange-button-color-active;
+                }
+            }
+
+            &.state_confirm .main_button {
+                border-top-color: transparent;
+            }
+
+            .description {
+                @extend %p-regular;
+            }
+        }
+    }
+    // overriding _creditCardForm.scss
+}

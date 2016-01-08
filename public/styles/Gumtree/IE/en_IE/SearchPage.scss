@@ -1,0 +1,47 @@
+@import
+	"../../theme",
+ 
+
+	// other files to import for this page
+	"../../../partials/pages/SearchPage/filters",
+	"../../../partials/pages/SearchPage/controls",
+	"../../../partials/pages/SearchPage/results",
+	"../../../partials/common/categoryListBase",
+	"../../../partials/pages/SearchPage/searchSummary",
+	"../../../partials/pages/SearchPage/noResult",
+	"../../partials/common/adSense",
+	"../../../partials/pages/SearchPage/skyscraper",
+	"../../../partials/pages/SearchPage/brandingList",
+	"../../../partials/common/moreSearches";
+	
+
+ @import "../../../partials/pages/SearchPage/pageMain",
+         "../../partials/pages/SearchPage/controls",
+         "../../partials/pages/SearchPage/emailAlert",
+         "../../partials/pages/SearchPage/results";
+         
+ @import "../../../partials/pages/Homepage/carousel";
+
+.top-listings .creation-date,
+.top-listings .creation-date-gallery,
+.hide-on-mobile {
+	display: none !important;
+}
+
+@include from-breakpoint($small-break) {
+	.hide-on-mobile{
+		display: block !important;
+	}
+}
+
+/* Large */
+/* Large */
+@include from-breakpoint($small-break) {
+  #gallery {
+     height: 220px;
+  }
+}
+
+.seeAllContainer {
+	display:none !important;
+}

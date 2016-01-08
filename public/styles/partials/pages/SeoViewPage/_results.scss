@@ -1,0 +1,36 @@
+@include from-breakpoint($small-break){
+	.results {
+		width: 100%;
+	}
+	.seo_similar.results.list-view{ 
+		float:none;
+		display:block;
+		clear:left;
+	}
+}
+
+@include in-breakpoint($small-break){
+	.results.list-view{ 
+		@include span-columns(6, $medium-break);
+	}
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	.vip-right-column{
+		float: right;
+		width: 31%;
+		.vip-seller-forms-container{
+			width: 100%;
+			float: none;
+		}
+	}
+	.results.list-view{ 
+		@include span-columns(6, $medium-break);
+		
+		//needs B.E before removing this
+		.description.hidden {
+			display: inline-block;
+		}
+	}
+	
+}

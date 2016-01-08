@@ -1,0 +1,66 @@
+.reg-social {
+	
+	.or{
+		background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAACCAYAAACZgbYnAAAAEElEQVQIW2NkYGDwYQQSkgAB+gBoU0hCyQAAAABJRU5ErkJggg==) center repeat-x;
+		font-size: 2em;
+		color: $color-black-50;
+		font-weight: bold;
+		text-align: center;
+		margin: 0.75em 0 0.5em 0;
+
+		span{
+			background: white;
+			padding: 0 $medium-padding;
+		}
+
+        // For the top FB button (see Alamaula)
+        &.top {
+          margin : 1em 0;
+          font-size: 1em;
+        }
+	}
+	
+}
+
+.social-connection{
+
+	.facebook{
+		@include primary-button;
+		// padding: 0 0 0 38px;
+		padding: 0;
+		background-color: $color-facebook-lightblue;
+		font-weight: bold;
+		font-size: 1.25em;
+		white-space: nowrap;
+		@include border-radius($small-border-radius);
+		border: 1px solid $color-facebook-blue;
+		display: block;
+		line-height: 36px;
+		position: relative;
+
+		span{
+			position: absolute;
+			vertical-align: middle;
+			display: inline-block;
+			width: 38px;
+			height: 36px;
+			left: 0;
+			top: 0;
+			margin-right: $large-padding;
+			background:url(../../../../../images/facebook-button.png) -1px -42px no-repeat;
+		
+		}
+	}
+
+
+
+}
+
+@include to-breakpoint($no-break){
+  .social-connection{
+    a.facebook{
+      font-size: 1em;
+      padding: 0;
+    }
+  }
+}

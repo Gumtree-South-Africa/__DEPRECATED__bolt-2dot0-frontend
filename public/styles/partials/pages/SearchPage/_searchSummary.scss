@@ -1,0 +1,345 @@
+// Main container for Search Summaries. It is hidden on page load.
+.searchSummariesContainer {
+  display: none;
+}
+
+// Rules for Search Summary objects (e.g., Popular Search and Related Searches, etc.)...
+.searchSummary {
+  text-align: left;
+  //width: 100% !important;
+
+  .titleContainer {
+    float: left;
+    white-space: nowrap;
+  }
+
+  .title {
+    margin-bottom: 0px;
+    color: lighten($color-black, 50%);
+    //font-size: .9em;
+  }
+
+  .arrow {
+    cursor: pointer;
+  }
+
+  @include in-breakpoint($no-break) {
+    margin-left: 0.1em;
+    .titleContainer {
+    width: 45%!important;
+}  
+  }
+
+  // Changes for Mobile breakpoint
+  // Show 2 columns.
+  @include to-breakpoint($small-break) {
+    padding-right: 5px;
+    display: inline-block;
+
+    .titleContainer {
+      display: inline-block;
+      width: 25%;
+      // width: 7em;
+    }
+
+    .resultsContainer {
+      width: 70% !important;
+      float: none !important;
+      li.nav-item {
+        padding-left: 0;
+      }
+    }
+  }
+
+  // Very small resolutions
+  @media (max-width: 30em) and (min-width: 22em) { /// 17em
+    //font-size: 100% !important;
+    .titleContainer {
+      //width: 15% !important;
+      width: 3.5em !important;
+    }
+
+    .resultsContainer {
+      width: 100% !important; // width: 80% !important;
+    }
+  }
+
+  // Very small resolutions
+  @media (max-width: 22em) and (min-width: 19em) {
+    //font-size: 90% !important;
+    .titleContainer {
+      width: 3em !important;
+    }
+
+    .resultsContainer {
+      width: 100% !important; // width: 80% !important;
+    }
+  }
+
+  // Very small resolutions
+  @media (max-width: 19em) and (min-width: 16em) {
+    //font-size: 90% !important;
+
+    .titleContainer {
+      width: 3em !important;
+    }
+
+    .resultsContainer {
+      width: 100% !important; // width: 70% !important;
+    }
+
+    li {
+      padding-right: 0 !important;
+    }
+  }
+
+  // Very small resolutions
+  @media (max-width: 16em) and (min-width: 0) {
+    //font-size: 90% !important;
+
+    .resultsContainer {
+      width: 100% !important;
+    }
+
+    li {
+      padding-right: 0 !important;
+    }
+  }
+
+  // Title Container.
+  .titleContainer {
+    // small break
+    @include from-breakpoint($small-break) {
+      width: 8em;
+    }
+  }
+
+  // List of Results
+  ul.selMenu {
+    display: inline-block;
+    li {
+      float:left;
+    /*  padding-left: 30px; */
+    }
+    .brDesk {
+      display : none;
+    }
+    .brIpad {
+      display : none;
+    }
+    .brFullDesk {
+      display: none;
+    }
+
+    // no break.
+    @include to-breakpoint($small-break) {
+      .brDesk {
+        display:inline-block;
+      }
+      .brIpad {
+        display:none;
+      }
+      li {
+        display: none;
+        width: 100%; // 80%;
+        padding-left: 5px;
+        white-space: normal;
+        // Added to fix: BOLT-5403
+        //        white-space: inherit;
+      }
+      li:first-child {
+        display: inline-block;
+      }
+      &.upView {
+        li {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // small break.
+    @include in-breakpoint($small-break) {
+      width: 70%;
+      .brDesk {
+        display: inline-block;
+      }
+      .brIpad {
+        display: none;
+      }
+      li {
+        display: none;
+        width: 100%;
+        // Added to fix: BOLT-5403
+        // white-space: inherit;
+      }
+      li:first-child {
+        display: inline-block;
+      }
+      &.upView {
+        li {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // medium break!
+    @include in-breakpoint($medium-break) {
+      width: 80%;
+      float: left;
+
+      .brDesk {
+        display: none;
+      }
+      .brIpad {
+        display: inline-block;
+      }
+      li {
+        display: none;
+        width: 30% !important;
+      }
+      @for $ijk from 1 through 3 {
+        li:nth-child(#{$ijk}) {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // large break.
+    @include from-breakpoint($large-break, $lt-ie9-class-name) {
+      width: 80%;
+      .brDesk {
+        display: none;
+      }
+      .brIpad {
+        display: none;
+      }
+      li {
+        width: 20%;
+      }
+      &:not(.popTrend) {
+        li {
+          display: inline-block !important;
+        }
+      }
+      // For Popular and Trending searches
+      &.popTrend {
+        .brFullDesk {
+          display: inline-block;
+        }
+        li {
+          display: none;
+        }
+        @for $o from 1 through 5 {
+          li:nth-child(#{$o}) {
+            display: inline-block !important;
+          }
+        }
+      }
+
+    }
+  }
+
+  //  *** Rules for more than 5 keywords ***
+  ul.selMenuLong {
+    // no break
+    @include to-breakpoint($small-break) {
+      @for $m from 1 through 2 {
+        li:nth-child(#{$m}) {
+          display: inline !important;
+          float: none;
+          padding-right: 25px;
+        }
+      }
+    }
+
+    // small break
+    @include in-breakpoint($small-break) {
+      @for $m from 1 through 2 {
+        li:nth-child(#{$m}) {
+          display: inline !important;
+          float: none;
+          padding-right: 25px;
+        }
+      }
+    }
+
+    // medium break!
+    @include in-breakpoint($medium-break) {
+      @for $n from 1 through 6 {
+        li:nth-child(#{$n}) {
+          display: inline-block !important;
+        }
+      }
+    }
+
+    // large break.
+    @include from-breakpoint($large-break, $lt-ie9-class-name) {
+      li {
+        padding-left: 0;
+        width: 20%;
+        display: none;
+      }
+
+      &:not(.popTrend) {
+        li {
+          display: inline-block !important;
+        }
+      }
+
+      // For Popular and Trending Searches.
+      &.popTrend {
+        @for $o from 1 through 5 {
+          li:nth-child(#{$o}) {
+            display: inline-block !important;
+          }
+        }
+      }
+
+    }
+  }
+}
+
+// <IE9 specific...
+@include in-breakpoint($lt-ie9-class-name) {
+    .selMenuLong {
+      width: 80%;
+      .brDesk {
+        display: none;
+      }
+      .brIpad {
+        display: none;
+      }
+
+      li {
+        padding-left: 0;
+        width: 20%;
+        display: none;
+      }
+
+      &:not(.popTrend) {
+        li {
+          display: inline-block !important;
+        }
+      }
+
+      // For Popular and Trending Searches.
+      /*  li:nth-child doesn't work in IE8 - See http://stackoverflow.com/questions/8492121/ie8-nth-child-and-before */
+      &.popTrend {
+        .brFullDesk {
+          display: inline-block;
+        }
+
+        li:first-child,
+        li:first-child + li,
+        li:first-child + li + li,
+        li:first-child + li + li + li,
+        li:first-child + li + li + li + li {
+          display: inline-block !important;
+        }
+      }
+    }
+
+}
+
+
+

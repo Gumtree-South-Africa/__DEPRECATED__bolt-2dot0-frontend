@@ -1,0 +1,170 @@
+.vip-details{
+	border-bottom: 1px solid lighten($color-black, 60%);
+}
+
+ .reply_controls {     
+    .icon-envelope-alt-white,.icon-phone-blue,.icon-phone-white{
+		height: 1em;
+	    vertical-align: middle;
+	   
+	}
+	.icon-envelope-alt-blue{
+	  display:none;
+	}
+	.icon-envelope-alt-white{
+	  display: none;
+	   width: 1.15em;
+	}  
+	.icon-phone-white{
+	  display:none;
+	  width: 1.5em;
+	}
+	.icon-phone-blue{
+	  display:inline-block;
+	  width: 1.5em;
+	}
+	
+	.telephone{
+		padding: 0em 0.25em;
+		display: inherit;
+		text-align: left;
+	}
+	.title,.title:focus{
+		cursor: text;
+		color: black;
+		margin-top: 0.5em;
+		white-space: nowrap;
+		overflow: hidden;
+		-ms-text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		
+		font-weight: bold;
+		&:hover{
+			text-decoration: none;
+		}
+		
+	}
+}
+.vip-flagad{
+  .icon-lock{
+	      display:inline-block !important;
+          background-size:contain;
+          width: 1em;
+          height:1em;
+          vertical-align: middle;
+          margin-top:-.1em;
+     }
+}
+.vip-contact, .vip-flagad{
+	form{
+		input[type="text"],
+		input[type="email"],
+		textarea {
+			@include text-input;
+			width: 100%;
+			
+			padding: $medium-padding;
+			@include background-image(none);
+			@include box-shadow(none);
+			-webkit-user-modify: read-write-plaintext-only;
+		}
+		.privacypolicy {
+	  		margin-top: 0.5em;
+            font-size: $font-size-micro;
+		} 
+	}
+}
+
+@mixin apply-collapse-color-email(){
+
+
+	.vip-contact{
+		margin-top:1em;
+	}
+}
+
+
+
+@include to-breakpoint($no-break){
+	.reply_controls.cloned {
+		.title {
+			@include vip-contact-title-form-button;
+			float: left;
+		}
+		.telephone
+		{
+  			@include vip-contact-telephone-form-button2;
+  			float: right;
+  		}
+  		
+  		.title,.telephone {
+  			overflow:visible;
+			margin-top:0;
+			padding-top: 0.5em;
+			padding-bottom: 0.5em;
+			font-size:1em;
+   			width: 48%;
+   			font-weight: normal;
+		}
+  		
+		.icon-phone-blue{
+		  display: none;
+		}
+		
+		.icon-envelope-alt-white,.icon-phone-white{
+		  display: inline-block;
+		}
+		
+		&.smartStickyBottom
+		{
+			padding:1em 1em;
+			margin:0em;
+			background-color: $color-white;
+			border-top:1px solid gainsboro;
+			
+			
+		}
+		
+		&.email-only .title {
+		    float: none;
+		    width: 100%;
+		}
+   }
+   .vip-contact .reply_controls a
+   {
+       display:none;
+       
+       &.title
+       {
+       		display:block;            
+       }
+   }
+}
+
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	.reply_controls.cloned {
+		display:none !important;
+	}
+	.vip-contact .reply_controls
+    {
+       display:block;
+    }
+	@include apply-collapse-color-email();
+}
+
+@include in-breakpoint( $lt-ie9-class-name){
+   .reply_controls{
+	 .icon-envelope-alt-green,.icon-envelope-alt-blue, .icon-envelope-alt-white,.icon-phone-green,.icon-phone-blue.icon-phone-white{
+	    height:1.9em !important;
+	    width:2em !important;
+	 }
+	}
+	.vip-flagad{
+      .icon-lock{
+        width:1.7em;
+        height:2.1em;
+      }
+     }
+ }

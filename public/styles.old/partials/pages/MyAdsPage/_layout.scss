@@ -1,0 +1,183 @@
+@import './../../../partials/common/column-labels';
+
+#post-ad-container {
+  display: none;
+}
+
+@mixin layout_default {
+	.bottomad{
+		display:none;
+	}
+	
+	.photo {
+	  float: left;
+	  margin-right: $medium-margin;
+	}
+
+  	.everything-else {
+	  overflow: hidden;
+	}
+
+  .category, .location, .price{
+	  display: none;
+  }
+
+  // @BOLT-11366
+  .ad, .commercial {
+	  padding: $medium-padding 0;
+	  border-bottom: 1px solid darken($color-white, 10%);
+	  font-size: $font-size-micro;
+  }
+
+  // @BOLT-11366
+  .ad.last,
+  .commercial.last {
+	  border-bottom:none;
+  }
+
+  .title{
+	  font-size: $font-size-medium;
+
+	  @include bold-text;
+	  @include ellipsis;
+  }
+
+  .title.disabled{
+	color: $color-black-50;
+  }
+
+  .replies, .view-count{
+	  float: left;
+	  margin-right: $medium-margin;
+  }
+
+  .page-number {
+    float: left;
+    margin-right: $medium-margin;
+  }
+
+	.feature-statuses {
+		clear: both;
+		.feature {
+			width:$column-status-feature-icon-width;
+			height:$column-status-feature-icon-height;
+			display:inline-block;
+			outline:1px solid #ccc;
+			label {
+				display:none
+			}
+		}
+	}
+	
+	#pending {
+		li {
+			  display: inline-block;
+  			  height: 20px;
+		}
+		li:nth-child(1) {
+    		width:5em;
+		}
+		li:nth-child(2) {
+    		cursor:pointer;
+    		width:2em;
+    		background-position-x: right;
+		}
+	}
+
+  .empty-state-content {
+	padding: 2em 0;
+    text-align: center;
+  }
+
+  // Social Media buttons for My Ads (per ad)
+  .sm {
+    margin-top: 10px;
+    .sm-ul {
+        width: 30px;
+        li {
+            clear: both;
+        }
+    }
+  }
+}
+
+@mixin layout_medium {
+
+	.photo.padding-only {
+	  width: $thumbnail-size-desktop - 2;
+	}
+
+	.column-labels {
+		clear: right;
+	}
+
+	.column-meta {
+	  @include span-columns(9, 24);
+	  padding-right: $xlarge-padding;
+	}
+
+	.column-status {
+	  @include span-columns(5, 24);
+	}
+	
+  	.column-activity {
+	  	@include span-columns(4, 24);
+	}
+
+ 	.column-actions {
+	  @include span-columns(6 omega, 24);
+	}
+
+	.category, .location, .price {
+		display: block;
+	}
+
+	.content{
+		.location, .category{
+			@include ellipsis;
+		}
+	}
+
+    .page-number {
+      float: none;
+      margin-right: 0;
+    }
+
+	.replies, .view-count{
+		float: none;
+		margin-right: 0;
+	}
+
+    // Social Media buttons for My Ads (per ad)
+	.sm {
+      .sm-ul {
+        width: 100%;
+        li {
+          clear: none;
+          margin-right: 0.4em;
+        }
+      }
+	}
+}
+
+@mixin layout_large {   
+	.bottomad{
+   	   display: block;
+       text-align: center;
+       margin:0 auto 2em auto;
+   }
+   
+   #column-labels + .empty-state-content + .bottomad{
+   		display: block;
+		text-align: center;
+		margin: 15em auto 2em auto;
+   }
+
+  // Social Media buttons for My Ads (per ad)
+  .sm {
+    .sm-ul {
+      width: 100%;
+    }
+  }
+
+}

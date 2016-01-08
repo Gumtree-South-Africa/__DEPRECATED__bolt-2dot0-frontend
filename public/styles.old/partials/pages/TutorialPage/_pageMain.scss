@@ -1,0 +1,66 @@
+
+
+
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+
+.hp-content{
+  margin-top:0em;
+  }
+
+// @social-media
+.social-media {
+   float: none;
+   }
+
+
+.hp-category-wrapper {
+   padding-bottom: 0em;
+  }
+  
+  
+  
+ @include in-breakpoint($no-break){
+  
+  .category-list .parent-category:nth-child(1) {
+    border-top: 1px solid rgba(51, 51, 51, 0.1);
+  }
+  
+  
+  }
+  
+
+@media only screen and (min-width : 768px) {
+
+	#flexLftBuckt {
+	    height:72em; 
+	}
+	
+	li[data-ct-id='rightBucket'] { // right bucket
+		@include order(5); 
+	}
+	
+	li[data-ct-id='64'] { //Vehiculos
+		@include order(6);
+	}
+	
+}
+
+@media only screen and (min-width : 1024px) {
+	
+	#flexLftBuckt {
+	    height:42em; 
+	}
+	
+	li[data-ct-id='64'] { //Vehiculos
+		@include order(3);
+	}
+	
+	li[data-ct-id='rightBucket'] { // right bucket
+		@include order(20);
+	}
+}
+
+
+

@@ -1,0 +1,139 @@
+@import "../../main/config";
+
+body {
+  background-color: $postad-base;
+  background-image: none;
+  .viewport {
+    background-image: none;
+
+    .containment {
+      max-width: 100%;
+
+      .post-ad-subheader-container {
+        max-width: 45em;
+        margin: 0 auto;
+      }
+
+      .search-container {
+        border-bottom: none;
+        border-top: $field-border;
+        background-color: $color-white;
+
+        h1.subheader {
+          margin: 1.5em;
+          font-weight: normal;
+          background-color: $color-white;
+        }
+      }
+    }
+
+    .page {
+      background-color: $postad-base;
+
+      .content {
+        background-color: inherit;
+      }
+
+      .header {
+        padding-left: 2em;
+        padding-right: 2em;
+      }
+    }
+  }
+}
+
+#postAdForm .fieldcontain.address, #postAdForm .fieldcontain.fulladdress
+{
+    display:none;
+}
+
+.post-ad-subheader-container {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.header .links {
+  right: 0;
+  //top: 0.4em;
+  .menu-items {
+    max-width: 11.5em !important;
+    right: 0 !important;
+    ul {
+      //background-color: $postad-base !important;
+
+      li.menu-user .menu-text {
+        padding: 0.5em;
+      }
+    }
+  }
+  .menu-items.active {
+    height: auto;
+  }
+
+  .post-btn-wrap {
+    visibility: hidden;
+    border-left: none;
+  }
+}
+
+.search-container {
+  h1.subheader {
+    color: $color-black;
+  }
+}
+
+@include in-breakpoint($no-break){
+  .header .links {
+    top: 0;
+    //width: 2em;
+    right: 0;
+
+    .menu-items {
+      /*top: -0.8em !important;*/
+      right: 0 !important;
+
+      ul li:first-child {
+        border-bottom: none;
+        border-right: none;
+        padding: 0 0.2em;
+        //background-color: inherit;
+
+        .icon-user-primary {
+          width: 15px;
+          height: 100%;
+        }
+      }
+    }
+    .menu-items.active {
+      max-width: 100% !important;
+    }
+
+    .user-login-active {
+      right: 0;
+    }
+    .small-device.menu-text {
+      width:30px;
+    }
+  }
+}
+
+@include from-breakpoint($small-break) {
+  .header .links .menu-items {
+    width: 20em;
+  }
+}
+
+  .cat-search form fieldset button {
+    padding: 0;
+    .icon-search {
+      margin-top: -0.1em;
+    }
+  }
+
+  .fieldcontain.base.highlighted {
+    background-color: #fff;
+  }
+
+  .img-upload-cnt #featuredImage {
+    bottom: -0.3em !important;
+  }

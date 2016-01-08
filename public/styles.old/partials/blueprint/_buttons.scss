@@ -1,0 +1,194 @@
+@import "colors", "config";
+
+// Button Font
+// $blueprint-button-font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif !default;
+// $blueprint-button-font-family: $custom-font-family, "Helvetica Neue", Arial, Helvetica, sans-serif !default;
+
+// Default Button Colors
+$blueprint-button-border-color: #dedede !default;
+$blueprint-button-background-color: #f5f5f5 !default;
+$blueprint-button-font-color: #565656 !default;
+
+// Default Button Hover Colors
+$blueprint-button-hover-border-color: #c2e1ef !default;
+$blueprint-button-hover-background-color: #dff4ff !default;
+$blueprint-button-hover-font-color: #336699 !default;
+
+// Default Button Active Colors
+$blueprint-button-active-border-color: #6299c5 !default;
+$blueprint-button-active-background-color: #6299c5 !default;
+$blueprint-button-active-font-color: white !default;
+
+//**
+// Sets the colors for a button
+// @param border-highlight-color
+//   The highlight color defaults to whatever is the value of the border-color but it's one shade lighter.
+@mixin button-colors($font-color: $blueprint-button-font-color, $bg-color: $blueprint-button-background-color, $border-color: $blueprint-button-border-color, $border-highlight-color: $border-color + #101010) {
+	background-color: $bg-color;
+	border-color: $border-highlight-color $border-color $border-color $border-highlight-color;
+	color: $font-color;
+}
+
+//**
+// Sets the colors for a button in the active state
+// @param border-highlight-color
+//   The highlight color defaults to whatever is the value of the border-color but it's one shade lighter.
+@mixin button-active-colors($font-color: $blueprint-button-active-font-color, $bg-color: $blueprint-button-active-background-color, $border-color: $blueprint-button-active-border-color, $border-highlight-color: $border-color + #101010) {
+	&:active {
+		@include button-colors($font-color, $bg-color, $border-color, $border-highlight-color);
+	}
+}
+
+//**
+// Sets the colors for a button in the hover state.
+// @param border-highlight-color
+//   The highlight color defaults to whatever is the value of the border-color but it's one shade lighter.
+@mixin button-hover-colors($font-color: $blueprint-button-hover-font-color, $bg-color: $blueprint-button-hover-background-color, $border-color: $blueprint-button-hover-border-color, $border-highlight-color: $border-color + #101010) {
+	&:hover {
+		@include button-colors($font-color, $bg-color, $border-color, $border-highlight-color);
+	}
+}
+
+@mixin button-base($float: false) {
+	@if $float {
+		@include float($float);
+		display: block;
+	} @else {
+		@include inline-block;
+	}
+	margin: 0.7em 0.5em 0.7em 0;
+	border-width: 1px;
+	border-style: solid;
+	font-family: $blueprint-button-font-family;
+	font-size: 100%;
+	line-height: 130%;
+	@include bold-text;
+	text-decoration: none;
+	cursor: pointer;
+
+	img {
+		margin: 0 3px -3px 0 !important;
+		padding: 0;
+		border: none;
+		width: 16px;
+		height: 16px;
+		float: none;
+	}
+}
+
+@mixin anchor-button($float: false) {
+	@include button-base($float);
+	padding: 5px 10px 5px 7px;
+}
+
+@mixin button-button($float: false) {
+	@include button-base($float);
+	width: auto;
+	overflow: visible;
+	padding: 4px 10px 3px 7px;
+	&[type] {
+		padding: 4px 10px 4px 7px;
+		line-height: 17px;
+	}
+	*:first-child+html &[type] {
+		padding: 4px 10px 3px 7px;
+	}
+}
+
+// Bolt Button configuration
+$button-primary-text-color: $color-white !default;
+$button-primary-background-color: $color-navy !default;
+$button-secondary-text-color: $color-navy !default;
+$button-secondary-background-color: $color-white !default;
+$button-disabled-text-color: darken($color-white, 10%) !default;
+$button-disabled-background-color: darken($color-white, 90%) !default;
+
+@mixin button-style($background, $text) {
+	background-color: $background;
+	text-decoration: none;
+	color: $text;
+	display: inline-block;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+	outline: none;
+	@include ellipsis;
+	@include border-radius(5px);
+	@include box-shadow(-1px 1px 1px rgba(0,0,0,0.2));
+	@include background-image(linear-gradient(transparent, $color-black-15));
+
+	@if $background == $color-white{
+		border: 1px solid darken($color-white, 10%);
+	}@else{
+		@include text-shadow(-1px -1px 0 rgba(0, 0, 0, 0.3));
+	}
+
+
+	@include button-style-hover($text);
+
+	&:active {
+		@include box-shadow(0px 0px 5px $color-black-50 inset);
+	}
+
+}
+
+// No gradients, box or text shadows
+@mixin button-style-flat($background, $text) {
+  background-color: $background;
+  text-decoration: none;
+  color: $text;
+  display: inline-block;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  @if $background == $color-white{
+    border: 1px solid #c4c4c4;
+  }
+
+  @include ellipsis;
+  @include border-radius(5px);
+
+  &:active {
+    background-color: darken($background, 30%);
+  }
+}
+
+@mixin primary-button() {
+	@include button-style($button-primary-background-color, $button-primary-text-color);
+}
+
+@mixin secondary-button() {
+	@include button-style($button-secondary-background-color, $button-secondary-text-color);
+}
+
+@mixin secondary-button-new() {
+    @include button-style-flat($color-white, $brand-text-color);
+}
+
+@mixin disabled-button() {
+	@include button-style($button-disabled-background-color, $button-disabled-text-color);
+}
+
+@mixin button-primary() {
+	@include primary-button;
+}
+
+@mixin button-secondary() {
+	@include secondary-button;
+}
+
+@mixin button-disabled() {
+	@include disabled-button;
+}
+
+
+
+
+
+
+
+
+
+
+

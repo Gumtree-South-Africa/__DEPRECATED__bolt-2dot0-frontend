@@ -1,0 +1,99 @@
+@import '../../../../../partials/common/cannedResponses';
+
+.vip-contact {
+    @extend %cannedResponses;
+
+    // viva override
+    form .canned-responses label input[type=checkbox] {
+        //@include checkbox-input;
+        width: 1em;
+        height: 1em;
+        background-color: white;
+
+        // disable :before and :after
+        content:"" !important;
+
+        &:checked {
+            //@include checkbox-input;
+        }
+    }
+    // viva override
+
+    .reply_controls span.label {
+        font-size: $font-size-base-new;
+    }
+
+    .reply_controls .icon-envelope-alt-white {
+        display: inline-block;
+    }
+    
+    form {
+        input[name=buyerName],
+        input[name=email],
+        input[name=phoneNumber] {
+			font-size: $font-size-small;
+    	}
+    }
+}
+
+.srp-reply-container {
+    .vip-contact {
+        .canned-responses {
+            input[type=checkbox] {
+                top: 2px;
+            }
+        }
+    }
+}
+
+.results.grid-view .srp-reply-container .replyAd button {
+  padding: 0.75em;
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+    .reply_controls {
+        .telephone {
+            float: none;
+            width: 100%;
+            padding: 0;
+        }
+
+        .title {
+            float: none;
+            width: 100%;
+        }
+    }
+
+    .vip-contact .telephone #phone-number,
+    .vip-contact span.label {
+        display: inline;
+    }
+
+    .results {
+        &.list-view {
+            .vip-contact form {
+                input[name=buyerName],
+                input[name=email],
+                input[name=phoneNumber] {
+                    float: left;
+                    width: 35%;
+                    margin: 0;
+                    margin-right: 2%;
+                }
+
+                button.submit-reply {
+                    float: right;
+                    width: 26%;
+                    margin: 0;
+                }
+
+                .privacypolicy {
+                    clear: both;
+                    .sudo-link {
+                        margin:0.25em
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+@import
+	"../theme",
+	"../../../partials/SinglePageNotification";
+
+@import "../../../partials/pages/MyPage/pageMain";
+@import "../../../partials/common/pswdStrength";
+
+form .label
+{
+	font-weight: bold;
+	color: $color-black;
+}
+
+#isMarketingOptedIn {
+  float: left;
+  margin: 0.25em 0.5em 0 0;
+}
+
+span.paragraph {
+  display: block;
+  line-height: 1.5em;
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+	.left-content {
+		width: 52%
+	}
+}
+
+@include from-breakpoint($medium-break){
+  .viewport .page .search-container h1.subheader {
+	padding-left: 6em;
+	padding-top: .25em;
+	padding-bottom: .25em;
+	font-size: 1.5em;
+  }
+}

@@ -1,0 +1,103 @@
+@import "../../../partials/common/adcompleteness";
+
+.vip-controls
+{
+	.gl-messages
+	{
+		background-color: #fafafa;
+		box-shadow: none;
+		border: 1px solid #ddd;
+		&.success
+		{
+			background-color: #fafafa;
+		}
+        padding-left:1em;
+	}
+
+	.vip-adcompleteness-container
+	{
+		padding: 0;
+		margin: 0;
+	}
+
+	#ad-completeness
+	{
+		background: transparent;
+		width: auto;
+		float: none;
+		display: block;
+		margin: 0;
+        max-width:100%;
+		h5
+		{
+			color: $color-black;
+
+			&:after
+			{
+				content: ":";
+				display: inline-block;
+			}
+		}
+	}
+	.editLink
+    {
+        color: $color-black;
+        font-weight: normal;
+        margin-bottom: 0;
+        line-height:2em;
+    }
+}
+
+@media (min-width: 25em){
+	.vip-controls
+	{
+		#ad-completeness
+		{
+			#ad-progress-bar-container
+			{
+				width: 61%;
+			}
+		}
+	}
+}
+
+@include from-breakpoint($small-break){
+	.vip-controls
+	{
+		.vip-adcompleteness-container
+		{
+			padding-left: 0;
+			margin-right: 10px;
+			float: left;
+			margin-bottom: 8px;
+		}
+
+		#ad-completeness
+		{
+			#ad-progress-bar-container
+			{
+				width: 100%;
+				margin-left: 0;
+			}
+		}
+	}
+}
+
+@include from-breakpoint($medium-break){
+	.vip-controls
+	{
+		.vip-adcompleteness-container
+		{
+			width: 28%;
+		}
+
+		#ad-completeness
+		{
+			#ad-progress-bar-container
+			{
+				display: inline-block;
+				width: 48%;
+			}
+		}
+	}
+}

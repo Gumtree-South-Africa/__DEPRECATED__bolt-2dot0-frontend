@@ -1,0 +1,154 @@
+$orderSummaryColor:rgba(255, 255, 255, .5) !default;
+$orderSummaryTextColor:#333;
+form.order {
+	max-width: 725px;
+}
+.order-summary {
+	max-width: 725px;
+	float:none;
+	@include border-radius(3px);
+
+	.order {
+		@extend %box;
+		background: #FFF;
+		padding-left: 0;
+		padding-right: 0;
+		#features-to-purchase {
+			padding:1em
+		}
+		#total-line {
+			padding:1em;
+			text-align: center;
+			border-bottom:1px solid #CCC;
+			.labeled{
+				float: left;
+			}
+			.label {
+				@extend %p-regular;
+				color: $orderSummaryTextColor;
+			}
+			.price {
+				@extend %xlarge-regular-title;
+				margin-top: -.125em;
+				float: none;
+			}
+			.wrapper-price{
+				float: right;
+				text-align: right;
+				.vat{
+					color: $orderSummaryTextColor;
+					font-size: 0.75em;
+				}
+			}
+		}
+		.feature-group {
+			padding:1em;
+			.price,
+			.feature {
+				@extend %small-title;
+			}
+			.price,
+			.vat {
+				float: right;
+			}
+			.feature {}
+			.vat {
+				@extend %p-small;
+				color: $orderSummaryTextColor;
+			}
+			.title {
+				@extend %p-regular;
+				color: $orderSummaryTextColor;
+			}
+		}
+		.infolink {
+			vertical-align:text-top;
+			.more {
+				display:inline;
+			}
+			.less {
+				display:none;
+			}
+			.desc {
+				width:100%;
+				display:block;
+				overflow:hidden;
+			}
+
+			font-size: $font-size-medium;
+			input[type=checkbox] {
+				@include checkbox-input;
+				margin-right: 0.25em;
+				top: 2px;
+			}
+			.link {
+				margin-left: 1.75em;
+				margin-top: .25em;
+				padding-left: 1.75em;
+				color: $link-color;
+				line-height: 125%;
+				cursor: pointer;
+				&.more {
+					display: block;
+				}
+				&.less {
+					display: none;
+				}
+			}
+			&.active .link {
+				&.less {
+					display: block;
+				}
+				&.more {
+					display: none;
+				}
+			}
+			.desc {
+				display: none;
+				padding-top: 1em;
+				margin: 0;
+
+				h3 {
+					@extend %large-title;
+				}
+
+				p {
+					@extend %large-regular-title;
+					margin-top: .75em;
+					margin-bottom: .25em;
+
+					&:last-child {
+						display: none;
+					}
+				}
+
+				li {
+					position: relative;
+					padding-left: 1em;
+					font-size: $font-size-medium;
+					margin-bottom: .5em;
+
+					&:before {
+						display: inline-block;
+						width: .5em;
+						height: .5em;
+						content: '';
+						background-color: #ccc;
+						position: absolute;
+						left: 0;
+						top: .5em;
+						border-radius: 1em;
+					}
+					em {
+						color:#000;
+						font-weight:normal;
+						font-style: normal;
+					}
+				}
+			}
+			&.active .desc {
+				display: block;
+			}
+		}
+	}
+}

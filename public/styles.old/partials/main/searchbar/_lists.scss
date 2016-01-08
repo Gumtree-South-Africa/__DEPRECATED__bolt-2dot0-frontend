@@ -1,0 +1,104 @@
+$searchbar-link-color: cyan !default;
+$searchbar-compact-lists:false !default;
+$searchbar-list-icons: true !default;
+
+
+.options{ display:none; margin-top:-0.25em; width:100%; height:0; position:absolute;
+
+    ul{ display:none; position:absolute; left:0; top:0; background:$color-white; min-width:100%; @include border-radius(0 0.25em 0.25em 0.25em); @include box-shadow(0 2px 3px $color-black-15);
+        border:{
+            left: $searchbar-input-border;
+            bottom: $searchbar-input-border;
+            right: $searchbar-input-border;
+        };
+
+        li{ position:relative; padding:0 0.25em;
+
+            ul{ left:100%; border:$searchbar-input-border; line-height:1.25em;
+
+                a .icon{ display:none; }
+
+                &.size-l,
+                &.size-xl{ @include columns(2); }
+
+            }
+
+            &:hover > a{ background-color:transparentize($searchbar-link-color, 0.75); }
+            &.active > a{ color:$color-white; background-color:$searchbar-link-color; }
+
+            &:first-child{ padding-top:0.25em; }
+            &:last-child{ padding-bottom:0.25em; }
+
+            a{ display:block; text-decoration:none; color:$searchbar-link-color; @include border-radius(0.25em); white-space:nowrap; @include ellipsis;
+
+                @if ($searchbar-compact-lists) {
+                    padding:0.15em 0.5em;
+                }@else {
+                    padding:0.35em 0.75em;
+                }
+
+                @if($searchbar-list-icons){
+                    .icon{ width:1.5em; height:1.5em; display:inline-block; vertical-align:middle; margin-right:0.25em; position:relative;
+
+                        span{ width:100%; height:100%; left:0; top:0; position:absolute;
+
+                            &.over{ display:none; }
+                        }
+                    }
+                }@else{
+                    .icon{ display:none; }
+                }
+
+
+                &:focus,
+                &:hover{ color:$color-white; background-color:$searchbar-link-color;
+
+                    @if($searchbar-list-icons){
+                        .icon{
+                            span{
+                                &.out{ display:none; }
+                                &.over{ display:block; }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+    }
+
+    > ul{ @include border-radius(0 0 0.25em 0.25em);
+
+        @if ($searchbar-compact-lists) {}@else{
+            > li > a{ font-size:1.15em; }
+        }
+    }
+
+}
+
+
+
+
+// when the lists are too long, we need to
+// split them in 2 and shift them to the left
+// on the locations menu
+.location .options ul li ul,
+// if the location field doesn't exist, then we need to
+// display the sub-menus to the left because they
+// overflow the page
+.has-location-false .options ul li ul{
+    left: auto; right:100%;
+}
+
+
+
+:hover,
+.active{
+
+    .options{ display:block; }
+
+    > .options > ul,
+    > ul{ display:block; }
+}
+

@@ -1,0 +1,284 @@
+@mixin creditcardtype_default {
+
+.icon .cc {
+
+	background: url(../../../../../icons/credit-cards.png) no-repeat top left;
+	width: 51px;
+	height: 32px;
+	display:inline-block;
+
+	&.american-express{
+		background-position: 0 0;
+	}
+	&.american-express.on{
+		background-position: 0 -33px;
+	}
+	&.mastercard{
+		background-position: 0 -66px;
+	}
+	&.mastercard.on{
+		background-position: 0 -99px;
+	}
+	&.visa {
+		background-position: 0 -132px;
+	}
+	&.visa-electron{
+		background-position: 0 -165px;
+	}
+	&.visa-electron.on{
+		background-position: 0 -198px;
+	}
+	&.visa.on{
+		background-position: 0 -231px;
+	}
+	&.discover{
+		background-position: 0 -264px;
+	}
+	&.discover.on{
+		background-position: 0 -297px;
+	}
+	&.diner{
+		background-position: 0 -330px;
+	}
+	&.diner.on{
+		background-position: 0 -363px;
+	}
+
+}
+#credit-card-type {
+	label{
+	  display: inline-block;
+	  cursor: pointer;
+	  width: 52px;
+	  height: 32px;
+	  margin-right: $small-margin;
+	}
+	.card input[type="radio"] {
+		position: relative;
+		right: 2em;
+	}
+	.card{
+	  background: url(../../../../../icons/credit-cards.png) no-repeat top left;
+	  width: 51px;
+	  height: 32px;
+	  margin: 0 0.75em 0.5em 1.25em;
+	}
+	#visa-electron{
+	  background-position: 0 -165px;
+	}
+	#visa-electron.checked{
+	  background-position: 0 -198px;
+	}
+	#mastercard{
+	  background-position: 0 -66px;
+	}
+	#mastercard.checked{
+	  background-position: 0 -99px;
+	}
+	#american-express{
+	  background-position: 0 0;
+	}
+	#american-express.checked{
+	  background-position: 0 -33px;
+	}
+	#visa {
+	  background-position: 0 -132px;
+	}
+	#visa.checked{
+	  background-position: 0 -231px;
+	}
+	#discover{
+		background-position: 0 -264px;
+	}
+	#discover.checked{
+		background-position: 0 -297px;
+	}
+	#diner{
+		background-position: 0 -330px;
+	}
+	#diner.checked{
+		background-position: 0 -363px;
+	}
+	#pago_facil{
+		background-position: 0 -396px;
+	}
+	#pago_facil.checked{
+		background-position: 0 -429px;
+	}
+  }
+}
+
+@mixin creditcardtype_medium {
+  #credit-card-type {
+	label{
+	  clear: none;
+	}
+  }
+}
+
+/********** CreditCardFormComponent **********/
+.CreditCardFormComponent {
+	#credit-card-details .cvv-hint {
+		display:none !important;
+		&.on {
+			display:block !important;
+		}
+	}
+}
+
+/********** Spinner Component **********/
+@mixin spinner(){
+	@include inline-block;
+	background-image: url(../../../../../images/loading-small.gif);
+	background-repeat: no-repeat;
+	margin-right: $small-margin;
+	content:"";
+	display: inline-block;
+	background-image: url(../../../../../images/loading-small.gif);
+	background-repeat: no-repeat;
+	height:15px;
+	width:15px;
+}
+
+/********** OneTouchComponent **********/
+@mixin OneTouchComponentColorizer($color,$bg-color, $bg-color2:$bg-color){
+	color:$color;
+	background-color:$bg-color;
+	@include background-image(linear-gradient($bg-color 0%, $bg-color2 100%));
+	&:hover {
+		@include background-image(linear-gradient($bg-color2 0%, $bg-color 100%));
+	}
+	border:1px solid $color;
+}
+$OneTouchComponent_primary_color:#333;
+$OneTouchComponent_highlight_color:goldenrod;
+$OneTouchComponent_primary_offset_color:#FFF;
+$OneTouchComponent_border_thickness:0.15em;
+
+// confirm state is white with expanded confirm
+.OneTouchComponent {
+	position:relative;
+	div {
+		transition: all 1s;
+		display:block;
+		//@include user-select(none);
+		@include border-radius(5px);
+	}
+	.wrap {
+		max-width: 296px;
+		height: 3.6em;
+		overflow:hidden;
+		background-color:#f6f6f6;
+	}
+	.main_button {
+		@include OneTouchComponentColorizer(#333,#FFF,#FFF);
+		border: $OneTouchComponent_border_thickness solid rgba(#333,.25);
+		color:#FFF;
+		.label {
+			margin: 1em 3em 1em 6.5em;
+			line-height: 1em;
+			font-size: 0.9em;
+		}
+		.icon {
+			position: absolute;
+			top: .7em;
+			left: 1.3em;
+			width: 3em;
+			height: 3em;
+		}
+	}
+	.confirm {
+		overflow:hidden;
+		display:none;
+		height:0px;
+		@include opacity(0);
+	}
+	// button states
+	&.state_init {
+		visiblity:hidden; //display:none;
+		opacity:0;
+		.icon-payment-white {display:none;}
+		.confirm_button {
+			height:0px;
+			width:0px;
+			overflow:hidden;
+			white-space:nowrap;
+		}
+	}
+	&.state_active {
+		.icon-payment-grey {
+			display:none;
+		}
+		.main_button {
+			@include OneTouchComponentColorizer(white,rgb(251,198,85),rgb(238,154,0));
+			border: $OneTouchComponent_border_thickness solid rgba(brown,.250);
+			cursor:pointer;
+		}
+	}
+	&.state_confirm {
+		.main_button {
+			.icon-payment-white {display:none;}
+			width:101%;
+			position:relative;
+			left:-0.5%;
+			top:-0.5%;
+			color:#000;
+		}
+		.confirm {
+			text-align: center;
+			padding: 1em;
+			display:block;
+			// animated stuff
+			height:110px;
+			@include opacity(1);
+		}
+		.confirm_button {
+			position:relative;
+			@include OneTouchComponentColorizer(white,rgb(251,198,85),rgb(238,154,0));
+			border: $OneTouchComponent_border_thickness solid rgba(brown,.250);
+			font-weight:bold;
+			padding: 0.3em;
+			cursor:pointer;
+		}
+		.wrap {
+			height:155px;
+			border: $OneTouchComponent_border_thickness solid #CCC;
+		}
+	}
+	&.state_disabled {
+		.main_button {
+			background-color:#EEE;
+			border:1px solid #CCC;
+			color:#CCC;
+			.icon-payment-white {
+				display:none;
+			}
+		}
+		.wrap {
+			@include opacity(.5)
+		}
+	}
+	&.state_wait {
+		.main_button {
+			background-color:#EEE;
+			border:1px solid #CCC;
+			color:#CCC;
+			position:relative;
+			&:after {
+				@include spinner;
+				height: 25px;
+				width: 25px;
+				background-size:25px;
+				position:absolute;
+				right:5px;
+				top:15px;
+			}
+			.icon-payment-white {
+				display:none;
+			}
+		}
+		.wrap {
+			@include opacity(.5)
+		}
+	}
+}

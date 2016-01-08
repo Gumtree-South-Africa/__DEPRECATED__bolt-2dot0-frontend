@@ -1,0 +1,102 @@
+$smallSize: 35px;
+$largeSize: 50px;
+$xlargeSize: 75px;
+
+@mixin hide_breadcrumbs {
+  .breadcrumbs {
+    display: none;
+  }
+}
+
+.pre-control{
+	padding-top: $large-padding;
+	padding-bottom: $large-padding;
+	border-top: 1px solid lighten($color-black, 60%);
+	.pre-notice{
+		background-color: #FFC;
+		padding: $large-padding;
+
+	  p{
+		line-height:$smallSize;
+		margin-bottom:0em;
+		font-weight:bold;
+	  }
+	}
+
+  .pre-buttons {
+		.edit {
+			@include secondary-button;
+			padding: $small-padding $large-padding;
+			margin: $small-margin;
+			//font-size: 1.25em;
+			vertical-align: middle;
+		}
+		.post {
+			@include form-submit-button;
+			background-color: $postad-btn-color;
+			margin: $small-margin $small-margin $small-margin 0;
+			width: auto;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+
+	
+}
+
+@include to-breakpoint($no-break){
+	.pre-control{
+		a{
+			display: block;
+		}
+	}
+}
+
+@include in-breakpoint($small-break){
+	.pre-control{
+		a{
+			width:auto;
+		}
+	}
+}
+
+@include from-breakpoint($lt-ie9-class-name){
+
+	.pre-notice{
+		@include span-columns(8, $large-break);
+
+		p{
+			line-height: $xlargeSize;
+		}
+	}
+
+	.pre-control{
+		.pre-buttons{
+			float: right;
+			margin-bottom: 4em;
+			a{
+				width:auto;
+			}
+		}
+	}
+}
+
+@include from-breakpoint($medium-break){
+	.pre-control{
+		.pre-buttons{
+			a{
+				width:auto;
+			}
+		}
+	}
+}
+
+@include in-breakpoint($medium-break){
+	.pre-control{
+		.pre-buttons{
+			a{
+				padding: $small-padding $small-padding;
+			}
+		}
+	}
+}  

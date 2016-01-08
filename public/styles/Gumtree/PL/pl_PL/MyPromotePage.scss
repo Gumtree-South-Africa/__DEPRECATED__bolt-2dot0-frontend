@@ -1,0 +1,61 @@
+$locale:"pl_PL";
+
+@import "../theme";
+@import "../../../partials/pages/MyPromotePage/pageMain";
+
+
+// overrides number/currency/symbol format for PL
+#price {
+	&:before {
+		content: attr(data-currency);
+	}
+	&:after {
+		content: " " attr(data-currency-symbol);
+	}
+}
+
+// Fixes BOLT-17164
+.feature-legend.expand .desktop-tablet .for-tooltip ul li,
+.feature-legend-static.expand .desktop-tablet .for-tooltip ul li {
+  line-height: 14pt;
+}
+
+// Overrides for Poland
+// -----------------------------------------------------
+// Tablet Styles
+// -----------------------------------------------------
+
+//  BOLT-18426
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+  .meta-and-features .meta {
+    width: 16%;
+  }
+
+  .thumb-and-meta .meta {
+    width: 16%;
+  }
+
+  .feature-options.urgent,
+  .feature-options.highlight,
+  .feature-options.hpGallery,
+  .feature-options.srpGallery {
+    width: 11%;
+  }
+
+  #commercials {
+    span, .price-and-duration, .bestdeal-info {
+      font-size: 0.875em;
+    }
+  }
+}
+
+//  BOLT-18426
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+  .meta-and-features .meta{
+    width: 18%;
+  }
+
+  .thumb-and-meta .meta {
+    width: 18%;
+  }
+}

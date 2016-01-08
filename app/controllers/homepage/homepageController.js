@@ -10,23 +10,24 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
+    console.log('res: ',res.config);
     var model = HomepageModel();
     
     var extraData = 
     {
         env: 'public',
         locale: res.config.locale,
+        country: res.config.country,
         site: res.config.name,
         pagename: 'homepage'
     };
 
     model.then(function (result) {
+      
       extraData.location = result[0];
       extraData.category = result[1];
       
       var  pageData = _.extend(result, extraData);
-      console.log('In homepage controller');
-      console.dir(extraData);
       
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
   });

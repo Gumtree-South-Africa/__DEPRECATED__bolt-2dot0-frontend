@@ -1,0 +1,397 @@
+$cart-width-tablet: 24%;
+@include input-facade();
+
+@mixin layout_default {
+
+  .icon {
+    display: inline-block;
+    width: 120px;
+    height: 90px;
+  }
+  .gl-messages.success {
+    margin-bottom: 1em;
+  }
+
+  .gl-messages .close_btn > span {
+    display: none;
+  }
+
+  .icon-gl-message-success {
+    margin-top: 0.5em;
+  }
+
+  .message {
+    font-weight: normal;
+  }
+
+  .no-photo {
+    border: none !important;
+    background-image: $srp-nophoto-imageurl;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .thumb, .no-photo {
+    float: left;
+    margin-right: 0.5em;
+
+    width: 75px;
+    height: 75px;
+  }
+
+  .upsell-header {
+    padding: 1.5em 0 0.25em;
+    font-size: $font-size-medium;
+  }
+
+  .features {
+    clear: left;
+  }
+
+  .feature {
+    position: relative;
+    padding: 1em;
+    background-color: #f9f9f9;
+    margin-bottom: 0.25em;
+  }
+
+  .ad-details {
+    .title {
+      @include ellipsis;
+      font-weight: bold;
+    }
+    .price {
+      color: $brand-text-color;
+    }
+  }
+
+  .hide {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .name-and-description {
+    display: inline-block;
+    vertical-align: top;
+    width: 60%;  // Mobile
+  }
+
+  .confirm-depend-features {
+    .name-and-description {
+      width: 50%; // Mobile special feature
+
+      &.name-urgent {
+        white-space: nowrap;
+      }
+    }
+
+    .price {
+      font-size: 0.875em;
+    }
+
+    input[type=checkbox].input-checkbox + label:before {
+      margin: 0.2em 0.1em 0.25em 0;
+    }
+  }
+
+  .feature-name {
+    font-weight: bold;
+  }
+
+  // Added specific element rules as its breaking country switcher for iBazar due to same rules
+  .description, .cart .items {
+    font-size: $font-size-micro;
+  }
+
+  .price-and-duration {
+    float: none; //float: right;
+    margin-left: 20px; // 15%;
+    padding-right: 0; // 2em;
+
+    text-align: right;
+    .duration {
+      font-size: $font-size-micro;
+    }
+
+    select {
+      font-size: 0.75em;
+    }
+  }
+
+  .close {
+    position: absolute;
+    font-size: $font-size-medium;
+    padding: 1em;
+    top: 0em;
+    right: 0em;
+  }
+
+  .learn-more {
+    position: absolute;
+    top: 1.375em;
+    right: 0.75em;
+    width: 1em;
+    height: 1em;
+  }
+
+  .confirm-depend-features .learn-more {
+    right: 0.35em;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+  .cart {
+    height: 4.5em;
+    padding: 1em;
+    border: 1px solid #ddd;
+    margin-top: 1em;
+    background-color: #fff;
+  }
+
+  .cart.has-items {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 5;
+  }
+
+  .items {
+    display: none;
+  }
+
+  .total-and-value {
+    float: left;
+  }
+
+  .total-label {
+    font-size: $font-size-micro;
+  }
+
+  .total-value {
+    font-weight: bold;
+  }
+
+  .pay-now {
+    @include primary-button;
+    padding: 0.5em;
+
+    float: right;
+  }
+
+  .pay-now.disabled {
+    background-color: #ddd;
+  }
+
+  .cart-header {
+    font-size: $font-size-micro;
+    font-weight: bold;
+  }
+
+  .bolt-overlay {
+    padding: 1.5em;
+
+    .icon {
+      margin: 0.75em auto;
+      display: block;
+    }
+  }
+
+  .popup-title {
+    font-weight: bold;
+  }
+
+  .popup-icon {
+    padding: 0.75em 0;
+  }
+
+  .popup-description {
+    font-size: $font-size-micro;
+
+    li {
+      list-style: disc;
+      margin-left: 1.25em;
+    }
+  }
+
+  .no-thanks {
+    margin-top: 0.5em;
+    text-align: center;
+  }
+
+  .cancel {
+    border: none;
+    background-color: transparent;
+    font-size: $font-size-micro;
+    color: $link-color;
+    cursor: pointer;
+    margin-bottom: 2em;
+  }
+
+  .cancel:hover, .cancel:active {
+    color: $link-hover-color;
+    text-decoration: underline;
+  }
+
+}
+   
+@mixin layout_medium {
+
+  .hide-on-mobile {
+    display: block;
+  }
+
+  .icon-gl-message-success {
+    margin-top: 0;
+  }
+  .feature-icon {
+    display: inline-block;
+    float: left;
+  }
+
+  .details {
+    overflow: hidden;
+    padding-left: 1em;
+  }
+
+  .learn-more {
+    display: none;
+  }
+
+  .items {
+    display: inherit;
+  }
+
+  .has-items .items {
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 1em 0;
+    margin: 1em 0;
+  }
+
+  .upsell-header {
+    font-size: $font-size-medium;
+    margin-bottom: 0.5em;
+  }
+
+  .features {
+    display: inline-block;
+    width: 75%;
+    float: left;
+  }
+
+  .cart {
+    display: inline-block;
+    width: $cart-width-tablet;
+    margin-left: 1%;
+    height: auto;
+    float: left;
+    margin-top: 0;
+  }
+
+  .cart.has-items {
+    width: $cart-width-tablet;
+    position: static;
+  }
+
+  .total-and-value {
+    float: none;
+
+    .total-label, .total-value {
+      width: 50%;
+      float: left;
+    }
+
+    .total-value {
+      text-align: right;
+    }
+  }
+
+  .item-title {
+    display: inline-block;
+    width: 50%;
+    float: left;
+  }
+
+  .item-price {
+    display: inline-block;
+    width: 50%;
+    float: right;
+    text-align: right;
+  }
+
+  .pay-now {
+    clear: both;
+    float: none;
+    display: block;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .no-thanks {
+    width: 24%;
+    float: right;
+  }
+
+  .description p {
+    margin: 0.5em 0 0.5em;
+  }
+
+  .description li {
+    list-style: disc;
+    list-style-position: inside;
+  }
+
+  .name-and-description {
+    display: inline-block;
+    float: left;
+    width: 80%;
+  }
+
+  // Fixes BOLT-18511
+  .confirm-depend-features .name-and-description {
+      &.name-urgent {
+        white-space: normal;
+      }
+  }
+
+  .feature.optional .name-and-description {
+    width: 70%;
+  }
+
+  .price-and-duration {
+    display: inline-block;
+    width: auto; // 18%;
+    float: none;
+    margin-left: 0;
+    padding-right: 0;
+  }
+
+}
+
+@mixin layout_ltie9 {
+	.items, .item {
+		width: 100%;
+	}
+	input[type='checkbox'] {
+		@include checkbox-input;
+		font-size:1.2em;
+		font-weight:bold;
+		margin: 1em 0.3em -0.2em 0;
+	}
+}
+
+@mixin layout_ltie10 {
+  .items {
+    width: 100%;
+  }
+}
+
+@mixin layout_large {
+  .items {
+    width: 100%;
+  }
+}
+

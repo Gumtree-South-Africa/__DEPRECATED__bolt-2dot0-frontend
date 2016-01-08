@@ -1,0 +1,546 @@
+@import "../../theme";
+@import "../partials/main/VNS_Styles";
+@import "../../../partials/pages/PostConfirmUpsellPage/layout";
+@import "../partials/pages/Homepage/categoryDisplay";
+@import "../../partials/common/feature-legend";
+
+//$checkbox-border: 0px;
+
+@mixin postad_button {
+  @include primary-button;
+  text-shadow: none;
+  width: auto;
+  display: inline-block;
+  padding: 0.5em;
+  margin-right: 0.2em;
+
+  height: 2em;
+  width: auto;
+}
+
+/**
+ * Changes for Viva Upsell Post Confirm Page.
+ */
+@mixin adjust-button-payment-for-viva {
+  // Overrides on content class
+  div.content {
+    min-height: 10em;
+  }
+
+  // Overrides on page class
+  div.page {
+    padding-left : 0;
+    padding-right : 0;
+  }
+
+  // The whole Payment container area including links and buttons
+  div.payment-container {
+    clear: both;
+    display: block;
+    overflow: auto;
+    padding: 5px;
+    margin-bottom: 1em;
+    background-color: $color-gray-light;
+    @include background-image(linear-gradient(adjust-lightness($color-gray-light, 10%), $color-gray-light 50%));
+    @include border-radius(5px);
+
+    // Header
+    div.upsell-header {
+      padding-top: 0;
+      padding-left: 10px;
+      font-weight: bold;
+      font-size: 1em;
+      color: #4A4A4A;
+    }
+
+    // Button Container
+    div.button-container {
+      margin-bottom: 0.5em;
+      padding-left: 10px;
+
+      // Primary button (Show me how to promote my ad)
+      button.promote-payment {
+        @include postad_button;
+        background-color: #1E98D5 !important;
+      }
+
+      // Secondary button (leave it free)
+      button.ui-btn-secondary {
+        @include secondary-button-new;
+        height: 2em;
+      }
+    }
+
+    // Hide the Feature Cart container
+    div.feature-cart-container {
+      display: none;
+      overflow: auto;
+      margin-top: 1em;
+      padding-top: 1em;
+    }
+  }
+
+}
+
+// End of changes for Viva Upsell Post Confirm Page.
+
+@mixin adjust-font-sizes-for-viva {
+
+  .description, .items,
+  .price-and-duration .duration,
+  .cart-header, .total-label {
+    font-size: $font-size-small;
+  }
+
+  .feature .price-and-duration {
+    float: none; // right;
+    display: inline-block;
+  }
+
+  .feature.optional .price-and-duration {
+    width: auto;
+    float: none;
+    margin-top: 0; // -0.5em;
+  }
+
+  .feature.optional .price-and-duration .price,
+  .feature.optional .price-and-duration .duration,
+  .feature.optional .price-and-duration select {
+    display: inline-block;
+  }
+
+  .cancel {
+    font-size: 0.95em;
+  }
+
+  // Fixes BOLT-18414
+  @include in-breakpoint($no-break) {
+    .feature {
+      .price {
+        text-align: left;
+      }
+    }
+
+    .feature.optional .price-and-duration.pd-urgent,
+    .feature.optional .price-and-duration.pd-highlight {
+      margin-left : 0;
+      margin-right: 10px;
+    }
+
+    .learn-more.learn-urgent,
+    .learn-more.learn-highlight {
+      top: 0.75em;
+    }
+  }
+
+}
+// fixing BOLT-14540
+.features,
+.cart {
+    .price,
+    .total-value {
+        color: $vivaBlue;
+    }
+}
+
+[data-currency-symbol]:before {
+  content:attr(data-currency-symbol) " ";
+}
+
+// -----------------------------------------------------
+// Mobile First Styles
+// -----------------------------------------------------
+@include layout_default;
+@include adjust-font-sizes-for-viva;
+@include adjust-button-payment-for-viva;
+
+.pay-now, .promote-payment {
+  @extend %button-primary;
+  @include box-shadow(none);
+
+  &.disabled {
+    opacity: 0.5;
+  }
+}
+
+// Hide the Feature Cart container
+div.feature-cart-container {
+  .feature.optional {
+    .feature-icon {
+      display: none;
+    }
+  }
+}
+
+// Fixes BOLT-19029
+.popup-description ul + ul.list,
+.popup-description ul + ul.list + .tip,  {
+  display: none;
+}
+
+// Changes for Confirm Features for Viva.
+div.confirm-depend-features-container {
+  display: none;
+  overflow: hidden;
+  @include border-radius(5px);
+  border: 1px solid #C0C0C0;
+  margin-left: 20%;
+  margin-right: 20%;
+  margin-top: 0.25em;
+
+  span.optionalExclusive {
+    font-weight: bold;
+    padding-left: 1em;
+    line-height: 2em;
+    font-size: 14px;
+  }
+
+  a {
+    text-decoration: none;
+    float: right;
+    .arrow {
+      background-size: 10px;
+      background-position: center;
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      &.icon-caret-down-blue {
+        background-size: 20px;
+      }
+    }
+  }
+
+  div.confirm-depend-features {
+    width: 100%;
+
+    .feature {
+      padding: 0.5em;
+      margin-bottom: 0;
+      background-color: #F9F9F9;
+      .feature-name .name {
+        font-size: 0.750em;
+      }
+      .feature-name.urgent .name {
+        display: inline;
+        background-color: red;
+        color: white;
+        padding: 0.10em;
+        margin-right: 0;
+
+        text-transform: uppercase;
+        @include border-radius(3px);
+      }
+    }
+
+  }
+}
+
+.more-info {
+  color: $vivaBlue;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.bolt-overlay .more-info {
+  display: none;
+}
+
+
+// ----------------------------------------------------
+// Feature Description Overlay
+// ----------------------------------------------------
+
+.header-myad {
+  display: none;
+}
+
+.header-myad .feature-legend .feature .icon,
+.header-myad .feature-legend-static .feature .icon, .heading-bar .feature-legend .feature .icon {
+  width: 100%;
+  top: 0;
+  left: 0;
+}
+// ----------------------------------------------------
+
+// ----------------------------------------------------
+// Mobile Styles
+// ----------------------------------------------------
+
+div.category-wrapper {
+  /*
+  @include border-radius(5px);
+  border: 1px solid #C0C0C0;
+  */
+  border-top: 1px solid #C0C0C0;
+  border-bottom: 1px solid #C0C0C0;
+  background-color: #FFFFFF; // #FBF5DB; // #E9E9E9; // #EBEBEB;
+  padding: 5px;
+  margin-bottom: 1em;
+  display: block;
+  overflow: hidden;
+  clear: both;
+
+  div.hdr {
+    color: #4A4A4A;
+    font-size: 100%;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  .outer {
+    padding-top: 0;
+    display: block;
+    overflow: hidden;
+    border-bottom: none;
+
+    div.inner {
+      border: none;
+      margin-bottom: 0.5em; // 2em;
+
+      .wrapper {
+        height: 150px; // 132px;
+        display: block;
+        overflow: hidden;
+        width: 90%;
+        margin: 0 auto;
+        padding: 5px;
+        background-color: #FFFFFF; //#FBF5DB;
+        /*
+        border: 1px solid #C0C0C0;
+        @include border-radius(5px);
+        */
+
+        .icon-cat-label {
+          word-wrap: break-word;
+          top: 7em;
+          left: 0; // 5px;
+          width: 100%;
+          text-align: center;
+        }
+      }
+
+      .bg {
+        float: none;
+      }
+
+      .icon-cat-label {
+        float: none;
+        position: static;
+        left: 0;
+        margin: 0 auto;
+      }
+    }
+
+    div.inner.postarea {
+      width: 100%;
+      margin: 0 auto;
+      text-align: center;
+      height: auto;
+      min-height: 35px;
+
+      div.button-container {
+        button.postad {
+          @include postad_button;
+          @extend %button-primary;
+          font-size: 1.5em;
+          padding: 0 10px;
+        }
+      }
+
+    }
+  }
+}
+
+// Fix for BOLT-19011
+@media (max-width: 410px) {
+  div.confirm-depend-features-container {
+    font-size: 0.85em;
+  }
+
+  .confirm-depend-features .name-and-description {
+    width: 40%;
+  }
+
+  .confirm-depend-features  .feature.optional .price-and-duration.pd-urgent, .feature.optional .price-and-duration.pd-highlight {
+    margin-left: 0.5em;
+  }
+}
+
+// -----------------------------------------------------
+// Tablet Styles
+// -----------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+  @include layout_medium;
+
+  div.confirm-depend-features-container span.optionalExclusive {
+    font-size: 16px;
+  }
+
+  div.confirm-depend-features-container div.confirm-depend-features {
+    .feature {
+      .feature-name .name {
+        font-size: 1em;
+      }
+      .feature-name.urgent .name {
+        padding: 0.25em 0.5em;
+        margin-right: 0.5em;
+      }
+    }
+  }
+
+  .feature.optional .price-and-duration {
+    margin-top: 0;
+    float: right;
+  }
+
+  .feature .price-and-duration {
+    float: right;
+  }
+
+  .feature.optional .name-and-description {
+       width: 50%;
+  }
+
+  div.confirm-depend-features-container div.confirm-depend-features .feature.optional .feature-name .name {
+    font-size: 0.750em;
+  }
+
+  .details {
+    padding-left: 0.25em;
+  }
+
+  @media (max-width: 660px) {
+    div.confirm-depend-features-container div.confirm-depend-features .feature.optional .feature-name .name,
+    .feature.optional .description  {
+      font-size: 0.6875em;
+    }
+
+    div.confirm-depend-features-container div.confirm-depend-features .feature.optional .feature-name.urgent .name {
+      padding: 0.25em;
+    }
+  }
+
+  @media (max-width: 570px) {
+    div.confirm-depend-features-container div.confirm-depend-features .feature.optional .feature-name.urgent .name {
+      font-size: 0.625em;
+    }
+  }
+}
+
+// -----------------------------------------------------
+// Desktop Styles
+// -----------------------------------------------------
+@include from-breakpoint($medium-break){
+  @include layout_large;
+
+  div.category-wrapper {
+    .outer {
+      div.inner.postarea {
+        width: 25%;
+        line-height: 150px; // 132px;
+        height: 150px; // 132px;
+
+        div.button-container {
+          button.postad {
+            height: 3em;
+            width: 200px;
+          }
+        }
+
+      }
+    }
+  }
+
+  button.promote-payment {
+    height: 2.5em;
+    width: auto;
+  }
+
+  button.ui-btn-secondary {
+    height: 2.5em;
+  }
+
+  .feature .price-and-duration {
+    float: right;
+  }
+
+  .feature.optional .name-and-description {
+    width: 65%;
+  }
+
+  .details {
+    padding-left: 1em;
+  }
+
+  div.confirm-depend-features-container div.confirm-depend-features .feature .feature-name .name {
+    font-size: 1em;
+  }
+
+  div.confirm-depend-features-container div.confirm-depend-features .feature.optional .feature-name.urgent .name {
+    padding: 0.25em 0.5em;
+  }
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name) {
+  div.category-wrapper {
+    div.inner {
+      width: 25%;
+      div.wrapper {
+        width: 80%;
+      }
+    }
+  }
+}
+
+@include in-breakpoint($lt-ie9-class-name) {
+  @include layout_ltie9;
+}
+
+@include in-breakpoint($lt-ie10-class-name) {
+  @include layout_ltie10;
+
+  // Promote ad buttons
+  div.payment-container div.button-container {
+    padding-top : 0;
+    padding-bottom: 0;
+    button {
+      height: 2.5em;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+  }
+
+  // Post Button next to category icons
+  div.category-wrapper div.outer div.postarea.inner div.button-container button.postad {
+    padding: 0 10px;
+    color: #FFFFFF;
+    height: 2em;
+    line-height: 2em;
+    vertical-align: middle;
+  }
+
+  // Post Button next to category icons
+  @include from-breakpoint($medium-break, $lt-ie9-class-name) {
+    div.category-wrapper div.outer div.postarea.inner div.button-container button.postad {
+      height: 3em;
+      line-height: 3em;
+      width: 200px;
+    }
+  }
+}
+
+/*
+    #ie10,11 will only be red in MSIE 10,
+    both in high contrast (display setting) and default mode
+*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+  div.category-wrapper div.outer div.postarea.inner div.button-container button.postad {
+    height: 3em;
+    line-height: 3em;
+    width: 200px;
+  }
+}

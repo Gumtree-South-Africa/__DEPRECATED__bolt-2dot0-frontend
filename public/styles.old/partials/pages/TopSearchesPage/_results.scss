@@ -1,0 +1,62 @@
+.results {
+  // Result container element
+  .result {
+    position: relative;
+    margin-bottom: 0.5em;
+
+    // Subheaders.
+    h2.sub-header {
+      color: $color-black-70; // $color-black;
+      width: 100% !important;
+      padding: 0.25em 0 0.25em 0.25em;
+      background-color: $controls-column-background-color;
+      padding-left: 1em;
+      margin-bottom: 0.5em;
+    }
+  }
+}
+
+// Mobile to Tablet breakpoint
+@include to-breakpoint($medium-break){
+  h1.header {
+    top: 0.5em;
+    margin-left: 2em;
+  }
+}
+
+// Tablet breakpoint
+@include in-breakpoint($medium-break){
+  h1.header {
+    top: 0.2em;
+    margin-left: 0;
+  }
+  .results{
+      @include span-columns($medium-break - 2, $medium-break);
+      float: right;
+      margin-right: 0;
+  }
+}
+
+// Desktop breakpoint
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.results{
+		@include span-columns($large-break - 3, $large-break);
+		float: right !important;
+		margin-right: 0;
+	}
+}
+
+
+@import
+	"results-list";
+
+
+
+
+
+
+
+
+
+
+

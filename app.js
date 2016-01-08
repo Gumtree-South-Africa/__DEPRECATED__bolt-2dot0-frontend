@@ -25,7 +25,7 @@ var siteCount = 0;
  */
  Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
-    
+    console.log('configSSS:', siteObj);
     (function(siteObj) {
       var siteApp = new expressbuilder(siteObj.locale).getApp();
 
@@ -33,6 +33,7 @@ var siteCount = 0;
       siteApp.config = {};
       siteApp.config.name = siteObj.name;
       siteApp.config.locale = siteObj.locale;
+      siteApp.config.country = siteObj.country;
       siteApp.config.hostname = siteObj.hostname;
       siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
       

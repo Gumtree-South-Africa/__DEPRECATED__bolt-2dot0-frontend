@@ -1,0 +1,117 @@
+// Changes specific for Top Searches.
+
+// Controls for Top Filters, Main Header.
+.controls {
+  margin: 0 0 $small-margin 0;
+
+  // Main header
+  h1 {
+    top: 0.2em;
+    margin: 0;
+    padding: 0 0 0 1em;
+    font-weight: bold;
+    background-color: inherit;
+  }
+
+  .left-column {
+    padding: $small-padding 0 !important;
+    div.filterButton {
+      margin-left: $small-margin;
+      z-index : 1;
+    }
+  }
+
+  .right-column {
+    text-align: left;
+  }
+}
+
+// Breakpoints
+@include to-breakpoint($no-break){
+  .controls{
+    .right-column{
+      padding: 0;
+    }
+  }
+}
+
+// Breakpoints - Mobile 1
+@include to-breakpoint($small-break) {
+  .controls {
+    // Header
+    h1.header {
+      // display: none !important;
+      // Added to add "Filter" text next to icon...
+      padding-left: 2.7em;
+
+      margin-left: 0 !important;
+      font-size: 90%;
+      top: 1.3em;
+      line-height: 90%;
+    }
+
+    .left-column{
+      @include span-columns(1, $small-break);
+
+      // Filter Button
+      div.filterButton {
+        padding: $medium-padding $small-padding $medium-padding $small-padding;
+        .controlLabel {
+          display: none;
+        }
+      }
+    }
+
+    .right-column{
+      @include span-columns(5, $small-break);
+      margin-right :0;
+    }
+  }
+}
+
+// Breakpoints - Mobile 2.
+@include in-breakpoint($small-break) {
+  .controls {
+	color:$controls-bg-color;
+	background: $controls-bg-color;
+    h1.header {
+      // Added to add "Filter" text next to icon...
+      padding-left: 3.5em;
+
+      top: 0.8em;
+      font-size: 100%;
+    }
+
+    .left-column{
+      @include span-columns(2, $small-break);
+
+      // Filter Button.
+      div.filterButton {
+        padding: $medium-padding $small-padding $medium-padding $small-padding;
+        .controlLabel {
+          display: inline;
+        }
+      }
+    }
+
+    .right-column{
+      @include span-columns(4, $small-break);
+      margin-right: 0;
+    }
+  }
+}
+
+// Breakpoints
+@include from-breakpoint($medium-break, $lt-ie9-class-name) {
+	.controls {
+      .left-column{
+          padding: $small-padding 0 $small-padding $small-padding;
+          background-color: $controls-column-background-color;
+        }
+
+		.right-column {
+            padding: $small-padding $small-padding  $medium-padding 0;
+			background-color: $controls-column-background-color;
+		}
+	}
+}

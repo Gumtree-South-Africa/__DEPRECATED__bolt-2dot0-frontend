@@ -1,0 +1,26 @@
+@import
+    "../theme",
+    "../../../partials/pages/PostConfirmUpsellPage/layout";
+
+// -----------------------------------------------------
+// Mobile First Styles
+// -----------------------------------------------------
+@include layout_default;
+
+// -----------------------------------------------------
+// Tablet Styles
+// -----------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+  @include layout_medium;
+}
+
+// -----------------------------------------------------
+// Desktop Styles
+// -----------------------------------------------------
+@include from-breakpoint($medium-break){
+  @include layout_large;
+}
+
+@include in-breakpoint($lt-ie9-class-name) {
+  @include layout_ltie9;
+}

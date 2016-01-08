@@ -1,8 +1,7 @@
 {{#unless model.content.disableSearchbar}}
-    <div class="searchbar" style="display: inline-block; overflow: hidden; border: 1px solid cyan;">
-        SEARCHBAR COMPONENT!
+    <div class="searchbar">
         <section role="search">
-            <div class="wrap">
+            <div class="wrap" style="padding-bottom: 3em;">
                 <form action='{{model.header.searchPageUrl}}' class="has-location-{{model.header.navigationConfig.locationSelection}}"
                         data-instant-search="{{model.header.navigationConfig.instantSearch}}"
                         data-clear-searches-message='{{i18n "header.clear-recent-searches"}}'

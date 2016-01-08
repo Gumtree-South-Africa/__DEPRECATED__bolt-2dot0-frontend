@@ -1,0 +1,355 @@
+
+
+.branding-links-block {
+  border: 1px solid $color-black-15;
+  @include border-radius($medium-border-radius);
+  background-color: #EBEBEB;
+  background-image: linear-gradient(#F2F2F2, #FFFFFF);
+  margin: 0.5em 0 0 0;
+}
+
+.brandingContent {
+  width:100%;
+  .branding-header {
+
+		border-top: 1px solid $color-black-15;
+
+    .icon-caret-down{
+      color: $icon-caret-color;
+      display:inline;
+    }
+
+    .icon-caret-left{
+      color: $icon-caret-color;
+      display:none;
+    }
+
+        &.collapse
+        {
+            .icon-caret-down{
+                display:none;
+            }
+            .icon-caret-left{
+                display:inline;
+            }
+        }
+
+        &.selected, &.collapse
+        {
+            .title .titleControl .currentStatus
+            {
+                @include inline-block;
+                margin-right:$small-margin;
+            }
+        }
+
+		.title{
+            white-space:nowrap;
+            color: $link-color;
+
+            padding: $small-margin 0.5em;
+
+            cursor:pointer;
+
+            &.unclickable
+            {
+                cursor:auto;
+            }
+
+            &:hover
+            {
+                background: darken($color-white, 10%);
+            }
+
+            .titleText {
+                @include bold-text;
+                float:left;
+            }
+
+            .titleControl
+            {
+                float:right;
+                .currentStatus
+                {
+                    @include bold-text;
+                    color: $color-black;
+                    display:none;
+                    &.any
+                    {
+                        color: darken($color-white, 40%);
+                    }
+                }
+            }
+        }
+
+        .current {
+            @include bold-text;
+        }
+
+
+
+        //init hide the foldable list
+        ul.foldableList{
+            display:none;
+        }
+
+        ul.foldableList, ul.subs
+        {
+            padding-left: 1em;
+
+            li
+            {
+                @include ellipsis;
+            }
+
+            li:nth-child(n+8)
+            {
+               display:none;
+            }
+
+            .showmore
+            {
+                .text_less
+                {
+                    display:none;
+                }
+                display:none;
+                cursor: pointer;
+
+                .icon-caret-down,.text_more{
+                    display:inline;
+                }
+                .icon-caret-up,.text_less{
+                    display:none;
+                }
+                size:0.8em;
+                color: $link-color;
+
+            }
+
+
+            li:nth-child(8) ~ .showmore
+            {
+                display:block;
+            }
+
+
+            &.collapse
+            {
+                .icon-caret-down,.text_more{
+                    display:none;
+                }
+                .icon-caret-up,.text_less{
+                    display:inline;
+                }
+            }
+        }
+
+		.hierarchy
+		{
+            &:nth-child(2)
+            {
+                margin-left: 1em;
+            }
+            &:nth-child(3)
+            {
+                margin-left: 1.5em;
+            }
+            &:nth-child(4)
+            {
+                margin-left: 2em;
+            }
+            .subs
+            {
+                padding-left: 0;
+            }
+		}
+	}
+
+	.values-filter, .dropdown-filter {
+        border-top: 1px solid $color-black-15;
+         .icon-chevron-right-white, .icon-chevron-right-blue{
+          display:inline-block ;
+          background-size:contain;
+          width: 0.7em;
+          height:1em;
+          vertical-align: middle;
+          margin:-.1em 0 0 0 !important;
+        }
+		.field {
+		    padding: $small-margin 0.5em;
+
+			display: block;
+			color: $color-black-50;
+
+			label {
+				margin-right: 0.1em;
+				color: $link-color;
+                @include bold-text;
+                display:block;
+                min-width: 22%;
+            }
+
+			input,select {
+				width: 35%;
+				&::-webkit-inner-spin-button,
+				&::-webkit-outer-spin-button {
+					@include appearance(none);
+				}
+			}
+
+			span {
+				margin: 0 0.05em;
+				
+			}
+
+            button {
+                margin-left: 0em;
+                color: $link-color;
+                @include appearance(none);
+                /* TODO figure out if secondary button can be removed */
+                @include secondary-button;
+                @include filter-field-button;
+                float:right;
+            }
+		}
+	}
+	.values-filter
+	{
+	   &.min,&.max
+	   {
+	       input
+	       {
+               width: 75%;
+           }
+	       .devideLine{
+               display:none;
+           }
+	   }
+	   &.min
+	   {
+	       .max{
+               display:none;
+           }
+	   }
+	   &.max
+       {
+           .min{
+               display:none;
+           }
+       }
+	}
+	.dropdown-filter {
+	   select
+	   {
+           @include bold-text;
+           padding:2px 0;
+	   }
+	}
+}
+
+/*
+// no break
+@include to-breakpoint($small-break) {
+	.xbrandingContent {
+        font-size:1.4em;
+
+		position: absolute;
+		left: 0;
+		top: $small-margin + $small-margin + 1.5em;
+
+		width: 100%;
+		z-index: 1;
+		padding: 0;
+		@include box-shadow(0px 2px 5px rgba(0, 0, 0, 0.25));
+		@include span-columns($total-columns, $total-columns);
+		@include border-radius(5px);
+      // ulises:
+      display: block !important;
+		// display: none;
+
+		background-color: transparentize($color-white, 0.05);
+
+		&.visible {
+			display: block;
+		}
+
+		ul.foldableList li
+        {
+            line-height:1.8em;
+        }
+
+
+		.values-filter, .dropdown-filter {
+            text-align:middle;
+
+
+            .field {
+                button {
+                    padding:0.7em 1.2em;
+                }
+            }
+            input,select {
+                padding:0.2em 0.2em;
+                font-size:0.7em;
+            }
+        }
+	}
+}
+
+// small break (tablet);
+@include in-breakpoint($small-break){
+
+    .xbrandingContent {
+        @include span-columns(5, $small-break);
+      // ulises
+        display: block !important;
+
+        ul.finalsub
+        {
+            @include columns(1);
+        }
+    }
+}
+
+// medium break (large tablet)
+@include in-breakpoint($medium-break){
+
+	.xbrandingContent {
+		// We need the next rule othewise the flow will break
+		@include span-columns(2, $medium-break);
+		//float: left;
+
+         .branding-header,
+        .interlinks,
+        .category-filter,
+        .location-filter,
+        .attributes-filter {
+            .title
+            {
+                .titleControl .currentStatus
+                {
+                    @include ellipsis;
+                    max-width:75px;
+                }
+            }
+        }
+    }
+}
+
+// large break
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.sidePanel {
+		float: left;
+		@include span-columns(3, $large-break);
+	}
+
+	.xbrandingContent {
+		// We need the next rule; othewise the flow will break
+		@include span-columns(3, $large-break);
+		//float: left;
+	}
+
+}
+
+*/

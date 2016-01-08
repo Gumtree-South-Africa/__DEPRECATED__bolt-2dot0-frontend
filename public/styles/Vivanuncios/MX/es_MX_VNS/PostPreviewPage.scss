@@ -1,0 +1,32 @@
+@import 'ViewPage';
+
+@import 
+	"../../theme";
+
+@import "../../../partials/pages/PostPreviewPage/pageMain";
+@import "../partials/pages/ViewPage/sellerReputation";
+
+@include hide_header_post_ad_button;
+@include hide_breadcrumbs;
+
+.vip-seller {
+  border-bottom: none;
+}
+
+.pre-control .pre-buttons .edit,
+.pre-control .pre-buttons .edit:hover {
+  color: $vivaBlack;
+}
+
+.pre-control .pre-notice {
+  background-color: $vivaGray20;
+}
+
+.pre-control .pre-buttons .post {
+  background-color: $vivaBlue;
+}
+
+.search-container
+{
+	display:none;
+}

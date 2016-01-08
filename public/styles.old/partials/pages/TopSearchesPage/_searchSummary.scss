@@ -1,0 +1,160 @@
+
+
+// Rules for Search Summary objects (e.g., Popular Search and Related Searches, etc.)
+// Hello
+.searchSummary {
+   // height: 2em;
+    //width: 100% !important;
+
+    .titleContainer {
+      float: left;
+      white-space: nowrap;
+    }
+
+    //.resultsContainer {
+      //border: 1px solid green;
+      //float: left;
+    //}
+
+    .title {
+      margin-bottom: 0px;
+      color: lighten($color-black, 50%);
+      font-size: .9em;
+    }
+
+    .arrow {
+      cursor: pointer;
+    }
+
+    @include in-breakpoint($no-break) {
+      margin-left: 1em;
+	}
+	
+    // Changes for Mobile breakpoint
+    // Show 2 columns
+    @include to-breakpoint($small-break) {
+      //  width: 40% !important;
+      padding-right: 5px;
+      display: inline-block;
+      .titleContainer {
+        display: inline-block;
+      }
+
+      .resultsContainer {
+        width: 20% !important;
+        //display: inline-block;
+        float: none !important;
+        // test
+    //    float: none !important;
+      }
+    }
+
+    // Title Container
+    .titleContainer 	{
+      // small break
+      @include from-breakpoint($small-break) {
+          width: 8em;
+      }
+    }
+
+    // List of Results.
+	ul.selMenu	{
+
+		display: inline-block;
+		// margin-bottom: 20px;
+		li {
+			float:left;
+			padding-left: 30px;
+		}
+		.brDesk {
+			 display : none;
+		}
+		.brIpad {
+			display : none;
+		}
+	
+		// no break
+		@include to-breakpoint($small-break) {
+			.brDesk {
+				display:inline-block;
+			}
+			.brIpad {
+				display:none;
+			}
+			li {
+				display: none;
+				width: 80%;
+				padding-left: 5px;
+				white-space: nowrap;
+			}
+			li:first-child {
+				display: inline-block;
+			}
+			&.upView {
+				li {
+					display: inline-block !important;
+				}
+			}		
+		}
+	
+		// small break
+		@include in-breakpoint($small-break) {
+          width: 70%;
+          .brDesk {
+            display: inline-block;
+          }
+          .brIpad {
+            display: none;
+          }
+          li {
+            display: none;
+            width: 100%;
+          }
+          li:first-child {
+            display: inline-block;
+          }
+          &.upView {
+            li {
+              display: inline-block !important;
+            }
+          }
+		}
+	
+		// medium break!
+		@include in-breakpoint($medium-break) {
+          width: 50%;
+          float: left;
+
+          .brDesk {
+            display: none;
+          }
+          .brIpad {
+            display: inline-block;
+          }
+          li {
+            display: none;
+            width: 30% !important;
+          }
+          @for $ijk from 1 through 3 {
+            li:nth-child(#{$ijk}) {
+              display: inline-block !important;
+            }
+          }
+		}
+	
+		// large break
+		@include from-breakpoint($large-break, $lt-ie9-class-name) {
+          .brDesk {
+            display: none;
+          }
+          .brIpad {
+            display: none;
+          }
+          li {
+            display: inline-block !important;
+          }
+		}
+	}
+
+}
+

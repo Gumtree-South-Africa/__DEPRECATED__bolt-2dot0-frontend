@@ -1,0 +1,36 @@
+@import 
+	"../../theme",
+		"../../../partials/common/form";
+
+@import "../../../partials/pages/PaymentPage/pageMain";
+@import "../../../partials/pages/PaymentPage/orderSummary";
+@import "../../../partials/pages/PaymentPage/creditCardType";
+@import "../../../partials/pages/PaymentPage/paymentTypeAccordion";
+
+
+
+
+// -----------------------------------------------------
+// Mobile First Styles
+// -----------------------------------------------------
+@include order_summary_default;
+@include creditcardtype_default;
+@include payment_type_accordion_default;
+
+// -----------------------------------------------------
+// Tablet, Desktop Styles
+// -----------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	@include order_summary_tablet_and_larger;
+	@include creditcardtype_medium;
+	@include payment_type_accordion_medium;
+}
+
+.logo-eft {
+	display: inline-block;
+	width: 112px;
+	height: 56px;
+	float: left;
+	margin-right: 0.25em;
+	background: url(../../../../../images/en_ZA/logo-eft.png) no-repeat top left;
+}

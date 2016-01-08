@@ -1,0 +1,55 @@
+@import
+	"../../theme";
+
+@import "../../../partials/pages/MySavedSearchPage/pageMain";
+@import '../../../Vivanuncios/MX/partials/main/toggleCheckbox';
+
+
+// Viva level styles
+@import
+	"../../../Vivanuncios/partials/common/my-top-navigation";
+
+.querysearch,
+.ssp .ssp-wrapper .ss-delete {
+  font-size: $font-size-medium;
+}
+
+.breadcrumbs {
+  padding: 0;
+  margin-bottom: 1em;
+  font-size: $font-size-small;
+}
+
+.column-labels.myssp {
+  @include box-shadow(none);
+
+  background-color: $vivaWhite80;
+  font-size: $font-size-medium;
+  font-weight: normal;
+  padding: 1em 0.25em;
+}
+
+.ssp {
+  margin-top: 0;
+}
+
+.ssp-warning {
+  font-size: $font-size-small;
+}
+
+@include in-breakpoint($no-break) {
+  .column-labels.myssp {
+    display: none;
+  }
+  .page{
+    padding-left :0;
+    padding-right :0;
+   }
+  
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+  .column-labels {
+    border: $box-border-width $box-border-style $box-border-color;
+  }
+}

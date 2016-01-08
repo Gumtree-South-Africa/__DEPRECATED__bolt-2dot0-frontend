@@ -1,0 +1,175 @@
+$locale:"es_MX_VNS";
+@import "../../theme";
+//@import "../../../partials/pages/VoucherPage/pageMain";
+
+.npsvoucher {
+	width:100%;
+	text-align: center;
+	border-radius:5px;
+	border:1px solid #CCC;
+	margin-top:2em;
+	.head {
+		background: transparent;
+		.logos {
+			padding:3em;
+			.sitelogo {
+				display:inline-block;
+				width: 100px;
+			}
+			.logo-pagofacil {
+				background: url(../../../../../icons/logo/pagofacil.gif) no-repeat top left;
+			}
+			.logo-pagofacil {
+				display: inline-block;
+				width: 80px;
+				height: 80px;
+				background-size: cover;
+			}
+		}
+		h2 {
+			text-align:left;
+			font-size:1em;
+			font-weight:bold;
+			padding:0.5em 1em;
+			color:#333;
+			width: 100%;
+			border-bottom:1px solid #CCC;
+		}
+	}
+	.barcode {
+		border-top:2px dashed orangered;
+		padding:2em 0.1em;
+		margin:2em 0 0 0;
+		img {
+			image-rendering: pixelated;
+			height:68px;
+			width:397px;
+		}
+		.number {
+			display: block;
+			margin-top: -.5em;
+			font: 0.85em monospace;
+		}
+	}
+	.actions {
+		height:5em;
+		.btn {
+			width:250px;
+			font-size:1em;
+			height:3em;
+			color:white;
+			border-radius:5px;
+			padding: 0.75em 1em;
+			margin:1em 0.2em;
+			&:hover {
+				text-decoration: none;
+				user-select: none;
+				cursor: pointer;
+			}
+			&.btn-primary {
+				background-color:#4EBB49;
+			}
+			&.btn-secondary {
+				background-color:#666;
+			}
+		}
+	}
+	.t {
+		width:100%;
+		font-weight: bold;
+		padding: 15px;
+	}
+	.row {
+		&:nth-child(even) {
+			background-color:#FDFDFD;
+		}
+		label {
+			width: 45%;
+			display: inline-block;
+			text-align: right;
+			font-weight:bold;
+			color:#333;
+			vertical-align: top;
+		}
+		span {
+			width:45%;
+			display:inline-block;
+			text-align:left;
+			vertical-align:bottom;
+		}
+	}
+	.ad {
+		margin: 0.5em;
+		font-size: 0.65em;
+		line-height: 1em;
+		.title {
+			font-weight: bold;
+			display: block;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			font-style: italic;
+			&:before {
+				content:attr(prefix);
+			}
+		}
+		.features {
+			padding: 0.2em;
+			.feature {
+				display: inline;
+				&:after {
+					content:attr(item-separator);
+				}
+				&:last-child:after {
+					content:""
+				}
+			}
+		}
+	}
+}
+
+@include from-breakpoint($small-break){
+	.npsvoucher {
+		.head {
+			.logos {
+				.sitelogo {
+					width: 331px;
+				}
+			}
+		}
+	}
+	.npsvoucher .barcode .number {
+		font:1.175em monospace;
+	}
+}
+
+@media print {
+	* {-webkit-print-color-adjust:exact;}
+	.header,
+	.footer,
+	.searchbar,
+	.headerPost,
+	.actions
+	{
+		display:none;
+	}
+	.npsvoucher {
+		margin:0 0 0 0;
+	}
+	// Add in wider breakpoints
+	.npsvoucher {
+		.head {
+			.logos {
+				.sitelogo {
+					width:331px;
+				}
+			}
+		}
+	}
+	.npsvoucher .barcode .number {
+		display: block;
+		margin-top: -.5em;
+		font:1.175em monospace;
+	}
+
+}

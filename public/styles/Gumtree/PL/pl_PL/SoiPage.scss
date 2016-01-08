@@ -1,0 +1,108 @@
+@import
+"../theme",
+"../../../partials/pages/SearchPage/filters",
+"../../../partials/pages/SearchPage/controls",
+"../../../partials/pages/SearchPage/results",
+"../../../partials/common/categoryListBase",
+"../../../partials/pages/SearchPage/noResult",
+"../../partials/common/adSense",
+ "../../partials/pages/ViewPage/sellerReputation",
+"../../../partials/common/replyForm";
+ @include abt1-seller-reputation;
+
+@import "../../../partials/pages/SearchPage/pageMain",
+"../../../partials/pages/SoiPage/pageMain",
+"../../partials/pages/SearchPage/controls",
+"../../partials/pages/SearchPage/emailAlert",
+"../../partials/pages/SearchPage/results",
+"../../partials/pages/SearchPage/searchPage";
+   
+ 
+ 
+
+ 
+ .abt1.vip-seller-container .vip-seller .usersince {
+    color: $color-white;
+    font-size: 14px;
+    margin-left: 14em;
+ 
+ }
+ 
+ .abt1.vip-seller-container .vip-seller {
+      margin-bottom: 1.8em;
+ 
+ }
+ 
+ 
+  @include in-breakpoint($no-break) {
+   .abt1.vip-seller-container .vip-seller .user-avatar {
+     margin-left: 2em;
+     margin-right: 2em;
+}
+    .abt1.vip-seller-container .vip-seller{
+     .usersince {
+         margin-left: 2em;
+    }
+    
+    span.username{
+      text-align: center;
+      margin-left:0;
+      margin-right:0;         
+     }
+     
+     }
+     
+ }    
+     
+     
+
+  
+  @include from-breakpoint($small-break) {
+  // ***************************************
+  // BOLT-16631 : User Reputation Container
+  // ***************************************
+  .abt1.vip-seller-container .vip-seller div.user-reputation .email-verif-status span.label {
+        display: block;
+  }
+
+  // Fixes BOLT-17345
+  @media (min-width: 550px) and (max-width: 850px) {
+    .abt1.vip-seller-container .vip-seller div.user-reputation {
+
+      .usersince,
+      .email-verif-status,
+      .num-total-ads-container span.num-label,
+      .num-active-ads-container span.num-label {
+        font-size: 10px;
+      }
+
+      .email-verif-status span.label {
+        width: 40px;
+      }
+
+      .num-total-ads-container,
+      .num-active-ads-container {
+        padding: 0 1px;
+        width: 20%;
+      }
+
+    }
+  }
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  // ***************************************
+  // BOLT-16631 : User Reputation Container
+  // ***************************************
+  .abt1.vip-seller-container .vip-seller div.user-reputation .email-verif-status {
+        padding-left: 1%;
+        width: 90px;
+        white-space: normal;
+  }
+  
+  .abt1.vip-seller-container .vip-seller span.username {
+    left: 17%;
+  }
+  
+}  
+

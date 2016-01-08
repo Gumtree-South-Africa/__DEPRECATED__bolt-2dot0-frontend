@@ -1,0 +1,95 @@
+.skyscraper{
+	float: left;
+	display: none;
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+
+	.skyscraper{
+		margin-top: $large-margin;
+		display: block;
+
+		.ad{
+			//display: block;
+			width: 160px;
+			height: 600px;
+			margin: 0 auto;
+			//background: url(../images/temporary-skyscraper-ad.jpg) -4px -2px no-repeat;
+		}
+	}
+
+}
+
+
+@include in-breakpoint($medium-break){
+	.skyscraper{
+		@include span-columns(2, $medium-break);
+	}
+}
+
+
+@include from-breakpoint($large-break){
+	.skyscraper{
+		@include span-columns(3, $large-break);
+	}
+}
+
+
+.topad{
+    display:none;
+ } 
+ 
+@include in-breakpoint($small-break){
+.topad{
+		    display: block;
+		    width: 100%;
+		    margin-bottom:15px;
+		    
+        }
+
+		.topadbanner{
+			margin:0 auto;
+			width:728px;
+			height:90px;
+		}
+}
+  
+@include in-breakpoint($medium-break){
+	
+       .topad{
+		    display: block;
+		    width: 76.6479%;
+		    float:right;
+		    margin-bottom:15px;
+		    background:#eee;  
+
+        }
+
+		.topadbanner{
+			margin:0 auto;
+			width:728px;
+			height:90px;
+		}
+		
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+
+	    .topad{
+		    display: block;
+		    width: 74.6479%;
+		    float:right;
+		    margin-bottom:15px;
+		    background:#eee;  
+
+        }
+
+		.topadbanner{
+			margin:0 auto;
+			width:728px;
+			height:90px;
+		}
+		
+}
+
+

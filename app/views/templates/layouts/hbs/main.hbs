@@ -3,7 +3,8 @@
     <head>
         <meta charset="utf-8" />
         <title>{{site}}</title>   
-        <link rel="stylesheet" href="css/{{site}}/{{locale}}/{{pagename}}.css"/> 
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/> 
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/main.css"/> 
     </head>
     <body>
 
@@ -37,9 +38,8 @@
 
                    {{#block "comscore"}}{{/block}}
                      
-                    <div class="footer" style="border: 1px solid blue; display: block; overflow: hidden;">
+                    <div class="footer">
                         <footer>
-                        FOOTER SECTION CONTENTS
                         {{> footer}}
                         {{#block "footerp"}}
                             <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>

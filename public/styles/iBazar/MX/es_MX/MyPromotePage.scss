@@ -1,0 +1,30 @@
+$locale:"es_MX";
+@import "../../theme";
+@import "../../../partials/pages/MyPromotePage/pageMain";
+
+// BOLT-12147: asking for yellow up in this #subheader here
+h1.subheader {
+	background-color: $search-bg-color;
+	@include background-image(linear-gradient(adjust-lightness($search-bg-color, 10%), $search-bg-color 50%));
+}
+@include to-breakpoint($small-break) {
+	#subheader {
+		background-color: $search-bg-color;
+		@include background-image(linear-gradient(adjust-lightness($search-bg-color, 10%), $search-bg-color 50%));
+	}
+}
+.heading-bar {
+	height: 14em;
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+	.feature-options {
+		&.bumpUpXY,
+		&.hpGallery {
+			width: 17%;
+		}
+		&.topAd {
+			width: 23%;
+		}
+	}
+}

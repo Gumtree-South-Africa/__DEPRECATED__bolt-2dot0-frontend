@@ -1,0 +1,48 @@
+$locale:"en_SG";
+@import "../../theme";
+@import "../../../partials/common/featurelegend";
+@import "../../../partials/pages/MyAdsPage/layout";
+@import "../../../partials/pages/MyAdsPage/newSellerBadges";
+@import "../../../partials/pages/MyAdsPage/thumbnail";
+@import "../../../partials/pages/MyAdsPage/options";
+@import "../../../partials/pages/MyAdsPage/subMenuMyAds";
+@import "../../../partials/common/pagination";
+
+@include layout_default;
+@include thumbnail_default;
+@include options_default;
+@include featurelegend_default;
+@include featurelegend_popup_images;
+
+@include from-breakpoint($small-break){
+  @include layout_medium;
+  @include thumbnail_medium;
+  @include options_medium;
+  @include featurelegend_medium;
+}
+
+@include from-breakpoint($medium-break){
+  @include layout_large;
+  @include thumbnail_large;
+  @include options_large;
+  @include featurelegend_large;
+}
+
+@include in-breakpoint($lt-ie9-class-name){
+	@include layout_medium;
+	@include layout_large;
+	@include thumbnail_medium;
+	@include thumbnail_large;
+	@include options_medium;
+	@include options_large;
+	@include featurelegend_medium;
+	@include featurelegend_large;
+	@include feature-legend-ltie9;
+}
+
+// Fixes BOLT-18480
+.feature.category-gallery {
+  .asset-container {
+    display: none;
+  }
+}

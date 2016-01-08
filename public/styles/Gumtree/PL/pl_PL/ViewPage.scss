@@ -1,0 +1,70 @@
+@import
+    "../theme",
+    "../../../partials/common/popup",
+    "../../../partials/pages/ViewPage/gallery",
+    "../../../partials/pages/ViewPage/sliderize",
+    "../../../partials/common/moreSearches",
+    "../../../partials/common/adcompletenessProgress";
+
+@import
+    "../../../partials/pages/ViewPage/pageMain",
+    "../../../partials/pages/ViewPage/shareVisitBar",
+    "../../partials/pages/ViewPage/replyFormExtention",
+    "../../partials/pages/ViewPage/shareVisitBar",
+    "../../partials/pages/ViewPage/postItYourself",
+    "../../partials/pages/ViewPage/sendEmail",
+    "../../partials/pages/ViewPage/singlePageNotifications",
+    "../../partials/pages/ViewPage/attributes",
+    "../../partials/pages/ViewPage/sellerReputation",
+    "../../partials/common/adSense",
+    "../../partials/pages/ViewPage/pageMain";
+
+@include abt1-seller-reputation;
+
+.abt1.vip-seller-container span.username {
+  float: none;
+}
+
+@include from-breakpoint($small-break) {
+  // ***************************************
+  // BOLT-16631 : User Reputation Container
+  // ***************************************
+  .abt1.vip-seller-container .vip-seller div.user-reputation .email-verif-status span.label {
+        display: block;
+  }
+
+  // Fixes BOLT-17345
+  @media (min-width: 550px) and (max-width: 850px) {
+    .abt1.vip-seller-container .vip-seller div.user-reputation {
+
+      .usersince,
+      .email-verif-status,
+      .num-total-ads-container span.num-label,
+      .num-active-ads-container span.num-label {
+        font-size: 10px;
+      }
+
+      .email-verif-status span.label {
+        width: 40px;
+      }
+
+      .num-total-ads-container,
+      .num-active-ads-container {
+        padding: 0 1px;
+        width: 20%;
+      }
+
+    }
+  }
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  // ***************************************
+  // BOLT-16631 : User Reputation Container
+  // ***************************************
+  .abt1.vip-seller-container .vip-seller div.user-reputation .email-verif-status {
+        padding-left: 1%;
+        width: 90px;
+        white-space: normal;
+  }
+}

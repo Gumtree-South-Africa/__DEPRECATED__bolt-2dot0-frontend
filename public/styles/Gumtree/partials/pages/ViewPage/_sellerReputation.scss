@@ -1,0 +1,392 @@
+// BOLT-16631 User Reputation improvements for VIP.
+
+@mixin abt1-seller-reputation {
+   // Enhancements for this version
+
+  // Flag icon (warning sign)
+  .icon-report-flag {
+    width: 0.8em;
+    height: 0.8em;
+    display: inline-block;
+  }
+
+  // Social media icons
+  .sm-icons {
+    width: 22px;
+    height: 22px;
+  }
+
+  // Number of visits
+  .sharevisitInfo {
+    height: 22px;
+    line-height: 22px;
+  }
+
+   // VIP Seller Container
+   // BOLT-17246
+  .abt1.vip-seller-container {
+    padding: 0;
+    border: none;
+    background: transparent;
+
+    .vip-seller {
+      padding-bottom: 0.5em;
+      border-bottom: none;
+      background: none;
+      margin-bottom: 0.8em;
+    }
+
+    span.username {
+      width: 80%;
+      float: right;
+      text-align: left;
+      span.more-ads {
+        font-size: 0.75em;
+      }
+      span.more-ads:before {
+        content: ' ';
+        display: block;
+      }
+    }
+
+    // Seller Reputation container
+    .vip-seller div.user-reputation {
+      margin-top: -0.4em;
+      width: 80%;
+      float: right;
+      font-size: 12px;
+      color: #878787;
+      height: 35px;
+
+      > span, > div {
+        height: 35px;
+        vertical-align: top;
+      }
+
+      // User since date
+      .usersince {
+        font-size: 11px;
+        height: 25px;
+        line-height: 25px;
+        width: auto;
+        text-align: left;
+        border-right: none;
+        display: block;
+        color: #878787;
+        span.usersince-date {
+          display: inline;
+          font-weight: bold;
+        }
+      }
+
+      .email-verif-status {
+        vertical-align: middle;
+        width: 150px;
+        display: table-cell;
+        font-size: 11px;
+        text-align: left; // center;
+        padding-left: 2px;
+        span.label {
+          white-space: nowrap;
+          vertical-align: top;
+        }
+      }
+
+      // Icon email verified or non-verified
+      .icon-email-verified,
+      .icon-email-non-verified {
+        display: inline-block; // table-cell;
+        background-position: top center;
+        width: 30px; // 35px;
+        height: 15px; // 18px;
+      }
+
+      // Total number of Seller ads
+      .num-total-ads-container {
+        width: 30%;
+        padding: 0 5px;
+        display: table-cell;
+        text-align: center;
+        font-weight: bold;
+
+        span {
+          font-size: 14px;
+          color: orange;
+        }
+      }
+
+      // Number of active Seller ads
+      .num-active-ads-container {
+        width: 30%;
+        padding: 0 5px;
+        display: table-cell;
+        border-left: 1px solid #C0C0C0;
+        text-align: center;
+        font-weight: bold;
+
+        span {
+          font-size: 14px;
+          color: #85C980;
+          a, a:visited {
+            color: inherit;
+          }
+        }
+      }
+
+      // Label number of ads.
+      .num-total-ads-container,  .num-active-ads-container  {
+        span.num-label {
+          display: block;
+          margin-top: -0.3em;
+          color: #878787; //  #C0C0C0;
+          font-weight: normal;
+          font-size: 11px;
+        }
+      }
+
+    }
+
+    // User Interactions (i.e., the Form to send the seller a message)
+    .vip-usr-interactions {
+      @include border-radius(5px);
+      border: 1px solid #DCDCDC;
+      margin: .4em 0;
+      padding: 0 1em;
+      background-color: #F5F5D1;
+
+      a.button.telephone {
+        border-bottom: 1px solid #DCDCDC;
+        padding-bottom: 0.6em;
+        margin-bottom: 0.6em;
+      }
+    }
+
+    .vip-contact .title {
+        padding-bottom: 0.8em;
+    }
+
+    .vip-contact form, .vip-flagad form {
+      background-color: #F5F5D1;
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0.2em;
+
+      textarea {
+        border: 1px solid #CACACA !important;
+        background-color: #FFFFFF;
+        border-radius: 0.25em;
+      }
+
+      > label {
+         padding-bottom: 0.3em;
+         display: block;
+      }
+
+      input[type="text"], input[type="email"], textarea {
+        border: 1px solid #C0C0C0;
+        background-color: #FFFFFF;
+        border-radius: 0.25em;
+      }
+
+      .icon-envelope-new, .icon-phone-reply {
+        background-repeat: no-repeat;
+        background-size: 1.25em;
+        background-position: 0.5em center;
+        padding-left: 2em;
+      }
+
+    }
+  }
+
+  @include in-breakpoint($no-break) {
+    // ***************************************
+    // BOLT-16631 : User Reputation Container
+    // ***************************************
+    .abt1.vip-seller-container {
+      span.username {
+        width: 75%;
+      }
+
+      // Seller Reputation container
+      .vip-seller div.user-reputation {
+        width: 75%;
+        height: 60px;
+      }
+    }
+
+    .vip-usr-interactions:not(.state-changed) {
+        display: none;
+    }
+
+    // Ughhh
+    @media (min-width: 300px) {
+      .abt1.vip-seller-container {
+        span.username {
+          width: 80%;
+        }
+
+        // Seller Reputation container
+        .vip-seller div.user-reputation {
+          width: 80%;
+        }
+      }
+    }
+    // **************
+    // End BOLT-16631
+    // **************
+  }
+
+  @include from-breakpoint($small-break) {
+    // ***************************************
+    // BOLT-16631 : User Reputation Container
+    // ***************************************
+    .abt1.vip-seller-container {
+       a.title {
+         background: inherit;
+       }
+
+      .vip-seller {
+        padding-bottom: 1.5em;
+
+        .usersince {
+          font-size: 9px;
+        }
+      }
+      span.username {
+        width: 70%;
+      }
+
+      // Seller Reputation container
+      .vip-seller div.user-reputation {
+        width: 70%;
+
+        &.non-verified {
+          font-size: 10px;
+        }
+
+        .email-verif-status span.label {
+          word-wrap: normal;
+          width: 50px;
+
+          white-space: normal;
+          line-height: 1;
+          display: inline-block; // table-cell; // block;
+        }
+      }
+        // Ughhh
+        @media (min-width: 550px) and (max-width: 850px) {
+          .vip-seller div.user-reputation.non-verified  {
+            margin-bottom: 1.5em;
+          }
+
+          .vip-seller div.user-reputation.non-verified .usersince,
+          .vip-seller div.user-reputation.non-verified .email-verif-status,
+          .vip-seller div.user-reputation.non-verified .num-total-ads-container span,
+          .vip-seller div.user-reputation.non-verified .num-active-ads-container span {
+            font-size: 10px;
+          }
+        }
+    }
+    // **************
+    // End BOLT-16631
+    // **************
+  }
+
+  @include from-breakpoint($medium-break) {
+    // ***************************************
+    // BOLT-16631 : User Reputation Container
+    // ***************************************
+    .abt1.vip-seller-container {
+      .vip-seller {
+        padding-bottom :  1.5em;
+
+        .usersince {
+          font-size: 11px;
+        }
+      }
+
+      span.username {
+        width: 80%;
+      }
+
+      // Seller Reputation container
+      .vip-seller div.user-reputation {
+        width: 80%;
+
+        .email-verif-status {
+          width: 150px;
+          white-space: normal;
+          // white-space: nowrap;
+        }
+
+        // Total number of Seller ads
+        .num-total-ads-container {
+          width: 30%;
+        }
+
+        // Number of active Seller ads
+        .num-active-ads-container {
+          width: 20%;
+        }
+      }
+    }
+    // **************
+    // End BOLT-16631
+    // **************
+  }
+
+
+  @include from-breakpoint($large-break, $lt-ie9-class-name){
+    // ***************************************
+    // BOLT-16631 : User Reputation Container
+    // ***************************************
+    .abt1.vip-seller-container {
+      .vip-seller {
+        padding-bottom : 0;
+      }
+
+      span.username {
+        width: 85%;
+      }
+
+      // Seller Reputation container
+      .vip-seller div.user-reputation {
+        margin-top: 0;
+        width: 85%;
+        float: right;
+
+        // User since date
+        .usersince {
+          height: 35px;
+          line-height: 15px;
+          width: 30%;
+          text-align: left;
+          display: table-cell;
+          border-right: 1px solid #C0C0C0;
+          span.usersince-date {
+            display: block;
+          }
+        }
+
+        .email-verif-status {
+          padding-left: 5%;
+          width: 70px;
+          white-space: nowrap;
+        }
+
+        // Total number of Seller ads
+        .num-total-ads-container {
+          width: 20%;
+        }
+
+        // Number of active Seller ads
+        .num-active-ads-container {
+          width: 10%;
+        }
+      }
+    }
+    // **************
+    // End BOLT-16631
+    // **************
+  }
+}

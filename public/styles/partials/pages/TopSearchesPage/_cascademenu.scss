@@ -1,0 +1,122 @@
+// Basic (Mobile-first) breakpoint
+@mixin cascademenu_default {
+  .hide {
+    display: none;
+  }
+
+  // Container for Show More... and Show Less...
+  .expand-collapse {
+    display: block;
+    margin-left: 1em;
+    span {
+      text-decoration: underline;
+    }
+    .more {
+      display : block
+    }
+    .less {
+      display: none;
+    }
+  }
+
+  ul.selMenu {
+    li {
+      display: none;
+      padding-left: 1em;
+      cursor: pointer;
+      a:hover {
+        background-color: $color-black-05;
+        span {
+          color: $link-hover-color;
+          text-decoration: underline;
+          @include post-page-nav-item-hover;
+        }
+      }
+    }
+
+    // For mobile, show only the first 10 items.
+    @for $i from 1 through 10 {
+      li:nth-child(#{$i}) {
+        display: block;
+      }
+    }
+  }
+
+  li {
+    color: $post-page-nav-item-color;
+  }
+}
+
+// Non-mobile breakpoint (small tablet size).
+@mixin cascademenu_mediumsize {
+  h1.header {
+    display: block !important;
+  }
+
+  .lt-ie10  ul.selMenu {
+    overflow: hidden;
+    li {
+      width: 50%;
+      float: left;
+    }
+  }
+
+  .expand-collapse {
+    display: none;
+  }
+
+  ul.selMenu {
+    @include columns(2);
+    line-height: 2em;
+    li {
+      // Show all the items for non-mobile breakpoints.
+      display: block !important;
+      -webkit-break-inside: avoid-column;
+      -webkit-column-break-inside: avoid;
+      -moz-break-inside: avoid-column;
+      -moz-column-break-inside: avoid;
+      break-inside: avoid-column;
+      column-break-inside: avoid;
+    }
+  }
+}
+
+// Big tablets/desktop size.
+@mixin cascademenu_largesize {
+  .lt-ie10 ul.selMenu li {
+    width: 33%;
+    float: left;
+    word-break:break-all;
+  }
+  ul.selMenu {
+    @include columns(3);
+  }
+}
+
+// <IE9 specific...
+@mixin cascademenu_lt_ie9 {
+  li.result, .result-link {
+    display:block;
+    overflow:auto;
+  }
+
+  // Result container
+  li.result {
+    display:block;
+    overflow:auto;
+  }
+
+  // Each result
+  ul.selMenu li {
+    float: left;
+    width: 33%;
+    display: inline-block;
+
+    padding-left: 1em;
+    cursor: pointer;
+  }
+
+  .expand-collapse {
+    display: none;
+  }
+}

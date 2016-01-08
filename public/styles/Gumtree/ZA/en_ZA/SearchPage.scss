@@ -1,0 +1,66 @@
+@import
+"../../theme",
+"../../../partials/pages/SearchPage/filters",
+"../../../partials/pages/SearchPage/controls",
+"../../../partials/pages/SearchPage/results",
+"../../../partials/common/categoryListBase",
+"../../../partials/pages/SearchPage/searchSummary",
+"../../../partials/pages/SearchPage/noResult",
+"../../partials/common/adSense",
+"../../../partials/pages/SearchPage/skyscraper",
+"../../../partials/pages/SearchPage/brandingList",
+"../../../partials/common/replyForm",
+"../../../partials/common/moreSearches";
+
+
+@import "../../../partials/pages/SearchPage/pageMain",
+"../../partials/pages/SearchPage/controls",
+"../../partials/pages/SearchPage/emailAlert",
+"../../partials/pages/SearchPage/results",
+"../../partials/pages/SearchPage/searchPage";
+
+
+@import "../../../partials/pages/Homepage/carousel";
+
+// Form changes for fixing BOLT-17384
+.vip-contact form, .vip-flagad form {
+  border-top: 0;
+  padding-top: 0;
+  margin-top: 0.2em;
+
+  textarea {
+    border: 1px solid #CACACA !important;
+    background-color: #FFFFFF;
+    border-radius: 0.25em;
+  }
+
+  > label {
+    padding-bottom: 0.3em;
+    display: block;
+  }
+
+  input[type="text"], input[type="email"], textarea {
+    border: 1px solid #C0C0C0;
+    background-color: #FFFFFF;
+    border-radius: 0.25em;
+  }
+
+  input[type="email"].icon-envelope-new, input[type="text"].icon-phone-reply {
+    background-repeat: no-repeat;
+    background-size: 1.25em;
+    background-position: 0.5em center;
+    padding-left: 2em;
+  }
+
+}
+
+/* Large */
+@include from-breakpoint($small-break) {
+  #gallery {
+     height: 220px;
+  }
+}
+
+.seeAllContainer {
+	display:none !important;
+}

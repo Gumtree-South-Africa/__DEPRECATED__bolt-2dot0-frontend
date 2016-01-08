@@ -1,0 +1,425 @@
+//***************************//
+
+
+	
+.abt1.vip-seller-container{
+	  background: #468100;
+	  width:100%;
+	  padding-bottom :8px;
+	  position :relative;
+	}
+
+   
+ .vip-seller{
+	.user-avatar {
+	vertical-align: text-top;
+	color: gray;
+	float:left;
+	width: 92px;
+	height: 100px;
+	margin-right: 5px;
+	margin-bottom: 0;
+	
+}
+
+.icon-user{
+	width: 92px;
+	height: 112px;
+}
+
+ .user-avatar {
+      background: none;
+      height: 130px;
+      width: 130px;
+      position:absolute;
+      margin-left:2.4em;
+      @include border-radius(100%);
+      border: 1px solid #ddd;
+ }
+  }
+  
+  
+ .seller{
+	  background-size:100% 100%;
+	  margin: 0 auto;
+	  width: 100%;
+	  height: 180px;
+	  overflow: hidden;
+	  position: relative;
+	  border-bottom: 1px solid #eeeeee;
+  }  
+  
+  
+  .icon-soi-email-verified,.icon-soi-email-non-verified {
+    display: inline-block;
+    background-position: top center;
+    width: 30px;
+    height: 15px;
+    }
+    
+.abt1.vip-seller-container .vip-seller
+ div.user-reputation .usersince {
+  width:20%;
+ }
+ 
+ 
+.breadcrumbs{
+  	display:none;
+}  
+
+.abt1.vip-seller-container .vip-seller div.user-reputation {
+    margin-top:3px;
+   .email-verif-status span.label-non-verified {
+    word-wrap: normal;
+    width: 50px;
+    white-space: normal;
+    line-height: 1;
+    vertical-align: top;
+  } 
+   
+}
+
+
+.abt1.vip-seller-container span.username{
+  width: 75%;
+  position: absolute;
+  font-size: 23px;
+  color:$color-white ;
+}
+
+.vip-seller .icon-user{
+ position: absolute;
+  font-size: 23px;
+  color:white  ;
+}
+
+
+.tbanner-container {
+  @include full-page-width;
+  padding: 0;
+  }
+  
+.abt1.vip-seller-container .vip-seller 
+div.user-reputation.non-verified .usersince .usersince-date {
+display:block;
+
+}
+
+
+ .vip-seller 
+.usersince{
+ font-size:14px; 
+ padding: 0; 
+}
+
+.abt1.vip-seller-container .vip-seller div.user-reputation {
+
+      .usersince,
+      .email-verif-status,
+      .num-total-ads-container span.num-label,
+      .num-active-ads-container span.num-label {
+        font-size:14px;
+        color: $color-white;
+      }
+  }
+
+ 
+@include in-breakpoint($no-break){
+
+.abt1.vip-seller-container{
+    margin: 0 auto;
+    width: 100%;
+}
+		
+.abt1.vip-seller-container .vip-seller {
+		
+	 margin: 0 auto;
+     padding: 0 0.8em;
+     width: 17em;
+    	
+	 .user-avatar{
+	  margin-top: -13.5em;
+      float:none;
+	  }
+		
+	 span.username{ 
+	  top: 8.5em;
+      font-size: large;
+      float: none; 
+      width: 11em;
+      text-align: center;
+      margin-left: auto;
+      margin-right: auto;
+
+	 }
+		 
+	.icon-user {
+     top: 1.9em;
+     margin-left: 2.4em;
+	  }
+		  
+	  div.user-reputation {
+	  height: 85px;
+	  width: 100%;
+	  }
+  }
+		
+
+.seller{
+   height:206px;
+}	
+.abt1.vip-seller-container .vip-seller div.user-reputation{
+float:none;
+ 
+  .email-verif-status span.label-non-verified { 
+    display: inline-block;
+    white-space: normal;  
+    line-height: 1.2; 
+  }
+     
+
+   .email-verif-status span.label {
+    white-space: normal;  
+    display: inline-block;
+    width: 50px;
+    }
+    
+	.usersince span.usersince-date {
+	    display: block;
+	   } 
+  
+	.email-verif-status{
+	  width: 100px;
+	  display: inline-block;
+	  height:48px;
+	  padding-left: 4px;
+	  margin-left: -4px;
+	  border-left: 0px solid #C0C0C0;
+	  text-align:left;
+	 }
+	 
+    .usersince{
+	  width:100px;
+	  height:48px;
+	  display: inline-block;
+	  border-right: 1px solid #C0C0C0;
+	  text-align: center;
+	 }
+ 
+	.num-active-ads-container {
+	   border-top: 1px solid #C0C0C0;
+	   text-align: center;
+	   padding :0 ;
+	   width: 100px;
+	   height: 48px;
+	   border-left: 0px solid #C0C0C0;
+	 } 
+	
+	 .num-total-ads-container {
+		  border-top: 1px solid #C0C0C0;
+		  border-right: 1px solid #C0C0C0;
+		  width: 100px;
+		  height: 48px;
+		  padding:0;
+	} 
+
+	
+}	
+	
+ 
+}  // end no-break point
+
+
+
+
+@include in-breakpoint($small-break){
+
+.abt1.vip-seller-container .vip-seller 
+div.user-reputation.non-verified .usersince,
+.abt1.vip-seller-container .vip-seller div.user-reputation.non-verified .email-verif-status{
+   font-size :14px;
+  } 
+		
+.abt1.vip-seller-container .vip-seller 
+.user-reputation.non-verified  .usersince,
+.abt1.vip-seller-container .vip-seller 
+div.user-reputation .usersince{
+		display: table-cell;
+		border-right: 1px solid #C0C0C0;
+		width: 18%;
+	    margin-top: 0.5em;
+		}
+		
+		.abt1.vip-seller-container .vip-seller div.user-reputation {
+			float: left;
+	        width: 70%;
+	        margin-left: 7em;
+	        
+	        .num-active-ads-container,.num-total-ads-container {
+	        width: 20%;
+           }
+        }
+		
+		.abt1.vip-seller-container .vip-seller {
+         padding-bottom: 0em;
+        }
+	
+		.abt1.vip-seller-container .vip-seller div.user-reputation
+		 .usersince span.usersince-date {
+        display: block;
+        }
+		
+		.vip-seller .user-avatar {
+		left: 1em;
+        top: 3em;
+        }
+		
+		
+		.abt1.vip-seller-container span.username{
+		 top: 5.7em;
+         left: 7.8em;
+		}
+		
+		.icon-user {
+		top: 5em;
+		left: 3em;
+		
+		}
+		.vip-seller .icon-user {
+		top: 3em;
+       left: 3em;
+		}
+
+}
+
+
+@include in-breakpoint($large-break,$lt-ie9-class-name){
+	
+.abt1.vip-seller-container .vip-seller{
+	 span.username{ 
+	    top: 52%;
+        left: 16%;
+	  }
+	
+	 .icon-user{
+		left: 5%;
+        top: 44%;
+		height:112px;
+	  }
+	
+   div.user-reputation {
+	   margin-left: 17em;
+	   width: 41%;
+       float: left;
+	 }
+  }
+  
+  .vip-seller .user-avatar {
+	   left: 1em;
+       top: 6em;
+       margin-top:0;
+ }	
+ 
+ .abt1.vip-seller-container .vip-seller 
+   div.user-reputation{ 
+   .usersince{
+    height: 35px;
+    text-align: left;
+    display: table-cell;
+    border-right: 1px solid #C0C0C0;
+	    span.usersince-date {
+	    display: block;
+	   }
+     }
+   .num-active-ads-container {
+      padding: 1px 20px;
+  }
+  }	
+}
+
+
+@include in-breakpoint($medium-break){
+
+.abt1.vip-seller-container .vip-seller{
+        padding: 0;
+		.user-avatar{
+	     left: 2em;
+         top: 3em; 
+    	}
+	
+		.username{
+		  top: 4.6em;
+          left: 8.7em
+        }
+		}
+			
+		.vip-seller .icon-user{
+		 top: 2.5em;
+         left: 4em;
+		}
+	
+		.abt1.vip-seller-container .vip-seller 
+		 div.user-reputation .usersince {
+		  display: table-cell;
+		  border-right: 1px solid #C0C0C0;
+	      width:17%;
+		}
+		
+		
+		.abt1.vip-seller-container .vip-seller div.user-reputation{ 
+			.usersince span.usersince-date  {
+			  display: block;
+			 }
+		 
+			 .num-active-ads-container {
+	             padding: 1px 20px;
+	             width:18%;
+	          }
+	          
+	         .email-verif-status {
+	              padding-left: 18px;	         
+	         }
+          }
+
+	
+	 .abt1.vip-seller-container 
+	 .vip-seller div.user-reputation {
+		 width: 55%;
+	     float: left;
+	     margin-left: 10em;
+	 
+	 }
+	 
+	 .vip-seller .user-avatar {
+	   left: 1em;
+       top: 14em;
+       margin-top:0;
+ }	
+ 
+ 
+}
+
+//***************************//
+@include from-breakpoint($small-break){
+  
+	.abt1.vip-seller-container 
+	.vip-seller div.user-reputation {
+		display: table;
+		
+   .email-verif-status {
+      padding-left: 18px;
+     }	
+     
+   .email-verif-status span.label-non-verified {
+    display: inline-block;
+  }
+     
+     .usersince {
+         line-height: 18px;
+      }
+	
+	.num-total-ads-container{
+	  width: 20%;
+	}
+  }	
+}

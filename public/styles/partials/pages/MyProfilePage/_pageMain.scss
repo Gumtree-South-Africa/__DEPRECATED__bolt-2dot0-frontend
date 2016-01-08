@@ -1,0 +1,440 @@
+@import "../../../partials/common/form";
+@import "../../../partials/main/autocomplete";
+
+.ui-autocomplete {
+    max-height: 100px;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+ }
+
+/* IE 6 doesn't support max-height
+* we use height instead, but this forces the menu to always be this tall
+*/
+* html .ui-autocomplete {
+    height: 200px;
+}
+
+.lbl {
+	padding:1em;
+}
+
+.linkVisited {
+	color:#333;
+	font-weight:bold;
+}
+
+#profile-cnt {
+    font-size:85%;
+
+    input {
+        width: 97%;
+        
+        &[type='checkbox'] {
+            @include checkbox-input;
+        }
+        &[type='radio'] {
+            @include radio-input;
+            right:-0.5em;
+        }
+        
+        &[type='checkbox'],
+        &[type='radio'] {
+            top: 0.35em;
+            &:checked {
+                top: 0.25em;
+            }
+        }
+        
+        /* visually adjust the calendar icon    */
+        /* on the date picker polyfill          */
+        & + span.date-input-buttons {
+            margin-top: 2px;
+        }
+    }
+    
+    /* removing box and text shadows inherited from 'form button' */
+    .date-popover button {
+        -moz-box-shadow:  none;
+        -webkit-box-shadow:  none;
+        box-shadow: none;
+        text-shadow: none;
+    }
+	    
+    
+    .charsLimit {
+        color:red;
+    }
+    .icon-icon-profile-img-place-holder {
+        width:6em;
+        height:6em
+    }
+    #profileImage {
+        width:100%;
+        height:100%;
+    }
+   
+    #showPicture {
+        border:1px solid #cccccc;
+        padding:1em;
+    }
+   
+    #birth {
+        min-height:2em;
+    }
+    #aboutYouCounter,
+    #interestsCounter,
+    #locationSuggest {
+        margin-left:0.7em;
+    }
+    #aboutYouCounter,
+    #interestsCounter {
+        font-size:0.85em;
+    }
+    #isViewAdCounterOptedIn,
+    #isMarketingOptedIn,
+    #isOptedOutOfEmailUpsell {
+        @include checkbox-input;
+        width: 1.15em;
+        height: 1.15em;
+        top:0em;
+    }
+	
+   
+    input[type="date"],
+    textarea {
+		@include text-input;
+		font-size: 1em;
+		padding: $small-padding $medium-padding;
+		display: block;
+		margin-top: $small-margin;
+	}
+	
+	input[name='birthDay'], input[name='email'], input[name='webSiteUrl'],#dsp-brth,textarea {
+        margin-left:0.7em;
+        width: 97%;
+    }
+   
+	#gender-chbx{
+        margin-left: 0.6em;
+	}
+	input[id='username'] {
+        margin-left: 0.7em;
+	}
+	
+   
+    #phone {
+        overflow:hidden;
+   		label {
+            display:inline;
+   		}
+   		
+   		ul {
+            overflow:hidden;
+   		}
+   		ul li:nth-child(1) {
+            float:left;
+            width:48%;
+   		}
+   		ul li:nth-child(2) {
+            float:right;
+            width:48%;
+        }
+    }
+   
+    select {
+        @include form_default;
+        padding: 0 0.4em;
+        height: 25px;
+        margin-left:0.7em;
+    }
+	
+    #loading {
+        display:none
+    }
+            
+    .btn {
+        display: block; // for transform
+        margin:0em 0em 1em auto;
+        text-align:center;
+        outline: 0; 
+        color: white;
+        white-space: nowrap;
+        font-weight:900;
+        width:10em;
+        height:3em;
+        padding: 0.4em 0.1em !important;
+        line-height: 1.4;
+        border-radius: 10px;
+        box-shadow: 5px 5px 0 0 rgba(black, 0.15);
+        transition: 0.1s;
+        font-size:small;
+        
+        &:not(.disabled):hover,
+        &:not(.disabled):focus {
+            color: #fff;
+            box-shadow: 5px 5px 0 0 rgba(black, 0.1);
+        }
+        &:not(.disabled):active {
+            transform: translate(1px, 4px);
+            box-shadow: 0 0 0 0 rgba(black, 0.5);
+        }
+        &.disabled {
+            opacity: 0.5;
+            cursor: auto;
+            &:hover, &:focus {
+                color: white;
+            }
+        }
+    }
+            
+    .fileUpload {
+        position: relative;
+        overflow: hidden;        
+    }
+    
+    
+    /* Target all Firefox */ 
+	@-moz-document url-prefix() { .fileUpload { overflow: -moz-hidden-unscrollable; } } 
+	
+    .fileUpload input.upload {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+
+
+    #profile-img-cnt {
+        overflow:hidden;
+    }
+    #profile-img-cnt li {
+        float:left;
+        padding-left: 1em;
+    }
+
+
+    /*#profile-img-cnt li:first-child + li {
+       // margin-left:3em;
+    }*/
+   		
+}
+
+
+@include from-breakpoint($large-break){
+    #profile-cnt {
+        font-size:100%;
+
+        input[type='date'] {
+            width:50%;
+        }
+
+        input[name='birthDay'] {
+            width:50%;
+        }
+
+        ul[id='gender'] li:nth-child(3) {
+            position: relative;
+            left: 34%;
+            top: -2em
+        }
+
+        #dsp-brth {
+            position: relative;
+            left: 55%;
+            top: -2em;
+            margin: 0 0 -1em 0;
+        }
+
+        #gender, #phone, #webSiteUrl {
+            margin-top:1em;
+        }
+
+        #dbrth {
+            margin-top:-1em;
+        }
+
+        #email {
+            margin-top:2em;
+        }
+    }
+}
+
+.search {
+    display: none;
+}
+
+.detailHeader, .changePassword, .section-payment-method {
+    margin-top: 2em;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: #74A35E;
+}
+
+form label {
+    font-weight: bold;
+    font-size: 1.0625em;
+}
+
+#confirmPassword {
+    margin-bottom: 0.3em;
+}
+#email {
+    margin-bottom:1.7em;
+}
+
+.notification {
+  font-size: $font-size-micro;
+    color: graytext;
+}
+
+#save-button {
+    margin-top: 3em;
+}
+
+.fb-media-block, .fb-user-details {
+    @include clearfix;
+}
+
+.fb-user-details {
+    font-weight: bold;
+}
+
+.fb-username {
+    margin-bottom: -0.5em;
+}
+
+.fb-avatar {
+    float: left;
+    margin-right: 1em;
+}
+
+//
+// Tablets
+//
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+    form {
+        width: 52%;
+    }
+}
+
+@include from-breakpoint($lt-ie10-class-name) {
+    #profile-cnt {
+        #birth, textarea {
+            border:1px solid #cccccc !important;
+        }
+ 
+        #isViewAdCounterOptedIn, #isMarketingOptedIn,  #isOptedOutOfEmailUpsell {
+            width: 1.65em;
+            height: 1.65em;
+        }
+        
+        #gender-cnt {
+             ul li:first-child + li + li {
+                    left: 33%;
+            }       
+        }
+        
+         #gender-chbx {
+        	margin-left:2em;
+         }
+        
+    }
+}
+
+// ie 10+
+
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {  
+   /* IE10+ specific styles go here */  
+    #profile-cnt {
+    	#gender-chbx {
+        	margin-left:2em;
+     	} 
+     }
+}
+
+@include from-breakpoint($lt-ie9-class-name) {
+    #profile-cnt {
+        .icon-icon-profile-img-place-holder {
+            width:7.6em;
+            height:7.6em;
+        }
+        
+        #dbrth {
+            width:20em;
+            float:left
+        }
+        .input-buttons {
+           
+            position:relative;
+        }
+        
+        #dsp-brth {
+            width:20em;
+           float:right;
+           position:relative;
+           top:2.3em;
+        }
+        
+        #gender-cnt {
+             ul li:first-child + li + li {
+                    position: relative;
+                    left: 31%;
+                    top: -2.5em;
+            }       
+        }
+       
+        
+        #phone {
+            overflow:hidden;
+	        label {
+                display:inline;
+	        }
+	        
+	        ul {
+                overflow:hidden;
+                
+                li:first-child {
+                    float:left;
+                    width:48%;
+                    
+                    & + li {
+                        float:right;
+                        width:48%;
+                    }
+                }
+	        }
+        }
+    }
+}
+
+#profile {
+    cursor:pointer;
+}
+.hightLight {
+    color:#000;
+}
+#profile-span,
+#pwd-span {
+    text-decoration: underline;
+}
+#profile-span:hover,
+#pwd-span:hover {
+    color:#000;
+	text-decoration: underline;
+}
+
+hr {
+	border: 1px solid #e6e6e6;
+	width:100%;
+	margin: 2em 0em 1em 0em;
+}
+
+label[for='isViewAdCounterOptedIn'] {
+	margin-top:2em;
+}

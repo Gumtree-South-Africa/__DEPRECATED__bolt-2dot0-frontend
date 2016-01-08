@@ -1,0 +1,214 @@
+@import 
+	"../../theme",
+    "../partials/main/VNS_Styles",
+	"../../../partials/common/popup",
+	"../../../partials/pages/ViewPage/gallery",
+	"../../../partials/pages/SeoViewPage/gallery",
+	"../../../partials/pages/SearchPage/results",
+	"../../../partials/pages/SeoViewPage/results",
+	 "../../../partials/common/moreSearches",
+	"../../../partials/pages/ViewPage/sliderize";
+	
+@import "../../../partials/pages/ViewPage/pageMain",
+		"../../../partials/pages/SeoViewPage/pageMain",
+		"../../../partials/pages/ViewPage/shareVisitBar",
+        "../partials/pages/ViewPage/shareVisitBar",
+		"../partials/pages/ViewPage/postItYourself",
+		"../../../partials/pages/ViewPage/sendEmail",
+        "../partials/pages/ViewPage/sellerReputation",
+		"../partials/pages/ViewPage/sendEmail",
+		"../../partials/pages/ViewPage/socialMedia",
+        "../../../partials/common/adcompletenessProgress";
+
+$ad-title-color:#000 !default;
+
+@include gallery_default;
+@include sliderize_default;
+@include abt1-seller-reputation;
+
+@include from-breakpoint($small-break) {
+  @include gallery_medium;
+}
+
+
+@include in-breakpoint($small-break) {
+.vip-gallery.seoVip .counter-pic {
+    top: 16.8em;
+}
+}
+
+
+@include from-breakpoint($medium-break){
+  @include gallery_large;
+}
+
+@include in-breakpoint($medium-break){
+.vip-content-header .vip-gallery.seoVip .counter-pic {
+    top: 13.6em;
+}
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+  @include gallery_xlarge;
+  .vip-gallery.seoVip .counter-pic {
+    top: 13.9em;
+  }  
+   .vip-details.seoVip .description {
+    margin-top: 5em;
+} 
+}
+
+// Hide reply form "X" button used only for MX's SRP reply form. and it will be removed from here
+.vip-right-column .gl-messages .close_btn > span, .gl-messages-replyAds-srp .close_btn > span {
+  display: none;
+}
+@include in-breakpoint($no-break){
+	#share{
+		display: none;
+	}
+	.vip-gallery.seoVip .counter-pic {
+    top: 10.6em;
+    }
+}
+
+
+//
+// Ad details
+//
+
+// Hide reply form "X" button used only for MX's SRP reply form. and it will be removed from here
+.vip-right-column .gl-messages .close_btn > span, .gl-messages-replyAds-srp .close_btn > span.icon-gl-message-close {
+  display: none; // BOLT-13472
+}
+
+.vip-title {
+  font-size: $font-size-large;
+  .myAdTitle{
+  	color: #000000;
+  }
+}
+
+.attribute .name, .attribute .value,
+.vip-details .description, .security-tips, #replyMessage,
+.vip-contact form .canned-responses li {
+  font-size: $font-size-base-new;
+}
+//
+// Reply form container
+//
+.vip-seller-container {
+  background: none;
+  border: 1px solid $box-border-color;
+}
+
+.vip-seller {
+  border-color: #e6e6e6;
+}
+
+.vip-contact form, .vip-flagad form {
+  background-color: $color-white;
+}
+
+.vip-contact form button[type="submit"],
+.vip-flagad form button[type="submit"] {
+  background-color: $vivaBlue;
+  font-size: $font-size-base-new;
+}
+
+.vip-flagad button[type="button"] {
+  font-size: $font-size-base-new;
+}
+
+.vip-flagad .title .label,
+.vip-flagad label {
+  font-size: $font-size-base-new;
+}
+
+.vip-seller-forms-container .addAdTofav {
+  font-size: $font-size-base-new;
+}
+
+.vip-contact form .canned-responses label input[type=checkbox] {
+  border-width: 1px;
+  border-color: $vivaBlack40;
+  border-style: solid;
+}
+
+.vip-seller-container .vip-seller .username,
+.vip-seller-container .vip-seller .usersince {
+  font-size: $font-size-medium;
+}
+
+.vip-contact form input[name=buyerName],
+.vip-contact form input[type="email"] {
+  border: 1px solid $form-element-border-color;
+}
+
+.vip-flagad form input[type="email"],
+.vip-flagad form textarea {
+  border: 1px solid $form-element-border-color;
+}
+
+.vip-flagad form textarea:focus {
+  @include box-shadow(none);
+}
+
+.vip-contact .icon-envelope-new {
+  margin-bottom: -0.75em;
+}
+
+// Popular Searches
+.moreSearches .titleContainer,
+.moreSearches ul.relSearchMenu li {
+  font-size: $font-size-small;
+}
+
+// File attachments
+#file-attach .heading {
+  margin-top: 1.375em;
+  font-size: 0.75em;
+}
+
+#datafile, .dummy-datafile-button {
+  width: 11em;
+}
+
+.breadcrumbs {
+  font-size: $font-size-small;
+}
+
+// Similar Ads
+.seo_similar .result {
+  font-size: $font-size-base-new;
+  border-bottom: 1px solid #dcdcdc;
+  border-left: 1px solid #dcdcdc;
+  border-right: 1px solid #dcdcdc;
+}
+
+.results.list-view .result:first-child {
+  border-top: none;
+}
+.results.list-view .title a {
+  color: $ad-title-color;
+  font-weight: normal;
+}
+
+#pht-cnt {
+  display: none;
+}
+
+.seo_similar .price {
+  color: $vivaBlack;
+}
+
+.results.list-view .section-divider {
+  font-size: $font-size-base-new;
+  font-weight: normal;
+}
+
+
+.post-it-yourself span{ 
+   font-size: 1em;}  
+
+
+

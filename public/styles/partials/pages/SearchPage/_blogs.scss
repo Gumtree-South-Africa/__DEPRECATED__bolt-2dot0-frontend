@@ -1,0 +1,67 @@
+.blog-module {
+	display: inline;
+
+	.blog-title {
+		font-weight: bold;
+		color: #000;
+		margin-bottom: 0.2em;
+	}
+
+    .blog-list {
+      padding: 0.75em;
+    }
+
+	.blog-list .item-title {
+		font-weight: bold;
+	}
+	
+	.blog-list .item-text {
+		margin-bottom: 1em;
+		line-height:1.25;
+	}
+}
+
+@include in-breakpoint($medium-break) {
+  .blog-title, .blog-list, .blog-module {
+    @include span-columns($large-break - 3, $large-break);
+  }
+
+  .blog-module {
+    float: right;
+
+    .blog-list .item-title {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    .blog-list .item-text {
+      margin-bottom: 1em;
+      
+    }
+  }
+}
+
+@include in-breakpoint($large-break){
+  .blog-module {
+    float: left;
+    @include span-columns(3, $large-break);
+  }
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+  .blog-module {
+    float: left;
+    clear: left;
+    @include span-columns(3, $large-break);
+    margin: 2em 0;
+
+    .blog-list .item-title {
+      display: inline-block;
+      margin-bottom: 0;
+    }
+
+    .blog-list .item-text {
+      margin-bottom: 1em;
+    }
+  }
+}

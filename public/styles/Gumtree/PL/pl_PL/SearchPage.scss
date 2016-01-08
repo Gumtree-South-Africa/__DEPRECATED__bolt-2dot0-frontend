@@ -1,0 +1,34 @@
+@import
+"../theme",
+"../../../partials/pages/SearchPage/filters",
+"../../../partials/pages/SearchPage/controls",
+"../../../partials/pages/SearchPage/results",
+"../../../partials/common/categoryListBase",
+"../../../partials/pages/SearchPage/searchSummary",
+"../../../partials/pages/SearchPage/noResult",
+"../../partials/common/adSense",
+"../../../partials/pages/SearchPage/skyscraper",
+"../../../partials/pages/SearchPage/brandingList",
+"../../../partials/common/replyForm",
+"../../../partials/common/moreSearches";
+
+@import "../../../partials/pages/SearchPage/pageMain",
+"../../partials/pages/SearchPage/controls",
+"../../partials/pages/SearchPage/emailAlert",
+"../../partials/pages/SearchPage/results",
+"../../partials/pages/SearchPage/searchPage";
+
+@import "../../../partials/pages/Homepage/carousel";
+
+
+/* Large */
+@media (min-width: 53em) {
+
+  #gallery {
+    height: 220px;
+  }
+}
+
+.seeAllContainer {
+	display:none !important;
+}

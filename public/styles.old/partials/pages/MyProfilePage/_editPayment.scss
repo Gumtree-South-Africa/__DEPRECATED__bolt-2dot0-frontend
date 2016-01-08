@@ -1,0 +1,76 @@
+@mixin editpayment_default {
+
+  .payment-info h2 {
+    width: 100%;
+    background-color: $section-divider-bg-color;
+    font-weight: bold;
+    font-size: 1em;
+    line-height: 2.5em;
+    padding: 0 1em;
+    margin: 0 0 1em 0;
+  }
+
+  .profile-edit-payment {
+    display: none;
+  }
+
+  .submit {
+    float: left;
+    margin-right: 0.5em;
+  }
+
+  .cancel {
+    @include secondary-button-new;
+    padding: 0 2em;
+    margin-top: 10px;
+  }
+
+  .none-container {
+    display: inline-block;
+  }
+
+  #none-radio {
+    margin-left: 1.5em;
+    top: 0.5em;
+  }
+
+  label#none {
+    display: inline-block;
+    font-weight: bold;
+  }
+
+  span.text {
+    margin-left: -1.5em;
+    display: inline-block;
+  }
+
+  .payment-method-and-masked-number {
+    float: left;
+  }
+
+  .edit-payment {
+    font-size: 1.0625em;
+    margin: 0.5em 0 0 1.5em;
+    display: inline-block;
+  }
+
+  #security-code {
+    float: left;
+    margin-right: 1em;
+  }
+
+  .cvv-icon {
+    .visa-mc {
+      background: url(../../../../../icons/cvv-guide-mc-visa.gif) no-repeat top left;
+    }
+    .amex {
+      background: url(../../../../../icons/cvv-guide-amex.gif) no-repeat top left;
+    }
+    .visa-mc, .amex {
+      width: 71px;
+      height: 32px;
+      display: inline-block;
+    }
+  }
+
+}

@@ -1,0 +1,51 @@
+.results.list-view{
+	.result{
+        // Comment the lines below for Sitemaps Locations
+		// border-bottom: 1px solid #cacaca;
+		// border-bottom: 1px solid $color-black-25;
+
+        border-top: 1px solid #cacaca;
+        border-top: 1px solid $color-black-25;
+
+		.result-link{
+			text-decoration: none;
+			@include srp-result-link-structure;
+			@include srp-result-link-bg-color;
+		}
+
+		&:nth-child(even){
+			background-color: transparentize($color-black-05, 0.5);
+		}
+
+        .node-header {
+          font-weight: bold;
+        }
+
+        ul.subnodes {
+          margin: 0;
+          li {
+            line-height: 1.3em;
+          }
+        }
+
+        // Count within Location page
+        .count {
+          @include normal-text;
+          cursor: default;
+          color: $filter-count-color;
+          margin-left: 0.25em;
+
+          &:before {
+            content: "(";
+          }
+          &:after {
+            content: ")";
+          }
+        }
+	}
+
+
+	div{
+		color: lighten($color-black, 25%);
+	}
+}

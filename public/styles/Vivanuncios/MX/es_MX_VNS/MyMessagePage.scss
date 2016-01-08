@@ -1,0 +1,54 @@
+$locale:"es_MX_VNS";
+@import "../../theme";
+
+@import "../../../partials/common/pagination",
+		"../../../partials/pages/MyMessagePage/pageMain",
+		"../../../Vivanuncios/partials/common/my-top-navigation";
+		
+@import "../../../partials/widget/tooltip";
+		
+.content{
+	font-size: 14px;
+}
+		
+.msg-container{
+	.user-name{
+		font-weight: normal;
+	}
+}
+
+.report_msg:hover{
+	color: #1E98D5;
+}
+
+.reply-msg-container{
+    .bottom-replymsg {
+       margin-top: 2.5em;
+    }
+    .send{
+	   padding: 0.4em 0.7em 0.3em 0.7em;
+	}
+}
+
+.sticky-mc .thumbnail .img{
+	background-image: url("../../../../../images/es_MX_VNS/no-photo.jpg");
+}
+
+@include in-breakpoint($no-break){
+	.MyMessages{
+		.page{
+			padding-left: 0em;
+  			padding-right: 0em;
+		}
+		.content{
+			padding: 0 1em;
+		}
+		.replyMessages{
+			padding: 0 1em;
+		}
+	}
+	 .content {
+	 	background-color: white;
+	 }
+}
+

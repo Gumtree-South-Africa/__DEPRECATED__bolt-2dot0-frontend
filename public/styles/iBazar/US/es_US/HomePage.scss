@@ -1,0 +1,16 @@
+@import 
+	"../../theme",
+	"../../partials/pages/Homepage/pageMain",
+	"../partials/pages/Homepage/categoryList",
+	"../partials/pages/Homepage/categoryListIE9";
+
+@import "../../../partials/pages/Homepage/pageMain";
+
+// For US, don't show the ad count in the category container area.
+.hp-total-ad-count {
+  display: none;
+}
+
+.homepagewrapper {
+display:none;
+}

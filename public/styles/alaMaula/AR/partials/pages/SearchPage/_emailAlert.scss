@@ -1,0 +1,236 @@
+ p.error{
+        font-size: $font-size-small;
+		color: $form-element-error-color;
+		margin: 0;
+ }
+		
+.left-o-alertEmail{
+	background-color: #f2f2f2;
+	padding-bottom: 0.3em;
+	@include border-radius(5px);
+    border: 1px solid #cacaca;
+    margin-top: 1em;
+
+	&.loading{
+		background-image: url('../../../../../images/loading.gif');
+		
+		background-position: 40% 37%;
+		background-repeat: no-repeat;
+		opacity: 0.6;
+	}
+	.title-alertEmail-left{
+		background-color: #d9d9d9;
+		font-weight: bold;
+		margin-top: 1em;
+		padding: 0.5em .5em .5em 1em;
+		color: white; 
+		@include border-radius(5px 5px 0 0);
+
+        .icon-envelope-alt-white,
+        .icon-envelope-alt-blue {
+          display:none;
+        }
+
+		+div.other-text{
+    		margin: 0.25em 1em;
+    		+div{
+    			margin: 0.9em;
+    			div.other-details:first-child{
+    				margin-bottom: 0.5em;	
+    				margin-left: 0.2em;
+    				font-weight: bold;
+    			}
+    		}
+    	}
+	}
+	
+    
+    .descriptionTitle{
+		margin-bottom: 1px;
+		color: black;
+	}
+    
+    .textinput-left{
+		border: none;
+		border-width: 0px;
+		outline: none;
+		@include border-radius(5px);
+		@include box-shadow(0px 0px 5px rgba(51, 51, 51, 0.45) inset);
+		@include appearance(none);
+		font-size: $font-size-small;
+		margin-bottom: 0.5em;
+		padding: 0.5em;
+		width: 100%;
+	}
+	
+	#createAlertButton-left{
+		@extend %button-secondary;
+        border: none;
+        color: $vivaWhite;
+        padding: 0.25em;
+        font-family: Helvetica, Arial;
+        font-size: $font-size-small;
+        margin-bottom: 0.5em;
+
+		width: 100%;
+		height: 37px;
+	}
+	
+	.other-details{
+      display: none;
+	}
+	
+	.other-text .description{
+		color: gray;
+		//font-size:$fontSize-text;
+	}	
+		
+	.filterCatLoc{
+        font-size: $font-size-small;
+		font-weight: 100;
+		margin-left: 0.25em;
+	}
+	
+	.alert_msg{
+		color: gray;
+	}
+
+    p.error {
+      margin-bottom: 0.5em;
+    }
+
+}
+
+.btm-alertEmail{
+
+    @include border-radius(5px);
+    border: 1px solid #cacaca;
+    width:100%;
+    overflow: hidden;
+    margin: .5em 0em;
+    background-color: #f2f2f2;
+	padding: 0em 0.5em 0.3em 1em;
+	
+	
+    .email_msg{
+        padding-top: 0.75em;
+    }
+    
+	.description{
+		padding-left: 0.5em;
+		font-weight:bold;
+		
+	}
+		
+	.textinput{
+          font-size: $font-size-medium;
+		  border: 1px solid #CBCBCB;
+		  @include border-radius(5px);
+		  margin: 0.75em 0 0.25em 0;
+		  padding: 0.5em;
+		  width: 50%;
+	}
+	.textinput.error{
+	   border: 1px solid $form-element-error-color;
+       color: $form-element-error-color;
+	}
+	.filterCatLoc{
+        font-size: $font-size-small;
+		color: $vivaBlack;
+		margin-left: 0.25em;
+		
+	}
+	span.filterCatLoc{
+		//font-size:$fontSize-text;
+	}
+	
+	.email_btn {
+	   display: inline-block;
+	   padding-left: 1em;
+	   vertical-align: middle;
+	   margin-top:-.3em;
+	
+	}
+	
+	.createAlertButton{
+      @extend %button-secondary;
+      border: none;
+      color: $vivaWhite;
+      font-family: Helvetica, Arial;
+      font-size: $font-size-medium;
+      padding: 0.625em 3em;
+      margin-top:0px;
+      width: 100%;
+
+    }
+	
+	.alert_msg{
+	    color: $vivaBlack60;
+		padding-bottom: 0.5em;
+        font-size: $font-size-micro;
+	}
+
+    p.error {
+      margin-bottom: 0.5em;
+    }
+}
+
+ .icon-envelope-alt-gray {
+   display: inline-block;
+   background-size:contain;
+   width: 1.3em;
+   height:1.3em;
+   vertical-align: middle;
+   margin-top:-.1em;
+
+   + span{
+     //font-size: 14pt;
+     color: black;
+   }
+
+ }
+
+.icon-envelope-alt-blue{
+  display: none;
+}
+
+
+@include to-breakpoint($no-break){
+	.left-o-alertEmail{
+		display:none;
+	}
+	.btm-alertEmail{ 
+	  .textinput{
+	     width: 100%;
+	  }
+	  
+	.email_btn {
+	  display:block;
+	  padding-left: 0em;
+	  margin-top: 0.25em;
+	 }  
+	.alert_msg{
+	   padding: 1em 0em;
+	 }   
+  }
+}
+
+@include in-breakpoint($small-break){
+	.left-o-alertEmail{
+		display:none;
+	}
+	  
+}
+@include in-breakpoint($lt-ie9-class-name){
+	.icon-envelope-alt-white, .icon-envelope-alt-blue{ 
+          width: 2em !important;
+          height:2em !important;
+       
+    }
+
+}
+@include in-breakpoint($lt-ie10-class-name) {
+	input[name=email].placeholder {
+		color: #999!important;
+	}
+}

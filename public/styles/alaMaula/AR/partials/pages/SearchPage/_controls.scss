@@ -1,0 +1,77 @@
+
+.controls{
+    .right-column
+    {
+    	.view_as
+    	{
+			span.grid-view .text, a.grid-view .text, span.list-view .text, a.list-view .text 
+			{
+  				color: #4A4A4A;
+  			}
+		}
+        .watchlist
+        {
+            &.open
+            {
+                .controlButton
+                {
+                    background-color: $color-navy;
+                }
+            }
+            
+            .list
+            {
+              
+                .title
+                {
+                    background-color: $color-navy;
+                }
+                .info
+                {
+                    h2
+                    {
+                        color: $color-navy;
+                    }
+                }
+            }
+            
+        }
+    }
+}
+
+
+//this is for the category  
+@include in-breakpoint($no-break){
+	$vivaBlack: #4A4A4A; $vivaGray: #9B9B9B;
+	.hp-category-wrapper{
+		a,  [data-uri], [data-o-uri], .sudo-link, span[href], .all-label,
+		a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[href]:visited {
+		  color: $vivaBlack;
+		}
+		#flexLftBuckt{
+	    	border-bottom: 1px solid #DDDDDD;
+			ul li{
+				&.all-label, a{
+					color: $vivaGray;
+				}
+			}
+			.item{
+				span{
+					&.icon{
+						display: none;
+					}
+					&.label{
+						padding-left: 0em;
+						font-size: 0.9em;		
+					}
+				}
+				ul{
+					li.all-label, a{
+						font-size: 0.9em;
+					}
+				}
+			}
+		}
+	}
+}
+

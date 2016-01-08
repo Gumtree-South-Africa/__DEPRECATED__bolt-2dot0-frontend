@@ -1,0 +1,62 @@
+$thumbnail-size-mobile:35px;
+$thumbnail-size-asha: 50px;
+$thumbnail-size-iphone: 60px;
+$thumbnail-size-desktop: 100px;
+.icon-picture {
+	display: block;
+	border: none !important;
+	background-image: $srp-nophoto-imageurl !important;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	vertical-align: top !important;
+	height: 100%;
+	width: 100%;
+}
+@mixin thumbnail_default {
+	.thumb{
+		height: $thumbnail-size-asha;
+		width: $thumbnail-size-asha;
+		@include background-image(linear-gradient(darken($color-white, 5%), $color-white));
+		img {
+			border:1px solid transparentize($color-black, 0.9);
+		}
+		a{
+			text-decoration: none;
+		}
+		.icon-picture {
+			border:none !important;
+			display: inline-block;
+			vertical-align: middle;
+		}
+	}
+	.thumb div {
+		color: rgba(51, 51, 51, 0.1);
+		font-size: 2em;
+		line-height: 2em;
+		text-align: center;
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+	}
+	@media (min-width: 320px) {
+		.thumb{
+			height: $thumbnail-size-iphone;
+			width: $thumbnail-size-iphone;
+		}
+		.thumb div {
+			line-height: $thumbnail-size-iphone;
+		}
+	}
+}
+@mixin thumbnail_medium {
+	.thumb{
+		height: $thumbnail-size-desktop;
+		width: $thumbnail-size-desktop;
+	}
+	.thumb div {
+		line-height: $thumbnail-size-desktop;
+	}
+}
+
+@mixin thumbnail_large {}

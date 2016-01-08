@@ -1,0 +1,15 @@
+
+@mixin geopopupcontent_default{
+    .geo{
+	   height:100%;
+	}
+	.msg{
+	  margin:.3em 0;
+	}
+	.addr{
+		margin-left:.6em;
+	}
+	.cancel{
+		margin-top:1em;
+	}
+}

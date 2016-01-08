@@ -1,0 +1,96 @@
+@import
+    "../../theme",
+    "../../theme-my-pages",
+    "../partials/main/VNS_Styles",
+    "../../../partials/common/form";
+
+
+@import
+    "../../../partials/pages/PaymentPage/pageMain",
+    "../../../partials/pages/PaymentPage/creditCardForm",
+    "../../../partials/pages/PaymentPage/creditCardType";
+    //"../../../partials/pages/PaymentPage/paymentTypeAccordion";
+
+
+@import
+    "../../../Vivanuncios/partials/pages/PaymentPage/pageMain",
+    "../../../Vivanuncios/partials/pages/PaymentPage/page-main",
+    "../../../Vivanuncios/partials/pages/PaymentPage/orderSummary",
+    "../../../Vivanuncios/partials/pages/PaymentPage/order-summary",
+    "../../../Vivanuncios/partials/pages/PaymentPage/payment-container";
+
+@mixin fix_radio_styles_for_firefox {
+
+  @-moz-document url-prefix() {
+
+    input[type='radio'] {
+      display: none;
+    }
+
+    .radio-placeholder {
+      display: inline-block;
+      height: 1.5em;
+      width: 1.5em;
+
+      position: relative;
+      left: -1.75em;
+      top: 0.5em;
+
+      border: 1px solid #ccc;
+      border-radius: 100%;
+      background-color: #fff;
+    }
+
+    input[type='radio']:checked + .radio-placeholder:before {
+      display: block;
+      width: 0.5em;
+      height: 0.5em;
+
+      content: " ";
+
+      border: 6px solid #86c900;
+      border-radius: 100%;
+      background-color: #fff;
+    }
+
+  }
+
+}
+
+// -----------------------------------------------------
+// Mobile First Styles
+// -----------------------------------------------------
+
+@include creditcardtype_default;
+@include creditcardform_default;
+@include fix_radio_styles_for_firefox;
+
+
+// -----------------------------------------------------
+// Tablet, Desktop Styles
+// -----------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+    @include creditcardtype_medium;
+    @include creditcardform_medium;
+}
+
+@include creditcardCheckBoxBorder;
+
+@include in-breakpoint($no-break) {
+	.page {
+	    padding-left :0;
+		padding-right :0;
+	}
+}
+
+// HIDE PAYMENT TYPE SELECTOR
+.payment-block {
+    [name=facadePaymentType],
+    &> label{
+        display:none;
+    }
+}
+.content .wrap,
+.page {
+    margin-left:0
+}

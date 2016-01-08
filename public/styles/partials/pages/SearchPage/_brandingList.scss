@@ -1,0 +1,92 @@
+
+
+
+
+.brandingContent {
+  width:100%;
+    ul {
+      padding: 0.5em 0.875em;
+    }
+
+	.values-filter, .dropdown-filter {
+        border-top: 1px solid $color-black-15;
+         .icon-chevron-right-white, .icon-chevron-right-blue{
+          display:inline-block ;
+          background-size:contain;
+          width: 0.8em;
+          height:1.1em;
+          vertical-align: middle;
+          margin:-.1em 0 0 0 !important;
+        }
+		.field {
+		    padding: $small-margin 0.5em;
+
+			display: block;
+			color: $color-black-50;
+
+			label {
+				margin-right: 0.1em;
+				color: $link-color;
+                @include bold-text;
+                display:block;
+                min-width: 22%;
+            }
+
+			input,select {
+				width: 35%;
+				&::-webkit-inner-spin-button,
+				&::-webkit-outer-spin-button {
+					@include appearance(none);
+				}
+			}
+
+			span {
+				margin: 0 0.05em;
+				
+			}
+
+            button {
+                margin-left: 0em;
+                color: $link-color;
+                @include appearance(none);
+                /* TODO figure out if secondary button can be removed */
+                @include secondary-button;
+                @include filter-field-button;
+                float:right;
+            }
+		}
+	}
+	.values-filter
+	{
+	   &.min,&.max
+	   {
+	       input
+	       {
+               width: 75%;
+           }
+	       .devideLine{
+               display:none;
+           }
+	   }
+	   &.min
+	   {
+	       .max{
+               display:none;
+           }
+	   }
+	   &.max
+       {
+           .min{
+               display:none;
+           }
+       }
+	}
+	.dropdown-filter {
+	   select
+	   {
+           @include bold-text;
+           padding:2px 0;
+	   }
+	}
+}
+

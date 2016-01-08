@@ -30,7 +30,7 @@ var gulp = require('gulp'),
   map = require('map-stream'),
   plugins = require('gulp-load-plugins')(),
   props = require('gulp-props2json'),
-  fs = require('fs'),
+  compass = require('gulp-compass'),
   reload = browserSync.reload;
 
 
@@ -50,9 +50,23 @@ function errorlog(err){
   this.emit('end');
 }
 
+// ////////////////////////////////////////////////
+// Compass Tasks
+// // /////////////////////////////////////////////
+gulp.task('compass', function(){
+  gulp.src('./public/styles/**/**/*.scss')
+      .pipe(compass({
+        config_file: process.cwd() + '/config.rb',
+        css: 'public/css',
+        sass: './public/styles',
+        require: ['susy']
+      }))
+      .pipe(gulp.dest('./public/css'));
+})
+
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
-gulp.task('styles', getTask('styles'));
+//gulp.task('styles', getTask('styles'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('hbs', getTask('hbs'));
 gulp.task('precompile', getTask('precompile'));
@@ -65,7 +79,7 @@ gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
 
 
 

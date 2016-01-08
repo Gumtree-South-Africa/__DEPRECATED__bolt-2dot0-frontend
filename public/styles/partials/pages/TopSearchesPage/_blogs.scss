@@ -1,0 +1,29 @@
+.blog-module {
+	float: left;
+	display: inline;
+	margin: 1em;
+	width: 95%;
+	
+	.blog-title {
+		width: 12em;
+		font-weight: bold;
+		color: #000;
+		margin-bottom: 0.2em;
+	}
+	
+	.blog-list .item-title {
+		color: $color-navy;
+		font-weight: bold;
+	}
+	
+	.blog-list .item-text {
+		margin-bottom: 1em;
+	}
+}
+
+// large break
+@include in-breakpoint($large-break, $lt-ie9-class-name) {
+	.blog-module {
+		width: 22%;	
+	}
+}

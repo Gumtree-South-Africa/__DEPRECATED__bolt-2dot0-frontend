@@ -1,0 +1,35 @@
+@import
+	"../../theme",
+ 
+   
+	// other files to import for this page
+	"../../../partials/pages/SearchPage/filters",
+	"../../../partials/pages/SearchPage/controls",
+	"../../../partials/pages/SearchPage/results",
+	"../../../partials/common/categoryListBase",
+	"../../../partials/pages/SearchPage/noResult",
+    "../../partials/pages/ViewPage/sellerReputation",
+	"../../partials/common/adSense";
+    @include abt1-seller-reputation; 
+	
+
+ @import "../../../partials/pages/SearchPage/pageMain",
+        "../../../partials/pages/SoiPage/pageMain",
+         "../../partials/pages/SearchPage/controls",
+         "../../partials/pages/SearchPage/emailAlert",
+          "../../../partials/pages/SoiPage/pageMain",
+         "../../partials/pages/SearchPage/results";
+        
+        
+.top-listings .creation-date,
+.top-listings .creation-date-gallery,
+.hide-on-mobile {
+	display: none !important;
+}
+
+@include from-breakpoint($small-break) {
+	.hide-on-mobile{
+		display: block !important;
+	}
+}
+
