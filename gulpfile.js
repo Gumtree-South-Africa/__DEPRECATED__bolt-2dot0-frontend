@@ -50,46 +50,6 @@ function errorlog(err){
   this.emit('end');
 }
 
-// ////////////////////////////////////////////////
-// Compass Tasks
-// // /////////////////////////////////////////////
-gulp.task('compass', function(){
-  gulp.src('./public/styles/**/**/*.scss')
-      .pipe(compass({
-        config_file: process.cwd() + '/config.rb',
-        css: 'public/css',
-        sass: './public/styles',
-        require: ['susy']
-      }))
-      .pipe(gulp.dest('./public/css'));
-})
-
-// ////////////////////////////////////////////////
-// Browser-Sync Tasks
-// ////////////////////////////////////////////////
-gulp.task('browserSync', function() {
-    browserSync({
-        server: {
-            baseDir: "./"
-        },
-        proxy: {
-        target: "localhost:8000",
-        reqHeaders: function (config) {
-            return {
-                "host": config.urlObj.host,
-                "accept-encoding": "identity",
-                "agent":           false
-            }
-        }
-}
-        
-        // proxy: {
-        //   target: "http://www.gumtree.co.za.localhost:8000",
-        //   ws: true
-        // }
-    });
-});
-
 
 // ////////////////////////////////////////////////
 // HTML Tasks
@@ -101,8 +61,12 @@ gulp.task('browerSyncHbs', function() {
 
 
 
+
+
+
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 //gulp.task('styles', getTask('styles'));
+gulp.task('compass', getTask('compass'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('hbs', getTask('hbs'));
 gulp.task('precompile', getTask('precompile'));

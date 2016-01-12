@@ -10,7 +10,6 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-    console.log('res: ',res.config);
     var model = HomepageModel();
     
     var extraData = 

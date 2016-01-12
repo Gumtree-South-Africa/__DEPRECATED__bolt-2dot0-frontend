@@ -25,7 +25,7 @@ var siteCount = 0;
  */
  Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
-    console.log('configSSS:', siteObj);
+    
     (function(siteObj) {
       var siteApp = new expressbuilder(siteObj.locale).getApp();
 
