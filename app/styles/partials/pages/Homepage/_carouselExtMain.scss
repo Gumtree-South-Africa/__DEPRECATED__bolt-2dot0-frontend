@@ -1,4 +1,4 @@
-//since this component is used only for violet, it should be moved under es_MX_VNS
+//since this component is used only for violet, it should be moved under es_MX
 @include from-breakpoint($small-break, $lt-ie9-class-name){ // carousel is turned off for  mobile break point for violet. making sure not to include the CSS as well
 	body {
 	  margin: 0;

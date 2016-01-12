@@ -534,7 +534,7 @@ ul.category-list{
 	.bg{
 		width: 86px;
 		height: 86px;
-		background-image: url('../../../../../images/es_MX_VNS/categories/catIcons_sprite.gif');
+		background-image: url('../../../../../images/es_MX/categories/catIcons_sprite.gif');
 		background-repeat: no-repeat;
 		
 	}
@@ -595,7 +595,7 @@ ul.category-list{
 
 .postFree{
 	.icon-pin{
-	    background-image: url('../../../../../images/es_MX_VNS/tutorial-imgs/tutorial_sprite_mobile.gif');
+	    background-image: url('../../../../../images/es_MX/tutorial-imgs/tutorial_sprite_mobile.gif');
 		width: 80px; height: 62px;
 		background-repeat: no-repeat;
 		margin:10px auto;
@@ -618,7 +618,7 @@ ul.category-list{
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
   .postFree{
 	 .icon-pin{
-		  background-image: url('../../../../../images/es_MX_VNS/tutorial-imgs/tutorial_sprite.gif');
+		  background-image: url('../../../../../images/es_MX/tutorial-imgs/tutorial_sprite.gif');
 		  width: 114px; 
 		  height: 89px;
 		  margin-left: 0em;

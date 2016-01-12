@@ -23,7 +23,7 @@
 		height: 2em;
 		vertical-align: middle;
 
-		&.es_MX,&.es_MX_VNS,&.es_AR{
+		&.es_MX,&.es_MX,&.es_AR{
 			background-image: url(../../../../../images/no-javascript-es_MX.gif);
 			width: 400px;
 		}     	
@@ -114,7 +114,7 @@
 			&.es_MX{
 				width: 200px;
 			}
-			&.es_MX_VNS,&.es_AR{
+			&.es_MX,&.es_AR{
 				width: 200px;
 			}
 		}
