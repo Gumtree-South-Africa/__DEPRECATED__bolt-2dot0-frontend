@@ -51,6 +51,8 @@ function errorlog(err){
 }
 
 
+//TODO: add clean|copyTo Task and env checking. 
+
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 //gulp.task('styles', getTask('styles'));
