@@ -51,18 +51,6 @@ function errorlog(err){
 }
 
 
-// ////////////////////////////////////////////////
-// HTML Tasks
-// ////////////////////////////////////////////////
-gulp.task('browerSyncHbs', function() {
-  return gulp.src('app/views/**/*.hbs')
-    .pipe(reload({stream:true}));
-});
-
-
-
-
-
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 //gulp.task('styles', getTask('styles'));
