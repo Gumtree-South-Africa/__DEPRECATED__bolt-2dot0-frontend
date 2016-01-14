@@ -17,7 +17,6 @@ var checksite = require('./server/middlewares/check-site');
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
 
-
 /*
  * Create Main App
  */
@@ -68,6 +67,13 @@ i18next
       // create a fixed t function for req.lng
       // no clones needed as they just would do the same (sharing all but lng)
       siteApp.use(middleware.handle(i18next));
+
+      // Template hbs caching.
+      // See: https://github.com/ericf/express-handlebars#template-caching
+      // Enables view template compilation caching and is enabled in production by default.
+      if (process.env.NODE_ENV) {
+        siteApp.enable('view cache');
+      }
 
       // register bolt site checking middleware
       siteApp.use(checksite(siteApp));
