@@ -28,7 +28,7 @@
     "dojo": false,
 
     // Custom predefined globals.
-    "predef": ["requirejs", "define", "escape"],
+    "predef": ["requirejs", "define", "escape", "$"],
 
     // Development
 

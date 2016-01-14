@@ -13,7 +13,11 @@ module.exports = function watch(gulp, plugins) {
 		        sass: './app/styles',
 		        require: ['susy']
 		      }))
-		      .pipe(gulp.dest('./public/css'));
+		      .pipe(gulp.dest('./public/css'))
+		      .pipe(notify({
+	            title: 'Compass',
+	            message: 'Style Compilation done. Wonderful!'
+	        }));
 		})
 	}
 }
