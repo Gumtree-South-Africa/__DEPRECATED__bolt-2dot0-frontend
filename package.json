@@ -9,7 +9,7 @@
     "prod": "npm install && NODE_ENV=production gulp",
     "vm": "npm install && NODE_ENV=vm gulp",
     "build": "npm install && gulp build",
-    "test": "grunt test",
+    "test": "npm install && ./node_modules/.bin/jasmine-node test/spec",
     "start": "node ./bin/www"
   },
   "precommit": "npm install && gulp precommit",
@@ -59,6 +59,7 @@
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
     "q": "^1.4.1",
+    "request": "^2.67.0",
     "requirejs": "^2.1.20",
     "serve-favicon": "~2.3.0",
     "underscore": "^1.8.3",
@@ -67,6 +68,8 @@
     "yargs": "^3.31.0"
   },
   "devDependencies": {
+    "gulp-jasmine-node": "^1.0.3",
+    "jasmine-node": "^1.14.5",
     "jshint-stylish": "^2.1.0",
     "map-stream": "0.0.6",
     "minimist": "^1.2.0",

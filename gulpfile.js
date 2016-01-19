@@ -31,6 +31,7 @@ var gulp = require('gulp'),
   plugins = require('gulp-load-plugins')(),
   props = require('gulp-props2json'),
   compass = require('gulp-compass'),
+  jasmineNode = require('gulp-jasmine-node'),
   reload = browserSync.reload;
 
 
@@ -68,7 +69,9 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
+gulp.task('jasmine', getTask('jasmine'));
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
 
 
