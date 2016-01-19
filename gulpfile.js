@@ -32,6 +32,7 @@ var gulp = require('gulp'),
   props = require('gulp-props2json'),
   compass = require('gulp-compass'),
   jasmineNode = require('gulp-jasmine-node'),
+  clean = require('gulp-clean'),
   reload = browserSync.reload;
 
 
@@ -56,7 +57,7 @@ function errorlog(err){
 
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
-//gulp.task('styles', getTask('styles'));
+gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('hbs', getTask('hbs'));
@@ -70,7 +71,7 @@ gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'styles', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
 gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
 
