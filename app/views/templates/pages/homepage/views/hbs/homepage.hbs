@@ -1,60 +1,49 @@
 
 {{#partial "content"}}
-<div style="overflow: hidden; display: block;">
-	<div class="precompiled"></div>
-	<h1>Welcome to {{site}}!<br>
-	Location ID {{location.id}}
-	<br>
-	<span class="hp-live_ads_msg">{{{i18n "home.h1Tag"}}}</span>
-	</h1>
-	<a href='/message'>MC Page Link</a>
-	<hr />
-
 	{{#block "homepg"}}
 	 {{#if model.content.topHomePageAdBanner}}
 		 {{> hbs/home/AdBanner_top}}
 	 {{/if}}
-	 
+
 	{{!-- > hbs/widget/carousel --}}
-	{{#block "carousel"}}VIEW RESULT{{/block}}
-	
+	{{!-- {{#block "carousel"}}VIEW RESULT{{/block}} --}}
+
 	<div class="hp-content hp-others
-	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}} 
+	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
 	{{#if model.footer.googleAdSense.enabled}}googleAdSensei{{/if}}
 	{{#if model.content.homePageBannerUrl}}homePageBannerImage{{/if}}
 	">
-	      
+
 			<div class="hp-list-wrapper">
 	            {{#with model.content}}
 	            <div class="hp-total-ad-count">
 	                <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" totalLiveAdCount}}}</span>
 	            </div>
 	            {{/with}}
-	
+
 	            <div class="hp-category-wrapper">
 	                <h1>{{i18n "home.h1Tag"}}</h1>
 	                {{#if model.lastWeekPostedAdCount}}
 	                    <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
 	                {{/if}}
-	
+
 	                {{#block "locationBeforeCategory"}}{{/block}}
-	
-	                {{#with model.content.categoryFilter}}
-	                    {{!-- > hbs/common/CategoryList --}}
+	                {{#with ../this.category}}
+	                    {{> categoryList}}
 	                {{/with}}
-	
+
 					<div class="hp-link-wrapper">
 						<div class="post-ad-button">
 							<a href="{{model.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
 						</div>
 					</div>
-	
+
 				</div>
-	            
+
 	            {{#block "googleBannerAdsBottom_Container"}}{{/block}}
 				<div class="clear"></div>
 	            {{#block "locationAfterCategory"}}{{/block}}
-	
+
 				<div class="hp-keywords-wrapper">
 					{{#if model.content.keywordsModel.topKeywords}}
 						<div class="hp-popular-searches-wrapper">
@@ -68,7 +57,7 @@
 							</ul>
 						</div>
 					{{/if}}
-		
+
 					{{#if model.content.trendingKeywordsModel.topKeywords}}
 						<div class="hp-trending-searches-wrapper">
 							<h5>{{i18n "home.trending-searches"}}</h5>
@@ -82,17 +71,15 @@
 						</div>
 					{{/if}}
 				</div>
-				
+
 				<div class="clear"></div>
 		    </div>
-	
-		
+
+
 		<input type="hidden" name="NcatId" value="{{model.content.ad.ad.categoryId}}" />
 		<input type="hidden" name="NlocId" value="{{model.content.ad.ad.locationId}}" />
 
 	{{/block}}
-
-</div>
 
 <!-- Move this to footer partial -->
 <!-- Remove this when using require.js -->
@@ -109,4 +96,3 @@
 {{/partial}}
 
 {{!-- > hbs/Html --}}
-

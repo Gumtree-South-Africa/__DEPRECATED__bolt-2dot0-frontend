@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>{{site}}</title>   
-        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/> 
-        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/main.css"/> 
+        <title>{{site}}</title>
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/>
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/main.css"/>
+        <link rel="stylesheet" href="css/icons.data.png_{{locale}}.css"/>
     </head>
     <body>
 
@@ -37,7 +38,7 @@
                     </div>
 
                    {{#block "comscore"}}{{/block}}
-                     
+
                     <div class="footer">
                         <footer>
                         {{> footer}}
@@ -46,14 +47,15 @@
                         {{/block}}
                         </footer>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
 
         <!-- End from Body.html -->
       <!--  <script data-main="/js/app" src="js/bower-components/requirejs/require.js"></script> -->
-    
+    <script type="text/javascript" src="js/bower-components/jquery/dist/jquery.js"></script>
+    <script type="text/javascript" src="js/common/searchbar.js"></script>
     </body>
 </html>

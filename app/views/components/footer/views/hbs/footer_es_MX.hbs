@@ -4,7 +4,7 @@
 	<div class="footer-links clearfix">
 		<div class="logo">
 	        <a href="{{model.header.homePageUrl}}">
-	               <img border="0"  src="{{model.header.baseImageUrl}}{{model.locale}}/logo.png" alt="{{model.header.messages.homepage}}"/>
+	               <img border="0"  src="/images/{{../this.locale}}/logo.png" alt="{{model.header.messages.homepage}}"/>
 	        </a>
 		</div>
 
@@ -33,10 +33,10 @@
 	            <li><a href="http://www.gumtree.co.za/pages/ClassifiedsNetwork/">{{{i18n "footer.explore.interlink" }}}</a></li>
 	              {{!-- Mobile App --}}
 	            <li><a href="http://www.gumtree.co.za/pages/mobileapp/">{{{i18n "footer.explore.mobileApp" }}}</a></li>
-	            
+
 			</ul>
 	    </div>
-	    
+
 		<div class="rightColumn">
 			<h3>{{{i18n "footer.legalbits.title"}}}</h3>
 			<ul>
@@ -45,7 +45,7 @@
 				<li><span class='sudo-link' data-o-uri="{{{model.footer.obfuscatedCookieRightsURL}}}" data-target="_self">{{{i18n "footer.legalbits.cookie"}}}</span></li>
 			</ul>
 		</div>
-	    
+
 		<div class="rightColumn">
 			<h3>{{{i18n "footer.tips-help.title"}}}</h3>
 			<ul>
@@ -54,20 +54,20 @@
 				<li><span class="sudo-link" data-o-uri='{{!-- obfuscateUrl "https://www.surveymonkey.com/s/7LGVXY8" --}}'>{{{i18n "footer.tips-help.giveFeedback"}}}</span></li>
 			</ul>
 		</div>
-		
+
 		<div class="rightColumn">
 			<h3>{{{i18n "footer.motors.title"}}}</h3>
 			<ul>
-			    <li><a href="http://www.gumtree.co.za/pages/autodealers/">{{{i18n "footer.motors.autoDealers"}}}</a></li> 
+			    <li><a href="http://www.gumtree.co.za/pages/autodealers/">{{{i18n "footer.motors.autoDealers"}}}</a></li>
 		        <li><a href="http://www.gumtree.co.za/pages/gumtreemotors/gumtree-motors-library-a-c.html">{{{i18n "footer.motors.a-c"}}}</a></li>
 	            <li><a href="http://www.gumtree.co.za/pages/gumtreemotors/gumtree-motors-library-d-g.html">{{{i18n "footer.motors.d-g"}}}</a></li>
 	            <li><a href="http://www.gumtree.co.za/pages/gumtreemotors/gumtree-motors-library-h-l.html">{{{i18n "footer.motors.h-l"}}}</a></li>
 	            <li><a href="http://www.gumtree.co.za/pages/gumtreemotors/gumtree-motors-library-m-o.html">{{{i18n "footer.motors.m-o"}}}</a></li>
 	            <li><a href="http://www.gumtree.co.za/pages/gumtreemotors/gumtree-motors-library-p-z.html">{{{i18n "footer.motors.p-z"}}}</a></li>
-				
+
 			</ul>
 		</div>
-	    
+
 	    <div class="iab-logo rightColumn">
 	        <a href='http://pubads.g.doubleclick.net/gampad/clk?id=25798386&iu=/7162/Gumtree_ZA/zzz_track' target="_blank"><div class="icon-iab-logo"></div></a>
 	    </div>
@@ -76,6 +76,3 @@
 	<div class="social-links">{{!-- > hbs/Html/footer/ZA/SocialMediaLinks --}}</div>
 	<div class="cpyrt">{{{i18n "footer.copyright"}}}</div>
 {{/partial}}
-
-
-   

@@ -95,7 +95,7 @@ function nc(module) {
     // ********************************
     var boltHelpers = {
         helpers : {
-           
+
             'block' : function(name, options) {
               var context = module.instance;
               var partial = loadPartial(context, name) || options.fn;
@@ -105,12 +105,16 @@ function nc(module) {
               if (args.length > 2) {
                 context = args[1];
               }
-              return partial(context, { data:options.hash });             
+              return partial(context, { data:options.hash });
             },
 
             'partial' : function(name, options) {
                 var that = module.instance;
                 that.handlebars.registerPartial(name, options.fn);
+            },
+
+            'json' : function(context) {
+                return JSON.stringify(context);
             },
 
             // Handlebars helper from i18next

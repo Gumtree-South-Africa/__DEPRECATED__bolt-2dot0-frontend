@@ -9,7 +9,7 @@
         <span class="icon-caret-down"></span>
         <![endif]-->
         {{#unless model.header.isIncludeContentForMobile}}
-            <script type="text/plain">{{{model.header.locationFilterJson}}}</script>
+            <script type="text/plain">{{{json this.location}}}</script>
         {{/unless}}
     </div>
 {{!-- {{/if}}  --}}

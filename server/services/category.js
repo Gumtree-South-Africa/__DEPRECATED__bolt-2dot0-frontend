@@ -18,6 +18,7 @@ var CategoryService = function() {
     	path : "/",
     	method : "GET"
 	};
+	console.log('CategoryService: ',config.get('BAPI.server.host'));
 };
 
 //Gets a list of categories for the homepage
@@ -36,6 +37,7 @@ CategoryService.prototype.getCategoriesData = function(depth) {
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
 		console.log("CategoryService: Callback from category BAPI");
+		console.log('output: ',output);
 		if(typeof output === undefined) {
 			categoryBapiDeferred.reject(new Error("Error in calling category BAPI"));
 		} else {

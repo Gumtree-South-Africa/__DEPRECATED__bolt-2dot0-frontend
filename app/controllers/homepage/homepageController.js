@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
       
       extraData.location = result[0];
       extraData.category = result[1];
-      
+     
       var  pageData = _.extend(result, extraData);
       
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
