@@ -47,7 +47,7 @@ function BuildApp(locale) {
         app.set('view engine', 'hbs');
 
         // Add BOLT 2.0 Handlebars helpers for view engine
-        hbshelp(app, locale, exphbs);
+        hbshelp(app, locale, exphbs); //@urobles, i18nObj);
     }
 
     /*
@@ -87,6 +87,22 @@ function BuildApp(locale) {
     this.getApp = function() {
         return app;
     };
+
+    /* @urobles
+    this.setI18nObj = function (i18nObj) {
+        // Setup Views
+        if (locale) {
+            console.log("******REQUIRING HANDLEBARS....")
+            exphbs = require('express-handlebars');
+            app.set('views', config.root + '/app/views/templates/pages/');
+            app.set('view engine', 'hbs');
+
+            // Add BOLT 2.0 Handlebars helpers for view engine
+            hbshelp(app, locale, exphbs, i18nObj);
+        }
+    };
+    */
+
 }
 
 module.exports = BuildApp;

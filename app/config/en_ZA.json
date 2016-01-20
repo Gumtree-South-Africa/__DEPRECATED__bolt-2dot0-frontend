@@ -12,7 +12,10 @@
             "./app/views/components/header/views/hbs/header_en_ZA.hbs",
             "./app/views/components/footer/views/hbs/footer_en_ZA.hbs",
 
-            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs"              
+            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs",
+            "./app/views/templates/layouts/hbs/Body.hbs",
+            "./app/views/templates/layouts/hbs/Tail.hbs"
+
     	]
     },
 	"messagepage": {
@@ -27,7 +30,9 @@
             "./app/views/components/header/views/hbs/header_en_ZA.hbs",
             "./app/views/components/footer/views/hbs/footer_en_ZA.hbs",
 
-            "./app/views/templates/pages/message/views/hbs/message_en_ZA.hbs"     
+            "./app/views/templates/pages/message/views/hbs/message_en_ZA.hbs",
+            "./app/views/templates/layouts/hbs/Body.hbs",
+            "./app/views/templates/layouts/hbs/Tail.hbs"    
     	]
     }
 

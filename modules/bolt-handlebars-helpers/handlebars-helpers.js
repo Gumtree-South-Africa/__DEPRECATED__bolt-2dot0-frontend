@@ -58,13 +58,18 @@ function regLocPartials (module, locale) {
 
       // Register the locale-specific file partial from the configuration
       regFileName = matches[1].replace('.hbs','').replace(country_sufix_repl, '');
+      
+      console.log("origFile : " + origFile + " regFileName: " + regFileName);
       // regPartialFromFile(origFile, regFileName + "-file");
       regPartialFromFile(origFile, regFileName);
 
-      // Register the base file partial
-      regPartialFromFile(baseFile, regFileName + "-base")
+      if (origFile !== regFileName) {
+        // Register the base file partial
+        regPartialFromFile(baseFile, regFileName + "-base");
+      }
     }
 }
+
 
 /**
  * @method nc
@@ -73,8 +78,9 @@ function regLocPartials (module, locale) {
  * @public
  * @return {Object} JSON structure with the handlebars helper methods
  */
-function nc(module) {
+function nc(module) { // @urobles , i18nObj) {
     var engines;
+    var fs = require('fs');
 
     // *******************************
     // handlebars partial/Block logic
@@ -82,13 +88,19 @@ function nc(module) {
     function loadPartial(instance, name) {
         var partial = instance.handlebars.partials[name];
 
-        if (typeof partial === "string"){
+        if (typeof partial === "string") {
            partial = instance.handlebars.compile(partial);
            instance.handlebars.partials[name] = partial;
         }
 
         return partial;
     };
+
+    function readPartialFile(instance, fileName) {
+        var fileName = './app/' + fileName + '.hbs';
+        var template = fs.readFileSync(fileName, 'utf8');
+        instance.handlebars.registerPartial("Body", template);
+    }
 
     // ********************************
     // Handlebars ecg BOLT 2.0. helpers
@@ -116,7 +128,17 @@ function nc(module) {
             // Handlebars helper from i18next
             'i18n' : function(i18n_key) {
                 var result = _i18n.t(i18n_key);
+                /*
+                @urobles
+                console.log("RETRIEVING AN SPECIFIC I18N....");
+                var result = i18nObj.t(i18n_key);
+                */
                 return result;
+            },
+
+            'xinclude' : function(fileName) {
+                var context = module.instance;
+                var partial = readPartialFile(context, fileName);
             }
         }
     };
