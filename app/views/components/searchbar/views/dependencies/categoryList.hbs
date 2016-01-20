@@ -1,0 +1,48 @@
+<ul class="category-list nonJsOnlyBlock" id="flexLftBuckt">
+    {{#each children}}
+    <li class="parent-category l1category{{this.id}} item" data-category-id="{{this.id}}" data-ct-id="{{this.id}}">
+          <a href="{{this.url}}" class="toggler" title="{{this.name}} ({{this.id}})">
+                <span class="icon-cat-{{this.id}} icon"></span>
+                <span class="label">{{this.name}}</span>
+                <!--span style="color:black">({{this.id}})</span-->
+          {{#if this.children}}
+                <span class="arrow icon-caret-right"></span>
+          </a>
+              <ul>
+                  <li class="all-label"> {{{i18n "home.all.cat.name"}}}  {{this.name}} </li> 
+                  {{#each this.children}}
+                  <li><a href="{{this._links.[1].href}}">{{this.name}}</a></li>
+                  {{/each}}
+              </ul>
+          {{else}}
+          </a>
+          {{/if}}
+    </li>
+    {{/each}}
+    
+    
+    {{#if model.content.swapTradeModel.isSwapTradeEnabled}}
+        <li class="parent-category l1swaptrade item">
+            <a href="{{model.content.swapTradeModel.swapTradeSeoUrl}}">
+                <span class="label">{{model.content.swapTradeModel.name}}</span>
+            </a>
+        </li>
+    {{/if}}
+    {{#if model.content.freebiesModel.isFreebiesEnabled}}
+		<li class="parent-category l1freebies item">
+			<a href="{{model.content.freebiesModel.freebiesSeoUrl}}">
+				<span class="label">{{model.content.freebiesModel.name}}</span>
+			</a>
+		</li>
+    {{/if}}
+    {{#if model.content.wantedModel.isWantedEnabled}}
+		<li class="parent-category l1wanted item">
+			<a href="{{model.content.wantedModel.wantedSeoUrl}}">
+				<span class="label"><!--Poszukiwane-->{{model.content.wantedModel.name}}</span>
+			</a>
+		</li>
+    {{/if}}
+    <li class="item" data-ct-id='rightBucket'>
+     {{!-- {{> hbs/common/rightBucket}} --}}
+    </li>
+</ul>
