@@ -5,6 +5,7 @@
 // // /////////////////////////////////////////////
 
 var gulp = require('gulp'),
+  glob = require('glob'),
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -32,8 +33,9 @@ var gulp = require('gulp'),
   props = require('gulp-props2json'),
   compass = require('gulp-compass'),
   jasmineNode = require('gulp-jasmine-node'),
+  gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
-  iconify = require('gulp-iconify'),
+  asynch = require('async'),
   reload = browserSync.reload;
 
 
@@ -56,9 +58,8 @@ function errorlog(err){
 
 //TODO: add clean|copyTo Task and env checking.
 
-
 var folderList = [];
-gulp.task('gulpicon', function() {
+gulp.task('icons', function() {
 
   var emitter = walkdir(process.cwd() + '/public/svgs', {no_recurse: true}, function(dir, stat, depth){
     var base = path.basename(dir);
@@ -66,24 +67,20 @@ gulp.task('gulpicon', function() {
   });
 
   emitter.on('end', function(){
-    for (var idx = 0; idx < folderList.length; idx++) {
-      console.log('folderName: ',folderList[idx]);
-      iconify({
-          src: './public/svgs/' + folderList[idx] + '/*.svg',
-          cssOutput: './public/cssTest/' + folderList[idx],
-          svgoOptions: {
-              enabled: true,
-              options: {
-                  plugins: [
-                      { removeUnknownsAndDefaults: false },
-                      { mergePaths: false }
-                  ]
-              }
-          }
-      });
-    }
-  });
+    folderList.forEach(function(list, index){
+        (function(listItem) {
+          var config = require("./public/gulpicon.js")(listItem);
+          config.dest = "./public/css";
+          var files = glob.sync("./public/svgs/"+ listItem +"/*.svg");
+          gulpicon(files, config)();
+        })(list);
+    });
+ });
 });
+
+
+
+
 
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
@@ -102,5 +99,5 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
