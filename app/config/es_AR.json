@@ -12,6 +12,7 @@
             "./app/views/components/header/views/hbs/header_es_AR.hbs",
             "./app/views/components/footer/views/hbs/footer_es_AR.hbs",
 
+            "./app/views/components/categoryList/views/hbs/categoryList_es_AR.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_es_AR.hbs"               
     	]
     },
