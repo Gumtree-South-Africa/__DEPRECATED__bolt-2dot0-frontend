@@ -10,7 +10,9 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-    var model = HomepageModel();
+	var cookieName = 'btauth';
+	var btcookie = req.cookies[cookieName];
+    var model = HomepageModel(btcookie);
     
     var extraData = 
     {
@@ -22,9 +24,11 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
+      extraData.header = result[0];
+      extraData.location = result[1];
+      extraData.category = result[2];
       
-      extraData.location = result[0];
-      extraData.category = result[1];
+      console.dir(extraData);
       
       var  pageData = _.extend(result, extraData);
       
