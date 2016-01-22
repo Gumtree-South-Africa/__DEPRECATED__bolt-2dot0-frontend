@@ -3,7 +3,7 @@
 var http = require("http");
 var Q = require("q");
 
-var BasePageModel = require("./BasePageModel");
+var ModelBuilder = require("./ModelBuilder");
 
 var userService = require(process.cwd() + "/server/services/user");
 
@@ -14,7 +14,7 @@ var userService = require(process.cwd() + "/server/services/user");
  */
 var HeaderModel = function (cookie) {
 	this.cookie = cookie;
-    return new BasePageModel(this.getHeaderData());
+    return new ModelBuilder(this.getHeaderData());
 };
 
 

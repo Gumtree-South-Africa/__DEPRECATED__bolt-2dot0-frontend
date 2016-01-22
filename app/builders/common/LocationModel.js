@@ -3,7 +3,7 @@
 var http = require("http");
 var Q = require("q");
 
-var BasePageModel = require("./BasePageModel");
+var ModelBuilder = require("./ModelBuilder");
 
 var locationService = require(process.cwd() + "/server/services/location");
 
@@ -13,7 +13,7 @@ var locationService = require(process.cwd() + "/server/services/location");
  * @constructor
  */
 var LocationModel = function (depth) {
-    return new BasePageModel(this.getLocations(depth));
+    return new ModelBuilder(this.getLocations(depth));
 };
 
 

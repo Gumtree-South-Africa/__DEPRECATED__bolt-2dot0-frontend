@@ -3,7 +3,7 @@
 var http = require("http");
 var Q = require("q");
 
-var BasePageModel = require("./BasePageModel");
+var ModelBuilder = require("./ModelBuilder");
 
 var categoryService = require(process.cwd() + "/server/services/category");
 
@@ -13,7 +13,7 @@ var categoryService = require(process.cwd() + "/server/services/category");
  * @constructor
  */
 var CategoryModel = function (depth) {
-     return new BasePageModel(this.getCategories(depth));
+     return new ModelBuilder(this.getCategories(depth));
 };
 
 

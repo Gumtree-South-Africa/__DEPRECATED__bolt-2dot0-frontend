@@ -6,34 +6,22 @@ var http = require("http");
 var Q = require("q");
 var _ = require("underscore");
 
-var BasePageModel = require("../../common/BasePageModel");
+var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
 var HeaderModel = require("../../common/HeaderModel");
+
+var BasePageModel = require("../../common/BasePageModel");
 
 
 /** 
  * @description A class that Handles the HomePage Model
  * @constructor
  */
-var HomePageModel = function (authcookie) {
+var HomePageModel = function (req) {
+	var headerFunction = BasePageModel.call(this, req);
 	var loc = new LocationModel(2),
-		cat = new CategoryModel(2),
-		header = new HeaderModel(authcookie);
-
-	var headerFunction = function(callback) { 
-		var headerDeferred = Q.defer();
-		Q(header.processParallel())
-	    	.then(function (dataH) {
-	    		console.log("Inside homepagemodel header");
-	    		console.dir(dataH);
-	    		headerDeferred.resolve(dataH[0]);
-	    		callback(null, dataH[0]);
-			}).fail(function (err) {
-				headerDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
+		cat = new CategoryModel(2);
 	
 	var locationFunction = function(callback) { 
 		var locationDeferred = Q.defer();
@@ -64,7 +52,7 @@ var HomePageModel = function (authcookie) {
 	};
 	
 	var arrFunctions = [ headerFunction, locationFunction, categoryFunction ];
-	var homepageModel = new BasePageModel(arrFunctions);
+	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())

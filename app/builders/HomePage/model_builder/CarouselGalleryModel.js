@@ -2,14 +2,14 @@
 
 var http = require("http");
 
-var BasePageModel = require("../../common/BasePageModel");
+var ModelBuilder = require("../../common/ModelBuilder");
 
 /** 
  * @description A class that Handles the HomePage Model
  * @constructor
  */
 var CarouselGalleryModel = function () {
-    return new BasePageModel(CarouselGalleryModel.getCalls());
+    return new ModelBuilder(CarouselGalleryModel.getCalls());
 };
 
 CarouselGalleryModel.getCalls = function () {

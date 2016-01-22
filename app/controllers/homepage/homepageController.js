@@ -10,9 +10,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-	var cookieName = 'bt_auth';
-	var authcookie = req.cookies[cookieName];
-    var model = HomepageModel(authcookie);
+    var model = HomepageModel(req);
     
     var extraData = 
     {
@@ -28,6 +26,7 @@ router.get('/', function (req, res, next) {
       extraData.location = result[1];
       extraData.category = result[2];
       
+      console.log('Back to homepage controller');
       console.dir(extraData);
       
       var  pageData = _.extend(result, extraData);
