@@ -23,19 +23,13 @@ var UserService = function() {
 /**
  * Gets User Info given a token from the cookie
  */
-UserService.prototype.getUserFromCookie = function(depth) {
+UserService.prototype.getUserFromCookie = function(cookie) {
 	console.log("Inside UserService");
-	
-	var data = {
-		id: 1
-	};
-	return data;
-	
-	/*
+
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
+		this.bapiOptions.path = this.bapiOptions.path + "/" + cookie + "?" + this.bapiOptions.parameters; 
 	}
 	
 	// Create Promise
@@ -57,7 +51,6 @@ UserService.prototype.getUserFromCookie = function(depth) {
 	
 	// Return Promise Data
 	return userBapiDeferred.promise;
-	*/
 }
 
 module.exports = new UserService();

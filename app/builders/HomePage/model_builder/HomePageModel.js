@@ -16,10 +16,10 @@ var HeaderModel = require("../../common/HeaderModel");
  * @description A class that Handles the HomePage Model
  * @constructor
  */
-var HomePageModel = function (btcookie) {
+var HomePageModel = function (authcookie) {
 	var loc = new LocationModel(2),
 		cat = new CategoryModel(2),
-		header = new HeaderModel(btcookie);
+		header = new HeaderModel(authcookie);
 
 	var headerFunction = function(callback) { 
 		var headerDeferred = Q.defer();

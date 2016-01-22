@@ -10,9 +10,9 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-	var cookieName = 'btauth';
-	var btcookie = req.cookies[cookieName];
-    var model = HomepageModel(btcookie);
+	var cookieName = 'bt_auth';
+	var authcookie = req.cookies[cookieName];
+    var model = HomepageModel(authcookie);
     
     var extraData = 
     {
