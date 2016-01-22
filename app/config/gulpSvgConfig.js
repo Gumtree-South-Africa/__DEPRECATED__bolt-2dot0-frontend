@@ -43,7 +43,7 @@ module.exports = function(locale){
     // this defaults to "/" and will be placed before the "dest" path
     // when stylesheets are loaded. It allows root-relative referencing
     // of the CSS. If you don't want a prefix path, set to to ""
-    // cssbasepath: "/",
+    //cssbasepath: "/public",
     // customselectors: {
     //   "cat" : ["#el-gato"],
     //   "gummy-bears-2" : ["nav li a.deadly-bears:before"]
