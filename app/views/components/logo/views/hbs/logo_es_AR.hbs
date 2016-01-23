@@ -1,18 +1,1 @@
 {{> logo-base}}
-
-<div style="overflow: hidden; display: inline-block;">
-
-<div class="logo">
-    <a href="{{!-- model.header.homePageUrl --}}"{{#block "HomePageLogoLinkAlt"}}{{/block}}>
-        {{#block "HomePageLogoImage"}}
-            {{#if model.footer.enableLighterVersionForMobile}}
-                <img class="logo" src="{{model.header.baseImageUrl}}{{model.locale}}/logo_mobile.gif" alt='{{!-- i18n "header.logo.altTag" --}}' />
-            {{else}}
-                <img class="logo" src="/images/es_AR/logo.png" alt='{{!-- i18n "header.logo.altTag" --}}' />
-            {{/if}}
-        {{/block}}
-    </a>
-</div>
-
-</div>
-

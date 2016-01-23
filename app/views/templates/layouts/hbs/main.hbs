@@ -2,9 +2,10 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>{{site}}</title>   
-        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/> 
-        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/main.css"/> 
+        <title>{{site}}</title>
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/>
+        <link rel="stylesheet" href="css/{{site}}/{{country}}/{{locale}}/main.css"/>
+        <link rel="stylesheet" href="css/icons.data.svg_{{locale}}.css"/>
     </head>
     <body>
 
@@ -37,7 +38,7 @@
                     </div>
 
                    {{#block "comscore"}}{{/block}}
-                     
+
                     <div class="footer">
                         <footer>
                         {{> footer}}
@@ -46,14 +47,22 @@
                         {{/block}}
                         </footer>
                     </div>
-                    
+
                 </div>
-                
+
             </div>
         </div>
 
         <!-- End from Body.html -->
-      <!--  <script data-main="/js/app" src="js/bower-components/requirejs/require.js"></script> -->
-    
+        <script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
+        <script src="/js/bower-components/requirejs/require.js"></script>
+        <!--
+        <script src="/js/bower-components/jquery/src/jquery.js"></script>
+        -->
+        <script src="/js/common/searchbar.js"></script>
+        <script src="/views/components/categoryList/js/app.js"></script>
+        <!--
+        <script src="/js/libraries/handlebars/handlebars.js"></script>
+        -->
     </body>
 </html>

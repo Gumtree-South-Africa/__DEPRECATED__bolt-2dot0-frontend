@@ -11,8 +11,8 @@ module.exports = function (app) {
 
 router.get('/', function (req, res, next) {
     var model = HomepageModel(req);
-    
-    var extraData = 
+
+    var extraData =
     {
         env: 'public',
         locale: res.config.locale,
@@ -26,11 +26,8 @@ router.get('/', function (req, res, next) {
       extraData.location = result[1];
       extraData.category = result[2];
       
-      console.log('Back to homepage controller');
-      console.dir(extraData);
-      
       var  pageData = _.extend(result, extraData);
-      
+
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
   });
 });
