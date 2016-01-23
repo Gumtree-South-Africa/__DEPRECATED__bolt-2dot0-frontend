@@ -1,7 +1,9 @@
 var path = require( "path" );
+var customselectors = require('./customselectors');
 
 module.exports = function(locale){
   var sufix = locale.split('_')[1].toLowerCase();
+
   var config = {
 
     // CSS filenames
@@ -43,12 +45,9 @@ module.exports = function(locale){
     // this defaults to "/" and will be placed before the "dest" path
     // when stylesheets are loaded. It allows root-relative referencing
     // of the CSS. If you don't want a prefix path, set to to ""
-    // cssbasepath: "/",
-    // customselectors: {
-    //   "cat" : ["#el-gato"],
-    //   "gummy-bears-2" : ["nav li a.deadly-bears:before"]
-    // },
-    //
+    //cssbasepath: "/public",
+    customselectors: customselectors[locale],
+
     // template: path.join( __dirname, "default-css.hbs" ),
     // previewTemplate: path.join( __dirname, "preview-custom.hbs" ),
 

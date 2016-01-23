@@ -5,7 +5,6 @@
 // // /////////////////////////////////////////////
 
 var gulp = require('gulp'),
-  glob = require('glob'),
   sass = require('gulp-sass'),
   sourcemaps = require('gulp-sourcemaps'),
   autoprefixer = require('gulp-autoprefixer'),
@@ -58,34 +57,11 @@ function errorlog(err){
 
 //TODO: add clean|copyTo Task and env checking.
 
-var folderList = [];
-gulp.task('icons', function() {
-
-  var emitter = walkdir(process.cwd() + '/public/svgs', {no_recurse: true}, function(dir, stat, depth){
-    var base = path.basename(dir);
-    folderList.push(base);
-  });
-
-  emitter.on('end', function(){
-    folderList.forEach(function(list, index){
-        (function(listItem) {
-          var config = require("./public/gulpicon.js")(listItem);
-          config.dest = "./public/css";
-          var files = glob.sync("./public/svgs/"+ listItem +"/*.svg");
-          gulpicon(files, config)();
-        })(list);
-    });
- });
-});
-
-
-
-
-
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
+gulp.task('icons', getTask('icons'));
 gulp.task('scripts', getTask('scripts'));
 gulp.task('hbs', getTask('hbs'));
 gulp.task('precompile', getTask('precompile'));
