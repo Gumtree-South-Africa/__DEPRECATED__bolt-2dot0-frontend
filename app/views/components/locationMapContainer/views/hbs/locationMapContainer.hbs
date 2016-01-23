@@ -1,7 +1,3 @@
-{{!-- Place code from home/AR/HomePage.html here --}}
-
-
-
 {{#partial "locationContainer"}}
 <div class="hp-location-wrapper">
     {{#block "HomePageSubTitle"}}{{/block}}
@@ -41,30 +37,3 @@
     </ul>
 </div>
 {{/partial}}
-
-{{#partial "AdBannerHomepg"}}
-	{{#block "locationMap_Script"}}
-    {{/block}}
-{{/partial}}
-
-
-
-{{#if model.header.isIncludeContentForMobile}}
-    {{#partial "locationAfterCategory"}}
-        {{#block "locationContainer"}}{{/block}}
-    {{/partial}}
-{{else}}
-    {{#partial "locationBeforeCategory"}}
-		{{> locationMapContainer}}
-		{{> countryMap}}
-		{{#block "locationContainer"}}{{/block}}
-		{{#block "popularLocations"}}{{/block}}
-	{{/partial}}
-{{/if}}
-
-
-{{!-- > countryMap --}}
-
-{{> homepage-base}}
-
-
