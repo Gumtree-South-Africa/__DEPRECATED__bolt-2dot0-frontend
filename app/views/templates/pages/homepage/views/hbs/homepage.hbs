@@ -27,7 +27,9 @@
 	                    <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
 	                {{/if}}
 
-	                {{#block "locationBeforeCategory"}}{{/block}}
+					{{#block "locationBeforeCategory"}}
+	                {{/block}}
+
 	                {{#with ../this.category}}
 	                    {{> categoryList}}
 	                {{/with}}
@@ -42,6 +44,7 @@
 
 	            {{#block "googleBannerAdsBottom_Container"}}{{/block}}
 				<div class="clear"></div>
+
 	            {{#block "locationAfterCategory"}}{{/block}}
 
 				<div class="hp-keywords-wrapper">
@@ -99,6 +102,15 @@
 	{{/if}}{{/if}}
 -->
 
+{{/partial}}
+
+
+{{#partial "pageTailScripts"}}  
+   <script>
+	{{#block "AdBannerHomepg"}}
+    	{{#block "locationMap_Script"}}{{/block}}
+	{{/block}}
+   </script>
 {{/partial}}
 
 {{!-- > hbs/Html --}}
