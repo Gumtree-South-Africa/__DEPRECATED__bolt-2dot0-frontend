@@ -16,14 +16,17 @@ var UserService = function() {
     	port : config.get('BAPI.server.port'),
     	parameters : config.get('BAPI.server.parameters'),
     	path : "/",
-    	method : "GET"
+    	method : "GET",
+    	headers: {
+    		"X-BOLT-APPS-ID": "RUI"
+    	}
 	};
 };
 
 /**
  * Gets User Info given a token from the cookie
  */
-UserService.prototype.getUserFromCookie = function(cookie) {
+UserService.prototype.getUserFromCookie = function(cookie, locale) {
 	console.log("Inside UserService");
 
 	// Prepare BAPI call
@@ -31,6 +34,7 @@ UserService.prototype.getUserFromCookie = function(cookie) {
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "/" + cookie + "?" + this.bapiOptions.parameters; 
 	}
+	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	
 	// Create Promise
 	var userBapiDeferred = Q.defer();

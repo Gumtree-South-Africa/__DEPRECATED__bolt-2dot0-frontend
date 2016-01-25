@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "npm install && gulp",
+    "mock": "npm install &&  NODE_ENV=mock gulp",
     "pp": "npm install && NODE_ENV=pp gulp",
     "lnp": "npm install && NODE_ENV=lnp gulp",
     "prod": "npm install && NODE_ENV=production gulp",

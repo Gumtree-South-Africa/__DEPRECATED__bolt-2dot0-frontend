@@ -10,7 +10,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-    var model = HomepageModel(req);
+    var model = HomepageModel(req, res);
 
     var extraData =
     {

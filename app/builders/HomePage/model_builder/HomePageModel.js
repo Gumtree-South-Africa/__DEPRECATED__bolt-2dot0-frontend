@@ -18,10 +18,10 @@ var BasePageModel = require("../../common/BasePageModel");
  * @description A class that Handles the HomePage Model
  * @constructor
  */
-var HomePageModel = function (req) {
-	var headerFunction = BasePageModel.call(this, req);
-	var loc = new LocationModel(2),
-		cat = new CategoryModel(2);
+var HomePageModel = function (req, res) {
+	var headerFunction = BasePageModel.call(this, req, res);
+	var loc = new LocationModel(res.config.locale, 2),
+		cat = new CategoryModel(res.config.locale, 2);
 	
 	var locationFunction = function(callback) { 
 		var locationDeferred = Q.defer();

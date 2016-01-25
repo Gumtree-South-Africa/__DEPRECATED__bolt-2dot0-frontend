@@ -12,13 +12,16 @@ var locationService = require(process.cwd() + "/server/services/location");
  * @description A class that Handles the Location Model
  * @constructor
  */
-var LocationModel = function (depth) {
-    return new ModelBuilder(this.getLocations(depth));
+var LocationModel = function (locale, depth) {
+	this.locale = locale;
+	this.depth = depth;
+    return new ModelBuilder(this.getLocations());
 };
 
 
 // Function getLocations
-LocationModel.prototype.getLocations = function(depth) {
+LocationModel.prototype.getLocations = function() {
+	var scope = this;
 	var arrFunctions = [
 		function (callback) {
 			var locationDeferred,
@@ -27,11 +30,11 @@ LocationModel.prototype.getLocations = function(depth) {
 				return;
 			}
 			
-		    if (typeof depth !== "undefined") {
+		    if (typeof scope.depth !== "undefined") {
 		    	locationDeferred = Q.defer();
 				console.log("Calling LocationService");
 			    
-				 Q(locationService.getLocationsData(depth))
+				 Q(locationService.getLocationsData(scope.locale, scope.depth))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		locationDeferred.resolve(data);

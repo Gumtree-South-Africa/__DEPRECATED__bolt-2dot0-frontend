@@ -16,21 +16,27 @@ var LocationService = function() {
     	port : config.get('BAPI.server.port'),
     	parameters : config.get('BAPI.server.parameters'),
     	path : "/",
-    	method : "GET"
+    	method : "GET",
+    	headers: {
+    		"X-BOLT-APPS-ID": "RUI"
+    	}
 	};
 };
 
 /**
  * Gets a list of locations
  */
-LocationService.prototype.getLocationsData = function(depth) {
+LocationService.prototype.getLocationsData = function(locale, depth) {
 	console.log("Inside LocationService");
 	
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=2"; 
+	} else {
+		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
 	}
+	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	
 	// Create Promise
 	var locationBapiDeferred = Q.defer();

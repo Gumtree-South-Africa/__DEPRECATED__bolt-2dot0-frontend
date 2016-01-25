@@ -12,8 +12,9 @@ var userService = require(process.cwd() + "/server/services/user");
  * @description A class that Handles the Header Model
  * @constructor
  */
-var HeaderModel = function (cookie) {
+var HeaderModel = function (cookie, locale) {
 	this.cookie = cookie;
+	this.locale = locale;
     return new ModelBuilder(this.getHeaderData());
 };
 
@@ -33,7 +34,7 @@ HeaderModel.prototype.getHeaderData = function() {
 		    	headerDeferred = Q.defer();
 				console.log("Calling Service to get HeaderData");
 			    
-				 Q(userService.getUserFromCookie(scope.cookie))
+				 Q(userService.getUserFromCookie(scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		headerDeferred.resolve(data);

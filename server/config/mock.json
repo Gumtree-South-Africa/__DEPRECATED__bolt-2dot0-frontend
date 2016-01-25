@@ -1,0 +1,15 @@
+{
+  // BAPI config for Mock Server
+  "BAPI": {
+    "server": {
+    	"host": "localhost",
+    	"port": 5000,
+    	"parameters": "_forceExample=true&_statusCode=200"
+    },
+    "endpoints": {
+    	"categoryHomePage": "/categories",
+    	"locationHomePage":	"/locations",
+    	"userFromCookie" : "/users/token"
+    }
+  }
+}

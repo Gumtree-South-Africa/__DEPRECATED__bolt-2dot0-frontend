@@ -13,10 +13,10 @@ var HeaderModel = require("./HeaderModel");
  * @description A class that Handles the common models in every page
  * @constructor
  */
-var BasePageModel = function (req) {
+var BasePageModel = function (req, res) {
 	var cookieName = "bt_auth";
 	var authcookie = req.cookies[cookieName];	    
-	var header = new HeaderModel(authcookie);
+	var header = new HeaderModel(authcookie, res.config.locale);
 
 	var headerFunction = function(callback) { 
 		var headerDeferred = Q.defer();
