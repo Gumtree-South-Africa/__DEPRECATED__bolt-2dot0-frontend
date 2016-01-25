@@ -13,7 +13,9 @@
             "./app/views/components/footer/views/hbs/footer_en_ZA.hbs",
 
             "./app/views/components/categoryList/views/hbs/categoryList_en_ZA.hbs",
-            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs"              
+            "./app/views/components/countryMap/views/hbs/countryMap_en_ZA.hbs",
+            "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_en_ZA.hbs",
+            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs"           
     	]
     },
 	"messagepage": {
