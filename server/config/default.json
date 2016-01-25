@@ -1,16 +1,15 @@
 {
-  // BAPI config
+  // BAPI config for Local Dev Server
   "BAPI": {
     "server": {
-    	"host": "localhost",
-    	"port": 5000,
-    	"parameters": "_forceExample=true&_statusCode=200"
+    	"host": "api.bolt.ecg.ebay.com.localhost",
+    	"port": 8080,
+    	"parameters": null
     },
     "endpoints": {
-    	"categoryHomePage": "/categories",
-    	"locationHomePage":	"/locations"
+    	"categoryHomePage": "/bolt-api-webapp/v1/categories",
+    	"locationHomePage":	"/bolt-api-webapp/v1/locations",
+    	"userFromCookie" : "/bolt-api-webapp/v1/users/token"
     }
   }
 }
-
-//http://api.bolt.ecg.ebay.co.za.localhost:8080/bolt-api-webapp/v1/location

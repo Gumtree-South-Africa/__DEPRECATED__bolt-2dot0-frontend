@@ -85,29 +85,35 @@ BAPICall.prototype = {
 			// Performs the GET request
 			reqGet = http.request(scope.options, function(res) {
 				data = {};
+				var body = "";
 
 		    	res.on("data", function(d) {
-		        	try {
-		        		data = JSON.parse(d);
-		        	} catch (e) {
-		        		// Logger.log("GET: Failed to process retrieved data from call!");
-		        		data = {};
-		        	}
+	        		var chunk = d.toString('utf-8');
+	        		body += chunk;
 		    	});
 
 		    	res.on("end", function(d) {
+		    		// parse JSON when data stream ends
+		    		try {
+		    			data = JSON.parse(body);
+		    		} catch(ex) {
+		    			data = {};
+		    		}
+		    		
 					// Execute the callback if present.
 					if (scope.callback) {
 		        		// Aggregation of data with the original (passed) data
 						data = _.extend(scope.argData, data);
 						scope.callback(null, data);
 					}
+					
 					return data;
 		    	});
 		 
 			});
 
 			reqGet.on("error", function(ex) {
+				console.log('err', ex);
 				scope.errorHandling(ex);
 			});
 

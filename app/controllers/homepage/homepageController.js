@@ -10,9 +10,9 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
-    var model = HomepageModel();
-    
-    var extraData = 
+    var model = HomepageModel(req, res);
+
+    var extraData =
     {
         env: 'public',
         locale: res.config.locale,
@@ -22,12 +22,12 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
+      extraData.header = result[0];
+      extraData.location = result[1];
+      extraData.category = result[2];
       
-      extraData.location = result[0];
-      extraData.category = result[1];
-     
       var  pageData = _.extend(result, extraData);
-      
+
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
   });
 });

@@ -6,10 +6,10 @@ var config = require('config');
 var BAPICall = require("./lib/BAPICall");
 
 /** 
- * @description A service class that talks to Location BAPI
+ * @description A service class that talks to User BAPI
  * @constructor
  */
-var LocationService = function() {
+var UserService = function() {
 	// BAPI server options for GET
 	this.bapiOptions = {
    		host : config.get('BAPI.server.host'),
@@ -24,39 +24,37 @@ var LocationService = function() {
 };
 
 /**
- * Gets a list of locations
+ * Gets User Info given a token from the cookie
  */
-LocationService.prototype.getLocationsData = function(locale, depth) {
-	console.log("Inside LocationService");
-	
+UserService.prototype.getUserFromCookie = function(cookie, locale) {
+	console.log("Inside UserService");
+
 	// Prepare BAPI call
-	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
+	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=2"; 
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
+		this.bapiOptions.path = this.bapiOptions.path + "/" + cookie + "?" + this.bapiOptions.parameters; 
 	}
 	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	
 	// Create Promise
-	var locationBapiDeferred = Q.defer();
+	var userBapiDeferred = Q.defer();
 	
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
-		console.log("LocationService: Callback from location BAPI");
+		console.log("UserService: Callback from User BAPI");
 		if(typeof output === undefined) {
-			locationBapiDeferred.reject(new Error("Error in calling location BAPI"));
+			userBapiDeferred.reject(new Error("Error in calling User BAPI"));
 		} else {
-			locationBapiDeferred.resolve(output);
+			userBapiDeferred.resolve(output);
 		}
 	});
 	
 	// Invoke BAPI request
-	console.log("LocationService: About to call location BAPI");
+	console.log("UserService: About to call User BAPI");
 	bapi.doGet();
 	
 	// Return Promise Data
-	return locationBapiDeferred.promise;
+	return userBapiDeferred.promise;
 }
 
-module.exports = new LocationService();
+module.exports = new UserService();

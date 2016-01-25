@@ -16,20 +16,26 @@ var CategoryService = function() {
     	port : config.get('BAPI.server.port'),
     	parameters : config.get('BAPI.server.parameters'),
     	path : "/",
-    	method : "GET"
+    	method : "GET",
+    	headers: {
+    		"X-BOLT-APPS-ID": "RUI"
+    	}
 	};
 	console.log('CategoryService: ',config.get('BAPI.server.host'));
 };
 
 //Gets a list of categories for the homepage
-CategoryService.prototype.getCategoriesData = function(depth) {
+CategoryService.prototype.getCategoriesData = function(locale, depth) {
 	console.log("Inside CategoryService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters; 
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=2"; 
+	} else {
+		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
 	}
+	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	
 	// Create Promise
 	var categoryBapiDeferred = Q.defer();
@@ -37,7 +43,6 @@ CategoryService.prototype.getCategoriesData = function(depth) {
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
 		console.log("CategoryService: Callback from category BAPI");
-		console.log('output: ',output);
 		if(typeof output === undefined) {
 			categoryBapiDeferred.reject(new Error("Error in calling category BAPI"));
 		} else {

@@ -6,19 +6,23 @@ var http = require("http");
 var Q = require("q");
 var _ = require("underscore");
 
-var BasePageModel = require("../../common/BasePageModel");
+var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
-var CarouselGalleryModel = require("./CarouselGalleryModel");
+var HeaderModel = require("../../common/HeaderModel");
+
+var BasePageModel = require("../../common/BasePageModel");
+
 
 /** 
  * @description A class that Handles the HomePage Model
  * @constructor
  */
-var HomePageModel = function () {
-	var loc = new LocationModel(2),
-		cat = new CategoryModel(2);
-
+var HomePageModel = function (req, res) {
+	var headerFunction = BasePageModel.call(this, req, res);
+	var loc = new LocationModel(res.config.locale, 2),
+		cat = new CategoryModel(res.config.locale, 2);
+	
 	var locationFunction = function(callback) { 
 		var locationDeferred = Q.defer();
 		Q(loc.processParallel())
@@ -47,8 +51,8 @@ var HomePageModel = function () {
 			});
 	};
 	
-	var arrFunctions = [ locationFunction, categoryFunction];
-	var homepageModel = new BasePageModel(arrFunctions);
+	var arrFunctions = [ headerFunction, locationFunction, categoryFunction ];
+	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
