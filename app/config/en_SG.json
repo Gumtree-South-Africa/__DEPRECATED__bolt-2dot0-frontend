@@ -13,6 +13,7 @@
             "./app/views/components/footer/views/hbs/footer_en_SG.hbs",
 
             "./app/views/components/categoryList/views/hbs/categoryList_en_SG.hbs",
+            "./app/views/components/adCarousel/views/hbs/adCarousel_en_SG.hbs",
             "./app/views/components/countryMap/views/hbs/countryMap_en_SG.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_en_SG.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_en_SG.hbs"              

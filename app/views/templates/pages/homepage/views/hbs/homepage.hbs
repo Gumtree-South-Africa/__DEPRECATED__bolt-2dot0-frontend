@@ -5,8 +5,8 @@
 		 {{> hbs/home/AdBanner_top}}
 	 {{/if}}
 
-	{{!-- > hbs/widget/carousel --}}
-	{{!-- {{#block "carousel"}}VIEW RESULT{{/block}} --}}
+	{{> adCarousel}}
+	{{#block "carousel"}}VIEW RESULT{{/block}}
 
 	<div class="hp-content hp-others
 	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
