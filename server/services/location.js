@@ -26,10 +26,9 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 	} else {
 		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
 	}
-	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "location");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location");
 }
 
 module.exports = new LocationService();

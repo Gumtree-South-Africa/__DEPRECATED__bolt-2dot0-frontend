@@ -24,10 +24,9 @@ UserService.prototype.getUserFromCookie = function(cookie, locale) {
 	if (this.bapiOptions.parameters != undefined) {
 		this.bapiOptions.path = this.bapiOptions.path + "/" + cookie + "?" + this.bapiOptions.parameters;
 	}
-	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "user");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "user");
 }
 
 module.exports = new UserService();

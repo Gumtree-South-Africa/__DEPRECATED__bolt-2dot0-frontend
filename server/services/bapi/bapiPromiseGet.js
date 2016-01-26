@@ -4,7 +4,10 @@ var Q = require("q");
 
 var BAPICall = require("./BAPICall");
 
-module.exports = function(bapiOptions, serviceName){
+module.exports = function(bapiOptions, locale, serviceName){
+	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
+	bapiOptions.headers["Authorization"] = "Bearer 123456";
+	
   	//Create Promise
 	var bapiDeferred = Q.defer();
 

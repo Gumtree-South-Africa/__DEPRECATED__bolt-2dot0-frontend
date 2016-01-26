@@ -26,10 +26,9 @@ CategoryService.prototype.getCategoriesData = function(locale, depth) {
 	} else {
 		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
 	}
-	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "category");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "category");
 }
 
 module.exports = new CategoryService();
