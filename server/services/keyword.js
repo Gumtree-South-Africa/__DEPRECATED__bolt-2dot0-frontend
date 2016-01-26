@@ -1,0 +1,49 @@
+"use strict";
+
+var config = require('config');
+
+var bapiOptions = require("./bapi/bapiOptions")(config);
+
+/**
+ * @description A service class that talks to Keyword BAPI
+ * @constructor
+ */
+var KeywordService = function() {
+	// BAPI server options for GET
+	this.bapiOptions =	bapiOptions;
+};
+
+/**
+ * Gets a list of top keywords
+ */
+KeywordService.prototype.getTopKeywordsData = function(locale) {
+	console.log("Inside Top KeywordService");
+
+	// Prepare BAPI call
+	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
+	if (this.bapiOptions.parameters != undefined) {
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
+	}
+	
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topKeywords");
+}
+
+/**
+ * Gets a list of trending keywords
+ */
+KeywordService.prototype.getTrendingKeywordsData = function(locale) {
+	console.log("Inside Trending KeywordService");
+
+	// Prepare BAPI call
+	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');
+	if (this.bapiOptions.parameters != undefined) {
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
+	}
+	
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "trendingKeywords");
+}
+
+
+module.exports = new KeywordService();
