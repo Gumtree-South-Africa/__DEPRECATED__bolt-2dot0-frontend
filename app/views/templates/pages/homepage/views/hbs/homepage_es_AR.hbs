@@ -50,11 +50,15 @@
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
 {{else}}
-    {{#partial "locationBeforeCategory"}}
+    {{#partial "locationBeforeCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
 		{{> locationMapContainer}}
 		{{> countryMap}}
+        {{> adCarousel}}
+
 		{{#block "locationContainer"}}{{/block}}
 		{{#block "popularLocations"}}{{/block}}
+        {{#block "carousel"}}{{/block}}
 	{{/partial}}
 {{/if}}
 
