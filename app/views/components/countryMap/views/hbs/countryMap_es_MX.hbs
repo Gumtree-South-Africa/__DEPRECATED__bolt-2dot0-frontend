@@ -9,7 +9,7 @@
             <img src="{{model.header.baseImageUrl}}{{model.locale}}/MAP/mx_map3.gif" usemap="#MapAreasContainer" border="0"
                  alt="{{i18n "home.mapTitle"}}" />
         -->
-            <img src="/images/es_MX_VNS/MAP/mx_map3.gif" usemap="#MapAreasContainer" border="0"
+            <img src="/images/es_MX/MAP/mx_map3.gif" usemap="#MapAreasContainer" border="0"
                  alt="{{i18n "home.mapTitle"}}" />
         </div>
         <map id="MapAreasContainer" name="MapAreasContainer">
@@ -69,7 +69,7 @@
             <area shape="poly" coords="283,267,283,267,285,265,287,262,287,261,288,260,288,260,288,260,286,255,284,256,279,257,274,256,270,261,273,265" title="Morelos" />
             <!--df-->
 
-                <area shape="poly" coords='142,315,177,281,198,313,201,360,154,360' title="Distrito Federal" />
+            <area shape="poly" coords='142,315,177,281,198,313,201,360,154,360' title="Distrito Federal" />
 
             <!--df-->
             <area shape="circle" coords="281,250,9" title="Distrito Federal" />
@@ -90,7 +90,7 @@
 {{#partial "locationMap_Script"}}
     {{!-- This partial initializes the location map feature --}}
     // var baseLocMapDir = "{{model.header.baseImageUrl}}{{model.locale}}/MAP/locations/";
-    var baseLocMapDir = "/images/es_MX_VNS/MAP/locations/";
+    var baseLocMapDir = "/images/es_MX/MAP/locations/";
 
     var mapComponentsJSON = {
         completeMap : $("#completeMap"),
@@ -99,6 +99,7 @@
     };
 
     if (BOLT && BOLT.HOME && BOLT.HOME.Map) {
-        BOLT.HOME.Map.init(baseLocMapDir, mapComponentsJSON, {}, ".png"); // { "Distrito Federal" : "df" });
+        BOLT.HOME.Map.init(baseLocMapDir, mapComponentsJSON,  { "Distrito Federal" : "df" });
     }
+
 {{/partial}}

@@ -16,8 +16,8 @@
 }
 
 // Variable for the map images path.
-$map-url: url(../../../../../images/es_MX_VNS/MAP/mx_sprite.gif);
-$tablet-map-url: url(../../../../../images/es_MX_VNS/MAP/mx_map3_tablet_bg.png);
+$map-url: url(../../../../../images/es_MX/MAP/mx_sprite.gif);
+$tablet-map-url: url(../../../../../images/es_MX/MAP/mx_map3_tablet_bg.png);
 @include country-homepage-map;
 
 // After the country-homepage-map mixin inclusion override dimensions of country map.

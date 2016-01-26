@@ -40,44 +40,44 @@ display:none;
 }
 
 // Variable for the map images path.
-$map-url: url(../../../../../images/es_MX_VNS/MAP/mx_sprite.gif);
-$tablet-map-url: url(../../../../../images/es_MX_VNS/MAP/mx_map3_tablet_bg.png);
+$map-url: url(../../../../../images/es_MX/MAP/mx_sprite.gif);
+$tablet-map-url: url(../../../../../images/es_MX/MAP/mx_map3_tablet_bg.png);
 @include country-homepage-map;
 
 // Map optimization class
 #completeMap.focusState { background: no-repeat top center; }
-#completeMap.Aguascalientes { background: url("../../../../../images/es_MX_VNS/MAP/locations/Aguascalientes.gif"); }
-#completeMap.Baja_California { background: url("../../../../../images/es_MX_VNS/MAP/locations/Baja_California.gif"); }
-#completeMap.Baja_California_Sur { background: url("../../../../../images/es_MX_VNS/MAP/locations/Baja_California_Sur.gif"); }
-#completeMap.Campeche { background: url("../../../../../images/es_MX_VNS/MAP/locations/Campeche.gif"); }
-#completeMap.Chiapas { background: url("../../../../../images/es_MX_VNS/MAP/locations/Chiapas.gif"); }
-#completeMap.Chihuahua { background: url("../../../../../images/es_MX_VNS/MAP/locations/Chihuahua.gif"); }
-#completeMap.Coahuila { background: url("../../../../../images/es_MX_VNS/MAP/locations/Coahuila.gif"); }
-#completeMap.Colima { background: url("../../../../../images/es_MX_VNS/MAP/locations/Colima.gif"); }
-#completeMap.df { background: url("../../../../../images/es_MX_VNS/MAP/locations/df.gif"); }
-#completeMap.Durango { background: url("../../../../../images/es_MX_VNS/MAP/locations/Durango.gif"); }
-#completeMap.Estado_de_Mexico { background: url("../../../../../images/es_MX_VNS/MAP/locations/Estado_de_Mexico.gif"); }
-#completeMap.Guanajuato { background: url("../../../../../images/es_MX_VNS/MAP/locations/Guanajuato.gif"); }
-#completeMap.Guerrero { background: url("../../../../../images/es_MX_VNS/MAP/locations/Guerrero.gif"); }
-#completeMap.Hidalgo { background: url("../../../../../images/es_MX_VNS/MAP/locations/Hidalgo.gif"); }
-#completeMap.Jalisco { background: url("../../../../../images/es_MX_VNS/MAP/locations/Jalisco.gif"); }
-#completeMap.Michoacan { background: url("../../../../../images/es_MX_VNS/MAP/locations/Michoacan.gif"); }
-#completeMap.Morelos { background: url("../../../../../images/es_MX_VNS/MAP/locations/Morelos.gif"); }
-#completeMap.Nayarit { background: url("../../../../../images/es_MX_VNS/MAP/locations/Nayarit.gif"); }
-#completeMap.Nuevo_Leon { background: url("../../../../../images/es_MX_VNS/MAP/locations/Nuevo_Leon.gif"); }
-#completeMap.Oaxaca { background: url("../../../../../images/es_MX_VNS/MAP/locations/Oaxaca.gif"); }
-#completeMap.Puebla { background: url("../../../../../images/es_MX_VNS/MAP/locations/Puebla.gif"); }
-#completeMap.Queretaro { background: url("../../../../../images/es_MX_VNS/MAP/locations/Queretaro.gif"); }
-#completeMap.Quintana_Roo { background: url("../../../../../images/es_MX_VNS/MAP/locations/Quintana_Roo.gif"); }
-#completeMap.San_Luis_Potosi { background: url("../../../../../images/es_MX_VNS/MAP/locations/San_Luis_Potosi.gif"); }
-#completeMap.Sinaloa { background: url("../../../../../images/es_MX_VNS/MAP/locations/Sinaloa.gif"); }
-#completeMap.Sonora { background: url("../../../../../images/es_MX_VNS/MAP/locations/Sonora.gif"); }
-#completeMap.Tabasco { background: url("../../../../../images/es_MX_VNS/MAP/locations/Tabasco.gif"); }
-#completeMap.Tamaulipas { background: url("../../../../../images/es_MX_VNS/MAP/locations/Tamaulipas.gif"); }
-#completeMap.Tlaxcala { background: url("../../../../../images/es_MX_VNS/MAP/locations/Tlaxcala.gif"); }
-#completeMap.Veracruz { background: url("../../../../../images/es_MX_VNS/MAP/locations/Veracruz.gif"); }
-#completeMap.Yucatan { background: url("../../../../../images/es_MX_VNS/MAP/locations/Yucatan.gif"); }
-#completeMap.Zacatecas { background: url("../../../../../images/es_MX_VNS/MAP/locations/Zacatecas.gif"); }
+#completeMap.Aguascalientes { background: url("../../../../../images/es_MX/MAP/locations/Aguascalientes.gif"); }
+#completeMap.Baja_California { background: url("../../../../../images/es_MX/MAP/locations/Baja_California.gif"); }
+#completeMap.Baja_California_Sur { background: url("../../../../../images/es_MX/MAP/locations/Baja_California_Sur.gif"); }
+#completeMap.Campeche { background: url("../../../../../images/es_MX/MAP/locations/Campeche.gif"); }
+#completeMap.Chiapas { background: url("../../../../../images/es_MX/MAP/locations/Chiapas.gif"); }
+#completeMap.Chihuahua { background: url("../../../../../images/es_MX/MAP/locations/Chihuahua.gif"); }
+#completeMap.Coahuila { background: url("../../../../../images/es_MX/MAP/locations/Coahuila.gif"); }
+#completeMap.Colima { background: url("../../../../../images/es_MX/MAP/locations/Colima.gif"); }
+#completeMap.df { background: url("../../../../../images/es_MX/MAP/locations/df.gif"); }
+#completeMap.Durango { background: url("../../../../../images/es_MX/MAP/locations/Durango.gif"); }
+#completeMap.Estado_de_Mexico { background: url("../../../../../images/es_MX/MAP/locations/Estado_de_Mexico.gif"); }
+#completeMap.Guanajuato { background: url("../../../../../images/es_MX/MAP/locations/Guanajuato.gif"); }
+#completeMap.Guerrero { background: url("../../../../../images/es_MX/MAP/locations/Guerrero.gif"); }
+#completeMap.Hidalgo { background: url("../../../../../images/es_MX/MAP/locations/Hidalgo.gif"); }
+#completeMap.Jalisco { background: url("../../../../../images/es_MX/MAP/locations/Jalisco.gif"); }
+#completeMap.Michoacan { background: url("../../../../../images/es_MX/MAP/locations/Michoacan.gif"); }
+#completeMap.Morelos { background: url("../../../../../images/es_MX/MAP/locations/Morelos.gif"); }
+#completeMap.Nayarit { background: url("../../../../../images/es_MX/MAP/locations/Nayarit.gif"); }
+#completeMap.Nuevo_Leon { background: url("../../../../../images/es_MX/MAP/locations/Nuevo_Leon.gif"); }
+#completeMap.Oaxaca { background: url("../../../../../images/es_MX/MAP/locations/Oaxaca.gif"); }
+#completeMap.Puebla { background: url("../../../../../images/es_MX/MAP/locations/Puebla.gif"); }
+#completeMap.Queretaro { background: url("../../../../../images/es_MX/MAP/locations/Queretaro.gif"); }
+#completeMap.Quintana_Roo { background: url("../../../../../images/es_MX/MAP/locations/Quintana_Roo.gif"); }
+#completeMap.San_Luis_Potosi { background: url("../../../../../images/es_MX/MAP/locations/San_Luis_Potosi.gif"); }
+#completeMap.Sinaloa { background: url("../../../../../images/es_MX/MAP/locations/Sinaloa.gif"); }
+#completeMap.Sonora { background: url("../../../../../images/es_MX/MAP/locations/Sonora.gif"); }
+#completeMap.Tabasco { background: url("../../../../../images/es_MX/MAP/locations/Tabasco.gif"); }
+#completeMap.Tamaulipas { background: url("../../../../../images/es_MX/MAP/locations/Tamaulipas.gif"); }
+#completeMap.Tlaxcala { background: url("../../../../../images/es_MX/MAP/locations/Tlaxcala.gif"); }
+#completeMap.Veracruz { background: url("../../../../../images/es_MX/MAP/locations/Veracruz.gif"); }
+#completeMap.Yucatan { background: url("../../../../../images/es_MX/MAP/locations/Yucatan.gif"); }
+#completeMap.Zacatecas { background: url("../../../../../images/es_MX/MAP/locations/Zacatecas.gif"); }
 
 
 .header.diff{  
