@@ -1,10 +1,8 @@
 "use strict";
 
-var Q = require("q");
 var config = require('config');
 
-var BAPICall = require("./lib/BAPICall");
-var bapiOptions = require("./utils/bapiOptions")(config);
+var bapiOptions = require("./bapi/bapiOptions")(config);
 
 /**
  * @description A service class that talks to User BAPI
@@ -28,25 +26,8 @@ UserService.prototype.getUserFromCookie = function(cookie, locale) {
 	}
 	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 
-	// Create Promise
-	var userBapiDeferred = Q.defer();
-
-	// Instantiate BAPI and callback to resolve promise
-	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
-		console.log("UserService: Callback from User BAPI");
-		if(typeof output === undefined) {
-			userBapiDeferred.reject(new Error("Error in calling User BAPI"));
-		} else {
-			userBapiDeferred.resolve(output);
-		}
-	});
-
-	// Invoke BAPI request
-	console.log("UserService: About to call User BAPI");
-	bapi.doGet();
-
-	// Return Promise Data
-	return userBapiDeferred.promise;
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "user");
 }
 
 module.exports = new UserService();

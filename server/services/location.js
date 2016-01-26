@@ -1,10 +1,8 @@
 "use strict";
 
-var Q = require("q");
 var config = require('config');
 
-var BAPICall = require("./lib/BAPICall");
-var bapiOptions = require("./utils/bapiOptions")(config);
+var bapiOptions = require("./bapi/bapiOptions")(config);
 
 /**
  * @description A service class that talks to Location BAPI
@@ -29,26 +27,9 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
 	}
 	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
-
-	// Create Promise
-	var locationBapiDeferred = Q.defer();
-
-	// Instantiate BAPI and callback to resolve promise
-	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
-		console.log("LocationService: Callback from location BAPI");
-		if(typeof output === undefined) {
-			locationBapiDeferred.reject(new Error("Error in calling location BAPI"));
-		} else {
-			locationBapiDeferred.resolve(output);
-		}
-	});
-
-	// Invoke BAPI request
-	console.log("LocationService: About to call location BAPI");
-	bapi.doGet();
-
-	// Return Promise Data
-	return locationBapiDeferred.promise;
+	
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "location");
 }
 
 module.exports = new LocationService();

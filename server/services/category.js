@@ -1,10 +1,8 @@
 "use strict";
 
-var Q = require("q");
 var config = require('config');
 
-var BAPICall = require("./lib/BAPICall");
-var bapiOptions = require("./utils/bapiOptions")(config);
+var bapiOptions = require("./bapi/bapiOptions")(config);
 
 /**
  * @description A service class that talks to Category BAPI
@@ -15,7 +13,9 @@ var CategoryService = function() {
 	this.bapiOptions =	bapiOptions;
 };
 
-//Gets a list of categories for the homepage
+/**
+ * Gets a list of categories
+ */
 CategoryService.prototype.getCategoriesData = function(locale, depth) {
 	console.log("Inside CategoryService");
 
@@ -28,25 +28,8 @@ CategoryService.prototype.getCategoriesData = function(locale, depth) {
 	}
 	this.bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 
-	// Create Promise
-	var categoryBapiDeferred = Q.defer();
-
-	// Instantiate BAPI and callback to resolve promise
-	var bapi = new BAPICall(this.bapiOptions, null, function(arg, output) {
-		console.log("CategoryService: Callback from category BAPI");
-		if(typeof output === undefined) {
-			categoryBapiDeferred.reject(new Error("Error in calling category BAPI"));
-		} else {
-			categoryBapiDeferred.resolve(output);
-		}
-	});
-
-	// Invoke BAPI request
-	console.log("CategoryService: About to call category BAPI");
-	bapi.doGet();
-
-	// Return Promise Data
-	return categoryBapiDeferred.promise;
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, "category");
 }
 
 module.exports = new CategoryService();
