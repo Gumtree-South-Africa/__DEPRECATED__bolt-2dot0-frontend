@@ -1,6 +1,7 @@
 // jshint ignore: start
 "use strict";
 
+
 (function() {
 
 	$(document).ready(function() {
