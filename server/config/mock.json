@@ -9,7 +9,11 @@
     "endpoints": {
     	"categoryHomePage": "/categories",
     	"locationHomePage":	"/locations",
-    	"userFromCookie" : "/users/token"
+    	"userFromCookie" : "/users/token",
+    	"topKeywords" : "/keywords/top",
+    	"trendingKeywords" : "/keyowrds/trending",
+    	"homepageGallery" : "/ads/gallery",
+    	"adStatistics" : "/ads/statistics"
     }
   }
 }
