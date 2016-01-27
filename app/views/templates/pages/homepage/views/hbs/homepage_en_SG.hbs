@@ -9,5 +9,8 @@
         {{> adCarousel}}
         {{#block "carousel"}}{{/block}}
     {{/partial}}
-    {{#partial "locationAfterCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
+    	{{> locationMapContainer}}
+        {{#block "locationContainer" ../this}}{{/block}}
+    {{/partial}}
 {{/if}}
