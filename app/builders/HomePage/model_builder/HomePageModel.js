@@ -11,6 +11,7 @@ var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
 var HeaderModel = require("../../common/HeaderModel");
 var keywordModel = require("../../common/keywordModel");
+var GalleryModel = require("../../common/GalleryModel");
 var BasePageModel = require("../../common/BasePageModel");
 
 
@@ -21,8 +22,9 @@ var BasePageModel = require("../../common/BasePageModel");
 var HomePageModel = function (req, res) {
 	var headerFunction = BasePageModel.call(this, req, res);
 	var loc = new LocationModel(res.config.locale, 2),
-			cat = new CategoryModel(res.config.locale, 2),
-			keyword = new keywordModel(res.config.locale, 2);
+		cat = new CategoryModel(res.config.locale, 2),
+		keyword = new keywordModel(res.config.locale, 2),
+		gallery = new GalleryModel(res.config.locale);
 
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
@@ -52,7 +54,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
- var keywordsFunction = function(callback) {
+	var keywordsFunction = function(callback) {
 		var keywordsDeferred = Q.defer();
 		Q(keyword.processParallel())
 	    	.then(function (dataK) {
@@ -66,10 +68,9 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	// TODO Replace loc by gallery Model builder
 	var galleryFunction = function(callback) {
 		var galleryDeferred = Q.defer();
-		Q(loc.processParallel())
+		Q(gallery.processParallel())
 	    	.then(function (dataG) {
 	    		console.log("Inside homepagemodel gallery");
 	    		console.dir(dataG);

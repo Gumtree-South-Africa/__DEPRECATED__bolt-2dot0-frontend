@@ -27,9 +27,9 @@ router.get('/', function (req, res, next) {
       extraData.category = result[2];
       extraData.trendingKeywords = result[3][0].keywords;
       extraData.topKeywords = result[3][1].keywords;
+      extraData.initialGalleryInfo = result[4];
 
-      console.log('trendingKeywords: ',extraData.trendingKeywords);
-      console.log('topKeywords: ',extraData.topKeywords);
+      console.log('initialGalleryInfo: ', extraData.initialGalleryInfo);
 
       var  pageData = _.extend(result, extraData);
 

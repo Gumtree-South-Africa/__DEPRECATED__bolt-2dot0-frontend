@@ -13,7 +13,7 @@ module.exports = function(bapiOptions, locale, serviceName){
 
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
-		console.log("LocationService: Callback from " + serviceName + " BAPI");
+		console.log(serviceName + "Service: Callback from " + serviceName + " BAPI");
 		if(typeof output === undefined) {
 			bapiDeferred.reject(new Error("Error in calling " + serviceName + " BAPI"));
 		} else {
@@ -22,7 +22,7 @@ module.exports = function(bapiOptions, locale, serviceName){
 	});
 
 	// Invoke BAPI request
-	console.log("LocationService: About to call " + serviceName + " BAPI");
+	console.log(serviceName + "Service: About to call " + serviceName + " BAPI");
 	bapi.doGet();
 
 	// Return Promise Data
