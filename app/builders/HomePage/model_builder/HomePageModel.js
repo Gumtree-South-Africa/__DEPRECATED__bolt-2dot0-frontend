@@ -12,6 +12,7 @@ var CategoryModel = require("../../common/CategoryModel");
 var HeaderModel = require("../../common/HeaderModel");
 var keywordModel = require("../../common/keywordModel");
 var GalleryModel = require("../../common/GalleryModel");
+var AdStatisticsModel = require("../../common/AdStatisticsModel");
 var BasePageModel = require("../../common/BasePageModel");
 
 
@@ -24,7 +25,8 @@ var HomePageModel = function (req, res) {
 	var loc = new LocationModel(res.config.locale, 2),
 		cat = new CategoryModel(res.config.locale, 2),
 		keyword = new keywordModel(res.config.locale, 2),
-		gallery = new GalleryModel(res.config.locale);
+		gallery = new GalleryModel(res.config.locale),
+		adstatistics = new AdStatisticsModel(res.config.locale);
 
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
@@ -82,10 +84,9 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	// TODO Replace loc by statistics Model builder
 	var statisticsFunction = function(callback) {
 		var statisticsDeferred = Q.defer();
-		Q(loc.processParallel())
+		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
 	    		console.log("Inside homepagemodel statistics");
 	    		console.dir(dataS);

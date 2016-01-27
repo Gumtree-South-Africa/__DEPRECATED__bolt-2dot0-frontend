@@ -28,8 +28,7 @@ router.get('/', function (req, res, next) {
       extraData.trendingKeywords = result[3][0].keywords;
       extraData.topKeywords = result[3][1].keywords;
       extraData.initialGalleryInfo = result[4];
-
-      console.log('initialGalleryInfo: ', extraData.initialGalleryInfo);
+      extraData.totalLiveAds = result[5].totalLiveAds;
 
       var  pageData = _.extend(result, extraData);
 
