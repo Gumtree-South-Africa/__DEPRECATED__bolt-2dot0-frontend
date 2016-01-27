@@ -10,7 +10,7 @@ var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
 var HeaderModel = require("../../common/HeaderModel");
-var keywordModel = require("../../common/keywordModel");
+var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
 var BasePageModel = require("../../common/BasePageModel");
@@ -24,7 +24,7 @@ var HomePageModel = function (req, res) {
 	var headerFunction = BasePageModel.call(this, req, res);
 	var loc = new LocationModel(res.config.locale, 2),
 		cat = new CategoryModel(res.config.locale, 2),
-		keyword = new keywordModel(res.config.locale, 2),
+		keyword = new KeywordModel(res.config.locale, 2),
 		gallery = new GalleryModel(res.config.locale),
 		adstatistics = new AdStatisticsModel(res.config.locale);
 
