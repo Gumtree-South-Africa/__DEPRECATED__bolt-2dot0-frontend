@@ -51,7 +51,67 @@ var HomePageModel = function (req, res) {
 			});
 	};
 	
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction ];
+	// TODO Replace loc by topKeywords Model builder
+	var topKeywordsFunction = function(callback) { 
+		var topKeywordsDeferred = Q.defer();
+		Q(loc.processParallel())
+	    	.then(function (dataK) {
+	    		console.log("Inside homepagemodel topKeywords");
+	    		console.dir(dataK);
+	    		topKeywordsDeferred.resolve(dataK[0]);
+	    		callback(null, dataK[0]);
+			}).fail(function (err) {
+				topKeywordsDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	// TODO Replace loc by trendingKeywords Model builder
+	var trendingKeywordsFunction = function(callback) { 
+		var trendingKeywordsDeferred = Q.defer();
+		Q(loc.processParallel())
+	    	.then(function (dataK) {
+	    		console.log("Inside homepagemodel trendingKeywords");
+	    		console.dir(dataK);
+	    		trendingKeywordsDeferred.resolve(dataK[0]);
+	    		callback(null, dataK[0]);
+			}).fail(function (err) {
+				trendingKeywordsDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	// TODO Replace loc by gallery Model builder
+	var galleryFunction = function(callback) { 
+		var galleryDeferred = Q.defer();
+		Q(loc.processParallel())
+	    	.then(function (dataG) {
+	    		console.log("Inside homepagemodel gallery");
+	    		console.dir(dataG);
+	    		galleryDeferred.resolve(dataG[0]);
+	    		callback(null, dataG[0]);
+			}).fail(function (err) {
+				galleryDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	// TODO Replace loc by statistics Model builder
+	var statisticsFunction = function(callback) { 
+		var statisticsDeferred = Q.defer();
+		Q(loc.processParallel())
+	    	.then(function (dataS) {
+	    		console.log("Inside homepagemodel statistics");
+	    		console.dir(dataS);
+	    		statisticsDeferred.resolve(dataS[0]);
+	    		callback(null, dataS[0]);
+			}).fail(function (err) {
+				statisticsDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, topKeywordsFunction, trendingKeywordsFunction, galleryFunction, statisticsFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();

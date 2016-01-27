@@ -22,7 +22,7 @@ UserService.prototype.getUserFromCookie = function(cookie, locale) {
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "/" + cookie + "?" + this.bapiOptions.parameters;
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
 	}
 
 	// Invoke BAPI
