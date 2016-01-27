@@ -135,20 +135,13 @@ function nc(module, i18nObj) {
             // Handlebars helper from i18next
             'i18n' : function(i18n_key, par) {
                 //console.log("I NEED I18N OBJECT NOW.........");
-
                 var result = _i18n.t(i18n_key),
                   argsArr;
-
-                console.log("*************");
-                console.log("the result is: " + result);
-                console.log("the param is:" + par);
-                console.log("typeof is:" + typeof par);
 
                 if (par && (typeof par === "number" ||typeof par === "string")) {
                   argsArr = Array.prototype.slice.call(arguments).splice(1,2);
                   return replaceParamValues(result, argsArr);
                 }
-
 
                 // console.log("RETRIEVING AN SPECIFIC I18N....");
                 // var result = i18nObj.t(i18n_key);
