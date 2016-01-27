@@ -29,6 +29,7 @@ router.get('/', function (req, res, next) {
       extraData.topKeywords = result[3][1].keywords;
       extraData.initialGalleryInfo = result[4];
       extraData.totalLiveAds = result[5].totalLiveAds;
+      extraData.level1Location = result[6];
 
       var  pageData = _.extend(result, extraData);
 
