@@ -11,7 +11,7 @@
     	"locationHomePage":	"/locations",
     	"userFromCookie" : "/users/token",
     	"topKeywords" : "/keywords/top",
-    	"trendingKeywords" : "/keyowrds/trending",
+    	"trendingKeywords" : "/keywords/trending",
     	"homepageGallery" : "/ads/gallery",
     	"adStatistics" : "/ads/statistics"
     }
