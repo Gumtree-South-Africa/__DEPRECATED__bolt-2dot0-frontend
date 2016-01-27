@@ -51,32 +51,17 @@ var HomePageModel = function (req, res) {
 			});
 	};
 	
-	// TODO Replace loc by topKeywords Model builder
-	var topKeywordsFunction = function(callback) { 
-		var topKeywordsDeferred = Q.defer();
+	// TODO Replace loc by keywords Model builder
+	var keywordsFunction = function(callback) { 
+		var keywordsDeferred = Q.defer();
 		Q(loc.processParallel())
 	    	.then(function (dataK) {
-	    		console.log("Inside homepagemodel topKeywords");
+	    		console.log("Inside homepagemodel keywords");
 	    		console.dir(dataK);
-	    		topKeywordsDeferred.resolve(dataK[0]);
+	    		keywordsDeferred.resolve(dataK[0]);
 	    		callback(null, dataK[0]);
 			}).fail(function (err) {
-				topKeywordsDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-	
-	// TODO Replace loc by trendingKeywords Model builder
-	var trendingKeywordsFunction = function(callback) { 
-		var trendingKeywordsDeferred = Q.defer();
-		Q(loc.processParallel())
-	    	.then(function (dataK) {
-	    		console.log("Inside homepagemodel trendingKeywords");
-	    		console.dir(dataK);
-	    		trendingKeywordsDeferred.resolve(dataK[0]);
-	    		callback(null, dataK[0]);
-			}).fail(function (err) {
-				trendingKeywordsDeferred.reject(new Error(err));
+				keywordsDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -111,7 +96,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 	
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, topKeywordsFunction, trendingKeywordsFunction, galleryFunction, statisticsFunction ];
+	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
