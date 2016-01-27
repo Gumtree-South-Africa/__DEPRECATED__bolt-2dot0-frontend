@@ -12,11 +12,10 @@
 	">
 
 			<div class="hp-list-wrapper">
-	            {{#with model.content}}
 	            <div class="hp-total-ad-count">
-	                <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" totalLiveAdCount}}}</span>
+	            	{{../this.totalLiveAdCount}}
+	                <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" ../this.totalLiveAdCount}}}</span>
 	            </div>
-	            {{/with}}
 
 	            <div class="hp-category-wrapper">
 	                <h1>{{i18n "home.h1Tag"}}</h1>
@@ -43,7 +42,7 @@
 				<div class="clear"></div>
 
 	            {{#block "locationAfterCategory"}}{{/block}}
-
+				
 				<div class="hp-keywords-wrapper">
 					{{#if ../this.topKeywords}}
 						<div class="hp-popular-searches-wrapper">

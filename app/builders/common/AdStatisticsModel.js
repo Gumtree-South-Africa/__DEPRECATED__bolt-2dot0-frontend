@@ -9,41 +9,41 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
 
 
 /** 
- * @description A class that Handles the Gallery Model
+ * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
-var GalleryModel = function (locale) {
+var AdStatisticsModel = function (locale) {
 	this.locale = locale;
-    return new ModelBuilder(this.getHomePageGallery());
+    return new ModelBuilder(this.getHomePageStatistics());
 };
 
 
-// Function getHomePageGallery
-GalleryModel.prototype.getHomePageGallery = function() {
+// Function getHomePageStatistics
+AdStatisticsModel.prototype.getHomePageStatistics = function() {
 	var scope = this;
 	var arrFunctions = [
 		function (callback) {
-			var galleryDeferred,
+			var adstatisticsDeferred,
 				data = {};
 			if (typeof callback !== "function") {
 				return;
 			}
 			
 		    if (typeof scope.locale !== "undefined") {
-		    	galleryDeferred = Q.defer();
-				console.log("Calling AdService for Homepage - gallery");
+		    	adstatisticsDeferred = Q.defer();
+				console.log("Calling AdService for Homepage - statistics");
 			    
-				 Q(hpAdService.getHomepageGallery(scope.locale))
+				 Q(hpAdService.getAdStatistics(scope.locale))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
-			    		galleryDeferred.resolve(data);
+			    		adstatisticsDeferred.resolve(data);
 					    callback(null, data);
 					}).fail(function (err) {
-						galleryDeferred.reject(new Error(err));
+						adstatisticsDeferred.reject(new Error(err));
 					    callback(null, data);
 					});
 
-				return galleryDeferred.promise;
+				return adstatisticsDeferred.promise;
 			} else {
 			    callback(null, data);
 			}
@@ -53,5 +53,5 @@ GalleryModel.prototype.getHomePageGallery = function() {
 	return arrFunctions;
 };
 
-module.exports = GalleryModel;
+module.exports = AdStatisticsModel;
 

@@ -13,7 +13,7 @@
     <div class="hp-province-wrapper">
         <h5>{{i18n "home.provinces"}}</h5>
         <ul class="location-list">
-            {{#each model.content.LocationFilter.children}}
+            {{#each ../this.level1Location.children}}
             <li data-index="{{@index}}">
                 <a href="{{this.url}}"><span class="location-name">{{this.localizedName}}</span></a>
             </li>

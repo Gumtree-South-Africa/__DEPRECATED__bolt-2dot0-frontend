@@ -10,8 +10,9 @@ var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
 var HeaderModel = require("../../common/HeaderModel");
-var keywordModel = require("../../common/keywordModel");
+var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
+var AdStatisticsModel = require("../../common/AdStatisticsModel");
 var BasePageModel = require("../../common/BasePageModel");
 
 
@@ -22,9 +23,11 @@ var BasePageModel = require("../../common/BasePageModel");
 var HomePageModel = function (req, res) {
 	var headerFunction = BasePageModel.call(this, req, res);
 	var loc = new LocationModel(res.config.locale, 2),
+		level1Loc = new LocationModel(res.config.locale, 1),
 		cat = new CategoryModel(res.config.locale, 2),
-		keyword = new keywordModel(res.config.locale, 2),
-		gallery = new GalleryModel(res.config.locale);
+		keyword = new KeywordModel(res.config.locale, 2),
+		gallery = new GalleryModel(res.config.locale),
+		adstatistics = new AdStatisticsModel(res.config.locale);
 
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
@@ -36,6 +39,20 @@ var HomePageModel = function (req, res) {
 	    		callback(null, dataL[0]);
 			}).fail(function (err) {
 				locationDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var level1locationFunction = function(callback) {
+		var level1locationDeferred = Q.defer();
+		Q(level1Loc.processParallel())
+	    	.then(function (dataL) {
+	    		console.log("Inside homepagemodel level1location");
+	    		console.dir(dataL);
+	    		level1locationDeferred.resolve(dataL[0]);
+	    		callback(null, dataL[0]);
+			}).fail(function (err) {
+				level1locationDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -82,10 +99,9 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	// TODO Replace loc by statistics Model builder
 	var statisticsFunction = function(callback) {
 		var statisticsDeferred = Q.defer();
-		Q(loc.processParallel())
+		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
 	    		console.log("Inside homepagemodel statistics");
 	    		console.dir(dataS);
@@ -97,7 +113,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction ];
+	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();

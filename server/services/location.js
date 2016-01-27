@@ -22,9 +22,9 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
 	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=2";
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=" + depth;
 	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?depth=2";
+		this.bapiOptions.path = this.bapiOptions.path + "?depth=" + depth;
 	}
 	
 	// Invoke BAPI
