@@ -13,7 +13,10 @@
             "./app/views/components/footer/views/hbs/footer_pl_PL.hbs",
 
             "./app/views/components/categoryList/views/hbs/categoryList_pl_PL.hbs",
-            "./app/views/templates/pages/homepage/views/hbs/homepage_pl_PL.hbs"              
+            "./app/views/components/adCarousel/views/hbs/adCarousel_pl_PL.hbs",
+            "./app/views/components/countryMap/views/hbs/countryMap_pl_PL.hbs",
+            "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_pl_PL.hbs",
+            "./app/views/templates/pages/homepage/views/hbs/homepage_pl_PL.hbs"  
     	]
     },
 	"messagepage": {

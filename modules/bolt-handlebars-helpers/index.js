@@ -29,7 +29,8 @@ var hbsConfig = {
     ]
 };
 
-module.exports = function (app, locale, module) {
+// module.exports = function (app, locale, module) {
+module.exports = function (app, locale, module, i18nObj) {
     var engineExt = app.get('view engine'),
 		engine; // ,
 	    // module = require('express-handlebars');
@@ -40,7 +41,8 @@ module.exports = function (app, locale, module) {
 	var args = Array.isArray(hbsConfig['arguments']) ? hbsConfig['arguments'].slice() : [];
 
 	// Merge the handlebars helper methods
-	args[0] = Object.assign(args[0], config(module));
+	// args[0] = Object.assign(args[0], config(module));
+    args[0] = Object.assign(args[0], config(module, i18nObj));
 
 	// Create the handlebars instance
 	engine = module.apply(null, args);

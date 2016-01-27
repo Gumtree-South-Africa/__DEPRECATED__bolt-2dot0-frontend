@@ -25,7 +25,12 @@ router.get('/', function (req, res, next) {
       extraData.header = result[0];
       extraData.location = result[1];
       extraData.category = result[2];
-      
+      extraData.trendingKeywords = result[3][0].keywords;
+      extraData.topKeywords = result[3][1].keywords;
+
+      console.log('trendingKeywords: ',extraData.trendingKeywords);
+      console.log('topKeywords: ',extraData.topKeywords);
+
       var  pageData = _.extend(result, extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);

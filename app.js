@@ -46,7 +46,9 @@ i18next
     var siteObj = config.sites[siteKey];
     
     (function(siteObj) {
-      var siteApp = new expressbuilder(siteObj.locale).getApp();
+      var builderObj = new expressbuilder(siteObj.locale);
+      // var siteApp = new expressbuilder(siteObj.locale).getApp();
+      var siteApp = builderObj.getApp();
 
       // send site information along
       siteApp.config = {};
@@ -56,10 +58,17 @@ i18next
       siteApp.config.hostname = siteObj.hostname;
       siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
 
+      // use the middleware to do the magic
+      // create a fixed t function for req.lng
+      // no clones needed as they just would do the same (sharing all but lng)
+
       // set req.lng to defined lng in vhost
-       siteApp.use(function(req, res, next) {
+      siteApp.use(function(req, res, next) {
+        //var i18nObj = req.t;
+        // builderObj.setI18nObj(i18nObj);
         req.lng = siteApp.config.locale;
         i18next.changeLanguage(siteApp.config.locale);
+        // req.i18n.changeLanguage(siteApp.config.locale);
         next();
       });
 

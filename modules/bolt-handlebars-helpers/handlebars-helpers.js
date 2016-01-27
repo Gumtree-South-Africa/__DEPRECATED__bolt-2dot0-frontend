@@ -73,7 +73,7 @@ function regLocPartials (module, locale) {
  * @public
  * @return {Object} JSON structure with the handlebars helper methods
  */
-function nc(module) {
+function nc(module, i18nObj) {
     var engines;
 
     // *******************************
@@ -119,7 +119,12 @@ function nc(module) {
 
             // Handlebars helper from i18next
             'i18n' : function(i18n_key) {
+                //console.log("I NEED I18N OBJECT NOW.........");
+
                 var result = _i18n.t(i18n_key);
+                // console.log("RETRIEVING AN SPECIFIC I18N....");
+                // var result = i18nObj.t(i18n_key);
+
                 return result;
             }
         }

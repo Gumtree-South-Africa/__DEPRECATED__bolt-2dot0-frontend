@@ -5,9 +5,6 @@
 		 {{> hbs/home/AdBanner_top}}
 	 {{/if}}
 
-	{{!-- > hbs/widget/carousel --}}
-	{{!-- {{#block "carousel"}}VIEW RESULT{{/block}} --}}
-
 	<div class="hp-content hp-others
 	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
 	{{#if model.footer.googleAdSense.enabled}}googleAdSensei{{/if}}
@@ -27,7 +24,9 @@
 	                    <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
 	                {{/if}}
 
-	                {{#block "locationBeforeCategory"}}{{/block}}
+					{{#block "locationBeforeCategory"}}
+	                {{/block}}
+
 	                {{#with ../this.category}}
 	                    {{> categoryList}}
 	                {{/with}}
@@ -42,29 +41,30 @@
 
 	            {{#block "googleBannerAdsBottom_Container"}}{{/block}}
 				<div class="clear"></div>
+
 	            {{#block "locationAfterCategory"}}{{/block}}
 
 				<div class="hp-keywords-wrapper">
-					{{#if model.content.keywordsModel.topKeywords}}
+					{{#if ../this.topKeywords}}
 						<div class="hp-popular-searches-wrapper">
 							<h5>{{i18n "home.popular-searches"}}</h5>
 							<ul>
-							{{#each model.content.keywordsModel.topKeywords}}
+							{{#each ../this.topKeywords}}
 								<li data-index="{{@index}}">
-									<a href="{{url}}">{{displayName}}</a>
+									<a href="{{_links.[0].href}}">{{displayName}}</a>
 								</li>
 							{{/each}}
 							</ul>
 						</div>
 					{{/if}}
 
-					{{#if model.content.trendingKeywordsModel.topKeywords}}
+					{{#if ../this.trendingKeywords}}
 						<div class="hp-trending-searches-wrapper">
 							<h5>{{i18n "home.trending-searches"}}</h5>
 							<ul>
-							{{#each model.content.trendingKeywordsModel.topKeywords}}
+							{{#each ../this.trendingKeywords}}
 								<li data-index="{{@index}}">
-									<a href="{{url}}">{{displayName}}</a>
+									<a href="{{_links.[0].href}}">{{displayName}}</a>
 								</li>
 							{{/each}}
 							</ul>
@@ -99,6 +99,15 @@
 	{{/if}}{{/if}}
 -->
 
+{{/partial}}
+
+
+{{#partial "pageTailScripts"}}
+   <script>
+	{{#block "AdBannerHomepg"}}
+    	{{#block "locationMap_Script"}}{{/block}}
+	{{/block}}
+   </script>
 {{/partial}}
 
 {{!-- > hbs/Html --}}
