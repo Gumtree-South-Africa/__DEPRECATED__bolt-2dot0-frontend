@@ -6,15 +6,22 @@
     {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
         {{!-- #with model.initialGalleryInfo --}}
         <script>
-            var adList = {{{json this}}},
-                dataPostLink="{{model.header.postAdPageUrl}}",
-                dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
-                {{#if model.seeAllUrl}}
-                    seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
-                    seeAllText = 'See All &gt;'; //'{{i18n "features.see.all"}}',
-                {{/if}}
-                galleryAjaxBaseUrl ="{{model.content.galleryAdsAjaxInitUrl}}";
-        </script>
+           var adList = {{{json this}}},
+               {{#if model.header.postAdPageUrl}}
+                   dataPostLink="{{model.header.postAdPageUrl}}",
+               {{else}}
+                   dataPostLink="/post.html",
+               {{/if}}
+               dataPostAdText="{{i18n "postad.a.free.ad.text"}}",
+               {{#if model.seeAllUrl}}
+                   seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
+                   seeAllText = '{{i18n "features.see.all"}}',
+               {{else}}
+                   seeAllUrl = "#",
+                   seeAllText = "See All";
+               {{/if}}
+               galleryAjaxBaseUrl ="{{model.content.galleryAdsAjaxInitUrl}}";
+       </script>
         {{!-- /with --}}
     {{!-- /partial --}}
 {{/partial}}

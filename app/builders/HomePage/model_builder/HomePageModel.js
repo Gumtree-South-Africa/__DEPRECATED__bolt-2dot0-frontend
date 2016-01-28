@@ -24,6 +24,7 @@ var HomePageModel = function (req, res) {
 	var headerFunction = BasePageModel.call(this, req, res);
 	var loc = new LocationModel(res.config.locale, 2),
 		level1Loc = new LocationModel(res.config.locale, 1),
+		level2Loc = new LocationModel(res.config.locale, 1),
 		cat = new CategoryModel(res.config.locale, 2),
 		keyword = new KeywordModel(res.config.locale, 2),
 		gallery = new GalleryModel(res.config.locale),
@@ -31,12 +32,12 @@ var HomePageModel = function (req, res) {
 
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
-		Q(loc.processParallel())
+		Q(loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel locations");
 	    		console.dir(dataL);
-	    		locationDeferred.resolve(dataL[0]);
-	    		callback(null, dataL[0]);
+	    		locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
 			}).fail(function (err) {
 				locationDeferred.reject(new Error(err));
 				callback(null, {});
@@ -45,14 +46,28 @@ var HomePageModel = function (req, res) {
 	
 	var level1locationFunction = function(callback) {
 		var level1locationDeferred = Q.defer();
-		Q(level1Loc.processParallel())
+		Q(level1Loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel level1location");
 	    		console.dir(dataL);
-	    		level1locationDeferred.resolve(dataL[0]);
-	    		callback(null, dataL[0]);
+	    		level1locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
 			}).fail(function (err) {
 				level1locationDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var level2locationFunction = function(callback) {
+		var level2locationDeferred = Q.defer();
+		Q(level2Loc.getTopL2Locations())
+	    	.then(function (dataL) {
+	    		console.log("Inside homepagemodel level2location");
+	    		console.dir(dataL);
+	    		level2locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
+			}).fail(function (err) {
+				level2locationDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -113,7 +128,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction ];
+	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();

@@ -31,4 +31,22 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location");
 }
 
+/**
+ * Gets a list of top L2 locations
+ */
+LocationService.prototype.getTopL2LocationsData = function(locale) {
+	console.log("Inside LocationService");
+
+	// Prepare BAPI call
+	this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL2');
+	if (this.bapiOptions.parameters != undefined) {
+		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
+	} else {
+		this.bapiOptions.path = this.bapiOptions.path;
+	}
+	
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topL2Locations");
+}
+
 module.exports = new LocationService();
