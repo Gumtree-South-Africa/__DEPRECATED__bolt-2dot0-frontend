@@ -95,7 +95,9 @@ BAPICall.prototype = {
 		    	res.on("end", function(d) {
 		    		// parse JSON when data stream ends
 		    		try {
+		    			console.log("*****************body", body);
 		    			data = JSON.parse(body);
+		    			console.log("*****************data", data);
 		    		} catch(ex) {
 		    			data = {};
 		    		}
@@ -103,7 +105,9 @@ BAPICall.prototype = {
 					// Execute the callback if present.
 					if (scope.callback) {
 		        		// Aggregation of data with the original (passed) data
-						data = _.extend(scope.argData, data);
+						if (! _.isEmpty(scope.argData)) { 
+							data = _.extend(scope.argData, data);
+						}
 						scope.callback(null, data);
 					}
 					

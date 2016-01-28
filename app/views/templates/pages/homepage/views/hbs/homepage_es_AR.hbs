@@ -117,4 +117,20 @@
     {{/block}}
 {{/partial}}
 
+{{#if model.header.isIncludeContentForMobile}}
+    {{#partial "locationAfterCategory"}}
+        {{#block "locationContainer"}}{{/block}}
+    {{/partial}}
+{{else}}
+    {{#partial "locationBeforeCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
+		{{> locationMapContainer}}
+		{{> countryMap}}
+        {{> adCarousel}}
+
+		{{#block "locationContainer" ../this}}{{/block}}
+        {{#block "carousel"}}{{/block}}
+	{{/partial}}
+{{/if}}
+
 {{> homepage-base}}

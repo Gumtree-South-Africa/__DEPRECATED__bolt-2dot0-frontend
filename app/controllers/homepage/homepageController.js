@@ -30,6 +30,7 @@ router.get('/', function (req, res, next) {
       extraData.initialGalleryInfo = result[4];
       extraData.totalLiveAdCount = result[5].totalLiveAds;
       extraData.level1Location = result[6];
+      extraData.level2Location = result[7];
 
       var  pageData = _.extend(result, extraData);
 

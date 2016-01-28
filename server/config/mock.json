@@ -7,13 +7,14 @@
     	"parameters": "_forceExample=true&_statusCode=200"
     },
     "endpoints": {
-    	"categoryHomePage": "/categories",
-    	"locationHomePage":	"/locations",
-    	"userFromCookie" : "/users/loggedInUserInfo",
-    	"topKeywords" : "/keywords/top",
-    	"trendingKeywords" : "/keywords/trending",
-    	"homepageGallery" : "/ads/gallery",
-    	"adStatistics" : "/ads/statistics"
+    	"categoryHomePage"	:	"/categories",
+    	"locationHomePage"	:	"/locations",
+    	"topLocationsL2"	:	"/locations/top/L2",
+    	"userFromCookie"	:	"/users/loggedInUserInfo",
+    	"topKeywords" 		: 	"/keywords/top",
+    	"trendingKeywords" 	: 	"/keywords/trending",
+    	"homepageGallery" 	: 	"/ads/gallery",
+    	"adStatistics" 		: 	"/ads/statistics"
     }
   }
 }
