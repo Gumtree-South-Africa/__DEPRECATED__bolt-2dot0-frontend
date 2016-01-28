@@ -131,6 +131,10 @@ function nc(module, i18nObj) {
             'json' : function(context) {
                 return JSON.stringify(context);
             },
+            
+            'obfuscateUrl' : function(value) {
+                return value;
+            },
 
             // Handlebars helper from i18next
             'i18n' : function(i18n_key, par) {

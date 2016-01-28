@@ -35,7 +35,6 @@ var HomePageModel = function (req, res) {
 		Q(loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel locations");
-	    		console.dir(dataL);
 	    		locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -49,7 +48,6 @@ var HomePageModel = function (req, res) {
 		Q(level1Loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel level1location");
-	    		console.dir(dataL);
 	    		level1locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -63,7 +61,6 @@ var HomePageModel = function (req, res) {
 		Q(level2Loc.getTopL2Locations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel level2location");
-	    		console.dir(dataL);
 	    		level2locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -77,7 +74,6 @@ var HomePageModel = function (req, res) {
 		Q(cat.processParallel())
 	    	.then(function (dataC) {
 	    		console.log("Inside homepagemodel categories");
-	    		console.dir(dataC);
 	    		categoryDeferred.resolve(dataC[0]);
 	    		callback(null, dataC[0]);
 			}).fail(function (err) {
@@ -91,7 +87,6 @@ var HomePageModel = function (req, res) {
 		Q(keyword.processParallel())
 	    	.then(function (dataK) {
 	    		console.log("Inside keyword from homepageModel");
-	    		console.dir(dataK);
 	    		keywordsDeferred.resolve(dataK);
 	    		callback(null, dataK);
 			}).fail(function (err) {
@@ -105,7 +100,6 @@ var HomePageModel = function (req, res) {
 		Q(gallery.processParallel())
 	    	.then(function (dataG) {
 	    		console.log("Inside homepagemodel gallery");
-	    		console.dir(dataG);
 	    		galleryDeferred.resolve(dataG[0]);
 	    		callback(null, dataG[0]);
 			}).fail(function (err) {
@@ -119,7 +113,6 @@ var HomePageModel = function (req, res) {
 		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
 	    		console.log("Inside homepagemodel statistics");
-	    		console.dir(dataS);
 	    		statisticsDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -135,7 +128,6 @@ var HomePageModel = function (req, res) {
 	Q(homepageModel.processParallel())
     	.then(function (data) {
     		console.log("Inside homepagemodel Combined");
-    		console.dir(data);
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));

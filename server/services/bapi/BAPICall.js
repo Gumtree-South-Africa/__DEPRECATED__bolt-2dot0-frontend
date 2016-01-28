@@ -95,9 +95,7 @@ BAPICall.prototype = {
 		    	res.on("end", function(d) {
 		    		// parse JSON when data stream ends
 		    		try {
-		    			console.log("*****************body", body);
 		    			data = JSON.parse(body);
-		    			console.log("*****************data", data);
 		    		} catch(ex) {
 		    			data = {};
 		    		}
