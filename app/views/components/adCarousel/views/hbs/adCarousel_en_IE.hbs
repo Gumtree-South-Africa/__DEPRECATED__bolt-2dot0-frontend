@@ -1,40 +1,27 @@
-{{#partial "carousel-CORRECT"}}
-    {{#with model.initialGalleryInfo}}
+{{#partial "carousel"}}
+    {{#with this}} {{!-- model.initialGalleryInfo --}}
         <div id="gallery" class="gallery"></div>
     {{/with}}
 
-    {{#partial "pageTailScriptsBeforeIncludes"}}
-        {{#with model.initialGalleryInfo}}
+    {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
+        {{!-- #with model.initialGalleryInfo --}}
         <script>
-            var adList = {{{model.initialGalleryInfo}}},
-                dataPostLink="{{model.header.postAdPageUrl}}",
-                dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
-                {{#if model.seeAllUrl}}
-                    seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
-                    seeAllText = '{{i18n "features.see.all"}}',
-                {{/if}}
-                galleryAjaxBaseUrl ="{{model.content.galleryAdsAjaxInitUrl}}";
-        </script>
-        {{/with}}
-    {{/partial}}
-{{/partial}}
-
-{{!-- TEMPORARY HARDCODED DATA PLEASE REMOVE --}}
-{{#partial "carousel"}}
-    <div id="gallery" class="gallery" style="display: block;">
-        <div class="galleryCntr"><div class="galleryWrapper"><div class="galleryInner"><div class="leftContainer" style="margin-top: 7px;"><div class="left" style="width: 854px; margin: 0px auto;"><ul><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="" style="width: 100px; height: 100px;"></div></a></li></ul></div></div><div class="midContainer" style="margin-top: 7px;"><div class="mid" style="width: 854px; margin: 0px auto;"><ul><li><a href="/a-dining-living-room-furniture/dublin/bar-stools-new/1001547193940910287158609"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDYwMA==/z/H00AAOSw5dNWo6~d/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">Bar Stools (New)</div><div class="price">€50</div></div></div></a></li><li><a href="/a-antiques-collectibles/dublin/bowie-david-life-cast-life-mask-bronze-resin-wall-hanging/1001534153050910441520109"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDYwMA==/z/UDEAAOSwa-dWk-xR/$_19.jpg?set_id=1C5000?set_id=1C5000" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">BOWIE DAVID LIFE CAST LIFE MASK BRONZE RESIN wall hanging</div><div class="price">€75</div></div></div></a></li><li><a href="/a-building-services/dublin/shop-sign-design-fitting-+-exterior-design/1001520244020910853083909"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDgwMA==/z/9rcAAOSw1S9WfvGr/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">Shop Sign Design/Fitting - Exterior Design</div><div class="price"> </div></div></div></a></li><li><a href="/a-chefs-cooks-kitchen/dublin/commis-chef-daytime-hours-only-5-days-a-week/1001548502960910452646309"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ1Mg==/z/iDcAAOSwuYVWpewA/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">Commis Chef(daytime hours only, 5 days a week)</div><div class="price"> </div></div></div></a></li><li><a href="/a-nanny-babysitting/dublin/montessori-teacher-available/1001550438720910288276109"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/lPIAAOSwJb9Wp8ts/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">Montessori teacher available </div><div class="price"> </div></div></div></a></li><li><a href="/a-computer-freelance/dublin/pc-and-laptop-service/1001550430790910862347509"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/MjUwWDI1MA==/z/9p4AAOSwoydWp8tp/$_19.JPG?set_id=8800004005" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">PC and Laptop Service</div><div class="price"> </div></div></div></a></li><li><a href="/a-computers-software/dublin/free-tv-movies-tv-series-radio-on-your-windows-android-mac-ios-device-+-read-description/1001550418980910291941009"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/MzM2WDYwMA==/z/U3IAAOSwX~dWp8jB/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"><div class="dContainer"><div class="title">Free TV/Movies/TV series/Radio on your Windows/Android/Mac/IOS Device - Read description</div><div class="price">€1</div></div></div></a></li></ul></div></div><div class="rightContainer" style="margin-top: 7px;"><div class="right" style="width: 854px; margin: 0px auto;"><ul><li><a href="#"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ2MA==/z/KSYAAOSwoydWp80w/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/ouQAAOSwnLdWp8u-/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="#" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ1MA==/z/TTgAAOSw--1Wp8ra/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ2MA==/z/KSYAAOSwoydWp80w/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/ouQAAOSwnLdWp8u-/$_19.JPG?set_id=8800005007" style="width: 100px; height: 100px;"></div></a></li><li><a href="#"><div class="c-img-container"><img src="#" style="width: 100px; height: 100px;"></div></a></li></ul></div></div></div></div><div class="ctrlCntr c-nav" style="left: -28px;"><span class="arrow left-arrow icon-arrow-gallery-left inactive"></span><div class="prev inactive"></div></div><div class="ctrlCntr c-nav" style="right: -28px;"><span class="arrow right-arrow icon-arrow-gallery-right active"></span><div class="next active"></div></div></div><div class="seeAllContainer"><a href="/f-nyy-gur-nqf/i1o0c1?sr=2" target="top" class="sudo-link" data-o-uri="/f-nyy-gur-nqf/i1o0c1?sr=2">See All &gt;</a></div>
-    </div>
-
-    {{#partial "pageTailScriptsBeforeIncludes"}}
-    <script>
-        var adList = {"ads":[{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ1Mg==/z/iDcAAOSwuYVWpewA/$_19.JPG?set_id=8800005007","url":"/a-chefs-cooks-kitchen/dublin/commis-chef-daytime-hours-only-5-days-a-week/1001548502960910452646309","title":"Commis Chef(daytime hours only, 5 days a week)","amount":" "},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDgwMA==/z/9rcAAOSw1S9WfvGr/$_19.JPG?set_id=8800005007","url":"/a-building-services/dublin/shop-sign-design-fitting-+-exterior-design/1001520244020910853083909","title":"Shop Sign Design/Fitting - Exterior Design","amount":" "},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDYwMA==/z/UDEAAOSwa-dWk-xR/$_19.jpg?set_id=1C5000?set_id=1C5000","url":"/a-antiques-collectibles/dublin/bowie-david-life-cast-life-mask-bronze-resin-wall-hanging/1001534153050910441520109","title":"BOWIE DAVID LIFE CAST LIFE MASK BRONZE RESIN wall hanging","amount":"€75"},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDYwMA==/z/H00AAOSw5dNWo6~d/$_19.JPG?set_id=8800005007","url":"/a-dining-living-room-furniture/dublin/bar-stools-new/1001547193940910287158609","title":"Bar Stools (New)","amount":"€50"},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ1MA==/z/TTgAAOSw--1Wp8ra/$_19.JPG?set_id=8800005007","url":"/a-general/dublin/pallets-for-sale/1001550438640910320266909","title":"pallets for sale","amount":"€5"},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/lPIAAOSwJb9Wp8ts/$_19.JPG?set_id=8800005007","url":"/a-nanny-babysitting/dublin/montessori-teacher-available/1001550438720910288276109","title":"Montessori teacher available ","amount":" "},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/ODAwWDQ2MA==/z/KSYAAOSwoydWp80w/$_19.JPG?set_id=8800005007","url":"/a-jewellery-watches/dublin/casio-amw330d+1av-brand-new/1001550463290910780955709","title":"Casio AMW330D-1AV : Brand New!!!","amount":"€70"},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/ouQAAOSwnLdWp8u-/$_19.JPG?set_id=8800005007","url":"/a-accessories/dublin/ellie-saab-3-piece-gift-set/1001550464060910328249509","title":"Ellie Saab 3 Piece Gift Set","amount":"€85"},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/MjUwWDI1MA==/z/9p4AAOSwoydWp8tp/$_19.JPG?set_id=8800004005","url":"/a-computer-freelance/dublin/pc-and-laptop-service/1001550430790910862347509","title":"PC and Laptop Service","amount":" "},{"imgUrl":"http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/MzM2WDYwMA==/z/U3IAAOSwX~dWp8jB/$_19.JPG?set_id=8800005007","url":"/a-computers-software/dublin/free-tv-movies-tv-series-radio-on-your-windows-android-mac-ios-device-+-read-description/1001550418980910291941009","title":"Free TV/Movies/TV series/Radio on your Windows/Android/Mac/IOS Device - Read description","amount":"€1"}]},
-            dataPostLink="/post.html",
-            dataPostAdText='See your ad here',
-            seeAllUrl = "/f-nyy-gur-nqf/i1o0c1?sr=2",
-            seeAllText = 'See All',
-            galleryAjaxBaseUrl ="/galleryAjax?requestIndex=0";
-    </script>
-
-    <script src="/views/components/adCarousel/js/adCarousel.js"></script>
-    {{/partial}}
+           var adList = {{{json this}}},
+               {{#if model.header.postAdPageUrl}}
+                   dataPostLink="{{model.header.postAdPageUrl}}",
+               {{else}}
+                   dataPostLink="/post.html",
+               {{/if}}
+               dataPostAdText="{{i18n "postad.a.free.ad.text"}}",
+               {{#if model.seeAllUrl}}
+                   seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
+                   seeAllText = '{{i18n "features.see.all"}}',
+               {{else}}
+                   seeAllUrl = "#",
+                   seeAllText = "See All";
+               {{/if}}
+               galleryAjaxBaseUrl ="{{model.content.galleryAdsAjaxInitUrl}}";
+       </script>
+        {{!-- /with --}}
+    {{!-- /partial --}}
 {{/partial}}
