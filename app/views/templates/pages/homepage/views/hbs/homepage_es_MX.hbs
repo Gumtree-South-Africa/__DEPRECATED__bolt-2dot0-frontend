@@ -1,7 +1,5 @@
 {{!-- Place code from home/MX/HomePage.html here --}}
 
-{{> homepage-base}}
-
 {{#partial "AdBannerHomepg"}}
 	{{#block "locationMap_Script"}}
     {{/block}}
@@ -9,7 +7,7 @@
 
 {{#if model.header.isIncludeContentForMobile}}
     {{#partial "locationAfterCategory"}}
-        {{#block "locationContainer"}}{{/block}}
+        {{#block "locationContainer" ../this}}{{/block}}
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}{{/partial}}
@@ -19,8 +17,8 @@
         {{> adCarousel}}
 
         {{#block "locationContainer" ../this}}{{/block}}  
-        {{#block "carousel"}}{{/block}}
+        {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
     {{/partial}}
 {{/if}}
 
-
+{{> homepage-base}}

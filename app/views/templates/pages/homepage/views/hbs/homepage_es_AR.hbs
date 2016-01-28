@@ -119,18 +119,18 @@
 
 {{#if model.header.isIncludeContentForMobile}}
     {{#partial "locationAfterCategory"}}
-        {{#block "locationContainer"}}{{/block}}
+    	{{#block "locationContainer" ../this}}{{/block}}
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}{{/partial}}
     {{#partial "locationAfterCategory"}}
-		{{> locationMapContainer}}
-		{{> countryMap}}
+        {{> locationMapContainer}}
+        {{> countryMap}}
         {{> adCarousel}}
 
-		{{#block "locationContainer" ../this}}{{/block}}
-        {{#block "carousel"}}{{/block}}
-	{{/partial}}
+        {{#block "locationContainer" ../this}}{{/block}}  
+        {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
+    {{/partial}}
 {{/if}}
 
 {{> homepage-base}}
