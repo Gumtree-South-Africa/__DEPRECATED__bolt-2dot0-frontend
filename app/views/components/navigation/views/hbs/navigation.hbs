@@ -1,19 +1,46 @@
 {{! Please keep this navigation clean with simple list items. Do not introduce additional divs, spans, or other unneccesary elements.}}
-<div class="nav" style="border: 2px dashed orange; overflow: hidden; display: inline-block;">
+<div class="nav">
     <nav>
-
         {{!---- profile picture & name ----}}
         {{!-- > hbs/Html/Body/header/navigation/profileLink --}}
         {{!---- /profile picture & name ----}}
+        {{! Added aria-haspopup property for hover effect support on windows phone - Nokia Lumina 520.}}
+
+{{!---- chat ----}}
+{{#if model.header.isMessageCenterEnabled}}
+	<div class="bubbles" data-o-uri="{{!-- obfuscateUrl model.header.myMessageUrl --}}">
+	{{#if model.header.isUserLoggedIn}}
+		{{#ifGt model.header.unreadConversationCount 0}}
+ 			<div class="unreadMsg">
+ 				{{model.header.unreadConversationCount}}
+ 			</div>
+    	{{/ifGt}}
+    	<span class="icon-ChatBubbles"></span>
+    {{/if}}
+	</div>
+{{/if}}
+
+<div class="profile" aria-haspopup="true">
+    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myAdsURL --}}">
+        <span class="icon {{#if model.header.profileImageUrl}}has-profile-image{{/if}} {{#if model.header.isLoggedInUsingFacebook}}has-profile-image{{/if}}"
+              style="{{#if model.header.isLoggedInUsingFacebook}}{{#with model.header.smallFbProfileImageUrl}}background-image:url({{this}});{{/with}}{{/if}}
+              {{#unless model.header.isLoggedInUsingFacebook}}{{#with model.header.profileHeaderPictureCrop}}background-image:url({{this}}13.jpg);{{/with}} {{/unless}}">
+            <span class="{{#if model.header.profileImageUrl}}{{else}}icon-header-profile-out{{/if}}"></span>
+            <span class="{{#if model.header.profileImageUrl}}{{else}}icon-header-profile-over{{/if}}"></span>
+        </span>
+        <span class="label">{{#if model.header.isUserLoggedIn}}{{model.header.fbProfileName}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
+    </span>
+</div>
+<div class="clear"></div>
 
         <ul>
             {{!---- sign-in link ----}}
             {{#unless model.header.isUserLoggedIn}}
-                {{#if model.header.showLoginLink}}
+
                     <li>
                         <span class="sudo-link sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.signInURL --}}">{{i18n "header.menu.sign.in"}}</span>
                     </li>
-                {{/if}}
+            
             {{/unless}}
 
             {{!---- watchlist ----}}
@@ -22,17 +49,15 @@
             </li>
 
             {{!---- message ----}}
-            {{#if model.header.isMessageCenterEnabled}}
             <li>
                 <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myMessageUrl --}}">
-                    {{i18n "mc.menu.title"}} 
-                    {{#ifGt model.header.totaConversationCount 0}}
+                    {{i18n "mc.menu.title"}}
+                    {{#if model.header.totaConversationCount}}
                         (<span class="tolalCurMsg">{{model.header.totaConversationCount}}</span>)
-                    {{/ifGt}}
+                    {{/if}}
                 </span>
             </li>
-            {{/if}}
-            
+
             {{!---- saved search ----}}
             <li>
                 <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.mySavedSearchUrl --}}">{{i18n "header.menu.my.savedsearch"}}</span>
@@ -44,11 +69,9 @@
             </li>
 
             {{!---- promote my ads ----}}
-            {{#if model.header.promoteAdsUrl}}
-                <li>
-                    <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="{{!-- obfuscateUrl model.header.promoteAdsUrl --}}">{{i18n "header.menu.promote.ads"}}</span>
-                </li>
-            {{/if}}
+            <li>
+                <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="{{!-- obfuscateUrl model.header.promoteAdsUrl --}}">{{i18n "header.menu.promote.ads"}}</span>
+            </li>
 
             {{#each model.header.quickLinks}}
                 <li>

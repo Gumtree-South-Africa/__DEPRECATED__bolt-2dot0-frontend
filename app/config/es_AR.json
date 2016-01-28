@@ -1,5 +1,5 @@
-{ 
-    
+{
+
     "homepage": {
     	"partialsDir": [
             "./app/views/components/logo/views/hbs/logo_es_AR.hbs",
@@ -17,7 +17,9 @@
             "./app/views/components/adCarousel/views/hbs/adCarousel_es_AR.hbs",
             "./app/views/components/countryMap/views/hbs/countryMap_es_AR.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_es_AR.hbs",
-            "./app/views/templates/pages/homepage/views/hbs/homepage_es_AR.hbs"               
+            "./app/views/components/categoryDisplay/views/hbs/categoryDisplay_es_AR.hbs",
+            "./app/views/components/siteFlow/views/hbs/siteFlow_es_AR.hbs",
+            "./app/views/templates/pages/homepage/views/hbs/homepage_es_AR.hbs"
     	]
     },
 	"messagepage": {
@@ -28,11 +30,11 @@
             "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_es_AR.hbs",
             "./app/views/components/title/views/hbs/title_es_AR.hbs",
             "./app/views/components/searchbar/views/hbs/searchbar_es_AR.hbs",
-            "./app/views/components/navigation/views/hbs/navigation_es_AR.hbs",  
+            "./app/views/components/navigation/views/hbs/navigation_es_AR.hbs",
             "./app/views/components/header/views/hbs/header_es_AR.hbs",
             "./app/views/components/footer/views/hbs/footer_es_AR.hbs",
 
-            "./app/views/templates/pages/message/views/hbs/message_es_AR.hbs"     
+            "./app/views/templates/pages/message/views/hbs/message_es_AR.hbs"
     	]
     }
 
