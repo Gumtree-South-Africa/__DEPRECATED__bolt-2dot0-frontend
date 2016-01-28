@@ -10,6 +10,7 @@
             "./app/views/components/searchbar/views/hbs/searchbar_pl_PL.hbs",
             "./app/views/components/navigation/views/hbs/navigation_pl_PL.hbs",
             "./app/views/components/header/views/hbs/header_pl_PL.hbs",
+            "./app/views/components/socialMediaLinks/views/hbs/socialMediaLinks_pl_PL.hbs",
             "./app/views/components/footer/views/hbs/footer_pl_PL.hbs",
 
             "./app/views/components/categoryList/views/hbs/categoryList_pl_PL.hbs",
