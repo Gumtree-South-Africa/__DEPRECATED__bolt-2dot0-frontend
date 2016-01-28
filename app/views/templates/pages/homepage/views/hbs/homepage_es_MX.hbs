@@ -56,11 +56,12 @@
         {{> countryMap}}
         {{> adCarousel}}
 
-        {{#block "locationContainer"}}{{/block}}
+        {{#block "locationContainer" ../this}}{{/block}}
         {{#block "popularLocations"}}{{/block}}
         {{#block "carousel"}}{{/block}}
-	{{/partial}}
+    {{/partial}}
 {{/if}}
+
 
 
 {{> homepage-base}}
