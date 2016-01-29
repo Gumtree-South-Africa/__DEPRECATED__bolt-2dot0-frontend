@@ -10,9 +10,6 @@ module.exports = function(bapiOptions, locale, serviceName, authTokenValue){
 		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
 	}
 	
-	console.log("****************************Bapioptions" + serviceName);
-	console.dir(bapiOptions.headers);
-	
   	//Create Promise
 	var bapiDeferred = Q.defer();
 
