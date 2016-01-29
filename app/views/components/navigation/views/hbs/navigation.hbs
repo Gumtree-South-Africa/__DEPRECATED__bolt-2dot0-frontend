@@ -11,27 +11,27 @@
 {{!---- TODO fix chat ----}}
 {{#if this.header.isMessageCenterEnabled}}
 	<div class="bubbles" data-o-uri="{{ obfuscateUrl this.header.myMessageUrl }}">
-	{{#if this.header.isUserLoggedIn}}
-		{{#ifGt this.header.converstionInfo.totalUnreadMessageCount 0}}
+	{{#if this.header.username}}
  			<div class="unreadMsg">
  				{{this.header.converstionInfo.totalUnreadMessageCount}}
  			</div>
-    	{{/ifGt}}
     	<span class="icon-ChatBubbles"></span>
-    {{/if}}
+  {{/if}}
 	</div>
 {{/if}}
 
 {{!-- TODO fix image url --}}
 <div class="profile" aria-haspopup="true">
     <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
-        <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.isLoggedInUsingFacebook}}has-profile-image{{/if}}"
-              style="{{#if model.header.isLoggedInUsingFacebook}}{{#with model.header.smallFbProfileImageUrl}}background-image:url({{this}});{{/with}}{{/if}}
-              {{#unless model.header.isLoggedInUsingFacebook}}{{#with model.header.profileHeaderPictureCrop}}background-image:url({{this}}13.jpg);{{/with}} {{/unless}}">
-            <span class="{{#if model.header.profileImageUrl}}{{else}}icon-header-profile-out{{/if}}"></span>
-            <span class="{{#if model.header.profileImageUrl}}{{else}}icon-header-profile-over{{/if}}"></span>
+        <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.socialMedia}}has-profile-image{{/if}}"
+              style="{{#if this.header.socialMedia}}background-image:url({{this.header.userProfileImageUrl}});{{/if}}
+              {{#unless this.header.socialMedia}}{{#with model.header.profileHeaderPictureCrop}}background-image:url({{this.header.userProfileImageUrl}});{{/with}} {{/unless}}">
+            {{#unless this.header.userProfileImageUrl}}
+              <span class="icon-header-profile-out"></span>
+              <span class="icon-header-profile-over"></span>
+            {{/unless}}
         </span>
-        <span class="label">{{#if model.header.isUserLoggedIn}}{{model.header.fbProfileName}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
+        <span class="label">{{#if this.header.username}}{{this.header.username}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
     </span>
 </div>
 <div class="clear"></div>
@@ -43,7 +43,7 @@
                     <li>
                         <a class="sudo-link sudo-link-toConvert" href="{{obfuscateUrl this.header.signInURL}}">{{i18n "header.menu.sign.in"}}</a>
                     </li>
-            
+
             {{/unless}}
 
             {{!---- watchlist ----}}
