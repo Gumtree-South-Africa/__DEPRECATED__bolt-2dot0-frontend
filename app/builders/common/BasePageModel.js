@@ -23,7 +23,6 @@ var BasePageModel = function (req, res) {
 		Q(header.processParallel())
 	    	.then(function (dataH) {
 	    		console.log("Inside basepagemodel header");
-	    		console.dir(dataH);
 	    		headerDeferred.resolve(dataH[0]);
 	    		callback(null, dataH[0]);
 			}).fail(function (err) {
