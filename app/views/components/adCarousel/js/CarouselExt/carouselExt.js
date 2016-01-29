@@ -54,12 +54,19 @@ function FetchNextSlides() {
     }
 }
 
-	function createSlide(slide){
+	function createSlide(slide) {
+		/*
 	    var image = slide.imgUrl,
 	        name = slide.title,
 	        price = slide.amount,
 	        url = slide.url;
-	    
+	    */
+
+	    var image = slide.primaryImgUrl,
+	        name = slide.title,
+	        price = slide.formattedAmount,
+	        url = slide.viewPageUrl;
+
 	    return [
 	            "<div class=\"product-carousel__slide\">",
 	            "<a href=\"" + url + "\">",
