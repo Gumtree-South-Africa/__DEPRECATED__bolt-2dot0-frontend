@@ -1,0 +1,29 @@
+{
+	"header" : {
+		"postAdPageUrl"		: "/post.html",
+		"signInURL"			: "/login.html",
+		"watchListUrl"		: "/mywatchlist.html",
+		"myMessageUrl"		: "/my/message.html",
+		"mySavedSearchUrl"	: "/my/alerts.html",
+		"myAdsURL"			: "/my/ads.html",
+		"promoteAdsUrl"		: "/my/promote.html",
+		"myProfileUrl"		: "/my/profile.html",
+		"signOutURL"		: "/logout",
+		"registerURL"		: "/register.html",
+		"profileImageUrl"	: "/post.html",
+		"searchPageUrl"		: "/search.html?page=1",
+		"autoCompleteUrl"	: "/rui-api/autocomplete/model",
+		"surveyMonkeyUrl"	: "/post.html",
+		"geoLocatorUrl"		: "/post.html",
+		"rootGeoLocatorUrl"	: "/post.html",
+		"abTestUrl"			: "/post.html",
+		"isMessageCenterEnabled": true
+	},
+	"footer" : {
+		"obfuscatedTermsAndConditionsURL"	: "/post.html",
+		"obfuscatedPrivacyPolicyURL"		: "/post.html",
+		"obfuscatedCookieRightsURL}"		: "/post.html",
+		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1"
+	}
+}

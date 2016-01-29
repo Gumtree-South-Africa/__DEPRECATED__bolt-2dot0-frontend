@@ -1,3 +1,5 @@
+{{!-- TODO change back a to span after demo --}}
+
 {{! Please keep this navigation clean with simple list items. Do not introduce additional divs, spans, or other unneccesary elements.}}
 <div class="nav">
     <nav>
@@ -6,13 +8,13 @@
         {{!---- /profile picture & name ----}}
         {{! Added aria-haspopup property for hover effect support on windows phone - Nokia Lumina 520.}}
 
-{{!---- chat ----}}
-{{#if model.header.isMessageCenterEnabled}}
-	<div class="bubbles" data-o-uri="{{!-- obfuscateUrl model.header.myMessageUrl --}}">
-	{{#if model.header.isUserLoggedIn}}
-		{{#ifGt model.header.unreadConversationCount 0}}
+{{!---- TODO fix chat ----}}
+{{#if this.header.isMessageCenterEnabled}}
+	<div class="bubbles" data-o-uri="{{ obfuscateUrl this.header.myMessageUrl }}">
+	{{#if this.header.isUserLoggedIn}}
+		{{#ifGt this.header.converstionInfo.totalUnreadMessageCount 0}}
  			<div class="unreadMsg">
- 				{{model.header.unreadConversationCount}}
+ 				{{this.header.converstionInfo.totalUnreadMessageCount}}
  			</div>
     	{{/ifGt}}
     	<span class="icon-ChatBubbles"></span>
@@ -20,9 +22,10 @@
 	</div>
 {{/if}}
 
+{{!-- TODO fix image url --}}
 <div class="profile" aria-haspopup="true">
-    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myAdsURL --}}">
-        <span class="icon {{#if model.header.profileImageUrl}}has-profile-image{{/if}} {{#if model.header.isLoggedInUsingFacebook}}has-profile-image{{/if}}"
+    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
+        <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.isLoggedInUsingFacebook}}has-profile-image{{/if}}"
               style="{{#if model.header.isLoggedInUsingFacebook}}{{#with model.header.smallFbProfileImageUrl}}background-image:url({{this}});{{/with}}{{/if}}
               {{#unless model.header.isLoggedInUsingFacebook}}{{#with model.header.profileHeaderPictureCrop}}background-image:url({{this}}13.jpg);{{/with}} {{/unless}}">
             <span class="{{#if model.header.profileImageUrl}}{{else}}icon-header-profile-out{{/if}}"></span>
@@ -35,42 +38,42 @@
 
         <ul>
             {{!---- sign-in link ----}}
-            {{#unless model.header.isUserLoggedIn}}
+            {{#unless this.header.id}}
 
                     <li>
-                        <span class="sudo-link sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.signInURL --}}">{{i18n "header.menu.sign.in"}}</span>
+                        <a class="sudo-link sudo-link-toConvert" href="{{obfuscateUrl this.header.signInURL}}">{{i18n "header.menu.sign.in"}}</a>
                     </li>
             
             {{/unless}}
 
             {{!---- watchlist ----}}
             <li>
-                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.watchListUrl --}}">{{i18n "header.menu.my.watchlist"}}</span>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.watchListUrl}}">{{i18n "header.menu.my.watchlist"}}</a>
             </li>
 
             {{!---- message ----}}
             <li>
-                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myMessageUrl --}}">
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myMessageUrl}}">
                     {{i18n "mc.menu.title"}}
-                    {{#if model.header.totaConversationCount}}
-                        (<span class="tolalCurMsg">{{model.header.totaConversationCount}}</span>)
+                    {{#if this.header.converstionInfo.totalConversationCount}}
+                        (<span class="tolalCurMsg">{{this.header.converstionInfo.totalConversationCount}}</span>)
                     {{/if}}
-                </span>
+                </a>
             </li>
 
             {{!---- saved search ----}}
             <li>
-                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.mySavedSearchUrl --}}">{{i18n "header.menu.my.savedsearch"}}</span>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.mySavedSearchUrl}}">{{i18n "header.menu.my.savedsearch"}}</a>
             </li>
 
             {{!---- my ads ----}}
             <li>
-                <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myAdsURL --}}">{{i18n "header.menu.your.ads"}}</span>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myAdsURL}}">{{i18n "header.menu.your.ads"}}</a>
             </li>
 
             {{!---- promote my ads ----}}
             <li>
-                <span class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  data-o-uri="{{!-- obfuscateUrl model.header.promoteAdsUrl --}}">{{i18n "header.menu.promote.ads"}}</span>
+                <a class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  href="{{obfuscateUrl this.header.promoteAdsUrl}}">{{i18n "header.menu.promote.ads"}}</a>
             </li>
 
             {{#each model.header.quickLinks}}
@@ -79,23 +82,23 @@
                 </li>
             {{/each}}
 
-            {{!---- my profile ----}}
-            {{#if model.header.isUserLoggedIn}}
+            {{!---- my profile : if the id is there, then bapi sends the json back, then user is logged in and validated by bapi ----}}
+            {{#if this.header.id}}
                 <li>
-                    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.myProfileUrl --}}">{{i18n "header.menu.my.profile"}}</span>
+                    <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myProfileUrl}}">{{i18n "header.menu.my.profile"}}</a>
                 </li>
             {{/if}}
 
             {{!---- logout ----}}
-            {{#if model.header.isUserLoggedIn}}
+            {{#if this.header.id}}
                 <li>
-                    <a class="sudo-link menu-text" href="{{model.header.signOutURL}}">{{i18n "header.menu.signout"}}</a>
+                    <a class="sudo-link menu-text" href="{{this.header.signOutURL}}">{{i18n "header.menu.signout"}}</a>
                 </li>
             {{/if}}
 
-            {{#unless model.header.isUserLoggedIn}}
+            {{#unless this.header.id}}
                 <li>
-                    <span class="sudo-link sudo-link-toConvert" data-o-uri="{{!-- obfuscateUrl model.header.registerURL --}}">{{i18n "header.menu.register"}}</span>
+                    <a class="sudo-link sudo-link-toConvert" href="{{obfuscateUrl this.header.registerURL}}">{{i18n "header.menu.register"}}</a>
                 </li>
             {{/unless}}
 

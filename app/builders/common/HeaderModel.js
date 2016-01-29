@@ -2,11 +2,12 @@
 
 var http = require("http");
 var Q = require("q");
+var _ = require("underscore");
 
 var ModelBuilder = require("./ModelBuilder");
 
 var userService = require(process.cwd() + "/server/services/user");
-
+var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
 
 /** 
  * @description A class that Handles the Header Model
@@ -26,6 +27,9 @@ HeaderModel.prototype.getHeaderData = function() {
 		function (callback) {
 			var headerDeferred,
 				data = {};
+			// merge pageurl data
+    		data = _.extend(pageurlJson.header, data);
+    		
 			if (typeof callback !== "function") {
 				return;
 			}
@@ -37,6 +41,10 @@ HeaderModel.prototype.getHeaderData = function() {
 				 Q(userService.getUserFromCookie(scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
+			    		
+			    		// merge pageurl data
+			    		data = _.extend(pageurlJson.header, data);
+			    					    		
 			    		headerDeferred.resolve(data);
 					    callback(null, data);
 					}).fail(function (err) {
