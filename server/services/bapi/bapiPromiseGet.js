@@ -12,7 +12,6 @@ module.exports = function(bapiOptions, locale, serviceName, authTokenValue){
 	}
 	
 	// Add extra parameters
-	console.dir(bapiOptions);
 	if (bapiOptions.parameters != undefined) {
 		if ( bapiOptions.path.indexOf("?") > -1 ) {
 			bapiOptions.path = bapiOptions.path + "&" + bapiOptions.parameters;
