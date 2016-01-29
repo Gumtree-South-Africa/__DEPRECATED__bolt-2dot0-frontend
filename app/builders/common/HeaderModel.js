@@ -29,7 +29,7 @@ HeaderModel.prototype.getHeaderData = function() {
 				data = {};
 			
 			// merge pageurl data
-    		data = _.extend(pageurlJson.header, data);
+    		data = _.extend(data, pageurlJson.header);
     		
 			if (typeof callback !== "function") {
 				return;
