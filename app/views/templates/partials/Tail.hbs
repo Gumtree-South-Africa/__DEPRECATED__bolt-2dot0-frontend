@@ -74,7 +74,11 @@
 {{/if}}
 {{!-- End Marketo Munchkin Tracking Code ---}}
 
-{{#block "pageTailScriptsAfterMarketo"}}{{/block}}
+{{#block "pageTailScriptsAfterMarketo"}}
+    {{#block "carouselJsFiles"}}
+        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
+    {{/block}}
+{{/block}}
 
 {{!----- HTML5 Placeholder Polyfill -----}}
 {{#block "explorer-searchbar-polyfill"}}{{/block}}
