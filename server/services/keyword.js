@@ -21,11 +21,6 @@ KeywordService.prototype.getTopKeywordsData = function(locale) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&categoryId=0&locationId=1";
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?categoryId=0&locationId=1";
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topKeywords", null);
@@ -39,11 +34,6 @@ KeywordService.prototype.getTrendingKeywordsData = function(locale) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&categoryId=0&locationId=1";
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?categoryId=0&locationId=1";
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "trendingKeywords", null);

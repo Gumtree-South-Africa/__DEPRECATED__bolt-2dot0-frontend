@@ -21,9 +21,6 @@ HomepageAdService.prototype.getHomepageGallery = function(locale) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "homepageGallery", null);
@@ -37,9 +34,6 @@ HomepageAdService.prototype.getAdStatistics = function(locale) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "adStatistics", null);

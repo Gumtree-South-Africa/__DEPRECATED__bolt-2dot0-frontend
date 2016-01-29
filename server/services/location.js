@@ -21,11 +21,6 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=" + depth;
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?depth=" + depth;
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location", null);
@@ -39,11 +34,6 @@ LocationService.prototype.getTopL2LocationsData = function(locale) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL2');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters;
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path;
-	}
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topL2Locations", null);

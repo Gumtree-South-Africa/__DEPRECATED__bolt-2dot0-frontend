@@ -21,11 +21,6 @@ CategoryService.prototype.getCategoriesData = function(locale, depth) {
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
-	if (this.bapiOptions.parameters != undefined) {
-		this.bapiOptions.path = this.bapiOptions.path + "?" + this.bapiOptions.parameters + "&depth=" + depth;
-	} else {
-		this.bapiOptions.path = this.bapiOptions.path + "?depth=" + depth;
-	}
 
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "category", null);

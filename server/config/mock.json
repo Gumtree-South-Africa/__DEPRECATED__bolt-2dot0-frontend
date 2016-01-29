@@ -7,12 +7,12 @@
     	"parameters": "_forceExample=true&_statusCode=200"
     },
     "endpoints": {
-    	"categoryHomePage"	:	"/categories",
-    	"locationHomePage"	:	"/locations",
+    	"categoryHomePage"	:	"/categories?depth=2",
+    	"locationHomePage"	:	"/locations?depth=2",
     	"topLocationsL2"	:	"/locations/top/L2",
     	"userFromCookie"	:	"/users/loggedInUserInfo",
-    	"topKeywords" 		: 	"/keywords/top",
-    	"trendingKeywords" 	: 	"/keywords/trending",
+    	"topKeywords" 		: 	"/keywords/top?categoryId=0&locationId=1",
+    	"trendingKeywords" 	: 	"/keywords/trending?categoryId=0&locationId=1",
     	"homepageGallery" 	: 	"/ads/gallery",
     	"adStatistics" 		: 	"/ads/statistics"
     }
