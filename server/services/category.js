@@ -28,7 +28,7 @@ CategoryService.prototype.getCategoriesData = function(locale, depth) {
 	}
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "category");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "category", null);
 }
 
 module.exports = new CategoryService();

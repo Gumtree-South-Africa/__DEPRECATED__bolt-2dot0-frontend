@@ -27,6 +27,7 @@ HeaderModel.prototype.getHeaderData = function() {
 		function (callback) {
 			var headerDeferred,
 				data = {};
+			
 			// merge pageurl data
     		data = _.extend(pageurlJson.header, data);
     		

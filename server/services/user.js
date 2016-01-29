@@ -26,7 +26,7 @@ UserService.prototype.getUserFromCookie = function(cookie, locale) {
 	}
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "user");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "user", cookie);
 }
 
 module.exports = new UserService();

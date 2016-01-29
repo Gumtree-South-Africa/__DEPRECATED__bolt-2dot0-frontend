@@ -26,7 +26,7 @@ HomepageAdService.prototype.getHomepageGallery = function(locale) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "homepageGallery");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "homepageGallery", null);
 }
 
 /**
@@ -42,7 +42,7 @@ HomepageAdService.prototype.getAdStatistics = function(locale) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "adStatistics");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "adStatistics", null);
 }
 
 module.exports = new HomepageAdService();

@@ -28,7 +28,7 @@ LocationService.prototype.getLocationsData = function(locale, depth) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location", null);
 }
 
 /**
@@ -46,7 +46,7 @@ LocationService.prototype.getTopL2LocationsData = function(locale) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topL2Locations");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topL2Locations", null);
 }
 
 module.exports = new LocationService();

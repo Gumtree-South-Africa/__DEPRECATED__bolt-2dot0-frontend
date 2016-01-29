@@ -26,7 +26,7 @@ KeywordService.prototype.getTopKeywordsData = function(locale) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topKeywords");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topKeywords", null);
 }
 
 /**
@@ -42,7 +42,7 @@ KeywordService.prototype.getTrendingKeywordsData = function(locale) {
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "trendingKeywords");
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "trendingKeywords", null);
 }
 
 
