@@ -18,7 +18,7 @@ router.get('/', function (req, res, next) {
         locale: res.config.locale,
         country: res.config.country,
         site: res.config.name,
-        pagename: 'homepage'
+        pagename: 'HomePage'
     };
 
     model.then(function (result) {

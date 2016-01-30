@@ -56,7 +56,7 @@ i18next
       siteApp.config.locale = siteObj.locale;
       siteApp.config.country = siteObj.country;
       siteApp.config.hostname = siteObj.hostname;
-      siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
+      siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
       // use the middleware to do the magic
       // create a fixed t function for req.lng
