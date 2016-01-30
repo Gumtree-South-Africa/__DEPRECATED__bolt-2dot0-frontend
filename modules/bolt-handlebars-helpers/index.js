@@ -3,6 +3,10 @@ var express = require('express');
 var config = require('./handlebars-helpers');
 
 var Handlebars = require("handlebars");
+// var HandlebarsIntl = require('handlebars-intl');
+
+// Register the helpers
+//HandlebarsIntl.registerWith(Handlebars);
 
 /* Code that we use to retrieve the object bound to a function */
 var _bind = Function.prototype.apply.bind(Function.prototype.bind);
@@ -37,6 +41,7 @@ module.exports = function (app, locale, module, i18nObj) {
 
     // Create a new instance of handlebars
     hbsConfig["arguments"][0]["handlebars"] = Handlebars.create();
+    // HandlebarsIntl.registerWith(hbsConfig["arguments"][0]["handlebars"]);
 
 	var args = Array.isArray(hbsConfig['arguments']) ? hbsConfig['arguments'].slice() : [];
 
@@ -49,6 +54,7 @@ module.exports = function (app, locale, module, i18nObj) {
 
 	// Get a hold of the object bound to the engine function.
 	module.instance = engine.boundObject;
+
 
 	// Register the locale specific partials
     if (locale) {
