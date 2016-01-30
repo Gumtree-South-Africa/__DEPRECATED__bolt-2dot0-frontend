@@ -26,10 +26,13 @@ HeaderModel.prototype.getHeaderData = function() {
 	var arrFunctions = [
 		function (callback) {
 			var headerDeferred,
-				data = {};
+				data = {
+					"favIcon" : "/images/" + scope.locale + "/shortcut.png"
+				};
 			
 			// merge pageurl data
     		_.extend(data, pageurlJson.header);
+    		
     		
 			if (typeof callback !== "function") {
 				return;
