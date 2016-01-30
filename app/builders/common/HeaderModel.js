@@ -44,10 +44,8 @@ HeaderModel.prototype.getHeaderData = function() {
 			    
 				 Q(userService.getUserFromCookie(scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
-			    		data = dataReturned;
-			    		
-			    		// merge pageurl data
-			    		_.extend(data, data, pageurlJson.header);
+			    		// merge returned data
+			    		_.extend(data, dataReturned);
 			    					    		
 			    		headerDeferred.resolve(data);
 					    callback(null, data);
