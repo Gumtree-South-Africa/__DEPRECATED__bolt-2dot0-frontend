@@ -1,10 +1,13 @@
 <div class="outer">
     {{#each children}}
-    <div class="inner" data-uri="{{this.url}}">
-            <div class="icon-cat-{{this.id}} bg"></div>
-            <div class="icon-cat-label">{{this.localizedName}}</div>
-            <div class="clear"></div>
-    </div>
+    {{!-- TODO remove anchor, and click link via JS --}}
+    <a href="{{this._links.[1].href}}">
+	    <div class="inner" data-uri="{{this.url}}">
+	            <div class="icon-cat-{{this.id}} bg"></div>
+	            <div class="icon-cat-label">{{this.localizedName}}</div>
+	            <div class="clear"></div>
+	    </div>
+    </a>
     {{/each}}
 </div>
 
