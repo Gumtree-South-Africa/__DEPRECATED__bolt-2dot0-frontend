@@ -18,6 +18,7 @@
             "./app/views/components/countryMap/views/hbs/countryMap_es_MX.hbs",
             "./app/views/components/siteFlow/views/hbs/siteFlow_es_MX.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_es_MX.hbs",
+            "./app/views/components/categoryDisplay/views/hbs/categoryDisplay_es_MX.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_es_MX.hbs"
     	]
     },
