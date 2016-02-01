@@ -4,10 +4,13 @@
         <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
     {{/if}}
 
-    {{#block "locationBeforeCategory"}}{{/block}}
+		{{> countryMap}}
+		{{> locationMapContainer}}
+		{{#block "locationContainer" ../this}}{{/block}}
+
 </div>
 
-{{> adCarousel}}
+{{> adCarousel ../this}}
 
 <div class="category-wrapper">
 	<h1>{{i18n "home.h1Tag"}}</h1>
@@ -55,7 +58,7 @@
 					<h5>{{i18n "home.popular-searches"}}</h5>
 					<ul>
 					{{#each ../this.topKeywords}}
-						<li data-index="{{@index}}" class="{{#ifEq @index 1}}displayMore{{else}} {{#ifEq @index 4}}displayMoreDeskTop{{/ifEq}}{{/ifEq}} nonJsOnlyBlock">
+						<li data-index="{{@index}}" class="nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
 					{{/each}}
@@ -69,7 +72,7 @@
 					<h5>{{i18n "home.trending-searches"}}</h5>
 					<ul>
 					{{#each ../this.trendingKeywords}}
-						<li data-index="{{@index}}" class="{{#ifEq @index 1}}displayMore{{else}} {{#ifEq @index 4}}displayMoreDeskTop{{/ifEq}}{{/ifEq}} nonJsOnlyBlock">
+						<li data-index="{{@index}}" class="nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
 					{{/each}}
