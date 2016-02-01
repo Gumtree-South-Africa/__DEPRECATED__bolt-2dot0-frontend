@@ -17,7 +17,9 @@
 		"geoLocatorUrl"		: "/post.html",
 		"rootGeoLocatorUrl"	: "/post.html",
 		"abTestUrl"			: "/post.html",
-		"isMessageCenterEnabled": true
+		"isMessageCenterEnabled": true,
+		"skinCampaignOn"	: true,
+		"googleTagAccountId": "7162/Gumtree_ZA"
 	},
 	"footer" : {
 		"obfuscatedTermsAndConditionsURL"	: "/post.html",

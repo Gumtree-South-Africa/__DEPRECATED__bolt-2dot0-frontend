@@ -13,4 +13,13 @@
 	{{/partial}}
 {{/if}}
 
+{{#partial "AdBannerHomepg"}}
+	{{#block "locationMap_Script"}}
+	{{/block}}
+	
+	{{> skinBanner}}
+	{{#block "googleBannerSkinCampaign_Script" ../this}}
+	{{/block}}
+{{/partial}}
+
 {{> homepage-base}}

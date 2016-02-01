@@ -1,0 +1,11 @@
+{{#partial "googleBannerSkinCampaign_Script"}}
+    {{#if this.header.skinCampaignOn}}
+		{{#unless model.header.isIncludeContentForMobile}}
+			if (matchMedia('desktop') || matchMedia('largeScr') || $('#div-gpt-oop').css('border-bottom-color') == 'yellow' || $('#div-gpt-oop').css('border-bottom-color') == "rgb(255, 255, 0)"){
+				$(".page").addClass("bg-white");
+				BOLT.displaySkinCampaign($.extend({slotId: 'div-gpt-oop', tile: '99', pos: 'oop'}, bP));
+				$('#div-gpt-oop').css("background-color","green");
+			}
+		{{/unless}}
+    {{/if}}
+{{/partial}}
