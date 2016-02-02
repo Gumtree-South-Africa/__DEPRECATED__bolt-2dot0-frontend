@@ -16,27 +16,27 @@ var KeywordService = function() {
 /**
  * Gets a list of top keywords
  */
-KeywordService.prototype.getTopKeywordsData = function(locale) {
+KeywordService.prototype.getTopKeywordsData = function(requestId, locale) {
 	console.log("Inside Top KeywordService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topKeywords", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "topKeywords", null);
 }
 
 /**
  * Gets a list of trending keywords
  */
-KeywordService.prototype.getTrendingKeywordsData = function(locale) {
+KeywordService.prototype.getTrendingKeywordsData = function(requestId, locale) {
 	console.log("Inside Trending KeywordService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "trendingKeywords", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "trendingKeywords", null);
 }
 
 

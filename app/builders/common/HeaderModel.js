@@ -13,7 +13,8 @@ var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
  * @description A class that Handles the Header Model
  * @constructor
  */
-var HeaderModel = function (cookie, locale) {
+var HeaderModel = function (requestId, cookie, locale) {
+	this.requestId = requestId;
 	this.cookie = cookie;
 	this.locale = locale;
     return new ModelBuilder(this.getHeaderData());
@@ -42,7 +43,7 @@ HeaderModel.prototype.getHeaderData = function() {
 		    	headerDeferred = Q.defer();
 				console.log("Calling Service to get HeaderData");
 			    
-				 Q(userService.getUserFromCookie(scope.cookie, scope.locale))
+				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);

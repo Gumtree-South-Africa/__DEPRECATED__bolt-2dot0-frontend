@@ -12,7 +12,8 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
  * @description A class that Handles the Gallery Model
  * @constructor
  */
-var GalleryModel = function (locale) {
+var GalleryModel = function (requestId, locale) {
+	this.requestId = requestId;
 	this.locale = locale;
     return new ModelBuilder(this.getHomePageGallery());
 };
@@ -33,7 +34,7 @@ GalleryModel.prototype.getHomePageGallery = function() {
 		    	galleryDeferred = Q.defer();
 				console.log("Calling AdService for Homepage - gallery");
 			    
-				 Q(hpAdService.getHomepageGallery(scope.locale))
+				 Q(hpAdService.getHomepageGallery(scope.requestId, scope.locale))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		galleryDeferred.resolve(data);
