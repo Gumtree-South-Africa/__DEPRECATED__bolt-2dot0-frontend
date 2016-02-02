@@ -5,5 +5,10 @@
      {{#unless model.header.isIncludeContentForMobile}}
 		  {{!-- moreAdSizes is only for PL -> for extra ad sizes --}}	    
           BOLT.displayBanner( $.extend( {pos:"atf",slotDim: [[728,90],[970,90]{{model.header.moreAdSizes}}], slotId : 'home_topbanner'},bP));
+          $("#home_topbanner").css(
+	    	{ "border" : "1px dashed red",
+	    	  "width": "728px",
+	    	  "height" : "90px"
+	    	});
      {{/unless}}
 {{/partial}}

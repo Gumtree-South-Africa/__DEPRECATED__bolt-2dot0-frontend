@@ -20,6 +20,7 @@
             "./app/views/components/skinBanner/views/hbs/skinBanner_es_US.hbs",
             "./app/views/components/topBanner/views/hbs/topBanner_es_US.hbs",
             "./app/views/components/rightBanner/views/hbs/rightBanner_es_US.hbs",
+            "./app/views/components/rightBottomBanner/views/hbs/rightBottomBanner_es_US.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_es_US.hbs"                 
     	]
     },

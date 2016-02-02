@@ -25,10 +25,10 @@
 					{{#block "locationBeforeCategory"}}
 	                {{/block}}
 
-	                {{#with ../this.category}}
+	                {{#with ../this}}
 	                    {{> categoryList}}
 	                {{/with}}
-
+	                
 					<div class="hp-link-wrapper">
 						<div class="post-ad-button">
 							<a href="{{model.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>

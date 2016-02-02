@@ -1,6 +1,5 @@
 "use strict";
 
-//var fs = require("fs");
 var async = require("async");
 var http = require("http");
 var Q = require("q");
