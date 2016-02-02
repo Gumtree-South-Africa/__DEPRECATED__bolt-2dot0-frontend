@@ -19,6 +19,9 @@
             "./app/views/components/siteFlow/views/hbs/siteFlow_es_MX.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_es_MX.hbs",
             "./app/views/components/categoryDisplay/views/hbs/categoryDisplay_es_MX.hbs",
+            "./app/views/components/skinBanner/views/hbs/skinBanner_es_MX.hbs",
+            "./app/views/components/topBanner/views/hbs/topBanner_es_MX.hbs",
+            "./app/views/components/rightBanner/views/hbs/rightBanner_es_MX.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_es_MX.hbs"
     	]
     },

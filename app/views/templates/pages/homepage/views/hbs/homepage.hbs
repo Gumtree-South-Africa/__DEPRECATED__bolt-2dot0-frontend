@@ -1,8 +1,8 @@
 
 {{#partial "content"}}
 	{{#block "homepg"}}
-	 {{#if model.content.topHomePageAdBanner}}
-		 {{> hbs/home/AdBanner_top}}
+	 {{#if ../this.header.topHomePageAdBanner}}
+		 {{> topBanner}}
 	 {{/if}}
 
 	<div class="hp-content hp-others
@@ -117,6 +117,10 @@
    	<script>
 		{{#block "AdBannerHomepg"}}
     		{{#block "locationMap_Script"}}{{/block}}
+    		{{#block "googleBannerAdsTop_Script"}}{{/block}}
+			{{#block "googleBannerAdsRight_Script"}}{{/block}}
+			{{#block "googleBannerAdsRightBottom_Script"}}{{/block}}
+   			{{#block "googleBannerAdsBottom_Script"}}{{/block}}
 		{{/block}}
    	</script>
 {{/partial}}

@@ -22,7 +22,8 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
-      extraData.header = result[0];
+      extraData.header = result[0][0];
+      extraData.footer = result[0][1];
       extraData.location = result[1];
       extraData.category = result[2];
       extraData.trendingKeywords = result[3][0].keywords;

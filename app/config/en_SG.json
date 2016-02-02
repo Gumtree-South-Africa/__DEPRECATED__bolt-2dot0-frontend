@@ -17,6 +17,9 @@
             "./app/views/components/adCarousel/views/hbs/adCarousel_en_SG.hbs",
             "./app/views/components/countryMap/views/hbs/countryMap_en_SG.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_en_SG.hbs",
+            "./app/views/components/skinBanner/views/hbs/skinBanner_en_SG.hbs",
+            "./app/views/components/topBanner/views/hbs/topBanner_en_SG.hbs",
+            "./app/views/components/rightBanner/views/hbs/rightBanner_en_SG.hbs",
             "./app/views/templates/pages/homepage/views/hbs/homepage_en_SG.hbs"              
     	]
     },

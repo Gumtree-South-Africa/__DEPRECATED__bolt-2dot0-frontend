@@ -8,6 +8,7 @@ var _ = require("underscore");
 
 var ModelBuilder = require("./ModelBuilder");
 var HeaderModel = require("./HeaderModel");
+var FooterModel = require("./FooterModel");
 
 /** 
  * @description A class that Handles the common models in every page
@@ -16,11 +17,16 @@ var HeaderModel = require("./HeaderModel");
 var BasePageModel = function (req, res) {
 	var cookieName = "bt_auth";
 	var authcookie = req.cookies[cookieName];	    
-	var header = new HeaderModel(authcookie, res.config.locale);
+	this.header = new HeaderModel(authcookie, res.config.locale);
+	this.footer = new FooterModel(res.config.locale);
+	return new ModelBuilder(this.getCommonData());
+};
 
+BasePageModel.prototype.getCommonData = function() {
+	var scope = this;
 	var headerFunction = function(callback) { 
 		var headerDeferred = Q.defer();
-		Q(header.processParallel())
+		Q(scope.header.processParallel())
 	    	.then(function (dataH) {
 	    		console.log("Inside basepagemodel header");
 	    		headerDeferred.resolve(dataH[0]);
@@ -31,8 +37,22 @@ var BasePageModel = function (req, res) {
 			});
 	};
 	
-	return headerFunction;
+	var footerFunction = function(callback) { 
+		var footerDeferred = Q.defer();
+		Q(scope.footer.processParallel())
+	    	.then(function (dataF) {
+	    		console.log("Inside basepagemodel footer");
+	    		footerDeferred.resolve(dataF[0]);
+	    		callback(null, dataF[0]);
+			}).fail(function (err) {
+				footerDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var arrFunctions = [headerFunction, footerFunction];
+	return arrFunctions;
 };
-
+	
 module.exports = BasePageModel;
 

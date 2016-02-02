@@ -13,44 +13,45 @@ var keywordService = require(process.cwd() + "/server/services/keyword");
  * @constructor
  */
 
-var keywordModel = function (locale, depth) {
+var KeywordModel = function (locale, depth) {
 	this.locale = locale;
 	this.depth = depth;
   return new ModelBuilder(this.getKeywords());
 };
 
 
-// Function getLocations
-keywordModel.prototype.getKeywords = function() {
+// Function getKeywords
+KeywordModel.prototype.getKeywords = function() {
 	var scope = this;
-  var topKeywordFunction = function(callback) {
-    var topKeywordDeferred = Q.defer();
-    Q(keywordService.getTopKeywordsData(scope.locale))
-        .then(function (dataTopK) {
-          console.log("Inside topKeyword");
-          topKeywordDeferred.resolve(dataTopK);
-          callback(null, dataTopK);
-      }).fail(function (err) {
-          topKeywordDeferred.reject(new Error(err));
-        callback(null, {});
-      });
-  };
-  var trendingKeywordFunction = function(callback) {
-    var trendingKeywordDeferred = Q.defer();
-    Q(keywordService.getTrendingKeywordsData(scope.locale))
-        .then(function (dataTK) {
-          console.log("Inside trendingKeyword");
-          trendingKeywordDeferred.resolve(dataTK);
-          callback(null, dataTK);
-      }).fail(function (err) {
-          trendingKeywordDeferred.reject(new Error(err));
-        callback(null, {});
-      });
-  };
+	
+	var topKeywordFunction = function(callback) {
+		var topKeywordDeferred = Q.defer();
+	    Q(keywordService.getTopKeywordsData(scope.locale))
+	        .then(function (dataTopK) {
+	          console.log("Inside topKeyword");
+	          topKeywordDeferred.resolve(dataTopK);
+	          callback(null, dataTopK);
+	      }).fail(function (err) {
+	          topKeywordDeferred.reject(new Error(err));
+	        callback(null, {});
+	      });
+	};
+	
+	var trendingKeywordFunction = function(callback) {
+	    var trendingKeywordDeferred = Q.defer();
+	    Q(keywordService.getTrendingKeywordsData(scope.locale))
+	        .then(function (dataTK) {
+	          console.log("Inside trendingKeyword");
+	          trendingKeywordDeferred.resolve(dataTK);
+	          callback(null, dataTK);
+	    }).fail(function (err) {
+	          trendingKeywordDeferred.reject(new Error(err));
+	        callback(null, {});
+	    });
+	};
 
 	var arrFunctions = [topKeywordFunction, trendingKeywordFunction];
-
-  return arrFunctions;
+	return arrFunctions;
 };
 
-module.exports = keywordModel;
+module.exports = KeywordModel;
