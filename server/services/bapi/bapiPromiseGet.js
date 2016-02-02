@@ -4,9 +4,21 @@ var Q = require("q");
 
 var BAPICall = require("./BAPICall");
 
-module.exports = function(bapiOptions, locale, serviceName){
+module.exports = function(bapiOptions, locale, serviceName, authTokenValue){
+	// Add Headers
 	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
-	bapiOptions.headers["Authorization"] = "Bearer 123456";
+	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
+		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
+	}
+	
+	// Add extra parameters
+	if (bapiOptions.parameters != undefined) {
+		if ( bapiOptions.path.indexOf("?") > -1 ) {
+			bapiOptions.path = bapiOptions.path + "&" + bapiOptions.parameters;
+		} else {
+			bapiOptions.path = bapiOptions.path + "?" + bapiOptions.parameters;
+		}
+	} 
 	
   	//Create Promise
 	var bapiDeferred = Q.defer();

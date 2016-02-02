@@ -15,43 +15,49 @@ var locationService = require(process.cwd() + "/server/services/location");
 var LocationModel = function (locale, depth) {
 	this.locale = locale;
 	this.depth = depth;
-    return new ModelBuilder(this.getLocations());
 };
 
 
 // Function getLocations
 LocationModel.prototype.getLocations = function() {
 	var scope = this;
-	var arrFunctions = [
-		function (callback) {
-			var locationDeferred,
-				data = {};
-			if (typeof callback !== "function") {
-				return;
-			}
-			
-		    if (typeof scope.depth !== "undefined") {
-		    	locationDeferred = Q.defer();
-				console.log("Calling LocationService");
-			    
-				 Q(locationService.getLocationsData(scope.locale, scope.depth))
-			    	.then(function (dataReturned) {
-			    		data = dataReturned;
-			    		locationDeferred.resolve(data);
-					    callback(null, data);
-					}).fail(function (err) {
-						locationDeferred.reject(new Error(err));
-					    callback(null, data);
-					});
-
-				return locationDeferred.promise;
-			} else {
-			    callback(null, data);
-			}
-		}
-	];
+	var locationDeferred = Q.defer();
+	var data = {};
 	
-	return arrFunctions;
+    if (typeof scope.depth !== "undefined") {
+		console.log("Calling LocationService");
+	    
+		 Q(locationService.getLocationsData(scope.locale, scope.depth))
+	    	.then(function (dataReturned) {
+	    		data = dataReturned;
+	    		locationDeferred.resolve(data);
+			}).fail(function (err) {
+				locationDeferred.reject(new Error(err));
+			});
+	} 
+
+    return locationDeferred.promise;
+};
+
+//Function getTopL2Locations
+LocationModel.prototype.getTopL2Locations = function() {
+	var scope = this;
+	var locationDeferred = Q.defer();
+	var data = {};
+	
+    if (typeof scope.locale !== "undefined") {
+		console.log("Calling LocationService");
+	    
+		 Q(locationService.getTopL2LocationsData(scope.locale))
+	    	.then(function (dataReturned) {
+	    		data = dataReturned;
+	    		locationDeferred.resolve(data);
+			}).fail(function (err) {
+				locationDeferred.reject(new Error(err));
+			});
+	} 
+
+    return locationDeferred.promise;
 };
 
 module.exports = LocationModel;

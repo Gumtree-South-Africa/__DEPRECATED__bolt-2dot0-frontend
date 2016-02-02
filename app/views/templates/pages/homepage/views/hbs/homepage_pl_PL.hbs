@@ -1,13 +1,16 @@
-{{> homepage-base}}
-
 {{#if model.header.isIncludeContentForMobile}}
     {{#partial "locationAfterCategory"}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
-        {{> adCarousel}}
-        {{#block "carousel"}}{{/block}}
+    	{{> adCarousel}}
+    	{{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
     {{/partial}}
-    {{#partial "locationAfterCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
+        {{> locationMapContainer}}
+        {{#block "locationContainer" ../this}}{{/block}}
+	{{/partial}}
 {{/if}}
+
+{{> homepage-base}}

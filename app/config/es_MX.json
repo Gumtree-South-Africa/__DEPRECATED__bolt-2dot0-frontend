@@ -1,6 +1,32 @@
-{ 
-    
+{
+
     "homepage": {
+    	"partialsDir": [
+            "./app/views/components/logo/views/hbs/logo_es_MX.hbs",
+            "./app/views/components/postButton/views/hbs/postButton_es_MX.hbs",
+            "./app/views/components/helpLink/views/hbs/helpLink_es_MX.hbs",
+            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_es_MX.hbs",
+            "./app/views/components/title/views/hbs/title_es_MX.hbs",
+            "./app/views/components/searchbar/views/hbs/searchbar_es_MX.hbs",
+            "./app/views/components/navigation/views/hbs/navigation_es_MX.hbs",
+            "./app/views/components/header/views/hbs/header_es_MX.hbs",
+            "./app/views/components/socialMediaLinks/views/hbs/socialMediaLinks_es_MX.hbs",
+            "./app/views/components/footer/views/hbs/footer_es_MX.hbs",
+
+            "./app/views/components/categoryList/views/hbs/categoryList_es_MX.hbs",
+            "./app/views/components/adCarousel/views/hbs/adCarousel_es_MX.hbs",
+            "./app/views/components/countryMap/views/hbs/countryMap_es_MX.hbs",
+            "./app/views/components/siteFlow/views/hbs/siteFlow_es_MX.hbs",
+            "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_es_MX.hbs",
+            "./app/views/components/categoryDisplay/views/hbs/categoryDisplay_es_MX.hbs",
+            "./app/views/components/skinBanner/views/hbs/skinBanner_es_MX.hbs",
+            "./app/views/components/topBanner/views/hbs/topBanner_es_MX.hbs",
+            "./app/views/components/rightBanner/views/hbs/rightBanner_es_MX.hbs",
+            "./app/views/components/rightBottomBanner/views/hbs/rightBottomBanner_es_MX.hbs",
+            "./app/views/templates/pages/homepage/views/hbs/homepage_es_MX.hbs"
+    	]
+    },
+	"messagepage": {
     	"partialsDir": [
             "./app/views/components/logo/views/hbs/logo_es_MX.hbs",
             "./app/views/components/postButton/views/hbs/postButton_es_MX.hbs",
@@ -12,26 +38,7 @@
             "./app/views/components/header/views/hbs/header_es_MX.hbs",
             "./app/views/components/footer/views/hbs/footer_es_MX.hbs",
 
-            "./app/views/components/categoryList/views/hbs/categoryList_es_MX.hbs",
-            "./app/views/components/adCarousel/views/hbs/adCarousel_es_MX.hbs",
-            "./app/views/components/countryMap/views/hbs/countryMap_es_MX.hbs",
-            "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_es_MX.hbs",
-            "./app/views/templates/pages/homepage/views/hbs/homepage_es_MX.hbs"                        
-    	]
-    },
-	"messagepage": {
-    	"partialsDir": [
-            "./app/views/components/logo/views/hbs/logo_es_MX.hbs",
-            "./app/views/components/postButton/views/hbs/postButton_es_MX.hbs",
-            "./app/views/components/helpLink/views/hbs/helpLink_es_MX.hbs",
-            "./app/views/components/isolatedSignIn/views/hbs/isolatedSignIn_es_MX.hbs",
-            "./app/views/components/title/views/hbs/title_es_MX.hbs",
-            "./app/views/components/searchbar/views/hbs/searchbar_es_MX.hbs",
-            "./app/views/components/navigation/views/hbs/navigation_es_MX.hbs",  
-            "./app/views/components/header/views/hbs/header_es_MX.hbs",
-            "./app/views/components/footer/views/hbs/footer_es_MX.hbs",
-
-            "./app/views/templates/pages/message/views/hbs/message_es_MX.hbs"       
+            "./app/views/templates/pages/message/views/hbs/message_es_MX.hbs"
     	]
     }
 

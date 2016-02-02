@@ -1,8 +1,8 @@
 
 {{#partial "content"}}
 	{{#block "homepg"}}
-	 {{#if model.content.topHomePageAdBanner}}
-		 {{> hbs/home/AdBanner_top}}
+	 {{#if ../this.header.topHomePageAdBanner}}
+		 {{> topBanner}}
 	 {{/if}}
 
 	<div class="hp-content hp-others
@@ -12,11 +12,10 @@
 	">
 
 			<div class="hp-list-wrapper">
-	            <div class="hp-total-ad-count">
-	            	{{../this.totalLiveAdCount}}
-	                <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" ../this.totalLiveAdCount }}}</span>
-	            </div>
-
+				<div class="hp-total-ad-count">
+                	<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" ../this.totalLiveAdCount}}}</span>
+            	</div>
+	            	
 	            <div class="hp-category-wrapper">
 	                <h1>{{i18n "home.h1Tag"}}</h1>
 	                {{#if model.lastWeekPostedAdCount}}
@@ -26,10 +25,10 @@
 					{{#block "locationBeforeCategory"}}
 	                {{/block}}
 
-	                {{#with ../this.category}}
+	                {{#with ../this}}
 	                    {{> categoryList}}
 	                {{/with}}
-
+	                
 					<div class="hp-link-wrapper">
 						<div class="post-ad-button">
 							<a href="{{model.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
@@ -38,10 +37,10 @@
 
 				</div>
 
-	            {{#block "googleBannerAdsBottom_Container"}}{{/block}}
+	      {{#block "googleBannerAdsBottom_Container"}}{{/block}}
 				<div class="clear"></div>
 
-	            {{#block "locationAfterCategory"}}{{/block}}
+	      {{#block "locationAfterCategory"}}{{/block}}
 
 				<div class="hp-keywords-wrapper">
 					{{#if ../this.topKeywords}}
@@ -50,7 +49,7 @@
 							<ul>
 							{{#each ../this.topKeywords}}
 								<li data-index="{{@index}}">
-									<a href="{{_links.[0].href}}">{{displayName}}</a>
+									<a href="{{_links.[0].href}}">{{text}}</a>
 								</li>
 							{{/each}}
 							</ul>
@@ -63,7 +62,7 @@
 							<ul>
 							{{#each ../this.trendingKeywords}}
 								<li data-index="{{@index}}">
-									<a href="{{_links.[0].href}}">{{displayName}}</a>
+									<a href="{{_links.[0].href}}">{{text}}</a>
 								</li>
 							{{/each}}
 							</ul>
@@ -102,11 +101,28 @@
 
 
 {{#partial "pageTailScripts"}}
-   <script>
-	{{#block "AdBannerHomepg"}}
-    	{{#block "locationMap_Script"}}{{/block}}
-	{{/block}}
-   </script>
+	<script src="/js/common/GoogleBanner.js"></script>
+	<script>
+		var bP = {
+	           {{#if model.header.isIncludeContentForMobile}}
+	           accId : ("/{{{model.googleTagAccountMobId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+	           {{else}}
+	           accId : ("/{{{../this.header.googleTagAccountId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+	           {{/if}}
+			   dc_ref:window.location.href,
+			   kw: $('input[name=q]').val() || "no category",
+			   ptype: 'home'
+	    };
+	</script>
+   	<script>
+		{{#block "AdBannerHomepg"}}
+    		{{#block "locationMap_Script"}}{{/block}}
+    		{{#block "googleBannerAdsTop_Script"}}{{/block}}
+			{{#block "googleBannerAdsRight_Script"}}{{/block}}
+			{{#block "googleBannerAdsRightBottom_Script"}}{{/block}}
+   			{{#block "googleBannerAdsBottom_Script"}}{{/block}}
+		{{/block}}
+   	</script>
 {{/partial}}
 
 {{!-- > hbs/Html --}}

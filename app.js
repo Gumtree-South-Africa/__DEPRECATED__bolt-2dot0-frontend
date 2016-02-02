@@ -13,6 +13,7 @@ var Backend = require('i18next-node-fs-backend');
 
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
+var requestId = require('./server/middlewares/request-id');
 
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
@@ -29,11 +30,9 @@ var siteCount = 0;
 i18next
   .use(Backend)
   .init({
-    //lng : 'es_MX_VNS',
     ns : 'translation',
     // use correct configuration options...look up docs!
     backend: {
-
       loadPath: __dirname + '/app/locales/json/{{lng}}/{{ns}}.json'
     }
   });
@@ -56,11 +55,7 @@ i18next
       siteApp.config.locale = siteObj.locale;
       siteApp.config.country = siteObj.country;
       siteApp.config.hostname = siteObj.hostname;
-      siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w]*';
-
-      // use the middleware to do the magic
-      // create a fixed t function for req.lng
-      // no clones needed as they just would do the same (sharing all but lng)
+      siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
       // set req.lng to defined lng in vhost
       siteApp.use(function(req, res, next) {
@@ -86,7 +81,10 @@ i18next
 
       // register bolt site checking middleware
       siteApp.use(checksite(siteApp));
-
+      
+      // register bolt requestId middleware
+      siteApp.use(requestId());
+      
       // Setup Vhost per supported site
       app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
     })(siteObj);

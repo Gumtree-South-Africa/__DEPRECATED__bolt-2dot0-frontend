@@ -1,10 +1,28 @@
 {
-  // BAPI config for your VM
-  "BAPI": {
-    "server": {
-    	"host": "http://bolt-api.vm.ebay.com",
-    	"port": 8000,
-    	"parameters": null
-    }
-  }
+	// BAPI config for your VM
+	// Add the below line to your host file
+	// 10.65.201.202	api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com
+	"BAPI": {
+	    "server": {
+	    	"host": "api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
+	    	"port": 80,
+	    	"parameters": null
+	    },
+	    "endpoints": {
+	    	"categoryHomePage"	:	"/boltapi/v1/categories?depth=2",
+	    	"locationHomePage"	:	"/boltapi/v1/locations?depth=2",
+	    	"topLocationsL2"	:	"/boltapi/v1/locations/top/L2",
+	    	"userFromCookie" 	:	"/boltapi/v1/users/loggedInUserInfo",
+	    	"topKeywords" 		:	"/boltapi/v1/keywords/top?categoryId=0&locationId=1",
+	    	"trendingKeywords" 	:	"/boltapi/v1/keywords/trending?categoryId=0&locationId=1",
+	    	"homepageGallery" 	:	"/boltapi/v1/ads/gallery",
+	    	"adStatistics" 		: 	"/boltapi/v1/ads/statistics"
+	    }
+	},
+	"kafka": {
+		"server": {
+			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port": 2181
+		}
+	}
 }

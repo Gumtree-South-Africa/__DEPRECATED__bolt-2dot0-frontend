@@ -7,7 +7,10 @@
 {{else}}
     {{#partial "locationBeforeCategory"}}
         {{> adCarousel}}
-        {{#block "carousel"}}{{/block}}
+        {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
     {{/partial}}
-    {{#partial "locationAfterCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
+    	{{> locationMapContainer}}
+        {{#block "locationContainer" ../this}}{{/block}}
+    {{/partial}}
 {{/if}}

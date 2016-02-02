@@ -1,10 +1,10 @@
-{{#partial "carousel"}}
-  {{#with model.initialGalleryInfo}}
+
+    {{#with this}} {{!-- #with model.initialGalleryInfo --}}
     <div class="product-carousel-container">
         <div class="product-carousel owl-carousel"></div>
         <div class="carousel-loading"></div>
     </div>
-      
+
     <style>
       .extra .breadcrumbs {
   		  top:15em;
@@ -12,20 +12,24 @@
     </style>
   {{/with}}
 
-  {{#partial "pageTailScriptsBeforeIncludes"}}
-     {{#with model.initialGalleryInfo}}
+  {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
+     {{!-- #with model.initialGalleryInfo --}}
      <script>
-          var adList = {{{model.initialGalleryInfo}}},
-              dataPostLink="{{model.header.postAdPageUrl}}",
+          var adList = {{{json this}}},
+              {{#if model.header.postAdPageUrl}}
+                dataPostLink="{{model.header.postAdPageUrl}}",
+              {{else}}
+                   dataPostLink="/post.html",
+              {{/if}}
               dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
               {{#if model.seeAllUrl}}
-                  seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
-                  seeAllText = '{{i18n "features.see.all"}}',
+                   seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
+                   seeAllText = '{{i18n "features.see.all"}}',
+              {{else}}
+                   seeAllUrl = "#",
+                   seeAllText = "See All",
               {{/if}}
-              galleryAjaxBaseUrl ="{{model.content.galleryAdsAjaxInitUrl}}";
+              galleryAjaxBaseUrl = "{{model.content.galleryAdsAjaxInitUrl}}";
       </script>
-      <script src="/views/components/adCarousel/js/adCarousel.js"></script>
-      {{/with}}
-  {{/partial}}
-{{/partial}}
-
+      {{!-- /with --}}
+  {{!-- /partial --}}

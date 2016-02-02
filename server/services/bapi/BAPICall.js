@@ -103,7 +103,9 @@ BAPICall.prototype = {
 					// Execute the callback if present.
 					if (scope.callback) {
 		        		// Aggregation of data with the original (passed) data
-						data = _.extend(scope.argData, data);
+						if (! _.isEmpty(scope.argData)) { 
+							data = _.extend(scope.argData, data);
+						}
 						scope.callback(null, data);
 					}
 					

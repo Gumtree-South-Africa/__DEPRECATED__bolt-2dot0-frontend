@@ -1,6 +1,5 @@
 "use strict";
 
-//var fs = require("fs");
 var async = require("async");
 var http = require("http");
 var Q = require("q");
@@ -9,7 +8,6 @@ var _ = require("underscore");
 var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
-var HeaderModel = require("../../common/HeaderModel");
 var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
@@ -21,22 +19,35 @@ var BasePageModel = require("../../common/BasePageModel");
  * @constructor
  */
 var HomePageModel = function (req, res) {
-	var headerFunction = BasePageModel.call(this, req, res);
+	var commonData = new BasePageModel(req, res);
 	var loc = new LocationModel(res.config.locale, 2),
 		level1Loc = new LocationModel(res.config.locale, 1),
+		level2Loc = new LocationModel(res.config.locale, 1),
 		cat = new CategoryModel(res.config.locale, 2),
 		keyword = new KeywordModel(res.config.locale, 2),
 		gallery = new GalleryModel(res.config.locale),
 		adstatistics = new AdStatisticsModel(res.config.locale);
-
+	
+	var commonDataFunction = function(callback) {
+		var commonDataDeferred = Q.defer();
+		Q(commonData.processParallel())
+	    	.then(function (dataC) {
+	    		console.log("Inside commonData from homepageModel");
+	    		commonDataDeferred.resolve(dataC);
+	    		callback(null, dataC);
+			}).fail(function (err) {
+				commonDataDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
-		Q(loc.processParallel())
+		Q(loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel locations");
-	    		console.dir(dataL);
-	    		locationDeferred.resolve(dataL[0]);
-	    		callback(null, dataL[0]);
+	    		locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
 			}).fail(function (err) {
 				locationDeferred.reject(new Error(err));
 				callback(null, {});
@@ -45,14 +56,26 @@ var HomePageModel = function (req, res) {
 	
 	var level1locationFunction = function(callback) {
 		var level1locationDeferred = Q.defer();
-		Q(level1Loc.processParallel())
+		Q(level1Loc.getLocations())
 	    	.then(function (dataL) {
 	    		console.log("Inside homepagemodel level1location");
-	    		console.dir(dataL);
-	    		level1locationDeferred.resolve(dataL[0]);
-	    		callback(null, dataL[0]);
+	    		level1locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
 			}).fail(function (err) {
 				level1locationDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var level2locationFunction = function(callback) {
+		var level2locationDeferred = Q.defer();
+		Q(level2Loc.getTopL2Locations())
+	    	.then(function (dataL) {
+	    		console.log("Inside homepagemodel level2location");
+	    		level2locationDeferred.resolve(dataL);
+	    		callback(null, dataL);
+			}).fail(function (err) {
+				level2locationDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -62,7 +85,6 @@ var HomePageModel = function (req, res) {
 		Q(cat.processParallel())
 	    	.then(function (dataC) {
 	    		console.log("Inside homepagemodel categories");
-	    		console.dir(dataC);
 	    		categoryDeferred.resolve(dataC[0]);
 	    		callback(null, dataC[0]);
 			}).fail(function (err) {
@@ -76,7 +98,6 @@ var HomePageModel = function (req, res) {
 		Q(keyword.processParallel())
 	    	.then(function (dataK) {
 	    		console.log("Inside keyword from homepageModel");
-	    		console.dir(dataK);
 	    		keywordsDeferred.resolve(dataK);
 	    		callback(null, dataK);
 			}).fail(function (err) {
@@ -90,7 +111,6 @@ var HomePageModel = function (req, res) {
 		Q(gallery.processParallel())
 	    	.then(function (dataG) {
 	    		console.log("Inside homepagemodel gallery");
-	    		console.dir(dataG);
 	    		galleryDeferred.resolve(dataG[0]);
 	    		callback(null, dataG[0]);
 			}).fail(function (err) {
@@ -104,7 +124,6 @@ var HomePageModel = function (req, res) {
 		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
 	    		console.log("Inside homepagemodel statistics");
-	    		console.dir(dataS);
 	    		statisticsDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -113,14 +132,13 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction ];
+	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
     		console.log("Inside homepagemodel Combined");
-    		console.dir(data);
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));

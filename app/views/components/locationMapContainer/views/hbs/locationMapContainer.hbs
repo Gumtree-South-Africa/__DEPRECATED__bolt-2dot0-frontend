@@ -6,7 +6,7 @@
 
     {{!-- We show the map only for tablet and desktop, not for mobile. For mobile, we show the locations --}}
     {{#block "popularLocationsContainer"}}
-        {{#block "popularLocations"}}{{/block}}
+        {{#block "popularLocations" ../this}}{{/block}}
     {{/block}}
 
     {{#block "LocationStates"}}
@@ -15,7 +15,7 @@
         <ul class="location-list">
             {{#each ../this.level1Location.children}}
             <li data-index="{{@index}}">
-                <a href="{{this.url}}"><span class="location-name">{{this.localizedName}}</span></a>
+                <a href="{{this._links.[1].href}}"><span class="location-name">{{this.localizedName}}</span></a>
             </li>
             {{/each}}
         </ul>
@@ -29,9 +29,9 @@
 <div class="hp-city-wrapper">
     <h5>{{i18n "home.main-locations"}}</h5>
     <ul class="location-list">
-        {{#each model.content.Level2Location.children}}
+        {{#each this.level2Location}}
         <li data-index="{{@index}}">
-            <a href="{{this.url}}"><span class="location-name">{{this.localizedName}}</span></a>
+            <a href="{{this._links.[1].href}}"><span class="location-name">{{this.localizedName}}</span></a>
         </li>
         {{/each}}
     </ul>

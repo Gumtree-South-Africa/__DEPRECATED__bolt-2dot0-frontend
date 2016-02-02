@@ -1,67 +1,135 @@
-{{!-- Place code from home/MX/HomePage.html here --}}
+{{#partial "homepg"}}
+ <div class="hp-category-wrapper">
+    {{#if model.lastWeekPostedAdCount}}
+        <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
+    {{/if}}
 
-{{#partial "locationContainer"}}
-<div class="hp-location-wrapper">
-    {{#block "HomePageSubTitle"}}{{/block}}
+		{{> countryMap}}
+		{{> locationMapContainer}}
+		{{#block "locationContainer" ../this}}{{/block}}
 
-    {{#block "locationMap"}}{{/block}}
-
-    {{!-- We show the map only for tablet and desktop, not for mobile. For mobile, we show the locations --}}
-    {{#block "popularLocationsContainer"}}
-        {{#block "popularLocations"}}{{/block}}
-    {{/block}}
-
-    {{#block "LocationStates"}}
-    <div class="hp-province-wrapper">
-        <h5>{{i18n "home.provinces"}}</h5>
-        <ul class="location-list">
-            {{#each model.content.LocationFilter.children}}
-            <li data-index="{{@index}}">
-                <a href="{{this.url}}"><span class="location-name">{{this.localizedName}}</span></a>
-            </li>
-            {{/each}}
-        </ul>
-    </div>
-    {{/block}}
 </div>
+
+{{> adCarousel ../this.initialGalleryInfo}}
+
+<div class="category-wrapper">
+	<h1>{{i18n "home.h1Tag"}}</h1>
+	{{#with ../this}}
+		{{> categoryDisplay}}
+	  {{> categoryList}}
+	{{/with}}
+</div>
+
+{{> siteFlow}}
+
+{{!-- this section needs refactoring --}}
+<div class="postSection">
+	{{#with model.content}}
+	<div class="hp-total-ad-count">
+		<div class="hp-live_ads_msg line2"><div>{{{i18n "home.page.live.ad.count.label" model.content.totalLiveAdCount}}} </div><span class="postText">Publica tu clasificado</span><span class="postLink" data-o-uri="{{obfuscateUrl model.header.postAdPageUrl}}"> {{i18n "home.post.ad.message"}}</span></div>
+
+		{{!--
+		<div class='line2'>
+			<span class="postText">Publica tu clasificado</span>
+			<span class="postLink" data-o-uri="{{obfuscateUrl model.header.postAdPageUrl}}">{{i18n "home.post.ad.message"}}</span>
+		</div>
+		--}}
+	</div>
+	{{/with}}
+
+	<div class="header diff">
+        <div class="right">
+            <div class="post post-btn-wrap">
+                <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
+                  <span class="long">{{i18n "header.postad-medium"}}</span>
+               </a>
+            </div>
+        </div>
+	</div>
+	<div class="clear"></div>
+</div>
+{{!-- the above section needs refactoring till here --}}
+
+<div class="hp-content hp-viva
+{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
+{{#if model.footer.googleAdSense.enabled}}googleAdSensei{{/if}}
+{{#if model.content.homePageBannerUrl}}homePageBannerImage{{/if}}
+">
+	<div class="hp-list-wrapper">
+		<div class="hp-keywords-wrapper"
+			{{#if ../this.topKeywords}}{{#if ../this.topKeywords}}
+			id="keywordChecker"
+			{{/if}}{{/if}}>
+			{{#if ../this.topKeywords}}
+				<div class="hp-popular-searches-wrapper">
+					<h5>{{i18n "home.popular-searches"}}</h5>
+					<ul>
+					{{#each ../this.topKeywords}}
+						<li data-index="{{@index}}" class="nonJsOnlyBlock">
+							<a href="{{_links.[0].href}}">{{text}}</a>
+						</li>
+					{{/each}}
+					<span class="ver-all jsOnly">Ver todos</span>
+					</ul>
+				</div>
+			{{/if}}
+
+			{{#if ../this.trendingKeywords}}
+				<div class="hp-trending-searches-wrapper">
+					<h5>{{i18n "home.trending-searches"}}</h5>
+					<ul>
+					{{#each ../this.trendingKeywords}}
+						<li data-index="{{@index}}" class="nonJsOnlyBlock">
+							<a href="{{_links.[0].href}}">{{text}}</a>
+						</li>
+					{{/each}}
+					<span class="ver-all jsOnly">Ver todos</span>
+					</ul>
+				</div>
+			{{/if}}
+		</div>
+
+		<div class="clear"></div>
+    </div>
+	<input type="hidden" name="NcatId" value="{{model.content.ad.ad.categoryId}}" />
+	<input type="hidden" name="NlocId" value="{{model.content.ad.ad.locationId}}" />
+</div>
+
+{{#block "googleBannerAdsBottom_Container"}}{{/block}}
 <div class="clear"></div>
+
 {{/partial}}
 
-{{#partial "popularLocations"}}
-<div class="hp-city-wrapper">
-    <h5>{{i18n "home.main-locations"}}</h5>
-    <ul class="location-list">
-        {{#each model.content.Level2Location.children}}
-        <li data-index="{{@index}}">
-            <a href="{{this.url}}"><span class="location-name">{{this.localizedName}}</span></a>
-        </li>
-        {{/each}}
-    </ul>
-</div>
+{{#partial "headerPost"}}
+    <div class="postSection headerPost">
+        <div class="header diff">
+            <div class="right">
+                <div class="post post-btn-wrap">
+                    <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
+                        <span class="long">{{i18n "header.postad-medium"}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </div>
 {{/partial}}
 
 {{#partial "AdBannerHomepg"}}
 	{{#block "locationMap_Script"}}
     {{/block}}
+
+	{{!-- #block "googleBannerAdsBottom_Script" --}}{{!-- /block --}}
+
+	{{#block "googleBannerSkinCampaign_Script"}}
+	{{/block}}
 {{/partial}}
 
-{{#if model.header.isIncludeContentForMobile}}
-    {{#partial "locationAfterCategory"}}
-        {{#block "locationContainer"}}{{/block}}
-    {{/partial}}
-{{else}}
-    {{#partial "locationBeforeCategory"}}{{/partial}}
-    {{#partial "locationAfterCategory"}}
-        {{> locationMapContainer}}
-        {{> countryMap}}
-        {{> adCarousel}}
 
-        {{#block "locationContainer"}}{{/block}}
-        {{#block "popularLocations"}}{{/block}}
-        {{#block "carousel"}}{{/block}}
-	{{/partial}}
-{{/if}}
-
+{{#partial "carouselJsFiles"}}
+    <script src="/views/components/adCarousel/js/CarouselExt/modernizr.js"></script>
+    <script src="/views/components/adCarousel/js/CarouselExt/owl.carousel.js"></script>
+    <script src="/views/components/adCarousel/js/CarouselExt/carouselExt.js"></script>
+{{/partial}}
 
 {{> homepage-base}}
-

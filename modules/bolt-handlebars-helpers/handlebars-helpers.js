@@ -88,7 +88,29 @@ function nc(module, i18nObj) {
         }
 
         return partial;
-    };
+    }
+
+    // *******************************
+    // Function that replaces the parameters in a string with the format
+    // {0}, {1} with the corresponding values
+    // *******************************
+    function replaceParamValues (instance, val, argsArr) {
+        var idx = 0;
+
+        // val is the original string e.g, "The salary is {0}"
+        // argsArr is an array with the values to replace.
+        if (typeof val !== "undefined") {
+            for (idx = 0; idx < argsArr.length; idx++) {
+
+            if (typeof argsArr[idx] === "number") {
+              argsArr[idx] = boltHelpers.helpers.formatCommas(argsArr[idx]);
+            }
+
+              val = val.replace("{" + idx + "}", argsArr[idx]); 
+            }
+        }
+        return val;
+    }
 
     // ********************************
     // Handlebars ecg BOLT 2.0. helpers
@@ -116,15 +138,29 @@ function nc(module, i18nObj) {
             'json' : function(context) {
                 return JSON.stringify(context);
             },
+            
+            'obfuscateUrl' : function(value) {
+                return value;
+            },
+
+            'formatCommas' : function(value) {
+              return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+            },
 
             // Handlebars helper from i18next
-            'i18n' : function(i18n_key) {
+            'i18n' : function(i18n_key, par) {
+                var context = module.instance;
                 //console.log("I NEED I18N OBJECT NOW.........");
+                var result = _i18n.t(i18n_key),
+                  argsArr;
 
-                var result = _i18n.t(i18n_key);
+                if (par && (typeof par === "number" ||typeof par === "string")) {
+                  argsArr = Array.prototype.slice.call(arguments).splice(1,2);
+                  return replaceParamValues(context, result, argsArr);
+                }
+
                 // console.log("RETRIEVING AN SPECIFIC I18N....");
                 // var result = i18nObj.t(i18n_key);
-
                 return result;
             }
         }

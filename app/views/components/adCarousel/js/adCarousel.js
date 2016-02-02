@@ -3,9 +3,8 @@
 
 
 (function() {
-
 	$(document).ready(function() {
-		if (typeof adList === "undefined") {
+		if (typeof window.adList === "undefined") {
 			return;
         }
 
@@ -67,11 +66,20 @@
 
             // Add endAd if no more ads
             if (!nextUrl) {
+                /*
                 ads.push({
                     imgUrl: "#",
                     title: "endAd",
                     url: "#"
                 });
+                */
+
+                ads.push({
+                    primaryImgUrl: "#",
+                    title: "endAd",
+                    viewPageUrl: "#"
+                });
+
             }
 
             panelProperties = getPanelProperties();
@@ -290,20 +298,20 @@
 
                     if (ads[pos]) {
                         if (ads[pos].title === "endAd") {
-                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].url}).
+                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].viewPageUrl}).
                                 append($("<div/>").append(createEndAd())));
                         } else {
-                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].url}).
+                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].viewPageUrl}).
                                 append($("<div/>").addClass("c-img-container").
-                                    append($("<img/>").attr("src", ads[pos].imgUrl).css({width: imageWidth + "px", height: imageWidth + "px"})).
-                                    	append($("<div class=\"dContainer\"><div class=\"title\">" + ads[pos].title + "</div><div class=\"price\">" + ads[pos].amount + "</div></div>"))));
+                                    append($("<img/>").attr("src", ads[pos].primaryImgUrl).css({width: imageWidth + "px", height: imageWidth + "px"})).
+                                    	append($("<div class=\"dContainer\"><div class=\"title\">" + ads[pos].title + "</div><div class=\"price\">" + ads[pos].formattedAmount + "</div></div>"))));
                         }
                     }
 
                     if (ads[pos + noofimages]) {
                         panlObj.rightnodesImages.push($("<a/>").attr({"href": "#"}).
                             append($("<div/>").addClass("c-img-container").
-                                append($("<img/>").attr("src", ads[pos + noofimages].imgUrl).css({width: imageWidth + "px", height: imageWidth + "px"}))));
+                                append($("<img/>").attr("src", ads[pos + noofimages].primaryImgUrl).css({width: imageWidth + "px", height: imageWidth + "px"}))));
                     }
 
                     leftUl.append($("<li>").append(panlObj.leftnodesImages[i]));
@@ -316,14 +324,14 @@
                 for(i = 0; i < ads.length; ++i) {
                     if (ads[pos]) {
                         if (ads[pos].title === "endAd") {
-                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[i].url}).
+                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[i].viewPageUrl}).
                                 append($("<div/>").
                                     append(createEndAd())));
                         } else {
-                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].url}).
+                            panlObj.midnodesImages.push($("<a/>").attr({"href": ads[pos].viewPageUrl}).
                                 append($("<div/>").addClass("c-img-container").
-                                    append($("<img/>").attr("src", ads[pos].imgUrl).css({width: imageWidth + "px", height: imageWidth + "px"})).
-                            			append($("<div class=\"dContainer\"><div class=\"title\">" + ads[pos].title + "</div><div class=\"price\">" + ads[pos].amount + "</div></div>"))));
+                                    append($("<img/>").attr("src", ads[pos].primaryImgUrl).css({width: imageWidth + "px", height: imageWidth + "px"})).
+                            			append($("<div class=\"dContainer\"><div class=\"title\">" + ads[pos].title + "</div><div class=\"price\">" + ads[pos].formattedAmount + "</div></div>"))));
                         }
 
                     }
@@ -445,11 +453,11 @@
                             panlObj.midnodesImages[i].find(".c-img-container").removeClass("c-img-container");
                             panlObj.midnodesImages[i].find(".dContainer").css("display", "none");
                         } else {
-                            panlObj.midnodesImages[i].attr("href", ads[midIndex].url);
-                            panlObj.midnodesImages[i].find("img").attr("src", ads[midIndex].imgUrl);
+                            panlObj.midnodesImages[i].attr("href", ads[midIndex].viewPageUrl);
+                            panlObj.midnodesImages[i].find("img").attr("src", ads[midIndex].primaryImgUrl);
                             panlObj.midnodesImages[i].find(".dContainer").css("display", "block");
                             panlObj.midnodesImages[i].find(".dContainer .title").html(ads[midIndex].title);
-                            panlObj.midnodesImages[i].find(".dContainer .price").html(ads[midIndex].amount);
+                            panlObj.midnodesImages[i].find(".dContainer .price").html(ads[midIndex].formattedAmount);
 
                         }
                     } else {
@@ -460,20 +468,20 @@
                 for (i = 0; i < noofimages; ++i) {
                     leftIndex = currentImageIndex - noofimages + i;
                     if (leftIndex < ads.length && leftIndex >= 0) {
-                        panlObj.leftnodesImages[i].attr("href", ads[leftIndex].url);
-                        panlObj.leftnodesImages[i].find("img").attr("src", ads[leftIndex].imgUrl);
+                        panlObj.leftnodesImages[i].attr("href", ads[leftIndex].viewPageUrl);
+                        panlObj.leftnodesImages[i].find("img").attr("src", ads[leftIndex].primaryImgUrl);
                         panlObj.leftnodesImages[i].find(".dContainer").css("display", "block");
                         panlObj.leftnodesImages[i].find(".dContainer .title").html(ads[leftIndex].title);
-                        panlObj.leftnodesImages[i].find(".dContainer .price").html(ads[leftIndex].amount);
+                        panlObj.leftnodesImages[i].find(".dContainer .price").html(ads[leftIndex].formattedAmount);
                     }
 
                     rightIndex = currentImageIndex + noofimages + i;
                     if (setRightItemVis(rightIndex,i) && i < panlObj.rightnodesImages.length && rightIndex < ads.length && rightIndex >= 0) {
-                        panlObj.rightnodesImages[i].attr("href", ads[rightIndex].url);
-                        panlObj.rightnodesImages[i].find("img").attr("src", ads[rightIndex].imgUrl);
+                        panlObj.rightnodesImages[i].attr("href", ads[rightIndex].viewPageUrl);
+                        panlObj.rightnodesImages[i].find("img").attr("src", ads[rightIndex].primaryImgUrl);
                         panlObj.rightnodesImages[i].find(".dContainer").css("display", "block");
                         panlObj.rightnodesImages[i].find(".dContainer .title").html(ads[rightIndex].title);
-                        panlObj.rightnodesImages[i].find(".dContainer .price").html(ads[rightIndex].amount);
+                        panlObj.rightnodesImages[i].find(".dContainer .price").html(ads[rightIndex].formattedAmount);
                     }
                 }
                 currentImageIndex = currentImageIndex + noofimages;
@@ -493,23 +501,23 @@
                         var endAd =  midnode.find(".endAd");
                         if (endAd.length) {
                             if (ads[midIndex].title === "endAd") {
-                                midnode.attr("href", ads[midIndex].url);
-                                midnode.find("img").attr("src", ads[midIndex].imgUrl);
+                                midnode.attr("href", ads[midIndex].viewPageUrl);
+                                midnode.find("img").attr("src", ads[midIndex].primaryImgUrl);
                             } else {
                                 endAd.replaceWith($("<img/>"));
-                                midnode.attr("href", ads[midIndex].url);
-                                midnode.find("img").attr("src", ads[midIndex].imgUrl);
+                                midnode.attr("href", ads[midIndex].viewPageUrl);
+                                midnode.find("img").attr("src", ads[midIndex].primaryImgUrl);
                                 midnode.find("div").first().addClass("c-img-container");
                                 midnode.find(".dContainer").css("display", "block");
                                 midnode.find(".dContainer .title").html(ads[midIndex].title);
-                                midnode.find(".dContainer .price").html(ads[midIndex].amount);
+                                midnode.find(".dContainer .price").html(ads[midIndex].formattedAmount);
                             }
                         } else {
-                            midnode.attr("href", ads[midIndex].url);
-                            midnode.find("img").attr("src", ads[midIndex].imgUrl);
+                            midnode.attr("href", ads[midIndex].viewPageUrl);
+                            midnode.find("img").attr("src", ads[midIndex].primaryImgUrl);
                             midnode.find(".dContainer").css("display", "block");
                             midnode.find(".dContainer .title").html(ads[midIndex].title);
-                            midnode.find(".dContainer .price").html(ads[midIndex].amount);
+                            midnode.find(".dContainer .price").html(ads[midIndex].formattedAmount);
                         }
 
                         panlObj.midnodesImages[i].parent().css("display", "block");
@@ -519,20 +527,20 @@
                 for (i = 0; i < noofimages; ++i){
                     leftIndex = currentImageIndex - (3 * noofimages) + i;
                     if (panlObj.leftnodesImages[i] && leftIndex < ads.length && leftIndex >= 0) {
-                        panlObj.leftnodesImages[i].attr("href", ads[leftIndex].url);
-                        panlObj.leftnodesImages[i].find("img").attr("src", ads[leftIndex].imgUrl);
+                        panlObj.leftnodesImages[i].attr("href", ads[leftIndex].viewPageUrl);
+                        panlObj.leftnodesImages[i].find("img").attr("src", ads[leftIndex].primaryImgUrl);
                         panlObj.leftnodesImages[i].find(".dContainer").css("display", "block");
                         panlObj.leftnodesImages[i].find(".dContainer .title").html(ads[leftIndex].title);
-                        panlObj.leftnodesImages[i].find(".dContainer .price").html(ads[leftIndex].amount);
+                        panlObj.leftnodesImages[i].find(".dContainer .price").html(ads[leftIndex].formattedAmount);
                     }
 
                     rightIndex = currentImageIndex - noofimages + i;
                     if (panlObj.rightnodesImages[i] && setRightItemVis(rightIndex,i) && i < panlObj.rightnodesImages.length && rightIndex < ads.length && rightIndex >= 0) {
-                        panlObj.rightnodesImages[i].attr("href", ads[rightIndex].url);
-                        panlObj.rightnodesImages[i].find("img").attr("src", ads[rightIndex].imgUrl);
+                        panlObj.rightnodesImages[i].attr("href", ads[rightIndex].viewPageUrl);
+                        panlObj.rightnodesImages[i].find("img").attr("src", ads[rightIndex].primaryImgUrl);
                         panlObj.rightnodesImages[i].find(".dContainer").css("display", "block");
                         panlObj.rightnodesImages[i].find(".dContainer .title").html(ads[rightIndex].title);
-                        panlObj.rightnodesImages[i].find(".dContainer .price").html(ads[rightIndex].amount);
+                        panlObj.rightnodesImages[i].find(".dContainer .price").html(ads[rightIndex].formattedAmount);
                     }
                 }
                 currentImageIndex = currentImageIndex - noofimages;
@@ -568,12 +576,21 @@
 				}
 				prevUrl = msg.previousAjaxUrl;
 				nextUrl = msg.nextAjaxUrl;
-
+/*
                 if (!nextUrl) {
                     ads.push({
                         imgUrl: "#",
                         title: "endAd",
                         url: "#"
+                    });
+                }
+*/
+
+                if (!nextUrl) {
+                    ads.push({
+                        primaryImgUrl: "#",
+                        title: "endAd",
+                        viewPageUrl: "#"
                     });
                 }
                 setNavigation();
