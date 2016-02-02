@@ -3,7 +3,8 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel');
+    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
+    kafkaService = require(process.cwd() + '/server/utils/kafka');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -38,5 +39,8 @@ router.get('/', function (req, res, next) {
       console.dir(extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
+      
+      var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
+      kafkaService.logInfo(res.config.locale, log);
   });
 });

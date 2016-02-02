@@ -18,5 +18,11 @@
 	    	"homepageGallery" 	:	"/boltapi/v1/ads/gallery",
 	    	"adStatistics" 		: 	"/boltapi/v1/ads/statistics"
 	    }
+	},
+	"kafka": {
+		"server": {
+			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port": 2181
+		}
 	}
 }
