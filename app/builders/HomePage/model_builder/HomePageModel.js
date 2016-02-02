@@ -1,6 +1,5 @@
 "use strict";
 
-//var fs = require("fs");
 var async = require("async");
 var http = require("http");
 var Q = require("q");
@@ -9,7 +8,6 @@ var _ = require("underscore");
 var ModelBuilder = require("../../common/ModelBuilder");
 var LocationModel = require("../../common/LocationModel");
 var CategoryModel = require("../../common/CategoryModel");
-var HeaderModel = require("../../common/HeaderModel");
 var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
@@ -21,15 +19,28 @@ var BasePageModel = require("../../common/BasePageModel");
  * @constructor
  */
 var HomePageModel = function (req, res) {
-	var headerFunction = BasePageModel.call(this, req, res);
-	var loc = new LocationModel(res.config.locale, 2),
-		level1Loc = new LocationModel(res.config.locale, 1),
-		level2Loc = new LocationModel(res.config.locale, 1),
-		cat = new CategoryModel(res.config.locale, 2),
-		keyword = new KeywordModel(res.config.locale, 2),
-		gallery = new GalleryModel(res.config.locale),
-		adstatistics = new AdStatisticsModel(res.config.locale);
-
+	var commonData = new BasePageModel(req, res);
+	var loc = new LocationModel(req.requestId, res.config.locale, 2),
+		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
+		level2Loc = new LocationModel(req.requestId, res.config.locale, 1),
+		cat = new CategoryModel(req.requestId, res.config.locale, 2),
+		keyword = new KeywordModel(req.requestId, res.config.locale, 2),
+		gallery = new GalleryModel(req.requestId, res.config.locale),
+		adstatistics = new AdStatisticsModel(req.requestId, res.config.locale);
+	
+	var commonDataFunction = function(callback) {
+		var commonDataDeferred = Q.defer();
+		Q(commonData.processParallel())
+	    	.then(function (dataC) {
+	    		console.log("Inside commonData from homepageModel");
+	    		commonDataDeferred.resolve(dataC);
+	    		callback(null, dataC);
+			}).fail(function (err) {
+				commonDataDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
 	var locationFunction = function(callback) {
 		var locationDeferred = Q.defer();
 		Q(loc.getLocations())
@@ -121,7 +132,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ headerFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction ];
+	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();

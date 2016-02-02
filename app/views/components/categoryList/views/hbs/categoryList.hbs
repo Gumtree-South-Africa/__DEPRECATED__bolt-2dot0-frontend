@@ -1,7 +1,7 @@
 <ul class="category-list nonJsOnlyBlock" id="flexLftBuckt">
-    {{#each children}}
+    {{#each category.children}}
     <li class="parent-category l1category{{this.id}} item" data-category-id="{{this.id}}" data-ct-id="{{this.id}}">
-          <a href="{{this.url}}" class="toggler" title="{{this.localizedName}} ({{this.id}})">
+          <a href="{{this._links.[1].href}}" class="toggler" title="{{this.localizedName}} ({{this.id}})">
                 <span class="icon-cat-{{this.id}} icon"></span>
                 <span class="label">{{this.localizedName}}</span>
                 <!--span style="color:black">({{this.id}})</span-->
@@ -42,7 +42,34 @@
             </a>
         </li>
     {{/if}}
+    
     <li class="item" data-ct-id='rightBucket'>
-     {{!-- {{> hbs/common/rightBucket}} --}}
+    {{#block "rightBucket"}}
+    	<ul id="flexRghtBucket">
+			<li>
+		  		<div class="item-carousel">
+		        	<div class="item-preview text-center">
+		                <div class="item-img-wrap">
+		                	{{#if ../this.footer.googleAdSense.enabled}}
+		                	      {{#unless model.header.isIncludeContentForMobile}}  
+		                			 {{> rightBanner}}
+		                		  {{/unless}}
+			                {{/if}}
+		                </div>
+		            </div>
+				
+		            <div id="rightBottomBanner">
+		            	{{#if model.content.homePageBannerUrl}}
+		                {{else}}
+		                     {{> rightBottomBanner}}
+		                {{/if}}
+		            </div>
+					{{#block "tutorialModule"}}{{/block}}
+		   		</div>
+		    </li>
+		</ul>
+	{{/block}}	
     </li>
+    
+    
 </ul>

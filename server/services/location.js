@@ -16,27 +16,27 @@ var LocationService = function() {
 /**
  * Gets a list of locations
  */
-LocationService.prototype.getLocationsData = function(locale, depth) {
+LocationService.prototype.getLocationsData = function(requestId, locale, depth) {
 	console.log("Inside LocationService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "location", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "location", null);
 }
 
 /**
  * Gets a list of top L2 locations
  */
-LocationService.prototype.getTopL2LocationsData = function(locale) {
+LocationService.prototype.getTopL2LocationsData = function(requestId, locale) {
 	console.log("Inside LocationService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL2');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "topL2Locations", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "topL2Locations", null);
 }
 
 module.exports = new LocationService();

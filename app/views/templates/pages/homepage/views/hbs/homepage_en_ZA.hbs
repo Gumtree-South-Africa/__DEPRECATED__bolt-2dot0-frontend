@@ -4,8 +4,8 @@
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
-	  {{> adCarousel}}
-      {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
+	   {{> adCarousel}}
+     {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
         {{> locationMapContainer}}
@@ -15,6 +15,15 @@
 
 {{#partial "AdBannerHomepg"}}
 	{{#block "locationMap_Script"}}
+	{{/block}}
+	
+	{{#block "googleBannerAdsTop_Script"}}
+	{{/block}}
+	
+	{{#block "googleBannerAdsRight_Script"}}
+	{{/block}}
+	
+	{{#block "googleBannerAdsRightBottom_Script"}}
 	{{/block}}
 	
 	{{> skinBanner}}

@@ -1,20 +1,27 @@
 {
-  // BAPI config for Local Dev Server
-  "BAPI": {
-    "server": {
-    	"host": "api.bolt.ecg.ebay.com.localhost",
-    	"port": 8080,
-    	"parameters": null
-    },
-    "endpoints": {
-    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories?depth=2",
-    	"locationHomePage"	:	"/bolt-api-webapp/v1/locations?depth=2",
-    	"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
-    	"userFromCookie" 	:	"/bolt-api-webapp/v1/users/loggedInUserInfo",
-    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top?categoryId=0&locationId=1",
-    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending?categoryId=0&locationId=1",
-    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
-    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics"
-    }
-  }
+	// BAPI config for Local Dev Server
+	"BAPI": {
+		"server": {
+			"host": "api.bolt.ecg.ebay.com.localhost",
+			"port": 8080,
+			"parameters": null
+		},
+	    "endpoints": {
+	    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories?depth=2",
+	    	"locationHomePage"	:	"/bolt-api-webapp/v1/locations?depth=2",
+	    	"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
+	    	"userFromCookie" 	:	"/bolt-api-webapp/v1/users/loggedInUserInfo",
+	    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top?categoryId=0&locationId=1",
+	    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending?categoryId=0&locationId=1",
+	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
+	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics"
+	    }
+	},
+	"kafka": {
+		"server": {
+			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port"	: 2181,
+			"topic" : "node_log"
+		}
+	}
 }

@@ -12,7 +12,8 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
  * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
-var AdStatisticsModel = function (locale) {
+var AdStatisticsModel = function (requestId, locale) {
+	this.requestId = requestId;
 	this.locale = locale;
     return new ModelBuilder(this.getHomePageStatistics());
 };
@@ -33,7 +34,7 @@ AdStatisticsModel.prototype.getHomePageStatistics = function() {
 		    	adstatisticsDeferred = Q.defer();
 				console.log("Calling AdService for Homepage - statistics");
 			    
-				 Q(hpAdService.getAdStatistics(scope.locale))
+				 Q(hpAdService.getAdStatistics(scope.requestId, scope.locale))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		adstatisticsDeferred.resolve(data);

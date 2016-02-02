@@ -17,9 +17,11 @@
             "./app/views/components/adCarousel/views/hbs/adCarousel_en_ZA.hbs",
             "./app/views/components/countryMap/views/hbs/countryMap_en_ZA.hbs",
             "./app/views/components/locationMapContainer/views/hbs/locationMapContainer_en_ZA.hbs",
-            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs",
-            
-            "./app/views/components/skinBanner/views/hbs/skinBanner_en_ZA.hbs"
+            "./app/views/components/skinBanner/views/hbs/skinBanner_en_ZA.hbs",
+            "./app/views/components/topBanner/views/hbs/topBanner_en_ZA.hbs",
+            "./app/views/components/rightBanner/views/hbs/rightBanner_en_ZA.hbs",
+            "./app/views/components/rightBottomBanner/views/hbs/rightBottomBanner_en_ZA.hbs",
+            "./app/views/templates/pages/homepage/views/hbs/homepage_en_ZA.hbs"
     	]
     },
 	"messagepage": {

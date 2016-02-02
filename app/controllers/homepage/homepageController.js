@@ -3,7 +3,8 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel');
+    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
+    kafkaService = require(process.cwd() + '/server/utils/kafka');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -22,7 +23,8 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
-      extraData.header = result[0];
+      extraData.header = result[0][0];
+      extraData.footer = result[0][1];
       extraData.location = result[1];
       extraData.category = result[2];
       extraData.trendingKeywords = result[3][0].keywords;
@@ -37,5 +39,8 @@ router.get('/', function (req, res, next) {
       console.dir(extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
+      
+      var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
+      kafkaService.logInfo(res.config.locale, log);
   });
 });

@@ -17,8 +17,10 @@
 		"geoLocatorUrl"		: "/post.html",
 		"rootGeoLocatorUrl"	: "/post.html",
 		"abTestUrl"			: "/post.html",
+		
 		"isMessageCenterEnabled": true,
 		"skinCampaignOn"	: true,
+		"topHomePageAdBanner": true,
 		"googleTagAccountId": "7162/Gumtree_ZA"
 	},
 	"footer" : {
@@ -26,6 +28,10 @@
 		"obfuscatedPrivacyPolicyURL"		: "/post.html",
 		"obfuscatedCookieRightsURL}"		: "/post.html",
 		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1"
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		
+		"googleAdSense"	:	{
+			"enabled"	:	true
+		}
 	}
 }

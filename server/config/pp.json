@@ -1,10 +1,17 @@
 {
-  // BAPI config
-  "BAPI": {
-    "server": {
-    	"host": "http://bolt-api.pp.ebay.com",
-    	"port": 8000,
-    	"parameters": null
-    }
-  }
+	// BAPI config for PP
+	"BAPI": {
+	    "server": {
+	    	"host": "http://bolt-api.pp.ebay.com",
+	    	"port": 8000,
+	    	"parameters": null
+	    }
+	},
+	"kafka": {
+		"server": {
+			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port": 2181,
+			"topic" : "node_log"
+		}
+	}
 }
