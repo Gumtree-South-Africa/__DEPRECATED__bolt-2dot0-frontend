@@ -61,6 +61,7 @@
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
+    "promise": "^7.1.1",
     "q": "^1.4.1",
     "request": "^2.67.0",
     "requirejs": "^2.1.20",
@@ -73,6 +74,7 @@
   "devDependencies": {
     "gulp-clean": "^0.3.1",
     "gulp-jasmine-node": "^1.0.3",
+    "gulp-node-inspector": "^0.1.0",
     "jasmine-node": "^1.14.5",
     "jshint-stylish": "^2.1.0",
     "map-stream": "0.0.6",

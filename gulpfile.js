@@ -35,6 +35,7 @@ var gulp = require('gulp'),
   gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
   asynch = require('async'),
+      nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
 
@@ -57,6 +58,23 @@ function errorlog(err){
 
 //TODO: add clean|copyTo Task and env checking.
 
+gulp.task('debug', function() {
+
+    gulp.src([])
+        .pipe(nodeInspector({
+            debugPort: 5858,
+            webHost: '0.0.0.0',
+            webPort: 8000,
+            saveLiveEdit: false,
+            preload: true,
+            inject: true,
+            hidden: [],
+            stackTraceLimit: 50,
+            sslKey: '',
+            sslCert: ''
+        }));
+});
+
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
@@ -76,4 +94,4 @@ gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch', 'debug']);

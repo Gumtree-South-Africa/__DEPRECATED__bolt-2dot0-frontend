@@ -1,5 +1,6 @@
 'use strict';
 
+var boltConfig  = require("./BoltConfig");
 var express = require("express");
 var bodyParser = require('body-parser');
 var compress = require('compression');
@@ -13,6 +14,10 @@ var path = require('path');
 var hbshelp = require("../../modules/bolt-handlebars-helpers");
 var writeHeader = require("./write-header");
 
+
+var deviceDetection = require("./DeviceDetection");
+
+
 var config = {
     root: process.cwd()
 };
@@ -23,6 +28,8 @@ function BuildApp(locale) {
 
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+    app.use(boltConfig());
+
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,6 +46,8 @@ function BuildApp(locale) {
 
     // Use custom middlewares
     app.use(writeHeader('X-Powered-By', 'Bolt'));
+    app.use(deviceDetection());
+
 
     this.locale = locale;
     
