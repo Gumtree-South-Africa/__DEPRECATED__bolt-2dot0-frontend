@@ -13,7 +13,6 @@ var Backend = require('i18next-node-fs-backend');
 
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
-var requestId = require('./server/middlewares/request-id');
 
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
@@ -81,9 +80,6 @@ i18next
 
       // register bolt site checking middleware
       siteApp.use(checksite(siteApp));
-      
-      // register bolt requestId middleware
-      siteApp.use(requestId());
       
       // Setup Vhost per supported site
       app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));

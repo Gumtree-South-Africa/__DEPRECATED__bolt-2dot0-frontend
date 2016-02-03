@@ -12,6 +12,7 @@ var path = require('path');
 
 var hbshelp = require("../../modules/bolt-handlebars-helpers");
 var writeHeader = require("./write-header");
+var requestId = require('./request-id');
 
 var config = {
     root: process.cwd()
@@ -38,7 +39,10 @@ function BuildApp(locale) {
     app.use(expressUncapitalize());
 
     // Use custom middlewares
-    app.use(writeHeader('X-Powered-By', 'Bolt'));
+    app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
+    
+    // register bolt requestId middleware
+    app.use(requestId());
 
     this.locale = locale;
     
