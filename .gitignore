@@ -51,3 +51,5 @@ public/js/precompiled
 screenshots
 logs
 dist
+
+.idea/
