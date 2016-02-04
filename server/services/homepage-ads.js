@@ -16,27 +16,27 @@ var HomepageAdService = function() {
 /**
  * Gets a list of ads for homepage gallery
  */
-HomepageAdService.prototype.getHomepageGallery = function(locale) {
+HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
 	console.log("Inside HomepageGalleryService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "homepageGallery", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "homepageGallery", null);
 }
 
 /**
  * Gets a list of ad statistics
  */
-HomepageAdService.prototype.getAdStatistics = function(locale) {
+HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
 	console.log("Inside HomepageAdStatisticsService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "adStatistics", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "adStatistics", null);
 }
 
 module.exports = new HomepageAdService();

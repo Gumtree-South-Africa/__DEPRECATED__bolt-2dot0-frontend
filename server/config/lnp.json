@@ -10,7 +10,8 @@
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port": 2181
+			"port": 2181,
+			"topic" : "node_log"
 		}
 	}
 }

@@ -20,13 +20,13 @@ var BasePageModel = require("../../common/BasePageModel");
  */
 var HomePageModel = function (req, res) {
 	var commonData = new BasePageModel(req, res);
-	var loc = new LocationModel(res.config.locale, 2),
-		level1Loc = new LocationModel(res.config.locale, 1),
-		level2Loc = new LocationModel(res.config.locale, 1),
-		cat = new CategoryModel(res.config.locale, 2),
-		keyword = new KeywordModel(res.config.locale, 2),
-		gallery = new GalleryModel(res.config.locale),
-		adstatistics = new AdStatisticsModel(res.config.locale);
+	var loc = new LocationModel(req.requestId, res.config.locale, 2),
+		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
+		level2Loc = new LocationModel(req.requestId, res.config.locale, 1),
+		cat = new CategoryModel(req.requestId, res.config.locale, 2),
+		keyword = new KeywordModel(req.requestId, res.config.locale, 2),
+		gallery = new GalleryModel(req.requestId, res.config.locale),
+		adstatistics = new AdStatisticsModel(req.requestId, res.config.locale);
 	
 	var commonDataFunction = function(callback) {
 		var commonDataDeferred = Q.defer();
