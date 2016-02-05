@@ -4,6 +4,7 @@
  * @author uroblesmellin@ebay
  */
 var _i18n = require('i18next');
+var StringUtils = require("../../app/builders/utils/StringUtils");
 
 exports = module.exports  = nc;
 exports.registerLocalePartials = regLocPartials;
@@ -141,7 +142,7 @@ function nc(module, i18nObj) {
             },
             
             'obfuscateUrl' : function(value) {
-                return value;
+                return StringUtils.obfuscate(value);
             },
 
             'formatCommas' : function(value) {
