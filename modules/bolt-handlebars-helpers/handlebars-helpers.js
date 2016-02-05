@@ -62,7 +62,7 @@ function regLocPartials (module, locale) {
       regPartialFromFile(origFile, regFileName);
 
       // Register the base file partial
-      regPartialFromFile(baseFile, regFileName + "-base")
+      regPartialFromFile(baseFile, regFileName + "-base");
     }
 }
 
@@ -118,8 +118,9 @@ function nc(module, i18nObj) {
     var boltHelpers = {
         helpers : {
 
-            'block' : function(name, options) {
+            'block' : function(name) {
               var context = module.instance;
+              var options = arguments[arguments.length - 1];
               var partial = loadPartial(context, name) || options.fn;
               var args = Array.prototype.slice.call(arguments);
 
