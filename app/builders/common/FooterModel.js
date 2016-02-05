@@ -37,13 +37,13 @@ FooterModel.prototype.getFooterData = function() {
     		
     		// manipulate data
     		var urlProtocol = scope.secure ? "https://" : "http://";
-    		var urlHost = config.get("static.server.host")!==null ? config.get("static.server.host") : ""; 
+    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : ""; 
     		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
-    		data.mainJSUrl = urlProtocol + urlHost + urlPort + urlVersion + config.get("static.mainJSUrl");
-    		data.baseJSUrl = urlProtocol + urlHost + urlPort + urlVersion + config.get("static.baseJSUrl");
-    		data.baseCSSUrl = urlProtocol + urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
-    		data.baseImageUrl = urlProtocol + urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
+    		data.mainJSUrl = urlHost + urlPort + urlVersion + config.get("static.mainJSUrl");
+    		data.baseJSUrl = urlHost + urlPort + urlVersion + config.get("static.baseJSUrl");
+    		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
+    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
     		data.min = config.get("static.min");
     		
     		data.brandName = scope.brandName;
