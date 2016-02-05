@@ -18,7 +18,7 @@ var BasePageModel = function (req, res) {
 	var cookieName = "bt_auth";
 	var authcookie = req.cookies[cookieName];	    
 	this.header = new HeaderModel(req.requestId, authcookie, res.config.locale);
-	this.footer = new FooterModel(res.config.locale);
+	this.footer = new FooterModel(false, res.config.locale);
 	return new ModelBuilder(this.getCommonData());
 };
 
