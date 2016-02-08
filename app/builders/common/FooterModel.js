@@ -15,8 +15,11 @@ var config = require("config");
  * @constructor
  */
 var FooterModel = function (secure, locale) {
+	// Local Variables
 	this.secure = secure;
 	this.locale = locale;
+	
+	// Country specific variables from BAPI Config
 	this.brandName = "GumtreeZA";
 	this.country = "ZA";
     return new ModelBuilder(this.getFooterData());
@@ -50,7 +53,6 @@ FooterModel.prototype.getFooterData = function() {
     		data.localeJSPath = "/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/",
     		data.countryJSPath = "/" + scope.brandName + "/" + scope.country + "/",
     		data.brandJSPath = "/" + scope.brandName + "/";
-    		data.enableLighterVersionForMobile = "true && isMobileDevice";
     		data.obfuscatedCookieRightsURL = StringUtils.obfuscate(data.cookieNotice);
     		data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
     		data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);

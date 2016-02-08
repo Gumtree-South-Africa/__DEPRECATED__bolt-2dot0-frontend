@@ -1,10 +1,10 @@
 <div class="logo">
-    <a href="{{!-- model.header.homePageUrl --}}"{{#block "HomePageLogoLinkAlt"}}{{/block}}>
+    <a href="{{this.header.homePageUrl}}"{{#block "HomePageLogoLinkAlt"}}{{/block}}>
         {{#block "HomePageLogoImage"}}
-            {{#if model.footer.enableLighterVersionForMobile}}
-                <img class="logo" src="{{model.header.baseImageUrl}}{{model.locale}}/logo_mobile.gif" alt='{{!-- i18n "header.logo.altTag" --}}' />
+            {{#if ../this.header.enableLighterVersionForMobile}}
+                <img class="logo" src="{{../this.header.baseImageUrl}}{{../this.locale}}/logo_mobile.gif" alt='{{i18n "header.logo.altTag"}}' />
             {{else}}
-                <img class="logo" src="/images/{{../this.locale}}/logo.png" alt='{{!-- i18n "header.logo.altTag" --}}' />
+                <img class="logo" src="{{../this.header.baseImageUrl}}{{../this.locale}}/logo.png" alt='{{i18n "header.logo.altTag"}}' />
             {{/if}}
         {{/block}}
     </a>
