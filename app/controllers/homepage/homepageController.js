@@ -13,6 +13,8 @@ module.exports = function (app) {
 router.get('/', function (req, res, next) {
     var model = HomepageModel(req, res);
 
+    req.setLocale(res.config.locale);
+
     var extraData =
     {
         env: 'public',
@@ -36,9 +38,9 @@ router.get('/', function (req, res, next) {
 
       var  pageData = _.extend(result, extraData);
       
-      console.dir(extraData);
+      //console.dir(extraData);
 
-      res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
+      res.render('homepage/views/hbs/homepage_' + res.config.locale, {});
       
       var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.config.locale, log);
