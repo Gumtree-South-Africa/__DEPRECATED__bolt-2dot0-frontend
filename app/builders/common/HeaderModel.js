@@ -13,10 +13,20 @@ var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
  * @description A class that Handles the Header Model
  * @constructor
  */
-var HeaderModel = function (requestId, cookie, locale) {
+var HeaderModel = function (secure, requestId, cookie, locale) {
+	// ENV variables
+	this.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=="undefined" ? "." + process.env.BASEDOMAINSUFFIX : "";
+	this.basePort = typeof process.env.PORT!=="undefined" ? ":" + process.env.PORT : "";
+	
+	// Local variables
+	this.secure = secure;
 	this.requestId = requestId;
 	this.cookie = cookie;
 	this.locale = locale;
+	this.urlProtocol = this.secure ? "https://" : "http://";
+	
+	// Country specific variables from BAPI Config
+	this.fullDomainName = "gumtree.co.za";
     return new ModelBuilder(this.getHeaderData());
 };
 
@@ -28,7 +38,8 @@ HeaderModel.prototype.getHeaderData = function() {
 		function (callback) {
 			var headerDeferred,
 				data = {
-					"favIcon" : "/images/" + scope.locale + "/shortcut.png"
+					"favIcon" : "/images/" + scope.locale + "/shortcut.png",
+		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort
 				};
 			
 			// merge pageurl data

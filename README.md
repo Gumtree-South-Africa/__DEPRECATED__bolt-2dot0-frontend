@@ -36,7 +36,7 @@ gulp jsonlint
 
 ## Development
 
-### Starting the development server
+### Starting the development server with bower
 
 The first time you make a development build it is required that you build the styles and and the precompiled template.
 
@@ -45,16 +45,32 @@ The first time you make a development build it is required that you build the st
 bower install
 ```
 
-or
+### Starting the development server in Mock Mode (pointing to local BAPI Mock Server)
 
 ```
 npm run dev
 ```
 
-```npm run dev``` performs a quick development build and start a development Node+Express server. The develop task 'finishes' with a watcher. It will listen for all source changes and re run all needed build steps.
+### Starting the development server in Dev Mode (pointing to local BAPI server)
 
+```
+npm run dev
+```
+
+### Starting the development server in VM Mode (pointing to BAPI server on a VM specified in vm.json)
+
+```
+npm run vm
+```
+
+```npm run <mode>``` performs a quick development build and start a development Node+Express server. The task 'finishes' with a watcher. It will listen for all source changes and re run all needed build steps.
 **HEADS UP: A linter is run at every code change and your changes might not be visible if it fails!**
 
+### Starting the development server in Production Mode (by setting up environment variables, and clustering the ndoe server)
+
+```
+NODE_CONFIG_DIR=./server/config NODE_ENV=vm PORT=8000 BASEDOMAINSUFFIX=localhost node ./bin/www
+```
 
 ### Process differences
 Gulp automates building during development, meaning that when a source file changes it will trigger an automatic 'rebuild' when it applies.

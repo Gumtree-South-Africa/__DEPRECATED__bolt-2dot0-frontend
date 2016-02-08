@@ -39,6 +39,9 @@
 		"topSearchesLandingPageUrl"				: "/t-top-searches/all-ads/v1b0",
 		"googleAdSense"	:	{
 			"enabled"	:	true
-		}		
+		},
+		"seoBolt"		:	{
+			"enabled"	:	true
+		}
 	}
 }

@@ -15,8 +15,11 @@ var config = require("config");
  * @constructor
  */
 var FooterModel = function (secure, locale) {
+	// Local Variables
 	this.secure = secure;
 	this.locale = locale;
+	
+	// Country specific variables from BAPI Config
 	this.brandName = "GumtreeZA";
 	this.country = "ZA";
     return new ModelBuilder(this.getFooterData());
