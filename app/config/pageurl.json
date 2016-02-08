@@ -21,7 +21,8 @@
 		"isMessageCenterEnabled": true,
 		"skinCampaignOn"		: true,
 		"topHomePageAdBanner"	: true,
-		"googleTagAccountId"	: "7162/Gumtree_ZA"
+		"googleTagAccountId"	: "7162/Gumtree_ZA",
+		"enableLighterVersionForMobile": false
 	},
 	"footer" : {
 		"cookieRightsURL"						: "/cookie-notice",

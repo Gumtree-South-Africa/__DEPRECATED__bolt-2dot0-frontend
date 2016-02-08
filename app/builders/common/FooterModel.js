@@ -53,7 +53,6 @@ FooterModel.prototype.getFooterData = function() {
     		data.localeJSPath = "/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/",
     		data.countryJSPath = "/" + scope.brandName + "/" + scope.country + "/",
     		data.brandJSPath = "/" + scope.brandName + "/";
-    		data.enableLighterVersionForMobile = "true && isMobileDevice";
     		data.obfuscatedCookieRightsURL = StringUtils.obfuscate(data.cookieNotice);
     		data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
     		data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);

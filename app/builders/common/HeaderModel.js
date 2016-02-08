@@ -8,6 +8,7 @@ var ModelBuilder = require("./ModelBuilder");
 
 var userService = require(process.cwd() + "/server/services/user");
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
+var config = require("config");
 
 /** 
  * @description A class that Handles the Header Model
@@ -39,12 +40,19 @@ HeaderModel.prototype.getHeaderData = function() {
 			var headerDeferred,
 				data = {
 					"favIcon" : "/images/" + scope.locale + "/shortcut.png",
-		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort
+		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 				};
 			
 			// merge pageurl data
     		_.extend(data, pageurlJson.header);
     		
+    		// manipulate data
+    		// data.enableLighterVersionForMobile = "true && isMobileDevice";
+    		var urlProtocol = scope.secure ? "https://" : "http://";
+    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : ""; 
+    		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
+    		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
+    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
     		
 			if (typeof callback !== "function") {
 				return;
