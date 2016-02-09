@@ -66,7 +66,7 @@ HeaderModel.prototype.getHeaderData = function() {
 					data.successMessage="home.user.registered";
 					data.pageType="UserRegistrationSuccess";
 					break;
-				case "adInactive":
+				case "adinactive":
 					data.successMessage="home.ad.notyetactive";
 					break;
 				case "resetpassword":
@@ -78,11 +78,11 @@ HeaderModel.prototype.getHeaderData = function() {
 					data.errorMessage="";
 					data.pageType="";
 			}
-			switch (scope.req.query.resumeAbandonedOrderError){
-				case "adNotActive":
+			switch (scope.req.query.resumeabandonedordererror){
+				case "adnotactive":
 					data.errorMessage="abandonedorder.adNotActive";
 					break;
-				case "adFeaturePaid":
+				case "adfeaturepaid":
 					data.errorMessage="abandonedorder.adFeaturePaid.multiple_ads";
 					break;
 			}
