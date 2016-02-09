@@ -6,11 +6,10 @@
 module.exports = function watch(gulp, plugins) {
   return function(){
     gulp.task('develop', function () {
-      console.log('jjjdd: ',process.cwd());
       livereload.listen();
       nodemon({
         script: process.cwd() + '/bin/server',
-        ext: 'js coffee hbs',
+        ext: 'js hbs json',
         stdout: false
       }).on('readable', function () {
         this.stdout.on('data', function (chunk) {
