@@ -18,8 +18,9 @@
                 {{#block "messaging-full-width"}}{{/block}}
 
                 <div class="page {{!-- #ifEq model.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
-
-                    {{#block "messaging"}}{{/block}}
+					
+					{{>messaging}}
+                    {{#block "messaging" this}}{{/block}}
 
                     {{#block "breadcrumbs"}}
                     {{!-- > hbs/Html/Breadcrumbs --}}
