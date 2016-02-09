@@ -1,3 +1,4 @@
+// jshint ignore: start
 "use strict";
 
 var http = require("http");
@@ -14,14 +15,14 @@ var config = require("config");
  * @description A class that Handles the Footer Model
  * @constructor
  */
-var FooterModel = function (secure, locale) {
+var FooterModel = function (secure, req, res) {
 	// Local Variables
 	this.secure = secure;
-	this.locale = locale;
+	this.locale = res.config.locale;
 	
 	// Country specific variables from BAPI Config
-	this.brandName = "GumtreeZA";
-	this.country = "ZA";
+	this.brandName = res.config.name;
+	this.country = res.config.country;
     return new ModelBuilder(this.getFooterData());
 };
 
@@ -49,6 +50,31 @@ FooterModel.prototype.getFooterData = function() {
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
     		data.min = config.get("static.min");
     		
+    		data.javascripts = [];
+    		if (data.min) {
+    			data.javascripts.push(data.baseJSUrl + "Main_" + scope.locale + ".min.js");
+    		} else {
+    			data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-1.11.0.min.js");
+    			data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
+    			data.javascripts.push(data.baseJSUrl + "common/StringUtilities.js");
+    			data.javascripts.push(data.baseJSUrl + "common/JQueryUtil.js");
+    			data.javascripts.push(data.baseJSUrl + "common/MatchMedia.js");
+    			data.javascripts.push(data.baseJSUrl + "common/GoogleTag.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/main.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/json.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/cookie.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/storage.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/overlay.js");
+    			data.javascripts.push(data.baseJSUrl + "common/bolt/i18n.js");
+    			data.javascripts.push(data.baseJSUrl + "common/html5.js");
+    			data.javascripts.push(data.baseJSUrl + "common/Search.js");
+    			data.javascripts.push(data.baseJSUrl + "common/GoogleBanner.js");
+    			data.javascripts.push(data.baseJSUrl + "common/Analytics.js");
+    			data.javascripts.push(data.baseJSUrl + "common/header/BannerCookie.js");
+    			data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
+    			data.javascripts.push(data.baseJSUrl + "common/header/Searchbar.js");
+    		}
+    		
     		data.brandName = scope.brandName;
     		data.localeJSPath = "/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/",
     		data.countryJSPath = "/" + scope.brandName + "/" + scope.country + "/",
@@ -56,6 +82,7 @@ FooterModel.prototype.getFooterData = function() {
     		data.obfuscatedCookieRightsURL = StringUtils.obfuscate(data.cookieNotice);
     		data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
     		data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);
+    		data.locationSitemapLandingPageUrl = "/l-" + "/all-locs/v1b0";
     		
     		if (typeof callback !== "function") {
 				return;
