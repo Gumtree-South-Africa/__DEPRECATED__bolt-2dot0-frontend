@@ -61,18 +61,40 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
 
-    		data.successMessage= scope.req.params.status=="userRegistered" ? "home.user.registered":
-				((scope.req.params.status=="adInactive")?"home.ad.notyetactive"
-					:(scope.req.params.status=="resetPassword"?"home.reset.password.success":""));
-			data.errorMessage=((scope.req.params.resumeAbandonedOrderError=="adNotActive")
-				?"abandonedorder.adNotActive":
-				(scope.req.params.resumeAbandonedOrderError=="adFeaturePaid")?"abandonedorder.adFeaturePaid.multiple_ads":"");
+			console.log("VALUE OF QP STATUS=");
+			console.log(scope.req.query.status);
 
-			data.pageType=(scope.req.params.status=="userRegistered")?"UserRegistrationSuccess":
-				((scope.req.params.status=="resetPassword")?"PasswordResetSuccess":"");
-			console.log("PRINTING OUT THE PARAM STATUS RP");
-			console.log(scope.req.body);
-
+			switch(scope.req.query.status){
+				case "userregistered" :
+					data.successMessage="home.user.registered";
+					data.pageType="UserRegistrationSuccess";
+					break;
+				case "adInactive":
+					data.successMessage="home.ad.notyetactive";
+					break;
+				case "resetpassword":
+					data.successMessage="home.reset.password.success";
+					data.pageType="PasswordResetSuccess";
+					break;
+				default:
+					data.successMessage="";
+					data.errorMessage="";
+					data.pageType="";
+			}
+			switch (scope.req.query.resumeAbandonedOrderError){
+				case "adNotActive":
+					data.errorMessage="abandonedorder.adNotActive";
+					break;
+				case "adFeaturePaid":
+					data.errorMessage="abandonedorder.adFeaturePaid.multiple_ads";
+					break;
+			}
+			console.log("PRINTING success Message");
+			console.log(data.successMessage);
+			console.log("PRINTING error Message");
+			console.log(data.errorMessage);
+			console.log("PRINTING page Type");
+			console.log(data.pageType);
     		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
     		data.min = config.get("static.min");
     		data.touchIconIphoneUrl = data.baseImageUrl + "touch-iphone.png";
