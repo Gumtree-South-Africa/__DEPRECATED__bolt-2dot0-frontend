@@ -6,6 +6,8 @@ var express = require('express'),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka');
 
+var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+
 module.exports = function (app) {
   app.use('/', router);
 };
@@ -19,7 +21,7 @@ router.get('/', function (req, res, next) {
         locale: res.config.locale,
         country: res.config.country,
         site: res.config.name,
-        pagename: 'HomePage'
+        pagename: pagetypeJson.pagetype.HOMEPAGE
     };
 
     model.then(function (result) {
@@ -33,6 +35,12 @@ router.get('/', function (req, res, next) {
       extraData.totalLiveAdCount = result[5].totalLiveAds;
       extraData.level1Location = result[6];
       extraData.level2Location = result[7];
+      
+      // Special data for homepage controller
+      extraData.header.pageTitle = '';
+      extraData.header.canonical = extraData.header.homePageUrl;
+      extraData.header.pageUrl = extraData.header.homePageUrl;
+      extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
 
       var  pageData = _.extend(result, extraData);
       
