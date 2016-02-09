@@ -14,7 +14,7 @@ var config = require("config");
  * @description A class that Handles the Header Model
  * @constructor
  */
-var HeaderModel = function (secure, requestId, cookie, locale) {
+var HeaderModel = function (secure, requestId, cookie, locale,req) {
 	// ENV variables
 	this.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=="undefined" ? "." + process.env.BASEDOMAINSUFFIX : "";
 	this.basePort = typeof process.env.PORT!=="undefined" ? ":" + process.env.PORT : "";
@@ -25,6 +25,7 @@ var HeaderModel = function (secure, requestId, cookie, locale) {
 	this.cookie = cookie;
 	this.locale = locale;
 	this.urlProtocol = this.secure ? "https://" : "http://";
+	this.req=req;
 	
 	// Country specific variables from BAPI Config
 	this.fullDomainName = "gumtree.co.za";
@@ -53,11 +54,20 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-    		
+    		data.successMessage= scope.req.params.status=="userRegistered" ? "home.user.registered":
+				((scope.req.params.status=="adInactive")?"home.ad.notyetactive"
+					:(scope.req.params.status=="resetPassword"?"home.reset.password.success":""));
+			data.errorMessage=((scope.req.params.resumeAbandonedOrderError=="adNotActive")
+				?"abandonedorder.adNotActive":
+				(scope.req.params.resumeAbandonedOrderError=="adFeaturePaid")?"abandonedorder.adFeaturePaid.multiple_ads":"");
+
+			data.pageType=(scope.req.params.status=="userRegistered")?"UserRegistrationSuccess":
+				((scope.req.params.status=="resetPassword")?"PasswordResetSuccess":"");
+			console.log("PRINTING OUT THE PARAM STATUS RP");
+			console.log(scope.req.body);
 			if (typeof callback !== "function") {
 				return;
 			}
-			
 		    if (typeof scope.cookie !== "undefined") {
 		    	headerDeferred = Q.defer();
 				console.log("Calling Service to get HeaderData");
