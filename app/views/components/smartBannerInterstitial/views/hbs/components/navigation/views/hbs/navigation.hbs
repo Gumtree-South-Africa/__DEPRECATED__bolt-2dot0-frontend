@@ -1,0 +1,107 @@
+{{!-- TODO change back a to span after demo --}}
+
+{{! Please keep this navigation clean with simple list items. Do not introduce additional divs, spans, or other unneccesary elements.}}
+<div class="nav">
+    <nav>
+        {{!---- profile picture & name ----}}
+        {{!-- > hbs/Html/Body/header/navigation/profileLink --}}
+        {{!---- /profile picture & name ----}}
+        {{! Added aria-haspopup property for hover effect support on windows phone - Nokia Lumina 520.}}
+
+{{!---- TODO fix chat ----}}
+{{#if this.header.isMessageCenterEnabled}}
+	<div class="bubbles" data-o-uri="{{ obfuscateUrl this.header.myMessageUrl }}">
+	{{#if this.header.username}}
+ 			<div class="unreadMsg">
+ 				{{this.header.converstionInfo.totalUnreadMessageCount}}
+ 			</div>
+        <a class="icon-ChatBubbles" href="{{ obfuscateUrl this.header.myMessageUrl }}"></a>
+  {{/if}}
+	</div>
+{{/if}}
+
+{{!-- TODO fix image url --}}
+<div class="profile" aria-haspopup="true">
+    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
+        <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.socialMedia}}has-profile-image{{/if}}"
+              style="{{#if this.header.socialMedia}}background-image:url({{this.header.userProfileImageUrl}}18.JPG);{{/if}}
+              {{#unless this.header.socialMedia}}background-image:url({{this.header.userProfileImageUrl}}18.JPG);{{/unless}}">
+            {{#unless this.header.userProfileImageUrl}}
+              <span class="icon-header-profile-out"></span>
+              <span class="icon-header-profile-over"></span>
+            {{/unless}}
+        </span>
+        <span class="label">{{#if this.header.username}}{{this.header.username}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
+    </span>
+</div>
+<div class="clear"></div>
+
+        <ul>
+            {{!---- sign-in link ----}}
+            {{#unless this.header.id}}
+
+                    <li>
+                        <a class="sudo-link sudo-link-toConvert" href="{{obfuscateUrl this.header.signInURL}}">{{i18n "header.menu.sign.in"}}</a>
+                    </li>
+
+            {{/unless}}
+
+            {{!---- watchlist ----}}
+            <li>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.watchListUrl}}">{{i18n "header.menu.my.watchlist"}}</a>
+            </li>
+
+            {{!---- message ----}}
+            <li>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myMessageUrl}}">
+                    {{i18n "mc.menu.title"}}
+                    {{#if this.header.converstionInfo.totalConversationCount}}
+                        (<span class="tolalCurMsg">{{this.header.converstionInfo.totalConversationCount}}</span>)
+                    {{/if}}
+                </a>
+            </li>
+
+            {{!---- saved search ----}}
+            <li>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.mySavedSearchUrl}}">{{i18n "header.menu.my.savedsearch"}}</a>
+            </li>
+
+            {{!---- my ads ----}}
+            <li>
+                <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myAdsURL}}">{{i18n "header.menu.your.ads"}}</a>
+            </li>
+
+            {{!---- promote my ads ----}}
+            <li>
+                <a class="sudo-link menu-text sudo-link-toConvert"  data-gtm="pc|FeatureAdBegin"  href="{{obfuscateUrl this.header.promoteAdsUrl}}">{{i18n "header.menu.promote.ads"}}</a>
+            </li>
+
+            {{#each model.header.quickLinks}}
+                <li>
+                    <span class="sudo-link sudo-link-toConvert link-{{@index}} link menu-text" data-o-uri="{{!-- obfuscateUrl this.link --}}">{{this.localizedName}}</span>
+                </li>
+            {{/each}}
+
+            {{!---- my profile : if the id is there, then bapi sends the json back, then user is logged in and validated by bapi ----}}
+            {{#if this.header.id}}
+                <li>
+                    <a class="sudo-link menu-text sudo-link-toConvert" href="{{obfuscateUrl this.header.myProfileUrl}}">{{i18n "header.menu.my.profile"}}</a>
+                </li>
+            {{/if}}
+
+            {{!---- logout ----}}
+            {{#if this.header.id}}
+                <li>
+                    <a class="sudo-link menu-text" href="{{this.header.signOutURL}}">{{i18n "header.menu.signout"}}</a>
+                </li>
+            {{/if}}
+
+            {{#unless this.header.id}}
+                <li>
+                    <a class="sudo-link sudo-link-toConvert" href="{{obfuscateUrl this.header.registerURL}}">{{i18n "header.menu.register"}}</a>
+                </li>
+            {{/unless}}
+
+        </ul>
+    </nav>
+</div>
