@@ -2,7 +2,7 @@
 {{#partial "content"}}
 	{{#block "homepg"}}
 	 {{#if ../this.header.topHomePageAdBanner}}
-		 {{> topBanner}}
+		 {{> (dp "topBanner")}}
 	 {{/if}}
 
 	<div class="hp-content hp-others
@@ -15,7 +15,7 @@
 				<div class="hp-total-ad-count">
                 	<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" ../this.totalLiveAdCount}}}</span>
             	</div>
-	            	
+
 	            <div class="hp-category-wrapper">
 	                <h1>{{i18n "home.h1Tag"}}</h1>
 	                {{#if model.lastWeekPostedAdCount}}
@@ -26,9 +26,9 @@
 	                {{/block}}
 
 	                {{#with ../this}}
-	                    {{> categoryList}}
+	                    {{> (dp "categoryList")}}
 	                {{/with}}
-	                
+
 					<div class="hp-link-wrapper">
 						<div class="post-ad-button">
 							<a href="{{model.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
@@ -40,7 +40,7 @@
 	      {{#block "googleBannerAdsBottom_Container"}}{{/block}}
 				<div class="clear"></div>
 
-	      {{#block "locationAfterCategory"}}{{/block}}
+	      {{#block "locationAfterCategory"}} {{/block}}
 
 				<div class="hp-keywords-wrapper">
 					{{#if ../this.topKeywords}}

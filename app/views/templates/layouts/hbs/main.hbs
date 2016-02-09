@@ -30,9 +30,9 @@
                             <div id="wrapper" class="wrap">
                                 {{! page content goes here. Override this in each pages}}
 
-                                {{{body}}}
 
-                                {{#block "content" this}}OVERRIDE THIS!!!{{/block}}
+
+                                {{#block "content"}}OVERRIDE THIS!!!{{/block}}
                                 <div class="clear"></div>
                             </div>
                         </section>
@@ -42,8 +42,8 @@
 
                     <div class="footer">
 
-                          {{> footer}}
-                          {{#block "footerp"}}
+
+                          {{#block "footer"}}
                               <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
                           {{/block}}
 
@@ -67,6 +67,6 @@
         <script src="/js/libraries/handlebars/handlebars.js"></script>
         -->
 
-        {{> Tail}}
+
     </body>
 </html>

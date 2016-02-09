@@ -1,0 +1,2698 @@
+{
+	"greeting": "Pozdrowienia z Doliny Krzemowej",
+	"welcome": "Witamy Bolt 2.0",
+	"author": "Tom Anthony",
+	"coworkers": {
+		"nacer": "Nacer Polski",
+		"ulises": "Pomylony Polski Ulises"
+	},
+	"currency": {
+		"name": "złoty",
+		"code": "PLN",
+		"number": "985",
+		"minor_unit": "2",
+		"major_unit": "3",
+		"decimal": ",",
+		"placeholder": ".",
+		"symbol": "zł",
+		"format": "zł {0}"
+	},
+	"cookie": {
+		"banner": {
+			"message": "Aby zapewnić najwyższą jakość usług i wygodne korzystanie z serwisu, używamy informacji zapisanych w przeglądarce za pomocą plików cookies (pol.: ciasteczek). Korzystając z serwisu wyrażasz zgodę na stosowanie plików <a href=\"http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies\" target=\"_blank\">cookies</a>. W każdej chwili możesz je zablokować korzystając z ustawień swojej przeglądarki internetowej."
+		}
+	},
+	"my-ads": {
+		"active": {
+			"until": "Aktywne do:"
+		},
+		"button": {
+			"post": "Dodaj ogłoszenie!"
+		},
+		"column": {
+			"my-ads": "Moje ogłoszenia",
+			"price": "Cena",
+			"posted": "Dodane",
+			"status": "Status",
+			"activity": "Aktywność",
+			"options": "Opcje"
+		},
+		"Active": {
+			"title": {
+				"$$": "Aktywne",
+				"all": "Wszystkie"
+			},
+			"checking": "Proszę czekać"
+		},
+		"Pending": {
+			"title": "Oczekujące"
+		},
+		"Expired": {
+			"title": "Wygasłe"
+		},
+		"Aktywne": {
+			"until": "Aktywne do"
+		},
+		"created": {
+			"on": "Dodane :"
+		},
+		"expired": {
+			"on": "Wygasło"
+		},
+		"expire": {
+			"message": "Obecnie oferujemy dostęp do ogłoszeń, które wygasły w ciągu ostatnich 60 dni."
+		},
+		"category": "Kategoria: {0}",
+		"location": "Lokalizacja: {0}",
+		"replies": "Odpowiedzi: <span>{0}</span>",
+		"views": "Wizyty: <span>{0}</span>",
+		"phone": {
+			"calls": "Odsłony telefonu: <span>{0}</span>"
+		},
+		"edit": "Edytuj",
+		"delete": "Usuń",
+		"repost": "Odśwież",
+		"promote": "Wypromuj ogłoszenia",
+		"reactivate": "Aktywuj ponownie",
+		"emptystatemessage": "Nie masz aktywnych ogłoszeń. <br/><a data-gtm=\"pc|PostAdBegin\" href=\"{0}\">Dlaczego nie zamieścisz?</a>",
+		"ad": {
+			"status": {
+				"active": "Aktywne",
+				"pending": "Oczekujące",
+				"mailed": "Oczekujące",
+				"delayed": "Oczekujące",
+				"deleted": "Usunięte"
+			},
+			"page": {
+				"number": "Strona: {0}"
+			},
+			"active": {
+				"since": "Aktywne od: {0}"
+			},
+			"activate": {
+				"link": "Aktywuj"
+			}
+		},
+		"until": "do",
+		"sellerbadge": {
+			"title": "Aby pomóc w promocji, wszystkim zarejestrowanym Użytkownikom proponujemy Odznakę Super Sprzedawcy na Gumtree. Wystarczy skopiować i wkleić kod html, aby zintegrować Odznakę Super Sprzedawcy na Gumtree ze swoim blogiem lub inną stroną internetową. Twoje ogłoszenia będą łatwiej wyszukiwane przez potencjalnych nabywców.",
+			"icon-title": "Ogłoszenia na Gumtree",
+			"description": "Odznaka Super Sprzedawcy na Gumtree",
+			"label": {
+				"large": "duży",
+				"small": "mały"
+			}
+		}
+	},
+	"my": {
+		"subscriptions": {
+			"page": {
+				"breadcrumb": {
+					"$$": "{0} Artykuły",
+					"single": "Jeden artykuł",
+					"plural": "{0} Artykułów"
+				},
+				"title": {
+					"text": "Moje Subskrypcje"
+				},
+				"header": {
+					"title": "Moje ogłoszenia",
+					"column1": "Wstrzymaj / Wznów"
+				},
+				"emptystatemessage": "Nie masz aktywnych ogłoszeń. <br/><a href=\"{0}\">Dlaczego nie zamieścisz?</a>"
+			}
+		},
+		"profile": {
+			"page": {
+				"title": "Mój profil",
+				"account": {
+					"header": "Szczegóły konta"
+				},
+				"username": "Nazwa użytkownika",
+				"email": "Email",
+				"change": {
+					"password": {
+						"$$": "Zmień hasło",
+						"save": "Twoje hasło zostało zmienione.",
+						"verify": "Twoje hasło jest nieprawidłowe. Upewnij się, że w polu „Weryfikacja hasła” wpisujesz właściwe hasło.",
+						"mismatch": "Zmiana hasła. Hasło nie zostało wpisane prawidłowo."
+					},
+					"profile": {
+						"save": "Twoje konto zostało zaktualizowane."
+					}
+				},
+				"new": {
+					"password": "Nowe hasło"
+				},
+				"confirm": {
+					"password": "Wpisz ponownie hasło"
+				},
+				"notification": "Chcę otrzymywać newslettery i oferty promocyjne",
+				"emailUpsell": "Wysyłaj informacje o moich ogłoszeniach i aktualizacjach Gumtree",
+				"verify": {
+					"password": "Wpisz swoje aktualne hasło, aby zapisać zmiany"
+				},
+				"save": "Zapisz zmiany",
+				"profileImage": "Zdjęcie profilowe",
+				"gender": {
+					"$$": "Płeć",
+					"male": "Mężczyzna",
+					"girl": "Kobieta"
+				},
+				"phone1": "Telefon",
+				"phone2": "Telefon 2",
+				"phone3": "Telefon 3",
+				"webSiteUrl": "URL strony",
+				"aboutYou": "O Tobie",
+				"viewadcounter": "Ukryj licznik wizyt w ogłoszeniach",
+				"phone": {
+					"type": {
+						"Landline": "Stacjonarny",
+						"mobile": "Komórkowy",
+						"home": "Domowy",
+						"work": "Biznesowy",
+						"main": "Główny",
+						"alternative": "Dodatkowy",
+						"fax": "Fax",
+						"pager": "Pager",
+						"other": "Inny",
+						"$$": "Rodzaj numeru"
+					}
+				},
+				"date": {
+					"birth": "Data urodzenia"
+				},
+				"display": {
+					"gender": "Wyświetlić płeć ?",
+					"date": {
+						"birth": "Wyświetl datę urodzenia ?"
+					}
+				},
+				"interest": "Zainteresowania",
+				"pwd": {
+					"setup": "Ustawienie hasła"
+				},
+				"sub": {
+					"title": "Szczegóły profilu"
+				},
+				"char": {
+					"count": "Dostępnych znaków: {0}"
+				},
+				"location": "Lokalizacja",
+				"upload": "Dodaj",
+				"oneTouchPayment": {
+					"change": {
+						"failed": "Płatność One Touch zmiana nie udała się",
+						"success": "Płatność One Touch zmieniono pomyślnie"
+					}
+				},
+				"about": {
+					"you": {
+						"too": {
+							"long": "Tekst “o mnie” jest za długi. Opis nie może przekraczać 350 znaków."
+						}
+					}
+				},
+				"interests": {
+					"long": "Tekst “zainteresowania” jest za długi Opis nie może przekraczać 350 znaków."
+				}
+			}
+		},
+		"ads": {
+			"page": {
+				"title": {
+					"text": "Moje ogłoszenia"
+				}
+			}
+		},
+		"promote": {
+			"page": {
+				"title": {
+					"text": "Wypromuj swoje ogłoszenia"
+				},
+				"pay": {
+					"now": "Zapłać teraz"
+				},
+				"total": "Łącznie:"
+			}
+		},
+		"watchlist": {
+			"title": "Zachowane ogłoszenia",
+			"syncbutton": {
+				"inactive": "Zapisane",
+				"active": "Zapisz"
+			},
+			"email": "Email",
+			"clearAll": "Usuń wszystkie"
+		},
+		"messages": {
+			"page": {
+				"title": {
+					"text": "Moje wiadomości"
+				}
+			}
+		},
+		"alerts": {
+			"page": {
+				"title": {
+					"text": "Powiadomienia Gumtree"
+				}
+			}
+		}
+	},
+	"postad": {
+		"error": {
+			"title": {
+				"too": {
+					"long": "Prosimy skrócić tytuł do 100 znaków. Obecnie przekracza on limit.",
+					"short": "Prosimy podać tytuł, minimum 2 słowa",
+					"many": {
+						"cap": {
+							"letter": "Prosimy zmniejszyć ilość WIELKICH liter w tytule"
+						}
+					}
+				},
+				"no": {
+					"alpha": {
+						"num": "Prosimy podać przynajmniej jedną literę lub cyfrę"
+					}
+				}
+			},
+			"ATVModel": {
+				"too": {
+					"long": "Prosimy skrócić do 30 znaków. Obecnie limit jest przekroczony."
+				}
+			},
+			"BoatsModel": {
+				"too": {
+					"long": "Prosimy skrócić do 30 znaków. Obecnie limit jest przekroczony."
+				}
+			},
+			"wrong": {
+				"ATVModel": {
+					"format": "Prosimy podać model prawidłowo  {0}"
+				},
+				"BoatsModel": {
+					"format": "Prosimy podać model prawidłowo {0}"
+				},
+				"car": {
+					"year": {
+						"format": "Prosimy podać właściwy rocznik pomiędzy 1900 do obecnego"
+					}
+				},
+				"phone": {
+					"format": "Prosimy wpisać prawidłowo {0}"
+				},
+				"Km": {
+					"format": "Prosimy podać prawidłowo {0}"
+				},
+				"email": {
+					"format": "Email jest nieprawidłowy"
+				},
+				"url": {
+					"format": "Podany adres URL jest nieprawidłowy. Prosimy wpisać ponownie."
+				}
+			},
+			"header": "Popraw następujące dane w ogłoszeniu i dodaj ponownie, gdy będzie gotowe.",
+			"attribute": {
+				"notNumber": "Prosimy podać prawidłowy numer",
+				"notANumeric": "Prosimy podać prawidłowo {0}",
+				"date": {
+					"invalid": "Prosimy podać prawidłowo {0}"
+				},
+				"past_date": "Prosimy podać dzisiejszą lub późniejszą datę",
+				"end_date_before_start_date": "Prosimy podać właściwą datę, późniejszą niż początkowa",
+				"start_date_after_end_date": "Prosimy podać właściwą datę, wcześniejszą niż końcowa",
+				"future_birth_date": "Prosimy podać dzisiejszą lub wcześniejszą datę"
+			},
+			"description": {
+				"too": {
+					"short": "Prosimy uzupełnić opis, minimum 10 znaków",
+					"long": {
+						"$$": "Prosimy ograniczyć opis do 4000 znaków. Obecnie przekracza on dopuszczalny limit.",
+						"partner": "Prosimy ograniczyć opis do {0} znaków. Obecnie przekracza on dopuszczalny limit."
+					}
+				}
+			},
+			"negative": {
+				"price": "Prosimy wpisać prawidłowo kwotę"
+			},
+			"price": {
+				"too": {
+					"large": "Cena jest za wysoka"
+				}
+			},
+			"user": {
+				"name": {
+					"too": {
+						"long": "Prosimy podać nazwę, maksymalnie do 50 znaków"
+					},
+					"no": {
+						"url": "Prosimy nie używać nazwy URL."
+					}
+				}
+			},
+			"make": {
+				"no": {
+					"selection": "Prosimy wybrać markę samochodu"
+				}
+			},
+			"model": {
+				"no": {
+					"selection": "Prosimy wybrać model"
+				}
+			},
+			"post": {
+				"field": {
+					"required": "Wymagane"
+				}
+			}
+		},
+		"notice": {
+			"title": "W tytule podaj minimum 2 słowa; do 100 znaków. <span class=\"counter-text\"><span class=\"brakuje-chars\">  Dostępnych: <span class=\"charcount\">100</span> </span>"
+		},
+		"image": {
+			"network": {
+				"error": "Wystąpił błąd podczas wczytywania zdjęcia. Spróbuj ponownie."
+			},
+			"upload": {
+				"important": "Ważne:",
+				"instruction": "Tylko ogłoszenia ze zdjęciami są widoczne w Galerii.",
+				"errors": "Możesz dodać do ośmiu zdjęć w formacie BMP, JPG, PNG lub GIF i wielkości do 4MB lub 4000 x 3000 pikseli każde.",
+				"success": "Gotowe!",
+				"failure": {
+					"$$": "Niestety, wystąpił błąd podczas wczytywania zdjęcia.",
+					"invalid": {
+						"size": "Uwaga: Wielkość zdjęcia nie może przekraczać 12 MB.",
+						"dimensions": "Uwaga: Zdjęcia powinny być wielkości min 20x20 pikseli i max 9000x9000",
+						"types": "Przepraszamy, akceptujemy tylko zdjęcia w formacie: bmp, jpg, gif, png, i tif."
+					},
+					"picture": {
+						"down": "Wczytywanie nie powiodło się. Prosimy spróbować ponownie."
+					}
+				},
+				"resize": "Przygotowanie zdjęcia do przesyłania...",
+				"network": {
+					"firewall": "Uwaga: wczytywanie nie powiodło się.  Prosimy wyłączyć firewall, ad blocker i spyware blocker."
+				},
+				"colorspace": "Przepraszamy, ale zdjęcia zapisane w CMYK nie są obsługiwane i nie mogą być zamieszczone.",
+				"data": {
+					"corrupt": "Uwaga: Plik zdjęciowy jest uszkodzony."
+				},
+				"drag": {
+					"and": {
+						"drop": "Przeciągnij i dodaj tu swoje zdjęcia"
+					}
+				},
+				"no": {
+					"browser": {
+						"support": "Twoja przeglądarka nie obsługuje przesyłania plików"
+					}
+				},
+				"or": "lub",
+				"text": "Zdjęcia"
+			},
+			"loading": "Przesyłanie zdjęcia...",
+			"uploading": "Wczytywanie zdjęcia...",
+			"drag": {
+				"reorder": "Zmień kolejność przeciągając zdjęcia"
+			},
+			"click": {
+				"featured": "Kliknij, aby ustawić jako zdjęcie główne"
+			},
+			"featured": "Wybrane zdjęcie"
+		},
+		"see": {
+			"all": "See All"
+		},
+		"current": {
+			"location": {
+				"$$": "Twoja aktualna lokalizacja",
+				"or": "lub",
+				"msg": "Ups...!  Nie możemy rozpoznać lokalizacji. Prosimy wybrać jedną z poniższych.",
+				"finding": "Wyszukiwanie lokalizacji..."
+			}
+		},
+		"data": {
+			"for": {
+				"ad": "Informacje o ogłoszeniu"
+			}
+		},
+		"add": {
+			"image": "Dołącz zdjęcia",
+			"eight": "Do 12 zdjęć",
+			"photo": "Wybierz zdjęcia"
+		},
+		"price": {
+			"fraction": ",00"
+		},
+		"require": {
+			"legend": "* Wymagane informacje"
+		},
+		"optional": {
+			"fields": {
+				"label": "Uzupełnij ogłoszenie o dodatkowe informacje"
+			}
+		},
+		"post": {
+			"text": "Dodaj ogłoszenie"
+		},
+		"preview": {
+			"text": "Podgląd"
+		},
+		"change": {
+			"text": "Zmień"
+		},
+		"select": {
+			"location": "Wybierz lokalizację",
+			"category": {
+				"$$": "Wybierz kategorię",
+				"sampleSearch": "Ex.: Komputer"
+			},
+			"all": {
+				"feature": {
+					"options": "Wybierz wszystkie opcje"
+				}
+			}
+		},
+		"contact": {
+			"name": "Imię",
+			"password": "Hasło",
+			"email": "email",
+			"edit": "Edytuj",
+			"change": "Zmień",
+			"welcome": "Witamy ponownie {0}!"
+		},
+		"cat": {
+			"search": "Co chcesz opublikować?",
+			"suggestions": "Sugerowane:",
+			"showall": "lub wybierz jedną z kategorii:",
+			"no": {
+				"results": {
+					"showall": "Nie znaleźliśmy sugestii. Wybierz jedną z kategorii:"
+				}
+			}
+		},
+		"terms": {
+			"and": {
+				"condition": "Dodając ogłoszenie, wyrażasz zgodę na nasze <a href=\"{0}\" target=\"_blank\"> Zasady korzystania</a> i <a href=\"{1}\" target=\"_blank\"> Politykę prywatności</a> oraz zgadzasz się na otrzymywanie naszych newsletterów i ofert promocyjnych."
+			}
+		},
+		"your": {
+			"free": {
+				"ad": {
+					"text": "Dodaj ogłoszenie"
+				}
+			}
+		},
+		"a": {
+			"free": {
+				"ad": {
+					"text": "Zobacz swoje ogłoszenie"
+				}
+			}
+		},
+		"matching": {
+			"address": {
+				"text": "Prosimy wybrać właściwy adres"
+			}
+		},
+		"promote": {
+			"my": {
+				"ad": "Wypromuj ogłoszenie"
+			}
+		},
+		"bump": {
+			"up": {
+				"$$": "Podbij do góry",
+				"text": "Podbij swoją ofertę na samą górę bezpłatnych ogłoszeń!"
+			}
+		},
+		"top": {
+			"ad": {
+				"$$": "Ogłoszenie wyróżnione",
+				"text": "Wyróżnij swoje ogłoszenie i pokaż je na górze kategorii. Oferty wyświetlane są rotacyjnie."
+			}
+		},
+		"hpg": {
+			"ad": {
+				"$$": "Galeria na stronie głównej",
+				"text": "Ogłoszenie wyświetlane na głównej stronie Gumtree będzie widziane przez tysiące osób. Zamieść zdjęcie, aby skorzystać z tej opcji!"
+			}
+		},
+		"learn": {
+			"more": "Dowiedz się więcej ?"
+		},
+		"email": {
+			"suggestionPrefix": "Miałeś na myśli:",
+			"yes": "Tak",
+			"no": "Nie",
+			"okmessage": "Rozumiem!"
+		},
+		"completeness": {
+			"adqualitytitle": "Walory ogłoszenia",
+			"sellingtips": "Porady sprzedaży",
+			"template": "Twoje ogłoszenie otrzymało (percentage)%. Możesz je jeszcze udoskonalić: (message)",
+			"templateComplete": "Nasze ogłoszenie otrzymało (percentage)%",
+			"addtitle": "Podając tytuł ogłoszenia",
+			"addname": "Podając swoje imię, uczynisz ogłoszenie bardziej osobistym i zachęcisz kupujących",
+			"addemail": "Podając swój adres e-mail, aby kupujący mogli się z tobą skontatkować",
+			"addimage": "Dodając zdjęcie",
+			"adddetails": "Dodając opis w ogłoszeniu",
+			"moredetails": "Podając w opisie więcej szczegółów",
+			"moreimages": "Dodając więcej zdjęć innych ujęć, zbliżenie lub pokazujące szczegóły",
+			"addtelephone": "Podając numer telefonu i udostępniając kupującym dodatkową formę kontaktu z tobą",
+			"addprice": "Wpisując kwotę lub wybierając opcję cenową",
+			"addaddress": "Podając adres",
+			"moreinfo": "Udzielając więcej informacji o ofercie korzystając z poniższych form"
+		},
+		"insertionfee": {
+			"warning": "Pamiętaj, że za dodanie ogłoszenia w tej kategorii pobieramy opłatę w wysokości xxx"
+		},
+		"websiteurl": {
+			"notice": "Dodaj link URL do swojej strony"
+		},
+		"info": {
+			"2": {
+				"title": "Uroczy 3 sypialniowy domek wypoczynkowy"
+			},
+			"4": {
+				"title": "Czerwony Krzyż potrzebuje wolontariuszy"
+			},
+			"5": {
+				"title": "15\" Felgi aluminiowe"
+			},
+			"6": {
+				"title": "Zaginął rudy kot w okolicy wałów"
+			},
+			"8": {
+				"title": "Agent nieruchomości"
+			},
+			"9": {
+				"title": "Konserwacja i architektura krajobrazu"
+			},
+			"9067": {
+				"title": "Bankiet dobroczynny na pomoc dla chóru"
+			},
+			"9101": {
+				"title": "Ponton z silnikiem elektrycznym – jak nowy!"
+			},
+			"9122": {
+				"title": "Urocze szczenięta rasy Seter Irlandzki"
+			},
+			"9171": {
+				"title": "Toster Bosch w doskonałym stanie"
+			},
+			"9175": {
+				"title": "Nowe nawilżacze ultradźwiękowe"
+			},
+			"9176": {
+				"title": "Fotelik samochodowy w idealnym stanie"
+			},
+			"9177": {
+				"title": "Nowe suknie ślubne"
+			},
+			"9178": {
+				"title": "Samsung Galaxy Tab 2 – doskonały stan!"
+			},
+			"9179": {
+				"title": "Jak nowy rower trekingowy CrossWind"
+			},
+			"9389": {
+				"title": "Doświadczony trener komputerowy dla dorosłych"
+			},
+			"description": "Opisz przedmiot w 2-5 liniach.",
+			"pictures": "Do 12 zdjęć"
+		},
+		"forexample": "np."
+	},
+	"credit": {
+		"card": {
+			"security": {
+				"code": {
+					"empty": "Błąd! Musisz podać informacje w podświetlonych polach.",
+					"invalid": "Prosimy podać ważny kod bezpieczeństwa"
+				}
+			},
+			"holder": {
+				"name": {
+					"empty": "Błąd! Musisz podać informacje w podświetlonych polach.",
+					"too": {
+						"long": "Przepraszamy, ale nasz limit to {0} znaków. Prosimy podać krótszą nazwę."
+					}
+				}
+			},
+			"number": {
+				"empty": "Błąd! Musisz podać informacje w podświetlonych polach.",
+				"too": {
+					"long": "Przepraszamy, ale nasz limit to {0} znaków. Prosimy podać krótszy numer."
+				},
+				"invalid": "Prosimy podać ważny numer karty"
+			},
+			"type": {
+				"invalid": "Prosimy podać ważny rodzaj karty"
+			},
+			"exp": {
+				"month": {
+					"invalid": "Prosimy sprawdzić miesiąc ważności karty kredytowej"
+				},
+				"year": {
+					"invalid": "Prosimy sprawdzić rok ważności karty kredytowej"
+				},
+				"expired": "Ważność karty wygasła"
+			}
+		},
+		"car": {
+			"exp": {
+				"month": {
+					"jan": "1 - Styczeń",
+					"feb": "2 - Luty",
+					"mar": "3 - Marzec",
+					"apr": "4 - Kwiecień",
+					"may": "5 - Maj",
+					"jun": "6 - Czerwiec",
+					"jul": "7 - Lipiec",
+					"aug": "8 - Sierpień",
+					"sep": "9 - Wrzesień",
+					"oct": "10 - Październik",
+					"nov": "11 - Listopad",
+					"dec": "12 - Grudzień"
+				}
+			}
+		}
+	},
+	"myorders": {
+		"page": {
+			"title": "Moje Płatności"
+		},
+		"detail": {
+			"export": {
+				"pdf": "Brak informacji",
+				"print": "Drukuj"
+			},
+			"field": {
+				"features": {
+					"adId": "Numer ogłoszenia",
+					"featureAmt": "Koszt",
+					"featureId": "Numer produktu",
+					"featureName": "Nazwa produktu",
+					"$$": "Szczegóły zamówienia"
+				},
+				"orderDateStr": "Data",
+				"orderId": "Numer referencyjny",
+				"payerEmail": "E-mail użytkownika",
+				"paymentMethod": "Forma płatności",
+				"vatId": "Numer VAT"
+			},
+			"totals": {
+				"subTotal": "Łącznie (bez VAT):",
+				"vatTotal": "VAT:",
+				"orderTotal": "Łącznie (razem z VAT):"
+			}
+		},
+		"export": {
+			"csv": "CSV",
+			"json": "JSON",
+			"xml": {
+				"nodes": {
+					"item": "Produkt",
+					"oamt": "Koszt",
+					"odt": "Rachunek",
+					"oid": "Numer referencyjny",
+					"root": "Zamówienia"
+				},
+				"$$": "XML"
+			}
+		},
+		"filters": {
+			"month": "Miesiąc",
+			"year": "Rok"
+		},
+		"list": {
+			"columns": {
+				"oamt": "Koszt",
+				"odt": "Data",
+				"oid": "Numer referencyjny"
+			},
+			"nodata": "Brak danych"
+		},
+		"months": "styczeń,luty,marzec,kwiecień,maj,czerwiec,lipiec,sierpień,wrzesień,październik,listopad,grudzień",
+		"print": {
+			"title": "Rachunek",
+			"client": {
+				"$$": "Informacje o kliencie:",
+				"name": "Nazwa użytkownika:",
+				"address": "Adres:",
+				"nip": "NIP:",
+				"vat": "Numer VAT:"
+			},
+			"payment": {
+				"$$": "Informacje o płatności:",
+				"ref": "Numer referencyjny:",
+				"date": "Złożono zamówienie:",
+				"email": "Adres e­mail:",
+				"type": "Forma płatności:",
+				"address": {
+					"$$": "Informacje o sprzedawcy:",
+					"vatid": "VAT ID:"
+				}
+			},
+			"details": {
+				"$$": "Szczegóły zamówienia",
+				"subject": "Przedmiot",
+				"title": "Numer ogłoszenia",
+				"cost": "Koszt",
+				"total": "Zapłacono Łącznie:"
+			},
+			"fineprint": "To jest elektroniczny zapis dokonania zakupu Wydrukuj tę stronę i zachowaj ją."
+		}
+	},
+	"payment": {
+		"processing": "Przetwarzanie płatności, prosimy czekać ...",
+		"subheader": "Zapłać za zamówione promocje",
+		"header": "Twoje zamówienie",
+		"feature": {
+			"select_method": {
+				"$$": "Wybierz opcję płatności",
+				"none": "Brak",
+				"eft": "Przelewy Online",
+				"credit_debit": "Karta Kredytowa"
+			},
+			"total": "Łącznie",
+			"autorenew": {
+				"$$": "Automatyczne odnowienie",
+				"moreinfo": "Więcej informacji",
+				"lessinfo": "Mniej informacji",
+				"description": "<h3>Zapisz się na automatyczne przedłużenie </h3><p> Ważne jest, aby zrozumieć poniższe informacje:<ol><li><em> Po wygaśnięciu terminu promocji, zostanie ona automatycznie przedłużona.</em></li><li><em> Zostanie pobrana kwota zgodna z ceną wybranej promocji. </em></li><li><em> Za każdą transakcję automatycznie będzie wygenerowany rachunek, który będzie dostępny na koncie.</em></li><li><em> Z opcji Automatycznego przedłużania promocji można w każdej chwili zrezygnować, opcja dostępna jest na stronie zarządzania subskrypcjami.</em></li><li><em> Jeżeli ceny ulegną zmianie, zostaniesz o tym poinformowany oddzielnym e-mailem. Będziesz mógł wówczas zdecydować czy chcesz nadal korzystać z serwisu Automatycznego przedłużania promocji. </em></li></ol></p>"
+			}
+		},
+		"credit_debit": {
+			"$$": "Wybierz kartę",
+			"details": {
+				"name": "Imię i nazwisko posiadacza karty",
+				"submit": "Zapłać teraz",
+				"number": "Numer karty kredytowej",
+				"exp": "Data ważności",
+				"cvv": {
+					"$$": "Kod weryfikacji karty (CVV)",
+					"base": "Ostatnie 3 cyfry na odwrocie karty",
+					"amex": "4-cyfrowy numer na przedniej stronie karty"
+				}
+			}
+		},
+		"eft": {
+			"description": "<p class='sid-lead-paragraph'>SID pozwala na szybkie i bezpieczne dokonanie płatności przez EFT.</p><p>Banki obsługiwane przez Absa, FNB, Nedbank i Standard Bank.</p><p>Kliknięcie poniższego przycisku otworzy stronę SID, na której można sprawdzić prawidłowość zamówienia. Ostatni krok to zakończenie transakcji na stronie Twojego banku.</p>",
+			"proceed": "Przejdź do SID",
+			"marketing": "",
+			"submit": "Przejdź do SID"
+		},
+		"for": {
+			"feature": {
+				"success": "Gratulacje! Twoja promocja została wykupiona.",
+				"fail": "Przykro nam, ale płatność nie może być teraz zrealizowana. Prosimy sprawdzić szczegóły płatności i spróbować ponownie później.",
+				"expired": "Przykro nam, ale płatność nie może być teraz zrealizowana. Prosimy sprawdzić szczegóły płatności i spróbować ponownie później.",
+				"pending": "Dziękujemy za wysłanie płatności. Zamówienie jest w trakcie realizacji. Promocja/oferta będzie aktywowana po otrzymaniu przelewu.",
+				"cancel": "Transakcja została anulowana"
+			}
+		},
+		"error": {
+			"user": {
+				"name": {
+					"too": {
+						"long": "Imię jest za długie."
+					}
+				}
+			},
+			"customer": {
+				"address": {
+					"too": {
+						"long": "adres jest za długie."
+					}
+				},
+				"vat": {
+					"too": {
+						"long": "vat jest za długie."
+					}
+				}
+			}
+		},
+		"vat": {
+			"message": "Zawiera VAT"
+		}
+	},
+	"phone": {
+		"type": {
+			"fixed": "Stacjonarny",
+			"mobile": "Komórkowy",
+			"home": "Domowy",
+			"work": "Biznesowy",
+			"main": "Główny",
+			"alternative": "Dodatkowy",
+			"fax": "Fax",
+			"pager": "Pager",
+			"other": "Inny"
+		},
+		"no": {
+			"email": "At znaki (@) nie są dozwolone"
+		}
+	},
+	"sort": {
+		"override": {
+			"price": "Jako pierwsze pokazane są ogłoszenia z najwyższą ceną. Aby zmienić opcje, użyj &#39; Sortuj według&#39."
+		}
+	},
+	"home": {
+		"$$": "Strona główna",
+		"h1Tag": "Gumtree Polska - Bezpłatne ogłoszenia lokalne",
+		"provinces": "Województwa",
+		"main-locations": "Popularne miasta",
+		"popular-searches": "Popularne",
+		"trending-searches": "Najnowsze",
+		"user": {
+			"registered": "Gratulujemy i witamy na Gumtree!"
+		},
+		"ad": {
+			"notyetactive": "Ups..., ogłoszenie, którego szukasz nie jest dostępne. Sprawdź ponownie za jakiś czas!"
+		},
+		"reset": {
+			"password": {
+				"success": "Twoje hasło zostało zmienione."
+			}
+		},
+		"lastweekpostedAD": "<b>{0}</b> Nowe ogłoszenia w <b>{1}</b> z ostatnich 7 dni!",
+		"blogs": {
+			"title": "Najnowsze wpisy na Blogu Gumtree",
+			"backupcontent": "Witamy na Gumtree! Odwiedź nasz blog!  Znajdziesz tam historie z życia wzięte, porady dotyczące sprzedaż na Gumtree, informacje o konkursach i inicjatywach, subskrypcje, aktualne wiadomości i mnóstwo innych ciekawostek. <a href=\"http://blog.gumtree.pl\" target=\"_blank\">Odwiedź nasz blog!</a> Jeśli potrzebujesz wskazówek dotyczących korzystania z naszych stron, prosimy odwiedź dział pomocy <a href=\"http://help.gumtree.pl\" target=\"_blank\">Help</a>."
+		},
+		"all": {
+			"cat": {
+				"name": "Wszystkie kategorie",
+				"localizedName": "home.all.cat.localizedName"
+			}
+		},
+		"swap-trade": {
+			"url": {
+				"prefix": "Wymiana/zamiana"
+			},
+			"$$": "Wymiana/zamiana"
+		},
+		"freebies": {
+			"url": {
+				"prefix": "Oddam za darmo"
+			},
+			"$$": "Oddam za darmo"
+		},
+		"page": {
+			"host": "Gumtree Polska",
+			"desc": {
+				"tag": "Zapraszamy na Gumtree Polska, lokalnej strony ogłoszeniowej, aktualnych ofert: {0}. Zamieszczaj bezpłatnie ogłoszenia lub kupuj i sprzedawaj całkowicie za darmo!"
+			},
+			"live": {
+				"ad": {
+					"count": {
+						"label": "Aktywnych ogłoszeń: <span class=\"ad-count\">{0}</span>"
+					}
+				}
+			}
+		}
+	},
+	"AdNotFound": "Ups..., Nie znaleźliśmy twojego ogłoszenia {0}",
+	"AdDeleted": "Twoje ogłoszenie {0} zostało usunięte",
+	"AdNotDeleted": "Ups..., Twoje ogłoszenie {0} nie może być usunięte",
+	"title": {
+		"empty": "Tytuł jest wymagany"
+	},
+	"email": {
+		"empty": "Twój e-mail jest wymagany",
+		"address": {
+			"too": {
+				"long": "Twój adres e-mail jest zbyt długi."
+			}
+		},
+		"greeting": {
+			"attention": "Witaj {0}!",
+			"post": {
+				"ad": {
+					"attention": "Witaj {0}!",
+					"confirm": {
+						"attention": "Witaj {0}!"
+					}
+				}
+			},
+			"normal": "Witaj {0}",
+			"forgotpwd": "Witaj {0},"
+		},
+		"registration": {
+			"greeting": "Witaj!",
+			"confirm": {
+				"footer": "Dziękujemy, <br/>Zespół Gumtree.pl<br/><br/>"
+			}
+		},
+		"post": {
+			"ad": {
+				"footer": "Dziękujemy za skorzystanie z {0} i życzymy powodzenia z ogłoszeniami! <br /><br />Zespół {0}<br />",
+				"confirm": {
+					"footer": "Dziękujemy za skorzystanie z {0} i życzymy powodzenia z ogłoszeniami! <br /><br />Zespół {0}<br />"
+				}
+			}
+		},
+		"footer": {
+			"forgotpwd": "Dziękujemy! <br /><br /> Zespół Gumtree.pl <br /> {0}"
+		},
+		"forgot": {
+			"password": {
+				"content": "Kliknij poniżej, aby zmienić hasło na swoim koncie Gumtree: <br/><br/> <a href=\"{0}\"> Nowe hasło</a><br/><br/> Jeśli kliknięcie powyższego linku nie działa, wpisz lub skopiuj i wklej ten adres do swojej przeglądarki.<br/><br/> {0}<br/><br/> Jeśli nie zgłaszałeś prośby o zmianę hasła, zignoruj tę wiadomość.",
+				"subject": "Zmień swoje hasło na Gumtree"
+			}
+		},
+		"title": {
+			"text": "Tytuł"
+		},
+		"category": {
+			"text": "Kategoria"
+		},
+		"description": {
+			"text": "Opis"
+		},
+		"send": {
+			"by": {
+				"email": {
+					"text": "Email Od"
+				}
+			}
+		},
+		"payment": {
+			"receipt": {
+				"subject": "Potwierdzenie zamówienia #{0}"
+			},
+			"success": {
+				"message": ""
+			},
+			"renewal": {
+				"failed": {
+					"subject": "Wystąpił problem z płatnością. Promocja ogłoszenia wyłączona."
+				}
+			}
+		},
+		"abandonedorder": {
+			"reminder": {
+				"subject": "Zauważyliśmy, że Twoje ogłoszenie nie jest jeszcze dodane / promowane"
+			}
+		},
+		"voucher": {
+			"receipt": {
+				"subject": ""
+			}
+		},
+		"subject": {
+			"savedsearch": {
+				"activate": "Aktywuj swoje Powiadomienie Gumtree",
+				"activateLog": "Utworzyłeś subskrypcję Powiadomienia Gumtree"
+			}
+		}
+	},
+	"max": {
+		"title": {
+			"word": {
+				"count": "5"
+			}
+		}
+	},
+	"price": {
+		"has": {
+			"char": "Cena nie może zawierać specjalnych liter ani znaków"
+		},
+		"type": {
+			"not": {
+				"valid": "Wymagana jest prawidłowa cena"
+			},
+			"text": "Rodzaj oferty",
+			"empty": "Prosimy podać informacje w polu {0}"
+		},
+		"empty": "Cena musi być podana",
+		"not": {
+			"empty": "Prosimy nie podawać kwoty jeśli cena jest do negocjacji"
+		}
+	},
+	"not": {
+		"leaf": {
+			"category": "Prosimy wybrać podkategorię",
+			"location": "Prosimy wybrać lokalizację"
+		}
+	},
+	"picture": {
+		"description": {
+			"too": {
+				"long": "Opis zdjęcia jest zbyt długi"
+			}
+		}
+	},
+	"currencyNotValid": "Nieprawidłowa waluta",
+	"learnmore": {
+		"show": "Zobacz więcej...",
+		"less": "Zobacz mniej"
+	},
+	"searchbar": {
+		"locationDisplayname": {
+			"prefix": "Polska"
+		}
+	},
+	"onetouch": {
+		"cardinfo": "{0} koniec {1}",
+		"confirm": "Potwierdź",
+		"paynow": "Kliknij aby potwierdzić",
+		"savepayment": "Zapisz płatność w One Touch",
+		"usecredit": "Użyj innej karty do zapłaty",
+		"useonetouch": "Użyj płatności One Touch"
+	},
+	"features": {
+		"see": {
+			"all": "Zobacz wszystkie"
+		}
+	},
+	"post": {
+		"thanks": "<h1 class='header'> Sprawdź swój e-mail, aby aktywować ogłoszenie.</h1><p> Gumtree wysłało e-mail zatytułowany <b>Aktywuj swoje ogłoszenie na Gumtree: \"{1}\"</b>. Jeżeli nie widzisz tej wiadomości od razu, sprawdź folder SPAM.</p>",
+		"gotowebdomain": "Idź do {0}",
+		"desc": {
+			"placeholder": "Aby uzyskać dokładniejsze odpowiedzi, podaj jak najwięcej szczegółów.  Nie zapomnij sprawdzić pisowni.  :)"
+		},
+		"upsell": {
+			"activate": {
+				"ad": {
+					"success": {
+						"not": {
+							"yet": {
+								"active": "Sprawdź swój e-mail, aby aktywować ogłoszenie. Otwórz {0} e-mail i kliknij link aktywacyjny."
+							}
+						}
+					}
+				}
+			}
+		},
+		"other": {
+			"ads": {
+				"edit": "Edytuj",
+				"delete": "Usuń",
+				"repost": "Zamieść"
+			}
+		},
+		"ad": {
+			"payment": {
+				"for": {
+					"insertionfee": {
+						"success": "Dziękujemy! Twoja płatność została przesłana. Ogłoszenie wkrótce powinno się ukazać.Jeśli nie widzisz swojej oferty na stronie, odśwież przeglądarkę. Prosimy pamiętać, że czasami może upłynąć więcej czasu zanim ogłoszenie będzie aktywowane."
+					},
+					"feature": {
+						"success": {
+							"$$": "Dziękujemy! Twoja płatność została przesłana. Otrzymaliśmy prośbę o aktywację. Ogłoszenie wkrótce powinno się ukazać i być promowane zgodnie z wyborem. Jeśli nie widzisz swojej oferty wśród promowanych, odśwież przeglądarkę. Czasami może upłynąć kilka/naście minut zanim oferta i/lub promocja będzie aktywowana.",
+							"editrepost": "Gratulacje! Twoja płatność została przesłana. Ogłoszenie wkrótce powinno być promowane.Jeśli nie widzisz swojej oferty wśród promowanych, odśwież przeglądarkę. Czasami może upłynąć kilka/naście minut zanim promocja będzie aktywowana."
+						},
+						"pending": "Dziękujemy za wysłanie płatności. Zamówienie jest w trakcie realizacji. Promocja/oferta będzie aktywowana po otrzymaniu przelewu."
+					},
+					"non": {
+						"loggedin": {
+							"feature": {
+								"success": "Gratulacje! Twoja płatność została przesłana. Sprawdź swój e-mail i aktywuj ogłoszenie, aby mogło być publikowane i/lub promowane zgodnie z wyborem."
+							}
+						}
+					}
+				}
+			},
+			"insertionfee": {
+				"payment": {
+					"warning": "Pamiętaj, że za dodanie ogłoszenia w tej kategorii pobieramy opłatę w wysokości {0}."
+				}
+			}
+		}
+	},
+	"pass": {
+		"empty": "Wpisz swoje hasło",
+		"too": {
+			"short": "Hasło jest zbyt krótkie.",
+			"long": "Hasło jest za długie."
+		},
+		"dont": {
+			"match": "Hasła muszą się zgadzać."
+		}
+	},
+	"terms": {
+		"not": {
+			"accepted": "Aby zarejestrować się, zaakceptuj warunki."
+		},
+		"and": {
+			"conditions": "Zasady korzystania"
+		}
+	},
+	"token": {
+		"expired": "Twoja rezerwacja wygasła lub jest nieprawidłowa."
+	},
+	"securitycode": {
+		"expired": "Twój kod zabezpieczający wygasł lub jest nieprawidłowy."
+	},
+	"user": {
+		"not": {
+			"registered": "Prosimy o zarejestrowanie konta."
+		},
+		"already": {
+			"registered": "Ten e-mail jest już zarejestrowany. Prosimy zalogować się na Gumtree."
+		},
+		"name": {
+			"no": {
+				"email": "Prosimy podać prawidłową nazwę"
+			},
+			"empty": "Nazwa użytkownika jest wymagana"
+		},
+		"email": {
+			"unsubscribe": {
+				"ask": "Czy na pewno chcesz zrezygnować z subskrypcji, newsletterów i promocji?",
+				"success": "Pomyślnie wypisałeś się z listy powiadomień Gumtree.Przykro nam, że nas opuszczasz. Zawsze możesz odwiedzić nas ponownie. user.email.unsubscribe.failed=Ups... Jeden z naszych serwerów dostał czkawki. SpróbujSystem hiccup. Spróbuj wypisać się później.",
+				"notfound": "To dziwne. Nie znaleźliśmy Twojego adresu e-mail. Prosimy spróbować ponownie."
+			}
+		}
+	},
+	"remember": {
+		"me": "Zapamiętaj mnie"
+	},
+	"bad": {
+		"credentials": "Nieprawidłowe hasło lub adres e-mail."
+	},
+	"customer": {
+		"name": {
+			"empty": "Imię jest wymagane"
+		},
+		"address": {
+			"empty": "Adres jest wymagane"
+		},
+		"vat": {
+			"empty": "jest wymagane"
+		}
+	},
+	"buyer": {
+		"name": {
+			"empty": "Imię jest wymagane",
+			"too": {
+				"long": "Nazwa jest za długa"
+			},
+			"no": {
+				"url": "Prosimy nie podawać linków",
+				"email": "At znaki (@) nie są dozwolone",
+				"percent": "Procent symbol (%) nie są dozwolone"
+			}
+		},
+		"email": {
+			"empty": "Twój e-mail jest wymagany"
+		},
+		"phone": {
+			"empty": "Prosimy podać prawidłowy numer telefonu.",
+			"invalid": {
+				"$$": "Prosimy wpisać prawidłowy 10-cyfrowy numer telefonu zaczynający się od 0",
+				"less": {
+					"digits": "Prosimy podać prawidłowy i kompletny numer telefonu."
+				},
+				"exceeds": {
+					"max": {
+						"char": "Numer wydaje się być za długi. Prosimy podać prawidłowy numer telefonu."
+					}
+				}
+			}
+		}
+	},
+	"reply": {
+		"message": {
+			"empty": "Treść jest wymagana",
+			"too": {
+				"long": "Wiadomość może zawierać maksymalnie 4,096 znaków"
+			},
+			"center": {
+				"subject": "Gumtree - Odpowiedź na ogłoszenie: #{1} - {0}",
+				"message": {
+					"from": "",
+					"more": {
+						"info": ""
+					}
+				}
+			},
+			"default": {
+				"user": {
+					"name": ""
+				},
+				"buyer": {
+					"name": ""
+				},
+				"seller": {
+					"name": ""
+				}
+			}
+		},
+		"phone": {
+			"regex": "^([\\s-.\\(\\)\\+x,\\d])*$"
+		},
+		"email": {
+			"useful": {
+				"information": "{0} Porady dotyczące bezpieczeństwa<ul><li>Kieruj się zdrowym rozsądkiem: Jeśli coś wydaje się zbyt piękne, aby mogło być prawdziwe, to prawdopodobnie tak jest.</li><li>Nigdy nie akceptuj płatności z zagranicy.</li><li> Nigdy nie akceptuj płatności przy użyciu błyskawicznych przelewów gotówki, takich jak Western Union, MoneyGram lub innych anonimowych form.</li></ul>"
+			}
+		},
+		"success": "Twoja wiadomość została wysłana",
+		"on": {
+			"your": {
+				"ad": {
+					"email": {
+						"text": "Poniżej znajduje się odpowiedź na Twoje ogłoszenie {1}: \"{0}\""
+					}
+				}
+			}
+		},
+		"send": {
+			"by": {
+				"email": {
+					"text": "Odpowiedź od"
+				}
+			}
+		},
+		"ad": {
+			"attachment": {
+				"error": {
+					"filesizeexceed": "Przesyłanie pliku nie powiodło się. Rozmiar pliku przekracza 2 MB.",
+					"$$": "Przesyłanie pliku nie powiodło się.",
+					"fileformatnotsupported": "Przesyłanie pliku nie powiodło się. Ten format pliku nie jest obsługiwany."
+				},
+				"choose-file": "Wybierz plik",
+				"remove": "Usuń",
+				"uploading": "Przesyłanie"
+			}
+		}
+	},
+	"srp": {
+		"reply": {
+			"contact": "Kontakt"
+		},
+		"no-results-title-Desktop": "Niestety, nie znaleźliśmy żadnych wyników. Szukając ogłoszeń skorzystaj z poniższych sugestii.",
+		"no-results-title-Mobile": "Niestety, nie znaleźliśmy ogłoszeń, które odpowiadałyby wybranym kryteriom.",
+		"no-results-tip-title": "Porady, które uznaliśmy za przydatne:",
+		"no-results-tip-item1": "Sprawdź pisownię wpisanych słów kluczowych",
+		"no-results-tip-item2": "Użyj bardziej ogólnych lub mniej słów kluczowych",
+		"no-results-tip-item3": "Spróbuj przejrzeć kategorię",
+		"no-results-tip-Mobile": "Wybierz odpowiednią kategorię",
+		"order-by": "Sortuj",
+		"order-by-date-desc": "Najnowsze",
+		"order-by-price-asc": "Najniższa cena",
+		"order-by-price-desc": "Najwyższa cena",
+		"free": "Za darmo",
+		"locations": "Lokalizacja",
+		"other": {
+			"locations": "Inne lokalizacje"
+		},
+		"categories": "Kategoria",
+		"category_in_location": "w",
+		"section": {
+			"top-ads": "Ogłoszenia wyróżnione",
+			"gallery-ads": "Galeria na Stronie Głównej",
+			"ads": "Ogłoszenia",
+			"list": "Lista",
+			"grid": "Galeria",
+			"relatedProducts": "Podobne produkty",
+			"relatedArticles": "Podobne artykuły"
+		},
+		"control": {
+			"found": "znaleziono"
+		},
+		"filter": {
+			"maxPeople": "Liczba osób",
+			"minNights": "Ilość nocy",
+			"any": "Wszystkie",
+			"showall": "Wszystkie",
+			"showmore": "Pokaż więcej",
+			"showless": "Pokaż mniej",
+			"currency": {
+				"symbol": "zł"
+			},
+			"pricetype": "Rodzaj oferty",
+			"gtmax": "&gt;10k<!-- translation must be smaller than five characters -->"
+		},
+		"result": {
+			"snippet": {
+				"kmandmile": "km"
+			}
+		},
+		"pagination": {
+			"pages": "Strony"
+		},
+		"top": {
+			"models": {
+				"header": {
+					"titile": "Najpopularniejsze modele samochodów"
+				},
+				"more": {
+					"text": "Pokaż więcej"
+				},
+				"less": {
+					"text": "Pokaż mniej"
+				}
+			}
+		},
+		"blogs": {
+			"title": "Najnowsze wpisy"
+		},
+		"ad": {
+			"date-format": {
+				"one-minute-ago": "{0} min temu",
+				"minutes-ago": "{0} min temu",
+				"one-hour-ago": "{0} godz temu",
+				"hours-ago": "{0} godz temu"
+			}
+		},
+		"sort-by": "Sortuj według",
+		"refine": {
+			"button": "Zmień filtry"
+		},
+		"cancel": {
+			"button": "Anuluj"
+		},
+		"ref": {
+			"search": ""
+		},
+		"paid": {
+			"url": "Odwiedź stronę"
+		},
+		"locationZoomout": {
+			"Title": "Ogłoszenia w innych lokalizacjach"
+		},
+		"photo": {
+			"count": "Zdjęć: {0}"
+		},
+		"no-results": {
+			"$$": "Niestety, nie znaleźliśmy żadnych wyników",
+			"desc": "Czy chcesz otrzymywać powiadomienie e-mail o nowych wynikach Twojego poszukiwania?"
+		},
+		"email-alert": {
+			"desc": "Otrzymuj codziennie e-mail z najnowszymi ogłoszeniami:",
+			"button": "Utwórz powiadomienie",
+			"notify": "Prawie gotowe! Wysłaliśmy do Ciebie e-mail. Kliknij załączony link, aby potwierdzić i zacząć otrzymywanie powiadomień.",
+			"aftalert": "Gotowe! Twoje Powiadomienia Gumtree są aktywne.",
+			"unsubscribe": {
+				"$$": "Twoja subskrypcja na Gumtree została anulowana.",
+				"allalerts": "Twoje subskrypcje na Gumtree zostały anulowane."
+			},
+			"policymsg": "Klikając “Dodaj powiadomienie”, wyrażasz zgodę na nasze <span class='sudo-link' data-o-uri=\"{0}\" data-target=\"_self\"> Zasady korzystania</span> i <span class='sudo-link' data-o-uri=\"{1}\" data-target=\"_self\">Politykę prywatności</span> oraz zgadzasz się na otrzymywanie naszych newsletterów i ofert promocyjnych.",
+			"title": "Powiadomienia Gumtree",
+			"descriptiontitle": "Filtry powiadomienia:",
+			"description": "Otrzymuj codziennie e-mail z najnowszymi ogłoszeniami, które Cię interesują.",
+			"btnmessage": {
+				"collapsed": "Utwórz Powiadomienie",
+				"expanded": "Utwórz Powiadomienie"
+			},
+			"placehoderbtn": "Email"
+		}
+	},
+	"delete": {
+		"ad": {
+			"success": "Twoje ogłoszenie zostało usunięte.",
+			"fail": "Twoje ogłoszenie nie może być usunięte.",
+			"confirm": {
+				"dlg": "Czy na pewno chcesz usunąć to ogłoszenie?",
+				"header": "Twoje ogłoszenie zostało usunięte"
+			}
+		}
+	},
+	"ad": {
+		"already": {
+			"activated": "Twoje ogłoszenie jest już aktywne."
+		},
+		"flagged": "Dziękujemy za zgłoszenie nam tej oferty.",
+		"posted": {
+			"survey": {
+				"request": "<br/> Podziel się swoimi uwagami <a class='survey' href=\"https://www.surveymonkey.com/s/7KJRX8D\">start survey.</a><br />Chcesz aby więcej potencjalnych nabywców zobaczyło to ogłoszenie? Udostępnij je w serwisach społecznościowych, korzystając z poniższych opcji!"
+			}
+		},
+		"confirmed": {
+			"email": {
+				"content": "Świetnie! Twoje ogłoszenie <b>\"{0}\"</b>  jest aktywne!  <br/><br/> Może upłynąć kilka minut zanim ogłoszenie będzie widoczne dla innych użytkowników – nie martw się, po prostu sprawdź ponownie za kilka chwil. <br/><br/> Zarządzaj swoimi ogłoszeniami poprzez <a href=\"{5}\">Moje Gumtree</a><br/><br/> Zachowaj ten e-mail, aby zarządzać swoimi ogłoszeniami poprzez następujące linki:<br/><br/> <ul><li><a href=\"{2}\">Wypromuj ogłoszenie</a></li><li><a href=\"{2}\">Edytuj ogłoszenie</a></li><li><a href=\"{1}\">Zobacz ogłoszenie</a></li><li><a href=\"{3}\">Usuń ogłoszenie</a></li></ul>"
+			}
+		}
+	},
+	"activate": {
+		"ad": {
+			"fail": "Twoje ogłoszenie nie może być aktywowane",
+			"success": {
+				"$$": "Gratulacje! Twoje ogłoszenie zostało zamieszczone na Gumtree. Może upłynąć kilka minut zanim będzie ono widoczne dla innych użytkowników.<br />Chcesz aby więcej potencjalnych nabywców zobaczyło to ogłoszenie? Udostępnij je w serwisach społecznościowych, korzystając z poniższych opcji!",
+				"not": {
+					"yet": {
+						"active": "Dziękujemy! Otrzymaliśmy prośbę o aktywację. Twoje ogłoszenie wkrótce ukaże się na {0}"
+					}
+				}
+			}
+		},
+		"email": {
+			"content": "Twoje ogłoszenie \"{0}\" na Gumtree oczekuje na aktywację. <br /><br /> <a href=\"{1}\">Kliknij tutaj, aby aktywować swoje ogłoszenie</a> <br/><br/> Jeśli kliknięcie powyższego linku nie działa, wpisz lub skopiuj i wklej ten adres do swojej przeglądarki. <br /> {1}"
+		},
+		"your": {
+			"ad": {
+				"email": {
+					"subject": "Aktywuj ogłoszenie {1}: \"{0}\""
+				}
+			}
+		},
+		"feature": {
+			"success": "Gratulacje! Twoja płatność została przesłana. Ogłoszenie wkrótce powinno być promowane.Jeśli nie widzisz swojej oferty wśród promowanych, odśwież przeglądarkę. Czasami może upłynąć kilka/naście minut zanim promocja będzie aktywowana."
+		}
+	},
+	"edit": {
+		"ad": {
+			"success": {
+				"$$": "Gratulacje! Twoje ogłoszenie zostało zmienione i wkrótce będzie widoczne dla innych użytkowników.",
+				"not": {
+					"yet": {
+						"active": "Dziękujemy! Otrzymaliśmy prośbę edycji. Twoje ogłoszenie wkrótce ukaże się na {0}."
+					}
+				}
+			}
+		},
+		"expired": {
+			"ad": {
+				"failure": "Przykro nam, ale próbujesz edytować ogłoszenie, które wygasło. Prosimy dodać nową ofertę."
+			}
+		}
+	},
+	"repost": {
+		"ad": {
+			"success": "Gratulacje! Twoje ogłoszenie zostało opublikowane."
+		}
+	},
+	"saved": {
+		"your": {
+			"ad": {
+				"email": {
+					"subject": "ogłoszenie zapisane #"
+				}
+			}
+		},
+		"search": {
+			"push": {
+				"sent": "Twoje wyszukane",
+				"clickToView": "nowe wyniki wyszukiwania. Kliknij, aby je zobaczyć."
+			},
+			"success": {
+				"email": {
+					"sent": "Prawie gotowe! Wysłaliśmy do Ciebie e-mail. Kliknij załączony link, aby potwierdzić i zacząć otrzymywanie powiadomień."
+				},
+				"saved": "Gotowe! Twoje Powiadomienia Gumtree są aktywne. Możesz nimi zarządzać na stronie “Moje Powiadomienia”.",
+				"activated": {
+					"$$": "Twoje Powiadomienia Gumtree są aktywne. Zarejestruj się, aby móc nimi zarządzać.",
+					"zero": {
+						"results": "Dziękujemy! Twoja subskrypcja na Gumtree została aktywowana. Obecnie nie ma na stronie ogłoszeń, które odpowiadają wybranym przez Ciebie kryteriom.Zarejestruj się, aby móc zarządzać swoimi subskrypcjami."
+					}
+				},
+				"renewed": "Gotowe! Odnowiliśmy Twoje Powiadomienia na kolejne 60 dni. Są ważne do {0}.",
+				"deleted": {
+					"this": "Twoja subskrypcja na Gumtree została anulowana.",
+					"all": "Twoje subskrypcje na Gumtree zostały anulowane"
+				}
+			},
+			"error": {
+				"delete": {
+					"invalidid": "Błędny identyfikator, nie znaleźliśmy danych",
+					"unauthorize": "Użytkownik nie może usunąć w tej lokalizacji"
+				},
+				"find": {
+					"invalidid": "Nieprawidłowy numer subskrypcji",
+					"retrieve": "Nie można odzyskać subskrypcji id -"
+				},
+				"update": {
+					"find": "Zapisanej subskrypcji nie można odszukać przez id -",
+					"norecord": "Nie ma zapamiętanej subskrypcji do zapisania",
+					"exception": "Podczas aktualizacji subskrypcji wystąpiły pewne anomalia"
+				}
+			},
+			"range_value": {
+				"no_upperbound": "Od {0}",
+				"no_lowerbound": "Do {0}",
+				"no_upperbound_Price": "Od zł{0}",
+				"no_lowerbound_Price": "Do zł{0}"
+			},
+			"category": {
+				"in": {
+					"location": "{0}, {1}"
+				}
+			},
+			"all": {
+				"location": "Polska",
+				"categories": "Wszystkie kategorie"
+			},
+			"range_Price": "zł{0} - zł{1}",
+			"keyword": "Hasło: \"{0}\"",
+			"duplicate": "Identyczny filtr już istniej",
+			"in": "w",
+			"countexceeded": "Przekroczona została maksymalna liczba subskrypcji"
+		}
+	},
+	"your": {
+		"ad": {
+			"activated": {
+				"email": {
+					"subject": "{1} ogłoszenie aktywowane - \"{0}\""
+				}
+			}
+		}
+	},
+	"respond": {
+		"to": {
+			"buyer": {
+				"email": {
+					"text": "Możesz odpisać {0} < {1} > odpowiadając na ten e-mail <br/></br/>"
+				}
+			}
+		}
+	},
+	"link": {
+		"to": {
+			"ad": {
+				"email": {
+					"text": "Link do ogłoszenia"
+				}
+			}
+		}
+	},
+	"copy": {
+		"of": {
+			"your": {
+				"reply": {
+					"email": {
+						"text": "Odpowiedziałeś na to ogłoszenie {1}: \"{0}\""
+					}
+				}
+			}
+		}
+	},
+	"optional": {
+		"text": "Opcjonalnie"
+	},
+	"required": {
+		"text": "*"
+	},
+	"username": {
+		"text": "Nazwa użytkownika"
+	},
+	"previewad": {
+		"notice": {
+			"text": "Twoje ogłoszenie nie jest jeszcze aktywne, sprawdź je i dodaj."
+		},
+		"edit": {
+			"text": "Edytuj"
+		},
+		"postyourad": {
+			"text": "Dodaj swoje ogłoszenie"
+		}
+	},
+	"repostad": {
+		"your": {
+			"free": {
+				"ad": {
+					"text": "Odśwież swoje ogłoszenie"
+				}
+			}
+		},
+		"post": {
+			"text": "Odśwież"
+		}
+	},
+	"map": {
+		"dlg": {
+			"title": {
+				"1": "Nie znaleźliśmy podanego adresu",
+				"2": "Prosimy wybrać jedną z opcji:",
+				"3": "Lub skorzystać z wpisanego przez siebie adresu:",
+				"4": "Kliknij “ anuluj ” aby spróbować ponownie"
+			},
+			"cancel": "Anuluj"
+		}
+	},
+	"header": {
+		"logo": {
+			"altTag": "Darmowe Ogłoszenia"
+		},
+		"interlink": {
+			"title": "Darmowe Ogłoszenia {0}"
+		},
+		"breadcrumb-search": "| {0}",
+		"breadcrumb-result": "Aktywnych ogłoszeń: {0}",
+		"popular-search": {
+			"popular": "Popularne"
+		},
+		"related-search": {
+			"items": "Podobne",
+			"relatedvip": "Podobne",
+			"vipitems": "Podobne przedmioty Vip"
+		},
+		"popular-trending": {
+			"items": "Najnowsze"
+		},
+		"postad-long": "Dodaj ogłoszenie",
+		"postad-medium": "Dodaj ogłoszenie",
+		"postad-short": "Dodaj ogłoszenie",
+		"search-help_center": "Pomoc",
+		"search-keyword": "Czego szukasz?",
+		"search-go": "Szukaj",
+		"search-category": "Kategoria",
+		"search-location": "Polska",
+		"search-all-categories": "Wszystkie kategorie",
+		"search-all-locations": "Polska",
+		"clear-recent-searches": "Wyczyść",
+		"menu": {
+			"sign": {
+				"in": "Zaloguj się"
+			},
+			"my": {
+				"gumtree": "Moje Gumtree",
+				"watchlist": "Zachowane ogłoszenia",
+				"savedsearch": "Moje powiadomienia",
+				"profile": "Mój profil"
+			},
+			"your": {
+				"ads": "Moje ogłoszenia"
+			},
+			"promote": {
+				"ads": "Wypromuj ogłoszenia"
+			},
+			"contact": "Napisz do nas",
+			"signout": "Wyloguj się",
+			"register": "Zarejestruj się",
+			"termCond": "Zasady korzystania"
+		},
+		"suggested-links": "Proponowane",
+		"published": ""
+	},
+	"mc": {
+		"menu": {
+			"title": "Moje Wiadomości"
+		},
+		"you": "Ciebie:",
+		"no": {
+			"converastion": {
+				"msg": "Nie masz wiadomości."
+			}
+		},
+		"reply": {
+			"report": {
+				"conv": "Zgłoś rozmowę"
+			},
+			"message": {
+				"$$": "Reply to Message:",
+				"placeholder": "Wpisz swoją wiadomość..."
+			}
+		},
+		"to": {
+			"all": {
+				"messages": "Wróć do Moich Wiadomości"
+			}
+		},
+		"report": {
+			"conversation": {
+				"warning": {
+					"disabled": "Czy chcesz zgłosić tę konwersację?",
+					"$$": "Czy chcesz zgłosić tę rozmowę? Jeśli tak, w tej konwersacji nie będziesz już mï¿½gł wysłać żadnych wiadomości."
+				}
+			}
+		},
+		"delete": {
+			"conversation": {
+				"message": {
+					"$$": "Czy na pewno chcesz usunąć tę rozmowę?",
+					"yes": "Tak",
+					"no": "Nie",
+					"ok": "Kontynuować"
+				}
+			}
+		},
+		"anonymous": "Anonimowy Użytkownik",
+		"chat": {
+			"with": "Rozmawiaj z"
+		},
+		"ad": {
+			"prefix": "Ogłoszenie"
+		},
+		"loadmore": {
+			"messages": "Wcześniejsza korespondencja"
+		},
+		"warning": {
+			"by": {
+				"me": {
+					"message": "Zgłosiłeś tą rozmowę, nie można już tu wysłać nowych wiadomości."
+				},
+				"other": {
+					"message": "Drugi użytkownik zaznaczył tę rozmowę jako zamkniętą."
+				}
+			}
+		}
+	},
+	"tooltip": {
+		"message": {
+			"delete": "Usunąć konwersację",
+			"report": "Zgłoś rozmowy",
+			"reported": "rozmowa zgłaszane"
+		}
+	},
+	"promote-my-ads": {
+		"photo": {
+			"needed": {
+				"for": {
+					"hp": {
+						"gallery": "Najpierw dodaj zdjęcie"
+					}
+				}
+			}
+		}
+	},
+	"vat": {
+		"isNotBusinessCustomer": "Jestem zarejestrowanym płatnikiem VATu",
+		"description": "Prosimy podać poniższe informacje.",
+		"customerAddress": "Adres",
+		"customerNIP": "NIP",
+		"customerName": "Nazwa",
+		"vATNumber": {
+			"$$": "Numer VATu",
+			"error": "Numer VATu nie został potwierdzony.  Prosimy sprawdzić numer i upewnić się, że jest wpisany prawidłowo.",
+			"placeholder": "PL xxx-xxx-xx-xx"
+		},
+		"btn": {
+			"save": "Zapisz",
+			"cancel": "Anuluj"
+		},
+		"save": {
+			"success": "Dziękujemy, informacje zostały zapisane."
+		}
+	},
+	"vip": {
+		"verified": {
+			"email": "E-mail Potwierdzony"
+		},
+		"non-verified": {
+			"email": "Brak Potwierdzenia"
+		},
+		"num-total-ads": "Wszystkie",
+		"num-active-ads": "Aktywne",
+		"of": {
+			"text": "z"
+		},
+		"favorite": "Ulubione",
+		"share": "Udostępnij",
+		"like": "Polub",
+		"follow-us": "Śledź",
+		"print": "Drukuj",
+		"report": "Zgłoś",
+		"posted-on": "{0}",
+		"send-email": "E-mail",
+		"send": {
+			"$$": "Wyślij",
+			"to": {
+				"seller": "Wyślij do ogłoszeniodawcy"
+			}
+		},
+		"send-email-short": "E-mail",
+		"cancel": "Anuluj",
+		"reply": {
+			"your": {
+				"name": "Imię",
+				"email": "E-mail",
+				"phoneNumber": "Telefon",
+				"phoneNumberOptional": "Opcjonalnie"
+			},
+			"message": "Wiadomość",
+			"send": {
+				"me": {
+					"copy": {
+						"email": "Wyślij mi kopię e-maila"
+					}
+				}
+			},
+			"attachmentUpload": {
+				"title": "Dołącz plik",
+				"help": "(maksymalnie 2MB)"
+			},
+			"optional": {
+				"text": "Opcjonalnie"
+			},
+			"canned": {
+				"imInterested": "Zainteresowała mnie ta oferta. Proszę o kontakt.",
+				"whenAndWhereCanISeeIt": "Gdzie i kiedy możemy się spotkać?",
+				"whenWhereICanSeeIt": "Gdzie i kiedy mogę to zobaczyć?"
+			}
+		},
+		"policymessage": "Klikając \"Wyślij\", wyrażasz zgodę na nasze <span class='sudo-link' data-o-uri=\"{0}\" data-target=\"_self\"> Zasady korzystania</span> i <span class='sudo-link' data-o-uri=\"{1}\" data-target=\"_self\">Politykę prywatności</span> oraz zgadzasz się na otrzymywanie naszych newsletterów i ofert promocyjnych.",
+		"map": "Mapa",
+		"results": "Wróć",
+		"user": {
+			"$$": "Użytkownik",
+			"since": {
+				"date": {
+					"format": "MM-yyyy"
+				}
+			}
+		},
+		"seller": {
+			"user": "Użytkownik Gumtree"
+		},
+		"breadcrumb": "ogłoszenie {0}",
+		"see": {
+			"seller": {
+				"ads": "Zobacz więcej ogłoszeń"
+			}
+		},
+		"discription": "Wiadomość",
+		"message-sent": "Twoja wiadomość została wysłana",
+		"security-tips": "Porady Bezpieczeństwa",
+		"security-tips-desc": "- Twoje bezpieczeństwo jest dla nas ważne, zachęcamy do zachowania czujności.",
+		"security-tips-learn-more": "Dowiedz się więcej",
+		"similar-ads-title": "Podobne ogłoszenia, które mogą Cię zainteresować.",
+		"similar-ads-more-ads": "Więcej ogłoszeń",
+		"expired": "Witaj! Niestety, ale to ogłoszenie wygasło. Dla ułatwienia, poniżej proponujemy niektóre podobne oferty, które mogą Cię zainteresować.",
+		"active-user": "Użytkownik od",
+		"related-search-title": "Podobne wyniki",
+		"seo": {
+			"alt-tag": {
+				"image": "{0} z {1}, zdjęcie: {2}",
+				"thumbnail": "{0} z {1}, miniatura: {2}",
+				"related-ad": "{0} z {1}, zobacz zdjęcie"
+			}
+		},
+		"show-phone": "Pokaż numer telefonu",
+		"show-phone-withstar": "*** Pokaż numer telefonu",
+		"phone-short": "Połączenia",
+		"visitCount": "Wizyty:",
+		"edit": {
+			"message": "Ogłoszenia zawierające więcej informacji, zdjęć i możliwości kontaktu dają lepsze rezultaty. <a data-gtm=\"pc|EditAdBegin\" href=\"{0}\">Popraw swoje ogłoszenie edytując je</a>."
+		},
+		"repost": {
+			"message": "Ogłoszenia zawierające więcej informacji, zdjęć i możliwości kontaktu dają lepsze rezultaty. <a data-gtm=\"pc|EditAdBegin\" href=\"{0}\">Popraw i dodaj ponownie swoje ogłoszenie</a>."
+		},
+		"post-it-yourself": "Dodaj takie ogłoszenie!",
+		"attribute": {
+			"label": {
+				"creationdate": {
+					"$$": "Data dodania",
+					"onempty": "Ogłoszenie będzie wkrótce aktywowane."
+				},
+				"location": "Lokalizacja"
+			}
+		},
+		"flagad": {
+			"title": "Zgłoś ogłoszenie",
+			"anuncioReportado": "Ogłoszenie zgłoszone",
+			"reason": "Powód",
+			"email": "E-mail",
+			"comments": "Komentarz",
+			"captcha": {
+				"request": "Wpisz numer"
+			},
+			"enable": {
+				"images": "Włącz zdjęcia"
+			},
+			"report": "Zgłoś",
+			"termCond": "Wysyłając Zgłoszenie, wyrażasz zgodę na nasze <a href=\"{0}\"> Zasady korzystania</a> z Gumtree.",
+			"contact": {
+				"text": "W przypadku jakichkolwiek pytań prosimy o kontakt"
+			},
+			"error": {
+				"email": "Prosimy podać e-mail",
+				"comments": "Prosimy wpisać komentarz"
+			}
+		},
+		"flagadSuccess": "Dziękujemy za zgłoszenie. Sprawdzimy tę ofertę najszybciej jak to możliwe."
+	},
+	"footer": {
+		"getToKnowUs": {
+			"title": "Poznaj nas",
+			"about": "O Gumtree",
+			"rules": "Zasady zamieszczania",
+			"blog": "Gumtree Blog"
+		},
+		"explore": {
+			"title": "Zobacz więcej",
+			"bestof": "Najlepsze ogłoszenia",
+			"topSearches": "Najpopularniejsze wyszukiwania",
+			"mobilesite": "Stara strona",
+			"sitemap": "Tematy Gumtree",
+			"locations": "Lokalizacje",
+			"interlink": "Sieć stron eBaya",
+			"propertyPriceChecker": "Ceny Nieruchomości"
+		},
+		"legalbits": {
+			"title": "Sprawy prawne",
+			"terms": "Zasady korzystania",
+			"privacy": "Polityka Prywatności",
+			"cookie": "Informacje o Cookies"
+		},
+		"tips-help": {
+			"title": "Pomoc i porady",
+			"helpContact": "Pomoc",
+			"staySafe": "Pozostań bezpiecznym",
+			"writeToUs": "Napisz do nas",
+			"promotingAds": "Promowanie ogłoszeń",
+			"giveFeedback": "Prześlij opinię"
+		},
+		"followUs": {
+			"title": "Śledź nas",
+			"facebook": "Facebook",
+			"google": "Google+",
+			"twitter": "Twitter",
+			"youTube": "YouTube",
+			"pinterest": "Pinterest"
+		},
+		"motors": {
+			"title": "Auta na Gumtree",
+			"a-c": "Samochody A-C",
+			"d-g": "Samochody D-G",
+			"h-l": "Samochody H-L",
+			"m-o": "Samochody M-O",
+			"p-z": "Samochody P-Z"
+		},
+		"copyright": "Copyright © 2014-2016 eBay.  Wszelkie Prawa zastrzeżone.",
+		"twitter": "@gumtreecoza",
+		"facebook": "Polub",
+		"googleplus": "Poleć",
+		"pinterest": "Pinterest",
+		"youtube": "Youtube",
+		"blog": "Nowości, ciekawostki,  wydarzenia z życia Gumtree. <a href=\"{0}\"> Gumtree Blog </a>"
+	},
+	"error404": {
+		"message": "Przepraszamy, ale ta strona nie istnieje\" <br /><a href=\"{0}\"> Prosimy przejść do strony głównej </a>"
+	},
+	"error410": {
+		"message": "Przepraszamy, ta oferta jest już nieaktualna."
+	},
+	"error500": {
+		"message": "Niestety, jeden z naszych serwerów dostał czkawki. <br /><a href=\"{0}\"> Prosimy przejść do strony głównej </a>"
+	},
+	"default": {
+		"home": {
+			"page": {
+				"title": {
+					"text": "Darmowe Ogłoszenia na Gumtree Polska"
+				}
+			}
+		}
+	},
+	"private": {
+		"policy": "Polityka Prywatności"
+	},
+	"security": {
+		"tips": "Porady Bezpieczeństwa"
+	},
+	"prohibited": {
+		"content": {
+			"policy": "Zasady zamieszczania"
+		}
+	},
+	"notice": {
+		"of": {
+			"claimed": {
+				"infringement": "Powiadomienie o naruszeniu (NOCI)"
+			}
+		}
+	},
+	"vip_title": "| Gumtree Polska",
+	"seo": {
+		"allTheAds": "wszystkie-the-reklamy",
+		"sellerListings": "oferty-sprzedazy",
+		"content": {
+			"learn": {
+				"more": "Dowiedz się więcej"
+			}
+		}
+	},
+	"ourvip": {
+		"flagad": {
+			"contact": {
+				"link": "pomoc techniczna"
+			}
+		}
+	},
+	"register": {
+		"page": {
+			"title": "Zarejestruj się na Gumtree"
+		},
+		"title": "Rejestracja",
+		"facebook": "Zarejestruj się przez Facebook",
+		"or": "lub zarejestruj się.",
+		"register-with-email": "Jeśli wolisz, zarejestruj się za pomocą e-mail:",
+		"placeholder-email": "E-mail",
+		"accept-terms": "Klikając \"Zarejestruj się\", wyrażasz zgodę na nasze <a href=\"{0}\">\"Zasady korzystania\"</a> i potwierdzasz, że przeczytałeś naszą <a href=\"{1}\"> Politykę prywatności</a> i informacje o plikach <a href=\"{2}\">Cookies</a>.",
+		"marketing-opt-in": "Tak, chcę, aby Gumtree oraz firmy z rodziny eBay Inc. powiadamiały mnie o wydarzeniach, aktualnościach, nowych funkcjach i promocjach.",
+		"continue": "Zarejestruj się",
+		"toggle-label": "Masz już konto na Gumtree?",
+		"toggle-link": "Zaloguj się!",
+		"benefits": "Rejestracja nie jest wymagana, ale pozwala na dodawanie i zarządzanie ogłoszeniami bez potwierdzania każdego działania poprzez e-mail, oraz na zastrzeżenie własnej nazwy użytkownika. Aby rozpocząć rejestrację, podaj poniżej swój adres e-mail.",
+		"continue-message": "<h1>Sprawdź swoją pocztę!</h1><p>Wysłaliśmy Ci link, który pozwoli dokończyć rejestrację konta.</p>",
+		"error": {
+			"wrongemail": "Nieprawidłowy e-mail",
+			"acceptterms": "Aby kontynuować, zaakceptuj Zasady korzystania"
+		},
+		"confirm": {
+			"page": {
+				"title": "Zakończ rejestrację na Gumtree"
+			},
+			"title": "Zakończ rejestrację",
+			"name": "Imię",
+			"email": "Email",
+			"password": "Hasło",
+			"password-confirm": "Wpisz ponownie hasło",
+			"submit": "Wyślij"
+		}
+	},
+	"login": {
+		"page": {
+			"title": "Witamy na Gumtree!"
+		},
+		"title": "Zaloguj się na konto",
+		"facebook": "Zaloguj się przez Facebook",
+		"or": "or",
+		"signin-with-email": "Jeśli wolisz, zarejestruj się za pomocą e-mail:",
+		"placeholder-email": "Email",
+		"placeholder-password": "Hasło",
+		"forgot-password": "Nie pamiętasz hasła?",
+		"toggle-label": "Nie masz konta?",
+		"toggle-link": "Załóż!",
+		"signin-button": "Zaloguj się",
+		"remember-me": "Zapamiętaj mnie",
+		"cookie": {
+			"is": {
+				"disabled": "Do logowania wymagane są Cookies (Ciasteczka). Włącz cookies w preferencjach przeglądarki i spróbuj ponownie."
+			}
+		}
+	},
+	"forgot": {
+		"password": {
+			"page": {
+				"title": "Gumtree: Zapomniane hasło"
+			},
+			"title": "Zapomniane hasło",
+			"name": "Nazwa użytkownika:",
+			"email": "adres e-mail",
+			"password": "Nowe hasło:",
+			"password-confirm": "Wpisz ponownie nowe hasło:",
+			"submit": "Zmień hasło",
+			"continue-message": "<h1>Sprawdź pocztę!</h1><p> Na podany adres została wysłana wiadomość i link, który pozwoli Ci zmienić hasło. </p>",
+			"instruction": {
+				"message": "Podaj swój adres e-mail, a wyślemy Ci wiadomość umożliwiającą zmianę hasła.  Nie zapomnij, że możesz dodawać ogłoszenia bez zalogowania się."
+			},
+			"send": {
+				"email": "Wyślij e-mail"
+			}
+		}
+	},
+	"reset": {
+		"password": {
+			"page": {
+				"title": "Zmień hasło"
+			},
+			"title": "Zmień hasło",
+			"email": "Email"
+		}
+	},
+	"flag": {
+		"email": {
+			"empty": "Twój e-mail jest wymagany"
+		},
+		"ad": {
+			"type": {
+				"empty": "Rodzaj ogłoszenia jest wymagany",
+				"invalid": "Nieprawidłowy rodzaj ogłoszenia"
+			}
+		},
+		"captcha": {
+			"invalid": "Nieprawidłowy kod. Spróbuj ponownie."
+		},
+		"comments": {
+			"too": {
+				"long": "Komentarz może zawierać maksymalnie 4096 znaków"
+			}
+		},
+		"type": {
+			"InappropriateContent": "Nieodpowiednia treść",
+			"PossibleFraud": "Możliwe oszustwo",
+			"WrongCategory": "Zła kategoria",
+			"DuplicateSpam": "Duplikat/Spam",
+			"NotRelevant": "Nieaktualne"
+		}
+	},
+	"adsense": {
+		"title": "Linki sponsorowane"
+	},
+	"feature": {
+		"displayname": {
+			"bumpup": "Podbite",
+			"topad": "Wyróżnione",
+			"topad7": "Wyróżnienie - 7 dni",
+			"topad15": "Wyróżnienie - 15 dni",
+			"topad31": "Wyróżnienie - 31 dni",
+			"hpgallery": "Galeria Główna",
+			"hpgallery7": "Galeria Główna - 7 dni",
+			"hpgallery15": "Galeria Główna - 15 dni",
+			"hpgallery31": "Galeria Główna - 31 dni",
+			"urgent": "Pilne",
+			"urgent7": "Pilne - 7 dni",
+			"highlight": "Podświetlone",
+			"highlight7": "Podświetlone - 7 dni",
+			"insertionfee": "Opłata za ogłoszenie",
+			"websiteurl": "URL strony",
+			"srpgallery": "Galeria Kategorii",
+			"srpgallery7": "Galeria Kategorii - 7 dni",
+			"srpgallery15": "Galeria Kategorii - 15 dni",
+			"srpgallery31": "Galeria Kategorii - 31 dni",
+			"bumpupXY": "Podbite"
+		},
+		"post": {
+			"urgent": "Pilne"
+		},
+		"duration": {
+			"small": "1 Raz",
+			"medium": "7 Dnia",
+			"large": "7 lub 31 Dni",
+			"hr12": "Co 12 Godzin"
+		},
+		"description": {
+			"bumpup": "Przesuń swoje ogłoszenie na samą górę bezpłatnych ogłoszeń!",
+			"topad": "Wyróżnij ogłoszenie i pokaż je na górze kategorii. Ogłoszenia wyświetlane są rotacyjnie.",
+			"hpgallery": "Wyświetl swoje ogłoszenie z pięknym zdjęciem na głównej stronie Gumtree i pozwól, aby było zauważone przez tysiące osób.",
+			"urgent": "Powiadom użytkowników, że zależy Ci na szybkim kontakcie w sprawie oferty.",
+			"highlight": "Podświetl swoje ogłoszenie, aby łatwiej i szybciej było zauważone.",
+			"insertionfee": "Opłata za ogłoszenie",
+			"websiteurl": "Website URL",
+			"srpgallery": "Pokaż swoje ogłoszenie w najbardziej widocznym miejscu na głównej stronie.",
+			"bumpupXY": "Podbij swoje ogłoszenie co {0} {1} dni"
+		},
+		"option": {
+			"description": {
+				"bumpup": "",
+				"topad7": "na {0} dni",
+				"topad15": "na {0} dni",
+				"topad31": "na {0} dni",
+				"hpgallery": "na {0} dni",
+				"hpgallery7": "na {0} dni",
+				"hpgallery15": "na {0} dni",
+				"hpgallery31": "na {0} dni",
+				"urgent": "na {0} dni",
+				"urgent7": "na {0} dni",
+				"urgent15": "na {0} dni",
+				"urgent31": "na {0} dni",
+				"highlight": "na {0} dni",
+				"highlight7": "na {0} dni",
+				"highlight15": "na {0} dni",
+				"highlight31": "na {0} dni",
+				"srpgallery": "na {0} dni",
+				"srpgallery7": "na {0} dni",
+				"srpgallery15": "na {0} dni",
+				"srpgallery31": "na {0} dni",
+				"bumpup_xy": "na {0} dni"
+			},
+			"duration": "{0} dni",
+			"bestdealInfo": "Zwiększ 10x szanse na pozytywny odzew na swoje ogłoszenie",
+			"bestdealIcon": "Najlepsza okazja"
+		},
+		"legend": {
+			"banner": {
+				"headline": {
+					"1": {
+						"$$": "Wypromuj swoje ogłoszenie, aby zwróciło na siebie uwagę.",
+						"disabledPayment": ""
+					},
+					"2": {
+						"$$": "Promowane na Gumtree oferty sprzedają się 5x szybciej.",
+						"disabledPayment": ""
+					}
+				}
+			},
+			"mobile": {
+				"banner": {
+					"headline": {
+						"1": {
+							"$$": "Promuj swoje ogłoszenia",
+							"disabledPayment": ""
+						},
+						"2": {
+							"$$": "Daj się zauważyć i sprzedaj 5x szybciej",
+							"disabledPayment": ""
+						}
+					}
+				}
+			},
+			"tip": "Rada:",
+			"bumpup": {
+				"name": "Podbite",
+				"short": {
+					"description": "Pokaż swoje ogłoszenie nowym użytkownikom, przenieś je na pierwszą stronę!"
+				},
+				"description": {
+					"list": {
+						"1": "Niskie koszty, szybkie wyniki.",
+						"2": "Podbij swoje ogłoszenie na górę pierwszej strony. Pozostanie ono tam, dopóki nie zostaną dodane nowe ogłoszenia lub ktoś inny nie podbije swojej oferty."
+					},
+					"tip": {
+						"text": "Nie otrzymujesz wystarczająco dużo odpowiedzi? Skorzystaj z podbicia, aby więcej osób zobaczyło Twoje ogłoszenie."
+					}
+				}
+			},
+			"urgent": {
+				"name": "Pilne",
+				"short": {
+					"description": "Oczekujesz niezwłocznie odpowiedzi? Pokaż, że zależy Ci na szybkim kontakcie."
+				},
+				"description": {
+					"list": {
+						"1": "Ogłoszenia pilne to najlepszy sposób, aby pokazać, że zależy Ci na szybkim kontakcie.",
+						"2": "Kolorowe ramki przyciągają wzrok."
+					},
+					"tip": {
+						"text": "Jeśli chcesz szybko sprzedać, nie zapomnij dodać zdjęcia. Aby ofertę zobaczyło więcej osób, PODBIJ też swoje ogłoszenie."
+					}
+				}
+			},
+			"highlight": {
+				"name": "Podświetlone",
+				"short": {
+					"description": "Podświetl ogłoszenie, aby wyróżniało wśród innych, a otrzymasz więcej odpowiedzi."
+				},
+				"description": {
+					"list": {
+						"1": "Żywe i kontrastowe kolory przyciągają uwagę do ogłoszenia."
+					},
+					"tip": {
+						"text": "Aby jeszcze bardziej zwrócić uwagę na swoje ogłoszenie, połącz promocje i dodaj ogłoszenie Podświetlone i Pilne."
+					}
+				}
+			},
+			"websiteurl": {
+				"name": "URL strony",
+				"description": {
+					"list": {
+						"1": "Jeśli masz swoją stronę internetową, pokaż ją i reklamuj wśród użytkowników Gumtree, dodając link w swoim ogłoszeniu",
+						"2": "Użytkownicy Gumtree będą mogli kliknąć adres i przejść do strony bezpośrednio z Twojego ogłoszenia",
+						"3": "Twoje ogłoszenie będzie pojawiać się na stronie w wynikach wyszukiwania i dzięki temu o wiele więcej użytkowników Gumtree będzie mogło odwiedzić stronę"
+					}
+				}
+			},
+			"topads": {
+				"name": "Wyróżnione",
+				"short": {
+					"description": "Wyróżnij swoje ogłoszenie, aby dłużej pozostało na pierwszej stronie."
+				},
+				"description": {
+					"list": {
+						"1": "Przez czas promocji ogłoszenia są rotacyjnie wyświetlane na pierwszej stronie w wybranej kategorii.Oferty wyróżnione są bardziej widoczne i użytkownicy częściej je czytają.",
+						"2": "Łatwo je znaleźć i łatwo na nie odpowiedzieć."
+					},
+					"tip": {
+						"text": "Aby było skuteczne, upewnij się, że jest czytelne, opis wyraźnie określa co oferujesz, podaj jak najwięcej informacji i dodaj dobre zdjęcie."
+					}
+				}
+			},
+			"hopepage": {
+				"name": {
+					"1": "",
+					"2": "Galeria Główna"
+				}
+			},
+			"homepage": {
+				"short": {
+					"description": "Ogłoszenia w Galerii na stronie głównej są najbardziej widoczne."
+				},
+				"description": {
+					"list": {
+						"1": "Oferty w Galerii na stronie głównej widoczne są dla Użytkowników w całej Polsce.",
+						"2": "To najlepsza forma promocji ofert, w których można użyć współczesne technologie komunikacji."
+					},
+					"tip": {
+						"text": "Pamiętaj - dobre zdjęcie to 1000 słów!"
+					}
+				}
+			},
+			"catgallery": {
+				"name": {
+					"1": "",
+					"2": "Galeria Kategorii"
+				},
+				"short": {
+					"description": "Zapewnia najlepszą widoczność ogłoszenia na poziomie kategorii."
+				},
+				"description": {
+					"list": {
+						"1": "To najskuteczniejsza forma promocji! Ogłoszenia w danej kategorii wyświetlane są rotacyjnie na górze każdej strony.",
+						"2": "Promocja dostępna jest tylko w wybranych kategoriach."
+					},
+					"tip": {
+						"text": "Aby zaoszczędzić, wybierz odpowiedni czas promocji. Nie zapomnij o dobrym zdjęciu."
+					}
+				}
+			},
+			"bumpupXY": {
+				"name": "Podbij co {0`} na {1} dni",
+				"short": {
+					"description": "Pomóż ludziom znaleźć swoje ogłoszenie, przenieś je na pierwszą stronę!"
+				},
+				"description": {
+					"list": {
+						"1": "Niskie koszty, szybkie wyniki",
+						"2": "Podbij swoje ogłoszenie na górę pierwszej strony. Pozostanie ono tam, dopóki nie zostaną dodane nowe ogłoszenia lub ktoś inny nie podbije swojej oferty. Podbijaj co {0}."
+					},
+					"tip": {
+						"text": "Nie otrzymujesz wystarczająco dużo odpowiedzi? Skorzystaj z podbicia, aby więcej osób zobaczyło Twoje ogłoszenie."
+					}
+				}
+			},
+			"learnmore": "Dowiedz się więcej[?]",
+			"close": "Zamknij"
+		},
+		"no": {
+			"permission": "Nie możesz skorzystać z tej promocji"
+		},
+		"not": {
+			"supported": "{0} Ta promocja nie może być użyta w: {1}"
+		},
+		"multiplead": {
+			"about": {
+				"to": {
+					"renew": {
+						"email": {
+							"subject": "Twoje promocje wkrótce zostaną automatycznie odnowione"
+						}
+					}
+				}
+			}
+		},
+		"singlead": {
+			"about": {
+				"to": {
+					"renew": {
+						"email": {
+							"subject": "Twoja promocja ogłoszenia {0} zostanie wkrótce automatycznie odnowiona"
+						}
+					}
+				}
+			}
+		}
+	},
+	"FeatureNotSupported": "{0} Ta promocja nie jest obsługiwana",
+	"TargetNotSupported": "Tych promocji nie możesz użyć w {0}",
+	"FeatureAlreadyEnabled": "{0} Promocja jest już włączona w ogłoszeniu {1}",
+	"social": {
+		"media": {
+			"follow": {
+				"us": "Śledź nas",
+				"$$": "Śledź"
+			},
+			"share": "Udostępnij",
+			"twitterPrefix": "Sprawdź co dzieje się na Gumtree! {0}",
+			"email": {
+				"body": "Witaj! Myślę, że to ogłoszenie na Gumtree może Cię zainteresować. {0} %0D%0ADołącz do społeczności Gumtree:%0D%0AFacebook: https://www.facebook.com/GumtreePolska %0D%0A Google+: https://plus.google.com/103950977256553454134/posts %0D%0A Twitter: https://twitter.com/gumtreepolska",
+				"subject": "To może Cię zainteresować! {0}"
+			}
+		}
+	},
+	"error": {
+		"attribute": {
+			"invalid": "Nieprawidłowa wartość",
+			"empty": "Prosimy podać informacje w polu {0}"
+		}
+	},
+	"too": {
+		"many": {
+			"cap": {
+				"letter": "Prosimy zmniejszyć ilość WIELKICH liter w opisie"
+			}
+		}
+	},
+	"wrong": {
+		"price": {
+			"format": "Prosimy używać tylko cyfr, aby wpisać cenę",
+			"decimal": "Prosimy podać tylko 2 cyfry po przecinku"
+		},
+		"my": {
+			"profile": {
+				"phone": {
+					"type": "Prosimy podać prawidłowy rodzaj telefonu",
+					"format": "Prosimy podać prawidłowy numer telefonu"
+				},
+				"gender": {
+					"type": "Prosimy podać prawidłową płeć"
+				},
+				"birth": {
+					"day": "Prosimy użyć formatu MM/DD/YYYY"
+				},
+				"future": {
+					"date": "Prosimy podać dzisiejszą lub wcześniejszą datę"
+				}
+			}
+		}
+	},
+	"pricetype": {
+		"fixed": "Cena",
+		"free": "Za darmo",
+		"make_offer": "Do negocjacji",
+		"contact_me": "Proszę o kontakt",
+		"barter_swap": "Wymiana/zamiana"
+	},
+	"description": {
+		"empty": "Opis musi zawierać przynajmniej 50 znaków"
+	},
+	"swrong": {
+		"phone": {
+			"format": "Numer telefonu nie może zawierać specjalnych liter ani znaków"
+		}
+	},
+	"picYour": {
+		"discription": {
+			"too": {
+				"long": "Opis zdjęcia jest za długi"
+			}
+		}
+	},
+	"autocomplete": {
+		"category": {
+			"in": ">"
+		},
+		"display": {
+			"text": "{0} > {1}"
+		}
+	},
+	"no": {
+		"picture": {
+			"hpg": "W Galerii na Stronie Głównej promowane są tylko ogłoszenia ze zdjęciami. Dołącz zdjęcie i kliknij ponownie \"Dodaj ogłoszenie\".",
+			"srp": "W Galerii Kategorii promowane są tylko ogłoszenia ze zdjęciami.  Dołącz zdjęcie i kliknij ponownie \"Dodaj ogłoszenie\"."
+		}
+	},
+	"CarMileageInKms": {
+		"0": "10,000 lub mniej",
+		"10000": "20,000",
+		"20000": "30,000",
+		"30000": "40,000",
+		"40000": "50,000",
+		"50000": "60,000",
+		"60000": "70,000",
+		"70000": "80,000",
+		"80000": "90,000",
+		"90000": "100,000",
+		"AFTER": "100,001 lub więcej"
+	},
+	"sitemap": {
+		"locations": {
+			"url": {
+				"prefix": "gumtree-poland"
+			},
+			"breadcrumbs": {
+				"root": "Lokalizacja"
+			},
+			"title": {
+				"left-panel": "Lokalizacja w Polsce",
+				"right-panel": "Kategorie w {0}"
+			},
+			"filter": {
+				"button": "Filtr"
+			},
+			"label": {
+				"show-more": "Pokaż więcej",
+				"show-less": "Pokaż mniej"
+			},
+			"title-tag": "{0} Ogłoszenia | {0} Gumtree",
+			"description-tag": "Ogłoszenia na Gumtree {0} | Znajdź prawie wszystko w {0}",
+			"cat-in-loc": "{0} w {1}"
+		}
+	},
+	"bestof": {
+		"url": {
+			"prefix": "Najlepsze ogłoszenia"
+		},
+		"mainpage": {
+			"title": "Najlepsze na Gumtree Polska",
+			"subtitle": {
+				"overall": "Najlepsze ze wszystkich ogłoszeń",
+				"bestofcategory": "Najlepsze w {0}"
+			}
+		},
+		"overall": {
+			"more-ads": "Więcej najlepszych ze wszystkich ogłoszeń..."
+		},
+		"category": {
+			"more-ads": "Więcej najlepszych ogłoszeń w {0}"
+		},
+		"catpage": {
+			"title": "Najlepsze w {0}",
+			"navlink": {
+				"back": "Wróć",
+				"browseall": "Przeglądaj wszystkie ogłoszenia w {0}"
+			}
+		}
+	},
+	"pagination": {
+		"page": {
+			"result": {
+				"description": "Wyniki {0} do {1} z {2} ogłoszeń"
+			}
+		}
+	},
+	"watchlist": {
+		"title": "Zachowane ogłoszenia",
+		"itemCount": "Ilość",
+		"clearAll": "Usuń wszystkie",
+		"viewAll": "Pokaż wszystkie",
+		"syncbutton": {
+			"inactive": "Zapisane",
+			"active": "Zapisz",
+			"tooltip": "Zapisanie listy Zachowanych ogłoszeń pozwala na udostępnienie jej w różnych przeglądarkach i urządzeniach przenośnych"
+		},
+		"emailbutton": "lub, e-mail",
+		"emailSubject": "Moje Zachowane ogłoszenia na Gumtree",
+		"emailBody": "Witaj,|| Chcę podzielić się moją najnowszą listą Zachowanych ogłoszeń na Gumtree.|{0}||Zapraszam do obejrzenia!|| Dzięki uprzejmości Zespołu Gumtree |http://www.gumtree.pl/",
+		"noADHint_part1": "Kliknij gwiazdkę w ulubionym ogłoszeniu, aby dodać ofertę do listy Zachowanych ogłoszeń",
+		"noADHint_part2": "lub,                                    l",
+		"noADHint_part3": "Zaloguj się",
+		"noADHint_part4": "Aby zobaczyć oferty dodane do swojej listy Zachowanych ogłoszeń",
+		"star": {
+			"add": "Dodaj do Zachowanych",
+			"added": "Dodane do Zachowanych"
+		},
+		"notification": {
+			"adding": "Gratulacje! Dodaliśmy to ogłoszenie do Twojej listy Zachowanych",
+			"removing": "Usunęliśmy to ogłoszenie z Twojej listy Zachowanych.",
+			"sync": "Świetnie!  Twoja lista Obserwowanych ogłoszeń jest zsynchronizowana z kontem Moje Gumtree oraz przeglądarkami i urządzeniami mobilnymi. Zaloguj się na Moje Gumtree, aby zobaczyć oferty."
+		},
+		"ads": {
+			"page": {
+				"title": {
+					"text": "Zachowane ogłoszenia"
+				}
+			}
+		}
+	},
+	"my-watchlist": {
+		"emptystatemessage": "<br />lub, <a href=\"{0}\">zaloguj się</a> aby dodać do listy wcześniej Zachowanych ogłoszeń",
+		"emptysigninmessage": "Kliknij gwiazdkę w ulubionym ogłoszeniu, aby dodać ofertę do listy Zachowanych ogłoszeń"
+	},
+	"top-searches": {
+		"breadcrumbs": {
+			"root": "Najczęściej szukane"
+		},
+		"nocat-noloc": {
+			"header": "Najpopularniejsze wyszukiwania | Gumtree Polska",
+			"subheader": {
+				"top": "Najpopularniejsze bieżące wyszukiwania | Gumtree Polska",
+				"popular": "Najpopularniejsze wyszukiwania | Gumtree Polska"
+			}
+		},
+		"cat-noloc": {
+			"header": "Najczęściej szukane | {0}",
+			"subheader": {
+				"top": "Obecnie najczęściej szukane | {0}",
+				"popular": "Popularne wyszukiwania | {0}"
+			}
+		},
+		"nocat-loc": {
+			"header": "Najczęściej szukane | {0}",
+			"subheader": {
+				"top": "Obecnie najczęściej szukane | {0}",
+				"popular": "Popularne wyszukiwania | {0}"
+			}
+		},
+		"cat-loc": {
+			"header": "Najczęściej szukane | {0} | {1}",
+			"subheader": {
+				"top": "Obecnie najczęściej szukane | {0} | {1}",
+				"popular": "Popularne wyszukiwania | {0} | {1}"
+			}
+		}
+	},
+	"topsearches": {
+		"title": {
+			"category-location": "Kategoria / Lokalizacja"
+		},
+		"filter": {
+			"button": "Filtry"
+		},
+		"url": {
+			"prefix": "wyszukiwarka-gory",
+			"all-ads": "wszystkie-ogloszenia"
+		},
+		"label": {
+			"show-more": "Pokaż więcej",
+			"show-less": "Pokaż mniej"
+		}
+	},
+	"msite-prompt": {
+		"welcome": "Witamy na Gumtree",
+		"please-choose": "Zdecyduj co chcesz wybrać:",
+		"normal-link": "Zostać na nowej stronie Gumtree",
+		"old-link": "Przejść do starej mobilnej strony Gumtree",
+		"remember": "zapamiętaj preferencje dla kolejnych wizyt"
+	},
+	"ssp": {
+		"header": {
+			"items": "Liczba subskrypcji:",
+			"filter": {
+				"title": "Moje powiadomienia"
+			},
+			"occurrence": {
+				"title": "Powiadomienia e-mail*"
+			},
+			"delete": {
+				"title": "Usuń"
+			}
+		},
+		"message": {
+			"warning": "*Otrzymasz powiadomienie tylko wtedy, jeśli znajdziemy oferty spełniające kryteria wyszukiwania"
+		},
+		"localizedInword": "w",
+		"all": {
+			"ads": {
+				"text": "Wszystkie ogłoszenia"
+			}
+		}
+	},
+	"CarEngineDisplacement": {
+		"25": "0 - 50cc",
+		"100": "051cc - 125cc",
+		"225": "126cc - 250cc",
+		"475": "251cc - 500cc",
+		"AFTER": "501cc lub większa"
+	},
+	"abandonedorder": {
+		"adFeaturePaid": {
+			"one_ad": "Wygląda, że to ogłoszenie jest już promowane. Powodzenia!",
+			"multiple_ads": "Wygląda, że jedno z ogłoszeń jest już promowane. Powodzenia!"
+		},
+		"adNotActive": "Jedno z ogłoszeń w zamówieniu już wygasło."
+	},
+	"select": {
+		"all": {
+			"feature": {
+				"options": "Wybierz wszystkie opcje"
+			}
+		}
+	},
+	"password": {
+		"strength": {
+			"short": "Za krótkie",
+			"weak": "Słabe",
+			"fair": "Takie sobie",
+			"good": "Dobre",
+			"strong": "Mocne"
+		}
+	}
+}

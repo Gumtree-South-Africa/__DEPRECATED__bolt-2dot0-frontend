@@ -4,13 +4,13 @@
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
-    	{{> adCarousel}}
-    	{{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
+
+    	{{#block "carousel"}}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
-        {{> locationMapContainer}}
-        {{#block "locationContainer" ../this}}{{/block}}
+        {{> locationMapContainer/views/hbs/locationMapContainer}}
+        {{#block "locationContainer" }}{{/block}}
 	{{/partial}}
 {{/if}}
 
-{{> homepage-base}}
+{{> homepage/views/hbs/homepage }}

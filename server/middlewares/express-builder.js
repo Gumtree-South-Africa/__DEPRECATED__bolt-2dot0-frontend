@@ -24,6 +24,7 @@ var config = {
 };
 
 
+
 var hbs = exphbs.create({
     defaultLayout: 'main',
     layoutsDir: config.root + "/app/views/templates/layouts/hbs/",
@@ -38,7 +39,6 @@ hbshelpers.init(hbs) ;
 
 function BuildApp(locale) {
     var app = express();
-    var exphbs = null;
 
 
     // uncomment after placing your favicon in /public
@@ -63,8 +63,7 @@ function BuildApp(locale) {
     app.use(writeHeader('X-Powered-By', 'Bolt'));
     app.use(deviceDetection());
 
-
-
+   // app.use(i18n.init);
 
     this.locale = locale;
 
@@ -124,24 +123,7 @@ function BuildApp(locale) {
     };
 }
 
-BuildApp.prototype.setI18nObj = function (i18nObj) {
-    this.i18nObj = i18nObj;
 
-    var app = this.getApp();
-
-    //Setup Views
-    if (this.locale) {
-        exphbs = require('express-handlebars');
-        app.set('views', config.root + '/app/views/templates/pages/');
-        app.set('view engine', 'hbs');
-
-        // Add BOLT 2.0 Handlebars helpers for view engine
-        // hbshelp(app, locale, exphbs);
-        hbshelp(app, this.locale, exphbs, this.i18nObj);
-    }
-
-
-};
 
 module.exports = BuildApp;
 ;
