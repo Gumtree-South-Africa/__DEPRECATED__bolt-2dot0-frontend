@@ -1,4 +1,3 @@
-// jshint ignore: start
 "use strict";
 
 var http = require("http");
@@ -9,7 +8,7 @@ var ModelBuilder = require("./ModelBuilder");
 
 var userService = require(process.cwd() + "/server/services/user");
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
 var config = require("config");
 
 /** 
@@ -35,8 +34,8 @@ var HeaderModel = function (secure, req, res) {
 	this.urlProtocol = this.secure ? "https://" : "http://";
 	this.statusParam = req.query.status;
 	this.resumeParam = req.query.resumeabandonedordererror;
-	
-    return new ModelBuilder(this.getHeaderData());
+
+	return new ModelBuilder(this.getHeaderData());
 };
 
 
@@ -54,10 +53,21 @@ HeaderModel.prototype.getHeaderData = function() {
 			// merge pageurl data
     		_.extend(data, pageurlJson.header);
     		
-    		scope.buildData(data);
+    		// build data
+    		var urlProtocol = scope.secure ? "https://" : "http://";
+    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : ""; 
+    		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
+    		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
+    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
+    		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
+    		data.min = config.get("static.min");
+    		
+    		scope.buildUrl(data);
+    		scope.buildCss(data);
+    		scope.buildOpengraph(data);
     		scope.buildMessages(data);
     		
-//    		// manipulate data
+    		// manipulate data
 //    		// data.enableLighterVersionForMobile = "true && isMobileDevice";
 
 			if (typeof callback !== "function") {
@@ -89,17 +99,10 @@ HeaderModel.prototype.getHeaderData = function() {
 	return arrFunctions;
 };
 
-// Build URLs, CSS, opengraph
-HeaderModel.prototype.buildData = function(data) {
+// Build URL
+HeaderModel.prototype.buildUrl = function(data) {
 	var scope = this;
-	var urlProtocol = scope.secure ? "https://" : "http://";
-	var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : ""; 
-	var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
-	var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
 	
-	data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-	data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
-	data.min = config.get("static.min");
 	data.touchIconIphoneUrl = data.baseImageUrl + "touch-iphone.png";
 	data.touchIconIpadUrl = data.baseImageUrl + "touch-ipad.png";
 	data.touchIconIphoneRetinaUrl = data.baseImageUrl + "touch-iphone-retina.png";
@@ -108,7 +111,12 @@ HeaderModel.prototype.buildData = function(data) {
 	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + "/{catId}/{locId}/{value}";
 	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + "/{lat}/{lng}";
 	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + "/0/category/0";
-	
+};
+
+//Build CSS
+HeaderModel.prototype.buildCss = function(data) {
+	var scope = this;
+
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.svg" + "_" + scope.locale + ".css");
 	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.png" + "_" + scope.locale + ".css");
@@ -122,8 +130,12 @@ HeaderModel.prototype.buildData = function(data) {
 		data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.css");
 	}
 	data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
+};
+
+//Build opengraph
+HeaderModel.prototype.buildOpengraph = function(data) {
+	var scope = this;
 	
-	// opengraph
 	data.brandName = scope.brandName;
 	data.countryName = scope.country;
 	data.logoUrl = data.baseImageUrl + scope.locale + "/logo.png";
