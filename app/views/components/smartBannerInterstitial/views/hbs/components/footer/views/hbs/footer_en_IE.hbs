@@ -1,0 +1,53 @@
+{{> footer-base}}
+
+{{#partial "footerp"}}
+	<div class="footer-links clearfix">
+		<div class="logo">
+	        <a href="{{../this.header.homePageUrl}}">
+	            <img border="0"  src="/images/{{../this.locale}}/logo.png" alt="{{i18n "header.country.label"}}"/>
+	        </a>
+		</div>
+
+		<div>
+			<h3>{{{i18n "footer.getToKnowUs.title"}}}</h3>
+			<ul>
+				<li><span class='sudo-link' data-o-uri='{{obfuscateUrl "http://gumtreehelp.com/ie/knowledgebase.php?article=122" }}'>{{{i18n "footer.getToKnowUs.about"}}}</span></li>
+				<li><span class='sudo-link' data-o-uri='{{obfuscateUrl "http://gumtreehelp.com/ie/knowledgebase.php?article=22" }}'>{{{i18n "footer.getToKnowUs.rules"}}}</span></li>
+			</ul>
+		</div>
+
+	    <div>
+	        <h3>{{{i18n "footer.explore.title"}}}</h3>
+	        <ul>
+	            {{!-- Top Searches --}}
+	            <li><a href="{{{this.footer.topSearchesLandingPageUrl}}}">{{{i18n "footer.explore.topSearches" }}}</a></li>
+	            {{!-- Locations --}}
+	            <li><a href="http://www.gumtree.ie/pages/locations/">{{{i18n "footer.explore.locations" }}}</a></li>
+	            <li><a href="http://www.gumtree.ie/pages/">{{{i18n "footer.explore.sitemap" }}}</a></li>
+	            {{!-- eCG interlinking Page --}}
+	            <li><a href="http://www.gumtree.ie/pages/ClassifiedsNetwork/">{{{i18n "footer.explore.interlink" }}}</a></li>
+	            
+			</ul>
+	    </div>
+	    
+		<div class="rightColumn">
+			<h3>{{{i18n "footer.legalbits.title"}}}</h3>
+			<ul>
+				<li><span class='sudo-link' data-o-uri="{{{this.footer.obfuscatedTermsAndConditionsURL}}}" data-target="_self">{{{i18n "footer.legalbits.terms" }}}</span></li>
+				<li><span class='sudo-link' data-o-uri="{{{this.footer.obfuscatedPrivacyPolicyURL}}}" data-target="_self">{{{i18n "footer.legalbits.privacy"}}}</span></li>
+				<li><span class='sudo-link' data-o-uri="{{{this.footer.obfuscatedCookieRightsURL}}}" data-target="_self">{{{i18n "footer.legalbits.cookie"}}}</span></li>
+			</ul>
+		</div>
+	    
+		<div class="rightColumn">
+			<h3>{{{i18n "footer.tips-help.title"}}}</h3>
+			<ul>
+	            <li><a href="http://gumtreehelp.com/ie/knowledgebase.php">{{{i18n "footer.tips-help.helpContact"}}}</a></li>
+				<li><span class="sudo-link" data-o-uri='{{obfuscateUrl "http://gumtreehelp.com/ie/knowledgebase.php?article=26"}}'>{{{i18n "footer.tips-help.staySafe"}}}</span></li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="social-links">{{> socialMediaLinks}}</div>
+	<div class="cpyrt">{{{i18n "footer.copyright"}}}</div>
+{{/partial}}

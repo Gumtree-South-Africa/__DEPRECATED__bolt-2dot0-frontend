@@ -1,0 +1,33 @@
+{{#partial "footerp"}}
+    <span class="reg_link">
+        <a href="{{{model.footer.bestAdsLandingPageUrl}}}">{{i18n "footer.bestof"}}</a>
+    </span>
+    <span class="reg_link">
+        <a href="{{{model.footer.topSearchesLandingPageUrl}}}">{{i18n "footer.topSearches"}}</a>
+    </span>
+    <span class="reg_link">
+        <a href="{{{model.footer.locationsPageUrl}}}">{{i18n "footer.locations"}}</a>
+    </span>
+    <span class="reg_link">
+        <a href="{{{model.footer.interLinkUrl}}}">{{i18n "footer.our-sites"}}</a>
+    </span>
+
+    {{#block "blog"}}
+        {{#if model.footer.seoBolt.enabled}}
+        <span class="blog">{{{i18n "footer.blog" model.footer.seoBolt.blogUrl}}}</span>
+        {{/if}}
+    {{/block}}
+
+    {{#block "cookie_notification"}}
+        <div class="cookie_warn">
+            <div class="cr-container">
+               <div class="social-links">{{> hbs/Html/footer/SocialMediaLinks}}</div>
+               <div class="cpyrt">{{{i18n "footer.cr"
+                   model.footer.obfuscatedTermsAndConditionsURL
+                   model.footer.obfuscatedPrivacyPolicyURL
+                   model.footer.obfuscatedCookieRightsURL}}}</div>
+            </div>
+        </div>
+    {{/block}}
+{{/partial}}
+
