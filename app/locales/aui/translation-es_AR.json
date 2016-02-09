@@ -1,0 +1,60 @@
+{
+	"header": {
+		"postad-long": "header.postad-long",
+		"menu": {
+			"my": {
+				"gumtree": "header.menu.my.gumtree",
+				"watchlist": "header.menu.my.watchlist",
+				"savedsearch": "header.menu.my.savedsearch"
+			},
+			"sign": {
+				"in": "header.menu.sign.in"
+			},
+			"your": {
+				"ads": "header.menu.your.ads"
+			},
+			"promote": {
+				"ads": "header.menu.promote.ads"
+			},
+			"register": "header.menu.register"
+		},
+		"postad-medium": "header.postad-medium"
+	},
+	"mc": {
+		"menu": {
+			"title": "mc.menu.title"
+		}
+	},
+	"home": {
+		"main-locations": "home.main-locations",
+		"provinces": "home.provinces",
+		"h1Tag": "home.h1Tag",
+		"allCategories": "home.allCategories",
+		"all": {
+			"cat": {
+				"localizedName": "home.all.cat.localizedName"
+			}
+		},
+		"flow": {
+			"step": {
+				"ag": "home.flow.step.ag",
+				"vr": "home.flow.step.vr",
+				"gd": "home.flow.step.gd"
+			}
+		}
+	},
+	"postad": {
+		"a": {
+			"free": {
+				"ad": {
+					"text": "postad.a.free.ad.text"
+				}
+			}
+		}
+	},
+	"email": {
+		"category": {
+			"text": "email.category.text"
+		}
+	}
+}
