@@ -17,6 +17,10 @@ var FooterModel = require("./FooterModel");
 var BasePageModel = function (req, res) {
 	this.header = new HeaderModel(false, req, res);
 	this.footer = new FooterModel(false, req, res);
+	// return new ModelBuilder(this.getCommonData());
+};
+
+BasePageModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getCommonData());
 };
 

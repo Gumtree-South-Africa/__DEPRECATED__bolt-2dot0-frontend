@@ -10,7 +10,7 @@ var _ = require("underscore");
  * @param [{Object}]} arrFunctions List of functions to be executed
  * @constructor
  */
-var BasePageModel = function (listFn, finalFunction) {
+var ModelBuilder = function (listFn, finalFunction) {
 	// Logger.log("*** CREATING MODEL....");
 	this.data = {};
 
@@ -34,7 +34,7 @@ var BasePageModel = function (listFn, finalFunction) {
 
 
 // *** PUBLIC METHODS ***
-BasePageModel.prototype = {
+ModelBuilder.prototype = {
 
 	/**
  	 * @method setCallsList
@@ -200,5 +200,5 @@ BasePageModel.prototype = {
 }; // End prototype
 
 
-module.exports = BasePageModel;
+module.exports = ModelBuilder;
 

@@ -11,7 +11,8 @@ var CategoryModel = require("../../common/CategoryModel");
 var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
-var BasePageModel = require("../../common/BasePageModel");
+// var BasePageModel = require("../../common/BasePageModel");
+var BasePageModel = require("../../common/ExtendModel");
 
 
 /**
@@ -19,7 +20,12 @@ var BasePageModel = require("../../common/BasePageModel");
  * @constructor
  */
 var HomePageModel = function (req, res) {
-	var commonData = new BasePageModel(req, res);
+	var bpModel = new BasePageModel(req, res);
+	console.log("***************");
+	console.log(bpModel.getFullName() + " ---> " + bpModel.getAddress());
+
+	var commonData = bpModel.getModelBuilder();
+
 	var loc = new LocationModel(req.requestId, res.config.locale, 2),
 		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
 		level2Loc = new LocationModel(req.requestId, res.config.locale, 1),
