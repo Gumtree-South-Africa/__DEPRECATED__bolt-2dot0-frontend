@@ -46,7 +46,7 @@ router.get('/', function (req, res, next) {
 
       var  pageData = _.extend(result, extraData);
 
-      //console.dir(extraData);
+      console.dir(extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
 

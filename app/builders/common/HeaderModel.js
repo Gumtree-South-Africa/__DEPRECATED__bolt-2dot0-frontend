@@ -61,9 +61,6 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
 
-			console.log("VALUE OF QP STATUS=");
-			console.log(scope.req.query.status);
-
 			switch(scope.req.query.status){
 				case "userregistered" :
 					data.successMessage="home.user.registered";
@@ -89,12 +86,7 @@ HeaderModel.prototype.getHeaderData = function() {
 					data.errorMessage="abandonedorder.adFeaturePaid.multiple_ads";
 					break;
 			}
-			console.log("PRINTING success Message");
-			console.log(data.successMessage);
-			console.log("PRINTING error Message");
-			console.log(data.errorMessage);
-			console.log("PRINTING page Type");
-			console.log(data.pageType);
+
     		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
     		data.min = config.get("static.min");
     		data.touchIconIphoneUrl = data.baseImageUrl + "touch-iphone.png";
