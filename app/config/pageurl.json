@@ -17,12 +17,33 @@
 		"geoLocatorUrl"			: "/post.html",
 		"rootGeoLocatorUrl"		: "/post.html",
 		"abTestUrl"				: "/post.html",
+		"autoCompleteUrl"		: "/autocomplete/model/",
+		"geoLocatorUrl"			: "/locations/content/geo/",
+		"rootGeoLocatorUrl"		: "/locations/content/",
 		
+		"type" 					: "website",
+		"localeOpenGraph" 		: "en_GB",
+		"publisherUrl"			: "https://plus.google.com/+gumtreecoza/",
+		"noPhotoUrl"			: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"isMessageCenterEnabled": true,
 		"skinCampaignOn"		: true,
 		"topHomePageAdBanner"	: true,
 		"googleTagAccountId"	: "7162/Gumtree_ZA",
-		"enableLighterVersionForMobile": false
+		"enableLighterVersionForMobile": false,
+		"headerConfig"			: {
+			"isolatedLoginLink": true
+		},
+		"navigationConfig"		: {
+	        "instantSearch": true,
+	        "geoLocator": true
+	    },
+	    "marketo": {
+	        "enabled": true,
+	    	"trackAnonUser": false,
+	    	"munchkinId": "038-AZF-323",
+	    	"privateKey": "boltisking123"
+	    },
+	    "seoDeepLinkingBaseUrlAndroid" : "android-app://com.ebay.gumtree.za/gumtreeza/"
 	},
 	"footer" : {
 		"cookieRightsURL"						: "/cookie-notice",

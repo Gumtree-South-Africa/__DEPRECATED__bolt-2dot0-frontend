@@ -27,16 +27,11 @@ var HeaderModel = function (secure, req, res) {
 	this.requestId = req.requestId;
 	this.cookie = authcookie;
 	this.locale = res.config.locale;
-	this.urlProtocol = this.secure ? "https://" : "http://";
-	
-	// Country specific variables from BAPI Config
 	this.brandName = res.config.name;
 	this.country = res.config.country;
-	this.fullDomainName = "gumtree.co.za";
-	this.metaDescription = "Description from BAPI from country settings";
-	this.localeOpenGraph = "en_GB";
-	this.publisherUrl = "https://plus.google.com/+gumtreecoza/";
-	this.noPhotoUrl = "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg";
+	this.fullDomainName = res.config.hostname;
+	this.urlProtocol = this.secure ? "https://" : "http://";
+	
     return new ModelBuilder(this.getHeaderData());
 };
 
@@ -69,30 +64,28 @@ HeaderModel.prototype.getHeaderData = function() {
     		data.touchIconIphoneRetinaUrl = data.baseImageUrl + "touch-iphone-retina.png";
     		data.touchIconIpadRetinaUrl = data.baseImageUrl + "touch-ipad-retina.png";
     		data.shortuctIconUrl = data.baseImageUrl + scope.locale + "/shortcut.png";
-    		data.autoCompleteUrl = "";
-    		data.geoLocatorUrl = "";
-    		data.rootGeoLocatorUrl = "";
-    		data.publisherUrl = scope.publisherUrl;
-    		data.noPhotoUrl = scope.noPhotoUrl;
+    		data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + "/{catId}/{locId}/{value}";
+    		data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + "/{lat}/{lng}";
+    		data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + "/0/category/0";
     		
     		data.iconsCSSURLs = [];
     		data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.svg" + "_" + scope.locale + ".css");
     		data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.png" + "_" + scope.locale + ".css");
     		data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css");
-    		
+    		data.iconsCSSFallbackUrl = data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css";
+
     		data.continerCSS = [];
     		if (data.min) {
     			data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.min.css");
     		} else {
     			data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.css");
     		}
+    		data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
     		
     		// opengraph
-    		data.type = "website";
     		data.brandName = scope.brandName;
     		data.countryName = scope.country;
-    		data.metaDescription = scope.metaDescription;
-    		data.localeOpenGraph = scope.localeOpenGraph;
+    		data.logoUrl = data.baseImageUrl + scope.locale + "/logo.png";
     		data.logoUrlOpenGraph = data.baseImageUrl + scope.locale + "/logoOpenGraph.png";
     		
 			if (typeof callback !== "function") {
