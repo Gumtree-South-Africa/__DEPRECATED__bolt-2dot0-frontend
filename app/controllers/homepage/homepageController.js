@@ -38,6 +38,8 @@ router.get('/', function (req, res, next) {
       
       // Special data for homepage controller
       extraData.header.pageTitle = '';
+      extraData.header.metaDescription = '';
+      extraData.header.metaRobots = '';
       extraData.header.canonical = extraData.header.homePageUrl;
       extraData.header.pageUrl = extraData.header.homePageUrl;
       extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
