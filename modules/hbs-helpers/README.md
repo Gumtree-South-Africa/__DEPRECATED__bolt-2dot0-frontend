@@ -92,7 +92,10 @@ Every template language I have seen provides some mechanism for one template to 
 
 <!-- footer.hbs -->
 <p> FOOTER </p>
+```
+
 This is not the DRYest implementation, however. The <html> and <body> tags are copied on every page. Adding scripts and stylesheets will only aggravate the situation. Larger sections can be abstracted:
+
 
 <!-- home.hbs -->
 {{> top}}
@@ -181,8 +184,7 @@ With template inheritance, a base template has specially annotated sections of c
 
 ```
 Much better. Fewer templates are needed, and no context needs to be split.
-Template inheritance in Handlebars
-Unfortunately, the Mustache specification does not prescribe support for template inheritance. Handlebars, which offers a number of improvements over vanilla Mustache, does not include it either. Dust does, but I prefer the syntax and helper interface of Handlebars. The good news is that Handlebars (perhaps unintentionally) exposes its registry of partials which can be used along with a couple of simple block helpers to implement template inheritance.
+Template inheritance in Handlebars Unfortunately, the Mustache specification does not prescribe support for template inheritance. Handlebars, which offers a number of improvements over vanilla Mustache, does not include it either. Dust does, but I prefer the syntax and helper interface of Handlebars. The good news is that Handlebars (perhaps unintentionally) exposes its registry of partials which can be used along with a couple of simple block helpers to implement template inheritance.
 Three constructs are needed:
 For base templates:
 A block of default content
@@ -208,8 +210,7 @@ handlebars.registerHelper("block",
       = handlebars.loadPartial(name) || options.fn;
     return partial(this, { data : options.hash });
   });
-  
-'''
+  ```
 
 It will be used to specify default content in base templates:
 
