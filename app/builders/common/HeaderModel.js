@@ -34,6 +34,7 @@ var HeaderModel = function (secure, req, res) {
 	this.urlProtocol = this.secure ? "https://" : "http://";
 	this.statusParam = req.query.status;
 	this.resumeParam = req.query.resumeabandonedordererror;
+	this.headerConfigData = res.config.bapiConfigData.header;
 
 	return new ModelBuilder(this.getHeaderData());
 };
@@ -52,6 +53,9 @@ HeaderModel.prototype.getHeaderData = function() {
 			
 			// merge pageurl data
     		_.extend(data, pageurlJson.header);
+
+    		// merge header config data from BAPI
+    		_.extend(data, scope.headerConfigData);
     		
     		// build data
     		var urlProtocol = scope.secure ? "https://" : "http://";

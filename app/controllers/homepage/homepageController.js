@@ -15,6 +15,7 @@ module.exports = function (app) {
 };
 
 router.get('/', function (req, res, next) {
+    var bapiConfigData = res.config.bapiConfigData;
     var model = HomepageModel(req, res);
 
     var extraData =
@@ -40,7 +41,7 @@ router.get('/', function (req, res, next) {
       
       HP.extendHeaderData(extraData);
       HP.extendFooterData(extraData);
-      HP.buildContentData(extraData);
+      HP.buildContentData(extraData, bapiConfigData.content.homepage);
       
       var  pageData = _.extend(result, extraData);
 
@@ -108,10 +109,11 @@ var HP = {
 	/**
 	 * Build content data for HomePage
 	 */
-	buildContentData : function(extraData) {
-		extraData.content = pageurlJson.content;
+	buildContentData : function(extraData, homepageConfigData) {
+		extraData.content = {};
+		extraData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
 		var homePageBannerUrls = [];
-		var homepageBanners = extraData.content.homepageBanners;
+		var homepageBanners = homepageConfigData.homepageBanners;
 		 for (var i=0; i<homepageBanners.length; i++) {
 			 homePageBannerUrls[i] = extraData.footer.baseImageUrl + homepageBanners[i];
 	     }

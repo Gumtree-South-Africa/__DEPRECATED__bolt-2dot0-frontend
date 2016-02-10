@@ -22,6 +22,8 @@ var FooterModel = function (secure, req, res) {
 	// Country specific variables from BAPI Config
 	this.brandName = res.config.name;
 	this.country = res.config.country;
+	this.footerConfigData = res.config.bapiConfigData.footer;
+	
     return new ModelBuilder(this.getFooterData());
 };
 
@@ -37,6 +39,9 @@ FooterModel.prototype.getFooterData = function() {
 			
 			// merge pageurl data
     		_.extend(data, pageurlJson.footer);
+    		
+    		// merge footer config data from BAPI
+    		_.extend(data, scope.footerConfigData);
     		
     		// build data
     		var urlProtocol = scope.secure ? "https://" : "http://";
