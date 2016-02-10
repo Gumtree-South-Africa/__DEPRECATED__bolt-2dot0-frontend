@@ -8,7 +8,7 @@
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
 		"skinCampaignOn"					: true,
-		"googleTagAccountId"				: "7162/Gumtree_ZA",
+		"googleTagAccountId"				: "7162/Gumtree_SG",
 		"enableLighterVersionForMobile"		: false,
 		"headerConfig"						: {
 			"isolatedLoginLink": true

@@ -57,7 +57,9 @@ i18next
       siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
       
       // TODO get config data from bapi and store it here
-      siteApp.config.bapiConfigData = {};
+      siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
+      console.log('*****************', siteApp.config.locale);
+      console.log('*****************', siteApp.config.bapiConfigData);
 
       // set req.lng to defined lng in vhost
       siteApp.use(function(req, res, next) {
