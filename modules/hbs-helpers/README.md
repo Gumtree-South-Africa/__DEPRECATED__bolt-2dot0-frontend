@@ -121,6 +121,7 @@ This is not the DRYest implementation, however. The <html> and <body> tags are c
 This pattern is recommended when template inheritance is unavailable. It is fragile and rigid, though. Some tags, like <html> and <body> here, are split among the included templates - terrible for maintenance and readability. To customize a portion of an included template for each page, like the <title>, the templates must be divided even further:
 
 ```handlebars
+
 <!-- home.hbs -->
 {{> top-before-title}}
 Home
