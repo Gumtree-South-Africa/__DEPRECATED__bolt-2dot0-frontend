@@ -44,7 +44,7 @@ function BuildApp(locale) {
     app.use(compress());
     app.use(methodOverride());
     app.use('/', express.static(config.root + '/public'));
-    // app.use("/app/views", express.static(config.root + '/app/views'));
+    app.use("/views", express.static(config.root + '/app/views'));
 
     app.use(expressUncapitalize());
 

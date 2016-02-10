@@ -50,7 +50,7 @@
                 var mkCookie = BOLT.UTILS.Cookie.readCookie("_mkto_trk") || "";
 
                 isCookieAnonEnabled = isCookieAnonEnabled ? true: false;
-                wsInfo =  {{#if model.header.marketo.configMarketo.wsInfo}}"{{model.header.marketo.configMarketo.wsInfo}}"{{else}}false{{/if}};
+                wsInfo =  {{#if model.header.marketo.configMarketo.wsInfo}}"{{model.header.marketo.configMarketo.wsInfo}}"{{else}}false{{/if}};;
                 configJSON = { cookieAnon: isCookieAnonEnabled };
                 if (wsInfo) {
                     configJSON["wsInfo"] = wsInfo;
@@ -75,9 +75,11 @@
 {{!-- End Marketo Munchkin Tracking Code ---}}
 
 {{#block "pageTailScriptsAfterMarketo"}}
-        {{#block "carouselJsFiles"}}
-        	<script src="/views/components/adCarousel/js/adCarousel.js"></script>
-        {{/block}}
+    {{#block "carouselJsFiles"}}
+        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
+    {{/block}}
+    <script src="/js/common/StringUtils.js"></script>
+    <script src="/views/components/header/js/header.js"></script>
 {{/block}}
 
 {{!----- HTML5 Placeholder Polyfill -----}}
