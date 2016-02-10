@@ -17,32 +17,13 @@
 		"geoLocatorUrl"			: "/post.html",
 		"rootGeoLocatorUrl"		: "/post.html",
 		"abTestUrl"				: "/post.html",
-		
-		"isMessageCenterEnabled": true,
-		"skinCampaignOn"		: true,
-		"topHomePageAdBanner"	: true,
-		"googleTagAccountId"	: "7162/Gumtree_ZA",
-		"enableLighterVersionForMobile": false
+		"autoCompleteUrl"		: "/autocomplete/model/",
+		"geoLocatorUrl"			: "/locations/content/geo/",
+		"rootGeoLocatorUrl"		: "/locations/content/"
 	},
 	"footer" : {
-		"cookieRightsURL"						: "/cookie-notice",
-		"privacyPolicyURL"						: "/privacy-policy",
-		"termsAndConditionsURL"					: "/terms-of-service",
-		
-		"cookieNotice"							:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
-		"privacyPolicy"							:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
-		"termOfUse"								:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
-		"bestAdsLandingPageUrl"					: "/b-best-ads/v1",
-		"helpLabel"								: "Ayuda",
-		"helpUrl"								: "http://ayuda.alamaula.com/",
-		"interLinkUrl"							: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
-		"locationsPageUrl"						: "/l-$text$/all-locs/v1b0",
-		"topSearchesLandingPageUrl"				: "/t-top-searches/all-ads/v1b0",
-		"googleAdSense"	:	{
-			"enabled"	:	true
-		},
-		"seoBolt"		:	{
-			"enabled"	:	true
-		}
+		"cookieRightsURL"		: "/cookie-notice",
+		"privacyPolicyURL"		: "/privacy-policy",
+		"termsAndConditionsURL"	: "/terms-of-service"
 	}
 }

@@ -1,12 +1,11 @@
 
 	{{#partial "content"}}
 	{{#block "homepg"}}
-	{{#if ../this.header.topHomePageAdBanner}}
+	{{#if ../this.content.topHomePageAdBanner}}
 	{{> topBanner}}
 	{{/if}}
 
 	{{#block "locationBeforeCategory"}}{{/block}}
-
 	<div class="hp-content hp-others
 	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
 	{{#if model.footer.googleAdSense.enabled}}googleAdSensei{{/if}}

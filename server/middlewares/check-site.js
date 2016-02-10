@@ -9,6 +9,7 @@ module.exports = function(app) {
         res.config.locale = app.config.locale;
         res.config.country = app.config.country;
         res.config.hostname = app.config.hostname;
+        res.config.bapiConfigData = app.config.bapiConfigData;
         // call next middleware
         next();
     };
