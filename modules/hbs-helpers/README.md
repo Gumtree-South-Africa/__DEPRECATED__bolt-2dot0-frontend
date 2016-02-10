@@ -55,10 +55,9 @@ Make sure package.json got the laterest version of express-handlebar
 {{#partial "sign-in"}} My Home sign-in {{>> (dynamic "searchbar")}} 
 
 {{> (base "home") }}
-
 ```
-### Technological background
 
+### Technological background
 
 Handlebars is a member of the family of "logic-less" template systems born from Mustache. I will not describe the merits of logic-less templates in this post. (If you are unfamiliar with them, then please visit either of the two links at the beginning of this paragraph.) Rather, I want to describe a simple technique for extending Handlebars with template inheritance.
 The goal
@@ -194,6 +193,7 @@ A declaration of the base template
 The block block helper will replace its section with the partial of the same name if it exists:
 
 ```handlebars
+
 handlebars.loadPartial = function (name) {
   var partial = handlebars.partials[name];
   if (typeof partial === "string") {
