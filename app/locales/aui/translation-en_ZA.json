@@ -42,7 +42,8 @@
 		},
 		"all": {
 			"cat": {
-				"name": "All"
+				"name": "All",
+				"localizedName": "home.all.cat.localizedName"
 			}
 		},
 		"swap-trade": {
