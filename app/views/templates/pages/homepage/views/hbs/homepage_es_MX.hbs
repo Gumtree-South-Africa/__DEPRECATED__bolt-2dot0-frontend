@@ -4,23 +4,23 @@
         <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
     {{/if}}
 
-		{{> countryMap}}
-		{{> locationMapContainer}}
-		{{#block "locationContainer" ../this}}{{/block}}
+		{{> (dynamic "countryMap"}}
+		{{> (dynamic "locationMapContainer") }}
+		{{#block "locationContainer"}}{{/block}}
 
 </div>
 
-{{> adCarousel ../this.initialGalleryInfo}}
+{{> (dynamic "adCarousel")  }}
 
 <div class="category-wrapper">
 	<h1>{{i18n "home.h1Tag"}}</h1>
 	{{#with ../this}}
-		{{> categoryDisplay}}
-	  {{> categoryList}}
+		{{> (dynamic "categoryDisplay") }}
+	  {{> (dynamic "categoryList") }}
 	{{/with}}
 </div>
 
-{{> siteFlow}}
+{{> (dynamic "siteFlow") }}
 
 {{!-- this section needs refactoring --}}
 <div class="postSection">
@@ -132,4 +132,4 @@
     <script src="/views/components/adCarousel/js/CarouselExt/carouselExt.js"></script>
 {{/partial}}
 
-{{> homepage-base}}
+{{> (base "homepage") }}

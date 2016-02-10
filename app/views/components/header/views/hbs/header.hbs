@@ -4,22 +4,22 @@
             <div class="elements">
                 <div class="left">
                     {{!---- logo ----}}
-                    {{> logo}}
+                    {{> (dynamic "logo") }}
                 </div>
                 <div class="right">
                     {{! Note Element Order: that the order of the elements is backwards because they're floating right }}
  
                     {{!---- post button ----}}
-                    {{> postButton}}
+                    {{> (dynamic "postButton") }}
                    
                     {{!---- help ----}}
-                    {{> helpLink}}
+                    {{> (dynamic "helpLink") }}
  
                     {{!---- navigation ----}}
-                    {{> navigation}}
+                    {{> (dynamic "navigation") }}
                                                                                
                     {{!---- isolated signin ----}}
-                    {{> isolatedSignIn}}
+                    {{> (dynamic "isolatedSignIn") }}
                 </div>
             </div>
         </div>
@@ -28,8 +28,8 @@
 </div>
 
     {{!-- Search bar --}}
-    {{> searchbar}}
+    {{> (dynamic "searchbar") }}
 
     
     {{!-- Title --}}
-    {{> title}}
+    {{> (dynamic "title") }}

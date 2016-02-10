@@ -2,7 +2,7 @@
 	{{#partial "content"}}
 	{{#block "homepg"}}
 	{{#if ../this.header.topHomePageAdBanner}}
-	{{> topBanner}}
+	{{> (dynamic "topBanner")}}
 	{{/if}}
 
 	{{#block "locationBeforeCategory"}}{{/block}}
@@ -24,7 +24,7 @@
 			{{/if}}
 
 			{{#with ../this}}
-			{{> categoryList}}
+			{{> (dynamic "categoryList") }}
 			{{/with}}
 
 			<div class="hp-link-wrapper">

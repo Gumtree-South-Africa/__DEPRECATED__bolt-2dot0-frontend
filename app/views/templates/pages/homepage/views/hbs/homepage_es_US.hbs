@@ -4,13 +4,13 @@
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
-    	{{> adCarousel}}
+    	{{> (dynamic "adCarousel") }}
     	{{#block "carousel"}}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
-        {{> locationMapContainer}}
+        {{> (dynamic "locationMapContainer") }}
         {{#block "locationContainer" ../this}}{{/block}}
 	{{/partial}}
 {{/if}}
 
-{{> homepage-base}}
+{{> (base "homepage") }}

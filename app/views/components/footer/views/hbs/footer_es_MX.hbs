@@ -1,4 +1,4 @@
-{{> footer-base}}
+{{> (base "footer") }}
 
 {{#partial "comscore"}}
 	{{#with this.content.ComscoreTag}}
@@ -48,7 +48,7 @@
     <div class="cookie_warn">
         <div class="cr-container">
             <div class="social-links">
-                {{> socialMediaLinks}}
+                {{> (dynamic "socialMediaLinks") }}
             </div>
             <div class="cpyrt">{{i18n "footer.cr" }}
                 <span class='cpyrt_links'>

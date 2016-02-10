@@ -52,7 +52,7 @@
 		                <div class="item-img-wrap">
 		                	{{#if ../this.footer.googleAdSense.enabled}}
 		                	      {{#unless model.header.isIncludeContentForMobile}}  
-		                			 {{> rightBanner}}
+		                			 {{> (dynamic "rightBanner")}}
 		                		  {{/unless}}
 			                {{/if}}
 		                </div>
@@ -61,7 +61,7 @@
 		            <div id="rightBottomBanner">
 		            	{{#if model.content.homePageBannerUrl}}
 		                {{else}}
-		                     {{> rightBottomBanner}}
+		                     {{> (dynamic "rightBottomBanner") }}
 		                {{/if}}
 		            </div>
 					{{#block "tutorialModule"}}{{/block}}

@@ -4,7 +4,9 @@ var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
-    kafkaService = require(process.cwd() + '/server/utils/kafka');
+    kafkaService = require(process.cwd() + '/server/utils/kafka'),
+    util = require('util'),
+    i18n = require('i18n');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 
@@ -44,9 +46,22 @@ router.get('/', function (req, res, next) {
       extraData.header.pageUrl = extraData.header.homePageUrl;
       extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
 
-      var  pageData = _.extend(result, extraData);
+        extraData.helpers = {
+            i18n: function (msg) {
 
-      console.dir(extraData);
+                i18n.configure({
+                    objectNotation: true,
+                    directory: process.cwd() + '/app/locales/aui/',
+                    prefix: 'translation-'
+                });
+                return i18n.__({phrase: msg, locale: res.config.locale});
+            }
+        };
+
+
+        var  pageData = _.extend(result, extraData);
+
+     // console.dir(extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
 

@@ -1,0 +1,2551 @@
+{
+    "greeting": "Greetings from Silicon Valley",
+    "welcome": "Welcome to BOLT 2.0",
+    "author": "Tom Anthony",
+    "coworkers": {
+        "nacer": "Nacer",
+        "ulises": "Ulises"
+    },
+    "currency": {
+        "name": "Euro",
+        "code": "EUR",
+        "number": "978",
+        "minor_unit": "2",
+        "major_unit": "3",
+        "decimal": ".",
+        "placeholder": ",",
+        "symbol": "€",
+        "format": "€{0}"
+    },
+    "home": {
+        "$$": "Home",
+        "h1Tag": "Gumtree Ireland - Free local classifieds",
+        "provinces": "Provinces",
+        "main-locations": "Popular cities",
+        "popular-searches": "Popular",
+        "trending-searches": "Trending",
+        "user": {
+            "registered": "Congratulations and welcome! You have registered successfully at Gumtree."
+        },
+        "ad": {
+            "notyetactive": "Oops, the ad you are looking for is not yet live. Check back very soon!"
+        },
+        "reset": {
+            "password": {
+                "success": "Your password has been changed successfully."
+            }
+        },
+        "lastweekpostedAD": "<b>{0}</b> New Ads in <b>{1}</b> in the last 7 days!",
+        "blogs": {
+            "title": "Latest Gumtree Blog Posts",
+            "backupcontent": "Welcome to Gumtree! Check out our blog for Lifestyle Stories, Tips to Buy and Sell on Gumtree, Developer Updates, Gumtree News, and more! <a href=\"http://blog.gumtree.co.za\" target=\"_blank\">Visit the Blog!</a> If you're looking for help using any part of our site, please visit our <a href=\"http://help.gumtree.co.za\" target=\"_blank\">Help</a>."
+        },
+        "all": {
+            "cat": {
+                "name": "All"
+            }
+        },
+        "swap-trade": {
+            "url": {
+                "prefix": "swap-trade"
+            },
+            "$$": "Swap / Trade"
+        },
+        "freebies": {
+            "url": {
+                "prefix": "freebies"
+            },
+            "$$": "Freebies"
+        },
+        "page": {
+            "host": "in Gumtree Ireland",
+            "desc": {
+                "tag": "Come to Gumtree Ireland, your local online classifieds site with {0} live classified listings. List free classifieds ads or buy and sell what you want for free!"
+            },
+            "live": {
+                "ad": {
+                    "count": {
+                        "label": "<span class=\"ad-count\">{0}</span> Live Classified Ads"
+                    }
+                }
+            }
+        }
+    },
+    "AdNotFound": "Oops, Your ad {0} could not be found",
+    "AdDeleted": "Your ad {0} has been deleted",
+    "AdNotDeleted": "Oops, Your ad {0} could not be deleted",
+    "title": {
+        "empty": "The title is required"
+    },
+    "postad": {
+        "notice": {
+            "title": "Minimum title: 2 descriptive words. <span class=\"counter-text\"><span class=\"missing-chars\">Available:</span><span class=\"remove-chars\">Remove</span> <span class=\"charcount\">100</span> character(s).</span>"
+        },
+        "image": {
+            "network": {
+                "error": "An error has occurred while uploading the image. Please, try again."
+            },
+            "upload": {
+                "important": "Important:",
+                "instruction": "Only ads with images are visible in Gallery View.",
+                "errors": "You can add up to eight images in BMP, JPG, PNG or GIF format with a maximum of 4Mb or 4,000 x 3,000 pixels.",
+                "success": "Success!",
+                "failure": {
+                    "$$": "Sorry, uploading failed.",
+                    "invalid": {
+                        "size": "Attention: Image size must be under 12 MB.",
+                        "dimensions": "Attention: Images should have min 20x20 pixels and max 9000x9000",
+                        "types": "Sorry, we only support these formats: bmp, jpg, gif, png, and tif."
+                    },
+                    "picture": {
+                        "down": "Uploading failed. Please try again."
+                    }
+                },
+                "resize": "Preparing your image for uploading...",
+                "network": {
+                    "firewall": "Attention: uploading failed.  Please disable any firewall, ad blocker or spyware blocker."
+                },
+                "colorspace": "Sorry, we do not support images in the CMYK colorspace.",
+                "data": {
+                    "corrupt": "Attention: Image file is damaged."
+                },
+                "drag": {
+                    "and": {
+                        "drop": "Drag and drop your photos here"
+                    }
+                },
+                "no": {
+                    "browser": {
+                        "support": "Your browser doesn't support file upload"
+                    }
+                },
+                "or": "Or",
+                "text": "Images"
+            },
+            "loading": "Uploading image...",
+            "uploading": "Upload in progress...",
+            "drag": {
+                "reorder": "Drag images to reorder"
+            },
+            "click": {
+                "featured": "Click to make it the featured image"
+            },
+            "featured": "Featured Image"
+        },
+        "see": {
+            "all": "See All"
+        },
+        "current": {
+            "location": {
+                "$$": "Use your current location",
+                "or": "or",
+                "msg": "Oops!  We cannot recognize your location.  Please select one below.",
+                "finding": "Getting location ..."
+            }
+        },
+        "data": {
+            "for": {
+                "ad": "Information of the ad"
+            }
+        },
+        "add": {
+            "image": "Upload photo(s)",
+            "eight": "Up to 12 images",
+            "photo": "Add an image"
+        },
+        "price": {
+            "fraction": ".00"
+        },
+        "require": {
+            "legend": "* Data required"
+        },
+        "optional": {
+            "fields": {
+                "label": "Improve your add with optional information"
+            }
+        },
+        "post": {
+            "text": "Post"
+        },
+        "preview": {
+            "text": "Preview"
+        },
+        "change": {
+            "text": "Change"
+        },
+        "select": {
+            "location": "Choose a location",
+            "category": {
+                "$$": "Choose a category",
+                "sampleSearch": "Ex.: Computer"
+            },
+            "all": {
+                "feature": {
+                    "options": "Select all options"
+                }
+            }
+        },
+        "cat": {
+            "search": "What do you want to publish?",
+            "suggestions": "Suggestions:",
+            "showall": "Or choose from all categories:",
+            "no": {
+                "results": {
+                    "showall": "No suggestions found. Choose from all categories:"
+                }
+            }
+        },
+        "contact": {
+            "name": "Name",
+            "password": "Password",
+            "email": "Email",
+            "edit": "Edit",
+            "change": "Change",
+            "welcome": "Welcome back {0}!"
+        },
+        "terms": {
+            "and": {
+                "condition": "By clicking \"Post\" you accept the <a href=\"{0}\" target=\"_blank\">Terms of Use</a> and <a href=\"{1}\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
+            }
+        },
+        "your": {
+            "free": {
+                "ad": {
+                    "text": "Post your free ad"
+                }
+            }
+        },
+        "a": {
+            "free": {
+                "ad": {
+                    "text": "See your ad here"
+                }
+            }
+        },
+        "matching": {
+            "address": {
+                "text": "Please choose the matching address"
+            }
+        },
+        "promote": {
+            "my": {
+                "ad": "Promote My Ad"
+            }
+        },
+        "bump": {
+            "up": {
+                "$$": "Bump Up",
+                "text": "Bump your ad to the top of category pages!"
+            }
+        },
+        "top": {
+            "ad": {
+                "$$": "Top Ad",
+                "text": "Show your ads on rotation at the top of the category page"
+            }
+        },
+        "hpg": {
+            "ad": {
+                "$$": "Homepage Gallery",
+                "text": "Have your ad seen on the Gumtree homepage by thousands of people!"
+            }
+        },
+        "learn": {
+            "more": "Learn More ?"
+        },
+        "email": {
+            "suggestionPrefix": "Did you mean:",
+            "yes": "Yes",
+            "no": "No",
+            "okmessage": "Got it !"
+        },
+        "completeness": {
+            "adqualitytitle": "Ad Quality",
+            "sellingtips": "Selling Tips",
+            "template": "Your ad has a quality score of (percentage)%. Make it even better by: (message)",
+            "templateComplete": "our ad has a quality score of (percentage)%",
+            "addtitle": "Creating a title for your listing",
+            "addname": "Providing your name so that buyers feel that your ad is more personal",
+            "addemail": "Adding an email address that buyers can use to reach you",
+            "addimage": "Adding an image",
+            "adddetails": "Adding a description for your listing",
+            "moredetails": "Writing a longer, more detailed description",
+            "moreimages": "Adding a few more images with different angles or close-up shots",
+            "addtelephone": "Adding a phone number so buyers have another way to reach you",
+            "addprice": "Including a numerical price or selecting a pricing option",
+            "addaddress": "Adding an address",
+            "moreinfo": "Providing some more info about your listing using the drop-downs on this form"
+        },
+        "error": {
+            "header": "Please correct the following information in your ad and click on Post when ready.",
+            "attribute": {
+                "notNumber": "Please enter a valid number",
+                "notANumeric": "Please enter a valid {0}",
+                "date": {
+                    "invalid": "Please enter a valid {0}"
+                },
+                "past_date": "Please enter either today or a later date",
+                "end_date_before_start_date": "Please enter a valid date later than your start date",
+                "start_date_after_end_date": "Please enter a valid date earlier than your end date",
+                "future_birth_date": "Please enter either today or an earlier date"
+            },
+            "wrong": {
+                "car": {
+                    "year": {
+                        "format": "Please enter a year between 1900 and the current model year"
+                    }
+                },
+                "phone": {
+                    "format": "Please enter a valid {0}"
+                },
+                "Km": {
+                    "format": "Please enter a valid {0}"
+                },
+                "email": {
+                    "format": "Email is not valid"
+                },
+                "url": {
+                    "format": "Entered URL does not seem to be valid. Please check and reenter."
+                }
+            },
+            "description": {
+                "too": {
+                    "short": "Please complete the description with a minimum of 10 characters.",
+                    "long": {
+                        "$$": "Please limit the description to 4,000 characters.  It currently exceeds this limit.",
+                        "partner": "Please limit the description to {0} characters.  It currently exceeds this limit."
+                    }
+                }
+            },
+            "negative": {
+                "price": "Please enter a valid {0}"
+            },
+            "price": {
+                "too": {
+                    "large": "The price is very high."
+                }
+            },
+            "title": {
+                "too": {
+                    "short": "Please complete the title with a minimum of 2 words",
+                    "long": "Please limit the title to 100 characters.  It currently exceeds this limit.",
+                    "many": {
+                        "cap": {
+                            "letter": "Please reduce the number of capital letters in the title."
+                        }
+                    }
+                },
+                "no": {
+                    "alpha": {
+                        "num": "Please enter at least one letter or number."
+                    }
+                }
+            },
+            "user": {
+                "name": {
+                    "too": {
+                        "long": "Please use a name with 50 characters or less."
+                    },
+                    "no": {
+                        "url": "Please do not use a URL."
+                    }
+                }
+            },
+            "make": {
+                "no": {
+                    "selection": "Please select the car make"
+                }
+            },
+            "model": {
+                "no": {
+                    "selection": "Please select the car model"
+                }
+            },
+            "post": {
+                "field": {
+                    "required": "Required field"
+                }
+            }
+        },
+        "insertionfee": {
+            "warning": "Posting an ad in this category will cost xxx"
+        },
+        "websiteurl": {
+            "notice": "Add URL link to your website for"
+        },
+        "info": {
+            "2": {
+                "title": "Charming 3-Bedroom Beach House"
+            },
+            "4": {
+                "title": "Samsung Galaxy Tab 2 - Great Condition!"
+            },
+            "5": {
+                "title": "15\" Steel Rims"
+            },
+            "6": {
+                "title": "Lost My Cat in Westbeach Neighborhood"
+            },
+            "8": {
+                "title": "Real Estate Sales Administrator"
+            },
+            "9": {
+                "title": "Landscape Design and Maintenance"
+            },
+            "8019": {
+                "title": "Boston Terrier Puppies"
+            },
+            "description": "Write 2-5 lines to describe your product.",
+            "pictures": "Max. 12. Let it shine!"
+        },
+        "forexample": "Ex."
+    },
+    "email": {
+        "empty": "Your email is required",
+        "address": {
+            "too": {
+                "long": "Your email address is too long."
+            }
+        },
+        "greeting": {
+            "attention": "Hello {0}!",
+            "post": {
+                "ad": {
+                    "attention": "Hi {0}!",
+                    "confirm": {
+                        "attention": "Hi {0}!"
+                    }
+                }
+            },
+            "normal": "Hello {0}",
+            "forgotpwd": "Hello {0},"
+        },
+        "registration": {
+            "greeting": "Hi!"
+        },
+        "post": {
+            "ad": {
+                "footer": "Thanks for using {0} and good luck with your ad! <br /><br />The {0} Team <br />",
+                "confirm": {
+                    "footer": "Thanks for using {0} and good luck with your ad! <br /><br />The {0} Team <br />"
+                }
+            }
+        },
+        "footer": {
+            "$$": "Thanks,<br/><br/>The {0} team<br/>{1}",
+            "forgotpwd": "Thanks! <br /><br /> The Gumtree team <br /> {0}"
+        },
+        "forgot": {
+            "password": {
+                "content": "Please click below to set a new password for your Gumtree account: <br/><br/> <a href=\"{0}\">Set new password</a><br/><br/> If clicking the link above does not work, you can type or, copy and paste the following URL into your browser.<br/><br/> {0}<br/><br/> If you did not request a password reset, please ignore this message.",
+                "subject": "Reset your Gumtree password"
+            }
+        },
+        "title": {
+            "text": "Title"
+        },
+        "category": {
+            "text": "Category"
+        },
+        "description": {
+            "text": "Description"
+        },
+        "send": {
+            "by": {
+                "email": {
+                    "text": "Email sent by"
+                }
+            }
+        },
+        "payment": {
+            "receipt": {
+                "subject": "Order confirmation #{0}"
+            },
+            "renewal": {
+                "failed": {
+                    "subject": "Problem with your payment. Ad promotions disabled."
+                }
+            }
+        },
+        "abandonedorder": {
+            "reminder": {
+                "subject": "We've noticed you still have features in your shopping cart"
+            }
+        },
+        "subject": {
+            "savedsearch": {
+                "activate": "Activate your Gumtree Alert",
+                "activateLog": "You have just created a Gumtree Alert"
+            }
+        }
+    },
+    "max": {
+        "title": {
+            "word": {
+                "count": "5"
+            }
+        }
+    },
+    "price": {
+        "has": {
+            "char": "The price cannot contain special letters or characters"
+        },
+        "type": {
+            "not": {
+                "valid": "A valid price is required"
+            },
+            "text": "Price",
+            "empty": "Please complete the {0} field"
+        },
+        "empty": "The price cannot be empty",
+        "not": {
+            "empty": "Please do not enter a Price if the Price is negotiable"
+        }
+    },
+    "not": {
+        "leaf": {
+            "category": "Please choose a sub-category",
+            "location": "Please choose location"
+        }
+    },
+    "picture": {
+        "description": {
+            "too": {
+                "long": "The picture description is too long"
+            }
+        }
+    },
+    "currencyNotValid": "The currenfcy is not valid",
+    "cookie": {
+        "banner": {
+            "message": "This site uses <a href=\"/cookie-notice\" target=\"_blank\">cookies</a> to provide you with a great user experience. By using this site, you agree to our use of cookies."
+        }
+    },
+    "searchbar": {
+        "locationDisplayname": {
+            "prefix": "All {0}"
+        }
+    },
+    "onetouch": {
+        "cardinfo": "{0} ending in {1}",
+        "confirm": "Confirm",
+        "paynow": "Click and confirm",
+        "savepayment": "Save Payment for One Touch",
+        "usecredit": "Use a different card for payment",
+        "useonetouch": "Use OneTouch for payment"
+    },
+    "features": {
+        "see": {
+            "all": "See All"
+        }
+    },
+    "post": {
+        "thanks": "<h1 class='header'>Check your email to activate your ad now.</h1><p>Gumtree sent you email with the title <b>\"Activate your Gumtree ad: {1}\"</b>. Please click the link in this email to activate your ad. If you don't see this email right away please check your SPAM folder.</p>",
+        "gotowebdomain": "Go to {0}",
+        "desc": {
+            "placeholder": "To help get better responses, please provide as much detail as you can.   Don’t forget to check your spelling.  :)"
+        },
+        "upsell": {
+            "activate": {
+                "ad": {
+                    "success": {
+                        "not": {
+                            "yet": {
+                                "active": "Check your email to activate your ad now. Open {0} mail and click on the activation link."
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "other": {
+            "ads": {
+                "edit": "Edit",
+                "delete": "Delete",
+                "repost": "Repost"
+            }
+        },
+        "ad": {
+            "payment": {
+                "for": {
+                    "insertionfee": {
+                        "success": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly."
+                    },
+                    "feature": {
+                        "success": {
+                            "$$": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly with the option you selected to attract more visitors to your ad.",
+                            "editrepost": "Congratulations! We processed your payment and your ad is now live with the premium features to attract more visitors."
+                        }
+                    },
+                    "non": {
+                        "loggedin": {
+                            "feature": {
+                                "success": "Congratulations! We processed your payment. Please check your email to activate your ad and your ad will be live with the premium features you just purchased."
+                            }
+                        }
+                    }
+                }
+            },
+            "insertionfee": {
+                "payment": {
+                    "warning": "Hi! To improve the quality of listings for professional vehicle sellers, Gumtree has introduced a capping of free ads. To continue posting more ads, make an easy payment of {0} , or visit www.gumtree.co.za/pages/autodealers for more options."
+                }
+            }
+        }
+    },
+    "phone": {
+        "no": {
+            "email": "At symbols (@) are not permitted"
+        },
+        "type": {
+            "fixed": "Fixed",
+            "mobile": "Mobile",
+            "home": "Home",
+            "work": "Work",
+            "main": "Main",
+            "alternative": "Alternative",
+            "fax": "Fax",
+            "pager": "pager",
+            "other": "Other"
+        }
+    },
+    "pass": {
+        "empty": "Enter your password",
+        "too": {
+            "short": "Your password is too short.",
+            "long": "Your password is too long."
+        },
+        "dont": {
+            "match": "The passwords must match."
+        }
+    },
+    "terms": {
+        "not": {
+            "accepted": "Please accept the terms and conditions to register"
+        },
+        "and": {
+            "conditions": "Terms and Conditions"
+        }
+    },
+    "token": {
+        "expired": "Your reservation has expired or is invalid."
+    },
+    "securitycode": {
+        "expired": "Your security code has expired or is invalid"
+    },
+    "user": {
+        "not": {
+            "registered": "Please register your account now"
+        },
+        "already": {
+            "registered": "This email is already registered. Please login to Gumtree."
+        },
+        "name": {
+            "no": {
+                "email": "Please enter a valid name."
+            },
+            "empty": "Username is required"
+        },
+        "email": {
+            "unsubscribe": {
+                "ask": "Are you sure you want to unsubscribe from newsletters and promo offers?",
+                "success": "You are unsubscribed. Sorry to see you go.",
+                "failed": "Oops. System hiccup. Please try to unsubscribe later.",
+                "notfound": "That’s weird. We couldn’t match your email with our records. Please try again."
+            }
+        }
+    },
+    "remember": {
+        "me": "Remember me"
+    },
+    "bad": {
+        "credentials": "The email or password you entered is incorrect."
+    },
+    "buyer": {
+        "name": {
+            "empty": "Your name is required",
+            "too": {
+                "long": "The name is too long"
+            },
+            "no": {
+                "url": "Please do not include web links",
+                "email": "At symbols (@) are not permitted",
+                "percent": "Percent symbols (%) are not permitted"
+            }
+        },
+        "email": {
+            "empty": "Your email is required"
+        },
+        "phone": {
+            "empty": "Please enter a valid phone number.",
+            "invalid": {
+                "$$": "Please enter a valid 10-digit phone number starting with 0",
+                "less": {
+                    "digits": "Please enter a valid and complete phone number."
+                },
+                "exceeds": {
+                    "max": {
+                        "char": "The number seems long. Please enter a valid phone number."
+                    }
+                }
+            }
+        }
+    },
+    "reply": {
+        "message": {
+            "empty": "The message is required",
+            "too": {
+                "long": "The message may contain maximum 4,096 characters"
+            },
+            "center": {
+                "subject": "Gumtree - Reply to ad: {0} - #{1}",
+                "message": {
+                    "from": "",
+                    "more": {
+                        "info": ""
+                    }
+                }
+            },
+            "default": {
+                "user": {
+                    "name": ""
+                },
+                "buyer": {
+                    "name": ""
+                },
+                "seller": {
+                    "name": ""
+                }
+            }
+        },
+        "phone": {
+            "regex": "^([\\s-.\\(\\)\\+x,\\d])*$"
+        },
+        "email": {
+            "useful": {
+                "information": "{0}Security Tips<ul><li>Use common sense: If it seems too good to be true it probably is.</li><li>Never accept payments from outside your country</li><li>Never accept payments by Western Union, Moneygram, or other anonymous payment methods.</li></ul>"
+            }
+        },
+        "success": "Your message has been sent",
+        "on": {
+            "your": {
+                "ad": {
+                    "email": {
+                        "text": "Reply to your Ad on {1}: \"{0}\""
+                    }
+                }
+            }
+        },
+        "send": {
+            "by": {
+                "email": {
+                    "text": "Reply sent by"
+                }
+            }
+        },
+        "ad": {
+            "attachment": {
+                "error": {
+                    "filesizeexceed": "Upload unsuccessful. File size exceeded 2 MB.",
+                    "$$": "File upload failed",
+                    "fileformatnotsupported": "Upload unsuccessful. File format not supported."
+                },
+                "choose-file": "Choose file",
+                "remove": "Remove",
+                "uploading": "Uploading"
+            }
+        }
+    },
+    "srp": {
+        "reply": {
+            "contact": "Contact"
+        },
+        "no-results-title-Desktop": "Sorry, but we didn’t find any results. Below you can find some tips to help you in your search.",
+        "no-results-title-Mobile": "Sorry, but we didn't find any results that match your search.",
+        "no-results-tip-title": "Some search tips we've found useful:",
+        "no-results-tip-item1": "Check the spelling of your search terms",
+        "no-results-tip-item2": "Use fewer or more general search terms",
+        "no-results-tip-item3": "Try browsing a category related to your search terms",
+        "no-results-tip-Mobile": "Please select a relevant category below.",
+        "order-by": "Order by:",
+        "order-by-date-desc": "Most Recent",
+        "order-by-price-asc": "Low Prices",
+        "order-by-price-desc": "High Prices",
+        "free": "Free",
+        "locations": "Locations",
+        "other": {
+            "locations": "Other locations"
+        },
+        "categories": "Categories",
+        "category_in_location": "in",
+        "section": {
+            "top-ads": "Top Ads",
+            "gallery-ads": "Homepage Gallery Ads",
+            "ads": "Ads",
+            "list": "List",
+            "grid": "Gallery",
+            "relatedProducts": "Related Products",
+            "relatedArticles": "Related Articles"
+        },
+        "control": {
+            "found": "found"
+        },
+        "filter": {
+            "maxPeople": "Number of people",
+            "minNights": "Number of nights",
+            "any": "Any",
+            "showall": "Show all",
+            "showmore": "Show more",
+            "showless": "Show less",
+            "currency": {
+                "symbol": "R"
+            },
+            "pricetype": "Price Type",
+            "gtmax": "&gt;10k<!-- translation must be smaller than five characters -->"
+        },
+        "result": {
+            "snippet": {
+                "kmandmile": "Km"
+            }
+        },
+        "pagination": {
+            "pages": "Pages"
+        },
+        "top": {
+            "models": {
+                "header": {
+                    "titile": "Top Car Models"
+                },
+                "more": {
+                    "text": "Show more"
+                },
+                "less": {
+                    "text": "Show less"
+                }
+            }
+        },
+        "blogs": {
+            "title": "Latest Blog Posts"
+        },
+        "ad": {
+            "date-format": {
+                "one-minute-ago": "{0} minute ago",
+                "minutes-ago": "{0} minutes ago",
+                "one-hour-ago": "{0} hour ago",
+                "hours-ago": "{0} hours ago"
+            }
+        },
+        "sort-by": "Sort By",
+        "refine": {
+            "button": "Refine"
+        },
+        "cancel": {
+            "button": "Cancel"
+        },
+        "ref": {
+            "search": "Search"
+        },
+        "paid": {
+            "url": "Visit Website"
+        },
+        "locationZoomout": {
+            "Title": "Ads in other locations"
+        },
+        "photo": {
+            "count": "{0} Photo(s)"
+        },
+        "no-results": {
+            "$$": "We didn’t find any results",
+            "desc": "Do you want to be alerted via email when we get results for your search?"
+        },
+        "email-alert": {
+            "desc": "Get a daily alert with:",
+            "button": "Create Alert",
+            "notify": "Almost there!  We sent you an email.  Click on the email link to confirm and start receiving this Alert.",
+            "aftalert": "Ready!  Your Gumtree Alert is now active.",
+            "unsubscribe": {
+                "$$": "Confirmed.  This Gumtree Alert has been cancelled.",
+                "allalerts": "Confirmed.  All your Gumtree Alerts have been cancelled."
+            },
+            "policymsg": "By clicking \"Create Alert\" you accept the <span class='sudo-link' data-o-uri=\"{0}\" data-target=\"_self\">Terms of Use</span> and <span class='sudo-link' data-o-uri=\"{1}\" data-target=\"_self\">Privacy Notice</span> and agree to receive newsletters and promo offers from us.",
+            "title": "Gumtree Alerts",
+            "descriptiontitle": "Alert Filters:",
+            "description": "Get a daily email with the latest ads in your areas of interest.  Free and easy to cancel.",
+            "btnmessage": {
+                "collapsed": "Create Alert",
+                "expanded": "Create Alert"
+            },
+            "placehoderbtn": "Email"
+        }
+    },
+    "delete": {
+        "ad": {
+            "success": "Your ad has been deleted",
+            "fail": "Your ad could not be deleted",
+            "confirm": {
+                "dlg": "Are you sure you want to delete this ad?",
+                "header": "Your ad has been deleted."
+            }
+        }
+    },
+    "ad": {
+        "already": {
+            "activated": "Your ad has been activated"
+        },
+        "flagged": "Ad flagged successfully",
+        "posted": {
+            "survey": {
+                "request": "<br/>Please give us your quick feedback &mdash; <a class='survey' href=\"https://www.surveymonkey.com/s/7KJRX8D\">start survey.</a><br />"
+            }
+        },
+        "confirmed": {
+            "email": {
+                "content": "Great! Your ad <b>\"{0}\"</b>  is now active!  <br/><br/> Your ad may not be visible right away - if that’s the case, don’t worry, just check back in a little while. <br/><br/> Manage your Ads using <a href=\"{5}\">My Gumtree</a><br/><br/> You can also save this email to manage your Ads via the following links:<br/><br/> <ul><li><a href=\"{2}\">Promote My Ad</a></li><li><a href=\"{2}\">Edit Ad</a></li><li><a href=\"{1}\">View Ad</a></li><li><a href=\"{3}\">Delete Ad</a></li></ul>"
+            }
+        }
+    },
+    "activate": {
+        "ad": {
+            "fail": "Your ad could not be activated",
+            "success": {
+                "$$": "Congratulations! Your ad is active and will be visible to all of our users shortly.<br />Do you want more potential buyers to see this ad? Just share it on your social networks using the buttons below!",
+                "not": {
+                    "yet": {
+                        "active": "Thank you! We received your activation request. Your ad will be on {0} shortly."
+                    }
+                }
+            }
+        },
+        "email": {
+            "content": "Your Gumtree Ad \"{0}\" is ready to be activated. <br /><br /> <a href=\"{1}\">Click here to activate your Ad</a> <br/><br/> If clicking the link above does not work, you can type or copy and paste this URL into your browser. <br /> {1}"
+        },
+        "your": {
+            "ad": {
+                "email": {
+                    "subject": "Activate your {1} Ad: \"{0}\""
+                }
+            }
+        },
+        "feature": {
+            "success": "Congratulations! Your order of promotional features was successful. Your ads are on their way to getting more replies."
+        }
+    },
+    "Do": "you want more potential buyers to see this ad? Just share it on your social networks using the buttons below!",
+    "edit": {
+        "ad": {
+            "success": {
+                "$$": "Congratulations! Your ad has been edited and will be visible to all of our users shortly.",
+                "not": {
+                    "yet": {
+                        "active": "Thank you! We received your edit request. Your ad will be on {0} shortly."
+                    }
+                }
+            }
+        },
+        "expired": {
+            "ad": {
+                "failure": "Sorry, the ad you are trying to edit or repost has already expired. Please create a new ad."
+            }
+        }
+    },
+    "repost": {
+        "ad": {
+            "success": "Congratulations! Your ad has been reposted."
+        }
+    },
+    "saved": {
+        "your": {
+            "ad": {
+                "email": {
+                    "subject": "ad saved#"
+                }
+            }
+        },
+        "search": {
+            "push": {
+                "sent": "Your search",
+                "clickToView": "has new results. Click to view them."
+            },
+            "success": {
+                "email": {
+                    "sent": "Almost there! We sent you an email. Click on the email link to confirm and start receiving this Alert."
+                },
+                "saved": "Ready! Your Gumtree Alert is now active. You can manage your alerts by accessing your My Alerts page.",
+                "activated": {
+                    "$$": "Ready! Your Gumtree Alert is now active. Register now to manage your alerts.",
+                    "zero": {
+                        "results": "Thank you! We have activated your alert. However, at this time, there are no results with the search criteria. Register now to manage your alerts."
+                    }
+                },
+                "renewed": "Ready! Gumtree renewed your alert for another 60 days. Its new expiration date is {0}.",
+                "deleted": {
+                    "this": "Confirmed. This Gumtree Alert has been cancelled.",
+                    "all": "Confirmed. All your Gumtree Alerts have been cancelled."
+                }
+            },
+            "error": {
+                "delete": {
+                    "invalidid": "Trying to delete invalid id, no such record found",
+                    "unauthorize": "User not authorized to delete in this locale"
+                },
+                "find": {
+                    "invalidid": "Not a valid savedSearch ID",
+                    "retrieve": "Cannot retrieve saved search for id -"
+                },
+                "update": {
+                    "find": "Cannot find the saved search by id -",
+                    "norecord": "No Saved search to save.",
+                    "exception": "Exception occured while updating the saved search."
+                }
+            },
+            "range_value": {
+                "no_upperbound": "From {0}",
+                "no_lowerbound": "Up to {0}",
+                "no_upperbound_Price": "From R{0}",
+                "no_lowerbound_Price": "Up to R{0}"
+            },
+            "category": {
+                "in": {
+                    "location": "{0} in {1}"
+                }
+            },
+            "all": {
+                "location": "Ireland",
+                "categories": "All Categories"
+            },
+            "range_Price": "R{0} - R{1}",
+            "keyword": "Keyword:\"{0}\"",
+            "duplicate": "An identical filter already exists",
+            "in": "in",
+            "countexceeded": "You have exceeded the maximum number of alerts allowed"
+        }
+    },
+    "your": {
+        "ad": {
+            "activated": {
+                "email": {
+                    "subject": "{1} activated your ad - \"{0}\""
+                }
+            }
+        }
+    },
+    "respond": {
+        "to": {
+            "buyer": {
+                "email": {
+                    "text": "You can respond to {0} < {1} > by replying to this email<br/></br/>"
+                }
+            }
+        }
+    },
+    "link": {
+        "to": {
+            "ad": {
+                "email": {
+                    "text": "Link to the ad"
+                }
+            }
+        }
+    },
+    "copy": {
+        "of": {
+            "your": {
+                "reply": {
+                    "email": {
+                        "text": "You have replied to this Ad on {1}: \"{0}\""
+                    }
+                }
+            }
+        }
+    },
+    "optional": {
+        "text": "Optional"
+    },
+    "required": {
+        "text": "*"
+    },
+    "username": {
+        "text": "Name"
+    },
+    "previewad": {
+        "notice": {
+            "text": "Your ad is not live yet, review and submit."
+        },
+        "edit": {
+            "text": "Edit"
+        },
+        "postyourad": {
+            "text": "Post your ad"
+        }
+    },
+    "repostad": {
+        "your": {
+            "free": {
+                "ad": {
+                    "text": "Repost your free ad"
+                }
+            }
+        },
+        "post": {
+            "text": "Repost"
+        }
+    },
+    "map": {
+        "dlg": {
+            "title": {
+                "1": "We couldn’t find the address you entered",
+                "2": "Please choose from the following suggestions:",
+                "3": "Or use the address that you entered:",
+                "4": "Click “cancel” to try again"
+            },
+            "cancel": "Cancel"
+        }
+    },
+    "header": {
+        "logo": {
+            "altTag": "Free Classifieds"
+        },
+        "interlink": {
+            "title": "Free Classifieds {0}"
+        },
+        "breadcrumb-search": "in {0}",
+        "breadcrumb-result": "{0} ads",
+        "popular-search": {
+            "popular": "Popular"
+        },
+        "related-search": {
+            "items": "Related",
+            "relatedvip": "Related",
+            "vipitems": "Related Vip Items"
+        },
+        "popular-trending": {
+            "items": "Trending"
+        },
+        "suggested-links": "Suggested",
+        "published": "Published in:",
+        "postad-long": "Post a FREE Ad",
+        "postad-medium": "Post FREE Ad",
+        "postad-short": "Post",
+        "search-help_center": "Help Centre",
+        "search-keyword": "What are you looking for?",
+        "search-go": "Search",
+        "search-category": "Category",
+        "search-location": "All Ireland",
+        "search-all-locations": "All Ireland",
+        "search-all-categories": "All Categories",
+        "clear-recent-searches": "Clear Recent",
+        "menu": {
+            "sign": {
+                "in": "Sign In"
+            },
+            "my": {
+                "gumtree": "My Gumtree",
+                "watchlist": "Watchlist",
+                "messages": "My Messages",
+                "savedsearch": "My Alerts",
+                "profile": "My Profile"
+            },
+            "your": {
+                "ads": "My Ads"
+            },
+            "promote": {
+                "ads": "Promote Ads"
+            },
+            "contact": "Contact us",
+            "signout": "Sign Out",
+            "register": "Register",
+            "termCond": "Terms and Conditions"
+        },
+        "country": {
+            "label": "Ireland"
+        }
+    },
+    "mc": {
+        "menu": {
+            "title": "My Messages"
+        },
+        "you": "You:",
+        "no": {
+            "converastion": {
+                "msg": "You have no messages at this time."
+            }
+        },
+        "reply": {
+            "report": {
+                "conv": "Report conversation"
+            },
+            "message": {
+                "$$": "Reply to Message:",
+                "placeholder": "Type your message..."
+            }
+        },
+        "to": {
+            "all": {
+                "messages": "Back to My Messages"
+            }
+        },
+        "report": {
+            "conversation": {
+                "warning": {
+                    "disabled": "Do you want to report this conversation?",
+                    "$$": "Do you want to report this conversation? If so, you will not be able to send any messages within this conversation anymore."
+                }
+            }
+        },
+        "delete": {
+            "conversation": {
+                "message": {
+                    "$$": "Are you sure you want to remove this conversation?",
+                    "yes": "Yes",
+                    "no": "No",
+                    "ok": "Ok"
+                }
+            }
+        },
+        "anonymous": "Anonymous User",
+        "chat": {
+            "with": "Chat with"
+        },
+        "ad": {
+            "prefix": "Ad"
+        },
+        "loadmore": {
+            "messages": "Load earlier messages"
+        },
+        "warning": {
+            "by": {
+                "me": {
+                    "message": "You have already flagged this conversation, it is not possible to send new messages."
+                },
+                "other": {
+                    "message": "The other user marked this conversation as closed."
+                }
+            }
+        }
+    },
+    "tooltip": {
+        "message": {
+            "delete": "Delete conversation",
+            "report": "Report conversation",
+            "reported": "Conversation reported"
+        }
+    },
+    "my-ads": {
+        "button": {
+            "post": "Post an Ad!"
+        },
+        "column": {
+            "my-ads": "My Ads",
+            "price": "Price",
+            "posted": "Posted",
+            "status": "Status",
+            "activity": "Activity",
+            "options": "Options"
+        },
+        "Active": {
+            "title": {
+                "all": "All",
+                "$$": "Active"
+            },
+            "checking": "Please wait..."
+        },
+        "Pending": {
+            "title": "Pending"
+        },
+        "Expired": {
+            "title": "Expired"
+        },
+        "active": {
+            "until": "Active until"
+        },
+        "created": {
+            "on": "Created on"
+        },
+        "expired": {
+            "on": "Expired on"
+        },
+        "expire": {
+            "message": "At this time we provide access to your ads that expired within the last 60 days only."
+        },
+        "category": "Category: {0}",
+        "location": "Location: {0}",
+        "replies": "Replies: <span>{0}</span>",
+        "views": "Views: <span>{0}</span>",
+        "phone": {
+            "calls": "Phone clicks: <span>{0}</span>"
+        },
+        "edit": "Edit",
+        "delete": "Delete",
+        "repost": "Repost",
+        "promote": "Promote My Ad",
+        "reactivate": "Reactivate",
+        "emptystatemessage": "You have no ads. <br/><a data-gtm=\"pc|PostAdBegin\" href=\"{0}\">Why not make one?</a>",
+        "ad": {
+            "status": {
+                "active": "Active",
+                "pending": "Pending",
+                "mailed": "Pending",
+                "delayed": "Pending",
+                "deleted": "Deleted"
+            },
+            "page": {
+                "number": "On Page: {0}"
+            },
+            "active": {
+                "since": "Active Since: {0}"
+            },
+            "activate": {
+                "link": "Activate"
+            }
+        },
+        "until": "until",
+        "sellerbadge": {
+            "title": "To help promote your items so they can be found more easily by potential buyers, Gumtree has offered the following Seller Badge for all our registered sellers. You can simply copy and paste the html code below to integrate the seller badges to your blog or any other web sites.",
+            "icon-title": "Gumtree Classified ads",
+            "description": "Gumtree Seller Badge",
+            "label": {
+                "large": "Large",
+                "small": "Small"
+            }
+        }
+    },
+    "promote-my-ads": {
+        "photo": {
+            "needed": {
+                "for": {
+                    "hp": {
+                        "gallery": "(Upload a photo first)"
+                    }
+                }
+            }
+        }
+    },
+    "vip": {
+        "verified": {
+            "email": "Verified Email"
+        },
+        "non-verified": {
+            "email": "Non-Verified Email"
+        },
+        "num-total-ads": "Published",
+        "num-active-ads": "Active",
+        "of": {
+            "text": "of"
+        },
+        "favorite": "Favorite",
+        "share": "Share",
+        "like": "Like",
+        "follow-us": "Follow us",
+        "print": "Print",
+        "report": "Report",
+        "posted-on": "{0}",
+        "send-email": "Email poster",
+        "send-email-short": "E-mail",
+        "send": {
+            "$$": "Send",
+            "to": {
+                "seller": "Send to Poster"
+            }
+        },
+        "cancel": "Cancel",
+        "reply": {
+            "your": {
+                "name": "Name",
+                "email": "Email",
+                "phoneNumber": "Phone",
+                "phoneNumberOptional": "optional"
+            },
+            "message": "Message",
+            "send": {
+                "me": {
+                    "copy": {
+                        "email": "Send a copy to my email"
+                    }
+                }
+            },
+            "attachmentUpload": {
+                "title": "Attach a file",
+                "help": "(maximum 2MB)"
+            }
+        },
+        "policymessage": "By clicking \"Send\" you accept the <span class='sudo-link' data-o-uri=\"{0}\" data-target=\"_self\">Terms of Use</span> and <span class='sudo-link' data-o-uri=\"{1}\" data-target=\"_self\">Privacy Notice</span> and agree to receive newsletters and promo offers from us.",
+        "map": "Map",
+        "results": "Back",
+        "user": {
+            "$$": "User",
+            "since": {
+                "date": {
+                    "format": "MMM yyyy"
+                }
+            }
+        },
+        "seller": {
+            "user": "Gumtree User"
+        },
+        "breadcrumb": "ad {0}",
+        "see": {
+            "seller": {
+                "ads": "More ads from this seller"
+            }
+        },
+        "discription": "Description",
+        "message-sent": "Your message has been sent",
+        "security-tips": "Safety Tips",
+        "security-tips-desc": "- Your safety is important to us and we believe that you can stay safe.",
+        "security-tips-learn-more": "Learn More",
+        "similar-ads-title": "You might be interested in these similar ads",
+        "similar-ads-more-ads": "More ads",
+        "expired": "Hi! Please beware this listing has expired.  We have displayed some related listings below for your convenience.",
+        "active-user": "User since",
+        "related-search-title": "TODO Related Searches",
+        "seo": {
+            "alt-tag": {
+                "image": "{0} in {1}, image {2}",
+                "thumbnail": "{0} in {1}, thumbnail {2}",
+                "related-ad": "{0} in {1}, preview image"
+            }
+        },
+        "show-phone": "Show phone number",
+        "show-phone-withstar": "***Show phone number",
+        "phone-short": "Call",
+        "visitCount": "Visits",
+        "edit": {
+            "message": "Ads with more information, more photos, and multiple contact options get more views. <a data-gtm=\"pc|EditAdBegin\" href=\"{0}\">Edit and improve your ad</a>."
+        },
+        "repost": {
+            "message": "Ads with more information, more photos, and multiple contact options get more views. <a data-gtm=\"pc|EditAdBegin\" href=\"{0}\">Improve and repost your ad</a>."
+        },
+        "post-it-yourself": "Post an ad like this for FREE!",
+        "attribute": {
+            "label": {
+                "creationdate": {
+                    "$$": "Date Listed",
+                    "onempty": "Notice will be activated soon"
+                },
+                "location": "Location"
+            }
+        },
+        "flagad": {
+            "title": "Report this ad",
+            "anuncioReportado": "Reported ad",
+            "reason": "Reason",
+            "email": "Email",
+            "comments": "Comments",
+            "captcha": {
+                "request": "Type the numbers"
+            },
+            "enable": {
+                "images": "Enable images"
+            },
+            "report": "Report",
+            "termCond": "By clicking on Report you are accepting the <a href=\"{0}\">Terms and Conditions</a> of Gumtree.",
+            "contact": {
+                "text": "For any questions please contact ourvip.flagad.contact.link=technical support"
+            },
+            "error": {
+                "email": "Please enter your email",
+                "comments": "Please enter your comments"
+            }
+        },
+        "flagadSuccess": "Thank you for reporting this ad"
+    },
+    "activado": "pronto",
+    "footer": {
+        "getToKnowUs": {
+            "title": "Get to know us",
+            "about": "About Gumtree",
+            "rules": "Rules for posting ads",
+            "blog": "Gumtree Blog"
+        },
+        "explore": {
+            "title": "Explore",
+            "bestof": "Best Ads",
+            "topSearches": "Top Searches",
+            "mobilesite": "Old mobile site",
+            "sitemap": "Gumtree Content",
+            "locations": "Locations",
+            "interlink": "eBay Classifieds Sites"
+        },
+        "legalbits": {
+            "title": "Legal bits",
+            "terms": "Terms of Use",
+            "privacy": "Privacy Policy",
+            "cookie": "Cookie Notice"
+        },
+        "tips-help": {
+            "title": "Tips & help",
+            "helpContact": "Help & Contact Us",
+            "staySafe": "Stay Safe",
+            "giveFeedback": "Give Feedback"
+        },
+        "followUs": {
+            "title": "Follow us",
+            "facebook": "Facebook",
+            "google": "Google+",
+            "twitter": "Twitter",
+            "youTube": "YouTube",
+            "pinterest": "Pinterest"
+        },
+        "copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
+        "twitter": "@gumtreecoza",
+        "facebook": "Like",
+        "googleplus": "Recommend",
+        "pinterest": "Pinterest",
+        "youtube": "Youtube",
+        "blog": "El estilo de vida en DF se disfruta en <a href=\"{0}\">viveDF,el blog de iBazar</a>"
+    },
+    "error404": {
+        "message": "\"We’re sorry, this page does not exist\" <br /><a href=\"{0}\">Please go to the homepage</a>"
+    },
+    "error410": {
+        "message": "Sorry, this ad is no longer available."
+    },
+    "error500": {
+        "message": "\"We’re sorry, one of our servers got a hiccup.\" <br /><a href=\"{0}\">Please go to the homepage</a>"
+    },
+    "default": {
+        "home": {
+            "page": {
+                "title": {
+                    "text": "Free Classifieds on Gumtree Ireland"
+                }
+            }
+        }
+    },
+    "private": {
+        "policy": "Privacy Policies"
+    },
+    "security": {
+        "tips": "Safety Tips"
+    },
+    "prohibited": {
+        "content": {
+            "policy": "Posting Policies"
+        }
+    },
+    "notice": {
+        "of": {
+            "claimed": {
+                "infringement": "Noticed of Claimed Infringement (NOCI)"
+            }
+        }
+    },
+    "vip_title": "| Gumtree South Africa",
+    "seo": {
+        "allTheAds": "all-the-ads",
+        "sellerListings": "seller-listings",
+        "content": {
+            "learn": {
+                "more": "Learn More"
+            }
+        }
+    },
+    "register": {
+        "page": {
+            "title": "Register on Gumtree"
+        },
+        "title": "Start Registration",
+        "facebook": "Register via Facebook",
+        "or": "or register.",
+        "register-with-email": "If you prefer, register using your Email:",
+        "placeholder-email": "Email",
+        "accept-terms": "By clicking \"Register\", you agree to our <a href=\"{0}\">\"terms of use\"</a> and acknowledge that that you have read our <a href=\"{1}\">Privacy</a> and <a href=\"{2}\">Cookie</a> notices.",
+        "marketing-opt-in": "Yes, I would like Gumtree and eBay Inc. corporate family members to contact me about events, new features, and other promotional information.",
+        "continue": "Register",
+        "toggle-label": "Already have a Gumtree account?",
+        "toggle-link": "Log in here!",
+        "benefits": "Registration is not required, but registration does allow you to post and manage Ads without having to confirm each action via email as well as reserve your own nickname. To start your registration please enter your email address below.",
+        "continue-message": "<h1>Check Your Email!</h1><p>We’ve sent you a link that will allow you to complete your registration.</p>",
+        "error": {
+            "wrongemail": "Email is not valid",
+            "acceptterms": "Please accept the Terms and Conditions before proceeding"
+        },
+        "confirm": {
+            "page": {
+                "title": "Complete your registration with Gumtree"
+            },
+            "title": "Complete your registration",
+            "name": "Name",
+            "email": "Email",
+            "password": "Password",
+            "password-confirm": "Confirm your password",
+            "submit": "Submit"
+        }
+    },
+    "login": {
+        "page": {
+            "title": "Welcome to Gumtree!"
+        },
+        "title": "Log into your account",
+        "facebook": "Log in with Facebook",
+        "or": "or",
+        "signin-with-email": "If you prefer, log in with your Email:",
+        "placeholder-email": "Email",
+        "placeholder-password": "Password",
+        "forgot-password": "Forgot Your password?",
+        "toggle-label": "Don’t have a Gumtree account yet?",
+        "toggle-link": "Get one now!",
+        "signin-button": "Log in",
+        "remember-me": "Remember me",
+        "cookie": {
+            "is": {
+                "disabled": "Browser cookies are required for signing in. Please enable cookies in your browser preferences and try again."
+            }
+        }
+    },
+    "forgot": {
+        "password": {
+            "page": {
+                "title": "Gumtree: Forgot Password"
+            },
+            "title": "Forgot Password",
+            "name": "Name:",
+            "email": "Email Address",
+            "password": "New Password:",
+            "password-confirm": "Re-type new password:",
+            "submit": "Change Password",
+            "continue-message": "<h1>Check Your Email!</h1><p>We have sent you a link that will allow you to reset your password</p>",
+            "instruction": {
+                "message": "Please enter your email address below and we will send you an email to change your password. Don't forget that you can still post Ads without being signed in."
+            },
+            "send": {
+                "email": "Send email"
+            }
+        }
+    },
+    "reset": {
+        "password": {
+            "page": {
+                "title": "Change your password"
+            },
+            "title": "Change your password",
+            "email": "Email"
+        }
+    },
+    "flag": {
+        "email": {
+            "empty": "Your email is required"
+        },
+        "ad": {
+            "type": {
+                "empty": "The ad type is required",
+                "invalid": "The ad type is invalid"
+            }
+        },
+        "captcha": {
+            "invalid": "Incorrect code. Please try again."
+        },
+        "comments": {
+            "too": {
+                "long": "The comments may contain maximum 4,096 characters"
+            }
+        },
+        "type": {
+            "InappropriateContent": "Inappropriate content",
+            "PossibleFraud": "Possible fraud",
+            "WrongCategory": "Wrong category",
+            "DuplicateSpam": "Duplicate/Spam",
+            "NotRelevant": "No longer current"
+        }
+    },
+    "adsense": {
+        "title": "Sponsored Links"
+    },
+    "my": {
+        "profile": {
+            "page": {
+                "title": "My Profile",
+                "account": {
+                    "header": "Account Details"
+                },
+                "username": "Username",
+                "email": "Email",
+                "change": {
+                    "password": {
+                        "$$": "Change Password",
+                        "save": "Your password was changed.",
+                        "verify": "We could not verify your password. Please make sure you entered correct password in \"Verify your current password\" field.",
+                        "mismatch": "Failed to change password.  Password was not re-entered correctly."
+                    },
+                    "profile": {
+                        "save": "Your user profile changes were saved."
+                    }
+                },
+                "new": {
+                    "password": "New password"
+                },
+                "confirm": {
+                    "password": "Re-enter new password"
+                },
+                "viewadcounter": "Hide View Counter on all my ads",
+                "notification": "Send me newsletters and promo offers",
+                "emailUpsell": "Send me my ad status and Gumtree updates",
+                "verify": {
+                    "password": "Verify your current password to save changes"
+                },
+                "save": "Save",
+                "profileImage": "Profile Image",
+                "gender": {
+                    "$$": "Gender",
+                    "male": "Male",
+                    "girl": "Female"
+                },
+                "phone1": "Phone 1",
+                "phone2": "Phone 2",
+                "phone3": "Phone 3",
+                "webSiteUrl": "Website URL",
+                "aboutYou": "About you",
+                "phone": {
+                    "type": {
+                        "Landline": "Landline",
+                        "mobile": "Mobile",
+                        "home": "Home",
+                        "work": "Work",
+                        "main": "Main",
+                        "alternative": "Alternative",
+                        "fax": "Fax",
+                        "pager": "Pager",
+                        "other": "Other",
+                        "$$": "Phone Type"
+                    }
+                },
+                "date": {
+                    "birth": "Date of birth"
+                },
+                "display": {
+                    "gender": "Display gender ?",
+                    "date": {
+                        "birth": "Display Birthday ?"
+                    }
+                },
+                "interest": "Personal interests",
+                "pwd": {
+                    "setup": "Password Setup"
+                },
+                "sub": {
+                    "title": "Profile Details"
+                },
+                "char": {
+                    "count": "Available: {0} characters"
+                },
+                "location": "Location",
+                "upload": "Upload",
+                "oneTouchPayment": {
+                    "change": {
+                        "failed": "One Touch Payment change failed",
+                        "success": "One Touch Payment changed successfully"
+                    }
+                },
+                "about": {
+                    "you": {
+                        "too": {
+                            "long": "About me text is too long.  Please enter less than 350 characters."
+                        }
+                    }
+                },
+                "interests": {
+                    "long": "Interests text is too long.  Please enter less than 350 characters."
+                }
+            }
+        },
+        "ads": {
+            "page": {
+                "title": {
+                    "text": "My Ads"
+                }
+            }
+        },
+        "promote": {
+            "page": {
+                "title": {
+                    "text": "Promote My Ads"
+                },
+                "pay": {
+                    "now": "Pay Now"
+                },
+                "total": "Total:"
+            }
+        },
+        "subscriptions": {
+            "page": {
+                "title": {
+                    "text": "My Subscriptions"
+                },
+                "breadcrumb": {
+                    "single": "One Article",
+                    "plural": "{0} Articles"
+                },
+                "header": {
+                    "title": "My Ads",
+                    "column1": "Pause / Resume"
+                },
+                "emptystatemessage": "You have no ads. <br/><a href=\"{0}\">Why not make one?</a>"
+            }
+        },
+        "watchlist": {
+            "title": "Watchlist",
+            "syncbutton": {
+                "inactive": "Saved",
+                "active": "Save"
+            },
+            "email": "Email",
+            "clearAll": "Clear All"
+        },
+        "messages": {
+            "page": {
+                "title": {
+                    "text": "My Messages"
+                }
+            }
+        },
+        "alerts": {
+            "page": {
+                "title": {
+                    "text": "My Alerts"
+                }
+            }
+        }
+    },
+    "feature": {
+        "displayname": {
+            "bumpup": "Bump Up",
+            "topad": "Top Ad",
+            "topad7": "Top Ad - 7 days",
+            "topad15": "Top Ad - 15 days",
+            "topad31": "Top Ad - 31 days",
+            "hpgallery": "Homepage Gallery",
+            "hpgallery7": "Homepage Gallery - 7 days",
+            "hpgallery15": "Homepage Gallery - 15 days",
+            "hpgallery31": "Homepage Gallery - 31 days",
+            "urgent": "Urgent Ad",
+            "urgent7": "Urgent Ad - 7 days",
+            "highlight": "Highlight",
+            "highlight7": "Highlight - 7 days",
+            "insertionfee": "Insertion fee",
+            "websiteurl": "Website URL",
+            "srpgallery": "Category Gallery",
+            "srpgallery7": "Category Gallery - 7 days",
+            "srpgallery15": "Category Gallery - 15 days",
+            "srpgallery31": "Category Gallery - 31 days",
+            "bumpupXY": "Bump Up"
+        },
+        "post": {
+            "urgent": "Urgent"
+        },
+        "duration": {
+            "small": "1 Time",
+            "medium": "7 Days",
+            "large": "7 or 31 Days",
+            "hr12": "Cada 12 Horas"
+        },
+        "description": {
+            "bumpup": "Bump your ad to the top of category pages!",
+            "topad": "Show your ads on rotation at the top of the category pages",
+            "hpgallery": "Have your ad seen on the homepage by thousands of people",
+            "urgent": "Let buyers know you want to sell quickly",
+            "highlight": "Highlight your ad to gain visibility and stand out from the crowd",
+            "insertionfee": "Insertion fee",
+            "websiteurl": "Website URL",
+            "srpgallery": "Have your ad seen on the search page by thousands of people",
+            "bumpupXY": "Bump your ad to the top for every {0} {1} dias"
+        },
+        "option": {
+            "description": {
+                "bumpup": "",
+                "topad7": "{0} days for",
+                "topad15": "{0} days for",
+                "topad31": "{0} days for",
+                "hpgallery": "{0} days for",
+                "hpgallery7": "{0} days for",
+                "hpgallery15": "{0} days for",
+                "hpgallery31": "{0} days for",
+                "urgent": "{0} days for",
+                "highlight": "{0} days for",
+                "highlight7": "{0} days for",
+                "highlight15": "{0} days for",
+                "highlight31": "{0} days for",
+                "srpgallery": "{0} days for",
+                "srpgallery7": "{0} days for",
+                "srpgallery15": "{0} days for",
+                "srpgallery31": "{0} days for",
+                "bumpup_xy": "{0} days for"
+            },
+            "duration": "{0} days",
+            "bestdealInfo": "Get Up to 10X replies and views",
+            "bestdealIcon": "Best Deal"
+        },
+        "legend": {
+            "banner": {
+                "headline": {
+                    "1": "Get Your ad noticed.",
+                    "2": "Promoted ads on Gumtree sell 5x faster."
+                }
+            },
+            "mobile": {
+                "banner": {
+                    "headline": {
+                        "1": "Promote Your Ads",
+                        "2": "Get noticed and sell 5x faster."
+                    }
+                }
+            },
+            "tip": "Tip:",
+            "bumpup": {
+                "name": "Bump Up",
+                "short": {
+                    "description": "Help people find your ad, move to the top of page one!"
+                },
+                "description": {
+                    "list": {
+                        "1": "Low cost, quick results",
+                        "2": "Bump your ad to the very top of page 1, where it will remain until other ads are posted"
+                    },
+                    "tip": {
+                        "text": "Not getting enough replies? Use Bump Up to get more new eyes on your ad"
+                    }
+                }
+            },
+            "bumpupXY": {
+                "name": "Bump Up every {0} for {1} days",
+                "short": {
+                    "description": "Help people find your ad, move to the top of page one!"
+                },
+                "description": {
+                    "list": {
+                        "1": "Low cost, quick results",
+                        "2": "Bump your ad to the very top of page 1, where it will remain until other ads are posted. Do this every {0}."
+                    },
+                    "tip": {
+                        "text": "Not getting enough replies? Use Bump Up to get more new eyes on your ad"
+                    }
+                }
+            },
+            "urgent": {
+                "name": "Urgent Ad",
+                "short": {
+                    "description": "Need quick replies? Show others you want to sell fast."
+                },
+                "description": {
+                    "list": {
+                        "1": "Urgent Ads are the best way to announce you want a quick sale",
+                        "2": "Bold and bright frame is eye-catching"
+                    },
+                    "tip": {
+                        "text": "For quick sales, be sure to include a well lit picture, and try combining with Bump Up for maximum visibility"
+                    }
+                }
+            },
+            "highlight": {
+                "name": "Highlight Ad",
+                "short": {
+                    "description": "Get maximum attention and more replies."
+                },
+                "description": {
+                    "list": {
+                        "1": "Bright contrast means standing out in listings"
+                    },
+                    "tip": {
+                        "text": "Try combining the Highlight Ad with the Urgent Ad for maximum visibility."
+                    }
+                }
+            },
+            "websiteurl": {
+                "name": "Website URL",
+                "description": {
+                    "list": {
+                        "1": "If you have a website, promote it by including the website link in your Gumtree ad and make it visible to a large number of Gumtree users",
+                        "2": "Gumtree users will be able to click and go directly to your website from inside your ad",
+                        "3": "Many more Gumtree users will be able to go to your website from your ad appearing in the search result page"
+                    }
+                }
+            },
+            "topads": {
+                "name": "Top Ad",
+                "short": {
+                    "description": "Feature your ad in rotation on top of Category Pages."
+                },
+                "description": {
+                    "list": {
+                        "1": "The first ad people see in each category",
+                        "2": "Easy to find, easy to reply"
+                    },
+                    "tip": {
+                        "text": "Make sure your Ad title and description clearly explain what you’re selling, for maximum effectivness"
+                    }
+                }
+            },
+            "hopepage": {
+                "name": {
+                    "1": "",
+                    "2": "Homepage Gallery"
+                }
+            },
+            "homepage": {
+                "short": {
+                    "description": "Show your ad to millions of people on the Homepage!"
+                },
+                "description": {
+                    "list": {
+                        "1": "Millions of people see your ad each day",
+                        "2": "More people reply to these ads because they are so prominent"
+                    },
+                    "tip": {
+                        "text": "Choose an eye catching picture of your ad when purchasing ths feature for maximum effectiveness"
+                    }
+                }
+            },
+            "catgallery": {
+                "name": {
+                    "1": "",
+                    "2": "Category Gallery"
+                },
+                "short": {
+                    "description": "Show your ad to millions of people on the Search Page!"
+                },
+                "description": {
+                    "list": {
+                        "1": "Millions of people see your ad each day",
+                        "2": "More people reply to these ads because they are so prominent"
+                    },
+                    "tip": {
+                        "text": "Choose an eye catching picture of your ad when purchasing ths feature for maximum effectiveness"
+                    }
+                }
+            },
+            "learnmore": "Learn More[?]",
+            "close": "Close"
+        },
+        "no": {
+            "permission": "No permission to apply feature"
+        },
+        "not": {
+            "supported": "Feature {0} not supported: {1}"
+        },
+        "multiplead": {
+            "about": {
+                "to": {
+                    "renew": {
+                        "email": {
+                            "subject": "Your features are about to auto-renew"
+                        }
+                    }
+                }
+            }
+        },
+        "singlead": {
+            "about": {
+                "to": {
+                    "renew": {
+                        "email": {
+                            "subject": "Your feature is about to auto-renew on the ad: {0}"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "eature": {
+        "option": {
+            "description": {
+                "urgent7": "{0} days for",
+                "urgent15": "{0} days for",
+                "urgent31": "{0} days for"
+            }
+        }
+    },
+    "FeatureNotSupported": "Feature {0} not supported",
+    "TargetNotSupported": "Cannot apply features to target {0}",
+    "FeatureAlreadyEnabled": "Feature {0} is already enabled for ad {1}",
+    "social": {
+        "media": {
+            "follow": {
+                "us": "Follow Us",
+                "$$": "Follow"
+            },
+            "share": "Share",
+            "twitterPrefix": "Look what's on Gumtree! {0}",
+            "email": {
+                "body": "Hello! I found this ad on Gumtree and thought you might be interested. {0} %0D%0AJoin the Gumtree community:%0D%0AFacebook: https://www.facebook.com/pages/Gumtree-Ireland/418049221563633 %0D%0A Google+: https://plus.google.com/102717280495598991268/posts %0D%0A Twitter: https://twitter.com/gumtree_ie",
+                "subject": "This may interest you! {0}"
+            }
+        }
+    },
+    "error": {
+        "attribute": {
+            "invalid": "Invalid value",
+            "empty": "Please complete the {0} field"
+        }
+    },
+    "too": {
+        "many": {
+            "cap": {
+                "letter": "Please reduce the number of capital letters in the description."
+            }
+        }
+    },
+    "wrong": {
+        "price": {
+            "format": "Please use numbers only to set a price",
+            "decimal": "Please write 2 digits (only) after the decimal point"
+        },
+        "my": {
+            "profile": {
+                "phone": {
+                    "type": "Please enter a valid phone type",
+                    "format": "Please enter a valid phone number"
+                },
+                "gender": {
+                    "type": "Please enter a valid gender type"
+                },
+                "birth": {
+                    "day": "Please use the format MM/DD/YYYY"
+                },
+                "future": {
+                    "date": "Please enter either today or an earlier date"
+                }
+            }
+        }
+    },
+    "pricetype": {
+        "fixed": "Amount",
+        "free": "Free",
+        "make_offer": "Negotiable",
+        "contact_me": "Contact for Price",
+        "barter_swap": "Swap/Trade"
+    },
+    "description": {
+        "empty": "The description must contain a minimum of 50 characters"
+    },
+    "swrong": {
+        "phone": {
+            "format": "The telephone number must not contain any special letters or characters"
+        }
+    },
+    "picYour": {
+        "discription": {
+            "too": {
+                "long": "The description of the image is too long"
+            }
+        }
+    },
+    "credit": {
+        "card": {
+            "holder": {
+                "name": {
+                    "empty": "Error! You must enter information in the highlighted area above",
+                    "too": {
+                        "long": "Sorry, our limit is {0} characters. Please shorten your name"
+                    }
+                }
+            },
+            "number": {
+                "empty": "Error! You must enter information in the highlighted area above",
+                "too": {
+                    "long": "Sorry, our limit is {0} characters. Please shorten your number"
+                },
+                "invalid": "Please enter a valid credit card number"
+            },
+            "type": {
+                "invalid": "Please enter a valid card type"
+            },
+            "security": {
+                "code": {
+                    "empty": "Error! You must enter information in the highlighted area above",
+                    "invalid": "Please enter a valid security code"
+                }
+            },
+            "exp": {
+                "month": {
+                    "invalid": "Please check the expiration month of your credit card"
+                },
+                "year": {
+                    "invalid": "Please check the expiration year of your credit card"
+                },
+                "expired": "Your card is expired"
+            }
+        },
+        "car": {
+            "exp": {
+                "month": {
+                    "jan": "1 - January",
+                    "feb": "2 - February",
+                    "mar": "3 - March",
+                    "apr": "4 - April",
+                    "may": "5 - May",
+                    "jun": "6 - June",
+                    "jul": "7 - July",
+                    "aug": "8 - August",
+                    "sep": "9 - September",
+                    "oct": "10 - October",
+                    "nov": "11 - November",
+                    "dec": "12 - December"
+                }
+            }
+        }
+    },
+    "autocomplete": {
+        "category": {
+            "in": "in"
+        },
+        "display": {
+            "text": "{0} in {1}"
+        }
+    },
+    "myorders": {
+        "page": {
+            "title": "My Orders"
+        },
+        "detail": {
+            "export": {
+                "pdf": "No Data",
+                "print": "Print"
+            },
+            "field": {
+                "features": {
+                    "adId": "Ad ID",
+                    "featureAmt": "Amount",
+                    "featureId": "Feature ID",
+                    "featureName": "Name",
+                    "$$": "Features"
+                },
+                "orderDateStr": "Order Date",
+                "orderId": "Order ID",
+                "payerEmail": "Owner Email",
+                "paymentMethod": "Payment method",
+                "vatId": "VatId"
+            },
+            "totals": {
+                "subTotal": "Total (without VAT):",
+                "vatTotal": "VAT:",
+                "orderTotal": "Total (together with VAT):"
+            }
+        },
+        "export": {
+            "csv": "CSV",
+            "json": "JSON",
+            "xml": {
+                "nodes": {
+                    "item": "order",
+                    "oamt": "amount",
+                    "odt": "order",
+                    "oid": "orders",
+                    "root": "orders"
+                },
+                "$$": "XML"
+            }
+        },
+        "filters": {
+            "month": "Month",
+            "year": "Year"
+        },
+        "list": {
+            "columns": {
+                "oamt": "Amount",
+                "odt": "Date",
+                "oid": "Order ID"
+            },
+            "nodata": "No Data"
+        },
+        "months": "January,February,March,April,May,June,July,August,September,October,November,December",
+        "print": {
+            "title": "Account",
+            "client": {
+                "$$": "Information about the client:",
+                "name": "User name:",
+                "address": "Address:",
+                "nip": "NIP:",
+                "vat": "VAT number:"
+            },
+            "payment": {
+                "$$": "Information about your payment:",
+                "ref": "Reference number:",
+                "date": "were submitted order:",
+                "email": "E-mail address:",
+                "type": "Form of payment:",
+                "address": {
+                    "$$": "Information about the country:",
+                    "vatid": "VAT ID:"
+                }
+            },
+            "details": {
+                "$$": "Information about your order:",
+                "subject": "Item",
+                "title": "Information about the ad",
+                "cost": "Cost",
+                "total": "Paid Total:"
+            },
+            "fineprint": "This is an electronic record of your purchase. Print this page and save it."
+        }
+    },
+    "no": {
+        "picture": {
+            "hpg": "Homepage Gallery requires that an image is uploaded. Please add an image and click Post when ready.",
+            "srp": "Category Gallery requires that an image is uploaded. Please add an image and click Post when ready."
+        }
+    },
+    "CarMileageInMiles": {
+        "0": "10,000 or less",
+        "10000": "20,000 or less",
+        "20000": "30,000 or less",
+        "30000": "40,000 or less",
+        "40000": "50,000 or less",
+        "50000": "60,000 or less",
+        "60000": "70,000 or less",
+        "70000": "80,000 or less",
+        "80000": "90,000 or less",
+        "90000": "100,000 or less",
+        "AFTER": "100,001 or more"
+    },
+    "payment": {
+        "feature": {
+            "select_method": {
+                "none": "None",
+                "eft": "SID",
+                "credit_debit": "Credit Card"
+            },
+            "autorenew": {
+                "$$": "Automatic Renewal",
+                "moreinfo": "More info",
+                "lessinfo": "Lore info",
+                "description": "<h3>Subscribe to automatic renewal</h3><p>It is important to understand the following points:<ol><li><em>When the plan expires, the feature will be renewed automatically.</em></li><li><em>The amount deducted will continue according to the selected plan.</em></li><li><em>Any transaction will automatically generate a new receipt, issued from your account.</em></li><li><em>Cancellation of this service may be performed at any time using the subscription management interface.</em></li><li><em>If rates change, you will receive an email escrowing the changes. You can decide at this time if you wish to continue the service.</em></li></ol></p>"
+            }
+        },
+        "for": {
+            "feature": {
+                "success": "Congratulations! You have successfully purchased promotions for your ad(s).",
+                "fail": "We are sorry, your payment could not be processed at this time.  Please verify your payment details and try again later.",
+                "cancel": "Your payment has been cancelled."
+            }
+        },
+        "eft": {
+            "marketing": "<p class='sid-lead-paragraph'>SID allows you to pay quickly and safely by instant EFT.</p><p>Banks supported Absa, FNB, Nedbank, and Standard Bank.</p><p>Clicking the button below will open the SID website where you can validate your order.  The final step is to complete the transaction on your own bank's website.</p>",
+            "submit": "Proceed to SID"
+        },
+        "credit_debit": {
+            "$$": "Choose your card",
+            "details": {
+                "name": "Name",
+                "submit": "Pay Now",
+                "number": "Credit Card Number",
+                "exp": "Expiration Date",
+                "cvv": {
+                    "$$": "Security Code (CVV)",
+                    "base": "The last 3 digits on the back of the card",
+                    "amex": "Use the 4 digit number on the front of the card"
+                }
+            }
+        },
+        "subheader": "Pay For Your Order",
+        "vat": {
+            "message": "Includes VAT of"
+        }
+    },
+    "sitemap": {
+        "locations": {
+            "url": {
+                "prefix": "ireland-classifieds"
+            },
+            "breadcrumbs": {
+                "root": "Locations"
+            },
+            "title": {
+                "left-panel": "Ireland Locations",
+                "right-panel": "Categories in {0}"
+            },
+            "filter": {
+                "button": "Filter"
+            },
+            "label": {
+                "show-more": "Show more",
+                "show-less": "Show less"
+            },
+            "title-tag": "{0} Classifieds | {0} Gumtree",
+            "description-tag": "Gumtree Classifieds in {0} | Find almost anything in {0}",
+            "cat-in-loc": "{0} in {1}"
+        }
+    },
+    "bestof": {
+        "url": {
+            "prefix": "best-ads"
+        },
+        "mainpage": {
+            "title": "Best of Gumtree Ireland",
+            "subtitle": {
+                "overall": "Overall Best Ads",
+                "bestofcategory": "Best of {0}"
+            }
+        },
+        "overall": {
+            "more-ads": "More overall best ads..."
+        },
+        "category": {
+            "more-ads": "More best ads in {0}"
+        },
+        "catpage": {
+            "title": "Best of {0}",
+            "navlink": {
+                "back": "Back",
+                "browseall": "Browse all ads in {0}"
+            }
+        }
+    },
+    "pagination": {
+        "page": {
+            "result": {
+                "description": "Results {0} to {1} of {2} ads"
+            }
+        }
+    },
+    "watchlist": {
+        "title": "Watchlist",
+        "itemCount": "items",
+        "clearAll": "Clear All",
+        "viewAll": "View All",
+        "syncbutton": {
+            "inactive": "Watchlist is Saved",
+            "active": "Save Watchlist",
+            "tooltip": "Saving your Watchlist makes it available across browsers and mobile devices"
+        },
+        "emailbutton": "or, Email",
+        "emailSubject": "My Watchlist in Gumtree",
+        "emailBody": "Hello,||I'd like to share with you my most recent Watchlist in Gumtree.|{0}||Enjoy!||Courtesy of the Gumtree Team|http://www.gumtree.ie/",
+        "noADHint_part1": "Click the star icon in your favorite listings to add items to your Watchlist.",
+        "noADHint_part2": "Or,",
+        "noADHint_part3": "login",
+        "noADHint_part4": "to see your previously saved Watchlist.",
+        "star": {
+            "add": "Add to Watchlist",
+            "added": "Added to Watchlist"
+        },
+        "notification": {
+            "adding": "Congratulations!  Gumtree has added this ad to your Watchlist.",
+            "removing": "Gumtree has removed this ad from your Watchlist.",
+            "sync": "Wonderful!   Your Watchlist is now in Sync with your My Gumtree account and across your browsers and mobile devices.  Log in into your My Gumtree account to see them."
+        },
+        "ads": {
+            "page": {
+                "title": {
+                    "text": "Watchlist"
+                }
+            }
+        }
+    },
+    "my-watchlist": {
+        "emptystatemessage": "<br /> Or, <a href=\"{0}\">login</a> to see your previously saved Watchlist.",
+        "emptysigninmessage": "Click the star of listings you want to add to your Watchlist."
+    },
+    "top-searches": {
+        "breadcrumbs": {
+            "root": "Top Searches"
+        },
+        "nocat-noloc": {
+            "header": "Overall Top Searches on Gumtree Ireland",
+            "subheader": {
+                "top": "Overall top searches trending right now on Gumtree Ireland",
+                "popular": "Most popular searches on Gumtree Ireland"
+            }
+        },
+        "cat-noloc": {
+            "header": "Top Searches in {0}",
+            "subheader": {
+                "top": "Top searches trending right now in {0}",
+                "popular": "Most popular searches in {0}"
+            }
+        },
+        "nocat-loc": {
+            "header": "Top Searches in {0}",
+            "subheader": {
+                "top": "Top searches trending right now in {0}",
+                "popular": "Most popular searches in {0}"
+            }
+        },
+        "cat-loc": {
+            "header": "Top Searches in {0} in {1}",
+            "subheader": {
+                "top": "Top searches trending right now in {0} in {1}",
+                "popular": "Most popular searches in {0} in {1}"
+            }
+        }
+    },
+    "topsearches": {
+        "title": {
+            "category-location": "Category / Location"
+        },
+        "filter": {
+            "button": "Filter"
+        },
+        "url": {
+            "prefix": "top-searches",
+            "all-ads": "all-ads"
+        },
+        "label": {
+            "show-more": "Show more",
+            "show-less": "Show less"
+        }
+    },
+    "msite-prompt": {
+        "welcome": "Welcome to Gumtree",
+        "please-choose": "Please choose how to proceed:",
+        "normal-link": "Stay on the new Gumtree site",
+        "old-link": "Go to old mobile Gumtree site",
+        "remember": "remember my preference for next visits"
+    },
+    "ssp": {
+        "header": {
+            "items": "items",
+            "filter": {
+                "title": "Search Filters"
+            },
+            "occurrence": {
+                "title": "Email Alerts*"
+            },
+            "delete": {
+                "title": "Delete"
+            }
+        },
+        "message": {
+            "warning": "*You will only receive an alert if we find listings that match your search"
+        },
+        "localizedInword": "in",
+        "all": {
+            "ads": {
+                "text": "All Ads"
+            }
+        }
+    },
+    "CarEngineDisplacement": {
+        "25": "0 - 50cc",
+        "100": "051cc - 125cc",
+        "225": "126cc - 250cc",
+        "475": "251cc - 500cc",
+        "AFTER": "501cc or more"
+    },
+    "abandonedorder": {
+        "adFeaturePaid": {
+            "one_ad": "Looks like you are already promoting this ad. Good luck !",
+            "multiple_ads": "Looks like you are already promoting one of your ads. Good luck !"
+        },
+        "adNotActive": "One of your ads in the order is no longer active."
+    },
+    "select": {
+        "all": {
+            "feature": {
+                "options": "Select all options"
+            }
+        }
+    },
+    "password": {
+        "strength": {
+            "short": "Short",
+            "weak": "Weak",
+            "fair": "Fair",
+            "good": "Good",
+            "strong": "Strong"
+        }
+    },
+    "sort": {
+        "override": {
+            "price": "Please be aware that we changed the default sort.  Please use the sort by option to change it."
+        }
+    }
+}

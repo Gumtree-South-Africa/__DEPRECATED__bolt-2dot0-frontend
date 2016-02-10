@@ -4,12 +4,12 @@
     {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
-	   {{> adCarousel}}
-     {{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
+	   {{> (dynamic "adCarousel") }}
+     {{#block "carousel" }}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
-        {{> locationMapContainer}}
-        {{#block "locationContainer" ../this}}{{/block}}
+        {{> (dynamic "locationMapContainer") }}
+        {{#block "locationContainer"}}{{/block}}
 	{{/partial}}
 {{/if}}
 
@@ -26,9 +26,9 @@
 	{{#block "googleBannerAdsRightBottom_Script"}}
 	{{/block}}
 	
-	{{> skinBanner}}
-	{{#block "googleBannerSkinCampaign_Script" ../this}}
+	{{> (dynamic "skinBanner") }}
+	{{#block "googleBannerSkinCampaign_Script"}}
 	{{/block}}
 {{/partial}}
 
-{{> homepage-base}}
+{{> (base "homepage") }}

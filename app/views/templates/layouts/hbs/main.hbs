@@ -12,15 +12,15 @@
 
         <!-- From Body.html -->
         <div class="viewport" id="div-gpt-oop">
-            {{> header}}
+            {{> (dynamic "header") }}
             <div class="containment">
 
                 {{#block "messaging-full-width"}}{{/block}}
 
                 <div class="page {{!-- #ifEq model.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
 					
-					{{>messaging}}
-                    {{#block "messaging" this}}{{/block}}
+					{{> (dynamic "messaging") }}
+                    {{#block "messaging" }}{{/block}}
 
                     {{#block "breadcrumbs"}}
                     {{!-- > hbs/Html/Breadcrumbs --}}
@@ -33,7 +33,7 @@
 
                                 {{{body}}}
 
-                                {{#block "content" this}}OVERRIDE THIS!!!{{/block}}
+                                {{#block "content"}}OVERRIDE THIS!!!{{/block}}
                                 <div class="clear"></div>
                             </div>
                         </section>
@@ -43,8 +43,8 @@
 
                     <div class="footer">
 
-                          {{> footer}}
-                          {{#block "footerp" this}}
+                          {{> (dynamic "footer" ) }}
+                          {{#block "footerp" }}
                               <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
                           {{/block}}
 
@@ -68,6 +68,6 @@
         <script src="/js/libraries/handlebars/handlebars.js"></script>
         -->
 
-        {{> Tail}}
+        {{> (base "tail") }}
     </body>
 </html>

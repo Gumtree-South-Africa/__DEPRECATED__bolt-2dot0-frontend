@@ -1,4 +1,4 @@
-{{> footer-base}}
+{{> (base "footer") }}
 
 {{#partial "footerp"}}
 	<div class="footer-links clearfix">
@@ -53,7 +53,7 @@
 		</div>
 	</div>
 
-	<div class="social-links">{{> socialMediaLinks}}</div>
+	<div class="social-links">{{> (dynamic "socialMediaLinks")}}</div>
 	<div class="cpyrt">{{{i18n "footer.copyright"}}}</div>
 {{/partial}}
 

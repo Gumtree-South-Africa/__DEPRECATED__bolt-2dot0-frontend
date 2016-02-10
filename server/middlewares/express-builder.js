@@ -10,13 +10,26 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var path = require('path');
 
-var hbshelp = require("../../modules/bolt-handlebars-helpers");
+var hbshelpers = require("../../modules/hbs-helpers");
 var writeHeader = require("./write-header");
 var requestId = require('./request-id');
+var exphbs  = require('express-handlebars');
 
 var config = {
     root: process.cwd()
 };
+
+var hbs = exphbs.create({
+    defaultLayout: 'main',
+    layoutsDir: config.root + "/app/views/templates/layouts/hbs/",
+    extname: "hbs",
+    helpers: hbshelpers,
+    precompiled: [ config.root + "/app/views/components/", config.root + '/app/views/templates/pages'],
+    partialsDir: [ config.root + "/app/views/components/", config.root + '/app/views/templates/pages']
+
+});
+
+hbshelpers.init(hbs) ;
 
 function BuildApp(locale) {
     var app = express();
@@ -33,9 +46,6 @@ function BuildApp(locale) {
     app.use('/', express.static(config.root + '/public'));
     // app.use("/app/views", express.static(config.root + '/app/views'));
 
-    // @TODO: Remove these 2 lines when minification/aggregation is in place.
-    app.use('/views/components/', express.static(config.root + '/app/views/components/'));
-    app.use('/views/templates/', express.static(config.root + '/app/views/templates/'));
     app.use(expressUncapitalize());
 
     // Use custom middlewares
@@ -46,16 +56,12 @@ function BuildApp(locale) {
 
     this.locale = locale;
     
-    //Setup Views
-    if (locale) {
-        exphbs = require('express-handlebars');
-        app.set('views', config.root + '/app/views/templates/pages/');
-        app.set('view engine', 'hbs');
+    //Setup hbs Views
 
-        // Add BOLT 2.0 Handlebars helpers for view engine
-        // hbshelp(app, locale, exphbs);
-        hbshelp(app, locale, exphbs);
-    }
+    app.engine('hbs', hbs.engine);
+    app.set('view engine', 'hbs');
+    app.set('views', config.root + '/app/views/templates/pages');
+
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc
