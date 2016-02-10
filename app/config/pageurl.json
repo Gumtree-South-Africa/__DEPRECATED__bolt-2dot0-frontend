@@ -22,17 +22,8 @@
 		"rootGeoLocatorUrl"		: "/locations/content/"
 	},
 	"footer" : {
-		"cookieRightsURL"						: "/cookie-notice",
-		"privacyPolicyURL"						: "/privacy-policy",
-		"termsAndConditionsURL"					: "/terms-of-service"
-	},
-	"content" : {
-		"topHomePageAdBanner"	: true,
-		"homepageBanners"		: [
-				                     "banner-bienvenidos.jpg",
-				                     "banner-publica.jpg",
-				                     "banner-auto.gif",
-				                     "banner-cv.gif"
-				                  ]
+		"cookieRightsURL"		: "/cookie-notice",
+		"privacyPolicyURL"		: "/privacy-policy",
+		"termsAndConditionsURL"	: "/terms-of-service"
 	}
 }
