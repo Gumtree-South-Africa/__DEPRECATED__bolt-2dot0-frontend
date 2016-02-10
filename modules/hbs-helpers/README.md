@@ -24,6 +24,7 @@ Make sure package.json got the laterest version of express-handlebar
 ### Example
 
 ```handlebars
+
 <!-- main.hbs -->
 <html>
 <head>
@@ -119,7 +120,7 @@ This is not the DRYest implementation, however. The <html> and <body> tags are c
 
 ```
 
-This pattern is recommended when template inheritance is unavailable. It is fragile and rigid, though. Some tags, like <html> and <body> here, are split among the included templates - terrible for maintenance and readability. To customize a portion of an included template for each page, like the <title>, the templates must be divided even further:
+This pattern is recommended when template inheritance is unavailable. It is fragile and rigid, though. Some tags, like <html> and &lt;body&gt; here, are split among the included templates - terrible for maintenance and readability. To customize a portion of an included template for each page, like the &lt;title&gt;, the templates must be divided even further:
 
 ```handlebars
 
