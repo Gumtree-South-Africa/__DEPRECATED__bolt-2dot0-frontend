@@ -1,16 +1,24 @@
 <snippet>
   <content><![CDATA[
-# ${1:Project Name}
+# Bolt 2.0 Handlebars
 
-TODO: Write a project description
-
-## Installation
-
-TODO: Describe the installation process
+Handlebar template inheritance
 
 ## Usage
 
-TODO: Write usage instructions
+'''handlebar
+//block
+{{block "SFO"}} {{/block}}
+
+// static parital
+{{> "SFO" }}
+
+// dynamic partial
+{{> (dynamic "SFO") }}
+
+// base partial 
+{{> (base "SFO")}}
+'''
 
 ## Contributing
 
@@ -31,6 +39,8 @@ TODO: Write credits
 ## License
 
 TODO: Write license
-]]></content>
+]]>
+
+</content>
   <tabTrigger>readme</tabTrigger>
 </snippet>
