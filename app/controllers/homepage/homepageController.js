@@ -112,11 +112,14 @@ var HP = {
 	buildContentData : function(extraData, homepageConfigData) {
 		extraData.content = {};
 		extraData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
-		var homePageBannerUrls = [];
-		var homepageBanners = homepageConfigData.homepageBanners;
-		 for (var i=0; i<homepageBanners.length; i++) {
-			 homePageBannerUrls[i] = extraData.footer.baseImageUrl + homepageBanners[i];
-	     }
-		 extraData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
+		
+		if (homepageConfigData.homepageBanners !== null) {
+			var homePageBannerUrls = [];
+			var homepageBanners = homepageConfigData.homepageBanners;
+			for (var i=0; i<homepageBanners.length; i++) {
+				homePageBannerUrls[i] = extraData.footer.baseImageUrl + homepageBanners[i];
+		    }
+			extraData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
+		}
 	}
 };

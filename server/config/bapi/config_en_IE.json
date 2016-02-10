@@ -2,56 +2,57 @@
 	"header" : {
 		"type" 								: "website",
 		"localeOpenGraph" 					: "en_GB",
-		"publisherUrl"						: "https://plus.google.com/+gumtreecoza/",
+		"publisherUrl"						: null,
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: true,
-		"skinCampaignOn"					: true,
+		"isMessageCenterEnabled"			: false,
+		"skinCampaignOn"					: false,
 		"googleTagAccountId"				: "7162/Gumtree_IE",
+		"googleTagAccountMobId"				: "7162/Gumtree_IE_mobresp",
 		"enableLighterVersionForMobile"		: false,
 		"headerConfig"						: {
-			"isolatedLoginLink": true
+			"isolatedLoginLink"	: true
 		},
-		"navigationConfig"					: {
-	        "instantSearch": true,
-	        "geoLocator": true
-	    },
+		"navigationConfig"					: null,
 	    "marketo"							: {
-	        "enabled": true,
-	    	"trackAnonUser": false,
-	    	"munchkinId": "038-AZF-323",
-	    	"privateKey": "boltisking123"
+	    	"enabled"			: false,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "038-AZF-323",
+	    	"privateKey"		: "boltisking123"
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/"
+	    "seoDeepLinkingBaseUrlAndroid" 		: null
 	},
 	"footer" : {
-		"cookieNotice"						:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
-		"privacyPolicy"						:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
-		"termOfUse"							:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"helpLabel"							: "Ayuda",
-		"helpUrl"							: "http://ayuda.alamaula.com/",
-		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
+		"cookieNotice"						: "/cookie-notice",
+		"privacyPolicy"						: "/privacy-policy",
+		"termOfUse"							: "/terms-of-service",
+		"helpLabel"							: "Help",
+		"helpUrl"							: "http://gumtreehelp.com/ie/",
+		"interLinkUrl"						: null,
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
 		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
 		"googleAdSense"						:	{
-			"enabled"	:	true
+			"enabled"							: true,
+			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+			"googleAdWidth"						: "300",
+			"googleAdHeight"					: "250",
+			"paidSearchTopAdsenseCountDesktop"	: "0",
+		    "paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"	:	true
+			"enabled"							: false,			
+			"blogUrl" 							: "http://blog.gumtree.ie/",
+			"vipLandingPageEnabled"				: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
 		"homepage" : {
-			"topHomePageAdBanner"			: true,
-			"homepageBanners"				: [
-							                     "banner-bienvenidos.jpg",
-							                     "banner-publica.jpg",
-							                     "banner-auto.gif",
-							                     "banner-cv.gif"
-							                  ]
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: null,
+			"bingMeta"				: null
 		}
 	}
 }
