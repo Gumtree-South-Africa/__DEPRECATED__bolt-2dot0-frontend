@@ -1,0 +1,47 @@
+{{#partial "close-messaging-button"}}
+	<a href="javascript:void(0)" onclick="$(this).parent().parent().slideUp('slow', function(){ $(this).remove(); });" class="close_btn">
+        <span class="icon-gl-message-close"></span>
+    </a>
+{{/partial}}
+
+{{#partial "messaging"}}
+	{{#if this.header.pageMessages}}
+		{{#with this.header.pageMessages.success}}
+			<div class="gl-messages success" >
+				<div>
+					<span class='msg-icon'><span class="icon-gl-message-success"></span></span>
+					<div class='message'>{{{i18n this}}}</div>
+					{{#block "close-messaging-button"}}{{/block}}
+				</div>
+			</div>
+		{{/with}}
+	
+		{{#with this.header.pageMessages.error}}
+			<div class="gl-messages error">
+				<div>
+					<span class='msg-icon'><span class="icon-gl-message-error"></span></span>
+					<div class='message'>{{{i18n this}}}</div>
+					{{#block "close-messaging-button"}}{{/block}}
+				</div>
+			</div>
+		{{/with}}
+	
+		{{#with this.header.pageMessages.warning}}
+			<div class="gl-messages warning">
+				<div>
+					<span class='msg-icon'><span class="icon-gl-message-warning"></span></span>
+					<div class='message'>{{{i18n this}}}</div>
+					{{#block "close-messaging-button"}}{{/block}}
+				</div>
+			</div>
+		{{/with}}
+		
+	   {{#partial "javascriptMessaging"}}
+		{{#with this.header.pageMessages.warning-obfuscated}}
+		    <script>
+		   	 message.warn({msgText:'{{{i18n obfuscateUrl this}}}',xs:false,ob:true});
+			</script>
+	 	{{/with}}
+	   {{/partial}}
+	{{/if}}
+{{/partial}}
