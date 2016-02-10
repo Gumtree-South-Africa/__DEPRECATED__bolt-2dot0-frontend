@@ -13,17 +13,20 @@ Make sure package.json got the laterest version of express-handlebar
 Give the example
 ```
 
-```
-Give an example
+```handlebars
+//block
+{{block "SFO"}} {{/block}}
+
+// static parital
+{{> "SFO" }}
+
+// dynamic partial
+{{> (dynamic "SFO") }}
+
+// base partial 
+{{> (base "SFO")}}
 ```
 
-### And coding style tests
-
-Explain what these tests test and why
-
-```
-Give an example
-```
 
 ## Versioning
 
