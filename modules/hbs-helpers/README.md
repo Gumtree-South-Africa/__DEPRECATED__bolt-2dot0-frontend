@@ -57,7 +57,7 @@ Make sure package.json got the laterest version of express-handlebar
 {{> (base "home") }}
 
 ```
-### technological background
+### Technological background
 
 
 Handlebars is a member of the family of "logic-less" template systems born from Mustache. I will not describe the merits of logic-less templates in this post. (If you are unfamiliar with them, then please visit either of the two links at the beginning of this paragraph.) Rather, I want to describe a simple technique for extending Handlebars with template inheritance.
@@ -93,6 +93,7 @@ Every template language I have seen provides some mechanism for one template to 
 <!-- footer.hbs -->
 <p> FOOTER </p>
 This is not the DRYest implementation, however. The <html> and <body> tags are copied on every page. Adding scripts and stylesheets will only aggravate the situation. Larger sections can be abstracted:
+
 <!-- home.hbs -->
 {{> top}}
 <p> HOME </p>
@@ -142,10 +143,16 @@ About
 </head>
 <body>
   {{> header}}
+  
+```
+
 This can quickly grow into a mess (and already has by some standards).
 Template composition with inheritance (and inclusion)
 Template inheritance comes, I believe, from Django. It nicely addresses the above issues with template composition by essentially providing a mechanism for implementing the Dependency Inversion Principle.
 With template inheritance, a base template has specially annotated sections of content that can be overwritten by deriving templates. Deriving templates then declare their base template and replacement content:
+
+
+```handlebars
 <!-- base.hbs -->
 <html>
 <head>
@@ -172,7 +179,7 @@ With template inheritance, a base template has specially annotated sections of c
 {{#title}} About {{/title}}
 {{#content}} ABOUT {{/content}}
 
-```handlebars
+```
 Much better. Fewer templates are needed, and no context needs to be split.
 Template inheritance in Handlebars
 Unfortunately, the Mustache specification does not prescribe support for template inheritance. Handlebars, which offers a number of improvements over vanilla Mustache, does not include it either. Dust does, but I prefer the syntax and helper interface of Handlebars. The good news is that Handlebars (perhaps unintentionally) exposes its registry of partials which can be used along with a couple of simple block helpers to implement template inheritance.
@@ -183,6 +190,8 @@ For deriving templates:
 A block of replacement content
 A declaration of the base template
 The block block helper will replace its section with the partial of the same name if it exists:
+
+```handlebars
 handlebars.loadPartial = function (name) {
   var partial = handlebars.partials[name];
   if (typeof partial === "string") {
