@@ -9,22 +9,34 @@ Make sure package.json got the laterest version of express-handlebar
 
 ### Usage
 
-```
-Give the example
-```
-
 ```handlebars
-//block
-{{block "SFO"}} {{/block}}
+<!-- base.hbs -->
+<html>
+<head>
+  <title>
+    {{#block "title"}} Default Title {{/block}}
+  </title>
+</head>
+<body>
+  {{> header}}
+  {{#block "content"}}
+    This will be default content that appears in a
+    deriving template if it does not declare a
+    replacement for the "content" section.
+  {{/block}}
+  {{> footer}}
+</body>
+</html>
 
-// static parital
-{{> "SFO" }}
+<!-- home.hbs -->
+{{#partial "title"}} Home {{/partial}}
+{{#partial "content"}} HOME {{/partial}}
+{{> base}}
 
-// dynamic partial
-{{> (dynamic "SFO") }}
-
-// base partial 
-{{> (base "SFO")}}
+<!-- about.hbs -->
+{{#partial "title"}} About {{/partial}}
+{{#partial "content"}} ABOUT {{/partial}}
+{{> base}}
 ```
 
 
