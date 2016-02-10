@@ -1,46 +1,74 @@
-<snippet>
-  <content><![CDATA[
-# Bolt 2.0 Handlebars
+# Handlebar Inheritance 
 
-Handlebar template inheritance
+A NodeJS based handlebar inhertance.
 
-## Usage
+## Getting Started
 
-'''handlebar
-//block
-{{block "SFO"}} {{/block}}
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
-// static parital
-{{> "SFO" }}
+### Prerequisities
 
-// dynamic partial
-{{> (dynamic "SFO") }}
+Make sure package.json got the laterest version of express-handlebar
 
-// base partial 
-{{> (base "SFO")}}
-'''
+
+### Usage
+
+
+
+```
+Give the example
+```
+
+
+
+## Running the tests
+
+Explain how to run the automated tests for this system
+
+### Break down into end to end tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+### And coding style tests
+
+Explain what these tests test and why
+
+```
+Give an example
+```
+
+## Deployment
+
+Add additional notes about how to deploy this on a live system
+
+## Built With
+
+* Dropwizard - Bla bla bla
+* Maven - Maybe
+* Atom - ergaerga
 
 ## Contributing
 
-1. Fork it!
-2. Create your feature branch: `git checkout -b my-new-feature`
-3. Commit your changes: `git commit -am 'Add some feature'`
-4. Push to the branch: `git push origin my-new-feature`
-5. Submit a pull request :D
+Please read [CONTRIBUTING.md](CONTRIBUTING.md) for details on our code of conduct, and the process for submitting pull requests to us.
 
-## History
+## Versioning
 
-TODO: Write history
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
 
-## Credits
+## Authors
 
-TODO: Write credits
+* **Anton Ganeshalingam** - *Initial work* 
+
+
 
 ## License
 
-TODO: Write license
-]]>
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
-</content>
-  <tabTrigger>readme</tabTrigger>
-</snippet>
+## Acknowledgments
+
+
