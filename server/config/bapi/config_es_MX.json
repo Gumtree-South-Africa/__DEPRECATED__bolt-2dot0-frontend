@@ -1,26 +1,5 @@
 {
 	"header" : {
-		"postAdPageUrl"			: "/post.html",
-		"signInURL"				: "/login.html",
-		"watchListUrl"			: "/mywatchlist.html",
-		"myMessageUrl"			: "/my/message.html",
-		"mySavedSearchUrl"		: "/my/alerts.html",
-		"myAdsURL"				: "/my/ads.html",
-		"promoteAdsUrl"			: "/my/promote.html",
-		"myProfileUrl"			: "/my/profile.html",
-		"signOutURL"			: "/logout",
-		"registerURL"			: "/register.html",
-		"profileImageUrl"		: "/post.html",
-		"searchPageUrl"			: "/search.html?page=1",
-		"autoCompleteUrl"		: "/rui-api/autocomplete/model",
-		"surveyMonkeyUrl"		: "/post.html",
-		"geoLocatorUrl"			: "/post.html",
-		"rootGeoLocatorUrl"		: "/post.html",
-		"abTestUrl"				: "/post.html",
-		"autoCompleteUrl"		: "/autocomplete/model/",
-		"geoLocatorUrl"			: "/locations/content/geo/",
-		"rootGeoLocatorUrl"		: "/locations/content/",
-		
 		"type" 					: "website",
 		"localeOpenGraph" 		: "en_GB",
 		"publisherUrl"			: "https://plus.google.com/+gumtreecoza/",
@@ -47,10 +26,6 @@
 	    "seoDeepLinkingBaseUrlAndroid" : "android-app://com.ebay.gumtree.za/gumtreeza/"
 	},
 	"footer" : {
-		"cookieRightsURL"						: "/cookie-notice",
-		"privacyPolicyURL"						: "/privacy-policy",
-		"termsAndConditionsURL"					: "/terms-of-service",
-		
 		"cookieNotice"							:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
 		"privacyPolicy"							:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
 		"termOfUse"								:"http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
@@ -69,12 +44,14 @@
 		"availableAdFeatures" : ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
-		"topHomePageAdBanner"	: true,
-		"homepageBanners"		: [
-				                     "banner-bienvenidos.jpg",
-				                     "banner-publica.jpg",
-				                     "banner-auto.gif",
-				                     "banner-cv.gif"
-				                  ]
+		"homepage" : {
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: [
+					                     "banner-bienvenidos.jpg",
+					                     "banner-publica.jpg",
+					                     "banner-auto.gif",
+					                     "banner-cv.gif"
+					                  ]
+		}
 	}
 }

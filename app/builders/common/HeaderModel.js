@@ -125,6 +125,7 @@ HeaderModel.prototype.buildCss = function(data) {
 
 	data.continerCSS = [];
 	if (data.min) {
+		// TODO add device detection and add /all CSS
 		data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.min.css");
 	} else {
 		data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.css");
