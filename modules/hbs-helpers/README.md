@@ -6,6 +6,20 @@ A NodeJS based handlebar inhertance.
 
 Make sure package.json got the laterest version of express-handlebar
 
+### Useage
+```handlebars
+//block
+{{block "SFO"}} {{/block}}
+
+// static parital
+{{> "SFO" }}
+
+// dynamic partial
+{{> (dynamic "SFO") }}
+
+// base partial 
+{{> (base "SFO")}}
+```
 
 ### Example
 
