@@ -95,7 +95,7 @@ Every template language I have seen provides some mechanism for one template to 
 
 This is not the DRYest implementation, however. The <html> and <body> tags are copied on every page. Adding scripts and stylesheets will only aggravate the situation. Larger sections can be abstracted:
 
-
+```handlebars
 <!-- home.hbs -->
 {{> top}}
 <p> HOME </p>
