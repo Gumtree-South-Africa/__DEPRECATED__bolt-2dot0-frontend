@@ -7,10 +7,10 @@ A NodeJS based handlebar inhertance.
 Make sure package.json got the laterest version of express-handlebar
 
 
-### Usage
+### Example
 
 ```handlebars
-<!-- base.hbs -->
+<!-- main.hbs -->
 <html>
 <head>
   <title>
@@ -18,7 +18,7 @@ Make sure package.json got the laterest version of express-handlebar
   </title>
 </head>
 <body>
-  {{> header}}
+  {{> (base "header")}}
   {{#block "content"}}
     This will be default content that appears in a
     deriving template if it does not declare a
@@ -28,15 +28,20 @@ Make sure package.json got the laterest version of express-handlebar
 </body>
 </html>
 
-<!-- home.hbs -->
-{{#partial "title"}} Home {{/partial}}
-{{#partial "content"}} HOME {{/partial}}
-{{> base}}
+<!-- searchbar-en_ZA.hbs -->
+<div> ZA search bar </div>
 
-<!-- about.hbs -->
-{{#partial "title"}} About {{/partial}}
-{{#partial "content"}} ABOUT {{/partial}}
-{{> base}}
+<!-- home.hbs -->
+{{#block "title"}} Home {{/block}}
+{{#block "sign-in"}} HOME {{/partial}}
+
+
+<!-- home-en_ZA.hbs -->
+{{#partial "title"}} My Home for ZA {{/partial}}
+{{#partial "sign-in"}} My Home sign-in {{>> (dynamic "searchbar")}} 
+
+{{> (base "home") }}
+
 ```
 
 
