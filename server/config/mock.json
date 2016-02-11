@@ -14,7 +14,8 @@
 	    	"topKeywords" 		: 	"/keywords/top?categoryId=0&locationId=1",
 	    	"trendingKeywords" 	: 	"/keywords/trending?categoryId=0&locationId=1",
 	    	"homepageGallery" 	: 	"/ads/gallery",
-	    	"adStatistics" 		: 	"/ads/statistics"
+	    	"adStatistics" 		: 	"/ads/statistics",
+	    	"configService"		:	"/configs/app/settings.json"
 	    }
 	},
 	"kafka": {

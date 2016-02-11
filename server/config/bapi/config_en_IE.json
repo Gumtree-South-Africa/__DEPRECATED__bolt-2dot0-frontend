@@ -1,0 +1,58 @@
+{
+	"header" : {
+		"type" 								: "website",
+		"localeOpenGraph" 					: "en_GB",
+		"publisherUrl"						: null,
+		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"moreAdSizes"						: "",
+		"homepageHeroAdvertisement" 		: false,
+		"isMessageCenterEnabled"			: false,
+		"skinCampaignOn"					: false,
+		"googleTagAccountId"				: "7162/Gumtree_IE",
+		"googleTagAccountMobId"				: "7162/Gumtree_IE_mobresp",
+		"enableLighterVersionForMobile"		: false,
+		"headerConfig"						: {
+			"isolatedLoginLink"	: true
+		},
+		"navigationConfig"					: null,
+	    "marketo"							: {
+	    	"enabled"			: false,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "038-AZF-323",
+	    	"privateKey"		: "boltisking123"
+	    },
+	    "seoDeepLinkingBaseUrlAndroid" 		: null
+	},
+	"footer" : {
+		"cookieNotice"						: "/cookie-notice",
+		"privacyPolicy"						: "/privacy-policy",
+		"termOfUse"							: "/terms-of-service",
+		"helpLabel"							: "Help",
+		"helpUrl"							: "http://gumtreehelp.com/ie/",
+		"interLinkUrl"						: null,
+		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"						:	{
+			"enabled"							: true,
+			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+			"googleAdWidth"						: "300",
+			"googleAdHeight"					: "250",
+			"paidSearchTopAdsenseCountDesktop"	: "0",
+		    "paidSearchTopAdsenseCountMobile"	: "0"
+		},
+		"seoBolt"							:	{
+			"enabled"							: false,			
+			"blogUrl" 							: "http://blog.gumtree.ie/",
+			"vipLandingPageEnabled"				: true
+		},
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
+	},
+	"content" : {
+		"homepage" : {
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: null,
+			"bingMeta"				: null
+		}
+	}
+}
