@@ -70,14 +70,12 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // Set BAPI Config Data
 		        // siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-		        var configDeferred = Q.defer();
 		        console.log("Calling ConfigService to get ConfigData");
 		        Q(configService.getConfigData(siteApp.config.locale))
 		      	.then(function (dataReturned) {
-		      		configDeferred.resolve(dataReturned);
 		      		siteApp.config.bapiConfigData = dataReturned;
 		  		}).fail(function (err) {
-		  			configDeferred.reject(new Error(err));
+		  			console.log(new Error(err));
 		  		});
 		
 		        // set req.lng to defined lng in vhost
