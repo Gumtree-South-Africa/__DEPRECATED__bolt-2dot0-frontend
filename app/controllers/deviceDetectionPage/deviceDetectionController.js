@@ -6,14 +6,16 @@ var express = require('express'),
     kafkaService = require(process.cwd() + '/server/utils/kafka');
 
 module.exports = function (app) {
-   // app.get(''/deviceDetection, router);
+
 
     app.get('/deviceDetection', function (req, res) {
-        //var articles = [new Article(), new Article()];
-        res.render('deviceDetection', {
+
+        res.render('deviceDetection/views/hbs/deviceDetection', {
             title: 'Device Dectection Page',
             locale: res.config.locale
         });
+
+       // res.render('deviceDetection/views/hbs/deviceDetection' , { });
     });
 };
 
