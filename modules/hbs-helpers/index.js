@@ -4,14 +4,11 @@
  * @author aganeshalingam@ebay.com
  */
 
-'use strict';
-
+"use strict";
 
 var util = require('util');
-
 var i18n = require("i18n");
-
-
+var StringUtils = require("../../app/builders/utils/StringUtils");
 var exphbs = null;
 
 
@@ -75,12 +72,13 @@ exports.init = function(hbs) {
     });
 
     exphbs.handlebars.registerHelper('obfuscateUrl', function(value) {
-        return new exphbs.handlebars.SafeString(value);
+        return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
     });
 
     exphbs.handlebars.registerHelper('formatCommas', function(value) {
         return new exphbs.handlebars.SafeString(value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
     });
+
 };
 
 
