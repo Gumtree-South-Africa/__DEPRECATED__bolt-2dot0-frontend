@@ -20,7 +20,7 @@ router.get('/', function (req, res, next) {
     var bapiConfigData = res.config.bapiConfigData;
     var model = HomepageModel(req, res);
 
-    var extraData =
+    var modelData =
     {
         env: 'public',
         locale: res.config.locale,
@@ -30,33 +30,23 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
-      extraData.header = result[0][0];
-      extraData.footer = result[0][1];
-      extraData.location = result[1];
-      extraData.category = result[2];
-      extraData.trendingKeywords = result[3][0].keywords;
-      extraData.topKeywords = result[3][1].keywords;
-      extraData.initialGalleryInfo = result[4];
-      extraData.totalLiveAdCount = result[5].totalLiveAds;
-      extraData.level1Location = result[6];
-      extraData.level2Location = result[7];
+      modelData.header = result[0][0];
+      modelData.footer = result[0][1];
+      modelData.location = result[1];
+      modelData.category = result[2];
+      modelData.trendingKeywords = result[3][0].keywords;
+      modelData.topKeywords = result[3][1].keywords;
+      modelData.initialGalleryInfo = result[4];
+      modelData.totalLiveAdCount = result[5].totalLiveAds;
+      modelData.level1Location = result[6];
+      modelData.level2Location = result[7];
       
-      HP.extendHeaderData(extraData);
-      HP.extendFooterData(extraData);
-      HP.buildContentData(extraData, bapiConfigData.content.homepage);
+      HP.extendHeaderData(modelData);
+      HP.extendFooterData(modelData);
+      HP.buildContentData(modelData, bapiConfigData.content.homepage);
 
-
-      // Special data for homepage controller
-      extraData.header.pageTitle = '';
-      extraData.header.metaDescription = '';
-      extraData.header.metaRobots = '';
-      extraData.header.canonical = extraData.header.homePageUrl;
-      extraData.header.pageUrl = extraData.header.homePageUrl;
-      extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
-
-        extraData.helpers = {
+        modelData.helpers = {
             i18n: function (msg) {
-
                 i18n.configure({
                     updateFiles: false,
                     objectNotation: true,
@@ -66,13 +56,11 @@ router.get('/', function (req, res, next) {
                 return i18n.__({phrase: msg, locale: res.config.locale});
             }
         };
+      
+      console.dir(modelData);
 
-
-        var  pageData = _.extend(result, extraData);
-
-     // console.dir(extraData);
-
-      res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
+      var  pageData = _.extend(result, modelData);
+      res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
 
       var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.config.locale, log);
@@ -84,49 +72,49 @@ var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
-	extendHeaderData : function(extraData) {
+	extendHeaderData : function(modelData) {
 		// SEO
-	    extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
-	    extraData.header.pageTitle = '';
-	    extraData.header.metaDescription = '';
-	    extraData.header.metaRobots = '';
-	    extraData.header.canonical = extraData.header.homePageUrl;
-	    extraData.header.pageUrl = extraData.header.homePageUrl;
+	    modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
+	    modelData.header.pageTitle = '';
+	    modelData.header.metaDescription = '';
+	    modelData.header.metaRobots = '';
+	    modelData.header.canonical = modelData.header.homePageUrl;
+	    modelData.header.pageUrl = modelData.header.homePageUrl;
 
 	    // CSS
-	    extraData.header.pageCSSUrl = extraData.header.baseCSSUrl + 'HomePage.css';
-	    if (extraData.header.min) {
+	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
+	    if (modelData.header.min) {
 			  // TODO add device detection and add /all CSS
-	  	  extraData.header.continerCSS.push(extraData.header.baseCSSUrl + 'mobile/' + extraData.header.brandName + '/' + extraData.country + '/' + extraData.locale + '/HomePage.min.css');
+	  	  modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
 		  } else {
-			  extraData.header.continerCSS.push(extraData.header.baseCSSUrl + 'mobile/' + extraData.header.brandName + '/' + extraData.country + '/' + extraData.locale + '/HomePage.css');
+			  modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
 		  }
 	},
 
 	/**
 	 * Special footer data for HomePage
 	 */
-	extendFooterData : function(extraData) {
-		extraData.footer.pageJSUrl = extraData.footer.baseJSUrl + 'HomePage.js';
-	    if (!extraData.footer.min) {
-		      extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'common/CategoryList.js');
-		      if (! extraData.header.enableLighterVersionForMobile) {
-		    	  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage/Map.js');
-		    	  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage/CarouselExt/modernizr.js');
-		    	  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
-		    	  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
+	extendFooterData : function(modelData) {
+		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
+	    if (!modelData.footer.min) {
+		      modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'common/CategoryList.js');
+		      if (! modelData.header.enableLighterVersionForMobile) {
+		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/Map.js');
+		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/modernizr.js');
+		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
+		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
 		      }
-		      var availableAdFeatures = extraData.footer.availableAdFeatures;
+		      var availableAdFeatures = modelData.footer.availableAdFeatures;
 		      for (var i=0; i<availableAdFeatures.length; i++) {
 		    	  if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-		    		  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'widgets/carousel.js');
+		    		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
 		    	  }
 		      }
 	    } else {
-	  	  if (extraData.header.enableLighterVersionForMobile) {
-	  		  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage_' + extraData.locale + '_light.min.js');
+	  	  if (modelData.header.enableLighterVersionForMobile) {
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 	  	  } else {
-	  		  extraData.footer.javascripts.push(extraData.footer.baseJSUrl + 'HomePage_' + extraData.locale + '.min.js');
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '.min.js');
 	  	  }
 	    }
 	},
@@ -134,17 +122,21 @@ var HP = {
 	/**
 	 * Build content data for HomePage
 	 */
-	buildContentData : function(extraData, homepageConfigData) {
-		extraData.content = {};
-		extraData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
-
+	buildContentData : function(modelData, homepageConfigData) {
+		modelData.content = {};
+		
+		// Banners
+		modelData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
 		if (homepageConfigData.homepageBanners !== null) {
 			var homePageBannerUrls = [];
 			var homepageBanners = homepageConfigData.homepageBanners;
 			for (var i=0; i<homepageBanners.length; i++) {
-				homePageBannerUrls[i] = extraData.footer.baseImageUrl + homepageBanners[i];
+				homePageBannerUrls[i] = modelData.footer.baseImageUrl + homepageBanners[i];
 		    }
-			extraData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
+			modelData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
 		}
+		
+		// Gallery
+		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
 	}
 };

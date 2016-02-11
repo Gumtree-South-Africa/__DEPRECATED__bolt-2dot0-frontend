@@ -6,10 +6,13 @@
  */
 var StringUtils = (function () {
 	var rot13 = function(message) {
-		var b = [], c, i  =message.length,
+		var b = [], c, i=0,
 			a = 'a'.charCodeAt(), z = a + 26,
 			A = 'A'.charCodeAt(), Z = A + 26;
 		
+		 if (message && message.length) {
+			 i = message.length;
+		 }
 		 while(i--) {
 			 c = message.charCodeAt( i );
 			 if( c>=a && c<z ) { 

@@ -8,7 +8,6 @@ var Q = require("q");
 var _ = require("underscore");
 
 
-
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
@@ -31,7 +30,6 @@ var siteLocales = process.env.SITES || allLocales;
  */
 var app = new expressbuilder().getApp();
 var siteCount = 0;
-
 
 
 /*
@@ -73,7 +71,6 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		          // req.i18n.changeLanguage(siteApp.config.locale);
 		          next();
 		        });
-		
 
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
