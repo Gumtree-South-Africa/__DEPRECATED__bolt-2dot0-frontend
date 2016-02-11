@@ -1,12 +1,10 @@
-
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 
 var BOLT = BOLT || {};
 (function (B) {
 	B.displayBanner = function(bannerParams){
-
-		 googletag.cmd.push(function(){
+ 			googletag.cmd.push(function(){
 
 			 var slot = googletag.defineSlot(bannerParams.accId,bannerParams.slotDim,bannerParams.slotId);
 

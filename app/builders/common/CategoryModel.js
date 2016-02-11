@@ -12,7 +12,8 @@ var categoryService = require(process.cwd() + "/server/services/category");
  * @description A class that Handles the Category Model
  * @constructor
  */
-var CategoryModel = function (locale, depth) {
+var CategoryModel = function (requestId, locale, depth) {
+	this.requestId = requestId;
 	this.locale = locale;
 	this.depth = depth;
      return new ModelBuilder(this.getCategories());
@@ -34,7 +35,7 @@ CategoryModel.prototype.getCategories = function () {
 				categoryDeferred = Q.defer();
 				console.log("Calling CategoryService");
 			    
-				 Q(categoryService.getCategoriesData(scope.locale, scope.depth))
+				 Q(categoryService.getCategoriesData(scope.requestId, scope.locale, scope.depth))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		categoryDeferred.resolve(data);

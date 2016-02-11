@@ -14,13 +14,27 @@
 	    	"topKeywords" 		: 	"/keywords/top?categoryId=0&locationId=1",
 	    	"trendingKeywords" 	: 	"/keywords/trending?categoryId=0&locationId=1",
 	    	"homepageGallery" 	: 	"/ads/gallery",
-	    	"adStatistics" 		: 	"/ads/statistics"
+	    	"adStatistics" 		: 	"/ads/statistics",
+	    	"configService"		:	"/configs/app/settings.json"
 	    }
 	},
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port": 2181
+			"port": 2181,
+			"topic" : "node_log"
 		}
+	},
+	"static": {
+		"server": {
+			"host"		: null,
+			"port"		: null,
+			"version"	: null
+		},
+		"baseCSSUrl"	: "/css/",
+		"baseJSUrl"		: "/js/",
+		"baseImageUrl"	: "/images/",
+		"mainJSUrl"		: "/js/main.js",
+		"min"			: false
 	}
 }

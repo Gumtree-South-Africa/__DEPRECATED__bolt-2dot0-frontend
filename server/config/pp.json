@@ -10,7 +10,20 @@
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port": 2181
+			"port": 2181,
+			"topic" : "node_log"
 		}
+	},
+	"static": {
+		"server": {
+			"host"		: "localhost",
+			"port"		: 8000,
+			"version"	: "2.0.100"
+		},
+		"baseCSSUrl"	: "/css/",
+		"baseJSUrl"		: "/js/",
+		"baseImageUrl"	: "/images/",
+		"mainJSUrl"		: "/js/main.js",
+		"min"			: true
 	}
 }

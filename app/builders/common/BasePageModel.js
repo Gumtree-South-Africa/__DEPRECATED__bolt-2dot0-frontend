@@ -15,10 +15,15 @@ var FooterModel = require("./FooterModel");
  * @constructor
  */
 var BasePageModel = function (req, res) {
+
 	var cookieName = "bt_auth";
-	var authcookie = req.cookies[cookieName];	    
-	this.header = new HeaderModel(authcookie, res.config.locale);
-	this.footer = new FooterModel(res.config.locale);
+	var authcookie = req.cookies[cookieName];
+	this.header = new HeaderModel(false, req, res);
+	this.footer = new FooterModel(false, req, res);
+	// return new ModelBuilder(this.getCommonData());
+};
+
+BasePageModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getCommonData());
 };
 

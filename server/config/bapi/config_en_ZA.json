@@ -1,0 +1,58 @@
+{
+	"header" : {
+		"type" 								: "website",
+		"localeOpenGraph" 					: "en_GB",
+		"publisherUrl"						: "https://plus.google.com/+gumtreecoza/",
+		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"moreAdSizes"						: "",
+		"homepageHeroAdvertisement" 		: false,
+		"isMessageCenterEnabled"			: false,
+		"skinCampaignOn"					: true,
+		"googleTagAccountId"				: "7162/Gumtree_ZA",
+		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
+		"enableLighterVersionForMobile"		: false,
+		"headerConfig"						: null,
+		"navigationConfig"					: null,
+	    "marketo"							: {
+	        "enabled"			: true,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "038-AZF-323",
+	    	"privateKey"		: "boltisking123"
+	    },
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/"
+	},
+	"footer" : {
+		"cookieNotice"						: "/cookie-notice",
+		"privacyPolicy"						: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
+		"termOfUse"							: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
+		"helpLabel"							: "Help",
+		"helpUrl"							: "http://gumtreehelp.com/za/",
+		"interLinkUrl"						: null,
+		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"						:	{
+			"enabled"							: true,
+			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+	        "googleAdClient"					: "ca-pub-4933925025705454",
+			"googleAdSlot"						: "2590683807",
+			"googleAdWidth"						: "300",
+			"googleAdHeight"					: "250",
+			"paidSearchTopAdsenseCountDesktop"	: "0",
+		    "paidSearchTopAdsenseCountMobile"	: "0"
+		},
+		"seoBolt"							:	{
+			"enabled"							: true,			
+			"blogUrl" 							: "http://blog.gumtree.co.za/",
+			"vipLandingPageEnabled"				: true
+		},
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
+	},
+	"content" : {
+		"homepage" : {
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: null,
+			"bingMeta"				: null
+		}
+	}
+}

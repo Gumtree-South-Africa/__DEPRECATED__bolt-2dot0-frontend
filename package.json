@@ -3,15 +3,16 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "dev": "npm install && gulp",
-    "mock": "npm install &&  NODE_ENV=mock gulp",
+    "mock": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
+    "dev": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost gulp",
+    "vm": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp",
     "pp": "npm install && NODE_ENV=pp gulp",
     "lnp": "npm install && NODE_ENV=lnp gulp",
     "prod": "npm install && NODE_ENV=production gulp",
-    "vm": "npm install && NODE_ENV=vm gulp",
     "build": "npm install && gulp build",
     "test": "npm install && ./node_modules/.bin/jasmine-node test/spec",
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "envstart": "NODE_CONFIG_DIR=./server/config NODE_ENV=vm PORT=8000 BASEDOMAINSUFFIX=localhost node ./bin/www"
   },
   "precommit": "npm install && gulp precommit",
   "dependencies": {

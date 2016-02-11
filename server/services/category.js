@@ -16,14 +16,14 @@ var CategoryService = function() {
 /**
  * Gets a list of categories
  */
-CategoryService.prototype.getCategoriesData = function(locale, depth) {
+CategoryService.prototype.getCategoriesData = function(requestId, locale, depth) {
 	console.log("Inside CategoryService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, locale, "category", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "category", null);
 }
 
 module.exports = new CategoryService();

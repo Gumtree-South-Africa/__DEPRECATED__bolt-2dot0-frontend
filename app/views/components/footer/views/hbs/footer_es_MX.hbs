@@ -1,83 +1,78 @@
 {{> footer-base}}
 
 {{#partial "comscore"}}
-	{{#with model.content.ComscoreTag}}
+	{{#with this.content.ComscoreTag}}
 		 <div class="comscore"> 
-		    <span class="comscore_text">{{model.content.ComscoreTag}}</span>  
+		    <span class="comscore_text">{{this.content.ComscoreTag}}</span>  
 		 </div>        
    {{/with}}
 {{/partial}}
 
 {{#partial "footerp"}}
-<div class="link-wrapper">
-    <span class="reg_link">
-            <a href="{{{model.footer.bestAdsLandingPageUrl}}}">{{i18n "footer.bestof"}}</a>
-    </span>
-    {{#block "blog"}}
-    {{#if model.footer.seoBolt.enabled}}
-        <span class="blog"><a href="http://blog.vivanuncios.com.mx/">{{i18n "footer.blog"}}</a></span>
-    {{/if}}
-    {{/block}}
-    <span class="reg_link">
-            <a href="http://www.vivanuncios.com.mx/pages/localidades/">{{i18n "footer.locations"}}</a>
-    </span>
-    <span class="reg_link">
-            <a href="{{{model.footer.helpUrl}}}">{{i18n "footer.help"}}</a>
-    </span>
-    <span class="reg_link">
-            <a href="{{{model.footer.topSearchesLandingPageUrl}}}">{{i18n "footer.topSearches"}}</a>
-    </span>
-      
-    <span class="reg_link">
-            <a href="http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/">{{i18n "footer.our-sites"}}</a>
-    </span> 
-  
-     <span class="reg_link ">
-            <a href="http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad">{{{i18n "footer.keepSafe"}}}</a>
-    </span>
-    
-     <span class="reg_link ">
-            <a href="http://www.vivanuncios.com.mx/pages/">{{i18n "footer.siteMap"}}</a>
-    </span>
-     <span class="reg_link">
-            <a href="http://www.vivanuncios.com.mx/pages/mobileapp/">{{i18n "footer.mobileApp"}}</a>
-    </span>
-     <span class="reg_link last_link">
-            <a href="http://www.vivanuncios.com.mx/pages/propiedades/">{{i18n "footer.propertyPriceChecker"}}</a>
-    </span>
-    
-</div>
+    <div class="link-wrapper">
+        <span class="reg_link">
+                <a href="{{{this.footer.bestAdsLandingPageUrl}}}">{{i18n "footer.bestof"}}</a>
+        </span>
+        {{#block "blog"}}
+            {{#if this.footer.seoBolt.enabled}}
+                <span class="blog"><a href="http://blog.vivanuncios.com.mx/">{{i18n "footer.blog"}}</a></span>
+            {{/if}}
+        {{/block}}
+        <span class="reg_link">
+                <a href="http://www.vivanuncios.com.mx/pages/localidades/">{{i18n "footer.locations"}}</a>
+        </span>
+        <span class="reg_link">
+                <a href="{{{this.footer.helpUrl}}}">{{i18n "footer.help"}}</a>
+        </span>
+        <span class="reg_link">
+                <a href="{{{this.footer.topSearchesLandingPageUrl}}}">{{i18n "footer.topSearches"}}</a>
+        </span>
+        <span class="reg_link">
+                <a href="http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/">{{i18n "footer.our-sites"}}</a>
+        </span>
+        <span class="reg_link ">
+                <a href="http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad">{{{i18n "footer.keepSafe"}}}</a>
+        </span>
+        <span class="reg_link ">
+                <a href="http://www.vivanuncios.com.mx/pages/">{{i18n "footer.siteMap"}}</a>
+        </span>
+        <span class="reg_link">
+                <a href="http://www.vivanuncios.com.mx/pages/mobileapp/">{{i18n "footer.mobileApp"}}</a>
+        </span>
+        <span class="reg_link last_link">
+                <a href="http://www.vivanuncios.com.mx/pages/propiedades/">{{i18n "footer.propertyPriceChecker"}}</a>
+        </span>
+    </div>
 
-{{#block "cookie_notification"}}
-<div class="cookie_warn">
-    <div class="cr-container">
-        <div class="social-links">
-            {{> socialMediaLinks}}
-        </div>
-        <div class="cpyrt">{{i18n "footer.cr" }}
-            <span class='cpyrt_links'>
-            <span class='sudo-link'>
-                <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/terminos-y-condiciones-de-uso-mx/">{{i18n "footer.cr.termsAndConditions"}}</a>
-            </span>
-            ,
-            <span class='sudo-link'>
-                <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/politica-de-privacidad-mx/">{{i18n "footer.cr.privacy"}}</a>
-            </span>
-            y
-            <span class='sudo-link'>
-                <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx">{{i18n "footer.cr.cookies"}}</a>
-            </span>.
-            </span>
+    {{#block "cookie_notification" this}}
+    <div class="cookie_warn">
+        <div class="cr-container">
+            <div class="social-links">
+                {{> socialMediaLinks}}
+            </div>
+            <div class="cpyrt">{{i18n "footer.cr" }}
+                <span class='cpyrt_links'>
+                <span class='sudo-link'>
+                    <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/terminos-y-condiciones-de-uso-mx/">{{i18n "footer.cr.termsAndConditions"}}</a>
+                </span>
+                ,
+                <span class='sudo-link'>
+                    <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/politica-de-privacidad-mx/">{{i18n "footer.cr.privacy"}}</a>
+                </span>
+                y
+                <span class='sudo-link'>
+                    <a href="http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx">{{i18n "footer.cr.cookies"}}</a>
+                </span>.
+                </span>
+            </div>
         </div>
     </div>
-</div>
-{{/block}}
+    {{/block}}
 
-<div class="decorationLine">
-    <span class="span1"></span>
-    <span class="span2"></span>
-    <span class="span3"></span>
-    <span class="span4"></span>
-</div>
-
+    <div class="decorationLine">
+        <span class="span1"></span>
+        <span class="span2"></span>
+        <span class="span3"></span>
+        <span class="span4"></span>
+    </div>
 {{/partial}}

@@ -90,11 +90,13 @@ function FetchNextSlides() {
 	    	ads = data.ads;
 	    
 	    //Add a slide for each item in the JSON
-	    for(var i=0; i<ads.length; i++){
-		      slides += createSlide(ads[i]);
-		}
-	    
-	    if(showPromotionSlide){
+	    if (ads && ads.length) {
+	    	for(var i=0; i<ads.length; i++) {
+		    	  slides += createSlide(ads[i]);
+			}
+	    }
+
+	    if (showPromotionSlide){
 	      slides += createPromotionSlide();
 	    }
 

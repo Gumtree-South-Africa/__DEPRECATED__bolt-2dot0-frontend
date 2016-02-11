@@ -14,7 +14,8 @@
 	    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top?categoryId=0&locationId=1",
 	    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending?categoryId=0&locationId=1",
 	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
-	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics"
+	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
+	    	"configService"		:	"/bolt-api-webapp/v1/configs/app/settings.json"
 	    }
 	},
 	"kafka": {
@@ -23,5 +24,17 @@
 			"port"	: 2181,
 			"topic" : "node_log"
 		}
+	},
+	"static": {
+		"server": {
+			"host"		: "localhost",
+			"port"		: 8000,
+			"version"	: "2.0.100"
+		},
+		"baseCSSUrl"	: "/css/",
+		"baseJSUrl"		: "/js/",
+		"baseImageUrl"	: "/images/",
+		"mainJSUrl"		: "/js/main.js",
+		"min"			: false
 	}
 }
