@@ -7,9 +7,9 @@
 
 	{{#block "locationBeforeCategory"}}{{/block}}
 	<div class="hp-content hp-others
-	{{#if model.socialMediaEnabled}}socialMediaEnabled{{/if}}
-	{{#if model.footer.googleAdSense.enabled}}googleAdSensei{{/if}}
-	{{#if model.content.homePageBannerUrl}}homePageBannerImage{{/if}}
+	{{#if this.socialMediaEnabled}}socialMediaEnabled{{/if}}
+	{{#if this.footer.googleAdSense.enabled}}googleAdSensei{{/if}}
+	{{#if this.content.homePageBannerUrl}}homePageBannerImage{{/if}}
 	">
 
 	<div class="hp-list-wrapper">
@@ -29,7 +29,7 @@
 
 			<div class="hp-link-wrapper">
 				<div class="post-ad-button">
-					<a href="{{model.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
+					<a href="{{this.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
 				</div>
 			</div>
 
@@ -72,8 +72,8 @@
 	</div>
 
 
-	<input type="hidden" name="NcatId" value="{{model.content.ad.ad.categoryId}}" />
-	<input type="hidden" name="NlocId" value="{{model.content.ad.ad.locationId}}" />
+	<input type="hidden" name="NcatId" value="{{this.content.ad.ad.categoryId}}" />
+	<input type="hidden" name="NlocId" value="{{this.content.ad.ad.locationId}}" />
 
 	{{/block}}
 
