@@ -45,7 +45,7 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(extraData);
       HP.buildContentData(extraData, bapiConfigData.content.homepage);
 
-      var  pageData = _.extend(result, extraData);
+
       // Special data for homepage controller
       extraData.header.pageTitle = '';
       extraData.header.metaDescription = '';
