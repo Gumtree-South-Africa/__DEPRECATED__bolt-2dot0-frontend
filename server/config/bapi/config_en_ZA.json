@@ -6,30 +6,30 @@
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: true,
+		"isMessageCenterEnabled"			: false,
 		"skinCampaignOn"					: true,
 		"googleTagAccountId"				: "7162/Gumtree_ZA",
 		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
 		"enableLighterVersionForMobile"		: false,
-		"headerConfig"						: "",
-		"navigationConfig"					: "",
+		"headerConfig"						: null,
+		"navigationConfig"					: null,
 	    "marketo"							: {
-	        "enabled": true,
-	    	"trackAnonUser": false,
-	    	"munchkinId": "038-AZF-323",
-	    	"privateKey": "boltisking123"
+	        "enabled"			: true,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "038-AZF-323",
+	    	"privateKey"		: "boltisking123"
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/"
 	},
 	"footer" : {
-		"cookieNotice"						:"/cookie-notice",
-		"privacyPolicy"						:"http://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
-		"termOfUse"							:"http://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"cookieNotice"						: "/cookie-notice",
+		"privacyPolicy"						: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
+		"termOfUse"							: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://gumtreehelp.com/za/",
-		"interLinkUrl"						: "",
+		"interLinkUrl"						: null,
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
 		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
 		"googleAdSense"						:	{
 			"enabled"							: true,
@@ -50,9 +50,9 @@
 	},
 	"content" : {
 		"homepage" : {
-			"topHomePageAdBanner"			: true,
-			"homepageBanners"				: "",
-			"bingMeta"						: ""
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: null,
+			"bingMeta"				: null
 		}
 	}
 }
