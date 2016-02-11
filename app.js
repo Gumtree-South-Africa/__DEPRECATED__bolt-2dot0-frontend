@@ -4,6 +4,7 @@ var glob = require('glob');
 var http = require('http');
 var path = require('path');
 var vhost = require('vhost');
+var Q = require("q");
 var _ = require("underscore");
 
 // i18n, its middleware and its backend modules.
@@ -11,11 +12,16 @@ var i18next = require("i18next");
 var middleware = require('i18next-express-middleware');
 var Backend = require('i18next-node-fs-backend');
 
+// middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
 
+// app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
+
+// services
+var configService = require(process.cwd() + "/server/services/configservice");
 
 /*
  * Create Main App
@@ -56,9 +62,18 @@ i18next
       siteApp.config.hostname = siteObj.hostname;
       siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
       
-      // TODO get config data from bapi and store it here
-      siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-
+      // Set BAPI Config Data
+      // siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
+      var configDeferred = Q.defer();
+      console.log("Calling ConfigService to get ConfigData");
+      Q(configService.getConfigData(siteApp.config.locale))
+    	.then(function (dataReturned) {
+    		configDeferred.resolve(dataReturned);
+    		siteApp.config.bapiConfigData = dataReturned;
+		}).fail(function (err) {
+			configDeferred.reject(new Error(err));
+		});
+      
       // set req.lng to defined lng in vhost
       siteApp.use(function(req, res, next) {
         //var i18nObj = req.t;
@@ -85,7 +100,7 @@ i18next
       siteApp.use(checksite(siteApp));
       
       // Setup Vhost per supported site
-      app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
+	  app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
     })(siteObj);
 
     siteCount = siteCount + 1;
