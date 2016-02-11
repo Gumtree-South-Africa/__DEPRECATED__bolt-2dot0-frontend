@@ -7,7 +7,7 @@
     {{!-- #with model.initialGalleryInfo --}}
     <script>
         var adList = {{{json this.initialGalleryInfo}}},
-            {{#if model.header.postAdPageUrl}}
+            {{#if this.header.postAdPageUrl}}
                     dataPostLink="{{this.header.postAdPageUrl}}",
             {{else}}
                     dataPostLink="/post.html",
