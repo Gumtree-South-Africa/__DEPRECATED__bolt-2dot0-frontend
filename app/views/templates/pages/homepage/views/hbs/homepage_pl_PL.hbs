@@ -5,7 +5,7 @@
 {{else}}
     {{#partial "locationBeforeCategory"}}
     	{{> (dynamic "adCarousel") }}
-    	{{#block "carousel" ../this.initialGalleryInfo}}{{/block}}
+    	{{#block "carousel"}}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
         {{> (dynamic "locationMapContainer") }}

@@ -1,7 +1,7 @@
 
 	{{#partial "content"}}
 	{{#block "homepg"}}
-	{{#if ../this.header.topHomePageAdBanner}}
+	{{#if this.header.topHomePageAdBanner}}
 	{{> (dynamic "topBanner")}}
 	{{/if}}
 
@@ -14,7 +14,7 @@
 
 	<div class="hp-list-wrapper">
 		<div class="hp-total-ad-count">
-			<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" ../this.totalLiveAdCount}}}</span>
+			<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" this.totalLiveAdCount}}}</span>
 		</div>
 
 		<div class="hp-category-wrapper">
@@ -23,7 +23,7 @@
 			<p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
 			{{/if}}
 
-			{{#with ../this}}
+			{{#with this}}
 			{{> (dynamic "categoryList") }}
 			{{/with}}
 
@@ -41,11 +41,11 @@
 		{{#block "locationAfterCategory"}}{{/block}}
 
 		<div class="hp-keywords-wrapper">
-			{{#if ../this.topKeywords}}
+			{{#if this.topKeywords}}
 			<div class="hp-popular-searches-wrapper">
 				<h5>{{i18n "home.popular-searches"}}</h5>
 				<ul>
-					{{#each ../this.topKeywords}}
+					{{#each this.topKeywords}}
 					<li data-index="{{@index}}">
 						<a href="{{_links.[0].href}}">{{text}}</a>
 					</li>
@@ -54,11 +54,11 @@
 			</div>
 			{{/if}}
 
-			{{#if ../this.trendingKeywords}}
+			{{#if this.trendingKeywords}}
 			<div class="hp-trending-searches-wrapper">
 				<h5>{{i18n "home.trending-searches"}}</h5>
 				<ul>
-					{{#each ../this.trendingKeywords}}
+					{{#each this.trendingKeywords}}
 					<li data-index="{{@index}}">
 						<a href="{{_links.[0].href}}">{{text}}</a>
 					</li>
@@ -105,7 +105,7 @@
 		{{#if model.header.isIncludeContentForMobile}}
 			accId : ("/{{{model.googleTagAccountMobId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
 		{{else}}
-			accId : ("/{{{../this.header.googleTagAccountId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+			accId : ("/{{{this.header.googleTagAccountId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
 		{{/if}}
 		dc_ref: window.location.href,
 		kw: $('input[name=q]').val() || "no category",

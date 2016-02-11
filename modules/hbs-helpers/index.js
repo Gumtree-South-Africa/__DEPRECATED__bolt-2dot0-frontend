@@ -27,8 +27,7 @@ exports.init = function(hbs) {
         }
         delete exphbs.handlebars.partials[name];
         return partial;
-    };
-
+    }
     exphbs.handlebars.registerHelper("partial",
         function (name, options) { console.log( "partial " + name);
             // console.log("--------" +  util.inspect(options.fn, {showHidden: false, depth: null}));
@@ -86,14 +85,8 @@ exports.init = function(hbs) {
 
 
 exports.i18n = function (msg) {
-    console.log("x--------- " + util.inspect(this, {showHidden: false, depth: 1}));
-    i18n.configure({
 
-        objectNotation: true,
-        directory: process.cwd() + "/app/locales/aui/",
-        prefix: 'translation-'
-    });
-    return new exphbs.handlebars.SafeString(i18n.__());
+    return "";
 };
 
 exports.what = function () {

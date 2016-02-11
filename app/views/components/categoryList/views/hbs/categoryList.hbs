@@ -50,8 +50,8 @@
 		  		<div class="item-carousel">
 		        	<div class="item-preview text-center">
 		                <div class="item-img-wrap">
-		                	{{#if ../this.footer.googleAdSense.enabled}}
-		                	      {{#unless model.header.isIncludeContentForMobile}}  
+		                	{{#if this.footer.googleAdSense.enabled}}
+		                	      {{#unless this.header.isIncludeContentForMobile}}
 		                			 {{> (dynamic "rightBanner")}}
 		                		  {{/unless}}
 			                {{/if}}

@@ -52,8 +52,8 @@ router.get('/', function (req, res, next) {
                 i18n.configure({
                     updateFiles: false,
                     objectNotation: true,
-                    directory: process.cwd() + '/app/locales/aui/',
-                    prefix: 'translation-'
+                    directory: process.cwd() + '/app/locales/json/' + res.config.locale + '/',
+                    prefix: 'translation_'
                 });
                 return i18n.__({phrase: msg, locale: res.config.locale});
             }
