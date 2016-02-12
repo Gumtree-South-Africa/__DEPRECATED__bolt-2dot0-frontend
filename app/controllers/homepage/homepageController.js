@@ -138,5 +138,21 @@ var HP = {
 		
 		// Gallery
 		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
+		
+		// Swap Trade
+		if (homepageConfigData.swapTradeEnabled) {
+			modelData.content.swapTradeModel = {};
+			modelData.content.swapTradeModel.isSwapTradeEnabled = homepageConfigData.swapTradeEnabled;
+			modelData.content.swapTradeModel.swapTradeName = homepageConfigData.swapTradeName;
+			modelData.content.swapTradeModel.swapTradeSeoUrl = homepageConfigData.swapTradeUrl;
+		}
+		
+		// Freebies
+		if (homepageConfigData.freebiesEnabled) {
+			modelData.content.freebiesModel = {};
+			modelData.content.freebiesModel.isFreebiesEnabled = homepageConfigData.freebiesEnabled;
+			modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
+			modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
+		}
 	}
 };

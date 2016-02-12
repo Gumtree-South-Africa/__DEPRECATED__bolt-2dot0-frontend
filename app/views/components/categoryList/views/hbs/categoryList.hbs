@@ -21,24 +21,24 @@
     {{/each}}
 
 
-    {{#if model.content.swapTradeModel.isSwapTradeEnabled}}
+    {{#if this.content.swapTradeModel.isSwapTradeEnabled}}
         <li class="parent-category l1swaptrade item">
-            <a href="{{model.content.swapTradeModel.swapTradeSeoUrl}}">
-                <span class="label">{{model.content.swapTradeModel.localizedName}}</span>
+            <a href="{{this.content.swapTradeModel.swapTradeSeoUrl}}">
+                <span class="label">{{i18n this.content.swapTradeModel.swapTradeName}}</span>
             </a>
         </li>
     {{/if}}
-    {{#if model.content.freebiesModel.isFreebiesEnabled}}
+    {{#if this.content.freebiesModel.isFreebiesEnabled}}
         <li class="parent-category l1freebies item">
-            <a href="{{model.content.freebiesModel.freebiesSeoUrl}}">
-                <span class="label">{{model.content.freebiesModel.localizedName}}</span>
+            <a href="{{this.content.freebiesModel.freebiesSeoUrl}}">
+                <span class="label">{{i18n this.content.freebiesModel.freebiesName}}</span>
             </a>
         </li>
     {{/if}}
-    {{#if model.content.wantedModel.isWantedEnabled}}
+    {{#if this.content.wantedModel.isWantedEnabled}}
         <li class="parent-category l1wanted item">
-            <a href="{{model.content.wantedModel.wantedSeoUrl}}">
-                <span class="label"><!--Poszukiwane-->{{model.content.wantedModel.localizedName}}</span>
+            <a href="{{this.content.wantedModel.wantedSeoUrl}}">
+                <span class="label"><!--Poszukiwane-->{{i18n this.content.wantedModel.localizedName}}</span>
             </a>
         </li>
     {{/if}}
@@ -59,7 +59,7 @@
 		            </div>
 				
 		            <div id="rightBottomBanner">
-		            	{{#if model.content.homePageBannerUrl}}
+		            	{{#if this.content.homePageBannerUrl}}
 		                {{else}}
 		                     {{> (dynamic "rightBottomBanner") }}
 		                {{/if}}

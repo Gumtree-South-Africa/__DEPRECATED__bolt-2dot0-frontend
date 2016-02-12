@@ -53,8 +53,14 @@
 	"content" : {
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
-			"homepageBanners"		: ["banner-bienvenidos.jpg", "banner-publica.jpg", "banner-auto.gif", "banner-cv.gif"],
-			"bingMeta"				: null
+			"homepageBanners"		: null,
+			"bingMeta"				: null,
+			"swapTradeEnabled"		: false,		
+			"swapTradeName"			: null,
+			"swapTradeUrl"			: null,
+			"freebiesEnabled"		: false,		
+			"freebiesName"			: null,
+			"freebiesUrl"			: null
 		}
 	}
 }
