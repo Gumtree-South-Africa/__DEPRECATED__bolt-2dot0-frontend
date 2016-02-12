@@ -50,9 +50,9 @@
 		  		<div class="item-carousel">
 		        	<div class="item-preview text-center">
 		                <div class="item-img-wrap">
-		                	{{#if ../this.footer.googleAdSense.enabled}}
-		                	      {{#unless model.header.isIncludeContentForMobile}}  
-		                			 {{> rightBanner}}
+		                	{{#if this.footer.googleAdSense.enabled}}
+		                	      {{#unless this.header.isIncludeContentForMobile}}
+		                			 {{> (dynamic "rightBanner")}}
 		                		  {{/unless}}
 			                {{/if}}
 		                </div>
@@ -61,7 +61,7 @@
 		            <div id="rightBottomBanner">
 		            	{{#if model.content.homePageBannerUrl}}
 		                {{else}}
-		                     {{> rightBottomBanner}}
+		                     {{> (dynamic "rightBottomBanner") }}
 		                {{/if}}
 		            </div>
 					{{#block "tutorialModule"}}{{/block}}

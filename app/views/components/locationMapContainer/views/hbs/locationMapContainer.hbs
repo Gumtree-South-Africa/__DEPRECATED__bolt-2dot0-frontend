@@ -6,14 +6,14 @@
 
     {{!-- We show the map only for tablet and desktop, not for mobile. For mobile, we show the locations --}}
     {{#block "popularLocationsContainer"}}
-        {{#block "popularLocations" ../this}}{{/block}}
+        {{#block "popularLocations" }}{{/block}}
     {{/block}}
 
     {{#block "LocationStates"}}
     <div class="hp-province-wrapper">
         <h5>{{i18n "home.provinces"}}</h5>
         <ul class="location-list">
-            {{#each ../this.level1Location.children}}
+            {{#each this.level1Location.children}}
             <li data-index="{{@index}}">
                 <a href="{{this._links.[1].href}}"><span class="location-name">{{this.localizedName}}</span></a>
             </li>

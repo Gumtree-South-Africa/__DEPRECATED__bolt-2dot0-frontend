@@ -7,10 +7,7 @@ var vhost = require('vhost');
 var Q = require("q");
 var _ = require("underscore");
 
-// i18n, its middleware and its backend modules.
-var i18next = require("i18next");
-var middleware = require('i18next-express-middleware');
-var Backend = require('i18next-node-fs-backend');
+
 
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
@@ -35,18 +32,7 @@ var siteLocales = process.env.SITES || allLocales;
 var app = new expressbuilder().getApp();
 var siteCount = 0;
 
-/*
- * Create the Main i18n object
- */
-i18next
-  .use(Backend)
-  .init({
-    ns : 'translation',
-    // use correct configuration options...look up docs!
-    backend: {
-      loadPath: __dirname + '/app/locales/json/{{lng}}/{{ns}}.json'
-    }
-  });
+
 
 /*
  * Create Site Apps
@@ -83,16 +69,12 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		          //var i18nObj = req.t;
 		          // builderObj.setI18nObj(i18nObj);
 		          req.lng = siteApp.config.locale;
-		          i18next.changeLanguage(siteApp.config.locale);
+
 		          // req.i18n.changeLanguage(siteApp.config.locale);
 		          next();
 		        });
 		
-		        // use the middleware to do the magic
-		        // create a fixed t function for req.lng
-		        // no clones needed as they just would do the same (sharing all but lng)
-		        siteApp.use(middleware.handle(i18next));
-		
+
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
 		        // Enables view template compilation caching and is enabled in production by default.
@@ -120,7 +102,7 @@ module.exports = app;
 
 
 function clearRequireCache(mod) {
-	console.log(mod);
+	//console.log(mod);
   	Object.keys(require.cache).forEach(function(key) {
   		if (key.indexOf(mod) > -1) {
   			delete require.cache[key];

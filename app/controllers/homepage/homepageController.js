@@ -4,7 +4,9 @@ var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
-    kafkaService = require(process.cwd() + '/server/utils/kafka');
+    kafkaService = require(process.cwd() + '/server/utils/kafka'),
+    util = require('util'),
+    i18n = require('i18n');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
@@ -42,10 +44,33 @@ router.get('/', function (req, res, next) {
       HP.extendHeaderData(extraData);
       HP.extendFooterData(extraData);
       HP.buildContentData(extraData, bapiConfigData.content.homepage);
-      
-      var  pageData = _.extend(result, extraData);
 
-      console.dir(extraData);
+
+      // Special data for homepage controller
+      extraData.header.pageTitle = '';
+      extraData.header.metaDescription = '';
+      extraData.header.metaRobots = '';
+      extraData.header.canonical = extraData.header.homePageUrl;
+      extraData.header.pageUrl = extraData.header.homePageUrl;
+      extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
+
+        extraData.helpers = {
+            i18n: function (msg) {
+
+                i18n.configure({
+                    updateFiles: false,
+                    objectNotation: true,
+                    directory: process.cwd() + '/app/locales/json/' + res.config.locale + '/',
+                    prefix: 'translation_'
+                });
+                return i18n.__({phrase: msg, locale: res.config.locale});
+            }
+        };
+
+
+        var  pageData = _.extend(result, extraData);
+
+     // console.dir(extraData);
 
       res.render('homepage/views/hbs/homepage_' + res.config.locale, extraData);
 
@@ -67,7 +92,7 @@ var HP = {
 	    extraData.header.metaRobots = '';
 	    extraData.header.canonical = extraData.header.homePageUrl;
 	    extraData.header.pageUrl = extraData.header.homePageUrl;
-	    
+
 	    // CSS
 	    extraData.header.pageCSSUrl = extraData.header.baseCSSUrl + 'HomePage.css';
 	    if (extraData.header.min) {
@@ -77,7 +102,7 @@ var HP = {
 			  extraData.header.continerCSS.push(extraData.header.baseCSSUrl + 'mobile/' + extraData.header.brandName + '/' + extraData.country + '/' + extraData.locale + '/HomePage.css');
 		  }
 	},
-	
+
 	/**
 	 * Special footer data for HomePage
 	 */
@@ -105,14 +130,14 @@ var HP = {
 	  	  }
 	    }
 	},
-	
+
 	/**
 	 * Build content data for HomePage
 	 */
 	buildContentData : function(extraData, homepageConfigData) {
 		extraData.content = {};
 		extraData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
-		
+
 		if (homepageConfigData.homepageBanners !== null) {
 			var homePageBannerUrls = [];
 			var homepageBanners = homepageConfigData.homepageBanners;

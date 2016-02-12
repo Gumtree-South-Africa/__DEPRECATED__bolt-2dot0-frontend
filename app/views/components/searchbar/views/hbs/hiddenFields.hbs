@@ -1,0 +1,5 @@
+{{#if model.content.searchFormModel}}
+    {{#each model.content.searchFormModel.hiddenFields}}
+        <input type="hidden" name="{{this.name}}" value="{{this.value}}"/>
+    {{/each}}
+{{/if}}
