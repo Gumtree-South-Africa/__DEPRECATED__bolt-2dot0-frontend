@@ -1,4 +1,10 @@
-{{> ( base "navigation" )}}
+{{#partial "quickLinks"}}
+    <li>
+        <span class="sudo-link sudo-link-toConvert link-0 link menu-text" data-o-uri="{{obfuscateUrl this.footer.helpUrl}}">{{this.footer.helpLabel}}</span>
+    </li>
+{{/partial}}
+
+{{> (base "navigation" )}}
 
 
    
