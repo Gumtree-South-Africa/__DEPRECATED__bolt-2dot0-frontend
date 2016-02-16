@@ -1,2 +1,18 @@
 {{> (base "header") }}
-{{#partial "headerLocale"}}{{!-- IRELAND HEADER --}}{{/partial}}
+{{#partial "headerLocale"}}{{!-- MX HEADER --}}{{/partial}}
+
+{{#block "headerPost"}}
+{{!-- only for Viva header and it needs to be moved from here --}}
+<div class="postSection headerPost">
+    <div class="header diff">
+        <div class="right">
+            <div class="post post-btn-wrap">
+                <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
+                    <span class="long">{{i18n "header.postad-medium"}}</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+{{/block}}
