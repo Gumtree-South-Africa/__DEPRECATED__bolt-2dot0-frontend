@@ -17,10 +17,15 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+
+/**
+ * Build HomePage Model Data and Render
+ */
 router.get('/', function (req, res, next) {
     var bapiConfigData = res.config.bapiConfigData;
     var model = HomepageModel(req, res);
 
+    // Data from the Middleware
     var modelData =
     {
         env: 'public',
@@ -31,6 +36,7 @@ router.get('/', function (req, res, next) {
     };
 
     model.then(function (result) {
+      // Data from BAPI
       modelData.header = result[0][0];
       modelData.footer = result[0][1];
       modelData.location = result[1];
@@ -51,11 +57,15 @@ router.get('/', function (req, res, next) {
       
       console.dir(modelData);
 
+      // Render
       var  pageData = _.extend(result, modelData);
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
 
+      // Kafka Logging
       var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.config.locale, log);
+      
+      // Graphite Metrics
   });
 });
 
@@ -79,21 +89,13 @@ var HP = {
 	    	if (deviceDetection.isHomePageDevice()) {
 		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
 	    	} else {
-	    		if (deviceDetection.isMobile()) {
-		  	  		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
-		    	} else {
-		    		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'all/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
-		    	}
+		  	  	modelData.header.continerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
 	    	}
 		} else {
 			if (deviceDetection.isHomePageDevice()) {
 		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
 			} else {
-				if (deviceDetection.isMobile()) {
-		  	  		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
-		    	} else {
-		    		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'all/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
-		    	}
+				modelData.header.continerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
 	},

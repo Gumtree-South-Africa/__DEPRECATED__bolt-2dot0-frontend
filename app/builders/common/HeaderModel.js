@@ -129,11 +129,11 @@ HeaderModel.prototype.buildCss = function(data) {
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css";
 
 	if (deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
+		data.localeCSSPath = data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	} else {
-		data.localeCSSPath = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
+		data.localeCSSPath = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
+	data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	
 	data.continerCSS = [];
 	if (data.min) {
