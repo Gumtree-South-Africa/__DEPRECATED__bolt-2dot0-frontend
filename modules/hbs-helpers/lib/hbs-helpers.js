@@ -84,21 +84,16 @@ module.exports  =  {
 
 
         exphbs.handlebars.registerHelper('ifDesktop', function(val, options) {
-
-           // console.log("i18n xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(options, {showHidden: false, depth: 1}))
             var fnTrue=options.fn, fnFalse=options.inverse;
             return val.isDesktop ? fnTrue() : fnFalse();
         });
 
         exphbs.handlebars.registerHelper('ifMobile', function(val, options) {
-
-           // console.log("isMobile xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isMobile, {showHidden: false, depth: 1}))
             var fnTrue=options.fn, fnFalse=options.inverse;
             return val.isMobile ? fnTrue() : fnFalse();
         });
 
         exphbs.handlebars.registerHelper('ifTablet', function(val, options) {
-            console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
             var fnTrue=options.fn, fnFalse=options.inverse;
             return val.isTablet ? fnTrue() : fnFalse();
         });
