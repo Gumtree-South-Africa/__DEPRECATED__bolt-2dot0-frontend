@@ -98,9 +98,15 @@ module.exports  =  {
         });
 
         exphbs.handlebars.registerHelper('ifTablet', function(val, options) {
-            console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
+           // console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
             var fnTrue=options.fn, fnFalse=options.inverse;
             return val.isTablet ? fnTrue() : fnFalse();
+        });
+
+        exphbs.handlebars.registerHelper('unlessMobile', function(val, options) {
+            // console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
+            var fnTrue=options.fn, fnFalse=options.inverse;
+            return val.isTablet || val.isDesktop? fnTrue() : fnFalse();
         });
 
     }

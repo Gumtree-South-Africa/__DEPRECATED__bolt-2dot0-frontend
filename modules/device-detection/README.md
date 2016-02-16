@@ -26,6 +26,9 @@ res.render('....', {});
 {{#ifDesktop this.device}}  {{/ifDesktop}}
 {{#ifMobile this.device}}  {{/ifMobile}}
 {{#ifTablet this.device}}  {{/ifTablet}}
+
+// if not mobile
+{{#unlessMobile this.device}}  {{/unlessMobile}}
 ```
 
 #### Back-end
