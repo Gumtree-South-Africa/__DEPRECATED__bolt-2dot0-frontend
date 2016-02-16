@@ -25,7 +25,7 @@ module.exports.initMW = function(app) {
 
 module.exports.init = function(locale) {
 
-    console.log("locale ======= ", locale);
+   // console.log("locale ======= ", locale);
     initConfigI18n(locale);
 };
 
