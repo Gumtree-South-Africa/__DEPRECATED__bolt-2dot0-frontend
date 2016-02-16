@@ -8,6 +8,6 @@ module.exports = function(config){
     path : "/",
     method : "GET",
     headers: {}
-  }
+  };
   return obj;
 };
