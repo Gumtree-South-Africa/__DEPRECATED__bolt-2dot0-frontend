@@ -21,6 +21,9 @@ router.get('/', function (req, res, next) {
     var bapiConfigData = res.config.bapiConfigData;
     var model = HomepageModel(req, res);
 
+	// initialize device dection with req
+	deviceDetection.check(req);
+
     var modelData =
     {
         env: 'public',
