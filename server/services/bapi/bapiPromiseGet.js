@@ -6,9 +6,10 @@ var BAPICall = require("./BAPICall");
 
 module.exports = function(bapiOptions, requestId, locale, serviceName, authTokenValue){
 	// Add Headers
+	bapiOptions.headers["X-BOLT-APPS-ID"] = "RUI";
 	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
 	if (typeof requestId !== "undefined" && requestId!=null) {
-		bapiOptions.headers["X-BOLT-REQUEST-ID"] = requestId;
+		bapiOptions.headers["X-BOLT-TRACE-ID"] = requestId;
 	}
 	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
 		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
