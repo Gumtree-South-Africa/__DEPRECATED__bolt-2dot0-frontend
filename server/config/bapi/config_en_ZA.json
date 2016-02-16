@@ -52,7 +52,13 @@
 		"homepage" : {
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
-			"bingMeta"				: null
+			"bingMeta"				: null,
+			"swapTradeEnabled"		: true,		
+			"swapTradeName"			: "home.swap-trade.$$",
+			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"		: true,		
+			"freebiesName"			: "home.freebies.$$",
+			"freebiesUrl"			: "s-freebies/v1p1?priceType=free"
 		}
 	}
 }

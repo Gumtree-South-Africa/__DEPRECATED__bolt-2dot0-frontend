@@ -50,7 +50,13 @@
 		"homepage" : {
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
-			"bingMeta"				: null
+			"bingMeta"				: null,
+			"swapTradeEnabled"		: true,		
+			"swapTradeName"			: "home.swap-trade.$$",
+			"swapTradeUrl"			: "s-Wymiana/zamiana/v1p1?priceType=barter_swap",
+			"freebiesEnabled"		: true,		
+			"freebiesName"			: "home.freebies.$$",
+			"freebiesUrl"			: "s-Oddam za darmo/v1p1?priceType=free"
 		}
 	}
 }

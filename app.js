@@ -8,7 +8,6 @@ var Q = require("q");
 var _ = require("underscore");
 
 
-
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
@@ -36,7 +35,6 @@ var deviceDetection = require("./modules/device-detection");
  */
 var app = new expressbuilder().getApp();
 var siteCount = 0;
-
 
 
 /*
@@ -69,17 +67,6 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		  			console.log(new Error(err));
 		  		});
 		
-		        // set req.lng to defined lng in vhost
-		        siteApp.use(function(req, res, next) {
-		          //var i18nObj = req.t;
-		          // builderObj.setI18nObj(i18nObj);
-		          req.lng = siteApp.config.locale;
-
-		          // req.i18n.changeLanguage(siteApp.config.locale);
-		          next();
-		        });
-		
-
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
 		        // Enables view template compilation caching and is enabled in production by default.
