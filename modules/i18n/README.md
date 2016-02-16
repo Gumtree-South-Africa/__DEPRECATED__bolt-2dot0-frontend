@@ -1,6 +1,6 @@
-# Handlebar Template Inheritance 
+# I18n
 
-I18n for Bolt
+Front-end and backend support for I18n.
 
 ### Prerequisities
 
