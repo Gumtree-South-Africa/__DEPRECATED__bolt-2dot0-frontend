@@ -1,9 +1,9 @@
 /**
- * @module hbs-helpers
+ * @module handelbars
  * @description Handlebar template inhertiance and helpers
  * @author aganeshalingam@ebay.com
  */
 
 "use strict";
 
-module.exports = require('./lib/hbs-helpers');
+module.exports = require('./lib/handlebars');
