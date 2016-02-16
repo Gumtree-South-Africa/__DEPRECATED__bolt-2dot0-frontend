@@ -51,8 +51,8 @@ function detectDevice(req) {
 
     deviceInfo.isDesktop = false;
     deviceInfo.isMobile = false;
-    deviceInfo.tablet = false;
-    deviceInfo.tv = false;
+    deviceInfo.isTablet = false;
+    deviceInfo.isTv = false;
 
 
     console.log("detectDevice xxxxxxxxxxxxxx" + theDevice.type + "xxxx" + req.headers['user-agent']);

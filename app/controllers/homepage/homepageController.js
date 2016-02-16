@@ -40,6 +40,9 @@ router.get('/', function (req, res, next) {
       modelData.totalLiveAdCount = result[5].totalLiveAds;
       modelData.level1Location = result[6];
       modelData.level2Location = result[7];
+
+	  //  Device data
+	  modelData.device = req.app.locals.deviceInfo;
       
       HP.extendHeaderData(modelData);
       HP.extendFooterData(modelData);
@@ -57,7 +60,7 @@ router.get('/', function (req, res, next) {
             }
         };
       
-      console.dir(modelData);
+      //console.dir(modelData);
 
       var  pageData = _.extend(result, modelData);
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
