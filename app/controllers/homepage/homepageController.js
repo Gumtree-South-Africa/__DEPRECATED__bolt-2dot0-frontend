@@ -5,8 +5,7 @@ var express = require('express'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
-    util = require('util'),
-    i18n = require('i18n');
+    util = require('util');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
