@@ -5,7 +5,9 @@ var express = require('express'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
-    util = require('util');
+    deviceDetection = require(process.cwd() + '/modules/device-detection'),
+    util = require('util'),
+    i18n = require('i18n');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
@@ -46,10 +48,8 @@ router.get('/', function (req, res, next) {
       HP.extendHeaderData(modelData);
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData.content.homepage);
-
-
       
-      //console.dir(modelData);
+      console.dir(modelData);
 
       var  pageData = _.extend(result, modelData);
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
@@ -76,11 +76,26 @@ var HP = {
 	    // CSS
 	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
 	    if (modelData.header.min) {
-			  // TODO add device detection and add /all CSS
-	  	  modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
-		  } else {
-			  modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
-		  }
+	    	if (deviceDetection.isHomePageDevice()) {
+		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
+	    	} else {
+	    		if (deviceDetection.isMobile()) {
+		  	  		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
+		    	} else {
+		    		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'all/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.min.css');
+		    	}
+	    	}
+		} else {
+			if (deviceDetection.isHomePageDevice()) {
+		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
+			} else {
+				if (deviceDetection.isMobile()) {
+		  	  		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'mobile/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
+		    	} else {
+		    		modelData.header.continerCSS.push(modelData.header.baseCSSUrl + 'all/' + modelData.header.brandName + '/' + modelData.country + '/' + modelData.locale + '/HomePage.css');
+		    	}
+			}
+		}
 	},
 
 	/**
