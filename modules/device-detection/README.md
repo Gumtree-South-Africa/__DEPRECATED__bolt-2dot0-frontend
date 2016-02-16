@@ -1,6 +1,6 @@
-# Handlebar Helpers
+# Device Detection
 
-helpers for handlebars.
+Device detection helpers for handlebars and backend support.
 
 ### Prerequisities
 
@@ -16,7 +16,11 @@ var deviceDetection = require(process.cwd() + "/modules/device-detection");
 
 
 #### Front-end
-Add req.app.locals.deviceInfo res.render('....', {});
+Add req.app.locals.deviceInfo in the controllers
+
+```javascript
+res.render('....', {});
+```
 
 ```handlebars
 {{#ifDesktop this.device}}  {{/ifDesktop}}
