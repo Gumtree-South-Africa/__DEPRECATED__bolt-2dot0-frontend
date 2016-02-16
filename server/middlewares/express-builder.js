@@ -1,6 +1,6 @@
 'use strict';
 
-var boltConfig  = require("./BoltConfig");
+
 var express = require("express");
 var bodyParser = require('body-parser');
 var compress = require('compression');
@@ -11,38 +11,25 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var path = require('path');
 
-var hbshelpers = require("../../modules/hbs-helpers");
+//var hbshelpers = require("../../modules/hbs-helpers");
+
 var writeHeader = require("./write-header");
 var requestId = require('./request-id');
-var exphbs  = require('express-handlebars');
-
-
-var deviceDetection = require("./DeviceDetection");
-
 
 var config = {
     root: process.cwd()
 };
 
-var hbs = exphbs.create({
-    defaultLayout: 'main',
-    layoutsDir: config.root + "/app/views/templates/layouts/hbs/",
-    extname: "hbs",
-    helpers: hbshelpers,
-    precompiled: [ config.root + "/app/views/components/", config.root + '/app/views/templates/pages'],
-    partialsDir: [ config.root + "/app/views/components/", config.root + '/app/views/templates/pages']
 
-});
-
-hbshelpers.init(hbs) ;
 
 function BuildApp(locale) {
     var app = express();
-    var exphbs = null;
+
+    console.log("middle ware express buider ===========");
 
     // uncomment after placing your favicon in /public
     //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-    app.use(boltConfig());
+
 
     app.use(logger('dev'));
     app.use(bodyParser.json());
@@ -57,7 +44,7 @@ function BuildApp(locale) {
 
     // Use custom middlewares
 
-    app.use(deviceDetection());
+
 
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
 
@@ -68,9 +55,7 @@ function BuildApp(locale) {
     
     //Setup hbs Views
 
-    app.engine('hbs', hbs.engine);
-    app.set('view engine', 'hbs');
-    app.set('views', config.root + '/app/views/templates/pages');
+
 
 
     /*

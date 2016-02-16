@@ -5,8 +5,7 @@ var express = require('express'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
-    util = require('util'),
-    i18n = require('i18n');
+    util = require('util');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
@@ -54,19 +53,8 @@ router.get('/', function (req, res, next) {
       extraData.header.pageUrl = extraData.header.homePageUrl;
       extraData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
 
-        extraData.helpers = {
-            i18n: function (msg) {
-
-                i18n.configure({
-                    updateFiles: false,
-                    objectNotation: true,
-                    directory: process.cwd() + '/app/locales/json/' + res.config.locale + '/',
-                    prefix: 'translation_'
-                });
-                return i18n.__({phrase: msg, locale: res.config.locale});
-            }
-        };
-
+		//  Device data
+		extraData.device = req.app.locals.deviceInfo;
 
         var  pageData = _.extend(result, extraData);
 

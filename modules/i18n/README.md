@@ -1,0 +1,44 @@
+# Handlebar Template Inheritance 
+
+I18n for Bolt
+
+### Prerequisities
+
+Add the following for backend, var i18n = require('./modules/i18n');
+
+### Useage
+
+#### For front-end
+```handlebars
+//block
+{{i18n "SFO"}} {{/block}}
+
+```
+
+#### For back-end
+```javascript
+var i18n = require('./modules/i18n');
+
+// must provide a locale
+i18n.init(res.config.locale);
+// returns tranlated message
+var message = i18n.msg("greeting");
+```
+
+## Versioning
+
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+
+## Authors
+
+* **Anton Ganeshalingam** - *Initial work* 
+
+
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+
+## Acknowledgments
+
+

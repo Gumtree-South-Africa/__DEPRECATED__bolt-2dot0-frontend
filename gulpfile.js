@@ -58,6 +58,7 @@ function errorlog(err){
 
 //TODO: add clean|copyTo Task and env checking.
 
+/*
 gulp.task('debug', function() {
 
     gulp.src([])
@@ -74,6 +75,7 @@ gulp.task('debug', function() {
             sslCert: ''
         }));
 });
+*/
 
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
@@ -94,4 +96,4 @@ gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch', 'debug']);
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);

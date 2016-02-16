@@ -25,6 +25,11 @@ var allLocales = "es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG";
 // if SITES param is passed as input param, load only those countries
 var siteLocales = process.env.SITES || allLocales;
 
+var exphbs  = require('express-handlebars');
+var i18n = require('./modules/i18n');
+var boltExpressHbs = require('./modules/handlebars');
+var deviceDetection = require("./modules/device-detection");
+
 
 /*
  * Create Main App
@@ -39,7 +44,7 @@ var siteCount = 0;
  */
 Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
-    
+    console.log("============ appp.js ======");
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
 		        var builderObj = new expressbuilder(siteObj.locale);
@@ -84,6 +89,13 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt site checking middleware
 		        siteApp.use(checksite(siteApp));
+
+
+			  siteApp.use(i18n.initMW(siteApp));
+			  siteApp.use(deviceDetection.init());
+			  siteApp.use(boltExpressHbs.create(siteApp));
+
+
 		
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
