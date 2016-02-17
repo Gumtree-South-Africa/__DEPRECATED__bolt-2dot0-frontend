@@ -76,13 +76,10 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt site checking middleware
 		        siteApp.use(checksite(siteApp));
-
-
-			  siteApp.use(i18n.initMW(siteApp));
-			  siteApp.use(deviceDetection.init());
-			  siteApp.use(boltExpressHbs.create(siteApp));
-
-
+		        
+		        siteApp.use(i18n.initMW(siteApp));
+		        siteApp.use(deviceDetection.init());
+		        siteApp.use(boltExpressHbs.create(siteApp));
 		
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));

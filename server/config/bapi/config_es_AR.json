@@ -17,7 +17,8 @@
 			"geoLocator"		: true,
 			"savedSearch"		: true,
 			"autoComplete"		: true,
-			"locationSelection" : true
+			"locationSelection" : true,
+			"geoLocator"		: true
 		},
 	    "marketo"							: {
 	    	"enabled"			: true,

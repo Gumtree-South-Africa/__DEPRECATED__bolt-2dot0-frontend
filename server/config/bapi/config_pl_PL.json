@@ -17,7 +17,8 @@
 		"navigationConfig"					: {
 			"savedSearch"		: true,
 			"autoComplete"		: true,
-			"locationSelection" : true
+			"locationSelection" : true,
+			"geoLocator"		: false
 		},
 	    "marketo"							: {
 	    	"enabled"			: false,
