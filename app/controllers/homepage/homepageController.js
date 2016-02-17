@@ -87,15 +87,15 @@ var HP = {
 	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
 	    if (modelData.header.min) {
 	    	if (deviceDetection.isHomePageDevice()) {
-		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
+		    	modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
 	    	} else {
-		  	  	modelData.header.continerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
+		  	  	modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
 	    	}
 		} else {
 			if (deviceDetection.isHomePageDevice()) {
-		    	modelData.header.continerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
+		    	modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
 			} else {
-				modelData.header.continerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
+				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
 	},

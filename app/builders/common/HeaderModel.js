@@ -136,11 +136,11 @@ HeaderModel.prototype.buildCss = function(data) {
 	}
 	data.localeCSSPathHack = data.baseCSSUrl + "/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	
-	data.continerCSS = [];
+	data.containerCSS = [];
 	if (data.min) {
-		data.continerCSS.push(data.localeCSSPath + "/Main.min.css");
+		data.containerCSS.push(data.localeCSSPath + "/Main.min.css");
 	} else {
-		data.continerCSS.push(data.localeCSSPath + "/Main.css");
+		data.containerCSS.push(data.localeCSSPath + "/Main.css");
 	}
 };
 
