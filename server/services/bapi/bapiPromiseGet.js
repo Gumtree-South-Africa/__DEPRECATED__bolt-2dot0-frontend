@@ -31,8 +31,8 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
 		console.log(serviceName + "Service: Callback from " + serviceName + " BAPI");
-		if(typeof output === undefined) {
-			bapiDeferred.reject(new Error("Error in calling " + serviceName + " BAPI"));
+		if(typeof output === undefined || output.statusCode) {
+			bapiDeferred.reject(serviceName + " BAPI returned: " + output.statusCode + " , details: " + output);
 		} else {
 			bapiDeferred.resolve(output);
 		}
