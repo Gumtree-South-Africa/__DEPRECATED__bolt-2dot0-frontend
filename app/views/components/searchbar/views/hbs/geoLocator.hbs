@@ -1,17 +1,17 @@
-{{#if model.header.navigationConfig.geoLocator}}
+{{#if this.header.navigationConfig.geoLocator}}
     <div class="geo-locator"
          data-all-locations='{{i18n "header.search-all-locations"}}'
-         data-geo-api="{{model.header.geoLocatorUrl}}"
-         data-root-api="{{model.header.rootGeoLocatorUrl}}">
+         data-geo-api="{{this.header.geoLocatorUrl}}"
+         data-root-api="{{this.header.rootGeoLocatorUrl}}">
         <span class="icon">
             <span class="icon-header-location-pin"></span>
         </span>
         <span class="label">
-            {{#if model.content.searchFormModel.localizedLocationName}}
-                {{model.content.searchFormModel.localizedLocationName}}
+            {{#if this.content.searchFormModel.localizedLocationName}}
+                {{this.content.searchFormModel.localizedLocationName}}
             {{else}}
-                {{#if model.header.cookieLocationName}}
-                    {{model.header.cookieLocationName}}
+                {{#if this.header.cookieLocationName}}
+                    {{this.header.cookieLocationName}}
                 {{else}}
                     {{i18n "header.search-location"}}
                 {{/if}}
