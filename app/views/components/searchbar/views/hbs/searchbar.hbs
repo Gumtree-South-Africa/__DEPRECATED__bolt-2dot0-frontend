@@ -10,28 +10,29 @@
                         data-auto-complete-api="{{this.header.autoCompleteUrl}}">
                     <fieldset>
                         {{!-------------- keyword --------------}}
-                        {{> (include "searchbar" "keyword") }}       
+                        {{> "searchbar/views/hbs/keyword"}}
+                        
                         {{!-------------- /keyword --------------}}
 
                         {{!-------------- categories --------------}}
-                        {{> (include "searchbar" "categories") }}
+                        {{> "searchbar/views/hbs/categories" }}
                         {{!-------------- /categories --------------}}
 
                         {{!-------------- locations --------------}}
-                        {{> (include "searchbar" "locations") }} 
+                        {{> "searchbar/views/hbs/locations" }} 
                         {{!-------------- /locations --------------}}
 
                         {{!-------------- button --------------}}
-                        {{> (include "searchbar" "button") }}
+                        {{> "searchbar/views/hbs/button" }}
                         {{!-------------- /button --------------}}
                     </fieldset>
 
                     {{!-------------- geoLocator --------------}}
-                    {{> (include "searchbar" "geoLocator") }}
+                    {{> "searchbar/views/hbs/geoLocator" }}
                     {{!-------------- /geoLocator --------------}}
 
                     {{!-------------- existing search --------------}}
-                    {{> (include "searchbar" "hiddenFields") }}
+                    {{> "searchbar/views/hbs/hiddenFields" }}
                     {{!-------------- /existing search --------------}}
 
                 </form>
