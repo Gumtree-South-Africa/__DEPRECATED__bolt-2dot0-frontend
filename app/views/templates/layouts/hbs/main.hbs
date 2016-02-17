@@ -3,8 +3,12 @@
     <head>
         <meta charset="utf-8" />
         <title>{{site}}</title>
-        <link rel="stylesheet" href="/css/{{site}}/{{country}}/{{locale}}/Main.css"/>
-        <link rel="stylesheet" href="/css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/>
+
+
+        {{#each header.continerCSS}}
+            <link rel="stylesheet" href="{{this}}"/>
+        {{/each}}
+
         <link rel="stylesheet" href="/css/icons.data.svg_{{locale}}.css"/>
         <link rel="shortcut icon" type="image/png" href="{{header.favIcon}}"/>
     </head>
