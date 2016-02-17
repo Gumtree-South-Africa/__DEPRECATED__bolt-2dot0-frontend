@@ -9,6 +9,12 @@ Pleass add the following in the controller for back-end rendering
 ```javascript
 
 var deviceDetection = require(process.cwd() + "/modules/device-detection");
+```
+
+Initalize deviceDetection with request object
+```javascript
+
+deviceDetection.check(req)
 
 ```
 
@@ -39,6 +45,7 @@ isDesktop();
 isMobile();
 isTablet();
 isTv();
+isHomePageDevice(); // only for backend
 
 ```
 
@@ -70,6 +77,11 @@ In handlebars add the following:
 #### Back-end
 
 ```handlebars
+
+<!-- homepage controller -->
+deviceDetection.check(req);
+
+
 deviceDetection.isDesktop();
 deviceDetection.isMobile();
 deviceDetection.isTablet();
