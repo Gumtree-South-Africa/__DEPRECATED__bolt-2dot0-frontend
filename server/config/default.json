@@ -9,6 +9,7 @@
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories?depth=2",
 	    	"locationHomePage"	:	"/bolt-api-webapp/v1/locations?depth=2",
+	    	"topLocationsL1"	:	"/bolt-api-webapp/v1/locations?depth=1",
 	    	"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
 	    	"userFromCookie" 	:	"/bolt-api-webapp/v1/users/loggedInUserInfo",
 	    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top?categoryId=0&locationId=1",

@@ -16,7 +16,10 @@
 	        "helpLink"			: true
 		},
 		"navigationConfig"					: {
-			"locationSelection"	: false
+			"locationSelection"	: false,
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : false
 		},
 	    "marketo"							: {
 	    	"enabled"			: false,

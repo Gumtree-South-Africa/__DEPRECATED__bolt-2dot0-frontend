@@ -12,7 +12,11 @@
 		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
 		"enableLighterVersionForMobile"		: false,
 		"headerConfig"						: null,
-		"navigationConfig"					: null,
+		"navigationConfig"					: {
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true
+		},
 	    "marketo"							: {
 	        "enabled"			: true,
 	    	"trackAnonUser"		: false,

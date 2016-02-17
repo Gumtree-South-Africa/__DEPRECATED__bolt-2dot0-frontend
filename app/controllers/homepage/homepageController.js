@@ -56,7 +56,7 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData.content.homepage);
       
-      console.dir(modelData);
+      // console.dir(modelData);
       
       // Render
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
@@ -163,5 +163,11 @@ var HP = {
 			modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
 			modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
 		}
+		
+		// Search Bar
+		modelData.content.disableSearchbar = false;
+		
+		// Page Sub Title
+		modelData.content.pageSubTitle = null;
 	}
 };

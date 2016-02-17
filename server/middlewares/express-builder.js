@@ -25,12 +25,9 @@ var config = {
 function BuildApp(locale) {
     var app = express();
 
-    console.log("middle ware express buider ===========");
-
     // uncomment after placing your favicon in /public
-    //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
-
+    // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
+    
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -43,9 +40,6 @@ function BuildApp(locale) {
     app.use(expressUncapitalize());
 
     // Use custom middlewares
-
-
-
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
 
     // register bolt requestId middleware
@@ -54,9 +48,6 @@ function BuildApp(locale) {
     this.locale = locale;
     
     //Setup hbs Views
-
-
-
 
     /*
      * TODO: Enable when NodeJS error handling available: 404, 500, etc

@@ -42,7 +42,7 @@ var siteCount = 0;
  */
 Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
-    console.log("============ appp.js ======");
+
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
 		        var builderObj = new expressbuilder(siteObj.locale);

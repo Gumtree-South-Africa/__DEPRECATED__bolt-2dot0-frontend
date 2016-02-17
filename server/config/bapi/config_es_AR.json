@@ -14,7 +14,10 @@
 		"headerConfig"						: null,
 		"navigationConfig"					: {
 			"instantSearch"		: true,
-			"geoLocator"		: true
+			"geoLocator"		: true,
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true
 		},
 	    "marketo"							: {
 	    	"enabled"			: true,

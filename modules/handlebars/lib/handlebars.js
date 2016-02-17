@@ -11,8 +11,6 @@ module.exports.create =  function(app) {
 
     return function(req, res, next) {
 
-        //console.log('hbs============== ' + hbs);
-
         var util = require('util'),
             exphbs  = require('express-handlebars'),
             hbshelpers = require(process.cwd() + '/modules/hbs-helpers');
@@ -26,8 +24,6 @@ module.exports.create =  function(app) {
             partialsDir: [ process.cwd() + "/app/views/components/", process.cwd() + '/app/views/templates/pages']
 
         });
-
-        console.log('bolt-hbs-middle ware ============== ');
 
         hbshelpers.init({hbs:hbs, app:app, req:req});
 

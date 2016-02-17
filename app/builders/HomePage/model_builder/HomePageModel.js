@@ -21,9 +21,6 @@ var BasePageModel = require("../../common/ExtendModel");
  */
 var HomePageModel = function (req, res) {
 	var bpModel = new BasePageModel(req, res);
-	console.log("***************");
-	console.log(bpModel.getFullName() + " ---> " + bpModel.getAddress());
-
 	var commonData = bpModel.getModelBuilder();
 
 	var loc = new LocationModel(req.requestId, res.config.locale, 2),

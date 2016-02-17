@@ -14,7 +14,11 @@
 		"headerConfig"						: {
 			"isolatedLoginLink"	: true
 		},
-		"navigationConfig"					: null,
+		"navigationConfig"					: {
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true
+		},
 	    "marketo"							: {
 	    	"enabled"			: false,
 	    	"trackAnonUser"		: false,
