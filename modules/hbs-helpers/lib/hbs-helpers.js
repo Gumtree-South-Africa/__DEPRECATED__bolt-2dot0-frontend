@@ -52,6 +52,10 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(partialName + "/views/hbs/" + partialName);
         });
 
+        exphbs.handlebars.registerHelper('include', function(component, subPartialName, options) {
+            return new exphbs.handlebars.SafeString(component + "/views/hbs/" + subPartialName);
+        });
+
         exphbs.handlebars.registerHelper("debug", function(optionalValue) {
             console.log("Current Context");
             console.log("====================");

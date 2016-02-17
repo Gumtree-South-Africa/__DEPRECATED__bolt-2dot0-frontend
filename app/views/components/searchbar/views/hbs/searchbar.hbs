@@ -1,99 +1,37 @@
-{{#unless model.content.disableSearchbar}}
+{{#unless this.content.disableSearchbar}}
     <div class="searchbar">
         <section role="search">
             <div class="wrap">
-                <form action='{{model.header.searchPageUrl}}' class="has-location-{{model.header.navigationConfig.locationSelection}}"
-                        data-instant-search="{{model.header.navigationConfig.instantSearch}}"
+                <form action='{{this.header.searchPageUrl}}' class="has-location-{{this.header.navigationConfig.locationSelection}}"
+                        data-instant-search="{{this.header.navigationConfig.instantSearch}}"
                         data-clear-searches-message='{{i18n "header.clear-recent-searches"}}'
-                        data-saved-search="{{model.header.navigationConfig.savedSearch}}"
-                        data-auto-complete="{{model.header.navigationConfig.autoComplete}}"
-                        data-auto-complete-api="{{model.header.autoCompleteUrl}}">
+                        data-saved-search="{{this.header.navigationConfig.savedSearch}}"
+                        data-auto-complete="{{this.header.navigationConfig.autoComplete}}"
+                        data-auto-complete-api="{{this.header.autoCompleteUrl}}">
                     <fieldset>
                         {{!-------------- keyword --------------}}
-                        <div class="keyword">
-                            <input tabindex="1" type="text" name="q" value="{{model.content.searchFormModel.keyWord.value}}" placeholder='{{i18n "header.search-keyword"}}' autocomplete="off" />
-                        </div>
+                        {{> (include "searchbar" "keyword") }}       
                         {{!-------------- /keyword --------------}}
 
                         {{!-------------- categories --------------}}
-                        <div class="category">
-                            <span class="icon main-icon">
-                                <span class='icon-header-categories'></span>
-                            </span>
-                            <input tabindex="2" type="text" data-all='{{i18n "header.search-all-categories"}}' placeholder='{{i18n "header.search-category"}}' value="{{model.content.searchFormModel.localizedCategoryName}}" autocomplete="off" disabled="disabled" readonly="readonly" />
-                            <input type="hidden" name="catId" value="{{model.content.searchFormModel.catId.value}}" />
-                            <!--[if (IE 8)&!(IEMobile)]>
-                            <span class="icon-caret-down"></span>
-                            <![endif]-->
-                            {{#unless model.header.isIncludeContentForMobile}}
-                                <script type="text/plain">{{{json this.category}}}</script>
-                            {{/unless}}
-                        </div>
-
+                        {{> (include "searchbar" "categories") }}
                         {{!-------------- /categories --------------}}
 
                         {{!-------------- locations --------------}}
-                        {{!-- {{#if model.header.navigationConfig.locationSelection}} --}}
-                        <div class="location">
-                            <span class="icon main-icon">
-                                <span class='icon-header-location-pin'></span>
-                            </span>
-                            <input tabindex="3" type="text" data-all='{{i18n "header.search-all-locations"}}' placeholder='{{i18n "header.search-location"}}' value='{{#if model.content.searchFormModel.localizedLocationName}}{{model.content.searchFormModel.localizedLocationName}}{{else}}{{#if model.header.cookieLocationName}}{{model.header.cookieLocationName}}{{else}}{{i18n "header.search-location"}}{{/if}}{{/if}}' autocomplete="off" disabled="disabled" readonly="readonly" />
-                            <input type="hidden" name="locId" value="{{#if model.content.searchFormModel.locId}}{{model.content.searchFormModel.locId.value}}{{else}}{{#if model.header.cookieLocationId}}{{model.header.cookieLocationId}}{{/if}}{{/if}}" />
-                            <!--[if (IE 8)&!(IEMobile)]>
-                            <span class="icon-caret-down"></span>
-                            <![endif]-->
-                            {{#unless model.header.isIncludeContentForMobile}}
-                                <script type="text/plain">{{{json this.location}}}</script>
-                            {{/unless}}
-                        </div>
-                        {{!-- {{/if}}  --}}
-
-                        {{!-------------- locations --------------}}
+                        {{> (include "searchbar" "locations") }}
+                        {{!-------------- /locations --------------}}
 
                         {{!-------------- button --------------}}
-                        <div class="button">
-                            <button tabindex="4">
-                                <span class="icon">
-                                    <span class='icon-header-search-out'></span>
-                                    <span class='icon-header-search-over'></span>
-                                </span>
-                                <span class="label">{{i18n "header.search-go"}}</span>
-                            </button>
-                        </div>
+                        {{> (include "searchbar" "button") }}
                         {{!-------------- /button --------------}}
                     </fieldset>
 
                     {{!-------------- geoLocator --------------}}
-                    {{#if model.header.navigationConfig.geoLocator}}
-                        <div class="geo-locator"
-                             data-all-locations='{{i18n "header.search-all-locations"}}'
-                             data-geo-api="{{model.header.geoLocatorUrl}}"
-                             data-root-api="{{model.header.rootGeoLocatorUrl}}">
-                            <span class="icon">
-                                <span class="icon-header-location-pin"></span>
-                            </span>
-                            <span class="label">
-                                {{#if model.content.searchFormModel.localizedLocationName}}
-                                    {{model.content.searchFormModel.localizedLocationName}}
-                                {{else}}
-                                    {{#if model.header.cookieLocationName}}
-                                        {{model.header.cookieLocationName}}
-                                    {{else}}
-                                        {{i18n "header.search-location"}}
-                                    {{/if}}
-                                {{/if}}
-                            </span>
-                        </div>
-                    {{/if}}
+                    {{> (include "searchbar" "geoLocator") }}
                     {{!-------------- /geoLocator --------------}}
 
                     {{!-------------- existing search --------------}}
-                    {{#if model.content.searchFormModel}}
-                        {{#each model.content.searchFormModel.hiddenFields}}
-                            <input type="hidden" name="{{this.name}}" value="{{this.value}}"/>
-                        {{/each}}
-                    {{/if}}
+                    {{> (include "searchbar" "hiddenFields") }}
                     {{!-------------- /existing search --------------}}
 
                 </form>
