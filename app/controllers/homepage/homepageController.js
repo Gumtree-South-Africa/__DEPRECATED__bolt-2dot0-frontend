@@ -22,9 +22,6 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
-	// Initialize device detection with request
-	deviceDetection.check(req);
-	
 	// Data from the Middleware
 	var modelData =
     {
@@ -35,10 +32,11 @@ router.get('/', function (req, res, next) {
         pagename: pagetypeJson.pagetype.HOMEPAGE
     };
 	
-	// Retrieve Data from Model Builders and BAPI
+	// Retrieve Data from Model Builders
 	var bapiConfigData = res.config.bapiConfigData;
 	var model = HomepageModel(req, res);
     model.then(function (result) {
+      // Data from BAPI
       modelData.header = result[0][0];
       modelData.footer = result[0][1];
       modelData.location = result[1];
@@ -53,6 +51,7 @@ router.get('/', function (req, res, next) {
 	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;
       
+	  // Special Data needed for HomePage in header, footer, content
       HP.extendHeaderData(modelData);
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData.content.homepage);
