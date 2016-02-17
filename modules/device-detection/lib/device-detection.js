@@ -28,12 +28,6 @@ module.exports.isDesktop = function() {
     return deviceInfo.isDesktop;
 };
 
-// for backend
-module.exports.check = function(req) {
-    detectDevice(req);
-    ua = req.headers['user-agent'];
-
-};
 
 module.exports.isMobile = function() {
     return deviceInfo.isMobile;
@@ -102,4 +96,5 @@ function detectDevice(req) {
             console.log("something went wrong getting user agent");
     }
     req.app.locals.deviceInfo = deviceInfo;
+    ua = req.headers['user-agent'];
 }
