@@ -22,11 +22,11 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
-    var bapiConfigData = res.config.bapiConfigData;
-    var model = HomepageModel(req, res);
-
-    // Data from the Middleware
-    var modelData =
+	// Initialize device detection with request
+	deviceDetection.check(req);
+	
+	// Data from the Middleware
+	var modelData =
     {
         env: 'public',
         locale: res.config.locale,
@@ -34,9 +34,11 @@ router.get('/', function (req, res, next) {
         site: res.config.name,
         pagename: pagetypeJson.pagetype.HOMEPAGE
     };
-
+	
+	// Retrieve Data from Model Builders and BAPI
+	var bapiConfigData = res.config.bapiConfigData;
+	var model = HomepageModel(req, res);
     model.then(function (result) {
-      // Data from BAPI
       modelData.header = result[0][0];
       modelData.footer = result[0][1];
       modelData.location = result[1];
@@ -48,7 +50,7 @@ router.get('/', function (req, res, next) {
       modelData.level1Location = result[6];
       modelData.level2Location = result[7];
 
-	  //  Device data
+	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;
       
       HP.extendHeaderData(modelData);
@@ -56,9 +58,8 @@ router.get('/', function (req, res, next) {
       HP.buildContentData(modelData, bapiConfigData.content.homepage);
       
       console.dir(modelData);
-
+      
       // Render
-      var  pageData = _.extend(result, modelData);
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
 
       // Kafka Logging
@@ -66,7 +67,7 @@ router.get('/', function (req, res, next) {
       kafkaService.logInfo(res.config.locale, log);
       
       // Graphite Metrics
-  });
+    });
 });
 
 

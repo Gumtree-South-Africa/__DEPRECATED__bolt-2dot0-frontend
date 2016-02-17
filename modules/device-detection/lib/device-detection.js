@@ -31,7 +31,7 @@ module.exports.isDesktop = function() {
 // for backend
 module.exports.check = function(req) {
     detectDevice(req);
-    ua = device.useragent_is(req.headers['user-agent']);
+    ua = req.headers['user-agent'];
 
 };
 
@@ -59,7 +59,6 @@ module.exports.isHomePageDevice = function() {
     //UA :Mozilla/5.0(Ipad;CPU OS 6_1_3 like Mac OS X) AppliWebKit/536.26 (KHTML,like Gecko) Version/6.0 Mobile/10B329 Safari/8536.25
     //Ipad mini : IOS 7.1 also can reproduce it
     //UA :Mozilla/5.0(Ipad;CPU OS 7_1 like Mac OS X) AppliWebKit/537.51.2 (KHTML,like Gecko) Version/7.0 Mobile/11D167Safari/9537.53
-
 
     if ( ua != null && str(ua).contains("ipad") && str(ua).contains("AppleWebKit/533")) return true;
     if ( ua != null && str(ua).contains("ipad") && str(ua).contains("AppleWebKit/536")) return true;
