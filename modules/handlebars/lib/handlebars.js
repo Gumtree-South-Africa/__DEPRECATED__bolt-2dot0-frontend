@@ -16,12 +16,15 @@ module.exports.create =  function(app) {
             hbshelpers = require(process.cwd() + '/modules/hbs-helpers');
 
         var hbs = exphbs.create({
-            defaultLayout: 'main',
+            defaultLayout: 'html',  // It refers to html.hbs under the layouts directory. // 'main',
             layoutsDir: process.cwd() + "/app/views/templates/layouts/hbs/",
             extname: "hbs",
             helpers: hbshelpers,
             precompiled: [ process.cwd() + "/app/views/components/", process.cwd() + '/app/views/templates/pages'],
-            partialsDir: [ process.cwd() + "/app/views/components/", process.cwd() + '/app/views/templates/pages']
+            partialsDir: [ process.cwd() + "/app/views/components/",
+                process.cwd() + '/app/views/templates/pages',
+                process.cwd() + '/app/views/templates/layouts/hbs/partials'
+            ]
 
         });
 
