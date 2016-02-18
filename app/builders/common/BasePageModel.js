@@ -16,12 +16,14 @@ var DataLayerModel = require("./DataLayerModel");
  * @constructor
  */
 var BasePageModel = function (req, res) {
-
 	var cookieName = "bt_auth";
 	var authcookie = req.cookies[cookieName];
 	this.header = new HeaderModel(false, req, res);
+	this.headerBuilder = this.header.getModelBuilder();
 	this.footer = new FooterModel(false, req, res);
+	this.footerBuilder = this.footer.getModelBuilder();
 	this.dataLayer = new DataLayerModel(req, res);
+	this.dataLayerBuilder = this.dataLayer.getModelBuilder();
 };
 
 BasePageModel.prototype.getModelBuilder = function() {
@@ -32,7 +34,7 @@ BasePageModel.prototype.getCommonData = function() {
 	var scope = this;
 	var headerFunction = function(callback) { 
 		var headerDeferred = Q.defer();
-		Q(scope.header.processParallel())
+		Q(scope.headerBuilder.processParallel())
 	    	.then(function (dataH) {
 	    		console.log("Inside basepagemodel header");
 	    		headerDeferred.resolve(dataH[0]);
@@ -45,7 +47,7 @@ BasePageModel.prototype.getCommonData = function() {
 	
 	var footerFunction = function(headerData, callback) { 
 		var footerDeferred = Q.defer();
-		Q(scope.footer.processParallel())
+		Q(scope.footerBuilder.processParallel())
 	    	.then(function (dataF) {
 	    		console.log("Inside basepagemodel footer");
 	    		
@@ -66,11 +68,12 @@ BasePageModel.prototype.getCommonData = function() {
 	
 	var dataLayerFunction = function(headerFooterData, callback) { 
 		// use data from headerFooterData
-//		scope.dataLayer.setUserId(headerFooterData.header.id);
-//		scope.dataLayer.setUserEmail("");
+		console.log("@videep:");
+		scope.dataLayer.setUserId("sanjose"); // headerFooterData.header.id);
+		scope.dataLayer.setUserEmail("");
 		
 		var dataLayerDeferred = Q.defer();
-		Q(scope.dataLayer.processParallel())
+		Q(scope.dataLayerBuilder.processParallel())
 	    	.then(function (dataD) {
 	    		console.log("Inside basepagemodel dataLayer");
 	    		dataLayerDeferred.resolve(dataD[0]);

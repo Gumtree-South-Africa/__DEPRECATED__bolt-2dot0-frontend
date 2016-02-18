@@ -22,11 +22,13 @@ var FooterModel = function (secure, req, res) {
 	// Country specific variables from BAPI Config
 	this.brandName = res.config.name;
 	this.country = res.config.country;
-	this.footerConfigData = res.config.bapiConfigData.footer;
-	
-    return new ModelBuilder(this.getFooterData());
+	this.footerConfigData = res.config.bapiConfigData.footer;	
+    //return new ModelBuilder(this.getFooterData());
 };
 
+FooterModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getFooterData());
+};
 
 // Function getFooterData
 FooterModel.prototype.getFooterData = function() {

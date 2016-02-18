@@ -73,9 +73,13 @@ var DataLayerModel = function (req, res) {
 	this.brandName = res.config.name;
 	this.country = res.config.country;
 	this.pagetype = req.pagetype;
-	
-    return new ModelBuilder(this.getData());
+    // return new ModelBuilder(this.getData());
 };
+
+DataLayerModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getData());
+};
+
 
 DataLayerModel.prototype.setUserId = function(userid) {
 	this.userid = userid;
@@ -87,7 +91,6 @@ DataLayerModel.prototype.setUserEmail = function(useremail) {
 
 DataLayerModel.prototype.getData = function() {
 	var scope = this;
-	
 	var pageDeferred = Q.defer();
 		
 	var pageDataFunction = function(callback) {
@@ -103,6 +106,9 @@ DataLayerModel.prototype.getData = function() {
 			"locationData"	:	locdata,
 		};
 		
+		console.log("@raj:");
+		console.log(">>>>> The user id is: " + scope.userid);
+
         pageDeferred.resolve(data);
         callback(null, data);
 	};
