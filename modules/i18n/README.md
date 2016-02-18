@@ -13,6 +13,14 @@ Add the following for backend, var i18n = require('./modules/i18n');
 //block
 {{i18n "SFO"}} {{/block}}
 
+ // if there are 3 param values in {{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
+ 
+ // if there are 2 param values in {{i18n "my.name is %s. i'm %s old." "anton" "20" }}
+ 
+ // if there are 1 param values in {{i18n "my.name is %s." "anton"  }}
+ 
+  // if there are 2 param values in {{i18n "my.name" }}
+
 ```
 
 #### For back-end

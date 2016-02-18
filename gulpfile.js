@@ -34,8 +34,10 @@ var gulp = require('gulp'),
   jasmineNode = require('gulp-jasmine-node'),
   gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
+  tar = require('gulp-tar'),
+  gzip = require('gulp-gzip'),
   asynch = require('async'),
-      nodeInspector = require('gulp-node-inspector'),
+  nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
 
@@ -55,8 +57,6 @@ function errorlog(err){
   this.emit('end');
 }
 
-
-//TODO: add clean|copyTo Task and env checking.
 
 /*
 gulp.task('debug', function() {
@@ -95,5 +95,6 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
+gulp.task('pak', ['clean'], getTask('pak'));
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);

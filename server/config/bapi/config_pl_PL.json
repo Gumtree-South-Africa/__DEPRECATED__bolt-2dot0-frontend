@@ -49,7 +49,23 @@
 			"blogUrl" 							: "http://blog.gumtree.pl/",
 			"vipLandingPageEnabled"				: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
+		"analytics": {
+	        "account": "UA-9157637-1",
+	        "domainName": ".gumtree.pl",
+	        "ignoredRefs": [
+	            "gumtree.pl"
+	        ],
+	        "allowAnchor": true,
+	        "sessionCookieTimeout": 1800000,
+	        "campaignCookieTimeout": 15768000000,
+	        "visitorCookieTimeout": 63072000000,
+	        "gtmTagId":"GTM-KSFR4N",
+	        "trackEvents" : [
+	        	{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+	        	{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+	         ]
+	    }
 	},
 	"content" : {
 		"homepage" : {

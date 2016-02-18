@@ -11,7 +11,7 @@ var CategoryModel = require("../../common/CategoryModel");
 var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
-// var BasePageModel = require("../../common/BasePageModel");
+var SeoModel = require("../../common/SeoModel");
 var BasePageModel = require("../../common/ExtendModel");
 
 
@@ -21,7 +21,7 @@ var BasePageModel = require("../../common/ExtendModel");
  */
 var HomePageModel = function (req, res) {
 	var bpModel = new BasePageModel(req, res);
-	var commonData = bpModel.getModelBuilder();
+	var commonPageData = bpModel.getModelBuilder();
 
 	var loc = new LocationModel(req.requestId, res.config.locale, 2),
 		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
@@ -29,11 +29,12 @@ var HomePageModel = function (req, res) {
 		cat = new CategoryModel(req.requestId, res.config.locale, 2),
 		keyword = new KeywordModel(req.requestId, res.config.locale, 2),
 		gallery = new GalleryModel(req.requestId, res.config.locale),
-		adstatistics = new AdStatisticsModel(req.requestId, res.config.locale);
+		adstatistics = new AdStatisticsModel(req.requestId, res.config.locale),
+		seo = new SeoModel(req.requestId, res.config.locale);
 	
 	var commonDataFunction = function(callback) {
 		var commonDataDeferred = Q.defer();
-		Q(commonData.processParallel())
+		Q(commonPageData.processWaterfall())
 	    	.then(function (dataC) {
 	    		console.log("Inside commonData from homepageModel");
 	    		commonDataDeferred.resolve(dataC);
@@ -134,8 +135,21 @@ var HomePageModel = function (req, res) {
 				callback(null, {});
 			});
 	};
+	
+	var seoFunction = function(callback) {
+		var seoDeferred = Q.defer();
+		Q(seo.processParallel())
+	    	.then(function (dataS) {
+	    		console.log("Inside homepagemodel seo");
+	    		seoDeferred.resolve(dataS[0]);
+	    		callback(null, dataS[0]);
+			}).fail(function (err) {
+				seoDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
 
-	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction ];
+	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction, seoFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();

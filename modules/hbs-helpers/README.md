@@ -8,55 +8,17 @@ Make sure package.json got the laterest version of express-handlebar
 
 ### Useage
 ```handlebars
-//block
-{{block "SFO"}} {{/block}}
 
-// static parital
-{{> "SFO" }}
-
-// dynamic partial
-{{> (dynamic "SFO") }}
-
-// base partial
-{{> (base "SFO")}}
+{{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
+ 
+{{i18n "my.name is %s. i'm %s old." "anton" "20" }}
+ 
+{{i18n "my.name is %s." "anton"  }}
+ 
+ {{i18n "my.name" }}
 ```
 
-### Example
 
-```handlebars
-
-<!-- main.hbs -->
-<html>
-<head>
-  <title>
-    {{#block "title"}} Default Title {{/block}}
-  </title>
-</head>
-<body>
-  {{> (base "header")}}
-  {{#block "content"}}
-    This will be default content that appears in a
-    deriving template if it does not declare a
-    replacement for the "content" section.
-  {{/block}}
-  {{> footer}}
-</body>
-</html>
-
-<!-- searchbar-en_ZA.hbs -->
-<div> ZA search bar </div>
-
-<!-- home.hbs -->
-{{#block "title"}} Home {{/block}}
-{{#block "sign-in"}} HOME {{/partial}}
-
-
-<!-- home-en_ZA.hbs -->
-{{#partial "title"}} My Home for ZA {{/partial}}
-{{#partial "sign-in"}} My Home sign-in {{>> (dynamic "searchbar")}}
-
-{{> (base "home") }}
-```
 
 
 ## Versioning
