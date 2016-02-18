@@ -58,6 +58,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Set BAPI Config Data
+		        // siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
 		        console.log("Calling ConfigService to get ConfigData");
 		        Q(configService.getConfigData(siteApp.config.locale))
 		      	.then(function (dataReturned) {

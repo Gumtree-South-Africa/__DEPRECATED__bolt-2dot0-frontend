@@ -55,7 +55,23 @@
 			"blogUrl" 							: "http://vivedf.ibazar.com.mx/",
 			"vipLandingPageEnabled"				: false
 		},
-		"availableAdFeatures" 				: []
+		"availableAdFeatures" 				: [],
+		"analytics": {
+	        "account": "UA-38622010-2",
+	        "domainName": ".ibazar.com",
+	        "ignoredRefs": [
+	            "ibazar.com"
+	        ],
+	        "allowAnchor": true,
+	        "sessionCookieTimeout": 1800000,
+	        "campaignCookieTimeout": 15768000000,
+	        "visitorCookieTimeout": 63072000000,
+	        "gtmTagId":"GTM-WPCWFX",
+	        "trackEvents" : [
+	        	{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+	        	{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+	         ]
+	    }
 	},
 	"content" : {
 		"homepage" : {

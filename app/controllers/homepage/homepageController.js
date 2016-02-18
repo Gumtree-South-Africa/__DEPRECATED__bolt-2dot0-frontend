@@ -85,6 +85,9 @@ var HP = {
 	    modelData.header.metaRobots = modelData.seo.robots;
 	    modelData.header.canonical = modelData.header.homePageUrl;
 	    modelData.header.pageUrl = modelData.header.homePageUrl;
+	    if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + "home";
+	    }
 
 	    // CSS
 	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
@@ -141,7 +144,7 @@ var HP = {
 		modelData.content = {};
 
 		var contentConfigData, homepageConfigData;
-		if (typeof homepageConfigData !== 'undefined') {
+		if (typeof bapiConfigData !== 'undefined') {
 			contentConfigData = bapiConfigData.content;
 		}
 		if (typeof contentConfigData !== 'undefined') {
@@ -175,6 +178,9 @@ var HP = {
 				modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
 				modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
 			}
+
+			// Bing Meta
+			modelData.content.bingMeta = homepageConfigData.bingMeta;
 		}
 		
 		// Gallery
