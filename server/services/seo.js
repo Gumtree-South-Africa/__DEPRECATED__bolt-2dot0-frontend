@@ -23,7 +23,6 @@ SeoService.prototype.getHPSeoData = function(requestId, locale) {
 	
 	seoData.pageTitle = "default.home.page.title.text";
 	seoData.description = "home.page.desc.tag";
-	seoData.descriptionCat = "home.page.desc.tag.with.category.";
 	seoData.robots = "index,follow";
 	
 	return seoData;
