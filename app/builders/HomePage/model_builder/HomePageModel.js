@@ -21,7 +21,7 @@ var BasePageModel = require("../../common/ExtendModel");
  */
 var HomePageModel = function (req, res) {
 	var bpModel = new BasePageModel(req, res);
-	var commonData = bpModel.getModelBuilder();
+	var commonPageData = bpModel.getModelBuilder();
 
 	var loc = new LocationModel(req.requestId, res.config.locale, 2),
 		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
@@ -34,7 +34,7 @@ var HomePageModel = function (req, res) {
 	
 	var commonDataFunction = function(callback) {
 		var commonDataDeferred = Q.defer();
-		Q(commonData.processParallel())
+		Q(commonPageData.processWaterfall())
 	    	.then(function (dataC) {
 	    		console.log("Inside commonData from homepageModel");
 	    		commonDataDeferred.resolve(dataC);

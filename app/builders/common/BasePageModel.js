@@ -43,26 +43,41 @@ BasePageModel.prototype.getCommonData = function() {
 			});
 	};
 	
-	var footerFunction = function(callback) { 
+	var footerFunction = function(headerData, callback) { 
 		var footerDeferred = Q.defer();
 		Q(scope.footer.processParallel())
 	    	.then(function (dataF) {
 	    		console.log("Inside basepagemodel footer");
+	    		
+	    		// Resolve promise with necessary data for the callee
 	    		footerDeferred.resolve(dataF[0]);
-	    		callback(null, dataF[0]);
+	    		
+	    		// Merge data and send the comibned data to the next function in waterfall
+	    		var headerFooterData = {
+	    			"header"	:	headerData,
+	    			"footer"	:	dataF[0]
+	    		};
+	    		callback(null, headerFooterData);
 			}).fail(function (err) {
 				footerDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
 	
-	var dataLayerFunction = function(callback) { 
+	var dataLayerFunction = function(headerFooterData, callback) { 
+		// use data from headerFooterData
+//		scope.dataLayer.setUserId(headerFooterData.header.id);
+//		scope.dataLayer.setUserEmail("");
+		
 		var dataLayerDeferred = Q.defer();
 		Q(scope.dataLayer.processParallel())
 	    	.then(function (dataD) {
-	    		console.log("Inside basepagemodel dataLayer", dataD);
+	    		console.log("Inside basepagemodel dataLayer");
 	    		dataLayerDeferred.resolve(dataD[0]);
-	    		callback(null, dataD[0]);
+	    		
+	    		var combinedData = headerFooterData;
+	    		combinedData.dataLayer = dataD[0];
+	    		callback(null, combinedData);
 			}).fail(function (err) {
 				dataLayerDeferred.reject(new Error(err));
 				callback(null, {});
