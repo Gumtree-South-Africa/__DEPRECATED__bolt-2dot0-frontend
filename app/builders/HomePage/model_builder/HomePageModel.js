@@ -26,11 +26,11 @@ var HomePageModel = function (req, res) {
 	var loc = new LocationModel(req.requestId, res.config.locale, 2),
 		level1Loc = new LocationModel(req.requestId, res.config.locale, 1),
 		level2Loc = new LocationModel(req.requestId, res.config.locale, 1),
-		cat = new CategoryModel(req.requestId, res.config.locale, 2),
-		keyword = new KeywordModel(req.requestId, res.config.locale, 2),
-		gallery = new GalleryModel(req.requestId, res.config.locale),
-		adstatistics = new AdStatisticsModel(req.requestId, res.config.locale),
-		seo = new SeoModel(req.requestId, res.config.locale);
+		cat = (new CategoryModel(req.requestId, res.config.locale, 2)).getModelBuilder(),
+		keyword = (new KeywordModel(req.requestId, res.config.locale, 2)).getModelBuilder(),
+		gallery = (new GalleryModel(req.requestId, res.config.locale)).getModelBuilder(),
+		adstatistics = (new AdStatisticsModel(req.requestId, res.config.locale)).getModelBuilder(),
+		seo = (new SeoModel(req.requestId, res.config.locale)).getModelBuilder();
 	
 	var commonDataFunction = function(callback) {
 		var commonDataDeferred = Q.defer();

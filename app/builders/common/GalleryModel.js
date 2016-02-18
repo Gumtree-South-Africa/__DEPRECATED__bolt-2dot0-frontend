@@ -15,9 +15,12 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
 var GalleryModel = function (requestId, locale) {
 	this.requestId = requestId;
 	this.locale = locale;
-    return new ModelBuilder(this.getHomePageGallery());
+    // return new ModelBuilder(this.getHomePageGallery());
 };
 
+GalleryModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getHomePageGallery());
+};
 
 // Function getHomePageGallery
 GalleryModel.prototype.getHomePageGallery = function() {
