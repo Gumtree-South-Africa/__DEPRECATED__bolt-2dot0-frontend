@@ -9,6 +9,7 @@ var _ = require("underscore");
 var ModelBuilder = require("./ModelBuilder");
 var HeaderModel = require("./HeaderModel");
 var FooterModel = require("./FooterModel");
+var DataLayerModel = require("./DataLayerModel");
 
 /** 
  * @description A class that Handles the common models in every page
@@ -20,7 +21,7 @@ var BasePageModel = function (req, res) {
 	var authcookie = req.cookies[cookieName];
 	this.header = new HeaderModel(false, req, res);
 	this.footer = new FooterModel(false, req, res);
-	// return new ModelBuilder(this.getCommonData());
+	this.dataLayer = new DataLayerModel(req, res);
 };
 
 BasePageModel.prototype.getModelBuilder = function() {
@@ -55,7 +56,20 @@ BasePageModel.prototype.getCommonData = function() {
 			});
 	};
 	
-	var arrFunctions = [headerFunction, footerFunction];
+	var dataLayerFunction = function(callback) { 
+		var dataLayerDeferred = Q.defer();
+		Q(scope.dataLayer.processParallel())
+	    	.then(function (dataD) {
+	    		console.log("Inside basepagemodel dataLayer", dataD);
+	    		dataLayerDeferred.resolve(dataD[0]);
+	    		callback(null, dataD[0]);
+			}).fail(function (err) {
+				dataLayerDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	
+	var arrFunctions = [headerFunction, footerFunction, dataLayerFunction];
 	return arrFunctions;
 };
 	
