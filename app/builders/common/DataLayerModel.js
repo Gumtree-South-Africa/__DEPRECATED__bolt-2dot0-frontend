@@ -80,7 +80,6 @@ DataLayerModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getData());
 };
 
-
 DataLayerModel.prototype.setUserId = function(userid) {
 	this.userid = userid;
 };

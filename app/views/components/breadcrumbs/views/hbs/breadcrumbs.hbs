@@ -1,11 +1,11 @@
 {{#if this.header.breadcrumbs}}
-    <div class="breadcrumbs {{#if model.content.isSoiPage}}soi{{/if}}">
-            {{#with  this.header.breadcrumbs.parentLocLinks}}
-            	{{> hbs/Html/Breadcrumbs_parentCatLocLinks}}
-            {{/with}}
-            {{#with  this.header.breadcrumbs.parentCatLinks}}
-            	{{> hbs/Html/Breadcrumbs_parentCatLocLinks}}
-            {{/with}}
+    <div class="breadcrumbs {{#if this.content.isSoiPage}}soi{{/if}}">
+        {{#with this.header.breadcrumbs.parentLocLinks}}
+            {{> "breadcrumbs/views/hbs/parentCatLocLinks" }}
+        {{/with}}
+        {{#with  this.header.breadcrumbs.parentCatLinks}}
+            {{> "breadcrumbs/views/hbs/parentCatLocLinks" }}
+        {{/with}}
         {{#if this.content.ad.title.value}}
             <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
                 <a class="category" href="{{this.header.breadcrumbs.currentCat.url}}">
@@ -25,32 +25,28 @@
             <span></span>
             <span class="title">{{i18n "vip.breadcrumb" this.content.ad.id}}</span>
         {{else}}
-
             <h1>
-                {{#if model.header.breadcrumbs.keyword}}
-                    <span class="atts">{{> hbs/Html/Breadcrumbs_keyword}}</span>
-
+                {{#if this.header.breadcrumbs.keyword}}
+                    <span class="atts">{{> "breadcrumbs/views/hbs/keyword"}}</span>
                 {{else}}
-                    <span class="atts">{{> hbs/Html/Breadcrumbs_noKeyword}}</span>
+                    <span class="atts">{{> "breadcrumbs/views/hbs/noKeyword"}}</span>
                 {{/if}}
-
             </h1>
 
-             {{#if model.header.breadcrumbs.Keyword}}
+             {{#if this.header.breadcrumbs.Keyword}}
 	            <span class="pipe">|</span>
 	        {{else}}
-		        	{{#if model.header.breadcrumbs.currentLoc}}
+		        	{{#if this.header.breadcrumbs.currentLoc}}
 		            	<span class="pipe">|</span>
 			        {{else}}
-			        	{{#with model.header.breadcrumbs.currentCat}}
+			        	{{#with this.header.breadcrumbs.currentCat}}
 			            	<span class="pipe">|</span>
 		            	{{/with}}
 	            	{{/if}}
             {{/if}}
 
-
             <span class="count">
-					{{{i18n "header.breadcrumb-result" model.header.breadcrumbs.count}}}
+					{{{i18n "header.breadcrumb-result" this.header.breadcrumbs.count}}}
 			</span>
         {{/if}}
     </div>
