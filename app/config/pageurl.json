@@ -13,13 +13,11 @@
 		"profileImageUrl"		: "/post.html",
 		"searchPageUrl"			: "/search.html?page=1",
 		"autoCompleteUrl"		: "/rui-api/autocomplete/model",
-		"surveyMonkeyUrl"		: "/post.html",
-		"geoLocatorUrl"			: "/post.html",
-		"rootGeoLocatorUrl"		: "/post.html",
-		"abTestUrl"				: "/post.html",
 		"autoCompleteUrl"		: "/autocomplete/model/",
 		"geoLocatorUrl"			: "/locations/content/geo/",
-		"rootGeoLocatorUrl"		: "/locations/content/"
+		"rootGeoLocatorUrl"		: "/locations/content/",
+		"surveyMonkeyUrl"		: "/post.html",
+		"abTestUrl"				: "/post.html"
 	},
 	"footer" : {
 		"cookieRightsURL"		: "/cookie-notice",

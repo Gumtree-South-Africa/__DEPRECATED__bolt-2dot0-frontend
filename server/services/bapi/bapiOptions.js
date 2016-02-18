@@ -7,9 +7,7 @@ module.exports = function(config){
     parameters : config.get('BAPI.server.parameters'),
     path : "/",
     method : "GET",
-    headers: {
-      "X-BOLT-APPS-ID": "RUI"
-    }
-  }
+    headers: {}
+  };
   return obj;
 };

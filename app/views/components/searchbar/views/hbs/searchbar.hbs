@@ -1,37 +1,38 @@
-{{#unless model.content.disableSearchbar}}
+{{#unless this.content.disableSearchbar}}
     <div class="searchbar">
         <section role="search">
             <div class="wrap">
-                <form action='{{model.header.searchPageUrl}}' class="has-location-{{model.header.navigationConfig.locationSelection}}"
-                        data-instant-search="{{model.header.navigationConfig.instantSearch}}"
+                <form action='{{this.header.searchPageUrl}}' class="has-location-{{this.header.navigationConfig.locationSelection}}"
+                        data-instant-search="{{this.header.navigationConfig.instantSearch}}"
                         data-clear-searches-message='{{i18n "header.clear-recent-searches"}}'
-                        data-saved-search="{{model.header.navigationConfig.savedSearch}}"
-                        data-auto-complete="{{model.header.navigationConfig.autoComplete}}"
-                        data-auto-complete-api="{{model.header.autoCompleteUrl}}">
+                        data-saved-search="{{this.header.navigationConfig.savedSearch}}"
+                        data-auto-complete="{{this.header.navigationConfig.autoComplete}}"
+                        data-auto-complete-api="{{this.header.autoCompleteUrl}}">
                     <fieldset>
                         {{!-------------- keyword --------------}}
-                                        {{> keyword}}
+                        {{> "searchbar/views/hbs/keyword"}}
+                        
                         {{!-------------- /keyword --------------}}
 
                         {{!-------------- categories --------------}}
-                                        {{> categories}}
+                        {{> "searchbar/views/hbs/categories" }}
                         {{!-------------- /categories --------------}}
 
                         {{!-------------- locations --------------}}
-                                        {{> locations}}
-                        {{!-------------- locations --------------}}
+                        {{> "searchbar/views/hbs/locations" }} 
+                        {{!-------------- /locations --------------}}
 
                         {{!-------------- button --------------}}
-                                        {{> button}}
+                        {{> "searchbar/views/hbs/button" }}
                         {{!-------------- /button --------------}}
                     </fieldset>
 
                     {{!-------------- geoLocator --------------}}
-                                        {{> geoLocator}}
+                    {{> "searchbar/views/hbs/geoLocator" }}
                     {{!-------------- /geoLocator --------------}}
 
                     {{!-------------- existing search --------------}}
-                                        {{> hiddenFields}}
+                    {{> "searchbar/views/hbs/hiddenFields" }}
                     {{!-------------- /existing search --------------}}
 
                 </form>

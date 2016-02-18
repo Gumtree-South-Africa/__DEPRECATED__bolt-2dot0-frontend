@@ -6,6 +6,7 @@ var _ = require("underscore");
 
 var ModelBuilder = require("./ModelBuilder");
 
+var deviceDetection = require(process.cwd() + "/modules/device-detection");
 var userService = require(process.cwd() + "/server/services/user");
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
 var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
@@ -59,11 +60,11 @@ HeaderModel.prototype.getHeaderData = function() {
     		
     		// build data
     		var urlProtocol = scope.secure ? "https://" : "http://";
-    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : ""; 
+    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : "";
     		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-    		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
+    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : "/css";
     		data.min = config.get("static.min");
     		
     		scope.buildUrl(data);
@@ -72,7 +73,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		scope.buildMessages(data);
     		
     		// manipulate data
-//    		// data.enableLighterVersionForMobile = "true && isMobileDevice";
+    		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
 			if (typeof callback !== "function") {
 				return;
@@ -127,14 +128,20 @@ HeaderModel.prototype.buildCss = function(data) {
 	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css");
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css";
 
-	data.continerCSS = [];
-	if (data.min) {
-		// TODO add device detection and add /all CSS
-		data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.min.css");
+	//Todo: Need to add "all" when Nacer done with the task
+	if (deviceDetection.isMobile()) {
+		data.localeCSSPath = data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	} else {
-		data.continerCSS.push(data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/Main.css");
+		data.localeCSSPath = data.baseCSSUrl + "/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale + "/";
+	data.localeCSSPathHack = data.baseCSSUrl + "/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+	
+	data.containerCSS = [];
+	if (data.min) {
+		data.containerCSS.push(data.localeCSSPath + "/Main.min.css");
+	} else {
+		data.containerCSS.push(data.localeCSSPath + "/Main.css");
+	}
 };
 
 //Build opengraph

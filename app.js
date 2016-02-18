@@ -7,10 +7,6 @@ var vhost = require('vhost');
 var Q = require("q");
 var _ = require("underscore");
 
-// i18n, its middleware and its backend modules.
-var i18next = require("i18next");
-var middleware = require('i18next-express-middleware');
-var Backend = require('i18next-node-fs-backend');
 
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
@@ -28,6 +24,11 @@ var allLocales = "es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG";
 // if SITES param is passed as input param, load only those countries
 var siteLocales = process.env.SITES || allLocales;
 
+var exphbs  = require('express-handlebars');
+var i18n = require('./modules/i18n');
+var boltExpressHbs = require('./modules/handlebars');
+var deviceDetection = require("./modules/device-detection");
+
 
 /*
  * Create Main App
@@ -35,25 +36,13 @@ var siteLocales = process.env.SITES || allLocales;
 var app = new expressbuilder().getApp();
 var siteCount = 0;
 
-/*
- * Create the Main i18n object
- */
-i18next
-  .use(Backend)
-  .init({
-    ns : 'translation',
-    // use correct configuration options...look up docs!
-    backend: {
-      loadPath: __dirname + '/app/locales/json/{{lng}}/{{ns}}.json'
-    }
-  });
 
 /*
  * Create Site Apps
  */
 Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
-    
+
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
 		        var builderObj = new expressbuilder(siteObj.locale);
@@ -69,29 +58,14 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Set BAPI Config Data
-		        // siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
 		        console.log("Calling ConfigService to get ConfigData");
 		        Q(configService.getConfigData(siteApp.config.locale))
 		      	.then(function (dataReturned) {
 		      		siteApp.config.bapiConfigData = dataReturned;
 		  		}).fail(function (err) {
-		  			console.log(new Error(err));
+		  			console.log("Error in ConfigService, reverting to local files:- ", err);
+		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
 		  		});
-		
-		        // set req.lng to defined lng in vhost
-		        siteApp.use(function(req, res, next) {
-		          //var i18nObj = req.t;
-		          // builderObj.setI18nObj(i18nObj);
-		          req.lng = siteApp.config.locale;
-		          i18next.changeLanguage(siteApp.config.locale);
-		          // req.i18n.changeLanguage(siteApp.config.locale);
-		          next();
-		        });
-		
-		        // use the middleware to do the magic
-		        // create a fixed t function for req.lng
-		        // no clones needed as they just would do the same (sharing all but lng)
-		        siteApp.use(middleware.handle(i18next));
 		
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
@@ -102,6 +76,10 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt site checking middleware
 		        siteApp.use(checksite(siteApp));
+		        
+		        siteApp.use(i18n.initMW(siteApp));
+		        siteApp.use(deviceDetection.init());
+		        siteApp.use(boltExpressHbs.create(siteApp));
 		
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
@@ -120,7 +98,7 @@ module.exports = app;
 
 
 function clearRequireCache(mod) {
-	console.log(mod);
+	//console.log(mod);
   	Object.keys(require.cache).forEach(function(key) {
   		if (key.indexOf(mod) > -1) {
   			delete require.cache[key];

@@ -14,6 +14,10 @@
 		"headerConfig"						: null,
 		"navigationConfig"					: {
 			"instantSearch"		: true,
+			"geoLocator"		: true,
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true,
 			"geoLocator"		: true
 		},
 	    "marketo"							: {
@@ -53,8 +57,14 @@
 	"content" : {
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
-			"homepageBanners"		: ["banner-bienvenidos.jpg", "banner-publica.jpg", "banner-auto.gif", "banner-cv.gif"],
-			"bingMeta"				: "<meta name=\"msvalidate.01\" content=\"E03E7C8B4B4E1A0234A8D2042FD326E8\" />"
+			"homepageBanners"		: null,
+			"bingMeta"				: "<meta name=\"msvalidate.01\" content=\"E03E7C8B4B4E1A0234A8D2042FD326E8\" />",
+			"swapTradeEnabled"		: false,		
+			"swapTradeName"			: null,
+			"swapTradeUrl"			: null,
+			"freebiesEnabled"		: false,		
+			"freebiesName"			: null,
+			"freebiesUrl"			: null
 		}
 	}
 }

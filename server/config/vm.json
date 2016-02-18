@@ -11,13 +11,14 @@
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories?depth=2",
 	    	"locationHomePage"	:	"/boltapi/v1/locations?depth=2",
+	    	"topLocationsL1"	:	"/boltapi/v1/locations?depth=1",
 	    	"topLocationsL2"	:	"/boltapi/v1/locations/top/L2",
 	    	"userFromCookie" 	:	"/boltapi/v1/users/loggedInUserInfo",
 	    	"topKeywords" 		:	"/boltapi/v1/keywords/top?categoryId=0&locationId=1",
 	    	"trendingKeywords" 	:	"/boltapi/v1/keywords/trending?categoryId=0&locationId=1",
 	    	"homepageGallery" 	:	"/boltapi/v1/ads/gallery",
 	    	"adStatistics" 		: 	"/boltapi/v1/ads/statistics",
-	    	"configService"		:	"/boltapi/v1/configs/app/settings.json"
+	    	"configService"		:	"/boltapi/v1/configs/nodeapp/settings.json"
 	    }
 	},
 	"kafka": {

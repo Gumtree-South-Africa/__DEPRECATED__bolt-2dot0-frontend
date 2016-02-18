@@ -4,7 +4,7 @@
  * @description A singleton that Handles StringUtils
  * @constructor
  */
-BOLT = BOLT || {};
+var BOLT = BOLT || {};
 BOLT.StringUtils = (function () {
 	// Private methods
 	var rot = function( t, u, v ) {

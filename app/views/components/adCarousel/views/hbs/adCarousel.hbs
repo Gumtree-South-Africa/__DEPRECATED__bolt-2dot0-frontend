@@ -15,21 +15,18 @@
   {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
      {{!-- #with model.initialGalleryInfo --}}
      <script>
-          var adList = {{{json this}}},
-              {{#if model.header.postAdPageUrl}}
-                dataPostLink="{{model.header.postAdPageUrl}}",
+          var adList = {{{json this.initialGalleryInfo}}},
+              {{#if this.header.postAdPageUrl}}
+                dataPostLink="{{this.header.postAdPageUrl}}",
               {{else}}
                    dataPostLink="/post.html",
               {{/if}}
               dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
-              {{#if model.seeAllUrl}}
-                   seeAllUrl = "{{obfuscateUrl model.seeAllUrl}}",
+              {{#if this.content.seeAllUrl}}
+                   seeAllUrl = "{{obfuscateUrl this.content.seeAllUrl}}",
                    seeAllText = '{{i18n "features.see.all"}}',
-              {{else}}
-                   seeAllUrl = "#",
-                   seeAllText = "See All",
               {{/if}}
-              galleryAjaxBaseUrl = "{{model.content.galleryAdsAjaxInitUrl}}";
+              galleryAjaxBaseUrl = "{{this.content.galleryAdsAjaxInitUrl}}";
       </script>
       {{!-- /with --}}
   {{!-- /partial --}}

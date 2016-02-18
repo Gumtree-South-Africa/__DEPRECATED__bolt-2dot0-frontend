@@ -3,28 +3,32 @@
     <head>
         <meta charset="utf-8" />
         <title>{{site}}</title>
-        <link rel="stylesheet" href="/css/{{site}}/{{country}}/{{locale}}/Main.css"/>
-        <link rel="stylesheet" href="/css/{{site}}/{{country}}/{{locale}}/{{pagename}}.css"/>
+
+        {{#each header.containerCSS}}
+            <link rel="stylesheet" href="{{this}}"/>
+        {{/each}}
+
         <link rel="stylesheet" href="/css/icons.data.svg_{{locale}}.css"/>
         <link rel="shortcut icon" type="image/png" href="{{header.favIcon}}"/>
     </head>
     <body>
 
-        <!-- From Body.html -->
+      <!--------------------------------------------------- -->
+        {{!-- From Body.html --}}
         <div class="viewport" id="div-gpt-oop">
-            {{> header}}
+            {{> (dynamic "header") }}
+
             <div class="containment">
 
                 {{#block "messaging-full-width"}}{{/block}}
 
-                <div class="page {{!-- #ifEq model.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
-					
-					{{>messaging}}
-                    {{#block "messaging" this}}{{/block}}
+                <div class="page {{!-- #ifEq this.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
+                    
+                    {{> (dynamic "messaging") }}
+                    {{#block "messaging" }}{{/block}}
 
-                    {{#block "breadcrumbs"}}
-                    {{!-- > hbs/Html/Breadcrumbs --}}
-                    {{/block}}
+                    {{> (dynamic "breadcrumbs") }}
+                    {{#block "breadcrumbs"}}{{/block}}
 
                     <div class="content">
                         <section role="content">
@@ -33,7 +37,7 @@
 
                                 {{{body}}}
 
-                                {{#block "content" this}}OVERRIDE THIS!!!{{/block}}
+                                {{#block "content"}}YOU MUST OVERRIDE THIS CONTENT BLOCK!!!{{/block}}
                                 <div class="clear"></div>
                             </div>
                         </section>
@@ -42,18 +46,18 @@
                    {{#block "comscore"}}{{/block}}
 
                     <div class="footer">
-
-                          {{> footer}}
-                          {{#block "footerp" this}}
+                          {{> (dynamic "footer" ) }}
+                          {{#block "footer" }}
                               <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
                           {{/block}}
-
                     </div>
 
                 </div>
 
             </div>
         </div>
+        {{!-- End Body.html --}}
+        <!--------------------------------------------------- -->
 
         <!-- End from Body.html -->
         <script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
@@ -61,6 +65,7 @@
         <!--
         <script src="/js/bower-components/jquery/src/jquery.js"></script>
         -->
+        <script src="/js/common/cookie.js"></script>
         <script src="/js/common/searchbar.js"></script>
         <script src="/views/components/categoryList/js/app.js"></script>
 
@@ -68,6 +73,6 @@
         <script src="/js/libraries/handlebars/handlebars.js"></script>
         -->
 
-        {{> Tail}}
+        {{> (base "jsPlaceHolder") }}
     </body>
 </html>

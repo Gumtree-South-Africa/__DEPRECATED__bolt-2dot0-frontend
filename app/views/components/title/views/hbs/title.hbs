@@ -1,7 +1,9 @@
-{{#if model.content.pageSubTitle}}
+{{#if this.content.pageSubTitle}}
     <div class="page-title">
         <div class="wrap">
-            <h1>{{model.content.pageSubTitle}}</h1>
+            <h1>
+            	{{i18n this.content.pageSubTitle}}
+            </h1>
         </div>
     </div>
 {{/if}}

@@ -9,13 +9,14 @@
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/categories?depth=2",
 	    	"locationHomePage"	:	"/locations?depth=2",
+	    	"topLocationsL1"	:	"/locations?depth=1",
 	    	"topLocationsL2"	:	"/locations/top/L2",
 	    	"userFromCookie"	:	"/users/loggedInUserInfo",
 	    	"topKeywords" 		: 	"/keywords/top?categoryId=0&locationId=1",
 	    	"trendingKeywords" 	: 	"/keywords/trending?categoryId=0&locationId=1",
 	    	"homepageGallery" 	: 	"/ads/gallery",
 	    	"adStatistics" 		: 	"/ads/statistics",
-	    	"configService"		:	"/configs/app/settings.json"
+	    	"configService"		:	"/configs/nodeapp/settings.json"
 	    }
 	},
 	"kafka": {

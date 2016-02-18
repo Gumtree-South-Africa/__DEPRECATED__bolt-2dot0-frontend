@@ -4,23 +4,23 @@
         <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
     {{/if}}
 
-		{{> countryMap}}
-		{{> locationMapContainer}}
-		{{#block "locationContainer" ../this}}{{/block}}
+		{{> (dynamic "countryMap")}}
+		{{> (dynamic "locationMapContainer") }}
+		{{#block "locationContainer"}}{{/block}}
 
 </div>
 
-{{> adCarousel ../this.initialGalleryInfo}}
+{{> (dynamic "adCarousel")  }}
 
 <div class="category-wrapper">
 	<h1>{{i18n "home.h1Tag"}}</h1>
-	{{#with ../this}}
-		{{> categoryDisplay}}
-	  {{> categoryList}}
+	{{#with this}}
+		{{> (dynamic "categoryDisplay") }}
+	  {{> (dynamic "categoryList") }}
 	{{/with}}
 </div>
 
-{{> siteFlow}}
+{{> (dynamic "siteFlow") }}
 
 {{!-- this section needs refactoring --}}
 <div class="postSection">
@@ -57,14 +57,14 @@
 ">
 	<div class="hp-list-wrapper">
 		<div class="hp-keywords-wrapper"
-			{{#if ../this.topKeywords}}{{#if ../this.topKeywords}}
+			{{#if this.topKeywords}}{{#if this.topKeywords}}
 			id="keywordChecker"
 			{{/if}}{{/if}}>
-			{{#if ../this.topKeywords}}
+			{{#if this.topKeywords}}
 				<div class="hp-popular-searches-wrapper">
 					<h5>{{i18n "home.popular-searches"}}</h5>
 					<ul>
-					{{#each ../this.topKeywords}}
+					{{#each this.topKeywords}}
 						<li data-index="{{@index}}" class="nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
@@ -74,11 +74,11 @@
 				</div>
 			{{/if}}
 
-			{{#if ../this.trendingKeywords}}
+			{{#if this.trendingKeywords}}
 				<div class="hp-trending-searches-wrapper">
 					<h5>{{i18n "home.trending-searches"}}</h5>
 					<ul>
-					{{#each ../this.trendingKeywords}}
+					{{#each this.trendingKeywords}}
 						<li data-index="{{@index}}" class="nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
@@ -132,4 +132,4 @@
     <script src="/views/components/adCarousel/js/CarouselExt/carouselExt.js"></script>
 {{/partial}}
 
-{{> homepage-base}}
+{{> (base "homepage") }}

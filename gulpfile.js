@@ -37,6 +37,7 @@ var gulp = require('gulp'),
   tar = require('gulp-tar'),
   gzip = require('gulp-gzip'),
   asynch = require('async'),
+  nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
 
@@ -55,6 +56,26 @@ function errorlog(err){
   console.error(err.message);
   this.emit('end');
 }
+
+
+/*
+gulp.task('debug', function() {
+
+    gulp.src([])
+        .pipe(nodeInspector({
+            debugPort: 5858,
+            webHost: '0.0.0.0',
+            webPort: 8000,
+            saveLiveEdit: false,
+            preload: true,
+            inject: true,
+            hidden: [],
+            stackTraceLimit: 50,
+            sslKey: '',
+            sslCert: ''
+        }));
+});
+*/
 
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);

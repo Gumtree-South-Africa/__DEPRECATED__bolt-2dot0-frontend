@@ -44,10 +44,10 @@ BAPICall.prototype = {
  	 * @param {Object} ex Exception or parameter to pass to the callback
  	 * @public
  	 */
-	skipCurrentCall : function (ex) {
+	skipCurrentCall : function (ex, errdata) {
 		var scope = this;
 		if (scope.callback) {
-			scope.callback(ex, scope.argData);
+			scope.callback(ex, errdata);
 		}
 	},
 
@@ -106,9 +106,15 @@ BAPICall.prototype = {
 						if (! _.isEmpty(scope.argData)) { 
 							data = _.extend(scope.argData, data);
 						}
-						scope.callback(null, data);
+						// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
+			    		if  (res.statusCode !== 200) {
+							scope.errorHandling(new Error("Received non-200 status"), data);
+			    		} else {
+			    			scope.callback(null, data);
+			    		}
 					}
 					
+					// Return success data
 					return data;
 		    	});
 		 
@@ -238,12 +244,12 @@ BAPICall.prototype = {
  	 * @param {Object} ex Exception object or null
  	 * @public
  	 */
-	errorHandling: function(ex) {
+	errorHandling: function(ex, errdata) {
 		var err = ex;
 		if (this.ignoreError) {
 			err = null;
 		}
-		this.skipCurrentCall(err);
+		this.skipCurrentCall(err, errdata);
 	}
 }; // End prototype
 

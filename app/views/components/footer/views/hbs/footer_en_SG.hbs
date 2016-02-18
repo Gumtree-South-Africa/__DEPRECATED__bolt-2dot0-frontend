@@ -1,9 +1,9 @@
-{{> footer-base}}
+{{> (base "footer") }}
 
-{{#partial "footerp"}}
+{{#partial "footer"}}
 	<div class="footer-links clearfix">
 		<div class="logo">
-	        <a href="{{../this.header.homePageUrl}}">
+	        <a href="{{this.header.homePageUrl}}">
 	        	<img border="0"  src="{{this.header.baseImageUrl}}{{this.locale}}/logo.png" alt="{{i18n "header.country.label"}}"/>
 	        </a>
 		</div>
@@ -52,7 +52,7 @@
 	</div>
 
 
-	<div class="social-links">{{> socialMediaLinks}}</div>
+	<div class="social-links">{{> (dynamic "socialMediaLinks") }}</div>
 	<div class="cpyrt">{{{i18n "footer.copyright"}}}</div>		
 {{/partial}}
 
