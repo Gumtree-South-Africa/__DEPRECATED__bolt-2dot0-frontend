@@ -6,7 +6,7 @@
 
 var glob = require('glob'),
     notify = require('gulp-notify');
-    
+
 module.exports = function watch(gulp, plugins) {
 	return function(){
     var folderList = [];
@@ -20,17 +20,17 @@ module.exports = function watch(gulp, plugins) {
       emitter.on('end', function(){
         (function() {
             var index = 0;
+            folderList.push('default_country');
             function perLocale(){
               var listItem = folderList[index];
               var config = require(process.cwd() + "/app/config/gulpIcons/gulpsvgconfig.js")(listItem);
                   config.dest = "./public/css";
               var files = glob.sync("./public/svgs/"+ listItem +"/*.svg");
-              if(index < folderList.length){
+              if(index < folderList.length-1){
                 index++;
                 gulpicon(files, config)(perLocale);
               }
               else{
-                console.log('Please start your app on a Browser');
                 notify({
       	            title: 'Compass',
       	            message: 'SVGs Tasks done. Please start your app on a Browser'
