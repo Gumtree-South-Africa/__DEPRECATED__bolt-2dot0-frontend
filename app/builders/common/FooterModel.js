@@ -113,6 +113,7 @@ FooterModel.prototype.buildUrl = function(data) {
 	data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
 	data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);
 	data.locationSitemapLandingPageUrl = "/l-" + "/all-locs/v1b0";
+	data.localizeApiRootUrl = "/rui-api/localize/rui/";
 };
 
 module.exports = FooterModel;
