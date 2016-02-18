@@ -70,8 +70,28 @@ module.exports  =  {
         });
 
 
-        exphbs.handlebars.registerHelper('i18n', function (msg) {
-            return new exphbs.handlebars.SafeString( obj.app.locals.i18n.__(msg));
+        exphbs.handlebars.registerHelper('i18n', function (msg, value) {
+            console.log("vale =======" + arguments.length + ' ' + " arg0 " + arguments[0]  + " arg1 " + arguments[1] + " arg2 " + arguments[2]);
+
+            // if there are 3 param values in {{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
+            if (arguments.length == 5) {
+                return new exphbs.handlebars.SafeString( obj.app.locals.i18n.__(msg, arguments[1], arguments[2], arguments[3]));
+            }
+
+            // if there are 2 param values in {{i18n "my.name is %s. i'm %s old." "anton" "20" }}
+            else if (arguments.length == 4) {
+                return new exphbs.handlebars.SafeString( obj.app.locals.i18n.__(msg, arguments[1], arguments[2]));
+            }
+
+            // if there are 1 param values in {{i18n "my.name is %s." "anton"  }}
+            else if (arguments.length == 3) {
+                return new exphbs.handlebars.SafeString( obj.app.locals.i18n.__(msg, arguments[1]));
+            }
+            // if there are 2 param values in {{i18n "my.name" }}
+            else  if (arguments.length == 2) {
+                return new exphbs.handlebars.SafeString( obj.app.locals.i18n.__(msg));
+            }
+
         });
 
         exphbs.handlebars.registerHelper('json', function(context) {
