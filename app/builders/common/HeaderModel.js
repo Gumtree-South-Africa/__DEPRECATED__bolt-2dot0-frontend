@@ -75,6 +75,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
+    		// merge header data from BAPI if cookie present
 			if (typeof callback !== "function") {
 				return;
 			}
@@ -86,7 +87,10 @@ HeaderModel.prototype.getHeaderData = function() {
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);
-			    					    		
+			    		
+			    		// build user profile
+			    		scope.buildProfile(data);
+
 			    		headerDeferred.resolve(data);
 					    callback(null, data);
 					}).fail(function (err) {
@@ -182,6 +186,28 @@ HeaderModel.prototype.buildMessages = function(data) {
 		case "adfeaturepaid":
 			data.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
 			break;
+	}
+};
+
+//Build Profile
+HeaderModel.prototype.buildProfile = function(data) {
+	var scope = this;
+	
+	if (data.username) {
+		data.profileName = data.username;
+	}
+	
+	if (data.socialMedia) {
+		if (data.socialMedia.profileName && data.socialMedia.profileName.length>0) {
+			data.profileName = data.socialMedia.profileName;
+		}
+		if (data.socialMedia.type === "FACEBOOK") {
+			data.fbProfileImageUrl = "https://graph.facebook.com/" + data.socialMedia.id + "/picture?width=36&height=36";
+		}
+	}
+	
+	if (data.userProfileImageUrl) {
+		data.profilePictureCropUrl = "https://img.classistatic.com/crop/50x50/" + data.userProfileImageUrl.replace("http://www","").replace("http://","").replace("www","");
 	}
 };
 

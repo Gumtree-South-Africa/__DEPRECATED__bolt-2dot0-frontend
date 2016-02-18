@@ -10,7 +10,6 @@
 		"myProfileUrl"			: "/my/profile.html",
 		"signOutURL"			: "/logout",
 		"registerURL"			: "/register.html",
-		"profileImageUrl"		: "/post.html",
 		"searchPageUrl"			: "/search.html?page=1",
 		"autoCompleteUrl"		: "/rui-api/autocomplete/model",
 		"autoCompleteUrl"		: "/autocomplete/model/",
