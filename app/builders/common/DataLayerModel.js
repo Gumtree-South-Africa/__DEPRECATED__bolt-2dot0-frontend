@@ -10,9 +10,7 @@ var config = require("config");
 
 //Function getPageData
 var getPageData = function(scope) {
-	var data = {};
-	
-	data.pageData = {
+	var pageData = {
 		"pageType"	:	scope.pagetype,
 		"platform"	:	"BOLT-RUI",
 		"version"	:	config.get("static.server.version"),
@@ -20,52 +18,48 @@ var getPageData = function(scope) {
 		"viewType"	:	""
 	};
 	
-	return data;
+	return pageData;
 };
 
 //Function getUserData
 var getUsereData = function(scope) {
-	var data = {};
-	
-	data.pageData = {
-		"pageType"	:	scope.pagetype,
-		"platform"	:	"BOLT-RUI",
-		"version"	:	config.get("static.server.version"),
-		"language"	:	scope.locale,
-		"viewType"	:	""
+	var userData = {
+		"hashedUserId"		:	"",
+		"hashedUserEmail"	:	"",
+		"hashedAccountId"	:	"",
+		"accountType"		:	"",
+		"loggedIn"			:	""
 	};
 	
-	return data;
+	return userData;
 };
 
 //Function getCatData
 var getCatData = function(scope) {
-	var data = {};
-	
-	data.pageData = {
-		"pageType"	:	scope.pagetype,
-		"platform"	:	"BOLT-RUI",
-		"version"	:	config.get("static.server.version"),
-		"language"	:	scope.locale,
-		"viewType"	:	""
+	var categoryData = {
+		"current"	:	"",
+		"level0"	:	"",
+		"level1"	:	"",
+		"level2"	:	"",
+		"level3"	:	"",
+		"level4"	:	""
 	};
 	
-	return data;
+	return categoryData;
 };
 
 //Function getLocData
 var getLocData = function(scope) {
-	var data = {};
-	
-	data.pageData = {
-		"pageType"	:	scope.pagetype,
-		"platform"	:	"BOLT-RUI",
-		"version"	:	config.get("static.server.version"),
-		"language"	:	scope.locale,
-		"viewType"	:	""
+	var locationData = {
+		"current"	:	"",
+		"level0"	:	"",
+		"level1"	:	"",
+		"level2"	:	"",
+		"level3"	:	"",
+		"level4"	:	""
 	};
 	
-	return data;
+	return locationData;
 };
 
 
@@ -97,7 +91,18 @@ DataLayerModel.prototype.getData = function() {
 	var pageDeferred = Q.defer();
 		
 	var pageDataFunction = function(callback) {
-		var data = getPageData(scope);
+		var pagedata = getPageData(scope);
+		var userdata = getUsereData(scope);
+		var catdata = getCatData(scope);
+		var locdata = getLocData(scope);
+		
+		var data = {
+			"pageData"		: 	pagedata,
+			"userData"		:	userdata,
+			"categoryData"	:	catdata,
+			"locationData"	:	locdata,
+		};
+		
         pageDeferred.resolve(data);
         callback(null, data);
 	};
