@@ -1,0 +1,64 @@
+<!--------------------------------------------------- -->
+{{!-- From Body.html --}}
+<div class="viewport" id="div-gpt-oop">
+    {{> (dynamic "header") }}
+
+    <div class="containment">
+
+        {{#block "messaging-full-width"}}{{/block}}
+
+        <div class="page {{!-- #ifEq this.content.numFound 0}}{{else}}extra{{/ifEq --}}" >
+			
+			{{> (dynamic "messaging") }}
+            {{#block "messaging" }}{{/block}}
+
+            {{> (dynamic "breadcrumbs") }}
+            {{#block "breadcrumbs"}}{{/block}}
+
+            <div class="content">
+                <section role="content">
+                    <div id="wrapper" class="wrap">
+                        {{! page content goes here. Override this in each pages}}
+
+                        {{{body}}}
+
+                        {{#block "content"}}YOU MUST OVERRIDE THIS CONTENT BLOCK!!!{{/block}}
+                        <div class="clear"></div>
+                    </div>
+                </section>
+            </div>
+
+           {{#block "comscore"}}{{/block}}
+
+            <div class="footer">
+                  {{> (dynamic "footer" ) }}
+                  {{#block "footer" }}
+                      <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
+                  {{/block}}
+            </div>
+
+        </div>
+
+    </div>
+</div>
+{{!-- End Body.html --}}
+<!--------------------------------------------------- -->
+
+
+
+<!-- End from Body.html -->
+<script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
+<script src="/js/bower-components/requirejs/require.js"></script>
+<!--
+<script src="/js/bower-components/jquery/src/jquery.js"></script>
+-->
+<script src="/js/common/cookie.js"></script>
+<script src="/js/common/searchbar.js"></script>
+<script src="/views/components/categoryList/js/app.js"></script>
+
+<!--
+<script src="/js/libraries/handlebars/handlebars.js"></script>
+-->
+
+{{!-- > (base "jsPlaceHolder") --}}
+

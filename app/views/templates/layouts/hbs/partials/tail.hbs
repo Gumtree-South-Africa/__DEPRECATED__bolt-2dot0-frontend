@@ -1,6 +1,3 @@
-TAILLLLLLLLLL
-
-
 {{#block "commonTail"}}
 
 {{/block}}
@@ -8,7 +5,11 @@ TAILLLLLLLLLL
 
      
 {{#block "pageTailScriptsBeforeIncludes"}}
-
+    {{#block "carouselJsFiles"}}
+        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
+    {{/block}}
+    <script src="/js/common/StringUtils.js"></script>
+    <script src="/views/components/header/js/header.js"></script>
 {{/block}}  
 
 {{#block "pageTail"}}
@@ -35,7 +36,7 @@ TAILLLLLLLLLL
 {{/block}}
 
 {{#block "javascriptMessaging"}}
-
+    
 {{/block}}
 
 {{#block "deviceSmartBannerScript"}}{{/block}}
@@ -77,14 +78,7 @@ TAILLLLLLLLLL
 {{/if}}
 {{!-- End Marketo Munchkin Tracking Code ---}}
 
-{{#block "pageTailScriptsAfterMarketo"}}
-    {{#block "carouselJsFiles"}}
-        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
-    {{/block}}
-    <script>alert(2000);</script>
-    <script src="/js/common/StringUtils.js"></script>
-    <script src="/views/components/header/js/header.js"></script>
-{{/block}}
+{{#block "pageTailScriptsAfterMarketo"}}{{/block}}
 
 {{!----- HTML5 Placeholder Polyfill -----}}
 {{#block "explorer-searchbar-polyfill"}}{{/block}}
