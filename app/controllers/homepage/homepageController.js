@@ -49,6 +49,7 @@ router.get('/', function (req, res, next) {
       modelData.totalLiveAdCount = result[5].totalLiveAds;
       modelData.level1Location = result[6];
       modelData.level2Location = result[7];
+      modelData.seo = result[8];
 
 	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;
@@ -79,9 +80,9 @@ var HP = {
 	extendHeaderData : function(modelData) {
 		// SEO
 	    modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
-	    modelData.header.pageTitle = '';
-	    modelData.header.metaDescription = '';
-	    modelData.header.metaRobots = '';
+	    modelData.header.pageTitle = modelData.seo.pageTitle;
+	    modelData.header.metaDescription = modelData.seo.description; //TODO check if descriptionCat needed based on locale, and put that value
+	    modelData.header.metaRobots = modelData.seo.robots;
 	    modelData.header.canonical = modelData.header.homePageUrl;
 	    modelData.header.pageUrl = modelData.header.homePageUrl;
 
