@@ -16,5 +16,5 @@
     "cssPath": "public/css/mobile" ,
     "sassPath": "./app/styles",
     "require": ["susy"]
-  },
+  }
 }
