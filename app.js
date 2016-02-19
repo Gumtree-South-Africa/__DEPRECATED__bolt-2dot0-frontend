@@ -58,15 +58,15 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Set BAPI Config Data
-		        // siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-		        console.log("Calling ConfigService to get ConfigData");
-		        Q(configService.getConfigData(siteApp.config.locale))
-		      	.then(function (dataReturned) {
-		      		siteApp.config.bapiConfigData = dataReturned;
-		  		}).fail(function (err) {
-		  			console.log("Error in ConfigService, reverting to local files:- ", err);
-		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-		  		});
+		        siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
+//		        console.log("Calling ConfigService to get ConfigData");
+//		        Q(configService.getConfigData(siteApp.config.locale))
+//		      	.then(function (dataReturned) {
+//		      		siteApp.config.bapiConfigData = dataReturned;
+//		  		}).fail(function (err) {
+//		  			console.log("Error in ConfigService, reverting to local files:- ", err);
+//		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
+//		  		});
 		
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching

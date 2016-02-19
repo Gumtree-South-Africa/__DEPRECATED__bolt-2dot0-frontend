@@ -35,12 +35,14 @@ router.get('/', function (req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var bapiConfigData = res.config.bapiConfigData;
+	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 	
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Data from BAPI
-      modelData.header = result[0][0];
-      modelData.footer = result[0][1];
+      modelData.header = result[0].header;
+      modelData.footer = result[0].footer;
+      modelData.dataLayer = result[0].dataLayer;
       modelData.location = result[1];
       modelData.category = result[2];
       modelData.trendingKeywords = result[3][0].keywords;
