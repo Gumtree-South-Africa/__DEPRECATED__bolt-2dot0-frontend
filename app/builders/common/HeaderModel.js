@@ -36,7 +36,6 @@ var HeaderModel = function (secure, req, res) {
 	this.statusParam = req.query.status;
 	this.resumeParam = req.query.resumeabandonedordererror;
 	this.headerConfigData = res.config.bapiConfigData.header;
-	// return new ModelBuilder(this.getHeaderData());
 };
 
 HeaderModel.prototype.getModelBuilder = function() {

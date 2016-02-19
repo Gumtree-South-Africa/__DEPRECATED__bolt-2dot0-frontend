@@ -7,6 +7,8 @@ var _ = require("underscore");
 var ModelBuilder = require("./ModelBuilder");
 var config = require("config");
 
+var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
+
 
 //Function getPageData
 var getPageData = function(scope) {
@@ -23,6 +25,9 @@ var getPageData = function(scope) {
 
 //Function getUserData
 var getUsereData = function(scope) {
+	console.log("@raj:");
+	console.log(">>>>> The user id is: " + scope.userid);
+	
 	var userData = {
 		"hashedUserId"		:	"",
 		"hashedUserEmail"	:	"",
@@ -62,6 +67,46 @@ var getLocData = function(scope) {
 	return locationData;
 };
 
+//Function getAdData
+var getAdData = function(scope) {
+	var adData = {
+		"current"	:	"",
+		"level0"	:	""
+	};
+	
+	return adData;
+};
+
+//Function getReplyData
+var getReplyData = function(scope) {
+	var replyData = {
+		"current"	:	"",
+		"level0"	:	""
+	};
+	
+	return replyData;
+};
+
+//Function getSearchData
+var getSearchData = function(scope) {
+	var searchData = {
+		"current"	:	"",
+		"level0"	:	""
+	};
+	
+	return searchData;
+};
+
+//Function getEcommerceData
+var getEcommerceData = function(scope) {
+	var ecommerceData = {
+		"current"	:	"",
+		"level0"	:	""
+	};
+	
+	return ecommerceData;
+};
+
 
 /** 
  * @description A class that Handles the DataLayer Model
@@ -73,7 +118,6 @@ var DataLayerModel = function (req, res) {
 	this.brandName = res.config.name;
 	this.country = res.config.country;
 	this.pagetype = req.pagetype;
-    // return new ModelBuilder(this.getData());
 };
 
 DataLayerModel.prototype.getModelBuilder = function() {
@@ -93,21 +137,24 @@ DataLayerModel.prototype.getData = function() {
 	var pageDeferred = Q.defer();
 		
 	var pageDataFunction = function(callback) {
-		var pagedata = getPageData(scope);
-		var userdata = getUsereData(scope);
-		var catdata = getCatData(scope);
-		var locdata = getLocData(scope);
+		var data = {};
+		switch (scope.pagetype) {
+			case pagetypeJson.pagetype.HOMEPAGE: 
+				data = {
+					"pageData"		: 	getPageData(scope),
+					"userData"		:	getUsereData(scope)
+				};
+			break;
+			case pagetypeJson.pagetype.RESULTS_SEARCH:
+				data = {
+					"pageData"		: 	getPageData(scope),
+					"userData"		:	getUsereData(scope),
+					"categoryData"	:	getCatData(scope),
+					"locationData"	:	getLocData(scope)
+				};
+			break;
+		}
 		
-		var data = {
-			"pageData"		: 	pagedata,
-			"userData"		:	userdata,
-			"categoryData"	:	catdata,
-			"locationData"	:	locdata,
-		};
-		
-		console.log("@raj:");
-		console.log(">>>>> The user id is: " + scope.userid);
-
         pageDeferred.resolve(data);
         callback(null, data);
 	};

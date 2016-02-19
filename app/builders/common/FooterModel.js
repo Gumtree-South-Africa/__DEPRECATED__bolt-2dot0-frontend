@@ -23,7 +23,6 @@ var FooterModel = function (secure, req, res) {
 	this.brandName = res.config.name;
 	this.country = res.config.country;
 	this.footerConfigData = res.config.bapiConfigData.footer;	
-    //return new ModelBuilder(this.getFooterData());
 };
 
 FooterModel.prototype.getModelBuilder = function() {
