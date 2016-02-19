@@ -20,14 +20,14 @@
         <div class="profile" aria-haspopup="true">
             <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
                 <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.socialMedia}}has-profile-image{{/if}}"
-                style="{{#if this.header.socialMedia}}background-image:url({{this.header.userProfileImageUrl}}18.JPG);{{/if}}
-                {{#unless this.header.socialMedia}}background-image:url({{this.header.userProfileImageUrl}}18.JPG);{{/unless}}">
+                style="{{#if this.header.socialMedia}}background-image:url({{this.header.smallFbProfileImageUrl}});{{/if}}
+                {{#unless this.header.socialMedia}}background-image:url({{this.header.profilePictureCropUrl}}13.JPG);{{/unless}}">
                 {{#unless this.header.userProfileImageUrl}}
                     <span class="icon-header-profile-out"></span>
                     <span class="icon-header-profile-over"></span>
                 {{/unless}}
                 </span>
-                <span class="label">{{#if this.header.username}}{{this.header.username}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
+                <span class="label">{{#if this.header.profileName}}{{this.header.profileName}}{{else}}{{i18n "header.menu.my.gumtree"}}{{/if}}</span>
             </span>
         </div>
         <div class="clear"></div>

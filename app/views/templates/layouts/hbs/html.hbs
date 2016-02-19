@@ -10,10 +10,9 @@
 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
 <html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" xmlns="http://www.w3.org/1999/html" class="{{this.header.pageType}}"><!--<![endif]-->
 <head>
-    <title>{{#block "title"}}{{site}}{{/block}}</title>
-    {{!-- <title>{{#block "title"}}{{this.header.pageTitle}}{{/block}}</title> --}}
+    <title>{{#block "title"}}{{i18n this.header.pageTitle}}{{/block}}</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <meta name="description" content="{{this.header.metaDescription}}"/>
+    <meta name="description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
     <meta name="robots" content="{{#if this.header.metaRobots}}{{this.header.metaRobots}}{{else}}index, follow{{/if}}"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -22,35 +21,34 @@
     {{#block "metaGoogleSearchBox"}}{{/block}}
 
     {{!-- need to remove it after seo time verify it. --}}
-    {{{this.bingMeta}}}
+    {{{this.content.bingMeta}}}
 
     {{#if this.header.pageUrl}}
-        <meta property="og:title" content="{{this.header.pageTitle}}"/>
+        <meta property="og:title" content="{{i18n this.header.pageTitle}}"/>
         <meta property="og:type" content="{{this.header.type}}"/>
         <meta property="og:image" content='{{#block "ogImg"}}{{this.header.logoUrlOpenGraph}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
         <meta property="og:country-name" content="{{this.header.countryName}}"/>
-        <meta property="og:description" content="{{this.header.metaDescription}}"/>
+        <meta property="og:description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
     
-    {{#with this.header.seoDeeplinkingUrlAndroid}}
-       <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
-    {{/with}}
+    <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
     
     <!-- Begin Converted -->
     {{#each this.header.containerCSS}}
         <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
     {{/each}}
     <link rel="stylesheet" href="/css/icons.data.svg_{{locale}}.css"/>
-    <link rel="shortcut icon" type="image/png" href="{{header.favIcon}}"/>
      <!-- End Converted -->
 
     <link rel="publisher" href="{{this.header.publisherUrl}}" />
-    <link rel="shortcut icon" type="image/png" href="{{this.header.shortuctIconUrl}}"/>
-    <link rel="shortcut icon" type="image/x-icon" href="{{this.header.shortuctIconUrl}}"/>
-    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{this.header.shortuctIconUrl}}"/>
+    {{!-- @todo: check line below}}
+    {{!-- <link rel="shortcut icon" type="image/png" href="{{header.favIcon}}"/> --}}
+    <link rel="shortcut icon" type="image/png" href="{{this.header.shortcutIconUrl}}"/>
+    <link rel="shortcut icon" type="image/x-icon" href="{{this.header.shortcutIconUrl}}"/>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{this.header.shortcutIconUrl}}"/>
     <link rel="apple-touch-icon" href="{{this.header.touchIconIphoneUrl}}"/>
     <link rel="apple-touch-icon" sizes="72x72" href="{{this.header.touchIconIpadUrl}}"/>
     <link rel="apple-touch-icon" sizes="114x114" href="{{this.header.touchIconIphoneRetinaUrl}}"/>
@@ -79,7 +77,7 @@
 
     {{/block}}
     {{#block "GTMTag"}}
-      {{#if this.footer.countryAnalytics.gtmTagId}}
+      {{#if this.footer.analytics.gtmTagId}}
 
             <script>
             var dataLayer = dataLayer || [];
@@ -97,11 +95,14 @@
                      {{#with this.dataLayer.userData.hashedUserEmail}}dl["u"]["hue"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
-                     {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}} 
+                     {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
+                     
+                     {{!-- 
                      {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAd" "A"}}post-log-A{{/ifABTestEq}}{{#ifABTestEq "postAd" "B"}}post-log-B{{/ifABTestEq}}"; {{/ifEq}}{{/ifEq}}
                      {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "categoryMobile" "A"}}m-post-cat-A{{/ifABTestEq}}{{#ifABTestEq "categoryMobile" "B"}}m-post-cat-B{{/ifABTestEq}}";{{/ifEq}} {{/ifEq}}
                      {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAdMobile" "A"}}m-post-att-A{{/ifABTestEq}}{{#ifABTestEq "postAdMobile" "B"}}m-post-att-B{{/ifABTestEq}}";{{/ifEq}} {{/ifEq}}
-                    
+                     --}}
+                     
                 dl["c"]={};
                 dl["c"]["c"]={};
                      {{#with this.dataLayer.categoryData.current}} dl["c"]["c"]["id"] = "{{this.id}}";{{/with}}
@@ -129,7 +130,7 @@
                      );var f=d.getElementsByTagName(s)[0],
                              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                     })(window,document,'script','dataLayer','{{this.footer.countryAnalytics.gtmTagId}}');
+                     })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
        </script>
       {{/if}}
     {{/block}}
@@ -139,7 +140,7 @@
         Bolt.BASECSSURL = "{{this.footer.baseCSSUrl}}";
         Bolt.BASEIMAGEURL = "{{this.footer.baseImageUrl}}";
         Bolt.BRANDNAME = "{{this.footer.brandName}}";
-        Bolt.COUNTRY = "{{this.footer.country}}";
+        Bolt.COUNTRY = "{{this.country}}";
         Bolt.DECIMAL = "{{i18n "currency.decimal"}}";
         Bolt.PLACEHOLDER = "{{i18n "currency.placeholder"}}";
         Bolt.LOCALE = "{{this.locale}}";
@@ -150,8 +151,8 @@
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
         <script type="text/javascript">
             var _gaq = _gaq || [];
-        {{#if this.footer.countryAnalytics.account}}
-            {{#with this.footer.countryAnalytics}}
+        {{#if this.footer.analytics.account}}
+            {{#with this.footer.analytics}}
                 _gaq.push(['siteTracker._setAccount', '{{account}}']);
                 _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
                 _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
@@ -183,9 +184,9 @@
 </head>
 <body>
     {{#block "banner_cookie"}}{{/block}}
-    {{#if this.footer.countryAnalytics.gtmTagId}}
+    {{#if this.footer.analytics.gtmTagId}}
         <noscript>
-            <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.countryAnalytics.gtmTagId}}"
+            <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.analytics.gtmTagId}}"
               height="0" width="0" style="display:none;visibility:hidden">
             </iframe>
         </noscript>
