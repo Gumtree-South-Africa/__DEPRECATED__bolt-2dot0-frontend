@@ -7,6 +7,7 @@
 "use strict";
 
 var util = require('util');
+var comparisons = require('./comparisons');
 
 var StringUtils = require(process.cwd() + "/app/builders/utils/StringUtils");
 var exphbs = null;
@@ -16,8 +17,7 @@ module.exports  =  {
 
     init: function(obj) {
         exphbs = obj.hbs;
-        // i18n = i18ns;
-       // console.log("i18n xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(i18n, {showHidden: false, depth: 1}));
+
 
         function loadPartial(name){
             var partial = exphbs.handlebars.partials[name];
@@ -28,6 +28,9 @@ module.exports  =  {
             delete exphbs.handlebars.partials[name];
             return partial;
         }
+
+        comparisons.registerHelper(exphbs, {} );
+
         exphbs.handlebars.registerHelper("partial",
             function (name, options) { //console.log( "partial " + name);
                 // console.log("--------" +  util.inspect(options.fn, {showHidden: false, depth: null}));
