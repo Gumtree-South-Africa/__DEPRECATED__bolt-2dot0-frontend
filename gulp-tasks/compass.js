@@ -8,7 +8,7 @@ module.exports = function watch(gulp, plugins) {
 		gulp.task('compass', function(){
 		  gulp.src('./app/styles/**/**/*.scss')
 		      .pipe(compass({
-		        config_file: process.cwd() + '/config.rb',
+		        config_file: process.cwd() + '/app/config/ruby/config.rb',
 		        css: 'public/css',
 		        sass: './app/styles',
 		        require: ['susy']
