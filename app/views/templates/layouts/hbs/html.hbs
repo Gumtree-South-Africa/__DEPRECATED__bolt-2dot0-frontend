@@ -96,13 +96,7 @@
                      {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
-                     
-                     {{!-- 
-                     {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAd" "A"}}post-log-A{{/ifABTestEq}}{{#ifABTestEq "postAd" "B"}}post-log-B{{/ifABTestEq}}"; {{/ifEq}}{{/ifEq}}
-                     {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "categoryMobile" "A"}}m-post-cat-A{{/ifABTestEq}}{{#ifABTestEq "categoryMobile" "B"}}m-post-cat-B{{/ifABTestEq}}";{{/ifEq}} {{/ifEq}}
-                     {{#ifEq this.locale "en_ZA"}}{{#ifEq this.dataLayer.pageData.pageType "PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAdMobile" "A"}}m-post-att-A{{/ifABTestEq}}{{#ifABTestEq "postAdMobile" "B"}}m-post-att-B{{/ifABTestEq}}";{{/ifEq}} {{/ifEq}}
-                     --}}
-                     
+                     {{#block "dataLayerSpecifics"}}{{/block}}                     
                 dl["c"]={};
                 dl["c"]["c"]={};
                      {{#with this.dataLayer.categoryData.current}} dl["c"]["c"]["id"] = "{{this.id}}";{{/with}}
@@ -177,10 +171,7 @@
         </script>
     {{/block}}
 
-    {{#block "dynamicStyles"}}
-
-    {{/block}}
-
+    {{#block "dynamicStyles"}}{{/block}}
 </head>
 <body>
     {{#block "banner_cookie"}}{{/block}}
