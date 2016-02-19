@@ -224,6 +224,7 @@ Compare the "left value" to the "right value" using any of the allowed operators
 
 Allowed operators
 
+```javascript
 ==
 ===
 !=
@@ -232,6 +233,8 @@ Allowed operators
 >
 <=
 >=
+```
+
 typeof
 Parameters:
 
