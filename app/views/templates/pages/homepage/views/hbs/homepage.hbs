@@ -97,6 +97,30 @@
 
 	{{/partial}}
 
+	{{#partial "pageTailScriptsBeforeIncludes"}}
+		{{!-- @todo: REMOVE THIS ONCE JS LOADING OF FILES IS DONE --}}
+		<!-- End from Body.html -->
+		<script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
+		<script src="/js/bower-components/requirejs/require.js"></script>
+		<!--
+		<script src="/js/bower-components/jquery/src/jquery.js"></script>
+		-->
+		<script src="/js/common/cookie.js"></script>
+		<script src="/js/common/searchbar.js"></script>
+		<script src="/views/components/categoryList/js/app.js"></script>
+
+		<!--
+		<script src="/js/libraries/handlebars/handlebars.js"></script>
+		-->
+		{{!-- @todo: end --}}
+
+
+	    {{#block "carouselJsFiles"}}
+	        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
+	    {{/block}}
+	    <script src="/js/common/StringUtils.js"></script>
+	    <script src="/views/components/header/js/header.js"></script>
+	{{/partial}}  
 
 	{{#partial "pageTailScripts"}}
 	<script src="/js/common/googleTag.js"></script>

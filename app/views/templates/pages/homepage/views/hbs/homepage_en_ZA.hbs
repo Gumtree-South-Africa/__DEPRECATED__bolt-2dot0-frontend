@@ -13,7 +13,7 @@
 	{{/partial}}
 {{/if}}
 
-{{!-- @todo : MOVE THIS TO POST PAGE!!!! ---}}
+{{!-- @todo anton: MOVE THIS TO POST PAGE!!!! ---}}
 {{#partial "dataLayerSpecifics"}}
      {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAd" "A"}}post-log-A{{/ifABTestEq}}{{#ifABTestEq "postAd" "B"}}post-log-B{{/ifABTestEq}}"; {{/ifeq}}
 
