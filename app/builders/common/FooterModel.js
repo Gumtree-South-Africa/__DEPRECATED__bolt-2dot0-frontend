@@ -4,7 +4,7 @@ var http = require("http");
 var Q = require("q");
 var _ = require("underscore");
 
-var StringUtils = require("../utils/StringUtils");
+var StringUtils = require(process.cwd() + "/app/utils/StringUtils");
 var ModelBuilder = require("./ModelBuilder");
 
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");

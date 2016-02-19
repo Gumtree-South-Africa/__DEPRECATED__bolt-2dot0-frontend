@@ -9,7 +9,7 @@
 var util = require('util');
 var comparisons = require('./comparisons');
 
-var StringUtils = require(process.cwd() + "/app/builders/utils/StringUtils");
+var StringUtils = require(process.cwd() + "/app/utils/StringUtils");
 var exphbs = null;
 
 
