@@ -3,7 +3,6 @@
 var async = require("async");
 var Q = require("q");
 var _ = require("underscore");
-// var Logger = require("../models/utils/Logger");
 
 /** 
  * @description A class that Handles the Page Model

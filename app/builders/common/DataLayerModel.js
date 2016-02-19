@@ -7,6 +7,7 @@ var _ = require("underscore");
 var ModelBuilder = require("./ModelBuilder");
 var config = require("config");
 
+var Encryptor = require(process.cwd() + "/app/utils/Encryptor");
 var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
 
 
@@ -25,15 +26,12 @@ var getPageData = function(scope) {
 
 //Function getUserData
 var getUsereData = function(scope) {
-	console.log("@raj:");
-	console.log(">>>>> The user id is: " + scope.userid);
-	
 	var userData = {
-		"hashedUserId"		:	"",
-		"hashedUserEmail"	:	"",
+		"hashedUserId"		:	(typeof scope.userid==="undefined" || scope.userid===null) ? "" : Encryptor.hash("" + scope.userid),
+		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.hash(scope.useremail),
+		"loggedIn"			:	(typeof scope.userid==="undefined" || scope.userid===null) ? false : true,
 		"hashedAccountId"	:	"",
-		"accountType"		:	"",
-		"loggedIn"			:	""
+		"accountType"		:	""
 	};
 	
 	return userData;
