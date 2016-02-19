@@ -4,7 +4,7 @@ var http = require("http");
 var Q = require("q");
 var _ = require("underscore");
 
-var StringUtils = require("../utils/StringUtils");
+var StringUtils = require(process.cwd() + "/app/utils/StringUtils");
 var ModelBuilder = require("./ModelBuilder");
 
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
@@ -23,7 +23,6 @@ var FooterModel = function (secure, req, res) {
 	this.brandName = res.config.name;
 	this.country = res.config.country;
 	this.footerConfigData = res.config.bapiConfigData.footer;	
-    //return new ModelBuilder(this.getFooterData());
 };
 
 FooterModel.prototype.getModelBuilder = function() {

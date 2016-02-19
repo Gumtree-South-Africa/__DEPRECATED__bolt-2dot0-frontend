@@ -23,7 +23,10 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
-	// Data from the Middleware
+	// Set pagetype in request
+	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+	
+	// Build Model Data
 	var modelData =
     {
         env: 'public',
@@ -35,8 +38,6 @@ router.get('/', function (req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var bapiConfigData = res.config.bapiConfigData;
-	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
-	
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Data from BAPI

@@ -15,7 +15,6 @@ var seoService = require(process.cwd() + "/server/services/seo");
 var SeoModel = function (requestId, locale) {
 	this.requestId = requestId;
 	this.locale = locale;
-    //return new ModelBuilder(this.getHPSeoInfo());
 };
 
 SeoModel.prototype.getModelBuilder = function() {

@@ -49,9 +49,8 @@ BasePageModel.prototype.getCommonData = function() {
 		var footerDeferred = Q.defer();
 		Q(scope.footerBuilder.processParallel())
 	    	.then(function (dataF) {
-	    		console.log("Inside basepagemodel footer");
-	    		
 	    		// Resolve promise with necessary data for the callee
+	    		console.log("Inside basepagemodel footer");
 	    		footerDeferred.resolve(dataF[0]);
 	    		
 	    		// Merge data and send the comibned data to the next function in waterfall
@@ -68,8 +67,7 @@ BasePageModel.prototype.getCommonData = function() {
 	
 	var dataLayerFunction = function(headerFooterData, callback) { 
 		// use data from headerFooterData
-		console.log("@videep:");
-		scope.dataLayer.setUserId("sanjose"); // headerFooterData.header.id);
+		scope.dataLayer.setUserId("sanjose"); // headerFooterData.header.id;
 		scope.dataLayer.setUserEmail("");
 		
 		var dataLayerDeferred = Q.defer();

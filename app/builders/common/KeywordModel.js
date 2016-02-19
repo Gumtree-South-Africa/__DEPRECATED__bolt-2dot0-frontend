@@ -17,7 +17,6 @@ var KeywordModel = function (requestId, locale, depth) {
 	this.requestId = requestId;
 	this.locale = locale;
 	this.depth = depth;
-  	// return new ModelBuilder(this.getKeywords());
 };
 
 KeywordModel.prototype.getModelBuilder = function() {

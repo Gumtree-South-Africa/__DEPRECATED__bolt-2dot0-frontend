@@ -4,7 +4,7 @@
  * @author uroblesmellin@ebay
  */
 var _i18n = require('i18next');
-var StringUtils = require("../../app/builders/utils/StringUtils");
+var StringUtils = require(process.cwd() + "/app/utils/StringUtils");
 
 exports = module.exports  = nc;
 exports.registerLocalePartials = regLocPartials;
