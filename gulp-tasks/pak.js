@@ -39,7 +39,7 @@ module.exports = function watch(gulp, plugins) {
             						this.emit('end');
             				}}))
             				.pipe(compass({
-            					config_file: process.cwd() + '/config.rb',
+            					config_file: process.cwd() + '/app/config/ruby/config.rb',
             					lineNumbers: true,
             					css: 'public/css',
             					sass: './app/styles',
