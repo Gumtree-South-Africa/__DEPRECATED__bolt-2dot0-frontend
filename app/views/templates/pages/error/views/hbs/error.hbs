@@ -1,0 +1,55 @@
+
+{{#partial "content"}}
+
+    <div class="error-content">{{ i18n this.err }}</div>
+
+{{/partial}}
+
+        <!-- Move this to footer partial -->
+        <!-- Remove this when using require.js -->
+
+        <!--
+        <script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
+        <script src="/js/libraries/handlebars/handlebars.js"></script>
+        -->
+
+        <!--
+	<script src="/views/templates/pages/homepage/js/homepage.js"></script>
+	{{#if site}}{{#if locale}}
+	<script src="/js/precompiled/{{site}}/{{locale}}/homepage.html.js"></script>
+	<script>
+	BOLT.Homepage.getTemplateData();
+	</script>
+	{{/if}}{{/if}}
+	-->
+
+
+
+
+{{#partial "pageTailScripts"}}
+        <script src="/js/common/googleTag.js"></script>
+        <script>
+            var bP = {
+                {{#if model.header.isIncludeContentForMobile}}
+                    accId : ("/{{{model.googleTagAccountMobId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+                {{else}}
+                    accId : ("/{{{this.header.googleTagAccountId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+                {{/if}}
+                dc_ref: window.location.href,
+                kw: $('input[name=q]').val() || "no category",
+                ptype: 'home'
+            };
+        </script>
+        <script src="/js/common/GoogleBanner.js"></script>
+        <script>
+                {{#block "AdBannerHomepg"}}
+                    {{#block "locationMap_Script"}}{{/block}}
+                    {{#block "googleBannerAdsTop_Script"}}{{/block}}
+                    {{#block "googleBannerAdsRight_Script"}}{{/block}}
+                    {{#block "googleBannerAdsRightBottom_Script"}}{{/block}}
+                    {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+                {{/block}}
+        </script>
+{{/partial}}
+
+{{!-- > hbs/Html --}}

@@ -29,6 +29,8 @@ var i18n = require('./modules/i18n');
 var boltExpressHbs = require('./modules/handlebars');
 var deviceDetection = require("./modules/device-detection");
 
+var error = require('./modules/error');
+
 
 /*
  * Create Main App
@@ -36,7 +38,7 @@ var deviceDetection = require("./modules/device-detection");
 var app = new expressbuilder().getApp();
 var siteCount = 0;
 
-
+var siteApps = [];
 /*
  * Create Site Apps
  */
@@ -80,19 +82,44 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.use(i18n.initMW(siteApp));
 		        siteApp.use(deviceDetection.init());
 		        siteApp.use(boltExpressHbs.create(siteApp));
-		
+
+
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
+
+
 	      })(siteObj);
       
 	      siteCount = siteCount + 1;
     }
  });
 
+
 //Setup controllers
 controllers.forEach(function (controller) {
     require(controller)(app);
 });
+
+app.use(error.four_or_four(app));
+app.use(error(app));
+
+/*app.use(function(req, res, next) {
+	var err = new Error('Not Found');
+	err.status = 404;
+	next(err);
+});
+
+app.use(function(err, req, res, next) {
+	if(err.status !== 404) {
+		return next();
+	} else if (err.status === 404) {
+		res.redirect("/error/404");
+	}
+	res.redirect("/error");
+});*/
+
+
+
 
 module.exports = app;
 
