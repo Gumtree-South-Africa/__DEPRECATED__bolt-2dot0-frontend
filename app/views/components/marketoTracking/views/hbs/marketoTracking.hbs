@@ -1,0 +1,19 @@
+{{!-- @MUNCHKIN: Marketo Event Tracking --}}
+{{!-- Marketo Munchkin API Associate Lead Function Tracking Call --}}
+{{#if this.header.marketo.enabled}}
+    {{#if this.header.marketo.munchkinId}}
+            function trackEvtMunchkin(mkinTrkJSON, mkinHash) {
+                // console.log("*** Checking for Munchkin...");
+                if (typeof Munchkin != "undefined" && typeof mkinID != "undefined" && typeof mkinTrkJSON != "undefined"
+                    && typeof mkinHash != "undefined") {
+
+                    if (typeof mkinTrkJSON !== "object") {
+                         mkinTrkJSON = jQuery.parseJSON(mkinTrkJSON);
+                    }
+
+                    Munchkin.munchkinFunction('associateLead', mkinTrkJSON, mkinHash);
+                }
+            }
+    {{/if}}
+{{/if}}
+{{!-- End Marketo Munchkin Tracking --}}
