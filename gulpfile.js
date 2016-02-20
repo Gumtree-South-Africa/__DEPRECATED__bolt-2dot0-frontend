@@ -77,6 +77,7 @@ gulp.task('debug', function() {
 });
 */
 
+gulp.task('bundlejs', getTask('bundlejs'));
 
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));

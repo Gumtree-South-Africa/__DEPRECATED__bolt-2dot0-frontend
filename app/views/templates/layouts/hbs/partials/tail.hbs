@@ -1,88 +1,68 @@
-{{#block "commonTail"}}
+{{#block "commonTail"}}{{/block}}
 
-{{/block}}
-
-
-     
-{{#block "pageTailScriptsBeforeIncludes"}}
-    {{#block "carouselJsFiles"}}
-        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
-    {{/block}}
-    <script src="/js/common/StringUtils.js"></script>
-    <script src="/views/components/header/js/header.js"></script>
-{{/block}}  
+{{#block "pageTailScriptsBeforeIncludes"}}{{/block}}  
 
 {{#block "pageTail"}}
-    {{#each model.footer.javascripts}}
-        {{#if  model.footer.min}}
+    {{#each this.footer.javascripts}}
+        {{#if this.footer.min}}
             <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
         {{else}}
             <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}' data-main="Common.js"></script>
         {{/if}}
-    {{/each}}
-    {{!-- Marketo Munchkin JS lib loading --}}{{!-- #if model.header.marketo.configMarketo.enabled --}}{{!-- /if --}}{{!-- End Marketo --}}
-
-    
+    {{/each}}  
 {{/block}}
 
-{{#block "pageTailScripts"}}
-
-{{/block}}
+{{#block "pageTailScripts"}}{{/block}}
 
 {{#block "localizationScript"}}
-    {{#with model.footer.localizeApi}}
+    {{#with this.footer.localizeApi}}
         <script>Bolt=Bolt||{};Bolt.i18nBeSupport='{{this}}';</script>
     {{/with}}
 {{/block}}
 
-{{#block "javascriptMessaging"}}
-    
-{{/block}}
+{{#block "javascriptMessaging"}}{{/block}}
 
 {{#block "deviceSmartBannerScript"}}{{/block}}
 
 {{#block "marketoTracking"}}
-{{!-- Marketo Munchkin Tracking Code ---}}
+    {{!-- Marketo Munchkin Tracking Code ---}}
+    {{#if this.header.marketo.enabled}}
+        {{#if this.header.marketo.munchkinId}}
+            <script>
+                (function marketoTracking() {
+                    var wsInfo, configJSON = {};
+                    var isCookieAnonEnabled = {{#if this.header.marketo.trackAnonUser}}{{this.header.marketo.trackAnonUser}}{{else}}false{{/if}};
+                    var mkID = "{{this.header.marketo.munchkinId}}";
+                    var mkCookie = BOLT.UTILS.Cookie.readCookie("_mkto_trk") || "";
 
-{{#if model.header.marketo.configMarketo.enabled}}
-    {{#if model.header.marketo.configMarketo.munchkinId}}
-        <script>
-            (function marketoTracking() {
-                var wsInfo, configJSON = {};
-                var isCookieAnonEnabled = {{#if model.header.marketo.configMarketo.trackAnonUser}}{{model.header.marketo.configMarketo.trackAnonUser}}{{else}}false{{/if}};
-                var mkID = "{{model.header.marketo.configMarketo.munchkinId}}";
-                var mkCookie = BOLT.UTILS.Cookie.readCookie("_mkto_trk") || "";
-
-                isCookieAnonEnabled = isCookieAnonEnabled ? true: false;
-                wsInfo =  {{#if model.header.marketo.configMarketo.wsInfo}}"{{model.header.marketo.configMarketo.wsInfo}}"{{else}}false{{/if}};
-                configJSON = { cookieAnon: isCookieAnonEnabled };
-                if (wsInfo) {
-                    configJSON["wsInfo"] = wsInfo;
-                }
-
-                $.ajax({
-                    url: document.location.protocol + '//munchkin.marketo.net/munchkin.js',
-                    dataType: 'script',
-                    cache: true,
-                    async : true,
-                    success: function() {
-                        if (typeof Munchkin !== "undefined") {
-                            Munchkin.init(mkID, configJSON);
-                        }
+                    isCookieAnonEnabled = isCookieAnonEnabled ? true: false;
+                    wsInfo =  {{#if this.header.marketo.wsInfo}}"{{this.header.marketo.wsInfo}}"{{else}}false{{/if}};
+                    configJSON = { cookieAnon: isCookieAnonEnabled };
+                    if (wsInfo) {
+                        configJSON["wsInfo"] = wsInfo;
                     }
-                });
-                $("form :input[name='_mrk_trk']").val(mkCookie);
-            })();
-        </script>
+
+                    $.ajax({
+                        url: document.location.protocol + '//munchkin.marketo.net/munchkin.js',
+                        dataType: 'script',
+                        cache: true,
+                        async : true,
+                        success: function() {
+                            if (typeof Munchkin !== "undefined") {
+                                Munchkin.init(mkID, configJSON);
+                            }
+                        }
+                    });
+                    $("form :input[name='_mrk_trk']").val(mkCookie);
+                })();
+            </script>
+        {{/if}}
     {{/if}}
-{{/if}}
-{{!-- End Marketo Munchkin Tracking Code ---}}
+    {{!-- End Marketo Munchkin Tracking Code ---}}
 
-{{#block "pageTailScriptsAfterMarketo"}}{{/block}}
+    {{#block "pageTailScriptsAfterMarketo"}}{{/block}}
 
-{{!----- HTML5 Placeholder Polyfill -----}}
-{{#block "explorer-searchbar-polyfill"}}{{/block}}
-{{!----- /HTML5 Placeholder Polyfill -----}}
-
-
+    {{!----- HTML5 Placeholder Polyfill -----}}
+    {{#block "explorer-searchbar-polyfill"}}{{/block}}
+    {{!----- /HTML5 Placeholder Polyfill -----}}
 {{/block}}

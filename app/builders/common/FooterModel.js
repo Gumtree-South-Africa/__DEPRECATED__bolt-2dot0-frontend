@@ -4,7 +4,7 @@ var http = require("http");
 var Q = require("q");
 var _ = require("underscore");
 
-var StringUtils = require("../utils/StringUtils");
+var StringUtils = require(process.cwd() + "/app/utils/StringUtils");
 var ModelBuilder = require("./ModelBuilder");
 
 var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
@@ -22,11 +22,12 @@ var FooterModel = function (secure, req, res) {
 	// Country specific variables from BAPI Config
 	this.brandName = res.config.name;
 	this.country = res.config.country;
-	this.footerConfigData = res.config.bapiConfigData.footer;
-	
-    return new ModelBuilder(this.getFooterData());
+	this.footerConfigData = res.config.bapiConfigData.footer;	
 };
 
+FooterModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getFooterData());
+};
 
 // Function getFooterData
 FooterModel.prototype.getFooterData = function() {
@@ -113,6 +114,7 @@ FooterModel.prototype.buildUrl = function(data) {
 	data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
 	data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);
 	data.locationSitemapLandingPageUrl = "/l-" + "/all-locs/v1b0";
+	data.localizeApiRootUrl = "/rui-api/localize/rui/";
 };
 
 module.exports = FooterModel;

@@ -36,10 +36,11 @@ var HeaderModel = function (secure, req, res) {
 	this.statusParam = req.query.status;
 	this.resumeParam = req.query.resumeabandonedordererror;
 	this.headerConfigData = res.config.bapiConfigData.header;
-
-	return new ModelBuilder(this.getHeaderData());
 };
 
+HeaderModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getHeaderData());
+};
 
 // Function getHeaderData
 HeaderModel.prototype.getHeaderData = function() {
@@ -49,7 +50,8 @@ HeaderModel.prototype.getHeaderData = function() {
 			var headerDeferred,
 				data = {
 					"favIcon" : "/images/" + scope.locale + "/shortcut.png",
-		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort
+		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
+		    		"languageCode" : scope.locale
 				};
 			
 			// merge pageurl data
@@ -64,7 +66,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : "/css";
+    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : "/css/";
     		data.min = config.get("static.min");
     		
     		scope.buildUrl(data);
@@ -116,7 +118,7 @@ HeaderModel.prototype.buildUrl = function(data) {
 	data.touchIconIpadUrl = data.baseImageUrl + "touch-ipad.png";
 	data.touchIconIphoneRetinaUrl = data.baseImageUrl + "touch-iphone-retina.png";
 	data.touchIconIpadRetinaUrl = data.baseImageUrl + "touch-ipad-retina.png";
-	data.shortuctIconUrl = data.baseImageUrl + scope.locale + "/shortcut.png";
+	data.shortcutIconUrl = data.baseImageUrl + scope.locale + "/shortcut.png";
 	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + "/{catId}/{locId}/{value}";
 	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + "/{lat}/{lng}";
 	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + "/0/category/0";
@@ -136,9 +138,9 @@ HeaderModel.prototype.buildCss = function(data) {
 	if (deviceDetection.isMobile()) {
 		data.localeCSSPath = data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	} else {
-		data.localeCSSPath = data.baseCSSUrl + "/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+		data.localeCSSPath = data.baseCSSUrl + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + "/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+	data.localeCSSPathHack = data.baseCSSUrl + scope.brandName + "/" + scope.country + "/" + scope.locale;
 	
 	data.containerCSS = [];
 	if (data.min) {

@@ -15,9 +15,11 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
 var AdStatisticsModel = function (requestId, locale) {
 	this.requestId = requestId;
 	this.locale = locale;
-    return new ModelBuilder(this.getHomePageStatistics());
 };
 
+AdStatisticsModel.prototype.getModelBuilder = function() {
+	return new ModelBuilder(this.getHomePageStatistics());
+};
 
 // Function getHomePageStatistics
 AdStatisticsModel.prototype.getHomePageStatistics = function() {

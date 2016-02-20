@@ -1,5 +1,4 @@
 {
-	// BAPI config for LnP
 	"BAPI": {
 	    "server": {
 	    	"host": "http://bolt-api.lnp.ebay.com",

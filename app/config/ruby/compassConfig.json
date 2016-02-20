@@ -1,0 +1,20 @@
+{
+  "desktop" : {
+    "lineNumbers": true,
+    "cssPath": "public/css" ,
+    "sassPath": "./app/styles",
+    "require": ["susy"]
+  },
+  "tablet" : {
+    "lineNumbers": true,
+    "cssPath": "public/css/tablet" ,
+    "sassPath": "./app/styles",
+    "require": ["susy"]
+  },
+  "mobile" : {
+    "lineNumbers": true,
+    "cssPath": "public/css/mobile" ,
+    "sassPath": "./app/styles",
+    "require": ["susy"]
+  }
+}

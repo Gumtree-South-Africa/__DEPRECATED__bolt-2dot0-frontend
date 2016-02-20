@@ -23,7 +23,10 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
-	// Data from the Middleware
+	// Set pagetype in request
+	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+	
+	// Build Model Data
 	var modelData =
     {
         env: 'public',
@@ -35,12 +38,12 @@ router.get('/', function (req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var bapiConfigData = res.config.bapiConfigData;
-	
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Data from BAPI
-      modelData.header = result[0][0];
-      modelData.footer = result[0][1];
+      modelData.header = result[0].header;
+      modelData.footer = result[0].footer;
+      modelData.dataLayer = result[0].dataLayer;
       modelData.location = result[1];
       modelData.category = result[2];
       modelData.trendingKeywords = result[3][0].keywords;
@@ -59,7 +62,7 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
-      console.dir(modelData);
+      // console.dir(modelData);
       
       // Render
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
@@ -85,6 +88,9 @@ var HP = {
 	    modelData.header.metaRobots = modelData.seo.robots;
 	    modelData.header.canonical = modelData.header.homePageUrl;
 	    modelData.header.pageUrl = modelData.header.homePageUrl;
+	    if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + "home";
+	    }
 
 	    // CSS
 	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
@@ -141,7 +147,7 @@ var HP = {
 		modelData.content = {};
 
 		var contentConfigData, homepageConfigData;
-		if (typeof homepageConfigData !== 'undefined') {
+		if (typeof bapiConfigData !== 'undefined') {
 			contentConfigData = bapiConfigData.content;
 		}
 		if (typeof contentConfigData !== 'undefined') {
@@ -175,6 +181,9 @@ var HP = {
 				modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
 				modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
 			}
+
+			// Bing Meta
+			modelData.content.bingMeta = homepageConfigData.bingMeta;
 		}
 		
 		// Gallery

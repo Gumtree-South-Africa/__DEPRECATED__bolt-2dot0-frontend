@@ -16,9 +16,11 @@ var CategoryModel = function (requestId, locale, depth) {
 	this.requestId = requestId;
 	this.locale = locale;
 	this.depth = depth;
-     return new ModelBuilder(this.getCategories());
 };
 
+CategoryModel.prototype.getModelBuilder = function () {
+	return new ModelBuilder(this.getCategories());
+};
 
 //Function getCategories
 CategoryModel.prototype.getCategories = function () {
