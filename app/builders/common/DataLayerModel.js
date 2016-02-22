@@ -7,6 +7,7 @@ var _ = require("underscore");
 var ModelBuilder = require("./ModelBuilder");
 var config = require("config");
 
+var Encryptor = require(process.cwd() + "/app/utils/Encryptor");
 var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
 
 
@@ -25,17 +26,31 @@ var getPageData = function(scope) {
 
 //Function getUserData
 var getUsereData = function(scope) {
-	console.log("@raj:");
-	console.log(">>>>> The user id is: " + scope.userid);
-	
 	var userData = {
-		"hashedUserId"		:	"",
-		"hashedUserEmail"	:	"",
+		"hashedUserId"		:	(typeof scope.userid==="undefined" || scope.userid===null) ? "" : Encryptor.hash("" + scope.userid),
+		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.hash(scope.useremail),
+		"loggedIn"			:	(typeof scope.userid==="undefined" || scope.userid===null) ? false : true,
 		"hashedAccountId"	:	"",
-		"accountType"		:	"",
-		"loggedIn"			:	""
+		"accountType"		:	""
 	};
 	
+
+	// ******** THIS IS JUST A SAMPLE, PLEASE REFACTOR OR REMOVE *******
+ 	var password = "test";
+    var iterations = 19;
+    var salt = new Buffer("d99bce325735e303","hex");
+    
+    Encryptor.encrypt("helloworld",password,salt,iterations, function(err,msg) {
+      console.log("@@@@@@@@@@@ ** Encrypted Value: " + msg);
+      
+      // eat your own dogfood
+      Encryptor.decrypt(msg,password,salt,iterations,function(err,msg) {
+        console.log("@@@@@@@@@@ Decrypted Value: " + msg);
+      });
+    });
+
+    // ******** END SAMPLE ********
+
 	return userData;
 };
 

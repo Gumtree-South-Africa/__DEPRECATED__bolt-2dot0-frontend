@@ -13,6 +13,16 @@
 	{{/partial}}
 {{/if}}
 
+{{!-- @todo anton: MOVE THIS TO POST PAGE!!!! ---}}
+{{#partial "dataLayerSpecifics"}}
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAd" "A"}}post-log-A{{/ifABTestEq}}{{#ifABTestEq "postAd" "B"}}post-log-B{{/ifABTestEq}}"; {{/ifeq}}
+
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "categoryMobile" "A"}}m-post-cat-A{{/ifABTestEq}}{{#ifABTestEq "categoryMobile" "B"}}m-post-cat-B{{/ifABTestEq}}";{{/ifeq}}
+
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAdMobile" "A"}}m-post-att-A{{/ifABTestEq}}{{#ifABTestEq "postAdMobile" "B"}}m-post-att-B{{/ifABTestEq}}";{{/ifeq}}
+{{/partial}}
+{{!-- end @todo ---}}
+
 {{#partial "AdBannerHomepg"}}
 	{{#block "locationMap_Script"}}
 	{{/block}}

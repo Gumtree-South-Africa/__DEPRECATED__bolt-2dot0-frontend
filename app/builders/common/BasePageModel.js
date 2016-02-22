@@ -67,8 +67,8 @@ BasePageModel.prototype.getCommonData = function() {
 	
 	var dataLayerFunction = function(headerFooterData, callback) { 
 		// use data from headerFooterData
-		scope.dataLayer.setUserId("sanjose"); // headerFooterData.header.id;
-		scope.dataLayer.setUserEmail("");
+		scope.dataLayer.setUserId(headerFooterData.header.id);
+		scope.dataLayer.setUserEmail(headerFooterData.header.userEmail);
 		
 		var dataLayerDeferred = Q.defer();
 		Q(scope.dataLayerBuilder.processParallel())
