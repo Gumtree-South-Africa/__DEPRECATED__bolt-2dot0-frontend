@@ -33,7 +33,7 @@ var Encryptor = {
 	    return [ keybuf, ivbuf ];
 	},
 	
-	 encrypt: function(payload, password, salt, iterations, cb) {
+	encrypt: function(payload, password, salt, iterations, cb) {
 	    var kiv = this.getKeyIV(password, salt, iterations);
 	    var cipher = crypto.createCipheriv("des", kiv[0],kiv[1]);
 	    var encrypted = [];
@@ -41,9 +41,9 @@ var Encryptor = {
 	    encrypted.push(cipher.final("hex"));
 
 	    return cb(undefined,new Buffer(encrypted.join(""),"hex").toString("base64"));
-	 },
+	},
 
-	 decrypt: function(payload, password, salt, iterations, cb) {
+	decrypt: function(payload, password, salt, iterations, cb) {
 	    var encryptedBuffer = new Buffer(payload,"base64");
 	    var kiv = this.getKeyIV(password,salt,iterations);
 	    var decipher = crypto.createDecipheriv("des", kiv[0],kiv[1]);
@@ -51,7 +51,7 @@ var Encryptor = {
 	    decrypted.push(decipher.update(encryptedBuffer));
 	    decrypted.push(decipher.final());
 	    return cb(undefined, decrypted.join(""));
-	  }
+	}
 
 
 /*
