@@ -22,8 +22,9 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 
-router.get(/^\/error\/(\d+)$/, function (req, res, next) { //console.log("router ==========" + router);
-    // Data from the Middleware
+///^\/error\/(\d+)$/
+router.get("/error", function (req, res, next) {
+
 
     var modelData =
     {
@@ -31,8 +32,7 @@ router.get(/^\/error\/(\d+)$/, function (req, res, next) { //console.log("router
         locale: res.config.locale,
         country: res.config.country,
         site: res.config.name,
-        pagename: pagetypeJson.pagetype.HOMEPAGE,
-        err: "error" + parseInt(req.params[0]) + ".message"
+        pagename: pagetypeJson.pagetype.HOMEPAGE
     };
 
     // Retrieve Data from Model Builders

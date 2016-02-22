@@ -101,13 +101,13 @@ controllers.forEach(function (controller) {
     require(controller)(app);
 });
 
-app.use(error.four_or_four(app));
-app.use(error(app));
+//app.use(error.four_o_four(app));
+//app.use(error(app));
 
 /*app.use(function(req, res, next) {
 	var err = new Error('Not Found');
 	err.status = 404;
-	next(err);
+ next(err);
 });
 
 app.use(function(err, req, res, next) {
