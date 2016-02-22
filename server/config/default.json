@@ -1,5 +1,4 @@
 {
-	// BAPI config for Local Dev Server
 	"BAPI": {
 		"server": {
 			"host": "api.bolt.ecg.ebay.com.localhost",

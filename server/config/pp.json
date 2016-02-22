@@ -1,5 +1,4 @@
 {
-	// BAPI config for PP
 	"BAPI": {
 	    "server": {
 	    	"host": "http://bolt-api.pp.ebay.com",

@@ -1,5 +1,4 @@
 {
-	// BAPI config for Mock Server
 	"BAPI": {
 		"server": {
 	    	"host": "localhost",

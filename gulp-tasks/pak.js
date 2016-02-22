@@ -53,24 +53,9 @@ module.exports = function watch(gulp, plugins) {
             				.pipe(gulp.dest('./public/css'))
                     .on('end', function(){
                       gulp.src(process.cwd() + "/" + "public/**/*/")
-                        .pipe(tar('bolt-2dot-0-frontend-static-'+ appVersion +'.tar'))
+                        .pipe(tar('bolt-2dot0-frontend-static-'+ appVersion +'.tar'))
                         .pipe(gzip())
                         .pipe(gulp.dest('./target/' + appVersion + '/static'))
-                        .on('end', function(){
-                          gulp.src(['./README.md', '!./{target,target/**}', './**/*/'])
-                              .pipe(gulp.dest('./' + appVersion))
-                              .on('end', function(){
-                                gulp.src(process.cwd() + "/" + appVersion + '/**/*/')
-                                  .pipe(tar('bolt-2dot0-frontend-'+appVersion+'.tar'))
-                                  .pipe(gzip())
-                                  .pipe(gulp.dest('./target/' + appVersion + '/app'))
-                                  .on('end', function(){
-                                    gulp.src(['./'+ appVersion], {read: false})
-                                       .pipe(clean());
-                                    console.log('Congratulaitons!!! PACKAGING DONE SUCCESSFULLY');
-                                  })
-                              })
-                        })
                     })
               }
             }

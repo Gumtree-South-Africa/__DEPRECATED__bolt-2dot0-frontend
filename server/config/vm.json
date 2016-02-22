@@ -1,7 +1,4 @@
 {
-	// BAPI config for your VM
-	// Add the below line to your host file
-	// 10.65.201.202	api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com
 	"BAPI": {
 	    "server": {
 	    	"host": "api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
