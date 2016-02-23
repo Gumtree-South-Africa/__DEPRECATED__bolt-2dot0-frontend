@@ -23,7 +23,7 @@ module.exports = function watch(gulp, plugins) {
             folderList.push('default_country');
             function perLocale(){
               var listItem = folderList[index];
-              var config = require(process.cwd() + "/app/config/gulpIcons/gulpsvgconfig.js")(listItem);
+              var config = require(process.cwd() + "/app/config/gulpIcons/gulpSvgConfig.js")(listItem);
                   config.dest = "./public/css";
               var files = glob.sync("./public/svgs/"+ listItem +"/*.svg");
               if(index < folderList.length-1){

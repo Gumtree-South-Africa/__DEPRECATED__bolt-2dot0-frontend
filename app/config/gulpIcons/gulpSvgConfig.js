@@ -1,5 +1,5 @@
 var path = require( "path" );
-var customselectors = require('./customselectors');
+var customselectors = require('./customSelectors');
 
 module.exports = function(locale){
   var sufix = locale.split('_')[1].toLowerCase();
