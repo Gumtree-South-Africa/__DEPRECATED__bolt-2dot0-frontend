@@ -7,42 +7,57 @@ var express = require('express'),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
-    util = require('util');
+    util = require('util'),
+    i18n = require('i18n');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
 
 module.exports = function (app) {
-    app.use('/', router);
+    app.use(router);
 };
 
 
 /**
- * Build HomePage Model Data and Render
+ * Build ErrorPage Model Data and Render
  */
 
-///^\/error\/(\d+)$/
-router.get("/error", function (req, res, next) {
 
+router.get("/error/:errNum", function (req, res, next) {
+    // Set pagetype in request
+    req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+console.log('xxxxxxxxxxxx ' + req.params.errNum);
+    var errNum = req.params.errNum,
+        errMsg;
 
+    if (errNum === "404" || errNum === "500") {
+        errMsg = "error" + parseInt(errNum, 10) + ".message";
+    } else {
+        errMsg = "";
+    }
+    //console.log("err Msg  ==== " + errMsg);
+
+    // Build Model Data
     var modelData =
     {
         env: 'public',
         locale: res.config.locale,
         country: res.config.country,
         site: res.config.name,
-        pagename: pagetypeJson.pagetype.HOMEPAGE
+        pagename: pagetypeJson.pagetype.HOMEPAGE,
+        err: errMsg
     };
+
 
     // Retrieve Data from Model Builders
     var bapiConfigData = res.config.bapiConfigData;
-
     var model = HomepageModel(req, res);
     model.then(function (result) {
         // Data from BAPI
-        modelData.header = result[0][0];
-        modelData.footer = result[0][1];
+        modelData.header = result[0].header;
+        modelData.footer = result[0].footer;
+        modelData.dataLayer = result[0].dataLayer;
         modelData.location = result[1];
         modelData.category = result[2];
         modelData.trendingKeywords = result[3][0].keywords;
@@ -61,10 +76,18 @@ router.get("/error", function (req, res, next) {
         HP.extendFooterData(modelData);
         HP.buildContentData(modelData, bapiConfigData);
 
-       // console.dir(modelData);
+        // console.dir(modelData);
 
         // Render
-        res.render('error/views/hbs/error_' + res.config.locale, modelData);
+        res.render('error/views/hbs/error_' + res.config.locale, modelData, function(err, html) {
+
+            if(err) {
+                console.log('error === ' + err);
+                res.redirect('/error/500');
+            } else {
+                res.send(html);
+            }
+        });
 
         // Kafka Logging
         var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
@@ -87,6 +110,9 @@ var HP = {
         modelData.header.metaRobots = modelData.seo.robots;
         modelData.header.canonical = modelData.header.homePageUrl;
         modelData.header.pageUrl = modelData.header.homePageUrl;
+        if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+            modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + "home";
+        }
 
         // CSS
         modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
@@ -143,7 +169,7 @@ var HP = {
         modelData.content = {};
 
         var contentConfigData, homepageConfigData;
-        if (typeof homepageConfigData !== 'undefined') {
+        if (typeof bapiConfigData !== 'undefined') {
             contentConfigData = bapiConfigData.content;
         }
         if (typeof contentConfigData !== 'undefined') {
@@ -177,6 +203,9 @@ var HP = {
                 modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
                 modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
             }
+
+            // Bing Meta
+            modelData.content.bingMeta = homepageConfigData.bingMeta;
         }
 
         // Gallery

@@ -19,12 +19,26 @@ module.exports = function(app) {
         }
         // if 404 request then to error page
         else if (err.status == 404 ) {
-            res.redirect("/error/404");
+            //So when you add a custom error handler, you will want to delegate
+            // to the default error handling mechanisms in Express,
+            // when the headers have already been sent to the client
+            if (res.headersSent) {
+                return next(err);
+            }
+           // res.locals.err = 404;
+            return res.redirect("/error/404");
+
             //return next();
         }
         // if 500 request then to error page
         else if (err.status == 500) {
+
             console.error(err.stack);
+
+            if (res.headersSent) {
+                return next(err);
+            }
+
             res.redirect("/error/500");
         }
         res.redirect("/error");

@@ -65,7 +65,13 @@ router.get('/', function (req, res, next) {
       // console.dir(modelData);
       
       // Render
-      res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData);
+      res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData, function(err, html) {
+		  if (err) {
+			  res.redirect('/error/500'); // File doesn't exist
+		  } else {
+			  res.send(html);
+		  }
+	  });
 
       // Kafka Logging
       var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;

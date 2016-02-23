@@ -101,27 +101,18 @@ controllers.forEach(function (controller) {
     require(controller)(app);
 });
 
-//app.use(error.four_o_four(app));
-//app.use(error(app));
+//warning: do not reorder this middleware. Order of
+// this should always appear after controller middlewares
+// are setup.
+app.use(error.four_o_four(app));
 
-/*app.use(function(req, res, next) {
-	var err = new Error('Not Found');
-	err.status = 404;
- next(err);
-});
+// overwriting the express's default error handler
+// should always appear after 404 middleware
+app.use(error(app));
 
-app.use(function(err, req, res, next) {
-	if(err.status !== 404) {
-		return next();
-	} else if (err.status === 404) {
-		res.redirect("/error/404");
-	}
-	res.redirect("/error");
-});*/
-
-
-
-
+var util = require("util");
+console.log("routher stack " + util.inspect(app._router.stack, {showHidden: true, depth: null}));
+//console.log("routher stack " + app._router.stack);
 module.exports = app;
 
 
