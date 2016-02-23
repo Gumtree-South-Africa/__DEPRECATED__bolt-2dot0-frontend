@@ -2,7 +2,7 @@
 
 A middleware to capture client request errors (404 etc) and server errors (500 etc)
 
-### Prerequisities
+### Pre-requisities
         
 [url-pattern](https://www.npmjs.com/package/url-pattern)
 
@@ -15,7 +15,7 @@ Adding 404 middleware at the bottom of all middlewares is very important! Specia
 very important! And following it should be the 'Error' middleware.
 
 ```javascript
-<!-- app.js -->
+<!-- app.js: Please it is only added to app.js -->
 //Setup controllers
 controllers.forEach(function (controller) {
     require(controller)(app);
