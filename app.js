@@ -29,6 +29,8 @@ var i18n = require('./modules/i18n');
 var boltExpressHbs = require('./modules/handlebars');
 var deviceDetection = require("./modules/device-detection");
 
+var error = require('./modules/error');
+
 
 /*
  * Create Main App
@@ -36,7 +38,7 @@ var deviceDetection = require("./modules/device-detection");
 var app = new expressbuilder().getApp();
 var siteCount = 0;
 
-
+var siteApps = [];
 /*
  * Create Site Apps
  */
@@ -81,19 +83,32 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.use(i18n.initMW(siteApp));
 		        siteApp.use(deviceDetection.init());
 		        siteApp.use(boltExpressHbs.create(siteApp));
-		
+
+
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
+
+
 	      })(siteObj);
       
 	      siteCount = siteCount + 1;
     }
  });
 
+
 //Setup controllers
 controllers.forEach(function (controller) {
     require(controller)(app);
 });
+
+//warning: do not reorder this middleware. Order of
+// this should always appear after controller middlewares
+// are setup.
+app.use(error.four_o_four(app));
+
+// overwriting the express's default error handler
+// should always appear after 404 middleware
+app.use(error(app));
 
 module.exports = app;
 
