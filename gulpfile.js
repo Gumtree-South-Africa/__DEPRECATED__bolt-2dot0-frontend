@@ -79,7 +79,7 @@ gulp.task('debug', function() {
 var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
 
 gulp.task('pak:dist', function(){
-  gulp.src(['./**/*', '!./{target,target/**}'])
+  gulp.src(['./**/*', '!./{target,target/**}', '!./{node_modules,node_modules/**}'])
    .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
    .on('end', function(){
      gulp.src(process.cwd() + "/target/" + appVersion + '/tmp/**/*/')
@@ -113,6 +113,6 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
-gulp.task('pak', ['clean', 'pak:dist'], getTask('pak'));
+gulp.task('pak', ['pak:dist'], getTask('pak'));
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);

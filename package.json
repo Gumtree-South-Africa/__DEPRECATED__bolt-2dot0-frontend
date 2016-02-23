@@ -18,7 +18,7 @@
   "dependencies": {
     "async": "^1.5.0",
     "body-parser": "~1.13.2",
-    "browser-sync": "^2.10.0",
+    "browser-sync": "^2.11.1",
     "cluster": "^0.7.7",
     "compression": "^1.6.0",
     "config": "^1.17.1",
@@ -42,6 +42,7 @@
     "gulp-gzip": "^1.2.0",
     "gulp-handlebars": "^4.0.0",
     "gulp-iconify": "^0.4.0",
+    "gulp-if": "^2.0.0",
     "gulp-jscs": "^3.0.2",
     "gulp-jshint": "^2.0.0",
     "gulp-jsonlint": "^1.1.1",
