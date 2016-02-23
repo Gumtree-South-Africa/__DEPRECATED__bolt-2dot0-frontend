@@ -27,9 +27,9 @@
 	},
 	"static": {
 		"server": {
-			"host"		: "localhost",
-			"port"		: 8000,
-			"version"	: "2.0.100"
+			"host"		: null,
+			"port"		: null,
+			"version"	: null
 		},
 		"baseCSSUrl"	: "/css/",
 		"baseJSUrl"		: "/js/",
