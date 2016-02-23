@@ -79,7 +79,7 @@ gulp.task('debug', function() {
 var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
 
 gulp.task('pak:dist', function(){
-  gulp.src(['./**/*', '!./{target,target/**}', '!./{node_modules,node_modules/**}'])
+  gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}', '!./{node_modules,node_modules/**}'], {base: './'})
    .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
    .on('end', function(){
      gulp.src(process.cwd() + "/target/" + appVersion + '/tmp/**/*/')
