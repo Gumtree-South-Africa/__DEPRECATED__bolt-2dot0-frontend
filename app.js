@@ -110,9 +110,6 @@ app.use(error.four_o_four(app));
 // should always appear after 404 middleware
 app.use(error(app));
 
-var util = require("util");
-console.log("routher stack " + util.inspect(app._router.stack, {showHidden: true, depth: null}));
-//console.log("routher stack " + app._router.stack);
 module.exports = app;
 
 

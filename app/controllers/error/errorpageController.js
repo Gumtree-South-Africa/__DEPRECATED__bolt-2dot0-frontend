@@ -27,7 +27,7 @@ module.exports = function (app) {
 router.get("/error/:errNum", function (req, res, next) {
     // Set pagetype in request
     req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
-console.log('xxxxxxxxxxxx ' + req.params.errNum);
+
     var errNum = req.params.errNum,
         errMsg;
 
@@ -72,9 +72,9 @@ console.log('xxxxxxxxxxxx ' + req.params.errNum);
         modelData.device = req.app.locals.deviceInfo;
 
         // Special Data needed for HomePage in header, footer, content
-        HP.extendHeaderData(modelData);
-        HP.extendFooterData(modelData);
-        HP.buildContentData(modelData, bapiConfigData);
+        error.extendHeaderData(modelData);
+        error.extendFooterData(modelData);
+        error.buildContentData(modelData, bapiConfigData);
 
         // console.dir(modelData);
 
@@ -82,7 +82,6 @@ console.log('xxxxxxxxxxxx ' + req.params.errNum);
         res.render('error/views/hbs/error_' + res.config.locale, modelData, function(err, html) {
 
             if(err) {
-                console.log('error === ' + err);
                 res.redirect('/error/500');
             } else {
                 res.send(html);
@@ -98,7 +97,7 @@ console.log('xxxxxxxxxxxx ' + req.params.errNum);
 });
 
 
-var HP = {
+var error = {
     /**
      * Special header data for HomePage
      */
