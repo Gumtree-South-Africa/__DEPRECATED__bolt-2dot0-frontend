@@ -106,7 +106,7 @@ gulp.task('precompile', getTask('precompile'));
 gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
-gulp.task('watch', getTask('Watch'));
+gulp.task('watch', getTask('watch'));
 gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
