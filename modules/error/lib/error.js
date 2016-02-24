@@ -30,6 +30,8 @@ module.exports = function(app) {
             // hack: increace the stack trace for NodeJS
             Error.stackTraceLimit = 100;
 
+            console.log("\n\n =====  Error Message ==== \n");
+            console.log(err.message + "\n\n");
             console.trace("======= error stack trace =========");
             res.locals.err = err;
             res.statusCode = 500;

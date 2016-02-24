@@ -68,7 +68,7 @@ router.get('/', function (req, res, next) {
       res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData, function(err, html) {
 		  if (err) {
 			  err.status = 500;
-			  console.log(err.message);
+
 			  return next(err);
 		  } else {
 			  res.send(html);
