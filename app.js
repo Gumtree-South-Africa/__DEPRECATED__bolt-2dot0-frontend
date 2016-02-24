@@ -1,5 +1,7 @@
 'use strict';
 
+
+var exphbs  = require('express-handlebars');
 var glob = require('glob');
 var http = require('http');
 var path = require('path');
@@ -11,6 +13,7 @@ var _ = require("underscore");
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
+var error = require('./modules/error');
 
 // app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
@@ -19,17 +22,10 @@ var config = require('./server/config/sites.json');
 // services
 var configService = require(process.cwd() + "/server/services/configservice");
 
-//default list of all locales, if new locales are added, add it in this list
+// Default list of all locales, if new locales are added, add it in this list
 var allLocales = "es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG";
-// if SITES param is passed as input param, load only those countries
+// If SITES param is passed as input param, load only those countries
 var siteLocales = process.env.SITES || allLocales;
-
-var exphbs  = require('express-handlebars');
-var i18n = require('./modules/i18n');
-var boltExpressHbs = require('./modules/handlebars');
-var deviceDetection = require("./modules/device-detection");
-
-var error = require('./modules/error');
 
 
 /*
@@ -38,37 +34,35 @@ var error = require('./modules/error');
 var app = new expressbuilder().getApp();
 var siteCount = 0;
 
-var siteApps = [];
 /*
  * Create Site Apps
  */
+var siteApps = [];
 Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
 		        var builderObj = new expressbuilder(siteObj.locale);
-		        // var siteApp = new expressbuilder(siteObj.locale).getApp();
 		        var siteApp = builderObj.getApp();
 		
 		        // send site information along
-		        siteApp.config = {};
-		        siteApp.config.name = siteObj.name;
-		        siteApp.config.locale = siteObj.locale;
-		        siteApp.config.country = siteObj.country;
-		        siteApp.config.hostname = siteObj.hostname;
-		        siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
+		        siteApp.locals.config = {};
+		        siteApp.locals.config.name = siteObj.name;
+		        siteApp.locals.config.locale = siteObj.locale;
+		        siteApp.locals.config.country = siteObj.country;
+		        siteApp.locals.config.hostname = siteObj.hostname;
+		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Set BAPI Config Data
-		        siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-//		        console.log("Calling ConfigService to get ConfigData");
-//		        Q(configService.getConfigData(siteApp.config.locale))
-//		      	.then(function (dataReturned) {
-//		      		siteApp.config.bapiConfigData = dataReturned;
-//		  		}).fail(function (err) {
-//		  			console.log("Error in ConfigService, reverting to local files:- ", err);
-//		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
-//		  		});
+		        console.log("Calling ConfigService to get ConfigData");
+		        Q(configService.getConfigData(siteApp.locals.config.locale))
+		      	.then(function (dataReturned) {
+		      		siteApp.locals.config.bapiConfigData = dataReturned;
+		  		}).fail(function (err) {
+		  			console.log("Error in ConfigService, reverting to local files:- ", err);
+		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+		  		});
 		
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
@@ -77,18 +71,11 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		          siteApp.enable('view cache');
 		        }
 		
-		        // register bolt site checking middleware
+		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
-		        
-		        siteApp.use(i18n.initMW(siteApp));
-		        siteApp.use(deviceDetection.init());
-		        siteApp.use(boltExpressHbs.create(siteApp));
-
 
 		        // Setup Vhost per supported site
-		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
-
-
+		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
       
 	      siteCount = siteCount + 1;
@@ -96,18 +83,16 @@ Object.keys(config.sites).forEach(function(siteKey) {
  });
 
 
-//Setup controllers
+// Setup controllers
 controllers.forEach(function (controller) {
     require(controller)(app);
 });
 
-//warning: do not reorder this middleware. Order of
-// this should always appear after controller middlewares
-// are setup.
+// Warning: do not reorder this middleware. 
+// Order of this should always appear after controller middlewares are setup.
 app.use(error.four_o_four(app));
 
-// overwriting the express's default error handler
-// should always appear after 404 middleware
+// Overwriting the express's default error handler should always appear after 404 middleware
 app.use(error(app));
 
 module.exports = app;

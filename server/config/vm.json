@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
+	    	"host": "api.bolt.ecg.ebay.com.bolt20.qa-bolt.com",
 	    	"port": 80,
 	    	"parameters": null
 	    },
@@ -27,9 +27,9 @@
 	},
 	"static": {
 		"server": {
-			"host"		: "localhost",
-			"port"		: 8000,
-			"version"	: "2.0.100"
+			"host"		: null,
+			"port"		: null,
+			"version"	: null
 		},
 		"baseCSSUrl"	: "/css/",
 		"baseJSUrl"		: "/js/",

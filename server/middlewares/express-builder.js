@@ -11,15 +11,16 @@ var logger = require('morgan');
 var methodOverride = require('method-override');
 var path = require('path');
 
-//var hbshelpers = require("../../modules/hbs-helpers");
-
 var writeHeader = require("./write-header");
 var requestId = require('./request-id');
+var i18n = require(process.cwd() + '/modules/i18n');
+var deviceDetection = require(process.cwd() + '/modules/device-detection');
+var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
+
 
 var config = {
     root: process.cwd()
 };
-
 
 
 function BuildApp(locale) {
@@ -41,70 +42,14 @@ function BuildApp(locale) {
 
     // Use custom middlewares
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
-
-    // register bolt requestId middleware
-    app.use(requestId());
-
-    this.locale = locale;
+    app.use(requestId());    
+    app.use(i18n.initMW(app, locale));
+    app.use(boltExpressHbs.create(app));
+    app.use(deviceDetection.init());
     
-    //Setup hbs Views
-
-    /*
-     * TODO: Enable when NodeJS error handling available: 404, 500, etc
-     */
-    // catch 404 and forward to error handler
-    // app.use(function(req, res, next) {
-    //   var err = new Error('Not Found');
-    //   err.status = 404;
-    //   next(err);
-    // });
-
-    // error handlers
-
-    // development error handler
-    // will print stacktrace
-    // if (app.get('env') === 'development') {
-    //   app.use(function(err, req, res, next) {
-    //     res.status(err.status || 500);
-    //     res.render('error', {
-    //       message: err.message,
-    //       error: err
-    //     });
-    //   });
-    // }
-
-    // production error handler
-    // no stacktraces leaked to user
-    // app.use(function(err, req, res, next) {
-    //   res.status(err.status || 500);
-    //   res.render('error', {
-    //     message: err.message,
-    //     error: {}
-    //   });
-    // });
-
     this.getApp = function() {
         return app;
     };
 }
-
-BuildApp.prototype.setI18nObj = function (i18nObj) {
-    this.i18nObj = i18nObj;
-
-    var app = this.getApp();
-
-    //Setup Views
-    if (this.locale) {
-        exphbs = require('express-handlebars');
-        app.set('views', config.root + '/app/views/templates/pages/');
-        app.set('view engine', 'hbs');
-
-        // Add BOLT 2.0 Handlebars helpers for view engine
-        // hbshelp(app, locale, exphbs);
-        hbshelp(app, this.locale, exphbs, this.i18nObj);
-    }
-
-
-};
 
 module.exports = BuildApp;
