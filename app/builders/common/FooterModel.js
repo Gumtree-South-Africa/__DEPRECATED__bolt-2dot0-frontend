@@ -82,21 +82,21 @@ FooterModel.prototype.buildJs = function(data) {
 	} else {
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-1.11.0.min.js");
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
-		data.javascripts.push(data.baseJSUrl + "common/StringUtilities.js");
-		data.javascripts.push(data.baseJSUrl + "common/JQueryUtil.js");
-		data.javascripts.push(data.baseJSUrl + "common/MatchMedia.js");
-		data.javascripts.push(data.baseJSUrl + "common/GoogleTag.js");
+		data.javascripts.push(data.baseJSUrl + "common/utils/StringUtilities.js");
+		data.javascripts.push(data.baseJSUrl + "common/utils/JQueryUtil.js");
+		data.javascripts.push(data.baseJSUrl + "common/device/MatchMedia.js");
+		data.javascripts.push(data.baseJSUrl + "common/tracking/GoogleTag.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/main.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/json.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/cookie.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/storage.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/overlay.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/i18n.js");
-		data.javascripts.push(data.baseJSUrl + "common/html5.js");
-		data.javascripts.push(data.baseJSUrl + "common/Search.js");
-		data.javascripts.push(data.baseJSUrl + "common/GoogleBanner.js");
-		data.javascripts.push(data.baseJSUrl + "common/Analytics.js");
-		data.javascripts.push(data.baseJSUrl + "common/header/BannerCookie.js");
+		data.javascripts.push(data.baseJSUrl + "common/bolt/html5.js");
+		data.javascripts.push(data.baseJSUrl + "common/bolt/Search.js");
+		data.javascripts.push(data.baseJSUrl + "common/banners/GoogleBanner.js");
+		data.javascripts.push(data.baseJSUrl + "common/banners/BannerCookie.js");
+		data.javascripts.push(data.baseJSUrl + "common/tracking/Analytics.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/Searchbar.js");
 	}

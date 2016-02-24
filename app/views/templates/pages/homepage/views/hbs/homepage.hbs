@@ -103,8 +103,8 @@
 		<!--
 		<script src="/js/bower-components/jquery/src/jquery.js"></script>
 		-->
-		<script src="/js/common/cookie.js"></script>
-		<script src="/js/common/searchbar.js"></script>
+		<script src="/js/common/bolt/cookie.js"></script>
+		<script src="/js/common/bolt/searchbar.js"></script>
 		<script src="/views/components/categoryList/js/app.js"></script>
 
 		<!--
@@ -115,12 +115,12 @@
 	    {{#block "carouselJsFiles"}}
 	        <script src="/views/components/adCarousel/js/adCarousel.js"></script>
 	    {{/block}}
-	    <script src="/js/common/StringUtils.js"></script>
+	    <script src="/js/common/utils/StringUtils.js"></script>
 	    <script src="/views/components/header/js/header.js"></script>
 
 	    {{!-- Moved these 2 below from pageTailScripts --}}
-	    <script src="/js/common/googleTag.js"></script>
-	    <script src="/js/common/GoogleBanner.js"></script>
+	    <script src="/js/common/tracking/GoogleTag.js"></script>
+	    <script src="/js/common/banners/GoogleBanner.js"></script>
 	{{/partial}}  
 
 	{{#partial "pageTailScripts"}}

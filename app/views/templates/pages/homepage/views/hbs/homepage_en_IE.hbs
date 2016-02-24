@@ -1,6 +1,6 @@
 {{> (base "homepage") }}
 
-{{#if model.header.isIncludeContentForMobile}}
+{{#ifMobile this.device}
     {{#partial "locationAfterCategory"}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
@@ -13,4 +13,4 @@
     	{{> (dynamic "locationMapContainer" )}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
-{{/if}}
+{{/ifMobile}}

@@ -1,8 +1,6 @@
 
 {{#partial "content"}}
-
     <div class="error-content">{{ i18n this.err }}</div>
-
 {{/partial}}
 
         <!-- Move this to footer partial -->
@@ -23,24 +21,21 @@
 	{{/if}}{{/if}}
 	-->
 
-
-
-
 {{#partial "pageTailScripts"}}
-        <script src="/js/common/googleTag.js"></script>
+        <script src="/js/common/tracking/GoogleTag.js"></script>
         <script>
             var bP = {
-                {{#if model.header.isIncludeContentForMobile}}
+                {{#ifMobile this.device}}
                     accId : ("/{{{model.googleTagAccountMobId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
                 {{else}}
                     accId : ("/{{{this.header.googleTagAccountId}}}/home").split(' ').join('_').replace(/\,|&_|'/g,""),
-                {{/if}}
+                {{/ifMobile}}
                 dc_ref: window.location.href,
                 kw: $('input[name=q]').val() || "no category",
                 ptype: 'home'
             };
         </script>
-        <script src="/js/common/GoogleBanner.js"></script>
+        <script src="/js/common/banners/GoogleBanner.js"></script>
         <script>
                 {{#block "AdBannerHomepg"}}
                     {{#block "locationMap_Script"}}{{/block}}
@@ -52,4 +47,3 @@
         </script>
 {{/partial}}
 
-{{!-- > hbs/Html --}}

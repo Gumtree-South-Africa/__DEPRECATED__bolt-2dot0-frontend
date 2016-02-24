@@ -1,4 +1,4 @@
-{{#if model.header.isIncludeContentForMobile}}
+{{#ifMobile this.device}}
     {{#partial "locationAfterCategory"}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
@@ -11,7 +11,7 @@
         {{> (dynamic "locationMapContainer") }}
         {{#block "locationContainer"}}{{/block}}
 	{{/partial}}
-{{/if}}
+{{/ifMobile}}
 
 {{!-- @todo anton: MOVE THIS TO POST PAGE!!!! ---}}
 {{#partial "dataLayerSpecifics"}}
@@ -26,7 +26,7 @@
 {{#partial "AdBannerHomepg"}}
 	{{#block "locationMap_Script"}}
 	{{/block}}
-	
+
 	{{#block "googleBannerAdsTop_Script"}}
 	{{/block}}
 	

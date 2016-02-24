@@ -36,7 +36,6 @@
     
     <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
     
-
     {{#each this.header.containerCSS}}
         <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
     {{/each}}
@@ -45,7 +44,7 @@
 
     <link rel="publisher" href="{{this.header.publisherUrl}}" />
     {{!-- @todo: check line below}}
-    {{!-- <link rel="shortcut icon" type="image/png" href="{{header.favIcon}}"/> --}}
+    {{!-- <link rel="shortcut icon" type="image/png" href="{{this.header.favIcon}}"/> --}}
     <link rel="shortcut icon" type="image/png" href="{{this.header.shortcutIconUrl}}"/>
     <link rel="shortcut icon" type="image/x-icon" href="{{this.header.shortcutIconUrl}}"/>
     <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{this.header.shortcutIconUrl}}"/>
@@ -163,8 +162,6 @@
                     //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
                     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
                 })();
-
-
             {{/with}}
         {{/if}}
         </script>
