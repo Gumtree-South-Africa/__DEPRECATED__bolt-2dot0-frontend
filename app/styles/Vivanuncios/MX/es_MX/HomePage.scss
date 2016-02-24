@@ -1,8 +1,8 @@
-@import 
+@import
     "../../theme",
-    "../partials/pages/Homepage/categoryListHack", 
+    "../partials/pages/Homepage/categoryListHack",
     "../partials/pages/Homepage/categoryDisplay";
-     
+
 
 @import "../../../partials/pages/Homepage/pageMain",
 		"../../../partials/pages/Homepage/carouselExt",
@@ -27,7 +27,7 @@ display:none;
 @include in-breakpoint($no-break) {
   .page{
       padding-left :0;
-      padding-right :0; 
+      padding-right :0;
       }
   }
 
@@ -80,7 +80,7 @@ $tablet-map-url: url(../../../../../images/es_MX/MAP/mx_map3_tablet_bg.png);
 #completeMap.Zacatecas { background: url("../../../../../images/es_MX/MAP/locations/Zacatecas.gif"); }
 
 
-.header.diff{  
+.header.diff{
   @include in-breakpoint($no-break) {
     .right .post a {
       padding-top: 0.4em;
@@ -97,5 +97,3 @@ $tablet-map-url: url(../../../../../images/es_MX/MAP/mx_map3_tablet_bg.png);
     height: 385px;
   }
 }
-
-
