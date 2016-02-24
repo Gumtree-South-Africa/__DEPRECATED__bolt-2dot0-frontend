@@ -8,40 +8,37 @@
 
 var urlPattern = require("url-pattern");
 var util = require('util'),
-    str = require('string');
+    str = require('string'),
+    displayError = require('./displayError');
 
 
 module.exports = function(app) {
     return function(err, req, res, next) {
-        // any request related to the app then goto next middleware
-        if(err.status != 404) {
-            return next();
-        }
-        // if 404 request then to error page
-        else if (err.status == 404 ) {
-            //So when you add a custom error handler, you will want to delegate
-            // to the default error handling mechanisms in Express,
-            // when the headers have already been sent to the client
-            if (res.headersSent) {
-                return next(err);
-            }
-           // res.locals.err = 404;
-            return res.redirect("/error/404");
 
-            //return next();
+        // if 404 request then to error page
+        if (err.status == 404 || err.status == 410) {
+            res.locals.err = err;
+
+            // set the http status code
+            res.statusCode = 404;
+            displayError.message(req, res, next);
+
         }
         // if 500 request then to error page
         else if (err.status == 500) {
 
-            console.error(err.stack);
+            // hack: increace the stack trace for NodeJS
+            Error.stackTraceLimit = 100;
 
-            if (res.headersSent) {
-                return next(err);
-            }
+            console.trace("======= error stack trace =========");
+            res.locals.err = err;
+            res.statusCode = 500;
+            //console.error(err.stackTrace);
+            displayError.message(req, res, next);
+           // res.end();
 
-            res.redirect("/error/500");
         }
-        res.redirect("/error");
+
     };
 };
 
@@ -54,11 +51,11 @@ module.exports.four_o_four = function(app) {
         if (isResourceReq(req)) {
             var err = new Error('Not Found');
             err.status = 200;
-            next(err);
+           return next();
         } else {
             var err = new Error('Not Found');
             err.status = 404;
-            next(err);
+           return next(err);
         }
 
     }
@@ -82,12 +79,6 @@ function isResourceReq(req) {
     return false;
 }
 
-function isErrorPage(req) {
-    var url = req.originalUrl;
-   // console.log("url is error ? ====== " + str(req.originalUrl.toUpperCase()).contains("ERROR"));
-    if (str(url.toUpperCase()).contains("ERROR"))
-        return true;
-    return false;
-}
+
 
 

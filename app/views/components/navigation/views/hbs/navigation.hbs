@@ -21,7 +21,7 @@
             <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
                 <span class="icon {{#if this.header.userProfileImageUrl}}has-profile-image{{/if}} {{#if this.header.socialMedia}}has-profile-image{{/if}}"
                 style="{{#if this.header.socialMedia}}background-image:url({{this.header.smallFbProfileImageUrl}});{{/if}}
-                {{#unless this.header.socialMedia}}background-image:url({{this.header.profilePictureCropUrl}}13.JPG);{{/unless}}">
+                {{#unless this.header.socialMedia}}{{#if this.header.profilePictureCropUrl}} background-image:url({{this.header.profilePictureCropUrl}}13.JPG); {{/if}}{{/unless}}">
                 {{#unless this.header.userProfileImageUrl}}
                     <span class="icon-header-profile-out"></span>
                     <span class="icon-header-profile-over"></span>
