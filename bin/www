@@ -7,9 +7,12 @@
 'use strict';
 
 
+// Set the CWD for Node Process
+process.chdir(process.env.PM_CWD);
+
+
 var cluster = require('cluster'),
     numCPUs = require('os').cpus().length;
-
 
 // configure so fork loads the app module not this file
 cluster.setupMaster({
@@ -17,12 +20,10 @@ cluster.setupMaster({
     args: ['--use', 'https'].concat(process.argv)
 });
 
-
 // spawn an environment per CPU
 for (var i = 0; i < numCPUs; i++) {
     cluster.fork();
 }
-
 
 cluster.on('listening', function(worker) {
     console.info('Worker-' + worker.id + ' is listening');
