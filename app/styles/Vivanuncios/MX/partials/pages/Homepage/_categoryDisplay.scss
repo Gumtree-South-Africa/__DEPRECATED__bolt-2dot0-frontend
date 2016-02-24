@@ -1,4 +1,4 @@
-// Begin: This needs to be set somewhere else since we are having different links color depending 
+// Begin: This needs to be set somewhere else since we are having different links color depending
 // on the pageType(srp, homepage, post, myAds...)
 .category-wrapper{
 	a,  [data-uri], [data-o-uri], .sudo-link, span[href], .all-label,
@@ -34,7 +34,7 @@
 		font-weight: bold;
 		padding: 0.75em 2em;
 		@include button-primary();
-		background-color: #DDDDDD; 
+		background-color: #DDDDDD;
 		color: black;
 		text-shadow: none;
 		float: left;
@@ -89,7 +89,7 @@ ul.category-list{
 
 .postFlow{
 	padding: 1em 0;
-	
+
 
 	.postFree{
 		float: left;
@@ -102,9 +102,9 @@ ul.category-list{
 			margin-left: 2.5%;
 		}
 		.icon-pin{
-			
+
 			display: block;
-			
+
 		}
 		.fontWS{
   			font-weight: bold;
@@ -140,7 +140,7 @@ ul.category-list{
 	}
 }
 
-.hp-link-wrapper{ 
+.hp-link-wrapper{
 	.post-ad-button{
 		border: none;
 	}
@@ -212,13 +212,13 @@ ul.category-list{
 			.flowTitle{
 				width: 35%;
 			}
-			
+
 		}
 		.postFree:nth-child(1){
 			margin-left: 2.5%;
 		}
 	}
-	
+
 	.postSection .post{
 		.post-btn{
 			height: 2.8em;
@@ -226,7 +226,7 @@ ul.category-list{
 			padding-top: 1em;
 		}
 	}
-	
+
 	.fontWS{
 		//font-size: 85%;
 	}
@@ -251,7 +251,7 @@ ul.category-list{
 		}
 	}
 	.postFlow .postFree{
-		
+
 		.flowNumber{
 			margin-left: 10px;
 		}
@@ -273,7 +273,7 @@ ul.category-list{
 }
 
 @include from-breakpoint($small-break, $lt-ie9-class-name){
-	
+
 	#flexLftBuckt, .hp-province-wrapper ul, .hp-content{
 		font-size: 1em;
 		line-height: 1.5em;
@@ -343,11 +343,11 @@ ul.category-list{
 				color: gray;
 			}
 			.postLink{
-				cursor: pointer; 
+				cursor: pointer;
 			}
 		}
 	}
-	.hp-link-wrapper{ 
+	.hp-link-wrapper{
 		width: 29%;
 		float: left;
 		margin-left: 20px;
@@ -442,14 +442,14 @@ ul.category-list{
 		padding: 0em 4em;
 		background-color: #FFFFFF;
 	}
-	.postFlow{ 
+	.postFlow{
 		.postWrapper{
 			margin:0 auto;
 			width: 66%;
 		}
-		
-		
-	}	
+
+
+	}
 	ul.category-list-icon{
 		li{
 			 width: 25%;
@@ -500,17 +500,17 @@ ul.category-list{
 	.content .hp-location-wrapper .subTitle{
 		margin: 1em 0 0em 0;
 	}
-	
+
 	ul.location-list li a{
 		text-decoration: none;
 		padding:0.25em 0.5em !important;
 		display: block;
 	}
-	
+
    .category-wrapper .allCategories{
 	  display: none;
 	}
-	
+
 	ul.category-list,.icon-gl-message-close.nonJsOnlyBlock,.catText{
 	 display: block;
 	}
@@ -536,7 +536,7 @@ ul.category-list{
 		height: 86px;
 		background-image: url('../../../../../images/es_MX/categories/catIcons_sprite.gif');
 		background-repeat: no-repeat;
-		
+
 	}
 }
 .inner .bg[class*=icon-]{
@@ -547,49 +547,58 @@ ul.category-list{
 	.icon-cat-1230{
 		background-position: 0 0; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-30{
 		background-position: 0 -136px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-3{
 		background-position: 0 -272px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-53{
 	 	 background-position: 0 -408px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-36{
 		background-position: 0 -544px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-25{
-		 background-position: 0 -680px; width: 86px; height: 86px; 
+		 background-position: 0 -680px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-1120{
 		background-position: 0 -816px; width: 86px; height: 86px;
 	}
 	.icon-cat-1{
 		 background-position: 0 -952px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-5{
 		background-position: 0 -1088px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-20{
 		background-position: 0 -1224px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-17{
-		background-position: 0 -1360px; width: 86px; height: 86px; 
+		background-position: 0 -1360px; width: 86px; height: 86px;
 	}
-	
+
 	.icon-cat-64{
 		background-position: 0 -1496px; width: 86px; height: 86px;
 	}
+
+	.icon-cat-1089{
+	   background-position: 0 -1624px; width: 86px; height: 86px;
+	}
+
+	.icon-cat-2{
+	    background-position: 0 -1753px; width: 86px; height: 86px;
+	}
+
 }
 
 
@@ -619,10 +628,10 @@ ul.category-list{
   .postFree{
 	 .icon-pin{
 		  background-image: url('../../../../../images/es_MX/tutorial-imgs/tutorial_sprite.gif');
-		  width: 114px; 
+		  width: 114px;
 		  height: 89px;
 		  margin-left: 0em;
-	}	
+	}
 	.icon-step-1{
 		background-position: 0 0;
 	}
@@ -633,6 +642,10 @@ ul.category-list{
 		background-position: 0 -278px;
 	}
   }
+
+   .category-wrapper .allCategories.jsOnly{
+     clear:both;
+   }
 }
 
 
