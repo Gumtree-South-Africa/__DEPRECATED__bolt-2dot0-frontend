@@ -47,21 +47,21 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        var siteApp = builderObj.getApp();
 		
 		        // send site information along
-		        siteApp.config = {};
-		        siteApp.config.name = siteObj.name;
-		        siteApp.config.locale = siteObj.locale;
-		        siteApp.config.country = siteObj.country;
-		        siteApp.config.hostname = siteObj.hostname;
-		        siteApp.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
+		        siteApp.locals.config = {};
+		        siteApp.locals.config.name = siteObj.name;
+		        siteApp.locals.config.locale = siteObj.locale;
+		        siteApp.locals.config.country = siteObj.country;
+		        siteApp.locals.config.hostname = siteObj.hostname;
+		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Set BAPI Config Data
 		        console.log("Calling ConfigService to get ConfigData");
-		        Q(configService.getConfigData(siteApp.config.locale))
+		        Q(configService.getConfigData(siteApp.locals.config.locale))
 		      	.then(function (dataReturned) {
-		      		siteApp.config.bapiConfigData = dataReturned;
+		      		siteApp.locals.config.bapiConfigData = dataReturned;
 		  		}).fail(function (err) {
 		  			console.log("Error in ConfigService, reverting to local files:- ", err);
-		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.config.locale + '.json');
+		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
 		  		});
 		
 		        // Template hbs caching.
@@ -75,7 +75,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.use(checksite(siteApp));
 
 		        // Setup Vhost per supported site
-		        app.use(vhost(new RegExp(siteApp.config.hostnameRegex), siteApp));
+		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
       
 	      siteCount = siteCount + 1;
