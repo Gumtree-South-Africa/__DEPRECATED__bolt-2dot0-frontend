@@ -35,7 +35,7 @@ app.use(error(app));
 
 ```handlebars
     // Render
-    res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData, function(err, html) {
+    res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
     if (err) {
       res.redirect('/error/500'); // File doesn't exist
     } else {

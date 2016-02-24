@@ -129,9 +129,9 @@ var getEcommerceData = function(scope) {
  */
 var DataLayerModel = function (req, res) {
 	// Local Variables
-	this.locale = res.config.locale;
-	this.brandName = res.config.name;
-	this.country = res.config.country;
+	this.locale = res.locals.config.locale;
+	this.brandName = res.locals.config.name;
+	this.country = res.locals.config.country;
 	this.pagetype = req.pagetype;
 };
 

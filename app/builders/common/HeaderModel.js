@@ -28,14 +28,14 @@ var HeaderModel = function (secure, req, res) {
 	this.secure = secure;
 	this.requestId = req.requestId;
 	this.cookie = authcookie;
-	this.locale = res.config.locale;
-	this.brandName = res.config.name;
-	this.country = res.config.country;
-	this.fullDomainName = res.config.hostname;
+	this.locale = res.locals.config.locale;
+	this.brandName = res.locals.config.name;
+	this.country = res.locals.config.country;
+	this.fullDomainName = res.locals.config.hostname;
 	this.urlProtocol = this.secure ? "https://" : "http://";
 	this.statusParam = req.query.status;
 	this.resumeParam = req.query.resumeabandonedordererror;
-	this.headerConfigData = res.config.bapiConfigData.header;
+	this.headerConfigData = res.locals.config.bapiConfigData.header;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {

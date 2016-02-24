@@ -4,7 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
+    HomepageModel= require(process.cwd() +  '/app/builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
@@ -14,44 +14,40 @@ var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
 
-module.exports = function (app) {
-    app.use(router);
-};
-
 
 /**
  * Build ErrorPage Model Data and Render
  */
 
 
-router.get("/error/:errNum", function (req, res, next) {
+module.exports.message = function (req, res, next) {
     // Set pagetype in request
     req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 
-    var errNum = req.params.errNum,
+    // get the error status number
+    var errNum = res.locals.err.status,
         errMsg;
 
-    if (errNum === "404" || errNum === "500") {
+    if (errNum === 404 || errNum === 500  || errNum === 410) {
         errMsg = "error" + parseInt(errNum, 10) + ".message";
     } else {
         errMsg = "";
     }
-    //console.log("err Msg  ==== " + errMsg);
 
     // Build Model Data
     var modelData =
     {
         env: 'public',
-        locale: res.config.locale,
-        country: res.config.country,
-        site: res.config.name,
+        locale: res.locals.config.locale,
+        country: res.locals.config.country,
+        site: res.locals.config.name,
         pagename: pagetypeJson.pagetype.HOMEPAGE,
         err: errMsg
     };
 
 
     // Retrieve Data from Model Builders
-    var bapiConfigData = res.config.bapiConfigData;
+    var bapiConfigData = res.locals.config.bapiConfigData;
     var model = HomepageModel(req, res);
     model.then(function (result) {
         // Data from BAPI
@@ -79,22 +75,16 @@ router.get("/error/:errNum", function (req, res, next) {
         // console.dir(modelData);
 
         // Render
-        res.render('error/views/hbs/error_' + res.config.locale, modelData, function(err, html) {
-
-            if(err) {
-                res.redirect('/error/500');
-            } else {
-                res.send(html);
-            }
-        });
+       // res.statusCode = errNum;
+        res.render('error/views/hbs/error_' + res.locals.config.locale, modelData);
 
         // Kafka Logging
-        var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
-        kafkaService.logInfo(res.config.locale, log);
+        var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+        kafkaService.logInfo(res.locals.config.locale, log);
 
         // Graphite Metrics
     });
-});
+};
 
 
 var error = {

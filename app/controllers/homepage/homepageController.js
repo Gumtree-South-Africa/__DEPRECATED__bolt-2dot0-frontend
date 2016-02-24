@@ -30,14 +30,14 @@ router.get('/', function (req, res, next) {
 	var modelData =
     {
         env: 'public',
-        locale: res.config.locale,
-        country: res.config.country,
-        site: res.config.name,
+        locale: res.locals.config.locale,
+        country: res.locals.config.country,
+        site: res.locals.config.name,
         pagename: pagetypeJson.pagetype.HOMEPAGE
     };
 
 	// Retrieve Data from Model Builders
-	var bapiConfigData = res.config.bapiConfigData;
+	var bapiConfigData = res.locals.config.bapiConfigData;
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Data from BAPI
@@ -62,20 +62,24 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
-      // console.dir(modelData);
+      console.dir(modelData);
       
       // Render
-      res.render('homepage/views/hbs/homepage_' + res.config.locale, modelData, function(err, html) {
+      res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {
-			  res.redirect('/error/500'); // File doesn't exist
+			  err.status = 500;
+
+			  return next(err);
 		  } else {
 			  res.send(html);
 		  }
 	  });
 
+		//res.end();
+
       // Kafka Logging
-      var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
-      kafkaService.logInfo(res.config.locale, log);
+      var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+      kafkaService.logInfo(res.locals.config.locale, log);
       
       // Graphite Metrics
     });
