@@ -17,12 +17,12 @@ var config = require("config");
 var FooterModel = function (secure, req, res) {
 	// Local Variables
 	this.secure = secure;
-	this.locale = res.config.locale;
+	this.locale = res.locals.config.locale;
 	
 	// Country specific variables from BAPI Config
-	this.brandName = res.config.name;
-	this.country = res.config.country;
-	this.footerConfigData = res.config.bapiConfigData.footer;	
+	this.brandName = res.locals.config.name;
+	this.country = res.locals.config.country;
+	this.footerConfigData = res.locals.config.bapiConfigData.footer;	
 };
 
 FooterModel.prototype.getModelBuilder = function() {

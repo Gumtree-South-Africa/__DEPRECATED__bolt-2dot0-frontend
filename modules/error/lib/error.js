@@ -33,7 +33,7 @@ module.exports = function(app) {
         // if 500 request then to error page
         else if (err.status == 500) {
 
-            console.error(err.stack);
+            console.trace();
 
             if (res.headersSent) {
                 return next(err);
@@ -46,9 +46,10 @@ module.exports = function(app) {
 };
 
 
-// 404 middleware
+/** 
+ * 404 middleware
+ */
 module.exports.four_o_four = function(app) {
-
     return function(req, res, next) {
         // avoid going to error page for resource pages
         if (isResourceReq(req)) {
@@ -60,14 +61,14 @@ module.exports.four_o_four = function(app) {
             err.status = 404;
             next(err);
         }
-
     }
 };
 
 
-// check if it is app resource request
+/*
+ * Check if it is app resource request
+ */
 function isResourceReq(req) {
-
     // set url pattern object
     var urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|js|css|txt)$/i, ['ext']);
     // match the url pattern
@@ -81,13 +82,4 @@ function isResourceReq(req) {
         return true;
     return false;
 }
-
-function isErrorPage(req) {
-    var url = req.originalUrl;
-   // console.log("url is error ? ====== " + str(req.originalUrl.toUpperCase()).contains("ERROR"));
-    if (str(url.toUpperCase()).contains("ERROR"))
-        return true;
-    return false;
-}
-
 
