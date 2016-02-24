@@ -28,7 +28,7 @@ Add the following for backend, var i18n = require('./modules/i18n');
 var i18n = require('./modules/i18n');
 
 // must provide a locale
-i18n.init(res.config.locale);
+i18n.init(res.locals.config.locale);
 // returns tranlated message
 var message = i18n.msg("greeting");
 ```

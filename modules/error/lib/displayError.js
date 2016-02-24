@@ -38,16 +38,16 @@ module.exports.message = function (req, res, next) {
     var modelData =
     {
         env: 'public',
-        locale: res.config.locale,
-        country: res.config.country,
-        site: res.config.name,
+        locale: res.locals.config.locale,
+        country: res.locals.config.country,
+        site: res.locals.config.name,
         pagename: pagetypeJson.pagetype.HOMEPAGE,
         err: errMsg
     };
 
 
     // Retrieve Data from Model Builders
-    var bapiConfigData = res.config.bapiConfigData;
+    var bapiConfigData = res.locals.config.bapiConfigData;
     var model = HomepageModel(req, res);
     model.then(function (result) {
         // Data from BAPI
@@ -76,11 +76,11 @@ module.exports.message = function (req, res, next) {
 
         // Render
        // res.statusCode = errNum;
-        res.render('error/views/hbs/error_' + res.config.locale, modelData);
+        res.render('error/views/hbs/error_' + res.locals.config.locale, modelData);
 
         // Kafka Logging
-        var log = res.config.country + ' homepage visited with requestId = ' + req.requestId;
-        kafkaService.logInfo(res.config.locale, log);
+        var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+        kafkaService.logInfo(res.locals.config.locale, log);
 
         // Graphite Metrics
     });
