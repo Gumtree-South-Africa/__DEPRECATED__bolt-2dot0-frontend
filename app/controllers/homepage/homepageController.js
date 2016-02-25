@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 	
 	// Set pagetype in request
-	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 	
 	// Build Model Data
 	var modelData =
@@ -47,14 +47,13 @@ router.get('/', function (req, res, next) {
       modelData.header = result[0].header;
       modelData.footer = result[0].footer;
       modelData.dataLayer = result[0].dataLayer;
-      modelData.trendingKeywords = result[1][0].keywords;
-      modelData.topKeywords = result[1][1].keywords;
-      modelData.initialGalleryInfo = result[2];
-      modelData.totalLiveAdCount = result[3].totalLiveAds;
-      modelData.level1Location = result[4];
-      modelData.level2Location = result[5];
-      modelData.seo = result[6];
-      
+      modelData.level2Location = result[1];
+      modelData.trendingKeywords = result[2][0].keywords;
+      modelData.topKeywords = result[2][1].keywords;
+      modelData.initialGalleryInfo = result[3];
+      modelData.totalLiveAdCount = result[4].totalLiveAds; 
+      modelData.seo = result[5];
+            
       // Cached Data from BAPI
       modelData.location = res.locals.config.locationData;
       modelData.category = res.locals.config.categoryData;
@@ -63,7 +62,7 @@ router.get('/', function (req, res, next) {
 	  modelData.device = req.app.locals.deviceInfo;
       
 	  // Special Data needed for HomePage in header, footer, content
-      HP.extendHeaderData(modelData);
+      HP.extendHeaderData(req, modelData);
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
@@ -95,7 +94,7 @@ var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
-	extendHeaderData : function(modelData) {
+	extendHeaderData : function(req, modelData) {
 		// SEO
 	    modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
 	    modelData.header.pageTitle = modelData.seo.pageTitle;
@@ -122,6 +121,47 @@ var HP = {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
+	    
+	    // Location Id Cookie
+	    
+	    // Marketo 
+	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
+	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
+	    
+	    // Header Page Messages
+	    HP.buildHeaderPageMessages(req, modelData);
+	},
+	
+	/**
+	 * Build Page-Messages data for HomePage
+	 */
+	buildHeaderPageMessages : function(req, modelData) {
+		modelData.header.pageMessages = {};
+		switch(req.query.status){
+			case "userregistered" :
+				modelData.header.pageMessages.success ="home.user.registered";
+				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
+				break;
+			case "adinactive":
+				modelData.header.pageMessages.success = "home.ad.notyetactive";
+				break;
+			case "resetpassword":
+				modelData.header.pageMessages.success = "home.reset.password.success";
+				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
+				break;
+			default:
+				modelData.header.pageMessages.success = "";
+				modelData.header.pageMessages.error = "";
+				modelData.header.pageType = "";
+		}
+		switch (req.query.resumeabandonedordererror){
+			case "adnotactive":
+				modelData.header.pageMessages.error = "abandonedorder.adNotActive";
+				break;
+			case "adfeaturepaid":
+				modelData.header.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
+				break;
+		}
 	},
 
 	/**
@@ -132,17 +172,8 @@ var HP = {
 
 		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
 	    if (!modelData.footer.min) {
-		      // modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'common/CategoryList.js');
 		      modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
-
 		      if (! modelData.header.enableLighterVersionForMobile) {
-		      	/*
-		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/Map.js');
-		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/modernizr.js');
-		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
-		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
-		    	  */
-
 		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
 		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
@@ -152,7 +183,6 @@ var HP = {
 		      if (typeof availableAdFeatures !== 'undefined') {
 			      for (var i=0; i<availableAdFeatures.length; i++) {
 			    	  if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-			    		 //  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
 			    		 modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
 			    	  }
 			      }

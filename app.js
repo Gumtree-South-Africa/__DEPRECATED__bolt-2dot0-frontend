@@ -61,13 +61,14 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
 		        // Load Config Data from BAPI
-		        Q(configService.getConfigData(siteApp.locals.config.locale))
-		      	  .then(function (dataReturned) {
-		      		siteApp.locals.config.bapiConfigData = dataReturned;
-		  		}).fail(function (err) {
-		  			console.warn("Startup: Error in ConfigService, reverting to local files:- ", err);
-		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-		  		});
+		        siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+//		        Q(configService.getConfigData(siteApp.locals.config.locale))
+//		      	  .then(function (dataReturned) {
+//		      		siteApp.locals.config.bapiConfigData = dataReturned;
+//		  		}).fail(function (err) {
+//		  			console.warn("Startup: Error in ConfigService, reverting to local files:- ", err);
+//		  			siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+//		  		});
 
 		        // Load Location Data from BAPI
 		        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))

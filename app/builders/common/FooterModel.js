@@ -80,7 +80,8 @@ FooterModel.prototype.buildJs = function(data) {
 	if (data.min) {
 		data.javascripts.push(data.baseJSUrl + "Main_" + scope.locale + ".min.js");
 	} else {
-		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-1.11.0.min.js");
+		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-2.0.0.min.js");
+		data.javascripts.push(data.baseJSUrl + "bower-components/requirejs/require.js");
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
 		data.javascripts.push(data.baseJSUrl + "common/utils/StringUtils.js");
 		data.javascripts.push(data.baseJSUrl + "common/utils/JQueryUtil.js");
@@ -98,7 +99,7 @@ FooterModel.prototype.buildJs = function(data) {
 		data.javascripts.push(data.baseJSUrl + "common/banners/BannerCookie.js");
 		data.javascripts.push(data.baseJSUrl + "common/tracking/Analytics.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
-		data.javascripts.push(data.baseJSUrl + "common/header/Searchbar.js");
+		data.javascripts.push(data.baseJSUrl + "common/header/searchbar.js");
 	}
 };
 

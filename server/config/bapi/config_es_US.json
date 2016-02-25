@@ -85,5 +85,15 @@
 			"freebiesName"			: null,
 			"freebiesUrl"			: null
 		}
+	},
+	"bapi" : {
+		"Homepage" : {
+			"desktop" 	: {
+				"models" : ["level2Loc", "NA", "NA", "NA", "seo"]
+			},
+			"mobile" 	: {
+				"models" : ["level2Loc", "NA", "NA", "NA", "seo"]
+			}
+		}
 	}
 }

@@ -81,5 +81,15 @@
 			"freebiesName"			: "home.freebies.$$",
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free"
 		}
+	},
+	"bapi" : {
+		"Homepage" : {
+			"desktop" 	: {
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+			},
+			"mobile" 	: {
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+			}
+		}
 	}
 }
