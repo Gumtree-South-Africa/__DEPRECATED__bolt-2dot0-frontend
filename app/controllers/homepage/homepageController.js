@@ -63,6 +63,7 @@ router.get('/', function (req, res, next) {
       
 	  // Special Data needed for HomePage in header, footer, content
       HP.extendHeaderData(modelData);
+      HP.buildHeaderPageMessages(modelData, req);
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
@@ -127,6 +128,38 @@ var HP = {
 	    // Marketo 
 	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
 	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
+	},
+	
+	/**
+	 * Build Page-Messages data for HomePage
+	 */
+	buildHeaderPageMessages : function(modelData, req) {
+		modelData.header.pageMessages = {};
+		switch(req.query.status){
+			case "userregistered" :
+				modelData.header.pageMessages.success ="home.user.registered";
+				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
+				break;
+			case "adinactive":
+				modelData.header.pageMessages.success = "home.ad.notyetactive";
+				break;
+			case "resetpassword":
+				modelData.header.pageMessages.success = "home.reset.password.success";
+				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
+				break;
+			default:
+				modelData.header.pageMessages.success = "";
+				modelData.header.pageMessages.error = "";
+				modelData.header.pageType = "";
+		}
+		switch (req.query.resumeabandonedordererror){
+			case "adnotactive":
+				modelData.header.pageMessages.error = "abandonedorder.adNotActive";
+				break;
+			case "adfeaturepaid":
+				modelData.header.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
+				break;
+		}
 	},
 
 	/**

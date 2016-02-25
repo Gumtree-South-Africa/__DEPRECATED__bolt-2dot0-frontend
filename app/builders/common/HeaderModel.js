@@ -33,8 +33,6 @@ var HeaderModel = function (secure, req, res) {
 	this.country = res.locals.config.country;
 	this.fullDomainName = res.locals.config.hostname;
 	this.urlProtocol = this.secure ? "https://" : "http://";
-	this.statusParam = req.query.status;
-	this.resumeParam = req.query.resumeabandonedordererror;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 };
 
@@ -72,7 +70,6 @@ HeaderModel.prototype.getHeaderData = function() {
     		scope.buildUrl(data);
     		scope.buildCss(data);
     		scope.buildOpengraph(data);
-    		scope.buildMessages(data);
     		
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
@@ -157,37 +154,6 @@ HeaderModel.prototype.buildOpengraph = function(data) {
 	data.countryName = scope.country;
 	data.logoUrl = data.baseImageUrl + scope.locale + "/logo.png";
 	data.logoUrlOpenGraph = data.baseImageUrl + scope.locale + "/logoOpenGraph.png";
-};
-
-// Handle Input Parameters
-HeaderModel.prototype.buildMessages = function(data) {
-	var scope = this;
-	data.pageMessages = {};
-	switch(scope.statusParam){
-		case "userregistered" :
-			data.pageMessages.success ="home.user.registered";
-			data.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
-			break;
-		case "adinactive":
-			data.pageMessages.success = "home.ad.notyetactive";
-			break;
-		case "resetpassword":
-			data.pageMessages.success = "home.reset.password.success";
-			data.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
-			break;
-		default:
-			data.pageMessages.success = "";
-			data.pageMessages.error = "";
-			data.pageType = "";
-	}
-	switch (scope.resumeParam){
-		case "adnotactive":
-			data.pageMessages.error = "abandonedorder.adNotActive";
-			break;
-		case "adfeaturepaid":
-			data.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
-			break;
-	}
 };
 
 //Build Profile
