@@ -69,28 +69,6 @@ module.exports.isHomePageDevice = function() {
     return false;
 };
 
-module.exports.hasBlacklistedKeywords = function() {
-
-   // ua = "BlackBerry9300/5.0.0.977 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/167";
-    return checkBlackbery(blackList);
-};
-
-module.exports.hasLiteBlacklistedKeywords = function() {
-
-    return checkBlackbery(liteBlacklist);
-};
-
-
-function checkBlackbery(list) {
-    var doesExist = false;
-    list.forEach(function(item){
-        if (str(ua.toUpperCase()).contains(item.toUpperCase())) {
-            doesExist = true;
-        }
-    });
-
-    return doesExist;
-}
 
 function detectDevice(req) {
 
