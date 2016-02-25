@@ -27,7 +27,7 @@ router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 	
 	// Set pagetype in request
-	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 	
 	// Build Model Data
 	var modelData =
@@ -47,14 +47,13 @@ router.get('/', function (req, res, next) {
       modelData.header = result[0].header;
       modelData.footer = result[0].footer;
       modelData.dataLayer = result[0].dataLayer;
-      modelData.trendingKeywords = result[1][0].keywords;
-      modelData.topKeywords = result[1][1].keywords;
-      modelData.initialGalleryInfo = result[2];
-      modelData.totalLiveAdCount = result[3].totalLiveAds;
-      modelData.level1Location = result[4];
-      modelData.level2Location = result[5];
-      modelData.seo = result[6];
-      
+      modelData.level2Location = result[1];
+      modelData.trendingKeywords = result[2][0].keywords;
+      modelData.topKeywords = result[2][1].keywords;
+      modelData.initialGalleryInfo = result[3];
+      modelData.totalLiveAdCount = result[4].totalLiveAds; 
+      modelData.seo = result[5];
+            
       // Cached Data from BAPI
       modelData.location = res.locals.config.locationData;
       modelData.category = res.locals.config.categoryData;

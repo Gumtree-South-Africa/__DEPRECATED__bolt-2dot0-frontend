@@ -115,7 +115,7 @@ var DataLayerModel = function (req, res) {
 	this.locale = res.locals.config.locale;
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
-	this.pagetype = req.pagetype;
+	this.pagetype = req.app.locals.pagetype;
 };
 
 DataLayerModel.prototype.getModelBuilder = function() {
