@@ -89,6 +89,19 @@ function getDataFunctions(req, res) {
 	};
 }
 
+var convertListToObject = function(dataList, arrFunctions) {
+	var numElems = dataList.length || 0,
+		idx = 0,
+		jsonObj = {},
+		fnLabel = "";
+	for (idx=0; idx < numElems; idx++) {
+		fnLabel = arrFunctions[idx].fnLabel || "common";
+		jsonObj[fnLabel] = dataList[idx];
+	}
+
+	return jsonObj;
+};
+
 
 /**
  * @description A class that Handles the HomePage Model
@@ -120,19 +133,25 @@ var HomePageModel = function (req, res) {
 	};
 	
 	var arrFunctions = [ commonDataFunction ];
-
 	var functionMap = getDataFunctions(req, res);
-	
+	/*
 	for (var index=0; index<pageModelConfig.length; index++) {
 		arrFunctions.push(functionMap[pageModelConfig[index]]);
 	}
+	*/
+	var index, fnLabel, fn;
+	for (index=0; index<pageModelConfig.length; index++) {
+		fnLabel = pageModelConfig[index];
+		fn = functionMap[fnLabel];
+		fn.fnLabel = fnLabel;
+		arrFunctions.push(fn);
+	}
 	
-	
-	var homepageModel = new ModelBuilder(arrFunctions);
-	
+	var homepageModel = new ModelBuilder(arrFunctions);	
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
+    		// console.log(convertListToObject(data, arrFunctions));
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
