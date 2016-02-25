@@ -82,7 +82,7 @@ FooterModel.prototype.buildJs = function(data) {
 	} else {
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-1.11.0.min.js");
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
-		data.javascripts.push(data.baseJSUrl + "common/utils/StringUtilities.js");
+		data.javascripts.push(data.baseJSUrl + "common/utils/StringUtils.js");
 		data.javascripts.push(data.baseJSUrl + "common/utils/JQueryUtil.js");
 		data.javascripts.push(data.baseJSUrl + "common/device/MatchMedia.js");
 		data.javascripts.push(data.baseJSUrl + "common/tracking/GoogleTag.js");

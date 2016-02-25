@@ -1,6 +1,7 @@
 //jshint ignore: start
 'use strict';
 
+// 
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
@@ -123,21 +124,32 @@ var HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData : function(modelData) {
-		
+		var baseJSComponentDir = "/views/components/";
+
 		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
 	    if (!modelData.footer.min) {
-		      modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'common/CategoryList.js');
+		      // modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'common/CategoryList.js');
+		      modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
+
 		      if (! modelData.header.enableLighterVersionForMobile) {
+		      	/*
 		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/Map.js');
 		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/modernizr.js');
 		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
 		    	  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
+		    	  */
+
+		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
+		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
+		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
+		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 		      }
 		      var availableAdFeatures = modelData.footer.availableAdFeatures;
 		      if (typeof availableAdFeatures !== 'undefined') {
 			      for (var i=0; i<availableAdFeatures.length; i++) {
 			    	  if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-			    		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
+			    		 //  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
+			    		 modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
 			    	  }
 			      }
 		      }
