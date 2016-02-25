@@ -35,7 +35,6 @@ SeoModel.prototype.getHPSeoInfo = function() {
 			
 		    if (typeof scope.locale !== "undefined") {
 		    	seoDeferred = Q.defer();
-				console.log("Calling Seo Service for Homepage");
 			    
 				 Q(seoService.getHPSeoData(scope.requestId, scope.locale))
 			    	.then(function (dataReturned) {

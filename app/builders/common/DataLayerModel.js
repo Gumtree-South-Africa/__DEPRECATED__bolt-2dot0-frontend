@@ -28,28 +28,11 @@ var getPageData = function(scope) {
 var getUsereData = function(scope) {
 	var userData = {
 		"hashedUserId"		:	(typeof scope.userid==="undefined" || scope.userid===null) ? "" : Encryptor.hash("" + scope.userid),
-		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.hash(scope.useremail),
+		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.encrypt(scope.useremail),
 		"loggedIn"			:	(typeof scope.userid==="undefined" || scope.userid===null) ? false : true,
 		"hashedAccountId"	:	"",
 		"accountType"		:	""
 	};
-	
-
-	// ******** THIS IS JUST A SAMPLE, PLEASE REFACTOR OR REMOVE *******
- 	var password = "test";
-    var iterations = 19;
-    var salt = new Buffer("d99bce325735e303","hex");
-    
-    Encryptor.encrypt("helloworld",password,salt,iterations, function(err,msg) {
-      console.log("@@@@@@@@@@@ ** Encrypted Value: " + msg);
-      
-      // eat your own dogfood
-      Encryptor.decrypt(msg,password,salt,iterations,function(err,msg) {
-        console.log("@@@@@@@@@@ Decrypted Value: " + msg);
-      });
-    });
-
-    // ******** END SAMPLE ********
 
 	return userData;
 };

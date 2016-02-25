@@ -17,7 +17,7 @@ var KeywordService = function() {
  * Gets a list of top keywords
  */
 KeywordService.prototype.getTopKeywordsData = function(requestId, locale) {
-	console.log("Inside Top KeywordService");
+	// console.info("Inside Top KeywordService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
@@ -30,7 +30,7 @@ KeywordService.prototype.getTopKeywordsData = function(requestId, locale) {
  * Gets a list of trending keywords
  */
 KeywordService.prototype.getTrendingKeywordsData = function(requestId, locale) {
-	console.log("Inside Trending KeywordService");
+	// console.info("Inside Trending KeywordService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');

@@ -26,8 +26,6 @@ LocationModel.prototype.getLocations = function() {
 	var data = {};
 	
     if (typeof scope.depth !== "undefined") {
-		console.log("Calling LocationService");
-	    
 		 Q(locationService.getLocationsData(scope.requestId, scope.locale, scope.depth))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;
@@ -47,8 +45,6 @@ LocationModel.prototype.getTopL2Locations = function() {
 	var data = {};
 	
     if (typeof scope.locale !== "undefined") {
-		console.log("Calling LocationService");
-	    
 		 Q(locationService.getTopL2LocationsData(scope.requestId, scope.locale))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;

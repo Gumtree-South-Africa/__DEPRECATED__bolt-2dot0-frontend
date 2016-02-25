@@ -17,7 +17,7 @@ var HomepageAdService = function() {
  * Gets a list of ads for homepage gallery
  */
 HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
-	console.log("Inside HomepageGalleryService");
+	// console.info("Inside HomepageGalleryService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
@@ -30,7 +30,7 @@ HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
  * Gets a list of ad statistics
  */
 HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
-	console.log("Inside HomepageAdStatisticsService");
+	// console.info("Inside HomepageAdStatisticsService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');

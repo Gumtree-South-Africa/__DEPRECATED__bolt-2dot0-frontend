@@ -35,8 +35,6 @@ CategoryModel.prototype.getCategories = function () {
 			
 			if (typeof scope.depth !== "undefined") {
 				categoryDeferred = Q.defer();
-				console.log("Calling CategoryService");
-			    
 				 Q(categoryService.getCategoriesData(scope.requestId, scope.locale, scope.depth))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;

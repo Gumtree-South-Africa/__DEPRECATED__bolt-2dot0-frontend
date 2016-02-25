@@ -17,7 +17,7 @@ var SeoService = function() {
  * Gets a list of SEO info for HomePage
  */
 SeoService.prototype.getHPSeoData = function(requestId, locale) {
-	console.log("Inside HP SeoService");
+	// console.info("Inside HP SeoService");
 	
 	var seoData = {};
 	
@@ -32,7 +32,7 @@ SeoService.prototype.getHPSeoData = function(requestId, locale) {
  * Gets a list of SEO info for SRP
  */
 SeoService.prototype.getSRPSeoData = function(requestId, locale) {
-	console.log("Inside SRP SeoService");
+	// console.info("Inside SRP SeoService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.srpSeo');

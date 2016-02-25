@@ -14,7 +14,6 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
 		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
 	}
-	console.dir(bapiOptions);
 	
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
@@ -30,7 +29,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
-		console.log(serviceName + "Service: Callback from " + serviceName + " BAPI");
+		// console.info(serviceName + "Service: Callback from " + serviceName + " BAPI");
 		if(typeof output === undefined || output.statusCode) {
 			bapiDeferred.reject(serviceName + " BAPI returned: " + output.statusCode + " , details: " + output);
 		} else {
@@ -39,7 +38,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	});
 
 	// Invoke BAPI request
-	console.log(serviceName + "Service: About to call " + serviceName + " BAPI");
+	// console.info(serviceName + "Service: About to call " + serviceName + " BAPI");
 	bapi.doGet();
 
 	// Return Promise Data

@@ -17,7 +17,7 @@ var ConfigService = function() {
  * Gets User Info given a token from the cookie
  */
 ConfigService.prototype.getConfigData = function(locale) {
-	console.log("Inside ConfigService");
+	// console.info("Inside ConfigService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.configService');

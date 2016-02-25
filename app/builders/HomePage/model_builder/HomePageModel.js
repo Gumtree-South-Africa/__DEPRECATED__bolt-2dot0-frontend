@@ -36,7 +36,6 @@ var HomePageModel = function (req, res) {
 		var commonDataDeferred = Q.defer();
 		Q(commonPageData.processWaterfall())
 	    	.then(function (dataC) {
-	    		console.log("Inside commonData from homepageModel");
 	    		commonDataDeferred.resolve(dataC);
 	    		callback(null, dataC);
 			}).fail(function (err) {
@@ -62,7 +61,6 @@ var HomePageModel = function (req, res) {
 		var level1locationDeferred = Q.defer();
 		Q(level1Loc.getLocations())
 	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel level1location");
 	    		level1locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -75,7 +73,6 @@ var HomePageModel = function (req, res) {
 		var level2locationDeferred = Q.defer();
 		Q(level2Loc.getTopL2Locations())
 	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel level2location");
 	    		level2locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -101,7 +98,6 @@ var HomePageModel = function (req, res) {
 		var keywordsDeferred = Q.defer();
 		Q(keyword.processParallel())
 	    	.then(function (dataK) {
-	    		console.log("Inside keyword from homepageModel");
 	    		keywordsDeferred.resolve(dataK);
 	    		callback(null, dataK);
 			}).fail(function (err) {
@@ -114,7 +110,6 @@ var HomePageModel = function (req, res) {
 		var galleryDeferred = Q.defer();
 		Q(gallery.processParallel())
 	    	.then(function (dataG) {
-	    		console.log("Inside homepagemodel gallery");
 	    		galleryDeferred.resolve(dataG[0]);
 	    		callback(null, dataG[0]);
 			}).fail(function (err) {
@@ -127,7 +122,6 @@ var HomePageModel = function (req, res) {
 		var statisticsDeferred = Q.defer();
 		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
-	    		console.log("Inside homepagemodel statistics");
 	    		statisticsDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -140,7 +134,6 @@ var HomePageModel = function (req, res) {
 		var seoDeferred = Q.defer();
 		Q(seo.processParallel())
 	    	.then(function (dataS) {
-	    		console.log("Inside homepagemodel seo");
 	    		seoDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -155,7 +148,6 @@ var HomePageModel = function (req, res) {
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
-    		console.log("Inside homepagemodel Combined");
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));

@@ -22,8 +22,6 @@ var KafkaService = function() {
  * Gets User Info given a token from the cookie
  */
 KafkaService.prototype.logInfo = function(locale, msg) {
-	console.log('Inside KafkaService');
-	
 	var message = 'Logging: ' + msg + ', date: ' + new Date().toString();
 	
 	var payloads = [
@@ -33,10 +31,10 @@ KafkaService.prototype.logInfo = function(locale, msg) {
 	this.producer.send(payloads, 
 					function (err, data) {
 						if (err) {
-							console.log('Error during Kafka send :- ', err);
+							console.error('Error during Kafka send :- ', err);
 						}
 						else {
-							console.log('Kafka sent message :- ', message);
+							console.info('Kafka sent message :- ', message);
 						}
 					});
 }

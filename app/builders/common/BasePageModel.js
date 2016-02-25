@@ -36,7 +36,6 @@ BasePageModel.prototype.getCommonData = function() {
 		var headerDeferred = Q.defer();
 		Q(scope.headerBuilder.processParallel())
 	    	.then(function (dataH) {
-	    		console.log("Inside basepagemodel header");
 	    		headerDeferred.resolve(dataH[0]);
 	    		callback(null, dataH[0]);
 			}).fail(function (err) {
@@ -50,7 +49,6 @@ BasePageModel.prototype.getCommonData = function() {
 		Q(scope.footerBuilder.processParallel())
 	    	.then(function (dataF) {
 	    		// Resolve promise with necessary data for the callee
-	    		console.log("Inside basepagemodel footer");
 	    		footerDeferred.resolve(dataF[0]);
 	    		
 	    		// Merge data and send the comibned data to the next function in waterfall
@@ -73,7 +71,6 @@ BasePageModel.prototype.getCommonData = function() {
 		var dataLayerDeferred = Q.defer();
 		Q(scope.dataLayerBuilder.processParallel())
 	    	.then(function (dataD) {
-	    		console.log("Inside basepagemodel dataLayer");
 	    		dataLayerDeferred.resolve(dataD[0]);
 	    		
 	    		var combinedData = headerFooterData;

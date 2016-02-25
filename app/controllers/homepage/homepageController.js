@@ -23,6 +23,8 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
+	console.time('Instrument-Homepage-Controller');
+	
 	// Set pagetype in request
 	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 	
@@ -62,7 +64,7 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
-      console.dir(modelData);
+      // console.dir(modelData);
       
       // Render
       res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
@@ -75,13 +77,13 @@ router.get('/', function (req, res, next) {
 		  }
 	  });
 
-		//res.end();
-
       // Kafka Logging
       var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.locals.config.locale, log);
       
       // Graphite Metrics
+      
+      console.timeEnd('Instrument-Homepage-Controller');
     });
 });
 
