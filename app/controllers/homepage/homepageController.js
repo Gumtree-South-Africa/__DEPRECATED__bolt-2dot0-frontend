@@ -123,7 +123,6 @@ var HP = {
 		}
 	    
 	    // Extend Marketo 
-	    // Build Marketo.js
 	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
 	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
 	},
