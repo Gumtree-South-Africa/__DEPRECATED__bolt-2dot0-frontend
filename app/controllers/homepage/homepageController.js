@@ -122,7 +122,9 @@ var HP = {
 			}
 		}
 	    
-	    // Extend Marketo 
+	    // Location Id Cookie
+	    
+	    // Marketo 
 	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
 	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
 	},
