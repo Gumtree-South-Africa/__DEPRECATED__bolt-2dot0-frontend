@@ -8,6 +8,7 @@ var path = require('path');
 var vhost = require('vhost');
 var Q = require("q");
 var _ = require("underscore");
+var cuid = require('cuid');
 
 
 // middleware
@@ -21,6 +22,8 @@ var config = require('./server/config/sites.json');
 
 // services
 var configService = require(process.cwd() + "/server/services/configservice");
+var locationService = require(process.cwd() + "/server/services/location");
+var categoryService = require(process.cwd() + "/server/services/category");
 
 // Default list of all locales, if new locales are added, add it in this list
 var allLocales = "es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG";
@@ -32,6 +35,7 @@ var siteLocales = process.env.SITES || allLocales;
  * Create Main App
  */
 var app = new expressbuilder().getApp();
+var requestId = cuid();
 var siteCount = 0;
 
 /*
@@ -54,15 +58,30 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.hostname = siteObj.hostname;
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 		
-		        // Set BAPI Config Data
+		        // Load Config Data from BAPI
 		        Q(configService.getConfigData(siteApp.locals.config.locale))
-		      	.then(function (dataReturned) {
+		      	  .then(function (dataReturned) {
 		      		siteApp.locals.config.bapiConfigData = dataReturned;
 		  		}).fail(function (err) {
-		  			console.warn("Error in ConfigService, reverting to local files:- ", err);
+		  			console.warn("Startup: Error in ConfigService, reverting to local files:- ", err);
 		  			siteApp.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
 		  		});
-		
+
+		        // Load Location Data from BAPI
+		        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
+		    	  .then(function (dataReturned) {
+		    		siteApp.locals.config.locationData = dataReturned;
+		    	}).fail(function (err) {
+				    console.warn("Startup: Error in loading locations from LocationService:- ", err);
+				});
+		        
+		        // Load Category Data from BAPI
+		        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
+		    	  .then(function (dataReturned) {
+		    	    siteApp.locals.config.categoryData = dataReturned;
+				}).fail(function (err) {
+					console.warn("Startup: Error in loading categories from CategoryService:- ", err);
+				});
 		        
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching

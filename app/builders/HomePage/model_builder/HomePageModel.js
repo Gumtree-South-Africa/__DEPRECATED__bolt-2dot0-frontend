@@ -23,10 +23,8 @@ var HomePageModel = function (req, res) {
 	var bpModel = new BasePageModel(req, res);
 	var commonPageData = bpModel.getModelBuilder();
 
-	var loc = new LocationModel(req.requestId, res.locals.config.locale, 2),
-		level1Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
+	var level1Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
 		level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
-		cat = (new CategoryModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
@@ -40,19 +38,6 @@ var HomePageModel = function (req, res) {
 	    		callback(null, dataC);
 			}).fail(function (err) {
 				commonDataDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-	
-	var locationFunction = function(callback) {
-		var locationDeferred = Q.defer();
-		Q(loc.getLocations())
-	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel locations");
-	    		locationDeferred.resolve(dataL);
-	    		callback(null, dataL);
-			}).fail(function (err) {
-				locationDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -77,19 +62,6 @@ var HomePageModel = function (req, res) {
 	    		callback(null, dataL);
 			}).fail(function (err) {
 				level2locationDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-
-	var categoryFunction = function(callback) {
-		var categoryDeferred = Q.defer();
-		Q(cat.processParallel())
-	    	.then(function (dataC) {
-	    		console.log("Inside homepagemodel categories");
-	    		categoryDeferred.resolve(dataC[0]);
-	    		callback(null, dataC[0]);
-			}).fail(function (err) {
-				categoryDeferred.reject(new Error(err));
 				callback(null, {});
 			});
 	};
@@ -142,7 +114,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction, seoFunction ];
+	var arrFunctions = [ commonDataFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction, seoFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
