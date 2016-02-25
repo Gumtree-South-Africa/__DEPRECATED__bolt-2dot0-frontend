@@ -121,7 +121,6 @@ BAPICall.prototype = {
 			});
 
 			reqGet.on("error", function(ex) {
-				console.log('err', ex);
 				scope.errorHandling(ex);
 			});
 

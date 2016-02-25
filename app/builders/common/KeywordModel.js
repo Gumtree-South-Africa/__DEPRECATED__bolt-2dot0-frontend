@@ -31,7 +31,6 @@ KeywordModel.prototype.getKeywords = function() {
 		var topKeywordDeferred = Q.defer();
 	    Q(keywordService.getTopKeywordsData(scope.requestId, scope.locale))
 	        .then(function (dataTopK) {
-	          console.log("Inside topKeyword");
 	          topKeywordDeferred.resolve(dataTopK);
 	          callback(null, dataTopK);
 	      }).fail(function (err) {
@@ -44,7 +43,6 @@ KeywordModel.prototype.getKeywords = function() {
 	    var trendingKeywordDeferred = Q.defer();
 	    Q(keywordService.getTrendingKeywordsData(scope.requestId, scope.locale))
 	        .then(function (dataTK) {
-	          console.log("Inside trendingKeyword");
 	          trendingKeywordDeferred.resolve(dataTK);
 	          callback(null, dataTK);
 	    }).fail(function (err) {

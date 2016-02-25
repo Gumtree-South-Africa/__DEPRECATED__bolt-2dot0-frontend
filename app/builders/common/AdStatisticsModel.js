@@ -34,7 +34,6 @@ AdStatisticsModel.prototype.getHomePageStatistics = function() {
 			
 		    if (typeof scope.locale !== "undefined") {
 		    	adstatisticsDeferred = Q.defer();
-				console.log("Calling AdService for Homepage - statistics");
 			    
 				 Q(hpAdService.getAdStatistics(scope.requestId, scope.locale))
 			    	.then(function (dataReturned) {

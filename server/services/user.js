@@ -17,7 +17,7 @@ var UserService = function() {
  * Gets User Info given a token from the cookie
  */
 UserService.prototype.getUserFromCookie = function(requestId, cookie, locale) {
-	console.log("Inside UserService");
+	// console.info("Inside UserService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');

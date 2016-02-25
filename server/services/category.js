@@ -17,7 +17,7 @@ var CategoryService = function() {
  * Gets a list of categories
  */
 CategoryService.prototype.getCategoriesData = function(requestId, locale, depth) {
-	console.log("Inside CategoryService");
+	// console.info("Inside CategoryService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');

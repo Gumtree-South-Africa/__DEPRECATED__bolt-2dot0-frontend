@@ -23,10 +23,8 @@ var HomePageModel = function (req, res) {
 	var bpModel = new BasePageModel(req, res);
 	var commonPageData = bpModel.getModelBuilder();
 
-	var loc = new LocationModel(req.requestId, res.locals.config.locale, 2),
-		level1Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
+	var level1Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
 		level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
-		cat = (new CategoryModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
@@ -36,7 +34,6 @@ var HomePageModel = function (req, res) {
 		var commonDataDeferred = Q.defer();
 		Q(commonPageData.processWaterfall())
 	    	.then(function (dataC) {
-	    		console.log("Inside commonData from homepageModel");
 	    		commonDataDeferred.resolve(dataC);
 	    		callback(null, dataC);
 			}).fail(function (err) {
@@ -45,24 +42,10 @@ var HomePageModel = function (req, res) {
 			});
 	};
 	
-	var locationFunction = function(callback) {
-		var locationDeferred = Q.defer();
-		Q(loc.getLocations())
-	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel locations");
-	    		locationDeferred.resolve(dataL);
-	    		callback(null, dataL);
-			}).fail(function (err) {
-				locationDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-	
 	var level1locationFunction = function(callback) {
 		var level1locationDeferred = Q.defer();
 		Q(level1Loc.getLocations())
 	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel level1location");
 	    		level1locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -75,7 +58,6 @@ var HomePageModel = function (req, res) {
 		var level2locationDeferred = Q.defer();
 		Q(level2Loc.getTopL2Locations())
 	    	.then(function (dataL) {
-	    		console.log("Inside homepagemodel level2location");
 	    		level2locationDeferred.resolve(dataL);
 	    		callback(null, dataL);
 			}).fail(function (err) {
@@ -84,24 +66,10 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var categoryFunction = function(callback) {
-		var categoryDeferred = Q.defer();
-		Q(cat.processParallel())
-	    	.then(function (dataC) {
-	    		console.log("Inside homepagemodel categories");
-	    		categoryDeferred.resolve(dataC[0]);
-	    		callback(null, dataC[0]);
-			}).fail(function (err) {
-				categoryDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-
 	var keywordsFunction = function(callback) {
 		var keywordsDeferred = Q.defer();
 		Q(keyword.processParallel())
 	    	.then(function (dataK) {
-	    		console.log("Inside keyword from homepageModel");
 	    		keywordsDeferred.resolve(dataK);
 	    		callback(null, dataK);
 			}).fail(function (err) {
@@ -114,7 +82,6 @@ var HomePageModel = function (req, res) {
 		var galleryDeferred = Q.defer();
 		Q(gallery.processParallel())
 	    	.then(function (dataG) {
-	    		console.log("Inside homepagemodel gallery");
 	    		galleryDeferred.resolve(dataG[0]);
 	    		callback(null, dataG[0]);
 			}).fail(function (err) {
@@ -127,7 +94,6 @@ var HomePageModel = function (req, res) {
 		var statisticsDeferred = Q.defer();
 		Q(adstatistics.processParallel())
 	    	.then(function (dataS) {
-	    		console.log("Inside homepagemodel statistics");
 	    		statisticsDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -140,7 +106,6 @@ var HomePageModel = function (req, res) {
 		var seoDeferred = Q.defer();
 		Q(seo.processParallel())
 	    	.then(function (dataS) {
-	    		console.log("Inside homepagemodel seo");
 	    		seoDeferred.resolve(dataS[0]);
 	    		callback(null, dataS[0]);
 			}).fail(function (err) {
@@ -149,13 +114,12 @@ var HomePageModel = function (req, res) {
 			});
 	};
 
-	var arrFunctions = [ commonDataFunction, locationFunction, categoryFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction, seoFunction ];
+	var arrFunctions = [ commonDataFunction, keywordsFunction, galleryFunction, statisticsFunction, level1locationFunction, level2locationFunction, seoFunction ];
 	var homepageModel = new ModelBuilder(arrFunctions);
 
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
-    		console.log("Inside homepagemodel Combined");
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));

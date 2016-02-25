@@ -83,7 +83,6 @@ HeaderModel.prototype.getHeaderData = function() {
 			}
 		    if (typeof scope.cookie !== "undefined") {
 		    	headerDeferred = Q.defer();
-				console.log("Calling Service to get HeaderData");
 			    
 				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {

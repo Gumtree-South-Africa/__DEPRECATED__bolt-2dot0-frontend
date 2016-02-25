@@ -11,7 +11,6 @@ var Encryptor = {
 		var hash = crypto.createHmac("sha512", secret)
 		                 .update(value)
 		                 .digest("base64");
-		console.log("$$$$$$$$", hash);
 		return hash;
 	},
 	
@@ -33,43 +32,34 @@ var Encryptor = {
 	    return [ keybuf, ivbuf ];
 	},
 	
-	encrypt: function(payload, password, salt, iterations, cb) {
+	encrypt: function(payload) {
+		var password = "867f6e6ba179";
+		var salt = new Buffer("d99bce325735e303","hex");
+		var iterations = 19;
+		
 	    var kiv = this.getKeyIV(password, salt, iterations);
 	    var cipher = crypto.createCipheriv("des", kiv[0],kiv[1]);
 	    var encrypted = [];
 	    encrypted.push(cipher.update(payload,"utf-8","hex"));
 	    encrypted.push(cipher.final("hex"));
 
-	    return cb(undefined,new Buffer(encrypted.join(""),"hex").toString("base64"));
+	    return new Buffer(encrypted.join(""),"hex").toString("base64");
 	},
 
-	decrypt: function(payload, password, salt, iterations, cb) {
+	decrypt: function(payload) {
+		var password = "867f6e6ba179";
+		var salt = new Buffer("d99bce325735e303","hex");
+		var iterations = 19;
+		
 	    var encryptedBuffer = new Buffer(payload,"base64");
 	    var kiv = this.getKeyIV(password,salt,iterations);
 	    var decipher = crypto.createDecipheriv("des", kiv[0],kiv[1]);
 	    var decrypted = [];
 	    decrypted.push(decipher.update(encryptedBuffer));
 	    decrypted.push(decipher.final());
-	    return cb(undefined, decrypted.join(""));
+	    return decrypted.join("");
 	}
 
-
-/*
-	encrypt: function(value) {
-		var secret = '867f6e6ba179';
-	    var salt = new Buffer('0','hex');
-		var iterations = 19;
-		
-	    var kiv = this.getKeyIV(secret, salt, iterations);
-	    var cipher = crypto.createCipheriv('des', kiv[0],kiv[1]);
-	    var encrypted = [];
-	   
-	    decrypted.push(decipher.update(encryptedBuffer));
-    	decrypted.push(decipher.final());
-    	return cb(undefined, decrypted.join(''));
-    	
-	}
-*/
 };
 
 module.exports = Encryptor;

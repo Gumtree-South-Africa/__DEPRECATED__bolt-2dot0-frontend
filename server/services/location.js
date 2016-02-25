@@ -17,7 +17,7 @@ var LocationService = function() {
  * Gets a list of locations
  */
 LocationService.prototype.getLocationsData = function(requestId, locale, depth) {
-	console.log("Inside LocationService");
+	// console.info("Inside LocationService");
 
 	// Prepare BAPI call
 	if (depth === 1) {
@@ -33,7 +33,7 @@ LocationService.prototype.getLocationsData = function(requestId, locale, depth) 
  * Gets a list of top L2 locations
  */
 LocationService.prototype.getTopL2LocationsData = function(requestId, locale) {
-	console.log("Inside LocationService");
+	// console.info("Inside LocationService");
 
 	// Prepare BAPI call
 	this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL2');

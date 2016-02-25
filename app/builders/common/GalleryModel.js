@@ -35,7 +35,6 @@ GalleryModel.prototype.getHomePageGallery = function() {
 			
 		    if (typeof scope.locale !== "undefined") {
 		    	galleryDeferred = Q.defer();
-				console.log("Calling AdService for Homepage - gallery");
 			    
 				 Q(hpAdService.getHomepageGallery(scope.requestId, scope.locale))
 			    	.then(function (dataReturned) {

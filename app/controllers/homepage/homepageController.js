@@ -24,6 +24,8 @@ module.exports = function (app) {
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
+	console.time('Instrument-Homepage-Controller');
+	
 	// Set pagetype in request
 	req.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 	
@@ -45,15 +47,17 @@ router.get('/', function (req, res, next) {
       modelData.header = result[0].header;
       modelData.footer = result[0].footer;
       modelData.dataLayer = result[0].dataLayer;
-      modelData.location = result[1];
-      modelData.category = result[2];
-      modelData.trendingKeywords = result[3][0].keywords;
-      modelData.topKeywords = result[3][1].keywords;
-      modelData.initialGalleryInfo = result[4];
-      modelData.totalLiveAdCount = result[5].totalLiveAds;
-      modelData.level1Location = result[6];
-      modelData.level2Location = result[7];
-      modelData.seo = result[8];
+      modelData.trendingKeywords = result[1][0].keywords;
+      modelData.topKeywords = result[1][1].keywords;
+      modelData.initialGalleryInfo = result[2];
+      modelData.totalLiveAdCount = result[3].totalLiveAds;
+      modelData.level1Location = result[4];
+      modelData.level2Location = result[5];
+      modelData.seo = result[6];
+      
+      // Cached Data from BAPI
+      modelData.location = res.locals.config.locationData;
+      modelData.category = res.locals.config.categoryData;
 
 	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;
@@ -76,13 +80,13 @@ router.get('/', function (req, res, next) {
 		  }
 	  });
 
-		//res.end();
-
       // Kafka Logging
       var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.locals.config.locale, log);
       
       // Graphite Metrics
+      
+      console.timeEnd('Instrument-Homepage-Controller');
     });
 });
 
