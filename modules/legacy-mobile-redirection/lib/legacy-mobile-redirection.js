@@ -5,6 +5,7 @@
 'use strict';
 
 var str = require('string'),
+    urlPattern = require("url-pattern"),
     ua;// userAgent
 
 var blackList = ["blackberry8520", "sgh-e250i", "series40", "series60",
@@ -14,42 +15,40 @@ var liteBlacklist = ["Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "S
 
 module.exports = function() {
     return function(req, res, next) {
-        if (isGumtreeZA(req) ) {
+        if (!isResourceReq(req) && isGumtreeZA(req) ) {
 
             if (isRedirectToLiteWebSite(req)) {
-                res.redirect(getLiteHomePageUrl());
-            } else if (shouldRedirectToMobileWebSite) {
+               res.redirect(getLiteHomePageUrl());
+            } else if (isRedirectToMobileWebSite(req)) {
                 res.redirect(getHomePageUrl());
             }
-
-            // if nothing works go to current homepage
-            res.redirect("/");
         }
+
         next();
     }
 };
 
 
 function isGumtreeZA(req) {
-    return str(req.originalUrl.toUpperCase()).contains(("gumtree.co.za").toUpperCase());
+    return str((req.hostname).toUpperCase()).contains(("gumtree.co.za").toUpperCase());
 }
-function isRedirectToLiteWebSite(res) {
-   return hasBlacklistedKeywords();
+function isRedirectToLiteWebSite(req) {
+   return hasLiteBlacklistedKeywords(req);
 }
 
-function shouldRedirectToMobileWebSite(res) {
-    return hasBlacklistedKeywords();
+function isRedirectToMobileWebSite(req) {
+    return hasBlacklistedKeywords(req);
 }
 
 var hasBlacklistedKeywords = function(req) {
 
     // ua = "BlackBerry9300/5.0.0.977 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/167";
-    return checkBlackbery(blackList);
+    return checkBlackbery(blackList, req);
 };
 
 var hasLiteBlacklistedKeywords = function(req) {
-
-    return checkBlackbery(liteBlacklist);
+   // console.log("checkBlackbery(liteBlacklist, req) " + checkBlackbery(liteBlacklist, req));
+    return checkBlackbery(liteBlacklist, req);
 };
 
 
@@ -63,7 +62,7 @@ function checkBlackbery(list, req) {
             doesExist = true;
         }
     });
-
+console.log("doesExist" + ua);
     return doesExist;
 }
 
@@ -82,3 +81,21 @@ function getPostAdPageUrl(){
 function getLoginPageUrl(){
     return "https://m.gumtree.co.za/login";
 }
+
+// check if it is app resource request
+function isResourceReq(req) {
+
+    // set url pattern object
+    var urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|js|css|txt)$/i, ['ext']);
+    // match the url pattern
+    var matchedImageExt = urlPttrn.match(req.originalUrl);
+
+    // console.log("req.originalUrl ====== " + req.originalUrl);
+    //if (matchedImageExt)
+    //console.log("matchedImageExt ====== " + matchedImageExt.ext);
+
+    if (matchedImageExt)
+        return true;
+    return false;
+}
+

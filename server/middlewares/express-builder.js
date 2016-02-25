@@ -16,6 +16,8 @@ var requestId = require('./request-id');
 var i18n = require(process.cwd() + '/modules/i18n');
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
+// legacy device redirection
+var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
 
 
 var config = {
@@ -28,7 +30,7 @@ function BuildApp(locale) {
 
     // uncomment after placing your favicon in /public
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-    
+
     app.use(logger('dev'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -38,6 +40,7 @@ function BuildApp(locale) {
     app.use('/', express.static(config.root + '/public'));
     app.use("/views", express.static(config.root + '/app/views'));
 
+    app.use(legacyDeviceRedirection());
     app.use(expressUncapitalize());
 
     // Use custom middlewares

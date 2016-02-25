@@ -16,8 +16,7 @@ var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
 var error = require('./modules/error');
 
-// legacy device redirection
-var legacyDeviceRedirection = require('./modules/legacy-mobile-redirection');
+
 
 // app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
@@ -95,7 +94,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
-			    siteApp.use(legacyDeviceRedirection());
+
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
@@ -110,6 +109,8 @@ Object.keys(config.sites).forEach(function(siteKey) {
 controllers.forEach(function (controller) {
     require(controller)(app);
 });
+
+
 
 // Warning: do not reorder this middleware. 
 // Order of this should always appear after controller middlewares are setup.
