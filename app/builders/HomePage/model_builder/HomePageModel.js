@@ -80,7 +80,12 @@ function getDataFunctions(req, res) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});
 									});
-							}
+							},
+		"NA"			:	function(callback) {
+								var naDeferred = Q.defer();
+								naDeferred.resolve({});
+								callback(null, {});
+							}							
 	};
 }
 

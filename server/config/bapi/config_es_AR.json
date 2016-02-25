@@ -86,10 +86,10 @@
 	"bapi" : {
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "gallery", "seo"]
+				"models" : ["NA", "keyword", "gallery", "NA", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "seo"]
+				"models" : ["NA", "keyword", "NA", "NA", "seo"]
 			}
 		}
 	}
