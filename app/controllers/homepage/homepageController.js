@@ -62,8 +62,7 @@ router.get('/', function (req, res, next) {
 	  modelData.device = req.app.locals.deviceInfo;
       
 	  // Special Data needed for HomePage in header, footer, content
-      HP.extendHeaderData(modelData);
-      HP.buildHeaderPageMessages(modelData, req);
+      HP.extendHeaderData(req, modelData);
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
@@ -95,7 +94,7 @@ var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
-	extendHeaderData : function(modelData) {
+	extendHeaderData : function(req, modelData) {
 		// SEO
 	    modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
 	    modelData.header.pageTitle = modelData.seo.pageTitle;
@@ -128,12 +127,15 @@ var HP = {
 	    // Marketo 
 	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
 	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
+	    
+	    // Header Page Messages
+	    HP.buildHeaderPageMessages(req, modelData);
 	},
 	
 	/**
 	 * Build Page-Messages data for HomePage
 	 */
-	buildHeaderPageMessages : function(modelData, req) {
+	buildHeaderPageMessages : function(req, modelData) {
 		modelData.header.pageMessages = {};
 		switch(req.query.status){
 			case "userregistered" :
