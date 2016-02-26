@@ -93,7 +93,7 @@ router.get('/', function (req, res, next) {
       HP.extendFooterData(modelData);
       HP.buildContentData(modelData, bapiConfigData);
       
-      console.dir(modelData);
+      //console.dir(modelData);
       
       // Render
       res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
