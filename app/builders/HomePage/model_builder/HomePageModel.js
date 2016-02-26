@@ -18,6 +18,15 @@ var SeoModel = require("../../common/SeoModel");
 var BasePageModel = require("../../common/ExtendModel");
 
 
+/**
+ * @method getDataFunctions
+ * @description Retrieves the list of functions to call to get the model for the
+ *     Homepage.
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @private
+ * @return {JSON}
+ */
 function getDataFunctions(req, res) {
 	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1), // no for M MX, AR
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(), // no for M/D US
@@ -89,22 +98,36 @@ function getDataFunctions(req, res) {
 	};
 }
 
+/**
+ * @method convertListToObject
+ * @description Converts an array with data elements and an array of functions to a JSON
+ *    structure in which the keys are the names of the bapi calls and the values the
+ *    data mapped to that call
+ * @param {Array} dataList Array with the data subsets
+ * @param {Array} arrFunctions Array with the list of bapi calls
+ * @private
+ * @return {JSON}
+ */
 var convertListToObject = function(dataList, arrFunctions) {
 	var numElems = dataList.length || 0,
 		idx = 0,
 		jsonObj = {},
 		fnLabel = "";
 	for (idx=0; idx < numElems; idx++) {
-		fnLabel = arrFunctions[idx].fnLabel || "common";
-		jsonObj[fnLabel] = dataList[idx];
+		fnLabel = arrFunctions[idx].fnLabel;
+		if (fnLabel) {
+			jsonObj[fnLabel] = dataList[idx];
+		}
 	}
 
 	return jsonObj;
 };
 
-
 /**
  * @description A class that Handles the HomePage Model
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @class HomePageModel
  * @constructor
  */
 var HomePageModel = function (req, res) {
@@ -132,6 +155,7 @@ var HomePageModel = function (req, res) {
 			});
 	};
 	
+	commonDataFunction.fnLabel = "common";
 	var arrFunctions = [ commonDataFunction ];
 	var functionMap = getDataFunctions(req, res);
 	/*
@@ -151,7 +175,9 @@ var HomePageModel = function (req, res) {
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
-    		// console.log(convertListToObject(data, arrFunctions));
+    		// Converts the data from an array format to a JSON format
+    		// for easy access from the client/controller
+    		data = convertListToObject(data, arrFunctions);
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));

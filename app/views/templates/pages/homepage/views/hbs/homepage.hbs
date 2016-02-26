@@ -75,37 +75,9 @@
 			<input type="hidden" name="NcatId" value="{{this.content.ad.ad.categoryId}}" />
 			<input type="hidden" name="NlocId" value="{{this.content.ad.ad.locationId}}" />
 		{{/block}}
-
-		<!-- Move this to footer partial -->
-		<!-- Remove this when using require.js -->
-
-		<!--
-		<script src="/js/libraries/jQuery/jquery-2.0.0.js"></script>
-		<script src="/js/libraries/handlebars/handlebars.js"></script>
-		-->
-
-		<!--
-		<script src="/views/templates/pages/homepage/js/homepage.js"></script>
-		{{#if site}}{{#if locale}}
-		<script src="/js/precompiled/{{site}}/{{locale}}/homepage.html.js"></script>
-		<script>
-		BOLT.Homepage.getTemplateData();
-		</script>
-		{{/if}}{{/if}}
-		-->
 	{{/partial}}
 
 	{{#partial "pageTailScriptsBeforeIncludes"}}
-		{{!-- @todo: REMOVE THIS ONCE JS LOADING OF FILES IS DONE --}}
-		<!--
-		<script src="/js/libraries/handlebars/handlebars.js"></script>
-		-->
-		{{!-- @todo: end --}}
-
-	    {{#block "carouselJsFiles"}}
-	        
-	    {{/block}}
-
 	    <script src="/views/components/header/js/header.js"></script>
 	{{/partial}}  
 

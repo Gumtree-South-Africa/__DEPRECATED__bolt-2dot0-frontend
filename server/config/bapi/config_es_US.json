@@ -89,10 +89,10 @@
 	"bapi" : {
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["level2Loc", "NA", "NA", "NA", "seo"]
+				"models" : ["level2Loc", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["level2Loc", "NA", "NA", "NA", "seo"]
+				"models" : ["level2Loc", "seo"]
 			}
 		}
 	}
