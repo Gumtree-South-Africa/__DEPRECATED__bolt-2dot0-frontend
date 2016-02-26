@@ -1,9 +1,12 @@
 /**
  * Created by moromero on 1/6/14.
+ * Modified by: uroblesmellin@3ebay.com on 2/26/2016.
  */
 
+// @todo: Revisit this code using requirejs.
 // constructor
-define("Cookie", function(jsonObj) {
+// define("js/common/bolt/Cookie", function(jsonObj) {
+var Cookie = function(jsonObj) {
 
     var
     // set the prefix of the cookie
@@ -94,10 +97,6 @@ define("Cookie", function(jsonObj) {
         //return (posRes || '').match('{.*}') ? jsonObj.parse(posRes) : posRes;
     }
 
-
-
-
-
     function deleteCookie(name, expires){
         var cname = getName(expires),
             newCoo = {},
@@ -109,18 +108,12 @@ define("Cookie", function(jsonObj) {
         cookieFn(cname, jsonObj.stringify(newCoo), { expires:getExpiration(expires), path:"/" });
     }
 
-
-
-
     function getCookie(name, expires, defVal){
         var coo = cookieFn(getName(expires));
         if(coo)
             return coo[name] || defVal || '';
         return defVal || '';
     }
-
-
-
 
     function setCookie(name, value, expires){
         var cname = getName(expires);
@@ -130,10 +123,6 @@ define("Cookie", function(jsonObj) {
         return value;
     }
 
-
-
-
-
     function setHardCookie(name, value, expires){
         if(typeof expires !== "undefined")
             cookieFn(name, value, { expires:getExpiration(expires) });
@@ -142,44 +131,35 @@ define("Cookie", function(jsonObj) {
         return value;
     }
 
-
-
     function getHardCookie(name, defValue){
         return cookieFn(name) || defValue;
     }
-
 
     function deleteHardCookie(name){
         cookieFn(name, "", { expires:0.1 });
     }
 
-
-
-
-
-    function BoltCookie(){
+    //function BoltCookie(){
         this.set = this.setSoftCookie = setCookie;
         this.get = this.setSoftCookie = getCookie;
         this["delete"] = this.deleteSoftCookie = deleteCookie;
         this.setHardCookie = setHardCookie;
         this.getHardCookie = getHardCookie;
         this.deleteHardCookie = deleteHardCookie;
-    }
+    //}
 
+    //return BoltCookie;
+//});
+};
 
-
-    return BoltCookie;
-
-
-
-});
-
-
+/*
 // default instance
 define("cookie", ["Cookie"], function(Cookie) {
-    alert(1);
-
     Bolt.Cookie = new Cookie;
-    return Bolt.Cookie;
 
+    return Bolt.Cookie;
 });
+*/
+
+var Bolt = Bolt || {};
+Bolt.Cookie = new Cookie(JSON);
