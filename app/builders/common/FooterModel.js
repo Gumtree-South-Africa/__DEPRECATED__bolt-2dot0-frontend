@@ -76,6 +76,8 @@ FooterModel.prototype.getFooterData = function() {
 FooterModel.prototype.buildJs = function(data) {
 	var scope = this;
 	
+	var baseComponentDir = "/views/components/";
+
 	data.javascripts = [];
 	if (data.min) {
 		data.javascripts.push(data.baseJSUrl + "Main_" + scope.locale + ".min.js");
@@ -98,8 +100,12 @@ FooterModel.prototype.buildJs = function(data) {
 		data.javascripts.push(data.baseJSUrl + "common/banners/GoogleBanner.js");
 		data.javascripts.push(data.baseJSUrl + "common/banners/BannerCookie.js");
 		data.javascripts.push(data.baseJSUrl + "common/tracking/Analytics.js");
-		data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
+	//	data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/searchbar.js");
+
+		// @todo: Need to determine a way to detect which components will be used for a 
+		// given page.
+		data.javascripts.push(baseComponentDir + "header/js/header.js");
 	}
 };
 
