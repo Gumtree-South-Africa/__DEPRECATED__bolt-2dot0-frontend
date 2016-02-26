@@ -66,17 +66,17 @@ router.get('/', function (req, res, next) {
       modelData.footer = result["common"].footer || {};
       modelData.dataLayer = result["common"].dataLayer || {};
 
-      modelData.level2Location = result["level2Loc"] || {};
+	  modelData.level2Location = result["level2Loc"] || {};
 
-      if (result["keyword"]) {
-      	modelData.trendingKeywords = result["keyword"][0].keywords || {};
-      	modelData.topKeywords = result["keyword"][1].keywords || {};
-  	  }
+	  if (result["keyword"]) {
+	  	modelData.trendingKeywords = result["keyword"][0].keywords || {};
+		modelData.topKeywords = result["keyword"][1].keywords || {};
+	  }
 
       modelData.initialGalleryInfo = result["gallery"] || {};
 
 	  if (result["adstatistics"]) {
-      	modelData.totalLiveAdCount = result["adstatistics"].totalLiveAds || {}; 
+		modelData.totalLiveAdCount = result["adstatistics"].totalLiveAds || {}; 
 	  }
       modelData.seo = result["seo"] || {};
 
