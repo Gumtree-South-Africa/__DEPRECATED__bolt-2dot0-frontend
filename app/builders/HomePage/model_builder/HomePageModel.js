@@ -19,15 +19,14 @@ var BasePageModel = require("../../common/ExtendModel");
 
 
 /**
- * @method getDataFunctions
- * @description Retrieves the list of functions to call to get the model for the
- *     Homepage.
+ * @method getHomepageDataFunctions
+ * @description Retrieves the list of functions to call to get the model for the Homepage.
  * @param {Object} req Request object
  * @param {Object} res Response object
  * @private
  * @return {JSON}
  */
-function getDataFunctions(req, res) {
+var getHomepageDataFunctions = function (req, res) {
 	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1), // no for M MX, AR
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(), // no for M/D US
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(), // no for M MX, AR
@@ -96,6 +95,60 @@ function getDataFunctions(req, res) {
 								callback(null, {});
 							}							
 	};
+};
+
+
+
+/*
+ ********************* TODO: move to Abstract Page Model BEGIN *********************
+ */ 
+
+function getPageModelConfig(res, pagetype) {
+	var bapiConfigData = res.locals.config.bapiConfigData;
+	
+	var pageModelConfig = bapiConfigData.bapi[pagetype];
+	if (deviceDetection.isMobile()) {
+		pageModelConfig = pageModelConfig.mobile.models;
+	} else {
+		pageModelConfig = pageModelConfig.desktop.models;
+	}
+	
+	return pageModelConfig;
+}
+
+function getCommonDataFunction(req, res) {
+	var bpModel = new BasePageModel(req, res);
+	
+	var commonPageData = bpModel.getModelBuilder();
+
+	var commonDataFunction = function(callback) {
+		var commonDataDeferred = Q.defer();
+		Q(commonPageData.processWaterfall())
+	    	.then(function (dataC) {
+	    		commonDataDeferred.resolve(dataC);
+	    		callback(null, dataC);
+			}).fail(function (err) {
+				commonDataDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+	};
+	commonDataFunction.fnLabel = "common";
+	
+	return commonDataFunction;
+}
+
+function getArrFunctions(req, res, functionMap, pageModelConfig) {
+	var arrFunctions = [ getCommonDataFunction(req, res) ];
+	
+	var index, fnLabel, fn;
+	for (index=0; index<pageModelConfig.length; index++) {
+		fnLabel = pageModelConfig[index];
+		fn = functionMap[fnLabel];
+		fn.fnLabel = fnLabel;
+		arrFunctions.push(fn);
+	}
+	
+	return arrFunctions;
 }
 
 /**
@@ -108,7 +161,7 @@ function getDataFunctions(req, res) {
  * @private
  * @return {JSON}
  */
-var convertListToObject = function(dataList, arrFunctions) {
+function convertListToObject (dataList, arrFunctions) {
 	var numElems = dataList.length || 0,
 		idx = 0,
 		jsonObj = {},
@@ -121,7 +174,14 @@ var convertListToObject = function(dataList, arrFunctions) {
 	}
 
 	return jsonObj;
-};
+}
+
+/*
+ ********************* TODO: move to Abstract Page Model END  *********************
+ */ 
+
+
+
 
 /**
  * @description A class that Handles the HomePage Model
@@ -131,45 +191,12 @@ var convertListToObject = function(dataList, arrFunctions) {
  * @constructor
  */
 var HomePageModel = function (req, res) {
-	// Retrieve Model Config Data from BAPI : TODO move to Abstract Page Model
+	var functionMap = getHomepageDataFunctions(req, res);
+
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var bapiConfigData = res.locals.config.bapiConfigData;
-	var pageModelConfig = bapiConfigData.bapi[pagetype];
-	if (deviceDetection.isMobile()) {
-		pageModelConfig = pageModelConfig.mobile.models;
-	} else {
-		pageModelConfig = pageModelConfig.desktop.models;
-	}
+	var pageModelConfig = getPageModelConfig(res, pagetype);
 	
-	var bpModel = new BasePageModel(req, res);
-	var commonPageData = bpModel.getModelBuilder();
-	var commonDataFunction = function(callback) {
-		var commonDataDeferred = Q.defer();
-		Q(commonPageData.processWaterfall())
-	    	.then(function (dataC) {
-	    		commonDataDeferred.resolve(dataC);
-	    		callback(null, dataC);
-			}).fail(function (err) {
-				commonDataDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-	
-	commonDataFunction.fnLabel = "common";
-	var arrFunctions = [ commonDataFunction ];
-	var functionMap = getDataFunctions(req, res);
-	/*
-	for (var index=0; index<pageModelConfig.length; index++) {
-		arrFunctions.push(functionMap[pageModelConfig[index]]);
-	}
-	*/
-	var index, fnLabel, fn;
-	for (index=0; index<pageModelConfig.length; index++) {
-		fnLabel = pageModelConfig[index];
-		fn = functionMap[fnLabel];
-		fn.fnLabel = fnLabel;
-		arrFunctions.push(fn);
-	}
+	var arrFunctions = getArrFunctions(req, res, functionMap, pageModelConfig);
 	
 	var homepageModel = new ModelBuilder(arrFunctions);	
 	var homepageDeferred = Q.defer();

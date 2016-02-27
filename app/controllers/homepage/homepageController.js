@@ -43,43 +43,20 @@ router.get('/', function (req, res, next) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 	var model = HomepageModel(req, res);
     model.then(function (result) {
-      // Data from BAPI
-      /*
-      modelData.header = result[0].header;
-      modelData.footer = result[0].footer;
-      modelData.dataLayer = result[0].dataLayer;
-
-      modelData.level2Location = result[1];
-
-      modelData.trendingKeywords = result[2][0].keywords;
-      modelData.topKeywords = result[2][1].keywords;
-
-      modelData.initialGalleryInfo = result[3];
-
-      modelData.totalLiveAdCount = result[4].totalLiveAds; 
-
-      modelData.seo = result[5];
-      */
-
-
+      // Dynamic Data from BAPI
       modelData.header = result["common"].header || {};
       modelData.footer = result["common"].footer || {};
       modelData.dataLayer = result["common"].dataLayer || {};
-
 	  modelData.level2Location = result["level2Loc"] || {};
-
 	  if (result["keyword"]) {
 	  	modelData.trendingKeywords = result["keyword"][0].keywords || {};
 		modelData.topKeywords = result["keyword"][1].keywords || {};
 	  }
-
       modelData.initialGalleryInfo = result["gallery"] || {};
-
 	  if (result["adstatistics"]) {
 		modelData.totalLiveAdCount = result["adstatistics"].totalLiveAds || {}; 
 	  }
       modelData.seo = result["seo"] || {};
-
 
       // Cached Data from BAPI
       modelData.location = res.locals.config.locationData;
