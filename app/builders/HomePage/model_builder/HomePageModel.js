@@ -1,9 +1,7 @@
 "use strict";
 
-var async = require("async");
-var http = require("http");
+
 var Q = require("q");
-var _ = require("underscore");
 
 var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
 var deviceDetection = require(process.cwd() + "/modules/device-detection");
@@ -15,7 +13,7 @@ var KeywordModel = require("../../common/KeywordModel");
 var GalleryModel = require("../../common/GalleryModel");
 var AdStatisticsModel = require("../../common/AdStatisticsModel");
 var SeoModel = require("../../common/SeoModel");
-var BasePageModel = require("../../common/ExtendModel");
+var AbstractPageModel = require("../../common/AbstractPageModel");
 
 
 /**
@@ -88,99 +86,9 @@ var getHomepageDataFunctions = function (req, res) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});
 									});
-							},
-		"NA"			:	function(callback) {
-								var naDeferred = Q.defer();
-								naDeferred.resolve({});
-								callback(null, {});
-							}							
+							}						
 	};
 };
-
-
-
-/*
- ********************* TODO: move to Abstract Page Model BEGIN *********************
- */ 
-
-function getPageModelConfig(res, pagetype) {
-	var bapiConfigData = res.locals.config.bapiConfigData;
-	
-	var pageModelConfig = bapiConfigData.bapi[pagetype];
-	if (deviceDetection.isMobile()) {
-		pageModelConfig = pageModelConfig.mobile.models;
-	} else {
-		pageModelConfig = pageModelConfig.desktop.models;
-	}
-	
-	return pageModelConfig;
-}
-
-function getCommonDataFunction(req, res) {
-	var bpModel = new BasePageModel(req, res);
-	
-	var commonPageData = bpModel.getModelBuilder();
-
-	var commonDataFunction = function(callback) {
-		var commonDataDeferred = Q.defer();
-		Q(commonPageData.processWaterfall())
-	    	.then(function (dataC) {
-	    		commonDataDeferred.resolve(dataC);
-	    		callback(null, dataC);
-			}).fail(function (err) {
-				commonDataDeferred.reject(new Error(err));
-				callback(null, {});
-			});
-	};
-	commonDataFunction.fnLabel = "common";
-	
-	return commonDataFunction;
-}
-
-function getArrFunctions(req, res, functionMap, pageModelConfig) {
-	var arrFunctions = [ getCommonDataFunction(req, res) ];
-	
-	var index, fnLabel, fn;
-	for (index=0; index<pageModelConfig.length; index++) {
-		fnLabel = pageModelConfig[index];
-		fn = functionMap[fnLabel];
-		fn.fnLabel = fnLabel;
-		arrFunctions.push(fn);
-	}
-	
-	return arrFunctions;
-}
-
-/**
- * @method convertListToObject
- * @description Converts an array with data elements and an array of functions to a JSON
- *    structure in which the keys are the names of the bapi calls and the values the
- *    data mapped to that call
- * @param {Array} dataList Array with the data subsets
- * @param {Array} arrFunctions Array with the list of bapi calls
- * @private
- * @return {JSON}
- */
-function convertListToObject (dataList, arrFunctions) {
-	var numElems = dataList.length || 0,
-		idx = 0,
-		jsonObj = {},
-		fnLabel = "";
-	for (idx=0; idx < numElems; idx++) {
-		fnLabel = arrFunctions[idx].fnLabel;
-		if (fnLabel) {
-			jsonObj[fnLabel] = dataList[idx];
-		}
-	}
-
-	return jsonObj;
-}
-
-/*
- ********************* TODO: move to Abstract Page Model END  *********************
- */ 
-
-
 
 
 /**
@@ -193,10 +101,11 @@ function convertListToObject (dataList, arrFunctions) {
 var HomePageModel = function (req, res) {
 	var functionMap = getHomepageDataFunctions(req, res);
 
+	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var pageModelConfig = getPageModelConfig(res, pagetype);
+	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 	
-	var arrFunctions = getArrFunctions(req, res, functionMap, pageModelConfig);
+	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 	
 	var homepageModel = new ModelBuilder(arrFunctions);	
 	var homepageDeferred = Q.defer();
@@ -204,7 +113,7 @@ var HomePageModel = function (req, res) {
     	.then(function (data) {
     		// Converts the data from an array format to a JSON format
     		// for easy access from the client/controller
-    		data = convertListToObject(data, arrFunctions);
+    		data = abstractPageModel.convertListToObject(data, arrFunctions);
     		homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
