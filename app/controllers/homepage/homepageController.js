@@ -107,7 +107,7 @@ var HP = {
 	    modelData.header.canonical = modelData.header.homePageUrl;
 	    modelData.header.pageUrl = modelData.header.homePageUrl;
 	    if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + "home";
+	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 	    }
 
 	    // CSS
@@ -125,12 +125,6 @@ var HP = {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
-	    
-	    // Location Id Cookie
-	    
-	    // Marketo 
-	    modelData.header.marketo.brandCode = ""; // TODO check with FE about usage of this variable in hbs
-	    // console.log('$$$$$$$$$$$$$$$$$$$$$$$$$', modelData.header.marketo);
 	    
 	    // Header Page Messages
 	    HP.buildHeaderPageMessages(req, modelData);
@@ -166,6 +160,36 @@ var HP = {
 				modelData.header.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
 				break;
 		}
+		HP.buildHeaderMarketoData(modelData);
+	},
+
+	buildHeaderMarketoData : function (modelData){
+		if (typeof modelData.header.id !== "undefined") {
+			modelData.header.marketo.isAssociateLead = true;
+			if (typeof modelData.header.userEmail !== "undefined") {
+				modelData.header.marketo.email = modelData.header.userEmail;
+			}
+			modelData.header.marketo.brandCode = "";
+			if (typeof modelData.header.firstName !== "undefined") {
+				modelData.header.marketo.firstName = modelData.header.firstName;
+			}
+			if (typeof modelData.header.lastName !== "undefined") {
+				modelData.header.marketo.lastName = modelData.header.lastName;
+			}
+			if (typeof modelData.header.username !== "undefined") {
+				modelData.header.marketo.userName = modelData.header.username;
+			}
+			if (typeof modelData.header.registered !== "undefined") {
+				modelData.header.marketo.isRegistered = modelData.header.registered;
+				if (modelData.header.registered == true && typeof modelData.header.registrationCountry !== "undefined") {
+					modelData.header.marketo.registrationCountry = modelData.header.registrationCountry;
+				}
+			}
+			if (typeof modelData.header.creationDate !== "undefined") {
+				modelData.header.marketo.creationDate = modelData.header.creationDate;
+			}
+
+		}
 	},
 
 	/**
@@ -193,9 +217,9 @@ var HP = {
 		      }
 	    } else {
 	  	  if (modelData.header.enableLighterVersionForMobile) {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '_light.min.js');
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 	  	  } else {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '.min.js');
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
 	  	  }
 	    }
 	},

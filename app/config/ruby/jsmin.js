@@ -40,7 +40,7 @@ module.exports =
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/widgets/SocialMedia.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js"
         ],
         "bundleName": "Main.min.js"
@@ -62,7 +62,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/overlay.js",
             rootDir + "/public/js/common/bolt/i18n.js",
             rootDir + "/public/js/common/bolt/Search.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js"
@@ -86,7 +86,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/overlay.js",
             rootDir + "/public/js/common/bolt/i18n.js",
             rootDir + "/public/js/common/bolt/Search.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js"
@@ -111,7 +111,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js"
         ],
         "bundleName": "Main_es_US.min.js"
@@ -135,7 +135,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
         ],
         "bundleName": "Main_en_ZA.min.js"
@@ -159,7 +159,7 @@ module.exports =
             rootDir + "/public/js/common/banners/BannerCookie.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
         ],
         "bundleName": "Main_en_IE.min.js"
@@ -183,7 +183,7 @@ module.exports =
             rootDir + "/public/js/common/banners/BannerCookie.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
         ],
         "bundleName": "Main_pl_PL.min.js"
@@ -208,7 +208,7 @@ module.exports =
             rootDir + "/public/js/common/banners/BannerCookie.js",
             rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
-            rootDir + "/public/js/common/banners/GoogleBanner.js",
+            rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
         ],
         "bundleName": "Main_en_SG.min.js"

@@ -33,8 +33,9 @@
 		},
 		"baseCSSUrl"	: "/css/",
 		"baseJSUrl"		: "/js/",
+		"baseJSMinUrl"	: "/jsmin/",
 		"baseImageUrl"	: "/images/",
 		"mainJSUrl"		: "/js/main.js",
-		"min"			: false
+		"min"			: true
 	}
 }

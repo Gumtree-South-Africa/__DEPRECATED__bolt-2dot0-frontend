@@ -139,3 +139,11 @@
 	{{#partial "metaGoogleSearchBox"}} 
 	        <meta name="google" content="nositelinkssearchbox"/>
 	{{/partial}}
+
+	{{!-- SmartBanner and Interstitial Banner overrides for Homepage --}}
+	{{#partial "smartBannerContainer"}}
+        {{> (dynamic "smartBanner") }}
+        {{#block "deviceSmartBanner"}}{{/block}}
+    {{/partial}}
+    {{#partial "smartBannerInterstitialContainer"}}{{/partial}}
+
