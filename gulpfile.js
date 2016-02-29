@@ -37,9 +37,11 @@ var gulp = require('gulp'),
   tar = require('gulp-tar'),
   gzip = require('gulp-gzip'),
   asynch = require('async'),
+  bump = require('gulp-bump'),
   nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
+var cwd = process.cwd();
 
 // ////////////////////////////////////////////////
 // Get Tasks
@@ -76,13 +78,13 @@ gulp.task('debug', function() {
         }));
 });
 */
-var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
+var appVersion = require(cwd + "/server/config/production.json").static.server.version;
 
 gulp.task('pak:dist', function(){
   gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
    .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
    .on('end', function(){
-     gulp.src(process.cwd() + "/target/" + appVersion + '/tmp/**/*/')
+     gulp.src(cwd + "/target/" + appVersion + '/tmp/**/*/')
       .pipe(tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
       .pipe(gzip())
       .pipe(gulp.dest('./target/' + appVersion + '/dist'))
@@ -92,10 +94,10 @@ gulp.task('pak:dist', function(){
           console.log('Congratulations!!! DIST PACKAGING DONE SUCCESSFULLY');
         })
    })
-})
+});
 
 gulp.task('bundlejs', getTask('bundlejs'));
-
+gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
