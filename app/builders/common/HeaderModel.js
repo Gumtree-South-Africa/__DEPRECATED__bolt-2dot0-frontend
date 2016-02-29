@@ -110,10 +110,10 @@ HeaderModel.prototype.getHeaderData = function() {
 HeaderModel.prototype.buildUrl = function(data) {
 	var scope = this;
 
-	data.touchIconIphoneUrl = data.baseImageUrl + "touch-iphone.png";
-	data.touchIconIpadUrl = data.baseImageUrl + "touch-ipad.png";
-	data.touchIconIphoneRetinaUrl = data.baseImageUrl + "touch-iphone-retina.png";
-	data.touchIconIpadRetinaUrl = data.baseImageUrl + "touch-ipad-retina.png";
+	data.touchIconIphoneUrl = data.baseImageUrl + scope.locale + "/touch-iphone.png";
+	data.touchIconIpadUrl = data.baseImageUrl + scope.locale + "/touch-ipad.png";
+	data.touchIconIphoneRetinaUrl = data.baseImageUrl + scope.locale + "/touch-iphone-retina.png";
+	data.touchIconIpadRetinaUrl = data.baseImageUrl + scope.locale + "/touch-ipad-retina.png";
 	data.shortcutIconUrl = data.baseImageUrl + scope.locale + "/shortcut.png";
 	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + "/{catId}/{locId}/{value}";
 	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + "/{lat}/{lng}";
