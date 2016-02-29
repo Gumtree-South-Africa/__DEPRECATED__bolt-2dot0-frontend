@@ -95,9 +95,8 @@ gulp.task('pak:dist', function(){
    })
 })
 
-gulp.task('bundlejs', getTask('bundlejs'));
 
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('icons', getTask('icons'));
@@ -112,9 +111,21 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
+
+
+// DEFAULT is used by Developers
+gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+
+// PRE-COMMIT
+gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+
+// BUILD
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
+
+// TEST
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
+
+// PACKAGE
 gulp.task('pak', ['pak:dist'], getTask('pak'));
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'bundlejs', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
