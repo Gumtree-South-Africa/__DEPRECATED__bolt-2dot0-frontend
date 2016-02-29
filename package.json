@@ -72,6 +72,7 @@
     "requirejs": "^2.1.20",
     "serve-favicon": "~2.3.0",
     "string": "^3.3.1",
+    "through2": "^2.0.1",
     "underscore": "^1.8.3",
     "url-parse": "^1.0.5",
     "url-pattern": "^1.0.1",
@@ -81,6 +82,7 @@
   "devDependencies": {
     "event-stream": "^3.3.2",
     "gulp-clean": "^0.3.1",
+    "gulp-cssmin": "^0.1.7",
     "gulp-jasmine-node": "^1.0.3",
     "gulp-node-inspector": "^0.1.0",
     "jasmine-node": "^1.14.5",

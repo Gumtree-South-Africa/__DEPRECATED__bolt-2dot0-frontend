@@ -1,20 +1,16 @@
-{
-  "desktop" : {
+[
+  {
+    "breakpoint": "desktop",
     "lineNumbers": true,
-    "cssPath": "public/css" ,
+    "cssPath": "public/css/all" ,
     "sassPath": "./app/styles",
-    "require": ["susy"]
+    "output_style": "compressed"
   },
-  "tablet" : {
-    "lineNumbers": true,
-    "cssPath": "public/css/tablet" ,
-    "sassPath": "./app/styles",
-    "require": ["susy"]
-  },
-  "mobile" : {
+  {
+    "breakpoint": "mobile",
     "lineNumbers": true,
     "cssPath": "public/css/mobile" ,
     "sassPath": "./app/styles",
-    "require": ["susy"]
+    "output_style": "compressed"
   }
-}
+]

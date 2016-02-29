@@ -46,6 +46,7 @@ build
 app/views/components/__default
 app/locales/json
 public/css
+public/cssmin
 public/maps
 public/jsmin
 public/js/precompiled
