@@ -17,7 +17,6 @@ var checksite = require('./server/middlewares/check-site');
 var error = require('./modules/error');
 
 
-
 // app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');

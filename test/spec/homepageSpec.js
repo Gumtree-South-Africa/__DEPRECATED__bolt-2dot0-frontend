@@ -3,7 +3,7 @@
  */
 var request = require("request");
 
-var base_url = "http://gumtree.co.za.localhost:8000/"
+var base_url = "http://www.gumtree.co.za.localhost:8000/"
 
 describe("Server to hit HomePage", function() {
   describe("GET /", function() {
