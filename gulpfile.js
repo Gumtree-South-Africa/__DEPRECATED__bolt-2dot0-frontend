@@ -114,5 +114,5 @@ gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('pak', ['pak:dist'], getTask('pak'));
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'bundlejs', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
