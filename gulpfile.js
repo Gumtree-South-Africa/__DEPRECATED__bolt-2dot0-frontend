@@ -38,6 +38,7 @@ var gulp = require('gulp'),
   tar = require('gulp-tar'),
   gzip = require('gulp-gzip'),
   asynch = require('async'),
+  bump = require('gulp-bump'),
   nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
@@ -57,33 +58,14 @@ function errorlog(err){
   console.error(err.message);
   this.emit('end');
 }
-
-
-/*
-gulp.task('debug', function() {
-
-    gulp.src([])
-        .pipe(nodeInspector({
-            debugPort: 5858,
-            webHost: '0.0.0.0',
-            webPort: 8000,
-            saveLiveEdit: false,
-            preload: true,
-            inject: true,
-            hidden: [],
-            stackTraceLimit: 50,
-            sslKey: '',
-            sslCert: ''
-        }));
-});
-*/
-var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
+var cwd = process.cwd(),
+    appVersion = require(cwd + "/server/config/production.json").static.server.version;
 
 gulp.task('pak:dist', function(){
   gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
    .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
    .on('end', function(){
-     gulp.src(process.cwd() + "/target/" + appVersion + '/tmp/**/*/')
+     gulp.src(cwd + "/target/" + appVersion + '/tmp/**/*/')
       .pipe(tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
       .pipe(gzip())
       .pipe(gulp.dest('./target/' + appVersion + '/dist'))
@@ -93,10 +75,12 @@ gulp.task('pak:dist', function(){
           console.log('Congratulations!!! DIST PACKAGING DONE SUCCESSFULLY');
         })
    })
-})
+});
 
 
 gulp.task('bundlejs', getTask('bundlejs'));
+gulp.task('bumpup', getTask('bumpup'));
+gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('icons', getTask('icons'));
