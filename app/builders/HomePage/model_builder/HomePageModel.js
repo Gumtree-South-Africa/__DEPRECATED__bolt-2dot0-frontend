@@ -1,19 +1,19 @@
-"use strict";
+'use strict';
 
 
-var Q = require("q");
+var Q = require('q');
 
-var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
-var deviceDetection = require(process.cwd() + "/modules/device-detection");
+var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+var deviceDetection = require(process.cwd() + '/modules/device-detection');
 
-var ModelBuilder = require("../../common/ModelBuilder");
-var LocationModel = require("../../common/LocationModel");
-var CategoryModel = require("../../common/CategoryModel");
-var KeywordModel = require("../../common/KeywordModel");
-var GalleryModel = require("../../common/GalleryModel");
-var AdStatisticsModel = require("../../common/AdStatisticsModel");
-var SeoModel = require("../../common/SeoModel");
-var AbstractPageModel = require("../../common/AbstractPageModel");
+var ModelBuilder = require('../../common/ModelBuilder');
+var LocationModel = require('../../common/LocationModel');
+var CategoryModel = require('../../common/CategoryModel');
+var KeywordModel = require('../../common/KeywordModel');
+var GalleryModel = require('../../common/GalleryModel');
+var AdStatisticsModel = require('../../common/AdStatisticsModel');
+var SeoModel = require('../../common/SeoModel');
+var AbstractPageModel = require('../../common/AbstractPageModel');
 
 
 /**
@@ -32,7 +32,7 @@ var getHomepageDataFunctions = function (req, res) {
 		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder();
 			
 	return {
-		"level2Loc"		:	function(callback) {
+		'level2Loc'		:	function(callback) {
 								var level2locationDeferred = Q.defer();
 								Q(level2Loc.getTopL2Locations())
 							    	.then(function (dataL) {
@@ -43,7 +43,7 @@ var getHomepageDataFunctions = function (req, res) {
 										callback(null, {});
 									});
 						  	},
-		"keyword"		:	function(callback) {
+		'keyword'		:	function(callback) {
 								var keywordsDeferred = Q.defer();
 								Q(keyword.processParallel())
 							    	.then(function (dataK) {
@@ -54,7 +54,7 @@ var getHomepageDataFunctions = function (req, res) {
 										callback(null, {});
 									});
 							},
-		"gallery"		:	function(callback) {
+		'gallery'		:	function(callback) {
 								var galleryDeferred = Q.defer();
 								Q(gallery.processParallel())
 							    	.then(function (dataG) {
@@ -65,7 +65,7 @@ var getHomepageDataFunctions = function (req, res) {
 										callback(null, {});
 									});
 							},
-		"adstatistics"	:	function(callback) {
+		'adstatistics'	:	function(callback) {
 								var statisticsDeferred = Q.defer();
 								Q(adstatistics.processParallel())
 							    	.then(function (dataS) {
@@ -76,7 +76,7 @@ var getHomepageDataFunctions = function (req, res) {
 										callback(null, {});
 									});
 							},
-		"seo"			:	function(callback) {
+		'seo'			:	function(callback) {
 								var seoDeferred = Q.defer();
 								Q(seo.processParallel())
 							    	.then(function (dataS) {

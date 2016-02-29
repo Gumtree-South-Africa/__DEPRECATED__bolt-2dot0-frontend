@@ -1,7 +1,6 @@
 //jshint ignore: start
 'use strict';
 
-// 
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
@@ -44,19 +43,19 @@ router.get('/', function (req, res, next) {
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Dynamic Data from BAPI
-      modelData.header = result["common"].header || {};
-      modelData.footer = result["common"].footer || {};
-      modelData.dataLayer = result["common"].dataLayer || {};
-	  modelData.level2Location = result["level2Loc"] || {};
-	  if (result["keyword"]) {
-	  	modelData.trendingKeywords = result["keyword"][0].keywords || {};
-		modelData.topKeywords = result["keyword"][1].keywords || {};
+      modelData.header = result['common'].header || {};
+      modelData.footer = result['common'].footer || {};
+      modelData.dataLayer = result['common'].dataLayer || {};
+	  modelData.level2Location = result['level2Loc'] || {};
+	  if (result['keyword']) {
+	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
+		modelData.topKeywords = result['keyword'][1].keywords || {};
 	  }
-      modelData.initialGalleryInfo = result["gallery"] || {};
-	  if (result["adstatistics"]) {
-		modelData.totalLiveAdCount = result["adstatistics"].totalLiveAds || {}; 
+      modelData.initialGalleryInfo = result['gallery'] || {};
+	  if (result['adstatistics']) {
+		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {}; 
 	  }
-      modelData.seo = result["seo"] || {};
+      modelData.seo = result['seo'] || {};
 
       // Cached Data from BAPI
       modelData.location = res.locals.config.locationData;
@@ -128,6 +127,9 @@ var HP = {
 	    
 	    // Header Page Messages
 	    HP.buildHeaderPageMessages(req, modelData);
+	    
+	    // Header Marketo
+	    HP.buildHeaderMarketoData(modelData);
 	},
 	
 	/**
@@ -136,59 +138,60 @@ var HP = {
 	buildHeaderPageMessages : function(req, modelData) {
 		modelData.header.pageMessages = {};
 		switch(req.query.status){
-			case "userregistered" :
-				modelData.header.pageMessages.success ="home.user.registered";
+			case 'userregistered' :
+				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
 				break;
-			case "adinactive":
-				modelData.header.pageMessages.success = "home.ad.notyetactive";
+			case 'adinactive':
+				modelData.header.pageMessages.success = 'home.ad.notyetactive';
 				break;
-			case "resetpassword":
-				modelData.header.pageMessages.success = "home.reset.password.success";
+			case 'resetpassword':
+				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
 				break;
 			default:
-				modelData.header.pageMessages.success = "";
-				modelData.header.pageMessages.error = "";
-				modelData.header.pageType = "";
+				modelData.header.pageMessages.success = '';
+				modelData.header.pageMessages.error = '';
+				modelData.header.pageType = '';
 		}
 		switch (req.query.resumeabandonedordererror){
-			case "adnotactive":
-				modelData.header.pageMessages.error = "abandonedorder.adNotActive";
+			case 'adnotactive':
+				modelData.header.pageMessages.error = 'abandonedorder.adNotActive';
 				break;
-			case "adfeaturepaid":
-				modelData.header.pageMessages.error = "abandonedorder.adFeaturePaid.multiple_ads";
+			case 'adfeaturepaid':
+				modelData.header.pageMessages.error = 'abandonedorder.adFeaturePaid.multiple_ads';
 				break;
 		}
-		HP.buildHeaderMarketoData(modelData);
 	},
 
+	/**
+	 * Build Marketo data for HomePage
+	 */
 	buildHeaderMarketoData : function (modelData){
-		if (typeof modelData.header.id !== "undefined") {
+		if (typeof modelData.header.id !== 'undefined') {
 			modelData.header.marketo.isAssociateLead = true;
-			if (typeof modelData.header.userEmail !== "undefined") {
+			if (typeof modelData.header.userEmail !== 'undefined') {
 				modelData.header.marketo.email = modelData.header.userEmail;
 			}
-			modelData.header.marketo.brandCode = "";
-			if (typeof modelData.header.firstName !== "undefined") {
+			modelData.header.marketo.brandCode = '';
+			if (typeof modelData.header.firstName !== 'undefined') {
 				modelData.header.marketo.firstName = modelData.header.firstName;
 			}
-			if (typeof modelData.header.lastName !== "undefined") {
+			if (typeof modelData.header.lastName !== 'undefined') {
 				modelData.header.marketo.lastName = modelData.header.lastName;
 			}
-			if (typeof modelData.header.username !== "undefined") {
+			if (typeof modelData.header.username !== 'undefined') {
 				modelData.header.marketo.userName = modelData.header.username;
 			}
-			if (typeof modelData.header.registered !== "undefined") {
+			if (typeof modelData.header.registered !== 'undefined') {
 				modelData.header.marketo.isRegistered = modelData.header.registered;
-				if (modelData.header.registered == true && typeof modelData.header.registrationCountry !== "undefined") {
+				if (modelData.header.registered == true && typeof modelData.header.registrationCountry !== 'undefined') {
 					modelData.header.marketo.registrationCountry = modelData.header.registrationCountry;
 				}
 			}
-			if (typeof modelData.header.creationDate !== "undefined") {
+			if (typeof modelData.header.creationDate !== 'undefined') {
 				modelData.header.marketo.creationDate = modelData.header.creationDate;
 			}
-
 		}
 	},
 

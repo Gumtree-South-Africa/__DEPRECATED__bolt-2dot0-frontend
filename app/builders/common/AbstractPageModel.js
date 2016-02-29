@@ -1,10 +1,10 @@
-"use strict";
+'use strict';
 
-var util = require("util");
-var Q = require("q");
+var util = require('util');
+var Q = require('q');
 
-var BasePageModel = require("./BasePageModel");
-var deviceDetection = require(process.cwd() + "/modules/device-detection");
+var BasePageModel = require('./BasePageModel');
+var deviceDetection = require(process.cwd() + '/modules/device-detection');
 
 
 /** 
@@ -61,7 +61,7 @@ AbstractPageModel.prototype.getCommonDataFunction = function (req, res) {
 				callback(null, {});
 			});
 	};
-	commonDataFunction.fnLabel = "common";
+	commonDataFunction.fnLabel = 'common';
 	
 	return commonDataFunction;
 };
@@ -102,7 +102,7 @@ AbstractPageModel.prototype.convertListToObject = function (dataList, arrFunctio
 	var numElems = dataList.length || 0,
 		idx = 0,
 		jsonObj = {},
-		fnLabel = "";
+		fnLabel = '';
 	for (idx=0; idx < numElems; idx++) {
 		fnLabel = arrFunctions[idx].fnLabel;
 		if (fnLabel) {
