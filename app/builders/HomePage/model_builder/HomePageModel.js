@@ -104,10 +104,8 @@ var HomePageModel = function (req, res) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
-	console.log("########################", pageModelConfig);
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
-	console.log("########################", arrFunctions);
 	
 	var homepageModel = new ModelBuilder(arrFunctions);	
 	var homepageDeferred = Q.defer();
