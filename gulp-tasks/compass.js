@@ -34,7 +34,7 @@ module.exports = function watch(gulp, plugins) {
 
     if (process.env.NODE_ENV !== 'development'){
       output_style = 'compressed';
-      console.log('it is compressed');
+      console.log('it is compressed: ', process.env.NODE_ENV);
     };
 
     gulp.task('compass', function(){
@@ -57,7 +57,8 @@ module.exports = function watch(gulp, plugins) {
                     css: assets[i].cssPath,
                     sass: assets[i].sassPath,
                     lineNumbers: assets[i].lineNumbers,
-                    style: 'expanded', //gulpif(output_style === 'compressed', 'expanded'),
+                    //debug: true,
+                    //style: 'expanded', //gulpif(output_style === 'compressed', 'expanded'),
                     require: ['susy']
             }))
             .pipe(plumber({
@@ -68,7 +69,7 @@ module.exports = function watch(gulp, plugins) {
             .pipe(cssmin())
           //  .pipe(gulpif(output_style === 'compressed', rename({suffix:'.min'})))
             .pipe(rename({suffix:'.min'}))
-            .pipe(gulp.dest(process.cwd() + '/public/cssmin'))
+            .pipe(gulp.dest(process.cwd() + '/' + assets[i].cssPath))
   					.pipe(synchro(incDoneCounter))
 			}
 
