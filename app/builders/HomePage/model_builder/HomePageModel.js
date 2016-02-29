@@ -25,10 +25,10 @@ var AbstractPageModel = require("../../common/AbstractPageModel");
  * @return {JSON}
  */
 var getHomepageDataFunctions = function (req, res) {
-	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1), // no for M MX, AR
-		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(), // no for M/D US
-		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(), // no for M MX, AR
-		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(), // no for M/D MX, AR
+	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
+		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
+		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
+		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder();
 			
 	return {
@@ -104,8 +104,10 @@ var HomePageModel = function (req, res) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
-	
+	console.log("########################", pageModelConfig);
+
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
+	console.log("########################", arrFunctions);
 	
 	var homepageModel = new ModelBuilder(arrFunctions);	
 	var homepageDeferred = Q.defer();
