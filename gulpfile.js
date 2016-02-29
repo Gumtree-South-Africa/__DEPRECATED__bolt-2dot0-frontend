@@ -32,6 +32,7 @@ var gulp = require('gulp'),
   props = require('gulp-props2json'),
   compass = require('gulp-compass'),
   jasmineNode = require('gulp-jasmine-node'),
+  jasmineBrowser = require('gulp-jasmine-browser'),
   gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
   tar = require('gulp-tar'),
@@ -112,6 +113,7 @@ gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('jasmine', getTask('jasmine'));
+gulp.task('jasminebrowser', getTask('jasminebrowser'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
 gulp.task('pak', ['pak:dist'], getTask('pak'));
 gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
