@@ -107,7 +107,7 @@ var HP = {
 	    modelData.header.canonical = modelData.header.homePageUrl;
 	    modelData.header.pageUrl = modelData.header.homePageUrl;
 	    if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + "home";
+	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 	    }
 
 	    // CSS
@@ -193,9 +193,9 @@ var HP = {
 		      }
 	    } else {
 	  	  if (modelData.header.enableLighterVersionForMobile) {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '_light.min.js');
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 	  	  } else {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage_' + modelData.locale + '.min.js');
+	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
 	  	  }
 	    }
 	},
