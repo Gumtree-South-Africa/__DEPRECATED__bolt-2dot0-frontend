@@ -2,18 +2,17 @@
     {{#ifMobile this.device}}
         <meta name="ecg-apple-itunes-app" content="app-id=872789604, app-argument=https://app.adjust.com/529gj6" />
         <meta name="google-play-app" content="app-id=529gj6" />
-
     {{/ifMobile}}
 {{/partial}}
 
 {{#partial "deviceSmartBannerScript"}}
-    {{#unless model.header.isUserLoggedIn}}
+    {{#unless this.header.id}} {{!-- Only if user hasn't logged in --}}
         {{#ifMobile this.device}}
             <script>
                 var appStoreLanguage = "mx";
                 var appStoreTitle = '<span class="sb-close">{{i18n "smartbanner.interstitial.continue-mobile"}}</span>';
                 var appStoreButtonInstall = '{{i18n "smartbanner.interstitial.install"}}';
-                var appStoreIconURL = "{{model.header.baseImageUrl}}{{model.locale}}/interstitial-icon.png";
+                var appStoreIconURL = "{{this.header.baseImageUrl}}{{this.locale}}/interstitial-icon.png";
                 var isInterstitial = true;
                 var appStoreContinueMobileSite = '{{i18n "smartbanner.interstitial.continue-mobile"}}';
                 var interstitialShowAfterHide = ".header, .searchbar, .containment";
@@ -21,7 +20,7 @@
                 // Begin Smartbanner declaration
                 var interstitialDaysHidden = 7;
                 var smartBannerDaysOff = 15;
-                var srcPageType = "{{model.dataLayer.pageData.pageType}}";
+                var srcPageType = "{{this.dataLayer.pageData.pageType}}";
                 var appSrcPages = ["Homepage", "VIP", "ResultsBrowse", "ResultsSearch", "ResultsSeller"];
 
                 var defaultToSmartBanner = false;
