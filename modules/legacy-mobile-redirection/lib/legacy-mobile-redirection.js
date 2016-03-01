@@ -63,7 +63,6 @@ function checkBlackbery(list, req) {
             doesExist = true;
         }
     });
-console.log("doesExist" + ua);
     return doesExist;
 }
 
