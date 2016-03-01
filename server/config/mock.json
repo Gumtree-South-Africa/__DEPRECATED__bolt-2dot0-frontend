@@ -31,10 +31,10 @@
 			"port"		: null,
 			"version"	: null
 		},
-		"baseCSSUrl"	: "/css/",
-		"baseJSUrl"		: "/js/",
-		"baseImageUrl"	: "/images/",
-		"mainJSUrl"		: "/js/main.js",
+		"baseCSSUrl"	: "/public/css/",
+		"baseJSUrl"		: "/public/js/",
+		"baseImageUrl"	: "/public/images/",
+		"mainJSUrl"		: "/public/js/main.js",
 		"min"			: false
 	}
 }

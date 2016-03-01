@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
-    "dev": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost gulp",
+    "dev": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost NODE_ENV=dev gulp",
     "vm": "npm install && PORT=8000 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp",
     "pp": "npm install && NODE_ENV=pp gulp",
     "lnp": "npm install && NODE_ENV=lnp gulp",
@@ -19,6 +19,7 @@
     "async": "^1.5.0",
     "body-parser": "~1.13.2",
     "browser-sync": "^2.11.1",
+    "cjson": "^0.3.3",
     "cluster": "^0.7.7",
     "compression": "^1.6.0",
     "config": "^1.17.1",
