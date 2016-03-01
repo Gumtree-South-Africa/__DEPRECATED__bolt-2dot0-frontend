@@ -39,10 +39,10 @@ function BuildApp(locale) {
     // uncomment after placing your favicon in /public
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
 
-    // add all development based middleware stuff here
-    midlewareloader()(['dev', 'mock', 'vm'], function() {
+    // Development based middleware stuff here
+    midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // asserts for local developments and populates  app.locals.jsAsserts
-        app.use(asserts(app, locale)); //console.log( app.locals.jsAsserts);
+        app.use(asserts(app, locale));
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
         // http://evanhahn.com/express-dot-static-deep-dive/
@@ -58,13 +58,9 @@ function BuildApp(locale) {
             maxage:0,
             index:false
         }));
-
-        // app.use(ignoreAssertReq());
     });
 
-
-
-    // production based middleware
+    // Production based middleware
     midlewareloader(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
@@ -72,24 +68,19 @@ function BuildApp(locale) {
         app.use(compress());
     });
 
-
-
-
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(methodOverride());
-
-
-    app.use(legacyDeviceRedirection());
     app.use(expressUncapitalize());
 
-    // Use custom middlewares
+    // Bolt Custom middlewares
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
     app.use(requestId());    
     app.use(i18n.initMW(app, locale));
     app.use(boltExpressHbs.create(app));
     app.use(deviceDetection.init());
+    app.use(legacyDeviceRedirection());
     
     this.getApp = function() {
         return app;
