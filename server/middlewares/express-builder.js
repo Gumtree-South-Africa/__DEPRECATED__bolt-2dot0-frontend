@@ -30,6 +30,9 @@ var config = {
 
 function BuildApp(locale) {
     var app = express();
+    
+    // Check if we need to redirect to mweb - for legacy devices
+    app.use(legacyDeviceRedirection());
 
     // uncomment after placing your favicon in /public
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
@@ -75,7 +78,6 @@ function BuildApp(locale) {
     app.use(i18n.initMW(app, locale));
     app.use(boltExpressHbs.create(app));
     app.use(deviceDetection.init());
-    app.use(legacyDeviceRedirection());
     
     this.getApp = function() {
         return app;
