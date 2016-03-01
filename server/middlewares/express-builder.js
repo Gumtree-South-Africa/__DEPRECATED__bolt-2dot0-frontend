@@ -19,7 +19,7 @@ var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
 // legacy device redirection
 var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
 
-var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
+var middlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
 
 // get asserts like JS, CSS etc
 var asserts = require(process.cwd() + '/modules/asserts');
@@ -40,7 +40,7 @@ function BuildApp(locale) {
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
 
     // add all development based middleware stuff here
-    midlewareloader()(['dev', 'mock', 'vm'], function() {
+    middlewareloader()(['dev', 'mock', 'vm'], function() {
         // asserts for local developments and populates  app.locals.jsAsserts
         app.use(asserts(app, locale)); //console.log( app.locals.jsAsserts);
         app.use(logger('dev'));
@@ -65,15 +65,12 @@ function BuildApp(locale) {
 
 
     // production based middleware
-    midlewareloader(['production', 'pp', 'lnp'], function() {
+    middlewareloader()(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
         app.use(logger('common'));
         app.use(compress());
     });
-
-
-
 
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
