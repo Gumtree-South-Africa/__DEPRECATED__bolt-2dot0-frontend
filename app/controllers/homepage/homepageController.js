@@ -127,9 +127,7 @@ var HP = {
 	    
 	    // Header Page Messages
 	    HP.buildHeaderPageMessages(req, modelData);
-	    
-	    // Header Marketo
-	    HP.buildHeaderMarketoData(modelData);
+
 	},
 	
 	/**
@@ -141,6 +139,8 @@ var HP = {
 			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
+				// Header Marketo
+				HP.buildHeaderMarketoData(modelData);
 				break;
 			case 'adinactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
