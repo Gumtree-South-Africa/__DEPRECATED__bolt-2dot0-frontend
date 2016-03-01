@@ -12,9 +12,7 @@ var json = cjson.load(process.cwd() + "/app/config/asserts/jsmin.json");
 
 module.exports = function(app, locale) {
     return function(req, res, next) {
-
             res.locals.jsAsserts = getAsserts(locale);
-       // console.log( "asserts " + res.locals.jsAsserts);
             next();
 
     }

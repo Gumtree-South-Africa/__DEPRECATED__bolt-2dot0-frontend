@@ -10,8 +10,8 @@ var midlewareloader = require(process.cwd() + '/modules/environment-middleware-l
 
 ```javascript
 
-// add all development based middleware stuff here
-    midlewareloader()('dev', function() {
+    // add all development based middleware stuff here
+    midlewareloader()(['dev', 'mock', 'vm'], function() {
         // asserts for local developments and populates  app.locals.jsAsserts
         app.use(asserts(app, locale)); //console.log( app.locals.jsAsserts);
         app.use(logger('dev'));
@@ -23,20 +23,20 @@ var midlewareloader = require(process.cwd() + '/modules/environment-middleware-l
             maxage:0,
             index:false
         }));
-        app.use("/views", express.static(config.root + '/app/views'));
+        app.use("/views", express.static(config.root + '/app/views',{
+            root: "/views",
+            etag:false,
+            maxage:0,
+            index:false
+        }));
 
         // app.use(ignoreAssertReq());
     });
 
-    // vm based middlewares
-    midlewareloader('vm', function() {
-        // https://www.npmjs.com/package/morgan#common
-        // apche style loggin
-        app.use(logger('common'));
-        app.use(compress());
-    });
+
+
     // production based middleware
-    midlewareloader('production', function() {
+    midlewareloader(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
         app.use(logger('common'));
