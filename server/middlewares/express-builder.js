@@ -52,7 +52,13 @@ function BuildApp(locale) {
             maxage:0,
             index:false
         }));
-        app.use("/views", express.static(config.root + '/app/views'));
+        app.use("/views", express.static(config.root + '/app/views',{
+            root: "/views",
+            etag:false,
+            maxage:0,
+            index:false
+        }
+        ));
 
         // app.use(ignoreAssertReq());
     });
