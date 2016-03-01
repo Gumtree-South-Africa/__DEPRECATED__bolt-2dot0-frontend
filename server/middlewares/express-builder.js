@@ -19,6 +19,14 @@ var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
 // legacy device redirection
 var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
 
+var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
+
+// get asserts like JS, CSS etc
+var asserts = require(process.cwd() + '/modules/asserts');
+
+// ignore assert requests for dev environment
+var ignoreAssertReq = require(process.cwd() + '/modules/ignore-asserts');
+
 
 var config = {
     root: process.cwd()
@@ -31,14 +39,47 @@ function BuildApp(locale) {
     // uncomment after placing your favicon in /public
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
 
-    app.use(logger('dev'));
+    // add all development based middleware stuff here
+    midlewareloader()(['dev', 'mock', 'vm'], function() {
+        // asserts for local developments and populates  app.locals.jsAsserts
+        app.use(asserts(app, locale)); //console.log( app.locals.jsAsserts);
+        app.use(logger('dev'));
+        // for dev purpose lets make all static none cacheable
+        // http://evanhahn.com/express-dot-static-deep-dive/
+        app.use("/public", express.static(config.root + '/public', {
+            root: "/public",
+            etag:false,
+            maxage:0,
+            index:false
+        }));
+        app.use("/views", express.static(config.root + '/app/views',{
+            root: "/views",
+            etag:false,
+            maxage:0,
+            index:false
+        }));
+
+        // app.use(ignoreAssertReq());
+    });
+
+
+
+    // production based middleware
+    midlewareloader(['production', 'pp', 'lnp'], function() {
+        // https://www.npmjs.com/package/morgan#common
+        // apche style loggin
+        app.use(logger('common'));
+        app.use(compress());
+    });
+
+
+
+
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
-    app.use(compress());
     app.use(methodOverride());
-    app.use('/', express.static(config.root + '/public'));
-    app.use("/views", express.static(config.root + '/app/views'));
+
 
     app.use(legacyDeviceRedirection());
     app.use(expressUncapitalize());
