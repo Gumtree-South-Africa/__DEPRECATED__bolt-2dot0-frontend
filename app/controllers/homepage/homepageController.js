@@ -8,7 +8,8 @@ var express = require('express'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
-    i18n = require('i18n');
+    i18n = require('i18n'),
+    cuid = require('cuid');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
@@ -27,6 +28,11 @@ router.get('/', function (req, res, next) {
 	
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+	
+	// Set anonUsrId cookie with value from cuid
+	if (!req.cookies['anonUsrId']) {
+		res.cookie('anonUsrId', cuid());
+	}
 	
 	// Build Model Data
 	var modelData =
