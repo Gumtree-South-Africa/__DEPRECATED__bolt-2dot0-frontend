@@ -17,14 +17,12 @@ var liteBlacklist = ["Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "S
 module.exports = function() {
     return function(req, res, next) {
         if (!util.isReqTypeAsserts(req) && isGumtreeZA(req) ) {
-
             if (isRedirectToLiteWebSite(req)) {
-               res.redirect(getLiteHomePageUrl());
+            	res.redirect(getLiteHomePageUrl());
             } else if (isRedirectToMobileWebSite(req)) {
                 res.redirect(getHomePageUrl());
             }
         }
-
         next();
     }
 };
@@ -42,7 +40,6 @@ function isRedirectToMobileWebSite(req) {
 }
 
 var hasBlacklistedKeywords = function(req) {
-
     // ua = "BlackBerry9300/5.0.0.977 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/167";
     return checkBlackbery(blackList, req);
 };
