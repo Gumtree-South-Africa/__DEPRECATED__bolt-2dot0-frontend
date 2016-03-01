@@ -22,7 +22,8 @@ var FooterModel = function (secure, req, res) {
 	// Country specific variables from BAPI Config
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
-	this.footerConfigData = res.locals.config.bapiConfigData.footer;	
+	this.footerConfigData = res.locals.config.bapiConfigData.footer;
+	this.jsAsserts = res.locals.jsAsserts;
 };
 
 FooterModel.prototype.getModelBuilder = function() {
@@ -74,12 +75,22 @@ FooterModel.prototype.getFooterData = function() {
 
 //Build JS
 FooterModel.prototype.buildJs = function(data) {
+
+	console.log("FooterModel.buildJS");
 	var scope = this;
-	
+
 	data.javascripts = [];
 	if (data.min) {
 		data.javascripts.push(data.baseJSUrl + "Main_" + scope.locale + ".min.js");
 	} else {
+
+		/*//todo: remove comments after minification is done
+		jsAsserts.forEach(function(jsFile){
+			data.javascripts.push(jsFile);
+		});*/
+
+		//todo: remove this after Nacer adds minfication.
+
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-2.0.0.min.js");
 		data.javascripts.push(data.baseJSUrl + "bower-components/requirejs/require.js");
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
