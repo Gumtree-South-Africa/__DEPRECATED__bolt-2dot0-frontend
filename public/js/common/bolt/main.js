@@ -35,7 +35,9 @@ Bolt.extend = function(){
 		for(var i = 0; i < dependencies.length; i++)
 			deps.push(definitions[dependencies[i]]);
 
-		definitions[definition] = fn.apply(this, deps);
+		if (fn) {
+			definitions[definition] = fn.apply(this, deps);
+		}
 	}
 
 

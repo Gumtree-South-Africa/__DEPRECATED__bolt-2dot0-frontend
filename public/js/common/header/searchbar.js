@@ -1,8 +1,8 @@
 /**
  * Created by moromero on 12/15/14.
  */
-(function(){
 
+$(document).ready(function() {
 
     /**
      * These are the classes of the categories that we'll be using when rendering the categories
@@ -154,6 +154,15 @@
                 .parent()
                 .removeClass("active");
         })
+        // Added in 2.0
+        .on("click", "input,button", function() {
+            var locationId = $searchbar.find("input[name=locId]").val();
+            var locationName = $searchbar.find(".options li a.active").text();
+            Bolt.Cookie.setHardCookie("searchLocId", locationId);
+            Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));
+            $searchForm.submit();
+        })
+        // End added
         .on("mouseover", "fieldset > div", function(){
             var $this = $(this);
             $this
@@ -703,8 +712,7 @@
 
     }
 
-
-    function saveSelection(locationId, locationName, prompted){
+    function saveSelection(locationId, locationName, prompted) {
         Bolt.Cookie.setHardCookie("searchLocId", locationId);
         Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));
         $locationId.val(locationId);
@@ -717,8 +725,7 @@
 
     var $geoLocator = $(".geo-locator");
 
-
-    if($geoLocator.is(":visible")){
+    if ($geoLocator.is(":visible")){
 
         var geoLocatorData = $geoLocator.data(),
 
@@ -726,6 +733,7 @@
             $locationName = $geoLocator.find(".label"),
 
             locationId = Bolt.Cookie.getHardCookie("searchLocId"),
+
 
             geoLocator = new GeoLocator({
                 rootApi: geoLocatorData.rootApi,
@@ -760,7 +768,6 @@
 
 
 
+});
 
 
-
-})(jQuery);

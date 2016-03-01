@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "api.bolt.ecg.ebay.com.bolt20.qa-bolt.com",
+	    	"host": "localhost",
 	    	"port": 80,
 	    	"parameters": null
 	    },
@@ -36,6 +36,6 @@
 		"baseJSMinUrl"	: "/jsmin/",
 		"baseImageUrl"	: "/images/",
 		"mainJSUrl"		: "/js/main.js",
-		"min"			: false
+		"min"			: true
 	}
 }

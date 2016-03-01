@@ -52,6 +52,7 @@ FooterModel.prototype.getFooterData = function() {
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.mainJSUrl = urlHost + urlPort + urlVersion + config.get("static.mainJSUrl");
     		data.baseJSUrl = urlHost + urlPort + urlVersion + config.get("static.baseJSUrl");
+    		data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get("static.baseJSMinUrl");
     		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl");
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
     		data.min = config.get("static.min");
@@ -75,13 +76,13 @@ FooterModel.prototype.getFooterData = function() {
 
 //Build JS
 FooterModel.prototype.buildJs = function(data) {
-
-	console.log("FooterModel.buildJS");
 	var scope = this;
+
+	var baseComponentDir = "/views/components/";
 
 	data.javascripts = [];
 	if (data.min) {
-		data.javascripts.push(data.baseJSUrl + "Main_" + scope.locale + ".min.js");
+		data.javascripts.push(data.baseJSMinUrl + "Main_" + scope.locale + ".min.js");
 	} else {
 
 		/*//todo: remove comments after minification is done
@@ -106,11 +107,15 @@ FooterModel.prototype.buildJs = function(data) {
 		data.javascripts.push(data.baseJSUrl + "common/bolt/i18n.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/html5.js");
 		data.javascripts.push(data.baseJSUrl + "common/bolt/Search.js");
-		data.javascripts.push(data.baseJSUrl + "common/banners/GoogleBanner.js");
+		data.javascripts.push(data.baseJSUrl + "common/banners/GoogleTagBanner.js");
 		data.javascripts.push(data.baseJSUrl + "common/banners/BannerCookie.js");
 		data.javascripts.push(data.baseJSUrl + "common/tracking/Analytics.js");
-		data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
+	//	data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/searchbar.js");
+
+		// @todo: Need to determine a way to detect which components will be used for a
+		// given page.
+		data.javascripts.push(baseComponentDir + "header/js/header.js");
 	}
 };
 

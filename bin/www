@@ -8,7 +8,7 @@
 
 
 // Set the CWD for Node Process
-process.chdir(process.env.PM_CWD);
+process.chdir(process.env.PM_CWD || '.');
 
 
 var cluster = require('cluster'),

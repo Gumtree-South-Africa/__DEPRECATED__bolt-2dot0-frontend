@@ -32,11 +32,13 @@ var gulp = require('gulp'),
   props = require('gulp-props2json'),
   compass = require('gulp-compass'),
   jasmineNode = require('gulp-jasmine-node'),
+  jasmineBrowser = require('gulp-jasmine-browser'),
   gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
   tar = require('gulp-tar'),
   gzip = require('gulp-gzip'),
   asynch = require('async'),
+  bump = require('gulp-bump'),
   nodeInspector = require('gulp-node-inspector'),
   reload = browserSync.reload;
 
@@ -56,33 +58,14 @@ function errorlog(err){
   console.error(err.message);
   this.emit('end');
 }
-
-
-/*
-gulp.task('debug', function() {
-
-    gulp.src([])
-        .pipe(nodeInspector({
-            debugPort: 5858,
-            webHost: '0.0.0.0',
-            webPort: 8000,
-            saveLiveEdit: false,
-            preload: true,
-            inject: true,
-            hidden: [],
-            stackTraceLimit: 50,
-            sslKey: '',
-            sslCert: ''
-        }));
-});
-*/
-var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
+var cwd = process.cwd(),
+    appVersion = require(cwd + "/server/config/production.json").static.server.version;
 
 gulp.task('pak:dist', function(){
   gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
    .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
    .on('end', function(){
-     gulp.src(process.cwd() + "/target/" + appVersion + '/tmp/**/*/')
+     gulp.src(cwd + "/target/" + appVersion + '/tmp/**/*/')
       .pipe(tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
       .pipe(gzip())
       .pipe(gulp.dest('./target/' + appVersion + '/dist'))
@@ -92,10 +75,11 @@ gulp.task('pak:dist', function(){
           console.log('Congratulations!!! DIST PACKAGING DONE SUCCESSFULLY');
         })
    })
-})
+});
+
 
 gulp.task('bundlejs', getTask('bundlejs'));
-
+gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
@@ -111,8 +95,21 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
-gulp.task('jasmine', getTask('jasmine'));
-gulp.task('test', ['build', 'develop', 'jasmine']);
-gulp.task('pak', ['pak:dist'], getTask('pak'));
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
+
+
+// DEFAULT is used by Developers
 gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+
+// PRE-COMMIT
+gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+
+// BUILD
+gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
+
+// TEST
+gulp.task('jasmine', getTask('jasmine'));
+gulp.task('jasminebrowser', getTask('jasminebrowser'));
+gulp.task('test', ['build', 'develop', 'jasmine']);
+
+// PACKAGE
+gulp.task('pak', ['pak:dist'], getTask('pak'));
