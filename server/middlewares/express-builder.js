@@ -21,11 +21,11 @@ var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-re
 
 var middlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
 
-// get asserts like JS, CSS etc
-var asserts = require(process.cwd() + '/modules/asserts');
+// get assets like JS, CSS etc
+var assets = require(process.cwd() + '/modules/assets');
 
 // ignore assert requests for dev environment
-var ignoreAssertReq = require(process.cwd() + '/modules/ignore-asserts');
+var ignoreAssetReq = require(process.cwd() + '/modules/ignore-assets');
 
 
 var config = {
@@ -41,8 +41,10 @@ function BuildApp(locale) {
 
     // add all development based middleware stuff here
     middlewareloader()(['dev', 'mock', 'vm'], function() {
-        // asserts for local developments and populates  app.locals.jsAsserts
-        app.use(asserts(app, locale)); //console.log( app.locals.jsAsserts);
+
+        // assets for local developments and populates  app.locals.jsAsserts
+        app.use(assets(app, locale)); //console.log( app.locals.jsAsserts);
+
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
         // http://evanhahn.com/express-dot-static-deep-dive/
@@ -78,7 +80,7 @@ function BuildApp(locale) {
     app.use(methodOverride());
 
 
-    app.use(legacyDeviceRedirection());
+    app.use("/", legacyDeviceRedirection());
     app.use(expressUncapitalize());
 
     // Use custom middlewares

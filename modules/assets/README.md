@@ -1,4 +1,4 @@
-# Asserts
+# Assets
 
 Loads javascript, css, images etc from jsmin.json[] and cssmin.json
 
