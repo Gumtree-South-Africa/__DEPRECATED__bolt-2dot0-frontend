@@ -16,16 +16,11 @@ var requestId = require('./request-id');
 var i18n = require(process.cwd() + '/modules/i18n');
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
-// legacy device redirection
 var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
+var assets = require(process.cwd() + '/modules/assets');
+var ignoreAssetReq = require(process.cwd() + '/modules/ignore-assets');
 
 var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
-
-// get assets like JS, CSS etc
-var assets = require(process.cwd() + '/modules/assets');
-
-// ignore assert requests for dev environment
-var ignoreAssetReq = require(process.cwd() + '/modules/ignore-assets');
 
 
 var config = {
@@ -35,6 +30,9 @@ var config = {
 
 function BuildApp(locale) {
     var app = express();
+
+    // Check if we need to redirect to mweb - for legacy devices
+    app.use(legacyDeviceRedirection());
 
     // uncomment after placing your favicon in /public
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
@@ -80,7 +78,6 @@ function BuildApp(locale) {
     app.use(i18n.initMW(app, locale));
     app.use(boltExpressHbs.create(app));
     app.use(deviceDetection.init());
-    app.use(legacyDeviceRedirection());
     
     this.getApp = function() {
         return app;
