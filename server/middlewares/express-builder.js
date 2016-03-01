@@ -21,11 +21,11 @@ var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-re
 
 var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
 
-// get asserts like JS, CSS etc
-var asserts = require(process.cwd() + '/modules/asserts');
+// get assets like JS, CSS etc
+var assets = require(process.cwd() + '/modules/assets');
 
 // ignore assert requests for dev environment
-var ignoreAssertReq = require(process.cwd() + '/modules/ignore-asserts');
+var ignoreAssetReq = require(process.cwd() + '/modules/ignore-assets');
 
 
 var config = {
@@ -41,8 +41,8 @@ function BuildApp(locale) {
 
     // Development based middleware stuff here
     midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
-        // asserts for local developments and populates  app.locals.jsAsserts
-        app.use(asserts(app, locale));
+        // assets for local developments and populates  app.locals.jsAssets
+        app.use(assets(app, locale));
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
         // http://evanhahn.com/express-dot-static-deep-dive/
@@ -61,7 +61,7 @@ function BuildApp(locale) {
     });
 
     // Production based middleware
-    midlewareloader(['production', 'pp', 'lnp'], function() {
+    midlewareloader()(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
         app.use(logger('common'));
