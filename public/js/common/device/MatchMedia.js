@@ -1,5 +1,4 @@
-(function () {
-
+function MatchMediaSetup() {
 
     // author: Anton Ganeshalingam
     // version: 1.0.0.0
@@ -19,68 +18,68 @@
         realMatchMedia = typeof window.matchMedia !== "undefined" ? window.matchMedia : "";
 
 
-    for(b = 0; b < breakpoints.length; b++){
-
+    for (b = 0; b < breakpoints.length; b++) {
         breakpoint = breakpoints[b][0];
         deviceMatrix[breakpoint] = "screen ";
 
-        if(breakpoints[b][1])
+        if( breakpoints[b][1]) {
             deviceMatrix[breakpoint] += "and (min-width:" + breakpoints[b][1] + "px) ";
-        if(breakpoints[b][2])
+        }
+        if (breakpoints[b][2]) {
             deviceMatrix[breakpoint] += "and (max-width:" + breakpoints[b][2] + "px)";
-        if(breakpoints[b][3])
+        }
+        if (breakpoints[b][3]) {
             deviceMatrix[breakpoint] += "and (min-height:" + breakpoints[b][3] + "px) ";
-        if(breakpoints[b][4])
+        }
+        if (breakpoints[b][4]) {
             deviceMatrix[breakpoint] += "and (max-height:" + breakpoints[b][4] + "px)";
+        }
 
-        if(!breakpoints[b][1])
+        if(!breakpoints[b][1]) {
             breakpoints[b][1] = 0;
-        if(!breakpoints[b][2])
+        }
+        if(!breakpoints[b][2]) {
             breakpoints[b][2] = 9999999999;
-        if(!breakpoints[b][3])
+        }
+        if(!breakpoints[b][3]) {
             breakpoints[b][3] = 0;
-        if(!breakpoints[b][4])
+        }
+        if(!breakpoints[b][4]) {
             breakpoints[b][4] = 9999999999;
-
+        }
     }
 
-
-
-
     window.matchMedia = function (device) {
+        var computedStyle = "",
+            def;
 
-
-        var computedStyle = "";
-        try{
+        try {
             computedStyle = window.getComputedStyle(document.body, ':after').getPropertyValue('content').split('"').join("").split("'").join("");
-        }catch(e){
-            var def = "";
+        } catch(e){
+            def = "";
         }
 
         // if MatchMedia is supported, see http://caniuse.com/#search=matchMedia
         if (realMatchMedia) {
             var mql = realMatchMedia.call(this, deviceMatrix[device]);
-            if (mql.matches == true)
+            if (mql.matches == true) {
                 return true;
-
+            }
 
             // if MatchMedia is not supported then fallback to getComputedStyle, see http://caniuse.com/#search=getComputedStyle
             // make sure css set up correctly
         } else if (computedStyle) {
-
             return computedStyle === device;
-
         } else {
-
 
             // check the window width of the browser and decide whether the breakpoiknt falls within
             var windowWidth = $window.width(),
                 windowHeight = $window.height();
-            for(b = 0; b < breakpoints.length; b++)
-                if(breakpoints[b][1] <= windowWidth && windowWidth <= breakpoints[b][2] && breakpoints[b][3] <= windowHeight && windowHeight <= breakpoints[b][4])
+            for(b = 0; b < breakpoints.length; b++) {
+                if(breakpoints[b][1] <= windowWidth && windowWidth <= breakpoints[b][2] && breakpoints[b][3] <= windowHeight && windowHeight <= breakpoints[b][4]) {
                     return breakpoints[b][0] === device;
-
-
+                }
+            }
 
             // solution from, http://www.nczonline.net/blog/2012/01/03/css-media-queries-in-javascript-part-1/
             if (!div) {
@@ -93,13 +92,10 @@
             div.innerHTML = "_<style media=\"" + deviceMatrix[device] + "\"> #ncz1 { width: 1px; }</style>";
             div.removeChild(div.firstChild);
             return div.offsetWidth == 1;
-
         }
-
         return false;
 
     };
+}
 
-
-
-})();
+MatchMediaSetup();

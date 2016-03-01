@@ -40,7 +40,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/i18n.js",
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/widgets/SocialMedia.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
@@ -69,7 +69,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js"
         ],
         "bundleName": "Main_es_MX.min.js"
@@ -95,7 +95,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js"
         ],
         "bundleName": "Main_es_AR.min.js"
@@ -118,7 +118,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/i18n.js",
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js"
@@ -144,7 +144,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/i18n.js",
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
@@ -170,7 +170,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/public/js/common/banners/BannerCookie.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
@@ -196,7 +196,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/public/js/common/banners/BannerCookie.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
@@ -223,7 +223,7 @@ module.exports =
             rootDir + "/public/js/common/bolt/html5.js",
             rootDir + "/public/js/common/bolt/Search.js",
             rootDir + "/public/js/common/banners/BannerCookie.js",
-            rootDir + "/views/components/header/js/header.js",
+            rootDir + "/app/views/components/header/js/header.js",
             rootDir + "/public/js/common/header/searchbar.js",
             rootDir + "/public/js/common/banners/GoogleTagBanner.js",
             rootDir + "/public/js/common/tracking/Analytics.js",
@@ -233,82 +233,82 @@ module.exports =
     {
         "dest": rootDir + "/public/jsmin",
         "src": [
-          rootDir + "/views/components/categoryList/js/app.js"
+          rootDir + "/app/views/components/categoryList/js/app.js"
         ],
         "bundleName": "HomePage.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src": [
-            rootDir + "/views/components/categoryList/js/app.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/modernizr.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/carouselExt.js",
-            rootDir + "/views/components/countryMap/js/Map.js"
+            rootDir + "/app/views/components/categoryList/js/app.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/modernizr.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/carouselExt.js",
+            rootDir + "/app/views/components/countryMap/js/Map.js"
         ],
         "bundleName": "HomePage_es_MX.min.js"
     },
     { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js"
+             rootDir + "/app/views/components/categoryList/js/app.js"
         ],
         "bundleName": "HomePage_es_MX_light.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src": [
-            rootDir + "/views/components/categoryList/js/app.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/modernizr.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
-            rootDir + "/views/components/adCarousel/js/CarouselExt/carouselExt.js",
-            rootDir + "/views/components/countryMap/js/Map.js"
+            rootDir + "/app/views/components/categoryList/js/app.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/modernizr.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
+            rootDir + "/app/views/components/adCarousel/js/CarouselExt/carouselExt.js",
+            rootDir + "/app/views/components/countryMap/js/Map.js"
         ],
         "bundleName": "HomePage_es_AR.min.js"
     },
     { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js"
+             rootDir + "/app/views/components/categoryList/js/app.js"
         ],
         "bundleName": "HomePage_es_AR_light.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js"
+             rootDir + "/app/views/components/categoryList/js/app.js"
         ],
         "bundleName": "HomePage_es_US.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js",
-             rootDir + "/views/components/adCarousel/js/adCarousel.js"
+             rootDir + "/app/views/components/categoryList/js/app.js",
+             rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
         ],
         "bundleName": "HomePage_en_ZA.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js",
-             rootDir + "/views/components/adCarousel/js/adCarousel.js"
+             rootDir + "/app/views/components/categoryList/js/app.js",
+             rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
         ],
         "bundleName": "HomePage_en_IE.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js",
-             rootDir + "/views/components/adCarousel/js/adCarousel.js"
+             rootDir + "/app/views/components/categoryList/js/app.js",
+             rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
         ],
         "bundleName": "HomePage_pl_PL.min.js"
     },
     {
         "dest": rootDir + "/public/jsmin",
         "src" : [
-             rootDir + "/views/components/categoryList/js/app.js",
-             rootDir + "/views/components/adCarousel/js/adCarousel.js"
+             rootDir + "/app/views/components/categoryList/js/app.js",
+             rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
         ],
         "bundleName": "HomePage_en_SG.min.js"
     }

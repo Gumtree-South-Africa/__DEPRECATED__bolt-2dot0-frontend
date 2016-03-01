@@ -58,26 +58,9 @@ function errorlog(err){
   console.error(err.message);
   this.emit('end');
 }
-var cwd = process.cwd(),
-    appVersion = require(cwd + "/server/config/production.json").static.server.version;
-
-gulp.task('pak:dist', function(){
-  gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
-   .pipe(gulp.dest('./target/' + appVersion + '/tmp'))
-   .on('end', function(){
-     gulp.src(cwd + "/target/" + appVersion + '/tmp/**/*/')
-      .pipe(tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
-      .pipe(gzip())
-      .pipe(gulp.dest('./target/' + appVersion + '/dist'))
-      .on('end', function(){
-        gulp.src(['./target/'+ appVersion + '/tmp'], {read: false})
-         .pipe(clean());
-          console.log('Congratulations!!! DIST PACKAGING DONE SUCCESSFULLY');
-        })
-   })
-});
 
 
+gulp.task('pak:dist', getTask('dist'));
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);

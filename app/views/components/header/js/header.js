@@ -9,7 +9,7 @@ var BOLT = BOLT || {};
 BOLT.UTILS = BOLT.UTILS || {};
 BOLT.StringUtils = BOLT.StringUtils || {};
 
-(function($) {
+(function() {
     var cookieBannerID;
 
 	function revealUrl(obfuscateUrl){
@@ -197,4 +197,4 @@ BOLT.StringUtils = BOLT.StringUtils || {};
         BOLT.BannerCookie.visit("cookieBanner", cookieBannerID, 3);
     }
 
-})(jQuery);
+})();

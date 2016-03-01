@@ -15,6 +15,11 @@ var util = require('util'),
 module.exports = function(app) {
     return function(err, req, res, next) {
 
+        if (err.status == 0) {
+           // next();
+            res.send("");
+        }
+
         // if 404 request then to error page
         if (err.status == 404 || err.status == 410) {
             res.locals.err = err;
