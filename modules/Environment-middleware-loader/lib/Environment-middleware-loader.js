@@ -25,7 +25,7 @@ module.exports = function(env) {
             env2.forEach(function(envItem, index, arr){
 
                 if (envItem === env) {
-                    console.log('envItem ' + envItem);
+                    //console.log('envItem ' + envItem);
                     callback();
 
                     arr.length = 0;
