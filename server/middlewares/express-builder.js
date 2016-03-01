@@ -16,16 +16,11 @@ var requestId = require('./request-id');
 var i18n = require(process.cwd() + '/modules/i18n');
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
-// legacy device redirection
 var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
+var asserts = require(process.cwd() + '/modules/asserts');
+var ignoreAssertReq = require(process.cwd() + '/modules/ignore-asserts');
 
 var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
-
-// get asserts like JS, CSS etc
-var asserts = require(process.cwd() + '/modules/asserts');
-
-// ignore assert requests for dev environment
-var ignoreAssertReq = require(process.cwd() + '/modules/ignore-asserts');
 
 
 var config = {
@@ -63,7 +58,7 @@ function BuildApp(locale) {
     // Production based middleware
     midlewareloader(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
-        // apche style loggin
+        // apache style logging
         app.use(logger('common'));
         app.use(compress());
     });
