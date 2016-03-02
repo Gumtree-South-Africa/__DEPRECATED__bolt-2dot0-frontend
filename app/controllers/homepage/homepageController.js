@@ -55,12 +55,13 @@ router.get('/', function (req, res, next) {
       modelData.dataLayer = result['common'].dataLayer || {};
 	  modelData.level2Location = result['level2Loc'] || {};
 
-	  // Check for top or trending keywords existance
-	  modelData.topOrTrendingKeywords = false;
 	  if (result['keyword']) {
 	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
 	  	modelData.topKeywords = result['keyword'][1].keywords || {};
 	  }
+	  
+	  // Check for top or trending keywords existence
+	  modelData.topOrTrendingKeywords = false;
 	  if (modelData.trendingKeywords || modelData.topKeywords) {
 	  	modelData.topOrTrendingKeywords = true;
 	  }
