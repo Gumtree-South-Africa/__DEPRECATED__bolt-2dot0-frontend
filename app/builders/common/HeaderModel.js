@@ -78,7 +78,7 @@ HeaderModel.prototype.getHeaderData = function() {
 			if (typeof callback !== "function") {
 				return;
 			}
-		   // if (typeof scope.cookie !== "undefined") {
+		    if (typeof scope.cookie !== "undefined") {
 		    	headerDeferred = Q.defer();
 
 				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
@@ -98,9 +98,9 @@ HeaderModel.prototype.getHeaderData = function() {
 					});
 
 				return headerDeferred.promise;
-			//} else {
-			  //  callback(null, data);
-			//}
+			} else {
+			    callback(null, data);
+			}
 		}
 	];
 
