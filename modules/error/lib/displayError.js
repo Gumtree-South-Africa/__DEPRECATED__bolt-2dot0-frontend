@@ -58,6 +58,13 @@ module.exports.message = function (req, res, next) {
         modelData.category = result[2];
         modelData.trendingKeywords = result[3][0].keywords;
         modelData.topKeywords = result[3][1].keywords;
+
+        // Check for top or trending keywords existance
+        modelData.topOrTrendingKeywords = false;
+        if (modelData.trendingKeywords || modelData.topKeywords) {
+            modelData.topOrTrendingKeywords = true;
+        }
+
         modelData.initialGalleryInfo = result[4];
         modelData.totalLiveAdCount = result[5].totalLiveAds;
         modelData.level1Location = result[6];

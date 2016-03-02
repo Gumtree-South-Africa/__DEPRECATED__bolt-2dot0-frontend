@@ -54,10 +54,17 @@ router.get('/', function (req, res, next) {
       modelData.footer = result['common'].footer || {};
       modelData.dataLayer = result['common'].dataLayer || {};
 	  modelData.level2Location = result['level2Loc'] || {};
+
+	  // Check for top or trending keywords existance
+	  modelData.topOrTrendingKeywords = false;
 	  if (result['keyword']) {
 	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
-		modelData.topKeywords = result['keyword'][1].keywords || {};
+	  	modelData.topKeywords = result['keyword'][1].keywords || {};
 	  }
+	  if (modelData.trendingKeywords || modelData.topKeywords) {
+	  	modelData.topOrTrendingKeywords = true;
+	  }
+
       modelData.initialGalleryInfo = result['gallery'] || {};
 	  if (result['adstatistics']) {
 		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {}; 
