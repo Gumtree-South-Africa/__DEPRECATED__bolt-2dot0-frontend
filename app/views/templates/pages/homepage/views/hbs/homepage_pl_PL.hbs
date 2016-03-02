@@ -1,4 +1,8 @@
 {{#ifMobile this.device}}
+    {{#partial "locationBeforeCategory"}}
+        {{> (dynamic "adCarousel") }}
+        {{#block "carousel" }}{{/block}}
+    {{/partial}}
     {{#partial "locationAfterCategory"}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
