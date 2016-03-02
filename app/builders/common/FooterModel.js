@@ -23,7 +23,7 @@ var FooterModel = function (secure, req, res) {
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
 	this.footerConfigData = res.locals.config.bapiConfigData.footer;
-	this.jsAsserts = res.locals.jsAsserts;
+	this.jsAssets = res.locals.jsAssets;
 };
 
 FooterModel.prototype.getModelBuilder = function() {
@@ -86,7 +86,7 @@ FooterModel.prototype.buildJs = function(data) {
 	} else {
 
 		/*//todo: remove comments after minification is done
-		jsAsserts.forEach(function(jsFile){
+		jsAssets.forEach(function(jsFile){
 			data.javascripts.push(jsFile);
 		});*/
 

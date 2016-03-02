@@ -8,7 +8,7 @@
   //////////////////////////// Application scope ///////////////////////////////////////////
   {
       // app: this is for all sites
-    "scope" : "app",  // avilable scope values, [ "app", "brand", "site" ]
+    "scope" : "app",  // avilable scope values, [ "app", "brand", "site" , "page"]
 
     "devicetype" : "all",  // aviliable types values ["all", "mobile", "tablet", "desktop"]
 
@@ -233,7 +233,7 @@
   //////////////////////////// Device scope ///////////////////////////////////////////
   {
     // app: this is for all sites
-    "scope" : "app",  // avilable scope values, [ "app", "brand", "site" ]
+    "scope" : "page",  // avilable scope values, [ "app", "brand", "site" ]
 
     "devicetype" : "mobile",  // aviliable types values ["all", "mobile", "tablet", "desktop"]
 
@@ -244,11 +244,11 @@
     "dest": "/public/jsmin",
 
     // name: add a file names that are going to be loaded / aggrecated, for example, main_en_ZA.js etc
-    "bundleName": "main",
+    "bundleName": "homepage",
 
     // these files will be loaded / aggregated related to the locales
     "src": [
-
+          "carousel.js", ""
     ]
   }
 

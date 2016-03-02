@@ -1,6 +1,6 @@
 /**
- * @module Asserts
- * @description An asserts libary that will extract js and css urls from.
+ * @module Assets
+ * @description An assets libary that will extract js and css urls from.
  * @author aganeshalingam@ebay.com
  */
 
@@ -8,17 +8,17 @@
 "use strict";
 
 var cjson = require('cjson');
-var json = cjson.load(process.cwd() + "/app/config/asserts/jsmin.json");
+var json = cjson.load(process.cwd() + "/app/config/assets/jsmin.json");
 
 module.exports = function(app, locale) {
     return function(req, res, next) {
-            res.locals.jsAsserts = getAsserts(locale);
+            res.locals.jsAssets = getAssets(locale);
             next();
 
     }
 };
 
-function getAsserts(locale) {
+function getAssets(locale) {
 
     var jsArry = [];
    // var locales = "en_ZA";

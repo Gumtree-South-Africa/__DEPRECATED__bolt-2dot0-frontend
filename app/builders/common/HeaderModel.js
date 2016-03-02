@@ -78,12 +78,13 @@ HeaderModel.prototype.getHeaderData = function() {
 			if (typeof callback !== "function") {
 				return;
 			}
-		    if (typeof scope.cookie !== "undefined") {
+		   // if (typeof scope.cookie !== "undefined") {
 		    	headerDeferred = Q.defer();
 
 				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
+						console.log("DATA RETURNED FROM USER LOGGED IN call =================================",  dataReturned);
 			    		_.extend(data, dataReturned);
 
 			    		// build user profile
@@ -97,9 +98,9 @@ HeaderModel.prototype.getHeaderData = function() {
 					});
 
 				return headerDeferred.promise;
-			} else {
-			    callback(null, data);
-			}
+			//} else {
+			  //  callback(null, data);
+			//}
 		}
 	];
 
