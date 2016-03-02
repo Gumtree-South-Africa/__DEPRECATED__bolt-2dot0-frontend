@@ -26,8 +26,8 @@
 	    	"munchkinId"		: "478-YGU-956",
 	    	"wsInfo"			: "j0hRctjOKwEI",
 	    	"privateKey"		: "boltisking123",
-			"deletecookie": false,
-			"domainName" :"fakefornow"
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/"
 	},

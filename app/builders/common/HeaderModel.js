@@ -64,7 +64,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
     		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : "/public/css/";
+    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : config.get("static.baseCSSUrl");
     		data.min = config.get("static.min");
 
     		scope.buildUrl(data);
@@ -84,7 +84,6 @@ HeaderModel.prototype.getHeaderData = function() {
 				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
-						console.log("DATA RETURNED FROM USER LOGGED IN call =================================",  dataReturned);
 			    		_.extend(data, dataReturned);
 
 			    		// build user profile
