@@ -7,6 +7,8 @@ Handlebars Helpers
 Make sure package.json got the laterest version of express-handlebar
 
 ### Useage
+
+#### i18n
 ```handlebars
 
 {{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
@@ -18,7 +20,16 @@ Make sure package.json got the laterest version of express-handlebar
  {{i18n "my.name" }}
 ```
 
+#### DigitalGrouping  {{digitalGrouping number ","}}
+```handlebars
+{{digitalGrouping 12433 ","}} 
+```
+output --> 12,433
 
+```handlebars
+{{! for sub expressions }}
+{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}
+```
 
 
 ## Versioning
