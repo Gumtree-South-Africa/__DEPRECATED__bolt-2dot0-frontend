@@ -72,11 +72,12 @@ router.get('/', function (req, res, next) {
 	  modelData.device = req.app.locals.deviceInfo;
       
 	  // Special Data needed for HomePage in header, footer, content
-		HP.extendHeaderData(req, modelData);
-		HP.extendFooterData(modelData);
-		HP.buildContentData(modelData, bapiConfigData);
-		HP.deleteMarketoCookie(res, modelData);
-		// console.dir(modelData);
+	  HP.extendHeaderData(req, modelData);
+	  HP.extendFooterData(modelData);
+	  HP.buildContentData(modelData, bapiConfigData);
+	  HP.deleteMarketoCookie(res, modelData);
+		
+	  // console.dir(modelData);
 
       // Render
       res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
@@ -89,10 +90,10 @@ router.get('/', function (req, res, next) {
 		  }
 	  });
 
-
       // Kafka Logging
       var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.locals.config.locale, log);
+      
       // Graphite Metrics
       
       console.timeEnd('Instrument-Homepage-Controller');
@@ -134,7 +135,6 @@ var HP = {
 
 		// Header Page Messages
 		HP.buildHeaderPageMessages(req, modelData);
-
 	},
 
 	/**
@@ -146,9 +146,9 @@ var HP = {
 			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
+				
 				// Header Marketo
 				marketoService.buildMarketoDataForHP(modelData);
-				console.log("THE WHOLE MARKETO THEN ==================================" ,modelData.header.marketo);
 				break;
 			case 'adinactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
@@ -171,6 +171,7 @@ var HP = {
 				break;
 		}
 	},
+	
 	/**
 	 * Special footer data for HomePage
 	 */

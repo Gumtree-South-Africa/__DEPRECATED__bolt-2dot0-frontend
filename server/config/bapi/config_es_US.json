@@ -27,8 +27,8 @@
 	    	"trackAnonUser"		: false,
 	    	"munchkinId"		: "478-YGU-956",
 	    	"privateKey"		: "boltisking123",
-			"deletecookie": false,
-			"domainName" :"fakefornow"
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: null
 	},
