@@ -56,6 +56,7 @@ function BuildApp(locale) {
             maxage:0,
             index:false
         }));
+
     });
 
     // Production based middleware
@@ -63,9 +64,10 @@ function BuildApp(locale) {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
         app.use(logger('common'));
-        app.use(compress());
+
     });
 
+    app.use(compress());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
