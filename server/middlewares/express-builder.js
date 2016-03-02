@@ -38,7 +38,7 @@ function BuildApp(locale) {
     // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
 
     // Development based middleware stuff here
-    midlewareloader()(['dev', 'mock', 'vm'], function() {
+    midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
         app.use(assets(app, locale));
         app.use(logger('dev'));
@@ -59,7 +59,7 @@ function BuildApp(locale) {
     });
 
     // Production based middleware
-    midlewareloader()(['production', 'pp', 'lnp', 'vmdeploy'], function() {
+    midlewareloader()(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
         app.use(logger('common'));
