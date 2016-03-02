@@ -5,7 +5,9 @@
         {{> (dynamic "adCarousel") }}
         {{#block "carousel" }}{{/block}}
     {{/partial}}
-    {{#partial "locationAfterCategory"}}{{/partial}}
+    {{#partial "locationAfterCategory"}}
+        {{#block "locationContainer"}}{{/block}}
+    {{/partial}}
 {{else}}
     {{#partial "locationBeforeCategory"}}
         {{> (dynamic "adCarousel") }}
