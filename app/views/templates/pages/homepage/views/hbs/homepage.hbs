@@ -110,22 +110,29 @@
 	    <script>
 	    {{!-- @MUNCHKIN: Munchkin Marketo Event Tracking Section --}}
 	    {{#if this.header.marketo.isAssociateLead}}
-	        var mktoJSON = {};
-	        {{#if this.header.marketo.marketoAttributeJsonStr}}
-	            var mktoJSON = {{{this.header.marketo.marketoAttributeJsonStr}}};
-	        {{else}}
-	            var mktoJSON = {};
-	        {{/if}}
-	            var mkinID = "{{this.header.marketo.munchkinId}}";
-	            var pK = "{{this.header.marketo.privateKey}}";
-	            {{!-- Marketo Munchkin Event Tracking --}}
-	            {{> (dynamic "marketoTracking") }}
+            var mktoJSON = {};
 
-	            if (typeof trackEvtMunchkin != "undefined") {
-	                setTimeout(function () {
-	                    trackEvtMunchkin(mktoJSON, pK);
-	                }, 3000);
-	            }
+            {{#if this.header.marketo.marketoAttributeJsonStr}}
+            	mktoJSON = '{{json this.header.marketo.marketoAttributeJsonStr}}';
+            	try {
+            		mktoJSON = jQuery.parseJSON(mktoJSON);
+            	} catch (e) {
+            		mktoJSON = {};
+            	}
+            {{else}}
+            	mktoJSON = {};
+            {{/if}}
+
+            var mkinID = "{{this.header.marketo.munchkinId}}";
+            var pK = "{{this.header.marketo.privateKey}}";
+            {{!-- Marketo Munchkin Event Tracking --}}
+            {{> (dynamic "marketoTracking") }}
+
+            if (typeof trackEvtMunchkin != "undefined") {
+                setTimeout(function () {
+                    trackEvtMunchkin(mktoJSON, pK);
+                }, 3000);
+            }
 	     {{/if}}
 		</script>
 	{{/partial}}
