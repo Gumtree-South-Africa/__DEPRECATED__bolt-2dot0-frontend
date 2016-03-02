@@ -22,7 +22,8 @@ var FooterModel = function (secure, req, res) {
 	// Country specific variables from BAPI Config
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
-	this.footerConfigData = res.locals.config.bapiConfigData.footer;	
+	this.footerConfigData = res.locals.config.bapiConfigData.footer;
+	this.jsAssets = res.locals.jsAssets;
 };
 
 FooterModel.prototype.getModelBuilder = function() {
@@ -76,13 +77,21 @@ FooterModel.prototype.getFooterData = function() {
 //Build JS
 FooterModel.prototype.buildJs = function(data) {
 	var scope = this;
-	
+
 	var baseComponentDir = "/views/components/";
 
 	data.javascripts = [];
 	if (data.min) {
 		data.javascripts.push(data.baseJSMinUrl + "Main_" + scope.locale + ".min.js");
 	} else {
+
+		/*//todo: remove comments after minification is done
+		jsAssets.forEach(function(jsFile){
+			data.javascripts.push(jsFile);
+		});*/
+
+		//todo: remove this after Nacer adds minfication.
+
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/jquery-2.0.0.min.js");
 		data.javascripts.push(data.baseJSUrl + "bower-components/requirejs/require.js");
 		data.javascripts.push(data.baseJSUrl + "libraries/jQuery/plugins/jquery.smartbanner.js");
@@ -104,7 +113,7 @@ FooterModel.prototype.buildJs = function(data) {
 	//	data.javascripts.push(data.baseJSUrl + "common/header/Header.js");
 		data.javascripts.push(data.baseJSUrl + "common/header/searchbar.js");
 
-		// @todo: Need to determine a way to detect which components will be used for a 
+		// @todo: Need to determine a way to detect which components will be used for a
 		// given page.
 		data.javascripts.push(baseComponentDir + "header/js/header.js");
 	}

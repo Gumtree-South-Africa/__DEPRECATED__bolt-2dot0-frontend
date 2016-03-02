@@ -6,6 +6,7 @@
 
 var str = require('string'),
     urlPattern = require("url-pattern"),
+    util = require(process.cwd() + "/modules/utils"),
     ua;// userAgent
 
 var blackList = ["blackberry8520", "sgh-e250i", "series40", "series60",
@@ -15,15 +16,13 @@ var liteBlacklist = ["Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "S
 
 module.exports = function() {
     return function(req, res, next) {
-        if (!isResourceReq(req) && isGumtreeZA(req) ) {
-
+        if (!util.isReqTypeAsserts(req) && isGumtreeZA(req) ) {
             if (isRedirectToLiteWebSite(req)) {
-               res.redirect(getLiteHomePageUrl());
+            	res.redirect(getLiteHomePageUrl());
             } else if (isRedirectToMobileWebSite(req)) {
                 res.redirect(getHomePageUrl());
             }
         }
-
         next();
     }
 };
@@ -41,7 +40,6 @@ function isRedirectToMobileWebSite(req) {
 }
 
 var hasBlacklistedKeywords = function(req) {
-
     // ua = "BlackBerry9300/5.0.0.977 Profile/MIDP-2.1 Configuration/CLDC-1.1 VendorID/167";
     return checkBlackbery(blackList, req);
 };
@@ -62,7 +60,6 @@ function checkBlackbery(list, req) {
             doesExist = true;
         }
     });
-console.log("doesExist" + ua);
     return doesExist;
 }
 
@@ -82,20 +79,4 @@ function getLoginPageUrl(){
     return "https://m.gumtree.co.za/login";
 }
 
-// check if it is app resource request
-function isResourceReq(req) {
-
-    // set url pattern object
-    var urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|js|css|txt)$/i, ['ext']);
-    // match the url pattern
-    var matchedImageExt = urlPttrn.match(req.originalUrl);
-
-    // console.log("req.originalUrl ====== " + req.originalUrl);
-    //if (matchedImageExt)
-    //console.log("matchedImageExt ====== " + matchedImageExt.ext);
-
-    if (matchedImageExt)
-        return true;
-    return false;
-}
 
