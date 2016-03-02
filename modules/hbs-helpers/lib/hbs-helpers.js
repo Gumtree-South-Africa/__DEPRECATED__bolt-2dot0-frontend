@@ -103,9 +103,11 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
         });
 
-        exphbs.handlebars.registerHelper('formatCommas', function(value) {
-            return new exphbs.handlebars.SafeString(value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-        });
+        exphbs.handlebars.registerHelper('digitGrouping', function(number, separator) {
+            number = parseFloat(number);
+            separator = util.isUndefined(separator) ? ',' : separator;
+            return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
+        }),
 
 
         exphbs.handlebars.registerHelper('ifDesktop', function(val, options) {
