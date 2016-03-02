@@ -6,6 +6,7 @@ var express = require('express'),
     router = express.Router(),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
+	marketoService = require(process.cwd() + '/server/utils/marketo'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
     i18n = require('i18n'),
@@ -71,12 +72,13 @@ router.get('/', function (req, res, next) {
 	  modelData.device = req.app.locals.deviceInfo;
       
 	  // Special Data needed for HomePage in header, footer, content
-      HP.extendHeaderData(req, modelData);
-      HP.extendFooterData(modelData);
-      HP.buildContentData(modelData, bapiConfigData);
-      
-      // console.dir(modelData);
-      
+	  HP.extendHeaderData(req, modelData);
+	  HP.extendFooterData(modelData);
+	  HP.buildContentData(modelData, bapiConfigData);
+	  HP.deleteMarketoCookie(res, modelData);
+		
+	  // console.dir(modelData);
+
       // Render
       res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {
@@ -103,50 +105,50 @@ var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
-	extendHeaderData : function(req, modelData) {
+	extendHeaderData: function (req, modelData) {
 		// SEO
-	    modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
-	    modelData.header.pageTitle = modelData.seo.pageTitle;
-	    modelData.header.metaDescription = modelData.seo.description; //TODO check if descriptionCat needed based on locale, and put that value
-	    modelData.header.metaRobots = modelData.seo.robots;
-	    modelData.header.canonical = modelData.header.homePageUrl;
-	    modelData.header.pageUrl = modelData.header.homePageUrl;
-	    if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-	    	modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
-	    }
+		modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description; //TODO check if descriptionCat needed based on locale, and put that value
+		modelData.header.metaRobots = modelData.seo.robots;
+		modelData.header.canonical = modelData.header.homePageUrl;
+		modelData.header.pageUrl = modelData.header.homePageUrl;
+		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
+		}
 
-	    // CSS
-	    modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
-	    if (modelData.header.min) {
-	    	if (deviceDetection.isHomePageDevice()) {
-		    	modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
-	    	} else {
-		  	  	modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
-	    	}
+		// CSS
+		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
+		if (modelData.header.min) {
+			if (deviceDetection.isHomePageDevice()) {
+				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
+			} else {
+				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
+			}
 		} else {
 			if (deviceDetection.isHomePageDevice()) {
-		    	modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
+				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
 			} else {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
-	    
-	    // Header Page Messages
-	    HP.buildHeaderPageMessages(req, modelData);
+
+		// Header Page Messages
+		HP.buildHeaderPageMessages(req, modelData);
 	},
-	
+
 	/**
 	 * Build Page-Messages data for HomePage
 	 */
-	buildHeaderPageMessages : function(req, modelData) {
+	buildHeaderPageMessages: function (req, modelData) {
 		modelData.header.pageMessages = {};
-		switch(req.query.status){
+		switch (req.query.status) {
 			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
 				
 				// Header Marketo
-				HP.buildHeaderMarketoData(modelData);
+				marketoService.buildMarketoDataForHP(modelData);
 				break;
 			case 'adinactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
@@ -160,7 +162,7 @@ var HP = {
 				modelData.header.pageMessages.error = '';
 				modelData.header.pageType = '';
 		}
-		switch (req.query.resumeabandonedordererror){
+		switch (req.query.resumeabandonedordererror) {
 			case 'adnotactive':
 				modelData.header.pageMessages.error = 'abandonedorder.adNotActive';
 				break;
@@ -169,74 +171,43 @@ var HP = {
 				break;
 		}
 	},
-
+	
 	/**
-	 * Build Marketo data for HomePage
+	 * Special footer data for HomePage
 	 */
-	buildHeaderMarketoData : function (modelData){
-		if (typeof modelData.header.id !== 'undefined') {
-			modelData.header.marketo.isAssociateLead = true;
-			if (typeof modelData.header.userEmail !== 'undefined') {
-				modelData.header.marketo.email = modelData.header.userEmail;
+	extendFooterData: function (modelData) {
+		var baseJSComponentDir = "/views/components/";
+
+		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
+		if (!modelData.footer.min) {
+			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
+			if (!modelData.header.enableLighterVersionForMobile) {
+				modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
+				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
+				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
+				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 			}
-			modelData.header.marketo.brandCode = '';
-			if (typeof modelData.header.firstName !== 'undefined') {
-				modelData.header.marketo.firstName = modelData.header.firstName;
-			}
-			if (typeof modelData.header.lastName !== 'undefined') {
-				modelData.header.marketo.lastName = modelData.header.lastName;
-			}
-			if (typeof modelData.header.username !== 'undefined') {
-				modelData.header.marketo.userName = modelData.header.username;
-			}
-			if (typeof modelData.header.registered !== 'undefined') {
-				modelData.header.marketo.isRegistered = modelData.header.registered;
-				if (modelData.header.registered == true && typeof modelData.header.registrationCountry !== 'undefined') {
-					modelData.header.marketo.registrationCountry = modelData.header.registrationCountry;
+			var availableAdFeatures = modelData.footer.availableAdFeatures;
+			if (typeof availableAdFeatures !== 'undefined') {
+				for (var i = 0; i < availableAdFeatures.length; i++) {
+					if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
+						modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
+					}
 				}
 			}
-			if (typeof modelData.header.creationDate !== 'undefined') {
-				modelData.header.marketo.creationDate = modelData.header.creationDate;
+		} else {
+			if (modelData.header.enableLighterVersionForMobile) {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
+			} else {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
 			}
 		}
 	},
 
 	/**
-	 * Special footer data for HomePage
-	 */
-	extendFooterData : function(modelData) {
-		var baseJSComponentDir = "/views/components/";
-
-		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
-	    if (!modelData.footer.min) {
-		      modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
-		      if (! modelData.header.enableLighterVersionForMobile) {
-		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
-		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
-		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
-		    	  modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
-		      }
-		      var availableAdFeatures = modelData.footer.availableAdFeatures;
-		      if (typeof availableAdFeatures !== 'undefined') {
-			      for (var i=0; i<availableAdFeatures.length; i++) {
-			    	  if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-			    		 modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
-			    	  }
-			      }
-		      }
-	    } else {
-	  	  if (modelData.header.enableLighterVersionForMobile) {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
-	  	  } else {
-	  		  modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
-	  	  }
-	    }
-	},
-
-	/**
 	 * Build content data for HomePage
 	 */
-	buildContentData : function(modelData, bapiConfigData) {
+	buildContentData: function (modelData, bapiConfigData) {
 		modelData.content = {};
 
 		var contentConfigData, homepageConfigData;
@@ -253,12 +224,12 @@ var HP = {
 			if (homepageConfigData.homepageBanners !== null) {
 				var homePageBannerUrls = [];
 				var homepageBanners = homepageConfigData.homepageBanners;
-				for (var i=0; i<homepageBanners.length; i++) {
+				for (var i = 0; i < homepageBanners.length; i++) {
 					homePageBannerUrls[i] = modelData.footer.baseImageUrl + homepageBanners[i];
-			    }
+				}
 				modelData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
 			}
-			
+
 			// Swap Trade
 			if (homepageConfigData.swapTradeEnabled) {
 				modelData.content.swapTradeModel = {};
@@ -266,7 +237,7 @@ var HP = {
 				modelData.content.swapTradeModel.swapTradeName = homepageConfigData.swapTradeName;
 				modelData.content.swapTradeModel.swapTradeSeoUrl = homepageConfigData.swapTradeUrl;
 			}
-			
+
 			// Freebies
 			if (homepageConfigData.freebiesEnabled) {
 				modelData.content.freebiesModel = {};
@@ -278,14 +249,21 @@ var HP = {
 			// Bing Meta
 			modelData.content.bingMeta = homepageConfigData.bingMeta;
 		}
-		
+
 		// Gallery
 		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
-		
+
 		// Search Bar
 		modelData.content.disableSearchbar = false;
-		
+
 		// Page Sub Title
 		modelData.content.pageSubTitle = null;
+	},
+
+	/**
+	 * Invoke marketo function
+	 */
+	deleteMarketoCookie: function (res, modelData) {
+		marketoService.deleteMarketoCookie(res, modelData.header);
 	}
 };

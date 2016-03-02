@@ -25,7 +25,9 @@
 	    	"trackAnonUser"		: false,
 	    	"munchkinId"		: "478-YGU-956",
 	    	"wsInfo"			: "j0hRcdjOKwEL",
-	    	"privateKey"		: "boltisking123"
+	    	"privateKey"		: "boltisking123",
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/"
 	},

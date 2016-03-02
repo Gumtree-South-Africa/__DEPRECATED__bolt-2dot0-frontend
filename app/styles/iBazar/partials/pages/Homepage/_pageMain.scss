@@ -1,0 +1,6 @@
+.hp-city-wrapper, .hp-map-wrapper, .hp-province-wrapper,
+.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+	ul{
+		@include columns(2);
+	}
+}

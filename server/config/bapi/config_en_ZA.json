@@ -22,7 +22,9 @@
 	        "enabled"			: true,
 	    	"trackAnonUser"		: false,
 	    	"munchkinId"		: "038-AZF-323",
-	    	"privateKey"		: "boltisking123"
+	    	"privateKey"		: "boltisking123",
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/"
 	},

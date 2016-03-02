@@ -24,7 +24,9 @@
 	    	"enabled"			: false,
 	    	"trackAnonUser"		: false,
 	    	"munchkinId"		: "038-AZF-323",
-	    	"privateKey"		: "boltisking123"
+	    	"privateKey"		: "boltisking123",
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
 	    },
 	    "seoDeepLinkingBaseUrlAndroid" 		: null
 	},
