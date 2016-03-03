@@ -137,6 +137,15 @@ $(document).ready(function() {
         $parent.append( $("<div />").addClass("options").append($rootList) );
     });
 
+    function setLocationCookies() {
+        var locationId = $searchbar.find("input[name=locId]").val();
+        var locationName = $searchbar.find(".options li a.active").text();
+
+        console.log("location id: " + locationId);
+        console.log("location Name:> " + locationName);
+        Bolt.Cookie.setHardCookie("searchLocId", locationId);
+        Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));  
+    }
 
     /**
      * On header inputs, we need to add an active class when the user focuses on the input
@@ -156,10 +165,7 @@ $(document).ready(function() {
         })
         // Added in 2.0
         .on("click", "input,button", function() {
-            var locationId = $searchbar.find("input[name=locId]").val();
-            var locationName = $searchbar.find(".options li a.active").text();
-            Bolt.Cookie.setHardCookie("searchLocId", locationId);
-            Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));
+            setLocationCookies();
             $searchForm.submit();
         })
         // End added
@@ -222,9 +228,11 @@ $(document).ready(function() {
 
                 //the below if statement is a support of placeholder polyfill for IE
                 var $inputSearch = $(".wrap > form").find("input[name=q]");
-                if($inputSearch.val() == '')
+                if($inputSearch.val() == '') {
                     $inputSearch.val('');
+                }
 
+                setLocationCookies();
                 $options.closest("form").submit();
             }
 
@@ -718,8 +726,9 @@ $(document).ready(function() {
         $locationId.val(locationId);
         $locationName.text(locationName);
         geoLocator.close();
-        if(!prompted && instantSearch)
+        if (!prompted && instantSearch) {
             $searchForm.submit();
+        }
     }
 
 

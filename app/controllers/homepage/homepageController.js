@@ -146,7 +146,7 @@ var HP = {
 			modelData.header.cookieLocationId = req.cookies['searchLocId'];
 		}
 		if (req.cookies['searchLocName']) {
-			modelData.header.cookieLocationName = req.cookies['searchLocName'];
+			modelData.header.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
 		}
 
 		// Header Page Messages
