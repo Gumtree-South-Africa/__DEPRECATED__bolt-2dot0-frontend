@@ -66,6 +66,8 @@
     "javascript-precommit": "0.0.8",
     "jshint": "^2.8.0",
     "kafka-node": "^0.3.1",
+    "loading-indicator": "^2.0.0",
+    "loading-spinner": "^1.1.1",
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
@@ -82,9 +84,13 @@
     "yargs": "^3.31.0"
   },
   "devDependencies": {
+    "conventional-github-releaser": "^1.1.1",
     "event-stream": "^3.3.2",
+    "fs": "0.0.2",
     "gulp-clean": "^0.3.1",
+    "gulp-conventional-changelog": "^1.1.0",
     "gulp-cssmin": "^0.1.7",
+    "gulp-git": "^1.7.0",
     "gulp-jasmine-browser": "^1.0.1",
     "gulp-jasmine-node": "^1.0.3",
     "gulp-node-inspector": "^0.1.0",

@@ -39,7 +39,19 @@ var gulp = require('gulp'),
   gzip = require('gulp-gzip'),
   asynch = require('async'),
   bump = require('gulp-bump'),
+  es = require('event-stream'),
+  gulpif = require('gulp-if'),
+  rename = require('gulp-rename'),
+  cssmin = require('gulp-cssmin'),
+  through2 = require('through2'),
+  conventionalChangelog = require('gulp-conventional-changelog');
+  conventionalGithubReleaser = require('conventional-github-releaser');
+  gutil = require('gulp-util');
+  git = require('gulp-git');
+  fs = require('fs');
+  runSequence = require('gulp-run-sequence')
   nodeInspector = require('gulp-node-inspector'),
+  loadingSpinner = require('loading-spinner'),
   reload = browserSync.reload;
 
 
@@ -47,7 +59,7 @@ var gulp = require('gulp'),
 // Get Tasks
 // // /////////////////////////////////////////////
 function getTask(task) {
-    return require('./gulp-tasks/' + task)(gulp, plugins, concat, uglify, errorlog, rename, sourcemaps, sass, autoprefixer);
+    return require('./gulp-tasks/' + task)(gulp, plugins);
 }
 
 
@@ -60,20 +72,17 @@ function errorlog(err){
 }
 
 
-gulp.task('pak:dist', getTask('dist'));
+//STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('icons', getTask('icons'));
-gulp.task('scripts', getTask('scripts'));
-gulp.task('hbs', getTask('hbs'));
 gulp.task('precompile', getTask('precompile'));
 gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
-gulp.task('watch', getTask('watch'));
 gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
@@ -81,13 +90,16 @@ gulp.task('jscs', getTask('jscs'));
 
 
 // DEFAULT is used by Developers
-gulp.task('default', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop', 'watch']);
+gulp.task('default', ['set-env', 'jscs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop']);
 
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
+// RELEASE
+gulp.task('release', getTask('release'));
+
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'scripts', 'icons', 'compass', 'hbs', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
+gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
 
 // TEST
 gulp.task('jasmine', getTask('jasmine'));
@@ -95,4 +107,4 @@ gulp.task('jasminebrowser', getTask('jasminebrowser'));
 gulp.task('test', ['build', 'develop', 'jasmine']);
 
 // PACKAGE
-gulp.task('pak', ['pak:dist'], getTask('pak'));
+gulp.task('pak', getTask('pak'));
