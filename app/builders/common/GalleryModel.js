@@ -15,7 +15,6 @@ var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
 var GalleryModel = function (requestId, locale) {
 	this.requestId = requestId;
 	this.locale = locale;
-    // return new ModelBuilder(this.getHomePageGallery());
 };
 
 GalleryModel.prototype.getModelBuilder = function() {
@@ -54,6 +53,27 @@ GalleryModel.prototype.getHomePageGallery = function() {
 	];
 	
 	return arrFunctions;
+};
+
+//Function getAjaxGallery
+GalleryModel.prototype.getAjaxGallery = function(offset, limit) {
+	var scope = this;
+	var galleryDeferred = Q.defer(),
+		data = {};
+	
+    if (typeof scope.locale !== "undefined") {
+		 Q(hpAdService.getAjaxGallery(scope.requestId, scope.locale, offset, limit))
+	    	.then(function (dataReturned) {
+	    		data = dataReturned;
+	    		galleryDeferred.resolve(data);
+			}).fail(function (err) {
+				galleryDeferred.reject(new Error(err));
+			});
+	} else {
+		galleryDeferred.resolve(data);
+	}
+		
+    return galleryDeferred.promise;
 };
 
 module.exports = GalleryModel;
