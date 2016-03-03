@@ -6,7 +6,7 @@ A legacy mobile redirection for za m.gumtee.co.za.
 
 ### use case 1
 #### if user agents contains the below list in the useragent then redirect to http://m.gumtree.co.za
- ("blackberry8520", "sgh-e250i", "series40", "series60",
+ ( "sgh-e250i", "series40", "series60",
  "opera mini", "opera mobi", "n905i", "blackberry9300/5", "BLACKBERRY9300", "BLACKBERRY 9300", "lumia 520")
 
 ### use case 2
