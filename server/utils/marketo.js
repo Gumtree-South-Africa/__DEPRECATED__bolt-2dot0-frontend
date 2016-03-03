@@ -38,8 +38,6 @@ MarketoService.prototype.buildMarketoDataForHP = function(modelData) {
 }
 
 MarketoService.prototype.deleteMarketoCookie = function(res, header) {
-	console.log( 'INSIDE deleteMarketoCookie method.......');
-	
 	var domainName;
 	if (typeof header.marketo.domainName !== undefined){
 		domainName = header.marketo.domainName;
@@ -48,8 +46,6 @@ MarketoService.prototype.deleteMarketoCookie = function(res, header) {
 	}
 	
 	var isDelete = header.marketo.deletecookie;
-	console.log('DOMAIN NAME marketo' , domainName);
-	console.log('COOKIE DELETE' ,isDelete );
 	if (isDelete == false) {
 		res.cookie('_mkto_trk', '_mkto_trk', {domain: domainName, path: '/', maxAge: 0});
 	}

@@ -172,6 +172,7 @@
 </head>
 <body>
     {{#block "banner_cookie"}}{{/block}}
+    {{> (dynamic "cookieBanner") }}
     {{#if this.footer.analytics.gtmTagId}}
         <noscript>
             <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.analytics.gtmTagId}}"

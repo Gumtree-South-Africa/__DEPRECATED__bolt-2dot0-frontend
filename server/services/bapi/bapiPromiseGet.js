@@ -5,6 +5,8 @@ var Q = require("q");
 var BAPICall = require("./BAPICall");
 
 module.exports = function(bapiOptions, requestId, locale, serviceName, authTokenValue){
+	console.time('Instrument-BAPI-' + serviceName);
+
 	// Add Headers
 	bapiOptions.headers["X-BOLT-APPS-ID"] = "RUI";
 	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
@@ -34,6 +36,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 			bapiDeferred.reject(serviceName + " BAPI returned: " + output.statusCode + " , details: " + output);
 		} else {
 			bapiDeferred.resolve(output);
+			console.timeEnd('Instrument-BAPI-' + serviceName);
 		}
 	});
 
