@@ -9,7 +9,7 @@ var str = require('string'),
     util = require(process.cwd() + "/modules/utils"),
     ua;// userAgent
 
-var blackList = ["blackberry8520", "sgh-e250i", "series40", "series60",
+var blackList = [ "sgh-e250i", "series40", "series60",
     "opera mini", "opera mobi", "n905i", "blackberry9300/5", "BLACKBERRY9300", "BLACKBERRY 9300", "lumia 520"];
 
 var liteBlacklist = ["Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "SAMSUNG-GT-E2220", "BlackBerry8520"];
