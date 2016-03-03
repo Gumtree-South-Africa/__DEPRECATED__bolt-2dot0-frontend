@@ -3,7 +3,7 @@
 // ////////////////////////////////////////////////
 // Pre-compilation of Handlebars template Tasks
 // // /////////////////////////////////////////////
-module.exports = function watch(gulp, plugins, concat) {
+module.exports = function watch(gulp, plugins) {
   return function(){
     gulp.task('precompile', function () {
       var pagesArr, idx, pageJson, srcFiles, destFile;
@@ -17,14 +17,13 @@ module.exports = function watch(gulp, plugins, concat) {
         destFile = pageJson.dest;
         // Read each key/value(array)
         gulp.src(srcFiles, {base : './app/views/templates/precompile/hbs'})
-            .pipe(handlebars())
-            .pipe(declare({
+            .pipe(plugins.handlebars())
+            .pipe(plugins.declare({
               namespace: 'Handlebars.templates',
               noRedeclare: true, // Avoid duplicate declarations
             }))
-            .pipe(concat(destFile))
+            .pipe(plugins.concat(destFile))
             .pipe(gulp.dest('./public/js/precompiled/'));
-
       }
     });
   };

@@ -31,7 +31,7 @@ module.exports = function watch(gulp, plugins) {
                 gulpicon(files, config)(perLocale);
               }
               else{
-                notify({
+                plugins.notify({
       	            title: 'Compass',
       	            message: 'SVGs Tasks done. Please start your app on a Browser'
       	        })

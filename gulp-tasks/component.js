@@ -8,11 +8,11 @@ module.exports = function watch(gulp, plugins) {
   return function (){
     var componentExist = false,
     err = {
-      'message': 'There already is a component with the same name' 
+      'message': 'There already is a component with the same name'
     };
- 
+
 	gulp.task('component', function() {
-	  
+
 	  var componentName = argv.n;
 	  var emitter = walkdir(process.cwd() + '/app/views/components', {no_recurse: true}, function(dir, stat, depth){
 	    var base = path.basename(dir);
@@ -20,7 +20,7 @@ module.exports = function watch(gulp, plugins) {
 	      console.log(new Error(err.message));
 	      componentExist = true;
 	      this.end();
-	    } 
+	    }
 	  });
 
 	  emitter.on('end', function(){
