@@ -42,7 +42,7 @@ router.get('/', function (req, res, next) {
         locale: res.locals.config.locale,
         country: res.locals.config.country,
         site: res.locals.config.name,
-        pagename: pagetypeJson.pagetype.HOMEPAGE
+        pagename: req.app.locals.pagetype
     };
 
 	// Retrieve Data from Model Builders
@@ -115,7 +115,7 @@ var HP = {
 	 */
 	extendHeaderData: function (req, modelData) {
 		// SEO
-		modelData.header.pageType = pagetypeJson.pagetype.HOMEPAGE;
+		modelData.header.pageType = modelData.pagename;
 		modelData.header.pageTitle = modelData.seo.pageTitle;
 		modelData.header.metaDescription = modelData.seo.description; //TODO check if descriptionCat needed based on locale, and put that value
 		modelData.header.metaRobots = modelData.seo.robots;
@@ -139,6 +139,14 @@ var HP = {
 			} else {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
+		}
+		
+		// Set location cookie
+		if (req.cookies['searchLocId']) {
+			modelData.header.cookieLocationId = req.cookies['searchLocId'];
+		}
+		if (req.cookies['searchLocName']) {
+			modelData.header.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
 		}
 
 		// Header Page Messages
