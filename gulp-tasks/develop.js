@@ -6,7 +6,7 @@
 module.exports = function watch(gulp, plugins) {
   return function(){
     gulp.task('develop', function () {
-      livereload.listen();
+      plugins.livereload.listen();
       nodemon({
         script: process.cwd() + '/bin/server',
         ext: 'js hbs json',
@@ -14,7 +14,7 @@ module.exports = function watch(gulp, plugins) {
       }).on('readable', function () {
         this.stdout.on('data', function (chunk) {
           if(/^Express server listening on port/.test(chunk)){
-            livereload.changed(__dirname);
+            plugins.livereload.changed(__dirname);
           }
         });
         this.stdout.pipe(process.stdout);

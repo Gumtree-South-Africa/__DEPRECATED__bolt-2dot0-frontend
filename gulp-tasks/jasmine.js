@@ -6,12 +6,16 @@
 module.exports = function watch(gulp, plugins) {
 	return function(){
 		gulp.task('jasmine', function() {
-			return gulp.src(['test/spec/**/*.js'])
-		 		.pipe(jasmineNode({
-			 		timeout: 10000,
-			 		isVerbose: true,
-			 		includeStackTrace: true,
-			 		color: true }));
+			var stream =
+				gulp.src(['test/spec/**/*.js'])
+			 		.pipe(plugins.jasmineNode({
+				 		timeout: 10000,
+				 		isVerbose: true,
+				 		includeStackTrace: true,
+				 		color: true
+					}));
+
+			return stream;
 		});
 	};
 };

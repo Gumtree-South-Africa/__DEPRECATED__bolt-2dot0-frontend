@@ -11,9 +11,12 @@ module.exports = function watch(gulp, plugins) {
 	      process.exit(1);
 	    }
 	  });
-	  return gulp.src(process.cwd() + "./app/config/*.json")
-	      .pipe(jsonlint())
-	      .pipe(jsonlint.reporter('fail'))
+	  var stream =
+      gulp.src(process.cwd() + "./app/config/*.json")
+	      .pipe(plugins.jsonlint())
+	      .pipe(plugins.jsonlint.reporter('fail'))
 	      .pipe(exitOnJsonlintError);
+
+    return stream;
   };
 };

@@ -3,7 +3,7 @@
 // ////////////////////////////////////////////////
 // Properties to Json Tasks
 // ///////////////////////////////////////////////
-module.exports = function watch(gulp, plugins, concat, uglify, errorlog, rename) {
+module.exports = function watch(gulp, plugins) {
 
   function arrangeFolder(file){
     var tmpArr = file.split(/_(.+)?/),
@@ -12,14 +12,16 @@ module.exports = function watch(gulp, plugins, concat, uglify, errorlog, rename)
     return outputPath;
   }
 
-  return function(){
-    gulp.task('prop2json', function(){
-        gulp.src(process.cwd() + '/app/locales/src/*.properties')
-          .pipe(props({ outputType: 'json', minify: false, nestedProps: true, space: 4}))
-          .pipe(gulp.dest(function(files){
-            var fileName = files.history[1].replace(/^.*\/(.*)$/, "$1").toString();
-            return arrangeFolder(fileName);
-          }))
-    })
-  }
+  gulp.task('prop2json', function(){
+    var stream =
+      gulp.src(process.cwd() + '/app/locales/src/*.properties')
+        .pipe(plugins.props({ outputType: 'json', minify: false, nestedProps: true, space: 4}))
+        .pipe(gulp.dest(function(files){
+          var fileName = files.history[1].replace(/^.*\/(.*)$/, "$1").toString();
+          return arrangeFolder(fileName);
+        }))
+
+    return stream;
+  })
+  
 };

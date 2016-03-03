@@ -4,28 +4,26 @@
 // javascript Aggragation and Minification Task
 //// /////////////////////////////////////////////
 
-var es = require('event-stream'),
-    concat = require('gulp-concat'),
-    uglify = require('gulp-uglify');
 
-var bundles = require(process.cwd() + '/app/config/ruby/jsmin');
+var bundles = require(process.cwd() + '/app/config/ruby/jsmin.js');
 
 module.exports = function watch(gulp, plugins) {
 	return function(){
+		var stream =
 		gulp.task('bundlejs', function() {
       es.merge(bundles.map(function (obj) {
         return gulp.src(obj.src)
-              .pipe(concat(obj.bundleName))
-              .pipe(plumber({
+              .pipe(plugins.concat(obj.bundleName))
+              .pipe(plugins.plumber({
 								errorHandler: function (error) {
 									console.log(error.message);
 									this.emit('end');
 							}}))
-              .pipe(uglify())
+              .pipe(plugins.uglify())
               .pipe(gulp.dest(obj.dest));
       }))
-			//return gulp.src(['./.build', './public/css', './target'], {read: false})
-		    //	.pipe(clean());
+
+			return stream;
 		});
 	};
 };

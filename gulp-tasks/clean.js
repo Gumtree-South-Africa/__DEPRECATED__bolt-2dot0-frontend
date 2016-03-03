@@ -6,8 +6,14 @@
 module.exports = function watch(gulp, plugins) {
 	return function(){
 		gulp.task('clean', function() {
-			return gulp.src(['./.build', './public/css', './target'], {read: false})
-		    	.pipe(clean());
+			process.stdout.write('CLeaning up jsmin/css/target/tmp/build folders...\r\n');
+
+			var stream =
+				gulp.src(['./.build', './tmp', './public/css', './public/jsmin', './target'], {read: false})
+		    	.pipe(plugins.clean());
+
+				return stream;
 		});
+
 	};
 };
