@@ -140,14 +140,6 @@ var HP = {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 			}
 		}
-		
-		// Set location cookie
-		if (req.cookies['searchLocId']) {
-			modelData.header.cookieLocationId = req.cookies['searchLocId'];
-		}
-		if (req.cookies['searchLocName']) {
-			modelData.header.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
-		}
 
 		// Header Page Messages
 		HP.buildHeaderPageMessages(req, modelData);

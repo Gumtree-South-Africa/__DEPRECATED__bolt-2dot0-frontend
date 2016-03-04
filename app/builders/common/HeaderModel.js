@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
-var _ = require("underscore");
+var http = require('http');
+var Q = require('q');
+var _ = require('underscore');
 
-var ModelBuilder = require("./ModelBuilder");
+var ModelBuilder = require('./ModelBuilder');
 
-var deviceDetection = require(process.cwd() + "/modules/device-detection");
-var userService = require(process.cwd() + "/server/services/user");
-var pageurlJson = require(process.cwd() + "/app/config/pageurl.json");
-var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
-var config = require("config");
+var deviceDetection = require(process.cwd() + '/modules/device-detection');
+var userService = require(process.cwd() + '/server/services/user');
+var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+var config = require('config');
 
 /**
  * @description A class that Handles the Header Model
@@ -19,20 +19,25 @@ var config = require("config");
 
 var HeaderModel = function (secure, req, res) {
 	// ENV variables
-	this.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=="undefined" ? "." + process.env.BASEDOMAINSUFFIX : "";
-	this.basePort = typeof process.env.PORT!=="undefined" ? ":" + process.env.PORT : "";
+	this.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=='undefined' ? '.' + process.env.BASEDOMAINSUFFIX : '';
+	this.basePort = typeof process.env.PORT!=='undefined' ? ':' + process.env.PORT : '';
 
 	// Local variables
-	var cookieName = "bt_auth";
-	var authcookie = req.cookies[cookieName];
+	var authCookieName = 'bt_auth';
+	var authCookie = req.cookies[authCookieName];
+	this.authCookie = authCookie;
+
+	var searchLocIdCookieName = 'searchLocId';
+	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
+	this.searchLocIdCookie = searchLocIdCookie;
+
 	this.secure = secure;
 	this.requestId = req.requestId;
-	this.cookie = authcookie;
 	this.locale = res.locals.config.locale;
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
 	this.fullDomainName = res.locals.config.hostname;
-	this.urlProtocol = this.secure ? "https://" : "http://";
+	this.urlProtocol = this.secure ? 'https://' : 'http://';
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 };
 
@@ -47,9 +52,9 @@ HeaderModel.prototype.getHeaderData = function() {
 		function (callback) {
 			var headerDeferred,
 				data = {
-					"favIcon" : "/images/" + scope.locale + "/shortcut.png",
-		    		"homePageUrl" : scope.urlProtocol + "www." + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
-		    		"languageCode" : scope.locale
+					'favIcon' : '/images/' + scope.locale + '/shortcut.png',
+		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
+		    		'languageCode' : scope.locale
 				};
 
 			// merge pageurl data
@@ -59,13 +64,13 @@ HeaderModel.prototype.getHeaderData = function() {
     		_.extend(data, scope.headerConfigData);
 
     		// build data
-    		var urlProtocol = scope.secure ? "https://" : "http://";
-    		var urlHost = config.get("static.server.host")!==null ? urlProtocol + config.get("static.server.host") : "";
-    		var urlPort = config.get("static.server.port")!==null ? ":" + config.get("static.server.port") : "";
-    		var urlVersion = config.get("static.server.version")!==null ? "/" + config.get("static.server.version") : "";
-    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get("static.baseImageUrl");
-    		data.baseCSSUrl = (process.env.NODE_ENV === "production") ? urlHost + urlPort + urlVersion + config.get("static.baseCSSUrl") : config.get("static.baseCSSUrl");
-    		data.min = config.get("static.min");
+    		var urlProtocol = scope.secure ? 'https://' : 'http://';
+    		var urlHost = config.get('static.server.host')!==null ? urlProtocol + config.get('static.server.host') : '';
+    		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
+    		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
+    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
+    		data.baseCSSUrl = (process.env.NODE_ENV === 'production') ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
+    		data.min = config.get('static.min');
 
     		scope.buildUrl(data);
     		scope.buildCss(data);
@@ -74,14 +79,21 @@ HeaderModel.prototype.getHeaderData = function() {
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
+    		// Set cookie info from locationCookie
+    		if (typeof scope.searchLocIdCookie !== 'undefined') {
+    			data.cookieLocationId = scope.searchLocIdCookie;
+    			// TODO need to get the cookieLocationName from location list somehow and set the value here...or make BAPI call
+    			// data.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
+    		}
+    		
     		// merge header data from BAPI if cookie present
-			if (typeof callback !== "function") {
+			if (typeof callback !== 'function') {
 				return;
 			}
-		    if (typeof scope.cookie !== "undefined") {
+		    if (typeof scope.authCookie !== 'undefined') {
 		    	headerDeferred = Q.defer();
 
-				 Q(userService.getUserFromCookie(scope.requestId, scope.cookie, scope.locale))
+				 Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);
@@ -110,14 +122,14 @@ HeaderModel.prototype.getHeaderData = function() {
 HeaderModel.prototype.buildUrl = function(data) {
 	var scope = this;
 
-	data.touchIconIphoneUrl = data.baseImageUrl + scope.locale + "/touch-iphone.png";
-	data.touchIconIpadUrl = data.baseImageUrl + scope.locale + "/touch-ipad.png";
-	data.touchIconIphoneRetinaUrl = data.baseImageUrl + scope.locale + "/touch-iphone-retina.png";
-	data.touchIconIpadRetinaUrl = data.baseImageUrl + scope.locale + "/touch-ipad-retina.png";
-	data.shortcutIconUrl = data.baseImageUrl + scope.locale + "/shortcut.png";
-	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + "/{catId}/{locId}/{value}";
-	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + "/{lat}/{lng}";
-	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + "/0/category/0";
+	data.touchIconIphoneUrl = data.baseImageUrl + scope.locale + '/touch-iphone.png';
+	data.touchIconIpadUrl = data.baseImageUrl + scope.locale + '/touch-ipad.png';
+	data.touchIconIphoneRetinaUrl = data.baseImageUrl + scope.locale + '/touch-iphone-retina.png';
+	data.touchIconIpadRetinaUrl = data.baseImageUrl + scope.locale + '/touch-ipad-retina.png';
+	data.shortcutIconUrl = data.baseImageUrl + scope.locale + '/shortcut.png';
+	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + '/{catId}/{locId}/{value}';
+	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + '/{lat}/{lng}';
+	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + '/0/category/0';
 };
 
 //Build CSS
@@ -125,23 +137,23 @@ HeaderModel.prototype.buildCss = function(data) {
 	var scope = this;
 
 	data.iconsCSSURLs = [];
-	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.svg" + "_" + scope.locale + ".css");
-	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.png" + "_" + scope.locale + ".css");
-	data.iconsCSSURLs.push(data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css");
-	data.iconsCSSFallbackUrl = data.baseCSSUrl + "icons.data.fallback" + "_" + scope.locale + ".css";
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css');
+	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css';
 
 	if (deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + "mobile/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
 	} else {
-		data.localeCSSPath = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+		data.localeCSSPath = data.baseCSSUrl + 'all/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + "all/" + scope.brandName + "/" + scope.country + "/" + scope.locale;
+	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
 
 	data.containerCSS = [];
 	if (data.min) {
-		data.containerCSS.push(data.localeCSSPath + "/Main.min.css");
+		data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
 	} else {
-		data.containerCSS.push(data.localeCSSPath + "/Main.css");
+		data.containerCSS.push(data.localeCSSPath + '/Main.css');
 	}
 };
 
@@ -151,8 +163,8 @@ HeaderModel.prototype.buildOpengraph = function(data) {
 
 	data.brandName = scope.brandName;
 	data.countryName = scope.country;
-	data.logoUrl = data.baseImageUrl + scope.locale + "/logo.png";
-	data.logoUrlOpenGraph = data.baseImageUrl + scope.locale + "/logoOpenGraph.png";
+	data.logoUrl = data.baseImageUrl + scope.locale + '/logo.png';
+	data.logoUrlOpenGraph = data.baseImageUrl + scope.locale + '/logoOpenGraph.png';
 };
 
 //Build Profile
@@ -167,13 +179,13 @@ HeaderModel.prototype.buildProfile = function(data) {
 		if (data.socialMedia.profileName && data.socialMedia.profileName.length>0) {
 			data.profileName = data.socialMedia.profileName;
 		}
-		if (data.socialMedia.type === "FACEBOOK") {
-			data.fbProfileImageUrl = "https://graph.facebook.com/" + data.socialMedia.id + "/picture?width=36&height=36";
+		if (data.socialMedia.type === 'FACEBOOK') {
+			data.fbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
 		}
 	}
 
 	if (data.userProfileImageUrl) {
-		data.profilePictureCropUrl = "https://img.classistatic.com/crop/50x50/" + data.userProfileImageUrl.replace("http://www","").replace("http://","").replace("www","");
+		data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www','').replace('http://','').replace('www','');
 	}
 };
 
