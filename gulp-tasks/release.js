@@ -17,7 +17,7 @@ module.exports = function watch(gulp, plugins) {
 	    gulp.task('github-release', function(done) {
 	    	conventionalGithubReleaser( {
 		        type: 'oauth',
-		        token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
+		        token: '4545aa5a9c99ea848bd0f72064809b541301bff1' // vrajendiran personal access token for public repo
 	    	}, {
 	    		preset: 'express' // Or to any other commit message convention you use.
 	    	}, 
@@ -62,6 +62,7 @@ module.exports = function watch(gulp, plugins) {
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
+	    		'bumpup',
 		    	'changelog',
 		        //'commit-changes',
 		        //'push-changes',
