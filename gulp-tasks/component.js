@@ -34,13 +34,13 @@ module.exports = function watch(gulp, plugins) {
     	        })
     	       .pipe(gulp.dest(cwd + '/app/views/components/'+ componentName))
              .on('end', function(){
-               gulp.src(cwd + '/app/views/components/'+ componentName +'/views/tmp/**/*.hbs')
+               gulp.src(cwd + '/app/views/components/'+ componentName +'/views/tmphbs/**/*.hbs')
                  .pipe(plugins.rename(function (path) {
                    path.basename = path.basename.replace(/default/ig, componentName);
                  }))
                  .pipe(gulp.dest(cwd + '/app/views/components/'+ componentName +'/views/hbs'))
                  .on('end', function(){
-                   del([cwd + '/app/views/components/'+ componentName +'/views/tmp']);
+                   del([cwd + '/app/views/components/'+ componentName +'/views/tmphbs']);
                  });
              })
 

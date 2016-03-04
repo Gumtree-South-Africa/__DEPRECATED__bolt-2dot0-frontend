@@ -30,7 +30,6 @@ module.exports = function watch(gulp, plugins) {
 
     if (process.env.NODE_ENV !== 'development'){
       output_style = 'compressed';
-      console.log('it is compressed: ', process.env.NODE_ENV);
     };
 
     gulp.task('compass', function(){
@@ -45,7 +44,7 @@ module.exports = function watch(gulp, plugins) {
           }
 	    }
 
-			for (var i = 0; i < articles.length -1; ++i) {
+      for (var i = 0; i < articles.length -1; ++i) {
   		  gulp.src('./app/styles/**/**/*.scss')
             .pipe(plugins.compass({
                     project: process.cwd(),
@@ -63,7 +62,6 @@ module.exports = function watch(gulp, plugins) {
                 this.emit('end');
             }}))
             .pipe(plugins.cssmin())
-          //  .pipe(gulpif(output_style === 'compressed', rename({suffix:'.min'})))
             .pipe(plugins.rename({suffix:'.min'}))
             .pipe(gulp.dest(process.cwd() + '/' + assets[i].cssPath))
   					.pipe(synchro(incDoneCounter))

@@ -10,7 +10,6 @@ var gulp = require('gulp'),
   autoprefixer = require('gulp-autoprefixer'),
   concat = require('gulp-concat'),
   uglify = require('gulp-uglify'),
-  rename = require('gulp-rename'),
   del = require('del');
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
@@ -96,12 +95,30 @@ gulp.task('default', ['set-env', 'jscs', 'icons', 'compass', 'precompile', 'jshi
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
+gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json']);
 
 // TEST
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
-gulp.task('test', ['build', 'develop', 'jasmine']);
+
+//TODO: move to a separate file
+gulp.task('test', function(callback){
+  process.stdout.write('Test Task is running...\r\n');
+  var stream =
+    runSequence(
+      'build',
+      'develop',
+      'jasmine',
+      function (error) {
+        if (error) {
+          console.log(error.message);
+        } else {
+          console.log('Congratulations!!! TEST TASK DONE SUCCESSFULLY');
+        }
+        callback(error);
+      });
+      return stream;
+});
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
