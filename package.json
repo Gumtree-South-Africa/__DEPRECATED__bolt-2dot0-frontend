@@ -56,6 +56,7 @@
     "gulp-props2json": "^2.0.0",
     "gulp-rename": "^1.2.2",
     "gulp-ruby-sass": "^2.0.1",
+    "gulp-run-sequence": "^0.3.2",
     "gulp-sass": "^2.1.1",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-tar": "^1.8.0",

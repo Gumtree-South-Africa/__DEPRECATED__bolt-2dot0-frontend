@@ -44,12 +44,12 @@ var gulp = require('gulp'),
   rename = require('gulp-rename'),
   cssmin = require('gulp-cssmin'),
   through2 = require('through2'),
-  conventionalChangelog = require('gulp-conventional-changelog');
-  conventionalGithubReleaser = require('conventional-github-releaser');
-  gutil = require('gulp-util');
-  git = require('gulp-git');
-  fs = require('fs');
-  runSequence = require('gulp-run-sequence')
+  conventionalChangelog = require('gulp-conventional-changelog'),
+  conventionalGithubReleaser = require('conventional-github-releaser'),
+  gutil = require('gulp-util'),
+  git = require('gulp-git'),
+  fs = require('fs'),
+  runSequence = require('gulp-run-sequence'),
   nodeInspector = require('gulp-node-inspector'),
   loadingSpinner = require('loading-spinner'),
   reload = browserSync.reload;
@@ -72,7 +72,7 @@ function errorlog(err){
 }
 
 
-//STAND ALONE TASKS
+// STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
@@ -95,9 +95,6 @@ gulp.task('default', ['set-env', 'jscs', 'icons', 'compass', 'precompile', 'jshi
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
-// RELEASE
-gulp.task('release', getTask('release'));
-
 // BUILD
 gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'bundlejs']);
 
@@ -108,3 +105,6 @@ gulp.task('test', ['build', 'develop', 'jasmine']);
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
+
+//RELEASE
+gulp.task('release', getTask('release'));
