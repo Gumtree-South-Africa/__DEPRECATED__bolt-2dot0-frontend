@@ -50,6 +50,10 @@ HeaderModel.prototype.getHeaderData = function() {
 	var scope = this;
 	var arrFunctions = [
 		function (callback) {
+			if (typeof callback !== 'function') {
+				return;
+			}
+			
 			var headerDeferred,
 				data = {
 					'favIcon' : '/images/' + scope.locale + '/shortcut.png',
@@ -72,6 +76,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		data.baseCSSUrl = (process.env.NODE_ENV === 'production') ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
     		data.min = config.get('static.min');
 
+    		// add complex data to header
     		scope.buildUrl(data);
     		scope.buildCss(data);
     		scope.buildOpengraph(data);
@@ -79,21 +84,17 @@ HeaderModel.prototype.getHeaderData = function() {
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
-    		// Set cookie info from locationCookie
+    		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
     			// TODO need to get the cookieLocationName from location list somehow and set the value here...or make BAPI call
     			// data.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
     		}
     		
-    		// merge header data from BAPI if cookie present
-			if (typeof callback !== 'function') {
-				return;
-			}
+    		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
 		    	headerDeferred = Q.defer();
-
-				 Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
+				Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);
@@ -107,7 +108,6 @@ HeaderModel.prototype.getHeaderData = function() {
 						headerDeferred.reject(new Error(err));
 					    callback(null, data);
 					});
-
 				return headerDeferred.promise;
 			} else {
 			    callback(null, data);
