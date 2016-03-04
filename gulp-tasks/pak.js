@@ -16,7 +16,7 @@ module.exports = function watch(gulp, plugins) {
 				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
 		        	.pipe(plugins.tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
-		        	.pipe(gulp.dest('./target/' + appVersion + '/dist'))
+		        	.pipe(gulp.dest('./target/' + appVersion + '/app'))
 		        	.on('end', function(){
 		        		console.log('Congratulations!!! APP PACKAGING DONE SUCCESSFULLY');
 		        	});

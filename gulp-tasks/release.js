@@ -6,8 +6,6 @@
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
-	    var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
-	    
 	    // Append release comments to CHANGELOG.md
 	    gulp.task('changelog', function () {
 	    	return gulp.src('CHANGELOG.md', {buffer: false})
@@ -18,7 +16,7 @@ module.exports = function watch(gulp, plugins) {
 	    // Perform Release in Github
 	    gulp.task('github-release', function(done) {
 	    	conventionalGithubReleaser( {
-		        type: "oauth",
+		        type: 'oauth',
 		        token: '0126af95c0e2d9b0a7c78738c4c00a860b04acc8' // change this to your own GitHub token or use an environment variable
 	    	}, {
 	    		preset: 'express' // Or to any other commit message convention you use.
@@ -30,7 +28,15 @@ module.exports = function watch(gulp, plugins) {
 	    gulp.task('commit-changes', function () {
 	    	return gulp.src('.')
 	        	.pipe(git.add())
-	        	.pipe(git.commit('[Prerelease] Bumped version number: '+ appVersion));
+	        	.pipe(git.commit('[Prerelease] Bumped version number --> app: '+ getAppVersion() + ', static:' + getStaticVersion()));
+	    	
+	    	function getAppVersion () {
+	    	    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+	    	};
+	    	
+	    	function getStaticVersion () {
+	    	    return JSON.parse(fs.readFileSync('./server/config/production.json', 'utf8')).static.server.version;
+	    	};
 	    });
 	
 	    // Push all committed changes to Git
@@ -40,26 +46,23 @@ module.exports = function watch(gulp, plugins) {
 	
 	    // Create a new Tag in Git
 	    gulp.task('create-new-tag', function (cb) {
-	    	var version = getPackageJsonVersion();
-	    	git.tag(version, 'Created Tag for version: ' + version, function (error) {
+	    	var appVersion = getAppVersion();
+	    	git.tag(appVersion, 'Created Tag for app with version: ' + appVersion, function (error) {
 		        if (error) {
 		          return cb(error);
 		        }
 		        git.push('origin', 'master', {args: '--tags'}, cb);
 	    	});
-	
-	    	function getPackageJsonVersion () {
-		        // We parse the json file instead of using require because require caches
-		        // multiple calls so the version number won't be updated
-		        return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+	    	
+	    	function getAppVersion () {
+	    	    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
 	    	};
 	    });
 	
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
-		        'bumpup',
-		        'changelog',
+		    	'changelog',
 		        //'commit-changes',
 		        //'push-changes',
 		        //'create-new-tag',
