@@ -87,6 +87,7 @@
     </div>
 	<input type="hidden" name="NcatId" value="{{model.content.ad.ad.categoryId}}" />
 	<input type="hidden" name="NlocId" value="{{model.content.ad.ad.locationId}}" />
+	{{> (dynamic "geoLocatorSelector") }}
 </div>
 {{/partial}}
 

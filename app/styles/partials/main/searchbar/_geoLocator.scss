@@ -2,6 +2,9 @@ $geolocator-color: cyan !default;
 $geolocator-link-color: cyan !default;
 $geolocator-link-bullet-color: $geolocator-link-color !default;
 
+.location-selector.hide {
+    display: none;
+}
 
 .geo-locator{ margin-top:0.5em; color:$geolocator-color; cursor:pointer; display:none;
 

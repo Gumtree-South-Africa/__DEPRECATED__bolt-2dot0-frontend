@@ -4,6 +4,9 @@
 
 $(document).ready(function() {
 
+    var $locationId,
+        $locationName;
+
     /**
      * These are the classes of the categories that we'll be using when rendering the categories
      * @type {Object}
@@ -47,37 +50,18 @@ $(document).ready(function() {
         "9706": { out:"icon-cat-sports", over:"icon-cat-sports-white" }
     };
 
-
-
-
-
-
     var $searchbar = $(".searchbar");
 
-
-
-    if($searchbar.length === 0)
+    if ($searchbar.length === 0)
         return;
-
-
-
 
     function isTrue(value){
         return !!(value || "").toString().match(/yes|true|1/gi);
     }
 
-
-
-
-
     var $searchForm = $searchbar.find("form"),
         instantSearch = isTrue($searchForm.data("instantSearch")),
         isIE = $(".ie8,.ie9").length > 0;
-
-
-
-
-
     /**
      * We have to render the categories and locations based on the JSON provided by backend
      */
@@ -140,9 +124,6 @@ $(document).ready(function() {
     function setLocationCookies() {
         var locationId = $searchbar.find("input[name=locId]").val();
         var locationName = $searchbar.find(".options li a.active").text();
-
-        console.log("location id: " + locationId);
-        console.log("location Name:> " + locationName);
         Bolt.Cookie.setHardCookie("searchLocId", locationId);
         Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));  
     }
@@ -239,11 +220,11 @@ $(document).ready(function() {
             // this is a fix for IE when the category changes
             // and the placeholder text disappears
             if(isIE){
-            	$searchbar.find(".keyword input").focus().blur();
-            	setTimeout(function(){
-            		var $catInput = $searchbar.find(".category input");
-                	if($catInput.val() == "")
-                		$catInput.val( $catInput.attr("data-placeholder-value") );
+                $searchbar.find(".keyword input").focus().blur();
+                setTimeout(function(){
+                    var $catInput = $searchbar.find(".category input");
+                    if($catInput.val() == "")
+                        $catInput.val( $catInput.attr("data-placeholder-value") );
                 }, 500);
             }
             // replace cat input icon with selected branch icon
@@ -628,16 +609,16 @@ $(document).ready(function() {
         var scope = this;
         function freezeBody(toFraze)
         {
-        	if(toFraze)
-    		{
-        		$("body").css('overflow','hidden');
-        		$("body").css('position','fixed');
-    		}
-        	else
-    		{
-        		$("body").css('overflow','');
-        		$("body").css('position','');
-    		}
+            if(toFraze)
+            {
+                $("body").css('overflow','hidden');
+                $("body").css('position','fixed');
+            }
+            else
+            {
+                $("body").css('overflow','');
+                $("body").css('position','');
+            }
         }
         this.config = $.extend({
             geoApi: "",
@@ -664,55 +645,44 @@ $(document).ready(function() {
                 });
         };
 
-        this.select = function(success){
 
-            var url = typeof this.config.rootApi === "string" ? this.config.rootApi : this.config.rootApi(),
-                $overlay = $("body > .location-selector");
+        this.select = function(success) {
+            var $overlay = $("body .location-selector"),
+                value;
 
-            $.getJSON(url, function(root){
+            $overlay.removeClass("hide");
+            if (!$overlay.hasClass("geo-locator-selector")) {
+                $overlay.addClass("geo-locator-selector");
+                $overlay.on("click", function(){
+                        scope.close();
+                    })
+                    .on("click", "div", function(event){
+                        event.stopPropagation();
+                    })
+                    .on("click", "a", function(){
+                        var $this = $(this),
+                            data = $this.data();
+                        $this.addClass("active").siblings().removeClass("active");
+                        $overlay.addClass("hide");
+                        success(data.id, data.name);
+                    })
 
-                if($overlay.length === 0)
-            	{
-                    $overlay = $("<div />")
-                        .addClass("geo-locator-selector")
-                        .on("click", function(){
-                        	scope.close();
-                        })
-                        .on("click", "div", function(event){
-                            event.stopPropagation();
-                        })
-                        .on("click", "a", function(){
-                            var $this = $(this),
-                                data = $this.data();
-                            $this.addClass("active").siblings().removeClass("active");
-                            success(data.id, data.name);
-                        })
-                        .append("<div />")
-                        .appendTo("body");
+                freezeBody(true);
+            }
 
-                    freezeBody(true);
-            	}
+            value = typeof scope.config.value === "string" || typeof scope.config.value === "number" ? scope.config.value : scope.config.value();
 
-                var $div = $overlay.children("div").empty(),
-                    value = typeof scope.config.value === "string" || typeof scope.config.value === "number" ? scope.config.value : scope.config.value(),
-                    $a;
-
-                $div.append( $("<a />").attr("href", "javascript:void(0)").html(scope.config.allLocationsLabel) );
-
-                $.each(root.nodes, function(i, node){
-                    $a = $("<a />").attr("href", "javascript:void(0)").data({ id:node.id, name:node.localizedName }).html(node.localizedName);
-                    if(node.id == value)
-                        $a.addClass("active");
-                    $div.append($a);
-                });
-
+            $overlay.find("a").each(function() {
+                var $a = $(this);
+                var id = $a.data("id"); 
+                if(id == value) {
+                    $a.addClass("active");
+                }
             });
-
         };
 
-
         this.close = function(){
-        	freezeBody(false);
+            freezeBody(false);
             $('body > .geo-locator-selector').fadeOut("fast", function(){
                 $(this).remove();
             });
@@ -725,27 +695,24 @@ $(document).ready(function() {
         Bolt.Cookie.setHardCookie("searchLocName", encodeURIComponent(locationName));
         $locationId.val(locationId);
         $locationName.text(locationName);
+
         geoLocator.close();
         if (!prompted && instantSearch) {
             $searchForm.submit();
         }
     }
 
-
     var $geoLocator = $(".geo-locator");
 
     if ($geoLocator.is(":visible")){
-
-        var geoLocatorData = $geoLocator.data(),
+            var geoLocatorData = $geoLocator.data();
 
             $locationId = $searchbar.find("input[name=locId]"),
             $locationName = $geoLocator.find(".label"),
-
             locationId = Bolt.Cookie.getHardCookie("searchLocId"),
 
-
             geoLocator = new GeoLocator({
-                rootApi: geoLocatorData.rootApi,
+                rootApi: geoLocatorData.rootApi,         
                 geoApi: function(lat, lng){
                     return geoLocatorData.geoApi.split("{lat}").join(lat).split("{lng}").join(lng);
                 },
@@ -755,7 +722,8 @@ $(document).ready(function() {
                 allLocationsLabel: geoLocatorData.allLocations
             });
 
-        $searchbar.on("click", ".geo-locator", function(){
+
+        $searchbar.on("click", ".geo-locator", function() {
             geoLocator.select(saveSelection);
         });
 
@@ -772,10 +740,6 @@ $(document).ready(function() {
      * / GEO-LOCATION =========================================================================================
      * ========================================================================================================
      */
-
-
-
-
 
 });
 
