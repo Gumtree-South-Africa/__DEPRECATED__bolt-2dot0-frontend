@@ -92,7 +92,8 @@ HeaderModel.prototype.getHeaderData = function() {
     			
     			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
     				// TODO begin @aganeshalingam
-    				var translatedvalue = 'searchbar.locationDisplayname.prefix'; // This will return 'All %s'
+					var translatedvalue = scope.i18n.__('searchbar.locationDisplayname.prefix'); // This will return 'All %s'
+					//console.log("i18n " + translatedvalue);
     				var replacedvalue = translatedvalue + scope.locationIdNameMap[data.cookieLocationId].value; // Replace with the cookieLocationName 
     				data.cookieLocationName = replacedvalue; 
     				// TODO end
