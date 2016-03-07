@@ -83,16 +83,34 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		    			'value': dataReturned.localizedName,
 		    			'level': dataReturned.level
 		    		}
-		    		locmap[dataReturned.id].root = true;
+		    		
+		    		// Build Location Dropdown
+		    		var locationdropdown = {};
+		    		locationdropdown.id = dataReturned.id;
+		    		locationdropdown.localizedName = dataReturned.localizedName;
+		    		locationdropdown.children = [];
+		    		
 		    		for (var key in dataReturned.children) {
 		    			var level1 = dataReturned.children[key];
 		    			locmap[level1.id] = level1.localizedName;
+		    			var level1Location = {};
+		    			level1Location.children = [];
 		    			for (var key2 in level1.children) {
 			    			var level2 = level1.children[key2];
 			    			locmap[level2.id] = level2.localizedName;
+			    			
+			    			var level2Location = {};
+			    			level2Location.id = level2.id;
+			    			level2Location.localizedName = level2.localizedName;
+			    			level1Location.children.push(level2Location);
 			    		}
+		    			
+		    			level1Location.id = level1.id;
+		    			level1Location.localizedName = level1.localizedName;
+		    			locationdropdown.children.push(level1Location);
 		    		}
 		    		siteApp.locals.config.locationIdNameMap = locmap;
+		    		siteApp.locals.config.locationdropdown = locationdropdown;
 		    	}).fail(function (err) {
 				    console.warn('Startup: Error in loading locations from LocationService:- ', err);
 				});
@@ -101,6 +119,30 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
 		    	  .then(function (dataReturned) {
 		    	    siteApp.locals.config.categoryData = dataReturned;
+		    	    
+		    	    // Build Category Dropdown
+		    		var categorydropdown = {};
+		    		categorydropdown.id = dataReturned.id;
+		    		categorydropdown.localizedName = dataReturned.localizedName;
+		    		categorydropdown.children = [];
+		    		
+		    		for (var key in dataReturned.children) {
+		    			var level1 = dataReturned.children[key];
+		    			var level1Category = {};
+		    			level1Category.children = [];
+		    			for (var key2 in level1.children) {
+			    			var level2 = level1.children[key2];
+			    			
+			    			var level2Category = {};
+			    			level2Category.id = level2.id;
+			    			level2Category.localizedName = level2.localizedName;
+			    			level1Category.children.push(level2Category);
+			    		}
+		    			level1Category.id = level1.id;
+		    			level1Category.localizedName = level1.localizedName;
+		    			categorydropdown.children.push(level1Category);
+		    		}
+		    		siteApp.locals.config.categorydropdown = categorydropdown;
 				}).fail(function (err) {
 					console.warn('Startup: Error in loading categories from CategoryService:- ', err);
 				});
