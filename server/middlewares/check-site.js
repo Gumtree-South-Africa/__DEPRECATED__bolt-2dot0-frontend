@@ -14,6 +14,7 @@ module.exports = function(app) {
         res.locals.config.bapiConfigData = app.locals.config.bapiConfigData;
         res.locals.config.locationData = app.locals.config.locationData;
         res.locals.config.categoryData = app.locals.config.categoryData;
+        res.locals.config.locationIdNameMap = app.locals.config.locationIdNameMap;
         // call next middleware
         next();
     };
