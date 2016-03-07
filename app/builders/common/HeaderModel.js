@@ -39,6 +39,7 @@ var HeaderModel = function (secure, req, res) {
 	this.fullDomainName = res.locals.config.hostname;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
+	this.i18n = res.locals.i18n;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
