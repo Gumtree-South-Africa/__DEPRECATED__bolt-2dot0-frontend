@@ -76,6 +76,23 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
 		    	  .then(function (dataReturned) {
 		    		siteApp.locals.config.locationData = dataReturned;
+		    		
+		    		// Build Location ID-Name Map
+		    		var locmap = {};
+		    		locmap[dataReturned.id] = {
+		    			'value': dataReturned.localizedName,
+		    			'level': dataReturned.level
+		    		}
+		    		locmap[dataReturned.id].root = true;
+		    		for (var key in dataReturned.children) {
+		    			var level1 = dataReturned.children[key];
+		    			locmap[level1.id] = level1.localizedName;
+		    			for (var key2 in level1.children) {
+			    			var level2 = level1.children[key2];
+			    			locmap[level2.id] = level2.localizedName;
+			    		}
+		    		}
+		    		siteApp.locals.config.locationIdNameMap = locmap;
 		    	}).fail(function (err) {
 				    console.warn('Startup: Error in loading locations from LocationService:- ', err);
 				});
@@ -112,7 +129,6 @@ Object.keys(config.sites).forEach(function(siteKey) {
 controllers.forEach(function (controller) {
     require(controller)(app);
 });
-
 
 
 // Warning: do not reorder this middleware. 

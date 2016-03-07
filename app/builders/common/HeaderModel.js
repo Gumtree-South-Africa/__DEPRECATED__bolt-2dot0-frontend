@@ -1,3 +1,4 @@
+//jshint ignore: start
 'use strict';
 
 var http = require('http');
@@ -30,6 +31,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.searchLocIdCookie = searchLocIdCookie;
+	this.locationIdNameMap = res.locals.config.locationIdNameMap;    		
 
 	this.secure = secure;
 	this.requestId = req.requestId;
@@ -57,7 +59,6 @@ HeaderModel.prototype.getHeaderData = function() {
 			
 			var headerDeferred,
 				data = {
-					'favIcon' : '/images/' + scope.locale + '/shortcut.png',
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 		    		'languageCode' : scope.locale
 				};
@@ -88,8 +89,16 @@ HeaderModel.prototype.getHeaderData = function() {
     		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-    			// TODO need to get the cookieLocationName from location list somehow and set the value here...or make BAPI call
-    			// data.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
+    			
+    			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
+    				// TODO begin @aganeshalingam
+    				var translatedvalue = 'searchbar.locationDisplayname.prefix'; // This will return 'All %s'
+    				var replacedvalue = translatedvalue + scope.locationIdNameMap[data.cookieLocationId].value; // Replace with the cookieLocationName 
+    				data.cookieLocationName = replacedvalue; 
+    				// TODO end
+    			} else {
+    				data.cookieLocationName = scope.locationIdNameMap[data.cookieLocationId] || '';
+    			}
     		}
     		
     		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
