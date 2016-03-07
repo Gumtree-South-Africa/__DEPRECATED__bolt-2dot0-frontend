@@ -40,6 +40,7 @@ function BuildApp(locale) {
     // Development based middleware stuff here
     midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
+        app.use("/", compress());
         app.use(assets(app, locale));
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
@@ -63,11 +64,11 @@ function BuildApp(locale) {
     midlewareloader()(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
+        app.use("/", compress());
         app.use(logger('common'));
 
     });
 
-    app.use(compress());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
