@@ -56,7 +56,6 @@ HeaderModel.prototype.getHeaderData = function() {
 			
 			var headerDeferred,
 				data = {
-					'favIcon' : '/images/' + scope.locale + '/shortcut.png',
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 		    		'languageCode' : scope.locale
 				};
