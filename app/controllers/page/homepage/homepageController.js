@@ -103,7 +103,7 @@ router.get('/', function (req, res, next) {
       // Graphite Metrics
       console.info("Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
       graphiteService.postForHPUsingTCP();
-		console.info("Post to graphite is done !!!!");
+		console.info("Post to graphite is done changesssss!!!!");
       console.timeEnd('Instrument-Homepage-Controller');
     });
 });

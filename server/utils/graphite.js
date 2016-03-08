@@ -43,8 +43,8 @@ GraphiteService.prototype.postForHP = function() {
 
 
 GraphiteService.prototype.postForHPUsingTCP = function() {
-    var socket = net.createConnection(2003, "10.65.201.202", function () {
-        socket.write("local.random.tcpthree 1000 1417338900010\n");
+    var socket = net.createConnection(config.get('graphite.server.port'), config.get('graphite.server.host'), function () {
+        socket.write("local.random.tcpnine 100000 12352345345555\n");
         socket.end();
     });
 }
