@@ -12,16 +12,16 @@ module.exports = function(siteApp, requestId) {
   // @vrajendiran: Please help convert this to middleware
   //  return function(req, res, next) {
 
-        var DP = loadLocCatData(siteApp, requestId);
+        var DP = LocationCategoryData(siteApp, requestId);
 
         // Load Config Data from BAPI
-        DP.loadConfigData(siteApp);
+        DP.loadConfigData();
 
          // Load Location Data from BAPI
-        DP.loadLocationData(siteApp);
+        DP.loadLocationData();
 
          // Load Category Data from BAPI
-        DP.loadCategoryData(siteApp);
+        DP.loadCategoryData();
 
         // call next middleware
         // next();
@@ -106,14 +106,14 @@ function prepareDataForRendering(dataReturned, buildMapRequired) {
 }
 
 /**
- * @class loadLocCatData (Singleton)
+ * @class LocationCategoryData (Singleton)
  * @constructor
  * @description Retrieves a list of methods that fetch the loc/cat data by making
  *     BAPI calls
  * @param {Object} siteApp The Site App
  * @param {String} requestId ID of the current CUID request
  */
-function loadLocCatData(siteApp, requestId) {
+function LocationCategoryData(siteApp, requestId) {
 
     return {
 
