@@ -14,17 +14,12 @@ var cuid = require('cuid');
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
+var getLocationCategory = require('./server/middlewares/get-location-category');
 var error = require('./modules/error');
-
 
 // app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
 var config = require('./server/config/sites.json');
-
-// services
-var configService = require(process.cwd() + '/server/services/configservice');
-var locationService = require(process.cwd() + '/server/services/location');
-var categoryService = require(process.cwd() + '/server/services/category');
 
 // Default list of all locales, if new locales are added, add it in this list
 var allLocales = 'es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG';
@@ -38,84 +33,6 @@ var siteLocales = process.env.SITES || allLocales;
 var app = new expressbuilder().getApp();
 var requestId = cuid();
 var siteCount = 0;
-
-/**
- * @method prepareDataForRendering
- * @description Gets a JSON tree and returns 2 data objects. The first one is the flat list to
- *     be rendered as a dropdown object {id : "", localizedName : "", children: {}} (children key
- *     will be there only if this node has child nodes). The second and optional object is a map with the format { id :  localizedName}. 
- * @param {Object} dataReturned Original JSON structure
- * @param {Boolean} buildMapRequired Truth value to determine if we need to build a (flat) map with
- *     {key : value} 
- * @public
- * @return {JSON} in the format { dropdown : {} , map : {}}
- */
-function prepareDataForRendering(dataReturned, buildMapRequired) {
-	// Build Location ID-Name Map
-	var dataMap = {},
-		dataDropdown,
-		key,
-		key2,
-		level1,
-		level2,
-		level1Data,
-		level2Data;
-
-	// Define initial Map object
-	if (buildMapRequired) {
-		dataMap[dataReturned.id] = {
-			'value': dataReturned.localizedName,
-			'level': dataReturned.level
-		};
-	}
-
-	// Define initial Dropdown object
-	dataDropdown = {
-		'id' : dataReturned.id,
-		'localizedName' : dataReturned.localizedName,
-		'children' : []
-	};
-
-	// Iterate thru original data set and build the dropdown data and
-	// the map if required.
-	for (key in dataReturned.children) {
-		level1 = dataReturned.children[key];
-
-		if (buildMapRequired) {
-			dataMap[level1.id] = level1.localizedName;
-		}
-
-		level1Data = {
-			'id' : level1.id,
-			'localizedName' : level1.localizedName,
-			'children' : []
-		};
-
-		for (key2 in level1.children) {
-			level2 = level1.children[key2];
-
-			if (buildMapRequired) {
-				dataMap[level2.id] = level2.localizedName;
-			}
-			
-			level2Data = {
-				'id' : level2.id,
-				'localizedName' : level2.localizedName
-			};
-
-			level1Data.children.push(level2Data);
-		}
-		
-		dataDropdown.children.push(level1Data);
-	}
-
-	return {
-		'dropdown' : dataDropdown,
-		'map' : dataMap
-	};
-
-}
-
 
 /*
  * Create Site Apps
@@ -136,41 +53,11 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.country = siteObj.country;
 		        siteApp.locals.config.hostname = siteObj.hostname;
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
-		
-		        // Load Config Data from BAPI
-		        Q(configService.getConfigData(siteApp.locals.config.locale))
-		      	  .then(function (dataReturned) {
-		      		if (dataReturned.error !== null) {
-		      			siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-		      		} else {
-		      			siteApp.locals.config.bapiConfigData = dataReturned;
-		      		}
-		  		}).fail(function (err) {
-		  			console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
-		  			siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-		  		});
 
-		        // Load Location Data from BAPI
-		        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
-		    	  .then(function (dataReturned) {
-		    		siteApp.locals.config.locationData = dataReturned;
-		    		
-					var filteredData = prepareDataForRendering(dataReturned, true);
-					siteApp.locals.config.locationIdNameMap = filteredData.map;
-		    		siteApp.locals.config.locationdropdown = filteredData.dropdown;
-		    	}).fail(function (err) {
-				    console.warn('Startup: Error in loading locations from LocationService:- ', err);
-				});
-
-		        // Load Category Data from BAPI
-		        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
-		    	  .then(function (dataReturned) {
-		    	    siteApp.locals.config.categoryData = dataReturned;
-					var filteredData = prepareDataForRendering(dataReturned, false);
-		    		siteApp.locals.config.categorydropdown = filteredData.dropdown; // categorydropdown;
-				}).fail(function (err) {
-					console.warn('Startup: Error in loading categories from CategoryService:- ', err);
-				});
+		        // Middleware to get Location and Category Data
+		        // @vrajendiran: Please help convert this to middleware
+		        getLocationCategory(siteApp, requestId);
+		        // siteApp.use(getLocationCategory(siteApp, requestId));
 
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
@@ -181,7 +68,6 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
-
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
