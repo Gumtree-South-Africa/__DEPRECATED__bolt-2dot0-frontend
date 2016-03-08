@@ -39,6 +39,84 @@ var app = new expressbuilder().getApp();
 var requestId = cuid();
 var siteCount = 0;
 
+/**
+ * @method prepareDataForRendering
+ * @description Gets a JSON tree and returns 2 data objects. The first one is the flat list to
+ *     be rendered as a dropdown object {id : "", localizedName : "", children: {}} (children key
+ *     will be there only if this node has child nodes). The second and optional object is a map with the format { id :  localizedName}. 
+ * @param {Object} dataReturned Original JSON structure
+ * @param {Boolean} buildMapRequired Truth value to determine if we need to build a (flat) map with
+ *     {key : value} 
+ * @public
+ * @return {JSON} in the format { dropdown : {} , map : {}}
+ */
+function prepareDataForRendering(dataReturned, buildMapRequired) {
+	// Build Location ID-Name Map
+	var dataMap = {},
+		dataDropdown,
+		key,
+		key2,
+		level1,
+		level2,
+		level1Data,
+		level2Data;
+
+	// Define initial Map object
+	if (buildMapRequired) {
+		dataMap[dataReturned.id] = {
+			'value': dataReturned.localizedName,
+			'level': dataReturned.level
+		};
+	}
+
+	// Define initial Dropdown object
+	dataDropdown = {
+		'id' : dataReturned.id,
+		'localizedName' : dataReturned.localizedName,
+		'children' : []
+	};
+
+	// Iterate thru original data set and build the dropdown data and
+	// the map if required.
+	for (key in dataReturned.children) {
+		level1 = dataReturned.children[key];
+
+		if (buildMapRequired) {
+			dataMap[level1.id] = level1.localizedName;
+		}
+
+		level1Data = {
+			'id' : level1.id,
+			'localizedName' : level1.localizedName,
+			'children' : []
+		};
+
+		for (key2 in level1.children) {
+			level2 = level1.children[key2];
+
+			if (buildMapRequired) {
+				dataMap[level2.id] = level2.localizedName;
+			}
+			
+			level2Data = {
+				'id' : level2.id,
+				'localizedName' : level2.localizedName
+			};
+
+			level1Data.children.push(level2Data);
+		}
+		
+		dataDropdown.children.push(level1Data);
+	}
+
+	return {
+		'dropdown' : dataDropdown,
+		'map' : dataMap
+	};
+
+}
+
+
 /*
  * Create Site Apps
  */
@@ -77,76 +155,23 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		    	  .then(function (dataReturned) {
 		    		siteApp.locals.config.locationData = dataReturned;
 		    		
-		    		// Build Location ID-Name Map
-		    		var locmap = {};
-		    		locmap[dataReturned.id] = {
-		    			'value': dataReturned.localizedName,
-		    			'level': dataReturned.level
-		    		}
-		    		
-		    		// Build Location Dropdown
-		    		var locationdropdown = {};
-		    		locationdropdown.id = dataReturned.id;
-		    		locationdropdown.localizedName = dataReturned.localizedName;
-		    		locationdropdown.children = [];
-		    		
-		    		for (var key in dataReturned.children) {
-		    			var level1 = dataReturned.children[key];
-		    			locmap[level1.id] = level1.localizedName;
-		    			var level1Location = {};
-		    			level1Location.children = [];
-		    			for (var key2 in level1.children) {
-			    			var level2 = level1.children[key2];
-			    			locmap[level2.id] = level2.localizedName;
-			    			
-			    			var level2Location = {};
-			    			level2Location.id = level2.id;
-			    			level2Location.localizedName = level2.localizedName;
-			    			level1Location.children.push(level2Location);
-			    		}
-		    			
-		    			level1Location.id = level1.id;
-		    			level1Location.localizedName = level1.localizedName;
-		    			locationdropdown.children.push(level1Location);
-		    		}
-		    		siteApp.locals.config.locationIdNameMap = locmap;
-		    		siteApp.locals.config.locationdropdown = locationdropdown;
+					var filteredData = prepareDataForRendering(dataReturned, true);
+					siteApp.locals.config.locationIdNameMap = filteredData.map;
+		    		siteApp.locals.config.locationdropdown = filteredData.dropdown;
 		    	}).fail(function (err) {
 				    console.warn('Startup: Error in loading locations from LocationService:- ', err);
 				});
-		        
+
 		        // Load Category Data from BAPI
 		        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
 		    	  .then(function (dataReturned) {
 		    	    siteApp.locals.config.categoryData = dataReturned;
-		    	    
-		    	    // Build Category Dropdown
-		    		var categorydropdown = {};
-		    		categorydropdown.id = dataReturned.id;
-		    		categorydropdown.localizedName = dataReturned.localizedName;
-		    		categorydropdown.children = [];
-		    		
-		    		for (var key in dataReturned.children) {
-		    			var level1 = dataReturned.children[key];
-		    			var level1Category = {};
-		    			level1Category.children = [];
-		    			for (var key2 in level1.children) {
-			    			var level2 = level1.children[key2];
-			    			
-			    			var level2Category = {};
-			    			level2Category.id = level2.id;
-			    			level2Category.localizedName = level2.localizedName;
-			    			level1Category.children.push(level2Category);
-			    		}
-		    			level1Category.id = level1.id;
-		    			level1Category.localizedName = level1.localizedName;
-		    			categorydropdown.children.push(level1Category);
-		    		}
-		    		siteApp.locals.config.categorydropdown = categorydropdown;
+					var filteredData = prepareDataForRendering(dataReturned, false);
+		    		siteApp.locals.config.categorydropdown = filteredData.dropdown; // categorydropdown;
 				}).fail(function (err) {
 					console.warn('Startup: Error in loading categories from CategoryService:- ', err);
 				});
-		        
+
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
 		        // Enables view template compilation caching and is enabled in production by default.
