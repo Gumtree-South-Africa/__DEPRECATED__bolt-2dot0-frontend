@@ -1,19 +1,21 @@
 'use strict';
 
 
+var cwd = process.cwd();
+
 var Q = require('q');
 
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
-var deviceDetection = require(process.cwd() + '/modules/device-detection');
+var pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var deviceDetection = require(cwd + '/modules/device-detection');
 
-var ModelBuilder = require('../../common/ModelBuilder');
-var LocationModel = require('../../common/LocationModel');
-var CategoryModel = require('../../common/CategoryModel');
-var KeywordModel = require('../../common/KeywordModel');
-var GalleryModel = require('../../common/GalleryModel');
-var AdStatisticsModel = require('../../common/AdStatisticsModel');
-var SeoModel = require('../../common/SeoModel');
-var AbstractPageModel = require('../../common/AbstractPageModel');
+var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+var LocationModel = require(cwd + '/app/builders/common/LocationModel');
+var CategoryModel = require(cwd + '/app/builders/common/CategoryModel');
+var KeywordModel = require(cwd + '/app/builders/common/KeywordModel');
+var GalleryModel = require(cwd + '/app/builders/common/GalleryModel');
+var AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
+var SeoModel = require(cwd + '/app/builders/common/SeoModel');
+var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 
 /**

@@ -4,7 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    ErrorPageModel= require(process.cwd() +  '/app/builders/HomePage/model_builder/ErrorPageModel'),
+    ErrorPageModel = require(process.cwd() +  '/app/builders/page/ErrorPageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),

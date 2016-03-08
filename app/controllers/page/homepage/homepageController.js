@@ -4,7 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
+    HomepageModel= require(process.cwd() + '/app/builders/page/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
 	marketoService = require(process.cwd() + '/server/utils/marketo'),
 	graphiteService = require(process.cwd() + '/server/utils/graphite'),
@@ -43,7 +43,8 @@ router.get('/', function (req, res, next) {
         locale: res.locals.config.locale,
         country: res.locals.config.country,
         site: res.locals.config.name,
-        pagename: req.app.locals.pagetype
+        pagename: req.app.locals.pagetype,
+        device: req.app.locals.deviceInfo
     };
 
 	// Retrieve Data from Model Builders
@@ -79,24 +80,16 @@ router.get('/', function (req, res, next) {
       modelData.category = res.locals.config.categoryData;
       modelData.categorydropdown = res.locals.config.categorydropdown;
 
-	  //  Device data for handlebars
-	  modelData.device = req.app.locals.deviceInfo;
-      
 	  // Special Data needed for HomePage in header, footer, content
 	  HP.extendHeaderData(req, modelData);
 	  HP.extendFooterData(modelData);
 	  HP.buildContentData(modelData, bapiConfigData);
 	  HP.deleteMarketoCookie(res, modelData);
-		console.info("Going to POST data from HP Controller to Graphite in my VM  using TCP!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		graphiteService.postForHPUsingTCP();
-		console.info("Done posting to Graphite ");
-	  // console.dir(modelData);
 
       // Render
       res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {
 			  err.status = 500;
-
 			  return next(err);
 		  } else {
 			  res.send(html);
@@ -108,7 +101,9 @@ router.get('/', function (req, res, next) {
       kafkaService.logInfo(res.locals.config.locale, log);
       
       // Graphite Metrics
-      
+      console.info("Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      graphiteService.postForHPUsingTCP();
+		console.info("Post to graphite is done !!!!");
       console.timeEnd('Instrument-Homepage-Controller');
     });
 });

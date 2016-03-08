@@ -13,6 +13,13 @@
 			"topic" : "node_log"
 		}
 	},
+	"graphite": {
+		"server": {
+			"host"		: "10.65.251.146",
+			"port"		: 2003,
+			"interval" 	: 30
+		}
+	},
 	"static": {
 		"server": {
 			"host"		: "localhost",
@@ -21,6 +28,7 @@
 		},
 		"baseCSSUrl"	: "/css/",
 		"baseJSUrl"		: "/js/",
+		"baseJSMinUrl"	: "/jsmin/",
 		"baseImageUrl"	: "/images/",
 		"mainJSUrl"		: "/js/main.js",
 		"min"			: true

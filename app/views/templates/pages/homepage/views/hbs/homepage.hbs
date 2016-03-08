@@ -20,8 +20,8 @@
 
 				<div class="hp-category-wrapper">
 					<h1>{{i18n "home.h1Tag"}}</h1>
-					{{#if model.lastWeekPostedAdCount}}
-						<p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
+					{{#if this.lastWeekPostedAdCount}}
+						<p class="lastweekposts">{{{i18n "home.lastweekpostedAD" this.lastWeekPostedAdCount this.lastWeekPostedAdLocal}}}</p>
 					{{/if}}
 
 					{{#with this}}
