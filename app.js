@@ -19,7 +19,7 @@ var error = require('./modules/error');
 var cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // app
-var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
+var controllers = glob.sync(process.cwd() + '/app/controllers/**/*Controller.js');
 var config = require('./server/config/sites.json');
 
 // Default list of all locales, if new locales are added, add it in this list

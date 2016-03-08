@@ -4,17 +4,16 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require(process.cwd() + '/app/builders/page/HomePageModel'),
-    kafkaService = require(process.cwd() + '/server/utils/kafka'),
-	marketoService = require(process.cwd() + '/server/utils/marketo'),
-	graphiteService = require(process.cwd() + '/server/utils/graphite'),
-    deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
     i18n = require('i18n'),
     cuid = require('cuid');
 
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
-var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+var cwd = process.cwd();
+var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
+	HomepageModel= require(cwd + '/app/builders/page/HomePageModel'),
+	marketoService = require(cwd + '/server/utils/marketo'),
+	deviceDetection = require(cwd + '/modules/device-detection'),
+	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
 module.exports = function (app) {
@@ -37,18 +36,10 @@ router.get('/', function (req, res, next) {
 	}
 	
 	// Build Model Data
-	var modelData =
-    {
-        env: 'public',
-        locale: res.locals.config.locale,
-        country: res.locals.config.country,
-        site: res.locals.config.name,
-        pagename: req.app.locals.pagetype,
-        device: req.app.locals.deviceInfo
-    };
+	var modelData = pageControllerUtil.getInitialModelData(req, res);
+	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Retrieve Data from Model Builders
-	var bapiConfigData = res.locals.config.bapiConfigData;
 	var model = HomepageModel(req, res);
     model.then(function (result) {
       // Dynamic Data from BAPI
@@ -74,36 +65,14 @@ router.get('/', function (req, res, next) {
 	  }
       modelData.seo = result['seo'] || {};
 
-      // Cached Data from BAPI
-      modelData.location = res.locals.config.locationData;
-      modelData.locationdropdown = res.locals.config.locationdropdown;
-      modelData.category = res.locals.config.categoryData;
-      modelData.categorydropdown = res.locals.config.categorydropdown;
-
 	  // Special Data needed for HomePage in header, footer, content
 	  HP.extendHeaderData(req, modelData);
 	  HP.extendFooterData(modelData);
 	  HP.buildContentData(modelData, bapiConfigData);
 	  HP.deleteMarketoCookie(res, modelData);
 
-      // Render
-      res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
-		  if (err) {
-			  err.status = 500;
-			  return next(err);
-		  } else {
-			  res.send(html);
-		  }
-	  });
+	  pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
-      // Kafka Logging
-      var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
-      kafkaService.logInfo(res.locals.config.locale, log);
-      
-      // Graphite Metrics
-      console.info("Going to POST data to graphite from HP now");
-      graphiteService.postForHPUsingTCP();
-		console.info("Post to graphite is done");
       console.timeEnd('Instrument-Homepage-Controller');
     });
 });

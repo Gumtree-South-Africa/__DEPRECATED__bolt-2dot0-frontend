@@ -13,15 +13,15 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/api/gallery/:offset/:limit', function (req, res, next) {
+router.get('/api/gallery', function (req, res, next) {
 	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
 		galleryData = {};
 	
 	// Only applicable for SRP Gallery where there is categoryId
 	// var categoryId = req.query.categoryId;
 	
-	var offset = req.params.offset; // Start Index
-	var limit = req.params.limit; // Limit
+	var offset = req.query.offset; // Start Index
+	var limit = req.query.limit; // Limit
 	
 	var galleryDeferred = Q.defer();
 	
