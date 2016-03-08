@@ -87,9 +87,9 @@ router.get('/', function (req, res, next) {
 	  HP.extendFooterData(modelData);
 	  HP.buildContentData(modelData, bapiConfigData);
 	  HP.deleteMarketoCookie(res, modelData);
-		console.info("Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-		graphiteService.postForHP();
-		console.info("Done posting AD ");
+		console.info("Going to POST data from HP Controller to Graphite in my VM  using TCP!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		graphiteService.postForHPUsingTCP();
+		console.info("Done posting to Graphite ");
 	  // console.dir(modelData);
 
       // Render

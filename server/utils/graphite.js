@@ -3,6 +3,7 @@
 
 var os = require('os');
 var graphite = require('graphite-udp');
+var net = require('net');
 
 //TODO:Read the values from config file
 var udpmetric = graphite.createClient({
@@ -33,6 +34,14 @@ GraphiteService.prototype.postForHP = function() {
     udpmetric.add('local.random.diceroll6', 2  );
     //udpmetric.close();
 }
+
+GraphiteService.prototype.postForHPUsingTCP = function() {
+    var socket = net.createConnection(2003, "10.65.201.202", function () {
+        socket.write("local.random.tcpthree 1000 1417338900010\n");
+        socket.end();
+    });
+}
+
 
 
 module.exports = new GraphiteService();
