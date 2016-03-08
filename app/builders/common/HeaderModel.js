@@ -1,3 +1,4 @@
+//jshint ignore: start
 'use strict';
 
 var http = require('http');
@@ -30,6 +31,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.searchLocIdCookie = searchLocIdCookie;
+	this.locationIdNameMap = res.locals.config.locationIdNameMap;    		
 
 	this.secure = secure;
 	this.requestId = req.requestId;
@@ -39,6 +41,7 @@ var HeaderModel = function (secure, req, res) {
 	this.fullDomainName = res.locals.config.hostname;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
+	this.i18n = res.locals.i18n;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
@@ -50,9 +53,12 @@ HeaderModel.prototype.getHeaderData = function() {
 	var scope = this;
 	var arrFunctions = [
 		function (callback) {
+			if (typeof callback !== 'function') {
+				return;
+			}
+			
 			var headerDeferred,
 				data = {
-					'favIcon' : '/images/' + scope.locale + '/shortcut.png',
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 		    		'languageCode' : scope.locale
 				};
@@ -72,6 +78,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		data.baseCSSUrl = (process.env.NODE_ENV === 'production') ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
     		data.min = config.get('static.min');
 
+    		// add complex data to header
     		scope.buildUrl(data);
     		scope.buildCss(data);
     		scope.buildOpengraph(data);
@@ -79,21 +86,21 @@ HeaderModel.prototype.getHeaderData = function() {
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
-    		// Set cookie info from locationCookie
+    		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-    			// TODO need to get the cookieLocationName from location list somehow and set the value here...or make BAPI call
-    			// data.cookieLocationName = decodeURIComponent(req.cookies['searchLocName']);
+    			
+    			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
+    				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
+    			} else {
+    				data.cookieLocationName = scope.locationIdNameMap[data.cookieLocationId] || '';
+    			}
     		}
     		
-    		// merge header data from BAPI if cookie present
-			if (typeof callback !== 'function') {
-				return;
-			}
+    		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
 		    	headerDeferred = Q.defer();
-
-				 Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
+				Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);
@@ -107,7 +114,6 @@ HeaderModel.prototype.getHeaderData = function() {
 						headerDeferred.reject(new Error(err));
 					    callback(null, data);
 					});
-
 				return headerDeferred.promise;
 			} else {
 			    callback(null, data);

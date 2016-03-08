@@ -35,6 +35,10 @@ FooterModel.prototype.getFooterData = function() {
 	var scope = this;
 	var arrFunctions = [
 		function (callback) {
+			if (typeof callback !== 'function') {
+				return;
+			}
+			
 			var footerDeferred,
 				data = {
 				};
@@ -57,13 +61,10 @@ FooterModel.prototype.getFooterData = function() {
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
     		data.min = config.get('static.min');
     		
+    		// add complex data to footer
     		scope.buildJs(data);
     		scope.buildUrl(data);
     		
-    		if (typeof callback !== 'function') {
-				return;
-			}
-			
     		footerDeferred = Q.defer();
     		footerDeferred.resolve(data);
     		callback(null, data);

@@ -75,7 +75,9 @@ router.get('/', function (req, res, next) {
 
       // Cached Data from BAPI
       modelData.location = res.locals.config.locationData;
+      modelData.locationdropdown = res.locals.config.locationdropdown;
       modelData.category = res.locals.config.categoryData;
+      modelData.categorydropdown = res.locals.config.categorydropdown;
 
 	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;

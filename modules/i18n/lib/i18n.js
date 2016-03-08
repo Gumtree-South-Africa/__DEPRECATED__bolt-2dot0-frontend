@@ -17,6 +17,8 @@ module.exports.initMW = function(app, locale) {
         initConfigI18n(locale);
 
         app.locals.i18n = i18n;
+        res.locals.i18n = i18n;
+
         next();
     };
 };

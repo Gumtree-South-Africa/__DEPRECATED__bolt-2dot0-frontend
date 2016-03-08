@@ -11,9 +11,15 @@ module.exports = function(app) {
         res.locals.config.hostname = app.locals.config.hostname;
         res.locals.config.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=='undefined' ? '.' + process.env.BASEDOMAINSUFFIX : '';
         res.locals.config.domainName = '.' + res.locals.config.hostname + res.locals.config.baseDomainSuffix ;
+
         res.locals.config.bapiConfigData = app.locals.config.bapiConfigData;
+        
         res.locals.config.locationData = app.locals.config.locationData;
+        res.locals.config.locationIdNameMap = app.locals.config.locationIdNameMap;
+        res.locals.config.locationdropdown = app.locals.config.locationdropdown;
+        
         res.locals.config.categoryData = app.locals.config.categoryData;
+        res.locals.config.categorydropdown = app.locals.config.categorydropdown;
         // call next middleware
         next();
     };
