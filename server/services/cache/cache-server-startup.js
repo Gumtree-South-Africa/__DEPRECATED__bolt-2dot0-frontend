@@ -9,23 +9,16 @@ var locationService = require(pCwd + '/server/services/location');
 var categoryService = require(pCwd + '/server/services/category');
 
 module.exports = function(siteApp, requestId) {
-  // @vrajendiran: Please help convert this to middleware
-  //  return function(req, res, next) {
-
-        var DP = LocationCategoryData(siteApp, requestId);
+        var Cache = CacheBapiData(siteApp, requestId);
 
         // Load Config Data from BAPI
-        DP.loadConfigData();
+        Cache.loadConfigData();
 
          // Load Location Data from BAPI
-        DP.loadLocationData();
+        Cache.loadLocationData();
 
          // Load Category Data from BAPI
-        DP.loadCategoryData();
-
-        // call next middleware
-        // next();
- //   };
+        Cache.loadCategoryData();
 };
 
 /**
@@ -106,14 +99,13 @@ function prepareDataForRendering(dataReturned, buildMapRequired) {
 }
 
 /**
- * @class LocationCategoryData (Singleton)
+ * @class CacheBapiData (Singleton)
  * @constructor
- * @description Retrieves a list of methods that fetch the loc/cat data by making
- *     BAPI calls
+ * @description Retrieves a list of methods that fetch the config/loc/cat data by making BAPI calls
  * @param {Object} siteApp The Site App
  * @param {String} requestId ID of the current CUID request
  */
-function LocationCategoryData(siteApp, requestId) {
+function CacheBapiData(siteApp, requestId) {
 
     return {
 
@@ -173,8 +165,9 @@ function LocationCategoryData(siteApp, requestId) {
             Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
               .then(function (dataReturned) {
                 siteApp.locals.config.categoryData = dataReturned;
+                
                 filteredData = prepareDataForRendering(dataReturned, false);
-                siteApp.locals.config.categorydropdown = filteredData.dropdown; // categorydropdown;
+                siteApp.locals.config.categorydropdown = filteredData.dropdown;
             }).fail(function (err) {
                 console.warn('Startup: Error in loading categories from CategoryService:- ', err);
             });

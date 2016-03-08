@@ -20,9 +20,16 @@
 	},
 	"kafka": {
 		"server": {
-			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port": 2181,
+			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port"	: 2181,
 			"topic" : "node_log"
+		}
+	},
+	"graphite": {
+		"server": {
+			"host"		: "10.65.251.146",
+			"port"		: 2003,
+			"interval" 	: 30
 		}
 	},
 	"static": {
@@ -33,6 +40,7 @@
 		},
 		"baseCSSUrl"	: "/public/css/",
 		"baseJSUrl"		: "/public/js/",
+		"baseJSMinUrl"	: "/public/jsmin/",
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"min"			: false

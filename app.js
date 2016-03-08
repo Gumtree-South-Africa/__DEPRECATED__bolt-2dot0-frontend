@@ -14,8 +14,9 @@ var cuid = require('cuid');
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
-var getLocationCategory = require('./server/middlewares/get-location-category');
 var error = require('./modules/error');
+
+var cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // app
 var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
@@ -54,10 +55,8 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.hostname = siteObj.hostname;
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
-		        // Middleware to get Location and Category Data
-		        // @vrajendiran: Please help convert this to middleware
-		        getLocationCategory(siteApp, requestId);
-		        // siteApp.use(getLocationCategory(siteApp, requestId));
+		        // Service Util to get Location and Category Data
+		        cacheBapiData(siteApp, requestId);
 
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
