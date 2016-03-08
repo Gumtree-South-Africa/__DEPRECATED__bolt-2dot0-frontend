@@ -56,7 +56,11 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
 		        // Service Util to get Location and Category Data
-		        cacheBapiData(siteApp, requestId);
+		        // @vrajendiran : We could change this to get the locationDepth and categoryDepth from some country config
+		        // By default if you don't pass those 2 args, it will do one level (locationDepth and categoryDepth are optional)
+		        var locationDepth = 1;
+		        var categoryDepth = 1;
+		        cacheBapiData(siteApp, requestId, locationDepth, categoryDepth);
 
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching

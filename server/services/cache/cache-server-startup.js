@@ -8,17 +8,17 @@ var configService = require(pCwd + '/server/services/configservice');
 var locationService = require(pCwd + '/server/services/location');
 var categoryService = require(pCwd + '/server/services/category');
 
-module.exports = function(siteApp, requestId) {
+module.exports = function(siteApp, requestId, locationDepth, categoryDepth) {
         var Cache = CacheBapiData(siteApp, requestId);
 
         // Load Config Data from BAPI
         Cache.loadConfigData();
 
          // Load Location Data from BAPI
-        Cache.loadLocationData();
+        Cache.loadLocationData(locationDepth);
 
          // Load Category Data from BAPI
-        Cache.loadCategoryData();
+        Cache.loadCategoryData(categoryDepth);
 };
 
 /**
@@ -29,10 +29,15 @@ module.exports = function(siteApp, requestId) {
  * @param {Object} dataReturned Original JSON structure
  * @param {Boolean} buildMapRequired Truth value to determine if we need to build a (flat) map with
  *     {key : value} 
+ * @param {Number} depth The levels to transverse of the original data returned JSON (currently max 2)
  * @private
  * @return {JSON} in the format { dropdown : {} , map : {}}
  */
-function prepareDataForRendering(dataReturned, buildMapRequired) {
+function prepareDataForRendering(dataReturned, buildMapRequired, depth) {
+    if (!depth || (typeof depth !== "number") || (depth > 2) || (depth < 0)) {
+        depth = 1;
+    }
+
     // Build Location ID-Name Map
     var dataMap = {},
         dataDropdown = {},
@@ -43,52 +48,56 @@ function prepareDataForRendering(dataReturned, buildMapRequired) {
         level1Data,
         level2Data;
 
-    // Define initial Map object
-    if (buildMapRequired) {
-        dataMap[dataReturned.id] = {
-            'value': dataReturned.localizedName,
-            'level': dataReturned.level
-        };
-    }
-
-    // Define initial Dropdown object
-    dataDropdown = {
-        'id' : dataReturned.id,
-        'localizedName' : dataReturned.localizedName,
-        'children' : []
-    };
-
-    // Iterate thru original data set and build the dropdown data and
-    // the map if required.
-    for (key in dataReturned.children) {
-        level1 = dataReturned.children[key];
-
+    if (depth > 0) {
+        // Define initial Map object
         if (buildMapRequired) {
-            dataMap[level1.id] = level1.localizedName;
+            dataMap[dataReturned.id] = {
+                'value': dataReturned.localizedName,
+                'level': dataReturned.level
+            };
         }
 
-        level1Data = {
-            'id' : level1.id,
-            'localizedName' : level1.localizedName,
+        // Define initial Dropdown object
+        dataDropdown = {
+            'id' : dataReturned.id,
+            'localizedName' : dataReturned.localizedName,
             'children' : []
         };
 
-        for (key2 in level1.children) {
-            level2 = level1.children[key2];
+        // Iterate thru original data set and build the dropdown data and
+        // the map if required.
+        for (key in dataReturned.children) {
+            level1 = dataReturned.children[key];
 
             if (buildMapRequired) {
-                dataMap[level2.id] = level2.localizedName;
+                dataMap[level1.id] = level1.localizedName;
             }
-            
-            level2Data = {
-                'id' : level2.id,
-                'localizedName' : level2.localizedName
+
+            level1Data = {
+                'id' : level1.id,
+                'localizedName' : level1.localizedName,
+                'children' : []
             };
 
-            level1Data.children.push(level2Data);
+            if (depth == 2) {
+                for (key2 in level1.children) {
+                    level2 = level1.children[key2];
+
+                    if (buildMapRequired) {
+                        dataMap[level2.id] = level2.localizedName;
+                    }
+                    
+                    level2Data = {
+                        'id' : level2.id,
+                        'localizedName' : level2.localizedName
+                    };
+
+                    level1Data.children.push(level2Data);
+                }
+            }
+            
+            dataDropdown.children.push(level1Data);
         }
-        
-        dataDropdown.children.push(level1Data);
     }
 
     return {
@@ -136,7 +145,7 @@ function CacheBapiData(siteApp, requestId) {
          *     siteApp.locals.config.locationIdNameMap and siteApp.locals.config.locationdropdown
          * @private
          */
-        loadLocationData : function () {
+        loadLocationData : function (locationDepth) {
             var filteredData;
 
             // Load Location Data from BAPI
@@ -144,7 +153,7 @@ function CacheBapiData(siteApp, requestId) {
               .then(function (dataReturned) {
                 siteApp.locals.config.locationData = dataReturned;
                 
-                filteredData = prepareDataForRendering(dataReturned, true);
+                filteredData = prepareDataForRendering(dataReturned, true, locationDepth);
                 siteApp.locals.config.locationIdNameMap = filteredData.map;
                 siteApp.locals.config.locationdropdown = filteredData.dropdown;
             }).fail(function (err) {
@@ -158,7 +167,7 @@ function CacheBapiData(siteApp, requestId) {
          *      siteApp.locals.config.categorydropdown
          * @private
          */
-        loadCategoryData : function () {
+        loadCategoryData : function (categoryDepth) {
             var filteredData;
 
             // Load Category Data from BAPI
@@ -166,7 +175,7 @@ function CacheBapiData(siteApp, requestId) {
               .then(function (dataReturned) {
                 siteApp.locals.config.categoryData = dataReturned;
                 
-                filteredData = prepareDataForRendering(dataReturned, false);
+                filteredData = prepareDataForRendering(dataReturned, false, categoryDepth);
                 siteApp.locals.config.categorydropdown = filteredData.dropdown;
             }).fail(function (err) {
                 console.warn('Startup: Error in loading categories from CategoryService:- ', err);
