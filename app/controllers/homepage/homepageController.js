@@ -4,7 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
+    HomepageModel= require('../../builders/page/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
 	marketoService = require(process.cwd() + '/server/utils/marketo'),
 	graphiteService = require(process.cwd() + '/server/utils/graphite'),
