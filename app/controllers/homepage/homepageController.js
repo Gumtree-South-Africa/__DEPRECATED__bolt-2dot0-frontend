@@ -7,6 +7,7 @@ var express = require('express'),
     HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
 	marketoService = require(process.cwd() + '/server/utils/marketo'),
+	graphiteService = require(process.cwd() + '/server/utils/graphite'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
     i18n = require('i18n'),
@@ -84,7 +85,9 @@ router.get('/', function (req, res, next) {
 	  HP.extendFooterData(modelData);
 	  HP.buildContentData(modelData, bapiConfigData);
 	  HP.deleteMarketoCookie(res, modelData);
-		
+		console.info("Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+		graphiteService.postForHP();
+		console.info("Done posting AD ");
 	  // console.dir(modelData);
 
       // Render
