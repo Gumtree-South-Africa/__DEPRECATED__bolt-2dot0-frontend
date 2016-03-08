@@ -101,9 +101,9 @@ router.get('/', function (req, res, next) {
       kafkaService.logInfo(res.locals.config.locale, log);
       
       // Graphite Metrics
-      console.info("Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      console.info("Going to POST data to graphite from HP now");
       graphiteService.postForHPUsingTCP();
-		console.info("Post to graphite is done changesssss!!!!");
+		console.info("Post to graphite is done");
       console.timeEnd('Instrument-Homepage-Controller');
     });
 });
