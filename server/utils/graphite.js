@@ -11,7 +11,7 @@ var udpmetric = graphite.createClient({
     type: 'udp4',
     prefix: '',
     suffix: '',
-    interval: 3000,
+    interval: 30,
     verbose: true,
     callback: function(error, metricsSent) {
         console.log('Metrics sent\n'+ metricsSent);
@@ -27,11 +27,11 @@ var GraphiteService = function() {};
  * To post data from HP
  */
 GraphiteService.prototype.postForHP = function() {
-    udpmetric.put('local.random.diceroll2', 10000000  );
-   // metric.add('boltapi.ie.com.ebay.ecg.bolt.api.resource.user.UserApiResource_getLoggedInUserInformation.success.count', 20);
-   // metric.put('my.test.metric2', 1);
-    //metric.put('my.test.metric2', 5);
-    metric.close();
+    udpmetric.put('local.random.diceroll6', 2  );
+    udpmetric.add('local.random.diceroll6', 2  );
+    udpmetric.add('local.random.diceroll6', 2  );
+    udpmetric.add('local.random.diceroll6', 2  );
+    //udpmetric.close();
 }
 
 
