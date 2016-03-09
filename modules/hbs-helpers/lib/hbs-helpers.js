@@ -121,26 +121,26 @@ module.exports  =  {
         exphbs.handlebars.registerHelper('ifDesktop', function(val, options) {
             if (!val) return;
             var fnTrue=options.fn, fnFalse=options.inverse;
-            return val.isDesktop ? fnTrue() : fnFalse();
+            return val.isDesktop ? fnTrue(this) : fnFalse(this);
         });
 
         exphbs.handlebars.registerHelper('ifMobile', function(val, options) {
             if (!val) return;
             var fnTrue=options.fn, fnFalse=options.inverse;
-            return val.isMobile ? fnTrue() : fnFalse();
+            return val.isMobile ? fnTrue(this) : fnFalse(this);
         });
 
         exphbs.handlebars.registerHelper('ifTablet', function(val, options) {
             if (!val) return;
             var fnTrue=options.fn, fnFalse=options.inverse;
-            return val.isTablet ? fnTrue() : fnFalse();
+            return val.isTablet ? fnTrue(this) : fnFalse(this);
         });
 
         exphbs.handlebars.registerHelper('unlessMobile', function(val, options) {
             if (!val) return;
             // console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
             var fnTrue=options.fn, fnFalse=options.inverse;
-            return val.isTablet || val.isDesktop? fnTrue() : fnFalse();
+            return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
         });
 
     }
