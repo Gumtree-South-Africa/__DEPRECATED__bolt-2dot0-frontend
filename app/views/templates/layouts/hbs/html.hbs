@@ -30,7 +30,7 @@
         <meta property="og:image" content='{{#block "ogImg"}}{{this.header.logoUrlOpenGraph}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
-        <meta property="og:country-name" content="{{this.header.countryName}}"/>
+        <meta property="og:country-name" content="{{i18n 'header.country.label'}}"/>
         <meta property="og:description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
