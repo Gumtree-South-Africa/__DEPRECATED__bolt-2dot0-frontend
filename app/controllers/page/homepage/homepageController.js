@@ -229,7 +229,8 @@ var HP = {
 
 		// Gallery
 		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
-
+		modelData.content.galleryAdsAjaxInitUrl ='/ads/gallery?offset=1&limit=16';
+		
 		// Search Bar
 		modelData.content.disableSearchbar = false;
 
