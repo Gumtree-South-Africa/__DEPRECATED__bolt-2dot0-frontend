@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<!--[if IEMobile 7]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="iem7 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie8 lt-ie9 lt-ie10 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie9 lt-ie10 {{this.header.pageType}}"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" xmlns="http://www.w3.org/1999/html" class="{{this.header.pageType}}"><!--<![endif]-->
-<head>
+
     <title>{{#block "title"}}{{i18n this.header.pageTitle}}{{/block}}</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <meta name="description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
@@ -34,12 +23,10 @@
         <meta property="og:description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
-    
+
     <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
-    
-    {{#each this.header.containerCSS}}
-        <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
-    {{/each}}
+
+
     {{!-- The following is not in BOLT 1.0 --}}
     <link rel="stylesheet" href="/public/css/icons.data.svg_{{locale}}.css"/>
 
@@ -57,73 +44,73 @@
     {{/if}}
     {{#block "meta"}}{{/block}}
     {{#block "metaForPage"}}{{/block}}
-       
+
     {{#block "grumpicon-script"}}
 
-    <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
-    ("{{this.header.iconsCSSURLs.[0]}}","{{this.header.iconsCSSURLs.[1]}}","{{this.header.iconsCSSURLs.[2]}}");</script>
+        <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
+        ("{{this.header.iconsCSSURLs.[0]}}","{{this.header.iconsCSSURLs.[1]}}","{{this.header.iconsCSSURLs.[2]}}");</script>
 
-    <noscript>
-       <link href="{{this.header.iconsCSSFallbackUrl}}" rel="stylesheet">
-       <style type="text/css">
-            .jsOnly {display:none !important;}
-            .nonJsOnlyInlineBlock{display:inline-block !important;}
-            .nonJsOnlyBlock {display:block !important;}
-            .nonJsOnlyInline {display:inline !important;}
-       </style>
-    </noscript>
+        <noscript>
+            <link href="{{this.header.iconsCSSFallbackUrl}}" rel="stylesheet">
+            <style type="text/css">
+                .jsOnly {display:none !important;}
+                .nonJsOnlyInlineBlock{display:inline-block !important;}
+                .nonJsOnlyBlock {display:block !important;}
+                .nonJsOnlyInline {display:inline !important;}
+            </style>
+        </noscript>
 
     {{/block}}
     {{#block "GTMTag"}}
-      {{#if this.footer.analytics.gtmTagId}}
+        {{#if this.footer.analytics.gtmTagId}}
             <script>
-            var dataLayer = dataLayer || [];
-            dataLayer.push({});(function(l) {
-                var dl=l[0];
-                dl["p"]={};
-                     {{#with this.dataLayer.pageData.pageType}}dl["p"]["t"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.pageData.platform}}dl["p"]["pl"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.pageData.version}}dl["p"]["v"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.pageData.language}}dl["p"]["lng"] ="{{this}}";{{/with}}
-                     {{#with this.dataLayer.pageData.viewType}}dl["p"]["vt"] ="{{this}}";{{/with}}
-                dl["u"]={};
-                dl["u"]["tg"]={};
-                     {{#with this.dataLayer.userData.hashedUserId}}dl["u"]["huid"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.userData.hashedUserEmail}}dl["u"]["hue"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
-                     {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
-                     {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
-                     {{#block "dataLayerSpecifics"}}{{/block}}                     
-                dl["c"]={};
-                dl["c"]["c"]={};
-                     {{#with this.dataLayer.categoryData.current}} dl["c"]["c"]["id"] = "{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.categoryData.level0}}dl["c"]["l0"]={};dl["c"]["l0"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.categoryData.level1}}dl["c"]["l1"]={};dl["c"]["l1"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.categoryData.level2}}dl["c"]["l2"]={};dl["c"]["l2"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.categoryData.level3}}dl["c"]["l3"]={};dl["c"]["l3"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.categoryData.level4}}dl["c"]["l4"]={};dl["c"]["l4"]["id"]="{{this.id}}";{{/with}}
-                dl["l"]={};
-                dl["l"]["c"]={};
-                     {{#with this.dataLayer.locationData.current}} dl["l"]["c"]["id"] = "{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.locationData.level0}}dl["l"]["l0"]={};dl["l"]["l0"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.locationData.level1}}dl["l"]["l1"]={};dl["l"]["l1"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.locationData.level2}}dl["l"]["l2"]={};dl["l"]["l2"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.locationData.level3}}dl["l"]["l3"]={};dl["l"]["l3"]["id"]="{{this.id}}";{{/with}}
-                     {{#with this.dataLayer.locationData.level4}}dl["l"]["l4"]={};dl["l"]["l4"]["id"]="{{this.id}}";{{/with}}
+                var dataLayer = dataLayer || [];
+                dataLayer.push({});(function(l) {
+                    var dl=l[0];
+                    dl["p"]={};
+                            {{#with this.dataLayer.pageData.pageType}}dl["p"]["t"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.pageData.platform}}dl["p"]["pl"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.pageData.version}}dl["p"]["v"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.pageData.language}}dl["p"]["lng"] ="{{this}}";{{/with}}
+                    {{#with this.dataLayer.pageData.viewType}}dl["p"]["vt"] ="{{this}}";{{/with}}
+                    dl["u"]={};
+                    dl["u"]["tg"]={};
+                            {{#with this.dataLayer.userData.hashedUserId}}dl["u"]["huid"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.userData.hashedUserEmail}}dl["u"]["hue"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
+                    {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
+                    {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
+                    {{#block "dataLayerSpecifics"}}{{/block}}
+                    dl["c"]={};
+                    dl["c"]["c"]={};
+                    {{#with this.dataLayer.categoryData.current}} dl["c"]["c"]["id"] = "{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.categoryData.level0}}dl["c"]["l0"]={};dl["c"]["l0"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.categoryData.level1}}dl["c"]["l1"]={};dl["c"]["l1"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.categoryData.level2}}dl["c"]["l2"]={};dl["c"]["l2"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.categoryData.level3}}dl["c"]["l3"]={};dl["c"]["l3"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.categoryData.level4}}dl["c"]["l4"]={};dl["c"]["l4"]["id"]="{{this.id}}";{{/with}}
+                    dl["l"]={};
+                    dl["l"]["c"]={};
+                    {{#with this.dataLayer.locationData.current}} dl["l"]["c"]["id"] = "{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.locationData.level0}}dl["l"]["l0"]={};dl["l"]["l0"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.locationData.level1}}dl["l"]["l1"]={};dl["l"]["l1"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.locationData.level2}}dl["l"]["l2"]={};dl["l"]["l2"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.locationData.level3}}dl["l"]["l3"]={};dl["l"]["l3"]["id"]="{{this.id}}";{{/with}}
+                    {{#with this.dataLayer.locationData.level4}}dl["l"]["l4"]={};dl["l"]["l4"]["id"]="{{this.id}}";{{/with}}
 
-             {{#block "GoogleTagManager"}}{{/block}}
+                    {{#block "GoogleTagManager"}}{{/block}}
 
-            })(dataLayer);
+                })(dataLayer);
 
-                    //gtm script
-                     (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
-                             {'gtm.start': new Date().getTime(),event:'gtm.js'}
-                     );var f=d.getElementsByTagName(s)[0],
-                             j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-                             '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                     })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
-       </script>
-      {{/if}}
+                //gtm script
+                (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push(
+                        {'gtm.start': new Date().getTime(),event:'gtm.js'}
+                );var f=d.getElementsByTagName(s)[0],
+                        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+                        '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+                })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
+            </script>
+        {{/if}}
     {{/block}}
     <script>
         var Bolt = Bolt || {};
@@ -142,27 +129,27 @@
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
         <script type="text/javascript">
             var _gaq = _gaq || [];
-        {{#if this.footer.analytics.account}}
-            {{#with this.footer.analytics}}
-                _gaq.push(['siteTracker._setAccount', '{{account}}']);
-                _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
-                {{#each ignoredRefs}}
-                    _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
-                {{/each}}
-                _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
-                _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
-                _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
-                _gaq.push(['siteTracker._trackPageview']);
+                {{#if this.footer.analytics.account}}
+                    {{#with this.footer.analytics}}
+                    _gaq.push(['siteTracker._setAccount', '{{account}}']);
+                    _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
+                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
+                        {{#each ignoredRefs}}
+                        _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
+                        {{/each}}
+                    _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
+                    _gaq.push(['siteTracker._trackPageview']);
 
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-                    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            {{/with}}
-        {{/if}}
+                    (function() {
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                        //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                    })();
+                    {{/with}}
+                {{/if}}
         </script>
     {{/block}}
 

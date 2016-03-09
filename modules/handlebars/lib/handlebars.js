@@ -30,6 +30,8 @@ module.exports.create =  function(app) {
 
         hbshelpers.init({hbs:hbs, app:app, req:req});
 
+        res.locals.hbs = hbs;
+
         app.engine('hbs', hbs.engine);
         app.set('view engine', 'hbs');
         app.set('views', process.cwd() + '/app/views/templates/pages');

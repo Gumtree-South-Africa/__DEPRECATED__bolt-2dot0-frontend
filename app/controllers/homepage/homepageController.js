@@ -21,20 +21,61 @@ module.exports = function (app) {
 };
 
 
+router.use(function(req, res, next){
+	var M = require('mstring');
+
+	 var htmlHead = M(function(){
+	 /***
+	 <!DOCTYPE html>
+	 <!--[if IEMobile 7]>
+	 <html data-locale="" lang="" class="iem7 oldie "><![endif]-->
+	 <!--[if (IE 7)&!(IEMobile)]>
+	 <html data-locale="" lang="" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie "><![endif]-->
+	 <!--[if (IE 8)&!(IEMobile)]>
+	 <html data-locale="{{this.locale}}" lang="" class="ie8 lt-ie9 lt-ie10 oldie "><![endif]-->
+	 <!--[if (IE 9)&!(IEMobile)]>
+	 <html data-locale="" lang="" class="ie9 lt-ie10 "><![endif]-->
+	 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
+	 <html data-locale="" lang="" xmlns="http://www.w3.org/1999/html" class=""><!--<![endif]-->
+	 <head>
+	 <link rel="stylesheet" type="text/css" href='/public/css/all/Gumtree/ZA/en_ZA/Main.css'/>
+	 <link rel="stylesheet" type="text/css" href='/public/css/all/Gumtree/ZA/en_ZA/HomePage.css'/>
+	 <link rel="stylesheet" href="/public/css/icons.data.svg_en_ZA.css"/>
+	 ***/});
+
+	 res.write(htmlHead, "utf8");
+	 res.flush();
+
+	next();
+
+
+});
+
 /**
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
+
 	console.time('Instrument-Homepage-Controller');
-	
+
+
+
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
-	
+
+	var hbs = res.locals.hbs;
+
+	//res.setHeader('Connection', 'Transfer-Encoding');
+	//res.setHeader('Content-Type', 'text/html; charset=utf-8');
+	//res.setHeader('Transfer-Encoding', 'chunked');
+
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
-		res.cookie('anonUsrId', cuid());
+		//res.cookie('anonUsrId', cuid());
 	}
-	
+
+	//res.write(htmlHead, "utf8");
+
 	// Build Model Data
 	var modelData =
     {
@@ -47,10 +88,16 @@ router.get('/', function (req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var bapiConfigData = res.locals.config.bapiConfigData;
+
+
 	var model = HomepageModel(req, res);
     model.then(function (result) {
+
+
       // Dynamic Data from BAPI
       modelData.header = result['common'].header || {};
+
+
       modelData.footer = result['common'].footer || {};
       modelData.dataLayer = result['common'].dataLayer || {};
 	  modelData.level2Location = result['level2Loc'] || {};
@@ -59,7 +106,7 @@ router.get('/', function (req, res, next) {
 	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
 	  	modelData.topKeywords = result['keyword'][1].keywords || {};
 	  }
-	  
+
 	  // Check for top or trending keywords existence
 	  modelData.topOrTrendingKeywords = false;
 	  if (modelData.trendingKeywords || modelData.topKeywords) {
@@ -68,7 +115,7 @@ router.get('/', function (req, res, next) {
 
       modelData.initialGalleryInfo = result['gallery'] || {};
 	  if (result['adstatistics']) {
-		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {}; 
+		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
 	  }
       modelData.seo = result['seo'] || {};
 
@@ -80,32 +127,36 @@ router.get('/', function (req, res, next) {
 
 	  //  Device data for handlebars
 	  modelData.device = req.app.locals.deviceInfo;
-      
+
 	  // Special Data needed for HomePage in header, footer, content
 	  HP.extendHeaderData(req, modelData);
 	  HP.extendFooterData(modelData);
 	  HP.buildContentData(modelData, bapiConfigData);
-	  HP.deleteMarketoCookie(res, modelData);
-		
+	  //HP.deleteMarketoCookie(res, modelData);
+
+		//res.write(htmlHead, "utf8");
+		//res.flush();
 	  // console.dir(modelData);
+		/*res.write("\n\n", "utf8");
+		res.flush();
+		res.write("\n\n", "utf8");
+		res.flush();*/
 
-      // Render
-      res.render('homepage/views/hbs/homepage_' + res.locals.config.locale, modelData, function(err, html) {
-		  if (err) {
-			  err.status = 500;
+	  hbs.renderView( process.cwd() + '/app/views/templates/pages/homepage/views/hbs/homepage_' + res.locals.config.locale + ".hbs", modelData, function(err, html) {
+	   // console.log("xxxxx" + html);
+		  //res.writeHead(200, {'Content-Type': 'text/html'});
+		 res.end(html, "utf8");
 
-			  return next(err);
-		  } else {
-			  res.send(html);
-		  }
-	  });
+		 // res.end();
+
+	 });
 
       // Kafka Logging
       var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
       kafkaService.logInfo(res.locals.config.locale, log);
-      
+
       // Graphite Metrics
-      
+
       console.timeEnd('Instrument-Homepage-Controller');
     });
 });

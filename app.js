@@ -44,6 +44,7 @@ var siteCount = 0;
  */
 var siteApps = [];
 Object.keys(config.sites).forEach(function(siteKey) {
+	console.log("app " + siteKey);
     var siteObj = config.sites[siteKey];
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {

@@ -72,6 +72,7 @@
     "lodash": "^3.10.1",
     "method-override": "^2.3.5",
     "morgan": "~1.6.1",
+    "mstring": "^0.1.2",
     "q": "^1.4.1",
     "request": "^2.67.0",
     "requirejs": "^2.1.20",

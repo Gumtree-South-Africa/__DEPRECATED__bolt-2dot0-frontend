@@ -81,7 +81,7 @@ function BuildApp(locale) {
     app.use(i18n.initMW(app, locale));
     app.use(boltExpressHbs.create(app));
     app.use(deviceDetection.init());
-    
+
     this.getApp = function() {
         return app;
     };
