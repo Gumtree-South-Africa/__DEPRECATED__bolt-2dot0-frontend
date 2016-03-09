@@ -4,6 +4,7 @@
 		"localeOpenGraph" 					: "es_LA",
 		"publisherUrl"						: "https://plus.google.com/+IbazarMx/",
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no_image_US.png",
+		"promoteAdsUrl"						: null,	
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: false,

@@ -53,13 +53,13 @@ module.exports.isHomePageDevice = function() {
     //Ipad mini : IOS 7.1 also can reproduce it
     //UA :Mozilla/5.0(Ipad;CPU OS 7_1 like Mac OS X) AppliWebKit/537.51.2 (KHTML,like Gecko) Version/7.0 Mobile/11D167Safari/9537.53
 
-    if ( ua != null && str(ua).contains("ipad") && str(ua).contains("AppleWebKit/533")) return true;
-    if ( ua != null && str(ua).contains("ipad") && str(ua).contains("AppleWebKit/536")) return true;
-    if ( ua != null && str(ua).contains("ipad") && str(ua).contains("AppleWebKit/537")) return true;
-    if ( ua != null && str(ua).contains("SCH-I800") && str(ua).contains("AppleWebKit/533")) return true;
-    if ( ua != null && str(ua).contains("SM-T210R") && str(ua).contains("AppleWebKit/534")) return true;
-    if ( ua != null && str(ua).contains("GT-P5210") && str(ua).contains("AppleWebKit/534")) return true;
-    if ( ua != null && str(ua).contains("SGH-T999") && str(ua).contains("AppleWebKit/534")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("ipad").toUpperCase()) && str(ua).contains("AppleWebKit/533")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("ipad").toUpperCase()) && str(ua).contains("AppleWebKit/536")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("ipad").toUpperCase()) && str(ua).contains("AppleWebKit/537")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("SCH-I800").toUpperCase()) && str(ua).contains("AppleWebKit/533")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("SM-T210R").toUpperCase()) && str(ua).contains("AppleWebKit/534")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("GT-P5210").toUpperCase()) && str(ua).contains("AppleWebKit/534")) return true;
+    if ( ua != null && str(ua.toUpperCase()).contains(("SGH-T999").toUpperCase()) && str(ua).contains("AppleWebKit/534")) return true;
 
     return false;
 };
