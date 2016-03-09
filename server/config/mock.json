@@ -27,7 +27,7 @@
 	},
 	"graphite": {
 		"server": {
-			"host"		: "10.65.201.202",
+			"host"		: "10.65.251.146",
 			"port"		: 2003,
 			"interval" 	: 30
 		}
