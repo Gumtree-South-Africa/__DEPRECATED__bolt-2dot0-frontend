@@ -145,7 +145,7 @@ $(document).ready(function() {
                 .removeClass("active");
         })
         // Added in 2.0
-        .on("click", "input,button", function() {
+        .on("click", "button", function() {
             setLocationCookies();
             $searchForm.submit();
         })
@@ -390,12 +390,18 @@ $(document).ready(function() {
                                 if(url.indexOf("{value}") === -1)
                                     url += "{value}";
 
-                                if(value === "")
+                                if(value === "") {
                                     hideAutocomplete($autocomplete);
-                                else if(cache[value + catId + locId])
+                                }
+                                else if(cache[value + catId + locId]) {
                                     populateResults.call(scope, $autocomplete, $input, cache[value + catId + locId], config, value);
-                                else
-                                    $.getJSON(url.split("{catId}").join(catId).split("{locId}").join(locId).split("{value}").join(value), function(response){
+                                }
+                                else {
+                                    ajaxCallUrl = url.split("{catId}").join(catId).split("{locId}").join(locId).split("{value}").join(value);
+                                    //console.log("URL: " + url);
+                                    //console.log("ajax url: " + ajaxCallUrl);
+
+                                    $.getJSON(ajaxCallUrl, function(response){
                                         // append the "in" word to each of the results
                                         if(response.localizedInWord)
                                             $.each(response.autoCompletContentList, function(i, result){
@@ -408,7 +414,7 @@ $(document).ready(function() {
                                             cache[value + catId + locId] = response;
                                         populateResults.call(scope, $autocomplete, $input, response, config, value);
                                     });
-
+                                }
 
                             }, config.delay);
                         }
