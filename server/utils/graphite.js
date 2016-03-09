@@ -42,9 +42,12 @@ GraphiteService.prototype.postForHP = function() {
 }
 
 
-GraphiteService.prototype.postForHPUsingTCP = function() {
+GraphiteService.prototype.postForHPUsingTCP = function(key,value) {
     var socket = net.createConnection(config.get('graphite.server.port'), config.get('graphite.server.host'), function () {
-        socket.write("local.random.tcpnine 100000 12352345345555\n");
+		var data=key+' '+ value+' ' + new Date().getTime()/1000 + '\n';
+		console.log('DATA TO BE WRITTEN INTO GRAPHITE IS ',data);
+        socket.write(data);
+		console.log('DATA sent to Graphite');
         socket.end();
     });
 }

@@ -76,9 +76,8 @@ PageControllerUtil.prototype.finalizeController = function (req, res, next, page
     kafkaService.logInfo(res.locals.config.locale, log);
     
     // Graphite Metrics
-    console.info('Going to POST data from HP Controller to Graphite in my VM !!!!!!!!!!!!!!!!!!!!!!!!!!!!');
-    graphiteService.postForHPUsingTCPs();
+    console.info('Going to Graphite for HomePage with Test data for now');
+    graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
 };
-
 
 module.exports = new PageControllerUtil();
