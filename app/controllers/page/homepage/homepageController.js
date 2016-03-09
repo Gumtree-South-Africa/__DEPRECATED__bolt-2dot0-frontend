@@ -26,15 +26,15 @@ module.exports = function (app) {
  */
 router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
-	
+
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
-	
+
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid());
 	}
-	
+
 	// Build Model Data
 	var modelData = pageControllerUtil.getInitialModelData(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
@@ -52,7 +52,7 @@ router.get('/', function (req, res, next) {
 	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
 	  	modelData.topKeywords = result['keyword'][1].keywords || {};
 	  }
-	  
+
 	  // Check for top or trending keywords existence
 	  modelData.topOrTrendingKeywords = false;
 	  if (modelData.trendingKeywords || modelData.topKeywords) {
@@ -61,7 +61,7 @@ router.get('/', function (req, res, next) {
 
       modelData.initialGalleryInfo = result['gallery'] || {};
 	  if (result['adstatistics']) {
-		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {}; 
+		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
 	  }
       modelData.seo = result['seo'] || {};
 
@@ -123,7 +123,7 @@ var HP = {
 			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
-				
+
 				// Header Marketo
 				marketoService.buildMarketoDataForHP(modelData);
 				break;
@@ -148,7 +148,7 @@ var HP = {
 				break;
 		}
 	},
-	
+
 	/**
 	 * Special footer data for HomePage
 	 */
@@ -230,7 +230,7 @@ var HP = {
 		// Gallery
 		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
 		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
-		
+
 		// Search Bar
 		modelData.content.disableSearchbar = false;
 
