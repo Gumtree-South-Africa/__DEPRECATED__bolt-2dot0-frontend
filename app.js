@@ -1,7 +1,6 @@
 'use strict';
 
 
-var exphbs  = require('express-handlebars');
 var glob = require('glob');
 var http = require('http');
 var path = require('path');
@@ -38,7 +37,6 @@ var siteCount = 0;
 /*
  * Create Site Apps
  */
-var siteApps = [];
 Object.keys(config.sites).forEach(function(siteKey) {
     var siteObj = config.sites[siteKey];
 
@@ -94,19 +92,5 @@ app.use(error.four_o_four(app));
 // Overwriting the express's default error handler should always appear after 404 middleware
 app.use(error(app));
 
+
 module.exports = app;
-
-
-function clearRequireCache(mod) {
-	//console.log(mod);
-  	Object.keys(require.cache).forEach(function(key) {
-  		if (key.indexOf(mod) > -1) {
-  			delete require.cache[key];
-		}
-  	});
-}
-
-function requireUncached(module){
-	delete require.cache[require.resolve(module)];
-    return require(module);
-}
