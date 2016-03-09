@@ -13,7 +13,7 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/ads/gallery', function (req, res, next) {
+router.get('/api/ads/gallery', function (req, res, next) {
 	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
 		galleryData = {},
 		// Only applicable for SRP Gallery where there is categoryId
@@ -41,6 +41,9 @@ router.get('/ads/gallery', function (req, res, next) {
 			galleryData.previousAjaxUrl = ajaxUrls.prev;
 		}
 
+console.log('***==========>*******');
+console.log(galleryData);
+
 		galleryDeferred.resolve(galleryData);
 		res.send(galleryData);
 	}).fail(function (err) {
@@ -59,9 +62,9 @@ function getAjaxsUrlFromBapiJSON(dataG) {
 		for (idx = 0; idx < links.length; ++idx) {
 			linkObj = links[idx];
 			if (linkObj.rel.match(/previous/i)) {
-				ajaxUrls.prev = linkObj.href || '';
+				ajaxUrls.prev = ('/api' + linkObj.href) || '';
 			} else if (linkObj.rel.match(/next/i)) {
-				ajaxUrls.next = linkObj.href || '';
+				ajaxUrls.next = ('/api' + linkObj.href) || '';
 			}
 		}
 	}
