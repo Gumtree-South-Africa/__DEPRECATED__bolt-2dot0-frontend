@@ -13,7 +13,7 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/api/ads/gallery', function (req, res, next) {
+router.get('/api/ads/gallery', function (req, res) {
 	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
 		galleryData = {},
 		// Only applicable for SRP Gallery where there is categoryId
@@ -40,9 +40,6 @@ router.get('/api/ads/gallery', function (req, res, next) {
 		if (ajaxUrls.prev) {
 			galleryData.previousAjaxUrl = ajaxUrls.prev;
 		}
-
-console.log('***==========>*******');
-console.log(galleryData);
 
 		galleryDeferred.resolve(galleryData);
 		res.send(galleryData);
