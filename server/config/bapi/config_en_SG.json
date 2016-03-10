@@ -28,7 +28,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: null
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/"
 	},
 	"footer" : {
 		"cookieNotice"						: "http://gumtreehelp.com/sg/knowledgebase.php?article=190",
