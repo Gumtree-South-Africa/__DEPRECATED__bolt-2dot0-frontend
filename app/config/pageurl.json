@@ -11,10 +11,9 @@
 		"signOutURL"			: "/logout",
 		"registerURL"			: "/register.html",
 		"searchPageUrl"			: "/search.html?page=1",
-		"autoCompleteUrl"		: "/rui-api/autocomplete/model",
-		"autoCompleteUrl"		: "/autocomplete/model/",
-		"geoLocatorUrl"			: "/locations/content/geo/",
-		"rootGeoLocatorUrl"		: "/locations/content/",
+		"autoCompleteUrl"		: "/rui-api/autocomplete/model/",
+		"geoLocatorUrl"			: "/rui-api/locations/content/geo/",
+		"rootGeoLocatorUrl"		: "/rui-api/locations/content/",
 		"surveyMonkeyUrl"		: "/post.html",
 		"abTestUrl"				: "/post.html"
 	},

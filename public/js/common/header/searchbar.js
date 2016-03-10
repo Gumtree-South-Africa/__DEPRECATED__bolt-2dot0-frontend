@@ -398,9 +398,6 @@ $(document).ready(function() {
                                 }
                                 else {
                                     ajaxCallUrl = url.split("{catId}").join(catId).split("{locId}").join(locId).split("{value}").join(value);
-                                    //console.log("URL: " + url);
-                                    //console.log("ajax url: " + ajaxCallUrl);
-
                                     $.getJSON(ajaxCallUrl, function(response){
                                         // append the "in" word to each of the results
                                         if(response.localizedInWord)
