@@ -28,7 +28,9 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: null
+	    "seoDeepLinkingBaseUrlAndroid" 		: null,
+		"locationDropdownLevel"				: 2,
+		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
 		"cookieNotice"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies",
