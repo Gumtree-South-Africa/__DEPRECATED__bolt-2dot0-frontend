@@ -1,58 +1,58 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
+var http = require('http'),
+	Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
-
-var categoryService = require(process.cwd() + "/server/services/category");
+var categoryService = require(process.cwd() + '/server/services/category');
 
 
 /** 
  * @description A class that Handles the Category Model
  * @constructor
  */
-var CategoryModel = function (requestId, locale, depth) {
+var CategoryModel = function (requestId, locale, depth, locationId) {
 	this.requestId = requestId;
 	this.locale = locale;
 	this.depth = depth;
-};
-
-CategoryModel.prototype.getModelBuilder = function () {
-	return new ModelBuilder(this.getCategories());
+	this.locationId = locationId;
 };
 
 //Function getCategories
-CategoryModel.prototype.getCategories = function () {
+CategoryModel.prototype.getCategories = function() {
 	var scope = this;
-	var arrFunctions = [
-		function (callback) {
-			var categoryDeferred,
-				data = {};
-			if (typeof callback !== "function") {
-				return;
-			}
-			
-			if (typeof scope.depth !== "undefined") {
-				categoryDeferred = Q.defer();
-				 Q(categoryService.getCategoriesData(scope.requestId, scope.locale, scope.depth))
-			    	.then(function (dataReturned) {
-			    		data = dataReturned;
-			    		categoryDeferred.resolve(data);
-					    callback(null, data);
-					}).fail(function (err) {
-						categoryDeferred.reject(new Error(err));
-					    callback(null, data);
-					});
+	var categoryDeferred = Q.defer();
+	var data = {};
 
-				return categoryDeferred.promise;
-			} else {
-			    callback(null, data);
-			}
-		}
-	];
+	if (typeof scope.locale !== 'undefined') {
+		Q(categoryService.getCategoriesData(scope.requestId, scope.locale, scope.depth))
+			.then(function (dataReturned) {
+				data = dataReturned;
+				categoryDeferred.resolve(data);
+			}).fail(function (err) {
+				categoryDeferred.reject(new Error(err));
+			});
+	}
 
-	return arrFunctions;	
+	return categoryDeferred.promise;
+};
+
+//Function getCategoriesWithLocId
+CategoryModel.prototype.getCategoriesWithLocId = function() {
+	var scope = this;
+	var categoryDeferred = Q.defer();
+	var data = {};
+
+	if (typeof scope.locale !== 'undefined') {
+		Q(categoryService.getCategoriesDataWithLocId(scope.requestId, scope.locale, scope.depth, scope.locationId))
+			.then(function (dataReturned) {
+				data = dataReturned;
+				categoryDeferred.resolve(data);
+			}).fail(function (err) {
+				categoryDeferred.reject(new Error(err));
+			});
+	}
+
+	return categoryDeferred.promise;
 };
 
 module.exports = CategoryModel;

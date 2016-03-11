@@ -1,5 +1,5 @@
 <ul class="category-list nonJsOnlyBlock" id="flexLftBuckt">
-    {{#each category.children}}
+    {{#each categoryList.children}}
     <li class="parent-category l1category{{this.id}} item" data-category-id="{{this.id}}" data-ct-id="{{this.id}}">
           <a href="{{this._links.[1].href}}" class="toggler" title="{{this.localizedName}} ({{this.id}})">
                 <span class="icon-cat-{{this.id}} icon"></span>
