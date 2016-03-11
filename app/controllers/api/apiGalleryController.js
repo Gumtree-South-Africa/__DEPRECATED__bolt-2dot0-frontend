@@ -1,5 +1,6 @@
 'use strict';
 
+var cors = require(process.cwd() + '/modules/cors');
 
 var express = require('express'),
 	router = express.Router(),
@@ -12,7 +13,7 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
-router.get('/api/ads/gallery', function (req, res) {
+router.get('/api/ads/gallery', cors, function (req, res) {
 	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
 		galleryData = {},
 		offset = req.query.offset, // Start Index
