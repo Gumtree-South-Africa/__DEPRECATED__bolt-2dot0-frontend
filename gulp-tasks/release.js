@@ -57,7 +57,7 @@ module.exports = function watch(gulp, plugins) {
 	    // Create a new Tag in Git
 	    gulp.task('create-new-tag', function (cb) {
 	    	var stream  =
-		    	git.tag(appVersion, '[Release Tag] Created Tag for app with version: ' + getAppVersion(), function (error) {
+		    	git.tag(getAppVersion(), '[Release Tag] Created Tag for app with version: ' + getAppVersion(), function (error) {
 			        if (error) {
 			          return cb(error);
 			        }
