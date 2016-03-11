@@ -3,9 +3,19 @@
 //////////////////////////////////////////////////
 // RELEASE Tasks
 //// /////////////////////////////////////////////
+var exec = require('child_process').exec;
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
+
+		function getAppVersion () {
+				return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
+		};
+
+		function getStaticVersion () {
+				return JSON.parse(fs.readFileSync('./server/config/production.json', 'utf8')).static.server.version;
+		};
+
 	    // Append release comments to CHANGELOG.md
 	    gulp.task('changelog', function () {
 				var stream =
@@ -36,14 +46,6 @@ module.exports = function watch(gulp, plugins) {
 	        		.pipe(git.add())
 	        		.pipe(git.commit('[Prerelease] Bumped version number --> app: '+ getAppVersion() + ', static: ' + getStaticVersion()));
 
-	    	function getAppVersion () {
-	    	    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-	    	};
-
-	    	function getStaticVersion () {
-	    	    return JSON.parse(fs.readFileSync('./server/config/production.json', 'utf8')).static.server.version;
-	    	};
-
 			return stream;
 	    });
 
@@ -58,17 +60,13 @@ module.exports = function watch(gulp, plugins) {
 	    // Create a new Tag in Git
 	    gulp.task('create-new-tag', function (cb) {
 	    	var appVersion = getAppVersion();
-			var stream  =
+				var stream  =
 		    	git.tag(appVersion, 'Created Tag for app with version: ' + appVersion, function (error) {
 			        if (error) {
 			          return cb(error);
 			        }
 			        git.push('origin', 'master', {args: '--tags'}, cb);
 		    	});
-
-	    	function getAppVersion () {
-	    	    return JSON.parse(fs.readFileSync('./package.json', 'utf8')).version;
-	    	};
 
 			return stream;
 	    });
@@ -79,14 +77,23 @@ module.exports = function watch(gulp, plugins) {
 				//share.info.v = appVersion;
 				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
 
+				exec(command, function (err, stdout, stderr) {
+			    console.log(stdout);
+			    console.log(stderr);
+			    //cb(err);
+			  });
 			});
 
 
 			gulp.task('push-static-nexus', function(){
-				//share.info.name = bolt-2dot0-frontend-static
-				//share.info.v = staticVersion;
+
 				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
 
+			  exec(command, function (err, stdout, stderr) {
+			    console.log(stdout);
+			    console.log(stderr);
+			    //cb(err);
+			  });
 			})
 
 
@@ -95,8 +102,8 @@ module.exports = function watch(gulp, plugins) {
 	    	runSequence(
     			//'bumpup',
     			//'changelog',
-					//push-app-nexus,
-					//push-static-nexus,
+					'push-app-nexus',
+					'push-static-nexus',
     			'commit-changes',
     			'push-changes',
 				//TODO: uncomment the remaining once
