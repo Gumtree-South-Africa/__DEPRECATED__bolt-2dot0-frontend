@@ -10,6 +10,7 @@ CORS is a module that
 var cors = require(process.cwd() + "/modules/cors");
 
 router.get('/api/ads/gallery', cors, function (req, res) ....
+```
 
 ### Testing
 
