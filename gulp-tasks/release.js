@@ -73,27 +73,26 @@ module.exports = function watch(gulp, plugins) {
 
 
 			gulp.task('push-app-nexus', function(){
-				//share.info.name = bolt-2dot0-frontend
-				//share.info.v = appVersion;
-				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
+				var command = 'curl -v --upload-file ./target/'+ getStaticVersion() +'/app/bolt-2dot0-frontend-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
+				var stream =
+					exec(command, function (err, stdout, stderr) {
+				    console.log(stdout);
+				    console.log(stderr);
+				  });
 
-				exec(command, function (err, stdout, stderr) {
-			    console.log(stdout);
-			    console.log(stderr);
-			    //cb(err);
-			  });
+				return stream;
 			});
 
 
 			gulp.task('push-static-nexus', function(){
+				var command = 'curl -v --upload-file ./target/'+ getStaticVersion() +'/static/bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
+				var stream =
+				  exec(command, function (err, stdout, stderr) {
+				    console.log(stdout);
+				    console.log(stderr);
+				  });
 
-				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
-
-			  exec(command, function (err, stdout, stderr) {
-			    console.log(stdout);
-			    console.log(stderr);
-			    //cb(err);
-			  });
+				return stream;
 			})
 
 
@@ -104,8 +103,8 @@ module.exports = function watch(gulp, plugins) {
     			//'changelog',
 					'push-app-nexus',
 					'push-static-nexus',
-    			'commit-changes',
-    			'push-changes',
+    			//'commit-changes',
+    			//'push-changes',
 				//TODO: uncomment the remaining once
     			//'create-new-tag',
     			//'github-release',
