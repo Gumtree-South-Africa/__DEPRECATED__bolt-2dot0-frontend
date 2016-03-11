@@ -6,7 +6,8 @@
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
-		var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
+		var appVersion = JSON.parse(fs.readFileSync(process.cwd() + '/package.json', 'utf8')).version;
+		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/production.json', 'utf8')).static.server.version;
 
 		// Package App
 		gulp.task('pak:app', function(){
@@ -16,7 +17,7 @@ module.exports = function watch(gulp, plugins) {
 				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
 		        	.pipe(plugins.tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
-		        	.pipe(gulp.dest('./target/' + appVersion + '/app'))
+		        	.pipe(gulp.dest('./target' + '/app'))
 		        	.on('end', function(){
 		        		console.log('Congratulations!!! APP PACKAGING DONE SUCCESSFULLY');
 		        	});
@@ -29,10 +30,10 @@ module.exports = function watch(gulp, plugins) {
 			process.stdout.write('Static Package Task is running...\r\n');
 
 			var stream =
-				gulp.src(process.cwd() + "/" + "public/**/*/")
-			    	.pipe(plugins.tar('bolt-2dot0-frontend-static-'+ appVersion +'.tar'))
+				gulp.src(process.cwd() + '/' + 'public/**/*/')
+			    	.pipe(plugins.tar('bolt-2dot0-frontend-static-'+ staticVersion + '.tar'))
 			        .pipe(plugins.gzip())
-			        .pipe(gulp.dest('./target/' + appVersion + '/static'))
+			        .pipe(gulp.dest('./target' + '/static'))
 					.on('end', function(){
 						console.log('Congratulations!!! STATIC PACKAGING DONE SUCCESSFULLY');
 				    });
