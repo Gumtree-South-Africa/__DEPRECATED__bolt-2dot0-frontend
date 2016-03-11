@@ -42,38 +42,37 @@ router.get('/', function (req, res, next) {
 	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res);
     model.then(function (result) {
-      // Dynamic Data from BAPI
-      modelData.header = result['common'].header || {};
-      modelData.footer = result['common'].footer || {};
-      modelData.dataLayer = result['common'].dataLayer || {};
-	  modelData.level2Location = result['level2Loc'] || {};
+      	// Dynamic Data from BAPI
+      	modelData.header = result['common'].header || {};
+		modelData.footer = result['common'].footer || {};
+		modelData.dataLayer = result['common'].dataLayer || {};
+		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+		modelData.level2Location = result['level2Loc'] || {};
+		modelData.initialGalleryInfo = result['gallery'] || {};
+		modelData.seo = result['seo'] || {};
+		if (result['adstatistics']) {
+			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
+		}
+		if (result['keyword']) {
+			modelData.trendingKeywords = result['keyword'][0].keywords || {};
+			modelData.topKeywords = result['keyword'][1].keywords || {};
+		}
 
-	  if (result['keyword']) {
-	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
-	  	modelData.topKeywords = result['keyword'][1].keywords || {};
-	  }
+		// Check for top or trending keywords existence
+		modelData.topOrTrendingKeywords = false;
+		if (modelData.trendingKeywords || modelData.topKeywords) {
+			modelData.topOrTrendingKeywords = true;
+		}
 
-	  // Check for top or trending keywords existence
-	  modelData.topOrTrendingKeywords = false;
-	  if (modelData.trendingKeywords || modelData.topKeywords) {
-	  	modelData.topOrTrendingKeywords = true;
-	  }
+		// Special Data needed for HomePage in header, footer, content
+		HP.extendHeaderData(req, modelData);
+		HP.extendFooterData(modelData);
+		HP.buildContentData(modelData, bapiConfigData);
+		HP.deleteMarketoCookie(res, modelData);
 
-      modelData.initialGalleryInfo = result['gallery'] || {};
-	  if (result['adstatistics']) {
-		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
-	  }
-      modelData.seo = result['seo'] || {};
+		pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
-	  // Special Data needed for HomePage in header, footer, content
-	  HP.extendHeaderData(req, modelData);
-	  HP.extendFooterData(modelData);
-	  HP.buildContentData(modelData, bapiConfigData);
-	  HP.deleteMarketoCookie(res, modelData);
-
-	  pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
-
-      console.timeEnd('Instrument-Homepage-Controller');
+		console.timeEnd('Instrument-Homepage-Controller');
     });
 });
 

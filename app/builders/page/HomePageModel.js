@@ -18,6 +18,13 @@ var SeoModel = require(cwd + '/app/builders/common/SeoModel');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 
+function getCookieLocationId(req) {
+	var searchLocIdCookieName = 'searchLocId';
+	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
+
+	return searchLocIdCookie==='' ? null : searchLocIdCookie;
+}
+
 /**
  * @method getHomepageDataFunctions
  * @description Retrieves the list of functions to call to get the model for the Homepage.
@@ -31,7 +38,8 @@ var getHomepageDataFunctions = function (req, res) {
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder();
+		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
+		category = new CategoryModel(req.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
 			
 	return {
 		'level2Loc'		:	function(callback) {
@@ -88,7 +96,18 @@ var getHomepageDataFunctions = function (req, res) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});
 									});
-							}						
+							},
+		'catWithLocId'	:	function(callback) {
+								var categoryDeferred = Q.defer();
+								Q(category.getCategoriesWithLocId())
+									.then(function (dataC) {
+										categoryDeferred.resolve(dataC);
+										callback(null, dataC);
+									}).fail(function (err) {
+										categoryDeferred.reject(new Error(err));
+										callback(null, {});
+									});
+							}
 	};
 };
 
@@ -106,6 +125,9 @@ var HomePageModel = function (req, res) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	if (getCookieLocationId(req) !== null) {
+		pageModelConfig.push('catWithLocId');
+	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 	
