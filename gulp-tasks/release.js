@@ -73,11 +73,30 @@ module.exports = function watch(gulp, plugins) {
 			return stream;
 	    });
 
+
+			gulp.task('push-app-nexus', function(){
+				//share.info.name = bolt-2dot0-frontend
+				//share.info.v = appVersion;
+				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
+
+			});
+
+
+			gulp.task('push-static-nexus', function(){
+				//share.info.name = bolt-2dot0-frontend-static
+				//share.info.v = staticVersion;
+				var command = 'curl -v --upload-file ./bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
+
+			})
+
+
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
     			//'bumpup',
     			//'changelog',
+					//push-app-nexus,
+					//push-static-nexus,
     			'commit-changes',
     			'push-changes',
 				//TODO: uncomment the remaining once
