@@ -10,17 +10,11 @@ var locationService = require(pCwd + '/server/services/location');
 var categoryService = require(pCwd + '/server/services/category');
 
 
-module.exports = function(siteApp, requestId, locationDepth, categoryDepth) {
-        var Cache = CacheBapiData(siteApp, requestId);
+module.exports = function(siteApp, requestId) {
+    var Cache = CacheBapiData(siteApp, requestId);
 
-        // Load Config Data from BAPI
-        Cache.loadConfigData();
-
-         // Load Location Data from BAPI
-        Cache.loadLocationData(locationDepth);
-
-         // Load Category Data from BAPI
-        Cache.loadCategoryData(categoryDepth);
+    // Load Config Data from BAPI
+    Cache.loadConfigData();
 };
 
 /**
@@ -31,6 +25,49 @@ module.exports = function(siteApp, requestId, locationDepth, categoryDepth) {
  * @param {String} requestId ID of the current CUID request
  */
 function CacheBapiData(siteApp, requestId) {
+
+    /**
+     * @method loadLocationData
+     * @description Loads the Location Data from BAPI. Exposes that data via
+     *     siteApp.locals.config.locationIdNameMap and siteApp.locals.config.locationdropdown
+     * @private
+     */
+    var loadLocationData = function (locationDepth) {
+        var filteredData;
+
+        // Load Location Data from BAPI
+        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
+            .then(function (dataReturned) {
+                siteApp.locals.config.locationData = dataReturned;
+
+                filteredData = prepareDataForRendering(dataReturned, true, locationDepth);
+                siteApp.locals.config.locationIdNameMap = filteredData.map;
+                siteApp.locals.config.locationdropdown = filteredData.dropdown;
+            }).fail(function (err) {
+                console.warn('Startup: Error in loading locations from LocationService:- ', err);
+            });
+    };
+
+    /**
+     * @method loadCategoryData
+     * @description Loads the Category Data from BAPI. Exposes that data via
+     *      siteApp.locals.config.categorydropdown
+     * @private
+     */
+    var loadCategoryData = function (categoryDepth) {
+        var filteredData;
+
+        // Load Category Data from BAPI
+        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
+            .then(function (dataReturned) {
+                siteApp.locals.config.categoryData = dataReturned;
+
+                filteredData = prepareDataForRendering(dataReturned, false, categoryDepth);
+                siteApp.locals.config.categorydropdown = filteredData.dropdown;
+            }).fail(function (err) {
+                console.warn('Startup: Error in loading categories from CategoryService:- ', err);
+            });
+    };
 
     return {
 
@@ -44,59 +81,24 @@ function CacheBapiData(siteApp, requestId) {
             // Load Config Data from BAPI
             Q(configService.getConfigData(siteApp.locals.config.locale))
               .then(function (dataReturned) {
-                if (dataReturned.error !== null) {
+                if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
                 } else {
                     siteApp.locals.config.bapiConfigData = dataReturned;
                 }
+
+                var locationDropdownLevel = siteApp.locals.config.bapiConfigData.header.locationDropdownLevel;
+                var categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;
+
+                // Load Location Data from BAPI
+                loadLocationData(locationDropdownLevel);
+
+                // Load Category Data from BAPI
+                loadCategoryData(categoryDropdownLevel);
             }).fail(function (err) {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
                 siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
             });
-        },
-
-        /**
-         * @method loadLocationData
-         * @description Loads the Location Data from BAPI. Exposes that data via
-         *     siteApp.locals.config.locationIdNameMap and siteApp.locals.config.locationdropdown
-         * @private
-         */
-        loadLocationData : function (locationDepth) {
-            var filteredData;
-
-            // Load Location Data from BAPI
-            Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
-              .then(function (dataReturned) {
-                siteApp.locals.config.locationData = dataReturned;
-                
-                filteredData = prepareDataForRendering(dataReturned, true, locationDepth);
-                siteApp.locals.config.locationIdNameMap = filteredData.map;
-                siteApp.locals.config.locationdropdown = filteredData.dropdown;
-            }).fail(function (err) {
-                console.warn('Startup: Error in loading locations from LocationService:- ', err);
-            });
-        },
-
-        /**
-         * @method loadCategoryData
-         * @description Loads the Category Data from BAPI. Exposes that data via
-         *      siteApp.locals.config.categorydropdown
-         * @private
-         */
-        loadCategoryData : function (categoryDepth) {
-            var filteredData;
-
-            // Load Category Data from BAPI
-            Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
-              .then(function (dataReturned) {
-                siteApp.locals.config.categoryData = dataReturned;
-                
-                filteredData = prepareDataForRendering(dataReturned, false, categoryDepth);
-                siteApp.locals.config.categorydropdown = filteredData.dropdown;
-            }).fail(function (err) {
-                console.warn('Startup: Error in loading categories from CategoryService:- ', err);
-            });
-
         }
 
     };

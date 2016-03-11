@@ -31,7 +31,9 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: null
+	    "seoDeepLinkingBaseUrlAndroid" 		: null,
+		"locationDropdownLevel"				: 1,
+		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
 		"cookieNotice"						: "/cookie-notice",

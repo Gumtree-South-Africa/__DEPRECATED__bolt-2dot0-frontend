@@ -1,12 +1,12 @@
 'use strict';
 
-var cors = require(process.cwd() + '/modules/cors');
 
 var express = require('express'),
 	router = express.Router(),
 	Q = require('q');
 
 var GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
+var cors = require(process.cwd() + '/modules/cors');
 
 
 module.exports = function (app) {
