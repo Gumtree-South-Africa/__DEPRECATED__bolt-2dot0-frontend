@@ -20,10 +20,23 @@ CategoryService.prototype.getCategoriesData = function(requestId, locale, depth)
 	// console.info("Inside CategoryService");
 
 	// Prepare BAPI call
-	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage');
+	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + "?depth=" + depth;
 
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "category", null);
-}
+};
+
+/**
+ * Gets a list of categories given a location id
+ */
+CategoryService.prototype.getCategoriesDataWithLocId = function(requestId, locale, depth, locationId) {
+	// console.info("Inside CategoryService");
+
+	// Prepare BAPI call
+	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + "?depth=" + depth + '&locationId=' + locationId;
+
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "category", null);
+};
 
 module.exports = new CategoryService();

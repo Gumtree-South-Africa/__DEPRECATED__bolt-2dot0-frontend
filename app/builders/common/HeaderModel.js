@@ -25,13 +25,11 @@ var HeaderModel = function (secure, req, res) {
 
 	// Local variables
 	var authCookieName = 'bt_auth';
-	var authCookie = req.cookies[authCookieName];
-	this.authCookie = authCookie;
+	this.authCookie = req.cookies[authCookieName];
 
 	var searchLocIdCookieName = 'searchLocId';
-	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
-	this.searchLocIdCookie = searchLocIdCookie;
-	this.locationIdNameMap = res.locals.config.locationIdNameMap;    		
+	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
+	this.locationIdNameMap = res.locals.config.locationIdNameMap;
 
 	this.secure = secure;
 	this.requestId = req.requestId;

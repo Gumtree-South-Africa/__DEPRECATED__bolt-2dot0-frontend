@@ -1,11 +1,10 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
 
-var ModelBuilder = require("./ModelBuilder");
+var http = require('http'),
+	Q = require('q');
 
-var locationService = require(process.cwd() + "/server/services/location");
+var locationService = require(process.cwd() + '/server/services/location');
 
 
 /** 
@@ -18,14 +17,13 @@ var LocationModel = function (requestId, locale, depth) {
 	this.depth = depth;
 };
 
-
 // Function getLocations
 LocationModel.prototype.getLocations = function() {
 	var scope = this;
 	var locationDeferred = Q.defer();
 	var data = {};
 	
-    if (typeof scope.depth !== "undefined") {
+    if (typeof scope.depth !== 'undefined') {
 		 Q(locationService.getLocationsData(scope.requestId, scope.locale, scope.depth))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;
@@ -44,7 +42,7 @@ LocationModel.prototype.getTopL2Locations = function() {
 	var locationDeferred = Q.defer();
 	var data = {};
 	
-    if (typeof scope.locale !== "undefined") {
+    if (typeof scope.locale !== 'undefined') {
 		 Q(locationService.getTopL2LocationsData(scope.requestId, scope.locale))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;

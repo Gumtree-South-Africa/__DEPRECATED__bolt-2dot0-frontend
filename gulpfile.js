@@ -87,7 +87,6 @@ gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 
-
 // DEFAULT is used by Developers
 gulp.task('default', ['set-env', 'jscs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop']);
 

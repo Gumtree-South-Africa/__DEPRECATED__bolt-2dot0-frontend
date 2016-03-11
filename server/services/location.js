@@ -20,14 +20,11 @@ LocationService.prototype.getLocationsData = function(requestId, locale, depth) 
 	// console.info("Inside LocationService");
 
 	// Prepare BAPI call
-	if (depth === 1) {
-		this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL1');
-		return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "topLocationL1", null);
-	} else if (depth === 2) {
-		this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage');
-		return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "location", null);
-	}
-}
+	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + "?depth=" + depth;
+
+	// Invoke BAPI
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "location", null);
+};
 
 /**
  * Gets a list of top L2 locations
@@ -40,6 +37,6 @@ LocationService.prototype.getTopL2LocationsData = function(requestId, locale) {
 	
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "topL2Locations", null);
-}
+};
 
 module.exports = new LocationService();

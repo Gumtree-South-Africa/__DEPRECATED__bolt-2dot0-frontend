@@ -35,7 +35,9 @@
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
     
-    <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
+    {{#if this.header.seoDeeplinkingUrlAndroid}}
+        <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
+    {{/if}}
     
     {{#each this.header.containerCSS}}
         <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>

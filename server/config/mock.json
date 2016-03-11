@@ -6,9 +6,8 @@
 	    	"parameters": "_forceExample=true&_statusCode=200"
 		},
 	    "endpoints": {
-	    	"categoryHomePage"	:	"/categories?depth=2",
-	    	"locationHomePage"	:	"/locations?depth=2",
-	    	"topLocationsL1"	:	"/locations?depth=1",
+	    	"categoryHomePage"	:	"/categories",
+	    	"locationHomePage"	:	"/locations",
 	    	"topLocationsL2"	:	"/locations/top/L2",
 	    	"userFromCookie"	:	"/users/logged-in-user-info",
 	    	"topKeywords" 		: 	"/keywords/top",

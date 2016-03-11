@@ -2,13 +2,12 @@
 
 var cors = require(process.cwd() + '/modules/cors');
 
-var Q = require('q');
+var express = require('express'),
+	router = express.Router(),
+	Q = require('q');
 
 var GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 
-
-var express = require('express'),
-  router = express.Router();
 
 module.exports = function (app) {
   app.use('/', router);
@@ -17,16 +16,16 @@ module.exports = function (app) {
 router.get('/api/ads/gallery', cors, function (req, res) {
 	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
 		galleryData = {},
-		// Only applicable for SRP Gallery where there is categoryId
-		// categoryId = req.query.categoryId;
 		offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
 		ajaxUrls = {},
 		galleryDeferred = Q.defer();
+
+	// Only applicable for SRP Gallery where there is categoryId
+	// categoryId = req.query.categoryId;
 	
 	Q(gallery.getAjaxGallery(offset, limit))
 	.then(function (dataG) {
-		// galleryData = dataG;
 		dataG = dataG || {};
 		galleryData = {
 			'ads' : dataG.ads || []

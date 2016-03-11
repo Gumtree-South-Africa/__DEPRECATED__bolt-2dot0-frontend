@@ -38,13 +38,12 @@ GraphiteService.prototype.postForHP = function() {
     scope.udpmetric.add('local.random.diceroll6', 2  );
     scope.udpmetric.add('local.random.diceroll6', 2  );
     scope.udpmetric.add('local.random.diceroll6', 2  );
-    //udpmetric.close();
 }
 
 
-GraphiteService.prototype.postForHPUsingTCP = function(key,value) {
+GraphiteService.prototype.postForHPUsingTCP = function(key, value) {
     var socket = net.createConnection(config.get('graphite.server.port'), config.get('graphite.server.host'), function () {
-		var data=key+' '+ value+' ' + new Date().getTime()/1000 + '\n';
+		var data = key + ' ' + value + ' ' + new Date().getTime()/1000 + '\n';
 		console.log('DATA TO BE WRITTEN INTO GRAPHITE IS ',data);
         socket.write(data);
 		console.log('DATA sent to Graphite');
