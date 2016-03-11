@@ -98,6 +98,7 @@ module.exports = function watch(gulp, plugins) {
 				'push-static-nexus',
 		        function (error) {
 		        	if (error) {
+						console.log('RELEASE ERROR');
 		        		console.log(error.message);
 		        	} else {
 		        		console.log('RELEASE FINISHED SUCCESSFULLY');
