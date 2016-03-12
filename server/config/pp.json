@@ -1,10 +1,21 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "http://bolt-api.pp.ebay.com",
-	    	"port": 8000,
+	    	"host": "10.130.129.35",
+	    	"port": 8080,
 	    	"parameters": null
-	    }
+	    },
+		"endpoints": {
+			"categoryHomePage"	:	"/v1/categories",
+			"locationHomePage"	:	"/v1/locations",
+			"topLocationsL2"	:	"/v1/locations/top/L2",
+			"userFromCookie"	:	"/v1/users/logged-in-user-info",
+			"topKeywords" 		: 	"/v1/keywords/top",
+			"trendingKeywords" 	: 	"/v1/keywords/trending",
+			"homepageGallery" 	: 	"/v1/ads/gallery",
+			"adStatistics" 		: 	"/v1/ads/statistics",
+			"configService"		:	"/v1/configs/nodeapp/settings.json"
+		}
 	},
 	"kafka": {
 		"server": {
