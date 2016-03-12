@@ -26,7 +26,9 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/"
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
+		"locationDropdownLevel"				: 2,
+		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
 		"cookieNotice"						: "/cookie-notice",

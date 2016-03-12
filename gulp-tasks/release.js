@@ -66,30 +66,27 @@ module.exports = function watch(gulp, plugins) {
 			return stream;
 	    });
 
+		gulp.task('push-app-nexus', function(){
+			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/app/bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
+				var stream =
+					exec(command, function (err, stdout, stderr) {
+					console.log(stdout);
+					console.log(stderr);
+				  });
 
-			gulp.task('push-app-nexus', function(){
-				  var command = 'curl -v --upload-file ' + process.cwd() + '/target/app/bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
-					var stream =
-						exec(command, function (err, stdout, stderr) {
-					    console.log(stdout);
-					    console.log(stderr);
-					  });
+			return stream;
+		});
 
-				return stream;
-			});
+		gulp.task('push-static-nexus', function(){
+			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/static/bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
+				var stream =
+				  exec(command, function (err, stdout, stderr) {
+					console.log(stdout);
+					console.log(stderr);
+				  });
 
-
-			gulp.task('push-static-nexus', function(){
-				  var command = 'curl -v --upload-file ' + process.cwd() + '/target/static/bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
-					var stream =
-					  exec(command, function (err, stdout, stderr) {
-					    console.log(stdout);
-					    console.log(stderr);
-					  });
-
-				return stream;
-			})
-
+			return stream;
+		});
 
 	    // RELEASE
 	    gulp.task('release', function (callback) {
@@ -99,8 +96,8 @@ module.exports = function watch(gulp, plugins) {
     			'push-changes',
     			'create-new-tag',
     			'github-release',
-				  'push-app-nexus',
-				  'push-static-nexus',
+			  	'push-app-nexus',
+			  	'push-static-nexus',
 		        function (error) {
 		        	if (error) {
 						console.log('RELEASE ERROR');
