@@ -26,15 +26,15 @@
 	},
 	"graphite": {
 		"server": {
-			"host"		: "10.65.201.202",
+			"host"		: "graphite001.phx.ops.pp.bt.ecg.so",
 			"port"		: 2003,
 			"interval" 	: 30
 		}
 	},
 	"static": {
 		"server": {
-			"host"		: "localhost",
-			"port"		: 8000,
+			"host"		: "static.staging2.qa-bolt.com",
+			"port"		: null,
 			"version"	: "2.0.100"
 		},
 		"baseCSSUrl"	: "/css/",
