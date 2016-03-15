@@ -3,14 +3,11 @@
 
 var express = require('express'),
     _ = require('underscore'),
-    router = express.Router(),
     util = require('util'),
-    i18n = require('i18n'),
-    cuid = require('cuid');
+    i18n = require('i18n');
 
 var cwd = process.cwd();
-var kafkaService = require(cwd + '/server/utils/kafka'),
-	graphiteService = require(cwd + '/server/utils/graphite');
+var graphiteService = require(cwd + '/server/utils/graphite');
 
 
 
@@ -72,9 +69,12 @@ PageControllerUtil.prototype.finalizeController = function (req, res, next, page
 	  });
 
     // Kafka Logging
-    var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
-    kafkaService.logInfo(res.locals.config.locale, log);
-    
+    // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+    // kafkaService.logInfo(res.locals.config.locale, log);
+
+    // Redis Logging - to get data to ELK
+
+
     // Graphite Metrics
     console.info('Going to Graphite for HomePage with Test data for now');
     graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
