@@ -4,8 +4,6 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    util = require('util'),
-    i18n = require('i18n'),
     cuid = require('cuid');
 
 var cwd = process.cwd();

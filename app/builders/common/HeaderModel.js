@@ -73,7 +73,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
     		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
-    		data.baseCSSUrl = (process.env.NODE_ENV === 'production') ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
+    		data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
     		data.min = config.get('static.min');
 
     		// add complex data to header

@@ -6,10 +6,7 @@
 
 var gulp = require('gulp'),
   sass = require('gulp-sass'),
-  sourcemaps = require('gulp-sourcemaps'),
-  autoprefixer = require('gulp-autoprefixer'),
   concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
   del = require('del');
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
@@ -116,7 +113,7 @@ gulp.task('test', function(callback){
         }
         callback(error);
       });
-      return stream;
+  return stream;
 });
 
 // PACKAGE
