@@ -1,7 +1,6 @@
 'use strict';
 
 
-var exphbs  = require('express-handlebars');
 var glob = require('glob');
 var http = require('http');
 var path = require('path');
@@ -16,15 +15,11 @@ var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
 var error = require('./modules/error');
 
+var cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // app
-var controllers = glob.sync(process.cwd() + '/app/controllers/**/*.js');
+var controllers = glob.sync(process.cwd() + '/app/controllers/**/*Controller.js');
 var config = require('./server/config/sites.json');
-
-// services
-var configService = require(process.cwd() + '/server/services/configservice');
-var locationService = require(process.cwd() + '/server/services/location');
-var categoryService = require(process.cwd() + '/server/services/category');
 
 // Default list of all locales, if new locales are added, add it in this list
 var allLocales = 'es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG';
@@ -42,7 +37,6 @@ var siteCount = 0;
 /*
  * Create Site Apps
  */
-var siteApps = [];
 Object.keys(config.sites).forEach(function(siteKey) {
 	console.log("app " + siteKey);
     var siteObj = config.sites[siteKey];
@@ -59,95 +53,10 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        siteApp.locals.config.country = siteObj.country;
 		        siteApp.locals.config.hostname = siteObj.hostname;
 		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
-		
-		        // Load Config Data from BAPI
-		        Q(configService.getConfigData(siteApp.locals.config.locale))
-		      	  .then(function (dataReturned) {
-		      		if (dataReturned.error !== null) {
-		      			siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-		      		} else {
-		      			siteApp.locals.config.bapiConfigData = dataReturned;
-		      		}
-		  		}).fail(function (err) {
-		  			console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
-		  			siteApp.locals.config.bapiConfigData = require('./server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-		  		});
 
-		        // Load Location Data from BAPI
-		        Q(locationService.getLocationsData(requestId, siteApp.locals.config.locale, 2))
-		    	  .then(function (dataReturned) {
-		    		siteApp.locals.config.locationData = dataReturned;
-		    		
-		    		// Build Location ID-Name Map
-		    		var locmap = {};
-		    		locmap[dataReturned.id] = {
-		    			'value': dataReturned.localizedName,
-		    			'level': dataReturned.level
-		    		}
-		    		
-		    		// Build Location Dropdown
-		    		var locationdropdown = {};
-		    		locationdropdown.id = dataReturned.id;
-		    		locationdropdown.localizedName = dataReturned.localizedName;
-		    		locationdropdown.children = [];
-		    		
-		    		for (var key in dataReturned.children) {
-		    			var level1 = dataReturned.children[key];
-		    			locmap[level1.id] = level1.localizedName;
-		    			var level1Location = {};
-		    			level1Location.children = [];
-		    			for (var key2 in level1.children) {
-			    			var level2 = level1.children[key2];
-			    			locmap[level2.id] = level2.localizedName;
-			    			
-			    			var level2Location = {};
-			    			level2Location.id = level2.id;
-			    			level2Location.localizedName = level2.localizedName;
-			    			level1Location.children.push(level2Location);
-			    		}
-		    			
-		    			level1Location.id = level1.id;
-		    			level1Location.localizedName = level1.localizedName;
-		    			locationdropdown.children.push(level1Location);
-		    		}
-		    		siteApp.locals.config.locationIdNameMap = locmap;
-		    		siteApp.locals.config.locationdropdown = locationdropdown;
-		    	}).fail(function (err) {
-				    console.warn('Startup: Error in loading locations from LocationService:- ', err);
-				});
-		        
-		        // Load Category Data from BAPI
-		        Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
-		    	  .then(function (dataReturned) {
-		    	    siteApp.locals.config.categoryData = dataReturned;
-		    	    
-		    	    // Build Category Dropdown
-		    		var categorydropdown = {};
-		    		categorydropdown.id = dataReturned.id;
-		    		categorydropdown.localizedName = dataReturned.localizedName;
-		    		categorydropdown.children = [];
-		    		
-		    		for (var key in dataReturned.children) {
-		    			var level1 = dataReturned.children[key];
-		    			var level1Category = {};
-		    			level1Category.children = [];
-		    			for (var key2 in level1.children) {
-			    			var level2 = level1.children[key2];
-			    			
-			    			var level2Category = {};
-			    			level2Category.id = level2.id;
-			    			level2Category.localizedName = level2.localizedName;
-			    			level1Category.children.push(level2Category);
-			    		}
-		    			level1Category.id = level1.id;
-		    			level1Category.localizedName = level1.localizedName;
-		    			categorydropdown.children.push(level1Category);
-		    		}
-		    		siteApp.locals.config.categorydropdown = categorydropdown;
-				}).fail(function (err) {
-					console.warn('Startup: Error in loading categories from CategoryService:- ', err);
-				});
-		        
+		        // Service Util to get Location and Category Data
+		        cacheBapiData(siteApp, requestId);
+
 		        // Template hbs caching.
 		        // See: https://github.com/ericf/express-handlebars#template-caching
 		        // Enables view template compilation caching and is enabled in production by default.
@@ -157,7 +66,6 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
-
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
@@ -181,19 +89,5 @@ app.use(error.four_o_four(app));
 // Overwriting the express's default error handler should always appear after 404 middleware
 app.use(error(app));
 
+
 module.exports = app;
-
-
-function clearRequireCache(mod) {
-	//console.log(mod);
-  	Object.keys(require.cache).forEach(function(key) {
-  		if (key.indexOf(mod) > -1) {
-  			delete require.cache[key];
-		}
-  	});
-}
-
-function requireUncached(module){
-	delete require.cache[require.resolve(module)];
-    return require(module);
-}

@@ -29,7 +29,9 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/"
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/",
+		"locationDropdownLevel"				: 1,
+		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
 		"cookieNotice"						: "http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx",

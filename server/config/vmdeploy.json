@@ -6,9 +6,8 @@
 	    	"parameters": null
 	    },
 	    "endpoints": {
-	    	"categoryHomePage"	:	"/boltapi/v1/categories?depth=2",
-	    	"locationHomePage"	:	"/boltapi/v1/locations?depth=2",
-	    	"topLocationsL1"	:	"/boltapi/v1/locations?depth=1",
+	    	"categoryHomePage"	:	"/boltapi/v1/categories",
+	    	"locationHomePage"	:	"/boltapi/v1/locations",
 	    	"topLocationsL2"	:	"/boltapi/v1/locations/top/L2",
 	    	"userFromCookie" 	:	"/boltapi/v1/users/logged-in-user-info",
 	    	"topKeywords" 		:	"/boltapi/v1/keywords/top",

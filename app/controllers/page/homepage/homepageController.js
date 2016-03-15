@@ -4,16 +4,16 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    HomepageModel= require('../../builders/HomePage/model_builder/HomePageModel'),
-    kafkaService = require(process.cwd() + '/server/utils/kafka'),
-	marketoService = require(process.cwd() + '/server/utils/marketo'),
-    deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util'),
     i18n = require('i18n'),
     cuid = require('cuid');
 
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
-var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+var cwd = process.cwd();
+var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
+	HomepageModel= require(cwd + '/app/builders/page/HomePageModel'),
+	marketoService = require(cwd + '/server/utils/marketo'),
+	deviceDetection = require(cwd + '/modules/device-detection'),
+	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
 module.exports = function (app) {
@@ -21,143 +21,58 @@ module.exports = function (app) {
 };
 
 
-router.use(function(req, res, next){
-	var M = require('mstring');
-
-	 var htmlHead = M(function(){
-	 /***
-	 <!DOCTYPE html>
-	 <!--[if IEMobile 7]>
-	 <html data-locale="" lang="" class="iem7 oldie "><![endif]-->
-	 <!--[if (IE 7)&!(IEMobile)]>
-	 <html data-locale="" lang="" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie "><![endif]-->
-	 <!--[if (IE 8)&!(IEMobile)]>
-	 <html data-locale="{{this.locale}}" lang="" class="ie8 lt-ie9 lt-ie10 oldie "><![endif]-->
-	 <!--[if (IE 9)&!(IEMobile)]>
-	 <html data-locale="" lang="" class="ie9 lt-ie10 "><![endif]-->
-	 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-	 <html data-locale="" lang="" xmlns="http://www.w3.org/1999/html" class=""><!--<![endif]-->
-	 <head>
-	 <link rel="stylesheet" type="text/css" href='/public/css/all/Gumtree/ZA/en_ZA/Main.css'/>
-	 <link rel="stylesheet" type="text/css" href='/public/css/all/Gumtree/ZA/en_ZA/HomePage.css'/>
-	 <link rel="stylesheet" href="/public/css/icons.data.svg_en_ZA.css"/>
-	 ***/});
-
-	 res.write(htmlHead, "utf8");
-	 res.flush();
-
-	next();
-
-
-});
-
 /**
  * Build HomePage Model Data and Render
  */
 router.get('/', function (req, res, next) {
-
 	console.time('Instrument-Homepage-Controller');
-
-
 
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 
-	var hbs = res.locals.hbs;
-
-	//res.setHeader('Connection', 'Transfer-Encoding');
-	//res.setHeader('Content-Type', 'text/html; charset=utf-8');
-	//res.setHeader('Transfer-Encoding', 'chunked');
-
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
-		//res.cookie('anonUsrId', cuid());
+		res.cookie('anonUsrId', cuid());
 	}
 
-	//res.write(htmlHead, "utf8");
-
 	// Build Model Data
-	var modelData =
-    {
-        env: 'public',
-        locale: res.locals.config.locale,
-        country: res.locals.config.country,
-        site: res.locals.config.name,
-        pagename: req.app.locals.pagetype
-    };
-
-	// Retrieve Data from Model Builders
+	var modelData = pageControllerUtil.getInitialModelData(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
-
+	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res);
     model.then(function (result) {
+      	// Dynamic Data from BAPI
+      	modelData.header = result['common'].header || {};
+		modelData.footer = result['common'].footer || {};
+		modelData.dataLayer = result['common'].dataLayer || {};
+		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+		modelData.level2Location = result['level2Loc'] || {};
+		modelData.initialGalleryInfo = result['gallery'] || {};
+		modelData.seo = result['seo'] || {};
+		if (result['adstatistics']) {
+			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
+		}
+		if (result['keyword']) {
+			modelData.trendingKeywords = result['keyword'][0].keywords || {};
+			modelData.topKeywords = result['keyword'][1].keywords || {};
+		}
 
+		// Check for top or trending keywords existence
+		modelData.topOrTrendingKeywords = false;
+		if (modelData.trendingKeywords || modelData.topKeywords) {
+			modelData.topOrTrendingKeywords = true;
+		}
 
-      // Dynamic Data from BAPI
-      modelData.header = result['common'].header || {};
+		// Special Data needed for HomePage in header, footer, content
+		HP.extendHeaderData(req, modelData);
+		HP.extendFooterData(modelData);
+		HP.buildContentData(modelData, bapiConfigData);
+		HP.deleteMarketoCookie(res, modelData);
 
+		pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
-      modelData.footer = result['common'].footer || {};
-      modelData.dataLayer = result['common'].dataLayer || {};
-	  modelData.level2Location = result['level2Loc'] || {};
-
-	  if (result['keyword']) {
-	  	modelData.trendingKeywords = result['keyword'][0].keywords || {};
-	  	modelData.topKeywords = result['keyword'][1].keywords || {};
-	  }
-
-	  // Check for top or trending keywords existence
-	  modelData.topOrTrendingKeywords = false;
-	  if (modelData.trendingKeywords || modelData.topKeywords) {
-	  	modelData.topOrTrendingKeywords = true;
-	  }
-
-      modelData.initialGalleryInfo = result['gallery'] || {};
-	  if (result['adstatistics']) {
-		modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
-	  }
-      modelData.seo = result['seo'] || {};
-
-      // Cached Data from BAPI
-      modelData.location = res.locals.config.locationData;
-      modelData.locationdropdown = res.locals.config.locationdropdown;
-      modelData.category = res.locals.config.categoryData;
-      modelData.categorydropdown = res.locals.config.categorydropdown;
-
-	  //  Device data for handlebars
-	  modelData.device = req.app.locals.deviceInfo;
-
-	  // Special Data needed for HomePage in header, footer, content
-	  HP.extendHeaderData(req, modelData);
-	  HP.extendFooterData(modelData);
-	  HP.buildContentData(modelData, bapiConfigData);
-	  //HP.deleteMarketoCookie(res, modelData);
-
-		//res.write(htmlHead, "utf8");
-		//res.flush();
-	  // console.dir(modelData);
-		/*res.write("\n\n", "utf8");
-		res.flush();
-		res.write("\n\n", "utf8");
-		res.flush();*/
-
-	  hbs.renderView( process.cwd() + '/app/views/templates/pages/homepage/views/hbs/homepage_' + res.locals.config.locale + ".hbs", modelData, function(err, html) {
-	   // console.log("xxxxx" + html);
-		  //res.writeHead(200, {'Content-Type': 'text/html'});
-		 res.end(html, "utf8");
-
-		 // res.end();
-
-	 });
-
-      // Kafka Logging
-      var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
-      kafkaService.logInfo(res.locals.config.locale, log);
-
-      // Graphite Metrics
-
-      console.timeEnd('Instrument-Homepage-Controller');
+		console.timeEnd('Instrument-Homepage-Controller');
     });
 });
 
@@ -207,7 +122,7 @@ var HP = {
 			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
-				
+
 				// Header Marketo
 				marketoService.buildMarketoDataForHP(modelData);
 				break;
@@ -232,7 +147,7 @@ var HP = {
 				break;
 		}
 	},
-	
+
 	/**
 	 * Special footer data for HomePage
 	 */
@@ -313,6 +228,7 @@ var HP = {
 
 		// Gallery
 		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
+		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;

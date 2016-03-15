@@ -6,10 +6,7 @@
 
 var gulp = require('gulp'),
   sass = require('gulp-sass'),
-  sourcemaps = require('gulp-sourcemaps'),
-  autoprefixer = require('gulp-autoprefixer'),
   concat = require('gulp-concat'),
-  uglify = require('gulp-uglify'),
   del = require('del');
   nodemon = require('gulp-nodemon'),
   plumber = require('gulp-plumber'),
@@ -87,7 +84,6 @@ gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 
-
 // DEFAULT is used by Developers
 gulp.task('default', ['set-env', 'jscs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'prop2json', 'develop']);
 
@@ -117,7 +113,7 @@ gulp.task('test', function(callback){
         }
         callback(error);
       });
-      return stream;
+  return stream;
 });
 
 // PACKAGE

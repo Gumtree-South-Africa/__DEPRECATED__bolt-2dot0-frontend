@@ -34,10 +34,9 @@ function BuildApp(locale) {
     // Check if we need to redirect to mweb - for legacy devices
     app.use(legacyDeviceRedirection());
 
-    // uncomment after placing your favicon in /public
-    // app.use(favicon(path.join(config.root, 'public', 'favicon.ico')));
-
-    // Development based middleware stuff here
+    /* 
+     * Development based middlewares
+     */
     midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
         app.use("/", compress());
@@ -60,7 +59,9 @@ function BuildApp(locale) {
 
     });
 
-    // Production based middleware
+    /*
+     * Production based middlewares
+     */
     midlewareloader()(['production', 'pp', 'lnp'], function() {
         // https://www.npmjs.com/package/morgan#common
         // apche style loggin
@@ -69,13 +70,18 @@ function BuildApp(locale) {
 
     });
 
+    /* 
+     * Must needed middlewares
+     */
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
     app.use(cookieParser());
     app.use(methodOverride());
     app.use(expressUncapitalize());
 
-    // Bolt Custom middlewares
+    /*
+     * Bolt Custom middlewares
+     */
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
     app.use(requestId());    
     app.use(i18n.initMW(app, locale));

@@ -29,7 +29,9 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/"
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/",
+		"locationDropdownLevel"				: 1,
+		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
 		"cookieNotice"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",

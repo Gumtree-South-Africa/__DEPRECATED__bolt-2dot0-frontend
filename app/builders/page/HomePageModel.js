@@ -1,20 +1,29 @@
 'use strict';
 
 
+var cwd = process.cwd();
+
 var Q = require('q');
 
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
-var deviceDetection = require(process.cwd() + '/modules/device-detection');
+var pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var deviceDetection = require(cwd + '/modules/device-detection');
 
-var ModelBuilder = require('../../common/ModelBuilder');
-var LocationModel = require('../../common/LocationModel');
-var CategoryModel = require('../../common/CategoryModel');
-var KeywordModel = require('../../common/KeywordModel');
-var GalleryModel = require('../../common/GalleryModel');
-var AdStatisticsModel = require('../../common/AdStatisticsModel');
-var SeoModel = require('../../common/SeoModel');
-var AbstractPageModel = require('../../common/AbstractPageModel');
+var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+var LocationModel = require(cwd + '/app/builders/common/LocationModel');
+var CategoryModel = require(cwd + '/app/builders/common/CategoryModel');
+var KeywordModel = require(cwd + '/app/builders/common/KeywordModel');
+var GalleryModel = require(cwd + '/app/builders/common/GalleryModel');
+var AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
+var SeoModel = require(cwd + '/app/builders/common/SeoModel');
+var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
+
+function getCookieLocationId(req) {
+	var searchLocIdCookieName = 'searchLocId';
+	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
+
+	return searchLocIdCookie==='' ? null : searchLocIdCookie;
+}
 
 /**
  * @method getHomepageDataFunctions
@@ -29,7 +38,8 @@ var getHomepageDataFunctions = function (req, res) {
 		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder();
+		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
+		category = new CategoryModel(req.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
 			
 	return {
 		'level2Loc'		:	function(callback) {
@@ -86,7 +96,18 @@ var getHomepageDataFunctions = function (req, res) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});
 									});
-							}						
+							},
+		'catWithLocId'	:	function(callback) {
+								var categoryDeferred = Q.defer();
+								Q(category.getCategoriesWithLocId())
+									.then(function (dataC) {
+										categoryDeferred.resolve(dataC);
+										callback(null, dataC);
+									}).fail(function (err) {
+										categoryDeferred.reject(new Error(err));
+										callback(null, {});
+									});
+							}
 	};
 };
 
@@ -104,6 +125,9 @@ var HomePageModel = function (req, res) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	if (getCookieLocationId(req) !== null) {
+		pageModelConfig.push('catWithLocId');
+	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 	

@@ -1,5 +1,3 @@
-{{> (base "homepage") }}
-
 {{#ifMobile this.device}}
     {{#partial "locationBeforeCategory"}}
         {{> (dynamic "adCarousel") }}
@@ -18,3 +16,9 @@
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
 {{/ifMobile}}
+
+{{#partial "metaForPage"}}
+    <meta name="msvalidate.01" content="E03E7C8B4B4E1A0234A8D2042FD326E8" />
+{{/partial}}
+
+{{> (base "homepage") }}

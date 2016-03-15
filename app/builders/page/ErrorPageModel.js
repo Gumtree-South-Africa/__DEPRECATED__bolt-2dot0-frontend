@@ -3,8 +3,8 @@
 
 var Q = require('q');
 
-var ModelBuilder = require('../../common/ModelBuilder');
-var AbstractPageModel = require('../../common/AbstractPageModel');
+var ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
+var AbstractPageModel = require(process.cwd() + '/app/builders/common/AbstractPageModel');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 
