@@ -12,7 +12,7 @@ var corsOptionsDelegate = function(req, callback){
 var err;
     //var whitelist = ['http://www.gumtree.co.za.localhost:8000', 'http://gumtree.co.za.localhost:8000'];
     var whitelistRegExp = req.app.locals.config.hostnameRegex,
-        corsOptions; console.log(whitelistRegExp);
+        corsOptions;
 
     if(isOriginOk(req)){
         corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
