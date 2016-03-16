@@ -25,8 +25,8 @@ module.exports = function watch(gulp, plugins) {
 			
 			return gulp.src([
 				                cwd + '/server/config/production.json',
-				                cwd + '/server/config/lnp.json',
-				                cwd + '/server/config/pp.json'
+				                cwd + '/server/config/lnpdeploy.json',
+				                cwd + '/server/config/ppdeploy.json'
 				                //TODO: add localhost once assets are deployed in apache
 				                //cwd + '/server/config/localhost.json',
 				            ])
