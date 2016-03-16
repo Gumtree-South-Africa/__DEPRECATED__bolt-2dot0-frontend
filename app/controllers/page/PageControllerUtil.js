@@ -76,7 +76,6 @@ PageControllerUtil.prototype.finalizeController = function (req, res, next, page
 
 
     // Graphite Metrics
-    console.info('Going to Graphite for HomePage with Test data for now');
     graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
 };
 
