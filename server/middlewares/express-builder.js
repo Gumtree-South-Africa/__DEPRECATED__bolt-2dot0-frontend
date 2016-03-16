@@ -1,31 +1,32 @@
 'use strict';
 
 
-var express = require("express");
-var bodyParser = require('body-parser');
-var compress = require('compression');
-var cookieParser = require('cookie-parser');
-var expressUncapitalize = require('express-uncapitalize');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var methodOverride = require('method-override');
-var path = require('path');
-
-var writeHeader = require("./write-header");
-var requestId = require('./request-id');
-var i18n = require(process.cwd() + '/modules/i18n');
-var deviceDetection = require(process.cwd() + '/modules/device-detection');
-var boltExpressHbs = require(process.cwd() + '/modules/handlebars');
-var legacyDeviceRedirection = require(process.cwd() + '/modules/legacy-mobile-redirection');
-var assets = require(process.cwd() + '/modules/assets');
-var ignoreAssetReq = require(process.cwd() + '/modules/ignore-assets');
-
-var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
-
+var express = require('express'),
+    bodyParser = require('body-parser'),
+    compress = require('compression'),
+    cookieParser = require('cookie-parser'),
+    expressUncapitalize = require('express-uncapitalize'),
+    logger = require('morgan'),
+    methodOverride = require('method-override'),
+    path = require('path'),
+    fs = require('fs');
 
 var config = {
     root: process.cwd()
 };
+var writeHeader = require('./write-header'),
+    requestId = require('./request-id'),
+    i18n = require(config.root + '/modules/i18n'),
+    deviceDetection = require(config.root + '/modules/device-detection'),
+    boltExpressHbs = require(config.root + '/modules/handlebars'),
+    legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
+    assets = require(config.root + '/modules/assets');
+
+var midlewareloader = require(config.root + '/modules/environment-middleware-loader');
+
+// create a write stream (in append mode)
+var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 'a'})
+
 
 
 function BuildApp(locale) {
@@ -39,19 +40,19 @@ function BuildApp(locale) {
      */
     midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
-        app.use("/", compress());
+        app.use('/', compress());
         app.use(assets(app, locale));
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
         // http://evanhahn.com/express-dot-static-deep-dive/
-        app.use("/public", express.static(config.root + '/public', {
-            root: "/public",
+        app.use('/public', express.static(config.root + '/public', {
+            root: '/public',
             etag:false,
             maxage:0,
             index:false
         }));
-        app.use("/views", express.static(config.root + '/app/views',{
-            root: "/views",
+        app.use('/views', express.static(config.root + '/app/views',{
+            root: '/views',
             etag:false,
             maxage:0,
             index:false
@@ -63,10 +64,8 @@ function BuildApp(locale) {
      * Production based middlewares
      */
     midlewareloader()(['production', 'pp', 'lnp'], function() {
-        // https://www.npmjs.com/package/morgan#common
-        // apche style loggin
-        app.use("/", compress());
-        app.use(logger('common'));
+        app.use('/', compress());
+        app.use(logger('short'));
 
     });
 
@@ -78,6 +77,7 @@ function BuildApp(locale) {
     app.use(cookieParser());
     app.use(methodOverride());
     app.use(expressUncapitalize());
+    app.use(logger('combined', {stream: accessLogStream}));
 
     /*
      * Bolt Custom middlewares

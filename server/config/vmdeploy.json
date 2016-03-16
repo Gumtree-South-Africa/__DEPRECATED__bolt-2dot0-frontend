@@ -24,6 +24,13 @@
 			"topic" : "node_log"
 		}
 	},
+  	"graphite": {
+		"server": {
+			"host"		: "localhost",
+	   		"port"		: 2003,
+	  		"interval" 	: 30
+		}
+  	},
 	"static": {
 		"server": {
 			"host"		: null,

@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "10.130.129.35",
+	    	"host": "10.130.136.32",
 	    	"port": 8080,
 	    	"parameters": null
 	    },
@@ -24,17 +24,17 @@
 			"topic" : "node_log"
 		}
 	},
-	"graphite": {
+  	"graphite": {
 		"server": {
-			"host"		: "10.65.201.202",
-			"port"		: 2003,
-			"interval" 	: 30
+	  		"host"		: "graphite001.phx.ops.pp.bt.ecg.so",
+	  		"port"		: 2003,
+	  		"interval" 	: 30
 		}
 	},
 	"static": {
 		"server": {
-			"host"		: "localhost",
-			"port"		: 8000,
+			"host"		: "static.lnp.qa-bolt.com",
+			"port"		: null,
 			"version"	: "2.0.100"
 		},
 		"baseCSSUrl"	: "/css/",
