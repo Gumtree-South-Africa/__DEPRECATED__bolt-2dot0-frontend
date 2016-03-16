@@ -13,7 +13,8 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	HomepageModel= require(cwd + '/app/builders/page/HomePageModel'),
 	marketoService = require(cwd + '/server/utils/marketo'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
+	chunkHeader = require(cwd + '/modules/chunk-header');
 
 
 module.exports = function (app) {
@@ -24,7 +25,7 @@ module.exports = function (app) {
 /**
  * Build HomePage Model Data and Render
  */
-router.get('/', function (req, res, next) {
+router.get('/', chunkHeader(), function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 
 	// Set pagetype in request

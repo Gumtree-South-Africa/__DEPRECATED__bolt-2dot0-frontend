@@ -145,4 +145,25 @@ var HomePageModel = function (req, res) {
 	return homepageDeferred.promise;
 };
 
+
+var HeaderOnlyModel = function (req, res) { console.log('HeaderOnlyModel');
+	var abstractPageModel = new AbstractPageModel(req, res);
+	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+
+	var headerOnlyFunctions = abstractPageModel.getCommonFunctions(req, res);
+
+	var headerOnlyModel = new ModelBuilder(headerOnlyFunctions);
+	var headerOnlyDeferred = Q.defer();
+	Q(headerOnlyModel.processParallel())
+		.then(function (data) {
+			headerOnlyDeferred.resolve(data);
+		}).fail(function (err) {
+		headerOnlyDeferred.reject(new Error(err));
+	});
+	return headerOnlyDeferred.promise;
+};
+
 module.exports = HomePageModel;
+
+module.exports.HeaderOnlyModel = HeaderOnlyModel;

@@ -1,15 +1,4 @@
-<!DOCTYPE html>
-<!--[if IEMobile 7]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="iem7 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 7)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie7 lt-ie8 lt-ie9 lt-ie10 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 8)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie8 lt-ie9 lt-ie10 oldie {{this.header.pageType}}"><![endif]-->
-<!--[if (IE 9)&!(IEMobile)]>
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" class="ie9 lt-ie10 {{this.header.pageType}}"><![endif]-->
-<!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
-<html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" xmlns="http://www.w3.org/1999/html" class="{{this.header.pageType}}"><!--<![endif]-->
-<head>
+
     <title>{{#block "title"}}{{i18n this.header.pageTitle}}{{/block}}</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
     <meta name="description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
@@ -35,13 +24,7 @@
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
     
-    {{#if this.header.seoDeeplinkingUrlAndroid}}
-        <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
-    {{/if}}
-    
-    {{#each this.header.containerCSS}}
-        <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
-    {{/each}}
+
     {{!-- The following is not in BOLT 1.0 --}}
     <link rel="stylesheet" href="/public/css/icons.data.svg_{{locale}}.css"/>
 

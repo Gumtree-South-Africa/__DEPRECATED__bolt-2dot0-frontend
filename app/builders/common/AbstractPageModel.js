@@ -89,6 +89,13 @@ AbstractPageModel.prototype.getArrFunctions = function (req, res, functionMap, p
 	return arrFunctions;
 };
 
+AbstractPageModel.prototype.getCommonFunctions = function (req, res) {
+	var arrFunctions = [ this.getCommonDataFunction(req, res) ];
+	return arrFunctions;
+};
+
+
+
 /**
  * @method convertListToObject
  * @description Converts an array with data elements and an array of functions to a JSON
