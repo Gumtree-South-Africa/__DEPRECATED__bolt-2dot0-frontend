@@ -6,7 +6,6 @@ var cwd = process.cwd();
 var Q = require('q');
 
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-var deviceDetection = require(cwd + '/modules/device-detection');
 
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var LocationModel = require(cwd + '/app/builders/common/LocationModel');
