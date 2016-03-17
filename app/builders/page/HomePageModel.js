@@ -121,7 +121,7 @@ var getHomepageDataFunctions = function (req, res) {
 var HomePageModel = function (req, res) {
 	var functionMap = getHomepageDataFunctions(req, res);
 
-	var abstractPageModel = new AbstractPageModel(req, res, false);
+	var abstractPageModel = new AbstractPageModel(req, res, true);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 	if (getCookieLocationId(req) !== null) {
