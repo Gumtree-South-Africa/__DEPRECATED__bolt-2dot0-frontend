@@ -36,10 +36,13 @@ httpServer.on('listening', onListening);
 /**
  * Create HTTPS server.
  */
+var nodekey = process.env.KEY_PEM || (cwd + '/bin/ssl/nodekey.pem');
+var nodecsr = process.env.CSR_PEM || (cwd + '/bin/ssl/nodecsr.pem');
+var nodecert = process.env.CERT_PEM || (cwd + '/bin/ssl/nodecert.pem');
 var options = {
-  key  : fs.readFileSync(cwd + '/bin/ssl/nodekey.pem'),
-  ca   : fs.readFileSync(cwd + '/bin/ssl/nodecsr.pem'),
-  cert : fs.readFileSync(cwd + '/bin/ssl/nodecert.pem')
+  key  : fs.readFileSync(nodekey),
+  ca   : fs.readFileSync(nodecsr),
+  cert : fs.readFileSync(nodecert)
 }
 var httpsServer = https.createServer(options, app);
 httpsServer.listen(httpsPort);
