@@ -1,14 +1,14 @@
 # Require any additional compass plugins here.
-#require "susy"
-#require "sass"
+require "susy"
+require "sass"
 
 # Set this to the root of your project when deployed:
 project_type = :stand_alone
 http_path = "/"
 sass_dir = "./app/styles"
-cssdir = "./public/css/desktop"
+cssdir = "./public/cssmin/desktop"
 prefered_syntax = :scss
-output_style = :compressed
+output_style = :expanded
 relative_assets = true
 
 

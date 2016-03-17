@@ -6,9 +6,9 @@ require "sass"
 project_type = :stand_alone
 http_path = "/"
 sass_dir = "./app/styles"
-cssdir = "./public/css/tablet"
+cssdir = "./public/cssmin/tablet"
 prefered_syntax = :scss
-output_style = :compressed
+output_style = :expanded
 relative_assets = true
 
 # You can select your preferred output style here (can be overridden via the command line):
