@@ -15,12 +15,12 @@ var DataLayerModel = require("./DataLayerModel");
  * @description A class that Handles the common models in every page
  * @constructor
  */
-var BasePageModel = function (req, res) {
+var BasePageModel = function (req, res, secure) {
 	var cookieName = "bt_auth";
 	var authcookie = req.cookies[cookieName];
-	this.header = new HeaderModel(false, req, res);
+	this.header = new HeaderModel(secure, req, res);
 	this.headerBuilder = this.header.getModelBuilder();
-	this.footer = new FooterModel(false, req, res);
+	this.footer = new FooterModel(secure, req, res);
 	this.footerBuilder = this.footer.getModelBuilder();
 	this.dataLayer = new DataLayerModel(req, res);
 	this.dataLayerBuilder = this.dataLayer.getModelBuilder();

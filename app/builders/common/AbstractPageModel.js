@@ -11,8 +11,8 @@ var deviceDetection = require(process.cwd() + '/modules/device-detection');
  * @description
  * @constructor
  */
-var AbstractPageModel = function (req, res) {
-	BasePageModel.call(this, req, res);
+var AbstractPageModel = function (req, res, secure) {
+	BasePageModel.call(this, req, res, secure);
 };
 
 util.inherits(AbstractPageModel, BasePageModel);

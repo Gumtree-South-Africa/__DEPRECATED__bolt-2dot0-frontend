@@ -6,7 +6,6 @@ var cwd = process.cwd();
 var Q = require('q');
 
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-var deviceDetection = require(cwd + '/modules/device-detection');
 
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var LocationModel = require(cwd + '/app/builders/common/LocationModel');
@@ -122,7 +121,7 @@ var getHomepageDataFunctions = function (req, res) {
 var HomePageModel = function (req, res) {
 	var functionMap = getHomepageDataFunctions(req, res);
 
-	var abstractPageModel = new AbstractPageModel(req, res);
+	var abstractPageModel = new AbstractPageModel(req, res, false);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 	if (getCookieLocationId(req) !== null) {
