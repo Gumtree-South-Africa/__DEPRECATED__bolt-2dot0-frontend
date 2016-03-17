@@ -19,11 +19,12 @@ module.exports = function (app) {
   app.use('/', router);
 };
 
+router.use(chunkHeader());
 
 /**
  * Build HomePage Model Data and Render
  */
-router.get('/', chunkHeader(), function (req, res, next) {
+router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 
 	// Set pagetype in request
@@ -31,7 +32,7 @@ router.get('/', chunkHeader(), function (req, res, next) {
 
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
-		res.cookie('anonUsrId', cuid());
+		//res.cookie('anonUsrId', cuid());
 	}
 
 	// Build Model Data
@@ -67,7 +68,7 @@ router.get('/', chunkHeader(), function (req, res, next) {
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
-		HP.deleteMarketoCookie(res, modelData);
+		//HP.deleteMarketoCookie(res, modelData);
 
 		pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 

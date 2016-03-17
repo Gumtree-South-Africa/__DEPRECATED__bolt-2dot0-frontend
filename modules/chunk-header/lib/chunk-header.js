@@ -7,7 +7,8 @@
 "use strict";
 
 module.exports = function() {
-   var  HeaderOnlyModel= require(process.cwd() + '/app/builders/page/HomePageModel').HeaderOnlyModel;
+   var  HeaderOnlyModel= require(process.cwd() + '/app/builders/page/HomePageModel').HeaderOnlyModel,
+       deviceDetection = require(process.cwd() + '/modules/device-detection');
 
     return function(req, res, next) {
         var M = require('mstring');
@@ -25,6 +26,24 @@ module.exports = function() {
             // Make sure the array only has one element
             // Dynamic Data from BAPI
             modelData = result[0]; // .header = result.header || {};
+
+            // get the css for the page rendering
+
+            // CSS
+            modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
+            if (modelData.header.min) {
+                if (deviceDetection.isHomePageDevice()) {
+                    modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
+                } else {
+                    modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
+                }
+            } else {
+                if (deviceDetection.isHomePageDevice()) {
+                    modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
+                } else {
+                    modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
+                }
+            }
 
            // console.log("MODEL DATA", modelData);
            // console.log("The header data is: " , modelData.header);
@@ -59,15 +78,20 @@ module.exports = function() {
             var context = {title: "My New Post", body: "This is my first post!"};
             var html    = template(modelData);
 
-            console.log("xxxxxxxxhtmlxxxxx" + html);
+         // console.log("xxxxxxxxhtmlxxxxx" + modelData.header.containerCSS);
+            //res.setHeader('Connection', 'Transfer-Encoding');
+            res.setHeader('Content-Type', 'text/html; charset=utf-8');
+            //res.setHeader('Transfer-Encoding', 'chunked');
+
+            res.write(html, "utf8");
+            res.flush();
+
+            next();
 
         });
 
 
 
-        res.write(htmlHead, "utf8");
-        res.flush();
 
-        next();
     }
 }

@@ -8,7 +8,7 @@ var express = require('express'),
 
 var cwd = process.cwd();
 var graphiteService = require(cwd + '/server/utils/graphite');
-
+var minify = require('html-minifier').minify;
 
 
 /** 
@@ -59,14 +59,31 @@ PageControllerUtil.prototype.getInitialModelData = function (req, res) {
  */
 PageControllerUtil.prototype.finalizeController = function (req, res, next, pageTemplateName, modelData) {
 	// Render
-    res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
+   /* res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {
 			  err.status = 500;
 			  return next(err);
 		  } else {
 			  res.send(html);
 		  }
-	  });
+	  });*/
+
+    res.locals.hbs.renderView( process.cwd() + '/app/views/templates/pages/homepage/views/hbs/homepage_' + res.locals.config.locale + '.hbs', modelData, function(err, html) {
+        // console.log("xxxxx" + html);
+        //res.writeHead(200, {'Content-Type': 'text/html'});
+
+        var result = minify(html, {
+            removeAttributeQuotes: true,
+            removeEmptyElements: true,
+            collapseWhitespace: true,
+            collapseInlineTagWhitespace: true,
+            minifyJS:true
+        });
+        res.end(result, 'utf8');
+
+        // res.end();
+
+    });
 
     // Kafka Logging
     // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
