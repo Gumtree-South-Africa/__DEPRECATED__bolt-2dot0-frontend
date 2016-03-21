@@ -9,8 +9,6 @@ var express = require('express'),
 var cwd = process.cwd();
 var graphiteService = require(cwd + '/server/utils/graphite');
 
-
-
 /** 
  * @description
  * @constructor
@@ -58,15 +56,24 @@ PageControllerUtil.prototype.preController = function (req, res) {
  * @param {JSON} modelData
  */
 PageControllerUtil.prototype.postController = function (req, res, next, pageTemplateName, modelData) {
-	// Render
-    res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
-		  if (err) {
-			  err.status = 500;
-			  return next(err);
-		  } else {
-			  res.send(html);
-		  }
-	  });
+
+    process.nextTick(function() {
+        // Render
+
+        res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
+            if (err) {
+                err.status = 500;
+                // Graphite Metrics
+                return next(err);
+            } else {
+                res.send(html);
+            }
+            // Graphite Metrics
+            graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
+        });
+
+    });
+    
 
     // Kafka Logging
     // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
@@ -74,8 +81,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
 
     // Redis Logging - to get data to ELK
 
-    // Graphite Metrics
-    graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
+
 };
 
 module.exports = new PageControllerUtil();
