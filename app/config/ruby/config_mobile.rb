@@ -1,12 +1,15 @@
-#require "sass"
+# Require any additional compass plugins here.
+require "susy"
+require "sass"
 
 # Set this to the root of your project when deployed:
 project_type = :stand_alone
 http_path = "/"
 sass_dir = "./app/styles"
-cssdir = "./public/css/mobile"
+cssdir = "./public/cssmin/mobile"
 prefered_syntax = :scss
-output_style = :compressed
+output_style = :expanded
+#output_style = (environment == :development) ? :expanded : :compressed
 relative_assets = true
 
 
@@ -26,8 +29,8 @@ relative_assets = true
 # and then run:
 # sass-convert -R --from scss --to sass sass scss && rm -rf sass && mv scss sass
 
-# module Sass::Script::Functions
-#   def buildDevice()
-#     Sass::Script::String.new("mobile")
-#   end
-# end
+module Sass::Script::Functions
+  def buildDevice()
+    Sass::Script::String.new("mobile")
+  end
+end

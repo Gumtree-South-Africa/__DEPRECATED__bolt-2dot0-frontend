@@ -26,7 +26,7 @@ var PageControllerUtil = function (req, res) {
  * @param {Object} response
  * @return {JSON}
  */
-PageControllerUtil.prototype.getInitialModelData = function (req, res) {
+PageControllerUtil.prototype.preController = function (req, res) {
 	var modelData =
     {
         env: 'public',
@@ -57,7 +57,7 @@ PageControllerUtil.prototype.getInitialModelData = function (req, res) {
  * @param {String} pageTemplateName
  * @param {JSON} modelData
  */
-PageControllerUtil.prototype.finalizeController = function (req, res, next, pageTemplateName, modelData) {
+PageControllerUtil.prototype.postController = function (req, res, next, pageTemplateName, modelData) {
 	// Render
     res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {
@@ -73,7 +73,6 @@ PageControllerUtil.prototype.finalizeController = function (req, res, next, page
     // kafkaService.logInfo(res.locals.config.locale, log);
 
     // Redis Logging - to get data to ELK
-
 
     // Graphite Metrics
     graphiteService.postForHPUsingTCP('local.random.hpmetric','999');

@@ -32,16 +32,16 @@ $no-break-min: 0em;
     	@if( $buildDevice == $mobileDevice )
     	{
             @include private-from-breakpoint-mobile($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $tabletDevice )
         {
             @include private-from-breakpoint-tablet($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $desktopDevice )
         {
             @include private-from-breakpoint-all($itm){ @content; }
-        } 
-        @else 
+        }
+        @else
         {
             @include private-from-breakpoint-all($itm){ @content; }
         }
@@ -52,17 +52,17 @@ $no-break-min: 0em;
     @if( $itm == $no-break )
     {
         @content;
-    } 
+    }
     @else if( $itm == $small-break )
     {
-    } 
+    }
     @else if( $itm == $medium-break )
     {
-    } 
+    }
     @else if( $itm == $large-break )
     {
-    } 
-    @else 
+    }
+    @else
     {
     }
 }
@@ -70,22 +70,22 @@ $no-break-min: 0em;
 @mixin private-from-breakpoint-tablet($itm){
     @if( $itm == $no-break )
     {
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @media (min-width: $small-break-min){ @content; }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media (min-width: $medium-break-min){ @content; }
-    } 
+    }
     @else if( $itm == $large-break )
     {
-    } 
-    @else 
+    }
+    @else
     {
     }
-} 
+}
 
 @mixin private-from-breakpoint-all($itm){
     @if( $itm == $no-break )
@@ -95,16 +95,16 @@ $no-break-min: 0em;
     @else if( $itm == $small-break )
     {
         @media (min-width: $small-break-min){ @content; }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media (min-width: $medium-break-min){ @content; }
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media (min-width: $large-break-min){ @content; }
-    } 
-    @else 
+    }
+    @else
     {
         .#{$itm}{ @content; }
     }
@@ -123,16 +123,16 @@ $no-break-min: 0em;
 		@if( $buildDevice == $mobileDevice )
 		{
             @include private-to-breakpoint-mobile($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $tabletDevice )
         {
             @include private-to-breakpoint-tablet($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $desktopDevice )
         {
             @include private-to-breakpoint-desktop($itm){ @content; }
-        } 
-        @else 
+        }
+        @else
         {
             @include private-to-breakpoint-all($itm){ @content; }
         }
@@ -143,20 +143,20 @@ $no-break-min: 0em;
     @if( $itm == $no-break )
     {
         @media (max-width: $no-break-max){ @content; }
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @media (max-width: $small-break-max){ @content; }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media (max-width: $medium-break-max){ @content; }
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media (max-width: $large-break-max){ @content; }
-    } 
-    @else 
+    }
+    @else
     {
         .#{$itm}{ @content; }
     }
@@ -166,20 +166,20 @@ $no-break-min: 0em;
     @if( $itm == $no-break )
     {
         @content;
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @content;
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @content;
-    } 
+    }
     @else if( $itm == $large-break )
     {
-        @content; 
-    } 
-    @else 
+        @content;
+    }
+    @else
     {
     }
 }
@@ -187,20 +187,20 @@ $no-break-min: 0em;
 @mixin private-to-breakpoint-tablet($itm){
     @if( $itm == $no-break )
     {
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @media (max-width: $small-break-max){ @content; }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media (max-width: $medium-break-max){ @content; }
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media (max-width: $large-break-max){ @content; }
-    } 
-    @else 
+    }
+    @else
     {
     }
 }
@@ -208,18 +208,18 @@ $no-break-min: 0em;
 @mixin private-to-breakpoint-desktop($itm){
     @if( $itm == $no-break )
     {
-    } 
+    }
     @else if( $itm == $small-break )
     {
-    } 
+    }
     @else if( $itm == $medium-break )
     {
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media (max-width: $large-break-max){ @content; }
-    } 
-    @else 
+    }
+    @else
     {
         .#{$itm}{ @content; }
     }
@@ -239,16 +239,16 @@ $no-break-min: 0em;
         @if( $buildDevice == $mobileDevice )
         {
             @include private-in-breakpoint-mobile($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $tabletDevice )
         {
             @include private-in-breakpoint-tablet($itm){ @content; }
-        } 
+        }
         @else if( $buildDevice == $desktopDevice )
         {
             @include private-in-breakpoint-desktop($itm){ @content; }
-        } 
-        @else 
+        }
+        @else
         {
             @include private-in-breakpoint-all($itm){ @content; }
         }
@@ -264,7 +264,7 @@ $no-break-min: 0em;
             (max-width: $no-break-max){
             @content;
         }
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @media
@@ -272,7 +272,7 @@ $no-break-min: 0em;
             (max-width: $small-break-max){
             @content;
         }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media
@@ -280,7 +280,7 @@ $no-break-min: 0em;
             (max-width: $medium-break-max){
             @content;
         }
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media
@@ -288,7 +288,7 @@ $no-break-min: 0em;
             (max-width: $large-break-max){
             @content;
         }
-    } 
+    }
     @else
     {
         .#{$itm}{
@@ -300,16 +300,16 @@ $no-break-min: 0em;
 @mixin private-in-breakpoint-mobile($itm){
     @if( $itm == $no-break ){
         @content;
-    } 
+    }
     @else if( $itm == $small-break )
     {
-    } 
+    }
     @else if( $itm == $medium-break )
     {
-    } 
+    }
     @else if( $itm == $large-break )
     {
-    } 
+    }
     @else
     {
     }
@@ -317,7 +317,7 @@ $no-break-min: 0em;
 
 @mixin private-in-breakpoint-tablet($itm){
     @if( $itm == $no-break ){
-    } 
+    }
     @else if( $itm == $small-break )
     {
         @media
@@ -325,7 +325,7 @@ $no-break-min: 0em;
             (max-width: $small-break-max){
             @content;
         }
-    } 
+    }
     @else if( $itm == $medium-break )
     {
         @media
@@ -333,10 +333,10 @@ $no-break-min: 0em;
             (max-width: $medium-break-max){
             @content;
         }
-    } 
+    }
     @else if( $itm == $large-break )
     {
-    } 
+    }
     @else
     {
     }
@@ -344,13 +344,13 @@ $no-break-min: 0em;
 
 @mixin private-in-breakpoint-desktop($itm){
     @if( $itm == $no-break ){
-    } 
+    }
     @else if( $itm == $small-break )
     {
-    } 
+    }
     @else if( $itm == $medium-break )
     {
-    } 
+    }
     @else if( $itm == $large-break )
     {
         @media
@@ -358,7 +358,7 @@ $no-break-min: 0em;
             (max-width: $large-break-max){
             @content;
         }
-    } 
+    }
     @else
     {
         .#{$itm}{

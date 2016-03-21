@@ -24,7 +24,11 @@ module.exports = function watch(gulp, plugins) {
   }
 
 	return function(){
-		var articles = ['config_desktop.rb', 'config_mobile.rb', 'default_config'],
+		var articles = [
+        {"foldername":"all", "breakpoint":"desktop"},
+        {"foldername":"mobile", "breakpoint":"mobile"},
+        {"foldername":"tablet", "breakpoint":"tablet"}
+      ],
         assets = require(process.cwd() + '/app/config/ruby/compassConfig'),
         output_style = 'expanded';
 
@@ -45,28 +49,22 @@ module.exports = function watch(gulp, plugins) {
 	    }
 
       for (var i = 0; i < articles.length -1; ++i) {
-  		  gulp.src('./app/styles/**/**/*.scss')
-            .pipe(plugins.compass({
-                    project: process.cwd(),
-                    http_path: '/',
-                    css: assets[i].cssPath,
-                    sass: assets[i].sassPath,
-                    lineNumbers: assets[i].lineNumbers,
-                    //debug: true,
-                    //style: 'expanded', //gulpif(output_style === 'compressed', 'expanded'),
-                    require: ['susy']
-            }))
-            .pipe(plugins.plumber({
-              errorHandler: function (error) {
-                console.log(error.message);
-                this.emit('end');
-            }}))
-            .pipe(plugins.cssmin())
-            .pipe(plugins.rename({suffix:'.min'}))
-            .pipe(gulp.dest(process.cwd() + '/' + assets[i].cssPath))
-  					.pipe(synchro(incDoneCounter))
-			}
-
+        gulp.src('./app/styles/**/**/*.scss')
+          .pipe(plugins.plumber({
+            errorHandler: function (error) {
+              console.log(error.message);
+              this.emit('end');
+          }}))
+          .pipe(plugins.compass({
+            config_file: process.cwd() + '/app/config/ruby/config_' + articles[i].breakpoint + '.rb',
+            css: 'public/css/' + articles[i].foldername,
+            sass: './app/styles'
+          }))
+          .pipe(plugins.cssmin())
+          .pipe(plugins.rename({suffix:'.min'}))
+          .pipe(gulp.dest(process.cwd() + '/public/css/'+ articles[i].foldername))
+          .pipe(synchro(incDoneCounter));
+      }
 		})
 	}
 }

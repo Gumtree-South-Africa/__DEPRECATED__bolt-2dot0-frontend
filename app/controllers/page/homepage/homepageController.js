@@ -34,7 +34,7 @@ router.get('/', function (req, res, next) {
 	}
 
 	// Build Model Data
-	var modelData = pageControllerUtil.getInitialModelData(req, res);
+	var modelData = pageControllerUtil.preController(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Retrieve Data from Model Builders
@@ -68,7 +68,7 @@ router.get('/', function (req, res, next) {
 		HP.buildContentData(modelData, bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
 
-		pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
     });
