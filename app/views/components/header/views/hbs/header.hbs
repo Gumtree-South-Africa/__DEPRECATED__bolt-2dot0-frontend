@@ -8,16 +8,16 @@
                 </div>
                 <div class="right {{#if this.header.isMessageCenterEnabled}}isMcEnabled{{/if}}">
                     {{!-- Note Element Order: that the order of the elements is backwards because they're floating right --}}
- 
+
                     {{!---- post button ----}}
                     {{> (dynamic "postButton") }}
-                   
+
                     {{!---- help ----}}
                     {{> (dynamic "helpLink") }}
- 
+
                     {{!---- navigation ----}}
                     {{> (dynamic "navigation") }}
-                                                                               
+
                     {{!---- isolated signin ----}}
                     {{> (dynamic "isolatedSignIn") }}
                 </div>
@@ -25,6 +25,8 @@
         </div>
     </header>
 </div>
+
+{{#block "headerPost"}} {{/block}}
 
 {{!-- Search bar --}}
 {{> (dynamic "searchbar") }}
