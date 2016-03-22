@@ -24,18 +24,18 @@
 
 {{!-- this section needs refactoring --}}
 <div class="postSection">
-	{{#with model.content}}
+    {{#if this.totalLiveAdCount}}
 	<div class="hp-total-ad-count">
-		<div class="hp-live_ads_msg line2"><div>{{{i18n "home.page.live.ad.count.label" model.content.totalLiveAdCount}}} </div><span class="postText">Publica tu clasificado</span><span class="postLink" data-o-uri="{{obfuscateUrl model.header.postAdPageUrl}}"> {{i18n "home.post.ad.message"}}</span></div>
+		<div class="hp-live_ads_msg line2"><div>{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}} </div><span class="postText">Publica tu clasificado</span><span class="postLink" data-o-uri="{{obfuscateUrl this.header.postAdPageUrl}}"> {{i18n "home.post.ad.message"}}</span></div>
 
 		{{!--
 		<div class='line2'>
 			<span class="postText">Publica tu clasificado</span>
-			<span class="postLink" data-o-uri="{{obfuscateUrl model.header.postAdPageUrl}}">{{i18n "home.post.ad.message"}}</span>
+			<span class="postLink" data-o-uri="{{obfuscateUrl this.header.postAdPageUrl}}">{{i18n "home.post.ad.message"}}</span>
 		</div>
 		--}}
 	</div>
-	{{/with}}
+	{{/if}}
 
 	<div class="header diff">
         <div class="right">
