@@ -34,11 +34,11 @@
         <meta property="og:description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
-    
+
     {{#if this.header.seoDeeplinkingUrlAndroid}}
         <link rel="alternate" href="{{this.header.seoDeeplinkingUrlAndroid}}"/>
     {{/if}}
-    
+
     {{#each this.header.containerCSS}}
         <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
     {{/each}}
@@ -59,7 +59,7 @@
     {{/if}}
     {{#block "meta"}}{{/block}}
     {{#block "metaForPage"}}{{/block}}
-       
+
     {{#block "grumpicon-script"}}
 
     <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
@@ -95,7 +95,7 @@
                      {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
-                     {{#block "dataLayerSpecifics"}}{{/block}}                     
+                     {{#block "dataLayerSpecifics"}}{{/block}}
                 dl["c"]={};
                 dl["c"]["c"]={};
                      {{#with this.dataLayer.categoryData.current}} dl["c"]["c"]["id"] = "{{this.id}}";{{/with}}
@@ -171,7 +171,7 @@
     {{#block "dynamicStyles"}}{{/block}}
 </head>
 <body>
-    {{#block "banner_cookie"}}{{/block}}
+    
     {{> (dynamic "cookieBanner") }}
     {{#if this.footer.analytics.gtmTagId}}
         <noscript>
@@ -180,7 +180,7 @@
             </iframe>
         </noscript>
     {{/if}}
-     
+
     <noscript>
         <div class="js-message-error">
             <div>
