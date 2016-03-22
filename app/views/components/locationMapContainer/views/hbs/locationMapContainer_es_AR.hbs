@@ -1,1 +1,8 @@
+{{#partial "HomePageSubTitle"}}
+    {{#unlessMobile this.device}}
+    	<div class="clear" style="height:1px;"></div>
+		<p class="subTitle">{{i18n "home.subTitle"}}</p>
+    {{/unlessMobile}}
+{{/partial}}
+
 {{> (base "locationMapContainer")}}
