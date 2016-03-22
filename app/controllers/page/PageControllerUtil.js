@@ -59,29 +59,25 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
 
     process.nextTick(function() {
         // Render
-
         res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
             if (err) {
                 err.status = 500;
-                // Graphite Metrics
                 return next(err);
             } else {
                 res.send(html);
             }
-            // Graphite Metrics
-            graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
-        });
 
+            // Graphite Metrics
+            // graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
+
+            // Kafka Logging
+            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+            // kafkaService.logInfo(res.locals.config.locale, log);
+
+            // Redis Logging - to get data to ELK
+        });
     });
     
-
-    // Kafka Logging
-    // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
-    // kafkaService.logInfo(res.locals.config.locale, log);
-
-    // Redis Logging - to get data to ELK
-
-
 };
 
 module.exports = new PageControllerUtil();
