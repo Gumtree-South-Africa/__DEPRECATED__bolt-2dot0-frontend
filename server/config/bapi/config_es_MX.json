@@ -93,7 +93,7 @@
 				"models" : ["keyword", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "seo"]
+				"models" : ["keyword", "adstatistics", "seo"]
 			}
 		}
 	}
