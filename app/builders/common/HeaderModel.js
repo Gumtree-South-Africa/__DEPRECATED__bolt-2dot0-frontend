@@ -143,8 +143,8 @@ HeaderModel.prototype.buildCss = function(data) {
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css');
-	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css';
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
+	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
 
 	if (deviceDetection.isMobile()) {
 		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
