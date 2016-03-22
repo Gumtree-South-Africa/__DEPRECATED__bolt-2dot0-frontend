@@ -52,8 +52,8 @@ router.get('/', function (req, res, next) {
 			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
 		}
 		if (result['keyword']) {
-			modelData.trendingKeywords = result['keyword'][0].keywords || {};
-			modelData.topKeywords = result['keyword'][1].keywords || {};
+			modelData.trendingKeywords = result['keyword'][0].keywords || null;
+			modelData.topKeywords = result['keyword'][1].keywords || null;
 		}
 
 		// Check for top or trending keywords existence
