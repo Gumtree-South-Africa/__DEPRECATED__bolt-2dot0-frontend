@@ -41,7 +41,7 @@
 		"interLinkUrl"						: "",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"topSearchesLandingPageUrl"			: "/t-wyszukiwarka-gory/wszystkie-ogloszenia/v1b0",
 		"googleAdSense"						:	{
 			"enabled"							: true,
 			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
