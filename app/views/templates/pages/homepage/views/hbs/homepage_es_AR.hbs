@@ -48,6 +48,7 @@
 {{#if model.content.homePageBannerUrl}}homePageBannerImage{{/if}}
 ">
 	<div class="hp-list-wrapper">
+	    {{#if this.topOrTrendingKeywords}}
 		<div class="hp-keywords-wrapper"
 			{{#if this.topKeywords}}{{#if this.topKeywords}}
 			id="keywordChecker"
@@ -80,6 +81,7 @@
 				</div>
 			{{/if}}
 		</div>
+		{{/if}}
 
 		<div class="clear"></div>
     </div>
