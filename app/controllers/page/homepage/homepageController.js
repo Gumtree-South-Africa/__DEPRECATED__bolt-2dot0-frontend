@@ -49,7 +49,7 @@ router.get('/', function (req, res, next) {
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
 		if (result['adstatistics']) {
-			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
+			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 		}
 		if (result['keyword']) {
 			modelData.trendingKeywords = result['keyword'][0].keywords || null;

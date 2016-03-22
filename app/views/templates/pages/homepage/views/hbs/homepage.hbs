@@ -14,9 +14,11 @@
 			">
 
 			<div class="hp-list-wrapper">
-				<div class="hp-total-ad-count">
-					<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
-				</div>
+                <div class="hp-total-ad-count">
+                    {{#if this.totalLiveAdCount}}
+                        <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
+                    {{/if}}
+                </div>
 
 				<div class="hp-category-wrapper">
 					<h1>{{i18n "home.h1Tag"}}</h1>
