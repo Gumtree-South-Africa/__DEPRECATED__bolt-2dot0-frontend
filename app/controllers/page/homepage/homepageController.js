@@ -56,6 +56,12 @@ router.get('/', function (req, res, next) {
 			modelData.topKeywords = result['keyword'][1].keywords || null;
 		}
 
+		// Popular locations container
+		modelData.showPopularLocations = true;
+		if (_.isEmpty(modelData.level2Location) && _.isEmpty(modelData.location)) {
+			modelData.showPopularLocations = false;
+		}
+
 		// Check for top or trending keywords existence
 		modelData.topOrTrendingKeywords = false;
 		if (modelData.trendingKeywords || modelData.topKeywords) {
