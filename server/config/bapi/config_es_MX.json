@@ -41,7 +41,7 @@
 		"helpUrl"							: "http://ayuda.vivanuncios.com.mx/MX/",
 		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"bestAdsLandingPageUrl"				: "/b-los-mejores-anuncios/v1",
 		"topSearchesLandingPageUrl"			: "/t-busquedas-destacadas/todos-los-anuncios/v1b0",
 		"googleAdSense"						:	{
 			"enabled"							: true,
@@ -84,7 +84,8 @@
 			"swapTradeUrl"			: null,
 			"freebiesEnabled"		: false,		
 			"freebiesName"			: null,
-			"freebiesUrl"			: null
+			"freebiesUrl"			: null,
+		  	"adCarouselSeeAllUrl"	: null
 		}
 	},
 	"bapi" : {

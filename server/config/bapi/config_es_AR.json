@@ -84,7 +84,8 @@
 			"swapTradeUrl"			: null,
 			"freebiesEnabled"		: false,		
 			"freebiesName"			: null,
-			"freebiesUrl"			: null
+			"freebiesUrl"			: null,
+		  	"adCarouselSeeAllUrl"	: null
 		}
 	},
 	"bapi" : {
