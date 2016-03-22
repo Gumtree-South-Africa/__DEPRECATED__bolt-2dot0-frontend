@@ -134,7 +134,6 @@ var HP = {
 			default:
 				modelData.header.pageMessages.success = '';
 				modelData.header.pageMessages.error = '';
-				modelData.header.pageType = '';
 		}
 		switch (req.query.resumeabandonedordererror) {
 			case 'adnotactive':
