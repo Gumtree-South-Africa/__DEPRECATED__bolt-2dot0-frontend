@@ -48,18 +48,19 @@ router.get('/', function (req, res, next) {
 		modelData.level2Location = result['level2Loc'] || {};
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
+
 		if (result['adstatistics']) {
 			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 		}
+
 		if (result['keyword']) {
 			modelData.trendingKeywords = result['keyword'][0].keywords || null;
 			modelData.topKeywords = result['keyword'][1].keywords || null;
 		}
 
-		// Popular locations container
-		modelData.showPopularLocations = true;
-		if (_.isEmpty(modelData.level2Location) && _.isEmpty(modelData.location)) {
-			modelData.showPopularLocations = false;
+		// Make the loc level 2 (Popular locations) data null if it comes as an empty
+		if (_.isEmpty(modelData.level2Location)) {
+			modelData.level2Location = null;
 		}
 
 		// Check for top or trending keywords existence
@@ -73,6 +74,17 @@ router.get('/', function (req, res, next) {
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
+
+		// Make the location data null if it comes as an empty object from bapi
+		if (_.isEmpty(modelData.location)) {
+			modelData.location = null;
+		}
+
+		// Determine if we show the Popular locations container
+		modelData.showPopularLocations = true;
+		if (!modelData.level2Location && !modelData.location) {
+			modelData.showPopularLocations = false;
+		}
 
 		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
