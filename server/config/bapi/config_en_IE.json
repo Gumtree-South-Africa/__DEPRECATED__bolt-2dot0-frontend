@@ -83,7 +83,8 @@
 			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
 			"freebiesEnabled"		: true,		
 			"freebiesName"			: "home.freebies.$$",
-			"freebiesUrl"			: "s-freebies/v1p1?priceType=free"
+			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
+		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2"
 		}
 	},
 	"bapi" : {

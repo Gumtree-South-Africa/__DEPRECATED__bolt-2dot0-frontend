@@ -49,7 +49,7 @@ router.get('/', function (req, res, next) {
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
 		if (result['adstatistics']) {
-			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
+			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 		}
 		if (result['keyword']) {
 			modelData.trendingKeywords = result['keyword'][0].keywords || null;
@@ -227,10 +227,12 @@ var HP = {
 
 			// Bing Meta
 			modelData.content.bingMeta = homepageConfigData.bingMeta;
+
+			// Gallery See All Url
+			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
 		}
 
-		// Gallery
-		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
+		// Gallery AJAX
 		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
 
 		// Search Bar

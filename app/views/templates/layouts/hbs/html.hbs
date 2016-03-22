@@ -42,8 +42,11 @@
     {{#each this.header.containerCSS}}
         <link rel="stylesheet" type="text/css" href='{{#block "cssSrc"}}{{this}}{{/block}}'/>
     {{/each}}
+
     {{!-- The following is not in BOLT 1.0 --}}
-    <link rel="stylesheet" href="/public/css/icons.data.svg_{{locale}}.css"/>
+    {{#each this.header.iconsCSSURLs}}
+        <link rel="stylesheet" type="text/css" href='{{this}}'/>
+    {{/each}}
 
     <link rel="publisher" href="{{this.header.publisherUrl}}" />
     <link rel="shortcut icon" type="image/png" href="{{this.header.shortcutIconUrl}}"/>
