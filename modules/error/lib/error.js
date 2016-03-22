@@ -29,7 +29,7 @@ module.exports = function(app) {
             res.statusCode = 404;
             if (isAjaxReq(req)) {
                 console.error(err);
-                res.status(404).json({status:404, message: 'page not found', type:'external'});
+                res.status(404).json({status:404, message: 'Invalid API'});
             } else {
                 displayError.message(req, res, next);
             }
