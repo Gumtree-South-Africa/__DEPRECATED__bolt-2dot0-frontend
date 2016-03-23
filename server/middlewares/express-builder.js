@@ -29,11 +29,21 @@ var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 
 
 
 
-function BuildApp(locale) {
+function BuildApp(siteObj) {
     var app = express();
 
     // Check if we need to redirect to mweb - for legacy devices
     app.use(legacyDeviceRedirection());
+
+    // Setting up locals object for app
+    if (siteObj) {
+        app.locals.config = {};
+        app.locals.config.name = siteObj.name;
+        app.locals.config.locale = siteObj.locale;
+        app.locals.config.country = siteObj.country;
+        app.locals.config.hostname = siteObj.hostname;
+        app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
+    }
 
     /* 
      * Development based middlewares
@@ -41,7 +51,7 @@ function BuildApp(locale) {
     midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
         app.use('/', compress());
-        app.use(assets(app, locale));
+        app.use(assets(app, typeof siteObj!=='undefined' ? siteObj.locale : ''));
         app.use(logger('dev'));
         // for dev purpose lets make all static none cacheable
         // http://evanhahn.com/express-dot-static-deep-dive/
@@ -58,15 +68,21 @@ function BuildApp(locale) {
             index:false
         }));
 
+        if (app.locals.config) {
+            app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
+        }
     });
 
     /*
      * Production based middlewares
      */
-    midlewareloader()(['production', 'pp', 'lnp'], function() {
+    midlewareloader()(['production', 'ppdeploy', 'lnpdeploy'], function() {
         app.use('/', compress());
         app.use(logger('short'));
-
+        
+        if (app.locals.config) {
+            app.locals.config.basePort = '';
+        }
     });
 
     /* 
@@ -84,9 +100,14 @@ function BuildApp(locale) {
      */
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
     app.use(requestId());    
-    app.use(i18n.initMW(app, locale));
+    app.use(i18n.initMW(app, typeof siteObj!=='undefined' ? siteObj.locale : ''));
     app.use(boltExpressHbs.create(app));
     app.use(deviceDetection.init());
+
+    // Template hbs caching.
+    if (process.env.NODE_ENV) {
+        app.enable('view cache');
+    }
     
     this.getApp = function() {
         return app;

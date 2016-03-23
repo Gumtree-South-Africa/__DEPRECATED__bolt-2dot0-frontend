@@ -38,31 +38,16 @@ var siteCount = 0;
  * Create Site Apps
  */
 Object.keys(config.sites).forEach(function(siteKey) {
-    var siteObj = config.sites[siteKey];
+	var siteObj = config.sites[siteKey];
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
-		        var builderObj = new expressbuilder(siteObj.locale);
+			  	var builderObj = new expressbuilder(siteObj);
 		        var siteApp = builderObj.getApp();
-		
-		        // send site information along
-		        siteApp.locals.config = {};
-		        siteApp.locals.config.name = siteObj.name;
-		        siteApp.locals.config.locale = siteObj.locale;
-		        siteApp.locals.config.country = siteObj.country;
-		        siteApp.locals.config.hostname = siteObj.hostname;
-		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
 		        // Service Util to get Location and Category Data
 		        cacheBapiData(siteApp, requestId);
 
-		        // Template hbs caching.
-		        // See: https://github.com/ericf/express-handlebars#template-caching
-		        // Enables view template compilation caching and is enabled in production by default.
-		        if (process.env.NODE_ENV) {
-		          siteApp.enable('view cache');
-		        }
-		
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
 
