@@ -56,7 +56,6 @@ HeaderModel.prototype.getHeaderData = function() {
 				return;
 			}
 
-			console.log('$$$$$$$$$$$$', scope.basePort);
 			var headerDeferred,
 				data = {
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
