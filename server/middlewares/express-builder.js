@@ -79,7 +79,7 @@ function BuildApp(siteObj) {
     midlewareloader()(['production', 'ppdeploy', 'lnpdeploy'], function() {
         app.use('/', compress());
         app.use(logger('short'));
-        
+
         if (app.locals.config) {
             app.locals.config.basePort = '';
         }
