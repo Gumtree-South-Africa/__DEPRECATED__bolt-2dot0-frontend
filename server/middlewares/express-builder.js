@@ -76,7 +76,7 @@ function BuildApp(siteObj) {
     /*
      * Production based middlewares
      */
-    midlewareloader()(['production', 'ppdeploy', 'lnpdeploy'], function() {
+    midlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
         app.use('/', compress());
         app.use(logger('short'));
 

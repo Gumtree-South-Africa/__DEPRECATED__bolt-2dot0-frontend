@@ -13,7 +13,7 @@ module.exports = function watch(gulp, plugins) {
 		};
 
 		function getStaticVersion () {
-				return JSON.parse(fs.readFileSync('./server/config/production.json', 'utf8')).static.server.version;
+				return JSON.parse(fs.readFileSync('./server/config/prod_ix5_deploy.json', 'utf8')).static.server.version;
 		};
 
 	    // Append release comments to CHANGELOG.md
@@ -91,6 +91,7 @@ module.exports = function watch(gulp, plugins) {
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
+				'bumpup',
     			'changelog',
     			'commit-changes',
     			'push-changes',
