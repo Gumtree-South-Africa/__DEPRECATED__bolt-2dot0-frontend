@@ -6,7 +6,7 @@
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: false,
+		"isMessageCenterEnabled"			: true,
 		"skinCampaignOn"					: true,
 		"googleTagAccountId"				: "7162/Gumtree_ZA",
 		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
