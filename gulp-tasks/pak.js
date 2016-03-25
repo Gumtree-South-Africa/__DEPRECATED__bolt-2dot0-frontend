@@ -15,7 +15,7 @@ module.exports = function watch(gulp, plugins) {
 
 			var stream =
 				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
-		        	.pipe(plugins.tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
+		        	.pipe(plugins.tar('bolt-2dot0-frontend_' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
 		        	.pipe(gulp.dest('./target' + '/app'))
 		        	.on('end', function(){
@@ -31,7 +31,7 @@ module.exports = function watch(gulp, plugins) {
 
 			var stream =
 				gulp.src(process.cwd() + '/' + 'public/**/*/')
-			    	.pipe(plugins.tar('bolt-2dot0-frontend-static-'+ staticVersion + '.tar'))
+			    	.pipe(plugins.tar('bolt-2dot0-frontend-static_'+ staticVersion + '.tar'))
 			        .pipe(plugins.gzip())
 			        .pipe(gulp.dest('./target' + '/static'))
 					.on('end', function(){
