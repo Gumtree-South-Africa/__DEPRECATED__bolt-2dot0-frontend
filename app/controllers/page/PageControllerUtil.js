@@ -7,7 +7,7 @@ var express = require('express'),
     i18n = require('i18n');
 
 var cwd = process.cwd();
-var graphiteService = require(cwd + '/server/utils/graphite');
+
 
 /** 
  * @description
