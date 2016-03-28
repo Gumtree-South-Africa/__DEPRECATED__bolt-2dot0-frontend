@@ -26,7 +26,8 @@ var writeHeader = require('./write-header'),
 var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 'a'});
+var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
+var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
 
 
