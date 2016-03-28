@@ -14,7 +14,7 @@ module.exports = function watch(gulp, plugins) {
 			process.stdout.write('App Package Task is running...\r\n');
 
 			var stream =
-				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
+				gulp.src(process.cwd() + '/bolt-2dot0-frontend_' + appVersion + '/**/*/')
 		        	.pipe(plugins.tar('bolt-2dot0-frontend_' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
 		        	.pipe(gulp.dest('./target' + '/app'))
@@ -41,13 +41,31 @@ module.exports = function watch(gulp, plugins) {
 			return stream;
 		});
 
+		gulp.task('pak:copy', function(){
+			var stream =
+				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
+						.pipe(gulp.dest(process.cwd() + '/bolt-2dot0-frontend_' + appVersion));
+
+			return stream;
+		});
+
+		gulp.task('pak:clean', function(){
+			var stream =
+				gulp.src(process.cwd() + '/bolt-2dot0-frontend_' + appVersion)
+						.pipe(plugins.clean());
+
+			return stream;
+		});
+
 		// Package
 		gulp.task('pak', function (callback) {
 			loadingSpinner.start();
 
 			var stream =
 				runSequence(
+						'pak:copy',
 						['pak:app', 'pak:static'],
+						'pak:clean',
 						function (error) {
 							if (error) {
 								console.log(error.message);
@@ -60,6 +78,6 @@ module.exports = function watch(gulp, plugins) {
 
 			return stream;
 		});
-  
+
 	}
 }
