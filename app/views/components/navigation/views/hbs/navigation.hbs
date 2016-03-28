@@ -9,7 +9,7 @@
       {{#if this.header.isMessageCenterEnabled}}
 	       <div class="bubbles" data-o-uri="{{ obfuscateUrl this.header.myMessageUrl }}">
          {{#if this.header.username}}
-            {{#if this.header.unreadConversationCount}}
+            {{#if this.header.converstionInfo.totalUnreadMessageCount}}
  			      <div class="unreadMsg">
  				         {{this.header.converstionInfo.totalUnreadMessageCount}}
  			      </div>

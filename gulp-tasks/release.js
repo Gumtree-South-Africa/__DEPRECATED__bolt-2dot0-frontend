@@ -13,7 +13,7 @@ module.exports = function watch(gulp, plugins) {
 		};
 
 		function getStaticVersion () {
-				return JSON.parse(fs.readFileSync('./server/config/production.json', 'utf8')).static.server.version;
+				return JSON.parse(fs.readFileSync('./server/config/prod_ix5_deploy.json', 'utf8')).static.server.version;
 		};
 
 	    // Append release comments to CHANGELOG.md
@@ -67,7 +67,7 @@ module.exports = function watch(gulp, plugins) {
 	    });
 
 		gulp.task('push-app-nexus', function(){
-			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/app/bolt-2dot0-frontend-' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-'+ getAppVersion() + '.tar.gz';
+			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/app/bolt-2dot0-frontend_' + getAppVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend_'+ getAppVersion() + '.tar.gz';
 				var stream =
 					exec(command, function (err, stdout, stderr) {
 					console.log(stdout);
@@ -78,7 +78,7 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		gulp.task('push-static-nexus', function(){
-			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/static/bolt-2dot0-frontend-static-' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static-'+ getStaticVersion() + '.tar.gz';
+			  var command = 'curl -v --upload-file ' + process.cwd() + '/target/static/bolt-2dot0-frontend-static_' + getStaticVersion() + '.tar.gz -u admin:admin123 http://bolt-ci-nexus-v2-11-9025.phx01.dev.ebayc3.com:8081/nexus/content/repositories/bolt-node-releases/com/ebay/ecg/bolt/node/bolt-2dot0-frontend/'+ getAppVersion() +'/bolt-2dot0-frontend-static_'+ getStaticVersion() + '.tar.gz';
 				var stream =
 				  exec(command, function (err, stdout, stderr) {
 					console.log(stdout);
@@ -91,6 +91,7 @@ module.exports = function watch(gulp, plugins) {
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
+				'bumpup',
     			'changelog',
     			'commit-changes',
     			'push-changes',

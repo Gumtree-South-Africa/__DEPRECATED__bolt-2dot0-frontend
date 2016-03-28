@@ -7,7 +7,7 @@
 module.exports = function watch(gulp, plugins) {
 	return function() {
 		var appVersion = JSON.parse(fs.readFileSync(process.cwd() + '/package.json', 'utf8')).version;
-		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/production.json', 'utf8')).static.server.version;
+		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/prod_ix5_deploy.json', 'utf8')).static.server.version;
 
 		// Package App
 		gulp.task('pak:app', function(){
@@ -15,7 +15,7 @@ module.exports = function watch(gulp, plugins) {
 
 			var stream =
 				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
-		        	.pipe(plugins.tar('bolt-2dot0-frontend-' + appVersion + '.tar'))
+		        	.pipe(plugins.tar('bolt-2dot0-frontend_' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
 		        	.pipe(gulp.dest('./target' + '/app'))
 		        	.on('end', function(){
@@ -31,7 +31,7 @@ module.exports = function watch(gulp, plugins) {
 
 			var stream =
 				gulp.src(process.cwd() + '/' + 'public/**/*/')
-			    	.pipe(plugins.tar('bolt-2dot0-frontend-static-'+ staticVersion + '.tar'))
+			    	.pipe(plugins.tar('bolt-2dot0-frontend-static_'+ staticVersion + '.tar'))
 			        .pipe(plugins.gzip())
 			        .pipe(gulp.dest('./target' + '/static'))
 					.on('end', function(){

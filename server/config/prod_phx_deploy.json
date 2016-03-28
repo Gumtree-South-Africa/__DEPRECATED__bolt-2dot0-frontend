@@ -1,0 +1,47 @@
+{
+	"BAPI": {
+	    "server": {
+	    	"host": "api.bolt.ebayclassifieds.com.phx.ops.prod.bt.ecg.so",
+	    	"port": 80,
+	    	"parameters": null
+	    },
+		"endpoints": {
+		  	"categoryHomePage"	:	"/v1/categories",
+			"locationHomePage"	:	"/v1/locations",
+			"topLocationsL2"	:	"/v1/locations/top/L2",
+			"userFromCookie"	:	"/v1/users/logged-in-user-info",
+			"topKeywords" 		: 	"/v1/keywords/top",
+			"trendingKeywords" 	: 	"/v1/keywords/trending",
+			"homepageGallery" 	: 	"/v1/ads/gallery",
+			"adStatistics" 		: 	"/v1/ads/statistics",
+			"configService"		:	"/v1/configs/nodeapp/settings.json"
+		}
+	},
+	"kafka": {
+		"server": {
+			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port": 2181,
+			"topic" : "node_log"
+		}
+	},
+	"graphite": {
+	  	"server": {
+			"host"		: "graphite001.phx.ops.prod.bt.ecg.so",
+			"port"		: 2003,
+			"interval" 	: 30
+	  	}
+	},
+	"static": {
+		"server": {
+			"host"		: "inc.latam.classistatic.com",
+			"port"		: null,
+			"version"	: "2.0.100"
+		},
+		"baseCSSUrl"	: "/css/",
+		"baseJSUrl"		: "/js/",
+		"baseJSMinUrl"	: "/jsmin/",
+		"baseImageUrl"	: "/images/",
+		"mainJSUrl"		: "/js/main.js",
+		"min"			: true
+	}
+}

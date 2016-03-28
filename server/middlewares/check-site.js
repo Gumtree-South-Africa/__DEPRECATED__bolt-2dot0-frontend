@@ -11,6 +11,7 @@ module.exports = function(app) {
         res.locals.config.hostname = app.locals.config.hostname;
         res.locals.config.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=='undefined' ? '.' + process.env.BASEDOMAINSUFFIX : '';
         res.locals.config.domainName = '.' + res.locals.config.hostname + res.locals.config.baseDomainSuffix ;
+        res.locals.config.basePort = app.locals.config.basePort;
 
         res.locals.config.bapiConfigData = app.locals.config.bapiConfigData;
         
