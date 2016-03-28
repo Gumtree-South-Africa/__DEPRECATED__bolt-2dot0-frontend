@@ -34,6 +34,7 @@ var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 function BuildApp(siteObj) {
     var app = express();
 
+    // Bolt 2.0 Security
     app.use(guardians(app));
 
     // Check if we need to redirect to mweb - for legacy devices
@@ -90,7 +91,7 @@ function BuildApp(siteObj) {
     });
 
     /* 
-     * Must needed middlewares
+     * Bolt 2.0 Must needed middlewares
      */
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({ extended: false }));
@@ -100,7 +101,7 @@ function BuildApp(siteObj) {
     app.use(logger('combined', {stream: accessLogStream}));
 
     /*
-     * Bolt Custom middlewares
+     * Bolt 2.0 Custom middlewares
      */
     app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
     app.use(requestId());    
