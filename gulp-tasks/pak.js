@@ -51,7 +51,7 @@ module.exports = function watch(gulp, plugins) {
 
 		gulp.task('pak:clean', function(){
 			var stream =
-				gulp.src(process.cwd() + '/bolt-2dot0-frontend_' + appVersion)
+				gulp.src(process.cwd() + '/bolt-2dot0-frontend-' + appVersion)
 						.pipe(plugins.clean());
 
 			return stream;
