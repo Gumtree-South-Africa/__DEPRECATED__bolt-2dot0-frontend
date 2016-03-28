@@ -141,16 +141,27 @@ npm run build
 DEBUG=bolt-2dot0-frontend:* npm start
 ```
 
-### Starting the development server in Production Mode (by setting up environment variables, and clustering the ndoe server)
+### Starting the development server in Production Mode (by setting up environment variables, and clustering the node server)
 
 ```
 npm run envstart
 
+OR
 (If need only one site to come up)
 SITES=en_ZA NODE_CONFIG_DIR=./server/config BASEDOMAINSUFFIX=localhost NODE_ENV=vm PORT=8000 node ./bin/www
 
+OR
 (If need to specify the current working directory)
 SITES=en_ZA PM_CWD=/BOLTVM/b1frontend/bolt-2dot0-frontend NODE_CONFIG_DIR=/BOLTVM/b1frontend/bolt-2dot0-frontend/server/config BASEDOMAINSUFFIX=localhost NODE_ENV=vm PORT=8000 node ./bin/www
+
+OR
+(If you want to just run the server using start/stop scripts)
+# Add this to your ~/.profile file #
+export GIT_BOLT20_DIR=/Users/vrajendiran/Documents/Dev/bolt-2dot0-frontend
+# Start Server #
+./start.sh
+# Stop Server #
+./stop.sh
 ```
 
 ```npm run <mode>``` performs a quick development build and start a development Node+Express server. The task 'finishes' with a watcher. It will listen for all source changes and re run all needed build steps.
