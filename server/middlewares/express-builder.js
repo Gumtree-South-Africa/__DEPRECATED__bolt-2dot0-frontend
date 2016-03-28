@@ -20,17 +20,20 @@ var writeHeader = require('./write-header'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
     legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
-    assets = require(config.root + '/modules/assets');
+    assets = require(config.root + '/modules/assets'),
+    guardians = require(config.root + '/modules/guardians');
 
-var midlewareloader = require(config.root + '/modules/environment-middleware-loader');
+var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
 // create a write stream (in append mode)
-var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 'a'})
+var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 'a'});
 
 
 
 function BuildApp(locale) {
     var app = express();
+
+    app.use(guardians(app));
 
     // Check if we need to redirect to mweb - for legacy devices
     app.use(legacyDeviceRedirection());
@@ -38,7 +41,7 @@ function BuildApp(locale) {
     /* 
      * Development based middlewares
      */
-    midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
+    middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
         app.use('/', compress());
         app.use(assets(app, locale));
@@ -63,7 +66,7 @@ function BuildApp(locale) {
     /*
      * Production based middlewares
      */
-    midlewareloader()(['production', 'pp', 'lnp'], function() {
+    middlewareloader()(['production', 'pp', 'lnp'], function() {
         app.use('/', compress());
         app.use(logger('short'));
 
