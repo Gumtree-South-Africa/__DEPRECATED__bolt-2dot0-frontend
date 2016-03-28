@@ -30,9 +30,7 @@ module.exports = function(app) {
             // This may make the headers less compatible but it will be much faster.
             // This defaults to `true`.
             browserSniff: true
-        });
-
-
+      });
 
 }
 
