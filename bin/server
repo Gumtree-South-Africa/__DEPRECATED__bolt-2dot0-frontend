@@ -16,6 +16,17 @@ var debug = require('debug')('bolt-2dot0-frontend:server');
 
 
 /**
+ * check if server is startting with root privalges
+ */
+
+
+if (ifRootDontRun()) {
+  console.error(" ******* Running with root previlages ? No! No! *********");
+  process.exit(1);
+}
+
+
+/**
  * Get port from environment and store in Express.
  */
 var httpPort = normalizePort(process.env.PORT || '8000');
@@ -107,4 +118,12 @@ function onListening() {
     ? 'pipe ' + addr
     : 'port ' + addr.port;
   debug('Listening on ' + bind);
+}
+
+
+function ifRootDontRun() {
+  if (process.env.SUDO_GID && process.env.SUDO_UID) {
+    return true;
+  }
+  else false;
 }

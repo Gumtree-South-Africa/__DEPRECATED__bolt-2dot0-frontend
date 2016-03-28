@@ -20,9 +20,10 @@ var writeHeader = require('./write-header'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
     legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
-    assets = require(config.root + '/modules/assets');
+    assets = require(config.root + '/modules/assets'),
+    guardians = require(config.root + '/modules/guardians');
 
-var midlewareloader = require(config.root + '/modules/environment-middleware-loader');
+var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
 // create a write stream (in append mode)
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
@@ -32,6 +33,8 @@ var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
 function BuildApp(siteObj) {
     var app = express();
+
+    app.use(guardians(app));
 
     // Check if we need to redirect to mweb - for legacy devices
     app.use(legacyDeviceRedirection());
@@ -49,7 +52,7 @@ function BuildApp(siteObj) {
     /* 
      * Development based middlewares
      */
-    midlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
+    middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
         // assets for local developments and populates  app.locals.jsAssets
         app.use('/', compress());
         app.use(assets(app, typeof siteObj!=='undefined' ? siteObj.locale : ''));
@@ -77,7 +80,7 @@ function BuildApp(siteObj) {
     /*
      * Production based middlewares
      */
-    midlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+    middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
         app.use('/', compress());
         app.use(logger('short'));
 
