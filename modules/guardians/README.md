@@ -1,6 +1,6 @@
 # Gurdians
 
-A middleware that protect Bolt 2.0
+A middleware that protects Bolt 2.0 
 
 ### Pre-requisities
         
