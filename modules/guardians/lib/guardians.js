@@ -13,6 +13,7 @@ module.exports = function(app) {
       app.use(helmet());
       app.use(helmet.xssFilter());
 
+      // todo: we got to turn on Content-Security-Policy,  http://www.html5rocks.com/en/tutorials/security/content-security-policy/
       return  helmet.csp({
             
             // Set to true if you only want browsers to report errors, not block them

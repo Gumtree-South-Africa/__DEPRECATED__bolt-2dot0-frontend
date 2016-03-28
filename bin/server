@@ -20,7 +20,7 @@ var debug = require('debug')('bolt-2dot0-frontend:server');
  */
 
 
-if (ifRootDontRun) {
+if (ifRootDontRun()) {
   console.error(" ******* Running with root previlages ? No! No! *********");
   process.exit(1);
 }

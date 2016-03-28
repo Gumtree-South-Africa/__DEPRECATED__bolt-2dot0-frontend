@@ -30,7 +30,7 @@ var accessLogStream = fs.createWriteStream(config.root + '/access.log', {flags: 
 
 
 
-function BuildApp(locale) {
+function BuildApp(siteObj) {
     var app = express();
 
     app.use(guardians(app));
@@ -79,7 +79,7 @@ function BuildApp(locale) {
     /*
      * Production based middlewares
      */
-    midlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+    middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
         app.use('/', compress());
         app.use(logger('short'));
 
