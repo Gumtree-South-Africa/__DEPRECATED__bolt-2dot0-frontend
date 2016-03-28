@@ -14,7 +14,7 @@ module.exports = function watch(gulp, plugins) {
 			process.stdout.write('App Package Task is running...\r\n');
 
 			var stream =
-				gulp.src(process.cwd() + '/bolt-2dot0-frontend_' + appVersion + '/**/*/')
+				gulp.src(process.cwd() + '/bolt-2dot0-frontend-' + appVersion + '/**/*/')
 		        	.pipe(plugins.tar('bolt-2dot0-frontend_' + appVersion + '.tar'))
 		        	.pipe(plugins.gzip())
 		        	.pipe(gulp.dest('./target' + '/app'))
@@ -44,7 +44,7 @@ module.exports = function watch(gulp, plugins) {
 		gulp.task('pak:copy', function(){
 			var stream =
 				gulp.src(['./**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: './'})
-						.pipe(gulp.dest(process.cwd() + '/bolt-2dot0-frontend_' + appVersion));
+						.pipe(gulp.dest(process.cwd() + '/bolt-2dot0-frontend-' + appVersion + '/bolt-2dot0-frontend_' + appVersion ));
 
 			return stream;
 		});
