@@ -20,7 +20,8 @@ module.exports.create =  function(app) {
             layoutsDir: process.cwd() + "/app/views/templates/layouts/hbs/",
             extname: "hbs",
             helpers: hbshelpers,
-            precompiled: [ process.cwd() + "/app/views/components/", process.cwd() + '/app/views/templates/pages'],
+            cache      : app.enabled('view cache'),
+            precompiled: true,
             partialsDir: [ process.cwd() + "/app/views/components/",
                 process.cwd() + '/app/views/templates/pages',
                 process.cwd() + '/app/views/templates/layouts/hbs/partials'
