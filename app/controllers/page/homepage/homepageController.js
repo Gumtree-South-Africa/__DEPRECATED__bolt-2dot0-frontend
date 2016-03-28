@@ -30,7 +30,7 @@ router.get('/', function (req, res, next) {
 
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
-		res.cookie('anonUsrId', cuid());
+		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
 
 	// Build Model Data

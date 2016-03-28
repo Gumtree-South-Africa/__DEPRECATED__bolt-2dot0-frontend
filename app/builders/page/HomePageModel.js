@@ -20,7 +20,7 @@ var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 function getCookieLocationId(req) {
 	var searchLocIdCookieName = 'searchLocId';
 	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
-	return searchLocIdCookie === '' ? null : searchLocIdCookie;
+	return (typeof searchLocIdCookie==='undefined' || '') ? null : searchLocIdCookie;
 }
 
 /**

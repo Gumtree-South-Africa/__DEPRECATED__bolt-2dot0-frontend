@@ -56,7 +56,6 @@ HeaderModel.prototype.getHeaderData = function() {
 				return;
 			}
 
-			console.log('$$$$$$$$$$$$', scope.basePort);
 			var headerDeferred,
 				data = {
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
@@ -186,7 +185,7 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.fbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
 		}
 	}
 

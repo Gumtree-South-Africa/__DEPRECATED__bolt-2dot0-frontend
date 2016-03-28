@@ -170,7 +170,7 @@ BOLT.HOME.Map = (function () {
                         // if (matchMedia("mobile") || matchMedia("tablet") ||  matchMedia("desktop")) {
                             //if (!matchMedia("largeScr"))
                             e.stopPropagation();
-                            e.preventDefault();
+                            //  e.preventDefault();
                         // }
                     });
 

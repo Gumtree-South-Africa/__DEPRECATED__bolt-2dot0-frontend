@@ -104,6 +104,8 @@
 			{{#block "googleBannerAdsTop_Script"}}{{/block}}
 			{{#block "googleBannerAdsRight_Script"}}{{/block}}
 			{{#block "googleBannerAdsRightBottom_Script"}}{{/block}}
+
+			{{> (dynamic "adBottomBanner") }}
 			{{#block "googleBannerAdsBottom_Script"}}{{/block}}
 			{{#block "googleBannerSkinCampaign_Script"}}{{/block}}
 		{{/block}}
@@ -151,8 +153,10 @@
 	        <meta name="google" content="nositelinkssearchbox"/>
 	{{/partial}}
 
+	{{#partial "googleBannerAdsBottom_Container"}}
+    	<div id="home_bottombanner" style="margin:0 auto; width:318px; overflow:hidden;"></div>
+	{{/partial}}
 	
-
 	{{!-- SmartBanner and Interstitial Banner overrides for Homepage --}}
 	{{#partial "smartBannerContainer"}}
         {{> (dynamic "smartBanner") }}

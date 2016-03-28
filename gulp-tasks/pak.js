@@ -7,7 +7,7 @@
 module.exports = function watch(gulp, plugins) {
 	return function() {
 		var appVersion = JSON.parse(fs.readFileSync(process.cwd() + '/package.json', 'utf8')).version;
-		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/production.json', 'utf8')).static.server.version;
+		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/prod_ix5_deploy.json', 'utf8')).static.server.version;
 
 		// Package App
 		gulp.task('pak:app', function(){
