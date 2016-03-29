@@ -9,7 +9,7 @@ module.exports = function watch(gulp, plugins) {
 			process.stdout.write('CLeaning up jsmin/css/target/tmp/build/locales folders...\r\n');
 
 			var stream =
-				gulp.src(['./.build', './app/locales/json', './tmp', './public/css', './public/jsmin', './target'], {read: false})
+				gulp.src(['./.build', './app/locales/json', './tmp', './public/css', './public/jsmin', './target', './bolt-2dot0-frontend*'], {read: false})
 		    	.pipe(plugins.clean());
 
 				return stream;
