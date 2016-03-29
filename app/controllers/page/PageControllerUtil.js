@@ -6,9 +6,6 @@ var express = require('express'),
     util = require('util'),
     i18n = require('i18n');
 
-var cwd = process.cwd();
-var graphiteService = require(cwd + '/server/utils/graphite');
-
 
 /** 
  * @description
@@ -26,7 +23,7 @@ var PageControllerUtil = function (req, res) {
  * @return {JSON}
  */
 PageControllerUtil.prototype.preController = function (req, res) {
-	var modelData =
+    var modelData =
     {
         env: 'public',
         locale: res.locals.config.locale,
@@ -67,11 +64,6 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             } else {
                 res.send(html);
             }
-
-            // Graphite Metrics for Page
-            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'request.useragent', req.headers['user-agent']);
-            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'response.statusCode', res.statusCode);
-            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'response.responseTime', res.locals.config.responseTime);
 
             // Kafka Logging
             // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;

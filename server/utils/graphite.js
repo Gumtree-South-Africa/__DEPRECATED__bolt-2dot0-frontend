@@ -33,6 +33,11 @@ GraphiteService.prototype.sendMetricsForPage = function(country, pagetype, key, 
     // Can add any other server metrics we need for every metric sent to graphite
     var serverObj = {};
     serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
 
     var keyObj = {};
     var preKey =  country + '.pages.' + pagetype + '.' + key;

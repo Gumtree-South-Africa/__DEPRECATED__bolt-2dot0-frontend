@@ -13,6 +13,7 @@ var cuid = require('cuid');
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
+var responseMetrics = require('./server/middlewares/response-metrics');
 var error = require('./modules/error');
 
 var cacheBapiData = require('./server/services/cache/cache-server-startup');
@@ -50,6 +51,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
+			  	siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
