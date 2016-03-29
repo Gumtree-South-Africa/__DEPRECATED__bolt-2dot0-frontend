@@ -65,6 +65,11 @@ GraphiteService.prototype.sendMetricsForApi = function(country, apipath, key, va
     // Can add any other server metrics we need for every metric sent to graphite
     var serverObj = {};
     serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
 
     var keyObj = {};
     var preKey =  country + '.api.' + apipath + '.' + key;
@@ -82,6 +87,36 @@ GraphiteService.prototype.sendMetricsForApi = function(country, apipath, key, va
 
     scope.graphite.write(metrics, Date.now(), function(err) {
         console.error("Failed to write API metrics to Graphite server. err: " + err);
+    });
+}
+
+GraphiteService.prototype.sendNodeMetrics = function(key, value) {
+    var scope = this;
+
+    // Can add any other server metrics we need for every metric sent to graphite
+    var serverObj = {};
+    serverObj[key] = value;
+    serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
+
+    var keyObj = {};
+    var serverKey =  'server';
+    keyObj[serverKey] = serverObj;
+
+    var nodeObj = {};
+    var nodeKey = 'nodejs';
+    nodeObj[nodeKey] = keyObj;
+
+    var metrics = {};
+    var hostname = os.hostname();
+    metrics[hostname] = nodeObj;
+
+    scope.graphite.write(metrics, Date.now(), function(err) {
+        console.error("Failed to write NodeJS metrics to Graphite server. err: " + err);
     });
 }
 

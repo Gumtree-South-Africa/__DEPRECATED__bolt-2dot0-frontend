@@ -14,6 +14,7 @@ var cuid = require('cuid');
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
 var responseMetrics = require('./server/middlewares/response-metrics');
+var eventLoopMonitor = require('./server/utils/monitor-event-loop');
 var error = require('./modules/error');
 
 var cacheBapiData = require('./server/services/cache/cache-server-startup');
@@ -75,5 +76,7 @@ app.use(error.four_o_four(app));
 // Overwriting the express's default error handler should always appear after 404 middleware
 app.use(error(app));
 
+// Event Loop Monitoring
+eventLoopMonitor();
 
 module.exports = app;

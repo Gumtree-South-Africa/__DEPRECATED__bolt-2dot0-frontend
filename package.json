@@ -32,6 +32,7 @@
     "debug": "2.2.0",
     "del": "2.2.0",
     "device": "0.3.4",
+    "event-loop-monitor": "0.1.0",
     "event-stream": "3.3.2",
     "express": "4.13.1",
     "express-handlebars": "3.0.0",
