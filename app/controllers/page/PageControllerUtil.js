@@ -6,8 +6,6 @@ var express = require('express'),
     util = require('util'),
     i18n = require('i18n');
 
-var cwd = process.cwd();
-
 
 /** 
  * @description
@@ -25,7 +23,7 @@ var PageControllerUtil = function (req, res) {
  * @return {JSON}
  */
 PageControllerUtil.prototype.preController = function (req, res) {
-	var modelData =
+    var modelData =
     {
         env: 'public',
         locale: res.locals.config.locale,
@@ -66,9 +64,6 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             } else {
                 res.send(html);
             }
-
-            // Graphite Metrics
-            // graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
 
             // Kafka Logging
             // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
