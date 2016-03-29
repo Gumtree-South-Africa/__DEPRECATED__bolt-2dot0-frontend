@@ -26,7 +26,7 @@
 	},
 	"graphite": {
 	  	"server": {
-			"host"		: "graphite001.ix5.ops.prod.bt.ecg.so",
+			"host"		: "graphite.ix5.ops.prod.bt.ecg.so",
 			"port"		: 2003,
 			"interval" 	: 30
 	  	}
