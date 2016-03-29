@@ -7,6 +7,7 @@ var express = require('express'),
     i18n = require('i18n');
 
 var cwd = process.cwd();
+var graphiteService = require(cwd + '/server/utils/graphite');
 
 
 /** 
@@ -67,8 +68,9 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
                 res.send(html);
             }
 
-            // Graphite Metrics
-            // graphiteService.postForHPUsingTCP('local.random.hpmetric','999');
+            // Graphite Metrics for Page
+            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'request.useragent', req.headers['user-agent']);
+            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'response.statusCode', res.statusCode);
 
             // Kafka Logging
             // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
