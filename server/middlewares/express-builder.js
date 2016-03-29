@@ -8,6 +8,7 @@ var express = require('express'),
     expressUncapitalize = require('express-uncapitalize'),
     logger = require('morgan'),
     methodOverride = require('method-override'),
+    responseTime = require('response-Time'),
     path = require('path'),
     fs = require('fs');
 
@@ -114,6 +115,9 @@ function BuildApp(siteObj) {
         app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
         app.use(boltExpressHbs.create(app));
         app.use(deviceDetection.init());
+        app.use(responseTime(function (req, res, time) {
+            res.locals.config.responseTime = time;
+        }));
 
         // Template hbs caching.
         if (process.env.NODE_ENV) {

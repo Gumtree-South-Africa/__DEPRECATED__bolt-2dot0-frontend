@@ -71,6 +71,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             // Graphite Metrics for Page
             graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'request.useragent', req.headers['user-agent']);
             graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'response.statusCode', res.statusCode);
+            graphiteService.sendMetricsForPage(modelData.country, modelData.pagename, 'response.responseTime', res.locals.config.responseTime);
 
             // Kafka Logging
             // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;

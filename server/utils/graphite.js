@@ -35,7 +35,7 @@ GraphiteService.prototype.sendMetricsForPage = function(country, pagetype, key, 
     serverObj['uptime'] = os.uptime();
 
     var keyObj = {};
-    var preKey =  country + '.' + pagetype + '.' + key;
+    var preKey =  country + '.pages.' + pagetype + '.' + key;
     keyObj[preKey] = value;
     var serverKey =  'server';
     keyObj[serverKey] = serverObj;
@@ -49,7 +49,34 @@ GraphiteService.prototype.sendMetricsForPage = function(country, pagetype, key, 
     metrics[hostname] = nodeObj;
 
     scope.graphite.write(metrics, Date.now(), function(err) {
-        console.error("Failed to write metrics to Graphite server. err: " + err);
+        console.error("Failed to write Page metrics to Graphite server. err: " + err);
+    });
+}
+
+
+GraphiteService.prototype.sendMetricsForApi = function(country, apipath, key, value) {
+    var scope = this;
+
+    // Can add any other server metrics we need for every metric sent to graphite
+    var serverObj = {};
+    serverObj['uptime'] = os.uptime();
+
+    var keyObj = {};
+    var preKey =  country + '.api.' + apipath + '.' + key;
+    keyObj[preKey] = value;
+    var serverKey =  'server';
+    keyObj[serverKey] = serverObj;
+
+    var nodeObj = {};
+    var nodeKey = 'nodejs';
+    nodeObj[nodeKey] = keyObj;
+
+    var metrics = {};
+    var hostname = os.hostname();
+    metrics[hostname] = nodeObj;
+
+    scope.graphite.write(metrics, Date.now(), function(err) {
+        console.error("Failed to write API metrics to Graphite server. err: " + err);
     });
 }
 
