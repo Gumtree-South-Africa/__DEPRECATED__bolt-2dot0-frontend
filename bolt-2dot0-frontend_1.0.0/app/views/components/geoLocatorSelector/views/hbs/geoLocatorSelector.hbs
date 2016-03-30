@@ -1,0 +1,7 @@
+<div class="location-selector hide">
+	<div>
+	{{#each this.location.children}}
+		<a href="javascript:void(0)" data-id="{{this.id}}" data-name="{{this.localizedName}}">{{this.localizedName}}</a>
+    {{/each}}
+    </div>
+</div>

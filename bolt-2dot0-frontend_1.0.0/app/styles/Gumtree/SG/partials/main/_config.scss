@@ -1,0 +1,65 @@
+$header-logo-mobile-height: 51px;
+$header-width: $container-width;
+$header-wrap-height: 60px;
+$header-border-left: 1px solid #eaeacf;
+$header-border-right: $header-border-left;
+$header-nav-link-color: $gumtree-green;
+$header-post-button-color: $postad-btn-color;
+$header-post-button-radius: 2em;
+$header-post-button-gradient-start: #f89301;
+$header-post-button-gradient-end: #f26121;
+$header-countries-color: #777;
+$header-post-button-border: 2px solid $color-white;
+$header-countries-width: 8em;
+$header-countries-display: none;
+$header-help-display: none;
+$header-signin-border-color: $gumtree-green;
+$header-nav-slide-left: false;
+
+$searchbar-width: $container-width;
+$searchbar-wrap-background: $gtgreen;
+$searchbar-wrap-border-top: 2px solid $gtdkgreen;
+$searchbar-button-color: $gtdkgreen;
+$searchbar-button-3d: false;
+$searchbar-caret-color:$gtdkgreen;
+$searchbar-link-color:$gtdkgreen;
+$searchbar-autocomplete-border-color: $gtgreen;
+$searchbar-autocomplete-link-color: $gtdkgreen;
+$searchbar-form-tablet-padding: 0 0 0 8em;
+$searchbar-form-desktop-padding: 0 0 0 8em;
+
+$pagetitle-wrap-width: $container-width;
+$pagetitle-wrap-background: $gtgreen;
+$pagetitle-wrap-border-top: 2px solid $gtdkgreen;
+
+@include from-breakpoint($small-break){
+   body .page-title .wrap{ padding-left:9em; }
+}
+
+@include in-breakpoint($no-break) {
+  .header .wrap {
+    padding-bottom: 0 !important;
+  }
+}
+
+.header .right .post {
+  padding: 0.2em 0;
+}
+
+// BOLT-15187
+.header .right .signin{ display:none; }
+// BOLT-15212
+@include from-breakpoint($large-break){
+  .header .right .nav .profile .icon span {
+    width:105% !important;
+    height: 105% !important;
+  }
+}
+
+// BOLT-15029.
+// Moved this out of searchbar to avoid conflict of value for $searchbar-form-desktop-padding
+@include to-breakpoint($lt-ie9-class-name) {
+  .searchbar form{
+    padding:$searchbar-form-desktop-padding !important;
+  }
+}

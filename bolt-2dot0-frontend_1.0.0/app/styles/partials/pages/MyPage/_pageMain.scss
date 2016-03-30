@@ -1,0 +1,154 @@
+.content{
+	padding: $large-padding 0;
+}
+
+.footer .blog {
+	top:0em;
+}
+
+@include in-breakpoint($no-break){
+    .footer .blog {
+		top:0.4em;
+	}
+}
+
+
+form#register label * {
+	vertical-align:inherit;
+}
+
+@include input-facade();
+input[name=terms] {
+	display: none;
+}
+
+form{
+	line-height: 2em;
+
+	ul.error,
+	span.error,
+	div.error{
+		color: $form-element-error-color;
+		font-size: 0.85em;
+		line-height: 1em;
+	}
+	
+	ul.error
+	{
+		list-style:initial;
+		list-style-position: inside;
+	}
+
+	.label{
+		color: $form-label-color;
+		font-weight: bold;
+	}
+
+	input[type="email"],
+	input[type="text"],
+	input[type="password"]{
+		@include text-input;
+		font-size: 1em;
+		padding: $small-padding $medium-padding;
+		display: block;
+		width: 100%;
+		margin-top: $small-margin;
+	}
+
+
+	
+
+	label{
+		display: block;
+		margin-top: $medium-margin;
+
+		.label{
+			display: inline;
+		}
+		*{
+			vertical-align: middle;
+		}
+	}
+
+	button{
+		@include form-submit-button;
+		padding: $medium-padding 2em;
+		width: auto;
+		font-size: 1em;
+		margin-bottom: 1px;
+		margin-left: 1px;
+	}
+
+}
+
+
+
+
+
+
+
+.toggle-section-link{
+	margin-top: $large-margin * 2;
+	background-color: $toggle-section-link-bg-color;
+	@include border-radius($small-border-radius);
+	padding: $small-padding;
+
+	a{
+		font-weight:bold;
+	}
+}
+
+@include in-breakpoint($no-break){
+	.left-content{ @include span-columns($no-break, $no-break); }
+	.right-content{ display: none; }
+}
+
+@include in-breakpoint($small-break){
+	.left-content{
+		@include span-columns($small-break - 2, $small-break);
+		padding: 0 $small-padding;
+	}
+	.right-content{
+		@include span-columns(2, $small-break);
+	}
+}
+
+
+@include in-breakpoint($medium-break){
+	.left-content{
+		@include span-columns(3, $medium-break);
+		padding: 0 $medium-padding;
+	}
+	.right-content{
+		@include span-columns($medium-break - 4, $medium-break);
+	}
+}
+
+
+@include in-breakpoint($large-break, $lt-ie9-class-name){
+	.left-content{
+		@include span-columns(4, $large-break);
+		padding: 0 $large-padding;
+	}
+	input[type="email"],
+	input[type="text"],
+	input[type="password"]{
+		border: 1px solid darken($color-white, 20%);
+	}
+	
+	.right-content{
+		@include span-columns($large-break - 6, $large-break);
+	}
+}
+
+@include from-breakpoint($small-break){
+	.right-content{ margin-right: 0; }
+}
+
+/*@include in-breakpoint($lt-ie9-class-name) {
+  form label input[type='checkbox'] {
+    height: 1.25em;
+    width: 1.25em;
+    font-size:1.25em;
+  }
+}*/

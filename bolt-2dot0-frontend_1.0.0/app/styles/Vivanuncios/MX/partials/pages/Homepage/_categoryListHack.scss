@@ -1,0 +1,248 @@
+@import "../../../../../partials/common/categoryListBase";
+
+$right-column-top: 16em;
+$ad-height: 16em;
+
+#flexLftBuckt{
+	.item{
+		span{
+			&.icon{
+				display: none;
+			}
+			&.label{
+				padding-left: 0em;
+				font-size: 0.9em;
+			}
+		}
+		ul{
+			li.all-label, a{
+				font-size: 0.9em;
+			}
+		}
+	}
+}
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+@include to-breakpoint($no-break){
+  @include category-list-to-no-breakpoint;
+  .parent-category{
+    a{
+     &:hover{
+      background-color: $content-link-bg-color;
+     }
+    }
+   }
+
+}
+
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+@include in-breakpoint($small-break){
+	#flexLftBuckt{
+		height: 55em;
+		padding-left: 0.9em;
+	}
+    .category-list{
+        position:relative;
+
+        .parent-category{
+            position:absolute;
+
+            //column1
+            &.l1category3{
+            	top: 0em;
+            }
+            &.l1category5{
+                top: 12.5em;
+            }
+            &.l1category2{
+                top: 8.2em;
+            }
+            &.l1category25{
+                top: 20em;
+            }
+
+            &.l1category1{
+                top: 28.5em;
+            }
+            &.l1category30{
+                top: 40em;
+            }
+        }
+    }
+    //column2
+    $column2left: 35%;
+	.category-list {
+        .parent-category{
+            &.l1category17{
+                top: 0em;
+                left: $column2left;
+            }
+
+           &.l1category1089{
+             top: 15em;
+             left: $column2left;
+
+           }
+            &.l1category1120{
+                top: 18em;
+                left: $column2left;
+            }
+            &.l1category1230{
+                top: 27.5em;
+                left: $column2left;
+            }
+            &.l1category20{
+                top: 39em;
+                left: $column2left;
+            }
+        }
+    }
+    //column3
+    $column3left: 69%;
+    .category-list {
+    	.parent-category{
+		    &.l1category53{
+		    	top: 0em;
+		        left: $column3left;
+		    }
+
+		    &.l1category64{
+		        top: 14.5em;
+		        left: $column3left;
+		    }
+
+		    &.l1category36{
+		        top: 32em;
+		        left:$column3left;
+		    }
+		}
+	}
+}
+
+//--------------------------------------------------------
+// from-medium breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+    #flexLftBuckt{
+		height: 40em;
+		margin-left: 1em;
+	}
+
+	.category-wrapper .category-list .parent-category{
+		width: 22%;
+	}
+
+    .category-list{
+        position:relative;
+
+        .parent-category{
+            position:absolute;
+
+            //column1
+            &.l1category3{
+            	top: 0em;
+            }
+            &.l1category5{
+                top: 12.5em;
+            }
+            &.l1category25{
+                top: 21em;
+            }
+            &.l1category2{
+                top: 8em;
+            }
+            &.l1category1{
+                top: 29.5em;
+            }
+        }
+    }
+    //column2
+    $column2left: 27.5%;
+	.category-list {
+        .parent-category{
+            &.l1category17{
+                top: 0em;
+                left: $column2left;
+            }
+
+            &.l1category1089{
+                top: 15em;
+                left: $column2left;
+            }
+
+            &.l1category1120{
+                top: 18em;
+                left: $column2left;
+            }
+            &.l1category1230{
+                top: 27.7em;
+                left: $column2left;
+            }
+        }
+    }
+    //column3
+    $column3left: 53.5%;
+    .category-list {
+    	.parent-category{
+		    &.l1category53{
+		    	top: 0em;
+		        left: $column3left;
+		    }
+		    &.l1category64{
+		        top: 15em;
+		        left: $column3left;
+		    }
+		    &.l1category36{
+		        top: 30em;
+		        left:$column3left;
+		    }
+		}
+	}
+	//column4
+    $column4left: 77%;
+    .category-list {
+    	.parent-category{
+		    &.l1category30{
+		    	top: 0em;
+		        left: $column4left;
+		    }
+		    &.l1category20{
+		        top: 15em;
+		        left: $column4left;
+		    }
+
+		}
+	}
+}
+
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+.category-list{
+
+    .parent-category{
+       > a{
+          .icon{
+                 height:1.1em;
+                 width:2em;
+                 &.icon-cat-64{
+                    width:1.5em;
+                  }
+
+              }
+
+            }
+
+        }
+    }
+
+//-----------------------------------------------------------
+// Home page Right Adbanner
+//-----------------------------------------------------------
+
+.home_rghtbanner{
+    margin-bottom:10px;
+  }  

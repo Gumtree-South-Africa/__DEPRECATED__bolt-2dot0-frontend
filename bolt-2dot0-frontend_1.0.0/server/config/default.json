@@ -1,0 +1,48 @@
+{
+	"BAPI": {
+		"server": {
+			"host": "api.bolt.ecg.ebay.com.localhost",
+			"port": 8080,
+			"parameters": null
+		},
+	    "endpoints": {
+	    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories?depth=2",
+	    	"locationHomePage"	:	"/bolt-api-webapp/v1/locations?depth=2",
+	    	"topLocationsL1"	:	"/bolt-api-webapp/v1/locations?depth=1",
+	    	"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
+	    	"userFromCookie" 	:	"/bolt-api-webapp/v1/users/logged-in-user-info",
+	    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top?categoryId=0&locationId=1",
+	    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending?categoryId=0&locationId=1",
+	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
+	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
+	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json"
+	    }
+	},
+	"kafka": {
+		"server": {
+			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port"	: 2181,
+			"topic" : "node_log"
+		}
+	},
+	"graphite": {
+		"server": {
+			"host"		: "10.65.201.202",
+			"port"		: 2003,
+			"interval" 	: 30
+		}
+	},
+	"static": {
+		"server": {
+			"host"		: null,
+			"port"		: null,
+			"version"	: null
+		},
+		"baseCSSUrl"	: "/css/",
+		"baseJSUrl"		: "/js/",
+		"baseJSMinUrl"	: "/jsmin/",
+		"baseImageUrl"	: "/images/",
+		"mainJSUrl"		: "/js/main.js",
+		"min"			: false
+	}
+}

@@ -1,0 +1,34 @@
+@import "../../../../partials/pages/MyPromotePage/thumbnail";
+@import '../../../../partials/common/column-labels';
+//@import "thumbnail";
+
+@include thumbnail_default;
+
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	@include thumbnail_medium;
+
+	#subheader{
+		background-color:#fffee0;
+		background-image: none;
+	}
+}
+
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	@include thumbnail_large;
+}
+
+
+@include in-breakpoint($lt-ie9-class-name){
+	.feature-legend{
+		border: 1px solid #e3e3c9;
+	}
+}
+
+@include input-facade();
+:root input[type=checkbox].input-checkbox + label:before,
+:root input[type=radio].input-radio + label:before {
+	float:left;
+	margin: 0.2em 0.25em;
+}

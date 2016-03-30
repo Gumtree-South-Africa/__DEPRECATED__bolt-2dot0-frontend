@@ -1,0 +1,11 @@
+{{#each this}}
+    <span itemscope itemtype="http://data-vocabulary.org/Breadcrumb">
+        <a class="category" href="{{this.url}}">
+            <span class="microdata" itemprop="title">{{this.name}}</span>
+        </a>
+        <meta itemprop="url" content="{{this.url}}" />
+    </span>
+    <span class="icon-chevron-right"></span>
+    <span></span>
+{{/each}}
+

@@ -1,0 +1,98 @@
+{
+	"header" : {
+		"type" 								: "website",
+		"localeOpenGraph" 					: "pl_PL",
+		"publisherUrl"						: null,
+		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-pl/no-photo-pl.jpg",
+		"moreAdSizes"						: ",[750,100],[750,200],[750,300]",
+		"homepageHeroAdvertisement" 		: false,
+		"isMessageCenterEnabled"			: false,
+		"skinCampaignOn"					: false,
+		"googleTagAccountId"				: "7162/Gumtree_PL",
+		"googleTagAccountMobId"				: "7162/Gumtree_PL_mobresp",
+		"enableLighterVersionForMobile"		: false,
+		"headerConfig"						: {
+			"isolatedLoginLink"	: true
+		},
+		"navigationConfig"					: {
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true,
+			"geoLocator"		: false
+		},
+	    "marketo"							: {
+	    	"enabled"			: false,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "038-AZF-323",
+	    	"privateKey"		: "boltisking123",
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
+	    },
+	    "seoDeepLinkingBaseUrlAndroid" 		: null,
+		"locationDropdownLevel"				: 2,
+		"categoryDropdownLevel"				: 2
+	},
+	"footer" : {
+		"cookieNotice"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies",
+		"privacyPolicy"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Polityka-prywatnosci",
+		"termOfUse"							: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Zasady-korzystania",
+		"helpLabel"							: "Help",
+		"helpUrl"							: "http://pomoc.gumtree.pl/PL",
+		"interLinkUrl"						: "",
+		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"			: "/t-wyszukiwarka-gory/wszystkie-ogloszenia/v1b0",
+		"googleAdSense"						:	{
+			"enabled"							: true,
+			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+			"googleAdWidth"						: "300",
+			"googleAdHeight"					: "250"
+		},
+		"seoBolt"							:	{
+			"enabled"							: false,			
+			"blogUrl" 							: "http://blog.gumtree.pl/",
+			"vipLandingPageEnabled"				: true
+		},
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
+		"analytics": {
+	        "account": "UA-9157637-1",
+	        "domainName": ".gumtree.pl",
+	        "ignoredRefs": [
+	            "gumtree.pl"
+	        ],
+	        "allowAnchor": true,
+	        "sessionCookieTimeout": 1800000,
+	        "campaignCookieTimeout": 15768000000,
+	        "visitorCookieTimeout": 63072000000,
+	        "gtmTagId":"GTM-KSFR4N",
+	        "trackEvents" : [
+	        	{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+	        	{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+	         ]
+	    }
+	},
+	"content" : {
+		"homepage" : {
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"		: null,
+			"bingMeta"				: null,
+			"swapTradeEnabled"		: true,		
+			"swapTradeName"			: "home.swap-trade.$$",
+			"swapTradeUrl"			: "s-Wymiana/zamiana/v1p1?priceType=barter_swap",
+			"freebiesEnabled"		: true,		
+			"freebiesName"			: "home.freebies.$$",
+			"freebiesUrl"			: "s-Oddam za darmo/v1p1?priceType=free",
+		  	"adCarouselSeeAllUrl"	: "/s-wszystkie-the-reklamy/v1b0p1?fe=2"
+		}
+	},
+	"bapi" : {
+		"Homepage" : {
+			"desktop" 	: {
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+			},
+			"mobile" 	: {
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+			}
+		}
+	}
+}

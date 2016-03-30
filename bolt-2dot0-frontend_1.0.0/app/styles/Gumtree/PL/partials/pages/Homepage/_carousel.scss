@@ -1,0 +1,8 @@
+@import '../../../../../partials/pages/Homepage/carousel';
+
+
+// fix BOLT-16642
+// decreasing font size for the button in PL
+.endAd {
+    font-size: .875em;
+}

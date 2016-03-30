@@ -1,0 +1,19 @@
+{{#partial "deviceSmartBanner"}}
+    {{#ifMobile this.device}}
+        <meta name="ecg-apple-itunes-app" content="app-id=872789604, app-argument=https://app.adjust.com/oarq82" />
+        <meta name="google-play-app" content="app-id=oarq82" />
+    {{/ifMobile}}
+{{/partial}}
+
+{{#partial "deviceSmartBannerScript"}}
+    {{#ifMobile this.device}}
+        <script>
+            var appStoreLanguage = "mx";
+            var appStoreTitle = '{{{i18n "smartbanner.title"}}}';
+            var appStoreButtonInstall = '{{i18n "smartbanner.install"}}';
+        </script>
+        {{#block "deviceSmartBannerScriptImpl"}}{{/block}}
+    {{/ifMobile}}
+{{/partial}}
+
+{{> (base "smartBanner") }}

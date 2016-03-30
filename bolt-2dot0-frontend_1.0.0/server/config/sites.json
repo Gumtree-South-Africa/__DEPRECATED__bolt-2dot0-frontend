@@ -1,0 +1,46 @@
+{
+    "sites": {
+        "vivanuncios.com.mx": {
+            "name": "Vivanuncios",
+            "locale": "es_MX",
+            "country": "MX",
+            "hostname": "vivanuncios.com.mx"
+        },
+        "alamaula.com": {
+            "name": "Alamaula",
+            "locale": "es_AR",
+            "country": "AR",
+            "hostname": "alamaula.com"
+        },
+        "ibazar.com": {
+            "name": "iBazar",
+            "locale": "es_US",
+            "country": "US",
+            "hostname": "ibazar.com"
+        },
+        "gumtree.co.za": {
+            "name": "Gumtree",
+            "locale": "en_ZA",
+            "country": "ZA",
+            "hostname": "gumtree.co.za"
+        },
+        "gumtree.ie": {
+            "name": "Gumtree",
+            "locale": "en_IE",
+            "country": "IE",
+            "hostname": "gumtree.ie"
+        },
+        "gumtree.pl": {
+            "name": "Gumtree",
+            "locale": "pl_PL",
+            "country": "PL",
+            "hostname": "gumtree.pl"
+        },
+        "gumtree.sg": {
+            "name": "Gumtree",
+            "locale": "en_SG",
+            "country": "SG",
+            "hostname": "gumtree.sg"
+        }
+    }
+}

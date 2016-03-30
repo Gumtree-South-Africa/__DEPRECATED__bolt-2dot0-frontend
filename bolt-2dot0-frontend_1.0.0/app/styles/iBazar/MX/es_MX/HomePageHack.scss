@@ -1,0 +1,28 @@
+@import 
+    "../../theme",
+    "../partials/pages/Homepage/categoryListIE9",
+     "../partials/pages/Homepage/Tutorial";
+
+@import "../../../partials/pages/Homepage/pageMain",
+        "../../../partials/shared/locationMapCountry";
+
+// For MX, don't show the ad count in the category container area.
+// It is currently shown in the PostAdSpace.html file. See also _search.scss
+// Fixes BOLT-12091
+.hp-total-ad-count {
+  display: none;
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+  // Highlight for locations (provinces/states).
+  .locHighlight, .locHighlight:hover, .locHighlight:visited {
+    background-color : #2871C7;
+  }
+}
+
+@import "../../../partials/pages/Homepage/carousel";
+
+// Variable for the map images path.
+$map-url: url(../../../../../images/es_MX/MAP/mx_sprite.gif);
+$tablet-map-url: url(../../../../../images/es_MX/MAP/mx_map3_tablet_bg.png);
+@include country-homepage-map;

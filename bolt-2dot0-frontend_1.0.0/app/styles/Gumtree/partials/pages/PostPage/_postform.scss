@@ -1,0 +1,14 @@
+//SA doesn't want to display currency types
+#currencyValues{
+ display:none;
+}
+
+textarea,#desc_ctnr iframe {
+  height: 6em;
+}
+
+@include from-breakpoint($small-break){
+    textarea,#desc_ctnr iframe {
+      height: 10em;
+    }
+}

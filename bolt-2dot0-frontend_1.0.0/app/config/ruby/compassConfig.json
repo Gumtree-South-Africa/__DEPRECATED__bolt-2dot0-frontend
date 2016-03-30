@@ -1,0 +1,16 @@
+[
+  {
+    "breakpoint": "desktop",
+    "lineNumbers": true,
+    "cssPath": "public/css/all" ,
+    "sassPath": "./app/styles",
+    "output_style": "compressed"
+  },
+  {
+    "breakpoint": "mobile",
+    "lineNumbers": true,
+    "cssPath": "public/css/mobile" ,
+    "sassPath": "./app/styles",
+    "output_style": "compressed"
+  }
+]

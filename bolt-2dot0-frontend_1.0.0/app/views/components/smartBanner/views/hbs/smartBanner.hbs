@@ -1,0 +1,78 @@
+{{#partial "deviceSmartBannerScriptImpl"}}
+    <script>
+        var appInstalled = true;
+        var appStoreLanguage = appStoreLanguage || "us";
+
+        $(function() {
+            var sessionNamePageVisits = "interstitial";
+            var sessionNameLastPage = "bannerPagePath";
+            var android = location.href.match(/#android$/) || navigator.userAgent.match(/Android/i) != null;
+            var smartBannerJSON = {
+                appStoreLanguage:  appStoreLanguage,
+                author: ' ',
+                title: appStoreTitle || "", // '{{{i18n "smartbanner.title"}}}',
+                price: null, // {{i18n "smartbanner.free"}}', // Price of the app
+                button: appStoreButtonInstall, // '{{i18n "smartbanner.install"}}', // Text for the install button
+                buttonOpen: '{{i18n "smartbanner.open"}}', // Text for the open button.
+                inAppStore: "",  // Text of price for iOS
+                inGooglePlay: "", // Text of price for Android
+                GooglePlayParams: null, // Aditional parameters for the market
+                icon: (typeof appStoreIconURL !== "undefined") ? appStoreIconURL : null,
+                //  icon: null, // The URL of the icon (defaults to <meta name="apple-touch-icon">)
+                url: null, // The URL for the button. Keep null if you want the button to link to the app store.
+                scale: "auto",
+                speedIn: 300, // Show animation speed of the banner
+                speedOut: 400, // Close animation speed of the banner
+                //daysHidden: 0, // Duration to hide the banner after being closed (0 = always show banner)
+                //daysReminder: 0, // Duration to hide the banner after "VIEW" is clicked *separate from when the close button is clicked* (0 = always show banner)
+                //force: null, // Choose 'ios', 'android' or 'windows'. Don't do a browser check, just always show this banner
+                force: android ? 'android' : 'ios',
+                hideOnInstall: true // Hide the banner after "VIEW" is clicked.
+            };
+
+            // For insterstitial banner only.
+            if (typeof isInterstitial !== "undefined" && isInterstitial) {
+                smartBannerJSON['interstitial'] = true;
+
+                if (typeof interstitialShowAfterHide !== "undefined" && interstitialShowAfterHide) {
+                    smartBannerJSON['showAfterHide'] = interstitialShowAfterHide;
+                }
+
+                if (typeof interstitialDaysHidden !== "undefined" && interstitialDaysHidden) {
+                    smartBannerJSON['daysHidden'] = interstitialDaysHidden;
+                }
+
+                // Callback with extra conditions to show interstitial banner
+                smartBannerJSON['showBannerCallBack'] = function () {
+                    // Check if we just did a reload. Reloads won't count as visits for this matter.
+                    if (sessionStorage[sessionNameLastPage] && sessionStorage[sessionNameLastPage] == window.location.pathname) {
+                        return false;
+                    }
+
+                    // Session banner path
+                    sessionStorage[sessionNameLastPage] = window.location.pathname;
+
+                    // Increment the value of the number of visits;
+                    sessionStorage[sessionNamePageVisits] = sessionStorage[sessionNamePageVisits] || 0;
+                    ++sessionStorage[sessionNamePageVisits];
+
+                    // Show banner at the 2nd page visit.
+                    if (sessionStorage[sessionNamePageVisits] == 2) {
+                        return true;
+                    }
+
+                    return false;
+                };
+
+                // Function to be called when the user closes the banner or installs the app.
+                smartBannerJSON['installCloseCallBack'] = function () {
+                    sessionStorage.removeItem(sessionNamePageVisits);
+                    sessionStorage.removeItem(sessionNameLastPage);
+                }
+
+            }
+
+            $.smartbanner(smartBannerJSON);
+        });
+    </script>
+{{/partial}}
