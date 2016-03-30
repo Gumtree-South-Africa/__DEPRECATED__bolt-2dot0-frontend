@@ -1,0 +1,101 @@
+{
+	"header" : {
+		"type" 								: "website",
+		"localeOpenGraph" 					: "es_AR",
+		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
+		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no-photo_MX.png",
+		"moreAdSizes"						: "",
+		"homepageHeroAdvertisement" 		: false,
+		"isMessageCenterEnabled"			: true,
+		"skinCampaignOn"					: false,
+		"googleTagAccountId"				: "306629115/AR_alaMaula",
+		"googleTagAccountMobId"				: "306629115/MX_mobresp",
+		"enableLighterVersionForMobile"		: true,
+		"headerConfig"						: null,
+		"navigationConfig"					: {
+			"instantSearch"		: true,
+			"geoLocator"		: true,
+			"savedSearch"		: true,
+			"autoComplete"		: true,
+			"locationSelection" : true,
+			"geoLocator"		: true
+		},
+	    "marketo"							: {
+	    	"enabled"			: true,
+	    	"trackAnonUser"		: false,
+	    	"munchkinId"		: "478-YGU-956",
+	    	"wsInfo"			: "j0hRctjOKwEI",
+	    	"privateKey"		: "boltisking123",
+			"domainName" 		: "fakefornow",
+			"deletecookie"		: false
+	    },
+	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/",
+		"locationDropdownLevel"				: 1,
+		"categoryDropdownLevel"				: 2
+	},
+	"footer" : {
+		"cookieNotice"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
+		"privacyPolicy"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
+		"termOfUse"							: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
+		"helpLabel"							: "Ayuda",
+		"helpUrl"							: "http://ayuda.alamaula.com/",
+		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
+		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"			: "/t-busquedas-destacadas/todos-los-avisos/v1b0",
+		"googleAdSense"						:	{
+			"enabled"							: true,
+			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+	        "googleAdClient"					: "ca-pub-4933925025705454",
+			"googleAdSlot"						: "2586422330",
+			"googleAdWidth"						: "300",
+			"googleAdHeight"					: "250"
+		},
+		"seoBolt"							:	{
+			"enabled"							: true,			
+			"blogUrl" 							: "http://blog.alamaula.com/",
+			"vipLandingPageEnabled"				: true
+		},
+		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
+		"analytics": {
+	        "account": "",
+	        "domainName": ".alamaula.com",
+	        "ignoredRefs": [
+	            "alamaula.com"
+	        ],
+	        "allowAnchor": true,
+	        "sessionCookieTimeout": 1800000,
+	        "campaignCookieTimeout": 15768000000,
+	        "visitorCookieTimeout": 63072000000,
+	        "gtmTagId":"GTM-5PS738",
+	        "trackEvents" : [
+	            {"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+	            {"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+	        ]
+	    }
+	},
+	"content" : {
+		"homepage" : {
+			"topHomePageAdBanner"	: false,
+			"homepageBanners"		: null,
+			"bingMeta"				: null,
+			"swapTradeEnabled"		: false,		
+			"swapTradeName"			: null,
+			"swapTradeUrl"			: null,
+			"freebiesEnabled"		: false,		
+			"freebiesName"			: null,
+			"freebiesUrl"			: null,
+		  	"adCarouselSeeAllUrl"	: null
+		}
+	},
+	"bapi" : {
+		"Homepage" : {
+			"desktop" 	: {
+				"models" : ["keyword", "gallery", "seo"]
+			},
+			"mobile" 	: {
+				"models" : ["keyword", "adstatistics", "seo"]
+			}
+		}
+	}
+}

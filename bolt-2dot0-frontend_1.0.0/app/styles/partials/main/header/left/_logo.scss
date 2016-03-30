@@ -1,0 +1,30 @@
+$header-logo-mobile-height: auto !default;
+$header-logo-tablet-height: auto !default;;
+$header-logo-desktop-height: auto !default;;
+
+.logo{
+
+    a{ display:block; }
+
+    img{ max-width:100%;
+
+        @include in-breakpoint($no-break){
+            max-height:$header-logo-mobile-height;
+        }
+
+        @include in-breakpoint($small-break){
+            max-height:$header-logo-tablet-height;
+        }
+
+        @include from-breakpoint($medium-break){
+            max-height:$header-logo-desktop-height;
+        }
+
+        @include in-breakpoint($lt-ie10-class-name){
+            height:$header-logo-desktop-height;
+        }
+
+    }
+
+}
+

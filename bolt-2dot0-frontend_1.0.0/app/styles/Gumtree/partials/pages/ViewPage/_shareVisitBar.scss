@@ -1,0 +1,39 @@
+.sharevisitInfo.no-visit-0{
+  #page-vip{
+     width: 100%;
+ }
+}   
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+    .sharevisitInfo
+    {
+       
+        #page-vip
+        {
+            @include span-columns(27, $large-break*3);
+			&.ad-view-count-hidden {
+				width: 100%;
+			}
+        }
+        .viewAdCount{
+            text-align:center;
+            background-color: #ebeeb9;
+        }
+    }
+}
+
+@include in-breakpoint($small-break){
+    .sharevisitInfo
+    {
+        @include span-columns(4, $small-break);
+	    width: 100%;
+        float:left;
+    }
+}
+
+@include in-breakpoint($no-break){
+   
+   .sharevisitInfo.no-visit-0 {
+      border-bottom: none;
+   }
+}

@@ -1,0 +1,14 @@
+@include gallery_default;
+@include sliderize_default;
+
+@include from-breakpoint($small-break) {
+	@include gallery_medium;
+}
+
+@include from-breakpoint($medium-break){
+	@include gallery_large;
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	@include gallery_xlarge;
+}

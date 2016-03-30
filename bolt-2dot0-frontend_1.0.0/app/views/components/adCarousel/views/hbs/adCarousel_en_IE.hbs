@@ -1,0 +1,24 @@
+{{#partial "carousel"}}
+    {{#with this}} {{!-- model.initialGalleryInfo --}}
+        <div id="gallery" class="gallery"></div>
+    {{/with}}
+
+    {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
+    {{!-- #with model.initialGalleryInfo --}}
+    <script>
+        var adList = {{{json this.initialGalleryInfo}}},
+            {{#if model.header.postAdPageUrl}}
+                    dataPostLink="{{this.header.postAdPageUrl}}",
+            {{else}}
+                    dataPostLink="/post.html",
+            {{/if}}
+                dataPostAdText="{{i18n "postad.a.free.ad.text"}}",
+            {{#if this.content.seeAllUrl}}
+                    seeAllUrl = "{{obfuscateUrl this.content.seeAllUrl}}",
+                    seeAllText = '{{i18n "features.see.all"}}',
+            {{/if}}
+            galleryAjaxBaseUrl = "{{this.content.galleryAdsAjaxInitUrl}}";
+    </script>
+{{!-- /with --}}
+{{!-- /partial --}}
+{{/partial}}

@@ -1,0 +1,80 @@
+{{> (base "footer") }}
+
+{{#partial "comscore"}}
+	{{#with this.content.ComscoreTag}}
+		 <div class="comscore">
+		    <span class="comscore_text">{{this.content.ComscoreTag}}</span>
+		 </div>
+   {{/with}}
+{{/partial}}
+
+{{#partial "footer"}}
+
+    <div class="link-wrapper">
+        <span class="reg_link">
+                <a href="http://www.alamaula.com/pages/mobileapp/">{{i18n "footer.mobileApp"}}</a>
+        </span>
+
+        {{#block "blog"}}
+            {{#if this.footer.seoBolt.enabled}}
+                <span class="blog"><a href="http://blog.alamaula.com/">{{i18n "footer.blog"}}</a></span>
+            {{/if}}
+        {{/block}}
+
+         <span class="reg_link">
+                <a href="http://www.alamaula.com/pages/red-de-clasificados-de-ebay/">{{i18n "footer.our-sites"}}</a>
+        </span>
+
+         <span class="reg_link">
+                <a href="http://ayuda.alamaula.com/">{{i18n "footer.help"}}</a>
+        </span>
+
+        <span class="reg_link ">
+                <a href="http://www.alamaula.com/pages/">{{i18n "footer.siteMap"}}</a>
+        </span>
+
+         <span class="reg_link ">
+                <a href=" http://www.alamaula.com/pages/precios/">{{i18n "footer.autoGuide"}}</a>
+        </span>
+
+         <span class="reg_link">
+                <a href="http://www.alamaula.com/pages/propiedades/">{{i18n "footer.propertyPriceChecker"}}</a>
+        </span>
+
+        <span class="reg_link">
+                <a href="http://www.alamaula.com/pages/ciudades/">{{i18n "footer.locations"}}</a>
+        </span>
+
+        <span class="reg_link last_link">
+                <a href="{{{this.footer.topSearchesLandingPageUrl}}}">{{i18n "footer.topSearches"}}</a>
+        </span>
+
+    </div>
+
+    {{#block "cookie_notification" }}
+        <div class="cookie_warn">
+            <div class="cr-container">
+                <div class="social-links">{{> (dynamic "socialMediaLinks") }}</div>
+                <div class="cpyrt">{{i18n "footer.cr.$$" }}
+                    <span class='cpyrt_links'>
+                    <span class='sudo-link'>
+                        <a href="{{this.footer.termOfUse}}">{{i18n "footer.cr.termsAndConditions"}}</a>
+                    </span>
+                    ,
+                    <span class='sudo-link'>
+                        <a href="{{this.footer.privacyPolicy}}">{{i18n "footer.cr.privacy"}}</a>
+                    </span>
+                    y
+                    <span class='sudo-link'>
+                        <a href="{{this.footer.cookieNotice}}">{{i18n "footer.cr.cookies"}}</a>
+                    </span>.
+                    </span>
+                </div>
+            </div>
+        </div>
+    {{/block}}
+
+    <div class="decorationLine">
+        <span class="span1"></span>
+    </div>
+{{/partial}}

@@ -1,0 +1,298 @@
+@import  "../../../../../partials/common/categoryListBase";
+
+
+$ad-height: 14em;
+$social-container-height: 6em;
+$right-column-top: 0em;
+
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+@include to-breakpoint($no-break){
+    @include category-list-to-no-breakpoint;
+    .parent-category{
+    a{
+     &:hover{
+      background-color: $content-link-bg-color;
+     }
+    }
+   }  
+   
+}
+
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+@include in-breakpoint($small-break){
+    .category-list {
+        position:relative;
+        
+        .parent-category{
+            position:absolute;
+            
+            //column1
+            //&.l1category1{
+            //}
+            &.l1category30{
+                @include column-border-top;
+                top: 26em;
+            }
+            
+            &.l1category20{
+                @include column-border-top;
+                top: 47em;
+                left: 50%;
+            }
+            
+            &.l1category53{
+                @include column-border-top;
+                top:53em;
+            }
+            &.l1category224{
+            	@include column-border-top;
+                top:42em;
+            }
+            
+        }
+        
+        
+    }
+    
+    //columnright
+    //column2
+    $right-column-left: 50%;
+    
+     .hp-content {
+        .category-list 
+        {
+            height:70em;
+            .parent-category{
+                &.l1category64{
+                    top:$right-column-top;
+                    left:$right-column-left;
+                }
+                &.l1category36{
+                    @include column-border-top;
+                    top:$right-column-top + 16em;
+                    left:$right-column-left;
+                }
+                &.l1category48{
+                    @include column-border-top;
+                    top:$right-column-top + 39em;
+                    left:$right-column-left;
+                }
+            }
+        }
+        
+        /*&.googleAdSensei
+        {
+            .category-list 
+            {
+                height:88em;
+                .parent-category{
+                    &.l1category64{
+                        top:$right-column-top + $ad-height;
+                    }
+                    &.l1category36{
+                        top:$right-column-top + $ad-height + 16em;
+                    }
+                    &.l1category48{
+                        top:$right-column-top + $ad-height + 39em;
+                    }
+                }
+            }
+        }
+       
+            &.googleAdSensei
+            {
+                .category-list 
+                {
+                    height:93em;
+                    .parent-category{
+                        &.l1category64{
+                            top:$right-column-top + $social-container-height + $ad-height ;
+                        }
+                        
+                        &.l1category36{
+                            top:$right-column-top + $social-container-height + $ad-height + 16em;
+                        }
+                        
+                        &.l1category48{
+                            top:$right-column-top + $social-container-height + $ad-height + 39em;
+                        }
+                    }
+            }
+        }
+        */
+    }
+}
+
+//--------------------------------------------------------
+// medium breakpoint starts
+//--------------------------------------------------------
+@include in-breakpoint($medium-break){
+     .category-list {
+        position:relative;
+        height:70em;
+        
+        
+        .parent-category{
+            position:absolute;
+            
+            //column1
+            //&.l1category1{
+            //}
+            
+            &.l1category36{
+                @include column-border-top;
+                top:17em;
+                left: 19em;
+            }
+            
+            &.l1category224{
+            	 @include column-border-top;
+            	 top: 42em;
+            }
+            
+            $column2left: 30%;
+            //column2
+            &.l1category64{
+                top: 0;
+                left:19em; /*$column2left;*/
+            }
+            
+            &.l1category30{
+            	@include column-border-top;
+                top:26em;
+            }
+            
+            &.l1category20{
+                @include column-border-top;
+                top:50em;
+                left:19em; /*$column2left;*/
+            }
+
+
+
+            //columnright
+            &.l1category48{
+                top:26em;
+                left:67%;
+            }
+            
+            &.l1category53{
+                @include column-border-top;
+                top:23em;
+                left:67%;
+            }
+        }
+    }
+    
+     .hp-content {
+        .category-list .parent-category{
+            &.l1category48{
+                top:$right-column-top;
+            }
+            &.l1category53{
+                top:$right-column-top  + 11;
+            }
+        }
+        
+        &.googleAdSensei
+        {
+            .category-list 
+            {
+                height:72em;
+                .parent-category{
+                    &.l1category48{
+                        top:$right-column-top + $ad-height;
+                    }
+                    &.l1category53{
+                        top:$right-column-top + $ad-height  + 11;
+                    }
+                }
+            }
+        }
+       
+    }
+}
+
+
+//--------------------------------------------------------
+// large breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($large-break, $lt-ie10-class-name){
+     #flexLftBuckt.category-list {
+        position:relative;
+        height:50em;
+        
+        .parent-category{
+            position:absolute;
+            
+            //column1
+            //&.l1category1{
+            //}
+            &.l1category53{
+               @include column-border-top;
+                top:27em;
+            }
+            
+            
+            
+            $column2left: 30%;
+            //column2
+            &.l1category64{
+                left:$column2left;
+            }
+            &.l1category36{
+                @include column-border-top;
+                left:$column2left;
+                top:16em;
+            }
+
+
+
+            $column3left: 60%;
+            //column3
+            &.l1category30{
+                left:$column3left;
+            }
+
+            &.l1category20{
+                @include column-border-top;
+                top:13em;
+                left:$column3left;
+            }
+            
+            &.l1category48{
+                @include column-border-top;
+                top:25em;
+                left:$column3left;
+            }
+            
+            &.l1category224{
+            	@include column-border-top;
+            	top: 25.5em;
+            }
+        }
+    }
+}
+
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+ .category-list {
+    .parent-category{
+       > a{
+          .icon{
+             height:1.1em;
+             width:2em;
+             &.icon-cat-64{
+                width:1.5em;
+              }
+                               
+              }
+            }
+
+        }
+}

@@ -1,0 +1,22 @@
+{{#ifMobile this.device}}
+    {{#partial "locationBeforeCategory"}}
+        {{> (dynamic "adCarousel") }}
+        {{#block "carousel" }}{{/block}}
+    {{/partial}}
+    {{#partial "locationAfterCategory"}}
+        {{> (dynamic "locationMapContainer")}}
+        {{#block "locationContainer"}}{{/block}}
+    {{/partial}}
+{{else}}
+    {{#partial "locationBeforeCategory"}}
+        {{> (dynamic "adCarousel") }}
+        {{#block "carousel" }}{{/block}}
+    {{/partial}}
+    {{#partial "locationAfterCategory"}}
+    	{{> (dynamic "locationMapContainer") }}
+        {{#block "locationContainer"}}{{/block}}
+    {{/partial}}
+{{/ifMobile}}
+
+{{> (base "homepage") }}
+

@@ -1,0 +1,51 @@
+{{#unless this.content.disableSearchbar}}
+    <div class="searchbar">
+        <section role="search">
+            <div class="wrap">
+                <form action='{{this.header.searchPageUrl}}' class="has-location-{{this.header.navigationConfig.locationSelection}}"
+                        data-instant-search="{{this.header.navigationConfig.instantSearch}}"
+                        data-clear-searches-message='{{i18n "header.clear-recent-searches"}}'
+                        data-saved-search="{{this.header.navigationConfig.savedSearch}}"
+                        data-auto-complete="{{this.header.navigationConfig.autoComplete}}"
+                        data-auto-complete-api="{{this.header.autoCompleteUrl}}">
+                    <fieldset>
+                        {{!-------------- keyword --------------}}
+                        {{> "searchbar/views/hbs/keyword"}}
+                        
+                        {{!-------------- /keyword --------------}}
+
+                        {{!-------------- categories --------------}}
+                        {{> "searchbar/views/hbs/categories" }}
+                        {{!-------------- /categories --------------}}
+
+                        {{!-------------- locations --------------}}
+                        {{> "searchbar/views/hbs/locations" }} 
+                        {{!-------------- /locations --------------}}
+
+                        {{!-------------- button --------------}}
+                        {{> "searchbar/views/hbs/button" }}
+                        {{!-------------- /button --------------}}
+                    </fieldset>
+
+                    {{!-------------- geoLocator --------------}}
+                    {{> "searchbar/views/hbs/geoLocator" }}
+                    {{!-------------- /geoLocator --------------}}
+
+                    {{!-------------- existing search --------------}}
+                    {{> "searchbar/views/hbs/hiddenFields" }}
+                    {{!-------------- /existing search --------------}}
+
+                </form>
+            </div>
+        </section>
+    </div>
+
+
+    {{#partial "explorer-searchbar-polyfill"}}
+        <!--[if (lte IE 9)&!(IEMobile)]>
+        <script src="{{model.footer.baseJSUrl}}/common/polyfills/placeholder.js"></script>
+        <![endif]-->
+    {{/partial}}
+
+
+{{/unless}}

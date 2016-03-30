@@ -1,0 +1,56 @@
+{{#ifMobile this.device}}
+    {{#partial "locationBeforeCategory"}}
+        {{> (dynamic "adCarousel") }}
+        {{#block "carousel" }}{{/block}}
+    {{/partial}}
+    {{#partial "locationAfterCategory"}}
+        {{> (dynamic "locationMapContainer")}}
+        {{#block "locationContainer"}}{{/block}}
+    {{/partial}}
+{{else}}
+    {{#partial "locationBeforeCategory"}}
+	   {{> (dynamic "adCarousel") }}
+     {{#block "carousel" }}{{/block}}
+    {{/partial}}
+    {{#partial "locationAfterCategory"}}
+        {{> (dynamic "locationMapContainer") }}
+        {{#block "locationContainer"}}{{/block}}
+	{{/partial}}
+{{/ifMobile}}
+
+{{!-- @todo anton: MOVE THIS TO POST PAGE!!!! ---}}
+{{#partial "dataLayerSpecifics"}}
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAd" "A"}}post-log-A{{/ifABTestEq}}{{#ifABTestEq "postAd" "B"}}post-log-B{{/ifABTestEq}}"; {{/ifeq}}
+
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "categoryMobile" "A"}}m-post-cat-A{{/ifABTestEq}}{{#ifABTestEq "categoryMobile" "B"}}m-post-cat-B{{/ifABTestEq}}";{{/ifeq}}
+
+     {{#ifeq this.dataLayer.pageData.pageType compare="PostAdForm"}} dl["u"]["tg"]["ptg"] ="{{this.header.aBTestPostAdUrl}}{{#ifABTestEq "postAdMobile" "A"}}m-post-att-A{{/ifABTestEq}}{{#ifABTestEq "postAdMobile" "B"}}m-post-att-B{{/ifABTestEq}}";{{/ifeq}}
+{{/partial}}
+{{!-- end @todo ---}}
+
+{{#partial "AdBannerHomepg"}}
+	{{#block "locationMap_Script"}}
+	{{/block}}
+
+	{{#block "googleBannerAdsTop_Script"}}
+	{{/block}}
+	
+	{{#block "googleBannerAdsRight_Script"}}
+	{{/block}}
+	
+	{{#block "googleBannerAdsRightBottom_Script"}}
+	{{/block}}
+
+	{{> (dynamic "adBottomBanner") }}
+	{{#block "googleBannerAdsBottom_Script"}}{{/block}}
+	
+	{{> (dynamic "skinBanner") }}
+	{{#block "googleBannerSkinCampaign_Script"}}
+	{{/block}}
+{{/partial}}
+
+{{#partial "metaForPage"}}
+	<meta name="msvalidate.01" content="E03E7C8B4B4E1A0234A8D2042FD326E8" />
+{{/partial}}
+
+{{> (base "homepage") }}

@@ -1,0 +1,32 @@
+
+    {{#with this}} {{!-- #with model.initialGalleryInfo --}}
+    <div class="product-carousel-container">
+        <div class="product-carousel owl-carousel"></div>
+        <div class="carousel-loading"></div>
+    </div>
+
+    <style>
+      .extra .breadcrumbs {
+  		  top:15em;
+      }
+    </style>
+  {{/with}}
+
+  {{!-- #partial "pageTailScriptsBeforeIncludes" --}}
+     {{!-- #with model.initialGalleryInfo --}}
+     <script>
+          var adList = {{{json this.initialGalleryInfo}}},
+              {{#if this.header.postAdPageUrl}}
+                dataPostLink="{{this.header.postAdPageUrl}}",
+              {{else}}
+                   dataPostLink="/post.html",
+              {{/if}}
+              dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
+              {{#if this.content.seeAllUrl}}
+                   seeAllUrl = "{{obfuscateUrl this.content.seeAllUrl}}",
+                   seeAllText = '{{i18n "features.see.all"}}',
+              {{/if}}
+              galleryAjaxBaseUrl = "{{{this.content.galleryAdsAjaxInitUrl}}}";
+      </script>
+      {{!-- /with --}}
+  {{!-- /partial --}}

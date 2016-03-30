@@ -1,0 +1,88 @@
+.social-media { 
+	float: left;
+	
+    li {
+        display: inline;
+    }
+	
+	span.sm-icons {
+	   height: 30px;
+	   width: 30px;
+	}
+}
+
+
+#sm, .sm {
+     position:relative;
+     border:none;
+     cursor:pointer;
+     width:100%;
+
+    .sm-ul {
+        margin:0 auto;
+
+        li {
+            float:left;
+            display:block;
+            margin-right:1em;
+        }
+    }
+    
+    .button {
+      float:left;
+      margin:0em 0em;
+    }
+
+    .button.last {
+      margin-right: 0;
+    }
+}
+
+
+.sm-icons {
+    width:30px;
+    height:30px;
+    display:inline-block;
+}
+
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+  #sm .sm-ul li,
+  .sm .sm-ul li {
+    margin-right: 0.5em;
+  }
+
+  #sm .sm-ul,
+  .sm .sm-ul {
+    width: auto;
+  }
+}
+
+// ***
+// Code Added to fix IE-8 issue of not showing the social media container
+@include in-breakpoint($lt-ie9-class-name) {
+
+    .bestof .sharevisitInfo {
+        float: left;
+        width: 84%;
+        margin-left: 3%;
+    }
+
+
+    #sm, .sm {
+       display:block;
+      .buttons {
+                display:block;
+                width:100%;
+                list-style: none; 
+                margin:0;
+            
+      } 
+        .button{
+            display: block; 
+            padding-right:10px;
+        }
+    }
+}
+
+
