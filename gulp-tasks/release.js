@@ -61,7 +61,7 @@ module.exports = function watch(gulp, plugins) {
 			        if (error) {
 			          return cb(error);
 			        }
-			        git.push('origin', 'master', {args: '--tags'}, cb);
+			        git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 		    	});
 			return stream;
 	    });
