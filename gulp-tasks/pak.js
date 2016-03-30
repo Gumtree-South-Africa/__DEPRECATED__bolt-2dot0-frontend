@@ -23,7 +23,7 @@ module.exports = function watch(gulp, plugins) {
 					+ '; cp README.md bolt-2dot0-frontend_' + appVersion
 					+ '; cp CHANGELOG.md bolt-2dot0-frontend_' + appVersion
 					+ '; mkdir target/app'
-					+ '; tar -cf target/app/bolt-2dot0-frontend_' + appVersion + '.tar.gz'
+					+ '; tar -czf target/app/bolt-2dot0-frontend_' + appVersion + '.tar.gz'
 					+ ' bolt-2dot0-frontend_' + appVersion;
 
 				var stream =
@@ -38,9 +38,9 @@ module.exports = function watch(gulp, plugins) {
 		// Package Static Assets
 		gulp.task('pak:static', function(){
 			  var command = 'mkdir bolt-2dot0-frontend-static_' + staticVersion
-					+ '; cp -R public bolt-2dot0-frontend-static_' + staticVersion
+					+ '; cp -R public/* bolt-2dot0-frontend-static_' + staticVersion
 					+ '; mkdir target; mkdir target/static'
-					+ '; tar -cf target/static/bolt-2dot0-frontend-static_' + staticVersion + '.tar.gz'
+					+ '; tar -czf target/static/bolt-2dot0-frontend-static_' + staticVersion + '.tar.gz'
 					+ ' bolt-2dot0-frontend-static_' + staticVersion;
 
 				var stream =
