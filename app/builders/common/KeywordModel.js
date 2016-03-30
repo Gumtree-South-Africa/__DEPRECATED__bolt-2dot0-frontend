@@ -13,10 +13,10 @@ var keywordService = require(process.cwd() + "/server/services/keyword");
  * @constructor
  */
 
-var KeywordModel = function (requestId, locale, depth) {
+var KeywordModel = function (requestId, locale, kwCount) {
 	this.requestId = requestId;
 	this.locale = locale;
-	this.depth = depth;
+	this.kwCount = kwCount;
 };
 
 KeywordModel.prototype.getModelBuilder = function() {
@@ -29,7 +29,7 @@ KeywordModel.prototype.getKeywords = function() {
 	
 	var topKeywordFunction = function(callback) {
 		var topKeywordDeferred = Q.defer();
-	    Q(keywordService.getTopKeywordsData(scope.requestId, scope.locale))
+	    Q(keywordService.getTopKeywordsData(scope.requestId, scope.locale, scope.kwCount))
 	        .then(function (dataTopK) {
 	          topKeywordDeferred.resolve(dataTopK);
 	          callback(null, dataTopK);
@@ -41,7 +41,7 @@ KeywordModel.prototype.getKeywords = function() {
 	
 	var trendingKeywordFunction = function(callback) {
 	    var trendingKeywordDeferred = Q.defer();
-	    Q(keywordService.getTrendingKeywordsData(scope.requestId, scope.locale))
+	    Q(keywordService.getTrendingKeywordsData(scope.requestId, scope.locale, scope.kwCount))
 	        .then(function (dataTK) {
 	          trendingKeywordDeferred.resolve(dataTK);
 	          callback(null, dataTK);
