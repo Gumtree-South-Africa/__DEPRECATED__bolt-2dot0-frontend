@@ -52,7 +52,7 @@ public/maps
 public/jsmin
 public/js/precompiled
 target
-bolt-2dot0-frontend
+bolt-2dot0-frontend*
 screenshots
 logs
 dist
