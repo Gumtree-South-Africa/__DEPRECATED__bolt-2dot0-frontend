@@ -50,7 +50,7 @@ module.exports = function watch(gulp, plugins) {
 	    // Push all committed changes to Git
 	    gulp.task('push-changes', function (cb) {
 			var stream =
-	    		git.push('origin', 'master', cb);
+	    		git.push('origin', 'HEAD:master', cb);
 			return stream;
 	    });
 
@@ -61,7 +61,7 @@ module.exports = function watch(gulp, plugins) {
 			        if (error) {
 			          return cb(error);
 			        }
-			        git.push('origin', 'master', {args: '--tags'}, cb);
+			        git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 		    	});
 			return stream;
 	    });
