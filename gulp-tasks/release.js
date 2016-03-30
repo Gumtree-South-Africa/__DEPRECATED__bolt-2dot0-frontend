@@ -91,7 +91,6 @@ module.exports = function watch(gulp, plugins) {
 	    // RELEASE
 	    gulp.task('release', function (callback) {
 	    	runSequence(
-				'bumpup',
     			'changelog',
     			'commit-changes',
     			'push-changes',
