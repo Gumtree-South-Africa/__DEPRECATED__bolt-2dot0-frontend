@@ -84,7 +84,8 @@
 			"freebiesEnabled"		: true,		
 			"freebiesName"			: "home.freebies.$$",
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
-		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2"
+		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
+		  	"defaultKeywordsCount"	: 10
 		}
 	},
 	"bapi" : {

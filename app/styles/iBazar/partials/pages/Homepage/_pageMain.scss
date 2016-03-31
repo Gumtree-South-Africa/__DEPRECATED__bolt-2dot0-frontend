@@ -4,3 +4,8 @@
 		@include columns(2);
 	}
 }
+
+/* Fixes issue of blocking ad in iBazar */
+#flexRghtBucket .item-carousel .item-img-wrap {
+	position: static;
+}

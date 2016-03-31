@@ -1,47 +1,47 @@
 {
 	"BAPI": {
-	    "server": {
-	    	"host": "api.bolt.ebayclassifieds.com.phx.ops.lnp.bt.ecg.so",
-	    	"port": 80,
-	    	"parameters": null
-	    },
+		"server": {
+			"host": "api.bolt.ebayclassifieds.com.phx.ops.lnp.bt.ecg.so",
+			"port": 80,
+			"parameters": null
+		},
 		"endpoints": {
-			"categoryHomePage"	:	"/v1/categories",
-			"locationHomePage"	:	"/v1/locations",
-			"topLocationsL2"	:	"/v1/locations/top/L2",
-			"userFromCookie"	:	"/v1/users/logged-in-user-info",
-			"topKeywords" 		: 	"/v1/keywords/top",
-			"trendingKeywords" 	: 	"/v1/keywords/trending",
-			"homepageGallery" 	: 	"/v1/ads/gallery",
-			"adStatistics" 		: 	"/v1/ads/statistics",
-			"configService"		:	"/v1/configs/nodeapp/settings.json"
+			"categoryHomePage": "/v1/categories",
+			"locationHomePage": "/v1/locations",
+			"topLocationsL2": "/v1/locations/top/L2",
+			"userFromCookie": "/v1/users/logged-in-user-info",
+			"topKeywords": "/v1/keywords/top",
+			"trendingKeywords": "/v1/keywords/trending",
+			"homepageGallery": "/v1/ads/gallery",
+			"adStatistics": "/v1/ads/statistics",
+			"configService": "/v1/configs/nodeapp/settings.json"
 		}
 	},
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
 			"port": 2181,
-			"topic" : "node_log"
+			"topic": "node_log"
 		}
 	},
-  	"graphite": {
+	"graphite": {
 		"server": {
-	  		"host"		: "graphite.phx.ops.pp.bt.ecg.so",
-	  		"port"		: 2003,
-	  		"interval" 	: 30
+			"host": "graphite.phx.ops.pp.bt.ecg.so",
+			"port": 2003,
+			"interval": 30
 		}
 	},
 	"static": {
 		"server": {
-			"host"		: "static.lnp.qa-bolt.com",
-			"port"		: null,
-			"version"	: "2.0.100"
+			"host": "static.lnp.qa-bolt.com",
+			"port": null,
+			"version": "2.0.101"
 		},
-		"baseCSSUrl"	: "/css/",
-		"baseJSUrl"		: "/js/",
-		"baseJSMinUrl"	: "/jsmin/",
-		"baseImageUrl"	: "/images/",
-		"mainJSUrl"		: "/js/main.js",
-		"min"			: true
+		"baseCSSUrl": "/css/",
+		"baseJSUrl": "/js/",
+		"baseJSMinUrl": "/jsmin/",
+		"baseImageUrl": "/images/",
+		"mainJSUrl": "/js/main.js",
+		"min": true
 	}
 }

@@ -89,7 +89,8 @@
 			"freebiesEnabled"		: false,		
 			"freebiesName"			: null,
 			"freebiesUrl"			: null,
-		  	"adCarouselSeeAllUrl"	: null
+		  	"adCarouselSeeAllUrl"	: null,
+		  	"defaultKeywordsCount"	: 15
 		}
 	},
 	"bapi" : {

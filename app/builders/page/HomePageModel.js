@@ -20,7 +20,8 @@ var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 function getCookieLocationId(req) {
 	var searchLocIdCookieName = 'searchLocId';
 	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
-	return (typeof searchLocIdCookie==='undefined' || '') ? null : searchLocIdCookie;
+
+	return ((typeof searchLocIdCookie === 'undefined') || searchLocIdCookie === '') ? null : searchLocIdCookie;
 }
 
 /**
@@ -33,7 +34,7 @@ function getCookieLocationId(req) {
  */
 var getHomepageDataFunctions = function (req, res) {
 	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
-		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, 2)).getModelBuilder(),
+		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
 		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
 		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
@@ -123,8 +124,14 @@ var HomePageModel = function (req, res) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
-	if (getCookieLocationId(req) !== null) {
-		pageModelConfig.push('catWithLocId');
+	var idxCatWithLocId = pageModelConfig.indexOf('catWithLocId');
+
+	if (getCookieLocationId(req) !== null)  {
+		if (idxCatWithLocId < 0) {
+			pageModelConfig.push('catWithLocId');
+		}
+	} else if (idxCatWithLocId >= 0) {
+		pageModelConfig.splice(idxCatWithLocId, 1);
 	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
