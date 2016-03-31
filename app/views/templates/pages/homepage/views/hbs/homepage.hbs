@@ -14,9 +14,11 @@
 			">
 
 			<div class="hp-list-wrapper">
-				<div class="hp-total-ad-count">
-					<span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
-				</div>
+                <div class="hp-total-ad-count">
+                    {{#if this.totalLiveAdCount}}
+                        <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
+                    {{/if}}
+                </div>
 
 				<div class="hp-category-wrapper">
 					<h1>{{i18n "home.h1Tag"}}</h1>
@@ -102,6 +104,8 @@
 			{{#block "googleBannerAdsTop_Script"}}{{/block}}
 			{{#block "googleBannerAdsRight_Script"}}{{/block}}
 			{{#block "googleBannerAdsRightBottom_Script"}}{{/block}}
+
+			{{> (dynamic "adBottomBanner") }}
 			{{#block "googleBannerAdsBottom_Script"}}{{/block}}
 			{{#block "googleBannerSkinCampaign_Script"}}{{/block}}
 		{{/block}}
@@ -149,8 +153,10 @@
 	        <meta name="google" content="nositelinkssearchbox"/>
 	{{/partial}}
 
+	{{#partial "googleBannerAdsBottom_Container"}}
+    	<div id="home_bottombanner" style="margin:0 auto; width:318px; overflow:hidden;"></div>
+	{{/partial}}
 	
-
 	{{!-- SmartBanner and Interstitial Banner overrides for Homepage --}}
 	{{#partial "smartBannerContainer"}}
         {{> (dynamic "smartBanner") }}

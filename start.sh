@@ -1,4 +1,2 @@
 #!/bin/sh
-DIR=$(cd $(dirname "$0"); pwd)   # dir where this script is installed
-cd $DIR
-PM_CWD=/BOLTVM/b1frontend/bolt-2dot0-frontend NODE_CONFIG_DIR=/BOLTVM/b1frontend/bolt-2dot0-frontend/server/config NODE_ENV=localhost SITES=en_ZA PORT=8000 BASEDOMAINSUFFIX=.vm /BOLTVM/b1mockserver/node/bin/forever start --append -l frontend-forever.log -o out.log -e error.log bin/www
+PM_CWD=$GIT_BOLT20_DIR NODE_CONFIG_DIR=$GIT_BOLT20_DIR/server/config LOG_DIR=$GIT_BOLT20_DIR NODE_ENV=vm PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost forever start --append -l frontend-forever.log -o $GIT_BOLT20_DIR/out.log -e $GIT_BOLT20_DIR/error.log $GIT_BOLT20_DIR/bin/www

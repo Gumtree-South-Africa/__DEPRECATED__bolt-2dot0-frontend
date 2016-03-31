@@ -51,12 +51,9 @@
 		        	<div class="item-preview text-center">
 		                <div class="item-img-wrap">
 		                	{{#if this.footer.googleAdSense.enabled}}
-                      {{!-- @todo: Fix code below --}}
-                          {{> (dynamic "rightBanner")}}
 		                	    {{#unlessMobile this.device}}
-		                			   {{!-- > (dynamic "rightBanner") --}}
+		                			   {{> (dynamic "rightBanner")}}
 		                		  {{/unlessMobile}}
-                      {{!-- end todo --}}
 			                {{/if}}
 		                </div>
 		            </div>

@@ -6,12 +6,14 @@
 
         {{!-- Begin Contents from former profileLink.html --}}
         {{!---- chat ----}}
-        {{#if this.header.isMessageCenterEnabled}}
+      {{#if this.header.isMessageCenterEnabled}}
 	       <div class="bubbles" data-o-uri="{{ obfuscateUrl this.header.myMessageUrl }}">
-	       {{#if this.header.username}}
- 			    <div class="unreadMsg">
- 				   {{this.header.converstionInfo.totalUnreadMessageCount}}
- 			    </div>
+         {{#if this.header.username}}
+            {{#if this.header.converstionInfo.totalUnreadMessageCount}}
+ 			      <div class="unreadMsg">
+ 				         {{this.header.converstionInfo.totalUnreadMessageCount}}
+ 			      </div>
+            {{/if}}
             <a class="icon-ChatBubbles" href="{{ obfuscateUrl this.header.myMessageUrl }}"></a>
             {{/if}}
 	       </div>
@@ -81,7 +83,7 @@
             {{!---- my profile : if the id is there, then bapi sends the json back, then user is logged in and validated by bapi ----}}
             {{#if this.header.id}}
                 <li>
-                    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myProfileUrl}}">{{i18n "header.menu.my.profile"}}</span>  
+                    <span class="sudo-link menu-text sudo-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myProfileUrl}}">{{i18n "header.menu.my.profile"}}</span>
                 </li>
             {{/if}}
 

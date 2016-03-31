@@ -1,17 +1,17 @@
 <div class="outer">
-    {{#each category.children}}
-	    <div class="inner" data-uri="{{this._links.[1].href}}">
+    {{#each categoryList.children}}
+ 	<a href="{{this._links.[1].href}}" title="{{this.localizedName}} ({{this.id}})">
+	    <div class="inner">
 	            <div class="icon-cat-{{this.id}} bg"></div>
 	            <div class="icon-cat-label">{{this.localizedName}}</div>
 	            <div class="clear"></div>
 	    </div>
+	</a>
     {{/each}}
+    {{#block "verCategory-mx"}}{{/block}}
 </div>
 
-<div class="allCategoriesWrap">
-    <span class='allCategories jsOnly'>{{i18n "home.allCategories"}}</span>
-    <div class="clear"></div>
-</div>
+{{#block "verCategory-ar"}}{{/block}}
 
 <span class="icon-gl-message-close nonJsOnlyBlock"></span>
 <span class="catText nonJsOnlyBlock">{{i18n "email.category.text"}}</span>

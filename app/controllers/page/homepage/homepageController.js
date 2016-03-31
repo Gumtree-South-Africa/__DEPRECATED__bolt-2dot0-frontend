@@ -32,11 +32,11 @@ router.get('/', function (req, res, next) {
 
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
-		//res.cookie('anonUsrId', cuid());
+		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
 
 	// Build Model Data
-	var modelData = pageControllerUtil.getInitialModelData(req, res);
+	var modelData = pageControllerUtil.preController(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Retrieve Data from Model Builders
@@ -50,12 +50,19 @@ router.get('/', function (req, res, next) {
 		modelData.level2Location = result['level2Loc'] || {};
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
+
 		if (result['adstatistics']) {
-			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || {};
+			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 		}
+
 		if (result['keyword']) {
-			modelData.trendingKeywords = result['keyword'][0].keywords || {};
-			modelData.topKeywords = result['keyword'][1].keywords || {};
+			modelData.trendingKeywords = result['keyword'][0].keywords || null;
+			modelData.topKeywords = result['keyword'][1].keywords || null;
+		}
+
+		// Make the loc level 2 (Popular locations) data null if it comes as an empty
+		if (_.isEmpty(modelData.level2Location)) {
+			modelData.level2Location = null;
 		}
 
 		// Check for top or trending keywords existence
@@ -68,9 +75,20 @@ router.get('/', function (req, res, next) {
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
-		//HP.deleteMarketoCookie(res, modelData);
+		HP.deleteMarketoCookie(res, modelData);
 
-		pageControllerUtil.finalizeController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+		// Make the location data null if it comes as an empty object from bapi
+		if (_.isEmpty(modelData.location)) {
+			modelData.location = null;
+		}
+
+		// Determine if we show the Popular locations container
+		modelData.showPopularLocations = true;
+		if (!modelData.level2Location && !modelData.location) {
+			modelData.showPopularLocations = false;
+		}
+
+		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
     });
@@ -136,7 +154,6 @@ var HP = {
 			default:
 				modelData.header.pageMessages.success = '';
 				modelData.header.pageMessages.error = '';
-				modelData.header.pageType = '';
 		}
 		switch (req.query.resumeabandonedordererror) {
 			case 'adnotactive':
@@ -224,10 +241,12 @@ var HP = {
 
 			// Bing Meta
 			modelData.content.bingMeta = homepageConfigData.bingMeta;
+
+			// Gallery See All Url
+			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
 		}
 
-		// Gallery
-		modelData.content.seeAllUrl = 's-all-the-ads/v1b0p1?fe=2';
+		// Gallery AJAX
 		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
 
 		// Search Bar

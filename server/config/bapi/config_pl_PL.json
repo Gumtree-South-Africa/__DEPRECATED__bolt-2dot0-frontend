@@ -41,7 +41,7 @@
 		"interLinkUrl"						: "",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"topSearchesLandingPageUrl"			: "/t-wyszukiwarka-gory/wszystkie-ogloszenia/v1b0",
 		"googleAdSense"						:	{
 			"enabled"							: true,
 			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
@@ -81,7 +81,8 @@
 			"swapTradeUrl"			: "s-Wymiana/zamiana/v1p1?priceType=barter_swap",
 			"freebiesEnabled"		: true,		
 			"freebiesName"			: "home.freebies.$$",
-			"freebiesUrl"			: "s-Oddam za darmo/v1p1?priceType=free"
+			"freebiesUrl"			: "s-Oddam za darmo/v1p1?priceType=free",
+		  	"adCarouselSeeAllUrl"	: "/s-wszystkie-the-reklamy/v1b0p1?fe=2"
 		}
 	},
 	"bapi" : {

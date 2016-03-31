@@ -4,6 +4,7 @@
         {{#block "carousel" }}{{/block}}
     {{/partial}}
     {{#partial "locationAfterCategory"}}
+        {{> (dynamic "locationMapContainer")}}
         {{#block "locationContainer"}}{{/block}}
     {{/partial}}
 {{else}}
@@ -39,6 +40,9 @@
 	
 	{{#block "googleBannerAdsRightBottom_Script"}}
 	{{/block}}
+
+	{{> (dynamic "adBottomBanner") }}
+	{{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	
 	{{> (dynamic "skinBanner") }}
 	{{#block "googleBannerSkinCampaign_Script"}}

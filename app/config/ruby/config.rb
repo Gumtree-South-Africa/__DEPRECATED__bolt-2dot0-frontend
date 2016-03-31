@@ -4,7 +4,7 @@ require 'susy'
 project_type = :stand_alone
 http_path = "/"
 sass_dir = "./app/styles"
-cssdir = "./public/css/all"
+cssdir = "./public/cssmin/all"
 prefered_syntax = :scss
 output_style = (environment == :development) ? :expanded : :compressed
 relative_assets = true

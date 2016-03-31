@@ -9,8 +9,8 @@
         <span class="icon-caret-down"></span>
         <![endif]-->
         
-        {{!-- #unlessMobile this.device --}} 
+        {{#unlessMobile this.device}} 
             <script type="text/plain">{{{json this.locationdropdown}}}</script>
-        {{!-- /unlessMobile --}}
+        {{/unlessMobile}}
     </div>
 {{/if}}

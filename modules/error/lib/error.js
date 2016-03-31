@@ -9,14 +9,15 @@
 var urlPattern = require("url-pattern");
 var util = require('util'),
     str = require('string'),
-    displayError = require('./displayError');
+    displayError = require('./displayError'),
+    stringUtl = require('string');
 
 
 module.exports = function(app) {
     return function(err, req, res, next) {
 
         if (err.status == 0) {
-           // next();
+            // next();
             res.send("");
         }
 
@@ -26,7 +27,12 @@ module.exports = function(app) {
 
             // set the http status code
             res.statusCode = 404;
-            displayError.message(req, res, next);
+            if (isAjaxReq(req)) {
+                console.error(err);
+                res.status(404).json({status:404, message: 'Invalid API'});
+            } else {
+                displayError.message(req, res, next);
+            }
 
         }
         // if 500 request then to error page
@@ -41,8 +47,12 @@ module.exports = function(app) {
             res.locals.err = err;
             res.statusCode = 500;
             //console.error(err.stackTrace);
-            displayError.message(req, res, next);
-           // res.end();
+            if ( isAjaxReq(req)) {
+                console.error(err);
+                res.status(500).json({status:500, message: 'server error', type:'internal'});
+            } else {
+                displayError.message(req, res, next);
+            }
 
         }
 
@@ -68,6 +78,15 @@ module.exports.four_o_four = function(app) {
     }
 };
 
+function isAjaxReq(req) {
+
+    if (req.xhr || stringUtl(req.path).contains("api")) {
+        return true;
+    }
+
+
+    return false;
+}
 
 // check if it is app resource request
 function isResourceReq(req) {

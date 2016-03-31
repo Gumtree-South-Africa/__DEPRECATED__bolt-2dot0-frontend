@@ -2,52 +2,121 @@
 
 
 var os = require('os');
-var graphite = require('graphite-udp');
-var net = require('net');
+var Graphite = require('graphite-client');
 
 var config = require('config');
 
 
 /**
- * @description A Graphite related utils class
+ * @description A Graphite Service class
  * @constructor
  */
 var GraphiteService = function() {
-	this.udpmetric = graphite.createClient( {
-	    host: config.get('graphite.server.host'),
-	    port: config.get('graphite.server.port'),
-	    type: 'udp4',
-	    prefix: '',
-	    suffix: '',
-	    interval: config.get('graphite.server.interval'),
-	    verbose: true,
-	    callback: function(error, metricsSent) {
-	        if (error) {
-	        	console.warn('Graphite Metrics not Sent: ', error);
-	        }
-	    }
-	});
+    this.graphite = new Graphite(config.get('graphite.server.host'), config.get('graphite.server.port'), 'UTF-8');
+    this.graphite.connect(function() { //'connect' listener
+        console.log('Connected to Graphite server');
+    });
+
+    this.graphite.on('end', function() {
+        console.error('Graphite client disconnected');
+    });
+
+    this.graphite.on('error', function(error) {
+        console.error('Graphite connection failure. ' + error);
+    });
 };
 
-/**
- * To post data from HP
- */
-GraphiteService.prototype.postForHP = function() {
-	var scope = this;
-    scope.udpmetric.put('local.random.diceroll6', 2  );
-    scope.udpmetric.add('local.random.diceroll6', 2  );
-    scope.udpmetric.add('local.random.diceroll6', 2  );
-    scope.udpmetric.add('local.random.diceroll6', 2  );
+
+GraphiteService.prototype.sendMetricsForPage = function(country, pagetype, key, value) {
+    var scope = this;
+
+    // Can add any other server metrics we need for every metric sent to graphite
+    var serverObj = {};
+    serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
+
+    var keyObj = {};
+    var preKey =  country + '.pages.' + pagetype + '.' + key;
+    keyObj[preKey] = value;
+    var serverKey =  'server';
+    keyObj[serverKey] = serverObj;
+
+    var nodeObj = {};
+    var nodeKey = 'nodejs';
+    nodeObj[nodeKey] = keyObj;
+
+    var metrics = {};
+    var hostname = os.hostname();
+    metrics[hostname] = nodeObj;
+
+    scope.graphite.write(metrics, Date.now(), function(err) {
+        console.error("Failed to write Page metrics to Graphite server. err: " + err);
+    });
 }
 
 
-GraphiteService.prototype.postForHPUsingTCP = function(key, value) {
-    var socket = net.createConnection(config.get('graphite.server.port'), config.get('graphite.server.host'), function () {
-		var data = key + ' ' + value + ' ' + new Date().getTime()/1000 + '\n';
-		console.log('DATA TO BE WRITTEN INTO GRAPHITE IS ',data);
-        socket.write(data);
-		console.log('DATA sent to Graphite');
-        socket.end();
+GraphiteService.prototype.sendMetricsForApi = function(country, apipath, key, value) {
+    var scope = this;
+
+    // Can add any other server metrics we need for every metric sent to graphite
+    var serverObj = {};
+    serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
+
+    var keyObj = {};
+    var preKey =  country + '.api.' + apipath + '.' + key;
+    keyObj[preKey] = value;
+    var serverKey =  'server';
+    keyObj[serverKey] = serverObj;
+
+    var nodeObj = {};
+    var nodeKey = 'nodejs';
+    nodeObj[nodeKey] = keyObj;
+
+    var metrics = {};
+    var hostname = os.hostname();
+    metrics[hostname] = nodeObj;
+
+    scope.graphite.write(metrics, Date.now(), function(err) {
+        console.error("Failed to write API metrics to Graphite server. err: " + err);
+    });
+}
+
+GraphiteService.prototype.sendNodeMetrics = function(key, value) {
+    var scope = this;
+
+    // Can add any other server metrics we need for every metric sent to graphite
+    var serverObj = {};
+    serverObj[key] = value;
+    serverObj['uptime'] = os.uptime();
+    serverObj['load-avg'] = os.loadavg();
+    serverObj['free-memory'] = os.freemem();
+    serverObj['used-memory'] = os.totalmem() - os.freemem();
+    serverObj['heap-total'] = process.memoryUsage().heapTotal;
+    serverObj['heap-used'] = process.memoryUsage().heapUsed;
+
+    var keyObj = {};
+    var serverKey =  'server';
+    keyObj[serverKey] = serverObj;
+
+    var nodeObj = {};
+    var nodeKey = 'nodejs';
+    nodeObj[nodeKey] = keyObj;
+
+    var metrics = {};
+    var hostname = os.hostname();
+    metrics[hostname] = nodeObj;
+
+    scope.graphite.write(metrics, Date.now(), function(err) {
+        console.error("Failed to write NodeJS metrics to Graphite server. err: " + err);
     });
 }
 

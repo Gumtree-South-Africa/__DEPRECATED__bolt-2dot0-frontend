@@ -1,8 +1,8 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "10.130.129.35",
-	    	"port": 8080,
+	    	"host": "api.bolt.ebayclassifieds.com.phx.ops.pp.bt.ecg.so",
+	    	"port": 80,
 	    	"parameters": null
 	    },
 		"endpoints": {
@@ -26,7 +26,7 @@
 	},
 	"graphite": {
 		"server": {
-			"host"		: "graphite001.phx.ops.pp.bt.ecg.so",
+			"host"		: "graphite.phx.ops.pp.bt.ecg.so",
 			"port"		: 2003,
 			"interval" 	: 30
 		}

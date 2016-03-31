@@ -26,8 +26,8 @@ var PageControllerUtil = function (req, res) {
  * @param {Object} response
  * @return {JSON}
  */
-PageControllerUtil.prototype.getInitialModelData = function (req, res) {
-	var modelData =
+PageControllerUtil.prototype.preController = function (req, res) {
+    var modelData =
     {
         env: 'public',
         locale: res.locals.config.locale,

@@ -51,6 +51,7 @@ public/cssmin
 public/maps
 public/jsmin
 public/js/precompiled
+target
 screenshots
 logs
 dist

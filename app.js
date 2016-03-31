@@ -13,6 +13,8 @@ var cuid = require('cuid');
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
 var checksite = require('./server/middlewares/check-site');
+var responseMetrics = require('./server/middlewares/response-metrics');
+var eventLoopMonitor = require('./server/utils/monitor-event-loop');
 var error = require('./modules/error');
 
 var cacheBapiData = require('./server/services/cache/cache-server-startup');
@@ -38,34 +40,19 @@ var siteCount = 0;
  * Create Site Apps
  */
 Object.keys(config.sites).forEach(function(siteKey) {
-	console.log("app " + siteKey);
-    var siteObj = config.sites[siteKey];
+	var siteObj = config.sites[siteKey];
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
-		        var builderObj = new expressbuilder(siteObj.locale);
+			  	var builderObj = new expressbuilder(siteObj);
 		        var siteApp = builderObj.getApp();
-		
-		        // send site information along
-		        siteApp.locals.config = {};
-		        siteApp.locals.config.name = siteObj.name;
-		        siteApp.locals.config.locale = siteObj.locale;
-		        siteApp.locals.config.country = siteObj.country;
-		        siteApp.locals.config.hostname = siteObj.hostname;
-		        siteApp.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
 		        // Service Util to get Location and Category Data
 		        cacheBapiData(siteApp, requestId);
 
-		        // Template hbs caching.
-		        // See: https://github.com/ericf/express-handlebars#template-caching
-		        // Enables view template compilation caching and is enabled in production by default.
-		        if (process.env.NODE_ENV) {
-		          siteApp.enable('view cache');
-		        }
-		
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
+			  	siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
@@ -89,5 +76,7 @@ app.use(error.four_o_four(app));
 // Overwriting the express's default error handler should always appear after 404 middleware
 app.use(error(app));
 
+// Event Loop Monitoring
+eventLoopMonitor();
 
 module.exports = app;

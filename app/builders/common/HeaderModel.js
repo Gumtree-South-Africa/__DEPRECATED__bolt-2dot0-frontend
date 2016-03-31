@@ -19,11 +19,7 @@ var config = require('config');
  */
 
 var HeaderModel = function (secure, req, res) {
-	// ENV variables
-	this.baseDomainSuffix = typeof process.env.BASEDOMAINSUFFIX!=='undefined' ? '.' + process.env.BASEDOMAINSUFFIX : '';
-	this.basePort = typeof process.env.PORT!=='undefined' ? ':' + process.env.PORT : '';
-
-	// Local variables
+	// Cookie variables
 	var authCookieName = 'bt_auth';
 	this.authCookie = req.cookies[authCookieName];
 
@@ -31,14 +27,19 @@ var HeaderModel = function (secure, req, res) {
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
 
+	// Local variables
 	this.secure = secure;
-	this.requestId = req.requestId;
+	this.urlProtocol = this.secure ? 'https://' : 'http://';
+
 	this.locale = res.locals.config.locale;
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
 	this.fullDomainName = res.locals.config.hostname;
-	this.urlProtocol = this.secure ? 'https://' : 'http://';
+	this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
+	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
+
+	this.requestId = req.requestId;
 	this.i18n = res.locals.i18n;
 };
 
@@ -54,7 +55,7 @@ HeaderModel.prototype.getHeaderData = function() {
 			if (typeof callback !== 'function') {
 				return;
 			}
-			
+
 			var headerDeferred,
 				data = {
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
@@ -143,8 +144,8 @@ HeaderModel.prototype.buildCss = function(data) {
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css');
-	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.data.fallback' + '_' + scope.locale + '.css';
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
+	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
 
 	if (deviceDetection.isMobile()) {
 		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
@@ -184,7 +185,7 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.fbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
 		}
 	}
 

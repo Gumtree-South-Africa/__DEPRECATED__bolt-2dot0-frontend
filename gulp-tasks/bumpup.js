@@ -8,8 +8,6 @@ var cwd = process.cwd();
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
-		var appVersion = require(process.cwd() + "/server/config/production.json").static.server.version;
-
 		// Bumpup App Version
 		gulp.task('bumpup:app', function() {
 			process.stdout.write('App Version Bumpup Task is running...\r\n');
@@ -24,9 +22,10 @@ module.exports = function watch(gulp, plugins) {
 			process.stdout.write('Static Version Bumpup Task is running...\r\n');
 			
 			return gulp.src([
-				                cwd + '/server/config/production.json',
-				                cwd + '/server/config/lnpdeploy.json',
-				                cwd + '/server/config/ppdeploy.json'
+				                cwd + '/server/config/prod_ix5_deploy.json',
+								cwd + '/server/config/prod_phx_deploy.json',
+				                cwd + '/server/config/lnp_phx_deploy.json',
+				                cwd + '/server/config/pp_phx_deploy.json'
 				                //TODO: add localhost once assets are deployed in apache
 				                //cwd + '/server/config/localhost.json',
 				            ])

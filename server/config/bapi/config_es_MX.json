@@ -41,8 +41,8 @@
 		"helpUrl"							: "http://ayuda.vivanuncios.com.mx/MX/",
 		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-los-mejores-anuncios/v1",
+		"topSearchesLandingPageUrl"			: "/t-busquedas-destacadas/todos-los-anuncios/v1b0",
 		"googleAdSense"						:	{
 			"enabled"							: true,
 			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
@@ -78,13 +78,14 @@
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
-			"bingMeta"				: "<meta name=\"msvalidate.01\" content=\"E03E7C8B4B4E1A0234A8D2042FD326E8\" />",
+			"bingMeta"				: null,
 			"swapTradeEnabled"		: false,		
 			"swapTradeName"			: null,
 			"swapTradeUrl"			: null,
 			"freebiesEnabled"		: false,		
 			"freebiesName"			: null,
-			"freebiesUrl"			: null
+			"freebiesUrl"			: null,
+		  	"adCarouselSeeAllUrl"	: null
 		}
 	},
 	"bapi" : {
@@ -93,7 +94,7 @@
 				"models" : ["keyword", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "seo"]
+				"models" : ["keyword", "adstatistics", "seo"]
 			}
 		}
 	}

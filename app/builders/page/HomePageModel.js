@@ -6,7 +6,6 @@ var cwd = process.cwd();
 var Q = require('q');
 
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-var deviceDetection = require(cwd + '/modules/device-detection');
 
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var LocationModel = require(cwd + '/app/builders/common/LocationModel');
@@ -21,8 +20,7 @@ var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 function getCookieLocationId(req) {
 	var searchLocIdCookieName = 'searchLocId';
 	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
-
-	return searchLocIdCookie==='' ? null : searchLocIdCookie;
+	return (typeof searchLocIdCookie==='undefined' || '') ? null : searchLocIdCookie;
 }
 
 /**
