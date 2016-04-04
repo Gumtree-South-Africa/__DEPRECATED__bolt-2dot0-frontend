@@ -2,6 +2,9 @@
 
     <form action="" method="post" enctype="multipart/form-data">
         <fieldset>
+            <label for="name">Upload Pictures</label>
+            <input type="file" name="pic" accept="image/*">
+            <br />
             <label for="description">Description:</label>
             <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
             <br />
@@ -14,6 +17,9 @@
             <br />
             <label for="name">Price:</label>
             <input type="text" id="price" name="price" placeholder="Enter price" />
+            <br />
+            <label for="name">Share on Facebook:</label>
+            <input type="checkbox" name="sharefb" />
             <br />
             <input type="submit" value="Sell Item" />
         </fieldset>
