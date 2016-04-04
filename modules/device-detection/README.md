@@ -55,7 +55,7 @@ isHomePageDevice(); // only for backend
 
 #### Front-end
 
-<!-- homepageController.js -->
+<!-- quickpostController.js -->
 
 ```javascript
 .

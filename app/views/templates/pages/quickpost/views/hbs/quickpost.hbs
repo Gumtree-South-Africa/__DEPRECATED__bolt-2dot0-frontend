@@ -1,0 +1,22 @@
+{{#partial "content"}}
+
+    <form action="" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
+            <br />
+            <label for="description">Category:</label>
+            <select>
+                {{#each this.category.children}}
+                    <option>{{this.localizedName}}</option>
+                {{/each}}
+            </select>
+            <br />
+            <label for="name">Price:</label>
+            <input type="text" id="price" name="price" placeholder="Enter price" />
+            <br />
+            <input type="submit" value="Sell Item" />
+        </fieldset>
+    </form>
+
+{{/partial}}
