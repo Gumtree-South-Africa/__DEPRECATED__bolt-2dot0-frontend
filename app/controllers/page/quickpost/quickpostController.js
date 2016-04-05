@@ -39,6 +39,9 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 
+    // Special Data needed for HomePage in header, footer, content
+    HP.extendHeaderData(req, modelData);
+
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	});
 
@@ -96,30 +99,15 @@ var HP = {
 	 */
 	extendHeaderData: function (req, modelData) {
 		// SEO
-		modelData.header.pageType = modelData.pagename;
-		modelData.header.pageTitle = modelData.seo.pageTitle;
-		modelData.header.metaDescription = modelData.seo.description; //TODO check if descriptionCat needed based on locale, and put that value
-		modelData.header.metaRobots = modelData.seo.robots;
-		modelData.header.canonical = modelData.header.homePageUrl;
-		modelData.header.pageUrl = modelData.header.homePageUrl;
-		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
-		}
+    console.log('hiiiiiiiiiiiiiii');
 
 		// CSS
-		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
+		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
 		if (modelData.header.min) {
-			if (deviceDetection.isHomePageDevice()) {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
-			} else {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
-			}
-		} else {
-			if (deviceDetection.isHomePageDevice()) {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
-			} else {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
-			}
+				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/QuickPost.min.css');
+		}
+    else {
+				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/QuickPost.css');
 		}
 
 		// Header Page Messages
