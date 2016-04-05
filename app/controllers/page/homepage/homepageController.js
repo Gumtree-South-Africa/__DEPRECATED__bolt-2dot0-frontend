@@ -75,7 +75,7 @@ router.get('/', function (req, res, next) {
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
-		//HP.deleteMarketoCookie(res, modelData);
+		
 
 		// Make the location data null if it comes as an empty object from bapi
 		if (_.isEmpty(modelData.location)) {

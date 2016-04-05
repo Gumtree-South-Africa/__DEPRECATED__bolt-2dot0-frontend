@@ -57,7 +57,7 @@ PageControllerUtil.prototype.preController = function (req, res) {
  * @param {String} pageTemplateName
  * @param {JSON} modelData
  */
-PageControllerUtil.prototype.finalizeController = function (req, res, next, pageTemplateName, modelData) {
+PageControllerUtil.prototype.postController = function (req, res, next, pageTemplateName, modelData) {
 	// Render
    /* res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
 		  if (err) {

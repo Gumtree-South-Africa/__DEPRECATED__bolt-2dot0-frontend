@@ -5,17 +5,19 @@
  */
 
 "use strict";
+var cuid = require('cuid');
 
 module.exports = function() {
    var  HeaderOnlyModel= require(process.cwd() + '/app/builders/page/HomePageModel').HeaderOnlyModel,
-       deviceDetection = require(process.cwd() + '/modules/device-detection');
+       deviceDetection = require(process.cwd() + '/modules/device-detection'),
+       marketoService = require(process.cwd() + '/server/utils/marketo');
 
     return function(req, res, next) {
         var M = require('mstring');
         var context;
 
         var modelData = {};
-        var bapiConfigData = res.locals.config.bapiConfigData; console.log("xxxxxxx hello xxxxxx");
+        var bapiConfigData = res.locals.config.bapiConfigData; 
 
         // Retrieve Data from Model Builders
         var model = HeaderOnlyModel(req, res);
@@ -73,6 +75,13 @@ module.exports = function() {
 
                  ***/});
 
+            // Set anonUsrId cookie with value from cuid
+            if (!req.cookies['anonUsrId']) {
+                res.cookie('anonUsrId', cuid(), {'httpOnly': true});
+            }
+
+            marketoService.deleteMarketoCookie(res, modelData.header);
+            
             var template = res.locals.hbs.handlebars.compile(htmlHead);
 
             var context = {title: "My New Post", body: "This is my first post!"};
