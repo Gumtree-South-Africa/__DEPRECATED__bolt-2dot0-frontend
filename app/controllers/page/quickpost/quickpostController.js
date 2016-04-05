@@ -52,10 +52,7 @@ router.get('/quickpost', function (req, res, next) {
 /**
  * Build QuickPost Model After Post
  */
-router.post(
-
-	// Route
-	'/quickpost',
+router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
@@ -98,8 +95,6 @@ var HP = {
 	 * Special header data for HomePage
 	 */
 	extendHeaderData: function (req, modelData) {
-		// SEO
-    console.log('hiiiiiiiiiiiiiii');
 
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
@@ -152,32 +147,7 @@ var HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData: function (modelData) {
-		var baseJSComponentDir = "/views/components/";
 
-		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
-		if (!modelData.footer.min) {
-			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
-			if (!modelData.header.enableLighterVersionForMobile) {
-				modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
-				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
-				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
-				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
-			}
-			var availableAdFeatures = modelData.footer.availableAdFeatures;
-			if (typeof availableAdFeatures !== 'undefined') {
-				for (var i = 0; i < availableAdFeatures.length; i++) {
-					if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-						modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
-					}
-				}
-			}
-		} else {
-			if (modelData.header.enableLighterVersionForMobile) {
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
-			} else {
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
-			}
-		}
 	},
 
 	/**
@@ -186,51 +156,8 @@ var HP = {
 	buildContentData: function (modelData, bapiConfigData) {
 		modelData.content = {};
 
-		var contentConfigData, homepageConfigData;
-		if (typeof bapiConfigData !== 'undefined') {
-			contentConfigData = bapiConfigData.content;
-		}
-		if (typeof contentConfigData !== 'undefined') {
-			homepageConfigData = contentConfigData.homepage;
-		}
-		if (typeof homepageConfigData !== 'undefined') {
-			// Banners
-			modelData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
-
-			if (homepageConfigData.homepageBanners !== null) {
-				var homePageBannerUrls = [];
-				var homepageBanners = homepageConfigData.homepageBanners;
-				for (var i = 0; i < homepageBanners.length; i++) {
-					homePageBannerUrls[i] = modelData.footer.baseImageUrl + homepageBanners[i];
-				}
-				modelData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];
-			}
-
-			// Swap Trade
-			if (homepageConfigData.swapTradeEnabled) {
-				modelData.content.swapTradeModel = {};
-				modelData.content.swapTradeModel.isSwapTradeEnabled = homepageConfigData.swapTradeEnabled;
-				modelData.content.swapTradeModel.swapTradeName = homepageConfigData.swapTradeName;
-				modelData.content.swapTradeModel.swapTradeSeoUrl = homepageConfigData.swapTradeUrl;
-			}
-
-			// Freebies
-			if (homepageConfigData.freebiesEnabled) {
-				modelData.content.freebiesModel = {};
-				modelData.content.freebiesModel.isFreebiesEnabled = homepageConfigData.freebiesEnabled;
-				modelData.content.freebiesModel.freebiesName = homepageConfigData.freebiesName;
-				modelData.content.freebiesModel.freebiesSeoUrl = homepageConfigData.freebiesUrl;
-			}
-
-			// Bing Meta
-			modelData.content.bingMeta = homepageConfigData.bingMeta;
-
-			// Gallery See All Url
-			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
-		}
-
-		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
+		// Bing Meta
+		modelData.content.bingMeta = homepageConfigData.bingMeta;
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
