@@ -1,4 +1,3 @@
-//jshint ignore: start
 'use strict';
 
 var express = require('express'),
@@ -35,12 +34,12 @@ router.get('/quickpost', function (req, res, next) {
 	var model = QuickpostPageModel(req, res);
 	model.then(function (result) {
 		// Dynamic Data from BAPI
-		modelData.header = result['common'].header || {};
-		modelData.footer = result['common'].footer || {};
-		modelData.dataLayer = result['common'].dataLayer || {};
+		modelData.header = result.common.header || {};
+		modelData.footer = result.common.footer || {};
+		modelData.dataLayer = result.common.dataLayer || {};
 
-    // Special Data needed for HomePage in header, footer, content
-    HP.extendHeaderData(req, modelData);
+    	// Special Data needed for QuickPost in header, footer, content
+		QuickPost.extendHeaderData(req, modelData);
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	});
@@ -56,8 +55,8 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field("description").trim().required().is(/^[a-z]+$/),
-		field("price").trim().required().is(/^[0-9]+$/)
+		field('description').trim().required().is(/^[a-z]+$/),
+		field('price').trim().required().is(/^[0-9]+$/)
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -78,8 +77,8 @@ router.post('/quickpost',
 
 		} else {
 			// Or, use filtered form data from the form object:
-			console.log("Description:", req.form.description);
-			console.log("Price:", req.form.price);
+			console.log('Description:', req.form.description);
+			console.log('Price:', req.form.price);
 		}
 
 		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/quickpost_', modelData);
@@ -89,87 +88,40 @@ router.post('/quickpost',
 );
 
 
-
-var HP = {
+var QuickPost = {
 	/**
-	 * Special header data for HomePage
+	 * Special header data for QuickPost
 	 */
 	extendHeaderData: function (req, modelData) {
 
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
 		if (modelData.header.min) {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/QuickPost.min.css');
+			modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/QuickPost.min.css');
 		}
-    else {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/QuickPost.css');
-		}
-
-		// Header Page Messages
-		HP.buildHeaderPageMessages(req, modelData);
-	},
-
-	/**
-	 * Build Page-Messages data for HomePage
-	 */
-	buildHeaderPageMessages: function (req, modelData) {
-		modelData.header.pageMessages = {};
-		switch (req.query.status) {
-			case 'userregistered' :
-				modelData.header.pageMessages.success = 'home.user.registered';
-				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
-
-				// Header Marketo
-				marketoService.buildMarketoDataForHP(modelData);
-				break;
-			case 'adinactive':
-				modelData.header.pageMessages.success = 'home.ad.notyetactive';
-				break;
-			case 'resetpassword':
-				modelData.header.pageMessages.success = 'home.reset.password.success';
-				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
-				break;
-			default:
-				modelData.header.pageMessages.success = '';
-				modelData.header.pageMessages.error = '';
-		}
-		switch (req.query.resumeabandonedordererror) {
-			case 'adnotactive':
-				modelData.header.pageMessages.error = 'abandonedorder.adNotActive';
-				break;
-			case 'adfeaturepaid':
-				modelData.header.pageMessages.error = 'abandonedorder.adFeaturePaid.multiple_ads';
-				break;
+    	else {
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/QuickPost.css');
 		}
 	},
 
 	/**
-	 * Special footer data for HomePage
+	 * Special footer data for QuickPost
 	 */
 	extendFooterData: function (modelData) {
 
 	},
 
 	/**
-	 * Build content data for HomePage
+	 * Build content data for QuickPost
 	 */
 	buildContentData: function (modelData, bapiConfigData) {
 		modelData.content = {};
-
-		// Bing Meta
-		modelData.content.bingMeta = homepageConfigData.bingMeta;
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
 
 		// Page Sub Title
 		modelData.content.pageSubTitle = null;
-	},
-
-	/**
-	 * Invoke marketo function
-	 */
-	deleteMarketoCookie: function (res, modelData) {
-		marketoService.deleteMarketoCookie(res, modelData.header);
 	}
+
 };
