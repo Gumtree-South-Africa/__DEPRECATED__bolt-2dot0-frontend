@@ -8,6 +8,10 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
             <br />
+
+            {{#block "speechRecArea"}}{{/block}}
+
+            <br />
             <label for="description">Category:</label>
             <select>
                 {{#each this.category.children}}
@@ -26,3 +30,56 @@
     </form>
 
 {{/partial}}
+
+{{#block "pageTail"}}
+    {{#each this.footer.javascripts}}
+        {{#if this.footer.min}}
+            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
+        {{else}}
+            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
+        {{/if}}
+    {{/each}}
+
+    <script type="text/javascript" src='/views/components/speechRecognition/js/speech.js'></script>
+{{/block}}
+
+{{#partial "pageTailScripts"}}
+<script>
+    $(document).ready(function () {
+        // Create an instance of this SpeechRecognition class
+        var speechConfig = {
+            info : "info",
+            final_span : "final_span",
+            interim_span : "interim_span",
+            start_button : "start_button",
+            copy_button : "copy_button",
+            email_button : "email_button",
+            copy_info : "copy_info",
+            email_info : "email_info",
+            start_img : "start_img",
+            select_language : "select_language",
+            select_dialect : "select_dialect"
+        };
+
+        // Create a new speech object.
+        var speechObj = new BOLT.SpeechRecognition(speechConfig, null, true);
+
+        var placeholderText = "Click on the mic and say something...";
+        $("#description_results .placeholder").html(placeholderText);
+
+        $("#desc-close").click(function () {
+            speechObj.resetFinalScript();
+            $("#description_results .placeholder").html(placeholderText);
+        });
+
+        $("form#mainform").submit(function () {
+            $("input[name=description").val($("#final_span").html());
+        });
+    });
+</script>
+{{/partial}}
+
+{{#partial "speechRecArea"}}
+    {{> (dynamic "speechRecognition") }}
+{{/partial}}
+
