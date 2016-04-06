@@ -1,25 +1,31 @@
 {{#partial "content"}}
 
     <form action="" method="post">
-        <label for="name">Upload Pictures</label>
+        <label for="name">{{this.formContent.uploadText}}</label>
         <input type="file" name="pic" accept="image/*">
         <br />
-        <label for="description">Description:</label>
-        <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
-        <label for="category">Category:</label>
+
+        <label for="description">{{this.formContent.descriptionText}}</label>
+        <textarea id="description" name="description" placeholder="{{this.formContent.descriptionValue}}"></textarea>
+        <br />
+
+        <label for="category">{{this.formContent.categoryText}}</label>
         <select>
             {{#each this.category.children}}
                 <option>{{this.localizedName}}</option>
             {{/each}}
         </select>
         <br />
-        <label for="price">Price:</label>
+
+        <label for="price">{{this.formContent.priceText}}</label>
         <input type="text" id="price" name="price" placeholder="Enter price" />
         <br />
-        <label for="sharefb">Share on Facebook:</label>
+
+        <label for="sharefb">{{this.formContent.sharefbText}}</label>
         <input type="checkbox" name="sharefb" />
         <br />
-        <input type="submit" value="Sell It" />
+
+        <input type="submit" value="{{this.formContent.sellitText}}" />
     </form>
 
 {{/partial}}

@@ -38,6 +38,7 @@ router.get('/quickpost', function (req, res, next) {
 
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
+		QuickPost.buildFormData(modelData);
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
@@ -75,6 +76,8 @@ router.post('/quickpost',
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
+			QuickPost.buildFormData(modelData);
+			QuickPost.buildValueData(modelData, req.form);
 
 			if (!req.form.isValid) {
 				// Handle errors
@@ -124,16 +127,34 @@ var QuickPost = {
 	},
 
 	/**
-	 * Build content data for QuickPost
+	 * Build Form data for QuickPost
 	 */
-	buildContentData: function (modelData, bapiConfigData) {
-		modelData.content = {};
+	buildFormData: function (modelData) {
+		modelData.formContent = {};
 
-		// Search Bar
-		modelData.content.disableSearchbar = false;
+		modelData.formContent.uploadText = 'Upload Pictures';
 
-		// Page Sub Title
-		modelData.content.pageSubTitle = null;
+		modelData.formContent.descriptionText = 'Description';
+		modelData.formContent.descriptionValue = 'Enter a short description about what you are selling';
+
+		modelData.formContent.categoryText = 'Select Category';
+
+		modelData.formContent.priceText = 'Price';
+
+		modelData.formContent.sharefbText = 'Share on Facebook';
+
+		modelData.formContent.sellitText = 'Sell It';
+	},
+
+	/**
+	 * Build Value data for QuickPost
+	 */
+	buildValueData: function (modelData, formData) {
+		if (!_.isEmpty(formData.description)) {
+			modelData.formContent.descriptionValue = formData.description;
+		}
+		if (!_.isEmpty(formData.price)) {
+			modelData.formContent.priceValue = formData.price;
+		}
 	}
-
 };
