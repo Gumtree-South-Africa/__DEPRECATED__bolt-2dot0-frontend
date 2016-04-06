@@ -28,21 +28,8 @@ router.get('/quickpost', function (req, res, next) {
 
 	// Build Model Data
 	var modelData = pageControllerUtil.preController(req, res);
-	var bapiConfigData = res.locals.config.bapiConfigData;
-
-	// Retrieve Data from Model Builders
-	var model = QuickpostPageModel(req, res);
-	model.then(function (result) {
-		// Dynamic Data from BAPI
-		modelData.header = result.common.header || {};
-		modelData.footer = result.common.footer || {};
-		modelData.dataLayer = result.common.dataLayer || {};
-
-    	// Special Data needed for QuickPost in header, footer, content
-		QuickPost.extendHeaderData(req, modelData);
-
-		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
-	});
+	var model = QuickPost.getModel(req, res, modelData);
+	pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 	console.timeEnd('Instrument-QuickPost-Form-Controller');
 });
@@ -55,8 +42,8 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('description').trim().required().is(/^[a-z]+$/),
-		field('price').trim().required().is(/^[0-9]+$/)
+		field('description').trim().required().minLength(100).is(/^[a-z]+$/),
+		field('price').trim().is(/^[0-9]+$/)
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -68,20 +55,20 @@ router.post('/quickpost',
 
 		// Build Model Data
 		var modelData = pageControllerUtil.preController(req, res);
-		var bapiConfigData = res.locals.config.bapiConfigData;
+		var model = QuickPost.getModel(req, res, modelData);
 
 		// TODO: Post Form
 		if (!req.form.isValid) {
 			// Handle errors
 			console.log(req.form.errors);
-
+			modelData.flash = { type: 'alert-danger', messages: req.form.errors };
+			pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 		} else {
 			// Or, use filtered form data from the form object:
 			console.log('Description:', req.form.description);
 			console.log('Price:', req.form.price);
+			// pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/quickpost_', modelData);
 		}
-
-		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/quickpost_', modelData);
 
 		console.timeEnd('Instrument-QuickPost-Data-Controller');
 	}
@@ -89,6 +76,22 @@ router.post('/quickpost',
 
 
 var QuickPost = {
+	/**
+	 * Get QuickPost Model
+	 */
+	getModel: function(req, res, modelData) {
+		var model = QuickpostPageModel(req, res);
+		model.then(function (result) {
+			// Dynamic Data from BAPI
+			modelData.header = result.common.header || {};
+			modelData.footer = result.common.footer || {};
+			modelData.dataLayer = result.common.dataLayer || {};
+
+			// Special Data needed for QuickPost in header, footer, content
+			QuickPost.extendHeaderData(req, modelData);
+		});
+	},
+
 	/**
 	 * Special header data for QuickPost
 	 */
