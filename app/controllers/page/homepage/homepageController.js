@@ -149,6 +149,10 @@ var HP = {
 				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
 				break;
+			case 'quickpost':
+				modelData.header.pageMessages.success = 'home.quickpost.success';
+				modelData.header.pageType = pagetypeJson.pagetype.PostAdSuccess;
+				break;
 			default:
 				modelData.header.pageMessages.success = '';
 				modelData.header.pageMessages.error = '';

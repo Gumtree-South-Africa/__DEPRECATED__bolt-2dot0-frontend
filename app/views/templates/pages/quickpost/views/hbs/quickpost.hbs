@@ -1,32 +1,25 @@
 {{#partial "content"}}
 
-    <form action="" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <label for="name">Upload Pictures</label>
-            <input type="file" name="pic" accept="image/*">
-            <br />
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
-            <br />
-
-            {{#block "speechRecArea"}}{{/block}}
-
-            <br />
-            <label for="description">Category:</label>
-            <select>
-                {{#each this.category.children}}
-                    <option>{{this.localizedName}}</option>
-                {{/each}}
-            </select>
-            <br />
-            <label for="name">Price:</label>
-            <input type="text" id="price" name="price" placeholder="Enter price" />
-            <br />
-            <label for="name">Share on Facebook:</label>
-            <input type="checkbox" name="sharefb" />
-            <br />
-            <input type="submit" value="Sell Item" />
-        </fieldset>
+    <form action="" method="post">
+        <label for="name">Upload Pictures</label>
+        <input type="file" name="pic" accept="image/*">
+        <br />
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
+        <label for="category">Category:</label>
+        <select>
+            {{#each this.category.children}}
+                <option>{{this.localizedName}}</option>
+            {{/each}}
+        </select>
+        <br />
+        <label for="price">Price:</label>
+        <input type="text" id="price" name="price" placeholder="Enter price" />
+        <br />
+        <label for="sharefb">Share on Facebook:</label>
+        <input type="checkbox" name="sharefb" />
+        <br />
+        <input type="submit" value="Sell It" />
     </form>
 
 {{/partial}}
@@ -73,7 +66,7 @@
         });
 
         $("form#mainform").submit(function () {
-            $("input[name=description").val($("#final_span").html());
+            $("input[name=description]").val($("#final_span").html());
         });
     });
 </script>
