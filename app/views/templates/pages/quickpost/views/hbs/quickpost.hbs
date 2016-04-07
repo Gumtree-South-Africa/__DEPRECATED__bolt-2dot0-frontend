@@ -3,7 +3,7 @@
 
     <div class="qpHeader">
       {{> (dynamic "logo") }}
-      <div class="pageTitle">Sell your item</div>
+      <div class="pageTitle">{{i18n this.formContent.pagetitle}}</div>
       <div class="clear"></div>
     </div>
 
@@ -19,35 +19,40 @@
       </div>
 
       <div class="qpWrapper">
+
+        <!-- Description -->
         <div class="description">
-          <textarea id="description" name="description" placeholder="{{this.formContent.descriptionValue}}"></textarea>
+          <textarea id="description" name="description" placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
         </div>
 
+        <!-- Category Selector -->
         <div class="select-category">
           <select class="custom-input">
+              <option value="-1">{{i18n this.formContent.categoryText}}</option>
               {{#each this.category.children}}
-                  <option>{{this.localizedName}}</option>
+                  <option value="{{this.id}}">{{i18n this.localizedName}}</option>
               {{/each}}
           </select>
         </div>
 
+        <!-- Price -->
         <div class="price">
-            <input class="custom-input" type="text" name="price" placeholder="Price"/>
+            <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
         </div>
+
+        <!-- Share on FB -->
         <div class="socialMedia">
-            <span class="smedia">Share on Facebook</span>
+            <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
             {{> (dynamic "switchButton") }}
         </div>
 
-        <div class="select-location">
-
-          <!-- Map holder -->
-          <div id="map_canvas_wrapper">
+        <!-- Map holder -->
+        <div id="map_canvas_wrapper">
             <div id="map_canvas"></div>
-          </div>
-          {{> (dynamic "mapLatLong") }}
-
-            <input class="custom-input" type="text" id="location" name="location" placeholder="Select Location"/>
+        </div>
+        <div class="select-location">
+            {{> (dynamic "mapLatLong") }}
+            <input class="custom-input" type="text" id="location" name="location" placeholder="{{i18n this.formContent.locationText}}"/>
             <input type="hidden" id="latitude" name="latitude" value = ""/>
             <input type="hidden" id="longitude" name="longitude" value = ""/>
             <input type="hidden" id="address" name="address" value = ""/>
@@ -55,7 +60,7 @@
       </div>
 
       <div class="qpost">
-        <input class="quickSubmit" type="submit" value="{{this.formContent.sellitText}}" />
+        <input class="quickSubmit" type="submit" value="{{i18n this.formContent.sellitText}}" />
       </div>
     </form>
 

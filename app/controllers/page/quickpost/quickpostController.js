@@ -82,7 +82,7 @@ router.post('/quickpost',
 			if (!req.form.isValid) {
 				// Handle errors
 				console.log(req.form.errors);
-				modelData.flash = { type: 'alert-danger', messages: req.form.errors };
+				modelData.flash = { type: 'alert-danger', errors: req.form.errors };
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
 				// Or, use filtered form data from the form object:
@@ -132,16 +132,23 @@ var QuickPost = {
 	buildFormData: function (modelData) {
 		modelData.formContent = {};
 
+		modelData.formContent.pagetitle = 'Sell Your Item';
+
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionValue = 'Enter a short description about what you are selling';
+		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling';
 
 		modelData.formContent.categoryText = 'Select Category';
 
 		modelData.formContent.priceText = 'Price';
+		modelData.formContent.priceCurrency = 'R';
+		modelData.formContent.pricePlaceholder = '0';
+		modelData.formContent.priceExtension = '.00';
 
 		modelData.formContent.sharefbText = 'Share on Facebook';
+
+		modelData.formContent.locationText = 'Select Location';
 
 		modelData.formContent.sellitText = 'Sell It';
 	},
