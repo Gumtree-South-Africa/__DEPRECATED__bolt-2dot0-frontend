@@ -2,13 +2,13 @@
 	/* IE8 */
 	.container {
 		overflow: hidden;
-		@include border-radius(0.25em);
+		border-radius: 0.25em;
 		border: 1px solid #0C0D0C;
 		position:relative;
 		box-shadow: 0px 0px 3px rgba(0,0,0,0.35) inset;
 		width: 4.8em;
 		height: 2em;
-		@include border-radius(5px);
+		border-radius: 5px;
 		span {
 			padding-top:7px;
 			text-align:center;
@@ -17,11 +17,11 @@
 			width:50%;
 			position:absolute;
 		}
-		
-		
-		
+
+
+
 		.on {
-			background-color: $savedsearch-btn-on;
+			background-color: #AACD38;
 			&:after {
 				content: "";
 				display:block;
@@ -30,7 +30,7 @@
 				width: 0px;
 				margin-top: 0;
 				margin-left: 1em;
-				background-color: $savedsearch-btn-on;
+				background-color: #AACD38;
 			}
 			&.classic{
 				font-weight: bold;
@@ -42,12 +42,12 @@
 				}
 			}
 		}
-		
-		
-		
+
+
+
 		.off {
 			left:50%;
-			background-color: $savedsearch-btn-off;
+			background-color: #ebeeb9;
 			&:after {
 				content: "";
 				display:block;
@@ -56,8 +56,8 @@
 				width: 9px;
 				margin-top: 0.01em;
 				margin-left: 0.7em;
-				background-color: $savedsearch-btn-off;
-				@include border-radius(75px);
+				background-color: #ebeeb9;
+				border-radius: 75px;
 			}
 			&.classic{
 				color: #8c8c8c;
@@ -82,7 +82,7 @@
 		}
 		input {
 			position:absolute;
-			@include opacity(0);
+			opacity: 0;
 			height:100%;
 			width:100%;
 			z-index:2;
@@ -102,4 +102,3 @@
 		}
 	}
 }
-

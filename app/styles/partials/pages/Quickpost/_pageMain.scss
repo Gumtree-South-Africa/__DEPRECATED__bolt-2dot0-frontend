@@ -1,3 +1,136 @@
-body{
-  color: black;
+.page{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.qpHeader{
+  background-color: green;
+  display: inline-block;
+  width: 100%;
+  padding-left: 1em;
+  margin-bottom: 1em;
+  .logo{
+    float: left;
+  }
+  .pageTitle{
+    margin-left: 1em;
+    color: white;
+    margin-top: 1.9em;
+    float: left;
+    font-size: 1.5em;
+  }
+}
+
+.imgUploadContainer{
+  display: inline-block;
+  width: 100%;
+  margin-left: 0.5em;
+  .uploadWrapper{
+    position: relative;
+  }
+}
+
+.upload-icon {
+  border: 2px dotted grey;
+  width: 2em;
+  height: 2em;
+  float: left;
+  margin-left: 0.2em;
+  text-align: center;
+  padding-top: 0.1em;
+  font-weight: bold;
+  font-size: 3em;
+  color: green;
+}
+
+.upload-icon-content{
+  position: relative;
+  left: 0.5em;
+}
+
+.inner {
+  border-radius: 1em;
+  border: 1px solid #8FBA31;
+  height: 1em;
+  width: 1em;
+  display: inline-block;
+  position: relative;
+  top: 0.17em;
+  left: -0.4em;
+}
+
+.qpWrapper{
+  padding: 1em;
+  background-color: #ebeeb9;
+  border-radius: 10px;
+  margin: 1em;
+}
+
+.description{
+  margin-top: 0.4em;
+  textarea{
+    background: transparent;
+    width: 99%;
+    height: 10em;
+    min-height: 10em;
+    font-size: 1.2em;
+  }
+}
+
+.socialMedia{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 1em;
+  .smedia{
+    font-size: 1.3em;
+    padding-left: 0.4em;
+  }
+}
+
+.select-category{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 0.6em;
+}
+
+.price, .select-location{
+  border-bottom: solid 1px #a2a2a1;
+  padding-left: 0.4em;
+  margin-top: 1em;
+}
+
+input, select{
+  &.custom-input{
+    background: transparent;
+    border: 0;
+    outline: none;
+    font-size: 1.3em;
+    width: 99%;
+  }
+}
+
+.toggleswitch{
+  float: right;
+  margin-top: -0.3em;
+  display: inline-block;
+  clear: right;
+}
+
+.qpost{
+  padding: 0 1em;
+  margin-top: 1.5em;
+}
+
+.quickSubmit {
+  color: #fff;
+  font-weight: 700;
+  border: 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  font-size: 1.3em;
+  background-color: green;
+  margin: 0 auto;
+  margin-top: 0.5em;
+  width: 100%;
 }
