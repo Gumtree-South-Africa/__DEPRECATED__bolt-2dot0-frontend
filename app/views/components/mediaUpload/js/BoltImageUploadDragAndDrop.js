@@ -1,3 +1,4 @@
+/* jshint ignore:start */
 // class drop
 				
 			var dragAndDrop = function(){
@@ -207,3 +208,5 @@
 							}
 						};
 				}();
+
+/* jshint ignore:end */

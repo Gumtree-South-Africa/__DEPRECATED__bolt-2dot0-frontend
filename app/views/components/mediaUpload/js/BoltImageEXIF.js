@@ -1,4 +1,5 @@
-  
+/* jshint ignore:start */
+
  // EXIF  class
    
  var debug = false;
@@ -77,7 +78,7 @@
 
      // Try to fix IOS6s image squash bug.
      // Test for transparency. This trick only works with JPEGs.
-     if (isIOS() && fileType == 'image/jpeg') {  
+     if (isIOS() && fileType == 'image/jpeg') {
          var transparent = detectTransparency(ctx);
          if (transparent) {
              // Redraw image, doubling the height seems to fix the iOS6 issue.
@@ -261,7 +262,7 @@ function transformCoordinate(ctx, orientation, width, height) {
                 	//if ($.isSafari()) return false;
                 	//if ($.isSafari() && !(IsSafariMUSupport())) return false;
                 	// do i support FileList API
-                	if ($("#file").files && document.getElementById("file").files.length == 0) return false; 
+                	if ($("#file").files && document.getElementById("file").files.length == 0) return false;
                     //do I support input type=file/multiple
                     var el = document.createElement("input");
                     return ("multiple" in el);
@@ -652,3 +653,5 @@ function transformCoordinate(ctx, orientation, width, height) {
 
        return tags;
    }
+
+/* jshint ignore:end */

@@ -1,4 +1,4 @@
-   
+/* jshint ignore:start */
 		    
 		    $( document ).ready(function() {
 		    	$( ".img-box" ).each(function(i) {
@@ -323,7 +323,7 @@
 		                 	
 	                 	    
 	                 		img.onload = function() {
-	                 	    	resizedImageFile = scaleAndCropImage(this, file.type);
+	                 	    	var resizedImageFile = scaleAndCropImage(this, file.type);
      							loadData(i, resizedImageFile);
 	                		};
 	                		
@@ -347,7 +347,7 @@
 	                window.URL = window.URL || window.webkitURL || false;
 	                var imageUrl = URL.createObjectURL(file);
 	                img.onload = function() {
-                 	    	resizedImageFile = scaleAndCropImage(this, file.type);
+                 	    	var resizedImageFile = scaleAndCropImage(this, file.type);
  							loadData(i, resizedImageFile);
                 	};
 	                img.src = imageUrl;
@@ -565,3 +565,5 @@
 					});
 					
 				});
+
+/* jshint ignore:end */

@@ -1,3 +1,5 @@
+/* jshint ignore:start */
+
 function isCORS() {
 	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
 };
@@ -68,3 +70,5 @@ function IsSafariMUSupport() {
 function isIOS() {
 	return !!navigator.userAgent.match(/(iPad|iPhone|iPod)/i);
 }
+
+/* jshint ignore:end */

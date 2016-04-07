@@ -28,7 +28,9 @@ router.get('/quickpost', function (req, res, next) {
 
 	// Build Model Data
 	var modelData = pageControllerUtil.preController(req, res);
+
 	var model = QuickPost.getModel(req, res, modelData);
+
 	pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 	console.timeEnd('Instrument-QuickPost-Form-Controller');
@@ -89,6 +91,7 @@ var QuickPost = {
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
+			QuickPost.extendFooterData(modelData);
 		});
 	},
 
@@ -111,7 +114,15 @@ var QuickPost = {
 	 * Special footer data for QuickPost
 	 */
 	extendFooterData: function (modelData) {
-
+		var baseJSComponentDir = '/views/components/';
+	    if (!modelData.footer.min) {
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadUtil.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageEXIF.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadDragAndDrop.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploader.js');
+		} else {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'QuickPost' + modelData.locale + '.min.js');
+		}
 	},
 
 	/**
