@@ -36,11 +36,21 @@
         </div>
         <div class="socialMedia">
             <span class="smedia">Share on Facebook</span>
-            {{> (dynamic "switchButton" ) }}
+            {{> (dynamic "switchButton") }}
         </div>
 
         <div class="select-location">
-            <input class="custom-input" type="text" name="location" placeholder="Select Location"/>
+
+          <!-- Map holder -->
+          <div id="map_canvas_wrapper">
+            <div id="map_canvas"></div>
+          </div>
+          {{> (dynamic "mapLatLong") }}
+
+            <input class="custom-input" type="text" id="location" name="location" placeholder="Select Location"/>
+            <input type="hidden" id="latitude" name="latitude" value = ""/>
+            <input type="hidden" id="longitude" name="longitude" value = ""/>
+            <input type="hidden" id="address" name="address" value = ""/>
         </div>
       </div>
 
@@ -54,3 +64,33 @@
 
 {{#partial "headerWrapper"}}{{/partial}}
 {{#partial "footerWrapper"}}{{/partial}}
+
+
+{{#partial "pageTailScripts"}}
+<script type="text/javascript" src='/views/components/mapLatLong/js/mapLatLong.js'></script>
+<script>
+   $(document).ready(function () {
+      var GMapObj = BOLT.MapLatLong;
+
+      function openMap() {
+
+        if (!openMap.opened) {
+          $("#map_canvas_wrapper").slideDown("slow");
+        } else {
+          $("#map_canvas_wrapper").slideUp("slow", function () {
+           var latlongData = GMapObj.getLatLong();
+           $("#latitude").val(latlongData.lat);
+           $("#longitude").val(latlongData.long);
+           $("#address").val(latlongData.address);
+           
+           $("#location").val(latlongData.address);
+          });
+        }
+        openMap.opened = !openMap.opened;
+      }
+      openMap.opened = false;
+
+      $("input[name=location]").click(openMap);
+   });
+</script>
+{{/partial}}
