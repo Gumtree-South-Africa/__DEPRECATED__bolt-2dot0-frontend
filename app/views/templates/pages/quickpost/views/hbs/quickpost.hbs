@@ -1,32 +1,31 @@
 {{#partial "content"}}
-{{> (dynamic "mediaUpload")}}
-    <form action="" method="post" enctype="multipart/form-data">
-        <fieldset>
-            <label for="name">Upload Pictures</label>
-            <input type="file" name="pic" accept="image/*">
-            <br />
-            <label for="description">Description:</label>
-            <textarea id="description" name="description" placeholder="Enter a short description about what you are selling"></textarea>
-            <br />
+    {{> (dynamic "mediaUpload")}}
+    <form action="" method="post">
+        <label for="name">{{this.formContent.uploadText}}</label>
+        <input type="file" name="pic" accept="image/*">
+        <br />
 
-            {{#block "speechRecArea"}}{{/block}}
+        <label for="description">{{this.formContent.descriptionText}}</label>
+        <textarea id="description" name="description" placeholder="{{this.formContent.descriptionValue}}"></textarea>
+        <br />
 
-            <br />
-            <label for="description">Category:</label>
-            <select>
-                {{#each this.category.children}}
-                    <option>{{this.localizedName}}</option>
-                {{/each}}
-            </select>
-            <br />
-            <label for="name">Price:</label>
-            <input type="text" id="price" name="price" placeholder="Enter price" />
-            <br />
-            <label for="name">Share on Facebook:</label>
-            <input type="checkbox" name="sharefb" />
-            <br />
-            <input type="submit" value="Sell Item" />
-        </fieldset>
+        <label for="category">{{this.formContent.categoryText}}</label>
+        <select>
+            {{#each this.category.children}}
+                <option>{{this.localizedName}}</option>
+            {{/each}}
+        </select>
+        <br />
+
+        <label for="price">{{this.formContent.priceText}}</label>
+        <input type="text" id="price" name="price" placeholder="Enter price" />
+        <br />
+
+        <label for="sharefb">{{this.formContent.sharefbText}}</label>
+        <input type="checkbox" name="sharefb" />
+        <br />
+
+        <input type="submit" value="{{this.formContent.sellitText}}" />
     </form>
 
 {{/partial}}
@@ -73,7 +72,7 @@
         });
 
         $("form#mainform").submit(function () {
-            $("input[name=description").val($("#final_span").html());
+            $("input[name=description]").val($("#final_span").html());
         });
     });
 </script>
@@ -82,6 +81,4 @@
 {{#partial "speechRecArea"}}
     {{> (dynamic "speechRecognition") }}
 {{/partial}}
-
-
 

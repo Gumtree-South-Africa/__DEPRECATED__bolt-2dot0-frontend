@@ -18,7 +18,7 @@ module.exports = function (app) {
 
 
 /**
- * Build QuickPost Form
+ * Get QuickPost Form
  */
 router.get('/quickpost', function (req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
@@ -29,22 +29,32 @@ router.get('/quickpost', function (req, res, next) {
 	// Build Model Data
 	var modelData = pageControllerUtil.preController(req, res);
 
-	var model = QuickPost.getModel(req, res, modelData);
+	var model = QuickpostPageModel(req, res);
+	model.then(function (result) {
+		// Dynamic Data from BAPI
+		modelData.header = result.common.header || {};
+		modelData.footer = result.common.footer || {};
+		modelData.dataLayer = result.common.dataLayer || {};
 
-	pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+		// Special Data needed for QuickPost in header, footer, content
+		QuickPost.extendHeaderData(req, modelData);
+		QuickPost.buildFormData(modelData);
 
-	console.timeEnd('Instrument-QuickPost-Form-Controller');
+		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+
+		console.timeEnd('Instrument-QuickPost-Form-Controller');
+	});
 });
 
 
 /**
- * Build QuickPost Model After Post
+ * Do QuickPost
  */
 router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('description').trim().required().minLength(100).is(/^[a-z]+$/),
+		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9]+$/),
 		field('price').trim().is(/^[0-9]+$/)
 	),
 
@@ -57,31 +67,6 @@ router.post('/quickpost',
 
 		// Build Model Data
 		var modelData = pageControllerUtil.preController(req, res);
-		var model = QuickPost.getModel(req, res, modelData);
-
-		// TODO: Post Form
-		if (!req.form.isValid) {
-			// Handle errors
-			console.log(req.form.errors);
-			modelData.flash = { type: 'alert-danger', messages: req.form.errors };
-			pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
-		} else {
-			// Or, use filtered form data from the form object:
-			console.log('Description:', req.form.description);
-			console.log('Price:', req.form.price);
-			// pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/quickpost_', modelData);
-		}
-
-		console.timeEnd('Instrument-QuickPost-Data-Controller');
-	}
-);
-
-
-var QuickPost = {
-	/**
-	 * Get QuickPost Model
-	 */
-	getModel: function(req, res, modelData) {
 		var model = QuickpostPageModel(req, res);
 		model.then(function (result) {
 			// Dynamic Data from BAPI
@@ -91,10 +76,34 @@ var QuickPost = {
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
-			QuickPost.extendFooterData(modelData);
-		});
-	},
+			QuickPost.buildFormData(modelData);
+			QuickPost.buildValueData(modelData, req.form);
 
+			if (!req.form.isValid) {
+				// Handle errors
+				console.log(req.form.errors);
+				modelData.flash = { type: 'alert-danger', messages: req.form.errors };
+				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+			} else {
+				// Or, use filtered form data from the form object:
+				console.log('Description:', req.form.description);
+				console.log('Price:', req.form.price);
+
+				// TODO: Build Ad object to POST
+
+				// TODO: Post Ad object to service, and then to BAPI
+
+				// Redirect to homepage with a message
+				res.redirect(modelData.header.homePageUrl + '?status=quickpost');
+			}
+
+			console.timeEnd('Instrument-QuickPost-Data-Controller');
+		});
+	}
+);
+
+
+var QuickPost = {
 	/**
 	 * Special header data for QuickPost
 	 */
@@ -126,16 +135,34 @@ var QuickPost = {
 	},
 
 	/**
-	 * Build content data for QuickPost
+	 * Build Form data for QuickPost
 	 */
-	buildContentData: function (modelData, bapiConfigData) {
-		modelData.content = {};
+	buildFormData: function (modelData) {
+		modelData.formContent = {};
 
-		// Search Bar
-		modelData.content.disableSearchbar = false;
+		modelData.formContent.uploadText = 'Upload Pictures';
 
-		// Page Sub Title
-		modelData.content.pageSubTitle = null;
+		modelData.formContent.descriptionText = 'Description';
+		modelData.formContent.descriptionValue = 'Enter a short description about what you are selling';
+
+		modelData.formContent.categoryText = 'Select Category';
+
+		modelData.formContent.priceText = 'Price';
+
+		modelData.formContent.sharefbText = 'Share on Facebook';
+
+		modelData.formContent.sellitText = 'Sell It';
+	},
+
+	/**
+	 * Build Value data for QuickPost
+	 */
+	buildValueData: function (modelData, formData) {
+		if (!_.isEmpty(formData.description)) {
+			modelData.formContent.descriptionValue = formData.description;
+		}
+		if (!_.isEmpty(formData.price)) {
+			modelData.formContent.priceValue = formData.price;
+		}
 	}
-
 };
