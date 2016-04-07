@@ -1,7 +1,8 @@
 {{!-- From Body.html --}}
 <div class="viewport" id="div-gpt-oop">
-    {{> (dynamic "header") }}
-
+    {{#block "headerWrapper"}}
+        {{> (dynamic "header") }}
+    {{/block}}
     <div class="containment">
 
         {{#block "messaging-full-width"}}{{/block}}
@@ -30,12 +31,14 @@
 
            {{#block "comscore"}}{{/block}}
 
+           {{#block "footerWrapper"}}
             <div class="footer">
                   {{> (dynamic "footer" ) }}
                   {{#block "footer"}}
                       <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
                   {{/block}}
             </div>
+            {{/block}}
         </div>
     </div>
 </div>
