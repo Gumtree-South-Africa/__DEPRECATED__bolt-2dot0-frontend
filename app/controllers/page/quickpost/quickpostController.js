@@ -9,7 +9,8 @@ var express = require('express'),
 var cwd = process.cwd();
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
 	QuickpostPageModel= require(cwd + '/app/builders/page/QuickpostPageModel'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
+	epsModel = require(cwd + '/app/builders/common/EpsModel')();
 
 
 module.exports = function (app) {
@@ -159,7 +160,7 @@ var QuickPost = {
 
 		modelData.formContent.sellitText = 'Sell It';
 		
-		//modelData.eps = 
+		modelData.eps = epsModel;
 	},
 
 	/**

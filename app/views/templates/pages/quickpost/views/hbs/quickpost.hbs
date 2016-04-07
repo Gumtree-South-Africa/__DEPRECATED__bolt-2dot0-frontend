@@ -2,7 +2,10 @@
     {{> (dynamic "mediaUpload")}}
     <form action="" method="post" id="postForm">
         <label for="name">{{this.formContent.uploadText}}</label>
+
         <input type="file" name="pic" accept="image/*" id="fileUpload">
+
+        <ul id="thumb-nails"></ul>
         <br />
 
         <label for="description">{{this.formContent.descriptionText}}</label>
