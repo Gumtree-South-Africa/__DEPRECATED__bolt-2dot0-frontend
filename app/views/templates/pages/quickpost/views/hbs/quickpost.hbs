@@ -28,9 +28,9 @@
         <!-- Category Selector -->
         <div class="select-category">
           <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
-              <option value="-1">{{i18n this.formContent.categoryText}}</option>
+              <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
               {{#each this.category.children}}
-                  <option value="{{this.id}}">{{i18n this.localizedName}}</option>
+                  <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
               {{/each}}
           </select>
         </div>
@@ -52,10 +52,10 @@
         </div>
         <div class="select-location">
             {{> (dynamic "mapLatLong") }}
-            <input class="custom-input" type="text" id="location" name="location" placeholder="{{i18n this.formContent.locationText}}"/>
-            <input type="hidden" id="latitude" name="latitude" value = ""/>
-            <input type="hidden" id="longitude" name="longitude" value = ""/>
-            <input type="hidden" id="address" name="address" value = ""/>
+            <input class="custom-input" type="text" id="location" name="location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+            <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
+            <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
+            <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
         </div>
       </div>
 
