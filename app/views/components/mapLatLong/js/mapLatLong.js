@@ -149,6 +149,9 @@ BOLT.MapLatLong = (function () {
 
                 setInfoWindowContent(latLng, infowindow);
 
+				dataLatLong.address = addressStr || "";
+                $(document).trigger("applyLocation", [dataLatLong]);
+
 
                 // setPositionAddress(latLng, infowindow);
                 //infowindow.setContent("Coords: (" + latLng.lat() + "," + latLng.lng() + ")");

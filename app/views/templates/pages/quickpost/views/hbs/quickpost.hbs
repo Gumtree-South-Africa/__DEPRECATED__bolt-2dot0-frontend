@@ -79,11 +79,15 @@
         } else {
           $("#map_canvas_wrapper").slideUp("slow", function () {
            var latlongData = GMapObj.getLatLong();
+
+           /////////
+           // @Nacer, please refactor this code
            $("#latitude").val(latlongData.lat);
            $("#longitude").val(latlongData.long);
            $("#address").val(latlongData.address);
-           
+
            $("#location").val(latlongData.address);
+           /////////
           });
         }
         openMap.opened = !openMap.opened;
@@ -91,6 +95,18 @@
       openMap.opened = false;
 
       $("input[name=location]").click(openMap);
+
+      $(document).on("applyLocation", function(e, latlongData) {
+        ///////
+        // @Nacer, please refactor this code
+           $("#latitude").val(latlongData.lat);
+           $("#longitude").val(latlongData.long);
+           $("#address").val(latlongData.address);
+
+           $("#location").val(latlongData.address);
+        //////
+      });
+
    });
 </script>
 {{/partial}}
