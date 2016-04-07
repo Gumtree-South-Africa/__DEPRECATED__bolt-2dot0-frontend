@@ -1,8 +1,8 @@
 {{#partial "content"}}
     {{> (dynamic "mediaUpload")}}
-    <form action="" method="post">
+    <form action="" method="post" id="postForm">
         <label for="name">{{this.formContent.uploadText}}</label>
-        <input type="file" name="pic" accept="image/*">
+        <input type="file" name="pic" accept="image/*" id="fileUpload">
         <br />
 
         <label for="description">{{this.formContent.descriptionText}}</label>

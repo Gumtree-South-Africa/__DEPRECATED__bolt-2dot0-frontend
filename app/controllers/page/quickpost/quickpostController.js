@@ -38,6 +38,7 @@ router.get('/quickpost', function (req, res, next) {
 
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
+		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData);
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
@@ -76,8 +77,10 @@ router.post('/quickpost',
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
+			QuickPost.extendFooterData(modelData);
 			QuickPost.buildFormData(modelData);
 			QuickPost.buildValueData(modelData, req.form);
+
 
 			if (!req.form.isValid) {
 				// Handle errors
@@ -124,12 +127,15 @@ var QuickPost = {
 	 */
 	extendFooterData: function (modelData) {
 		var baseJSComponentDir = '/views/components/';
+
+		// image upload
 	    if (!modelData.footer.min) {
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadUtil.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageEXIF.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadDragAndDrop.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploader.js');
 		} else {
+			//Todo: need to add BoltImage related to minjs
 			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'QuickPost' + modelData.locale + '.min.js');
 		}
 	},
@@ -152,6 +158,8 @@ var QuickPost = {
 		modelData.formContent.sharefbText = 'Share on Facebook';
 
 		modelData.formContent.sellitText = 'Sell It';
+		
+		//modelData.eps = 
 	},
 
 	/**

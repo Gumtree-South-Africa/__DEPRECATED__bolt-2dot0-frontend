@@ -43,5 +43,9 @@
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"min"			: false
+	},
+	"eps": {
+		"epsUploadExternalURL" : "",
+		"epsToken" : ""
 	}
 }

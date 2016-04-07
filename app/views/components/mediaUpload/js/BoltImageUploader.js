@@ -535,7 +535,7 @@
 					if (window.addEventListener) dragAndDrop();		
 					
 					// on select file
-					$('#postForm').on("change", ".fileInput", function(evt) { 
+					$('#postForm').on("change", "#fileUpload", function(evt) {
 							var  whichEleClicked = 0, imgHolderEle = "";
 							
 							evt.stopImmediatePropagation(); 
@@ -547,7 +547,7 @@
 							if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) { 
 								html5Upload(evt); 
 							} else {
-								$("#file").removeAttr("multiple"); 
+								$("#fileUpload").removeAttr("multiple");
 								uploadNoneHtml5(this);
 							}
 					});	

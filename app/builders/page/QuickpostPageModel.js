@@ -7,6 +7,7 @@ var cwd = process.cwd();
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+var config = require('config');
 
 
 /**
