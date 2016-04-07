@@ -56,8 +56,8 @@ router.get('/', function (req, res, next) {
 		}
 
 		if (result['keyword']) {
-			modelData.trendingKeywords = result['keyword'][0].keywords || null;
-			modelData.topKeywords = result['keyword'][1].keywords || null;
+			modelData.trendingKeywords = result['keyword'][1].keywords || null;
+			modelData.topKeywords = result['keyword'][0].keywords || null;
 		}
 
 		// Make the loc level 2 (Popular locations) data null if it comes as an empty

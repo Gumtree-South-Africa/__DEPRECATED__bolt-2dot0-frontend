@@ -54,12 +54,13 @@
 			{{#if this.topKeywords}}{{#if this.topKeywords}}
 			id="keywordChecker"
 			{{/if}}{{/if}}>
+
 			{{#if this.topKeywords}}
 				<div class="hp-popular-searches-wrapper">
 					<h5>{{i18n "home.popular-searches"}}</h5>
 					<ul>
 					{{#each this.topKeywords}}
-						<li data-index="{{@index}}" class="nonJsOnlyBlock">
+						<li data-index="{{@index}}" class="{{#ifeq @index compare=1}}displayMore{{else}} {{#ifeq @index compare=4}}displayMoreDeskTop{{/ifeq}}{{/ifeq}} nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
 					{{/each}}
@@ -68,12 +69,13 @@
 				</div>
 			{{/if}}
 
+
 			{{#if this.trendingKeywords}}
 				<div class="hp-trending-searches-wrapper">
 					<h5>{{i18n "home.trending-searches"}}</h5>
 					<ul>
 					{{#each this.trendingKeywords}}
-						<li data-index="{{@index}}" class="nonJsOnlyBlock">
+						<li data-index="{{@index}}" class="{{#ifeq @index compare=1}}displayMore{{else}} {{#ifeq @index compare=4}}displayMoreDeskTop{{/ifeq}}{{/ifeq}} nonJsOnlyBlock">
 							<a href="{{_links.[0].href}}">{{text}}</a>
 						</li>
 					{{/each}}

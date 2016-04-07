@@ -3,6 +3,7 @@
 // ////////////////////////////////////////////////
 // PACKAGING Tasks
 // ///////////////////////////////////////////////
+var exec = require('child_process').exec;
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
@@ -11,34 +12,42 @@ module.exports = function watch(gulp, plugins) {
 
 		// Package App
 		gulp.task('pak:app', function(){
-			process.stdout.write('App Package Task is running...\r\n');
+			  var command = 'mkdir bolt-2dot0-frontend_' + appVersion
+					+ '; cp -R app bolt-2dot0-frontend_' + appVersion
+					+ '; cp -R bin bolt-2dot0-frontend_' + appVersion
+					+ '; cp -R modules bolt-2dot0-frontend_' + appVersion
+					+ '; cp -R node_modules bolt-2dot0-frontend_' + appVersion
+					+ '; cp -R server bolt-2dot0-frontend_' + appVersion
+					+ '; cp app.js bolt-2dot0-frontend_' + appVersion
+					+ '; cp package.json bolt-2dot0-frontend_' + appVersion
+					+ '; cp README.md bolt-2dot0-frontend_' + appVersion
+					+ '; cp CHANGELOG.md bolt-2dot0-frontend_' + appVersion
+					+ '; mkdir target/app'
+					+ '; tar -czf target/app/bolt-2dot0-frontend_' + appVersion + '.tar.gz'
+					+ ' bolt-2dot0-frontend_' + appVersion;
 
-			var stream =
-				gulp.src([process.cwd() + '/**/*', '!./{target,target/**}', '!./{public,public/**}'], {base: '../'})
-				//gulp.src(process.cwd() + '/bolt-2dot0-frontend-' + appVersion + '/**/*/')
-		        	.pipe(plugins.tar('bolt-2dot0-frontend_' + appVersion + '.tar'))
-		        	.pipe(plugins.gzip())
-		        	.pipe(gulp.dest('./target' + '/app'))
-		        	.on('end', function(){
-		        		console.log('Congratulations!!! APP PACKAGING DONE SUCCESSFULLY');
-		        	});
+				var stream =
+				  exec(command, function (err, stdout, stderr) {
+					console.log(stdout);
+					console.log(stderr);
+				  });
 
 			return stream;
 		});
 
 		// Package Static Assets
-		gulp.task('pak:static', function() {
-			process.stdout.write('Static Package Task is running...\r\n');
+		gulp.task('pak:static', function(){
+			  var command = 'mkdir bolt-2dot0-frontend-static_' + staticVersion
+					+ '; cp -R public/* bolt-2dot0-frontend-static_' + staticVersion
+					+ '; mkdir target; mkdir target/static'
+					+ '; tar -czf target/static/bolt-2dot0-frontend-static_' + staticVersion + '.tar.gz'
+					+ ' bolt-2dot0-frontend-static_' + staticVersion;
 
-			var stream =
-			gulp.src(process.cwd() + '/' + 'public/**/*/', {base: '../'})
-			//gulp.src(process.cwd() + '/' + 'public/**/*/')
-			    	.pipe(plugins.tar('bolt-2dot0-frontend-static_'+ staticVersion + '.tar'))
-			        .pipe(plugins.gzip())
-			        .pipe(gulp.dest('./target' + '/static'))
-					.on('end', function(){
-						console.log('Congratulations!!! STATIC PACKAGING DONE SUCCESSFULLY');
-				    });
+				var stream =
+				  exec(command, function (err, stdout, stderr) {
+					console.log(stdout);
+					console.log(stderr);
+				  });
 
 			return stream;
 		});
