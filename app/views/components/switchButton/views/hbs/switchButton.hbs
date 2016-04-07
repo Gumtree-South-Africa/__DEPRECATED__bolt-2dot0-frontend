@@ -1,8 +1,9 @@
 <div class="toggleswitch {{#if this.enabled}} active{{/if}}">
 	<div class="container">
-		<input type="checkbox" name="{{this.savedSearchId}}{{#if this.enabled}}" checked class="checked{{/if}}" />
+        <input type="checkbox" {{#if this.checked}}class="checked"{{/if}} />
 		<span class="slider"></span><!-- button -->
-		<span class="on classic">ON</span>	<!-- gutter -->
-		<span class="off classic">OFF</span>
+		<span class="on classic">YES</span>	<!-- gutter -->
+		<span class="off classic">NO</span>
+        <input type="hidden" name="switch" value="NO" />
 	</div>
 </div>

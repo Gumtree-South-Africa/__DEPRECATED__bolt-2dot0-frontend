@@ -55,6 +55,7 @@ router.post('/quickpost',
 	// Form filter and validation middleware
 	form(
 		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9]+$/),
+		field('category').required(),
 		field('price').trim().is(/^[0-9]+$/)
 	),
 
@@ -73,6 +74,8 @@ router.post('/quickpost',
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
+
+			console.log('$$$$$$$$$$$$$', req.body);
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);

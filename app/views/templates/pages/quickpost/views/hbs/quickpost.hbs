@@ -22,12 +22,12 @@
 
         <!-- Description -->
         <div class="description">
-          <textarea id="description" name="description" placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+          <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
         </div>
 
         <!-- Category Selector -->
         <div class="select-category">
-          <select class="custom-input">
+          <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
               <option value="-1">{{i18n this.formContent.categoryText}}</option>
               {{#each this.category.children}}
                   <option value="{{this.id}}">{{i18n this.localizedName}}</option>

@@ -123,6 +123,14 @@ BOLT.MapLatLong = (function () {
             }); 
             marker.setMap(map);
 
+            // Add circle overlay and bind to marker
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: 3200,    // 10 miles in metres
+                fillColor: '#2FF1F4'
+            });
+            circle.bindTo('center', marker, 'position');
+
             // Info contextual window for marker
             infowindow = new google.maps.InfoWindow({
                 content: "<div class='map_bg_logo'><span style='color:#555;font-size:11px;'><b></b></div>" });
