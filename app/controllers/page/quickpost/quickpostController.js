@@ -107,7 +107,7 @@ router.post('/quickpost',
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
 				// Build Ad JSON
-				var adJson = QuickPost.buildAdJson(modelData);
+				var adJson = QuickPost.buildAdJson(modelData, req.body);
 				var ad = JSON.stringify(adJson);
 
 				// Call BAPI to Post Ad
@@ -226,7 +226,7 @@ var QuickPost = {
 	/**
 	 * Build Ad JSON
 	 */
-	buildAdJson: function (modelData) {
+	buildAdJson: function (modelData, requestBody) {
 		var json = {};
 
 		json.email = modelData.header.userEmail;
@@ -240,10 +240,15 @@ var QuickPost = {
 		json.price.currency = modelData.formContent.priceCurrency;
 		json.price.amount = modelData.formContent.priceValue;
 
+		var reqPictures = requestBody.pictures;
 		json.pictures = {};
 		json.pictures.sizeUrls = [];
-		json.pictures.sizeUrls[0] = {};
-		json.pictures.sizeUrls[0].LARGE = '';
+		if (typeof reqPictures !== 'undefined') {
+			for (var idx = 0; idx < reqPictures.length; idx++) {
+				json.pictures.sizeUrls[idx] = {};
+				json.pictures.sizeUrls[idx].LARGE = decodeURIComponent(reqPictures[idx]);
+			}
+		}
 
 		return json;
 	}
