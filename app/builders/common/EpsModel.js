@@ -12,6 +12,5 @@ module.exports = function() {
         "epsToken" : config.get("eps.epsToken"),
 
         "isEbayDirectUploadEnabled" : config.get("eps.IsEbayDirectUL")
-
     };
 };
