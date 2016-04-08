@@ -103,7 +103,7 @@ router.post('/quickpost',
 
 			if (!req.form.isValid) {
 				// Handle errors
-				modelData.flash = { type: 'alert-danger', errors: req.form.errors };
+				modelData.flash = { type: 'alert-danger', errors: req.form.errors, errorMessage: req.form.errors[0] };
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
 				// Build Ad JSON

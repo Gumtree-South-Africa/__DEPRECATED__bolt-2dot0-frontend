@@ -71,6 +71,7 @@
   margin-top: 0.4em;
   textarea{
     background: transparent;
+    border-radius: 5px;
     width: 99%;
     height: 10em;
     min-height: 10em;
@@ -157,4 +158,15 @@ input, select{
   margin: 0 auto;
   margin-top: 0.5em;
   width: 100%;
+}
+
+.noHeaderError{
+  font-weight: 700;
+  color: #bb3027;
+  font-size: .85em;
+}
+
+textarea.error{
+  border: 1px solid #bb3027;
+  background: #EFDBD6;
 }
