@@ -6,6 +6,7 @@
 
 "use strict";
 var cuid = require('cuid');
+var M = require('mstring');
 
 module.exports = function() {
    var  HeaderOnlyModel= require(process.cwd() + '/app/builders/page/HomePageModel').HeaderOnlyModel,
@@ -13,7 +14,7 @@ module.exports = function() {
        marketoService = require(process.cwd() + '/server/utils/marketo');
 
     return function(req, res, next) {
-        var M = require('mstring');
+
         var context;
 
         var modelData = {};
