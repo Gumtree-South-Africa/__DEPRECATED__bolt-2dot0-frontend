@@ -174,7 +174,7 @@ var QuickPost = {
 
 		modelData.formContent.priceText = 'Price';
 		modelData.formContent.priceCurrency = 'R';
-		modelData.formContent.pricePlaceholder = '0';
+		modelData.formContent.pricePlaceholder = 'Price';
 		modelData.formContent.priceExtension = '.00';
 
 		modelData.formContent.sharefbText = 'Share on Facebook';
@@ -182,7 +182,7 @@ var QuickPost = {
 		modelData.formContent.locationText = 'Select Location';
 
 		modelData.formContent.sellitText = 'Sell It';
-		
+
 		modelData.eps = EpsModel();
 	},
 

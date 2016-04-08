@@ -12,9 +12,10 @@
 
     <form action="" method="post" id="postForm">
       <div class="imgUploadContainer">
-          <input type="file" name="pic" accept="image/*" id="fileUpload">
 
-          <ul id="thumb-nails"></ul>
+        <input type="file" name="pic" accept="image/*" id="fileUpload">
+        <ul id="thumb-nails"></ul>
+
         <div class="uploadWrapper">
           <div class="upload-icon one"><span class="upload-icon-content">+</span><span class="inner"></span></div>
           <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
@@ -26,12 +27,12 @@
 
       <div class="qpWrapper">
 
-        <!-- Description -->
+        {{!-- Description --}}
         <div class="description">
           <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
         </div>
 
-        <!-- Category Selector -->
+        {{!-- Category Selector --}}
         <div class="select-category">
           <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
               <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
@@ -41,27 +42,33 @@
           </select>
         </div>
 
-        <!-- Price -->
+        {{!-- Price --}}
         <div class="price">
             <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
         </div>
 
-        <!-- Share on FB -->
+        {{!-- Share on FB --}}
         <div class="socialMedia">
             <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
             {{> (dynamic "switchButton") }}
         </div>
 
-        <!-- Map holder -->
+        <div class="select-location">
+          {{> (dynamic "mapLatLong") }}
+          <input id="location" class="custom-input" type="text" name="custom-location" placeholder="Enter Your ZIP Code" value="{{this.formContent.location}}"/>
+          <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
+          <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
+          <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
+          <div class="infos">
+            <span>We won't show it on the ad.</span>
+            <span>But, if you want to show your precise location then</span>
+            <span id="maps-link"> select your location instead through a map.</span>
+          </div>
+        </div>
+
+        {{!-- Map holder --}}
         <div id="map_canvas_wrapper">
             <div id="map_canvas"></div>
-        </div>
-        <div class="select-location">
-            {{> (dynamic "mapLatLong") }}
-            <input class="custom-input" type="text" id="location" name="location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
-            <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
-            <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
-            <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
         </div>
       </div>
 
@@ -106,6 +113,7 @@
       openMap.opened = false;
 
       $("input[name=location]").click(openMap);
+      $("#maps-link").click(openMap);
 
       $(document).on("applyLocation", function(e, latlongData) {
         ///////

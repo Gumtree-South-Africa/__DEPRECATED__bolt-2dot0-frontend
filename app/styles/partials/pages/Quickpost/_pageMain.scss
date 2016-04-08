@@ -23,11 +23,8 @@
 
 .imgUploadContainer{
   display: inline-block;
-  width: 100%;
+  width: 96%;
   margin-left: 0.5em;
-  .uploadWrapper{
-    position: relative;
-  }
 }
 
 .upload-icon {
@@ -64,6 +61,10 @@
   background-color: #ebeeb9;
   border-radius: 10px;
   margin: 1em;
+}
+
+#postForm{
+  margin-bottom: 2em;
 }
 
 .description{
@@ -112,6 +113,29 @@ input, select{
   margin-top: -0.3em;
   display: inline-block;
   clear: right;
+}
+
+.infos{
+  cursor: auto;
+  color: #698DA7;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  border: 1px solid #97C3CE;
+  background-color: #D9EDF6;
+  white-space: normal;
+  text-align: center;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 0 0.5em;
+  margin-bottom: 0.5em;
+  margin-top: 1em;
+}
+
+#maps-link{
+  color: #2F68B2;
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .qpost{
