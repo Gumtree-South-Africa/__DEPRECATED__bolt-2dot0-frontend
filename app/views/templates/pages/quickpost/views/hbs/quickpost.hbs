@@ -1,87 +1,123 @@
 {{#partial "content"}}
+
     {{> (dynamic "mediaUpload")}}
+
+  <div class="quickpost">
+
+    <div class="qpHeader">
+      {{> (dynamic "logo") }}
+      <div class="pageTitle">{{i18n this.formContent.pagetitle}}</div>
+      <div class="clear"></div>
+    </div>
+
     <form action="" method="post" id="postForm">
-        <label for="name">{{this.formContent.uploadText}}</label>
+      <div class="imgUploadContainer">
+          <input type="file" name="pic" accept="image/*" id="fileUpload">
 
-        <input type="file" name="pic" accept="image/*" id="fileUpload">
+          <ul id="thumb-nails"></ul>
+        <div class="uploadWrapper">
+          <div class="upload-icon one"><span class="upload-icon-content">+</span><span class="inner"></span></div>
+          <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
+          <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
+          <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
+          <div class="clear"></div>
+        </div>
+      </div>
 
-        <ul id="thumb-nails"></ul>
-        <br />
+      <div class="qpWrapper">
 
-        <label for="description">{{this.formContent.descriptionText}}</label>
-        <textarea id="description" name="description" placeholder="{{this.formContent.descriptionValue}}"></textarea>
-        <br />
+        <!-- Description -->
+        <div class="description">
+          <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+        </div>
 
-        <label for="category">{{this.formContent.categoryText}}</label>
-        <select>
-            {{#each this.category.children}}
-                <option>{{this.localizedName}}</option>
-            {{/each}}
-        </select>
-        <br />
+        <!-- Category Selector -->
+        <div class="select-category">
+          <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
+              <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
+              {{#each this.category.children}}
+                  <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
+              {{/each}}
+          </select>
+        </div>
 
-        <label for="price">{{this.formContent.priceText}}</label>
-        <input type="text" id="price" name="price" placeholder="Enter price" />
-        <br />
+        <!-- Price -->
+        <div class="price">
+            <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
+        </div>
 
-        <label for="sharefb">{{this.formContent.sharefbText}}</label>
-        <input type="checkbox" name="sharefb" />
-        <br />
+        <!-- Share on FB -->
+        <div class="socialMedia">
+            <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
+            {{> (dynamic "switchButton") }}
+        </div>
 
-        <input type="submit" value="{{this.formContent.sellitText}}" />
+        <!-- Map holder -->
+        <div id="map_canvas_wrapper">
+            <div id="map_canvas"></div>
+        </div>
+        <div class="select-location">
+            {{> (dynamic "mapLatLong") }}
+            <input class="custom-input" type="text" id="location" name="location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+            <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
+            <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
+            <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
+        </div>
+      </div>
+
+      <div class="qpost">
+        <input class="quickSubmit" type="submit" value="{{i18n this.formContent.sellitText}}" />
+      </div>
     </form>
 
+  </div>
 {{/partial}}
 
-{{#block "pageTail"}}
-    {{#each this.footer.javascripts}}
-        {{#if this.footer.min}}
-            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
-        {{else}}
-            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
-        {{/if}}
-    {{/each}}
+{{#partial "headerWrapper"}}{{/partial}}
+{{#partial "footerWrapper"}}{{/partial}}
 
-    <script type="text/javascript" src='/views/components/speechRecognition/js/speech.js'></script>
-{{/block}}
 
 {{#partial "pageTailScripts"}}
+<script type="text/javascript" src='/views/components/mapLatLong/js/mapLatLong.js'></script>
 <script>
-    $(document).ready(function () {
-        // Create an instance of this SpeechRecognition class
-        var speechConfig = {
-            info : "info",
-            final_span : "final_span",
-            interim_span : "interim_span",
-            start_button : "start_button",
-            copy_button : "copy_button",
-            email_button : "email_button",
-            copy_info : "copy_info",
-            email_info : "email_info",
-            start_img : "start_img",
-            select_language : "select_language",
-            select_dialect : "select_dialect"
-        };
+   $(document).ready(function () {
+      var GMapObj = BOLT.MapLatLong;
 
-        // Create a new speech object.
-        var speechObj = new BOLT.SpeechRecognition(speechConfig, null, true);
+      function openMap() {
 
-        var placeholderText = "Click on the mic and say something...";
-        $("#description_results .placeholder").html(placeholderText);
+        if (!openMap.opened) {
+          $("#map_canvas_wrapper").slideDown("slow");
+        } else {
+          $("#map_canvas_wrapper").slideUp("slow", function () {
+           var latlongData = GMapObj.getLatLong();
 
-        $("#desc-close").click(function () {
-            speechObj.resetFinalScript();
-            $("#description_results .placeholder").html(placeholderText);
-        });
+           /////////
+           // @Nacer, please refactor this code
+           $("#latitude").val(latlongData.lat);
+           $("#longitude").val(latlongData.long);
+           $("#address").val(latlongData.address);
 
-        $("form#mainform").submit(function () {
-            $("input[name=description]").val($("#final_span").html());
-        });
-    });
+           $("#location").val(latlongData.address);
+           /////////
+          });
+        }
+        openMap.opened = !openMap.opened;
+      }
+      openMap.opened = false;
+
+      $("input[name=location]").click(openMap);
+
+      $(document).on("applyLocation", function(e, latlongData) {
+        ///////
+        // @Nacer, please refactor this code
+           $("#latitude").val(latlongData.lat);
+           $("#longitude").val(latlongData.long);
+           $("#address").val(latlongData.address);
+
+           $("#location").val(latlongData.address);
+        //////
+      });
+
+   });
 </script>
 {{/partial}}
-
-{{#partial "speechRecArea"}}
-    {{> (dynamic "speechRecognition") }}
-{{/partial}}
-

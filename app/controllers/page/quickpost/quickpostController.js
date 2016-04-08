@@ -36,6 +36,9 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.header = result.common.header || {};
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
+		for (var i=0; i<modelData.category.children.length; i++) {
+			modelData.category.children[i].selected = false;
+		}
 
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
@@ -56,8 +59,14 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9]+$/),
-		field('price').trim().is(/^[0-9]+$/)
+		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
+		field('category').required().notContains('-1'),
+		field('price').trim().is(/^[0-9]+$/),
+		field('switch'),
+		field('location'),
+		field('latitude'),
+		field('longitude'),
+		field('address')
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -75,6 +84,13 @@ router.post('/quickpost',
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
+			for (var i=0; i<modelData.category.children.length; i++) {
+				if (modelData.category.children[i].id === parseInt(req.form.category)) {
+					modelData.category.children[i].selected = true;
+				} else {
+					modelData.category.children[i].selected = false;
+				}
+			}
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
@@ -86,7 +102,7 @@ router.post('/quickpost',
 			if (!req.form.isValid) {
 				// Handle errors
 				console.log(req.form.errors);
-				modelData.flash = { type: 'alert-danger', messages: req.form.errors };
+				modelData.flash = { type: 'alert-danger', errors: req.form.errors };
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
 				// Or, use filtered form data from the form object:
@@ -147,16 +163,23 @@ var QuickPost = {
 	buildFormData: function (modelData) {
 		modelData.formContent = {};
 
+		modelData.formContent.pagetitle = 'Sell Your Item';
+
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionValue = 'Enter a short description about what you are selling';
+		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling';
 
 		modelData.formContent.categoryText = 'Select Category';
 
 		modelData.formContent.priceText = 'Price';
+		modelData.formContent.priceCurrency = 'R';
+		modelData.formContent.pricePlaceholder = '0';
+		modelData.formContent.priceExtension = '.00';
 
 		modelData.formContent.sharefbText = 'Share on Facebook';
+
+		modelData.formContent.locationText = 'Select Location';
 
 		modelData.formContent.sellitText = 'Sell It';
 		
@@ -170,8 +193,26 @@ var QuickPost = {
 		if (!_.isEmpty(formData.description)) {
 			modelData.formContent.descriptionValue = formData.description;
 		}
+		if (!_.isEmpty(formData.category)) {
+			modelData.formContent.category = formData.category;
+		}
 		if (!_.isEmpty(formData.price)) {
 			modelData.formContent.priceValue = formData.price;
+		}
+		if (!_.isEmpty(formData.switch)) {
+			modelData.formContent.switch = formData.switch;
+		}
+		if (!_.isEmpty(formData.location)) {
+			modelData.formContent.location = formData.location;
+		}
+		if (!_.isEmpty(formData.latitude)) {
+			modelData.formContent.latitude = formData.latitude;
+		}
+		if (!_.isEmpty(formData.longitude)) {
+			modelData.formContent.longitude = formData.longitude;
+		}
+		if (!_.isEmpty(formData.address)) {
+			modelData.formContent.address = formData.address;
 		}
 	}
 };
