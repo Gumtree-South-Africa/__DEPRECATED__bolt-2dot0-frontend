@@ -14,7 +14,8 @@
 			"trendingKeywords": "/v1/keywords/trending",
 			"homepageGallery": "/v1/ads/gallery",
 			"adStatistics": "/v1/ads/statistics",
-			"configService": "/v1/configs/nodeapp/settings.json"
+			"configService": "/v1/configs/nodeapp/settings.json",
+		 	"quickpostAd": "/v1/ads"
 		}
 	},
 	"kafka": {

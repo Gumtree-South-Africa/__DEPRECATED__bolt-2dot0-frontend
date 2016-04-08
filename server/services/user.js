@@ -9,7 +9,6 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var UserService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -20,6 +19,7 @@ UserService.prototype.getUserFromCookie = function(requestId, cookie, locale) {
 	// console.info("Inside UserService");
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 
 	// Invoke BAPI

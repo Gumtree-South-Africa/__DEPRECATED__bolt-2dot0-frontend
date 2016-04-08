@@ -198,22 +198,34 @@ BAPICall.prototype = {
 
 		try {
 			reqPost = http.request(scope.options, function(res) {
+				var body = "";
 				res.setEncoding("utf8");
 
 		    	res.on("data", function(d) {
-		        	try {
-		        		data = JSON.parse(d);
-		        	} catch (e) {
-		        		data = {};
-		        	} 
+					var chunk = d.toString('utf-8');
+					body += chunk;
 		    	});
 
 		    	res.on("end", function(d) {
+					// parse JSON when data stream ends
+					try {
+						data = JSON.parse(body);
+					} catch(ex) {
+						data = {};
+					}
+
 					// Execute the callback if present.
 					if (scope.callback) {
-		        		// Aggregation of data with the original (passed) data
-						data = _.extend(scope.argData, data);
-						scope.callback(null, data);
+						// Aggregation of data with the original (passed) data
+						if (!_.isEmpty(scope.argData)) {
+							data = _.extend(scope.argData, data);
+						}
+						// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
+						if (res.statusCode !== 200) {
+							scope.errorHandling(new Error("Received non-200 status"), data);
+						} else {
+							scope.callback(null, data);
+						}
 					}
 
 					return data;

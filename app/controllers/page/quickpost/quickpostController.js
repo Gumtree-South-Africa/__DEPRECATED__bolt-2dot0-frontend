@@ -4,13 +4,16 @@ var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
 	form = require('express-form'),
-	field = form.field;
+	field = form.field,
+	Q = require('q');
 
 var cwd = process.cwd();
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
 	QuickpostPageModel= require(cwd + '/app/builders/page/QuickpostPageModel'),
 	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+
+var postAdService = require(cwd + '/server/services/postad');
 
 
 module.exports = function (app) {
@@ -98,23 +101,27 @@ router.post('/quickpost',
 			QuickPost.buildFormData(modelData);
 			QuickPost.buildValueData(modelData, req.form);
 
-
 			if (!req.form.isValid) {
 				// Handle errors
-				console.log(req.form.errors);
 				modelData.flash = { type: 'alert-danger', errors: req.form.errors };
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
-				// Or, use filtered form data from the form object:
-				console.log('Description:', req.form.description);
-				console.log('Price:', req.form.price);
+				// Build Ad JSON
+				var adJson = QuickPost.buildAdJson(modelData);
+				var ad = JSON.stringify(adJson);
 
-				// TODO: Build Ad object to POST
-
-				// TODO: Post Ad object to service, and then to BAPI
-
-				// Redirect to homepage with a message
-				res.redirect(modelData.header.homePageUrl + '?status=quickpost');
+				// Call BAPI to Post Ad
+				Q(postAdService.quickpostAd(req.requestId, res.locals.config.locale, ad))
+					.then(function (dataReturned) {
+						// Redirect to VIP if successfully posted Ad
+						var response = dataReturned;
+						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
+						res.redirect(vipLink);
+					}).fail(function (err) {
+						// Stay on quickpost page if error during posting
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors };
+						pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+					});
 			}
 
 			console.timeEnd('Instrument-QuickPost-Data-Controller');
@@ -214,5 +221,30 @@ var QuickPost = {
 		if (!_.isEmpty(formData.address)) {
 			modelData.formContent.address = formData.address;
 		}
+	},
+
+	/**
+	 * Build Ad JSON
+	 */
+	buildAdJson: function (modelData) {
+		var json = {};
+
+		json.email = modelData.header.userEmail;
+		json.categoryId = modelData.formContent.category;
+		json.address = modelData.formContent.address;
+		json.latitude = modelData.formContent.latitude;
+		json.longitude = modelData.formContent.longitude;
+		json.description = modelData.formContent.descriptionValue;
+
+		json.price = {};
+		json.price.currency = modelData.formContent.priceCurrency;
+		json.price.amount = modelData.formContent.priceValue;
+
+		json.pictures = {};
+		json.pictures.sizeUrls = [];
+		json.pictures.sizeUrls[0] = {};
+		json.pictures.sizeUrls[0].LARGE = '';
+
+		return json;
 	}
 };

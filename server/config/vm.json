@@ -14,7 +14,8 @@
 	    	"trendingKeywords" 	:	"/boltapi/v1/keywords/trending",
 	    	"homepageGallery" 	:	"/boltapi/v1/ads/gallery",
 	    	"adStatistics" 		: 	"/boltapi/v1/ads/statistics",
-	    	"configService"		:	"/boltapi/v1/configs/nodeapp/settings.json"
+	    	"configService"		:	"/boltapi/v1/configs/nodeapp/settings.json",
+		  	"quickpostAd"		:	"/boltapi/v1/ads"
 	    }
 	},
 	"kafka": {
