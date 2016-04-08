@@ -11,7 +11,6 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var KeywordService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -22,6 +21,7 @@ KeywordService.prototype.getTopKeywordsData = function(requestId, locale, kwCoun
 	// console.info("Inside Top KeywordService");
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
 	if ((typeof kwCount!== 'undefined') && (kwCount !== null)) {
 		this.bapiOptions.path = this.bapiOptions.path + '?limit=' + kwCount;
@@ -38,6 +38,7 @@ KeywordService.prototype.getTrendingKeywordsData = function(requestId, locale, k
 	// console.info("Inside Trending KeywordService");
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');
 	if ((typeof kwCount!== 'undefined') && (kwCount !== null)) {
 		this.bapiOptions.path = this.bapiOptions.path + '?limit=' + kwCount;

@@ -9,7 +9,6 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var ConfigService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -20,6 +19,7 @@ ConfigService.prototype.getConfigData = function(locale) {
 	// console.info("Inside ConfigService");
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.configService');
 
 	// Invoke BAPI

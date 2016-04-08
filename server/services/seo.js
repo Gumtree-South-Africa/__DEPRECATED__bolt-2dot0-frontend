@@ -9,7 +9,6 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var SeoService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -35,6 +34,7 @@ SeoService.prototype.getSRPSeoData = function(requestId, locale) {
 	// console.info("Inside SRP SeoService");
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.srpSeo');
 	
 	// Invoke BAPI

@@ -9,7 +9,6 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var CategoryService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -20,6 +19,7 @@ CategoryService.prototype.getCategoriesData = function(requestId, locale, depth)
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 
 	// Invoke BAPI
@@ -33,6 +33,7 @@ CategoryService.prototype.getCategoriesDataWithLocId = function(requestId, local
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 	if (locationId !== null) {
 		this.bapiOptions.path = this.bapiOptions.path + '&locationId=' + locationId;

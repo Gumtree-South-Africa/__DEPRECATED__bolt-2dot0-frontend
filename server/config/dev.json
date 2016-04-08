@@ -14,7 +14,8 @@
 	    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending",
 	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
 	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
-	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json"
+	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
+		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads"
 	    }
 	},
 	"kafka": {

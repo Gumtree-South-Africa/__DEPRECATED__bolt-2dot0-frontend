@@ -9,7 +9,6 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var HomepageAdService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
@@ -20,6 +19,7 @@ HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
 	
 	// Invoke BAPI
@@ -33,6 +33,7 @@ HomepageAdService.prototype.getAjaxGallery = function(requestId, locale, offset,
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
 	
 	// Invoke BAPI
@@ -46,6 +47,7 @@ HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
 	// console.info('Inside HomepageAdStatisticsService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
 	
 	// Invoke BAPI
