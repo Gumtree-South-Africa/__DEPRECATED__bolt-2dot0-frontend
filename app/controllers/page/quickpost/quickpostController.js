@@ -175,9 +175,9 @@ var QuickPost = {
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling';
+		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 100 characters)';
 
-		modelData.formContent.categoryText = 'Select Category';
+		modelData.formContent.categoryText = 'Choose Category';
 
 		modelData.formContent.priceText = 'Price';
 		modelData.formContent.priceCurrency = 'R';
@@ -186,8 +186,9 @@ var QuickPost = {
 
 		modelData.formContent.sharefbText = 'Share on Facebook';
 
-		modelData.formContent.locationText = 'Select Location';
+		modelData.formContent.locationText = 'Enter Location';
 
+		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our Terms of Use and Posting Rules';
 		modelData.formContent.sellitText = 'Sell It';
 
 		modelData.eps = EpsModel();
