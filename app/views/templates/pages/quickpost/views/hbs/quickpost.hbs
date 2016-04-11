@@ -30,7 +30,7 @@
             {{!-- Description --}}
             <div class="description">
               <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
-              {{#with this.flash.errorMessage}}
+              {{#with this.flash.fieldErrors.description}}
                 <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
               {{/with}}
             </div>
@@ -43,6 +43,9 @@
                       <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
                   {{/each}}
               </select>
+              {{#with this.flash.fieldErrors.category}}
+                <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
+              {{/with}}
             </div>
 
             {{!-- Price --}}

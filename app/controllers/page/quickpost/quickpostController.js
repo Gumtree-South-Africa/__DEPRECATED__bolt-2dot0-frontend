@@ -1,3 +1,4 @@
+//jshint ignore: start
 'use strict';
 
 var express = require('express'),
@@ -105,7 +106,21 @@ router.post('/quickpost',
 
 			if (!req.form.isValid) {
 				// Handle errors
-				modelData.flash = { type: 'alert-danger', errors: req.form.errors, errorMessage: req.form.errors[0] };
+        req.form.fieldErrors = {};
+
+        for (var i=0; i<req.form.errors.length; i++){
+          if (req.form.errors[i].indexOf('category ') > -1) {
+            if(!req.form.fieldErrors.category)
+            req.form.fieldErrors.category = req.form.errors[i];
+          }
+          else if (req.form.errors[i].indexOf('description ') > -1) {
+            if(!req.form.fieldErrors.description)
+            req.form.fieldErrors.description = req.form.errors[i];
+          }
+        }
+
+
+				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
 				// Build Ad JSON
