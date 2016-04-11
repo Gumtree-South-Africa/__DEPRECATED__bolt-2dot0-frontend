@@ -22,6 +22,14 @@
   }
 }
 
+.icon-remove-gray{
+  height: 1em;
+  width: 1em;
+  position: absolute;
+  left: 3.63em;
+  background-color: white;
+}
+
 .imgUploadContainer{
   display: inline-block;
   width: 96%;
@@ -35,6 +43,7 @@
     li{
       float: left;
       margin-left: 0.5em;
+      position: relative;
       .upload-status {
         display: none !important;
       }
