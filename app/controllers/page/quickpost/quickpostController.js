@@ -39,6 +39,7 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.header = result.common.header || {};
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
+		modelData.categoryData = res.locals.config.categoryflattened;
 		for (var i=0; i<modelData.category.children.length; i++) {
 			modelData.category.children[i].selected = false;
 		}
@@ -87,6 +88,7 @@ router.post('/quickpost',
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
+			modelData.categoryData = res.locals.config.categoryflattened;
 			for (var i=0; i<modelData.category.children.length; i++) {
 				if (modelData.category.children[i].id === parseInt(req.form.category)) {
 					modelData.category.children[i].selected = true;

@@ -55,7 +55,7 @@ function CacheBapiData(siteApp, requestId) {
      * @private
      */
     var loadCategoryData = function (categoryDepth) {
-        var filteredData;
+        var filteredData, flattenedData;
 
         // Load Category Data from BAPI
         Q(categoryService.getCategoriesData(requestId, siteApp.locals.config.locale, 2))
@@ -64,6 +64,9 @@ function CacheBapiData(siteApp, requestId) {
 
                 filteredData = prepareDataForRendering(dataReturned, false, categoryDepth);
                 siteApp.locals.config.categorydropdown = filteredData.dropdown;
+
+                flattenedData = flattenTree(dataReturned);
+                siteApp.locals.config.categoryflattened = flattenedData;
             }).fail(function (err) {
                 console.warn('Startup: Error in loading categories from CategoryService:- ', err);
             });
@@ -187,4 +190,35 @@ function prepareDataForRendering(dataReturned, buildMapRequired, depth) {
         'dropdown' : dataDropdown,
         'map' : dataMap
     };
+}
+
+function flattenTree(dataReturned) {
+
+    var flattenedData = {},
+        level1,
+        level2,
+        levelData,
+        key,
+        key2;
+
+    flattenedData = {
+        'nodes' : []
+    };
+
+    for (key in dataReturned.children) {
+        level1 = dataReturned.children[key];
+        for (key2 in level1.children) {
+            level2 = level1.children[key2];
+
+            levelData = {
+                'id' : level2.id,
+                'localizedName' : level2.localizedName,
+                'level1Id': level1.id
+            };
+
+            flattenedData.nodes.push(levelData);
+        }
+    }
+
+    return flattenedData;
 }

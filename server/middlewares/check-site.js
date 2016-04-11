@@ -21,6 +21,7 @@ module.exports = function(app) {
         
         res.locals.config.categoryData = app.locals.config.categoryData;
         res.locals.config.categorydropdown = app.locals.config.categorydropdown;
+        res.locals.config.categoryflattened = app.locals.config.categoryflattened;
 
         // call next middleware
         next();
