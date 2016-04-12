@@ -11,26 +11,65 @@
   margin-bottom: 1em;
   .logo{
     float: left;
+    height: 60px;
   }
   .pageTitle{
     margin-left: 1em;
     color: white;
-    margin-top: 1.9em;
+    margin-top: 0.7em;
     float: left;
     font-size: 1.5em;
   }
+}
+
+.icon-remove-gray{
+  height: 1em;
+  width: 1em;
+  position: absolute;
+  left: 3.63em;
+  background-color: white;
 }
 
 .imgUploadContainer{
   display: inline-block;
   width: 96%;
   margin-left: 0.5em;
+  .uploadWrapper{
+    float: left;
+    cursor: pointer;
+  }
+  #thumb-nails{
+    float: left;
+    li{
+      float: left;
+      margin-left: 0.5em;
+      position: relative;
+      .upload-status {
+        display: none !important;
+      }
+    }
+  }
+}
+
+#featuredImage, .uploading{
+  display: none;
+}
+
+#fileUpload{
+  position: absolute;
+  top: -1.7em;
+  left: -0.15em;
+  cursor: pointer;
+  width: 6em;
+  height: 7.5em;
+  z-index: 40;
+  opacity: 0;
 }
 
 .upload-icon {
   border: 2px dotted grey;
-  width: 2em;
-  height: 2em;
+  width: 1.6em;
+  height: 1.55em;
   float: left;
   margin-left: 0.2em;
   text-align: center;
@@ -38,11 +77,13 @@
   font-weight: bold;
   font-size: 3em;
   color: green;
+  position: relative;
 }
 
 .upload-icon-content{
-  position: relative;
-  left: 0.5em;
+  position: absolute;
+  top: -0.11em;
+  left: 0.37em;
 }
 
 .inner {
@@ -51,9 +92,9 @@
   height: 1em;
   width: 1em;
   display: inline-block;
-  position: relative;
-  top: 0.17em;
-  left: -0.4em;
+  position: absolute;
+  top: 0.22em;
+  left: 0.27em;
 }
 
 .qpWrapper{
@@ -84,7 +125,6 @@
   margin-top: 1em;
   .smedia{
     font-size: 1.3em;
-    padding-left: 0.4em;
   }
 }
 
@@ -106,6 +146,7 @@ input, select{
     outline: none;
     font-size: 1.3em;
     width: 99%;
+    margin-left: -0.4em;
   }
 }
 
@@ -169,4 +210,19 @@ input, select{
 textarea.error{
   border: 1px solid #bb3027;
   background: #EFDBD6;
+}
+
+.inforules {
+   cursor: auto;
+   color: #698DA7 ;
+   font-weight: 400;
+   font-size: 10px;
+   line-height: 160%;
+   white-space: normal;
+   text-align: center;
+   overflow: hidden;
+   border-radius: 10px;
+   padding: 0 0.5em;
+   margin-bottom: 0.5em;
+   margin-top: 1em;
 }

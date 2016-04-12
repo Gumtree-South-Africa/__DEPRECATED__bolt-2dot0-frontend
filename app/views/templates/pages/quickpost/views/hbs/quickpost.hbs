@@ -12,38 +12,40 @@
 
     <form action="" method="post" id="postForm">
         <div class="imgUploadContainer">
-
-            <input type="file" name="pic" accept="image/*" id="fileUpload">
             <ul id="thumb-nails"></ul>
-
             <div class="uploadWrapper">
-              <div class="upload-icon one"><span class="upload-icon-content">+</span><span class="inner"></span></div>
-              <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
-              <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
-              <div class="upload-icon"><span class="upload-icon-content">+</span><span class="inner"></span></div>
+              <div class="upload-icon one">
+                <input type="file" name="pic" accept="image/*" id="fileUpload">
+                <span class="upload-icon-content">+</span><span class="inner"></span>
+              </div>
               <div class="clear"></div>
             </div>
+            <div class="clear"></div>
         </div>
 
         <div class="qpWrapper">
 
             {{!-- Description --}}
-            <div class="description">
-              <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
-              {{#with this.flash.fieldErrors.description}}
-                <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
-              {{/with}}
+            <div class="field-wrapper">
+              <div class="description">
+                <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+                {{#with this.flash.fieldErrors.description}}
+                  <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
+                {{/with}}
+              </div>
             </div>
 
             {{!-- Category Selector --}}
             <!--
-            <div class="select-category">
-              <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
-                  <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
-                  {{#each this.category.children}}
-                      <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
-                  {{/each}}
-              </select>
+            <div class="field-wrapper">
+              <div class="select-category">
+                <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
+                    <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
+                    {{#each this.category.children}}
+                        <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
+                    {{/each}}
+                </select>
+              </div>
               {{#with this.flash.fieldErrors.category}}
                 <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
               {{/with}}
@@ -110,32 +112,38 @@
             {{!-- END NEW CATEGORY SELECTOR --}}
 
             {{!-- Price --}}
-            <div class="price">
-                <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
-            </div>
-
-            {{!-- Share on FB --}}
-            <div class="socialMedia">
-                <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
-                {{> (dynamic "switchButton") }}
-            </div>
-
-            <div class="select-location">
-              {{> (dynamic "mapLatLong") }}
-              <input id="location" class="custom-input" type="text" name="custom-location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
-              <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
-              <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
-              <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
-              <div class="infos">
-                <span>We won't show it on the ad.</span>
-                <span>But, if you want to show your precise location then</span>
-                <span id="maps-link"> select your location instead through a map.</span>
+            <div class="field-wrapper">
+              <div class="price">
+                  <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
               </div>
             </div>
 
-            {{!-- Map holder --}}
-            <div id="map_canvas_wrapper">
-                <div id="map_canvas"></div>
+            {{!-- Share on FB --}}
+            <div class="field-wrapper">
+              <div class="socialMedia">
+                  <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
+                  {{> (dynamic "switchButton") }}
+              </div>
+            </div>
+
+            <div class="field-wrapper">
+              <div class="select-location">
+                {{> (dynamic "mapLatLong") }}
+                <input id="location" class="custom-input" type="text" name="custom-location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+                <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
+                <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
+                <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
+                <div class="infos">
+                  <span>We won't show it on the ad.</span>
+                  <span>But, if you want to show your precise location then</span>
+                  <span id="maps-link"> select your location instead through a map.</span>
+                </div>
+              </div>
+
+              {{!-- Map holder --}}
+              <div id="map_canvas_wrapper">
+                  <div id="map_canvas"></div>
+              </div>
             </div>
         </div>
 
