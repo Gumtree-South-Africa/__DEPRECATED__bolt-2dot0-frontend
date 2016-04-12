@@ -420,7 +420,9 @@ BOLT.POSTAD = BOLT.POSTAD || {};
                         scope.openPanel();
                     });
 
-                    $(pubscope.menuContainerSel).on('touchstart click', 'li.nav-item[data-id] a', function () {
+                    $(pubscope.menuContainerSel).on('touchstart click', 'li.nav-item[data-id] a', function (e) {
+                        e.stopPropagation();
+
                         var $this = $(this);
                         var id = $this.parent().data("id");
                         var isLeaf = $this.parent().data("leaf");
@@ -439,7 +441,12 @@ BOLT.POSTAD = BOLT.POSTAD || {};
                                 label: text,
                                 currentInstance : currentInstance
                             });
-                            scope.closePanel();
+
+                            // @Nacer, Videep, this is the place to change the speed of closing
+                            // the category sel. overlay on top of the post page.
+                            window.setTimeout(function () {
+                                scope.closePanel();
+                            }, 400);
                         }
 
                     });
