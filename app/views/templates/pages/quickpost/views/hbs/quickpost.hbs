@@ -1,6 +1,6 @@
 {{#partial "content"}}
 
-    {{> (dynamic "mediaUpload")}}
+  {{> (dynamic "mediaUpload")}}
 
   <div class="quickpost">
 
@@ -66,24 +66,9 @@
               border: 2px solid green;
             }
 
-/*
-            div.mobile-only li.nav-item span.icon,
-            div.mobile-only li.nav-item a.mm-arrow {
-              display: inline-block;
-            }
-
-            div.mobile-only li.nav-item a.mm-arrow {
-                width: 80%;
-                border: 1px solid red;
-                font-size: 110%;
-            }
-*/
-
             div.mobile-only li.nav-item span.icon {
               display: inline;
             }
-
-
             </style>
 
             <div class="field-wrapper">
@@ -171,134 +156,32 @@
 {{#partial "headerWrapper"}}{{/partial}}
 {{#partial "footerWrapper"}}{{/partial}}
 
+{{#partial "pageTailScriptsBeforeIncludes"}}
+ <script>
+  var Bolt = Bolt || {};
+  Bolt._postFormMsgs = {
+      selectLocationLabel : '{{i18n "postad.select.location"}}',
+      selectCategoryLabel : '{{i18n "postad.select.category.$$"}}',
+      categorySearchPlaceholder : '{{i18n "postad.select.category.sampleSearch"}}'
+  }
+</script>
+{{/partial}}
 
 {{#partial "pageTailScripts"}}
-<script type="text/javascript" src='/views/components/mapLatLong/js/mapLatLong.js'></script>
-<script type="text/javascript" src='/views/components/mobileSelectorMenu/js/jquery.menu.min.js'></script>
-<script type="text/javascript" src='/views/components/mobileSelectorMenu/js/MobileItemSelector.js'></script>
-
-<script>
-   $(document).ready(function () {
-      var GMapObj = BOLT.MapLatLong;
-
-      function openMap() {
-
-        if (!openMap.opened) {
-          $("#map_canvas_wrapper").slideDown("slow");
-        } else {
-          $("#map_canvas_wrapper").slideUp("slow", function () {
-           var latlongData = GMapObj.getLatLong();
-
-           /////////
-           // @Nacer, please refactor this code
-           $("#latitude").val(latlongData.lat);
-           $("#longitude").val(latlongData.long);
-           $("#address").val(latlongData.address);
-
-           $("#location").val(latlongData.address);
-           /////////
-          });
-        }
-        openMap.opened = !openMap.opened;
-      }
-      openMap.opened = false;
-
-      $("#maps-link").click(openMap);
-
-      $(document).on("applyLocation", function(e, latlongData) {
-        ///////
-        // @Nacer, please refactor this code
-           $("#latitude").val(latlongData.lat);
-           $("#longitude").val(latlongData.long);
-           $("#address").val(latlongData.address);
-
-           $("#location").val(latlongData.address);
-        //////
-      });
-
-      ///////////////////
-      // Category Selector - Please refactor
-      ///////////////////
-      function mobileCategorySelector () {
-        var Bolt = Bolt || {};
-        var PAC = BOLT.POSTAD.MobileItemSelector || undefined;
-        var mobileCatConfig;
-        var catMobileSelObj;
-        var pageMode;
-
-        Bolt._postFormMsgs = {
-            selectLocationLabel : '{{i18n "postad.select.location"}}',
-            selectCategoryLabel : '{{i18n "postad.select.category.$$"}}',
-            categorySearchPlaceholder : '{{i18n "postad.select.category.sampleSearch"}}'
-        }
-
-        mobileCatConfig = {
-            title:  Bolt._postFormMsgs.selectCategoryLabel || "",
-            searchPlaceholder:  Bolt._postFormMsgs.categorySearchPlaceholder || "",
-           // noResultsLabel: "No Results!",
-            highlightItemOnNewPanel : false,
-            selectors: {
-                menuContainer: "#cat-list",
-                mobileContainer: "#mobileCats",
-                basePanel: ".base-panel",
-                itemListPanel: ".item-list"
-            }
-        };
-
-        if (typeof PAC !== "undefined" && $("#mobileCats").length > 0) {
-            if (!catMobileSelObj) {
-                catMobileSelObj = new PAC();
-            }
-        }
-
-        if (catMobileSelObj.hasRendered()) {
-            $("#catSelector").show();
-            $("#mobileCats").show();
-            $("#cat-list").trigger("MobileListNodesReady");
-            return;
-        }
-
-        pageMode = {
-            idEdit :  false,
-            isPreview :  false,
-            isSimilarAd : false
-        };
-
-        if (catMobileSelObj) {
-          catMobileSelObj.init(mobileCatConfig, pageMode);
-        }
-
-        // Listener to update the category Id when the user selects a category.
-        $(document).on("MobileLeafReached", function (e, obj) {
-            if (catMobileSelObj === obj.currentInstance) {
-              console.log(obj.id + " ===> " + obj.label);
-              window.setTimeout(function () {
-                 $("#mobileCats .base-panel-container > ul > li").removeClass("mm-hidden");
-
-                 // Set the Category name
-                 $("#mobileCats .base-panel .initial-label").text(obj.label);
-              }, 100);
-
-              // Set the Category Id in a hidden var.
-              $("input[name=category]").val(obj.id);
-            }
-        });
-      }
-
-      mobileCategorySelector();
-
-   });
-</script>
+  <script type="text/javascript" src='/views/components/mapLatLong/js/mapLatLong.js'></script>
+  <script type="text/javascript" src='/views/components/mobileSelectorMenu/js/jquery.menu.min.js'></script>
+  <script type="text/javascript" src='/views/components/mobileSelectorMenu/js/MobileItemSelector.js'></script>
+  <script type="text/javascript" src='/views/templates/pages/quickpost/js/quickpost.js'></script>
 {{/partial}}
 
 {{#partial "PrecompiledCatCascadeMenu"}}
 <ul class="nav-cont selMenu ">
   {{#each this.categoryData.nodes}}
   <li class="nav-item" data-id="{{this.id}}" data-leaf="true">
-     {{!--  <span class="icon-cat-{{this.level1Id}} icon"></span> --}}
-      <span class="item-text">
-        <span class="icon-cat-{{this.level1Id}} icon"></span>
-        {{this.localizedName}}</span>
+    <span class="item-text">
+      <span class="icon-cat-{{this.level1Id}} icon"></span>
+      {{this.localizedName}}
+    </span>
   </li>
   {{/each}}
 </ul>
