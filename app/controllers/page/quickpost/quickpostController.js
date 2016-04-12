@@ -86,8 +86,6 @@ router.post('/quickpost',
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
-			modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
-			modelData.categoryData = res.locals.config.categoryflattened;
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);

@@ -16,6 +16,7 @@ var config = {
 };
 var writeHeader = require('./write-header'),
     requestId = require('./request-id'),
+    checkAuthentication = require('./check-authentication'),
     i18n = require(config.root + '/modules/i18n'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
@@ -114,6 +115,7 @@ function BuildApp(siteObj) {
         app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
         app.use(boltExpressHbs.create(app));
         app.use(deviceDetection.init());
+        app.use(checkAuthentication());
 
         // Template hbs caching.
         if (process.env.NODE_ENV) {
