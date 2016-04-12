@@ -207,64 +207,76 @@
         //////
       });
 
-
       ///////////////////
       // Category Selector - Please refactor
       ///////////////////
+      function mobileCategorySelector () {
         var Bolt = Bolt || {};
+        var PAC = BOLT.POSTAD.MobileItemSelector || undefined;
+        var mobileCatConfig;
+        var catMobileSelObj;
+        var pageMode;
+
         Bolt._postFormMsgs = {
             selectLocationLabel : '{{i18n "postad.select.location"}}',
             selectCategoryLabel : '{{i18n "postad.select.category.$$"}}',
             categorySearchPlaceholder : '{{i18n "postad.select.category.sampleSearch"}}'
         }
 
-          var mobileCatConfig = {
-              title:  Bolt._postFormMsgs.selectCategoryLabel || "",
-              searchPlaceholder:  Bolt._postFormMsgs.categorySearchPlaceholder || "",
-             // noResultsLabel: "No Results!",
-              highlightItemOnNewPanel : false,
-              selectors: {
-                  menuContainer: "#cat-list",
-                  mobileContainer: "#mobileCats",
-                  basePanel: ".base-panel",
-                  itemListPanel: ".item-list"
-              }
-          };
-
-            var PAC = BOLT.POSTAD.MobileItemSelector || undefined;
-            var catMobileSelObj;
-
-            if (typeof PAC !== "undefined" && $("#mobileCats").length > 0) {
-                if (!catMobileSelObj) {
-                    catMobileSelObj = new PAC();
-                }
+        mobileCatConfig = {
+            title:  Bolt._postFormMsgs.selectCategoryLabel || "",
+            searchPlaceholder:  Bolt._postFormMsgs.categorySearchPlaceholder || "",
+           // noResultsLabel: "No Results!",
+            highlightItemOnNewPanel : false,
+            selectors: {
+                menuContainer: "#cat-list",
+                mobileContainer: "#mobileCats",
+                basePanel: ".base-panel",
+                itemListPanel: ".item-list"
             }
+        };
 
-            if (catMobileSelObj.hasRendered()) {
-                $("#catSelector").show();
-                $("#mobileCats").show();
-                $("#cat-list").trigger("MobileListNodesReady");
-                return;
+        if (typeof PAC !== "undefined" && $("#mobileCats").length > 0) {
+            if (!catMobileSelObj) {
+                catMobileSelObj = new PAC();
             }
+        }
 
-            pageMode = {
-                idEdit :  false,
-                isPreview :  false,
-                isSimilarAd : false
-            };
+        if (catMobileSelObj.hasRendered()) {
+            $("#catSelector").show();
+            $("#mobileCats").show();
+            $("#cat-list").trigger("MobileListNodesReady");
+            return;
+        }
 
-            if (catMobileSelObj) {
-              catMobileSelObj.init(mobileCatConfig, pageMode);
+        pageMode = {
+            idEdit :  false,
+            isPreview :  false,
+            isSimilarAd : false
+        };
+
+        if (catMobileSelObj) {
+          catMobileSelObj.init(mobileCatConfig, pageMode);
+        }
+
+        // Listener to update the category Id when the user selects a category.
+        $(document).on("MobileLeafReached", function (e, obj) {
+            if (catMobileSelObj === obj.currentInstance) {
+              console.log(obj.id + " ===> " + obj.label);
+              window.setTimeout(function () {
+                 $("#mobileCats .base-panel-container > ul > li").removeClass("mm-hidden");
+
+                 // Set the Category name
+                 $("#mobileCats .base-panel .initial-label").text(obj.label);
+              }, 100);
+
+              // Set the Category Id in a hidden var.
+              $("input[name=category]").val(obj.id);
             }
+        });
+      }
 
-            $(document).on("MobileLeafReached", function (e, obj) {
-                if (catMobileSelObj === obj.currentInstance) {
-                  console.log(obj.id + " ==> " + obj.label);
-                  $("#mobileCats .base-panel .initial-label").text(obj.label);
-                  $("input[name=category]").val(obj.id);
-                }
-            });
-
+      mobileCategorySelector();
 
    });
 </script>
