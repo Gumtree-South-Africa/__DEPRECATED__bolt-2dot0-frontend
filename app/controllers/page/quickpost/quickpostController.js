@@ -41,14 +41,16 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
-		for (var i=0; i<modelData.category.children.length; i++) {
-			modelData.category.children[i].selected = false;
-		}
 
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData);
+
+		// Reset Category Selection on Form
+		for (var i=0; i<modelData.category.children.length; i++) {
+			modelData.category.children[i].selected = false;
+		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
@@ -65,7 +67,7 @@ router.post('/quickpost',
 	// Form filter and validation middleware
 	form(
 		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
-		field('category').required().notContains('-1'),
+		field('category').required(),
 		field('price').trim().is(/^[0-9]+$/),
 		field('switch'),
 		field('location'),
@@ -90,6 +92,14 @@ router.post('/quickpost',
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
 			modelData.categoryData = res.locals.config.categoryflattened;
+
+			// Special Data needed for QuickPost in header, footer, content
+			QuickPost.extendHeaderData(req, modelData);
+			QuickPost.extendFooterData(modelData);
+			QuickPost.buildFormData(modelData);
+			QuickPost.buildValueData(modelData, req.form);
+
+			// Save Category Selection on Form
 			for (var i=0; i<modelData.category.children.length; i++) {
 				if (modelData.category.children[i].id === parseInt(req.form.category)) {
 					modelData.category.children[i].selected = true;
@@ -98,28 +108,19 @@ router.post('/quickpost',
 				}
 			}
 
-			// Special Data needed for QuickPost in header, footer, content
-			QuickPost.extendHeaderData(req, modelData);
-			QuickPost.extendFooterData(modelData);
-			QuickPost.buildFormData(modelData);
-			QuickPost.buildValueData(modelData, req.form);
-
 			if (!req.form.isValid) {
-				// Handle errors
-        req.form.fieldErrors = {};
-
-        for (var i=0; i<req.form.errors.length; i++){
-          if (req.form.errors[i].indexOf('category ') > -1) {
-            if(!req.form.fieldErrors.category)
-            req.form.fieldErrors.category = req.form.errors[i];
-          }
-          else if (req.form.errors[i].indexOf('description ') > -1) {
-            if(!req.form.fieldErrors.description)
-            req.form.fieldErrors.description = req.form.errors[i];
-          }
-        }
-
-
+				// Put the errors in fieldErrors object for UI
+				req.form.fieldErrors = {};
+				for (var i=0; i<req.form.errors.length; i++){
+				  if (req.form.errors[i].indexOf('category ') > -1) {
+					if(!req.form.fieldErrors.category)
+					req.form.fieldErrors.category = req.form.errors[i];
+				  }
+				  else if (req.form.errors[i].indexOf('description ') > -1) {
+					if(!req.form.fieldErrors.description)
+					req.form.fieldErrors.description = req.form.errors[i];
+				  }
+				}
 				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 			} else {
