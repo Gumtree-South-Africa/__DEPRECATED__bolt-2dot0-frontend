@@ -65,6 +65,25 @@
               z-index: 2000;
               border: 2px solid green;
             }
+
+/*
+            div.mobile-only li.nav-item span.icon,
+            div.mobile-only li.nav-item a.mm-arrow {
+              display: inline-block;
+            }
+
+            div.mobile-only li.nav-item a.mm-arrow {
+                width: 80%;
+                border: 1px solid red;
+                font-size: 110%;
+            }
+*/
+
+            div.mobile-only li.nav-item span.icon {
+              display: inline;
+            }
+
+
             </style>
 
             <div class="field-wrapper">
@@ -276,8 +295,10 @@
 <ul class="nav-cont selMenu ">
   {{#each this.categoryData.nodes}}
   <li class="nav-item" data-id="{{this.id}}" data-leaf="true">
-      <span class="icon-cat-{{this.level1Id}} icon"></span>
-      <span class="item-text">{{this.localizedName}}</span>
+     {{!--  <span class="icon-cat-{{this.level1Id}} icon"></span> --}}
+      <span class="item-text">
+        <span class="icon-cat-{{this.level1Id}} icon"></span>
+        {{this.localizedName}}</span>
   </li>
   {{/each}}
 </ul>
