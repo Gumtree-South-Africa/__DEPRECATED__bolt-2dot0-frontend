@@ -36,10 +36,13 @@ PageControllerUtil.prototype.preController = function (req, res) {
 	// Cached Location Data from BAPI
     modelData.location = res.locals.config.locationData;
     modelData.locationdropdown = res.locals.config.locationdropdown;
-    
+    modelData.locationIdNameMap = res.locals.config.locationIdNameMap;
+
 	// Cached Category Data from BAPI
     modelData.category = res.locals.config.categoryData;
     modelData.categorydropdown = res.locals.config.categorydropdown;
+    modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
+    modelData.categoryData = res.locals.config.categoryflattened;
 	
 	return modelData;
 };
