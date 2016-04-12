@@ -15,7 +15,7 @@ var PostAdService = function() {
 /**
  * Gets a list of ads for homepage gallery
  */
-PostAdService.prototype.quickpostAd = function(requestId, locale, adJson) {
+PostAdService.prototype.quickpostAd = function(requestId, locale, authenticationCookie, adJson) {
 	// console.info('Inside PostAdService');
 
 	// Prepare BAPI call
@@ -23,7 +23,7 @@ PostAdService.prototype.quickpostAd = function(requestId, locale, adJson) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.quickpostAd');
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromisePost')(this.bapiOptions, requestId, locale, 'quickpostAd', null, adJson);
+	return require('./bapi/bapiPromisePost')(this.bapiOptions, requestId, locale, 'quickpostAd', authenticationCookie, adJson);
 };
 
 module.exports = new PostAdService();

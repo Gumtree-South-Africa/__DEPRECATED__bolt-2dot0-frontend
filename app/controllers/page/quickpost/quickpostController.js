@@ -75,6 +75,10 @@ router.post('/quickpost',
 	function (req, res, next) {
 		console.time('Instrument-QuickPost-Data-Controller');
 
+		// Get Auth Cookie
+		var authCookieName = 'bt_auth';
+		var authenticationCookie = req.cookies[authCookieName];
+
 		// Set pagetype in request
 		req.app.locals.pagetype = pagetypeJson.pagetype.PostAdSuccess;
 
@@ -114,7 +118,7 @@ router.post('/quickpost',
 				var ad = JSON.stringify(adJson);
 
 				// Call BAPI to Post Ad
-				Q(postAdService.quickpostAd(req.requestId, res.locals.config.locale, ad))
+				Q(postAdService.quickpostAd(req.requestId, res.locals.config.locale, authenticationCookie, ad))
 					.then(function (dataReturned) {
 						// Redirect to VIP if successfully posted Ad
 						var response = dataReturned;
@@ -234,12 +238,13 @@ var QuickPost = {
 	buildAdJson: function (modelData, requestBody) {
 		var json = {};
 
-		json.email = modelData.header.userEmail;
-		json.categoryId = modelData.formContent.category;
-		json.address = modelData.formContent.address;
-		json.latitude = modelData.formContent.latitude;
-		json.longitude = modelData.formContent.longitude;
 		json.description = modelData.formContent.descriptionValue;
+		json.categoryId = modelData.formContent.category;
+
+		json.location = {};
+		json.location.address = modelData.formContent.address;
+		json.location.latitude = modelData.formContent.latitude;
+		json.location.longitude = modelData.formContent.longitude;
 
 		json.price = {};
 		json.price.currency = modelData.formContent.priceCurrency;
