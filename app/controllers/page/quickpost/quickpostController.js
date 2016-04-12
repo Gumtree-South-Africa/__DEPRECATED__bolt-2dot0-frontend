@@ -47,11 +47,6 @@ router.get('/quickpost', function (req, res, next) {
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData);
 
-		// Reset Category Selection on Form
-		for (var i=0; i<modelData.category.children.length; i++) {
-			modelData.category.children[i].selected = false;
-		}
-
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 		console.timeEnd('Instrument-QuickPost-Form-Controller');
@@ -91,6 +86,7 @@ router.post('/quickpost',
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
+			modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
 			modelData.categoryData = res.locals.config.categoryflattened;
 
 			// Special Data needed for QuickPost in header, footer, content
@@ -98,15 +94,6 @@ router.post('/quickpost',
 			QuickPost.extendFooterData(modelData);
 			QuickPost.buildFormData(modelData);
 			QuickPost.buildValueData(modelData, req.form);
-
-			// Save Category Selection on Form
-			for (var i=0; i<modelData.category.children.length; i++) {
-				if (modelData.category.children[i].id === parseInt(req.form.category)) {
-					modelData.category.children[i].selected = true;
-				} else {
-					modelData.category.children[i].selected = false;
-				}
-			}
 
 			if (!req.form.isValid) {
 				// Put the errors in fieldErrors object for UI
@@ -221,6 +208,7 @@ var QuickPost = {
 		}
 		if (!_.isEmpty(formData.category)) {
 			modelData.formContent.category = formData.category;
+			modelData.formContent.categoryValue = modelData.categoryIdNameMap[formData.category];
 		}
 		if (!_.isEmpty(formData.price)) {
 			modelData.formContent.priceValue = formData.price;

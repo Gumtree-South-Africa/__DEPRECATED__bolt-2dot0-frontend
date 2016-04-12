@@ -62,7 +62,8 @@ function CacheBapiData(siteApp, requestId) {
             .then(function (dataReturned) {
                 siteApp.locals.config.categoryData = dataReturned;
 
-                filteredData = prepareDataForRendering(dataReturned, false, categoryDepth);
+                filteredData = prepareDataForRendering(dataReturned, true, categoryDepth);
+                siteApp.locals.config.categoryIdNameMap = filteredData.map;
                 siteApp.locals.config.categorydropdown = filteredData.dropdown;
 
                 flattenedData = flattenTree(dataReturned);

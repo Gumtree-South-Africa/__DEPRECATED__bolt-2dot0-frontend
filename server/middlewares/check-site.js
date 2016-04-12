@@ -20,6 +20,7 @@ module.exports = function(app) {
         res.locals.config.locationdropdown = app.locals.config.locationdropdown;
         
         res.locals.config.categoryData = app.locals.config.categoryData;
+        res.locals.config.categoryIdNameMap = app.locals.config.categoryIdNameMap;
         res.locals.config.categorydropdown = app.locals.config.categorydropdown;
         res.locals.config.categoryflattened = app.locals.config.categoryflattened;
 

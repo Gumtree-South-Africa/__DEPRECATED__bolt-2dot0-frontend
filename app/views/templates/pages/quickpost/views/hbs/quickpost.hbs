@@ -35,23 +35,6 @@
               </div>
             </div>
 
-            {{!-- Category Selector --}}
-            <!--
-            <div class="field-wrapper">
-              <div class="select-category">
-                <select name="category" class="custom-input" {{#if this.flash.errors}}class="error"{{/if}}>
-                    <option value="-1" selected>{{i18n this.formContent.categoryText}}</option>
-                    {{#each this.category.children}}
-                        <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{i18n this.localizedName}}</option>
-                    {{/each}}
-                </select>
-              </div>
-              {{#with this.flash.fieldErrors.category}}
-                <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
-              {{/with}}
-            </div>
-            -->
-
             {{!-- BEGIN NEW CATEGORY SELECTOR --}}
             <!-- L1 Category Selector -->
             <style>
@@ -65,7 +48,7 @@
             }
 
             div.mobile-only {
-              width: 80%;
+              width: 100%;
               margin: 0 auto;
               margin-top: 1em;
             }
@@ -85,7 +68,7 @@
             </style>
 
             <div class="field-wrapper">
-                <div class="select-category">
+                <div class="select-category" {{#if this.flash.errors}}class="error"{{/if}}>
                   <div id="catSelector" class="menu-cnt">
                     <div id="mobileCats" class="mobile-only">
                       <div class="body">
@@ -93,7 +76,11 @@
                               <div>
                                   <div class="base-panel-container">
                                       <ul>
-                                         <li><span class="mm-arrow base-panel" href="#"><span class="initial-label">{{i18n "postad.select.category.$$"}}</span></span></li>
+                                          <li>
+                                              <span class="mm-arrow base-panel" href="#">
+                                                  <span class="initial-label">{{#if this.formContent.category}}{{this.formContent.categoryValue}}{{else}}{{i18n "postad.select.category.$$"}}{{/if}}</span>
+                                              </span>
+                                          </li>
                                      </ul>
                                   </div>
                               </div>
@@ -106,7 +93,7 @@
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" name="category" value="" />
+                  <input type="hidden" name="category" value="{{#if this.formContent.category}}{{this.formContent.category}}{{/if}}" />
                 </div>
                 {{#with this.flash.fieldErrors.category}}
                     <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
@@ -289,6 +276,7 @@
 <ul class="nav-cont selMenu ">
   {{#each this.categoryData.nodes}}
   <li class="nav-item" data-id="{{this.id}}" data-leaf="true">
+      <span class="icon-cat-{{this.level1Id}} icon"></span>
       <span class="item-text">{{this.localizedName}}</span>
   </li>
   {{/each}}
