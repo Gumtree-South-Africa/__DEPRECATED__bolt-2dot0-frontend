@@ -569,7 +569,6 @@
 			});
 
 			request.done(function(msg) {
-                var prevUrl, nextUrl;
 				if (msg.ads) {
                     for (i = 0; i < msg.ads.length; i++) {
                         ads.push(msg.ads[i]);
@@ -645,14 +644,6 @@
 
             // Get the prev and next urls
             ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
-
-            if (dataG.nextAjaxUrl) {
-                galleryData.nextAjaxUrl = dataG.nextAjaxUrl;    
-            }
-
-            if (dataG.previousAjaxUrl) {
-                galleryData.previousAjaxUrl = dataG.previousAjaxUrl;    
-            }
 
             if (ajaxUrls.next) {
                 galleryData.nextAjaxUrl = ajaxUrls.next;
