@@ -126,7 +126,7 @@ BOLT.QuickPostPage = (function() {
                     }, 100);
 
                     // Set the Category Id in a hidden var.
-                    $("input[name=category]").val(obj.id);
+                    $("input[name=Category]").val(obj.id);
                 }
             });
         },

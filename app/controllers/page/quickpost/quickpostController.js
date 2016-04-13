@@ -209,12 +209,12 @@ var QuickPost = {
 	 * Build Value data for QuickPost
 	 */
 	buildValueData: function (modelData, formData) {
-		if (!_.isEmpty(formData.description)) {
-			modelData.formContent.descriptionValue = formData.description;
+		if (!_.isEmpty(formData.Description)) {
+			modelData.formContent.descriptionValue = formData.Description;
 		}
-		if (!_.isEmpty(formData.category)) {
-			modelData.formContent.category = formData.category;
-			modelData.formContent.categoryValue = modelData.categoryIdNameMap[formData.category];
+		if (!_.isEmpty(formData.Category)) {
+			modelData.formContent.category = formData.Category;
+			modelData.formContent.categoryValue = modelData.categoryIdNameMap[formData.Category];
 		}
 		if (!_.isEmpty(formData.price)) {
 			modelData.formContent.priceValue = formData.price;
