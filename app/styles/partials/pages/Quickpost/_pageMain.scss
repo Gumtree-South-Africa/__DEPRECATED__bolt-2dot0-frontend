@@ -115,18 +115,15 @@
     background: transparent;
     border-radius: 5px;
     width: 99%;
-    height: 10em;
-    min-height: 10em;
-    font-size: 1.2em;
+    max-width: 99%;
+    height: 4.5em;
+    min-height: 4.5em;
   }
 }
 
 .socialMedia{
   border-bottom: solid 1px #a2a2a1;
   margin-top: 1em;
-  .smedia{
-    font-size: 1.3em;
-  }
 }
 
 .select-category{
@@ -145,7 +142,6 @@ input, select{
     background: transparent;
     border: 0;
     outline: none;
-    font-size: 1.3em;
     width: 99%;
     margin-left: -0.4em;
   }
@@ -153,7 +149,7 @@ input, select{
 
 .toggleswitch{
   float: right;
-  margin-top: -0.3em;
+  margin-top: -0.7em;
   display: inline-block;
   clear: right;
 }
@@ -195,7 +191,6 @@ input, select{
   border-radius: 3px;
   padding: 10px;
   text-align: center;
-  font-size: 1.3em;
   background-color: green;
   margin: 0 auto;
   margin-top: 0.5em;
