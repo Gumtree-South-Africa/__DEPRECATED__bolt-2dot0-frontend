@@ -33,12 +33,12 @@ function getCookieLocationId(req) {
  * @return {JSON}
  */
 var getHomepageDataFunctions = function (req, res) {
-	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
-		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
-		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		category = new CategoryModel(req.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
+	var level2Loc = new LocationModel(req.app.locals.requestId, res.locals.config.locale, 1),
+		keyword = (new KeywordModel(req.app.locals.requestId, res.locals.config.locale, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
+		gallery = (new GalleryModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
+		adstatistics = (new AdStatisticsModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
+		seo = (new SeoModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
+		category = new CategoryModel(req.app.locals.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
 			
 	return {
 		'level2Loc'		:	function(callback) {

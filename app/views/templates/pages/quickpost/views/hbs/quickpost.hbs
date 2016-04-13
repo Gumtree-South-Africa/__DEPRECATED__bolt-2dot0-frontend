@@ -28,7 +28,7 @@
             {{!-- Description --}}
             <div class="field-wrapper">
               <div class="description">
-                <textarea id="description" name="description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+                <textarea id="Description" name="Description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
                 {{#with this.flash.fieldErrors.description}}
                   <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
@@ -97,7 +97,7 @@
                       </div>
                     </div>
                   </div>
-                  <input type="hidden" name="category" value="{{#if this.formContent.category}}{{this.formContent.category}}{{/if}}" />
+                  <input type="hidden" name="Category" value="{{#if this.formContent.category}}{{this.formContent.category}}{{/if}}" />
                 </div>
                 {{#with this.flash.fieldErrors.category}}
                     <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>

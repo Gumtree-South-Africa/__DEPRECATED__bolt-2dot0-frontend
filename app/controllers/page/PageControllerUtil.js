@@ -30,7 +30,8 @@ PageControllerUtil.prototype.preController = function (req, res) {
         country: res.locals.config.country,
         site: res.locals.config.name,
         pagename: req.app.locals.pagetype,
-        device: req.app.locals.deviceInfo
+        device: req.app.locals.deviceInfo,
+        ip: req.app.locals.ip
     };
 
 	// Cached Location Data from BAPI
@@ -69,7 +70,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             }
 
             // Kafka Logging
-            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
             // kafkaService.logInfo(res.locals.config.locale, log);
 
             // Redis Logging - to get data to ELK
