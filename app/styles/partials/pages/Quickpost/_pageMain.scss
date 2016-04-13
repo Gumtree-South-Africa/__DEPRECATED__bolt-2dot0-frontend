@@ -241,6 +241,7 @@ textarea.error{
   position: fixed;
   bottom: 0;
   display: none;
+  z-index: 240;
   .tooltip-wrapper{
     border: 1px solid #ccc;
     border-radius: 5px;
