@@ -61,8 +61,8 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
-		field('category').required(),
+		field('Description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
+		field('Category').required(),
 		field('price').trim().is(/^[0-9]+$/),
 		field('switch'),
 		field('location'),
@@ -101,11 +101,11 @@ router.post('/quickpost',
 				// Put the errors in fieldErrors object for UI
 				req.form.fieldErrors = {};
 				for (var i=0; i<req.form.errors.length; i++){
-				  if (req.form.errors[i].indexOf('category ') > -1) {
+				  if (req.form.errors[i].indexOf('Category ') > -1) {
 					if(!req.form.fieldErrors.category)
 					req.form.fieldErrors.category = req.form.errors[i];
 				  }
-				  else if (req.form.errors[i].indexOf('description ') > -1) {
+				  else if (req.form.errors[i].indexOf('Description ') > -1) {
 					if(!req.form.fieldErrors.description)
 					req.form.fieldErrors.description = req.form.errors[i];
 				  }
