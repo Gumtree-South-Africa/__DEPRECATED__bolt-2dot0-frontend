@@ -602,7 +602,7 @@ $(document).ready(function() {
      * ========================================================================================================
      */
     var geoFeatureSupported = window.navigator.geolocation && "getCurrentPosition" in window.navigator.geolocation;
-    var criteoOrigZIndex;
+    var criteoOrigZIndex = 0;
     /**
      * This geolocator class will attach a handler on the page to locate the user
      * @constructor
@@ -745,14 +745,20 @@ $(document).ready(function() {
     // Method that has the extra code to be executed BEFORE the overlay gets opened
     function processPreOverlayOpen() {
         // BOLT-20988
-        criteoOrigZIndex = $("div.criteo_header").css("z-index");
-        $("div.criteo_header").css("z-index", 0);
+        var $criteoBannerObj = $("div.criteo_header");
+        if ($criteoBannerObj.length) {
+            criteoOrigZIndex = $criteoBannerObj.css("z-index");
+            $criteoBannerObj.css("z-index", 0);
+        }
 
     }
 
     // Method that has the extra code to be executed AFTER the overlay gets opened
     function processPostOverlayClose() {
-        $("div.criteo_header").css("z-index", criteoOrigZIndex)
+        var $criteoBannerObj = $("div.criteo_header");
+        if ($criteoBannerObj.length) {
+            $criteoBannerObj.css("z-index", criteoOrigZIndex);
+        }
     }
     /*
      * ========================================================================================================
