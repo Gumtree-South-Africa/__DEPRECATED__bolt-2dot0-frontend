@@ -32,6 +32,7 @@ router.get('/quickpost', function (req, res, next) {
 	req.app.locals.pagetype = pagetypeJson.pagetype.PostAdForm;
 
 	// Build Model Data
+	var bapiConfigData = res.locals.config.bapiConfigData;
 	var modelData = pageControllerUtil.preController(req, res);
 
 	var model = QuickpostPageModel(req, res);
@@ -45,7 +46,7 @@ router.get('/quickpost', function (req, res, next) {
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
-		QuickPost.buildFormData(modelData);
+		QuickPost.buildFormData(modelData, bapiConfigData);
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
@@ -83,6 +84,7 @@ router.post('/quickpost',
 		req.app.locals.pagetype = pagetypeJson.pagetype.PostAdSuccess;
 
 		// Build Model Data
+		var bapiConfigData = res.locals.config.bapiConfigData;
 		var modelData = pageControllerUtil.preController(req, res);
 		var model = QuickpostPageModel(req, res);
 		model.then(function (result) {
@@ -94,7 +96,7 @@ router.post('/quickpost',
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
 			QuickPost.extendFooterData(modelData);
-			QuickPost.buildFormData(modelData);
+			QuickPost.buildFormData(modelData, bapiConfigData);
 			QuickPost.buildValueData(modelData, req.form);
 
 			if (!req.form.isValid) {
@@ -174,7 +176,7 @@ var QuickPost = {
 	/**
 	 * Build Form data for QuickPost
 	 */
-	buildFormData: function (modelData) {
+	buildFormData: function (modelData, bapiConfigData) {
 		modelData.formContent = {};
 
 		modelData.formContent.pagetitle = 'Sell Your Item';
@@ -195,7 +197,9 @@ var QuickPost = {
 
 		modelData.formContent.locationText = 'Enter Location';
 
-		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our Terms of Use and Posting Rules';
+		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our <a href=\'%s\'>Terms of Use</a> and <a href=\'%s\'>Posting Rules</a>';
+		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
+
 		modelData.formContent.sellitText = 'Sell It';
 
 		modelData.eps = EpsModel();
