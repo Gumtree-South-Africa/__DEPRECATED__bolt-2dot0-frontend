@@ -118,7 +118,7 @@ router.post('/quickpost',
 				var ad = JSON.stringify(adJson);
 
 				// Call BAPI to Post Ad
-				Q(postAdService.quickpostAd(req.requestId, res.locals.config.locale, authenticationCookie, ad))
+				Q(postAdService.quickpostAd(req.app.locals.requestId, res.locals.config.locale, authenticationCookie, ad))
 					.then(function (dataReturned) {
 						// Redirect to VIP if successfully posted Ad
 						var response = dataReturned;

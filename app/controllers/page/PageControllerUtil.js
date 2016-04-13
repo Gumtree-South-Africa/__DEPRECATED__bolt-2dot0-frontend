@@ -69,7 +69,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             }
 
             // Kafka Logging
-            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
             // kafkaService.logInfo(res.locals.config.locale, log);
 
             // Redis Logging - to get data to ELK

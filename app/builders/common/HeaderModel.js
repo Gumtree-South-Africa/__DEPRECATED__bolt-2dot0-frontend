@@ -39,7 +39,7 @@ var HeaderModel = function (secure, req, res) {
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 
-	this.requestId = req.requestId;
+	this.requestId = req.app.locals.requestId;
 	this.i18n = res.locals.i18n;
 };
 

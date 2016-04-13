@@ -14,7 +14,7 @@ module.exports = function (app) {
 };
 
 router.get('/api/ads/gallery', cors, function (req, res) {
-	var gallery = new GalleryModel(req.requestId, res.locals.config.locale),
+	var gallery = new GalleryModel(req.app.locals.requestId, res.locals.config.locale),
 		galleryData = {},
 		offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
