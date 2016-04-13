@@ -88,6 +88,7 @@ router.post('/quickpost',
 		var modelData = pageControllerUtil.preController(req, res);
 		var model = QuickpostPageModel(req, res);
 		model.then(function (result) {
+      
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};

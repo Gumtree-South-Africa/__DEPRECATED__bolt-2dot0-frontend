@@ -67,10 +67,17 @@
   opacity: 0;
 }
 
+.icon-camera{
+  width: 1.5em;
+  height: 1.5em;
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+
 .upload-icon {
-  border: 2px dotted grey;
   width: 1.6em;
-  height: 1.55em;
+  height: 1.6em;
   float: left;
   margin-left: 0.2em;
   text-align: center;
@@ -83,19 +90,14 @@
 
 .upload-icon-content{
   position: absolute;
-  top: -0.11em;
-  left: 0.37em;
-}
-
-.inner {
-  border-radius: 1em;
-  border: 1px solid #8FBA31;
-  height: 1em;
-  width: 1em;
-  display: inline-block;
-  position: absolute;
-  top: 0.22em;
-  left: 0.27em;
+  top: 1.8em;
+  left: 2em;
+  border: 2px solid #CCCBB3;
+  border-radius: 81px;
+  font-size: 0.5em;
+  width: 1.7em;
+  background-color: white;
+  z-index: 3;
 }
 
 .qpWrapper{
