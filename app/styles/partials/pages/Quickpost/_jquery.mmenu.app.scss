@@ -320,7 +320,7 @@ div.mobile-only {
 
   .body {
     background-color: transparent;
-    font-family: Arial, Helvetica, Verdana;
+    font-family: inherit; /* Arial, Helvetica, Verdana; */
     font-size: 14px;
     line-height: 22px;
     color: #666;
