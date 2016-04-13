@@ -30,7 +30,8 @@ PageControllerUtil.prototype.preController = function (req, res) {
         country: res.locals.config.country,
         site: res.locals.config.name,
         pagename: req.app.locals.pagetype,
-        device: req.app.locals.deviceInfo
+        device: req.app.locals.deviceInfo,
+        ip: req.app.locals.ip
     };
 
 	// Cached Location Data from BAPI

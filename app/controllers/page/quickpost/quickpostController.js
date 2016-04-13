@@ -246,6 +246,8 @@ var QuickPost = {
 		json.location.latitude = modelData.formContent.latitude;
 		json.location.longitude = modelData.formContent.longitude;
 
+		json.ipAddress = modelData.ip;
+
 		json.price = {};
 		json.price.currency = modelData.formContent.priceCurrency;
 		json.price.amount = modelData.formContent.priceValue;
