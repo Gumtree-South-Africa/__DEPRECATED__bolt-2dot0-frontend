@@ -11,7 +11,7 @@ BOLT.QuickPostPage = (function() {
 
    /**
     * @method openMap
-    * @description Opens a Gmap region     
+    * @description Opens a Gmap region
     * @private
     */
     function openMap() {
@@ -30,7 +30,7 @@ BOLT.QuickPostPage = (function() {
    /**
     * @method setMapCoords
     * @description Sets the Gmap coordinates
-    * @param {Object} latlongData     
+    * @param {Object} latlongData
     * @private
     */
     function setMapCoords(latlongData) {
@@ -42,7 +42,7 @@ BOLT.QuickPostPage = (function() {
 
    /**
     * @method mobileCategorySelector
-    * @description Selects a Category from the Mobile Selector/Menu     
+    * @description Selects a Category from the Mobile Selector/Menu
     * @private
     */
     function mobileCategorySelector() {
@@ -100,6 +100,7 @@ BOLT.QuickPostPage = (function() {
         init: function() {
         	mobileCategorySelector();
         	this.syncUI();
+          this.tooltip();
         },
 
         /**
@@ -128,6 +129,15 @@ BOLT.QuickPostPage = (function() {
                     $("input[name=category]").val(obj.id);
                 }
             });
+        },
+
+        tooltip: function(){
+          $('.description .icon-contextual-info').on('click', function(){
+            $('.floating-tooltip').css('display', 'block');
+          })
+          $('.tooltip-wrapper .icon-gl-message-close').on('click', function(){
+            $('.floating-tooltip').css('display', 'none');
+          })
         }
 
     }; // return

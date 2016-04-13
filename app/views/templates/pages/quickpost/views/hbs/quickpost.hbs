@@ -29,6 +29,7 @@
             <div class="field-wrapper">
               <div class="description">
                 <textarea id="Description" name="Description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+                <span class="icon-contextual-info"></span>
                 {{#with this.flash.fieldErrors.description}}
                   <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
@@ -149,6 +150,22 @@
         </div>
 
     </form>
+
+    <div class="floating-tooltip">
+      <div class="tooltip-wrapper">
+        <div class="gl-messages-replyAds-srp">
+			     <a href="javascript:void(0)" class="close_btn">
+			         <span class="icon-gl-message-close"></span>
+			     </a>
+			  </div>
+        <div>Regular Text here</div>
+        <div class="elt">Hello</div>
+        <div class="elt">Google</div>
+        <div class="elt">Yahoo</div>
+        <div class="elt">Facebook</div>
+        <span class="icon-close"></span>
+      </div>
+    </div>
 
   </div>
 {{/partial}}

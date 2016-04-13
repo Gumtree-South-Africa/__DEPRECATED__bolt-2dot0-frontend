@@ -109,8 +109,19 @@
   margin-bottom: 2em;
 }
 
+
 .description{
   margin-top: 0.4em;
+  position: relative;
+  .icon-contextual-info{
+    width: 15px;
+    height: 18px;
+    display: table-cell;
+    cursor: pointer;
+    position: absolute;
+    top: 0.3em;
+    right: 0.5em;
+  }
   textarea{
     background: transparent;
     border-radius: 5px;
@@ -118,6 +129,7 @@
     max-width: 99%;
     height: 4.5em;
     min-height: 4.5em;
+    padding-right: 2em;
   }
 }
 
@@ -221,4 +233,25 @@ textarea.error{
    padding: 0 0.5em;
    margin-bottom: 0.5em;
    margin-top: 1em;
+}
+
+.floating-tooltip{
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: none;
+  .tooltip-wrapper{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.3em 1.7em;
+    background-color: #DFE38C;
+  }
+  .elt{
+    display: list-item;
+    margin-left: 1em;
+  }
+  .close_btn{
+    top: 1.2em;
+  }
 }
