@@ -100,7 +100,8 @@ BOLT.QuickPostPage = (function() {
         init: function() {
         	mobileCategorySelector();
         	this.syncUI();
-          this.tooltip();
+            this.tooltip();
+            this.charCount();
         },
 
         /**
@@ -127,6 +128,9 @@ BOLT.QuickPostPage = (function() {
 
                     // Set the Category Id in a hidden var.
                     $("input[name=Category]").val(obj.id);
+
+                    // Re-run validation on the category hidden field.
+                    $("input[name=Category]").valid();
                 }
             });
         },
@@ -138,6 +142,12 @@ BOLT.QuickPostPage = (function() {
           $('.tooltip-wrapper .icon-gl-message-close').on('click', function(){
             $('.floating-tooltip').css('display', 'none');
           })
+        },
+
+        charCount: function(){
+            $('.description').on('keyup', function(){
+                $('.char-count-info').innerHTML = (4096 - $('.description').val().length);
+            })
         }
 
     }; // return

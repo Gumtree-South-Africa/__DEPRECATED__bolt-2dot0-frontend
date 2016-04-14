@@ -63,13 +63,8 @@ router.post('/quickpost',
 	// Form filter and validation middleware
 	form(
 		field('Description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
-		field('Category').required(),
-		field('price').trim().is(/^[0-9]+$/),
-		field('switch'),
-		field('location'),
-		field('latitude'),
-		field('longitude'),
-		field('address')
+		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
+		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -104,17 +99,16 @@ router.post('/quickpost',
 				// Put the errors in fieldErrors object for UI
 				req.form.fieldErrors = {};
 				for (var i=0; i<req.form.errors.length; i++){
-				  if (req.form.errors[i].indexOf('Category ') > -1) {
-					if(!req.form.fieldErrors.category)
-					req.form.fieldErrors.category = req.form.errors[i];
-				  }
-				  else if (req.form.errors[i].indexOf('Description ') > -1) {
-					if(!req.form.fieldErrors.description)
-					req.form.fieldErrors.description = req.form.errors[i];
-				  }
+				  	if (req.form.errors[i].indexOf('Category ') > -1) {
+						if(!req.form.fieldErrors.category)
+							req.form.fieldErrors.category = req.form.errors[i];
+				  	}
+				  	else if (req.form.errors[i].indexOf('Description ') > -1) {
+						if(!req.form.fieldErrors.description)
+							req.form.fieldErrors.description = req.form.errors[i];
+				  	}
 				}
-				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
-				pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+				QuickPost.respondError(req,  res, next, modelData);
 			} else {
 				// Build Ad JSON
 				var adJson = QuickPost.buildAdJson(modelData, req.body);
@@ -129,8 +123,9 @@ router.post('/quickpost',
 						res.redirect(vipLink);
 					}).fail(function (err) {
 						// Stay on quickpost page if error during posting
-						modelData.flash = { type: 'alert-danger', errors: req.form.errors };
-						pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.submit = err;
+						QuickPost.respondError(req,  res, next, modelData);
 					});
 			}
 
@@ -268,5 +263,14 @@ var QuickPost = {
 		}
 
 		return json;
+	},
+
+	/*
+	 * On Error, send back to Quickpost Form
+	 */
+	respondError: function (req, res, next, modelData) {
+		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+
+		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
 };
