@@ -100,7 +100,8 @@ BOLT.QuickPostPage = (function() {
         init: function() {
         	mobileCategorySelector();
         	this.syncUI();
-          this.tooltip();
+            this.tooltip();
+            this.charCount();
         },
 
         /**
@@ -141,6 +142,12 @@ BOLT.QuickPostPage = (function() {
           $('.tooltip-wrapper .icon-gl-message-close').on('click', function(){
             $('.floating-tooltip').css('display', 'none');
           })
+        },
+
+        charCount: function(){
+            $('.description').on('keyup', function(){
+                $('.char-count-info').innerHTML = (4096 - $('.description').val().length);
+            })
         }
 
     }; // return

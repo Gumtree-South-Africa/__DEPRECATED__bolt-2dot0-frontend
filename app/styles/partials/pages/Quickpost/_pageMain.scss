@@ -124,6 +124,16 @@
     top: 0.3em;
     right: 0.5em;
   }
+  .char-count-info {
+    width: 15px;
+    height: 18px;
+    display: inline;
+    cursor: text;
+    position: absolute;
+    top: 1.6em;
+    right: 1.6em;
+    font-size: 80%;
+  }
   textarea{
     background: transparent;
     border-radius: 5px;
