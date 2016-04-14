@@ -1,10 +1,20 @@
 	"use strict";
-	
+
 	var BOLT = BOLT || {};
 	BOLT.POST = BOLT.POST || {};
 
+	/**
+	 * @description A singleton object that represents the model (data) needed for the JQuery Validation plugin to
+	 *     validate form fields in the Post Page. 
+	 * Please refer to : https://jqueryvalidation.org/ for more info on the library.
+	 * @namespace BOLT.POST
+	 * @class Validation
+	 * @public
+	 * @type Object|JSON
+	 */
 	BOLT.POST.Validation = (function () {
 
+		// Private methods
 		var _PM = {
 		   /**
 		    * @method setValidationDefaults
@@ -36,9 +46,15 @@
 
 		};
 
+		// Public Methods
 		return {
+		   /**
+		    * @method init
+		    * @description Initializes the client validation engine
+		    * @public
+		    */
 			init : function () {
-
+				// Prepare validation
 				_PM.setValidationDefaults();
 				_PM.addMethods();
 
