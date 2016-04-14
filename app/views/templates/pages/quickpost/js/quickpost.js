@@ -127,6 +127,9 @@ BOLT.QuickPostPage = (function() {
 
                     // Set the Category Id in a hidden var.
                     $("input[name=Category]").val(obj.id);
+
+                    // Re-run validation on the category hidden field.
+                    $("input[name=Category]").valid();
                 }
             });
         },
