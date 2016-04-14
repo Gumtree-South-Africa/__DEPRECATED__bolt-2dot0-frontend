@@ -33,7 +33,12 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
 		// console.info(serviceName + "Service: Callback from " + serviceName + " BAPI");
 		if(typeof output === undefined || output.statusCode) {
-			bapiDeferred.reject(serviceName + " BAPI returned: " + output.statusCode + " , details: " + output);
+			var bapiError = {};
+			bapiError.status = output.statusCode;
+			bapiError.message = output.message;
+			bapiError.details = output.details;
+			bapiError.serviceName = serviceName;
+			bapiDeferred.reject(bapiError);
 		} else {
 			bapiDeferred.resolve(output);
 			console.timeEnd('Instrument-BAPI-' + serviceName);

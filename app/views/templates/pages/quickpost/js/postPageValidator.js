@@ -64,8 +64,8 @@
 						Category: "required",
 						Description: {
 							required: true,
-							minlength: 5,  // 100
-							maxlength: 20, // 4096
+							minlength: 100,  // 100
+							maxlength: 4096, // 4096
 							validDescription : true
 						}
 					},

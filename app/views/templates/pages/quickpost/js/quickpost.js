@@ -146,10 +146,9 @@ BOLT.QuickPostPage = (function() {
 
         charCount: function(){
             $('.description').on('keyup', function(){
-                $('.char-count-info').innerHTML = (4096 - $('.description').val().length);
+                $('#description-char-count').text(4096 - $('#Description').val().length);
             })
         }
-
     }; // return
 
 })(); // Ends singleton

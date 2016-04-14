@@ -122,6 +122,8 @@ router.post('/quickpost',
 						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
 						res.redirect(vipLink);
 					}).fail(function (err) {
+						if (err.status == 404) err.status404 = true;
+						if (err.status == 500) err.status500 = true;
 						// Stay on quickpost page if error during posting
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.submit = err;
@@ -189,6 +191,7 @@ var QuickPost = {
 		modelData.formContent.pricePlaceholder = 'Price';
 		modelData.formContent.priceExtension = '.00';
 
+		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'Share on Facebook';
 
 		modelData.formContent.locationText = 'Enter Location';
@@ -197,6 +200,9 @@ var QuickPost = {
 		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
 
 		modelData.formContent.sellitText = 'Sell It';
+
+		modelData.formContent.error404 = 'There is an issue with posting ads, try again later !';
+		modelData.formContent.error500 = 'There is an issue with posting ads, try again later !';
 
 		modelData.eps = EpsModel();
 	},

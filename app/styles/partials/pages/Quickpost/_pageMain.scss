@@ -142,6 +142,7 @@
     top: 1.6em;
     right: 1.6em;
     font-size: 80%;
+    color: #6666ff;
   }
   textarea{
     background: transparent;
@@ -233,8 +234,12 @@ input, select{
 
 .noHeaderError{
   font-weight: 500;
-  color: #FF0000;
+  color: #bb3027;
   font-size: .85em;
+}
+
+.submitError{
+  padding: 0 1em;
 }
 
 textarea.error{

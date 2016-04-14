@@ -1,6 +1,5 @@
 {{#partial "content"}}
 
-  {{> (dynamic "mediaUpload")}}
 
   <div class="quickpost">
 
@@ -11,7 +10,20 @@
     </div>
 
     <form action="" method="post" id="postForm">
+
+        {{#if this.flash.fieldErrors.submit}}
+            <p class="noHeaderError submitError"><span class="icon-alert-blue"></span>
+                {{#if this.flash.fieldErrors.submit.status404}}
+                    {{this.formContent.error404}}
+                {{/if}}
+                {{#if this.flash.fieldErrors.submit.status500}}
+                    {{this.formContent.error500}}
+                {{/if}}
+            </p>
+        {{/if}}
+
         <div class="imgUploadContainer">
+            {{> (dynamic "mediaUpload")}}
             <ul id="thumb-nails"></ul>
             <div class="uploadWrapper">
               <div class="upload-icon one">
@@ -30,7 +42,7 @@
               <div class="description">
                 <textarea id="Description" name="Description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
                 <span class="icon-contextual-info"></span>
-                <span class="char-count-info">4096</span>
+                <span id="description-char-count" class="char-count-info">4096</span>
                 {{#with this.flash.fieldErrors.description}}
                   <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
@@ -40,7 +52,7 @@
             {{!-- BEGIN NEW CATEGORY SELECTOR --}}
             <style>
             label.error {
-              color: #FF0000;
+              color: #bb3027;
               font-weight: 500;
               font-size: 12px;
             }
@@ -122,12 +134,14 @@
             </div>
 
             {{!-- Share on FB --}}
-            <div class="field-wrapper">
-              <div class="socialMedia">
-                  <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
-                  {{> (dynamic "switchButton") }}
-              </div>
-            </div>
+            {{#if this.formContent.displayFb}}
+                <div class="field-wrapper">
+                  <div class="socialMedia">
+                      <span class="smedia">{{i18n this.formContent.sharefbText}}</span>
+                      {{> (dynamic "switchButton") }}
+                  </div>
+                </div>
+            {{/if}}
 
             <div class="field-wrapper">
               <div class="select-location">
