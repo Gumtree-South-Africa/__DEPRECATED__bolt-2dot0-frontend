@@ -1,3 +1,5 @@
+	"use strict";
+	
 	var BOLT = BOLT || {};
 	BOLT.POST = BOLT.POST || {};
 
