@@ -289,6 +289,19 @@ var QuickPost = {
 	respondError: function (req, res, next, modelData) {
 		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 
+		if (req.form.fieldErrors.submit) {
+			modelData.header.pageMessages = {};
+
+			var errorMessage = '';
+			if (req.form.fieldErrors.submit.status404) {
+				errorMessage = modelData.formContent.error404;
+			}
+			if (req.form.fieldErrors.submit.status500) {
+				errorMessage = modelData.formContent.error500;
+			}
+			modelData.header.pageMessages.error = errorMessage;
+		}
+
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
 };
