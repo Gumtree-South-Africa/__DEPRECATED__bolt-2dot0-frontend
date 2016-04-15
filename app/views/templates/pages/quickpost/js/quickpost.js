@@ -100,8 +100,13 @@ BOLT.QuickPostPage = (function() {
         init: function() {
         	mobileCategorySelector();
         	this.syncUI();
-            this.tooltip();
-            this.charCount();
+          this.tooltip();
+          this.charCount();
+          $('#thumb-nails').on('click', function(e){
+            e.stopPropagation();
+            console.log('hello');
+            return false;
+          });
         },
 
         /**

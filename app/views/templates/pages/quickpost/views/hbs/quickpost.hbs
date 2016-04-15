@@ -129,7 +129,7 @@
             {{!-- Price --}}
             <div class="field-wrapper">
               <div class="price">
-                  <input class="custom-input" type="text" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
+                  <input class="custom-input" type="text"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
               </div>
             </div>
 
