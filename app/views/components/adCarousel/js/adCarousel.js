@@ -9,6 +9,9 @@
         }
 
         var adList = window.adList;
+        // process the JSON to the BOLT 2.0 BAPI format
+        adList = processDataJSON(adList);
+
 		var	ads = adList.ads,
             nextUrl = adList.nextAjaxUrl,
             prevUrl = adList.previousAjaxUrl,
@@ -566,7 +569,6 @@
 			});
 
 			request.done(function(msg) {
-                var prevUrl, nextUrl;
 				if (msg.ads) {
                     for (i = 0; i < msg.ads.length; i++) {
                         ads.push(msg.ads[i]);
@@ -608,6 +610,54 @@
 
             return div;
         }
+
+        /* ------------------------------------- */
+        /* Begin New functionality for BOLT 2.0 */
+        function getAjaxsUrlFromBapiJSON(dataG) {
+            var ajaxUrls = { "prev" : null , "next" : null },
+                links = dataG.links || null,
+                linkObj,
+                idx;
+
+            if (links) {
+                for (idx = 0; idx < links.length; ++idx) {
+                    linkObj = links[idx];
+                    if (linkObj.rel.match(/previous/i)) {
+                        ajaxUrls.prev = ("/api" + linkObj.href) || "";
+                    } else if (linkObj.rel.match(/next/i)) {
+                        ajaxUrls.next = ("/api" + linkObj.href) || "";
+                    }
+                }
+            }
+
+            return ajaxUrls;
+        }
+
+        function processDataJSON(dataG) {
+            var galleryData,
+                ajaxUrls;
+
+            dataG = dataG || {};
+            galleryData = {
+                "ads" : dataG.ads || []
+            };
+
+            // Get the prev and next urls
+            ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
+
+            if (ajaxUrls.next) {
+                galleryData.nextAjaxUrl = ajaxUrls.next;
+            }
+
+            if (ajaxUrls.prev) {
+                galleryData.previousAjaxUrl = ajaxUrls.prev;
+            }
+
+            return galleryData;
+        }
+
+        /* End New functionality for BOLT 2.0 */
+        /* ------------------------------------- */
 
 		init();
 	});
