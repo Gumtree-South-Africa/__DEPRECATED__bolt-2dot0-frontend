@@ -602,14 +602,14 @@ $(document).ready(function() {
      * ========================================================================================================
      */
     var geoFeatureSupported = window.navigator.geolocation && "getCurrentPosition" in window.navigator.geolocation;
-
+    var criteoOrigZIndex = 0;
     /**
      * This geolocator class will attach a handler on the page to locate the user
      * @constructor
      */
-    function GeoLocator(config){
-
+    function GeoLocator(config) {
         var scope = this;
+
         function freezeBody(toFraze)
         {
             if(toFraze)
@@ -660,6 +660,7 @@ $(document).ready(function() {
                         scope.close();
                     })
                     .on("click", "div", function(event){
+                        processPostOverlayClose();
                         event.stopPropagation();
                     })
                     .on("click", "a", function(){
@@ -727,6 +728,7 @@ $(document).ready(function() {
 
 
         $searchbar.on("click", ".geo-locator", function() {
+            processPreOverlayOpen()
             geoLocator.select(saveSelection);
         });
 
@@ -737,6 +739,26 @@ $(document).ready(function() {
             Bolt.Cookie.setHardCookie("promptGeo", true);
         }
 
+    }
+
+
+    // Method that has the extra code to be executed BEFORE the overlay gets opened
+    function processPreOverlayOpen() {
+        // BOLT-20988
+        var $criteoBannerObj = $("div.criteo_header");
+        if ($criteoBannerObj.length) {
+            criteoOrigZIndex = $criteoBannerObj.css("z-index");
+            $criteoBannerObj.css("z-index", 0);
+        }
+
+    }
+
+    // Method that has the extra code to be executed AFTER the overlay gets opened
+    function processPostOverlayClose() {
+        var $criteoBannerObj = $("div.criteo_header");
+        if ($criteoBannerObj.length) {
+            $criteoBannerObj.css("z-index", criteoOrigZIndex);
+        }
     }
     /*
      * ========================================================================================================

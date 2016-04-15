@@ -176,12 +176,19 @@ var HP = {
 		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
 		if (!modelData.footer.min) {
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
+
+			// @Nacer, @Videep, we are including the code for both carousels for all the countries.
+			// @todo: Make sure that for AR,MX we include the CarouselExt JS files (3) and for
+			// Gumtree we include adCarousel.js. This is only for DEV. for the minification files
+			// it is already taken care of in jsmin.js
+
 			if (!modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 			}
+			
 			var availableAdFeatures = modelData.footer.availableAdFeatures;
 			if (typeof availableAdFeatures !== 'undefined') {
 				for (var i = 0; i < availableAdFeatures.length; i++) {

@@ -132,9 +132,15 @@ HeaderModel.prototype.buildUrl = function(data) {
 	data.touchIconIphoneRetinaUrl = data.baseImageUrl + scope.locale + '/touch-iphone-retina.png';
 	data.touchIconIpadRetinaUrl = data.baseImageUrl + scope.locale + '/touch-ipad-retina.png';
 	data.shortcutIconUrl = data.baseImageUrl + scope.locale + '/shortcut.png';
-	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + scope.locale + '/{catId}/{locId}/{value}';
-	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + scope.locale + '/{lat}/{lng}';
-	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + scope.locale + '/0/category/0';
+
+	// Temporary Hack to call rui-api from 1.0
+	var modifiedLocale = scope.locale;
+	if (scope.country === 'MX') {
+		modifiedLocale = scope.locale + '_VNS';
+	}
+	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + modifiedLocale + '/{catId}/{locId}/{value}';
+	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + modifiedLocale + '/{lat}/{lng}';
+	data.rootGeoLocatorUrl = data.homePageUrl + data.rootGeoLocatorUrl + modifiedLocale + '/0/category/0';
 };
 
 //Build CSS
