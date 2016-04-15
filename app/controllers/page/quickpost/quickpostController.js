@@ -254,9 +254,11 @@ var QuickPost = {
 
 		json.ipAddress = modelData.ip;
 
-		json.price = {};
-		json.price.currency = modelData.formContent.priceCurrency;
-		json.price.amount = modelData.formContent.priceValue;
+		if (typeof modelData.formContent.priceValue !== 'undefined') {
+			json.price = {};
+			json.price.currency = modelData.formContent.priceCurrency;
+			json.price.amount = modelData.formContent.priceValue;
+		}
 
 		var reqPictures = requestBody.pictures;
 		json.pictures = {};
