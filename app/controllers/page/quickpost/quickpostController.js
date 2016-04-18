@@ -43,11 +43,15 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
 
-		// Special Data needed for QuickPost in header, footer, content
+    // Custom header for Post Page
+    modelData.content = {};
+    modelData.content.disableSearchbar = true;
+    
+    // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
-
+    console.log('disableSearchbar: ',modelData.content.disableSearchbar);
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 		console.timeEnd('Instrument-QuickPost-Form-Controller');
@@ -83,7 +87,7 @@ router.post('/quickpost',
 		var modelData = pageControllerUtil.preController(req, res);
 		var model = QuickpostPageModel(req, res);
 		model.then(function (result) {
-      
+
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
@@ -187,7 +191,7 @@ var QuickPost = {
 	buildFormData: function (modelData, bapiConfigData) {
 		modelData.formContent = {};
 
-		modelData.formContent.pagetitle = 'Sell Your Item';
+		modelData.formContent.pageTitle = 'Sell Your Item';
 
 		modelData.formContent.uploadText = 'Upload Pictures';
 

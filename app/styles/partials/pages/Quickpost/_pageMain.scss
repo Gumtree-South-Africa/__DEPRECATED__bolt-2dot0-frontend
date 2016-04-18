@@ -193,6 +193,7 @@ input, select{
   padding: 0 0.75em;
   margin-bottom: 0.5em;
   margin-top: 1em;
+  margin-left: -0.4em;
 }
 
 #maps-link{
@@ -215,11 +216,16 @@ input, select{
   border-radius: 3px;
   padding: 10px;
   text-align: center;
-  background-color: $quickpost-form-submitBtn;
+  background-color: #f89301;
   margin: 0 auto;
   margin-top: 0.5em;
   width: 100%;
   cursor: pointer;
+  border: 1px solid white;
+  box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -o-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
 }
 
 .noHeaderError{
@@ -259,6 +265,7 @@ textarea.error{
   bottom: 0;
   display: none;
   z-index: 240;
+  font-size: 12px;
   .tooltip-wrapper{
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -3,11 +3,7 @@
 
   <div class="quickpost">
 
-    <div class="qpHeader">
-      {{> (dynamic "logo") }}
-      <div class="pageTitle">{{i18n this.formContent.pagetitle}}</div>
-      <div class="clear"></div>
-    </div>
+    {{#partial "pageTitle"}}{{/partial}}
 
     <form action="" method="post" id="postForm">
 
@@ -181,8 +177,9 @@
   </div>
 {{/partial}}
 
-{{#partial "headerWrapper"}}{{/partial}}
+{{!-- {{#partial "headerWrapper"{{/partial--}}
 {{#partial "footerWrapper"}}{{/partial}}
+{{#partial "postBtn"}}{{/partial}}
 
 {{#partial "pageTailScriptsBeforeIncludes"}}
  <script>
