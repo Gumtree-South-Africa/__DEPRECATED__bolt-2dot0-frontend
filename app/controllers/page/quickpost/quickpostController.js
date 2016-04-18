@@ -42,16 +42,12 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
-
-    // Custom header for Post Page
-    modelData.content = {};
-    modelData.content.disableSearchbar = true;
     
     // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
-    console.log('disableSearchbar: ',modelData.content.disableSearchbar);
+
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 		console.timeEnd('Instrument-QuickPost-Form-Controller');
@@ -189,10 +185,10 @@ var QuickPost = {
 	 * Build Form data for QuickPost
 	 */
 	buildFormData: function (modelData, bapiConfigData) {
+		// Post Form
 		modelData.formContent = {};
 
 		modelData.formContent.pageTitle = 'Sell Your Item';
-
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
@@ -218,6 +214,13 @@ var QuickPost = {
 		modelData.formContent.error404 = 'There is an issue with posting ads, try again later !';
 		modelData.formContent.error500 = 'There is an issue with posting ads, try again later !';
 
+
+		// Custom header
+		modelData.content = {};
+		modelData.content.disableSearchbar = true;
+
+
+		// EPS
 		modelData.eps = EpsModel();
 	},
 
