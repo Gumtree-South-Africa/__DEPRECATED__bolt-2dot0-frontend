@@ -66,7 +66,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
+		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 ]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
@@ -196,7 +196,7 @@ var QuickPost = {
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 100 characters)';
+		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 10 characters)';
 
 		modelData.formContent.categoryText = 'Choose Category';
 
