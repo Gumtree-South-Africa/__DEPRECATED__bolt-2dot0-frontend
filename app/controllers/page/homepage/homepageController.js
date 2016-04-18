@@ -171,10 +171,9 @@ var HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData: function (modelData) {
-		var baseJSComponentDir = "/views/components/";
-
-		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
 		if (!modelData.footer.min) {
+			var baseJSComponentDir = "/views/components/";
+
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.

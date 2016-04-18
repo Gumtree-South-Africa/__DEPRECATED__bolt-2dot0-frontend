@@ -11,17 +11,6 @@
 
     <form action="" method="post" id="postForm">
 
-        {{#if this.flash.fieldErrors.submit}}
-            <p class="noHeaderError submitError"><span class="icon-alert-blue"></span>
-                {{#if this.flash.fieldErrors.submit.status404}}
-                    {{this.formContent.error404}}
-                {{/if}}
-                {{#if this.flash.fieldErrors.submit.status500}}
-                    {{this.formContent.error500}}
-                {{/if}}
-            </p>
-        {{/if}}
-
         <div class="imgUploadContainer">
             {{> (dynamic "mediaUpload")}}
             <ul id="thumb-nails"></ul>
@@ -206,19 +195,6 @@
 </script>
 {{/partial}}
 
-{{#partial "pageTailScripts"}}
- {{!-- Please add all these to minification ---}}
-  <script type="text/javascript" src='/views/components/mapLatLong/js/mapLatLong.js'></script>
-  <script type="text/javascript" src='/views/components/mobileSelectorMenu/js/jquery.menu.min.js'></script>
-  <script type="text/javascript" src='/views/components/mobileSelectorMenu/js/MobileItemSelector.js'></script>
-  <script type="text/javascript" src='/views/templates/pages/quickpost/js/quickpost.js'></script>
-  {{!-- Begin validation needed --}}
-  <script type="text/javascript" src='/public/js/libraries/jQueryValidate/jquery.validate.min.js'></script>
-  <script type="text/javascript" src='/views/templates/pages/quickpost/js/postPageValidator.js'></script>
-  {{!-- End validation needed --}}
-
-
-{{/partial}}
 
 {{#partial "PrecompiledCatCascadeMenu"}}
 <ul class="nav-cont selMenu ">

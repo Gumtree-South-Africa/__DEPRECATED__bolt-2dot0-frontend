@@ -157,17 +157,27 @@ var QuickPost = {
 	 * Special footer data for QuickPost
 	 */
 	extendFooterData: function (modelData) {
-		var baseJSComponentDir = '/views/components/';
-
 		// image upload
 	    if (!modelData.footer.min) {
+			// Components
+			var baseJSComponentDir = '/views/components/';
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadUtil.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageEXIF.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadDragAndDrop.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploader.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mapLatLong/js/mapLatLong.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mobileSelectorMenu/js/jquery.menu.min.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'mobileSelectorMenu/js/MobileItemSelector.js');
+
+			// Libraries
+			modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'libraries/jQueryValidate/jquery.validate.min.js');
+
+			// Page
+			modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'pages/quickpost/quickpost.js');
+			modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'pages/quickpost/postPageValidator.js');
 		} else {
 			//Todo: need to add BoltImage related to minjs
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'QuickPost' + modelData.locale + '.min.js');
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'QuickPost_' + modelData.locale + '.min.js');
 		}
 	},
 
@@ -278,6 +288,19 @@ var QuickPost = {
 	 */
 	respondError: function (req, res, next, modelData) {
 		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+
+		if (req.form.fieldErrors.submit) {
+			modelData.header.pageMessages = {};
+
+			var errorMessage = '';
+			if (req.form.fieldErrors.submit.status404) {
+				errorMessage = modelData.formContent.error404;
+			}
+			if (req.form.fieldErrors.submit.status500) {
+				errorMessage = modelData.formContent.error500;
+			}
+			modelData.header.pageMessages.error = errorMessage;
+		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
