@@ -1,5 +1,5 @@
 /* jshint ignore:start */
-	var allowedUploads = 4;
+	var allowedUploads = 2;
 		    $( document ).ready(function() {
 		    	$( ".img-box" ).each(function(i) {
 		    		imageUploads.addDuringPreview(i);
@@ -92,13 +92,13 @@
 						add:function (l) {
 
 							var html = "",  total = images.length;
-							if (total >= allowedUploads){
-								return false;
+							if (total == allowedUploads - 1){
+								//case: to hide camera icon
+								$('.uploadWrapper').addClass('hiddenElt');
 							}
 							else{
-								//case: to hide camera icon
-								if(total == allowedUploads -1){
-									$('.uploadWrapper').css('display', 'none');
+								if(total > allowedUploads -1){
+									return false;
 								}
 							}
 							for(var i=total; i<l+total;i++) {
@@ -140,6 +140,7 @@
 		                		$("#image-place-holder-" + i).remove();
 		                		images.pop();
 		                		urls.remove(i);
+												$('#thumb-nails').next('.uploadWrapper').removeClass('hiddenElt');
 		                	}
 		                	resetThumbDOM();
 		                	// hightlight

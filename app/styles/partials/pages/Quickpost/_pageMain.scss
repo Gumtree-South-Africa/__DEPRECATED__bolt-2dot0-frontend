@@ -108,7 +108,7 @@
 }
 
 #postForm{
-  margin-bottom: 2em;
+  margin-top: 2em;
 }
 
 
@@ -285,4 +285,8 @@ textarea.error{
   margin-top: -0.5em;
   margin-bottom: 0.5em;
   padding: 1em;
+}
+
+.hiddenElt{
+  display: none;
 }

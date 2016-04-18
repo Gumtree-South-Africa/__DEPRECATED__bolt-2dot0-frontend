@@ -102,11 +102,6 @@ BOLT.QuickPostPage = (function() {
         	this.syncUI();
           this.tooltip();
           this.charCount();
-          $('#thumb-nails').on('click', function(e){
-            e.stopPropagation();
-            console.log('hello');
-            return false;
-          });
         },
 
         /**
