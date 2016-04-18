@@ -42,16 +42,12 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
-
-    // Custom header for Post Page
-    modelData.content = {};
-    modelData.content.disableSearchbar = true;
     
     // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
-    console.log('disableSearchbar: ',modelData.content.disableSearchbar);
+
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 
 		console.timeEnd('Instrument-QuickPost-Form-Controller');
@@ -66,7 +62,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(100).is(/^[a-zA-Z0-9 ]+$/),
+		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 ]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
@@ -189,14 +185,14 @@ var QuickPost = {
 	 * Build Form data for QuickPost
 	 */
 	buildFormData: function (modelData, bapiConfigData) {
+		// Post Form
 		modelData.formContent = {};
 
 		modelData.formContent.pageTitle = 'Sell Your Item';
-
 		modelData.formContent.uploadText = 'Upload Pictures';
 
 		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 100 characters)';
+		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 10 characters)';
 
 		modelData.formContent.categoryText = 'Choose Category';
 
@@ -218,6 +214,13 @@ var QuickPost = {
 		modelData.formContent.error404 = 'There is an issue with posting ads, try again later !';
 		modelData.formContent.error500 = 'There is an issue with posting ads, try again later !';
 
+
+		// Custom header
+		modelData.content = {};
+		modelData.content.disableSearchbar = true;
+
+
+		// EPS
 		modelData.eps = EpsModel();
 	},
 
