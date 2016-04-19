@@ -1,5 +1,5 @@
 /* jshint ignore:start */
-	var allowedUploads = 2;
+	var allowedUploads = 4;
 		    $( document ).ready(function() {
 		    	$( ".img-box" ).each(function(i) {
 		    		imageUploads.addDuringPreview(i);
