@@ -15,6 +15,8 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 var postAdService = require(cwd + '/server/services/postad');
+var fbGraphService = require(cwd + '/server/utils/fbgraph');
+
 
 
 module.exports = function (app) {
@@ -117,14 +119,23 @@ router.post('/quickpost',
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(req.app.locals.requestId, res.locals.config.locale, authenticationCookie, ad))
 					.then(function (dataReturned) {
-						//TODO: do a POST to the publishUrl and then on success, redirect to VIP
-						var fbShareLink =  modelData.header.homePageUrl + response._links[0].href;
-						console.log('$$$$$$$$$$$$$$$$$$$', modelData.header.publishPostUrl);
-						console.log('$$$$$$$$$$$$$$$$$$$', fbShareLink);
-
-						// Redirect to VIP if successfully posted Ad
 						var response = dataReturned;
+						var fbShareLink = modelData.header.homePageUrl + response._links[0].href;
 						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
+
+						// Post to FB if share button is enabled
+						if (typeof req.form.switch!=='undefined' && req.form.switch=='YES') {
+							var msg = modelData.formContent.fbPublishMsg;
+							Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
+								.then(function (fbDataReturned) {
+									console.log('Successful FB Graph PublishPost', fbDataReturned);
+								})
+								.fail(function (err) {
+									console.error('Error during FB Graph PublishPost', err);
+								});
+						}
+
+						// Redirect to VIP
 						res.redirect(vipLink);
 					}).fail(function (err) {
 						if (err.status == 404) err.status404 = true;
@@ -215,6 +226,7 @@ var QuickPost = {
 		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
 
 		modelData.formContent.sellitText = 'Sell It';
+		modelData.formContent.fbPublishMsg = 'Just created an ad !';
 
 		modelData.formContent.error404 = 'There is an issue with posting ads, try again later !';
 		modelData.formContent.error500 = 'There is an issue with posting ads, try again later !';
@@ -235,6 +247,7 @@ var QuickPost = {
 	buildValueData: function (modelData, formData) {
 		if (!_.isEmpty(formData.Description)) {
 			modelData.formContent.descriptionValue = formData.Description;
+			modelData.formContent.descriptionLength = modelData.formContent.descriptionValue.length;
 		}
 		if (!_.isEmpty(formData.Category)) {
 			modelData.formContent.category = formData.Category;

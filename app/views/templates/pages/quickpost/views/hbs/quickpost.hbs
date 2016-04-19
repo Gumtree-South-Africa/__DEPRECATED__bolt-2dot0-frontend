@@ -27,7 +27,7 @@
               <div class="description">
                 <textarea id="Description" name="Description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
                 <span class="icon-contextual-info"></span>
-                <span id="description-char-count" class="char-count-info">4096</span>
+                  <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
                 {{#with this.flash.fieldErrors.description}}
                   <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
