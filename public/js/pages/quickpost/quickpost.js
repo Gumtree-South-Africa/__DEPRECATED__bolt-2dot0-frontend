@@ -102,6 +102,7 @@ BOLT.QuickPostPage = (function() {
         	this.syncUI();
           this.tooltip();
           this.charCount();
+          this.toggleSwitchUpdate();
         },
 
         /**
@@ -148,6 +149,18 @@ BOLT.QuickPostPage = (function() {
             $('.description').on('keyup', function(){
                 $('#description-char-count').text(4096 - $('#Description').val().length);
             })
+        },
+
+        toggleSwitchUpdate: function(){
+          $('.toggleswitch input[type=checkbox]').on('change', function(){
+            var isToggleSwitchOn = $(this).is(':checked');
+            if(isToggleSwitchOn){
+              $('input[name=switch]').val('YES');
+            }
+            else{
+              $('input[name=switch]').val('NO');
+            }
+          });
         }
     }; // return
 
