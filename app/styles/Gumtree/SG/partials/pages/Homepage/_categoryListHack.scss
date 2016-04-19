@@ -148,8 +148,8 @@ $cat-want: 2.0em;
             $posHackY: 0em !global;
 
             &.l1category8   { @include bumpTop($cat-0008); } // Jobs
-             &.l1category2   { @include bumpTop($cat-0002); } // Property
-             &.l1category6   { @include bumpTop($cat-0006); } // Community
+            &.l1category2   { @include bumpTop($cat-0002); } // Property
+            &.l1category6   { @include bumpTop($cat-0006); } // Community
             &.l1freebies    { @include bumpTop($cat-free); } // Freebies
             //column3
             $posHackX: 73% !global;
