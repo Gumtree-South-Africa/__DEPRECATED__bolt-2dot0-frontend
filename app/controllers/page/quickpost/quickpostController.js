@@ -98,19 +98,7 @@ router.post('/quickpost',
 			QuickPost.buildValueData(modelData, req.form);
 
 			if (!req.form.isValid) {
-				// Put the errors in fieldErrors object for UI
-				req.form.fieldErrors = {};
-				for (var i=0; i<req.form.errors.length; i++){
-				  	if (req.form.errors[i].indexOf('Category ') > -1) {
-						if(!req.form.fieldErrors.category)
-							req.form.fieldErrors.category = req.form.errors[i];
-				  	}
-				  	else if (req.form.errors[i].indexOf('Description ') > -1) {
-						if(!req.form.fieldErrors.description)
-							req.form.fieldErrors.description = req.form.errors[i];
-				  	}
-				}
-				QuickPost.respondError(req,  res, next, modelData);
+				QuickPost.respondFieldError(req,  res, next, modelData);
 			} else {
 				// Build Ad JSON
 				var adJson = QuickPost.buildAdJson(modelData, req.body);
@@ -119,6 +107,7 @@ router.post('/quickpost',
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(req.app.locals.requestId, res.locals.config.locale, authenticationCookie, ad))
 					.then(function (dataReturned) {
+						console.log('dataaaaaaaaaaaaaaaaaaaaa', dataReturned);
 						var response = dataReturned;
 						var fbShareLink = modelData.header.homePageUrl + response._links[0].href;
 						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
@@ -138,12 +127,7 @@ router.post('/quickpost',
 						// Redirect to VIP
 						res.redirect(vipLink);
 					}).fail(function (err) {
-						if (err.status == 404) err.status404 = true;
-						if (err.status == 500) err.status500 = true;
-						// Stay on quickpost page if error during posting
-						req.form.fieldErrors = {};
-						req.form.fieldErrors.submit = err;
-						QuickPost.respondError(req,  res, next, modelData);
+						QuickPost.respondSubmitError(req,  res, next, modelData, err);
 					});
 			}
 
@@ -228,8 +212,8 @@ var QuickPost = {
 		modelData.formContent.sellitText = 'Sell It';
 		modelData.formContent.fbPublishMsg = 'Just created an ad !';
 
-		modelData.formContent.error404 = 'There is an issue with posting ads, try again later !';
-		modelData.formContent.error500 = 'There is an issue with posting ads, try again later !';
+		modelData.formContent.error4xx = 'Error while posting ads, try again later !';
+		modelData.formContent.error5xx = 'There is an issue with posting ads, try again later !';
 
 
 		// Custom header
@@ -247,7 +231,7 @@ var QuickPost = {
 	buildValueData: function (modelData, formData) {
 		if (!_.isEmpty(formData.Description)) {
 			modelData.formContent.descriptionValue = formData.Description;
-			modelData.formContent.descriptionLength = modelData.formContent.descriptionValue.length;
+			modelData.formContent.descriptionLength = 4096 - modelData.formContent.descriptionValue.length;
 		}
 		if (!_.isEmpty(formData.Category)) {
 			modelData.formContent.category = formData.Category;
@@ -309,23 +293,47 @@ var QuickPost = {
 	},
 
 	/*
-	 * On Error, send back to Quickpost Form
+	 * On Field Validation Error, send back to Quickpost Form
 	 */
-	respondError: function (req, res, next, modelData) {
+	respondFieldError: function(req, res, next, modelData) {
+		req.form.fieldErrors = {};
+		for (var i=0; i<req.form.errors.length; i++){
+			if (req.form.errors[i].indexOf('Category ') > -1) {
+				if(!req.form.fieldErrors.category)
+					req.form.fieldErrors.category = req.form.errors[i];
+			}
+			else if (req.form.errors[i].indexOf('Description ') > -1) {
+				if(!req.form.fieldErrors.description)
+					req.form.fieldErrors.description = req.form.errors[i];
+			}
+		}
+
 		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 
-		if (req.form.fieldErrors.submit) {
-			modelData.header.pageMessages = {};
+		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
+	},
 
-			var errorMessage = '';
-			if (req.form.fieldErrors.submit.status404) {
-				errorMessage = modelData.formContent.error404;
-			}
-			if (req.form.fieldErrors.submit.status500) {
-				errorMessage = modelData.formContent.error500;
-			}
-			modelData.header.pageMessages.error = errorMessage;
+	/*
+	 * On Page Submit Error, send back to Quickpost Form
+	 */
+	respondSubmitError: function (req, res, next, modelData, err) {
+		console.log('errorrrrrrrrrrrrrrrrrrrrrr', err);
+
+		var errorCode = parseInt(err.status);
+		if (errorCode >= 400 && errorCode < 500) err.status4xx = true;
+		if (errorCode >= 500 && errorCode < 600) err.status5xx = true;
+
+		var errorMessage = '';
+		if (err.status4xx) {
+			errorMessage = modelData.formContent.error4xx;
 		}
+		if (err.status500) {
+			errorMessage = modelData.formContent.error5xx;
+		}
+
+		// Stay on quickpost page if error during posting
+		modelData.header.pageMessages = {};
+		modelData.header.pageMessages.error = errorMessage;
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}

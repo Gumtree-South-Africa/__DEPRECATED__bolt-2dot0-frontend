@@ -1,28 +1,28 @@
 'use strict';
 
-var Q = require("q");
+var Q = require('q');
 
-var BAPICall = require("./BAPICall");
+var BAPICall = require('./BAPICall');
 
 module.exports = function(bapiOptions, requestId, locale, serviceName, authTokenValue){
 	console.time('Instrument-BAPI-' + serviceName);
 
 	// Add Headers
-	bapiOptions.headers["X-BOLT-APPS-ID"] = "RUI";
-	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
-	if (typeof requestId !== "undefined" && requestId!=null) {
-		bapiOptions.headers["X-BOLT-TRACE-ID"] = requestId;
+	bapiOptions.headers['X-BOLT-APPS-ID'] = 'RUI';
+	bapiOptions.headers['X-BOLT-SITE-LOCALE'] = locale;
+	if (typeof requestId !== 'undefined' && requestId!=null) {
+		bapiOptions.headers['X-BOLT-TRACE-ID'] = requestId;
 	}
-	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
-		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
+	if (typeof authTokenValue !== 'undefined' && authTokenValue!=null) {
+		bapiOptions.headers['Authorization'] = 'Bearer ' +  authTokenValue;
 	}
 	
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
-		if ( bapiOptions.path.indexOf("?") > -1 ) {
-			bapiOptions.path = bapiOptions.path + "&" + bapiOptions.parameters;
+		if ( bapiOptions.path.indexOf('?') > -1 ) {
+			bapiOptions.path = bapiOptions.path + '&' + bapiOptions.parameters;
 		} else {
-			bapiOptions.path = bapiOptions.path + "?" + bapiOptions.parameters;
+			bapiOptions.path = bapiOptions.path + '?' + bapiOptions.parameters;
 		}
 	} 
 	
@@ -31,7 +31,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
-		// console.info(serviceName + "Service: Callback from " + serviceName + " BAPI");
+		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
 			bapiError.status = output.statusCode;
@@ -46,7 +46,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	});
 
 	// Invoke BAPI request
-	// console.info(serviceName + "Service: About to call " + serviceName + " BAPI");
+	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	bapi.doGet();
 
 	// Return Promise Data
