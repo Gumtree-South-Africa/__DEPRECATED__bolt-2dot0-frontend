@@ -20,33 +20,26 @@ BOLT.MapLatLong = (function () {
                 	long: 0
         };
         var addressStr = "";
-        
+
         function initialize() {
             var ecgOfficeLoc = { lat : DEFAULT_LAT, long : DEFAULT_LONG };
             var loc = {};
             var geo;
             var browserSupportFlag;
-            var handleNoGeolocation = function(errorFlag) {
-                if (errorFlag === true) {
-                  console.log("Geolocation service failed.");
-                } else {
-                  console.log("Your browser doesn't support geolocation.");
-                }
-
-                renderMapWithCoords(ecgOfficeLoc.lat, ecgOfficeLoc.long);
-            };
 
             if (google.loader.ClientLocation) {
                 loc.lat = google.loader.ClientLocation.latitude;
                 loc.lng = google.loader.ClientLocation.longitude;
                 renderMapWithCoords(loc.lat, loc.lng);
             } else if (navigator.geolocation) {
-              // Try HTML5 geolocation
-              navigator.geolocation.getCurrentPosition(function(position) {
-                renderMapWithCoords(position.coords.latitude, position.coords.longitude);
-              }, function() {
-                handleNoGeolocation(true);
-              });
+                // Try HTML5 geolocation
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    $('#latitude').val(position.coords.latitude);
+                    $('#longitude').val(position.coords.longitude)
+                    renderMapWithCoords(position.coords.latitude, position.coords.longitude);
+                }, function() {
+                    handleNoGeolocation(true);
+                });
             } else if (google.gears) {
                  // Browser doesn't support Geolocation
                 browserSupportFlag = true;
@@ -54,7 +47,7 @@ BOLT.MapLatLong = (function () {
                 geo.getCurrentPosition(function(position) {
                     renderMapWithCoords(position.latitude,position.longitude);
                 }, function() {
-                  handleNoGeoLocation(browserSupportFlag);
+                    handleNoGeoLocation(browserSupportFlag);
                 });
             } else {
                 browserSupportFlag = false;
@@ -68,6 +61,7 @@ BOLT.MapLatLong = (function () {
                 }, function(responses) {
                     if (responses && responses.length > 0) {
                         infowinObj.posAddress = responses[0].formatted_address;
+                        $('#address').val(infowinObj.posAddress);
                     } else {
                     infowinObj.posAddress = "";
                 }
@@ -82,8 +76,8 @@ BOLT.MapLatLong = (function () {
 
             window.setTimeout(function () {
             	/*
-                content =  "<div class='map_bg_logo'><span style='color:#1270a2;'><b>" + infowinObj.posAddress + "</b></span>" + 
-                         "<div style='border-top:1px dotted #ccc; height:1px;  margin:5px 0;'></div>" + 
+                content =  "<div class='map_bg_logo'><span style='color:#1270a2;'><b>" + infowinObj.posAddress + "</b></span>" +
+                         "<div style='border-top:1px dotted #ccc; height:1px;  margin:5px 0;'></div>" +
                          "<span style='color:#555;font-size:11px;'><b>" + coordsStr + "</b></div>";
                          */
 
@@ -93,6 +87,16 @@ BOLT.MapLatLong = (function () {
 
                 infowinObj.setContent(content);
             }, 300);
+        }
+
+        function handleNoGeolocation(errorFlag) {
+            if (errorFlag === true) {
+                console.log("Geolocation service failed.");
+            } else {
+                console.log("Your browser doesn't support geolocation.");
+            }
+
+            renderMapWithCoords(ecgOfficeLoc.lat, ecgOfficeLoc.long);
         }
 
         function renderMapWithCoords(lat, long) {
@@ -113,14 +117,14 @@ BOLT.MapLatLong = (function () {
             // Map creation
             map = new google.maps.Map(document.getElementById("map_canvas"),
                 myOptions);
-       
+
             // Marker definition
             marker = new google.maps.Marker({
-                position: myLatlng, 
+                position: myLatlng,
                 title: "Click to view info!",
                 map: map,
                 draggable: true
-            }); 
+            });
             marker.setMap(map);
 
             // Add circle overlay and bind to marker
@@ -141,7 +145,7 @@ BOLT.MapLatLong = (function () {
             google.maps.event.addListener(marker, "click", function() {
                 infowindow.open(map, marker);
             });
-     
+
 
             // Click event listener for the map itself
             google.maps.event.addListener(map, "click", function (e) {

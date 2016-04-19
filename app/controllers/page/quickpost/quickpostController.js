@@ -283,9 +283,14 @@ var QuickPost = {
 		json.pictures = {};
 		json.pictures.sizeUrls = [];
 		if (typeof reqPictures !== 'undefined') {
-			for (var idx = 0; idx < reqPictures.length; idx++) {
-				json.pictures.sizeUrls[idx] = {};
-				json.pictures.sizeUrls[idx].LARGE = decodeURIComponent(reqPictures[idx]);
+			if (_.isArray(reqPictures)) {
+				for (var idx = 0; idx < reqPictures.length; idx++) {
+					json.pictures.sizeUrls[idx] = {};
+					json.pictures.sizeUrls[idx].LARGE = decodeURIComponent(reqPictures[idx]);
+				}
+			} else {
+				json.pictures.sizeUrls[0] = {};
+				json.pictures.sizeUrls[0].LARGE = decodeURIComponent(reqPictures);
 			}
 		}
 
