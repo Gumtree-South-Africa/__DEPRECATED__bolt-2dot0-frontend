@@ -14,6 +14,8 @@ var google = google || {};
 BOLT.MapLatLong = (function () {
 		var DEFAULT_LAT =   37.38291179923258;
 		var DEFAULT_LONG =  -121.92613005638123;
+        var ecgOfficeLoc = { lat : DEFAULT_LAT, long : DEFAULT_LONG };
+
         var geocoder = new google.maps.Geocoder();
         var dataLatLong = {
                 	lat: 0,
@@ -22,7 +24,6 @@ BOLT.MapLatLong = (function () {
         var addressStr = "";
 
         function initialize() {
-            var ecgOfficeLoc = { lat : DEFAULT_LAT, long : DEFAULT_LONG };
             var loc = {};
             var geo;
             var browserSupportFlag;
@@ -34,8 +35,6 @@ BOLT.MapLatLong = (function () {
             } else if (navigator.geolocation) {
                 // Try HTML5 geolocation
                 navigator.geolocation.getCurrentPosition(function(position) {
-                    $('#latitude').val(position.coords.latitude);
-                    $('#longitude').val(position.coords.longitude)
                     renderMapWithCoords(position.coords.latitude, position.coords.longitude);
                 }, function() {
                     handleNoGeolocation(true);
@@ -61,7 +60,11 @@ BOLT.MapLatLong = (function () {
                 }, function(responses) {
                     if (responses && responses.length > 0) {
                         infowinObj.posAddress = responses[0].formatted_address;
+                        $('#latitude').val(pos.lat());
+                        $('#longitude').val(pos.lng());
                         $('#address').val(infowinObj.posAddress);
+                        $('#location').val(infowinObj.posAddress);
+                        $('#maps-link').removeClass("hiddenElt");
                     } else {
                     infowinObj.posAddress = "";
                 }
@@ -96,7 +99,7 @@ BOLT.MapLatLong = (function () {
                 console.log("Your browser doesn't support geolocation.");
             }
 
-            renderMapWithCoords(ecgOfficeLoc.lat, ecgOfficeLoc.long);
+            // renderMapWithCoords(ecgOfficeLoc.lat, ecgOfficeLoc.long);
         }
 
         function renderMapWithCoords(lat, long) {
