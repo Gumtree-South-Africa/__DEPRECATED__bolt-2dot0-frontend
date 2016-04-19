@@ -117,6 +117,11 @@ router.post('/quickpost',
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(req.app.locals.requestId, res.locals.config.locale, authenticationCookie, ad))
 					.then(function (dataReturned) {
+						//TODO: do a POST to the publishUrl and then on success, redirect to VIP
+						var fbShareLink =  modelData.header.homePageUrl + response._links[0].href;
+						console.log('$$$$$$$$$$$$$$$$$$$', modelData.header.publishPostUrl);
+						console.log('$$$$$$$$$$$$$$$$$$$', fbShareLink);
+
 						// Redirect to VIP if successfully posted Ad
 						var response = dataReturned;
 						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
