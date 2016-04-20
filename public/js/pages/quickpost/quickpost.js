@@ -103,7 +103,8 @@ BOLT.QuickPostPage = (function() {
             this.tooltip();
             this.charCount();
             this.toggleSwitchUpdate();
-            this.autocompleteByAddress();
+            this.getData();
+            this.populate();
         },
 
         /**
@@ -163,30 +164,40 @@ BOLT.QuickPostPage = (function() {
             }
           });
         },
+        getData : function(){
+    			$('#location').on('keyup', function(){
+              var htmlElt = '';
+    					$.ajax({
+    							url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#location').val(),
+    							dataType: 'JSON',
+    							type: 'GET',
+    							success: function(resp){
+    									if (resp.results instanceof Array) {
+                          $('#autocompleteField').html('');
+                          $('#autocompleteField').removeClass('hiddenElt');
+    											for (var idx=0; idx<resp.results.length; idx++) {
+    													var address = resp.results[idx].formatted_address;
+    													var latitude = resp.results[idx].geometry.location.lat;
+    													var longitude = resp.results[idx].geometry.location.lng;
+                              htmlElt += '<div class="ac-field" data-long='+longitude+' data-lat='+latitude+'>'+ address +'</div>';
+    											}
+                          $('#autocompleteField').append(htmlElt);
+    									}
+    							}
+    					})
+    				})
+    			},
 
-        autocompleteByAddress: function(){
-            $('#location').on('keyup', function(){
-                $.ajax({
-                    url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#location').val(),
-                    dataType: 'JSON',
-                    type: 'GET',
-                    success: function(resp){
-                        console.log(resp);
-                        if (resp.results instanceof Array) {
-                            for (var idx=0; idx<resp.results.length; idx++) {
-                                var address = resp.results[idx].formatted_address;
-                                var latitude = resp.results[idx].geometry.location.lat;
-                                var longitude = resp.results[idx].geometry.location.lng;
-                                console.log('#################  ', idx);
-                                console.log(address);
-                                console.log(latitude);
-                                console.log(longitude);
-                            }
-                        }
-                    }
-                })
+          populate: function(){
+              $('#autocompleteField').on('click', '.ac-field', function(){
+                var $this = $(this);
+              $('#location').val($this.html());
+              $('#autocompleteField').addClass('hiddenElt');
+              $('#longitude').val($this.attr('data-long'));
+              $('#latitude').val($this.attr('data-lat'));
+              $('#address').val($this.html());
             })
-        }
+          }
     };
 
 })(); // Ends singleton

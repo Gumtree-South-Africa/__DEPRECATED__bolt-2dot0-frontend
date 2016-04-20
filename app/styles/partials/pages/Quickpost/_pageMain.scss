@@ -289,3 +289,23 @@ textarea.error{
 .hiddenElt{
   display: none;
 }
+
+#autocompleteField{
+  background-color: white;
+  border: 1px solid #CCC;
+  width: 86%;
+  max-width: 40em;
+  margin: 0 2em;
+  position: absolute;
+  top: 35em;
+  z-index: 400;
+  .ac-field{
+    cursor: pointer;
+    text-decoration: underline;
+    color: $quickpost-header-bgcolor;
+    &:hover{
+      background-color: $quickpost-header-bgcolor;
+      color: white;
+    }
+  }
+}
