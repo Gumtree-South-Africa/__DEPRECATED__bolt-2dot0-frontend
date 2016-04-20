@@ -60,7 +60,7 @@ $cat-0002:10.5em; // Property
 $cat-0004:21.0em; // Stuff For Sale
 $cat-0005:11.0em; // Cars & Vehicles
 $cat-0006:21.0em; // Community
-$cat-0008:51.0em; // Jobs
+$cat-0008:7.0em; // Jobs
 $cat-0009: 8.0em; // Business Services
 $cat-0041:15.0em; // Clothes & Accessories
 $cat-0044:15.0em; // Home Furnishings
@@ -100,11 +100,11 @@ $cat-want: 2.0em;
             &.l1category2   { @include bumpTop($cat-0002); } // Property
             &.l1category5   { @include bumpTop($cat-0005); } // Cars & Vehicles
             &.l1category6   { @include bumpTop($cat-0006); } // Community
-            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
             //column2
             $posHackX: 57% !global;
             $posHackY: $right-column-top !global;
             &.l1category8   { @include bumpTop($cat-0008); } // Jobs
+            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
             &.l1swaptrade   { @include bumpTop($cat-swap); } // Swap/Trade
             &.l1freebies    { @include bumpTop($cat-free); } // Freebies
             &.l1wanted      { @include bumpTop($cat-want); } // Want
@@ -138,15 +138,18 @@ $cat-want: 2.0em;
             //&.l1category44  { @include bumpTop($cat-0044); } // Home Furnishings
             //&.l1category41  { @include bumpTop($cat-0041); } // Clothes & Accessories
             //&.l1category0146{ @include bumpTop($cat-0146); } // Electronics
-            &.l1category2   { @include bumpTop($cat-0002); } // Property
+
+            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
             &.l1category5   { @include bumpTop($cat-0005); } // Cars & Vehicles
-            &.l1category6   { @include bumpTop($cat-0006); } // Community
+            &.l1swaptrade   { @include bumpTop($cat-swap); } // Swap/Trade
+
             //column2
             $posHackX: 32% !global;
             $posHackY: 0em !global;
-            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
+
             &.l1category8   { @include bumpTop($cat-0008); } // Jobs
-            &.l1swaptrade   { @include bumpTop($cat-swap); } // Swap/Trade
+             &.l1category2   { @include bumpTop($cat-0002); } // Property
+             &.l1category6   { @include bumpTop($cat-0006); } // Community
             &.l1freebies    { @include bumpTop($cat-free); } // Freebies
             //column3
             $posHackX: 73% !global;
@@ -176,22 +179,23 @@ $cat-want: 2.0em;
             $posHackY: 0em !global;
             $posHackYMax: 0em !global;
             &.l1category4   { @include bumpTop($cat-0004); } // Stuff For Sale
+            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
             //&.l1category44  { @include bumpTop($cat-0044); } // Home Furnishings
             //&.l1category41  { @include bumpTop($cat-0041); } // Clothes & Accessories
             //&.l1category0146{ @include bumpTop($cat-0146); } // Electronics
-            &.l1category2   { @include bumpTop($cat-0002); } // Property
-            &.l1category5   { @include bumpTop($cat-0005); } // Cars & Vehicles
+
             //column2
             $posHackX: 22.5% !global;
             $posHackY: 0em !global;
+            &.l1category2   { @include bumpTop($cat-0002); } // Property
             &.l1category6   { @include bumpTop($cat-0006); } // Community
-            &.l1category9   { @include bumpTop($cat-0009); } // Business Services
-            &.l1swaptrade   { @include bumpTop($cat-swap); } // Swap/Trade
-            &.l1freebies    { @include bumpTop($cat-free); } // Freebies
             //column3
             $posHackX: 47% !global;
             $posHackY: 0em !global;
             &.l1category8   { @include bumpTop($cat-0008); } // Jobs
+            &.l1category5   { @include bumpTop($cat-0005); } // Cars & Vehicles
+            &.l1swaptrade   { @include bumpTop($cat-swap); } // Swap/Trade
+            &.l1freebies    { @include bumpTop($cat-free); } // Freebies
             //column4
             $posHackX: 73% !global;
             $posHackY: $right-column-top !global;
