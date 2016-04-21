@@ -309,3 +309,9 @@ textarea.error{
     }
   }
 }
+.selMenu{
+  .mm-next:after,
+  .mm-arrow:after {
+    border: none;
+  }
+}
