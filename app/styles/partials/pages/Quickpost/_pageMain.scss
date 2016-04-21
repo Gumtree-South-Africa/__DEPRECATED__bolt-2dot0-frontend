@@ -291,13 +291,13 @@ textarea.error{
 }
 
 #autocompleteField{
-  background-color: white;
+  background-color: #D9EDF6;
   border: 1px solid #CCC;
   width: 86%;
   max-width: 40em;
   margin: 0 2em;
   position: absolute;
-  top: 35em;
+  top: 32em;
   z-index: 400;
   .ac-field{
     cursor: pointer;

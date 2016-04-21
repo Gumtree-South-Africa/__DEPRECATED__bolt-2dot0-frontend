@@ -332,7 +332,7 @@ var QuickPost = {
 		if (err.status4xx) {
 			errorMessage = modelData.formContent.error4xx;
 		}
-		if (err.status500) {
+		if (err.status5xx) {
 			errorMessage = modelData.formContent.error5xx;
 		}
 
