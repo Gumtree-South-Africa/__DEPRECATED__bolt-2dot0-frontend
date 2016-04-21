@@ -190,12 +190,13 @@ BOLT.QuickPostPage = (function() {
 
           populate: function(){
               $('#autocompleteField').on('click', '.ac-field', function(){
-                var $this = $(this);
-              $('#location').val($this.html());
-              $('#autocompleteField').addClass('hiddenElt');
-              $('#longitude').val($this.attr('data-long'));
-              $('#latitude').val($this.attr('data-lat'));
-              $('#address').val($this.html());
+                  var $this = $(this);
+
+                  $('#autocompleteField').addClass('hiddenElt');
+                  $('#longitude').val($this.attr('data-long'));
+                  $('#latitude').val($this.attr('data-lat'));
+                  $('#address').val($this.html());
+                  $('#location').val($this.html());
             })
           }
     };
