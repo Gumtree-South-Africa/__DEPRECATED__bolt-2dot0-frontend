@@ -64,6 +64,9 @@ BOLT.MapLatLong = (function () {
                         $('#longitude').val(pos.lng());
                         $('#address').val(infowinObj.posAddress);
                         $('#location').val(infowinObj.posAddress);
+                        $('#geolatitude').val(pos.lat());
+                        $('#geolongitude').val(pos.lng());
+                        $('#geoaddress').val(infowinObj.posAddress);
                         $('#maps-link').removeClass("hiddenElt");
                     } else {
                     infowinObj.posAddress = "";

@@ -172,17 +172,23 @@ BOLT.QuickPostPage = (function() {
     							dataType: 'JSON',
     							type: 'GET',
     							success: function(resp){
-    									if (resp.results instanceof Array) {
-                          $('#autocompleteField').html('');
-                          $('#autocompleteField').removeClass('hiddenElt');
-    											for (var idx=0; idx<resp.results.length; idx++) {
-    													var address = resp.results[idx].formatted_address;
-    													var latitude = resp.results[idx].geometry.location.lat;
-    													var longitude = resp.results[idx].geometry.location.lng;
-                              htmlElt += '<div class="ac-field" data-long='+longitude+' data-lat='+latitude+'>'+ address +'</div>';
-    											}
-                          $('#autocompleteField').append(htmlElt);
-    									}
+                                    console.log(resp);
+                                    if (resp.results instanceof Array) {
+                                        $('#autocompleteField').html('');
+                                        if (resp.results.length > 0) {
+                                            $('#autocompleteField').removeClass('hiddenElt');
+                                            for (var idx = 0; idx < resp.results.length; idx++) {
+                                                var address = resp.results[idx].formatted_address;
+                                                var latitude = resp.results[idx].geometry.location.lat;
+                                                var longitude = resp.results[idx].geometry.location.lng;
+                                                htmlElt += '<div class="ac-field" data-long=' + longitude + ' data-lat=' + latitude + '>' + address + '</div>';
+                                            }
+                                            $('#autocompleteField').append(htmlElt);
+                                        }
+                                        else {
+                                            $('#autocompleteField').addClass('hiddenElt');
+                                        }
+                                    }
     							}
     					})
     				})
@@ -190,13 +196,17 @@ BOLT.QuickPostPage = (function() {
 
           populate: function(){
               $('#autocompleteField').on('click', '.ac-field', function(){
-                var $this = $(this);
-              $('#location').val($this.html());
-              $('#autocompleteField').addClass('hiddenElt');
-              $('#longitude').val($this.attr('data-long'));
-              $('#latitude').val($this.attr('data-lat'));
-              $('#address').val($this.html());
+                  var $this = $(this);
+
+                  $('#autocompleteField').addClass('hiddenElt');
+                  $('#longitude').val($this.attr('data-long'));
+                  $('#latitude').val($this.attr('data-lat'));
+                  $('#address').val($this.html());
+                  $('#location').val($this.html());
             })
+              $(':not(#autocompleteField)').on('click', function(e){
+                  $('#autocompleteField').addClass('hiddenElt');
+              })
           }
     };
 
