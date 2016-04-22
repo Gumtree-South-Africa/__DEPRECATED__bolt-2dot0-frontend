@@ -64,7 +64,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 ]+$/),
+		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 |<br>|<ul>|<\ul>)]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
