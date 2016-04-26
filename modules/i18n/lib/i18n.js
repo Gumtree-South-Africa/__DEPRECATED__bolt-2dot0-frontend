@@ -4,17 +4,30 @@
  * @author aganeshalingam@ebay.com
  */
 
+
 'use strict';
 
-var i18n = require('i18n');
-
-var util = require('util');
 
 // init middleware
-module.exports.initMW = function(app, locale) {
-   // console.log("-------------bolt-i18n " + process.cwd() + '/app/locales/json/' + app.config.locale);
+var i18nMiddleware = function() {
+    this.locale = 'bt_BT';
+    return this;
+};
+
+i18nMiddleware.prototype.initMW = function(app) {
+    var scope = this;
+
     return function(req, res, next) {
-        initConfigI18n(locale);
+        var i18n = require('i18n'),
+            util = require('util');
+
+        i18n.configure({
+            updateFiles: false,
+            objectNotation: true,
+            directory: process.cwd() + '/app/locales/json/' + scope.locale,
+            prefix: 'translation_',
+            defaultLocale: scope.locale
+        });
 
         app.locals.i18n = i18n;
         res.locals.i18n = i18n;
@@ -23,24 +36,5 @@ module.exports.initMW = function(app, locale) {
     };
 };
 
-module.exports.init = function(locale) {
-   // console.log("locale ======= ", locale);
-    initConfigI18n(locale);
-};
-
-module.exports.msg = function(msg) {
-    return i18n.__(msg);
-   // console.log("msg ======" + msg);
-};
-
-function initConfigI18n(locale) {
-    i18n.configure({
-        updateFiles: false,
-        objectNotation: true,
-        directory: process.cwd() + '/app/locales/json/' + locale,
-        prefix: 'translation_',
-        defaultLocale: locale
-    });
-}
-
+module.exports = i18nMiddleware;
 

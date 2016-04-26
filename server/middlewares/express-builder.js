@@ -16,7 +16,7 @@ var config = {
 };
 var writeHeader = require('./write-header'),
     requestId = require('./request-id'),
-    i18n = require(config.root + '/modules/i18n'),
+    //i18nMiddleware = require(config.root + '/modules/i18n'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
     legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
@@ -111,7 +111,11 @@ function BuildApp(siteObj) {
          */
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
         app.use(requestId());
-        app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+
+        var i18nMiddleware = new (require(config.root + '/modules/i18n'));
+        i18nMiddleware.locale = siteObj.locale;
+        app.use(i18nMiddleware.initMW(app));
+
         app.use(boltExpressHbs.create(app));
         app.use(deviceDetection.init());
 
