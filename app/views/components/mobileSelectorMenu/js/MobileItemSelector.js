@@ -420,7 +420,8 @@ BOLT.POSTAD = BOLT.POSTAD || {};
                         scope.openPanel();
                     });
 
-                    $(pubscope.menuContainerSel).on('touchstart click', 'li.nav-item[data-id] a', function (e) {
+                    $(pubscope.menuContainerSel).on('click', 'li.nav-item[data-id] a', function (e) {
+                        e.preventDefault();
                         e.stopPropagation();
 
                         var $this = $(this);
