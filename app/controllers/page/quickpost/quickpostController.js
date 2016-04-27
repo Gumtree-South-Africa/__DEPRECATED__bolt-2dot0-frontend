@@ -147,7 +147,7 @@ var QuickPost = {
 	 * Special header data for QuickPost
 	 */
 	extendHeaderData: function (req, modelData) {
-
+    
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
 		if (modelData.header.min) {

@@ -159,6 +159,7 @@
   border-bottom: solid 1px #a2a2a1;
   padding-left: 0.4em;
   margin-top: 1em;
+  position: relative;
 }
 
 input, select{
@@ -293,12 +294,12 @@ textarea.error{
 #autocompleteField{
   background-color: white;
   border: 1px solid #CCC;
-  width: 86%;
+  width: 100%;
   max-width: 40em;
-  margin: 0 2em;
   position: absolute;
-  top: 32em;
+  top: 1.5em;
   z-index: 400;
+  left: 0;
   .ac-field{
     cursor: pointer;
     text-decoration: underline;
