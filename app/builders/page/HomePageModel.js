@@ -37,7 +37,7 @@ var getHomepageDataFunctions = function (req, res) {
 		keyword = (new KeywordModel(req.app.locals.requestId, res.locals.config.locale, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
 		gallery = (new GalleryModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
 		adstatistics = (new AdStatisticsModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
-		seo = (new SeoModel(req.app.locals.requestId, res.locals.config.locale)).getModelBuilder(),
+		seo = new SeoModel(req.app.locals.requestId, res.locals.config.locale),
 		category = new CategoryModel(req.app.locals.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
 			
 	return {
@@ -87,10 +87,10 @@ var getHomepageDataFunctions = function (req, res) {
 							},
 		'seo'			:	function(callback) {
 								var seoDeferred = Q.defer();
-								Q(seo.processParallel())
+								Q(seo.getHPSeoInfo())
 							    	.then(function (dataS) {
-							    		seoDeferred.resolve(dataS[0]);
-							    		callback(null, dataS[0]);
+							    		seoDeferred.resolve(dataS);
+							    		callback(null, dataS);
 									}).fail(function (err) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});

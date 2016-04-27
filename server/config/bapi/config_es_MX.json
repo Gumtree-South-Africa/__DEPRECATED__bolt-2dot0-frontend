@@ -97,6 +97,14 @@
 			"mobile" 	: {
 				"models" : ["keyword", "adstatistics", "seo"]
 			}
+		},
+		"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
+			}
 		}
 	}
 }

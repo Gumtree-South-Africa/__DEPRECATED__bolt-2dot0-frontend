@@ -101,6 +101,14 @@
 			"mobile" 	: {
 				"models" : ["level2Loc", "seo"]
 			}
+		},
+		"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
+			}
 		}
 	}
 }

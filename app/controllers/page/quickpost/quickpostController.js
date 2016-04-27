@@ -31,7 +31,7 @@ router.get('/quickpost', function (req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
 	// Set pagetype in request
-	req.app.locals.pagetype = pagetypeJson.pagetype.PostAdForm;
+	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 	// Build Model Data
 	var bapiConfigData = res.locals.config.bapiConfigData;
@@ -44,8 +44,9 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
+		modelData.seo = result['seo'] || {};
 
-    // Special Data needed for QuickPost in header, footer, content
+    	// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
@@ -78,18 +79,19 @@ router.post('/quickpost',
 		var authenticationCookie = req.cookies[authCookieName];
 
 		// Set pagetype in request
-		req.app.locals.pagetype = pagetypeJson.pagetype.PostAdSuccess;
+		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
 
 		// Build Model Data
 		var bapiConfigData = res.locals.config.bapiConfigData;
 		var modelData = pageControllerUtil.preController(req, res);
 		var model = QuickpostPageModel(req, res);
 		model.then(function (result) {
-
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
 			modelData.dataLayer = result.common.dataLayer || {};
+			modelData.categoryData = res.locals.config.categoryflattened;
+			modelData.seo = result['seo'] || {};
 
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
@@ -147,7 +149,11 @@ var QuickPost = {
 	 * Special header data for QuickPost
 	 */
 	extendHeaderData: function (req, modelData) {
-    
+		// SEO
+		modelData.header.pageType = modelData.pagename;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description;
+
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
 		if (modelData.header.min) {

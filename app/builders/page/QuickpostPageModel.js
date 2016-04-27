@@ -3,11 +3,13 @@
 
 var Q = require('q');
 
+var config = require('config');
+
 var cwd = process.cwd();
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-var config = require('config');
+var SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 
 /**
@@ -19,7 +21,20 @@ var config = require('config');
  * @return {JSON}
  */
 var getQuickpostDataFunctions = function (req, res) {
-	return;
+	var seo = new SeoModel(req.app.locals.requestId, res.locals.config.locale);
+	return {
+		'seo'	:	function(callback) {
+						var seoDeferred = Q.defer();
+						Q(seo.getQuickPostSeoInfo())
+							.then(function (dataS) {
+								seoDeferred.resolve(dataS);
+								callback(null, dataS);
+							}).fail(function (err) {
+								seoDeferred.reject(new Error(err));
+								callback(null, {});
+							});
+					}
+	};
 };
 
 
@@ -34,7 +49,7 @@ var QuickpostPageModel = function (req, res) {
 	var functionMap = getQuickpostDataFunctions(req, res);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
-	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.PostAdForm;
+	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);

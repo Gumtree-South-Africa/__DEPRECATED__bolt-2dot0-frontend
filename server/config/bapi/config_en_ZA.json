@@ -96,6 +96,14 @@
 			"mobile" 	: {
 				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			}
-		}
+		},
+	  	"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
+			}
+	  	}
 	}
 }
