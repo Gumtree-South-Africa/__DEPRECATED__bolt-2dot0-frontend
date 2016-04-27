@@ -44,7 +44,7 @@ router.get('/quickpost', function (req, res, next) {
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
-    
+
     // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
@@ -206,7 +206,7 @@ var QuickPost = {
 
 		modelData.formContent.locationText = 'Enter Location';
 
-		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our <a href=\'%s\'>Terms of Use</a> and <a href=\'%s\'>Posting Rules</a>';
+		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our <a href=\'%s\' target=\'_blank\'>Terms of Use</a> and <a href=\'%s\' target=\'_blank\'>Posting Rules</a>';
 		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
 
 		modelData.formContent.sellitText = 'Sell It';
