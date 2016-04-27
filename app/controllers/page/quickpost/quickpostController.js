@@ -64,7 +64,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 ]+$/),
+		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 |<br>|<ul>|<\ul>)]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
@@ -109,23 +109,28 @@ router.post('/quickpost',
 					.then(function (dataReturned) {
 						console.log('dataaaaaaaaaaaaaaaaaaaaa', dataReturned);
 						var response = dataReturned;
-						var fbShareLink = modelData.header.homePageUrl + response._links[0].href;
-						var vipLink = modelData.header.homePageUrl + response._links[0].href + '?activateStatus=adActivateSuccess';
 
-						// Post to FB if share button is enabled
-						if (typeof req.form.switch!=='undefined' && req.form.switch=='YES') {
-							var msg = modelData.formContent.fbPublishMsg;
-							Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
-								.then(function (fbDataReturned) {
-									console.log('Successful FB Graph PublishPost', fbDataReturned);
-								})
-								.fail(function (err) {
-									console.error('Error during FB Graph PublishPost', err);
-								});
+						for (var l=0;l<response._links.length; l++) {
+							if (response._links[l].rel == 'view') {
+								var fbShareLink = modelData.header.homePageUrl + response._links[l].href;
+								var vipLink = modelData.header.homePageUrl + response._links[l].href + '?activateStatus=adActivateSuccess';
+
+								// Post to FB if share button is enabled
+								if (typeof req.form.switch!=='undefined' && req.form.switch=='YES') {
+									var msg = modelData.formContent.fbPublishMsg;
+									Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
+										.then(function (fbDataReturned) {
+											console.log('Successful FB Graph PublishPost', fbDataReturned);
+										})
+										.fail(function (err) {
+											console.error('Error during FB Graph PublishPost', err);
+										});
+								}
+
+								// Redirect to VIP
+								res.redirect(vipLink);
+							}
 						}
-
-						// Redirect to VIP
-						res.redirect(vipLink);
 					}).fail(function (err) {
 						QuickPost.respondSubmitError(req,  res, next, modelData, err);
 					});
