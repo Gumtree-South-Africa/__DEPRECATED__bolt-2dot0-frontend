@@ -53,9 +53,14 @@ Download and install Ruby installer from [here](http://rubyinstaller.org/downloa
 
 #### Compass
     gem install compass -v 1.0.1 --source http://rubygems.org
+    
+    for China, if get Connection error , you can try :
+    gem install compass -v 1.0.1 --source https://ruby.taobao.org/
 
 #### Susy
     gem install susy -v 1.0.9 --source http://rubygems.org
+    for China, if get Connection error , you can try :
+    gem install susy -v 1.0.9 --source https://ruby.taobao.org/
 
 
 
