@@ -38,7 +38,7 @@ router.get('/', function (req, res, next) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Retrieve Data from Model Builders
-	var model = HomepageModel(req, res);
+	var model = HomepageModel(req, res, modelData);
     model.then(function (result) {
       	// Dynamic Data from BAPI
       	modelData.header = result['common'].header || {};

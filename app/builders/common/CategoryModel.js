@@ -10,9 +10,8 @@ var categoryService = require(process.cwd() + '/server/services/category');
  * @description A class that Handles the Category Model
  * @constructor
  */
-var CategoryModel = function (requestId, locale, depth, locationId) {
-	this.requestId = requestId;
-	this.locale = locale;
+var CategoryModel = function (bapiHeaders, depth, locationId) {
+	this.bapiHeaders = bapiHeaders;
 	this.depth = depth;
 	this.locationId = locationId;
 };
@@ -23,8 +22,8 @@ CategoryModel.prototype.getCategories = function() {
 	var categoryDeferred = Q.defer();
 	var data = {};
 
-	if (typeof scope.locale !== 'undefined') {
-		Q(categoryService.getCategoriesData(scope.requestId, scope.locale, scope.depth))
+	if (typeof scope.bapiHeaders.locale !== 'undefined') {
+		Q(categoryService.getCategoriesData(scope.bapiHeaders, scope.depth))
 			.then(function (dataReturned) {
 				data = dataReturned;
 				categoryDeferred.resolve(data);
@@ -42,8 +41,8 @@ CategoryModel.prototype.getCategoriesWithLocId = function() {
 	var categoryDeferred = Q.defer();
 	var data = {};
 
-	if (typeof scope.locale !== 'undefined') {
-		Q(categoryService.getCategoriesDataWithLocId(scope.requestId, scope.locale, scope.depth, scope.locationId))
+	if (typeof scope.bapiHeaders.locale !== 'undefined') {
+		Q(categoryService.getCategoriesDataWithLocId(scope.bapiHeaders, scope.depth, scope.locationId))
 			.then(function (dataReturned) {
 				data = dataReturned;
 				categoryDeferred.resolve(data);

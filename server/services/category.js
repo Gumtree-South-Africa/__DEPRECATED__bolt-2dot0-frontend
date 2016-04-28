@@ -15,7 +15,7 @@ var CategoryService = function() {
 /**
  * Gets a list of categories
  */
-CategoryService.prototype.getCategoriesData = function(requestId, locale, depth) {
+CategoryService.prototype.getCategoriesData = function(bapiHeaders, depth) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
@@ -23,13 +23,13 @@ CategoryService.prototype.getCategoriesData = function(requestId, locale, depth)
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'category', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
 };
 
 /**
  * Gets a list of categories given a location id
  */
-CategoryService.prototype.getCategoriesDataWithLocId = function(requestId, locale, depth, locationId) {
+CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaders, depth, locationId) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
@@ -40,7 +40,7 @@ CategoryService.prototype.getCategoriesDataWithLocId = function(requestId, local
 	}
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'category', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
 };
 
 module.exports = new CategoryService();

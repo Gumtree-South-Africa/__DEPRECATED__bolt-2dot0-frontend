@@ -17,6 +17,8 @@ var config = {
 var writeHeader = require(config.root + '/server/middlewares/write-header'),
     requestId = require(config.root + '/server/middlewares/request-id'),
     checkIp = require(config.root + '/server/middlewares/check-ip'),
+    checkMachineId = require(config.root + '/server/middlewares/check-machineid'),
+    checkUserAgent = require(config.root + '/server/middlewares/check-useragent'),
     checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
     i18n = require(config.root + '/modules/i18n'),
     deviceDetection = require(config.root + '/modules/device-detection'),
@@ -124,6 +126,8 @@ function BuildApp(siteObj) {
          */
         app.use(checkAuthentication());
         app.use(checkIp());
+        app.use(checkMachineId());
+        app.use(checkUserAgent());
         app.use(deviceDetection.init());
         app.use(requestId());
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));

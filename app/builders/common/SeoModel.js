@@ -1,20 +1,19 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
+var http = require('http');
+var Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
+var ModelBuilder = require('./ModelBuilder');
 
-var seoService = require(process.cwd() + "/server/services/seo");
+var seoService = require(process.cwd() + '/server/services/seo');
 
 
 /** 
  * @description A class that Handles the SEO Model
  * @constructor
  */
-var SeoModel = function (requestId, locale) {
-	this.requestId = requestId;
-	this.locale = locale;
+var SeoModel = function (bapiHeaders) {
+	this.bapiHeaders = bapiHeaders;
 };
 
 SeoModel.prototype.getModelBuilder = function() {
@@ -28,7 +27,7 @@ SeoModel.prototype.getHPSeoInfo = function() {
 	var seoDeferred = Q.defer();
 	var data = {};
 
-	 Q(seoService.getHPSeoData(scope.requestId, scope.locale))
+	 Q(seoService.getHPSeoData(scope.bapiHeaders))
 		.then(function (dataReturned) {
 			data = dataReturned;
 			seoDeferred.resolve(data);
@@ -45,7 +44,7 @@ SeoModel.prototype.getQuickPostSeoInfo = function() {
 	var seoDeferred = Q.defer();
 	var data = {};
 
-	Q(seoService.getQuickPostSeoData(scope.requestId, scope.locale))
+	Q(seoService.getQuickPostSeoData(scope.bapiHeaders))
 		.then(function (dataReturned) {
 			data = dataReturned;
 			seoDeferred.resolve(data);

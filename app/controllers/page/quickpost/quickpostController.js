@@ -38,7 +38,7 @@ router.get('/quickpost', function (req, res, next) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 	var modelData = pageControllerUtil.preController(req, res);
 
-	var model = QuickpostPageModel(req, res);
+	var model = QuickpostPageModel(req, res, modelData);
 	model.then(function (result) {
 		// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
@@ -86,7 +86,7 @@ router.post('/quickpost',
 		// Build Model Data
 		var bapiConfigData = res.locals.config.bapiConfigData;
 		var modelData = pageControllerUtil.preController(req, res);
-		var model = QuickpostPageModel(req, res);
+		var model = QuickpostPageModel(req, res, modelData);
 		model.then(function (result) {
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
@@ -102,14 +102,14 @@ router.post('/quickpost',
 			QuickPost.buildValueData(modelData, req.form);
 
 			if (!req.form.isValid) {
-				QuickPost.respondFieldError(req,  res, next, modelData);
+				QuickPost.respondFieldError(req, res, next, modelData);
 			} else {
 				// Build Ad JSON
 				var adJson = QuickPost.buildAdJson(modelData, req.body);
 				var ad = JSON.stringify(adJson);
 
 				// Call BAPI to Post Ad
-				Q(postAdService.quickpostAd(req.app.locals.requestId, res.locals.config.locale, authenticationCookie, ad))
+				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
 					.then(function (dataReturned) {
 						console.log('dataaaaaaaaaaaaaaaaaaaaa', dataReturned);
 						var response = dataReturned;

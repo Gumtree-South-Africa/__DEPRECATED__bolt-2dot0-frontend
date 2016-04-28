@@ -14,7 +14,14 @@ module.exports = function (app) {
 };
 
 router.get('/api/ads/gallery', cors, function (req, res) {
-	var gallery = new GalleryModel(req.app.locals.requestId, res.locals.config.locale),
+	var bapiHeaders = {};
+	bapiHeaders.requestId = req.app.locals.requestId;
+	bapiHeaders.ip = req.app.locals.ip;
+	bapiHeaders.machineid = req.app.locals.machineid;
+	bapiHeaders.useragent = req.app.locals.useragent;
+	bapiHeaders.locale = res.locals.config.locale;
+
+	var gallery = new GalleryModel(bapiHeaders),
 		galleryData = {},
 		offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit

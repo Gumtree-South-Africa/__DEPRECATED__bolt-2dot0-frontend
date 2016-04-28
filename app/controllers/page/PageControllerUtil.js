@@ -31,7 +31,9 @@ PageControllerUtil.prototype.preController = function (req, res) {
         site: res.locals.config.name,
         pagename: req.app.locals.pagetype,
         device: req.app.locals.deviceInfo,
-        ip: req.app.locals.ip
+        ip: req.app.locals.ip,
+        machineid: req.app.locals.machineid,
+        useragent: req.app.locals.useragent
     };
 
 	// Cached Location Data from BAPI
@@ -44,6 +46,15 @@ PageControllerUtil.prototype.preController = function (req, res) {
     modelData.categorydropdown = res.locals.config.categorydropdown;
     modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
     modelData.categoryData = res.locals.config.categoryflattened;
+
+    // Bapi Header Data
+    modelData.bapiHeaders = {};
+    modelData.bapiHeaders.requestId = req.app.locals.requestId;
+    modelData.bapiHeaders.ip = req.app.locals.ip;
+    modelData.bapiHeaders.machineid = req.app.locals.machineid;
+    modelData.bapiHeaders.useragent = req.app.locals.useragent;
+    modelData.bapiHeaders.locale = res.locals.config.locale;
+    modelData.bapiHeaders.authTokenValue = req.cookies.bt_auth;
 	
 	return modelData;
 };

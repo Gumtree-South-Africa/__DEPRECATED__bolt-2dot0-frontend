@@ -15,7 +15,7 @@ var UserService = function() {
 /**
  * Gets User Info given a token from the cookie
  */
-UserService.prototype.getUserFromCookie = function(requestId, cookie, locale) {
+UserService.prototype.getUserFromCookie = function(bapiHeaders) {
 	// console.info("Inside UserService");
 
 	// Prepare BAPI call
@@ -23,7 +23,7 @@ UserService.prototype.getUserFromCookie = function(requestId, cookie, locale) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "user", cookie);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "user");
 }
 
 module.exports = new UserService();

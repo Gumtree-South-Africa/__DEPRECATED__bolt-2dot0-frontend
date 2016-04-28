@@ -1,20 +1,32 @@
 'use strict';
 
+var _ = require('underscore');
 var Q = require('q');
 
 var BAPICall = require('./BAPICall');
 
-module.exports = function(bapiOptions, requestId, locale, serviceName, authTokenValue){
+module.exports = function(bapiOptions, bapiHeaders, serviceName){
 	console.time('Instrument-BAPI-' + serviceName);
 
 	// Add Headers
 	bapiOptions.headers['X-BOLT-APPS-ID'] = 'RUI';
-	bapiOptions.headers['X-BOLT-SITE-LOCALE'] = locale;
-	if (typeof requestId !== 'undefined' && requestId!=null) {
-		bapiOptions.headers['X-BOLT-TRACE-ID'] = requestId;
+	if (typeof bapiHeaders.locale !== 'undefined' && !_.isEmpty(bapiHeaders.locale)) {
+		bapiOptions.headers['X-BOLT-SITE-LOCALE'] = bapiHeaders.locale;
 	}
-	if (typeof authTokenValue !== 'undefined' && authTokenValue!=null) {
-		bapiOptions.headers['Authorization'] = 'Bearer ' +  authTokenValue;
+	if (typeof bapiHeaders.requestId !== 'undefined' && !_.isEmpty(bapiHeaders.requestId)) {
+		bapiOptions.headers['X-BOLT-TRACE-ID'] = bapiHeaders.requestId;
+	}
+	if (typeof bapiHeaders.ip !== 'undefined' && !_.isEmpty(bapiHeaders.ip)) {
+		bapiOptions.headers['X-BOLT-IP-ADDRESS'] = bapiHeaders.ip;
+	}
+	if (typeof bapiHeaders.machineid !== 'undefined' && !_.isEmpty(bapiHeaders.machineid)) {
+		bapiOptions.headers['X-BOLT-MACHINE-ID'] = bapiHeaders.machineid;
+	}
+	if (typeof bapiHeaders.useragent !== 'undefined' && !_.isEmpty(bapiHeaders.useragent)) {
+		bapiOptions.headers['X-BOLT-USER-AGENT'] = bapiHeaders.useragent;
+	}
+	if (typeof bapiHeaders.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaders.authTokenValue)) {
+		bapiOptions.headers['Authorization'] = 'Bearer ' +  bapiHeaders.authTokenValue;
 	}
 	
 	// Add extra parameters

@@ -15,7 +15,7 @@ var SeoService = function() {
 /**
  * Gets a list of SEO info for HomePage
  */
-SeoService.prototype.getHPSeoData = function(requestId, locale) {
+SeoService.prototype.getHPSeoData = function(bapiHeaders) {
 	// console.info('Inside HP SeoService');
 	
 	var seoData = {};
@@ -30,7 +30,7 @@ SeoService.prototype.getHPSeoData = function(requestId, locale) {
 /**
  * Gets a list of SEO info for QuickPost
  */
-SeoService.prototype.getQuickPostSeoData = function(requestId, locale) {
+SeoService.prototype.getQuickPostSeoData = function(bapiHeaders) {
 	// console.info('Inside QuickPost SeoService');
 
 	var seoData = {};
@@ -46,7 +46,7 @@ SeoService.prototype.getQuickPostSeoData = function(requestId, locale) {
 /**
  * Gets a list of SEO info for SRP
  */
-SeoService.prototype.getSRPSeoData = function(requestId, locale) {
+SeoService.prototype.getSRPSeoData = function(bapiHeaders) {
 	// console.info('Inside SRP SeoService');
 
 	// Prepare BAPI call
@@ -54,7 +54,7 @@ SeoService.prototype.getSRPSeoData = function(requestId, locale) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.srpSeo');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'srpSeo', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'srpSeo');
 }
 
 module.exports = new SeoService();

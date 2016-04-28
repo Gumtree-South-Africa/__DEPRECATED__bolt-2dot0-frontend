@@ -15,7 +15,7 @@ var HomepageAdService = function() {
 /**
  * Gets a list of ads for homepage gallery
  */
-HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
+HomepageAdService.prototype.getHomepageGallery = function(bapiHeaders) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
@@ -23,13 +23,13 @@ HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'homepageGallery', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
 
 /**
  * Gets a list of ads for gallery via AJAX
  */
-HomepageAdService.prototype.getAjaxGallery = function(requestId, locale, offset, limit) {
+HomepageAdService.prototype.getAjaxGallery = function(bapiHeaders, offset, limit) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
@@ -37,13 +37,13 @@ HomepageAdService.prototype.getAjaxGallery = function(requestId, locale, offset,
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'homepageGallery', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
 
 /**
  * Gets a list of ad statistics
  */
-HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
+HomepageAdService.prototype.getAdStatistics = function(bapiHeaders) {
 	// console.info('Inside HomepageAdStatisticsService');
 
 	// Prepare BAPI call
@@ -51,7 +51,7 @@ HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'adStatistics', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'adStatistics');
 };
 
 module.exports = new HomepageAdService();

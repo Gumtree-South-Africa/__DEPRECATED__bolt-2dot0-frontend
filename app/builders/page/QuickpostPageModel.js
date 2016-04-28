@@ -20,8 +20,8 @@ var SeoModel = require(cwd + '/app/builders/common/SeoModel');
  * @private
  * @return {JSON}
  */
-var getQuickpostDataFunctions = function (req, res) {
-	var seo = new SeoModel(req.app.locals.requestId, res.locals.config.locale);
+var getQuickpostDataFunctions = function (req, res, modelData) {
+	var seo = new SeoModel(modelData.bapiHeaders);
 	return {
 		'seo'	:	function(callback) {
 						var seoDeferred = Q.defer();
@@ -45,8 +45,8 @@ var getQuickpostDataFunctions = function (req, res) {
  * @class QuickpostPageModel
  * @constructor
  */
-var QuickpostPageModel = function (req, res) {
-	var functionMap = getQuickpostDataFunctions(req, res);
+var QuickpostPageModel = function (req, res, modelData) {
+	var functionMap = getQuickpostDataFunctions(req, res, modelData);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.QUICK_POST_AD_FORM;

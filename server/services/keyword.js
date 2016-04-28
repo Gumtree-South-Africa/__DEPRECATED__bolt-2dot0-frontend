@@ -17,7 +17,7 @@ var KeywordService = function() {
 /**
  * Gets a list of top keywords
  */
-KeywordService.prototype.getTopKeywordsData = function(requestId, locale, kwCount) {
+KeywordService.prototype.getTopKeywordsData = function(bapiHeaders, kwCount) {
 	// console.info("Inside Top KeywordService");
 
 	// Prepare BAPI call
@@ -28,13 +28,13 @@ KeywordService.prototype.getTopKeywordsData = function(requestId, locale, kwCoun
 	}
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "topKeywords", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "topKeywords");
 }
 
 /**
  * Gets a list of trending keywords
  */
-KeywordService.prototype.getTrendingKeywordsData = function(requestId, locale, kwCount) {
+KeywordService.prototype.getTrendingKeywordsData = function(bapiHeaders, kwCount) {
 	// console.info("Inside Trending KeywordService");
 
 	// Prepare BAPI call
@@ -45,7 +45,7 @@ KeywordService.prototype.getTrendingKeywordsData = function(requestId, locale, k
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, requestId, locale, "trendingKeywords", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "trendingKeywords");
 }
 
 
