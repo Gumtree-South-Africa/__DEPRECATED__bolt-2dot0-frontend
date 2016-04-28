@@ -55,10 +55,8 @@ function regLocPartials (module, locale) {
       matches = origFile.match(/\/([^/]*)$/);
 
       if (!matches) {
-        console.log("INNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN");
           return;
       }
-      console.log("OUTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT")
       // Register the locale-specific file partial from the configuration
       regFileName = matches[1].replace('.hbs','').replace(country_sufix_repl, '');
       // regPartialFromFile(origFile, regFileName + "-file");

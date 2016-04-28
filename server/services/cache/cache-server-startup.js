@@ -36,7 +36,7 @@ function CacheBapiData(siteApp, requestId) {
         var filteredData;
 
         // Load Location Data from BAPI
-        Q(locationService.getLocationsData(bapiHeaders, 2))
+        Q(locationService.getLocationsData(bapiHeaders, locationDepth))
             .then(function (dataReturned) {
                 siteApp.locals.config.locationData = dataReturned;
 
@@ -58,7 +58,7 @@ function CacheBapiData(siteApp, requestId) {
         var filteredData, flattenedData;
 
         // Load Category Data from BAPI
-        Q(categoryService.getCategoriesData(bapiHeaders, 2))
+        Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
             .then(function (dataReturned) {
                 siteApp.locals.config.categoryData = dataReturned;
 
