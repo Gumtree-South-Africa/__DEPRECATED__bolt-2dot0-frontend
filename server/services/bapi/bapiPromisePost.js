@@ -46,9 +46,6 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 		}
 	});
 
-	console.log('###################', bapiOptions);
-	console.log('###################', postData);
-
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	bapi.doPost(postData);

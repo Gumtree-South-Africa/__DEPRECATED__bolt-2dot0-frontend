@@ -9,7 +9,8 @@ var express = require('express'),
 	Q = require('q');
 
 var cwd = process.cwd();
-var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
+var StringUtils = require(cwd + '/app/utils/StringUtils'),
+	pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
 	QuickpostPageModel= require(cwd + '/app/builders/page/QuickpostPageModel'),
 	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
@@ -65,7 +66,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 |<br>|<ul>|<\ul>)]+$/),
+		field('Description').trim().required().minLength(10).is(/^[a-zA-Z0-9 |<br>|<ul>|<\ul>|&|;|!|\-)]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
@@ -241,7 +242,11 @@ var QuickPost = {
 	 */
 	buildValueData: function (modelData, formData) {
 		if (!_.isEmpty(formData.Description)) {
-			modelData.formContent.descriptionValue = formData.Description;
+			var desc = formData.Description;
+			desc = StringUtils.unescapeHtml(desc);
+			desc = StringUtils.stripComments(desc);
+			console.log('************** ', desc);
+			modelData.formContent.descriptionValue = desc;
 			modelData.formContent.descriptionLength = 4096 - modelData.formContent.descriptionValue.length;
 		}
 		if (!_.isEmpty(formData.Category)) {

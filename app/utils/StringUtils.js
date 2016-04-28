@@ -1,5 +1,7 @@
 'use strict';
 
+var stripComments = require('strip-comment');
+
 /** 
  * @description A singleton that Handles StringUtils
  * @constructor
@@ -38,6 +40,27 @@ var StringUtils = (function () {
 		}, 
 		deobfuscate	: function(message) {
 			return rot13(message);
+		},
+		unescapeHtml	: function(html) {
+			return String(html)
+				.replace(/&quot;/g, '"')
+				.replace(/&#39;/g, '\'')
+				.replace(/&lt;/g, '<')
+				.replace(/&gt;/g, '>')
+				.replace(/&amp;/g, '&')
+				.replace(/&nbsp;/g, ' ');
+		},
+		stripCommentJs	: function(text) {
+			return stripComments.js(text, false);
+		},
+		stripCommentCss	: function(text) {
+			return stripComments.css(text, false);
+		},
+		stripCommentHtml: function(text) {
+			return stripComments.html(text, false);
+		},
+		stripComments	: function(text) {
+			return stripComments(text, false);
 		}
 	};
 })();
