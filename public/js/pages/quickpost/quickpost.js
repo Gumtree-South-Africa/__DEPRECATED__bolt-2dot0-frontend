@@ -172,7 +172,6 @@ BOLT.QuickPostPage = (function() {
     							dataType: 'JSON',
     							type: 'GET',
     							success: function(resp){
-                                    console.log(resp);
                                     if (resp.results instanceof Array) {
                                         $('#autocompleteField').html('');
                                         if (resp.results.length > 0) {

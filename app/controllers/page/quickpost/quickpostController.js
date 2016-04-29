@@ -121,7 +121,7 @@ router.post('/quickpost',
 
 								// Post to FB if share button is enabled
 								if (typeof req.form.switch!=='undefined' && req.form.switch=='YES') {
-									var msg = modelData.formContent.fbPublishMsg;
+									var msg = modelData.formContent.fbPublishMsg + ' ' + fbShareLink;
 									Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
 										.then(function (fbDataReturned) {
 											console.log('Successful FB Graph PublishPost', fbDataReturned);
@@ -246,7 +246,6 @@ var QuickPost = {
 			var desc = formData.Description;
 			desc = StringUtils.unescapeHtml(desc);
 			desc = StringUtils.stripComments(desc);
-			console.log('************** ', desc);
 			modelData.formContent.descriptionValue = desc;
 			modelData.formContent.descriptionLength = 4096 - modelData.formContent.descriptionValue.length;
 		}

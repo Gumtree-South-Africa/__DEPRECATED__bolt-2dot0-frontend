@@ -27,7 +27,7 @@ FbGraphService.prototype.publishPost = function(url, msgData, links) {
 		if (err) {
 			fbDeferred.reject(err);
 		} else {
-			fbDeferred.resolve(fbData);
+			fbDeferred.resolve(data);
 		}
 	}));
 
