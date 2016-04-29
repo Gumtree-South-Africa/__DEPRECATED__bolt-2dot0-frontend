@@ -39,6 +39,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "/terms-of-service",
+		"postingRules"                      : "/terms-of-service",
 		"helpLabel"							: "Ayuda",
 		"helpUrl"							: "http://www.ayuda-ibazar.com/",
 		"interLinkUrl"						: "http://www.ibazar.com/pages/red-de-clasificados-de-ebay/",

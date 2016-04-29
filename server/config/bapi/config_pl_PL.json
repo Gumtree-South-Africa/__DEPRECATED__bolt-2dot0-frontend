@@ -36,6 +36,7 @@
 		"cookieNotice"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies",
 		"privacyPolicy"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Polityka-prywatnosci",
 		"termOfUse"							: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Zasady-korzystania",
+		"postingRules"                      : "http://pomoc.gumtree.pl/PL?lang=pl&l=pl&c=PKB%3AZasady_Gumtree",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://pomoc.gumtree.pl/PL",
 		"interLinkUrl"						: "",

@@ -36,6 +36,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "/terms-of-service",
+		"postingRules"	                    : "http://gumtreehelp.com/ie/knowledgebase.php?article=22",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://gumtreehelp.com/ie/",
 		"interLinkUrl"						: null,

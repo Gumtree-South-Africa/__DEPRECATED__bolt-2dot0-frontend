@@ -219,8 +219,9 @@ var QuickPost = {
 
 		modelData.formContent.locationText = 'Enter Location';
 
-		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our <a href=\'%s\' target=\'_blank\'>Terms of Use</a> and <a href=\'%s\' target=\'_blank\'>Posting Rules</a>';
+		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our';
 		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
+		modelData.formContent.beforeSellTextPostingRules = bapiConfigData.footer.postingRules;
 
 		modelData.formContent.sellitText = 'Sell It';
 		modelData.formContent.fbPublishMsg = 'Just created an ad !';
