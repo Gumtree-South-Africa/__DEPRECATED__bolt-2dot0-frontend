@@ -34,7 +34,7 @@
 	},
 	"footer" : {
 		"cookieNotice"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Cookies",
-		"privacyPolicy"						: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Polityka-prywatnosci",
+		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "http://pomoc.gumtree.pl/PL/articles/pl/KB_Article/Zasady-korzystania",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://pomoc.gumtree.pl/PL",
