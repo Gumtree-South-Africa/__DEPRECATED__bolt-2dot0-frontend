@@ -206,6 +206,11 @@ var QuickPost = {
 
 		modelData.formContent.descriptionText = 'Description';
 		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 10 characters)';
+		modelData.formContent.descriptionTipTitle = 'Items with good description sell faster !';
+		modelData.formContent.descriptionTip1 = 'Mention brand, model, age and accessories';
+		modelData.formContent.descriptionTip2 = 'Mention condition, features and reason for selling';
+		modelData.formContent.descriptionTip3 = 'If the item is still under warranty, mention it';
+		modelData.formContent.descriptionTip4 = '2-3 sentences is a good description';
 
 		modelData.formContent.categoryText = 'Choose Category';
 
@@ -218,6 +223,8 @@ var QuickPost = {
 		modelData.formContent.sharefbText = 'Share on Facebook';
 
 		modelData.formContent.locationText = 'Enter Location';
+		modelData.formContent.geolocation1 = 'We will not show address on the ad.';
+		modelData.formContent.geolocation2 = 'Click here to change your location from map.';
 
 		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our';
 		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;

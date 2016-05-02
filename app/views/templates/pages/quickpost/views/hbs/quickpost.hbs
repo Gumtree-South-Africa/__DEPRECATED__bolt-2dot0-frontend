@@ -140,8 +140,8 @@
                 <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
 
                   <div id="maps-link" class="infos hiddenElt">
-                    <span>We won't show address on the ad.</span>
-                    <span>Click here to change your location from map.</span>
+                    <span>{{this.formContent.geolocation1}}</span>
+                    <span>{{this.formContent.geolocation2}}</span>
                 </div>
 
                 <div id="autocompleteField" class="hiddenElt"></div>
@@ -171,11 +171,11 @@
 			         <span class="icon-gl-message-close"></span>
 			     </a>
 			  </div>
-        <div><b>Items with good description sell faster !</b></div>
-        <div class="elt">Mention brand, model, age and accessories</div>
-        <div class="elt">Mention condition, features and reason for selling</div>
-        <div class="elt">If the item is still under warranty, mention it</div>
-        <div class="elt">2-3 sentences is a good description</div>
+        <div><b>{{this.formContent.descriptionTipTitle}}</b></div>
+        <div class="elt">{{this.formContent.descriptionTip1}}</div>
+        <div class="elt">{{this.formContent.descriptionTip2}}</div>
+        <div class="elt">{{this.formContent.descriptionTip3}}</div>
+        <div class="elt">{{this.formContent.descriptionTip4}}</div>
         <span class="icon-close"></span>
       </div>
     </div>
