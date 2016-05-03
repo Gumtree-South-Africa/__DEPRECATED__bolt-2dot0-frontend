@@ -34,7 +34,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
 		"termOfUse"							: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
-		"postingRules"                      :  "http://help.gumtree.co.za/articles/KB_Article/What-are-the-General-postingrulesvgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
+		"postingRules"                      : "http://help.gumtree.co.za/articles/KB_Article/What-are-the-General-posting-rules/?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://gumtreehelp.com/za/",
 		"interLinkUrl"						: null,
