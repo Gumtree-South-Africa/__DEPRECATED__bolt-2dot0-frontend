@@ -33,7 +33,7 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
-
+var instance = require('instance');
 
 function BuildApp(siteObj) {
     var app = express();
@@ -118,7 +118,7 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
-        app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+        app.use(i18n.initMW(app));
         app.use(boltExpressHbs.create(app));
 
         /*
