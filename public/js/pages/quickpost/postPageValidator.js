@@ -73,13 +73,13 @@
 
 					messages: {
 						Category : {
-							required: "Category is required"
+							required: $("#catSelector").attr("data-errorCategoryReqd")
 						},
 						Description: {
-							required: "Description is required",
-							minlength: "Description is too short",
-							maxlength: "Description is too long",
-							validDescription : "Invalid Description"
+							required: $("#Description").attr("data-errorDescriptionReqd"),
+							minlength: $("#Description").attr("data-errorDescriptionShort"),
+							maxlength: $("#Description").attr("data-errorDescriptionLong"),
+							validDescription : $("#Description").attr("data-errorDescriptionInvalid")
 						}
 					}
 				});
