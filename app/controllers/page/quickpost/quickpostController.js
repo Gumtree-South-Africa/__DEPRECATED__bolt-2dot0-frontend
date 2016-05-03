@@ -81,7 +81,7 @@ router.post('/quickpost',
 		var authenticationCookie = req.cookies[authCookieName];
 
 		// Set pagetype in request
-		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
+		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 		// Build Model Data
 		var bapiConfigData = res.locals.config.bapiConfigData;
@@ -111,8 +111,8 @@ router.post('/quickpost',
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
 					.then(function (dataReturned) {
-						console.log('dataaaaaaaaaaaaaaaaaaaaa', dataReturned);
 						var response = dataReturned;
+						modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
 
 						for (var l=0;l<response._links.length; l++) {
 							if (response._links[l].rel == 'view') {
@@ -341,6 +341,7 @@ var QuickPost = {
 		}
 
 		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+		modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	},
@@ -366,6 +367,7 @@ var QuickPost = {
 		// Stay on quickpost page if error during posting
 		modelData.header.pageMessages = {};
 		modelData.header.pageMessages.error = errorMessage;
+		modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
