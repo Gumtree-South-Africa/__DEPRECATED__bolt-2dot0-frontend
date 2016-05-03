@@ -140,8 +140,8 @@
                 <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
 
                   <div id="maps-link" class="infos hiddenElt">
-                    <span>{{this.formContent.geolocation1}}</span>
-                    <span>{{this.formContent.geolocation2}}</span>
+                    <span>{{i18n this.formContent.geolocation1}}</span>
+                    <span>{{i18n this.formContent.geolocation2}}</span>
                 </div>
 
                 <div id="autocompleteField" class="hiddenElt"></div>
@@ -156,7 +156,7 @@
         </div>
 
         <div class="inforules">
-            <span>{{i18n this.formContent.beforeSellText}} <span class='sudo-link' data-target="_blank" data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextTerms}}'> Terms of Use </span> and <span class='sudo-link' data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextPostingRules}}' data-target="_blank">Posting Rules</span></span>
+            <span>{{i18n this.formContent.beforeSellText}} <span class='sudo-link' data-target="_blank" data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextTermsUrl}}'> {{i18n this.formContent.beforeSellTextTerms}} </span> {{i18n this.formContent.beforeSellTextAnd}} <span class='sudo-link' data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextPostingRulesUrl}}' data-target="_blank">{{i18n this.formContent.beforeSellTextPostingRules}}</span></span>
         </div>
         <div class="qpost">
             <input class="quickSubmit" type="submit" value="{{i18n this.formContent.sellitText}}" />
@@ -171,11 +171,11 @@
 			         <span class="icon-gl-message-close"></span>
 			     </a>
 			  </div>
-        <div><b>{{this.formContent.descriptionTipTitle}}</b></div>
-        <div class="elt">{{this.formContent.descriptionTip1}}</div>
-        <div class="elt">{{this.formContent.descriptionTip2}}</div>
-        <div class="elt">{{this.formContent.descriptionTip3}}</div>
-        <div class="elt">{{this.formContent.descriptionTip4}}</div>
+        <div><b>{{i18n this.formContent.descriptionTipTitle}}</b></div>
+        <div class="elt">{{i18n this.formContent.descriptionTip1}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip2}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip3}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip4}}</div>
         <span class="icon-close"></span>
       </div>
     </div>

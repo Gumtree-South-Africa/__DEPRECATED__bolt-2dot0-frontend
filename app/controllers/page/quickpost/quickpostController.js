@@ -67,7 +67,7 @@ router.post('/quickpost',
 	// Form filter and validation middleware
 	form(
 		field('Description').trim().required().minLength(10)
-			.is(/^[\s|\w|\d|&|;|\-|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
+			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
@@ -201,40 +201,43 @@ var QuickPost = {
 		// Post Form
 		modelData.formContent = {};
 
-		modelData.formContent.pageTitle = 'Sell Your Item';
-		modelData.formContent.uploadText = 'Upload Pictures';
+		modelData.formContent.pageTitle = 'quickpost.pageTitle';
 
-		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 10 characters)';
-		modelData.formContent.descriptionTipTitle = 'Items with good description sell faster !';
-		modelData.formContent.descriptionTip1 = 'Mention brand, model, age and accessories';
-		modelData.formContent.descriptionTip2 = 'Mention condition, features and reason for selling';
-		modelData.formContent.descriptionTip3 = 'If the item is still under warranty, mention it';
-		modelData.formContent.descriptionTip4 = '2-3 sentences is a good description';
+		modelData.formContent.descriptionText = 'quickpost.descriptionText';
+		modelData.formContent.descriptionPlaceholder = 'quickpost.descriptionPlaceholder';
+		modelData.formContent.descriptionTipTitle = 'quickpost.descriptionTipTitle';
+		modelData.formContent.descriptionTip1 = 'quickpost.descriptionTip1';
+		modelData.formContent.descriptionTip2 = 'quickpost.descriptionTip2';
+		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
+		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
 
-		modelData.formContent.categoryText = 'Choose Category';
+		modelData.formContent.categoryText = 'quickpost.categoryText';
 
-		modelData.formContent.priceText = 'Price';
-		modelData.formContent.priceCurrency = 'R';
-		modelData.formContent.pricePlaceholder = 'Price';
-		modelData.formContent.priceExtension = '.00';
+		modelData.formContent.pricePlaceholder = 'quickpost.pricePlaceholder';
+		modelData.formContent.priceCurrency = 'quickpost.priceCurrency';
+		modelData.formContent.priceCurrencyText = 'quickpost.priceCurrencyText';
+		modelData.formContent.priceCurrencyDisplay = 'quickpost.priceCurrencyDisplay';
+		modelData.formContent.priceExtension = 'quickpost.priceExtension';
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
-		modelData.formContent.sharefbText = 'Share on Facebook';
+		modelData.formContent.sharefbText = 'quickpost.sharefbText';
 
-		modelData.formContent.locationText = 'Enter Location';
-		modelData.formContent.geolocation1 = 'We will not show address on the ad.';
-		modelData.formContent.geolocation2 = 'Click here to change your location from map.';
+		modelData.formContent.locationText = 'quickpost.locationText';
+		modelData.formContent.geolocation1 = 'quickpost.geolocation1';
+		modelData.formContent.geolocation2 = 'quickpost.geolocation2';
 
-		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our';
-		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
-		modelData.formContent.beforeSellTextPostingRules = bapiConfigData.footer.postingRules;
+		modelData.formContent.beforeSellText = 'quickpost.beforeSellText';
+		modelData.formContent.beforeSellTextTerms = 'quickpost.beforeSellTextTerms';
+		modelData.formContent.beforeSellTextTermsUrl = bapiConfigData.footer.termOfUse;
+		modelData.formContent.beforeSellTextAnd = 'quickpost.beforeSellTextAnd';
+		modelData.formContent.beforeSellTextPostingRules = 'quickpost.beforeSellTextPostingRules';
+		modelData.formContent.beforeSellTextPostingRulesUrl = bapiConfigData.footer.postingRules;
 
-		modelData.formContent.sellitText = 'Sell It';
-		modelData.formContent.fbPublishMsg = 'Just created an ad !';
+		modelData.formContent.sellitText = 'quickpost.sellitText';
+		modelData.formContent.fbPublishMsg = 'quickpost.fbPublishMsg';
 
-		modelData.formContent.error4xx = 'Error while posting ads, try again later !';
-		modelData.formContent.error5xx = 'There is an issue with posting ads, try again later !';
+		modelData.formContent.error4xx = 'quickpost.error4xx';
+		modelData.formContent.error5xx = 'quickpost.error5xx';
 
 
 		// Custom header

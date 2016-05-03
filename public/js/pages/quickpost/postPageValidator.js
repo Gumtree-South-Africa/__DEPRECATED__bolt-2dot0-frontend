@@ -40,7 +40,8 @@
 
 				// Check for valid description - change if required :)
 				$.validator.addMethod("validDescription", function(value, element) {
-					return this.optional(element) || /^(\s|\w|\d|&|;|-|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)*?$/i.test(value);
+					return this.optional(element) ||
+						/^(\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|-|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)*?$/i.test(value);
 				});
 			}
 
