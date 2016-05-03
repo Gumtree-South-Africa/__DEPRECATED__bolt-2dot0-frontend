@@ -41,6 +41,7 @@
 	    "POST_AD" : "PostAd",
 	  	"QUICK_POST_AD_FORM" : "QuickPostAdForm",
 	  	"QUICK_POST_AD_SUCCESS" : "QuickPostAdSuccess",
+	  	"QUICK_POST_AD_ERROR" : "QuickPostAdError",
 	  	"POST_AD_CONFIRM_UPSELL" : "PostAdUpsell",
 	    "EDIT_AD_CONFIRM_UPSELL" : "EditAdUpsell",
 	    "REPOST_AD_CONFIRM_UPSELL" : "RepostAdUpsell",

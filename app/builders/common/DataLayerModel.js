@@ -143,6 +143,11 @@ DataLayerModel.prototype.getData = function() {
 					"userData"		:	getUsereData(scope)
 				};
 			break;
+			case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
+				data = {
+					"pageData"		: 	getPageData(scope)
+				};
+			break;
 			case pagetypeJson.pagetype.RESULTS_SEARCH:
 				data = {
 					"pageData"		: 	getPageData(scope),
