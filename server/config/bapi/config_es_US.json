@@ -32,12 +32,6 @@
 			"deletecookie"		: false
 	    },
 	    
-	     "quickpost" : {
-              "currencyDisplay"    :     false,
-              "currency"            :    ["MXN","USD"]
-        },
-	    
-	   
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -99,7 +93,12 @@
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		
+		 "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["MXN","USD"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {

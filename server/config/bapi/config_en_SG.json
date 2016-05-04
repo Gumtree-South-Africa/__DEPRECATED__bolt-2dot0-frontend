@@ -28,11 +28,6 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    
-	     "quickpost" : {
-              "currencyDisplay"    :    false,
-              "currency"           :    ["SGD"]
-        },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/",
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
@@ -94,7 +89,12 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 10
-		}
+		},
+		
+	     "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["SGD"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {

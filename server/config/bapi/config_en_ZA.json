@@ -26,12 +26,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    
-	    "quickpost" : {
-              "currencyDisplay"    :     false,
-              "currency"            :    ["ZAR"]
-        },
-	    
+	 
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
@@ -93,7 +88,11 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		  "quickpost" : {
+              "currencyDisplay"    :     false,
+              "currency"            :    ["ZAR"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {
