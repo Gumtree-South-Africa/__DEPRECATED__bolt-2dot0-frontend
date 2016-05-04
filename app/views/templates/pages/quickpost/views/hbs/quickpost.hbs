@@ -25,7 +25,7 @@
             {{!-- Description --}}
             <div class="field-wrapper">
               <div class="description">
-                <textarea id="Description" name="Description" {{#if this.flash.fieldErrors.description}}class="error"{{/if}}
+                <textarea id="Description" name="Description" {{#if this.flash.fieldErrors.description}}class="error" data-errorFlash="{{this.flash.fieldErrors.description}}"{{/if}}
                           data-errorDescriptionReqd="{{i18n this.formContent.errorDescriptionReqd}}"
                           data-errorDescriptionShort="{{i18n this.formContent.errorDescriptionShort}}"
                           data-errorDescriptionLong="{{i18n this.formContent.errorDescriptionLong}}"
@@ -39,7 +39,7 @@
               </div>
             </div>
 
-            {{!-- BEGIN NEW CATEGORY SELECTOR --}}
+            {{!-- CATEGORY SELECTOR --}}
             <style>
             label.error {
               color: #bb3027;
@@ -83,8 +83,8 @@
             </style>
 
             <div class="field-wrapper">
-                <div class="select-category" {{#if this.flash.fieldErrors.category}}class="error"{{/if}}>
-                  <div id="catSelector" class="menu-cnt" data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}">
+                <div class="select-category">
+                  <div id="catSelector" class="menu-cnt" data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}" {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
                     <div id="mobileCats" class="mobile-only">
                       <div class="body">
                           <nav id="cat-list">
@@ -114,7 +114,6 @@
                     <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
             </div>
-            {{!-- END NEW CATEGORY SELECTOR --}}
 
             {{!-- Price --}}
             <div class="field-wrapper">

@@ -67,19 +67,19 @@
 							required: true,
 							minlength: 10,  // 10
 							maxlength: 4096, // 4096
-							validDescription : true
+							validDescription: true
 						}
 					},
 
 					messages: {
-						Category : {
-							required: $("#catSelector").attr("data-errorCategoryReqd")
+						Category: {
+							required: (typeof $("#catSelector").attr("data-errorFlash") === 'undefined') ? $("#catSelector").attr("data-errorCategoryReqd") : ''
 						},
 						Description: {
-							required: $("#Description").attr("data-errorDescriptionReqd"),
-							minlength: $("#Description").attr("data-errorDescriptionShort"),
-							maxlength: $("#Description").attr("data-errorDescriptionLong"),
-							validDescription : $("#Description").attr("data-errorDescriptionInvalid")
+							required: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionReqd") : '',
+							minlength: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionShort") : '',
+							maxlength: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionLong") : '',
+							validDescription: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionInvalid") : ''
 						}
 					}
 				});
