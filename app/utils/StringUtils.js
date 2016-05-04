@@ -50,6 +50,20 @@ var StringUtils = (function () {
 				.replace(/&amp;/g, '&')
 				.replace(/&nbsp;/g, ' ');
 		},
+		fixNewline		: function(html) {
+			return String(html)
+				.replace(/(\r\n|\r|\n)/g, '\r');
+		},
+		unescapeUrl		: function(html) {
+			var urlRegex =/(\b(https?|ftp|file):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/ig;
+			return String(html)
+				.replace(urlRegex, '');
+		},
+		unescapeEmail	: function(html) {
+			var emailRegex = /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+(?:[A-Z]{2}|com|org|net|gov|mil|biz|info|mobi|name|aero|jobs|museum)\b/ig;
+			return String(html)
+				.replace(emailRegex, 'XXX');
+		},
 		stripCommentJs	: function(text) {
 			return stripComments.js(text, false);
 		},

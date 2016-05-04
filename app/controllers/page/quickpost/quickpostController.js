@@ -66,7 +66,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10)
+		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
 		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
@@ -261,6 +261,9 @@ var QuickPost = {
 		if (!_.isEmpty(formData.Description)) {
 			var desc = formData.Description;
 			desc = StringUtils.unescapeHtml(desc);
+			desc = StringUtils.unescapeUrl(desc);
+			desc = StringUtils.unescapeEmail(desc);
+			desc = StringUtils.fixNewline(desc);
 			desc = StringUtils.stripComments(desc);
 			modelData.formContent.descriptionValue = desc;
 			modelData.formContent.descriptionLength = 4096 - modelData.formContent.descriptionValue.length;
