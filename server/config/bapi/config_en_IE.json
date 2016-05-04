@@ -28,6 +28,12 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
+	      "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["EUR"]
+        },
+	    
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 	  	"locationDropdownLevel"				: 2,
 	  	"categoryDropdownLevel"				: 2

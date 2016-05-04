@@ -31,6 +31,13 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
+	     "quickpost" : {
+              "currencyDisplay"    :     false,
+              "currency"            :    ["MXN","USD"]
+        },
+	    
+	   
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2

@@ -29,6 +29,12 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
+	    
+       "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["MXN","USD"]
+        },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
