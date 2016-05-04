@@ -217,7 +217,7 @@ function flattenTree(dataReturned) {
 
             levelData = {
                 'id' : level2.id,
-                'localizedName' : level2.localizedName,
+                'localizedName' : (typeof level2.localizedMobileName !== 'undefined') ? level2.localizedMobileName : level2.localizedName,
                 'level1Id': level1.id
             };
 

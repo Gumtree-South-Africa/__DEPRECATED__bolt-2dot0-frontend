@@ -236,9 +236,14 @@ var QuickPost = {
 		modelData.formContent.sellitText = 'quickpost.sellitText';
 		modelData.formContent.fbPublishMsg = 'quickpost.fbPublishMsg';
 
-		modelData.formContent.error4xx = 'quickpost.error4xx';
-		modelData.formContent.error5xx = 'quickpost.error5xx';
-
+		modelData.formContent.error4xx = 'quickpost.error.4xx';
+		modelData.formContent.error5xx = 'quickpost.error.5xx';
+		modelData.formContent.errorDescriptionReqd = 'quickpost.error.descriptionReqd';
+		modelData.formContent.errorDescriptionShort = 'quickpost.error.descriptionShort';
+		modelData.formContent.errorDescriptionLong = 'quickpost.error.descriptionLong';
+		modelData.formContent.errorDescriptionInvalid = 'quickpost.error.descriptionInvalid';
+		modelData.formContent.errorCategoryReqd = 'quickpost.error.categoryReqd';
+		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
 
 		// Custom header
 		modelData.content = {};
@@ -358,16 +363,31 @@ var QuickPost = {
 
 		var errorMessage = '';
 		if (err.status4xx) {
-			errorMessage = modelData.formContent.error4xx;
+			if (errorCode == 400 ) {
+				var fieldError = 'false';
+				for(var i=0; i<err.details.length; i++) {
+					var det = err.details[i];
+					if (det.message.indexOf('does not map to any location') > '-1') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					}
+				}
+			}
+			if (_.isEmpty(errorMessage) && fieldError=='false') {
+				errorMessage = modelData.formContent.error4xx;
+			}
 		}
 		if (err.status5xx) {
 			errorMessage = modelData.formContent.error5xx;
 		}
 
-		// Stay on quickpost page if error during posting
-		modelData.header.pageMessages = {};
-		modelData.header.pageMessages.error = errorMessage;
-		modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
+		if (!_.isEmpty(errorMessage)) {
+			modelData.header.pageMessages = {};
+			modelData.header.pageMessages.error = errorMessage;
+			modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
+		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
