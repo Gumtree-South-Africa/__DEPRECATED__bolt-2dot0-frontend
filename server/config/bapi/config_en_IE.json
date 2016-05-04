@@ -30,7 +30,7 @@
 	    },
 	    
 	      "quickpost" : {
-              "currencyDisplay"    :    true,
+              "currencyDisplay"    :    false,
               "currency"           :    ["EUR"]
         },
 	    

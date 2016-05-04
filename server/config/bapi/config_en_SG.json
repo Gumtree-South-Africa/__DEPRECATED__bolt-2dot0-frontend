@@ -30,7 +30,7 @@
 	    },
 	    
 	     "quickpost" : {
-              "currencyDisplay"    :    true,
+              "currencyDisplay"    :    false,
               "currency"           :    ["SGD"]
         },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/",
