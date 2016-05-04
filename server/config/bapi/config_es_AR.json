@@ -29,6 +29,11 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["Pesos","Dólares"]
+        },
+	    
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2

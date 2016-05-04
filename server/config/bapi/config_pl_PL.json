@@ -28,6 +28,11 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
+	      "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["PLN"]
+        },
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2

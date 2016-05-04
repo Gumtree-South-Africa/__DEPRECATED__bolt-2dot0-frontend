@@ -28,10 +28,17 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
+	     "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["SGD"]
+        },
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/",
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
 	},
+	
+	
 	"footer" : {
 		"cookieNotice"						: "http://gumtreehelp.com/sg/knowledgebase.php?article=190",
 		"privacyPolicy"						: "http://gumtreehelp.com/sg/knowledgebase.php?article=121",
