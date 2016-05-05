@@ -15,29 +15,22 @@ var siteConfig = require(process.cwd() + '/server/config/sites.json');
 var locale = '';
 
 // init middleware
-module.exports.initMW = function(app) {
+module.exports.initMW = function(app, locale, i18nOrg) {
    // console.log("-------------bolt-i18n " + process.cwd() + '/app/locales/json/' + app.config.locale);
     return function(req, res, next) {
 
-        for(var key in siteConfig.sites){
-          if(req.headers.host.indexOf(key) >= 0){
-            locale = siteConfig.sites[key].locale;
-            break;
-          }
-        }
+        initConfigI18n(locale, i18nOrg);
 
-        initConfigI18n(locale);
-
-        app.locals.i18n = i18n;
-        res.locals.i18n = i18n;
+        app.locals.i18n = instance(i18nOrg);
+        res.locals.i18n = instance(i18nOrg);
 
         next();
     };
 };
 
 module.exports.init = function(locale) {
-   // console.log("locale ======= ", locale);
-    initConfigI18n(locale);
+    // console.log("locale ======= ", locale);
+    initConfigI18n(locale, i18nOrg);
 };
 
 module.exports.msg = function(msg) {
@@ -45,12 +38,14 @@ module.exports.msg = function(msg) {
    // console.log("msg ======" + msg);
 };
 
-function initConfigI18n(locale) {
-    i18n.configure({
+function initConfigI18n(locale, i18nOrg) {
+    i18nOrg.configure({
         updateFiles: false,
         objectNotation: true,
         directory: process.cwd() + '/app/locales/json/' + locale,
         prefix: 'translation_',
+        register: global,
+        queryParameter: 'lang',
         defaultLocale: locale
     });
 }

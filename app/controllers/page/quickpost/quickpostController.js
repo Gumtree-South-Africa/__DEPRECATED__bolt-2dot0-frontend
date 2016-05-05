@@ -18,7 +18,8 @@ var StringUtils = require(cwd + '/app/utils/StringUtils'),
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
 
-
+var i18n = require('i18n');
+var siteConfig = require(cwd + '/server/config/sites.json');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -31,7 +32,22 @@ module.exports = function (app) {
 router.get('/quickpost', function (req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
-	// Set pagetype in request
+  function findLocaleByRequest(){
+    var locale = '';
+
+    for(var key in siteConfig.sites){
+      if(req.headers.host.indexOf(key) >= 0){
+        locale = siteConfig.sites[key].locale;
+       // break;
+      }
+    }
+
+    return locale;
+  }
+
+  var reqLocale = findLocaleByRequest();
+
+  // Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 	// Build Model Data
@@ -40,14 +56,18 @@ router.get('/quickpost', function (req, res, next) {
 
 	var model = QuickpostPageModel(req, res, modelData);
 	model.then(function (result) {
-		// Dynamic Data from BAPI
+
+    //setting lang for the request
+    i18n.setLocale(reqLocale);
+
+  	// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
 		modelData.seo = result['seo'] || {};
 
-    	// Special Data needed for QuickPost in header, footer, content
+    // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
@@ -111,7 +131,6 @@ router.post('/quickpost',
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
 					.then(function (dataReturned) {
-						console.log('dataaaaaaaaaaaaaaaaaaaaa', dataReturned);
 						var response = dataReturned;
 
 						for (var l=0;l<response._links.length; l++) {
