@@ -158,9 +158,11 @@ BOLT.QuickPostPage = (function() {
             var isToggleSwitchOn = $(this).is(':checked');
             if(isToggleSwitchOn){
               $('input[name=switch]').val('YES');
+              $('#switchBtn').addClass('checked');
             }
             else{
               $('input[name=switch]').val('NO');
+              $('#switchBtn').removeClass('checked');
             }
           });
         },

@@ -78,8 +78,6 @@ router.post('/quickpost',
 	function (req, res, next) {
 		console.time('Instrument-QuickPost-Data-Controller');
 
-		console.log('$$$$$$$$$$$$$', req.body);
-
 		// Get Auth Cookie
 		var authCookieName = 'bt_auth';
 		var authenticationCookie = req.cookies[authCookieName];
@@ -225,6 +223,8 @@ var QuickPost = {
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
+		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
+		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
 
 		modelData.formContent.locationText = 'quickpost.locationText';
 		modelData.formContent.geolocation1 = 'quickpost.geolocation1';
@@ -282,7 +282,10 @@ var QuickPost = {
 			modelData.formContent.priceValue = formData.price;
 		}
 		if (!_.isEmpty(formData.switch)) {
-			modelData.formContent.switch = formData.switch;
+			if (formData.switch == 'YES') {
+				modelData.formContent.checked = true;
+				modelData.formContent.switch = formData.switch;
+			}
 		}
 		if (!_.isEmpty(formData.Location)) {
 			modelData.formContent.location = formData.Location;
