@@ -25,16 +25,21 @@
             {{!-- Description --}}
             <div class="field-wrapper">
               <div class="description">
-                <textarea id="Description" name="Description" {{#if this.flash.errors}}class="error"{{/if}} placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
+                <textarea id="Description" name="Description" {{#if this.flash.fieldErrors.description}}class="error" data-errorFlash="{{this.flash.fieldErrors.description}}"{{/if}}
+                          data-errorDescriptionReqd="{{i18n this.formContent.errorDescriptionReqd}}"
+                          data-errorDescriptionShort="{{i18n this.formContent.errorDescriptionShort}}"
+                          data-errorDescriptionLong="{{i18n this.formContent.errorDescriptionLong}}"
+                          data-errorDescriptionInvalid="{{i18n this.formContent.errorDescriptionInvalid}}"
+                          placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
                 <span class="icon-contextual-info"></span>
-                  <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
+                <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
                 {{#with this.flash.fieldErrors.description}}
-                  <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
+                    <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{i18n this}}</p>
                 {{/with}}
               </div>
             </div>
 
-            {{!-- BEGIN NEW CATEGORY SELECTOR --}}
+            {{!-- CATEGORY SELECTOR --}}
             <style>
             label.error {
               color: #bb3027;
@@ -78,8 +83,10 @@
             </style>
 
             <div class="field-wrapper">
-                <div class="select-category" {{#if this.flash.errors}}class="error"{{/if}}>
-                  <div id="catSelector" class="menu-cnt">
+                <div class="select-category">
+                  <div id="catSelector" class="menu-cnt"
+                       data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}"
+                       {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
                     <div id="mobileCats" class="mobile-only">
                       <div class="body">
                           <nav id="cat-list">
@@ -109,7 +116,6 @@
                     <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
                 {{/with}}
             </div>
-            {{!-- END NEW CATEGORY SELECTOR --}}
 
             {{!-- Price --}}
             <div class="field-wrapper">
@@ -131,7 +137,11 @@
             <div class="field-wrapper">
               <div class="select-location">
                 {{> (dynamic "mapLatLong") }}
-                <input id="location" class="custom-input" autocomplete="off" type="text" name="location" placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+                <input id="Location" class="custom-input" autocomplete="off" type="text" name="Location"
+                       data-errorLocationReqd="{{i18n this.formContent.errorLocationReqd}}"
+                       data-errorLocationInvalid="{{i18n this.formContent.errorLocationInvalid}}"
+                    {{#if this.flash.fieldErrors.location}}class="error" data-errorFlash="{{i18n this.flash.fieldErrors.location}}"{{/if}}
+                       placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
                 <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
                 <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
                 <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
@@ -139,9 +149,13 @@
                 <input type="hidden" id="geolongitude" name="geolongitude" value = "{{this.formContent.longitude}}"/>
                 <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
 
-                  <div id="maps-link" class="infos hiddenElt">
-                    <span>{{this.formContent.geolocation1}}</span>
-                    <span>{{this.formContent.geolocation2}}</span>
+                {{#with this.flash.fieldErrors.location}}
+                  <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{i18n this}}</p>
+                {{/with}}
+
+                <div id="maps-link" class="infos hiddenElt">
+                    <span>{{i18n this.formContent.geolocation1}}</span>
+                    <span>{{i18n this.formContent.geolocation2}}</span>
                 </div>
 
                 <div id="autocompleteField" class="hiddenElt"></div>
@@ -156,7 +170,7 @@
         </div>
 
         <div class="inforules">
-            <span>{{i18n this.formContent.beforeSellText}} <span class='sudo-link' data-target="_blank" data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextTerms}}'> Terms of Use </span> and <span class='sudo-link' data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextPostingRules}}' data-target="_blank">Posting Rules</span></span>
+            <span>{{i18n this.formContent.beforeSellText}} <span class='sudo-link' data-target="_blank" data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextTermsUrl}}'> {{i18n this.formContent.beforeSellTextTerms}} </span> {{i18n this.formContent.beforeSellTextAnd}} <span class='sudo-link' data-o-uri='{{obfuscateUrl this.formContent.beforeSellTextPostingRulesUrl}}' data-target="_blank">{{i18n this.formContent.beforeSellTextPostingRules}}</span></span>
         </div>
         <div class="qpost">
             <input class="quickSubmit" type="submit" value="{{i18n this.formContent.sellitText}}" />
@@ -171,11 +185,11 @@
 			         <span class="icon-gl-message-close"></span>
 			     </a>
 			  </div>
-        <div><b>{{this.formContent.descriptionTipTitle}}</b></div>
-        <div class="elt">{{this.formContent.descriptionTip1}}</div>
-        <div class="elt">{{this.formContent.descriptionTip2}}</div>
-        <div class="elt">{{this.formContent.descriptionTip3}}</div>
-        <div class="elt">{{this.formContent.descriptionTip4}}</div>
+        <div><b>{{i18n this.formContent.descriptionTipTitle}}</b></div>
+        <div class="elt">{{i18n this.formContent.descriptionTip1}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip2}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip3}}</div>
+        <div class="elt">{{i18n this.formContent.descriptionTip4}}</div>
         <span class="icon-close"></span>
       </div>
     </div>

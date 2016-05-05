@@ -32,6 +32,8 @@
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
 	},
+	
+	
 	"footer" : {
 		"cookieNotice"						: "http://gumtreehelp.com/sg/knowledgebase.php?article=190",
 		"privacyPolicy"						: "http://gumtreehelp.com/sg/knowledgebase.php?article=121",
@@ -87,7 +89,12 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 10
-		}
+		},
+		
+	     "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["SGD"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {

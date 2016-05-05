@@ -28,6 +28,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	      
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 	  	"locationDropdownLevel"				: 2,
 	  	"categoryDropdownLevel"				: 2
@@ -87,7 +88,14 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		
+		   "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["EUR"]
+        }
+		
+		
 	},
 	"bapi" : {
 		"Homepage" : {

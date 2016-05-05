@@ -28,6 +28,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
@@ -85,7 +86,11 @@
 			"freebiesUrl"			: "s-Oddam za darmo/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-wszystkie-the-reklamy/v1b0p1?fe=2",
 		 	"defaultKeywordsCount"	: 10
-		}
+		},
+		 "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["PLN"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {

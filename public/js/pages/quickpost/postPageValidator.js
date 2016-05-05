@@ -38,10 +38,17 @@
 		    */
 			addMethods : function() {
 
-				// Check for valid description - change if required :)
+				// Check for valid description
 				$.validator.addMethod("validDescription", function(value, element) {
-					return this.optional(element) || /^(\s|\w|\d|&|;|-|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)*?$/i.test(value);
+					return this.optional(element) ||
+						/^(\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|-|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)*?$/i.test(value);
 				});
+
+			   // Check for valid location
+			   $.validator.addMethod("validLocation", function(value, element) {
+				   return this.optional(element) ||
+					   /^(\s|\w|\d|\,|\-)*?$/i.test(value);
+			   });
 			}
 
 		};
@@ -61,24 +68,32 @@
 				// validate the Post form
 				$("#postForm").validate({
 					rules: {
-						Category: "required",
 						Description: {
 							required: true,
 							minlength: 10,  // 10
 							maxlength: 4096, // 4096
-							validDescription : true
+							validDescription: true
+						},
+						Category: "required",
+						Location: {
+							required: true,
+							validLocation: true
 						}
 					},
 
 					messages: {
-						Category : {
-							required: "Category is required"
-						},
 						Description: {
-							required: "Description is required",
-							minlength: "Description is too short",
-							maxlength: "Description is too long",
-							validDescription : "Invalid Description"
+							required: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionReqd") : '',
+							minlength: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionShort") : '',
+							maxlength: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionLong") : '',
+							validDescription: (typeof $("#Description").attr("data-errorFlash") === 'undefined') ? $("#Description").attr("data-errorDescriptionInvalid") : ''
+						},
+						Category: {
+							required: (typeof $("#catSelector").attr("data-errorFlash") === 'undefined') ? $("#catSelector").attr("data-errorCategoryReqd") : ''
+						},
+						Location: {
+							required: (typeof $("#Location").attr("data-errorFlash") === 'undefined') ? $("#Location").attr("data-errorLocationReqd") : '',
+							validLocation: (typeof $("#Location").attr("data-errorFlash") === 'undefined') ? $("#Location").attr("data-errorLocationInvalid") : ''
 						}
 					}
 				});

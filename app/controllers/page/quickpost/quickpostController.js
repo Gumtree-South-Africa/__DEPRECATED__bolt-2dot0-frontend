@@ -86,10 +86,12 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10)
-			.is(/^[\s|\w|\d|&|;|\-|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
-		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
-		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
+		field('Description').trim().required().minLength(10).maxLength(4096)
+			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
+		field('Category').required(),
+		field('price').trim().is(/^[0-9]+$/),
+		field('switch'),
+		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -101,7 +103,7 @@ router.post('/quickpost',
 		var authenticationCookie = req.cookies[authCookieName];
 
 		// Set pagetype in request
-		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
+		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 		// Build Model Data
 		var bapiConfigData = res.locals.config.bapiConfigData;
@@ -132,6 +134,7 @@ router.post('/quickpost',
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
 					.then(function (dataReturned) {
 						var response = dataReturned;
+						modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
 
 						for (var l=0;l<response._links.length; l++) {
 							if (response._links[l].rel == 'view') {
@@ -220,41 +223,53 @@ var QuickPost = {
 		// Post Form
 		modelData.formContent = {};
 
-		modelData.formContent.pageTitle = 'Sell Your Item';
-		modelData.formContent.uploadText = 'Upload Pictures';
+		modelData.formContent.pageTitle = 'quickpost.pageTitle';
 
-		modelData.formContent.descriptionText = 'Description';
-		modelData.formContent.descriptionPlaceholder = 'Enter a short description about what you are selling (min 10 characters)';
-		modelData.formContent.descriptionTipTitle = 'Items with good description sell faster !';
-		modelData.formContent.descriptionTip1 = 'Mention brand, model, age and accessories';
-		modelData.formContent.descriptionTip2 = 'Mention condition, features and reason for selling';
-		modelData.formContent.descriptionTip3 = 'If the item is still under warranty, mention it';
-		modelData.formContent.descriptionTip4 = '2-3 sentences is a good description';
+		modelData.formContent.descriptionText = 'quickpost.descriptionText';
+		modelData.formContent.descriptionPlaceholder = 'quickpost.descriptionPlaceholder';
+		modelData.formContent.descriptionTipTitle = 'quickpost.descriptionTipTitle';
+		modelData.formContent.descriptionTip1 = 'quickpost.descriptionTip1';
+		modelData.formContent.descriptionTip2 = 'quickpost.descriptionTip2';
+		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
+		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
 
-		modelData.formContent.categoryText = 'Choose Category';
+		modelData.formContent.categoryText = 'quickpost.categoryText';
 
-		modelData.formContent.priceText = 'Price';
-		modelData.formContent.priceCurrency = 'R';
-		modelData.formContent.pricePlaceholder = 'Price';
-		modelData.formContent.priceExtension = '.00';
+		modelData.formContent.pricePlaceholder = 'quickpost.pricePlaceholder';
+		modelData.formContent.priceCurrency = 'quickpost.priceCurrency';
+		modelData.formContent.priceCurrencyText = 'quickpost.priceCurrencyText';
+		modelData.formContent.priceCurrencyDisplay = 'quickpost.priceCurrencyDisplay';
+		modelData.formContent.priceExtension = 'quickpost.priceExtension';
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
-		modelData.formContent.sharefbText = 'Share on Facebook';
+		modelData.formContent.sharefbText = 'quickpost.sharefbText';
+		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
+		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
 
-		modelData.formContent.locationText = 'Enter Location';
-		modelData.formContent.geolocation1 = 'We will not show address on the ad.';
-		modelData.formContent.geolocation2 = 'Click here to change your location from map.';
+		modelData.formContent.locationText = 'quickpost.locationText';
+		modelData.formContent.geolocation1 = 'quickpost.geolocation1';
+		modelData.formContent.geolocation2 = 'quickpost.geolocation2';
 
-		modelData.formContent.beforeSellText = 'By Clicking \'Sell It\' you accept our';
-		modelData.formContent.beforeSellTextTerms = bapiConfigData.footer.termOfUse;
-		modelData.formContent.beforeSellTextPostingRules = bapiConfigData.footer.postingRules;
+		modelData.formContent.beforeSellText = 'quickpost.beforeSellText';
+		modelData.formContent.beforeSellTextTerms = 'quickpost.beforeSellTextTerms';
+		modelData.formContent.beforeSellTextTermsUrl = bapiConfigData.footer.termOfUse;
+		modelData.formContent.beforeSellTextAnd = 'quickpost.beforeSellTextAnd';
+		modelData.formContent.beforeSellTextPostingRules = 'quickpost.beforeSellTextPostingRules';
+		modelData.formContent.beforeSellTextPostingRulesUrl = bapiConfigData.footer.postingRules;
 
-		modelData.formContent.sellitText = 'Sell It';
-		modelData.formContent.fbPublishMsg = 'Just created an ad !';
+		modelData.formContent.sellitText = 'quickpost.sellitText';
+		modelData.formContent.fbPublishMsg = 'quickpost.fbPublishMsg';
 
-		modelData.formContent.error4xx = 'Error while posting ads, try again later !';
-		modelData.formContent.error5xx = 'There is an issue with posting ads, try again later !';
-
+		modelData.formContent.error4xx = 'quickpost.error.4xx';
+		modelData.formContent.error5xx = 'quickpost.error.5xx';
+		modelData.formContent.errorDescriptionReqd = 'quickpost.error.descriptionReqd';
+		modelData.formContent.errorDescriptionShort = 'quickpost.error.descriptionShort';
+		modelData.formContent.errorDescriptionLong = 'quickpost.error.descriptionLong';
+		modelData.formContent.errorDescriptionInvalid = 'quickpost.error.descriptionInvalid';
+		modelData.formContent.errorCategoryReqd = 'quickpost.error.categoryReqd';
+		modelData.formContent.errorLocationReqd = 'quickpost.error.locationReqd';
+		modelData.formContent.errorLocationInvalid = 'quickpost.error.locationInvalid';
+		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
 
 		// Custom header
 		modelData.content = {};
@@ -272,6 +287,9 @@ var QuickPost = {
 		if (!_.isEmpty(formData.Description)) {
 			var desc = formData.Description;
 			desc = StringUtils.unescapeHtml(desc);
+			desc = StringUtils.unescapeUrl(desc);
+			desc = StringUtils.unescapeEmail(desc);
+			desc = StringUtils.fixNewline(desc);
 			desc = StringUtils.stripComments(desc);
 			modelData.formContent.descriptionValue = desc;
 			modelData.formContent.descriptionLength = 4096 - modelData.formContent.descriptionValue.length;
@@ -284,10 +302,13 @@ var QuickPost = {
 			modelData.formContent.priceValue = formData.price;
 		}
 		if (!_.isEmpty(formData.switch)) {
-			modelData.formContent.switch = formData.switch;
+			if (formData.switch == 'YES') {
+				modelData.formContent.checked = true;
+				modelData.formContent.switch = formData.switch;
+			}
 		}
-		if (!_.isEmpty(formData.location)) {
-			modelData.formContent.location = formData.location;
+		if (!_.isEmpty(formData.Location)) {
+			modelData.formContent.location = formData.Location;
 		}
 		if (!_.isEmpty(formData.latitude)) {
 			modelData.formContent.latitude = formData.latitude;
@@ -346,17 +367,21 @@ var QuickPost = {
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
 		for (var i=0; i<req.form.errors.length; i++){
-			if (req.form.errors[i].indexOf('Category ') > -1) {
+			if (req.form.errors[i].indexOf('Description ') > -1) {
+				if(!req.form.fieldErrors.description)
+					req.form.fieldErrors.description = req.form.errors[i];
+			} else if (req.form.errors[i].indexOf('Category ') > -1) {
 				if(!req.form.fieldErrors.category)
 					req.form.fieldErrors.category = req.form.errors[i];
 			}
-			else if (req.form.errors[i].indexOf('Description ') > -1) {
-				if(!req.form.fieldErrors.description)
-					req.form.fieldErrors.description = req.form.errors[i];
+			else if (req.form.errors[i].indexOf('Location ') > -1) {
+				if(!req.form.fieldErrors.location)
+					req.form.fieldErrors.location = req.form.errors[i];
 			}
 		}
 
 		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+		modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	},
@@ -373,15 +398,46 @@ var QuickPost = {
 
 		var errorMessage = '';
 		if (err.status4xx) {
-			errorMessage = modelData.formContent.error4xx;
+			if (errorCode == 400 ) {
+				var fieldError = 'false';
+				for(var i=0; i<err.details.length; i++) {
+					var det = err.details[i];
+					if (det.message.indexOf('does not map to any location') > '-1') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('latitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('longitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('address') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					}
+				}
+			}
+			if (_.isEmpty(errorMessage) && fieldError=='false') {
+				errorMessage = modelData.formContent.error4xx;
+			}
 		}
 		if (err.status5xx) {
 			errorMessage = modelData.formContent.error5xx;
 		}
 
-		// Stay on quickpost page if error during posting
-		modelData.header.pageMessages = {};
-		modelData.header.pageMessages.error = errorMessage;
+		if (!_.isEmpty(errorMessage)) {
+			modelData.header.pageMessages = {};
+			modelData.header.pageMessages.error = errorMessage;
+			modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
+		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
