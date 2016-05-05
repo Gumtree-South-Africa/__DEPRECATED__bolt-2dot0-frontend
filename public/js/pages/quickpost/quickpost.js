@@ -165,10 +165,10 @@ BOLT.QuickPostPage = (function() {
           });
         },
         getData : function(){
-    			$('#location').on('keyup', function(){
+            $('#Location').on('keyup', function(){
               var htmlElt = '';
     					$.ajax({
-    							url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#location').val(),
+    							url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#Location').val(),
     							dataType: 'JSON',
     							type: 'GET',
     							success: function(resp){
@@ -201,7 +201,7 @@ BOLT.QuickPostPage = (function() {
                   $('#longitude').val($this.attr('data-long'));
                   $('#latitude').val($this.attr('data-lat'));
                   $('#address').val($this.html());
-                  $('#location').val($this.html());
+                  $('#Location').val($this.html());
             })
               $(':not(#autocompleteField)').on('click', function(e){
                   $('#autocompleteField').addClass('hiddenElt');

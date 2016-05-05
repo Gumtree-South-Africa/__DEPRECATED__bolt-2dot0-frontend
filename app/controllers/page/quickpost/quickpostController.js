@@ -68,13 +68,17 @@ router.post('/quickpost',
 	form(
 		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
-		field('Category').required(), field('price').trim().is(/^[0-9]+$/),
-		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
+		field('Category').required(),
+		field('price').trim().is(/^[0-9]+$/),
+		field('switch'),
+		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
 	),
 
 	// Express request-handler now receives filtered and validated data
 	function (req, res, next) {
 		console.time('Instrument-QuickPost-Data-Controller');
+
+		console.log('$$$$$$$$$$$$$', req.body);
 
 		// Get Auth Cookie
 		var authCookieName = 'bt_auth';
@@ -243,6 +247,8 @@ var QuickPost = {
 		modelData.formContent.errorDescriptionLong = 'quickpost.error.descriptionLong';
 		modelData.formContent.errorDescriptionInvalid = 'quickpost.error.descriptionInvalid';
 		modelData.formContent.errorCategoryReqd = 'quickpost.error.categoryReqd';
+		modelData.formContent.errorLocationReqd = 'quickpost.error.locationReqd';
+		modelData.formContent.errorLocationInvalid = 'quickpost.error.locationInvalid';
 		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
 
 		// Custom header
@@ -278,8 +284,8 @@ var QuickPost = {
 		if (!_.isEmpty(formData.switch)) {
 			modelData.formContent.switch = formData.switch;
 		}
-		if (!_.isEmpty(formData.location)) {
-			modelData.formContent.location = formData.location;
+		if (!_.isEmpty(formData.Location)) {
+			modelData.formContent.location = formData.Location;
 		}
 		if (!_.isEmpty(formData.latitude)) {
 			modelData.formContent.latitude = formData.latitude;
@@ -338,13 +344,16 @@ var QuickPost = {
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
 		for (var i=0; i<req.form.errors.length; i++){
-			if (req.form.errors[i].indexOf('Category ') > -1) {
+			if (req.form.errors[i].indexOf('Description ') > -1) {
+				if(!req.form.fieldErrors.description)
+					req.form.fieldErrors.description = req.form.errors[i];
+			} else if (req.form.errors[i].indexOf('Category ') > -1) {
 				if(!req.form.fieldErrors.category)
 					req.form.fieldErrors.category = req.form.errors[i];
 			}
-			else if (req.form.errors[i].indexOf('Description ') > -1) {
-				if(!req.form.fieldErrors.description)
-					req.form.fieldErrors.description = req.form.errors[i];
+			else if (req.form.errors[i].indexOf('Location ') > -1) {
+				if(!req.form.fieldErrors.location)
+					req.form.fieldErrors.location = req.form.errors[i];
 			}
 		}
 
@@ -373,6 +382,21 @@ var QuickPost = {
 					if (det.message.indexOf('does not map to any location') > '-1') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('latitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('longitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('address') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
 						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 						fieldError = 'true';
 					}

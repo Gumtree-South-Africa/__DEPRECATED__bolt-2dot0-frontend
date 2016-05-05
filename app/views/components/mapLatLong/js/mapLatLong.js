@@ -56,21 +56,23 @@ BOLT.MapLatLong = (function () {
 
         function setPositionAddress(pos, infowinObj) {
              geocoder.geocode({
-                latLng: pos
-                }, function(responses) {
-                    if (responses && responses.length > 0) {
-                        infowinObj.posAddress = responses[0].formatted_address;
-                        $('#latitude').val(pos.lat());
-                        $('#longitude').val(pos.lng());
-                        $('#address').val(infowinObj.posAddress);
-                        $('#location').val(infowinObj.posAddress);
-                        $('#geolatitude').val(pos.lat());
-                        $('#geolongitude').val(pos.lng());
-                        $('#geoaddress').val(infowinObj.posAddress);
-                        $('#maps-link').removeClass("hiddenElt");
-                    } else {
-                    infowinObj.posAddress = "";
-                }
+                 latLng: pos
+             }, function (responses) {
+                 if (responses && responses.length > 0) {
+                     if ( (typeof $('#Location').val() !== 'undefined') && ($('#Location').val() == '')) {
+                         infowinObj.posAddress = responses[0].formatted_address;
+                         $('#Location').val(infowinObj.posAddress);
+                         $('#latitude').val(pos.lat());
+                         $('#longitude').val(pos.lng());
+                         $('#address').val(infowinObj.posAddress);
+                         $('#geolatitude').val(pos.lat());
+                         $('#geolongitude').val(pos.lng());
+                         $('#geoaddress').val(infowinObj.posAddress);
+                     }
+                     $('#maps-link').removeClass("hiddenElt");
+                 } else {
+                     infowinObj.posAddress = "";
+                 }
              });
         }
 
