@@ -136,6 +136,38 @@ BOLT.QuickPostPage = (function() {
                     $("input[name=Category]").valid();
                 }
             });
+
+    		var selectedOption, 
+    		    priceType = document.getElementById('priceTypeOptions');
+            
+            // Listener to update the priceType when the user selects a priceType.
+            $('#priceTypeOptions').change( function() {
+            	
+            		selectedOption = priceType[priceType.selectedIndex].value;
+            		
+ //           		alert('You selected ' + selectedOption);
+            		
+                    // Set the pricetype Id in a hidden var.
+                   $("input[name=SelectedPricetype]").val(selectedOption);
+                    
+//                    alert('Updated form with input[name=SelectedPricetype] = ' + $("input[name=SelectedPricetype]").val());
+        	});
+            
+    		if (($("input[name=SelectedPricetype]").val() == '') || ($("input[name=SelectedPricetype]").val() == null)) {
+//    			alert ('Yes it is null');
+    			
+        		selectedOption = priceType[priceType.selectedIndex].value;
+
+            	$("input[name=SelectedPricetype]").val(selectedOption); 
+            
+//    			alert('Initialized form with input[name=SelectedPricetype] = ' + $("input[name=SelectedPricetype]").val());
+    		}
+    		else //There is a pre-selected value
+			{
+//    			alert('Pre-selected value = ' + $("input[name=SelectedPricetype]").val());
+//    			$('#priceTypeOptions').value = $("input[name=SelectedPricetype]").val(); // Select that option in the dropdown 
+    			priceType.value = $("input[name=SelectedPricetype]").val(); // Select that option in the dropdown 
+			}
         },
 
         tooltip: function(){
