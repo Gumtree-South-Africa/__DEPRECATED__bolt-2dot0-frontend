@@ -14,17 +14,18 @@ var express = require('express'),
 var config = {
     root: process.cwd()
 };
-var writeHeader = require(config.root + '/server/middlewares/write-header'),
-    requestId = require(config.root + '/server/middlewares/request-id'),
+var legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
+    guardians = require(config.root + '/modules/guardians'),
+    deviceDetection = require(config.root + '/modules/device-detection'),
+    checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
+    checkMobileOnly = require(config.root + '/server/middlewares/check-mobileDevice'),
+    boltExpressHbs = require(config.root + '/modules/handlebars'),
+    assets = require(config.root + '/modules/assets'),
     checkIp = require(config.root + '/server/middlewares/check-ip'),
     checkMachineId = require(config.root + '/server/middlewares/check-machineid'),
     checkUserAgent = require(config.root + '/server/middlewares/check-useragent'),
-    checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
-    deviceDetection = require(config.root + '/modules/device-detection'),
-    boltExpressHbs = require(config.root + '/modules/handlebars'),
-    legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
-    assets = require(config.root + '/modules/assets'),
-    guardians = require(config.root + '/modules/guardians');
+    requestId = require(config.root + '/server/middlewares/request-id'),
+    writeHeader = require(config.root + '/server/middlewares/write-header');
 
 var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
@@ -48,17 +49,19 @@ function BuildApp(siteObj) {
     if (typeof siteObj !== 'undefined') {
 
         /*
-         * Bolt 2.0 Security
-         */
-        app.use(guardians(app));
-
-        /*
          * Bolt 2.0 Redirect
          */
         // Check if we need to redirect to mweb - for legacy devices
         app.use(legacyDeviceRedirection());
 
-        // Setting up locals object for app
+        /*
+         * Bolt 2.0 Security
+         */
+        app.use(guardians(app));
+
+        /*
+         * Setting up locals object for app
+         */
         app.locals.config = {};
         app.locals.config.name = siteObj.name;
         app.locals.config.locale = siteObj.locale;
@@ -119,10 +122,7 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
-        app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
-        app.use(requestId());
-        
-	//app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+	    //app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
         var i18n = require(config.root + '/modules/i18n');
         var i18n2 = instance(i18n);
         app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
@@ -132,13 +132,26 @@ function BuildApp(siteObj) {
         app.use(boltExpressHbs.create(app));
 
         /*
-         * Bolt 2.0 Custom middlewares
+         * Bolt 2.0 Authentication
          */
         app.use(checkAuthentication());
+
+        /*
+         * Bolt 2.0 Device Detection
+         */
+        app.use(deviceDetection.init());
+
+        /*
+         * Bolt 2.0 Mobile Only
+         */
+        app.use(checkMobileOnly());
+
+        /*
+         * Bolt 2.0 Custom middlewares to add to request
+         */
         app.use(checkIp());
         app.use(checkMachineId());
         app.use(checkUserAgent());
-        app.use(deviceDetection.init());
         app.use(requestId());
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
 
