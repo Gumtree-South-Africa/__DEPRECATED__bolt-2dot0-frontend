@@ -118,28 +118,29 @@
             </div>
 
             {{!-- Price --}}
-      
             <div class="field-wrapper">
                 <div class="price">  
-                 {{#if this.formContent.currencyDisplay}}
+                    {{#if this.formContent.currencyDisplay}}
 	                   <div class='currency-types'>
 		                    <select id='currencyOptions' name='currencyOptions'> 
-		                    {{#each this.formContent.currency}}
-		                    	<option value='{{this}}' {{#if selected}}selected{{/if}}>{{this}}</option>
-		                    {{/each}}
-		                    <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />		            
-		    
-		             </div>
-	             {{/if}}
+                                {{#each this.formContent.currency}}
+                                    <option value='{{this}}' {{#if selected}}selected{{/if}}>{{this}}</option>
+                                {{/each}}
+                            </select>
+                            <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />
+                       </div>
+	                {{/if}}
                       
-                   <div class='price-field number'> 
-                        <input type="text" data-number='{"nogrouping" : false}' pattern="\d*" onkeypress='return event.charCode >= 48 && event.charCode <= 57'  class='price-value'
-                            id="Price" name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}">
+                    <div class='price-field number'>
+                        <input type="text" data-number='{"nogrouping" : false}' pattern="\d*"
+                               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                               class='price-value' id="Price" name="price"
+                               placeholder="{{i18n this.formContent.pricePlaceholder}}"
+                               value="{{i18n this.formContent.priceValue}}">
                         <span class="ghost">{{i18n this.formContent.priceCurrencyText}}</span>
                         <span class='price-fraction'>{{i18n this.formContent.priceExtension}}</span>
-                   </div>
-                 
-             </div>
+                    </div>
+                </div>
            </div>
             
 

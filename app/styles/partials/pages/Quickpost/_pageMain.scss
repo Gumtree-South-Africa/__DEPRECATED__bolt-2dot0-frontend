@@ -113,6 +113,7 @@
 
 .description{
   margin-top: 0.4em;
+  margin-right: -0.25em;
   position: relative;
   .icon-contextual-info{
     width: 15px;
@@ -129,7 +130,7 @@
     display: inline;
     cursor: text;
     position: absolute;
-    top: 1.6em;
+    top: 2.3em;
     right: 1.6em;
     font-size: 80%;
     color: #6666ff;
@@ -141,7 +142,7 @@
     max-width: 99%;
     height: 4.5em;
     min-height: 4.5em;
-    padding-right: 2em;
+    padding-right: 2.3em;
   }
 }
 
@@ -155,10 +156,17 @@
   margin-top: 0.6em;
 }
 
-.price, .select-location{
+.select-location{
   border-bottom: solid 1px #a2a2a1;
   padding-left: 0.4em;
   margin-top: 1em;
+  position: relative;
+}
+
+.price{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 1em;
+  padding-bottom: 0.5em;
   position: relative;
 }
 
@@ -168,7 +176,7 @@ input, select{
     border: 0;
     outline: none;
     width: 99%;
-    margin-left: -0.4em;
+    margin-left: -0.2em;
   }
 }
 
@@ -191,8 +199,8 @@ input, select{
   overflow: hidden;
   border-radius: 10px;
   padding: 0 0.75em;
-  margin-bottom: 0.5em;
-  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
   margin-left: -0.4em;
 }
 
@@ -347,7 +355,7 @@ border: 1px solid #ccc;
 border-radius: .3125em;
 font-size: 1em;    
 padding-left: 1.6em;
-width: 9.25em; 
+width: 11.25em;
 height: 25px;
 }
 
