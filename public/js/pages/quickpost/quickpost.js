@@ -136,6 +136,30 @@ BOLT.QuickPostPage = (function() {
                     $("input[name=Category]").valid();
                 }
             });
+
+    		var selectedOption, 
+    		    currency = document.getElementById('currencyOptions');
+            
+    		if(currency != undefined)
+			{
+                // Listener to update the currency when the user selects a currency.
+                $('#currencyOptions').change( function() {
+                		selectedOption = currency[currency.selectedIndex].value;
+                		
+                        // Set the currency Id in a hidden var.
+                       $("input[name=SelectedCurrency]").val(selectedOption);
+            	});
+                
+        		if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) 
+        		{
+            		selectedOption = currency[currency.selectedIndex].value;
+                	$("input[name=SelectedCurrency]").val(selectedOption); 
+        		}
+        		else //There is a pre-selected value
+    			{
+        			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
+    			}
+			}    		
         },
 
         tooltip: function(){

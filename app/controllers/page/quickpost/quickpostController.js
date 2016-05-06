@@ -89,9 +89,10 @@ router.post('/quickpost',
 		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
 		field('Category').required(),
-		field('price').trim().is(/^[0-9]+$/),
-		field('switch'),
+		field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
+		field('switch'), 
 		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
+
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -240,6 +241,8 @@ var QuickPost = {
 		modelData.formContent.priceCurrencyText = 'quickpost.priceCurrencyText';
 		modelData.formContent.priceCurrencyDisplay = 'quickpost.priceCurrencyDisplay';
 		modelData.formContent.priceExtension = 'quickpost.priceExtension';
+		modelData.formContent.currencyDisplay=bapiConfigData.content.quickpost.currencyDisplay;
+        modelData.formContent.currency=bapiConfigData.content.quickpost.currency;
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
@@ -300,6 +303,9 @@ var QuickPost = {
 		}
 		if (!_.isEmpty(formData.price)) {
 			modelData.formContent.priceValue = formData.price;
+		}
+		if (!_.isEmpty(formData.SelectedCurrency)) {
+			modelData.formContent.selectedCurrency = formData.SelectedCurrency;
 		}
 		if (!_.isEmpty(formData.switch)) {
 			if (formData.switch == 'YES') {

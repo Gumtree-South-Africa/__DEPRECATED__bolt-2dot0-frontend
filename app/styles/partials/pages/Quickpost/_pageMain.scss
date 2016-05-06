@@ -316,3 +316,54 @@ textarea.error{
     border: none;
   }
 }
+
+.currency-types{
+ clear:both;
+ float:left;
+ margin: 0 1em .5em 0;
+}
+
+#currency-type-options{
+border: 1px solid #ccc;
+border-radius: .3125em;
+font-size: 1em; 
+padding: 0 .4em;
+height: 25px;
+}
+
+.price-field{
+position: relative;
+display: inline-block;
+margin-bottom: .5em;
+border: none;
+border-color: #939393;
+border-radius: 5px;
+
+}
+
+
+.price-field.numberonly input.price-value,#Price {
+border: 1px solid #ccc;
+border-radius: .3125em;
+font-size: 1em;    
+padding-left: 1.6em;
+width: 9.25em; 
+height: 25px;
+}
+
+.ghost{
+  position: absolute;
+  left: 0;
+  top: -.25em;
+  z-index: 1;
+  padding: .35em; 
+  font-weight: 600;
+}
+
+@include in-breakpoint($no-break){
+.currency-types{
+    border-color: #939393;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+ }
+}
