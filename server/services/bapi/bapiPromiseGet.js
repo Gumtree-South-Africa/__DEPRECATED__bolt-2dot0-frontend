@@ -36,8 +36,8 @@ module.exports = function(bapiOptions, bapiHeaders, serviceName){
 		} else {
 			bapiOptions.path = bapiOptions.path + '?' + bapiOptions.parameters;
 		}
-	} 
-	
+	}
+
   	//Create Promise
 	var bapiDeferred = Q.defer();
 

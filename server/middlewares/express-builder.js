@@ -132,11 +132,6 @@ function BuildApp(siteObj) {
         app.use(boltExpressHbs.create(app));
 
         /*
-         * Bolt 2.0 Authentication
-         */
-        app.use(checkAuthentication());
-
-        /*
          * Bolt 2.0 Device Detection
          */
         app.use(deviceDetection.init());
@@ -154,6 +149,11 @@ function BuildApp(siteObj) {
         app.use(checkUserAgent());
         app.use(requestId());
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
+
+        /*
+         * Bolt 2.0 Authentication
+         */
+        app.use(checkAuthentication(siteObj.locale));
 
         // Template hbs caching.
         if (process.env.NODE_ENV) {
