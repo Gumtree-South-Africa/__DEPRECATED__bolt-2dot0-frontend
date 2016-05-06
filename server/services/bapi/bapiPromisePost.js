@@ -39,6 +39,9 @@ module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 		}
 	} 
 
+	//console.log('$$$$$$$$$$$$$$$$$$', bapiOptions);
+	//console.log('$$$$$$$$$$$$$$$$$$', postData);
+
   	//Create Promise
 	var bapiDeferred = Q.defer();
 

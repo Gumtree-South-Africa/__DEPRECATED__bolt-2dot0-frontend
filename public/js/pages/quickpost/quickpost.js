@@ -105,6 +105,7 @@ BOLT.QuickPostPage = (function() {
             this.toggleSwitchUpdate();
             this.getData();
             this.populate();
+            this.registerUnloadEvent();
         },
 
         /**
@@ -159,16 +160,20 @@ BOLT.QuickPostPage = (function() {
     			{
         			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
     			}
-			}    		
+			}
+
+            $("#postForm").submit(function () {
+                window.skipOnBeforeUnload = true;
+            });
         },
 
         tooltip: function(){
-          $('.description .icon-contextual-info').on('click', function(){
-            $('.floating-tooltip').css('display', 'block');
-          })
-          $('.tooltip-wrapper .icon-gl-message-close').on('click', function(){
-            $('.floating-tooltip').css('display', 'none');
-          })
+            $('.description .icon-contextual-info').on('click', function(){
+                $('.floating-tooltip').css('display', 'block');
+            })
+            $('.tooltip-wrapper .icon-gl-message-close').on('click', function(){
+                $('.floating-tooltip').css('display', 'none');
+            })
         },
 
         charCount: function(){
@@ -178,61 +183,71 @@ BOLT.QuickPostPage = (function() {
         },
 
         toggleSwitchUpdate: function(){
-          $('.toggleswitch input[type=checkbox]').on('change', function(){
-            var isToggleSwitchOn = $(this).is(':checked');
-            if(isToggleSwitchOn){
-              $('input[name=switch]').val('YES');
-              $('#switchBtn').addClass('checked');
-            }
-            else{
-              $('input[name=switch]').val('NO');
-              $('#switchBtn').removeClass('checked');
-            }
-          });
+            $('.toggleswitch input[type=checkbox]').on('change', function(){
+                var isToggleSwitchOn = $(this).is(':checked');
+                if(isToggleSwitchOn){
+                    $('input[name=switch]').val('YES');
+                    $('#switchBtn').addClass('checked');
+                }
+                else{
+                    $('input[name=switch]').val('NO');
+                    $('#switchBtn').removeClass('checked');
+                }
+            });
         },
+
         getData : function(){
             $('#Location').on('keyup', function(){
-              var htmlElt = '';
-    					$.ajax({
-    							url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#Location').val(),
-    							dataType: 'JSON',
-    							type: 'GET',
-    							success: function(resp){
-                                    if (resp.results instanceof Array) {
-                                        $('#autocompleteField').html('');
-                                        if (resp.results.length > 0) {
-                                            $('#autocompleteField').removeClass('hiddenElt');
-                                            for (var idx = 0; idx < resp.results.length; idx++) {
-                                                var address = resp.results[idx].formatted_address;
-                                                var latitude = resp.results[idx].geometry.location.lat;
-                                                var longitude = resp.results[idx].geometry.location.lng;
-                                                htmlElt += '<div class="ac-field" data-long=' + longitude + ' data-lat=' + latitude + '>' + address + '</div>';
-                                            }
-                                            $('#autocompleteField').append(htmlElt);
-                                        }
-                                        else {
-                                            $('#autocompleteField').addClass('hiddenElt');
-                                        }
+                var htmlElt = '';
+                    $.ajax({
+                        url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + $('#Location').val(),
+                        dataType: 'JSON',
+                        type: 'GET',
+                        success: function(resp){
+                            if (resp.results instanceof Array) {
+                                $('#autocompleteField').html('');
+                                if (resp.results.length > 0) {
+                                    $('#autocompleteField').removeClass('hiddenElt');
+                                    for (var idx = 0; idx < resp.results.length; idx++) {
+                                        var address = resp.results[idx].formatted_address;
+                                        var latitude = resp.results[idx].geometry.location.lat;
+                                        var longitude = resp.results[idx].geometry.location.lng;
+                                        htmlElt += '<div class="ac-field" data-long=' + longitude + ' data-lat=' + latitude + '>' + address + '</div>';
                                     }
-    							}
-    					})
-    				})
-    			},
-
-          populate: function(){
-              $('#autocompleteField').on('click', '.ac-field', function(){
-                  var $this = $(this);
-
-                  $('#autocompleteField').addClass('hiddenElt');
-                  $('#longitude').val($this.attr('data-long'));
-                  $('#latitude').val($this.attr('data-lat'));
-                  $('#address').val($this.html());
-                  $('#Location').val($this.html());
+                                    $('#autocompleteField').append(htmlElt);
+                                }
+                                else {
+                                    $('#autocompleteField').addClass('hiddenElt');
+                                }
+                            }
+                        }
+                    })
             })
-              $(':not(#autocompleteField)').on('click', function(e){
-                  $('#autocompleteField').addClass('hiddenElt');
-              })
-          }
+        },
+
+        populate: function(){
+            $('#autocompleteField').on('click', '.ac-field', function(){
+                var $this = $(this);
+                $('#autocompleteField').addClass('hiddenElt');
+                $('#longitude').val($this.attr('data-long'));
+                $('#latitude').val($this.attr('data-lat'));
+                $('#address').val($this.html());
+                $('#Location').val($this.html());
+            })
+
+            $(':not(#autocompleteField)').on('click', function(e){
+                $('#autocompleteField').addClass('hiddenElt');
+            })
+        },
+
+        registerUnloadEvent: function(){
+            window.onbeforeunload = function() {
+                if (window.skipOnBeforeUnload) {
+                    return;
+                }
+                return '';
+            };
+        }
     };
 
 })(); // Ends singleton

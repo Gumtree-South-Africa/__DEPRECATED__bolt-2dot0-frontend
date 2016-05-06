@@ -3,7 +3,6 @@ bolt-2.0-frontend
 
 
 
-
 ## Installation Tasks
 
 ### NodeJS

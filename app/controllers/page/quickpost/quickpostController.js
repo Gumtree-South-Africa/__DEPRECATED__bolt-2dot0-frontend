@@ -324,7 +324,7 @@ var QuickPost = {
 
 		if (typeof modelData.formContent.priceValue !== 'undefined') {
 			json.price = {};
-			json.price.currency = modelData.formContent.priceCurrency;
+			json.price.currency = modelData.formContent.selectedCurrency;
 			json.price.amount = modelData.formContent.priceValue;
 		}
 

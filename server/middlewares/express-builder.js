@@ -130,6 +130,8 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
+        app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
+        app.use(requestId());
         app.use(boltExpressHbs.create(app));
 
         /*
