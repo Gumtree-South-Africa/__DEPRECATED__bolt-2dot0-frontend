@@ -24,30 +24,23 @@
 
             {{!-- Description --}}
             <div class="field-wrapper">
-              <div class="description">
+                <span class="star">*</span>
+                <div class="description">
                 <textarea id="Description" name="Description" {{#if this.flash.fieldErrors.description}}class="error" data-errorFlash="{{this.flash.fieldErrors.description}}"{{/if}}
-                          data-errorDescriptionReqd="{{i18n this.formContent.errorDescriptionReqd}}"
-                          data-errorDescriptionShort="{{i18n this.formContent.errorDescriptionShort}}"
-                          data-errorDescriptionLong="{{i18n this.formContent.errorDescriptionLong}}"
-                          data-errorDescriptionInvalid="{{i18n this.formContent.errorDescriptionInvalid}}"
+                          data-errorDescriptionReqd="<p class='labelError'>{{i18n this.formContent.errorDescriptionReqd}}</p>"
+                          data-errorDescriptionShort="<p class='labelError'>{{i18n this.formContent.errorDescriptionShort}}</p>"
+                          data-errorDescriptionLong="<p class='labelError'>{{i18n this.formContent.errorDescriptionLong}}</p>"
+                          data-errorDescriptionInvalid="<p class='labelError'>{{i18n this.formContent.errorDescriptionInvalid}}</p>"
                           placeholder="{{i18n this.formContent.descriptionPlaceholder}}">{{i18n this.formContent.descriptionValue}}</textarea>
                 <span class="icon-contextual-info"></span>
                 <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
                 {{#with this.flash.fieldErrors.description}}
-                    <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{i18n this}}</p>
+                    <p class="error noHeaderError">{{i18n this}}</p>
                 {{/with}}
               </div>
             </div>
 
             {{!-- CATEGORY SELECTOR --}}
-            <style>
-            label.error {
-              color: #bb3027;
-              font-weight: 500;
-              font-size: 12px;
-            }
-            </style>
-            <!-- L1 Category Selector -->
             <style>
             div.select-category > label:not(.error) {
               font-size: 1.3em;
@@ -56,12 +49,17 @@
 
             div.select-category {
               padding-bottom: 1em;
+                width: 97%;
             }
 
             div.mobile-only {
               width: 100%;
               margin: 0 auto;
               margin-top: 1em;
+            }
+
+            div.mobile-only .star{
+                margin-right: -0.8em;
             }
 
             div.mobile-only .mm-listview > li > span.base-panel {
@@ -85,9 +83,10 @@
             <div class="field-wrapper">
                 <div class="select-category">
                   <div id="catSelector" class="menu-cnt"
-                       data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}"
+                       data-errorCategoryReqd="<p class='catSelectorError'>{{i18n this.formContent.errorCategoryReqd}}</p>"
                        {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
                     <div id="mobileCats" class="mobile-only">
+                      <span class="star">*</span>
                       <div class="body">
                           <nav id="cat-list">
                               <div>
@@ -113,7 +112,7 @@
                   <input type="hidden" id="Category" name="Category" value="{{#if this.formContent.category}}{{this.formContent.category}}{{/if}}" />
                 </div>
                 {{#with this.flash.fieldErrors.category}}
-                    <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{this}}</p>
+                    <p class="error noHeaderError">{{this}}</p>
                 {{/with}}
             </div>
 
@@ -141,8 +140,7 @@
                         <span class='price-fraction'>{{i18n this.formContent.priceExtension}}</span>
                     </div>
                 </div>
-           </div>
-            
+            </div>
 
             {{!-- Share on FB --}}
             {{#if this.formContent.displayFb}}
@@ -155,32 +153,34 @@
             {{/if}}
 
             <div class="field-wrapper">
-              <div class="select-location">
-                {{> (dynamic "mapLatLong") }}
-                <input id="Location" class="custom-input" autocomplete="off" type="text" name="Location"
-                       data-errorLocationReqd="{{i18n this.formContent.errorLocationReqd}}"
-                       data-errorLocationInvalid="{{i18n this.formContent.errorLocationInvalid}}"
-                    {{#if this.flash.fieldErrors.location}}class="error" data-errorFlash="{{i18n this.flash.fieldErrors.location}}"{{/if}}
-                       placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
-                <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
-                <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
-                <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
-                <input type="hidden" id="geolatitude" name="geolatitude" value = "{{this.formContent.latitude}}"/>
-                <input type="hidden" id="geolongitude" name="geolongitude" value = "{{this.formContent.longitude}}"/>
-                <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
+                <span class="star">*</span>
 
-                {{#with this.flash.fieldErrors.location}}
-                  <p class="error noHeaderError"><span class="icon-alert-blue"></span>{{i18n this}}</p>
-                {{/with}}
+                <div class="select-location">
+                    {{> (dynamic "mapLatLong") }}
+                    <input id="Location" class="custom-input" autocomplete="off" type="text" name="Location"
+                           data-errorLocationReqd="<p class='custom-inputError'>{{i18n this.formContent.errorLocationReqd}}</p>"
+                           data-errorLocationInvalid="<p class='custom-inputError'>{{i18n this.formContent.errorLocationInvalid}}</p>"
+                        {{#if this.flash.fieldErrors.location}}class="error" data-errorFlash="{{i18n this.flash.fieldErrors.location}}"{{/if}}
+                           placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+                    <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
+                    <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
+                    <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>
+                    <input type="hidden" id="geolatitude" name="geolatitude" value = "{{this.formContent.latitude}}"/>
+                    <input type="hidden" id="geolongitude" name="geolongitude" value = "{{this.formContent.longitude}}"/>
+                    <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
 
-                <div id="maps-link" class="infos hiddenElt">
-                    <span>{{i18n this.formContent.geolocation1}}</span>
-                    <span>{{i18n this.formContent.geolocation2}}</span>
+
+                    {{#with this.flash.fieldErrors.location}}
+                      <p class="error noHeaderError">{{i18n this}}</p>
+                    {{/with}}
+
+                    <div id="maps-link" class="infos hiddenElt">
+                        <span>{{i18n this.formContent.geolocation1}}</span>
+                        <span>{{i18n this.formContent.geolocation2}}</span>
+                    </div>
+
+                    <div id="autocompleteField" class="hiddenElt"></div>
                 </div>
-
-                <div id="autocompleteField" class="hiddenElt"></div>
-
-              </div>
 
               {{!-- Map holder --}}
               <div id="map_canvas_wrapper">

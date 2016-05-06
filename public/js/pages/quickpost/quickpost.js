@@ -190,6 +190,7 @@ BOLT.QuickPostPage = (function() {
             }
           });
         },
+
         getData : function(){
             $('#Location').on('keyup', function(){
               var htmlElt = '';
