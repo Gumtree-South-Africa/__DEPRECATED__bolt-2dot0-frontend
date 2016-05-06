@@ -6,7 +6,7 @@ module.exports = function(config){
     port : config.get('BAPI.server.port'),
     parameters : config.get('BAPI.server.parameters'),
     path : "/",
-    method : "GET",
+    method : "",
     headers: {}
   };
   return obj;

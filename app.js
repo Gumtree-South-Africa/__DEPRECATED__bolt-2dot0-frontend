@@ -12,7 +12,7 @@ var cuid = require('cuid');
 
 // middleware
 var expressbuilder = require('./server/middlewares/express-builder');
-var checksite = require('./server/middlewares/check-site');
+var siteconfig = require('./server/middlewares/site-config');
 var responseMetrics = require('./server/middlewares/response-metrics');
 var eventLoopMonitor = require('./server/utils/monitor-event-loop');
 var error = require('./modules/error');
@@ -51,13 +51,13 @@ Object.keys(config.sites).forEach(function(siteKey) {
 		        cacheBapiData(siteApp, requestId);
 
 		        // register bolt middleware
-		        siteApp.use(checksite(siteApp));
+		        siteApp.use(siteconfig(siteApp));
 			  	siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
-      
+
 	      siteCount = siteCount + 1;
     }
  });
@@ -69,7 +69,7 @@ controllers.forEach(function (controller) {
 });
 
 
-// Warning: do not reorder this middleware. 
+// Warning: do not reorder this middleware.
 // Order of this should always appear after controller middlewares are setup.
 app.use(error.four_o_four(app));
 

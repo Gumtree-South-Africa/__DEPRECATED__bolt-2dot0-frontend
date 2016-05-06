@@ -14,8 +14,12 @@ var express = require('express'),
 var config = {
     root: process.cwd()
 };
-var writeHeader = require('./write-header'),
-    requestId = require('./request-id'),
+var writeHeader = require(config.root + '/server/middlewares/write-header'),
+    requestId = require(config.root + '/server/middlewares/request-id'),
+    checkIp = require(config.root + '/server/middlewares/check-ip'),
+    checkMachineId = require(config.root + '/server/middlewares/check-machineid'),
+    checkUserAgent = require(config.root + '/server/middlewares/check-useragent'),
+    checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
     legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
@@ -27,7 +31,6 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 // create a write stream (in append mode)
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
-
 
 var instance = require('instance');
 var i18nOrg = instance(require('i18n'));
@@ -44,9 +47,14 @@ function BuildApp(siteObj) {
     // Only for Site Specific App
     if (typeof siteObj !== 'undefined') {
 
-        // Bolt 2.0 Security
+        /*
+         * Bolt 2.0 Security
+         */
         app.use(guardians(app));
 
+        /*
+         * Bolt 2.0 Redirect
+         */
         // Check if we need to redirect to mweb - for legacy devices
         app.use(legacyDeviceRedirection());
 
@@ -62,10 +70,10 @@ function BuildApp(siteObj) {
          * Development based middlewares
          */
         middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function () {
-            // assets for local developments and populates  app.locals.jsAssets
-            app.use('/', compress());
-            app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
             app.use(logger('dev'));
+
+            // assets for local developments and populates  app.locals.jsAssets
+            app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
             // for dev purpose lets make all static none cacheable
             // http://evanhahn.com/express-dot-static-deep-dive/
             app.use('/public', express.static(config.root + '/public', {
@@ -90,7 +98,6 @@ function BuildApp(siteObj) {
          * Production based middlewares
          */
         middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function () {
-            app.use('/', compress());
             app.use(logger('short'));
 
             if (app.locals.config) {
@@ -99,30 +106,41 @@ function BuildApp(siteObj) {
         });
 
         /*
-         * Bolt 2.0 Must needed middlewares
+         * Bolt 2.0 Express middlewares
          */
+        app.use('/', compress());
         app.use(bodyParser.json());
-        app.use(bodyParser.urlencoded({extended: false}));
+        app.use(bodyParser.urlencoded({extended: true}));
         app.use(cookieParser());
         app.use(methodOverride());
         app.use(expressUncapitalize());
         app.use(logger('combined', {stream: accessLogStream}));
 
         /*
-         * Bolt 2.0 Custom middlewares
+         * Bolt 2.0 Rendering middlewares
          */
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
         app.use(requestId());
-        //app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
-
+        
+	//app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
         var i18n = require(config.root + '/modules/i18n');
         var i18n2 = instance(i18n);
-
         app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
         //i18nClone.expressBind(app, i18n.init(locale));
         i18n2 = '';
+
         app.use(boltExpressHbs.create(app));
+
+        /*
+         * Bolt 2.0 Custom middlewares
+         */
+        app.use(checkAuthentication());
+        app.use(checkIp());
+        app.use(checkMachineId());
+        app.use(checkUserAgent());
         app.use(deviceDetection.init());
+        app.use(requestId());
+        app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
 
         // Template hbs caching.
         if (process.env.NODE_ENV) {

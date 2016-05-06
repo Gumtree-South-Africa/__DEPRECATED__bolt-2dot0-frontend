@@ -28,6 +28,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	      
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 	  	"locationDropdownLevel"				: 2,
 	  	"categoryDropdownLevel"				: 2
@@ -36,6 +37,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "/terms-of-service",
+		"postingRules"	                    : "http://gumtreehelp.com/ie/knowledgebase.php?article=22",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://gumtreehelp.com/ie/",
 		"interLinkUrl"						: null,
@@ -86,7 +88,14 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		
+		   "quickpost" : {
+              "currencyDisplay"    :    false,
+              "currency"           :    ["EUR"]
+        }
+		
+		
 	},
 	"bapi" : {
 		"Homepage" : {
@@ -95,6 +104,14 @@
 			},
 			"mobile" 	: {
 				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+			}
+		},
+		"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
 			}
 		}
 	}

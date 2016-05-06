@@ -1,13 +1,14 @@
 {{!-- From Body.html --}}
 <div class="viewport" id="div-gpt-oop">
-    {{> (dynamic "header") }}
-
+    {{#block "headerWrapper"}}
+        {{> (dynamic "header") }}
+    {{/block}}
     <div class="containment">
 
         {{#block "messaging-full-width"}}{{/block}}
 
         <div class="page {{#ifeq this.content.numFound compare=0}}{{else}}extra{{/ifeq}}" >
-			
+
 			{{> (dynamic "messaging") }}
             {{#block "messaging" }}{{/block}}
 
@@ -30,15 +31,15 @@
 
            {{#block "comscore"}}{{/block}}
 
+           {{#block "footerWrapper"}}
             <div class="footer">
                   {{> (dynamic "footer" ) }}
-                  {{#block "footer" }}
+                  {{#block "footer"}}
                       <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
                   {{/block}}
             </div>
+            {{/block}}
         </div>
     </div>
 </div>
 {{!-- End Body.html --}}
-
-

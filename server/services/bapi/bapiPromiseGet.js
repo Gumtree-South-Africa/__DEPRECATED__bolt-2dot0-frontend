@@ -1,28 +1,40 @@
 'use strict';
 
-var Q = require("q");
+var _ = require('underscore');
+var Q = require('q');
 
-var BAPICall = require("./BAPICall");
+var BAPICall = require('./BAPICall');
 
-module.exports = function(bapiOptions, requestId, locale, serviceName, authTokenValue){
+module.exports = function(bapiOptions, bapiHeaders, serviceName){
 	console.time('Instrument-BAPI-' + serviceName);
 
 	// Add Headers
-	bapiOptions.headers["X-BOLT-APPS-ID"] = "RUI";
-	bapiOptions.headers["X-BOLT-SITE-LOCALE"] = locale;
-	if (typeof requestId !== "undefined" && requestId!=null) {
-		bapiOptions.headers["X-BOLT-TRACE-ID"] = requestId;
+	bapiOptions.headers['X-BOLT-APPS-ID'] = 'RUI';
+	if (typeof bapiHeaders.locale !== 'undefined' && !_.isEmpty(bapiHeaders.locale)) {
+		bapiOptions.headers['X-BOLT-SITE-LOCALE'] = bapiHeaders.locale;
 	}
-	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
-		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
+	if (typeof bapiHeaders.requestId !== 'undefined' && !_.isEmpty(bapiHeaders.requestId)) {
+		bapiOptions.headers['X-BOLT-TRACE-ID'] = bapiHeaders.requestId;
+	}
+	if (typeof bapiHeaders.ip !== 'undefined' && !_.isEmpty(bapiHeaders.ip)) {
+		bapiOptions.headers['X-BOLT-IP-ADDRESS'] = bapiHeaders.ip;
+	}
+	if (typeof bapiHeaders.machineid !== 'undefined' && !_.isEmpty(bapiHeaders.machineid)) {
+		bapiOptions.headers['X-BOLT-MACHINE-ID'] = bapiHeaders.machineid;
+	}
+	if (typeof bapiHeaders.useragent !== 'undefined' && !_.isEmpty(bapiHeaders.useragent)) {
+		bapiOptions.headers['X-BOLT-USER-AGENT'] = bapiHeaders.useragent;
+	}
+	if (typeof bapiHeaders.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaders.authTokenValue)) {
+		bapiOptions.headers['Authorization'] = 'Bearer ' +  bapiHeaders.authTokenValue;
 	}
 	
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
-		if ( bapiOptions.path.indexOf("?") > -1 ) {
-			bapiOptions.path = bapiOptions.path + "&" + bapiOptions.parameters;
+		if ( bapiOptions.path.indexOf('?') > -1 ) {
+			bapiOptions.path = bapiOptions.path + '&' + bapiOptions.parameters;
 		} else {
-			bapiOptions.path = bapiOptions.path + "?" + bapiOptions.parameters;
+			bapiOptions.path = bapiOptions.path + '?' + bapiOptions.parameters;
 		}
 	} 
 	
@@ -31,9 +43,14 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
-		// console.info(serviceName + "Service: Callback from " + serviceName + " BAPI");
+		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
-			bapiDeferred.reject(serviceName + " BAPI returned: " + output.statusCode + " , details: " + output);
+			var bapiError = {};
+			bapiError.status = output.statusCode;
+			bapiError.message = output.message;
+			bapiError.details = output.details;
+			bapiError.serviceName = serviceName;
+			bapiDeferred.reject(bapiError);
 		} else {
 			bapiDeferred.resolve(output);
 			console.timeEnd('Instrument-BAPI-' + serviceName);
@@ -41,7 +58,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	});
 
 	// Invoke BAPI request
-	// console.info(serviceName + "Service: About to call " + serviceName + " BAPI");
+	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	bapi.doGet();
 
 	// Return Promise Data

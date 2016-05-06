@@ -47,6 +47,42 @@
           "./app/views/templates/precompile/hbs/common/b.hbs",
           "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
+    },
+    {
+        "dest" : "alaMaula/es_AR/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
+    },
+    {
+        "dest" : "Vivanuncios/es_MX/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
+    },
+    {
+        "dest" : "Gumtree/en_ZA/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
+    },
+    {
+        "dest" : "Gumtree/en_IE/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
+    },
+    {
+        "dest" : "Gumtree/en_SG/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
+    },
+    {
+        "dest" : "Gumtree/pl_PL/autocomplete.html.js",
+        "src" : [
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
+        ]
     }
   ]
 }

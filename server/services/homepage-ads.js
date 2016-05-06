@@ -9,47 +9,49 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var HomepageAdService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
 /**
  * Gets a list of ads for homepage gallery
  */
-HomepageAdService.prototype.getHomepageGallery = function(requestId, locale) {
+HomepageAdService.prototype.getHomepageGallery = function(bapiHeaders) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'homepageGallery', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
 
 /**
  * Gets a list of ads for gallery via AJAX
  */
-HomepageAdService.prototype.getAjaxGallery = function(requestId, locale, offset, limit) {
+HomepageAdService.prototype.getAjaxGallery = function(bapiHeaders, offset, limit) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'homepageGallery', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
 
 /**
  * Gets a list of ad statistics
  */
-HomepageAdService.prototype.getAdStatistics = function(requestId, locale) {
+HomepageAdService.prototype.getAdStatistics = function(bapiHeaders) {
 	// console.info('Inside HomepageAdStatisticsService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'adStatistics', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'adStatistics');
 };
 
 module.exports = new HomepageAdService();

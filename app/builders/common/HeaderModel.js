@@ -39,8 +39,16 @@ var HeaderModel = function (secure, req, res) {
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 
-	this.requestId = req.requestId;
+	this.requestId = req.app.locals.requestId;
 	this.i18n = res.locals.i18n;
+
+	this.bapiHeaders = {};
+	this.bapiHeaders.requestId = req.app.locals.requestId;
+	this.bapiHeaders.ip = req.app.locals.ip;
+	this.bapiHeaders.machineid = req.app.locals.machineid;
+	this.bapiHeaders.useragent = req.app.locals.useragent;
+	this.bapiHeaders.locale = res.locals.config.locale;
+	this.bapiHeaders.authTokenValue = this.authCookie;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
@@ -99,7 +107,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
 		    	headerDeferred = Q.defer();
-				Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
+				Q(userService.getUserFromCookie(scope.bapiHeaders))
 			    	.then(function (dataReturned) {
 			    		// merge returned data
 			    		_.extend(data, dataReturned);
@@ -191,7 +199,10 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+										  '/picture?width=36&height=36';
+			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+								  '/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 

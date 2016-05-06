@@ -32,13 +32,13 @@ function getCookieLocationId(req) {
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function (req, res) {
-	var level2Loc = new LocationModel(req.requestId, res.locals.config.locale, 1),
-		keyword = (new KeywordModel(req.requestId, res.locals.config.locale, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
-		gallery = (new GalleryModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		adstatistics = (new AdStatisticsModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		seo = (new SeoModel(req.requestId, res.locals.config.locale)).getModelBuilder(),
-		category = new CategoryModel(req.requestId, res.locals.config.locale, 2, getCookieLocationId(req));
+var getHomepageDataFunctions = function (req, res, modelData) {
+	var level2Loc = new LocationModel(modelData.bapiHeaders, 1),
+		keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
+		gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder(),
+		adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(),
+		seo = new SeoModel(modelData.bapiHeaders),
+		category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
 			
 	return {
 		'level2Loc'		:	function(callback) {
@@ -87,10 +87,10 @@ var getHomepageDataFunctions = function (req, res) {
 							},
 		'seo'			:	function(callback) {
 								var seoDeferred = Q.defer();
-								Q(seo.processParallel())
+								Q(seo.getHPSeoInfo())
 							    	.then(function (dataS) {
-							    		seoDeferred.resolve(dataS[0]);
-							    		callback(null, dataS[0]);
+							    		seoDeferred.resolve(dataS);
+							    		callback(null, dataS);
 									}).fail(function (err) {
 										seoDeferred.reject(new Error(err));
 										callback(null, {});
@@ -118,8 +118,8 @@ var getHomepageDataFunctions = function (req, res) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModel = function (req, res) {
-	var functionMap = getHomepageDataFunctions(req, res);
+var HomePageModel = function (req, res, modelData) {
+	var functionMap = getHomepageDataFunctions(req, res, modelData);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;

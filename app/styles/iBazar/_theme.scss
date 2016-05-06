@@ -104,6 +104,16 @@ $savedsearch-control-bg: $content-link-bg-color;
 $ssp-column-label-color: #333;
 
 // -------------------------------
+// Quick Post page
+// -------------------------------
+$quickpost-header-bgcolor:#EBEBEB;
+$quickpost-form-wrapper:#F7F7F7;
+$quickpost-selected-cat-bgcolor:#DDDDDD;
+$quickpost-selected-cat-color:#4A90E2;
+$quickpost-form-submitBtn:orange;
+
+
+// -------------------------------
 // Post Ad Preview page
 // -------------------------------
 $preview-gallery-image-padding-top: 4em;
@@ -176,7 +186,7 @@ $preview-image-gallery-right-margin: 40px;
 	 #menu-link #menu ul {
 	    background-color: white;
 	 }
-	 
+
 @media screen and (min-width: 35em) {
 	#menu-link #menu {
     width: 100% !important;
@@ -196,8 +206,8 @@ $preview-image-gallery-right-margin: 40px;
 	#menu-link #menu {
 		width: 50em !important;
 	}
-	 
-	
+
+
 	#menu-link #menu {
 		width: 50em !important;
 	}
@@ -210,13 +220,13 @@ $preview-image-gallery-right-margin: 40px;
 		top: 0em;
 		margin-top:1em;
 	}
-	
+
 	.header-myad {
 		display: block;
 		height: 3.0em;
 	}
 	#menu li .serperator{border-left:0.1em solid #468100;border-right:0.1em solid #000}
-	
+
 }
 @media screen and (min-width: 69em) {
 	 .expire-msg {
@@ -231,7 +241,7 @@ $preview-image-gallery-right-margin: 40px;
 }
 @include in-breakpoint($lt-ie9-class-name) {
 	#menu .serperator{ border-left:0.1em solid #468100;border-right:0.1em solid #000}
-	
+
 	.header-myad {margin-top:-2em}
 	.select-ads {margin-top:0.5em !important}
 	 #menu-link #menu {
@@ -279,11 +289,11 @@ $preview-image-gallery-right-margin: 40px;
 
 #profile {
 	color: #579bea;
-	
+
 }
 
 #profile-cnt {
-	 
+
 	 .btn {
          background:#1867c3;
           border: 5px solid #1867c3;
@@ -301,7 +311,3 @@ $preview-image-gallery-right-margin: 40px;
 	color:#333333;
     font-weight:bold;
 }
-
-
-
-

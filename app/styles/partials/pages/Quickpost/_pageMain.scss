@@ -1,0 +1,377 @@
+.page{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.qpHeader{
+  background-color: $quickpost-header-bgcolor;
+  display: inline-block;
+  width: 100%;
+  padding: 0.5em 1em;
+  margin-bottom: 1em;
+  .logo{
+    float: left;
+    height: 60px;
+  }
+  .pageTitle{
+    margin-left: 1em;
+    color: white;
+    margin-top: 0.7em;
+    float: left;
+    font-size: 1.5em;
+  }
+}
+
+.icon-remove-gray{
+  height: 1em;
+  width: 1em;
+  position: absolute;
+  background-color: white;
+}
+
+.imgUploadContainer{
+  display: inline-block;
+  width: 96%;
+  margin-left: 0.5em;
+  .uploadWrapper{
+    float: left;
+    cursor: pointer;
+  }
+  #thumb-nails{
+    float: left;
+    li{
+      float: left;
+      margin-left: 0.5em;
+      position: relative;
+      .upload-status {
+        //Remove the rule important after changing javascript
+        display: none !important;
+      }
+    }
+  }
+}
+
+#featuredImage, .uploading{
+  display: none;
+}
+
+#fileUpload{
+  position: absolute;
+  top: -1.7em;
+  left: -0.15em;
+  cursor: pointer;
+  width: 6em;
+  height: 7.5em;
+  z-index: 40;
+  opacity: 0;
+}
+
+.icon-camera{
+  width: 67.19px;
+  height: 67.19px;
+  display: block;
+  position: absolute;
+  z-index: 1;
+}
+
+.upload-icon {
+  width: 1.6em;
+  height: 1.6em;
+  float: left;
+  margin-left: 0.2em;
+  text-align: center;
+  padding-top: 0.1em;
+  font-weight: bold;
+  font-size: 3em;
+  color: $quickpost-form-submitBtn;
+  position: relative;
+}
+
+.upload-icon-content{
+  position: absolute;
+  top: 1.8em;
+  left: 2em;
+  border: 2px solid #CCCBB3;
+  border-radius: 81px;
+  font-size: 0.5em;
+  width: 1.7em;
+  background-color: white;
+  z-index: 3;
+}
+
+.qpWrapper{
+  padding: 1em;
+  background-color: $quickpost-form-wrapper;
+  border-radius: 10px;
+  margin: 1em;
+}
+
+#postForm{
+  margin-top: 2em;
+}
+
+
+.description{
+  margin-top: 0.4em;
+  margin-right: -0.25em;
+  position: relative;
+  .icon-contextual-info{
+    width: 15px;
+    height: 18px;
+    display: table-cell;
+    cursor: pointer;
+    position: absolute;
+    top: 0.3em;
+    right: 0.5em;
+  }
+  .char-count-info {
+    width: 15px;
+    height: 18px;
+    display: inline;
+    cursor: text;
+    position: absolute;
+    top: 2.3em;
+    right: 1.6em;
+    font-size: 80%;
+    color: #6666ff;
+  }
+  textarea{
+    background: transparent;
+    border-radius: 5px;
+    width: 99%;
+    max-width: 99%;
+    height: 4.5em;
+    min-height: 4.5em;
+    padding-right: 2.3em;
+  }
+}
+
+.socialMedia{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 1em;
+}
+
+.select-category{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 0.6em;
+}
+
+.select-location{
+  border-bottom: solid 1px #a2a2a1;
+  padding-left: 0.4em;
+  margin-top: 1em;
+  position: relative;
+}
+
+.price{
+  border-bottom: solid 1px #a2a2a1;
+  margin-top: 1em;
+  padding-bottom: 0.5em;
+  position: relative;
+}
+
+input, select{
+  &.custom-input{
+    background: transparent;
+    border: 0;
+    outline: none;
+    width: 99%;
+    margin-left: -0.2em;
+  }
+}
+
+.toggleswitch{
+  float: right;
+  margin-top: -0.7em;
+  display: inline-block;
+  clear: right;
+}
+
+.infos{
+  cursor: auto;
+  color: #698DA7;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 160%;
+  border: 1px solid #97C3CE;
+  background-color: #D9EDF6;
+  white-space: normal;
+  overflow: hidden;
+  border-radius: 10px;
+  padding: 0 0.75em;
+  margin-bottom: 1em;
+  margin-top: 0.3em;
+  margin-left: -0.4em;
+}
+
+#maps-link{
+  color: #2F68B2;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.qpost{
+  padding: 0 1em;
+}
+
+.quickSubmit {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.2em;
+  border: 0;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 10px;
+  text-align: center;
+  background-color: #f89301;
+  margin: 0 auto;
+  margin-top: 0.5em;
+  width: 100%;
+  cursor: pointer;
+  border: 1px solid white;
+  box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -webkit-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -o-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+  -moz-box-shadow: -1px 1px 1px rgba(0,0,0,.15);
+}
+
+.noHeaderError{
+  font-weight: 500;
+  color: #bb3027;
+  font-size: .85em;
+}
+
+.submitError{
+  padding: 0 1em;
+}
+
+textarea.error{
+  border: 1px solid #bb3027;
+  background: #EFDBD6;
+}
+
+.inforules {
+   cursor: auto;
+   color: #698DA7 ;
+   font-weight: 400;
+   font-size: 10px;
+   line-height: 160%;
+   white-space: normal;
+   text-align: center;
+   overflow: hidden;
+   border-radius: 10px;
+   padding: 0 0.5em;
+   margin-bottom: 0.5em;
+   margin-top: 2em;
+}
+
+.floating-tooltip{
+  padding: 1em;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  display: none;
+  z-index: 240;
+  font-size: 12px;
+  .tooltip-wrapper{
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0.3em 1.7em;
+    background-color: #DFE38C;
+  }
+  .elt{
+    display: list-item;
+    margin-left: 1em;
+  }
+  .close_btn{
+    top: 1.2em;
+  }
+}
+
+.gl-messages{
+  margin-top: -0.5em;
+  margin-bottom: 0.5em;
+  padding: 1em;
+}
+
+.hiddenElt{
+  display: none;
+}
+
+#autocompleteField{
+  background-color: white;
+  border: 1px solid #CCC;
+  width: 100%;
+  max-width: 40em;
+  position: absolute;
+  top: 1.5em;
+  z-index: 400;
+  left: 0;
+  .ac-field{
+    cursor: pointer;
+    text-decoration: underline;
+    color: $quickpost-header-bgcolor;
+    &:hover{
+      background-color: $quickpost-header-bgcolor;
+      color: white;
+    }
+  }
+}
+.selMenu{
+  .mm-next:after,
+  .mm-arrow:after {
+    border: none;
+  }
+}
+
+.currency-types{
+ clear:both;
+ float:left;
+ margin: 0 1em .5em 0;
+}
+
+#currency-type-options{
+border: 1px solid #ccc;
+border-radius: .3125em;
+font-size: 1em; 
+padding: 0 .4em;
+height: 25px;
+}
+
+.price-field{
+position: relative;
+display: inline-block;
+margin-bottom: .5em;
+border: none;
+border-color: #939393;
+border-radius: 5px;
+
+}
+
+
+.price-field.numberonly input.price-value,#Price {
+border: 1px solid #ccc;
+border-radius: .3125em;
+font-size: 1em;    
+padding-left: 1.6em;
+width: 11.25em;
+height: 25px;
+}
+
+.ghost{
+  position: absolute;
+  left: 0;
+  top: -.25em;
+  z-index: 1;
+  padding: .35em; 
+  font-weight: 600;
+}
+
+@include in-breakpoint($no-break){
+.currency-types{
+    border-color: #939393;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+ }
+}

@@ -1,0 +1,93 @@
+
+
+
+    <!--  Image upload JS .move this to a Class/external file -->
+
+    <script>
+
+        var EPS = {
+            "url" : "{{this.eps.epsUploadExternalURL}}", "token":"{{this.eps.epsToken}}", "IsEbayDirectUL":{{this.eps.isEbayDirectUploadEnabled}}
+        };
+
+
+        var l18n = {
+            "clickFeatured" : "{{i18n "postad.image.click.featured" locale=model.locale }}",
+            "imageFeatured" : "{{i18n "postad.image.featured" locale=model.locale }}",
+            "dragToReorder" : "{{i18n "postad.image.drag.reorder" locale=model.locale }}"
+        };
+
+        var allowedUploads = 12; // need to setup in zoo keeper
+
+        var UploadMsgClass = (function() {
+            var failure, success;
+
+            var hideThumb = function(i) {
+                $("#file-upload-"+ i).css("margin-top", "1.8em").css("color", "red");
+                $("#thumb-img-" + i).remove();
+                $("#progress-cnt-" + i).hide();
+                $("#percents-" + i).hide();
+            };
+
+            return {
+                successMsg:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.success" }}");
+                },
+                failMsg: function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure" }}");
+                    hideThumb(i);
+                },
+                loadingMsg:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.uploading" }}");
+                },
+                resizing:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.resize" }}");
+                },
+                invalidSize:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.size"  }}");
+                },
+                invalidType:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.types"  }}");
+                    hideThumb(i);
+                },
+                invalidDimensions:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.dimensions"  }}");
+                    hideThumb(i);
+                },
+                firewall:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.network.firewall"  }}");
+                    hideThumb(i);
+                },
+                colorspace:function(i){
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.colorspace"  }}");
+                    hideThumb(i);
+                },
+                corrupt:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.data.corrupt"  }}");
+                    hideThumb(i);
+                },
+                pictureSrv:function(i) {
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.picture.down"  }}");
+                    hideThumb(i);
+                },
+                translateErrorCodes:function(i, error) {
+                    if (error === "FS002") {
+                        this.invalidDimensions(i);
+                    } else if (error === "FS001") {
+                        this.invalidSize(i);
+                    }else if (error === "FF001" || error === "FF002" || error === "SD015"){
+                        this.invalidType(i);
+                    }else if (error === "FC002") {
+                        this.colorspace(i);
+                    }else if (error === "SD001" || error === "SD013" || error === "ME100") {
+                        this.firewall(i);
+                    }else if (error === "SD005" || error === "SD007" || error === "SD009" || error === "SD019" || error === "SD020" || error === "SD021") {
+                        this. pictureSrv(i);
+                    }else if (error === "SD011" || error === "SD017" || error === "SD013") {
+                        this. corrupt(i);
+                    }
+                    hideThumb(i);
+                }
+            }
+        })();
+
+    </script>

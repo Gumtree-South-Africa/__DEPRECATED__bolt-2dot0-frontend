@@ -1,20 +1,19 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
+var http = require('http');
+var Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
+var ModelBuilder = require('./ModelBuilder');
 
-var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
+var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /** 
  * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
-var AdStatisticsModel = function (requestId, locale) {
-	this.requestId = requestId;
-	this.locale = locale;
+var AdStatisticsModel = function (bapiHeaders) {
+	this.bapiHeaders = bapiHeaders;
 };
 
 AdStatisticsModel.prototype.getModelBuilder = function() {
@@ -28,14 +27,14 @@ AdStatisticsModel.prototype.getHomePageStatistics = function() {
 		function (callback) {
 			var adstatisticsDeferred,
 				data = {};
-			if (typeof callback !== "function") {
+			if (typeof callback !== 'function') {
 				return;
 			}
 			
-		    if (typeof scope.locale !== "undefined") {
+		    if (typeof scope.bapiHeaders.locale !== 'undefined') {
 		    	adstatisticsDeferred = Q.defer();
 			    
-				 Q(hpAdService.getAdStatistics(scope.requestId, scope.locale))
+				 Q(hpAdService.getAdStatistics(scope.bapiHeaders))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		adstatisticsDeferred.resolve(data);

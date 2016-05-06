@@ -29,6 +29,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -37,6 +38,7 @@
 		"cookieNotice"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
 		"privacyPolicy"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
 		"termOfUse"							: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
+		"postingRules"                      : "http://ayuda.alamaula.com/AR/articles/es/KB_Article/como-publico-un-clasificado?vgroup1=PKB&c=PKB%3Aconocimientos_ba_sicos_de_alamaula&vcategory2=Publicando_anuncios&s=a00F000000NVKXnIAP" , 
 		"helpLabel"							: "Ayuda",
 		"helpUrl"							: "http://ayuda.alamaula.com/",
 		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
@@ -87,7 +89,12 @@
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		  "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["Pesos","Dólares"]
+        }
+		
 	},
 	"bapi" : {
 		"Homepage" : {
@@ -96,6 +103,14 @@
 			},
 			"mobile" 	: {
 				"models" : ["keyword", "adstatistics", "seo"]
+			}
+		},
+		"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
 			}
 		}
 	}
