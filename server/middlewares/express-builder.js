@@ -28,10 +28,7 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
-
 var instance = require('instance');
-var i18nOrg = instance(require('i18n'));
-var i18nClone = require('i18n-2');
 
 function BuildApp(siteObj) {
     var app = new express();
@@ -70,7 +67,7 @@ function BuildApp(siteObj) {
 
         app.locals.i18n.setLocale(siteObj.locale);
         //console.log('app.locals: ',app.locals.i18n);
-        
+
         /*
          * Development based middlewares
          */
