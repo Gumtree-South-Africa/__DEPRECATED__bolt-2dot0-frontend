@@ -160,7 +160,11 @@ BOLT.QuickPostPage = (function() {
     			{
         			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
     			}
-			}    		
+			}
+
+            $("#postForm").submit(function () {
+                window.skipOnBeforeUnload = true;
+            });
         },
 
         tooltip: function(){
@@ -238,6 +242,9 @@ BOLT.QuickPostPage = (function() {
 
         registerUnloadEvent: function(){
             window.onbeforeunload = function() {
+                if (window.skipOnBeforeUnload) {
+                    return;
+                }
                 return '';
             };
         }
