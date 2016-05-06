@@ -317,13 +317,13 @@ textarea.error{
   }
 }
 
-.price-types{
+.currency-types{
  clear:both;
  float:left;
  margin: 0 1em .5em 0;
 }
 
-#price-type-options{
+#currency-type-options{
 border: 1px solid #ccc;
 border-radius: .3125em;
 font-size: 1em; 
@@ -337,7 +337,6 @@ display: inline-block;
 margin-bottom: .5em;
 border: none;
 border-color: #939393;
-background-color: #EBEEB9;
 border-radius: 5px;
 
 }
@@ -359,4 +358,12 @@ height: 25px;
   z-index: 1;
   padding: .35em; 
   font-weight: 600;
+}
+
+@include in-breakpoint($no-break){
+.currency-types{
+    border-color: #939393;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+ }
 }

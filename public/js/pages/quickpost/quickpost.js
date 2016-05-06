@@ -138,36 +138,28 @@ BOLT.QuickPostPage = (function() {
             });
 
     		var selectedOption, 
-    		    priceType = document.getElementById('priceTypeOptions');
+    		    currency = document.getElementById('currencyOptions');
             
-            // Listener to update the priceType when the user selects a priceType.
-            $('#priceTypeOptions').change( function() {
-            	
-            		selectedOption = priceType[priceType.selectedIndex].value;
-            		
- //           		alert('You selected ' + selectedOption);
-            		
-                    // Set the pricetype Id in a hidden var.
-                   $("input[name=SelectedPricetype]").val(selectedOption);
-                    
-//                    alert('Updated form with input[name=SelectedPricetype] = ' + $("input[name=SelectedPricetype]").val());
-        	});
-            
-    		if (($("input[name=SelectedPricetype]").val() == '') || ($("input[name=SelectedPricetype]").val() == null)) {
-//    			alert ('Yes it is null');
-    			
-        		selectedOption = priceType[priceType.selectedIndex].value;
-
-            	$("input[name=SelectedPricetype]").val(selectedOption); 
-            
-//    			alert('Initialized form with input[name=SelectedPricetype] = ' + $("input[name=SelectedPricetype]").val());
-    		}
-    		else //There is a pre-selected value
+    		if(currency != undefined)
 			{
-//    			alert('Pre-selected value = ' + $("input[name=SelectedPricetype]").val());
-//    			$('#priceTypeOptions').value = $("input[name=SelectedPricetype]").val(); // Select that option in the dropdown 
-    			priceType.value = $("input[name=SelectedPricetype]").val(); // Select that option in the dropdown 
-			}
+                // Listener to update the currency when the user selects a currency.
+                $('#currencyOptions').change( function() {
+                		selectedOption = currency[currency.selectedIndex].value;
+                		
+                        // Set the currency Id in a hidden var.
+                       $("input[name=SelectedCurrency]").val(selectedOption);
+            	});
+                
+        		if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) 
+        		{
+            		selectedOption = currency[currency.selectedIndex].value;
+                	$("input[name=SelectedCurrency]").val(selectedOption); 
+        		}
+        		else //There is a pre-selected value
+    			{
+        			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
+    			}
+			}    		
         },
 
         tooltip: function(){

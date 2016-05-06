@@ -68,7 +68,7 @@ router.post('/quickpost',
 	form(
 		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
-		field('Category').required(), field('price').trim().is(/^[0-9]+$/),field('SelectedPricetype'),
+		field('Category').required(), field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
 		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
 	),
 
@@ -277,8 +277,8 @@ var QuickPost = {
 		if (!_.isEmpty(formData.price)) {
 			modelData.formContent.priceValue = formData.price;
 		}
-		if (!_.isEmpty(formData.SelectedPricetype)) {
-			modelData.formContent.selectedPricetype = formData.SelectedPricetype;
+		if (!_.isEmpty(formData.SelectedCurrency)) {
+			modelData.formContent.selectedCurrency = formData.SelectedCurrency;
 		}
 		if (!_.isEmpty(formData.switch)) {
 			modelData.formContent.switch = formData.switch;

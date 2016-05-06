@@ -116,24 +116,16 @@
             </div>
 
             {{!-- Price --}}
-         {{!--   <div class="field-wrapper">
-              <div class="price">
-                  <input class="custom-input" type="text"  onkeypress='return event.charCode >= 48 && event.charCode <= 57' name="price" placeholder="{{i18n this.formContent.pricePlaceholder}}" value="{{i18n this.formContent.priceValue}}"/>
-              </div>
-            </div> --}}
-            
-        CATEGORY TESTING    {{this.formContent.category}}
-          pricetype         {{this.formContent.selectedPricetype}}
-          price             {{i18n this.formContent.priceValue}}
+      
             <div class="field-wrapper">
                 <div class="price">  
                  {{#if this.formContent.currencyDisplay}}
-	                   <div class='price-types'>
-		                    <select id='priceTypeOptions' name='priceTypeOptions'> 
+	                   <div class='currency-types'>
+		                    <select id='currencyOptions' name='currencyOptions'> 
 		                    {{#each this.formContent.currency}}
 		                    	<option value='{{this}}' {{#if selected}}selected{{/if}}>{{this}}</option>
 		                    {{/each}}
-		                    <input type="hidden" id="SelectedPricetype" name="SelectedPricetype" value="{{this.formContent.selectedPricetype}}" />		            
+		                    <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />		            
 		    
 		             </div>
 	             {{/if}}
