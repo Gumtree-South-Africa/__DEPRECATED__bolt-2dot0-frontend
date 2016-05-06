@@ -119,9 +119,12 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
+        app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
+        app.use(requestId());
+        
+	//app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
         var i18n = require(config.root + '/modules/i18n');
         var i18n2 = instance(i18n);
-
         app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
         //i18nClone.expressBind(app, i18n.init(locale));
         i18n2 = '';
