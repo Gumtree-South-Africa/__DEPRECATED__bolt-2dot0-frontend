@@ -14,6 +14,10 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
+  var i18n = require('i18n');
+  var siteConfig = require(cwd + '/server/config/sites.json');
+
+
 module.exports = function (app) {
   app.use('/', router);
 };
@@ -24,6 +28,22 @@ module.exports = function (app) {
  */
 router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
+
+  function findLocaleByRequest(){
+    var locale = '';
+
+    for(var key in siteConfig.sites){
+      if(req.headers.host.indexOf(key) >= 0){
+        locale = siteConfig.sites[key].locale;
+       // break;
+      }
+    }
+
+    return locale;
+  }
+
+  var reqLocale = findLocaleByRequest();
+
 
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
@@ -40,8 +60,12 @@ router.get('/', function (req, res, next) {
 	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res, modelData);
     model.then(function (result) {
-      	// Dynamic Data from BAPI
-      	modelData.header = result['common'].header || {};
+
+    //setting lang for the request
+    i18n.setLocale(reqLocale);
+
+    // Dynamic Data from BAPI
+    modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
@@ -187,7 +211,7 @@ var HP = {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 			}
-			
+
 			var availableAdFeatures = modelData.footer.availableAdFeatures;
 			if (typeof availableAdFeatures !== 'undefined') {
 				for (var i = 0; i < availableAdFeatures.length; i++) {

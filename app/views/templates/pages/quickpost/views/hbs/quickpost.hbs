@@ -84,7 +84,9 @@
 
             <div class="field-wrapper">
                 <div class="select-category">
-                  <div id="catSelector" class="menu-cnt" data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}" {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
+                  <div id="catSelector" class="menu-cnt"
+                       data-errorCategoryReqd="{{i18n this.formContent.errorCategoryReqd}}"
+                       {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
                     <div id="mobileCats" class="mobile-only">
                       <div class="body">
                           <nav id="cat-list">
@@ -154,7 +156,11 @@
             <div class="field-wrapper">
               <div class="select-location">
                 {{> (dynamic "mapLatLong") }}
-                <input id="location" class="custom-input" autocomplete="off" type="text" name="location" {{#if this.flash.fieldErrors.location}}class="error"{{/if}} placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
+                <input id="Location" class="custom-input" autocomplete="off" type="text" name="Location"
+                       data-errorLocationReqd="{{i18n this.formContent.errorLocationReqd}}"
+                       data-errorLocationInvalid="{{i18n this.formContent.errorLocationInvalid}}"
+                    {{#if this.flash.fieldErrors.location}}class="error" data-errorFlash="{{i18n this.flash.fieldErrors.location}}"{{/if}}
+                       placeholder="{{i18n this.formContent.locationText}}" value="{{this.formContent.location}}"/>
                 <input type="hidden" id="latitude" name="latitude" value = "{{this.formContent.latitude}}"/>
                 <input type="hidden" id="longitude" name="longitude" value = "{{this.formContent.longitude}}"/>
                 <input type="hidden" id="address" name="address" value = "{{this.formContent.address}}"/>

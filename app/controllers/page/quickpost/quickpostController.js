@@ -18,7 +18,8 @@ var StringUtils = require(cwd + '/app/utils/StringUtils'),
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
 
-
+var i18n = require('i18n');
+var siteConfig = require(cwd + '/server/config/sites.json');
 
 module.exports = function (app) {
   app.use('/', router);
@@ -31,7 +32,22 @@ module.exports = function (app) {
 router.get('/quickpost', function (req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
-	// Set pagetype in request
+  function findLocaleByRequest(){
+    var locale = '';
+
+    for(var key in siteConfig.sites){
+      if(req.headers.host.indexOf(key) >= 0){
+        locale = siteConfig.sites[key].locale;
+       // break;
+      }
+    }
+
+    return locale;
+  }
+
+  var reqLocale = findLocaleByRequest();
+
+  // Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 	// Build Model Data
@@ -40,14 +56,18 @@ router.get('/quickpost', function (req, res, next) {
 
 	var model = QuickpostPageModel(req, res, modelData);
 	model.then(function (result) {
-		// Dynamic Data from BAPI
+
+    //setting lang for the request
+    i18n.setLocale(reqLocale);
+
+  	// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
 		modelData.seo = result['seo'] || {};
 
-    	// Special Data needed for QuickPost in header, footer, content
+    // Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
@@ -68,8 +88,11 @@ router.post('/quickpost',
 	form(
 		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
-		field('Category').required(), field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
-		field('switch'), field('location'), field('latitude'), field('longitude'), field('address')
+		field('Category').required(),
+		field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
+		field('switch'), 
+		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
+
 	),
 
 	// Express request-handler now receives filtered and validated data
@@ -223,6 +246,8 @@ var QuickPost = {
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
+		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
+		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
 
 		modelData.formContent.locationText = 'quickpost.locationText';
 		modelData.formContent.geolocation1 = 'quickpost.geolocation1';
@@ -245,6 +270,8 @@ var QuickPost = {
 		modelData.formContent.errorDescriptionLong = 'quickpost.error.descriptionLong';
 		modelData.formContent.errorDescriptionInvalid = 'quickpost.error.descriptionInvalid';
 		modelData.formContent.errorCategoryReqd = 'quickpost.error.categoryReqd';
+		modelData.formContent.errorLocationReqd = 'quickpost.error.locationReqd';
+		modelData.formContent.errorLocationInvalid = 'quickpost.error.locationInvalid';
 		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
 
 		// Custom header
@@ -281,10 +308,13 @@ var QuickPost = {
 			modelData.formContent.selectedCurrency = formData.SelectedCurrency;
 		}
 		if (!_.isEmpty(formData.switch)) {
-			modelData.formContent.switch = formData.switch;
+			if (formData.switch == 'YES') {
+				modelData.formContent.checked = true;
+				modelData.formContent.switch = formData.switch;
+			}
 		}
-		if (!_.isEmpty(formData.location)) {
-			modelData.formContent.location = formData.location;
+		if (!_.isEmpty(formData.Location)) {
+			modelData.formContent.location = formData.Location;
 		}
 		if (!_.isEmpty(formData.latitude)) {
 			modelData.formContent.latitude = formData.latitude;
@@ -343,13 +373,16 @@ var QuickPost = {
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
 		for (var i=0; i<req.form.errors.length; i++){
-			if (req.form.errors[i].indexOf('Category ') > -1) {
+			if (req.form.errors[i].indexOf('Description ') > -1) {
+				if(!req.form.fieldErrors.description)
+					req.form.fieldErrors.description = req.form.errors[i];
+			} else if (req.form.errors[i].indexOf('Category ') > -1) {
 				if(!req.form.fieldErrors.category)
 					req.form.fieldErrors.category = req.form.errors[i];
 			}
-			else if (req.form.errors[i].indexOf('Description ') > -1) {
-				if(!req.form.fieldErrors.description)
-					req.form.fieldErrors.description = req.form.errors[i];
+			else if (req.form.errors[i].indexOf('Location ') > -1) {
+				if(!req.form.fieldErrors.location)
+					req.form.fieldErrors.location = req.form.errors[i];
 			}
 		}
 
@@ -378,6 +411,21 @@ var QuickPost = {
 					if (det.message.indexOf('does not map to any location') > '-1') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('latitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('longitude') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
+						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.message.indexOf('address') > '-1' && det.code=='MISSING_PARAM') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
 						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 						fieldError = 'true';
 					}
