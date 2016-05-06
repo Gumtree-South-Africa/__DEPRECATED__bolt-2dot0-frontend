@@ -101,6 +101,9 @@ function BuildApp(siteObj) {
           else if(req.host.indexOf('www.alamaula.com') > -1){
             mylocale = 'es_AR';
           }
+          else{
+            mylocale = 'en_ZA';
+          }
           //res.locals.i18n = app.locals.i18n;
           res.locals.i18n.configure({
               updateFiles: false,
