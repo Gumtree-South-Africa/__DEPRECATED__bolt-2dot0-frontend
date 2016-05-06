@@ -58,7 +58,7 @@ function BuildApp(siteObj) {
         app.use(guardians(app));
 
         /*
-         * Setting up locals object for app
+         * Bolt 2.0 Site-App Locals
          */
         app.locals.config = {};
         app.locals.config.name = siteObj.name;
@@ -133,13 +133,6 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
-	    //app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
-        var i18n = require(config.root + '/modules/i18n');
-        var i18n2 = instance(i18n);
-        app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
-        //i18nClone.expressBind(app, i18n.init(locale));
-        i18n2 = '';
-
         app.use(boltExpressHbs.create(app));
 
         /*
