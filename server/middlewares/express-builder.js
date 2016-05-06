@@ -69,15 +69,49 @@ function BuildApp(siteObj) {
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
         app.locals.i18n = instance(require('i18n'));
+
         //console.log('siteLocale: ',app.locals.i18n);
 
         app.locals.i18n.configure({
             updateFiles: false,
             objectNotation: true,
             directory: process.cwd() + '/app/locales/json/' + locale,
+            fallback: 'en_ZA',
+            updateFiles: true,
+            syncFiles: true,
+            register: global,
             prefix: 'translation_',
             defaultLocale: locale
         });
+
+
+        app.use(function(req, res, next){
+          console.log('res: ',req.host);
+          if (req.host.indexOf('http://www.gumtree.pl') > -1){
+            locale = 'pl_PL';
+          }
+          else if(req.host.indexOf('http://www.gumtree.sg') > -1){
+            locale = 'en_SG';
+          }
+          else if(req.host.indexOf('http://www.gumtree.co.za') > -1){
+            locale = 'en_ZA';
+          }
+          else if(req.host.indexOf('http://www.vivanuncios.com.mx') > -1){
+            locale = 'es_MX';
+          }
+          else{
+            locale = 'es_AR';
+          }
+          //res.locals.i18n = app.locals.i18n;
+          res.locals.i18n.configure({
+              updateFiles: false,
+              objectNotation: true,
+              directory: process.cwd() + '/app/locales/json/' + locale,
+              prefix: 'translation_',
+              defaultLocale: locale
+          });
+          next();
+        })
 
         //app.locals.i18n.setLocale('pl_PL');
         //console.log('app.locals: ',app.locals.i18n);
