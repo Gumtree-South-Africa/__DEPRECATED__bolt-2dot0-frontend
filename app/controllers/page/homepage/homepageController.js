@@ -14,6 +14,10 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
+  var i18n = require('i18n');
+  var siteConfig = require(cwd + '/server/config/sites.json');
+
+
 module.exports = function (app) {
   app.use('/', router);
 };
@@ -24,6 +28,22 @@ module.exports = function (app) {
  */
 router.get('/', function (req, res, next) {
 	console.time('Instrument-Homepage-Controller');
+
+  function findLocaleByRequest(){
+    var locale = '';
+
+    for(var key in siteConfig.sites){
+      if(req.headers.host.indexOf(key) >= 0){
+        locale = siteConfig.sites[key].locale;
+       // break;
+      }
+    }
+
+    return locale;
+  }
+
+  var reqLocale = findLocaleByRequest();
+
 
 	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
@@ -38,10 +58,14 @@ router.get('/', function (req, res, next) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Retrieve Data from Model Builders
-	var model = HomepageModel(req, res);
+	var model = HomepageModel(req, res, modelData);
     model.then(function (result) {
-      	// Dynamic Data from BAPI
-      	modelData.header = result['common'].header || {};
+
+    //setting lang for the request
+    i18n.setLocale(reqLocale);
+
+    // Dynamic Data from BAPI
+    modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
@@ -149,6 +173,10 @@ var HP = {
 				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
 				break;
+			case 'quickpost':
+				modelData.header.pageMessages.success = 'home.quickpost.success';
+				modelData.header.pageType = pagetypeJson.pagetype.PostAdSuccess;
+				break;
 			default:
 				modelData.header.pageMessages.success = '';
 				modelData.header.pageMessages.error = '';
@@ -167,10 +195,9 @@ var HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData: function (modelData) {
-		var baseJSComponentDir = "/views/components/";
-
-		modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
 		if (!modelData.footer.min) {
+			var baseJSComponentDir = "/views/components/";
+
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.
@@ -184,7 +211,7 @@ var HP = {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 			}
-			
+
 			var availableAdFeatures = modelData.footer.availableAdFeatures;
 			if (typeof availableAdFeatures !== 'undefined') {
 				for (var i = 0; i < availableAdFeatures.length; i++) {

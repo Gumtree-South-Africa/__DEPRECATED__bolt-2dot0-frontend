@@ -16,7 +16,6 @@ var config = {
 };
 var writeHeader = require('./write-header'),
     requestId = require('./request-id'),
-    i18n = require(config.root + '/modules/i18n'),
     deviceDetection = require(config.root + '/modules/device-detection'),
     boltExpressHbs = require(config.root + '/modules/handlebars'),
     legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
@@ -30,9 +29,12 @@ var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
 
+var instance = require('instance');
+var i18nOrg = instance(require('i18n'));
+var i18nClone = require('i18n-2');
 
 function BuildApp(siteObj) {
-    var app = express();
+    var app = new express();
 
     this.getApp = function() {
         return app;
@@ -111,7 +113,14 @@ function BuildApp(siteObj) {
          */
         app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
         app.use(requestId());
-        app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+        //app.use(i18n.initMW(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+
+        var i18n = require(config.root + '/modules/i18n');
+        var i18n2 = instance(i18n);
+
+        app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
+        //i18nClone.expressBind(app, i18n.init(locale));
+        i18n2 = '';
         app.use(boltExpressHbs.create(app));
         app.use(deviceDetection.init());
 
