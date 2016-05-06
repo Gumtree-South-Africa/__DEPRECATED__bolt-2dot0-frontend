@@ -18,9 +18,6 @@ var StringUtils = require(cwd + '/app/utils/StringUtils'),
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
 
-var i18n = require('i18n');
-var siteConfig = require(cwd + '/server/config/sites.json');
-
 module.exports = function (app) {
   app.use('/', router);
 };
@@ -32,21 +29,6 @@ module.exports = function (app) {
 router.get('/quickpost', function (req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
-  function findLocaleByRequest(){
-    var locale = '';
-
-    for(var key in siteConfig.sites){
-      if(req.headers.host.indexOf(key) >= 0){
-        locale = siteConfig.sites[key].locale;
-       // break;
-      }
-    }
-
-    return locale;
-  }
-
-  var reqLocale = findLocaleByRequest();
-
   // Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
@@ -56,9 +38,6 @@ router.get('/quickpost', function (req, res, next) {
 
 	var model = QuickpostPageModel(req, res, modelData);
 	model.then(function (result) {
-
-    //setting lang for the request
-    i18n.setLocale(reqLocale);
 
   	// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
@@ -90,7 +69,7 @@ router.post('/quickpost',
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
 		field('Category').required(),
 		field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
-		field('switch'), 
+		field('switch'),
 		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
 
 	),

@@ -21,7 +21,7 @@ module.exports.initMW = function(app, locale, i18nOrg) {
 
         initConfigI18n(locale, i18nOrg);
 
-        app.locals.i18n = instance(i18nOrg);
+        //app.locals.i18n = instance(i18nOrg);
         res.locals.i18n = instance(i18nOrg);
 
         next();

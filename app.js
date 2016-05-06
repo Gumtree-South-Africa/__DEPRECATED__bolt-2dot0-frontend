@@ -44,7 +44,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
-			  	var builderObj = new expressbuilder(siteObj);
+			  	  var builderObj = new expressbuilder(siteObj);
 		        var siteApp = builderObj.getApp();
 
 		        // Service Util to get Location and Category Data
@@ -52,7 +52,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 
 		        // register bolt middleware
 		        siteApp.use(siteconfig(siteApp));
-			  	siteApp.use(responseMetrics());
+			  	  siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
