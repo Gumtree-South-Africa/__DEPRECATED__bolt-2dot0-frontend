@@ -47,6 +47,20 @@ function BuildApp(siteObj) {
         // Check if we need to redirect to mweb - for legacy devices
         app.use(legacyDeviceRedirection());
 
+        var locale = siteObj.locale;
+
+        app.use(function(req, res, next){
+          res.locals.i18n = instance(require('i18n'));
+          res.locals.i18n.configure({
+              updateFiles: false,
+              objectNotation: true,
+              directory: process.cwd() + '/app/locales/json/' + locale,
+              prefix: 'translation_',
+              defaultLocale: locale
+          });
+          next();
+        })
+
         // Setting up locals object for app
         app.locals.config = {};
         app.locals.config.name = siteObj.name;
@@ -55,17 +69,17 @@ function BuildApp(siteObj) {
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
         app.locals.i18n = instance(require('i18n'));
+        //console.log('siteLocale: ',app.locals.i18n);
+
         app.locals.i18n.configure({
             updateFiles: false,
             objectNotation: true,
-            directory: process.cwd() + '/app/locales/json/' + siteObj.locale,
+            directory: process.cwd() + '/app/locales/json/' + locale,
             prefix: 'translation_',
-            register: global,
-            queryParameter: 'lang',
-            defaultLocale: siteObj.locale
+            defaultLocale: locale
         });
 
-        app.locals.i18n.setLocale(siteObj.locale);
+        //app.locals.i18n.setLocale('pl_PL');
         //console.log('app.locals: ',app.locals.i18n);
 
         /*
