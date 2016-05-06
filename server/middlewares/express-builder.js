@@ -33,8 +33,6 @@ var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
 var instance = require('instance');
-var i18nOrg = instance(require('i18n'));
-var i18nClone = require('i18n-2');
 
 function BuildApp(siteObj) {
     var app = new express();
@@ -65,6 +63,19 @@ function BuildApp(siteObj) {
         app.locals.config.country = siteObj.country;
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
+        app.locals.i18n = instance(require('i18n'));
+        app.locals.i18n.configure({
+            updateFiles: false,
+            objectNotation: true,
+            directory: process.cwd() + '/app/locales/json/' + siteObj.locale,
+            prefix: 'translation_',
+            register: global,
+            queryParameter: 'lang',
+            defaultLocale: siteObj.locale
+        });
+
+        app.locals.i18n.setLocale(siteObj.locale);
+        //console.log('app.locals: ',app.locals.i18n);
 
         /*
          * Development based middlewares
@@ -119,13 +130,6 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Rendering middlewares
          */
-        var i18n = require(config.root + '/modules/i18n');
-        var i18n2 = instance(i18n);
-
-        app.use(i18n2.initMW(app, siteObj.locale, instance(i18nOrg)));
-        //i18nClone.expressBind(app, i18n.init(locale));
-        i18n2 = '';
-
         app.use(boltExpressHbs.create(app));
 
         /*
