@@ -9,37 +9,38 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var CategoryService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
 /**
  * Gets a list of categories
  */
-CategoryService.prototype.getCategoriesData = function(requestId, locale, depth) {
+CategoryService.prototype.getCategoriesData = function(bapiHeaders, depth) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'category', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
 };
 
 /**
  * Gets a list of categories given a location id
  */
-CategoryService.prototype.getCategoriesDataWithLocId = function(requestId, locale, depth, locationId) {
+CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaders, depth, locationId) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 	if (locationId !== null) {
 		this.bapiOptions.path = this.bapiOptions.path + '&locationId=' + locationId;
 	}
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, requestId, locale, 'category', null);
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
 };
 
 module.exports = new CategoryService();

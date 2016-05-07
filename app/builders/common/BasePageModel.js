@@ -16,8 +16,6 @@ var DataLayerModel = require("./DataLayerModel");
  * @constructor
  */
 var BasePageModel = function (req, res) {
-	var cookieName = "bt_auth";
-	var authcookie = req.cookies[cookieName];
 	this.header = new HeaderModel(req.secure, req, res);
 	this.headerBuilder = this.header.getModelBuilder();
 	this.footer = new FooterModel(req.secure, req, res);

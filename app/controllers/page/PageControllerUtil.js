@@ -30,16 +30,31 @@ PageControllerUtil.prototype.preController = function (req, res) {
         country: res.locals.config.country,
         site: res.locals.config.name,
         pagename: req.app.locals.pagetype,
-        device: req.app.locals.deviceInfo
+        device: req.app.locals.deviceInfo,
+        ip: req.app.locals.ip,
+        machineid: req.app.locals.machineid,
+        useragent: req.app.locals.useragent
     };
 
 	// Cached Location Data from BAPI
     modelData.location = res.locals.config.locationData;
     modelData.locationdropdown = res.locals.config.locationdropdown;
-    
+    modelData.locationIdNameMap = res.locals.config.locationIdNameMap;
+
 	// Cached Category Data from BAPI
     modelData.category = res.locals.config.categoryData;
     modelData.categorydropdown = res.locals.config.categorydropdown;
+    modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
+    modelData.categoryData = res.locals.config.categoryflattened;
+
+    // Bapi Header Data
+    modelData.bapiHeaders = {};
+    modelData.bapiHeaders.requestId = req.app.locals.requestId;
+    modelData.bapiHeaders.ip = req.app.locals.ip;
+    modelData.bapiHeaders.machineid = req.app.locals.machineid;
+    modelData.bapiHeaders.useragent = req.app.locals.useragent;
+    modelData.bapiHeaders.locale = res.locals.config.locale;
+    modelData.bapiHeaders.authTokenValue = req.cookies.bt_auth;
 	
 	return modelData;
 };
@@ -66,7 +81,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             }
 
             // Kafka Logging
-            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.requestId;
+            // var log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
             // kafkaService.logInfo(res.locals.config.locale, log);
 
             // Redis Logging - to get data to ELK

@@ -8,9 +8,7 @@ var _ = require('underscore');
 var ModelBuilder = require('./ModelBuilder');
 
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
-var userService = require(process.cwd() + '/server/services/user');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var config = require('config');
 
 /**
@@ -38,9 +36,10 @@ var HeaderModel = function (secure, req, res) {
 	this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
-
-	this.requestId = req.requestId;
 	this.i18n = res.locals.i18n;
+
+	this.requestId = req.app.locals.requestId;
+	this.userCookieData = req.app.locals.userCookieData;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
@@ -56,8 +55,8 @@ HeaderModel.prototype.getHeaderData = function() {
 				return;
 			}
 
-			var headerDeferred,
-				data = {
+			// initialize
+			var data = {
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 		    		'languageCode' : scope.locale
 				};
@@ -98,25 +97,16 @@ HeaderModel.prototype.getHeaderData = function() {
     		
     		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
-		    	headerDeferred = Q.defer();
-				Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
-			    	.then(function (dataReturned) {
-			    		// merge returned data
-			    		_.extend(data, dataReturned);
+				if (typeof scope.userCookieData !== 'undefined') {
+					// merge user cookie data
+					_.extend(data, scope.userCookieData);
 
-			    		// build user profile
-			    		scope.buildProfile(data);
-
-			    		headerDeferred.resolve(data);
-					    callback(null, data);
-					}).fail(function (err) {
-						headerDeferred.reject(new Error(err));
-					    callback(null, data);
-					});
-				return headerDeferred.promise;
-			} else {
-			    callback(null, data);
+					// build user profile
+					scope.buildProfile(data);
+				}
 			}
+
+			callback(null, data);
 		}
 	];
 
@@ -191,7 +181,10 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+										  '/picture?width=36&height=36';
+			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+								  '/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 

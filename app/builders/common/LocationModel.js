@@ -11,9 +11,8 @@ var locationService = require(process.cwd() + '/server/services/location');
  * @description A class that Handles the Location Model
  * @constructor
  */
-var LocationModel = function (requestId, locale, depth) {
-	this.requestId = requestId;
-	this.locale = locale;
+var LocationModel = function (bapiHeaders, depth) {
+	this.bapiHeaders = bapiHeaders;
 	this.depth = depth;
 };
 
@@ -24,7 +23,7 @@ LocationModel.prototype.getLocations = function() {
 	var data = {};
 	
     if (typeof scope.depth !== 'undefined') {
-		 Q(locationService.getLocationsData(scope.requestId, scope.locale, scope.depth))
+		 Q(locationService.getLocationsData(scope.bapiHeaders, scope.depth))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;
 	    		locationDeferred.resolve(data);
@@ -41,9 +40,9 @@ LocationModel.prototype.getTopL2Locations = function() {
 	var scope = this;
 	var locationDeferred = Q.defer();
 	var data = {};
-	
-    if (typeof scope.locale !== 'undefined') {
-		 Q(locationService.getTopL2LocationsData(scope.requestId, scope.locale))
+
+	if (typeof scope.bapiHeaders.locale !== 'undefined') {
+		 Q(locationService.getTopL2LocationsData(scope.bapiHeaders))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;
 	    		locationDeferred.resolve(data);

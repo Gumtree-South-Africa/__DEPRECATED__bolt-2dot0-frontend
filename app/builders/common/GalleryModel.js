@@ -1,20 +1,19 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
+var http = require('http');
+var Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
+var ModelBuilder = require('./ModelBuilder');
 
-var hpAdService = require(process.cwd() + "/server/services/homepage-ads");
+var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /** 
  * @description A class that Handles the Gallery Model
  * @constructor
  */
-var GalleryModel = function (requestId, locale) {
-	this.requestId = requestId;
-	this.locale = locale;
+var GalleryModel = function (bapiHeaders) {
+	this.bapiHeaders = bapiHeaders;
 };
 
 GalleryModel.prototype.getModelBuilder = function() {
@@ -28,14 +27,14 @@ GalleryModel.prototype.getHomePageGallery = function() {
 		function (callback) {
 			var galleryDeferred,
 				data = {};
-			if (typeof callback !== "function") {
+			if (typeof callback !== 'function') {
 				return;
 			}
 			
-		    if (typeof scope.locale !== "undefined") {
+		    if (typeof scope.bapiHeaders.locale !== 'undefined') {
 		    	galleryDeferred = Q.defer();
-			    
-				 Q(hpAdService.getHomepageGallery(scope.requestId, scope.locale))
+
+				 Q(hpAdService.getHomepageGallery(scope.bapiHeaders))
 			    	.then(function (dataReturned) {
 			    		data = dataReturned;
 			    		galleryDeferred.resolve(data);
@@ -61,8 +60,8 @@ GalleryModel.prototype.getAjaxGallery = function(offset, limit) {
 	var galleryDeferred = Q.defer(),
 		data = {};
 	
-    if (typeof scope.locale !== "undefined") {
-		 Q(hpAdService.getAjaxGallery(scope.requestId, scope.locale, offset, limit))
+    if (typeof scope.bapiHeaders.locale !== 'undefined') {
+		 Q(hpAdService.getAjaxGallery(scope.bapiHeaders, offset, limit))
 	    	.then(function (dataReturned) {
 	    		data = dataReturned;
 	    		galleryDeferred.resolve(data);

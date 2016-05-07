@@ -72,6 +72,16 @@ $column-status-feature-icon-border:1px solid transparent;
 $tooltip-content-color:white;
 $tooltip-background-color:#90bf00;
 
+// -------------------------------
+// Quick Post page
+// -------------------------------
+$quickpost-header-bgcolor:$gumtree-green;
+$quickpost-form-wrapper:#ebeeb9;
+$quickpost-selected-cat-bgcolor:#FFFEE0;
+$quickpost-selected-cat-color:$gumtree-green;
+$quickpost-form-submitBtn:$gumtree-green;
+
+
 //MESSACE-CENTER
 $mc-ad-title: black;
 $mc-ad-price:#468100;
@@ -701,7 +711,7 @@ $form-label-color: $gumtree-dark-grey;
    .header-myad .fLeft {
 		   float:none !important;
 	   }
-	   
+
 	   .header-myad .fRight {
 		   float:none !important;
 	   }
@@ -713,7 +723,7 @@ $form-label-color: $gumtree-dark-grey;
 	   .header-myad .fLeft {
 		   float:left !important;
 	   }
-	   
+
 	   .header-myad .fRight {
 		   float:right !important;
 	   }
@@ -768,7 +778,7 @@ $form-label-color: $gumtree-dark-grey;
 			 &:not(.disabled):hover, &:not(.disabled):focus {
 			  background: #90bf00;
 			 }
-		
+
 	 }
 }
 
@@ -1253,4 +1263,3 @@ $form-label-color: $gumtree-dark-grey;
   }
 
 }
-

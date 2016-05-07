@@ -1,0 +1,87 @@
+{{!-- to delete after PostQuick page is completely built --!}}
+
+{{#partial "content"}}
+
+    <form action="" method="post">
+        <label for="name">{{this.formContent.uploadText}}</label>
+        <input type="file" name="pic" accept="image/*">
+        <br />
+
+        <label for="description">{{this.formContent.descriptionText}}</label>
+        <textarea id="description" name="description" placeholder="{{this.formContent.descriptionValue}}"></textarea>
+        <br />
+
+        <label for="category">{{this.formContent.categoryText}}</label>
+        <select>
+            {{#each this.category.children}}
+                <option>{{this.localizedName}}</option>
+            {{/each}}
+        </select>
+        <br />
+
+        <label for="price">{{this.formContent.priceText}}</label>
+        <input type="text" id="price" name="price" placeholder="Enter price" />
+        <br />
+
+        <label for="sharefb">{{this.formContent.sharefbText}}</label>
+        <input type="checkbox" name="sharefb" />
+        <br />
+
+        <input type="submit" value="{{this.formContent.sellitText}}" />
+    </form>
+
+{{/partial}}
+
+{{#block "pageTail"}}
+    {{#each this.footer.javascripts}}
+        {{#if this.footer.min}}
+            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
+        {{else}}
+            <script type="text/javascript" src='{{#block "jsSrc"}}{{this}}{{/block}}'></script>
+        {{/if}}
+    {{/each}}
+
+    <script type="text/javascript" src='/views/components/speechRecognition/js/speech.js'></script>
+{{/block}}
+
+{{#partial "pageTailScripts"}}
+<script>
+    $(document).ready(function () {
+        // Create an instance of this SpeechRecognition class
+        var speechConfig = {
+            info : "info",
+            final_span : "final_span",
+            interim_span : "interim_span",
+            start_button : "start_button",
+            copy_button : "copy_button",
+            email_button : "email_button",
+            copy_info : "copy_info",
+            email_info : "email_info",
+            start_img : "start_img",
+            select_language : "select_language",
+            select_dialect : "select_dialect"
+        };
+
+        // Create a new speech object.
+        var speechObj = new BOLT.SpeechRecognition(speechConfig, null, true);
+
+        var placeholderText = "Click on the mic and say something...";
+        $("#description_results .placeholder").html(placeholderText);
+
+        $("#desc-close").click(function () {
+            speechObj.resetFinalScript();
+            $("#description_results .placeholder").html(placeholderText);
+        });
+
+        $("form#mainform").submit(function () {
+            $("input[name=description]").val($("#final_span").html());
+        });
+    });
+</script>
+{{/partial}}
+
+{{#partial "speechRecArea"}}
+    {{> (dynamic "speechRecognition") }}
+{{/partial}}
+
+{{#partial "footer"}}hello{{/partial}}
