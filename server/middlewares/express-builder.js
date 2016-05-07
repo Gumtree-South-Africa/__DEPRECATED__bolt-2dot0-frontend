@@ -83,37 +83,37 @@ function BuildApp(siteObj) {
             defaultLocale: locale
         });
 
-        var mylocale = '';
-        app.use(function(req, res, next){
-          console.log('res: ',req.host);
-          if (req.host.indexOf('www.gumtree.pl') > -1){
-            mylocale = 'pl_PL';
-          }
-          else if(req.host.indexOf('www.gumtree.sg') > -1){
-            mylocale = 'en_SG';
-          }
-          else if(req.host.indexOf('www.gumtree.co.za') > -1){
-            mylocale = 'en_ZA';
-          }
-          else if(req.host.indexOf('www.vivanuncios.com.mx') > -1){
-            mylocale = 'es_MX';
-          }
-          else if(req.host.indexOf('www.alamaula.com') > -1){
-            mylocale = 'es_AR';
-          }
-          else{
-            mylocale = 'en_ZA';
-          }
-          //res.locals.i18n = app.locals.i18n;
-          res.locals.i18n.configure({
-              updateFiles: false,
-              objectNotation: true,
-              directory: process.cwd() + '/app/locales/json/' + mylocale,
-              prefix: 'translation_',
-              defaultLocale: mylocale
-          });
-          next();
-        })
+        //var mylocale = '';
+        //app.use(function(req, res, next){
+        //  console.log('res: ',req.host);
+        //  if (req.host.indexOf('www.gumtree.pl') > -1){
+        //    mylocale = 'pl_PL';
+        //  }
+        //  else if(req.host.indexOf('www.gumtree.sg') > -1){
+        //    mylocale = 'en_SG';
+        //  }
+        //  else if(req.host.indexOf('www.gumtree.co.za') > -1){
+        //    mylocale = 'en_ZA';
+        //  }
+        //  else if(req.host.indexOf('www.vivanuncios.com.mx') > -1){
+        //    mylocale = 'es_MX';
+        //  }
+        //  else if(req.host.indexOf('www.alamaula.com') > -1){
+        //    mylocale = 'es_AR';
+        //  }
+        //  else{
+        //    mylocale = 'en_ZA';
+        //  }
+        //  //res.locals.i18n = app.locals.i18n;
+        //  res.locals.i18n.configure({
+        //      updateFiles: false,
+        //      objectNotation: true,
+        //      directory: process.cwd() + '/app/locales/json/' + mylocale,
+        //      prefix: 'translation_',
+        //      defaultLocale: mylocale
+        //  });
+        //  next();
+        //})
 
         //app.locals.i18n.setLocale('pl_PL');
         //console.log('app.locals: ',app.locals.i18n);
