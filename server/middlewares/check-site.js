@@ -1,5 +1,6 @@
 'use strict';
 
+var instance = require('instance');
 
 module.exports = function(app) {
     return function(req, res, next) {
@@ -22,6 +23,7 @@ module.exports = function(app) {
         res.locals.config.categoryData = app.locals.config.categoryData;
         res.locals.config.categorydropdown = app.locals.config.categorydropdown;
 
+        res.locals.i18n = instance(app.locals.i18n);
         res.locals.i18n.configure({
             updateFiles: false,
             objectNotation: true,
