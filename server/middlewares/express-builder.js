@@ -61,7 +61,7 @@ function BuildApp(siteObj) {
         i18node.expressBind(app, {
             // setup some locales - other locales default to en silently
             locales: [siteObj.locale],
-          //  extension:'.json',
+            extension:'.json',
             // change the cookie name from 'lang' to 'locale'
             cookieName: 'locale'
         });

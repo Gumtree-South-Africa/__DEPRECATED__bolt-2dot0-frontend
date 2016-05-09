@@ -1,8 +1,4 @@
 {
-	"hello": "Holla in espagnol",
-	"desc": "description in espagnol",
-	"extra": "extra in espagnol",
-	"Hello": "Hello",
 	"header.logo.altTag": "header.logo.altTag",
 	"header.postad-long": "header.postad-long",
 	"header.menu.my.gumtree": "header.menu.my.gumtree",
