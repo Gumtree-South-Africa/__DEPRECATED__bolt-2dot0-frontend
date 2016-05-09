@@ -23,7 +23,7 @@ function initConfigI18n(app, locale) {
         cookieName: 'locale'
     });
 
-    hbs.registerHelper('__n', function () {
+    hbs.registerHelper('nacer', function () {
       return i18n.__n.apply(this, arguments);
     });
 }
