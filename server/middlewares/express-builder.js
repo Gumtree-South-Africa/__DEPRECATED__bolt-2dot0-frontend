@@ -28,10 +28,7 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
-var instance = require('instance');
-var i18node = require('i18n-2');
-var hbs = require('handlebars');
-
+var i18nOr = require(config.root + '/modules/bolt-i18n');
 
 function BuildApp(siteObj) {
     var app = new express();
@@ -58,18 +55,8 @@ function BuildApp(siteObj) {
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
-        i18node.expressBind(app, {
-            // setup some locales - other locales default to en silently
-            locales: [siteObj.locale],
-            extension:'.json',
-            // change the cookie name from 'lang' to 'locale'
-            cookieName: 'locale'
-        });
-
-        hbs.registerHelper('__n', function () {
-          return i18n.__n.apply(this, arguments);
-        });
-
+        //I18n initialization 
+        i18nOr.init(app, siteObj.locale);
 
         /*
          * Development based middlewares
