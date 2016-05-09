@@ -249,6 +249,7 @@ var QuickPost = {
 		modelData.formContent.errorDescriptionLong = 'quickpost.error.descriptionLong';
 		modelData.formContent.errorDescriptionInvalid = 'quickpost.error.descriptionInvalid';
 		modelData.formContent.errorCategoryReqd = 'quickpost.error.categoryReqd';
+		modelData.formContent.errorCategoryInvalid = 'quickpost.error.categoryInvalid';
 		modelData.formContent.errorLocationReqd = 'quickpost.error.locationReqd';
 		modelData.formContent.errorLocationInvalid = 'quickpost.error.locationInvalid';
 		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
@@ -387,31 +388,37 @@ var QuickPost = {
 				var fieldError = 'false';
 				for(var i=0; i<err.details.length; i++) {
 					var det = err.details[i];
-					if (det.message.indexOf('does not map to any location') > '-1') {
+					if (det.code == 'LOCATION_DOES_NOT_MATCH_COUNTRY') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
-						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 						fieldError = 'true';
-					} else if (det.message.indexOf('latitude') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:latitude') > '-1' && det.code=='MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
-						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 						fieldError = 'true';
-					} else if (det.message.indexOf('longitude') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:longitude') > '-1' && det.code=='MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
-						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 						fieldError = 'true';
-					} else if (det.message.indexOf('address') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:address') > '-1' && det.code=='MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
-						modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+						fieldError = 'true';
+					} else if (det.code == 'INVALID_PARAM_DESCRIPTION_LENGTH') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.description = modelData.formContent.errorDescriptionInvalid;
+						fieldError = 'true';
+					} else if (det.code == 'CATEGORYID_NOT_FOUND_FOR_THIS_LOCALE') {
+						req.form.fieldErrors = {};
+						req.form.fieldErrors.category = modelData.formContent.errorCategoryInvalid;
 						fieldError = 'true';
 					}
 				}
 			}
 			if (_.isEmpty(errorMessage) && fieldError=='false') {
 				errorMessage = modelData.formContent.error4xx;
+			} else {
+				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 			}
 		}
 		if (err.status5xx) {
