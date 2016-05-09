@@ -52,12 +52,12 @@ Object.keys(config.sites).forEach(function(siteKey) {
 
 		        // register bolt middleware
 		        siteApp.use(checksite(siteApp));
-			  	siteApp.use(responseMetrics());
+			  	  siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
-      
+
 	      siteCount = siteCount + 1;
     }
  });
@@ -69,7 +69,7 @@ controllers.forEach(function (controller) {
 });
 
 
-// Warning: do not reorder this middleware. 
+// Warning: do not reorder this middleware.
 // Order of this should always appear after controller middlewares are setup.
 app.use(error.four_o_four(app));
 

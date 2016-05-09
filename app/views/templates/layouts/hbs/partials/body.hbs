@@ -7,7 +7,7 @@
         {{#block "messaging-full-width"}}{{/block}}
 
         <div class="page {{#ifeq this.content.numFound compare=0}}{{else}}extra{{/ifeq}}" >
-			
+
 			{{> (dynamic "messaging") }}
             {{#block "messaging" }}{{/block}}
 
@@ -40,5 +40,3 @@
     </div>
 </div>
 {{!-- End Body.html --}}
-
-

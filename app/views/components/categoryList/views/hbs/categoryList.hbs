@@ -1,5 +1,5 @@
 <ul class="category-list nonJsOnlyBlock" id="flexLftBuckt">
-    {{#each categoryList.children}}
+    {{#each this.categoryList.children}}
     <li class="parent-category l1category{{this.id}} item" data-category-id="{{this.id}}" data-ct-id="{{this.id}}">
           <a href="{{this._links.[1].href}}" class="toggler" title="{{this.localizedName}} ({{this.id}})">
                 <span class="icon-cat-{{this.id}} icon"></span>
@@ -8,41 +8,36 @@
           {{#if this.children}}
                 <span class="arrow icon-caret-right"></span>
           </a>
-              <ul>
-                  <li class="all-label"> {{{i18n "home.all.cat.name"}}}  {{this.localizedName}} </li>
-                  {{#each this.children}}
-                  <li><a href="{{this._links.[1].href}}">{{this.localizedName}}</a></li>
-                  {{/each}}
-              </ul>
+
           {{else}}
           </a>
           {{/if}}
     </li>
     {{/each}}
-
+    
 
     {{#if this.content.swapTradeModel.isSwapTradeEnabled}}
         <li class="parent-category l1swaptrade item">
             <a href="{{this.content.swapTradeModel.swapTradeSeoUrl}}">
-                <span class="label">{{i18n this.content.swapTradeModel.swapTradeName}}</span>
+                <span class="label">{{__ this.content.swapTradeModel.swapTradeName}}</span>
             </a>
         </li>
     {{/if}}
     {{#if this.content.freebiesModel.isFreebiesEnabled}}
         <li class="parent-category l1freebies item">
             <a href="{{this.content.freebiesModel.freebiesSeoUrl}}">
-                <span class="label">{{i18n this.content.freebiesModel.freebiesName}}</span>
+                <span class="label">{{__ this.content.freebiesModel.freebiesName}}</span>
             </a>
         </li>
     {{/if}}
     {{#if this.content.wantedModel.isWantedEnabled}}
         <li class="parent-category l1wanted item">
             <a href="{{this.content.wantedModel.wantedSeoUrl}}">
-                <span class="label"><!--Poszukiwane-->{{i18n this.content.wantedModel.localizedName}}</span>
+                <span class="label"><!--Poszukiwane-->{{__ this.content.wantedModel.localizedName}}</span>
             </a>
         </li>
     {{/if}}
-    
+
     <li class="item" data-ct-id='rightBucket'>
     {{#block "rightBucket"}}
     	<ul id="flexRghtBucket">
@@ -57,7 +52,7 @@
 			                {{/if}}
 		                </div>
 		            </div>
-				
+
 		            <div id="rightBottomBanner">
 		            	{{#if this.content.homePageBannerUrl}}
 		                {{else}}
@@ -68,7 +63,7 @@
 		   		</div>
 		    </li>
 		</ul>
-	{{/block}}	
+	{{/block}}
     </li>
 
 </ul>
