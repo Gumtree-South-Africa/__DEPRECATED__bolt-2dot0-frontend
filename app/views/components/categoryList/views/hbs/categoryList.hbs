@@ -5,16 +5,21 @@
                 <span class="icon-cat-{{this.id}} icon"></span>
                 <span class="label">{{this.localizedName}}</span>
                 <!--span style="color:black">({{this.id}})</span-->
-          {{#if this.children}}
-                <span class="arrow icon-caret-right"></span>
-          </a>
-
-          {{else}}
-          </a>
-          {{/if}}
+                {{#if this.children}}
+                      <span class="arrow icon-caret-right"></span>
+                </a>
+                    <ul>
+                        <li class="all-label"> {{this.localizedName}} </li>
+                        {{#each this.children}}
+                        <li><a href="{{this._links.[1].href}}">{{this.localizedName}}</a></li>
+                        {{/each}}
+                    </ul>
+                {{else}}
+                </a>
+                {{/if}}
     </li>
     {{/each}}
-    
+
 
     {{#if this.content.swapTradeModel.isSwapTradeEnabled}}
         <li class="parent-category l1swaptrade item">
