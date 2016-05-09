@@ -19,6 +19,8 @@ function initConfigI18n(app, locale) {
         locales: [locale],
         // setup extension
         extension:'.json',
+
+        directory: process.cwd() + '/app/locales/bolt-translation',
         // change the cookie name from 'lang' to 'locale'
         cookieName: 'locale'
     });
