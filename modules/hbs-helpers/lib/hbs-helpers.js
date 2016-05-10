@@ -115,7 +115,19 @@ module.exports  =  {
             number = parseFloat(number);
             separator = util.isUndefined(separator) ? ',' : separator;
             return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
-        }),
+        });
+
+        exphbs.handlebars.registerHelper('splitKeyValueShowKey', function(keyvalue) {
+            if (!keyvalue) return;
+            var str = keyvalue.split(":");
+            return new exphbs.handlebars.SafeString(str[0]);
+        });
+
+        exphbs.handlebars.registerHelper('splitKeyValueShowValue', function(keyvalue) {
+            if (!keyvalue) return;
+            var str = keyvalue.split(":");
+            return new exphbs.handlebars.SafeString(str[1]);
+        });
 
 
         exphbs.handlebars.registerHelper('ifDesktop', function(val, options) {

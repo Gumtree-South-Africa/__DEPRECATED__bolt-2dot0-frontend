@@ -92,7 +92,7 @@
 		
 		   "quickpost" : {
               "currencyDisplay"    :    false,
-              "currency"           :    ["EUR"]
+              "currency"           :    ["EUR:EUR"]
         }
 		
 		

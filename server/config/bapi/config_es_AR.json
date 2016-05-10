@@ -92,7 +92,7 @@
 		},
 		  "quickpost" : {
               "currencyDisplay"    :    true,
-              "currency"           :    ["Pesos","Dólares"]
+              "currency"           :    ["ARS:Pesos","USD:D\u00f3lares"]
         }
 		
 	},

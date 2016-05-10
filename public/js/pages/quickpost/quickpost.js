@@ -138,7 +138,7 @@ BOLT.QuickPostPage = (function() {
                 }
             });
 
-    		var selectedOption, 
+    		var selectedOption,
     		    currency = document.getElementById('currencyOptions');
             
     		if(currency != undefined)
@@ -146,18 +146,17 @@ BOLT.QuickPostPage = (function() {
                 // Listener to update the currency when the user selects a currency.
                 $('#currencyOptions').change( function() {
                 		selectedOption = currency[currency.selectedIndex].value;
-                		
+
                         // Set the currency Id in a hidden var.
                        $("input[name=SelectedCurrency]").val(selectedOption);
             	});
                 
-        		if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) 
-        		{
+        		if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) {
             		selectedOption = currency[currency.selectedIndex].value;
-                	$("input[name=SelectedCurrency]").val(selectedOption); 
+
+                    $("input[name=SelectedCurrency]").val(selectedOption);
         		}
-        		else //There is a pre-selected value
-    			{
+        		else { //There is a pre-selected value
         			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
     			}
 			}

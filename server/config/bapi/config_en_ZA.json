@@ -91,7 +91,7 @@
 		},
 		  "quickpost" : {
               "currencyDisplay"    :     false,
-              "currency"            :    ["ZAR"]
+              "currency"            :    ["ZAR:ZAR"]
         }
 	},
 	"bapi" : {

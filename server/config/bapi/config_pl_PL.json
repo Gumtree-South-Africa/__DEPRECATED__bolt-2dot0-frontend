@@ -89,7 +89,7 @@
 		},
 		 "quickpost" : {
               "currencyDisplay"    :    false,
-              "currency"           :    ["PLN"]
+              "currency"           :    ["PLN:PLN"]
         }
 	},
 	"bapi" : {

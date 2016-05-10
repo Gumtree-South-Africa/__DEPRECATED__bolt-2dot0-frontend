@@ -93,7 +93,7 @@
 		
 	     "quickpost" : {
               "currencyDisplay"    :    false,
-              "currency"           :    ["SGD"]
+              "currency"           :    ["SGD:SGD"]
         }
 	},
 	"bapi" : {
