@@ -55,7 +55,7 @@ function BuildApp(siteObj) {
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
 
-        //I18n initialization 
+        // Bolt 2.0 I18n initialization
         i18nOr.init(app, siteObj.locale);
 
         /*
