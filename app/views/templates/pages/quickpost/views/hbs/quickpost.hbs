@@ -126,12 +126,10 @@
                                     <option value='{{splitKeyValueShowKey this}}' {{#if selected}}selected{{/if}}>{{splitKeyValueShowValue this}}</option>
                                 {{/each}}
                             </select>
-                            <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />
                        </div>
-                    {{else}}
-                        <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.currency}}" />
-	                {{/if}}
-                      
+                    {{/if}}
+                    <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />
+                    
                     <div class='price-field number'>
                         <input type="text" data-number='{"nogrouping" : false}' pattern="\d*"
                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'

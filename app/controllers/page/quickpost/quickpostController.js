@@ -222,6 +222,11 @@ var QuickPost = {
 		modelData.formContent.priceExtension = 'quickpost.priceExtension';
 		modelData.formContent.currencyDisplay=bapiConfigData.content.quickpost.currencyDisplay;
         modelData.formContent.currency=bapiConfigData.content.quickpost.currency;
+		if (modelData.formContent.currency.length == 1) {
+			var singleCurrency = modelData.formContent.currency[0];
+			var singleCurrencySplit = singleCurrency.split(':');
+			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
+		}
 
 		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
