@@ -123,7 +123,7 @@
 	                   <div class='currency-types'>
 		                    <select id='currencyOptions' name='currencyOptions'> 
                                 {{#each this.formContent.currency}}
-                                    <option value='{{this}}' {{#if selected}}selected{{/if}}>{{this}}</option>
+                                    <option value='{{splitKeyValueShowKey this}}' {{#if selected}}selected{{/if}}>{{splitKeyValueShowValue this}}</option>
                                 {{/each}}
                             </select>
                             <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />
