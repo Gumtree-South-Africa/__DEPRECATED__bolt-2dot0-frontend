@@ -1,7 +1,7 @@
 {{#partial "homepg"}}
  <div class="hp-category-wrapper">
     {{#if model.lastWeekPostedAdCount}}
-        <p class="lastweekposts">{{{i18n "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
+        <p class="lastweekposts">{{{__ "home.lastweekpostedAD" model.lastWeekPostedAdCount model.lastWeekPostedAdLocal}}}</p>
     {{/if}}
 
 		{{> (dynamic "countryMap")}}
@@ -13,7 +13,7 @@
 {{> (dynamic "adCarousel") }}
 
 <div class="category-wrapper">
-	<h1>{{i18n "home.h1Tag"}}</h1>
+	<h1>{{__ "home.h1Tag"}}</h1>
 	{{#with this}}
 		{{> (dynamic "categoryDisplay") }}
 	  {{> (dynamic "categoryList") }}
@@ -26,7 +26,7 @@
 <div class="postSection">
     <div class="hp-total-ad-count">
         {{#if this.totalLiveAdCount}}
-            <div class="hp-live_ads_msg line2"><div>{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}} </div><span class="postText">Publica tu clasificado</span><span class="postLink" data-o-uri="{{obfuscateUrl this.header.postAdPageUrl}}"> {{i18n "home.post.ad.message"}}</span></div>
+            <div class="hp-live_ads_msg line2"><div>{{{__ "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}} </div><span class="postText">Publica tu clasificado</span><span class="postLink" data-o-uri="{{obfuscateUrl this.header.postAdPageUrl}}"> {{__ "home.post.ad.message"}}</span></div>
         {{/if}}
     </div>
 
@@ -34,7 +34,7 @@
         <div class="right">
             <div class="post post-btn-wrap">
                 <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
-                  <span class="long">{{i18n "header.postad-medium"}}</span>
+                  <span class="long">{{__ "header.postad-medium"}}</span>
                </a>
             </div>
         </div>
@@ -57,7 +57,7 @@
 
 			{{#if this.topKeywords}}
 				<div class="hp-popular-searches-wrapper">
-					<h5>{{i18n "home.popular-searches"}}</h5>
+					<h5>{{__ "home.popular-searches"}}</h5>
 					<ul>
 					{{#each this.topKeywords}}
 						<li data-index="{{@index}}" class="{{#ifeq @index compare=1}}displayMore{{else}} {{#ifeq @index compare=4}}displayMoreDeskTop{{/ifeq}}{{/ifeq}} nonJsOnlyBlock">
@@ -72,7 +72,7 @@
 
 			{{#if this.trendingKeywords}}
 				<div class="hp-trending-searches-wrapper">
-					<h5>{{i18n "home.trending-searches"}}</h5>
+					<h5>{{__ "home.trending-searches"}}</h5>
 					<ul>
 					{{#each this.trendingKeywords}}
 						<li data-index="{{@index}}" class="{{#ifeq @index compare=1}}displayMore{{else}} {{#ifeq @index compare=4}}displayMoreDeskTop{{/ifeq}}{{/ifeq}} nonJsOnlyBlock">
@@ -104,7 +104,7 @@
             <div class="right">
                 <div class="post post-btn-wrap">
                     <a class="sudo-link sudo-link post-btn postcommercial"  data-gtm="pc|PostAdBegin" href="/post.html">
-                        <span class="long">{{i18n "header.postad-medium"}}</span>
+                        <span class="long">{{__ "header.postad-medium"}}</span>
                     </a>
                 </div>
             </div>

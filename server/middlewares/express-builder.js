@@ -33,7 +33,7 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 
-var instance = require('instance');
+var i18nOr = require(config.root + '/modules/bolt-i18n');
 
 function BuildApp(siteObj) {
     var app = new express();
@@ -80,17 +80,8 @@ function BuildApp(siteObj) {
         app.locals.i18n.setLocale(siteObj.locale);
         //console.log('app.locals: ',app.locals.i18n);
 
-        app.locals.i18n = instance(require('i18n'));
-        app.locals.i18n.configure({
-            updateFiles: false,
-            objectNotation: true,
-            directory: process.cwd() + '/app/locales/json/' + siteObj.locale,
-            fallback: 'en_ZA',
-            syncFiles: true,
-            register: global,
-            prefix: 'translation_',
-            defaultLocale: siteObj.locale
-        });
+        // Bolt 2.0 I18n initialization
+        i18nOr.init(app, siteObj.locale);
 
         /*
          * Development based middlewares

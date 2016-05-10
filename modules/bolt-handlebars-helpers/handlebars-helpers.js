@@ -107,7 +107,7 @@ function nc(module, i18nObj) {
               argsArr[idx] = boltHelpers.helpers.formatCommas(argsArr[idx]);
             }
 
-              val = val.replace("{" + idx + "}", argsArr[idx]); 
+              val = val.replace("{" + idx + "}", argsArr[idx]);
             }
         }
         return val;
@@ -140,30 +140,13 @@ function nc(module, i18nObj) {
             'json' : function(context) {
                 return JSON.stringify(context);
             },
-            
+
             'obfuscateUrl' : function(value) {
                 return StringUtils.obfuscate(value);
             },
 
             'formatCommas' : function(value) {
               return value.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
-            },
-
-            // Handlebars helper from i18next
-            'i18n' : function(i18n_key, par) {
-                var context = module.instance;
-                //console.log("I NEED I18N OBJECT NOW.........");
-                var result = _i18n.t(i18n_key),
-                  argsArr;
-
-                if (par && (typeof par === "number" ||typeof par === "string")) {
-                  argsArr = Array.prototype.slice.call(arguments).splice(1,2);
-                  return replaceParamValues(context, result, argsArr);
-                }
-
-                // console.log("RETRIEVING AN SPECIFIC I18N....");
-                // var result = i18nObj.t(i18n_key);
-                return result;
             }
         }
     };

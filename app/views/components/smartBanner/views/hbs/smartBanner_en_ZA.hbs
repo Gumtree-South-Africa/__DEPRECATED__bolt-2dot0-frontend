@@ -9,8 +9,8 @@
      {{#ifMobile this.device}}
         <script>
             var appStoreLanguage = "za";
-            var appStoreTitle = '{{{i18n "smartbanner.title"}}}';
-            var appStoreButtonInstall = '{{i18n "smartbanner.install"}}';
+            var appStoreTitle = '{{{__ "smartbanner.title"}}}';
+            var appStoreButtonInstall = '{{__ "smartbanner.install"}}';
         </script>
         {{#block "deviceSmartBannerScriptImpl"}}{{/block}}
     {{/ifMobile}}

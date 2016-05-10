@@ -2,9 +2,9 @@
     <a href="{{this.header.homePageUrl}}"{{#block "HomePageLogoLinkAlt"}}{{/block}}>
         {{#block "HomePageLogoImage"}}
             {{#if this.header.enableLighterVersionForMobile}}
-                <img class="logo" src="{{this.header.baseImageUrl}}{{this.locale}}/logo_mobile.gif" alt='{{i18n "header.logo.altTag"}}' />
+                <img class="logo" src="{{this.header.baseImageUrl}}{{this.locale}}/logo_mobile.gif" alt='{{__ "header.logo.altTag"}}' />
             {{else}}
-                <img class="logo" src="{{this.header.baseImageUrl}}{{this.locale}}/logo.png" alt='{{i18n "header.logo.altTag"}}' />
+                <img class="logo" src="{{this.header.baseImageUrl}}{{this.locale}}/logo.png" alt='{{__ "header.logo.altTag"}}' />
             {{/if}}
         {{/block}}
     </a>

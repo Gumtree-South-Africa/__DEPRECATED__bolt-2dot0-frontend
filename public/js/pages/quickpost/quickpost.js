@@ -102,9 +102,12 @@ BOLT.QuickPostPage = (function() {
         	this.syncUI();
             this.tooltip();
             this.charCount();
+            this.categorySelector();
+            this.currencySelector();
             this.toggleSwitchUpdate();
-            this.getData();
-            this.populate();
+            this.geoMap();
+            this.autoComplete();
+            this.autoCompletePopulate();
             this.registerUnloadEvent();
         },
 
@@ -114,55 +117,12 @@ BOLT.QuickPostPage = (function() {
          * @public
          */
         syncUI : function () {
-            $("#maps-link").click(openMap);
-
-            $(document).on("applyLocation", function(e, latlongData) {
-            	setMapCoords(latlongData);
-            });
-
-            // Listener to update the category Id when the user selects a category.
-            $(document).on("MobileLeafReached", function(e, obj) {
-                if (catMobileSelObj === obj.currentInstance) {
-                    window.setTimeout(function() {
-                        $("#mobileCats .base-panel-container > ul > li").removeClass("mm-hidden");
-
-                        // Set the Category name
-                        $("#mobileCats .base-panel .initial-label").text(obj.label);
-                    }, 100);
-
-                    // Set the Category Id in a hidden var.
-                    $("input[name=Category]").val(obj.id);
-
-                    // Re-run validation on the category hidden field.
-                    $("input[name=Category]").valid();
-                }
-            });
-
-    		var selectedOption,
-    		    currency = document.getElementById('currencyOptions');
-            
-    		if(currency != undefined)
-			{
-                // Listener to update the currency when the user selects a currency.
-                $('#currencyOptions').change( function() {
-                		selectedOption = currency[currency.selectedIndex].value;
-
-                        // Set the currency Id in a hidden var.
-                       $("input[name=SelectedCurrency]").val(selectedOption);
-            	});
-                
-        		if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) {
-            		selectedOption = currency[currency.selectedIndex].value;
-
-                    $("input[name=SelectedCurrency]").val(selectedOption);
-        		}
-        		else { //There is a pre-selected value
-        			currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown 
-    			}
-			}
-
             $("#postForm").submit(function () {
                 window.skipOnBeforeUnload = true;
+            });
+
+            $(window).bind("pageshow", function() {
+                $("#postForm").reset();
             });
         },
 
@@ -181,6 +141,50 @@ BOLT.QuickPostPage = (function() {
             })
         },
 
+        categorySelector: function(){
+            // Listener to update the category Id when the user selects a category.
+            $(document).on("MobileLeafReached", function(e, obj) {
+                if (catMobileSelObj === obj.currentInstance) {
+                    window.setTimeout(function() {
+                        $("#mobileCats .base-panel-container > ul > li").removeClass("mm-hidden");
+
+                        // Set the Category name
+                        $("#mobileCats .base-panel .initial-label").text(obj.label);
+                    }, 100);
+
+                    // Set the Category Id in a hidden var.
+                    $("input[name=Category]").val(obj.id);
+
+                    // Re-run validation on the category hidden field.
+                    $("input[name=Category]").valid();
+                }
+            });
+        },
+
+        currencySelector: function(){
+            var selectedOption,
+                currency = document.getElementById('currencyOptions');
+
+            if(currency != undefined) {
+                // Listener to update the currency when the user selects a currency.
+                $('#currencyOptions').change( function() {
+                    selectedOption = currency[currency.selectedIndex].value;
+
+                    // Set the currency Id in a hidden var.
+                    $("input[name=SelectedCurrency]").val(selectedOption);
+                });
+
+                if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) {
+                    selectedOption = currency[currency.selectedIndex].value;
+
+                    $("input[name=SelectedCurrency]").val(selectedOption);
+                }
+                else { //There is a pre-selected value
+                    currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown
+                }
+            }
+        },
+
         toggleSwitchUpdate: function(){
             $('.toggleswitch input[type=checkbox]').on('change', function(){
                 var isToggleSwitchOn = $(this).is(':checked');
@@ -195,7 +199,15 @@ BOLT.QuickPostPage = (function() {
             });
         },
 
-        getData : function(){
+        geoMap: function(){
+            $("#maps-link").click(openMap);
+
+            $(document).on("applyLocation", function(e, latlongData) {
+                setMapCoords(latlongData);
+            });
+        },
+
+        autoComplete : function(){
             $('#Location').on('keyup', function(){
                 var htmlElt = '';
                     $.ajax({
@@ -224,7 +236,7 @@ BOLT.QuickPostPage = (function() {
             })
         },
 
-        populate: function(){
+        autoCompletePopulate: function(){
             $('#autocompleteField').on('click', '.ac-field', function(){
                 var $this = $(this);
                 $('#autocompleteField').addClass('hiddenElt');
