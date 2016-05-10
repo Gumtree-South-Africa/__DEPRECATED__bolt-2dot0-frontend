@@ -78,6 +78,9 @@
 						Location: {
 							required: true,
 							validLocation: true
+						},
+						price:{
+						  maxlength: 10
 						}
 					},
 
@@ -94,7 +97,13 @@
 						Location: {
 							required: (typeof $("#Location").attr("data-errorFlash") === 'undefined') ? $("#Location").attr("data-errorLocationReqd") : '',
 							validLocation: (typeof $("#Location").attr("data-errorFlash") === 'undefined') ? $("#Location").attr("data-errorLocationInvalid") : ''
+						},
+						price: {
+						
+							maxlength: (typeof $("#Price").attr("data-errorFlash") === 'undefined') ? $("#Price").attr("data-errorPriceLong") : ''
+							
 						}
+						
 					}
 				});
 			}

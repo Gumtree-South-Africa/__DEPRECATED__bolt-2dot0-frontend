@@ -129,13 +129,13 @@
     right: 1.2em;
   }
   .char-count-info {
-    width: 15px;
-    height: 18px;
+    width: 19px;
+    height: 19px;
     display: inline;
     cursor: text;
     position: absolute;
     top: 2.3em;
-    right: 2.5em;
+    right: 2.7em;
     font-size: 80%;
     color: #6666ff;
   }
@@ -171,7 +171,6 @@
 .price{
   border-bottom: solid 1px #a2a2a1;
   margin-top: 1em;
-  padding-bottom: 0.5em;
   position: relative;
 }
 
@@ -365,13 +364,15 @@ height: 25px;
 .price-field{
 position: relative;
 display: inline-block;
-margin-bottom: .5em;
 border: none;
 border-color: #939393;
 border-radius: 5px;
 
 }
 
+.price-fraction{
+float:right;
+}
 
 .price-field.numberonly input.price-value,#Price {
 border: 1px solid #ccc;
@@ -380,6 +381,7 @@ font-size: 1em;
 padding-left: 1.6em;
 width: 11.25em;
 height: 25px;
+float:right;
 }
 
 .ghost{
@@ -398,3 +400,4 @@ height: 25px;
     border: 1px solid #ccc;
  }
 }
+

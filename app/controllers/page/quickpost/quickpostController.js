@@ -68,7 +68,7 @@ router.post('/quickpost',
 		field('Description').trim().required().minLength(10).maxLength(4096)
 			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
 		field('Category').required(),
-		field('price').trim().is(/^[0-9]+$/),field('SelectedCurrency'),
+		field('price').trim().maxLength(10).is(/^[0-9]+$/),field('SelectedCurrency'),
 		field('switch'),
 		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
 
@@ -258,6 +258,7 @@ var QuickPost = {
 		modelData.formContent.errorLocationReqd = 'quickpost.error.locationReqd';
 		modelData.formContent.errorLocationInvalid = 'quickpost.error.locationInvalid';
 		modelData.formContent.errorLocNotInCountry = 'quickpost.error.locationNotInCountry';
+		modelData.formContent.errorPriceLong = 'quickpost.error.priceLong';
 
 		// Custom header
 		modelData.content = {};
@@ -365,6 +366,10 @@ var QuickPost = {
 				if(!req.form.fieldErrors.category)
 					req.form.fieldErrors.category = req.form.errors[i];
 			}
+			else if (req.form.errors[i].indexOf('price') > -1) {
+				if(!req.form.fieldErrors.price)
+                    req.form.fieldErrors.price = req.form.errors[i];
+			}	
 			else if (req.form.errors[i].indexOf('Location ') > -1) {
 				if(!req.form.fieldErrors.location)
 					req.form.fieldErrors.location = req.form.errors[i];
