@@ -131,8 +131,7 @@
                     <input type="hidden" id="SelectedCurrency" name="SelectedCurrency" value="{{this.formContent.selectedCurrency}}" />
                     
                     <div class='price-field number'>
-                        <input type="text" data-number='{"nogrouping" : false}' pattern="\d*"
-                               onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                        <input type="text" onkeypress='return event.charCode >= 48 && event.charCode <= 57'
                                class='price-value' id="Price" name="price"
                                placeholder="{{i18n this.formContent.pricePlaceholder}}"
                                value="{{i18n this.formContent.priceValue}}">
