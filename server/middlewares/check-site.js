@@ -1,7 +1,5 @@
 'use strict';
 
-var instance = require('instance');
-
 module.exports = function(app) {
     return function(req, res, next) {
         // send site information along
@@ -22,15 +20,6 @@ module.exports = function(app) {
 
         res.locals.config.categoryData = app.locals.config.categoryData;
         res.locals.config.categorydropdown = app.locals.config.categorydropdown;
-
-        // res.locals.i18n = instance(app.locals.i18n);
-        // res.locals.i18n.configure({
-        //     updateFiles: false,
-        //     objectNotation: true,
-        //     directory: process.cwd() + '/app/locales/json/' + res.locals.config.locale,
-        //     prefix: 'translation_',
-        //     defaultLocale: res.locals.config.locale
-        // });
 
         // call next middleware
         next();
