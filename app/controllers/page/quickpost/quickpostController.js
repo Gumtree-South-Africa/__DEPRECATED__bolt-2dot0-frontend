@@ -212,7 +212,6 @@ var QuickPost = {
 		modelData.formContent.descriptionTip2 = 'quickpost.descriptionTip2';
 		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
 		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
-    modelData.formContent.descriptionValue = 'quickpost.empty';
 
     modelData.formContent.categoryText = 'quickpost.categoryText';
 
@@ -228,10 +227,6 @@ var QuickPost = {
 			var singleCurrencySplit = singleCurrency.split(':');
 			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
 		}
-
-    modelData.formContent.categoryValue= 'quickpost.empty';
-
-    modelData.formContent.priceValue = 'quickpost.empty';
 
     modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';

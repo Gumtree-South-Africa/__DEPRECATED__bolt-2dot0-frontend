@@ -31,7 +31,7 @@
                           data-errorDescriptionShort="<p class='labelError'>{{__ this.formContent.errorDescriptionShort}}</p>"
                           data-errorDescriptionLong="<p class='labelError'>{{__ this.formContent.errorDescriptionLong}}</p>"
                           data-errorDescriptionInvalid="<p class='labelError'>{{__ this.formContent.errorDescriptionInvalid}}</p>"
-                          placeholder="{{__ this.formContent.descriptionPlaceholder}}">{{__ this.formContent.descriptionValue}}</textarea>
+                          placeholder="{{__ this.formContent.descriptionPlaceholder}}">{{#if this.formContent.descriptionValue}}{{__ this.formContent.descriptionValue}}{{/if}}</textarea>
                 <span class="icon-contextual-info"></span>
                 <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
                 {{#with this.flash.fieldErrors.description}}
@@ -135,7 +135,7 @@
                          <input type="text" {{#if this.flash.fieldErrors.price}}class="error" data-errorFlash="{{this.flash.fieldErrors.price}}"{{/if}}
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'class='price-value' id="Price" name="price"
                           placeholder="{{__ this.formContent.pricePlaceholder}}"
-                         value="{{__ this.formContent.priceValue}}"  data-errorPriceLong="<p class='labelError'>{{__ this.formContent.errorPriceLong}}</p>" >
+                         {{#if this.formContent.priceValue}}value="{{__ this.formContent.priceValue}}"{{/if}}  data-errorPriceLong="<p class='labelError'>{{__ this.formContent.errorPriceLong}}</p>" >
                       <span class="ghost">{{__ this.formContent.priceCurrencyText}}</span>
                     </div>
                 </div>
