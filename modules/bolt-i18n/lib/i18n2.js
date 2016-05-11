@@ -24,8 +24,4 @@ function initConfigI18n(app, locale) {
         // change the cookie name from 'lang' to 'locale'
         cookieName: 'locale'
     });
-
-    hbs.registerHelper('__n', function () {
-      return i18n.__n.apply(this, arguments);
-    });
 }

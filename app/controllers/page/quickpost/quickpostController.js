@@ -212,8 +212,9 @@ var QuickPost = {
 		modelData.formContent.descriptionTip2 = 'quickpost.descriptionTip2';
 		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
 		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
+    modelData.formContent.descriptionValue = 'quickpost.empty';
 
-		modelData.formContent.categoryText = 'quickpost.categoryText';
+    modelData.formContent.categoryText = 'quickpost.categoryText';
 
 		modelData.formContent.pricePlaceholder = 'quickpost.pricePlaceholder';
 		modelData.formContent.priceCurrency = 'quickpost.priceCurrency';
@@ -228,7 +229,11 @@ var QuickPost = {
 			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
 		}
 
-		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
+    modelData.formContent.categoryValue= 'quickpost.empty';
+
+    modelData.formContent.priceValue = 'quickpost.empty';
+
+    modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
 		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
 		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
@@ -369,7 +374,7 @@ var QuickPost = {
 			else if (req.form.errors[i].indexOf('price') > -1) {
 				if(!req.form.fieldErrors.price)
                     req.form.fieldErrors.price = req.form.errors[i];
-			}	
+			}
 			else if (req.form.errors[i].indexOf('Location ') > -1) {
 				if(!req.form.fieldErrors.location)
 					req.form.fieldErrors.location = req.form.errors[i];

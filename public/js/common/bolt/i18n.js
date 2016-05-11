@@ -3,33 +3,6 @@
  */
 
 
-
-/*
- var i18n = function(){ console.error("Translations could not be loaded"); };
-$(function(){
-	$.getJSON("{{this}}", function(I18N){
-		i18n = function(){
-			var key = arguments[0];
-			if(typeof I18N[key] === "undefined")
-				console.error("The translation '" + key + "' you requested was not loaded into your view. Please check your controller and make sure to enable localization using the setOutputLocalization(true, 'namespace') method under your PageFooterModel;");
-			var i,
-				args = $.makeArray(arguments).splice(1,2),
-				val = I18N[key];
-			for(i = 0; i < args.length; i++){
-				val = val.split("{" + i + "}").join( args[i] );
-			}
-			return val;
-		}
-
-		if(typeof Handlebars !== "undefined")
-			Handlebars.registerHelper("i18n", function(){
-				return i18n.apply(this, arguments);
-			});
-	});
-});
-*/
-
-
 var BOLT = BOLT || {};
 BOLT.TRANSLATIONS = (function($, win){
 
@@ -149,5 +122,3 @@ BOLT.TRANSLATIONS = (function($, win){
 
 
 })(jQuery, window);
-
-

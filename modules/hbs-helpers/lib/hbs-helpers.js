@@ -165,4 +165,3 @@ module.exports  =  {
 exports.what = function () {
     return util.inspect(exphbs, {showHidden: false, depth: null});
 };
-
