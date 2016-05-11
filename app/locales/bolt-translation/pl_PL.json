@@ -53,8 +53,8 @@
 	"header.menu.my.gumtree": "Moje Gumtree",
 	"header.menu.sign.in": "Zaloguj si\u0119",
 	"header.menu.register": "Zarejestruj si\u0119",
-    "quickpost.pageTitle": "Sprzedaj",
-    "quickpost.page.title": "Dodaj ogłoszenie | Gumtree",
+  "quickpost.pageTitle": "Sprzedaj",
+  "quickpost.page.title": "Dodaj ogłoszenie | Gumtree",
 	"quickpost.page.desc":"Dodaj ogłoszenie i sprzedawaj dzięki Gumtree telefony, ubrania, meble, zabawki, laptopy, sprzęt RTV i AGD, samochody, książki oraz inne rzeczy.",
 	"quickpost.descriptionText": "Opis",
 	"quickpost.descriptionPlaceholder": "Napisz co oferujesz (min. 10 znaków)",
@@ -92,6 +92,6 @@
 	"quickpost.error.locationReqd": "Lokalizacja jest wymagane",
 	"quickpost.error.locationInvalid": "nieważne Lokalizacja",
 	"quickpost.error.locationNotInCountry": "Prosimy wybrać lokalizację w Polsce",
-	"quickpost.error.priceLong": "Cena jest za wysok"		
-		
+	"quickpost.error.priceLong": "Cena jest za wysok"
+
 	}
