@@ -66,21 +66,10 @@ function BuildApp(siteObj) {
         app.locals.config.country = siteObj.country;
         app.locals.config.hostname = siteObj.hostname;
         app.locals.config.hostnameRegex = '[\.-\w]*' + siteObj.hostname + '[\.-\w-]*';
-        app.locals.i18n = instance(require('i18n'));
-        app.locals.i18n.configure({
-            updateFiles: false,
-            objectNotation: true,
-            directory: process.cwd() + '/app/locales/json/' + siteObj.locale,
-            prefix: 'translation_',
-            register: global,
-            queryParameter: 'lang',
-            defaultLocale: siteObj.locale
-        });
 
-        app.locals.i18n.setLocale(siteObj.locale);
-        //console.log('app.locals: ',app.locals.i18n);
-
-        // Bolt 2.0 I18n initialization
+        /*
+         * Bolt 2.0 I18n initialization
+         */
         i18nOr.init(app, siteObj.locale);
 
         /*
