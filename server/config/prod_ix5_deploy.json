@@ -35,7 +35,7 @@
 		"server": {
 			"host": "inc.t9.classistatic.com",
 			"port": null,
-			"version": "2.0.105"
+			"version": "2.0.106"
 		},
 		"baseCSSUrl": "/css/",
 		"baseJSUrl": "/js/",
