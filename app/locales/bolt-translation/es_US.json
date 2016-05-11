@@ -83,5 +83,6 @@
 	"quickpost.empty": "",
 	"postad.select.category.$$": "postad.select.category.$$",
 	"postad.select.location": "postad.select.location",
-	"postad.select.category.sampleSearch": "postad.select.category.sampleSearch"
+	"postad.select.category.sampleSearch": "postad.select.category.sampleSearch",
+	"header.postad-medium": "header.postad-medium"
 }

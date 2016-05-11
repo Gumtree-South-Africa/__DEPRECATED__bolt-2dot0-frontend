@@ -109,5 +109,12 @@
 	"postad.select.location": "postad.select.location",
 	"postad.select.category.$$": "postad.select.category.$$",
 	"postad.select.category.sampleSearch": "postad.select.category.sampleSearch",
-	"quickpost.empty": ""
+	"quickpost.empty": "",
+	"branchiosmartbanner.title": "branchiosmartbanner.title",
+	"branchiosmartbanner.description": "branchiosmartbanner.description",
+	"branchiosmartbanner.open": "branchiosmartbanner.open",
+	"branchiosmartbanner.install": "branchiosmartbanner.install",
+	"branchiosmartbanner.sendLinkText": "branchiosmartbanner.sendLinkText",
+	"home.page.live.ad.count.label": "home.page.live.ad.count.label",
+	"home.post.ad.message": "home.post.ad.message"
 }

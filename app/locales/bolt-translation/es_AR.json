@@ -108,5 +108,11 @@
 	"quickpost.empty": "",
 	"postad.select.category.$$": "postad.select.category.$$",
 	"postad.select.location": "postad.select.location",
-	"postad.select.category.sampleSearch": "postad.select.category.sampleSearch"
+	"postad.select.category.sampleSearch": "postad.select.category.sampleSearch",
+	"home.page.live.ad.count.label": "home.page.live.ad.count.label",
+	"home.post.ad.message": "home.post.ad.message",
+	"smartbanner.title": "smartbanner.title",
+	"smartbanner.install": "smartbanner.install",
+	"smartbanner.free": "smartbanner.free",
+	"smartbanner.open": "smartbanner.open"
 }
