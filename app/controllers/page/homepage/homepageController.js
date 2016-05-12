@@ -10,6 +10,7 @@ var cwd = process.cwd();
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
 	HomepageModel= require(cwd + '/app/builders/page/HomePageModel'),
 	marketoService = require(cwd + '/server/utils/marketo'),
+	Base64 = require(process.cwd() + '/app/utils/Base64'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
@@ -142,6 +143,12 @@ var HP = {
 
 				// Header Marketo
 				marketoService.buildMarketoDataForHP(modelData);
+				if (typeof modelData.header.marketo.marketoAttributeJson !== 'undefined') {
+					modelData.header.marketo.marketoAttributeJsonStr = Base64.encode(JSON.stringify(modelData.header.marketo.marketoAttributeJson));
+					modelData.header.marketo.privateKeyStr = Base64.encode(JSON.stringify(modelData.header.marketo.privateKey));
+				} else {
+					modelData.header.marketo.marketoAttributeJsonStr = '';
+				}
 				break;
 			case 'adinactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
