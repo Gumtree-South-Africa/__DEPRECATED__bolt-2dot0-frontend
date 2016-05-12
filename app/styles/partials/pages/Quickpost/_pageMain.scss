@@ -351,6 +351,9 @@ textarea.error{
  clear:both;
  float:left;
  margin: 0 1em .5em 0;
+ border-color: #939393;
+ border-radius: 5px;
+ border: 1px solid #ccc;
 }
 
 #currency-type-options{
@@ -393,13 +396,6 @@ float:right;
   font-weight: 600;
 }
 
-@include in-breakpoint($no-break){
-.currency-types{
-    border-color: #939393;
-    border-radius: 5px;
-    border: 1px solid #ccc;
- }
-}
 
 
 
