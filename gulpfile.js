@@ -66,6 +66,14 @@ function errorlog(err){
   this.emit('end');
 }
 
+// var props = require('gulp-props');
+// gulp.task('props', function(){
+//     // Generate a .json file indented with 2 spaces
+//     gulp.src('./app/locales/src/*.properties')
+//       .pipe(props({ namespace: '', space: 2 }))
+//       .pipe(gulp.dest('./app/locales/bolt-translation/'));
+// })
+
 
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
