@@ -5,8 +5,13 @@
     "../../../partials/pages/Quickpost/jquery.mmenu.app",
     "../../../partials/pages/Quickpost/jquery.mmenu.all";
     
- .description .char-count-info{
-  right:10%;
+ .description {
+	 .char-count-info{
+	  right:10%;
+	 }
+   .icon-contextual-info{
+   right:8%;
+  }
  }
 
 .qpWrapper{
