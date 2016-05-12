@@ -1,6 +1,4 @@
 {
-	"222222": "222222",
-	"3333333": "3333333",
 	"greeting": "Greetings from Silicon Valley",
 	"welcome": "Welcome to BOLT 2.0",
 	"author": "Tom Anthony",
@@ -1146,9 +1144,5 @@
 	"quickpost.error.locationInvalid": "Invalid Location",
 	"quickpost.error.locationNotInCountry": "The location you selected is not in South Africa",
 	"quickpost.error.priceLong": "The price is very high.",
-	"quickpost.empty": "",
-	"postad.image.upload.failure": "postad.image.upload.failure",
-	"ehd ewF WERFJQREBG TGAQTRBG": "ehd ewF WERFJQREBG TGAQTRBG",
-	"edwqemrf rfgtwrgt": "edwqemrf rfgtwrgt",
-	"wjbd EDC ervfqrtgtg": "wjbd EDC ervfqrtgtg"
+	"quickpost.empty": ""
 }

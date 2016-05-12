@@ -1181,5 +1181,5 @@
 	"quickpost.empty": "",
 	"postad.select.category.$$": "¿Qué quieres publicar?",
 	"postad.select.category.sampleSearch": "Ej.: Computadora",
-	"postad.image.upload.failure": "postad.image.upload.failure"
+	"postad.image.upload.failure": "Lo sentimos. Hubo un error."
 }

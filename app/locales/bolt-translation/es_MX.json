@@ -1143,5 +1143,5 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en Estados Unidos",
 	"quickpost.empty": "",
-	"postad.image.upload.failure": "postad.image.upload.failure"
+	"postad.image.upload.failure": "Niestety, wyst\u0105pi\u0142 b\u0142\u0105d podczas wczytywania zdj\u0119cia."
 }
