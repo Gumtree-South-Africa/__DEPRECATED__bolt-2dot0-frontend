@@ -28,4 +28,8 @@ function initConfigI18n(app, locale) {
     hbs.registerHelper('__n', function () {
       return i18n.__n.apply(this, arguments);
     });
+
+    app.use(function(req, res, next){
+      next();
+    })
 }

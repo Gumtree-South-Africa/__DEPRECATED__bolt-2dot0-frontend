@@ -113,6 +113,19 @@
 	{{/partial}}
 
 	{{#partial "pageTailScriptsAfterMarketo"}}
+        <script>
+            {{!-- @MUNCHKIN: Munchkin Marketo Event Tracking Section --}}
+            {{#if this.header.marketo.isAssociateLead}}
+                {{!-- Marketo Munchkin Event Tracking --}}
+                {{> (dynamic "marketoTracking") }}
+
+                if (typeof trackEvtMunchkin != "undefined") {
+                    setTimeout(function () {
+                        trackEvtMunchkin('{{this.header.marketo.marketoAttributeJsonStr}}', '{{this.header.marketo.privateKeyStr}}');
+                    }, 3000);
+                }
+            {{/if}}
+        </script>
 	{{/partial}}
 
 	{{#partial "abtesting"}}

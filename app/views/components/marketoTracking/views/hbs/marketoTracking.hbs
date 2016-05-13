@@ -3,14 +3,12 @@
 {{#if this.header.marketo.enabled}}
     {{#if this.header.marketo.munchkinId}}
             function trackEvtMunchkin(mkinTrkJSON, mkinHash) {
-                // console.log("*** Checking for Munchkin...");
-                if (typeof Munchkin != "undefined" && typeof mkinID != "undefined" && typeof mkinTrkJSON != "undefined"
-                    && typeof mkinHash != "undefined") {
-
+                if (typeof Munchkin != "undefined" && typeof mkinTrkJSON != "undefined" && typeof mkinHash != "undefined") {
                     if (typeof mkinTrkJSON !== "object") {
-                         mkinTrkJSON = jQuery.parseJSON(mkinTrkJSON);
+                        mkinTrkJSON = window.atob(mkinTrkJSON);
+                        mkinTrkJSON = jQuery.parseJSON(mkinTrkJSON);
                     }
-                    Munchkin.munchkinFunction('associateLead', mkinTrkJSON, mkinHash);
+                    Munchkin.munchkinFunction('associateLead', mkinTrkJSON, window.atob(mkinHash));
                 }
             }
     {{/if}}
