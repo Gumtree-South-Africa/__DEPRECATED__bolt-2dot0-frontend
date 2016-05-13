@@ -121,7 +121,7 @@
                 <div class="price">
                     {{#if this.formContent.currencyDisplay}}
 	                   <div class='currency-types'>
-		                    <select id='currencyOptions' name='currencyOptions'>
+		                    <select id='currencyOptions' class="currency-value" name='currencyOptions'>
                                 {{#each this.formContent.currency}}
                                     <option value='{{splitKeyValueShowKey this}}' {{#if selected}}selected{{/if}}>{{splitKeyValueShowValue this}}</option>
                                 {{/each}}

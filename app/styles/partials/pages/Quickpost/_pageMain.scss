@@ -353,16 +353,14 @@ textarea.error{
  margin: 0 1em .5em 0;
  border-color: #939393;
  border-radius: 5px;
- border: 1px solid #ccc;
- width: 20%;
 }
 
-#currency-type-options{
-border: 1px solid #ccc;
-border-radius: .3125em;
-font-size: 1em; 
-padding: 0 .4em;
-height: 25px;
+
+.currency-value{
+ border: 1px solid #ccc;
+ border-color: #939393;
+ border-radius: 5px;
+
 }
 
 .price-field{
