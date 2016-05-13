@@ -1,6 +1,6 @@
 	{{#partial "content"}}
 		{{#block "homepg"}}
-
+		
 			{{#if this.content.topHomePageAdBanner}}
 				{{> (dynamic "topBanner")}}
 			{{/if}}
@@ -16,14 +16,14 @@
 			<div class="hp-list-wrapper">
                 <div class="hp-total-ad-count">
                     {{#if this.totalLiveAdCount}}
-                        <span class="hp-live_ads_msg">{{{__ "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
+                        <span class="hp-live_ads_msg">{{{i18n "home.page.live.ad.count.label" (digitGrouping this.totalLiveAdCount ",") }}}</span>
                     {{/if}}
                 </div>
 
 				<div class="hp-category-wrapper">
-					<h1>{{__ "home.h1Tag"}}</h1>
+					<h1>{{i18n "home.h1Tag"}}</h1>
 					{{#if this.lastWeekPostedAdCount}}
-						<p class="lastweekposts">{{{__ "home.lastweekpostedAD" this.lastWeekPostedAdCount this.lastWeekPostedAdLocal}}}</p>
+						<p class="lastweekposts">{{{i18n "home.lastweekpostedAD" this.lastWeekPostedAdCount this.lastWeekPostedAdLocal}}}</p>
 					{{/if}}
 
 					{{#with this}}
@@ -32,7 +32,7 @@
 
 					<div class="hp-link-wrapper">
 						<div class="post-ad-button">
-							<a href="{{this.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{__ "header.postad-long"}}</a>
+							<a href="{{this.header.postAdPageUrl}}" data-gtm="pc|PostAdBegin" class="primary-button postcommercial">{{i18n "header.postad-long"}}</a>
 						</div>
 					</div>
 
@@ -47,7 +47,7 @@
 					<div class="hp-keywords-wrapper">
 						{{#if this.topKeywords}}
 						<div class="hp-popular-searches-wrapper">
-							<h5>{{__ "home.popular-searches"}}</h5>
+							<h5>{{i18n "home.popular-searches"}}</h5>
 							<ul>
 								{{#each this.topKeywords}}
 								<li data-index="{{@index}}">
@@ -60,7 +60,7 @@
 
 						{{#if this.trendingKeywords}}
 						<div class="hp-trending-searches-wrapper">
-							<h5>{{__ "home.trending-searches"}}</h5>
+							<h5>{{i18n "home.trending-searches"}}</h5>
 							<ul>
 								{{#each this.trendingKeywords}}
 								<li data-index="{{@index}}">
