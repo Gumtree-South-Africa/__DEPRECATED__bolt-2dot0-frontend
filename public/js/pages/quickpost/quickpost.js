@@ -16,9 +16,9 @@ BOLT.QuickPostPage = (function() {
     */
     function openMap() {
         if (!openMap.opened) {
-            $("#map_canvas_wrapper").slideDown("slow");
+            $('#map_canvas_wrapper').slideDown('slow');
         } else {
-            $("#map_canvas_wrapper").slideUp("slow", function() {
+            $('#map_canvas_wrapper').slideUp('slow', function() {
                 // var latlongData = GMapObj.getLatLong();
                 setMapCoords(GMapObj.getLatLong());
             });
@@ -34,10 +34,10 @@ BOLT.QuickPostPage = (function() {
     * @private
     */
     function setMapCoords(latlongData) {
-    	$("#latitude").val(latlongData.lat);
-    	$("#longitude").val(latlongData.long);
-    	$("#address").val(latlongData.address);
-    	$("#location").val(latlongData.address);
+    	$('#latitude').val(latlongData.lat);
+    	$('#longitude').val(latlongData.long);
+    	$('#address').val(latlongData.address);
+    	$('#location').val(latlongData.address);
 	}
 
    /**
@@ -46,34 +46,34 @@ BOLT.QuickPostPage = (function() {
     * @private
     */
     function mobileCategorySelector() {
-    	if (typeof Bolt === "undefined" || typeof BOLT === "undefined") {
+    	if (typeof Bolt === 'undefined' || typeof BOLT === 'undefined') {
     		return false;
     	}
 
         var PAC = BOLT.POSTAD.MobileItemSelector || undefined;
         var pageMode;
         var mobileCatConfig = {
-            title: Bolt._postFormMsgs.selectCategoryLabel || "",
-            searchPlaceholder: Bolt._postFormMsgs.categorySearchPlaceholder || "",
+            title: Bolt._postFormMsgs.selectCategoryLabel || '',
+            searchPlaceholder: Bolt._postFormMsgs.categorySearchPlaceholder || '',
             highlightItemOnNewPanel: false,
             selectors: {
-                menuContainer: "#cat-list",
-                mobileContainer: "#mobileCats",
-                basePanel: ".base-panel",
-                itemListPanel: ".item-list"
+                menuContainer: '#cat-list',
+                mobileContainer: '#mobileCats',
+                basePanel: '.base-panel',
+                itemListPanel: '.item-list'
             }
         };
 
-        if (typeof PAC !== "undefined" && $("#mobileCats").length > 0) {
+        if (typeof PAC !== 'undefined' && $('#mobileCats').length > 0) {
             if (!catMobileSelObj) {
                 catMobileSelObj = new PAC();
             }
         }
 
         if (catMobileSelObj.hasRendered()) {
-            $("#catSelector").show();
-            $("#mobileCats").show();
-            $("#cat-list").trigger("MobileListNodesReady");
+            $('#catSelector').show();
+            $('#mobileCats').show();
+            $('#cat-list').trigger('MobileListNodesReady');
             return;
         }
 
@@ -117,19 +117,19 @@ BOLT.QuickPostPage = (function() {
          * @public
          */
         syncUI : function () {
-            $("#postForm").submit(function () {
+            $('#postForm').submit(function () {
                 window.skipOnBeforeUnload = true;
             });
 
-            $(window).bind("pageshow", function() {
-                var elements = document.getElementById("postForm").elements;
+            $(window).bind('pageshow', function() {
+                var elements = document.getElementById('postForm').elements;
                 for (var i = 0, element; element = elements[i++];) {
-                    if (element.type === "hidden" && element.value !== "") {
+                    if (element.type === 'hidden' && element.value !== '') {
                         if (element.id == 'SelectedCurrency') continue;
                         element.value = '';
                     }
                 }
-                document.getElementById("postForm").reset();
+                document.getElementById('postForm').reset();
             });
         },
 
@@ -150,20 +150,20 @@ BOLT.QuickPostPage = (function() {
 
         categorySelector: function(){
             // Listener to update the category Id when the user selects a category.
-            $(document).on("MobileLeafReached", function(e, obj) {
+            $(document).on('MobileLeafReached', function(e, obj) {
                 if (catMobileSelObj === obj.currentInstance) {
                     window.setTimeout(function() {
-                        $("#mobileCats .base-panel-container > ul > li").removeClass("mm-hidden");
+                        $('#mobileCats .base-panel-container > ul > li').removeClass('mm-hidden');
 
                         // Set the Category name
-                        $("#mobileCats .base-panel .initial-label").text(obj.label);
+                        $('#mobileCats .base-panel .initial-label').text(obj.label);
                     }, 100);
 
                     // Set the Category Id in a hidden var.
-                    $("input[name=Category]").val(obj.id);
+                    $('input[name=Category]').val(obj.id);
 
                     // Re-run validation on the category hidden field.
-                    $("input[name=Category]").valid();
+                    $('input[name=Category]').valid();
                 }
             });
         },
@@ -178,16 +178,16 @@ BOLT.QuickPostPage = (function() {
                     selectedOption = currency[currency.selectedIndex].value;
 
                     // Set the currency Id in a hidden var.
-                    $("input[name=SelectedCurrency]").val(selectedOption);
+                    $('input[name=SelectedCurrency]').val(selectedOption);
                 });
 
-                if (($("input[name=SelectedCurrency]").val() == '') || ($("input[name=SelectedCurrency]").val() == null)) {
+                if (($('input[name=SelectedCurrency]').val() == '') || ($('input[name=SelectedCurrency]').val() == null)) {
                     selectedOption = currency[currency.selectedIndex].value;
 
-                    $("input[name=SelectedCurrency]").val(selectedOption);
+                    $('input[name=SelectedCurrency]').val(selectedOption);
                 }
                 else { //There is a pre-selected value
-                    currency.value = $("input[name=SelectedCurrency]").val(); // Select that option in the dropdown
+                    currency.value = $('input[name=SelectedCurrency]').val(); // Select that option in the dropdown
                 }
             }
         },
@@ -207,9 +207,9 @@ BOLT.QuickPostPage = (function() {
         },
 
         geoMap: function(){
-            $("#maps-link").click(openMap);
+            $('#maps-link').click(openMap);
 
-            $(document).on("applyLocation", function(e, latlongData) {
+            $(document).on('applyLocation', function(e, latlongData) {
                 setMapCoords(latlongData);
             });
         },
