@@ -122,7 +122,7 @@ BOLT.QuickPostPage = (function() {
             });
 
             $(window).bind("pageshow", function() {
-                $("#postForm").reset();
+                document.getElementById("postForm").reset();
             });
         },
 

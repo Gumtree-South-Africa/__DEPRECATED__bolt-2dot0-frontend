@@ -394,8 +394,8 @@ var QuickPost = {
 
 		var errorMessage = '';
 		if (err.status4xx) {
+			var fieldError = 'false';
 			if (errorCode == 400 ) {
-				var fieldError = 'false';
 				for(var i=0; i<err.details.length; i++) {
 					var det = err.details[i];
 					if (det.code == 'LOCATION_DOES_NOT_MATCH_COUNTRY') {
@@ -425,7 +425,7 @@ var QuickPost = {
 					}
 				}
 			}
-			if (_.isEmpty(errorMessage) && fieldError=='false') {
+			if (fieldError == 'false') {
 				errorMessage = modelData.formContent.error4xx;
 			} else {
 				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
