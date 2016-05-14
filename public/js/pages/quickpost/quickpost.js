@@ -122,6 +122,13 @@ BOLT.QuickPostPage = (function() {
             });
 
             $(window).bind("pageshow", function() {
+                var elements = document.getElementById("postForm").elements;
+                for (var i = 0, element; element = elements[i++];) {
+                    if (element.type === "hidden" && element.value !== "") {
+                        if (element.id == 'SelectedCurrency') continue;
+                        element.value = '';
+                    }
+                }
                 document.getElementById("postForm").reset();
             });
         },
