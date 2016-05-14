@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.105",
+  "version": "2.0.106",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
@@ -68,6 +68,7 @@
     "gulp-nodemon": "2.0.2",
     "gulp-notify": "2.2.0",
     "gulp-plumber": "1.0.0",
+    "gulp-props": "^1.2.0",
     "gulp-props2json": "2.0.0",
     "gulp-rename": "1.2.2",
     "gulp-ruby-sass": "2.0.1",

@@ -12,29 +12,31 @@ var MarketoService = function() {};
 MarketoService.prototype.buildMarketoDataForHP = function(modelData) {
 	modelData.header.marketo.isAssociateLead = true;
 
-	modelData.header.marketo.marketoAttributeJsonStr = {};
+	var marketoAttributeJson = {};
 	if (typeof modelData.header.userEmail !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.email = modelData.header.userEmail;
+		marketoAttributeJson.email = modelData.header.userEmail;
 	}
 	modelData.header.marketo.brandCode = '';
 	if (typeof modelData.header.firstName !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.firstName = modelData.header.firstName;
+		marketoAttributeJson.firstName = modelData.header.firstName;
 	}
 	if (typeof modelData.header.lastName !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.lastName = modelData.header.lastName;
+		marketoAttributeJson.lastName = modelData.header.lastName;
 	}
 	if (typeof modelData.header.username !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.userName = modelData.header.username;
+		marketoAttributeJson.userName = modelData.header.username;
 	}
 	if (typeof modelData.header.registered !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.isRegistered = modelData.header.registered;
+		marketoAttributeJson.isRegistered = modelData.header.registered;
 		if (modelData.header.registered == true && typeof modelData.header.registrationCountry !== 'undefined') {
-			modelData.header.marketo.marketoAttributeJsonStr.registrationCountry = modelData.header.registrationCountry;
+			marketoAttributeJson.registrationCountry = modelData.header.registrationCountry;
 		}
 	}
 	if (typeof modelData.header.creationDate !== 'undefined') {
-		modelData.header.marketo.marketoAttributeJsonStr.creationDate = modelData.header.creationDate;
+		marketoAttributeJson.creationDate = modelData.header.creationDate;
 	}
+
+	modelData.header.marketo.marketoAttributeJson = marketoAttributeJson;
 }
 
 MarketoService.prototype.deleteMarketoCookie = function(res, header) {

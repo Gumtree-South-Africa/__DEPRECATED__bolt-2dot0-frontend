@@ -3,7 +3,7 @@
         <span class="icon main-icon">
             <span class='icon-header-location-pin'></span>
         </span>
-        <input tabindex="3" type="text" data-all='{{__ "header.search-all-locations"}}' placeholder='{{__ "header.search-location"}}' value='{{#if this.content.searchFormModel.localizedLocationName}}{{this.content.searchFormModel.localizedLocationName}}{{else}}{{#if this.header.cookieLocationName}}{{this.header.cookieLocationName}}{{else}}{{__ "header.search-location"}}{{/if}}{{/if}}' autocomplete="off" disabled="disabled" readonly="readonly" />
+        <input tabindex="3" type="text" data-all='{{i18n "header.search-all-locations"}}' placeholder='{{i18n "header.search-location"}}' value='{{#if this.content.searchFormModel.localizedLocationName}}{{this.content.searchFormModel.localizedLocationName}}{{else}}{{#if this.header.cookieLocationName}}{{this.header.cookieLocationName}}{{else}}{{i18n "header.search-location"}}{{/if}}{{/if}}' autocomplete="off" disabled="disabled" readonly="readonly" />
         <input type="hidden" name="locId" value="{{#if this.content.searchFormModel.locId}}{{this.content.searchFormModel.locId.value}}{{else}}{{#if this.header.cookieLocationId}}{{this.header.cookieLocationId}}{{/if}}{{/if}}" />
         <!--[if (IE 8)&!(IEMobile)]>
         <span class="icon-caret-down"></span>

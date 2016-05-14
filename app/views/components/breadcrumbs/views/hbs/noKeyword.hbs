@@ -1,11 +1,11 @@
 {{this.content.searchFormModel.searchForm.seoAttributes}}
 {{#if this.content.searchFormModel.searchForm.seoAttributes}}
-    {{__ "header.breadcrumb-search" ""}}
+    {{i18n "header.breadcrumb-search" ""}}
 {{/if}}
 {{#if this.header.breadcrumbs.currentCat}}
     {{this.header.breadcrumbs.currentCat.name}}
     {{#with this.header.breadcrumbs.currentLoc}}
-        {{__ "header.breadcrumb-search" this.name}}
+        {{i18n "header.breadcrumb-search" this.name}}
     {{/with}}
 {{else}}
     {{#with this.header.breadcrumbs.currentLoc.name}}

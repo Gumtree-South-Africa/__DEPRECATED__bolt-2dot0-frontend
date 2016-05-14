@@ -21,10 +21,10 @@
               {{else}}
                    dataPostLink="/post.html",
               {{/if}}
-              dataPostAdText='{{__ "postad.a.free.ad.text"}}',
+              dataPostAdText='{{i18n "postad.a.free.ad.text"}}',
               {{#if this.content.seeAllUrl}}
                    seeAllUrl = "{{obfuscateUrl this.content.seeAllUrl}}",
-                   seeAllText = '{{__ "features.see.all"}}',
+                   seeAllText = '{{i18n "features.see.all"}}',
               {{/if}}
               galleryAjaxBaseUrl = "{{{this.content.galleryAdsAjaxInitUrl}}}";
       </script>

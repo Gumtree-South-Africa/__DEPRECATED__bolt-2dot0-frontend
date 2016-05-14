@@ -13,7 +13,7 @@
         {{#block "LocationStates"}}
             {{#if this.location}}
                 <div class="hp-province-wrapper">
-                    <h5>{{__ "home.provinces"}}</h5>
+                    <h5>{{i18n "home.provinces"}}</h5>
                     <ul class="location-list">
                         {{#each this.location.children}}
                         <li data-index="{{@index}}">
@@ -32,7 +32,7 @@
 {{#partial "popularLocations"}}
     {{#if this.level2Location}}
         <div class="hp-city-wrapper">
-            <h5>{{__ "home.main-locations"}}</h5>
+            <h5>{{i18n "home.main-locations"}}</h5>
             <ul class="location-list">
                 {{#each this.level2Location}}
                 <li data-index="{{@index}}">

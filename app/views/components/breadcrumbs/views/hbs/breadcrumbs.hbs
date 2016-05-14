@@ -14,7 +14,7 @@
                             {{this.name}}
                         {{/with}}
                         {{#with this.header.breadcrumbs.currentLoc}}
-                            {{__ "header.breadcrumb-search" ""}}
+                            {{i18n "header.breadcrumb-search" ""}}
                             {{this.localizedName}}
                         {{/with}}
                     </span>
@@ -23,7 +23,7 @@
             </span>
             <span class="icon-chevron-right"></span>
             <span></span>
-            <span class="title">{{__ "vip.breadcrumb" this.content.ad.id}}</span>
+            <span class="title">{{i18n "vip.breadcrumb" this.content.ad.id}}</span>
         {{else}}
             <h1>
                 {{#if this.header.breadcrumbs.keyword}}
@@ -46,7 +46,7 @@
             {{/if}}
 
             <span class="count">
-					{{{__ "header.breadcrumb-result" this.header.breadcrumbs.count}}}
+					{{{i18n "header.breadcrumb-result" this.header.breadcrumbs.count}}}
 			</span>
         {{/if}}
     </div>

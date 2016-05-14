@@ -24,21 +24,21 @@
     {{#if this.content.swapTradeModel.isSwapTradeEnabled}}
         <li class="parent-category l1swaptrade item">
             <a href="{{this.content.swapTradeModel.swapTradeSeoUrl}}">
-                <span class="label">{{__ this.content.swapTradeModel.swapTradeName}}</span>
+                <span class="label">{{i18n this.content.swapTradeModel.swapTradeName}}</span>
             </a>
         </li>
     {{/if}}
     {{#if this.content.freebiesModel.isFreebiesEnabled}}
         <li class="parent-category l1freebies item">
             <a href="{{this.content.freebiesModel.freebiesSeoUrl}}">
-                <span class="label">{{__ this.content.freebiesModel.freebiesName}}</span>
+                <span class="label">{{i18n this.content.freebiesModel.freebiesName}}</span>
             </a>
         </li>
     {{/if}}
     {{#if this.content.wantedModel.isWantedEnabled}}
         <li class="parent-category l1wanted item">
             <a href="{{this.content.wantedModel.wantedSeoUrl}}">
-                <span class="label"><!--Poszukiwane-->{{__ this.content.wantedModel.localizedName}}</span>
+                <span class="label"><!--Poszukiwane-->{{i18n this.content.wantedModel.localizedName}}</span>
             </a>
         </li>
     {{/if}}

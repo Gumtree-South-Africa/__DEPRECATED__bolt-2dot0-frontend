@@ -29,7 +29,7 @@ module.exports.message = function (req, res, next) {
     } else {
         errMsg = "";
     }
-    
+
  	// Set pagetype in request
 	if (errNum === 404) {
 		req.pagetype = pagetypeJson.pagetype.ERROR_404;
@@ -61,7 +61,7 @@ module.exports.message = function (req, res, next) {
 
         //  Device data for handlebars
         modelData.device = req.app.locals.deviceInfo;
-        
+
         // Special Data needed for HomePage in header, footer, content
         error.extendHeaderData(modelData);
         error.extendFooterData(modelData);
