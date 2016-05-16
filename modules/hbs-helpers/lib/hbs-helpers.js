@@ -78,8 +78,8 @@ module.exports  =  {
 
 
         exphbs.handlebars.registerHelper('i18n', function (msg, value) { //console.log("xxxxxxx -" + msg);
-
-            if (!msg) return;
+    
+            if (!msg || !(this.__)) return;
             // if there are 3 param values in {{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
             if (arguments.length == 5) {
                 return new exphbs.handlebars.SafeString( this.__(msg, arguments[1], arguments[2], arguments[3]));
