@@ -360,6 +360,7 @@ textarea.error{
     padding-left: 0.2em;
     &:hover{
       background-color: $quickpost-header-bgcolor;
+      color: $quickpost-cat-hover-color;
     }
   }
 }
