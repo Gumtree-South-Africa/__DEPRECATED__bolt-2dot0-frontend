@@ -3,11 +3,10 @@
 
 var express = require('express'),
     _ = require('underscore'),
-    util = require('util'),
-    i18n = require('i18n');
+    util = require('util');
 
 
-/** 
+/**
  * @description
  * @constructor
  */
@@ -44,6 +43,7 @@ PageControllerUtil.prototype.preController = function (req, res) {
 	// Cached Category Data from BAPI
     modelData.category = res.locals.config.categoryData;
     modelData.categorydropdown = res.locals.config.categorydropdown;
+
     modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
     modelData.categoryData = res.locals.config.categoryflattened;
 
@@ -87,7 +87,7 @@ PageControllerUtil.prototype.postController = function (req, res, next, pageTemp
             // Redis Logging - to get data to ELK
         });
     });
-    
+
 };
 
 module.exports = new PageControllerUtil();

@@ -6,9 +6,6 @@
 
 'use strict';
 var i18node = require('i18n-2');
-var hbs = require('handlebars');
-
-var i18n = require('i18n');
 
 module.exports.init = function(app, locale) {
     // console.log("locale ======= ", locale);
