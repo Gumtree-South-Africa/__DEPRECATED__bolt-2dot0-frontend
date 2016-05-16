@@ -3,7 +3,7 @@
     @description cross browser styles for consistent checkboxes on site
     @usage
         <input type="checkbox" class="input-checkbox" id="terms" name="terms" required="required" checked disabled />
-        <label for="terms">{{{__ "your.i18n.key.here"}}}</label>
+        <label for="terms">{{{i18n "your.i18n.key.here"}}}</label>
 
     * id attr in the checkbox and for attr in the label
     * input immediately before the label
