@@ -34,6 +34,7 @@
                           placeholder="{{__ this.formContent.descriptionPlaceholder}}">{{#if this.formContent.descriptionValue}}{{__ this.formContent.descriptionValue}}{{/if}}</textarea>
                 <span class="icon-contextual-info"></span>
                 <span id="description-char-count" class="char-count-info">{{#if this.formContent.descriptionLength}}{{this.formContent.descriptionLength}}{{else}}4096{{/if}}</span>
+                <label class="icon-validation-check"></label>
                 {{#with this.flash.fieldErrors.description}}
                     <p class="error noHeaderError">{{__ this}}</p>
                 {{/with}}
@@ -87,6 +88,7 @@
                        {{#if this.flash.fieldErrors.category}}class="error" data-errorFlash="{{this.flash.fieldErrors.category}}"{{/if}}>
                     <div id="mobileCats" class="mobile-only">
                       <span class="star">*</span>
+                      <label class="icon-validation-check"></label>
                       <div class="body">
                           <nav id="cat-list">
                               <div>
@@ -136,10 +138,13 @@
                           onkeypress='return event.charCode >= 48 && event.charCode <= 57'class='price-value' id="Price" name="price"
                           placeholder="{{__ this.formContent.pricePlaceholder}}"
                          {{#if this.formContent.priceValue}}value="{{__ this.formContent.priceValue}}"{{/if}}  data-errorPriceLong="<p class='labelError'>{{__ this.formContent.errorPriceLong}}</p>" >
-                      <span class="ghost">{{__ this.formContent.priceCurrencyText}}</span>
+                      <span class="ghost">{{__ this.formContent.priceCurrencyText}}</span>             
                     </div>
+                    <label class="icon-validation-check"></label>
                 </div>
             </div>
+            
+           
 
             {{!-- Share on FB --}}
             {{#if this.formContent.displayFb}}
@@ -168,7 +173,7 @@
                     <input type="hidden" id="geolongitude" name="geolongitude" value = "{{this.formContent.longitude}}"/>
                     <input type="hidden" id="geoaddress" name="geoaddress" value = "{{this.formContent.address}}"/>
 
-
+                    <label class="icon-validation-check"></label>
                     {{#with this.flash.fieldErrors.location}}
                       <p class="error noHeaderError">{{__ this}}</p>
                     {{/with}}

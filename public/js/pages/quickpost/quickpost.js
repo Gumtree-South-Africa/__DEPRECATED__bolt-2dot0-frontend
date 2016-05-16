@@ -102,6 +102,9 @@ BOLT.QuickPostPage = (function() {
         	this.syncUI();
             this.tooltip();
             this.charCount();
+            this.validDesc();
+            this.validPrice();
+            this.validLoc();
             this.categorySelector();
             this.currencySelector();
             this.toggleSwitchUpdate();
@@ -146,6 +149,49 @@ BOLT.QuickPostPage = (function() {
             $('.description').on('keyup', function(){
                 $('#description-char-count').text(4096 - $('#Description').val().length);
             })
+        },
+        
+        
+         validDesc: function(){
+        	$('.description').on('focusout keyup', function(){
+        		
+    	    		setTimeout(function(){
+    	    			var x = $('#Description').hasClass("valid"),
+    	    		   desclabelIcon= $('.description').find('.icon-validation-check');
+    	                if(x)
+    	                	desclabelIcon.css('display', 'inline-block');
+    	                else
+    	                	desclabelIcon.css('display', 'none');
+    	    		}, 100);
+        		
+                });
+            },
+
+           validPrice: function(){
+               $('.price-field').on('focusout keyup', function(){
+            	
+            	   setTimeout(function(){ 
+            		var labelIcon= $(".price").find('.icon-validation-check');
+            		 if($('#Price').val().length >0 &&  $('#Price').val().length<10)	
+    					 labelIcon.css('display', 'inline-block');
+    				 else 
+    			   	    labelIcon.css('display', 'none');
+            	   }, 100);  
+    			});
+            },
+  
+            
+        validLoc: function(){
+           $('#Location').on('focusout keyup', function(){
+        	   
+        	   setTimeout(function(){ 
+        		var labelIcon= $(".select-location").find('.icon-validation-check');
+				 if($('#Location').hasClass( "valid"))
+					 labelIcon.css('display', 'inline-block');
+				 else
+					 labelIcon.css('display', 'none');
+        	   }, 100);  
+			});
         },
 
         categorySelector: function(){
