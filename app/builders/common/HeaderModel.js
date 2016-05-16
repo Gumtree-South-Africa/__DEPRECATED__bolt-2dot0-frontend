@@ -88,7 +88,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-					console.log('scope: ',scope);
+					
     			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
     				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
     			} else {
