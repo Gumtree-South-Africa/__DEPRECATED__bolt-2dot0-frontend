@@ -1168,7 +1168,7 @@
   "quickpost.fbPublishMsg": "Haz creado un anuncio!",
   "quickpost.error.4xx": "Ha ocurrido un error, por favor intenta en unos minutos",
   "quickpost.error.5xx": "Estamos en mantenimiento. Por favor intenta en unos minutos",
-  "quickpost.error.descriptionReqd": "Descripción Se requiere",
+  "quickpost.error.descriptionReqd": "Descripción se requiere",
   "quickpost.error.descriptionShort": "La descripción es demasiado corta",
   "quickpost.error.descriptionLong": "La descripción es demasiado larga",
   "quickpost.error.descriptionInvalid": "Descripción inválida",
