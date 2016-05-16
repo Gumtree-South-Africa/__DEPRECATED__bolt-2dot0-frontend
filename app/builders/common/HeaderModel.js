@@ -38,7 +38,7 @@ var HeaderModel = function (secure, req, res) {
 	this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
-
+	this.i18n = req.i18n;
 	this.requestId = req.requestId;
 };
 
@@ -88,9 +88,9 @@ HeaderModel.prototype.getHeaderData = function() {
     		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-
+					console.log('scope: ',scope);
     			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
-    				data.cookieLocationName = scope.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
+    				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
     			} else {
     				data.cookieLocationName = scope.locationIdNameMap[data.cookieLocationId] || '';
     			}
