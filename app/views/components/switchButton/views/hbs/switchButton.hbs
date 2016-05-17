@@ -2,8 +2,8 @@
 	<div class="container">
         <input id="switchBtn" type="checkbox" {{#if this.formContent.checked}}class="checked"{{else}}{{/if}} />
 		<span class="slider"></span><!-- button -->
-		<span class="on classic">{{__ this.formContent.sharefbTextYes}}</span>	<!-- gutter -->
-		<span class="off classic">{{__ this.formContent.sharefbTextNo}}</span>
+		<span class="on classic">{{i18n this.formContent.sharefbTextYes}}</span>	<!-- gutter -->
+		<span class="off classic">{{i18n this.formContent.sharefbTextNo}}</span>
         <input type="hidden" name="switch" value="{{#if this.formContent.checked}}{{this.formContent.switch}}{{else}}NO{{/if}}" />
 	</div>
 </div>

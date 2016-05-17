@@ -11,9 +11,9 @@
 
 
         var l18n = {
-            "clickFeatured" : "{{__ "postad.image.click.featured" locale=model.locale }}",
-            "imageFeatured" : "{{__ "postad.image.featured" locale=model.locale }}",
-            "dragToReorder" : "{{__ "postad.image.drag.reorder" locale=model.locale }}"
+            "clickFeatured" : "{{i18n "postad.image.click.featured" locale=model.locale }}",
+            "imageFeatured" : "{{i18n "postad.image.featured" locale=model.locale }}",
+            "dragToReorder" : "{{i18n "postad.image.drag.reorder" locale=model.locale }}"
         };
 
         var allowedUploads = 12; // need to setup in zoo keeper
@@ -30,43 +30,43 @@
 
             return {
                 successMsg:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.success" }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.success" }}");
                 },
                 failMsg: function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.failure" }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure" }}");
                     hideThumb(i);
                 },
                 loadingMsg:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.uploading" }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.uploading" }}");
                 },
                 resizing:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.resize" }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.resize" }}");
                 },
                 invalidSize:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.failure.invalid.size"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.size"  }}");
                 },
                 invalidType:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.failure.invalid.types"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.types"  }}");
                     hideThumb(i);
                 },
                 invalidDimensions:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.failure.invalid.dimensions"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.invalid.dimensions"  }}");
                     hideThumb(i);
                 },
                 firewall:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.network.firewall"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.network.firewall"  }}");
                     hideThumb(i);
                 },
                 colorspace:function(i){
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.colorspace"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.colorspace"  }}");
                     hideThumb(i);
                 },
                 corrupt:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.data.corrupt"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.data.corrupt"  }}");
                     hideThumb(i);
                 },
                 pictureSrv:function(i) {
-                    $("#file-upload-"+ i).html("{{__ "postad.image.upload.failure.picture.down"  }}");
+                    $("#file-upload-"+ i).html("{{i18n "postad.image.upload.failure.picture.down"  }}");
                     hideThumb(i);
                 },
                 translateErrorCodes:function(i, error) {
