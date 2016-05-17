@@ -7,8 +7,7 @@ var express = require('express'),
     ErrorPageModel = require(process.cwd() +  '/app/builders/page/ErrorPageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
-    util = require('util'),
-    i18n = require('i18n');
+    util = require('util');
 
 var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
