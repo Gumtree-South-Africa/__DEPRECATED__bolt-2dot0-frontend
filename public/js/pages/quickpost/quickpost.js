@@ -112,6 +112,7 @@ BOLT.QuickPostPage = (function() {
             this.autoComplete();
             this.autoCompletePopulate();
             this.registerUnloadEvent();
+            this.clearForm();
         },
 
         /**
@@ -124,18 +125,7 @@ BOLT.QuickPostPage = (function() {
                 window.skipOnBeforeUnload = true;
             });
 
-            $(window).bind('pageshow', function() {
-                if (document.getElementById('formError').value == false) {
-                    var elements = document.getElementById('postForm').elements;
-                    for (var i = 0, element; element = elements[i++];) {
-                        if (element.type === 'hidden' && element.value !== '') {
-                            if (element.id == 'SelectedCurrency') continue;
-                            element.value = '';
-                        }
-                    }
-                }
-                document.getElementById('postForm').reset();
-            });
+            $('#window').load = this.clearForm();
         },
 
         tooltip: function(){
@@ -313,6 +303,23 @@ BOLT.QuickPostPage = (function() {
                 }
                 return '';
             };
+        },
+
+        clearForm: function(){
+            $(window).bind('pageshow', function() {
+                var $postForm = $('#postForm');
+                $postForm.reset();
+
+                if ($('#formError').value == false) {
+                    var elements = $postForm.elements;
+                    for (var i = 0, element; element = elements[i++];) {
+                        if (element.type === 'hidden' && element.val() !== '') {
+                            if (element.id == 'SelectedCurrency') continue;
+                            element.val('');
+                        }
+                    }
+                }
+            });
         }
     };
 
