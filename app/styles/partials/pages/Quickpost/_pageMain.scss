@@ -245,6 +245,8 @@ input, select{
   -webkit-appearance: none;
 }
 
+
+
 .noHeaderError{
   font-weight: 500;
   color: #bb3027;
@@ -278,6 +280,7 @@ textarea.error{
 }
 
 
+
 .icon-validation-check{
    width:14px;
    height:14px;
@@ -286,13 +289,10 @@ textarea.error{
 
 }
 
-
 #catSelector .icon-validation-check{
 	margin-right: -1.3em;;
 	margin-top: 1.2em;
-   }
-
-
+}
 
 .description .icon-validation-check{
    margin-top: 1.2em;
@@ -301,12 +301,12 @@ textarea.error{
 
 .price .icon-validation-check{
    margin-right: -5%;
-
 }
 
 .select-location .icon-validation-check{
   margin-right: -5%;
 }
+
 
 .inforules {
    cursor: auto;
@@ -356,6 +356,8 @@ textarea.error{
   display: none;
 }
 
+
+
 #autocompleteField{
   background-color: white;
   border: 1px solid #CCC;
@@ -383,6 +385,8 @@ textarea.error{
   }
 }
 
+
+
 .currency-types{
  clear:both;
  margin: 0 1em .5em 0;
@@ -390,12 +394,10 @@ textarea.error{
  border-radius: 5px;
 }
 
-
 .currency-value{
  border: 1px solid #ccc;
  border-color: #939393;
  border-radius: 5px;
-
 }
 
 .price-field{
@@ -404,11 +406,14 @@ display: inline-block;
 border: none;
 border-color: #939393;
 border-radius: 5px;
-
 }
 
 .price-fraction{
 float:right;
+}
+
+#currency-types, #price-field {
+  display:inline;
 }
 
 .price-field.numberonly input.price-value,#Price {

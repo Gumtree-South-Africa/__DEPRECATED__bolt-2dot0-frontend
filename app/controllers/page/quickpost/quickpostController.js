@@ -212,7 +212,7 @@ var QuickPost = {
 		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
 		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
 
-    modelData.formContent.categoryText = 'quickpost.categoryText';
+    	modelData.formContent.categoryText = 'quickpost.categoryText';
 
 		modelData.formContent.pricePlaceholder = 'quickpost.pricePlaceholder';
 		modelData.formContent.priceCurrency = 'quickpost.priceCurrency';
@@ -227,7 +227,7 @@ var QuickPost = {
 			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
 		}
 
-    modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
+   		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
 		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
 		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
@@ -262,7 +262,6 @@ var QuickPost = {
 		// Custom header
 		modelData.content = {};
 		modelData.content.disableSearchbar = true;
-
 
 		// EPS
 		modelData.eps = EpsModel();
@@ -432,12 +431,14 @@ var QuickPost = {
 		}
 		if (err.status5xx) {
 			errorMessage = modelData.formContent.error5xx;
+			modelData.flash = { type: 'alert-danger'};
 		}
 
 		if (!_.isEmpty(errorMessage)) {
 			modelData.header.pageMessages = {};
 			modelData.header.pageMessages.error = errorMessage;
 			modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
+			modelData.flash = { type: 'alert-danger'};
 		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);

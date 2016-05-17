@@ -1103,8 +1103,8 @@
   "header.country.label": "México",
   "cookie.banner.message": "",
   "quickpost.pageTitle": "Publicar un Anuncio",
-  "quickpost.page.title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | iBazar",
-  "quickpost.page.desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. iBazar",
+  "quickpost.page.title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+  "quickpost.page.desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios",
   "quickpost.descriptionText": "Descripción",
   "quickpost.descriptionPlaceholder": "Ingresa una pequeña descripción de tu oferta (min 10 caracteres)",
   "quickpost.descriptionTipTitle": "Una buena descripción vende más rápido!",
@@ -1141,7 +1141,7 @@
   "quickpost.error.locationReqd": "Se requiere ubicación",
   "quickpost.error.locationInvalid": "Locación invalida",
   "quickpost.error.priceLong": "El precio es muy alto",
-  "quickpost.error.locationNotInCountry": "Tu selección no es en Estados Unidos",
+  "quickpost.error.locationNotInCountry": "Tu selección no es en México",
   "quickpost.empty": "",
   "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes"
 }

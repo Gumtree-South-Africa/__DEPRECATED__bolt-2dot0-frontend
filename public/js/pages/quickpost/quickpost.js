@@ -125,11 +125,13 @@ BOLT.QuickPostPage = (function() {
             });
 
             $(window).bind('pageshow', function() {
-                var elements = document.getElementById('postForm').elements;
-                for (var i = 0, element; element = elements[i++];) {
-                    if (element.type === 'hidden' && element.value !== '') {
-                        if (element.id == 'SelectedCurrency') continue;
-                        element.value = '';
+                if (document.getElementById('formError').value == false) {
+                    var elements = document.getElementById('postForm').elements;
+                    for (var i = 0, element; element = elements[i++];) {
+                        if (element.type === 'hidden' && element.value !== '') {
+                            if (element.id == 'SelectedCurrency') continue;
+                            element.value = '';
+                        }
                     }
                 }
                 document.getElementById('postForm').reset();
@@ -233,7 +235,7 @@ BOLT.QuickPostPage = (function() {
                     $('input[name=SelectedCurrency]').val(selectedOption);
                 }
                 else { //There is a pre-selected value
-                    currency.value = $('input[name=SelectedCurrency]').val(); // Select that option in the dropdown
+                    $('#currencyOptions').val($('input[name=SelectedCurrency]').val()); // Select that option in the dropdown
                 }
             }
         },

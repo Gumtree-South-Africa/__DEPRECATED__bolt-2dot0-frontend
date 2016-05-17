@@ -125,7 +125,7 @@
 	                   <div class='currency-types'>
 		                    <select id='currencyOptions' class="currency-value" name='currencyOptions'>
                                 {{#each this.formContent.currency}}
-                                    <option value='{{splitKeyValueShowKey this}}' {{#if selected}}selected{{/if}}>{{splitKeyValueShowValue this}}</option>
+                                    <option value='{{splitKeyValueShowKey this}}'>{{splitKeyValueShowValue this}}</option>
                                 {{/each}}
                             </select>
                        </div>
@@ -199,6 +199,8 @@
         <div class="qpost">
             <input class="quickSubmit" type="submit" value="{{i18n this.formContent.sellitText}}" />
         </div>
+
+        <input type="hidden" name="formError" id="formError" value="{{#if this.flash}}true{{else}}false{{/if}}" />
 
     </form>
 
