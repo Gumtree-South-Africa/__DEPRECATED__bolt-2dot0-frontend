@@ -307,11 +307,10 @@ BOLT.QuickPostPage = (function() {
 
         clearForm: function(){
             $(window).bind('pageshow', function() {
-                var $postForm = $('#postForm');
-                $postForm.reset();
+                document.getElementById('postForm').reset();
 
                 if ($('#formError').value == false) {
-                    var elements = $postForm.elements;
+                    var elements = $('#postForm').elements;
                     for (var i = 0, element; element = elements[i++];) {
                         if (element.type === 'hidden' && element.val() !== '') {
                             if (element.id == 'SelectedCurrency') continue;
