@@ -47,7 +47,7 @@
 			   // Check for valid location
 			   $.validator.addMethod("validLocation", function(value, element) {
 				   return this.optional(element) ||
-					   /^(\s|\w|\d|\,|\-)*?$/i.test(value);
+					   /^(\s|\w|\d|,|.|-|\\u[a-fA-F0-9]{4})*?$/i.test(value);
 			   });
 			}
 

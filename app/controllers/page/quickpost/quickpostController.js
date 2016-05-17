@@ -69,7 +69,7 @@ router.post('/quickpost',
 		field('Category').required(),
 		field('price').trim().maxLength(10).is(/^[0-9]+$/),field('SelectedCurrency'),
 		field('switch'),
-		field('Location').required().is(/^[\s|\w|\d|\-|\,|)]+$/), field('latitude'), field('longitude'), field('address')
+		field('Location').required(), field('latitude'), field('longitude'), field('address')
 
 	),
 
