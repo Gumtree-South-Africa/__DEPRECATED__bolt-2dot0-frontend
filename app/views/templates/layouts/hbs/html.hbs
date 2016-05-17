@@ -10,9 +10,9 @@
 <!--[if (gt IE 9)|(gt IEMobile 7)]><!-->
 <html data-locale="{{this.locale}}" lang="{{this.header.languageCode}}" xmlns="http://www.w3.org/1999/html" class="{{this.header.pageType}}"><!--<![endif]-->
 <head>
-    <title>{{#block "title"}}{{__ this.header.pageTitle}}{{/block}}</title>
+    <title>{{#block "title"}}{{i18n this.header.pageTitle}}{{/block}}</title>
     <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
-    <meta name="description" content="{{__ this.header.metaDescription this.totalLiveAdCount}}"/>
+    <meta name="description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
     <meta name="robots" content="{{#if this.header.metaRobots}}{{this.header.metaRobots}}{{else}}index, follow{{/if}}"/>
     <meta name="format-detection" content="telephone=no"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -26,13 +26,13 @@
     {{{this.content.bingMeta}}}
 
     {{#if this.header.pageUrl}}
-        <meta property="og:title" content="{{__ this.header.pageTitle}}"/>
+        <meta property="og:title" content="{{i18n this.header.pageTitle}}"/>
         <meta property="og:type" content="{{this.header.type}}"/>
         <meta property="og:image" content='{{#block "ogImg"}}{{this.header.logoUrlOpenGraph}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
-        <meta property="og:country-name" content="{{__ 'header.country.label'}}"/>
-        <meta property="og:description" content="{{__ this.header.metaDescription this.totalLiveAdCount}}"/>
+        <meta property="og:country-name" content="{{i18n 'header.country.label'}}"/>
+        <meta property="og:description" content="{{i18n this.header.metaDescription this.totalLiveAdCount}}"/>
         <meta property="og:locale" content="{{this.header.localeOpenGraph}}"/>
     {{/if}}
 
@@ -133,8 +133,8 @@
         Bolt.BASEIMAGEURL = "{{this.footer.baseImageUrl}}";
         Bolt.BRANDNAME = "{{this.footer.brandName}}";
         Bolt.COUNTRY = "{{this.country}}";
-        Bolt.DECIMAL = "{{__ "currency.decimal"}}";
-        Bolt.PLACEHOLDER = "{{__ "currency.placeholder"}}";
+        Bolt.DECIMAL = "{{i18n "currency.decimal"}}";
+        Bolt.PLACEHOLDER = "{{i18n "currency.placeholder"}}";
         Bolt.LOCALE = "{{this.locale}}";
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>

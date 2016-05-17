@@ -6,7 +6,6 @@
 
 'use strict';
 var i18node = require('i18n-2');
-var hbs = require('handlebars');
 
 module.exports.init = function(app, locale) {
     // console.log("locale ======= ", locale);
@@ -24,12 +23,4 @@ function initConfigI18n(app, locale) {
         // change the cookie name from 'lang' to 'locale'
         cookieName: 'locale'
     });
-
-    hbs.registerHelper('__n', function () {
-      return i18n.__n.apply(this, arguments);
-    });
-
-    app.use(function(req, res, next){
-      next();
-    })
 }

@@ -16,7 +16,7 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 	if (typeof authTokenValue !== "undefined" && authTokenValue!=null) {
 		bapiOptions.headers["Authorization"] = "Bearer " +  authTokenValue;
 	}
-	
+
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
 		if ( bapiOptions.path.indexOf("?") > -1 ) {
@@ -24,8 +24,8 @@ module.exports = function(bapiOptions, requestId, locale, serviceName, authToken
 		} else {
 			bapiOptions.path = bapiOptions.path + "?" + bapiOptions.parameters;
 		}
-	} 
-	
+	}
+
   	//Create Promise
 	var bapiDeferred = Q.defer();
 

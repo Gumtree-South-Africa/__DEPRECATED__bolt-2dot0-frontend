@@ -71,8 +71,8 @@ Download and install Ruby installer from [here](http://rubyinstaller.org/downloa
 The first time you make a development build it is required that you build the styles and and the precompiled template.
 
 ```
-[sudo] npm install
-gulp
+[sudo] npm install -g gulp
+
 ```
 
 

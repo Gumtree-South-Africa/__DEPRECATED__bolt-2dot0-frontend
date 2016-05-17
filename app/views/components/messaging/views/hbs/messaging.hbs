@@ -10,7 +10,7 @@
 			<div class="gl-messages success" >
 				<div>
 					<span class='msg-icon'><span class="icon-gl-message-success"></span></span>
-					<div class='message'>{{{__ this}}}</div>
+					<div class='message'>{{{i18n this}}}</div>
 					{{#block "close-messaging-button"}}{{/block}}
 				</div>
 			</div>
@@ -20,7 +20,7 @@
 			<div class="gl-messages error">
 				<div>
 					<span class='msg-icon'><span class="icon-gl-message-error"></span></span>
-					<div class='message'>{{{__ this}}}</div>
+					<div class='message'>{{{i18n this}}}</div>
 					{{#block "close-messaging-button"}}{{/block}}
 				</div>
 			</div>
@@ -30,7 +30,7 @@
 			<div class="gl-messages warning">
 				<div>
 					<span class='msg-icon'><span class="icon-gl-message-warning"></span></span>
-					<div class='message'>{{{__ this}}}</div>
+					<div class='message'>{{{i18n this}}}</div>
 					{{#block "close-messaging-button"}}{{/block}}
 				</div>
 			</div>
@@ -39,7 +39,7 @@
 	   {{#partial "javascriptMessaging"}}
 		{{#with this.header.pageMessages.warning-obfuscated}}
 		    <script>
-		   	 message.warn({msgText:'{{{__ obfuscateUrl this}}}',xs:false,ob:true});
+		   	 message.warn({msgText:'{{{i18n obfuscateUrl this}}}',xs:false,ob:true});
 			</script>
 	 	{{/with}}
 	   {{/partial}}
