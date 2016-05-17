@@ -65,8 +65,7 @@ router.post('/quickpost',
 
 	// Form filter and validation middleware
 	form(
-		field('Description').trim().required().minLength(10).maxLength(4096)
-			.is(/^[\s|\w|\d|&|;|\,|\.|\\|\+|\*|\?|\[|\^|\]|\$|\(|\)|\{|\}|\=|\!|\||\:|\-|\_|\^|\#|\@|\%|\~|\`|\=|\'|\"|\/|<b>|<\/b>|<i>|<\/i>|<li>|<\/li>|<p>|<\/p>|<br>|<ol>|<\/ol>|<u>|<\/u>|<ul>|<\/ul>|<div>|<\/div>)]+$/),
+		field('Description').trim().required().minLength(10).maxLength(4096),
 		field('Category').required(),
 		field('price').trim().maxLength(10).is(/^[0-9]+$/),field('SelectedCurrency'),
 		field('switch'),
