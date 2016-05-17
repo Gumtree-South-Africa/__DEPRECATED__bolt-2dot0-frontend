@@ -137,7 +137,7 @@ var HP = {
 	buildHeaderPageMessages: function (req, modelData) {
 		modelData.header.pageMessages = {};
 		switch (req.query.status) {
-			case 'userRegistered' :
+			case 'userregistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
 
@@ -150,10 +150,10 @@ var HP = {
 					modelData.header.marketo.marketoAttributeJsonStr = '';
 				}
 				break;
-			case 'adInactive':
+			case 'adinactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
 				break;
-			case 'resetPassword':
+			case 'resetpassword':
 				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
 				break;
@@ -166,10 +166,10 @@ var HP = {
 				modelData.header.pageMessages.error = '';
 		}
 		switch (req.query.resumeabandonedordererror) {
-			case 'adNotActive':
+			case 'adnotactive':
 				modelData.header.pageMessages.error = 'abandonedorder.adNotActive';
 				break;
-			case 'adFeaturePaid':
+			case 'adfeaturepaid':
 				modelData.header.pageMessages.error = 'abandonedorder.adFeaturePaid.multiple_ads';
 				break;
 		}
