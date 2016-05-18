@@ -16,4 +16,4 @@ RUN gulp build
 # Port on which the app runs
 EXPOSE 8000
 
-CMD ["npm","envstart"]
+CMD ["npm","run","envstart"]
