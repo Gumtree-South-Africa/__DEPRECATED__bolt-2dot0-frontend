@@ -1,4 +1,4 @@
-FROM    nodesource/node:trusty
+FROM cs-registry-9425.slc01.dev.ebayc3.com:5000/bolt-node-cislave
 
 # Setup work directory
 WORKDIR /src
