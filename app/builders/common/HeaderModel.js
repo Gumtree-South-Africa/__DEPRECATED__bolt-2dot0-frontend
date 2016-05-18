@@ -38,9 +38,8 @@ var HeaderModel = function (secure, req, res) {
 	this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
-
+	this.i18n = req.i18n;
 	this.requestId = req.requestId;
-	this.i18n = res.locals.i18n;
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
@@ -49,6 +48,7 @@ HeaderModel.prototype.getModelBuilder = function() {
 
 // Function getHeaderData
 HeaderModel.prototype.getHeaderData = function() {
+
 	var scope = this;
 	var arrFunctions = [
 		function (callback) {
@@ -81,21 +81,21 @@ HeaderModel.prototype.getHeaderData = function() {
     		scope.buildUrl(data);
     		scope.buildCss(data);
     		scope.buildOpengraph(data);
-				
+
     		// manipulate data
     		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
     		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-    			
+					
     			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
     				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
     			} else {
     				data.cookieLocationName = scope.locationIdNameMap[data.cookieLocationId] || '';
     			}
     		}
-    		
+
     		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
 		    	headerDeferred = Q.defer();
