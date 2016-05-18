@@ -26,7 +26,12 @@
 		&.es_MX,&.es_MX,&.es_AR{
 			background-image: url(../../../../../images/no-javascript-es_MX.gif);
 			width: 400px;
-		}     	
+		} 
+		&.pl_PL{
+		background-image: url(../../../../../images/no-javascript-pl_PL.png);
+		width:420px;
+		}
+			
 	}
 }
 
@@ -117,6 +122,11 @@
 			&.es_MX,&.es_AR{
 				width: 200px;
 			}
+			&.pl_PL{
+		   background-image: url(../../../../../images/no-javascript-pl_PL.Mobile.png);
+		   width: 299px;
+		   background-position: center;
+		   }
 		}
 	}
 	.gl-messages{
