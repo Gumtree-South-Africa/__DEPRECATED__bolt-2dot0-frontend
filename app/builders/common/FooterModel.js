@@ -10,7 +10,7 @@ var ModelBuilder = require('./ModelBuilder');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
 
-/** 
+/**
  * @description A class that Handles the Footer Model
  * @constructor
  */
@@ -18,7 +18,7 @@ var FooterModel = function (secure, req, res) {
 	// Local Variables
 	this.secure = secure;
 	this.locale = res.locals.config.locale;
-	
+
 	// Country specific variables from BAPI Config
 	this.brandName = res.locals.config.name;
 	this.country = res.locals.config.country;
@@ -38,40 +38,41 @@ FooterModel.prototype.getFooterData = function() {
 			if (typeof callback !== 'function') {
 				return;
 			}
-			
+
 			var footerDeferred,
 				data = {
 				};
-			
+
 			// merge pageurl data
     		_.extend(data, pageurlJson.footer);
-    		
+
     		// merge footer config data from BAPI
     		_.extend(data, scope.footerConfigData);
-    		
+
     		// build data
     		var urlProtocol = scope.secure ? 'https://' : 'http://';
-    		var urlHost = config.get('static.server.host')!==null ? urlProtocol + config.get('static.server.host') : ''; 
+    		var urlHost = config.get('static.server.host')!==null ? urlProtocol + config.get('static.server.host') : '';
     		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
     		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
     		data.mainJSUrl = urlHost + urlPort + urlVersion + config.get('static.mainJSUrl');
     		data.baseJSUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSUrl');
     		data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSMinUrl');
-    		data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl');
+    		data.baseSVGDataUrl = urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl');
+				data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl');
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
     		data.min = config.get('static.min');
-    		
+
     		// add complex data to footer
     		scope.buildJs(data);
     		scope.buildUrl(data);
-    		
+
     		footerDeferred = Q.defer();
     		footerDeferred.resolve(data);
     		callback(null, data);
     		return footerDeferred.promise;
 		}
 	];
-	
+
 	return arrFunctions;
 };
 
@@ -123,7 +124,7 @@ FooterModel.prototype.buildJs = function(data) {
 //Build URL
 FooterModel.prototype.buildUrl = function(data) {
 	var scope = this;
-	
+
 	data.brandName = scope.brandName;
 	data.localeJSPath = '/' + scope.brandName + '/' + scope.country + '/' + scope.locale + '/',
 	data.countryJSPath = '/' + scope.brandName + '/' + scope.country + '/',
@@ -136,4 +137,3 @@ FooterModel.prototype.buildUrl = function(data) {
 };
 
 module.exports = FooterModel;
-
