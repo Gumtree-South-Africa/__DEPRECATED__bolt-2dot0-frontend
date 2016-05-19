@@ -204,7 +204,9 @@ function transformCoordinate(ctx, orientation, width, height) {
    		            } else if (canvas.toBlob) {
    		                // HTML5 implementation.
    		                // https://developer.mozilla.org/en/DOM/HTMLCanvasElement
-   		                return canvas.toBlob(null, fileType, QUALITY);
+   		             //   return canvas.toBlob(null, fileType, QUALITY);
+   		          // temporary fix for Chrome 50 until Google fix the issue on their side.
+   		             return createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
    		            } else {
    		                // WebKit implementation.
    		                // http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
