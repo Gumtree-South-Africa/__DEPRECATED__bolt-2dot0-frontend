@@ -234,8 +234,18 @@
       selectLocationLabel : '{{i18n "postad.select.location"}}',
       selectCategoryLabel : '{{i18n "postad.select.category.$$"}}',
       categorySearchPlaceholder : '{{i18n "postad.select.category.sampleSearch"}}'
-  }
-</script>
+  };
+  {{#if this.formContent.imgUrls}}
+    Bolt.imgUrls = {{json this.formContent.imgUrls}};
+  {{else}}
+    Bolt.imgUrls = [];
+  {{/if}}
+  {{#if this.formContent.imgThumbUrls}}
+    Bolt.imgThumbUrls = {{json this.formContent.imgThumbUrls}};
+  {{else}}
+    Bolt.imgThumbUrls = [];
+  {{/if}}
+ </script>
 {{/partial}}
 
 

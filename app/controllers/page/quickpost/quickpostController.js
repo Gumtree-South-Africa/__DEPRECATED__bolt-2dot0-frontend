@@ -100,7 +100,7 @@ router.post('/quickpost',
 			QuickPost.extendHeaderData(req, modelData);
 			QuickPost.extendFooterData(modelData);
 			QuickPost.buildFormData(modelData, bapiConfigData);
-			QuickPost.buildValueData(modelData, req.form);
+			QuickPost.buildValueData(modelData, req.form, req.body);
 
 			if (!req.form.isValid) {
 				QuickPost.respondFieldError(req, res, next, modelData);
@@ -270,7 +270,23 @@ var QuickPost = {
 	/**
 	 * Build Value data for QuickPost
 	 */
-	buildValueData: function (modelData, formData) {
+	buildValueData: function (modelData, formData, requestBody) {
+		modelData.formContent.imgUrls = [];
+		modelData.formContent.imgThumbUrls = [];
+		var reqPictures = requestBody.pictures;
+		var reqThumbPictures = requestBody.picturesThumb;
+		if (typeof reqPictures !== 'undefined') {
+			if (_.isArray(reqPictures)) {
+				for (var idx = 0; idx < reqPictures.length; idx++) {
+					modelData.formContent.imgUrls.push(decodeURIComponent(reqPictures[idx]));
+					modelData.formContent.imgThumbUrls.push(decodeURIComponent(reqThumbPictures[idx]));
+				}
+			} else {
+				modelData.formContent.imgUrls.push(decodeURIComponent(reqPictures));
+				modelData.formContent.imgThumbUrls.push(decodeURIComponent(reqThumbPictures));
+			}
+		}
+
 		if (!_.isEmpty(formData.Description)) {
 			var desc = formData.Description;
 			desc = StringUtils.unescapeHtml(desc);

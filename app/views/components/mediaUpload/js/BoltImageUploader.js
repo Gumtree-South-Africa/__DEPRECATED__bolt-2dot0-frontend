@@ -147,6 +147,51 @@
 							imageUploads.addClassFeatured();
 		                },
 
+						addFromImageUrls: function (urlThumbArray, urlArray) {
+
+							var html = "";
+
+							for(var i=0; i<urlArray.length; i++) {
+								var index = i, title = 'title-' + i;
+
+								var htmlThumb = '<li draggable="true" class="img-box" id="image-place-holder-' + index + '" ' + title + ' id="img-' + index + '">'
+									+ '<div class="icon-remove-gray"></div>'
+									+ '<img class="thumb" id="thumb-img-' + index + '"  width="64px" height="64px" src="' + urlArray[i] + '" />'
+									+ '<ul id="upload-status-' + index + '" class="upload-status">'
+									+ '<li>'
+									+ '<div id="progress-cnt-' + index + '" class="progress-holder">'
+									+ '<div id="progress-' + index + '" class="progress"></div>'
+									+ '</div>'
+									+ '<span id="percents-' + index + '" class="percents"></span>'
+									+ '</li>'
+									+ '<li>'
+									+ '<div class="uploading" id="file-upload-' + index + '"></div>'
+									+ '</li>'
+									+ '</ul>'
+									+ '</li>';
+
+								images.push(index);
+								html = html + htmlThumb;
+								$("#thumb-nails").append(htmlThumb);
+								dragAndDropElements.init("image-place-holder-"+i);
+
+								createImgObj(i, urlThumbArray[i],urlArray[i]);
+
+								if (i >= allowedUploads - 1){
+									//case: to hide camera icon
+									$('.uploadWrapper').addClass('hiddenElt');
+								}
+							};
+
+							this.addClassFeatured();
+							if (!isDnDElement()) {
+								$(".img-box").css("cursor", "pointer");
+							} else {
+								firefoxStopImageEleDrag();
+							}
+							return true;
+						},
+
 		                count:function() {
 		                	return images.length;
 		                },
@@ -541,6 +586,10 @@
 					};
 
 					if (window.addEventListener) dragAndDrop();
+
+					$(window).on("load", function(evt) {
+						imageUploads.addFromImageUrls(Bolt.imgThumbUrls, Bolt.imgUrls);
+					});
 
 					// on select file
 					$('#postForm').on("change", "#fileUpload", function(evt) {
