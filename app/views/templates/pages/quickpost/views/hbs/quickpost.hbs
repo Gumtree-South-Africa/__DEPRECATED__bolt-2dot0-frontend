@@ -134,10 +134,12 @@
 
                     <div class='price-field number'>
                         <span class='price-fraction'>{{i18n this.formContent.priceExtension}}</span>
-                         <input type="number"  data-number='{"nogrouping" : false}' pattern="\d*" {{#if this.flash.fieldErrors.price}}class="error" data-errorFlash="{{this.flash.fieldErrors.price}}"{{/if}}
-                          onkeypress='return event.charCode >= 48 && event.charCode <= 57'class='price-value' id="Price" name="price"
-                          placeholder="{{i18n this.formContent.pricePlaceholder}}"
-                         {{#if this.formContent.priceValue}}value="{{i18n this.formContent.priceValue}}"{{/if}}  data-errorPriceLong="<p class='labelError'>{{i18n this.formContent.errorPriceLong}}</p>" >
+                         <input type="number" data-number='{"nogrouping" : false}' pattern="\d*"
+                                onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+                                class='price-value' id="Price" name="price"
+                                placeholder="{{i18n this.formContent.pricePlaceholder}}"
+                                {{#if this.flash.fieldErrors.price}}class="error" data-errorFlash="{{this.flash.fieldErrors.price}}"{{/if}}
+                                {{#if this.formContent.priceValue}}value="{{i18n this.formContent.priceValue}}"{{/if}}  data-errorPriceLong="<p class='labelError'>{{i18n this.formContent.errorPriceLong}}</p>" >
                       <span class="ghost">{{i18n this.formContent.priceCurrencyText}}</span>
                     </div>
                     <label class="icon-validation-check"></label>

@@ -107,6 +107,7 @@ BOLT.QuickPostPage = (function() {
             this.validLoc();
             this.categorySelector();
             this.currencySelector();
+            this.priceLengthCheck();
             this.toggleSwitchUpdate();
             this.geoMap();
             this.autoComplete();
@@ -142,48 +143,46 @@ BOLT.QuickPostPage = (function() {
                 $('#description-char-count').text(4096 - $('#Description').val().length);
             })
         },
-        
-        
-         validDesc: function(){
-        	$('.description').on('focusout keyup', function(){
-        		
-    	    		setTimeout(function(){
-    	    			var x = $('#Description').hasClass("valid"),
-    	    		   desclabelIcon= $('.description').find('.icon-validation-check');
-    	                if(x)
-    	                	desclabelIcon.css('display', 'inline-block');
-    	                else
-    	                	desclabelIcon.css('display', 'none');
-    	    		}, 100);
-        		
-                });
-            },
 
-           validPrice: function(){
-               $('.price-field').on('focusout keyup', function(){
-            	
-            	   setTimeout(function(){ 
-            		var labelIcon= $(".price").find('.icon-validation-check');
-            		 if($('#Price').val().length >0 &&  $('#Price').val().length<10)	
-    					 labelIcon.css('display', 'inline-block');
-    				 else 
-    			   	    labelIcon.css('display', 'none');
-            	   }, 100);  
-    			});
-            },
-  
+        validDesc: function(){
+            $('.description').on('focusout keyup', function(){
+
+                setTimeout(function(){
+                    var x = $('#Description').hasClass("valid"),
+                        desclabelIcon= $('.description').find('.icon-validation-check');
+                    if(x)
+                        desclabelIcon.css('display', 'inline-block');
+                    else
+                        desclabelIcon.css('display', 'none');
+                }, 100);
+        		
+            });
+        },
+
+        validPrice: function(){
+           $('.price-field').on('focusout keyup', function(){
+
+                setTimeout(function(){
+                    var labelIcon= $(".price").find('.icon-validation-check');
+                    if($('#Price').val().length >0 &&  $('#Price').val().length<=10)
+                        labelIcon.css('display', 'inline-block');
+                    else
+                        labelIcon.css('display', 'none');
+                }, 100);
+           });
+        },
             
         validLoc: function(){
            $('#Location').on('focusout keyup', function(){
         	   
-        	   setTimeout(function(){ 
-        		var labelIcon= $(".select-location").find('.icon-validation-check');
-				 if($('#Location').hasClass( "valid"))
-					 labelIcon.css('display', 'inline-block');
-				 else
-					 labelIcon.css('display', 'none');
+               setTimeout(function(){
+                    var labelIcon= $(".select-location").find('.icon-validation-check');
+                    if($('#Location').hasClass( "valid"))
+                        labelIcon.css('display', 'inline-block');
+                    else
+                        labelIcon.css('display', 'none');
         	   }, 100);  
-			});
+            });
         },
 
         categorySelector: function(){
@@ -228,6 +227,16 @@ BOLT.QuickPostPage = (function() {
                     $('#currencyOptions').val($('input[name=SelectedCurrency]').val()); // Select that option in the dropdown
                 }
             }
+        },
+
+        priceLengthCheck: function(){
+            $('#Price').on('keydown', function(){
+                var max_chars = 10;
+
+                if($(this).val().length >= max_chars) {
+                    $(this).val($(this).val().substr(0, max_chars-1));
+                }
+            });
         },
 
         toggleSwitchUpdate: function(){

@@ -99,9 +99,7 @@
 							validLocation: (typeof $("#Location").attr("data-errorFlash") === 'undefined') ? $("#Location").attr("data-errorLocationInvalid") : ''
 						},
 						price: {
-						
 							maxlength: (typeof $("#Price").attr("data-errorFlash") === 'undefined') ? $("#Price").attr("data-errorPriceLong") : ''
-							
 						}
 						
 					}
