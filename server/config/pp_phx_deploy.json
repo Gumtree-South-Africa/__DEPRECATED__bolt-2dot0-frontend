@@ -35,9 +35,9 @@
 		"server": {
 			"host": "static.staging2.qa-bolt.com",
 			"port": null,
-			"version": "2.0.107"
+			"version": "2.0.108"
 		},
-		"baseSVGDataUrl"	: "/data-icon-css/",
+		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
 		"baseJSUrl": "/js/",
 		"baseJSMinUrl": "/jsmin/",
