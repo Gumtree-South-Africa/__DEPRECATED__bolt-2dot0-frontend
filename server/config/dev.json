@@ -43,6 +43,7 @@
 			"port"		: null,
 			"version"	: null
 		},
+		"baseSVGDataUrl"	: "/data-icon-css/",
 		"baseCSSUrl"	: "/css/",
 		"baseJSUrl"		: "/js/",
 		"baseJSMinUrl"	: "/jsmin/",

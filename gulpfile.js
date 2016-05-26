@@ -66,15 +66,6 @@ function errorlog(err){
   this.emit('end');
 }
 
-// var props = require('gulp-props');
-// gulp.task('props', function(){
-//     // Generate a .json file indented with 2 spaces
-//     gulp.src('./app/locales/src/*.properties')
-//       .pipe(props({ namespace: '', space: 2 }))
-//       .pipe(gulp.dest('./app/locales/bolt-translation/'));
-// })
-
-
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
@@ -90,9 +81,10 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
+gulp.task('watch', getTask('watch'));
 
 // DEFAULT is used by Developers
-gulp.task('default', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'develop']);
+gulp.task('default', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
 
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
@@ -103,6 +95,7 @@ gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompi
 // TEST
 gulp.task('jasmine', getTask('jasmine'));
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
+
 
 //TODO: move to a separate file
 gulp.task('test', function(callback){

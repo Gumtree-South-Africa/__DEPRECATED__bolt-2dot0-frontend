@@ -41,8 +41,9 @@
 		"server": {
 			"host": "inc.t9.classistatic.com",
 			"port": null,
-			"version": "2.0.106"
+			"version": "2.0.109"
 		},
+		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
 		"baseJSUrl": "/js/",
 		"baseJSMinUrl": "/jsmin/",

@@ -76,8 +76,9 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
     		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
-    		data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
-    		data.min = config.get('static.min');
+    		data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
+				data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
+				data.min = config.get('static.min');
 
     		// add complex data to header
     		scope.buildUrl(data);
@@ -141,7 +142,7 @@ HeaderModel.prototype.buildCss = function(data) {
 	var scope = this;
 
 	data.iconsCSSURLs = [];
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
+	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
