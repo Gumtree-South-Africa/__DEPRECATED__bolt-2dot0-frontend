@@ -52,7 +52,7 @@ Object.keys(config.sites).forEach(function(siteKey) {
 
 		        // register bolt middleware
 		        siteApp.use(siteconfig(siteApp));
-			  	  siteApp.use(responseMetrics());
+			  	siteApp.use(responseMetrics());
 
 		        // Setup Vhost per supported site
 		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
