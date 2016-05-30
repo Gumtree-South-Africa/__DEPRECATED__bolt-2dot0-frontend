@@ -431,6 +431,7 @@
   "footer.siteMap": "Vivanuncios Contenido",
   "footer.mobileApp": "Vivanuncios App",
   "footer.propertyPriceChecker": "Precios de Inmuebles",
+  "footer.forBusiness":"Agentes Inmobiliarios",
   "error404.message": "\"Lo sentimos, esta página no existe\" <br /><a href=\"%s\">Regresar al inicio</a>",
   "error410.message": "¡Oh! Disculpa, este anuncio ya no está disponible.",
   "error500.message": "\"Lo sentimos, ha ocurrido un error en el servidor\" <br /><a href=\"%s\">Regresar al inicio</a>",
