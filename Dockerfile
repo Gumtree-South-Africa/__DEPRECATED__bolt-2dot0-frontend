@@ -17,3 +17,6 @@ RUN gulp build
 EXPOSE 8000
 
 CMD ["npm","run","envstart"]
+
+ARG GIT_REV_FILE="unknown"
+ADD ${GIT_REV_FILE} /tmp/
