@@ -1,7 +1,8 @@
 'use strict';
 
 var _ = require('underscore');
-var machineId = require( "machine-id" );
+var cuid = require('cuid');
+
 
 module.exports = function() {
     return function(req, res, next) {
@@ -9,7 +10,9 @@ module.exports = function() {
         var machguidCookieName = 'machguid';
         var machguidCookie = req.cookies[machguidCookieName];
         if (typeof machguidCookie==='undefined' || (typeof machguidCookie !== 'undefined' && _.isEmpty(machguidCookie))) {
-            machguidCookie = machineId();
+            // TODO: check with 1.0 code on how they decrypt machguid
+            var now = new Date();
+            machguidCookie = cuid() + '-' + now.getTime().toString(16);
 
             // Set back in cookie
             res.clearCookie(machguidCookieName);
