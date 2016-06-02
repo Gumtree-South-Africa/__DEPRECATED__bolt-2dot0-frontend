@@ -97,6 +97,7 @@
     "measured": "1.1.0",
     "method-override": "2.3.5",
     "morgan": "1.6.1",
+    "node-uuid": "1.4.7",
     "on-response": "1.0.1",
     "q": "1.4.1",
     "request": "2.67.0",
