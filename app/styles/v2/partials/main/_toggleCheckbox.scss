@@ -1,0 +1,104 @@
+.toggleswitch {
+	/* IE8 */
+	.container {
+		overflow: hidden;
+		border-radius: 0.25em;
+		border: 1px solid #0C0D0C;
+		position:relative;
+		box-shadow: 0px 0px 3px rgba(0,0,0,0.35) inset;
+		width: 4.8em;
+		height: 2em;
+		border-radius: 5px;
+		span {
+			padding-top:7px;
+			text-align:center;
+			display:inline-block;
+			height:100%;
+			width:50%;
+			position:absolute;
+		}
+
+
+
+		.on {
+			background-color: #AACD38;
+			&:after {
+				content: "";
+				display:block;
+				border: 2px solid #fff;
+				height: 12px;
+				width: 0px;
+				margin-top: 0;
+				margin-left: 1em;
+				background-color: #AACD38;
+			}
+			&.classic{
+				font-weight: bold;
+				line-height:100%;
+				color: white;
+				&:after
+				{
+					display:none;
+				}
+			}
+		}
+
+
+
+		.off {
+			left:50%;
+			background-color: #ebeeb9;
+			&:after {
+				content: "";
+				display:block;
+				border: 3px solid #fff;
+				height: 9px;
+				width: 9px;
+				margin-top: 0.01em;
+				margin-left: 0.7em;
+				background-color: #ebeeb9;
+				border-radius: 75px;
+			}
+			&.classic{
+				color: #8c8c8c;
+				font-weight: bold;
+				line-height:100%;
+				&:after
+				{
+					display:none;
+				}
+			}
+		}
+		.slider {
+			background-color:#eeeeff;
+			z-index:1;
+			left:0;
+			//transition:all 50ms cubic-bezier(.01,.44,1,-0.15);
+			transition:all 100ms cubic-bezier(.01,.44,1,-0.15);
+			background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAGklEQVQYV2NkYGAwBmIQOIuHzcA4qpC+wQMA2JIeC0P/Cu8AAAAASUVORK5CYII=) center no-repeat #e8e7ec;
+			box-shadow: 0px 0px 2px rgba(0,0,0,0.35);
+			border-right:2px solid #CCC;
+			border-left:2px solid #FFF;
+		}
+		input {
+			position:absolute;
+			opacity: 0;
+			height:100%;
+			width:100%;
+			z-index:2;
+			/* TRANSPARENT BUT CLICKABLE */
+			//-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)"; /* IE 8 */
+			//opacity: 0;/* Good browsers */
+			/* IE 5-7 filter: alpha(opacity=0); *//* Netscape -moz-opacity: 0;*//* Safari 1. -khtml-opacity: 0;*/
+			&:checked  + .slider {
+				left:50%;
+			}
+			&.checked  + .slider {
+				left:50%;
+			}
+			&:hover + .slider {
+				background-color: #ccc;
+			}
+		}
+	}
+}

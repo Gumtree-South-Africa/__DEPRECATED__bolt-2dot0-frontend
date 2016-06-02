@@ -1,0 +1,136 @@
+%cannedResponses {
+    margin-top: 0;
+    padding-top: 0.5em;
+
+    form {
+      label {
+        font-weight: bold;
+      }
+
+      .canned-responses {
+        li {
+          margin-bottom: 4px;
+        }
+
+        label {
+          span {
+            font-weight: normal;
+          }
+        }
+      }
+
+      p.error {
+        font-weight: normal;
+      }
+
+      .messageArea {
+        display: block;
+        clear: both;
+        margin-bottom: .5em;
+      }
+
+
+      textarea {
+        display: block;
+        resize: vertical;
+        width: 100%;
+        height: 45px;
+        background-color: transparent;
+        /* FIXME: adding !important to overcome another !important */
+        border: none !important;
+        border-top: 1px solid #e6e6e6 !important;
+        overflow: auto;
+        clear: both;
+        @include border-radius(0);
+
+        &:focus,
+        &.dirty {
+          min-height: 90px;
+          -webkit-box-shadow: none;
+          -moz-box-shadow: none;
+          -ms-box-shadow: none;
+          box-shadow: none;
+        }
+
+        &.error {
+          @include border-radius(5px);
+        }
+      }
+
+      .title {
+        @include vip-contact-title-form-button;
+        display: inline-block;
+        border: none;
+        font-size: 1.2em;
+        font-weight: bold;
+        padding: 0.5em 0.1em;
+
+        width: 48%;
+        float: right;
+      }
+
+      .icon-envelope-alt-white,.icon-phone-white{
+        display: inline-block;
+      }
+
+      input[type="email"].icon-envelope-new {
+        background-size: 1.25em;
+        background-position: 0.5em center;
+        padding-left: 2em;
+      }
+
+      input[name=phoneNumber].icon-phone {
+        background-size: 1.25em;
+        background-position: 0.5em center;
+        padding-left: 2em;
+      }
+
+      input[name=buyerName],
+      input[name=email] {
+        margin-bottom: .5em;
+      }
+
+      // fallback for IE
+      [placeholder].placeholder {
+          color: #999;
+      }
+    }
+  
+    .title {
+      .icon-envelope-alt-blue {
+        display: none;
+      }
+    }
+}
+
+
+@include from-breakpoint($small-break) {
+    %cannedResponses {
+        .canned-responses {
+            li {
+                float: left;
+            }
+        }
+
+        input[name=buyerName],
+        input[name=email] {
+            float: left;
+            width: 35%;
+            margin: 0;
+            margin-right: 2%;
+        }
+
+        button.submit-reply {
+            float: right;
+            width: 26%;
+            margin: 0;
+        }
+
+        .privacypolicy {
+            clear: both;
+            .sudo-link {
+                margin:0.25em
+            }
+        }
+    }
+}

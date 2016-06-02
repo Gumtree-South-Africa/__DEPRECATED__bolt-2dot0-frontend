@@ -1,0 +1,103 @@
+#menu-link {
+    &.select-ads {
+        @extend %margin-bottom;
+
+        ul {
+            border: $box-border-width $box-border-style $box-border-color;
+            // TODO: mixin
+            border-radius: $box-border-radius;
+            overflow:hidden;
+           
+
+            li {
+                float:left;
+                width: 25%;
+                // TODO: IE8 fix
+                border-right: $box-border-width $box-border-style $box-border-color;
+                background-color: $vivaWhite80;
+                text-align: center;
+
+                // selected LIs have .bold.black
+                &.black {
+                    background-color: $background-color;
+
+                    a,
+                    .count {
+                        color: #000;
+                    }
+                }
+                &.bold,
+                &.bold a {
+                    font-weight: bold;
+                }
+
+                a,
+                .count {
+                    display: block;
+                    color: $vivaGray80;
+                }
+                a {
+                    @extend %medium-regular-title;
+                    padding: .5em;
+                }
+
+                .count {
+                    margin-top: -4px;
+                }
+
+                &:last-child {
+                    border-right: none;
+                }
+            }
+        }
+    }
+
+    .expire-msg {
+        @extend %p-small;
+        padding-top: 0.5em;
+        color: $vivaGray80;
+        text-align: center;
+    }
+}
+.column-actions .disabled {
+	@include opacity(0.5);
+	text-decoration: none;
+	cursor:text;
+}
+.column-actions .disabled:hover {
+	background:transparent;
+}
+
+/*
+@include in-breakpoint($no-break) {
+    #menu-link {
+        &.select-ads {
+            ul {
+                li {
+                    background-color: $background-color;
+                    a { 
+                    	padding:0.5em 0.1em 0.5em 0em;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+@include in-breakpoint($no-break) {
+    #menu-link {
+        &.select-ads {
+            ul li{
+            	width:23%;
+            	a { 
+                    padding:0.5em 0.1em 0.5em 0em;
+                    font-size:0.875em;
+               }
+            }
+           
+        }
+    }
+}
+*/
+
