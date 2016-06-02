@@ -129,7 +129,7 @@ npm run dev
 
 ### VM Mode (Run app with VM BAPI Server, VM details specidied in vm.json)
 As of now, add below VM to host file:
-10.65.201.202   api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com
+10.65.201.202   api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com
 
 ```
 git clone git@github.corp.ebay.com:ecg-global/bolt-2dot0-frontend.git
