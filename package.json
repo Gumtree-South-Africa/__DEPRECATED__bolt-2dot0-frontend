@@ -87,7 +87,7 @@
     "i18n-2": "0.6.3",
     "ipware": "0.0.8",
     "javascript-precommit": "0.0.8",
-    "jshint": "2.8.0",
+    "jshint": "^2.9.2",
     "jshint-stylish": "2.1.0",
     "kafka-node": "0.3.1",
     "loading-indicator": "2.0.0",

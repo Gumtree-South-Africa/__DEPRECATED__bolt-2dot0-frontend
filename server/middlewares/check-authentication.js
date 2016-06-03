@@ -10,7 +10,7 @@ var userService = require(process.cwd() + '/server/services/user');
 
 module.exports = function(locale) {
     return function(req, res, next) {
-        var nonSecurePaths = ['/', '/api'];
+        var nonSecurePaths = ['/', '/api', '/isotopeprototype'];
 
         // If it is a non secure path, let the request through
         if ( _.contains(nonSecurePaths, req.path) ) return next();
@@ -48,6 +48,7 @@ module.exports = function(locale) {
 
     function redirectLogin(res) {
         var loginLink = pageurlJson.header.signInURL;
-        res.redirect(loginLink);
+        //res.redirect(loginLink);
+        
     }
 };

@@ -6,9 +6,9 @@ var PREFIX_DIR  = '/public/images';
 
 (function (B) {
   // Prevent jshint warning error
-  if (typeof webkitSpeechRecognition === 'undefined') {
+  //if (typeof webkitSpeechRecognition === 'undefined') {
     var webkitSpeechRecognition = function () {};
-  }
+  //}
 
   // Private vars/objects
   var langs =

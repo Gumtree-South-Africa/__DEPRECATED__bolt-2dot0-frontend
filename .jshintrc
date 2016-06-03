@@ -42,6 +42,7 @@
 
 
     // ECMAScript 5
+	"esversion": 6,
 
     // Whether the "use strict"; pragma should be required.
     "strict": true,
