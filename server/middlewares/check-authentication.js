@@ -10,7 +10,7 @@ var userService = require(process.cwd() + '/server/services/user');
 
 module.exports = function(locale) {
     return function(req, res, next) {
-        var nonSecurePaths = ['/', '/api'];
+        var nonSecurePaths = ['/', '/api', '/postpage'];
 
         // If it is a non secure path, let the request through
         if ( _.contains(nonSecurePaths, req.path) ) return next();

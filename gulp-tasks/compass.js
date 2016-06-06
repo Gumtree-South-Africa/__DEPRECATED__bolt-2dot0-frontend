@@ -4,6 +4,8 @@
 // Compass Tasks
 // ///////////////////////////////////////////////
 
+var through2 = require('through2');
+var argv = require('yargs').argv;
 
 module.exports = function watch(gulp, plugins) {
 
@@ -38,18 +40,24 @@ module.exports = function watch(gulp, plugins) {
 
     gulp.task('compass', function(){
 			var doneCounter = 0;
+      var pageVersion = '';
+
+      console.log('pageEnv: ',process.env.PAGE_VER);
+
+      if (argv.n != 'undefined' && argv.n == 'v2') pageVersion = 'v2/'
+      else if(argv.n != 'undefined' && argv.n == 'v1') pageVersion = 'v1/';
+
+      console.log('pageVersion: ', argv.n);
+
 	    function incDoneCounter() {
 	        doneCounter += 1;
 	        if (doneCounter >= articles.length) {
 	            done();
 	        }
-          else{
-            //console.log('DONNNNNNNNNNEEEEEEEEEEEE');
-          }
 	    }
 
       for (var i = 0; i < articles.length -1; ++i) {
-        gulp.src('./app/styles/**/**/*.scss')
+        gulp.src('./app/styles/' + pageVersion + '**/**/*.scss')
           .pipe(plugins.plumber({
             errorHandler: function (error) {
               console.log(error.message);

@@ -3,6 +3,10 @@
 // ////////////////////////////////////////////////
 // JS Hint Tasks
 // // /////////////////////////////////////////////
+
+var map = require('map-stream'),
+    jshint = require('gulp-jshint');
+    
 module.exports = function watch(gulp, plugins) {
   return function(){
 	  gulp.task('jshint', function() {

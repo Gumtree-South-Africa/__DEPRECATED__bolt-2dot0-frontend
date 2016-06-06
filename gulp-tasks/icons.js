@@ -5,7 +5,10 @@
 // ///////////////////////////////////////////////
 
 var glob = require('glob'),
-    notify = require('gulp-notify');
+    notify = require('gulp-notify'),
+    walkdir = require('walkdir'),
+    path = require('path'),
+    gulpicon = require("gulpicon/tasks/gulpicon");
 
 module.exports = function watch(gulp, plugins) {
 	return function(){

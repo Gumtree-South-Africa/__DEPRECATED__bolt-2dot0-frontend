@@ -3,6 +3,10 @@
 // ////////////////////////////////////////////////
 // JSON Lint Tasks
 // // /////////////////////////////////////////////
+
+var map = require('map-stream'),
+    jsonlint = require('gulp-jsonlint');
+
 module.exports = function watch(gulp, plugins) {
   return function(){
 	  var exitOnJsonlintError = map(function (file, cb) {

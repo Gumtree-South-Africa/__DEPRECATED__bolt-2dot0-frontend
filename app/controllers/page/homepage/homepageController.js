@@ -88,7 +88,13 @@ router.get('/', function (req, res, next) {
 			modelData.showPopularLocations = false;
 		}
 
-		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+    // Cookies drop for Version of template
+  	if((typeof req.cookies['b2dot0Version'] !== 'undefined') && req.cookies['b2dot0Version'] == '2.0'){
+      pageControllerUtil.postController(req, res, next, 'homepagePlaceholder/views/hbs/homepagePlaceholder_', modelData);
+  	}
+    else{
+      pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+    }
 
 		console.timeEnd('Instrument-Homepage-Controller');
     });

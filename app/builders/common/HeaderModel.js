@@ -24,7 +24,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
-	this.b2dot0Version = req.cookies['b2dot0Version']
+	this.b2dot0Version = req.cookies['b2dot0Version'];
 	// Local variables
 	this.secure = secure;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -142,9 +142,6 @@ HeaderModel.prototype.buildCss = function(data) {
 	var scope = this;
 
 	var b2dot0Ver = 'v1' //by default
-
-	console.log('cookie: ',this.b2dot0Version);
-
 	if((typeof scope.b2dot0Version !== 'undefined') && scope.b2dot0Version == '2.0'){
 		b2dot0Ver = 'v2';
 	}
