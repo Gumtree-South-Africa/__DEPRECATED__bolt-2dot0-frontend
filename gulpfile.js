@@ -83,14 +83,16 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('watch', getTask('watch'));
 
-// DEFAULT is used by Developers
-gulp.task('default', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
-
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
 gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+
+// DEFAULT is used by Developers
+gulp.task('default', function (done) {
+    runSequence('build', ['develop', 'watch'], done);
+});
 
 // TEST
 gulp.task('jasmine', getTask('jasmine'));
