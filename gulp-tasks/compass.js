@@ -42,12 +42,10 @@ module.exports = function watch(gulp, plugins) {
 			var doneCounter = 0;
       var pageVersion = '';
 
-      console.log('pageEnv: ',process.env.PAGE_VER);
 
-      if (argv.n != 'undefined' && argv.n == 'v2') pageVersion = 'v2/'
-      else if(argv.n != 'undefined' && argv.n == 'v1') pageVersion = 'v1/';
+      if (process.env.PAGE_VER != 'undefined' && process.env.PAGE_VER == 'v2') pageVersion = 'v2/'
+      else if(process.env.PAGE_VER != 'undefined' && process.env.PAGE_VER == 'v1') pageVersion = 'v1/';
 
-      console.log('pageVersion: ', argv.n);
 
 	    function incDoneCounter() {
 	        doneCounter += 1;

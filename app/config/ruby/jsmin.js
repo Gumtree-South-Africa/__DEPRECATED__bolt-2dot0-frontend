@@ -1,9 +1,36 @@
-//former uglify.js 
+//former uglify.js
+// Do not change the position of common.js in the array
 
 var rootDir = process.cwd();
 
+
 module.exports =
   [
+    {
+        "dest": rootDir + "/public/jsmin",
+        "src": [
+            "libraries/jQuery/jquery-2.0.0.js",
+            "bower-components/requirejs/require.js",
+            "common/utils/StringUtils.js",
+            "common/utils/JQueryUtil.js",
+            "common/device/MatchMedia.js",
+            "common/tracking/GoogleTag.js",
+            "common/bolt/main.js",
+            "common/bolt/json.js",
+            "common/bolt/cookie.js",
+            "common/bolt/storage.js",
+            "common/bolt/overlay.js",
+            "common/bolt/i18n.js",
+            "common/bolt/html5.js",
+            "common/bolt/Search.js",
+            "components/header/js/header.js",
+            "common/header/searchbar.js",
+            "common/widgets/SocialMedia.js",
+            "common/banners/GoogleTagBanner.js",
+            "common/tracking/Analytics.js"
+        ],
+        "bundleName": "common.min.js"
+    },
     {
       "dest": rootDir + "/public/jsmin",
       "src":
