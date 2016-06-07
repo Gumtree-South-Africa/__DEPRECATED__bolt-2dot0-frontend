@@ -52,7 +52,7 @@ Download and install Ruby installer from [here](http://rubyinstaller.org/downloa
 
 #### Compass
     gem install compass -v 1.0.1 --source http://rubygems.org
-    
+
     for China, if get Connection error , you can try :
     gem install compass -v 1.0.1 --source https://ruby.taobao.org/
 
@@ -151,10 +151,8 @@ DEBUG=bolt-2dot0-frontend:* npm start
 ```
 PAGE_VER=v1 npm run vm
 ```
-PAGE_VER=v1 for Bolt 1.0 look and feel
-PAGE_VER=v2 for the redesign version
-and make sure to drop the cookie in the console of the browser by doing document.cookie="b2dot0Version=2.0"
 
+PAGE_VER=v1 for Bolt 1.0 look and feel, PAGE_VER=v2 for the redesign version and make sure to drop the cookie by doing so in the console of the browser ```document.cookie="b2dot0Version=2.0"```
 
 
 ### Starting the development server in Production Mode (by setting up environment variables, and clustering the node server)
