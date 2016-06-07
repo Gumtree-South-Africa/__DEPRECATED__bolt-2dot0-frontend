@@ -4,8 +4,29 @@
 		//"app/builders/common/*",
 		"app/builders/page/*",
 		"app/config/**",
-		"app/controllers/**",
-		"app/views/**",
+
+		"app/controllers/api/**",
+		"app/controllers/boot/**",
+		"app/controllers/page/homepage/**",
+		// want isotopePrototype to be checked
+		"app/controllers/page/messagepage/**",
+		"app/controllers/page/quickpost/**",
+		"app/controllers/page/*",
+
+		"app/views/components/**",
+		"app/views/precompiletest/**",
+
+		"app/views/templates/layouts/**",
+		"app/views/templates/pages/deviceDetection/**",
+		"app/views/templates/pages/error/**",
+		"app/views/templates/pages/homepage/**",
+		// want isotopePrototype to be checked
+		"app/views/templates/pages/message/**",
+		"app/views/templates/pages/quickpost/**",
+
+		"app/views/templates/partials/**",
+		"app/views/templates/precompile/**",
+
 		"server/middlewares/**",
 		"server/utils/**",
 		"server/services/**"
