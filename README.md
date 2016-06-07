@@ -146,6 +146,17 @@ npm run build
 DEBUG=bolt-2dot0-frontend:* npm start
 ```
 
+### Deploy with Page Version
+
+```
+PAGE_VER=v1 npm run vm
+```
+PAGE_VER=v1 for Bolt 1.0 look and feel
+PAGE_VER=v2 for the redesign version
+and make sure to drop the cookie in the console of the browser by doing document.cookie="b2dot0Version=2.0"
+
+
+
 ### Starting the development server in Production Mode (by setting up environment variables, and clustering the node server)
 
 ```
