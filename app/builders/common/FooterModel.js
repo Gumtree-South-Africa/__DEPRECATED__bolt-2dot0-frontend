@@ -9,7 +9,7 @@ var ModelBuilder = require('./ModelBuilder');
 
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
-var jsmin = require(process.cwd() + '/app/config/ruby/jsmin');
+var jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
 
 /**
  * @description A class that Handles the Footer Model
