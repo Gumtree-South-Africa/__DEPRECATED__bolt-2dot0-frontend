@@ -11,6 +11,8 @@ var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
 
+var userService = require(process.cwd() + '/server/services/user');
+
 /**
  * @description A class that Handles the Header Model
  * @constructor
@@ -37,8 +39,15 @@ var HeaderModel = function (secure, req, res) {
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 
-	this.requestId = req.app.locals.requestId;
 	this.userCookieData = req.app.locals.userCookieData;
+	this.bapiHeaders = {
+		'requestId'         :   req.app.locals.requestId,
+		'ip'                :   req.app.locals.ip,
+		'machineid'         :   req.app.locals.machineid,
+		'useragent'         :   req.app.locals.useragent,
+		'locale'            :   this.locale,
+		'authTokenValue'    :   this.authCookie
+	};
 	
 	this.i18n = req.i18n;
 
@@ -107,6 +116,20 @@ HeaderModel.prototype.getHeaderData = function() {
 
 					// build user profile
 					scope.buildProfile(data);
+				} else if (typeof scope.authCookie !== 'undefined') {
+					Q(userService.getUserFromCookie(scope.bapiHeaders))
+						.then(function (dataReturned) {
+							if (! _.isEmpty(dataReturned)) {
+								// merge user cookie data
+								_.extend(data, dataReturned);
+
+								// build user profile
+								scope.buildProfile(data);
+							}
+						}).fail(function (err) {
+							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
+							redirectLogin(res);
+						});
 				}
 			}
 
