@@ -128,7 +128,6 @@ HeaderModel.prototype.getHeaderData = function() {
 							}
 						}).fail(function (err) {
 							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
-							redirectLogin(res);
 						});
 				}
 			}
