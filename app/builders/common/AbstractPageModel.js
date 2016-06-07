@@ -7,7 +7,7 @@ var BasePageModel = require('./BasePageModel');
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
 
 
-/** 
+/**
  * @description
  * @constructor
  */
@@ -21,15 +21,15 @@ util.inherits(AbstractPageModel, BasePageModel);
 /**
  * @method getPageModelConfig
  * @description Given a pagetype, looks up bapiConfigData for the bapi calls and
- * 				returns a list of models which determines the list of 
- * 				actual bapi calls to make per device per country
+ *                returns a list of models which determines the list of
+ *                actual bapi calls to make per device per country
  * @param {Object} response
  * @param {String} pagetype
  * @return {JSON}
  */
 AbstractPageModel.prototype.getPageModelConfig = function (res, pagetype) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
-	
+
 	var pageModelConfig = bapiConfigData.bapi[pagetype];
 
 	if (typeof pageModelConfig !== 'undefined') {
@@ -55,25 +55,25 @@ AbstractPageModel.prototype.getPageModelConfig = function (res, pagetype) {
 AbstractPageModel.prototype.getCommonDataFunction = function (req, res) {
 	var commonPageData = this.getModelBuilder();
 
-	var commonDataFunction = function(callback) {
+	var commonDataFunction = function (callback) {
 		var commonDataDeferred = Q.defer();
 		Q(commonPageData.processWaterfall())
-	    	.then(function (dataC) {
-	    		commonDataDeferred.resolve(dataC);
-	    		callback(null, dataC);
+			.then(function (dataC) {
+				commonDataDeferred.resolve(dataC);
+				callback(null, dataC);
 			}).fail(function (err) {
-				commonDataDeferred.reject(new Error(err));
-				callback(null, {});
-			});
+			commonDataDeferred.reject(new Error(err));
+			callback(null, {});
+		});
 	};
 	commonDataFunction.fnLabel = 'common';
-	
+
 	return commonDataFunction;
 };
 
 /**
  * @method getArrFunctions
- * @description 
+ * @description
  * @param {Object} Request
  * @param {Object} Response
  * @param {Map} Map of Page related model labels and respective functions to get their model data
@@ -81,16 +81,16 @@ AbstractPageModel.prototype.getCommonDataFunction = function (req, res) {
  * @return {Array}
  */
 AbstractPageModel.prototype.getArrFunctions = function (req, res, functionMap, pageModelConfig) {
-	var arrFunctions = [ this.getCommonDataFunction(req, res) ];
-	
+	var arrFunctions = [this.getCommonDataFunction(req, res)];
+
 	var index, fnLabel, fn;
-	for (index=0; index<pageModelConfig.length; index++) {
+	for (index = 0; index < pageModelConfig.length; index++) {
 		fnLabel = pageModelConfig[index];
 		fn = functionMap[fnLabel];
 		fn.fnLabel = fnLabel;
 		arrFunctions.push(fn);
 	}
-	
+
 	return arrFunctions;
 };
 
@@ -108,7 +108,7 @@ AbstractPageModel.prototype.convertListToObject = function (dataList, arrFunctio
 		idx = 0,
 		jsonObj = {},
 		fnLabel = '';
-	for (idx=0; idx < numElems; idx++) {
+	for (idx = 0; idx < numElems; idx++) {
 		fnLabel = arrFunctions[idx].fnLabel;
 		if (fnLabel) {
 			jsonObj[fnLabel] = dataList[idx];
@@ -117,6 +117,6 @@ AbstractPageModel.prototype.convertListToObject = function (dataList, arrFunctio
 
 	return jsonObj;
 };
-	
+
 module.exports = AbstractPageModel;
 

@@ -6,7 +6,7 @@ var http = require('http'),
 var categoryService = require(process.cwd() + '/server/services/category');
 
 
-/** 
+/**
  * @description A class that Handles the Category Model
  * @constructor
  */
@@ -17,38 +17,38 @@ var CategoryModel = function (bapiHeaders, depth, locationId) {
 };
 
 //Function getCategories
-CategoryModel.prototype.getCategories = function() {
-	var scope = this;
+CategoryModel.prototype.getCategories = function () {
+	var _this = this;
 	var categoryDeferred = Q.defer();
 	var data = {};
 
-	if (typeof scope.bapiHeaders.locale !== 'undefined') {
-		Q(categoryService.getCategoriesData(scope.bapiHeaders, scope.depth))
+	if (typeof _this.bapiHeaders.locale !== 'undefined') {
+		Q(categoryService.getCategoriesData(_this.bapiHeaders, _this.depth))
 			.then(function (dataReturned) {
 				data = dataReturned;
 				categoryDeferred.resolve(data);
 			}).fail(function (err) {
-				categoryDeferred.reject(new Error(err));
-			});
+			categoryDeferred.reject(new Error(err));
+		});
 	}
 
 	return categoryDeferred.promise;
 };
 
 //Function getCategoriesWithLocId
-CategoryModel.prototype.getCategoriesWithLocId = function() {
-	var scope = this;
+CategoryModel.prototype.getCategoriesWithLocId = function () {
+
 	var categoryDeferred = Q.defer();
 	var data = {};
 
-	if (typeof scope.bapiHeaders.locale !== 'undefined') {
-		Q(categoryService.getCategoriesDataWithLocId(scope.bapiHeaders, scope.depth, scope.locationId))
+	if (typeof this.bapiHeaders.locale !== 'undefined') {
+		Q(categoryService.getCategoriesDataWithLocId(this.bapiHeaders, this.depth, this.locationId))
 			.then(function (dataReturned) {
 				data = dataReturned;
 				categoryDeferred.resolve(data);
 			}).fail(function (err) {
-				categoryDeferred.reject(new Error(err));
-			});
+			categoryDeferred.reject(new Error(err));
+		});
 	}
 
 	return categoryDeferred.promise;

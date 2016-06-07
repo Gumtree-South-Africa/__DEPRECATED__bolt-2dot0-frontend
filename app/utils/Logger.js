@@ -1,10 +1,10 @@
 "use strict";
 
-/** 
+/**
  * @description A Singleton that logs data
  */
 var Logger = {
-	log : function () {
+	log: function () {
 		var args = Array.prototype.slice.call(arguments),
 			idx;
 
