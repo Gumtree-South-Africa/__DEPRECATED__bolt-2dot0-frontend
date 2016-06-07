@@ -116,7 +116,7 @@ HeaderModel.prototype.getHeaderData = function() {
 
 					// build user profile
 					scope.buildProfile(data);
-				} else if (typeof scope.authCookie !== 'undefined') {
+				} else {
 					Q(userService.getUserFromCookie(scope.bapiHeaders))
 						.then(function (dataReturned) {
 							if (! _.isEmpty(dataReturned)) {
