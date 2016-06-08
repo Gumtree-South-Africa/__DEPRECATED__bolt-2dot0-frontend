@@ -6,7 +6,8 @@ let express = require('express'),
 let cwd = process.cwd();
 
 let pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
+	IsotopePrototypeModel = require(cwd + '/app/builders/page/IsotopePrototypeModel');
 
 module.exports = (app) => {
 	app.use('/', router);
