@@ -84,7 +84,7 @@ gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 
 // PRE-COMMIT
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', ['jscs', 'jshint', 'jsonlint', 'eslint']);
 
 // BUILD
 gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
