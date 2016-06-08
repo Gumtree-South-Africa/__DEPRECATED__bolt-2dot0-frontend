@@ -19,6 +19,7 @@
 	    "LOGIN" : "Login",
 	    "LOGOUT" : "Logout",
 	    "MY_ADS" : "MyAds",
+	    "ISOTOPE_PROTOTYPE": "IsotopePrototype",
 	    "MY_ACCOUNT" : "MyAccount",
 	    "MY_MESSAGE_PAGE" : "MyMessages",
 	    "SAVED_SEARCH" : "SavedSearch",
