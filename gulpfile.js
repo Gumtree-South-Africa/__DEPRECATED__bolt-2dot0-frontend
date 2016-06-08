@@ -80,6 +80,7 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
+gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 
 // PRE-COMMIT

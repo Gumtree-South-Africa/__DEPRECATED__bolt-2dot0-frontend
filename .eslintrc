@@ -1,19 +1,66 @@
 {
+
+
     "env": {
         //remove either of the lines below if you don't need it
         //enable nodejs environment
         "node": 1,
         //enable browser environment
-        "browser": 1
+        "browser": 1,
+        "es6": true
     },
     "globals": {
         //place settings for globals here, such as
         "exampleGlobalVariable": true
     },
     "rules": {
-        //enable ESLint rules, such as
-        "eqeqeq": 1
+        //    "off" or 0 - turn the rule off
+        //    "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
+        //    "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
+
+        "quotes": [2, "single", "avoid-escape"],
+        "brace-style": [2, "stroustrup"],
+        "eol-last": 0,
+        "no-nested-ternary": 1,
+        "padded-blocks": [1, "never"],
+        "space-before-function-paren": [2, "never"],
+        "space-before-blocks": [1, "always"],
+
+        "no-alert": 2,
+        "no-bitwise": 2,
+        "camelcase": 2,
+        "curly": 2,
+        "eqeqeq": 2,
+        "no-eq-null": 2,
+        "no-var": 2,
+        "guard-for-in": 2,
+        "no-empty": 2,
+        "no-use-before-define": 2,
+        "no-obj-calls": 2,
+        "no-unused-vars": 2,
+        "no-shadow": 2,
+        "no-invalid-regexp": 2,
+        "comma-dangle": 2,
+        "no-undef": 2,
+        "no-new": 2,
+        "no-extra-semi": 2,
+        "no-debugger": 1,
+        "no-caller": 2,
+        "no-console": [
+            "warn",
+            {
+                "allow": [
+                    "error",
+                    "time",
+                    "timeEnd"
+                ]
+            }
+        ],
+        "semi": 2,
+        "no-unreachable": 2
+
     },
+
     "plugins": [
         //you can put plugins here
     ]
