@@ -82,12 +82,13 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
+gulp.task('webpack', getTask('webpack'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'webpack']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {
