@@ -94,7 +94,6 @@ FooterModel.prototype.buildJs = function(data) {
 		});*/
 
 		for(var k = 0; k < jsmin[0].src.length; k++){
-		 	console.log('dataJSUrl: ',data.baseJSUrl + jsmin[0].src[k]);
 			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
 		}
 
