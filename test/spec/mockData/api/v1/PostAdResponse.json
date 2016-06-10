@@ -1,0 +1,12 @@
+{
+	"_links": [{
+		"rel": "self",
+		"href": "/ads/100007101",
+		"method": "GET"
+	},
+	{
+		"rel": "view",
+		"href": "/a-cars-bakkies/salt-river/test-ad-with-no-json-ser-deser/1001000071010910000000009",
+		"method": "GET"
+	}]
+}

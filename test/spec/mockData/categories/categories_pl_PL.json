@@ -1,0 +1,5036 @@
+{
+  "id": 0,
+  "localizedName": "Wszystkie kategorie",
+  "parentId": null,
+  "level": "L0",
+  "description": "Wszystkie kategorie",
+  "localizedMobileName": "Wszystkie kategorie",
+  "children": [
+    {
+      "id": 2,
+      "localizedName": "Nieruchomości",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Nieruchomości",
+      "localizedMobileName": "Nieruchomości",
+      "children": [
+        {
+          "id": 9000,
+          "localizedName": "pokoje do wynajęcia",
+          "parentId": 2,
+          "level": "L2",
+          "description": "pokoje do wynajęcia",
+          "localizedMobileName": "pokoje do wynajęcia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9000",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pokoje-do-wynajecia/v1c9000p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9008,
+          "localizedName": "mieszkania i domy do wynajęcia",
+          "parentId": 2,
+          "level": "L2",
+          "description": "mieszkania i domy do wynajęcia",
+          "localizedMobileName": "mieszkania i domy do wynajęcia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9008",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mieszkania-i-domy-do-wynajecia/v1c9008p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9073,
+          "localizedName": "mieszkania i domy - sprzedam",
+          "parentId": 2,
+          "level": "L2",
+          "description": "mieszkania i domy - sprzedam",
+          "localizedMobileName": "mieszkania i domy - sprzedam",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9073",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mieszkania-i-domy-sprzedam-i-kupie/v1c9073p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9194,
+          "localizedName": "działki",
+          "parentId": 2,
+          "level": "L2",
+          "description": "działki",
+          "localizedMobileName": "działki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9194",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-dzialki/v1c9194p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9074,
+          "localizedName": "krótki termin i domki letniskowe",
+          "parentId": 2,
+          "level": "L2",
+          "description": "krótki termin i domki letniskowe",
+          "localizedMobileName": "krótki termin i domki letniskowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9074",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-domki-letniskowe/v1c9074p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9072,
+          "localizedName": "lokal i biuro",
+          "parentId": 2,
+          "level": "L2",
+          "description": "lokal i biuro",
+          "localizedMobileName": "lokal i biuro",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9072",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lokal-i-biuro/v1c9072p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9071,
+          "localizedName": "parking i garaż",
+          "parentId": 2,
+          "level": "L2",
+          "description": "parking i garaż",
+          "localizedMobileName": "parking i garaż",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9071",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-parking-i-garaz/v1c9071p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9772,
+          "localizedName": "kupię mieszkanie, dom, lokal, działkę",
+          "parentId": 2,
+          "level": "L2",
+          "description": "kupię mieszkanie, dom, lokal, działkę",
+          "localizedMobileName": "kupię mieszkanie, dom, lokal, działkę",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9772",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-mieszkanie-dom-lokal-dzialke/v1c9772p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9773,
+          "localizedName": "szukam mieszkania do wynajęcia",
+          "parentId": 2,
+          "level": "L2",
+          "description": "szukam mieszkania do wynajęcia",
+          "localizedMobileName": "szukam mieszkania do wynajęcia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9773",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-mieszkania-do-wynajecia/v1c9773p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9774,
+          "localizedName": "szukam pokoju do wynajęcia",
+          "parentId": 2,
+          "level": "L2",
+          "description": "szukam pokoju do wynajęcia",
+          "localizedMobileName": "szukam pokoju do wynajęcia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9774",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-pokoju-do-wynajecia/v1c9774p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/2",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-nieruchomosci/v1c2p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "localizedName": "Motoryzacja",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Motoryzacja",
+      "localizedMobileName": "Motoryzacja",
+      "children": [
+        {
+          "id": 9026,
+          "localizedName": "samochody osobowe",
+          "parentId": 5,
+          "level": "L2",
+          "description": "samochody osobowe",
+          "localizedMobileName": "samochody osobowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9026",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-samochody-osobowe/v1c9026p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9636,
+          "localizedName": "części i akcesoria samochodowe",
+          "parentId": 5,
+          "level": "L2",
+          "description": "części i akcesoria samochodowe",
+          "localizedMobileName": "części i akcesoria samochodowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9636",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-czesci-i-akcesoria-samochodowe/v1c9636p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9027,
+          "localizedName": "samochody dostawcze",
+          "parentId": 5,
+          "level": "L2",
+          "description": "samochody dostawcze",
+          "localizedMobileName": "samochody dostawcze",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9027",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-samochody-dostawcze/v1c9027p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9028,
+          "localizedName": "motocykle i skutery",
+          "parentId": 5,
+          "level": "L2",
+          "description": "motocykle i skutery",
+          "localizedMobileName": "motocykle i skutery",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9028",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-motocykle-i-skutery/v1c9028p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9634,
+          "localizedName": "części i akcesoria do motocykli",
+          "parentId": 5,
+          "level": "L2",
+          "description": "części i akcesoria do motocykli",
+          "localizedMobileName": "części i akcesoria do motocykli",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9634",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-czesci-i-akcesoria-do-motocykli/v1c9634p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9154,
+          "localizedName": "ciągniki i maszyny rolnicze",
+          "parentId": 5,
+          "level": "L2",
+          "description": "ciągniki i maszyny rolnicze",
+          "localizedMobileName": "ciągniki i maszyny rolnicze",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9154",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-maszyny-rolnicze/v1c9154p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9622,
+          "localizedName": "ciężki sprzęt",
+          "parentId": 5,
+          "level": "L2",
+          "description": "ciężki sprzęt",
+          "localizedMobileName": "ciężki sprzęt",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9622",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ciezki-sprzet/v1c9622p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9155,
+          "localizedName": "przyczepy i naczepy",
+          "parentId": 5,
+          "level": "L2",
+          "description": "przyczepy i naczepy",
+          "localizedMobileName": "przyczepy i naczepy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9155",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-przyczepy-i-naczepy/v1c9155p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9621,
+          "localizedName": "quady, atv i inne",
+          "parentId": 5,
+          "level": "L2",
+          "description": "quady, atv i inne",
+          "localizedMobileName": "quady, atv i inne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9621",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-quady-i-atv/v1c9621p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9635,
+          "localizedName": "części i akcesoria do innych pojazdów",
+          "parentId": 5,
+          "level": "L2",
+          "description": "części i akcesoria do innych pojazdów",
+          "localizedMobileName": "części i akcesoria do innych pojazdów",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9635",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-czesci-i-akcesoria-do-innych-pojazdow/v1c9635p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9763,
+          "localizedName": "kupię samochód",
+          "parentId": 5,
+          "level": "L2",
+          "description": "kupię samochód",
+          "localizedMobileName": "kupię samochód",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9763",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-samochod/v1c9763p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9764,
+          "localizedName": "kupię motocykl, skuter, pojazd",
+          "parentId": 5,
+          "level": "L2",
+          "description": "kupię motocykl, skuter, pojazd",
+          "localizedMobileName": "kupię motocykl, skuter, pojazd",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9764",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-motocykl-skuter-pojazd/v1c9764p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9765,
+          "localizedName": "kupię części, akcesoria samochodowe",
+          "parentId": 5,
+          "level": "L2",
+          "description": "kupię części, akcesoria samochodowe",
+          "localizedMobileName": "kupię części, akcesoria samochodowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9765",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-czesci-akcesoria-samochodowe/v1c9765p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9766,
+          "localizedName": "kupię części, akcesoria do innych pojazdów",
+          "parentId": 5,
+          "level": "L2",
+          "description": "kupię części, akcesoria do innych pojazdów",
+          "localizedMobileName": "kupię części, akcesoria do innych pojazdów",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9766",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-czesci-akcesoria-do-innych-pojazdow/v1c9766p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/5",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-motoryzacja/v1c5p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9218,
+      "localizedName": "Łodzie i Pojazdy wodne",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Łodzie i Pojazdy wodne",
+      "localizedMobileName": "Łodzie i Pojazdy wodne",
+      "children": [
+        {
+          "id": 9219,
+          "localizedName": "motorówki",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "motorówki",
+          "localizedMobileName": "motorówki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9219",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-motorowki/v1c9219p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9222,
+          "localizedName": "skutery wodne",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "skutery wodne",
+          "localizedMobileName": "skutery wodne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9222",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-skutery-wodne/v1c9222p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9221,
+          "localizedName": "żaglówki",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "żaglówki",
+          "localizedMobileName": "żaglówki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9221",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zaglowki/v1c9221p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9220,
+          "localizedName": "kajaki i pontony",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "kajaki i pontony",
+          "localizedMobileName": "kajaki i pontony",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9220",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kajaki/v1c9220p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9223,
+          "localizedName": "silniki do łodzi",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "silniki do łodzi",
+          "localizedMobileName": "silniki do łodzi",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9223",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-silniki-do-lodzi/v1c9223p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9224,
+          "localizedName": "akcesoria do łodzi",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "akcesoria do łodzi",
+          "localizedMobileName": "akcesoria do łodzi",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9224",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-akcesoria-do-lodzi/v1c9224p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9225,
+          "localizedName": "inne pojazdy wodne",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "inne pojazdy wodne",
+          "localizedMobileName": "inne pojazdy wodne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9225",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-pojazdy-wodne/v1c9225p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9226,
+          "localizedName": "łodzie wiosłowe",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "łodzie wiosłowe",
+          "localizedMobileName": "łodzie wiosłowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9226",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lodzie-wioslowe/v1c9226p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9787,
+          "localizedName": "kupię łódź, części, akcesoria",
+          "parentId": 9218,
+          "level": "L2",
+          "description": "kupię łódź, części, akcesoria",
+          "localizedMobileName": "kupię łódź, części, akcesoria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9787",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-lodz-czesci-akcesoria/v1c9787p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9218",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-lodzie-i-pojazdy-wodne/v1c9218p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9237,
+      "localizedName": "Elektronika",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Elektronika",
+      "localizedMobileName": "Elektronika",
+      "children": [
+        {
+          "id": 9260,
+          "localizedName": "audio i hi-fi",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "audio i hi-fi",
+          "localizedMobileName": "audio i hi-fi",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9260",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-audio-i-hi+fi/v1c9260p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9353,
+          "localizedName": "cesje",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "cesje",
+          "localizedMobileName": "cesje",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9353",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-cesje/v1c9353p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9281,
+          "localizedName": "fotografia i video",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "fotografia i video",
+          "localizedMobileName": "fotografia i video",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9281",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-fotografia-i-video/v1c9281p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9265,
+          "localizedName": "gry video i konsole",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "gry video i konsole",
+          "localizedMobileName": "gry video i konsole",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9265",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-konsole/v1c9265p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9238,
+          "localizedName": "komputery i software",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "komputery i software",
+          "localizedMobileName": "komputery i software",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9238",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-komputery-i-software/v1c9238p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9352,
+          "localizedName": "radiokomunikacja",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "radiokomunikacja",
+          "localizedMobileName": "radiokomunikacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9352",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-radiokomunikacja/v1c9352p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9259,
+          "localizedName": "tablety i bookreadery",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "tablety i bookreadery",
+          "localizedMobileName": "tablety i bookreadery",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9259",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-tablety/v1c9259p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9247,
+          "localizedName": "telefony i akcesoria",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "telefony i akcesoria",
+          "localizedMobileName": "telefony i akcesoria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9247",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-telefony-akcesoria/v1c9247p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9276,
+          "localizedName": "telewizory i odtwarzacze",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "telewizory i odtwarzacze",
+          "localizedMobileName": "telewizory i odtwarzacze",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9276",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-telewizory-i-odtwarzacze/v1c9276p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9286,
+          "localizedName": "elektronika inne",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "elektronika inne",
+          "localizedMobileName": "elektronika inne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9286",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-elektronika-inne/v1c9286p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9767,
+          "localizedName": "kupię sprzęt elektroniczny",
+          "parentId": 9237,
+          "level": "L2",
+          "description": "kupię sprzęt elektroniczny",
+          "localizedMobileName": "kupię sprzęt elektroniczny",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9767",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-sprzet-elektroniczny/v1c9767p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9237",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-elektronika/v1c9237p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9124,
+      "localizedName": "Zwierzaki",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Zwierzaki",
+      "localizedMobileName": "Zwierzaki",
+      "children": [
+        {
+          "id": 9612,
+          "localizedName": "akwarystyka",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "akwarystyka",
+          "localizedMobileName": "akwarystyka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9612",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-akwarystyka/v1c9612p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9125,
+          "localizedName": "koty i kocięta",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "koty i kocięta",
+          "localizedMobileName": "koty i kocięta",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9125",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-koty/v1c9125p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9131,
+          "localizedName": "psy i szczenięta",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "psy i szczenięta",
+          "localizedMobileName": "psy i szczenięta",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9131",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-psy-i-szczenieta/v1c9131p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9617,
+          "localizedName": "ptaki",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "ptaki",
+          "localizedMobileName": "ptaki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9617",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ptaki/v1c9617p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9126,
+          "localizedName": "inne zwierzaki",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "inne zwierzaki",
+          "localizedMobileName": "inne zwierzaki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9126",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-zwierzaki/v1c9126p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9618,
+          "localizedName": "zwierzęta gospodarskie",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "zwierzęta gospodarskie",
+          "localizedMobileName": "zwierzęta gospodarskie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9618",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zwierzeta-gospodarskie/v1c9618p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9128,
+          "localizedName": "zgubiono lub znaleziono",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "zgubiono lub znaleziono",
+          "localizedMobileName": "zgubiono lub znaleziono",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9128",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zgubiono-lub-znaleziono/v1c9128p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9129,
+          "localizedName": "akcesoria dla zwierząt",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "akcesoria dla zwierząt",
+          "localizedMobileName": "akcesoria dla zwierząt",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9129",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-akcesoria-dla-zwierzat/v1c9129p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9130,
+          "localizedName": "usługi dla zwierząt",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "usługi dla zwierząt",
+          "localizedMobileName": "usługi dla zwierząt",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9130",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-uslugi-dla-zwierzat/v1c9130p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9775,
+          "localizedName": "kupię zwierzaka",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "kupię zwierzaka",
+          "localizedMobileName": "kupię zwierzaka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9775",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-zwierzaka/v1c9775p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9776,
+          "localizedName": "szukam akcesoriów, usług dla zwierząt",
+          "parentId": 9124,
+          "level": "L2",
+          "description": "szukam akcesoriów, usług dla zwierząt",
+          "localizedMobileName": "szukam akcesoriów, usług dla zwierząt",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9776",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-akcesoriow-uslug-dla-zwierzat/v1c9776p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9124",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-zwierzaki/v1c9124p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "localizedName": "Społeczność",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Społeczność",
+      "localizedMobileName": "Społeczność",
+      "children": [
+        {
+          "id": 9030,
+          "localizedName": "drobne pytania i hobby",
+          "parentId": 6,
+          "level": "L2",
+          "description": "drobne pytania i hobby",
+          "localizedMobileName": "drobne pytania i hobby",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9030",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-drobne-pytania-i-hobby/v1c9030p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9032,
+          "localizedName": "sport, taniec i partnerzy do gry",
+          "parentId": 6,
+          "level": "L2",
+          "description": "sport, taniec i partnerzy do gry",
+          "localizedMobileName": "sport, taniec i partnerzy do gry",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9032",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-taniec-i-partnerzy-do-gry/v1c9032p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9033,
+          "localizedName": "zespoły i muzycy",
+          "parentId": 6,
+          "level": "L2",
+          "description": "zespoły i muzycy",
+          "localizedMobileName": "zespoły i muzycy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9033",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zespoly-i-muzycy/v1c9033p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9227,
+          "localizedName": "wolontariat",
+          "parentId": 6,
+          "level": "L2",
+          "description": "wolontariat",
+          "localizedMobileName": "wolontariat",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9227",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wolontariat/v1c9227p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9228,
+          "localizedName": "wydarzenia lokalne",
+          "parentId": 6,
+          "level": "L2",
+          "description": "wydarzenia lokalne",
+          "localizedMobileName": "wydarzenia lokalne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9228",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wydarzenia-lokalne/v1c9228p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9035,
+          "localizedName": "wymiana umiejętności",
+          "parentId": 6,
+          "level": "L2",
+          "description": "wymiana umiejętności",
+          "localizedMobileName": "wymiana umiejętności",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9035",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wymiana-umiejetnosci/v1c9035p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9036,
+          "localizedName": "zgubiono lub znaleziono",
+          "parentId": 6,
+          "level": "L2",
+          "description": "zgubiono lub znaleziono",
+          "localizedMobileName": "zgubiono lub znaleziono",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9036",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-rzeczy-zagubione/v1c9036p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9037,
+          "localizedName": "przejazdy",
+          "parentId": 6,
+          "level": "L2",
+          "description": "przejazdy",
+          "localizedMobileName": "przejazdy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9037",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-przejazdy/v1c9037p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9038,
+          "localizedName": "podróże",
+          "parentId": 6,
+          "level": "L2",
+          "description": "podróże",
+          "localizedMobileName": "podróże",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9038",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-podroze/v1c9038p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9039,
+          "localizedName": "dziękuję",
+          "parentId": 6,
+          "level": "L2",
+          "description": "dziękuję",
+          "localizedMobileName": "dziękuję",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9039",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-dziekuje/v1c9039p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9084,
+          "localizedName": "wyznania",
+          "parentId": 6,
+          "level": "L2",
+          "description": "wyznania",
+          "localizedMobileName": "wyznania",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9084",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wyznania/v1c9084p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9132,
+          "localizedName": "szukam starych przyjaciół",
+          "parentId": 6,
+          "level": "L2",
+          "description": "szukam starych przyjaciół",
+          "localizedMobileName": "szukam starych przyjaciół",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9132",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-starych-znajomych/v1c9132p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/6",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-spolecznosc/v1c6p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "localizedName": "Dom i Ogród",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Dom i Ogród",
+      "localizedMobileName": "Dom i Ogród",
+      "children": [
+        {
+          "id": 9366,
+          "localizedName": "AGD",
+          "parentId": 4,
+          "level": "L2",
+          "description": "AGD",
+          "localizedMobileName": "AGD",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9366",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-agd/v1c9366p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9376,
+          "localizedName": "meble",
+          "parentId": 4,
+          "level": "L2",
+          "description": "meble",
+          "localizedMobileName": "meble",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9376",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-meble/v1c9376p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9384,
+          "localizedName": "narzędzia i materiały budowlane",
+          "parentId": 4,
+          "level": "L2",
+          "description": "narzędzia i materiały budowlane",
+          "localizedMobileName": "narzędzia i materiały budowlane",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9384",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-narzedzia-i-materialy-budowlane/v1c9384p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9398,
+          "localizedName": "ogród",
+          "parentId": 4,
+          "level": "L2",
+          "description": "ogród",
+          "localizedMobileName": "ogród",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9398",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ogrod/v1c9398p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9407,
+          "localizedName": "produkty żywnościowe i napoje",
+          "parentId": 4,
+          "level": "L2",
+          "description": "produkty żywnościowe i napoje",
+          "localizedMobileName": "produkty żywnościowe i napoje",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9407",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-jedzenie/v1c9407p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9408,
+          "localizedName": "wyposażenie wnętrz",
+          "parentId": 4,
+          "level": "L2",
+          "description": "wyposażenie wnętrz",
+          "localizedMobileName": "wyposażenie wnętrz",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9408",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wyposazenie-wnetrz/v1c9408p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9023,
+          "localizedName": "inne do domu i ogrodu",
+          "parentId": 4,
+          "level": "L2",
+          "description": "inne do domu i ogrodu",
+          "localizedMobileName": "inne do domu i ogrodu",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9023",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-do-domu-i-ogrodu/v1c9023p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9784,
+          "localizedName": "kupię do ogrodu",
+          "parentId": 4,
+          "level": "L2",
+          "description": "kupię do ogrodu",
+          "localizedMobileName": "kupię do ogrodu",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9784",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-do-ogrodu/v1c9784p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9783,
+          "localizedName": "kupię do domu",
+          "parentId": 4,
+          "level": "L2",
+          "description": "kupię do domu",
+          "localizedMobileName": "kupię do domu",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9783",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-do-domu/v1c9783p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/4",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-dom-i-ogrod/v1c4p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9672,
+      "localizedName": "Antyki i kolekcje",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Antyki i kolekcje",
+      "localizedMobileName": "Antyki i kolekcje",
+      "children": [
+        {
+          "id": 9673,
+          "localizedName": "karty kolekcjonerskie",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "karty kolekcjonerskie",
+          "localizedMobileName": "karty kolekcjonerskie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9673",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-karty-kolekcjonerskie/v1c9673p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9674,
+          "localizedName": "książki i poligrafia",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "książki i poligrafia",
+          "localizedMobileName": "książki i poligrafia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9674",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ksiazki-i-poligrafia/v1c9674p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9675,
+          "localizedName": "lampy, świeczniki i  lustra",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "lampy, świeczniki i  lustra",
+          "localizedMobileName": "lampy, świeczniki i  lustra",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9675",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lampy-i-lustra/v1c9675p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9676,
+          "localizedName": "meble zabytkowe",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "meble zabytkowe",
+          "localizedMobileName": "meble zabytkowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9676",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-meble-antyczne/v1c9676p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9677,
+          "localizedName": "medale i odznaczenia",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "medale i odznaczenia",
+          "localizedMobileName": "medale i odznaczenia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9677",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-medal/v1c9677p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9678,
+          "localizedName": "monety i banknoty",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "monety i banknoty",
+          "localizedMobileName": "monety i banknoty",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9678",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-monety/v1c9678p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9679,
+          "localizedName": "obrazy i rzeźby",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "obrazy i rzeźby",
+          "localizedMobileName": "obrazy i rzeźby",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9679",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-obrazy/v1c9679p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9680,
+          "localizedName": "rękodzieło",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "rękodzieło",
+          "localizedMobileName": "rękodzieło",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9680",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-rekodzielo/v1c9680p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9681,
+          "localizedName": "zastawy kuchenne",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "zastawy kuchenne",
+          "localizedMobileName": "zastawy kuchenne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9681",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zastawy-kuchenne/v1c9681p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9682,
+          "localizedName": "zabytkowe tekstylia i dekoracje",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "zabytkowe tekstylia i dekoracje",
+          "localizedMobileName": "zabytkowe tekstylia i dekoracje",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9682",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zabytkowe-tekstylia-i-dekoracje/v1c9682p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9683,
+          "localizedName": "zegary",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "zegary",
+          "localizedMobileName": "zegary",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9683",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zegary/v1c9683p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9684,
+          "localizedName": "znaczki pocztowe",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "znaczki pocztowe",
+          "localizedMobileName": "znaczki pocztowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9684",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-znaczki-pocztowe/v1c9684p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9685,
+          "localizedName": "inne kolekcje",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "inne kolekcje",
+          "localizedMobileName": "inne kolekcje",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9685",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-kolekcje/v1c9685p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9762,
+          "localizedName": "kupię antyki, kolekcje",
+          "parentId": 9672,
+          "level": "L2",
+          "description": "kupię antyki, kolekcje",
+          "localizedMobileName": "kupię antyki, kolekcje",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9762",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-antyki-kolekcje/v1c9762p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9672",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-zbiory/v1c9672p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9459,
+      "localizedName": "Dla Dziecka",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Dla Dziecka",
+      "localizedMobileName": "Dla Dziecka",
+      "children": [
+        {
+          "id": 9468,
+          "localizedName": "artykuły szkolne",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "artykuły szkolne",
+          "localizedMobileName": "artykuły szkolne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9468",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-artykuly-szkolne/v1c9468p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9460,
+          "localizedName": "bezpieczeństwo i zdrowie dziecka",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "bezpieczeństwo i zdrowie dziecka",
+          "localizedMobileName": "bezpieczeństwo i zdrowie dziecka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9460",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bezpieczenstwo-i-zdrowie-dziecka/v1c9460p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9461,
+          "localizedName": "buty dla dzieci",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "buty dla dzieci",
+          "localizedMobileName": "buty dla dzieci",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9461",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-buty-dla-dzieci/v1c9461p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9469,
+          "localizedName": "chrzciny i komunie",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "chrzciny i komunie",
+          "localizedMobileName": "chrzciny i komunie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9469",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-chrzciny-i-komunie/v1c9469p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9464,
+          "localizedName": "ciąża i karmienie",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "ciąża i karmienie",
+          "localizedMobileName": "ciąża i karmienie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9464",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ciaza-i-karmienie/v1c9464p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9462,
+          "localizedName": "foteliki - nosidełka",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "foteliki - nosidełka",
+          "localizedMobileName": "foteliki - nosidełka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9462",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-foteliki-nosidelka/v1c9462p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9470,
+          "localizedName": "kąpiel i zdrowie",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "kąpiel i zdrowie",
+          "localizedMobileName": "kąpiel i zdrowie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9470",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kapiel-i-zdrowie/v1c9470p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9471,
+          "localizedName": "kojce i chodziki",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "kojce i chodziki",
+          "localizedMobileName": "kojce i chodziki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9471",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kojce-i-chodzik/v1c9471p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9463,
+          "localizedName": "meble i wystrój pokoju",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "meble i wystrój pokoju",
+          "localizedMobileName": "meble i wystrój pokoju",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9463",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-meble-i-wystroj-pokoju/v1c9463p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9472,
+          "localizedName": "rowerki i inne pojazdy",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "rowerki i inne pojazdy",
+          "localizedMobileName": "rowerki i inne pojazdy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9472",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bicykl/v1c9472p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9465,
+          "localizedName": "odzież dziecięca",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "odzież dziecięca",
+          "localizedMobileName": "odzież dziecięca",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9465",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-odziez-dziecieca/v1c9465p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9466,
+          "localizedName": "wózki dla dzieci",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "wózki dla dzieci",
+          "localizedMobileName": "wózki dla dzieci",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9466",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wozki-dla-dzieci/v1c9466p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9467,
+          "localizedName": "zabawki",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "zabawki",
+          "localizedMobileName": "zabawki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9467",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zabawki/v1c9467p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9489,
+          "localizedName": "inne dla dziecka",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "inne dla dziecka",
+          "localizedMobileName": "inne dla dziecka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9489",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-dla-dziecka/v1c9489p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9780,
+          "localizedName": "kupię ubranka, buty dla dziecka",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "kupię ubranka, buty dla dziecka",
+          "localizedMobileName": "kupię ubranka, buty dla dziecka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9780",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-ubranka-buty-dla-dziecka/v1c9780p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9781,
+          "localizedName": "kupię zabawki",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "kupię zabawki",
+          "localizedMobileName": "kupię zabawki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9781",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-zabawki/v1c9781p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9782,
+          "localizedName": "kupię inne dla dziecka",
+          "parentId": 9459,
+          "level": "L2",
+          "description": "kupię inne dla dziecka",
+          "localizedMobileName": "kupię inne dla dziecka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9782",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-inne-dla-dziecka/v1c9782p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9459",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-dla-dziecka/v1c9459p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9541,
+      "localizedName": "Moda",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Moda",
+      "localizedMobileName": "Moda",
+      "children": [
+        {
+          "id": 9542,
+          "localizedName": "akcesoria i galanteria",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "akcesoria i galanteria",
+          "localizedMobileName": "akcesoria i galanteria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9542",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-akcesoria-i-galanteria/v1c9542p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9563,
+          "localizedName": "biżuteria i zegarki",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "biżuteria i zegarki",
+          "localizedMobileName": "biżuteria i zegarki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9563",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bizuteria-i-zegarki/v1c9563p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9596,
+          "localizedName": "obuwie damskie",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "obuwie damskie",
+          "localizedMobileName": "obuwie damskie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9596",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-obuwie-damskie/v1c9596p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9604,
+          "localizedName": "obuwie męskie",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "obuwie męskie",
+          "localizedMobileName": "obuwie męskie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9604",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-obuwie-meskie/v1c9604p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9565,
+          "localizedName": "odzież damska",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "odzież damska",
+          "localizedMobileName": "odzież damska",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9565",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-odziez-damska/v1c9565p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9584,
+          "localizedName": "odzież męska",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "odzież męska",
+          "localizedMobileName": "odzież męska",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9584",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-odziez-meska/v1c9584p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9660,
+          "localizedName": "odzież i obuwie robocze",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "odzież i obuwie robocze",
+          "localizedMobileName": "odzież i obuwie robocze",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9660",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-odziez-i-obuwie-robocze/v1c9660p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9549,
+          "localizedName": "pasmanteria",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "pasmanteria",
+          "localizedMobileName": "pasmanteria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9549",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pasmanteria/v1c9549p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9551,
+          "localizedName": "torebki i torby",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "torebki i torby",
+          "localizedMobileName": "torebki i torby",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9551",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-torebki-i-torby/v1c9551p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9553,
+          "localizedName": "inne ubrania",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "inne ubrania",
+          "localizedMobileName": "inne ubrania",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9553",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-ubrania/v1c9553p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9552,
+          "localizedName": "walizki i plecaki",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "walizki i plecaki",
+          "localizedMobileName": "walizki i plecaki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9552",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-walizki-i-plecaki/v1c9552p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9769,
+          "localizedName": "kupię ubrania, buty",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "kupię ubrania, buty",
+          "localizedMobileName": "kupię ubrania, buty",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9769",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-ubrania-buty/v1c9769p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9768,
+          "localizedName": "kupię inne z działu mody",
+          "parentId": 9541,
+          "level": "L2",
+          "description": "kupię inne z działu mody",
+          "localizedMobileName": "kupię inne z działu mody",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9768",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-inne-z-dzialu-mody/v1c9768p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9541",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-moda/v1c9541p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9690,
+      "localizedName": "Zdrowie i Uroda",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Zdrowie i Uroda",
+      "localizedMobileName": "Zdrowie i Uroda",
+      "children": [
+        {
+          "id": 9691,
+          "localizedName": "zdrowie",
+          "parentId": 9690,
+          "level": "L2",
+          "description": "zdrowie",
+          "localizedMobileName": "zdrowie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9691",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-zdrowie/v1c9691p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9697,
+          "localizedName": "kosmetyki",
+          "parentId": 9690,
+          "level": "L2",
+          "description": "kosmetyki",
+          "localizedMobileName": "kosmetyki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9697",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kosmetyki/v1c9697p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9698,
+          "localizedName": "perfumy i dezodoranty",
+          "parentId": 9690,
+          "level": "L2",
+          "description": "perfumy i dezodoranty",
+          "localizedMobileName": "perfumy i dezodoranty",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9698",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pachnidlo/v1c9698p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9786,
+          "localizedName": "kupię produkty zdrowotne, kosmetyki",
+          "parentId": 9690,
+          "level": "L2",
+          "description": "kupię produkty zdrowotne, kosmetyki",
+          "localizedMobileName": "kupię produkty zdrowotne, kosmetyki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9786",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-produkty-zdrowotne-kosmetyki/v1c9786p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9690",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-zdrowie-i-uroda/v1c9690p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9706,
+      "localizedName": "Sport i Fitness",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Sport i Fitness",
+      "localizedMobileName": "Sport i Fitness",
+      "children": [
+        {
+          "id": 9745,
+          "localizedName": "fitness i siłownia",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "fitness i siłownia",
+          "localizedMobileName": "fitness i siłownia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9745",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-fitness-i-silownia/v1c9745p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9746,
+          "localizedName": "sport",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "sport",
+          "localizedMobileName": "sport",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9746",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sport/v1c9746p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9753,
+          "localizedName": "karty i gadżety sportowe",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "karty i gadżety sportowe",
+          "localizedMobileName": "karty i gadżety sportowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9753",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-karty-i-gadzety-sportowe/v1c9753p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9756,
+          "localizedName": "sprzęt turystyczny",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "sprzęt turystyczny",
+          "localizedMobileName": "sprzęt turystyczny",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9756",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sprzet-turystyczny/v1c9756p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9771,
+          "localizedName": "kupię sprzęt fitness, do siłowni",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "kupię sprzęt fitness, do siłowni",
+          "localizedMobileName": "kupię sprzęt fitness, do siłowni",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9771",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-sprzet-fitness-do-silowni/v1c9771p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9770,
+          "localizedName": "kupię sprzęt sportowy",
+          "parentId": 9706,
+          "level": "L2",
+          "description": "kupię sprzęt sportowy",
+          "localizedMobileName": "kupię sprzęt sportowy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9770",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-sprzet-sportowy/v1c9770p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9706",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-sportowe/v1c9706p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9490,
+      "localizedName": "Muzyka i Rozrywka",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Muzyka i Rozrywka",
+      "localizedMobileName": "Muzyka i Rozrywka",
+      "children": [
+        {
+          "id": 9491,
+          "localizedName": "bilety",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "bilety",
+          "localizedMobileName": "bilety",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9491",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bilety/v1c9491p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9496,
+          "localizedName": "instrumenty i akcesoria muzyczne",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "instrumenty i akcesoria muzyczne",
+          "localizedMobileName": "instrumenty i akcesoria muzyczne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9496",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-instrumenty-i-akcesoria-muzyczne/v1c9496p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9497,
+          "localizedName": "komiksy i czasopisma",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "komiksy i czasopisma",
+          "localizedMobileName": "komiksy i czasopisma",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9497",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-komiksy-i-czasopisma/v1c9497p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9498,
+          "localizedName": "książki",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "książki",
+          "localizedMobileName": "książki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9498",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ksiazki/v1c9498p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9514,
+          "localizedName": "CD, kasety i płyty",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "CD, kasety i płyty",
+          "localizedMobileName": "CD, kasety i płyty",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9514",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-piosenki/v1c9514p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9513,
+          "localizedName": "filmy i DVD",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "filmy i DVD",
+          "localizedMobileName": "filmy i DVD",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9513",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-filmy/v1c9513p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9515,
+          "localizedName": "gry planszowe i puzzle",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "gry planszowe i puzzle",
+          "localizedMobileName": "gry planszowe i puzzle",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9515",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-gry-planszowe-i-puzzle/v1c9515p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9777,
+          "localizedName": "kupię instrument muzyczny",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "kupię instrument muzyczny",
+          "localizedMobileName": "kupię instrument muzyczny",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9777",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-instrument-muzyczny/v1c9777p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9778,
+          "localizedName": "kupię bilet",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "kupię bilet",
+          "localizedMobileName": "kupię bilet",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9778",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-bilet/v1c9778p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9779,
+          "localizedName": "kupię inne z działu muzyka i rozrywka",
+          "parentId": 9490,
+          "level": "L2",
+          "description": "kupię inne z działu muzyka i rozrywka",
+          "localizedMobileName": "kupię inne z działu muzyka i rozrywka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9779",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kupie-inne-z-dzialu-muzyka-i-rozrywka/v1c9779p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9490",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-muzyka-i-rozrywka/v1c9490p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "localizedName": "Oferty Pracy",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Oferty Pracy",
+      "localizedMobileName": "Oferty Pracy",
+      "children": [
+        {
+          "id": 9056,
+          "localizedName": "bar, restauracja i gastronomia",
+          "parentId": 8,
+          "level": "L2",
+          "description": "bar, restauracja i gastronomia",
+          "localizedMobileName": "bar, restauracja i gastronomia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9056",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bar-restauracja-i-gastronomia/v1c9056p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9052,
+          "localizedName": "biuro i administracja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "biuro i administracja",
+          "localizedMobileName": "biuro i administracja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9052",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-biuro-i-administracja/v1c9052p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9142,
+          "localizedName": "praca na budowie i pracownicy fizyczni",
+          "parentId": 8,
+          "level": "L2",
+          "description": "praca na budowie i pracownicy fizyczni",
+          "localizedMobileName": "praca na budowie i pracownicy fizyczni",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9142",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-na-budowie/v1c9142p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9203,
+          "localizedName": "fachowcy",
+          "parentId": 8,
+          "level": "L2",
+          "description": "fachowcy",
+          "localizedMobileName": "fachowcy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9203",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-fachowcy/v1c9203p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9050,
+          "localizedName": "finanse i księgowość",
+          "parentId": 8,
+          "level": "L2",
+          "description": "finanse i księgowość",
+          "localizedMobileName": "finanse i księgowość",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9050",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-finanse-i-ksiegowosc/v1c9050p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9140,
+          "localizedName": "grafika i web design",
+          "parentId": 8,
+          "level": "L2",
+          "description": "grafika i web design",
+          "localizedMobileName": "grafika i web design",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9140",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-grafika-i-web-design/v1c9140p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9141,
+          "localizedName": "hostessy, modele i aktorzy",
+          "parentId": 8,
+          "level": "L2",
+          "description": "hostessy, modele i aktorzy",
+          "localizedMobileName": "hostessy, modele i aktorzy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9141",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-hostessy-modele-i-aktorzy/v1c9141p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9053,
+          "localizedName": "hr, kadry i rekrutacja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "hr, kadry i rekrutacja",
+          "localizedMobileName": "hr, kadry i rekrutacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9053",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-hr-i-kadry/v1c9053p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9094,
+          "localizedName": "inżynierowie, technicy i architekci",
+          "parentId": 8,
+          "level": "L2",
+          "description": "inżynierowie, technicy i architekci",
+          "localizedMobileName": "inżynierowie, technicy i architekci",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9094",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inzynierowie-technicy-i-architekci/v1c9094p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9097,
+          "localizedName": "kierowcy i kurierzy",
+          "parentId": 8,
+          "level": "L2",
+          "description": "kierowcy i kurierzy",
+          "localizedMobileName": "kierowcy i kurierzy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9097",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kurierzy/v1c9097p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9208,
+          "localizedName": "kontrola i inwentaryzacja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "kontrola i inwentaryzacja",
+          "localizedMobileName": "kontrola i inwentaryzacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9208",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kontrola-i-inwentaryzacja/v1c9208p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9204,
+          "localizedName": "krawiectwo i moda",
+          "parentId": 8,
+          "level": "L2",
+          "description": "krawiectwo i moda",
+          "localizedMobileName": "krawiectwo i moda",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9204",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-krawiectwo/v1c9204p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9619,
+          "localizedName": "magazynier",
+          "parentId": 8,
+          "level": "L2",
+          "description": "magazynier",
+          "localizedMobileName": "magazynier",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9619",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-magazynier/v1c9619p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9048,
+          "localizedName": "marketing, media i pr",
+          "parentId": 8,
+          "level": "L2",
+          "description": "marketing, media i pr",
+          "localizedMobileName": "marketing, media i pr",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9048",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-media-i-pr/v1c9048p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9532,
+          "localizedName": "mlm",
+          "parentId": 8,
+          "level": "L2",
+          "description": "mlm",
+          "localizedMobileName": "mlm",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9532",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mlm/v1c9532p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9060,
+          "localizedName": "nauczyciele i edukacja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "nauczyciele i edukacja",
+          "localizedMobileName": "nauczyciele i edukacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9060",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-nauczyciele-i-edukacja/v1c9060p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9098,
+          "localizedName": "obsługa klienta i call center",
+          "parentId": 8,
+          "level": "L2",
+          "description": "obsługa klienta i call center",
+          "localizedMobileName": "obsługa klienta i call center",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9098",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-call-center/v1c9098p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9200,
+          "localizedName": "ochrona",
+          "parentId": 8,
+          "level": "L2",
+          "description": "ochrona",
+          "localizedMobileName": "ochrona",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9200",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ochrona/v1c9200p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9059,
+          "localizedName": "opiekunki i nianie",
+          "parentId": 8,
+          "level": "L2",
+          "description": "opiekunki i nianie",
+          "localizedMobileName": "opiekunki i nianie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9059",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-opieka-nad-dzieckiem/v1c9059p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9054,
+          "localizedName": "pielęgnacja i uroda",
+          "parentId": 8,
+          "level": "L2",
+          "description": "pielęgnacja i uroda",
+          "localizedMobileName": "pielęgnacja i uroda",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9054",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pielegnacja-i-uroda/v1c9054p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9206,
+          "localizedName": "praca dla studentów",
+          "parentId": 8,
+          "level": "L2",
+          "description": "praca dla studentów",
+          "localizedMobileName": "praca dla studentów",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9206",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-dla-studentow/v1c9206p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9620,
+          "localizedName": "praca na produkcji",
+          "parentId": 8,
+          "level": "L2",
+          "description": "praca na produkcji",
+          "localizedMobileName": "praca na produkcji",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9620",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-na-produkcji/v1c9620p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9058,
+          "localizedName": "praca w hotelu",
+          "parentId": 8,
+          "level": "L2",
+          "description": "praca w hotelu",
+          "localizedMobileName": "praca w hotelu",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9058",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-w-hotelu/v1c9058p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9049,
+          "localizedName": "prawo i prokuratura",
+          "parentId": 8,
+          "level": "L2",
+          "description": "prawo i prokuratura",
+          "localizedMobileName": "prawo i prokuratura",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9049",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-radca-prawny/v1c9049p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9005,
+          "localizedName": "programiści, informatyka i internet",
+          "parentId": 8,
+          "level": "L2",
+          "description": "programiści, informatyka i internet",
+          "localizedMobileName": "programiści, informatyka i internet",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9005",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-programisci-informatyka-i-internet/v1c9005p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9055,
+          "localizedName": "służba zdrowia i farmacja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "służba zdrowia i farmacja",
+          "localizedMobileName": "służba zdrowia i farmacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9055",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-sluzba-zdrowia-i-farmacja/v1c9055p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9205,
+          "localizedName": "spedycja",
+          "parentId": 8,
+          "level": "L2",
+          "description": "spedycja",
+          "localizedMobileName": "spedycja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9205",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-spedycja/v1c9205p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9202,
+          "localizedName": "sport i fitness",
+          "parentId": 8,
+          "level": "L2",
+          "description": "sport i fitness",
+          "localizedMobileName": "sport i fitness",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9202",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lekkoatletyka/v1c9202p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9138,
+          "localizedName": "sprzątanie i pomoc domowa",
+          "parentId": 8,
+          "level": "L2",
+          "description": "sprzątanie i pomoc domowa",
+          "localizedMobileName": "sprzątanie i pomoc domowa",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9138",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pomoc-domowa/v1c9138p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9061,
+          "localizedName": "sprzedaż, handel  i praca w sklepie",
+          "parentId": 8,
+          "level": "L2",
+          "description": "sprzedaż, handel  i praca w sklepie",
+          "localizedMobileName": "sprzedaż, handel  i praca w sklepie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9061",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-handel-i-praca-w-sklepie/v1c9061p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9207,
+          "localizedName": "turystyka",
+          "parentId": 8,
+          "level": "L2",
+          "description": "turystyka",
+          "localizedMobileName": "turystyka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9207",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-turystyka/v1c9207p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9201,
+          "localizedName": "ulotki",
+          "parentId": 8,
+          "level": "L2",
+          "description": "ulotki",
+          "localizedMobileName": "ulotki",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9201",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-roznoszenie-ulotek/v1c9201p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9095,
+          "localizedName": "weterynaria i rolnictwo",
+          "parentId": 8,
+          "level": "L2",
+          "description": "weterynaria i rolnictwo",
+          "localizedMobileName": "weterynaria i rolnictwo",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9095",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-weterynaria-i-rolnictwo/v1c9095p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9212,
+          "localizedName": "video i fotografia",
+          "parentId": 8,
+          "level": "L2",
+          "description": "video i fotografia",
+          "localizedMobileName": "video i fotografia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9212",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-obsluga-foto-i-video/v1c9212p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9099,
+          "localizedName": "praca inne",
+          "parentId": 8,
+          "level": "L2",
+          "description": "praca inne",
+          "localizedMobileName": "praca inne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9099",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-inne/v1c9099p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/8",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-oferty-pracy/v1c8p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9290,
+      "localizedName": "Szukający Zatrudnienia",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Szukający Zatrudnienia",
+      "localizedMobileName": "Szukający Zatrudnienia",
+      "children": [
+        {
+          "id": 9291,
+          "localizedName": "gastronomia",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "gastronomia",
+          "localizedMobileName": "gastronomia",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9291",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-gastronomia/v1c9291p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9292,
+          "localizedName": "biuro i administracja",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "biuro i administracja",
+          "localizedMobileName": "biuro i administracja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9292",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pracownik-biurowy/v1c9292p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9293,
+          "localizedName": "pracownicy fizyczni",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "pracownicy fizyczni",
+          "localizedMobileName": "pracownicy fizyczni",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9293",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pracownicy-fizyczni/v1c9293p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9294,
+          "localizedName": "specjaliści i technicy",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "specjaliści i technicy",
+          "localizedMobileName": "specjaliści i technicy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9294",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-specjalisci-i-technicy/v1c9294p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9300,
+          "localizedName": "kierowcy i kurierzy",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "kierowcy i kurierzy",
+          "localizedMobileName": "kierowcy i kurierzy",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9300",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kurier/v1c9300p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9304,
+          "localizedName": "marketing, reklama i PR",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "marketing, reklama i PR",
+          "localizedMobileName": "marketing, reklama i PR",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9304",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-marketing/v1c9304p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9305,
+          "localizedName": "opiekunki i edukacja",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "opiekunki i edukacja",
+          "localizedMobileName": "opiekunki i edukacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9305",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-opiekunki-i-edukacja/v1c9305p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9306,
+          "localizedName": "ochrona",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "ochrona",
+          "localizedMobileName": "ochrona",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9306",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pracownik-ochrony/v1c9306p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9308,
+          "localizedName": "pielęgnacja i uroda",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "pielęgnacja i uroda",
+          "localizedMobileName": "pielęgnacja i uroda",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9308",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-piekno/v1c9308p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9311,
+          "localizedName": "sprzedaż i praca w sklepie",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "sprzedaż i praca w sklepie",
+          "localizedMobileName": "sprzedaż i praca w sklepie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9311",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-praca-w-sklepie/v1c9311p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9309,
+          "localizedName": "szukam pracy studenckiej",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "szukam pracy studenckiej",
+          "localizedMobileName": "szukam pracy studenckiej",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9309",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-pracy-studenckiej/v1c9309p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9312,
+          "localizedName": "turystyka",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "turystyka",
+          "localizedMobileName": "turystyka",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9312",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wakacje/v1c9312p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9313,
+          "localizedName": "praca inne",
+          "parentId": 9290,
+          "level": "L2",
+          "description": "praca inne",
+          "localizedMobileName": "praca inne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9313",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-zajecie/v1c9313p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9290",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-szukam-pracy/v1c9290p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "localizedName": "Usługi",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Usługi",
+      "localizedMobileName": "Usługi",
+      "children": [
+        {
+          "id": 9150,
+          "localizedName": "biura podróży",
+          "parentId": 9,
+          "level": "L2",
+          "description": "biura podróży",
+          "localizedMobileName": "biura podróży",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9150",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-biura-podrozy/v1c9150p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9325,
+          "localizedName": "współpraca biznesowa",
+          "parentId": 9,
+          "level": "L2",
+          "description": "współpraca biznesowa",
+          "localizedMobileName": "współpraca biznesowa",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9325",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wspolpraca-biznesowa/v1c9325p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9554,
+          "localizedName": "catering",
+          "parentId": 9,
+          "level": "L2",
+          "description": "catering",
+          "localizedMobileName": "catering",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9554",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-catering/v1c9554p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9066,
+          "localizedName": "usługi finansowe",
+          "parentId": 9,
+          "level": "L2",
+          "description": "usługi finansowe",
+          "localizedMobileName": "usługi finansowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9066",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-uslugi-finansowe/v1c9066p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9146,
+          "localizedName": "fotografia i video",
+          "parentId": 9,
+          "level": "L2",
+          "description": "fotografia i video",
+          "localizedMobileName": "fotografia i video",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9146",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kamery/v1c9146p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9234,
+          "localizedName": "graficy i usługi IT",
+          "parentId": 9,
+          "level": "L2",
+          "description": "graficy i usługi IT",
+          "localizedMobileName": "graficy i usługi IT",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9234",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-graficy-i-uslugi-it/v1c9234p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9065,
+          "localizedName": "hurt i handel",
+          "parentId": 9,
+          "level": "L2",
+          "description": "hurt i handel",
+          "localizedMobileName": "hurt i handel",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9065",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-hurt-i-handel/v1c9065p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9102,
+          "localizedName": "komputery serwis i handel",
+          "parentId": 9,
+          "level": "L2",
+          "description": "komputery serwis i handel",
+          "localizedMobileName": "komputery serwis i handel",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9102",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-serwis-komputerowy/v1c9102p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9337,
+          "localizedName": "usługi kurierskie",
+          "parentId": 9,
+          "level": "L2",
+          "description": "usługi kurierskie",
+          "localizedMobileName": "usługi kurierskie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9337",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-uslugi-kurierskie/v1c9337p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9063,
+          "localizedName": "nauka i edukacja",
+          "parentId": 9,
+          "level": "L2",
+          "description": "nauka i edukacja",
+          "localizedMobileName": "nauka i edukacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9063",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-nauka-i-edukacja/v1c9063p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9145,
+          "localizedName": "mechanika, autoskup, pomoc drogowa",
+          "parentId": 9,
+          "level": "L2",
+          "description": "mechanika, autoskup, pomoc drogowa",
+          "localizedMobileName": "mechanika, autoskup, pomoc drogowa",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9145",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mechanika-auto-skup-pomoc-drogowa/v1c9145p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9217,
+          "localizedName": "media i reklama",
+          "parentId": 9,
+          "level": "L2",
+          "description": "media i reklama",
+          "localizedMobileName": "media i reklama",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9217",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-media-i-reklama/v1c9217p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9148,
+          "localizedName": "muzycy i artyści",
+          "parentId": 9,
+          "level": "L2",
+          "description": "muzycy i artyści",
+          "localizedMobileName": "muzycy i artyści",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9148",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-muzycy-i-artysci/v1c9148p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9214,
+          "localizedName": "ogrodnictwo",
+          "parentId": 9,
+          "level": "L2",
+          "description": "ogrodnictwo",
+          "localizedMobileName": "ogrodnictwo",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9214",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ogrodnictwo/v1c9214p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9152,
+          "localizedName": "opieka i agencje niań",
+          "parentId": 9,
+          "level": "L2",
+          "description": "opieka i agencje niań",
+          "localizedMobileName": "opieka i agencje niań",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9152",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-opieka-i-agencje-nian/v1c9152p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9064,
+          "localizedName": "pielęgnacja i uroda",
+          "parentId": 9,
+          "level": "L2",
+          "description": "pielęgnacja i uroda",
+          "localizedMobileName": "pielęgnacja i uroda",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9064",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-kosmetyczka/v1c9064p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9233,
+          "localizedName": "usługi prawne",
+          "parentId": 9,
+          "level": "L2",
+          "description": "usługi prawne",
+          "localizedMobileName": "usługi prawne",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9233",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-uslugi-prawne/v1c9233p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9144,
+          "localizedName": "przeprowadzki i transport towarów",
+          "parentId": 9,
+          "level": "L2",
+          "description": "przeprowadzki i transport towarów",
+          "localizedMobileName": "przeprowadzki i transport towarów",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9144",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-przeprowadzki-i-transport-towarow/v1c9144p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9104,
+          "localizedName": "przyjęcia, śluby, komunie",
+          "parentId": 9,
+          "level": "L2",
+          "description": "przyjęcia, śluby, komunie",
+          "localizedMobileName": "przyjęcia, śluby, komunie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9104",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-przyjecia-sluby-komunie/v1c9104p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9101,
+          "localizedName": "remont i budowa",
+          "parentId": 9,
+          "level": "L2",
+          "description": "remont i budowa",
+          "localizedMobileName": "remont i budowa",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9101",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-remont-i-budowa/v1c9101p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9236,
+          "localizedName": "serwis i montaż",
+          "parentId": 9,
+          "level": "L2",
+          "description": "serwis i montaż",
+          "localizedMobileName": "serwis i montaż",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9236",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-serwis-i-montaz/v1c9236p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9151,
+          "localizedName": "sport i fitness",
+          "parentId": 9,
+          "level": "L2",
+          "description": "sport i fitness",
+          "localizedMobileName": "sport i fitness",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9151",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-fitness/v1c9151p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9149,
+          "localizedName": "sprzątanie",
+          "parentId": 9,
+          "level": "L2",
+          "description": "sprzątanie",
+          "localizedMobileName": "sprzątanie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9149",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sprzatanie/v1c9149p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9147,
+          "localizedName": "taxi i przewozy osobowe",
+          "parentId": 9,
+          "level": "L2",
+          "description": "taxi i przewozy osobowe",
+          "localizedMobileName": "taxi i przewozy osobowe",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9147",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-taxi-i-przewozy-osobowe/v1c9147p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9341,
+          "localizedName": "telefony",
+          "parentId": 9,
+          "level": "L2",
+          "description": "telefony",
+          "localizedMobileName": "telefony",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9341",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-telefony/v1c9341p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9216,
+          "localizedName": "tłumaczenia i redakcja tekstu",
+          "parentId": 9,
+          "level": "L2",
+          "description": "tłumaczenia i redakcja tekstu",
+          "localizedMobileName": "tłumaczenia i redakcja tekstu",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9216",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-tlumaczenia-i-redakcja-tekstu/v1c9216p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9213,
+          "localizedName": "utylizacja",
+          "parentId": 9,
+          "level": "L2",
+          "description": "utylizacja",
+          "localizedMobileName": "utylizacja",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9213",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-utylizacja/v1c9213p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9215,
+          "localizedName": "wypożyczalnie",
+          "parentId": 9,
+          "level": "L2",
+          "description": "wypożyczalnie",
+          "localizedMobileName": "wypożyczalnie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9215",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-wypozyczalnie/v1c9215p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9235,
+          "localizedName": "zdrowie",
+          "parentId": 9,
+          "level": "L2",
+          "description": "zdrowie",
+          "localizedMobileName": "zdrowie",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9235",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-higiena-osobista/v1c9235p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9105,
+          "localizedName": "inne usługi",
+          "parentId": 9,
+          "level": "L2",
+          "description": "inne usługi",
+          "localizedMobileName": "inne usługi",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9105",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inne-uslugi/v1c9105p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9759,
+          "localizedName": "szukam usług finansowych",
+          "parentId": 9,
+          "level": "L2",
+          "description": "szukam usług finansowych",
+          "localizedMobileName": "szukam usług finansowych",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9759",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-uslug-finansowych/v1c9759p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9760,
+          "localizedName": "szukam usług budowlanych",
+          "parentId": 9,
+          "level": "L2",
+          "description": "szukam usług budowlanych",
+          "localizedMobileName": "szukam usług budowlanych",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9760",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-uslug-budowlanych/v1c9760p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9761,
+          "localizedName": "szukam innych usług",
+          "parentId": 9,
+          "level": "L2",
+          "description": "szukam innych usług",
+          "localizedMobileName": "szukam innych usług",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9761",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-innych-uslug/v1c9761p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9758,
+          "localizedName": "szukam kursu, lekcji, korepetycji",
+          "parentId": 9,
+          "level": "L2",
+          "description": "szukam kursu, lekcji, korepetycji",
+          "localizedMobileName": "szukam kursu, lekcji, korepetycji",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9758",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-szukam-kursu-lekcji-korepetycji/v1c9758p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-uslugi/v1c9p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/categories/0",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

@@ -1,0 +1,540 @@
+{
+  "id": 75,
+  "localizedName": "Estados Unidos",
+  "level": "L0",
+  "isLeaf": false,
+  "children": [
+    {
+      "id": 201656,
+      "parentId": 75,
+      "localizedName": "Abilene",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201656",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-abilene/v1l201656p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201657,
+      "parentId": 75,
+      "localizedName": "Amarillo",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201657",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-amarillo/v1l201657p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201658,
+      "parentId": 75,
+      "localizedName": "Austin-San Marcos",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201658",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-austin+san-marcos/v1l201658p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201659,
+      "parentId": 75,
+      "localizedName": "Beaumont-Port Arthur",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201659",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-beaumont+port-arthur/v1l201659p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201660,
+      "parentId": 75,
+      "localizedName": "Brownsville-Harlingen-San Benito",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201660",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-brownsville+harlingen+san-benito/v1l201660p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201661,
+      "parentId": 75,
+      "localizedName": "Bryan-College Station",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201661",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-bryan+college-station/v1l201661p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201662,
+      "parentId": 75,
+      "localizedName": "Corpus Christi",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201662",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-corpus-christi/v1l201662p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201663,
+      "parentId": 75,
+      "localizedName": "Dallas-Fort Worth",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201663",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-dallas+fort-worth/v1l201663p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201664,
+      "parentId": 75,
+      "localizedName": "El Paso",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201664",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-el-paso/v1l201664p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201665,
+      "parentId": 75,
+      "localizedName": "Houston-Galveston-Brazoria",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201665",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-houston+galveston+brazoria/v1l201665p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201666,
+      "parentId": 75,
+      "localizedName": "Killeen-Temple",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201666",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-killeen+temple/v1l201666p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201667,
+      "parentId": 75,
+      "localizedName": "Laredo",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201667",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-laredo/v1l201667p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201668,
+      "parentId": 75,
+      "localizedName": "Longview-Marshall",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201668",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-longview+marshall/v1l201668p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201669,
+      "parentId": 75,
+      "localizedName": "Los Angeles",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201669",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-los-angeles/v1l201669p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201670,
+      "parentId": 75,
+      "localizedName": "Los Angeles-Riverside-Orange County",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201670",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-los-angeles+riverside+orange-county/v1l201670p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201671,
+      "parentId": 75,
+      "localizedName": "Lubbock",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201671",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-lubbock/v1l201671p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201672,
+      "parentId": 75,
+      "localizedName": "McAllen-Edinburg-Mission",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201672",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-mcallen+edinburg+mission/v1l201672p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201673,
+      "parentId": 75,
+      "localizedName": "Odessa-Midland",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201673",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-odessa+midland/v1l201673p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201674,
+      "parentId": 75,
+      "localizedName": "San Angelo",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201674",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-san-angelo/v1l201674p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201675,
+      "parentId": 75,
+      "localizedName": "San Antonio",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201675",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-san-antonio/v1l201675p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201676,
+      "parentId": 75,
+      "localizedName": "Sherman-Denison",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201676",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-sherman+denison/v1l201676p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201677,
+      "parentId": 75,
+      "localizedName": "Texarkana",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201677",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-texarkana/v1l201677p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201678,
+      "parentId": 75,
+      "localizedName": "Tyler",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201678",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tyler/v1l201678p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201679,
+      "parentId": 75,
+      "localizedName": "Victoria",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201679",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-victoria/v1l201679p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201680,
+      "parentId": 75,
+      "localizedName": "Waco",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201680",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-waco/v1l201680p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 201681,
+      "parentId": 75,
+      "localizedName": "Wichita Falls",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/201681",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-wichita-falls/v1l201681p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/locations/75",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

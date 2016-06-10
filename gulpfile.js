@@ -47,6 +47,7 @@ var gulp = require('gulp'),
   runSequence = require('gulp-run-sequence'),
   nodeInspector = require('gulp-node-inspector'),
   loadingSpinner = require('loading-spinner'),
+  shell = require("gulp-shell"),
   reload = browserSync.reload;
 
 
@@ -95,7 +96,12 @@ gulp.task('default', function (done) {
 });
 
 // TEST
-gulp.task('jasmine', getTask('jasmine'));
+gulp.task('jasmine', shell.task([
+	'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' +
+	'JASMINE_CONFIG_PATH=./test/jasmine.json ' +
+	'node_modules/jasmine/bin/jasmine.js'
+]));
+
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
 
@@ -105,17 +111,16 @@ gulp.task('test', function(callback){
   var stream =
     runSequence(
       'build',
-      'develop',
-      'jasmine',
-      function (error) {
-        if (error) {
-          console.log(error.message);
-        } else {
-          console.log('Congratulations!!! TEST TASK DONE SUCCESSFULLY');
-        }
-        callback(error);
-      });
-  return stream;
+			'jasmine',
+			function(error) {
+				if (error) {
+					console.log(error.message);
+				} else {
+					console.log('Congratulations!!! TEST TASK DONE SUCCESSFULLY');
+				}
+				callback(error);
+			});
+	return stream;
 });
 
 // PACKAGE

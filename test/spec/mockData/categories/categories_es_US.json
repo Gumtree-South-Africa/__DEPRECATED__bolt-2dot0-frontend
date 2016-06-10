@@ -1,0 +1,1645 @@
+{
+  "id": 0,
+  "localizedName": "Todas las Categorías",
+  "parentId": null,
+  "level": "L0",
+  "description": "Todas las Categorías",
+  "localizedMobileName": "Todas las Categorías",
+  "children": [
+    {
+      "id": 1,
+      "localizedName": "Compra - Venta",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Compra - Venta",
+      "localizedMobileName": "Compra - Venta",
+      "children": [
+        {
+          "id": 8,
+          "localizedName": "Cámaras - Accesorios",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Cámaras - Accesorios",
+          "localizedMobileName": "Cámaras - Accesorios",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/8",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-c%25C3%25A1maras-+-accesorios/v1c8p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 4,
+          "localizedName": "Celulares - Teléfonos",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Celulares - Teléfonos",
+          "localizedMobileName": "Celulares - Teléfonos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/4",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-celulares-+-tel%25C3%25A9fonos/v1c4p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 5,
+          "localizedName": "Colecciones - Antigüedades",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Colecciones - Antigüedades",
+          "localizedMobileName": "Colecciones - Antigüedades",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/5",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-colecciones-+-antig%25C3%25BCedades/v1c5p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 7,
+          "localizedName": "Deportes",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Deportes",
+          "localizedMobileName": "Deportes",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/7",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-deportes/v1c7p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 221,
+          "localizedName": "Tecnología",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Tecnología",
+          "localizedMobileName": "Tecnología",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/221",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-tecnolog%25C3%25ADa/v1c221p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "localizedName": "Juguetes - Productos para Bebés",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Juguetes - Productos para Bebés",
+          "localizedMobileName": "Juguetes - Productos para Bebés",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/12",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-juguetes-+-productos-para-beb%25C3%25A9s/v1c12p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 10,
+          "localizedName": "Instrumentos Musicales",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Instrumentos Musicales",
+          "localizedMobileName": "Instrumentos Musicales",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/10",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-instrumentos-musicales/v1c10p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 11,
+          "localizedName": "Joyería - Relojes",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Joyería - Relojes",
+          "localizedMobileName": "Joyería - Relojes",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/11",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-joyer%25C3%25ADa-+-relojes/v1c11p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "localizedName": "Libros - Revistas",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Libros - Revistas",
+          "localizedMobileName": "Libros - Revistas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/13",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-libros-+-revistas/v1c13p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "localizedName": "Videojuegos - Consolas",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Videojuegos - Consolas",
+          "localizedMobileName": "Videojuegos - Consolas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/18",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-videojuegos-+-consolas/v1c18p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 9,
+          "localizedName": "Hogar - Muebles - Jardín",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Hogar - Muebles - Jardín",
+          "localizedMobileName": "Hogar - Muebles - Jardín",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/9",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-hogar-+-muebles-+-jard%25C3%25ADn/v1c9p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 16,
+          "localizedName": "Salud - Belleza",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Salud - Belleza",
+          "localizedMobileName": "Salud - Belleza",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/16",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-salud-+-belleza/v1c16p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 222,
+          "localizedName": "Moda",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Moda",
+          "localizedMobileName": "Moda",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/222",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-moda/v1c222p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 223,
+          "localizedName": "Electrodomésticos",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Electrodomésticos",
+          "localizedMobileName": "Electrodomésticos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/223",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-electrodom%25C3%25A9sticos/v1c223p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 19,
+          "localizedName": "Otros Productos",
+          "parentId": 1,
+          "level": "L2",
+          "description": "Otros Productos",
+          "localizedMobileName": "Otros Productos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/19",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-productos/v1c19p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/1",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-compra-+-venta/v1c1p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "localizedName": "Vehículos",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Vehículos",
+      "localizedMobileName": "Vehículos",
+      "children": [
+        {
+          "id": 65,
+          "localizedName": "Automóviles",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Automóviles",
+          "localizedMobileName": "Automóviles",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/65",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-autom%25C3%25B3viles/v1c65p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "localizedName": "Accesorios - Partes",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Accesorios - Partes",
+          "localizedMobileName": "Accesorios - Partes",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/85",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-accesorios-+-partes/v1c85p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 71,
+          "localizedName": "Aviones - Avionetas",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Aviones - Avionetas",
+          "localizedMobileName": "Aviones - Avionetas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/71",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-aviones-+-avionetas/v1c71p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 67,
+          "localizedName": "Camiones",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Camiones",
+          "localizedMobileName": "Camiones",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/67",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-camiones/v1c67p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 68,
+          "localizedName": "Camionetas - Vans",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Camionetas - Vans",
+          "localizedMobileName": "Camionetas - Vans",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/68",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-camionetas-+-vans/v1c68p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 70,
+          "localizedName": "Embarcaciones",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Embarcaciones",
+          "localizedMobileName": "Embarcaciones",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/70",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-embarcaciones/v1c70p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 69,
+          "localizedName": "Motos",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Motos",
+          "localizedMobileName": "Motos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/69",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-motos/v1c69p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 200,
+          "localizedName": "Motorhomes - RVs",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Motorhomes - RVs",
+          "localizedMobileName": "Motorhomes - RVs",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/200",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-motorhomes-+-rvs/v1c200p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 72,
+          "localizedName": "Otros Vehículos",
+          "parentId": 64,
+          "level": "L2",
+          "description": "Otros Vehículos",
+          "localizedMobileName": "Otros Vehículos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/72",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-veh%25C3%25ADculos/v1c72p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/64",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-veh%25C3%25ADculos/v1c64p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "localizedName": "Bienes Raíces",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Bienes Raíces",
+      "localizedMobileName": "Bienes Raíces",
+      "children": [
+        {
+          "id": 213,
+          "localizedName": "Apartamentos",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Apartamentos",
+          "localizedMobileName": "Apartamentos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/213",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-apartamentos/v1c213p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "localizedName": "Casas",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Casas",
+          "localizedMobileName": "Casas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/34",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-casas/v1c34p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 33,
+          "localizedName": "Bodegas - Parkings",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Bodegas - Parkings",
+          "localizedMobileName": "Bodegas - Parkings",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/33",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bodegas-+-parkings/v1c33p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 214,
+          "localizedName": "Condominios - Tiempo Compartido",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Condominios - Tiempo Compartido",
+          "localizedMobileName": "Condominios - Tiempo Compartido",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/214",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-condominios-+-tiempo-compartido/v1c214p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "localizedName": "Renta Temporaria",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Renta Temporaria",
+          "localizedMobileName": "Renta Temporaria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/35",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-renta-temporaria/v1c35p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 31,
+          "localizedName": "Terrenos",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Terrenos",
+          "localizedMobileName": "Terrenos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/31",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-terrenos/v1c31p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 215,
+          "localizedName": "Otros Bienes Raices",
+          "parentId": 30,
+          "level": "L2",
+          "description": "Otros Bienes Raices",
+          "localizedMobileName": "Otros Bienes Raices",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/215",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-bienes-raices/v1c215p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/30",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-bienes-ra%25C3%25ADces/v1c30p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 224,
+      "localizedName": "Quinceañeras – Fiestas",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Quinceañeras – Fiestas",
+      "localizedMobileName": "Quinceañeras – Fiestas",
+      "children": [
+        {
+          "id": 225,
+          "localizedName": "Accesorios",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Accesorios",
+          "localizedMobileName": "Accesorios",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/225",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-accesorios/v1c225p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 226,
+          "localizedName": "Cantineros",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Cantineros",
+          "localizedMobileName": "Cantineros",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/226",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-cantineros/v1c226p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 227,
+          "localizedName": "Comidas - Pastelerías",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Comidas - Pastelerías",
+          "localizedMobileName": "Comidas - Pastelerías",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/227",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-comidas-+-pasteler%25C3%25ADas/v1c227p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 228,
+          "localizedName": "Decoraciones - Florerías",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Decoraciones - Florerías",
+          "localizedMobileName": "Decoraciones - Florerías",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/228",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-decoraciones-+-florer%25C3%25ADas/v1c228p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 229,
+          "localizedName": "Fotos - Videos",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Fotos - Videos",
+          "localizedMobileName": "Fotos - Videos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/229",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-fotos-+-videos/v1c229p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 230,
+          "localizedName": "Lecciones de Baile",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Lecciones de Baile",
+          "localizedMobileName": "Lecciones de Baile",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/230",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lecciones-de-baile/v1c230p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 231,
+          "localizedName": "Músicos - DJs",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Músicos - DJs",
+          "localizedMobileName": "Músicos - DJs",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/231",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-m%25C3%25BAsicos-+-djs/v1c231p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 232,
+          "localizedName": "Payasos",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Payasos",
+          "localizedMobileName": "Payasos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/232",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-payasos/v1c232p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 233,
+          "localizedName": "Salones de Belleza - Maquillajes",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Salones de Belleza - Maquillajes",
+          "localizedMobileName": "Salones de Belleza - Maquillajes",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/233",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-salones-de-belleza-+-maquillajes/v1c233p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 234,
+          "localizedName": "Salones para Fiestas",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Salones para Fiestas",
+          "localizedMobileName": "Salones para Fiestas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/234",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-salones-para-fiestas/v1c234p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 235,
+          "localizedName": "Servicios de Iluminación",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Servicios de Iluminación",
+          "localizedMobileName": "Servicios de Iluminación",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/235",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-servicios-de-iluminaci%25C3%25B3n/v1c235p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 236,
+          "localizedName": "Otros Servicios para Fiestas - Bodas",
+          "parentId": 224,
+          "level": "L2",
+          "description": "Otros Servicios para Fiestas - Bodas",
+          "localizedMobileName": "Otros Servicios para Fiestas - Bodas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/236",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-servicios-para-fiestas-+-bodas/v1c236p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/224",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-quincea%25C3%25B1eras-fiestas/v1c224p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "localizedName": "Empleo",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Empleo",
+      "localizedMobileName": "Empleo",
+      "children": [
+        {
+          "id": 201,
+          "localizedName": "Babysitters - Cuidado de Personas",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Babysitters - Cuidado de Personas",
+          "localizedMobileName": "Babysitters - Cuidado de Personas",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/201",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-babysitters-+-cuidado-de-personas/v1c201p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 202,
+          "localizedName": "Bartenders - Meseros",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Bartenders - Meseros",
+          "localizedMobileName": "Bartenders - Meseros",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/202",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bartenders-+-meseros/v1c202p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 203,
+          "localizedName": "Belleza - Cosmetología",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Belleza - Cosmetología",
+          "localizedMobileName": "Belleza - Cosmetología",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/203",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-belleza-+-cosmetolog%25C3%25ADa/v1c203p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 39,
+          "localizedName": "Computación - Tecnología",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Computación - Tecnología",
+          "localizedMobileName": "Computación - Tecnología",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/39",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-computaci%25C3%25B3n-+-tecnolog%25C3%25ADa/v1c39p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 45,
+          "localizedName": "Construcción",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Construcción",
+          "localizedMobileName": "Construcción",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/45",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-construcci%25C3%25B3n/v1c45p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 204,
+          "localizedName": "Choferes - Troqueros",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Choferes - Troqueros",
+          "localizedMobileName": "Choferes - Troqueros",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/204",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-choferes-+-troqueros/v1c204p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 42,
+          "localizedName": "Educación - Capacitación",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Educación - Capacitación",
+          "localizedMobileName": "Educación - Capacitación",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/42",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-educaci%25C3%25B3n-+-capacitaci%25C3%25B3n/v1c42p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 80,
+          "localizedName": "Enfermeros - Salud",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Enfermeros - Salud",
+          "localizedMobileName": "Enfermeros - Salud",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/80",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-enfermeros-+-salud/v1c80p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 205,
+          "localizedName": "Entretenimiento - Recreación",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Entretenimiento - Recreación",
+          "localizedMobileName": "Entretenimiento - Recreación",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/205",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-entretenimiento-+-recreaci%25C3%25B3n/v1c205p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 206,
+          "localizedName": "Freelancers",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Freelancers",
+          "localizedMobileName": "Freelancers",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/206",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-freelancers/v1c206p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 207,
+          "localizedName": "Industria",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Industria",
+          "localizedMobileName": "Industria",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/207",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-industria/v1c207p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 208,
+          "localizedName": "Lavandería - Tintorería",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Lavandería - Tintorería",
+          "localizedMobileName": "Lavandería - Tintorería",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/208",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lavander%25C3%25ADa-+-tintorer%25C3%25ADa/v1c208p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 209,
+          "localizedName": "Legales - Paralegales",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Legales - Paralegales",
+          "localizedMobileName": "Legales - Paralegales",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/209",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-legales-+-paralegales/v1c209p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 210,
+          "localizedName": "Personal de Mantenimiento",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Personal de Mantenimiento",
+          "localizedMobileName": "Personal de Mantenimiento",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/210",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-personal-de-mantenimiento/v1c210p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "localizedName": "Secretaria - Asistente Administrativa",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Secretaria - Asistente Administrativa",
+          "localizedMobileName": "Secretaria - Asistente Administrativa",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/86",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-secretaria-+-asistente-administrativa/v1c86p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 211,
+          "localizedName": "Servicio Doméstico - Limpieza",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Servicio Doméstico - Limpieza",
+          "localizedMobileName": "Servicio Doméstico - Limpieza",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/211",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-servicio-dom%25C3%25A9stico-+-limpieza/v1c211p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 212,
+          "localizedName": "Servicios de Seguridad - Guardias",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Servicios de Seguridad - Guardias",
+          "localizedMobileName": "Servicios de Seguridad - Guardias",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/212",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-servicios-de-seguridad-+-guardias/v1c212p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "localizedName": "Otros empleos",
+          "parentId": 36,
+          "level": "L2",
+          "description": "Otros empleos",
+          "localizedMobileName": "Otros empleos",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/47",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-empleos/v1c47p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/36",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-empleo/v1c36p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "localizedName": "Servicios",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Servicios",
+      "localizedMobileName": "Servicios",
+      "children": [
+        {
+          "id": 216,
+          "localizedName": "Clases - Talleres",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Clases - Talleres",
+          "localizedMobileName": "Clases - Talleres",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/216",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-clases-+-talleres/v1c216p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 23,
+          "localizedName": "Informática - Internet",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Informática - Internet",
+          "localizedMobileName": "Informática - Internet",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/23",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-inform%25C3%25A1tica-+-internet/v1c23p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 217,
+          "localizedName": "Legales - Inmigración",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Legales - Inmigración",
+          "localizedMobileName": "Legales - Inmigración",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/217",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-legales-+-inmigraci%25C3%25B3n/v1c217p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 26,
+          "localizedName": "Reparaciones - Mantenimiento",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Reparaciones - Mantenimiento",
+          "localizedMobileName": "Reparaciones - Mantenimiento",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/26",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-reparaciones-+-mantenimiento/v1c26p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 27,
+          "localizedName": "Salud - Belleza",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Salud - Belleza",
+          "localizedMobileName": "Salud - Belleza",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/27",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-salud-+-belleza/v1c27p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 218,
+          "localizedName": "Servicios para Automóviles",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Servicios para Automóviles",
+          "localizedMobileName": "Servicios para Automóviles",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/218",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-servicios-para-autom%25C3%25B3viles/v1c218p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 28,
+          "localizedName": "Traducciones",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Traducciones",
+          "localizedMobileName": "Traducciones",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/28",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-traducciones/v1c28p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 219,
+          "localizedName": "Transportación",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Transportación",
+          "localizedMobileName": "Transportación",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/219",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-transportaci%25C3%25B3n/v1c219p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 220,
+          "localizedName": "Viajes -Turismo",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Viajes -Turismo",
+          "localizedMobileName": "Viajes -Turismo",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/220",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-viajes-+turismo/v1c220p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 29,
+          "localizedName": "Otros Servicios",
+          "parentId": 20,
+          "level": "L2",
+          "description": "Otros Servicios",
+          "localizedMobileName": "Otros Servicios",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/29",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-otros-servicios/v1c29p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/20",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-servicios/v1c20p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/categories/0",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

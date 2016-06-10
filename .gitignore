@@ -56,4 +56,5 @@ bolt-2dot0-frontend*
 screenshots
 logs
 dist
-.idea/
+.idea/*
+!.idea/runConfigurations/
