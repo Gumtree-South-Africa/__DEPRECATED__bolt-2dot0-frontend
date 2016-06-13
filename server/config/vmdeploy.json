@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "dockerhost",
+	    	"host": "docker_host_machine",
 	    	"port": 80,
 	    	"parameters": null
 	    },
@@ -27,7 +27,7 @@
 	},
   	"graphite": {
 		"server": {
-			"host"		: "dockerhost",
+			"host"		: "docker_host_machine",
 	   		"port"		: 2003,
 	  		"interval" 	: 30
 		}
@@ -49,6 +49,6 @@
 		"baseJSMinUrl"	: "/public/jsmin/",
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
-		"min"			: false
+		"min"			: true
 	}
 }
