@@ -36,7 +36,8 @@ EXPOSE 8000
 
 # Set environment variables
 ENV NODE_CONFIG_DIR     /src/bolt-2dot0-frontend/server/config
-ENV NODE_ENV vm
+ENV NODE_ENV vmdeploy
+ENV BASEDOMAINSUFFIX `hostname`
 
 CMD ["npm","run","dockerstart"]
 
