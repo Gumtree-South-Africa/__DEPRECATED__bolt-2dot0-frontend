@@ -48,7 +48,7 @@ module.exports = function(bapiOptions, bapiHeaders, serviceName){
 			bapiError.message = output.message;
 			bapiError.details = output.details;
 			bapiError.serviceName = serviceName;
-			throw bapiError;
+			return Q.reject(bapiError);
 		} else {
 			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
 			return output;

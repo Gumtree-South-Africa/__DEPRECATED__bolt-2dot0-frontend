@@ -102,26 +102,9 @@ gulp.task('jasmine', shell.task([
 	'node_modules/jasmine/bin/jasmine.js'
 ]));
 
+gulp.task('test', runSequence('build', 'jasmine'));
+
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
-
-
-//TODO: move to a separate file
-gulp.task('test', function(callback){
-  process.stdout.write('Test Task is running...\r\n');
-  var stream =
-    runSequence(
-      'build',
-			'jasmine',
-			function(error) {
-				if (error) {
-					console.log(error.message);
-				} else {
-					console.log('Congratulations!!! TEST TASK DONE SUCCESSFULLY');
-				}
-				callback(error);
-			});
-	return stream;
-});
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
