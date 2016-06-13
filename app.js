@@ -54,8 +54,6 @@ let createSiteApps = () => {
 		        // Wait to spin up the node app in server.js until all config promises resolve.
 		        configPromises.push(cacheBapiData(siteApp, requestId));
 
-		        // Setup Vhost per supported site
-		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
 
 	      siteCount = siteCount + 1;
@@ -67,6 +65,9 @@ let createSiteApps = () => {
 			// register bolt middleware
 			siteApp.use(siteconfig(siteApp));
 			siteApp.use(responseMetrics());
+
+			// Setup Vhost per supported site
+			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 		
 		// Setup controllers

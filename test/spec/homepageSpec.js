@@ -2,24 +2,25 @@
 let specHelper = require('./helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
+let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
 describe("Server to hit HomePage", function () {
 
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
-			'/locations/top/L2?_forceExample=true&_statusCode=200',
+			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
 			'test/spec/mockData/api/v1/LocationList.json');
 		specHelper.registerMockEndpoint(
-			'/keywords/top?limit=15&_forceExample=true&_statusCode=200',
+			`${endpoints.topKeywords}?limit=15&_forceExample=true&_statusCode=200`,
 			'test/spec/mockData/api/v1/keywords.json');
 		specHelper.registerMockEndpoint(
-			'/keywords/trending?limit=15&_forceExample=true&_statusCode=200',
+			`${endpoints.trendingKeywords}?limit=15&_forceExample=true&_statusCode=200`,
 			'test/spec/mockData/api/v1/keywords.json');
 		specHelper.registerMockEndpoint(
-			'/ads/gallery?_forceExample=true&_statusCode=200',
+			`${endpoints.homepageGallery}?_forceExample=true&_statusCode=200`,
 			'test/spec/mockData/api/v1/GallerySlice.json');
 		specHelper.registerMockEndpoint(
-			'/ads/statistics?_forceExample=true&_statusCode=200',
+			`${endpoints.adStatistics}?_forceExample=true&_statusCode=200`,
 			'test/spec/mockData/api/v1/GallerySlice.json');
 	});
 	
