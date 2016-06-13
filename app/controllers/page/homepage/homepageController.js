@@ -4,6 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
+	Q = require('q'),
     cuid = require('cuid');
 
 var cwd = process.cwd();
@@ -12,7 +13,8 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	marketoService = require(cwd + '/server/utils/marketo'),
 	Base64 = require(process.cwd() + '/app/utils/Base64'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
+	userService = require(process.cwd() + '/server/services/user');
 
 
 module.exports = function (app) {
@@ -50,15 +52,34 @@ router.get('/', function (req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res, modelData);
-    model.then(function (result) {
-
+	let authCookie = req.cookies['bt_auth'];
+	let userCookieData = req.app.locals.userCookieData;
+	let bapiHeaders = {
+		'requestId'         :   req.app.locals.requestId,
+		'ip'                :   req.app.locals.ip,
+		'machineid'         :   req.app.locals.machineid,
+		'useragent'         :   req.app.locals.useragent,
+		'locale'            :   res.locals.config.locale,
+		'authTokenValue'    :   authCookie 
+	};
+	let buildUserFromCookie = () => {};
+	if (authCookie && !userCookieData) {
+		buildUserFromCookie = userService.getUserFromCookie(bapiHeaders);
+	} 
+	Q.all([model, buildUserFromCookie])
+	    .then(function (result) {
+		    
     var cookiePageVersion = req.cookies.b2dot0Version,
         defaultPath = 'homepage/views/hbs/homepage_',
         newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
-
-    // Dynamic Data from BAPI
-    modelData.header = result['common'].header || {};
+		let user = result[1];
+		// Dynamic Data from BAPI
+		let userData = userService.buildProfile(user);
+		// Result[0] is all the model data for the page without user data
+		result = result[0];
+		modelData.header = result['common'].header || {};
+		_.extend(modelData.header, userData);
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];

@@ -117,19 +117,6 @@ HeaderModel.prototype.getHeaderData = function() {
 
 					// build user profile
 					scope.buildProfile(data);
-				} else {
-					Q(userService.getUserFromCookie(scope.bapiHeaders))
-						.then(function (dataReturned) {
-							if (! _.isEmpty(dataReturned)) {
-								// merge user cookie data
-								_.extend(data, dataReturned);
-
-								// build user profile
-								scope.buildProfile(data);
-							}
-						}).fail(function (err) {
-							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
-						});
 				}
 			}
 
