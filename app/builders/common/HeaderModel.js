@@ -26,7 +26,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
-	this.b2dot0Version = req.cookies['b2dot0Version'];
+	this.b2dot0Version = req.cookies.b2dot0Version;
 	// Local variables
 	this.secure = secure;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -42,12 +42,12 @@ var HeaderModel = function (secure, req, res) {
 	this.userCookieData = req.app.locals.userCookieData;
 
 	this.bapiHeaders = {
-		'requestId'         :   req.app.locals.requestId,
-		'ip'                :   req.app.locals.ip,
-		'machineid'         :   req.app.locals.machineid,
-		'useragent'         :   req.app.locals.useragent,
-		'locale'            :   this.locale,
-		'authTokenValue'    :   this.authCookie
+		'requestId': req.app.locals.requestId,
+		'ip': req.app.locals.ip,
+		'machineid': req.app.locals.machineid,
+		'useragent': req.app.locals.useragent,
+		'locale': this.locale,
+		'authTokenValue': this.authCookie
 	};
 
 	this.i18n = req.i18n;
@@ -121,7 +121,7 @@ HeaderModel.prototype.getHeaderData = function () {
 				} else {
 					Q(userService.getUserFromCookie(_this.bapiHeaders))
 						.then(function (dataReturned) {
-							if (! _.isEmpty(dataReturned)) {
+							if (!_.isEmpty(dataReturned)) {
 								// merge user cookie data
 								_.extend(data, dataReturned);
 
@@ -129,8 +129,8 @@ HeaderModel.prototype.getHeaderData = function () {
 								_this.buildProfile(data);
 							}
 						}).fail(function (err) {
-							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
-						});
+						console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
+					});
 
 				}
 			}
@@ -165,7 +165,7 @@ HeaderModel.prototype.buildUrl = function (data) {
 HeaderModel.prototype.buildCss = function (data) {
 
 	var b2dot0Ver = 'v1' //by default
-	if((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version == '2.0'){
+	if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version == '2.0') {
 		b2dot0Ver = 'v2';
 	}
 
@@ -176,20 +176,20 @@ HeaderModel.prototype.buildCss = function (data) {
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css';
 
 
-	if(deviceDetection.isMobile()) {
+	if (deviceDetection.isMobile()) {
 		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
-	else{
+	else {
 		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
 	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 
 
 	data.containerCSS = [];
-	if(data.min) {
+	if (data.min) {
 		data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
 	}
-	else{
+	else {
 		data.containerCSS.push(data.localeCSSPath + '/Main.css');
 	}
 };

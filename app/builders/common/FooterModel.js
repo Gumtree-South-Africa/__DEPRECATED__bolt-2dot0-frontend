@@ -92,7 +92,7 @@ FooterModel.prototype.buildJs = function (data) {
 		 });*/
 
 
-		for(var k = 0; k < jsmin[0].src.length; k++){
+		for (var k = 0; k < jsmin[0].src.length; k++) {
 			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
 		}
 
