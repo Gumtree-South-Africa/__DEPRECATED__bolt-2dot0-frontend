@@ -12,6 +12,10 @@
         </XML>
         <codeStyleSettings language="JavaScript">
           <option name="KEEP_LINE_BREAKS" value="false" />
+          <option name="ALIGN_MULTILINE_ARRAY_INITIALIZER_EXPRESSION" value="true" />
+          <option name="ARRAY_INITIALIZER_WRAP" value="5" />
+          <option name="ARRAY_INITIALIZER_LBRACE_ON_NEXT_LINE" value="true" />
+          <option name="ARRAY_INITIALIZER_RBRACE_ON_NEXT_LINE" value="true" />
         </codeStyleSettings>
       </value>
     </option>

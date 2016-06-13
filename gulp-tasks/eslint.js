@@ -1,22 +1,25 @@
 'use strict';
 
-const gulpEslint = require("gulp-eslint");
+const gulpEslint = require('gulp-eslint');
 
 //////////////////////////////////////////////////
 //ES Lint
 //// /////////////////////////////////////////////
-module.exports = function watch(gulp, plugins) {
-	return function () {
-
-		gulp.task('eslint', function () {
-			var stream =
-				gulp.src([
-					'app/controllers/page/isotopePrototype/*.js',
-					'app/views/components/tileGrid/js/*.js'
-				])
-					.pipe(gulpEslint())
-					.pipe(gulpEslint.format())
-					.pipe(gulpEslint.failAfterError());
+module.exports = function watch(gulp) {
+	return function() {
+		gulp.task('eslint', function() {
+			let stream = gulp.src([
+				'app/controllers/page/isotopePrototype/*.js',
+				'app/views/components/responsiveBreakpointDetection/js/*.js',
+				'app/views/components/adTile/js/*.js',
+				'app/views/components/feedTile/js/*.js',
+				'app/views/components/tileGrid/js/*.js',
+				'gulp-tasks/eslint.js',
+				'.eslintrc'
+			])
+				.pipe(gulpEslint())
+				.pipe(gulpEslint.format())
+				.pipe(gulpEslint.failAfterError());
 
 			return stream;
 		});
