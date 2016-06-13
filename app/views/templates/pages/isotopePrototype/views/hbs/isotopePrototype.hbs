@@ -1,3 +1,11 @@
 {{#partial "content"}}
-    {{> (dynamic "panelGrid")}}
+    <div class="card">
+        <div class="card-title">Popular in <span class="fake-link">Your Neighborhood</span></div>
+        {{> (dynamic "tileGrid")}}
+    </div>
+    <div class="card">
+        <div class="card-title">
+            I'm A Card
+        </div>
+    </div>
 {{/partial}}

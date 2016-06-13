@@ -41,6 +41,7 @@
     "express-form": "0.12.5",
     "express-handlebars": "3.0.0",
     "express-uncapitalize": "1.0.0",
+    "extract-text-webpack-plugin": "^1.0.1",
     "fbgraph": "1.1.0",
     "glob": "6.0.1",
     "graphite-client": "1.0.1",
