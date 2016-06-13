@@ -13,7 +13,7 @@
     "build": "npm install && gulp build",
     "test": "npm install && ./node_modules/.bin/jasmine-node test/spec",
     "start": "node ./bin/www",
-    "envstart": "NODE_CONFIG_DIR=./server/config NODE_ENV=vmdeploy PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=`hostname` node ./bin/www"
+    "envstart": "NODE_CONFIG_DIR=./server/config NODE_ENV=vmdeploy BASEDOMAINSUFFIX=`hostname` node ./bin/www"
   },
   "precommit": "npm install && gulp precommit",
   "dependencies": {
