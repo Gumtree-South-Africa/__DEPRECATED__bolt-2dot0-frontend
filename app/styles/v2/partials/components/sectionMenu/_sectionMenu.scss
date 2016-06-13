@@ -1,7 +1,7 @@
 .sectionMenuWrapper{
   @include from-breakpoint($small-break){
     font-size: 1.3em;
-  }  
+  }
 }
 
 .sectionMenu {
@@ -12,11 +12,13 @@
   }
   a {
     padding:4px 14px 4px 8px;
-    color:#333;
+    color: black;
     border-right: 2px solid #ccc;
     &:hover {
       font-weight:bold;
       color: #FF9720;
+      background-color: transparent;
+      cursor: pointer;
     }
     &:after {
       display:block;
