@@ -27,13 +27,13 @@ var FooterModel = function (secure, req, res) {
 	this.jsAssets = res.locals.jsAssets;
 };
 
-FooterModel.prototype.getModelBuilder = function() {
+FooterModel.prototype.getModelBuilder = function () {
 	return new ModelBuilder(this.getFooterData());
 };
 
 // Function getFooterData
-FooterModel.prototype.getFooterData = function() {
-	var scope = this;
+FooterModel.prototype.getFooterData = function () {
+	var _this = this;
 	var arrFunctions = [
 		function (callback) {
 			if (typeof callback !== 'function') {
@@ -41,36 +41,35 @@ FooterModel.prototype.getFooterData = function() {
 			}
 
 			var footerDeferred,
-				data = {
-				};
+				data = {};
 
 			// merge pageurl data
-    		_.extend(data, pageurlJson.footer);
+			_.extend(data, pageurlJson.footer);
 
-    		// merge footer config data from BAPI
-    		_.extend(data, scope.footerConfigData);
+			// merge footer config data from BAPI
+			_.extend(data, _this.footerConfigData);
 
-    		// build data
-    		var urlProtocol = scope.secure ? 'https://' : 'http://';
-    		var urlHost = config.get('static.server.host')!==null ? urlProtocol + config.get('static.server.host') : '';
-    		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
-    		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
-    		data.mainJSUrl = urlHost + urlPort + urlVersion + config.get('static.mainJSUrl');
-    		data.baseJSUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSUrl');
-    		data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSMinUrl');
-    		data.baseSVGDataUrl = urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl');
-				data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl');
-    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
-    		data.min = config.get('static.min');
+			// build data
+			var urlProtocol = _this.secure ? 'https://' : 'http://';
+			var urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+			var urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+			var urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+			data.mainJSUrl = urlHost + urlPort + urlVersion + config.get('static.mainJSUrl');
+			data.baseJSUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSUrl');
+			data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSMinUrl');
+			data.baseSVGDataUrl = urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl');
+			data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl');
+			data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
+			data.min = config.get('static.min');
 
-    		// add complex data to footer
-    		scope.buildJs(data);
-    		scope.buildUrl(data);
+			// add complex data to footer
+			_this.buildJs(data);
+			_this.buildUrl(data);
 
-    		footerDeferred = Q.defer();
-    		footerDeferred.resolve(data);
-    		callback(null, data);
-    		return footerDeferred.promise;
+			footerDeferred = Q.defer();
+			footerDeferred.resolve(data);
+			callback(null, data);
+			return footerDeferred.promise;
 		}
 	];
 
@@ -78,22 +77,22 @@ FooterModel.prototype.getFooterData = function() {
 };
 
 //Build JS
-FooterModel.prototype.buildJs = function(data) {
-	var scope = this;
+FooterModel.prototype.buildJs = function (data) {
 
 	var baseComponentDir = '/views/components/';
 
 	data.javascripts = [];
 	if (data.min) {
-		data.javascripts.push(data.baseJSMinUrl + 'Main_' + scope.locale + '.min.js');
+		data.javascripts.push(data.baseJSMinUrl + 'Main_' + this.locale + '.min.js');
 	} else {
 
 		/*//todo: remove comments after minification is done
-		jsAssets.forEach(function(jsFile){
-			data.javascripts.push(jsFile);
-		});*/
+		 jsAssets.forEach(function(jsFile){
+		 data.javascripts.push(jsFile);
+		 });*/
 
-		for(var k = 0; k < jsmin[0].src.length; k++){
+
+		for (var k = 0; k < jsmin[0].src.length; k++) {
 			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
 		}
 
@@ -104,13 +103,12 @@ FooterModel.prototype.buildJs = function(data) {
 };
 
 //Build URL
-FooterModel.prototype.buildUrl = function(data) {
-	var scope = this;
+FooterModel.prototype.buildUrl = function (data) {
 
-	data.brandName = scope.brandName;
-	data.localeJSPath = '/' + scope.brandName + '/' + scope.country + '/' + scope.locale + '/',
-	data.countryJSPath = '/' + scope.brandName + '/' + scope.country + '/',
-	data.brandJSPath = '/' + scope.brandName + '/';
+	data.brandName = this.brandName;
+	data.localeJSPath = '/' + this.brandName + '/' + this.country + '/' + this.locale + '/',
+		data.countryJSPath = '/' + this.brandName + '/' + this.country + '/',
+		data.brandJSPath = '/' + this.brandName + '/';
 	data.obfuscatedCookieRightsURL = StringUtils.obfuscate(data.cookieNotice);
 	data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
 	data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);

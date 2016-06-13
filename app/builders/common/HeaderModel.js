@@ -26,7 +26,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
-	this.b2dot0Version = req.cookies['b2dot0Version'];
+	this.b2dot0Version = req.cookies.b2dot0Version;
 	// Local variables
 	this.secure = secure;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -42,26 +42,26 @@ var HeaderModel = function (secure, req, res) {
 	this.userCookieData = req.app.locals.userCookieData;
 
 	this.bapiHeaders = {
-		'requestId'         :   req.app.locals.requestId,
-		'ip'                :   req.app.locals.ip,
-		'machineid'         :   req.app.locals.machineid,
-		'useragent'         :   req.app.locals.useragent,
-		'locale'            :   this.locale,
-		'authTokenValue'    :   this.authCookie
+		'requestId': req.app.locals.requestId,
+		'ip': req.app.locals.ip,
+		'machineid': req.app.locals.machineid,
+		'useragent': req.app.locals.useragent,
+		'locale': this.locale,
+		'authTokenValue': this.authCookie
 	};
 
 	this.i18n = req.i18n;
 
 };
 
-HeaderModel.prototype.getModelBuilder = function() {
+HeaderModel.prototype.getModelBuilder = function () {
 	return new ModelBuilder(this.getHeaderData());
 };
 
 // Function getHeaderData
-HeaderModel.prototype.getHeaderData = function() {
+HeaderModel.prototype.getHeaderData = function () {
 
-	var scope = this;
+	var _this = this;
 	var arrFunctions = [
 		function (callback) {
 			if (typeof callback !== 'function') {
@@ -70,53 +70,53 @@ HeaderModel.prototype.getHeaderData = function() {
 
 			// initialize
 			var data = {
-		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
-		    		'languageCode' : scope.locale
-				};
+				'homePageUrl': _this.urlProtocol + 'www.' + _this.fullDomainName + _this.baseDomainSuffix + _this.basePort,
+				'languageCode': _this.locale
+			};
 
 			// merge pageurl data
-    		_.extend(data, pageurlJson.header);
+			_.extend(data, pageurlJson.header);
 
-    		// merge header config data from BAPI
-    		_.extend(data, scope.headerConfigData);
+			// merge header config data from BAPI
+			_.extend(data, _this.headerConfigData);
 
-    		// build data
-    		var urlProtocol = scope.secure ? 'https://' : 'http://';
-    		var urlHost = config.get('static.server.host')!==null ? urlProtocol + config.get('static.server.host') : '';
-    		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
-    		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
-    		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
-    		data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
-				data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
-				data.min = config.get('static.min');
+			// build data
+			var urlProtocol = _this.secure ? 'https://' : 'http://';
+			var urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+			var urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+			var urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+			data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
+			data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
+			data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
+			data.min = config.get('static.min');
 
-    		// add complex data to header
-    		scope.buildUrl(data);
-    		scope.buildCss(data);
-    		scope.buildOpengraph(data);
+			// add complex data to header
+			_this.buildUrl(data);
+			_this.buildCss(data);
+			_this.buildOpengraph(data);
 
-    		// manipulate data
-    		data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
+			// manipulate data
+			data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
-    		// If locationCookie present, set id and name in model
-    		if (typeof scope.searchLocIdCookie !== 'undefined') {
-    			data.cookieLocationId = scope.searchLocIdCookie;
+			// If locationCookie present, set id and name in model
+			if (typeof _this.searchLocIdCookie !== 'undefined') {
+				data.cookieLocationId = _this.searchLocIdCookie;
 
-    			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
-    				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
-    			} else {
-    				data.cookieLocationName = scope.locationIdNameMap[data.cookieLocationId] || '';
-    			}
-    		}
+				if (typeof _this.locationIdNameMap[data.cookieLocationId] === 'object') {
+					data.cookieLocationName = _this.i18n.__('searchbar.locationDisplayname.prefix', _this.locationIdNameMap[data.cookieLocationId].value);
+				} else {
+					data.cookieLocationName = _this.locationIdNameMap[data.cookieLocationId] || '';
+				}
+			}
 
-    		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
-		    if (typeof scope.authCookie !== 'undefined') {
-				if (typeof scope.userCookieData !== 'undefined') {
+			// If authCookie present, make a call to user BAPI to retrieve user info and set in model
+			if (typeof _this.authCookie !== 'undefined') {
+				if (typeof _this.userCookieData !== 'undefined') {
 					// merge user cookie data
-					_.extend(data, scope.userCookieData);
+					_.extend(data, _this.userCookieData);
 
 					// build user profile
-					scope.buildProfile(data);
+					_this.buildProfile(data);
 				}
 			}
 
@@ -128,19 +128,18 @@ HeaderModel.prototype.getHeaderData = function() {
 };
 
 // Build URL
-HeaderModel.prototype.buildUrl = function(data) {
-	var scope = this;
+HeaderModel.prototype.buildUrl = function (data) {
 
-	data.touchIconIphoneUrl = data.baseImageUrl + scope.locale + '/touch-iphone.png';
-	data.touchIconIpadUrl = data.baseImageUrl + scope.locale + '/touch-ipad.png';
-	data.touchIconIphoneRetinaUrl = data.baseImageUrl + scope.locale + '/touch-iphone-retina.png';
-	data.touchIconIpadRetinaUrl = data.baseImageUrl + scope.locale + '/touch-ipad-retina.png';
-	data.shortcutIconUrl = data.baseImageUrl + scope.locale + '/shortcut.png';
+	data.touchIconIphoneUrl = data.baseImageUrl + this.locale + '/touch-iphone.png';
+	data.touchIconIpadUrl = data.baseImageUrl + this.locale + '/touch-ipad.png';
+	data.touchIconIphoneRetinaUrl = data.baseImageUrl + this.locale + '/touch-iphone-retina.png';
+	data.touchIconIpadRetinaUrl = data.baseImageUrl + this.locale + '/touch-ipad-retina.png';
+	data.shortcutIconUrl = data.baseImageUrl + this.locale + '/shortcut.png';
 
 	// Temporary Hack to call rui-api from 1.0
-	var modifiedLocale = scope.locale;
-	if (scope.country === 'MX') {
-		modifiedLocale = scope.locale + '_VNS';
+	var modifiedLocale = this.locale;
+	if (this.country === 'MX') {
+		modifiedLocale = this.locale + '_VNS';
 	}
 	data.autoCompleteUrl = data.homePageUrl + data.autoCompleteUrl + modifiedLocale + '/{catId}/{locId}/{value}';
 	data.geoLocatorUrl = data.homePageUrl + data.geoLocatorUrl + modifiedLocale + '/{lat}/{lng}';
@@ -148,69 +147,68 @@ HeaderModel.prototype.buildUrl = function(data) {
 };
 
 //Build CSS
-HeaderModel.prototype.buildCss = function(data) {
-	var scope = this;
+HeaderModel.prototype.buildCss = function (data) {
 
 	var b2dot0Ver = 'v1' //by default
-	if((typeof scope.b2dot0Version !== 'undefined') && scope.b2dot0Version == '2.0'){
+	if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version == '2.0') {
 		b2dot0Ver = 'v2';
 	}
 
 	data.iconsCSSURLs = [];
-	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
-	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
+	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + this.locale + '.css');
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + this.locale + '.css');
+	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css');
+	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css';
 
-	if(deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+
+	if (deviceDetection.isMobile()) {
+		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
-	else{
-		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+	else {
+		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+
 
 	data.containerCSS = [];
-	if(data.min) {
+	if (data.min) {
 		data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
 	}
-	else{
+	else {
 		data.containerCSS.push(data.localeCSSPath + '/Main.css');
 	}
 };
 
 //Build opengraph
-HeaderModel.prototype.buildOpengraph = function(data) {
-	var scope = this;
+HeaderModel.prototype.buildOpengraph = function (data) {
 
-	data.brandName = scope.brandName;
-	data.countryName = scope.country;
-	data.logoUrl = data.baseImageUrl + scope.locale + '/logo.png';
-	data.logoUrlOpenGraph = data.baseImageUrl + scope.locale + '/logoOpenGraph.png';
+	data.brandName = this.brandName;
+	data.countryName = this.country;
+	data.logoUrl = data.baseImageUrl + this.locale + '/logo.png';
+	data.logoUrlOpenGraph = data.baseImageUrl + this.locale + '/logoOpenGraph.png';
 };
 
 //Build Profile
-HeaderModel.prototype.buildProfile = function(data) {
-	var scope = this;
+HeaderModel.prototype.buildProfile = function (data) {
 
 	if (data.username) {
 		data.profileName = data.username;
 	}
 
 	if (data.socialMedia) {
-		if (data.socialMedia.profileName && data.socialMedia.profileName.length>0) {
+		if (data.socialMedia.profileName && data.socialMedia.profileName.length > 0) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
 			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-										  '/picture?width=36&height=36';
+				'/picture?width=36&height=36';
 			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-								  '/feed?access_token=' + data.socialMedia.accessToken;
+				'/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 
 	if (data.userProfileImageUrl) {
-		data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www','').replace('http://','').replace('www','');
+		data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
 	}
 };
 

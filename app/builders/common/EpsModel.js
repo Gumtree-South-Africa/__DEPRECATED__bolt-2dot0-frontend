@@ -4,13 +4,13 @@
 var config = require("config");
 
 
-module.exports = function() {
+module.exports = function () {
 
-    return {
-        "epsUploadExternalURL" : config.get("eps.epsUploadExternalURL"),
+	return {
+		"epsUploadExternalURL": config.get("eps.epsUploadExternalURL"),
 
-        "epsToken" : config.get("eps.epsToken"),
+		"epsToken": config.get("eps.epsToken"),
 
-        "isEbayDirectUploadEnabled" : config.get("eps.IsEbayDirectUL")
-    };
+		"isEbayDirectUploadEnabled": config.get("eps.IsEbayDirectUL")
+	};
 };
