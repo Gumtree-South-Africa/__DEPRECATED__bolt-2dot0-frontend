@@ -1,7 +1,12 @@
 FROM cs-registry-9425.slc01.dev.ebayc3.com:5000/bolt-docker
 
+#####################################################################
+# bolt-2dot0-frontend build and run app
+#####################################################################
+
 # Add node 
-Requires nodejs g++
+# Requires nodejs g++
+
 
 # Add forever globally - to manage and monitor node process
 RUN npm install -g forever
