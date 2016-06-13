@@ -69,7 +69,7 @@ router.get('/', function (req, res, next) {
 	Q.all(promises)
 	    .then(function (result) {
 
-		var cookiePageVersion = req.cookies.b2dot0Version,
+		let cookiePageVersion = req.cookies.b2dot0Version,
 			defaultPath = 'homepage/views/hbs/homepage_',
 			newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
@@ -127,8 +127,8 @@ router.get('/', function (req, res, next) {
 			modelData.showPopularLocations = false;
 		}
 
-    // Changing Version of template depending of the cookie
-    cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
+		// Changing Version of template depending of the cookie
+		cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
     });
