@@ -15,7 +15,7 @@ var util = require('util'),
 
 module.exports = function(app) {
     return function(err, req, res, next) {
-	    if (!err.hasOwnProperty(status)) {
+	    if (!err.hasOwnProperty('status')) {
 		    err.status = 500;
 	    }
         if (err.status == 0) {

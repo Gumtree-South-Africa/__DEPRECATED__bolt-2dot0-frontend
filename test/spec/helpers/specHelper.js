@@ -6,18 +6,8 @@ let cwd = process.cwd();
 let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
-let keywordService = require(`${cwd}/server/services/keyword`);
-let homepageAdsService = require(`${cwd}/server/services/homepage-ads`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
 let http = require('http');
-
-let serviceMap = {
-	configService: configService,
-	locationService: locationService,
-	categoryService: categoryService,
-	keywordService: keywordService,
-	homepageAdsService: homepageAdsService
-};
 
 /**
  * Takes in a service string and then spies on the method to return the file.
@@ -32,15 +22,11 @@ let serviceMap = {
  * @param fileName file name
  */
 let spyOnService = (service, method, fileName) => {
-	let serviceInstance = serviceMap[service];
-	if (!serviceInstance) {
-		throw new Error(`Service ${service} is not defined.`);
-	}
 	let path = fileName;
 	if (fileName.indexOf('/') === -1) {
 		path = `${cwd}/test/spec/mockData/api/v1/${fileName}`;
 	}
-	spyOn(serviceInstance, method).and.callFake((bapiHeaders) => {
+	spyOn(service, method).and.callFake((bapiHeaders) => {
 		let filePath = path;
 		if (bapiHeaders) {
 			let locale = bapiHeaders.locale;
@@ -70,9 +56,9 @@ let endpointToFileMap = {};
  */
 module.exports.boltSupertest = (route, host) => {
 	let app = require(cwd + '/app');
-	spyOnService('configService', 'getConfigData', `${cwd}/server/config/bapi/config_`);
-	spyOnService('categoryService', 'getCategoriesData', `${cwd}/test/spec/mockData/categories/categories_`);
-	spyOnService('locationService', 'getLocationsData', `${cwd}/test/spec/mockData/locations/locations_`);
+	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
+	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/spec/mockData/categories/categories_`);
+	spyOnService(locationService, 'getLocationsData', `${cwd}/test/spec/mockData/locations/locations_`);
 
 	let fakeEndpoint = (options) => {
 		let path = options.path;
