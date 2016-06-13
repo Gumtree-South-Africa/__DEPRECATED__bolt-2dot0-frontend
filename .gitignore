@@ -50,10 +50,13 @@ public/css
 public/cssmin
 public/maps
 public/jsmin
+public/js/common/bundles
 public/js/precompiled
 target
 bolt-2dot0-frontend*
 screenshots
 logs
 dist
-.idea/
+.idea/*
+!.idea/runConfigurations
+!.idea/codeStyleSettings.xml
