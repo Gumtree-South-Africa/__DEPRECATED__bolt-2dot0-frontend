@@ -1,0 +1,11 @@
+.hp-city-wrapper, .hp-map-wrapper, .hp-province-wrapper,
+.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+	ul{
+		@include columns(2);
+	}
+}
+
+/* Fixes issue of blocking ad in iBazar */
+#flexRghtBucket .item-carousel .item-img-wrap {
+	position: static;
+}

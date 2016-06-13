@@ -1,0 +1,134 @@
+@import "../../../../../partials/common/categoryListBase";
+
+$homepage-ad-height: 14em;
+$homepage-social-container-height: 6em;
+$homepage-blog-height: 14.5;
+$right-column-top: 17em;
+
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+@include to-breakpoint($no-break){
+   @include category-list-to-no-breakpoint;  
+}
+
+
+
+
+//--------------------------------------------------------
+//--------------------------------------------------------
+//  the code bellow fixes the category list on IE8
+//--------------------------------------------------------
+//--------------------------------------------------------
+
+
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+	.category-list {
+		.parent-category{
+			> ul {
+				margin-top: .2em;
+			}
+			
+          &.l1swaptrade a .label,
+          &.l1freebies a .label {
+            padding-left: 0;
+          }
+		}
+	}
+}
+
+//--------------------------------------------------------
+// medium breakpoint starts
+//--------------------------------------------------------
+
+@include in-breakpoint($medium-break){
+   
+}
+
+//--------------------------------------------------------
+// large breakpoint starts
+//--------------------------------------------------------
+@include to-breakpoint($lt-ie9-class-name) {
+	
+	li[data-ct-id='rightBucket'] { // right bucket
+		position:relative;
+		display:inline-block;
+		right:-70%;
+		width:30%;
+	}
+    .category-list{
+        position:relative;
+        margin-top: .5em;
+        height:80em;
+        .parent-category{
+            position:absolute;
+            
+            //column1
+            //&.l1category5{
+            //}
+            &.l1category2{
+                @include column-border-top;
+                top: 14em;
+            }
+            &.l1category8019{
+                @include column-border-top;
+                top: 32em;
+            }
+            
+            &.l1swaptrade{
+                @include column-border-top;
+                top: 53em;
+            }
+            
+            &.l1freebies{
+                @include column-border-top;
+                top: 57em;
+            }
+
+            $column2left: 23%;
+            //column2
+            &.l1category4{
+                left:$column2left;
+            }
+            
+            &.l1category6{
+                @include column-border-top;
+                top:30em;
+                left:$column2left;
+            }
+            
+            $column3left: 47%;
+            //column3
+            &.l1category8{
+                left:$column3left;
+            }
+            
+            &.l1category9{
+                @include column-border-top;
+                top:38em;
+                left:$column3left;
+            }
+        }
+    }
+    
+}
+
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+@include in-breakpoint($lt-ie9-class-name) {
+    .category-list {
+        .parent-category{
+           > a{
+              .icon{
+                   height:1.2em;
+              }
+           }
+
+        }
+    }
+}
+

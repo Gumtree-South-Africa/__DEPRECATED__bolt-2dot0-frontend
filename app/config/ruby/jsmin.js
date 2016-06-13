@@ -1,6 +1,7 @@
-//former uglify.js 
+//former uglify.js
 
 var rootDir = process.cwd();
+
 
 module.exports =
   [

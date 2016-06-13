@@ -1,0 +1,105 @@
+@import 
+    "../../theme",
+    "../partials/pages/Homepage/categoryListHack", 
+    "../partials/pages/Homepage/categoryDisplay";
+     
+
+@import "../../../partials/pages/Homepage/pageMain",
+		"../../../partials/pages/Homepage/carouselExt",
+		"../../../partials/pages/Homepage/carouselExtMain",
+        "../../../partials/shared/locationMapCountry";
+
+
+
+// For MX, don't show the ad count in the category container area.
+// It is currently shown in the PostAdSpace.html file. See also _search.scss
+// Fixes BOLT-12091
+/*
+.hp-total-ad-count {
+  display: none;
+}
+*/
+
+.homepagewrapper{
+display:none;
+}
+
+@include in-breakpoint($no-break) {
+  .page{
+      padding-left :0;
+      padding-right :0; 
+      }
+  }
+
+@include to-breakpoint($medium-break) {
+  .hp-province-wrapper {
+    ul.location-list li {
+      height: 40px;
+    }
+  }
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+  // Highlight for locations (provinces/states).
+  .locHighlight, .locHighlight:hover, .locHighlight:visited {
+    background-color : #FF9933;
+  }
+}
+
+// Variable for the map images path.
+$map-url: url(../../../../../images/es_AR/MAP/ar_sprite.gif);
+$tablet-map-url: url(../../../../../images/es_AR/MAP/ar_map3_tablet_bg.png);
+@include country-homepage-map;
+
+// Map optimization class
+#completeMap.focusState { background: no-repeat top center; }
+
+#completeMap.Buenos_Aires { background-image: url("../../../../../images/es_AR/MAP/locations/Buenos_Aires.png"); }
+#completeMap.Capital_Federal { background-image: url("../../../../../images/es_AR/MAP/locations/Capital_Federal.png"); }
+#completeMap.Catamarca { background-image: url("../../../../../images/es_AR/MAP/locations/Catamarca.png"); }
+#completeMap.Chaco { background-image: url("../../../../../images/es_AR/MAP/locations/Chaco.png"); }
+#completeMap.Chubut { background-image: url("../../../../../images/es_AR/MAP/locations/Chubut.png"); }
+#completeMap.Cordoba { background-image: url("../../../../../images/es_AR/MAP/locations/Cordoba.png"); }
+#completeMap.Corrientes { background-image: url("../../../../../images/es_AR/MAP/locations/Corrientes.png"); }
+#completeMap.Entre_Rios { background-image: url("../../../../../images/es_AR/MAP/locations/Entre_Rios.png"); }
+#completeMap.Formosa { background-image: url("../../../../../images/es_AR/MAP/locations/Formosa.png"); }
+#completeMap.Jujuy { background-image: url("../../../../../images/es_AR/MAP/locations/Jujuy.png"); }
+#completeMap.La_Pampa { background-image: url("../../../../../images/es_AR/MAP/locations/La_Pampa.png"); }
+#completeMap.La_Rioja { background-image: url("../../../../../images/es_AR/MAP/locations/La_Rioja.png"); }
+#completeMap.Mendoza { background-image: url("../../../../../images/es_AR/MAP/locations/Mendoza.png"); }
+#completeMap.Misiones { background-image: url("../../../../../images/es_AR/MAP/locations/Misiones.png"); }
+#completeMap.Neuquen { background-image: url("../../../../../images/es_AR/MAP/locations/Neuquen.png"); }
+#completeMap.Rio_Negro { background-image: url("../../../../../images/es_AR/MAP/locations/Rio_Negro.png"); }
+#completeMap.Salta { background-image: url("../../../../../images/es_AR/MAP/locations/Salta.png"); }
+#completeMap.San_Juan { background-image: url("../../../../../images/es_AR/MAP/locations/San_Juan.png"); }
+#completeMap.San_Luis { background-image: url("../../../../../images/es_AR/MAP/locations/San_Luis.png"); }
+#completeMap.Santa_Cruz { background-image: url("../../../../../images/es_AR/MAP/locations/Santa_Cruz.png"); }
+#completeMap.Santa_Fe { background-image: url("../../../../../images/es_AR/MAP/locations/Santa_Fe.png"); }
+#completeMap.Santiago_Del_Estero { background-image: url("../../../../../images/es_AR/MAP/locations/Santiago_Del_Estero.png"); }
+#completeMap.Tierra_Del_Fuego { background-image: url("../../../../../images/es_AR/MAP/locations/Tierra_Del_Fuego.png"); }
+#completeMap.Tucuman { background-image: url("../../../../../images/es_AR/MAP/locations/Tucuman.png"); }
+
+.header.diff{  
+  @include in-breakpoint($no-break) {
+    .right .post a {
+      padding-top: 0.4em;
+      @include border-radius(0.25em);
+    }
+  }
+}
+
+// After the country-homepage-map mixin inclusion override dimensions of the country map.
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  // New map coordinates for Vivanuncios.
+  .hp-map-wrapper .mapbox {
+    width: 485px;
+    height: 385px;
+  }
+
+  .hp-province-wrapper {
+    margin-right: 0;
+    padding: 0;
+  }
+}
+
+

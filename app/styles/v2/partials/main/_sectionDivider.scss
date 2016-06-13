@@ -1,0 +1,29 @@
+
+
+.section-divider{
+
+    overflow: hidden;
+    padding: 0.5em 1.25em;
+    margin-top: 2em;
+	font-size: $font-size-micro;
+	background-color: $section-divider-bg-color;
+	padding-left: 1em;
+    clear:both;
+
+    @include border-radius(5px 5px 0 0);
+
+	.cta {
+		@include section-divider-cta;
+	}
+}
+
+ .section-divider-gallery{
+     background-color: red; //$section-divider-bg-color;
+     height: 1em;
+     clear:both;
+     
+       .cta {
+		@include section-divider-cta;
+	}
+ }
+

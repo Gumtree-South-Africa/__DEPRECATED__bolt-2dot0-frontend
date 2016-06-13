@@ -3,6 +3,9 @@
 // ////////////////////////////////////////////////
 // devlop Tasks
 // ///////////////////////////////////////////////
+
+var nodemon = require('gulp-nodemon');
+
 module.exports = function watch(gulp, plugins) {
   return function(){
     gulp.task('develop', function () {

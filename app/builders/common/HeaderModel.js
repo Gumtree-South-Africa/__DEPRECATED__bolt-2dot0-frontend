@@ -26,7 +26,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
-
+	this.b2dot0Version = req.cookies['b2dot0Version'];
 	// Local variables
 	this.secure = secure;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -40,6 +40,7 @@ var HeaderModel = function (secure, req, res) {
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 
 	this.userCookieData = req.app.locals.userCookieData;
+
 	this.bapiHeaders = {
 		'requestId'         :   req.app.locals.requestId,
 		'ip'                :   req.app.locals.ip,
@@ -48,7 +49,7 @@ var HeaderModel = function (secure, req, res) {
 		'locale'            :   this.locale,
 		'authTokenValue'    :   this.authCookie
 	};
-	
+
 	this.i18n = req.i18n;
 
 };
@@ -163,23 +164,30 @@ HeaderModel.prototype.buildUrl = function(data) {
 HeaderModel.prototype.buildCss = function(data) {
 	var scope = this;
 
+	var b2dot0Ver = 'v1' //by default
+	if((typeof scope.b2dot0Version !== 'undefined') && scope.b2dot0Version == '2.0'){
+		b2dot0Ver = 'v2';
+	}
+
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
 
-	if (deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
-	} else {
-		data.localeCSSPath = data.baseCSSUrl + 'all/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+	if(deviceDetection.isMobile()) {
+		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+	else{
+		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
+	}
+	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + scope.brandName + '/' + scope.country + '/' + scope.locale;
 
 	data.containerCSS = [];
-	if (data.min) {
+	if(data.min) {
 		data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
-	} else {
+	}
+	else{
 		data.containerCSS.push(data.localeCSSPath + '/Main.css');
 	}
 };

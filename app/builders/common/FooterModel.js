@@ -9,6 +9,7 @@ var ModelBuilder = require('./ModelBuilder');
 
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
+var jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
 
 /**
  * @description A class that Handles the Footer Model
@@ -92,28 +93,9 @@ FooterModel.prototype.buildJs = function(data) {
 			data.javascripts.push(jsFile);
 		});*/
 
-		//todo: remove this after Nacer adds minfication.
-
-		data.javascripts.push(data.baseJSUrl + 'libraries/jQuery/jquery-2.0.0.min.js');
-		data.javascripts.push(data.baseJSUrl + 'bower-components/requirejs/require.js');
-		data.javascripts.push(data.baseJSUrl + 'libraries/jQuery/plugins/jquery.smartbanner.js');
-		data.javascripts.push(data.baseJSUrl + 'common/utils/StringUtils.js');
-		data.javascripts.push(data.baseJSUrl + 'common/utils/JQueryUtil.js');
-		data.javascripts.push(data.baseJSUrl + 'common/device/MatchMedia.js');
-		data.javascripts.push(data.baseJSUrl + 'common/tracking/GoogleTag.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/main.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/json.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/cookie.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/storage.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/overlay.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/i18n.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/html5.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/Search.js');
-		data.javascripts.push(data.baseJSUrl + 'common/banners/GoogleTagBanner.js');
-		data.javascripts.push(data.baseJSUrl + 'common/banners/BannerCookie.js');
-		data.javascripts.push(data.baseJSUrl + 'common/tracking/Analytics.js');
-	//	data.javascripts.push(data.baseJSUrl + 'common/header/Header.js');
-		data.javascripts.push(data.baseJSUrl + 'common/header/searchbar.js');
+		for(var k = 0; k < jsmin[0].src.length; k++){
+			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
+		}
 
 		// @todo: Need to determine a way to detect which components will be used for a
 		// given page.

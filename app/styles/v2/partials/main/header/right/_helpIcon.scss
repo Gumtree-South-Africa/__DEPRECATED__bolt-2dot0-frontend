@@ -1,0 +1,16 @@
+$header-help-icon: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABcAAAAXCAYAAADgKtSgAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAALQSURBVEiJpZVBSFRBGMd/83bNDlEYRu8VQtBBsQ4Lm2U1mMcOQRElKF2E6C0WFQhCEdQlixSKQh0PQdStEgoigkqhXcFQCeoiiBmIjmV1sou4bzq82XDt7a7UH4b35n3f/Oeb733ff4Qxhih4qcw64ACQtKMSMEAMmAXGgHFgRCsZRHGIKHIvlUkA3cAQMAqMayV/rLB7dsN6IAGc10p+LkrupTIx4BJQC1zQSi5EHis/kB1AL/AC6NNK/iF0VhEPAFNayZa1EANoJb8AR4ANwKM8ozEGYwyun77i+unm3Pxfhuun210/3ZqbC2NMLscdWsmWyKOfGd4lHHMQqA0EH7Nx8Wrh3sG5iBQ5wHOgTSs5I1w/vQ54CTSvToVoehLbutm7JuDyyhRaPJ73ZLO5Sl6leKnMTuAWcMIhLLehqBxvq9hSIaDFEo8BT4Gf1tzkzg0fivgHU8AcUO0QltRoVDpm+xu/ZwkOG8RprWSdVvKkgXM5uxHBxqh1li8Zt+QPCjjxTTVMApMAm/03m8qd9T5hsf0KYtm3BZaNA6fjQOXKBimE7WffVZWL9a8xVAOLRgRHv/U0LhZwnwBqHCC6/1chm411AtXAV8fE6ub7GgYL+Wols0CZQ6gVJeEI49rXgdn+/RPFfL1UpgxYcoBZqxVFERDcEIK7xvBwDbHsBj7lSixZynu+r2HQWV7umu+X79dAngTGHMI/W1/K20tlbmZj8RnPz9xfA/m+HPkIkLDqVgSiLnywt0QQCSCulZx2rNCfB3qtNkTCcWgTQnQGcKoIcTnQBbQDearY5vrpjv9UxW7XTx/LU0W7qyDU4w/A7UJXV5GIrwNlWskLue9/XXNeKtMKHAcuWhEqRZywqejRSj5baSt0h1YBdwjVbZSwoia0klnbILsJy20fEAfatZI/V/NEktsNBGG7J4E9QA1QBiwBnwj7Y0wrOV3oVL8BCe99Gy8qL+EAAAAASUVORK5CYII=) !default;
+
+
+.help{ width:$header-post-button-height; height:$header-post-button-height; background:$header-help-icon center no-repeat; overflow:hidden;
+
+    a{ width:100%; height:100%; display:block; text-indent:9999px; cursor:pointer; }
+}
+
+
+
+
+@include to-breakpoint($small-break){
+
+    .help{ display:none; }
+
+}

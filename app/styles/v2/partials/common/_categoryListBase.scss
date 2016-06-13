@@ -1,0 +1,111 @@
+@import "../base";
+
+@mixin column-border-top(){
+    margin-top: $large-margin;
+    padding-top: $large-margin;
+    border-top: 1px solid $color-black-10;
+}
+
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+@mixin category-list-to-no-breakpoint(){
+    .category-list{
+        .parent-category{
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 1px solid $color-black-10;
+            line-height: 1.5em;
+            .label {
+                padding-left: 2em;
+            }
+            &:nth-child(1){
+                border-top:none;
+            }
+            > a {
+                padding: 0.5em 1em;
+                text-decoration: none;
+                font-size:$fontSize-title;
+                .icon{
+                    top: 0.5em;
+                    height:1.4em;
+                    width:1.4em;
+                }
+                .arrow{
+                    display: inline-block;
+                    width: 1em;
+                    height: 1.1em;
+
+                    position: absolute;
+                    right: 0;
+                    top: 30%;
+                    text-align: center;
+                    line-height: 2.5;
+
+                }
+            }
+            ul{
+                display: none;
+                padding: 0;
+                &.visible{
+                    display: block;
+                }
+                li.all-label{
+                    position:relative;
+                    display: block;
+                    color:$link-color;
+                    text-decoration:none;
+                    padding-left:2.75em;
+                    line-height: 2.724609375em;
+                    cursor:pointer;
+                    border-top: 1px solid $color-black-10;
+                }
+                li.all-label:hover{
+                    text-decoration:underline;
+                    color:$link-hover-color;
+                    background-color:$content-link-bg-color;
+                }
+                a {
+                    display: block;
+                    padding-left: 2.75em;
+                    line-height: 2.724609375em;
+                    border-top: 1px solid $color-black-10;
+                }
+            }
+        }
+    }
+}
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+.category-list{
+    font-size: 110%;
+    @include clearfix;
+    .parent-category{
+        > a{
+            font-size:$fontSize-HP-Category-L1;
+            position: relative;
+            display: block;
+            .icon{
+                position: absolute;
+                text-align: right;
+                width: 100%;
+                display: block;
+                height: 100%;
+            }
+            .label{
+                @include bold-text;
+                padding-left: 1.75em;
+            }
+            .arrow{ display:none; }
+            &:hover .icon{
+                color: $color-orange;
+            }
+        }
+        ul{
+            li.all-label{
+                display:none;
+            }
+        }
+    }
+}
