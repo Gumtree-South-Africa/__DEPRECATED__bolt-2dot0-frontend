@@ -2,15 +2,16 @@
 	"env": {
 		//remove either of the lines below if you don't need it
 		//enable nodejs environment
-		"node": 1,
+		"node": true,
 		//enable browser environment
-		"browser": 1,
-		"es6": true
+		"browser": true,
+		"es6": true,
+		"jquery": true
 	},
 
 	"globals": {
 		//place settings for globals here, such as
-		"exampleGlobalVariable": true
+		"requirejs": true
 	},
 	"rules": {
 		//    "off" or 0 - turn the rule off
@@ -106,6 +107,7 @@
 			"1tbs"
 		],
 		"camelcase": 2,
+		"consistent-this": [2, "_this"],
 		"eol-last": 0,
 		"padded-blocks": [
 			1,
