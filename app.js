@@ -42,8 +42,7 @@ var siteCount = 0;
 let createSiteApps = () => {
 	let configPromises = [];
 	let siteApps = [];
-	Object.keys(config.sites).forEach(function(siteKey) {
-	var siteObj = config.sites[siteKey];
+	_.each(config.sites, (siteObj) => {
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
