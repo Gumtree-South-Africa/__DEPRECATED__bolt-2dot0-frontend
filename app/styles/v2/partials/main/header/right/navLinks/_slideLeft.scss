@@ -1,0 +1,139 @@
+$header-nav-display: block !default;
+$header-nav-link-color: cyan !default;
+$header-nav-border-color: #ccc !default;
+$header-nav-profile-padding:0 1em 0 0 !default;
+$header-nav-profile-width: 9.5em !default;
+$header-nav-profile-width-end: 17em !default;
+
+@mixin navLinks-slideLeft(){
+
+
+    .nav{ height:auto; width:$header-nav-profile-width; border:1px solid transparent; @include transition(width 150ms,border-color 150ms);
+
+        ul{ position:absolute; left:0; top:100%; min-width:100%; }
+
+        .profile{ font-size:1em; color:$header-nav-link-color; padding:$header-nav-profile-padding; background-color:$header-background; @include transition(padding 150ms);
+
+            // this makes the navigation bar more compact on mobile
+            @include in-breakpoint($no-break){ padding:{ left:0.75em; right:0.75em; } }
+
+            @include header-caret;
+
+            a{ display:block; text-align:right; text-decoration:none; color:$header-nav-link-color; white-space:nowrap; overflow:hidden; height:$header-post-button-height; line-height:$header-post-button-height;
+
+                span{ color:inherit; }
+            }
+
+
+            .icon{ display:inline-block; background:center no-repeat; width:1.5em; height:1.5em; background-size:cover; vertical-align:text-bottom; position:relative;
+
+	            span{ position:absolute; left:0; top:0; width:100%; height:100%; }
+
+	            .icon-header-profile-out{ display:block; }
+	            .icon-header-profile-over{ display:none; }
+
+                &.has-profile-image {
+                  @include border-radius(1em);
+                  @include background-size(cover);
+	              span { display:none; }
+                }
+            }
+
+
+            &:hover{background-color:$header-nav-link-color;
+
+                a { color:$color-white; }
+
+                .icon {
+                    .icon-header-profile-out{ display:none; }
+                    .icon-header-profile-over{ display:block; }
+
+                    &.has-profile-image {
+                        border: 2px solid green;
+                        .icon-header-profile-out, .icon-header-profile-over {
+                          display: none;
+                      }
+                    }
+                }
+            }
+        }
+
+        ul{ display:none; }
+
+        li a{ display:block; padding:1em 1.5em; background:$header-background; border-top:1px solid $header-nav-border-color; text-decoration:none; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; color:$header-nav-link-color;
+
+            // this makes the navigation bar more compact on mobile
+            @include in-breakpoint($no-break){ padding:0.75em; }
+
+            &:hover{ background-color:$header-nav-link-color; color:$color-white; }
+        }
+
+
+        &.active,
+        &:hover{ border-color:$header-nav-border-color; @include box-shadow(0 2px 5px $color-black-15); width:$header-nav-profile-width-end;
+
+            .profile{ padding:0 1.5em;
+
+                a{ text-align:left; }
+
+                &:after{ display:none; }
+
+            }
+
+            ul{ display:block; @include box-shadow(0 2px 5px $color-black-15); }
+
+        }
+
+
+        &.touched,
+        &.untouched{ position:absolute; z-index:1;
+
+            // not sure why on tablet, the navigation is too close to the post
+            // button, so we're giving it a small right margin
+            @include in-breakpoint($small-break){ margin-right:1em; }
+
+            @include in-breakpoint($no-break){ right:9em; }
+            @include in-breakpoint($small-break){ right:14em; }
+            @include in-breakpoint($medium-break){ right:17em; }
+            @include from-breakpoint($large-break){ right:23em; }
+        }
+
+        &.untouched{ width:4em !important; @include box-shadow(none); border-color:transparent;
+
+            .profile{ padding:$header-nav-profile-padding; background-color:$header-background;
+
+                a{ text-align:right; color:$header-nav-link-color; }
+
+                &:after{ display:block; }
+
+                .icon{
+                    .icon-header-profile-out{ display:block; }
+                    .icon-header-profile-over{ display:none; }
+                }
+
+                .label{ display:none; }
+            }
+
+            ul{ display:none; }
+        }
+
+    }
+
+
+    @include to-breakpoint($no-break){
+
+        .nav{ width:4em;
+
+            .profile span{ display: none; }
+
+            &.active,
+            &:hover{ width:13em;
+
+                .profile span{ display: inline-block; }
+            }
+        }
+
+    }
+
+
+}

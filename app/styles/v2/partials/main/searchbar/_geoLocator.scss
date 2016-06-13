@@ -1,0 +1,45 @@
+$geolocator-color: cyan !default;
+$geolocator-link-color: cyan !default;
+$geolocator-link-bullet-color: $geolocator-link-color !default;
+
+.location-selector.hide {
+    display: none;
+}
+
+.geo-locator{ margin-top:0.5em; color:$geolocator-color; cursor:pointer; display:none;
+
+    .icon{ display:inline-block; width:1em; height:1.25em; margin-right:0.25em; position:relative; vertical-align:text-bottom;
+        span{ position:absolute; left:0; top:0; width:100%; height:100%; }
+    }
+
+}
+
+
+
+
+
+.geo-locator-selector{ width:100%; height:100%; position:fixed; left:0; top:0;  z-index:20; background-color:$color-black-50; padding:2em;
+
+    div{ max-height:100%; @include border-radius(0.25em); background:$color-white; @include box-shadow(0 3px 5px $color-black-50); max-width:300px; margin:0 auto; overflow:auto;
+
+        a{ display:block; padding:0.5em 1em 0.5em 2.5em; border-top:1px solid $color-black-15; position:relative; text-decoration:none; color:$geolocator-link-color;
+
+            &:before{ content:" "; position:absolute; left:0.75em; top:50%; margin-top:-0.5em; width:1em; height:1em; @include border-radius(1em); border:1px solid $color-black-30; }
+
+            &.active:before{ background-color:$geolocator-link-bullet-color; }
+
+            &:hover,
+            &:focus{ background:$color-black-10; }
+
+            &:first-child{ border-top:none; }
+        }
+    }
+}
+
+
+
+@include to-breakpoint($small-break){
+
+    .geo-locator{ display:block; }
+
+}

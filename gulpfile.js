@@ -8,18 +8,14 @@
 var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
-	del = require('del');
-nodemon = require('gulp-nodemon'),
+	del = require('del'),
 	plumber = require('gulp-plumber'),
 	jscs = require('gulp-jscs'),
-	jshint = require('gulp-jshint'),
-	jsonlint = require('gulp-jsonlint'),
 	livereload = require('gulp-livereload'),
 	handlebars = require('gulp-handlebars'),
 	notify = require('gulp-notify'),
 	declare = require('gulp-declare'),
 	copy = require('gulp-copy'),
-	path = require('path'),
 	env = require('gulp-env'),
 	walkdir = require('walkdir'),
 	argv = require('yargs').argv,
@@ -29,17 +25,14 @@ nodemon = require('gulp-nodemon'),
 	compass = require('gulp-compass'),
 	jasmineNode = require('gulp-jasmine-node'),
 	jasmineBrowser = require('gulp-jasmine-browser'),
-	gulpicon = require("gulpicon/tasks/gulpicon"),
 	clean = require('gulp-clean'),
 	tar = require('gulp-tar'),
 	gzip = require('gulp-gzip'),
 	asynch = require('async'),
 	bump = require('gulp-bump'),
-	es = require('event-stream'),
 	gulpif = require('gulp-if'),
 	rename = require('gulp-rename'),
 	cssmin = require('gulp-cssmin'),
-	through2 = require('through2'),
 	conventionalChangelog = require('gulp-conventional-changelog'),
 	conventionalGithubReleaser = require('conventional-github-releaser'),
 	gutil = require('gulp-util'),
@@ -82,14 +75,16 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('jscs', getTask('jscs'));
 gulp.task('watch', getTask('watch'));
 
-// DEFAULT is used by Developers
-gulp.task('default', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint', 'develop', 'watch']);
-
 // PRE-COMMIT
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
 gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+
+// DEFAULT is used by Developers
+gulp.task('default', function (done) {
+    runSequence('build', ['develop', 'watch'], done);
+});
 
 // TEST
 gulp.task('jasmine', getTask('jasmine'));

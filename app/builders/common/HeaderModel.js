@@ -11,6 +11,8 @@ var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
 
+var userService = require(process.cwd() + '/server/services/user');
+
 /**
  * @description A class that Handles the Header Model
  * @constructor
@@ -24,7 +26,7 @@ var HeaderModel = function (secure, req, res) {
 	var searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
-
+	this.b2dot0Version = req.cookies['b2dot0Version'];
 	// Local variables
 	this.secure = secure;
 	this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -37,8 +39,16 @@ var HeaderModel = function (secure, req, res) {
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
 
-	this.requestId = req.app.locals.requestId;
 	this.userCookieData = req.app.locals.userCookieData;
+
+	this.bapiHeaders = {
+		'requestId'         :   req.app.locals.requestId,
+		'ip'                :   req.app.locals.ip,
+		'machineid'         :   req.app.locals.machineid,
+		'useragent'         :   req.app.locals.useragent,
+		'locale'            :   this.locale,
+		'authTokenValue'    :   this.authCookie
+	};
 
 	this.i18n = req.i18n;
 
@@ -106,7 +116,22 @@ HeaderModel.prototype.getHeaderData = function () {
 					_.extend(data, _this.userCookieData);
 
 					// build user profile
+
 					_this.buildProfile(data);
+				} else {
+					Q(userService.getUserFromCookie(_this.bapiHeaders))
+						.then(function (dataReturned) {
+							if (! _.isEmpty(dataReturned)) {
+								// merge user cookie data
+								_.extend(data, dataReturned);
+
+								// build user profile
+								_this.buildProfile(data);
+							}
+						}).fail(function (err) {
+							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
+						});
+
 				}
 			}
 
@@ -139,23 +164,32 @@ HeaderModel.prototype.buildUrl = function (data) {
 //Build CSS
 HeaderModel.prototype.buildCss = function (data) {
 
+	var b2dot0Ver = 'v1' //by default
+	if((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version == '2.0'){
+		b2dot0Ver = 'v2';
+	}
+
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + this.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + this.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css');
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css';
 
-	if (deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + this.brandName + '/' + this.country + '/' + this.locale;
-	} else {
-		data.localeCSSPath = data.baseCSSUrl + 'all/' + this.brandName + '/' + this.country + '/' + this.locale;
+
+	if(deviceDetection.isMobile()) {
+		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + this.brandName + '/' + this.country + '/' + this.locale;
+	else{
+		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+	}
+	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+
 
 	data.containerCSS = [];
-	if (data.min) {
+	if(data.min) {
 		data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
-	} else {
+	}
+	else{
 		data.containerCSS.push(data.localeCSSPath + '/Main.css');
 	}
 };

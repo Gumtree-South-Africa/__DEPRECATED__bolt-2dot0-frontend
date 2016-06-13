@@ -1,0 +1,42 @@
+$searchbar-wrap-background:cyan !default;
+$searchbar-wrap-border: none !default;
+$searchbar-wrap-border-top: $searchbar-wrap-border !default;
+$searchbar-wrap-border-right: $searchbar-wrap-border !default;
+$searchbar-wrap-border-left: $searchbar-wrap-border !default;
+$searchbar-wrap-border-bottom: $searchbar-wrap-border !default;
+$searchbar-wrap-width: auto !default;
+$searchbar-wrap-padding: 0.5em 1em !default;
+$searchbar-form-mobile-padding: 0 !default;
+$searchbar-form-tablet-padding: 0 !default;
+$searchbar-form-desktop-padding: 0 !default;
+
+.wrap{ max-width:$searchbar-wrap-width; margin:0 auto; background-color:$searchbar-wrap-background; position:relative; z-index:1; padding:$searchbar-wrap-padding;
+    border:{
+        top:$searchbar-wrap-border-top;
+        left:$searchbar-wrap-border-left;
+        right:$searchbar-wrap-border-right;
+        bottom:$searchbar-wrap-border-bottom;
+    }
+
+
+    @include to-breakpoint($medium-break){
+        padding: {
+            left:1em;
+            right:1em;
+        }
+    }
+
+    form{ padding:$searchbar-form-mobile-padding;
+
+        @include from-breakpoint($small-break){
+            padding:$searchbar-form-tablet-padding;
+        }
+
+        @include from-breakpoint($large-break){
+            padding:$searchbar-form-desktop-padding;
+        }
+    }
+
+}
+
+

@@ -6,6 +6,7 @@
 
 
 var bundles = require(process.cwd() + '/app/config/ruby/jsmin.js');
+var es = require('event-stream');
 
 module.exports = function watch(gulp, plugins) {
 	return function(){

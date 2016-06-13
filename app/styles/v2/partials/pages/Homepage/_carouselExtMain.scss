@@ -1,0 +1,327 @@
+//since this component is used only for violet, it should be moved under es_MX
+@include from-breakpoint($small-break, $lt-ie9-class-name){ // carousel is turned off for  mobile break point for violet. making sure not to include the CSS as well
+	body {
+	  margin: 0;
+	}
+	.product-carousel-container {
+	  background: #F4F5F7;
+	  border-radius: 6px;
+	  color: #333;
+	  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+	  font-size: 12px;
+	  padding: 20px 65px 15px;
+	  position: relative;
+	  a{
+	  	color: #333;
+	  	&:hover{
+	  		text-decoration: none;
+	  	}
+	  }
+	}
+	@media screen and (max-width:768px) {
+	  .no-touch .product-carousel-container, 
+	  .touch .product-carousel-container {
+	    padding: 25px 20px 20px;
+	  }
+	}
+	@media screen and (max-width:480px) {
+	  .product-carousel-container {
+	    padding: 10px 20px;
+	  }
+	}.product-carousel__slide,
+	.product-carousel__slide--ads {
+	  background: #FFF;
+	  border: 1px solid #DDD;
+	  border-radius: 3px;
+	  cursor: pointer;
+	  display: block;
+	  height: 189px;
+	  margin: 0 5px;
+	  padding: 6px;
+	}
+	.product-carousel__slide:hover,
+	.product-carousel__slide--ads:hover {
+	  background: #F9FAFB;
+	  border-color: #EAEBEC;
+	}
+	.product-carousel__image {
+	  background: #DDD;
+	  margin-bottom: 4px;
+	  height: 130px;
+	  overflow: hidden;
+	  position: relative;
+	  text-align: center;
+	}
+	@media screen and (max-width:768px) {
+	  .product-carousel__image {
+	    height: 90px;
+	  }
+	}
+	
+	@media screen and (max-width:480px) {
+	  .product-carousel__image {
+	    height: 75px;
+	  }
+	
+	  .product-carousel__slide,
+	  .product-carousel__slide--ads {
+	    margin: 0 2px;
+	  }
+	}
+	
+	.product-carousel__image img {
+	  border: 0 none;
+	  display: inline-block;
+	  max-width: 100%;
+	  height: auto;
+	  position: absolute;
+	  top: 0;
+	  bottom: 0;
+	  left: 0;
+	  right: 0;
+	  margin: auto;
+	}
+	.product-carousel__body {
+	  margin-bottom: 8px;
+	}
+	.product-carousel__star {
+	  background: url(../images/carousel-icon-star.png) no-repeat center;
+	  display: inline-block;
+	  height: 22px;
+	  margin-right: 5px;
+	  text-decoration: none;
+	  width: 22px;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
+	  .product-carousel__star {
+	    background: url(../images/carousel-icon-star@2x.png) no-repeat center;
+	    background-size: 100% 100%;
+	  }
+	}
+	.product-carousel__email {
+	  background: url(../images/carousel-icon-email.png) no-repeat center;
+	  display: inline-block;
+	  height: 22px;
+	  text-decoration: none;
+	  width: 26px;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
+	  .product-carousel__email {
+	    background: url(../images/carousel-icon-email@2x.png) no-repeat center;
+	    background-size: 100% auto;
+	  }
+	}
+	.product-carousel .owl-next, .product-carousel .owl-prev {
+	  bottom: 0;
+	  display: inline-block;
+	  font-size: 0;
+	  height: 100%;
+	  margin: auto;
+	  position: absolute;
+	  top: 0;
+	  text-decoration: none;
+	  text-indent: -9999px;
+	  width: 12px;
+	}
+	@media screen and (max-width:768px) {
+	  .touch .product-carousel .owl-next, .touch .product-carousel .owl-prev {
+	    display: none !important;
+	  }
+	  .no-touch .product-carousel .owl-next/*,
+	  .touch .product-carousel .owl-next*/ {
+	    right: -15px;
+	  }
+	  .no-touch .product-carousel .owl-prev/*,
+	  .touch .product-carousel .owl-prev*/ {
+	    left: -15px;
+	  }
+	}.product-carousel .owl-prev {
+	  background: url('../../../../../images/carousel-arrow-left.png') no-repeat center;
+	  left: -25px;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
+	  .product-carousel .owl-prev {
+	  background: url('../../../../../images/carousel-arrow-left.png') no-repeat center;
+	  background-size: 100% auto;
+	}
+	}.product-carousel .owl-next {
+	  background: url('../../../../../images/carousel-arrow-right.png') no-repeat center;
+	  right: -25px;
+	}
+	@media only screen and (-webkit-min-device-pixel-ratio:1.5), only screen and (min--moz-device-pixel-ratio:1.5), only screen and (min-device-pixel-ratio:1.5) {
+	  .product-carousel .owl-next {
+	  background: url('../../../../../images/carousel-arrow-right.png') no-repeat center;
+	  background-size: 100% auto;
+	}
+	}
+	.product-carousel__name {
+	  overflow: hidden;
+	  text-overflow: ellipsis;
+	  white-space: nowrap;
+	}
+	.owl-stage-outer {position: relative;}
+	.owl-stage-outer:after,
+	.owl-stage-outer:before {
+	  content: '';
+	  box-shadow: 0 0 30px rgba(0,0,0,0.5);
+	  border-radius: 50%;
+	  bottom: 0;
+	  display: block;
+	  height: 100%;
+	  margin: auto;
+	  position: absolute;
+	  right: -15px;
+	  top: 0;
+	  width: 15px;
+	  z-index: 1;
+	}
+	
+	@media screen and (max-width:768px) {
+	  .owl-stage-outer:after,
+	  .owl-stage-outer:before {
+	    height: 85%;
+	  }
+	}
+	
+	.owl-stage-outer:before {
+	  left: -15px;
+	  right: auto;
+	}
+	
+	.product-carousel__ads {
+	  display: block;
+	  font-family: Helvetica, Arial, sans-serif;
+	  font-size: 14px;
+	  font-weight: bold;
+	  text-align: center;
+	  text-decoration: none;
+	  vertical-align: middle;
+	}
+	
+	.product-carousel__ads-banner {
+	  background: #ECECEC;
+	  color: #B6B6B6;
+	  display: block;
+	  margin-bottom: 10px;
+	  padding: 24px 8px;
+	}
+	
+	.product-carousel__ads-banner img {
+	  border: 0 none;
+	  width: 100%;
+	}
+	
+	.product-carousel__ads-image {
+	  display: block;
+	  height: 58px;
+	  margin: 0 auto 8px;
+	  width: 69px;
+	}
+	
+	.product-carousel__ads-button {
+	  background: #4A90E2;
+	  border-radius: 3px;
+	  color: #FFF;
+	  display: block;
+	  padding: 6px 12px 7px;
+	}
+	
+	@media screen and (max-width:768px) {
+	  .product-carousel__slide,
+	  .product-carousel__slide--ads {
+	    height: 136px;
+	  }
+	
+	  .product-carousel__ads {
+	    font-size: 11px;
+	    height: 57px;
+	  }
+	
+	  .product-carousel__ads-banner {
+	    margin-bottom: 5px;
+	    padding: 16px 7px 17px;
+	  }
+	
+	  .product-carousel__footer,
+	  .product-carousel__extra {
+	    display: none;
+	  }
+	
+	  .product-carousel__ads-image {
+	    height: 36px;
+	    width: 44px;
+	  }
+	
+	  .touch .product-carousel {
+	    margin: 0 -20px;
+	  }
+	
+	  .touch .owl-wrapper-outer {
+	    padding: 0 20px;
+	  }
+	}
+	
+	@media screen and (max-width:480px) {
+	  .product-carousel__slide,
+	  .product-carousel__slide--ads {
+	    height: 121px;
+	  }
+	
+	  .product-carousel__ads {
+	    font-size: 10px;
+	  }
+	
+	  .product-carousel__ads-banner {
+	    padding: 9px 2px;
+	  }
+	}
+	
+	.carousel-loading {
+	  background: #FFF url('../../../../../images/loading.gif') no-repeat center;
+	  border-radius: 6px;
+	  bottom: 0;
+	  display: none;
+	  height: 48px;
+	  left: 0;
+	  margin: auto;
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	  width: 48px;
+	}
+	
+	.icon-noImage-img{
+	  background-image:url('../../../../../images/photo-icon.png');
+	  background-repeat: no-repeat;
+	  display: inline-block;
+	  height: 90px;
+	  width: 100%;
+	}
+	
+	@include in-breakpoint($no-break){
+		.product-carousel-container{
+			overflow: hidden;
+		}
+		.owl-carousel .owl-wrapper-outer{
+			width: 120%;
+		}
+		.product-carousel{
+			.owl-next, .owl-prev{
+				display: none;
+			}
+		}
+	}
+	
+	@include in-breakpoint($lt-ie9-class-name){
+		.icon-noImage-img{
+			background-image: none;
+		}
+	}
+}
+
+//carousel is not displayed for mobile break point.
+@include to-breakpoint($no-break) {
+	.product-carousel-container{
+		display:none;
+	}
+}

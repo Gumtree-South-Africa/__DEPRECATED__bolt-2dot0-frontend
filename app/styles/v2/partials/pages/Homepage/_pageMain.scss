@@ -1,0 +1,289 @@
+//$show-susy-grid: true;
+
+
+$homepage-ad-width: 300px !default;
+$homepage-ad-height: 250px !default;
+$homepage-social-container-height: 100px !default;
+
+
+
+@mixin homepage-column-border-top($border-color:$color-black-10){
+	margin-top: $large-margin;
+	padding-top: $large-margin;
+	border-top: 1px solid $border-color;
+}
+
+
+
+//--------------------------------------------------------
+// General rules included throughout all sizes
+//--------------------------------------------------------
+.hp-list-wrapper{
+	padding-bottom: $large-padding;
+}
+
+.hp-content{
+	position: relative;
+	margin-top:.5em;
+}
+
+.hp-recommend-sidebar{
+	//background-color: $color-black-50;
+	text-align: center;
+}
+
+// @social-media
+.social-media-container {
+	text-align: center;
+}
+
+.hp-category-wrapper {
+	position:relative;
+	padding-bottom:3em;
+}
+
+.hp-category-wrapper h1 {
+	position:absolute;
+	bottom:.2em;
+	width:100%;
+	margin-right:310px;
+	@include bold-text;
+	font-size:110%;
+	padding:0.5em 1em;
+}
+
+// For the keywords titles
+.hp-location-wrapper p.subTitle {
+  display: none;
+}
+
+.post-ad-button{
+	display: none;
+	@include homepage-column-border-top($color-black-50);
+
+	a{
+		display: block;
+		text-align: center;
+		text-decoration: none;
+		font-weight:bold;
+		font-size:110%;
+		margin-bottom: 1em;
+	}
+}
+// BOLT-12170
+.post-ad-button .primary-button.postcommercial {
+    background-color: $postad-btn-color;
+}
+
+   
+#home_topbanner{
+	    
+    width:970px;
+    text-align:center;
+    margin:15px auto 0 auto;
+
+	// -------------------------
+	// Fix for orientation change on iPad mini
+	// to avoid overflow on the page when rotating
+	max-width: 100%;
+	overflow: hidden;
+	// -------------------------
+
+}
+
+
+
+#rightBottomBanner{
+	margin-top:1em;
+}
+
+.hp-city-wrapper, .hp-map-wrapper, .hp-province-wrapper,
+.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+	@include homepage-column-border-top($border-color);
+
+	&:last-child{ margin-right:0; }
+
+	h5{
+		@include bold-text;
+		font-size: 110%;
+	}
+
+	ul{
+		width: 100%;
+		display: block;
+		li{
+			@include ellipsis;
+		}
+	}
+}
+
+
+// FB Module in Homepage.
+// Iframe
+.facebook-module {
+  margin-top : 1em;
+  iframe {
+      border : none !important;
+      overflow : hidden;
+      height : 400px !important;
+      border-bottom : 1px solid #AAAAAA !important;
+  }
+}
+
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+@include to-breakpoint($no-break){
+	.post-ad-button{
+		display: block;
+		margin: 0 0 - $grid-padding;
+		padding: $large-padding $grid-padding;
+
+		.primary-button{
+			@include homepage-postad;
+		}
+	}
+
+	.hp-city-wrapper {
+		margin-top: 0;
+	}
+
+	.hp-link-wrapper,
+    .hp-map-wrapper,
+	.hp-city-wrapper, .hp-province-wrapper,
+	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+		padding-left: $grid-padding;
+		padding-right: $grid-padding;
+	}
+	
+	.item-img-wrap{
+		position: relative;
+		top: 1em;
+		margin-bottom:1em;
+		&>div
+		{
+		    margin:0 auto;
+		}
+	}
+	
+	.home_rghtbanner{
+		display:none;
+	}
+	
+
+}
+@media (max-width: 680px) { 
+	 #home_topbanner{
+		 display:none;
+     }
+}
+
+
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	.hp-recommend-sidebar {
+		position: absolute;
+		width: $homepage-ad-width;
+		height: $homepage-ad-height;
+		right: 0;
+		top: 0;
+	}
+
+	.hp-city-wrapper, .hp-province-wrapper,
+	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+		@include span-columns($small-break / 2, $small-break);
+	}
+
+	.hp-category-wrapper h1 {
+		padding:0;
+	}
+}
+
+@include in-breakpoint($small-break){
+
+	#home_topbanner {
+	  text-align: justify;
+	  padding-left: 10px;
+    }
+   
+	.hp-recommend-sidebar {
+		margin-right: 0;
+		text-align: left;
+	}
+	
+	.item-img-wrap{
+		position: relative;
+		
+	}
+
+}
+
+//--------------------------------------------------------
+// medium breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	.hp-city-wrapper, .hp-province-wrapper,
+	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+		ul{ @include columns(3); }
+	}
+	
+	.item-img-wrap{
+		position: relative;
+		
+	}
+
+	#state_Guanajuato, #state_Quintana_Roo{
+		padding-top: 0px;
+	}
+
+  // Highlight for locations (provinces/states).
+  .locHighlight,
+  .locHighlight:hover,
+  .locHighlight:visited {
+    color : #FFFFFF;
+    border-radius: 3px;
+    padding: 4px 0;
+  }
+}
+
+
+//--------------------------------------------------------
+// large breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.hp-city-wrapper, .hp-province-wrapper,
+	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+		@include span-columns($large-break / 2, $large-break);
+		margin-right: 1em;
+		padding:1em;
+	}
+	.item-img-wrap{
+		position: relative;
+		top: 0em;
+	}
+}
+
+@include in-breakpoint($lt-ie10-class-name){
+	.hp-city-wrapper, .hp-map-wrapper, .hp-province-wrapper,
+	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
+		ul{
+			display: block;
+			width: 100%;
+
+			li{
+				display: block;
+				width: 50%;
+				float: left;
+			}
+		}
+	}
+}
+
+
+@include in-breakpoint($lt-ie9-class-name){
+	.hp-province-wrapper{ margin-right:0 !important; }
+}
+
+

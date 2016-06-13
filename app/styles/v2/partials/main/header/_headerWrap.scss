@@ -1,0 +1,24 @@
+$header-wrap-height:auto !default;
+$header-wrap-width:auto !default;
+$header-wrap-padding: 0.5em 1em !default;
+
+
+
+.wrap{ max-width:$header-wrap-width; width:100%; height:$header-wrap-height; margin:0 auto; position:relative; padding:$header-wrap-padding;
+
+
+    // centering content inside (needs to be displayed as a table to vertically align all the elements inside)
+    // --
+    display:table;
+    .elements{ display:table-row; }
+    .left, .right{ display:table-cell; vertical-align:middle; }
+    // --
+
+
+    @include to-breakpoint($medium-break){
+        padding: {
+            left:1em;
+            right:1em;
+        }
+    }
+}

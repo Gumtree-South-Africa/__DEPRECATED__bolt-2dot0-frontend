@@ -55,7 +55,7 @@ PageControllerUtil.prototype.preController = function (req, res) {
     modelData.bapiHeaders.useragent = req.app.locals.useragent;
     modelData.bapiHeaders.locale = res.locals.config.locale;
     modelData.bapiHeaders.authTokenValue = req.cookies.bt_auth;
-	
+
 	return modelData;
 };
 

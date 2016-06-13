@@ -1,0 +1,58 @@
+@import 
+    "../../theme",
+    "../partials/pages/Homepage/categoryListHack",
+	"../partials/pages/Homepage/categoryDisplay";
+	
+@import "../../../partials/pages/Homepage/pageMain",
+		"../../../partials/pages/Homepage/carouselExt",
+		"../../../partials/pages/Homepage/carouselExtMain",
+        "../../../partials/shared/locationMapCountry";
+
+@include to-breakpoint($medium-break) {
+  .hp-province-wrapper {
+    ul.location-list li {
+      height: 40px;
+    }
+  }
+  .homepagewrapper {
+     display:none;
+   }
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+  // Highlight for locations (provinces/states).
+  .locHighlight, .locHighlight:hover, .locHighlight:visited {
+    background-color : #FF9933;
+  }
+}
+
+// Variable for the map images path.
+$map-url: url(../../../../../images/es_AR/MAP/ar_sprite.gif);
+$tablet-map-url: url(../../../../../images/es_AR/MAP/ar_map3_tablet_bg.png);
+@include country-homepage-map;
+
+// After the country-homepage-map mixin inclusion override dimensions of country map.
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  // New map coordinates for Vivanuncios.
+  .hp-map-wrapper .mapbox {
+    width: 485px;
+    height: 385px;
+  }
+
+  .hp-province-wrapper {
+    margin-right: 0;
+    padding: 0;
+  }
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+  .viewport > div.header {
+    .elements .right .post {
+      display: block;
+    }
+  }
+
+  .headerPost {
+    display: none;
+  }
+}

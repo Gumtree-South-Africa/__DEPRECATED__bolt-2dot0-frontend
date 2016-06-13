@@ -149,7 +149,7 @@ function BuildApp(siteObj) {
         /*
          * Bolt 2.0 Authentication
          */
-        app.use(checkAuthentication(siteObj.locale));
+        // app.use(checkAuthentication(siteObj.locale));
 
         // Template hbs caching.
         if (process.env.NODE_ENV) {

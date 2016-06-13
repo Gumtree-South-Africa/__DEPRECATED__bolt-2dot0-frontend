@@ -1,0 +1,242 @@
+@import "../../../../../partials/common/categoryListBase";
+
+$homepage-ad-height: 14em;
+$right-column-top: 35em;
+$posHackX:0.25% !global;
+$posHackY:100em !global;
+$posHackYMax:0em !global;
+$posHackYBuf:2em;
+$posHackLiHeight:1.45em;
+//--------------------------------------------------------
+// no breakpoint
+//--------------------------------------------------------
+
+.category-list {
+  li {
+    &.l1category9290 { // Szukajacy zatrudnienia (Seeking Employment)
+      ul {
+        display: none;  // Hide the L2 for that category.
+      }
+    }
+  }
+}
+
+@include to-breakpoint($no-break){
+   @include category-list-to-no-breakpoint;  
+}
+@mixin bumpTop($height:'reset', $skipDivider:false){
+    border-top: 1px solid transparent;
+    left:$posHackX;
+    top: $posHackY;
+    @if $posHackY != 0em and $skipDivider == false {
+        margin-top: 1em;
+        padding-top: 1em;
+        border-top: 1px solid $color-black-10;
+        $posHackY: ($posHackY + 2em) !global;
+    } @else {
+        margin-top: 0;
+        padding-top: 0;
+        border-top: 1px solid transparent;
+    }
+    $posHackY: ($posHackY + $height) !global;
+    @if $posHackYMax <= $posHackY {
+        $posHackYMax : $posHackY !global;
+    }
+}
+#flexLftBuckt .item {
+    white-space: nowrap;
+}
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+// These values indicate the height in ems of each category container.
+$cat-0002:16.5em;
+$cat-0004:15.0em;
+$cat-0005:22.0em;
+$cat-0006:19.0em;
+$cat-0008:52.0em;
+$cat-0009:46.5em;
+$cat-9124:18.0em;
+$cat-9218:15.0em;
+$cat-9237:17.5em;
+// $cat-9290:20.5em;
+$cat-9290:2.0em;
+$cat-9459:26.0em;
+$cat-9490:16.5em;
+$cat-9541:20.5em;
+$cat-9672:22.0em;
+$cat-9690: 8.0em;
+$cat-9706:10.5em;
+$cat-free: 2.0em;
+$cat-swap: 2.0em;
+$cat-want: 2.0em;
+//--------------------------------------------------------
+// small breakpoint starts
+//--------------------------------------------------------
+@include in-breakpoint($small-break){
+    .category-list{
+        position:relative;
+        .parent-category{
+            position:absolute;
+            //column1
+            $posHackX: 0% !global;
+            $posHackY: 0em !global;
+            $posHackYMax: 0em !global;
+            &.l1category2   { @include bumpTop($cat-0002); } // Nieruchomosci (Real Estate)
+            &.l1category5   { @include bumpTop($cat-0005); } // Motoryzacja (Automotive)
+            &.l1category9218{ @include bumpTop($cat-9218); } // Lodzie i Pojazdy wodne (Boats/Watercraft)
+            &.l1category9237{ @include bumpTop($cat-9237); } // Elektronika (Electronics)
+            &.l1category9124{ @include bumpTop($cat-9124); } // Zwierzaki (Pets)
+            &.l1category6   { @include bumpTop($cat-0006); } // Spolecznosc (Community)
+            &.l1category4   { @include bumpTop($cat-0004); } // Dom i Ogrod (House and Garden)
+            &.l1category9672{ @include bumpTop($cat-9672); } // Antyki i kolekcje (Antiques)
+            &.l1category9459{ @include bumpTop($cat-9459); } // Dla Dziecka (Baby)
+            &.l1category9541{ @include bumpTop($cat-9541); } // Moda (Fashion)
+            &.l1category9690{ @include bumpTop($cat-9690); } // Zdrowie i uroda (Health and beauty)
+            //column2
+            $posHackX: 57% !global;
+            $posHackY: $right-column-top !global;
+            &.l1category9706{ @include bumpTop($cat-9706,true); } // Sport i fitness (Sports and Fitness)
+            &.l1category9490{ @include bumpTop($cat-9490); } // Muzyka i rozrywka (Music and Entertainment)
+            &.l1category8   { @include bumpTop($cat-0008); } // Oferty Pracy (Jobs)
+            &.l1category9290 { @include bumpTop($cat-9290); } // Szukajacy zatrudnienia (Seeking Employment)
+            &.l1category9   { @include bumpTop($cat-0009); } // Uslugi (Services)
+            &.l1wanted      { @include bumpTop($cat-want); } // Poszukiwane (Wanted)
+            &.l1swaptrade   { @include bumpTop($cat-swap); } // Wymiana/zamiana (Exchange/Replacement) or (Swap/Trade)
+            &.l1freebies    { @include bumpTop($cat-free); } // Oddam za darmo (Freebies)
+        }
+        height:$posHackYMax + $posHackYBuf;
+    }
+    li[data-ct-id='rightBucket'] { // right bucket
+        position: relative;
+        left: $posHackX;
+    }
+}
+
+@include from-breakpoint($small-break){
+	.category-list{
+		.parent-category{
+			> ul {
+				margin-top: .2em;
+                li {
+                    line-height:1.45em; // BOLT-16658 FF+IE prevents category group overlapping
+                }
+			}
+            &.l1wanted a .label,
+            &.l1swaptrade a .label,
+            &.l1freebies a .label {
+            padding-left: 0;
+          }
+		}
+	}
+}
+
+//--------------------------------------------------------
+// medium breakpoint starts
+//--------------------------------------------------------
+
+@include from-breakpoint($medium-break){
+    .category-list{
+        position:relative;
+        margin-top: .5em;
+        .parent-category{
+            position:absolute;
+            //column1
+            $posHackX: 0% !global;
+            $posHackY: 0em !global;
+            $posHackYMax: 0em !global;
+            &.l1category2   { @include bumpTop($cat-0002); } // Nieruchomosci (Real Estate)
+            &.l1category5   { @include bumpTop($cat-0005); } // Motoryzacja (Automotive)
+            &.l1category9218{ @include bumpTop($cat-9218); } // Lodzie i Pojazdy wodne (Boats/Watercraft)
+            &.l1category9237{ @include bumpTop($cat-9237); } // Elektronika (Electronics)
+            &.l1category9124{ @include bumpTop($cat-9124); } // Zwierzaki (Pets)
+            &.l1category6   { @include bumpTop($cat-0006); } // Spolecznosc (Community)
+            &.l1category4   { @include bumpTop($cat-0004); } // Dom i Ogrod (House and Garden)
+            &.l1category9672{ @include bumpTop($cat-9672); } // Antyki i kolekcje (Antiques)
+            //column2
+            $posHackX: 37% !global;
+            $posHackY: 0em !global;
+            &.l1category9459{ @include bumpTop($cat-9459); } // Dla Dziecka (Baby)
+            &.l1category9541{ @include bumpTop($cat-9541); } // Moda (Fashion)
+            &.l1category9690{ @include bumpTop($cat-9690); } // Zdrowie i uroda (Health and beauty)
+            &.l1category9706{ @include bumpTop($cat-9706); } // Sport i fitness (Sports and Fitness)
+            &.l1category9490{ @include bumpTop($cat-9490); } // Muzyka i rozrywka (Music and Entertainment)
+            &.l1category8   { @include bumpTop($cat-0008); } // Oferty Pracy (Jobs)
+            //column3
+            $posHackX: 70% !global;
+            $posHackY: $right-column-top !global;
+            &.l1category9290 { @include bumpTop($cat-9290,true); } // Szukajacy zatrudnienia (Seeking Employment)
+            &.l1category9   { @include bumpTop($cat-0009); } // Uslugi (Services)
+            &.l1wanted      { @include bumpTop($cat-want); } // Poszukiwane (Wanted)
+            &.l1swaptrade   { @include bumpTop($cat-swap); } // Wymiana/zamiana (Exchange/Replacement) or (Swap/Trade)
+            &.l1freebies    { @include bumpTop($cat-free); } // Oddam za darmo (Freebies)
+        }
+        height:$posHackYMax + $posHackYBuf;
+    }
+    li[data-ct-id='rightBucket'] { // right bucket
+        position:relative;
+        display:inline-block;
+        right:-$posHackX;
+        width:30%;
+    }
+}
+
+//--------------------------------------------------------
+// large breakpoint starts
+//--------------------------------------------------------
+@include from-breakpoint($large-break){
+    #flexLftBuckt .item {
+		width: 19%;
+	}
+    .category-list{
+        .parent-category{
+            position:absolute;
+            //column1
+            //$posHackW: 23% !global;
+            $posHackX: 0% !global;
+            $posHackY: 0em !global;
+            $posHackYMax: 0em !global;
+            &.l1category2   { @include bumpTop($cat-0002); } // Nieruchomosci (Real Estate)
+            &.l1category5   { @include bumpTop($cat-0005); } // Motoryzacja (Automotive)
+            &.l1category9218{ @include bumpTop($cat-9218); } // Lodzie i Pojazdy wodne (Boats/Watercraft)
+            &.l1category9237{ @include bumpTop($cat-9237); } // Elektronika (Electronics)
+            &.l1category9124{ @include bumpTop($cat-9124); } // Zwierzaki (Pets)
+            &.l1category6   { @include bumpTop($cat-0006); } // Spolecznosc (Community)
+            &.l1category9290{ @include bumpTop($cat-9290); } // Szukajacy zatrudnienia (Seeking Employment)
+            //column2
+            //$posHackW: 21% !global;
+            $posHackX: 26% !global;
+            $posHackY: 0em !global;
+            &.l1category4   { @include bumpTop($cat-0004); } // Dom i Ogrod (House and Garden)
+            &.l1category9672{ @include bumpTop($cat-9672); } // Antyki i kolekcje (Antiques)
+            &.l1category9459{ @include bumpTop($cat-9459); } // Dla Dziecka (Baby)
+            &.l1category9541{ @include bumpTop($cat-9541); } // Moda (Fashion)
+            &.l1category9690{ @include bumpTop($cat-9690); } // Zdrowie i uroda (Health and beauty)
+            &.l1category9706{ @include bumpTop($cat-9706); } // Sport i fitness (Sports and Fitness)
+            &.l1swaptrade   { @include bumpTop($cat-swap); } // Wymiana/zamiana (Exchange/Replacement) or (Swap/Trade)
+            &.l1freebies    { @include bumpTop($cat-free); } // Oddam za darmo (Freebies)
+            &.l1wanted      { @include bumpTop($cat-want); } // Poszukiwane (Wanted)
+            //column3
+            //$posHackW: 23% !global;
+            $posHackX: 49% !global;
+            $posHackY: 0em !global;
+            &.l1category9490{ @include bumpTop($cat-9490); } // Muzyka i rozrywka (Music and Entertainment)
+            &.l1category8   { @include bumpTop($cat-0008); } // Oferty Pracy (Jobs)
+            &.l1category9   { @include bumpTop($cat-0009); } // Uslugi (Services)
+            //column4
+            //$posHackW: 26.5% !global;
+            $posHackX: 73% !global;
+            $posHackY: $right-column-top !global;
+        }
+        position:relative;
+        margin-top: .5em;
+        height:$posHackYMax + $posHackYBuf;
+    }
+    li[data-ct-id='rightBucket'] { // right bucket
+        position:relative;
+        display:inline-block;
+        right:-$posHackX;
+        width:30%;
+    }
+    
+}

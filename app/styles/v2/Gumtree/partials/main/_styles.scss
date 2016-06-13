@@ -1,0 +1,69 @@
+@mixin bolt-background($startColor, $endColor) {
+	background: $endColor;
+	background: -moz-linear-gradient(top,  $startColor 0%, $endColor 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,$startColor), color-stop(100%,$endColor)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  $startColor 0%,$endColor 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  $startColor 0%,$endColor 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  $startColor 0%,$endColor 100%); /* IE10+ */
+	background: linear-gradient(to bottom,  $startColor 0%,$endColor 100%); /* W3C */
+}
+
+// This is used for PostAd button styles etc (base color: orange)
+
+$buttonPrimaryTextColor:#FFF !default;
+$buttonPrimaryGradientColorTop:#FFAC54 !default;
+$buttonPrimaryGradientColorBottom:#FF9720 !default;
+$buttonPrimaryGradientHoverTop:#FCA949 !default;
+$buttonPrimaryGradientHoverBottom:#FCA949 !default;
+$buttonPrimaryGradientFocusTop:#FCA949 !default;
+$buttonPrimaryGradientFocusBottom:#FCA949 !default;
+
+$buttonSecondaryTextColor:#FFF !default;
+$buttonSecondaryGradientColorTop:#FFAC54 !default;
+$buttonSecondaryGradientColorBottom:#FF9720 !default;
+$buttonSecondaryGradientHoverTop:#FCA949 !default;
+$buttonSecondaryGradientHoverBottom:#FCA949 !default;
+$buttonSecondaryGradientFocusTop:#FCA949 !default;
+$buttonSecondaryGradientFocusBottom:#FCA949 !default;
+
+%button-primary {
+	color: $buttonPrimaryTextColor;
+	font-weight:bold;
+	border: none;
+	border-radius:3px;
+	@include bolt-background ($buttonPrimaryGradientColorTop, $buttonPrimaryGradientColorBottom);
+	&:hover{
+		@include bolt-background ($buttonPrimaryGradientHoverTop, $buttonPrimaryGradientHoverBottom);
+	}
+	&:focus {
+		@include bolt-background ($buttonPrimaryGradientFocusTop, $buttonPrimaryGradientFocusBottom);
+	}
+	&.disabled {
+		@include bolt-background(#DDD, #CCC);
+	}
+}
+
+%button-secondary {
+	@include bolt-background ($buttonSecondaryGradientColorTop, $buttonSecondaryGradientColorBottom);
+	box-shadow: none;
+	padding-left: 25px;
+	border-radius:3px;
+	.field {
+		display: inline;
+	}
+	.label {
+		color: $buttonSecondaryTextColor;
+		font-weight: normal !important;
+	}
+	&:hover{
+		@include bolt-background ($buttonSecondaryGradientHoverTop, $buttonSecondaryGradientHoverBottom);
+	}
+	&:focus {
+		@include bolt-background ($buttonSecondaryGradientFocusTop, $buttonSecondaryGradientFocusBottom);
+	}
+	&.disabled {
+		@include bolt-background(#DDD, #CCC);
+	}
+
+}
+

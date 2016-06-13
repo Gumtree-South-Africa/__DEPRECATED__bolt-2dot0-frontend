@@ -1,7 +1,7 @@
 'use strict';
 
 var _ = require('underscore');
-var cuid = require('cuid');
+var uuid = require('node-uuid');
 
 
 module.exports = function() {
@@ -12,7 +12,7 @@ module.exports = function() {
         if (typeof machguidCookie==='undefined' || (typeof machguidCookie !== 'undefined' && _.isEmpty(machguidCookie))) {
             // TODO: check with 1.0 code on how they decrypt machguid
             var now = new Date();
-            machguidCookie = cuid() + '-' + now.getTime().toString(16);
+            machguidCookie = uuid.v4() + '-' + now.getTime().toString(16);
 
             // Set back in cookie
             res.clearCookie(machguidCookieName);

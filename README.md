@@ -52,7 +52,7 @@ Download and install Ruby installer from [here](http://rubyinstaller.org/downloa
 
 #### Compass
     gem install compass -v 1.0.1 --source http://rubygems.org
-    
+
     for China, if get Connection error , you can try :
     gem install compass -v 1.0.1 --source https://ruby.taobao.org/
 
@@ -129,7 +129,7 @@ npm run dev
 
 ### VM Mode (Run app with VM BAPI Server, VM details specidied in vm.json)
 As of now, add below VM to host file:
-10.65.201.202   api.bolt.ecg.ebay.com.sharon-fp003-4464.slc01.dev.ebayc3.com
+10.65.201.202   api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com
 
 ```
 git clone git@github.corp.ebay.com:ecg-global/bolt-2dot0-frontend.git
@@ -145,6 +145,15 @@ cd bolt-2dot0-frontend
 npm run build
 DEBUG=bolt-2dot0-frontend:* npm start
 ```
+
+### Deploy with Page Version
+
+```
+PAGE_VER=v1 npm run vm
+```
+
+PAGE_VER=v1 for Bolt 1.0 look and feel, PAGE_VER=v2 for the redesign version and make sure to drop the cookie by doing so in the console of the browser ```document.cookie="b2dot0Version=2.0"```
+
 
 ### Starting the development server in Production Mode (by setting up environment variables, and clustering the node server)
 

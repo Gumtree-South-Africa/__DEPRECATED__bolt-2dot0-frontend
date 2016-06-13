@@ -38,9 +38,24 @@ router.get('/', function (req, res, next) {
 	var modelData = pageControllerUtil.preController(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
+  // Cookies drop for Version of template
+  function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, modelData){
+    if((typeof pageVersionCookie !== 'undefined') && pageVersionCookie == '2.0'){
+      pageControllerUtil.postController(req, res, next, newPath, modelData);
+    }
+    else{
+      pageControllerUtil.postController(req, res, next, defaultPath, modelData);
+    }
+  }
+
 	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res, modelData);
     model.then(function (result) {
+
+    var cookiePageVersion = req.cookies.b2dot0Version,
+        defaultPath = 'homepage/views/hbs/homepage_',
+        newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
+
 
     // Dynamic Data from BAPI
     modelData.header = result['common'].header || {};
@@ -88,7 +103,8 @@ router.get('/', function (req, res, next) {
 			modelData.showPopularLocations = false;
 		}
 
-		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+    // Changing Version of template depending of the cookie
+    cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
     });
