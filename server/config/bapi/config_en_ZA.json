@@ -26,6 +26,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	 
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
@@ -34,6 +35,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
 		"termOfUse"							: "http://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
+		"postingRules"                      : "http://help.gumtree.co.za/articles/KB_Article/What-are-the-General-posting-rules/?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
 		"helpLabel"							: "Help",
 		"helpUrl"							: "http://gumtreehelp.com/za/",
 		"interLinkUrl"						: null,
@@ -86,7 +88,11 @@
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		  "quickpost" : {
+              "currencyDisplay"    :     false,
+              "currency"            :    ["ZAR:ZAR"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {
@@ -96,6 +102,14 @@
 			"mobile" 	: {
 				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			}
-		}
+		},
+	  	"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
+			}
+	  	}
 	}
 }

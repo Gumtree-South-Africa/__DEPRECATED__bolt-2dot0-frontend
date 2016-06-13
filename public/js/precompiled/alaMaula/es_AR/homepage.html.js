@@ -7,7 +7,7 @@ this["Handlebars"]["templates"]["a"] = {"compiler":[6,">= 2.0.0-beta.1"],"main":
     + alias3(((helper = (helper = helpers.name || (depth0 != null ? depth0.name : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"name","hash":{},"data":data}) : helper)))
     + " </p>\nwhat is your TITLE? "
     + alias3(((helper = (helper = helpers.title || (depth0 != null ? depth0.title : depth0)) != null ? helper : alias1),(typeof helper === alias2 ? helper.call(depth0,{"name":"title","hash":{},"data":data}) : helper)))
-    + "\n\n";
+    + "\n";
 },"useData":true};
 this["Handlebars"]["templates"]["b"] = {"compiler":[6,">= 2.0.0-beta.1"],"main":function(depth0,helpers,partials,data) {
     var helper;

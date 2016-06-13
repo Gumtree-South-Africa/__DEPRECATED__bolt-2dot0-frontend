@@ -1,11 +1,11 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
+var http = require('http');
+var Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
+var ModelBuilder = require('./ModelBuilder');
 
-var keywordService = require(process.cwd() + "/server/services/keyword");
+var keywordService = require(process.cwd() + '/server/services/keyword');
 
 
 /**
@@ -13,9 +13,8 @@ var keywordService = require(process.cwd() + "/server/services/keyword");
  * @constructor
  */
 
-var KeywordModel = function (requestId, locale, kwCount) {
-	this.requestId = requestId;
-	this.locale = locale;
+var KeywordModel = function (bapiHeaders, kwCount) {
+	this.bapiHeaders = bapiHeaders;
 	this.kwCount = kwCount;
 };
 
@@ -29,7 +28,7 @@ KeywordModel.prototype.getKeywords = function() {
 	
 	var topKeywordFunction = function(callback) {
 		var topKeywordDeferred = Q.defer();
-	    Q(keywordService.getTopKeywordsData(scope.requestId, scope.locale, scope.kwCount))
+	    Q(keywordService.getTopKeywordsData(scope.bapiHeaders, scope.kwCount))
 	        .then(function (dataTopK) {
 	          topKeywordDeferred.resolve(dataTopK);
 	          callback(null, dataTopK);
@@ -41,7 +40,7 @@ KeywordModel.prototype.getKeywords = function() {
 	
 	var trendingKeywordFunction = function(callback) {
 	    var trendingKeywordDeferred = Q.defer();
-	    Q(keywordService.getTrendingKeywordsData(scope.requestId, scope.locale, scope.kwCount))
+	    Q(keywordService.getTrendingKeywordsData(scope.bapiHeaders, scope.kwCount))
 	        .then(function (dataTK) {
 	          trendingKeywordDeferred.resolve(dataTK);
 	          callback(null, dataTK);

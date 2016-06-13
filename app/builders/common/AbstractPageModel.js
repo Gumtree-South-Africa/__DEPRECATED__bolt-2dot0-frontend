@@ -31,12 +31,17 @@ AbstractPageModel.prototype.getPageModelConfig = function (res, pagetype) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 	
 	var pageModelConfig = bapiConfigData.bapi[pagetype];
-	if (deviceDetection.isMobile()) {
-		pageModelConfig = pageModelConfig.mobile.models;
+
+	if (typeof pageModelConfig !== 'undefined') {
+		if (deviceDetection.isMobile()) {
+			pageModelConfig = pageModelConfig.mobile.models;
+		} else {
+			pageModelConfig = pageModelConfig.desktop.models;
+		}
 	} else {
-		pageModelConfig = pageModelConfig.desktop.models;
+		pageModelConfig = '';
 	}
-	
+
 	return pageModelConfig;
 };
 

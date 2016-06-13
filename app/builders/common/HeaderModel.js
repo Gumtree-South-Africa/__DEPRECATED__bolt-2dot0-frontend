@@ -8,10 +8,10 @@ var _ = require('underscore');
 var ModelBuilder = require('./ModelBuilder');
 
 var deviceDetection = require(process.cwd() + '/modules/device-detection');
-var userService = require(process.cwd() + '/server/services/user');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 var config = require('config');
+
+var userService = require(process.cwd() + '/server/services/user');
 
 /**
  * @description A class that Handles the Header Model
@@ -38,8 +38,19 @@ var HeaderModel = function (secure, req, res) {
 	this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 	this.basePort = res.locals.config.basePort;
 	this.headerConfigData = res.locals.config.bapiConfigData.header;
+
+	this.userCookieData = req.app.locals.userCookieData;
+	this.bapiHeaders = {
+		'requestId'         :   req.app.locals.requestId,
+		'ip'                :   req.app.locals.ip,
+		'machineid'         :   req.app.locals.machineid,
+		'useragent'         :   req.app.locals.useragent,
+		'locale'            :   this.locale,
+		'authTokenValue'    :   this.authCookie
+	};
+	
 	this.i18n = req.i18n;
-	this.requestId = req.requestId;
+
 };
 
 HeaderModel.prototype.getModelBuilder = function() {
@@ -56,8 +67,8 @@ HeaderModel.prototype.getHeaderData = function() {
 				return;
 			}
 
-			var headerDeferred,
-				data = {
+			// initialize
+			var data = {
 		    		'homePageUrl' : scope.urlProtocol + 'www.' + scope.fullDomainName + scope.baseDomainSuffix + scope.basePort,
 		    		'languageCode' : scope.locale
 				};
@@ -74,8 +85,9 @@ HeaderModel.prototype.getHeaderData = function() {
     		var urlPort = config.get('static.server.port')!==null ? ':' + config.get('static.server.port') : '';
     		var urlVersion = config.get('static.server.version')!==null ? '/' + config.get('static.server.version') : '';
     		data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
-    		data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
-    		data.min = config.get('static.min');
+    		data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
+				data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
+				data.min = config.get('static.min');
 
     		// add complex data to header
     		scope.buildUrl(data);
@@ -88,7 +100,7 @@ HeaderModel.prototype.getHeaderData = function() {
     		// If locationCookie present, set id and name in model
     		if (typeof scope.searchLocIdCookie !== 'undefined') {
     			data.cookieLocationId = scope.searchLocIdCookie;
-					
+
     			if (typeof scope.locationIdNameMap[data.cookieLocationId] === 'object') {
     				data.cookieLocationName = scope.i18n.__('searchbar.locationDisplayname.prefix', scope.locationIdNameMap[data.cookieLocationId].value);
     			} else {
@@ -98,25 +110,29 @@ HeaderModel.prototype.getHeaderData = function() {
 
     		// If authCookie present, make a call to user BAPI to retrieve user info and set in model
 		    if (typeof scope.authCookie !== 'undefined') {
-		    	headerDeferred = Q.defer();
-				Q(userService.getUserFromCookie(scope.requestId, scope.authCookie, scope.locale))
-			    	.then(function (dataReturned) {
-			    		// merge returned data
-			    		_.extend(data, dataReturned);
+				if (typeof scope.userCookieData !== 'undefined') {
+					// merge user cookie data
+					_.extend(data, scope.userCookieData);
 
-			    		// build user profile
-			    		scope.buildProfile(data);
+					// build user profile
+					scope.buildProfile(data);
+				} else {
+					Q(userService.getUserFromCookie(scope.bapiHeaders))
+						.then(function (dataReturned) {
+							if (! _.isEmpty(dataReturned)) {
+								// merge user cookie data
+								_.extend(data, dataReturned);
 
-			    		headerDeferred.resolve(data);
-					    callback(null, data);
-					}).fail(function (err) {
-						headerDeferred.reject(new Error(err));
-					    callback(null, data);
-					});
-				return headerDeferred.promise;
-			} else {
-			    callback(null, data);
+								// build user profile
+								scope.buildProfile(data);
+							}
+						}).fail(function (err) {
+							console.error('HeaderModel data failed as bapi failed with provided cookie', new Error(err));
+						});
+				}
 			}
+
+			callback(null, data);
 		}
 	];
 
@@ -148,7 +164,7 @@ HeaderModel.prototype.buildCss = function(data) {
 	var scope = this;
 
 	data.iconsCSSURLs = [];
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
+	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + scope.locale + '.css');
 	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css');
 	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + scope.locale + '.css';
@@ -191,7 +207,10 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+										  '/picture?width=36&height=36';
+			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
+								  '/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 

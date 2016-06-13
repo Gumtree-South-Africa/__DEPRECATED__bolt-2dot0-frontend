@@ -10,7 +10,10 @@ module.exports = function watch(gulp, plugins) {
   	    if (!file.jshint.success) {
   	      console.error('jshint failed');
   	      process.exit(1);
-  	    }
+  	    } else {
+			// if hint succeeds trigger the gulp done cb
+			cb();
+		}
   	  });
   	  var stream =
         gulp.src([process.cwd() + '/app/builders/**/*.js', process.cwd() + '/app/controllers/**/*.js',

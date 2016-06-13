@@ -31,6 +31,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
+	    
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -39,6 +40,7 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "/terms-of-service",
+		"postingRules"                      : "/terms-of-service",
 		"helpLabel"							: "Ayuda",
 		"helpUrl"							: "http://www.ayuda-ibazar.com/",
 		"interLinkUrl"						: "http://www.ibazar.com/pages/red-de-clasificados-de-ebay/",
@@ -91,7 +93,12 @@
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
-		}
+		},
+		
+		 "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["MXN:MXN","USD:USD"]
+        }
 	},
 	"bapi" : {
 		"Homepage" : {
@@ -100,6 +107,14 @@
 			},
 			"mobile" 	: {
 				"models" : ["level2Loc", "seo"]
+			}
+		},
+		"QuickPostAdForm" : {
+			"desktop" 	: {
+			  	"models" : ["seo"]
+			},
+			"mobile" 	: {
+			  	"models" : ["seo"]
 			}
 		}
 	}

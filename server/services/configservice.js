@@ -9,21 +9,21 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var ConfigService = function() {
-	// BAPI server options for GET
 	this.bapiOptions =	bapiOptions;
 };
 
 /**
  * Gets User Info given a token from the cookie
  */
-ConfigService.prototype.getConfigData = function(locale) {
-	// console.info("Inside ConfigService");
+ConfigService.prototype.getConfigData = function(bapiHeaders) {
+	// console.info("Inside ConfigService", bapiHeaders);
 
 	// Prepare BAPI call
+	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.configService');
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, null, locale, "config", null);
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "config");
 }
 
 module.exports = new ConfigService();

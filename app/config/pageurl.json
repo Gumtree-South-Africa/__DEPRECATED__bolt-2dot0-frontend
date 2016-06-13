@@ -15,7 +15,8 @@
 		"geoLocatorUrl"			: "/rui-api/locations/content/geo/",
 		"rootGeoLocatorUrl"		: "/rui-api/locations/content/",
 		"surveyMonkeyUrl"		: "/post.html",
-		"abTestUrl"				: "/post.html"
+		"abTestUrl"				: "/post.html",
+	  	"defaultHomePageUrl"	: "/"
 	},
 	"footer" : {
 		"cookieRightsURL"		: "/cookie-notice",
