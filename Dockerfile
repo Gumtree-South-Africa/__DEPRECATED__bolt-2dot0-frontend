@@ -14,15 +14,15 @@ RUN npm install -g forever
 RUN npm install -g jake launch
 # install colors globally -for debugging in logs
 RUN npm install -g colors
+# Install gulp, node-gyp
+RUN npm install -g gulp && \
+    npm install -g node-gyp
 
 # Setup work directory
 WORKDIR /src/bolt-2dot0-frontend/
 # Bundle app source
 COPY . /src/bolt-2dot0-frontend/
 
-# Install gulp, node-gyp
-RUN npm install -g gulp && \
-    npm install -g node-gyp
 # Install app dependencies
 RUN npm install --production
 
