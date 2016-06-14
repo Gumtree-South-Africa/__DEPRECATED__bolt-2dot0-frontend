@@ -88,7 +88,7 @@ gulp.task('webpack', getTask('webpack'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', /*'icons',*/ 'compass', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {

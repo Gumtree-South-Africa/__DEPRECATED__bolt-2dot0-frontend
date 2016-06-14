@@ -1,4 +1,5 @@
 'use strict';
+require('../_responsiveBreakpointDetection.scss');
 
 let getCurrentBreakpoint = () => {
 	if ($('.breakpoint-detector.visible-mobile').is(':visible')) {

@@ -1,5 +1,11 @@
 .isotope-container {
-	max-width: 1050px;
+	max-width: 990px;
+    margin: 0 auto;
+
+    @media(max-width: 767px) {
+        max-width: 330px;
+    }
+
 	.isotope-item {
 		border-radius: 10px;
 
@@ -26,21 +32,6 @@
 	}
 }
 
-.visible-mobile, .visible-desktop {
-	display: none !important;
-}
-
-.visible-mobile {
-	@media(max-width: 767px) {
-		display: block !important;
-	}
-}
-
-.visible-desktop {
-	@media(min-width: 768px) {
-		display: block !important;
-	}
-}
 
 .inline-block {
 	display: inline-block;
@@ -48,7 +39,8 @@
 
 .card {
 	margin-top: 20px;
-	background-color: lightgrey;
+	background-color: #f7f7f7;
+
 	.card-title {
 		text-align: center;
 		font-size: 18px;
@@ -58,7 +50,7 @@
 		.fake-link {
 			text-decoration: underline;
 			font-weight: bold;
-			color: #FF8300;
+			color: #ff9800;
 		}
 	}
 }

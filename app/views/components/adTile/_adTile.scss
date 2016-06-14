@@ -1,4 +1,5 @@
 $panelCornerBorderRadius: 7px;
+$featuredBorderColor: #93c31f;
 
 .panel {
 	position: relative;
@@ -12,7 +13,7 @@ $panelCornerBorderRadius: 7px;
 	border: 1.5px solid transparent;
 
 	&.featured {
-		border: 1.5px solid #32cd32;
+		border: 1.5px solid $featuredBorderColor;
 
 		.featured-bolt {
 			width: 15px;
@@ -34,7 +35,7 @@ $panelCornerBorderRadius: 7px;
 			border-width: 16px;
 			border-radius: 0 $panelCornerBorderRadius 0 0;
 			border-style: solid;
-			border-color: #32cd32 #32cd32 transparent transparent;
+			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
 		}
 	}
 
@@ -48,6 +49,7 @@ $panelCornerBorderRadius: 7px;
 		background-size: contain;
 		left: 5px;
 		top: 5px;
+		border: .5px solid #ff9000;
 	}
 
 	.controls {

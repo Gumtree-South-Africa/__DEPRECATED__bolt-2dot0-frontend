@@ -5,9 +5,9 @@ require('app/views/components/feedTile/js/feedTile.js');
 require('app/views/components/responsiveBreakpointDetection/js/responsiveBreakpointDetection.js');
 let Isotope = require('isotope-layout');
 
-// Isotope requres document to be ready activated
+// Isotope requires document to be ready activated
 $(document).ready(() => {
-	window.iso = new Isotope($('.isotope-container')[0], {
+	let iso = new Isotope($('.isotope-container')[0], {
 		itemSelector: '.isotope-item',
 		layoutMode: 'masonry',
 		getSortData: {
@@ -27,9 +27,8 @@ $(document).ready(() => {
 			$feedTiles.parent().attr('data-sort-position', 5);
 		}
 
-		window.iso.arrange({
+		iso.arrange({
 			sortBy: 'sortParam'
 		});
-		window.iso.layout();
 	});
 });
