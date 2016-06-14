@@ -66,17 +66,21 @@ router.get('/', function (req, res, next) {
 		};
 		promises.push(userService.getUserFromCookie(bapiHeaders));
 	} 
-	Q.all(promises)
+	Q.allSettled(promises)
 	    .then(function (result) {
 
 		let cookiePageVersion = req.cookies.b2dot0Version,
 			defaultPath = 'homepage/views/hbs/homepage_',
 			newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
-		let user = result[1];
+		let user;
+		if (result[1] !== undefined) {
+			//Cookie was set
+			user = result[1].state === "fulfilled" ? result[1].value : null;
+		}
 		// Dynamic Data from BAPI
 		// Result[0] is all the model data for the page without user data
-		result = result[0];
+		result = result[0].state === "fulfilled" ? result[0].value: null;
 		modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
@@ -88,6 +92,8 @@ router.get('/', function (req, res, next) {
 		if (user) {
 			let userData = userService.buildProfile(user);
 			_.extend(modelData.header, userData);
+		} else {
+			console.error(`Invalid user cookie: ${authCookie}`)
 		}
 
 		if (result['adstatistics']) {
@@ -131,7 +137,11 @@ router.get('/', function (req, res, next) {
 		cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
-    });
+	}, (err) => {
+		console.error(err);
+	}).fail((err) => {
+		console.error(err);
+	});
 });
 
 
