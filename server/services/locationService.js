@@ -17,12 +17,10 @@ var LocationService = function() {
  */
 LocationService.prototype.getLocationsData = function(bapiHeaderValues, depth) {
 
-	return bapiService.bapiPromiseGet(
-        bapiOptionsModel.initFromConfig(config, {
-            method: 'GET',
-            path: config.get('BAPI.endpoints.locationHomePage') + "?depth=" + depth }),
-        bapiHeaderValues,
-        "location");
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.locationHomePage') + "?depth=" + depth
+	}), bapiHeaderValues, "location");
 };
 
 /**
@@ -31,11 +29,9 @@ LocationService.prototype.getLocationsData = function(bapiHeaderValues, depth) {
 LocationService.prototype.getTopL2LocationsData = function(bapiHeaderValues) {
 
 	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
-            method: 'GET',
-            path: config.get('BAPI.endpoints.topLocationsL2')
-        }),
-        bapiHeaderValues,
-        "topL2Locations");
+		method: 'GET',
+		path: config.get('BAPI.endpoints.topLocationsL2')
+	}), bapiHeaderValues, "topL2Locations");
 };
 
 module.exports = new LocationService();

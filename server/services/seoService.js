@@ -2,7 +2,7 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -10,7 +10,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var SeoService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -18,13 +17,13 @@ var SeoService = function() {
  */
 SeoService.prototype.getHPSeoData = function(bapiHeaderValues) {
 	// console.info('Inside HP SeoService');
-	
+
 	var seoData = {};
-	
+
 	seoData.pageTitle = 'default.home.page.title.text';
 	seoData.description = 'home.page.desc.tag';
 	seoData.robots = 'index,follow';
-	
+
 	return seoData;
 }
 
@@ -50,12 +49,11 @@ SeoService.prototype.getQuickPostSeoData = function(bapiHeaderValues) {
 SeoService.prototype.getSRPSeoData = function(bapiHeaderValues) {
 	// console.info('Inside SRP SeoService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.srpSeo');
-	
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'srpSeo');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.srpSeo')
+	}), bapiHeaderValues, 'srpSeo');
 }
 
 module.exports = new SeoService();

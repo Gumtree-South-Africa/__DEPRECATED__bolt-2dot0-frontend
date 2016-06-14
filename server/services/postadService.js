@@ -2,7 +2,7 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -10,7 +10,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var PostAdService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -19,12 +18,11 @@ var PostAdService = function() {
 PostAdService.prototype.quickpostAd = function(bapiHeaderValues, adJson) {
 	// console.info('Inside PostAdService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'POST';
-	this.bapiOptions.path = config.get('BAPI.endpoints.quickpostAd');
-
 	// Invoke BAPI
-	return bapiService.bapiPromisePost(this.bapiOptions, bapiHeaderValues, adJson, 'quickpostAd');
+	return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+		method: 'POST',
+		path: config.get('BAPI.endpoints.quickpostAd')
+	}), bapiHeaderValues, adJson, 'quickpostAd');
 };
 
 module.exports = new PostAdService();

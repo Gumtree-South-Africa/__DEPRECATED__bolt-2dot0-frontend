@@ -2,7 +2,7 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -10,7 +10,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var CategoryService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -19,12 +18,11 @@ var CategoryService = function() {
 CategoryService.prototype.getCategoriesData = function(bapiHeaderValues, depth) {
 	// console.info('Inside CategoryService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
-
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'category');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth
+	}), bapiHeaderValues, 'category');
 };
 
 /**
@@ -33,15 +31,13 @@ CategoryService.prototype.getCategoriesData = function(bapiHeaderValues, depth) 
 CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaderValues, depth, locationId) {
 	// console.info('Inside CategoryService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
-	if (locationId !== null) {
-		this.bapiOptions.path = this.bapiOptions.path + '&locationId=' + locationId;
-	}
-
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'category');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.categoryHomePage') +
+			'?depth=' + depth +
+			locationId !== null ? '&locationId=' + locationId : ''
+		}), bapiHeaderValues, 'category');
 };
 
 module.exports = new CategoryService();

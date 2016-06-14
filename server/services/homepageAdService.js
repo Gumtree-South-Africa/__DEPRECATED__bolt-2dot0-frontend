@@ -2,7 +2,7 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -10,7 +10,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var HomepageAdService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -19,40 +18,37 @@ var HomepageAdService = function() {
 HomepageAdService.prototype.getHomepageGallery = function(bapiHeaderValues) {
 	// console.info('Inside HomepageGalleryService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
-	
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'homepageGallery');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.homepageGallery')
+	}), bapiHeaderValues, 'homepageGallery');
 };
 
 /**
  * Gets a list of ads for gallery via AJAX
  */
-HomepageAdService.prototype.getAjaxGallery = function(bapiHeaders, offset, limit) {
+HomepageAdService.prototype.getAjaxGallery = function(bapiHeaderValues, offset, limit) {
 	// console.info('Inside HomepageGalleryService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
-	
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, 'homepageGallery');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit
+	}), bapiHeaderValues, 'homepageGallery');
 };
 
 /**
  * Gets a list of ad statistics
  */
-HomepageAdService.prototype.getAdStatistics = function(bapiHeaders) {
+HomepageAdService.prototype.getAdStatistics = function(bapiHeaderValues) {
 	// console.info('Inside HomepageAdStatisticsService');
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
-	
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, 'adStatistics');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.adStatistics')
+	}), bapiHeaderValues, 'adStatistics');
 };
 
 module.exports = new HomepageAdService();

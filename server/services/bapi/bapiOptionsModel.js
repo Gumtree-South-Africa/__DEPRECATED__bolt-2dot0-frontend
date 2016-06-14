@@ -17,9 +17,5 @@ var initFromConfig = function(config, initDefaults) {
     return bapiOptions;
 };
 
-// deprecated - please use initFromConfig
-// todo: delete this export
-module.exports = initFromConfig;
-
 module.exports.initFromConfig = initFromConfig;
 

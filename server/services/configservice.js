@@ -2,7 +2,7 @@
 
 var config = require('config');
 
-var bapiOptions = require("./bapi/bapiOptionsModel")(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -10,7 +10,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var ConfigService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -18,14 +17,14 @@ var ConfigService = function() {
  */
 ConfigService.prototype.getConfigData = function(bapiHeaderValues) {
 	// console.info("Inside ConfigService", bapiHeaders);
-
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.configService');
-    // Note the Locale is coming in the bapiHeaderValues
+	
+	// Note the Locale is coming in the bapiHeaderValues
 
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, "config");
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.configService')
+	}), bapiHeaderValues, "config");
 }
 
 module.exports = new ConfigService();

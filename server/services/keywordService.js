@@ -3,7 +3,7 @@
 
 var config = require('config');
 
-var bapiOptions = require("./bapi/bapiOptionsModel")(config);
+var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
@@ -11,7 +11,6 @@ var bapiService = require("./bapi/bapiService");
  * @constructor
  */
 var KeywordService = function() {
-	this.bapiOptions =	bapiOptions;
 };
 
 /**
@@ -20,15 +19,11 @@ var KeywordService = function() {
 KeywordService.prototype.getTopKeywordsData = function(bapiHeaderValues, kwCount) {
 	// console.info("Inside Top KeywordService");
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.topKeywords');
-	if ((typeof kwCount!== 'undefined') && (kwCount !== null)) {
-		this.bapiOptions.path = this.bapiOptions.path + '?limit=' + kwCount;
-	}
-
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, "topKeywords");
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.topKeywords') + (typeof kwCount !== 'undefined') && (kwCount !== null) ? '?limit=' + kwCount : ''
+	}), bapiHeaderValues, "topKeywords");
 }
 
 /**
@@ -37,15 +32,11 @@ KeywordService.prototype.getTopKeywordsData = function(bapiHeaderValues, kwCount
 KeywordService.prototype.getTrendingKeywordsData = function(bapiHeaders, kwCount) {
 	// console.info("Inside Trending KeywordService");
 
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.trendingKeywords');
-	if ((typeof kwCount!== 'undefined') && (kwCount !== null)) {
-		this.bapiOptions.path = this.bapiOptions.path + '?limit=' + kwCount;
-	}
-	
 	// Invoke BAPI
-	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, "trendingKeywords");
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get('BAPI.endpoints.trendingKeywords') + (typeof kwCount !== 'undefined') && (kwCount !== null) ? '?limit=' + kwCount : ''
+	}), bapiHeaders, "trendingKeywords");
 }
 
 
