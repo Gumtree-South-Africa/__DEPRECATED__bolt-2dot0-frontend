@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Remote Debug" type="NodeJSRemoteDebug" factoryName="Node.js Remote Debug" singleton="true">
+    <node-js-remote-debug host="dentest3-3118.phx01.dev.ebayc3.com" debug-port="5860" />
+    <method />
+  </configuration>
+</component>
