@@ -1,31 +1,30 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
+let  Q = require('q');
 
-var ModelBuilder = require('./ModelBuilder');
+let  ModelBuilder = require('./ModelBuilder');
 
-var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
+let  hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /**
  * @description A class that Handles the Gallery Model
  * @constructor
  */
-var GalleryModel = function (bapiHeaders) {
+let  GalleryModel = function(bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
-GalleryModel.prototype.getModelBuilder = function () {
+GalleryModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getHomePageGallery());
 };
 
 // Function getHomePageGallery
-GalleryModel.prototype.getHomePageGallery = function () {
-	var _this = this;
-	var arrFunctions = [
-		function (callback) {
-			var galleryDeferred,
+GalleryModel.prototype.getHomePageGallery = function() {
+	let  _this = this;
+	let  arrFunctions = [
+		function(callback) {
+			let  galleryDeferred,
 				data = {};
 			if (typeof callback !== 'function') {
 				return;
@@ -35,11 +34,11 @@ GalleryModel.prototype.getHomePageGallery = function () {
 				galleryDeferred = Q.defer();
 
 				Q(hpAdService.getHomepageGallery(_this.bapiHeaders))
-					.then(function (dataReturned) {
+					.then(function(dataReturned) {
 						data = dataReturned;
 						galleryDeferred.resolve(data);
 						callback(null, data);
-					}).fail(function (err) {
+					}).fail(function(err) {
 					galleryDeferred.reject(new Error(err));
 					callback(null, data);
 				});
@@ -55,17 +54,17 @@ GalleryModel.prototype.getHomePageGallery = function () {
 };
 
 //Function getAjaxGallery
-GalleryModel.prototype.getAjaxGallery = function (offset, limit) {
+GalleryModel.prototype.getAjaxGallery = function(offset, limit) {
 
-	var galleryDeferred = Q.defer(),
+	let  galleryDeferred = Q.defer(),
 		data = {};
 
 	if (typeof this.bapiHeaders.locale !== 'undefined') {
 		Q(hpAdService.getAjaxGallery(this.bapiHeaders, offset, limit))
-			.then(function (dataReturned) {
+			.then(function(dataReturned) {
 				data = dataReturned;
 				galleryDeferred.resolve(data);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			galleryDeferred.reject(new Error(err));
 		});
 	} else {

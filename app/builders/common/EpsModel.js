@@ -1,16 +1,16 @@
-"use strict";
+'use strict';
 
 
-var config = require("config");
+let  config = require('config');
 
 
-module.exports = function () {
+module.exports = function() {
 
 	return {
-		"epsUploadExternalURL": config.get("eps.epsUploadExternalURL"),
+		'epsUploadExternalURL': config.get('eps.epsUploadExternalURL'),
 
-		"epsToken": config.get("eps.epsToken"),
+		'epsToken': config.get('eps.epsToken'),
 
-		"isEbayDirectUploadEnabled": config.get("eps.IsEbayDirectUL")
+		'isEbayDirectUploadEnabled': config.get('eps.IsEbayDirectUL')
 	};
 };

@@ -1,31 +1,30 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
+let  Q = require('q');
 
-var ModelBuilder = require('./ModelBuilder');
+let  ModelBuilder = require('./ModelBuilder');
 
-var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
+let  hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /**
  * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
-var AdStatisticsModel = function (bapiHeaders) {
+let  AdStatisticsModel = function(bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
-AdStatisticsModel.prototype.getModelBuilder = function () {
+AdStatisticsModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getHomePageStatistics());
 };
 
 // Function getHomePageStatistics
-AdStatisticsModel.prototype.getHomePageStatistics = function () {
-	var _this = this;
-	var arrFunctions = [
-		function (callback) {
-			var adstatisticsDeferred,
+AdStatisticsModel.prototype.getHomePageStatistics = function() {
+	let  _this = this;
+	let  arrFunctions = [
+		function(callback) {
+			let  adstatisticsDeferred,
 				data = {};
 			if (typeof callback !== 'function') {
 				return;
@@ -35,11 +34,11 @@ AdStatisticsModel.prototype.getHomePageStatistics = function () {
 				adstatisticsDeferred = Q.defer();
 
 				Q(hpAdService.getAdStatistics(_this.bapiHeaders))
-					.then(function (dataReturned) {
+					.then(function(dataReturned) {
 						data = dataReturned;
 						adstatisticsDeferred.resolve(data);
 						callback(null, data);
-					}).fail(function (err) {
+					}).fail(function(err) {
 					adstatisticsDeferred.reject(new Error(err));
 					callback(null, data);
 				});

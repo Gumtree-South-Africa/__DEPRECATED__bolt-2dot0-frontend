@@ -1,21 +1,17 @@
-"use strict";
+'use strict';
 
-//var fs = require("fs");
-var async = require("async");
-var http = require("http");
-var Q = require("q");
-var _ = require("underscore");
+let  Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
-var HeaderModel = require("./HeaderModel");
-var FooterModel = require("./FooterModel");
-var DataLayerModel = require("./DataLayerModel");
+let  ModelBuilder = require('./ModelBuilder');
+let  HeaderModel = require('./HeaderModel');
+let  FooterModel = require('./FooterModel');
+let  DataLayerModel = require('./DataLayerModel');
 
 /**
  * @description A class that Handles the common models in every page
  * @constructor
  */
-var BasePageModel = function (req, res) {
+let  BasePageModel = function(req, res) {
 	this.header = new HeaderModel(req.secure, req, res);
 	this.headerBuilder = this.header.getModelBuilder();
 	this.footer = new FooterModel(req.secure, req, res);
@@ -24,63 +20,63 @@ var BasePageModel = function (req, res) {
 	this.dataLayerBuilder = this.dataLayer.getModelBuilder();
 };
 
-BasePageModel.prototype.getModelBuilder = function () {
+BasePageModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getCommonData());
 };
 
-BasePageModel.prototype.getCommonData = function () {
-	var _this = this;
-	var headerFunction = function (callback) {
-		var headerDeferred = Q.defer();
+BasePageModel.prototype.getCommonData = function() {
+	let  _this = this;
+	let  headerFunction = function(callback) {
+		let  headerDeferred = Q.defer();
 		Q(_this.headerBuilder.processParallel())
-			.then(function (dataH) {
+			.then(function(dataH) {
 				headerDeferred.resolve(dataH[0]);
 				callback(null, dataH[0]);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			headerDeferred.reject(new Error(err));
 			callback(null, {});
 		});
 	};
 
-	var footerFunction = function (headerData, callback) {
-		var footerDeferred = Q.defer();
+	let  footerFunction = function(headerData, callback) {
+		let  footerDeferred = Q.defer();
 		Q(_this.footerBuilder.processParallel())
-			.then(function (dataF) {
+			.then(function(dataF) {
 				// Resolve promise with necessary data for the callee
 				footerDeferred.resolve(dataF[0]);
 
 				// Merge data and send the comibned data to the next function in waterfall
-				var headerFooterData = {
-					"header": headerData,
-					"footer": dataF[0]
+				let  headerFooterData = {
+					'header': headerData,
+					'footer': dataF[0]
 				};
 				callback(null, headerFooterData);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			footerDeferred.reject(new Error(err));
 			callback(null, {});
 		});
 	};
 
-	var dataLayerFunction = function (headerFooterData, callback) {
+	let  dataLayerFunction = function(headerFooterData, callback) {
 		// use data from headerFooterData
 		_this.dataLayer.setUserId(headerFooterData.header.id);
 		_this.dataLayer.setUserEmail(headerFooterData.header.userEmail);
 
-		var dataLayerDeferred = Q.defer();
+		let  dataLayerDeferred = Q.defer();
 		Q(_this.dataLayerBuilder.processParallel())
-			.then(function (dataD) {
+			.then(function(dataD) {
 				dataLayerDeferred.resolve(dataD[0]);
 
-				var combinedData = headerFooterData;
+				let  combinedData = headerFooterData;
 				combinedData.dataLayer = dataD[0];
 				callback(null, combinedData);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			dataLayerDeferred.reject(new Error(err));
 			callback(null, {});
 		});
 	};
 
-	var arrFunctions = [headerFunction, footerFunction, dataLayerFunction];
+	let  arrFunctions = [headerFunction, footerFunction, dataLayerFunction];
 	return arrFunctions;
 };
 
