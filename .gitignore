@@ -57,3 +57,7 @@ screenshots
 logs
 dist
 .idea/
+
+# Docker #
+#########
+docker.bolt-2dot0-frontend*

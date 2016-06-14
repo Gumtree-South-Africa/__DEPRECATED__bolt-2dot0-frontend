@@ -6,8 +6,6 @@
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
     "dev": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=dev gulp",
     "vm": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp",
-    "vmp1": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost PAGE_VER=v1 NODE_ENV=vm gulp",
-    "vmp2": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost PAGE_VER=v2 NODE_ENV=vm gulp",
     "pp": "npm install && NODE_ENV=pp_phx_deploy gulp",
     "lnp": "npm install && NODE_ENV=lnp_phx_deploy gulp",
     "phx": "npm install && NODE_ENV=prod_phx_deploy gulp",
@@ -16,7 +14,7 @@
     "test": "npm install && ./node_modules/.bin/jasmine-node test/spec",
     "start": "node ./bin/www",
     "envstart": "NODE_CONFIG_DIR=./server/config NODE_ENV=vm PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost node ./bin/www",
-    "dockerstart": "NODE_CONFIG_DIR=${NODE_CONFIG_DIR} NODE_ENV=${NODE_ENV} PORT=${PORT} SSL_PORT=${SSL_PORT} BASEDOMAINSUFFIX=${BASEDOMAINSUFFIX} node ./bin/www"
+    "dockerstart": "NODE_CONFIG_DIR=${NODE_CONFIG_DIR} NODE_ENV=${NODE_ENV} BASEDOMAINSUFFIX=${BASEDOMAINSUFFIX} node ./bin/www"
   },
   "precommit": "npm install && gulp precommit",
   "dependencies": {
