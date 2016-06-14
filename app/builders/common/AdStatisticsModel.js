@@ -1,17 +1,17 @@
 'use strict';
 
-let  Q = require('q');
+let Q = require('q');
 
-let  ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-let  hpAdService = require(process.cwd() + '/server/services/homepage-ads');
+let hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /**
  * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
-let  AdStatisticsModel = function(bapiHeaders) {
+let AdStatisticsModel = function(bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
@@ -21,11 +21,10 @@ AdStatisticsModel.prototype.getModelBuilder = function() {
 
 // Function getHomePageStatistics
 AdStatisticsModel.prototype.getHomePageStatistics = function() {
-	let  _this = this;
-	let  arrFunctions = [
+	let _this = this;
+	let arrFunctions = [
 		function(callback) {
-			let  adstatisticsDeferred,
-				data = {};
+			let adstatisticsDeferred, data = {};
 			if (typeof callback !== 'function') {
 				return;
 			}

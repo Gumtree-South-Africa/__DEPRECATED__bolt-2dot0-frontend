@@ -1,15 +1,15 @@
 'use strict';
 
-let  async = require('async');
-let  Q = require('q');
-let  _ = require('underscore');
+let async = require('async');
+let Q = require('q');
+let _ = require('underscore');
 
 /**
  * @description A class that Handles the Page Model
  * @param [{Object}]} arrFunctions List of functions to be executed
  * @constructor
  */
-let  ModelBuilder = function(listFn, finalFunction) {
+let ModelBuilder = function(listFn, finalFunction) {
 	// Logger.log("*** CREATING MODEL....");
 	this.data = {};
 
@@ -24,8 +24,7 @@ let  ModelBuilder = function(listFn, finalFunction) {
 				finalFunction(origData, promiseObj);
 			};
 		} else {
-			throw 'PageModel: The Final function must have at least 2 arguments.' +
-			' The second one being a premise to be resolved';
+			throw 'PageModel: The Final function must have at least 2 arguments.' + ' The second one being a premise to be resolved';
 		}
 	}
 
@@ -55,7 +54,7 @@ ModelBuilder.prototype = {
 	convertCallsToList: function(objFunctions) {
 
 		if (typeof objFunctions === 'object') {
-			for (let  key in objFunctions) {
+			for (let key in objFunctions) {
 				if (objFunctions.hasOwnProperty(key)) {
 					this.arrFunctions.push(objFunctions[key]);
 				}
@@ -69,7 +68,7 @@ ModelBuilder.prototype = {
 	 * @public
 	 */
 	processFinalFunction: function() {
-		let  deferredObj = Q.defer();
+		let deferredObj = Q.defer();
 
 		if (this.finalFunction) {
 			this.finalFunction(this, deferredObj);
@@ -88,7 +87,7 @@ ModelBuilder.prototype = {
 	 * @public
 	 */
 	checkForFinalFunction: function(deferredObj) {
-		let  _this = this;
+		let _this = this;
 
 		// For the success case, resolve the promise
 		function resolvePromise(data) {
@@ -126,21 +125,20 @@ ModelBuilder.prototype = {
 	 * @return {Function}
 	 */
 	getDoneFunction: function(deferred) {
-		let  _this = this,
-			done = function(err, result) {
-				if (!deferred) {
-					return;
-				}
-				if (err) {
-					// Logger.log("Error found! ==> ", err);
+		let _this = this, done = function(err, result) {
+			if (!deferred) {
+				return;
+			}
+			if (err) {
+				// Logger.log("Error found! ==> ", err);
 
-					// Expose this via rejected promise
-					deferred.reject(new Error(err));
-				} else {
-					_this.data = result;
-					_this.checkForFinalFunction(deferred);
-				}
-			};
+				// Expose this via rejected promise
+				deferred.reject(new Error(err));
+			} else {
+				_this.data = result;
+				_this.checkForFinalFunction(deferred);
+			}
+		};
 
 		return done;
 	},
@@ -151,8 +149,7 @@ ModelBuilder.prototype = {
 	 * @public
 	 */
 	processWaterfall: function() {
-		let  deferred = Q.defer(),
-			done = this.getDoneFunction(deferred);
+		let deferred = Q.defer(), done = this.getDoneFunction(deferred);
 		// Calls the function one after another
 		async.waterfall(this.arrFunctions, done);
 
@@ -166,8 +163,7 @@ ModelBuilder.prototype = {
 	 * @public
 	 */
 	processParallel: function() {
-		let  deferred = Q.defer(),
-			done = this.getDoneFunction(deferred);
+		let deferred = Q.defer(), done = this.getDoneFunction(deferred);
 		// Calls the functions in parallel
 		async.parallel(this.arrFunctions, done);
 
@@ -181,8 +177,7 @@ ModelBuilder.prototype = {
 	 * @public
 	 */
 	processSeries: function() {
-		let  deferred = Q.defer(),
-			done = this.getDoneFunction(deferred);
+		let deferred = Q.defer(), done = this.getDoneFunction(deferred);
 		// Calls the function in sequence
 		async.series(this.arrFunctions, done);
 

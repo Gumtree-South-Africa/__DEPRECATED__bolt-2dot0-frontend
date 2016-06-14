@@ -1,25 +1,24 @@
-//jshint ignore: start
 'use strict';
 
-let  _ = require('underscore');
+let _ = require('underscore');
 
-let  ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-let  deviceDetection = require(process.cwd() + '/modules/device-detection');
-let  pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-let  config = require('config');
+let deviceDetection = require(process.cwd() + '/modules/device-detection');
+let pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+let config = require('config');
 
 /**
  * @description A class that Handles the Header Model
  * @constructor
  */
 
-let  HeaderModel = function(secure, req, res) {
+let HeaderModel = function(secure, req, res) {
 	// Cookie variables
-	let  authCookieName = 'bt_auth';
+	let authCookieName = 'bt_auth';
 	this.authCookie = req.cookies[authCookieName];
 
-	let  searchLocIdCookieName = 'searchLocId';
+	let searchLocIdCookieName = 'searchLocId';
 	this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 	this.locationIdNameMap = res.locals.config.locationIdNameMap;
 	this.b2dot0Version = req.cookies.b2dot0Version;
@@ -56,15 +55,15 @@ HeaderModel.prototype.getModelBuilder = function() {
 // Function getHeaderData
 HeaderModel.prototype.getHeaderData = function() {
 
-	let  _this = this;
-	let  arrFunctions = [
+	let _this = this;
+	let arrFunctions = [
 		function(callback) {
 			if (typeof callback !== 'function') {
 				return;
 			}
 
 			// initialize
-			let  data = {
+			let data = {
 				'homePageUrl': _this.urlProtocol + 'www.' + _this.fullDomainName + _this.baseDomainSuffix + _this.basePort,
 				'languageCode': _this.locale
 			};
@@ -76,10 +75,10 @@ HeaderModel.prototype.getHeaderData = function() {
 			_.extend(data, _this.headerConfigData);
 
 			// build data
-			let  urlProtocol = _this.secure ? 'https://' : 'http://';
-			let  urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
-			let  urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
-			let  urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+			let urlProtocol = _this.secure ? 'https://' : 'http://';
+			let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+			let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+			let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
 			data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
 			data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
 			data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
@@ -132,7 +131,7 @@ HeaderModel.prototype.buildUrl = function(data) {
 	data.shortcutIconUrl = data.baseImageUrl + this.locale + '/shortcut.png';
 
 	// Temporary Hack to call rui-api from 1.0
-	let  modifiedLocale = this.locale;
+	let modifiedLocale = this.locale;
 	if (this.country === 'MX') {
 		modifiedLocale = this.locale + '_VNS';
 	}
@@ -144,7 +143,7 @@ HeaderModel.prototype.buildUrl = function(data) {
 //Build CSS
 HeaderModel.prototype.buildCss = function(data) {
 
-	let  b2dot0Ver = 'v1'; //by default
+	let b2dot0Ver = 'v1'; //by default
 	if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version === '2.0') {
 		b2dot0Ver = 'v2';
 	}
@@ -193,10 +192,8 @@ HeaderModel.prototype.buildProfile = function(data) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-				'/picture?width=36&height=36';
-			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-				'/feed?access_token=' + data.socialMedia.accessToken;
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 

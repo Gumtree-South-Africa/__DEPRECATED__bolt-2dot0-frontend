@@ -1,17 +1,17 @@
 'use strict';
 
-let  Q = require('q');
+let Q = require('q');
 
-let  ModelBuilder = require('./ModelBuilder');
-let  config = require('config');
+let ModelBuilder = require('./ModelBuilder');
+let config = require('config');
 
-let  Encryptor = require(process.cwd() + '/app/utils/Encryptor');
-let  pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+let Encryptor = require(process.cwd() + '/app/utils/Encryptor');
+let pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 
 
 //Function getPageData
-let  getPageData = function(scope) {
-	let  pageData = {
+let getPageData = function(scope) {
+	let pageData = {
 		'pageType': scope.pagetype,
 		'platform': 'BOLT-RUI',
 		'version': config.get('static.server.version'),
@@ -23,8 +23,8 @@ let  getPageData = function(scope) {
 };
 
 //Function getUserData
-let  getUsereData = function(scope) {
-	let  userData = {
+let getUsereData = function(scope) {
+	let userData = {
 		'hashedUserId': (typeof scope.userid === 'undefined' || scope.userid === null) ? '' : Encryptor.hash('' + scope.userid),
 		'hashedUserEmail': (typeof scope.useremail === 'undefined' || scope.useremail === null) ? '' : Encryptor.encrypt(scope.useremail),
 		'loggedIn': (typeof scope.userid === 'undefined' || scope.userid === null) ? false : true,
@@ -36,28 +36,18 @@ let  getUsereData = function(scope) {
 };
 
 //Function getCatData
-let  getCatData = function() {
-	let  categoryData = {
-		'current': '',
-		'level0': '',
-		'level1': '',
-		'level2': '',
-		'level3': '',
-		'level4': ''
+let getCatData = function() {
+	let categoryData = {
+		'current': '', 'level0': '', 'level1': '', 'level2': '', 'level3': '', 'level4': ''
 	};
 
 	return categoryData;
 };
 
 //Function getLocData
-let  getLocData = function() {
-	let  locationData = {
-		'current': '',
-		'level0': '',
-		'level1': '',
-		'level2': '',
-		'level3': '',
-		'level4': ''
+let getLocData = function() {
+	let locationData = {
+		'current': '', 'level0': '', 'level1': '', 'level2': '', 'level3': '', 'level4': ''
 	};
 
 	return locationData;
@@ -110,7 +100,7 @@ let  getLocData = function() {
  * @description A class that Handles the DataLayer Model
  * @constructor
  */
-let  DataLayerModel = function(req, res) {
+let DataLayerModel = function(req, res) {
 	// Local Variables
 	this.locale = res.locals.config.locale;
 	this.brandName = res.locals.config.name;
@@ -131,16 +121,15 @@ DataLayerModel.prototype.setUserEmail = function(useremail) {
 };
 
 DataLayerModel.prototype.getData = function() {
-	let  _this = this;
-	let  pageDeferred = Q.defer();
+	let _this = this;
+	let pageDeferred = Q.defer();
 
-	let  pageDataFunction = function(callback) {
-		let  data = {};
+	let pageDataFunction = function(callback) {
+		let data = {};
 		switch (_this.pagetype) {
 			case pagetypeJson.pagetype.HOMEPAGE:
 				data = {
-					'pageData': getPageData(_this),
-					'userData': getUsereData(_this)
+					'pageData': getPageData(_this), 'userData': getUsereData(_this)
 				};
 				break;
 			case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
@@ -164,7 +153,7 @@ DataLayerModel.prototype.getData = function() {
 		callback(null, data);
 	};
 
-	let  arrFunctions = [pageDataFunction];
+	let arrFunctions = [pageDataFunction];
 	return arrFunctions;
 };
 

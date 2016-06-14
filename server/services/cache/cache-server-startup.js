@@ -11,10 +11,10 @@ var categoryService = require(pCwd + '/server/services/category');
 
 
 module.exports = function(siteApp, requestId) {
-    var Cache = CacheBapiData(siteApp, requestId);
+	var Cache = CacheBapiData(siteApp, requestId);
 
-    // Load Config Data from BAPI
-    Cache.loadConfigData();
+	// Load Config Data from BAPI
+	Cache.loadConfigData();
 };
 
 /**
@@ -26,90 +26,90 @@ module.exports = function(siteApp, requestId) {
  */
 function CacheBapiData(siteApp, requestId) {
 
-    /**
-     * @method loadLocationData
-     * @description Loads the Location Data from BAPI. Exposes that data via
-     *     siteApp.locals.config.locationIdNameMap and siteApp.locals.config.locationdropdown
-     * @private
-     */
-    var loadLocationData = function (bapiHeaders, locationDepth) {
-        var filteredData;
+	/**
+	 * @method loadLocationData
+	 * @description Loads the Location Data from BAPI. Exposes that data via
+	 *     siteApp.locals.config.locationIdNameMap and siteApp.locals.config.locationdropdown
+	 * @private
+	 */
+	var loadLocationData = function(bapiHeaders, locationDepth) {
+		var filteredData;
 
-        // Load Location Data from BAPI
-        Q(locationService.getLocationsData(bapiHeaders, locationDepth))
-            .then(function (dataReturned) {
-                siteApp.locals.config.locationData = dataReturned;
+		// Load Location Data from BAPI
+		Q(locationService.getLocationsData(bapiHeaders, locationDepth))
+			.then(function(dataReturned) {
+				siteApp.locals.config.locationData = dataReturned;
 
-                filteredData = prepareDataForRendering(dataReturned, true, locationDepth);
-                siteApp.locals.config.locationIdNameMap = filteredData.map;
-                siteApp.locals.config.locationdropdown = filteredData.dropdown;
-            }).fail(function (err) {
-                console.warn('Startup: Error in loading locations from LocationService:- ', err);
-            });
-    };
+				filteredData = prepareDataForRendering(dataReturned, true, locationDepth);
+				siteApp.locals.config.locationIdNameMap = filteredData.map;
+				siteApp.locals.config.locationdropdown = filteredData.dropdown;
+			}).fail(function(err) {
+			console.warn('Startup: Error in loading locations from LocationService:- ', err);
+		});
+	};
 
-    /**
-     * @method loadCategoryData
-     * @description Loads the Category Data from BAPI. Exposes that data via
-     *      siteApp.locals.config.categorydropdown
-     * @private
-     */
-    var loadCategoryData = function (bapiHeaders, categoryDepth) {
-        var filteredData, flattenedData;
+	/**
+	 * @method loadCategoryData
+	 * @description Loads the Category Data from BAPI. Exposes that data via
+	 *      siteApp.locals.config.categorydropdown
+	 * @private
+	 */
+	var loadCategoryData = function(bapiHeaders, categoryDepth) {
+		var filteredData, flattenedData;
 
-        // Load Category Data from BAPI
-        Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
-            .then(function (dataReturned) {
-                siteApp.locals.config.categoryData = dataReturned;
+		// Load Category Data from BAPI
+		Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
+			.then(function(dataReturned) {
+				siteApp.locals.config.categoryData = dataReturned;
 
-                filteredData = prepareDataForRendering(dataReturned, true, categoryDepth);
-                siteApp.locals.config.categoryIdNameMap = filteredData.map;
-                siteApp.locals.config.categorydropdown = filteredData.dropdown;
+				filteredData = prepareDataForRendering(dataReturned, true, categoryDepth);
+				siteApp.locals.config.categoryIdNameMap = filteredData.map;
+				siteApp.locals.config.categorydropdown = filteredData.dropdown;
 
-                flattenedData = flattenTree(dataReturned);
-                siteApp.locals.config.categoryflattened = flattenedData;
-            }).fail(function (err) {
-                console.warn('Startup: Error in loading categories from CategoryService:- ', err);
-            });
-    };
+				flattenedData = flattenTree(dataReturned);
+				siteApp.locals.config.categoryflattened = flattenedData;
+			}).fail(function(err) {
+			console.warn('Startup: Error in loading categories from CategoryService:- ', err);
+		});
+	};
 
-    return {
+	return {
 
-        /**
-         * @method loadConfigData
-         * @description Loads the Config Data from BAPI. Exposes that data via
-         *     siteApp.locals.config.bapiConfigData
-         * @private
-         */
-        loadConfigData : function () {
-            var bapiHeaders = {};
-            bapiHeaders.requestId = requestId;
-            bapiHeaders.locale = siteApp.locals.config.locale;
+		/**
+		 * @method loadConfigData
+		 * @description Loads the Config Data from BAPI. Exposes that data via
+		 *     siteApp.locals.config.bapiConfigData
+		 * @private
+		 */
+		loadConfigData: function() {
+			var bapiHeaders = {};
+			bapiHeaders.requestId = requestId;
+			bapiHeaders.locale = siteApp.locals.config.locale;
 
-            // Load Config Data from BAPI
-            Q(configService.getConfigData(bapiHeaders))
-              .then(function (dataReturned) {
-                if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
-                    siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-                } else {
-                    siteApp.locals.config.bapiConfigData = dataReturned;
-                }
+			// Load Config Data from BAPI
+			Q(configService.getConfigData(bapiHeaders))
+				.then(function(dataReturned) {
+					if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
+						siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+					} else {
+						siteApp.locals.config.bapiConfigData = dataReturned;
+					}
 
-                var locationDropdownLevel = siteApp.locals.config.bapiConfigData.header.locationDropdownLevel;
-                var categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;
+					var locationDropdownLevel = siteApp.locals.config.bapiConfigData.header.locationDropdownLevel;
+					var categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;
 
-                // Load Location Data from BAPI
-                loadLocationData(bapiHeaders, locationDropdownLevel);
+					// Load Location Data from BAPI
+					loadLocationData(bapiHeaders, locationDropdownLevel);
 
-                // Load Category Data from BAPI
-                loadCategoryData(bapiHeaders, categoryDropdownLevel);
-            }).fail(function (err) {
-                console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
-                siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-            });
-        }
+					// Load Category Data from BAPI
+					loadCategoryData(bapiHeaders, categoryDropdownLevel);
+				}).fail(function(err) {
+				console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
+				siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+			});
+		}
 
-    };
+	};
 }
 
 /**
@@ -125,105 +125,86 @@ function CacheBapiData(siteApp, requestId) {
  * @return {JSON} in the format { dropdown : {} , map : {}}
  */
 function prepareDataForRendering(dataReturned, buildMapRequired, depth) {
-    if (!depth || (typeof depth !== "number") || (depth > 2) || (depth < 0)) {
-        depth = 1;
-    }
+	if (!depth || (typeof depth !== "number") || (depth > 2) || (depth < 0)) {
+		depth = 1;
+	}
 
-    // Build Location ID-Name Map
-    var dataMap = {},
-        dataDropdown = {},
-        key,
-        key2,
-        level1,
-        level2,
-        level1Data,
-        level2Data;
+	// Build Location ID-Name Map
+	var dataMap = {}, dataDropdown = {}, key, key2, level1, level2, level1Data, level2Data;
 
-    if (depth > 0) {
-        // Define initial Map object
-        if (buildMapRequired) {
-            dataMap[dataReturned.id] = {
-                'value': dataReturned.localizedName,
-                'level': dataReturned.level
-            };
-        }
+	if (depth > 0) {
+		// Define initial Map object
+		if (buildMapRequired) {
+			dataMap[dataReturned.id] = {
+				'value': dataReturned.localizedName, 'level': dataReturned.level
+			};
+		}
 
-        // Define initial Dropdown object
-        dataDropdown = {
-            'id' : dataReturned.id,
-            'localizedName' : dataReturned.localizedName,
-            'children' : []
-        };
+		// Define initial Dropdown object
+		dataDropdown = {
+			'id': dataReturned.id, 'localizedName': dataReturned.localizedName, 'children': []
+		};
 
-        // Iterate thru original data set and build the dropdown data and
-        // the map if required.
-        for (key in dataReturned.children) {
-            level1 = dataReturned.children[key];
+		// Iterate thru original data set and build the dropdown data and
+		// the map if required.
+		for (key in dataReturned.children) {
+			level1 = dataReturned.children[key];
 
-            if (buildMapRequired) {
-                dataMap[level1.id] = level1.localizedName;
-            }
+			if (buildMapRequired) {
+				dataMap[level1.id] = level1.localizedName;
+			}
 
-            level1Data = {
-                'id' : level1.id,
-                'localizedName' : level1.localizedName,
-                'children' : []
-            };
+			level1Data = {
+				'id': level1.id, 'localizedName': level1.localizedName, 'children': []
+			};
 
-            if (depth == 2) {
-                for (key2 in level1.children) {
-                    level2 = level1.children[key2];
+			if (depth == 2) {
+				for (key2 in level1.children) {
+					level2 = level1.children[key2];
 
-                    if (buildMapRequired) {
-                        dataMap[level2.id] = level2.localizedName;
-                    }
+					if (buildMapRequired) {
+						dataMap[level2.id] = level2.localizedName;
+					}
 
-                    level2Data = {
-                        'id' : level2.id,
-                        'localizedName' : level2.localizedName
-                    };
+					level2Data = {
+						'id': level2.id, 'localizedName': level2.localizedName
+					};
 
-                    level1Data.children.push(level2Data);
-                }
-            }
+					level1Data.children.push(level2Data);
+				}
+			}
 
-            dataDropdown.children.push(level1Data);
-        }
-    }
+			dataDropdown.children.push(level1Data);
+		}
+	}
 
-    return {
-        'dropdown' : dataDropdown,
-        'map' : dataMap
-    };
+	return {
+		'dropdown': dataDropdown, 'map': dataMap
+	};
 }
 
 function flattenTree(dataReturned) {
 
-    var flattenedData = {},
-        level1,
-        level2,
-        levelData,
-        key,
-        key2;
+	var flattenedData = {}, level1, level2, levelData, key, key2;
 
-    flattenedData = {
-        'nodes' : []
-    };
+	flattenedData = {
+		'nodes': []
+	};
 
-    for (key in dataReturned.children) {
-        level1 = dataReturned.children[key];
-        for (key2 in level1.children) {
-            level2 = level1.children[key2];
+	for (key in dataReturned.children) {
+		level1 = dataReturned.children[key];
+		for (key2 in level1.children) {
+			level2 = level1.children[key2];
 
-            levelData = {
-                'id' : level2.id,
-                'localizedName' : (typeof level2.localizedMobileName !== 'undefined') ? level2.localizedMobileName : level2.localizedName,
-                'level1Id': level1.id
-            };
+			levelData = {
+				'id': level2.id,
+				'localizedName': (typeof level2.localizedMobileName !== 'undefined') ? level2.localizedMobileName : level2.localizedName,
+				'level1Id': level1.id
+			};
 
-            flattenedData.nodes.push(levelData);
-        }
-    }
+			flattenedData.nodes.push(levelData);
+		}
+	}
 
-    return flattenedData;
+	return flattenedData;
 }

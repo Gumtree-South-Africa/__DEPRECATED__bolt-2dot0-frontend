@@ -1,17 +1,17 @@
 'use strict';
 
-let  Q = require('q');
+let Q = require('q');
 
-let  ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-let  hpAdService = require(process.cwd() + '/server/services/homepage-ads');
+let hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
 /**
  * @description A class that Handles the Gallery Model
  * @constructor
  */
-let  GalleryModel = function(bapiHeaders) {
+let GalleryModel = function(bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
@@ -21,11 +21,10 @@ GalleryModel.prototype.getModelBuilder = function() {
 
 // Function getHomePageGallery
 GalleryModel.prototype.getHomePageGallery = function() {
-	let  _this = this;
-	let  arrFunctions = [
+	let _this = this;
+	let arrFunctions = [
 		function(callback) {
-			let  galleryDeferred,
-				data = {};
+			let galleryDeferred, data = {};
 			if (typeof callback !== 'function') {
 				return;
 			}
@@ -56,8 +55,7 @@ GalleryModel.prototype.getHomePageGallery = function() {
 //Function getAjaxGallery
 GalleryModel.prototype.getAjaxGallery = function(offset, limit) {
 
-	let  galleryDeferred = Q.defer(),
-		data = {};
+	let galleryDeferred = Q.defer(), data = {};
 
 	if (typeof this.bapiHeaders.locale !== 'undefined') {
 		Q(hpAdService.getAjaxGallery(this.bapiHeaders, offset, limit))

@@ -2,14 +2,14 @@
 
 let Q = require('q');
 
-let  categoryService = require(process.cwd() + '/server/services/category');
+let categoryService = require(process.cwd() + '/server/services/category');
 
 
 /**
  * @description A class that Handles the Category Model
  * @constructor
  */
-let  CategoryModel = function(bapiHeaders, depth, locationId) {
+let CategoryModel = function(bapiHeaders, depth, locationId) {
 	this.bapiHeaders = bapiHeaders;
 	this.depth = depth;
 	this.locationId = locationId;
@@ -17,9 +17,9 @@ let  CategoryModel = function(bapiHeaders, depth, locationId) {
 
 //Function getCategories
 CategoryModel.prototype.getCategories = function() {
-	let  _this = this;
-	let  categoryDeferred = Q.defer();
-	let  data = {};
+	let _this = this;
+	let categoryDeferred = Q.defer();
+	let data = {};
 
 	if (typeof _this.bapiHeaders.locale !== 'undefined') {
 		Q(categoryService.getCategoriesData(_this.bapiHeaders, _this.depth))
@@ -37,8 +37,8 @@ CategoryModel.prototype.getCategories = function() {
 //Function getCategoriesWithLocId
 CategoryModel.prototype.getCategoriesWithLocId = function() {
 
-	let  categoryDeferred = Q.defer();
-	let  data = {};
+	let categoryDeferred = Q.defer();
+	let data = {};
 
 	if (typeof this.bapiHeaders.locale !== 'undefined') {
 		Q(categoryService.getCategoriesDataWithLocId(this.bapiHeaders, this.depth, this.locationId))

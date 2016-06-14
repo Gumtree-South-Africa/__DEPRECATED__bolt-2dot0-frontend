@@ -4,11 +4,11 @@
  * @description A singleton that does Base64 encoding and decoding
  * @constructor
  */
-var Base64 = (function () {
+var Base64 = (function() {
 
 	var _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
 
-	var encode = function (input) {
+	var encode = function(input) {
 		var output = "";
 		var chr1, chr2, chr3, enc1, enc2, enc3, enc4;
 		var i = 0;
@@ -32,16 +32,14 @@ var Base64 = (function () {
 				enc4 = 64;
 			}
 
-			output = output +
-				_keyStr.charAt(enc1) + _keyStr.charAt(enc2) +
-				_keyStr.charAt(enc3) + _keyStr.charAt(enc4);
+			output = output + _keyStr.charAt(enc1) + _keyStr.charAt(enc2) + _keyStr.charAt(enc3) + _keyStr.charAt(enc4);
 
 		}
 
 		return output;
 	};
 
-	var decode = function (input) {
+	var decode = function(input) {
 		var output = "";
 		var chr1, chr2, chr3;
 		var enc1, enc2, enc3, enc4;
@@ -103,10 +101,7 @@ var Base64 = (function () {
 	function _utf8_decode(utftext) {
 		var string = "";
 		var i = 0;
-		var c = 0,
-			c1 = 0,
-			c2 = 0,
-			c3 = 0;
+		var c = 0, c1 = 0, c2 = 0, c3 = 0;
 
 		while (i < utftext.length) {
 
@@ -134,11 +129,11 @@ var Base64 = (function () {
 
 	return {
 
-		encode: function (text) {
+		encode: function(text) {
 			return encode(text);
 		},
 
-		decode: function (text) {
+		decode: function(text) {
 			return decode(text);
 		}
 

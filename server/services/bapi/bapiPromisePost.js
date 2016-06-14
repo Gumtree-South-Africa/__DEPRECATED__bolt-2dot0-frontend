@@ -5,7 +5,7 @@ var Q = require('q');
 
 var BAPICall = require('./BAPICall');
 
-module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
+module.exports = function(bapiOptions, bapiHeaders, postData, serviceName) {
 	console.time('Instrument-BAPI-' + serviceName);
 
 	// Add Headers
@@ -27,28 +27,28 @@ module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 		bapiOptions.headers['X-BOLT-USER-AGENT'] = bapiHeaders.useragent;
 	}
 	if (typeof bapiHeaders.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaders.authTokenValue)) {
-		bapiOptions.headers['Authorization'] = 'Bearer ' +  bapiHeaders.authTokenValue;
+		bapiOptions.headers['Authorization'] = 'Bearer ' + bapiHeaders.authTokenValue;
 	}
-	
+
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
-		if ( bapiOptions.path.indexOf('?') > -1 ) {
+		if (bapiOptions.path.indexOf('?') > -1) {
 			bapiOptions.path = bapiOptions.path + '&' + bapiOptions.parameters;
 		} else {
 			bapiOptions.path = bapiOptions.path + '?' + bapiOptions.parameters;
 		}
-	} 
+	}
 
 	//console.log('$$$$$$$$$$$$$$$$$$', bapiOptions);
 	//console.log('$$$$$$$$$$$$$$$$$$', postData);
 
-  	//Create Promise
+	//Create Promise
 	var bapiDeferred = Q.defer();
 
 	// Instantiate BAPI and callback to resolve promise
 	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
-		if(typeof output === undefined || output.statusCode) {
+		if (typeof output === undefined || output.statusCode) {
 			var bapiError = {};
 			bapiError.status = output.statusCode;
 			bapiError.message = output.message;

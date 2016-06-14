@@ -1,20 +1,20 @@
 'use strict';
 
-let  Q = require('q');
-let  _ = require('underscore');
+let Q = require('q');
+let _ = require('underscore');
 
-let  StringUtils = require(process.cwd() + '/app/utils/StringUtils');
-let  ModelBuilder = require('./ModelBuilder');
+let StringUtils = require(process.cwd() + '/app/utils/StringUtils');
+let ModelBuilder = require('./ModelBuilder');
 
-let  pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-let  config = require('config');
-let  jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
+let pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+let config = require('config');
+let jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
 
 /**
  * @description A class that Handles the Footer Model
  * @constructor
  */
-let  FooterModel = function(secure, req, res) {
+let FooterModel = function(secure, req, res) {
 	// Local Variables
 	this.secure = secure;
 	this.locale = res.locals.config.locale;
@@ -32,15 +32,14 @@ FooterModel.prototype.getModelBuilder = function() {
 
 // Function getFooterData
 FooterModel.prototype.getFooterData = function() {
-	let  _this = this;
-	let  arrFunctions = [
+	let _this = this;
+	let arrFunctions = [
 		function(callback) {
 			if (typeof callback !== 'function') {
 				return;
 			}
 
-			let  footerDeferred,
-				data = {};
+			let footerDeferred, data = {};
 
 			// merge pageurl data
 			_.extend(data, pageurlJson.footer);
@@ -49,10 +48,10 @@ FooterModel.prototype.getFooterData = function() {
 			_.extend(data, _this.footerConfigData);
 
 			// build data
-			let  urlProtocol = _this.secure ? 'https://' : 'http://';
-			let  urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
-			let  urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
-			let  urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+			let urlProtocol = _this.secure ? 'https://' : 'http://';
+			let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+			let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+			let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
 			data.mainJSUrl = urlHost + urlPort + urlVersion + config.get('static.mainJSUrl');
 			data.baseJSUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSUrl');
 			data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSMinUrl');
@@ -78,7 +77,7 @@ FooterModel.prototype.getFooterData = function() {
 //Build JS
 FooterModel.prototype.buildJs = function(data) {
 
-	let  baseComponentDir = '/views/components/';
+	let baseComponentDir = '/views/components/';
 
 	data.javascripts = [];
 	if (data.min) {
@@ -91,7 +90,7 @@ FooterModel.prototype.buildJs = function(data) {
 		 });*/
 
 
-		for (let  k = 0; k < jsmin[0].src.length; k++) {
+		for (let k = 0; k < jsmin[0].src.length; k++) {
 			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
 		}
 
@@ -105,9 +104,7 @@ FooterModel.prototype.buildJs = function(data) {
 FooterModel.prototype.buildUrl = function(data) {
 
 	data.brandName = this.brandName;
-	data.localeJSPath = '/' + this.brandName + '/' + this.country + '/' + this.locale + '/',
-		data.countryJSPath = '/' + this.brandName + '/' + this.country + '/',
-		data.brandJSPath = '/' + this.brandName + '/';
+	data.localeJSPath = '/' + this.brandName + '/' + this.country + '/' + this.locale + '/', data.countryJSPath = '/' + this.brandName + '/' + this.country + '/', data.brandJSPath = '/' + this.brandName + '/';
 	data.obfuscatedCookieRightsURL = StringUtils.obfuscate(data.cookieNotice);
 	data.obfuscatedPrivacyPolicyURL = StringUtils.obfuscate(data.privacyPolicy);
 	data.obfuscatedTermsAndConditionsURL = StringUtils.obfuscate(data.termOfUse);

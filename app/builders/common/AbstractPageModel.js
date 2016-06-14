@@ -1,17 +1,17 @@
 'use strict';
 
-let  util = require('util');
-let  Q = require('q');
+let util = require('util');
+let Q = require('q');
 
-let  BasePageModel = require('./BasePageModel');
-let  deviceDetection = require(process.cwd() + '/modules/device-detection');
+let BasePageModel = require('./BasePageModel');
+let deviceDetection = require(process.cwd() + '/modules/device-detection');
 
 
 /**
  * @description
  * @constructor
  */
-let  AbstractPageModel = function(req, res) {
+let AbstractPageModel = function(req, res) {
 	BasePageModel.call(this, req, res);
 };
 
@@ -28,9 +28,9 @@ util.inherits(AbstractPageModel, BasePageModel);
  * @return {JSON}
  */
 AbstractPageModel.prototype.getPageModelConfig = function(res, pagetype) {
-	let  bapiConfigData = res.locals.config.bapiConfigData;
+	let bapiConfigData = res.locals.config.bapiConfigData;
 
-	let  pageModelConfig = bapiConfigData.bapi[pagetype];
+	let pageModelConfig = bapiConfigData.bapi[pagetype];
 
 	if (typeof pageModelConfig !== 'undefined') {
 		if (deviceDetection.isMobile()) {
@@ -51,10 +51,10 @@ AbstractPageModel.prototype.getPageModelConfig = function(res, pagetype) {
  * @return {Function}
  */
 AbstractPageModel.prototype.getCommonDataFunction = function() {
-	let  commonPageData = this.getModelBuilder();
+	let commonPageData = this.getModelBuilder();
 
-	let  commonDataFunction = function(callback) {
-		let  commonDataDeferred = Q.defer();
+	let commonDataFunction = function(callback) {
+		let commonDataDeferred = Q.defer();
 		Q(commonPageData.processWaterfall())
 			.then(function(dataC) {
 				commonDataDeferred.resolve(dataC);
@@ -79,9 +79,9 @@ AbstractPageModel.prototype.getCommonDataFunction = function() {
  * @return {Array}
  */
 AbstractPageModel.prototype.getArrFunctions = function(req, res, functionMap, pageModelConfig) {
-	let  arrFunctions = [this.getCommonDataFunction(req, res)];
+	let arrFunctions = [this.getCommonDataFunction(req, res)];
 
-	let  index, fnLabel, fn;
+	let index, fnLabel, fn;
 	for (index = 0; index < pageModelConfig.length; index++) {
 		fnLabel = pageModelConfig[index];
 		fn = functionMap[fnLabel];
@@ -102,10 +102,7 @@ AbstractPageModel.prototype.getArrFunctions = function(req, res, functionMap, pa
  * @return {JSON}
  */
 AbstractPageModel.prototype.convertListToObject = function(dataList, arrFunctions) {
-	let  numElems = dataList.length || 0,
-		idx = 0,
-		jsonObj = {},
-		fnLabel = '';
+	let numElems = dataList.length || 0, idx = 0, jsonObj = {}, fnLabel = '';
 	for (idx = 0; idx < numElems; idx++) {
 		fnLabel = arrFunctions[idx].fnLabel;
 		if (fnLabel) {

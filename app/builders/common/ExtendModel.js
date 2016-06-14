@@ -1,13 +1,13 @@
 'use strict';
 
-let  util = require('util');
-let  BasePageModel = require('./BasePageModel');
+let util = require('util');
+let BasePageModel = require('./BasePageModel');
 
 /**
  * @description
  * @constructor
  */
-let  ExtendModel = function(req, res) {
+let ExtendModel = function(req, res) {
 	BasePageModel.call(this, req, res);
 };
 

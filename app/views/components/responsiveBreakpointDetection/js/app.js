@@ -11,6 +11,6 @@ require([/* Dependencies */], function() {
 			// Your code here
 		}
 	};
-	
+
 	app.initialize();
 });

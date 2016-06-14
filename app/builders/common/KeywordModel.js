@@ -1,10 +1,10 @@
 'use strict';
 
-let  Q = require('q');
+let Q = require('q');
 
-let  ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-let  keywordService = require(process.cwd() + '/server/services/keyword');
+let keywordService = require(process.cwd() + '/server/services/keyword');
 
 
 /**
@@ -12,7 +12,7 @@ let  keywordService = require(process.cwd() + '/server/services/keyword');
  * @constructor
  */
 
-let  KeywordModel = function(bapiHeaders, kwCount) {
+let KeywordModel = function(bapiHeaders, kwCount) {
 	this.bapiHeaders = bapiHeaders;
 	this.kwCount = kwCount;
 };
@@ -23,10 +23,10 @@ KeywordModel.prototype.getModelBuilder = function() {
 
 // Function getKeywords
 KeywordModel.prototype.getKeywords = function() {
-	let  _this = this;
+	let _this = this;
 
-	let  topKeywordFunction = function(callback) {
-		let  topKeywordDeferred = Q.defer();
+	let topKeywordFunction = function(callback) {
+		let topKeywordDeferred = Q.defer();
 		Q(keywordService.getTopKeywordsData(_this.bapiHeaders, _this.kwCount))
 			.then(function(dataTopK) {
 				topKeywordDeferred.resolve(dataTopK);
@@ -37,8 +37,8 @@ KeywordModel.prototype.getKeywords = function() {
 		});
 	};
 
-	let  trendingKeywordFunction = function(callback) {
-		let  trendingKeywordDeferred = Q.defer();
+	let trendingKeywordFunction = function(callback) {
+		let trendingKeywordDeferred = Q.defer();
 		Q(keywordService.getTrendingKeywordsData(_this.bapiHeaders, _this.kwCount))
 			.then(function(dataTK) {
 				trendingKeywordDeferred.resolve(dataTK);
@@ -49,7 +49,7 @@ KeywordModel.prototype.getKeywords = function() {
 		});
 	};
 
-	let  arrFunctions = [topKeywordFunction, trendingKeywordFunction];
+	let arrFunctions = [topKeywordFunction, trendingKeywordFunction];
 	return arrFunctions;
 };
 
