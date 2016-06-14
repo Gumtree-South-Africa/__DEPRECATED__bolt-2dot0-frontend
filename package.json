@@ -61,7 +61,6 @@
     "gulp-iconify": "0.4.0",
     "gulp-if": "2.0.0",
     "gulp-jasmine-browser": "1.0.1",
-    "gulp-jasmine-node": "1.0.3",
     "gulp-jscs": "3.0.2",
     "gulp-jshint": "2.0.0",
     "gulp-jsonlint": "1.1.1",
@@ -117,6 +116,7 @@
     "yargs": "3.31.0"
   },
   "devDependencies": {
+    "cheerio": "^0.20.0",
     "fs": "0.0.2",
     "jasmine": "2.4.1",
     "minimist": "1.2.0",

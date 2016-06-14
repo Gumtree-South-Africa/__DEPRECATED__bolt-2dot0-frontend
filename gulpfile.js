@@ -26,7 +26,6 @@ var gulp = require('gulp'),
   map = require('map-stream'),
   plugins = require('gulp-load-plugins')(),
   compass = require('gulp-compass'),
-  jasmineNode = require('gulp-jasmine-node'),
   jasmineBrowser = require('gulp-jasmine-browser'),
   gulpicon = require("gulpicon/tasks/gulpicon"),
   clean = require('gulp-clean'),
@@ -99,10 +98,12 @@ gulp.task('default', function (done) {
 gulp.task('jasmine', shell.task([
 	'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' +
 	'JASMINE_CONFIG_PATH=./test/jasmine.json ' +
-	'node_modules/jasmine/bin/jasmine.js'
+	'./node_modules/jasmine/bin/jasmine.js'
 ]));
 
-gulp.task('test', runSequence('build', 'jasmine'));
+gulp.task('test', (done) => {
+	runSequence('build', 'jasmine', done);
+});
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
