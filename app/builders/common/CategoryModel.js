@@ -3,7 +3,7 @@
 var http = require('http'),
 	Q = require('q');
 
-var categoryService = require(process.cwd() + '/server/services/category');
+var categoryService = require(process.cwd() + '/server/services/categoryService');
 
 
 /**

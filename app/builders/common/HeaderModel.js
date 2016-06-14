@@ -11,7 +11,7 @@ var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
 
-var userService = require(process.cwd() + '/server/services/user');
+var userService = require(process.cwd() + '/server/services/userService');
 
 /**
  * @description A class that Handles the Header Model

@@ -5,7 +5,7 @@ var Q = require('q');
 
 var ModelBuilder = require('./ModelBuilder');
 
-var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
+var hpAdService = require(process.cwd() + '/server/services/homepageAdService');
 
 
 /**

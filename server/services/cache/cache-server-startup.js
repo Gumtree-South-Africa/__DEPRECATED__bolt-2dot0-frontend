@@ -6,8 +6,8 @@ var pCwd = process.cwd();
 
 // services
 var configService = require(pCwd + '/server/services/configservice');
-var locationService = require(pCwd + '/server/services/location');
-var categoryService = require(pCwd + '/server/services/category');
+var locationService = require(pCwd + '/server/services/locationService');
+var categoryService = require(pCwd + '/server/services/categoryService');
 
 
 module.exports = function(siteApp, requestId) {

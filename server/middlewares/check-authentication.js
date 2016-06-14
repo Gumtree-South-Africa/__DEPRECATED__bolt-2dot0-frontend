@@ -5,7 +5,7 @@ var Q = require('q');
 var _ = require('underscore');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
-var userService = require(process.cwd() + '/server/services/user');
+var userService = require(process.cwd() + '/server/services/userService');
 
 
 module.exports = function(locale) {

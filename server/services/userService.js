@@ -2,7 +2,8 @@
 
 var config = require('config');
 
-var bapiOptions = require("./bapi/bapiOptions")(config);
+var bapiOptions = require("./bapi/bapiOptionsModel")(config);
+var bapiService = require("./bapi/bapiService");
 
 /**
  * @description A service class that talks to User BAPI
@@ -15,7 +16,7 @@ var UserService = function() {
 /**
  * Gets User Info given a token from the cookie
  */
-UserService.prototype.getUserFromCookie = function(bapiHeaders) {
+UserService.prototype.getUserFromCookie = function(bapiHeaderValues) {
 	// console.info("Inside UserService");
 
 	// Prepare BAPI call
@@ -23,8 +24,8 @@ UserService.prototype.getUserFromCookie = function(bapiHeaders) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "user");
-};
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, "user");
+}
 
 UserService.prototype.buildProfile = function(data) {
 	if (data.username) {

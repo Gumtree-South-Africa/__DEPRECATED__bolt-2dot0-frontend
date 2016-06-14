@@ -79,7 +79,8 @@ gulp.task('watch', getTask('watch'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+// commenting out icons because they cause the build to become "hard to kill"
+gulp.task('build', ['set-env', 'jscs', 'bundlejs', /*'icons',*/ 'compass', 'precompile', 'jshint', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {

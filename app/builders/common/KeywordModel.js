@@ -5,7 +5,7 @@ var Q = require('q');
 
 var ModelBuilder = require('./ModelBuilder');
 
-var keywordService = require(process.cwd() + '/server/services/keyword');
+var keywordService = require(process.cwd() + '/server/services/keywordService');
 
 
 /**

@@ -5,7 +5,7 @@ var Q = require('q');
 
 var ModelBuilder = require('./ModelBuilder');
 
-var seoService = require(process.cwd() + '/server/services/seo');
+var seoService = require(process.cwd() + '/server/services/seoService');
 
 
 /**

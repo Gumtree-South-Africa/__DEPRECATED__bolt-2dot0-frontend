@@ -2,7 +2,8 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptions')(config);
+var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiService = require("./bapi/bapiService");
 
 /**
  * @description A service class that talks to Ad Gallery and Ad Statistics BAPI
@@ -15,7 +16,7 @@ var HomepageAdService = function() {
 /**
  * Gets a list of ads for homepage gallery
  */
-HomepageAdService.prototype.getHomepageGallery = function(bapiHeaders) {
+HomepageAdService.prototype.getHomepageGallery = function(bapiHeaderValues) {
 	// console.info('Inside HomepageGalleryService');
 
 	// Prepare BAPI call
@@ -23,7 +24,7 @@ HomepageAdService.prototype.getHomepageGallery = function(bapiHeaders) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'homepageGallery');
 };
 
 /**
@@ -37,7 +38,7 @@ HomepageAdService.prototype.getAjaxGallery = function(bapiHeaders, offset, limit
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
 
 /**
@@ -51,7 +52,7 @@ HomepageAdService.prototype.getAdStatistics = function(bapiHeaders) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
 	
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'adStatistics');
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, 'adStatistics');
 };
 
 module.exports = new HomepageAdService();

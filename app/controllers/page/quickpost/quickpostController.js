@@ -15,7 +15,7 @@ var StringUtils = require(cwd + '/app/utils/StringUtils'),
 	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
-var postAdService = require(cwd + '/server/services/postad');
+var postAdService = require(cwd + '/server/services/postadService');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
 
 module.exports = function (app) {

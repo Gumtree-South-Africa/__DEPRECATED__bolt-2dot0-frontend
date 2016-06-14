@@ -23,7 +23,7 @@ module.exports = function watch(gulp, plugins) {
         gulp.src([process.cwd() + '/app/builders/**/*.js', process.cwd() + '/app/controllers/**/*.js',
     	    process.cwd() + '/app/views/components/**/*.js'])
     	    .pipe(plugins.jshint())
-    	    .pipe(jshint.reporter('jshint-stylish'))
+    	    .pipe(jshint.reporter('jshint-stylish', { verbose: true })) // adding verbose to get error codes output
     	    //.pipe(jshint.reporter('fail'))
     	    .pipe(exitOnJshintError);
 

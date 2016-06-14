@@ -5,7 +5,7 @@ var BOLT = BOLT || {};
 var PREFIX_DIR  = '/public/images';
 
 (function (B) {
-  // Prevent jshint warning error
+  /* jshint -W038 */
   if (typeof webkitSpeechRecognition === 'undefined') {
     var webkitSpeechRecognition = function () {};
   }

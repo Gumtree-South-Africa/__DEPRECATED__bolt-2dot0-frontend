@@ -4,7 +4,7 @@
 var http = require('http'),
 	Q = require('q');
 
-var locationService = require(process.cwd() + '/server/services/location');
+var locationService = require(process.cwd() + '/server/services/locationService');
 
 
 /**

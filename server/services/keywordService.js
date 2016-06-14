@@ -3,8 +3,8 @@
 
 var config = require('config');
 
-var bapiOptions = require("./bapi/bapiOptions")(config);
-
+var bapiOptions = require("./bapi/bapiOptionsModel")(config);
+var bapiService = require("./bapi/bapiService");
 
 /**
  * @description A service class that talks to Keyword BAPI
@@ -17,7 +17,7 @@ var KeywordService = function() {
 /**
  * Gets a list of top keywords
  */
-KeywordService.prototype.getTopKeywordsData = function(bapiHeaders, kwCount) {
+KeywordService.prototype.getTopKeywordsData = function(bapiHeaderValues, kwCount) {
 	// console.info("Inside Top KeywordService");
 
 	// Prepare BAPI call
@@ -28,7 +28,7 @@ KeywordService.prototype.getTopKeywordsData = function(bapiHeaders, kwCount) {
 	}
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "topKeywords");
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, "topKeywords");
 }
 
 /**
@@ -45,7 +45,7 @@ KeywordService.prototype.getTrendingKeywordsData = function(bapiHeaders, kwCount
 	}
 	
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "trendingKeywords");
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaders, "trendingKeywords");
 }
 
 

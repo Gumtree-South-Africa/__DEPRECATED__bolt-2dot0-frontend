@@ -2,7 +2,8 @@
 
 var config = require('config');
 
-var bapiOptions = require('./bapi/bapiOptions')(config);
+var bapiOptions = require('./bapi/bapiOptionsModel')(config);
+var bapiService = require("./bapi/bapiService");
 
 /**
  * @description A service class that talks to Category BAPI
@@ -15,7 +16,7 @@ var CategoryService = function() {
 /**
  * Gets a list of categories
  */
-CategoryService.prototype.getCategoriesData = function(bapiHeaders, depth) {
+CategoryService.prototype.getCategoriesData = function(bapiHeaderValues, depth) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
@@ -23,13 +24,13 @@ CategoryService.prototype.getCategoriesData = function(bapiHeaders, depth) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'category');
 };
 
 /**
  * Gets a list of categories given a location id
  */
-CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaders, depth, locationId) {
+CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaderValues, depth, locationId) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
@@ -40,7 +41,7 @@ CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaders, dep
 	}
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
+	return bapiService.bapiPromiseGet(this.bapiOptions, bapiHeaderValues, 'category');
 };
 
 module.exports = new CategoryService();
