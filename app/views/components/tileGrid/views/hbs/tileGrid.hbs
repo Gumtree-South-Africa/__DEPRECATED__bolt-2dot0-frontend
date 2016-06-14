@@ -1,13 +1,18 @@
 {{#block "tileGrid"}}
     <div class="isotope-container">
         {{#each featuredAds}}
-            <div data-sort-position="1" class="isotope-item {{this.sizeClass}}">
+            <div data-sort-position="1" class="isotope-item visible-mobile {{this.sizeClass}}">
                 {{> (base "adTile") this}}
             </div>
         {{/each}}
         {{#each feedTiles}}
             <div data-sort-position="1" class="isotope-item feed-tile-size {{#unless @first}}hide-on-mobile{{/unless}}">
                 {{> (base "feedTile") this}}
+            </div>
+        {{/each}}
+        {{#each featuredAds}}
+            <div data-sort-position="1" class="isotope-item visible-desktop {{this.sizeClass}}">
+                {{> (base "adTile") this}}
             </div>
         {{/each}}
         {{#each mostRecentAds}}

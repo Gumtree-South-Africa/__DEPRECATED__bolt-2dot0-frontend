@@ -35,7 +35,7 @@ module.exports = {
 		'feedText': 'Jim has sold his Weber Grill'
 	}, {
 		'userProfileImageUrl': '/public/images/fake/userProfile.png',
-		'feedText': 'Rachel has sold her '
+		'feedText': 'Rachel has sold her shoes'
 	}],
 	'mostRecentAds': [
 		{
