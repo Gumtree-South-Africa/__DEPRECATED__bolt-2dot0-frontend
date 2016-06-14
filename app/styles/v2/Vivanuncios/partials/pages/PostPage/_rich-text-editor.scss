@@ -1,0 +1,31 @@
+body {
+    background: #FFFFFF;
+    margin: 0px;
+    padding: 0px;
+    text-align: left;
+    font-family: Tahoma, Verdana, Arial, Helvetica, sans-serif;
+    font-size: 0.875em;
+}
+
+.desc {
+    color: gray;
+}
+
+body.error {
+//    background-color: #EFDBD6;
+}
+
+body.valid {
+//    background-color: #F0FFC1;
+    color: #468847;
+}
+
+P {
+    margin-top: 0;
+    margin-bottom: 0
+}
+
+a {
+    text-decoration: none;
+    color: #000
+}

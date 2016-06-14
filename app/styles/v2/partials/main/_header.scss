@@ -1,0 +1,188 @@
+$header-width: auto !default;
+$header-shadow: none !default;
+$header-border-left: none !default;
+$header-border-right: none !default;
+$header-background: $color-white !default;
+
+$header-nav-slide-left: true !default;
+$header-android-look: false !default;
+
+@mixin header-caret($color:$color-black-15, $size:0.5em){
+    &:after{ content:" "; width:0; height:0; right:0; top:50%; position:absolute; margin-top:$size/-2;
+        border:{
+            top:$size solid $color;
+            left:$size solid transparent;
+            right:$size solid transparent;
+        }
+    }
+}
+
+
+.header{ max-width:$header-width; margin:0 auto; background:$header-background; position:relative; z-index:11;
+
+    // removes the annoying tap overlay on touch devices
+    *{ -webkit-tap-highlight-color:transparent; -moz-tap-highlight-color:transparent; -o-tap-highlight-color:transparent; tap-highlight-color:transparent; }
+
+    border:{
+        left: $header-border-left;
+        right: $header-border-right;
+    }
+
+    @if ($header-shadow != "none" ){ @include box-shadow($header-shadow); }
+
+
+
+    @import
+        "./header/headerWrap",
+        "./header/left",
+        "./header/right";
+
+
+
+    .clear{ clear:both; }
+    
+    
+    .bubbles{
+    	float: left;
+    	margin-top: 1em;
+    	position: relative;
+    	@include in-breakpoint($no-break){
+    		margin-right: 1.5em;
+    	}
+    	@include from-breakpoint($medium-break){
+    		margin-right: 2em;
+    	}
+    	@include in-breakpoint($small-break){
+    		margin-right: 2em;
+    	}
+    	+ .profile{
+    		float: left;
+    	}
+    	
+    }
+    
+    .right{
+       .nav .bubbles:hover{
+	    	+ .profile a:before, + .profile a:after, ~ ul{
+	    			display: none;
+	    		}
+	    }
+	    &.isMcEnabled .nav:hover{
+        	.profile a:before, .profile a:after { 
+            	@include in-breakpoint($no-break){ 
+            		left:60%;
+            	}
+            	@include in-breakpoint($small-break){ 
+            		left:70%;
+            	}
+             } 
+        }
+  
+    }
+    
+    
+    .nav.untouched + .bubbles{
+    	@include from-breakpoint($medium-break){
+    		margin-right: 2em;
+    	}
+    }
+    
+    .right.isMcEnabled .nav{
+    	@include in-breakpoint($no-break){
+    		min-width: 6.8em;
+    	}
+    	@include in-breakpoint($small-break){
+    		min-width: 6.2em;
+    	}
+    }
+	
+	.icon-ChatBubbles{
+		height: 2em;
+	  	width: 2em;
+	  	display: inline-block;
+	}
+	
+	.right.isMcEnabled .nav{
+		ul {
+			@include in-breakpoint($small-break){
+	    		left: -4em;
+	    	}
+	    }
+	    &.touched{
+	    	ul{
+	    		left: 0em;
+	    	}
+	    }
+	    &:hover{
+	    	.profile a{
+	    		&:before, &:after{
+	    			@include from-breakpoint($medium-break){
+	    				left: 20%;
+	    			}
+	    		}
+	    	}
+	    }
+	}
+
+}
+
+
+@if ($header-android-look) {
+    .header{
+        @include to-breakpoint($no-break){
+
+            .left,
+            .right{ width:50%; }
+
+            .right{
+
+                .post{ position:absolute; right:0; top:0; width:5em; height:2.5em; margin-left:0;
+
+                    a{ width:100%; white-space:normal; line-height:1em; padding-top:0.25em; text-align:center; height:100%; @include border-radius(0); }
+                }
+
+                .nav{ margin:{ right:4em; top:-0.5em;} }
+
+            }
+
+        }
+    }
+
+    .PostAdForm .header .right .nav{ margin-right:0; }
+}
+
+
+
+
+// This fix is only for the header navigation links that are absolute positioned on a mobile breakpoint
+// and once the "slide-left" navigation no longer exist, this fix can be removed.
+// Note: the problem lies when JS sets an absolute position on the header navigation links and the post ad button,
+// doesn't exist, therefore the header loses context of any elements lying inside of it and the absolute element is
+// pushed down. The fix: we set the poisition back to relative and remove the right margin.
+// So far, only these 4 pages don't have the PostAd button
+@if ($header-nav-slide-left){
+    .eVIP, .EditAdForm, .OrderPaymentForm, .PostAdForm{
+        .header .right .nav{ position:relative; right:auto; }
+    }
+}
+
+
+.post + .MessagesBtn:hover{ text-decoration: none;}
+
+
+.postSection{ display: none;}
+
+@include in-breakpoint($lt-ie9-class-name){
+	.header{
+		.icon-ChatBubbles{
+			width: 3em;
+			height: 2.5em;
+		}
+		.right .unreadMsg{
+			left: 2.45em;
+		}
+		.right .nav .profile{
+			margin-left: 1em;
+		}
+	}
+}

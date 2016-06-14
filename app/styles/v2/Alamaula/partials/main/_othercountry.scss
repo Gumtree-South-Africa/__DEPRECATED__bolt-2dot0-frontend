@@ -1,0 +1,154 @@
+.header {
+    .other-countries{
+        display: none;
+
+        position: absolute;
+        top: .3em;
+        right: 127px;
+        line-height: 1em;
+        /*temporary solution. The display of the flag should be control by B.E*/
+        @include to-breakpoint($no-break){
+            display: none;
+        }
+
+        .label{
+            display: inline-block;
+            font-weight: 700;
+            color: lighten($color-black, 30%);
+            @include transition(font-size 300ms);
+            padding: 10px 0;
+            position: relative;
+            background: url("../../../../../images/flags.gif") left top no-repeat;
+            min-width: 51px;
+            text-indent: -9999px;
+            cursor: default;
+        }
+
+        &.has-items .label{
+            cursor: pointer;
+        }
+
+        &.has-items .label:after{
+            content: " ";
+            position: absolute;
+            right: 0px;
+            top: 50%;
+            border:{
+                top: 5px solid lighten($color-black, 70%);
+                left: 5px solid transparent;
+                right: 5px solid transparent;
+            }
+        }
+
+        .items{
+            display: none;
+            border-radius: .25em;
+            background-color: $color-white;
+            @include box-shadow(-1px 1px 1px rgba(0,0,0,.35));
+            border: 1px solid darken($color-white, 20%);
+
+            li,
+            span,
+            a{
+                background: url("../../../../../images/flags.gif") left top no-repeat;
+                display: block;
+                padding: 10px;
+                padding-left: 46px;
+                border-top: 1px solid darken($color-white, 20%);
+
+                &:hover{
+                    background-color: $color-black-05;
+                }
+
+                &.active{
+                    background-color: $color-navy-15;
+                    color: lighten($color-black, 30%);
+                }
+            }
+
+            li:first-child,
+            span:first-child,
+            a:first-child{
+                border-top: none;
+            }
+        }
+
+
+        &.es_US {
+            .label {
+                background-position: 16px -330px;
+            }
+
+            .items{
+                li,
+                a,
+                span{
+                    background-position: 16px -330px;
+                    &.country-0{
+                        background-position: 16px -78px !important;
+                    }
+                }
+            }
+        }
+
+        &.es_MX{
+            .label {
+                background-position: 16px -78px;
+            }
+            .items {
+                li,
+                a,
+                span{
+                    background-position: 16px -78px;
+                    &.country-0{
+                        background-position: 16px -330px !important;
+                    }
+                }
+            }
+        }
+
+        &.has-items:hover,
+        &.has-items:focus{
+            z-index: 200;
+
+            .label{
+                display: none;
+            }
+
+            .items{
+                display: block !important;
+            }
+        }
+    }
+
+}
+
+
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+    .header .other-countries{
+        top: .5em;
+        right: auto;
+        left: 135px;
+    }
+}
+
+
+
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+    .header{
+        .other-countries{
+            top: 30px;
+            left: 166px;
+            font-size: 1.25em;
+
+            .label {
+                padding-left: 15px;
+                padding-right: 15px;
+                background-image: none;
+                text-indent: 0;
+            }
+        }
+    }
+}

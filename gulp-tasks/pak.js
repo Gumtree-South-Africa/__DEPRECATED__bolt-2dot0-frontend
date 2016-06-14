@@ -3,7 +3,10 @@
 // ////////////////////////////////////////////////
 // PACKAGING Tasks
 // ///////////////////////////////////////////////
-var exec = require('child_process').exec;
+var exec = require('child_process').exec,
+		fs = require('fs'),
+		loadingSpinner = require('loading-spinner'),
+		runSequence = require('gulp-run-sequence');
 
 module.exports = function watch(gulp, plugins) {
 	return function() {

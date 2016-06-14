@@ -45,7 +45,7 @@
 		"no-empty-character-class": 2,
 		"no-ex-assign": 2,
 		"no-extra-boolean-cast": 2,
-		"no-extra-parens": 2,
+		"no-extra-parens": 0,
 		"no-extra-semi": 2,
 		"no-func-assign": 2,
 		"no-inner-declarations": 2,
@@ -60,7 +60,7 @@
 		"no-unreachable": 2,
 		"no-unsafe-finally": 2,
 		"use-isnan": 2,
-		"valid-jsdoc": 2,
+		"valid-jsdoc": 0,
 		"valid-typeof": 2,
 
 		// the following rules documented on http://eslint.org/docs/rules/ as
@@ -110,7 +110,7 @@
 		"consistent-this": [2, "_this"],
 		"eol-last": 0,
 		"padded-blocks": [
-			1,
+			0,
 			"never"
 		],
 		"quotes": [

@@ -1,20 +1,20 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
-var _ = require('underscore');
+let  Q = require('q');
+let  _ = require('underscore');
 
-var StringUtils = require(process.cwd() + '/app/utils/StringUtils');
-var ModelBuilder = require('./ModelBuilder');
+let  StringUtils = require(process.cwd() + '/app/utils/StringUtils');
+let  ModelBuilder = require('./ModelBuilder');
 
-var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-var config = require('config');
+let  pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+let  config = require('config');
+let  jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
 
 /**
  * @description A class that Handles the Footer Model
  * @constructor
  */
-var FooterModel = function (secure, req, res) {
+let  FooterModel = function(secure, req, res) {
 	// Local Variables
 	this.secure = secure;
 	this.locale = res.locals.config.locale;
@@ -26,20 +26,20 @@ var FooterModel = function (secure, req, res) {
 	this.jsAssets = res.locals.jsAssets;
 };
 
-FooterModel.prototype.getModelBuilder = function () {
+FooterModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getFooterData());
 };
 
 // Function getFooterData
-FooterModel.prototype.getFooterData = function () {
-	var _this = this;
-	var arrFunctions = [
-		function (callback) {
+FooterModel.prototype.getFooterData = function() {
+	let  _this = this;
+	let  arrFunctions = [
+		function(callback) {
 			if (typeof callback !== 'function') {
 				return;
 			}
 
-			var footerDeferred,
+			let  footerDeferred,
 				data = {};
 
 			// merge pageurl data
@@ -49,10 +49,10 @@ FooterModel.prototype.getFooterData = function () {
 			_.extend(data, _this.footerConfigData);
 
 			// build data
-			var urlProtocol = _this.secure ? 'https://' : 'http://';
-			var urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
-			var urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
-			var urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+			let  urlProtocol = _this.secure ? 'https://' : 'http://';
+			let  urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+			let  urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+			let  urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
 			data.mainJSUrl = urlHost + urlPort + urlVersion + config.get('static.mainJSUrl');
 			data.baseJSUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSUrl');
 			data.baseJSMinUrl = urlHost + urlPort + urlVersion + config.get('static.baseJSMinUrl');
@@ -76,9 +76,9 @@ FooterModel.prototype.getFooterData = function () {
 };
 
 //Build JS
-FooterModel.prototype.buildJs = function (data) {
+FooterModel.prototype.buildJs = function(data) {
 
-	var baseComponentDir = '/views/components/';
+	let  baseComponentDir = '/views/components/';
 
 	data.javascripts = [];
 	if (data.min) {
@@ -90,28 +90,10 @@ FooterModel.prototype.buildJs = function (data) {
 		 data.javascripts.push(jsFile);
 		 });*/
 
-		//todo: remove this after Nacer adds minfication.
 
-		data.javascripts.push(data.baseJSUrl + 'libraries/jQuery/jquery-2.0.0.min.js');
-		data.javascripts.push(data.baseJSUrl + 'bower-components/requirejs/require.js');
-		data.javascripts.push(data.baseJSUrl + 'libraries/jQuery/plugins/jquery.smartbanner.js');
-		data.javascripts.push(data.baseJSUrl + 'common/utils/StringUtils.js');
-		data.javascripts.push(data.baseJSUrl + 'common/utils/JQueryUtil.js');
-		data.javascripts.push(data.baseJSUrl + 'common/device/MatchMedia.js');
-		data.javascripts.push(data.baseJSUrl + 'common/tracking/GoogleTag.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/main.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/json.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/cookie.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/storage.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/overlay.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/i18n.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/html5.js');
-		data.javascripts.push(data.baseJSUrl + 'common/bolt/Search.js');
-		data.javascripts.push(data.baseJSUrl + 'common/banners/GoogleTagBanner.js');
-		data.javascripts.push(data.baseJSUrl + 'common/banners/BannerCookie.js');
-		data.javascripts.push(data.baseJSUrl + 'common/tracking/Analytics.js');
-		//	data.javascripts.push(data.baseJSUrl + 'common/header/Header.js');
-		data.javascripts.push(data.baseJSUrl + 'common/header/searchbar.js');
+		for (let  k = 0; k < jsmin[0].src.length; k++) {
+			data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
+		}
 
 		// @todo: Need to determine a way to detect which components will be used for a
 		// given page.
@@ -120,7 +102,7 @@ FooterModel.prototype.buildJs = function (data) {
 };
 
 //Build URL
-FooterModel.prototype.buildUrl = function (data) {
+FooterModel.prototype.buildUrl = function(data) {
 
 	data.brandName = this.brandName;
 	data.localeJSPath = '/' + this.brandName + '/' + this.country + '/' + this.locale + '/',

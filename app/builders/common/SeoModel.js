@@ -1,37 +1,36 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
+let  Q = require('q');
 
-var ModelBuilder = require('./ModelBuilder');
+let  ModelBuilder = require('./ModelBuilder');
 
-var seoService = require(process.cwd() + '/server/services/seo');
+let  seoService = require(process.cwd() + '/server/services/seo');
 
 
 /**
  * @description A class that Handles the SEO Model
  * @constructor
  */
-var SeoModel = function (bapiHeaders) {
+let  SeoModel = function(bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
-SeoModel.prototype.getModelBuilder = function () {
+SeoModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getHPSeoInfo(), this.getQuickPostSeoInfo());
 };
 
 
 // Function getHPSeoInfo
-SeoModel.prototype.getHPSeoInfo = function () {
+SeoModel.prototype.getHPSeoInfo = function() {
 
-	var seoDeferred = Q.defer();
-	var data = {};
+	let  seoDeferred = Q.defer();
+	let  data = {};
 
 	Q(seoService.getHPSeoData(this.bapiHeaders))
-		.then(function (dataReturned) {
+		.then(function(dataReturned) {
 			data = dataReturned;
 			seoDeferred.resolve(data);
-		}).fail(function (err) {
+		}).fail(function(err) {
 		seoDeferred.reject(new Error(err));
 	});
 
@@ -39,16 +38,16 @@ SeoModel.prototype.getHPSeoInfo = function () {
 };
 
 // Function getQuickPostSeoInfo
-SeoModel.prototype.getQuickPostSeoInfo = function () {
+SeoModel.prototype.getQuickPostSeoInfo = function() {
 
-	var seoDeferred = Q.defer();
-	var data = {};
+	let  seoDeferred = Q.defer();
+	let  data = {};
 
 	Q(seoService.getQuickPostSeoData(this.bapiHeaders))
-		.then(function (dataReturned) {
+		.then(function(dataReturned) {
 			data = dataReturned;
 			seoDeferred.resolve(data);
-		}).fail(function (err) {
+		}).fail(function(err) {
 		seoDeferred.reject(new Error(err));
 	});
 

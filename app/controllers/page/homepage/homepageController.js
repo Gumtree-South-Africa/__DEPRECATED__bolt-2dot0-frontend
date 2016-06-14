@@ -4,6 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
+	Q = require('q'),
     cuid = require('cuid');
 
 var cwd = process.cwd();
@@ -12,7 +13,8 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	marketoService = require(cwd + '/server/utils/marketo'),
 	Base64 = require(process.cwd() + '/app/utils/Base64'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
+	userService = require(process.cwd() + '/server/services/user');
 
 
 module.exports = function (app) {
@@ -38,18 +40,61 @@ router.get('/', function (req, res, next) {
 	var modelData = pageControllerUtil.preController(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
+  // Cookies drop for Version of template
+  function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, modelData){
+    if((typeof pageVersionCookie !== 'undefined') && pageVersionCookie == '2.0'){
+      pageControllerUtil.postController(req, res, next, newPath, modelData);
+    }
+    else{
+      pageControllerUtil.postController(req, res, next, defaultPath, modelData);
+    }
+  }
+
 	// Retrieve Data from Model Builders
 	var model = HomepageModel(req, res, modelData);
-    model.then(function (result) {
+	let authCookie = req.cookies['bt_auth'];
+	let userCookieData = req.app.locals.userCookieData;
+	let promises = [model];
+	if (authCookie && !userCookieData) {
+		let bapiHeaders = {
+			'requestId'         :   req.app.locals.requestId,
+			'ip'                :   req.app.locals.ip,
+			'machineid'         :   req.app.locals.machineid,
+			'useragent'         :   req.app.locals.useragent,
+			'locale'            :   res.locals.config.locale,
+			'authTokenValue'    :   authCookie 
+		};
+		promises.push(userService.getUserFromCookie(bapiHeaders));
+	} 
+	Q.allSettled(promises)
+	    .then(function (result) {
 
-    // Dynamic Data from BAPI
-    modelData.header = result['common'].header || {};
+		let cookiePageVersion = req.cookies.b2dot0Version,
+			defaultPath = 'homepage/views/hbs/homepage_',
+			newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
+
+		let user;
+		if (result[1] !== undefined) {
+			//Cookie was set
+			user = result[1].state === "fulfilled" ? result[1].value : null;
+		}
+		// Dynamic Data from BAPI
+		// Result[0] is all the model data for the page without user data
+		result = result[0].state === "fulfilled" ? result[0].value: null;
+		modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
 		modelData.level2Location = result['level2Loc'] || {};
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
+
+		if (user) {
+			let userData = userService.buildProfile(user);
+			_.extend(modelData.header, userData);
+		} else {
+			console.error(`Invalid user cookie: ${authCookie}`)
+		}
 
 		if (result['adstatistics']) {
 			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
@@ -88,10 +133,15 @@ router.get('/', function (req, res, next) {
 			modelData.showPopularLocations = false;
 		}
 
-		pageControllerUtil.postController(req, res, next, 'homepage/views/hbs/homepage_', modelData);
+		// Changing Version of template depending of the cookie
+		cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
 
 		console.timeEnd('Instrument-Homepage-Controller');
-    });
+	}, (err) => {
+		console.error(err);
+	}).fail((err) => {
+		console.error(err);
+	});
 });
 
 
