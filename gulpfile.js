@@ -29,7 +29,8 @@ var gulp = require('gulp'),
 	fs = require('fs'),
 	runSequence = require('gulp-run-sequence'),
 	shell = require("gulp-shell"),
-	reload = browserSync.reload;
+	reload = browserSync.reload,
+    webdriver_update = require('gulp-protractor').webdriver_update;
 
 // ////////////////////////////////////////////////
 // Get Tasks //
@@ -61,6 +62,9 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
+gulp.task('protractor', getTask('protractor'));
+// downloads latest default Selenium web drivers such as for chrom
+gulp.task('webdriverUpdate', webdriver_update);
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
@@ -85,6 +89,14 @@ gulp.task('test', (done) => {
 });
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
+
+gulp.task('integration', function (done) {
+	runSequence('webdriverUpdate', 'protractor', done);
+});
+
+gulp.task('test', (done) => {
+	runSequence('build', 'jasmine', 'integration', done);
+});
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
