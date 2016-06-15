@@ -12,10 +12,10 @@ CardService.prototype.quickpostAd = function(bapiHeaderValues, params) {
 	// console.info('Inside PostAdService');
 
 	// Invoke BAPI
-	return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
-		method: 'POST',
-		path: config.get(params.queryEndpoint)
-	}), bapiHeaderValues, adJson, 'card');
+	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		method: 'GET',
+		path: config.get(params.queryEndpoint)	// todo: fixup path with parameters
+	}), bapiHeaderValues, 'card');
 };
 
 module.exports = new CardService();
