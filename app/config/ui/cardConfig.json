@@ -1,0 +1,31 @@
+{
+	"cards": {
+		"trending": {
+			"queryEndpoint": "BAPI.endpoints.getTrendingAds",
+			"numberOfItems": 15,
+			"queryParameters": {
+				"page": "1",
+				"pageSize": "15",
+				"location": "${location}"
+			},
+			"templateName": "/templates/trending.hbs",
+			"templateParameters": {
+				"showFavorites": true,
+				"showReplies": true,
+				"showLikes": true,
+				"showFeatured": true
+			},
+			"itemSizeMap": "111111222222333333",
+			"scriptHandlerType": "isotope"
+		},
+		"summerFun": {
+
+		}
+	},
+	"cardsByPage": {
+		"homePage": [
+			"trending",
+			"summerFun"
+		]
+	}
+}
