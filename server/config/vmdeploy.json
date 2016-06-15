@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "localhost",
+	    	"host": "docker_host_machine",
 	    	"port": 80,
 	    	"parameters": null
 	    },
@@ -27,7 +27,7 @@
 	},
   	"graphite": {
 		"server": {
-			"host"		: "localhost",
+			"host"		: "docker_host_machine",
 	   		"port"		: 2003,
 	  		"interval" 	: 30
 		}
