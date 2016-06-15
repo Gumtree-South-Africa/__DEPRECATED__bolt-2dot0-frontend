@@ -9,7 +9,7 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	del = require('del'),
-	plumber = require('gulp-plumber'), ,
+	plumber = require('gulp-plumber'),
 	livereload = require('gulp-livereload'),
 	handlebars = require('gulp-handlebars'),
 	notify = require('gulp-notify'),
@@ -43,7 +43,7 @@ var gulp = require('gulp'),
 	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
-// Get Tasks
+// Get Tasks //
 // // /////////////////////////////////////////////
 function getTask(task) {
 	return require('./gulp-tasks/' + task)(gulp, plugins);
@@ -70,7 +70,6 @@ gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
 gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
-gulp.task('jscs', getTask('jscs'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 
