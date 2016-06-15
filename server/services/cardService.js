@@ -6,9 +6,9 @@ var bapiOptionsModel = require("./bapi/bapiOptionsModel");
 var bapiService = require("./bapi/bapiService");
 
 /**
- * Gets a list of ads for homepage gallery
+ * Gets data based on the endpoint and parameters passed
  */
-CardService.prototype.quickpostAd = function(bapiHeaderValues, params) {
+CardService.prototype.getCardData = function(bapiHeaderValues, params) {
 	// console.info('Inside PostAdService');
 
 	// Invoke BAPI
