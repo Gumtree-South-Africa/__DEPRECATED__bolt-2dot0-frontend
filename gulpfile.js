@@ -79,7 +79,7 @@ gulp.task('watch', getTask('watch'));
 gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', /*'jscs',*/ 'bundlejs', /*'icons',*/ 'compass', 'precompile', /*'jshint',*/ 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {
