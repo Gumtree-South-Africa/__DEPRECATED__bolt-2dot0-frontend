@@ -1,7 +1,12 @@
 {{#partial "content"}}
 
+	{{!-- override of header and footer --}}
+	{{#partial "headerWrapper"}}{{/partial}}
+	{{#partial "footerWrapper"}}{{/partial}}
+
 	<div style="border: 2px solid green ;overflow: hidden; display: block;">
 		<h1 style="text-align: center;">HOMEPAGE PLACEHOLDER CONTENTS !!!</h1>
+		{{json this.isNewHP}}
 		{{> (dynamic "sectionMenu")}}
 	</div>
 
