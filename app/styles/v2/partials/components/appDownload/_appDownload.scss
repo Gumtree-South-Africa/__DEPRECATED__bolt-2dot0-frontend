@@ -1,0 +1,157 @@
+
+/// ----------------------------------------------------------------------------
+		
+		/// Mobile First Styles 
+/// ----------------------------------------------------------------------------   
+
+.inner-wrapper{
+ .title{
+		font-family: Lato bold;
+	    font-size: 24px;
+		}
+	.description{
+	    font-family: Lato Regular;
+	    font-size: 12px;
+	 }
+}
+
+#inner2{
+    background: #EBEBEB;
+ } 
+ 
+ .image1  {
+  background-image: url('../../../../../../images/es_MX/tutorial-imgs/review.png');
+  width:12px;
+  height:12px;
+ 
+ }
+ 
+
+@include in-breakpoint($no-break){		
+.downloadapp-wrapper{
+    margin-top:1em;
+   }
+#downloadapp-imagewrapper{
+    float:left; 
+    width:100%;
+    height:150px;
+    text-align:center;
+    background-image: url('../../../../../../images/es_MX/tutorial-imgs/app-download.png');
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+    display:block;
+    }
+#inner2{
+    float:left; 
+    width:100%;
+    text-align:center;
+    }
+
+.inner-wrapper{
+   width:90%;
+   margin: 0 auto;
+   }
+   
+.review2,.review3 {
+  display:none;
+}  
+
+.app {
+   display: block;
+   margin: 0 -1em;
+   padding: 0 1em;
+  a{
+    background-color: #f89301;
+    text-align: center; 
+    font-size: 18px;
+    display: block;
+    width: 100%;
+    margin-bottom: 1em;
+    padding: 18px;
+    color: white;
+    padding: 6px 18px;
+  
+    }
+
+  }
+
+
+}
+
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+
+
+
+
+}
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+
+.downloadapp-wrapper{
+	margin-top:1em;
+	height:300px;
+	width:100%;
+    background: #EBEBEB;
+	}
+ #downloadapp-imagewrapper{
+    float: left;
+    width:60%;
+    height:100%;  
+    text-align:center;
+    background-image: url('../../../../../../images/es_MX/tutorial-imgs/app-download.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+#inner2{
+	float: right;
+	width: 220px;
+	width: 40%;
+	height: 100%;  
+	text-align: center;
+	background: #EBEBEB;
+   }
+   
+.inner-wrapper{
+	width: 80%;
+	margin: 0 auto;
+   }	
+
+.app-button{
+    margin-bottom: 1em;
+    width: 100%;
+    height: 40px;
+   }    
+    
+.ios-appstore{
+    background-image: url('../../../../../../images/es_MX/appstore.png');
+	background-repeat: no-repeat;
+	width: 45%;
+	height: 100%;
+	float: left;
+	background-size: 100% 100%;
+	}
+
+.googleplay{
+	background-image: url('../../../../../../images/es_MX/googleplay.png');
+	background-repeat: no-repeat;
+	width: 45%;
+	height:100%;
+	float: right;
+	background-size: 100% 100%;
+
+   }
+ 
+ .app{
+    display: none;
+  }  
+   
+.review{
+   background-color:white;
+   border:1px solid green;
+   height:45px;
+   margin-bottom:0.5em;
+}
+ }
+
