@@ -39,7 +39,7 @@ var getHomepageDataFunctions = function (req, res, modelData) {
 		adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(),
 		seo = new SeoModel(modelData.bapiHeaders),
 		category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
-			
+
 	return {
 		'level2Loc'		:	function(callback) {
 								var level2locationDeferred = Q.defer();
@@ -135,15 +135,23 @@ var HomePageModel = function (req, res, modelData) {
 	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
-	
-	var homepageModel = new ModelBuilder(arrFunctions);	
+
+	var homepageModel = new ModelBuilder(arrFunctions);
 	var homepageDeferred = Q.defer();
+	var i18n = req.i18n;
 	Q(homepageModel.processParallel())
     	.then(function (data) {
     		// Converts the data from an array format to a JSON format
     		// for easy access from the client/controller
     		data = abstractPageModel.convertListToObject(data, arrFunctions);
-    		homepageDeferred.resolve(data);
+
+		    // Get a copy of the array we can manipulate
+			var safetyTips = i18n.__('homepage.safetyTips.tip');
+		    var i = Math.floor(Math.random() * safetyTips.length);
+			data.safetyTips = {};
+			data.safetyTips.one = safetyTips[i];
+			data.safetyTips.two = safetyTips[(i + 2) % safetyTips.length];
+			homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
 		});

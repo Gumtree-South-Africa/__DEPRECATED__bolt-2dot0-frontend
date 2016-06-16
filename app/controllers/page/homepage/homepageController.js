@@ -83,6 +83,7 @@ router.get('/', function (req, res, next) {
 		result = result[0].state === "fulfilled" ? result[0].value: null;
 		modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
+		modelData.safetyTips = result['safetyTips'] || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
 		modelData.level2Location = result['level2Loc'] || {};

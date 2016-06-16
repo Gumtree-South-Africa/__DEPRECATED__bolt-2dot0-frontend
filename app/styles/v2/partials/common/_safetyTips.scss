@@ -1,0 +1,70 @@
+.safetyTips {
+    height: 320px;
+    text-align: center;
+    background-color: #e2e0e1;
+    position: relative;
+
+    .safety-block {
+        width: 200px;
+        float: left;
+        &.block-right {
+            margin-left: 20px;
+            display: none;
+            @include from-breakpoint($small-break) {
+                display: inline-block;
+            }
+        }
+
+    }
+    .image-container {
+        width: 200px;
+        position: absolute;
+        left: 0;
+        right: 0;
+        padding-bottom: 10px;
+        margin: auto;
+        @include from-breakpoint($small-break){
+            width: 420px;
+        }
+    }
+
+
+    .image {
+        width: 200px;
+        height: 200px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+        &.image-left {
+            background-image: url('http://kids.nationalgeographic.com/content/dam/kids/photos/animals/Mammals/H-P/lion-mom-cub.jpg');
+        }
+        &.image-right {
+            display: none;
+            background-image: url('http://cbs.umn.edu/sites/cbs.umn.edu/files/public/african_lion_king-wide_1.jpg');
+            @include from-breakpoint($small-break){
+                display: block;
+            }
+        }
+    }
+
+    .faq {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 7px;
+    }
+    a {
+        font-size: 14pt;
+        color: #FF980D;
+    }
+    h2 {
+        font-size: 18pt;
+        font-weight: bold;
+    }
+    .help-text {
+        font-size: 10pt;
+        color: #8E8E93;
+    }
+}
+
+
