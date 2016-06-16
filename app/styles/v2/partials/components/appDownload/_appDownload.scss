@@ -19,12 +19,42 @@
     background: #EBEBEB;
  } 
  
- .image1  {
-  background-image: url('../../../../../../images/es_MX/tutorial-imgs/review.png');
-  width:12px;
-  height:12px;
+ .review-description{
+ 
+ font-size:10px;
+ }
+ 
+ .user-avatar {
+  background-image: url('../../../../../../images/es_MX/review.png');
+  background-size:100% 100%;
+  height: 44px;
+  width: 44px;
+  -moz-border-radius: 100%;
+  -webkit-border-radius: 100%;
+  border-radius: 100%;
+  float: left;
+  margin-left: 10px;
  
  }
+ 
+ 
+ .review1{
+   background-color:white;
+   border:1px solid green;
+   height:48px;
+   margin-bottom:0.5em;
+   .rating{
+      background-image: url('../../../../../../images/es_MX/rating.png');
+	  background-size:100% 100%;
+	  float:left;
+	  height: 21px;
+      width: 96px;
+	   }
+   .review-description{
+   float: left;
+   
+   }	   
+}
  
 
 @include in-breakpoint($no-break){		
@@ -54,12 +84,14 @@
    
 .review2,.review3 {
   display:none;
-}  
+} 
+
 
 .app {
    display: block;
    margin: 0 -1em;
    padding: 0 1em;
+   margin-top: 1em;
   a{
     background-color: #f89301;
     text-align: center; 
@@ -90,7 +122,7 @@
 
 .downloadapp-wrapper{
 	margin-top:1em;
-	height:300px;
+	height:306px;
 	width:100%;
     background: #EBEBEB;
 	}
@@ -118,7 +150,13 @@
 	margin: 0 auto;
    }	
 
-.app-button{
+ 
+ .app{
+    display: none;
+  } 
+  
+  
+  .app-button{
     margin-bottom: 1em;
     width: 100%;
     height: 40px;
@@ -141,17 +179,7 @@
 	float: right;
 	background-size: 100% 100%;
 
-   }
- 
- .app{
-    display: none;
-  }  
+   }  
    
-.review{
-   background-color:white;
-   border:1px solid green;
-   height:45px;
-   margin-bottom:0.5em;
-}
  }
 
