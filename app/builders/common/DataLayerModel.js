@@ -12,101 +12,101 @@ var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
 
 
 //Function getPageData
-var getPageData = function(scope) {
+var getPageData = function (scope) {
 	var pageData = {
-		"pageType"	:	scope.pagetype,
-		"platform"	:	"BOLT-RUI",
-		"version"	:	config.get("static.server.version"),
-		"language"	:	scope.locale,
-		"viewType"	:	""
+		"pageType": scope.pagetype,
+		"platform": "BOLT-RUI",
+		"version": config.get("static.server.version"),
+		"language": scope.locale,
+		"viewType": ""
 	};
-	
+
 	return pageData;
 };
 
 //Function getUserData
-var getUsereData = function(scope) {
+var getUsereData = function (scope) {
 	var userData = {
-		"hashedUserId"		:	(typeof scope.userid==="undefined" || scope.userid===null) ? "" : Encryptor.hash("" + scope.userid),
-		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.encrypt(scope.useremail),
-		"loggedIn"			:	(typeof scope.userid==="undefined" || scope.userid===null) ? false : true,
-		"hashedAccountId"	:	"",
-		"accountType"		:	""
+		"hashedUserId": (typeof scope.userid === "undefined" || scope.userid === null) ? "" : Encryptor.hash("" + scope.userid),
+		"hashedUserEmail": (typeof scope.useremail === "undefined" || scope.useremail === null) ? "" : Encryptor.encrypt(scope.useremail),
+		"loggedIn": (typeof scope.userid === "undefined" || scope.userid === null) ? false : true,
+		"hashedAccountId": "",
+		"accountType": ""
 	};
 
 	return userData;
 };
 
 //Function getCatData
-var getCatData = function(scope) {
+var getCatData = function (scope) {
 	var categoryData = {
-		"current"	:	"",
-		"level0"	:	"",
-		"level1"	:	"",
-		"level2"	:	"",
-		"level3"	:	"",
-		"level4"	:	""
+		"current": "",
+		"level0": "",
+		"level1": "",
+		"level2": "",
+		"level3": "",
+		"level4": ""
 	};
-	
+
 	return categoryData;
 };
 
 //Function getLocData
-var getLocData = function(scope) {
+var getLocData = function (scope) {
 	var locationData = {
-		"current"	:	"",
-		"level0"	:	"",
-		"level1"	:	"",
-		"level2"	:	"",
-		"level3"	:	"",
-		"level4"	:	""
+		"current": "",
+		"level0": "",
+		"level1": "",
+		"level2": "",
+		"level3": "",
+		"level4": ""
 	};
-	
+
 	return locationData;
 };
 
 //Function getAdData
-var getAdData = function(scope) {
+var getAdData = function (scope) {
 	var adData = {
-		"current"	:	"",
-		"level0"	:	""
+		"current": "",
+		"level0": ""
 	};
-	
+
 	return adData;
 };
 
 //Function getReplyData
-var getReplyData = function(scope) {
+var getReplyData = function (scope) {
 	var replyData = {
-		"current"	:	"",
-		"level0"	:	""
+		"current": "",
+		"level0": ""
 	};
-	
+
 	return replyData;
 };
 
 //Function getSearchData
-var getSearchData = function(scope) {
+var getSearchData = function (scope) {
 	var searchData = {
-		"current"	:	"",
-		"level0"	:	""
+		"current": "",
+		"level0": ""
 	};
-	
+
 	return searchData;
 };
 
 //Function getEcommerceData
-var getEcommerceData = function(scope) {
+var getEcommerceData = function (scope) {
 	var ecommerceData = {
-		"current"	:	"",
-		"level0"	:	""
+		"current": "",
+		"level0": ""
 	};
-	
+
 	return ecommerceData;
 };
 
 
-/** 
+/**
  * @description A class that Handles the DataLayer Model
  * @constructor
  */
@@ -118,48 +118,48 @@ var DataLayerModel = function (req, res) {
 	this.pagetype = req.app.locals.pagetype;
 };
 
-DataLayerModel.prototype.getModelBuilder = function() {
+DataLayerModel.prototype.getModelBuilder = function () {
 	return new ModelBuilder(this.getData());
 };
 
-DataLayerModel.prototype.setUserId = function(userid) {
+DataLayerModel.prototype.setUserId = function (userid) {
 	this.userid = userid;
 };
 
-DataLayerModel.prototype.setUserEmail = function(useremail) {
+DataLayerModel.prototype.setUserEmail = function (useremail) {
 	this.useremail = useremail;
 };
 
-DataLayerModel.prototype.getData = function() {
-	var scope = this;
+DataLayerModel.prototype.getData = function () {
+	var _this = this;
 	var pageDeferred = Q.defer();
-		
-	var pageDataFunction = function(callback) {
+
+	var pageDataFunction = function (callback) {
 		var data = {};
-		switch (scope.pagetype) {
-			case pagetypeJson.pagetype.HOMEPAGE: 
+		switch (_this.pagetype) {
+			case pagetypeJson.pagetype.HOMEPAGE:
 				data = {
-					"pageData"		: 	getPageData(scope),
-					"userData"		:	getUsereData(scope)
+					"pageData": getPageData(_this),
+					"userData": getUsereData(_this)
 				};
-			break;
+				break;
 			case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
 				data = {
-					"pageData"		: 	getPageData(scope)
+					"pageData": getPageData(_this)
 				};
-			break;
+				break;
 			case pagetypeJson.pagetype.RESULTS_SEARCH:
 				data = {
-					"pageData"		: 	getPageData(scope),
-					"userData"		:	getUsereData(scope),
-					"categoryData"	:	getCatData(scope),
-					"locationData"	:	getLocData(scope)
+					"pageData": getPageData(_this),
+					"userData": getUsereData(_this),
+					"categoryData": getCatData(_this),
+					"locationData": getLocData(_this)
 				};
-			break;
+				break;
 		}
-		
-        pageDeferred.resolve(data);
-        callback(null, data);
+
+		pageDeferred.resolve(data);
+		callback(null, data);
 	};
 
 	var arrFunctions = [pageDataFunction];

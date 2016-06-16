@@ -1,0 +1,41 @@
+$pagetitle-width:auto !default;
+$pagetitle-padding: 0 !default;
+$pagetitle-background:none !default;
+$pagetitle-wrap-width: auto !default;
+$pagetitle-wrap-padding: 0.5em 1em !default;
+$pagetitle-wrap-background:none !default;
+$pagetitle-wrap-border: none !default;
+$pagetitle-wrap-border-top: $pagetitle-wrap-border !default;
+$pagetitle-wrap-border-right: $pagetitle-wrap-border !default;
+$pagetitle-wrap-border-left: $pagetitle-wrap-border !default;
+$pagetitle-wrap-border-bottom: $pagetitle-wrap-border !default;
+$pagetitle-font-size: 1.2em !default;
+$pagetitle-color: $color-white !default;
+
+
+
+.page-title{
+    max-width:$pagetitle-width;
+    margin:0 auto;
+    padding:$pagetitle-padding;
+    background:$pagetitle-background;
+    .wrap{
+        max-width:$pagetitle-wrap-width;
+        margin:0 auto;
+        padding:$pagetitle-wrap-padding;
+        background:$pagetitle-wrap-background;
+        border:{
+            top: $pagetitle-wrap-border-top;
+            right: $pagetitle-wrap-border-right;
+            bottom: $pagetitle-wrap-border-bottom;
+            left: $pagetitle-wrap-border-left;
+        }
+        h1{
+            color:$pagetitle-color;
+            font-size:$pagetitle-font-size;
+        }
+        @include to-breakpoint($no-break){
+            padding-left:1em; padding-right:1em;
+        }
+    }
+}

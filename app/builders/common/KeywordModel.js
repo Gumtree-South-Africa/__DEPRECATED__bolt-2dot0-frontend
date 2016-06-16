@@ -18,36 +18,36 @@ var KeywordModel = function (bapiHeaders, kwCount) {
 	this.kwCount = kwCount;
 };
 
-KeywordModel.prototype.getModelBuilder = function() {
+KeywordModel.prototype.getModelBuilder = function () {
 	return new ModelBuilder(this.getKeywords());
 };
 
 // Function getKeywords
-KeywordModel.prototype.getKeywords = function() {
-	var scope = this;
-	
-	var topKeywordFunction = function(callback) {
+KeywordModel.prototype.getKeywords = function () {
+	var _this = this;
+
+	var topKeywordFunction = function (callback) {
 		var topKeywordDeferred = Q.defer();
-	    Q(keywordService.getTopKeywordsData(scope.bapiHeaders, scope.kwCount))
-	        .then(function (dataTopK) {
-	          topKeywordDeferred.resolve(dataTopK);
-	          callback(null, dataTopK);
-	      }).fail(function (err) {
-	          topKeywordDeferred.reject(new Error(err));
-	        callback(null, {});
-	      });
+		Q(keywordService.getTopKeywordsData(_this.bapiHeaders, _this.kwCount))
+			.then(function (dataTopK) {
+				topKeywordDeferred.resolve(dataTopK);
+				callback(null, dataTopK);
+			}).fail(function (err) {
+			topKeywordDeferred.reject(new Error(err));
+			callback(null, {});
+		});
 	};
-	
-	var trendingKeywordFunction = function(callback) {
-	    var trendingKeywordDeferred = Q.defer();
-	    Q(keywordService.getTrendingKeywordsData(scope.bapiHeaders, scope.kwCount))
-	        .then(function (dataTK) {
-	          trendingKeywordDeferred.resolve(dataTK);
-	          callback(null, dataTK);
-	    }).fail(function (err) {
-	          trendingKeywordDeferred.reject(new Error(err));
-	        callback(null, {});
-	    });
+
+	var trendingKeywordFunction = function (callback) {
+		var trendingKeywordDeferred = Q.defer();
+		Q(keywordService.getTrendingKeywordsData(_this.bapiHeaders, _this.kwCount))
+			.then(function (dataTK) {
+				trendingKeywordDeferred.resolve(dataTK);
+				callback(null, dataTK);
+			}).fail(function (err) {
+			trendingKeywordDeferred.reject(new Error(err));
+			callback(null, {});
+		});
 	};
 
 	var arrFunctions = [topKeywordFunction, trendingKeywordFunction];

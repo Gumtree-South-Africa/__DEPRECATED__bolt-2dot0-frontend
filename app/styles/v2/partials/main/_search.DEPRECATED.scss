@@ -1,0 +1,598 @@
+@import
+
+	"subheader",
+	"autocomplete";
+
+$fixingpadding : 0.05em;
+input[type=search]::-webkit-search-decoration,
+input[type=search]::-webkit-search-cancel-button,
+input[type=search]::-webkit-search-results-button,
+input[type=search]::-webkit-search-results-decoration {
+	display: none;
+}
+
+/* SEARCH */
+.search {
+	padding: {
+		top: $medium-padding;
+		bottom: $medium-padding;
+	}
+	@include full-page-width;
+	background-color: $search-bg-color;
+	@include background-image(linear-gradient(adjust-lightness($search-bg-color, 10%), $search-bg-color 50%));
+
+	form {
+		position: relative;
+		margin: 0 auto;
+
+		fieldset {
+			padding: 0 $small-padding 0 0;
+			display: block;
+			border: none;
+			position: relative;
+			background-color: $color-white;
+			@include border-radius(5px);
+			@include box-shadow(0 1px 3px 1px rgba(0,0,0,.1));
+
+			.field{
+				display: block;
+			}
+
+			.placeholder{
+				display: none;
+			}
+
+			input {
+				border: none;
+				display: inline-block;
+				padding: $medium-padding $large-padding;
+				margin: 0;
+				outline: none;
+				font-size: inherit;
+				@include appearance(none);
+				width: 100%;
+			}
+
+
+			button {
+				margin: 0;
+				font-size: inherit;
+				font-family: $blueprint-font-family;
+				font-weight: bold;
+				padding: $medium-padding $large-padding;
+				position: absolute;
+				@include secondary-button;
+				border: none;
+				line-height:normal;
+				.icon-search{
+			        display: inline-block;
+				    height: 1em;
+				    margin-top: -0.2em;
+				    vertical-align: middle;
+				    width: 1em;
+			    }
+			}
+
+		}
+
+		.select {
+			display: none;
+		}
+
+		> a {
+			position: absolute;
+			right: 0;
+			color: $color-navy;
+			top: 50%;
+			margin-top: -10px;
+			text-decoration: none;
+			@include bold-text;
+			@include text-shadow(0px 0px 5px $color-white);
+
+			.label {
+				display: none;
+			}
+
+		}
+
+	}
+
+}
+
+.postAdSpace {
+    background-image: url("../../../../../../images/es_MX/mobile.jpg");
+    height: 18em;
+    margin-left: -1em;
+    margin-right: -1em;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    clear: both;
+    position: relative;
+}
+
+// Live Ad Message count
+.postAdSpace .live_ads_msg {
+  position: absolute;
+  text-align: center;
+  font: inherit;
+  color: #676767;
+  bottom: 27%;
+  right: 0%;
+  left: 0%;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.post_ad_btn {
+    bottom: 5%; // 18%;
+    font-size: 20px;
+    right: 17%;
+    left: 17%;
+    background-color: $postad-btn-color; // #FF0000; // #1867C3;
+    border-radius: 10px;
+    color: #FFFFFF;
+    display: block;
+    float: right;
+    font-family: Helvetica Neue,arial,sans-serif;
+    font-weight: 700;
+    padding: 10px 6px;
+    position: absolute;
+    text-shadow: 2px 1px #000000;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+// ===============================================================
+
+
+
+
+
+
+
+
+@include in-breakpoint($no-break){
+	.search {
+
+		form {
+
+			fieldset {
+
+				input {
+					padding-right: 15%;
+				}
+
+				button {
+					top: 0;
+					right: 0;
+					margin: $small-padding $small-padding 0 0;
+					padding: {
+						top: $small-padding;
+						bottom: $small-padding;
+					}
+
+					.label {
+						display: none;
+					}
+				}
+			}
+
+			.helpcenter {
+				display: none;
+			}
+
+			.select {
+				width: 18%;
+
+				> a {
+					display: block;
+					text-align: center;
+
+					.label {
+						display: none;
+					}
+				}
+
+
+				ul {
+
+					width: 550%;
+
+					ul {
+						font-size: 90%;
+						padding: none;
+						background-color: transparent;
+						width: auto;
+						display: block;
+						position: static;
+						@include columns(2);
+						@include column-gap(0em);
+						@include box-shadow(none);
+						@include border-radius(0);
+
+
+						a {
+							line-height: 1em;
+							margin-bottom: 0.25em;
+						}
+					}
+				}
+
+
+
+				.visible{
+					display: block;
+				}
+
+			}
+
+		}
+
+	}
+
+
+
+}
+
+
+
+@include in-breakpoint($small-break){
+	.search {
+		form {
+			.helpcenter {
+				display: none;
+			}
+		}
+	}
+
+	.postAdSpace {
+		height: 28em;
+		background-image: url(../../../../../../images/es_MX/tablet.jpg);
+	}
+
+    // Live Ads label
+    .postAdSpace .live_ads_msg {
+      font-size: 20px;
+      bottom: 18%; // 20%;
+      right: 3%;
+      left: 30%;
+    }
+
+	.post_ad_btn {
+		font-size: 20px;
+		right: 5%; // 18%;
+		bottom: 5%;
+		left: 45%;
+	}
+
+}
+
+
+
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	.search form{
+
+		fieldset {
+			background-color: transparent;
+			@include border-radius(0);
+			@include box-shadow(none);
+
+			input {
+				width: 39%;
+				background-color: $color-white;
+				@include border-radius(5px);
+				@include box-shadow(0px 1px 3px 1px rgba(0, 0, 0, 0.1));
+			}
+
+			button {
+				bottom: 0;
+				left: 79%;
+			}
+
+		}
+
+		.select {
+			left: 40%;
+			right: auto;
+			top: 0;
+			display: inline-block;
+			position: absolute;
+			z-index: 100;
+			width: 38%;
+			background-color: $color-white;
+			@include border-radius(5px);
+			@include box-shadow(0px 1px 3px 1px rgba(0, 0, 0, 0.1));
+
+			> a {
+				font-size: inherit;
+				display: block;
+				cursor: pointer;
+				padding: ($small-padding - $fixingpadding) $medium-padding;
+				padding-bottom: .2em;
+				line-height: 1.75em;
+				color: $color-black;
+				text-decoration: none;
+				@include ellipsis;
+
+				[class*="icon-"] {
+					display: inline-block;
+					width: 1.5em;
+					height: 1.5em;
+					text-align: center;
+					color: $color-navy;
+					vertical-align: middle;
+					margin-top: -.2em;
+					margin-left: -.2em;
+					margin-right: .2em;
+				}
+				.icon-cat-all {
+					margin-left:.1em;
+					margin-top:-.1em;
+					width: 1em;
+					height: 1.1em;
+				}
+
+				.label {
+
+					font-weight:bold;
+				}
+
+				.icon-caret-down {
+					position: absolute;
+					right: 0.1em;
+					top: 30%;
+					display: inline-block;
+					width: .8em;
+					height: 1em;
+				}
+			}
+
+			ul {
+				display: none;
+				position: absolute;
+				list-style: none;
+				left: 0;
+				top: 89%;
+				background-color: $color-white;
+				width: 100%;
+				padding: $small-padding 0;
+				z-index: 100;
+				@include box-shadow(0 6px 10px $color-black-25);
+				@include border-radius($medium-border-radius $medium-border-radius $medium-border-radius $medium-border-radius);
+
+				.easyhover {
+					display: none;
+					width: 0;
+					height: 0;
+					position: absolute;
+					right: -100px;
+					top: -10px;
+					border: {
+						top: 20px solid transparent;
+						right: 250px solid transparent;
+						bottom: 150px solid transparent;
+					}
+				}
+
+				ul {
+					top: 0;
+					left: -100%;
+					@include border-radius($medium-border-radius $medium-border-radius $medium-border-radius $medium-border-radius);
+				}
+
+				li {
+					display: block;
+					 line-height:1em;
+					padding: 0 $small-padding;
+					position:relative;
+
+					a {
+
+						display: block;
+						text-decoration: none;
+						padding: $small-padding $large-padding;
+						text-decoration: none;
+						color: $color-black;
+						@include border-radius($small-border-radius);
+                        font-size:$fontSize-dropdownMenu;
+
+						[class*="icon"] {
+							color: $link-color;
+							display: inline-block;
+							width: 1.5em;
+							height: 1.5em;
+							margin-right: .7em;
+							margin-left: -.7em;
+							vertical-align: middle;
+						}
+						.icon-cat-all {
+							margin-left: -.6em;
+							width: 1.1em;
+					        height: 1.1em;
+						}
+
+						&.active {
+							background-color: $color-navy-20;
+						}
+					}
+				}
+			}
+
+			ul li {
+				a {
+					&:hover {
+						background-color: $menu-hover-current-bg-color !important;
+						color: $menu-hover-current-text-color !important;
+
+						[class*="icon"] {
+							color: $color-white;
+						}
+					}
+				}
+
+				&:hover {
+					> a {
+						background-color: $menu-hover-parent-bg-color;
+                        color: $menu-hover-parent-text-color;
+					}
+					ul {
+						display: block;
+					}
+					.easyhover {
+						display: block;
+					}
+				}
+
+				&:active {
+					@include box-shadow(0px 0px 5px $color-black-25 inset);
+				}
+
+			}
+
+			&:hover {
+				> ul {
+					display: block;
+				}
+			}
+		}
+
+
+
+	}
+
+}
+
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	.search form {
+		.select {
+			left: 21.5em;
+		}
+		fieldset input,
+		.select {
+			width: 21em;
+		}
+		fieldset button {
+			left: 43em;
+		}
+	}
+
+	.postAdSpace {
+		height:28em;
+		background-image: url(../../../../../../images/es_MX/desktop.jpg);
+	}
+
+	.postAdSpace .live_ads_msg {
+      font-size: 20px;
+      bottom: 20%;
+      right: 0%;
+      left: 40%;
+      right: 6%;
+    }
+
+	.post_ad_btn {
+		font-size: 30px;
+		bottom: 4%; // 10%;
+		right: 18%;
+		left: 51%;
+	}
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.search {
+		form {
+			> a .label {
+				display: inline;
+			}
+		}
+
+
+	}
+
+	.search form .select ul ul {
+		left: 100%;
+
+	}
+}
+
+
+
+@include in-breakpoint($lt-ie9-class-name){
+	.search {
+		position: relative;
+
+		.select {
+			z-index: 100;
+			ul {
+				border: 1px solid lighten($color-black, 50%);
+
+				a {
+					border-right: none;
+				}
+			}
+
+
+		}
+		.icon-caret-down {
+			top: 10% !important;
+			width: 1.15em !important;
+			height: 1.5em !important;
+		}
+
+	}
+
+	.search form{
+
+    [class*="icon"] {
+
+             width:2em !important;
+
+         }
+     }
+}
+
+
+
+@include in-breakpoint($lt-ie10-class-name){
+	.search{
+
+		form fieldset{
+
+			// this background color allows the
+			// entire link to be hover-able,
+			// otherwise IE doesn't capture the event-Moises
+			//move it, seems it works now - fuzhong
+			//.select{
+			//	background-color: rgba(255,255,255,0);
+			//}
+
+			button {
+				line-height: 1.15em;
+			}
+
+			input.opaque{
+				background-color: $color-white;
+				position: relative;
+				z-index: 1;
+			}
+
+			.placeholder{
+				display: block;
+				position: absolute;
+				left: 2%;
+				font-size: inherit;
+				padding: $small-padding 0;
+				color: lighten($color-black, 50%);
+			}
+
+		}
+
+		.easyhover {
+			display: none !important;
+		}
+
+	}
+}
+
+

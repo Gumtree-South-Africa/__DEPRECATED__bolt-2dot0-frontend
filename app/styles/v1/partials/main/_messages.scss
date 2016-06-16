@@ -1,0 +1,162 @@
+.js-message-error{
+	background-color: $form-element-error-color;
+	color: white;
+	padding: $large-padding;
+	text-align: center;
+
+	.icon-warning-sign{
+		width: 2em;
+		height: 2em;
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+
+	.no-js{
+		display: inline-block;
+		background:{
+			image: url(../../../../../../images/no-javascript-en_MX.gif);
+			repeat: no-repeat;
+			position: left center;
+		}
+		width: 340px;
+		height: 2em;
+		vertical-align: middle;
+
+		&.es_MX,&.es_MX,&.es_AR{
+			background-image: url(../../../../../../images/no-javascript-es_MX.gif);
+			width: 400px;
+		} 
+		&.pl_PL{
+		background-image: url(../../../../../../images/no-javascript-pl_PL.png);
+		width:420px;
+		}
+			
+	}
+}
+
+
+.gl-messages{
+    margin-top: $medium-margin;
+	background-color: #eaedb8;
+
+    > div{
+        color: $color-black;
+        @include bold-text;
+        padding: 1em 2em;  // $large-padding $large-padding * 2;
+        max-width: $container-width;
+        margin: 0 auto;
+        position: relative;
+        padding-right:2.5em;
+
+	    > div{
+            line-height: 2em;
+		    padding-left:3em;
+		    width: 96%;
+        }
+    }
+    
+    .msg-icon
+    {
+        display: block;
+        position:absolute;
+        margin-left: $medium-margin;
+
+	    > span{
+		    width: 28px; // 2.2em;
+		    height: 28px; // 2.2em;
+		    display: inline-block;
+		    vertical-align: middle;
+	    }
+    }
+
+	.warning-msg{
+		display: none;
+	}
+
+
+	a{ color: $color-black; text-decoration: underline; }
+
+
+	.survey, .survey:visited {
+		color: $color-navy;
+		text-decoration: underline;
+	}
+
+}
+
+.gl-messages, .gl-messages-replyAds-srp{
+    .close_btn
+    {
+        position: absolute;
+        right: $large-margin;
+        top: $small-margin;
+        padding: $medium-padding $medium-padding;
+        text-decoration: none;
+        display: block;
+        border: none;
+        cursor: pointer;
+
+        &:active {
+            background-color: transparentize($color-white, 0.9);
+        }
+
+	    > span{
+		    padding: $medium-padding $medium-padding;
+			background-size:initial;
+			width: 20px;
+			height: 20px;
+		    display: block;
+	    }
+    }
+}
+
+@include in-breakpoint($no-break){
+	.js-message-error{
+		.no-js{
+			width: 175px;
+
+			&.es_MX{
+				width: 200px;
+			}
+			&.es_MX,&.es_AR{
+				width: 200px;
+			}
+			&.pl_PL{
+		   background-image: url(../../../../../../images/no-javascript-pl_PL.Mobile.png);
+		   width: 299px;
+		   background-position: center;
+		   }
+		}
+	}
+	.gl-messages{
+		margin: 0.5em 0;
+
+		> div{ padding:0.25em 1.5em 0.25em 0.25em; }
+
+		.msg-icon{ margin-left:0; left:0.25em; top:0; }
+
+		.message{ font-size:0.85em; line-height:1.75em; }
+
+		.close_btn{ top:0; right:0; }
+	}
+
+	// we need to reduce the margin on pages with no searchbar
+	// to avoid overflowing on the sides
+	.subheader + .gl-messages.error{
+		margin: 0;
+	}
+}
+
+
+
+@include from-breakpoint($large-break, $lt-ie9-class-name){
+	.gl-messages{
+		> div{
+			padding: {
+				left: 0;
+			}
+		}
+	}
+}
+

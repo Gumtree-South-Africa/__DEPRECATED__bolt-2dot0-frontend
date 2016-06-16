@@ -1,0 +1,72 @@
+.sm-ul {
+  width: 18em;
+}
+
+.social-media { 
+    margin-top: 2em;
+}
+
+.bestof {
+	 #sm { 
+		width: 24%;
+	    float: right;
+	}
+	
+	#sm .sm-ul li {
+		margin-left:0.5em;
+	}
+}
+
+// mobile porait
+@include in-breakpoint($no-break) {
+	
+	.bestof {
+		 #sm { 
+			width: 24%;
+			float: none;
+			margin: 1em 0;
+		}
+		
+		#sm .sm-ul li {
+			margin-left:0em;
+		}
+
+	}
+}
+
+// mobile landscape
+@include in-breakpoint($small-break) {
+	
+	.bestof {
+		 #sm { 
+			width: 43%;
+			float: right;
+		}
+		
+		#sm .sm-ul li {
+			margin-left:0em;
+		}
+		
+		.nav-links li {
+			padding-right:0.2em !important;
+		}
+
+	}
+}
+
+// tablet 
+@include in-breakpoint($medium-break) {
+	
+	.bestof {
+		 #sm { 
+			width: 28%;
+			float: right;
+			margin: 0.5em 0;
+		}
+		
+		#sm .sm-ul li {
+			margin-left:0em;
+		}
+
+	}
+}

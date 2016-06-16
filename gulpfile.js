@@ -4,66 +4,60 @@
 // bulp build:serve
 // // /////////////////////////////////////////////
 
-var gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  concat = require('gulp-concat'),
-  del = require('del');
-  nodemon = require('gulp-nodemon'),
-  plumber = require('gulp-plumber'),
-  jscs = require('gulp-jscs'),
-  jshint = require('gulp-jshint'),
-  jsonlint = require('gulp-jsonlint'),
-  livereload = require('gulp-livereload'),
-  handlebars = require('gulp-handlebars'),
-  notify = require('gulp-notify'),
-  declare = require('gulp-declare'),
-  copy = require('gulp-copy'),
-  path = require('path'),
-  env = require('gulp-env'),
-  walkdir = require('walkdir'),
-  argv = require('yargs').argv,
-  browserSync = require('browser-sync'),
-  map = require('map-stream'),
-  plugins = require('gulp-load-plugins')(),
-  compass = require('gulp-compass'),
-  jasmineBrowser = require('gulp-jasmine-browser'),
-  gulpicon = require("gulpicon/tasks/gulpicon"),
-  clean = require('gulp-clean'),
-  tar = require('gulp-tar'),
-  gzip = require('gulp-gzip'),
-  asynch = require('async'),
-  bump = require('gulp-bump'),
-  es = require('event-stream'),
-  gulpif = require('gulp-if'),
-  rename = require('gulp-rename'),
-  cssmin = require('gulp-cssmin'),
-  through2 = require('through2'),
-  conventionalChangelog = require('gulp-conventional-changelog'),
-  conventionalGithubReleaser = require('conventional-github-releaser'),
-  gutil = require('gulp-util'),
-  git = require('gulp-git'),
-  fs = require('fs'),
-  runSequence = require('gulp-run-sequence'),
-  nodeInspector = require('gulp-node-inspector'),
-  loadingSpinner = require('loading-spinner'),
-  shell = require("gulp-shell"),
-  reload = browserSync.reload;
 
+var gulp = require('gulp'),
+	sass = require('gulp-sass'),
+	concat = require('gulp-concat'),
+	del = require('del'),
+	plumber = require('gulp-plumber'),
+	jscs = require('gulp-jscs'),
+	livereload = require('gulp-livereload'),
+	handlebars = require('gulp-handlebars'),
+	notify = require('gulp-notify'),
+	declare = require('gulp-declare'),
+	copy = require('gulp-copy'),
+	env = require('gulp-env'),
+	walkdir = require('walkdir'),
+	argv = require('yargs').argv,
+	browserSync = require('browser-sync'),
+	map = require('map-stream'),
+	plugins = require('gulp-load-plugins')(),
+	compass = require('gulp-compass'),
+	jasmineNode = require('gulp-jasmine-node'),
+	jasmineBrowser = require('gulp-jasmine-browser'),
+	clean = require('gulp-clean'),
+	tar = require('gulp-tar'),
+	gzip = require('gulp-gzip'),
+	asynch = require('async'),
+	bump = require('gulp-bump'),
+	gulpif = require('gulp-if'),
+	rename = require('gulp-rename'),
+	cssmin = require('gulp-cssmin'),
+	conventionalChangelog = require('gulp-conventional-changelog'),
+	conventionalGithubReleaser = require('conventional-github-releaser'),
+	gutil = require('gulp-util'),
+	git = require('gulp-git'),
+	fs = require('fs'),
+	runSequence = require('gulp-run-sequence'),
+	nodeInspector = require('gulp-node-inspector'),
+	loadingSpinner = require('loading-spinner'),
+	shell = require("gulp-shell"),
+	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
 // Get Tasks
 // // /////////////////////////////////////////////
 function getTask(task) {
-    return require('./gulp-tasks/' + task)(gulp, plugins);
+	return require('./gulp-tasks/' + task)(gulp, plugins);
 }
 
 
 // ////////////////////////////////////////////////
 // Log Errors
 // // /////////////////////////////////////////////
-function errorlog(err){
-  console.error(err.message);
-  this.emit('end');
+function errorlog(err) {
+	console.error(err.message);
+	this.emit('end');
 }
 
 // STAND ALONE TASKS

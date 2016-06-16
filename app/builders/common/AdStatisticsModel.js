@@ -8,7 +8,7 @@ var ModelBuilder = require('./ModelBuilder');
 var hpAdService = require(process.cwd() + '/server/services/homepage-ads');
 
 
-/** 
+/**
  * @description A class that Handles the Ad Statistics Model
  * @constructor
  */
@@ -16,13 +16,13 @@ var AdStatisticsModel = function (bapiHeaders) {
 	this.bapiHeaders = bapiHeaders;
 };
 
-AdStatisticsModel.prototype.getModelBuilder = function() {
+AdStatisticsModel.prototype.getModelBuilder = function () {
 	return new ModelBuilder(this.getHomePageStatistics());
 };
 
 // Function getHomePageStatistics
-AdStatisticsModel.prototype.getHomePageStatistics = function() {
-	var scope = this;
+AdStatisticsModel.prototype.getHomePageStatistics = function () {
+	var _this = this;
 	var arrFunctions = [
 		function (callback) {
 			var adstatisticsDeferred,
@@ -30,27 +30,27 @@ AdStatisticsModel.prototype.getHomePageStatistics = function() {
 			if (typeof callback !== 'function') {
 				return;
 			}
-			
-		    if (typeof scope.bapiHeaders.locale !== 'undefined') {
-		    	adstatisticsDeferred = Q.defer();
-			    
-				 Q(hpAdService.getAdStatistics(scope.bapiHeaders))
-			    	.then(function (dataReturned) {
-			    		data = dataReturned;
-			    		adstatisticsDeferred.resolve(data);
-					    callback(null, data);
+
+			if (typeof _this.bapiHeaders.locale !== 'undefined') {
+				adstatisticsDeferred = Q.defer();
+
+				Q(hpAdService.getAdStatistics(_this.bapiHeaders))
+					.then(function (dataReturned) {
+						data = dataReturned;
+						adstatisticsDeferred.resolve(data);
+						callback(null, data);
 					}).fail(function (err) {
-						adstatisticsDeferred.reject(new Error(err));
-					    callback(null, data);
-					});
+					adstatisticsDeferred.reject(new Error(err));
+					callback(null, data);
+				});
 
 				return adstatisticsDeferred.promise;
 			} else {
-			    callback(null, data);
+				callback(null, data);
 			}
 		}
 	];
-	
+
 	return arrFunctions;
 };
 

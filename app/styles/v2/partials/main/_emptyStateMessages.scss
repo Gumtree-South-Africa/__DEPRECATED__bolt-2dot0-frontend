@@ -1,0 +1,26 @@
+/// ----------------------------------------------------------------------------
+/// Mobile First Styles
+/// ----------------------------------------------------------------------------
+.confirm-content,
+.error-content,
+.empty-state-content{
+	color: lighten($color-black, 50%);
+	padding: 2em 1em;
+}
+
+
+
+/// ----------------------------------------------------------------------------
+/// Tablet Styles
+/// ----------------------------------------------------------------------------
+@include from-breakpoint($small-break, $lt-ie9-class-name) {
+
+	.confirm-content,
+	.error-content,
+	.empty-state-content {
+		text-align: center;
+		font-size: 1.25em;
+		padding: 5em 0em;
+	}
+
+}
