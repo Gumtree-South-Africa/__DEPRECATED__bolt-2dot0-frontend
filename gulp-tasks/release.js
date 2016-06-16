@@ -7,6 +7,7 @@ var runSequence = require('gulp-run-sequence'),
 	conventionalChangelog = require('gulp-conventional-changelog'),
 	conventionalGithubReleaser = require('conventional-github-releaser'),
 	git = require('gulp-git'),
+	fs = require('fs'),
 	exec = require('child_process').exec;
 
 module.exports = function watch(gulp, plugins) {
