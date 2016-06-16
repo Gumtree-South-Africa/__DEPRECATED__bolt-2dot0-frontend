@@ -62,10 +62,10 @@ router.get('/', function (req, res, next) {
 			'machineid'         :   req.app.locals.machineid,
 			'useragent'         :   req.app.locals.useragent,
 			'locale'            :   res.locals.config.locale,
-			'authTokenValue'    :   authCookie 
+			'authTokenValue'    :   authCookie
 		};
 		promises.push(userService.getUserFromCookie(bapiHeaders));
-	} 
+	}
 	Q.allSettled(promises)
 	    .then(function (result) {
 
@@ -81,6 +81,7 @@ router.get('/', function (req, res, next) {
 		// Dynamic Data from BAPI
 		// Result[0] is all the model data for the page without user data
 		result = result[0].state === "fulfilled" ? result[0].value: null;
+    modelData.isNewHP = true;
 		modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
