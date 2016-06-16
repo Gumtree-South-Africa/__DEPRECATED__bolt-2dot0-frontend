@@ -6,7 +6,9 @@
 			"queryParameters": {
 				"page": "1",
 				"pageSize": "15",
-				"location": "${location}"
+				"location": "${location}",
+				"categoryIds": [0,1,2],
+				"keywords": ["foo", "bar"]
 			},
 			"templateName": "/templates/trending.hbs",
 			"templateParameters": {
