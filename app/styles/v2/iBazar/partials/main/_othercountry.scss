@@ -16,7 +16,7 @@
             @include transition(font-size 300ms);
             padding: 10px 0;
             position: relative;
-            background: url("../../../../../images/flags.gif") left top no-repeat;
+            background: url("../../../../../../images/flags.gif") left top no-repeat;
             min-width: 51px;
             text-indent: -9999px;
             cursor: default;
@@ -48,7 +48,7 @@
             li,
             span,
             a{
-                background: url("../../../../../images/flags.gif") left top no-repeat;
+                background: url("../../../../../../images/flags.gif") left top no-repeat;
                 display: block;
                 padding: 10px;
                 padding-left: 46px;

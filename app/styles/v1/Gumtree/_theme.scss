@@ -114,13 +114,13 @@ $feature-legend-color-light-accent: #90bf00;
 $feature-legend-color-title-accent: #7f699F;
 $feature-legend-dialog-title-bg-color:#7F699F;
 $feature-legend-tip-color: #7F699F;
-$feature-legend-popup-icon-bumpup:url('../../../../../images/en_ZA/promoteAds/tooltip_bumpUp.png');
-$feature-legend-popup-icon-urgent:url('../../../../../images/en_ZA/promoteAds/tooltip_urgent.png');
-$feature-legend-popup-icon-highlight:url('../../../../../images/en_ZA/promoteAds/tooltip_highlight.png');
-$feature-legend-popup-icon-topads:url('../../../../../images/en_ZA/promoteAds/tooltip_top.png');
-$feature-legend-popup-icon-homepage-gallery:url('../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
-$feature-legend-popup-icon-category-gallery:url('../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
-$feature-legend-popup-icon-websiteurl:url('../../../../../images/en_ZA/promoteAds/tooltip_sellerURL.png');
+$feature-legend-popup-icon-bumpup:url('../../../../../../images/en_ZA/promoteAds/tooltip_bumpUp.png');
+$feature-legend-popup-icon-urgent:url('../../../../../../images/en_ZA/promoteAds/tooltip_urgent.png');
+$feature-legend-popup-icon-highlight:url('../../../../../../images/en_ZA/promoteAds/tooltip_highlight.png');
+$feature-legend-popup-icon-topads:url('../../../../../../images/en_ZA/promoteAds/tooltip_top.png');
+$feature-legend-popup-icon-homepage-gallery:url('../../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
+$feature-legend-popup-icon-category-gallery:url('../../../../../../images/en_ZA/promoteAds/tooltip_homepageGallery.png');
+$feature-legend-popup-icon-websiteurl:url('../../../../../../images/en_ZA/promoteAds/tooltip_sellerURL.png');
 $controls-bg-color: $gtdkgreen;
 $controls-color: $gtwhite;
 
@@ -128,7 +128,7 @@ $brand-text-color:#468100;
 $srp-ad-title-color:#000;
 $section-divider-bg-color: $gtltgreen;
 $content-link-bg-color: $gtltyellow;
-$srp-nophoto-imageurl: url('../../../../../images/en_ZA/no-photo.jpg') !default;
+$srp-nophoto-imageurl: url('../../../../../../images/en_ZA/no-photo.jpg') !default;
 $selectall-hl-color: #d0c6df;
 $selectall-text-color: $gtwhite;
 
@@ -141,7 +141,7 @@ $alert-color: $gumtree-light-green;
 $link-color: $gumtree-green;
 $link-hover-color: #569110;
 
-$loading-url:url(../../../../../images/loading-za.gif);
+$loading-url:url(../../../../../../images/loading-za.gif);
 
 // -------------------------------
 // ----------  Global  -----------
@@ -943,7 +943,7 @@ $form-label-color: $gumtree-dark-grey;
 	display: block;
 	position: relative;
 	top: 25px;
-	background-image: url(../../../../../images/en_ZA/interstitial/interstitial-01.png);
+	background-image: url(../../../../../../images/en_ZA/interstitial/interstitial-01.png);
 	background-repeat: no-repeat;
 	width: 100%; // 320px;
 	height: 178px;
@@ -1008,7 +1008,7 @@ $form-label-color: $gumtree-dark-grey;
 	display: block;
 	position: relative;
 	top: 110px; // 86px;
-	background-image: url(../../../../../images/en_ZA/interstitial/interstitial-03.png);
+	background-image: url(../../../../../../images/en_ZA/interstitial/interstitial-03.png);
 	background-repeat: no-repeat;
 	width: 100%; // 320px;
 	height: 300px;

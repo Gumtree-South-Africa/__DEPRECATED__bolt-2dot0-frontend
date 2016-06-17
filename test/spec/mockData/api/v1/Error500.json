@@ -1,0 +1,13 @@
+{
+	"statusCode": 500,
+	"message": "Internal Server Error",
+	"details": [
+		{
+			"code": "INTERNAL_SERVER_ERROR",
+			"message": "Internal server error",
+			"_links": [
+				{ "ref": "help", "href": "/docs/errorCodes.html#NOT_FOUND" }
+			]
+		}
+	]
+}

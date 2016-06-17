@@ -39,44 +39,54 @@ var siteCount = 0;
 /*
  * Create Site Apps
  */
-Object.keys(config.sites).forEach(function(siteKey) {
-	var siteObj = config.sites[siteKey];
+let createSiteApps = () => {
+	let configPromises = [];
+	let siteApps = [];
+	_.each(config.sites, (siteObj) => {
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
 			  	  var builderObj = new expressbuilder(siteObj);
 		        var siteApp = builderObj.getApp();
+		      siteApps.push(siteApp);
 
 		        // Service Util to get Location and Category Data
-		        cacheBapiData(siteApp, requestId);
+		        // Wait to spin up the node app in server.js until all config promises resolve.
+		        configPromises.push(cacheBapiData(siteApp, requestId));
 
-		        // register bolt middleware
-		        siteApp.use(siteconfig(siteApp));
-			  	siteApp.use(responseMetrics());
-
-		        // Setup Vhost per supported site
-		        app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 	      })(siteObj);
 
 	      siteCount = siteCount + 1;
     }
  });
+	return Q.all(configPromises).then(() => {
+		//We need to configure the middleware stack in the correct order.
+		siteApps.forEach((siteApp) => {
+			// register bolt middleware
+			siteApp.use(siteconfig(siteApp));
+			siteApp.use(responseMetrics());
 
+			// Setup Vhost per supported site
+			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
+		});
+		
+		// Setup controllers
+		controllers.forEach(function (controller) {
+			require(controller)(app);
+		});
 
-// Setup controllers
-controllers.forEach(function (controller) {
-    require(controller)(app);
-});
+		// Warning: do not reorder this middleware.
+		// Order of this should always appear after controller middlewares are setup.
+		app.use(error.four_o_four(app));
 
-
-// Warning: do not reorder this middleware.
-// Order of this should always appear after controller middlewares are setup.
-app.use(error.four_o_four(app));
-
-// Overwriting the express's default error handler should always appear after 404 middleware
-app.use(error(app));
+		// Overwriting the express's default error handler should always appear after 404 middleware
+		app.use(error(app));
+	});
+};
 
 // Event Loop Monitoring
 eventLoopMonitor();
 
 module.exports = app;
+module.exports.createSiteApps = createSiteApps;
+

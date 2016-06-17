@@ -1,0 +1,44 @@
+{
+  "ads" : [
+    {
+      "primaryImgUrl" : "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NDgwWDY0MA==/z/J-IAAOSwqrtWoJwX/$_19.JPG?set_id=8800005007",
+      "viewPageUrl" : "/a-cars-bakkies/milnerton/2+yr-unltd-km-s-mech-warranty-avbl+ford-ranger-3-0-tdci/1001544694870910332475709",
+      "title" : "2-Yr Unltd km,s Mech Warranty Avbl-FORD RANGER 3.0 TDCi",
+      "priceType" : "FIXED",
+      "currency" : "R",
+      "amount" : 129900,
+      "formattedAmount" : "R 129,000"
+    },
+    {
+      "primaryImgUrl" : "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NDQ0WDgwMA==/z/Mc8AAOSwuYVWoSzG/$_19.JPG?set_id=8800005007",
+      "viewPageUrl" : "/a-travel-agents-tours/alberton/pilgrimage-to-egypt/1001545414050910074112309",
+      "title" : "Pilgrimage to Egypt",
+      "priceType" : "UNKNOWN",
+      "formattedAmount" : ""
+    },
+    {
+      "primaryImgUrl" : "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjAwWDgwMA==/z/12kAAOSwys5WUvXY/$_19.JPG?set_id=8800005007",
+      "viewPageUrl" : "/a-other-home-decor-items/ilembe-dolphin-coast/oregeon-flooring-windows-and-doors/1001488889250910008843209",
+      "title" : "Oregeon FLOORING ,WINDOWS AND DOORS",
+      "priceType" : "CONTACT_ME",
+      "formattedAmount" : ""
+    }
+  ],
+  "_links" : [
+    {
+      "ref" : "self",
+      "href" : "/ads/gallery?offset=2&limit=3",
+      "method" : "GET"
+    },
+    {
+      "ref" : "previous slice",
+      "href" : "/ads/gallery?offset=1&limit=3",
+      "method" : "GET"
+    },
+    {
+      "ref" : "next slice",
+      "href" : "/ads/gallery?offset=3&limit=3",
+      "method" : "GET"
+    }
+  ]
+}

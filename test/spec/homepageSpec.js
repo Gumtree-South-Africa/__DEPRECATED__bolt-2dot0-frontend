@@ -1,24 +1,52 @@
-/**
- * HomePage Jasmine Test Spec
- */
-var request = require("request");
+"use strict";
+let specHelper = require('./helpers/specHelper');
+let boltSupertest = specHelper.boltSupertest;
+let cheerio = require('cheerio');
+let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
-var base_url = "http://www.gumtree.co.za.localhost:8000/"
+describe("Server to hit HomePage", function () {
 
-describe("Server to hit HomePage", function() {
-	describe("GET /", function() {
-		it("returns status code 200", function(done) {
-			request.get(base_url, function(error, response, body) {
-				expect(response.statusCode).toBe(200);
-				done();
+	beforeEach(() => {
+		specHelper.registerMockEndpoint(
+			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
+			'test/spec/mockData/api/v1/LocationList.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.topKeywords}?limit=15&_forceExample=true&_statusCode=200`,
+			'test/spec/mockData/api/v1/keywords.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.trendingKeywords}?limit=15&_forceExample=true&_statusCode=200`,
+			'test/spec/mockData/api/v1/keywords.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.homepageGallery}?_forceExample=true&_statusCode=200`,
+			'test/spec/mockData/api/v1/GallerySlice.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.adStatistics}?_forceExample=true&_statusCode=200`,
+			'test/spec/mockData/api/v1/GallerySlice.json');
+	});
+	
+	describe("GET /", () => {
+
+		it("returns status code 200", (done) => {
+			boltSupertest('/').then((supertest) => {
+				supertest
+					.expect((res) => {
+						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
 			});
 		});
+	});
 
-		it("returns Gumtree", function(done) {
-			request.get(base_url, function(error, response, body) {
-				expect(body).toContain("<h1>Welcome to Gumtree!");
-				done();
-			});
+	it("returns Gumtree", function (done) {
+		boltSupertest('/', 'gumtree.co.za').then((supertest) => {
+			supertest
+				.expect((res) => {
+					let c$ = cheerio.load(res.text);
+					let headerText = c$('h1')[0].firstChild;
+					expect(headerText.data).toBe("Gumtree South Africa - Free local classifieds");
+					expect(res.status).toBe(200);
+				})
+				.end(specHelper.finish(done));
 		});
 	});
 });

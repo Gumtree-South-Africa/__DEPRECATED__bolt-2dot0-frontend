@@ -1,4 +1,4 @@
-// Begin: This needs to be set somewhere else since we are having different links color depending 
+// Begin: This needs to be set somewhere else since we are having different links color depending
 // on the pageType(srp, homepage, post, myAds...)
 .category-wrapper{
 	a,  [data-uri], [data-o-uri], .sudo-link, span[href], .all-label,
@@ -97,7 +97,7 @@ ul.category-list{
 
 .postFlow{
 	padding: 1em 0;
-	
+
 
 	.postFree{
 		float: left;
@@ -110,9 +110,9 @@ ul.category-list{
 			margin-left: 2.5%;
 		}
 		.icon-pin{
-			
+
 			display: block;
-			
+
 		}
 		.fontWS{
   			font-weight: bold;
@@ -148,7 +148,7 @@ ul.category-list{
 	}
 }
 
-.hp-link-wrapper{ 
+.hp-link-wrapper{
 	.post-ad-button{
 		border: none;
 	}
@@ -225,13 +225,13 @@ ul.category-list{
 			.flowTitle{
 				width: 35%;
 			}
-			
+
 		}
 		.postFree:nth-child(1){
 			margin-left: 2.5%;
 		}
 	}
-	
+
 	.postSection .post{
 		.post-btn{
 			height: 2.8em;
@@ -239,7 +239,7 @@ ul.category-list{
 			padding-top: 1em;
 		}
 	}
-	
+
 	.fontWS{
 		//font-size: 85%;
 	}
@@ -264,7 +264,7 @@ ul.category-list{
 		}
 	}
 	.postFlow .postFree{
-		
+
 		.flowNumber{
 			margin-left: 10px;
 		}
@@ -404,11 +404,11 @@ ul.category-list{
 				color: gray;
 			}
 			.postLink{
-				cursor: pointer; 
+				cursor: pointer;
 			}
 		}
 	}
-	.hp-link-wrapper{ 
+	.hp-link-wrapper{
 		width: 29%;
 		float: left;
 		margin-left: 20px;
@@ -513,14 +513,14 @@ ul.category-list{
 	.content{
 		padding: 0em 4em;
 	}
-	.postFlow{ 
+	.postFlow{
 		.postWrapper{
 			margin:0 auto;
 			width: 66%;
 		}
-		
-		
-	}	
+
+
+	}
 	ul.category-list-icon{
 		li{
 			 width: 25%;
@@ -571,17 +571,17 @@ ul.category-list{
 	.content .hp-location-wrapper .subTitle{
 		margin: 1em 0 0em 0;
 	}
-	
+
 	ul.location-list li a{
 		text-decoration: none;
 		padding:0.25em 0.5em !important;
 		display: block;
 	}
-	
+
    .category-wrapper .allCategoriesWrap .allCategories {
 	  display: none;
 	}
-	
+
 	ul.category-list,.icon-gl-message-close.nonJsOnlyBlock,.catText{
 	 display: block;
 	}
@@ -613,7 +613,7 @@ ul.category-list{
   .bg {
     width: 70px;
     height: 70px;
-    background-image: url('../../../../../images/es_AR/categories/catIcons_sprite.svg');
+    background-image: url('../../../../../../images/es_AR/categories/catIcons_sprite.svg');
     background-repeat: no-repeat;
     opacity: 0.9;
   }
@@ -723,7 +723,7 @@ ul.category-list{
     .bg[class*=icon-] {
       width: 86px;
       height: 86px;
-      background-image: url('../../../../../images/es_AR/categories/catIcons_sprite.svg');
+      background-image: url('../../../../../../images/es_AR/categories/catIcons_sprite.svg');
       background-repeat: no-repeat;
       background-size: auto;
     }
@@ -819,13 +819,13 @@ ul.category-list{
   }
 
   .icon-step-1 {
-    background-image: url('../../../../../images/es_AR/tutorial-imgs/process-publish.png');
+    background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-publish.png');
   }
   .icon-step-2 {
-    background-image: url('../../../../../images/es_AR/tutorial-imgs/process-contact.png');
+    background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-contact.png');
   }
   .icon-step-3 {
-    background-image: url('../../../../../images/es_AR/tutorial-imgs/process-meet.png');
+    background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-meet.png');
   }
 }
 
@@ -839,15 +839,15 @@ ul.category-list{
 		  width: 80px;
 		  height: 80px;
 		  margin-left: 0em;
-	}	
+	}
 	.icon-step-1 {
-      background-image: url('../../../../../images/es_AR/tutorial-imgs/process-publish.png');
+      background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-publish.png');
 	}
 	.icon-step-2 {
-      background-image: url('../../../../../images/es_AR/tutorial-imgs/process-contact.png');
+      background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-contact.png');
 	}
 	.icon-step-3 {
-      background-image: url('../../../../../images/es_AR/tutorial-imgs/process-meet.png');
+      background-image: url('../../../../../../images/es_AR/tutorial-imgs/process-meet.png');
 	}
   }
 }

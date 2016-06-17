@@ -1,0 +1,95 @@
+{
+  "totalCount": 25,
+  "totalUnreadCount": 1,
+  "userConversations": [
+    {
+        "_links": [
+        {
+          "rel": "self",
+          "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx",
+          "method": "GET"
+        },
+        {
+          "rel": "close",
+          "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx/actions/close",
+          "method": "PUT"
+        },
+        {
+          "rel": "delete",
+          "href": "/conversations/caiyuchen@ebay.com?conversationIds=2e:-d6wc1o:icwh3xfx",
+          "method": "DELETE"
+        }
+      ],
+      "id": "2e:-d6wc1o:icwh3xfx",
+      "role": "BUYER",
+      "state": "UNKNOWN",
+      "closedBy": null,
+      "adInfo": {
+        "adId": "100000000",
+        "adTitle": "Post job ad",
+        "adPrice": {
+          "type": "FREE"
+        }
+      },
+      "buyerInfo": {
+        "userName": "Joyce",
+        "userEmail": "caiyuchen@ebay.com",
+        "userThumbnail": "http://i.ebayimg.sandbox.ebay.com/00/s/NTcyWDgwMA==/z/HDcAAOSwj-lVw50E/$_"
+      },
+      "sellerInfo": {
+        "userName": "Joyce",
+        "userThumbnail": "http://i.ebayimg.sandbox.ebay.com/00/s/NTcyWDgwMA==/z/HDcAAOSwj-lVw50E/$_"
+      },
+      "userMessages": [
+        {
+          "content": "0123456789 new conversation  reply with phone 4156654555",
+          "direction": "BUYER_TO_SELLER"
+        }
+      ]
+    },
+    {
+        "_links": [
+        {
+          "rel": "self",
+          "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx",
+          "method": "GET"
+        },
+        {
+          "rel": "close",
+          "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx/actions/close",
+          "method": "PUT"
+        },
+        {
+          "rel": "delete",
+          "href": "/conversations/caiyuchen@ebay.com?conversationIds=2e:-d6wc1o:icwh3xfx",
+          "method": "DELETE"
+        }
+      ],      
+      "id": "2c:-d6wc1o:icwh3xfx",
+      "role": "SELLER",
+      "state": "CLOSE",
+      "closedBy": "SELLER",
+      "adInfo": {
+        "adId": "100000000",
+        "adTitle": "Post job ad",
+        "adPrice": {
+          "type": "FREE"
+        }
+      },
+      "buyerInfo": {
+        "userName": "Joyce"
+      },
+      "sellerInfo": {
+        "userName": "Joyce",
+        "userEmail": "caiyuchen@ebay.com",
+        "userThumbnail": "http://i.ebayimg.sandbox.ebay.com/00/s/NTcyWDgwMA==/z/HDcAAOSwj-lVw50E/$_"
+      },
+      "userMessages": [
+        {
+          "content": "from RUI with attachment",
+          "direction": "BUYER_TO_SELLER"
+        }
+      ]
+    }
+  ]
+}

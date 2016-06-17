@@ -28,7 +28,7 @@
         font-weight: bold;
     }
     span.bg {
-        background-image: url('../../../../../images/en_ZA/loading.gif');
+        background-image: url('../../../../../../images/en_ZA/loading.gif');
         background-repeat: no-repeat;
         /* background-position: 100% 100%; */
         display: inline-block;
@@ -85,7 +85,7 @@ input[type=text].disabled {
 
     width: 16px;
     height: 16px;
-    background: url(../../../../../images/loading-small.gif) no-repeat;
+    background: url(../../../../../../images/loading-small.gif) no-repeat;
     background-repeat: no-repeat;
 
     &.eft-margin {
