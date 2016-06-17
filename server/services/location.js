@@ -9,7 +9,7 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var LocationService = function() {
-	this.bapiOptions =	bapiOptions;
+	this.bapiOptions = bapiOptions;
 };
 
 /**
@@ -35,7 +35,7 @@ LocationService.prototype.getTopL2LocationsData = function(bapiHeaders) {
 	// Prepare BAPI call
 	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.topLocationsL2');
-	
+
 	// Invoke BAPI
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "topL2Locations");
 };

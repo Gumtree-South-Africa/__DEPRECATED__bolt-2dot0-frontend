@@ -10,41 +10,29 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),
-	jscs = require('gulp-jscs'),
 	livereload = require('gulp-livereload'),
 	handlebars = require('gulp-handlebars'),
 	notify = require('gulp-notify'),
 	declare = require('gulp-declare'),
 	copy = require('gulp-copy'),
 	env = require('gulp-env'),
-	walkdir = require('walkdir'),
-	argv = require('yargs').argv,
 	browserSync = require('browser-sync'),
 	map = require('map-stream'),
 	plugins = require('gulp-load-plugins')(),
 	compass = require('gulp-compass'),
-	jasmineNode = require('gulp-jasmine-node'),
 	jasmineBrowser = require('gulp-jasmine-browser'),
 	clean = require('gulp-clean'),
 	tar = require('gulp-tar'),
-	gzip = require('gulp-gzip'),
-	asynch = require('async'),
 	bump = require('gulp-bump'),
-	gulpif = require('gulp-if'),
 	rename = require('gulp-rename'),
 	cssmin = require('gulp-cssmin'),
-	conventionalChangelog = require('gulp-conventional-changelog'),
-	conventionalGithubReleaser = require('conventional-github-releaser'),
-	gutil = require('gulp-util'),
-	git = require('gulp-git'),
 	fs = require('fs'),
 	runSequence = require('gulp-run-sequence'),
-	nodeInspector = require('gulp-node-inspector'),
-	loadingSpinner = require('loading-spinner'),
+	shell = require("gulp-shell"),
 	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
-// Get Tasks
+// Get Tasks //
 // // /////////////////////////////////////////////
 function getTask(task) {
 	return require('./gulp-tasks/' + task)(gulp, plugins);
@@ -61,7 +49,7 @@ function errorlog(err) {
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', ['eslint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('icons', getTask('icons'));
@@ -70,16 +58,15 @@ gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
 gulp.task('jsonlint', getTask('jsonlint'));
-gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
-gulp.task('jscs', getTask('jscs'));
+gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 
 // PRE-COMMIT
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'icons', 'compass', 'precompile', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {
@@ -87,28 +74,17 @@ gulp.task('default', function (done) {
 });
 
 // TEST
-gulp.task('jasmine', getTask('jasmine'));
-gulp.task('jasminebrowser', getTask('jasminebrowser'));
+gulp.task('jasmine', shell.task([
+	'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' +
+	'JASMINE_CONFIG_PATH=./test/jasmine.json ' +
+	'./node_modules/jasmine/bin/jasmine.js'
+]));
 
-
-//TODO: move to a separate file
-gulp.task('test', function(callback) {
-	process.stdout.write('Test Task is running...\r\n');
-	var stream =
-    runSequence(
-      'build',
-			'develop',
-			'jasmine',
-			function(error) {
-				if (error) {
-					console.log(error.message);
-				} else {
-					console.log('Congratulations!!! TEST TASK DONE SUCCESSFULLY');
-				}
-				callback(error);
-			});
-	return stream;
+gulp.task('test', (done) => {
+	runSequence('build', 'jasmine', done);
 });
+
+gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));

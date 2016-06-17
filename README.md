@@ -76,13 +76,13 @@ The first time you make a development build it is required that you build the st
 ```
 
 
-### Running linters separately
+### Running Linters
 ```
-gulp jshint
+gulp eslint
 gulp jsonlint
 ```
+**Note: webstorm - besure to check for ES6 inside of Webstorm -> Preferences -> Languages & Frameworks -> Javascript**
 **HEADS UP: A linter is run at every code change and your changes might not be visible if it fails!**
-
 
 ### Process differences
 Gulp automates building during development, meaning that when a source file changes it will trigger an automatic 'rebuild' when it applies.

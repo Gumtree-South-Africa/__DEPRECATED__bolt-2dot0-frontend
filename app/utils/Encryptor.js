@@ -6,7 +6,7 @@ var crypto = require("crypto");
  * @description A Singleton that encrypts data
  */
 var Encryptor = {
-	hash: function (value) {
+	hash: function(value) {
 		var secret = "867f6e6ba179";
 		var hash = crypto.createHmac("sha512", secret)
 			.update(value)
@@ -14,7 +14,7 @@ var Encryptor = {
 		return hash;
 	},
 
-	KDF: function (password, salt, iterations) {
+	KDF: function(password, salt, iterations) {
 		var pwd = new Buffer(password, "utf-8");
 		var key = Buffer.concat([pwd, salt]);
 		var i;
@@ -24,7 +24,7 @@ var Encryptor = {
 		return key;
 	},
 
-	getKeyIV: function (password, salt, iterations) {
+	getKeyIV: function(password, salt, iterations) {
 		var key = this.KDF(password, salt, iterations);
 		var keybuf = new Buffer(key, "binary").slice(0, 8);
 		var ivbuf = new Buffer(key, "binary").slice(8, 16);
@@ -32,7 +32,7 @@ var Encryptor = {
 		return [keybuf, ivbuf];
 	},
 
-	encrypt: function (payload) {
+	encrypt: function(payload) {
 		var password = "867f6e6ba179";
 		var salt = new Buffer("d99bce325735e303", "hex");
 		var iterations = 19;
@@ -46,7 +46,7 @@ var Encryptor = {
 		return new Buffer(encrypted.join(""), "hex").toString("base64");
 	},
 
-	decrypt: function (payload) {
+	decrypt: function(payload) {
 		var password = "867f6e6ba179";
 		var salt = new Buffer("d99bce325735e303", "hex");
 		var iterations = 19;

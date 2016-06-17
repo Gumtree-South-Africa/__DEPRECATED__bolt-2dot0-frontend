@@ -1,0 +1,13 @@
+{
+	"statusCode": 404,
+	"message": "Not found",
+	"details": [
+		{
+			"code": "NOT_FOUND",
+			"message": "Resource could not be found",
+			"_links": [
+				{ "ref": "help", "href": "/docs/errorCodes.html#NOT_FOUND" }
+			]
+		}
+	]
+}

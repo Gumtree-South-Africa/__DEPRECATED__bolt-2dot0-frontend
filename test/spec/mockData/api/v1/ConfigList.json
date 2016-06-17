@@ -1,0 +1,8 @@
+{
+   "configSpace": "bolt",
+   "configBucket": "site",
+   "configs": {"settings":    [
+      "settings.json",
+      "settings_en_SG.json"
+   ]}
+}

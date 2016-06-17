@@ -128,7 +128,6 @@ var helpers = {
      *   {{/compare}}
      */
     compare: function(left, operator, right, options) {
-        /*jshint eqeqeq: false*/
 
         if (arguments.length < 3) {
             throw new Error('Handlebars Helper "compare" needs 2 parameters');
