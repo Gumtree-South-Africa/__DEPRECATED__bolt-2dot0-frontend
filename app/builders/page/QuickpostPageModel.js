@@ -20,20 +20,20 @@ var SeoModel = require(cwd + '/app/builders/common/SeoModel');
  * @private
  * @return {JSON}
  */
-var getQuickpostDataFunctions = function (req, res, modelData) {
+var getQuickpostDataFunctions = function(req, res, modelData) {
 	var seo = new SeoModel(modelData.bapiHeaders);
 	return {
-		'seo'	:	function(callback) {
-						var seoDeferred = Q.defer();
-						Q(seo.getQuickPostSeoInfo())
-							.then(function (dataS) {
-								seoDeferred.resolve(dataS);
-								callback(null, dataS);
-							}).fail(function (err) {
-								seoDeferred.reject(new Error(err));
-								callback(null, {});
-							});
-					}
+		'seo': function(callback) {
+			var seoDeferred = Q.defer();
+			Q(seo.getQuickPostSeoInfo())
+				.then(function(dataS) {
+					seoDeferred.resolve(dataS);
+					callback(null, dataS);
+				}).fail(function(err) {
+				seoDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}
 	};
 };
 
@@ -45,7 +45,7 @@ var getQuickpostDataFunctions = function (req, res, modelData) {
  * @class QuickpostPageModel
  * @constructor
  */
-var QuickpostPageModel = function (req, res, modelData) {
+var QuickpostPageModel = function(req, res, modelData) {
 	var functionMap = getQuickpostDataFunctions(req, res, modelData);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
@@ -57,14 +57,14 @@ var QuickpostPageModel = function (req, res, modelData) {
 	var quickpostModel = new ModelBuilder(arrFunctions);
 	var quickpostDeferred = Q.defer();
 	Q(quickpostModel.processParallel())
-    	.then(function (data) {
-    		// Converts the data from an array format to a JSON format
-    		// for easy access from the client/controller
-    		data = abstractPageModel.convertListToObject(data, arrFunctions);
+		.then(function(data) {
+			// Converts the data from an array format to a JSON format
+			// for easy access from the client/controller
+			data = abstractPageModel.convertListToObject(data, arrFunctions);
 			quickpostDeferred.resolve(data);
-		}).fail(function (err) {
-			quickpostDeferred.reject(new Error(err));
-		});
+		}).fail(function(err) {
+		quickpostDeferred.reject(new Error(err));
+	});
 	return quickpostDeferred.promise;
 };
 

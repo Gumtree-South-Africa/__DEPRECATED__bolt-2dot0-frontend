@@ -10,7 +10,6 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),
-	jscs = require('gulp-jscs'),
 	livereload = require('gulp-livereload'),
 	handlebars = require('gulp-handlebars'),
 	notify = require('gulp-notify'),
@@ -33,7 +32,7 @@ var gulp = require('gulp'),
 	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
-// Get Tasks
+// Get Tasks //
 // // /////////////////////////////////////////////
 function getTask(task) {
 	return require('./gulp-tasks/' + task)(gulp, plugins);
@@ -50,7 +49,7 @@ function errorlog(err) {
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', ['eslint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
 gulp.task('icons', getTask('icons'));
@@ -59,16 +58,15 @@ gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
 gulp.task('jsonlint', getTask('jsonlint'));
-gulp.task('jshint', getTask('jshint'));
 gulp.task('prop2json', getTask('prop2json'));
-gulp.task('jscs', getTask('jscs'));
+gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 
 // PRE-COMMIT
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'jscs', 'bundlejs', 'icons', 'compass', 'precompile', 'jshint', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'icons', 'compass', 'precompile', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {

@@ -1,19 +1,17 @@
 'use strict';
 
 
-var express = require('express'),
-	router = express.Router(),
-	Q = require('q');
+var express = require('express'), router = express.Router(), Q = require('q');
 
 var GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 var cors = require(process.cwd() + '/modules/cors');
 
 
-module.exports = function (app) {
-  app.use('/', router);
+module.exports = function(app) {
+	app.use('/', router);
 };
 
-router.get('/api/ads/gallery', cors, function (req, res) {
+router.get('/api/ads/gallery', cors, function(req, res) {
 	var bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
@@ -21,46 +19,40 @@ router.get('/api/ads/gallery', cors, function (req, res) {
 	bapiHeaders.useragent = req.app.locals.useragent;
 	bapiHeaders.locale = res.locals.config.locale;
 
-	var gallery = new GalleryModel(bapiHeaders),
-		galleryData = {},
-		offset = req.query.offset, // Start Index
+	var gallery = new GalleryModel(bapiHeaders), galleryData = {}, offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
-		ajaxUrls = {},
-		galleryDeferred = Q.defer();
+		ajaxUrls = {}, galleryDeferred = Q.defer();
 
 	// Only applicable for SRP Gallery where there is categoryId
 	// categoryId = req.query.categoryId;
-	
+
 	Q(gallery.getAjaxGallery(offset, limit))
-	.then(function (dataG) {
-		dataG = dataG || {};
-		galleryData = {
-			'ads' : dataG.ads || []
-		};
+		.then(function(dataG) {
+			dataG = dataG || {};
+			galleryData = {
+				'ads': dataG.ads || []
+			};
 
-		// Get the prev and next urls
-		ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
-		if (ajaxUrls.next) {
-			galleryData.nextAjaxUrl = ajaxUrls.next;
-		}
+			// Get the prev and next urls
+			ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
+			if (ajaxUrls.next) {
+				galleryData.nextAjaxUrl = ajaxUrls.next;
+			}
 
-		if (ajaxUrls.prev) {
-			galleryData.previousAjaxUrl = ajaxUrls.prev;
-		}
+			if (ajaxUrls.prev) {
+				galleryData.previousAjaxUrl = ajaxUrls.prev;
+			}
 
-		galleryDeferred.resolve(galleryData);
-		res.send(galleryData);
-	}).fail(function (err) {
+			galleryDeferred.resolve(galleryData);
+			res.send(galleryData);
+		}).fail(function(err) {
 		galleryDeferred.reject(new Error(err));
 		res.send(galleryData);
 	});
 });
 
 function getAjaxsUrlFromBapiJSON(dataG) {
-	var ajaxUrls = { 'prev' : null , 'next' : null },
-		links = dataG.links || null,
-		linkObj,
-		idx;
+	var ajaxUrls = {'prev': null, 'next': null}, links = dataG.links || null, linkObj, idx;
 
 	if (links) {
 		for (idx = 0; idx < links.length; ++idx) {

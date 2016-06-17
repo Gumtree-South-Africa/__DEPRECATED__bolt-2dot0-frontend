@@ -1,33 +1,32 @@
 'use strict';
 
 
-var http = require('http'),
-	Q = require('q');
+let Q = require('q');
 
-var locationService = require(process.cwd() + '/server/services/location');
+let locationService = require(process.cwd() + '/server/services/location');
 
 
 /**
  * @description A class that Handles the Location Model
  * @constructor
  */
-var LocationModel = function (bapiHeaders, depth) {
+let LocationModel = function(bapiHeaders, depth) {
 	this.bapiHeaders = bapiHeaders;
 	this.depth = depth;
 };
 
 // Function getLocations
-LocationModel.prototype.getLocations = function () {
+LocationModel.prototype.getLocations = function() {
 
-	var locationDeferred = Q.defer();
-	var data = {};
+	let locationDeferred = Q.defer();
+	let data = {};
 
 	if (typeof this.depth !== 'undefined') {
 		Q(locationService.getLocationsData(this.bapiHeaders, this.depth))
-			.then(function (dataReturned) {
+			.then(function(dataReturned) {
 				data = dataReturned;
 				locationDeferred.resolve(data);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			locationDeferred.reject(new Error(err));
 		});
 	}
@@ -36,17 +35,17 @@ LocationModel.prototype.getLocations = function () {
 };
 
 //Function getTopL2Locations
-LocationModel.prototype.getTopL2Locations = function () {
+LocationModel.prototype.getTopL2Locations = function() {
 
-	var locationDeferred = Q.defer();
-	var data = {};
+	let locationDeferred = Q.defer();
+	let data = {};
 
 	if (typeof this.bapiHeaders.locale !== 'undefined') {
 		Q(locationService.getTopL2LocationsData(this.bapiHeaders))
-			.then(function (dataReturned) {
+			.then(function(dataReturned) {
 				data = dataReturned;
 				locationDeferred.resolve(data);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			locationDeferred.reject(new Error(err));
 		});
 	}

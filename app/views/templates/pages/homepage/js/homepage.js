@@ -1,16 +1,15 @@
 var BOLT = BOLT || {};
 
-BOLT.Homepage = (function () {
+BOLT.Homepage = (function() {
 	return {
-		setUp : function () {
+		setUp: function() {
 			this.getTemplateData();
 		},
 
-		getTemplateData : function () {
+		getTemplateData: function() {
 			var html = "";
 			var dataObj = {
-				name : "User Precompiled",
-				title : "Success!"
+				name: "User Precompiled", title: "Success!"
 			};
 
 			var template = Handlebars.template;
