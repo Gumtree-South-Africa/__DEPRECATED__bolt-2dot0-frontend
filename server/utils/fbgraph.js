@@ -23,7 +23,7 @@ FbGraphService.prototype.publishPost = function(url, msgData, links) {
 		url = url + '&links=' + links;
 	}
 
-	Q(fbgraph.post(url, post, function(err, data){
+	Q(fbgraph.post(url, post, function(err, data) {
 		if (err) {
 			fbDeferred.reject(err);
 		} else {

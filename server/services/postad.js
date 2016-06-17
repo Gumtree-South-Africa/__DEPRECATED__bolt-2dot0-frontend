@@ -9,7 +9,7 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var PostAdService = function() {
-	this.bapiOptions =	bapiOptions;
+	this.bapiOptions = bapiOptions;
 };
 
 /**

@@ -1,4 +1,3 @@
-// jshint ignore: start
 
 /* Modernizr 2.8.3 (Custom Build) | MIT & BSD
  * Build: http://modernizr.com/download/#-touch-shiv-cssclasses-teststyles-prefixes-load

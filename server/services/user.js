@@ -9,7 +9,7 @@ var bapiOptions = require("./bapi/bapiOptions")(config);
  * @constructor
  */
 var UserService = function() {
-	this.bapiOptions =	bapiOptions;
+	this.bapiOptions = bapiOptions;
 };
 
 /**
@@ -32,19 +32,17 @@ UserService.prototype.buildProfile = function(data) {
 	}
 
 	if (data.socialMedia) {
-		if (data.socialMedia.profileName && data.socialMedia.profileName.length>0) {
+		if (data.socialMedia.profileName && data.socialMedia.profileName.length > 0) {
 			data.profileName = data.socialMedia.profileName;
 		}
 		if (data.socialMedia.type === 'FACEBOOK') {
-			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-										  '/picture?width=36&height=36';
-			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id +
-								  '/feed?access_token=' + data.socialMedia.accessToken;
+			data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+			data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/feed?access_token=' + data.socialMedia.accessToken;
 		}
 	}
 
 	if (data.userProfileImageUrl) {
-		data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www','').replace('http://','').replace('www','');
+		data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
 	}
 	return data;
 };

@@ -1,17 +1,17 @@
 'use strict';
 
-var util = require('util');
-var Q = require('q');
+let util = require('util');
+let Q = require('q');
 
-var BasePageModel = require('./BasePageModel');
-var deviceDetection = require(process.cwd() + '/modules/device-detection');
+let BasePageModel = require('./BasePageModel');
+let deviceDetection = require(process.cwd() + '/modules/device-detection');
 
 
 /**
  * @description
  * @constructor
  */
-var AbstractPageModel = function (req, res) {
+let AbstractPageModel = function(req, res) {
 	BasePageModel.call(this, req, res);
 };
 
@@ -27,10 +27,10 @@ util.inherits(AbstractPageModel, BasePageModel);
  * @param {String} pagetype
  * @return {JSON}
  */
-AbstractPageModel.prototype.getPageModelConfig = function (res, pagetype) {
-	var bapiConfigData = res.locals.config.bapiConfigData;
+AbstractPageModel.prototype.getPageModelConfig = function(res, pagetype) {
+	let bapiConfigData = res.locals.config.bapiConfigData;
 
-	var pageModelConfig = bapiConfigData.bapi[pagetype];
+	let pageModelConfig = bapiConfigData.bapi[pagetype];
 
 	if (typeof pageModelConfig !== 'undefined') {
 		if (deviceDetection.isMobile()) {
@@ -48,20 +48,18 @@ AbstractPageModel.prototype.getPageModelConfig = function (res, pagetype) {
 /**
  * @method getCommonDataFunction
  * @description Prepares a function which contains common data across all pages
- * @param {Object} Request
- * @param {Object} Response
  * @return {Function}
  */
-AbstractPageModel.prototype.getCommonDataFunction = function (req, res) {
-	var commonPageData = this.getModelBuilder();
+AbstractPageModel.prototype.getCommonDataFunction = function() {
+	let commonPageData = this.getModelBuilder();
 
-	var commonDataFunction = function (callback) {
-		var commonDataDeferred = Q.defer();
+	let commonDataFunction = function(callback) {
+		let commonDataDeferred = Q.defer();
 		Q(commonPageData.processWaterfall())
-			.then(function (dataC) {
+			.then(function(dataC) {
 				commonDataDeferred.resolve(dataC);
 				callback(null, dataC);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			commonDataDeferred.reject(new Error(err));
 			callback(null, {});
 		});
@@ -80,10 +78,10 @@ AbstractPageModel.prototype.getCommonDataFunction = function (req, res) {
  * @param {JSON} pageModelConfig for the respective page
  * @return {Array}
  */
-AbstractPageModel.prototype.getArrFunctions = function (req, res, functionMap, pageModelConfig) {
-	var arrFunctions = [this.getCommonDataFunction(req, res)];
+AbstractPageModel.prototype.getArrFunctions = function(req, res, functionMap, pageModelConfig) {
+	let arrFunctions = [this.getCommonDataFunction(req, res)];
 
-	var index, fnLabel, fn;
+	let index, fnLabel, fn;
 	for (index = 0; index < pageModelConfig.length; index++) {
 		fnLabel = pageModelConfig[index];
 		fn = functionMap[fnLabel];
@@ -103,11 +101,8 @@ AbstractPageModel.prototype.getArrFunctions = function (req, res, functionMap, p
  * @param {Array} arrFunctions Array with the list of bapi calls
  * @return {JSON}
  */
-AbstractPageModel.prototype.convertListToObject = function (dataList, arrFunctions) {
-	var numElems = dataList.length || 0,
-		idx = 0,
-		jsonObj = {},
-		fnLabel = '';
+AbstractPageModel.prototype.convertListToObject = function(dataList, arrFunctions) {
+	let numElems = dataList.length || 0, idx = 0, jsonObj = {}, fnLabel = '';
 	for (idx = 0; idx < numElems; idx++) {
 		fnLabel = arrFunctions[idx].fnLabel;
 		if (fnLabel) {

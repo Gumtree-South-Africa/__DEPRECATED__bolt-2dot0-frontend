@@ -1,11 +1,10 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
+let Q = require('q');
 
-var ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-var keywordService = require(process.cwd() + '/server/services/keyword');
+let keywordService = require(process.cwd() + '/server/services/keyword');
 
 
 /**
@@ -13,44 +12,44 @@ var keywordService = require(process.cwd() + '/server/services/keyword');
  * @constructor
  */
 
-var KeywordModel = function (bapiHeaders, kwCount) {
+let KeywordModel = function(bapiHeaders, kwCount) {
 	this.bapiHeaders = bapiHeaders;
 	this.kwCount = kwCount;
 };
 
-KeywordModel.prototype.getModelBuilder = function () {
+KeywordModel.prototype.getModelBuilder = function() {
 	return new ModelBuilder(this.getKeywords());
 };
 
 // Function getKeywords
-KeywordModel.prototype.getKeywords = function () {
-	var _this = this;
+KeywordModel.prototype.getKeywords = function() {
+	let _this = this;
 
-	var topKeywordFunction = function (callback) {
-		var topKeywordDeferred = Q.defer();
+	let topKeywordFunction = function(callback) {
+		let topKeywordDeferred = Q.defer();
 		Q(keywordService.getTopKeywordsData(_this.bapiHeaders, _this.kwCount))
-			.then(function (dataTopK) {
+			.then(function(dataTopK) {
 				topKeywordDeferred.resolve(dataTopK);
 				callback(null, dataTopK);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			topKeywordDeferred.reject(new Error(err));
 			callback(null, {});
 		});
 	};
 
-	var trendingKeywordFunction = function (callback) {
-		var trendingKeywordDeferred = Q.defer();
+	let trendingKeywordFunction = function(callback) {
+		let trendingKeywordDeferred = Q.defer();
 		Q(keywordService.getTrendingKeywordsData(_this.bapiHeaders, _this.kwCount))
-			.then(function (dataTK) {
+			.then(function(dataTK) {
 				trendingKeywordDeferred.resolve(dataTK);
 				callback(null, dataTK);
-			}).fail(function (err) {
+			}).fail(function(err) {
 			trendingKeywordDeferred.reject(new Error(err));
 			callback(null, {});
 		});
 	};
 
-	var arrFunctions = [topKeywordFunction, trendingKeywordFunction];
+	let arrFunctions = [topKeywordFunction, trendingKeywordFunction];
 	return arrFunctions;
 };
 
