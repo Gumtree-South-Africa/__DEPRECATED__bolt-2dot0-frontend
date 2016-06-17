@@ -5,16 +5,16 @@
 
 describe('Properties2Json', function() {
 
-	var Q = require('Q'), input = __dirname + "/mocks/test_te_ST.properties", output = __dirname + "test/tmp/", fs = require('fs'), Properties2Json = require(process.cwd() + '/scripts/properties2Json.js'), result, file, data, FAIL = new Error('FAILED');
+	var Q = require('Q'), input = __dirname + '/mocks/test_te_ST.properties', output = __dirname + 'test/tmp/', fs = require('fs'), Properties2Json = require(process.cwd() + '/scripts/properties2Json.js'), result, file, data, FAIL = new Error('FAILED');
 
 	before(function(done) {
 		// TODO : copy test/mocks/test_te_ST.txt > test/mocks/test_te_ST.properties
-		result = Properties2Json(input, output, {fix: true})
+		result = Properties2Json(input, output, {fix: true});
 		result.then(function(value) {
 			file = fs.readFileSync(input, 'utf-8').toString();
-			data = require(output + "te_ST/test.json");
+			data = require(output + 'te_ST/test.json');
 			done();
-		})
+		});
 	});
 	after(function() {
 		// TODO : delete tmp folder
@@ -86,18 +86,18 @@ describe('Properties2Json', function() {
 		});
 		describe('regarding white space', function() {
 			it('it should be removed from all keys', function() {
-				if (typeof data.test["spaces     "] == 'string') {
+				if (typeof data.test['spaces     '] == 'string') {
 					throw FAIL;
                 }
-				if (typeof data.test["spaces"] != 'string') {
+				if (typeof data.test['spaces'] != 'string') {
 					throw FAIL;
                 }
 			});
 			it('values should be trimmed', function() {
-				if (data.test["spaces"] != data.test["spaces"].trim()) {
+				if (data.test['spaces'] != data.test['spaces'].trim()) {
 					throw FAIL;
                 }
-			})
+			});
 		});
 		describe('the result file', function() {
 			it('should retain comments', function() {
@@ -115,26 +115,26 @@ describe('Properties2Json', function() {
                 }
 			});
 			it('duplicates should merge to the last value in the file', function() {
-				if (file.indexOf("test.duplicate=success") === -1) {
+				if (file.indexOf('test.duplicate=success') === -1) {
 					throw FAIL;
                 }
-				if (file.indexOf("test.duplicate=failure") !== -1) {
+				if (file.indexOf('test.duplicate=failure') !== -1) {
 					throw FAIL;
                 }
 			});
 			it('invalid parents should be reassigned to .$$', function() {
-				if (file.indexOf("test.$$=success") === -1) {
+				if (file.indexOf('test.$$=success') === -1) {
 					throw FAIL;
                 }
-				if (file.indexOf("test=success") !== -1) {
+				if (file.indexOf('test=success') !== -1) {
 					throw FAIL;
                 }
 			});
 			it('nested invalid parents should be reassigned to .$$', function() {
-				if (file.indexOf("test.bar.$$=success") === -1) {
+				if (file.indexOf('test.bar.$$=success') === -1) {
 					throw FAIL;
                 }
-				if (file.indexOf("test.bar=success") !== -1) {
+				if (file.indexOf('test.bar=success') !== -1) {
 					throw FAIL;
                 }
 			});

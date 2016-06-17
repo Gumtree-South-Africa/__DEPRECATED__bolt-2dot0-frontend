@@ -72,9 +72,6 @@ gulp.task('default', function (done) {
     runSequence('build', ['develop', 'watch'], done);
 });
 
-// TEST
-
-
 gulp.task('test', getTask("test"));
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));

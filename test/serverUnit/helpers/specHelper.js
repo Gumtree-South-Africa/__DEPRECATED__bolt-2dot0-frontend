@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 let Q = require('q');
 let supertest = require('supertest');
 let fs = require('fs');
@@ -7,7 +7,6 @@ let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
-let http = require('http');
 
 /**
  * Takes in a service string and then spies on the method to return the file.
@@ -62,7 +61,7 @@ module.exports.boltSupertest = (route, host) => {
 
 	let fakeEndpoint = (options) => {
 		let path = options.path;
-		if (!endpointToFileMap[options.path]){
+		if (!endpointToFileMap[options.path]) {
 			throw new Error(`No mocked endpoint for ${path}`);
 		} else {
 			let filePath = endpointToFileMap[path].pop();
@@ -83,7 +82,7 @@ module.exports.boltSupertest = (route, host) => {
 	 * Then it adds host (optional param, defaults to gumtree.co.za)
 	 */
 	return app.createSiteApps().then(() => {
-		console.log('Server started');
+		console.warn('Server started');
 		host = host || 'gumtree.co.za';
 
 		return supertest(app)
@@ -117,5 +116,5 @@ module.exports.finish = (done) => {
 	return (err) => {
 		expect(err).toBe(null, 'Expected no errors');
 		done();
-	}
+	};
 };

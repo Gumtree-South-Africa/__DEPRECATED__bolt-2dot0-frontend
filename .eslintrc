@@ -13,7 +13,8 @@
 
 	"globals": {
 		//place settings for globals here, such as
-		"requirejs": true
+		"requirejs": true,
+		"Handlebars": true
 	},
 	"rules": {
 		//    "off" or 0 - turn the rule off
@@ -32,6 +33,7 @@
 			{
 				"allow": [
 					"error",
+					"warn",
 					"time",
 					"timeEnd"
 				]

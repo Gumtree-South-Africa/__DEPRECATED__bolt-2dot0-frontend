@@ -8,14 +8,11 @@ module.exports = function watch(gulp, plugins) {
 		gulpProtractor = require('gulp-protractor'),
 		protractor = gulpProtractor.protractor,
 		webdriver_update = gulpProtractor.webdriver_update,
-		shell = require("gulp-shell");
+		shell = require('gulp-shell'),
+		Server = require('karma').Server;
 
 	return function() {
-
-		gulp.task('test:serverUnit', shell.task([
-			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
-		]));
-
+		// Integration Tests Tasks
 		gulp.task('protractor', function() {
 			var stream = gulp.src(['test/integration/**/*.js'])
 				.pipe(protractor({
@@ -27,14 +24,35 @@ module.exports = function watch(gulp, plugins) {
 			return stream;
 		});
 
-		gulp.task("webdriverUpdate", webdriver_update);
+		gulp.task('webdriverUpdate', webdriver_update);
 
 		gulp.task('test:integration', function(done) {
 			runSequence('webdriverUpdate', 'protractor', done);
 		});
 
+		// CLIENT UNIT TEST TASKS
+		gulp.task('webpack', (done) => {
+			return shell.task(["node node_modules/webpack/bin/webpack.js"])(done);
+		});
+
+		gulp.task('karma', function (done) {
+			new Server({
+				configFile: __dirname + '/../karma.conf.js',
+				singleRun: true
+			}, done).start();
+		});
+
+		gulp.task('test:clientUnit', ["webpack"], function () {
+			gulp.start("karma");
+		});
+
+		// SERVER UNIT TEST TASKS
+		gulp.task('test:serverUnit', shell.task([
+			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
+		]));
+
 		gulp.task('test', (done) => {
-			runSequence('build', 'test:serverUnit', 'test:integration', done);
+			runSequence('build', 'test:clientUnit', 'test:serverUnit', 'test:integration', done);
 		});
 	};
 };
