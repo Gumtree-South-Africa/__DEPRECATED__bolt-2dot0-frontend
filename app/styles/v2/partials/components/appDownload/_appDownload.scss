@@ -38,7 +38,7 @@
  }
  
  
- .review1{
+ #review1{
    background-color:white;
    border:1px solid green;
    height:48px;
@@ -106,6 +106,15 @@
     }
 
   }
+  
+    .displayMore ~ li{
+		display: none;
+	}
+	
+	
+	.displayMoreDeskTop ~ li{
+		display: inline-block;
+	}
 
 
 }
@@ -122,7 +131,7 @@
 
 .downloadapp-wrapper{
 	margin-top:1em;
-	height:306px;
+	height:310px;
 	width:100%;
     background: #EBEBEB;
 	}
@@ -180,6 +189,16 @@
 	background-size: 100% 100%;
 
    }  
+   
+     .displayMore ~ li{
+		display: none;
+	}
+	
+	
+	.displayMoreDeskTop ~ li{
+		display: none;
+	}
+	
    
  }
 
