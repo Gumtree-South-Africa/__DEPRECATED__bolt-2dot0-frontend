@@ -1,0 +1,40 @@
+'use strict';
+
+//////////////////////////////////////////////////
+//Test Tasks
+//// /////////////////////////////////////////////
+module.exports = function watch(gulp, plugins) {
+	let runSequence = require('gulp-run-sequence'),
+		gulpProtractor = require('gulp-protractor'),
+		protractor = gulpProtractor.protractor,
+		webdriver_update = gulpProtractor.webdriver_update,
+		shell = require("gulp-shell");
+
+	return function() {
+
+		gulp.task('test:serverUnit', shell.task([
+			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
+		]));
+
+		gulp.task('protractor', function() {
+			var stream = gulp.src(['test/integration/**/*.js'])
+				.pipe(protractor({
+					configFile: 'test/integration/protractor.conf.js', args: [
+						'--param.debug=true', '--params.baseUrl=http://www.vivanuncios.com.mx.localhost:8000'
+					]
+				}));
+
+			return stream;
+		});
+
+		gulp.task("webdriverUpdate", webdriver_update);
+
+		gulp.task('test:integration', function(done) {
+			runSequence('webdriverUpdate', 'protractor', done);
+		});
+
+		gulp.task('test', (done) => {
+			runSequence('build', 'test:serverUnit', 'test:integration', done);
+		});
+	};
+};

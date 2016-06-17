@@ -1,0 +1,5 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Integration Specs" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="node_modules/gulp-protractor/node_modules/protractor/built/cli.js" application-parameters="protractor.conf.js --params.baseUrl=http://www.vivanuncios.com.mx.localhost:8000/ --params.debug=true" working-dir="$PROJECT_DIR$">
+    <method />
+  </configuration>
+</component>

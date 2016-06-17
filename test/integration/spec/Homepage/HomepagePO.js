@@ -6,7 +6,7 @@ const homepageUrl = specHelper.getBaseUrl() + '';
 class HomepagePO {
 	constructor() {
 		this.subTitle = element(by.className('subTitle'));
-		this.blogLink = element(by.css('.blog a'))
+		this.blogLink = element(by.css('.blog a'));
 	}
 
 	getUrl() {
@@ -16,6 +16,6 @@ class HomepagePO {
 	visitPage() {
 		browser.get(homepageUrl);
 	}
-};
+}
 
 module.exports = HomepagePO;

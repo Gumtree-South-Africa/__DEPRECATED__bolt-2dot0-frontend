@@ -28,9 +28,7 @@ var gulp = require('gulp'),
 	cssmin = require('gulp-cssmin'),
 	fs = require('fs'),
 	runSequence = require('gulp-run-sequence'),
-	shell = require("gulp-shell"),
-	reload = browserSync.reload,
-    webdriver_update = require('gulp-protractor').webdriver_update;
+	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
 // Get Tasks //
@@ -62,9 +60,6 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
-gulp.task('protractor', getTask('protractor'));
-// downloads latest default Selenium web drivers such as for chrom
-gulp.task('webdriverUpdate', webdriver_update);
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
@@ -78,25 +73,12 @@ gulp.task('default', function (done) {
 });
 
 // TEST
-gulp.task('jasmine', shell.task([
-	'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' +
-	'JASMINE_CONFIG_PATH=./test/jasmine.json ' +
-	'./node_modules/jasmine/bin/jasmine.js'
-]));
 
-gulp.task('test', (done) => {
-	runSequence('build', 'jasmine', done);
-});
+
+gulp.task('test', getTask("test"));
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
-gulp.task('integration', function (done) {
-	runSequence('webdriverUpdate', 'protractor', done);
-});
-
-gulp.task('test', (done) => {
-	runSequence('build', 'jasmine', 'integration', done);
-});
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));

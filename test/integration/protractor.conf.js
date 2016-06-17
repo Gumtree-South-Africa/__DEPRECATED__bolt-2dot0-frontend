@@ -1,6 +1,6 @@
 'use strict';
 
-let jasmineReporters = require("jasmine-console-reporter");
+let jasmineReporters = require('jasmine-console-reporter');
 
 exports.config = {
 	allScriptsTimeout: 60000,
@@ -18,7 +18,7 @@ exports.config = {
 
 	specs: ['./test/integration/**/*Spec.js'],
 
-	onPrepare: function () {
+	onPrepare: function() {
 		browser.driver.manage().window().setSize(375, 667);
 
 		// ignore angular synchronization as we are not working with angular
@@ -31,7 +31,7 @@ exports.config = {
 			verbosity: 4,
 			listStyle: 'indent',
 			activity: false
-		}))
+		}));
 	},
 
 	jasmineNodeOpts: {

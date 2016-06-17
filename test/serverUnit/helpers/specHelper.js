@@ -12,7 +12,7 @@ let http = require('http');
 /**
  * Takes in a service string and then spies on the method to return the file.
  * If you give it a relative path it will grab the file out of
- * /test/spec/mockData/api/v1/.
+ * /test/serverUnit/mockData/api/v1/.
  * otherwise it will pull the absolute path.
  *
  * If BAPIheaders are seen in the call, it thinks it's seeing a config call
@@ -24,7 +24,7 @@ let http = require('http');
 let spyOnService = (service, method, fileName) => {
 	let path = fileName;
 	if (fileName.indexOf('/') === -1) {
-		path = `${cwd}/test/spec/mockData/api/v1/${fileName}`;
+		path = `${cwd}/test/serverUnit/mockData/api/v1/${fileName}`;
 	}
 	spyOn(service, method).and.callFake((bapiHeaders) => {
 		let filePath = path;
@@ -57,8 +57,8 @@ let endpointToFileMap = {};
 module.exports.boltSupertest = (route, host) => {
 	let app = require(cwd + '/app');
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
-	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/spec/mockData/categories/categories_`);
-	spyOnService(locationService, 'getLocationsData', `${cwd}/test/spec/mockData/locations/locations_`);
+	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
+	spyOnService(locationService, 'getLocationsData', `${cwd}/test/serverUnit/mockData/locations/locations_`);
 
 	let fakeEndpoint = (options) => {
 		let path = options.path;
