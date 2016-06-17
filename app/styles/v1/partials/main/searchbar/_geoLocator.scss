@@ -18,7 +18,7 @@ $geolocator-link-bullet-color: $geolocator-link-color !default;
 
 
 
-.geo-locator-selector{ width:100%; height:100%; position:fixed; left:0; top:0;  z-index:21; background-color:$color-black-50; padding:2em;
+.geo-locator-selector{ width:100%; height:100%; position:fixed; left:0; top:0;  z-index:20; background-color:$color-black-50; padding:2em;
 
     div{ max-height:100%; @include border-radius(0.25em); background:$color-white; @include box-shadow(0 3px 5px $color-black-50); max-width:300px; margin:0 auto; overflow:auto;
 
