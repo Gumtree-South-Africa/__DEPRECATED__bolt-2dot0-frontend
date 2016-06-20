@@ -16,6 +16,9 @@ var util = require('util'),
 module.exports = function(app) {
     return function(err, req, res, next) {
 
+		console.error(err);
+		console.error(err.stack);
+
         if (err.status == 0) {
             // next();
             res.send("");

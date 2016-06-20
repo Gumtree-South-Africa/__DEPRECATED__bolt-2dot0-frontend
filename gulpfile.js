@@ -76,7 +76,7 @@ gulp.task('jscs', getTask('jscs'));
 gulp.task('watch', getTask('watch'));
 
 // PRE-COMMIT
-gulp.task('precommit', ['jscs', 'jshint', 'jsonlint']);
+gulp.task('precommit', [/*'jscs', 'jshint',*/ 'jsonlint']);
 
 // BUILD
 gulp.task('build', ['set-env', /*'jscs',*/ 'bundlejs', /*'icons',*/ 'compass', 'precompile', /*'jshint',*/ 'jsonlint']);

@@ -9,7 +9,8 @@ var express = require('express'),
 
 var cwd = process.cwd();
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
-	HomepageModel= require(cwd + '/app/builders/page/HomePageModel'),
+	HomepageModel = require(cwd + '/app/builders/page/HomePageModel'),
+	HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2'),
 	marketoService = require(cwd + '/server/utils/marketo'),
 	Base64 = require(process.cwd() + '/app/utils/Base64'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
@@ -37,7 +38,7 @@ router.get('/', function (req, res, next) {
 	}
 
 	// Build Model Data
-	var modelData = pageControllerUtil.preController(req, res);
+	var modelData = pageControllerUtil.preController(req, res);	// todo: rename this "initModel", which is what it does, "preController" sounds like an event?
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
   // Cookies drop for Version of template
@@ -51,7 +52,7 @@ router.get('/', function (req, res, next) {
   }
 
 	// Retrieve Data from Model Builders
-	var model = HomepageModel(req, res, modelData);
+	var model = HomepageModelV2(req, res, modelData);
 	let authCookie = req.cookies['bt_auth'];
 	let userCookieData = req.app.locals.userCookieData;
 	let promises = [model];
@@ -62,10 +63,10 @@ router.get('/', function (req, res, next) {
 			'machineid'         :   req.app.locals.machineid,
 			'useragent'         :   req.app.locals.useragent,
 			'locale'            :   res.locals.config.locale,
-			'authTokenValue'    :   authCookie 
+			'authTokenValue'    :   authCookie
 		};
 		promises.push(userService.getUserFromCookie(bapiHeaders));
-	} 
+	}
 	Q.allSettled(promises)
 	    .then(function (result) {
 

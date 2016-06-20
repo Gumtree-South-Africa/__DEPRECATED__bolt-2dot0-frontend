@@ -3,19 +3,20 @@
 var config = require('config');
 
 var bapiOptionsModel = require("./bapi/bapiOptionsModel");
-var bapiService = require("./bapi/bapiService");
+var bapiService      = require("./bapi/bapiService");
 
 /**
  * Gets data based on the endpoint and parameters passed
  */
-CardService.prototype.getCardData = function(bapiHeaderValues, params) {
-	// console.info('Inside PostAdService');
+class CardService {
 
-	// Invoke BAPI
-	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
-		method: 'GET',
-		path: config.get(params.queryEndpoint)	// todo: fixup path with parameters
-	}), bapiHeaderValues, 'card');
-};
+	getCardItemsData(bapiHeaderValues, queryEndpoint, params) {
+		// Invoke BAPI
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET', path: config.get(queryEndpoint)	// todo: fixup path with parameters
+		}), bapiHeaderValues, 'card');
+	};
+}
 
-module.exports = new CardService();
+module.exports
+	= new CardService();

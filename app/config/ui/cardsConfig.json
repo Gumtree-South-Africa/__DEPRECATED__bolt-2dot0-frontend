@@ -1,14 +1,16 @@
 {
 	"cards": {
-		"trending": {
-			"queryEndpoint": "BAPI.endpoints.getTrendingAds",
+		"trendingCard": {
+			"queryEndpoint": "BAPI.endpoints.trendingSearch",
 			"numberOfItems": 15,
 			"queryParameters": {
 				"page": "1",
 				"pageSize": "15",
 				"location": "${location}",
 				"categoryIds": [0,1,2],
-				"keywords": ["foo", "bar"]
+				"keywords": ["foo", "bar"],
+				"favoritesThreshold": 10,
+				"repliesThreshold": 10
 			},
 			"templateName": "/templates/trending.hbs",
 			"templateParameters": {
@@ -20,14 +22,14 @@
 			"itemSizeMap": "111111222222333333",
 			"scriptHandlerType": "isotope"
 		},
-		"summerFun": {
+		"summerFunCard": {
 
 		}
 	},
 	"cardsByPage": {
 		"homePage": [
-			"trending",
-			"summerFun"
+			"trendingCard",
+			"summerFunCard"
 		]
 	}
 }

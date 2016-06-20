@@ -11,9 +11,6 @@ var deviceDetection = require(process.cwd() + '/modules/device-detection');
 var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 var config = require('config');
 
-// cards are UI elements that can be in pages, they are configuration driven
-var cardConfig = require(process.cwd() + '/app/config/ui/cardConfig.json');
-
 var userService = require(process.cwd() + '/server/services/user');
 
 /**
@@ -55,7 +52,6 @@ var HeaderModel = function (secure, req, res) {
 
 	this.i18n = req.i18n;
 
-	this.cardConfig = cardConfig;
 };
 
 HeaderModel.prototype.getModelBuilder = function () {
@@ -75,8 +71,7 @@ HeaderModel.prototype.getHeaderData = function () {
 			// initialize
 			var data = {
 				'homePageUrl': _this.urlProtocol + 'www.' + _this.fullDomainName + _this.baseDomainSuffix + _this.basePort,
-				'languageCode': _this.locale,
-				'cardConfig': _this.cardConfig
+				'languageCode': _this.locale
 			};
 
 			// merge pageurl data

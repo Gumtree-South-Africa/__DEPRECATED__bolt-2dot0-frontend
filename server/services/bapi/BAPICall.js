@@ -5,13 +5,13 @@ var async = require('async');
 var http = require('http');
 var _ = require('underscore');
 
-/** 
+/**
  * @description A class that Handles a BAPI REST call
  * @param {Object} options JSON with the call information
  * @param {Object} argData (Optional) JSON with the data to be merged with the data
  *     retrieved from the BAPI call (we merge the 2 data structures and
  *     pass it to the callback function)
- * @param {Function} callback (Optional) Function to be called after the data is 
+ * @param {Function} callback (Optional) Function to be called after the data is
  *     retrieved.
  * @constructor
  */
@@ -39,7 +39,7 @@ BAPICall.prototype = {
 
 	/**
  	 * @method skipCurrentCall
- 	 * @description Calls the object main callback if required, passing an 
+ 	 * @description Calls the object main callback if required, passing an
  	 *     exception if needed (or null)
  	 * @param {Object} ex Exception or parameter to pass to the callback
  	 * @public
@@ -99,25 +99,25 @@ BAPICall.prototype = {
 		    		} catch(ex) {
 		    			data = {};
 		    		}
-		    		
+
 					// Execute the callback if present.
 					if (scope.callback) {
 		        		// Aggregation of data with the original (passed) data
-						if (! _.isEmpty(scope.argData)) { 
+						if (! _.isEmpty(scope.argData)) {
 							data = _.extend(scope.argData, data);
 						}
 						// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 			    		if  (res.statusCode !== 200) {
-							scope.errorHandling(new Error('Received non-200 status'), data);
+							scope.errorHandling(new Error(`Received non-200 status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path}  host: ${res.req._headers['host']}`), data);
 			    		} else {
 			    			scope.callback(null, data);
 			    		}
 					}
-					
+
 					// Return success data
 					return data;
 		    	});
-		 
+
 			});
 
 			reqGet.on('error', function(ex) {
@@ -125,7 +125,7 @@ BAPICall.prototype = {
 			});
 
 			// Close the request
-			reqGet.end();	
+			reqGet.end();
 
 		} catch (ex) {
 			scope.errorHandling(ex);
@@ -146,7 +146,7 @@ BAPICall.prototype = {
 			defaultOptions = {
 		    	port : 80,
 		    	method : 'POST',
-		    	headers : headers 
+		    	headers : headers
 			};
 
 		try {
@@ -157,7 +157,7 @@ BAPICall.prototype = {
 
 			// Override the default POST request options
 			this.options = _.extend(defaultOptions, this.options);
-			
+
 			// Execute the post request with the parameters
 			this.doPost(parObj);
 
@@ -222,7 +222,7 @@ BAPICall.prototype = {
 						}
 						// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 						if (res.statusCode !== 200) {
-							scope.errorHandling(new Error('Received non-200 status'), data);
+							scope.errorHandling(new Error(`Received non-200 status: ${res.statusCode}`), data);
 						} else {
 							scope.callback(null, data);
 						}
@@ -237,7 +237,7 @@ BAPICall.prototype = {
 				scope.errorHandling(ex);
 			});
 
-			// Write the parametized/serialized data 
+			// Write the parametized/serialized data
 			reqPost.write(serializedData);
 
 			// Close the request
@@ -256,6 +256,7 @@ BAPICall.prototype = {
  	 * @public
  	 */
 	errorHandling: function(ex, errdata) {
+		console.warn(ex.message);
 		var err = ex;
 		if (this.ignoreError) {
 			err = null;
