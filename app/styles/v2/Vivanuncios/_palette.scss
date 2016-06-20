@@ -6,3 +6,12 @@
 //Primary Color
 $vivaBlack: #333333; $vivaWhite: #FFFFFF; $vivaOrange: #FF9800; $vivaGray: #747474; $vivaLightGray: #8E8E93;
 $vivaGreen: #87BC1C;
+
+
+/* latin-ext */
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato Regular'), local('Lato-Regular'), url('../../../../../../fonts/Lato-Regular.ttf') format("truetype");
+}
