@@ -12,11 +12,11 @@
   }
   a {
     padding:4px 14px 4px 8px;
-    color: black;
+    color: $vivaBlack;
     border-right: 2px solid #ccc;
     &:hover {
       font-weight:bold;
-      color: #FF9720;
+      color: $vivaOrange;
       background-color: transparent;
       cursor: pointer;
     }
