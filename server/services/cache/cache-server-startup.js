@@ -90,11 +90,12 @@ function CacheBapiData(siteApp, requestId) {
 	        // Actually return the promise so we know when the app is ready to start.
             return Q(configService.getConfigData(bapiHeaders))
               .then(function (dataReturned) {
-                if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
+				  //TODO: undo these commented out lines once 1.0 has config update
+                // if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
-                } else {
-                    siteApp.locals.config.bapiConfigData = dataReturned;
-                }
+                // } else {
+                //     siteApp.locals.config.bapiConfigData = dataReturned;
+                // }
 
                 var locationDropdownLevel = siteApp.locals.config.bapiConfigData.header.locationDropdownLevel;
                 var categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;

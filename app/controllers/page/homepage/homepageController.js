@@ -25,7 +25,6 @@ router.get('/', function(req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 
 	// Set pagetype in request
-	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
@@ -34,15 +33,57 @@ router.get('/', function(req, res, next) {
 
 	// Build Model Data
 	var modelData = pageControllerUtil.preController(req, res);
-	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Cookies drop for Version of template
-	function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, result) {
+
+	let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepageV2/views/hbs/homepageV2_';
+	
+	// Retrieve Data from Model Builders
+	let model;
+	if (cookiePageVersion === '2.0'){
+		req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
+		model = HomepageModelV2(req, res, modelData)
+	} else {
+		req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+		model = HomepageModel(req, res, modelData);
+	}
+	let authCookie = req.cookies['bt_auth'];
+	let userCookieData = req.app.locals.userCookieData;
+	let promises = [model];
+	if (authCookie && !userCookieData) {
+		let bapiHeaders = {
+			'requestId': req.app.locals.requestId,
+			'ip': req.app.locals.ip,
+			'machineid': req.app.locals.machineid,
+			'useragent': req.app.locals.useragent,
+			'locale': res.locals.config.locale,
+			'authTokenValue': authCookie
+		};
+		promises.push(userService.getUserFromCookie(bapiHeaders));
+	}
+	
+	Q.allSettled(promises)
+		.then(function(result) {
+			// Changing Version of template depending of the cookie
+			HP.cookiePageVersionFn(req, res, next, cookiePageVersion, defaultPath, newPath, modelData, result);
+
+			console.timeEnd('Instrument-Homepage-Controller');
+		}, (err) => {
+			console.error(err);
+		}).fail((err) => {
+		console.error(err);
+	});
+});
+
+
+var HP = {
+	cookiePageVersionFn(req, res, next, pageVersionCookie, defaultPath, newPath, modelData, result) {
 		let user;
 		if (result[1] !== undefined) {
 			//Cookie was set
 			user = result[1].state === "fulfilled" ? result[1].value : null;
 		}
+		let bapiConfigData = res.locals.config.bapiConfigData;
 		// Dynamic Data from BAPI
 		// Result[0] is all the model data for the page without user data
 		result = result[0].state === "fulfilled" ? result[0].value : null;
@@ -80,10 +121,10 @@ router.get('/', function(req, res, next) {
 		}
 
 		// Special Data needed for HomePage in header, footer, content
-		HP.extendHeaderData(req, modelData);
-		HP.extendFooterData(modelData);
-		HP.buildContentData(modelData, bapiConfigData);
-		HP.deleteMarketoCookie(res, modelData);
+		this.extendHeaderData(req, modelData);
+		this.extendFooterData(modelData);
+		this.buildContentData(modelData, bapiConfigData);
+		this.deleteMarketoCookie(res, modelData);
 
 		// Make the location data null if it comes as an empty object from bapi
 		if (_.isEmpty(modelData.location)) {
@@ -103,43 +144,8 @@ router.get('/', function(req, res, next) {
 		} else {
 			pageControllerUtil.postController(req, res, next, defaultPath, modelData);
 		}
-	}
-
-	let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
+	},
 	
-	// Retrieve Data from Model Builders
-	var model = (cookiePageVersion === '2.0')
-		? HomepageModelV2(req, res, modelData)
-		: HomepageModel(req, res, modelData);
-	let authCookie = req.cookies['bt_auth'];
-	let userCookieData = req.app.locals.userCookieData;
-	let promises = [model];
-	if (authCookie && !userCookieData) {
-		let bapiHeaders = {
-			'requestId': req.app.locals.requestId,
-			'ip': req.app.locals.ip,
-			'machineid': req.app.locals.machineid,
-			'useragent': req.app.locals.useragent,
-			'locale': res.locals.config.locale,
-			'authTokenValue': authCookie
-		};
-		promises.push(userService.getUserFromCookie(bapiHeaders));
-	}
-	Q.allSettled(promises)
-		.then(function(result) {
-			// Changing Version of template depending of the cookie
-			cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, result);
-
-			console.timeEnd('Instrument-Homepage-Controller');
-		}, (err) => {
-			console.error(err);
-		}).fail((err) => {
-		console.error(err);
-	});
-});
-
-
-var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
