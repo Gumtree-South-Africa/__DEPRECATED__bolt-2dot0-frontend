@@ -2,8 +2,8 @@
 
 
 // cards are UI elements that can be in pages, they are configuration driven
-var cardsConfig = require(process.cwd() + '/app/config/ui/cardsConfig.json');
-var cardService = require(process.cwd() + '/server/services/cardService');
+let cardsConfig = require(process.cwd() + '/app/config/ui/cardsConfig.json');
+let cardService = require(process.cwd() + '/server/services/cardService');
 
 
 class CardsModel {
