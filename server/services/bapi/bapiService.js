@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Q = require('q');
 
-var BAPICall = require('./BAPICall');
+var bapi = require('./BAPICall');
 
 var makeHeaders = function (bapiHeaderValues) {
 	// Add Headers
@@ -48,11 +48,9 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
-	//Create Promise
-	var bapiDeferred = Q.defer();
-
-	// Instantiate BAPI and callback to resolve promise
-	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
+	// Invoke BAPI request
+	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
+	return bapi.doGet(bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
@@ -60,19 +58,12 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 			bapiError.message = output.message;
 			bapiError.details = output.details;
 			bapiError.serviceName = serviceName;
-			bapiDeferred.reject(bapiError);
+			return Q.reject(bapiError);
 		} else {
-			bapiDeferred.resolve(output);
-			console.timeEnd('Instrument-BAPI-' + serviceName);
+			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+			return output;
 		}
 	});
-
-	// Invoke BAPI request
-	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	bapi.doGet();
-
-	// Return Promise Data
-	return bapiDeferred.promise;
 };
 
 
@@ -84,14 +75,9 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 	bapiOptions.headers['Content-Type'] = 'application/json';
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOperations.parameters);
 
-	//console.log('$$$$$$$$$$$$$$$$$$', bapiOptions);
-	//console.log('$$$$$$$$$$$$$$$$$$', postData);
-
-	//Create Promise
-	var bapiDeferred = Q.defer();
-
-	// Instantiate BAPI and callback to resolve promise
-	var bapi = new BAPICall(bapiOptions, null, function(arg, output) {
+	// Invoke BAPI request
+	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
+	return bapi.doPost(postData, bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
@@ -99,19 +85,12 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 			bapiError.message = output.message;
 			bapiError.details = output.details;
 			bapiError.serviceName = serviceName;
-			bapiDeferred.reject(bapiError);
+			return Q.reject(bapiError);
 		} else {
-			bapiDeferred.resolve(output);
-			console.timeEnd('Instrument-BAPI-' + serviceName);
+			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+			return output;
 		}
 	});
-
-	// Invoke BAPI request
-	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	bapi.doPost(postData);
-
-	// Return Promise Data
-	return bapiDeferred.promise;
 };
 
 module.exports.bapiPromisePost = bapiPromisePost;

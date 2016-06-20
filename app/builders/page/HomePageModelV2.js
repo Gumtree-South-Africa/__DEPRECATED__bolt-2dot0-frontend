@@ -37,7 +37,8 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	let keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 	let gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder();
 	let adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder();
-	let seo = new SeoModel(modelData.bapiHeaders), category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
+	let seo = new SeoModel(modelData.bapiHeaders);
+	let category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
 
 	let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 	let cardNames = cardsModel.getCardNamesForPage("homePage");
@@ -72,7 +73,7 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	};
 	dataPromiseFunctionMap.adstatistics = (callback) => {
 		adstatistics.processParallel().then((dataL) => {
-			callback(null, dataL);
+			callback(null, dataL[0]);
 		}).fail((err) => {
 			console.warn(`error getting data ${err}`);
 			callback(null, {});
@@ -80,7 +81,7 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	};
 	dataPromiseFunctionMap.gallery = (callback) => {
 		gallery.processParallel().then((dataL) => {
-			callback(null, dataL);
+			callback(null, dataL[0]);
 		}).fail((err) => {
 			console.warn(`error getting data ${err}`);
 			callback(null, {});

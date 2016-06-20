@@ -3,7 +3,7 @@
 var express = require('express'), _ = require('underscore'), router = express.Router(), Q = require('q'), cuid = require('cuid');
 
 var cwd = process.cwd();
-var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModel = require(cwd + '/app/builders/page/HomePageModel'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), userService = require(process.cwd() + '/server/services/user');
+var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), userService = require(process.cwd() + '/server/services/user');
 
 
 

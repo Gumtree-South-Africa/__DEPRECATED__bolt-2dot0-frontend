@@ -18,5 +18,4 @@ class CardService {
 	};
 }
 
-module.exports
-	= new CardService();
+module.exports = new CardService();
