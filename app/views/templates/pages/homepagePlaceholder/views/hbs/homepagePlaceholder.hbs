@@ -1,13 +1,17 @@
 {{#partial "content"}}
 
-	{{!-- override of header and footer --}}
-	{{#partial "headerWrapper"}}{{/partial}}
-	{{#partial "footerWrapper"}}{{/partial}}
-
 	<div style="border: 2px solid green ;overflow: hidden; display: block;">
 		<h1 style="text-align: center;">HOMEPAGE PLACEHOLDER CONTENTS !!!</h1>
-		{{json this.isNewHP}}
+		<div class="btn-wrapper"><a class="btn" href="#"><span class="sudolink">Post an Ad</span></a></div>
+		<div class="clear"></div>
 		{{> (dynamic "sectionMenu")}}
+
 	</div>
 
 {{/partial}}
+
+{{!-- override of header and footer --}}
+{{#if this.isNewHP}}
+	{{#partial "headerWrapper"}}{{/partial}}
+	{{#partial "footerWrapper"}}{{/partial}}
+{{/if}}
