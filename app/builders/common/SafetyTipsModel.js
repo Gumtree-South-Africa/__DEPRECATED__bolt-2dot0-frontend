@@ -1,17 +1,11 @@
 'use strict';
 
-let ModelBuilder = require('./ModelBuilder');
-
 class SafetyTipsModel {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
 	}
 	
-	getModelBuilder() {
-		return new ModelBuilder(this.getSafetyTips());
-	}
-
 	getSafetyTips() {
 		let i18n = this.req.i18n;
 		let data = {};
