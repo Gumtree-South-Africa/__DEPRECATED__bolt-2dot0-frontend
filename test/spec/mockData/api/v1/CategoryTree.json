@@ -1,0 +1,3214 @@
+{
+	"id": 0,
+	"localizedName": "All Categories",
+	"parentId": null,
+	"level": "L0",
+	"description": "All Categories",
+	"localizedMobileName": "All Categories",
+	"children": [{
+		"id": 5,
+		"localizedName": "Automotive Vehicles",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree |Find Used Automotive Vehicles, Cars including BMW, & Motorcycles including brands like Harley Davidson for sale",
+		"localizedMobileName": "Automotive Vehicles",
+		"children": [{
+			"id": 9077,
+			"localizedName": "Cars & Bakkies",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find used Cars, bakkies for sale, cargo vans and more",
+			"localizedMobileName": "Cars & Bakkies",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9077",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-cars-bakkies/v1c9077p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9026,
+			"localizedName": "Auto Parts & Accessories",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find used Auto Parts & Accessories, tyres, and rims for sale ",
+			"localizedMobileName": "Auto Parts & Accessories",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9026",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-auto-parts-accessories/v1c9026p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9027,
+			"localizedName": "Motorcycles & Scooters",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find used Motorcycles, Scooters, Cycles, and Harley Davidson for sale ",
+			"localizedMobileName": "Motorcycles & Scooters",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9027",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-motorcycles-scooters/v1c9027p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9215,
+			"localizedName": "Motorcycle Parts & Accessories",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find used Motorcycles Accessories, replacement parts, tyres, & helmets for sale",
+			"localizedMobileName": "Motorcycle Parts & Accessories",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9215",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-motorcycle-parts-accessories/v1c9215p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9028,
+			"localizedName": "Caravans & Trailers",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find second hand Caravans and Trailers for sale",
+			"localizedMobileName": "Caravans & Trailers",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9028",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-caravans-trailers/v1c9028p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9132,
+			"localizedName": "Medium & Heavy Commercials",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Find used Medium and Heavy Commercials for sale",
+			"localizedMobileName": "Medium & Heavy Commercials",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9132",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-medium-heavy-commercials/v1c9132p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9135,
+			"localizedName": "Farm Vehicles & Equipment",
+			"parentId": 5,
+			"level": "L2",
+			"description": "Gumtree | Second Hand Farm Vehicles, Farm Equipment, & Cattle",
+			"localizedMobileName": "Farm Vehicles & Equipment",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9135",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-farm-vehicles-equipment/v1c9135p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/5",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-automotive-vehicles/v1c5p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 2,
+		"localizedName": "Property",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find Your Property for sale, Flat Shares, Houses to Rent, & Holiday Homes",
+		"localizedMobileName": "Property",
+		"children": [{
+			"id": 9075,
+			"localizedName": "Flat Share & House Share",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Flats & Houses to Share, 1, 2, & 3 bedrooms",
+			"localizedMobileName": "Flat Share & House Share",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9075",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-flat-share-house-share/v1c9075p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9078,
+			"localizedName": "Houses & Flats For Rent",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Houses & Flats for Rent, 1, 2, & 3 Bedrooms",
+			"localizedMobileName": "Houses & Flats For Rent",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9078",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-houses-flats-for-rent/v1c9078p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9074,
+			"localizedName": "Houses & Flats For Sale",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Houses & Flats for Sale or Rent ",
+			"localizedMobileName": "Houses & Flats For Sale",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9074",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-houses-flats-for-sale/v1c9074p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9070,
+			"localizedName": "Holiday Homes",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Holiday Homes, Flats, & Houses for Rent or sale",
+			"localizedMobileName": "Holiday Homes",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9070",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-holiday-homes/v1c9070p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9137,
+			"localizedName": "Land & Plots For Sale",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Land & Plots for sale, Houses, & Holiday Homes ",
+			"localizedMobileName": "Land & Plots For Sale",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9137",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-land-plots-for-sale/v1c9137p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9073,
+			"localizedName": "Car Parks & Storage",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Look for Car Parks & Storage, Flat Share, & House Share",
+			"localizedMobileName": "Car Parks & Storage",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9073",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-car-parks-storage/v1c9073p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9072,
+			"localizedName": "Commercial Properties",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Commercial Properties, Homes, & flats to buy or rent",
+			"localizedMobileName": "Commercial Properties",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9072",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-commercial-properties/v1c9072p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9001,
+			"localizedName": "Short Term ",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Short Term Houses, Flats, & Properties to Rent",
+			"localizedMobileName": "Short-term Properties",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9001",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-short+term-properties/v1c9001p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9008,
+			"localizedName": "Other Property",
+			"parentId": 2,
+			"level": "L2",
+			"description": "Gumtree | Find Your Property needs like Flat Shares, Houses to Rent, & Holiday Homes",
+			"localizedMobileName": "Other Properties",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9008",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-properties/v1c9008p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/2",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-property/v1c2p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 8,
+		"localizedName": "Jobs",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find part-time jobs and full time Jobs in any category, jobs in Durban, Johannesburg, Pretoria, and more",
+		"localizedMobileName": "Jobs",
+		"children": [{
+			"id": 9005,
+			"localizedName": "Accounting & Finance jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Choose Gumtree ZA for accounting and finance jobs including debt collectors, audit managers, accountants, payroll managers and more",
+			"localizedMobileName": "Accounting & Finance jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9005",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-accounting-finance-jobs/v1c9005p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9253,
+			"localizedName": "Advertising & Marketing jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Browse Gumtree ZA for matric and no matric marketing and advertising jobs in sales, copywriting, graphic design, and more",
+			"localizedMobileName": "Advertising & Marketing jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9253",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-advertising-marketing-jobs/v1c9253p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9255,
+			"localizedName": "Arts & Entertainment jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA to find arts and entertainment jobs in South Africa including gigs for actors, singers, photographers, designers, and assistants",
+			"localizedMobileName": "Arts & Entertainment jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9255",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-arts-entertainment-jobs/v1c9255p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9242,
+			"localizedName": "Banking jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for banking jobs such as bank teller jobs, bank loan officer jobs, bank manager jobs, and more.",
+			"localizedMobileName": "Banking jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9242",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-banking-jobs/v1c9242p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9056,
+			"localizedName": "Childcare & Babysitting jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Find Childcare & Babysitting jobs in South Africa on Gumtree ZA",
+			"localizedMobileName": "Childcare & Babysitting jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9056",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-childcare-babysitting-jobs/v1c9056p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9254,
+			"localizedName": "Clerical & Administrative jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree, ZA for receptionist, office manager, administrative clerk, and other clerical and administrative jobs",
+			"localizedMobileName": "Clerical & Administrative jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9254",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-clerical-administrative-jobs/v1c9254p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9050,
+			"localizedName": "Computing & IT jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Browse Gumtree ZA for computing and IT jobs for web designers, network administrators, computer technicians and more",
+			"localizedMobileName": "Computing & IT jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9050",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-computing-it-jobs/v1c9050p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9052,
+			"localizedName": "Construction & Skilled trade jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for construction and skilled trade jobs such as electricians, plumbers, painters, foreman, and other trades that require special skills",
+			"localizedMobileName": "Construction & Skilled trade jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9052",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-construction-skilled-trade-jobs/v1c9052p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9236,
+			"localizedName": "Customer Service jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Gumtree | Find Customer Service, Engineering, & Accounting Jobs",
+			"localizedMobileName": "Customer Service jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9236",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-customer-service-jobs/v1c9236p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9256,
+			"localizedName": "Engineering & Architecture jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for a variety of engineering and architecture jobs including civil engineers, surveyors, assistants, planners, and architectural positions",
+			"localizedMobileName": "Engineering & Architecture jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9256",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-engineering-architecture-jobs/v1c9256p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9083,
+			"localizedName": "Farming & Veterinary jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for farming and veterinary jobs including veterinarian assistants, dog groomers, horse groomer, and other jobs working with animals",
+			"localizedMobileName": "Farming & Veterinary jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9083",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-farming-veterinary-jobs/v1c9083p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9084,
+			"localizedName": "Gardening & Landscaping jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for gardening and landscaping jobs, including nursery assistants, garden maintenance supervisors, and many others",
+			"localizedMobileName": "Gardening & Landscaping jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9084",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-gardening-landscaping-jobs/v1c9084p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9543,
+			"localizedName": "Health & Beauty jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Find health and beauty jobs on Gumtree ZA including roles as a hairdresser, beauty therapist, nail technician, spa therapist, caregiver, nurse and more",
+			"localizedMobileName": "Health & Beauty jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9543",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-health-beauty-jobs/v1c9543p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9054,
+			"localizedName": "Healthcare & Nursing jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for healthcare and nursing jobs such as dental assistant jobs, dietitian jobs and registered nursing jobs",
+			"localizedMobileName": "Healthcare & Nursing jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9054",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-healthcare-nursing-jobs/v1c9054p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9252,
+			"localizedName": "Hotel Jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Browse Gumtree ZA for matric and no matric hotel jobs in housekeeping, hotel reservations, management, and more",
+			"localizedMobileName": "Hotel Jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9252",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-hotel-jobs/v1c9252p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9085,
+			"localizedName": "Housekeeping & Cleaning jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA to find listings for no matric housekeeping and cleaning jobs, including live-in housekeeping jobs in South Africa",
+			"localizedMobileName": "Housekeeping & Cleaning jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9085",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-housekeeping-cleaning-jobs/v1c9085p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9258,
+			"localizedName": "Human Resources jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for human resource jobs such as benefits coordinator, benefits consultant, HR consultant, HR administrator, payroll consultant, and more",
+			"localizedMobileName": "Human Resources jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9258",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-human-resources-jobs/v1c9258p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9262,
+			"localizedName": "Internship jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for internship jobs in South Africa including paid internships, non-profit internships or summer internships",
+			"localizedMobileName": "Internship jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9262",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-internship-jobs/v1c9262p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9055,
+			"localizedName": "Legal jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for legal jobs in South Africa including legal secretary and assistant, legal clerk, paralegal, and other jobs in the field",
+			"localizedMobileName": "Legal jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9055",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-legal-jobs/v1c9055p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9546,
+			"localizedName": "Logistics & Transportation jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search GumTree ZA to find logistics and transportation jobs including logistics clerks, warehouse managers, cruise ship cabin crew, and, truck drivers",
+			"localizedMobileName": "Logistics & Transportation jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9546",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-logistics-transportation-jobs/v1c9546p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9237,
+			"localizedName": "Manual Labour jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for manual labour jobs in various areas such as auto mechanics, cabinet makers, machinists, tyre fitters, and more",
+			"localizedMobileName": "Manual Labour jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9237",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-manual-labour-jobs/v1c9237p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9263,
+			"localizedName": "Manufacturing Jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Find Manufacturing jobs on Gumtree ZA, including assemblers, machinists, welders, engineers, production managers, quality control specialists and many more",
+			"localizedMobileName": "Manufacturing Jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9263",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-manufacturing-jobs/v1c9263p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9264,
+			"localizedName": "Mining Industry jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Find Mining Industry Jobs on Gumtree ZA, including explorers, mining engineers, miners, health and safety inspector, mechanics, and many more",
+			"localizedMobileName": "Mining Industry jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9264",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-mining-industry-jobs/v1c9264p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9057,
+			"localizedName": "Office jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for a variety of open office jobs such as receptionists, bookkeepers, secretaries, office administrators, and more",
+			"localizedMobileName": "Office jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9057",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-office-jobs/v1c9057p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9058,
+			"localizedName": "Part-time & Weekend jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Gumtree | Find Part-Time, Weekend, Restaurant & Bar Jobs",
+			"localizedMobileName": "Part-time & Weekend jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9058",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-part+time-weekend-jobs/v1c9058p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9048,
+			"localizedName": "Restaurant & Bar jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Find Restaurant & Bar Jobs on Gumtree ZA including host, servers, bartenders, cooks, managers, bouncers, and many more",
+			"localizedMobileName": "Restaurant & Bar jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9048",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-restaurant-bar-jobs/v1c9048p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9059,
+			"localizedName": "Retail jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Browse Gumtree ZA for a variety of retail jobs including sales assistant, inventory control, account managers, and many other retail positions",
+			"localizedMobileName": "Retail jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9059",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-retail-jobs/v1c9059p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9060,
+			"localizedName": "Sales & Telemarketing jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Browse Gumtree ZA for sales and telemarketing jobs including insurance consultants, call center agents, corporate sales representatives and other sales jobs",
+			"localizedMobileName": "Sales & Telemarketing jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9060",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sales-telemarketing-jobs/v1c9060p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9234,
+			"localizedName": "Security jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for security jobs such as security officer jobs, loss prevention officer jobs, bouncer jobs, and more",
+			"localizedMobileName": "Security jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9234",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-security-jobs/v1c9234p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9087,
+			"localizedName": "Sports Club jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for sports club jobs in your area including personal trainers, fitness instructors, fitness trainers, receptionists, and general managers",
+			"localizedMobileName": "Sports Club jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9087",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sports-club-jobs/v1c9087p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9061,
+			"localizedName": "Teaching jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for teaching jobs in many areas of specialised teaching including elementary teacher, geography teacher, art teacher, and more",
+			"localizedMobileName": "Teaching jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9061",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-teaching-jobs/v1c9061p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9238,
+			"localizedName": "Travel & Tourism jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Choose Gumtree ZA to find travel and tourism jobs, including travel agency, hotel, airline, tour guide jobs, and more",
+			"localizedMobileName": "Travel & Tourism jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9238",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-travel-tourism-jobs/v1c9238p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9053,
+			"localizedName": "General jobs",
+			"parentId": 8,
+			"level": "L2",
+			"description": "Search Gumtree ZA for general jobs in South Africa such as security officers, maids, domestic help, drivers, and more",
+			"localizedMobileName": "General jobs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9053",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-general-jobs/v1c9053p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/8",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-jobs/v1c8p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9389,
+		"localizedName": "Job Seekers",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Seek out a new and wonderful opportunity in teaching, office, manufacturing jobs & more",
+		"localizedMobileName": "Job Seekers",
+		"children": [{
+			"id": 9390,
+			"localizedName": "Accounting & Finance CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Accounting & Finance CVs",
+			"localizedMobileName": "Accounting & Finance CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9390",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-accounting-finance-cvs/v1c9390p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9391,
+			"localizedName": "Advertising & Marketing CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Advertising & Marketing CVs",
+			"localizedMobileName": "Advertising & Marketing CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9391",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-advertising-marketing-cvs/v1c9391p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9392,
+			"localizedName": "Arts & Entertainment CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Arts & Entertainment CVs",
+			"localizedMobileName": "Arts & Entertainment CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9392",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-arts-entertainment-cvs/v1c9392p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9393,
+			"localizedName": "Banking Work CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Banking Work CVs",
+			"localizedMobileName": "Banking Work CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9393",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-banking-work-cvs/v1c9393p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9394,
+			"localizedName": "Childcare & Babysitting CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Childcare & Babysitting CVs",
+			"localizedMobileName": "Childcare & Babysitting CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9394",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-childcare-babysitting-cvs/v1c9394p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9395,
+			"localizedName": "Clerical & Administrative CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Clerical & Administrative CVs",
+			"localizedMobileName": "Clerical & Administrative CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9395",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-clerical-administrative-cvs/v1c9395p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9396,
+			"localizedName": "Computing & IT CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Computing & IT CVs",
+			"localizedMobileName": "Computing & IT CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9396",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-computing-it-cvs/v1c9396p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9397,
+			"localizedName": "Construction & Skilled trade CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Construction & Skilled trade CVs",
+			"localizedMobileName": "Construction & Skilled trade CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9397",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-construction-skilled-trade-cvs/v1c9397p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9398,
+			"localizedName": "Customer Service CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Customer Service CVs",
+			"localizedMobileName": "Customer Service CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9398",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-customer-service-cvs/v1c9398p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9399,
+			"localizedName": "Engineering & Architecture CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Engineering & Architecture CVs",
+			"localizedMobileName": "Engineering & Architecture CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9399",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-engineering-architecture-cvs/v1c9399p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9400,
+			"localizedName": "Farming & Veterinary CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Farming & Veterinary CVs",
+			"localizedMobileName": "Farming & Veterinary CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9400",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-farming-veterinary-cvs/v1c9400p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9401,
+			"localizedName": "Gardening & Landscaping CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Gardening & Landscaping CVs",
+			"localizedMobileName": "Gardening & Landscaping CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9401",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-gardening-landscaping-cvs/v1c9401p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9544,
+			"localizedName": "Health & Beauty CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Health & Beauty CVs",
+			"localizedMobileName": "Health & Beauty CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9544",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-health-beauty-cvs/v1c9544p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9402,
+			"localizedName": "Healthcare & Nursing CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Healthcare & Nursing CVs",
+			"localizedMobileName": "Healthcare & Nursing CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9402",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-healthcare-nursing-cvs/v1c9402p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9403,
+			"localizedName": "Hotel Work CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Hotel Work CVs",
+			"localizedMobileName": "Hotel Work CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9403",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-hotel-work-cvs/v1c9403p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9404,
+			"localizedName": "Housekeeping & Cleaning CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Housekeeping & Cleaning CVs",
+			"localizedMobileName": "Housekeeping & Cleaning CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9404",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-housekeeping-cleaning-cvs/v1c9404p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9405,
+			"localizedName": "Human Resources CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Human Resources CVs",
+			"localizedMobileName": "Human Resources CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9405",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-human-resources-cvs/v1c9405p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9406,
+			"localizedName": "Legal Work CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Legal Work CVs",
+			"localizedMobileName": "Legal Work CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9406",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-legal-work-cvs/v1c9406p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9407,
+			"localizedName": "Manual Labour CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Manual Labour CVs",
+			"localizedMobileName": "Manual Labour CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9407",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-manual-labour-cvs/v1c9407p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9408,
+			"localizedName": "Manufacturing CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Manufacturing CVs",
+			"localizedMobileName": "Manufacturing CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9408",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-manufacturing-cvs/v1c9408p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9409,
+			"localizedName": "Mining Industry CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Mining Industry CVs",
+			"localizedMobileName": "Mining Industry CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9409",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-mining-industry-cvs/v1c9409p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9410,
+			"localizedName": "Office Work CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Office Work CVs",
+			"localizedMobileName": "Office Work CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9410",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-office-work-cvs/v1c9410p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9411,
+			"localizedName": "Restaurant & Bar CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Restaurant & Bar CVs",
+			"localizedMobileName": "Restaurant & Bar CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9411",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-restaurant-bar-cvs/v1c9411p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9412,
+			"localizedName": "Retail CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Retail CVs",
+			"localizedMobileName": "Retail CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9412",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-retail-cvs/v1c9412p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9413,
+			"localizedName": "Sales & Telemarketing CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Sales & Telemarketing CVs",
+			"localizedMobileName": "Sales & Telemarketing CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9413",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sales-telemarketing-cvs/v1c9413p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9414,
+			"localizedName": "Security CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Security CVs",
+			"localizedMobileName": "Security CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9414",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-security-cvs/v1c9414p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9415,
+			"localizedName": "Sports Club Work CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Sports Club Work CVs",
+			"localizedMobileName": "Sports Club Work CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9415",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sports-club-work-cvs/v1c9415p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9547,
+			"localizedName": "Logistics & Transportation CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Logistics & Transportation CVs",
+			"localizedMobileName": "Logistics & Transportation CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9547",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-logistics-transportation-cvs/v1c9547p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9416,
+			"localizedName": "Teaching CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Teaching CVs",
+			"localizedMobileName": "Teaching CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9416",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-teaching-cvs/v1c9416p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9417,
+			"localizedName": "Travel & Tourism CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "Travel & Tourism CVs",
+			"localizedMobileName": "Travel & Tourism CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9417",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-travel-tourism-cvs/v1c9417p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9418,
+			"localizedName": "General Worker CVs",
+			"parentId": 9389,
+			"level": "L2",
+			"description": "General Worker CVs",
+			"localizedMobileName": "General Worker CVs",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9418",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-general-worker-cvs/v1c9418p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9389",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-job-seekers/v1c9389p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9,
+		"localizedName": "Services",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Hire for any services you might require, be it DJ, Computer, Event, or Landscaping Services",
+		"localizedMobileName": "Services",
+		"children": [{
+			"id": 9131,
+			"localizedName": "Automotive Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Automotive Services, Mechanics, & Body shops",
+			"localizedMobileName": "Automotive Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9131",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-automotive-services/v1c9131p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9063,
+			"localizedName": "Building & Trades",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Building & Trades Services, Construction, & Landscaping",
+			"localizedMobileName": "Building & Trades",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9063",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-building-trades/v1c9063p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9121,
+			"localizedName": "Chauffeur & Airport transfer",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Chauffer, Driver, & Airport Transfer Services",
+			"localizedMobileName": "Chauffeur & Airport transfer",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9121",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-chauffeur-airport-transfer/v1c9121p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9545,
+			"localizedName": "Child Care & Education Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Child Care, Education, & Training Services",
+			"localizedMobileName": "Child Care & Education Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9545",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-child-care-education-services/v1c9545p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9109,
+			"localizedName": "Cleaning Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Reliable Cleaning, Housekeeping, & Maintenance services",
+			"localizedMobileName": "Cleaning Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9109",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-cleaning-services/v1c9109p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9064,
+			"localizedName": "Computer & IT Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Computer, IT, & Tech repair services",
+			"localizedMobileName": "Computer & IT Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9064",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-computer-it-services/v1c9064p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9113,
+			"localizedName": "Courses & Training",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find language, Sports, finance Courses & Training",
+			"localizedMobileName": "Courses & Training",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9113",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-courses-training/v1c9113p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9269,
+			"localizedName": "DJ & Entertainment services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire DJ, Entertainment, & Musician services ",
+			"localizedMobileName": "DJ & Entertainment services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9269",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-dj-entertainment-services/v1c9269p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9265,
+			"localizedName": "Event Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Event Services, Catering, Entertainment, & more",
+			"localizedMobileName": "Event Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9265",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-event-services/v1c9265p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9065,
+			"localizedName": "Health & Beauty services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Health, Hair, Makeup, & Beauty Services ",
+			"localizedMobileName": "Health & Beauty services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9065",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-health-beauty-services/v1c9065p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9111,
+			"localizedName": "Fitness & Personal Training services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Fitness, Personal Training, & Sports Coach Services",
+			"localizedMobileName": "Fitness & Personal Training services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9111",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-fitness-personal-training-services/v1c9111p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9112,
+			"localizedName": "Landscaping & Gardening services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Landscaping, Gardening, & Outdoor Maintenance Services ",
+			"localizedMobileName": "Landscaping & Gardening services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9112",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-landscaping-gardening-services/v1c9112p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9388,
+			"localizedName": "Legal Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Get Legal Services, Lawyers, and Legal Assistance ",
+			"localizedMobileName": "Legal Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9388",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-legal-services/v1c9388p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9542,
+			"localizedName": "Manufacturing",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Manufacturing, Landscaping, & Gardening Services",
+			"localizedMobileName": "Manufacturing",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9542",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-manufacturing/v1c9542p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9114,
+			"localizedName": "Party & Catering",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Party planners, Catering, & Event services",
+			"localizedMobileName": "Party & Catering",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9114",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-party-catering/v1c9114p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9139,
+			"localizedName": "Pet Services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Dog Groomers, Pet Sitters, & Other Pet Services",
+			"localizedMobileName": "Pet Services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9139",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-pet-services/v1c9139p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9115,
+			"localizedName": "Photography & Video services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Photography & Video Services for weddings, parties, & more",
+			"localizedMobileName": "Photography & Video services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9115",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-photography-video-services/v1c9115p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9223,
+			"localizedName": "Real estate services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Real Estate Services for Renting, Buying, & Selling Property",
+			"localizedMobileName": "Real estate services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9223",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-real-estate-services/v1c9223p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9116,
+			"localizedName": "Recruitment services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Recruitment Services, Jobs, & Open Positions",
+			"localizedMobileName": "Recruitment services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9116",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-recruitment-services/v1c9116p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9117,
+			"localizedName": "Removals & Storage",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Removals, Storage, & Recycling Services",
+			"localizedMobileName": "Removals & Storage",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9117",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-removals-storage/v1c9117p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9118,
+			"localizedName": "Tax & Financial services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find Tax, Accounting, & other financial services",
+			"localizedMobileName": "Tax & Financial services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9118",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-tax-financial-services/v1c9118p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9119,
+			"localizedName": "Travel Agents & Tours",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire Travel Agents & find Tours, & Travel Companions",
+			"localizedMobileName": "Travel Agents & Tours",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9119",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-travel-agents-tours/v1c9119p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9120,
+			"localizedName": "Wedding Venues & services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Find the perfect Wedding Venue, Caterer, Event planner, & other wedding services",
+			"localizedMobileName": "Wedding Venues & services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9120",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-wedding-venues-services/v1c9120p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9066,
+			"localizedName": "Other services",
+			"parentId": 9,
+			"level": "L2",
+			"description": "Gumtree | Hire a service to fit your needs, from events, landscaping, Personal fitness, & more",
+			"localizedMobileName": "Other services",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9066",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-services/v1c9066p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-services/v1c9p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9175,
+		"localizedName": "Home & Garden",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find Second Hand Home & Garden Needs, Antiques, Furniture, & Collectables for sale",
+		"localizedMobileName": "Home & Garden",
+		"children": [{
+			"id": 9180,
+			"localizedName": "Antiques & Collectables",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Antiques, Collectables, & Furniture Sets for sale",
+			"localizedMobileName": "Antiques & Collectables",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9180",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-antiques-collectables/v1c9180p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9181,
+			"localizedName": "Furniture",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Furniture, Chairs, Cabinets, & Couches for sale",
+			"localizedMobileName": "Furniture",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9181",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-furniture/v1c9181p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9182,
+			"localizedName": "Garden & Braai",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Garden & Braai tools, equipment, & decorations for sale",
+			"localizedMobileName": "Garden & Braai",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9182",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-garden-braai/v1c9182p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9183,
+			"localizedName": "Home decor & interiors",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Home Décor, Interiors, & Carpets for sale",
+			"localizedMobileName": "Home decor & interiors",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9183",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-home-decor-interiors/v1c9183p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9184,
+			"localizedName": "Home appliances",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Home Appliances, Refrigerators, Dishwashers, & Microwaves for sale",
+			"localizedMobileName": "Home appliances",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9184",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-home-appliances/v1c9184p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9185,
+			"localizedName": "DIY & Tools",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Tools for sale, Construction, & DIY Opportunities",
+			"localizedMobileName": "DIY & Tools",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9185",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-diy-tools/v1c9185p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9228,
+			"localizedName": "Other",
+			"parentId": 9175,
+			"level": "L2",
+			"description": "Gumtree | Find Used Home & Garden Tools, Décor, & Furniture for sale",
+			"localizedMobileName": "Other Home & Garden Items",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9228",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-home-garden-items/v1c9228p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9175",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-home-garden/v1c9175p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9178,
+		"localizedName": "Electronics",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Buy Second Hand Electronics Equipment, mobile phones, & cameras",
+		"localizedMobileName": "Electronics",
+		"children": [{
+			"id": 9198,
+			"localizedName": "Mobile Phones & Telephones",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Used Cell Phones, Blackberry, Samsung Mobile Phones, & Telephones for sale",
+			"localizedMobileName": "Mobile Phones & Telephones",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9198",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-mobile-phones-telephones/v1c9198p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9199,
+			"localizedName": "Computers",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | New and used Computers , laptops, & Desktops for sale",
+			"localizedMobileName": "Computers",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9199",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-computers/v1c9199p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9200,
+			"localizedName": "Cameras & Video Cameras",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Second Hand Cameras, accessories, & Video Cameras for sale",
+			"localizedMobileName": "Cameras & Video Cameras",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9200",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-cameras-video-cameras/v1c9200p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9201,
+			"localizedName": "Video Games & Consoles",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Find New and used Video Games & Consoles, like Xbox, Playstation, & Nintendo for sale",
+			"localizedMobileName": "Video Games & Consoles",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9201",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-video-games-consoles/v1c9201p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9202,
+			"localizedName": "TV & DVD Equipment",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Used TV & DVD Equipment, projectors, & players for sale ",
+			"localizedMobileName": "TV & DVD Equipment",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9202",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-tv-dvd-equipment/v1c9202p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9203,
+			"localizedName": "Audio & Music Equipment",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Second Hand Audio, Music, and DJ Equipment for sale",
+			"localizedMobileName": "Audio & Music Equipment",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9203",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-audio-music-equipment/v1c9203p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9227,
+			"localizedName": "Other Electronics",
+			"parentId": 9178,
+			"level": "L2",
+			"description": "Gumtree | Find new and second hand electronics equipment for sale",
+			"localizedMobileName": "Other Electronics",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9227",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-electronics/v1c9227p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9178",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-electronics/v1c9178p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9176,
+		"localizedName": "Baby & Kids",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find Second Hand Baby & Kids' Clothes, Furniture, Car seats & Strollers for sale",
+		"localizedMobileName": "Baby & Kids",
+		"children": [{
+			"id": 9186,
+			"localizedName": "Children's Clothing",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Children's clothing , baby clothing, & toys for sale",
+			"localizedMobileName": "Children's Clothing",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9186",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-children-s-clothing/v1c9186p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9187,
+			"localizedName": "Children's Furniture",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Get Used Children's Furniture , Car Seats, & Strollers for sale",
+			"localizedMobileName": "Children's Furniture",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9187",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-children-s-furniture/v1c9187p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9188,
+			"localizedName": "Car Seats & Travel",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Find Used Car Seats, Children's Travel Strollers, & Baby Clothing for sale",
+			"localizedMobileName": "Car Seats & Travel",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9188",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-car-seats-travel/v1c9188p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9189,
+			"localizedName": "Prams & Strollers",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Get Second Hand Prams, Strollers, & Car Seats for sale",
+			"localizedMobileName": "Prams & Strollers",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9189",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-prams-strollers/v1c9189p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9190,
+			"localizedName": "Children's Gear & Safety",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Get used children's gear, Safety items, strollers, & Car Seats for sale",
+			"localizedMobileName": "Children's Gear & Safety",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9190",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-children-s-gear-safety/v1c9190p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9191,
+			"localizedName": "Maternity & Pregnancy",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Maternity & Pregnancy clothes, gear, & furniture for sale",
+			"localizedMobileName": "Maternity & Pregnancy",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9191",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-maternity-pregnancy/v1c9191p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9380,
+			"localizedName": "Nursery",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Get Used Nursery Furniture, Toys, & baby clothing for sale",
+			"localizedMobileName": "Nursery",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9380",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-nursery/v1c9380p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9192,
+			"localizedName": "Toys",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Find Used Children's Toys, baby toys, & Nursery Furniture for sale",
+			"localizedMobileName": "Toys",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9192",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-toys/v1c9192p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9230,
+			"localizedName": "Other",
+			"parentId": 9176,
+			"level": "L2",
+			"description": "Gumtree | Find Used Baby & Kids Furniture, Clothing, & Toys for sale",
+			"localizedMobileName": "Other Items for Babies & Kids",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9230",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-items-for-babies-kids/v1c9230p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9176",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-baby-kids/v1c9176p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9101,
+		"localizedName": "Boats & Watercraft",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find second hand Boats, Yachts, & Watercraft for sale ",
+		"localizedMobileName": "Boats & Watercraft",
+		"children": [{
+			"id": 9102,
+			"localizedName": "Boats & Jet Skis",
+			"parentId": 9101,
+			"level": "L2",
+			"description": "Gumtree | Get used Boats, Jet Skis, & Paddle Boats for sale ",
+			"localizedMobileName": "Boats & Jet Skis",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9102",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-boats-jet-skis/v1c9102p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9103,
+			"localizedName": "Yachts & Sailboats",
+			"parentId": 9101,
+			"level": "L2",
+			"description": "Gumtree | Find luxury used yachts, Sailboats, & Jet skis for sale",
+			"localizedMobileName": "Yachts & Sailboats",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9103",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-yachts-sailboats/v1c9103p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9220,
+			"localizedName": "Kayaks & Paddle Boats",
+			"parentId": 9101,
+			"level": "L2",
+			"description": "Gumtree | Find Used Kayaks, Sailboats & Paddle Boats for sale ",
+			"localizedMobileName": "Kayaks & Paddle Boats",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9220",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-kayaks-paddle-boats/v1c9220p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9104,
+			"localizedName": "Boat Parts & Accessories",
+			"parentId": 9101,
+			"level": "L2",
+			"description": "Gumtree | Find second hand Boat Parts, accessories , & watercraft for sale",
+			"localizedMobileName": "Boat Parts & Accessories",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9104",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-boat-parts-accessories/v1c9104p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9105,
+			"localizedName": "Other Watercraft",
+			"parentId": 9101,
+			"level": "L2",
+			"description": "Gumtree | Find second hand Boats, Yachts, & Watercraft for sale ",
+			"localizedMobileName": "Other Watercraft",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9105",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-watercraft/v1c9105p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9101",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-boats-watercraft/v1c9101p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9171,
+		"localizedName": "Business-to-Business",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Get your Business to Business needs ",
+		"localizedMobileName": "Business-to-Business",
+		"children": [{
+			"id": 9172,
+			"localizedName": "Businesses For Sale",
+			"parentId": 9171,
+			"level": "L2",
+			"description": "Gumtree | Find Businesses, Office Equipment, & Furniture for sale ",
+			"localizedMobileName": "Businesses For Sale",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9172",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-businesses-for-sale/v1c9172p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9173,
+			"localizedName": "Office Equipment & Furniture",
+			"parentId": 9171,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Office Equipment , Furniture, & Store Equipment for sale",
+			"localizedMobileName": "Office Equipment & Furniture",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9173",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-office-equipment-furniture/v1c9173p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9174,
+			"localizedName": "Store & Catering Equipment",
+			"parentId": 9171,
+			"level": "L2",
+			"description": "Gumtree | Find Used Store, Office, & Catering Equipment for Sale",
+			"localizedMobileName": "Store & Catering Equipment",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9174",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-store-catering-equipment/v1c9174p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9221,
+			"localizedName": "Industrial Machinery",
+			"parentId": 9171,
+			"level": "L2",
+			"description": "Gumtree | Get Second Hand Industrial Machinery , Office, & Catering Equipment for sale",
+			"localizedMobileName": "Industrial Machinery",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9221",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-industrial-machinery/v1c9221p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9231,
+			"localizedName": "Other",
+			"parentId": 9171,
+			"level": "L2",
+			"description": "Gumtree | Find your Business to business equipment & office needs",
+			"localizedMobileName": "Other Business-to-Business Items for Sale",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9231",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-business+to+business-items-for-sale/v1c9231p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9171",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-business+to+business/v1c9171p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9177,
+		"localizedName": "Fashion",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find the latest second hand men's and women's fashion for sale",
+		"localizedMobileName": "Fashion",
+		"children": [{
+			"id": 9193,
+			"localizedName": "Clothing",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree | Find the latest second hand clothes, dresses, & accessories for sale",
+			"localizedMobileName": "Clothing",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9193",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-clothing/v1c9193p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9194,
+			"localizedName": "Shoes",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree | Get new and used Dress shoes, Wedding shoes, stilettos, & athletic shoes, for men & women for sale",
+			"localizedMobileName": "Shoes",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9194",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-shoes/v1c9194p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9195,
+			"localizedName": "Accessories",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree | Find Used Scarves, Belts, Glasses & other accessories for sale",
+			"localizedMobileName": "Accessories",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9195",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-accessories/v1c9195p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9196,
+			"localizedName": "Wedding Wear",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree | Find New & second hand wedding wear, cheap wedding dresses for sale, shoes, & bags for sale",
+			"localizedMobileName": "Wedding Wear",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9196",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-wedding-wear/v1c9196p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9197,
+			"localizedName": "Jewellery & Watches",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree |Find New & Used Jewellery, Watches, & other accessories for sale",
+			"localizedMobileName": "Jewellery & Watches",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9197",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-jewellery-watches/v1c9197p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9229,
+			"localizedName": "Other",
+			"parentId": 9177,
+			"level": "L2",
+			"description": "Gumtree | Find The latest used fashion, clothing, jewellery, & Accessories for sale",
+			"localizedMobileName": "Other Fashion Items",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9229",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-fashion-items/v1c9229p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9177",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-fashion/v1c9177p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9122,
+		"localizedName": "Pets",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Adopt a new pet, choose from dogs, cats, birds, & more",
+		"localizedMobileName": "Pets",
+		"children": [{
+			"id": 9222,
+			"localizedName": "Birds",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Adopt a bird today, or a fish or a kitten",
+			"localizedMobileName": "Birds",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9222",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-birds/v1c9222p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9123,
+			"localizedName": "Dogs & Puppies",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Find a new Dog or puppy to adopt, or look for a bird",
+			"localizedMobileName": "Dogs & Puppies",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9123",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-dogs-puppies/v1c9123p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9124,
+			"localizedName": "Cats & Kittens",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Find a new Cat, kitten, or puppy to adopt",
+			"localizedMobileName": "Cats & Kittens",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9124",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-cats-kittens/v1c9124p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9224,
+			"localizedName": "Fish",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Adopt a fish into your home, or perhaps a reptile & bird",
+			"localizedMobileName": "Fish",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9224",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-fish/v1c9224p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9141,
+			"localizedName": "Horses & Ponies",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Find a new Cat, Horse, or Pony to adopt",
+			"localizedMobileName": "Horses & Ponies",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9141",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-horses-ponies/v1c9141p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9140,
+			"localizedName": "Livestock & Poultry",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Find Livestock, Poultry, & other pets to adopt",
+			"localizedMobileName": "Livestock & Poultry",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9140",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-livestock-poultry/v1c9140p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9225,
+			"localizedName": "Reptiles",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Looking for a pet? Adopt a reptile, Cat, or dog today",
+			"localizedMobileName": "Reptiles",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9225",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-reptiles/v1c9225p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9125,
+			"localizedName": "Other Pets",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Adopt cats, dogs, reptiles, & more into your home",
+			"localizedMobileName": "Other Pets",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9125",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-pets/v1c9125p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9226,
+			"localizedName": "Pet Accessories",
+			"parentId": 9122,
+			"level": "L2",
+			"description": "Gumtree | Find Used and New Pet accessories, Collars, Leashes, Crates & more for sale",
+			"localizedMobileName": "Pet Accessories",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9226",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-pet-accessories/v1c9226p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9122",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-pets/v1c9122p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9179,
+		"localizedName": "Sports & Leisure",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Find Used Sports & Leisure gear for camping, sports, fitness, & entertainment for sale",
+		"localizedMobileName": "Sports & Leisure",
+		"children": [{
+			"id": 9235,
+			"localizedName": "Camping Gear",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find Used Camping gear, tents, stoves, & outdoors equipment for sale",
+			"localizedMobileName": "Camping Gear",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9235",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-camping-gear/v1c9235p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9204,
+			"localizedName": "Sports, Bicycles & Fitness",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find Used Sports Equipment, Mountain Bikes for sale, & Fitness Gear ",
+			"localizedMobileName": "Sports, Bicycles & Fitness",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9204",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sports-bicycles-fitness/v1c9204p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9205,
+			"localizedName": "Books & Games",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Books, Games, & Entertainment for sale",
+			"localizedMobileName": "Books & Games",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9205",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-books-games/v1c9205p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9206,
+			"localizedName": "Musical Instruments",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find used musical instruments, Pianos, Guitars, & Tickets for sale ",
+			"localizedMobileName": "Musical Instruments",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9206",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-musical-instruments/v1c9206p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9207,
+			"localizedName": "CD & DVD",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find Used CDs, DVDs, Books, & Games for sale",
+			"localizedMobileName": "CD & DVD",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9207",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-cd-dvd/v1c9207p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9208,
+			"localizedName": "Tickets",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Get Tickets for sporting events, concerts, & other entertainment for sale",
+			"localizedMobileName": "Tickets",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9208",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-tickets/v1c9208p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9232,
+			"localizedName": "Other",
+			"parentId": 9179,
+			"level": "L2",
+			"description": "Gumtree | Find Second Hand Sports, Camping, & fitness Gear, and other leisure items for sale",
+			"localizedMobileName": "Other Sports & Leisure Items",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9232",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-sports-leisure-items/v1c9232p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9179",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-sports-leisure/v1c9179p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 4,
+		"localizedName": "Charity Donations",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Share your unwanted goods and services through Gumtree Charity Donations, and let over 1,000 charities from ForGood distribute them to South Africans in need",
+		"localizedMobileName": "Charity Donations",
+		"children": [],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/4",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-charity-donations/v1c4p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 6,
+		"localizedName": "Community",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Get all your community needs taken care of ",
+		"localizedMobileName": "Community",
+		"children": [{
+			"id": 9030,
+			"localizedName": "Activities & Hobbies",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find new activities & hobbies # 1 classifieds site",
+			"localizedMobileName": "Activities & Hobbies",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9030",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-activities-hobbies/v1c9030p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9031,
+			"localizedName": "Classes & Adult Education",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find classes & adult education opportunities on Gumtree",
+			"localizedMobileName": "Classes & Adult Education",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9031",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-classes-adult-education/v1c9031p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9032,
+			"localizedName": "Lost & Found",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Post Lost & Found ads to find the things you need today ",
+			"localizedMobileName": "Lost & Found",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9032",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-lost-found/v1c9032p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9033,
+			"localizedName": "Musicians & Artists",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find Musicians & Artists for your creative needs",
+			"localizedMobileName": "Musicians & Artists",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9033",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-musicians-artists/v1c9033p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9035,
+			"localizedName": "Carpool & Rideshare",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find a Carpool or Rideshare opportunity ",
+			"localizedMobileName": "Carpool & Rideshare",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9035",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-carpool-rideshare/v1c9035p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9036,
+			"localizedName": "Language Courses & Training",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find Language Courses, Training, & Adult Education Classes",
+			"localizedMobileName": "Language Courses & Training",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9036",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-language-courses-training/v1c9036p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9037,
+			"localizedName": "Sports & Sports Partners",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find Sports teams, Intramural, Hobbies, & Sports Partners",
+			"localizedMobileName": "Sports & Sports Partners",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9037",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-sports-sports-partners/v1c9037p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9038,
+			"localizedName": "Travel Partners & Companions",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree | Find Travel buddies, Companions, partners, & Activities",
+			"localizedMobileName": "Travel Partners & Companions",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9038",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-travel-partners-companions/v1c9038p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9130,
+			"localizedName": "Missed Connections",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree |Find Missed Connections, Travel Companions, & Sports Partners",
+			"localizedMobileName": "Missed Connections with People",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9130",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-missed-connections-with-people/v1c9130p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9039,
+			"localizedName": "Other",
+			"parentId": 6,
+			"level": "L2",
+			"description": "Gumtree |Get your Community needs, Rideshares, Travel Companions, and more handled",
+			"localizedMobileName": "Other Community Posts",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9039",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-community-posts/v1c9039p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/6",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-community/v1c6p1",
+			"method": "GET"
+		}]
+	}, {
+		"id": 9067,
+		"localizedName": "Events",
+		"parentId": 0,
+		"level": "L1",
+		"description": "Gumtree | Look for Events, Nightlife, Shopping, & sales ",
+		"localizedMobileName": "Events",
+		"children": [{
+			"id": 9068,
+			"localizedName": "Events, Gigs & Nightlife",
+			"parentId": 9067,
+			"level": "L2",
+			"description": "Gumtree | Find Events, Gigs, & Nightlife for entertainment",
+			"localizedMobileName": "Events, Gigs & Nightlife",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9068",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-events-gigs-nightlife/v1c9068p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9170,
+			"localizedName": "Flea Market & Jumble Sale",
+			"parentId": 9067,
+			"level": "L2",
+			"description": "Gumtree | Find Flea Markets, Jumble Sales, & Nightlife Happenings",
+			"localizedMobileName": "Flea Market & Jumble Sale",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9170",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-flea-market-jumble-sale/v1c9170p1",
+				"method": "GET"
+			}]
+		}, {
+			"id": 9233,
+			"localizedName": "Other",
+			"parentId": 9067,
+			"level": "L2",
+			"description": "Gumtree | Look for Events, Nightlife, Shopping, & sales",
+			"localizedMobileName": "Other Events",
+			"children": [],
+			"_links": [{
+				"rel": "self",
+				"href": "/categories/9233",
+				"method": "GET"
+			}, {
+				"rel": "search",
+				"href": "/s-other-events/v1c9233p1",
+				"method": "GET"
+			}]
+		}],
+		"_links": [{
+			"rel": "self",
+			"href": "/categories/9067",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-events/v1c9067p1",
+			"method": "GET"
+		}]
+	}],
+	"_links": [{
+		"rel": "self",
+		"href": "/categories/0",
+		"method": "GET"
+	}, {
+		"rel": "search",
+		"href": "/s-all-the-ads/v1b0p1",
+		"method": "GET"
+	}]
+}

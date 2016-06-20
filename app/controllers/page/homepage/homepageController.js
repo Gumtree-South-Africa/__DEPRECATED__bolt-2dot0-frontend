@@ -1,32 +1,21 @@
-//jshint ignore: start
 'use strict';
 
-var express = require('express'),
-    _ = require('underscore'),
-    router = express.Router(),
-	Q = require('q'),
-    cuid = require('cuid');
+var express = require('express'), _ = require('underscore'), router = express.Router(), Q = require('q'), cuid = require('cuid');
 
 var cwd = process.cwd();
-var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
-	HomepageModel = require(cwd + '/app/builders/page/HomePageModel'),
-	HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2'),
-	marketoService = require(cwd + '/server/utils/marketo'),
-	Base64 = require(process.cwd() + '/app/utils/Base64'),
-	deviceDetection = require(cwd + '/modules/device-detection'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json'),
-	userService = require(process.cwd() + '/server/services/user');
+var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModel = require(cwd + '/app/builders/page/HomePageModel'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), userService = require(process.cwd() + '/server/services/user');
 
 
-module.exports = function (app) {
-  app.use('/', router);
+
+module.exports = function(app) {
+	app.use('/', router);
 };
 
 
 /**
  * Build HomePage Model Data and Render
  */
-router.get('/', function (req, res, next) {
+router.get('/', function(req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 
 	// Set pagetype in request
@@ -41,15 +30,14 @@ router.get('/', function (req, res, next) {
 	var modelData = pageControllerUtil.preController(req, res);	// todo: rename this "initModel", which is what it does, "preController" sounds like an event?
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
-  // Cookies drop for Version of template
-  function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, modelData){
-    if((typeof pageVersionCookie !== 'undefined') && pageVersionCookie == '2.0'){
-      pageControllerUtil.postController(req, res, next, newPath, modelData);
-    }
-    else{
-      pageControllerUtil.postController(req, res, next, defaultPath, modelData);
-    }
-  }
+	// Cookies drop for Version of template
+	function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, modelData) {
+		if ((typeof pageVersionCookie !== 'undefined') && pageVersionCookie == '2.0') {
+			pageControllerUtil.postController(req, res, next, newPath, modelData);
+		} else {
+			pageControllerUtil.postController(req, res, next, defaultPath, modelData);
+		}
+	}
 
 	// Retrieve Data from Model Builders
 	var model = HomepageModelV2(req, res, modelData);
@@ -58,89 +46,87 @@ router.get('/', function (req, res, next) {
 	let promises = [model];
 	if (authCookie && !userCookieData) {
 		let bapiHeaders = {
-			'requestId'         :   req.app.locals.requestId,
-			'ip'                :   req.app.locals.ip,
-			'machineid'         :   req.app.locals.machineid,
-			'useragent'         :   req.app.locals.useragent,
-			'locale'            :   res.locals.config.locale,
-			'authTokenValue'    :   authCookie
+			'requestId': req.app.locals.requestId,
+			'ip': req.app.locals.ip,
+			'machineid': req.app.locals.machineid,
+			'useragent': req.app.locals.useragent,
+			'locale': res.locals.config.locale,
+			'authTokenValue': authCookie
 		};
 		promises.push(userService.getUserFromCookie(bapiHeaders));
 	}
 	Q.allSettled(promises)
-	    .then(function (result) {
+		.then(function(result) {
 
-		let cookiePageVersion = req.cookies.b2dot0Version,
-			defaultPath = 'homepage/views/hbs/homepage_',
-			newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
+			let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
-		let user;
-		if (result[1] !== undefined) {
-			//Cookie was set
-			user = result[1].state === "fulfilled" ? result[1].value : null;
-		}
-		// Dynamic Data from BAPI
-		// Result[0] is all the model data for the page without user data
-		result = result[0].state === "fulfilled" ? result[0].value: null;
-		modelData.header = result['common'].header || {};
-		modelData.footer = result['common'].footer || {};
-		modelData.dataLayer = result['common'].dataLayer || {};
-		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-		modelData.level2Location = result['level2Loc'] || {};
-		modelData.initialGalleryInfo = result['gallery'] || {};
-		modelData.seo = result['seo'] || {};
+			let user;
+			if (result[1] !== undefined) {
+				//Cookie was set
+				user = result[1].state === "fulfilled" ? result[1].value : null;
+			}
+			// Dynamic Data from BAPI
+			// Result[0] is all the model data for the page without user data
+			result = result[0].state === "fulfilled" ? result[0].value : null;
+			modelData.header = result['common'].header || {};
+			modelData.footer = result['common'].footer || {};
+			modelData.dataLayer = result['common'].dataLayer || {};
+			modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+			modelData.level2Location = result['level2Loc'] || {};
+			modelData.initialGalleryInfo = result['gallery'] || {};
+			modelData.seo = result['seo'] || {};
 
-		if (user) {
-			let userData = userService.buildProfile(user);
-			_.extend(modelData.header, userData);
-		} else {
-			console.error(`Invalid user cookie: ${authCookie}`)
-		}
+			if (user) {
+				let userData = userService.buildProfile(user);
+				_.extend(modelData.header, userData);
+			} else {
+				console.error(`Invalid user cookie: ${authCookie}`)
+			}
 
-		if (result['adstatistics']) {
-			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
-		}
+			if (result['adstatistics']) {
+				modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
+			}
 
-		if (result['keyword']) {
-			modelData.trendingKeywords = result['keyword'][1].keywords || null;
-			modelData.topKeywords = result['keyword'][0].keywords || null;
-		}
+			if (result['keyword']) {
+				modelData.trendingKeywords = result['keyword'][1].keywords || null;
+				modelData.topKeywords = result['keyword'][0].keywords || null;
+			}
 
-		// Make the loc level 2 (Popular locations) data null if it comes as an empty
-		if (_.isEmpty(modelData.level2Location)) {
-			modelData.level2Location = null;
-		}
+			// Make the loc level 2 (Popular locations) data null if it comes as an empty
+			if (_.isEmpty(modelData.level2Location)) {
+				modelData.level2Location = null;
+			}
 
-		// Check for top or trending keywords existence
-		modelData.topOrTrendingKeywords = false;
-		if (modelData.trendingKeywords || modelData.topKeywords) {
-			modelData.topOrTrendingKeywords = true;
-		}
+			// Check for top or trending keywords existence
+			modelData.topOrTrendingKeywords = false;
+			if (modelData.trendingKeywords || modelData.topKeywords) {
+				modelData.topOrTrendingKeywords = true;
+			}
 
-		// Special Data needed for HomePage in header, footer, content
-		HP.extendHeaderData(req, modelData);
-		HP.extendFooterData(modelData);
-		HP.buildContentData(modelData, bapiConfigData);
-		HP.deleteMarketoCookie(res, modelData);
+			// Special Data needed for HomePage in header, footer, content
+			HP.extendHeaderData(req, modelData);
+			HP.extendFooterData(modelData);
+			HP.buildContentData(modelData, bapiConfigData);
+			HP.deleteMarketoCookie(res, modelData);
 
-		// Make the location data null if it comes as an empty object from bapi
-		if (_.isEmpty(modelData.location)) {
-			modelData.location = null;
-		}
+			// Make the location data null if it comes as an empty object from bapi
+			if (_.isEmpty(modelData.location)) {
+				modelData.location = null;
+			}
 
-		// Determine if we show the Popular locations container
-		modelData.showPopularLocations = true;
-		if (!modelData.level2Location && !modelData.location) {
-			modelData.showPopularLocations = false;
-		}
+			// Determine if we show the Popular locations container
+			modelData.showPopularLocations = true;
+			if (!modelData.level2Location && !modelData.location) {
+				modelData.showPopularLocations = false;
+			}
 
-		// Changing Version of template depending of the cookie
-		cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
+			// Changing Version of template depending of the cookie
+			cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
 
-		console.timeEnd('Instrument-Homepage-Controller');
-	}, (err) => {
-		console.error(err);
-	}).fail((err) => {
+			console.timeEnd('Instrument-Homepage-Controller');
+		}, (err) => {
+			console.error(err);
+		}).fail((err) => {
 		console.error(err);
 	});
 });
@@ -150,7 +136,7 @@ var HP = {
 	/**
 	 * Special header data for HomePage
 	 */
-	extendHeaderData: function (req, modelData) {
+	extendHeaderData: function(req, modelData) {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
 		modelData.header.pageTitle = modelData.seo.pageTitle;
@@ -185,7 +171,7 @@ var HP = {
 	/**
 	 * Build Page-Messages data for HomePage
 	 */
-	buildHeaderPageMessages: function (req, modelData) {
+	buildHeaderPageMessages: function(req, modelData) {
 		modelData.header.pageMessages = {};
 		switch (req.query.status) {
 			case 'userregistered' :
@@ -229,7 +215,7 @@ var HP = {
 	/**
 	 * Special footer data for HomePage
 	 */
-	extendFooterData: function (modelData) {
+	extendFooterData: function(modelData) {
 		if (!modelData.footer.min) {
 			var baseJSComponentDir = "/views/components/";
 
@@ -267,7 +253,7 @@ var HP = {
 	/**
 	 * Build content data for HomePage
 	 */
-	buildContentData: function (modelData, bapiConfigData) {
+	buildContentData: function(modelData, bapiConfigData) {
 		modelData.content = {};
 
 		var contentConfigData, homepageConfigData;
@@ -314,7 +300,7 @@ var HP = {
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl ='/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
@@ -326,7 +312,7 @@ var HP = {
 	/**
 	 * Invoke marketo function
 	 */
-	deleteMarketoCookie: function (res, modelData) {
+	deleteMarketoCookie: function(res, modelData) {
 		marketoService.deleteMarketoCookie(res, modelData.header);
 	}
 };

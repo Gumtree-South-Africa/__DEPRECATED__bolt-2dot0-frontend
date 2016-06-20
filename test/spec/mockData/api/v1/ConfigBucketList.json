@@ -1,0 +1,7 @@
+{
+   "configSpace": "bolt",
+   "configBuckets":    [
+      "site",
+      "message-center"
+   ]
+}

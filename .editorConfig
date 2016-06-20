@@ -24,6 +24,6 @@ indent_style = space
 [*.{json,xml,js}]
 indent_style = tab
 
-[.jscsrc]
+[.eslintrc]
 indent_style = tab
 

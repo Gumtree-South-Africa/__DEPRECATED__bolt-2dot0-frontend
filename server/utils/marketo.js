@@ -4,7 +4,8 @@
  * @description A Marketo related utils class
  * @constructor
  */
-var MarketoService = function() {};
+var MarketoService = function() {
+};
 
 /**
  * To get the marketo data for Home page.
@@ -41,12 +42,12 @@ MarketoService.prototype.buildMarketoDataForHP = function(modelData) {
 
 MarketoService.prototype.deleteMarketoCookie = function(res, header) {
 	var domainName;
-	if (typeof header.marketo.domainName !== undefined){
+	if (typeof header.marketo.domainName !== undefined) {
 		domainName = header.marketo.domainName;
-	}else {
-		domainName = '.'+ header.marketo.domainName;
+	} else {
+		domainName = '.' + header.marketo.domainName;
 	}
-	
+
 	var isDelete = header.marketo.deletecookie;
 	if (isDelete == false) {
 		res.cookie('_mkto_trk', '_mkto_trk', {domain: domainName, path: '/', maxAge: 0});

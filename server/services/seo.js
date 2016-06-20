@@ -9,7 +9,7 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var SeoService = function() {
-	this.bapiOptions =	bapiOptions;
+	this.bapiOptions = bapiOptions;
 };
 
 /**
@@ -17,13 +17,13 @@ var SeoService = function() {
  */
 SeoService.prototype.getHPSeoData = function(bapiHeaders) {
 	// console.info('Inside HP SeoService');
-	
+
 	var seoData = {};
-	
+
 	seoData.pageTitle = 'default.home.page.title.text';
 	seoData.description = 'home.page.desc.tag';
 	seoData.robots = 'index,follow';
-	
+
 	return seoData;
 }
 
@@ -52,7 +52,7 @@ SeoService.prototype.getSRPSeoData = function(bapiHeaders) {
 	// Prepare BAPI call
 	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.srpSeo');
-	
+
 	// Invoke BAPI
 	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'srpSeo');
 }

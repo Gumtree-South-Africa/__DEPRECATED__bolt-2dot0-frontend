@@ -1,0 +1,660 @@
+{
+  "id": 146,
+  "localizedName": "México",
+  "level": "L0",
+  "isLeaf": false,
+  "children": [
+    {
+      "id": 1000,
+      "parentId": 146,
+      "localizedName": "Aguascalientes",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1000",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-aguascalientes/v1l1000p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1001,
+      "parentId": 146,
+      "localizedName": "Baja California",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1001",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-baja-california/v1l1001p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1002,
+      "parentId": 146,
+      "localizedName": "Baja California Sur",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1002",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-baja-california-sur/v1l1002p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1003,
+      "parentId": 146,
+      "localizedName": "Campeche",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1003",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-campeche/v1l1003p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1004,
+      "parentId": 146,
+      "localizedName": "Chiapas",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1004",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-chiapas/v1l1004p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1005,
+      "parentId": 146,
+      "localizedName": "Chihuahua",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1005",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-chihuahua/v1l1005p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1006,
+      "parentId": 146,
+      "localizedName": "Coahuila",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1006",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-coahuila/v1l1006p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1007,
+      "parentId": 146,
+      "localizedName": "Colima",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1007",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-colima/v1l1007p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1008,
+      "parentId": 146,
+      "localizedName": "Distrito Federal",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1008",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-distrito-federal/v1l1008p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1009,
+      "parentId": 146,
+      "localizedName": "Durango",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1009",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-durango/v1l1009p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1014,
+      "parentId": 146,
+      "localizedName": "Estado de México",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1014",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-estado-de-mexico/v1l1014p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1010,
+      "parentId": 146,
+      "localizedName": "Guanajuato",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1010",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-guanajuato/v1l1010p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1011,
+      "parentId": 146,
+      "localizedName": "Guerrero",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1011",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-guerrero/v1l1011p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1012,
+      "parentId": 146,
+      "localizedName": "Hidalgo",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1012",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-hidalgo/v1l1012p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1013,
+      "parentId": 146,
+      "localizedName": "Jalisco",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1013",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-jalisco/v1l1013p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1015,
+      "parentId": 146,
+      "localizedName": "Michoacán",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1015",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-michoacan/v1l1015p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1016,
+      "parentId": 146,
+      "localizedName": "Morelos",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1016",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-morelos/v1l1016p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1017,
+      "parentId": 146,
+      "localizedName": "Nayarit",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1017",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-nayarit/v1l1017p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1018,
+      "parentId": 146,
+      "localizedName": "Nuevo León",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1018",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-nuevo-leon/v1l1018p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1019,
+      "parentId": 146,
+      "localizedName": "Oaxaca",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1019",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-oaxaca/v1l1019p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1020,
+      "parentId": 146,
+      "localizedName": "Puebla",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1020",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-puebla/v1l1020p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1021,
+      "parentId": 146,
+      "localizedName": "Querétaro",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1021",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-queretaro/v1l1021p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1022,
+      "parentId": 146,
+      "localizedName": "Quintana Roo",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1022",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-quintana-roo/v1l1022p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1023,
+      "parentId": 146,
+      "localizedName": "San Luis Potosí",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1023",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-san-luis-potosi/v1l1023p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1024,
+      "parentId": 146,
+      "localizedName": "Sinaloa",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1024",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-sinaloa/v1l1024p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1025,
+      "parentId": 146,
+      "localizedName": "Sonora",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1025",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-sonora/v1l1025p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1026,
+      "parentId": 146,
+      "localizedName": "Tabasco",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1026",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tabasco/v1l1026p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1027,
+      "parentId": 146,
+      "localizedName": "Tamaulipas",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1027",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tamaulipas/v1l1027p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1028,
+      "parentId": 146,
+      "localizedName": "Tlaxcala",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1028",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tlaxcala/v1l1028p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1029,
+      "parentId": 146,
+      "localizedName": "Veracruz",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1029",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-veracruz/v1l1029p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1030,
+      "parentId": 146,
+      "localizedName": "Yucatán",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1030",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-yucatan/v1l1030p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 1031,
+      "parentId": 146,
+      "localizedName": "Zacatecas",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/1031",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-zacatecas/v1l1031p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/locations/146",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

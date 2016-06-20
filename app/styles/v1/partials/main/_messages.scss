@@ -15,7 +15,7 @@
 	.no-js{
 		display: inline-block;
 		background:{
-			image: url(../../../../../images/no-javascript-en_MX.gif);
+			image: url(../../../../../../images/no-javascript-en_MX.gif);
 			repeat: no-repeat;
 			position: left center;
 		}
@@ -24,11 +24,11 @@
 		vertical-align: middle;
 
 		&.es_MX,&.es_MX,&.es_AR{
-			background-image: url(../../../../../images/no-javascript-es_MX.gif);
+			background-image: url(../../../../../../images/no-javascript-es_MX.gif);
 			width: 400px;
 		} 
 		&.pl_PL{
-		background-image: url(../../../../../images/no-javascript-pl_PL.png);
+		background-image: url(../../../../../../images/no-javascript-pl_PL.png);
 		width:420px;
 		}
 			
@@ -123,7 +123,7 @@
 				width: 200px;
 			}
 			&.pl_PL{
-		   background-image: url(../../../../../images/no-javascript-pl_PL.Mobile.png);
+		   background-image: url(../../../../../../images/no-javascript-pl_PL.Mobile.png);
 		   width: 299px;
 		   background-position: center;
 		   }
