@@ -4,6 +4,25 @@
     background-color: #e2e0e1;
     position: relative;
 
+    .title {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .safety-icon {
+        align-self: center;
+        height: 26px;
+        width: 26px;
+        background-image: url('/public/icons/placeholder.png');
+        background-size: contain;
+        background-repeat: no-repeat;
+    }
+
+    .safety-text {
+        height: 36px;
+    }
+
     .safety-block {
         width: 200px;
         float: left;
@@ -23,11 +42,10 @@
         right: 0;
         padding-bottom: 10px;
         margin: auto;
-        @include from-breakpoint($small-break){
+        @include from-breakpoint($small-break) {
             width: 420px;
         }
     }
-
 
     .image {
         width: 200px;
@@ -41,7 +59,7 @@
         &.image-right {
             display: none;
             background-image: url('http://cbs.umn.edu/sites/cbs.umn.edu/files/public/african_lion_king-wide_1.jpg');
-            @include from-breakpoint($small-break){
+            @include from-breakpoint($small-break) {
                 display: block;
             }
         }
