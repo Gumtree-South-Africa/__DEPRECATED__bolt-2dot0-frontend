@@ -59,7 +59,6 @@ router.get('/', function(req, res, next) {
 
 			let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
-<<<<<<< HEAD
 			let user;
 			if (result[1] !== undefined) {
 				//Cookie was set
