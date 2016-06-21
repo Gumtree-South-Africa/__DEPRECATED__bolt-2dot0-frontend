@@ -20,9 +20,8 @@
  } 
  
  .review-description{
- 
- font-size:10px;
- }
+     font-size:10px;
+     }
  
  .user-avatar {
   background-image: url('../../../../../../images/es_MX/review.png');
@@ -34,6 +33,7 @@
   border-radius: 100%;
   float: left;
   margin-left: 10px;
+  margin-right: 4px;
   border:1px solid #f89301;
  
  }
@@ -84,7 +84,7 @@
     }
     
 .review-inner{
-    width: 80%;
+    width: 75%;
     float: right;
     text-align: left;
    } 
@@ -99,7 +99,11 @@
    margin: 0 auto;
    }
    
-.app {
+.review-wrapper{
+  margin-top: 0.5em;
+}   
+   
+.appmobile-button {
    display: block;
    margin-top: 1em;
   a{
@@ -124,6 +128,9 @@
 .inner-wrapper {
     width: 87% !important;
     }
+#wrapper .downloadapp-wrapper {
+    height: 326px;
+ }   
 }
 
 
@@ -137,8 +144,11 @@
 
 
 @include in-breakpoint($small-break){
+#wrapper .downloadapp-wrapper {
+    height: 326px;
+ }
 .inner-wrapper {
-    width: 100% !important;
+    width: 93% !important;
     }
 }
 
@@ -176,7 +186,7 @@
    }	
 
  
- .app{
+ .appmobile-button{
     display: none;
   } 
   

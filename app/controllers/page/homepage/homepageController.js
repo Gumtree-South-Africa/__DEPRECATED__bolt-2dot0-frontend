@@ -12,6 +12,7 @@ var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil
 	marketoService = require(cwd + '/server/utils/marketo'),
 	Base64 = require(process.cwd() + '/app/utils/Base64'),
 	deviceDetection = require(cwd + '/modules/device-detection'),
+	downloadTest = require(cwd + '/app/views/components/appDownloadSection/js/appDlSection'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
@@ -65,6 +66,45 @@ router.get('/', function (req, res, next) {
 		modelData.level2Location = result['level2Loc'] || {};
 		modelData.initialGalleryInfo = result['gallery'] || {};
 		modelData.seo = result['seo'] || {};
+		
+		
+		var startingIndex = 0 // default 0
+		  , numOfAdsToSend
+		  , totalNumOfAds
+		  , maxIndexForAds;
+	
+		if(deviceDetection.isMobile()) {
+			numOfAdsToSend = 1	
+		}
+		else{
+			numOfAdsToSend = 3
+		}
+	
+		totalNumOfAds = downloadTest.mostRecentAds.length;
+		maxIndexForAds = totalNumOfAds -1;
+		
+		if (req.cookies['adStartingIndex']) {
+			//read the startingIndex value from cookie and add by numOfAds to display
+			startingIndex = parseInt (req.cookies['adStartingIndex']) + numOfAdsToSend;
+		}
+		
+		if (startingIndex > maxIndexForAds)
+		{
+			startingIndex = (startingIndex % maxIndexForAds) - 1; //Index went over, so circling back to beginning.
+		}
+		
+		res.cookie('adStartingIndex', startingIndex); // set the new value in the cookie
+		
+		// return three values only
+		if ((startingIndex + numOfAdsToSend) <= totalNumOfAds )
+		{
+			modelData.dltest = downloadTest.mostRecentAds.slice(startingIndex, startingIndex + numOfAdsToSend);
+		}
+		else
+		{
+			modelData.dltest = downloadTest.mostRecentAds.slice(startingIndex, totalNumOfAds)
+								.concat(downloadTest.mostRecentAds.slice(0, (numOfAdsToSend - (totalNumOfAds - startingIndex))));
+		}
 
 		if (result['adstatistics']) {
 			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
