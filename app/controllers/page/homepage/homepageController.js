@@ -3,9 +3,7 @@
 var express = require('express'), _ = require('underscore'), router = express.Router(), Q = require('q'), cuid = require('cuid');
 
 var cwd = process.cwd();
-
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModel = require(cwd + '/app/builders/page/HomePageModel'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), downloadTest = require(cwd + '/app/views/components/appDownloadSection/js/appDlSection'), userService = require(process.cwd() + '/server/services/user');
-
 
 
 module.exports = function(app) {
@@ -61,18 +59,24 @@ router.get('/', function(req, res, next) {
 
 			let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
 
-
-    // Dynamic Data from BAPI
-    modelData.header = result['common'].header || {};
-		modelData.footer = result['common'].footer || {};
-		modelData.dataLayer = result['common'].dataLayer || {};
-		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-		modelData.level2Location = result['level2Loc'] || {};
-		modelData.initialGalleryInfo = result['gallery'] || {};
-		modelData.seo = result['seo'] || {};
-		
-		
-		var startingIndex = 0 // default 0
+			let user;
+			if (result[1] !== undefined) {
+				//Cookie was set
+				user = result[1].state === "fulfilled" ? result[1].value : null;
+			}
+			// Dynamic Data from BAPI
+			// Result[0] is all the model data for the page without user data
+			result = result[0].state === "fulfilled" ? result[0].value : null;
+			modelData.isNewHP = true;
+			modelData.header = result['common'].header || {};
+			modelData.footer = result['common'].footer || {};
+			modelData.dataLayer = result['common'].dataLayer || {};
+			modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+			modelData.level2Location = result['level2Loc'] || {};
+			modelData.initialGalleryInfo = result['gallery'] || {};
+			modelData.seo = result['seo'] || {};
+			
+			var startingIndex = 0 // default 0
 		  , numOfAdsToSend
 		  , totalNumOfAds
 		  , maxIndexForAds;
@@ -110,30 +114,12 @@ router.get('/', function(req, res, next) {
 								.concat(downloadTest.mostRecentAds.slice(0, (numOfAdsToSend - (totalNumOfAds - startingIndex))));
 		}
 
-			let user;
-			if (result[1] !== undefined) {
-				//Cookie was set
-				user = result[1].state === "fulfilled" ? result[1].value : null;
-			}
-			// Dynamic Data from BAPI
-			// Result[0] is all the model data for the page without user data
-			result = result[0].state === "fulfilled" ? result[0].value : null;
-			modelData.isNewHP = true;
-			modelData.header = result['common'].header || {};
-			modelData.footer = result['common'].footer || {};
-			modelData.dataLayer = result['common'].dataLayer || {};
-			modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-			modelData.level2Location = result['level2Loc'] || {};
-			modelData.initialGalleryInfo = result['gallery'] || {};
-			modelData.seo = result['seo'] || {};
-
 			if (user) {
 				let userData = userService.buildProfile(user);
 				_.extend(modelData.header, userData);
 			} else {
 				console.error(`Invalid user cookie: ${authCookie}`)
 			}
-
 
 			if (result['adstatistics']) {
 				modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
