@@ -129,14 +129,14 @@ var HomePageModel = function(req, res, modelData) {
 	var homepageModel = new ModelBuilder(arrFunctions);
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
-    	.then(function (data) {
-    		// Converts the data from an array format to a JSON format
-    		// for easy access from the client/controller
-    		data = abstractPageModel.convertListToObject(data, arrFunctions);
+		.then(function(data) {
+			// Converts the data from an array format to a JSON format
+			// for easy access from the client/controller
+			data = abstractPageModel.convertListToObject(data, arrFunctions);
 			homepageDeferred.resolve(data);
-		}).fail(function (err) {
-			homepageDeferred.reject(new Error(err));
-		});
+		}).fail(function(err) {
+		homepageDeferred.reject(new Error(err));
+	});
 	return homepageDeferred.promise;
 };
 
