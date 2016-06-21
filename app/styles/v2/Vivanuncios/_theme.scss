@@ -14,12 +14,24 @@ $viva-h2: normal 1.5em Lato;
 $viva-h3: normal 1.25em Lato;
 $viva-h4: normal 1em Lato;
 
+$h1: $viva-h1;
+$h2: $viva-h2;
+$h3: $viva-h3;
+$h4: $viva-h4;
+
+$h1-color: $vivaBlack;
+$h3-secondary-color: $vivaOrange;
 
 // Paragraphs
 $viva-p1: normal 0.875em Lato;  //14px
 $viva-p2: normal 0.75em Lato;   //12px
 $viva-p3: normal 0.625em Lato;  //10px
 
+$p1: $viva-p1;
+$p2: $viva-p2;
+$p3: $viva-p3;
+
+$p2-secondary-color: $vivaGray;
 
 // Primary link
 $primary-link-color: $vivaBlack;

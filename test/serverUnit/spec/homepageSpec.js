@@ -49,4 +49,37 @@ describe('Server to hit HomePage', function() {
 				.end(specHelper.finish(done));
 		});
 	});
+	
+	describe('Safety Tips', () => {
+		
+		it('shows safety tips card on vivanuncios', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						expect(c$('.safetyTips')).toBeDefined();
+						expect(c$('.safetyTips .title h2')[0]
+							.firstChild.data).toContain('Vivanuncios Te Cuida');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+			
+		it('shows safety faq text on vivanuncios', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						let faq = c$('.safetyTips .faq a')[0];
+						expect(faq.attribs.href)
+							.toBe('http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
+						expect(faq.firstChild.data).toContain('Mantente seguro');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+	});
+
 });
