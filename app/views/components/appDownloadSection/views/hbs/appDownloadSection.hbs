@@ -5,37 +5,23 @@
      
     <div id="inner2">
 		    <div class="inner-wrapper">
-		         <span class="title">Sell in a snap!</span>
+		         <span class="title">¡Vende rápido!</span>
 		         <div class="description">
-		           <span>iCompra venta por internet de forma rapid y segura! descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le miles</span>
+		           <span>iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta</span>
 		         </div>
 		         
-		         <ul class="review-wrapper">
-		    {{!--     {{#each this.dltest}}--}}
-                     <li id="review1" style="border:1px solid green;height:50px" >
-	                     <img class='user-avatar' src='{{primaryImageUrl}}'>
-	                     <div  style="width: 80%;float:right;">
-	                    <div style="width: 11em;height:21px;"><span class="rating"></span></div>
-	                     <span class="review-description">{{this.description}}</span>
+		       <div class="review-wrapper">
+		         {{#each this.dltest}}
+                     <div id="review" style="height:50px" >
+	                     <img class='user-avatar' src='{{this.primaryImageUrl}}'>
+	                     <div class="review-inner" style="height:100%;">
+		                    <div class="rating-wrapper"><span class="rating"></span></div>
+		                    <div class="review-description">{{this.description}}</div>
                          </div>
-                     </li>
-                      <li id="review1" style="border:1px solid green;height:50px" >
-	                     <img class='user-avatar' src='{{primaryImageUrl}}'>
-	                     <div  style="width: 80%;float:right;">
-	                    <div style="width: 11em;height:21px;"><span class="rating"></span></div>
-	                     <span class="review-description">{{this.description}}</span>
-                         </div>
-                     </li>
-                      <li id="review1" style="border:1px solid green;height:50px" >
-	                     <img class='user-avatar' src='{{primaryImageUrl}}'>
-	                     <div  style="width: 80%;float:right;">
-	                    <div style="width: 11em;height:21px;"><span class="rating"></span></div>
-	                     <span class="review-description">{{this.description}}</span>
-                         </div>
-                     </li>
-           {{!--     {{/each}}  --}}
+                     </div>
+                {{/each}}  
                   
-                 </ul>
+                 </div>
                  
                 
 		         
