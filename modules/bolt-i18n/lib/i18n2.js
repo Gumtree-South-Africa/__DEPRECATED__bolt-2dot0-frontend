@@ -18,9 +18,6 @@ function initConfigI18n(app, locale) {
         locales: [locale],
         // setup extension
         extension:'.json',
-	    // Don't need dev mode because we aren't adding i18n strings during runtime
-	    // If it's true and touches an i18n file it restarts nodemon
-	    devMode: false,
 
         directory: process.cwd() + '/app/locales/bolt-translation',
         // change the cookie name from 'lang' to 'locale'
