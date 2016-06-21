@@ -68,6 +68,7 @@ router.get('/', function(req, res, next) {
 			// Dynamic Data from BAPI
 			// Result[0] is all the model data for the page without user data
 			result = result[0].state === "fulfilled" ? result[0].value : null;
+			modelData.isNewHP = true;
 			modelData.header = result['common'].header || {};
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};

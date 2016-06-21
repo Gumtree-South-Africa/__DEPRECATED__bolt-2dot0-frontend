@@ -28,7 +28,6 @@ var gulp = require('gulp'),
 	cssmin = require('gulp-cssmin'),
 	fs = require('fs'),
 	runSequence = require('gulp-run-sequence'),
-	shell = require("gulp-shell"),
 	reload = browserSync.reload;
 
 // ////////////////////////////////////////////////
@@ -73,18 +72,10 @@ gulp.task('default', function (done) {
     runSequence('build', ['develop', 'watch'], done);
 });
 
-// TEST
-gulp.task('jasmine', shell.task([
-	'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' +
-	'JASMINE_CONFIG_PATH=./test/jasmine.json ' +
-	'./node_modules/jasmine/bin/jasmine.js'
-]));
-
-gulp.task('test', (done) => {
-	runSequence('build', 'jasmine', done);
-});
+gulp.task('test', getTask("test"));
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
+
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));

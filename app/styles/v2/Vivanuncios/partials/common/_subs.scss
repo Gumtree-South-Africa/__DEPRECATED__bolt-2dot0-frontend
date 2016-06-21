@@ -1,0 +1,12 @@
+// -------------------------------------------------- //
+// sub elements should be contained in this file      //
+// -------------------------------------------------- //
+
+.btn-wrapper{
+  width: 25%;
+  margin: 2em auto;
+}
+
+.btn{
+  @include vivaBtn();
+}
