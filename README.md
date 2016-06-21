@@ -52,7 +52,7 @@ Download and install Ruby installer from [here](http://rubyinstaller.org/downloa
 
 #### Compass
     gem install compass -v 1.0.1 --source http://rubygems.org
-    
+
     for China, if get Connection error , you can try :
     gem install compass -v 1.0.1 --source https://ruby.taobao.org/
 
@@ -76,13 +76,13 @@ The first time you make a development build it is required that you build the st
 ```
 
 
-### Running linters separately
+### Running Linters
 ```
-gulp jshint
+gulp eslint
 gulp jsonlint
 ```
+**Note: webstorm - besure to check for ES6 inside of Webstorm -> Preferences -> Languages & Frameworks -> Javascript**
 **HEADS UP: A linter is run at every code change and your changes might not be visible if it fails!**
-
 
 ### Process differences
 Gulp automates building during development, meaning that when a source file changes it will trigger an automatic 'rebuild' when it applies.
@@ -145,6 +145,15 @@ cd bolt-2dot0-frontend
 npm run build
 DEBUG=bolt-2dot0-frontend:* npm start
 ```
+
+### Deploy with Page Version
+
+```
+PAGE_VER=v1 npm run vm
+```
+
+PAGE_VER=v1 for Bolt 1.0 look and feel, PAGE_VER=v2 for the redesign version and make sure to drop the cookie by doing so in the console of the browser ```document.cookie="b2dot0Version=2.0"```
+
 
 ### Starting the development server in Production Mode (by setting up environment variables, and clustering the node server)
 

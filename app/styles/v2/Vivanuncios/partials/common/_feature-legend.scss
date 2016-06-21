@@ -1,0 +1,543 @@
+.header-myad,
+.heading-bar {
+  .banner-header {
+    @extend %line-separated-items;
+  }
+  .mobile-header {
+    @extend %margin-bottom;
+  }
+
+  .banner-header,
+  .mobile-header,
+  .desktop-tablet {
+    .first,
+    .title {
+      @extend %small-title;
+    }
+    .second,
+    .desc,
+    .learn-more,
+    .for-tooltip {
+      @extend %small-regular-title;
+    }
+  }
+
+  .feature-legend.base,
+  .feature-legend-static {
+    @extend %box;
+    @extend %margin-bottom;
+
+    &.expand {
+      .for-tooltip {
+        @extend %small-regular-title;
+        display: block;
+
+        .tip-label {
+          @extend %small-title;
+        }
+      }
+    }
+
+    // Fix this in 9.2
+    .icon-category-gallery-large {
+      margin-top: 1px;
+    }
+
+    .learn-more,
+    .caret-up {
+      @extend %small-regular-title;
+      color: $vivaBlue;
+    }
+
+    .caret-up {
+      display: none;
+    }
+  }
+
+  .expand .icon-close_icon {
+    position: absolute;
+    top: 1.5em;
+    right: 1em;
+    width: 1em;
+    height: 1em;
+    display: block;
+  }
+
+  .mobile-features {
+    .feature {
+      @extend %margin-bottom;
+    }
+  }
+
+  .feature {
+    clear: both;
+    float: none;
+    overflow: hidden;
+
+    .title {
+      @extend %small-title;
+    }
+    .description span {
+      @extend %small-regular-title;
+      line-height: 100%;
+    }
+
+    .feature-icon {
+      float: left;
+      width: 20%;
+      height: 60px;
+      background-position: center;
+      margin-right: 5%;
+    }
+
+    .feature-summary {
+      float: left;
+      width: 75%;
+      text-align:left;
+    }
+  }
+}
+
+
+
+
+@include in-breakpoint($no-break) {
+  .header-myad,
+  .heading-bar {
+    text-align: center;
+
+    & > .banner-header,
+    .desktop-tablet {
+      display: none;
+    }
+    .feature-legend-static {
+      // using important to override
+      // an inline display: block
+      display: none !important;
+    }
+
+    .feature-legend-container {
+      display: block;
+    }
+
+    .feature-legend,
+    .feature-legend-static {
+      .mobile {
+        position: relative;
+        // compensate for .learn-more height
+        padding-bottom: 2.375em;
+      }
+
+      .learn-more,
+      .caret-up {
+        // force this row to the bottom of the object
+        position: absolute;
+        width: auto;
+        left: -0.875em;
+        right: -0.875em;
+        bottom: -0.875em;
+        border-top: $box-border-width $box-border-style $box-border-color;
+        padding: .75em;
+        background-color: transparent;
+        cursor: pointer;
+
+        // css arrow
+        &:after {
+          position: relative;
+          top: 10px;
+          border: solid transparent;
+          content: "";
+          height: 0;
+          width: 0;
+          border-top-color: $vivaBlue;
+          border-width: 4px;
+          margin-left: 8px;
+        }
+        // css arrow
+      }
+
+      &.expand {
+        .learn-more {
+          display: none;
+        }
+
+        .caret-up {
+          display: block;
+
+          &:before {
+            content: attr(data-text);
+          }
+          // css arrow
+          &:after {
+            top: auto;
+            bottom: 10px;
+            border-top-color: transparent;
+            border-bottom-color: $vivaBlue;
+          }
+          // css arrow
+        }
+      }
+    }
+
+    .mobile-features {
+      display: none;
+      margin-top: .75em;
+
+      &.expand {
+        display: block;
+      }
+    }
+  }
+}
+
+
+
+
+
+@include from-breakpoint($small-break) {
+  .mobile {
+    display: none;
+  }
+
+  .header-myad,
+  .heading-bar {
+    @extend %margin-bottom-from-small-break;
+    /* override @extend %box /
+    padding: 0;
+    border: none;
+    background-color: $background-color;
+    / override @extend %box */
+    text-align: center;
+
+    .banner-header {
+      text-align: left;
+    }
+
+    //
+    // collapsed state
+    //
+    .feature-legend,
+    .feature-legend-static {
+
+
+      &.base {
+        & + .feature-legend-static {
+          display: none;
+        }
+      }
+      .desktop-tablet {
+        position: relative;
+      }
+
+      .feature {
+        // force it over a .desktop-tablet>.feature
+        // placed as an inline style
+        width: 14%;
+        height: 275px;
+        border: 1px solid #C0C0C0;
+        @include border-radius(5px);
+        display: inline-block; //  !important;
+        margin-left: 8px;
+        margin-right: 8px;
+        padding-left: 0;
+        padding-right: 0;
+
+        // margin-right: 4%;
+        // make space for .learn-more with
+        // pos: absolute bottom: 0
+        padding-bottom: 1.75em;
+        vertical-align: top;
+
+        // ugly but the last child is a close icon
+        & + .feature + .feature {
+          margin-right: 0;
+        }
+
+        .icon {
+          position: absolute;
+          width: inherit;
+          height: 90px;
+          top: 0;
+          padding: 0;
+          overflow: hidden;
+        }
+
+        span, .learn-more {
+          font-size: 11px;
+        }
+        .title {
+          margin-top: 70px;
+          white-space: normal;
+        }
+        .title, .hp {
+          font-size: 12px;
+        }
+
+        .learn-more {
+          position: absolute;
+          font-weight: bold;
+          bottom: 1em;
+          text-decoration: underline;
+          cursor: pointer;
+          width: inherit;
+        }
+
+        .short.description {
+          line-height: 130%;
+        }
+      }
+
+      .for-tooltip {
+        display: none;
+      }
+    }
+
+    //
+    // collapsed state
+    //
+    .feature-legend.base:not(.expand) {
+      .feature {
+        .icon {
+          background-size: 95%;
+          margin-top: 1px;
+        }
+      }
+    }
+
+    //
+    // expanded state
+    //
+    .feature-legend.base.expand {
+      // clean all styles and make it a modal
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $vivaGray80RGBA;
+      border: none;
+      z-index: 99999;
+      margin-bottom: 0;
+      @include border-radius(0);
+
+      .feature {
+        width: 100%;
+        // margin-right: 0;
+        margin: 0 auto;
+        padding-bottom: 0;
+        text-align: left;
+
+        .title,
+        .icon,
+        .for-tooltip .list {
+          @extend %margin-bottom-from-small-break;
+        }
+
+        .title {
+          margin-top: 0;
+        }
+        .icon {
+          position: relative;
+          height: 250px;
+        }
+
+        // hidden elements
+        .learn-more,
+        .short.description {
+          display: none;
+        }
+        // shown elements {
+        .for-tooltip {
+          display: block;
+
+          li {
+            padding-left: 1.5em;
+            position: relative;
+
+            &:before {
+              content: '';
+              background-color: #ccc;
+              width: .5em;
+              height: .5em;
+              position: absolute;
+              top: .5em;
+              left: 0;
+              display: inline-block;
+              @include border-radius(.5em);
+            }
+          }
+        }
+        .icon-close_icon {
+          position: absolute;
+          top: 1em;
+          right: 1em;
+          width: 1em;
+          height: 1em;
+          display: block;
+        }
+      }
+
+      .desktop-tablet {
+        @extend %box-from-small-break;
+
+        position: absolute;
+        width: 400px;
+        top: 50%;
+        left: 50%;
+        -webkit-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+      }
+
+      .feature {
+        border: none;
+        height: 450px;
+      }
+
+    }
+  }
+
+  // For the feature title.
+  @media (max-width: 720px) {
+    .header-myad .feature-legend .feature,
+    .heading-bar .feature-legend .feature {
+      .title {
+        margin-top: 60px;
+      }
+      .short.description {
+        font-size: 0.8em;
+      }
+      .learn-more {
+        // bottom: 0;
+        font-weight: 400;
+      }
+    }
+  }
+
+  // For the feature column width
+  @media (max-width: 620px) {
+    .header-myad .feature-legend .feature,
+    .heading-bar .feature-legend .feature {
+      width: 13%;
+      height: 305px;
+
+      .title {
+        margin-top: 50px;
+        overflow: visible;
+      }
+    }
+  }
+
+  // For the feature title.
+  @media (min-width: 760px) {
+  .header-myad .feature-legend .feature,
+  .heading-bar .feature-legend .feature {
+    .title {
+      margin-top: 75px;
+     }
+    }
+  }
+}
+
+@include in-breakpoint($small-break) {
+   // Override for Promote page.
+  .promote-container {
+    .heading-bar {
+      .feature-legend,
+      .feature-legend-static {
+        .feature {
+          .title {
+            margin-top: 55px;
+          }
+          width: 13%;
+          height: 350px;
+        }
+      }
+    }
+  }
+}
+
+@include from-breakpoint($medium-break) {
+  .header-myad,
+  .heading-bar {
+    text-align: center;
+
+    .feature-legend.base,
+    .feature-legend-static {
+      padding: 2em;
+
+      .icon {
+        background-position: center;
+      }
+
+      &:not(.expand) {
+        .icon {
+          background-size: 95%;
+          margin-top: 2px;
+        }
+      }
+
+      &.expand {
+        .icon.icon-category-gallery-large {
+            background-position: center -1px;
+         }
+      }
+
+      .learn-more {
+        width: inherit;
+      }
+    }
+
+    .feature-legend .feature,
+    .feature-legend-static .feature {
+      width: 14%;
+      height: 305px;
+
+      span, .learn-more {
+        font-size: 12px;
+      }
+      .title {
+        margin-top: 90px;
+      }
+      .title, .hp, .srp {
+        font-size: 14px;
+      }
+
+    }
+  }
+
+  // For Promote page.
+  .promote-container {
+    .heading-bar {
+      .feature-legend,
+      .feature-legend-static {
+        .feature {
+          height: 305px;
+        }
+      }
+    }
+  }
+
+}
+
+@include from-breakpoint($large-break, $lt-ie9-class-name) {
+  .header-myad,
+  .heading-bar {
+    .feature-legend .feature,
+    .feature-legend-static .feature {
+      width: 15%;
+      span {
+        font-size: 14px;
+      }
+      .title {
+        margin-top: 95px;
+      }
+      .title, .hp, .srp {
+        font-size: 16px;
+      }
+    }
+
+  }
+}
+

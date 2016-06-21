@@ -1,0 +1,500 @@
+{
+  "id": 1,
+  "localizedName": "Argentina",
+  "level": "L0",
+  "isLeaf": false,
+  "children": [
+    {
+      "id": 2,
+      "parentId": 1,
+      "localizedName": "Buenos Aires",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-buenos-aires/v1l2p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "parentId": 1,
+      "localizedName": "Capital Federal",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/3",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-capital-federal/v1l3p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "parentId": 1,
+      "localizedName": "Catamarca",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/4",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-catamarca/v1l4p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "parentId": 1,
+      "localizedName": "Chaco",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/5",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-chaco/v1l5p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "parentId": 1,
+      "localizedName": "Chubut",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/6",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-chubut/v1l6p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "parentId": 1,
+      "localizedName": "Córdoba",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/7",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-cordoba/v1l7p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "parentId": 1,
+      "localizedName": "Corrientes",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/8",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-corrientes/v1l8p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "parentId": 1,
+      "localizedName": "Entre Rios",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/9",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-entre-rios/v1l9p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "parentId": 1,
+      "localizedName": "Formosa",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/10",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-formosa/v1l10p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "parentId": 1,
+      "localizedName": "Jujuy",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/11",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-jujuy/v1l11p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "parentId": 1,
+      "localizedName": "La Pampa",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/12",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-la-pampa/v1l12p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "parentId": 1,
+      "localizedName": "La Rioja",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/13",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-la-rioja/v1l13p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "parentId": 1,
+      "localizedName": "Mendoza",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/14",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-mendoza/v1l14p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "parentId": 1,
+      "localizedName": "Misiones",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/15",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-misiones/v1l15p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "parentId": 1,
+      "localizedName": "Neuquén",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/16",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-neuquen/v1l16p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "parentId": 1,
+      "localizedName": "Río Negro",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/17",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-rio-negro/v1l17p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "parentId": 1,
+      "localizedName": "Salta",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/18",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-salta/v1l18p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "parentId": 1,
+      "localizedName": "San Juan",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/19",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-san-juan/v1l19p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "parentId": 1,
+      "localizedName": "San Luis",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/20",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-san-luis/v1l20p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "parentId": 1,
+      "localizedName": "Santa Cruz",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/21",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-santa-cruz/v1l21p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "parentId": 1,
+      "localizedName": "Santa Fe",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/22",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-santa-fe/v1l22p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "parentId": 1,
+      "localizedName": "Santiago Del Estero",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/23",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-santiago-del-estero/v1l23p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "parentId": 1,
+      "localizedName": "Tierra Del Fuego",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/24",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tierra-del-fuego/v1l24p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "parentId": 1,
+      "localizedName": "Tucumán",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/25",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-tucuman/v1l25p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/locations/1",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

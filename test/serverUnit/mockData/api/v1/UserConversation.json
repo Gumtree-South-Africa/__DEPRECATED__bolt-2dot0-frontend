@@ -1,0 +1,53 @@
+{
+    "_links": [
+    {
+      "rel": "self",
+      "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx",
+      "method": "GET"
+    },
+    {
+      "rel": "close",
+      "href": "/conversations/caiyuchen@ebay.com/2e:-d6wc1o:icwh3xfx/actions/close",
+      "method": "PUT"
+    },
+    {
+      "rel": "delete",
+      "href": "/conversations/caiyuchen@ebay.com?conversationIds=2e:-d6wc1o:icwh3xfx",
+      "method": "DELETE"
+    }
+  ],
+  "id": "2e:-d6wc1o:icwh3xfx",
+  "role": "BUYER",
+  "state": "ACTIVE",
+  "closedBy": "BUYER",
+  "adInfo": {
+    "adId": "100000000",
+    "adTitle": "Post job ad",
+    "adPrice": {
+      "type": "FREE"
+    }
+  },
+  "buyerInfo": {
+    "userName": "Joyce",
+    "userEmail": "caiyuchen@ebay.com",
+    "userAnonymousEmail": "Buyer.2eqwxfne4zszs@users.gumtree.sg",
+    "userThumbnail": "http://i.ebayimg.sandbox.ebay.com/00/s/NTcyWDgwMA==/z/HDcAAOSwj-lVw50E/$_"
+  },
+  "sellerInfo": {
+    "userName": "Joyce",
+    "userEmail": "caiyuchen@ebay.com",
+    "userAnonymousEmail": "Seller.qf4vldnq9xsl@users.gumtree.sg",
+    "userThumbnail": "http://i.ebayimg.sandbox.ebay.com/00/s/NTcyWDgwMA==/z/HDcAAOSwj-lVw50E/$_"
+  },
+  "userMessages": [
+    {
+      "content": "0123456789 new conversation  reply with phone 4156654555",
+      "direction": "BUYER_TO_SELLER"
+    },
+    {
+      "content": "0123456789 new conversation reply with phone 4156654555",
+      "direction": "BUYER_TO_SELLER"
+    }
+  ],
+  "numUnreadMessage": 24
+}

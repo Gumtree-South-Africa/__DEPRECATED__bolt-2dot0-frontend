@@ -1,116 +1,106 @@
-"use strict";
+'use strict';
 
-var http = require("http");
-var Q = require("q");
-var _ = require("underscore");
+let Q = require('q');
 
-var ModelBuilder = require("./ModelBuilder");
-var config = require("config");
+let ModelBuilder = require('./ModelBuilder');
+let config = require('config');
 
-var Encryptor = require(process.cwd() + "/app/utils/Encryptor");
-var pagetypeJson = require(process.cwd() + "/app/config/pagetype.json");
+let Encryptor = require(process.cwd() + '/app/utils/Encryptor');
+let pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 
 
 //Function getPageData
-var getPageData = function(scope) {
-	var pageData = {
-		"pageType"	:	scope.pagetype,
-		"platform"	:	"BOLT-RUI",
-		"version"	:	config.get("static.server.version"),
-		"language"	:	scope.locale,
-		"viewType"	:	""
+let getPageData = function(scope) {
+	let pageData = {
+		'pageType': scope.pagetype,
+		'platform': 'BOLT-RUI',
+		'version': config.get('static.server.version'),
+		'language': scope.locale,
+		'viewType': ''
 	};
-	
+
 	return pageData;
 };
 
 //Function getUserData
-var getUsereData = function(scope) {
-	var userData = {
-		"hashedUserId"		:	(typeof scope.userid==="undefined" || scope.userid===null) ? "" : Encryptor.hash("" + scope.userid),
-		"hashedUserEmail"	:	(typeof scope.useremail==="undefined" || scope.useremail===null) ? "" : Encryptor.encrypt(scope.useremail),
-		"loggedIn"			:	(typeof scope.userid==="undefined" || scope.userid===null) ? false : true,
-		"hashedAccountId"	:	"",
-		"accountType"		:	""
+let getUsereData = function(scope) {
+	let userData = {
+		'hashedUserId': (typeof scope.userid === 'undefined' || scope.userid === null) ? '' : Encryptor.hash('' + scope.userid),
+		'hashedUserEmail': (typeof scope.useremail === 'undefined' || scope.useremail === null) ? '' : Encryptor.encrypt(scope.useremail),
+		'loggedIn': (typeof scope.userid === 'undefined' || scope.userid === null) ? false : true,
+		'hashedAccountId': '',
+		'accountType': ''
 	};
 
 	return userData;
 };
 
 //Function getCatData
-var getCatData = function(scope) {
-	var categoryData = {
-		"current"	:	"",
-		"level0"	:	"",
-		"level1"	:	"",
-		"level2"	:	"",
-		"level3"	:	"",
-		"level4"	:	""
+let getCatData = function() {
+	let categoryData = {
+		'current': '', 'level0': '', 'level1': '', 'level2': '', 'level3': '', 'level4': ''
 	};
-	
+
 	return categoryData;
 };
 
 //Function getLocData
-var getLocData = function(scope) {
-	var locationData = {
-		"current"	:	"",
-		"level0"	:	"",
-		"level1"	:	"",
-		"level2"	:	"",
-		"level3"	:	"",
-		"level4"	:	""
+let getLocData = function() {
+	let locationData = {
+		'current': '', 'level0': '', 'level1': '', 'level2': '', 'level3': '', 'level4': ''
 	};
-	
+
 	return locationData;
 };
 
-//Function getAdData
-var getAdData = function(scope) {
-	var adData = {
-		"current"	:	"",
-		"level0"	:	""
-	};
-	
-	return adData;
-};
 
-//Function getReplyData
-var getReplyData = function(scope) {
-	var replyData = {
-		"current"	:	"",
-		"level0"	:	""
-	};
-	
-	return replyData;
-};
+// commented out because these functions were unused, erroring out ESLINT
+// //Function getAdData
+// let  getAdData = function() {
+// 	let  adData = {
+// 		'current': '',
+// 		'level0': ''
+// 	};
+//
+// 	return adData;
+// };
+//
+// //Function getReplyData
+// let  getReplyData = function() {
+// 	let  replyData = {
+// 		'current': '',
+// 		'level0': ''
+// 	};
+//
+// 	return replyData;
+// };
+//
+// //Function getSearchData
+// let  getSearchData = function() {
+// 	let  searchData = {
+// 		'current': '',
+// 		'level0': ''
+// 	};
+//
+// 	return searchData;
+// };
 
-//Function getSearchData
-var getSearchData = function(scope) {
-	var searchData = {
-		"current"	:	"",
-		"level0"	:	""
-	};
-	
-	return searchData;
-};
-
-//Function getEcommerceData
-var getEcommerceData = function(scope) {
-	var ecommerceData = {
-		"current"	:	"",
-		"level0"	:	""
-	};
-	
-	return ecommerceData;
-};
+// //Function getEcommerceData
+// let  getEcommerceData = function() {
+// 	let  ecommerceData = {
+// 		'current': '',
+// 		'level0': ''
+// 	};
+//
+// 	return ecommerceData;
+// };
 
 
-/** 
+/**
  * @description A class that Handles the DataLayer Model
  * @constructor
  */
-var DataLayerModel = function (req, res) {
+let DataLayerModel = function(req, res) {
 	// Local Variables
 	this.locale = res.locals.config.locale;
 	this.brandName = res.locals.config.name;
@@ -131,38 +121,39 @@ DataLayerModel.prototype.setUserEmail = function(useremail) {
 };
 
 DataLayerModel.prototype.getData = function() {
-	var scope = this;
-	var pageDeferred = Q.defer();
-		
-	var pageDataFunction = function(callback) {
-		var data = {};
-		switch (scope.pagetype) {
-			case pagetypeJson.pagetype.HOMEPAGE: 
+	let _this = this;
+	let pageDeferred = Q.defer();
+
+	let pageDataFunction = function(callback) {
+		let data = {};
+		switch (_this.pagetype) {
+			case pagetypeJson.pagetype.HOMEPAGE:
 				data = {
-					"pageData"		: 	getPageData(scope),
-					"userData"		:	getUsereData(scope)
+					'pageData': getPageData(_this), 'userData': getUsereData(_this)
 				};
-			break;
+				break;
 			case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
 				data = {
-					"pageData"		: 	getPageData(scope)
+					'pageData': getPageData(_this)
 				};
-			break;
+				break;
 			case pagetypeJson.pagetype.RESULTS_SEARCH:
 				data = {
-					"pageData"		: 	getPageData(scope),
-					"userData"		:	getUsereData(scope),
-					"categoryData"	:	getCatData(scope),
-					"locationData"	:	getLocData(scope)
+					'pageData': getPageData(_this),
+					'userData': getUsereData(_this),
+					'categoryData': getCatData(_this),
+					'locationData': getLocData(_this)
 				};
-			break;
+				break;
+			default:
+				break;
 		}
-		
-        pageDeferred.resolve(data);
-        callback(null, data);
+
+		pageDeferred.resolve(data);
+		callback(null, data);
 	};
 
-	var arrFunctions = [pageDataFunction];
+	let arrFunctions = [pageDataFunction];
 	return arrFunctions;
 };
 

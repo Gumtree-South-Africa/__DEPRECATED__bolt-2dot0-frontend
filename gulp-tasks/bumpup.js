@@ -4,14 +4,15 @@
 // Bump Up release version Task
 //// /////////////////////////////////////////////
 
-var cwd = process.cwd();
+var cwd = process.cwd(),
+		runSequence = require('gulp-run-sequence');
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
 		// Bumpup App Version
 		gulp.task('bumpup:app', function() {
 			process.stdout.write('App Version Bumpup Task is running...\r\n');
-			
+
 			return gulp.src([cwd + '/package.json'])
 					   .pipe(plugins.bump({key: 'version', type:'patch'}))
 					   .pipe(gulp.dest(cwd));
@@ -20,7 +21,7 @@ module.exports = function watch(gulp, plugins) {
 		// Bumpup Static Version
 		gulp.task('bumpup:static', function() {
 			process.stdout.write('Static Version Bumpup Task is running...\r\n');
-			
+
 			return gulp.src([
 				                cwd + '/server/config/prod_ix5_deploy.json',
 								cwd + '/server/config/prod_phx_deploy.json',
@@ -33,7 +34,7 @@ module.exports = function watch(gulp, plugins) {
 				       .pipe(gulp.dest(cwd + '/server/config/'));
 		});
 
-		// Bumpup 
+		// Bumpup
 		gulp.task('bumpup', function (callback) {
 			var stream =
 				runSequence(

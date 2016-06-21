@@ -40,7 +40,6 @@ app.locals.httpsPort = httpsPort;
  * Create HTTP server.
  */
 var httpServer = http.createServer(app);
-httpServer.listen(httpPort);
 httpServer.on('error', onError);
 httpServer.on('listening', onListening);
 
@@ -56,10 +55,20 @@ var options = {
   cert : fs.readFileSync(nodecert)
 }
 var httpsServer = https.createServer(options, app);
-httpsServer.listen(httpsPort);
 httpsServer.on('error', onError);
 httpsServer.on('listening', onListening);
 
+/**
+ * Spin up all express apps before listening on the server to prevent race condition.
+ */
+app.createSiteApps().then(() => {
+  console.log('Server started');
+	httpServer.listen(httpPort);
+	httpsServer.listen(httpsPort);
+}).fail((err) => {
+	console.error("Error spinning up each country app", err);
+	process.exit(1);
+});
 
 /**
  * Normalize a port into a number, string, or false.

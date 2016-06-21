@@ -32,81 +32,71 @@ function getCookieLocationId(req) {
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function (req, res, modelData) {
-	var level2Loc = new LocationModel(modelData.bapiHeaders, 1),
-		keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
-		gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder(),
-		adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(),
-		seo = new SeoModel(modelData.bapiHeaders),
-		category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
-			
+var getHomepageDataFunctions = function(req, res, modelData) {
+	var level2Loc = new LocationModel(modelData.bapiHeaders, 1), keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(), gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder(), adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(), seo = new SeoModel(modelData.bapiHeaders), category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
+
 	return {
-		'level2Loc'		:	function(callback) {
-								var level2locationDeferred = Q.defer();
-								Q(level2Loc.getTopL2Locations())
-							    	.then(function (dataL) {
-							    		level2locationDeferred.resolve(dataL);
-							    		callback(null, dataL);
-									}).fail(function (err) {
-										level2locationDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-						  	},
-		'keyword'		:	function(callback) {
-								var keywordsDeferred = Q.defer();
-								Q(keyword.processParallel())
-							    	.then(function (dataK) {
-							    		keywordsDeferred.resolve(dataK);
-							    		callback(null, dataK);
-									}).fail(function (err) {
-										keywordsDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-							},
-		'gallery'		:	function(callback) {
-								var galleryDeferred = Q.defer();
-								Q(gallery.processParallel())
-							    	.then(function (dataG) {
-							    		galleryDeferred.resolve(dataG[0]);
-							    		callback(null, dataG[0]);
-									}).fail(function (err) {
-										galleryDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-							},
-		'adstatistics'	:	function(callback) {
-								var statisticsDeferred = Q.defer();
-								Q(adstatistics.processParallel())
-							    	.then(function (dataS) {
-							    		statisticsDeferred.resolve(dataS[0]);
-							    		callback(null, dataS[0]);
-									}).fail(function (err) {
-										statisticsDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-							},
-		'seo'			:	function(callback) {
-								var seoDeferred = Q.defer();
-								Q(seo.getHPSeoInfo())
-							    	.then(function (dataS) {
-							    		seoDeferred.resolve(dataS);
-							    		callback(null, dataS);
-									}).fail(function (err) {
-										seoDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-							},
-		'catWithLocId'	:	function(callback) {
-								var categoryDeferred = Q.defer();
-								Q(category.getCategoriesWithLocId())
-									.then(function (dataC) {
-										categoryDeferred.resolve(dataC);
-										callback(null, dataC);
-									}).fail(function (err) {
-										categoryDeferred.reject(new Error(err));
-										callback(null, {});
-									});
-							}
+		'level2Loc': function(callback) {
+			var level2locationDeferred = Q.defer();
+			Q(level2Loc.getTopL2Locations())
+				.then(function(dataL) {
+					level2locationDeferred.resolve(dataL);
+					callback(null, dataL);
+				}).fail(function(err) {
+				level2locationDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}, 'keyword': function(callback) {
+			var keywordsDeferred = Q.defer();
+			Q(keyword.processParallel())
+				.then(function(dataK) {
+					keywordsDeferred.resolve(dataK);
+					callback(null, dataK);
+				}).fail(function(err) {
+				keywordsDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}, 'gallery': function(callback) {
+			var galleryDeferred = Q.defer();
+			Q(gallery.processParallel())
+				.then(function(dataG) {
+					galleryDeferred.resolve(dataG[0]);
+					callback(null, dataG[0]);
+				}).fail(function(err) {
+				galleryDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}, 'adstatistics': function(callback) {
+			var statisticsDeferred = Q.defer();
+			Q(adstatistics.processParallel())
+				.then(function(dataS) {
+					statisticsDeferred.resolve(dataS[0]);
+					callback(null, dataS[0]);
+				}).fail(function(err) {
+				statisticsDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}, 'seo': function(callback) {
+			var seoDeferred = Q.defer();
+			Q(seo.getHPSeoInfo())
+				.then(function(dataS) {
+					seoDeferred.resolve(dataS);
+					callback(null, dataS);
+				}).fail(function(err) {
+				seoDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}, 'catWithLocId': function(callback) {
+			var categoryDeferred = Q.defer();
+			Q(category.getCategoriesWithLocId())
+				.then(function(dataC) {
+					categoryDeferred.resolve(dataC);
+					callback(null, dataC);
+				}).fail(function(err) {
+				categoryDeferred.reject(new Error(err));
+				callback(null, {});
+			});
+		}
 	};
 };
 
@@ -118,7 +108,7 @@ var getHomepageDataFunctions = function (req, res, modelData) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModel = function (req, res, modelData) {
+var HomePageModel = function(req, res, modelData) {
 	var functionMap = getHomepageDataFunctions(req, res, modelData);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
@@ -126,7 +116,7 @@ var HomePageModel = function (req, res, modelData) {
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 	var idxCatWithLocId = pageModelConfig.indexOf('catWithLocId');
 
-	if (getCookieLocationId(req) !== null)  {
+	if (getCookieLocationId(req) !== null) {
 		if (idxCatWithLocId < 0) {
 			pageModelConfig.push('catWithLocId');
 		}
@@ -135,15 +125,15 @@ var HomePageModel = function (req, res, modelData) {
 	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
-	
-	var homepageModel = new ModelBuilder(arrFunctions);	
+
+	var homepageModel = new ModelBuilder(arrFunctions);
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
     	.then(function (data) {
     		// Converts the data from an array format to a JSON format
     		// for easy access from the client/controller
     		data = abstractPageModel.convertListToObject(data, arrFunctions);
-    		homepageDeferred.resolve(data);
+			homepageDeferred.resolve(data);
 		}).fail(function (err) {
 			homepageDeferred.reject(new Error(err));
 		});

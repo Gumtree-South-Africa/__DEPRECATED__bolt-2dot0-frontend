@@ -17,7 +17,7 @@ var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
  * @private
  * @return {JSON}
  */
-var getErrorpageDataFunctions = function (req, res) {
+var getErrorpageDataFunctions = function(req, res) {
 	return {};
 };
 
@@ -29,23 +29,23 @@ var getErrorpageDataFunctions = function (req, res) {
  * @class HomePageModel
  * @constructor
  */
-var ErrorPageModel = function (req, res) {
+var ErrorPageModel = function(req, res) {
 	var functionMap = getErrorpageDataFunctions(req, res);
 
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, []);
-	
-	var errorPageModel = new ModelBuilder(arrFunctions);	
+
+	var errorPageModel = new ModelBuilder(arrFunctions);
 	var errorPageDeferred = Q.defer();
 	Q(errorPageModel.processParallel())
-    	.then(function (data) {
-    		// Converts the data from an array format to a JSON format
-    		// for easy access from the client/controller
-    		data = abstractPageModel.convertListToObject(data, arrFunctions);
-    		errorPageDeferred.resolve(data);
-		}).fail(function (err) {
-			errorPageDeferred.reject(new Error(err));
-		});
+		.then(function(data) {
+			// Converts the data from an array format to a JSON format
+			// for easy access from the client/controller
+			data = abstractPageModel.convertListToObject(data, arrFunctions);
+			errorPageDeferred.resolve(data);
+		}).fail(function(err) {
+		errorPageDeferred.reject(new Error(err));
+	});
 	return errorPageDeferred.promise;
 };
 

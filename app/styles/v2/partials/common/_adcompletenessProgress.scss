@@ -1,0 +1,98 @@
+// ee
+/**
+* The style to use when the classified ad is less than or equal to 69% complete.
+*/
+.ad-progress-lte-69
+{
+  #ad-progress-counter
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    color: #000;
+    text-transform: uppercase;
+    font-weight: bold;
+  }
+  #ad-progress-bar
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    background-color: #ed7e7e !important; // #f0a3a3 !important;
+    /* TODO change this hard-coded colour to a Sass variable */
+    @include background-image(linear-gradient(#ed7e7e, #ed7e7e));
+  }
+}
+
+/**
+* The style to use when the classified ad is less than or equal to 79% complete.
+*/
+.ad-progress-lte-79
+{
+  #ad-progress-counter
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    color: #000;
+  }
+
+  #ad-progress-bar
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    background-color: #ffa524 !important; // #f1a165 !important;
+    /* TODO change this hard-coded colour to a Sass variable */
+    @include background-image(linear-gradient(#ffa500, #ffa540));
+  }
+}
+
+/**
+* The style to use when the classified ad is less than or equal to 89% complete.
+*/
+.ad-progress-lte-89
+{
+  #ad-progress-counter
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    color: #000;
+  }
+  #ad-progress-bar
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    background-color: #ffd727 !important; // #f0a3a3 !important;
+    /* TODO change this hard-coded colour to a Sass variable */
+    @include background-image(linear-gradient(#ffd700, #ffd740));
+  }
+}
+
+/**
+* The style to use when the classified ad is less than or equal to 99% complete.
+*/
+.ad-progress-lte-99
+{
+  #ad-progress-counter
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    color: #fff;
+  }
+  #ad-progress-bar
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    background-color: #32cd32 !important; // #f0a3a3 !important;
+    /* TODO change this hard-coded colour to a Sass variable */
+    @include background-image(linear-gradient(#32cd32, #32cd32));
+  }
+}
+
+/**
+* The style to use when the classified ad is equal to 79% complete.
+*/
+.ad-progress-lte-100
+{
+  #ad-progress-counter
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    color: #1e90ff;
+  }
+  #ad-progress-bar
+  {
+    /* TODO change this hard-coded colour to a Sass variable */
+    background-color: #42a2ff !important; // #f0a3a3 !important;
+    /* TODO change this hard-coded colour to a Sass variable */
+    @include background-image(linear-gradient(#1e90ff, #5eb0ff));
+  }
+}

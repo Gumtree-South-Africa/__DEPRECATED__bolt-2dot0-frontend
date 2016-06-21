@@ -1,0 +1,155 @@
+{
+	"env": {
+		//remove either of the lines below if you don't need it
+		//enable nodejs environment
+		"node": true,
+		//enable browser environment
+		"browser": true,
+		"es6": true,
+		"jquery": true,
+		"jasmine": true,
+		"protractor": true
+	},
+
+	"globals": {
+		//place settings for globals here, such as
+		"requirejs": true,
+		"Handlebars": true
+	},
+	"rules": {
+		//    "off" or 0 - turn the rule off
+		//    "warn" or 1 - turn the rule on as a warning (doesn’t affect exit code)
+		//    "error" or 2 - turn the rule on as an error (exit code is 1 when triggered)
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// "Possible Errors" - These rules relate to possible syntax or logic errors in JavaScript code
+
+		"comma-dangle": 0,
+		"no-alert": 2,
+		"no-cond-assign": 2,
+		// todo: should be using winston instead of console log
+		"no-console": [
+			"warn",
+			{
+				"allow": [
+					"error",
+					"warn",
+					"time",
+					"timeEnd"
+				]
+			}
+		],
+		"no-constant-condition": 2,
+		"no-control-regex": 2,
+		"no-debugger": 1,
+		"no-dupe-args": 2,
+		"no-dupe-keys": 2,
+		"no-duplicate-case": 2,
+		"no-empty": 2,
+		"no-empty-character-class": 2,
+		"no-ex-assign": 2,
+		"no-extra-boolean-cast": 2,
+		"no-extra-parens": 0,
+		"no-extra-semi": 2,
+		"no-func-assign": 2,
+		"no-inner-declarations": 2,
+		"no-invalid-regexp": 2,
+		"no-negated-in-lhs": 2,
+		"no-new": 2,
+		"no-obj-calls": 2,
+		"no-prototype-builtins": 0,
+		"no-regex-spaces": 2,
+		"no-sparse-arrays": 2,
+		"no-unexpected-multiline": 2,
+		"no-unreachable": 2,
+		"no-unsafe-finally": 2,
+		"use-isnan": 2,
+		"valid-jsdoc": 0,
+		"valid-typeof": 2,
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// "Best Practices"
+
+		"curly": 2,
+		"eqeqeq": 2,
+		"block-scoped-var": 2,
+		"complexity": 2,
+		"default-case": 2,
+		"guard-for-in": 2,
+		"no-caller": 2,
+		"no-case-declarations": 2, // note: has to do with whats allowed in case clauses
+		"no-eq-null": 2,
+		"no-eval": 2,
+		"no-empty-pattern": 2, // note: obscure, related to destructuring, see http://eslint.org/docs/rules/no-empty-pattern
+		"no-fallthrough": 2,
+		"no-octal": 2,
+		"no-redeclare": 2,
+		"no-self-assign": 2,
+		"no-unused-labels": 2, // should probably disallow labels :)
+		"yoda": 2,
+		"strict": 2,
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// "Variables" - These rules relate to variable declarations
+
+		"no-shadow": 2,
+		"no-undef": 2,
+		"no-unused-vars": 2,
+		"no-use-before-define": 2,
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// "Node.js and CommonJS" - These rules relate to code running in Node.js, or in browsers with CommonJS:
+
+		// none (yet)
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// "Sytlistic Issues" - These rules relate to style guidelines, and are therefore quite subjective:
+
+		"no-bitwise": 2,
+		"brace-style": [
+			2,
+			"1tbs"
+		],
+		"camelcase": 2,
+		"consistent-this": [2, "_this"],
+		"eol-last": 0,
+		"padded-blocks": [
+			0,
+			"never"
+		],
+		"quotes": [
+			2,
+			"single",
+			{
+				"avoidEscape": true,
+				"allowTemplateLiterals": true
+			}
+		],
+		"no-nested-ternary": 1,
+		"semi": 2,
+		"space-before-blocks": [
+			1,
+			"always"
+		],
+		"space-before-function-paren": [
+			2,
+			"never"
+		],
+
+		// the following rules documented on http://eslint.org/docs/rules/ as
+		// EMCAScript6 - These rules relate to ES6, also known as ES2015
+
+		"constructor-super": 2,
+		"no-class-assign": 2,
+		"no-confusing-arrow": 2,
+		"no-const-assign": 2,
+		"no-dupe-class-members": 2,
+		"no-new-symbol": 2,
+		"no-var": 2
+
+	},
+
+	"plugins": [
+		//you can put plugins here
+	]
+}

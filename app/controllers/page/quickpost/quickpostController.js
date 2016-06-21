@@ -1,35 +1,26 @@
-//jshint ignore: start
+
 'use strict';
 
-var express = require('express'),
-    _ = require('underscore'),
-    router = express.Router(),
-	form = require('express-form'),
-	field = form.field,
-	Q = require('q');
+var express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
 
 var cwd = process.cwd();
-var StringUtils = require(cwd + '/app/utils/StringUtils'),
-	pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
-	QuickpostPageModel= require(cwd + '/app/builders/page/QuickpostPageModel'),
-	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
-	pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var StringUtils = require(cwd + '/app/utils/StringUtils'), pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
 
-module.exports = function (app) {
-  app.use('/', router);
+module.exports = function(app) {
+	app.use('/', router);
 };
 
 
 /**
  * Get QuickPost Form
  */
-router.get('/quickpost', function (req, res, next) {
+router.get('/quickpost', function(req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
-  // Set pagetype in request
+	// Set pagetype in request
 	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 	// Build Model Data
@@ -37,16 +28,16 @@ router.get('/quickpost', function (req, res, next) {
 	var modelData = pageControllerUtil.preController(req, res);
 
 	var model = QuickpostPageModel(req, res, modelData);
-	model.then(function (result) {
+	model.then(function(result) {
 
-  	// Dynamic Data from BAPI
+		// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
 		modelData.footer = result.common.footer || {};
 		modelData.dataLayer = result.common.dataLayer || {};
 		modelData.categoryData = res.locals.config.categoryflattened;
 		modelData.seo = result['seo'] || {};
 
-    // Special Data needed for QuickPost in header, footer, content
+		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
 		QuickPost.buildFormData(modelData, bapiConfigData);
@@ -64,17 +55,10 @@ router.get('/quickpost', function (req, res, next) {
 router.post('/quickpost',
 
 	// Form filter and validation middleware
-	form(
-		field('Description').trim().required().minLength(10).maxLength(4096),
-		field('Category').required(),
-		field('price').trim().maxLength(10).is(/^[0-9]+$/),field('SelectedCurrency'),
-		field('switch'),
-		field('Location').required(), field('latitude'), field('longitude'), field('address')
-
-	),
+	form(field('Description').trim().required().minLength(10).maxLength(4096), field('Category').required(), field('price').trim().maxLength(10).is(/^[0-9]+$/), field('SelectedCurrency'), field('switch'), field('Location').required(), field('latitude'), field('longitude'), field('address')),
 
 	// Express request-handler now receives filtered and validated data
-	function (req, res, next) {
+	function(req, res, next) {
 		console.time('Instrument-QuickPost-Data-Controller');
 
 		// Get Auth Cookie
@@ -88,7 +72,7 @@ router.post('/quickpost',
 		var bapiConfigData = res.locals.config.bapiConfigData;
 		var modelData = pageControllerUtil.preController(req, res);
 		var model = QuickpostPageModel(req, res, modelData);
-		model.then(function (result) {
+		model.then(function(result) {
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
 			modelData.footer = result.common.footer || {};
@@ -111,23 +95,23 @@ router.post('/quickpost',
 
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
-					.then(function (dataReturned) {
+					.then(function(dataReturned) {
 						var response = dataReturned;
 						modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
 
-						for (var l=0;l<response._links.length; l++) {
+						for (var l = 0; l < response._links.length; l++) {
 							if (response._links[l].rel == 'view') {
 								var fbShareLink = modelData.header.homePageUrl + response._links[l].href;
 								var vipLink = modelData.header.homePageUrl + response._links[l].href + '?activateStatus=adActivateSuccess';
 
 								// Post to FB if share button is enabled
-								if (typeof req.form.switch!=='undefined' && req.form.switch=='YES') {
+								if (typeof req.form.switch !== 'undefined' && req.form.switch == 'YES') {
 									var msg = modelData.formContent.fbPublishMsg + ' ' + fbShareLink;
 									Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
-										.then(function (fbDataReturned) {
+										.then(function(fbDataReturned) {
 											console.log('Successful FB Graph PublishPost', fbDataReturned);
 										})
-										.fail(function (err) {
+										.fail(function(err) {
 											console.error('Error during FB Graph PublishPost', err);
 										});
 								}
@@ -136,22 +120,21 @@ router.post('/quickpost',
 								res.redirect(vipLink);
 							}
 						}
-					}).fail(function (err) {
-						QuickPost.respondSubmitError(req,  res, next, modelData, err);
-					});
+					}).fail(function(err) {
+					QuickPost.respondSubmitError(req, res, next, modelData, err);
+				});
 			}
 
 			console.timeEnd('Instrument-QuickPost-Data-Controller');
 		});
-	}
-);
+	});
 
 
 var QuickPost = {
 	/**
 	 * Special header data for QuickPost
 	 */
-	extendHeaderData: function (req, modelData) {
+	extendHeaderData: function(req, modelData) {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
 		modelData.header.pageTitle = modelData.seo.pageTitle;
@@ -161,8 +144,7 @@ var QuickPost = {
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'QuickPost.css';
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/QuickPost.min.css');
-		}
-    	else {
+		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/QuickPost.css');
 		}
 	},
@@ -170,9 +152,9 @@ var QuickPost = {
 	/**
 	 * Special footer data for QuickPost
 	 */
-	extendFooterData: function (modelData) {
+	extendFooterData: function(modelData) {
 		// image upload
-	    if (!modelData.footer.min) {
+		if (!modelData.footer.min) {
 			// Components
 			var baseJSComponentDir = '/views/components/';
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadUtil.js');
@@ -198,7 +180,7 @@ var QuickPost = {
 	/**
 	 * Build Form data for QuickPost
 	 */
-	buildFormData: function (modelData, bapiConfigData) {
+	buildFormData: function(modelData, bapiConfigData) {
 		// Post Form
 		modelData.formContent = {};
 
@@ -212,22 +194,22 @@ var QuickPost = {
 		modelData.formContent.descriptionTip3 = 'quickpost.descriptionTip3';
 		modelData.formContent.descriptionTip4 = 'quickpost.descriptionTip4';
 
-    	modelData.formContent.categoryText = 'quickpost.categoryText';
+		modelData.formContent.categoryText = 'quickpost.categoryText';
 
 		modelData.formContent.pricePlaceholder = 'quickpost.pricePlaceholder';
 		modelData.formContent.priceCurrency = 'quickpost.priceCurrency';
 		modelData.formContent.priceCurrencyText = 'quickpost.priceCurrencyText';
 		modelData.formContent.priceCurrencyDisplay = 'quickpost.priceCurrencyDisplay';
 		modelData.formContent.priceExtension = 'quickpost.priceExtension';
-		modelData.formContent.currencyDisplay=bapiConfigData.content.quickpost.currencyDisplay;
-        modelData.formContent.currency=bapiConfigData.content.quickpost.currency;
+		modelData.formContent.currencyDisplay = bapiConfigData.content.quickpost.currencyDisplay;
+		modelData.formContent.currency = bapiConfigData.content.quickpost.currency;
 		if (modelData.formContent.currency.length == 1) {
 			var singleCurrency = modelData.formContent.currency[0];
 			var singleCurrencySplit = singleCurrency.split(':');
 			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
 		}
 
-   		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
+		modelData.formContent.displayFb = !_.isEmpty(modelData.header.socialMedia) ? true : false;
 		modelData.formContent.sharefbText = 'quickpost.sharefbText';
 		modelData.formContent.sharefbTextYes = 'quickpost.sharefbTextYes';
 		modelData.formContent.sharefbTextNo = 'quickpost.sharefbTextNo';
@@ -270,7 +252,7 @@ var QuickPost = {
 	/**
 	 * Build Value data for QuickPost
 	 */
-	buildValueData: function (modelData, formData, requestBody) {
+	buildValueData: function(modelData, formData, requestBody) {
 		modelData.formContent.imgUrls = [];
 		modelData.formContent.imgThumbUrls = [];
 		var reqPictures = requestBody.pictures;
@@ -330,7 +312,7 @@ var QuickPost = {
 	/**
 	 * Build Ad JSON
 	 */
-	buildAdJson: function (modelData, requestBody) {
+	buildAdJson: function(modelData, requestBody) {
 		var json = {};
 
 		json.description = modelData.formContent.descriptionValue;
@@ -372,25 +354,27 @@ var QuickPost = {
 	 */
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
-		for (var i=0; i<req.form.errors.length; i++){
+		for (var i = 0; i < req.form.errors.length; i++) {
 			if (req.form.errors[i].indexOf('Description ') > -1) {
-				if(!req.form.fieldErrors.description)
+				if (!req.form.fieldErrors.description) {
 					req.form.fieldErrors.description = req.form.errors[i];
+                }
 			} else if (req.form.errors[i].indexOf('Category ') > -1) {
-				if(!req.form.fieldErrors.category)
+				if (!req.form.fieldErrors.category) {
 					req.form.fieldErrors.category = req.form.errors[i];
-			}
-			else if (req.form.errors[i].indexOf('price') > -1) {
-				if(!req.form.fieldErrors.price)
-                    req.form.fieldErrors.price = req.form.errors[i];
-			}
-			else if (req.form.errors[i].indexOf('Location ') > -1) {
-				if(!req.form.fieldErrors.location)
+                }
+			} else if (req.form.errors[i].indexOf('price') > -1) {
+				if (!req.form.fieldErrors.price) {
+					req.form.fieldErrors.price = req.form.errors[i];
+                }
+			} else if (req.form.errors[i].indexOf('Location ') > -1) {
+				if (!req.form.fieldErrors.location) {
 					req.form.fieldErrors.location = req.form.errors[i];
+                }
 			}
 		}
 
-		modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+		modelData.flash = {type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 		modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
@@ -399,32 +383,36 @@ var QuickPost = {
 	/*
 	 * On Page Submit Error, send back to Quickpost Form
 	 */
-	respondSubmitError: function (req, res, next, modelData, err) {
+	respondSubmitError: function(req, res, next, modelData, err) {
 		console.log('errorrrrrrrrrrrrrrrrrrrrrr', err);
 
 		var errorCode = parseInt(err.status);
-		if (errorCode >= 400 && errorCode < 500) err.status4xx = true;
-		if (errorCode >= 500 && errorCode < 600) err.status5xx = true;
+		if (errorCode >= 400 && errorCode < 500) {
+			err.status4xx = true;
+        }
+		if (errorCode >= 500 && errorCode < 600) {
+			err.status5xx = true;
+        }
 
 		var errorMessage = '';
 		if (err.status4xx) {
 			var fieldError = 'false';
-			if (errorCode == 400 ) {
-				for(var i=0; i<err.details.length; i++) {
+			if (errorCode == 400) {
+				for (var i = 0; i < err.details.length; i++) {
 					var det = err.details[i];
 					if (det.code == 'LOCATION_DOES_NOT_MATCH_COUNTRY') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
 						fieldError = 'true';
-					} else if (det.message.indexOf('Param:latitude') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:latitude') > '-1' && det.code == 'MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
 						fieldError = 'true';
-					} else if (det.message.indexOf('Param:longitude') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:longitude') > '-1' && det.code == 'MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
 						fieldError = 'true';
-					} else if (det.message.indexOf('Param:address') > '-1' && det.code=='MISSING_PARAM') {
+					} else if (det.message.indexOf('Param:address') > '-1' && det.code == 'MISSING_PARAM') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocationInvalid;
 						fieldError = 'true';
@@ -442,19 +430,19 @@ var QuickPost = {
 			if (fieldError == 'false') {
 				errorMessage = modelData.formContent.error4xx;
 			} else {
-				modelData.flash = { type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
+				modelData.flash = {type: 'alert-danger', errors: req.form.errors, fieldErrors: req.form.fieldErrors};
 			}
 		}
 		if (err.status5xx) {
 			errorMessage = modelData.formContent.error5xx;
-			modelData.flash = { type: 'alert-danger'};
+			modelData.flash = {type: 'alert-danger'};
 		}
 
 		if (!_.isEmpty(errorMessage)) {
 			modelData.header.pageMessages = {};
 			modelData.header.pageMessages.error = errorMessage;
 			modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_ERROR;
-			modelData.flash = { type: 'alert-danger'};
+			modelData.flash = {type: 'alert-danger'};
 		}
 
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);

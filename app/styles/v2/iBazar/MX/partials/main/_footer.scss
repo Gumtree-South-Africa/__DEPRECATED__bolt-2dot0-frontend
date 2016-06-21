@@ -1,0 +1,204 @@
+$footer-header-height: 50px;
+
+.footer {
+	border-top: 1px solid lighten($color-black, 70%);
+	margin: 3px auto 0 auto;
+	text-align:center;
+
+    span.reg_link {
+      margin-right: 1em;
+    }
+
+	.footer-post {
+		text-decoration: none;
+		display: block;
+		float: left;
+		@include bold-text;
+		line-height: $footer-header-height;
+		padding: $medium-padding 0 0 $large-padding * 2;
+		height: $footer-header-height;
+	}
+	
+	.blog {
+		text-decoration: none;
+		display: inline-block;
+		@include bold-text;
+		line-height: $footer-header-height;
+			
+	}
+	
+	#tw, #fbc, #pnc, #yt {
+		position: absolute;
+		display: inline-block;
+		left:1em;
+		top:-1.2em;
+		font-size:85%;
+	}
+	
+	
+	.sociallinks li { position:relative}
+
+	.sociallinks {
+		display: block;
+		text-align: right;
+		padding: $large-padding $large-padding * 2 $large-padding 0;
+		float: right;
+
+		li {
+			display: inline-block;
+
+			a {
+				display: inline-block;
+				//color: $color-black-70;
+				text-decoration: none;
+				margin-left: 0.5em;
+
+				.icon{
+					background:{
+						image: url(../../../../../../images/social-icons.png);
+						repeat: no-repeat;
+						position: 0 0;
+					}
+					vertical-align: middle;
+					display: inline-block;
+					width: 40px;
+					height: 40px;
+					@include opacity(0.8);
+				}
+
+				&:hover,
+				&:focus{
+					.icon{
+						@include opacity(1.0);
+					}
+				}
+
+				&.twitter .icon{
+					background-position: -120px 0;
+				}
+
+				&.facebook .icon{
+					background-position: 0 0;
+				}
+
+				&.googleplus .icon{
+					background-position: -40px 0;
+				}
+
+				&.pinterest .icon{
+					background-position: -80px 0;
+				}
+
+				&.youtube .icon{
+					background-position: -160px 0;
+				}
+
+			}
+
+		}
+
+	}
+
+
+	.copyright {
+		padding: $large-padding 0;
+		color: $color-black-75;
+		text-align: center;
+		margin: 0 auto;
+	}
+	
+	.cookie_warn {
+	    padding: $large-padding 0 $small-padding 0;
+		color: $color-black-50;
+		text-align: center;
+		margin: 0 auto;
+		font-size: 0.9em;
+		margin-bottom: 3em;
+	}
+	
+    .cr-container {
+        margin-top: 1em;
+       
+       .cpyrt {
+           text-align: right;
+		   
+		   a, [data-uri], [data-o-uri], .sudo-link, span[href] {
+			   font-size: 100%;
+		   }
+       }
+    }
+
+}
+
+
+
+
+@include in-breakpoint($no-break){
+	.footer{
+        padding-top: $large-padding;
+      
+		.footer-post{
+			display: none;
+		}
+
+		.sociallinks{
+			text-align: center;
+			width: 100%;
+			float: none;
+		}
+
+		.copyright{
+			font-size: 80%;
+			width: 70%;
+		}
+		.blog {
+			line-height:1;
+			text-align:center;
+			margin-top:1em;
+	    }
+		.cookie_warn {
+		   width: 86%;
+		   float: left;
+		   text-align: left;
+		}
+		.cr-container {
+			.cpyrt {
+			    font-size: 0.79em;
+	            float: left;
+	            text-align: left;
+	            clear: both;
+	        }
+        }
+				
+	}
+}
+
+
+@include in-breakpoint($small-break){
+	.footer{
+	   padding-top: $large-padding;
+	   
+		 .copyright{
+			font-size: 90%;
+			width: 60%;
+		 }
+		 .blog {
+			top:0em;
+			left:18%
+	     }
+		 .cookie_warn {
+		   font-size: 93%;
+		}
+   }
+}
+
+
+@media (max-width: 57em) and (min-width: 53em) {
+	.footer{
+		.blog {
+			top:0em;
+			left:23%
+		}
+    }
+}
+

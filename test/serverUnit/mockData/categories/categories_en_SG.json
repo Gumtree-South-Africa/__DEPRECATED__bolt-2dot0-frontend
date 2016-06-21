@@ -1,0 +1,1099 @@
+{
+  "id": 0,
+  "localizedName": "All Categories",
+  "parentId": null,
+  "level": "L0",
+  "description": "All Categories",
+  "localizedMobileName": "All Categories",
+  "children": [
+    {
+      "id": 4,
+      "localizedName": "Stuff for Sale",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Stuff for Sale",
+      "localizedMobileName": "Stuff for Sale",
+      "children": [
+        {
+          "id": 44,
+          "localizedName": "Home Furnishing",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Home Furnishing",
+          "localizedMobileName": "Home Furnishing",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/44",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-home-furnishing/v1c44p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 41,
+          "localizedName": "Clothes & Accessories",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Clothes & Accessories",
+          "localizedMobileName": "Clothes & Accessories",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/41",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-clothes-accessories/v1c41p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 146,
+          "localizedName": "Electronics",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Electronics",
+          "localizedMobileName": "Electronics",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/146",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-electronics/v1c146p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 46,
+          "localizedName": "Mobile Phones",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Mobile Phones",
+          "localizedMobileName": "Mobile Phones",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/46",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mobile-phones/v1c46p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 88,
+          "localizedName": "Baby & Children",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Baby & Children",
+          "localizedMobileName": "Baby & Children",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/88",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-baby-children/v1c88p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 313,
+          "localizedName": "Health & Beauty",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Health & Beauty",
+          "localizedMobileName": "Health & Beauty",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/313",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-health-beauty/v1c313p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 17,
+          "localizedName": "Antiques & Collectibles",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Antiques & Collectibles",
+          "localizedMobileName": "Antiques & Collectibles",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/17",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-antiques-collectibles/v1c17p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 86,
+          "localizedName": "Toys & Games",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Toys & Games",
+          "localizedMobileName": "Toys & Games",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/86",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-toys-games/v1c86p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 47,
+          "localizedName": "Sports & Fitness",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Sports & Fitness",
+          "localizedMobileName": "Sports & Fitness",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/47",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sports-fitness/v1c47p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 18,
+          "localizedName": "Books & Magazines",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Books & Magazines",
+          "localizedMobileName": "Books & Magazines",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/18",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-books-magazines/v1c18p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 87,
+          "localizedName": "Music & Movies",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Music & Movies",
+          "localizedMobileName": "Music & Movies",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/87",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-music-movies/v1c87p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 264,
+          "localizedName": "Tickets",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Tickets",
+          "localizedMobileName": "Tickets",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/264",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-tickets/v1c264p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 50,
+          "localizedName": "Miscellaneous Goods",
+          "parentId": 4,
+          "level": "L2",
+          "description": "Miscellaneous Goods",
+          "localizedMobileName": "Miscellaneous Goods",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/50",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-miscellaneous-goods/v1c50p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/4",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-stuff-for-sale/v1c4p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "localizedName": "Property",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Property",
+      "localizedMobileName": "Property",
+      "children": [
+        {
+          "id": 10,
+          "localizedName": "Room for Rent & Flat Share",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Room for Rent & Flat Share",
+          "localizedMobileName": "Room for Rent & Flat Share",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/10",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-room-for-rent-flat-share/v1c10p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 12,
+          "localizedName": "Property for Rent",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Property for Rent",
+          "localizedMobileName": "Property for Rent",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/12",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-property-for-rent/v1c12p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 38,
+          "localizedName": "Properties for Sale",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Properties for Sale",
+          "localizedMobileName": "Properties for Sale",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/38",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-properties-for-sale/v1c38p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 13,
+          "localizedName": "Commercial Property",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Commercial Property",
+          "localizedMobileName": "Commercial Property",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/13",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-commercial-property/v1c13p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 37,
+          "localizedName": "Car Park & Storage",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Car Park & Storage",
+          "localizedMobileName": "Car Park & Storage",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/37",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-car-park-storage/v1c37p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 40,
+          "localizedName": "Other Property",
+          "parentId": 2,
+          "level": "L2",
+          "description": "Other Property",
+          "localizedMobileName": "Other Property",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/40",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-other-property/v1c40p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/2",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-property/v1c2p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "localizedName": "Jobs",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Jobs",
+      "localizedMobileName": "Jobs",
+      "children": [
+        {
+          "id": 79,
+          "localizedName": "Permanent / Full-time Jobs",
+          "parentId": 8,
+          "level": "L2",
+          "description": "Permanent / Full-time Jobs",
+          "localizedMobileName": "Permanent / Full-time Jobs",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/79",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-permanent-full+time-jobs/v1c79p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 75,
+          "localizedName": "Ad-hoc / Part-time Jobs",
+          "parentId": 8,
+          "level": "L2",
+          "description": "Ad-hoc / Part-time Jobs",
+          "localizedMobileName": "Ad-hoc / Part-time Jobs",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/75",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-part+time-ad+hoc-jobs/v1c75p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 282,
+          "localizedName": "Post your resume (For job seeker)",
+          "parentId": 8,
+          "level": "L2",
+          "description": "Post your resume (For job seeker)",
+          "localizedMobileName": "Post your resume (For job seeker)",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/282",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-post-your-resume/v1c282p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/8",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-jobs/v1c8p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "localizedName": "Business Services",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Business Services",
+      "localizedMobileName": "Business Services",
+      "children": [
+        {
+          "id": 33,
+          "localizedName": "Building & Trades",
+          "parentId": 9,
+          "level": "L2",
+          "description": "Building & Trades",
+          "localizedMobileName": "Building & Trades",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/33",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-building-trades/v1c33p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 34,
+          "localizedName": "Computer,Telecom & Freelance",
+          "parentId": 9,
+          "level": "L2",
+          "description": "Computer,Telecom & Freelance",
+          "localizedMobileName": "Computer,Telecom & Freelance",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/34",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-computer-telecom-freelance/v1c34p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 35,
+          "localizedName": "Health & Beauty / Well-being",
+          "parentId": 9,
+          "level": "L2",
+          "description": "Health & Beauty / Well-being",
+          "localizedMobileName": "Health & Beauty / Well-being",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/35",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-health-beauty-well-being/v1c35p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 36,
+          "localizedName": "Other Business Services",
+          "parentId": 9,
+          "level": "L2",
+          "description": "Other Business Services",
+          "localizedMobileName": "Other Business Services",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/36",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-other-business-services/v1c36p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/9",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-business-services/v1c9p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "localizedName": "Cars & Vehicles",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Cars & Vehicles",
+      "localizedMobileName": "Cars & Vehicles",
+      "children": [
+        {
+          "id": 19,
+          "localizedName": "Cars",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Cars",
+          "localizedMobileName": "Cars",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/19",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-new-used-rental-cars/v1c19p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 84,
+          "localizedName": "Vans & Campervans",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Vans & Campervans",
+          "localizedMobileName": "Vans & Campervans",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/84",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-vans-campervans/v1c84p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 20,
+          "localizedName": "Motorbikes & Scooters",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Motorbikes & Scooters",
+          "localizedMobileName": "Motorbikes & Scooters",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/20",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-motorcycles-scooters-motorbikes/v1c20p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 85,
+          "localizedName": "Trucks",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Trucks",
+          "localizedMobileName": "Trucks",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/85",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-trucks/v1c85p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 51,
+          "localizedName": "Car Parts",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Car Parts",
+          "localizedMobileName": "Car Parts",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/51",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-car-parts-accessories/v1c51p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 52,
+          "localizedName": "Other Cars",
+          "parentId": 5,
+          "level": "L2",
+          "description": "Other Cars",
+          "localizedMobileName": "Other Cars",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/52",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-other-cars/v1c52p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/5",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-cars-vehicles/v1c5p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "localizedName": "Community",
+      "parentId": 0,
+      "level": "L1",
+      "description": "Community",
+      "localizedMobileName": "Community",
+      "children": [
+        {
+          "id": 21,
+          "localizedName": "Activities & Hobbies",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Activities & Hobbies",
+          "localizedMobileName": "Activities & Hobbies",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/21",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-activities-hobbies/v1c21p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 22,
+          "localizedName": "Classes & Courses",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Classes & Courses",
+          "localizedMobileName": "Classes & Courses",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/22",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-classes-courses/v1c22p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 261,
+          "localizedName": "Events",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Events",
+          "localizedMobileName": "Events",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/261",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-events/v1c261p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 262,
+          "localizedName": "Garage Sale",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Garage Sale",
+          "localizedMobileName": "Garage Sale",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/262",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-garage-sale/v1c262p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 57,
+          "localizedName": "Language Swap",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Language Swap",
+          "localizedMobileName": "Language Swap",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/57",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-language-swap/v1c57p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 53,
+          "localizedName": "Lost and Found",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Lost and Found",
+          "localizedMobileName": "Lost and Found",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/53",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-lost-and-found/v1c53p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 263,
+          "localizedName": "Missed Connections",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Missed Connections",
+          "localizedMobileName": "Missed Connections",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/263",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-missed-connections/v1c263p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 54,
+          "localizedName": "Musicians & Artists",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Musicians & Artists",
+          "localizedMobileName": "Musicians & Artists",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/54",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-musicians-artists/v1c54p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 55,
+          "localizedName": "Pets",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Pets",
+          "localizedMobileName": "Pets",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/55",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pets/v1c55p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 56,
+          "localizedName": "Rideshare",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Rideshare",
+          "localizedMobileName": "Rideshare",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/56",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-rideshare/v1c56p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 58,
+          "localizedName": "Sports Partners",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Sports Partners",
+          "localizedMobileName": "Sports Partners",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/58",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sports-partners/v1c58p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 59,
+          "localizedName": "Travel Partners",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Travel Partners",
+          "localizedMobileName": "Travel Partners",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/59",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-travel-partners/v1c59p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 60,
+          "localizedName": "Other Community",
+          "parentId": 6,
+          "level": "L2",
+          "description": "Other Community",
+          "localizedMobileName": "Other Community",
+          "children": [],
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/categories/60",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-other-community/v1c60p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/categories/6",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-community/v1c6p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/categories/0",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

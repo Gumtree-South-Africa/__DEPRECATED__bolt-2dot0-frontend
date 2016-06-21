@@ -4,7 +4,10 @@
 // Component Tasks : to create components
 // Script to create: gulp component -n [name-of-the-component]
 // ///////////////////////////////////////////////
-var del = require('del');
+var argv = require('yargs').argv,
+    del = require('del'),
+    path = require('path'),
+    walkdir = require('walkdir');
 
 module.exports = function watch(gulp, plugins) {
   return function (){

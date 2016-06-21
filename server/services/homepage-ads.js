@@ -9,7 +9,7 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @constructor
  */
 var HomepageAdService = function() {
-	this.bapiOptions =	bapiOptions;
+	this.bapiOptions = bapiOptions;
 };
 
 /**
@@ -21,7 +21,7 @@ HomepageAdService.prototype.getHomepageGallery = function(bapiHeaders) {
 	// Prepare BAPI call
 	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery');
-	
+
 	// Invoke BAPI
 	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
@@ -35,7 +35,7 @@ HomepageAdService.prototype.getAjaxGallery = function(bapiHeaders, offset, limit
 	// Prepare BAPI call
 	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.homepageGallery') + "?offset=" + offset + "&limit=" + limit;
-	
+
 	// Invoke BAPI
 	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'homepageGallery');
 };
@@ -49,7 +49,7 @@ HomepageAdService.prototype.getAdStatistics = function(bapiHeaders) {
 	// Prepare BAPI call
 	this.bapiOptions.method = 'GET';
 	this.bapiOptions.path = config.get('BAPI.endpoints.adStatistics');
-	
+
 	// Invoke BAPI
 	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'adStatistics');
 };
