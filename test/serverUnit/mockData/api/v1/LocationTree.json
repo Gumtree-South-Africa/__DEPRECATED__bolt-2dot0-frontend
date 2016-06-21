@@ -1,0 +1,408 @@
+{
+    "id": 201,
+    "localizedName": "South Africa",
+    "level": "L0",
+    "isLeaf": false,
+    "children":
+    [
+        {
+            "id": 3100001,
+            "parentId": 201,
+            "localizedName": "Western Cape",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100010,
+                    "parentId": 3100001,
+                    "localizedName": "West Coast",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                        {
+                            "id": 3100061,
+                            "parentId": 3100010,
+                            "localizedName": "Blouberg",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100061",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-blouberg/v1l3100061p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100326,
+                            "parentId": 3100010,
+                            "localizedName": "Cederberg",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100326",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-cederberg/v1l3100326p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100327,
+                            "parentId": 3100010,
+                            "localizedName": "Citrusdal",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100327",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-citrusdal/v1l3100327p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100328,
+                            "parentId": 3100010,
+                            "localizedName": "Clanwilliam",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100328",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-clanwilliam/v1l3100328p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100532,
+                            "parentId": 3100010,
+                            "localizedName": "Flamingo Vlei",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100532",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-flamingo-vlei/v1l3100532p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100062,
+                            "parentId": 3100010,
+                            "localizedName": "Langebaan",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100062",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-langebaan/v1l3100062p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100063,
+                            "parentId": 3100010,
+                            "localizedName": "Melkbosstrand",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100063",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-melkbosstrand/v1l3100063p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100064,
+                            "parentId": 3100010,
+                            "localizedName": "Milnerton",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100064",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-milnerton/v1l3100064p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100547,
+                            "parentId": 3100010,
+                            "localizedName": "Other",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100547",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-other/v1l3100547p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100530,
+                            "parentId": 3100010,
+                            "localizedName": "Parklands",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100530",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-parklands/v1l3100530p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100535,
+                            "parentId": 3100010,
+                            "localizedName": "Redelinghuys",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100535",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-redelinghuys/v1l3100535p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100330,
+                            "parentId": 3100010,
+                            "localizedName": "Saldanha",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100330",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-saldanha/v1l3100330p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100529,
+                            "parentId": 3100010,
+                            "localizedName": "Tableview",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100529",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-tableview/v1l3100529p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100208,
+                            "parentId": 3100010,
+                            "localizedName": "Vanrhynsdorp - North",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100208",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-vanrhynsdorp-+-north/v1l3100208p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100331,
+                            "parentId": 3100010,
+                            "localizedName": "Velddrif",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100331",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-velddrif/v1l3100331p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100332,
+                            "parentId": 3100010,
+                            "localizedName": "Vredendal",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100332",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-vredendal/v1l3100332p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        },
+                        {
+                            "id": 3100333,
+                            "parentId": 3100010,
+                            "localizedName": "West Beach",
+                            "level": "L3",
+                            "isLeaf": true,
+                            "_links":
+                            [
+                                {
+                                    "rel": "self",
+                                    "href": "/locations/3100333",
+                                    "method": "GET"
+                                },
+                                {
+                                    "rel": "search",
+                                    "href": "/s-west-beach/v1l3100333p1",
+                                    "method": "GET"
+                                }
+                            ]
+                        }
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100010",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-west-coast/v1l3100010p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100001",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-western-cape/v1l3100001p1",
+                    "method": "GET"
+                }
+            ]
+        }
+    ],
+    "_links":
+    [
+        {
+            "rel": "self",
+            "href": "/locations/201",
+            "method": "GET"
+        },
+        {
+            "rel": "search",
+            "href": "/s-all-the-ads/v1b0p1",
+            "method": "GET"
+        }
+    ]
+}

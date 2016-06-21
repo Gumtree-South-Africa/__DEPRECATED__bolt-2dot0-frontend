@@ -14,7 +14,7 @@ module.exports = function(siteApp, requestId) {
     var Cache = CacheBapiData(siteApp, requestId);
 
     // Load Config Data from BAPI
-    Cache.loadConfigData();
+    return Cache.loadConfigData();
 };
 
 /**
@@ -36,7 +36,7 @@ function CacheBapiData(siteApp, requestId) {
         var filteredData;
 
         // Load Location Data from BAPI
-        Q(locationService.getLocationsData(bapiHeaders, locationDepth))
+        return Q(locationService.getLocationsData(bapiHeaders, locationDepth))
             .then(function (dataReturned) {
                 siteApp.locals.config.locationData = dataReturned;
 
@@ -58,7 +58,7 @@ function CacheBapiData(siteApp, requestId) {
         var filteredData, flattenedData;
 
         // Load Category Data from BAPI
-        Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
+        return Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
             .then(function (dataReturned) {
                 siteApp.locals.config.categoryData = dataReturned;
 
@@ -87,7 +87,8 @@ function CacheBapiData(siteApp, requestId) {
             bapiHeaders.locale = siteApp.locals.config.locale;
 
             // Load Config Data from BAPI
-            Q(configService.getConfigData(bapiHeaders))
+	        // Actually return the promise so we know when the app is ready to start.
+            return Q(configService.getConfigData(bapiHeaders))
               .then(function (dataReturned) {
                 if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
@@ -99,13 +100,21 @@ function CacheBapiData(siteApp, requestId) {
                 var categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;
 
                 // Load Location Data from BAPI
-                loadLocationData(bapiHeaders, locationDropdownLevel);
+	              let locations = loadLocationData(bapiHeaders, locationDropdownLevel);
 
                 // Load Category Data from BAPI
-                loadCategoryData(bapiHeaders, categoryDropdownLevel);
-            }).fail(function (err) {
+	              let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
+	              return Q.all([locations, categories]);
+            }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
                 siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+                  let locationDropdownLevel = siteApp.locals.config.bapiConfigData.header.locationDropdownLevel;
+                  let categoryDropdownLevel = siteApp.locals.config.bapiConfigData.header.categoryDropdownLevel;
+                  let locations = loadLocationData(bapiHeaders, locationDropdownLevel);
+
+                // Load Category Data from BAPI
+	              let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
+	              return Q.all([locations, categories]);
             });
         }
 

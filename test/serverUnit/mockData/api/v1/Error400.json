@@ -1,0 +1,13 @@
+{
+	"statusCode": 400,
+	"message": "Bad Request",
+	"details": [
+		{
+			"code": "BAD_REQUEST",
+			"message": "Invalid request parameters",
+			"_links": [
+				{ "ref": "help", "href": "/docs/errorCodes.html#NOT_FOUND" }
+			]
+		}
+	]
+}

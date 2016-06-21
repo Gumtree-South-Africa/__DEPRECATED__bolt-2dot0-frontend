@@ -1,0 +1,13 @@
+{
+	"statusCode": 403,
+	"message": "Forbidden",
+	"details": [
+		{
+			"code": "FORBIDDEN",
+			"message": "Resource not enabled",
+			"_links": [
+				{ "ref": "help", "href": "/docs/errorCodes.html#FORBIDDEN" }
+			]
+		}
+	]
+}

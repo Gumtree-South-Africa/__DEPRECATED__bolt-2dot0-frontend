@@ -1,0 +1,78 @@
+[
+  {
+    "id": 3100010,
+    "parentId": 3100001,
+    "localizedName": "West Coast",
+    "level": "L2",
+    "isLeaf": false,
+    "_links": [
+      {
+        "rel": "self",
+        "href": "/locations/3100010",
+        "method": "GET"
+      },
+      {
+        "rel": "search",
+        "href": "/s-west-coast/v1l3100010p1",
+        "method": "GET"
+      }
+    ]
+  },
+  {
+    "id": 3200010,
+    "parentId": 3200001,
+    "localizedName": "East Coast",
+    "level": "L2",
+    "isLeaf": false,
+    "_links": [
+      {
+        "rel": "self",
+        "href": "/locations/3200010",
+        "method": "GET"
+      },
+      {
+        "rel": "search",
+        "href": "/s-east-coast/v1l3200010p1",
+        "method": "GET"
+      }
+    ]
+  },
+  {
+    "id": 3300010,
+    "parentId": 3200001,
+    "localizedName": "South Coast",
+    "level": "L2",
+    "isLeaf": false,
+    "_links": [
+      {
+        "rel": "self",
+        "href": "/locations/3300010",
+        "method": "GET"
+      },
+      {
+        "rel": "search",
+        "href": "/s-south-coast/v1l3300010p1",
+        "method": "GET"
+      }
+    ]
+  },
+  {
+    "id": 3400010,
+    "parentId": 3100001,
+    "localizedName": "North Coast",
+    "level": "L2",
+    "isLeaf": false,
+    "_links": [
+      {
+        "rel": "self",
+        "href": "/locations/3400010",
+        "method": "GET"
+      },
+      {
+        "rel": "search",
+        "href": "/s-north-coast/v1l3400010p1",
+        "method": "GET"
+      }
+    ]
+  }  
+]

@@ -1,0 +1,760 @@
+{
+  "id": 2800001,
+  "localizedName": "Singapore",
+  "level": "L0",
+  "isLeaf": false,
+  "children": [
+    {
+      "id": 2800017,
+      "parentId": 2800001,
+      "localizedName": "Balestier / Geylang (D12-14)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800018,
+          "parentId": 2800017,
+          "localizedName": "D12 - Balestier / Toa Payoh",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800018",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-balestier-toa-payoh/v1l2800018p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800019,
+          "parentId": 2800017,
+          "localizedName": "D13 - Macpherson / Potong Pasir",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800019",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-macpherson-potong-pasir/v1l2800019p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800020,
+          "parentId": 2800017,
+          "localizedName": "D14 - Eunos / Geylang / Paya Lebar",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800020",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-eunos-geylang-paya-lebar/v1l2800020p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800017",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-balestier-geylang/v1l2800017p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800024,
+      "parentId": 2800001,
+      "localizedName": "Changi / Pasir Ris (D17-18)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800025,
+          "parentId": 2800024,
+          "localizedName": "D17 - Changi Airport / Changi Village",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800025",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-changi-airport-changi-village/v1l2800025p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800026,
+          "parentId": 2800024,
+          "localizedName": "D18 - Pasir Ris / Tampines",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800026",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-pasir-ris-tampines/v1l2800026p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800024",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-changi-pasir-ris/v1l2800024p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800002,
+      "parentId": 2800001,
+      "localizedName": "City & South West (D01-08)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800003,
+          "parentId": 2800002,
+          "localizedName": "D1 - Boat Quay / Raffles Place",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800003",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-boat-quay-raffles-place/v1l2800003p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800004,
+          "parentId": 2800002,
+          "localizedName": "D2 - Chinatown / Tanjong Pagar",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800004",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-chinatown-tanjong-pagar/v1l2800004p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800005,
+          "parentId": 2800002,
+          "localizedName": "D3 - Alexandra / Commonwealth",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800005",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-alexandra-commonwealth/v1l2800005p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800006,
+          "parentId": 2800002,
+          "localizedName": "D4 - Harbourfront / Telok Blangah",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800006",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-harbourfront-telok-blangah/v1l2800006p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800007,
+          "parentId": 2800002,
+          "localizedName": "D5 - Buona Vista / West Coast",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800007",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-buona-vista-west-coast/v1l2800007p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800008,
+          "parentId": 2800002,
+          "localizedName": "D6 - City Hall / Clarke Quay",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800008",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-city-hall-clarke-quay/v1l2800008p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800009,
+          "parentId": 2800002,
+          "localizedName": "D7 - Beach Road / Bugis / Rochor",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800009",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-beach-road-bugis-rochor/v1l2800009p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800010,
+          "parentId": 2800002,
+          "localizedName": "D8 - Farrer Park / Serangoon Rd",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800010",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-farrer-park-serangoon-rd/v1l2800010p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800002",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-city-south-west/v1l2800002p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800021,
+      "parentId": 2800001,
+      "localizedName": "East Coast (D15-16)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800022,
+          "parentId": 2800021,
+          "localizedName": "D15 - East Coast / Marine Parade",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800022",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-east-coast-marine-parade/v1l2800022p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800023,
+          "parentId": 2800021,
+          "localizedName": "D16 - Bedok / Upper East Coast",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800023",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bedok-upper-east-coast/v1l2800023p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800021",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-east-coast/v1l2800021p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800039,
+      "parentId": 2800001,
+      "localizedName": "Johor - Malaysia",
+      "level": "L1",
+      "isLeaf": true,
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800039",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-johor-malaysia/v1l2800039p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800014,
+      "parentId": 2800001,
+      "localizedName": "Newton / Bt. Timah (D11,21)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800015,
+          "parentId": 2800014,
+          "localizedName": "D11 - Newton / Novena",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800015",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-newton-novena/v1l2800015p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800016,
+          "parentId": 2800014,
+          "localizedName": "D21 - Clementi / Upper Bukit Timah",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800016",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-clementi-upper-bukit-timah/v1l2800016p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800014",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-newton-bt-timah/v1l2800014p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800034,
+      "parentId": 2800001,
+      "localizedName": "North (D25-28)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800035,
+          "parentId": 2800034,
+          "localizedName": "D25 - Admiralty / Woodlands",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800035",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-admiralty-woodlands/v1l2800035p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800036,
+          "parentId": 2800034,
+          "localizedName": "D26 - Mandai / Upper Thomson",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800036",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-mandai-upper-thomson/v1l2800036p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800037,
+          "parentId": 2800034,
+          "localizedName": "D27 - Sembawang / Yishun",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800037",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-sembawang-yishun/v1l2800037p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800038,
+          "parentId": 2800034,
+          "localizedName": "D28 - Seletar / Yio Chu Kang",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800038",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-seletar-yio-chu-kang/v1l2800038p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800034",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-north/v1l2800034p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800011,
+      "parentId": 2800001,
+      "localizedName": "Orchard / Holland (D09-10)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800013,
+          "parentId": 2800011,
+          "localizedName": "D10 - Tanglin / Holland",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800013",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-tanglin-holland/v1l2800013p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800012,
+          "parentId": 2800011,
+          "localizedName": "D9 - Orchard / River Valley",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800012",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-orchard-river-valley/v1l2800012p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800011",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-orchard-holland/v1l2800011p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800027,
+      "parentId": 2800001,
+      "localizedName": "Serangoon / Thomson (D19-20)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800028,
+          "parentId": 2800027,
+          "localizedName": "D19 - Hougang / Punggol / Sengkang",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800028",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-hougang-punggol-sengkang/v1l2800028p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800029,
+          "parentId": 2800027,
+          "localizedName": "D20 - Ang Mo Kio / Bishan / Thomson",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800029",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-ang-mo-kio-bishan-thomson/v1l2800029p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800027",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-serangoon-thomson/v1l2800027p1",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 2800030,
+      "parentId": 2800001,
+      "localizedName": "West (D22-24)",
+      "level": "L1",
+      "isLeaf": false,
+      "children": [
+        {
+          "id": 2800031,
+          "parentId": 2800030,
+          "localizedName": "D22 - Boon Lay / Jurong / Tuas",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800031",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-boon-lay-jurong-tuas/v1l2800031p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800032,
+          "parentId": 2800030,
+          "localizedName": "D23 - Bukit Batok / Bukit Panjang",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800032",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-bukit-batok-bukit-panjang/v1l2800032p1",
+              "method": "GET"
+            }
+          ]
+        },
+        {
+          "id": 2800033,
+          "parentId": 2800030,
+          "localizedName": "D24 - Choa Chu Kang / Tengah",
+          "level": "L2",
+          "isLeaf": true,
+          "_links": [
+            {
+              "rel": "self",
+              "href": "/locations/2800033",
+              "method": "GET"
+            },
+            {
+              "rel": "search",
+              "href": "/s-choa-chu-kang-tengah/v1l2800033p1",
+              "method": "GET"
+            }
+          ]
+        }
+      ],
+      "_links": [
+        {
+          "rel": "self",
+          "href": "/locations/2800030",
+          "method": "GET"
+        },
+        {
+          "rel": "search",
+          "href": "/s-west/v1l2800030p1",
+          "method": "GET"
+        }
+      ]
+    }
+  ],
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/locations/2800001",
+      "method": "GET"
+    },
+    {
+      "rel": "search",
+      "href": "/s-all-the-ads/v1b0p1",
+      "method": "GET"
+    }
+  ]
+}

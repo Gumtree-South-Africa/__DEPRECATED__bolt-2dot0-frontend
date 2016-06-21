@@ -4178,7 +4178,6 @@ jQuery.each( jQuery.expr.match.boolean.source.match( /\w+/g ), function( i, name
 		var fn = jQuery.expr.attrHandle[ name ],
 			ret = isXML ?
 				undefined :
-				/* jshint eqeqeq: false */
 				// Temporarily disable this handler to check existence
 				(jQuery.expr.attrHandle[ name ] = undefined) !=
 					getter( elem, name, isXML ) ?
@@ -5319,7 +5318,6 @@ jQuery.extend({
 function winnow( elements, qualifier, not ) {
 	if ( jQuery.isFunction( qualifier ) ) {
 		return jQuery.grep( elements, function( elem, i ) {
-			/* jshint -W018 */
 			return !!qualifier.call( elem, i, elem ) !== not;
 		});
 
@@ -8025,7 +8023,6 @@ jQuery.Animation = jQuery.extend( Animation, {
 });
 
 function defaultPrefilter( elem, props, opts ) {
-	/* jshint validthis: true */
 	var index, prop, value, length, dataShow, toggle, tween, hooks, oldfire,
 		anim = this,
 		style = elem.style,

@@ -1,0 +1,4584 @@
+{
+    "id": 201,
+    "localizedName": "South Africa",
+    "level": "L0",
+    "isLeaf": false,
+    "children":
+    [
+        {
+            "id": 3100197,
+            "parentId": 201,
+            "localizedName": "Eastern Cape",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100611,
+                    "parentId": 3100197,
+                    "localizedName": "Adelaide",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100611",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-adelaide/v1l3100611p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100612,
+                    "parentId": 3100197,
+                    "localizedName": "Alice",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100612",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-alice/v1l3100612p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100610,
+                    "parentId": 3100197,
+                    "localizedName": "Aliwal North",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100610",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-aliwal-north/v1l3100610p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100613,
+                    "parentId": 3100197,
+                    "localizedName": "Barkly East",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100613",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-barkly-east/v1l3100613p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100299,
+                    "parentId": 3100197,
+                    "localizedName": "Bhisho",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100299",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bhisho/v1l3100299p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100614,
+                    "parentId": 3100197,
+                    "localizedName": "Bizana",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100614",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bizana/v1l3100614p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100615,
+                    "parentId": 3100197,
+                    "localizedName": "Burgersdorp",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100615",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-burgersdorp/v1l3100615p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100616,
+                    "parentId": 3100197,
+                    "localizedName": "Butterworth",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100616",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-butterworth/v1l3100616p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100474,
+                    "parentId": 3100197,
+                    "localizedName": "Coffee Bay",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100474",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-coffee-bay/v1l3100474p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100470,
+                    "parentId": 3100197,
+                    "localizedName": "Cradock",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100470",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-cradock/v1l3100470p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100300,
+                    "parentId": 3100197,
+                    "localizedName": "East London",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100300",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-east-london/v1l3100300p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100617,
+                    "parentId": 3100197,
+                    "localizedName": "Elliot",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100617",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-elliot/v1l3100617p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100618,
+                    "parentId": 3100197,
+                    "localizedName": "Flagstaff",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100618",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-flagstaff/v1l3100618p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100619,
+                    "parentId": 3100197,
+                    "localizedName": "Fort Beaufort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100619",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-fort-beaufort/v1l3100619p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100620,
+                    "parentId": 3100197,
+                    "localizedName": "Graaff-Reinet",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100620",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-graaff+reinet/v1l3100620p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100471,
+                    "parentId": 3100197,
+                    "localizedName": "Grahamstown",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100471",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-grahamstown/v1l3100471p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100621,
+                    "parentId": 3100197,
+                    "localizedName": "Jansenville",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100621",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-jansenville/v1l3100621p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100301,
+                    "parentId": 3100197,
+                    "localizedName": "Jeffreys Bay",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100301",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-jeffreys-bay/v1l3100301p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100622,
+                    "parentId": 3100197,
+                    "localizedName": "Kareedouw",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100622",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kareedouw/v1l3100622p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100623,
+                    "parentId": 3100197,
+                    "localizedName": "Kirkwood",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100623",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kirkwood/v1l3100623p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100302,
+                    "parentId": 3100197,
+                    "localizedName": "Mdantsane",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100302",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mdantsane/v1l3100302p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100624,
+                    "parentId": 3100197,
+                    "localizedName": "Middelburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100624",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-middelburg/v1l3100624p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100604,
+                    "parentId": 3100197,
+                    "localizedName": "Other Eastern Cape",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100604",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-eastern-cape/v1l3100604p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100625,
+                    "parentId": 3100197,
+                    "localizedName": "Port Alfred",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100625",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-port-alfred/v1l3100625p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100306,
+                    "parentId": 3100197,
+                    "localizedName": "Port Elizabeth",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100306",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-port-elizabeth/v1l3100306p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100475,
+                    "parentId": 3100197,
+                    "localizedName": "Port St Johns",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100475",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-port-st-johns/v1l3100475p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100303,
+                    "parentId": 3100197,
+                    "localizedName": "Queenstown",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100303",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-queenstown/v1l3100303p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100626,
+                    "parentId": 3100197,
+                    "localizedName": "Somerset East",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100626",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-somerset-east/v1l3100626p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100627,
+                    "parentId": 3100197,
+                    "localizedName": "Stutterheim",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100627",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-stutterheim/v1l3100627p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100472,
+                    "parentId": 3100197,
+                    "localizedName": "Uitenhage",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100472",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-uitenhage/v1l3100472p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100473,
+                    "parentId": 3100197,
+                    "localizedName": "Umtata / Mthatha",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100473",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-umtata-mthatha/v1l3100473p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100628,
+                    "parentId": 3100197,
+                    "localizedName": "Willowmore",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100628",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-willowmore/v1l3100628p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100476,
+                    "parentId": 3100197,
+                    "localizedName": "Willowvale",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100476",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-willowvale/v1l3100476p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100197",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-eastern-cape/v1l3100197p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100236,
+            "parentId": 201,
+            "localizedName": "Free State",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100456,
+                    "parentId": 3100236,
+                    "localizedName": "Bethlehem",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100456",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bethlehem/v1l3100456p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100460,
+                    "parentId": 3100236,
+                    "localizedName": "Bloemfontein",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100460",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bloemfontein/v1l3100460p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100629,
+                    "parentId": 3100236,
+                    "localizedName": "Botshabelo",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100629",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-botshabelo/v1l3100629p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100630,
+                    "parentId": 3100236,
+                    "localizedName": "Brandfort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100630",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-brandfort/v1l3100630p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100695,
+                    "parentId": 3100236,
+                    "localizedName": "Bultfontein",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100695",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bultfontein/v1l3100695p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100631,
+                    "parentId": 3100236,
+                    "localizedName": "Clocolan",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100631",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-clocolan/v1l3100631p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100632,
+                    "parentId": 3100236,
+                    "localizedName": "Deneysville",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100632",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-deneysville/v1l3100632p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100633,
+                    "parentId": 3100236,
+                    "localizedName": "Frankfort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100633",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-frankfort/v1l3100633p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100457,
+                    "parentId": 3100236,
+                    "localizedName": "Harrismith",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100457",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-harrismith/v1l3100457p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100634,
+                    "parentId": 3100236,
+                    "localizedName": "Heilbron",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100634",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-heilbron/v1l3100634p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100635,
+                    "parentId": 3100236,
+                    "localizedName": "Hennenman",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100635",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hennenman/v1l3100635p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100636,
+                    "parentId": 3100236,
+                    "localizedName": "Hoopstad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100636",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hoopstad/v1l3100636p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100637,
+                    "parentId": 3100236,
+                    "localizedName": "Koffiefontein",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100637",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-koffiefontein/v1l3100637p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100638,
+                    "parentId": 3100236,
+                    "localizedName": "Koppies",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100638",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-koppies/v1l3100638p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100464,
+                    "parentId": 3100236,
+                    "localizedName": "Kroonstad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100464",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kroonstad/v1l3100464p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100639,
+                    "parentId": 3100236,
+                    "localizedName": "Ladybrand",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100639",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ladybrand/v1l3100639p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100606,
+                    "parentId": 3100236,
+                    "localizedName": "Other Free State",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100606",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-free-state/v1l3100606p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100465,
+                    "parentId": 3100236,
+                    "localizedName": "Parys",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100465",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-parys/v1l3100465p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100640,
+                    "parentId": 3100236,
+                    "localizedName": "Phuthaditjhaba",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100640",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-phuthaditjhaba/v1l3100640p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100641,
+                    "parentId": 3100236,
+                    "localizedName": "Reitz",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100641",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-reitz/v1l3100641p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100466,
+                    "parentId": 3100236,
+                    "localizedName": "Sasolburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100466",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-sasolburg/v1l3100466p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100458,
+                    "parentId": 3100236,
+                    "localizedName": "Senekal",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100458",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-senekal/v1l3100458p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100461,
+                    "parentId": 3100236,
+                    "localizedName": "Springfontein",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100461",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-springfontein/v1l3100461p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100462,
+                    "parentId": 3100236,
+                    "localizedName": "Thaba 'Nchu",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100462",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-thaba-nchu/v1l3100462p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100642,
+                    "parentId": 3100236,
+                    "localizedName": "Theunissen",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100642",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-theunissen/v1l3100642p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100643,
+                    "parentId": 3100236,
+                    "localizedName": "Viljoenskroon",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100643",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-viljoenskroon/v1l3100643p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100468,
+                    "parentId": 3100236,
+                    "localizedName": "Virginia",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100468",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-virginia/v1l3100468p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100644,
+                    "parentId": 3100236,
+                    "localizedName": "Vrede",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100644",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-vrede/v1l3100644p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100645,
+                    "parentId": 3100236,
+                    "localizedName": "Vredefort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100645",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-vredefort/v1l3100645p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100469,
+                    "parentId": 3100236,
+                    "localizedName": "Welkom",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100469",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-welkom/v1l3100469p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100646,
+                    "parentId": 3100236,
+                    "localizedName": "Wesselsbron",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100646",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-wesselsbron/v1l3100646p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100647,
+                    "parentId": 3100236,
+                    "localizedName": "Winburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100647",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-winburg/v1l3100647p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100236",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-free-state/v1l3100236p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100003,
+            "parentId": 201,
+            "localizedName": "Gauteng",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100250,
+                    "parentId": 3100003,
+                    "localizedName": "East Rand",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100250",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-east-rand/v1l3100250p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100090,
+                    "parentId": 3100003,
+                    "localizedName": "Johannesburg",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100090",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-johannesburg/v1l3100090p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100094,
+                    "parentId": 3100003,
+                    "localizedName": "Pretoria / Tshwane",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100094",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-pretoria-tshwane/v1l3100094p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100095,
+                    "parentId": 3100003,
+                    "localizedName": "Sedibeng",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100095",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-sedibeng/v1l3100095p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100251,
+                    "parentId": 3100003,
+                    "localizedName": "West Rand",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100251",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-west-rand/v1l3100251p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100003",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-gauteng/v1l3100003p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100002,
+            "parentId": 201,
+            "localizedName": "KwaZulu-Natal",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100185,
+                    "parentId": 3100002,
+                    "localizedName": "Drakensberg",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100185",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-drakensberg/v1l3100185p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100149,
+                    "parentId": 3100002,
+                    "localizedName": "Durban City",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100149",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-durban-city/v1l3100149p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100184,
+                    "parentId": 3100002,
+                    "localizedName": "Midlands",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100184",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-midlands/v1l3100184p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100181,
+                    "parentId": 3100002,
+                    "localizedName": "North Coast",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100181",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-north-coast/v1l3100181p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100158,
+                    "parentId": 3100002,
+                    "localizedName": "North Suburbs",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100158",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-north-suburbs/v1l3100158p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100182,
+                    "parentId": 3100002,
+                    "localizedName": "South Coast (Ugu)",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100182",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-south-coast-ugu/v1l3100182p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100166,
+                    "parentId": 3100002,
+                    "localizedName": "South Suburbs",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100166",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-south-suburbs/v1l3100166p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100172,
+                    "parentId": 3100002,
+                    "localizedName": "West Suburbs",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100172",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-west-suburbs/v1l3100172p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100002",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-kwazulu+natal/v1l3100002p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100223,
+            "parentId": 201,
+            "localizedName": "Limpopo",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100677,
+                    "parentId": 3100223,
+                    "localizedName": "Bela-Bela / Warmbad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100677",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bela+bela-warmbad/v1l3100677p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100600,
+                    "parentId": 3100223,
+                    "localizedName": "Dendron",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100600",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-dendron/v1l3100600p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100678,
+                    "parentId": 3100223,
+                    "localizedName": "Giyani",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100678",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-giyani/v1l3100678p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100679,
+                    "parentId": 3100223,
+                    "localizedName": "Lebowakgomo",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100679",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-lebowakgomo/v1l3100679p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100680,
+                    "parentId": 3100223,
+                    "localizedName": "Lephalale / Ellisras",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100680",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-lephalale-ellisras/v1l3100680p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100389,
+                    "parentId": 3100223,
+                    "localizedName": "Louis Trichardt",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100389",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-louis-trichardt/v1l3100389p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100681,
+                    "parentId": 3100223,
+                    "localizedName": "Lulekani",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100681",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-lulekani/v1l3100681p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100682,
+                    "parentId": 3100223,
+                    "localizedName": "Mankweng",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100682",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mankweng/v1l3100682p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100683,
+                    "parentId": 3100223,
+                    "localizedName": "Marblehall",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100683",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-marblehall/v1l3100683p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100225,
+                    "parentId": 3100223,
+                    "localizedName": "Modimolle / Nylstroom",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100225",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-modimolle-nylstroom/v1l3100225p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100684,
+                    "parentId": 3100223,
+                    "localizedName": "Modjadji / Duiwelskloof",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100684",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-modjadji-duiwelskloof/v1l3100684p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100685,
+                    "parentId": 3100223,
+                    "localizedName": "Mokopane / Potgietersrus",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100685",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mokopane-potgietersrus/v1l3100685p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100224,
+                    "parentId": 3100223,
+                    "localizedName": "Musina / Messina",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100224",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-musina-messina/v1l3100224p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100686,
+                    "parentId": 3100223,
+                    "localizedName": "Mutale",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100686",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mutale/v1l3100686p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100687,
+                    "parentId": 3100223,
+                    "localizedName": "Nkowankowa",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100687",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-nkowankowa/v1l3100687p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100567,
+                    "parentId": 3100223,
+                    "localizedName": "Other Limpopo",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100567",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-limpopo/v1l3100567p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100387,
+                    "parentId": 3100223,
+                    "localizedName": "Phalaborwa",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100387",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-phalaborwa/v1l3100387p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100226,
+                    "parentId": 3100223,
+                    "localizedName": "Polokwane / Pietersburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100226",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-polokwane-pietersburg/v1l3100226p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100688,
+                    "parentId": 3100223,
+                    "localizedName": "Soekmekaar",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100688",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-soekmekaar/v1l3100688p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100689,
+                    "parentId": 3100223,
+                    "localizedName": "Thabazimbi",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100689",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-thabazimbi/v1l3100689p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100690,
+                    "parentId": 3100223,
+                    "localizedName": "Thohoyandou",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100690",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-thohoyandou/v1l3100690p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100691,
+                    "parentId": 3100223,
+                    "localizedName": "Thulamela",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100691",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-thulamela/v1l3100691p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100388,
+                    "parentId": 3100223,
+                    "localizedName": "Tzaneen",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100388",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-tzaneen/v1l3100388p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100223",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-limpopo/v1l3100223p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100227,
+            "parentId": 201,
+            "localizedName": "Mpumalanga",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100397,
+                    "parentId": 3100227,
+                    "localizedName": "Balfour",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100397",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-balfour/v1l3100397p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100391,
+                    "parentId": 3100227,
+                    "localizedName": "Barberton",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100391",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-barberton/v1l3100391p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100398,
+                    "parentId": 3100227,
+                    "localizedName": "Bethal",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100398",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bethal/v1l3100398p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100648,
+                    "parentId": 3100227,
+                    "localizedName": "Breyten",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100648",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-breyten/v1l3100648p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100392,
+                    "parentId": 3100227,
+                    "localizedName": "Bushbuckridge",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100392",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bushbuckridge/v1l3100392p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100649,
+                    "parentId": 3100227,
+                    "localizedName": "Carolina",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100649",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-carolina/v1l3100649p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100399,
+                    "parentId": 3100227,
+                    "localizedName": "Delmas",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100399",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-delmas/v1l3100399p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100406,
+                    "parentId": 3100227,
+                    "localizedName": "Dullstroom",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100406",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-dullstroom/v1l3100406p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100650,
+                    "parentId": 3100227,
+                    "localizedName": "Ekangala",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100650",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ekangala/v1l3100650p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100405,
+                    "parentId": 3100227,
+                    "localizedName": "eMakhazeni / Belfast",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100405",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-emakhazeni-belfast/v1l3100405p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100651,
+                    "parentId": 3100227,
+                    "localizedName": "Embalenhle",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100651",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-embalenhle/v1l3100651p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100652,
+                    "parentId": 3100227,
+                    "localizedName": "Empuluzi",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100652",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-empuluzi/v1l3100652p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100416,
+                    "parentId": 3100227,
+                    "localizedName": "Ermelo",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100416",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ermelo/v1l3100416p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100400,
+                    "parentId": 3100227,
+                    "localizedName": "Greylingstad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100400",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-greylingstad/v1l3100400p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100653,
+                    "parentId": 3100227,
+                    "localizedName": "Groblersdal",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100653",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-groblersdal/v1l3100653p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100393,
+                    "parentId": 3100227,
+                    "localizedName": "Hazyview",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100393",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hazyview/v1l3100393p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100415,
+                    "parentId": 3100227,
+                    "localizedName": "Hendrina",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100415",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hendrina/v1l3100415p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100654,
+                    "parentId": 3100227,
+                    "localizedName": "Komatipoort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100654",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-komatipoort/v1l3100654p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100401,
+                    "parentId": 3100227,
+                    "localizedName": "Kriel",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100401",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kriel/v1l3100401p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100655,
+                    "parentId": 3100227,
+                    "localizedName": "KwaNgema",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100655",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kwangema/v1l3100655p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100656,
+                    "parentId": 3100227,
+                    "localizedName": "Leslie / Lebogang",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100656",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-leslie-lebogang/v1l3100656p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100407,
+                    "parentId": 3100227,
+                    "localizedName": "Lydenburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100407",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-lydenburg/v1l3100407p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100408,
+                    "parentId": 3100227,
+                    "localizedName": "Machadodorp",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100408",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-machadodorp/v1l3100408p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100394,
+                    "parentId": 3100227,
+                    "localizedName": "Malelane",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100394",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-malelane/v1l3100394p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100395,
+                    "parentId": 3100227,
+                    "localizedName": "Mbombela / Nelspruit",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100395",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mbombela-nelspruit/v1l3100395p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100305,
+                    "parentId": 3100227,
+                    "localizedName": "Middelburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100305",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-middelburg/v1l3100305p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100409,
+                    "parentId": 3100227,
+                    "localizedName": "New-Location",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100409",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-new+location/v1l3100409p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100657,
+                    "parentId": 3100227,
+                    "localizedName": "Ogies / Phola",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100657",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ogies-phola/v1l3100657p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100605,
+                    "parentId": 3100227,
+                    "localizedName": "Other Mpumalanga",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100605",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-mpumalanga/v1l3100605p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100417,
+                    "parentId": 3100227,
+                    "localizedName": "Piet Retief",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100417",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-piet-retief/v1l3100417p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100410,
+                    "parentId": 3100227,
+                    "localizedName": "Sabie",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100410",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-sabie/v1l3100410p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100402,
+                    "parentId": 3100227,
+                    "localizedName": "Secunda",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100402",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-secunda/v1l3100402p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100658,
+                    "parentId": 3100227,
+                    "localizedName": "Siyabuswa",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100658",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-siyabuswa/v1l3100658p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100403,
+                    "parentId": 3100227,
+                    "localizedName": "Standerton",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100403",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-standerton/v1l3100403p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100418,
+                    "parentId": 3100227,
+                    "localizedName": "Volksrust",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100418",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-volksrust/v1l3100418p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100419,
+                    "parentId": 3100227,
+                    "localizedName": "Wakkerstroom",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100419",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-wakkerstroom/v1l3100419p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100404,
+                    "parentId": 3100227,
+                    "localizedName": "Witbank",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100404",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-witbank/v1l3100404p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100396,
+                    "parentId": 3100227,
+                    "localizedName": "Witrivier",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100396",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-witrivier/v1l3100396p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100227",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-mpumalanga/v1l3100227p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100213,
+            "parentId": 201,
+            "localizedName": "Northern Cape",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100494,
+                    "parentId": 3100213,
+                    "localizedName": "Alexander Bay",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100494",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-alexander-bay/v1l3100494p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100486,
+                    "parentId": 3100213,
+                    "localizedName": "Barkly West",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100486",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-barkly-west/v1l3100486p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100491,
+                    "parentId": 3100213,
+                    "localizedName": "Beeshoek",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100491",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-beeshoek/v1l3100491p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100478,
+                    "parentId": 3100213,
+                    "localizedName": "Calvinia",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100478",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-calvinia/v1l3100478p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100664,
+                    "parentId": 3100213,
+                    "localizedName": "Carnarvon",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100664",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-carnarvon/v1l3100664p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100482,
+                    "parentId": 3100213,
+                    "localizedName": "Colesberg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100482",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-colesberg/v1l3100482p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100497,
+                    "parentId": 3100213,
+                    "localizedName": "Danielskuil",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100497",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-danielskuil/v1l3100497p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100483,
+                    "parentId": 3100213,
+                    "localizedName": "De Aar",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100483",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-de-aar/v1l3100483p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100479,
+                    "parentId": 3100213,
+                    "localizedName": "Fraserburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100479",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-fraserburg/v1l3100479p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100665,
+                    "parentId": 3100213,
+                    "localizedName": "Garies",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100665",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-garies/v1l3100665p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100666,
+                    "parentId": 3100213,
+                    "localizedName": "Griekwastad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100666",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-griekwastad/v1l3100666p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100667,
+                    "parentId": 3100213,
+                    "localizedName": "Groblershoop",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100667",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-groblershoop/v1l3100667p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100487,
+                    "parentId": 3100213,
+                    "localizedName": "Hartswater",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100487",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hartswater/v1l3100487p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100488,
+                    "parentId": 3100213,
+                    "localizedName": "Jan Kempdorp",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100488",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-jan-kempdorp/v1l3100488p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100668,
+                    "parentId": 3100213,
+                    "localizedName": "Kathu",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100668",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kathu/v1l3100668p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100498,
+                    "parentId": 3100213,
+                    "localizedName": "Keimoes",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100498",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-keimoes/v1l3100498p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100489,
+                    "parentId": 3100213,
+                    "localizedName": "Kimberley",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100489",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kimberley/v1l3100489p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100492,
+                    "parentId": 3100213,
+                    "localizedName": "Kuruman",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100492",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-kuruman/v1l3100492p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100669,
+                    "parentId": 3100213,
+                    "localizedName": "Mier",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100669",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mier/v1l3100669p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100602,
+                    "parentId": 3100213,
+                    "localizedName": "Other Northern Cape",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100602",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-northern-cape/v1l3100602p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100670,
+                    "parentId": 3100213,
+                    "localizedName": "Pampierstad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100670",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-pampierstad/v1l3100670p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100499,
+                    "parentId": 3100213,
+                    "localizedName": "Pofadder",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100499",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-pofadder/v1l3100499p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100671,
+                    "parentId": 3100213,
+                    "localizedName": "Port Nolloth",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100671",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-port-nolloth/v1l3100671p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100500,
+                    "parentId": 3100213,
+                    "localizedName": "Postmasburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100500",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-postmasburg/v1l3100500p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100672,
+                    "parentId": 3100213,
+                    "localizedName": "Prieska",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100672",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-prieska/v1l3100672p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100673,
+                    "parentId": 3100213,
+                    "localizedName": "Ritchie",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100673",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ritchie/v1l3100673p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100495,
+                    "parentId": 3100213,
+                    "localizedName": "Springbok",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100495",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-springbok/v1l3100495p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100674,
+                    "parentId": 3100213,
+                    "localizedName": "Strydenburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100674",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-strydenburg/v1l3100674p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100480,
+                    "parentId": 3100213,
+                    "localizedName": "Sutherland",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100480",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-sutherland/v1l3100480p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100501,
+                    "parentId": 3100213,
+                    "localizedName": "Upington",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100501",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-upington/v1l3100501p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100675,
+                    "parentId": 3100213,
+                    "localizedName": "Vanderkloof",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100675",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-vanderkloof/v1l3100675p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100484,
+                    "parentId": 3100213,
+                    "localizedName": "Victoria West",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100484",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-victoria-west/v1l3100484p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100676,
+                    "parentId": 3100213,
+                    "localizedName": "Warrenton",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100676",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-warrenton/v1l3100676p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100213",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-northern-cape/v1l3100213p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100231,
+            "parentId": 201,
+            "localizedName": "North West",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100503,
+                    "parentId": 3100231,
+                    "localizedName": "Bloemhof",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100503",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bloemhof/v1l3100503p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100524,
+                    "parentId": 3100231,
+                    "localizedName": "Bray",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100524",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-bray/v1l3100524p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100517,
+                    "parentId": 3100231,
+                    "localizedName": "Brits",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100517",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-brits/v1l3100517p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100504,
+                    "parentId": 3100231,
+                    "localizedName": "Christiana",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100504",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-christiana/v1l3100504p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100512,
+                    "parentId": 3100231,
+                    "localizedName": "Delareyville",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100512",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-delareyville/v1l3100512p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100692,
+                    "parentId": 3100231,
+                    "localizedName": "Fochville",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100692",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-fochville/v1l3100692p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100518,
+                    "parentId": 3100231,
+                    "localizedName": "Hartbeespoort",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100518",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-hartbeespoort/v1l3100518p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100505,
+                    "parentId": 3100231,
+                    "localizedName": "Klerksdorp",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100505",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-klerksdorp/v1l3100505p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100519,
+                    "parentId": 3100231,
+                    "localizedName": "Koster",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100519",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-koster/v1l3100519p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100513,
+                    "parentId": 3100231,
+                    "localizedName": "Lichtenburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100513",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-lichtenburg/v1l3100513p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100520,
+                    "parentId": 3100231,
+                    "localizedName": "Mabopane",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100520",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mabopane/v1l3100520p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100522,
+                    "parentId": 3100231,
+                    "localizedName": "Magaliesburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100522",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-magaliesburg/v1l3100522p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100514,
+                    "parentId": 3100231,
+                    "localizedName": "Mahikeng / Mafikeng",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100514",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mahikeng-mafikeng/v1l3100514p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100659,
+                    "parentId": 3100231,
+                    "localizedName": "Mmbatho",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100659",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mmbatho/v1l3100659p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100660,
+                    "parentId": 3100231,
+                    "localizedName": "Mogwase",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100660",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mogwase/v1l3100660p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100661,
+                    "parentId": 3100231,
+                    "localizedName": "Mothibistad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100661",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-mothibistad/v1l3100661p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100506,
+                    "parentId": 3100231,
+                    "localizedName": "Orkney",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100506",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-orkney/v1l3100506p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100603,
+                    "parentId": 3100231,
+                    "localizedName": "Other North West",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100603",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-other-north-west/v1l3100603p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100693,
+                    "parentId": 3100231,
+                    "localizedName": "Ottosdal / Letsopa",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100693",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ottosdal-letsopa/v1l3100693p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100662,
+                    "parentId": 3100231,
+                    "localizedName": "Pomfret",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100662",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-pomfret/v1l3100662p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100507,
+                    "parentId": 3100231,
+                    "localizedName": "Potchefstroom",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100507",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-potchefstroom/v1l3100507p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100663,
+                    "parentId": 3100231,
+                    "localizedName": "Reivilo",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100663",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-reivilo/v1l3100663p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100521,
+                    "parentId": 3100231,
+                    "localizedName": "Rustenburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100521",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-rustenburg/v1l3100521p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100525,
+                    "parentId": 3100231,
+                    "localizedName": "Schweizer-Reneke",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100525",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-schweizer+reneke/v1l3100525p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100526,
+                    "parentId": 3100231,
+                    "localizedName": "Stella",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100526",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-stella/v1l3100526p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100508,
+                    "parentId": 3100231,
+                    "localizedName": "Stilfontein",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100508",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-stilfontein/v1l3100508p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100509,
+                    "parentId": 3100231,
+                    "localizedName": "Ventersdorp",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100509",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-ventersdorp/v1l3100509p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100527,
+                    "parentId": 3100231,
+                    "localizedName": "Vryburg",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100527",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-vryburg/v1l3100527p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100510,
+                    "parentId": 3100231,
+                    "localizedName": "Wolmaransstad",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100510",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-wolmaransstad/v1l3100510p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100515,
+                    "parentId": 3100231,
+                    "localizedName": "Zeerust",
+                    "level": "L2",
+                    "isLeaf": true,
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100515",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-zeerust/v1l3100515p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100231",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-north-west/v1l3100231p1",
+                    "method": "GET"
+                }
+            ]
+        },
+        {
+            "id": 3100001,
+            "parentId": 201,
+            "localizedName": "Western Cape",
+            "level": "L1",
+            "isLeaf": false,
+            "children":
+            [
+                {
+                    "id": 3100005,
+                    "parentId": 3100001,
+                    "localizedName": "Atlantic Seaboard",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100005",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-atlantic-seaboard/v1l3100005p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100261,
+                    "parentId": 3100001,
+                    "localizedName": "Cape Flats",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100261",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-cape-flats/v1l3100261p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100006,
+                    "parentId": 3100001,
+                    "localizedName": "Cape Town",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100006",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-cape-town/v1l3100006p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100240,
+                    "parentId": 3100001,
+                    "localizedName": "Cape Winelands",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100240",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-cape-winelands/v1l3100240p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100243,
+                    "parentId": 3100001,
+                    "localizedName": "Central Karoo",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100243",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-central-karoo/v1l3100243p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100241,
+                    "parentId": 3100001,
+                    "localizedName": "Eden",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100241",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-eden/v1l3100241p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100209,
+                    "parentId": 3100001,
+                    "localizedName": "Helderberg",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100209",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-helderberg/v1l3100209p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100007,
+                    "parentId": 3100001,
+                    "localizedName": "Northern Suburbs",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100007",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-northern-suburbs/v1l3100007p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100245,
+                    "parentId": 3100001,
+                    "localizedName": "Overberg",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100245",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-overberg/v1l3100245p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100009,
+                    "parentId": 3100001,
+                    "localizedName": "Southern Peninsula",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100009",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-southern-peninsula/v1l3100009p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100008,
+                    "parentId": 3100001,
+                    "localizedName": "Southern Suburbs",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100008",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-southern-suburbs/v1l3100008p1",
+                            "method": "GET"
+                        }
+                    ]
+                },
+                {
+                    "id": 3100010,
+                    "parentId": 3100001,
+                    "localizedName": "West Coast",
+                    "level": "L2",
+                    "isLeaf": false,
+                    "children":
+                    [
+                    ],
+                    "_links":
+                    [
+                        {
+                            "rel": "self",
+                            "href": "/locations/3100010",
+                            "method": "GET"
+                        },
+                        {
+                            "rel": "search",
+                            "href": "/s-west-coast/v1l3100010p1",
+                            "method": "GET"
+                        }
+                    ]
+                }
+            ],
+            "_links":
+            [
+                {
+                    "rel": "self",
+                    "href": "/locations/3100001",
+                    "method": "GET"
+                },
+                {
+                    "rel": "search",
+                    "href": "/s-western-cape/v1l3100001p1",
+                    "method": "GET"
+                }
+            ]
+        }
+    ],
+    "_links":
+    [
+        {
+            "rel": "self",
+            "href": "/locations/201",
+            "method": "GET"
+        },
+        {
+            "rel": "search",
+            "href": "/s-all-the-ads/v1b0p1",
+            "method": "GET"
+        }
+    ]
+}

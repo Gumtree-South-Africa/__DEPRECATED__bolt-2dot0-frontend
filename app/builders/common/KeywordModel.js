@@ -1,11 +1,10 @@
 'use strict';
 
-var http = require('http');
-var Q = require('q');
+let Q = require('q');
 
-var ModelBuilder = require('./ModelBuilder');
+let ModelBuilder = require('./ModelBuilder');
 
-var keywordService = require(process.cwd() + '/server/services/keyword');
+let keywordService = require(process.cwd() + '/server/services/keyword');
 
 
 /**
@@ -13,7 +12,7 @@ var keywordService = require(process.cwd() + '/server/services/keyword');
  * @constructor
  */
 
-var KeywordModel = function (bapiHeaders, kwCount) {
+let KeywordModel = function(bapiHeaders, kwCount) {
 	this.bapiHeaders = bapiHeaders;
 	this.kwCount = kwCount;
 };
@@ -24,33 +23,33 @@ KeywordModel.prototype.getModelBuilder = function() {
 
 // Function getKeywords
 KeywordModel.prototype.getKeywords = function() {
-	var scope = this;
-	
-	var topKeywordFunction = function(callback) {
-		var topKeywordDeferred = Q.defer();
-	    Q(keywordService.getTopKeywordsData(scope.bapiHeaders, scope.kwCount))
-	        .then(function (dataTopK) {
-	          topKeywordDeferred.resolve(dataTopK);
-	          callback(null, dataTopK);
-	      }).fail(function (err) {
-	          topKeywordDeferred.reject(new Error(err));
-	        callback(null, {});
-	      });
-	};
-	
-	var trendingKeywordFunction = function(callback) {
-	    var trendingKeywordDeferred = Q.defer();
-	    Q(keywordService.getTrendingKeywordsData(scope.bapiHeaders, scope.kwCount))
-	        .then(function (dataTK) {
-	          trendingKeywordDeferred.resolve(dataTK);
-	          callback(null, dataTK);
-	    }).fail(function (err) {
-	          trendingKeywordDeferred.reject(new Error(err));
-	        callback(null, {});
-	    });
+	let _this = this;
+
+	let topKeywordFunction = function(callback) {
+		let topKeywordDeferred = Q.defer();
+		Q(keywordService.getTopKeywordsData(_this.bapiHeaders, _this.kwCount))
+			.then(function(dataTopK) {
+				topKeywordDeferred.resolve(dataTopK);
+				callback(null, dataTopK);
+			}).fail(function(err) {
+			topKeywordDeferred.reject(new Error(err));
+			callback(null, {});
+		});
 	};
 
-	var arrFunctions = [topKeywordFunction, trendingKeywordFunction];
+	let trendingKeywordFunction = function(callback) {
+		let trendingKeywordDeferred = Q.defer();
+		Q(keywordService.getTrendingKeywordsData(_this.bapiHeaders, _this.kwCount))
+			.then(function(dataTK) {
+				trendingKeywordDeferred.resolve(dataTK);
+				callback(null, dataTK);
+			}).fail(function(err) {
+			trendingKeywordDeferred.reject(new Error(err));
+			callback(null, {});
+		});
+	};
+
+	let arrFunctions = [topKeywordFunction, trendingKeywordFunction];
 	return arrFunctions;
 };
 

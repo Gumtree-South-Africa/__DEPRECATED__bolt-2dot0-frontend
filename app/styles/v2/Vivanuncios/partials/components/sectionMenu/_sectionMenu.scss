@@ -1,0 +1,36 @@
+.sectionMenuWrapper{
+  @include from-breakpoint($small-break){
+    font-size: 1.3em;
+  }
+}
+
+.sectionMenu {
+  margin-top: 1em;
+  text-align:center;
+  li, a {
+    display:inline-block;
+  }
+  a {
+    padding:4px 14px 4px 8px;
+    color: $vivaBlack;
+    border-right: 2px solid #ccc;
+    &:hover {
+      font-weight:bold;
+      color: $vivaOrange;
+      background-color: transparent;
+      cursor: pointer;
+    }
+    &:after {
+      display:block;
+      content:attr(title);
+      font-weight:bold;
+      height:1px;
+      color:transparent;
+      overflow:hidden;
+      visibility:hidden;
+    }
+    &.last {
+      border-right: 0;
+    }
+  }
+}
