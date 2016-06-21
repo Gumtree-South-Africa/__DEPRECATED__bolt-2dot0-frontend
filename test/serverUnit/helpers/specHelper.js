@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 let Q = require('q');
 let supertest = require('supertest');
 let fs = require('fs');
@@ -7,12 +7,11 @@ let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
-let http = require('http');
 
 /**
  * Takes in a service string and then spies on the method to return the file.
  * If you give it a relative path it will grab the file out of
- * /test/spec/mockData/api/v1/.
+ * /test/serverUnit/mockData/api/v1/.
  * otherwise it will pull the absolute path.
  *
  * If BAPIheaders are seen in the call, it thinks it's seeing a config call
@@ -24,7 +23,7 @@ let http = require('http');
 let spyOnService = (service, method, fileName) => {
 	let path = fileName;
 	if (fileName.indexOf('/') === -1) {
-		path = `${cwd}/test/spec/mockData/api/v1/${fileName}`;
+		path = `${cwd}/test/serverUnit/mockData/api/v1/${fileName}`;
 	}
 	spyOn(service, method).and.callFake((bapiHeaders) => {
 		let filePath = path;
@@ -57,12 +56,12 @@ let endpointToFileMap = {};
 module.exports.boltSupertest = (route, host) => {
 	let app = require(cwd + '/app');
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
-	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/spec/mockData/categories/categories_`);
-	spyOnService(locationService, 'getLocationsData', `${cwd}/test/spec/mockData/locations/locations_`);
+	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
+	spyOnService(locationService, 'getLocationsData', `${cwd}/test/serverUnit/mockData/locations/locations_`);
 
 	let fakeEndpoint = (options) => {
 		let path = options.path;
-		if (!endpointToFileMap[options.path]){
+		if (!endpointToFileMap[options.path]) {
 			throw new Error(`No mocked endpoint for ${path}`);
 		} else {
 			let filePath = endpointToFileMap[path].pop();
@@ -83,7 +82,7 @@ module.exports.boltSupertest = (route, host) => {
 	 * Then it adds host (optional param, defaults to gumtree.co.za)
 	 */
 	return app.createSiteApps().then(() => {
-		console.log('Server started');
+		console.warn('Server started');
 		host = host || 'gumtree.co.za';
 
 		return supertest(app)
@@ -117,5 +116,5 @@ module.exports.finish = (done) => {
 	return (err) => {
 		expect(err).toBe(null, 'Expected no errors');
 		done();
-	}
+	};
 };

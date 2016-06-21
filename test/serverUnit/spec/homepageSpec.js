@@ -1,32 +1,32 @@
-"use strict";
-let specHelper = require('./helpers/specHelper');
+'use strict';
+let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
-describe("Server to hit HomePage", function () {
+describe('Server to hit HomePage', function() {
 
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
-			'test/spec/mockData/api/v1/LocationList.json');
+			'test/serverUnit/mockData/api/v1/LocationList.json');
 		specHelper.registerMockEndpoint(
 			`${endpoints.topKeywords}?limit=15&_forceExample=true&_statusCode=200`,
-			'test/spec/mockData/api/v1/keywords.json');
+			'test/serverUnit/mockData/api/v1/keywords.json');
 		specHelper.registerMockEndpoint(
 			`${endpoints.trendingKeywords}?limit=15&_forceExample=true&_statusCode=200`,
-			'test/spec/mockData/api/v1/keywords.json');
+			'test/serverUnit/mockData/api/v1/keywords.json');
 		specHelper.registerMockEndpoint(
 			`${endpoints.homepageGallery}?_forceExample=true&_statusCode=200`,
-			'test/spec/mockData/api/v1/GallerySlice.json');
+			'test/serverUnit/mockData/api/v1/GallerySlice.json');
 		specHelper.registerMockEndpoint(
 			`${endpoints.adStatistics}?_forceExample=true&_statusCode=200`,
-			'test/spec/mockData/api/v1/GallerySlice.json');
+			'test/serverUnit/mockData/api/v1/GallerySlice.json');
 	});
 
-	describe("GET /", () => {
+	describe('GET /', () => {
 
-		it("returns status code 200", (done) => {
+		it('returns status code 200', (done) => {
 			boltSupertest('/').then((supertest) => {
 				supertest
 					.expect((res) => {
@@ -37,13 +37,13 @@ describe("Server to hit HomePage", function () {
 		});
 	});
 
-	it("returns Gumtree", function (done) {
+	it('returns Gumtree', function(done) {
 		boltSupertest('/', 'gumtree.co.za').then((supertest) => {
 			supertest
 				.expect((res) => {
 					let c$ = cheerio.load(res.text);
 					let headerText = c$('h1')[0].firstChild;
-					expect(headerText.data).toBe("Gumtree South Africa - Free local classifieds");
+					expect(headerText.data).toBe('Gumtree South Africa - Free local classifieds');
 					expect(res.status).toBe(200);
 				})
 				.end(specHelper.finish(done));
@@ -52,7 +52,7 @@ describe("Server to hit HomePage", function () {
 	
 	describe('Safety Tips', () => {
 		
-		it("shows safety tips card on vivanuncios", (done) => {
+		it('shows safety tips card on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
@@ -66,7 +66,7 @@ describe("Server to hit HomePage", function () {
 			});
 		});
 			
-		it("shows safety faq text on vivanuncios", (done) => {
+		it('shows safety faq text on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
@@ -75,7 +75,7 @@ describe("Server to hit HomePage", function () {
 						let faq = c$('.safetyTips .faq a')[0];
 						expect(faq.attribs.href)
 							.toBe('http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
-						expect(faq.firstChild.data).toContain('Mantente seguro')
+						expect(faq.firstChild.data).toContain('Mantente seguro');
 					})
 					.end(specHelper.finish(done));
 			});

@@ -15,7 +15,9 @@ module.exports = function watch(gulp) {
 				// 'app/views/components/feedTile/js/*.js',
 				// 'app/views/components/tileGrid/js/*.js',
 				'app/builders/common/**/*.js',
+				'test/**/*.js',
 				'gulp-tasks/eslint.js',
+				'.eslintignore',
 				'.eslintrc'
 			])
 				.pipe(gulpEslint())

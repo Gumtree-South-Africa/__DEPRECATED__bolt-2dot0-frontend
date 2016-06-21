@@ -57,6 +57,7 @@ bolt-2dot0-frontend*
 screenshots
 logs
 dist
+test/clientUnit/SpecRunnerBundle.js
 .idea/*
 !.idea/runConfigurations
 !.idea/codeStyleSettings.xml
