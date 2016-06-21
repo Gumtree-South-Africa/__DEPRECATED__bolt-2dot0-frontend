@@ -1,0 +1,15 @@
+{{#block "feedTile"}}
+    {{#each feedTiles}}
+    <div class="feed-tile">
+        <div class="user-photo-wrapper">
+            <div class="user-photo" style="background-image: url({{this.userProfileImageUrl}});">
+            </div>
+        </div>
+        {{#block "feedText"}}
+        <div>
+            {{this.userFirstName}} just {{this.action}} a {{this.prefix1}} {{this.prefix2}}
+        </div>
+        {{/block}}
+    </div>
+    {{/each}}
+{{/block}}

@@ -6,7 +6,8 @@ requirejs.config({
 
 
 require([/* Dependencies */], function() {
-	let app = {
+
+	var app = {
 		initialize: function() {
 			// Your code here
 		}

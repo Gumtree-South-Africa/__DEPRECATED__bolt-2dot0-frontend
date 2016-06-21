@@ -1144,5 +1144,6 @@
   "quickpost.error.priceLong": "El precio es muy alto",
   "quickpost.error.locationNotInCountry": "Tu selección no es en México",
   "quickpost.empty": "",
-  "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes"
+  "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes",
+  "feedtile.message.listing": "%s just"
 }
