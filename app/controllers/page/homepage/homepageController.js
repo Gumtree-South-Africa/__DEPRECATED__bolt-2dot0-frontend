@@ -81,7 +81,7 @@ router.get('/', function(req, res, next) {
 				let userData = userService.buildProfile(user);
 				_.extend(modelData.header, userData);
 			} else {
-				console.error(`Invalid user cookie: ${authCookie}`)
+				console.error(`Invalid user cookie: ${authCookie}`);
 			}
 
 			if (result['adstatistics']) {
