@@ -1,8 +1,0 @@
-$header-nav-user-icon-no-svg: none !default;
-$header-nav-user-icon-no-svg-reversed: $header-nav-user-icon-no-svg !default;
-
-
-.nav .profile .icon{ background-image: $header-nav-user-icon-no-svg;
-
-	&:hover{ background-image: $header-nav-user-icon-no-svg; }
-}
