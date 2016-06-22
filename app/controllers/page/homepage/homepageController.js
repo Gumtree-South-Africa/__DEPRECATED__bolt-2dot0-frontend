@@ -62,79 +62,86 @@ router.get('/', function(req, res, next) {
 
 	Q.allSettled(promises)
 		.then(function(result) {
-			// Changing Version of template depending of the cookie
+			let templatePath;
+			let bapiConfigData = res.locals.config.bapiConfigData;
+			
 			let user;
 			if (result[1] !== undefined) {
 				//Cookie was set
 				user = result[1].state === "fulfilled" ? result[1].value : null;
 			}
-			let bapiConfigData = res.locals.config.bapiConfigData;
-			// Dynamic Data from BAPI
+			
 			// Result[0] is all the model data for the page without user data
 			result = result[0].state === "fulfilled" ? result[0].value : null;
-			modelData.isNewHP = true;
 			modelData.header = result['common'].header || {};
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};
-			modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-			modelData.level2Location = result['level2Loc'] || {};
-			modelData.initialGalleryInfo = result['gallery'] || {};
 			modelData.seo = result['seo'] || {};
+			
+			// Changing Version of template depending of the cookie
+			if (cookiePageVersion === '2.0') {
+				modelData.isNewHP = true;
+				modelData.safetyTips = result['safetyTips'] || {};
+				templatePath = newPath;
+			} else {
+				templatePath = defaultPath;
+				// Dynamic Data from BAPI
+				modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+				modelData.level2Location = result['level2Loc'] || {};
+				modelData.initialGalleryInfo = result['gallery'] || {};
 
-			if (user) {
-				let userData = userService.buildProfile(user);
-				_.extend(modelData.header, userData);
+				if (user) {
+					let userData = userService.buildProfile(user);
+					_.extend(modelData.header, userData);
+				}
+
+				if (result['adstatistics']) {
+					modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
+				}
+
+				if (result['keyword']) {
+					modelData.trendingKeywords = result['keyword'][1].keywords || null;
+					modelData.topKeywords = result['keyword'][0].keywords || null;
+				}
+
+				// Make the loc level 2 (Popular locations) data null if it comes as an empty
+				if (_.isEmpty(modelData.level2Location)) {
+					modelData.level2Location = null;
+				}
+
+				// Check for top or trending keywords existence
+				modelData.topOrTrendingKeywords = false;
+				if (modelData.trendingKeywords || modelData.topKeywords) {
+					modelData.topOrTrendingKeywords = true;
+				}
+
+				// Special Data needed for HomePage in header, footer, content
+
+				// Make the location data null if it comes as an empty object from bapi
+				if (_.isEmpty(modelData.location)) {
+					modelData.location = null;
+				}
+
+				// Determine if we show the Popular locations container
+				modelData.showPopularLocations = true;
+				if (!modelData.level2Location && !modelData.location) {
+					modelData.showPopularLocations = false;
+				}
 			}
 
-			if (result['adstatistics']) {
-				modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
-			}
-
-			if (result['keyword']) {
-				modelData.trendingKeywords = result['keyword'][1].keywords || null;
-				modelData.topKeywords = result['keyword'][0].keywords || null;
-			}
-
-			// Make the loc level 2 (Popular locations) data null if it comes as an empty
-			if (_.isEmpty(modelData.level2Location)) {
-				modelData.level2Location = null;
-			}
-
-			// Check for top or trending keywords existence
-			modelData.topOrTrendingKeywords = false;
-			if (modelData.trendingKeywords || modelData.topKeywords) {
-				modelData.topOrTrendingKeywords = true;
-			}
-
-			// Special Data needed for HomePage in header, footer, content
+			//Shared data
 			HP.extendHeaderData(req, modelData);
 			HP.extendFooterData(modelData);
 			HP.buildContentData(modelData, bapiConfigData);
 			HP.deleteMarketoCookie(res, modelData);
 
-			// Make the location data null if it comes as an empty object from bapi
-			if (_.isEmpty(modelData.location)) {
-				modelData.location = null;
-			}
-
-			// Determine if we show the Popular locations container
-			modelData.showPopularLocations = true;
-			if (!modelData.level2Location && !modelData.location) {
-				modelData.showPopularLocations = false;
-			}
-
-			if ((typeof cookiePageVersion !== 'undefined') && cookiePageVersion == '2.0') {
-				//V2 data
-				modelData.safetyTips = result['safetyTips'] || {};
-				pageControllerUtil.postController(req, res, next, newPath, modelData);
-			} else {
-				pageControllerUtil.postController(req, res, next, defaultPath, modelData);
-			}
+			pageControllerUtil.postController(req, res, next, templatePath, modelData);
 
 			console.timeEnd('Instrument-Homepage-Controller');
 		})
 		.fail((err) => {
 			console.error(err);
+			console.error(err.stack);
 		});
 });
 
