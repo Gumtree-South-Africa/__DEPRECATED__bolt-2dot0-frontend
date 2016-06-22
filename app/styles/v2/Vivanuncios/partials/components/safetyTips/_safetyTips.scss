@@ -1,0 +1,141 @@
+.safety-tips-container {
+    width: 100%;
+    margin: auto;
+    margin-bottom: 10px;
+    height: 280px;
+    @media(min-width: 768px) {
+        width: 95%;
+    }
+
+    .advertisement-placeholder {
+        display: none;
+        width: 33.3334%;
+        height: 280px;
+        float: left;
+        @media(min-width: 768px) {
+            display: inline-block;
+        }
+        .ad {
+            background-image: url('http://placehold.it/336x280');
+            background-size: contain;
+            background-position: center;
+            width: 90%;
+            height: 100%;
+            margin: auto;
+        }
+    }
+}
+
+.safety-tips-card {
+    height: 280px;
+    width: 100%;
+    display: inline-block;
+    text-align: center;
+    background-color: #ebebeb;
+    float: left;
+    @media (min-width: 768px) {
+        width: 66.6667%;
+    }
+
+    .safetyTips {
+        max-width: 600px;
+        width: 100%;
+        height: 280px;
+        margin: auto;
+        position: relative;
+
+        .title {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            align-items: center;
+            padding: 10px;
+        }
+
+        .safety-icon {
+            align-self: center;
+            height: 26px;
+            width: 26px;
+            background-image: url('/public/icons/placeholder.png');
+            background-size: contain;
+            background-repeat: no-repeat;
+        }
+
+        .safety-text {
+            height: 36px;
+        }
+
+        .safety-block {
+            max-width: 100%;
+            width: 100%;
+            float: left;
+            @media (min-width: 768px) {
+                max-width: 47%;
+            }
+            &.block-right {
+                margin-left: 20px;
+                display: none;
+                @media (min-width: 768px) {
+                    display: inline-block;
+                }
+            }
+
+        }
+        .image-container {
+            position: absolute;
+            left: 0;
+            right: 0;
+            padding-bottom: 10px;
+            margin: auto;
+        }
+
+        .image {
+            height: 150px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            &.image-left {
+                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+            }
+            &.image-right {
+                display: none;
+                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+                @media (min-width: 768px) {
+                    display: block;
+                }
+            }
+        }
+
+        .faq {
+            width: 100%;
+            position: absolute;
+            bottom: 0;
+            padding-bottom: 15px;
+        }
+        a {
+            font: $secondary-link-font;
+            color: $secondary-link-color;
+            text-decoration: underline;
+        }
+
+        h1 {
+            font: $h1;
+            font-size: 24pt;
+            line-height: 37px;
+            font-weight: bold;
+            color: $h1-color;
+        }
+
+        h3 {
+            font: $h3;
+            line-height: 29px;
+            color: $h3-secondary-color;
+        }
+
+        .help-text {
+            font: $p2;
+            color: $p2-secondary-color;
+        }
+    }
+}
+
