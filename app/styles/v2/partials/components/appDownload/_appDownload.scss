@@ -119,12 +119,20 @@
     font-size: $viva-btn-font-size;
     display: block;
     margin-bottom: 1em;
-    padding: 18px;
+    padding: 14px;
     color: $viva-btn-color;
-    padding: 6px 18px;
     cursor:pointer;
-  
+    .app-image{
+     background-image: url('../../../../../../images/es_MX/appimage.png');
+    width: 2em;
+    height: 2em;
+    vertical-align: middle;
+    margin-left: 0.5em;
+    display: inline-block;
+    background-repeat: no-repeat;
     }
+  
+    } 
 
   }
   
@@ -132,8 +140,8 @@
 
 @include in-breakpoint($medium-break){
 
-.inner-wrapper {
-    width: 87% !important;
+.downloadapp-wrapper .inner-wrapper {
+    width: 88%;
     }
   
 }
@@ -153,9 +161,14 @@
 
 
 @include in-breakpoint($small-break){
-.downloadapp-wrapper .inner-wrapper {
+.downloadapp-wrapper{ 
+.inner-wrapper {
     width: 93% ;
-    }    
+    }
+ .ios-appstore , .googleplay{
+  
+   }  
+ }           
 }
 
 
