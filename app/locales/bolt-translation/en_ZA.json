@@ -1150,5 +1150,11 @@
   "quickpost.error.locationNotInCountry": "The location you selected is not in South Africa",
   "quickpost.error.priceLong": "The price is very high",
   "quickpost.empty": "",
+  "appdownload.title": "¡Vende rápido!",
+  "appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
+  "appdownload.mobilebutton": "¡Baja la app!",
+  "appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
+  "appdownload.googleplay":"https://app.adjust.com/oarq82",
+  "appdownload.applink":"http://go.vivanunc.io/baja-la-app",
   "postad.image.upload.failure": "Unfortunately, an error has occurred while loading images"
 }
