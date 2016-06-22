@@ -14,12 +14,8 @@
 
 // include typography and other utilities
 // necessary only once throughout the site
-@include border-box-sizing;
 @include blueprint-typography(1em);
 @include blueprint-utilities;
-
-
-
 
 
 
@@ -28,42 +24,9 @@
 
 
 
-
-
-
-
-
-
-
 // import global styles necessary throughout the site
-@import "../partials/main/config",
-    "../../../partials/main/circular",
-    "../../../partials/main/matchMedia",
-    "../../../partials/main/styles",
-    "../../../partials/main/messages",
-    "../../../partials/main/header",
-    "../../../partials/main/jquerySmartbanner",
-    "../../partials/main/othercountry",
-//    "../../../partials/main/subHeaderMenu",
-    "../../../partials/main/socialMedia",
-    "../../../partials/main/searchbar",
-    "../../../partials/main/pageTitle",
-    "../../../partials/main/breadcrumbs",
-    "../../../partials/main/content",
-    "../../../partials/main/emptyStateMessages",
-    "../../../partials/main/sectionDivider",
+//@import "../partials/main/footer";
 
-    "../partials/main/breadcrumbs",
-    "../partials/main/footer";
-
-@import "../../../Vivanuncios/partials/common/sub-header";
-
-@include set-masthead-fonts;
-@include set-masthead-margins;
-
-.page.bg-white {
-  background-color: #FFFFFF;
-}
 
 // setup selection colors
 // not necessary, but nice to have
@@ -71,11 +34,11 @@
 // keeps it consistent with styles
 ::selection {
   background: $color-navy;
-  color: $color-white;
+  color: $vivaWhite;
 }
 ::-moz-selection {
   background: $color-navy;
-  color: $color-white;
+  color: $vivaWhite;
 }
 
 
@@ -85,9 +48,6 @@
 img {
   max-width: 100%;
 }
-
-
-
 
 
 [data-uri],
@@ -115,59 +75,12 @@ a, [data-uri], [data-o-uri], .sudo-link, span[href] {
 
 a, [data-uri], [data-o-uri], .sudo-link, span[href],
 a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[href]:visited {
-  color: $vivaBlue;
+  color: $vivaBlack;
 }
 
-.search form .select ul li a {
-  font-size: 0.875em;
-  line-height: 1.5em;
-  @include ellipsis;
-}
-
-.postSection{
-	font-size: 0.875em;
-	.post{
-		margin-top: 0.5em;
-	}
-}
-
-.header.diff{
-    z-index: 1;
-}
-
-@include in-breakpoint($no-break){
-	.header.diff .post-btn-wrap {
-    	width: 90%;
-    	margin-left: 5%;
-    	margin-right: 5%;
-    	margin-top: 1em;
-	}
-
-	.header.diff .post-btn-wrap .long {
-    	width: 100%;
-    	margin-top: 17px;
-	}
-
-	.header .wrap .left{
-		width: 44%;
-	}
-
-	.postSection{
-		display: block;
-		.post{
-			.post-btn{
-				height: 2.8em;
-				font-size: 1.3em;
-				padding-top: 1em;
-			}
-		}
-	}
-
-
-}
-
-@include in-breakpoint($small-break){
-	.header .wrap .left{
-		width: 35%;
-	}
+a .sudolink{
+  color: $tertiary-link-color;
+  &:visited{
+    text-decoration: none;
+  }
 }

@@ -1,0 +1,22 @@
+// -------------------------------------------------- //
+// sub elements should be contained in this file      //
+// -------------------------------------------------- //
+
+@import "../../partials/components/button/button";
+
+.btn-wrapper{
+  width: 25%;
+  margin: 2em auto;
+}
+
+.btn{
+  @include vivaBtn(off);
+}
+
+.btn-icon{
+  display: inline-block;
+  width: 2em;
+  height: 2em;
+  vertical-align: middle;
+  margin-left: 0.5em;
+}
