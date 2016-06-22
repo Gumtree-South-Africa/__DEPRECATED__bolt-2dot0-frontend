@@ -56,7 +56,7 @@ function BuildApp(siteObj) {
 		/*
 		 * Development based middlewares
 		 */
-		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy'], function() {
+		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
 			app.use(logger('dev'));
 
 			// assets for local developments and populates  app.locals.jsAssets
