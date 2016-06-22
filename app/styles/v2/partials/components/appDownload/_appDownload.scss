@@ -138,37 +138,26 @@
   
 }
 
-@include in-breakpoint($medium-break){
-
-.downloadapp-wrapper .inner-wrapper {
-    width: 88%;
-    }
-  
-}
-
 
 @include in-breakpoint($large-break){
 	.review-inner{
 	float: left;
 	width: 82%;
 	} 
+
+.inner-wrapper .description {
+     margin-bottom: .7em;
+ }	
 	
-.downloadapp-wrapper .inner-wrapper{
-	margin-top: 15px;
-	}
   }
 
 
 
 @include in-breakpoint($small-break){
-.downloadapp-wrapper{ 
+.downloadapp-wrapper 
 .inner-wrapper {
-    width: 93% ;
-    }
- .ios-appstore , .googleplay{
-  
-   }  
- }           
+    width: 96% ;  
+    }          
 }
 
 
@@ -177,26 +166,26 @@
 .downloadapp-wrapper{
 	margin-top:1em;
 	margin-bottom:1em;
-	height:340px;
+	height:360px;
 	width:100%;
 	}
  #downloadapp-imagewrapper{
-    width:60%;
+    width:65%;
     height:100%;  
 }
 #downloadapp-content{
 	float: left;
 	width: 220px;
-	width: 40%;
+	width: 35%;
 	height: 100%;  
 	text-align: center;
 	background: #EBEBEB;
    }
    
 .inner-wrapper{
-	width: 76%;
+	width: 84%;
 	margin: 0 auto;
-    margin-top: 7px;
+    margin-top: 5%;
     .title{
      margin-bottom: 0.2em;
     }
