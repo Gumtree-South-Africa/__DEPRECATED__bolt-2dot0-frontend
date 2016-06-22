@@ -2,15 +2,15 @@
     width: 100%;
     margin: auto;
     margin-bottom: 10px;
-    height: 280px;
+    height: 330px;
     @media(min-width: 768px) {
-        width: 95%;
+        width: 90%;
     }
 
     .advertisement-placeholder {
         display: none;
         width: 33.3334%;
-        height: 280px;
+        height: 316px;
         float: left;
         @media(min-width: 768px) {
             display: inline-block;
@@ -38,7 +38,7 @@
     }
 
     .safetyTips {
-        max-width: 600px;
+        max-width: 800px;
         width: 100%;
         margin: auto;
         position: relative;
@@ -67,10 +67,10 @@
             width: 100%;
             float: left;
             @media (min-width: 768px) {
-                max-width: 47%;
+                max-width: 48%;
             }
             &.block-right {
-                margin-left: 20px;
+                margin-left: 10px;
                 display: none;
                 @media (min-width: 768px) {
                     display: inline-block;
@@ -86,10 +86,14 @@
         }
 
         .image {
-            height: 150px;
+            height: 200px;
+            margin: 10px;
             background-repeat: no-repeat;
             background-position: center;
             background-size: contain;
+            @media (min-width: 768px) {
+                height: 175px;
+            }
             &.image-left {
                 background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
             }
