@@ -11,19 +11,14 @@
      }
 	.description{
 	   font: $viva-p2;
-	   color: #747474;
+	   color:$vivaGray;
 	 }
 }
-
 
 #downloadapp-content{
     background-color: #EBEBEB;
  } 
  
- .review-description{
-     font: $viva-p3;
-     color: $vivaLightGray;
-     }
  
  .user-avatar {
   background-image: url('../../../../../../images/es_MX/review.png');
@@ -31,12 +26,10 @@
   height: 44px;
   width: 44px;
   -moz-border-radius: 100%;
-  -webkit-border-radius: 100%;
+ -webkit-border-radius: 100%;
   border-radius: 100%;
   float: left;
-  margin-left: 10px;
-  margin-top: 4px;
-  margin-right: 4px;
+  margin:4px 4px 0px 10px;
   border:1px solid #f89301;
  
  }
@@ -44,7 +37,8 @@
  #downloadapp-imagewrapper{
     float:left; 
     background-image: url('../../../../../../images/es_MX/tutorial-imgs/app-download.png');
-    background-size:100% 100%;
+    background-position: center;
+    background-size: cover;
     background-repeat: no-repeat;
     }
  
@@ -52,13 +46,16 @@
   width: 100%;
   height:21px
   }
-  
+    
  
  #review{
    background-color: $vivaWhite;
- 
-   height:48px;
+   height: 55px;
    margin-bottom:0.5em;
+   .review-inner{
+   height:100%;
+   margin-top:4px
+   }
    .rating{
       background-image: url('../../../../../../images/es_MX/rating.png');
 	  background-size:100% 100%;
@@ -69,8 +66,9 @@
    .review-description{
      text-align:left;
      overflow: hidden;
-   
-   }	   
+      font: $viva-p3;
+      color: $vivaLightGray;
+      }	   
 }
  
 
@@ -80,15 +78,11 @@
     margin-bottom:1em;
    }
 #downloadapp-imagewrapper{
-    float:left; 
+
     width:100%;
     height:150px;
-    background-image: url('../../../../../../images/es_MX/tutorial-imgs/app-download.png');
-    background-size:100% 100%;
-    background-repeat: no-repeat;
     }
-    
-    
+        
 #downloadapp-content{
     float:left; 
     width:100%;
@@ -108,7 +102,7 @@
 
 .inner-wrapper{
    width:90%;
-   margin: 0 auto;
+   margin:auto;
    margin-top: 5px;
    }
    
@@ -150,6 +144,10 @@
 	float: left;
 	width: 82%;
 	} 
+	
+.downloadapp-wrapper .inner-wrapper{
+	margin-top: 15px;
+	}
   }
 
 
@@ -166,7 +164,7 @@
 .downloadapp-wrapper{
 	margin-top:1em;
 	margin-bottom:1em;
-	height:330px;
+	height:340px;
 	width:100%;
 	}
  #downloadapp-imagewrapper{
@@ -186,6 +184,9 @@
 	width: 76%;
 	margin: 0 auto;
     margin-top: 7px;
+    .title{
+     margin-bottom: 0.2em;
+    }
    }	
 
  
@@ -204,18 +205,20 @@
     background-image: url('../../../../../../images/es_MX/appstore.png');
 	background-repeat: no-repeat;
 	width: 44%;
-	height: 2.5em;
+	height: 2.75em;
 	float: left;
-	background-size: 100% 100%;
+	background-size:100% 100%;
+	
 	}
 
 .googleplay{
 	background-image: url('../../../../../../images/es_MX/googleplay.png');
 	background-repeat: no-repeat;
 	width: 44%;
-	height:2.5em;
+	height: 2.75em;
 	float: right;
-	background-size: 100% 100%;
+	background-size:100% 100%;
+	
    } 
    
  }
