@@ -6,7 +6,7 @@
 			"queryParameters": {
 				"page": "1",
 				"pageSize": "15",
-				"location": "${location}",
+				"location": "${UserProvided}",
 				"categoryIds": [0,1,2],
 				"keywords": ["foo", "bar"],
 				"favoritesThreshold": 10,
@@ -19,7 +19,7 @@
 				"showLikes": true,
 				"showFeatured": true
 			},
-			"itemSizeMap": "111111222222333333",
+			"itemSizeString": "121111222222333333",
 			"scriptHandlerType": "isotope"
 		},
 		"summerFunCard": {

@@ -46,7 +46,11 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 
 	for (let cardName of cardNames) {
 		dataPromiseFunctionMap[cardName] = (callback) => {
-			cardsModel.getCardItemsData(cardName, { location: "foo" }).then((dataL) => {
+			// user specific parameters are passed here, such as location lat/long
+			// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
+			cardsModel.getCardItemsData(cardName, {
+				location: "[19.432608, -99.133209]"
+			}).then((dataL) => {
 				callback(null, dataL);
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);

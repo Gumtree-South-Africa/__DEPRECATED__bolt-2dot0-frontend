@@ -1,5 +1,5 @@
 'use strict';
-require('../_isotopePrototype.scss');
+require('../_tileGrid.scss');
 require('app/views/components/adTile/js/adTile.js');
 require('app/views/components/feedTile/js/feedTile.js');
 require('app/views/components/responsiveBreakpointDetection/js/responsiveBreakpointDetection.js');

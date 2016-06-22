@@ -1,0 +1,15 @@
+{{#block "adTile"}}
+    <div class="panel {{#if this.isFeatured}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
+        <div class="featured-bolt"></div>
+        <div class="user-photo" style="background-image: url({{this.sellerInfo.profileImg}});"></div>
+        <section class="controls">
+            <section class="ad-stats">
+                <div class="inline-block favorite-icon-sm"></div>
+                <div class="inline-block stat-num">{{this.statistics.favoriteCount}}</div>
+                <div class="inline-block reply-icon-sm"></div>
+                <div class="inline-block stat-num">{{this.statistics.replyCount}}</div>
+            </section>
+            <div class="favorite-btn" role="button"></div>
+        </section>
+    </div>
+{{/block}}

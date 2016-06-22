@@ -4,7 +4,7 @@ var express = require('express'), _ = require('underscore'), router = express.Ro
 
 var cwd = process.cwd();
 var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), userService = require(process.cwd() + '/server/services/user');
-
+var CardsModel = require(cwd + '/app/builders/common/CardsModel');
 
 
 module.exports = function(app) {
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	// Build Model Data
-	var modelData = pageControllerUtil.preController(req, res);	// todo: rename this "initModel", which is what it does, "preController" sounds like an event?
+	var modelData = pageControllerUtil.preController(req, res);
 	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Cookies drop for Version of template
@@ -41,6 +41,7 @@ router.get('/', function(req, res, next) {
 
 	// Retrieve Data from Model Builders
 	var model = HomepageModelV2(req, res, modelData);
+
 	let authCookie = req.cookies['bt_auth'];
 	let userCookieData = req.app.locals.userCookieData;
 	let promises = [model];
@@ -76,6 +77,14 @@ router.get('/', function(req, res, next) {
 			modelData.level2Location = result['level2Loc'] || {};
 			modelData.initialGalleryInfo = result['gallery'] || {};
 			modelData.seo = result['seo'] || {};
+
+			// now make sure we map the card data returned based on the home page
+			// todo: this logic is reapeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
+			let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+			let cardNames = cardsModel.getCardNamesForPage("homePage");
+			for (let cardName of cardNames) {
+				modelData[cardName] = result[cardName];
+			}
 
 			if (user) {
 				let userData = userService.buildProfile(user);
