@@ -11,7 +11,8 @@ FROM cs-registry-9425.slc01.dev.ebayc3.com:5000/bolt-docker
 RUN npm install -g forever
 # Install gulp, node-gyp
 RUN npm install -g gulp && \
-    npm install -g node-gyp
+    npm install -g node-gyp && \
+    npm install -g raml-mockup
 
 # Setup work directory
 WORKDIR /src/bolt-2dot0-frontend/
