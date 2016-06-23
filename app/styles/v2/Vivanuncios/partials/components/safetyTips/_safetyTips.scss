@@ -31,7 +31,7 @@
     width: 100%;
     display: inline-block;
     text-align: center;
-    background-color: #ebebeb;
+    background-color: $safety-card-background-color;
     float: left;
     @media (min-width: 768px) {
         width: 66.6667%;
