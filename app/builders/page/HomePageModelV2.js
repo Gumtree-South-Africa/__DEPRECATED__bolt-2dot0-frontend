@@ -11,13 +11,6 @@ var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 
-function getCookieLocationId(req) {
-	var searchLocIdCookieName = 'searchLocId';
-	var searchLocIdCookie = req.cookies[searchLocIdCookieName];
-
-	return ((typeof searchLocIdCookie === 'undefined') || searchLocIdCookie === '') ? null : searchLocIdCookie;
-}
-
 /**
  * @method getHomepageDataFunctions
  * @description Retrieves the list of functions to call to get the model for the Homepage.
@@ -51,15 +44,6 @@ var HomePageModelV2 = function(req, res, modelData) {
 	var abstractPageModel = new AbstractPageModel(req, res);
 	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
-	var idxCatWithLocId = pageModelConfig.indexOf('catWithLocId');
-
-	if (getCookieLocationId(req) !== null) {
-		if (idxCatWithLocId < 0) {
-			pageModelConfig.push('catWithLocId');
-		}
-	} else if (idxCatWithLocId >= 0) {
-		pageModelConfig.splice(idxCatWithLocId, 1);
-	}
 
 	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 
