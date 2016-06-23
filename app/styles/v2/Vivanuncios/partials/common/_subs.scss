@@ -7,10 +7,12 @@
 .btn-wrapper{
   width: 25%;
   margin: 2em auto;
+  max-width: 15em;
+  min-width: 10em;
 }
 
 .btn{
-  @include vivaBtn(off);
+  @include vivaBtn(on);
 }
 
 .btn-icon{

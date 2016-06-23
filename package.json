@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.110",
+  "version": "2.0.111",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
@@ -16,7 +16,7 @@
     "test": "npm install && gulp test",
     "start": "node ./bin/www",
     "envstart": "NODE_CONFIG_DIR=./server/config NODE_ENV=vm PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost node ./bin/www",
-    "dockerstart": "NODE_CONFIG_DIR=${NODE_CONFIG_DIR} NODE_ENV=${NODE_ENV} PORT=${PORT} SSL_PORT=${SSL_PORT} BASEDOMAINSUFFIX=${BASEDOMAINSUFFIX} node ./bin/www"
+    "dockerstart": "NODE_CONFIG_DIR=${NODE_CONFIG_DIR} NODE_ENV=${NODE_ENV} BASEDOMAINSUFFIX=${BASEDOMAINSUFFIX} node ./bin/www"
   },
   "precommit": "npm install && gulp precommit",
   "dependencies": {
