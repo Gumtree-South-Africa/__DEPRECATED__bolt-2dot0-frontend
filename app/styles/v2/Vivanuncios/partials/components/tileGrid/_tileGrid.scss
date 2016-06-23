@@ -1,64 +1,61 @@
-.isotope-container {
-	max-width: 1050px;
-	.isotope-item {
-		border-radius: 10px;
+$standardTileWidth: 110px;
+$standardTileHeight: 130px;
+$gutterVertical: 10px;
+$gutterHorizontal: 10px;
 
-		&.two-by-one {
-			width: 220px;
-			height: 130px;
-		}
-
-		&.one-by-one {
-			width: 110px;
-			height: 130px;
-		}
-
-		&.two-by-two {
-			width: 220px;
-			height: 260px;
-		}
-
-		&.hide-on-mobile {
-			@media (max-width: 767px) {
-				display: none;
-			}
-		}
-	}
+@function tileWidth($tileUnits) {
+    // a "tileUnit" is a dimension of the tile like a 1x1 or 2x2, units are 1 or 2
+    @return $tileUnits * $standardTileWidth + (($tileUnits - 1) * $gutterVertical)
+}
+@function tileHeight($tileUnits) {
+    // a "tileUnit" is a dimension of the tile, example a 1x1 or 2x2, unit is either 1 or 2
+    @return $tileUnits * $standardTileHeight + (($tileUnits - 1) * $gutterHorizontal)
 }
 
-.visible-mobile, .visible-desktop {
-	display: none !important;
+.gutter-sizer-horizontal {
+    width: $gutterHorizontal;
 }
 
-.visible-mobile {
-	@media(max-width: 767px) {
-		display: block !important;
-	}
+.column-sizer {
+    width: tileWidth(1);
 }
 
-.visible-desktop {
-	@media(min-width: 768px) {
-		display: block !important;
-	}
+.tile-container {
+    max-width: 1050px;
+    .tile-item {
+        border-radius: 10px;
+
+        // standard size if we dont have javascript turned on on home page
+        width: tileWidth(1);
+        height: tileHeight(1);
+        float: left;
+
+        // we need vertical space between items, according to isotope we use margin-bottom:
+        margin-bottom: $gutterVertical;
+    }
+
+    // when the parent has class 'using-isotope', we know the client side js has taken over, so we get multiple sizes
+    &.using-isotope > .tile-item {
+        float: none;
+
+        &.one-by-one {
+            width: tileWidth(1);
+            height: tileHeight(1);
+        }
+
+        &.two-by-one {
+            width: tileWidth(2);
+            height: tileHeight(1);
+        }
+
+        &.two-by-two {
+            width: tileWidth(2);
+            height: tileHeight(2);
+        }
+    }
 }
 
-.inline-block {
-	display: inline-block;
+.card-clear {
+    clear: both;
 }
 
-.card {
-	margin-top: 20px;
-	background-color: lightgrey;
-	.card-title {
-		text-align: center;
-		font-size: 18px;
-		padding-top: 20px;
-		padding-bottom: 20px;
-
-		.fake-link {
-			text-decoration: underline;
-			font-weight: bold;
-			color: #FF8300;
-		}
-	}
-}

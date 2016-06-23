@@ -1,35 +1,24 @@
 'use strict';
-require('../_tileGrid.scss');
-require('app/views/components/adTile/js/adTile.js');
-require('app/views/components/feedTile/js/feedTile.js');
-require('app/views/components/responsiveBreakpointDetection/js/responsiveBreakpointDetection.js');
+
+// http://isotope.metafizzy.co/extras.html#browserify
+let $ = require('jquery');
+let bridget = require('jquery-bridget');
 let Isotope = require('isotope-layout');
 
 // Isotope requres document to be ready activated
 $(document).ready(() => {
-	window.iso = new Isotope($('.isotope-container')[0], {
-		itemSelector: '.isotope-item',
+
+	$.bridget('isotope', Isotope);	// after this you can use $().isotope()
+
+	$('.use-isotope-handler').addClass("using-isotope");	// tag so we get configured sizes
+
+	$('.use-isotope-handler').isotope({
+		itemSelector: '.tile-item',
 		layoutMode: 'masonry',
-		getSortData: {
-			sortParam: '[data-sort-position]'
-		},
 		masonry: {
-			columnWidth: 110
-		},
-		sortBy: 'sortParam'
-	});
-
-	$(window).on('breakpointChange', (evt, breakpoint) => {
-		let $feedTiles = $('.feed-tile');
-		if (breakpoint === 'mobile') {
-			$feedTiles.parent().attr('data-sort-position', 1);
-		} else {
-			$feedTiles.parent().attr('data-sort-position', 5);
+			columnWidth: '.column-sizer',
+			gutter: '.gutter-sizer-horizontal',
 		}
-
-		window.iso.arrange({
-			sortBy: 'sortParam'
-		});
-		window.iso.layout();
 	});
 });
+

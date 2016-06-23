@@ -78,12 +78,13 @@ router.get('/', function(req, res, next) {
 			modelData.initialGalleryInfo = result['gallery'] || {};
 			modelData.seo = result['seo'] || {};
 
-			// now make sure we map the card data returned based on the home page
+			// now make sure modelData gets all card data returned for home page
 			// todo: this logic is reapeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
 			let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 			let cardNames = cardsModel.getCardNamesForPage("homePage");
 			for (let cardName of cardNames) {
 				modelData[cardName] = result[cardName];
+				modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
 			}
 
 			if (user) {
@@ -106,6 +107,8 @@ router.get('/', function(req, res, next) {
 			if (_.isEmpty(modelData.level2Location)) {
 				modelData.level2Location = null;
 			}
+
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepagePlaceholderBundle.js")
 
 			// Check for top or trending keywords existence
 			modelData.topOrTrendingKeywords = false;

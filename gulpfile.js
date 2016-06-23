@@ -60,12 +60,13 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
+gulp.task('webpack', getTask('webpack'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'eslint', 'bundlejs', /*'icons',*/ 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'webpack', 'bundlejs', /*'icons',*/ 'compass', 'precompile', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {

@@ -13,23 +13,19 @@
 				"repliesThreshold": 10
 			},
 			"templateName": "/templates/trending.hbs",
-			"templateParameters": {
+			"templateConfig": {
+				"clientJsHandlerCssClass": "use-isotope-handler",
 				"showFavorites": true,
 				"showReplies": true,
 				"showLikes": true,
 				"showFeatured": true
 			},
-			"itemSizeString": "121111222222333333",
-			"scriptHandlerType": "isotope"
-		},
-		"summerFunCard": {
-
+			"itemSizesString": "32112121111211"
 		}
 	},
 	"cardsByPage": {
 		"homePage": [
-			"trendingCard",
-			"summerFunCard"
+			"trendingCard"
 		]
 	}
 }

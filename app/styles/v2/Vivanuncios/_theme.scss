@@ -52,3 +52,12 @@ $viva-btn-font-size: 1.125em;
     text-decoration: none;
   }
 }
+
+
+// color palette, independent of viva, use these colors in your styles
+// use the naming convention: <where used><color><number>
+
+$cardBackgroundGray1: $vivaGray4;
+$cardHeaderLink: #FF8300;
+
+$cardStatsFont: $viva-p3;

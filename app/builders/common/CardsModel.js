@@ -46,11 +46,12 @@ class CardsModel {
 
 		// walk configured parameters looking for values that indicate ${UserProvided}
 		// extract values for those from paramsMap
-		//let paramName;
+
 		let parameters = cardConfig.queryParameters;
 		for (let paramName in parameters) {
 			if (parameters.hasOwnProperty(paramName)) {
 				if (parameters[paramName] === '${UserProvided}') {
+
 					// parameters tagged this way are pulled from the params supplied by the caller
 					if (paramsMap[paramName] === undefined) {
 						console.error(`card ${cardName} expected user provided parameter ${paramName} but no parameter value found`);
@@ -61,12 +62,18 @@ class CardsModel {
 				console.warn(`apiParams.${paramName} = ${apiParams[paramName]}`);
 			}
 		}
+
 		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((dataItems) => {
+			let sizes = cardConfig.itemSizesString;
+			if (dataItems.ads.length > sizes.length) {
+				console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);
+			}
 			dataItems.ads.forEach((ad, index) => {
-				if (cardConfig.itemSizeString.length > index) {
-					ad.sizeClass = CARD_SIZE_CLASSES_MAP[cardConfig.itemSizeString.charAt(index)];
+				if (sizes.length > index) {
+					ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
 				} else {
-					console.warn(`card config itemSizeString not long enough, expected at least ${index} characters`);
+					ad.sizeClass = CARD_SIZE_CLASSES_MAP['1'];
+					console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
 				}
 			});
 			return dataItems;
@@ -80,6 +87,15 @@ class CardsModel {
 	 */
 	getCardConfigForCard(cardName) {
 		return this.cardToConfigMap[cardName];
+	}
+
+	/**
+	 * gets the template config for the specified card
+	 * @param cardName
+	 * @return {Object} one cards config, see app/config/ui/cardsConfig.json
+	 */
+	getTemplateConfigForCard(cardName) {
+		return this.cardToConfigMap[cardName].templateConfig;
 	}
 }
 

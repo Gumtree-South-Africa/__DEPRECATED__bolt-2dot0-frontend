@@ -1,0 +1,20 @@
+@import "../theme";
+
+
+.card {
+    margin-top: 20px;
+    background-color: $cardBackgroundGray1;
+
+    .card-title {
+        text-align: center;
+        font-size: 18px;
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+        .fake-link {
+            text-decoration: underline;
+            font-weight: bold;
+            color: $vivaOrange;
+        }
+    }
+}
