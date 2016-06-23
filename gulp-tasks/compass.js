@@ -55,7 +55,7 @@ module.exports = function watch(gulp, plugins) {
 	    }
 
       for (var i = 0; i < articles.length -1; ++i) {
-        gulp.src('./app/styles/' + pageVersion + '**/**/*.scss')
+        gulp.src('./app/styles/v1' + pageVersion + '**/**/*.scss')
           .pipe(plugins.plumber({
             errorHandler: function (error) {
               console.log(error.message);
@@ -64,7 +64,7 @@ module.exports = function watch(gulp, plugins) {
           .pipe(plugins.compass({
             config_file: process.cwd() + '/app/config/ruby/config_' + articles[i].breakpoint + '.rb',
             css: 'public/css/' + articles[i].foldername,
-            sass: './app/styles'
+            sass: './app/styles/v1'
           }))
           .pipe(plugins.cssmin())
           .pipe(plugins.rename({suffix:'.min'}))

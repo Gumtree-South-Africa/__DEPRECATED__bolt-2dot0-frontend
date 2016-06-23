@@ -12,11 +12,11 @@
   }
   a {
     padding:4px 14px 4px 8px;
-    color: $vivaBlack;
+    color: $secmenu-link-color;
     border-right: 2px solid #ccc;
     &:hover {
       font-weight:bold;
-      color: $vivaOrange;
+      color: $secmenu-link-color-hover;
       background-color: transparent;
       cursor: pointer;
     }

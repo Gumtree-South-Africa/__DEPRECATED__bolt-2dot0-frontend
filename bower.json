@@ -1,0 +1,24 @@
+{
+  "name": "bower",
+  "description": "",
+  "main": "",
+  "authors": [
+    "NACER GARGA <ngarga@ebay.com>"
+  ],
+  "license": "MIT",
+  "moduleType": [],
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/js/bower-components",
+    "test"
+  ],
+  "dependencies": {
+    "breakpoint-sass": "2.7.0",
+    "sass-toolkit": "2.10.0",
+    "susy": "2.2.12",
+    "compass-mixins": "1.0.2"
+  }
+}

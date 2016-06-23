@@ -76,6 +76,13 @@ gulp.task('test', getTask("test"));
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
+gulp.task('sass', function() {
+	gulp.src(process.cwd() + '/app/styles/v2/**/**/*.scss')
+			.pipe(sass().on('error', sass.logError))
+			//.pipe(plugins.cssmin())
+			//.pipe(plugins.rename({suffix:'.min'}))
+			.pipe(gulp.dest(process.cwd() + '/public/css/v2'))
+})
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
