@@ -59,7 +59,7 @@ describe('Server to hit HomePage', function() {
 					.expect((res) => {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.safetyTips')).toBeDefined();
-						expect(c$('.safetyTips .title h2')[0]
+						expect(c$('.safetyTips .title h1')[0]
 							.firstChild.data).toContain('Vivanuncios Te Cuida');
 					})
 					.end(specHelper.finish(done));
@@ -75,7 +75,7 @@ describe('Server to hit HomePage', function() {
 						let faq = c$('.safetyTips .faq a')[0];
 						expect(faq.attribs.href)
 							.toBe('http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
-						expect(faq.firstChild.data).toContain('Mantente seguro');
+						expect(faq.firstChild.data).toContain('Consejos de seguridad');
 					})
 					.end(specHelper.finish(done));
 			});
