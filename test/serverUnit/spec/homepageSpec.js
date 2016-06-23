@@ -51,7 +51,7 @@ describe('Server to hit HomePage', function() {
 	});
 	
 	describe('Safety Tips', () => {
-		
+
 		it('shows safety tips card on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
@@ -65,7 +65,7 @@ describe('Server to hit HomePage', function() {
 					.end(specHelper.finish(done));
 			});
 		});
-			
+
 		it('shows safety faq text on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest

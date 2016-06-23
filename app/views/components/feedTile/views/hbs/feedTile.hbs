@@ -1,0 +1,34 @@
+ <div class="feed-tiles">
+     <div class="feed-tile">
+         <div class="user-photo-wrapper">
+             <div class="user-photo" style="background-image: url({{this.feedTiles.one.userProfileImageUrl}});">
+             </div>
+         </div>
+         <div class="feed-text-wrapper">
+             <span class="feed-text"><span class="bold">{{this.feedTiles.one.userFirstName}}</span> just {{this.feedTiles.one.action}} a <span class="bold"</span>{{this.feedTiles.one.prefix1}} {{this.feedTiles.one.prefix2}}</span></span>
+         </div>
+         <div class="clear"></div>
+     </div>
+     <div class="feed-tile">
+         <div class="user-photo-wrapper">
+             <div class="user-photo" style="background-image: url({{this.feedTiles.two.userProfileImageUrl}});">
+             </div>
+         </div>
+         <div class="feed-text-wrapper">
+             <span class="feed-text"><span class="bold">{{this.feedTiles.two.userFirstName}}</span> just {{this.feedTiles.two.action}} a <span class="bold">{{this.feedTiles.two.prefix1}} {{this.feedTiles.two.prefix2}}</span></span>
+         </div>
+         <div class="clear"></div>
+     </div>
+     <div class="feed-tile">
+         <div class="user-photo-wrapper">
+             <div class="user-photo" style="background-image: url({{this.feedTiles.three.userProfileImageUrl}});">
+             </div>
+         </div>
+         <div class="feed-text-wrapper">
+             <span class="feed-text"><span class="bold">{{this.feedTiles.three.userFirstName}} just {{this.feedTiles.three.action}} a <span class="bold">{{this.feedTiles.three.prefix1}} {{this.feedTiles.three.prefix2}}</span></span>
+         </div>
+         <div class="clear"></div>
+     </div>
+     <div class="clear"></div>
+     {{!-- refactor with #each --}}
+</div>

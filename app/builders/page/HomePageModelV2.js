@@ -4,12 +4,11 @@
 var cwd = process.cwd();
 
 var Q = require('q');
-
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+let FeedTileModel = require(cwd + '/app/builders/common/FeedTileModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -21,10 +20,16 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
  */
 var getHomepageDataFunctions = function(req, res, modelData) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
+	let feedTileModel = new FeedTileModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
 			let data = safetyTipsModel.getSafetyTips();
+			callback(null, data);
+		},
+
+		'feedTiles': (callback) => {
+			let data = feedTileModel.getFeedTiles();
 			callback(null, data);
 		}
 	};
