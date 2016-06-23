@@ -162,8 +162,7 @@ HeaderModel.prototype.buildCss = function(data) {
 			data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		}
 		data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-	}
-	else {
+	} else {
 		if (deviceDetection.isMobile()) {
 			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		} else {
