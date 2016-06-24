@@ -50,6 +50,8 @@ module.exports = function() {
 			} else if (status >= 500 && status <= 599) {
 				metrics.eps += 1;
 				metrics.http5XX += 1;
+			} else {
+				metrics.eps += 1;
 			}
 
 			// Send Response Metrics to Graphite Server
