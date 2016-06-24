@@ -8,12 +8,8 @@ exports.config = {
 
 	framework: 'jasmine2',
 
-	// run the protractor tests in chrome
 	capabilities: {
-		browserName: 'chrome',
-		chromeOptions: {
-			'args': ['no-sandbox']
-		}
+		browserName: 'firefox'
 	},
 
 	specs: ['./test/integration/**/*Spec.js'],
