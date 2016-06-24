@@ -30,9 +30,10 @@ function sanitize(num) {
 function preserveStats(stats) {
 	var nowTime = Date.now();
 	var durationSeconds = (nowTime - duration) / 1000; // time since last metrics dump
-	stats.eventLoop = tooBusy.lag();
+
 	updateMemory(stats);
 	updateFileDescriptorCount(stats);
+	stats.eventLoop = tooBusy.lag();
 	stats.maxConcurrentRequests = metric.maxConcurrentRequests;
 	stats.urlTime = sanitize(metric.urltime.toJSON().median);
 	stats.eps = sanitize(metric.eps / durationSeconds);
@@ -45,9 +46,10 @@ function preserveStats(stats) {
 	stats.requestBodySize = sanitize(metric.requestBody.toJSON().median);
 	stats.sessionSize = sanitize(metric.sessionSize);
 	stats.tps = sanitize(metric.requestsReceived / durationSeconds);
-	duration = nowTime; // reset duration clock
 	stats.uptime = Math.round(process.uptime());
+
 	// Get CPU Usage async and finish up with emitStatistics callback
+	duration = nowTime; // reset duration clock
 	finalUpdateStats(stats, durationSeconds, emitStatistics);
 	return stats;
 
@@ -57,10 +59,10 @@ function preserveStats(stats) {
 			console.log(genLogMsg("ERROR finalizing statistics: " + error));
 			return;
 		}
-		// console.log(genLogMsg(JSON.stringify(stats)));
 		// Send stats to anyone interested in them but don't send metrics if no endpoint
-		// theEmitter.emit('monitorNodeStats', stats);
+		console.log(genLogMsg('BOLT NodeJS Monitoring Agent: ' + JSON.stringify(stats)));
 		sendMetricsToGraphite(stats);
+		// theEmitter.emit('monitorNodeStats', stats);
 	}
 }
 
@@ -85,7 +87,6 @@ function resetStats() {
 }
 
 function sendMetricsToGraphite(stats) {
-	console.log('***** Monitoring *****');
 	graphiteService.sendNodeMetrics('agent.stats.eventLoop', stats.eventLoop);
 	graphiteService.sendNodeMetrics('agent.stats.maxConcurrentRequests', stats.maxConcurrentRequests);
 	graphiteService.sendNodeMetrics('agent.stats.urlTime', stats.urlTime);
@@ -151,9 +152,7 @@ function setup(options) {
 
 		var setOptions = setupOptions.bind(self, options);
 		var clChk = clusterCheck.getRestarts.bind(self, options);
-		options.metricsId = clusterCheck.getClusterId();
 
-		// Obtain a metricsId for reporting node instances if we are clustered
 		async.series([
 				setOptions, clChk
 			], // results callback
@@ -197,8 +196,8 @@ Monitor.prototype.reset = function reset() {
 	intervalId = undefined;
 };
 
-Monitor.prototype.startMonitoring = function startMonitoring(intervalInput) {
-	start({interval: intervalInput}, EventEmitter);
+Monitor.prototype.startMonitoring = function startMonitoring() {
+	setup();
 }
 
 
