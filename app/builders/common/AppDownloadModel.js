@@ -1,4 +1,7 @@
 	'use strict';
+	
+	let deviceDetection = require(process.cwd() + '/modules/device-detection');
+	
 	class AppDownloadModel {
 	constructor(req, res) {
 	        this.req = req;
@@ -9,7 +12,6 @@
 		let bapiConfigData = this.res.locals.config.bapiConfigData;
 		   
 		let reviews = bapiConfigData.content.homepageV2.reviews; //array
-		let deviceDetection = require(process.cwd() + '/modules/device-detection');
 		let numOfAdsToSend;
         
 		if(deviceDetection.isMobile()) {
