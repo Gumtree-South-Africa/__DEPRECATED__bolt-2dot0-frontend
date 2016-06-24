@@ -1,34 +1,14 @@
  <div class="feed-tiles">
+     {{#each this.recentActivities.recent}}
      <div class="feed-tile">
          <div class="user-photo-wrapper">
-             <div class="user-photo" style="background-image: url({{this.recentActivities.one.userProfileImageUrl}});">
+             <div class="user-photo" style="background-image: url({{userProfileImageUrl}});">
              </div>
          </div>
          <div class="feed-text-wrapper">
-             <span class="feed-text"><span class="bold">{{this.recentActivities.one.userFirstName}}</span> just {{this.recentActivities.one.action}} a <span class="bold"></span>{{this.recentActivities.one.prefix1}} {{this.recentActivities.one.prefix2}}</span></span>
+             <span class="feed-text"><span class="bold">{{userFirstName}}</span> just {{action}} a <span class="bold"></span>{{prefix1}} {{prefix2}}</span></span>
          </div>
          <div class="clear"></div>
      </div>
-     <div class="feed-tile">
-         <div class="user-photo-wrapper">
-             <div class="user-photo" style="background-image: url({{this.recentActivities.two.userProfileImageUrl}});">
-             </div>
-         </div>
-         <div class="feed-text-wrapper">
-             <span class="feed-text"><span class="bold">{{this.recentActivities.two.userFirstName}}</span> just {{this.recentActivities.two.action}} a <span class="bold">{{this.recentActivities.two.prefix1}} {{this.recentActivities.two.prefix2}}</span></span>
-         </div>
-         <div class="clear"></div>
-     </div>
-     <div class="feed-tile">
-         <div class="user-photo-wrapper">
-             <div class="user-photo" style="background-image: url({{this.recentActivities.three.userProfileImageUrl}});">
-             </div>
-         </div>
-         <div class="feed-text-wrapper">
-             <span class="feed-text"><span class="bold">{{this.recentActivities.three.userFirstName}} just {{this.recentActivities.three.action}} a <span class="bold">{{this.recentActivities.three.prefix1}} {{this.recentActivities.three.prefix2}}</span></span>
-         </div>
-         <div class="clear"></div>
-     </div>
-     <div class="clear"></div>
-     {{!-- refactor with #each --}}
+     {{/each}}
 </div>

@@ -8,13 +8,15 @@ class RecentActivityModel {
 
 	getRecentActivities() {
 		let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
-
-		data.one = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
-		data.two = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
-		data.three = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
+		data.recent = [];
+		
+		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
+		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
+		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
 
 		return data;
 	}
 }
+
 
 module.exports = RecentActivityModel;
