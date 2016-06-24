@@ -15,6 +15,7 @@ var expressbuilder = require('./server/middlewares/express-builder');
 var siteconfig = require('./server/middlewares/site-config');
 var responseMetrics = require('./server/middlewares/response-metrics');
 var eventLoopMonitor = require('./server/utils/monitor-event-loop');
+var monitorAgent = require('./server/utils/monitor/monitor-agent');
 var error = require('./modules/error');
 
 var cacheBapiData = require('./server/services/cache/cache-server-startup');
@@ -69,7 +70,7 @@ let createSiteApps = () => {
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
-		
+
 		// Setup controllers
 		controllers.forEach(function (controller) {
 			require(controller)(app);
@@ -86,6 +87,7 @@ let createSiteApps = () => {
 
 // Event Loop Monitoring
 eventLoopMonitor();
+monitorAgent.startMonitoring(5000);
 
 module.exports = app;
 module.exports.createSiteApps = createSiteApps;

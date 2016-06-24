@@ -125,6 +125,7 @@
     "underscore": "1.8.3",
     "url-parse": "1.0.5",
     "url-pattern": "1.0.1",
+    "usage": "0.7.1",
     "vhost": "3.0.2",
     "walkdir": "0.0.11",
     "webpack": "1.13.1",

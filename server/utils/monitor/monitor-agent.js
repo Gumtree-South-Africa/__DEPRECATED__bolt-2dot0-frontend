@@ -59,7 +59,7 @@ function preserveStats(stats) {
 		}
 		// console.log(genLogMsg(JSON.stringify(stats)));
 		// Send stats to anyone interested in them but don't send metrics if no endpoint
-		theEmitter.emit('monitorNodeStats', stats);
+		// theEmitter.emit('monitorNodeStats', stats);
 		sendMetricsToGraphite(stats);
 	}
 }
@@ -68,9 +68,9 @@ function preserveStats(stats) {
 function resetStats() {
 	stats.gc_count = 0;
 	stats.gc_count_incremental = 0;
-	stats.gcInterval = 0,
+	stats.gcInterval = 0;
 
-		metric.maxConcurrentRequests = 0;
+	metric.maxConcurrentRequests = 0;
 	metric.urltime.reset();
 	metric.eps = 0;
 	metric.http2XX = 0;
@@ -85,6 +85,7 @@ function resetStats() {
 }
 
 function sendMetricsToGraphite(stats) {
+	console.log('***** Monitoring *****');
 	graphiteService.sendNodeMetrics('agent.stats.eventLoop', stats.eventLoop);
 	graphiteService.sendNodeMetrics('agent.stats.maxConcurrentRequests', stats.maxConcurrentRequests);
 	graphiteService.sendNodeMetrics('agent.stats.urlTime', stats.urlTime);
@@ -195,6 +196,10 @@ Monitor.prototype.reset = function reset() {
 	clearInterval(intervalId);
 	intervalId = undefined;
 };
+
+Monitor.prototype.startMonitoring = function startMonitoring(intervalInput) {
+	start({interval: intervalInput}, EventEmitter);
+}
 
 
 module.exports = new Monitor();
