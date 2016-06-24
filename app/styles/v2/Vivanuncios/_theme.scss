@@ -9,10 +9,10 @@ $container-width: 73em;
 
 
 // Headlines
-$viva-h1: bold 1.5em Lato;
-$viva-h2: normal 1.5em Lato;
-$viva-h3: normal 1.25em Lato;
-$viva-h4: normal 1em Lato;
+$viva-h1: bold 1.5em Lato;      // 24px
+$viva-h2: normal 1.5em Lato;    // 24px
+$viva-h3: normal 1.25em Lato;   // 20 px
+$viva-h4: normal 1em Lato;      // 16 px
 
 
 // Paragraphs
@@ -44,7 +44,7 @@ $viva-btn-font-size: 1.125em;
   cursor: pointer;
   background-color: $vivaOrange;
   display: inline-block;
-  font: bold 1.125em Lato;
+  font: $viva-h3;
   padding: 0.875em;
   text-align: center;
   width: 100%;
@@ -57,7 +57,9 @@ $viva-btn-font-size: 1.125em;
 // color palette, independent of viva, use these colors in your styles
 // use the naming convention: <where used><color><number>
 
-$cardBackgroundGray1: $vivaGray4;
-$cardHeaderLink: #FF8300;
+$cardBackgroundColor: $vivaGray4;
+$cardLinksColor: $vivaOrange;
 
 $cardStatsFont: $viva-p3;
+$cardHeadersFont: $viva-h4;
+

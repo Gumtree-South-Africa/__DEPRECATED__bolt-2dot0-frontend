@@ -1,15 +1,16 @@
 {{#block "adTile"}}
-    <div class="panel {{#if this.isFeatured}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
-        <div class="featured-bolt"></div>
-        <div class="user-photo" style="background-image: url({{this.sellerInfo.profileImg}});"></div>
+    <span class="inline-block panel {{#if this.isFeatured}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
+        <span class="featured-bolt"></span>
+        <a href="{{this.sellerInfo.sellerURL}}"><span class="inline-block user-photo" style="background-image: url({{this.sellerInfo.profileImg}});"></span></a>
         <section class="controls">
             <section class="ad-stats">
                 <div class="inline-block favorite-icon-sm"></div>
-                <div class="inline-block stat-num">{{this.statistics.favoriteCount}}</div>
+                <span class="stat-num">{{this.statistics.favoriteCount}}</span>
                 <div class="inline-block reply-icon-sm"></div>
-                <div class="inline-block stat-num">{{this.statistics.replyCount}}</div>
+                <span class="stat-num">{{this.statistics.replyCount}}</span>
             </section>
-            <div class="favorite-btn" role="button"></div>
+            <span class="favorite-btn" role="button"></span>
         </section>
-    </div>
+        <a class="tile-link" href="VIPpage-TBD"></a>
+    </span>
 {{/block}}

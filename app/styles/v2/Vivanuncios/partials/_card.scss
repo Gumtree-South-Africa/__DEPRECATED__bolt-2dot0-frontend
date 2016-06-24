@@ -1,20 +1,37 @@
 @import "../theme";
 
+$cardHeaderPadding: 20px;
 
 .card {
     margin-top: 20px;
-    background-color: $cardBackgroundGray1;
+    background-color: $cardBackgroundColor;
 
     .card-title {
         text-align: center;
-        font-size: 18px;
-        padding-top: 20px;
-        padding-bottom: 20px;
-
-        .fake-link {
-            text-decoration: underline;
-            font-weight: bold;
-            color: $vivaOrange;
-        }
+        font: $cardHeadersFont;
+        padding-top: $cardHeaderPadding;
+        padding-bottom: $cardHeaderPadding;
     }
+
+    .link {
+        font-weight: bold;
+        color: $cardLinksColor;
+        text-decoration: no-underline;
+    }
+
+    .inline-block {
+        display: inline-block;
+    }
+
+    .underline {
+        text-decoration: underline;
+    }
+
+    .card-view-more {
+        text-align: center;
+        font: $cardHeadersFont;
+        padding-top: $cardHeaderPadding/2;
+        padding-bottom: $cardHeaderPadding;
+    }
+
 }

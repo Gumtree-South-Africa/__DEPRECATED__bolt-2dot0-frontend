@@ -37,6 +37,7 @@ $gutterHorizontal: 10px;
     // when the parent has class 'using-isotope', we know the client side js has taken over, so we get multiple sizes
     &.using-isotope > .tile-item {
         float: none;
+
         // 'A'
         &.one-by-one {
             width: tileWidth(1);

@@ -3,15 +3,16 @@
 		"trendingCard": {
 			"queryEndpoint": "BAPI.endpoints.trendingSearch",
 			"queryParameters": {
-				"page": "1",
-				"pageSize": "15",
+				"offset": "0",
+				"limit": "15",
 				"location": "${UserProvided}",
+				"radius": "25km",
 				"categoryIds": [0,1,2],
-				"keywords": ["foo", "bar"],
+				"keywords": "foo bar baz",
 				"favoritesThreshold": 10,
 				"repliesThreshold": 10,
 				"sortBy" : "TBD",
-				"sellerId": ""
+				"sellerId": ["1", "2"]
 			},
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",
