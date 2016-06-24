@@ -7,8 +7,8 @@ var Q = require('q');
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
-let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+var SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -19,17 +19,17 @@ let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityMode
  * @return {JSON}
  */
 var getHomepageDataFunctions = function(req, res, modelData) {
-	let safetyTipsModel = new SafetyTipsModel(req, res);
-	let recentActivityModel = new RecentActivityModel(req, res);
+	var safetyTipsModel = new SafetyTipsModel(req, res);
+	var recentActivityModel = new RecentActivityModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
-			let data = safetyTipsModel.getSafetyTips();
+			var data = safetyTipsModel.getSafetyTips();
 			callback(null, data);
 		},
 
 		'recentActivities': (callback) => {
-			let data = recentActivityModel.getRecentActivities();
+			var data = recentActivityModel.getRecentActivities();
 			callback(null, data);
 		}
 	};
