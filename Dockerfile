@@ -11,7 +11,24 @@ FROM cs-registry-9425.slc01.dev.ebayc3.com:5000/bolt-docker
 RUN npm install -g forever
 # Install gulp, node-gyp
 RUN npm install -g gulp && \
-    npm install -g node-gyp
+    npm install -g node-gyp && \
+    npm install -g raml-mockup && \
+    npm install -g karma-chrome-launcher --save-dev
+
+# for karam test 
+RUN apt-get update
+RUN apt-get install -y xdg-utils fonts-liberation libpango1.0-0 libgconf2-4 libnss3-1d libxss1 libappindicator1 libindicator7
+RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+RUN dpkg --configure -a 
+RUN dpkg -i google-chrome*.deb
+RUN apt-get install -f
+ENV CHROME_BIN /usr/local/bin/google-chrome
+
+RUN apt-get update && apt-get install -y Xvfb; \
+    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ADD xvfb.sh /etc/init.d/xvfb
+ADD entrypoint.sh /entrypoint.sh
+ENV DISPLAY :99.0
 
 # Setup work directory
 WORKDIR /src/bolt-2dot0-frontend/
@@ -19,7 +36,8 @@ WORKDIR /src/bolt-2dot0-frontend/
 COPY . /src/bolt-2dot0-frontend/
 
 # Install app dependencies
-RUN npm install --production
+# When this image goto production, we only do npm install --production
+RUN npm install
 
 # Build
 RUN gulp clean
@@ -33,7 +51,4 @@ ENV NODE_CONFIG_DIR     /src/bolt-2dot0-frontend/server/config
 ENV NODE_ENV dockerdeploy
 ENV BASEDOMAINSUFFIX `hostname`
 
-CMD ["npm","run","dockerstart"]
-
-ARG GIT_REV_FILE="unknown"
-ADD ${GIT_REV_FILE} /tmp/
+CMD ["/bin/bash"]

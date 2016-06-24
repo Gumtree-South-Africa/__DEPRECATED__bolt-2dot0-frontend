@@ -9,15 +9,18 @@ module.exports = function watch(gulp, plugins) {
 		protractor = gulpProtractor.protractor,
 		webdriver_update = gulpProtractor.webdriver_update,
 		shell = require('gulp-shell'),
+		argv = require('yargs').argv,
 		Server = require('karma').Server;
 
 	return function() {
 		// Integration Tests Tasks
 		gulp.task('protractor', function() {
+			let port = argv.port || "8000";
 			var stream = gulp.src(['test/integration/**/*.js'])
 				.pipe(protractor({
-					configFile: 'test/integration/protractor.conf.js', args: [
-						'--param.debug=true', '--params.baseUrl=http://www.vivanuncios.com.mx.localhost:8000'
+					configFile: 'test/integration/protractor.conf.js',
+					args: [
+						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
 				}));
 
