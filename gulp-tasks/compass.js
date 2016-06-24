@@ -64,7 +64,7 @@ module.exports = function watch(gulp, plugins) {
           .pipe(plugins.compass({
             config_file: process.cwd() + '/app/config/ruby/config_' + articles[i].breakpoint + '.rb',
             css: 'public/css/' + articles[i].foldername,
-            sass: './app/styles/v1'
+            sass: './app/styles'
           }))
           .pipe(plugins.cssmin())
           .pipe(plugins.rename({suffix:'.min'}))

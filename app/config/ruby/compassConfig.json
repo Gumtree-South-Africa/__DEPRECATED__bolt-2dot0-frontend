@@ -3,14 +3,14 @@
     "breakpoint": "desktop",
     "lineNumbers": true,
     "cssPath": "public/css/all" ,
-    "sassPath": "./app/styles",
+    "sassPath": "./app/styles/v1",
     "output_style": "compressed"
   },
   {
     "breakpoint": "mobile",
     "lineNumbers": true,
     "cssPath": "public/css/mobile" ,
-    "sassPath": "./app/styles",
+    "sassPath": "./app/styles/v1",
     "output_style": "compressed"
   }
 ]
