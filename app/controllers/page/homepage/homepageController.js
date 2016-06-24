@@ -1,11 +1,5 @@
 'use strict';
 
-
-var express = require('express'), _ = require('underscore'), router = express.Router(), Q = require('q'), cuid = require('cuid');
-
-var cwd = process.cwd();
-var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModel = require(cwd + '/app/builders/page/HomePageModel'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), downloadTest = require(cwd + '/app/views/components/appDownloadSection/js/appDlSection'), userService = require(process.cwd() + '/server/services/user');
-
 var express = require('express'),
 	_ = require('underscore'),
 	router = express.Router(),
@@ -21,7 +15,6 @@ let Base64 = require(process.cwd() + '/app/utils/Base64');
 let deviceDetection = require(cwd + '/modules/device-detection');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let userService = require(process.cwd() + '/server/services/user');
-
 
 
 module.exports = function(app) {
@@ -84,56 +77,13 @@ router.get('/', function(req, res, next) {
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};
 			modelData.seo = result['seo'] || {};
-			
-
-			var startingIndex = 0 // default 0
-		  , numOfAdsToSend
-		  , totalNumOfAds
-		  , maxIndexForAds;
-	
-		if(deviceDetection.isMobile()) {
-			numOfAdsToSend = 1	
-		}
-		else{
-			numOfAdsToSend = 3
-		}
-	
-		totalNumOfAds = downloadTest.mostRecentAds.length;
-		maxIndexForAds = totalNumOfAds -1;
-		
-		if (req.cookies['adStartingIndex']) {
-			//read the startingIndex value from cookie and add by numOfAds to display
-			startingIndex = parseInt (req.cookies['adStartingIndex']) + numOfAdsToSend;
-		}
-		
-		if (startingIndex > maxIndexForAds)
-		{
-			startingIndex = (startingIndex % maxIndexForAds) - 1; //Index went over, so circling back to beginning.
-		}
-		
-		res.cookie('adStartingIndex', startingIndex); // set the new value in the cookie
-		
-		// return three values only
-		if ((startingIndex + numOfAdsToSend) <= totalNumOfAds )
-		{
-			modelData.dltest = downloadTest.mostRecentAds.slice(startingIndex, startingIndex + numOfAdsToSend);
-		}
-		else
-		{
-			modelData.dltest = downloadTest.mostRecentAds.slice(startingIndex, totalNumOfAds)
-								.concat(downloadTest.mostRecentAds.slice(0, (numOfAdsToSend - (totalNumOfAds - startingIndex))));
-		}
-
-			if (user) {
-				let userData = userService.buildProfile(user);
-				_.extend(modelData.header, userData);
-
+						
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
+				modelData.reviews = result['appDownload'] || {};
 				templatePath = newPath;
-
 			} else {
 				templatePath = defaultPath;
 				// Dynamic Data from BAPI

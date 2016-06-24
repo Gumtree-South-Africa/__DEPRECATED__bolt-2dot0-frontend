@@ -10,6 +10,7 @@ var pagetypeJson = require(cwd + '/app/config/pagetype.json');
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -21,13 +22,18 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
  */
 var getHomepageDataFunctions = function(req, res, modelData) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
+	let appDownloadModel = new AppDownloadModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
 			let data = safetyTipsModel.getSafetyTips();
 			callback(null, data);
-		}
-	};
+		},
+		'appDownload': (callback) => {
+			 let data = appDownloadModel.getAppDownload();
+			 callback(null, data);
+       }
+    };
 };
 
 

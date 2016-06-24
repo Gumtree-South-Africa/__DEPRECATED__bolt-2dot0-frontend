@@ -24,12 +24,12 @@
   background-size:100% 100%;
   height: 44px;
   width: 44px;
-  -moz-border-radius: 100%;
+ -moz-border-radius: 100%;
  -webkit-border-radius: 100%;
   border-radius: 100%;
   float: left;
   margin:4px 4px 0px 10px;
-  border:1px solid #f89301;
+  border:1px solid $viva-btn-bgColor;
  
  }
  
@@ -169,7 +169,6 @@
 	width: 35%;
 	height: 100%;  
 	text-align: center;
-	background: #EBEBEB;
    }
    
 .inner-wrapper{
