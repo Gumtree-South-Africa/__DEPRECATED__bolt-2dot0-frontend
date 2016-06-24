@@ -1,5 +1,7 @@
 'use strict';
 
+let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
+
 class RecentActivityModel {
 	constructor(req, res) {
 		this.req = req;
@@ -7,9 +9,10 @@ class RecentActivityModel {
 	}
 
 	getRecentActivities() {
-		let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
+		// let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
+		let data = recentActivityService.getRecentActivities();
 		data.recent = [];
-		
+
 		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
 		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
 		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
@@ -17,6 +20,5 @@ class RecentActivityModel {
 		return data;
 	}
 }
-
 
 module.exports = RecentActivityModel;
