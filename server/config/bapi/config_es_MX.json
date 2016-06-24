@@ -29,7 +29,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    
+
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -54,7 +54,7 @@
 			"googleAdHeight"					: "250"
 		},
 		"seoBolt"							:	{
-			"enabled"							: true,			
+			"enabled"							: true,
 			"blogUrl" 							: "http://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
@@ -153,22 +153,30 @@
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: false,		
+			"swapTradeEnabled"		: false,
 			"swapTradeName"			: null,
 			"swapTradeUrl"			: null,
-			"freebiesEnabled"		: false,		
+			"freebiesEnabled"		: false,
 			"freebiesName"			: null,
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
 		},
-		
+
 		 "quickpost" : {
               "currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]
         }
 	},
 	"bapi" : {
+		"HomepageV2": {
+			"desktop": {
+				"models": ["safetyTips"]
+			},
+			"mobile": {
+				"models": ["safetyTips"]
+			}
+		},
 		"Homepage" : {
 			"desktop" 	: {
 				"models" : ["keyword", "gallery", "seo", "appDownload"]

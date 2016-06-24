@@ -32,8 +32,13 @@ function getCookieLocationId(req) {
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function(req, res, modelData) {
-	var level2Loc = new LocationModel(modelData.bapiHeaders, 1), keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(), gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder(), adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(), seo = new SeoModel(modelData.bapiHeaders), category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
+var getHomepageDataFunctions = function (req, res, modelData) {
+	var level2Loc = new LocationModel(modelData.bapiHeaders, 1),
+		keyword = (new KeywordModel(modelData.bapiHeaders, res.locals.config.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder(),
+		gallery = (new GalleryModel(modelData.bapiHeaders)).getModelBuilder(),
+		adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder(),
+		seo = new SeoModel(modelData.bapiHeaders),
+		category = new CategoryModel(modelData.bapiHeaders, 2, getCookieLocationId(req));
 
 	return {
 		'level2Loc': function(callback) {
@@ -129,14 +134,14 @@ var HomePageModel = function(req, res, modelData) {
 	var homepageModel = new ModelBuilder(arrFunctions);
 	var homepageDeferred = Q.defer();
 	Q(homepageModel.processParallel())
-		.then(function(data) {
-			// Converts the data from an array format to a JSON format
-			// for easy access from the client/controller
-			data = abstractPageModel.convertListToObject(data, arrFunctions);
+    	.then(function (data) {
+    		// Converts the data from an array format to a JSON format
+    		// for easy access from the client/controller
+    		data = abstractPageModel.convertListToObject(data, arrFunctions);
 			homepageDeferred.resolve(data);
-		}).fail(function(err) {
-		homepageDeferred.reject(new Error(err));
-	});
+		}).fail(function (err) {
+			homepageDeferred.reject(new Error(err));
+		});
 	return homepageDeferred.promise;
 };
 
