@@ -8,14 +8,14 @@ var bapiOptions = require('./bapi/bapiOptions')(config);
  * @description A service class that talks to recentAds BAPI
  * @constructor
  */
-var FeedTileService = function() {
+var RecentActivityService = function() {
 	this.bapiOptions = bapiOptions;
 };
 
 /**
- * Gets a list of feedTiles
+ * Gets a list of recentActivities
  */
-FeedTileService.prototype.getFeedTile = function(bapiHeaders, depth) {
+RecentActivityService.prototype.getRecentActivities = function(bapiHeaders, depth) {
 	// console.info('Inside CategoryService');
 
 	// Prepare BAPI call
@@ -24,6 +24,6 @@ FeedTileService.prototype.getFeedTile = function(bapiHeaders, depth) {
 
 	// Invoke BAPI
 	// return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'feedtile');
-	return require(process.cwd() + 'test/serverUnit/mockData/components/feedTileMock');
+	return require(process.cwd() + 'test/serverUnit/mockData/components/recentActivityMock');
 };
-module.exports = new FeedTileService();
+module.exports = new RecentActivityService();

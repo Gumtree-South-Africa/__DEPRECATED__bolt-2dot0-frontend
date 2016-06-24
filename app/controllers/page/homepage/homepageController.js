@@ -82,7 +82,7 @@ router.get('/', function(req, res, next) {
 			if (cookiePageVersion === '2.0') {
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
-				modelData.feedTiles = result['feedTiles'] || {};
+				modelData.recentActivities = result['recentActivities'] || {};
 				templatePath = newPath;
 			} else {
 				templatePath = defaultPath;

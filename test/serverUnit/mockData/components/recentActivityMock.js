@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = {
-	'feedTiles': [
+	'recentActivities': [
 		{
 			'userProfileImageUrl': '/public/images/photo-icon.png',
 			'userFirstName': 'George',
@@ -52,5 +52,4 @@ module.exports = {
 			'prefix1': 'Steinway',
 			'prefix2': 'Baby Grand Piano'
 		}
-	]
-};
+	]};

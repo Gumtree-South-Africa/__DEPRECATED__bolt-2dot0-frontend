@@ -1,26 +1,26 @@
 'use strict';
 
-class FeedTileModel {
+class RecentActivityModel {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
 	}
 
-	getFeedTiles() {
-		let data = require(process.cwd() + '/test/serverUnit/mockData/components/feedTileMock');
+	getRecentActivities() {
+		let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
 
-		data.one = data.feedTiles[Math.floor(Math.random()*data.feedTiles.length)];
-		data.two = data.feedTiles[Math.floor(Math.random()*data.feedTiles.length)];
-		data.three = data.feedTiles[Math.floor(Math.random()*data.feedTiles.length)];
+		data.one = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
+		data.two = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
+		data.three = data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)];
 
 		return data;
 	}
 }
 
-module.exports = FeedTileModel;
+module.exports = RecentActivityModel;
 
 
-// TODO: Refactor with service for BAPI integration
+// TODO: Refactor with Service for BAPI integration
 // 'use strict';
 //
 // let Q = require('q');

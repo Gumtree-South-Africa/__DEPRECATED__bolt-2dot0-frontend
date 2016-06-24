@@ -8,7 +8,7 @@ var pagetypeJson = require(cwd + '/app/config/pagetype.json');
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
-let FeedTileModel = require(cwd + '/app/builders/common/FeedTileModel');
+let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -20,7 +20,7 @@ let FeedTileModel = require(cwd + '/app/builders/common/FeedTileModel');
  */
 var getHomepageDataFunctions = function(req, res, modelData) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
-	let feedTileModel = new FeedTileModel(req, res);
+	let recentActivityModel = new RecentActivityModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
@@ -28,8 +28,8 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 			callback(null, data);
 		},
 
-		'feedTiles': (callback) => {
-			let data = feedTileModel.getFeedTiles();
+		'recentActivities': (callback) => {
+			let data = recentActivityModel.getRecentActivities();
 			callback(null, data);
 		}
 	};
