@@ -7,9 +7,10 @@ let cardService = require(process.cwd() + '/server/services/cardService');
 
 
 const CARD_SIZE_CLASSES_MAP = {
-	1: 'one-by-one',
-	2: 'two-by-one',
-	3: 'two-by-two',
+	'A': 'one-by-one',
+	'B': 'two-by-one',
+	'C': 'two-by-two',
+	'D': 'three-by-two',
 };
 
 
@@ -72,7 +73,7 @@ class CardsModel {
 				if (sizes.length > index) {
 					ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
 				} else {
-					ad.sizeClass = CARD_SIZE_CLASSES_MAP['1'];
+					ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
 					console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
 				}
 			});

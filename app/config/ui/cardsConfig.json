@@ -2,7 +2,6 @@
 	"cards": {
 		"trendingCard": {
 			"queryEndpoint": "BAPI.endpoints.trendingSearch",
-			"numberOfItems": 15,
 			"queryParameters": {
 				"page": "1",
 				"pageSize": "15",
@@ -10,9 +9,10 @@
 				"categoryIds": [0,1,2],
 				"keywords": ["foo", "bar"],
 				"favoritesThreshold": 10,
-				"repliesThreshold": 10
+				"repliesThreshold": 10,
+				"sortBy" : "TBD",
+				"sellerId": ""
 			},
-			"templateName": "/templates/trending.hbs",
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",
 				"showFavorites": true,
@@ -20,7 +20,7 @@
 				"showLikes": true,
 				"showFeatured": true
 			},
-			"itemSizesString": "32112121111211"
+			"itemSizesString": "CBAADABAAAABAA"
 		}
 	},
 	"cardsByPage": {

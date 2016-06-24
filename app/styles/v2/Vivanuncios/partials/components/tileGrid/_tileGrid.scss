@@ -21,7 +21,7 @@ $gutterHorizontal: 10px;
 }
 
 .tile-container {
-    max-width: 1050px;
+
     .tile-item {
         border-radius: 10px;
 
@@ -37,19 +37,24 @@ $gutterHorizontal: 10px;
     // when the parent has class 'using-isotope', we know the client side js has taken over, so we get multiple sizes
     &.using-isotope > .tile-item {
         float: none;
-
+        // 'A'
         &.one-by-one {
             width: tileWidth(1);
             height: tileHeight(1);
         }
-
+        // 'B'
         &.two-by-one {
             width: tileWidth(2);
             height: tileHeight(1);
         }
-
+        // 'C'
         &.two-by-two {
             width: tileWidth(2);
+            height: tileHeight(2);
+        }
+        // 'D'
+        &.three-by-two {
+            width: tileWidth(3);
             height: tileHeight(2);
         }
     }
