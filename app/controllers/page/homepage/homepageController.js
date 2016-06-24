@@ -1,10 +1,21 @@
 'use strict';
 
-var express = require('express'), _ = require('underscore'), router = express.Router(), Q = require('q'), cuid = require('cuid');
+var express = require('express'),
+	_ = require('underscore'),
+	router = express.Router(),
+	Q = require('q'),
+	cuid = require('cuid');
 
-var cwd = process.cwd();
-var pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2'), marketoService = require(cwd + '/server/utils/marketo'), Base64 = require(process.cwd() + '/app/utils/Base64'), deviceDetection = require(cwd + '/modules/device-detection'), pagetypeJson = require(cwd + '/app/config/pagetype.json'), userService = require(process.cwd() + '/server/services/user');
+let cwd = process.cwd();
+let pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil');
 var CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let HomepageModel = require(cwd + '/app/builders/page/HomePageModel');
+let HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2');
+let marketoService = require(cwd + '/server/utils/marketo');
+let Base64 = require(process.cwd() + '/app/utils/Base64');
+let deviceDetection = require(cwd + '/modules/device-detection');
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let userService = require(process.cwd() + '/server/services/user');
 
 
 module.exports = function(app) {
@@ -19,7 +30,6 @@ router.get('/', function(req, res, next) {
 	console.time('Instrument-Homepage-Controller');
 
 	// Set pagetype in request
-	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
 
 	// Set anonUsrId cookie with value from cuid
 	if (!req.cookies['anonUsrId']) {
@@ -28,19 +38,14 @@ router.get('/', function(req, res, next) {
 
 	// Build Model Data
 	var modelData = pageControllerUtil.preController(req, res);
-	var bapiConfigData = res.locals.config.bapiConfigData;
 
 	// Cookies drop for Version of template
-	function cookiePageVersionFn(pageVersionCookie, defaultPath, newPath, modelData) {
-		if ((typeof pageVersionCookie !== 'undefined') && pageVersionCookie == '2.0') {
-			pageControllerUtil.postController(req, res, next, newPath, modelData);
-		} else {
-			pageControllerUtil.postController(req, res, next, defaultPath, modelData);
-		}
-	}
+
+	let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepageV2/views/hbs/homepageV2_';
 
 	// Retrieve Data from Model Builders
-	var model = HomepageModelV2(req, res, modelData);
+
+	let model = HP.cookiePageVersionFn(cookiePageVersion, modelData, req, res);
 
 	let authCookie = req.cookies['bt_auth'];
 	let userCookieData = req.app.locals.userCookieData;
@@ -56,96 +61,117 @@ router.get('/', function(req, res, next) {
 		};
 		promises.push(userService.getUserFromCookie(bapiHeaders));
 	}
+
 	Q.allSettled(promises)
 		.then(function(result) {
-
-			let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepagePlaceholder/views/hbs/homepagePlaceholder_';
+			let templatePath;
+			let bapiConfigData = res.locals.config.bapiConfigData;
 
 			let user;
 			if (result[1] !== undefined) {
 				//Cookie was set
 				user = result[1].state === "fulfilled" ? result[1].value : null;
 			}
-			// Dynamic Data from BAPI
+
 			// Result[0] is all the model data for the page without user data
 			result = result[0].state === "fulfilled" ? result[0].value : null;
-			modelData.isNewHP = true;
 			modelData.header = result['common'].header || {};
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};
-			modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-			modelData.level2Location = result['level2Loc'] || {};
-			modelData.initialGalleryInfo = result['gallery'] || {};
 			modelData.seo = result['seo'] || {};
 
 			// now make sure modelData gets all card data returned for home page
 			// todo: this logic is reapeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
-			let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+			let cardsModel = new CardsModel(modelData.bapiHeaders);
 			let cardNames = cardsModel.getCardNamesForPage("homePage");
 			for (let cardName of cardNames) {
 				modelData[cardName] = result[cardName];
 				modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
 			}
 
-			if (user) {
-				let userData = userService.buildProfile(user);
-				_.extend(modelData.header, userData);
+			// Changing Version of template depending of the cookie
+			if (cookiePageVersion === '2.0') {
+				modelData.isNewHP = true;
+				modelData.safetyTips = result['safetyTips'] || {};
+				templatePath = newPath;
 			} else {
-				console.error(`Invalid user cookie: ${authCookie}`);
+				templatePath = defaultPath;
+				// Dynamic Data from BAPI
+				modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
+				modelData.level2Location = result['level2Loc'] || {};
+				modelData.initialGalleryInfo = result['gallery'] || {};
+
+				if (user) {
+					let userData = userService.buildProfile(user);
+					_.extend(modelData.header, userData);
+				}
+
+
+				if (result['adstatistics']) {
+					modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
+				}
+
+				if (result['keyword']) {
+					modelData.trendingKeywords = result['keyword'][1].keywords || null;
+					modelData.topKeywords = result['keyword'][0].keywords || null;
+				}
+
+				// Make the loc level 2 (Popular locations) data null if it comes as an empty
+				if (_.isEmpty(modelData.level2Location)) {
+					modelData.level2Location = null;
+				}
+
+				// Check for top or trending keywords existence
+				modelData.topOrTrendingKeywords = false;
+				if (modelData.trendingKeywords || modelData.topKeywords) {
+					modelData.topOrTrendingKeywords = true;
+				}
+
+				// Special Data needed for HomePage in header, footer, content
+
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js")
+
+				// Make the location data null if it comes as an empty object from bapi
+				if (_.isEmpty(modelData.location)) {
+					modelData.location = null;
+				}
+
+				// Determine if we show the Popular locations container
+				modelData.showPopularLocations = true;
+				if (!modelData.level2Location && !modelData.location) {
+					modelData.showPopularLocations = false;
+				}
+
 			}
 
-			if (result['adstatistics']) {
-				modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
-			}
-
-			if (result['keyword']) {
-				modelData.trendingKeywords = result['keyword'][1].keywords || null;
-				modelData.topKeywords = result['keyword'][0].keywords || null;
-			}
-
-			// Make the loc level 2 (Popular locations) data null if it comes as an empty
-			if (_.isEmpty(modelData.level2Location)) {
-				modelData.level2Location = null;
-			}
-
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepagePlaceholderBundle.js")
-
-			// Check for top or trending keywords existence
-			modelData.topOrTrendingKeywords = false;
-			if (modelData.trendingKeywords || modelData.topKeywords) {
-				modelData.topOrTrendingKeywords = true;
-			}
-
-			// Special Data needed for HomePage in header, footer, content
+			//Shared data
 			HP.extendHeaderData(req, modelData);
 			HP.extendFooterData(modelData);
 			HP.buildContentData(modelData, bapiConfigData);
 			HP.deleteMarketoCookie(res, modelData);
 
-			// Make the location data null if it comes as an empty object from bapi
-			if (_.isEmpty(modelData.location)) {
-				modelData.location = null;
-			}
-
-			// Determine if we show the Popular locations container
-			modelData.showPopularLocations = true;
-			if (!modelData.level2Location && !modelData.location) {
-				modelData.showPopularLocations = false;
-			}
-
-			// Changing Version of template depending of the cookie
-			cookiePageVersionFn(cookiePageVersion, defaultPath, newPath, modelData);
+			pageControllerUtil.postController(req, res, next, templatePath, modelData);
 
 			console.timeEnd('Instrument-Homepage-Controller');
-		}, (err) => {
+		})
+		.fail((err) => {
 			console.error(err);
-		}).fail((err) => {
-		console.error(err);
-	});
+			console.error(err.stack);
+		});
 });
 
 
 var HP = {
+	cookiePageVersionFn(pageVersionCookie, modelData, req, res) {
+		if (pageVersionCookie === '2.0') {
+			req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
+			return HomepageModelV2(req, res, modelData)
+		} else {
+			req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
+			return HomepageModel(req, res, modelData);
+		}
+	},
+
 	/**
 	 * Special header data for HomePage
 	 */

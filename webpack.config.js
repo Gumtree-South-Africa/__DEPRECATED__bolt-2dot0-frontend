@@ -5,7 +5,7 @@ let path = require("path");
 module.exports = {
 	entry: {
 		"test/clientUnit/SpecRunner": "./test/clientUnit/SpecRunner.js",
-		"public/jsmin/homepagePlaceholder": "./app/views/templates/pages/homepagePlaceholder/js/homepagePlaceholder.js"
+		"public/jsmin/homepageV2": "./app/views/templates/pages/homepageV2/js/homepageV2.js"
 	},
 	output: {
 		path: '',
@@ -20,7 +20,7 @@ module.exports = {
 				loader: 'babel',
 				include: __dirname + '/src',
 			},
-			
+
 			// see http://isotope.metafizzy.co/extras.html#webpack
 			{
 				test: /isotope-layout/,

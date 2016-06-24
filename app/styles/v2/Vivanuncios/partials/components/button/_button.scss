@@ -1,0 +1,17 @@
+@mixin vivaBtn($hasIcon){
+  cursor: pointer;
+  background-color: $vivaOrange;
+  display: inline-block;
+  font: bold 1.125em Lato;
+  padding: 0.875em;
+  text-align: center;
+  width: 100%;
+  &:hover{
+    text-decoration: none;
+  }
+  > span + span.btn-icon{
+    @if ($hasIcon == 'off'){
+      display:none;
+    }
+  }
+}

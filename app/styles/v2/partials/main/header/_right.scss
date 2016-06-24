@@ -3,18 +3,12 @@ $header-post-button-height: 3em !default;
 
 .right{
 
-    > div{ 
-    	
-    	float:right; position:relative; 
+    > div{
+
+    	float:right; position:relative;
     	@include from-breakpoint($small-break){
-    		margin-left:1em; 
+    		margin-left:1em;
     	}
     }
-
-    @import
-        "./right/postButton",
-        "./right/helpIcon",
-        "./right/navLinks",
-        "./right/signInLink";
-
+    
 }

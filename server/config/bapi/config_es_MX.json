@@ -97,12 +97,20 @@
         }
 	},
 	"bapi" : {
+		"HomepageV2": {
+			"desktop": {
+				"models": ["safetyTips", "trendingCard"]
+			},
+			"mobile": {
+				"models": ["safetyTips", "trendingCard"]
+			}
+		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "gallery", "seo", "trendingCard"]
+				"models" : ["keyword", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "adstatistics", "seo", "trendingCard"]
+				"models" : ["keyword", "adstatistics", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
