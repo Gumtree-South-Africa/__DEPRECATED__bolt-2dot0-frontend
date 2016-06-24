@@ -52,6 +52,3 @@ ENV NODE_ENV dockerdeploy
 ENV BASEDOMAINSUFFIX `hostname`
 
 CMD ["/bin/bash"]
-
-ARG GIT_REV_FILE="unknown"
-ADD ${GIT_REV_FILE} /tmp/
