@@ -47,8 +47,8 @@ let createSiteApps = () => {
 
     if (siteLocales.indexOf(siteObj.locale) > -1) {
 	      (function(siteObj) {
-			  	  var builderObj = new expressbuilder(siteObj);
-		        var siteApp = builderObj.getApp();
+			  var builderObj = new expressbuilder(siteObj);
+			  var siteApp = builderObj.getApp();
 		      siteApps.push(siteApp);
 
 		        // Service Util to get Location and Category Data
