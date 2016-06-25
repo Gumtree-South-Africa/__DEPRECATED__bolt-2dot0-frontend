@@ -91,9 +91,6 @@ function CacheBapiData(siteApp, requestId) {
             return Q(configService.getConfigData(bapiHeaders))
               .then(function (dataReturned) {
 
-				// todo: remove this line, its only because we need to make changes to the config  and the changes are not yet available
-				dataReturned.error = "hack to make this read the local file";
-
                 if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
 					console.warn(`picking up bapi config locally due to error ${dataReturned.error}`);
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');

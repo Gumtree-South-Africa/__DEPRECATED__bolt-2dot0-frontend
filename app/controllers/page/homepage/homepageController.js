@@ -41,7 +41,7 @@ router.get('/', function(req, res, next) {
 
 	// Cookies drop for Version of template
 
-	let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepageV2/views/hbs/homepageV2_';
+	let cookiePageVersion = req.cookies.b2dot0Version;
 
 	// Retrieve Data from Model Builders
 
@@ -80,22 +80,26 @@ router.get('/', function(req, res, next) {
 			modelData.dataLayer = result['common'].dataLayer || {};
 			modelData.seo = result['seo'] || {};
 
-			// now make sure modelData gets all card data returned for home page
-			// todo: this logic is reapeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
-			let cardsModel = new CardsModel(modelData.bapiHeaders);
-			let cardNames = cardsModel.getCardNamesForPage("homePage");
-			for (let cardName of cardNames) {
-				modelData[cardName] = result[cardName];
-				modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
-			}
-
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
+				templatePath = 'homepageV2/views/hbs/homepageV2_';
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js")
+
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
-				templatePath = newPath;
+
+				// now make sure modelData gets all card data returned for home page
+				// todo: this logic is repeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
+				let cardsModel = new CardsModel(modelData.bapiHeaders);
+				let cardNames = cardsModel.getCardNamesForPage("homePage");
+				for (let cardName of cardNames) {
+					modelData[cardName] = result[cardName];
+					modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
+				}
+
 			} else {
-				templatePath = defaultPath;
+				templatePath = 'homepage/views/hbs/homepage_';
+
 				// Dynamic Data from BAPI
 				modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
 				modelData.level2Location = result['level2Loc'] || {};
@@ -128,8 +132,6 @@ router.get('/', function(req, res, next) {
 				}
 
 				// Special Data needed for HomePage in header, footer, content
-
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js")
 
 				// Make the location data null if it comes as an empty object from bapi
 				if (_.isEmpty(modelData.location)) {

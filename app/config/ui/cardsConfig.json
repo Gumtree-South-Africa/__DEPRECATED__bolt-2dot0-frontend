@@ -12,7 +12,7 @@
 				"favoritesThreshold": 10,
 				"repliesThreshold": 10,
 				"sortBy" : "TBD",
-				"sellerId": ["1", "2"]
+				"sellerIds": ["1", "2"]
 			},
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",

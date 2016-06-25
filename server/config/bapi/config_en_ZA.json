@@ -97,10 +97,10 @@
 	"bapi" : {
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo", "trendingCard"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo", "trendingCard"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			}
 		},
 	  	"QuickPostAdForm" : {

@@ -30,15 +30,39 @@ var makeHeaders = function (bapiHeaderValues) {
 	return headers;
 };
 
-var augmentPathWithParams = function(path, parameters) {
+/**
+ * augment the path  with both the parameterString and extraParameter collection specified
+ * @param path {string} it may already have parameters
+ * @param parametersString {string}
+ * @param extraParameters {Object}
+ * @returns {*}
+ */
+var augmentPathWithParams = function(path, parametersString, extraParameters) {
 	var newPath = path;
-	if (parameters != undefined) {
-		if ( path.indexOf('?') > -1 ) {
-			newPath = path + '&' + parameters;
-		} else {
-			newPath = path + '?' + parameters;
+
+	// fixup path with parameters
+	let urlParams = '';
+
+	if (parametersString !== undefined) {
+		urlParams += `${urlParams.length > 0 ? '&' : ''}${parametersString}`;
+	}
+
+	for (let paramName in extraParameters) {
+		if (extraParameters.hasOwnProperty(paramName)) {
+			urlParams += `${urlParams.length > 0 ? '&' : ''}${paramName}=${encodeURIComponent(extraParameters[paramName])}`;
 		}
 	}
+
+	// tack them on if we got some
+	if (urlParams.length > 0) {
+		if ( path.indexOf('?') > -1 ) {
+			// existing path has some already
+			newPath += '&' + urlParams;
+		} else {
+			newPath += '?' + urlParams;
+		}
+	}
+
 	return newPath;
 }
 
@@ -46,7 +70,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 	console.time(`Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
-	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
+	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters, bapiOptions.extraParameters);
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');

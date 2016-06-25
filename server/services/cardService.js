@@ -13,23 +13,10 @@ class CardService {
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
 		// Invoke BAPI
 
-		// fixup path with parameters
-		let path = config.get(queryEndpoint);
-		let urlParams = '';
-
-		for (let paramName in parameters) {
-			if (parameters.hasOwnProperty(paramName)) {
-				urlParams += `${urlParams.length > 0 ? '&' : ''}${paramName}=${encodeURIComponent(parameters[paramName])}`;
-			}
-		}
-
-		if (urlParams.length > 0) {
-			path += '?' + urlParams;
-		}
-
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
-			path: path
+			path: config.get(queryEndpoint),
+			extraParameters: parameters,	// bapiOptionsModel may bring 'parameters' in from config, so we use extraParameters
 		}), bapiHeaderValues, 'card');
 	}
 }
