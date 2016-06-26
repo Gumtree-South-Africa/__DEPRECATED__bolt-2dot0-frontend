@@ -45,6 +45,7 @@ function preserveStats(stats) {
 	stats.maxCookieSize = sanitize(metric.cookielen.toJSON().max);
 	stats.requestBodySize = sanitize(metric.requestBody.toJSON().median);
 	stats.sessionSize = sanitize(metric.sessionSize);
+	stats.requestsReceived = metric.requestsReceived;
 	stats.tps = sanitize(metric.requestsReceived / durationSeconds);
 	stats.uptime = Math.round(process.uptime());
 
@@ -94,6 +95,7 @@ function sendMetricsToGraphite(stats) {
 	graphiteService.sendNodeMetrics('agent.stats.renderTime', stats.renderTime);
 	graphiteService.sendNodeMetrics('agent.stats.maxCookieSize', stats.maxCookieSize);
 	graphiteService.sendNodeMetrics('agent.stats.requestBodySize', stats.requestBodySize);
+	graphiteService.sendNodeMetrics('agent.stats.requestCount', stats.requestsReceived);
 	graphiteService.sendNodeMetrics('agent.stats.transactionsPerSecond', stats.tps);
 	graphiteService.sendNodeMetrics('agent.stats.count2xx', stats.http2XX);
 	graphiteService.sendNodeMetrics('agent.stats.count3xx', stats.http3XX);
