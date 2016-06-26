@@ -1,0 +1,9 @@
+:name: Node App (All)
+:description: Node App Health (All)
+:graph_properties:
+  :country: '*'
+  :app: nodejs
+:include_graphs:
+- "templates/nodeapp"
+:include_properties:
+- "all.yml"
