@@ -45,8 +45,8 @@ module.exports = function watch(gulp, plugins) {
 			}, done).start();
 		});
 
-		gulp.task('test:clientUnit', ["webpack"], function () {
-			gulp.start("karma");
+		gulp.task('test:clientUnit', function () {
+			runSequence("webpack", "karma");
 		});
 
 		// SERVER UNIT TEST TASKS

@@ -83,6 +83,7 @@ router.get('/', function(req, res, next) {
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
 				modelData.recentActivities = result['recentActivities'] || {};
+				modelData.reviews = result['appDownload'] || {};
 				templatePath = newPath;
 			} else {
 				templatePath = defaultPath;

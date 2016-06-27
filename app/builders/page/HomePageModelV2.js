@@ -3,12 +3,14 @@
 
 let cwd = process.cwd();
 
-var Q = require('q');
-var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-var SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
-var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+
+let Q = require('q');
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -18,9 +20,10 @@ var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityMode
  * @private
  * @return {JSON}
  */
-let getHomepageDataFunctions = function(req, res, modelData) {
+let getHomepageDataFunctions = function(req, res) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
 	let recentActivityModel = new RecentActivityModel(req, res);
+	let appDownloadModel = new AppDownloadModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
@@ -31,8 +34,12 @@ let getHomepageDataFunctions = function(req, res, modelData) {
 		'recentActivities': (callback) => {
 			var data = recentActivityModel.getRecentActivities();
 			callback(null, data);
-		}
-	};
+		},
+		'appDownload': (callback) => {
+			 let data = appDownloadModel.getAppDownload();
+			 callback(null, data);
+       }
+    };
 };
 
 
