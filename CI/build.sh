@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd $(dirname "$0")
+cd $(dirname "$0")/..
 pwd
 
 TAG=${1:-latest}
