@@ -77,11 +77,12 @@ router.get('/', function(req, res, next) {
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};
 			modelData.seo = result['seo'] || {};
-			
+						
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
+				modelData.reviews = result['appDownload'] || {};
 				templatePath = newPath;
 			} else {
 				templatePath = defaultPath;
