@@ -49,7 +49,9 @@ BAPICall.prototype = {
 		    			data = JSON.parse(body);
 		    		} catch(ex) {
 		    			data = {};
-					    deferred.reject(ex);
+						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
+						console.error(message);
+					    deferred.reject(new Error(message));
 		    		}
 					if (! _.isEmpty(argData)) {
 						data = _.extend(argData, data);

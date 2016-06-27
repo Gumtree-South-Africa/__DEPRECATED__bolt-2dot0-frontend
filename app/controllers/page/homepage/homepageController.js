@@ -93,6 +93,11 @@ router.get('/', function(req, res, next) {
 				let cardsModel = new CardsModel(modelData.bapiHeaders);
 				let cardNames = cardsModel.getCardNamesForPage("homePage");
 				for (let cardName of cardNames) {
+					if (result[cardName] === undefined) {
+						let message = `expected card data is missing - api results['${cardName}'] is undefined`;
+						console.error(message);
+						throw new Error(message);
+					}
 					modelData[cardName] = result[cardName];
 					modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
 				}
