@@ -1,0 +1,12 @@
+title   "Node App Heap Usage"
+area    :none
+vtitle  "Heap Usage"
+
+app = @properties[:app]
+
+field :node_heap,
+				:no_alias => true,
+                :data  => "aliasByNode(highestCurrent(movingAverage(*.#{app}.server.agent.stats.heap_used,5),8),0)"
+field :node_heap_avg, :color => "orange",
+				:alias => "Average",
+                :data => "lineWidth(averageSeries(*.#{app}.server.agent.stats.heap_used),3)"

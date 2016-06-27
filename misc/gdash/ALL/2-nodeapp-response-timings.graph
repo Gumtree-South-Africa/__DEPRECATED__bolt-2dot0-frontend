@@ -1,0 +1,12 @@
+title   "Node App Request Health"
+area    :none
+vtitle  "Duration (ms)"
+
+app = @properties[:app]
+
+field :requestDuration, :color => "green",
+               :alias => "Request Duration",
+               :data  => "averageSeries(*.#{app}.server.agent.stats.urlTime)"
+field :activeRequests, :color => "blue",
+               :alias => "Active Requests",
+               :data  => "secondYAxis(sumSeries(*.#{app}.server.agent.stats.requestCount))"
