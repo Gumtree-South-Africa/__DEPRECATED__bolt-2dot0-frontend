@@ -1,17 +1,14 @@
 'use strict';
 
 
-var cwd = process.cwd();
+let cwd = process.cwd();
 
 var Q = require('q');
-
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-
 var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-
 var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-
-let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+var SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 
 /**
@@ -48,7 +45,12 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 		let data = safetyTipsModel.getSafetyTips();
 		callback(null, data);
 	};
-
+	
+	let recentActivityModel = new RecentActivityModel(req, res);
+	dataPromiseFunctionMap.recentActivities = (callback) => {
+		let data = recentActivityModel.getRecentActivities();
+		callback(null, data);
+	};
 	return dataPromiseFunctionMap;
 };
 
@@ -60,16 +62,16 @@ var getHomepageDataFunctions = function(req, res, modelData) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModelV2 = function(req, res, modelData) {
-	var functionMap = getHomepageDataFunctions(req, res, modelData);
+let HomePageModelV2 = function(req, res, modelData) {
+	let functionMap = getHomepageDataFunctions(req, res, modelData);
 
-	var abstractPageModel = new AbstractPageModel(req, res);
-	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	let abstractPageModel = new AbstractPageModel(req, res);
+	let pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+	let pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 
-	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
+	let arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 
-	var homepageModel = new ModelBuilder(arrFunctions);
+	let homepageModel = new ModelBuilder(arrFunctions);
 
 	return Q(homepageModel.processParallel())
 		.then(function(data) {

@@ -1145,21 +1145,23 @@
   "quickpost.error.locationNotInCountry": "Tu selección no es en México",
   "quickpost.empty": "",
   "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes",
-	"homepage": {
-		"safetyTips": {
-			"title": "Vivanuncios Te Cuida",
-			"faq": "Consejos de seguridad",
-			"tip": [
-				"Consejos de cómo protegerte en internet",
-				"¿Vivanuncios coopera con las autoridades?",
-				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
-				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
-				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
-			]
-		}
+  "homepage": {
+	"safetyTips": {
+		"title": "Vivanuncios Te Cuida",
+		"faq": "Consejos de seguridad",
+		"tip": [
+			"Consejos de cómo protegerte en internet",
+			"¿Vivanuncios coopera con las autoridades?",
+			"¿Cómo mantengo mi cuenta de usuario segura?",
+			"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
+			"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+			"¿Cuáles son los fraudes más comunes?",
+			"¿Qué puedo hacer si he sido víctima de una estafa?",
+			"¿Cómo reportar un anuncio?",
+			"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+		]
 	}
+  },
+  "feedtile.message.listing": "%s just %s a %s %s"
 }
+

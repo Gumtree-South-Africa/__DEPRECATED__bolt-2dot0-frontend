@@ -12,7 +12,7 @@ module.exports = function watch(gulp) {
 				// 'app/controllers/page/isotopePrototype/*.js',
 				// 'app/views/components/responsiveBreakpointDetection/js/*.js',
 				// 'app/views/components/adTile/js/*.js',
-				// 'app/views/components/feedTile/js/*.js',
+				// 'app/views/components/recentActivity/js/*.js',
 				// 'app/views/components/tileGrid/js/*.js',
 				'app/builders/common/**/*.js',
 				'test/**/*.js',

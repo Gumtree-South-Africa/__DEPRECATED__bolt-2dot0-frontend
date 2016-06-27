@@ -19,7 +19,6 @@ module.exports = function watch(gulp, plugins) {
 					+ '; cp -R app bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R bin bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R modules bolt-2dot0-frontend_' + appVersion
-					+ '; cp -R locales bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R node_modules bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R server bolt-2dot0-frontend_' + appVersion
 					+ '; cp app.js bolt-2dot0-frontend_' + appVersion

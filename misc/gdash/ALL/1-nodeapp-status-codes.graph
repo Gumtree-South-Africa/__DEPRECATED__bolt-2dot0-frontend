@@ -1,0 +1,18 @@
+title   "Node App Status codes"
+area    :none
+vtitle  "Requests per sec"
+
+app = @properties[:app]
+
+field :ok, :color => "green",
+               :alias => "OK/2xx",
+               :data  => "sumSeries(*.#{app}.server.agent.stats.count2xx)"
+field :redirect, :color => "blue",
+               :alias => "Redirect/3xx",
+               :data  => "sumSeries(*.#{app}.server.agent.stats.count3xx)"
+field :clienterror, :color => "orange",
+               :alias => "Client/4xx Error",
+               :data  => "sumSeries(*.#{app}.server.agent.stats.count4xx)"
+field :servererror, :color => "red",
+               :alias => "Server/5xx Error",
+               :data  => "sumSeries(*.#{app}.server.agent.stats.count5xx)"

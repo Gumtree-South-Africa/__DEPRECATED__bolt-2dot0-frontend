@@ -97,6 +97,7 @@ router.get('/', function(req, res, next) {
 					modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
 				}
 
+				modelData.recentActivities = result['recentActivities'] || {};
 			} else {
 				templatePath = 'homepage/views/hbs/homepage_';
 
@@ -143,7 +144,6 @@ router.get('/', function(req, res, next) {
 				if (!modelData.level2Location && !modelData.location) {
 					modelData.showPopularLocations = false;
 				}
-
 			}
 
 			//Shared data

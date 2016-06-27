@@ -1,0 +1,10 @@
+title   "Node App Response Timings"
+area    :none
+vtitle  "Duration (ms)"
+
+app = @properties[:app]
+country = @properties[:country]
+
+field :Homepage, :color => "green",
+               :alias => "Home Page response timings",
+               :data  => "averageSeries(*.#{app}.#{country}.pages.Homepage.response.responseTime)"

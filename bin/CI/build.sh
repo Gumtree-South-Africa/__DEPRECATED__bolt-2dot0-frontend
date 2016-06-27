@@ -1,6 +1,6 @@
 #!/bin/sh -e
 
-cd $(dirname "$0")
+cd $(dirname "$0")./../..
 pwd
 
 TAG=${1:-latest}
@@ -22,8 +22,6 @@ echo "REGISTRY_HOST=$REGISTRY_HOST"
 sudo docker rmi $REGISTRY_HOST:5000/$IMAGE:$TAG || true
 
 IMAGE_TAG=$TAG-$(date -u +%Y-%m-%d_%H-%M%Z)
-#sudo docker build --build-arg GIT_REV_FILE=$GIT_REV_FILE -t "$REGISTRY_HOST:5000/$IMAGE:$IMAGE_TAG" .
-#--build-arg required higher version docker engine
-sudo docker build -t "$REGISTRY_HOST:5000/$IMAGE:$IMAGE_TAG" .
+sudo docker build --build-arg GIT_REV_FILE=$GIT_REV_FILE -t "$REGISTRY_HOST:5000/$IMAGE:$IMAGE_TAG" .
 sudo docker tag "$REGISTRY_HOST:5000/$IMAGE:$IMAGE_TAG" "$REGISTRY_HOST:5000/$IMAGE:$TAG"
 sudo docker push "$REGISTRY_HOST:5000/$IMAGE:$TAG"

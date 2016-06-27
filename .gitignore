@@ -65,3 +65,7 @@ test/clientUnit/SpecRunnerBundle.js
 # Docker #
 #########
 docker.bolt-2dot0-frontend*
+
+# Monitoring #
+##############
+restarts_undefined

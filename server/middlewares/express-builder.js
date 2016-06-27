@@ -13,6 +13,8 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 // create a write stream (in append mode)
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
+// morgan custom logging format
+var accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time-sec';
 
 var i18nOr = require(config.root + '/modules/bolt-i18n');
 
@@ -20,8 +22,29 @@ function BuildApp(siteObj) {
 	var app = new express();
 
 	this.getApp = function() {
+		this.setLoggerTokens();
 		return app;
 	};
+
+	// morgan custom logging tokens
+	this.setLoggerTokens = function() {
+		logger.token('hostname', function getHostname(req, res) {
+			return req.hostname;
+		});
+		logger.token('client-ip', function getClientIp(req, res) {
+			return req.app.locals.ip;
+		});
+		logger.token('cuid', function getCuid(req, res) {
+			return req.app.locals.requestId;
+		});
+		logger.token('response-time-sec', function getResponseTimeToken(req, res) {
+			if (!req._startAt || !res._startAt) {return;}
+			// calculate diff
+			var ms = (res._startAt[0] - req._startAt[0]) * 1e3 + (res._startAt[1] - req._startAt[1]) * 1e-6
+			var sec = ms / 1000;
+			return sec.toFixed(3);
+		});
+	}
 
 
 	// Only for Site Specific App
@@ -95,7 +118,7 @@ function BuildApp(siteObj) {
 		app.use(cookieParser());
 		app.use(methodOverride());
 		app.use(expressUncapitalize());
-		app.use(logger('combined', {stream: accessLogStream}));
+		app.use(logger(accessLogFormat, {stream: accessLogStream}));
 
 		/*
 		 * Bolt 2.0 Rendering middlewares

@@ -99,10 +99,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "trendingCard"]
+				"models": ["safetyTips", "trendingCard", "recentActivities"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "trendingCard"]
+				"models": ["safetyTips", "trendingCard", "recentActivities"]
 			}
 		},
 		"Homepage" : {
