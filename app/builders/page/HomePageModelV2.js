@@ -1,7 +1,7 @@
 'use strict';
 
 
-var cwd = process.cwd();
+let cwd = process.cwd();
 
 var Q = require('q');
 var pagetypeJson = require(cwd + '/app/config/pagetype.json');
@@ -18,9 +18,9 @@ var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityMode
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function(req, res, modelData) {
-	var safetyTipsModel = new SafetyTipsModel(req, res);
-	var recentActivityModel = new RecentActivityModel(req, res);
+let getHomepageDataFunctions = function(req, res, modelData) {
+	let safetyTipsModel = new SafetyTipsModel(req, res);
+	let recentActivityModel = new RecentActivityModel(req, res);
 
 	return {
 		'safetyTips': (callback) => {
@@ -43,16 +43,16 @@ var getHomepageDataFunctions = function(req, res, modelData) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModelV2 = function(req, res, modelData) {
-	var functionMap = getHomepageDataFunctions(req, res, modelData);
+let HomePageModelV2 = function(req, res, modelData) {
+	let functionMap = getHomepageDataFunctions(req, res, modelData);
 
-	var abstractPageModel = new AbstractPageModel(req, res);
-	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	let abstractPageModel = new AbstractPageModel(req, res);
+	let pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+	let pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 
-	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
+	let arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 
-	var homepageModel = new ModelBuilder(arrFunctions);
+	let homepageModel = new ModelBuilder(arrFunctions);
 
 	return Q(homepageModel.processParallel())
 		.then(function(data) {

@@ -30,9 +30,10 @@ function sanitize(num) {
 function preserveStats(stats) {
 	var nowTime = Date.now();
 	var durationSeconds = (nowTime - duration) / 1000; // time since last metrics dump
-	stats.eventLoop = tooBusy.lag();
+
 	updateMemory(stats);
 	updateFileDescriptorCount(stats);
+	stats.eventLoop = tooBusy.lag();
 	stats.maxConcurrentRequests = metric.maxConcurrentRequests;
 	stats.urlTime = sanitize(metric.urltime.toJSON().median);
 	stats.eps = sanitize(metric.eps / durationSeconds);
@@ -44,10 +45,12 @@ function preserveStats(stats) {
 	stats.maxCookieSize = sanitize(metric.cookielen.toJSON().max);
 	stats.requestBodySize = sanitize(metric.requestBody.toJSON().median);
 	stats.sessionSize = sanitize(metric.sessionSize);
+	stats.requestsReceived = metric.requestsReceived;
 	stats.tps = sanitize(metric.requestsReceived / durationSeconds);
-	duration = nowTime; // reset duration clock
 	stats.uptime = Math.round(process.uptime());
+
 	// Get CPU Usage async and finish up with emitStatistics callback
+	duration = nowTime; // reset duration clock
 	finalUpdateStats(stats, durationSeconds, emitStatistics);
 	return stats;
 
@@ -57,10 +60,10 @@ function preserveStats(stats) {
 			console.log(genLogMsg("ERROR finalizing statistics: " + error));
 			return;
 		}
-		// console.log(genLogMsg(JSON.stringify(stats)));
 		// Send stats to anyone interested in them but don't send metrics if no endpoint
-		theEmitter.emit('monitorNodeStats', stats);
+		console.log(genLogMsg('BOLT NodeJS Monitoring Agent: ' + JSON.stringify(stats)));
 		sendMetricsToGraphite(stats);
+		// theEmitter.emit('monitorNodeStats', stats);
 	}
 }
 
@@ -68,9 +71,9 @@ function preserveStats(stats) {
 function resetStats() {
 	stats.gc_count = 0;
 	stats.gc_count_incremental = 0;
-	stats.gcInterval = 0,
+	stats.gcInterval = 0;
 
-		metric.maxConcurrentRequests = 0;
+	metric.maxConcurrentRequests = 0;
 	metric.urltime.reset();
 	metric.eps = 0;
 	metric.http2XX = 0;
@@ -92,6 +95,7 @@ function sendMetricsToGraphite(stats) {
 	graphiteService.sendNodeMetrics('agent.stats.renderTime', stats.renderTime);
 	graphiteService.sendNodeMetrics('agent.stats.maxCookieSize', stats.maxCookieSize);
 	graphiteService.sendNodeMetrics('agent.stats.requestBodySize', stats.requestBodySize);
+	graphiteService.sendNodeMetrics('agent.stats.requestCount', stats.requestsReceived);
 	graphiteService.sendNodeMetrics('agent.stats.transactionsPerSecond', stats.tps);
 	graphiteService.sendNodeMetrics('agent.stats.count2xx', stats.http2XX);
 	graphiteService.sendNodeMetrics('agent.stats.count3xx', stats.http3XX);
@@ -150,9 +154,7 @@ function setup(options) {
 
 		var setOptions = setupOptions.bind(self, options);
 		var clChk = clusterCheck.getRestarts.bind(self, options);
-		options.metricsId = clusterCheck.getClusterId();
 
-		// Obtain a metricsId for reporting node instances if we are clustered
 		async.series([
 				setOptions, clChk
 			], // results callback
@@ -195,6 +197,10 @@ Monitor.prototype.reset = function reset() {
 	clearInterval(intervalId);
 	intervalId = undefined;
 };
+
+Monitor.prototype.startMonitoring = function startMonitoring() {
+	setup();
+}
 
 
 module.exports = new Monitor();
