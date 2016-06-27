@@ -1,14 +1,14 @@
 'use strict';
 
 
-var cwd = process.cwd();
+let cwd = process.cwd();
 
-var Q = require('q');
+let Q = require('q');
 
-var pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
-var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 
 /**
@@ -19,7 +19,7 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function(req, res, modelData) {
+let getHomepageDataFunctions = function(req, res) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
 
 	return {
@@ -38,16 +38,16 @@ var getHomepageDataFunctions = function(req, res, modelData) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModelV2 = function(req, res, modelData) {
-	var functionMap = getHomepageDataFunctions(req, res, modelData);
+let HomePageModelV2 = function(req, res, modelData) {
+	let functionMap = getHomepageDataFunctions(req, res, modelData);
 
-	var abstractPageModel = new AbstractPageModel(req, res);
-	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	let abstractPageModel = new AbstractPageModel(req, res);
+	let pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+	let pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 
-	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
+	let arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 
-	var homepageModel = new ModelBuilder(arrFunctions);
+	let homepageModel = new ModelBuilder(arrFunctions);
 
 	return Q(homepageModel.processParallel())
 		.then(function(data) {

@@ -1,18 +1,10 @@
 'use strict';
 
-requirejs.config({
-    paths: {}
-});
+// let myDependency = require("../path/to/dependency");
+
+module.exports.initialize = () => {
+	// your setup code here
+};
 
 
-require([/* Dependencies */], function () {
 
-    var app = {
-        initialize: function () {
-            // Your code here
-        }
-    };
-
-    app.initialize();
-
-});
