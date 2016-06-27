@@ -10,6 +10,7 @@ var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 var SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -49,6 +50,12 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	let recentActivityModel = new RecentActivityModel(req, res);
 	dataPromiseFunctionMap.recentActivities = (callback) => {
 		let data = recentActivityModel.getRecentActivities();
+		callback(null, data);
+	};
+	
+	let appDownloadModel = new AppDownloadModel(req, res);
+	dataPromiseFunctionMap.appDownload = (callback) => {
+		let data = appDownloadModel.getAppDownload();
 		callback(null, data);
 	};
 	return dataPromiseFunctionMap;

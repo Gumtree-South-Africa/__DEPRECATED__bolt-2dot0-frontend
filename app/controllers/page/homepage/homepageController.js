@@ -98,6 +98,7 @@ router.get('/', function(req, res, next) {
 				}
 
 				modelData.recentActivities = result['recentActivities'] || {};
+				modelData.reviews = result['appDownload'] || {};
 			} else {
 				templatePath = 'homepage/views/hbs/homepage_';
 
@@ -110,7 +111,6 @@ router.get('/', function(req, res, next) {
 					let userData = userService.buildProfile(user);
 					_.extend(modelData.header, userData);
 				}
-
 
 				if (result['adstatistics']) {
 					modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;

@@ -17,7 +17,7 @@ var path = require('path'), fs = require('fs'), os = require('os'), theId;
 function getRestarts(options, callback) {
 	var restartCountsFile, restarts = 0, restartCount;
 
-	restartCountsFile = path.resolve('./restarts_' + theId);
+	restartCountsFile = path.resolve('/var/tmp/restarts_' + theId);
 	if (fs.existsSync(restartCountsFile)) {
 		restartCount = fs.readFileSync(restartCountsFile, 'utf8');
 		restarts = Number(restartCount) + 1;
