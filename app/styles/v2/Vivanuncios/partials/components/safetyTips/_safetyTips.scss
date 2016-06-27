@@ -95,11 +95,14 @@
                 height: 175px;
             }
             &.image-left {
-                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+                background-image: url('/public/images/safety-tips-1-mobile.jpg');
+                @media (min-width: 768px) {
+                    background-image: url('/public/images/safety-tips-1-desktop.jpg');
+                }
             }
             &.image-right {
                 display: none;
-                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+                background-image: url('/public/images/safety-tips-2-mobile.jpg');
                 @media (min-width: 768px) {
                     display: block;
                 }
