@@ -55,7 +55,7 @@ module.exports = function watch(gulp, plugins) {
 		]));
 
 		gulp.task('test', (done) => {
-			runSequence('build', 'test:clientUnit', 'test:serverUnit', 'test:integration', done);
+			runSequence('build', 'test:clientUnit', done);
 		});
 	};
 };
