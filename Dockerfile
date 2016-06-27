@@ -26,8 +26,8 @@ ENV CHROME_BIN /usr/local/bin/google-chrome
 
 RUN apt-get update && apt-get install -y Xvfb; \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-ADD ./CI/xvfb.sh /etc/init.d/xvfb
-ADD ./CI/entrypoint.sh /entrypoint.sh
+ADD ./bin/CI/xvfb.sh /etc/init.d/xvfb
+ADD ./bin/CI/entrypoint.sh /entrypoint.sh
 ENV DISPLAY :99.0
 
 # Setup work directory
@@ -52,3 +52,6 @@ ENV NODE_ENV dockerdeploy
 ENV BASEDOMAINSUFFIX `hostname`
 
 CMD ["/bin/bash"]
+
+ARG GIT_REV_FILE="unknown"
+ADD ${GIT_REV_FILE} /tmp/

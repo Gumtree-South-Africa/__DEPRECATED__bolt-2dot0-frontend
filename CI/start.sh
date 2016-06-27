@@ -1,2 +1,0 @@
-#!/bin/sh
-PM_CWD=$GIT_BOLT20_DIR NODE_CONFIG_DIR=$GIT_BOLT20_DIR/server/config LOG_DIR=$GIT_BOLT20_DIR NODE_ENV=vm PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost forever start --append -l frontend-forever.log -o $GIT_BOLT20_DIR/out.log -e $GIT_BOLT20_DIR/error.log $GIT_BOLT20_DIR/bin/www
