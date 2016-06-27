@@ -143,10 +143,10 @@ HeaderModel.prototype.buildUrl = function(data) {
 //Build CSS
 HeaderModel.prototype.buildCss = function(data) {
 
-	let b2dot0Ver = 'v1'; //by default
-	if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version === '2.0') {
-		b2dot0Ver = 'v2';
-	}
+	// let b2dot0Ver = 'v1'; //by default
+	// if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version === '2.0') {
+		let b2dot0Ver = 'v2';
+	// }
 
 	data.iconsCSSURLs = [];
 	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + this.locale + '.css');

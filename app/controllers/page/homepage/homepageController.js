@@ -41,7 +41,8 @@ router.get('/', function(req, res, next) {
 
 	// Cookies drop for Version of template
 
-	let cookiePageVersion = req.cookies.b2dot0Version;
+	// let cookiePageVersion = req.cookies.b2dot0Version;
+	let cookiePageVersion = '2.0';
 
 	// Retrieve Data from Model Builders
 
@@ -83,7 +84,7 @@ router.get('/', function(req, res, next) {
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
 				templatePath = 'homepageV2/views/hbs/homepageV2_';
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js")
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
 
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
