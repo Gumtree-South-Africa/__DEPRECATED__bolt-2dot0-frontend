@@ -18,7 +18,7 @@ module.exports = function watch(gulp, plugins) {
 		browser = argv.browser;
 	}
 
-	return function() {		
+	return function() {
 		// Integration Tests Tasks
 		gulp.task('protractor', function() {
 			let port = argv.port || "8000";
@@ -51,8 +51,8 @@ module.exports = function watch(gulp, plugins) {
 			}, done).start();
 		});
 
-		gulp.task('test:clientUnit', function () {
-			runSequence("webpack", "karma");
+		gulp.task('test:clientUnit', function (done) {
+			runSequence("webpack", "karma", done);
 		});
 
 		// SERVER UNIT TEST TASKS
