@@ -73,7 +73,12 @@ gulp.task('default', function (done) {
     runSequence('build', ['develop', 'watch'], done);
 });
 
-gulp.task('test', getTask("test"));
+var testTasks = getTask("test");
+
+gulp.task('test:clientUnit', testTasks);
+gulp.task('test:serverUnit', testTasks);
+gulp.task('test:integration', testTasks);
+gulp.task('test', testTasks);
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
