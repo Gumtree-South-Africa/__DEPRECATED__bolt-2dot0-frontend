@@ -115,6 +115,7 @@
     "morgan": "1.6.1",
     "node-uuid": "1.4.7",
     "on-response": "1.0.1",
+    "phantomjs": "2.1.7",
     "protractor": "3.3.0",
     "q": "1.4.1",
     "request": "2.67.0",
