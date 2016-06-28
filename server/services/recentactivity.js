@@ -2,7 +2,7 @@
 
 class RecentActivityService {
 	getRecentActivities() {
-		return require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
+		return require(process.cwd() + '/server/services/mockData/components/recentActivityMock');
 	}
 }
 

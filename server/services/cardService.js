@@ -14,7 +14,7 @@ class CardService {
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
 		// Invoke BAPI
 		// Wrap in a promise so the outside then doesn't break;
-		return Q(require(process.cwd() + '/test/serverUnit/mockData/api/v1/Ads.json'));
+		return Q(require(process.cwd() + '/server/services/mockData/Ads.json'));
 
 		// return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 		// 	method: 'GET',
