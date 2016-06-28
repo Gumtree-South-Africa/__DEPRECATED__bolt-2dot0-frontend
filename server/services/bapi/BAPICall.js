@@ -56,7 +56,7 @@ BAPICall.prototype = {
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if  (res.statusCode !== 200) {
-						deferred.reject(new Error('Received non-200 status'), data);
+						deferred.reject(new Error(`Received non-200 status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path}  host: ${res.req._headers['host']}`), data);
 					} else {
 						deferred.resolve(data);
 					}
@@ -118,7 +118,7 @@ BAPICall.prototype = {
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (res.statusCode !== 200) {
-						deferred.reject(new Error('Received non-200 status'), data);
+						deferred.reject(new Error(`Received non-200 status: ${res.statusCode}`), data);
 					} else {
 						deferred.resolve(data);
 					}
@@ -139,7 +139,6 @@ BAPICall.prototype = {
 		} catch (ex) {
 			deferred.reject(ex);
 		}
-		
 		return deferred.promise;
 	}
 }; // End prototype

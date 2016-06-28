@@ -1,0 +1,67 @@
+$standardTileWidth: 110px;
+$standardTileHeight: 130px;
+$gutterVertical: 10px;
+$gutterHorizontal: 10px;
+
+@function tileWidth($tileUnits) {
+    // a "tileUnit" is a dimension of the tile like a 1x1 or 2x2, units are 1 or 2
+    @return $tileUnits * $standardTileWidth + (($tileUnits - 1) * $gutterVertical)
+}
+@function tileHeight($tileUnits) {
+    // a "tileUnit" is a dimension of the tile, example a 1x1 or 2x2, unit is either 1 or 2
+    @return $tileUnits * $standardTileHeight + (($tileUnits - 1) * $gutterHorizontal)
+}
+
+.gutter-sizer-horizontal {
+    width: $gutterHorizontal;
+}
+
+.column-sizer {
+    width: tileWidth(1);
+}
+
+.tile-container {
+
+    .tile-item {
+        border-radius: 10px;
+
+        // standard size if we dont have javascript turned on on home page
+        width: tileWidth(1);
+        height: tileHeight(1);
+        float: left;
+
+        // we need vertical space between items, according to isotope we use margin-bottom:
+        margin-bottom: $gutterVertical;
+    }
+
+    // when the parent has class 'using-isotope', we know the client side js has taken over, so we get multiple sizes
+    &.using-isotope > .tile-item {
+        float: none;
+
+        // 'A'
+        &.one-by-one {
+            width: tileWidth(1);
+            height: tileHeight(1);
+        }
+        // 'B'
+        &.two-by-one {
+            width: tileWidth(2);
+            height: tileHeight(1);
+        }
+        // 'C'
+        &.two-by-two {
+            width: tileWidth(2);
+            height: tileHeight(2);
+        }
+        // 'D'
+        &.three-by-two {
+            width: tileWidth(3);
+            height: tileHeight(2);
+        }
+    }
+}
+
+.card-clear {
+    clear: both;
+}
+

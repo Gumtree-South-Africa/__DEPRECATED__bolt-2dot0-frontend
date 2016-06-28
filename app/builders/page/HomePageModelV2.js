@@ -3,13 +3,13 @@
 
 let cwd = process.cwd();
 
-
-let Q = require('q');
-let pagetypeJson = require(cwd + '/app/config/pagetype.json');
-let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
-let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+var Q = require('q');
+var pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+var SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+var RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 
 /**
@@ -20,26 +20,46 @@ let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
  * @private
  * @return {JSON}
  */
-let getHomepageDataFunctions = function(req, res) {
+
+var getHomepageDataFunctions = function(req, res, modelData) {
+
+	let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+	let cardNames = cardsModel.getCardNamesForPage("homePage");
+	let dataPromiseFunctionMap = {};
+
+	for (let cardName of cardNames) {
+		dataPromiseFunctionMap[cardName] = (callback) => {
+			// user specific parameters are passed here, such as location lat/long
+			// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
+			cardsModel.getCardItemsData(cardName, {
+				location: "[19.432608, -99.133209]"
+			}).then((dataL) => {
+				callback(null, dataL);
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				callback(null, {});
+			});
+		};
+	}
+
 	let safetyTipsModel = new SafetyTipsModel(req, res);
+	dataPromiseFunctionMap.safetyTips = (callback) => {
+		let data = safetyTipsModel.getSafetyTips();
+		callback(null, data);
+	};
+	
 	let recentActivityModel = new RecentActivityModel(req, res);
+	dataPromiseFunctionMap.recentActivities = (callback) => {
+		let data = recentActivityModel.getRecentActivities();
+		callback(null, data);
+	};
+	
 	let appDownloadModel = new AppDownloadModel(req, res);
-
-	return {
-		'safetyTips': (callback) => {
-			var data = safetyTipsModel.getSafetyTips();
-			callback(null, data);
-		},
-
-		'recentActivities': (callback) => {
-			var data = recentActivityModel.getRecentActivities();
-			callback(null, data);
-		},
-		'appDownload': (callback) => {
-			 let data = appDownloadModel.getAppDownload();
-			 callback(null, data);
-       }
-    };
+	dataPromiseFunctionMap.appDownload = (callback) => {
+		let data = appDownloadModel.getAppDownload();
+		callback(null, data);
+	};
+	return dataPromiseFunctionMap;
 };
 
 
@@ -66,7 +86,6 @@ let HomePageModelV2 = function(req, res, modelData) {
 			// Converts the data from an array format to a JSON format
 			// for easy access from the client/controller
 			data = abstractPageModel.convertListToObject(data, arrFunctions);
-
 			return data;
 		}).fail(function(err) {
 			console.error(err);

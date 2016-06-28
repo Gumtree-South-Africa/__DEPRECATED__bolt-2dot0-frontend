@@ -8,6 +8,7 @@ var express = require('express'),
 
 let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil');
+var CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModel');
 let HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
@@ -40,9 +41,11 @@ router.get('/', function(req, res, next) {
 
 	// Cookies drop for Version of template
 
-	let cookiePageVersion = req.cookies.b2dot0Version, defaultPath = 'homepage/views/hbs/homepage_', newPath = 'homepageV2/views/hbs/homepageV2_';
+	// let cookiePageVersion = req.cookies.b2dot0Version;
+	let cookiePageVersion = '2.0';
 
 	// Retrieve Data from Model Builders
+
 	let model = HP.cookiePageVersionFn(cookiePageVersion, modelData, req, res);
 
 	let authCookie = req.cookies['bt_auth'];
@@ -80,13 +83,26 @@ router.get('/', function(req, res, next) {
 
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
+				templatePath = 'homepageV2/views/hbs/homepageV2_';
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
+
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
+
+				// now make sure modelData gets all card data returned for home page
+				// todo: this logic is repeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
+				let cardsModel = new CardsModel(modelData.bapiHeaders);
+				let cardNames = cardsModel.getCardNamesForPage("homePage");
+				for (let cardName of cardNames) {
+					modelData[cardName] = result[cardName];
+					modelData[cardName].config = cardsModel.getTemplateConfigForCard(cardName);
+				}
+
 				modelData.recentActivities = result['recentActivities'] || {};
 				modelData.reviews = result['appDownload'] || {};
-				templatePath = newPath;
 			} else {
-				templatePath = defaultPath;
+				templatePath = 'homepage/views/hbs/homepage_';
+
 				// Dynamic Data from BAPI
 				modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
 				modelData.level2Location = result['level2Loc'] || {};

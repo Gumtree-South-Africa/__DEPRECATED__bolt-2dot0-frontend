@@ -90,8 +90,12 @@ function CacheBapiData(siteApp, requestId) {
 	        // Actually return the promise so we know when the app is ready to start.
             return Q(configService.getConfigData(bapiHeaders))
               .then(function (dataReturned) {
+				  dataReturned.error = 'Placeholder for demo';
+
                 if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
+					console.warn(`picking up bapi config locally due to error ${dataReturned.error}`);
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
+ 					console.warn(`models: ${siteApp.locals.config.bapiConfigData.bapi.Homepage.desktop.models} for locale ${siteApp.locals.config.locale}`);
                 } else {
                     siteApp.locals.config.bapiConfigData = dataReturned;
                 }
