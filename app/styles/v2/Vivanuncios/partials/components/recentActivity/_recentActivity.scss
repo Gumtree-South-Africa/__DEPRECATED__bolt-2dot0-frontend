@@ -55,7 +55,7 @@ $feedTextSize: 16px;
     height: 100px;
 }
 
-@include from-breakpoint($large-break){
+@include from-breakpoint($medium-break){
     .feed-tiles {
         border: none;
         .feed-tile {
@@ -65,6 +65,17 @@ $feedTextSize: 16px;
             width: 32%;
             background-color: $recentactivity-bgcolor;
             margin: 5px;
+        }
+    }
+}
+
+@include in-breakpoint($medium-break){
+    .feed-tiles {
+        border: none;
+        .feed-tile {
+            .feed-text-wrapper {
+                width: 170px;
+            }
         }
     }
 }
