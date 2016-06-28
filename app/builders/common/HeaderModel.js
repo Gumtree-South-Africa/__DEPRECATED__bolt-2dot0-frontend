@@ -149,10 +149,10 @@ HeaderModel.prototype.buildCss = function(data) {
 	}
 
 	data.iconsCSSURLs = [];
-	data.iconsCSSURLs.push(data.baseSVGDataUrl + 'icons.data.svg' + '_' + this.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.data.png' + '_' + this.locale + '.css');
-	data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css');
-	data.iconsCSSFallbackUrl = data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css';
+	data.iconsCSSURLs.push(`public/css/${this.locale}/icons.css`);
+	data.iconsCSSURLs.push(`public/css/${this.locale}/fallback.css`);
+	// data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css');
+	data.iconsCSSFallbackUrl = `public/css/${this.locale}/fallback.css`;
 
 
 	if (deviceDetection.isMobile()) {
