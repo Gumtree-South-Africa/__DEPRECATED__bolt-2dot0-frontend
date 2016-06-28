@@ -101,9 +101,9 @@
     "https": "1.0.0",
     "i18n-2": "0.6.3",
     "ipware": "0.0.8",
+    "jasmine": "2.4.1",
     "jasmine-console-reporter": "1.2.6",
     "jasmine-core": "2.4.1",
-    "jasmine": "2.4.1",
     "javascript-precommit": "0.0.8",
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
@@ -117,6 +117,7 @@
     "map-stream": "0.0.6",
     "measured": "1.1.0",
     "method-override": "2.3.5",
+    "mkdirp": "0.5.1",
     "morgan": "1.6.1",
     "node-uuid": "1.4.7",
     "on-response": "1.0.1",
@@ -143,7 +144,6 @@
   "devDependencies": {
     "fs": "0.0.2",
     "minimist": "1.2.0",
-    "mkdirp": "0.5.1",
     "mocha": "1.18.0",
     "path": "0.12.7"
   }
