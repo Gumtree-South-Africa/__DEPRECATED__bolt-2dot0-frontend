@@ -20,6 +20,7 @@ let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
  * @private
  * @return {JSON}
  */
+
 var getHomepageDataFunctions = function(req, res, modelData) {
 
 	let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);

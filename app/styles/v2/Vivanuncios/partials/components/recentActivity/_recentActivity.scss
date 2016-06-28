@@ -9,7 +9,7 @@ $feedTextSize: 16px;
 
         .feed-text-wrapper {
             position: relative;
-            width: 250px;
+            width: 210px;
             padding-left: 10px;
             height: 100px;
             float: left;
@@ -69,14 +69,13 @@ $feedTextSize: 16px;
     }
 }
 
-@include to-breakpoint($small-break) {
-    .feed-tiles .feed-tile {
-        .feed-text-wrapper {
-            width: 240px;
-        }
-
-        .user-photo-wrapper {
-            margin-left: 5px;
+@include in-breakpoint($medium-break){
+    .feed-tiles {
+        border: none;
+        .feed-tile {
+            .feed-text-wrapper {
+                width: 170px;
+            }
         }
     }
 }
