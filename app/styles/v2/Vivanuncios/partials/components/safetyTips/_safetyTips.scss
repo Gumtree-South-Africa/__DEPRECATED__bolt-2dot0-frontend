@@ -95,14 +95,11 @@
                 height: 175px;
             }
             &.image-left {
-                background-image: url('/public/images/safety-tips-1-mobile.jpg');
-                @media (min-width: 768px) {
-                    background-image: url('/public/images/safety-tips-1-desktop.jpg');
-                }
+                background-image: url('../../../../../../images/safety-tips-1-mobile.jpg');
             }
             &.image-right {
                 display: none;
-                background-image: url('/public/images/safety-tips-2-mobile.jpg');
+                background-image: url('../../../../../../images/safety-tips-2-mobile.jpg');
                 @media (min-width: 768px) {
                     display: block;
                 }
