@@ -4,6 +4,8 @@
 // icons Tasks
 // ///////////////////////////////////////////////
 
+let customSelectors = require(`${process.cwd()}/app/config/icons/customSelectors.json`);
+
 let path = require('path'),
 	phantom = require('phantom'),
 	mkdirp = require('mkdirp'),
@@ -43,9 +45,9 @@ let fallback = (done) => {
 			// let base64 = new Buffer(obj[file], 'base64').toString();
 			let nameArray = file.split('/');
 			let fileName = nameArray.pop().split('.')[0];
-			let dirName = nameArray.pop();
-			if (!fs.existsSync(`./public/css/${dirName}`)) {
-				mkdirp.sync(`./public/css/${dirName}`);
+			let locale = nameArray.pop();
+			if (!fs.existsSync(`./public/css/${locale}`)) {
+				mkdirp.sync(`./public/css/${locale}`);
 			}
 			return instance.createPage()
 				.then((page) => {
@@ -81,9 +83,19 @@ let fallback = (done) => {
 						})
 						.then((result) => {
 							let png = pngPrefix + result;
+							//check for icon aliases
+							let selector;
+							if (customSelectors[locale]) {
+								selector = customSelectors[locale][fileName];
+								if (selector) {
+									selector = `, ${selector[0]}`;
+								} else {
+									selector = '';
+								}
+							}
 							//Append it to a CSS file for this locale.
-							fs.appendFile(`./public/css/${dirName}/fallback.css`,
-								`.icon-${fileName} {
+							fs.appendFile(`./public/css/${locale}/fallback.css`,
+								`.icon-${fileName} ${selector} {
 									background-repeat: no-repeat;
 									background-image: url(${png});
 								}`,

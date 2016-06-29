@@ -7,7 +7,8 @@ const gulpSvgFallback = require('gulp-svgfallback'),
 	es = require('event-stream'),
 	concat = require('gulp-concat'),
 	cssmin = require('gulp-cssmin'),
-	newer = require('gulp-newer');
+	newer = require('gulp-newer'),
+	customSelectors = require(`${process.cwd()}/app/config/icons/customSelectors.json`);
 
 const locales = [
 	'en_IE',
@@ -32,6 +33,16 @@ module.exports = function watch(gulp) {
 					.pipe(svgmin())
 					.pipe(svgcss({
 						className: (fileName) => {
+							let selector;
+							if (customSelectors[locale]) {
+								selector = customSelectors[locale][fileName];
+								if (selector) {
+									selector = `, ${selector[0]}`;
+								} else {
+									selector = '';
+								}
+							}
+							fileName += selector;
 							//Template didn't have an option for background-repeat, inject CSS for simple fix.
 							return `.icon-${fileName} {\n  background-repeat: no-repeat;\n}\n.icon-${fileName}`;
 						}
