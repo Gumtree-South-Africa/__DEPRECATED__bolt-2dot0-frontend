@@ -8,7 +8,7 @@ module.exports = function (config) {
         ],
         browsers: ["Chrome"],
 		logLevel: config.LOG_DEBUG,
-		hostname: "docker_host_machine"
+		hostname: "172.17.0.3"
     });
 };
 
