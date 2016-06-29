@@ -8,7 +8,7 @@ module.exports = function (config) {
         ],
         browsers: ["Chrome"],
 		logLevel: config.LOG_DEBUG,
-		hostname: "172.17.0.3"
+		hostname: "127.0.0.1"
     });
 };
 
