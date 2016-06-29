@@ -1168,6 +1168,7 @@
 		]
 	 }
   },
-  "feedtile.message.listing": "%s just %s a %s %s"
+  "recentactivity.message.listing": "%s acaba de poner en venta: %s %s",
+  "recentactivity.message.sold": "%s acaba de vender: %s %s"
 }
 
