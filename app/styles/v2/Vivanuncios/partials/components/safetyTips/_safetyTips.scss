@@ -52,7 +52,7 @@
             align-self: center;
             height: 26px;
             width: 26px;
-            background-image: url('../../../../../../icons/placeholder.png');
+            background-image: url('../../../../../icons/placeholder.png');
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -95,11 +95,11 @@
                 height: 175px;
             }
             &.image-left {
-                background-image: url('../../../../../../images/safety-tips-1.jpg');
+                background-image: url('../../../../../images/safety-tips-1.jpg');
             }
             &.image-right {
                 display: none;
-                background-image: url('../../../../../../images/safety-tips-2.jpg');
+                background-image: url('../../../../../images/safety-tips-2.jpg');
                 @media (min-width: 768px) {
                     display: block;
                 }
@@ -138,4 +138,3 @@
         }
     }
 }
-
