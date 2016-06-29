@@ -51,7 +51,7 @@ module.exports = function watch(gulp, plugins) {
 			}, done).start();
 		});
 
-		gulp.task('tellMeLocalhost', shell.task(["hostname --all-ip-addresses"]));
+		gulp.task('tellMeLocalhost', shell.task(["ifconfig | grep inet"]));
 
 		gulp.task('test:clientUnit', function (done) {
 			runSequence("tellMeLocalhost", "webpack", "karma", done);
