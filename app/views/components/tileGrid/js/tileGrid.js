@@ -18,6 +18,7 @@ $(document).ready(() => {
 		masonry: {
 			columnWidth: '.column-sizer',
 			gutter: '.gutter-sizer-horizontal',
+			isFitWidth: true
 		}
 	});
 });

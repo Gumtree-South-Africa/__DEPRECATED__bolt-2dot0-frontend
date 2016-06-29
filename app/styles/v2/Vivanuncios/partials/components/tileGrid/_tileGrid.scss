@@ -20,7 +20,13 @@ $gutterHorizontal: 10px;
     width: tileWidth(1);
 }
 
+.tile-grid-width-container {
+    width: 90%;
+    margin: auto;
+}
+
 .tile-container {
+    margin: auto;
 
     .tile-item {
         border-radius: 10px;

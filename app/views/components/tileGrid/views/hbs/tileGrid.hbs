@@ -1,28 +1,30 @@
 {{#block "tileGrid"}}
     {{!-- we're expecting this card to have "use-isotope-handler", config driven attribute --}}
-    <div class="tile-container {{trendingCard.config.clientJsHandlerCssClass}}">
+    <div class="content-width-container">
+        <div class="tile-container {{trendingCard.config.clientJsHandlerCssClass}}">
 
-        {{!--  gutter and column sizers are how we're using elements and their css to drive settings in javascript  --}}
-        <div class="gutter-sizer-horizontal"></div>
-        <div class="column-sizer"></div>
+            {{!--  gutter and column sizers are how we're using elements and their css to drive settings in javascript  --}}
+            <div class="gutter-sizer-horizontal"></div>
+            <div class="column-sizer"></div>
 
-        {{!-- now we iterate the items --}}
-        {{#each trendingCard.ads}}
-            <div data-sort-position="1" class="tile-item {{this.sizeClass}}">
-                {{> (base "adTile") this}}
-            </div>
-        {{/each}}
-        <!--{{#each feedTiles}}-->
+            {{!-- now we iterate the items --}}
+            {{#each trendingCard.ads}}
+                <div data-sort-position="1" class="tile-item {{this.sizeClass}}">
+                    {{> (base "adTile") this}}
+                </div>
+            {{/each}}
+                <!--{{#each feedTiles}}-->
             <!--<div data-sort-position="1" class="isotope-item feed-tile-size {{#unless @first}}hide-on-mobile{{/unless}}">-->
-                <!--{{> (base "feedTile") this}}-->
+            <!--{{> (base "feedTile") this}}-->
             <!--</div>-->
-        <!--{{/each}}-->
-        <!--{{#each mostRecentAds}}-->
+                <!--{{/each}}-->
+                <!--{{#each mostRecentAds}}-->
             <!--<div data-sort-position="1" class="isotope-item {{this.sizeClass}}">-->
-                <!--{{> (base "adTile") this}}-->
+            <!--{{> (base "adTile") this}}-->
             <!--</div>-->
-        <!--{{/each}}-->
+                <!--{{/each}}-->
+        </div>
+        <div class="card-clear"></div>
     </div>
-    <div class="card-clear"></div>
 {{/block}}
 
