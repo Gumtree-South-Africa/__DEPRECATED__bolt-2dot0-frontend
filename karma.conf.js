@@ -6,7 +6,8 @@ module.exports = function (config) {
 			"public/jsmin/Main.min.js",
             "test/clientUnit/SpecRunnerBundle.js"
         ],
-        browsers: ["Chrome"]
+        browsers: ["Chrome"],
+		port: 5858
     });
 };
 
