@@ -7,7 +7,7 @@ module.exports = function (config) {
             "test/clientUnit/SpecRunnerBundle.js"
         ],
         browsers: ["Chrome"],
-		port: 5858
+		logLevel: config.LOG_DEBUG
     });
 };
 
