@@ -12,7 +12,7 @@
     "**/.*",
     "node_modules",
     "bower_components",
-    "public/js/bower-components",
+    "public/bower-components",
     "test"
   ],
   "dependencies": {

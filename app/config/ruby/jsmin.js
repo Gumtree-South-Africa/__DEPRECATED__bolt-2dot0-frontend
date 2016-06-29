@@ -8,7 +8,7 @@ module.exports = [
 		"dest": rootDir + "/public/jsmin", "src": [
 		rootDir + "/public/js/common/*.js",
 		rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-		rootDir + "/public/js/bower-components/requirejs/require.js"
+		rootDir + "/public/bower-components/requirejs/require.js"
 	], "bundleName": "my-component.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
@@ -17,7 +17,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
 			rootDir + "/public/js/common/utils/JQueryUtil.js",
@@ -40,7 +40,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
@@ -63,7 +63,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
@@ -86,7 +86,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
 			rootDir + "/public/js/common/utils/JQueryUtil.js",
@@ -108,7 +108,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
@@ -131,7 +131,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
 			rootDir + "/public/js/common/utils/JQueryUtil.js",
@@ -154,7 +154,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
 			rootDir + "/public/js/common/utils/JQueryUtil.js",
@@ -177,7 +177,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
-			rootDir + "/public/js/bower-components/requirejs/require.js",
+			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",
 			rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 			rootDir + "/public/js/common/utils/StringUtils.js",
