@@ -7,7 +7,8 @@ module.exports = function (config) {
             "test/clientUnit/SpecRunnerBundle.js"
         ],
         browsers: ["Chrome"],
-		logLevel: config.LOG_DEBUG
+		logLevel: config.LOG_DEBUG,
+		hostname: "docker_host_machine"
     });
 };
 
