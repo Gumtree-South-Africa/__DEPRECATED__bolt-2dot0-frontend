@@ -1,4 +1,3 @@
-'use strict';
 /////////////////////////////////////////////////
 // Required tasks
 // gulp build
@@ -7,7 +6,6 @@
 
 
 var gulp = require('gulp'),
-	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),
@@ -57,6 +55,7 @@ gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['eslint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
+gulp.task('sass', getTask('sass'));
 gulp.task('icons', getTask('icons'));
 gulp.task('precompile', getTask('precompile'));
 gulp.task('component', getTask('component'));
@@ -73,7 +72,7 @@ gulp.task('spriteFallback', getTask('spriteFallback'));
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'svgIcons', 'icons', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 gulp.task('icons', getTask('icons'));
 
@@ -83,6 +82,7 @@ gulp.task('svgIcons', getTask('svgIcons'));
 gulp.task('default', function(done) {
 	runSequence('build', ['develop', 'watch'], done);
 });
+
 
 var testTasks = getTask("test");
 
@@ -97,7 +97,6 @@ gulp.task('icons2', (done) => {
 });
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
-
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));

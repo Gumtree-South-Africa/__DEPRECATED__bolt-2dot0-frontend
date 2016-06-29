@@ -154,14 +154,22 @@ HeaderModel.prototype.buildCss = function(data) {
 	// data.iconsCSSURLs.push(data.baseCSSUrl + 'icons.fallback' + '_' + this.locale + '.css');
 	data.iconsCSSFallbackUrl = `${data.baseCSSUrl}/${this.locale}/fallback.css`;
 
-
-	if (deviceDetection.isMobile()) {
-		data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+	if (b2dot0Ver === 'v1') {
+		//TODO: remove this when v1 will not exist in our platform
+		if (deviceDetection.isMobile()) {
+			data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		} else {
+			data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		}
+		data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	} else {
-		data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		if (deviceDetection.isMobile()) {
+			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		} else {
+			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		}
+		data.localeCSSPathHack = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 	}
-	data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-
 
 	data.containerCSS = [];
 	if (data.min) {
