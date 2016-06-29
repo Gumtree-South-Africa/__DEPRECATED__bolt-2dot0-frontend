@@ -1,4 +1,6 @@
-@import "colors", "config", "compass";
+@import "colors";
+@import "config";
+@import "../../../../../public/js/bower-components/compass-mixins/lib/compass";
 
 // Button Font
 // $blueprint-button-font-family: "Lucida Grande", Tahoma, Arial, Verdana, sans-serif !default;
@@ -181,14 +183,3 @@ $button-disabled-background-color: darken($color-white, 90%) !default;
 @mixin button-disabled() {
 	@include disabled-button;
 }
-
-
-
-
-
-
-
-
-
-
-

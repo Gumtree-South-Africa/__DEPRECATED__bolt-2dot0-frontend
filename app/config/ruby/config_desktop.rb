@@ -5,7 +5,7 @@ require "sass"
 # Set this to the root of your project when deployed:
 project_type = :stand_alone
 http_path = "/"
-sass_dir = "./app/styles"
+sass_dir = "./app/styles/v1"
 cssdir = "./public/cssmin/desktop"
 prefered_syntax = :scss
 output_style = :expanded

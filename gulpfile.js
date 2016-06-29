@@ -6,7 +6,6 @@
 
 
 var gulp = require('gulp'),
-	sass = require('gulp-sass'),
 	concat = require('gulp-concat'),
 	del = require('del'),
 	plumber = require('gulp-plumber'),
@@ -51,6 +50,7 @@ gulp.task('bumpup', getTask('bumpup'));
 gulp.task('precommit', ['eslint', 'jsonlint']);
 gulp.task('clean', getTask('clean'));
 gulp.task('compass', getTask('compass'));
+gulp.task('sass', getTask('sass'));
 gulp.task('icons', getTask('icons'));
 gulp.task('precompile', getTask('precompile'));
 gulp.task('component', getTask('component'));
@@ -65,12 +65,13 @@ gulp.task('watch', getTask('watch'));
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'icons', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 // DEFAULT is used by Developers
 gulp.task('default', function (done) {
     runSequence('build', ['develop', 'watch'], done);
 });
+
 
 var testTasks = getTask("test");
 
@@ -80,7 +81,6 @@ gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
-
 
 // PACKAGE
 gulp.task('pak', getTask('pak'));
