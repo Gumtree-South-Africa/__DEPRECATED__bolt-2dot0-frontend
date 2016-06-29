@@ -3,7 +3,7 @@ require 'susy'
 
 project_type = :stand_alone
 http_path = "/"
-sass_dir = "./app/styles"
+sass_dir = "./app/styles/v1"
 cssdir = "./public/cssmin/all"
 prefered_syntax = :scss
 output_style = (environment == :development) ? :expanded : :compressed

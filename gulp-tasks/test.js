@@ -12,13 +12,19 @@ module.exports = function watch(gulp, plugins) {
 		argv = require('yargs').argv,
 		Server = require('karma').Server;
 
+	let browser = "chrome";
+
+	if (argv.browser) {
+		browser = argv.browser;
+	}
+
 	return function() {
 		// Integration Tests Tasks
 		gulp.task('protractor', function() {
 			let port = argv.port || "8000";
 			var stream = gulp.src(['test/integration/**/*.js'])
 				.pipe(protractor({
-					configFile: 'test/integration/protractor.conf.js',
+					configFile: 'test/integration/protractor.' + browser + '.conf.js',
 					args: [
 						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
@@ -45,8 +51,8 @@ module.exports = function watch(gulp, plugins) {
 			}, done).start();
 		});
 
-		gulp.task('test:clientUnit', function () {
-			runSequence("webpack", "karma");
+		gulp.task('test:clientUnit', function (done) {
+			runSequence("webpack", "karma", done);
 		});
 
 		// SERVER UNIT TEST TASKS

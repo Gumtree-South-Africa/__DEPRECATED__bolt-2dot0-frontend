@@ -10,11 +10,11 @@
 		         
 		       <div class="review-wrapper">
 			         {{#each this.reviews}}
-			             <div id="review">
+			             <div class="review">
 		                         <img class='user-avatar' src='{{this.primaryImageUrl}}'>
 			                     <div class="review-inner">
 				                    <div class="rating-wrapper"><span class="rating"></span></div>
-				                    <div class="review-description">{{this.description}}</div>
+				                    <div class="review-description">{{{this.description}}}</div>
 		                         </div>
 		                         <div class="clear"></div>
 	                      </div>
@@ -27,6 +27,7 @@
 		         <div class="app-button">
 		             <a href='{{i18n "appdownload.ioslink"}}' target="/blank"><span class="ios-appstore"><span></a>
 		             <a href='{{i18n "appdownload.googleplay"}}' target="/blank"><span class="googleplay"></span></a>
+		             <div class="clear"></div>
 		         </div>
 		        
 		        <div class="appmobile-button">
