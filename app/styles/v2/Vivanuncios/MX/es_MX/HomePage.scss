@@ -1,11 +1,11 @@
-@import
-
-    "../../theme",
-    "../../../partials/pages/Homepage/pageMain",
-    "../../partials/common/subs",
-    "../../partials/components/tileGrid/tileGrid",
-    "../../partials/components/adTile/adTile",
-    "../../partials/card",
-    "../../partials/components/safetyTips/safetyTips",
-    "../../partials/components/sectionMenu/sectionMenu";
+@import  "../../theme";
+@import  "../../../partials/pages/Homepage/pageMain";
+@import  "../../../partials/components/appDownload/appDownload";
+@import  "../../partials/common/subs";
+@import  "../../partials/components/safetyTips/safetyTips";
+@import  "../../partials/components/sectionMenu/sectionMenu";
+@import  "../../partials/components/recentActivity/recentActivity";
+@import  "../../partials/components/tileGrid/tileGrid";
+@import  "../../partials/components/adTile/adTile";
+@import  "../../partials/card";
 

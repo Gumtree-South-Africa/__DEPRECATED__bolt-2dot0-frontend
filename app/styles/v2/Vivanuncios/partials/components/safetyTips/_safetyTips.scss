@@ -52,7 +52,7 @@
             align-self: center;
             height: 26px;
             width: 26px;
-            background-image: url('/public/icons/placeholder.png');
+            background-image: url('../../../../../icons/placeholder.png');
             background-size: contain;
             background-repeat: no-repeat;
         }
@@ -95,11 +95,11 @@
                 height: 175px;
             }
             &.image-left {
-                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+                background-image: url('../../../../../images/safety-tips-1.jpg');
             }
             &.image-right {
                 display: none;
-                background-image: url('http://wallpapercave.com/wp/RFPcI5Z.jpg');
+                background-image: url('../../../../../images/safety-tips-2.jpg');
                 @media (min-width: 768px) {
                     display: block;
                 }
@@ -121,7 +121,6 @@
 
         h1 {
             font: $h1;
-            font-size: 24pt;
             line-height: 37px;
             font-weight: bold;
             color: $h1-color;
@@ -129,7 +128,6 @@
 
         h3 {
             font: $h3;
-            font-size: 16pt;
             line-height: 29px;
             color: $h3-secondary-color;
         }
@@ -140,4 +138,3 @@
         }
     }
 }
-

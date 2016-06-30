@@ -1,9 +1,5 @@
-@import
-// Compass core framework - design agnostic framework that provides common code that would
-// otherwise be duplicated across other frameworks and extensions.
-// For more information see: http://compass-style.org/reference/compass/
-	"compass",
-// Import grid system
-	"susy",
-// Import the blueprint partial
-	"blueprint";
+@import '../../../../public/bower-components/compass-mixins/lib/compass';
+@import '../../../../public/bower-components/breakpoint-sass/stylesheets/breakpoint';
+@import '../../../../public/bower-components/sass-toolkit/stylesheets/toolkit';
+@import '../../../../public/bower-components/susy/sass/susy';
+@import 'blueprint';

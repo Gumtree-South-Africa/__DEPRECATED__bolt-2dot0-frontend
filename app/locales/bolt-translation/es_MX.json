@@ -1144,22 +1144,31 @@
   "quickpost.error.priceLong": "El precio es muy alto",
   "quickpost.error.locationNotInCountry": "Tu selección no es en México",
   "quickpost.empty": "",
+  "appdownload.title": "¡Vende rápido!",
+  "appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
+  "appdownload.mobilebutton": "¡Baja la app!",
+  "appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
+  "appdownload.googleplay":"https://app.adjust.com/oarq82",
+  "appdownload.applink":"http://go.vivanunc.io/baja-la-app",
   "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes",
-	"homepage": {
-		"safetyTips": {
-			"title": "Vivanuncios Te Cuida",
-			"faq": "Consejos de seguridad",
-			"tip": [
-				"Consejos de cómo protegerte en internet",
-				"¿Vivanuncios coopera con las autoridades?",
-				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
-				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
-				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
-			]
-		}
-	}
+  "homepage": {
+	"safetyTips": {
+		"title": "Vivanuncios Te Cuida",
+		"faq": "Consejos de seguridad",
+		"tip": [
+			"Consejos de cómo protegerte en internet",
+			"¿Vivanuncios coopera con las autoridades?",
+			"¿Cómo mantengo mi cuenta de usuario segura?",
+			"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
+			"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+			"¿Cuáles son los fraudes más comunes?",
+			"¿Qué puedo hacer si he sido víctima de una estafa?",
+			"¿Cómo reportar un anuncio?",
+			"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+		]
+	 }
+  },
+  "recentactivity.message.listing": "%s acaba de poner en venta: %s %s",
+  "recentactivity.message.sold": "%s acaba de vender: %s %s"
 }
+

@@ -49,9 +49,9 @@ describe('Server to hit HomePage', function() {
 				.end(specHelper.finish(done));
 		});
 	});
-	
+
 	describe('Safety Tips', () => {
-		
+
 		it('shows safety tips card on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
@@ -65,7 +65,7 @@ describe('Server to hit HomePage', function() {
 					.end(specHelper.finish(done));
 			});
 		});
-			
+
 		it('shows safety faq text on vivanuncios', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
@@ -82,4 +82,16 @@ describe('Server to hit HomePage', function() {
 		});
 	});
 
+	describe('Recent Activitiy', (done) => {
+		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
+				.expect((res) => {
+					let c$ = cheerio.load(res.text);
+					expect(c$('.feed-tiles')).toBeDefined();
+					expect(res.status).toBe(200);
+				})
+				.end(specHelper.finish(done));
+		});
+	});
 });

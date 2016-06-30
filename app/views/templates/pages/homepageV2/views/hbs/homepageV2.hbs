@@ -1,5 +1,4 @@
 {{#partial "content"}}
-
 	<div style="border: 2px solid green ;overflow: hidden; display: block;">
 		<h1 style="text-align: center;">HOMEPAGE PLACEHOLDER CONTENTS !!!</h1>
 		{{> (dynamic "sectionMenu")}}
@@ -14,10 +13,11 @@
             </div>
         </div>
 
+        {{> (dynamic "recentActivity")}}
+        {{> (dynamic "appDownloadSection")}}
         {{> (dynamic "safetyTips") }}
         {{> (dynamic "button")}}
 	</div>
-
 {{/partial}}
 
 {{!-- override of header and footer --}}

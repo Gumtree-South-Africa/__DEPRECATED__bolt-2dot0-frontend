@@ -5,13 +5,13 @@ var cwd = process.cwd();
 
 var Q = require('q');
 
-var pagetypeJson = require(cwd + '/app/config/pagetype.json');
-
-var ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-
-var AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-
+let Q = require('q');
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 
 /**
@@ -44,11 +44,24 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	}
 
 	let safetyTipsModel = new SafetyTipsModel(req, res);
+	let recentActivityModel = new RecentActivityModel(req, res);
+	let appDownloadModel = new AppDownloadModel(req, res);
+	
 	dataPromiseFunctionMap.safetyTips = (callback) => {
 		let data = safetyTipsModel.getSafetyTips();
 		callback(null, data);
 	};
 
+	dataPromiseFunctionMap.recentActivities = (callback) => {
+		let data = recentActivityModel.getRecentActivities();
+		callback(null, data);
+	};
+
+	dataPromiseFunctionMap.appDownload = (callback) => {
+		let data = appDownloadModel.getAppDownload();
+		callback(null, data);
+	};
+	
 	return dataPromiseFunctionMap;
 };
 
@@ -60,22 +73,23 @@ var getHomepageDataFunctions = function(req, res, modelData) {
  * @class HomePageModel
  * @constructor
  */
-var HomePageModelV2 = function(req, res, modelData) {
-	var functionMap = getHomepageDataFunctions(req, res, modelData);
+let HomePageModelV2 = function(req, res, modelData) {
+	let functionMap = getHomepageDataFunctions(req, res, modelData);
 
-	var abstractPageModel = new AbstractPageModel(req, res);
-	var pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	var pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
+	let abstractPageModel = new AbstractPageModel(req, res);
+	let pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+	let pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
 
-	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
+	let arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
 
-	var homepageModel = new ModelBuilder(arrFunctions);
+	let homepageModel = new ModelBuilder(arrFunctions);
 
 	return Q(homepageModel.processParallel())
 		.then(function(data) {
 			// Converts the data from an array format to a JSON format
 			// for easy access from the client/controller
 			data = abstractPageModel.convertListToObject(data, arrFunctions);
+
 			return data;
 		}).fail(function(err) {
 			console.error(err);

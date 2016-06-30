@@ -44,7 +44,6 @@ router.get('/', function(req, res, next) {
 	let cookiePageVersion = req.cookies.b2dot0Version;
 
 	// Retrieve Data from Model Builders
-
 	let model = HP.cookiePageVersionFn(cookiePageVersion, modelData, req, res);
 
 	let authCookie = req.cookies['bt_auth'];
@@ -87,7 +86,10 @@ router.get('/', function(req, res, next) {
 
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
-
+				
+				modelData.recentActivities = result['recentActivities'] || {};
+				modelData.reviews = result['appDownload'] || {};
+				
 				// now make sure modelData gets all card data returned for home page
 				// todo: this logic is repeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
 				let cardsModel = new CardsModel(modelData.bapiHeaders);
@@ -114,8 +116,7 @@ router.get('/', function(req, res, next) {
 					let userData = userService.buildProfile(user);
 					_.extend(modelData.header, userData);
 				}
-
-
+				
 				if (result['adstatistics']) {
 					modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 				}
@@ -148,7 +149,6 @@ router.get('/', function(req, res, next) {
 				if (!modelData.level2Location && !modelData.location) {
 					modelData.showPopularLocations = false;
 				}
-
 			}
 
 			//Shared data

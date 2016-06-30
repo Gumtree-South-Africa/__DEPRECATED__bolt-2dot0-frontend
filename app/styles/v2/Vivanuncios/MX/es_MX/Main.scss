@@ -7,8 +7,7 @@
 // Compass reset - runs global reset mixin and inserts styles
 // Based on Eric Meyer's reset 2.0 Global reset rules.
 // If more granular control is needed over reset rules, include and use reset utilities.
-@import "compass/reset";
-
+@import "../../../../../../public/bower-components/compass-mixins/lib/compass/reset";
 
 
 
