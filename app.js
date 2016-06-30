@@ -45,21 +45,21 @@ let createSiteApps = () => {
 	let siteApps = [];
 	_.each(config.sites, (siteObj) => {
 
-    if (siteLocales.indexOf(siteObj.locale) > -1) {
-	      (function(siteObj) {
-			  var builderObj = new expressbuilder(siteObj);
-			  var siteApp = builderObj.getApp();
-		      siteApps.push(siteApp);
+		if (siteLocales.indexOf(siteObj.locale) > -1) {
+			(function(siteObj) {
+				var builderObj = new expressbuilder(siteObj);
+				var siteApp = builderObj.getApp();
+				siteApps.push(siteApp);
 
-		        // Service Util to get Location and Category Data
-		        // Wait to spin up the node app in server.js until all config promises resolve.
-		        configPromises.push(cacheBapiData(siteApp, requestId));
+				// Service Util to get Location and Category Data
+				// Wait to spin up the node app in server.js until all config promises resolve.
+				configPromises.push(cacheBapiData(siteApp, requestId));
 
-	      })(siteObj);
+			})(siteObj);
 
-	      siteCount = siteCount + 1;
-    }
- });
+			siteCount = siteCount + 1;
+		}
+	});
 	return Q.all(configPromises).then(() => {
 		//We need to configure the middleware stack in the correct order.
 		siteApps.forEach((siteApp) => {
@@ -71,8 +71,13 @@ let createSiteApps = () => {
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 
+		app.use((req, res, next) => {
+			res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+			next();
+		});
+
 		// Setup controllers
-		controllers.forEach(function (controller) {
+		controllers.forEach(function(controller) {
 			require(controller)(app);
 		});
 
