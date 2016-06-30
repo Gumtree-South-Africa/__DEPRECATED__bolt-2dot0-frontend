@@ -1,10 +1,16 @@
-
 'use strict';
 
-var express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
+var express = require('express'),
+	_ = require('underscore'),
+	router = express.Router(), form = require('express-form'),
+	field = form.field, Q = require('q');
 
 var cwd = process.cwd();
-var StringUtils = require(cwd + '/app/utils/StringUtils'), pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var StringUtils = require(cwd + '/app/utils/StringUtils'), 
+	pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
+	QuickpostPageModel = require(cwd + '/app/builders/v1/page/QuickpostPageModel'), 
+	EpsModel = require(cwd + '/app/builders/v1/common/EpsModel'), 
+	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
@@ -27,8 +33,8 @@ router.get('/quickpost', function(req, res, next) {
 	var bapiConfigData = res.locals.config.bapiConfigData;
 	var modelData = pageControllerUtil.preController(req, res);
 
-	var model = QuickpostPageModel(req, res, modelData);
-	model.then(function(result) {
+	var model = new QuickpostPageModel(req, res, modelData);
+	model.populateData().then(function(result) {
 
 		// Dynamic Data from BAPI
 		modelData.header = result.common.header || {};
@@ -358,19 +364,19 @@ var QuickPost = {
 			if (req.form.errors[i].indexOf('Description ') > -1) {
 				if (!req.form.fieldErrors.description) {
 					req.form.fieldErrors.description = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('Category ') > -1) {
 				if (!req.form.fieldErrors.category) {
 					req.form.fieldErrors.category = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('price') > -1) {
 				if (!req.form.fieldErrors.price) {
 					req.form.fieldErrors.price = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('Location ') > -1) {
 				if (!req.form.fieldErrors.location) {
 					req.form.fieldErrors.location = req.form.errors[i];
-                }
+				}
 			}
 		}
 
@@ -389,10 +395,10 @@ var QuickPost = {
 		var errorCode = parseInt(err.status);
 		if (errorCode >= 400 && errorCode < 500) {
 			err.status4xx = true;
-        }
+		}
 		if (errorCode >= 500 && errorCode < 600) {
 			err.status5xx = true;
-        }
+		}
 
 		var errorMessage = '';
 		if (err.status4xx) {

@@ -4,7 +4,7 @@
 var express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
-    ErrorPageModel = require(process.cwd() +  '/app/builders/page/ErrorPageModel'),
+    ErrorPageModel = require(process.cwd() +  '/app/builders/v1/page/ErrorPageModel'),
     kafkaService = require(process.cwd() + '/server/utils/kafka'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util');
@@ -51,8 +51,8 @@ module.exports.message = function (req, res, next) {
 
     // Retrieve Data from Model Builders
     var bapiConfigData = res.locals.config.bapiConfigData;
-    var model = ErrorPageModel(req, res);
-    model.then(function (result) {
+    var model = new ErrorPageModel(req, res);
+    model.populateData().then(function (result) {
         // Data from BAPI
         modelData.header = result['common'].header;
         modelData.footer = result['common'].footer;
