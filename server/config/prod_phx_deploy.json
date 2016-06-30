@@ -41,7 +41,7 @@
 		"server": {
 			"host": "inc.latam.classistatic.com",
 			"port": null,
-			"version": "2.0.111"
+			"version": "2.0.112"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

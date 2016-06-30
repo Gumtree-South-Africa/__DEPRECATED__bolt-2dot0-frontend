@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.111",
+  "version": "2.0.112",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp",
@@ -96,9 +96,9 @@
     "https": "1.0.0",
     "i18n-2": "0.6.3",
     "ipware": "0.0.8",
+    "jasmine": "2.4.1",
     "jasmine-console-reporter": "1.2.6",
     "jasmine-core": "2.4.1",
-    "jasmine": "2.4.1",
     "javascript-precommit": "0.0.8",
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
@@ -106,6 +106,7 @@
     "karma": "0.13.22",
     "karma-chrome-launcher": "1.0.1",
     "karma-jasmine": "1.0.2",
+    "karma-phantomjs-launcher": "1.0.1",
     "loading-indicator": "2.0.0",
     "loading-spinner": "1.1.1",
     "lodash": "3.10.1",
