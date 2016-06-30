@@ -24,7 +24,7 @@ module.exports = function watch(gulp, plugins) {
 			let port = argv.port || "8000";
 			var stream = gulp.src(['test/integration/**/*.js'])
 				.pipe(protractor({
-					configFile: 'test/integration/protractor.' + browser + '.conf.js',
+					configFile: 'test/integration/protractor.chrome.conf.js', // defaulting to chrome
 					args: [
 						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
@@ -46,7 +46,7 @@ module.exports = function watch(gulp, plugins) {
 
 		gulp.task('karma', function (done) {
 			new Server({
-				configFile: __dirname + '/../karma.conf.js',
+				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
 				singleRun: true
 			}, done).start();
 		});
