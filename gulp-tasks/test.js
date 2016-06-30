@@ -46,7 +46,7 @@ module.exports = function watch(gulp, plugins) {
 
 		gulp.task('karma', function (done) {
 			new Server({
-				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
+				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.phantomsjs.conf.js`,
 				singleRun: true
 			}, done).start();
 		});

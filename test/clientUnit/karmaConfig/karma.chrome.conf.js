@@ -6,9 +6,7 @@ module.exports = function (config) {
 			"../../../public/jsmin/Main.min.js",
 			"../SpecRunnerBundle.js"
         ],
-        browsers: ["Chrome"],
-		logLevel: config.LOG_DEBUG,
-		hostname: "127.0.0.1"
+        browsers: ["Chrome"]
     });
 };
 
