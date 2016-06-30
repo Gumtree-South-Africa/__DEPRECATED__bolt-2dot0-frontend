@@ -1,0 +1,83 @@
+$feedTextSize: 16px;
+
+.feed-tiles {
+    .feed-tile {
+        width: 100%;
+        &:not(:first-child){
+            display: none;
+        }
+
+        .feed-text-wrapper {
+            position: relative;
+            width: 260px;
+            padding-left: 10px;
+            height: 100px;
+            float: left;
+        }
+
+        .feed-text {
+            .bold {
+                font-weight: bold;
+            }
+            color: $vivaGray;
+            font-size: $feedTextSize;
+            margin-left: 10px;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            line-height: 1;
+        }
+
+        .user-photo-wrapper {
+            margin-left: 20px;
+            position: relative;
+            width: 50px;
+            float:left;
+        }
+
+        .user-photo {
+            width: 100%;
+            height: 50px;
+            border-radius: 50%;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            margin-top: 50%;
+            border: .5px solid #ff9000;
+        }
+
+        float:left;
+    }
+
+    background-color: $vivaWhite;
+    border: 1px solid $common-background-color;
+    margin: 0 2%;
+    height: 100px;
+}
+
+@include from-breakpoint($medium-break){
+    .feed-tiles {
+        border: none;
+
+        .feed-tile {
+            &:not(:first-child) {
+                display: block;
+            }
+            width: 32%;
+            background-color: $common-background-color;
+            margin: 0px 0px 0px 12px;
+        }
+    }
+}
+
+@include in-breakpoint($medium-break){
+    .feed-tiles {
+        border: none;
+        .feed-tile {
+            margin: 0px 5px;
+            .feed-text-wrapper {
+                width: 170px;
+            }
+        }
+    }
+}
