@@ -1,3 +1,4 @@
+test/clientUnit/karmaConfig/**/*.js
 test/clientUnit/SpecRunnerBundle.js
 test/serverUnit/properties2Json.spec.js
 test/serverUnit/index.js
