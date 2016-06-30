@@ -3,8 +3,6 @@
 
 var cwd = process.cwd();
 
-var Q = require('q');
-
 let Q = require('q');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
@@ -46,7 +44,7 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
 	let recentActivityModel = new RecentActivityModel(req, res);
 	let appDownloadModel = new AppDownloadModel(req, res);
-	
+
 	dataPromiseFunctionMap.safetyTips = (callback) => {
 		let data = safetyTipsModel.getSafetyTips();
 		callback(null, data);
@@ -61,7 +59,7 @@ var getHomepageDataFunctions = function(req, res, modelData) {
 		let data = appDownloadModel.getAppDownload();
 		callback(null, data);
 	};
-	
+
 	return dataPromiseFunctionMap;
 };
 
