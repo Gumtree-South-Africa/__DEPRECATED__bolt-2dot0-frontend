@@ -24,7 +24,7 @@ module.exports = function watch(gulp, plugins) {
 			let port = argv.port || "8000";
 			var stream = gulp.src(['test/integration/**/*.js'])
 				.pipe(protractor({
-					configFile: 'test/integration/protractor.chrome.conf.js', // defaulting to chrome
+					configFile: 'test/integration/protractor.chrome.conf.js', // defaulting to chrome since it passes both locally and in CI
 					args: [
 						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
