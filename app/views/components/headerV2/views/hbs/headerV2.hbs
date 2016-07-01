@@ -1,7 +1,11 @@
 <div class="headerV2">
+    <div class="mobile-only mobile-menu">
+    </div>
+    <div class="logo"></div>
+    <div class="mobile-only app-icon">
+    </div>
     {{#unless this.header.distractionFree}}
         <div class="left-items">
-            <div class="logo"></div>
             {{#if this.header.username}}
                 <div class="messages">
                     Messages
@@ -20,23 +24,25 @@
                     My Ads
                 </div>
                 <div class="profile float-right">
-                    <div class="icon-header-profile-out">
-
+                    <div class="profile-icon
+                    {{#if this.header.username}}
+                    profile-picture
+                    {{else}}
+                    icon-header-profile-out
+                    {{/if}}">
                     </div>
-                    <div class="profile-welcome">
-                        Hi, Carmen!
-                    </div>
+                    {{#if this.header.userEmail}}
+                        Hi, {{this.header.profileName}}!
+                    {{else}}
+                        {{i18n "header.menu.my.gumtree"}}
+                    {{/if}}
                 </div>
             {{else}}
                 <div class="profile float-right">
-                    My Account
+                    {{i18n "header.menu.my.gumtree"}}
                 </div>
             {{/if}}
             {{> (dynamic "button")}}
-        </div>
-    {{else}}
-        <div class="left-items">
-            <div class="logo"></div>
         </div>
     {{/unless}}
 </div>
