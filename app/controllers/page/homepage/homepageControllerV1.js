@@ -271,6 +271,7 @@ module.exports = (req, res, next) => {
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
+		next(err);
 	});
 };
 

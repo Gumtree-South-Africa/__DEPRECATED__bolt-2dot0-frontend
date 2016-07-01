@@ -20,7 +20,7 @@ module.exports = function watch(gulp, plugins) {
       }
 
       var stream =
-      	gulp.src(process.cwd() + '/app/styles/v2/**/**/*.scss')
+      	gulp.src(process.cwd() + '/app/styles/v2/**/*.scss')
       			.pipe(sass().on('error', sass.logError))
             .pipe(gulpif(isCompressed, plugins.cssmin()))
             .pipe(gulpif(isCompressed, plugins.rename({suffix:'.min'})))

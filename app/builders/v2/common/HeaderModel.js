@@ -159,31 +159,19 @@ class HeaderModel {
 //Build CSS
 	buildCss(data) {
 
-		let b2dot0Ver = 'v1'; //by default
-		if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version === '2.0') {
-			b2dot0Ver = 'v2';
-		}
+		let b2dot0Ver = 'v2'; //by default
+
 		data.iconsCSSURLs = [];
 		data.iconsCSSURLs.push(`${data.baseCSSUrl}/${this.locale}/icons.css`);
 		data.iconsCSSURLs.push(`${data.baseCSSUrl}/${this.locale}/fallback.css`);
 		data.iconsCSSFallbackUrl = `${data.baseCSSUrl}/${this.locale}/fallback.css`;
 
-		if (b2dot0Ver === 'v1') {
-			//TODO: remove this when v1 will not exist in our platform
-			if (deviceDetection.isMobile()) {
-				data.localeCSSPath = data.baseCSSUrl + 'mobile/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-			} else {
-				data.localeCSSPath = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-			}
-			data.localeCSSPathHack = data.baseCSSUrl + 'all/' + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+		if (deviceDetection.isMobile()) {
+			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		} else {
-			if (deviceDetection.isMobile()) {
-				data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-			} else {
-				data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-			}
-			data.localeCSSPathHack = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
+			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		}
+		data.localeCSSPathHack = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 
 		data.containerCSS = [];
 		if (data.min) {
@@ -193,7 +181,7 @@ class HeaderModel {
 		}
 	}
 
-//Build opengraph
+	//Build opengraph
 	buildOpengraph(data) {
 
 		data.brandName = this.brandName;
@@ -202,7 +190,7 @@ class HeaderModel {
 		data.logoUrlOpenGraph = data.baseImageUrl + this.locale + '/logoOpenGraph.png';
 	}
 
-//Build Profile
+	//Build Profile
 	buildProfile(data) {
 
 		if (data.username) {

@@ -223,7 +223,6 @@ module.exports = (req, res, next) => {
 		modelData.seo = result['seo'] || {};
 		modelData.isNewHP = true;
 
-		//Shared data
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
@@ -235,6 +234,7 @@ module.exports = (req, res, next) => {
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
+		next(err);
 	});
 };
 
