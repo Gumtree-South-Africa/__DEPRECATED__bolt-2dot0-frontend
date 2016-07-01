@@ -2,9 +2,12 @@
 
 // let myDependency = require("../path/to/dependency");
 
-module.exports.initialize = () => {
+let initialize = () => {
 	// your setup code here
 };
 
+module.exports = {
+	initialize
+};
 
 

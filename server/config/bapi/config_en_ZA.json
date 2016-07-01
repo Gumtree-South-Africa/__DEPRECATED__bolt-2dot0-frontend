@@ -26,7 +26,7 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	 
+
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
 		"locationDropdownLevel"				: 2,
 		"categoryDropdownLevel"				: 2
@@ -53,7 +53,7 @@
 		    "paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"							: true,			
+			"enabled"							: true,
 			"blogUrl" 							: "http://blog.gumtree.co.za/",
 			"vipLandingPageEnabled"				: true
 		},
@@ -80,10 +80,10 @@
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: true,		
+			"swapTradeEnabled"		: true,
 			"swapTradeName"			: "home.swap-trade.$$",
 			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"		: true,		
+			"freebiesEnabled"		: true,
 			"freebiesName"			: "home.freebies.$$",
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",

@@ -11,7 +11,7 @@ let AbstractPageModel = require(cwd + '/app/builders/v2/common/AbstractPageModel
 let SafetyTipsModel = require(cwd + '/app/builders/v2/common/SafetyTipsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/v2/common/AppDownloadModel');
 let RecentActivityModel = require(cwd + '/app/builders/v2/common/RecentActivityModel');
-
+let CardsModel = require(cwd + '/app/builders/v2/common/CardsModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -25,6 +25,7 @@ class HomePageModelV2 {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
+		this.dataPromiseFunctionMap = {};
 	}
 
 	populateData() {
@@ -35,7 +36,7 @@ class HomePageModelV2 {
 		let modelBuilder = new ModelBuilder();
 		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
 
-		this.getHomepageDataFunctions(this.res.locals.config, modelData.bapiHeaders);
+		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then(function(data) {
@@ -49,16 +50,33 @@ class HomePageModelV2 {
 			});
 	}
 
-	getHomepageDataFunctions() {
+	getHomepageDataFunctions(modelData) {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 		let recentActivityModel = new RecentActivityModel(this.req, this.res);
-		this.dataPromiseFunctionMap = {};
+
+		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+		let cardNames = cardsModel.getCardNamesForPage("homePage");
+
+		// now make we get all card data returned for home page
+		for (let cardName of cardNames) {
+			this.dataPromiseFunctionMap[cardName] = () => {
+				// user specific parameters are passed here, such as location lat/long
+				// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
+				return cardsModel.getCardItemsData(cardName, {
+					location: "[19.432608, -99.133209]"
+				}).then( (result) => {
+					// augment the API result data with some additional card driven config for templates to use
+					result.config = cardsModel.getTemplateConfigForCard(cardName);
+					return result;
+				});
+			};
+		}
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();
 		};
-		
+
 		this.dataPromiseFunctionMap.appDownload = () => {
 			return appDownloadModel.getAppDownload();
 		};

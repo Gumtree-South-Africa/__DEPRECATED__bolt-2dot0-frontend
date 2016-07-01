@@ -5,7 +5,6 @@ module.exports = [
 	{
 		"dest": rootDir + "/public/jsmin", "src": [
 		"libraries/jQuery/jquery-2.0.0.min.js",
-		"bower-components/requirejs/require.js",
 		"libraries/jQuery/plugins/jquery.smartbanner.js",
 		"common/utils/StringUtils.js",
 		"common/utils/JQueryUtil.js",

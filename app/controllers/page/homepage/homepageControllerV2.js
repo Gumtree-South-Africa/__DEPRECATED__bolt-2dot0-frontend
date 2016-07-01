@@ -101,6 +101,10 @@ let HP = {
 		if (!modelData.footer.min) {
 			let baseJSComponentDir = '/views/components/';
 
+			// todo: keep this for V2
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
+			// end of V2
+
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.

@@ -26,12 +26,12 @@ module.exports = function(bapiOptions, bapiHeaders, serviceName){
 		bapiOptions.headers['X-BOLT-USER-AGENT'] = bapiHeaders.useragent;
 	}
 	if (typeof bapiHeaders.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaders.authTokenValue)) {
-		bapiOptions.headers['Authorization'] = 'Bearer ' +  bapiHeaders.authTokenValue;
+		bapiOptions.headers['Authorization'] = 'Bearer ' + bapiHeaders.authTokenValue;
 	}
 
 	// Add extra parameters
 	if (bapiOptions.parameters != undefined) {
-		if ( bapiOptions.path.indexOf('?') > -1 ) {
+		if (bapiOptions.path.indexOf('?') > -1) {
 			bapiOptions.path = bapiOptions.path + '&' + bapiOptions.parameters;
 		} else {
 			bapiOptions.path = bapiOptions.path + '?' + bapiOptions.parameters;
