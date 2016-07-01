@@ -7,16 +7,16 @@
 .inner-wrapper{
      h1 {
       font: $h1;
-      color: $vivaBlack;
+      color: $h1-color;
      }
 	.description{
-	   font: $viva-p2;
-	   color:$vivaGray;
+	   font: $p2;
+	   color:$p2-secondary-color;
 	 }
 }
 
 #downloadapp-content{
-    background-color: #f7f7f7;
+    background-color: $appdownload-bgcolor;
  }
 
 
@@ -47,10 +47,10 @@
 
 
  .review{
-    background-color: $vivaWhite;
+    background-color: $appdownloadreview-bgcolor;
     height: 70px;
     margin-bottom: 1em;
-    border: 1px solid lightgray;
+    border: 1px solid $appdownloadreview-color;
     border-radius: 5px;
    .review-inner{
    height:100%;
@@ -66,8 +66,8 @@
    .review-description{
      text-align:left;
      overflow: hidden;
-      font: $viva-p3;
-      color: $vivaLightGray;
+      font: $appdownloadreview-font;
+      color: $appdownloadreview-color;
        margin-left: 0.8em;
       }
 }
