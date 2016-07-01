@@ -64,24 +64,25 @@ router.get('/', function(req, res, next) {
 		.then(function(result) {
 			let templatePath;
 			let bapiConfigData = res.locals.config.bapiConfigData;
-			
+
 			let user;
 			if (result[1] !== undefined) {
 				//Cookie was set
 				user = result[1].state === "fulfilled" ? result[1].value : null;
 			}
-			
+
 			// Result[0] is all the model data for the page without user data
 			result = result[0].state === "fulfilled" ? result[0].value : null;
 			modelData.header = result['common'].header || {};
 			modelData.footer = result['common'].footer || {};
 			modelData.dataLayer = result['common'].dataLayer || {};
 			modelData.seo = result['seo'] || {};
-						
+
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
+				modelData.recentActivities = result['recentActivities'] || {};
 				modelData.reviews = result['appDownload'] || {};
 				templatePath = newPath;
 			} else {

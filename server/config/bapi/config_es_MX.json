@@ -171,10 +171,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "appDownload"]
+				"models": ["safetyTips", "recentActivities", "appDownload"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "appDownload"]
+				"models": ["safetyTips", "recentActivities", "appDownload"]
 			}
 		},
 		"Homepage" : {
