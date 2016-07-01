@@ -24,6 +24,11 @@ var gulp = require('gulp'),
 	tar = require('gulp-tar'),
 	bump = require('gulp-bump'),
 	rename = require('gulp-rename'),
+	through2 = require('through2'),
+	path = require('path'),
+	mkdirp = require('mkdirp'),
+	newer = require('gulp-newer'),
+	phantom = require('phantom'),
 	cssmin = require('gulp-cssmin'),
 	fs = require('fs'),
 	runSequence = require('gulp-run-sequence'),
@@ -60,16 +65,22 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
+gulp.task('spriteSvgs', getTask('spriteSvgs'));
+gulp.task('spriteFallback', getTask('spriteFallback'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+
+gulp.task('icons', getTask('icons'));
+
+gulp.task('svgIcons', getTask('svgIcons'));
 
 // DEFAULT is used by Developers
-gulp.task('default', function (done) {
-    runSequence('build', ['develop', 'watch'], done);
+gulp.task('default', function(done) {
+	runSequence('build', ['develop', 'watch'], done);
 });
 
 
@@ -79,6 +90,11 @@ gulp.task('test:clientUnit', testTasks);
 gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
+
+gulp.task('icons2', (done) => {
+	//Task for spriting svgs and pngs
+	runSequence('spriteSvgs', 'spriteFallback', done);
+});
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
