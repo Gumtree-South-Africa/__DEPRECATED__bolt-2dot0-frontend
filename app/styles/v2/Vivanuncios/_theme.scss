@@ -61,12 +61,14 @@ $appdownloadreview-bgcolor: $vivaWhite;
 $appdownloadreview-font: $viva-p3;
 $appdownloadreview-color: $vivaGray3;
 
+
 // Section Menu
 $secmenu-link-color: $vivaBlack;
 $secmenu-link-color-hover: $vivaOrange;
 
 // Recent Activity
 $recentactivity-bgcolor:$vivaGray2;
+
 
 
 // color palette, independent of viva, map your "viva" to local independent names here
@@ -77,3 +79,7 @@ $cardLinksColor: $vivaOrange;
 
 $cardStatsFont: $viva-p3;
 $cardHeadersFont: $viva-h4;
+
+// Activity card and header profile image circlular border
+$profile-border: $vivaOrange;
+
