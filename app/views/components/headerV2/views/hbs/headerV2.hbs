@@ -1,17 +1,44 @@
 <div class="headerV2">
-    {{> (dynamic "logo")}}
-    <div class="browse">
-        Browse
-    </div>
-    <div class="right-items">
-        <div class="help float-right">
-            Help
+    {{#unless this.header.distractionFree}}
+        <div class="left-items">
+            <div class="logo"></div>
+            {{#if this.header.username}}
+                <div class="messages">
+                    Messages
+                </div>
+            {{/if}}
+            <div class="browse">
+                Browse
+            </div>
         </div>
-        <div class="profile float-right">
-            My Account
+        <div class="right-items">
+            <div class="help float-right">
+                Help
+            </div>
+            {{#if this.header.username}}
+                <div class="my-ads float-right">
+                    My Ads
+                </div>
+                <div class="profile float-right">
+                    <div class="icon-header-profile-out">
+
+                    </div>
+                    <div class="profile-welcome">
+                        Hi, Carmen!
+                    </div>
+                </div>
+            {{else}}
+                <div class="profile float-right">
+                    My Account
+                </div>
+            {{/if}}
+            {{> (dynamic "button")}}
         </div>
-        {{> (dynamic "button")}}
-    </div>
+    {{else}}
+        <div class="left-items">
+            <div class="logo"></div>
+        </div>
+    {{/unless}}
 </div>
 
 

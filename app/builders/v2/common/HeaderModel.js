@@ -82,6 +82,8 @@ class HeaderModel {
 				data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
 				data.min = config.get('static.min');
 
+				// data.distractionFree = true;
+				
 				// add complex data to header
 				this.buildUrl(data);
 				this.buildCss(data);

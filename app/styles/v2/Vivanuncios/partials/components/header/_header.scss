@@ -1,23 +1,78 @@
+$item-top-padding: 12px;
+
 .headerV2 {
     width: 100%;
     //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
     height: 65px;
 
+    .left-items {
+        position: absolute;
+        left: 0;
+        width: 40%;
+        text-align: center;
+
+        .logo, .messages, .browse {
+            float: left;
+            top: 50%;
+        }
+
+        .logo {
+            min-width: 140px;
+            margin-left: 20px;
+            width: 40%;
+            height: 50px;
+            background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
+            background-size: contain;
+        }
+
+        .messages {
+            padding-top: $item-top-padding;
+            width: 80px;
+        }
+
+        .browse {
+            padding-top: $item-top-padding;
+            width: 20%;
+        }
+    }
+
     .right-items {
         position: absolute;
         right: 0;
         width: 60%;
         text-align: center;
-    }
 
-    .logo {
-        float: left;
-        margin-left: 20px;
+        .help, .profile, .my-ads {
+            padding-top: $item-top-padding;
+        }
+
+        .profile {
+            vertical-align: middle;
+            margin-left: 15px;
+            .icon-header-profile-out {
+                vertical-align: middle;
+                display: inline-block;
+                width: 30px;
+                height: 30px;
+            }
+            .profile-welcome {
+                text-align: left;
+                display: inline-block;
+                width: 95px;
+           }
+        }
     }
 
     .btn {
         padding: 10px;
+
+        .sudolink {
+            vertical-align: middle;
+        }
+        .icon-camera{
+            height: 25px;
+        }
     }
 
     .btn-wrapper {
@@ -26,15 +81,8 @@
         width: 10%;
     }
 
-    .browse {
-        float: left;
-        width: 10%;
-        text-align: center;
-        height: 65px;
-    }
-
     .float-right {
-        width: 30%;
+        width: 20%;
         float: right;
     }
 }

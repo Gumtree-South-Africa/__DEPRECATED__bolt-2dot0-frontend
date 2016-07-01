@@ -14,7 +14,7 @@ module.exports = function(app) {
 /**
  * Build HomePage Model Data and Render
  */
-router.get('/', function(req, res, next) {
+router.get('/', (req, res, next) => {
 	console.time('Instrument-Homepage-Controller');
 	if (res.locals.b2dot0Version) {
 		homepageControllerV2(req, res, next);
