@@ -4,20 +4,16 @@
 var express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
 
 var cwd = process.cwd();
-var StringUtils = require(cwd + '/app/utils/StringUtils'), pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
+var StringUtils = require(cwd + '/app/utils/StringUtils'), pageControllerUtil = require(cwd + '/app/controllers/all/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 var postAdService = require(cwd + '/server/services/postad');
 var fbGraphService = require(cwd + '/server/utils/fbgraph');
-
-module.exports = function(app) {
-	app.use('/', router);
-};
 
 
 /**
  * Get QuickPost Form
  */
-router.get('/quickpost', function(req, res, next) {
+router.get('/', function(req, res, next) {
 	console.time('Instrument-QuickPost-Form-Controller');
 
 	// Set pagetype in request
@@ -52,7 +48,7 @@ router.get('/quickpost', function(req, res, next) {
 /**
  * Do QuickPost
  */
-router.post('/quickpost',
+router.post('/',
 
 	// Form filter and validation middleware
 	form(field('Description').trim().required().minLength(10).maxLength(4096), field('Category').required(), field('price').trim().maxLength(10).is(/^[0-9]+$/), field('SelectedCurrency'), field('switch'), field('Location').required(), field('latitude'), field('longitude'), field('address')),
@@ -448,3 +444,6 @@ var QuickPost = {
 		pageControllerUtil.postController(req, res, next, 'quickpost/views/hbs/quickpost_', modelData);
 	}
 };
+
+
+module.exports = router;

@@ -7,7 +7,7 @@ var express = require('express'),
 	cuid = require('cuid');
 
 let cwd = process.cwd();
-let pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil');
+let pageControllerUtil = require(cwd + '/app/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModel');
 let HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
@@ -15,11 +15,6 @@ let Base64 = require(process.cwd() + '/app/utils/Base64');
 let deviceDetection = require(cwd + '/modules/device-detection');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let userService = require(process.cwd() + '/server/services/user');
-
-
-module.exports = function(app) {
-	app.use('/', router);
-};
 
 
 /**
@@ -342,3 +337,6 @@ var HP = {
 		marketoService.deleteMarketoCookie(res, modelData.header);
 	}
 };
+
+
+module.exports = router;

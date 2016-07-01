@@ -1,12 +1,10 @@
 'use strict';
 
-var express = require('express'), cwd = process.cwd(), pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'), router = express.Router();
+var express = require('express'), router = express.Router();
+var cwd = process.cwd();
 
-module.exports = function(app) {
-	app.use('/', router);
-};
 
-router.get('/postpage', function(req, res, next) {
+router.get('/', function(req, res, next) {
 	console.log('hello');
 	// var modelData =
 	// {
@@ -22,6 +20,8 @@ router.get('/postpage', function(req, res, next) {
 
 	var modelData = {locssale: res.locals.config.locale};
 	console.log('modelData: ', modelData);
-	pageControllerUtil.postController(req, res, next, 'postpage/views/hbs/postpage_', modelData);
-
+	res.json(modelData);
 });
+
+
+module.exports = router;

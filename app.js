@@ -1,41 +1,40 @@
 'use strict';
 
 
-var glob = require('glob');
-var http = require('http');
-var path = require('path');
-var vhost = require('vhost');
-var Q = require('q');
-var _ = require('underscore');
-var cuid = require('cuid');
+let glob = require('glob');
+let http = require('http');
+let path = require('path');
+let vhost = require('vhost');
+let Q = require('q');
+let _ = require('underscore');
+let cuid = require('cuid');
 
 
 // middleware
-var expressbuilder = require('./server/middlewares/express-builder');
-var siteconfig = require('./server/middlewares/site-config');
-var responseMetrics = require('./server/middlewares/response-metrics');
-var eventLoopMonitor = require('./server/utils/monitor-event-loop');
-var monitorAgent = require('./server/utils/monitor/monitor-agent');
-var error = require('./modules/error');
+let expressbuilder = require('./server/middlewares/express-builder');
+let siteconfig = require('./server/middlewares/site-config');
+let responseMetrics = require('./server/middlewares/response-metrics');
+let eventLoopMonitor = require('./server/utils/monitor-event-loop');
+let monitorAgent = require('./server/utils/monitor/monitor-agent');
+let error = require('./modules/error');
 
-var cacheBapiData = require('./server/services/cache/cache-server-startup');
+let cacheBapiData = require('./server/services/cache/cache-server-startup');
 
 // app
-var controllers = glob.sync(process.cwd() + '/app/controllers/**/*Controller.js');
-var config = require('./server/config/sites.json');
+let config = require('./server/config/sites.json');
 
 // Default list of all locales, if new locales are added, add it in this list
-var allLocales = 'es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG';
+let allLocales = 'es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG';
 // If SITES param is passed as input param, load only those countries
-var siteLocales = process.env.SITES || allLocales;
+let siteLocales = process.env.SITES || allLocales;
 
 
 /*
  * Create Main App
  */
-var app = new expressbuilder().getApp();
-var requestId = cuid();
-var siteCount = 0;
+let app = new expressbuilder().getApp();
+let requestId = cuid();
+let siteCount = 0;
 
 /*
  * Create Site Apps
@@ -43,23 +42,24 @@ var siteCount = 0;
 let createSiteApps = () => {
 	let configPromises = [];
 	let siteApps = [];
+
 	_.each(config.sites, (siteObj) => {
+		if (siteLocales.indexOf(siteObj.locale) > -1) {
+			  (function(siteObj) {
+				  let builderObj = new expressbuilder(siteObj);
+				  let siteApp = builderObj.getApp();
+				  siteApps.push(siteApp);
 
-    if (siteLocales.indexOf(siteObj.locale) > -1) {
-	      (function(siteObj) {
-			  var builderObj = new expressbuilder(siteObj);
-			  var siteApp = builderObj.getApp();
-		      siteApps.push(siteApp);
+					// Service Util to get Location and Category Data
+					// Wait to spin up the node app in server.js until all config promises resolve.
+					configPromises.push(cacheBapiData(siteApp, requestId));
 
-		        // Service Util to get Location and Category Data
-		        // Wait to spin up the node app in server.js until all config promises resolve.
-		        configPromises.push(cacheBapiData(siteApp, requestId));
+			  })(siteObj);
 
-	      })(siteObj);
+			  siteCount = siteCount + 1;
+		}
+	});
 
-	      siteCount = siteCount + 1;
-    }
- });
 	return Q.all(configPromises).then(() => {
 		//We need to configure the middleware stack in the correct order.
 		siteApps.forEach((siteApp) => {
@@ -72,9 +72,7 @@ let createSiteApps = () => {
 		});
 
 		// Setup controllers
-		controllers.forEach(function (controller) {
-			require(controller)(app);
-		});
+		app.use(require(process.cwd() + '/app/controllers'));
 
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
@@ -89,6 +87,6 @@ let createSiteApps = () => {
 eventLoopMonitor();
 monitorAgent.startMonitoring();
 
+
 module.exports = app;
 module.exports.createSiteApps = createSiteApps;
-

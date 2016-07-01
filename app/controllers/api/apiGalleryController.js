@@ -7,11 +7,7 @@ var GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 var cors = require(process.cwd() + '/modules/cors');
 
 
-module.exports = function(app) {
-	app.use('/', router);
-};
-
-router.get('/api/ads/gallery', cors, function(req, res) {
+router.get('/gallery', cors, function(req, res) {
 	var bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
@@ -67,3 +63,6 @@ function getAjaxsUrlFromBapiJSON(dataG) {
 
 	return ajaxUrls;
 }
+
+
+module.exports = router;
