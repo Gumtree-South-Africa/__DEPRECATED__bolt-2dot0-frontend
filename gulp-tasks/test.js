@@ -40,9 +40,6 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		// CLIENT UNIT TEST TASKS
-		gulp.task('webpack', (done) => {
-			return shell.task(["node node_modules/webpack/bin/webpack.js"])(done);
-		});
 
 		gulp.task('karma', function (done) {
 			new Server({

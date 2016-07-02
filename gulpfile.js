@@ -65,6 +65,7 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
+gulp.task('webpack', getTask('webpack'));
 gulp.task('spriteSvgs', getTask('spriteSvgs'));
 gulp.task('spriteFallback', getTask('spriteFallback'));
 
@@ -72,7 +73,8 @@ gulp.task('spriteFallback', getTask('spriteFallback'));
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
-gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+
+gulp.task('build', ['set-env', 'eslint', 'webpack', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 gulp.task('icons', getTask('icons'));
 

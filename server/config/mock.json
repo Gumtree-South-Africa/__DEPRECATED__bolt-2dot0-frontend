@@ -15,7 +15,8 @@
 	    	"homepageGallery" 	: 	"/ads/gallery",
 	    	"adStatistics" 		: 	"/ads/statistics",
 	    	"configService"		:	"/configs/nodeapp/settings.json",
-		  	"quickpostAd"		:	"/ads"
+		  	"quickpostAd"		:	"/ads",
+			"trendingSearch"	:	"/ads"
 	    }
 	},
 	"kafka": {

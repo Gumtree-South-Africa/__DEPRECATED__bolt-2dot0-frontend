@@ -1,18 +1,26 @@
 {{#partial "content"}}
-	<div style="border: 2px solid green ;overflow: hidden; display: block;">
-		<h1 style="text-align: center;">HOMEPAGE PLACEHOLDER CONTENTS !!!</h1>
+	<div>
 		{{> (dynamic "sectionMenu")}}
-		{{> (dynamic "recentActivity")}}
-		{{> (dynamic "appDownloadSection")}}
-		{{> (dynamic "safetyTips") }}
-		{{> (dynamic "button")}}
 
+        <div class="card trending-card">
+            <div class="card-title">Popular in <a class="link inline-block underline" href="/selectLocationOverlay-TBD">Your Neighborhood</a></div>
+            {{> (dynamic "tileGrid")}}
+            <div class="card-view-more">
+                <a class="link" href="/viewMore-TBD">
+                    <span class=" underline">View More</span>
+                    <span class="no-underline">&nbsp;&gt;</span></a>
+            </div>
+        </div>
+
+        {{> (dynamic "recentActivity")}}
+        {{> (dynamic "appDownloadSection")}}
+        {{> (dynamic "safetyTips") }}
+        {{> (dynamic "button")}}
 	</div>
-
 {{/partial}}
 
 {{!-- override of header and footer --}}
 {{#if this.isNewHP}}
-	{{#partial "headerWrapper"}}{{/partial}}
-	{{#partial "footerWrapper"}}{{/partial}}
+    {{#partial "headerWrapper"}}{{/partial}}
+    {{#partial "footerWrapper"}}{{/partial}}
 {{/if}}

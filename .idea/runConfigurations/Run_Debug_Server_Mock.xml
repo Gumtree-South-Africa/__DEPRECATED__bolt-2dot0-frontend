@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Debug Server Mock" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="bin/server" node-parameters="--debug" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="NODE_ENV" value="mock" />
+      <env name="PORT" value="8000" />
+      <env name="SSL_PORT" value="7443" />
+      <env name="BASEDOMAINSUFFIX" value="localhost" />
+      <env name="NODE_CONFIG_DIR" value="./server/config" />
+    </envs>
+    <method />
+  </configuration>
+</component>

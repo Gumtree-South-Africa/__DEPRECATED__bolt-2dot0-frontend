@@ -50,7 +50,7 @@
     background-color: $appdownloadreview-bgcolor;
     height: 70px;
     margin-bottom: 1em;
-    border: 1px solid $appdownloadreview-color;
+    border: 1px solid  $appdownloadreview-color;
     border-radius: 5px;
    .review-inner{
    height:100%;
@@ -67,7 +67,7 @@
      text-align:left;
      overflow: hidden;
       font: $appdownloadreview-font;
-      color: $appdownloadreview-color;
+      color:  $appdownloadreview-color;
        margin-left: 0.8em;
       }
 }
