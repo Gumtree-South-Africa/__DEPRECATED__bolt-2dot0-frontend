@@ -1,14 +1,14 @@
 'use strict';
 
 
-var express = require('express'), _ = require('underscore'), util = require('util');
+let express = require('express'), _ = require('underscore'), util = require('util');
 
 
 /**
  * @description
  * @constructor
  */
-var PageControllerUtil = function(req, res) {
+let PageControllerUtil = function(req, res) {
 };
 
 
@@ -20,7 +20,7 @@ var PageControllerUtil = function(req, res) {
  * @return {JSON}
  */
 PageControllerUtil.prototype.preController = function(req, res) {
-	var modelData = {
+	let modelData = {
 		env: 'public',
 		locale: res.locals.config.locale,
 		country: res.locals.config.country,
@@ -78,7 +78,7 @@ PageControllerUtil.prototype.postController = function(req, res, next, pageTempl
 			}
 
 			// Kafka Logging
-			// var log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
+			// let log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
 			// kafkaService.logInfo(res.locals.config.locale, log);
 
 			// Redis Logging - to get data to ELK

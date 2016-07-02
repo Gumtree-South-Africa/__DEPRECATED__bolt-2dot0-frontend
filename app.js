@@ -9,6 +9,9 @@ let Q = require('q');
 let _ = require('underscore');
 let cuid = require('cuid');
 
+// apps
+let webApp = require('./app/appWeb/app');
+let postApp = require('./app/appPost/app');
 
 // middleware
 let expressbuilder = require('./server/middlewares/express-builder');
@@ -20,7 +23,7 @@ let error = require('./modules/error');
 
 let cacheBapiData = require('./server/services/cache/cache-server-startup');
 
-// app
+// config
 let config = require('./server/config/sites.json');
 
 // Default list of all locales, if new locales are added, add it in this list
@@ -48,12 +51,12 @@ let createSiteApps = () => {
 			  (function(siteObj) {
 				  let builderObj = new expressbuilder(siteObj);
 				  let siteApp = builderObj.getApp();
+				  siteApp.locals.siteObj = siteObj;
 				  siteApps.push(siteApp);
 
-					// Service Util to get Location and Category Data
-					// Wait to spin up the node app in server.js until all config promises resolve.
-					configPromises.push(cacheBapiData(siteApp, requestId));
-
+				  // Service Util to get Location and Category Data
+				  // Wait to spin up the node app in server.js until all config promises resolve.
+				  configPromises.push(cacheBapiData(siteApp, requestId));
 			  })(siteObj);
 
 			  siteCount = siteCount + 1;
@@ -65,14 +68,24 @@ let createSiteApps = () => {
 		siteApps.forEach((siteApp) => {
 			// register bolt middleware
 			siteApp.use(siteconfig(siteApp));
-			siteApp.use(responseMetrics());
+
+			// Setup Express Sub-Apps
+			// 1.Post App
+			let postAppObj = new postApp(siteApp).getApp();
+			postAppObj.use(responseMetrics());
+			siteApp.use(postAppObj);
+
+			// 2.Web App
+			let webAppObj = new webApp(siteApp).getApp();
+			webAppObj.use(responseMetrics());
+			siteApp.use(webAppObj);
 
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 
 		// Setup controllers
-		app.use(require(process.cwd() + '/app/controllers'));
+		// app.use(require(process.cwd() + '/app/controllers'));
 
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.

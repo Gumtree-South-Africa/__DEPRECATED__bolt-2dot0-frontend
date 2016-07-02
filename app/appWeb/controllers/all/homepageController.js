@@ -1,13 +1,13 @@
 'use strict';
 
-var express = require('express'),
+let express = require('express'),
 	_ = require('underscore'),
 	router = express.Router(),
 	Q = require('q'),
 	cuid = require('cuid');
 
 let cwd = process.cwd();
-let pageControllerUtil = require(cwd + '/app/controllers/all/PageControllerUtil');
+let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModel');
 let HomepageModelV2 = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
@@ -31,7 +31,7 @@ router.get('/', function(req, res, next) {
 	}
 
 	// Build Model Data
-	var modelData = pageControllerUtil.preController(req, res);
+	let modelData = pageControllerUtil.preController(req, res);
 
 	// Cookies drop for Version of template
 
@@ -143,7 +143,7 @@ router.get('/', function(req, res, next) {
 });
 
 
-var HP = {
+let HP = {
 	cookiePageVersionFn(pageVersionCookie, modelData, req, res) {
 		if (pageVersionCookie === '2.0') {
 			req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
@@ -238,7 +238,7 @@ var HP = {
 	 */
 	extendFooterData: function(modelData) {
 		if (!modelData.footer.min) {
-			var baseJSComponentDir = "/views/components/";
+			let baseJSComponentDir = "/views/components/";
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
 
@@ -254,9 +254,9 @@ var HP = {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
 			}
 
-			var availableAdFeatures = modelData.footer.availableAdFeatures;
+			let availableAdFeatures = modelData.footer.availableAdFeatures;
 			if (typeof availableAdFeatures !== 'undefined') {
-				for (var i = 0; i < availableAdFeatures.length; i++) {
+				for (let i = 0; i < availableAdFeatures.length; i++) {
 					if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
 						modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/adCarousel.js');
 					}
@@ -277,7 +277,7 @@ var HP = {
 	buildContentData: function(modelData, bapiConfigData) {
 		modelData.content = {};
 
-		var contentConfigData, homepageConfigData;
+		let contentConfigData, homepageConfigData;
 		if (typeof bapiConfigData !== 'undefined') {
 			contentConfigData = bapiConfigData.content;
 		}
@@ -289,9 +289,9 @@ var HP = {
 			modelData.content.topHomePageAdBanner = homepageConfigData.topHomePageAdBanner;
 
 			if (homepageConfigData.homepageBanners !== null) {
-				var homePageBannerUrls = [];
-				var homepageBanners = homepageConfigData.homepageBanners;
-				for (var i = 0; i < homepageBanners.length; i++) {
+				let homePageBannerUrls = [];
+				let homepageBanners = homepageConfigData.homepageBanners;
+				for (let i = 0; i < homepageBanners.length; i++) {
 					homePageBannerUrls[i] = modelData.footer.baseImageUrl + homepageBanners[i];
 				}
 				modelData.content.homePageBannerUrl = homePageBannerUrls[Math.floor(Math.random() * homePageBannerUrls.length)];

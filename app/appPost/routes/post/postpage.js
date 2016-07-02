@@ -1,11 +1,9 @@
 'use strict';
 
 var express = require('express'), router = express.Router();
-var cwd = process.cwd();
-
 
 router.get('/', function(req, res, next) {
-	console.log('hello');
+	console.log('helloooooooooooooooo');
 	// var modelData =
 	// {
 	//     locale: res.locals.config.locale,

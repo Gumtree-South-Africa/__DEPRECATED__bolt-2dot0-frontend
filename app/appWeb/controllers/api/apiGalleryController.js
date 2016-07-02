@@ -1,21 +1,21 @@
 'use strict';
 
 
-var express = require('express'), router = express.Router(), Q = require('q');
+let express = require('express'), router = express.Router(), Q = require('q');
 
-var GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
-var cors = require(process.cwd() + '/modules/cors');
+let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
+let cors = require(process.cwd() + '/modules/cors');
 
 
 router.get('/gallery', cors, function(req, res) {
-	var bapiHeaders = {};
+	let bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
 	bapiHeaders.machineid = req.app.locals.machineid;
 	bapiHeaders.useragent = req.app.locals.useragent;
 	bapiHeaders.locale = res.locals.config.locale;
 
-	var gallery = new GalleryModel(bapiHeaders), galleryData = {}, offset = req.query.offset, // Start Index
+	let gallery = new GalleryModel(bapiHeaders), galleryData = {}, offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
 		ajaxUrls = {}, galleryDeferred = Q.defer();
 
@@ -48,7 +48,7 @@ router.get('/gallery', cors, function(req, res) {
 });
 
 function getAjaxsUrlFromBapiJSON(dataG) {
-	var ajaxUrls = {'prev': null, 'next': null}, links = dataG.links || null, linkObj, idx;
+	let ajaxUrls = {'prev': null, 'next': null}, links = dataG.links || null, linkObj, idx;
 
 	if (links) {
 		for (idx = 0; idx < links.length; ++idx) {

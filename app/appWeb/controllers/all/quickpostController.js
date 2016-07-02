@@ -1,13 +1,14 @@
 
 'use strict';
 
-var express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
+let express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
 
-var cwd = process.cwd();
-var StringUtils = require(cwd + '/app/utils/StringUtils'), pageControllerUtil = require(cwd + '/app/controllers/all/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let cwd = process.cwd();
+let StringUtils = require(cwd + '/app/utils/StringUtils'),
+	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
-var postAdService = require(cwd + '/server/services/postad');
-var fbGraphService = require(cwd + '/server/utils/fbgraph');
+let postAdService = require(cwd + '/server/services/postad');
+let fbGraphService = require(cwd + '/server/utils/fbgraph');
 
 
 /**
@@ -20,10 +21,10 @@ router.get('/', function(req, res, next) {
 	req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 	// Build Model Data
-	var bapiConfigData = res.locals.config.bapiConfigData;
-	var modelData = pageControllerUtil.preController(req, res);
+	let bapiConfigData = res.locals.config.bapiConfigData;
+	let modelData = pageControllerUtil.preController(req, res);
 
-	var model = QuickpostPageModel(req, res, modelData);
+	let model = QuickpostPageModel(req, res, modelData);
 	model.then(function(result) {
 
 		// Dynamic Data from BAPI
@@ -58,16 +59,16 @@ router.post('/',
 		console.time('Instrument-QuickPost-Data-Controller');
 
 		// Get Auth Cookie
-		var authCookieName = 'bt_auth';
-		var authenticationCookie = req.cookies[authCookieName];
+		let authCookieName = 'bt_auth';
+		let authenticationCookie = req.cookies[authCookieName];
 
 		// Set pagetype in request
 		req.app.locals.pagetype = pagetypeJson.pagetype.QUICK_POST_AD_FORM;
 
 		// Build Model Data
-		var bapiConfigData = res.locals.config.bapiConfigData;
-		var modelData = pageControllerUtil.preController(req, res);
-		var model = QuickpostPageModel(req, res, modelData);
+		let bapiConfigData = res.locals.config.bapiConfigData;
+		let modelData = pageControllerUtil.preController(req, res);
+		let model = QuickpostPageModel(req, res, modelData);
 		model.then(function(result) {
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
@@ -86,23 +87,23 @@ router.post('/',
 				QuickPost.respondFieldError(req, res, next, modelData);
 			} else {
 				// Build Ad JSON
-				var adJson = QuickPost.buildAdJson(modelData, req.body);
-				var ad = JSON.stringify(adJson);
+				let adJson = QuickPost.buildAdJson(modelData, req.body);
+				let ad = JSON.stringify(adJson);
 
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
 					.then(function(dataReturned) {
-						var response = dataReturned;
+						let response = dataReturned;
 						modelData.dataLayer.pageData.pageType = pagetypeJson.pagetype.QUICK_POST_AD_SUCCESS;
 
-						for (var l = 0; l < response._links.length; l++) {
+						for (let l = 0; l < response._links.length; l++) {
 							if (response._links[l].rel == 'view') {
-								var fbShareLink = modelData.header.homePageUrl + response._links[l].href;
-								var vipLink = modelData.header.homePageUrl + response._links[l].href + '?activateStatus=adActivateSuccess';
+								let fbShareLink = modelData.header.homePageUrl + response._links[l].href;
+								let vipLink = modelData.header.homePageUrl + response._links[l].href + '?activateStatus=adActivateSuccess';
 
 								// Post to FB if share button is enabled
 								if (typeof req.form.switch !== 'undefined' && req.form.switch == 'YES') {
-									var msg = modelData.formContent.fbPublishMsg + ' ' + fbShareLink;
+									let msg = modelData.formContent.fbPublishMsg + ' ' + fbShareLink;
 									Q(fbGraphService.publishPost(modelData.header.publishPostUrl, msg, fbShareLink))
 										.then(function(fbDataReturned) {
 											console.log('Successful FB Graph PublishPost', fbDataReturned);
@@ -126,7 +127,7 @@ router.post('/',
 	});
 
 
-var QuickPost = {
+let QuickPost = {
 	/**
 	 * Special header data for QuickPost
 	 */
@@ -152,7 +153,7 @@ var QuickPost = {
 		// image upload
 		if (!modelData.footer.min) {
 			// Components
-			var baseJSComponentDir = '/views/components/';
+			let baseJSComponentDir = '/views/components/';
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadUtil.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageEXIF.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'mediaUpload/js/BoltImageUploadDragAndDrop.js');
@@ -200,8 +201,8 @@ var QuickPost = {
 		modelData.formContent.currencyDisplay = bapiConfigData.content.quickpost.currencyDisplay;
 		modelData.formContent.currency = bapiConfigData.content.quickpost.currency;
 		if (modelData.formContent.currency.length == 1) {
-			var singleCurrency = modelData.formContent.currency[0];
-			var singleCurrencySplit = singleCurrency.split(':');
+			let singleCurrency = modelData.formContent.currency[0];
+			let singleCurrencySplit = singleCurrency.split(':');
 			modelData.formContent.selectedCurrency = singleCurrencySplit[1];
 		}
 
@@ -251,11 +252,11 @@ var QuickPost = {
 	buildValueData: function(modelData, formData, requestBody) {
 		modelData.formContent.imgUrls = [];
 		modelData.formContent.imgThumbUrls = [];
-		var reqPictures = requestBody.pictures;
-		var reqThumbPictures = requestBody.picturesThumb;
+		let reqPictures = requestBody.pictures;
+		let reqThumbPictures = requestBody.picturesThumb;
 		if (typeof reqPictures !== 'undefined') {
 			if (_.isArray(reqPictures)) {
-				for (var idx = 0; idx < reqPictures.length; idx++) {
+				for (let idx = 0; idx < reqPictures.length; idx++) {
 					modelData.formContent.imgUrls.push(decodeURIComponent(reqPictures[idx]));
 					modelData.formContent.imgThumbUrls.push(decodeURIComponent(reqThumbPictures[idx]));
 				}
@@ -266,7 +267,7 @@ var QuickPost = {
 		}
 
 		if (!_.isEmpty(formData.Description)) {
-			var desc = formData.Description;
+			let desc = formData.Description;
 			desc = StringUtils.unescapeHtml(desc);
 			desc = StringUtils.unescapeUrl(desc);
 			desc = StringUtils.unescapeEmail(desc);
@@ -309,7 +310,7 @@ var QuickPost = {
 	 * Build Ad JSON
 	 */
 	buildAdJson: function(modelData, requestBody) {
-		var json = {};
+		let json = {};
 
 		json.description = modelData.formContent.descriptionValue;
 		json.categoryId = modelData.formContent.category;
@@ -327,12 +328,12 @@ var QuickPost = {
 			json.price.amount = modelData.formContent.priceValue;
 		}
 
-		var reqPictures = requestBody.pictures;
+		let reqPictures = requestBody.pictures;
 		json.pictures = {};
 		json.pictures.sizeUrls = [];
 		if (typeof reqPictures !== 'undefined') {
 			if (_.isArray(reqPictures)) {
-				for (var idx = 0; idx < reqPictures.length; idx++) {
+				for (let idx = 0; idx < reqPictures.length; idx++) {
 					json.pictures.sizeUrls[idx] = {};
 					json.pictures.sizeUrls[idx].LARGE = decodeURIComponent(reqPictures[idx]);
 				}
@@ -350,7 +351,7 @@ var QuickPost = {
 	 */
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
-		for (var i = 0; i < req.form.errors.length; i++) {
+		for (let i = 0; i < req.form.errors.length; i++) {
 			if (req.form.errors[i].indexOf('Description ') > -1) {
 				if (!req.form.fieldErrors.description) {
 					req.form.fieldErrors.description = req.form.errors[i];
@@ -382,7 +383,7 @@ var QuickPost = {
 	respondSubmitError: function(req, res, next, modelData, err) {
 		console.log('errorrrrrrrrrrrrrrrrrrrrrr', err);
 
-		var errorCode = parseInt(err.status);
+		let errorCode = parseInt(err.status);
 		if (errorCode >= 400 && errorCode < 500) {
 			err.status4xx = true;
         }
@@ -390,12 +391,12 @@ var QuickPost = {
 			err.status5xx = true;
         }
 
-		var errorMessage = '';
+		let errorMessage = '';
 		if (err.status4xx) {
-			var fieldError = 'false';
+			let fieldError = 'false';
 			if (errorCode == 400) {
-				for (var i = 0; i < err.details.length; i++) {
-					var det = err.details[i];
+				for (let i = 0; i < err.details.length; i++) {
+					let det = err.details[i];
 					if (det.code == 'LOCATION_DOES_NOT_MATCH_COUNTRY') {
 						req.form.fieldErrors = {};
 						req.form.fieldErrors.location = modelData.formContent.errorLocNotInCountry;
