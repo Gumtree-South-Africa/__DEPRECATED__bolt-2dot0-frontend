@@ -1,4 +1,4 @@
-FROM cs-registry-9425.slc01.dev.ebayc3.com:5000/bolt-docker
+FROM boltjk-registry-9492.slc01.dev.ebayc3.com:5000/bolt-docker
 
 #####################################################################
 # bolt-2dot0-frontend build and run app
