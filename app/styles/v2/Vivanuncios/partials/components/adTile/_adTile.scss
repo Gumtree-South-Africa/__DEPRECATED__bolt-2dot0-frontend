@@ -1,0 +1,122 @@
+$panelCornerBorderRadius: 7px;
+$featuredBorderColor: #93c31f;
+
+.panel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: $panelCornerBorderRadius;
+
+	border: 1.5px solid transparent;
+
+    .tile-link {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+	&.featured {
+		border: 1.5px solid $featuredBorderColor;
+
+		.featured-bolt {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 2px;
+			right: 2px;
+			background-image: url("../../../../../images/search_images/icon_info.svg");
+			background-position: center;
+			background-repeat: no-repeat;
+			background-size: contain;
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-width: 16px;
+			border-radius: 0 $panelCornerBorderRadius 0 0;
+			border-style: solid;
+			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
+		}
+	}
+
+	.user-photo {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		position: absolute;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		left: 5px;
+		top: 5px;
+		border: .5px solid #ff9000;
+
+        &:hover {
+            cursor: pointer;
+        }
+	}
+
+	.controls {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 40px;
+		border-bottom-right-radius: $panelCornerBorderRadius;
+		border-bottom-left-radius: $panelCornerBorderRadius;
+
+		background: linear-gradient( 0deg, black, transparent );
+
+		.ad-stats {
+			position: absolute;
+			left: 5px;
+			bottom: 5px;
+			color: white;
+            font: $cardStatsFont;
+			line-height: 1;
+
+			.favorite-icon-sm {
+				width: 10px;
+				height: 10px;
+				background-image: url("../../../../../images/search_images/icon_star-off.svg");
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+
+			.reply-icon-sm {
+				width: 10px;
+				height: 10px;
+				background-image: url("../../../../../images/search_images/icon_info.svg");
+				background-size: contain;
+				background-position: center;
+				background-repeat: no-repeat;
+			}
+            .inline-block {
+                display: inline-block;
+            }
+		}
+
+		.favorite-btn {
+			width: 15px;
+			height: 15px;
+			background-image: url("../../../../../images/search_images/icon_info.svg");
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+			bottom: 5px;
+			right: 5px;
+			position: absolute;
+
+            &:hover {
+                cursor: pointer;
+            }
+		}
+	}
+}
