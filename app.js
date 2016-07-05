@@ -9,9 +9,8 @@ let Q = require('q');
 let _ = require('underscore');
 let cuid = require('cuid');
 
-// apps
-let webApp = require('./app/appWeb/app');
-let postApp = require('./app/appPost/app');
+// Apps
+let appConfigJson = require('./app/config/appConfig.json');
 
 // middleware
 let expressbuilder = require('./server/middlewares/express-builder');
@@ -69,16 +68,13 @@ let createSiteApps = () => {
 			// register bolt middleware
 			siteApp.use(siteconfig(siteApp));
 
-			// Setup Express Sub-Apps
-			// 1.Post App
-			let postAppObj = new postApp(siteApp).getApp();
-			postAppObj.use(responseMetrics());
-			siteApp.use(postAppObj);
+			_.each(appConfigJson, (appConfig) => {
+				let App = require(appConfig.path);
+				let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
 
-			// 2.Web App
-			let webAppObj = new webApp(siteApp).getApp();
-			webAppObj.use(responseMetrics());
-			siteApp.use(webAppObj);
+				appObj.use(responseMetrics());
+				siteApp.use(appObj);
+			});
 
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));

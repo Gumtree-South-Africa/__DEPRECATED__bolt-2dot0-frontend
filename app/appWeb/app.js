@@ -6,7 +6,7 @@ let expressbuilder = require(process.cwd() + '/server/middlewares/express-builde
 
 // Web Express App
 // ---------------
-function BuildWebApp(siteApp) {
+function BuildWebApp(siteApp, routePath, viewPath) {
 
 	let app = new expressbuilder(siteApp.locals.siteObj).getApp();
 
@@ -14,11 +14,11 @@ function BuildWebApp(siteApp) {
 	app.locals = siteApp.locals;
 
 	// Configure controllers
-	app.use('/', require('./controllers'));
+	app.use('/', require(routePath));
 
 	// Configure views
 	if (app.locals.devMode === true) {
-		app.use('/views', express.static('./views', {
+		app.use('/views', express.static(viewPath, {
 			root: '/views', etag: false, maxage: 0, index: false
 		}));
 	}
