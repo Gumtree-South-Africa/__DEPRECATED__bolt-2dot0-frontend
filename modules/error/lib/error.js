@@ -15,10 +15,13 @@ var util = require('util'),
 
 module.exports = function(app) {
     return function(err, req, res, next) {
+
+		// sometimes we'll get errors that do not have a status property, so we force a status property to accomodate the handling logic below
 	    if (!err.hasOwnProperty('status')) {
 		    err.status = 500;
 	    }
-        if (err.status == 0) {
+
+        if (err.status === 0) {
             // next();
             res.send("");
         }

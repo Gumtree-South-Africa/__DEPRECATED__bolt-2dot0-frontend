@@ -2,16 +2,25 @@
 // Vars containing color codes should be in this file //
 // -------------------------------------------------- //
 
-
 //Primary Color
-$vivaBlack: #333333; $vivaWhite: #FFFFFF; $vivaOrange: #FF9800; $vivaGray: #747474; $vivaLightGray: #8E8E93;
-$vivaGreen: #87BC1C;
+$vivaBlack: #333333;
+$vivaWhite: #FFFFFF;
+$vivaOrange: #FF9800;
 
+// gray  palette colors
+$vivaGray1: #747474;    // todo: where did this come from?
+$vivaGray2: #EBEBEB;    // defined for use in home page
+$vivaGray3: #8E8E93;    // todo: where did this come from?
+$vivaGray4: #f7f7f7;    // defined for use in card backgrounds
+$vivaGray5: #E8E6E6;    // defined for use in all tips
+
+$vivaGreen: #87BC1C;    // todo: where did this come from?
 
 /* latin-ext */
 @font-face {
-  font-family: 'Lato';
-  font-style: normal;
-  font-weight: 400;
-  src: local('Lato Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format("truetype");
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format("truetype");
 }
+

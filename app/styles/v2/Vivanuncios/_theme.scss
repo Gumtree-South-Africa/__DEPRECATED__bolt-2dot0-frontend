@@ -9,10 +9,10 @@ $container-width: 73em;
 
 
 // Headlines
-$viva-h1: bold 1.5em Lato;
-$viva-h2: normal 1.5em Lato;
-$viva-h3: normal 1.25em Lato;
-$viva-h4: normal 1em Lato;
+$viva-h1: bold 1.5em Lato;      // 24px
+$viva-h2: normal 1.5em Lato;    // 24px
+$viva-h3: normal 1.25em Lato;   // 20 px
+$viva-h4: normal 1em Lato;      // 16 px
 
 $h1: $viva-h1;
 $h2: $viva-h2;
@@ -31,7 +31,7 @@ $p1: $viva-p1;
 $p2: $viva-p2;
 $p3: $viva-p3;
 
-$p2-secondary-color: $vivaGray;
+$p2-secondary-color: $vivaGray1;
 
 $safety-card-background-color: #e8e6e6;
 $common-background-color: #f7f7f7;
@@ -55,6 +55,11 @@ $button-color: $vivaWhite;
 $button-bgcolor: $vivaOrange;
 $button-fontsize: 1.125em;
 
+//App Download
+$appdownload-bgcolor: #f7f7f7;
+$appdownloadreview-bgcolor: $vivaWhite;
+$appdownloadreview-font: $viva-p3;
+$appdownloadreview-color: $vivaGray1;
 
 // Section Menu
 $secmenu-link-color: $vivaBlack;
@@ -64,3 +69,16 @@ $secmenu-link-color-hover: $vivaOrange;
 $modal-color: $vivaBlack;
 $modal-bgcolor: $vivaWhite;
 $modal-info: $vivaGray;
+
+// Recent Activity
+$recentactivity-bgcolor:$vivaGray2;
+
+
+// color palette, independent of viva, map your "viva" to local independent names here
+// use the naming convention: <where used><thing (font, color, etc)>
+
+$cardBackgroundColor: $vivaGray4;
+$cardLinksColor: $vivaOrange;
+
+$cardStatsFont: $viva-p3;
+$cardHeadersFont: $viva-h4;

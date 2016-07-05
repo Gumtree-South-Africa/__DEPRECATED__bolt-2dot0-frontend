@@ -1,0 +1,32 @@
+{
+	"cards": {
+		"trendingCard": {
+			"queryEndpoint": "BAPI.endpoints.trendingSearch",
+			"queryParameters": {
+				"offset": "0",
+				"limit": "15",
+				"location": "${UserProvided}",
+				"radius": "25km",
+				"categoryIds": [0,1,2],
+				"keywords": "foo bar baz",
+				"favoritesThreshold": 10,
+				"repliesThreshold": 10,
+				"sortBy" : "TBD",
+				"sellerIds": ["1", "2"]
+			},
+			"templateConfig": {
+				"clientJsHandlerCssClass": "use-isotope-handler",
+				"showFavorites": true,
+				"showReplies": true,
+				"showLikes": true,
+				"showFeatured": true
+			},
+			"itemSizesString": "CBAADABAAAABAA"
+		}
+	},
+	"cardsByPage": {
+		"homePage": [
+			"trendingCard"
+		]
+	}
+}
