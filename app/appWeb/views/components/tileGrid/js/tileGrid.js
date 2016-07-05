@@ -2,9 +2,8 @@
 
 // http://isotope.metafizzy.co/extras.html#browserify
 let $ = require('jquery');
-let bridget = require('jquery-bridget');
 let Isotope = require('isotope-layout');
-
+require('jquery-bridget');
 
 let initialize = () => {
 	// Isotope requres document to be ready activated
