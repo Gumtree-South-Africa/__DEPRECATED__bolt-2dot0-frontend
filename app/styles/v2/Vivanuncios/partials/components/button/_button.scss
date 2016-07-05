@@ -3,11 +3,16 @@
   background-color: $vivaOrange;
   display: inline-block;
   font: bold 1.125em Lato;
-  padding: 0.875em;
+  padding: 0.875em 0;
   text-align: center;
   width: 100%;
   &:hover{
     text-decoration: none;
+  }
+  > .sudolink{
+    &:before{
+      content : "hello";
+    }
   }
   > span + span.btn-icon{
     @if ($hasIcon == 'off'){
