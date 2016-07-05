@@ -18,6 +18,8 @@ function BuildPostApp(siteApp, routePath, viewPath) {
 
 	// Configure views
 	if (app.locals.devMode === true) {
+		// for dev purpose lets make all static none cacheable
+		// http://evanhahn.com/express-dot-static-deep-dive/
 		app.use('/views', express.static(viewPath, {
 			root: '/views', etag: false, maxage: 0, index: false
 		}));

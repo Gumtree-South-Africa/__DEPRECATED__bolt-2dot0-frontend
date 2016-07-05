@@ -1,9 +1,6 @@
 'use strict';
 
 
-let glob = require('glob');
-let http = require('http');
-let path = require('path');
 let vhost = require('vhost');
 let Q = require('q');
 let _ = require('underscore');
@@ -45,8 +42,8 @@ let createSiteApps = () => {
 	let configPromises = [];
 	let siteApps = [];
 
-	_.each(config.sites, (siteObj) => {
-		if (siteLocales.indexOf(siteObj.locale) > -1) {
+	_.each(config.sites, (site) => {
+		if (siteLocales.indexOf(site.locale) > -1) {
 			  (function(siteObj) {
 				  let builderObj = new expressbuilder(siteObj);
 				  let siteApp = builderObj.getApp();
@@ -56,7 +53,7 @@ let createSiteApps = () => {
 				  // Service Util to get Location and Category Data
 				  // Wait to spin up the node app in server.js until all config promises resolve.
 				  configPromises.push(cacheBapiData(siteApp, requestId));
-			  })(siteObj);
+			  })(site);
 
 			  siteCount = siteCount + 1;
 		}
