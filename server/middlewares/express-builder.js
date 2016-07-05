@@ -80,17 +80,16 @@ function BuildApp(siteObj) {
 		 * Development based middlewares
 		 */
 		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
+			app.locals.devMode = true;
 			app.use(logger('dev'));
 
 			// assets for local developments and populates  app.locals.jsAssets
 			app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
+
 			// for dev purpose lets make all static none cacheable
 			// http://evanhahn.com/express-dot-static-deep-dive/
 			app.use('/public', express.static(config.root + '/public', {
 				root: '/public', etag: false, maxage: 0, index: false
-			}));
-			app.use('/views', express.static(config.root + '/app/views', {
-				root: '/views', etag: false, maxage: 0, index: false
 			}));
 
 			if (app.locals.config) {
@@ -102,6 +101,7 @@ function BuildApp(siteObj) {
 		 * Production based middlewares
 		 */
 		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+			app.locals.devMode = false;
 			app.use(logger('short'));
 
 			if (app.locals.config) {

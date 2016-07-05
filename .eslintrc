@@ -118,7 +118,7 @@
 			"never"
 		],
 		"quotes": [
-			2,
+			0,
 			"single",
 			{
 				"avoidEscape": true,
