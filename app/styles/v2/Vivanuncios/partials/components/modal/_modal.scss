@@ -1,9 +1,12 @@
 @mixin modal(){
-  border: 1px solid red;
-  position: relative;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: 200;
   > .modal-overlay{
-      background-color: red; //$modal-bgcolor;
-      opacity: 0.2;
+      background-color: $modal-bgcolor;
+      opacity: 0.5;
       position: absolute;
       height: 100%;
       width: 100%;

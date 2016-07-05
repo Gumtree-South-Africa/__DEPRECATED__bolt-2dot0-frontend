@@ -1,9 +1,9 @@
-@mixin vivaBtn($hasIcon){
+@mixin vivaBtn($hasIcon, $padding, $content){
   cursor: pointer;
-  background-color: $vivaOrange;
+  background-color: $button-bgcolor;
   display: inline-block;
   font: bold 1.125em Lato;
-  padding: 0.875em 0;
+  padding: $padding;
   text-align: center;
   width: 100%;
   &:hover{
@@ -11,7 +11,7 @@
   }
   > .sudolink{
     &:before{
-      content : "hello";
+      content : $content;
     }
   }
   > span + span.btn-icon{
