@@ -80,9 +80,6 @@ let createSiteApps = () => {
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 
-		// Setup controllers
-		// app.use(require(process.cwd() + '/app/controllers'));
-
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
 		app.use(error.four_o_four(app));

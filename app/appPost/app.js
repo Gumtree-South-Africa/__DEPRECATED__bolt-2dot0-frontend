@@ -23,7 +23,7 @@ function BuildPostApp(siteApp, routePath, viewPath) {
 		}));
 	}
 
-	this.getApp = function() {
+	this.getApp = () => {
 		return app;
 	};
 }
