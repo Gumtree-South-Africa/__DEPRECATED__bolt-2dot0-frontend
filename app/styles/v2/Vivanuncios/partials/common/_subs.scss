@@ -5,14 +5,12 @@
 @import "../../partials/components/button/button";
 
 .btn-wrapper{
-  width: 80%;
-  margin: 2em auto;
-  max-width: 15em;
+  margin: auto;
   min-width: 10em;
 }
 
 .btn{
-  @include vivaBtn(off, 0.875em 0, "continue");
+  @include vivaBtn(off, 0.875em 0, "Confirm");
 }
 
 .btn-icon{
@@ -25,4 +23,21 @@
 
 .modal{
   @include modal();
+}
+
+.modal{
+  .container {
+   height: auto;
+   overflow: hidden;
+   border: 2px solid gray;
+  }
+  .right {
+      float: right;
+  }
+  .left {
+      float: none; /* not needed, just for clarification */
+      /* the next props are meant to keep this block independent from the other floated one */
+      width: auto;
+      overflow: hidden;
+  }
 }
