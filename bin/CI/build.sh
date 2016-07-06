@@ -16,7 +16,7 @@ echo "git diff\n======================" >> ${GIT_REV_FILE}
 git diff >> ${GIT_REV_FILE}
 
 
-REGISTRY_HOST=cs-registry-9425.slc01.dev.ebayc3.com
+REGISTRY_HOST=boltjk-registry-9492.slc01.dev.ebayc3.com
 echo "REGISTRY_HOST=$REGISTRY_HOST"
 
 sudo docker rmi $REGISTRY_HOST:5000/$IMAGE:$TAG || true
