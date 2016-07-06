@@ -74,7 +74,7 @@ gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
 
-gulp.task('build', ['set-env', 'eslint', 'webpack', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 gulp.task('icons', getTask('icons'));
 
@@ -82,7 +82,7 @@ gulp.task('svgIcons', getTask('svgIcons'));
 
 // DEFAULT is used by Developers
 gulp.task('default', function(done) {
-	runSequence('build', ['develop', 'watch'], done);
+	runSequence('build', ['webpack', 'watch', 'develop'], done);
 });
 
 

@@ -1,0 +1,135 @@
+.search-controls {
+	.search-mask {
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.7);
+		z-index: 2;
+		display: none;
+	}
+
+	.type-ahead-results-wrapper {
+		position: absolute;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+
+		display: none;
+		box-sizing: border-box;
+		margin: auto;
+		width: 100%;
+		background-color: white;
+		z-index: 3;
+
+		.type-ahead-results-container {
+			padding-top: 30px;
+			height: 100%;
+			z-index: 3;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin: 0 auto;
+			background-color: white;
+			border: 1px solid green;
+		}
+	}
+
+	.search-bar {
+		z-index: 4;
+		width: 90%;
+		margin: 0 auto;
+		height: 25px;
+		position: relative;
+		box-sizing: border-box;
+
+		.close-search {
+			display: none;
+			box-sizing: border-box;
+			font-size: 24px;
+			position: absolute;
+			line-height: 1;
+			margin-left: 5px;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.search-textbox {
+			padding: 0 30px;
+			height: 100%;
+			width: 85%;
+			box-sizing: border-box;
+			outline: none !important;
+		}
+
+		.search-button {
+			background-color: blue;
+			color: white;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			box-sizing: border-box;
+			width: 15%;
+
+
+
+			.inner-text {
+				float: right;
+				display: none;
+			}
+
+			.icon-search-button {
+				float: right;
+				width: 20px;
+				height: 20px;
+				background-image: url("../../../../../icons/icon-search-gray.svg");
+			}
+		}
+	}
+
+	&.is-typing {
+		.type-ahead-results-wrapper {
+			display: block;
+		}
+
+		.search-mask {
+			display: block;
+		}
+
+		.close-search {
+			display: block;
+		}
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.search-controls {
+		.search-bar {
+			.search-button .inner-text {
+				display: block;
+			}
+		}
+
+		.type-ahead-results-wrapper {
+			width: 90%;
+			background-color: transparent;
+			position: relative;
+
+			.type-ahead-results-container {
+				width: 85%;
+				margin: 0;
+				height: 200px;
+			}
+		}
+
+		.close-search {
+			display: none !important;
+		}
+	}
+}

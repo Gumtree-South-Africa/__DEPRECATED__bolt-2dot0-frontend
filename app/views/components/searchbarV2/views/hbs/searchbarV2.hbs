@@ -1,0 +1,18 @@
+{{#block "searchbarV2"}}
+    <section id="search-controls" class="search-controls">
+		<div class="search-bar">
+			<div role="button" class="close-search">X</div>
+            <div role="button" class="mobile-search-button"></div>
+			<input class="search-textbox" title="search" type="text" placeholder="{{i18n "homepage.searchbar.lookingFor"}}"/>
+			<button class="search-button" type="submit">
+				<div class="inner-text">{{i18n "homepage.searchbar.search"}}</div>
+				<div class="icon-search-button"></div>
+			</button>
+		</div>
+		<div class="type-ahead-results-wrapper">
+			<div class="type-ahead-results-container"></div>
+		</div>
+
+		<div id="search-mask" class="search-mask hidden"></div>
+    </section>
+{{/block}}

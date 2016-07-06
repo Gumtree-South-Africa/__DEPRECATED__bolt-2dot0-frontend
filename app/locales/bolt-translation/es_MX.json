@@ -1152,6 +1152,10 @@
   "appdownload.applink":"http://go.vivanunc.io/baja-la-app",
   "postad.image.upload.failure": "Por desgracia , se ha producido un error al cargar imágenes",
   "homepage": {
+  	"searchbar":{
+		"lookingFor": "¿Qué buscas hoy?",
+		"search": "Buscar"
+	},
 	"safetyTips": {
 		"title": "Vivanuncios Te Cuida",
 		"faq": "Consejos de seguridad",
@@ -1171,4 +1175,3 @@
   "recentactivity.message.listing": "%s acaba de poner en venta: %s %s",
   "recentactivity.message.sold": "%s acaba de vender: %s %s"
 }
-

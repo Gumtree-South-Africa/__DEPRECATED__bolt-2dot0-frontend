@@ -262,6 +262,8 @@ var HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData: function(modelData) {
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
+
 		if (!modelData.footer.min) {
 			var baseJSComponentDir = "/views/components/";
 
