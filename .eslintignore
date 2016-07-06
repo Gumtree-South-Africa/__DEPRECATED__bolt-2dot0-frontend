@@ -4,18 +4,10 @@ test/serverUnit/index.js
 
 app/builders/page/ErrorPageModel.js
 app/builders/page/HomePageModel.js
-app/builders/page/QuickpostPageModel.js
+app/builders/page/QuickPostPageModel.js
 app/config/gulpIcons/gulpSvgConfig.js
 app/config/ruby/jsmin.js
 app/config/commonjsurl.js
-
-app/controllers/api/apiGalleryController.js
-app/controllers/boot/bootController.js
-app/controllers/page/homepage/homepageController.js
-app/controllers/page/messagepage/messagepageController.js
-app/controllers/page/postpage/postPageController.js
-app/controllers/page/quickpost/quickpostController.js
-app/controllers/page/PageControllerUtil.js
 
 app/utils/Base64.js
 app/utils/Encryptor.js

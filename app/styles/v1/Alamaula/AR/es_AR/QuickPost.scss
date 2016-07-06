@@ -1,10 +1,10 @@
 @import
     "../../theme",
     "../../../partials/main/toggleCheckbox",
-    "../../../partials/pages/Quickpost/pageMain",
-    "../../../partials/pages/Quickpost/jquery.mmenu.app",
-    "../../../partials/pages/Quickpost/jquery.mmenu.all";
-    
+"../../../partials/pages/QuickPost/pageMain",
+"../../../partials/pages/QuickPost/jquery.mmenu.app",
+"../../../partials/pages/QuickPost/jquery.mmenu.all";
+
  .description {
 	 .char-count-info{
 	  right:10%;
@@ -13,10 +13,10 @@
    right:8%;
   }
  }
- 
-.floating-tooltip .tooltip-wrapper {     
-     background: #EBEBEB; 
-  }   
+
+.floating-tooltip .tooltip-wrapper {
+     background: #EBEBEB;
+  }
 
 .qpWrapper{
   padding: 1em;

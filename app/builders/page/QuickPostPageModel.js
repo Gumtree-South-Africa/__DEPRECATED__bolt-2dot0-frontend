@@ -14,13 +14,13 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 /**
  * @method getHomepageDataFunctions
- * @description Retrieves the list of functions to call to get the model for the Quickpost page.
+ * @description Retrieves the list of functions to call to get the model for the QuickPost page.
  * @param {Object} req Request object
  * @param {Object} res Response object
  * @private
  * @return {JSON}
  */
-class QuickpostPageModelV2 {
+class QuickPostPageModelV2 {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
@@ -52,9 +52,11 @@ class QuickpostPageModelV2 {
 	getPageDataFunctions(modelData) {
 		let seo = new SeoModel(modelData.bapiHeaders);
 
-		this.dataPromiseFunctionMap.seo = seo.getQuickPostSeoInfo;
+		this.dataPromiseFunctionMap.seo = () => {
+			return seo.getQuickPostSeoInfo();
+		};
 
 	}
 }
 
-module.exports = QuickpostPageModelV2;
+module.exports = QuickPostPageModelV2;

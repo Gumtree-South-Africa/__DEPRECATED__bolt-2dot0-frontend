@@ -4,8 +4,8 @@ let express = require('express'), _ = require('underscore'), router = express.Ro
 
 let cwd = process.cwd();
 let StringUtils = require(cwd + '/app/utils/StringUtils'),
-	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'), 
-	QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'),
+	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'),
+	QuickPostPageModel = require(cwd + '/app/builders/page/QuickPostPageModel'),
 	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
@@ -26,7 +26,7 @@ router.get('/', function(req, res, next) {
 	let bapiConfigData = res.locals.config.bapiConfigData;
 	let modelData = pageControllerUtil.preController(req, res);
 
-	var model = new QuickpostPageModel(req, res, modelData);
+	var model = new QuickPostPageModel(req, res, modelData);
 	model.populateData().then(function(result) {
 
 		// Dynamic Data from BAPI
@@ -70,7 +70,7 @@ router.post('/',
 		// Build Model Data
 		let bapiConfigData = res.locals.config.bapiConfigData;
 		let modelData = pageControllerUtil.preController(req, res);
-		let model = QuickpostPageModel(req, res, modelData);
+		let model = QuickPostPageModel(req, res, modelData);
 		model.then(function(result) {
 			// Dynamic Data from BAPI
 			modelData.header = result.common.header || {};
@@ -349,7 +349,7 @@ let QuickPost = {
 	},
 
 	/*
-	 * On Field Validation Error, send back to Quickpost Form
+	 * On Field Validation Error, send back to QuickPost Form
 	 */
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
@@ -380,7 +380,7 @@ let QuickPost = {
 	},
 
 	/*
-	 * On Page Submit Error, send back to Quickpost Form
+	 * On Page Submit Error, send back to QuickPost Form
 	 */
 	respondSubmitError: function(req, res, next, modelData, err) {
 		console.log('errorrrrrrrrrrrrrrrrrrrrrr', err);
