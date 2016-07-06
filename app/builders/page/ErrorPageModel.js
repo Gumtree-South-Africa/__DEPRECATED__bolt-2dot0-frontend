@@ -1,7 +1,7 @@
 'use strict';
 
-let ModelBuilder = require(process.cwd() + '/app/builders/v1/common/ModelBuilder');
-let AbstractPageModel = require(process.cwd() + '/app/builders/v1/common/AbstractPageModel');
+let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
+let AbstractPageModel = require(process.cwd() + '/app/builders/common/AbstractPageModel');
 
 
 class ErrorPageModel {

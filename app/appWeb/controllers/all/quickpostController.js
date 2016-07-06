@@ -5,8 +5,8 @@ let express = require('express'), _ = require('underscore'), router = express.Ro
 let cwd = process.cwd();
 let StringUtils = require(cwd + '/app/utils/StringUtils'),
 	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'), 
-	QuickpostPageModel = require(cwd + '/app/builders/v2/page/QuickpostPageModel'),
-	EpsModel = require(cwd + '/app/builders/v1/common/EpsModel'),
+	QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'),
+	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let postAdService = require(cwd + '/server/services/postad');

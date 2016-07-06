@@ -5,11 +5,11 @@ let cwd = process.cwd();
 
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
-let ModelBuilder = require(cwd + '/app/builders/v2/common/ModelBuilder');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
-let AbstractPageModel = require(cwd + '/app/builders/v2/common/AbstractPageModel');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
-let SeoModel = require(cwd + '/app/builders/v1/common/SeoModel');
+let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 
 /**

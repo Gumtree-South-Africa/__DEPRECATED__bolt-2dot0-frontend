@@ -5,13 +5,13 @@ let cwd = process.cwd();
 
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
-let ModelBuilder = require(cwd + '/app/builders/v2/common/ModelBuilder');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
-let AbstractPageModel = require(cwd + '/app/builders/v2/common/AbstractPageModel');
-let SafetyTipsModel = require(cwd + '/app/builders/v2/common/SafetyTipsModel');
-let AppDownloadModel  = require(cwd + '/app/builders/v2/common/AppDownloadModel');
-let RecentActivityModel = require(cwd + '/app/builders/v2/common/RecentActivityModel');
-let CardsModel = require(cwd + '/app/builders/v2/common/CardsModel');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
+let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
+let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 
 /**
  * @method getHomepageDataFunctions

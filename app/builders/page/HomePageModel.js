@@ -6,14 +6,14 @@ let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
-let ModelBuilder = require(cwd + '/app/builders/v1/common/ModelBuilder');
-let LocationModel = require(cwd + '/app/builders/v1/common/LocationModel');
-let CategoryModel = require(cwd + '/app/builders/v1/common/CategoryModel');
-let KeywordModel = require(cwd + '/app/builders/v1/common/KeywordModel');
-let GalleryModel = require(cwd + '/app/builders/v1/common/GalleryModel');
-let AdStatisticsModel = require(cwd + '/app/builders/v1/common/AdStatisticsModel');
-let SeoModel = require(cwd + '/app/builders/v1/common/SeoModel');
-let AbstractPageModel = require(cwd + '/app/builders/v1/common/AbstractPageModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let CategoryModel = require(cwd + '/app/builders/common/CategoryModel');
+let KeywordModel = require(cwd + '/app/builders/common/KeywordModel');
+let GalleryModel = require(cwd + '/app/builders/common/GalleryModel');
+let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
+let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 function getCookieLocationId(req) {
 	let searchLocIdCookieName = 'searchLocId';

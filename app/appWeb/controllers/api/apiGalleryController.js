@@ -3,7 +3,7 @@
 
 let express = require('express'), router = express.Router(), Q = require('q');
 
-let GalleryModel = require(process.cwd() + '/app/builders/v1/common/GalleryModel');
+let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 let cors = require(process.cwd() + '/modules/cors');
 
 
