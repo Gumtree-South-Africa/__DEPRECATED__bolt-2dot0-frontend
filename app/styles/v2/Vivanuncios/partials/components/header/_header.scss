@@ -127,4 +127,17 @@ $item-top-padding: 12px;
         width: 20%;
         float: right;
     }
+
+    .cat-dropdown {
+        font-weight: $fontWeightBold;
+        font-size: $fontSizeH4;
+        width: 300px;
+        text-align: left;
+        color: $menuItemColor;
+        background-color: $vivaGray4;
+
+        .cat-item {
+            border: 1px solid black;
+        }
+    }
 }

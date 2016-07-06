@@ -12,10 +12,12 @@
                 </div>
             {{/if}}
             <div class="browse">
-                Browsex
+                Browse
+                <ul class="cat-dropdown">
                 {{#each this.categoryDropdown.children}}
-                    Got {{this.localizedName}}
+                    <li class="cat-item">{{this.localizedName}}</li>
                 {{/each}}
+                </ul>
             </div>
         </div>
         <div class="right-items">
