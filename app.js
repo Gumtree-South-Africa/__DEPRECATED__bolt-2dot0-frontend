@@ -61,8 +61,6 @@ let createSiteApps = () => {
 
 	return Q.all(configPromises).then(() => {
 		//We need to configure the middleware stack in the correct order.
-
-
 		siteApps.forEach((siteApp) => {
 			// register bolt middleware
 			siteApp.use(siteconfig(siteApp));
@@ -75,13 +73,10 @@ let createSiteApps = () => {
 				siteApp.use(appObj);
 			});
 
-			
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 
-
-		// Setup controllers
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
 		app.use(error.four_o_four(app));

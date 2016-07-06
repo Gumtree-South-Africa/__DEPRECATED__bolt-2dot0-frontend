@@ -2,13 +2,13 @@
 	"appWeb" : {
 	    "path" : "./app/appWeb/app",
 		"routePath" : "./controllers",
-		"viewPath" : "./views",
+		"viewPath" : "/views",
 	    "sendMetrics" : true
 	},
 	"appPost" : {
 		"path" : "./app/appPost/app",
 		"routePath" : "./routes",
-		"viewPath" : "./views",
+		"viewPath" : "/views",
 		"sendMetrics" : false
 	}
 }
