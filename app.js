@@ -44,23 +44,25 @@ let createSiteApps = () => {
 
 	_.each(config.sites, (site) => {
 		if (siteLocales.indexOf(site.locale) > -1) {
-			  (function(siteObj) {
-				  let builderObj = new expressbuilder(siteObj);
-				  let siteApp = builderObj.getApp();
-				  siteApp.locals.siteObj = siteObj;
-				  siteApps.push(siteApp);
+			(function(siteObj) {
+				let builderObj = new expressbuilder(siteObj);
+				let siteApp = builderObj.getApp();
+				siteApp.locals.siteObj = siteObj;
+				siteApps.push(siteApp);
 
-				  // Service Util to get Location and Category Data
-				  // Wait to spin up the node app in server.js until all config promises resolve.
-				  configPromises.push(cacheBapiData(siteApp, requestId));
-			  })(site);
+				// Service Util to get Location and Category Data
+				// Wait to spin up the node app in server.js until all config promises resolve.
+				configPromises.push(cacheBapiData(siteApp, requestId));
+			})(site);
 
-			  siteCount = siteCount + 1;
+			siteCount = siteCount + 1;
 		}
 	});
 
 	return Q.all(configPromises).then(() => {
 		//We need to configure the middleware stack in the correct order.
+
+
 		siteApps.forEach((siteApp) => {
 			// register bolt middleware
 			siteApp.use(siteconfig(siteApp));
@@ -73,14 +75,12 @@ let createSiteApps = () => {
 				siteApp.use(appObj);
 			});
 
+			
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
-		
-		app.use((req, res, next) => {
-			res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
-			next();
-		});
+
+
 		// Setup controllers
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.

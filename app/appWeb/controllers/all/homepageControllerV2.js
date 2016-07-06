@@ -4,7 +4,7 @@ let cuid = require('cuid');
 let _ = require('underscore');
 
 let cwd = process.cwd();
-let pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil');
+let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/v2/page/HomePageModel');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');

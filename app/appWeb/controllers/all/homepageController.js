@@ -3,14 +3,8 @@
 var express = require('express'),
 	router = express.Router();
 
-let cwd = process.cwd();
-let homepageControllerV1 = require(`${cwd}/app/controllers/page/homepage/homepageControllerV1`);
-let homepageControllerV2 = require(`${cwd}/app/controllers/page/homepage/homepageControllerV2`);
-
-
-module.exports = function(app) {
-	app.use('/', router);
-};
+let homepageControllerV1 = require(`./homepageControllerV1`);
+let homepageControllerV2 = require(`./homepageControllerV2`);
 
 /**
  * Build HomePage Model Data and Render
@@ -25,3 +19,5 @@ router.get('/', (req, res, next) => {
 
 	console.timeEnd('Instrument-Homepage-Controller');
 });
+
+module.exports = router;
