@@ -6,10 +6,10 @@ var express = require('express'),
 	field = form.field, Q = require('q');
 
 var cwd = process.cwd();
-var StringUtils = require(cwd + '/app/utils/StringUtils'), 
+var StringUtils = require(cwd + '/app/utils/StringUtils'),
 	pageControllerUtil = require(cwd + '/app/controllers/page/PageControllerUtil'),
-	QuickpostPageModel = require(cwd + '/app/builders/v1/page/QuickpostPageModel'), 
-	EpsModel = require(cwd + '/app/builders/v1/common/EpsModel'), 
+	QuickpostPageModel = require(cwd + '/app/builders/v2/page/QuickpostPageModel'),
+	EpsModel = require(cwd + '/app/builders/v1/common/EpsModel'),
 	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 var postAdService = require(cwd + '/server/services/postad');

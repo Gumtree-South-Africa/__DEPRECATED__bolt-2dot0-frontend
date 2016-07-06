@@ -60,7 +60,7 @@ class ModelBuilder {
 
 			// Cached Category Data from BAPI
 			category: config.categoryData,
-			categorydropdown: config.categorydropdown,
+			categoryDropdown: config.categoryDropdown,
 
 			categoryIdNameMap: config.categoryIdNameMap,
 			categoryData: config.categoryflattened,

@@ -40,7 +40,7 @@ PageControllerUtil.prototype.preController = function(req, res) {
 
 	// Cached Category Data from BAPI
 	modelData.category = res.locals.config.categoryData;
-	modelData.categorydropdown = res.locals.config.categorydropdown;
+	modelData.categoryDropdown = res.locals.config.categoryDropdown;
 
 	modelData.categoryIdNameMap = res.locals.config.categoryIdNameMap;
 	modelData.categoryData = res.locals.config.categoryflattened;
