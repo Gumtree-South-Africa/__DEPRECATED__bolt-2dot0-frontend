@@ -12,7 +12,7 @@ module.exports = function watch(gulp, plugins) {
 		argv = require('yargs').argv,
 		Server = require('karma').Server;
 
-	let browser = "phantomjs";
+	let browser = "chrome";
 
 	if (argv.browser) {
 		browser = argv.browser;
