@@ -5,8 +5,10 @@
         <span class="close-text">CLOSE</span>
         <span class="icon-close"></span>
       </div>
+
+      {{!-- this should change depending on the modal content --}}
       <h1>Change Your Location</h2>
-      <div class="modal-info">CITY, NEIGHBORHOOD, OR POSTAL CODE</div>
+      <div class="modal-info">Ciudad, Colonia o Delegación</div>
       <div class="modal-field container">
         <div class="right">
           <span class="icon-placeholder1 btn-icon"></span>
@@ -17,9 +19,11 @@
             <input type="text" class="modal-input"/>
         </div>
         <div class="clear"></div>
-    </div>
+      </div>
       <div class="modal-footer">
           {{> (dynamic "button")}}
       </div>
+     {{!-- end of modal content --}}
+
   </div>
 </div>
