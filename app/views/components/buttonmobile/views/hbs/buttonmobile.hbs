@@ -1,0 +1,24 @@
+ {{#ifMobile this.device}}
+    <div style="height:80px;"> </div>
+
+	<div id="myModal" class="modal">
+	
+		   <div class="panel-wrapper">
+			     <div class="close">{{i18n "welcomescreen.close"}}
+			     <span class="icon_welcome_close" style="display: inline-block; width: 2em;height: 2em;vertical-align: middle; margin-left: 0.5em;"></span></div>
+			     <div class="panel-content">
+				     <h1> {{i18n "welcomescreen.title"}} </h1>
+				     <div class="description">{{i18n "welcomescreen.description"}}</div>
+			     </div>
+		   </div>
+	
+	</div>
+     
+	  	<div class="btnmobile-wrapper stickybottom" style="width:88%;margin:auto;">
+            <a class="btn" style="padding:.25em;" "href="/post.html">
+            <span class="sudolink">{{i18n "postad.button"}}</span>
+            <span class="icon-camera btn-icon"></span>
+           </a>
+		</div>
+		
+ {{/ifMobile}}
