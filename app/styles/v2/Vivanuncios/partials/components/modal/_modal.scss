@@ -28,15 +28,16 @@
           :hover{
             text-decoration: underline;
           }
-          > .close-text {
+          > div .close-text {
             vertical-align: middle;
             margin-right: 0.5em;
           }
-          > .icon-close{
+          > div .icon-close{
               width: 1em;
               height: 1em;
               display: inline-block;
               vertical-align: middle;
+
           }
       }
   }

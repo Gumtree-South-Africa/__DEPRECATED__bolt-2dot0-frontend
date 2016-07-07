@@ -82,14 +82,14 @@ router.get('/', function(req, res, next) {
 			// Changing Version of template depending of the cookie
 			if (cookiePageVersion === '2.0') {
 				templatePath = 'homepageV2/views/hbs/homepageV2_';
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js")
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
 
 				modelData.isNewHP = true;
 				modelData.safetyTips = result['safetyTips'] || {};
-				
+
 				modelData.recentActivities = result['recentActivities'] || {};
 				modelData.reviews = result['appDownload'] || {};
-				
+
 				// now make sure modelData gets all card data returned for home page
 				// todo: this logic is repeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
 				let cardsModel = new CardsModel(modelData.bapiHeaders);
@@ -116,7 +116,7 @@ router.get('/', function(req, res, next) {
 					let userData = userService.buildProfile(user);
 					_.extend(modelData.header, userData);
 				}
-				
+
 				if (result['adstatistics']) {
 					modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
 				}
@@ -266,6 +266,7 @@ var HP = {
 			var baseJSComponentDir = "/views/components/";
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'modal/js/modal_autocomplete.js');
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.
 			// @todo: Make sure that for AR,MX we include the CarouselExt JS files (3) and for
