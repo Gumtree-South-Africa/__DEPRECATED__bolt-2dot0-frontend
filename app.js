@@ -70,7 +70,7 @@ let createSiteApps = () => {
 				let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
 
 				appObj.use(responseMetrics());
-				siteApp.use(appObj);
+				siteApp.use(appConfig.mainRoute, appObj);
 			});
 
 			// Setup Vhost per supported site
