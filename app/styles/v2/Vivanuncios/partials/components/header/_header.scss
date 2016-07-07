@@ -1,4 +1,5 @@
 $item-top-padding: 12px;
+$item-bottom-padding: 12px;
 
 .headerV2 {
     width: 100%;
@@ -65,8 +66,7 @@ $item-top-padding: 12px;
         }
 
         .browse {
-            padding-top: $item-top-padding;
-            width: 20%;
+            width: 40%;
         }
     }
 
@@ -134,16 +134,38 @@ $item-top-padding: 12px;
         float: right;
     }
 
+    .item-text {
+        text-align: left;
+        padding-top: $item-top-padding;
+        padding-bottom: $item-bottom-padding;
+        padding-left: 5px;
+        width:100%;
+        border: 1px solid black;
+    }
+
     .cat-dropdown {
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
         width: 300px;
         text-align: left;
         color: $menuItemColor;
-        background-color: $vivaGray4;
+        background-color: $menuItemBackgroundColor;
+        border: 1px solid $menuBorderColor;
 
         .cat-item {
-            border: 1px solid black;
+            padding-left: 5px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            border-bottom: 1px solid $menuItemSeparatorColor;
+            &:last-child {
+                border-bottom: none;
+            }
+        }
+        .item-secondary-text {
+            padding-left: 8px;
+            font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
+            color: $menuItemSecondaryColor;
         }
     }
 }

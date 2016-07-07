@@ -12,10 +12,10 @@
                 </div>
             {{/if}}
             <div class="browse">
-                Browse
+                <div class="item-text">Browse</div>
                 <ul class="js-cat-dropdown cat-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-                        <li class="cat-item">{{this.localizedName}}</li>
+                        <li class="cat-item">{{this.localizedName}}<span class="item-secondary-text">(TBD)</span></li>
                     {{/each}}
                 </ul>
             </div>
