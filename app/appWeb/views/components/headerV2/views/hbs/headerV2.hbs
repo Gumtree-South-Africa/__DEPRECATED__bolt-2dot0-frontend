@@ -13,7 +13,7 @@
             {{/if}}
             <div class="browse">
                 Browse
-                <ul class="cat-dropdown hidden">
+                <ul class="js-cat-dropdown cat-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
                         <li class="cat-item">{{this.localizedName}}</li>
                     {{/each}}
@@ -45,11 +45,7 @@
                 {{else}}
                     {{i18n "header.menu.my.gumtree"}}
                 {{/if}}
-                <ul class="profile-menu hidden">
-                    <li>Hello</li>
-                    <li>Hello</li>
-                    <li>Hello</li>
-                    <li>Hello</li>
+                <ul class="js-profile-menu cat-dropdown profile-menu hidden">
                     <li>Hello</li>
                     <li>Hello</li>
                     <li>Hello</li>

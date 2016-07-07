@@ -33,6 +33,7 @@ $item-top-padding: 12px;
             display: none;
         }
     }
+
     .logo {
         display: inline-block;
         min-width: 140px;
@@ -49,6 +50,7 @@ $item-top-padding: 12px;
     }
 
     .left-items {
+        z-index: 10;
         position: absolute;
         left: 24%;
         width: 20%;
@@ -80,6 +82,7 @@ $item-top-padding: 12px;
 
     .right-items {
         position: absolute;
+        z-index: 10;
         right: 0;
         width: 60%;
         text-align: center;

@@ -5,11 +5,11 @@ let $ = require('jquery');
 let initialize = () => {
 
 	function toggleProfileMenu() {
-		$('.profile-menu').toggleClass('hidden');
+		$('.js-profile-menu').toggleClass('hidden');
 	}
 	
 	function toggleBrowseMenu() {
-		$('.cat-dropdown').toggleClass('hidden');
+		$('.js-cat-dropdown').toggleClass('hidden');
 	}
 
 	$(document).ready(() => {
