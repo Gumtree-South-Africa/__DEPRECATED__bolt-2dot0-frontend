@@ -23,7 +23,6 @@ module.exports = {
 					presets: 'es2015'
 				}
 			},
-
 			// see http://isotope.metafizzy.co/extras.html#webpack
 			{
 				test: /isotope-layout/,
