@@ -60,6 +60,12 @@ let createSiteApps = () => {
 	});
 
 	return Q.all(configPromises).then(() => {
+		// ***** App HealthCheck *****
+		let BootApp = require('./app/appBoot/app');
+		let bootAppObj = new BootApp().getApp();
+		app.use('/boot', bootAppObj);
+
+		// ***** App Sites *****
 		//We need to configure the middleware stack in the correct order.
 		siteApps.forEach((siteApp) => {
 			// register bolt middleware
@@ -77,10 +83,12 @@ let createSiteApps = () => {
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
 
+		// ***** App 404 Error *****
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
 		app.use(error.four_o_four(app));
 
+		// ***** App Error *****
 		// Overwriting the express's default error handler should always appear after 404 middleware
 		app.use(error(app));
 	});

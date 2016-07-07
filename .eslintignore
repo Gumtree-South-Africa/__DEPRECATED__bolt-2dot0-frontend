@@ -11,7 +11,7 @@ app/config/ruby/jsmin.js
 app/config/commonjsurl.js
 
 app/controllers/api/apiGalleryController.js
-app/controllers/boot/bootController.js
+app/controllers/boot/bootRoute.js
 app/controllers/page/homepage/homepageController.js
 app/controllers/page/messagepage/messagepageController.js
 app/controllers/page/postpage/postPageController.js
@@ -29,7 +29,6 @@ app/appWeb/controllers/all/homepageController.js
 app/appWeb/controllers/all/messagepageController.js
 app/appWeb/controllers/all/quickpostController.js
 app/appWeb/controllers/api/apiGalleryController.js
-app/appWeb/controllers/boot/bootController.js
 app/appWeb/views/components/adBottomBanner/js/app.js
 app/appWeb/views/components/adCarousel/js/adCarousel.js
 app/appWeb/views/components/adCarousel/js/app.js
