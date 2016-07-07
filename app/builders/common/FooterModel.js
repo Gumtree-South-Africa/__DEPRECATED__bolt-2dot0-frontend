@@ -72,6 +72,7 @@ class FooterModel {
 		data.javascripts = [];
 		if (data.min) {
 			data.javascripts.push(data.baseJSMinUrl + 'Main_' + this.locale + '.min.js');
+			data.javascripts.push(baseComponentDir + 'header/js/header.js');
 		} else {
 
 			/*//todo: remove comments after minification is done

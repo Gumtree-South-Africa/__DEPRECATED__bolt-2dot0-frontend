@@ -13,10 +13,10 @@
             {{/if}}
             <div class="browse">
                 Browse
-                <ul class="cat-dropdown">
-                {{#each this.categoryDropdown.children}}
-                    <li class="cat-item">{{this.localizedName}}</li>
-                {{/each}}
+                <ul class="cat-dropdown hidden">
+                    {{#each this.categoryDropdown.children}}
+                        <li class="cat-item">{{this.localizedName}}</li>
+                    {{/each}}
                 </ul>
             </div>
         </div>
@@ -24,29 +24,46 @@
             <div class="help float-right">
                 Help
             </div>
-            {{#if this.header.username}}
-                <div class="my-ads float-right">
-                    My Ads
-                </div>
-                <div class="profile float-right">
+            <div class="my-ads float-right">
+                My Ads
+            </div>
+            <div class="profile {{#unless this.header.username}}normal-pad-top {{/unless}}float-right">
+                {{#if this.header.username}}
                     <div class="profile-icon
                     {{#if this.header.username}}
                     profile-picture
                     {{else}}
                     icon-header-profile-out
                     {{/if}}">
+
                     </div>
                     {{#if this.header.userEmail}}
                         Hi, {{this.header.profileName}}!
                     {{else}}
                         {{i18n "header.menu.my.gumtree"}}
                     {{/if}}
-                </div>
-            {{else}}
-                <div class="profile float-right">
+                {{else}}
                     {{i18n "header.menu.my.gumtree"}}
-                </div>
-            {{/if}}
+                {{/if}}
+                <ul class="profile-menu hidden">
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                    <li>Hello</li>
+                </ul>
+            </div>
+
             {{> (dynamic "button")}}
         </div>
     {{/unless}}

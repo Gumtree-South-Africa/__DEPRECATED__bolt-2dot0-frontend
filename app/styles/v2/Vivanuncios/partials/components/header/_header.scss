@@ -5,6 +5,7 @@ $item-top-padding: 12px;
     //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
     height: 65px;
+    background: $common-background-color;
 
     .mobile-menu {
         //position: absolute;
@@ -73,6 +74,10 @@ $item-top-padding: 12px;
         }
     }
 
+    .hidden {
+        display: none;
+    }
+
     .right-items {
         position: absolute;
         right: 0;
@@ -91,6 +96,10 @@ $item-top-padding: 12px;
             vertical-align: middle;
             margin-left: 15px;
             padding-top: 5px;
+
+            &.normal-pad-top {
+                padding-top: $item-top-padding;
+            }
             .profile-icon {
                 vertical-align: middle;
                 display: inline-block;
