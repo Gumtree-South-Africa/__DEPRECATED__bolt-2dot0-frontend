@@ -10,6 +10,7 @@ let initialize = () => {
 	
 	function toggleBrowseMenu() {
 		$('.js-cat-dropdown').toggleClass('hidden');
+		$('.item-text').toggleClass('menu-open');
 	}
 
 	$(document).ready(() => {

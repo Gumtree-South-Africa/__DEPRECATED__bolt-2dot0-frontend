@@ -135,15 +135,25 @@ $item-bottom-padding: 12px;
     }
 
     .item-text {
-        text-align: left;
-        padding-top: $item-top-padding;
-        padding-bottom: $item-bottom-padding;
-        padding-left: 5px;
+        // position+bg-color used to hide dropdown top border
+        position: relative;
+        background-color: $common-background-color;
+
         width:100%;
-        border: 1px solid black;
+        text-align: left;
+        border-width: 0 1px;
+        border-style: solid;
+        border-color: $common-background-color;
+        padding: $item-top-padding 0 $item-bottom-padding 5px;
+
+        &.menu-open {
+            border-color: $menuBorderColor;
+        }
     }
 
     .cat-dropdown {
+        margin-top: -1px; // works with item-text to hide top border
+
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
         width: 300px;
