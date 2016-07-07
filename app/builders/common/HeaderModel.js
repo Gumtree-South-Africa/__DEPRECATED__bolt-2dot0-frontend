@@ -165,9 +165,13 @@ class HeaderModel {
 		}
 
 		data.iconsCSSURLs = [];
-		data.iconsCSSURLs.push(`${data.baseCSSUrl}/${this.locale}/icons.css`);
-		data.iconsCSSURLs.push(`${data.baseCSSUrl}/${this.locale}/fallback.css`);
-		data.iconsCSSFallbackUrl = `${data.baseCSSUrl}/${this.locale}/fallback.css`;
+		data.iconsCSSFallbackUrl = [];
+		if (b2dot0Ver === 'v2') {
+			data.iconsCSSURLs.push(`${data.baseCSSUrl}${this.locale}/sprite.css`);
+			data.iconsCSSFallbackUrl.push(`${data.baseCSSUrl}${this.locale}/${this.locale}.css`);
+		}
+		data.iconsCSSURLs.push(`${data.baseCSSUrl}${this.locale}/icons.css`);
+		data.iconsCSSFallbackUrl.push(`${data.baseCSSUrl}${this.locale}/fallback.css`);
 
 		if (b2dot0Ver === 'v1') {
 			//TODO: remove this when v1 will not exist in our platform

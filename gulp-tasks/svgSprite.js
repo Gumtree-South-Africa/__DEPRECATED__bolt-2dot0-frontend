@@ -23,7 +23,6 @@ module.exports = function watch(gulp) {
 			let dest = './public';
 			return es.merge(locales.map((locale) => {
 				let config = {
-					log: 'info',
 					shape: {
 						dimension: {
 							attributes: true
@@ -41,7 +40,7 @@ module.exports = function watch(gulp) {
 						css: true
 					}
 				};
-				return gulp.src(`./public/svgs/${locale}/*.svg`)
+				return gulp.src(`./public/svgsV2/${locale}/*.svg`)
 					.pipe(newer(`./public/css/${locale}/sprite.css`))
 					.pipe(gulpSvg(config))
 					.pipe(gulp.dest(dest));

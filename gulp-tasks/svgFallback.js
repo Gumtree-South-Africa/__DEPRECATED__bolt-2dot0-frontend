@@ -23,7 +23,7 @@ module.exports = function watch(gulp) {
 		gulp.task('svgFallback', () => {
 			return es.merge(locales.map((locale) => {
 				let dest = `./public/css/${locale}`;
-				return gulp.src(`./public/svgs/${locale}/*.svg`)
+				return gulp.src(`./public/svgsV2/${locale}/*.svg`)
 					.pipe(newer(`./public/css/${locale}/${locale}.png`))
 					.pipe(rename((path) => {
 						let name = path.dirname.split(path.sep);
