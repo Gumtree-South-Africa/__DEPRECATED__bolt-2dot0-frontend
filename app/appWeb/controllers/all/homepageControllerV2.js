@@ -128,6 +128,7 @@ let HP = {
 				}
 			}
 		} else {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 			} else {
