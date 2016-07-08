@@ -1,13 +1,13 @@
 'use strict';
-let config = require('config');
+//let config = require('config');
 let Q = require('q');
-let bapiOptionsModel = require("./bapi/bapiOptionsModel");
-let bapiService      = require("./bapi/bapiService");
+//let bapiOptionsModel = require("./bapi/bapiOptionsModel");
+//let bapiService      = require("./bapi/bapiService");
 /**
  * Gets data based on the endpoint and parameters passed
  */
 class CardService {
-	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
+	getCardItemsData(/* bapiHeaderValues, queryEndpoint, parameters */) {
 		// Invoke BAPI
 		// Wrap in a promise so the outside then doesn't break;
 		return Q(require(process.cwd() + '/server/services/mockData/Ads.json'));
