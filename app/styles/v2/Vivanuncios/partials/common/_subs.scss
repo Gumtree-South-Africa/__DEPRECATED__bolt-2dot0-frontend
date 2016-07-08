@@ -64,10 +64,10 @@
     color: $modal-autocomplete-color;
     padding-left: 0.6em;
     &:first-child{
-      border-top: 1px solid $modal-autocomplete-bgcolor;
+      border-top: 1px solid $modal-autocomplete-color; 
     }
     &:hover{
-      background-color: $modal-autocomplete-bgcolor;
+      background-color: $modal-autocomplete-bgcolor-hover;
       color: $modal-autocomplete-color-hover;
     }
   }
