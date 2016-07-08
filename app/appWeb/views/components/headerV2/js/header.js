@@ -3,8 +3,7 @@
 let $ = require('jquery');
 
 let initialize = () => {
-	function toggleBrowseMenu(event) {
-		console.log(event.target);
+	function toggleBrowseMenu() {
 		$('.js-cat-dropdown').toggleClass('hidden');
 		$(".browse .item-text").toggleClass('menu-open');
 		$('.header-item-icon').toggleClass('icon-down');

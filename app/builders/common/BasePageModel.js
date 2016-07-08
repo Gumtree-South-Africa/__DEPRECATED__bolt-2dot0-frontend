@@ -28,18 +28,18 @@ class BasePageModel {
 	getCommonData() {
 		return [
 			() => {
+				let combinedData = {};
 				return Q.all([
 					this.headerBuilder.resolveAllPromises(),
-					this.footerBuilder.resolveAllPromises(),
-					this.dataLayerBuilder.resolveAllPromises()
+					this.footerBuilder.resolveAllPromises()
 				]).then((data) => {
-					let combinedData = {
-						header: data[0][0],
-						footer: data[1][0],
-						dataLayer: data[2][0]
-					};
+					combinedData.header = data[0][0];
+					combinedData.footer = data[1][0];
 					this.dataLayer.setUserId(combinedData.header.id);
 					this.dataLayer.setUserEmail(combinedData.header.userEmail);
+					return this.dataLayerBuilder.resolveAllPromises();
+				}).then((data) => {
+					combinedData.dataLayer = data[0];
 					return combinedData;
 				});
 			}

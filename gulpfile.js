@@ -95,7 +95,7 @@ gulp.task('test', testTasks);
 
 gulp.task('icons2', (done) => {
 	//Task for spriting svgs and pngs
-	runSequence('spriteSvgs', 'spriteFallback', done);
+	runSequence('svgSprite', 'svgFallback', done);
 });
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));

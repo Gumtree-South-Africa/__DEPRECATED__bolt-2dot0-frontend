@@ -217,7 +217,7 @@ module.exports = (req, res, next) => {
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
 	
 	//Used to disable/enable distraction free. Default is false.
-	req.app.locals.distractionFree = false;
+	req.app.locals.distractionFree = req.cookies.distractionFree === 'true';
 	
 	let homepage = new HomepageModel(req, res, modelData);
 	let model = homepage.populateData();

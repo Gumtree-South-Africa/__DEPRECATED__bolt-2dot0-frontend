@@ -10,6 +10,11 @@ $item-bottom-padding: 12px;
 
     color: $headerTextColor;
 
+    a {
+        color: $headerTextColor;
+        text-decoration: none;
+    }
+
     .mobile-menu {
         position: absolute;
         top: 5px;
@@ -63,13 +68,13 @@ $item-bottom-padding: 12px;
         }
 
         .messages {
+            position:relative;
             margin-top: 5px;
             //width: 80px;
         }
 
         .browse {
-            width: 41%;
-            min-width: 64px;
+            min-width: 81px;
             width: 40%;
 
             &.item-text {
@@ -95,22 +100,19 @@ $item-bottom-padding: 12px;
 
         .help, .my-ads {
             padding-top: $item-top-padding;
-        }
-
-        .help {
-            margin-left: 25px;
+            width: 15%;
         }
 
         .profile {
             vertical-align: middle;
-            padding-top: $item-top-padding;
-            margin-left: 18px;
+            padding-top: 10px;
+            //margin-left: 18px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
             }
             .profile-icon {
-                border: 1px solid $profile-border;
+                //border: 1px solid $profile-border;
                 border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
@@ -126,9 +128,21 @@ $item-bottom-padding: 12px;
         }
     }
 
+    .number-messages {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $headerMessagesBackgroundColor;
+        border-radius: 50%;
+        color: white;
+    }
+
     .btn {
         padding: 10px;
-        width: 98%;
+        width: 83%;
+        min-width: 205px;
 
         .sudolink {
             vertical-align: middle;
@@ -143,7 +157,7 @@ $item-bottom-padding: 12px;
         float: right;
     }
 
-    .float-right {
+    .right-item {
         width: 20%;
         float: right;
     }
@@ -152,10 +166,8 @@ $item-bottom-padding: 12px;
         // position+bg-color used to hide dropdown top border
         position: relative;
         background-color: transparent;
-
         width:100%;
         text-align: left;
-        padding: $item-top-padding 0 $item-bottom-padding 5px;
 
         // setup a border that will get border color when the menu is open
         border-width: 0 1px;
