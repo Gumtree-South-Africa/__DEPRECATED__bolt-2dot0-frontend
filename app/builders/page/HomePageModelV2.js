@@ -64,7 +64,7 @@ class HomePageModelV2 {
 				// user specific parameters are passed here, such as location lat/long
 				// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
 				return cardsModel.getCardItemsData(cardName, {
-					location: "[19.432608, -99.133209]"
+					location: "(40.12,-71.34),(70.12,-73.34)"
 				}).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
