@@ -103,7 +103,7 @@ $item-bottom-padding: 12px;
 
         .profile {
             vertical-align: middle;
-            padding-top: 5px;
+            padding-top: $item-top-padding;
             margin-left: 18px;
 
             &.normal-pad-top {
