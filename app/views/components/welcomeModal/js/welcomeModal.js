@@ -22,16 +22,15 @@ $(document).ready(() => {
 	  
 	   if (getCookie('alreadyVisited') == "") {
 		    document.cookie = 'alreadyVisited=true';
-		    $('.modal-wrapper, .modal').css('display', 'block');
+		    $('.modal-wrapper .modal').css('display', 'block');
         }	
 	
 	
 		$('.modal-wrapper .modal-close-section').on('click', function(){
-            
-	         $('.modal-wrapper, .modal').fadeOut('slow', function() {
-	         $(this).removeClass('modal');
-	         $('.modal-footer').css('display', 'block');
-	       });
+             $('.modal-wrapper .modal').fadeOut('slow', function() {
+		         $(this).removeClass('modal');
+		         $('.modal-footer').css('display', 'block');
+	         });
 		 });
 
 
