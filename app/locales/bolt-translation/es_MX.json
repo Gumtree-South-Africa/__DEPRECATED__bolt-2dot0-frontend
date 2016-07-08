@@ -1180,6 +1180,11 @@
 			"contact": "AtenciÛn al cliente",
 			"meet": "Contacta a nuestro equipo de AtenciÛn al cliente"
 		},
+		"support": {
+			"em": "Email",
+			"ca": "TelÈfono",
+			"ch": "Chat"
+		},
 		"sitemap": {
 			"aboutus": {
 				"aboutus": "Acerca de nosotros",

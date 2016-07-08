@@ -13,11 +13,12 @@
     }
 
     .line-divider {
-        border-top: 1px solid lightgrey;
+        border-top: 1px solid grey;
         width: 94%;
         margin-left: 10px;
         margin-right: 10px;
     }
+
     .user-photo-wrapper {
         position: relative;
         width: 60px;
@@ -113,30 +114,6 @@
     .support-wrapper {
         margin: 15px;
 
-        .distraction-free {
-            float: left;
-            margin-left: 5px;
-
-            &:not(:first-child) {
-                margin-left: 15px;
-            }
-
-            .support-icon {
-                display: inline-block;
-                align-self: center;
-                height: 20px;
-                width: 20px;
-                position: relative;
-                top: 5px;
-                margin-top: 5px;
-                margin-left: 10px;
-            }
-
-            .support-text {
-                margin-left: 15px;
-            }
-        }
-
         .support-container {
             margin-left: 25px;
 
@@ -155,14 +132,157 @@
             }
         }
     }
+
+    .df-support-wrapper {
+        margin: 15px;
+
+        .df-support-container {
+            float: left;
+
+            .support-icon {
+                display: inline-block;
+                align-self: center;
+                height: 20px;
+                width: 20px;
+                position: relative;
+                top: 5px;
+                margin-top: 5px;
+                margin-left: 10px;
+            }
+
+            .support-text {
+                margin-left: 5px;
+            }
+        }
+
+        .df-support-container {
+            .support-icon {
+                display: inline-block;
+                align-self: center;
+                height: 20px;
+                width: 20px;
+                position: relative;
+                top: 5px;
+                margin-top: 5px;
+            }
+
+            .support-text {
+                margin-left: 10px;
+            }
+        }
+    }
+
+    .desktop-only {
+        display: none;
+    }
 }
 
 @include from-breakpoint($medium-break){
     .footer-wrapper {
-        .user-photo-wrapper {
-            &.desktop-icon {
+        .desktop-only {
+            display: block;
+        }
+        .mobile-only {
+            display: none;
+        }
+
+        .menu-category {
+            span {
+                font-size: 18px
+            }
+            float: left;
+            width: 22%;
+            text-align: center;
+
+            .menu-items {
                 display: block;
+                margin-top: 30px;
             }
         }
+
+        .df-footer-legal {
+            .menu-category {
+                margin-top: 20px;
+                span {
+                    font-size: 18px
+                }
+                width: 100%;
+                float: left;
+                text-align: center;
+                padding: 0;
+
+                .menu-items {
+                    display: block;
+                    margin-top: 15px;
+                    .df-legal-links {
+                        &:not(:first-child) {
+                            margin-left: 40px;
+                        }
+                        margin-bottom: 20px;
+                        display: inline-block
+                    }
+                }
+            }
+
+        }
+
+        .social-container {
+            &.desktop-only {
+                display: inline-block;
+            }
+            .social-icon-wrapper {
+                margin: 0px 0px 0px 15px;
+            }
+        }
+        .footer-download {
+            display: inline-block;
+        }
+        .app-downloads-container {
+            width: 500px;
+            display: inline-block;
+            margin-top: 15px;
+        }
+        .df-support-wrapper {
+            display: block;
+            position: relative;
+            margin: 0 auto;
+            width: 276px;
+
+            .df-support-container {
+                display: inline-block;
+                .support-text {
+                    &.desktop-only {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .line-divider {
+            width: initial;
+            margin-left: 20px;
+            margin-right: 20px;
+            margin-top: 15px;
+        }
+        .support-wrapper {
+            display: inline-block;
+            position: relative;
+            top: -20px;
+            margin: 0px 10px 15px 50px;
+
+            .support-container {
+                display: inline-block;
+                .support-text {
+                    &.desktop-only {
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .team-photos {
+            display: inline-block;
+            width: 400px;
+            margin-left: 15px;
+        }
+
     }
 }
