@@ -1,3 +1,4 @@
+@import "../../partials/components/button/button";
 
 @include in-breakpoint($no-break){
 
@@ -46,7 +47,15 @@
     max-width:100%;
     padding:0;
 	 > .modal-close-section{
-	     margin-right: 1em;
+	         margin-right: 1.5em;
+             margin-top: 3px;
+           > .close-text {
+            margin-right: 0.2em;
+           }
+          > .icon-close {
+                width: 0.8em;
+                height: 0.8em;
+           }        
 	  }
    }
  }
@@ -56,8 +65,9 @@
      .btn-wrapper {
         text-align:center;
      .btn{
-        width:90% ;
+         width:90% !important;
          padding: 0.35em;
+         @include vivaBtn(off, 0.35em, off);
          > span + span.btn-icon {
          display:inline-block;
          }

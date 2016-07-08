@@ -3,7 +3,7 @@
 
 let initialize = () => {
 
-$(document).ready(() => {
+  $(document).ready(() => {
 	
 	function getCookie(cname) {
 	    let name = cname + "=";
@@ -29,7 +29,7 @@ $(document).ready(() => {
 		$('.modal-wrapper .modal-close-section').on('click', function() {
              $('.modal-wrapper .modal').fadeOut('slow', function() {
 		         $(this).removeClass('modal');
-		         $('.modal-footer').css('display', 'block');
+		         $('.welcome-footer').css('display', 'block');
 	         });
 		 });
 
