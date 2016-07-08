@@ -3,16 +3,16 @@
 let $ = require('jquery');
 
 let initialize = () => {
-	function toggleBrowseMenu() {
-		$('.js-cat-dropdown').toggleClass('hidden');
-		$(".browse .item-text").toggleClass('menu-open');
-		$('.header-item-icon').toggleClass('icon-down');
-		$('.header-item-icon').toggleClass('icon-up');
-	}
+	let _toggleBrowseMenu = () => {
+		$('#js-cat-dropdown').toggleClass('hidden');
+		$('#js-browse-dropdown #js-item-text').toggleClass('menu-open');
+		$('#js-header-item-icon').toggleClass('icon-down');
+		$('#js-header-item-icon').toggleClass('icon-up');
+	};
 
 	$(document).ready(() => {
-		$('.browse').on('tap', toggleBrowseMenu)
-			.hover(toggleBrowseMenu, toggleBrowseMenu);
+		$('.browse').on('tap', _toggleBrowseMenu)
+			.hover(_toggleBrowseMenu, _toggleBrowseMenu);
 	});
 };
 

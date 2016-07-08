@@ -29,7 +29,7 @@ $item-bottom-padding: 12px;
 
     .mobile-only {
         display: inline-block;
-        @media (min-width: 768px) {
+        @include from-breakpoint($medium-break){
             display: none;
         }
     }
@@ -43,7 +43,7 @@ $item-bottom-padding: 12px;
         height: 50px;
         background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
         background-size: contain;
-        @media (min-width: 768px) {
+        @include from-breakpoint($medium-break){
             min-width: 140px;
             margin-left: 20px;
             width: 20%;
@@ -58,7 +58,7 @@ $item-bottom-padding: 12px;
         width: 20%;
         text-align: center;
         display: none;
-        @media (min-width: 768px) {
+        @include from-breakpoint($medium-break){
             display: inline-block;
         }
 
@@ -94,7 +94,7 @@ $item-bottom-padding: 12px;
         width: 60%;
         text-align: center;
         display: none;
-        @media (min-width: 768px) {
+        @include from-breakpoint($medium-break){
             display: inline-block;
         }
 

@@ -80,7 +80,6 @@ app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 server/middlewares/check-authentication.js
 server/middlewares/check-ip.js
 server/middlewares/check-machineid.js
-server/middlewares/check-mobileDevice.js
 server/middlewares/check-useragent.js
 server/middlewares/express-builder.js
 server/middlewares/request-id.js

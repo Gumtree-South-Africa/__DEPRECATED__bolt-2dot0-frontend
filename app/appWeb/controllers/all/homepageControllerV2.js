@@ -238,8 +238,6 @@ module.exports = (req, res, next) => {
 		HP.deleteMarketoCookie(res, modelData);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
-
-		console.timeEnd('Instrument-Homepage-Controller');
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
