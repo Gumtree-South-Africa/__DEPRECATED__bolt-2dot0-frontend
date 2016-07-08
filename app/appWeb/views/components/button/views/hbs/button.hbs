@@ -1,6 +1,12 @@
 <div class="btn-wrapper">
   <a class="btn" href="/quickpost">
-    <span class="sudolink">{{i18n "header.postAd"}}</span>
-    <span class="icon-post btn-icon"></span>
+    <span class="sudolink">
+        {{#if i18nPath}}
+            {{i18n i18nPath}}
+        {{else}}
+            {{i18n "header.postAd"}}
+        {{/if}}
+    </span>
+    <span class="icon-post btn-icon {{#if hideIcon}}hidden{{/if}}"></span>
   </a>
 </div>
