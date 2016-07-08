@@ -6,6 +6,8 @@ let initialize = () => {
 		let locale = $('html').attr('data-locale');
 		let country = locale.split('_')[1];
 		let lang = locale.split('_')[0];
+		let $loc = $('#modal-location');
+
 		$('#modal-location').on('keyup', function(){
 				let htmlElt = '';
 						if ($(this).val() != ''){
@@ -24,8 +26,8 @@ let initialize = () => {
 																let longitude = resp.results[idx].geometry.location.lng;
 																let addyLength = resp.results[idx].address_components.length;
 																let split_address = address.split(',');
-																let address_to_display = split_address[split_address.length-1];
-																htmlElt += '<div class="ac-field" data-addytodisplay=' + address_to_display + ' data-long=' + longitude + ' data-lat=' + latitude + '>' + address + '</div>';
+																let partial_addy = (split_address.length <= 2) ? split_address[split_address.length-1] : (split_address[split_address.length-2] + split_address[split_address.length-1]);
+																htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partial_addy + "</span><span class='full-addy'>" + address + "</span></div>";
 														}
 														$('#autocompleteField').append(htmlElt);
 												}
@@ -40,8 +42,9 @@ let initialize = () => {
 
 		$('#autocompleteField').on('click', '.ac-field', function(){
 				let $this = $(this);
+
 				$('#autocompleteField').addClass('hiddenElt');
-				$('#modal-location').val($this.attr('data-addytodisplay'));
+				$loc.val($this.find('.suffix-addy').html());
 		});
 
 		$(':not(#autocompleteField)').on('click', function(e){
