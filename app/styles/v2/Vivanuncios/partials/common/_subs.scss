@@ -61,14 +61,14 @@
   .ac-field{
     cursor: pointer;
     text-decoration: underline;
-    color: $vivaGray1;
+    color: $modal-autocomplete-color;
     padding-left: 0.6em;
     &:first-child{
-      border-top: 1px solid gray;
+      border-top: 1px solid $modal-autocomplete-bgcolor;
     }
     &:hover{
-      background-color: $vivaGray1;
-      color: white;
+      background-color: $modal-autocomplete-bgcolor;
+      color: $modal-autocomplete-color-hover;
     }
   }
 }
