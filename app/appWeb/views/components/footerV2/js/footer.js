@@ -4,14 +4,13 @@ let $ = require('jquery');
 
 let initialize = () => {
 
-	$(document).ready(() => {
-		function toggleCategory(e) {
-			//$('.menu-items').toggleClass('hide');
-			$(e.currentTarget).find('.menu-items').toggleClass('hide');
-		}
+	let _toggleCategory = (e) => {
+		$(e.currentTarget).find('.menu-items').toggleClass('hide');
+	}
 
+	$(document).ready(() => {
 		$('.menu-category').on('click', (e) => {
-			toggleCategory(e);
+			_toggleCategory(e);
 		});
 	});
 };

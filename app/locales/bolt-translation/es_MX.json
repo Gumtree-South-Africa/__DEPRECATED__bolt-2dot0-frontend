@@ -1171,40 +1171,52 @@
   "recentactivity.message.listing": "%s acaba de poner en venta: %s %s",
   "recentactivity.message.sold": "%s acaba de vender: %s %s",
 
-  "footer.help.heretohelp":"Estamos aquÌ para ayudarte",
-  "footer.help.sendemail":"EnvÌa un correo electrÛnico",
-  "footer.help.callus":"Ll·manos",
-  "footer.help.chatwithus":"Chatea con nosotros",
-
-  "footer.sitemap.aboutus.aboutus":"Acerca de nosotros",
-  "footer.sitemap.aboutus.aboutviva":"Acerca de Vivanuncios",
-  "footer.sitemap.aboutus.vivablog":"Blog de Vivanuncios",
-  "footer.sitemap.aboutus.vivabusiness":"Vivanuncios para negocios",
-  "footer.sitemap.aboutus.rules":"Reglas para publicar anuncios",
-
-  "footer.sitemap.legal.legal":"InformaciÛn legal",
-  "footer.sitemap.legal.terms":"Condiciones de uso",
-  "footer.sitemap.legal.privacy":"PolÌtica de privacidad",
-  "footer.sitemap.legal.cookies":"Cookies",
-
-  "footer.sitemap.explore.explore":"Explorar",
-  "footer.sitemap.explore.classifieds":"Sitio de clasificados de eBay",
-  "footer.sitemap.explore.mobile":"Aplicaciones mÛviles",
-  "footer.sitemap.explore.partners":"Socios",
-  "footer.sitemap.explore.carprice":"Õndice de precios de autos",
-
-  "footer.sitemap.tips.tips":"Consejos y ayuda",
-  "footer.sitemap.tips.help":"P·ginas de ayuda",
-  "footer.sitemap.tips.onlinesafety":"Seguridad en Internet",
-  "footer.sitemap.tips.vivaguides":"GuÌas de Vivanuncios",
-  "footer.sitemap.tips.givefeedback":"Comentar",
-
-  "footer.download.download":"Descargar la aplicaciÛn",
-  "footer.download.itunes":"Disponible en la App Store",
-  "footer.download.playstore":"Disponible en la App Store de Android",
-
-  "footer.trademark.trademark":"2014-2016 eBay. Todos los derechos reservados",
-  "footer.help.contact":"AtenciÛn al cliente",
-  "footer.help.meet":"Contacta a nuestro equipo de AtenciÛn al cliente"
+	"footer": {
+		"help": {
+			"heretohelp":"Estamos aquÌ para ayudarte",
+			"sendemail":"EnvÌa un correo electrÛnico",
+			"callus":"Ll·manos",
+			"chatwithus":"Chatea con nosotros",
+			"contact": "AtenciÛn al cliente",
+			"meet": "Contacta a nuestro equipo de AtenciÛn al cliente"
+		},
+		"sitemap": {
+			"aboutus": {
+				"aboutus": "Acerca de nosotros",
+				"aboutviva": "Acerca de Vivanuncios",
+				"vivablog": "Blog de Vivanuncios",
+				"vivabusiness": "Vivanuncios para negocios",
+				"rules": "Reglas para publicar anuncios"
+			},
+			"legal": {
+				"legal": "InformaciÛn legal",
+				"terms": "Condiciones de uso",
+				"privacy": "PolÌtica de privacidad",
+				"cookies": "Cookies"
+			},
+			"explore": {
+				"explore": "Explorar",
+				"classifieds": "Sitio de clasificados de eBay",
+				"mobile":"Aplicaciones mÛviles",
+				"partners":"Socios",
+				"carprice":"Õndice de precios de autos"
+			},
+			"tips": {
+				"tips":"Consejos y ayuda",
+				"help":"P·ginas de ayuda",
+				"onlinesafety":"Seguridad en Internet",
+				"vivaguides":"GuÌas de Vivanuncios",
+				"givefeedback":"Comentar"
+			}
+		},
+		"download": {
+			"download":"Descargar la aplicaciÛn",
+			"itunes":"Disponible en la App Store",
+			"playstore":"Disponible en la App Store de Android"
+		},
+		"trademark": {
+			"trademark": "2014-2016 eBay. Todos los derechos reservados"
+		}
+	}
 }
 
