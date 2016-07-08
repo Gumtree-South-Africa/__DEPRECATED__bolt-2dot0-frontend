@@ -8,6 +8,7 @@ let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
 
+
 /**
  * Takes in a service string and then spies on the method to return the file.
  * If you give it a relative path it will grab the file out of
