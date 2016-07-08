@@ -78,6 +78,7 @@
 	},
 	"content" : {
 	  	"homepageV2" : {
+			"distractionFree": false,
 			"reviews" : [
 				{
 					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTQ3WDMwOA==/z/0TkAAOSw41xXO7-v/$_19.JPG?set_id=8800005007",

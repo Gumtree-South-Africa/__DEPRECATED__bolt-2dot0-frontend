@@ -84,6 +84,7 @@ class DataLayerModel {
 				let data = {};
 				switch (this.pagetype) {
 					case pagetypeJson.pagetype.HOMEPAGE:
+					case pagetypeJson.pagetype.HOMEPAGEV2:
 						data = {
 							'pageData': getPageData(this), 'userData': getUsereData(this)
 						};

@@ -216,9 +216,6 @@ module.exports = (req, res, next) => {
 	// Retrieve Data from Model Builders
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
 	
-	//Used to disable/enable distraction free. Default is false.
-	req.app.locals.distractionFree = req.cookies.distractionFree === 'true';
-	
 	let homepage = new HomepageModel(req, res, modelData);
 	let model = homepage.populateData();
 
@@ -231,7 +228,8 @@ module.exports = (req, res, next) => {
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
 		modelData.isNewHP = true;
-
+		modelData.header.distractionFree = (bapiConfigData.content.homepageV2) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
