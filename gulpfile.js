@@ -93,8 +93,7 @@ gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
 
-gulp.task('icons2', (done) => {
-	//Task for spriting svgs and pngs
+gulp.task('icons2', function(done) {
 	runSequence('spriteSvgs', 'spriteFallback', done);
 });
 

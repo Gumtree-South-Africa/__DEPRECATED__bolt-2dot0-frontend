@@ -1168,7 +1168,12 @@
 		]
 	 }
   },
+  "modal": {
+    "close": "cerrar",
+    "button.confirm": "Confirmar",
+    "message": "Cambia Tu Ubicaci\u00FBn",
+    "info": "Ciudad, Colonia o Delegaci\u00F3n"
+  },
   "recentactivity.message.listing": "%s acaba de poner en venta: %s %s",
   "recentactivity.message.sold": "%s acaba de vender: %s %s"
 }
-

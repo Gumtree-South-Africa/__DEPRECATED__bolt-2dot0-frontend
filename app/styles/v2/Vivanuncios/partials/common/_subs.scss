@@ -10,14 +10,15 @@
 }
 
 .btn{
-  @include vivaBtn(off, 0.875em 0, "Confirm");
+  @include vivaBtn(off, 0.875em 0, "Confirmar");
 }
 
 .btn-icon{
   display: inline-block;
   width: 2em;
   height: 2em;
-  vertical-align: middle;
+  margin-top: 0.4em;
+  cursor: pointer;
 }
 
 .modal{
@@ -32,11 +33,15 @@
   }
   .right {
       float: right;
+      padding-right: 0.3em;
   }
   .left {
       float: none;
       width: auto;
       overflow: hidden;
+  }
+  .icon-location-v2{
+    margin-right: 0.2em;
   }
 }
 
