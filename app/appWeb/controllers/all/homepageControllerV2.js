@@ -228,7 +228,7 @@ module.exports = (req, res, next) => {
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
 		modelData.isNewHP = true;
-		modelData.header.distractionFree = bapiConfigData.content.homepageV2.distractionFree || false;
+		modelData.header.distractionFree = (bapiConfigData.content.homepageV2) ? bapiConfigData.content.homepageV2.distractionFree : false;
 		
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);

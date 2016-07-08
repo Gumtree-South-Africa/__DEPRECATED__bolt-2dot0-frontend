@@ -82,16 +82,56 @@ describe('Server to hit HomePage', function() {
 		});
 	});
 
-	describe('Recent Activitiy', (done) => {
-		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
-			supertest
-				.set('Cookie', 'b2dot0Version=2.0')
-				.expect((res) => {
-					let c$ = cheerio.load(res.text);
-					expect(c$('.feed-tiles')).toBeDefined();
-					expect(res.status).toBe(200);
-				})
-				.end(specHelper.finish(done));
+	// describe('Recent Activitiy', (done) => {
+	// 	boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+	// 		supertest
+	// 			.set('Cookie', 'b2dot0Version=2.0')
+	// 			.expect((res) => {
+	// 				let c$ = cheerio.load(res.text);
+	// 				expect(c$('.feed-tiles')).toBeDefined();
+	// 				expect(res.status).toBe(200);
+	// 			})
+	// 			.end(specHelper.finish(done));
+	// 	});
+	// });
+
+	describe('Header', () => {
+
+		it('shows header', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						expect(c$('.headerV2')).toBeDefined();
+						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
+			});
 		});
+
+		it('category dropdown has correct links but is hidden', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						let catUl = c$('#js-cat-dropdown');
+						expect(catUl).toBeDefined('element with id js-cat-dropdown should exist');
+						expect(catUl.hasClass('hidden')).toBe(true, 'dropdown should be hidden');
+
+						let linkCount = 0;
+						c$('a', catUl).filter((i, el) => {
+							linkCount++;
+							let href = c$(el).attr('href');
+							expect(href).toContain("-TBD",  `href ${href} should contain a valid link`);	// todo: lookup the link in a table
+						});
+						expect(linkCount).toBe(14, 'count of category items in the menu');
+						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
 	});
 });
