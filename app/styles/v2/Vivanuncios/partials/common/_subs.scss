@@ -11,8 +11,9 @@
 }
 
 .btn{
-  @include vivaBtn(off, 0.875em 0, "Confirm");
+  @include vivaBtn(off, 0.875em 0, off);
 }
+
 
 .btn-icon{
   display: inline-block;
@@ -20,6 +21,8 @@
   height: 2em;
   vertical-align: middle;
 }
+
+
 
 .modal{
   @include modal();
