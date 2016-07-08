@@ -5,7 +5,7 @@
     {{#unless this.header.distractionFree}}
         <div class="mobile-only mobile-menu icon-menu">
         </div>
-        <a href="{{i18n "appdownload.applink"}}">
+        <a href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
             <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2 {{/if}}icon-android"></div>
         </a>
         <div class="left-items">
@@ -41,11 +41,13 @@
                     {{i18n "header.help"}}
                 </div>
             </a>
-            <a href="my-ads-TBD">
-                <div class="my-ads right-item">
-                    {{i18n "header.myAds"}}
-                </div>
-            </a>
+            {{#if this.header.username}}
+                <a href="my-ads-TBD">
+                    <div class="my-ads right-item">
+                        {{i18n "header.myAds"}}
+                    </div>
+                </a>
+            {{/if}}
             <a href="my-profile-TBD">
                 <div class="profile {{#unless this.header.username}}normal-pad-top {{/unless}}right-item">
                     <div class="profile-icon
@@ -56,7 +58,7 @@
                     {{/if}}">
                     </div>
                     {{#if this.header.userEmail}}
-                        Hi, {{this.header.profileName}}!
+                        {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
                     {{else}}
                         {{i18n "header.menu.my.gumtree"}}
                     {{/if}}

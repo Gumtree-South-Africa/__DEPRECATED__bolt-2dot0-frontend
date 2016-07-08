@@ -85,7 +85,6 @@ class HeaderModel {
 				data.min = config.get('static.min');
 				//Used for top right icon on mobile layout for app download. Icon change only.
 				data.isIphone = this.isIphone;
-				data.distractionFree = this.distractionFree;
 
 				// add complex data to header
 				this.buildUrl(data);
