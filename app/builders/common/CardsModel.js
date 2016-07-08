@@ -60,7 +60,6 @@ class CardsModel {
 						apiParams[paramName] = paramsMap[paramName];
 					}
 				}
-				console.warn(`apiParams.${paramName} = ${apiParams[paramName]}`);
 			}
 		}
 
