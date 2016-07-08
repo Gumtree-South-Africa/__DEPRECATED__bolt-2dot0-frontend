@@ -7,6 +7,8 @@ let initialize = () => {
 		console.log(event.target);
 		$('.js-cat-dropdown').toggleClass('hidden');
 		$(".browse .item-text").toggleClass('menu-open');
+		$('.header-item-icon').toggleClass('icon-down');
+		$('.header-item-icon').toggleClass('icon-up');
 	}
 
 	$(document).ready(() => {

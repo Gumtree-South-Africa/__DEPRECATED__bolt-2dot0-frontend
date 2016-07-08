@@ -113,10 +113,10 @@ $fontSizeH4: 1em;      // 16 px
 
 // Colors, by specific item
 
-$menuItemColor: $vivaGray3;
-$menuItemSecondaryColor: $vivaGray6;
+// Header
 
-$menuItemBackgroundColor: $vivaGray4;
-$menuBorderColor: $vivaGray6;
-$menuItemSeparatorColor: $vivaGray7;
-
+$headerBackgroundColor: $vivaGray4;
+$headerTextColor: $vivaGray3;
+$headerMenuBorderColor: $vivaGray6;
+$headerMenuItemSecondaryColor: $vivaGray6;
+$headerMenuItemSeparatorColor: $vivaGray7;

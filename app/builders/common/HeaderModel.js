@@ -36,6 +36,8 @@ class HeaderModel {
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
 		this.headerConfigData = res.locals.config.bapiConfigData.header;
+		this.isIphone = req.app.locals.useragent.match(/iPhone/i) || req.app.locals.useragent.match(/iPod/i);
+		this.distractionFree = req.app.locals.distractionFree;
 
 		this.userCookieData = req.app.locals.userCookieData;
 
@@ -81,6 +83,9 @@ class HeaderModel {
 				data.baseSVGDataUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl') : config.get('static.baseSVGDataUrl');
 				data.baseCSSUrl = (urlHost !== null) ? urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl') : config.get('static.baseCSSUrl');
 				data.min = config.get('static.min');
+				//Used for top right icon on mobile layout for app download. Icon change only.
+				data.isIphone = this.isIphone;
+				data.distractionFree = this.distractionFree;
 
 				// add complex data to header
 				this.buildUrl(data);

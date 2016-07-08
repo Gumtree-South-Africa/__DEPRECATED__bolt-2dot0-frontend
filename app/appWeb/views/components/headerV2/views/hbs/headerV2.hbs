@@ -1,23 +1,23 @@
 <div class="headerV2">
-    <div class="mobile-only mobile-menu icon-menu">
-    </div>
     <div class="logo"></div>
-    <div class="mobile-only app-icon icon-android">
-    </div>
     {{#unless this.header.distractionFree}}
+        <div class="mobile-only mobile-menu icon-menu">
+        </div>
+        <a href="{{i18n "appdownload.applink"}}">
+            <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2 {{/if}}icon-android">
+            </div>
+        </a>
         <div class="left-items">
             {{#if this.header.username}}
-                <div class="messages">
-                    {{i18n "header.userDropdown.messages"}}
-                </div>
+                <div class="messages icon-messages"></div>
             {{/if}}
             <div class="browse">
                 <div class="item-text">
-                    {{i18n "header.catDropdown.browse"}}
+                    {{i18n "header.catDropdown.browse"}}<div class="header-item-icon icon-down"></div>
                 </div>
                 <ul class="js-cat-dropdown menu-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-                        <li class="menu-item">{{this.localizedName}}<span class="item-secondary-text">(TBD)</span></li>
+                        <li class="menu-item">{{this.localizedName}}<span class="item-secondary-text">(tbd)</span></li>
                     {{/each}}
                 </ul>
             </div>

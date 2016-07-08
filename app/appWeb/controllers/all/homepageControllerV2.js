@@ -215,6 +215,10 @@ module.exports = (req, res, next) => {
 	let modelData = pageControllerUtil.preController(req, res);
 	// Retrieve Data from Model Builders
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
+	
+	//Used to disable/enable distraction free. Default is false.
+	req.app.locals.distractionFree = false;
+	
 	let homepage = new HomepageModel(req, res, modelData);
 	let model = homepage.populateData();
 
