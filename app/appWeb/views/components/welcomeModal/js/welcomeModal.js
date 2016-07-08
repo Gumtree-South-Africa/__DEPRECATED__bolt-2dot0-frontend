@@ -26,8 +26,8 @@ let initialize = () => {
 		}
 
 
-		$('.modal-wrapper .modal-close-section').on('click', function () {
-			$('.modal-wrapper .modal').fadeOut('slow', function () {
+		$('.modal-wrapper .modal-close-section').on('click', function() {
+			$('.modal-wrapper .modal').fadeOut('slow', function() {
 				$(this).removeClass('modal');
 				$('.welcome-footer').css('display', 'block');
 			});
