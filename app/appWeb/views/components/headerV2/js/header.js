@@ -11,6 +11,8 @@ let initialize = () => {
 	function toggleBrowseMenu() {
 		$('.js-cat-dropdown').toggleClass('hidden');
 		$('.item-text').toggleClass('menu-open');
+		$('.header-item-icon').toggleClass('icon-down');
+		$('.header-item-icon').toggleClass('icon-up');
 	}
 
 	$(document).ready(() => {
