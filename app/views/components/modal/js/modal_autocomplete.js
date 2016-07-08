@@ -4,7 +4,6 @@ let initialize = () => {
 
 	$(document).ready(() => {
 		let locale = $('html').attr('data-locale');
-		console.log('loc: ',locale.split('_'));
 		let country = locale.split('_')[1];
 		let lang = locale.split('_')[0];
 		$('#modal-location').on('keyup', function(){
@@ -25,8 +24,7 @@ let initialize = () => {
 																let longitude = resp.results[idx].geometry.location.lng;
 																let addyLength = resp.results[idx].address_components.length;
 																let split_address = address.split(',');
-																let address_to_display = split_address[split_address.length-2] + split_address[split_address.length-1];
-																console.log('addy: ',address_to_display);
+																let address_to_display = split_address[split_address.length-1];
 																htmlElt += '<div class="ac-field" data-addytodisplay=' + address_to_display + ' data-long=' + longitude + ' data-lat=' + latitude + '>' + address + '</div>';
 														}
 														$('#autocompleteField').append(htmlElt);
