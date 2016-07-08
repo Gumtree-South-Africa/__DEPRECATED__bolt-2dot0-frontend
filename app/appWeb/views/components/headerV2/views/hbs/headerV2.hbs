@@ -19,13 +19,13 @@
                 </a>
             {{/if}}
             <div id='js-browse-dropdown' class="browse">
-                <div id='js-item-text' class="item-text">
+                <div id='js-browse-item-text' class="item-text">
                     {{i18n "header.catDropdown.browse"}}
-                    <div id="js-header-item-icon" class="header-item-icon icon-down"></div>
+                    <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-                        <a href="{{this.localizedName}}-TBD">
+                        <a href="{{this.localizedName}}-TBD" class="link-item">
                             <li class="menu-item">
                                 {{this.localizedName}}
                                 <span class="item-secondary-text">(tbd)</span>
@@ -46,8 +46,8 @@
                     {{i18n "header.myAds"}}
                 </div>
             </a>
-            <a href="my-profile-TBD">
-                <div class="profile {{#unless this.header.username}}normal-pad-top {{/unless}}right-item">
+            <div class="profile {{#unless this.header.username}}normal-pad-top {{/unless}}right-item">
+                <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
                     {{#if this.header.username}}
                     profile-picture
@@ -56,13 +56,67 @@
                     {{/if}}">
                     </div>
                     {{#if this.header.userEmail}}
-                        Hi, {{this.header.profileName}}!
+                        {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
+                        <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                     {{else}}
                         {{i18n "header.menu.my.gumtree"}}
                     {{/if}}
                 </div>
-            </a>
-
+                <ul id="js-profile-dropdown" class="menu-dropdown hidden">
+                    <li class="menu-item">
+                        <div class="item-icon icon-favorites icon-favorites"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.favorites"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-chat"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.messages"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-alerts"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.myAlerts"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-photo-library-3"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.myProfile"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-my-settings"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.mySettings"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-promote-1"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.promoteMyAds"}}
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <div class="item-icon icon-pricing-guide"></div>
+                        <div class="profile-item-text">
+                            {{i18n "header.userDropdown.pricingGuide"}}
+                        </div>
+                    </li>
+                    {{#if this.header.username}}
+                        <li class="menu-item">
+                            <div class="item-icon icon-logout-1"></div>
+                            <div class="profile-item-text">
+                                {{i18n "header.userDropdown.logout"}}
+                            </div>
+                        </li>
+                    {{else}}
+                        {{> (dynamic "button") i18nPath="login.signin-button" hideIcon=true}}
+                    {{/if}}
+                </ul>
+            </div>
             {{> (dynamic "button")}}
         </div>
     {{/unless}}
