@@ -209,7 +209,6 @@ module.exports = [
 			rootDir + "/app/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
 			rootDir + "/app/views/components/adCarousel/js/CarouselExt/carouselExt.js",
 			rootDir + "/app/views/components/countryMap/js/Map.js",
-			rootDir + "/app/views/components/modal/js/modal_autocomplete.js"
 		], "bundleName": "HomePage_es_MX.min.js"
 	}, { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
 		"dest": rootDir + "/public/jsmin", "src": [

@@ -62,4 +62,7 @@ let initialize = () => {
 	});
 };
 
-initialize();
+
+module.exports = {
+	initialize
+};
