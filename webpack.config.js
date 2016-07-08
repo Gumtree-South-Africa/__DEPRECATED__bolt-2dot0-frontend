@@ -20,7 +20,7 @@ module.exports = {
 				test: __dirname,
 				exclude: /node_modules/,
 				query: {
-					presets: 'es2015'
+					presets: 'es2015-webpack'
 				}
 			},
 			// see http://isotope.metafizzy.co/extras.html#webpack
