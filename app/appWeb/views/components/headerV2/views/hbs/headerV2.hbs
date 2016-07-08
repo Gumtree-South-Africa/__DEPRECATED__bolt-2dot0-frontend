@@ -1,14 +1,15 @@
 <div class="headerV2">
-    <div class="mobile-only mobile-menu icon-menu">
-    </div>
     <div class="logo"></div>
-    <div class="mobile-only app-icon icon-android">
-    </div>
     {{#unless this.header.distractionFree}}
+        <div class="mobile-only mobile-menu icon-menu">
+        </div>
+        <a href="{{i18n "appdownload.applink"}}">
+            <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2 {{/if}}icon-android">
+            </div>
+        </a>
         <div class="left-items">
             {{#if this.header.username}}
-                <div class="messages">
-                    Messages
+                <div class="messages icon-messages">
                 </div>
             {{/if}}
             <div class="browse">

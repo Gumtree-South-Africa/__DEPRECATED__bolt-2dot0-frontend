@@ -61,8 +61,8 @@ $item-bottom-padding: 12px;
         }
 
         .messages {
-            padding-top: $item-top-padding;
-            width: 80px;
+            margin-top: 5px;
+            //width: 80px;
         }
 
         .browse {
@@ -92,16 +92,17 @@ $item-bottom-padding: 12px;
         .profile {
             vertical-align: middle;
             margin-left: 15px;
-            padding-top: 5px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
             }
             .profile-icon {
+                border: 1px solid $profile-border;
+                border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
-                width: 40px;
-                height: 40px;
+                width: 30px;
+                height: 30px;
             }
             .profile-picture {
                 background: url('../../../../../images/profile6.png') no-repeat;
