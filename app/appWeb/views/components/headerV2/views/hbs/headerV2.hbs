@@ -8,24 +8,26 @@
         <div class="left-items">
             {{#if this.header.username}}
                 <div class="messages">
-                    Messages
+                    {{i18n "header.userDropdown.messages"}}
                 </div>
             {{/if}}
             <div class="browse">
-                <div class="item-text">Browse</div>
-                <ul class="js-cat-dropdown cat-dropdown hidden">
+                <div class="item-text">
+                    {{i18n "header.catDropdown.browse"}}
+                </div>
+                <ul class="js-cat-dropdown menu-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-                        <li class="cat-item">{{this.localizedName}}<span class="item-secondary-text">(TBD)</span></li>
+                        <li class="menu-item">{{this.localizedName}}<span class="item-secondary-text">(TBD)</span></li>
                     {{/each}}
                 </ul>
             </div>
         </div>
         <div class="right-items">
             <div class="help float-right">
-                Help
+                {{i18n "header.help"}}
             </div>
             <div class="my-ads float-right">
-                My Ads
+                {{i18n "header.myAds"}}
             </div>
             <div class="profile {{#unless this.header.username}}normal-pad-top {{/unless}}float-right">
                 {{#if this.header.username}}

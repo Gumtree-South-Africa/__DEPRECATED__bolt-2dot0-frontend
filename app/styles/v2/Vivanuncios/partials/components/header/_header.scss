@@ -67,6 +67,10 @@ $item-bottom-padding: 12px;
 
         .browse {
             width: 40%;
+
+            &.item-text {
+                padding-top: $item-top-padding;
+            }
         }
     }
 
@@ -85,14 +89,18 @@ $item-bottom-padding: 12px;
             display: inline-block;
         }
 
-        .help, .profile, .my-ads {
+        .help, .my-ads {
             padding-top: $item-top-padding;
+        }
+
+        .help {
+            margin-left: 25px;
         }
 
         .profile {
             vertical-align: middle;
-            margin-left: 15px;
             padding-top: 5px;
+            margin-left: 18px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
@@ -114,7 +122,7 @@ $item-bottom-padding: 12px;
 
     .btn {
         padding: 10px;
-        width: 83%;
+        width: 98%;
 
         .sudolink {
             vertical-align: middle;
@@ -137,32 +145,33 @@ $item-bottom-padding: 12px;
     .item-text {
         // position+bg-color used to hide dropdown top border
         position: relative;
-        background-color: $common-background-color;
+        background-color: transparent;
 
         width:100%;
         text-align: left;
         border-width: 0 1px;
         border-style: solid;
-        border-color: $common-background-color;
+        border-color: transparent;
         padding: $item-top-padding 0 $item-bottom-padding 5px;
 
         &.menu-open {
+            background-color: $common-background-color;
             border-color: $menuBorderColor;
         }
     }
 
-    .cat-dropdown {
+    .menu-dropdown {
         margin-top: -1px; // works with item-text to hide top border
 
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
-        width: 300px;
+        width: 200px;
         text-align: left;
         color: $menuItemColor;
         background-color: $menuItemBackgroundColor;
         border: 1px solid $menuBorderColor;
 
-        .cat-item {
+        .menu-item {
             padding-left: 5px;
             padding-top: 10px;
             padding-bottom: 10px;

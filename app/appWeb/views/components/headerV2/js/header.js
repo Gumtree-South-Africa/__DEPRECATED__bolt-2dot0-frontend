@@ -3,20 +3,13 @@
 let $ = require('jquery');
 
 let initialize = () => {
-
-	function toggleProfileMenu() {
-		$('.js-profile-menu').toggleClass('hidden');
-	}
-	
-	function toggleBrowseMenu() {
+	function toggleBrowseMenu(event) {
+		console.log(event.target);
 		$('.js-cat-dropdown').toggleClass('hidden');
-		$('.item-text').toggleClass('menu-open');
+		$(".browse .item-text").toggleClass('menu-open');
 	}
 
 	$(document).ready(() => {
-		$('.profile').on('tap',toggleProfileMenu)
-			.hover(toggleProfileMenu, toggleProfileMenu);
-		
 		$('.browse').on('tap', toggleBrowseMenu)
 			.hover(toggleBrowseMenu, toggleBrowseMenu);
 	});
