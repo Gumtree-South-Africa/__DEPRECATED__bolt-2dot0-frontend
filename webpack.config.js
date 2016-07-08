@@ -5,7 +5,7 @@ let path = require("path");
 module.exports = {
 	entry: {
 		"test/clientUnit/SpecRunner": "./test/clientUnit/SpecRunner.js",
-		"public/jsmin/homepageV2": "./app/views/templates/pages/homepageV2/js/homepageV2.js"
+		"public/jsmin/homepageV2": "./app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js"
 	},
 	output: {
 		path: '',
@@ -23,7 +23,6 @@ module.exports = {
 					presets: 'es2015'
 				}
 			},
-
 			// see http://isotope.metafizzy.co/extras.html#webpack
 			{
 				test: /isotope-layout/,

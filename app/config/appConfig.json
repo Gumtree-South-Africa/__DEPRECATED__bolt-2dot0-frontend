@@ -1,0 +1,16 @@
+{
+	"appWeb" : {
+		"mainRoute" : "/",
+	    "path" : "./app/appWeb/app",
+		"routePath" : "./controllers",
+		"viewPath" : "app/appWeb/views",
+	    "sendMetrics" : true
+	},
+	"appPost" : {
+		"mainRoute" : "/post",
+		"path" : "./app/appPost/app",
+		"routePath" : "./routes",
+		"viewPath" : "app/appPost/views",
+		"sendMetrics" : false
+	}
+}

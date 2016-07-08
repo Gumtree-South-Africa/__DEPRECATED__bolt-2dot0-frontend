@@ -1,7 +1,7 @@
 'use strict';
 
 
-var cwd = process.cwd();
+let cwd = process.cwd();
 
 let Q = require('q');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
@@ -20,7 +20,7 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
  * @private
  * @return {JSON}
  */
-var getHomepageDataFunctions = function(req, res, modelData) {
+let getHomepageDataFunctions = function(req, res, modelData) {
 
 	let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 	let cardNames = cardsModel.getCardNamesForPage("homePage");
