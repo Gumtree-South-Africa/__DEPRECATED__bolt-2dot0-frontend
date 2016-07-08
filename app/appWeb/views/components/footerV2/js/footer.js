@@ -6,7 +6,7 @@ let initialize = () => {
 
 	let _toggleCategory = (e) => {
 		$(e.currentTarget).find('.menu-items').toggleClass('hide');
-	}
+	};
 
 	$(document).ready(() => {
 		$('.menu-category').on('click', (e) => {
