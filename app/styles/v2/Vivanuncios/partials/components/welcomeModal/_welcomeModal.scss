@@ -1,6 +1,6 @@
 @import "../../partials/components/button/button";
 
-@include in-breakpoint($no-break){
+
 
 .welcome-wrapper{
    height: 69px ;
@@ -36,8 +36,7 @@
 > .modal-container{
 	width: 100%;
 	height: 185px;
-	border: 1px solid $welcomeSreen-bgcolor;
-	background-color: white;
+	background-color: $welcomeSreen-bgcolor;
 	position: fixed;
 	bottom: 0;
 	text-align: center;
@@ -78,10 +77,10 @@
     }
   }  
 
-}
 
 
-@include from-breakpoint($small-break){
+
+@include from-breakpoint($medium-break){
 .modal-wrapper , .welcome-footer{
    display: none;
    }
