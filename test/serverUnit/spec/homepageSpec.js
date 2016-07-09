@@ -4,6 +4,8 @@ let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
+
+
 describe('Server to hit HomePage', function() {
 
 	beforeEach(() => {
@@ -115,6 +117,14 @@ describe('Server to hit HomePage', function() {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
+
+						let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
+						let map = new Map();
+						for(let value of data.children){
+							// setup a key for what the link looks like
+							map.set(`${value.localizedName}-TBD`, value);
+						}
+
 						let c$ = cheerio.load(res.text);
 						let catUl = c$('#js-cat-dropdown');
 						expect(catUl).toBeDefined('element with id js-cat-dropdown should exist');
@@ -124,9 +134,10 @@ describe('Server to hit HomePage', function() {
 						c$('a', catUl).filter((i, el) => {
 							linkCount++;
 							let href = c$(el).attr('href');
-							expect(href).toContain("-TBD",  `href ${href} should contain a valid link`);	// todo: lookup the link in a table
+							expect(map.has(href)).toBe(true, `href ${href} should contain a valid link from mock data`);
+							expect(href).toContain("-TBD",  `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
 						});
-						expect(linkCount).toBe(14, 'count of category items in the menu');
+						expect(linkCount).toBe(data.children.length, 'count of category items in the menu');
 						expect(res.status).toBe(200);
 					})
 					.end(specHelper.finish(done));

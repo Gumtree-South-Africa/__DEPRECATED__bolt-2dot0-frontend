@@ -119,3 +119,10 @@ module.exports.finish = (done) => {
 		done();
 	};
 };
+
+module.exports.getMockDataByLocale  = (mockDataPath, fileName, locale) => {
+	let fullPath = `${cwd}/test/serverUnit/mockData/${mockDataPath}/${fileName}_${locale}.json`;
+	let file = fs.readFileSync(fullPath);
+	return JSON.parse(file);
+};
+
