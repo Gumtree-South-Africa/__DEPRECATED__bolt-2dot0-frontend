@@ -120,7 +120,7 @@ describe('Server to hit HomePage', function() {
 
 						let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
 						let map = new Map();
-						for(let value of data.children){
+						for(let value of data.children) {
 							// setup a key for what the link looks like
 							map.set(`${value.localizedName}-TBD`, value);
 						}
