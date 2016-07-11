@@ -220,7 +220,6 @@ module.exports = (req, res, next) => {
 		modelData.footer = result['common'].footer || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
-		console.log(modelData.dataLayer);
 
 		// Changing Version of template depending of the cookie
 		// Dynamic Data from BAPI
