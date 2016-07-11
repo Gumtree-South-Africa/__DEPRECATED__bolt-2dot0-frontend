@@ -1,7 +1,6 @@
 {{#partial "content"}}
 	<div>
 		{{> (dynamic "sectionMenu")}}
-		{{> (dynamic "gpsMap")}}
 
         <div class="card trending-card">
             <div class="card-title">Popular in <a class="link inline-block underline" href="/selectLocationOverlay-TBD">Your Neighborhood</a></div>
@@ -15,6 +14,7 @@
 
         {{> (dynamic "recentActivity")}}
         {{> (dynamic "appDownloadSection")}}
+        {{> (dynamic "gpsMap")}}
         {{> (dynamic "safetyTips") }}
 	</div>
 {{/partial}}
