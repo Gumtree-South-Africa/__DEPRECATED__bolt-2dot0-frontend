@@ -13,7 +13,8 @@ RUN npm install -g forever
 RUN npm install -g gulp && \
     npm install -g node-gyp && \
     npm install -g raml-mockup && \
-    npm install -g karma-chrome-launcher --save-dev
+    npm install -g karma-chrome-launcher --save-dev && \
+    npm install -g phantomjs@1.9.20
 
 # for karam test 
 RUN apt-get update
