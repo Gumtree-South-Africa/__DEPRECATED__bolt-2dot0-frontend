@@ -239,7 +239,7 @@ MarkerClusterer.prototype.draw = function() {};
  *
  * @private
  */
-MarkerClusterer.prototype.setupStyles_ = function() {
+MarkerClusterer.prototype.setupStyles_original = function() {
 	if (this.styles_.length) {
 		return;
 	}
@@ -249,6 +249,20 @@ MarkerClusterer.prototype.setupStyles_ = function() {
 			url: this.imagePath_ + (i + 1) + '.' + this.imageExtension_,
 			height: size,
 			width: size
+		});
+	}
+};
+
+MarkerClusterer.prototype.setupStyles_ = function() {
+	if (this.styles_.length) {
+		return;
+	}
+
+	for (var i = 0; i < this.imagePath_.length; i++) {
+		this.styles_.push({
+			url: this.imagePath_[i],
+			height: 53,
+			width: 53
 		});
 	}
 };
@@ -1254,12 +1268,12 @@ ClusterIcon.prototype.createCss = function(pos) {
 			this.height_ + 'px; width:' + this.width_ + 'px; text-align:center;');
 	}
 
-	var txtColor = this.textColor_ ? this.textColor_ : 'black';
-	var txtSize = this.textSize_ ? this.textSize_ : 11;
+	var txtColor = this.textColor_ ? this.textColor_ : 'white';
+	var txtSize = this.textSize_ ? this.textSize_ : 12;
 
 	style.push('cursor:pointer; top:' + pos.y + 'px; left:' +
 		pos.x + 'px; color:' + txtColor + '; position:absolute; font-size:' +
-		txtSize + 'px; font-family:Arial,sans-serif; font-weight:bold');
+		txtSize + 'px; font-family:Lato,sans-serif; font-weight:bold; background-size: 100% 100%; background-repeat: no-repeat; border: 3px solid white;');
 	return style.join('');
 };
 
