@@ -1144,6 +1144,10 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
+	"welcomescreen.title": "Bienvenido!",
+    "welcomescreen.description": "¡Gana dinero ahora!",
+    "welcomescreen.close": "Cerrar",
+    "postad.button": "Publica Gratis",
 	"appdownload": {
 		"title": "¡Vende rápido!",
 		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
@@ -1201,5 +1205,6 @@
 			"sold": "%s acaba de vender: %s %s"
 		}
 	}
+
 }
 
