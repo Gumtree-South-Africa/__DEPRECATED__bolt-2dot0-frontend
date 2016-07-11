@@ -12,7 +12,7 @@ let initialize = () => {
 						lng: -99.177446
 					},
 					zoom: 13,
-					disableDefaultUI: true
+					disableDefaultUI: false
 				});
 
 				let markers = [];
