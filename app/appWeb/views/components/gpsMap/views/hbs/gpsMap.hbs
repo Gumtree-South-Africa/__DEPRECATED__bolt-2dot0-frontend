@@ -1,9 +1,9 @@
 <div class="map-wrapper">
 
-    <div id="map" data-map="{{this.country}}"></div>
+    <div id="map" data-map="{{this.map.ads}}"></div>
     <div id="nowselling">
         <h2>Now Selling</h2>
-        <span>125,386 items</span>
+        <span>{{this.map.totalAds}} items</span>
     </div>
 
     <!-- Replace the value of the key parameter with your own API key. -->
@@ -41,7 +41,7 @@
             opacity: 0.9;
             border-radius: 5px;
             box-shadow: 1px 3px 6px;
-            margin-bottom: -6.2em;
+            margin-bottom: -5.7em;
         }
     </style>
 

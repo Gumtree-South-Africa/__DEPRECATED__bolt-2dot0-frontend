@@ -84,6 +84,7 @@ router.get('/', function(req, res, next) {
 
 				modelData.recentActivities = result['recentActivities'] || {};
 				modelData.reviews = result['appDownload'] || {};
+				modelData.map = result['gpsMap'] || {};
 
 				// now make sure modelData gets all card data returned for home page
 				// todo: this logic is repeated from the homePageModelV2, if we can make it part of model builder we wouldn't need it here
