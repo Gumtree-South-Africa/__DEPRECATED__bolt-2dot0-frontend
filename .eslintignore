@@ -43,6 +43,7 @@ app/appWeb/views/components/effectiveMeasures/js/app.js
 app/appWeb/views/components/footer/js/app.js
 app/appWeb/views/components/geoLocatorSelector/js/app.js
 app/appWeb/views/components/gpsMap/js/gpsMap.js
+app/appWeb/views/components/gpsMap/js/markerClusterer.js
 app/appWeb/views/components/header/js/app.js
 app/appWeb/views/components/header/js/header.js
 app/appWeb/views/components/helpLink/js/app.js
