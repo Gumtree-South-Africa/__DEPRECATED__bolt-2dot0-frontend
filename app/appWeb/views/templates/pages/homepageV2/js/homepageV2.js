@@ -4,3 +4,4 @@
 
 require('app/appWeb/views/components/tileGrid/js/tileGrid.js').initialize();
 require('app/appWeb/views/components/headerV2/js/header.js').initialize();
+require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js').initialize();

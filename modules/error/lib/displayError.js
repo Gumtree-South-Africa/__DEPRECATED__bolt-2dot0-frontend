@@ -1,7 +1,7 @@
 
 'use strict';
 
-var express = require('express'),
+let express = require('express'),
     _ = require('underscore'),
     router = express.Router(),
     ErrorPageModel = require(process.cwd() +  '/app/builders/page/ErrorPageModel'),
@@ -9,8 +9,8 @@ var express = require('express'),
     deviceDetection = require(process.cwd() + '/modules/device-detection'),
     util = require('util');
 
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
-var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+let pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+let pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
 
 
@@ -21,7 +21,7 @@ var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
 module.exports.message = function (req, res, next) {
     // get the error status number
-    var errNum = res.locals.err.status,
+    let errNum = res.locals.err.status,
         errMsg;
     if (errNum === 404 || errNum === 500  || errNum === 410) {
         errMsg = "error" + parseInt(errNum, 10) + ".message";
@@ -39,43 +39,50 @@ module.exports.message = function (req, res, next) {
 	}
 
     // Build Model Data
-    var modelData =
-    {
-        env: 'public',
-        locale: res.locals.config.locale,
-        country: res.locals.config.country,
-        site: res.locals.config.name,
-        pagename: req.pagetype,
-        err: errMsg
-    };
+	if (typeof res.locals.config !== 'undefined') {
+		let modelData =
+		{
+			env: 'public',
+			locale: res.locals.config.locale,
+			country: res.locals.config.country,
+			site: res.locals.config.name,
+			pagename: req.pagetype,
+			err: errMsg
+		};
 
-    // Retrieve Data from Model Builders
-    var bapiConfigData = res.locals.config.bapiConfigData;
-    var model = new ErrorPageModel(req, res);
-    model.populateData().then(function (result) {
-        // Data from BAPI
-        modelData.header = result['common'].header;
-        modelData.footer = result['common'].footer;
-        modelData.dataLayer = result['common'].dataLayer;
+		// Retrieve Data from Model Builders
+		let bapiConfigData = res.locals.config.bapiConfigData;
+		let model = ErrorPageModel(req, res);
+		model.populateData().then(function(result) {
+			// Data from BAPI
+			modelData.header = result['common'].header;
+			modelData.footer = result['common'].footer;
+			modelData.dataLayer = result['common'].dataLayer;
 
-        //  Device data for handlebars
-        modelData.device = req.app.locals.deviceInfo;
+			//  Device data for handlebars
+			modelData.device = req.app.locals.deviceInfo;
 
-        // Special Data needed for HomePage in header, footer, content
-        error.extendHeaderData(modelData);
-        error.extendFooterData(modelData);
-        // error.buildContentData(modelData, bapiConfigData);
+			// Special Data needed for HomePage in header, footer, content
+			error.extendHeaderData(modelData);
+			error.extendFooterData(modelData);
 
-        // console.dir(modelData);
-
-        // Render
-       // res.statusCode = errNum;
-        res.render('error/views/hbs/error_' + res.locals.config.locale, modelData);
-    });
+			// Render
+			// res.statusCode = errNum;
+			res.render('error/views/hbs/error_' + res.locals.config.locale, modelData);
+		});
+	} else {
+		let modelData =
+		{
+			env: 'public',
+			pagename: req.pagetype,
+			err: errMsg
+		};
+		res.send('We\u2019re sorry, this page does not exist. Please add the domain in the Host Header.');
+	}
 };
 
 
-var error = {
+let error = {
     /**
      * Special header data for HomePage
      */
@@ -118,9 +125,9 @@ var error = {
                 modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
                 modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
             }
-            var availableAdFeatures = modelData.footer.availableAdFeatures;
+            let availableAdFeatures = modelData.footer.availableAdFeatures;
             if (typeof availableAdFeatures !== 'undefined') {
-                for (var i=0; i<availableAdFeatures.length; i++) {
+                for (let i=0; i<availableAdFeatures.length; i++) {
                     if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
                         modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
                     }

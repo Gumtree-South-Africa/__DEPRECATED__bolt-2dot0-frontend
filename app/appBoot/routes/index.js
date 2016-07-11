@@ -3,6 +3,6 @@
 let express = require('express');
 let router = express.Router();
 
-router.use('/', require('./bootController'));
+router.use('/', require('./boot/index'));
 
 module.exports = router;
