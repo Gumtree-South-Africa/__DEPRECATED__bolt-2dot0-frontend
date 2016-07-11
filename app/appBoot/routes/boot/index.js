@@ -3,6 +3,6 @@
 let express = require('express');
 let router = express.Router();
 
-router.use('/', require('./post'));
+router.use('/', require('./bootRoute'));
 
 module.exports = router;
