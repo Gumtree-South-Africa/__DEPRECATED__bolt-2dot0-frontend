@@ -1,0 +1,229 @@
+<div class="footer-wrapper">
+    {{#unless this.footerV2.distractionFree}}
+        <div class="meet-team">{{i18n "footer.help.heretohelp"}}</div>
+        <div class="team-photos">
+            <div class="user-photo-wrapper">
+                <div class="user-photo"
+                     style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5IfOnD_FjbpJvhz2fHPSjfEa0jkcVBOkci84igCQSudhjHi3hSg);">
+                </div>
+            </div>
+            <div class="user-photo-wrapper">
+                <div class="user-photo"
+                     style="background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcTs-AmzGz8FlZtult4q5RIxPvADBn3Ws3uAIUiYhgeG-g5o610ahalimA);">
+                </div>
+            </div>
+            <div class="user-photo-wrapper">
+                <div class="user-photo"
+                     style="background-image: url(https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQx9CPHNVDHrMjhq6tls6lt5TtUezdsxyuvEm9I3fj6U4z7exDm2A);">
+                </div>
+            </div>
+
+            <div class="user-photo-wrapper desktop-only">
+                <div class="user-photo"
+                     style="background-image: url(https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcQY4NUfSW2h3n4rnFSfMXT2sbfwRe1PYDFxSoEoCCIpU_OTFKMI-HK5zQ);">
+                </div>
+            </div>
+        </div>
+    {{/unless}}
+
+    <div class="clear mobile-only"></div>
+
+    {{#if this.footerV2.distractionFree}}
+        <div class="meet-team">{{i18n "footer.help.contact"}}</div>
+        <div class="df-support-wrapper">
+            <div class="df-support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_email.svg"/>
+                <a class="support-text" href="#">{{i18n "footer.support.em"}}</a>
+            </div>
+            <div class="df-support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_call.svg"/>
+                <a class="support-text" href="#">{{i18n "footer.support.ca"}}</a>
+            </div>
+            <div class="df-support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_chat.svg"/>
+                <a class="support-text" href="#">{{i18n "footer.support.ch"}}</a>
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="desktop-only line-divider"></div>
+    {{/if}}
+
+
+    {{#unless this.footerV2.distractionFree}}
+        <div class="support-wrapper">
+            <div class="support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_email.svg"/>
+                <a class="mobile-only support-text" href="#">{{i18n "footer.help.sendemail"}}</a>
+                <a class="desktop-only support-text" href="#">{{i18n "footer.support.em"}}</a>
+            </div>
+            <div class="support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_call.svg"/>
+                <a class="mobile-only support-text" href="#">{{i18n "footer.help.callus"}}</a>
+                <a class="desktop-only support-text" href="#">{{i18n "footer.support.ca"}}</a>
+            </div>
+            <div class="support-container">
+                <img class="support-icon" src="../../../../../public/icons/icon_chat.svg"/>
+                <a class="mobile-only support-text" href="#">{{i18n "footer.help.chatwithus"}}</a>
+                <a class="desktop-only support-text" href="#">{{i18n "footer.support.ch"}}</a>
+            </div>
+        </div>
+
+        <div class="mobile-only social-container">
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_facebook.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_twitter.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_pinterest.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_youtube.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon"
+                         style="background-image: url('/public/icons/icon_social_google_plus.svg');">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="clear"></div>
+        <div class="line-divider mobile-only"></div>
+
+        <div class="footer-aboutus">
+            <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.aboutus"}}</span>
+                <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
+                <div class="menu-items hide">
+                    <div><a href="#">{{i18n "footer.sitemap.aboutus.aboutviva"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.aboutus.vivablog"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.aboutus.vivabusiness"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.aboutus.rules"}}</a></div>
+                </div>
+            </div>
+        </div>
+
+    <div class="line-divider mobile-only"></div>
+
+    <div class="footer-legal">
+        <div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
+            <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
+            <div class="menu-items hide">
+                <div><a href="#">{{i18n "footer.sitemap.legal.terms"}}</a></div>
+                <div><a href="#">{{i18n "footer.sitemap.legal.privacy"}}</a></div>
+                <div><a href="#">{{i18n "footer.sitemap.legal.cookies"}}</a></div>
+            </div>
+        </div>
+    </div>
+    {{/unless}}
+    <div class="line-divider mobile-only"></div>
+
+    {{#if this.footerV2.distractionFree}}
+        <div class="df-footer-legal">
+            <div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
+                <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
+                <div class="menu-items hide">
+                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.terms"}}</a></div>
+                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.privacy"}}</a></div>
+                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.cookies"}}</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line-divider clear"></div>
+    {{/if}}
+
+    {{#unless this.footerV2.distractionFree}}
+        <div class="footer-explore">
+            <div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
+                <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
+                <div class="menu-items hide">
+                    <div><a href="#">{{i18n "footer.sitemap.explore.classifieds"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.explore.mobile"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.explore.partners"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.explore.carprice"}}</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line-divider mobile-only"></div>
+
+        <div class="footer-tips">
+            <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
+                <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
+                <div class="menu-items hide">
+                    <div><a href="#">{{i18n "footer.sitemap.tips.help"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.tips.vivaguides"}}</a></div>
+                    <div><a href="#">{{i18n "footer.sitemap.tips.givefeedback"}}</a></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="line-divider"></div>
+
+        <div class="clear line-divider"></div>
+
+        <div class="desktop-only social-container">
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_facebook.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_twitter.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_pinterest.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon" style="background-image: url('/public/icons/icon_social_youtube.svg');">
+                    </div>
+                </a>
+            </div>
+            <div class="social-icon-wrapper">
+                <a href="#">
+                    <div class="social-icon"
+                         style="background-image: url('/public/icons/icon_social_google_plus.svg');">
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="mobile-only clear"></div>
+
+        <div class="footer-download">
+            <div class="mobile-only menu-category">{{i18n "footer.download.download"}}</div>
+            <div class="app-downloads-container">
+                <a href="#"><img class="app-downloads" src="/public/images/es_MX/appstore.png"/></a>
+                <a href="#"><img class="app-downloads" src="/public/images/es_MX/googleplay.png"/></a>
+            </div>
+        </div>
+    {{/unless}}
+
+    <div class="footer-trademark">
+        <div class="trademark">{{i18n "footer.trademark.trademark"}}</div>
+    </div>
+</div>
+

@@ -11,6 +11,7 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let FooterV2Model = require(cwd + '/app/builders/common/FooterV2Model');
 
 /**
  * @method getHomepageDataFunctions
@@ -44,6 +45,7 @@ let getHomepageDataFunctions = function(req, res, modelData) {
 	let safetyTipsModel = new SafetyTipsModel(req, res);
 	let recentActivityModel = new RecentActivityModel(req, res);
 	let appDownloadModel = new AppDownloadModel(req, res);
+	let footerV2Model = new FooterV2Model(req, res);
 
 	dataPromiseFunctionMap.safetyTips = (callback) => {
 		let data = safetyTipsModel.getSafetyTips();
@@ -57,6 +59,11 @@ let getHomepageDataFunctions = function(req, res, modelData) {
 
 	dataPromiseFunctionMap.appDownload = (callback) => {
 		let data = appDownloadModel.getAppDownload();
+		callback(null, data);
+	};
+
+	dataPromiseFunctionMap.footerV2 = (callback) => {
+		let data = footerV2Model.isDistractionFree();
 		callback(null, data);
 	};
 
