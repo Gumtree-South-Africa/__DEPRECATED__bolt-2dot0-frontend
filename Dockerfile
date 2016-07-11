@@ -36,6 +36,7 @@ COPY . /src/bolt-2dot0-frontend/
 
 # Install app dependencies
 # When this image goto production, we only do npm install --production
+RUN rm -rf /src/bolt-2dot0-frontend/node_modules
 RUN npm install
 
 # Build
