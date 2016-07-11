@@ -1,6 +1,7 @@
 'use strict';
 
 let $ = require('jquery');
+
 let _toggleBrowseMenu = () => {
     $('#js-cat-dropdown').toggleClass('hidden');
     $('#js-browse-dropdown #js-browse-item-text').toggleClass('menu-open');
@@ -19,7 +20,7 @@ let initialize = () => {
 	$(document).ready(() => {
 		$('.browse').on('tap', _toggleBrowseMenu)
 			.hover(_toggleBrowseMenu, _toggleBrowseMenu);
-		
+
 		$('.profile').on('tap', _toggleProfileMenu)
 			.hover(_toggleProfileMenu, _toggleProfileMenu);
 	});

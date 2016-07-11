@@ -25,12 +25,13 @@
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-                        <a href="{{this.localizedName}}-TBD" class="link-item">
+
                             <li class="menu-item">
-                                {{this.localizedName}}
-                                <span class="item-secondary-text">(tbd)</span>
+                                <a href="{{this.localizedName}}-TBD" class="link-item">
+                                    <span class="item-primary-text">{{this.localizedName}}</span>
+                                    <span class="item-secondary-text">(tbd)</span>
+                                </a>
                             </li>
-                        </a>
                     {{/each}}
                 </ul>
             </div>
@@ -121,7 +122,8 @@
                 </ul>
             </div>
 
-            {{> (dynamic "button") i18nPath="header.postAd"}}
+            {{> (dynamic "button") extraClasses='post-ad-button' buttonLink="/quickpost" i18nPath="header.postAd"}}
+
         </div>
     {{/unless}}
 </div>
