@@ -1144,10 +1144,12 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
-	"welcomescreen.title": "Bienvenido!",
-    "welcomescreen.description": "¡Gana dinero ahora!",
-    "welcomescreen.close": "Cerrar",
     "postad.button": "Publica Gratis",
+    "welcomescreen": {
+		"title": "Bienvenido!",
+		"description": "¡Gana dinero ahora!",
+		"close": "Cerrar"
+	},
 	"appdownload": {
 		"title": "¡Vende rápido!",
 		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
@@ -1203,6 +1205,58 @@
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",
 			"sold": "%s acaba de vender: %s %s"
+		}
+	},
+	"footer": {
+		"help": {
+			"heretohelp": "Estamos aquÌ para ayudarte",
+			"sendemail": "EnvÌa un correo electrÛnico",
+			"callus": "Ll·manos",
+			"chatwithus": "Chatea con nosotros",
+			"contact": "AtenciÛn al cliente",
+			"meet": "Contacta a nuestro equipo de AtenciÛn al cliente"
+		},
+		"support": {
+			"em": "Email",
+			"ca": "TelÈfono",
+			"ch": "Chat"
+		},
+		"sitemap": {
+			"aboutus": {
+				"aboutus": "Acerca de nosotros",
+				"aboutviva": "Acerca de Vivanuncios",
+				"vivablog": "Blog de Vivanuncios",
+				"vivabusiness": "Vivanuncios para negocios",
+				"rules": "Reglas para publicar anuncios"
+			},
+			"legal": {
+				"legal": "InformaciÛn legal",
+				"terms": "Condiciones de uso",
+				"privacy": "PolÌtica de privacidad",
+				"cookies": "Cookies"
+			},
+			"explore": {
+				"explore": "Explorar",
+				"classifieds": "Sitio de clasificados de eBay",
+				"mobile": "Aplicaciones mÛviles",
+				"partners": "Socios",
+				"carprice": "Õndice de precios de autos"
+			},
+			"tips": {
+				"tips": "Consejos y ayuda",
+				"help": "P·ginas de ayuda",
+				"onlinesafety": "Seguridad en Internet",
+				"vivaguides": "GuÌas de Vivanuncios",
+				"givefeedback": "Comentar"
+			}
+		},
+		"download": {
+			"download": "Descargar la aplicaciÛn",
+			"itunes": "Disponible en la App Store",
+			"playstore": "Disponible en la App Store de Android"
+		},
+		"trademark": {
+			"trademark": "2014-2016 eBay. Todos los derechos reservados"
 		}
 	}
 

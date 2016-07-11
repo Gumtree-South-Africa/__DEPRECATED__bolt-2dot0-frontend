@@ -4,7 +4,9 @@ let Q = require('q');
 
 let ModelBuilder = require('./ModelBuilder');
 let HeaderModel = require('./HeaderModel');
+let HeaderModelV2 = require('./HeaderModelV2');
 let FooterModel = require('./FooterModel');
+let FooterModelV2 = require('./FooterModelV2');
 let DataLayerModel = require('./DataLayerModel');
 
 /**
@@ -13,9 +15,14 @@ let DataLayerModel = require('./DataLayerModel');
  */
 class BasePageModel {
 	constructor(req, res) {
-		this.header = new HeaderModel(req.secure, req, res);
+		if (res.locals.b2dot0Version) {
+			this.header = new HeaderModelV2(req.secure, req, res);
+			this.footer = new FooterModelV2(req.secure, req, res);
+		} else {
+			this.header = new HeaderModel(req.secure, req, res);
+			this.footer = new FooterModel(req.secure, req, res);
+		}
 		this.headerBuilder = this.header.getModelBuilder();
-		this.footer = new FooterModel(req.secure, req, res);
 		this.footerBuilder = this.footer.getModelBuilder();
 		this.dataLayer = new DataLayerModel(req, res);
 		this.dataLayerBuilder = this.dataLayer.getModelBuilder();
