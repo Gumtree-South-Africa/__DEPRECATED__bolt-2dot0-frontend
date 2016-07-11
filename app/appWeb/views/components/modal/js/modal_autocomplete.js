@@ -28,7 +28,7 @@ let initialize = () => {
 																let latitude = resp.results[idx].geometry.location.lat;
 																let longitude = resp.results[idx].geometry.location.lng;
 																let splitAddress = address.split(',');
-																let partialAddy = (splitAddress.length <= 2) ? splitAddress[splitAddress.length-1] : (splitAddress[splitAddress.length-2] + splitAddress[splitAddress.length-1]);
+																let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length-1] : (splitAddress[splitAddress.length-2] + splitAddress[splitAddress.length-1]);
 																htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
 														}
 														$('#autocompleteField').append(htmlElt);
