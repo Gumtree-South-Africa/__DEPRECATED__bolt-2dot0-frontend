@@ -3,8 +3,10 @@
 let initialize = () => {
 
 		$(document).ready(() => {
-			function initMap(data) {
+			function initMap() {
 				let mapDiv = document.getElementById('map');
+				let mapData = $('#map').attr('data-map');
+				console.log('mapData: ',mapData);
 				let map = new google.maps.Map(mapDiv, {
 					center: {
 						lat: 19.414980,
