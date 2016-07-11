@@ -104,41 +104,64 @@ describe('Server to hit HomePage', function() {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
-						let c$ = cheerio.load(res.text);
-						expect(c$('.headerV2')).toBeDefined();
 						expect(res.status).toBe(200);
+
+						let c$ = cheerio.load(res.text);
+						expect(c$('.headerV2').length).toBe(1, 'header selector returned no matches, 1 header element should be found');
 					})
 					.end(specHelper.finish(done));
 			});
 		});
 
-		it('category dropdown has correct links but is hidden', (done) => {
+		it('header logo is linked to root', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
+						expect(res.status).toBe(200);
+
+						let c$ = cheerio.load(res.text);
+						let header = c$('.headerV2');
+						expect(header.length).toBe(1, 'header selector returned no matches, 1 header element should be found');
+
+						let href   = c$('a:has(div.logo)', header).attr('href');
+						expect(href).toBe('/', 'the link href for the logo should link to the root');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('category dropdown has correct content and links but is hidden', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						expect(res.status).toBe(200);
 
 						let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
 						let map = new Map();
 						for(let value of data.children) {
-							// setup a key for what the link looks like
-							map.set(`${value.localizedName}-TBD`, value);
+							// setup a key we can use to lookup the category
+							let key = value.localizedName;
+							map.set(key, value);
 						}
 
 						let c$ = cheerio.load(res.text);
 						let catUl = c$('#js-cat-dropdown');
-						expect(catUl).toBeDefined('element with id js-cat-dropdown should exist');
+						expect(catUl.length).toBe(1, '1 element with id js-cat-dropdown should exist');
 						expect(catUl.hasClass('hidden')).toBe(true, 'dropdown should be hidden');
 
 						let linkCount = 0;
 						c$('a', catUl).filter((i, el) => {
 							linkCount++;
+							let itemName = c$('.item-primary-text', el).text();
+							expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
+
 							let href = c$(el).attr('href');
-							expect(map.has(href)).toBe(true, `href ${href} should contain a valid link from mock data`);
 							expect(href).toContain("-TBD",  `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
 						});
 						expect(linkCount).toBe(data.children.length, 'count of category items in the menu');
-						expect(res.status).toBe(200);
+
 					})
 					.end(specHelper.finish(done));
 			});

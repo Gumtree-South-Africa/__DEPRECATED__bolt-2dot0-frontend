@@ -218,7 +218,16 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
         background-color: $headerBackgroundColor;
         border: 1px solid $headerMenuBorderColor;
 
+        .menu-item {
+            border-bottom: 1px solid $headerMenuItemSeparatorColor;
+        }
+
         .link-item {
+
+            display: block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
             .menu-item {
                 border-bottom: 1px solid $headerMenuItemSeparatorColor;
             }
@@ -229,13 +238,10 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             }
         }
 
-        .menu-item {
+        .item-primary-text {
             padding-left: 5px;
-            padding-top: 10px;
-            padding-bottom: 10px;
-
-            border-bottom: 1px solid $headerMenuItemSeparatorColor;
         }
+
         .item-secondary-text {
             padding-left: 8px;
             font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
