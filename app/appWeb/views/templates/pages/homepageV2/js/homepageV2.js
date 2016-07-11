@@ -5,3 +5,4 @@
 require('app/appWeb/views/components/tileGrid/js/tileGrid.js').initialize();
 require('app/appWeb/views/components/gpsMap/js/markerClusterer.js');
 require('app/appWeb/views/components/gpsMap/js/gpsMap.js').initialize();
+require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js').initialize();

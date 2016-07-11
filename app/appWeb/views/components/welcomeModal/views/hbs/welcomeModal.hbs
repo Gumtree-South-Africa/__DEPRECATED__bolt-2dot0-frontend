@@ -1,0 +1,21 @@
+<div class="welcome-wrapper"></div>
+  <div class="modal-wrapper">
+      <div class="modal">
+          <div class="modal-overlay"></div>
+		  <div class="modal-container">
+		      <div class="modal-close-section">
+		        <span class="close-text">{{i18n "welcomescreen.close"}}</span>
+		        <span class="icon-close"></span>
+		  </div>
+
+         <h1>{{i18n "welcomescreen.title"}}</h2>
+         <div class="modal-info">{{i18n "welcomescreen.description"}}</div>
+         
+     </div>
+</div>
+
+   <div class="welcome-footer">
+	 <div class="modal-footer stickybottom">
+          {{> (dynamic "button")}}
+     </div>
+   </div>   

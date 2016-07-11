@@ -1,0 +1,89 @@
+@mixin modal(){
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  z-index: 200;
+  > .modal-overlay{
+      background-color: $modal-bgcolor;
+      opacity: 0.5;
+      position: absolute;
+      height: 100%;
+      width: 100%;
+  }
+  > .modal-container{
+      background-color: white;
+      width: 80%;
+      position: relative;
+      top: 6em;
+      margin: 2em auto;
+      padding: 1em;
+      max-width: 23em;
+      min-height: 14em;
+      > .modal-close-section{
+          text-align: right;
+          cursor: pointer;
+          color: gray;
+          font-size: 0.8em;
+          :hover{
+            text-decoration: underline;
+          }
+          > .close-text {
+            vertical-align: middle;
+            margin-right: 0.5em;
+          }
+          > .icon-close{
+              width: 1em;
+              height: 1em;
+              display: inline-block;
+              vertical-align: middle;
+          }
+      }
+  }
+}
+
+.modal {
+  h1{
+    font: $h1;
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+  }
+  .modal-info{
+    font: $p2;
+    color: $modal-info;
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+    margin-left: 1em;
+  }
+  .modal-field{
+    position: relative;
+    .icon-placeholder1{
+      //top: 0.1em;
+      //position: absolute;
+      border: 1px solid green;
+      //right: 0;
+      float: left;
+    }
+    .icon-placeholder2{
+      //position: absolute;
+      border: 1px solid blue;
+      //right: 2.5em;
+      //top: 0.1em;
+      float: left;
+    }
+  }
+  input{
+    border: transparent;
+    width: 98%;
+    height: 2em;
+    margin-left: 0.5em;
+    &:focus{
+      border: transparent;
+      outline: none;
+    }
+  }
+  .btn-wrapper{
+    margin-top: 2em;
+  }
+}
