@@ -4,7 +4,7 @@
     <div id="nowselling">
         <span class="hiddenElt">{{json this.map}}</span>
         <h2>{{i18n "gpsMap.label"}}</h2>
-        <span>{{this.map.totalAds}} {{i18n "gpsMap.items"}}</span>
+        <span>{{digitGrouping this.map.totalAds ","}} {{i18n "gpsMap.items"}}</span>
     </div>
 
     <!-- Replace the value of the key parameter with your own API key. -->
