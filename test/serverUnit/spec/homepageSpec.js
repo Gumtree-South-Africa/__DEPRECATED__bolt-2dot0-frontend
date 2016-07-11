@@ -6,6 +6,12 @@ let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoin
 
 describe('Server to hit HomePage', function() {
 
+	let i18n;
+
+	beforeAll(() => {
+		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
+	});
+
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
@@ -99,7 +105,7 @@ describe('Server to hit HomePage', function() {
 
 	describe('Header', () => {
 
-		it('shows header', (done) => {
+		it('should show header content', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
@@ -107,13 +113,13 @@ describe('Server to hit HomePage', function() {
 						expect(res.status).toBe(200);
 
 						let c$ = cheerio.load(res.text);
-						expect(c$('.headerV2').length).toBe(1, 'header selector returned no matches, 1 header element should be found');
+						expect(c$('.headerV2').length).toBe(1, 'selector should produce 1 element for header');
 					})
 					.end(specHelper.finish(done));
 			});
 		});
 
-		it('header logo is linked to root', (done) => {
+		it('header logo should link to root', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
@@ -122,7 +128,7 @@ describe('Server to hit HomePage', function() {
 
 						let c$ = cheerio.load(res.text);
 						let header = c$('.headerV2');
-						expect(header.length).toBe(1, 'header selector returned no matches, 1 header element should be found');
+						expect(header.length).toBe(1, 'selector should produce 1 element for header');
 
 						let href   = c$('a:has(div.logo)', header).attr('href');
 						expect(href).toBe('/', 'the link href for the logo should link to the root');
@@ -131,7 +137,52 @@ describe('Server to hit HomePage', function() {
 			});
 		});
 
-		it('category dropdown has correct content and links but is hidden', (done) => {
+		it('header post ad button should have correct i18n content and link', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						expect(res.status).toBe(200);
+
+						let c$ = cheerio.load(res.text);
+						let header = c$('.headerV2');
+						expect(header.length).toBe(1, 'selector should produce 1 element for header');
+
+						let button = c$('.post-ad-button', header);
+						expect(button.length).toBe(1, 'selector should produce 1 element for post ad button');
+
+						let buttonText = c$('.sudolink', button).text().trim();
+						expect(buttonText).toBe(i18n.header.postAd, 'i18n string for button is does not match');
+
+						let href   = c$('a', button).attr('href');
+						expect(href).toBe('/quickpost', 'the link href for the post ad button should link to post ad page');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('header help menu should have correct i18n content and link ', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						expect(res.status).toBe(200);
+
+						let c$ = cheerio.load(res.text);
+						let header = c$('.headerV2');
+						expect(header.length).toBe(1, 'selector should produce 1 element for header');
+
+						let mainMenuItemText = c$('.help', header).text().trim();
+						expect(mainMenuItemText).toBe(i18n.header.help, 'i18n string for help menu item should match');
+
+						let href   = c$('a:has(div.help)', header).attr('href');
+						expect(href).toBe('help-TBD', 'the link href for help should link to the help page');	// todo: define where these should link to
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('category dropdown should have correct i18n content and links but is hidden', (done) => {
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
@@ -148,8 +199,11 @@ describe('Server to hit HomePage', function() {
 
 						let c$ = cheerio.load(res.text);
 						let catUl = c$('#js-cat-dropdown');
-						expect(catUl.length).toBe(1, '1 element with id js-cat-dropdown should exist');
-						expect(catUl.hasClass('hidden')).toBe(true, 'dropdown should be hidden');
+						expect(catUl.length).toBe(1, 'selector should produce 1 element for cat dropdown');
+						expect(catUl.hasClass('hidden')).toBe(true, 'cat dropdown should be hidden');
+
+						let mainMenuItemText = c$('#js-browse-item-text').text().trim();
+						expect(mainMenuItemText).toBe(i18n.header.catDropdown.browse, 'i18n string for category main menu item should match');
 
 						let linkCount = 0;
 						c$('a', catUl).filter((i, el) => {
