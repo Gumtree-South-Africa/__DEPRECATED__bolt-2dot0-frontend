@@ -225,6 +225,7 @@ module.exports = (req, res, next) => {
 		modelData = _.extend(modelData, result);
 		modelData.header = result['common'].header || {};
 		modelData.footer = result['common'].footer || {};
+		// modelData.footerV2 = result['footerV2'] || {};
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
 		modelData.isNewHP = true;
