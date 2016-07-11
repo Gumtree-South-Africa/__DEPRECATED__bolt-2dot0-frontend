@@ -13,7 +13,7 @@ let initialize = () => {
 						if ($(this).val() !== '') {
 						$.ajax({
 
-								//TODO: use proper google account key
+								//TODO: use proper google account key 
 
 								url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&components=country:' + country + '&language='+ lang + '&address=' + $('#modal-location').val(),
 								dataType: 'JSON',
