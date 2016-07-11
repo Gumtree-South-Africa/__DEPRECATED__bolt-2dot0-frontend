@@ -7,7 +7,6 @@ let initialize = () => {
 				let mapDiv = document.getElementById('map');
 				let data = $('#map').attr('data-map');
 				console.log('mapData: ', data);
-				console.log(data.length);
 				let map = new google.maps.Map(mapDiv, {
 					center: {
 						lat: 19.414980,
@@ -19,6 +18,7 @@ let initialize = () => {
 
 				let markers = [];
 				for (let i = 0; i < data.length; i++) {
+					console.log(data[i]);
 					let latLng = new google.maps.LatLng(data[i].geoLocation.lat, data[i].geoLocation.lng);
 					let markerImage = new google.maps.MarkerImage(data[i].pictures[0].sizeUrls[0].NORMAL, new google.maps.Size(24, 32));
 					let marker = new google.maps.Marker({
