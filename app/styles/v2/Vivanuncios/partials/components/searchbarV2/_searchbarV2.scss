@@ -47,7 +47,7 @@
 		z-index: 3;
 
 		.type-ahead-results-container {
-			padding-top: 30px;
+			padding-top: 45px;
 			height: 100%;
 			z-index: 3;
 			width: 100%;
@@ -56,6 +56,8 @@
 			left: 0;
 			margin: 0 auto;
 			background-color: $vivaGray6;
+			overflow-y: scroll;
+			padding-right: 20px; // hide scrollbar
 		}
 	}
 
@@ -233,6 +235,7 @@
 			margin-top: 0;
 
 			.type-ahead-results-container {
+				padding-right: 0px;
 				padding-top: 10px;
 				width: 85%;
 				margin: 0;
@@ -247,3 +250,11 @@
 		}
 	}
 }
+
+@include to-breakpoint($medium-break) {
+	body.disable-scroll-mobile {
+		overflow-y: hidden;
+	}
+}
+
+
