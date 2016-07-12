@@ -25,7 +25,7 @@
         float: left;
 
         &:not(:first-child) {
-            margin-left: 50px;
+            margin-left: 40px;
         }
 
         &.desktop-icon {
@@ -38,7 +38,7 @@
         height: 40px;
 
         .social-icon-wrapper {
-            margin: 10px 0px 15px 5px;
+            margin: 10px 0px 15px 0px;
             position: relative;
             width: 40px;
             float:left;
@@ -55,6 +55,21 @@
             background-position: center;
             background-size: contain;
             margin-top: 5px;
+        }
+        .fb-icon {
+            background-image: url('../../../../../icons/icon_social_facebook.svg');
+        }
+        .twitter-icon {
+            background-image: url('../../../../../icons/icon_social_twitter.svg');
+        }
+        .pinterest-icon {
+            background-image: url('../../../../../icons/icon_social_pinterest.svg');
+        }
+        .youtube-icon {
+            background-image: url('../../../../../icons/icon_social_youtube.svg');
+        }
+        .googleplus-icon {
+            background-image: url('../../../../../icons/icon_social_google_plus.svg');
         }
     }
 
@@ -82,9 +97,20 @@
 
     .app-downloads {
         border: 1px solid white;
-        height: 40%;
-        width: 40%;
+        display: inline-block;
         margin: 0 10px;
+        width: 40%;
+        height: 44px;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: contain;
+        margin-top: 5px;
+    }
+    .ios-icon {
+        background-image: url('../../../../../images/es_MX/appstore.png');
+    }
+    .googleplay-icon {
+        background-image: url('../../../../../images/es_MX/googleplay.png');
     }
 
     .footer-download {
@@ -102,9 +128,15 @@
         width: 95%;
         padding: 12px;
         .chevron {
+            background-image: url('../../../../../images/carousel-arrow-right.png');
             position: relative;
             float: right;
             margin: 5px 10px 0px 0px;
+            background-repeat: no-repeat;
+            width: 15px;
+            height: 15px;
+            background-size: cover;
+            background-position: center;
         }
         .menu-items {
             margin-top: 15px;
@@ -116,7 +148,6 @@
 
         .support-container {
             margin-left: 25px;
-
             .support-icon {
                 display: inline-block;
                 align-self: center;
@@ -126,7 +157,36 @@
                 top: 5px;
                 margin-top: 5px;
             }
-
+            .email-icon {
+                background-image: url('../../../../../icons/icon_email.svg');
+                position: relative;
+                margin: 5px 10px 0px 0px;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
+            }
+            .call-icon {
+                background-image: url('../../../../../icons/icon_call.svg');
+                position: relative;
+                margin: 5px 10px 0px 0px;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
+            }
+            .chat-icon {
+                background-image: url('../../../../../icons/icon_chat.svg');
+                position: relative;
+                margin: 5px 10px 0px 0px;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
+            }
             .support-text {
                 margin-left: 10px;
             }
@@ -138,7 +198,7 @@
 
         .df-support-container {
             float: left;
-
+            margin-left: 5px;
             .support-icon {
                 display: inline-block;
                 align-self: center;
@@ -153,21 +213,32 @@
             .support-text {
                 margin-left: 5px;
             }
-        }
-
-        .df-support-container {
-            .support-icon {
-                display: inline-block;
-                align-self: center;
-                height: 20px;
-                width: 20px;
+            .email-icon {
+                background-image: url('../../../../../icons/icon_email.svg');
                 position: relative;
-                top: 5px;
-                margin-top: 5px;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
             }
-
-            .support-text {
-                margin-left: 10px;
+            .call-icon {
+                background-image: url('../../../../../icons/icon_call.svg');
+                position: relative;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
+            }
+            .chat-icon {
+                background-image: url('../../../../../icons/icon_chat.svg');
+                position: relative;
+                background-repeat: no-repeat;
+                width: 20px;
+                height: 20px;
+                background-size: cover;
+                background-position: center;
             }
         }
     }
@@ -242,6 +313,10 @@
             width: 500px;
             display: inline-block;
             margin-top: 15px;
+            .app-downloads {
+                position: relative;
+                top: -5px;
+            }
         }
         .df-support-wrapper {
             display: block;
@@ -268,7 +343,7 @@
             display: inline-block;
             position: relative;
             top: -20px;
-            margin: 0px 10px 15px 50px;
+            margin: 0px 10px 15px 30px;
 
             .support-container {
                 display: inline-block;
