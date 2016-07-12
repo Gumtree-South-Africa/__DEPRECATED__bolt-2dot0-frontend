@@ -127,10 +127,6 @@ $desktopSearchBarHeight: 32px;
 		}
 
 		.search-button {
-			&:hover {
-				cursor: pointer;
-			}
-
 			background-color: $searchBarButtonColor;
 			color: $searchBarButtonTextColor;
 			position: absolute;
@@ -159,6 +155,10 @@ $desktopSearchBarHeight: 32px;
 				height: 100%;
 				display: block;
 				margin: auto;
+			}
+
+			&:hover {
+				cursor: pointer;
 			}
 		}
 
