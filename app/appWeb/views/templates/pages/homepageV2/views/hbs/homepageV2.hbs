@@ -1,3 +1,7 @@
+{{#partial "headerWrapper"}}
+    {{> (dynamic "headerV2")}}
+{{/partial}}
+
 {{#partial "content"}}
 	<div>
 		{{> (dynamic "sectionMenu")}}
@@ -15,13 +19,10 @@
         {{> (dynamic "recentActivity")}}
         {{> (dynamic "appDownloadSection")}}
         {{> (dynamic "safetyTips") }}
-        {{> (dynamic "footerV2")}}
         {{> (dynamic "welcomeModal")}}
 	</div>
 {{/partial}}
 
-{{!-- override of header and footer --}}
-{{#if this.isNewHP}}
-    {{#partial "headerWrapper"}}{{/partial}}
-    {{#partial "footerWrapper"}}{{/partial}}
-{{/if}}
+{{#partial "footerWrapper"}}
+    {{> (dynamic "footerV2")}}
+{{/partial}}

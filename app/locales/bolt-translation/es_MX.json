@@ -1182,6 +1182,25 @@
 			]
 		}
 	},
+	  "header": {
+	  "catDropdown": {
+		  "browse": "Explorar"
+	  },
+	  "userDropdown": {
+		  "title": "¡Hola, ",
+		  "messages": "Mensajes",
+		  "favorites": "Favoritos",
+		  "myAlerts": "Mis avisos",
+		  "myProfile": "Mi perfil",
+		  "promoteMyAds": "Promocionar mis anuncios",
+		  "mySettings": "My configuración",
+		  "pricingGuide": "Guía de precios",
+		  "logout": "Cerrar sesión"
+	  },
+	  "myAds": "Mis anuncios",
+	  "help": "Ayuda",
+	  "postAd": "Publicar un anuncio"
+  },
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",

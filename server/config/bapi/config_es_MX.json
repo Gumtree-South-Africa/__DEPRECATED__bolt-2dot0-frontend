@@ -78,6 +78,7 @@
 	},
 	"content" : {
 	  	"homepageV2" : {
+			"distractionFree": false,
 			"reviews" : [
 				{
 					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTQ3WDMwOA==/z/0TkAAOSw41xXO7-v/$_19.JPG?set_id=8800005007",
@@ -127,8 +128,7 @@
 					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg",
 					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados"
 				}
-			],
-			"distractionFree": false
+			]
 	  	},
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
@@ -152,10 +152,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "footerV2"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "footerV2"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard"]
 			}
 		},
 		"Homepage" : {

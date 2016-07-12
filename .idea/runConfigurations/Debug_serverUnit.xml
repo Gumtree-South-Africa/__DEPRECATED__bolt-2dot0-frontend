@@ -1,0 +1,13 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Debug serverUnit" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="node_modules/jasmine/bin/jasmine.js" working-dir="$PROJECT_DIR$">
+    <envs>
+      <env name="NODE_CONFIG_DIR" value="./server/config" />
+      <env name="JASMINE_CONFIG_PATH" value="./test/serverUnit/jasmine.json" />
+      <env name="PORT" value="8000" />
+      <env name="SSL_PORT" value="7443" />
+      <env name="BASEDOMAINSUFFIX" value="localhost" />
+      <env name="NODE_ENV" value="mock" />
+    </envs>
+    <method />
+  </configuration>
+</component>

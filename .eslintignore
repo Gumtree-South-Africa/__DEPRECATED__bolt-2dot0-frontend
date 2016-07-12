@@ -5,7 +5,7 @@ test/serverUnit/index.js
 
 app/builders/page/ErrorPageModel.js
 app/builders/page/HomePageModel.js
-app/builders/page/QuickpostPageModel.js
+app/builders/page/QuickPostPageModel.js
 app/config/gulpIcons/gulpSvgConfig.js
 app/config/ruby/jsmin.js
 app/config/commonjsurl.js
@@ -44,6 +44,7 @@ app/appWeb/views/components/footer/js/app.js
 app/appWeb/views/components/geoLocatorSelector/js/app.js
 app/appWeb/views/components/header/js/app.js
 app/appWeb/views/components/header/js/header.js
+app/appWeb/views/components/headerV2/js/deepLink.js
 app/appWeb/views/components/helpLink/js/app.js
 app/appWeb/views/components/isolatedSignIn/js/app.js
 app/appWeb/views/components/locationMapContainer/js/app.js
@@ -88,7 +89,6 @@ app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 server/middlewares/check-authentication.js
 server/middlewares/check-ip.js
 server/middlewares/check-machineid.js
-server/middlewares/check-mobileDevice.js
 server/middlewares/check-useragent.js
 server/middlewares/express-builder.js
 server/middlewares/request-id.js

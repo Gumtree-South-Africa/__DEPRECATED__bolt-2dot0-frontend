@@ -1,5 +1,5 @@
 <div class="footer-wrapper">
-    {{#unless this.footerV2.distractionFree}}
+    {{#unless this.footer.distractionFree}}
         <div class="meet-team">{{i18n "footer.help.heretohelp"}}</div>
         <div class="team-photos">
             <div class="user-photo-wrapper">
@@ -28,7 +28,7 @@
 
     <div class="clear mobile-only"></div>
 
-    {{#if this.footerV2.distractionFree}}
+    {{#if this.footer.distractionFree}}
         <div class="meet-team">{{i18n "footer.help.contact"}}</div>
         <div class="df-support-wrapper">
             <div class="df-support-container">
@@ -49,7 +49,7 @@
     {{/if}}
 
 
-    {{#unless this.footerV2.distractionFree}}
+    {{#unless this.footer.distractionFree}}
         <div class="support-wrapper">
             <div class="support-container">
                 <img class="support-icon" src="public/icons/icon_email.svg"/>
@@ -132,7 +132,7 @@
     {{/unless}}
     <div class="line-divider mobile-only"></div>
 
-    {{#if this.footerV2.distractionFree}}
+    {{#if this.footer.distractionFree}}
         <div class="df-footer-legal">
             <div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
                 <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
@@ -147,7 +147,7 @@
         <div class="line-divider clear"></div>
     {{/if}}
 
-    {{#unless this.footerV2.distractionFree}}
+    {{#unless this.footer.distractionFree}}
         <div class="footer-explore">
             <div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
                 <img class="chevron mobile-only" src="/public/images/carousel-arrow-right.png"/>
