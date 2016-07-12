@@ -8,6 +8,7 @@ const gulpEslint = require('gulp-eslint');
 module.exports = function watch(gulp) {
 	return function() {
 		gulp.task('eslint', function() {
+			let argv = require('yargs').argv;
 			let stream = gulp.src([
 				// 'app/controllers/page/isotopePrototype/*.js',
 				// 'app/views/components/responsiveBreakpointDetection/js/*.js',
@@ -23,8 +24,11 @@ module.exports = function watch(gulp) {
 				'.eslintrc'
 			])
 				.pipe(gulpEslint())
-				.pipe(gulpEslint.format())
-				.pipe(gulpEslint.failAfterError());
+				.pipe(gulpEslint.format());
+			
+			if (!argv.hasOwnProperty("noLintHalt")) {
+				stream = stream.pipe(gulpEslint.failAfterError());
+			}
 
 			return stream;
 		});
