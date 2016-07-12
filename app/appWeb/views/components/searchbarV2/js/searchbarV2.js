@@ -121,6 +121,7 @@ let _newTypeAhead = (currentSearchTerm) => {
  */
 let _setIsTyping = (isTyping) => {
 	this.$searchControls.toggleClass("is-typing", isTyping);
+	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
 let _selectItem = () => {
@@ -177,6 +178,11 @@ let initialize = () => {
 		let textBoxVal = this.$searchTextbox.val();
 		_setIsTyping(textBoxVal !== "");
 		_newTypeAhead(textBoxVal);
+	});
+
+	this.$searchControls.find(".mobile-search-button").click(() => {
+		//click the actual submit button;
+		this.$searchButton.click();
 	});
 
 	this.$searchTextbox.on('keyup', (evt) => {
