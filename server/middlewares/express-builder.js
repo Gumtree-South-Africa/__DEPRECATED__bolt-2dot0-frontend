@@ -6,7 +6,17 @@ var express = require('express'), bodyParser = require('body-parser'), compress 
 var config = {
 	root: process.cwd()
 };
-var legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'), guardians = require(config.root + '/modules/guardians'), deviceDetection = require(config.root + '/modules/device-detection'), checkAuthentication = require(config.root + '/server/middlewares/check-authentication'), checkMobileOnly = require(config.root + '/server/middlewares/check-mobileDevice'), boltExpressHbs = require(config.root + '/modules/handlebars'), assets = require(config.root + '/modules/assets'), checkIp = require(config.root + '/server/middlewares/check-ip'), checkMachineId = require(config.root + '/server/middlewares/check-machineid'), checkUserAgent = require(config.root + '/server/middlewares/check-useragent'), requestId = require(config.root + '/server/middlewares/request-id'), writeHeader = require(config.root + '/server/middlewares/write-header');
+var legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
+	guardians = require(config.root + '/modules/guardians'),
+	deviceDetection = require(config.root + '/modules/device-detection'),
+	checkAuthentication = require(config.root + '/server/middlewares/check-authentication'), 
+	boltExpressHbs = require(config.root + '/modules/handlebars'),
+	assets = require(config.root + '/modules/assets'),
+	checkIp = require(config.root + '/server/middlewares/check-ip'),
+	checkMachineId = require(config.root + '/server/middlewares/check-machineid'),
+	checkUserAgent = require(config.root + '/server/middlewares/check-useragent'),
+	requestId = require(config.root + '/server/middlewares/request-id'),
+	writeHeader = require(config.root + '/server/middlewares/write-header');
 
 var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
@@ -129,11 +139,6 @@ function BuildApp(siteObj) {
 		 * Bolt 2.0 Device Detection
 		 */
 		app.use(deviceDetection.init());
-
-		/*
-		 * Bolt 2.0 Mobile Only
-		 */
-		app.use(checkMobileOnly());
 
 		/*
 		 * Bolt 2.0 Custom middlewares to add to request

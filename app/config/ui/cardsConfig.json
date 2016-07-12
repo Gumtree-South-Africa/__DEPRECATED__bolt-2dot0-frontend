@@ -8,7 +8,7 @@
 				"location": "${UserProvided}",
 				"radius": "25km",
 				"categoryIds": [0,1,2],
-				"keywords": "foo bar baz",
+				"keywords": "foo,bar,baz",
 				"favoritesThreshold": 10,
 				"repliesThreshold": 10,
 				"sortBy" : "TBD",

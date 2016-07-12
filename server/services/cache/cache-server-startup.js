@@ -51,7 +51,7 @@ function CacheBapiData(siteApp, requestId) {
     /**
      * @method loadCategoryData
      * @description Loads the Category Data from BAPI. Exposes that data via
-     *      siteApp.locals.config.categorydropdown
+     *      siteApp.locals.config.categoryDropdown
      * @private
      */
     var loadCategoryData = function (bapiHeaders, categoryDepth) {
@@ -64,7 +64,7 @@ function CacheBapiData(siteApp, requestId) {
 
                 filteredData = prepareDataForRendering(dataReturned, true, categoryDepth);
                 siteApp.locals.config.categoryIdNameMap = filteredData.map;
-                siteApp.locals.config.categorydropdown = filteredData.dropdown;
+                siteApp.locals.config.categoryDropdown = filteredData.dropdown;
 
                 flattenedData = flattenTree(dataReturned);
                 siteApp.locals.config.categoryflattened = flattenedData;

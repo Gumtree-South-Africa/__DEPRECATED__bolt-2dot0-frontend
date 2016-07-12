@@ -58,14 +58,18 @@
     {{/if}}
     {{#block "meta"}}{{/block}}
     {{#block "metaForPage"}}{{/block}}
-
+    {{#each this.header.iconsCSSURLs}}
+        <link href="{{this}}" rel="stylesheet">
+    {{/each}}
     {{#block "grumpicon-script"}}
 
     <script>!function(e,t,n){function a(a){var m=o.document.createElement("link"),A=o.document.getElementsByTagName("script")[0],d=a&&r;m.rel="stylesheet",m.href=d?e:a?t:n,A.parentNode.insertBefore(m,A),d||(document.documentElement.className+=" no-svg")}if(3===arguments.length){var o=window,r=!(!o.document.createElementNS||!o.document.createElementNS("http://www.w3.org/2000/svg","svg").createSVGRect||!document.implementation.hasFeature("http://www.w3.org/TR/SVG11/feature#Image","1.1")||window.opera&&-1===navigator.userAgent.indexOf("Chrome")),m=new o.Image;m.onerror=function(){a(!1)},m.onload=function(){a(1===m.width&&1===m.height)},m.src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///ywAAAAAAQABAAACAUwAOw=="}}
     ("{{this.header.iconsCSSURLs.[0]}}","{{this.header.iconsCSSURLs.[1]}}","{{this.header.iconsCSSURLs.[2]}}");</script>
 
     <noscript>
-       <link href="{{this.header.iconsCSSFallbackUrl}}" rel="stylesheet">
+        {{#each this.header.iconsCSSFallbackUrl}}
+            <link href="{{this}}" rel="stylesheet">
+        {{/each}}
        <style type="text/css">
             .jsOnly {display:none !important;}
             .nonJsOnlyInlineBlock{display:inline-block !important;}

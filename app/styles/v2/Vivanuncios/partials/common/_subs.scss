@@ -11,7 +11,7 @@
 }
 
 .btn{
-  @include vivaBtn(off, 0.875em 0, Confirm);
+  @include vivaBtn(on, 0.875em 0, Confirm);
 }
 
 

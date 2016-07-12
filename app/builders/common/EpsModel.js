@@ -4,7 +4,7 @@
 let config = require('config');
 
 
-module.exports = function() {
+module.exports = () => {
 
 	return {
 		'epsUploadExternalURL': config.get('eps.epsUploadExternalURL'),

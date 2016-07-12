@@ -44,18 +44,18 @@ let createSiteApps = () => {
 
 	_.each(config.sites, (site) => {
 		if (siteLocales.indexOf(site.locale) > -1) {
-			  (function(siteObj) {
-				  let builderObj = new expressbuilder(siteObj);
-				  let siteApp = builderObj.getApp();
-				  siteApp.locals.siteObj = siteObj;
-				  siteApps.push(siteApp);
+			(function(siteObj) {
+				let builderObj = new expressbuilder(siteObj);
+				let siteApp = builderObj.getApp();
+				siteApp.locals.siteObj = siteObj;
+				siteApps.push(siteApp);
 
-				  // Service Util to get Location and Category Data
-				  // Wait to spin up the node app in server.js until all config promises resolve.
-				  configPromises.push(cacheBapiData(siteApp, requestId));
-			  })(site);
+				// Service Util to get Location and Category Data
+				// Wait to spin up the node app in server.js until all config promises resolve.
+				configPromises.push(cacheBapiData(siteApp, requestId));
+			})(site);
 
-			  siteCount = siteCount + 1;
+			siteCount = siteCount + 1;
 		}
 	});
 
