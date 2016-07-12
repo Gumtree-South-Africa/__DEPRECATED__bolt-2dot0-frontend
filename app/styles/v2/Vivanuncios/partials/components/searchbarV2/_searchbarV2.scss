@@ -1,6 +1,6 @@
 .search-controls {
 	color: $vivaBlack;
-	margin-top: 5px;
+	margin-top: 15px;
 
 	.search-mask {
 		top: 0;
@@ -47,7 +47,7 @@
 		z-index: 3;
 
 		.type-ahead-results-container {
-			padding-top: 45px;
+			padding-top: 55px;
 			height: 100%;
 			z-index: 3;
 			width: 100%;
@@ -55,7 +55,7 @@
 			top: 0;
 			left: 0;
 			margin: 0 auto;
-			background-color: $vivaGray6;
+			background-color: $vivaGray8;
 			overflow-y: scroll;
 			padding-right: 20px; // hide scrollbar
 		}
@@ -75,12 +75,22 @@
 
 		.close-search {
 			z-index: 1;
+			position: absolute;
+			top: 0;
+			bottom: 0;
+			margin-top: auto;
+			margin-bottom: auto;
 			display: none;
 			box-sizing: border-box;
 			font-size: 24px;
-			position: absolute;
 			line-height: 1;
 			margin-left: 5px;
+			height: 18px;
+			width: 18px;
+			background-image: url("../../../../../icons/icon-close.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
 
 			&:hover {
 				cursor: pointer;
@@ -104,7 +114,7 @@
 			margin-top: 9px;
 			margin-bottom: 1px;
 
-			border-left: 1px solid $vivaGray1;
+			border-left: 1px solid $vivaGray6;
 			padding-left: 5px;
 
 			display: none;
@@ -115,6 +125,8 @@
 			outline: none !important;
 			width: 100%;
 			height: 100%;
+			-webkit-appearance: none;
+			border: 0.5px solid $vivaGray6;
 		}
 
 		.search-button {
@@ -152,7 +164,8 @@
 				background-image: url("../../../../../icons/icon-search-white.svg");
 				background-position: center;
 				background-repeat: no-repeat;
-				background-size: contain;
+				//background-size: contain;
+				background-size: 100% 90%;
 				display: block;
 				margin: auto;
 			}
@@ -163,10 +176,11 @@
 			margin: 3px 0;
 			width: 20px;
 			height: 20px;
+			background-size: 100% 90%;
 			background-image: url("../../../../../icons/icon-search-gray.svg");
 			background-repeat: no-repeat;
 			background-position: center;
-			background-size: contain;
+			//background-size: contain;
 			position: absolute;
 			right: 10px;
 			display: none;
@@ -178,7 +192,7 @@
 	}
 
 	&.is-typing {
-		.type-ahead-results-wrapper, .close-search, .mobile-search-button {
+		.type-ahead-results-wrapper, .search-mask, .close-search, .mobile-search-button {
 			display: block;
 		}
 
@@ -235,7 +249,8 @@
 			margin-top: 0;
 
 			.type-ahead-results-container {
-				padding-top: 10px;
+				padding-right: 0px;
+				padding-top: 20px;
 				width: 85%;
 				margin: 0;
 				height: 320px;
