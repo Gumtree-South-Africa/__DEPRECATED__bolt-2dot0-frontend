@@ -1166,6 +1166,11 @@
 		}
 	},
 	"homepage": {
+		"popularSearches": {
+			"popularIn": "Popular en",
+			"yourNeighborhood": "Tu Colonia",
+			"viewMore": "Ver más"
+		},
 		"safetyTips": {
 			"title": "Vivanuncios Te Cuida",
 			"faq": "Consejos de seguridad",

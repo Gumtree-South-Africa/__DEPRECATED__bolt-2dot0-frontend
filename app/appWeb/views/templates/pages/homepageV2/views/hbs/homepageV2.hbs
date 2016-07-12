@@ -7,11 +7,13 @@
 		{{> (dynamic "sectionMenu")}}
 
         <div class="card trending-card">
-            <div class="card-title">Popular in <a class="link inline-block underline" href="/selectLocationOverlay-TBD">Your Neighborhood</a></div>
+            <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
+                <a class="link inline-block underline" href="/selectLocationOverlay-TBD">{{i18n "homepage.popularSearches.yourNeighborhood"}}</a>
+            </div>
             {{> (dynamic "tileGrid")}}
             <div class="card-view-more">
                 <a class="link" href="/viewMore-TBD">
-                    <span class=" underline">View More</span>
+                    <span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
                     <span class="no-underline">&nbsp;&gt;</span></a>
             </div>
         </div>
