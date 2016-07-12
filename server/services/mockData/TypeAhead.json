@@ -1,0 +1,85 @@
+{
+	"autoCompletContentList": [
+		{
+			"keyword": "kayak",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-deportes-pasatiempos/baja-california/kayak/v1c7l1001q0p1",
+			"displayText": "kayak en Deportes y pasatiempos",
+			"catId": 7,
+			"locId": 10015,
+			"localizedCatName": "Deportes y pasatiempos"
+		},
+		{
+			"keyword": "karman ghia",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-autos/baja-california/karman+ghia/v1c65l1001q0p1",
+			"displayText": "karman ghia en Autos",
+			"catId": 65,
+			"locId": 10015,
+			"localizedCatName": "Autos"
+		},
+		{
+			"keyword": "karmann ghia",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-autos/baja-california/karmann+ghia/v1c65l1001q0p1",
+			"displayText": "karmann ghia en Autos",
+			"catId": 65,
+			"locId": 10015,
+			"localizedCatName": "Autos"
+		},
+		{
+			"keyword": "kawasaki vulcan",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaki+vulcan/v1c69l1001q0p1",
+			"displayText": "kawasaki vulcan en Motos",
+			"catId": 69,
+			"locId": 10015,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "kawasaki ninja",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaki+ninja/v1c69l1001q0p1",
+			"displayText": "kawasaki ninja en Motos",
+			"catId": 69,
+			"locId": 10011,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "kawasaki",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaki/v1c69l1001q0p1",
+			"displayText": "kawasaki en Motos",
+			"catId": 69,
+			"locId": 10011,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "kawasaki nomad",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaki+nomad/v1c69l1001q0p1",
+			"displayText": "kawasaki nomad en Motos",
+			"catId": 69,
+			"locId": 10015,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "kawasaki klr",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaki+klr/v1c69l1001q0p1",
+			"displayText": "kawasaki klr en Motos",
+			"catId": 69,
+			"locId": 10011,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "kawasaky",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-motos/baja-california/kawasaky/v1c69l1001q0p1",
+			"displayText": "kawasaky en Motos",
+			"catId": 69,
+			"locId": 10015,
+			"localizedCatName": "Motos"
+		},
+		{
+			"keyword": "karina sun",
+			"seoUrl": "http://www.vivanuncios.com.mx.localhost/s-venta-inmuebles/baja-california/karina+sun/v1c1097l1001q0p1",
+			"displayText": "karina sun en Inmuebles en venta",
+			"catId": 1097,
+			"locId": 10012,
+			"localizedCatName": "Inmuebles en venta"
+		}
+	],
+	"localizedInWord": "en"
+}
