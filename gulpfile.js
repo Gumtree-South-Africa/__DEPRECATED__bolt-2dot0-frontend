@@ -1,3 +1,4 @@
+'use strict';
 /////////////////////////////////////////////////
 // Required tasks
 // gulp build
@@ -93,10 +94,11 @@ gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
 
-gulp.task('icons2', (done) => {
-	//Task for spriting svgs and pngs
-	runSequence('svgSprite', 'svgFallback', done);
-});
+let icons2 = getTask('icons2');
+
+gulp.task('icons2', icons2);
+gulp.task('rebuildSprites', icons2);
+gulp.task('cleanSprites', icons2);
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
