@@ -1,6 +1,12 @@
-<div class="btn-wrapper">
-  <a class="btn" href="#">
-    <span class="sudolink">Post an Ad</span>
-    <span class="icon-camera btn-icon"></span>
+<div {{#if buttonId}}id="{{buttonId}}"{{/if}} class="{{extraClasses}} btn-wrapper">
+  <a class="btn" href="{{buttonLink}}">
+    <span class="sudolink">
+        {{#if i18nPath}}
+            {{i18n i18nPath}}
+        {{else}}
+            {{i18n "header.postAd"}}
+        {{/if}}
+    </span>
+    <span class="icon-post btn-icon {{#if hideIcon}}hidden{{/if}}"></span>
   </a>
 </div>

@@ -1,52 +1,41 @@
 'use strict';
 
-
-var Q = require('q');
-
-var ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
-var AbstractPageModel = require(process.cwd() + '/app/builders/common/AbstractPageModel');
-
-var pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
+let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
+let AbstractPageModel = require(process.cwd() + '/app/builders/common/AbstractPageModel');
 
 
-/**
- * @method getErrorpageDataFunctions
- * @description Retrieves the list of functions to call to get the model for the Errorpage.
- * @param {Object} req Request object
- * @param {Object} res Response object
- * @private
- * @return {JSON}
- */
-var getErrorpageDataFunctions = function(req, res) {
-	return {};
-};
+class ErrorPageModel {
 
+	constructor(req, res) {
+		this.req = req;
+		this.res = res;
+	}
 
-/**
- * @description A class that Handles the Error Page Model
- * @param {Object} req Request object
- * @param {Object} res Response object
- * @class HomePageModel
- * @constructor
- */
-var ErrorPageModel = function(req, res) {
-	var functionMap = getErrorpageDataFunctions(req, res);
+	/**
+	 * @description A class that Handles the Error Page Model
+	 * @param {Object} req Request object
+	 * @param {Object} res Response object
+	 * @class HomePageModel
+	 * @constructor
+	 */
+	populateData() {
+		let functionMap = this.getErrorpageDataFunctions();
 
-	var abstractPageModel = new AbstractPageModel(req, res);
-	var arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, []);
+		let abstractPageModel = new AbstractPageModel(this.req, this.res);
+		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, functionMap, []);
 
-	var errorPageModel = new ModelBuilder(arrFunctions);
-	var errorPageDeferred = Q.defer();
-	Q(errorPageModel.processParallel())
-		.then(function(data) {
-			// Converts the data from an array format to a JSON format
-			// for easy access from the client/controller
-			data = abstractPageModel.convertListToObject(data, arrFunctions);
-			errorPageDeferred.resolve(data);
-		}).fail(function(err) {
-		errorPageDeferred.reject(new Error(err));
-	});
-	return errorPageDeferred.promise;
-};
+		let errorPageModel = new ModelBuilder(arrFunctions);
+		return errorPageModel.resolveAllPromises()
+			.then(function(data) {
+				// Converts the data from an array format to a JSON format
+				// for easy access from the client/controller
+				return abstractPageModel.convertListToObject(data, arrFunctions);
+			});
+	}
+
+	getErrorpageDataFunctions() {
+		return {};
+	}
+}
 
 module.exports = ErrorPageModel;

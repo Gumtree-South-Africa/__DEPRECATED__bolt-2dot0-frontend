@@ -36,13 +36,10 @@ let fallback = (done) => {
 	let generate = (instance) => {
 		let i = 0;
 		let max = names.length;
-		if (!fs.existsSync('./public/css/.built_fallback')) {
-			mkdirp.sync('./public/css');
-			//Write this file so gulp-newer has a single reference point.
-			fs.writeFileSync('./public/css/.built_fallback', 'File used for timestamp.');
-		}
+		mkdirp.sync('./public/css');
+		//Write this file so gulp-newer has a single reference point.
+		fs.writeFileSync('./public/css/.built_fallback', 'File used for timestamp.');
 		names.map((file) => {
-			// let base64 = new Buffer(obj[file], 'base64').toString();
 			let nameArray = file.split('/');
 			let fileName = nameArray.pop().split('.')[0];
 			let locale = nameArray.pop();

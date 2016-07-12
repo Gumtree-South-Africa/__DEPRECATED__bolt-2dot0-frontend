@@ -1,6 +1,6 @@
 var BOLT = BOLT || {};
 
-BOLT.Quickpost = (function() {
+BOLT.QuickPost = (function() {
 	return {
 		setUp: function() {
 			this.getTemplateData();
@@ -40,13 +40,13 @@ BOLT.Quickpost = (function() {
 			};
 
 			var template = Handlebars.template;
-			var QuickpostTemplate = Handlebars.templates['a'];
-			if (typeof QuickpostTemplate === "object") {
-				QuickpostTemplate = template(QuickpostTemplate);
+			var QuickPostTemplate = Handlebars.templates['a'];
+			if (typeof QuickPostTemplate === "object") {
+				QuickPostTemplate = template(QuickPostTemplate);
 			}
 
-			if (typeof QuickpostTemplate === "function") {
-				html = QuickpostTemplate(data);
+			if (typeof QuickPostTemplate === "function") {
+				html = QuickPostTemplate(data);
 			}
 
 			$(".precompiled").html(html);

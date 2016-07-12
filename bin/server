@@ -67,6 +67,7 @@ app.createSiteApps().then(() => {
 	httpsServer.listen(httpsPort);
 }).fail((err) => {
 	console.error("Error spinning up each country app", err);
+	console.error(err.stack);
 	process.exit(1);
 });
 

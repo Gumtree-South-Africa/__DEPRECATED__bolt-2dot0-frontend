@@ -5,7 +5,6 @@ let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
 describe('Server to hit HomePage', function() {
-
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
@@ -90,6 +89,21 @@ describe('Server to hit HomePage', function() {
 					.expect((res) => {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.feed-tiles')).toBeDefined();
+						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+	});
+
+	describe('Footer', () => {
+		it('shows footer', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						expect(c$('.footer-wrapper')).toBeDefined();
 						expect(res.status).toBe(200);
 					})
 					.end(specHelper.finish(done));

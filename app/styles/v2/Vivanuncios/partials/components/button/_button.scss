@@ -1,13 +1,18 @@
-@mixin vivaBtn($hasIcon){
+@mixin vivaBtn($hasIcon, $padding, $content){
   cursor: pointer;
-  background-color: $vivaOrange;
+  background-color: $button-bgcolor;
   display: inline-block;
   font: bold 1.125em Lato;
-  padding: 0.875em;
+  padding: $padding;
   text-align: center;
   width: 100%;
   &:hover{
     text-decoration: none;
+  }
+  > .sudolink{
+    &:before{
+      content : $content;
+    }
   }
   > span + span.btn-icon{
     @if ($hasIcon == 'off'){

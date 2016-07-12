@@ -1,3 +1,4 @@
+
 // -------------------------------------------------- //
 // sub elements should be contained in this file      //
 // -------------------------------------------------- //
@@ -5,20 +6,41 @@
 @import "../../partials/components/button/button";
 
 .btn-wrapper{
-  width: 25%;
-  margin: 2em auto;
-  max-width: 15em;
+  margin: auto;
   min-width: 10em;
 }
 
 .btn{
-  @include vivaBtn(on);
+  @include vivaBtn(on, 0.875em 0, Confirm);
 }
+
 
 .btn-icon{
   display: inline-block;
   width: 2em;
   height: 2em;
   vertical-align: middle;
-  margin-left: 0.5em;
+}
+
+
+
+.modal{
+  @include modal();
+}
+
+.modal{
+  .container {
+   height: auto;
+   overflow: hidden;
+   border: 2px solid gray;
+  }
+  .right {
+      float: right;
+  }
+  .left {
+      float: none; /* not needed, just for clarification */
+      /* the next props are meant to keep this block independent from the other floated one */
+      width: auto;
+      overflow: hidden;
+  }
 }

@@ -1,7 +1,5 @@
 'use strict';
 
-let Q = require('q');
-
 let ModelBuilder = require('./ModelBuilder');
 
 let keywordService = require(process.cwd() + '/server/services/keyword');
@@ -12,45 +10,29 @@ let keywordService = require(process.cwd() + '/server/services/keyword');
  * @constructor
  */
 
-let KeywordModel = function(bapiHeaders, kwCount) {
-	this.bapiHeaders = bapiHeaders;
-	this.kwCount = kwCount;
-};
+class KeywordModel {
+	constructor(bapiHeaders, kwCount) {
+		this.bapiHeaders = bapiHeaders;
+		this.kwCount = kwCount;
+	}
 
-KeywordModel.prototype.getModelBuilder = function() {
-	return new ModelBuilder(this.getKeywords());
-};
+	getModelBuilder() {
+		return new ModelBuilder(this.getKeywords());
+	}
 
 // Function getKeywords
-KeywordModel.prototype.getKeywords = function() {
-	let _this = this;
+	getKeywords() {
 
-	let topKeywordFunction = function(callback) {
-		let topKeywordDeferred = Q.defer();
-		Q(keywordService.getTopKeywordsData(_this.bapiHeaders, _this.kwCount))
-			.then(function(dataTopK) {
-				topKeywordDeferred.resolve(dataTopK);
-				callback(null, dataTopK);
-			}).fail(function(err) {
-			topKeywordDeferred.reject(new Error(err));
-			callback(null, {});
-		});
-	};
+		let topKeywordFunction = () => {
+			return keywordService.getTopKeywordsData(this.bapiHeaders, this.kwCount);
+		};
 
-	let trendingKeywordFunction = function(callback) {
-		let trendingKeywordDeferred = Q.defer();
-		Q(keywordService.getTrendingKeywordsData(_this.bapiHeaders, _this.kwCount))
-			.then(function(dataTK) {
-				trendingKeywordDeferred.resolve(dataTK);
-				callback(null, dataTK);
-			}).fail(function(err) {
-			trendingKeywordDeferred.reject(new Error(err));
-			callback(null, {});
-		});
-	};
+		let trendingKeywordFunction = () => {
+			return keywordService.getTrendingKeywordsData(this.bapiHeaders, this.kwCount);
+		};
 
-	let arrFunctions = [topKeywordFunction, trendingKeywordFunction];
-	return arrFunctions;
-};
+		return [topKeywordFunction, trendingKeywordFunction];
+	}
+}
 
 module.exports = KeywordModel;
