@@ -3,7 +3,7 @@
 
 
 .welcome-wrapper{
-   height: 69px ;
+   height: 55px ;
 }
 .stickybottom {
    bottom: 0;
@@ -81,7 +81,7 @@
 
 
 @include from-breakpoint($medium-break){
-.modal-wrapper , .welcome-footer{
+.modal-wrapper , .welcome-footer, .welcome-wrapper{
    display: none;
    }
   }
