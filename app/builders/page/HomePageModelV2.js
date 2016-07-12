@@ -12,6 +12,7 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -57,6 +58,7 @@ class HomePageModelV2 {
 
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
+		let searchModel = new SearchModel(modelData.bapiHeaders);
 
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
@@ -83,6 +85,10 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
 			return recentActivityModel.getRecentActivities();
+		};
+
+		this.dataPromiseFunctionMap.search = () => {
+			return searchModel.getSearch();
 		};
 	}
 }

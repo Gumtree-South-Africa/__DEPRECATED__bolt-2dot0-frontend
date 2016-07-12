@@ -1166,6 +1166,10 @@
 		}
 	},
 	"homepage": {
+		"searchbar":{
+			"lookingFor": "Estoy buscando un...",
+			"search": "Buscar"
+		},
 		"safetyTips": {
 			"title": "Vivanuncios Te Cuida",
 			"faq": "Consejos de seguridad",
@@ -1261,4 +1265,3 @@
 	}
 
 }
-

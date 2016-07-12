@@ -1,0 +1,249 @@
+.search-controls {
+	color: $vivaBlack;
+	margin-top: 5px;
+
+	.search-mask {
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		position: fixed;
+		background-color: rgba(0, 0, 0, 0.7);
+		z-index: 2;
+		display: none;
+	}
+
+	.type-ahead-results-row {
+		height: 32px;
+
+		.type-ahead-link {
+			box-sizing: border-box;
+			width: 100%;
+			height: 100%;
+			margin: auto 10px;
+			display: block;
+			color: $vivaBlack !important;
+			text-decoration: none;
+		}
+
+		&.active {
+			background-color: $vivaGray5;
+		}
+	}
+
+	.type-ahead-results-wrapper {
+		position: absolute;
+		margin-top: 66px;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		display: none;
+		box-sizing: border-box;
+		margin-left: auto;
+		margin-right: auto;
+		width: 100%;
+		background-color: white;
+		z-index: 3;
+
+		.type-ahead-results-container {
+			padding-top: 30px;
+			height: 100%;
+			z-index: 3;
+			width: 100%;
+			position: absolute;
+			top: 0;
+			left: 0;
+			margin: 0 auto;
+			background-color: $vivaGray6;
+		}
+	}
+
+	.search-bar {
+		z-index: 4;
+		width: 90%;
+		margin: 0 auto;
+		height: 26px;
+		position: relative;
+		box-sizing: border-box;
+
+		form {
+			height: 100%;
+		}
+
+		.close-search {
+			z-index: 1;
+			display: none;
+			box-sizing: border-box;
+			font-size: 24px;
+			position: absolute;
+			line-height: 1;
+			margin-left: 5px;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.search-textbox-container {
+			position: relative;
+			height: 100%;
+			width: 100%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.location-text {
+			position: absolute;
+			right: 15.5%;
+			bottom: 0;
+			color: $vivaOrange;
+
+			margin-top: 9px;
+			margin-bottom: 1px;
+
+			border-left: 1px solid $vivaGray1;
+			padding-left: 5px;
+
+			display: none;
+		}
+
+		.search-textbox {
+			box-sizing: border-box;
+			outline: none !important;
+			width: 100%;
+			height: 100%;
+		}
+
+		.search-button {
+			&:hover {
+				cursor: pointer;
+			}
+
+			background-color: #0B96D7;
+			color: $vivaWhite;
+			position: absolute;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			box-sizing: border-box;
+			width: 15%;
+			border: #0B96D7;
+
+			.inner-text {
+				display: none;
+				width: 45%;
+				float: right;
+				text-align: left;
+			}
+
+			.icon-container {
+				float: right;
+				width: 100%;
+				height: 20px;
+				display: block;
+			}
+
+			.icon-search-button {
+				width: 20px;
+				height: 100%;
+				background-image: url("../../../../../icons/icon-search-white.svg");
+				background-position: center;
+				background-repeat: no-repeat;
+				background-size: contain;
+				display: block;
+				margin: auto;
+			}
+		}
+
+		.mobile-search-button {
+			z-index: 1;
+			margin: 3px 0;
+			width: 20px;
+			height: 20px;
+			background-image: url("../../../../../icons/icon-search-gray.svg");
+			background-repeat: no-repeat;
+			background-position: center;
+			background-size: contain;
+			position: absolute;
+			right: 10px;
+			display: none;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	&.is-typing {
+		.type-ahead-results-wrapper, .close-search, .mobile-search-button {
+			display: block;
+		}
+
+		.search-textbox {
+			width: 100%;
+			padding: 0 30px;
+		}
+
+		.search-button {
+			display: none;
+
+			@include from-breakpoint($medium-break) {
+				display: block;
+			}
+		}
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.search-controls {
+		.search-bar {
+			.search-button {
+				.inner-text {
+					width: 45%;
+					float: right;
+					display: block;
+					text-align: left;
+				}
+
+				.icon-container {
+					width: 45%;
+					margin-right: 10%;
+				}
+
+				.icon-search-button {
+					float: right;
+					margin: 0;
+				}
+			}
+
+			.search-textbox {
+				padding: 0 5px !important;
+			}
+		}
+
+		.location-text {
+			display: block !important;
+		}
+
+		.type-ahead-results-wrapper {
+			width: 90%;
+			background-color: transparent;
+			position: relative;
+			margin-top: 0;
+
+			.type-ahead-results-container {
+				padding-top: 10px;
+				width: 85%;
+				margin: 0;
+				height: 320px;
+				background-color: $vivaWhite;
+				border: 0.5px solid $vivaGray1;
+			}
+		}
+
+		.close-search, .mobile-search-button {
+			display: none !important;
+		}
+	}
+}
