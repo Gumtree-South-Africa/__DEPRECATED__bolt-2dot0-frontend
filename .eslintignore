@@ -42,6 +42,8 @@ app/appWeb/views/components/countryMap/js/app.js
 app/appWeb/views/components/effectiveMeasures/js/app.js
 app/appWeb/views/components/footer/js/app.js
 app/appWeb/views/components/geoLocatorSelector/js/app.js
+app/appWeb/views/components/gpsMap/js/gpsMap.js
+app/appWeb/views/components/gpsMap/js/markerClusterer.js
 app/appWeb/views/components/header/js/app.js
 app/appWeb/views/components/header/js/header.js
 app/appWeb/views/components/headerV2/js/deepLink.js
@@ -124,4 +126,3 @@ server/utils/monitor/reportFunctions.js
 server/utils/monitor/setupOptions.js
 
 node_modules
-

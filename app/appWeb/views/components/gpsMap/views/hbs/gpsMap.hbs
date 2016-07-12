@@ -1,0 +1,52 @@
+<div class="map-wrapper">
+
+    <div id="map"></div>
+    <div id="nowselling">
+        <span class="hiddenElt">{{json this.gpsMap}}</span>
+        <h2>{{i18n "gpsMap.label"}}</h2>
+        <span>{{digitGrouping this.gpsMap.totalAds ","}} {{i18n "gpsMap.items"}}</span>
+    </div>
+
+    <!-- Replace the value of the key parameter with your own API key. -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&language=es&region={{this.country}}&callback=initMap" async defer>
+    </script>
+
+    <div class="clear"></div>
+
+    {{!-- TODO: move style to components scss --}}
+    <style>
+        .hiddenElt{
+          display: none;
+        }
+        #map{
+            width: 100%;
+            height: 450px;
+        }
+        #nowselling h2{
+            font-weight: bold;
+            font-size: 1.5em;
+            margin-bottom: 0.4em;
+            opacity: 1;
+            padding-top: 0.3em;
+        }
+        #nowselling span{
+            opacity: 1;
+        }
+        #nowselling{
+            width: 65%;
+            max-width: 24em;
+            height: 90px;
+            position: relative;
+            top: -27em;
+            z-index: 20;
+            margin: 0 auto;
+            background-color: white;
+            text-align: center;
+            opacity: 0.9;
+            border-radius: 5px;
+            box-shadow: 1px 3px 6px;
+            margin-bottom: -5.7em;
+        }
+    </style>
+
+</div>

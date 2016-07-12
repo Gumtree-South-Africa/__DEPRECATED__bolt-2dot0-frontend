@@ -1267,6 +1267,10 @@
 		"trademark": {
 			"trademark": "2014-2016 eBay. Todos los derechos reservados"
 		}
+	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
 	}
 
 }
