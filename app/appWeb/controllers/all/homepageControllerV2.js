@@ -221,12 +221,16 @@ module.exports = (req, res, next) => {
 
 	model.then((result) => {
 		let bapiConfigData = res.locals.config.bapiConfigData;
+		let distractionFreeMode = false;
+		if (bapiConfigData.content.homepageV2) {
+			distractionFreeMode = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		}
 
 		modelData = _.extend(modelData, result);
 		modelData.header = result['common'].header || {};
-		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.header.distractionFree = distractionFreeMode;
 		modelData.footer = result['common'].footer || {};
-		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
 

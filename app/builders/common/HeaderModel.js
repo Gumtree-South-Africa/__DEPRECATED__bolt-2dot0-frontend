@@ -24,7 +24,7 @@ class HeaderModel {
 		let searchLocIdCookieName = 'searchLocId';
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
-		this.b2dot0Version = req.cookies.b2dot0Version;
+
 		// Local variables
 		this.secure = secure;
 		this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -163,9 +163,6 @@ class HeaderModel {
 	buildCss(data) {
 
 		let b2dot0Ver = 'v1'; //by default
-		if ((typeof this.b2dot0Version !== 'undefined') && this.b2dot0Version === '2.0') {
-			b2dot0Ver = 'v2';
-		}
 
 		data.iconsCSSURLs = [];
 		data.iconsCSSFallbackUrl = [];

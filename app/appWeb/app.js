@@ -14,7 +14,8 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 	app.locals = siteApp.locals;
 
 	app.use((req, res, next) => {
-		res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+		// res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+		res.locals.b2dot0Version = true; // Setting to 2.0 for Demo
 		next();
 	});
 
@@ -29,7 +30,7 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 			root: '/views', etag: false, maxage: 0, index: false
 		}));
 	}
-	
+
 	this.getApp = () => {
 		return app;
 	};

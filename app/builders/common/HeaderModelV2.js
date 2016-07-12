@@ -24,7 +24,7 @@ class HeaderModel {
 		let searchLocIdCookieName = 'searchLocId';
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
-		this.b2dot0Version = req.cookies.b2dot0Version;
+
 		// Local variables
 		this.secure = secure;
 		this.urlProtocol = this.secure ? 'https://' : 'http://';
