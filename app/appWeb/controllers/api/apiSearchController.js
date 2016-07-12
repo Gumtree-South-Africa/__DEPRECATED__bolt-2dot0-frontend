@@ -1,11 +1,12 @@
 'use strict';
 
-let express = require('express'), router = express.Router();
+let express = require('express');
+let router = express.Router();
 
 let SearchModel = require(process.cwd() + '/app/builders/common/SearchModel');
 let cors = require(process.cwd() + '/modules/cors');
 
-router.get('/typeahead', cors, function(req, res) {
+router.get('/typeahead', cors, (req, res) => {
 	let bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
@@ -15,9 +16,9 @@ router.get('/typeahead', cors, function(req, res) {
 
 	let searchModel = new SearchModel(bapiHeaders); // Start Index
 
-	searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then(function(typeAheadResults) {
+	searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then((typeAheadResults) => {
 		res.send(typeAheadResults);
-	}).fail(function() {
+	}).fail(() => {
 		res.send({
 			error: true
 		});

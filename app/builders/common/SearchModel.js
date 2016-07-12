@@ -11,14 +11,6 @@ class SearchModel {
 		this.bapiHeaders = bapiHeaders;
 	}
 
-	getTypeAheadUrl() {
-
-	}
-
-	getSearchUrl() {
-
-	}
-
 	getSearch(/*searchTerm, location, categoryId*/) {
 		// no data yet
 		return {};
