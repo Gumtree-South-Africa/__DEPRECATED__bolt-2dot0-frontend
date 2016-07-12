@@ -71,6 +71,7 @@
          @include vivaBtn(off, 0.35em, off);
          > span + span.btn-icon {
          display:inline-block;
+         vertical-align: top;
          }
       }
      }
