@@ -88,12 +88,6 @@ $desktopSearchBarHeight: 32px;
 			font-size: 24px;
 			line-height: 1;
 			margin-left: 5px;
-			height: 18px;
-			width: 18px;
-			background-image: url("../../../../../icons/icon-close.svg");
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: contain;
 
 			&:hover {
 				cursor: pointer;
@@ -161,13 +155,8 @@ $desktopSearchBarHeight: 32px;
 				display: block;
 			}
 
-			.icon-search-button {
-				width: 20px;
+			.icon-search-white {
 				height: 100%;
-				background-image: url("../../../../../icons/icon-search-white.svg");
-				background-position: center;
-				background-repeat: no-repeat;
-				background-size: contain;
 				display: block;
 				margin: auto;
 			}
@@ -176,12 +165,6 @@ $desktopSearchBarHeight: 32px;
 		.mobile-search-button {
 			z-index: 1;
 			margin: 3px 0;
-			width: 20px;
-			height: 20px;
-			background-image: url("../../../../../icons/icon-search-gray.svg");
-			background-repeat: no-repeat;
-			background-position: center;
-			background-size: contain;
 			position: absolute;
 			right: 10px;
 			display: none;
