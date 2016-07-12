@@ -44,6 +44,7 @@ app/appWeb/views/components/footer/js/app.js
 app/appWeb/views/components/geoLocatorSelector/js/app.js
 app/appWeb/views/components/header/js/app.js
 app/appWeb/views/components/header/js/header.js
+app/appWeb/views/components/headerV2/js/deepLink.js
 app/appWeb/views/components/helpLink/js/app.js
 app/appWeb/views/components/isolatedSignIn/js/app.js
 app/appWeb/views/components/locationMapContainer/js/app.js
