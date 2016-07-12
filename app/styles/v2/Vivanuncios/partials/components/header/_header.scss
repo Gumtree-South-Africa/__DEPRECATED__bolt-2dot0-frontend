@@ -6,6 +6,8 @@ $profile-login-btn-padding: 10px;
 $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding + $profile-login-btn-margin) * 2;
 
 .headerV2 {
+	z-index: 10;
+	position: relative;
     width: 100%;
     //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
