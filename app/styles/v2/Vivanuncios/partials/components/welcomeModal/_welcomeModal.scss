@@ -3,7 +3,7 @@
 
 
 .welcome-wrapper{
-   height: 55px ;
+   height: 57px ;
 }
 .stickybottom {
    bottom: 0;
@@ -19,7 +19,7 @@
    .modal{
     display: none;
     position: fixed;
-    z-index: 1;
+    z-index: 10;
     left: 0;
     top: 0;
     width: 100%;
@@ -54,7 +54,7 @@
           > .icon-close {
                 width: 0.8em;
                 height: 0.8em;
-           }        
+           }
 	  }
    }
  }
@@ -72,16 +72,16 @@
          > span + span.btn-icon {
          display:inline-block;
          }
-      }            
+      }
      }
     }
-  }  
+  }
 
 
 
 
 @include from-breakpoint($medium-break){
-.modal-wrapper , .welcome-footer, .welcome-wrapper{
+.modal-wrapper , .welcome-footer ,.welcome-wrapper{
    display: none;
    }
   }

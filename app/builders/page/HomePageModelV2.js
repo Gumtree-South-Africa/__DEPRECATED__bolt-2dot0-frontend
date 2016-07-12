@@ -11,7 +11,9 @@ let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
+let GpsMapModel = require(cwd + '/app/builders/common/GpsMapModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -54,9 +56,11 @@ class HomePageModelV2 {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 		let recentActivityModel = new RecentActivityModel(this.req, this.res);
+		let gpsMapModel = new GpsMapModel(modelData.bapiHeaders);
 
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
+		let searchModel = new SearchModel(modelData.bapiHeaders);
 
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
@@ -83,6 +87,20 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
 			return recentActivityModel.getRecentActivities();
+		};
+
+		this.dataPromiseFunctionMap.search = () => {
+			return searchModel.getSearch();
+		};
+
+		this.dataPromiseFunctionMap.gpsMap = () => {
+			return gpsMapModel.getMap({
+				location: "[19.414980, -99.177446]"
+			}).then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+			});
 		};
 	}
 }

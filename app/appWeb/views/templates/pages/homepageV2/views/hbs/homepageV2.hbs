@@ -4,6 +4,7 @@
 
 {{#partial "content"}}
 	<div>
+        {{> (dynamic "searchbarV2") }}
 		{{> (dynamic "sectionMenu")}}
 
         <div class="card trending-card">
@@ -20,8 +21,8 @@
 
         {{> (dynamic "recentActivity")}}
         {{> (dynamic "appDownloadSection")}}
+        {{> (dynamic "gpsMap")}}
         {{> (dynamic "safetyTips") }}
-     
 	</div>
 {{/partial}}
 
