@@ -13,7 +13,8 @@ RUN npm install -g forever
 RUN npm install -g gulp && \
     npm install -g node-gyp && \
     npm install -g raml-mockup && \
-    npm install -g karma-chrome-launcher --save-dev
+    npm install -g karma-chrome-launcher --save-dev && \
+    npm install -g phantomjs@1.9.20
 
 # for karam test 
 RUN apt-get update
@@ -36,6 +37,7 @@ COPY . /src/bolt-2dot0-frontend/
 
 # Install app dependencies
 # When this image goto production, we only do npm install --production
+RUN rm -rf /src/bolt-2dot0-frontend/node_modules
 RUN npm install
 
 # Build
