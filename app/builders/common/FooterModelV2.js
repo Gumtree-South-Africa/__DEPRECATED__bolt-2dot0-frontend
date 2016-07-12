@@ -13,7 +13,7 @@ class FooterV2Model {
 		this.res = res;
 		this.secure = secure;
 		this.locale = res.locals.config.locale;
-		
+
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.footerConfigData = res.locals.config.bapiConfigData.footer;
@@ -23,7 +23,7 @@ class FooterV2Model {
 	getModelBuilder() {
 		return new ModelBuilder(this.getFooterData());
 	}
-	
+
 	getFooterData() {
 		return [
 			() => {
@@ -51,21 +51,13 @@ class FooterV2Model {
 				// add complex data to footer
 				this.buildJs(data);
 				this.buildUrl(data);
-				this.isDistractionFree(data);
 
 				return data;
 			}
 		];
 	}
 
-	isDistractionFree(data) {
-		let bapiConfigData = this.res.locals.config.bapiConfigData;
-		let distractionFree = bapiConfigData.content.homepageV2.distractionFree; //boolean
-		
-		data.distractionFree = distractionFree || false;
-	}
-
-	//Build JS
+//Build JS
 	buildJs(data) {
 
 		let baseComponentDir = '/views/components/';
@@ -90,8 +82,8 @@ class FooterV2Model {
 			data.javascripts.push(baseComponentDir + 'header/js/header.js');
 		}
 	}
-	
-	//Build URL
+
+//Build URL
 	buildUrl(data) {
 
 		data.brandName = this.brandName;

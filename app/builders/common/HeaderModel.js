@@ -37,7 +37,6 @@ class HeaderModel {
 		this.basePort = res.locals.config.basePort;
 		this.headerConfigData = res.locals.config.bapiConfigData.header;
 		this.isIphone = req.app.locals.useragent.match(/iPhone/i) || req.app.locals.useragent.match(/iPod/i);
-		this.distractionFree = req.app.locals.distractionFree;
 
 		this.userCookieData = req.app.locals.userCookieData;
 

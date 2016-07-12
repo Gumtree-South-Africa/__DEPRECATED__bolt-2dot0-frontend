@@ -215,7 +215,7 @@ module.exports = (req, res, next) => {
 	let modelData = pageControllerUtil.preController(req, res);
 	// Retrieve Data from Model Builders
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
-	
+
 	let homepage = new HomepageModel(req, res, modelData);
 	let model = homepage.populateData();
 
@@ -224,13 +224,14 @@ module.exports = (req, res, next) => {
 
 		modelData = _.extend(modelData, result);
 		modelData.header = result['common'].header || {};
+		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
 		modelData.footer = result['common'].footer || {};
-		// modelData.footerV2 = result['footerV2'] || {};
+		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
 		modelData.dataLayer = result['common'].dataLayer || {};
 		modelData.seo = result['seo'] || {};
+
 		modelData.isNewHP = true;
-		modelData.header.distractionFree = (bapiConfigData.content.homepageV2) ? bapiConfigData.content.homepageV2.distractionFree : false;
-		
+
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, bapiConfigData);
