@@ -3,6 +3,7 @@
 
 let cwd = process.cwd();
 
+let _ = require("underscore");
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
@@ -40,15 +41,31 @@ class HomePageModelV2 {
 		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions)
-			.then(function(data) {
+			.then((data) => {
 				// Converts the data from an array format to a JSON format
 				// for easy access from the client/controller
-				data = abstractPageModel.convertListToObject(data, arrFunctions);
-				return data;
-			}).fail(function(err) {
+				data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+				return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			}).fail((err) => {
 				console.error(err);
 				console.error(err.stack);
 			});
+	}
+
+	mapData(modelData, data) {
+		let bapiConfigData = this.res.locals.config.bapiConfigData;
+
+		modelData = _.extend(modelData, data);
+		modelData.header = data['common'].header || {};
+		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.footer = data['common'].footer || {};
+		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.dataLayer = data['common'].dataLayer || {};
+		modelData.seo = data['seo'] || {};
+
+		modelData.isNewHP = true;
+		
+		return modelData;
 	}
 
 	getHomepageDataFunctions(modelData) {

@@ -21,7 +21,7 @@ charset = utf-8
 indent_style = space
 
 # tabs, done as separate entries, comma separated not working for webstorm
-[*.{json,xml,js}]
+[*.{json,xml,js,html,scss}]
 indent_style = tab
 
 [.eslintrc]

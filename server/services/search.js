@@ -10,7 +10,7 @@ class SearchService {
 	getTypeAheadResults(/*bapiHeaderValues, queryEndpoint, parameters*/) {
 		// Invoke BAPI
 		// Wrap in a promise so the outside then doesn't break;
-		return Q(require(process.cwd() + '/server/services/mockData/TypeAhead.json'));
+		return Q(require(process.cwd() + '/server/services/mockData/SearchAutoComplete.json'));
 		// return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 		// 	method: 'GET',
 		// 	path: config.get(queryEndpoint),

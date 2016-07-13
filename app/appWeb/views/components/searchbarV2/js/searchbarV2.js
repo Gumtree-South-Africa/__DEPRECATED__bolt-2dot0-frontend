@@ -90,7 +90,7 @@ let _newTypeAhead = (currentSearchTerm) => {
 
 		// make the ajax request and save it in the AjaxMap
 		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
-			url: "/api/search/typeAhead",
+			url: "/api/search/autocomplete",
 			method: "GET",
 			success: (results) => {
 				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
@@ -178,11 +178,6 @@ let initialize = () => {
 		let textBoxVal = this.$searchTextbox.val();
 		_setIsTyping(textBoxVal !== "");
 		_newTypeAhead(textBoxVal);
-	});
-
-	this.$searchControls.find(".mobile-search-button").click(() => {
-		//click the actual submit button;
-		this.$searchButton.click();
 	});
 
 	this.$searchTextbox.on('keyup', (evt) => {

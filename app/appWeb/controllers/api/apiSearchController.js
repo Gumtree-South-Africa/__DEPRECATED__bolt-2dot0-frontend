@@ -4,19 +4,17 @@ let express = require('express');
 let router = express.Router();
 
 let SearchModel = require(process.cwd() + '/app/builders/common/SearchModel');
+let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(process.cwd() + '/modules/cors');
 
-router.get('/typeahead', cors, (req, res) => {
-	let bapiHeaders = {};
-	bapiHeaders.requestId = req.app.locals.requestId;
-	bapiHeaders.ip = req.app.locals.ip;
-	bapiHeaders.machineid = req.app.locals.machineid;
-	bapiHeaders.useragent = req.app.locals.useragent;
-	bapiHeaders.locale = res.locals.config.locale;
+// route is /api/search/autocomplete
+router.get('/autocomplete', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
 
-	let searchModel = new SearchModel(bapiHeaders); // Start Index
+	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	model.searchModel = new SearchModel(model.bapiHeaders);
 
-	searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then((typeAheadResults) => {
+	model.searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then((typeAheadResults) => {
 		res.send(typeAheadResults);
 	}).fail(() => {
 		res.send({
