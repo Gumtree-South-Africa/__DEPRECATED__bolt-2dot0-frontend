@@ -1,0 +1,45 @@
+.body-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 100%;
+    bottom: 0;
+    z-index: 10;
+    background-color: rgba(0, 0, 0, .5);
+}
+
+.hamburger-contents {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    overflow: scroll;
+    z-index: 11;
+    &.hamburger-open {
+        left: 0;
+        right: 30%;
+    }
+    &.hamburger-closed {
+        left: -70%;
+        right: 100%;
+    }
+    background-color: $headerBackgroundColor;
+}
+
+.hidden {
+    display: none;
+}
+
+.open-menu {
+    position: relative;
+    min-width: 100%;
+    left: 0;
+    &.menu-closed {
+        left: 70%;
+    }
+}
+
+body {
+    &.overflow-hidden {
+        overflow: hidden;
+    }
+}

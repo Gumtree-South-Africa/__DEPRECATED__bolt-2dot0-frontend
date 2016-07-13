@@ -1,9 +1,10 @@
+{{> (dynamic "hamburgerMenu")}}
 <div class="headerV2">
     <a href="/">
         <div class="logo"></div>
     </a>
     {{#unless this.header.distractionFree}}
-        <div class="mobile-only mobile-menu icon-menu">
+        <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-menu">
         </div>
         <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
             <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2 {{/if}}icon-android"></div>
