@@ -220,33 +220,61 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
+
+            // relative to support l2 sub menu using absolute
+            //position: relative;
+
+            &:last-child {
+                border-bottom: none;
+            }
+
+            //&.l2 {
+            //    border: none;
+            //}
         }
 
+        // link items should take the entire space of menu-item
         .link-item {
-
             display: block;
             padding-top: 10px;
             padding-bottom: 10px;
 
-            .menu-item {
-                border-bottom: 1px solid $headerMenuItemSeparatorColor;
-            }
-            &:last-child {
-                .menu-item {
-                    border-bottom: none;
-                }
-            }
+            //&.l2 {
+            //    padding-top: 3px;
+            //    padding-bottom: 3px;
+            //}
         }
 
         .item-primary-text {
             padding-left: 5px;
         }
 
-        .item-secondary-text {
-            padding-left: 8px;
-            font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
-            color: $headerMenuItemSecondaryColor;
-        }
+        // secondary text for category "counts", not MVP
+        //.item-secondary-text {
+        //    padding-left: 8px;
+        //    font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
+        //    color: $headerMenuItemSecondaryColor;
+        //}
+
+        // level 2
+        //.menu-dropdown-l2 {
+        //    columns: 2;
+        //    position: absolute;
+        //    left: 100%;
+        //    top: 0px;
+        //    display: none;
+        //    background-color: $headerBackgroundColor;
+        //    border: 1px solid $headerMenuBorderColor;
+        //    width: 600px;
+        //}
+
+        .menu-item:hover {
+            background-color: $headerMenuItemHighlightColor;
+
+            //.menu-dropdown-l2 {
+            //    display: block;
+            //}
+         }
     }
 
     .header-item-icon {

@@ -33,6 +33,19 @@ let initialize = () => {
 			_toggleBrowseMenu(true);
 		});
 
+		// $('.link-item').mouseenter((event) => {
+		// 	console.log(`IN  current target: ${event.currentTarget.className} target: ${event.target.className} related: ${event.relatedTarget.className}`);
+		// //	if (event.target.className === "menu-item") {
+		// 		$(event.currentTarget).toggleClass('active', true);
+		// //	}
+		// }).mouseout((event) => {
+		// 	console.log(`OUT current target: ${event.currentTarget.className} target: ${event.target.className} related: ${event.relatedTarget.className}`);
+		// //	if (event.target.className === "menu-item") {
+		// 		$(event.currentTarget).toggleClass('active', false);
+		// //	}
+		// });
+
+
 		$('.profile').on('click', () => {
 			_toggleProfileMenu();
 		}).mouseenter(() => {

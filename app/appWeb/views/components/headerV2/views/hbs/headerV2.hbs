@@ -5,7 +5,8 @@
     {{#unless this.header.distractionFree}}
         <div class="mobile-only mobile-menu icon-menu">
         </div>
-        <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
+        <a id='js-deeplink'
+           href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
             <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2 {{/if}}icon-android"></div>
         </a>
         <div class="left-items">
@@ -24,14 +25,27 @@
                     <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
-                    {{#each this.categoryDropdown.children}}
-
-                            <li class="menu-item">
-                                <a href="{{this.localizedName}}-TBD" class="link-item">
-                                    <span class="item-primary-text">{{this.localizedName}}</span>
-                                    <span class="item-secondary-text">(tbd)</span>
-                                </a>
-                            </li>
+                    {{#each this.category.children}}
+                        <li class="menu-item">
+                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" class="link-item" data-id="{{this.id}}">
+                                <span class="item-primary-text">{{this.localizedName}}</span>
+                                {{!-- item secondary is for category "counts", out for MVP
+                                <span class="item-secondary-text">(tbd)</span>
+                                --}}
+                            </a>
+                            {{!-- l2 categories removed from sprint 4 7/14/16
+                            https://jira.corp.ebay.com/browse/BOLT-22118
+                                <ul class="menu-dropdown-l2">
+                                {{#each this.children}}
+                                    <li class="menu-item l2">
+                                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
+                                            <span class="item-primary-text">{{this.localizedName}}</span>
+                                        </a>
+                                    </li>
+                                {{/each}}
+                                </ul>
+                            --}}
+                        </li>
                     {{/each}}
                 </ul>
             </div>
@@ -52,11 +66,11 @@
             <div class="profile right-item">
                 <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
-                    {{#if this.header.username}}
-                    profile-picture
-                    {{else}}
-                    icon-header-profile-out
-                    {{/if}}">
+{{#if this.header.username}}
+profile-picture
+{{else}}
+icon-header-profile-out
+{{/if}}">
                     </div>
                     {{#if this.header.userEmail}}
                         {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
