@@ -80,7 +80,9 @@
                     {{/if}}
                 </div>
                 {{!-- profile dropdown --}}
-                {{> (dynamic "profileMenu")}}
+                <div id="js-profile-dropdown" class="hidden">
+                    {{> (dynamic "profileMenu")}}
+                </div>
             </div>
             {{!-- post ad button --}}
             {{> (dynamic "button") extraClasses='post-ad-button' buttonLink="/quickpost" i18nPath="header.postAd"}}
