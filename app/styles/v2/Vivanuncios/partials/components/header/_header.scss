@@ -23,13 +23,17 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
     .mobile-menu {
         position: absolute;
-        top: 5px;
+		top: 0;
+		bottom: 0;
+		margin: auto;
         left: 5px;
     }
 
     .app-icon {
         position: absolute;
-        top: 5px;
+        top: 0;
+		bottom: 0;
+		margin: auto;
         right: 5px;
     }
 
@@ -42,10 +46,14 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
     .logo {
         position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
         margin: auto;
         display: inline-block;
         min-width: 140px;
-        width: 100%;
+        width: 60%;
         height: 50px;
         background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
         background-size: contain;

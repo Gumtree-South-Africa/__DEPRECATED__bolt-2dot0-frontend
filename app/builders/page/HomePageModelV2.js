@@ -54,12 +54,15 @@ class HomePageModelV2 {
 
 	mapData(modelData, data) {
 		let bapiConfigData = this.res.locals.config.bapiConfigData;
-
+		let distractionFreeMode = false;
+		if (bapiConfigData.content.homepageV2) {
+			distractionFreeMode = bapiConfigData.content.homepageV2.distractionFree || false;
+		}
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
-		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.header.distractionFree = distractionFreeMode;
 		modelData.footer = data['common'].footer || {};
-		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
 
