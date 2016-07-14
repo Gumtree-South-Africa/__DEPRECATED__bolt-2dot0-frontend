@@ -1,7 +1,6 @@
 'use strict';
 
 let cuid = require('cuid');
-let _ = require('underscore');
 
 let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
@@ -212,29 +211,16 @@ module.exports = (req, res, next) => {
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
-	let modelData = pageControllerUtil.preController(req, res);
 	// Retrieve Data from Model Builders
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
 
-	let homepage = new HomepageModel(req, res, modelData);
-	let model = homepage.populateData();
+	let homepage = new HomepageModel(req, res);
+	let modelPromise = homepage.populateData();
 
-	model.then((result) => {
-		let bapiConfigData = res.locals.config.bapiConfigData;
-
-		modelData = _.extend(modelData, result);
-		modelData.header = result['common'].header || {};
-		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
-		modelData.footer = result['common'].footer || {};
-		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
-		modelData.dataLayer = result['common'].dataLayer || {};
-		modelData.seo = result['seo'] || {};
-
-		modelData.isNewHP = true;
-
+	modelPromise.then((modelData) => {
 		HP.extendHeaderData(req, modelData);
 		HP.extendFooterData(modelData);
-		HP.buildContentData(modelData, bapiConfigData);
+		HP.buildContentData(modelData, res.locals.config.bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);

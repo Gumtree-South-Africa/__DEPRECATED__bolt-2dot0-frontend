@@ -5,6 +5,8 @@ $item-bottom-padding: 12px;
 $dropdown-width: 220px;
 
 .headerV2 {
+	z-index: 10;
+	position: relative;
     width: 100%;
     //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
@@ -20,13 +22,17 @@ $dropdown-width: 220px;
 
     .mobile-menu {
         position: absolute;
-        top: 5px;
+		top: 0;
+		bottom: 0;
+		margin: auto;
         left: 5px;
     }
 
     .app-icon {
         position: absolute;
-        top: 5px;
+        top: 0;
+		bottom: 0;
+		margin: auto;
         right: 5px;
     }
 
@@ -39,10 +45,14 @@ $dropdown-width: 220px;
 
     .logo {
         position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
         margin: auto;
         display: inline-block;
         min-width: 140px;
-        width: 100%;
+        width: 60%;
         height: 50px;
         background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
         background-size: contain;

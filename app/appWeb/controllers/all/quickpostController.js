@@ -24,18 +24,9 @@ router.get('/', function(req, res, next) {
 
 	// Build Model Data
 	let bapiConfigData = res.locals.config.bapiConfigData;
-	let modelData = pageControllerUtil.preController(req, res);
+	var model = new QuickPostPageModel(req, res);
 
-	var model = new QuickPostPageModel(req, res, modelData);
-	model.populateData().then(function(result) {
-
-		// Dynamic Data from BAPI
-		modelData.header = result.common.header || {};
-		modelData.footer = result.common.footer || {};
-		modelData.dataLayer = result.common.dataLayer || {};
-		modelData.categoryData = res.locals.config.categoryflattened;
-		modelData.seo = result['seo'] || {};
-
+	model.populateData().then(function(modelData) {
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
@@ -69,16 +60,8 @@ router.post('/',
 
 		// Build Model Data
 		let bapiConfigData = res.locals.config.bapiConfigData;
-		let modelData = pageControllerUtil.preController(req, res);
-		let model = QuickPostPageModel(req, res, modelData);
-		model.then(function(result) {
-			// Dynamic Data from BAPI
-			modelData.header = result.common.header || {};
-			modelData.footer = result.common.footer || {};
-			modelData.dataLayer = result.common.dataLayer || {};
-			modelData.categoryData = res.locals.config.categoryflattened;
-			modelData.seo = result['seo'] || {};
-
+		let model = QuickPostPageModel(req, res);
+		model.then(function(modelData) {
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
 			QuickPost.extendFooterData(modelData);

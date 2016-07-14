@@ -12,4 +12,4 @@ module.exports = function webpack(gulp, plugins) {
 			return shell.task(["node node_modules/webpack/bin/webpack.js"])(done);
 		});
 	}
-}
+};
