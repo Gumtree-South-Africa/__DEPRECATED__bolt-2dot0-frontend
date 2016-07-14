@@ -37,16 +37,25 @@ class QuickPostPageModelV2 {
 
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
-		return modelBuilder.resolveAllPromises(arrFunctions)
-			.then(function(data) {
-				// Converts the data from an array format to a JSON format
-				// for easy access from the client/controller
-				data = abstractPageModel.convertListToObject(data, arrFunctions);
-				return data;
-			}).fail(function(err) {
-				console.error(err);
-				console.error(err.stack);
-			});
+		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
+			// Converts the data from an array format to a JSON format
+			// for easy access from the client/controller
+			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+			return this.mapData(abstractPageModel.getBaseModelData(data), data);
+		}).fail((err) => {
+			console.error(err);
+			console.error(err.stack);
+		});
+	}
+
+	mapData(modelData, data) {
+		modelData.header = data.common.header || {};
+		modelData.footer = data.common.footer || {};
+		modelData.dataLayer = data.common.dataLayer || {};
+		modelData.categoryData = this.res.locals.config.categoryflattened;
+		modelData.seo = data['seo'] || {};
+
+		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
@@ -55,7 +64,6 @@ class QuickPostPageModelV2 {
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getQuickPostSeoInfo();
 		};
-
 	}
 }
 

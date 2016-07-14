@@ -36,13 +36,11 @@ class ModelBuilder {
 		let promises = functions.map((fn) => {
 			return (_.isFunction(fn)) ? fn() : fn;
 		});
-		return Q.all(promises).then((data) => {
-			return data;
-		});
+		return Q.all(promises);
 	}
 
 	initModelData(config, locals, cookies) {
-		return this.data = {
+		return {
 			env: 'public',
 			locale: config.locale,
 			country: config.country,

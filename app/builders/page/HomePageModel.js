@@ -3,6 +3,8 @@
 
 let cwd = process.cwd();
 
+let _ = require("underscore");
+
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
@@ -57,16 +59,63 @@ class HomePageModel {
 
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions)
-			.then(function(data) {
+			.then((data) => {
 				// Converts the data from an array format to a JSON format
 				// for easy access from the client/controller
-				data = abstractPageModel.convertListToObject(data, arrFunctions);
-
-				return data;
-			}).fail(function(err) {
-				console.error('Error Building hoe page model');
+				data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+				return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			}).fail((err) => {
+				console.error('Error Building home page model');
 				console.error(err);
 			});
+	}
+
+	mapData(modelData, data) {
+		modelData.header = data['common'].header || {};
+		modelData.footer = data['common'].footer || {};
+		modelData.dataLayer = data['common'].dataLayer || {};
+		modelData.seo = data['seo'] || {};
+
+		// Changing Version of template depending of the cookie
+		// Dynamic Data from BAPI
+		modelData.categoryList = _.isEmpty(data['catWithLocId']) ? modelData.category : data['catWithLocId'];
+		modelData.level2Location = data['level2Loc'] || {};
+		modelData.initialGalleryInfo = data['gallery'] || {};
+
+		if (data['adstatistics']) {
+			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
+		}
+
+		if (data['keyword']) {
+			modelData.trendingKeywords = data['keyword'][1].keywords || null;
+			modelData.topKeywords = data['keyword'][0].keywords || null;
+		}
+
+		// Make the loc level 2 (Popular locations) data null if it comes as an empty
+		if (_.isEmpty(modelData.level2Location)) {
+			modelData.level2Location = null;
+		}
+
+		// Check for top or trending keywords existence
+		modelData.topOrTrendingKeywords = false;
+		if (modelData.trendingKeywords || modelData.topKeywords) {
+			modelData.topOrTrendingKeywords = true;
+		}
+
+		// Special Data needed for HomePage in header, footer, content
+
+		// Make the location data null if it comes as an empty object from bapi
+		if (_.isEmpty(modelData.location)) {
+			modelData.location = null;
+		}
+
+		// Determine if we show the Popular locations container
+		modelData.showPopularLocations = true;
+		if (!modelData.level2Location && !modelData.location) {
+			modelData.showPopularLocations = false;
+		}
+
+		return modelData;
 	}
 
 	getHomepageDataFunctions(config, bapiHeaders) {

@@ -13,6 +13,39 @@ class AbstractPageModel extends BasePageModel {
 		super(req, res);
 	}
 
+	getBaseModelData(data) {
+
+		let modelData = {};
+
+		modelData.env = data.env;
+		modelData.locale = data.locale;
+		modelData.country = data.country;
+		modelData.site = data.site;
+		modelData.pagename = data.pagename;
+		modelData.device = data.device;
+		modelData.ip = data.ip;
+		modelData.machineid = data.machineid;
+		modelData.useragent = data.useragent;
+
+		// Cached Location Data from BAPI
+		modelData.location = data.location;
+		modelData.locationdropdown = data.locationdropdown;
+		modelData.locationIdNameMap = data.locationIdNameMap;
+
+		// Cached Category Data from BAPI
+		modelData.category = data.category;
+		modelData.categoryDropdown = data.categoryDropdown;
+
+		modelData.categoryIdNameMap = data.categoryIdNameMap;
+		modelData.categoryData = data.categoryData;
+
+		// Bapi Header Data
+		modelData.bapiHeaders = data.bapiHeaders;
+
+		return modelData;
+	}
+
+
 	/**
 	 * @method getPageModelConfig
 	 * @description Given a pagetype, looks up bapiConfigData for the bapi calls and
@@ -91,8 +124,8 @@ class AbstractPageModel extends BasePageModel {
 	 * @param {Array} arrFunctions Array with the list of bapi calls
 	 * @return {JSON}
 	 */
-	convertListToObject(dataList, arrFunctions) {
-		let numElems = dataList.length || 0, idx = 0, jsonObj = {}, fnLabel = '';
+	convertListToObject(dataList, arrFunctions, baseObj) {
+		let numElems = dataList.length || 0, idx = 0, jsonObj = baseObj || {}, fnLabel = '';
 		for (idx = 0; idx < numElems; idx++) {
 			fnLabel = arrFunctions[idx].fnLabel;
 			if (fnLabel) {
@@ -100,9 +133,12 @@ class AbstractPageModel extends BasePageModel {
 			}
 		}
 
+
 		return jsonObj;
 	}
 
 }
-module.exports = AbstractPageModel;
+
+module
+	.exports = AbstractPageModel;
 

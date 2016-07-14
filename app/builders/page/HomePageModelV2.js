@@ -3,6 +3,7 @@
 
 let cwd = process.cwd();
 
+let _ = require("underscore");
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
@@ -12,6 +13,7 @@ let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -39,15 +41,31 @@ class HomePageModelV2 {
 		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions)
-			.then(function(data) {
+			.then((data) => {
 				// Converts the data from an array format to a JSON format
 				// for easy access from the client/controller
-				data = abstractPageModel.convertListToObject(data, arrFunctions);
-				return data;
-			}).fail(function(err) {
+				data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+				return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			}).fail((err) => {
 				console.error(err);
 				console.error(err.stack);
 			});
+	}
+
+	mapData(modelData, data) {
+		let bapiConfigData = this.res.locals.config.bapiConfigData;
+
+		modelData = _.extend(modelData, data);
+		modelData.header = data['common'].header || {};
+		modelData.header.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.footer = data['common'].footer || {};
+		modelData.footer.distractionFree = (bapiConfigData.content.homepageV2.distractionFree) ? bapiConfigData.content.homepageV2.distractionFree : false;
+		modelData.dataLayer = data['common'].dataLayer || {};
+		modelData.seo = data['seo'] || {};
+
+		modelData.isNewHP = true;
+		
+		return modelData;
 	}
 
 	getHomepageDataFunctions(modelData) {
@@ -57,6 +75,7 @@ class HomePageModelV2 {
 
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
+		let searchModel = new SearchModel(modelData.bapiHeaders);
 
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
@@ -83,6 +102,10 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
 			return recentActivityModel.getRecentActivities();
+		};
+
+		this.dataPromiseFunctionMap.search = () => {
+			return searchModel.getSearch();
 		};
 	}
 }

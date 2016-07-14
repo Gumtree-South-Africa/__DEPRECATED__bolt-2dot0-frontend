@@ -36,19 +36,6 @@ describe('Server to hit HomePage', function() {
 		});
 	});
 
-	it('returns Gumtree', function(done) {
-		boltSupertest('/', 'gumtree.co.za').then((supertest) => {
-			supertest
-				.expect((res) => {
-					let c$ = cheerio.load(res.text);
-					let headerText = c$('h1')[0].firstChild;
-					expect(headerText.data).toBe('Gumtree South Africa - Free local classifieds');
-					expect(res.status).toBe(200);
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
 	describe('Safety Tips', () => {
 
 		it('shows safety tips card on vivanuncios', (done) => {
