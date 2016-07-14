@@ -1193,7 +1193,8 @@
 	},
 	"header": {
 		"catDropdown": {
-			"browse": "Explorar"
+			"browse": "Explorar",
+			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
 			"title": "¡Hola, ",
