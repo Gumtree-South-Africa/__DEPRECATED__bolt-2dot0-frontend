@@ -25,9 +25,19 @@
                     <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
+                    <li class="menu-item">
+                        <a href="{{this.category._links.[1].href}}" title="{{this.category.localizedName}}" class="link-item"
+                           data-id="{{this.category.id}}">
+                            <span class="item-primary-text">{{this.category.localizedName}}</span>
+                            {{!-- item secondary is for category "counts", out for MVP
+                            <span class="item-secondary-text">(tbd)</span>
+                            --}}
+                        </a>
+                    </li>
                     {{#each this.category.children}}
                         <li class="menu-item">
-                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" class="link-item" data-id="{{this.id}}">
+                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" class="link-item"
+                               data-id="{{this.id}}">
                                 <span class="item-primary-text">{{this.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
                                 <span class="item-secondary-text">(tbd)</span>

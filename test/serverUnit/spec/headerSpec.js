@@ -195,6 +195,10 @@ describe('Header', () => {
 
 					let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
 					let map = new Map();
+
+					// add the root "All Categories"
+					map.set(data.id, data);
+
 					// only expecting L1 categories
 					for (let child of data.children) {
 						// setup a key we can use to lookup the category
@@ -224,12 +228,18 @@ describe('Header', () => {
 						expect(itemName).toBe(mapValue.localizedName, `link ${itemName} should match mock data localizedName`);
 
 						let href = c$(el).attr('href');
-						expect(href).toContain(`c${id}`, `link href ${href} should contain category id string 'c${id}'`);
+						if (id === 0) {
+							expect(href).toContain(`b${id}`, `link href ${href} should contain category id string 'b${id}'`);
+
+						} else {
+							expect(href).toContain(`c${id}`, `link href ${href} should contain category id string 'c${id}'`);
+						}
 
 						let title = c$(el).attr('title');
 						expect(title).toBe(mapValue.localizedName, `link title ${title} should match mock data localizedName`);
 					});
-					expect(linkCount).toBe(data.children.length, 'count of category items in the menu');
+					
+					expect(linkCount).toBe(map.size, 'count of category items in the menu');
 
 				})
 				.end(specHelper.finish(done));
