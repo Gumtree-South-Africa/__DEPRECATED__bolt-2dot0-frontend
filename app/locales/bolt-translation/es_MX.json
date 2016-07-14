@@ -1144,8 +1144,8 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
-    "postad.button": "Publica Gratis",
-    "welcomescreen": {
+	"postad.button": "Publica Gratis",
+	"welcomescreen": {
 		"title": "Bienvenido!",
 		"description": "¡Gana dinero ahora!",
 		"close": "Cerrar"
@@ -1187,25 +1187,24 @@
 			]
 		}
 	},
-	  "header": {
-	  "catDropdown": {
-		  "browse": "Explorar"
-	  },
-	  "userDropdown": {
-		  "title": "¡Hola, ",
-		  "messages": "Mensajes",
-		  "favorites": "Favoritos",
-		  "myAlerts": "Mis avisos",
-		  "myProfile": "Mi perfil",
-		  "promoteMyAds": "Promocionar mis anuncios",
-		  "mySettings": "My configuración",
-		  "pricingGuide": "Guía de precios",
-		  "logout": "Cerrar sesión"
-	  },
-	  "myAds": "Mis anuncios",
-	  "help": "Ayuda",
-	  "postAd": "Publica Gratis"
-  },
+	"header": {
+		"catDropdown": {
+			"browse": "Explorar"
+		},
+		"userDropdown": {
+			"title": "¡Hola, ",
+			"messages": "Mensajes",
+			"favorites": "Favoritos",
+			"myAlerts": "Mis avisos",
+			"myProfile": "Mi perfil",
+			"promoteMyAds": "Promocionar mis anuncios",
+			"pricingGuide": "Guía de precios",
+			"logout": "Cerrar sesión"
+		},
+		"myAds": "Mis anuncios",
+		"help": "Ayuda",
+		"postAd": "Publica Gratis"
+	},
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",
@@ -1264,6 +1263,5 @@
 			"trademark": "2014-2016 eBay. Todos los derechos reservados"
 		}
 	}
-
 }
 
