@@ -12,7 +12,7 @@
             </div>
         {{/if}}
         <div id="js-hamburger-browse" class="browse-categories">
-            <div class="category-name">
+            <div id="js-browse-categories" class="category-name">
                 <div class="inline-block vertical-align-middle icon-grid-view-1"></div>
                 <div class="inline-block vertical-align-middle">
                     Browse Categories
@@ -30,28 +30,11 @@
             <ul class="l1-categories">
                 {{#each this.categoryDropdown.children}}
                     <li class="hidden">
-                        {{#unless this.children.length}}
-                            <a href="{{this.localizedName}}">
-                                <div class="category-name">
-                                    {{this.localizedName}}
-                                </div>
-                            </a>
-                        {{else}}
+                        <a href="{{this.localizedName}}">
                             <div class="category-name">
                                 {{this.localizedName}}
                             </div>
-                        {{/unless}}
-                        <ul id="{{this.localizedName}}" class="l2-categories">
-                            {{#each this.children}}
-                                <li>
-                                    <a href="{{this.localizedName}}">
-                                        <div class="l2-category category-name">
-                                            {{this.localizedName}}
-                                        </div>
-                                    </a>
-                                </li>
-                            {{/each}}
-                        </ul>
+                        </a>
                     </li>
                 {{/each}}
             </ul>
