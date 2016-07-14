@@ -14,7 +14,7 @@
         <div id="js-hamburger-browse" class="browse-categories">
             <div id="js-browse-categories" class="category-name">
                 <div class="inline-block vertical-align-middle icon-grid-view-1"></div>
-                <div class="inline-block vertical-align-middle">
+                <div class="inline-block vertical-align-middle browse-categories-text">
                     Browse Categories
                 </div>
             </div>
@@ -38,6 +38,9 @@
                     </li>
                 {{/each}}
             </ul>
+        </div>
+        <div class="profile-information">
+            {{> (dynamic "profileMenu") startsDisplayed=true}}
         </div>
     </div>
 </div>

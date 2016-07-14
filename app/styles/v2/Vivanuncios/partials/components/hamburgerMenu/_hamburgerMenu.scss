@@ -42,10 +42,12 @@
 
 $borderColor: $headerMenuItemSeparatorColor;
 .browse-categories {
-    .l1-categories {
-        li {
-            margin-left: 15px;
-        }
+    font-size: 1.125em;
+    li {
+        margin-left: 3px;
+    }
+    .browse-categories-text {
+        padding-left: 8px;
     }
     .category-name {
         border-bottom: 1px solid $borderColor;
@@ -55,6 +57,26 @@ $borderColor: $headerMenuItemSeparatorColor;
         text-overflow: ellipsis;
     }
 }
+
+.profile-information {
+    font-size: 1.125em;
+    .profile-dropdown {
+        width: 100%;
+        border: none;
+    }
+    .profile-item {
+        .item-icon {
+            margin-left: 0;
+            width: 25px;
+            height: 25px;
+            background-size: 500px 500px;
+        }
+        .link-item {
+            padding: 15px;
+        }
+    }
+}
+
 
 .vertical-align-middle {
     vertical-align: middle;
