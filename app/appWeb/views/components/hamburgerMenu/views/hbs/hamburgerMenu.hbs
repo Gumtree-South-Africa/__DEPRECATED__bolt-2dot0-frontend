@@ -40,18 +40,18 @@
             </div>
             <ul class="l0-categories">
                 <li class="hidden">
-                    <a href="/allCategories">
+                    <a href="{{this.category._links.[1].href}}">
                         <div class="category-name">
-                            {{i18n "header.search-all-categories"}}
+                            {{this.category.localizedName}}
                         </div>
                     </a>
 
                 </li>
             </ul>
             <ul class="l1-categories">
-                {{#each this.categoryDropdown.children}}
+                {{#each this.category.children}}
                     <li class="hidden">
-                        <a href="{{this.localizedName}}">
+                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}">
                             <div class="category-name">
                                 {{this.localizedName}}
                             </div>
