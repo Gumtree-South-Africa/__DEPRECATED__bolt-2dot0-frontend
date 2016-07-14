@@ -1145,8 +1145,8 @@
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
 	"postad.button": "Publica Gratis",
-	"welcomescreen": {
-		"title": "Bienvenido!",
+    "welcomescreen": {
+		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
 		"close": "Cerrar"
 	},
@@ -1170,6 +1170,10 @@
 			"popularIn": "Popular en",
 			"yourNeighborhood": "Tu Colonia",
 			"viewMore": "Ver más"
+		},
+		"searchbar": {
+			"lookingFor": "Estoy buscando un...",
+			"search": "Buscar"
 		},
 		"safetyTips": {
 			"title": "Vivanuncios Te Cuida",
@@ -1264,4 +1268,3 @@
 		}
 	}
 }
-

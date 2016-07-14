@@ -1,0 +1,31 @@
+{{#block "searchbarV2"}}
+    <section id="search-controls" class="search-controls">
+		<div class="search-bar">
+			<div role="button" class="close-search icon-close"></div>
+            <form method="GET" action="/search.html?page=1">
+                <div class="search-textbox-container">
+					<input class="search-textbox" type="text" name="q" autocomplete="off" placeholder="{{i18n "homepage.searchbar.lookingFor"}}"/>
+                    <a href="/location-tbd" class="location-link">
+                        <span class="location-text">Morelos</span>
+						<span class="icon-location-marker"></span>
+                    </a>
+                </div>
+                <input type="hidden" name="locId" value="1001">
+                <button class="search-button" type="submit">
+                    <span class="button-content-container">
+						<span class="inner-text">{{i18n "homepage.searchbar.search"}}</span>
+						<span class="icon-search-white"></span>
+                    </span>
+                </button>
+			</form>
+
+        </div>
+		<div class="type-ahead-results-wrapper">
+			<div id="type-ahead-results" class="type-ahead-results-container">
+                <ul></ul>
+            </div>
+		</div>
+
+		<div id="search-mask" class="search-mask hidden"></div>
+    </section>
+{{/block}}
