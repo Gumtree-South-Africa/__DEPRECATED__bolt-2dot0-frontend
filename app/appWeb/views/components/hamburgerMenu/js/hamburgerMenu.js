@@ -16,9 +16,21 @@ let _toggleMenu = () => {
 	this.open = !this.open;
 };
 
+let _toggleBrowseCategory = (event) => {
+	console.log('fired');
+	let el = event.target;
+	let scope = el.parentElement;
+	if (scope.className === 'category-name') {
+		scope = scope.parentElement;
+	}
+	$('li', scope).toggleClass('hidden');
+};
+
 let initialize = () => {
 	this.$body = $('body');
 	this.open = false;
+	this.$browse = $('#js-hamburger-browse');
+	this.$categories = $('.category-name', this.$browse);
 	this.$modalFooter = $('.modal-footer');
 	this.$pageContent = $('.headerV2, .containment');
 	this.$hamburgerPopout = $('#js-body-overlay');
@@ -26,6 +38,7 @@ let initialize = () => {
 	this.$hamburgerContents = $('.hamburger-contents');
 
 	this.$pageContent.addClass('open-menu');
+	this.$categories.on('click', _toggleBrowseCategory);
 	this.$hamburgerIcon.on('click', _toggleMenu);
 	this.$hamburgerPopout.on('click', _toggleMenu);
 };
