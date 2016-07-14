@@ -1,0 +1,58 @@
+$profile-dropdown-width: 220px;
+$profile-login-btn-margin: 5px;
+$profile-login-btn-padding: 10px;
+$profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding + $profile-login-btn-margin) * 2;
+
+.profile-dropdown {
+    margin-top: -1px; // works with item-text to hide top border
+
+    font-weight: $fontWeightBold;
+    font-size: $fontSizeH4;
+    width: $profile-dropdown-width;
+    text-align: left;
+    background-color: $headerBackgroundColor;
+    border: 1px solid $headerMenuBorderColor;
+
+    .profile-item {
+        border-bottom: 1px solid $headerMenuItemSeparatorColor;
+
+        .link-item {
+            display: block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+
+            .menu-item {
+                border-bottom: 1px solid $headerMenuItemSeparatorColor;
+            }
+            &:last-child {
+                .menu-item {
+                    border-bottom: none;
+                }
+            }
+        }
+
+        .item-icon {
+            display: inline-block;
+            vertical-align: middle;
+            margin-left: 10px;
+        }
+    }
+
+    .profile-item-text {
+        display: inline-block;
+        vertical-align: middle;
+        padding-left: 8px;
+        width: 78%;
+    }
+
+    .btn-wrapper {
+        width: $profile-login-btn-width;
+        margin: $profile-login-btn-margin;
+
+        .btn {
+            border-radius: 2px;
+            background-color: $profileDropdownLoginBtnColor;
+            padding: $profile-login-btn-padding;
+        }
+    }
+}

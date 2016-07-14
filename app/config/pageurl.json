@@ -8,6 +8,8 @@
 		"myAdsURL"				: "/my/ads.html",
 		"promoteAdsUrl"			: "/my/promote.html",
 		"myProfileUrl"			: "/my/profile.html",
+		"mySettingsUrl"			: "/my/settings.html",
+		"pricingGuideUrl"		: "/pages/guiadeprecios",
 		"signOutURL"			: "/logout",
 		"registerURL"			: "/register.html",
 		"searchPageUrl"			: "/search.html?page=1",
@@ -16,7 +18,7 @@
 		"rootGeoLocatorUrl"		: "/rui-api/locations/content/",
 		"surveyMonkeyUrl"		: "/post.html",
 		"abTestUrl"				: "/post.html",
-	  	"defaultHomePageUrl"	: "/"
+		"defaultHomePageUrl"	: "/"
 	},
 	"footer" : {
 		"cookieRightsURL"		: "/cookie-notice",
