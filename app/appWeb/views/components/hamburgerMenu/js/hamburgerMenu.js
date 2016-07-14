@@ -17,6 +17,8 @@ let _toggleMenu = () => {
 };
 
 let _toggleBrowseCategory = () => {
+	this.$browseArrow.toggleClass('icon-chevron');
+	this.$browseArrow.toggleClass('icon-up');
 	$('li', this.$browse).toggleClass('hidden');
 };
 
@@ -24,6 +26,7 @@ let initialize = () => {
 	this.$body = $('body');
 	this.open = false;
 	this.$browse = $('#js-hamburger-browse');
+	this.$browseArrow = $('#js-browse-arrow', this.$browse);
 	this.$browseCategories = $('#js-browse-categories', this.$browse);
 	this.$modalFooter = $('.modal-footer');
 	this.$pageContent = $('.headerV2, .containment');

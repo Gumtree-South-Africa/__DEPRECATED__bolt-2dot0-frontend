@@ -1,119 +1,140 @@
 .body-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 100%;
-    bottom: 0;
-    z-index: 10;
-    background-color: rgba(0, 0, 0, .5);
+	position: absolute;
+	top: 0;
+	left: 0;
+	right: 100%;
+	bottom: 0;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, .5);
 }
 
 .inline-block {
-    display: inline-block
+	display: inline-block
 }
 
 .menu-container {
-    position: relative;
-    margin: auto;
-    margin-top: 10px;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 95%;
+	position: relative;
+	margin: auto;
+	margin-top: 10px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 95%;
 
-    .profile-icon {
-        left: 0;
-        right: 0;
-        margin: auto;
-        width: 50px;
-        height: 50px;
-    }
+	.profile-icon {
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 75px;
+		height: 75px;
+	}
 
-    .menu-profile {
-        left: 0;
-        right: 0;
-        width: 80%;
-        margin: auto;
-        margin-top: 10px;
-        text-align: center;
-        font-size: 2em;
-    }
+	.menu-profile {
+		left: 0;
+		right: 0;
+		width: 80%;
+		margin: auto;
+		margin-top: 10px;
+		text-align: center;
+		font-size: 2em;
+	}
 }
 
 $borderColor: $headerMenuItemSeparatorColor;
 .browse-categories {
-    font-size: 1.125em;
-    li {
-        margin-left: 3px;
-    }
-    .browse-categories-text {
-        padding-left: 8px;
-    }
-    .category-name {
-        border-bottom: 1px solid $borderColor;
-        padding: 15px;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
+	font-size: 1.125em;
+
+	.browse-arrow {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		&.icon-chevron {
+			background-size: 700%;
+		}
+		&.icon-up {
+			background-size: 3500%;
+		}
+		width: 25px;
+		height: 25px;
+	}
+
+	li {
+		margin-left: 3px;
+	}
+
+	.browse-categories-text {
+		color: $profileDropdownLoginBtnColor;
+		padding-left: 8px;
+	}
+
+	.category-name {
+		position: relative;
+		border-bottom: 1px solid $borderColor;
+		padding: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
 }
 
 .profile-information {
-    font-size: 1.125em;
-    .profile-dropdown {
-        width: 100%;
-        border: none;
-    }
-    .profile-item {
-        .item-icon {
-            margin-left: 0;
-            width: 26px;
-            height: 25px;
-            background-size: 500px 500px;
-        }
-        .link-item {
-            padding: 15px;
-        }
-    }
+	font-size: 1.125em;
+	.profile-dropdown {
+		width: 100%;
+		border: none;
+		.login-button {
+			width: 90%;
+		}
+	}
+	.profile-item {
+		.item-icon {
+			margin-left: 0;
+			width: 26px;
+			height: 25px;
+			background-size: 500px 500px;
+		}
+		.link-item {
+			padding: 15px;
+		}
+	}
 }
 
-
 .vertical-align-middle {
-    vertical-align: middle;
+	vertical-align: middle;
 }
 
 .hamburger-contents {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    overflow: scroll;
-    z-index: 11;
-    &.hamburger-open {
-        left: 0;
-        right: 30%;
-    }
-    &.hamburger-closed {
-        left: -70%;
-        right: 100%;
-    }
-    background-color: $headerBackgroundColor;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	overflow: scroll;
+	z-index: 11;
+	&.hamburger-open {
+		left: 0;
+		right: 30%;
+	}
+	&.hamburger-closed {
+		left: -70%;
+		right: 100%;
+	}
+	background-color: $headerBackgroundColor;
 }
 
 .hidden {
-    display: none;
+	display: none;
 }
 
 .open-menu {
-    position: relative;
-    min-width: 100%;
-    left: 0;
-    &.menu-closed {
-        left: 70%;
-    }
+	position: relative;
+	min-width: 100%;
+	left: 0;
+	&.menu-closed {
+		left: 70%;
+	}
 }
 
 body {
-    &.overflow-hidden {
-        overflow: hidden;
-    }
+	&.overflow-hidden {
+		overflow: hidden;
+	}
 }
