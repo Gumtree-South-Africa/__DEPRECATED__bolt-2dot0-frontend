@@ -120,7 +120,8 @@ describe('Header', () => {
 					let data = specHelper.getMockDataByLocale("profile", "profile", "es_MX");
 					let map = new Map();
 					for (let value of data.loggedInContent) {
-						map.set(`${value.localizedName}`, value + "-TBD");
+						map.set(`${value.localizedName}`, value);
+						map.set(`${value.link}`, value.link);
 					}
 
 					// ensure dropdown is exists and is hidden
@@ -131,13 +132,13 @@ describe('Header', () => {
 
 					// test list item attributes
 					let linkCount = 0;
-					c$('li a', profDropdown).each((i, el) => {
+					c$('li span', profDropdown).each((i, el) => {
 						linkCount++;
 						let itemName = c$('.profile-item-text', el).text();
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
-						let href = c$(el).attr('href');
-						expect(href).toContain("-TBD", `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
+						let link = c$(el).attr('data-o-uri');
+						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedInContent.length, 'count of category items in the menu');
 				})
@@ -156,7 +157,8 @@ describe('Header', () => {
 					let data = specHelper.getMockDataByLocale("profile", "profile", "es_MX");
 					let map = new Map();
 					for (let value of data.loggedOutContent) {
-						map.set(`${value.localizedName}`, value + "-TBD");
+						map.set(`${value.localizedName}`, value);
+						map.set(`${value.link}`, value.link);
 					}
 
 					// ensure dropdown is exists and is hidden
@@ -167,13 +169,13 @@ describe('Header', () => {
 
 					// test list item attributes
 					let linkCount = 0;
-					c$('li a', profDropdown).each((i, el) => {
+					c$('li span', profDropdown).each((i, el) => {
 						linkCount++;
 						let itemName = c$('.profile-item-text', el).text();
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
-						let href = c$(el).attr('href');
-						expect(href).toContain("-TBD", `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
+						let link = c$(el).attr('data-o-uri');
+						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedOutContent.length, 'count of category items in the menu');
 

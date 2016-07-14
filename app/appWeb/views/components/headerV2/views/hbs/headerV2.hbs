@@ -13,7 +13,7 @@
                 <a href="messages-TBD">
                     <div class="messages icon-messages">
                         <div class="number-messages">
-                            10
+                            {{this.header.converstionInfo.totalUnreadMessageCount}}
                         </div>
                     </div>
                 </a>
@@ -25,13 +25,12 @@
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
                     {{#each this.categoryDropdown.children}}
-
-                            <li class="menu-item">
-                                <a href="{{this.localizedName}}-TBD" class="link-item">
-                                    <span class="item-primary-text">{{this.localizedName}}</span>
-                                    <span class="item-secondary-text">(tbd)</span>
-                                </a>
-                            </li>
+                        <li class="menu-item">
+                            <a href="{{this.localizedName}}-TBD" class="link-item">
+                                <span class="item-primary-text">{{this.localizedName}}</span>
+                                <span class="item-secondary-text">(tbd)</span>
+                            </a>
+                        </li>
                     {{/each}}
                 </ul>
             </div>
@@ -53,10 +52,23 @@
                 <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
                     {{#if this.header.username}}
-                    profile-picture
+                        {{#if this.header.profilePictureCropUrl}}
+                            profile-picture
+                        {{else if this.header.smallFbProfileImageUrl}}
+                            profile-picture
+                        {{else}}
+                            icon-header-profile-out
+                        {{/if}}
                     {{else}}
-                    icon-header-profile-out
-                    {{/if}}">
+                        icon-header-profile-out
+                    {{/if}}"
+                    {{#if this.header.profilePictureCropUrl}}
+                         style="background: url('{{this.header.profilePictureCropUrl}}') no-repeat;
+                                 background-size: contain;"
+                    {{else if this.header.smallFbProfileImageUrl}}
+                         style="background: url('{{this.header.smallFbProfileImageUrl}}') no-repeat;
+                                 background-size: contain;"
+                    {{/if}}>
                     </div>
                     {{#if this.header.userEmail}}
                         {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
@@ -66,62 +78,10 @@
                         <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                     {{/if}}
                 </div>
-                <ul id="js-profile-dropdown" class="menu-dropdown hidden">
-                    <li class="menu-item">
-                        <a href="favorites-TBD" class="link-item">
-                            <div class="item-icon icon-favorites icon-favorites"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.favorites"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="messages-TBD" class="link-item">
-                            <div class="item-icon icon-chat"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.messages"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="myAlerts-TBD" class="link-item">
-                            <div class="item-icon icon-alerts"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.myAlerts"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="myProfile-TBD" class="link-item">
-                            <div class="item-icon icon-photo-library-3"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.myProfile"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="mySettings-TBD" class="link-item">
-                            <div class="item-icon icon-my-settings"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.mySettings"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="promoteMyAds-TBD" class="link-item">
-                            <div class="item-icon icon-promote-1"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.promoteMyAds"}}</div>
-                        </a>
-                    </li>
-                    <li class="menu-item">
-                        <a href="pricingGuide-TBD" class="link-item">
-                            <div class="item-icon icon-pricing-guide"></div>
-                            <div class="profile-item-text">{{i18n "header.userDropdown.pricingGuide"}}</div>
-                        </a>
-                    </li>
-                    {{#if this.header.username}}
-                        <li class="menu-item">
-                            <a href="logout-TBD" class="link-item">
-                                <div class="item-icon icon-logout-1"></div>
-                                <div class="profile-item-text">{{i18n "header.userDropdown.logout"}}</div>
-                            </a>
-                        </li>
-                    {{else}}
-                        {{> (dynamic "button") i18nPath="login.signin-button" buttonLink="/login-TBD" hideIcon=true extraClasses='login-button'}}
-                    {{/if}}
-                </ul>
+                {{!-- profile dropdown --}}
+                {{> (dynamic "profileMenu")}}
             </div>
-
+            {{!-- post ad button --}}
             {{> (dynamic "button") extraClasses='post-ad-button' buttonLink="/quickpost" i18nPath="header.postAd"}}
 
         </div>
