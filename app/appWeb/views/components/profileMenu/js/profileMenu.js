@@ -1,28 +1,17 @@
 'use strict';
 
-(function() {
-	let BOLT;
-	if (!BOLT) {
-		BOLT = {};
-	}
-	BOLT.UTILS = BOLT.UTILS || {};
-	BOLT.StringUtils = BOLT.StringUtils || {};
+let StringUtilsV2 = require("public/js/common/utils/StringUtilsV2");
 
+let initialize = () => {
 	function revealUrl(obfuscateUrl) {
-		return BOLT.StringUtils.rot13(obfuscateUrl);
+		return StringUtilsV2.rot13(obfuscateUrl);
 	}
 
 	// Change spans to a tags and set href
-	$(".sudo-link-toConvert").each(function() {
+	$(".rot-link-toConvert").each(function() {
 		let $this = $(this), unmaskedUrl = "";
-
-		if ($this.data("o-uri-back") !== null) {
-			unmaskedUrl = revealUrl($this.data("o-uri-back")) + "?redirect=" + window.location.href;
-			$this.removeAttr("data-o-uri-back");
-		} else {
 			unmaskedUrl = revealUrl($this.data("o-uri"));
 			$this.removeAttr("data-o-uri");
-		}
 
 		if (unmaskedUrl) {
 			$this.attr("href", unmaskedUrl);
@@ -39,6 +28,8 @@
 			$this.replaceWith($newTag);
 		}
 	});
-})();
+};
 
-
+module.exports = {
+	initialize
+};
