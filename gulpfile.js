@@ -86,7 +86,6 @@ gulp.task('default', function(done) {
 	runSequence('build', ['develop', 'watch'], done);
 });
 
-
 var testTasks = getTask("test");
 
 gulp.task('test:clientUnit', testTasks);

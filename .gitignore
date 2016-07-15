@@ -58,6 +58,9 @@ screenshots
 logs
 dist
 test/clientUnit/SpecRunnerBundle.js
+test/clientUnit/helpers/webTemplates.js*
+/app/templateStaging/
+
 .idea/*
 !.idea/runConfigurations
 !.idea/codeStyleSettings.xml

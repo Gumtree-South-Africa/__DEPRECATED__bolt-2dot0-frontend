@@ -10,7 +10,10 @@ module.exports = function watch(gulp, plugins) {
 		webdriver_update = gulpProtractor.webdriver_update,
 		shell = require('gulp-shell'),
 		argv = require('yargs').argv,
-		Server = require('karma').Server;
+		Server = require('karma').Server,
+		webpack = require("webpack"),
+		flatten = require("gulp-flatten"),
+		del = require("del");
 
 	let browser = "chrome";
 
@@ -40,6 +43,34 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		// CLIENT UNIT TEST TASKS
+		gulp.task("cleanTemplates", () => {
+			return del([
+				"app/templateStaging",
+				"test/clientUnit/helpers/webTemplates.js*"
+			]);
+		});
+
+		gulp.task('stageTemplates', () => {
+			return gulp.src("app/**/*.hbs")
+				.pipe(flatten())
+				.pipe(gulp.dest("app/templateStaging"));
+		});
+
+		gulp.task("templateMaker", shell.task(["bash bin/scripts/templateMaker.sh"]));
+
+		gulp.task('precompileTemplates', (done) => {
+			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
+		});
+
+		gulp.task('webpackTest', (done) => {
+			// run webpack
+			webpack(require(process.cwd() + "/webpack.config.js"), function(err, stats) {
+				if(err) throw new gutil.PluginError("webpack", err);
+				console.log("[webpack]", stats.toString());
+
+				done();
+			});
+		});
 
 		gulp.task('karma', function (done) {
 			new Server({
@@ -49,7 +80,7 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		gulp.task('test:clientUnit', function (done) {
-			runSequence("webpack", "karma", done);
+			runSequence("precompileTemplates", "webpackTest", "karma", done)
 		});
 
 		// SERVER UNIT TEST TASKS
