@@ -14,7 +14,14 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 	app.locals = siteApp.locals;
 
 	app.use((req, res, next) => {
-		res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+		let pageVersion = process.env.PAGE_VER || 'v1';
+		
+		res.locals.b2dot0Version = false;
+		if (pageVersion === 'v2') {
+			res.locals.b2dot0Version = true;
+		} else {
+			res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+		}
 		next();
 	});
 

@@ -1,6 +1,5 @@
 'use strict';
 let cuid = require('cuid');
-let _ = require('underscore');
 
 let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
@@ -202,63 +201,16 @@ module.exports = (req, res, next) => {
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
-
-	// Build Model Data
-	let modelData = pageControllerUtil.preController(req, res);
-
+	
 	// Cookies drop for Version of template
 
 	// Retrieve Data from Model Builders
 	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGE;
-	let homepage = new HomepageModel(req, res, modelData);
+	let homepage = new HomepageModel(req, res);
 	let model = homepage.populateData();
 
-	model.then((result) => {
+	model.then((modelData) => {
 		let bapiConfigData = res.locals.config.bapiConfigData;
-
-		modelData.header = result['common'].header || {};
-		modelData.footer = result['common'].footer || {};
-		modelData.dataLayer = result['common'].dataLayer || {};
-		modelData.seo = result['seo'] || {};
-
-		// Changing Version of template depending of the cookie
-		// Dynamic Data from BAPI
-		modelData.categoryList = _.isEmpty(result['catWithLocId']) ? modelData.category : result['catWithLocId'];
-		modelData.level2Location = result['level2Loc'] || {};
-		modelData.initialGalleryInfo = result['gallery'] || {};
-
-		if (result['adstatistics']) {
-			modelData.totalLiveAdCount = result['adstatistics'].totalLiveAds || 0;
-		}
-
-		if (result['keyword']) {
-			modelData.trendingKeywords = result['keyword'][1].keywords || null;
-			modelData.topKeywords = result['keyword'][0].keywords || null;
-		}
-
-		// Make the loc level 2 (Popular locations) data null if it comes as an empty
-		if (_.isEmpty(modelData.level2Location)) {
-			modelData.level2Location = null;
-		}
-
-		// Check for top or trending keywords existence
-		modelData.topOrTrendingKeywords = false;
-		if (modelData.trendingKeywords || modelData.topKeywords) {
-			modelData.topOrTrendingKeywords = true;
-		}
-
-		// Special Data needed for HomePage in header, footer, content
-
-		// Make the location data null if it comes as an empty object from bapi
-		if (_.isEmpty(modelData.location)) {
-			modelData.location = null;
-		}
-
-		// Determine if we show the Popular locations container
-		modelData.showPopularLocations = true;
-		if (!modelData.level2Location && !modelData.location) {
-			modelData.showPopularLocations = false;
-		}
 
 		//Shared data
 		HP.extendHeaderData(req, modelData);
