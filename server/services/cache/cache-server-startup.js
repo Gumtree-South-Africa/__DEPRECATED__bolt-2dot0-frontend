@@ -95,12 +95,7 @@ function CacheBapiData(siteApp, requestId) {
 			var configData = require(pCwd + '/server/config/bapi/config_' + locale + '.json');
 
 			// Update config in BAPI
-			return Q(configService.updateConfigData(bapiHeaders, JSON.stringify(configData)))
-				.then(function (dataReturned) {
-					console.log('Startup: Success in updating ZK config (dev mode) in ConfigService:- ', dataReturned);
-				}).fail(function (err) {
-					console.warn('Startup: Error in updating ' + locale + ' ZK config (dev mode) in ConfigService:- ', err);
-				});
+			return configService.updateConfigData(bapiHeaders, JSON.stringify(configData));
 		},
 
         /**
