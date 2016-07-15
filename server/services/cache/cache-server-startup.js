@@ -17,6 +17,12 @@ module.exports = function(siteApp, requestId) {
     return Cache.loadConfigData();
 };
 
+module.exports.updateConfig = function(locale, requestId) {
+	var Cache = CacheBapiData(null, requestId);
+
+	return Cache.updateConfigData(locale);
+}
+
 /**
  * @class CacheBapiData (Singleton)
  * @constructor
@@ -73,7 +79,29 @@ function CacheBapiData(siteApp, requestId) {
             });
     };
 
+
     return {
+
+		/**
+		 * @method updateConfigData
+		 * @description Updates the Configuration for a given locale
+		 * @param locale
+		 */
+		updateConfigData : function (locale) {
+			var bapiHeaders = {};
+			bapiHeaders.locale = locale;
+			bapiHeaders.requestId = requestId;
+
+			var configData = require(pCwd + '/server/config/bapi/config_' + locale + '.json');
+
+			// Update config in BAPI
+			return Q(configService.updateConfigData(bapiHeaders, JSON.stringify(configData)))
+				.then(function (dataReturned) {
+					console.log('Startup: Success in updating ZK config (dev mode) in ConfigService:- ', dataReturned);
+				}).fail(function (err) {
+					console.warn('Startup: Error in updating ' + locale + ' ZK config (dev mode) in ConfigService:- ', err);
+				});
+		},
 
         /**
          * @method loadConfigData

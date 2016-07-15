@@ -50,6 +50,11 @@ let createSiteApps = () => {
 				siteApp.locals.siteObj = siteObj;
 				siteApps.push(siteApp);
 
+				// Update ZK with local config file provided in devMode
+				if (siteApp.locals.devMode === true) {
+					cacheBapiData.updateConfig(site.locale, requestId);
+				}
+
 				// Service Util to get Location and Category Data
 				// Wait to spin up the node app in server.js until all config promises resolve.
 				configPromises.push(cacheBapiData(siteApp, requestId));
