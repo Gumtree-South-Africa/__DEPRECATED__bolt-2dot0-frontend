@@ -7,6 +7,20 @@
 	z-index: 10;
 	background-color: rgba(0, 0, 0, .5);
 }
+.is-mobile {
+	display: block;
+	@include from-breakpoint($medium-break) {
+		display: none;
+	}
+}
+
+.is-desktop {
+	display: none;
+	@include from-breakpoint($medium-break) {
+		display: block;
+	}
+}
+
 
 .inline-block {
 	display: inline-block
@@ -132,7 +146,6 @@ $borderColor: $headerMenuItemSeparatorColor;
 }
 
 .open-menu {
-	position: relative;
 	min-width: 100%;
 	left: 0;
 	&.menu-closed {
