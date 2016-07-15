@@ -1,5 +1,6 @@
 $mobileSearchTextboxHeight: 26px;
 $desktopSearchTextboxHeight: 32px;
+$mobileTypingTextboxWidth: 84%;
 
 .search-controls {
 	color: $searchBarTextColor;
@@ -68,7 +69,6 @@ $desktopSearchTextboxHeight: 32px;
 		z-index: 4;
 		width: 90%;
 		margin: 0 auto;
-		height: $mobileSearchTextboxHeight;
 		position: relative;
 		box-sizing: border-box;
 
@@ -197,20 +197,18 @@ $desktopSearchTextboxHeight: 32px;
 	}
 
 	&.is-typing {
-		$typing-textbox-width: 84%;
 		.type-ahead-results-wrapper, .search-mask, .close-search {
 			display: block;
 		}
 
 		.mobile-location-area {
-			width: $typing-textbox-width;
+			width: $mobileTypingTextboxWidth;
 			padding: 0 30px;
 		}
 
 		.search-textbox {
-			width: $typing-textbox-width;
+			width: 100%;
 			padding: 0 30px;
-			margin-bottom: 8px;
 		}
 	}
 }
@@ -254,6 +252,7 @@ $desktopSearchTextboxHeight: 32px;
 				height: 320px;
 				background-color: $searchBarTypeAheadContainerBackgroundDesktop;
 				border: 0.5px solid $searchBarTypeAheadBorder;
+				box-sizing: border-box;
 			}
 		}
 
@@ -280,12 +279,18 @@ $desktopSearchTextboxHeight: 32px;
 		}
 	}
 
-	.is-typing {
-		.search-bar .mobile-location-area {
+	.is-typing .search-bar {
+		.mobile-location-area {
 			display: block;
 		}
 
-		.search-bar .location-link {
+		.search-textbox {
+			width: $mobileTypingTextboxWidth;
+			padding: 0 30px;
+			margin-bottom: 8px;
+		}
+
+		.location-link {
 			position: absolute;
 			border: none;
 			display: block;
@@ -300,7 +305,7 @@ $desktopSearchTextboxHeight: 32px;
 		}
 
 		.loc-arrow-icon {
-			display: block !important;
+			display: block;
 		}
 
 		.search-bar {
