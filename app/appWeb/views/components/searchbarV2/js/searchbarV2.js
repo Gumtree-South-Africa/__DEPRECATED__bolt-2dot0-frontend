@@ -204,12 +204,6 @@ let initialize = () => {
 
 	});
 
-	this.$searchTextbox.on('blur', () => {
-		setTimeout(() => {
-			_closeTypeAhead(true);
-		}, 500);
-	});
-
 	this.$searchControls.find(".close-search").on('click', () => {
 		_closeTypeAhead();
 	});
