@@ -1145,8 +1145,8 @@
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
 	"postad.button": "Publica Gratis",
-	"welcomescreen": {
-		"title": "Bienvenido!",
+    "welcomescreen": {
+		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
 		"close": "Cerrar"
 	},
