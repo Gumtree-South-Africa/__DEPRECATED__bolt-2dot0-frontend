@@ -1,67 +1,67 @@
 <div id="js-body-overlay" class="body-overlay"></div>
 <div class="hamburger-popout hamburger-contents hamburger-closed">
-    <div class="menu-container">
+	<div class="menu-container">
         {{> (dynamic "button") buttonLink="/quickpost" i18nPath="header.postAd"}}
 
         {{#if this.header.profileName}}
-            <div class="menu-profile">
-                <div class="profile-icon
+			<div class="menu-profile">
+				<div class="profile-icon
                     {{#if this.header.username}}
-                        {{#if this.header.profilePictureCropUrl}}
+                    {{#if this.header.profilePictureCropUrl}}
                             profile-picture
                         {{else if this.header.smallFbProfileImageUrl}}
                             profile-picture
                         {{else}}
                             icon-header-profile-out
                         {{/if}}
-                    {{else}}
+                {{else}}
                         icon-header-profile-out
                     {{/if}}"
                     {{#if this.header.profilePictureCropUrl}}
-                         style="background: url('{{this.header.profilePictureCropUrl}}') no-repeat;
-                                 background-size: contain;"
+					 style="background: url('{{this.header.profilePictureCropUrl}}13.JPG') no-repeat;
+							 background-size: contain;"
                     {{else if this.header.smallFbProfileImageUrl}}
-                         style="background: url('{{this.header.smallFbProfileImageUrl}}') no-repeat;
-                                 background-size: contain;"
+					 style="background: url('{{this.header.smallFbProfileImageUrl}}') no-repeat;
+							 background-size: contain;"
                     {{/if}}>
-                    </div>
-                <div class="profile-welcome-text">
+				</div>
+				<div class="profile-welcome-text">
                     {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
-                </div>
-            </div>
+				</div>
+			</div>
         {{/if}}
-        <div id="js-hamburger-browse" class="browse-categories">
-            <div id="js-browse-categories" class="category-name">
-                <div class="inline-block vertical-align-middle icon-grid-view-1"></div>
-                <div class="inline-block vertical-align-middle browse-categories-text">
+		<div id="js-hamburger-browse" class="browse-categories">
+			<div id="js-browse-categories" class="category-name">
+				<div class="inline-block vertical-align-middle icon-grid-view-1"></div>
+				<div class="inline-block vertical-align-middle browse-categories-text">
                     {{i18n "header.catDropdown.browseCategories"}}
-                </div>
-                <div id="js-browse-arrow" class="browse-arrow icon-chevron"></div>
-            </div>
-            <ul class="l0-categories">
-                <li class="hidden">
-                    <a href="{{this.category._links.[1].href}}">
-                        <div class="category-name">
+				</div>
+				<div id="js-browse-arrow" class="browse-arrow icon-chevron"></div>
+			</div>
+			<ul class="l0-categories">
+				<li class="hidden">
+					<div class="category-name">
+						<a href="{{this.category._links.[1].href}}">
                             {{this.category.localizedName}}
-                        </div>
-                    </a>
+						</a>
+					</div>
 
-                </li>
-            </ul>
-            <ul class="l1-categories">
+				</li>
+			</ul>
+			<ul class="l1-categories">
                 {{#each this.category.children}}
-                    <li class="hidden">
-                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}">
-                            <div class="category-name">
+					<li class="hidden">
+						<div class="category-name">
+							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}">
                                 {{this.localizedName}}
-                            </div>
-                        </a>
-                    </li>
+							</a>
+						</div>
+					</li>
                 {{/each}}
-            </ul>
-        </div>
-        <div class="profile-information">
+			</ul>
+		</div>
+		<div class="profile-information">
             {{> (dynamic "profileMenu")}}
-        </div>
-    </div>
+		</div>
+	</div>
 </div>
