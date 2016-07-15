@@ -22,7 +22,6 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 		} else {
 			res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
 		}
-		res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
 		next();
 	});
 
