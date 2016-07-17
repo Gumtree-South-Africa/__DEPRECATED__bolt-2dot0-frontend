@@ -52,8 +52,8 @@ module.exports.message = function (req, res, next) {
 
 		// Retrieve Data from Model Builders
 		let bapiConfigData = res.locals.config.bapiConfigData;
-		let model = ErrorPageModel(req, res);
-		model.then(function(result) {
+		let model = new ErrorPageModel(req, res);
+		model.populateData().then(function(result) {
 			// Data from BAPI
 			modelData.header = result['common'].header;
 			modelData.footer = result['common'].footer;

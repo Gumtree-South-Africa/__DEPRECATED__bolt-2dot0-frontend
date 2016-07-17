@@ -1,25 +1,25 @@
 'use strict';
 
-let util = require('util');
 let BasePageModel = require('./BasePageModel');
 
 /**
  * @description
  * @constructor
  */
-let ExtendModel = function(req, res) {
-	BasePageModel.call(this, req, res);
-};
+class ExtendModel extends BasePageModel {
+	constructor(req, res) {
+		super(this, req, res);
+	}
 
-util.inherits(ExtendModel, BasePageModel);
+	getFullName() {
+		return 'Anton Ganeshlingam';
+	}
 
-ExtendModel.prototype.getFullName = function() {
-	return 'Anton Ganeshlingam';
-};
+	getAddress() {
+		return '123 Camino de Ceri, Santa Cruz, CA';
+	}
 
-ExtendModel.prototype.getAddress = function() {
-	return '123 Camino de Ceri, Santa Cruz, CA';
-};
+}
 
 
 module.exports = ExtendModel;

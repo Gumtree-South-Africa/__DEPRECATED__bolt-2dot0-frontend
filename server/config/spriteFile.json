@@ -1,0 +1,24 @@
+{
+	"image": {
+		"name": "image_name",
+		"sizes": [
+			["x", "y"],
+			["x", "y"]
+		]
+	},
+	"alerts": {
+		"name": "alerts",
+		"sizes": [
+			[50, 50],
+			[90, 90]
+		]
+	},
+
+
+
+
+	"alerts": [
+		[50, 50],
+		[90, 90]
+	]
+}

@@ -1,3 +1,4 @@
+'use strict';
 /////////////////////////////////////////////////
 // Required tasks
 // gulp build
@@ -66,15 +67,15 @@ gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
 gulp.task('webpack', getTask('webpack'));
-gulp.task('spriteSvgs', getTask('spriteSvgs'));
-gulp.task('spriteFallback', getTask('spriteFallback'));
+gulp.task('svgSprite', getTask('svgSprite'));
+gulp.task('svgFallback', getTask('svgFallback'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
 
-gulp.task('build', ['set-env', 'eslint', 'webpack', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'webpack', 'svgSprite', 'svgFallback', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 gulp.task('icons', getTask('icons'));
 
@@ -93,10 +94,11 @@ gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
 
-gulp.task('icons2', (done) => {
-	//Task for spriting svgs and pngs
-	runSequence('spriteSvgs', 'spriteFallback', done);
-});
+let icons2 = getTask('icons2');
+
+gulp.task('icons2', icons2);
+gulp.task('rebuildSprites', icons2);
+gulp.task('cleanSprites', icons2);
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 

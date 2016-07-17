@@ -1,87 +1,84 @@
 @import "../../partials/components/button/button";
 
-
-
-.welcome-wrapper{
-   height: 69px ;
+.welcome-wrapper {
+    height: 55px;
 }
+
 .stickybottom {
-   bottom: 0;
-   z-index: 100;
-   position: fixed;
-   width: 100%;
-   margin:auto;
-   left:0;
-   right:0;
-}
-
-.modal-wrapper{
-   .modal{
-    display: none;
+    bottom: 0;
+    z-index: 100;
     position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: 100%;
-    overflow: auto;
-    h1{
-       margin-bottom: 0.8em;
-       margin-top: 0.8em;
-      }
-	.modal-info{
-	 text-align:center;
-	  margin-left: 0;
-	}
-> .modal-container{
-	width: 100%;
-	height: 185px;
-	background-color: $welcomeSreen-bgcolor;
-	position: fixed;
-	bottom: 0;
-	text-align: center;
-	top:initial;
-	margin:auto;
-    min-height: 11em;
-    max-width:100%;
-    padding:0;
-	 > .modal-close-section{
-	         margin-right: 1.5em;
-             margin-top: 3px;
-           > .close-text {
-            margin-right: 0.2em;
-           }
-          > .icon-close {
-                width: 0.8em;
-                height: 0.8em;
-           }        
-	  }
-   }
- }
+    margin: auto;
+    left: 0;
+    right: 0;
 }
 
-.welcome-footer{
- .modal-footer{
-     bottom:0.5em;
-     .btn-wrapper {
-        text-align:center;
-     .btn{
-         width:90% !important;
-         padding: 0.35em;
-         @include vivaBtn(off, 0.35em, off);
-         > span + span.btn-icon {
-         display:inline-block;
-         }
-      }            
-     }
+.modal-wrapper {
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        h1 {
+            margin-bottom: 0.8em;
+            margin-top: 0.8em;
+        }
+        .modal-info {
+            text-align: center;
+            margin-left: 0;
+        }
+        > .modal-container {
+            width: 100%;
+            height: 185px;
+            background-color: $welcomeSreen-bgcolor;
+            position: fixed;
+            bottom: 0;
+            text-align: center;
+            top: initial;
+            margin: auto;
+            min-height: 11em;
+            max-width: 100%;
+            padding: 0;
+            > .modal-close-section {
+                margin-right: 1.5em;
+                margin-top: 3px;
+                > .close-text {
+                    margin-right: 0.2em;
+                }
+                > .icon-close {
+                    width: 0.8em;
+                    height: 0.8em;
+                }
+            }
+        }
     }
-  }  
+}
 
+.welcome-footer {
+    .modal-footer {
+        bottom: 0.5em;
+        .btn-wrapper {
+            text-align: center;
+            .btn {
+                width: 90% !important;
+                padding: 0.35em;
+                vertical-align: top;
+                @include vivaBtn(off, 0.35em, off);
+                > span + span.btn-icon {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
 
-
-
-@include from-breakpoint($medium-break){
-.modal-wrapper , .welcome-footer{
-   display: none;
-   }
-  }
+@include from-breakpoint($medium-break) {
+    .modal-wrapper, .welcome-footer, .welcome-wrapper {
+        display: none;
+    }
+}

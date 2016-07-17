@@ -3,15 +3,18 @@
 
 let cwd = process.cwd();
 
-let Q = require('q');
+let _ = require("underscore");
+
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
-let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let GpsMapModel = require(cwd + '/app/builders/common/GpsMapModel');
+let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -21,97 +24,105 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
  * @private
  * @return {JSON}
  */
-let getHomepageDataFunctions = function(req, res, modelData) {
+class HomePageModelV2 {
+	constructor(req, res) {
+		this.req = req;
+		this.res = res;
+		this.dataPromiseFunctionMap = {};
+	}
 
-	/*
-	 * Build Component Models
-	 */
-	let safetyTipsModel = new SafetyTipsModel(req, res);
-	let recentActivityModel = new RecentActivityModel(req, res);
-	let appDownloadModel = new AppDownloadModel(req, res);
-	let gpsMapModel = new GpsMapModel(modelData.bapiHeaders);
-	let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
-	let cardNames = cardsModel.getCardNamesForPage("homePage");
+	populateData() {
+		let abstractPageModel = new AbstractPageModel(this.req, this.res);
+		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
+		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
-	/*
-	 * Build dataPromise function map
-	 */
-	let dataPromiseFunctionMap = {};
+		let modelBuilder = new ModelBuilder();
+		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
 
-	dataPromiseFunctionMap.safetyTips = (callback) => {
-		let data = safetyTipsModel.getSafetyTips();
-		callback(null, data);
-	};
+		this.getHomepageDataFunctions(modelData);
+		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
+		return modelBuilder.resolveAllPromises(arrFunctions)
+			.then((data) => {
+				// Converts the data from an array format to a JSON format
+				// for easy access from the client/controller
+				data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+				return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			}).fail((err) => {
+				console.error(err);
+				console.error(err.stack);
+			});
+	}
 
-	dataPromiseFunctionMap.recentActivities = (callback) => {
-		let data = recentActivityModel.getRecentActivities();
-		callback(null, data);
-	};
+	mapData(modelData, data) {
+		let bapiConfigData = this.res.locals.config.bapiConfigData;
+		let distractionFreeMode = false;
+		if (bapiConfigData.content.homepageV2) {
+			distractionFreeMode = bapiConfigData.content.homepageV2.distractionFree || false;
+		}
+		modelData = _.extend(modelData, data);
+		modelData.header = data['common'].header || {};
+		modelData.header.distractionFree = distractionFreeMode;
+		modelData.footer = data['common'].footer || {};
+		modelData.footer.distractionFree = distractionFreeMode;
+		modelData.dataLayer = data['common'].dataLayer || {};
+		modelData.seo = data['seo'] || {};
 
-	dataPromiseFunctionMap.appDownload = (callback) => {
-		let data = appDownloadModel.getAppDownload();
-		callback(null, data);
-	};
+		modelData.isNewHP = true;
 
-	dataPromiseFunctionMap.gpsMap = (callback) => {
-		gpsMapModel.getMap({
-			location: "[19.414980, -99.177446]"
-		}).then((data) => {
-			callback(null, data);
-		}).fail((err) => {
-			console.warn(`error getting data ${err}`);
-			callback(null, {});
-		});
-	};
+		return modelData;
+	}
 
-	for (let cardName of cardNames) {
-		dataPromiseFunctionMap[cardName] = (callback) => {
-			// user specific parameters are passed here, such as location lat/long
-			// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
-			cardsModel.getCardItemsData(cardName, {
-				location: "[19.432608, -99.133209]"
-			}).then((dataL) => {
-				callback(null, dataL);
+	getHomepageDataFunctions(modelData) {
+		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
+		let appDownloadModel = new AppDownloadModel(this.req, this.res);
+		let recentActivityModel = new RecentActivityModel(this.req, this.res);
+
+		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+		let cardNames = cardsModel.getCardNamesForPage("homePage");
+		let searchModel = new SearchModel(modelData.bapiHeaders);
+		let gpsMapModel = new GpsMapModel(modelData.bapiHeaders);
+
+		// now make we get all card data returned for home page
+		for (let cardName of cardNames) {
+			this.dataPromiseFunctionMap[cardName] = () => {
+				// user specific parameters are passed here, such as location lat/long
+				// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
+				return cardsModel.getCardItemsData(cardName, {
+					location: "(40.12,-71.34),(70.12,-73.34)"
+				}).then( (result) => {
+					// augment the API result data with some additional card driven config for templates to use
+					result.config = cardsModel.getTemplateConfigForCard(cardName);
+					return result;
+				});
+			};
+		}
+
+		this.dataPromiseFunctionMap.safetyTips = () => {
+			return safetyTipsModel.getSafetyTips();
+		};
+
+		this.dataPromiseFunctionMap.appDownload = () => {
+			return appDownloadModel.getAppDownload();
+		};
+
+		this.dataPromiseFunctionMap.recentActivities = () => {
+			return recentActivityModel.getRecentActivities();
+		};
+
+		this.dataPromiseFunctionMap.search = () => {
+			return searchModel.getSearch();
+		};
+
+		this.dataPromiseFunctionMap.gpsMap = () => {
+			return gpsMapModel.getMap({
+				location: "[19.414980, -99.177446]"
+			}).then((data) => {
+				return data;
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);
-				callback(null, {});
 			});
 		};
 	}
-
-	return dataPromiseFunctionMap;
-};
-
-
-/**
- * @description A class that Handles the HomePage Model
- * @param {Object} req Request object
- * @param {Object} res Response object
- * @class HomePageModel
- * @constructor
- */
-let HomePageModelV2 = function(req, res, modelData) {
-	let functionMap = getHomepageDataFunctions(req, res, modelData);
-
-	let abstractPageModel = new AbstractPageModel(req, res);
-	let pagetype = req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
-	let pageModelConfig = abstractPageModel.getPageModelConfig(res, pagetype);
-
-	let arrFunctions = abstractPageModel.getArrFunctions(req, res, functionMap, pageModelConfig);
-
-	let homepageModel = new ModelBuilder(arrFunctions);
-
-	return Q(homepageModel.processParallel())
-		.then(function(data) {
-			// Converts the data from an array format to a JSON format
-			// for easy access from the client/controller
-			data = abstractPageModel.convertListToObject(data, arrFunctions);
-
-			return data;
-		}).fail(function(err) {
-			console.error(err);
-			Q.reject(err);
-		});
-};
+}
 
 module.exports = HomePageModelV2;

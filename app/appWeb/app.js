@@ -13,6 +13,18 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 	// Copy any locals
 	app.locals = siteApp.locals;
 
+	app.use((req, res, next) => {
+		let pageVersion = process.env.PAGE_VER || 'v1';
+		
+		res.locals.b2dot0Version = false;
+		if (pageVersion === 'v2') {
+			res.locals.b2dot0Version = true;
+		} else {
+			res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
+		}
+		next();
+	});
+
 	// Configure controllers
 	app.use('/', require(routePath));
 
@@ -24,7 +36,7 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 			root: '/views', etag: false, maxage: 0, index: false
 		}));
 	}
-
+	
 	this.getApp = () => {
 		return app;
 	};

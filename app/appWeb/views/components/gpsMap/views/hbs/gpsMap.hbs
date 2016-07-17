@@ -1,10 +1,9 @@
 <div class="map-wrapper">
-
     <div id="map"></div>
     <div id="nowselling">
-        <span class="hiddenElt">{{json this.map}}</span>
+        <span class="hiddenElt">{{json this.gpsMap}}</span>
         <h2>{{i18n "gpsMap.label"}}</h2>
-        <span>{{digitGrouping this.map.totalAds ","}} {{i18n "gpsMap.items"}}</span>
+        <span>{{digitGrouping this.gpsMap.totalAds ","}} {{i18n "gpsMap.items"}}</span>
     </div>
 
     <!-- Replace the value of the key parameter with your own API key. -->

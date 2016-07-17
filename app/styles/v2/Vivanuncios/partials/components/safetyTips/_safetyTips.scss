@@ -49,13 +49,9 @@
         }
 
         .safety-icon {
+            vertical-align: sub;
             display: inline-block;
             align-self: center;
-            height: 26px;
-            width: 26px;
-            background-image: url('../../../../../icons/placeholder.png');
-            background-size: contain;
-            background-repeat: no-repeat;
         }
 
         .safety-text {

@@ -1,11 +1,13 @@
-
 'use strict';
 
 let express = require('express'), _ = require('underscore'), router = express.Router(), form = require('express-form'), field = form.field, Q = require('q');
 
 let cwd = process.cwd();
 let StringUtils = require(cwd + '/app/utils/StringUtils'),
-	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'), QuickpostPageModel = require(cwd + '/app/builders/page/QuickpostPageModel'), EpsModel = require(cwd + '/app/builders/common/EpsModel'), pagetypeJson = require(cwd + '/app/config/pagetype.json');
+	pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil'),
+	QuickPostPageModel = require(cwd + '/app/builders/page/QuickPostPageModel'),
+	EpsModel = require(cwd + '/app/builders/common/EpsModel'),
+	pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let postAdService = require(cwd + '/server/services/postad');
 let fbGraphService = require(cwd + '/server/utils/fbgraph');
@@ -22,18 +24,9 @@ router.get('/', function(req, res, next) {
 
 	// Build Model Data
 	let bapiConfigData = res.locals.config.bapiConfigData;
-	let modelData = pageControllerUtil.preController(req, res);
+	var model = new QuickPostPageModel(req, res);
 
-	let model = QuickpostPageModel(req, res, modelData);
-	model.then(function(result) {
-
-		// Dynamic Data from BAPI
-		modelData.header = result.common.header || {};
-		modelData.footer = result.common.footer || {};
-		modelData.dataLayer = result.common.dataLayer || {};
-		modelData.categoryData = res.locals.config.categoryflattened;
-		modelData.seo = result['seo'] || {};
-
+	model.populateData().then(function(modelData) {
 		// Special Data needed for QuickPost in header, footer, content
 		QuickPost.extendHeaderData(req, modelData);
 		QuickPost.extendFooterData(modelData);
@@ -67,16 +60,8 @@ router.post('/',
 
 		// Build Model Data
 		let bapiConfigData = res.locals.config.bapiConfigData;
-		let modelData = pageControllerUtil.preController(req, res);
-		let model = QuickpostPageModel(req, res, modelData);
-		model.then(function(result) {
-			// Dynamic Data from BAPI
-			modelData.header = result.common.header || {};
-			modelData.footer = result.common.footer || {};
-			modelData.dataLayer = result.common.dataLayer || {};
-			modelData.categoryData = res.locals.config.categoryflattened;
-			modelData.seo = result['seo'] || {};
-
+		let model = QuickPostPageModel(req, res);
+		model.then(function(modelData) {
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
 			QuickPost.extendFooterData(modelData);
@@ -347,7 +332,7 @@ let QuickPost = {
 	},
 
 	/*
-	 * On Field Validation Error, send back to Quickpost Form
+	 * On Field Validation Error, send back to QuickPost Form
 	 */
 	respondFieldError: function(req, res, next, modelData) {
 		req.form.fieldErrors = {};
@@ -355,19 +340,19 @@ let QuickPost = {
 			if (req.form.errors[i].indexOf('Description ') > -1) {
 				if (!req.form.fieldErrors.description) {
 					req.form.fieldErrors.description = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('Category ') > -1) {
 				if (!req.form.fieldErrors.category) {
 					req.form.fieldErrors.category = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('price') > -1) {
 				if (!req.form.fieldErrors.price) {
 					req.form.fieldErrors.price = req.form.errors[i];
-                }
+				}
 			} else if (req.form.errors[i].indexOf('Location ') > -1) {
 				if (!req.form.fieldErrors.location) {
 					req.form.fieldErrors.location = req.form.errors[i];
-                }
+				}
 			}
 		}
 
@@ -378,7 +363,7 @@ let QuickPost = {
 	},
 
 	/*
-	 * On Page Submit Error, send back to Quickpost Form
+	 * On Page Submit Error, send back to QuickPost Form
 	 */
 	respondSubmitError: function(req, res, next, modelData, err) {
 		console.log('errorrrrrrrrrrrrrrrrrrrrrr', err);
@@ -386,10 +371,10 @@ let QuickPost = {
 		let errorCode = parseInt(err.status);
 		if (errorCode >= 400 && errorCode < 500) {
 			err.status4xx = true;
-        }
+		}
 		if (errorCode >= 500 && errorCode < 600) {
 			err.status5xx = true;
-        }
+		}
 
 		let errorMessage = '';
 		if (err.status4xx) {

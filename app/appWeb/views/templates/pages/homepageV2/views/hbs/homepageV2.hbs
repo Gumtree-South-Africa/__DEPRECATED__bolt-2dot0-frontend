@@ -1,13 +1,20 @@
+{{#partial "headerWrapper"}}
+    {{> (dynamic "headerV2")}}
+{{/partial}}
+
 {{#partial "content"}}
 	<div>
+        {{> (dynamic "searchbarV2") }}
 		{{> (dynamic "sectionMenu")}}
 
         <div class="card trending-card">
-            <div class="card-title">Popular in <a class="link inline-block underline" href="/selectLocationOverlay-TBD">Your Neighborhood</a></div>
+            <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
+                <a class="link inline-block underline" href="/selectLocationOverlay-TBD">{{i18n "homepage.popularSearches.yourNeighborhood"}}</a>
+            </div>
             {{> (dynamic "tileGrid")}}
             <div class="card-view-more">
                 <a class="link" href="/viewMore-TBD">
-                    <span class=" underline">View More</span>
+                    <span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
                     <span class="no-underline">&nbsp;&gt;</span></a>
             </div>
         </div>
@@ -16,12 +23,11 @@
         {{> (dynamic "appDownloadSection")}}
         {{> (dynamic "gpsMap")}}
         {{> (dynamic "safetyTips") }}
-        {{> (dynamic "welcomeModal")}}
+     
 	</div>
 {{/partial}}
 
-{{!-- override of header and footer --}}
-{{#if this.isNewHP}}
-    {{#partial "headerWrapper"}}{{/partial}}
-    {{#partial "footerWrapper"}}{{/partial}}
-{{/if}}
+{{#partial "footerWrapper"}}
+    {{> (dynamic "footerV2")}}
+    {{> (dynamic "welcomeModal")}}
+{{/partial}}

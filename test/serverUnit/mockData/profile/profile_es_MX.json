@@ -1,0 +1,55 @@
+{
+	"logInBtnText": {
+		"localizedName": "Entra"
+	},
+	"loggedInContent": [
+		{
+			"localizedName": "Favoritos"
+		},
+		{
+			"localizedName": "Mensajes"
+		},
+		{
+			"localizedName": "Mis avisos"
+		},
+		{
+			"localizedName": "Mi perfil"
+		},
+		{
+			"localizedName": "My configuración"
+		},
+		{
+			"localizedName": "Promocionar mis anuncios"
+		},
+		{
+			"localizedName": "Guía de precios"
+		},
+		{
+			"localizedName": "Cerrar sesión"
+		}
+
+	],
+	"loggedOutContent": [
+		{
+			"localizedName": "Favoritos"
+		},
+		{
+			"localizedName": "Mensajes"
+		},
+		{
+			"localizedName": "Mis avisos"
+		},
+		{
+			"localizedName": "Mi perfil"
+		},
+		{
+			"localizedName": "My configuración"
+		},
+		{
+			"localizedName": "Promocionar mis anuncios"
+		},
+		{
+			"localizedName": "Guía de precios"
+		}
+	]
+}
