@@ -147,7 +147,7 @@ $mobileTypingTextboxWidth: 84%;
 			width: 100%;
 			height: $desktopSearchTextboxHeight;
 			-webkit-appearance: none;
-			border: 0.5px solid $searchBarTextBoxBorder;
+			border: 1px solid $searchBarTextBoxBorder;
 			display: none;
 		}
 
@@ -157,7 +157,7 @@ $mobileTypingTextboxWidth: 84%;
 			width: 100%;
 			height: $desktopSearchTextboxHeight;
 			-webkit-appearance: none;
-			border: 0.5px solid $searchBarTextBoxBorder;
+			border: 1px solid $searchBarTextBoxBorder;
 		}
 
 		.search-button {
