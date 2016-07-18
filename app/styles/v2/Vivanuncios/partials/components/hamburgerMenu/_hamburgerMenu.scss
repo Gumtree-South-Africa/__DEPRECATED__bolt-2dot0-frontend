@@ -76,6 +76,11 @@ $borderColor: $headerMenuItemSeparatorColor;
 		margin-left: 3px;
 	}
 
+	.l1-categories {
+		margin-left: 15px;
+		border-left: 1px solid $borderColor;
+	}
+
 	.browse-categories-text {
 		color: $profileDropdownLoginBtnColor;
 		padding-left: 5px;
