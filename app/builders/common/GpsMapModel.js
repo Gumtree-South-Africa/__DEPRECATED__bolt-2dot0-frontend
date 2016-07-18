@@ -3,13 +3,13 @@
 let mapService = require(process.cwd() + '/server/services/gpsMapService');
 
 class GpsMapModel {
-	constructor(bapiHeaderValues) {
-		this.bapiHeaderValues = bapiHeaderValues;
+	constructor(country) {
+		this.country = country;
 	}
 
 	getMap(geo) {
-		if (typeof this.bapiHeaderValues.locale !== 'undefined') {
-			return mapService.getMapData(this.bapiHeaderValues, geo).then((mapItems) => {
+		if (typeof this.country !== 'undefined') {
+			return mapService.getMapData(this.country, geo).then((mapItems) => {
 				return mapItems;
 			});
 		}

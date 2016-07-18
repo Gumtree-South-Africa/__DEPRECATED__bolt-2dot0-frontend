@@ -24,13 +24,13 @@ class SolrService {
 	/**
  	 * Gets User Info given a token from the cookie
  	 */
-	mapSearch(locale, geo) {
+	mapSearch(country, geo) {
 		let deferred = Q.defer();
 
 		let qry = 'Address.geolocation_p100_0_coordinate:[* TO *] AND ' +
 			      'Address.geolocation_p100_1_coordinate:[* TO *] AND ' +
-				  'country_s110:ZA AND '+
-				  '{!geofilt sfield=Address.geoLocation_p100 pt=' + geo.location[0] + ',' + geo.location[1] + ' d=4500}';
+				  'country_s110:' + country + ' AND '+
+				  '{!geofilt sfield=Address.geoLocation_p100 pt=' + geo.location[0] + ',' + geo.location[1] + ' d=50000}';
 
 		let query = this.adsClient.createQuery()
 			.q(qry)
@@ -39,7 +39,7 @@ class SolrService {
 			.facet({
 				pivot: {
 					fields: ['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'],
-					mincount: 5
+					mincount: 2
 				}
 			});
 			// .sort('geodist() asc');

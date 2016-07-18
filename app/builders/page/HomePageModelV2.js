@@ -80,7 +80,7 @@ class HomePageModelV2 {
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.bapiHeaders);
-		let gpsMapModel = new GpsMapModel(modelData.bapiHeaders);
+		let gpsMapModel = new GpsMapModel(modelData.country);
 
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
@@ -115,7 +115,7 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.gpsMap = () => {
 			return gpsMapModel.getMap({
-				location: [-30.253889,25.703889]
+				location: [19.414980,-99.177446]
 			}).then((data) => {
 				data.totalAds = data.response.numFound;
 				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];

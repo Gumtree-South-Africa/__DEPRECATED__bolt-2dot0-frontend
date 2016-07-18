@@ -14,8 +14,8 @@ class GpsMapService {
 		this.solrService = new SolrService();
 	}
 
-	getMapData(bapiHeaderValues, geo) {
-		return this.solrService.mapSearch(bapiHeaderValues.locale, geo);
+	getMapData(country, geo) {
+		return this.solrService.mapSearch(country, geo);
 		// return Q(require(process.cwd() + '/server/services/mockData/Map.json'));
 	}
 
