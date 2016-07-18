@@ -7,10 +7,12 @@ class GpsMapModel {
 		this.bapiHeaderValues = bapiHeaderValues;
 	}
 
-	getMap(geoLocation) {
-		return mapService.getMapData(this.bapiHeaderValues, geoLocation).then((mapItems) => {
-			return mapItems;
-		});
+	getMap(geo) {
+		if (typeof this.bapiHeaderValues.locale !== 'undefined') {
+			return mapService.getMapData(this.bapiHeaderValues, geo).then((mapItems) => {
+				return mapItems;
+			});
+		}
 	}
 }
 

@@ -115,8 +115,12 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.gpsMap = () => {
 			return gpsMapModel.getMap({
-				location: "[19.414980, -99.177446]"
+				location: [-30.253889,25.703889]
 			}).then((data) => {
+				data.totalAds = data.response.numFound;
+				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];
+				console.log('###################################');
+				console.log(data);
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);

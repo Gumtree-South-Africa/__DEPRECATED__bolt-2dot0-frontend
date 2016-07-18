@@ -4,6 +4,8 @@ let Q = require('q');
 let config = require('config');
 let solr = require('solr-client');
 
+const querystring = require('querystring');
+
 /**
  * @description A SOLR service class
  * @constructor
@@ -22,25 +24,37 @@ class SolrService {
 	/**
  	 * Gets User Info given a token from the cookie
  	 */
-	mapSearch() {
-		let query = this.adsClient.createQuery()
-			.q('Address.geolocation_p100_0_coordinate:[* TO *] AND Address.geolocation_p100_1_coordinate:[* TO *] AND country_s110:ZA')
-			.fl('id, pictures_s010')
-			.rows(0)
-			.sort('geodist() asc')
-			.facet({
-				pivot : 'Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'
-			});
+	mapSearch(locale, geo) {
+		let deferred = Q.defer();
 
-		return Q(this.adsClient.search(query, function(err,obj) {
+		let qry = 'Address.geolocation_p100_0_coordinate:[* TO *] AND ' +
+			      'Address.geolocation_p100_1_coordinate:[* TO *] AND ' +
+				  'country_s110:ZA AND '+
+				  '{!geofilt sfield=Address.geoLocation_p100 pt=' + geo.location[0] + ',' + geo.location[1] + ' d=4500}';
+
+		let query = this.adsClient.createQuery()
+			.q(qry)
+			.fl(querystring.escape('id, pictures_s010'))
+			.rows(10)
+			.facet({
+				pivot: {
+					fields: ['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'],
+					mincount: 5
+				}
+			});
+			// .sort('geodist() asc');
+
+		this.adsClient.search(query, function(err,obj) {
 			if (err) {
-				console.log(err);
+				deferred.reject(err);
 			} else {
-				console.log(obj);
+				deferred.resolve(obj);
 			}
-		}));
+		});
+
+		return deferred.promise;
 	}
 
 }
 
-module.exports = new SolrService();
+module.exports = SolrService;
