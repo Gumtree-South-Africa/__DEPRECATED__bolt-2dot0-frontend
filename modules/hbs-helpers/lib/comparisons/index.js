@@ -7,7 +7,6 @@
 
 
 // node_modules
-var _ = require('lodash');
 
 /**
  * Accepts two objects (a,b) and returning 1 if a >= b otherwise -1.
