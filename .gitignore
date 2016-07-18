@@ -59,7 +59,9 @@ logs
 dist
 test/clientUnit/SpecRunnerBundle.js
 test/clientUnit/helpers/webTemplates.js*
-/app/templateStaging/
+app/templateStaging/
+app/config/bundling/bundleMap.json
+app/**/*.compiled.js
 
 .idea/*
 !.idea/runConfigurations

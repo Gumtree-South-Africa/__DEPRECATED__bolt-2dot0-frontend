@@ -7,7 +7,10 @@ module.exports = function (config) {
 			"../SpecRunnerBundle.js"
         ],
 		reporters: ["spec"],
-		browsers: ["Chrome"]
+		browsers: ["Chrome"],
+		preprocessors: {
+			'**/*.js': ['sourcemap']
+		}
 	});
 };
 

@@ -101,7 +101,7 @@ let HP = {
 			let baseJSComponentDir = '/views/components/';
 
 			// todo: keep this for V2
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "HomePage_desktop_es_MX.js");
 			// end of V2
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
@@ -127,7 +127,7 @@ let HP = {
 				}
 			}
 		} else {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "HomePage_desktop_es_MX.js");
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 			} else {
