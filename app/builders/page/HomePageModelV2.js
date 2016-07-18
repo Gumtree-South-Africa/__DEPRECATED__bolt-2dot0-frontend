@@ -119,8 +119,6 @@ class HomePageModelV2 {
 			}).then((data) => {
 				data.totalAds = data.response.numFound;
 				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];
-				console.log('###################################');
-				console.log(data);
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);

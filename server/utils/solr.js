@@ -30,7 +30,7 @@ class SolrService {
 		let qry = 'Address.geolocation_p100_0_coordinate:[* TO *] AND ' +
 			      'Address.geolocation_p100_1_coordinate:[* TO *] AND ' +
 				  'country_s110:' + country + ' AND '+
-				  '{!geofilt sfield=Address.geoLocation_p100 pt=' + geo.location[0] + ',' + geo.location[1] + ' d=50000}';
+				  '{!geofilt sfield=Address.geoLocation_p100 pt=' + geo.location[0] + ',' + geo.location[1] + ' d=15000}';
 
 		let query = this.adsClient.createQuery()
 			.q(qry)
@@ -40,7 +40,8 @@ class SolrService {
 				pivot: {
 					fields: ['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'],
 					mincount: 2
-				}
+				},
+				limit: 1000
 			});
 			// .sort('geodist() asc');
 
