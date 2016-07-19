@@ -5,7 +5,7 @@
   top: 0;
   z-index: 200;
   > .modal-overlay{
-      background-color: $modal-bgcolor;
+      background-color: $modal-bgcolor; 
       opacity: 0.5;
       position: absolute;
       height: 100%;
@@ -15,7 +15,7 @@
       background-color: white;
       width: 80%;
       position: relative;
-      top: 6em;
+      top: 0em;
       margin: 2em auto;
       padding: 1em;
       max-width: 23em;
@@ -28,11 +28,11 @@
           :hover{
             text-decoration: underline;
           }
-          > .close-text {
+          > div .close-text {
             vertical-align: middle;
             margin-right: 0.5em;
           }
-          > .icon-close{
+          > div .icon-close{
               width: 1em;
               height: 1em;
               display: inline-block;
@@ -59,17 +59,11 @@
   .modal-field{
     position: relative;
     .icon-placeholder1{
-      //top: 0.1em;
-      //position: absolute;
       border: 1px solid green;
-      //right: 0;
       float: left;
     }
     .icon-placeholder2{
-      //position: absolute;
       border: 1px solid blue;
-      //right: 2.5em;
-      //top: 0.1em;
       float: left;
     }
   }
@@ -78,6 +72,7 @@
     width: 98%;
     height: 2em;
     margin-left: 0.5em;
+    margin-top: 0.3em;
     &:focus{
       border: transparent;
       outline: none;

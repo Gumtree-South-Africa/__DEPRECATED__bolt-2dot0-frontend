@@ -1,4 +1,4 @@
-@mixin vivaBtn($hasIcon, $padding, $content){
+@mixin vivaBtn($hasIcon, $padding){
   cursor: pointer;
   background-color: $button-bgcolor;
   display: inline-block;
@@ -8,11 +8,6 @@
   width: 100%;
   &:hover{
     text-decoration: none;
-  }
-  > .sudolink{
-    &:before{
-      content : $content;
-    }
   }
   > span + span.btn-icon{
     @if ($hasIcon == 'off'){
