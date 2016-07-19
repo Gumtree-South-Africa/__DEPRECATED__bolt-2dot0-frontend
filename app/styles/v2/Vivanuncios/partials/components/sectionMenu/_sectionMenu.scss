@@ -14,6 +14,9 @@
     padding:4px 14px 4px 8px;
     color: $secmenu-link-color;
     border-right: 2px solid #ccc;
+    &.active {
+      color: $secmenu-link-color-hover;
+    }
     &:hover {
       font-weight:bold;
       color: $secmenu-link-color-hover;
