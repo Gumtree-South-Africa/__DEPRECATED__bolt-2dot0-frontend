@@ -54,7 +54,7 @@ let initialize = () => {
 				$('#autocompleteField').addClass('hiddenElt');
 		});
 
-		$('.modal-closearea, .modal-cp .btn').on('click', function() {
+		$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', function() {
 				$modalCp.addClass('hiddenElt');
 		});
 

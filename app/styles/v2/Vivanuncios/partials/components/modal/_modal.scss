@@ -5,7 +5,7 @@
   top: 0;
   z-index: 200;
   > .modal-overlay{
-      background-color: $modal-bgcolor; 
+      background-color: $modal-bgcolor;
       opacity: 0.5;
       position: absolute;
       height: 100%;
@@ -33,8 +33,6 @@
             margin-right: 0.5em;
           }
           > div .icon-close{
-              width: 1em;
-              height: 1em;
               display: inline-block;
               vertical-align: middle;
           }
