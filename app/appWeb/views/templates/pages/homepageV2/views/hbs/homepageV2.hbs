@@ -22,11 +22,15 @@
         {{> (dynamic "recentActivity")}}
         {{> (dynamic "appDownloadSection")}}
         {{> (dynamic "safetyTips") }}
-     
+
 	</div>
 {{/partial}}
 
 {{#partial "footerWrapper"}}
+    <div class="outer-div seo-wrapper">
+        {{> (dynamic "topSearches")}}
+        {{> (dynamic "topLocations")}}
+    </div>
     {{> (dynamic "footerV2")}}
     {{> (dynamic "welcomeModal")}}
 {{/partial}}
