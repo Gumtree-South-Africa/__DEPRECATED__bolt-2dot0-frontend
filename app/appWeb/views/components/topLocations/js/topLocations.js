@@ -4,13 +4,13 @@ let $ = require('jquery');
 
 let initialize = () => {
 
-	let _showMoreLocations = (e) => {
+	let _showMoreLocations = () => {
 		$('.show-more-locations').removeClass('hide');
 		$('.view-more-locations').addClass('hide');
 		$('.desktop-seo').css('display', 'none');
 	};
 
-	let _toggleTabs = (e) => {
+	let _toggleTabs = () => {
 		$('.top-searches').addClass('mobile-hide');
 		$('.top-locations').removeClass('mobile-hide');
 		$('.search-header-text').removeClass('thick-underline');
@@ -18,11 +18,11 @@ let initialize = () => {
 	};
 
 	$(document).ready(() => {
-		$('.view-more-locations').on('click', (e) => {
-			_showMoreLocations(e);
+		$('.view-more-locations').on('click', () => {
+			_showMoreLocations();
 		});
-		$('.top-locations-header').on('click', (e) => {
-			_toggleTabs(e);
+		$('.top-locations-header').on('click', () => {
+			_toggleTabs();
 		});
 	});
 };
