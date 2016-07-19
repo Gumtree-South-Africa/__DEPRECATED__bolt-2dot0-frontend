@@ -1,9 +1,8 @@
+@import  "../profileMenu/profileMenu";
+
 $item-top-padding: 12px;
 $item-bottom-padding: 12px;
-$profile-dropdown-width: 220px;
-$profile-login-btn-margin: 5px;
-$profile-login-btn-padding: 10px;
-$profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding + $profile-login-btn-margin) * 2;
+$dropdown-width: 220px;
 
 .headerV2 {
 	z-index: 10;
@@ -129,38 +128,13 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
                 border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
-                width: 30px;
-                height: 30px;
+                width: 24px;
+                height: 24px;
             }
             .profile-picture {
-                background: url('../../../../../images/profile6.png') no-repeat;
                 background-size: contain;
                 border: 1px solid $profile-border;
                 border-radius: 50%;
-            }
-
-            .item-icon {
-                display: inline-block;
-                vertical-align: middle;
-                margin-left: 10px;
-            }
-
-            .profile-item-text {
-                display: inline-block;
-                vertical-align: middle;
-                padding-left: 8px;
-                width: 78%;
-            }
-
-            .btn-wrapper {
-                width: $profile-login-btn-width;
-                margin: $profile-login-btn-margin;
-
-                .btn {
-                    border-radius: 2px;
-                    background-color: $profileDropdownLoginBtnColor;
-                    padding: $profile-login-btn-padding;
-                }
             }
         }
     }
@@ -203,8 +177,12 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
         // position+bg-color used to hide dropdown top border
         position: relative;
         background-color: transparent;
-        width:100%;
+        width: 100%;
+		max-width: $dropdown-width;
+        height: 50px;
+        overflow: hidden;
         text-align: left;
+		box-sizing: border-box;
 
         // setup a border that will get border color when the menu is open
         border-width: 0 1px;
@@ -223,7 +201,7 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
-        width: $profile-dropdown-width;
+        width: $dropdown-width;
         text-align: left;
         background-color: $headerBackgroundColor;
         border: 1px solid $headerMenuBorderColor;
@@ -262,6 +240,7 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
     .header-item-icon {
         display: inline-block;
         position: relative;
+        margin-right: 6px;
         top: 1px;
         left: 5px;
     }
