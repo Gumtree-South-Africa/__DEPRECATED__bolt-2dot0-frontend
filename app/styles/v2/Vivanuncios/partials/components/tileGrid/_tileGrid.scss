@@ -30,7 +30,7 @@ $gutterHorizontal: 10px;
 
 	// adding a width to the isotope container without javascript
 	// this class will be replaced once javascript lands on the page
-	&.use-isotope-handler {
+	&.no-js {
 		@for $i from 2 through 12 {
 			@media(min-width: tileWidth($i) ) {
 				width: tileWidth($i - 1);
