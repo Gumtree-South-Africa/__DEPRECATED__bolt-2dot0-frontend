@@ -106,11 +106,14 @@ BAPICall.prototype = {
 		    	});
 
 		    	res.on('end', (d) => {
+					data = {};
 					// parse JSON when data stream ends
 					try {
-						data = JSON.parse(body);
+						if (!_.isEmpty(body)) {
+							data = JSON.parse(body);
+						}
 					} catch(ex) {
-						data = {};
+						console.log(ex);
 						deferred.reject(ex);
 					}
 

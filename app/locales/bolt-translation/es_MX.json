@@ -1144,7 +1144,7 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
-    "postad.button": "Publica Gratis",
+	"postad.button": "Publica Gratis",
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
@@ -1193,7 +1193,8 @@
 	},
 	"header": {
 		"catDropdown": {
-			"browse": "Explorar"
+			"browse": "Explorar",
+			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
 			"title": "¡Hola, ",
@@ -1202,13 +1203,12 @@
 			"myAlerts": "Mis avisos",
 			"myProfile": "Mi perfil",
 			"promoteMyAds": "Promocionar mis anuncios",
-			"mySettings": "My configuración",
 			"pricingGuide": "Guía de precios",
 			"logout": "Cerrar sesión"
 		},
 		"myAds": "Mis anuncios",
 		"help": "Ayuda",
-		"postAd": "Publicar un anuncio"
+		"postAd": "Publica Gratis"
 	},
 	"recentactivity": {
 		"message": {
