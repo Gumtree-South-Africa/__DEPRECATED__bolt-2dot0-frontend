@@ -1,0 +1,102 @@
+.hidden {
+	display: none;
+}
+
+.post-ad-wrapper {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.inline-block {
+		display: inline-block;
+	}
+
+	.close-text {
+		color: gray;
+	}
+
+	.icon-close {
+		vertical-align: middle;
+		background-size: 1649%;
+		height: 16px;
+		width: 16px;
+	}
+
+	.post-ad-modal-close-section {
+		margin-right: 8px;
+		float: right;
+	}
+
+	.post-ad-modal-wrapper {
+		position: fixed;
+		background-color: white;
+		height: 175px;
+		width: 90%;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		@include from-breakpoint($medium-break) {
+			width: 60%;
+		}
+	}
+
+	.post-ad-footer {
+		.modal-footer-mobile {
+			display: block;
+			@include from-breakpoint($medium-break) {
+				display: none;
+			}
+		}
+
+		.modal-footer-desktop {
+			display: none;
+			@include from-breakpoint($medium-break) {
+				display: block;
+			}
+		}
+	}
+
+	h1 {
+		clear: both;
+		font: $h1;
+		text-align: center;
+		margin-top: 0.5em;
+		margin-bottom: 1em;
+	}
+	.h1-text-mobile {
+		display: block;
+		@include from-breakpoint($medium-break) {
+			display: none;
+		}
+	}
+
+	.h1-text-desktop {
+		display: none;
+		@include from-breakpoint($medium-break) {
+			display: block;
+		}
+	}
+
+	.post-ad-modal-info {
+		font: $p1;
+		text-align: center;
+		color: gray;
+	}
+
+	.post-ad-footer {
+		position: absolute;
+		bottom: 15px;
+		left: 15px;
+		right: 15px;
+		margin: auto;
+		@include from-breakpoint($medium-break) {
+			width: 75%;
+		}
+	}
+}

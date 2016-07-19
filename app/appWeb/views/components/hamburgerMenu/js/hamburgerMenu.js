@@ -1,7 +1,10 @@
 'use strict';
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 
-let _toggleMenu = () => {
+let toggleMenu = (shouldClose) => {
+	if (this.open === undefined) {
+		this.open = shouldClose;
+	}
 	if (!this.open) {
 		searchBarV2.closeAutoComplete();
 	}
@@ -54,7 +57,7 @@ let initialize = () => {
 	this.$hamburgerIcon = $('#js-hamburger-icon');
 	this.$hamburgerContents = $('.hamburger-contents');
 	this.currentWindowSize = _currentBreakpoint();
-	
+
 	this.$body.trigger('viewportChanged', this.currentWindowSize);
 	$(window).bind('resize', () => {
 		let newWindowSize = _currentBreakpoint();
@@ -63,21 +66,22 @@ let initialize = () => {
 			this.currentWindowSize = newWindowSize;
 		}
 	});
-	
+
 	this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 		if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 
 	this.$pageContent.addClass('open-menu');
 	this.$browseCategories.on('click', _toggleBrowseCategory);
-	this.$hamburgerIcon.on('click', _toggleMenu);
-	this.$hamburgerPopout.on('click', _toggleMenu);
+	this.$hamburgerIcon.on('click', toggleMenu);
+	this.$hamburgerPopout.on('click', toggleMenu);
 };
 
 module.exports = {
-	initialize
+	initialize,
+	toggleMenu
 };
 
 

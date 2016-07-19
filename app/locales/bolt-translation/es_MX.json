@@ -1160,6 +1160,10 @@
 		"applink": "http://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
+		"upload": {
+			"photo": "Sube una foto",
+			"photos": "Sube foto(s)"
+		},
 		"image": {
 			"upload": {
 				"failure": "Por desgracia , se ha producido un error al cargar imágenes"
