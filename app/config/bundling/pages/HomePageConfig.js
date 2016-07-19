@@ -8,7 +8,7 @@
 
 
 module.exports = {
-	"HomePage": {
+		"bundleName": "HomePage",
 		"outputEntry": "app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js",
 		"common": {
 			"core": { // common->core is the base of the pages bundle and has the lowest priority
@@ -28,5 +28,4 @@ module.exports = {
 				"desktop": {}
 			}
 		}
-	}
 };

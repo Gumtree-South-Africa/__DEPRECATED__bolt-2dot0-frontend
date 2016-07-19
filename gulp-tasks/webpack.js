@@ -47,36 +47,49 @@ module.exports = function webpack(gulp) {
 	return function() {
 		let webpack = require("webpack");
 		let runSequence = require("gulp-run-sequence");
+		let walk = require("walkdir");
 		let fs = require("fs");
 		let openingFileLine = '"use strict";\n\n';
 		let closingFileLine = '\n';
 
 		gulp.task('webpack:prepare', (done) => {
-			let bundleConfig = require(process.cwd() + '/app/config/bundling/bundle.json');
-			let pageConfigMap = {};
-			let bundleConfigKeys = Object.keys(bundleConfig);
+			let pages = [];
 
-			bundleConfigKeys.forEach((key) => {
-				let pageConfig = bundleConfig[key];
-				
-				_.keys(pageConfig.locales).forEach((locale) => {
-					["mobile", "desktop"].forEach((device) => {
-						let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}_${locale}.compiled.js`;
-						pageConfigMap[`${key}_${device}_${locale}`] = outputPath;
-						let moduleFileList = _buildBundleList(pageConfig, locale, device);
-						fs.writeFileSync(outputPath, openingFileLine);
+			let walker = walk(process.cwd() + "/app/config/bundling/pages");
 
-						moduleFileList.forEach((modulePath) => {
-							fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`)
-						});
-
-						fs.appendFileSync(outputPath, closingFileLine)
-					})
-				});
+			walker.on("file", (filename) => {
+				pages.push(filename);
 			});
 
-			fs.writeFileSync(`${process.cwd()}/app/config/bundling/bundleMap.json`, JSON.stringify(pageConfigMap, 0, 3));
-			done();
+			walker.on("end", () => {
+				_prepareWebpackBundles()
+			});
+
+
+			let _prepareWebpackBundles = () => {
+				let pageConfigMap = {};
+				pages.forEach((filename) => {
+					let pageConfig = require(filename);
+
+					_.keys(pageConfig.locales).forEach((locale) => {
+						["mobile", "desktop"].forEach((device) => {
+							let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}_${locale}.compiled.js`;
+							pageConfigMap[`${pageConfig.bundleName}_${device}_${locale}`] = outputPath;
+							let moduleFileList = _buildBundleList(pageConfig, locale, device);
+							fs.writeFileSync(outputPath, openingFileLine);
+
+							moduleFileList.forEach((modulePath) => {
+								fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`);
+							});
+
+							fs.appendFileSync(outputPath, closingFileLine);
+						})
+					});
+				});
+
+				fs.writeFileSync(`${process.cwd()}/app/config/bundling/bundleMap.json`, JSON.stringify(pageConfigMap, 0, 3));
+				done();
+			};
 		});
 
 		// CLIENT UNIT TEST TASKS
@@ -86,7 +99,9 @@ module.exports = function webpack(gulp) {
 				if (err) {
 					throw new gutil.PluginError("webpack", err);
 				}
-				console.log("[webpack]", stats.toString());
+				if (stats.hasErrors()) {
+					console.log("[webpack]", stats.toString());
+				}
 
 				done();
 			});
