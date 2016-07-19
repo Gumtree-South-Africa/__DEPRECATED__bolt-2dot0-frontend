@@ -25,12 +25,36 @@
                     <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown hidden">
-                    {{#each this.categoryDropdown.children}}
+                    <li class="menu-item">
+                        <a href="{{this.category._links.[1].href}}" title="{{this.category.localizedName}}" class="link-item"
+                           data-id="{{this.category.id}}">
+                            <span class="item-primary-text">{{this.category.localizedName}}</span>
+                            {{!-- item secondary is for category "counts", out for MVP
+                            <span class="item-secondary-text">(tbd)</span>
+                            --}}
+                        </a>
+                    </li>
+                    {{#each this.category.children}}
                         <li class="menu-item">
-                            <a href="{{this.localizedName}}-TBD" class="link-item">
+                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" class="link-item"
+                               data-id="{{this.id}}">
                                 <span class="item-primary-text">{{this.localizedName}}</span>
+                                {{!-- item secondary is for category "counts", out for MVP
                                 <span class="item-secondary-text">(tbd)</span>
+                                --}}
                             </a>
+                            {{!-- l2 categories removed from sprint 4 7/14/16
+                            https://jira.corp.ebay.com/browse/BOLT-22118
+                                <ul class="menu-dropdown-l2">
+                                {{#each this.children}}
+                                    <li class="menu-item l2">
+                                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
+                                            <span class="item-primary-text">{{this.localizedName}}</span>
+                                        </a>
+                                    </li>
+                                {{/each}}
+                                </ul>
+                            --}}
                         </li>
                     {{/each}}
                 </ul>
