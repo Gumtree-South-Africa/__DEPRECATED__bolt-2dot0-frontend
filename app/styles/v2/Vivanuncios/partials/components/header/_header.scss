@@ -9,7 +9,6 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 	z-index: 10;
 	position: relative;
     width: 100%;
-    //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
     height: 65px;
     background: $common-background-color;
@@ -119,13 +118,11 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
         .profile {
             vertical-align: middle;
-            //margin-left: 18px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
             }
             .profile-icon {
-                //border: 1px solid $profile-border;
                 border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
@@ -231,16 +228,9 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
 
-            // relative to support l2 sub menu using absolute
-            //position: relative;
-
             &:last-child {
                 border-bottom: none;
             }
-
-            //&.l2 {
-            //    border: none;
-            //}
         }
 
         // link items should take the entire space of menu-item
@@ -248,42 +238,15 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             display: block;
             padding-top: 10px;
             padding-bottom: 10px;
-
-            //&.l2 {
-            //    padding-top: 3px;
-            //    padding-bottom: 3px;
-            //}
         }
 
         .item-primary-text {
             padding-left: 5px;
         }
 
-        // secondary text for category "counts", not MVP
-        //.item-secondary-text {
-        //    padding-left: 8px;
-        //    font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
-        //    color: $headerMenuItemSecondaryColor;
-        //}
-
-        // level 2
-        //.menu-dropdown-l2 {
-        //    columns: 2;
-        //    position: absolute;
-        //    left: 100%;
-        //    top: 0px;
-        //    display: none;
-        //    background-color: $headerBackgroundColor;
-        //    border: 1px solid $headerMenuBorderColor;
-        //    width: 600px;
-        //}
 
         .menu-item:hover {
             background-color: $headerMenuItemHighlightColor;
-
-            //.menu-dropdown-l2 {
-            //    display: block;
-            //}
          }
     }
 
