@@ -95,7 +95,7 @@
 		"no-shadow": 2,
 		"no-undef": 2,
 		"no-unused-vars": 2,
-		"no-use-before-define": 2,
+		"no-use-before-define": 1,
 
 		// the following rules documented on http://eslint.org/docs/rules/ as
 		// "Node.js and CommonJS" - These rules relate to code running in Node.js, or in browsers with CommonJS:
