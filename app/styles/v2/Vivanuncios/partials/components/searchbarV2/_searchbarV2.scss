@@ -1,6 +1,7 @@
-$mobileSearchTextboxHeight: 26px;
-$desktopSearchTextboxHeight: 32px;
-$mobileTypingTextboxWidth: 84%;
+$mobileSearchBarHeight: 26px;
+$desktopSearchBarHeight: 32px;
+$mobileTextboxWidth: 84%;
+
 
 .search-controls {
 	color: $searchBarTextColor;
@@ -22,9 +23,9 @@ $mobileTypingTextboxWidth: 84%;
 
 		.type-ahead-link {
 			box-sizing: border-box;
-			width: 100%;
+			width: 90%;
 			height: 100%;
-			margin: auto 30px;
+			margin: auto;
 			display: block;
 			color: $searchBarTextColor !important;
 			text-decoration: none;
@@ -51,7 +52,7 @@ $mobileTypingTextboxWidth: 84%;
 		z-index: 3;
 
 		.type-ahead-results-container {
-			padding-top: 80px;
+			padding-top: 95px;
 			height: 100%;
 			z-index: 3;
 			width: 100%;
@@ -87,7 +88,7 @@ $mobileTypingTextboxWidth: 84%;
 		}
 
 		.loc-arrow-icon {
-			top: 38px;
+			top: 48px;
 			right: 17%;
 
 			&:hover {
@@ -96,7 +97,7 @@ $mobileTypingTextboxWidth: 84%;
 		}
 
 		.close-search {
-			top: 0;
+			top: 3px;
 			bottom: 0;
 			margin-top: 3px;
 
@@ -145,19 +146,23 @@ $mobileTypingTextboxWidth: 84%;
 			box-sizing: border-box;
 			outline: none !important;
 			width: 100%;
-			height: $desktopSearchTextboxHeight;
+			height: $desktopSearchBarHeight;
 			-webkit-appearance: none;
 			border: 1px solid $searchBarTextBoxBorder;
 			display: none;
 		}
 
-		.search-textbox {
+		.search-textbox, .mobile-location-area {
 			box-sizing: border-box;
 			outline: none !important;
 			width: 100%;
-			height: $desktopSearchTextboxHeight;
+			height: $desktopSearchBarHeight;
 			-webkit-appearance: none;
 			border: 1px solid $searchBarTextBoxBorder;
+		}
+
+		.mobile-location-area {
+			margin-top: 10px;
 		}
 
 		.search-button {
@@ -201,22 +206,62 @@ $mobileTypingTextboxWidth: 84%;
 			display: block;
 		}
 
+		.location-link {
+			border: none;
+			right: inherit;
+		}
+
+		.loc-arrow-icon {
+			display: block;
+		}
+
 		.mobile-location-area {
-			width: $mobileTypingTextboxWidth;
+			display: block;
+			width: $mobileTextboxWidth;
 			padding: 0 30px;
 		}
 
 		.search-textbox {
-			width: 100%;
+			width: $mobileTextboxWidth;
 			padding: 0 30px;
 		}
 	}
 }
 
 @include from-breakpoint($medium-break) {
+	.type-ahead-link {
+		margin: auto 10px !important;
+	}
+
+	.type-ahead-results-container {
+		padding-top: 0 !important;
+	}
+
+	&.is-typing {
+		.type-ahead-results-wrapper, .search-mask, .close-search {
+			display: block;
+		}
+
+		.mobile-location-area, .loc-arrow-icon {
+			display: none !important;
+		}
+
+		.search-bar {
+			.search-textbox {
+				width: 100%;
+				padding: 0 30px;
+			}
+
+			.location-link {
+				border-left: 1px solid $vivaGray6;
+				right: 15.5%;
+			}
+		}
+	}
+
 	.search-controls {
 		.search-bar {
-			height: $desktopSearchTextboxHeight;
+			height: $desktopSearchBarHeight;
 
 			.search-button {
 				.inner-text {
@@ -256,60 +301,8 @@ $mobileTypingTextboxWidth: 84%;
 			}
 		}
 
-		.icon-location-arrow-blue {
-			display: block;
-		}
-
-		.close-search, .loc-arrow-icon {
+		.close-search {
 			display: none !important;
-		}
-	}
-}
-@include to-breakpoint($small-break) {
-	.search-textbox, .mobile-location-area {
-		height: $mobileSearchTextboxHeight !important;
-	}
-
-	.search-bar .location-link {
-		margin: 0 !important;
-		height: 100% !important;
-
-		.icon-location-marker {
-			margin-top: 3px;
-		}
-	}
-
-	.is-typing .search-bar {
-		.mobile-location-area {
-			display: block;
-		}
-
-		.search-textbox {
-			width: $mobileTypingTextboxWidth;
-			padding: 0 30px;
-			margin-bottom: 8px;
-		}
-
-		.location-link {
-			position: absolute;
-			border: none;
-			display: block;
-			top: 36px;
-			left: 0;
-			right: inherit;
-			padding-left: 2px;
-
-			.search-loc-icon {
-				margin-top: 1px;
-			}
-		}
-
-		.loc-arrow-icon {
-			display: block;
-		}
-
-		.search-bar {
-			height: 60px;
 		}
 	}
 }
