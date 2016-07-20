@@ -127,7 +127,7 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
-				return data[0].keywords || null;
+				return data[0].keywords || {};
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);
 				return {};
