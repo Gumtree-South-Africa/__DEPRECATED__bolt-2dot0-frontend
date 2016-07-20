@@ -19,6 +19,7 @@ let _toggleMenu = () => {
 		left: (this.open) ? 0 : '70%'
 	});
 	this.$pageContent.toggleClass('menu-closed');
+	this.$html.toggleClass('overflow-hidden');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };
@@ -42,6 +43,7 @@ let _currentBreakpoint = () => {
 };
 
 let initialize = () => {
+	this.$html = $('html');
 	this.$body = $('body');
 	this.open = false;
 	this.$browse = $('#js-hamburger-browse');
@@ -54,7 +56,7 @@ let initialize = () => {
 	this.$hamburgerIcon = $('#js-hamburger-icon');
 	this.$hamburgerContents = $('.hamburger-contents');
 	this.currentWindowSize = _currentBreakpoint();
-	
+
 	this.$body.trigger('viewportChanged', this.currentWindowSize);
 	$(window).bind('resize', () => {
 		let newWindowSize = _currentBreakpoint();
@@ -63,7 +65,7 @@ let initialize = () => {
 			this.currentWindowSize = newWindowSize;
 		}
 	});
-	
+
 	this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 		if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
 			_toggleMenu();

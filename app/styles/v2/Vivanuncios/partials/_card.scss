@@ -3,6 +3,7 @@
 $cardHeaderPadding: 20px;
 
 .card {
+	overflow-x: hidden;
     margin-top: 20px;
     background-color: $cardBackgroundColor;
 
