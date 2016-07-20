@@ -9,18 +9,18 @@
 				</div>
 			</div>
 
-			<h1 class="h1-text-mobile">{{i18n "header.postAd"}} quickly</h1>
+			<h1 class="h1-text-mobile">{{i18n "postAdModal.uploadQuickly"}}</h1>
 			<h1 class="h1-text-desktop">{{i18n "header.postAd"}}</h1>
-			<div class="post-ad-modal-info">{{i18n "welcomescreen.description"}}</div>
+			<div class="post-ad-modal-info">{{i18n "postAdModal.helpText"}}</div>
 
 		</div>
 
 		<div class="post-ad-footer">
 			<div class="modal-footer modal-footer-mobile">
-                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="/quickpost" i18nPath="postad.upload.photo"}}
+                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="/quickpost" i18nPath="postAdModal.uploadPhoto"}}
 			</div>
 			<div class="modal-footer modal-footer-desktop">
-                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="/quickpost" i18nPath="postad.upload.photos"}}
+                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="/quickpost" i18nPath="postAdModal.uploadPhotos"}}
 			</div>
 		</div>
 	</div>

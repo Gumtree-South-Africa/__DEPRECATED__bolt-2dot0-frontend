@@ -34,7 +34,7 @@
 	.post-ad-modal-wrapper {
 		position: fixed;
 		background-color: white;
-		height: 175px;
+		height: 200px;
 		width: 90%;
 		top: 0;
 		bottom: 0;
@@ -42,6 +42,7 @@
 		right: 0;
 		margin: auto;
 		@include from-breakpoint($medium-break) {
+			height: 175px;
 			width: 60%;
 		}
 	}
@@ -71,6 +72,7 @@
 	}
 	.h1-text-mobile {
 		display: block;
+		margin-bottom: 0.5em;
 		@include from-breakpoint($medium-break) {
 			display: none;
 		}

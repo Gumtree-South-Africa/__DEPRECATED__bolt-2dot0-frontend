@@ -1278,5 +1278,11 @@
 		"trademark": {
 			"trademark": "2014-2016 eBay. Todos los derechos reservados"
 		}
+	},
+	"postAdModal": {
+		"helpText": "Los artículos con fotos tienen 10 veces más de probabilidades de venderse.",
+		"uploadPhotos": "Cargar foto(s)",
+		"uploadPhoto": "Carga una foto",
+		"uploadQuickly": "Publica un anuncio rápidamente"
 	}
 }
