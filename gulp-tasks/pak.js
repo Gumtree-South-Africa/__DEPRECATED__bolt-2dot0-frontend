@@ -10,16 +10,27 @@ var exec = require('child_process').exec,
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
-		var appVersion = JSON.parse(fs.readFileSync(process.cwd() + '/package.json', 'utf8')).version;
+
+		let packageJson = JSON.parse(fs.readFileSync(process.cwd() + '/package.json', 'utf8'));
+		var appVersion = packageJson.version;
+		let nodeModulesToCopy = Object.keys(packageJson.dependencies);
 		var staticVersion = JSON.parse(fs.readFileSync(process.cwd() + '/server/config/prod_ix5_deploy.json', 'utf8')).static.server.version;
 
 		// Package App
 		gulp.task('pak:app', function(){
+
+			let nodeModuleCmdString = `; mkdir bolt-2dot0-frontend_${appVersion}/node_modules`;
+
+			nodeModulesToCopy.forEach((nodeModuleName) => {
+				nodeModuleCmdString += `; cp -R node_modules/${nodeModuleName} bolt-2dot0-frontend_${appVersion}/node_modules`
+			});
+
+
 			  var command = 'mkdir bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R app bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R bin bolt-2dot0-frontend_' + appVersion
 					+ '; cp -R modules bolt-2dot0-frontend_' + appVersion
-					+ '; cp -R node_modules bolt-2dot0-frontend_' + appVersion
+					+ nodeModuleCmdString
 					+ '; cp -R server bolt-2dot0-frontend_' + appVersion
 					+ '; cp app.js bolt-2dot0-frontend_' + appVersion
 					+ '; cp package.json bolt-2dot0-frontend_' + appVersion
