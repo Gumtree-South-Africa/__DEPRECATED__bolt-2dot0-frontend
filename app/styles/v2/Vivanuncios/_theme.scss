@@ -55,6 +55,7 @@ $button-color: $vivaWhite;
 $button-bgcolor: $vivaOrange;
 $button-fontsize: 1.125em;
 
+
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
@@ -62,17 +63,22 @@ $appdownloadreview-font: $viva-p3;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
-
 $welcomeSreen-bgcolor: $vivaWhite;
+
 
 // Section Menu
 $secmenu-link-color: $vivaBlack;
 $secmenu-link-color-hover: $vivaOrange;
 
+
 // modal
 $modal-color: $vivaBlack;
 $modal-bgcolor: $vivaBlack;
 $modal-info: $vivaGray1;
+$modal-autocomplete-color: $vivaGray1;
+$modal-autocomplete-color-hover: $vivaWhite;
+$modal-autocomplete-bgcolor-hover: $vivaGray1;
+
 
 // Recent Activity
 $recentactivity-bgcolor:$vivaGray2;
@@ -131,6 +137,7 @@ $headerMenuItemSecondaryColor: $vivaGray6;
 $headerMenuItemSeparatorColor: $vivaGray7;
 $headerMessagesBackgroundColor: $vivaOrange;
 $profileDropdownLoginBtnColor: $vivaBlue;
+$headerMenuItemHighlightColor: $vivaGray5;
 
 $searchBarTextColor: $vivaBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;

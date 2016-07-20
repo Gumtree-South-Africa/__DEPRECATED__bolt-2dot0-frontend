@@ -8,7 +8,6 @@ $dropdown-width: 220px;
 	z-index: 9;
 	position: relative;
     width: 100%;
-    //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
     height: 65px;
     background: $common-background-color;
@@ -118,13 +117,11 @@ $dropdown-width: 220px;
 
         .profile {
             vertical-align: middle;
-            //margin-left: 18px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
             }
             .profile-icon {
-                //border: 1px solid $profile-border;
                 border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
@@ -179,7 +176,7 @@ $dropdown-width: 220px;
         background-color: transparent;
         width: 100%;
 		max-width: $dropdown-width;
-        height: 50px;
+        height: 65px;
         overflow: hidden;
         text-align: left;
 		box-sizing: border-box;
@@ -208,33 +205,27 @@ $dropdown-width: 220px;
 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
 
+        // link items should take the entire space of menu-item
         .link-item {
-
             display: block;
             padding-top: 10px;
             padding-bottom: 10px;
-
-            .menu-item {
-                border-bottom: 1px solid $headerMenuItemSeparatorColor;
-            }
-            &:last-child {
-                .menu-item {
-                    border-bottom: none;
-                }
-            }
         }
 
         .item-primary-text {
             padding-left: 5px;
         }
 
-        .item-secondary-text {
-            padding-left: 8px;
-            font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
-            color: $headerMenuItemSecondaryColor;
-        }
+
+        .menu-item:hover {
+            background-color: $headerMenuItemHighlightColor;
+         }
     }
 
     .header-item-icon {
