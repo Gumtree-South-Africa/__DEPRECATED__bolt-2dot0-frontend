@@ -1,4 +1,5 @@
 {
+
 	"greeting": "Saludos desde el Valle del Silicio",
 	"welcome": "Bienvenidos a BOLT 2.0",
 	"coworkers.nacer": "Nacer Mexicano",
@@ -1210,6 +1211,12 @@
 		"help": "Ayuda",
 		"postAd": "Publica Gratis"
 	},
+	"modal": {
+    "close": "cerrar",
+    "buttonText": "Confirmar",
+    "message": "Cambia Tu Ubicaci\u00FBn",
+    "info": "Ciudad, Colonia o Delegaci\u00F3n"
+  },
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",

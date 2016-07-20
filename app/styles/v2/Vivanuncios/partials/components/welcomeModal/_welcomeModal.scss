@@ -65,17 +65,21 @@
         .btn-wrapper {
             text-align: center;
             .btn {
-                width: 90% !important;
-                padding: 0.35em;
+                width: 90%;
                 vertical-align: top;
-                @include vivaBtn(off, 0.35em, off);
-                > span + span.btn-icon {
-                    display: inline-block;
-                }
+                padding: 0.35em;
+                > span{
+                    vertical-align: middle;
+                    + span.btn-icon {
+                        display: inline-block;
+                        margin-top: 0em;
+                    }
+                 }
             }
         }
     }
 }
+
 
 @include from-breakpoint($medium-break) {
     .modal-wrapper, .welcome-footer, .welcome-wrapper {

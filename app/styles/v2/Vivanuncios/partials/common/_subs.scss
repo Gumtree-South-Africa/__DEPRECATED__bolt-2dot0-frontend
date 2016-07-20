@@ -11,7 +11,7 @@
 }
 
 .btn{
-  @include vivaBtn(on, 0.875em 0, Confirm);
+  @include vivaBtn(off, 0.875em 0);
 }
 
 
@@ -19,10 +19,9 @@
   display: inline-block;
   width: 2em;
   height: 2em;
-  vertical-align: middle;
+  margin-top: 0.4em;
+  cursor: pointer;
 }
-
-
 
 .modal{
   @include modal();
@@ -31,16 +30,54 @@
 .modal{
   .container {
    height: auto;
-   overflow: hidden;
    border: 2px solid gray;
   }
   .right {
       float: right;
+      padding-right: 0.3em;
   }
   .left {
-      float: none; /* not needed, just for clarification */
-      /* the next props are meant to keep this block independent from the other floated one */
+      float: none;
       width: auto;
       overflow: hidden;
   }
+  .icon-location-v2{
+    margin-right: 0.2em;
+  }
+}
+
+#autocompleteField{
+  background-color: white;
+  border: 2px solid gray;
+  position: absolute;
+  z-index: 214;
+  width: 100%;
+  margin-left: -0.12em;
+  max-height: 10em;
+  @include from-breakpoint($medium-break){
+    max-height: 16em;
+  }
+  max-height: 10em;
+  overflow: scroll;
+  .ac-field{
+    cursor: pointer;
+    text-decoration: underline;
+    color: $modal-autocomplete-color;
+    padding-left: 0.6em;
+    &:first-child{
+      border-top: 1px solid $modal-autocomplete-color;
+    }
+    &:hover{
+      background-color: $modal-autocomplete-bgcolor-hover;
+      color: $modal-autocomplete-color-hover;
+    }
+  }
+}
+
+.card-title-cp{
+  cursor: pointer;
+}
+
+.hiddenElt{
+  display: none;
 }
