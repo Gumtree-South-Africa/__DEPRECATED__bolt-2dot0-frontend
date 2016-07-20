@@ -10,6 +10,7 @@
     text-decoration: none;
   }
   > span + span.btn-icon{
+	background-size: 350px 350px;
     @if ($hasIcon == 'off'){
       display:none;
     }
