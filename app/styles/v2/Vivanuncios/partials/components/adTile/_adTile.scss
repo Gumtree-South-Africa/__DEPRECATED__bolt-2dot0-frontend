@@ -80,36 +80,13 @@ $featuredBorderColor: #93c31f;
 			color: white;
             font: $cardStatsFont;
 			line-height: 1;
-
-			.favorite-icon-sm {
-				width: 10px;
-				height: 10px;
-				background-image: url("../../../../../images/Search_images/icon_star-off.svg");
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
-
-			.reply-icon-sm {
-				width: 10px;
-				height: 10px;
-				background-image: url("../../../../../images/Search_images/icon_info.svg");
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
+			
             .inline-block {
                 display: inline-block;
             }
 		}
 
 		.favorite-btn {
-			width: 15px;
-			height: 15px;
-			background-image: url("../../../../../images/Search_images/icon_info.svg");
-			background-size: contain;
-			background-position: center;
-			background-repeat: no-repeat;
 			bottom: 5px;
 			right: 5px;
 			position: absolute;
