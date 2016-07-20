@@ -117,9 +117,7 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.topLocations = () => {
-			return locationModel.getTopL2Locations().then((data) => {
-				return data;
-			}).fail((err) => {
+			return locationModel.getTopL2Locations().fail((err) => {
 				console.warn(`error getting data ${err}`);
 				return {};
 			});

@@ -10,7 +10,7 @@ describe('Footer', () => {
 				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					let c$ = cheerio.load(res.text);
-					expect(c$('.footer-wrapper')).toBeDefined();
+					expect(c$('.footer-wrapper').length).toBe(1, 'selector should produce 1 element for the footer');
 					expect(res.status).toBe(200);
 				})
 				.end(specHelper.finish(done));
