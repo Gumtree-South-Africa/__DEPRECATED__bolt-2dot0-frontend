@@ -27,27 +27,36 @@ router.get('/', (req, res, next) => {
 			"lang": lang,
 			"short_name": res.locals.config.name,
 			"name": res.locals.config.name,
-			"icons": [
-				{
-					"src": baseImageUrl + locale + "/launcher-icon-2x.png",
-					"sizes": "96x96",
-					"type": "image/png"
-				},
-				{
-					"src": baseImageUrl + locale + "/launcher-icon-3x.png",
-					"sizes": "144x144",
-					"type": "image/png"
-				},
-				{
-					"src": baseImageUrl + locale + "/launcher-icon-4x.png",
-					"sizes": "192x192",
-					"type": "image/png"
-				}
-			],
-			"start_url": "/?utm_source=homescreen",
+			"background_color": "#ffffff",
+			"start_url": "/",
 			"display": "standalone",
 			"orientation": "portrait",
-			"background_color": "black"
+			"icons": [
+				{
+					"src": baseImageUrl + locale + "/touch-iphone.png",
+					"type": "image/png",
+					"sizes": null,
+					"actualSize": "57x57"
+				},
+				{
+					"src": baseImageUrl + locale + "/touch-ipad.png",
+					"type": "image/png",
+					"sizes": "72x72",
+					"actualSize": "72x72"
+				},
+				{
+					"src": baseImageUrl + locale + "/touch-iphone-retina.png",
+					"type": "image/png",
+					"sizes": "114x114",
+					"actualSize": "114x114"
+				},
+				{
+					"src": baseImageUrl + locale + "/touch-ipad-retina.png",
+					"type": "image/png",
+					"sizes": "144x144",
+					"actualSize": "144x144"
+				}
+			]
 		};
 
 		res.json(manifestJson);
