@@ -39,8 +39,8 @@ module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 		}
 	}
 
-	//console.log('$$$$$$$$$$$$$$$$$$', bapiOptions);
-	//console.log('$$$$$$$$$$$$$$$$$$', postData);
+	// console.log('$$$$$$$$$$$$$$$$$$', bapiOptions);
+	// console.log('$$$$$$$$$$$$$$$$$$', postData);
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');

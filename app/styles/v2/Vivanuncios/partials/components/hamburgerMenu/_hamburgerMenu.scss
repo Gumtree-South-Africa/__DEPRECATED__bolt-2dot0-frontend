@@ -1,0 +1,179 @@
+.body-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 100%;
+	bottom: 0;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.is-mobile {
+	display: block;
+	@include from-breakpoint($medium-break) {
+		display: none;
+	}
+}
+
+.is-desktop {
+	display: none;
+	@include from-breakpoint($medium-break) {
+		display: block;
+	}
+}
+
+.inline-block {
+	display: inline-block
+}
+
+.menu-container {
+	position: relative;
+	margin: auto;
+	margin-top: 10px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 95%;
+
+	.profile-icon {
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 75px;
+		height: 75px;
+		border: 1px solid $profile-border;
+		border-radius: 50%;
+	}
+
+	.menu-profile {
+		left: 0;
+		right: 0;
+		width: 80%;
+		margin: auto;
+		margin-top: 10px;
+		text-align: center;
+		font-size: 2em;
+	}
+
+	.btn-wrapper {
+		.btn {
+			> span{
+				vertical-align: middle;
+				+ span.btn-icon {
+					display: inline-block;
+					margin-top: 0;
+				}
+			}
+		}
+	}
+}
+
+$borderColor: $headerMenuItemSeparatorColor;
+.browse-categories {
+	.browse-arrow {
+		position: absolute;
+		top: 18px;
+		right: 0;
+		&.icon-chevron {
+			background-size: 700%;
+		}
+		&.icon-up {
+			background-size: 3500%;
+		}
+		width: 20px;
+		height: 20px;
+	}
+
+	li {
+		margin-left: 3px;
+	}
+
+	.l1-categories {
+		margin-left: 15px;
+		border-left: 1px solid $borderColor;
+	}
+
+	.browse-categories-text {
+		color: $profileDropdownLoginBtnColor;
+		padding-left: 5px;
+	}
+
+	.category-name {
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		position: relative;
+		border-bottom: 1px solid $borderColor;
+		padding: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.profile-information {
+	.profile-dropdown {
+		width: 100%;
+		border: none;
+		.login-button {
+			width: 90%;
+		}
+	}
+	.profile-item {
+		.item-icon {
+			margin-left: 0;
+			width: 26px;
+			height: 25px;
+			background-size: 500px 500px;
+		}
+		.item-text {
+			padding-left: 5px;
+		}
+		.link-item {
+			padding: 15px;
+		}
+	}
+}
+
+.vertical-align-middle {
+	vertical-align: middle;
+}
+
+.hamburger-contents {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	overflow: scroll;
+	z-index: 11;
+	&.hamburger-open {
+		left: 0;
+		right: 30%;
+	}
+	&.hamburger-closed {
+		left: -70%;
+		right: 100%;
+	}
+	background-color: $headerBackgroundColor;
+}
+
+.hidden {
+	display: none;
+}
+
+.open-menu {
+	min-width: 100%;
+	left: 0;
+	&.menu-closed {
+		left: 70%;
+	}
+}
+
+.overflow-hidden {
+	overflow: hidden;
+	height: 100%;
+}

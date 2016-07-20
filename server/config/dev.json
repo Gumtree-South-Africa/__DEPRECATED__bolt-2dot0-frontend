@@ -15,6 +15,7 @@
 	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
 	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
 	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
+			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads"
 	    }
 	},
