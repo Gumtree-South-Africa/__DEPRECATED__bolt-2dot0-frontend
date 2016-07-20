@@ -1,5 +1,5 @@
 $panelCornerBorderRadius: 7px;
-$featuredBorderColor: #93c31f;
+
 
 .panel {
 	position: relative;
@@ -26,11 +26,7 @@ $featuredBorderColor: #93c31f;
 			height: 15px;
 			position: absolute;
 			top: 2px;
-			right: 2px;
-			background-image: url("../../../../../images/Search_images/icon_info.svg");
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
+			right: 0px;
 		}
 
 		&:before {
@@ -39,7 +35,7 @@ $featuredBorderColor: #93c31f;
 			top: 0;
 			right: 0;
 			border-width: 16px;
-			border-radius: 0 $panelCornerBorderRadius 0 0;
+			border-radius: 0 $panelCornerBorderRadius - 2 0 0;
 			border-style: solid;
 			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
 		}
@@ -80,7 +76,7 @@ $featuredBorderColor: #93c31f;
 			color: white;
             font: $cardStatsFont;
 			line-height: 1;
-			
+
             .inline-block {
                 display: inline-block;
             }
