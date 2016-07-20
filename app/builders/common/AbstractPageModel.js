@@ -108,8 +108,10 @@ class AbstractPageModel extends BasePageModel {
 		for (index = 0; index < pageModelConfig.length; index++) {
 			fnLabel = pageModelConfig[index];
 			fn = functionMap[fnLabel];
-			fn.fnLabel = fnLabel;
-			arrFunctions.push(fn);
+			if (typeof fn !== 'undefined') {
+				fn.fnLabel = fnLabel;
+				arrFunctions.push(fn);
+			}
 		}
 
 		return arrFunctions;
