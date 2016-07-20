@@ -22,9 +22,12 @@ module.exports.create =  function(app) {
             helpers: hbshelpers,
             cache      : app.enabled('view cache'),
             precompiled: true,
-            partialsDir: [ process.cwd() + "/app/appWeb/views/components/",
+            partialsDir: [
+            	process.cwd() + '/app/appWeb/views/components/',
                 process.cwd() + '/app/appWeb/views/templates/pages',
-                process.cwd() + '/app/appWeb/views/templates/layouts/hbs/partials'
+                process.cwd() + '/app/appWeb/views/templates/layouts/hbs/partials',
+				process.cwd() + '/app/appPost/views/templates/pages',
+				process.cwd() + '/app/appPost/views/components/'
             ]
 
         });
