@@ -15,6 +15,7 @@
 	    	"homepageGallery" 	: 	"/ads/gallery",
 	    	"adStatistics" 		: 	"/ads/statistics",
 	    	"configService"		:	"/configs/nodeapp/settings.json",
+			"updateConfig"		:	"/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/ads",
 			"trendingSearch"	:	"/ads"
 	    }

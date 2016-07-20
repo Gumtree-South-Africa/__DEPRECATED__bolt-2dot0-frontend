@@ -1,15 +1,13 @@
+@import  "../profileMenu/profileMenu";
+
 $item-top-padding: 12px;
 $item-bottom-padding: 12px;
-$profile-dropdown-width: 220px;
-$profile-login-btn-margin: 5px;
-$profile-login-btn-padding: 10px;
-$profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding + $profile-login-btn-margin) * 2;
+$dropdown-width: 220px;
 
 .headerV2 {
-	z-index: 10;
+	z-index: 9;
 	position: relative;
     width: 100%;
-    //border-bottom: 1px solid black;
     box-shadow: 0 0 10px black;
     height: 65px;
     background: $common-background-color;
@@ -119,48 +117,21 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
         .profile {
             vertical-align: middle;
-            //margin-left: 18px;
 
             &.normal-pad-top {
                 padding-top: $item-top-padding;
             }
             .profile-icon {
-                //border: 1px solid $profile-border;
                 border-radius: 50%;
                 vertical-align: middle;
                 display: inline-block;
-                width: 30px;
-                height: 30px;
+                width: 24px;
+                height: 24px;
             }
             .profile-picture {
-                background: url('../../../../../images/profile6.png') no-repeat;
                 background-size: contain;
                 border: 1px solid $profile-border;
                 border-radius: 50%;
-            }
-
-            .item-icon {
-                display: inline-block;
-                vertical-align: middle;
-                margin-left: 10px;
-            }
-
-            .profile-item-text {
-                display: inline-block;
-                vertical-align: middle;
-                padding-left: 8px;
-                width: 78%;
-            }
-
-            .btn-wrapper {
-                width: $profile-login-btn-width;
-                margin: $profile-login-btn-margin;
-
-                .btn {
-                    border-radius: 2px;
-                    background-color: $profileDropdownLoginBtnColor;
-                    padding: $profile-login-btn-padding;
-                }
             }
         }
     }
@@ -203,8 +174,12 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
         // position+bg-color used to hide dropdown top border
         position: relative;
         background-color: transparent;
-        width:100%;
+        width: 100%;
+		max-width: $dropdown-width;
+        height: 65px;
+        overflow: hidden;
         text-align: left;
+		box-sizing: border-box;
 
         // setup a border that will get border color when the menu is open
         border-width: 0 1px;
@@ -223,45 +198,40 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
-        width: $profile-dropdown-width;
+        width: $dropdown-width;
         text-align: left;
         background-color: $headerBackgroundColor;
         border: 1px solid $headerMenuBorderColor;
 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
+
+            &:last-child {
+                border-bottom: none;
+            }
         }
 
+        // link items should take the entire space of menu-item
         .link-item {
-
             display: block;
             padding-top: 10px;
             padding-bottom: 10px;
-
-            .menu-item {
-                border-bottom: 1px solid $headerMenuItemSeparatorColor;
-            }
-            &:last-child {
-                .menu-item {
-                    border-bottom: none;
-                }
-            }
         }
 
         .item-primary-text {
             padding-left: 5px;
         }
 
-        .item-secondary-text {
-            padding-left: 8px;
-            font-weight: $fontWeightNormal; // does not appear to be working, font family is bold looking
-            color: $headerMenuItemSecondaryColor;
-        }
+
+        .menu-item:hover {
+            background-color: $headerMenuItemHighlightColor;
+         }
     }
 
     .header-item-icon {
         display: inline-block;
         position: relative;
+        margin-right: 6px;
         top: 1px;
         left: 5px;
     }

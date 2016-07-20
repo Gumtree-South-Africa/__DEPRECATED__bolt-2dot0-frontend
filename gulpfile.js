@@ -86,18 +86,21 @@ gulp.task('default', function(done) {
 	runSequence('build', ['develop', 'watch'], done);
 });
 
-var testTasks = getTask("test");
+
+let testTasks = getTask("test");
 
 gulp.task('test:clientUnit', testTasks);
 gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);
 
+
 let icons2 = getTask('icons2');
 
 gulp.task('icons2', icons2);
 gulp.task('rebuildSprites', icons2);
 gulp.task('cleanSprites', icons2);
+
 
 gulp.task('jasminebrowser', getTask('jasminebrowser'));
 
