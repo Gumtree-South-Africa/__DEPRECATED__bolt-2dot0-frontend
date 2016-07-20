@@ -5,7 +5,7 @@ let initialize = () => {
 
 	$(document).ready(() => {
 		let BOLT = BOLT || {};
-		
+
 		let locale = $('html').attr('data-locale');
 		let country = locale.split('_')[1];
 		let lang = locale.split('_')[0];
@@ -68,7 +68,11 @@ let initialize = () => {
 		$('.modal-cp .btn').on('click', function(e) {
 			e.preventDefault(); e.stopPropagation();
 			let $selected = $('.ac-field.selected');
-			($selected.attr('data-long') !== undefined) ? BOLT.UTILS.Cookie.setCookie('geoId', $selected.attr('data-long') + 'ng' + $selected.attr('data-lat')) : '';
+
+			if($selected.attr('data-long') !== undefined) {
+				BOLT.UTILS.Cookie.setCookie('geoId', $selected.attr('data-long') + 'ng' + $selected.attr('data-lat'));
+			}
+
 		});
 	});
 };
