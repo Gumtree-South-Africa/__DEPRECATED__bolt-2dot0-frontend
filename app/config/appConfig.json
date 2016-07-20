@@ -3,7 +3,7 @@
 		"mainRoute" : "/",
 	    "path" : "./app/appWeb/app",
 		"routePath" : "./controllers",
-		"viewPath" : "app/appWeb/views",
+		"viewPath" : "app/views",
 	    "sendMetrics" : true
 	},
 	"appPost" : {

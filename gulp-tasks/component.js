@@ -20,7 +20,7 @@ module.exports = function watch(gulp, plugins) {
 
   	gulp.task('component', function() {
   	  componentName = argv.n;
-  	  var emitter = walkdir(process.cwd() + '/app/appWeb/views/components', {no_recurse: true}, function(dir, stat, depth){
+  	  var emitter = walkdir(process.cwd() + '/app/views/components', {no_recurse: true}, function(dir, stat, depth){
   	    var base = path.basename(dir);
   	    if(componentName.toString() == base){
   	      console.log(new Error(err.message));
@@ -31,19 +31,19 @@ module.exports = function watch(gulp, plugins) {
 
   	  emitter.on('end', function(){
   	    if(!componentExist){
-    	      gulp.src(cwd + '/app/appWeb/views/components/__default/**/*',
+    	      gulp.src(cwd + '/app/views/components/__default/**/*',
     	        {
-    	           base:cwd + '/app/appWeb/views/components/__default'
+    	           base:cwd + '/app/views/components/__default'
     	        })
-    	       .pipe(gulp.dest(cwd + '/app/appWeb/views/components/'+ componentName))
+    	       .pipe(gulp.dest(cwd + '/app/views/components/'+ componentName))
              .on('end', function(){
-               gulp.src(cwd + '/app/appWeb/views/components/'+ componentName +'/views/tmphbs/**/*.hbs')
+               gulp.src(cwd + '/app/views/components/'+ componentName +'/views/tmphbs/**/*.hbs')
                  .pipe(plugins.rename(function (path) {
                    path.basename = path.basename.replace(/default/ig, componentName);
                  }))
-                 .pipe(gulp.dest(cwd + '/app/appWeb/views/components/'+ componentName +'/views/hbs'))
+                 .pipe(gulp.dest(cwd + '/app/views/components/'+ componentName +'/views/hbs'))
                  .on('end', function(){
-                   del([cwd + '/app/appWeb/views/components/'+ componentName +'/views/tmphbs']);
+                   del([cwd + '/app/views/components/'+ componentName +'/views/tmphbs']);
                  });
              })
 

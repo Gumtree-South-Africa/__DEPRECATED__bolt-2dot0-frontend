@@ -31,7 +31,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/i18n.js",
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/widgets/SocialMedia.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
@@ -57,7 +57,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/Search.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js"
 		], "bundleName": "Main_es_MX.min.js"
 	}, {
@@ -80,7 +80,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/Search.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js"
 		], "bundleName": "Main_es_AR.min.js"
 	}, {
@@ -100,7 +100,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/i18n.js",
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js"
@@ -123,7 +123,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/i18n.js",
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
@@ -146,7 +146,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
 			rootDir + "/public/js/common/banners/BannerCookie.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
@@ -169,7 +169,7 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
 			rootDir + "/public/js/common/banners/BannerCookie.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
@@ -193,14 +193,14 @@ module.exports = [
 			rootDir + "/public/js/common/bolt/html5.js",
 			rootDir + "/public/js/common/bolt/Search.js",
 			rootDir + "/public/js/common/banners/BannerCookie.js",
-			rootDir + "/app/appWeb/views/components/header/js/header.js",
+			rootDir + "/app/views/components/header/js/header.js",
 			rootDir + "/public/js/common/header/searchbar.js",
 			rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 			rootDir + "/public/js/common/tracking/Analytics.js",
 		], "bundleName": "Main_en_SG.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js"
+			rootDir + "/app/views/components/categoryList/js/app.js"
 		], "bundleName": "HomePage.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
@@ -212,140 +212,140 @@ module.exports = [
 		], "bundleName": "HomePage_es_MX.min.js"
 	}, { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js"
+			rootDir + "/app/views/components/categoryList/js/app.js"
 		], "bundleName": "HomePage_es_MX_light.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/CarouselExt/modernizr.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/CarouselExt/carouselExt.js",
-			rootDir + "/app/appWeb/views/components/countryMap/js/Map.js"
+			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/adCarousel/js/CarouselExt/modernizr.js",
+			rootDir + "/app/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
+			rootDir + "/app/views/components/adCarousel/js/CarouselExt/carouselExt.js",
+			rootDir + "/app/views/components/countryMap/js/Map.js"
 		], "bundleName": "HomePage_es_AR.min.js"
 	}, { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js"
+			rootDir + "/app/views/components/categoryList/js/app.js"
 		], "bundleName": "HomePage_es_AR_light.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js"
+			rootDir + "/app/views/components/categoryList/js/app.js"
 		], "bundleName": "HomePage_es_US.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
+			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_en_ZA.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
+			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_en_IE.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
+			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_pl_PL.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
+			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_en_SG.min.js"
 	},
 
 	{
 		"dest": rootDir + "/public/jsmin", "src": [
-		rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-		rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-		rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-		rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-		rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-		rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-		rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-		rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+		rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+		rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+		rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+		rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+		rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+		rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+		rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+		rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 		rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 		rootDir + "/public/js/pages/quickpost/quickpost.js",
 		rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 	], "bundleName": "QuickPost_es_MX.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 		], "bundleName": "QuickPost_es_AR.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 		], "bundleName": "QuickPost_es_US.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 		], "bundleName": "QuickPost_en_ZA.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 		], "bundleName": "QuickPost_en_IE.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"
 		], "bundleName": "QuickPost_en_SG.min.js"
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadUtil.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageEXIF.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
-			rootDir + "/app/appWeb/views/components/mediaUpload/js/BoltImageUploader.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
-			rootDir + "/app/appWeb/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
-			rootDir + "/app/appWeb/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadUtil.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageEXIF.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploadDragAndDrop.js",
+			rootDir + "/app/views/components/mediaUpload/js/BoltImageUploader.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/jquery.menu.min.js",
+			rootDir + "/app/views/components/mobileSelectorMenu/js/MobileItemSelector.js",
+			rootDir + "/app/views/components/mapLatLong/js/mapLatLong.js",
 			rootDir + "/public/js/libraries/jQueryValidate/jquery.validate.min.js",
 			rootDir + "/public/js/pages/quickpost/quickpost.js",
 			rootDir + "/public/js/pages/quickpost/postPageValidator.js"

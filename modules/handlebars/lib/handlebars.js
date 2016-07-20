@@ -17,17 +17,15 @@ module.exports.create =  function(app) {
 
         var hbs = exphbs.create({
             defaultLayout: 'html',  // It refers to html.hbs under the layouts directory. // 'main',
-            layoutsDir: process.cwd() + "/app/appWeb/views/templates/layouts/hbs/",
+            layoutsDir: process.cwd() + "/app/views/templates/layouts/hbs/",
             extname: "hbs",
             helpers: hbshelpers,
             cache      : app.enabled('view cache'),
             precompiled: true,
             partialsDir: [
-            	process.cwd() + '/app/appWeb/views/components/',
-                process.cwd() + '/app/appWeb/views/templates/pages',
-                process.cwd() + '/app/appWeb/views/templates/layouts/hbs/partials',
-				process.cwd() + '/app/appPost/views/templates/pages',
-				process.cwd() + '/app/appPost/views/components/'
+            	process.cwd() + '/app/views/components/',
+                process.cwd() + '/app/views/templates/pages',
+                process.cwd() + '/app/views/templates/layouts/hbs/partials',
             ]
 
         });
@@ -36,7 +34,7 @@ module.exports.create =  function(app) {
 
         app.engine('hbs', hbs.engine);
         app.set('view engine', 'hbs');
-        app.set('views', process.cwd() + '/app/appWeb/views/templates/pages');
+        app.set('views', process.cwd() + '/app/views/templates/pages');
 
         // call next middleware
         next();

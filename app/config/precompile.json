@@ -3,85 +3,85 @@
     {
         "dest" : "alaMaula/es_AR/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "Vivanuncios/es_MX/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_ZA/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_IE/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_SG/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "Gumtree/pl_PL/homepage.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/a.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/b.hbs",
-          "./app/appWeb/views/templates/precompile/hbs/common/DateInput.hbs"
+          "./app/views/templates/precompile/hbs/common/a.hbs",
+          "./app/views/templates/precompile/hbs/common/b.hbs",
+          "./app/views/templates/precompile/hbs/common/DateInput.hbs"
         ]
     },
     {
         "dest" : "alaMaula/es_AR/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     },
     {
         "dest" : "Vivanuncios/es_MX/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_ZA/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_IE/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     },
     {
         "dest" : "Gumtree/en_SG/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     },
     {
         "dest" : "Gumtree/pl_PL/autocomplete.html.js",
         "src" : [
-          "./app/appWeb/views/templates/precompile/hbs/common/autocomplete.hbs"
+          "./app/views/templates/precompile/hbs/common/autocomplete.hbs"
         ]
     }
   ]
