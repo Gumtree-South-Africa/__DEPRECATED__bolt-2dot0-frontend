@@ -22,6 +22,7 @@ let toggleMenu = (shouldClose) => {
 		left: (this.open) ? 0 : '70%'
 	});
 	this.$pageContent.toggleClass('menu-closed');
+	this.$html.toggleClass('overflow-hidden');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };
@@ -45,6 +46,7 @@ let _currentBreakpoint = () => {
 };
 
 let initialize = () => {
+	this.$html = $('html');
 	this.$body = $('body');
 	this.open = false;
 	this.$browse = $('#js-hamburger-browse');

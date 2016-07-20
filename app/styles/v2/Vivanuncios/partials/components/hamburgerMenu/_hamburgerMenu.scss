@@ -1,5 +1,5 @@
 .body-overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 100%;
@@ -7,6 +7,7 @@
 	z-index: 10;
 	background-color: rgba(0, 0, 0, .5);
 }
+
 .is-mobile {
 	display: block;
 	@include from-breakpoint($medium-break) {
@@ -20,7 +21,6 @@
 		display: block;
 	}
 }
-
 
 .inline-block {
 	display: inline-block
@@ -53,6 +53,18 @@
 		margin-top: 10px;
 		text-align: center;
 		font-size: 2em;
+	}
+
+	.btn-wrapper {
+		.btn {
+			> span{
+				vertical-align: middle;
+				+ span.btn-icon {
+					display: inline-block;
+					margin-top: 0;
+				}
+			}
+		}
 	}
 }
 
@@ -133,7 +145,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 }
 
 .hamburger-contents {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	overflow: scroll;
@@ -161,8 +173,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 	}
 }
 
-body {
-	&.overflow-hidden {
-		overflow: hidden;
-	}
+.overflow-hidden {
+	overflow: hidden;
+	height: 100%;
 }
