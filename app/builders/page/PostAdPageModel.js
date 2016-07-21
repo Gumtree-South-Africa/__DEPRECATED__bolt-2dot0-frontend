@@ -3,7 +3,6 @@
 
 let cwd = process.cwd();
 
-let deviceDetection = require(`${cwd}/modules/device-detection`);
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
@@ -50,41 +49,12 @@ class PostAdPageModel {
 		return [
 			() => {
 				// initialize
-				let data = {
+				return {
 					'homePageUrl': this.urlProtocol + 'www.' + this.fullDomainName + this.baseDomainSuffix + this.basePort,
 					'languageCode': this.locale
 				};
-
-				// add complex data to header
-				this.buildCss(data);
 			}
 		];
-	}
-
-	//Build CSS
-	buildCss(data) {
-		let b2dot0Ver = 'v2';
-
-		data.iconsCSSURLs = [];
-		data.iconsCSSFallbackUrl = [];
-		data.iconsCSSURLs.push(`${data.baseCSSUrl}${this.locale}/sprite.css`);
-		data.iconsCSSFallbackUrl.push(`${data.baseCSSUrl}${this.locale}/${this.locale}.css`);
-		data.iconsCSSURLs.push(`${data.baseCSSUrl}${this.locale}/icons.css`);
-		data.iconsCSSFallbackUrl.push(`${data.baseCSSUrl}${this.locale}/fallback.css`);
-
-		if (deviceDetection.isMobile()) {
-			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-		} else {
-			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-		}
-		data.localeCSSPathHack = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
-
-		data.containerCSS = [];
-		if (data.min) {
-			data.containerCSS.push(data.localeCSSPath + '/Main.min.css');
-		} else {
-			data.containerCSS.push(data.localeCSSPath + '/Main.css');
-		}
 	}
 
 	mapData(modelData, data) {

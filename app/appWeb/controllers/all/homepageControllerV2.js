@@ -28,7 +28,6 @@ let HP = {
 		}
 
 		// CSS
-		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
 		if (modelData.header.min) {
 			if (deviceDetection.isHomePageDevice()) {
 				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');

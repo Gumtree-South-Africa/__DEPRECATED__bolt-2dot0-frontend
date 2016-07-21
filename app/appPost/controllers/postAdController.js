@@ -9,7 +9,7 @@ let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
 let postAdData = {
 	extendModelData: (req, modelData) => {
 		// CSS
-		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'PostAdPage.css';
+		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 	}
 };
 
@@ -19,6 +19,8 @@ router.use('/', (req, res, next) => {
 
 	modelPromise.then((modelData) => {
 		postAdData.extendModelData(req, modelData);
+		modelData.header.distractionFree = true;
+		modelData.footer.distractionFree = true;
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
