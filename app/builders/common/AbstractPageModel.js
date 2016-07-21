@@ -111,6 +111,8 @@ class AbstractPageModel extends BasePageModel {
 			if (typeof fn !== 'undefined') {
 				fn.fnLabel = fnLabel;
 				arrFunctions.push(fn);
+			} else {
+				console.log('Error in loading component ' + fnLabel + ' : not found in ZK config');
 			}
 		}
 
