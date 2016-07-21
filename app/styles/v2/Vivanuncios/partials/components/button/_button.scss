@@ -1,17 +1,22 @@
-@mixin vivaBtn($hasIcon, $padding){
-  cursor: pointer;
-  background-color: $button-bgcolor;
-  display: inline-block;
-  font: bold 1.125em Lato;
-  padding: $padding;
-  text-align: center;
-  width: 100%;
-  &:hover{
-    text-decoration: none;
-  }
-  > span + span.btn-icon{
-    @if ($hasIcon == 'off'){
-      display:none;
-    }
-  }
+@mixin vivaBtn($hasIcon, $padding) {
+	cursor: pointer;
+	background-color: $button-bgcolor;
+	border-radius: 2px;
+	display: inline-block;
+	font: bold 1.125em Lato;
+	padding: $padding;
+	text-align: center;
+	&:hover {
+		text-decoration: none;
+	}
+	width: 90%;
+	vertical-align: top;
+	> span {
+		vertical-align: middle;
+		+ span.btn-icon {
+			display: inline-block;
+			margin-top: 0;
+			margin-left: 0.5em;
+		}
+	}
 }
