@@ -90,10 +90,16 @@
 
 	.post-ad-footer {
 		width: 90%;
-		padding: 20px;
+		padding: 20px 0 20px 0;
 		margin: auto;
 		@include from-breakpoint($medium-break) {
 			width: 75%;
+		}
+		.btn {
+			@include vivaBtn(off, 0.875em 0, 100%);
+			.btn-icon {
+				display: none;
+			}
 		}
 	}
 }

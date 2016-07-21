@@ -6,12 +6,14 @@ let toggleMenu = (shouldClose) => {
 		this.open = shouldClose;
 	}
 	if (!this.open) {
-		searchBarV2.closeAutoComplete();
+		searchBarV2.closeAutoComplete(true, true);
 	}
 	this.$hamburgerPopout[0].style.right = (this.open) ? '100%' : 0;
 	this.$hamburgerContents.animate({
 		left: (this.open) ? '-70%' : '0',
 		right: (this.open) ? '100%' : '30%'
+	}, () => {
+		this.$hamburgerContents.find(".js-hamburger-post .btn").focus();
 	});
 	this.$body.toggleClass('overflow-hidden');
 	this.$modalFooter.toggleClass('hidden');

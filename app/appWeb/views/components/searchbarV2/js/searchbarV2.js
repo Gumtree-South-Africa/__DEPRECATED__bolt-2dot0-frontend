@@ -151,12 +151,14 @@ let _highlightNextItem = () => {
 	}
 };
 
-let closeAutoComplete = (dontClearText) => {
+let closeAutoComplete = (dontClearText, dontFocusTextbox) => {
 	_setIsTyping(false);
 	if (!dontClearText) {
 		this.$searchTextbox.val('');
 	}
-	this.$searchTextbox.focus();
+	if (!dontFocusTextbox) {
+		this.$searchTextbox.focus();
+	}
 };
 
 /**
