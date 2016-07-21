@@ -34,15 +34,13 @@
 	.post-ad-modal-wrapper {
 		position: fixed;
 		background-color: white;
-		height: 200px;
+		height: auto;
 		width: 90%;
-		top: 0;
-		bottom: 0;
+		top: 45%;
 		left: 0;
 		right: 0;
 		margin: auto;
 		@include from-breakpoint($medium-break) {
-			height: 175px;
 			width: 60%;
 		}
 	}
@@ -67,12 +65,11 @@
 		clear: both;
 		font: $h1;
 		text-align: center;
-		margin-top: 0.5em;
-		margin-bottom: 1em;
+		padding-top: 0.75em;
+		padding-bottom: 0.75em;
 	}
 	.h1-text-mobile {
 		display: block;
-		margin-bottom: 0.5em;
 		@include from-breakpoint($medium-break) {
 			display: none;
 		}
@@ -92,10 +89,8 @@
 	}
 
 	.post-ad-footer {
-		position: absolute;
-		bottom: 15px;
-		left: 15px;
-		right: 15px;
+		width: 90%;
+		padding: 20px;
 		margin: auto;
 		@include from-breakpoint($medium-break) {
 			width: 75%;
