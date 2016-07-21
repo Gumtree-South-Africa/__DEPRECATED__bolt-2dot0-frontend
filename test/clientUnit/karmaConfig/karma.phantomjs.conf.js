@@ -4,7 +4,7 @@ module.exports = function (config) {
 		files: [
 			"../../../public/js/libraries/handlebars/handlebars-v4.0.5.js",
 			"../helpers/webTemplates.js",
-			"../SpecRunnerBundle.js"
+			"../SpecRunner_Bundle.js"
 		],
 		browsers: ['PhantomJS_custom'],
 		reporters: ["spec"],

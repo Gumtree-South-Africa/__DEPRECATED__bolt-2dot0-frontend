@@ -64,7 +64,7 @@ module.exports = function watch(gulp, plugins) {
 
 		gulp.task('webpackTest', (done) => {
 			// run webpack
-			webpack(require(process.cwd() + "/webpack.config.js"), function(err, stats) {
+			webpack(require(process.cwd() + "/app/config/bundling/webpack.test.config.js"), function(err, stats) {
 				if(err) throw new gutil.PluginError("webpack", err);
 				console.log("[webpack]", stats.toString());
 
