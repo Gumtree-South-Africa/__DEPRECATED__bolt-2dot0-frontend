@@ -68,7 +68,7 @@
         .btn-wrapper {
             text-align: center;
             .btn {
-				@include vivaBtn(on, 0.35em);
+				@include vivaBtn(on, 0.35em, 90%);
             }
         }
     }
