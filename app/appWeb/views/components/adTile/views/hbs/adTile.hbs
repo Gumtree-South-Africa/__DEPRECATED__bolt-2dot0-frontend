@@ -1,6 +1,6 @@
 {{#block "adTile"}}
     {{!-- this.isFeatured --}}
-    <span class="inline-block panel {{#if true}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
+    <span class="inline-block panel {{#if this.featured}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
         <span class="featured-bolt icon-featured-white"></span>
         <a href="{{this.sellerInfo.sellerURL}}"><span class="inline-block user-photo" style="background-image: url({{this.sellerInfo.profileImg}});"></span></a>
         <section class="controls">
