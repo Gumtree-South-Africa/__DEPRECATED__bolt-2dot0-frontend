@@ -27,15 +27,28 @@ router.get('/', (req, res, next) => {
 			"lang": lang,
 			"short_name": res.locals.config.name,
 			"name": res.locals.config.name,
-			"background_color": "#ffffff",
+			"background_color": "#2F3BA2",
+			"theme_color": "#512DA8",
 			"start_url": "/",
 			"display": "standalone",
 			"orientation": "portrait",
 			"icons": [
 				{
+					"src": baseImageUrl + locale + "/shortcut.png",
+					"type": "image/png",
+					"sizes": "16x16",
+					"actualSize": "32x32"
+				},
+				{
+					"src": baseImageUrl + locale + "/shortcut.png",
+					"type": "image/png",
+					"sizes": "32x32",
+					"actualSize": "32x32"
+				},
+				{
 					"src": baseImageUrl + locale + "/touch-iphone.png",
 					"type": "image/png",
-					"sizes": null,
+					"sizes": "57x57",
 					"actualSize": "57x57"
 				},
 				{
@@ -55,6 +68,30 @@ router.get('/', (req, res, next) => {
 					"type": "image/png",
 					"sizes": "144x144",
 					"actualSize": "144x144"
+				},
+				{
+					"src": baseImageUrl + locale + "/icon-192x192.png",
+					"type": "image/png",
+					"sizes": "192x192",
+					"actualSize": "192x192"
+				},
+				{
+					"src": baseImageUrl + locale + "/icon-256x256.png",
+					"type": "image/png",
+					"sizes": "256x256",
+					"actualSize": "256x256"
+				},
+				{
+					"src": baseImageUrl + locale + "/icon-384x384.png",
+					"type": "image/png",
+					"sizes": "384x384",
+					"actualSize": "384x384"
+				},
+				{
+					"src": baseImageUrl + locale + "/icon-512x512.png",
+					"type": "image/png",
+					"sizes": "512x512",
+					"actualSize": "512x512"
 				}
 			]
 		};

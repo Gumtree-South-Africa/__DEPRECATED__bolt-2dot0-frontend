@@ -28,7 +28,7 @@ class ManifestModel {
 
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
-		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.MANIFEST;
+		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.PWA_MANIFEST;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder();
