@@ -51,8 +51,11 @@
                     margin-right: 0.2em;
                 }
                 > .icon-close {
-                    width: 0.8em;
-                    height: 0.8em;
+                        vertical-align: middle;
+                        display: inline-block;
+                        background-size: 1649%;
+                        height: 15px;
+     	                width: 15px;
                 }
             }
         }
