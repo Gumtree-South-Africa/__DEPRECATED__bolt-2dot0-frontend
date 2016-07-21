@@ -1,0 +1,61 @@
+$item-margin: 10px;
+$header-blue: #4A90E2;
+
+.margin-auto {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.post-ad-header {
+	width: 100%;
+	color: $header-blue;
+	margin-top: 10px;
+	margin-bottom: $item-margin;
+	border-bottom: 1px solid $header-blue;
+
+	.back-button {
+		position: absolute;
+		margin-left: 20px;
+	}
+
+	.icon-caret-left-blue {
+		width: 10px;
+		height: 14px;
+		display: inline-block;
+	}
+
+	.header-text {
+		text-align: center;
+		font-weight: bold;
+	}
+
+}
+
+.user-image {
+	height: 350px;
+	background-color: black;
+	background-image: url(http://www.superbbicycle.com/wp-content/uploads/2011/02/Rossin-Superb-47cm-1.jpg);
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	margin-bottom: $item-margin;
+}
+
+.post-ad-button {
+	margin-bottom: $item-margin !important;
+
+	.btn {
+		width: 100%;
+	}
+}
+
+.retake-photo-button {
+	margin-bottom: $item-margin;
+	text-align: center;
+	text-decoration: underline;
+	cursor: pointer;
+
+	&:hover {
+		color: #FF9800;
+	}
+}

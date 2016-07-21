@@ -1,5 +1,4 @@
 {
-
 	"greeting": "Saludos desde el Valle del Silicio",
 	"welcome": "Bienvenidos a BOLT 2.0",
 	"coworkers.nacer": "Nacer Mexicano",
@@ -1146,7 +1145,7 @@
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
 	"postad.button": "Publica Gratis",
-    "welcomescreen": {
+	"welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
 		"close": "Cerrar"
@@ -1212,15 +1211,46 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-    "close": "cerrar",
-    "buttonText": "Confirmar",
-    "message": "Cambia Tu Ubicaci\u00FBn",
-    "info": "Ciudad, Colonia o Delegaci\u00F3n"
-  },
+		"close": "cerrar",
+		"buttonText": "Confirmar",
+		"message": "Cambia Tu Ubicaci\u00FBn",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+	},
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",
 			"sold": "%s acaba de vender: %s %s"
+		}
+	},
+	"postAd": {
+		"confirm": {
+			"pageTitle": "Post An Ad TBT",
+			"back": "Back TBT",
+			"postButton": "Post My Ad TBT",
+			"retakePhoto": "Retake Photo TBT"
+		},
+		"uploadModal": {
+			"title": "Did you know that TBT",
+			"tip": "Tip: You can go to the My Ads page to view your ads and add more details. TBT"
+		},
+		"loginModal": {
+			"title": "Login to continue TBT",
+			"facebookBtn": "Continue with Facebook TBT",
+			"emailBtn": "Login with Email TBT",
+			"register": "Regístrate",
+			"close": "Cerrar"
+		},
+		"successModal": {
+			"title": "Your Ad is Uploaded! TBT",
+			"tip": "Tip: Add more photos to increases your chances of selling quickly. TBT",
+			"modeDetails": "Add more details TBT",
+			"postMoreBtn": "Post More Ads TBT"
+		},
+		"unsupportedFileModal": {
+			"title": "Unsupported File Format",
+			"close": "Cerrar",
+			"mesage": "This file contains an unsupported media format. TBT",
+			"uploadBtn": "Upload a different photo TBT"
 		}
 	},
 	"footer": {
