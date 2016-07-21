@@ -10,7 +10,7 @@ let testWebpackConfig = {
 	},
 	output: {
 		path: 'test/clientUnit/',
-		filename: '[name]_Bundle.js'
+		filename: '[name]Bundle.js'
 	}
 };
 

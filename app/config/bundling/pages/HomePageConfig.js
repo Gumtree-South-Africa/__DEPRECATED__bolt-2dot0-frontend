@@ -16,7 +16,11 @@ module.exports = {
 				"Header": "app/appWeb/views/components/headerV2/js/header.js",
 				"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 				"WelcomeModal": "app/appWeb/views/components/welcomeModal/js/welcomeModal.js",
-				"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js"
+				"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
+				"SectionMenu": "app/appWeb/views/components/sectionMenu/js/sectionMenu.js",
+				"ModalAutoComplete": "app/appWeb/views/components/modal/js/modal_autocomplete.js",
+				"ProfileMenu": "app/appWeb/views/components/profileMenu/js/profileMenu.js",
+				"HamburgerMenu": "app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js"
 			},
 			"mobile": {},
 			"desktop": {} // common locale and device specific has the second highest priority

@@ -1,5 +1,5 @@
 test/clientUnit/karmaConfig/**/*.js
-test/clientUnit/SpecRunner_Bundle.js
+test/clientUnit/SpecRunnerBundle.js
 test/serverUnit/properties2Json.spec.js
 test/serverUnit/index.js
 test/clientUnit/helpers/webTemplates.js
