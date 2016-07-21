@@ -57,13 +57,7 @@
 
 	.btn-wrapper {
 		.btn {
-			> span{
-				vertical-align: middle;
-				+ span.btn-icon {
-					display: inline-block;
-					margin-top: 0;
-				}
-			}
+			@include vivaBtn(on, 0.85em);
 		}
 	}
 }
