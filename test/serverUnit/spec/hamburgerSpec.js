@@ -30,6 +30,9 @@ describe('Hamburger', () => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.updateConfig}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/Ad.json');
 	});
 
 	it('should show logged in user name for logged in user', (done) => {
@@ -74,14 +77,14 @@ describe('Hamburger', () => {
 						expect(map.has(name)).toBe(true, `link ${name} should be in the mock data`);
 						let link = map.get(name);
 						let href = element.attr('href');
-						expect(element.attr('href')).toBe(link, 
+						expect(element.attr('href')).toBe(link,
 							`expected link for ${name} to be ${link}, got ${href}`);
 					});
 				})
 				.end(specHelper.finish(done));
 		});
 	});
-	
+
 	it('should show correct profile information for logged in', (done) => {
 		boltSupertest('/', 'www.vivanuncios.com.mx').then((supertest) => {
 			supertest
@@ -101,7 +104,7 @@ describe('Hamburger', () => {
 						expect(map.has(name)).toBe(true, `link ${name} should be in the mock data`);
 						let link = map.get(name);
 						let href = element.attr('href');
-						expect(element.attr('href')).toBe(link, 
+						expect(element.attr('href')).toBe(link,
 							`expected link for ${name} to be ${link}, got ${href}`);
 					});
 				})

@@ -1,0 +1,13 @@
+{
+	"statusCode": 401,
+	"message": "Unauthorized",
+	"details": [
+		{
+			"code": "UNAUTHORIZED",
+			"message": "Resource unauthorized",
+			"_links": [
+				{ "ref": "help", "href": "/docs/errorCodes.html#UNAUTHORIZED" }
+			]
+		}
+	]
+}
