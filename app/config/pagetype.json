@@ -40,6 +40,7 @@
 	    "POST_AD_PREVIEW" : "PostAdPreview",
 	    "EDIT_AD" : "EditAd",
 	    "POST_AD" : "PostAd",
+		"PWA_APP_SHELL" : "PwaAppShell",
 		"PWA_MANIFEST" : "PwaManifest",
 	  	"QUICK_POST_AD_FORM" : "QuickPostAdForm",
 	  	"QUICK_POST_AD_SUCCESS" : "QuickPostAdSuccess",

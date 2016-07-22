@@ -67,7 +67,7 @@ class HomePageModelV2 {
 		modelData.seo = data['seo'] || {};
 
 		modelData.isNewHP = true;
-		
+
 		return modelData;
 	}
 

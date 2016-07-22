@@ -5,7 +5,8 @@ let path = require("path");
 module.exports = {
 	entry: {
 		"test/clientUnit/SpecRunner": "./test/clientUnit/SpecRunner.js",
-		"public/jsmin/homepageV2": "./app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js"
+		"public/jsmin/homepageV2": "./app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js",
+		"public/jsmin/appshell": "./app/appWeb/views/templates/pages/appshell/js/appshell.js"
 	},
 	output: {
 		path: '',
