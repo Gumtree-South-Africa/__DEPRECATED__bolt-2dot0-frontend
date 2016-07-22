@@ -1,0 +1,70 @@
+{
+  "total": 20,
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/ads/1001700237990910982580309/similars",
+      "method": "GET"
+    }
+  ],
+  "ads": [
+    {
+      "id": 1.001700237990911e+24,
+      "viewPageUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+      "title": "Nissan March Sedán 2013",
+      "price": {
+        "currency": "MXN",
+        "amount": 50000
+      },
+      "pictures": [
+        {
+          "sizeUrls": [
+            {
+              "NORMAL": "http://i.ebayimg.com/00/s/NTI4WDgwMA==/z/oCsAAOSwbYZXbaHq/$_20.JPG?set_id=8800005007"
+            }
+          ],
+          "imageSet": "CPSP_ALM"
+        }
+      ],
+      "seller": {
+        "id": "1001700237990910982580409",
+        "name": "John",
+        "firstName": "John",
+        "lastName": "Smith",
+        "profileImage": "https://img.classistatic.com/crop/50x50/i.ebayimg.sandbox.ebay.com/00/s/MjAwWDEwNg==/z/2EcAAOSwyKBW8YmN/$_13.jpg"
+      },
+      "_links": [
+        {
+          "rel": "viewSeoUrl",
+          "href": "/a-farm-vehicles-equipment/queenstown/john-deere-forage-harvester/1001700237990910982580309",
+          "method": "GET"
+        }
+      ]
+    },
+    {
+      "id": 119997523,
+      "title": "Chevrolet Otro Modelo Sedán 2012",
+      "price": {
+        "currency": "MXN",
+        "amount": 50000
+      },
+      "pictures": [
+        {
+          "size": "SMALL",
+          "url": "http://i.ebayimg.com/00/s/ODAwWDQ1MA==/z/ivMAAOSwGIRXbax-/$_20.JPG?set_id=8800005007"
+        }
+      ],
+      "seller": {
+        "name": "John",
+        "profileImage": "https://img.classistatic.com/crop/50x50/i.ebayimg.sandbox.ebay.com/00/s/MjAwWDEwNg==/z/2EcAAOSwyKBW8YmN/$_13.jpg"
+      },
+      "_links": [
+        {
+          "rel": "viewSeoUrl",
+          "href": "a-other-event-services/queenstown/yahweh-ministries-international/1001700426100910049486009",
+          "method": "GET"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "description": "Test Ad",
+	"categoryId": 9077,
+	"location": {
+		"address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
+		"latitude": "-33.918861",
+		"longitude": "18.423300"
+	},
+	"pictures": {
+		"sizeUrls": [{
+			"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+		}]
+	}
+}

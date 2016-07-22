@@ -1,0 +1,49 @@
+{
+  "id": "1001700237990910982580309",
+  "sellerId": "100170023799091098",
+  "title": "Test Ad",
+  "description": "Test Ad",
+	"category": {
+    "id": 9077,
+    "localizedName": "Electronics"
+  },
+	"location": {
+    "id": 146,
+    "localizedName": "Milpitas",
+		"address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
+		"latitude": "-33.918861",
+		"longitude": "18.423300"
+	},
+	"pictures": [
+    {
+      "size": "NORMAL",
+      "url": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+    }
+  ],
+  "price": {
+    "currency": "USD",
+    "amount": 25.00
+  },
+  "features": ["TOP_AD"],
+  "seller": {
+    "id": "108736701",
+    "name": "John"
+  },
+  "statistics": {
+    "viewCount": 100,
+    "replyCount": 30,
+    "favoriteCount": 5
+  },
+  "_links": [
+    {
+        "rel": "viewSeoUrl",
+        "href": "/a-farm-vehicles-equipment/queenstown/john-deere-forage-harvester/1001700237990910982580309",
+        "method": "GET"
+    },
+    {
+      "rel": "soiSeoUrl",
+      "href": "/u-seller-listings/36v/v1u108736701p1",
+      "method": "GET"
+    }
+  ]
+}

@@ -15,7 +15,9 @@ let toggleMenu = (shouldClose) => {
 	}, () => {
 		this.$hamburgerContents.find(".js-hamburger-post .btn").focus();
 	});
+	this.$html.toggleClass('overflow-hidden');
 	this.$body.toggleClass('overflow-hidden');
+
 	this.$modalFooter.toggleClass('hidden');
 	this.$pageContent.animate({
 		marginLeft: (this.open) ? 0 : '70%'
@@ -24,7 +26,6 @@ let toggleMenu = (shouldClose) => {
 		left: (this.open) ? 0 : '70%'
 	});
 	this.$pageContent.toggleClass('menu-closed');
-	this.$html.toggleClass('overflow-hidden');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };

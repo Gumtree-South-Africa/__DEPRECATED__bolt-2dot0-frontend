@@ -1,4 +1,4 @@
-@mixin vivaBtn($hasIcon, $padding, $width: 90%) {
+@mixin vivaBtn($hasIcon, $padding, $width: 100%) {
 	cursor: pointer;
 	background-color: $button-bgcolor;
 	border-radius: 2px;
