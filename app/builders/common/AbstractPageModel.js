@@ -112,7 +112,7 @@ class AbstractPageModel extends BasePageModel {
 				fn.fnLabel = fnLabel;
 				arrFunctions.push(fn);
 			} else {
-				console.log('Error in loading component ' + fnLabel + ' : not found in ZK config');
+				console.error('Error in loading component ' + fnLabel + ' : not found in ZK config');
 			}
 		}
 
@@ -145,4 +145,3 @@ class AbstractPageModel extends BasePageModel {
 
 module
 	.exports = AbstractPageModel;
-
