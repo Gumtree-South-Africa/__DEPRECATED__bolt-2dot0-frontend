@@ -206,12 +206,6 @@ let initialize = () => {
 
 	});
 
-	this.$searchTextbox.on('blur', () => {
-		setTimeout(() => {
-			closeAutoComplete(true);
-		}, 500);
-	});
-
 	this.$searchControls.find(".close-search").on('click', () => {
 		closeAutoComplete();
 	});
