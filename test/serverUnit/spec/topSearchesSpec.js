@@ -3,8 +3,8 @@ let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
 
-describe('Footer', () => {
-	it('should show footer', (done) => {
+describe('Top Searches', () => {
+	it('should show top searches', (done) => {
 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
