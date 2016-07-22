@@ -1,5 +1,6 @@
 'use strict';
 let searchBarV2 = require('app/views/components/searchbarV2/js/searchbarV2.js');
+let Hammer = require('hammerjs');
 
 let _toggleMenu = () => {
 	if (!this.open) {
@@ -12,7 +13,9 @@ let _toggleMenu = () => {
 	}, () => {
 		this.$hamburgerContents.find(".js-hamburger-post .btn").focus();
 	});
+	this.$html.toggleClass('overflow-hidden');
 	this.$body.toggleClass('overflow-hidden');
+
 	this.$modalFooter.toggleClass('hidden');
 	this.$pageContent.animate({
 		marginLeft: (this.open) ? 0 : '70%'
@@ -21,7 +24,6 @@ let _toggleMenu = () => {
 		left: (this.open) ? 0 : '70%'
 	});
 	this.$pageContent.toggleClass('menu-closed');
-	this.$html.toggleClass('overflow-hidden');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };
@@ -74,6 +76,20 @@ let initialize = () => {
 		}
 	});
 
+	this.hamburgerMenu = document.getElementById('js-hamburger-menu');
+	this.hamburgerOverlay = document.getElementById('js-body-overlay');
+	this.overlayHammer = new Hammer(this.hamburgerOverlay);
+	this.menuHammer = new Hammer(this.hamburgerMenu);
+	this.overlayHammer.on('swipeleft', () => {
+		if (this.open) {
+			_toggleMenu();
+		}
+	});
+	this.menuHammer.on('swipeleft', () => {
+		if (this.open) {
+			_toggleMenu();
+		}
+	});
 	this.$pageContent.addClass('open-menu');
 	this.$browseCategories.on('click', _toggleBrowseCategory);
 	this.$hamburgerIcon.on('click', _toggleMenu);

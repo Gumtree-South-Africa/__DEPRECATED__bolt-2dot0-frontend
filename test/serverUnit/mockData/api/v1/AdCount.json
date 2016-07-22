@@ -1,0 +1,27 @@
+{
+  "id": "1234",
+  "counterName": "ViewCount",
+  "value": 4,
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/ads/1234/stats/ViewCount",
+      "method": "GET"
+    },
+    {
+      "rel": "GetCount",
+      "href": "/ads/1234/stats/ViewCount",
+      "method": "GET"
+    },
+    {
+      "rel": "IncrementCount",
+      "href": "/ads/1234/stats/ViewCount",
+      "method": "PUT"
+    },
+    {
+      "rel": "NewExpiringCount",
+      "href": "/ads/1234/stats/ViewCount/actions/newExpiringCount",
+      "method": "PUT"
+    }
+  ]
+}

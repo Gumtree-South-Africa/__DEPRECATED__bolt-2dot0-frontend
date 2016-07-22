@@ -52,6 +52,12 @@
     <link rel="apple-touch-icon" sizes="72x72" href="{{this.header.touchIconIpadUrl}}"/>
     <link rel="apple-touch-icon" sizes="114x114" href="{{this.header.touchIconIphoneRetinaUrl}}"/>
     <link rel="apple-touch-icon" sizes="144x144" href="{{this.header.touchIconIpadRetinaUrl}}"/>
+	<link rel="icon" type="image/png" sizes="32x32" href="{{this.header.shortcutIconUrl}}">
+	<link rel="icon" type="image/png" sizes="16x16" href="{{this.header.shortcutIconUrl}}">
+	<!-- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"> -->
+
+    <!-- Link to the Manifest File -->
+    <link rel="manifest" href="/manifest.json">
 
     {{#if this.header.canonical}}
         <link rel="canonical" href="{{this.header.canonical}}"/>
