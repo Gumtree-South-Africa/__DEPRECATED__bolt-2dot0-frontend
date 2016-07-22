@@ -9,7 +9,7 @@
 
 module.exports = {
 		"bundleName": "HomePage",
-		"outputEntry": "app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js",
+		"outputEntry": "app/appWeb/views/templates/pages/homepageV2/js/homepageV2",
 		"common": {
 			"core": { // common->core is the base of the pages bundle and has the lowest priority
 				"TileGrid": "app/appWeb/views/components/tileGrid/js/tileGrid.js",

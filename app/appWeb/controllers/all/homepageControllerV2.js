@@ -113,12 +113,13 @@ let HP = {
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
 			} else {
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
 
 				modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
+
 			}
 
 			let availableAdFeatures = modelData.footer.availableAdFeatures;
@@ -134,8 +135,8 @@ let HP = {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
 			} else {
-				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
 			}
 		}
 	},
