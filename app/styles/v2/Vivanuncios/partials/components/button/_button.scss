@@ -1,4 +1,4 @@
-@mixin vivaBtn($hasIcon, $padding) {
+@mixin vivaBtn($hasIcon, $padding, $width: 100%) {
 	cursor: pointer;
 	background-color: $button-bgcolor;
 	border-radius: 2px;
@@ -9,12 +9,17 @@
 	&:hover {
 		text-decoration: none;
 	}
-	width: 90%;
+	width: $width;
 	vertical-align: top;
 	> span {
 		vertical-align: middle;
 		+ span.btn-icon {
-			display: inline-block;
+			@if ($hasIcon == 'off') {
+				display: none;
+			}
+			@if ($hasIcon == 'on') {
+				display: inline-block;
+			}
 			margin-top: 0;
 			margin-left: 0.5em;
 		}

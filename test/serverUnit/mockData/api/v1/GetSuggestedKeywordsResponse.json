@@ -1,0 +1,26 @@
+{
+	"total": 20,
+	"offset": 2,
+	"limit":2,
+	"_links":
+    [
+        {
+            "rel": "self",
+            "href": "/keywords/suggestions?geo=(40.12,-71.34)&categoryId=123",
+            "method": "GET"
+        }
+    ],
+	"keywords" :
+	[
+		{
+      "text": "iphone",
+      "locationId": 123,
+      "categoryId": 456
+    },
+		{
+      "text": "ipad",
+      "locationId": 123,
+      "categoryId": 456
+		}
+	]
+}

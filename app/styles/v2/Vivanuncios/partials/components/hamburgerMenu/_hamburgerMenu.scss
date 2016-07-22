@@ -1,3 +1,4 @@
+@import '../button/button';
 .body-overlay {
 	position: fixed;
 	top: 0;
@@ -54,10 +55,17 @@
 		text-align: center;
 		font-size: 2em;
 	}
-
-	.btn-wrapper {
+	.profile-information .profile-dropdown .btn-wrapper {
+		margin: 1em auto auto;
 		.btn {
-			@include vivaBtn(on, 0.85em);
+			width: 100%;
+			padding: 0.875em 0;
+		}
+	}
+
+	.js-post-button.btn-wrapper {
+		.btn {
+			@include vivaBtn(on, 0.85em 0, 100%);
 		}
 	}
 }
@@ -115,7 +123,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 		width: 100%;
 		border: none;
 		.login-button {
-			width: 90%;
+			width: 100%;
 		}
 	}
 	.profile-item {
@@ -168,6 +176,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 }
 
 .overflow-hidden {
+	position:fixed;
 	overflow: hidden;
 	height: 100%;
 }
