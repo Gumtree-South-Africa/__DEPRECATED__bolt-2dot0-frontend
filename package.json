@@ -46,6 +46,7 @@
     "glob": "6.0.1",
     "graphite-client": "1.0.1",
     "handlebars": "4.0.5",
+    "hammerjs": "2.0.8",
     "helmet": "1.3.0",
     "https": "1.0.0",
     "i18n-2": "0.6.3",

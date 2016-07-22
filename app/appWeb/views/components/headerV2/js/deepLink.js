@@ -37,7 +37,7 @@ let initialize = () => {
 		}
 	}, (err, link) => {
 		if (!err) {
-			$('#js-deeplink')[0].href = link;
+			$('#js-deeplink').attr('href', link);
 		} else {
 			console.error(err);
 		}
