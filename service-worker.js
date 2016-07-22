@@ -1,12 +1,12 @@
-self.addEventListener('fetch', function(event) {
-	console.log('got a request');
-
-	var salutation = 'Hello, ';
-	var whom = decodeURIComponent(event.request.url.match(/\/([^/]*)$/)[1]);
-	var energyLevel = (whom === 'Cleveland') ? '!!!' : '!';
-	var version = '\n\n(Version 1)';
-
-	var body = new Blob([salutation, whom, energyLevel, version]);
-
-	event.respondWith(new Response(body));
+console.log('Started', self);
+self.addEventListener('install', function(event) {
+	self.skipWaiting();
+	console.log('Installed', event);
+});
+self.addEventListener('activate', function(event) {
+	console.log('Activated', event);
+});
+self.addEventListener('push', function(event) {
+	console.log('Push message received', event);
+	// TODO
 });
