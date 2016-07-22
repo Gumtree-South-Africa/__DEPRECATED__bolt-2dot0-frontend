@@ -14,12 +14,12 @@
         <div class="top-content-wrapper">
         {{#each this.topSearches}}
             {{#compare @index "<=" 5}}
-                <div class="top-content">
+                <div class="nonJsOnlyInline top-content">
                     <a class="top-links" href="{{_links.[0].href}}">{{text}}</a>
                 </div>
             {{/compare}}
             {{#compare @index ">" 5}}
-				<div class="hide top-content show-more-searches">
+				<div class="nonJsOnlyInline hide top-content show-more-searches">
 					<a class="top-links" href="{{_links.[0].href}}">{{text}}</a>
 				</div>
             {{/compare}}

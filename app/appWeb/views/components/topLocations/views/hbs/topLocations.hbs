@@ -12,6 +12,9 @@
 		<div class="top-locations-header top-headers"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
+            TEST
+            {{json this.topLocations}}
+            TEST END
         {{#each this.topLocations}}
             {{#compare @index "<=" 5}}
 				<div class="nonJsOnlyInline top-content">
