@@ -1226,19 +1226,25 @@
 		"confirm": {
 			"pageTitle": "Post An Ad TBT",
 			"back": "Back TBT",
-			"postButton": "Post My Ad TBT",
-			"retakePhoto": "Retake Photo TBT"
+			"didYouKnow": "Did you know that... TBT",
+			"tip": "Tip: You can go the My Ads page to view your ads and add more details. TBT"
 		},
 		"uploadModal": {
-			"title": "Did you know that TBT",
-			"tip": "Tip: You can go to the My Ads page to view your ads and add more details. TBT"
+			"title": "Upload an Image"
 		},
 		"loginModal": {
 			"title": "Login to continue TBT",
 			"facebookBtn": "Continue with Facebook TBT",
 			"emailBtn": "Login with Email TBT",
 			"register": "Regístrate",
-			"close": "Cerrar"
+			"close": "Cerrar",
+			"legal1": "Al hacer clic en continùa declaro estar de acuerdo con los",
+			"termsAndConditions": "Tèrminos v Condiciones",
+			"legal2": "y reconozco que que he leído las Notificaciones de",
+			"privacy": "Privacidad",
+			"and": "y",
+			"cookies": "Cookies",
+			"legal3": "de Vivanuncios"
 		},
 		"successModal": {
 			"title": "Your Ad is Uploaded! TBT",

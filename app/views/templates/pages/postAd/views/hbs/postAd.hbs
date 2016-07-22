@@ -6,17 +6,20 @@
     <div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
-            {{i18n "postAd.confirm.back"}}
+            <span>{{i18n "postAd.confirm.back"}}</span>
         </span>
-        <div class="header-text">{{i18n "postAd.confirm.pageTitle"}}</div>
+        <div class="header-text">
+            <div>{{i18n "postAd.confirm.pageTitle"}}</div>
+			<div class="header-accent">-</div>
+        </div>
     </div>
 
     <div class="user-image margin-auto"></div>
 
-    {{> (dynamic "button") hideIcon=true extraClasses='post-ad-button margin-auto' buttonLink="/post-TBD" i18nPath="quickpost.pageTitle"}}
-    <div class="retake-photo-button underline">
-        <a href="/retake-TBD">{{i18n "postAd.confirm.retakePhoto"}}</a>
-    </div>
+	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
+	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
+
+    {{> (dynamic "loginModal")}}
 {{/partial}}
 
 {{#partial "footerWrapper"}}

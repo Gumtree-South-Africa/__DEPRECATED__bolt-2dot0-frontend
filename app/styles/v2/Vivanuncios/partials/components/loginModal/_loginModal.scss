@@ -1,0 +1,107 @@
+$grey-text-color: #808080;
+
+.login-modal {
+	position: absolute;
+	transform: translate(-50%, -50%);
+	top: 50%;
+	left: 50%;
+	width: 85%;
+	margin: auto;
+	background: white;
+	text-align: center;
+	border: 2px solid #777777;
+	z-index: 2;
+
+	.close-button {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+
+		.icon-close, .close-text {
+			display: inline-block;
+			font-size: 12px;
+		}
+
+		.icon-close {
+			position: relative;
+			width: 12px;
+			height: 12px;
+			background-position-x: 92.8%;
+			background-position-y: 90%;
+			top: 2px;
+		}
+	}
+
+	.login-title {
+		font-weight: bold;
+		margin-top: 50px;
+		margin-bottom: 15px;
+		font-size: 24px;
+	}
+
+	.email-login-btn, .facebook-button {
+		font-size: 14px;
+	}
+
+	.email-login-btn {
+		margin-top: 25px;
+		margin-bottom: 15px;
+	}
+
+	.facebook-button {
+		margin: auto;
+		min-width: 10em;
+
+		.icon-facebook {
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+		}
+
+		a {
+			width: 90%;
+			vertical-align: top;
+			color: white;
+			cursor: pointer;
+			background-color: #3C5A96;
+			border-radius: 2px;
+			display: inline-block;
+			font: bold 1.125em Lato;
+			padding: 0.875em 0;
+			text-align: center;
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.register-link {
+		color: $grey-text-color;
+		text-decoration: underline;
+		cursor: pointer;
+	}
+
+	.legal-wrapper {
+		color: $grey-text-color;
+		font-size: 12px;
+		margin: 15px auto;
+		width: 95%;
+
+		a {
+			color: #478BCD;
+			cursor: pointer;
+			text-decoration: underline;
+		}
+	}
+
+}
+
+.modal-mask {
+	position: absolute;
+	top: 106px;
+	left: 0;
+	width: 100%;
+	height: calc(100% - 65px);
+	background-color: #808080;
+	opacity: .5;
+}

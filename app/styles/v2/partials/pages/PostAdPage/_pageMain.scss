@@ -6,11 +6,19 @@ $header-blue: #4A90E2;
 	margin: 0 auto;
 }
 
+.headerV2 {
+	box-shadow: none !important;
+}
+
 .post-ad-header {
+	height: 25px;
 	width: 100%;
 	color: $header-blue;
-	margin-top: 10px;
 	margin-bottom: $item-margin;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-size: 14px;
+	background-color: #F7F7F7;
 	border-bottom: 1px solid $header-blue;
 
 	.back-button {
@@ -19,12 +27,26 @@ $header-blue: #4A90E2;
 	}
 
 	.icon-caret-left-blue {
+		display: inline-block;
+		position: relative;
+		top: 2px;
 		width: 10px;
 		height: 14px;
-		display: inline-block;
+	}
+
+	.header-accent {
+		font-size: 0;
+		margin-top: 6px;
+		background: $header-blue;
+		line-height: 3px;
+		color: #4A90E2;
 	}
 
 	.header-text {
+		position: absolute;
+		transform: translateX(-50%);
+		display: inline-block;
+		left: 50%;
 		text-align: center;
 		font-weight: bold;
 	}
@@ -41,21 +63,17 @@ $header-blue: #4A90E2;
 	margin-bottom: $item-margin;
 }
 
-.post-ad-button {
-	margin-bottom: $item-margin !important;
-
-	.btn {
-		width: 100%;
-	}
+.didKnow-text, .confirm-tip {
+	width: 90%;
+	text-align: center;
+	margin: 20px auto;
 }
 
-.retake-photo-button {
-	margin-bottom: $item-margin;
-	text-align: center;
-	text-decoration: underline;
-	cursor: pointer;
+.didKnow-text {
+	font-size: 30px;
+}
 
-	&:hover {
-		color: #FF9800;
-	}
+.confirm-tip {
+	font-size: 18px;
+	color: #8F8F8F;
 }

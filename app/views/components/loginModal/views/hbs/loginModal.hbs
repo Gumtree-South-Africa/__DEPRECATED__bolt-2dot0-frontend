@@ -1,0 +1,34 @@
+<div class="login-modal {{#if isHidden}}hidden{{/if}}">
+    <div class="close-button">
+        <div class="close-text">{{i18n "postAd.loginModal.close"}}</div>
+        <span class="icon-close"></span>
+    </div>
+
+    <div class="login-title">
+        {{i18n "postAd.loginModal.title"}}
+    </div>
+
+    <div class="facebook-button">
+        <a class="link" href="/fb-TBD">
+			<span class="icon-facebook"></span>
+			<span>{{i18n "postAd.loginModal.facebookBtn"}}</span>
+        </a>
+    </div>
+
+    {{> (dynamic "button") hideIcon=true extraClasses='email-login-btn'
+        buttonLink="/post-TBD" i18nPath="postAd.loginModal.emailBtn"}}
+
+    <a class="register-link" href="/register-TBD">{{i18n "postAd.loginModal.register"}}</a>
+
+    <div class="legal-wrapper">
+        <span>{{i18n "postAd.loginModal.legal1"}}</span>
+        <a href="/termsAndConditions-TBD">{{i18n "postAd.loginModal.termsAndConditions"}}</a>
+		<span>{{i18n "postAd.loginModal.legal2"}}</span>
+		<a href="/privacy-TBD">{{i18n "postAd.loginModal.privacy"}}</a>
+		<span>{{i18n "postAd.loginModal.and"}}</span>
+		<a href="/cookies-TBD">{{i18n "postAd.loginModal.cookies"}}</a>
+		<span>{{i18n "postAd.loginModal.legal3"}}</span>
+    </div>
+</div>
+
+<div class="modal-mask {{#if isHidden}}hidden{{/if}}"></div>
