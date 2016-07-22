@@ -1,5 +1,7 @@
 $mobileSearchBarHeight: 26px;
 $desktopSearchBarHeight: 32px;
+$mobileTextboxWidth: 84%;
+
 
 .search-controls {
 	color: $searchBarTextColor;
@@ -21,9 +23,9 @@ $desktopSearchBarHeight: 32px;
 
 		.type-ahead-link {
 			box-sizing: border-box;
-			width: 100%;
+			width: 90%;
 			height: 100%;
-			margin: auto 10px;
+			margin: auto;
 			display: block;
 			color: $searchBarTextColor !important;
 			text-decoration: none;
@@ -50,7 +52,7 @@ $desktopSearchBarHeight: 32px;
 		z-index: 3;
 
 		.type-ahead-results-container {
-			padding-top: 55px;
+			padding-top: 95px;
 			height: 100%;
 			z-index: 3;
 			width: 100%;
@@ -68,7 +70,6 @@ $desktopSearchBarHeight: 32px;
 		z-index: 4;
 		width: 90%;
 		margin: 0 auto;
-		height: $mobileSearchBarHeight;
 		position: relative;
 		box-sizing: border-box;
 
@@ -76,25 +77,36 @@ $desktopSearchBarHeight: 32px;
 			height: 100%;
 		}
 
-		.close-search {
+		.loc-arrow-icon, .close-search {
 			z-index: 1;
 			position: absolute;
-			top: 0;
-			bottom: 0;
-			margin-top: auto;
-			margin-bottom: auto;
 			display: none;
 			box-sizing: border-box;
 			font-size: 24px;
 			line-height: 1;
 			margin-left: 5px;
+		}
+
+		.loc-arrow-icon {
+			top: 48px;
+			right: 17%;
 
 			&:hover {
 				cursor: pointer;
 			}
 		}
 
-		.icon-location-marker {
+		.close-search {
+			top: 3px;
+			bottom: 0;
+			margin-top: 3px;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.search-loc-icon {
 			display: block;
 			float:right;
 			width: 20px;
@@ -127,17 +139,30 @@ $desktopSearchBarHeight: 32px;
 
 			border-left: 1px solid $vivaGray6;
 			padding-left: 5px;
-
-			display: none;
+			display: block;
 		}
 
-		.search-textbox {
+		.mobile-location-area {
 			box-sizing: border-box;
 			outline: none !important;
 			width: 100%;
-			height: 100%;
+			height: $desktopSearchBarHeight;
 			-webkit-appearance: none;
-			border: 0.5px solid $searchBarTextBoxBorder;
+			border: 1px solid $searchBarTextBoxBorder;
+			display: none;
+		}
+
+		.search-textbox, .mobile-location-area {
+			box-sizing: border-box;
+			outline: none !important;
+			width: 100%;
+			height: $desktopSearchBarHeight;
+			-webkit-appearance: none;
+			border: 1px solid $searchBarTextBoxBorder;
+		}
+
+		.mobile-location-area {
+			margin-top: 10px;
 		}
 
 		.search-button {
@@ -181,14 +206,59 @@ $desktopSearchBarHeight: 32px;
 			display: block;
 		}
 
+		.location-link {
+			border: none;
+			right: inherit;
+		}
+
+		.loc-arrow-icon {
+			display: block;
+		}
+
+		.mobile-location-area {
+			display: block;
+			width: $mobileTextboxWidth;
+			padding: 0 30px;
+		}
+
 		.search-textbox {
-			width: 100%;
+			width: $mobileTextboxWidth;
 			padding: 0 30px;
 		}
 	}
 }
 
 @include from-breakpoint($medium-break) {
+	.type-ahead-link {
+		margin: auto 10px !important;
+	}
+
+	.type-ahead-results-container {
+		padding-top: 0 !important;
+	}
+
+	&.is-typing {
+		.type-ahead-results-wrapper, .search-mask, .close-search {
+			display: block;
+		}
+
+		.mobile-location-area, .loc-arrow-icon {
+			display: none !important;
+		}
+
+		.search-bar {
+			.search-textbox {
+				width: 100%;
+				padding: 0 30px;
+			}
+
+			.location-link {
+				border-left: 1px solid $vivaGray6;
+				right: 15.5%;
+			}
+		}
+	}
+
 	.search-controls {
 		.search-bar {
 			height: $desktopSearchBarHeight;
@@ -212,10 +282,6 @@ $desktopSearchBarHeight: 32px;
 			}
 		}
 
-		.location-link {
-			display: block !important;
-		}
-
 		.type-ahead-results-wrapper {
 			width: 90%;
 			background-color: transparent;
@@ -231,6 +297,7 @@ $desktopSearchBarHeight: 32px;
 				height: 320px;
 				background-color: $searchBarTypeAheadContainerBackgroundDesktop;
 				border: 0.5px solid $searchBarTypeAheadBorder;
+				box-sizing: border-box;
 			}
 		}
 

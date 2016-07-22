@@ -1,0 +1,40 @@
+{
+	"total": 60,
+	"offset": 2,
+	"limit":2,
+	"_links":
+    [
+        {
+            "rel": "self",
+            "href": "/ads/activities/recent?offset=10&limit=10&geo=(40.12,-71.34)&radius=25km",
+            "method": "GET"
+        },
+        {
+            "rel": "next",
+						"href": "/ads/activities/recent?offset=20&limit=10&geo=(40.12,-71.34)&radius=25km",
+            "method": "GET"
+        },
+        {
+            "rel": "previous",
+						"href": "/ads/activities/recent?offset=0&limit=10&geo=(40.12,-71.34)&radius=25km",
+            "method": "GET"
+        }
+    ],
+	"ads" :
+	[
+		{
+			"action": "LISTED",
+			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+			"categoryId": 65,
+			"seller": {
+				"name": "John",
+				"profileImage": "https://img.classistatic.com/crop/50x50/i.ebayimg.sandbox.ebay.com/00/s/MjAwWDEwNg==/z/2EcAAOSwyKBW8YmN/$_13.jpg",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/cristian-zapata/v1u107937451p1"
+			},
+			"attributes": [
+				{"name": "NumberBedrooms", "formattedValue": 6, "localizedName": "Number of Bedrooms"},
+				{"name": "ForRentBy", "formattedValue": "ownr", "localizedName": "For Rent By"}
+		  ]
+		}
+	]
+}

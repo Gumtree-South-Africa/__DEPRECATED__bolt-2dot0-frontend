@@ -3,6 +3,7 @@
 let initialize = () => {
 
 	$(document).ready(() => {
+
 		let locale = $('html').attr('data-locale');
 		let country = locale.split('_')[1];
 		let lang = locale.split('_')[0];
@@ -45,7 +46,7 @@ let initialize = () => {
 
 		$('#autocompleteField').on('click', '.ac-field', function() {
 				let $this = $(this);
-
+				$this.removeClass('selected').addClass('selected');
 				$('#autocompleteField').addClass('hiddenElt');
 				$loc.val($this.find('.suffix-addy').html());
 		});
@@ -60,6 +61,16 @@ let initialize = () => {
 
 		$('.card-title-cp').on('click', function() {
 				$modalCp.removeClass('hiddenElt');
+		});
+
+		$('.modal-cp .btn').on('click', function(e) {
+			e.preventDefault(); e.stopPropagation();
+			let $selected = $('.ac-field.selected');
+			let cookieValue = $selected.attr('data-long') + 'ng' + $selected.attr('data-lat');
+			if($selected.attr('data-long') !== undefined) {
+				document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
+			}
+
 		});
 	});
 };

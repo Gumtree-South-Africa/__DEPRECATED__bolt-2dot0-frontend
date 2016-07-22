@@ -1,13 +1,16 @@
 'use strict';
 let Q = require('q');
+let _ = require('underscore');
 let supertest = require('supertest');
 let fs = require('fs');
 let cwd = process.cwd();
+
 let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
-
+let config = require(`${cwd}/server/config/sites.json`);
+let endpoints = require(`${cwd}/server/config/mock.json`).BAPI.endpoints;
 
 /**
  * Takes in a service string and then spies on the method to return the file.
@@ -44,6 +47,18 @@ let spyOnService = (service, method, fileName) => {
 let endpointToFileMap = {};
 
 /**
+ * Populates the mock endpoint map
+ * @param url
+ * @param file
+ */
+let registerMockEndpoint = (url, file) => {
+	if (!endpointToFileMap[url]) {
+		endpointToFileMap[url] = [];
+	}
+	endpointToFileMap[url].push(file);
+};
+
+/**
  * This is a wrapper for supertest to wait for all the config data to load
  * Prevents a race condition where the app would synchronously try and get config data
  * that was populated by an async bapi call before the bapi call finished.
@@ -59,8 +74,18 @@ module.exports.boltSupertest = (route, host) => {
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
 	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
 	spyOnService(locationService, 'getLocationsData', `${cwd}/test/serverUnit/mockData/locations/locations_`);
+	_.each(config.sites, () => {
+		//Register POST config routes before startup
+		// Response file doesn't matter, just the 200
+		registerMockEndpoint(
+			`${endpoints.updateConfig}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/Ad.json');
+	});
 
-	let fakeEndpoint = (options) => {
+	let fakeEndpoint = (postData, options) => {
+		if (options === null) {
+			options = postData;
+		}
 		let path = options.path;
 		if (!endpointToFileMap[options.path]) {
 			throw new Error(`No mocked endpoint for ${path}`);
@@ -93,18 +118,7 @@ module.exports.boltSupertest = (route, host) => {
 	});
 };
 
-/**
- * Populates the mock endpoint map
- * @param url
- * @param file
- */
-module.exports.registerMockEndpoint = (url, file) => {
-	if (!endpointToFileMap[url]) {
-		endpointToFileMap[url] = [];
-	}
-	endpointToFileMap[url].push(file);
-};
-
+module.exports.registerMockEndpoint = registerMockEndpoint;
 module.exports.spyOnService = spyOnService;
 
 /**

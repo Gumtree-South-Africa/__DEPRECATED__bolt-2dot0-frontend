@@ -1,5 +1,6 @@
+@import '../button/button';
 .body-overlay {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	left: 0;
 	right: 100%;
@@ -7,6 +8,7 @@
 	z-index: 10;
 	background-color: rgba(0, 0, 0, .5);
 }
+
 .is-mobile {
 	display: block;
 	@include from-breakpoint($medium-break) {
@@ -20,7 +22,6 @@
 		display: block;
 	}
 }
-
 
 .inline-block {
 	display: inline-block
@@ -53,6 +54,19 @@
 		margin-top: 10px;
 		text-align: center;
 		font-size: 2em;
+	}
+	.profile-information .profile-dropdown .btn-wrapper {
+		margin: 1em auto auto;
+		.btn {
+			width: 100%;
+			padding: 0.875em 0;
+		}
+	}
+
+	.js-post-button.btn-wrapper {
+		.btn {
+			@include vivaBtn(on, 0.85em 0, 100%);
+		}
 	}
 }
 
@@ -109,7 +123,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 		width: 100%;
 		border: none;
 		.login-button {
-			width: 90%;
+			width: 100%;
 		}
 	}
 	.profile-item {
@@ -133,7 +147,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 }
 
 .hamburger-contents {
-	position: absolute;
+	position: fixed;
 	top: 0;
 	bottom: 0;
 	overflow: scroll;
@@ -161,8 +175,8 @@ $borderColor: $headerMenuItemSeparatorColor;
 	}
 }
 
-body {
-	&.overflow-hidden {
-		overflow: hidden;
-	}
+.overflow-hidden {
+	position:fixed;
+	overflow: hidden;
+	height: 100%;
 }

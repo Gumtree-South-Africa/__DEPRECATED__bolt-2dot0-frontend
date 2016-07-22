@@ -151,12 +151,14 @@ let _highlightNextItem = () => {
 	}
 };
 
-let closeAutoComplete = (dontClearText) => {
+let closeAutoComplete = (dontClearText, dontFocusTextbox) => {
 	_setIsTyping(false);
 	if (!dontClearText) {
 		this.$searchTextbox.val('');
 	}
-	this.$searchTextbox.focus();
+	if (!dontFocusTextbox) {
+		this.$searchTextbox.focus();
+	}
 };
 
 /**
@@ -202,12 +204,6 @@ let initialize = () => {
 				break;
 		}
 
-	});
-
-	this.$searchTextbox.on('blur', () => {
-		setTimeout(() => {
-			closeAutoComplete(true);
-		}, 500);
 	});
 
 	this.$searchControls.find(".close-search").on('click', () => {

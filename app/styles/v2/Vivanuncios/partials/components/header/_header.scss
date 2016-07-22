@@ -152,7 +152,7 @@ $dropdown-width: 220px;
         float: right;
 
         .btn {
-            padding: 10px;
+			@include vivaBtn(on, 10px);
             width: 83%;
             min-width: 205px;
 
