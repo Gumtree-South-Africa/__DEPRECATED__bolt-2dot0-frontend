@@ -5,11 +5,11 @@ $gutterHorizontal: 10px;
 
 @function tileWidth($tileUnits) {
     // a "tileUnit" is a dimension of the tile like a 1x1 or 2x2, units are 1 or 2
-    @return $tileUnits * $standardTileWidth + (($tileUnits - 1) * $gutterVertical)
+    @return $tileUnits * $standardTileWidth + (($tileUnits - 1) * $gutterHorizontal)
 }
 @function tileHeight($tileUnits) {
     // a "tileUnit" is a dimension of the tile, example a 1x1 or 2x2, unit is either 1 or 2
-    @return $tileUnits * $standardTileHeight + (($tileUnits - 1) * $gutterHorizontal)
+    @return $tileUnits * $standardTileHeight + (($tileUnits - 1) * $gutterVertical)
 }
 
 .gutter-sizer-horizontal {
@@ -25,7 +25,19 @@ $gutterHorizontal: 10px;
     margin: auto;
 }
 
+
 .tile-container {
+
+	// adding a width to the isotope container without javascript
+	// this class will be replaced once javascript lands on the page
+	&.use-isotope-handler {
+		@for $i from 2 through 12 {
+			@media(min-width: tileWidth($i) ) {
+				width: tileWidth($i - 1);
+			}
+		}
+	}
+
     margin: auto;
 
     .tile-item {

@@ -14,6 +14,10 @@
     right: 0;
 }
 
+body.modal-open {
+   overflow: hidden;
+}
+
 .modal-wrapper {
     .modal {
         display: none;

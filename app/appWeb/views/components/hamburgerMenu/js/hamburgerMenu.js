@@ -1,5 +1,6 @@
 'use strict';
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
+let Hammer = require('hammerjs');
 
 let toggleMenu = (shouldClose) => {
 	if (this.open === undefined) {
@@ -78,6 +79,20 @@ let initialize = () => {
 		}
 	});
 
+	this.hamburgerMenu = document.getElementById('js-hamburger-menu');
+	this.hamburgerOverlay = document.getElementById('js-body-overlay');
+	this.overlayHammer = new Hammer(this.hamburgerOverlay);
+	this.menuHammer = new Hammer(this.hamburgerMenu);
+	this.overlayHammer.on('swipeleft', () => {
+		if (this.open) {
+			_toggleMenu();
+		}
+	});
+	this.menuHammer.on('swipeleft', () => {
+		if (this.open) {
+			_toggleMenu();
+		}
+	});
 	this.$pageContent.addClass('open-menu');
 	this.$browseCategories.on('click', _toggleBrowseCategory);
 	this.$hamburgerIcon.on('click', toggleMenu);

@@ -1,5 +1,5 @@
 $panelCornerBorderRadius: 7px;
-$featuredBorderColor: #93c31f;
+
 
 .panel {
 	position: relative;
@@ -26,11 +26,7 @@ $featuredBorderColor: #93c31f;
 			height: 15px;
 			position: absolute;
 			top: 2px;
-			right: 2px;
-			background-image: url("../../../../../images/search_images/icon_info.svg");
-			background-position: center;
-			background-repeat: no-repeat;
-			background-size: contain;
+			right: 0px;
 		}
 
 		&:before {
@@ -39,7 +35,7 @@ $featuredBorderColor: #93c31f;
 			top: 0;
 			right: 0;
 			border-width: 16px;
-			border-radius: 0 $panelCornerBorderRadius 0 0;
+			border-radius: 0 $panelCornerBorderRadius - 2 0 0;
 			border-style: solid;
 			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
 		}
@@ -81,35 +77,12 @@ $featuredBorderColor: #93c31f;
             font: $cardStatsFont;
 			line-height: 1;
 
-			.favorite-icon-sm {
-				width: 10px;
-				height: 10px;
-				background-image: url("../../../../../images/search_images/icon_star-off.svg");
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
-
-			.reply-icon-sm {
-				width: 10px;
-				height: 10px;
-				background-image: url("../../../../../images/search_images/icon_info.svg");
-				background-size: contain;
-				background-position: center;
-				background-repeat: no-repeat;
-			}
             .inline-block {
                 display: inline-block;
             }
 		}
 
 		.favorite-btn {
-			width: 15px;
-			height: 15px;
-			background-image: url("../../../../../images/search_images/icon_info.svg");
-			background-size: contain;
-			background-position: center;
-			background-repeat: no-repeat;
 			bottom: 5px;
 			right: 5px;
 			position: absolute;
