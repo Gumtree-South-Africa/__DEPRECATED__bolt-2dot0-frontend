@@ -85,12 +85,12 @@ let initialize = () => {
 	this.menuHammer = new Hammer(this.hamburgerMenu);
 	this.overlayHammer.on('swipeleft', () => {
 		if (this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 	this.menuHammer.on('swipeleft', () => {
 		if (this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 	this.$pageContent.addClass('open-menu');
