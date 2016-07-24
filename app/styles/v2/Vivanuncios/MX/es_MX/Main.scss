@@ -77,7 +77,7 @@ a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[hr
   color: $vivaBlack;
 }
 
-a .sudolink{
+.sudolink{
   color: $tertiary-link-color;
   &:visited{
     text-decoration: none;

@@ -120,7 +120,8 @@ describe('Header', () => {
 					let data = specHelper.getMockDataByLocale("profile", "profile", "es_MX");
 					let map = new Map();
 					for (let value of data.loggedInContent) {
-						map.set(`${value.localizedName}`, value + "-TBD");
+						map.set(`${value.localizedName}`, value);
+						map.set(`${value.link}`, value.link);
 					}
 
 					// ensure dropdown is exists and is hidden
@@ -131,13 +132,13 @@ describe('Header', () => {
 
 					// test list item attributes
 					let linkCount = 0;
-					c$('li a', profDropdown).each((i, el) => {
+					c$('li span', profDropdown).each((i, el) => {
 						linkCount++;
 						let itemName = c$('.profile-item-text', el).text();
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
-						let href = c$(el).attr('href');
-						expect(href).toContain("-TBD", `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
+						let link = c$(el).attr('data-o-uri');
+						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedInContent.length, 'count of category items in the menu');
 				})
@@ -156,7 +157,8 @@ describe('Header', () => {
 					let data = specHelper.getMockDataByLocale("profile", "profile", "es_MX");
 					let map = new Map();
 					for (let value of data.loggedOutContent) {
-						map.set(`${value.localizedName}`, value + "-TBD");
+						map.set(`${value.localizedName}`, value);
+						map.set(`${value.link}`, value.link);
 					}
 
 					// ensure dropdown is exists and is hidden
@@ -167,13 +169,13 @@ describe('Header', () => {
 
 					// test list item attributes
 					let linkCount = 0;
-					c$('li a', profDropdown).each((i, el) => {
+					c$('li span', profDropdown).each((i, el) => {
 						linkCount++;
 						let itemName = c$('.profile-item-text', el).text();
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
-						let href = c$(el).attr('href');
-						expect(href).toContain("-TBD", `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
+						let link = c$(el).attr('data-o-uri');
+						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedOutContent.length, 'count of category items in the menu');
 
@@ -195,10 +197,15 @@ describe('Header', () => {
 
 					let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
 					let map = new Map();
-					for (let value of data.children) {
+
+					// add the root "All Categories"
+					map.set(data.id, data);
+
+					// only expecting L1 categories
+					for (let child of data.children) {
 						// setup a key we can use to lookup the category
-						let key = value.localizedName;
-						map.set(key, value);
+						let key = child.id;
+						map.set(key, child);
 					}
 
 					let c$ = cheerio.load(res.text);
@@ -212,13 +219,29 @@ describe('Header', () => {
 					let linkCount = 0;
 					c$('a', catUl).each((i, el) => {
 						linkCount++;
+						// lookup the metadata we need to validate from the map
+						let stringId = c$(el).attr('data-id');
+						let id = parseInt(stringId);
+						expect(id).toEqual(jasmine.any(Number), `link with id ${stringId} should be numeric`);
+						expect(map.has(id)).toBe(true, `link with id ${id} should be found in mock data`);
+						let mapValue = map.get(id);
+
 						let itemName = c$('.item-primary-text', el).text();
-						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
+						expect(itemName).toBe(mapValue.localizedName, `link ${itemName} should match mock data localizedName`);
 
 						let href = c$(el).attr('href');
-						expect(href).toContain("-TBD", `href ${href} should contain a TBD link`);	// todo: this will eventually become a real link
+						if (id === 0) {
+							expect(href).toContain(`b${id}`, `link href ${href} should contain category id string 'b${id}'`);
+
+						} else {
+							expect(href).toContain(`c${id}`, `link href ${href} should contain category id string 'c${id}'`);
+						}
+
+						let title = c$(el).attr('title');
+						expect(title).toBe(mapValue.localizedName, `link title ${title} should match mock data localizedName`);
 					});
-					expect(linkCount).toBe(data.children.length, 'count of category items in the menu');
+					
+					expect(linkCount).toBe(map.size, 'count of category items in the menu');
 
 				})
 				.end(specHelper.finish(done));

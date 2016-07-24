@@ -5,7 +5,7 @@ class SafetyTipsModel {
 		this.req = req;
 		this.res = res;
 	}
-	
+
 	getSafetyTips() {
 		let i18n = this.req.i18n;
 		let data = {};

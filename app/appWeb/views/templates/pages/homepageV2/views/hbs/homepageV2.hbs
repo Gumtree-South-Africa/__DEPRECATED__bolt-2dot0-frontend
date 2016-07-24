@@ -4,12 +4,14 @@
 
 {{#partial "content"}}
 	<div>
+
         {{> (dynamic "searchbarV2") }}
-		{{> (dynamic "sectionMenu")}}
+
+        {{> (dynamic "sectionMenu")}}
 
         <div class="card trending-card">
             <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
-                <a class="link inline-block underline" href="/selectLocationOverlay-TBD">{{i18n "homepage.popularSearches.yourNeighborhood"}}</a>
+                <span class="link inline-block underline card-title-cp">{{i18n "homepage.popularSearches.yourNeighborhood"}}</span>
             </div>
             {{> (dynamic "tileGrid")}}
             <div class="card-view-more">
@@ -20,10 +22,16 @@
         </div>
 
         {{> (dynamic "recentActivity")}}
+        {{> (dynamic "modal")}}
         {{> (dynamic "appDownloadSection")}}
         {{> (dynamic "gpsMap")}}
         {{> (dynamic "safetyTips") }}
-     
+
+        <div class="seo-wrapper">
+            {{> (dynamic "topSearches")}}
+            {{> (dynamic "topLocations")}}
+		</div>
+
 	</div>
 {{/partial}}
 

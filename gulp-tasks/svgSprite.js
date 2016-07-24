@@ -37,7 +37,9 @@ module.exports = function watch(gulp) {
 					prefix: '.icon-%s',
 					dimensions: true,
 					render: {
-						css: true
+						css: {
+							template: "gulp-tasks/svgSpriteTemplate.css"
+						}
 					}
 				};
 				return gulp.src(`./public/svgsV2/${locale}/*.svg`)

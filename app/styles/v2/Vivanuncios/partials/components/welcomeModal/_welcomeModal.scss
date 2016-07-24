@@ -14,6 +14,10 @@
     right: 0;
 }
 
+body.modal-open {
+   overflow: hidden;
+}
+
 .modal-wrapper {
     .modal {
         display: none;
@@ -51,8 +55,11 @@
                     margin-right: 0.2em;
                 }
                 > .icon-close {
-                    width: 0.8em;
-                    height: 0.8em;
+                        vertical-align: middle;
+                        display: inline-block;
+                        background-size: 1649%;
+                        height: 15px;
+     	                width: 15px;
                 }
             }
         }
@@ -65,17 +72,12 @@
         .btn-wrapper {
             text-align: center;
             .btn {
-                width: 90% !important;
-                padding: 0.35em;
-                vertical-align: top;
-                @include vivaBtn(off, 0.35em, off);
-                > span + span.btn-icon {
-                    display: inline-block;
-                }
+				@include vivaBtn(on, 0.35em, 90%);
             }
         }
     }
 }
+
 
 @include from-breakpoint($medium-break) {
     .modal-wrapper, .welcome-footer, .welcome-wrapper {

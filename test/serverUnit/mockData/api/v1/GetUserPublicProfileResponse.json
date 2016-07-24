@@ -1,0 +1,21 @@
+{
+    "id": "10001",
+    "name": "Bolt 20",
+    "registrationCountry": "ZA",
+    "creationDate": "2016-06-11T04:47:07Z",
+    "profileImage": "http://theProfileImageUrl",
+    "lastPostDate": "2016-07-01T04:47:07Z",
+    "lastLoginDate": "2016-07-04T04:47:07Z",
+    "statistics": {
+      "postCount": 30,
+      "solrCount": 10
+    },
+    "_links":
+    [
+        {
+            "rel": "self",
+            "href": "/users/10001",
+            "method": "GET"
+        }
+    ]
+}

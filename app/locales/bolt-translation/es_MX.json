@@ -1,4 +1,5 @@
 {
+
 	"greeting": "Saludos desde el Valle del Silicio",
 	"welcome": "Bienvenidos a BOLT 2.0",
 	"coworkers.nacer": "Nacer Mexicano",
@@ -259,9 +260,11 @@
 	"tooltip.message.delete": "Borrar conversación",
 	"tooltip.message.report": "Reportar conversación",
 	"tooltip.message.reported": "Conversación reportada",
+	"home.viewmore": "Ver Todos",
 	"home.provinces": "Estados",
 	"home.main-locations": "Localidades Populares",
 	"home.popular-searches": "Populares",
+	"home.popular.searches": "Populares",
 	"home.trending-searches": "Tendencias",
 	"home.user.registered": "¡Felicitaciones y bienvenido! Tu registro en Vivanuncios ha sido exitoso.",
 	"home.ad.notyetactive": "¡Hola! El anuncio que buscas no está disponible aún en Vivanuncios. ¡Por favor vuelve pronto para verlo!",
@@ -416,6 +419,7 @@
 	"vip.attribute.label.location": "Ubicación",
 	"vip.reply.attachmentUpload.title": "Adjuntar un archivo",
 	"vip.reply.attachmentUpload.help": "(máximo 1MB)",
+	"footer.toplocations": "Los Mejores Lugares",
 	"footer.bestof": "Los Mejores Anuncios de Vivanuncios",
 	"footer.cr.$$": "Copyright © 2014-2016 eBay.  Todos los derechos reservados.",
 	"footer.cr.termsAndConditions": "Términos y Condiciones",
@@ -1144,7 +1148,7 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
-    "postad.button": "Publica Gratis",
+	"postad.button": "Publica Gratis",
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
@@ -1193,7 +1197,8 @@
 	},
 	"header": {
 		"catDropdown": {
-			"browse": "Explorar"
+			"browse": "Explorar",
+			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
 			"title": "¡Hola, ",
@@ -1202,14 +1207,19 @@
 			"myAlerts": "Mis avisos",
 			"myProfile": "Mi perfil",
 			"promoteMyAds": "Promocionar mis anuncios",
-			"mySettings": "My configuración",
 			"pricingGuide": "Guía de precios",
 			"logout": "Cerrar sesión"
 		},
 		"myAds": "Mis anuncios",
 		"help": "Ayuda",
-		"postAd": "Publicar un anuncio"
+		"postAd": "Publica Gratis"
 	},
+	"modal": {
+    "close": "cerrar",
+    "buttonText": "Confirmar",
+    "message": "Cambia Tu Ubicaci\u00FBn",
+    "info": "Ciudad, Colonia o Delegaci\u00F3n"
+  },
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",
