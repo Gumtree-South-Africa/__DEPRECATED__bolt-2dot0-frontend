@@ -82,19 +82,4 @@ describe('Server to hit HomePage', function() {
 			});
 		});
 	});
-
-	describe('Footer', () => {
-		it('shows footer', (done) => {
-			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
-				supertest
-					.set('Cookie', 'b2dot0Version=2.0')
-					.expect((res) => {
-						let c$ = cheerio.load(res.text);
-						expect(c$('.footer-wrapper')).toBeDefined();
-						expect(res.status).toBe(200);
-					})
-					.end(specHelper.finish(done));
-			});
-		});
-	});
 });
