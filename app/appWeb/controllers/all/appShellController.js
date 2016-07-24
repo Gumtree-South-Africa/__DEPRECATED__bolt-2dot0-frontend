@@ -46,13 +46,12 @@ router.get('/', (req, res, next) => {
 
 		pageControllerUtil.postController(req, res, next, 'appshell/views/hbs/appshell_', modelData);
 
+		console.timeEnd('Instrument-AppShell-Controller');
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
 		next(err);
 	});
-
-	console.timeEnd('Instrument-AppShell-Controller');
 });
 
 module.exports = router;

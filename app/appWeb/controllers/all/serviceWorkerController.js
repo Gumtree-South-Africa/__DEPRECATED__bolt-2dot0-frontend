@@ -12,8 +12,10 @@ let path = require('path');
 router.get('/', (req, res) => {
 	console.time('Instrument-ServiceWorker-Controller');
 
+	let locale = res.locals.config.locale;
+
 	res.set('Content-Type', 'application/javascript');
-	res.sendFile(path.join(process.cwd() + '/service-worker.js'));
+	res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
 
 	console.timeEnd('Instrument-ServiceWorker-Controller');
 });
