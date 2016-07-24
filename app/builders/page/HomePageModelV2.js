@@ -14,6 +14,8 @@ let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
+let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -28,6 +30,7 @@ class HomePageModelV2 {
 		this.req = req;
 		this.res = res;
 		this.dataPromiseFunctionMap = {};
+		this.bapiConfigData = this.res.locals.config.bapiConfigData;
 	}
 
 	populateData() {
@@ -53,10 +56,9 @@ class HomePageModelV2 {
 	}
 
 	mapData(modelData, data) {
-		let bapiConfigData = this.res.locals.config.bapiConfigData;
 		let distractionFreeMode = false;
-		if (bapiConfigData.content.homepageV2) {
-			distractionFreeMode = bapiConfigData.content.homepageV2.distractionFree || false;
+		if (this.bapiConfigData.content.homepageV2) {
+			distractionFreeMode = this.bapiConfigData.content.homepageV2.distractionFree || false;
 		}
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
@@ -67,11 +69,12 @@ class HomePageModelV2 {
 		modelData.seo = data['seo'] || {};
 
 		modelData.isNewHP = true;
-		
+
 		return modelData;
 	}
 
 	getHomepageDataFunctions(modelData) {
+
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 		let recentActivityModel = new RecentActivityModel(this.req, this.res);
@@ -79,6 +82,8 @@ class HomePageModelV2 {
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.bapiHeaders);
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
+		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
@@ -109,6 +114,24 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.search = () => {
 			return searchModel.getSearch();
+		};
+
+		this.dataPromiseFunctionMap.topLocations = () => {
+			return locationModel.getTopL2Locations().then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
+		};
+
+		this.dataPromiseFunctionMap.topSearches = () => {
+			return keywordModel.resolveAllPromises().then((data) => {
+				return data[0].keywords || {};
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
 		};
 	}
 }
