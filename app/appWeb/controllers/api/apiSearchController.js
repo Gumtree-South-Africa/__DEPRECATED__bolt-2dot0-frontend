@@ -23,7 +23,21 @@ router.get('/autocomplete', cors, (req, res) => {
 	//});
 
 	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
-		res.send(autoCompleteResults);
+		let results = {
+			totalCount:	autoCompleteResults.response.numFound,
+			items: []
+		};
+		for(let i=0; i<autoCompleteResults.response.docs.length; i++) {
+			let element = autoCompleteResults.response.docs[i];
+			let content = {
+				keyword:	element.keywords_g110,
+				category:	element.categoryId_l110,
+				location:	element.locationId_l110
+			};
+			results.items.push(content);
+		}
+
+		res.send(results);
 	}).fail(() => {
 		res.send({
 			error: true
