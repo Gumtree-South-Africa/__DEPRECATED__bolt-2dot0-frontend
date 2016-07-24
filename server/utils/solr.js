@@ -19,10 +19,17 @@ class SolrService {
 			solrVersion: config.get('solr.server.version'),
 			core: 'ads'
 		});
+		this.keywordsClient = solr.createClient({
+			host: config.get('solr.server.host'),
+			port: config.get('solr.server.port'),
+			path: config.get('solr.server.path'),
+			solrVersion: config.get('solr.server.version'),
+			core: 'keywordstats'
+		});
 	}
 
 	/**
- 	 * Gets User Info given a token from the cookie
+ 	 * Search List of Ads for Map from a given lat/long
  	 */
 	mapSearch(country, geo) {
 		let deferred = Q.defer();
@@ -56,6 +63,39 @@ class SolrService {
 		return deferred.promise;
 	}
 
+	/**
+	 * Search List of keywords for auto complete
+	 */
+	autoComplete(country, locationId, categoryId, keywords) {
+		let deferred = Q.defer();
+
+		let qry = 'keywords_nge:' + keywords +
+				  ' AND totalListings_l110:[3 TO *]';
+
+		let query = this.keywordsClient.createQuery()
+			.q(qry)
+			.fl(querystring.escape('keywords_g110,locationId_l110,categoryId_l110,score'))
+			.matchFilter('country_s110', country)
+			//.matchFilter('leafLoc_b100', 'true')
+			//.matchFilter('leafCat_b100', 'true')
+			.rows(10);
+		if (typeof categoryId !== 'undefined') {
+			query = query.matchFilter('categoryPath_l101', categoryId);
+		}
+		if (typeof locationId !== 'undefined') {
+			query = query.matchFilter('locationPath_l101', locationId);
+		}
+
+		this.keywordsClient.search(query, function(err,obj) {
+			if (err) {
+				deferred.reject(err);
+			} else {
+				deferred.resolve(obj);
+			}
+		});
+
+		return deferred.promise;
+	}
 }
 
 module.exports = SolrService;

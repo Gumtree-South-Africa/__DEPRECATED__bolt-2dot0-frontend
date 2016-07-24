@@ -82,7 +82,7 @@ class HomePageModelV2 {
 
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
-		let searchModel = new SearchModel(modelData.bapiHeaders);
+		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
