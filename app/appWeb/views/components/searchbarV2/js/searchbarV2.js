@@ -151,7 +151,7 @@ let _highlightNextItem = () => {
 	}
 };
 
-let _closeTypeAhead = (dontClearText) => {
+let closeAutoComplete = (dontClearText) => {
 	_setIsTyping(false);
 	if (!dontClearText) {
 		this.$searchTextbox.val('');
@@ -195,7 +195,7 @@ let initialize = () => {
 				evt.preventDefault();
 				break;
 			case 27:
-				_closeTypeAhead(true);
+				closeAutoComplete(true);
 				evt.preventDefault();
 				break;
 			default:
@@ -206,18 +206,19 @@ let initialize = () => {
 
 	this.$searchTextbox.on('blur', () => {
 		setTimeout(() => {
-			_closeTypeAhead(true);
+			closeAutoComplete(true);
 		}, 500);
 	});
 
 	this.$searchControls.find(".close-search").on('click', () => {
-		_closeTypeAhead();
+		closeAutoComplete();
 	});
 };
 
 module.exports = {
 	// "public" functions
-	initialize
+	initialize,
+	closeAutoComplete
 };
 
 

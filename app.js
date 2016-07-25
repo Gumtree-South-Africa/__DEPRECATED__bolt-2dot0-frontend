@@ -39,8 +39,9 @@ let siteCount = 0;
  * Create Site Apps
  */
 let createSiteApps = () => {
-	let configPromises = [];
 	let siteApps = [];
+	let pushConfigPromises = [];
+	let getConfigPromises = [];
 
 	_.each(config.sites, (site) => {
 		if (siteLocales.indexOf(site.locale) > -1) {
@@ -50,47 +51,54 @@ let createSiteApps = () => {
 				siteApp.locals.siteObj = siteObj;
 				siteApps.push(siteApp);
 
+				// Update ZK with local config file provided in devMode
+				if (siteApp.locals.devMode === true) {
+					pushConfigPromises.push(cacheBapiData.updateConfig(site.locale, requestId));
+				}
+
 				// Service Util to get Location and Category Data
 				// Wait to spin up the node app in server.js until all config promises resolve.
-				configPromises.push(cacheBapiData(siteApp, requestId));
+				getConfigPromises.push(cacheBapiData(siteApp, requestId));
 			})(site);
 
 			siteCount = siteCount + 1;
 		}
 	});
 
-	return Q.all(configPromises).then(() => {
-		// ***** App HealthCheck *****
-		let BootApp = require('./app/appBoot/app');
-		let bootAppObj = new BootApp().getApp();
-		app.use('/boot', bootAppObj);
+	return Q.all(pushConfigPromises).then(() => {
+		return Q.all(getConfigPromises).then(() => {
+			// ***** App HealthCheck *****
+			let BootApp = require('./app/appBoot/app');
+			let bootAppObj = new BootApp().getApp();
+			app.use('/boot', bootAppObj);
 
-		// ***** App Sites *****
-		//We need to configure the middleware stack in the correct order.
-		siteApps.forEach((siteApp) => {
-			// register bolt middleware
-			siteApp.use(siteconfig(siteApp));
+			// ***** App Sites *****
+			//We need to configure the middleware stack in the correct order.
+			siteApps.forEach((siteApp) => {
+				// register bolt middleware
+				siteApp.use(siteconfig(siteApp));
 
-			_.each(appConfigJson, (appConfig) => {
-				let App = require(appConfig.path);
-				let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
+				_.each(appConfigJson, (appConfig) => {
+					let App = require(appConfig.path);
+					let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
 
-				appObj.use(responseMetrics());
-				siteApp.use(appConfig.mainRoute, appObj);
+					appObj.use(responseMetrics());
+					siteApp.use(appConfig.mainRoute, appObj);
+				});
+
+				// Setup Vhost per supported site
+				app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 			});
 
-			// Setup Vhost per supported site
-			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
+			// ***** App 404 Error *****
+			// Warning: do not reorder this middleware.
+			// Order of this should always appear after controller middlewares are setup.
+			app.use(error.four_o_four(app));
+
+			// ***** App Error *****
+			// Overwriting the express's default error handler should always appear after 404 middleware
+			app.use(error(app));
 		});
-
-		// ***** App 404 Error *****
-		// Warning: do not reorder this middleware.
-		// Order of this should always appear after controller middlewares are setup.
-		app.use(error.four_o_four(app));
-
-		// ***** App Error *****
-		// Overwriting the express's default error handler should always appear after 404 middleware
-		app.use(error(app));
 	});
 };
 

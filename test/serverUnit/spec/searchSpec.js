@@ -9,7 +9,7 @@ describe('Search', () => {
 		// 	`type-ahead-bapi-endpoint?_forceExample=true&_statusCode=200`,
 		// 	'test/serverUnit/mockData/api/v1/LocationList.json');
 
-		boltSupertest('/api/search/typeahead', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/api/search/autocomplete', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {

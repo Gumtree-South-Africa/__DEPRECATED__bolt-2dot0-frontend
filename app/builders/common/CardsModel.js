@@ -75,6 +75,10 @@ class CardsModel {
 					ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
 					console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
 				}
+				// todo: featured mapping algorithm, for now just a placeholder
+				if (ad.id === 1234567890) {
+					ad.featured = true;
+				}
 			});
 			return dataItems;
 		});

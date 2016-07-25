@@ -127,14 +127,14 @@ module.exports.finish = (done) => {
  * @param locale - locale like es_MX
  * @returns json data from specified file
  */
-module.exports.getMockDataByLocale  = (mockDataPath, fileName, locale) => {
+module.exports.getMockDataByLocale = (mockDataPath, fileName, locale) => {
 	let fullPath;
 	let fullFileName;
 	if (fileName.length > 0) {
 		// just use locale as file name
-		fullFileName = 	`${fileName}_${locale}.json`;
+		fullFileName = `${fileName}_${locale}.json`;
 	} else {
-		fullFileName = 	`${locale}.json`;
+		fullFileName = `${locale}.json`;
 	}
 	if (mockDataPath.indexOf('/') === -1) {
 		fullPath = `${cwd}/test/serverUnit/mockData/${mockDataPath}/${fullFileName}`;
