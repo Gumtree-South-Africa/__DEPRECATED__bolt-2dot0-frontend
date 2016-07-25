@@ -2,12 +2,12 @@ module.exports = function (config) {
 	config.set({
 		frameworks: ["jasmine"],
 		files: [
-			"../../../public/js/libraries/handlebars/handlebars.js",
-			"../../../public/jsmin/Main.min.js",
+			"../../../public/js/libraries/handlebars/handlebars-v4.0.5.js",
+			"../helpers/webTemplates.js",
 			"../SpecRunnerBundle.js"
 		],
-		browsers: ['PhantomJS', 'PhantomJS_custom'],
-
+		browsers: ['PhantomJS_custom'],
+		reporters: ["spec"],
 		// you can define custom flags
 		customLaunchers: {
 			'PhantomJS_custom': {

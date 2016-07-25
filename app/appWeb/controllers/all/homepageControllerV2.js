@@ -100,7 +100,6 @@ let HP = {
 			let baseJSComponentDir = '/views/components/';
 
 			// todo: keep this for V2
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
 			// end of V2
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
@@ -110,11 +109,16 @@ let HP = {
 			// Gumtree we include adCarousel.js. This is only for DEV. for the minification files
 			// it is already taken care of in jsmin.js
 
-			if (!modelData.header.enableLighterVersionForMobile) {
+			if (modelData.header.enableLighterVersionForMobile) {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
+			} else {
+
 				modelData.footer.javascripts.push(baseJSComponentDir + 'countryMap/js/Map.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
+
 			}
 
 			let availableAdFeatures = modelData.footer.availableAdFeatures;
@@ -126,11 +130,12 @@ let HP = {
 				}
 			}
 		} else {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "homepageV2Bundle.js");
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
 			} else {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
 			}
 		}
 	},
