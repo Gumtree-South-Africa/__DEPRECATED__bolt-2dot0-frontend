@@ -73,7 +73,7 @@ let initialize = () => {
 
 		//click on Continue button
 		$('.modal-cp .btn').on('click', function() {
-			window.location.reload(true)
+			window.location.reload(true);
 		});
 
 		//on Initialize
