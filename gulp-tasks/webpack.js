@@ -5,7 +5,7 @@ let shell = require('gulp-shell');
 let _ = require("underscore");
 
 let _buildBundleList = (pageConfig, locale, device) => {
-	let tempBundleConfig = {};
+	let moduleConfigPriority, tempBundleConfig = {};
 
 	let _applyConfiguration = (moduleConfig) => {
 		_.keys(moduleConfig).forEach((moduleName) => {
@@ -19,18 +19,25 @@ let _buildBundleList = (pageConfig, locale, device) => {
 		});
 	};
 
-	let localeDeviceMC = pageConfig.locales[locale][device];
-	let localeCoreMC = pageConfig.locales[locale].core;
 	let commonDeviceMC = pageConfig.common[device];
 	let commonCoreMC = pageConfig.common.core;
 
+	if (locale) {
+		let localeDeviceMC = pageConfig.locales[locale][device];
+		let localeCoreMC = pageConfig.locales[locale].core;
 
-	let moduleConfigPriority = [
-		commonCoreMC,
-		localeCoreMC,
-		commonDeviceMC,
-		localeDeviceMC
-	];
+		moduleConfigPriority = [
+			commonCoreMC,
+			localeCoreMC,
+			commonDeviceMC,
+			localeDeviceMC
+		];
+	} else {
+		moduleConfigPriority = [
+			commonCoreMC,
+			commonDeviceMC,
+		];
+	}
 
 	//
 	moduleConfigPriority.forEach(_applyConfiguration);
@@ -65,24 +72,34 @@ module.exports = function webpack(gulp) {
 				_prepareWebpackBundles()
 			});
 
+			let _genCompiledFile = (outputPath, moduleFileList) => {
+				fs.writeFileSync(outputPath, openingFileLine);
+
+				moduleFileList.forEach((modulePath) => {
+					fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`);
+				});
+
+				fs.appendFileSync(outputPath, closingFileLine);
+			};
+
 
 			let _prepareWebpackBundles = () => {
 				let pageConfigMap = {};
 				pages.forEach((filename) => {
 					let pageConfig = require(filename);
 
-					_.keys(pageConfig.locales).forEach((locale) => {
-						["mobile", "desktop"].forEach((device) => {
+					["mobile", "desktop"].forEach((device) => {
+						// device general compile
+						let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}.compiled.js`;
+						pageConfigMap[`${pageConfig.bundleName}_${device}`] = outputPath;
+						let moduleFileList = _buildBundleList(pageConfig, null, device);
+						_genCompiledFile(outputPath, moduleFileList);
+
+						_.keys(pageConfig.locales).forEach((locale) => {
 							let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}_${locale}.compiled.js`;
 							pageConfigMap[`${pageConfig.bundleName}_${device}_${locale}`] = outputPath;
 							let moduleFileList = _buildBundleList(pageConfig, locale, device);
-							fs.writeFileSync(outputPath, openingFileLine);
-
-							moduleFileList.forEach((modulePath) => {
-								fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`);
-							});
-
-							fs.appendFileSync(outputPath, closingFileLine);
+							_genCompiledFile(outputPath, moduleFileList);
 						})
 					});
 				});
