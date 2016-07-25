@@ -75,10 +75,8 @@
 }
 
 @include in-breakpoint($no-break) {
- body.modal-open {
-   overflow: hidden;
+ .modal-open {
    position: fixed;
-   height: 100%;
    }  
 }
 
