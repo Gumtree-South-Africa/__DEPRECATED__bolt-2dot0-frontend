@@ -3,21 +3,25 @@
 let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
 
 class RecentActivityModel {
-	constructor(req, res) {
-		this.req = req;
-		this.res = res;
+	constructor(bapiHeaderValues) {
+		this.bapiHeaderValues = bapiHeaderValues;
 	}
 
-	getRecentActivities() {
-		// let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
-		let data = recentActivityService.getRecentActivities();
-		data.recent = [];
+	getRecentActivities(geoLatLng) {
+		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLng).then((data) => {
+			console.log('$$$$$$$$$$$$$$$');
+			console.dir(data);
 
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
+			data.recent = [];
 
-		return data;
+			if (data.ads instanceof Array && data.ads.length>0) {
+				data.recent.push(data.ads[Math.floor(Math.random() * data.ads.length)]);
+				data.recent.push(data.ads[Math.floor(Math.random() * data.ads.length)]);
+				data.recent.push(data.ads[Math.floor(Math.random() * data.ads.length)]);
+			}
+
+			return data;
+		});
 	}
 }
 

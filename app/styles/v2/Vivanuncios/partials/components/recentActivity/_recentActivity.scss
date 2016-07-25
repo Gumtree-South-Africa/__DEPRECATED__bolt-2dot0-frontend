@@ -7,6 +7,12 @@ $feedTextSize: 16px;
             display: none;
         }
 
+		.feed-tile-link {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
         .feed-text-wrapper {
             position: relative;
             width: 210px;
