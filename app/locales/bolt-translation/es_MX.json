@@ -1286,6 +1286,8 @@
 		"helpText": "Los artículos con fotos tienen 10 veces más de probabilidades de venderse.",
 		"uploadPhotos": "Cargar foto(s)",
 		"uploadPhoto": "Carga una foto",
-		"uploadQuickly": "Publica un anuncio rápidamente"
+		"uploadQuickly": "Publica un anuncio rápidamente",
+		"upload": "Publica un anuncio",
+		"close": "CERRAR"
 	}
 }
