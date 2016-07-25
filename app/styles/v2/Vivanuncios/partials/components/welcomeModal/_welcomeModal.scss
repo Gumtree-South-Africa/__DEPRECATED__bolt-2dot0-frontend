@@ -14,10 +14,6 @@
     right: 0;
 }
 
-body.modal-open {
-   overflow: hidden;
-}
-
 .modal-wrapper {
     .modal {
         display: none;
@@ -78,6 +74,13 @@ body.modal-open {
     }
 }
 
+@include in-breakpoint($no-break) {
+ body.modal-open {
+   overflow: hidden;
+   position: fixed;
+   height: 100%;
+   }  
+}
 
 @include from-breakpoint($medium-break) {
     .modal-wrapper, .welcome-footer, .welcome-wrapper {
