@@ -24,11 +24,7 @@ $grey-text-color: #808080;
 
 		.icon-close {
 			position: relative;
-			width: 12px;
-			height: 12px;
-			background-position-x: 92.8%;
-			background-position-y: 90%;
-			top: 2px;
+			top: 6px;
 		}
 	}
 
@@ -44,6 +40,7 @@ $grey-text-color: #808080;
 	}
 
 	.email-login-btn {
+		width: 90%;
 		margin-top: 25px;
 		margin-bottom: 15px;
 	}
@@ -59,8 +56,6 @@ $grey-text-color: #808080;
 		}
 
 		a {
-			width: 90%;
-			vertical-align: top;
 			color: white;
 			cursor: pointer;
 			background-color: #3C5A96;
@@ -72,6 +67,8 @@ $grey-text-color: #808080;
 			&:hover {
 				text-decoration: none;
 			}
+			width: 90%;
+			vertical-align: top;
 		}
 	}
 
@@ -96,7 +93,7 @@ $grey-text-color: #808080;
 
 }
 
-.modal-mask {
+.login-modal-mask {
 	position: absolute;
 	top: 106px;
 	left: 0;

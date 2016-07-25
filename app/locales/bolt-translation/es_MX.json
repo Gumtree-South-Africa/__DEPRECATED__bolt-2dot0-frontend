@@ -1249,7 +1249,7 @@
 		"successModal": {
 			"title": "Your Ad is Uploaded! TBT",
 			"tip": "Tip: Add more photos to increases your chances of selling quickly. TBT",
-			"modeDetails": "Add more details TBT",
+			"moreDetails": "Add more details TBT",
 			"postMoreBtn": "Post More Ads TBT"
 		},
 		"unsupportedFileModal": {

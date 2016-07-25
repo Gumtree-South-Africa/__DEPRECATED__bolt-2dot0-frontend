@@ -3,9 +3,9 @@
 let $ = require('jquery');
 
 let initialize = () => {
-	$('.close-button').on('click', () => {
+	$('.login-modal .close-button').on('click', () => {
 		$('.login-modal').toggleClass('hidden');
-		$('.modal-mask').toggleClass('hidden');
+		$('.login-modal-mask').toggleClass('hidden');
 	});
 };
 

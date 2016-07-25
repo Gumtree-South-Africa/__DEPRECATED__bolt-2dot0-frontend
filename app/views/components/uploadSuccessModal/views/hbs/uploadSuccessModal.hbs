@@ -1,0 +1,17 @@
+<div class="upload-success-modal">
+	<div class="close-button">
+		<div class="close-text">{{i18n "postAd.loginModal.close"}}</div>
+		<span class="icon-close"></span>
+	</div>
+
+	<div class="success-title">{{i18n "postAd.successModal.title"}}</div>
+
+    <div class="tip">{{i18n "postAd.successModal.tip"}}</div>
+
+    <div class="more-details-link">{{i18n "postAd.successModal.moreDetails"}}</div>
+
+    {{> (dynamic "button") iconName="icon-post" extraClasses='post-more-btn'
+    buttonLink="/post-TBD" i18nPath="postAd.successModal.postMoreBtn"}}
+</div>
+
+<div class="success-modal-mask {{#if isHidden}}hidden{{/if}}"></div>
