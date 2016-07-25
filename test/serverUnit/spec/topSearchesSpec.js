@@ -27,7 +27,7 @@ describe('Top Searches', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 	});
 
-	it('top searches should have correct i18n content', (done) => {
+	it('top searches should correct headers', (done) => {
 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
