@@ -65,7 +65,6 @@ let initialize = () => {
 		}
 
 
-
 		//click on gps icon
 		$('.modal-cp .icon-location-v2').on('click', function() {
 			$('#modal-location').addClass('spinner').attr('disabled', true);
@@ -74,7 +73,7 @@ let initialize = () => {
 
 		//click on Continue button
 		$('.modal-cp .btn').on('click', function() {
-			geoShowMyLocation(getCookie('geoId'));
+			window.location.reload(true)
 		});
 
 		//on Initialize
