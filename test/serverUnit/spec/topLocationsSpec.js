@@ -5,12 +5,6 @@ let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
 describe('Top Locations', () => {
-	let i18n;
-
-	beforeAll(() => {
-		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
-	});
-
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
@@ -32,7 +26,7 @@ describe('Top Locations', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 	});
 
-	it('top locations should have correct i18n content', (done) => {
+	it('top locations should have correct headers', (done) => {
 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
@@ -41,10 +35,7 @@ describe('Top Locations', () => {
 
 					let c$ = cheerio.load(res.text);
 					let locationHeader = c$('.location-header-text');
-					expect(locationHeader.length).toBe(1, 'selector should produce 1 element for location header');
-
-					let locationHeaderText = c$('.location-header-text').text().trim();
-					expect(locationHeaderText).toBe(i18n.footer.toplocations, 'i18n string for location header item should match');
+					expect(locationHeader.length).toBe(2, 'selector should produce 2 element for location header');
 				})
 				.end(specHelper.finish(done));
 		});

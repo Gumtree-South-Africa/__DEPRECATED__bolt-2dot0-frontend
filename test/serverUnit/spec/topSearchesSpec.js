@@ -6,12 +6,6 @@ let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoin
 
 
 describe('Top Searches', () => {
-	let i18n;
-
-	beforeAll(() => {
-		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
-	});
-
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
@@ -33,7 +27,7 @@ describe('Top Searches', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 	});
 
-	it('top searches should have correct i18n content', (done) => {
+	it('top searches should correct headers', (done) => {
 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
@@ -42,10 +36,7 @@ describe('Top Searches', () => {
 
 					let c$ = cheerio.load(res.text);
 					let searchHeader = c$('.search-header-text');
-					expect(searchHeader.length).toBe(1, 'selector should produce 1 element for search header');
-
-					let searchHeaderText = c$('.search-header-text').text().trim();
-					expect(searchHeaderText).toBe(i18n.home.popular.searches, 'i18n string for search header item should match');
+					expect(searchHeader.length).toBe(2, 'selector should produce 2 element for search header');
 				})
 				.end(specHelper.finish(done));
 		});

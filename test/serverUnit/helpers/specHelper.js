@@ -115,6 +115,9 @@ module.exports.boltSupertest = (route, host) => {
 			.get(route)
 			.set('host', host)
 			.set('user-agent', 'testing');
+	}).fail((err) => {
+		console.error(err);
+		console.error(err.stack);
 	});
 };
 

@@ -57,7 +57,12 @@ bolt-2dot0-frontend*
 screenshots
 logs
 dist
-test/clientUnit/SpecRunnerBundle.js
+test/clientUnit/SpecRunnerBundle.js*
+test/clientUnit/helpers/webTemplates.js*
+app/templateStaging/
+app/config/bundling/bundleMap.json
+app/**/*.compiled.js
+
 .idea/*
 !.idea/runConfigurations
 !.idea/codeStyleSettings.xml
