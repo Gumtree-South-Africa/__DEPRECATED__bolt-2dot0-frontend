@@ -20,7 +20,9 @@ module.exports = {
 				"SectionMenu": "app/appWeb/views/components/sectionMenu/js/sectionMenu.js",
 				"ModalAutoComplete": "app/appWeb/views/components/modal/js/modal_autocomplete.js",
 				"ProfileMenu": "app/appWeb/views/components/profileMenu/js/profileMenu.js",
-				"HamburgerMenu": "app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js"
+				"HamburgerMenu": "app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js",
+				"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
+				"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js"
 			},
 			"mobile": {},
 			"desktop": {} // common locale and device specific has the second highest priority
