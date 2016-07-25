@@ -1,0 +1,20 @@
+{
+	"totalCount": 3,
+	"items": [
+		{
+			"keyword": "motorhome",
+			"category": 0,
+			"location": 1
+		},
+		{
+			"keyword": "motos",
+			"category": 0,
+			"location": 1
+		},
+		{
+			"keyword": "motor v8",
+			"category": 0,
+			"location": 1
+		}
+	]
+}

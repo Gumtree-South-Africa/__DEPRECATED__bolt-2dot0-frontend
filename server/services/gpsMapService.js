@@ -1,6 +1,6 @@
 'use strict';
 
-let SolrService = require(process.cwd() + '/server/utils/solr');
+let solrService = require(process.cwd() + '/server/utils/solr');
 
 //let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 //let bapiService      = require("./bapi/bapiService");
@@ -10,12 +10,9 @@ let SolrService = require(process.cwd() + '/server/utils/solr');
  * Gets data based on the endpoint and parameters passed
  */
 class GpsMapService {
-	constructor() {
-		this.solrService = new SolrService();
-	}
 
 	getMapData(country, geo) {
-		return this.solrService.mapSearch(country, geo);
+		return solrService.mapSearch(country, geo);
 		// return Q(require(process.cwd() + '/server/services/mockData/Map.json'));
 	}
 

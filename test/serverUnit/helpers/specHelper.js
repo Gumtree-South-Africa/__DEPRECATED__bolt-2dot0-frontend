@@ -33,7 +33,11 @@ let spyOnService = (service, method, fileName) => {
 		let filePath = path;
 		if (bapiHeaders) {
 			let locale = bapiHeaders.locale;
-			filePath += `${locale}.json`;
+			if (typeof locale !== 'undefined') {
+				filePath += `${locale}.json`;
+			} else {
+				filePath += '.json';
+			}
 		}
 		let file = fs.readFileSync(filePath);
 		let json = JSON.parse(file);

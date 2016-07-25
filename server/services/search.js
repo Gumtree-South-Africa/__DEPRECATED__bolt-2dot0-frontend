@@ -1,7 +1,7 @@
 'use strict';
 
 let Q = require('q');
-let SolrService = require(process.cwd() + '/server/utils/solr');
+let solrService = require(process.cwd() + '/server/utils/solr');
 
 // let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 // let bapiService = require("./bapi/bapiService");
@@ -9,12 +9,9 @@ let SolrService = require(process.cwd() + '/server/utils/solr');
  * Gets data based on the endpoint and parameters passed
  */
 class SearchService {
-	constructor() {
-		this.solrService = new SolrService();
-	}
 
 	getAutoCompleteResults(country, locationId, categoryId, keywords) {
-		return this.solrService.autoComplete(country, locationId, categoryId, keywords);
+		return solrService.autoComplete(country, locationId, categoryId, keywords);
 	}
 
 	getTypeAheadResults(/*bapiHeaderValues, queryEndpoint, parameters*/) {

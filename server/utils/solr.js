@@ -98,4 +98,4 @@ class SolrService {
 	}
 }
 
-module.exports = SolrService;
+module.exports = new SolrService();
