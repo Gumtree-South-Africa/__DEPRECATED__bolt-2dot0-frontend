@@ -19,6 +19,14 @@
 		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads"
 	    }
 	},
+	"solr": {
+		"server": {
+			"host"	: "localhost",
+			"port"	: 9090,
+			"path"	: "/solr",
+			"version": "4.0"
+		}
+	},
 	"kafka": {
 		"server": {
 			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",

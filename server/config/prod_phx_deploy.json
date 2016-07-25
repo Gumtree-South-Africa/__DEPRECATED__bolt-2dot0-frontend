@@ -18,6 +18,14 @@
 			"quickpostAd": "/v1/ads"
 		}
 	},
+	"solr": {
+		"server": {
+			"host"	: "solrvip.phx.ops.prod.bt.ecg.so",
+			"port"	: 8080,
+			"path"	: "/solr",
+			"version": "4.0"
+		}
+	}
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
