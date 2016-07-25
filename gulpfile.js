@@ -69,6 +69,7 @@ gulp.task('watch', getTask('watch'));
 gulp.task('webpack', getTask('webpack'));
 gulp.task('svgSprite', getTask('svgSprite'));
 gulp.task('svgFallback', getTask('svgFallback'));
+gulp.task('webpackPrepare', getTask('webpackPrepare'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
