@@ -5,11 +5,11 @@ let sampleTemplate =
 	'<button></button>' +
 	'</div>';
 
-if (Handlebars.templates === undefined) {
-	Handlebars.templates = {};
+if (Handlebars.partials === undefined) {
+	Handlebars.partials = {};
 }
 
-Handlebars.templates['SampleTemplate'] = Handlebars.compile(sampleTemplate);
+Handlebars.partials['SampleTemplate'] = Handlebars.compile(sampleTemplate);
 
 /**
  * initialize sets up initial events on the component

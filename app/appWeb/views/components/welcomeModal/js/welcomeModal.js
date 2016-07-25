@@ -23,6 +23,7 @@ let initialize = () => {
 		if (getCookie('alreadyVisited') === "") {
 			document.cookie = 'alreadyVisited=true';
 			$('.modal-wrapper .modal').css('display', 'block');
+			 $('.viewport').addClass('modal-open');
 		}
 
 
@@ -30,6 +31,7 @@ let initialize = () => {
 			$('.modal-wrapper .modal').fadeOut('slow', function() {
 				$(this).removeClass('modal');
 				$('.welcome-footer').css('display', 'block');
+				$('.viewport').removeClass('modal-open');
 			});
 		});
 

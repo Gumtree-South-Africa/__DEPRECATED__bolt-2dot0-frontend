@@ -74,6 +74,11 @@
     }
 }
 
+@include in-breakpoint($no-break) {
+ .modal-open {
+   position: fixed;
+   }  
+}
 
 @include from-breakpoint($medium-break) {
     .modal-wrapper, .welcome-footer, .welcome-wrapper {
