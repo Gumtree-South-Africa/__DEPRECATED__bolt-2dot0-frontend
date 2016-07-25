@@ -10,7 +10,7 @@ let postAdData = {
 	extendModelData: (req, modelData) => {
 		// CSS
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "postAdBundle.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_es_MX.js");
 	}
 };
 
