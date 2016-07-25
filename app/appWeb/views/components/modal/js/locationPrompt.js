@@ -72,8 +72,8 @@ let initialize = () => {
 		});
 
 		//click on Continue button
-		$('.modal-cp').on('click', '.btn', function() {
-			document.location.reload(true);
+		$('.modal-cp .btn').on('click', function() {
+			location.reload(true);
 		});
 
 		//on Initialize

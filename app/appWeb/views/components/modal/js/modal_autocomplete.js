@@ -63,10 +63,6 @@ let initialize = () => {
 				$modalCp.removeClass('hiddenElt');
 		});
 
-		//click on Continue button
-		$('.modal-cp').on('click', '.btn', function() {
-			document.location.reload(true);
-		});
 
 		$('.modal-cp .btn').on('click', function(e) {
 			e.preventDefault(); e.stopPropagation();
@@ -75,6 +71,8 @@ let initialize = () => {
 			if($selected.attr('data-long') !== undefined) {
 				document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
 			}
+
+			location.reload(true);
 
 		});
 	});
