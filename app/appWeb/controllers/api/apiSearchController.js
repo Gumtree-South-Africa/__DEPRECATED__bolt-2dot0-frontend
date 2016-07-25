@@ -14,14 +14,6 @@ router.get('/autocomplete', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
-	//model.searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then((typeAheadResults) => {
-	//	res.send(typeAheadResults);
-	//}).fail(() => {
-	//	res.send({
-	//		error: true
-	//	});
-	//});
-
 	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
 		let results = {
 			totalCount:	autoCompleteResults.response.numFound,

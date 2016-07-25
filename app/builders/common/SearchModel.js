@@ -18,15 +18,6 @@ class SearchModel {
 	}
 
 	/**
-	 * Returns type ahead results for use by client side ajax
-	 * @param {string} searchTerm - user entered search team
-	 * @param {lat/long} location - latitude and longitude for users location
-	 */
-	getAjaxTypeAhead(searchTerm, location) {
-		return searchService.getTypeAheadResults(searchTerm, location);
-	}
-
-	/**
 	 * Returns auto complete results for use by client side ajax
 	 * @param {string} searchTerm - user entered search team
 	 * @param {locationId} locationId
