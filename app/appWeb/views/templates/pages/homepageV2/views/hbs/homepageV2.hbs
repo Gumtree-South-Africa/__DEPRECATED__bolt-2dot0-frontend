@@ -22,11 +22,14 @@
     </div>
 
     {{> (dynamic "recentActivity")}}
-		{{> (dynamic "modal")}}
+    {{> (dynamic "modal")}}
     {{> (dynamic "appDownloadSection")}}
     {{> (dynamic "safetyTips") }}
 
-
+    <div class="seo-wrapper">
+            {{> (dynamic "topSearches")}}
+            {{> (dynamic "topLocations")}}
+		</div>
 	</div>
 {{/partial}}
 
