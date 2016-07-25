@@ -72,7 +72,7 @@ class SolrService {
 		let query = this.keywordsClient.createQuery()
 			.q(keywords)
 			.fl(querystring.escape('keywords_g110,locationId_l110,categoryId_l110,score'))
-			.matchFilter('country_s110', 'AR')
+			.matchFilter('country_s110', country)
 			.matchFilter('totalListings_l110', '[3 TO *]')
 			//.matchFilter('leafLoc_b100', 'true')
 			//.matchFilter('leafCat_b100', 'true')

@@ -29,8 +29,12 @@ router.get('/autocomplete', cors, (req, res) => {
 			results.items.push(content);
 		}
 
+		res.status(200);
 		res.send(results);
-	}).fail(() => {
+	}).fail((err) => {
+		console.error(err);
+		console.error(err.stack);
+		res.status(500);
 		res.send({
 			error: true
 		});
