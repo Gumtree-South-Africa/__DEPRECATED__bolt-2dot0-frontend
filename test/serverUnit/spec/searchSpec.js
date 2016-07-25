@@ -10,14 +10,12 @@ describe('Search', () => {
 	});
 
 	it('should return correct format for type ahead search endpoint', (done) => {
-		specHelper.spyOnService(solrService, 'autoComplete', `${cwd}/test/serverUnit/mockData/external/SolrAutoComplete`);
-
 		boltSupertest('/api/search/autocomplete', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					expect(res.status).toBe(200);
-					
+
 					// expect a list of auto complete content
 					expect(res.body.items instanceof Array).toBeTruthy();
 
