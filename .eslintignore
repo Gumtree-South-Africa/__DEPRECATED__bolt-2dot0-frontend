@@ -2,6 +2,7 @@ test/clientUnit/karmaConfig/**/*.js
 test/clientUnit/SpecRunnerBundle.js
 test/serverUnit/properties2Json.spec.js
 test/serverUnit/index.js
+test/clientUnit/helpers/webTemplates.js
 
 app/builders/page/ErrorPageModel.js
 app/builders/page/HomePageModel.js
