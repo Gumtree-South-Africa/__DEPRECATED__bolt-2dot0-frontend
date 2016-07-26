@@ -198,13 +198,19 @@ $dropdown-width: 220px;
 
         font-weight: $fontWeightBold;
         font-size: $fontSizeH4;
-        width: $dropdown-width;
         text-align: left;
         background-color: $headerBackgroundColor;
         border: 1px solid $headerMenuBorderColor;
+		display: inline-block;
+		white-space: nowrap;
+
+		&.hidden {
+			display: none;
+		}
 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
+			padding-right: 1em;
 
             &:last-child {
                 border-bottom: none;

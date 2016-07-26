@@ -19,6 +19,7 @@ module.exports = {
 				"SearchBar": "app/views/components/searchbarV2/js/searchbarV2.js",
 				"SectionMenu": "app/views/components/sectionMenu/js/sectionMenu.js",
 				"ModalAutoComplete": "app/views/components/modal/js/modal_autocomplete.js",
+				"ModalLocationPrompt": "app/views/components/modal/js/locationPrompt.js",
 				"ProfileMenu": "app/views/components/profileMenu/js/profileMenu.js",
 				"HamburgerMenu": "app/views/components/hamburgerMenu/js/hamburgerMenu.js",
 				"TopLocations": "app/views/components/topLocations/js/topLocations.js",
