@@ -10,19 +10,6 @@ let pageControllerUtil = require(process.cwd() + '/app/appWeb/controllers/all/Pa
 
 let AppShell = {
 	/**
-	 * Special header data for AppShell
-	 */
-	extendHeaderData: (modelData) => {
-		// CSS
-		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'AppShell.css';
-		if (modelData.header.min) {
-			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/AppShell.min.css');
-		} else {
-			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/AppShell.css');
-		}
-	},
-
-	/**
 	 * Special footer data for AppShell
 	 */
 	extendFooterData: (modelData) => {
@@ -41,7 +28,6 @@ router.get('/', (req, res, next) => {
 	let modelPromise = appShell.populateData();
 
 	modelPromise.then((modelData) => {
-		AppShell.extendHeaderData(modelData);
 		AppShell.extendFooterData(modelData);
 
 		pageControllerUtil.postController(req, res, next, 'appshell/views/hbs/appshell_', modelData);
