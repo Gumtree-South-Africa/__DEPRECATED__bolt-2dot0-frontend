@@ -3,6 +3,7 @@
 {{/partial}}
 
 {{#partial "content"}}
+    {{> (dynamic "uploadImage")}}
     <div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
@@ -15,6 +16,7 @@
     </div>
 
     <div class="user-image margin-auto"></div>
+    <progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
 
 	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
 	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
