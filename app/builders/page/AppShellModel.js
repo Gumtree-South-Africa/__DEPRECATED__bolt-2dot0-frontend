@@ -11,7 +11,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 
-class ManifestModel {
+class AppShellModel {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
@@ -20,7 +20,7 @@ class ManifestModel {
 
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
-		let pagetype = pagetypeJson.pagetype.PWA_MANIFEST;
+		let pagetype = pagetypeJson.pagetype.PWA_APP_SHELL;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder();
@@ -42,11 +42,13 @@ class ManifestModel {
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
+		modelData.header.distractionFree = true;
 		modelData.footer = data['common'].footer || {};
+		modelData.footer.distractionFree = true;
 		modelData.dataLayer = data['common'].dataLayer || {};
 
 		return modelData;
 	}
 }
 
-module.exports = ManifestModel;
+module.exports = AppShellModel;
