@@ -1,0 +1,1651 @@
+'use strict';
+
+let I18n = require('i18n-2');
+
+let debug = false;
+
+let TiffTags = {
+	0x0112: "Orientation"
+};
+
+//BoltImageUploadUtil
+
+let isCORS = () => {
+	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
+};
+
+let isDnDElement = () => {
+	let div = document.createElement('div');
+	return ('draggable' in div) && !matchMedia("mobile");
+};
+
+let encode_utf8 = (s) => {
+	return encodeURIComponent(s);
+};
+
+let decode_utf8 = (s) => {
+	return decodeURIComponent(s);
+};
+
+let isNumber = (o) => {
+	return typeof o === 'number' && isFinite(o);
+};
+
+// Detect file input support
+let isFileInputSupported = (function() {
+	// Handle devices which falsely report support
+	if (navigator.userAgent.match(/(Android (1.0|1.1|1.5|1.6|2.0|2.1|4.3))|(Windows Phone (OS 7|8.0))|(XBLWP)|(ZuneWP)|(w(eb)?OSBrowser)|(webOS)|(Kindle\/(1.0|2.0|2.5|3.0))/)) {
+		return false;
+	}
+	// Create test element
+	let el = document.createElement("input");
+	el.type = "file";
+	return !el.disabled;
+})();
+
+let isAndroidNoImageResizeSupport = () => {
+	return !!navigator.userAgent.match(/(Android (2.3|4.1|4.2))/);
+};
+
+let isBlackBerryCurve = () => {
+	return !!navigator.userAgent.match(/(BlackBerry (9320|9360))/);
+};
+
+/**
+ * @return {boolean}
+ */
+let IsSafariMUSupport = () => {
+	// a work around for safari 5.1 browsers which has bug for fileList
+
+	if ($.isSafari4Else5()) {
+		let regExp = /Version\/(\d+\.\d+)/g;
+		let safariVersions = ["5.0", "4.0"];
+		let v = regExp.exec(navigator.userAgent);
+		if ($.isArray(v)) {
+			$.map(safariVersions, function(ele, i) {
+
+				if ($.trim(ele) === $.trim(v[1])) {
+					return true;
+				}
+			});
+			return false;
+		}
+	}
+};
+
+let isIOS = () => {
+	return !!navigator.userAgent.match(/(iPad|iPhone|iPod)/i);
+};
+
+/**
+ * Convert WebKit dataURI to Blob.
+ */
+let createBlobFromDataUri = (dataURI) => {
+
+	// Convert base64/URLEncoded data component to raw binary data held in a string
+	let splitString = dataURI.split(',');
+	let splitStringMime = splitString[0];
+	let splitStringData = splitString[1];
+
+	let byteString;
+	if (splitStringMime.indexOf('base64') >= 0) {
+		byteString = atob(splitStringData);
+	} else {
+		byteString = decodeURIComponent(splitStringData);
+	}
+
+	// separate out the mime component
+	let mimeString = splitStringMime.split(':')[1].split(';')[0];
+
+	// Write the bytes of the string to an ArrayBuffer
+	let length = byteString.length;
+	let buf = new ArrayBuffer(length);
+	let view = new Uint8Array(buf);
+	for (let i = 0; i < length; i++) {
+		view[i] = byteString.charCodeAt(i);
+	}
+
+	// Detect if Blob object is supported.
+	if (typeof Blob !== 'undefined') {
+		return new Blob([buf], {type: mimeString});
+
+	} else {
+		window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
+		let bb = new BlobBuilder();
+		bb.append(buf);
+		return bb.getBlob(mimeString);
+	}
+};
+
+
+let convertCanvasToBlob = (canvas, fileType, QUALITY) => {
+	if (canvas.mozGetAsFile) {
+		// Mozilla implementation (File extends Blob).
+		return canvas.mozGetAsFile(null, fileType, QUALITY);
+	} else if (canvas.toBlob) {
+		// HTML5 implementation.
+		// https://developer.mozilla.org/en/DOM/HTMLCanvasElement
+		//   return canvas.toBlob(null, fileType, QUALITY);
+		// temporary fix for Chrome 50 until Google fix the issue on their side.
+		return createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
+	} else {
+		// WebKit implementation.
+		// http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+		return createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
+	}
+};
+
+let fileAPISupport = () => {
+
+	return !!(window.File && window.FileList && window.FileReader);
+};
+
+let determineCropWidthAndHeight = (ratio, width, height) => {
+
+	let currentRatio = width / height;
+	if (currentRatio !== ratio) {
+		if (currentRatio > ratio) {
+			// Cut x
+			if (isIOS()) {
+				width = height * ratio
+			}
+		} else {
+			// Cut y
+			if (isIOS()) {
+				height = width / ratio
+			}
+		}
+	}
+
+	return {width: Math.round(width), height: Math.round(height)};
+};
+
+let determineScaleWidthAndHeight = (maxLength, width, height) => {
+
+	if (width > height) {
+		if (width > maxLength) {
+			height *= maxLength / width;
+			width = maxLength;
+		}
+	} else {
+		if (height > maxLength) {
+			width *= maxLength / height;
+			height = maxLength;
+		}
+	}
+	return {width: Math.round(width), height: Math.round(height)};
+};
+
+
+let detectTransparency = (ctx) => {
+	let canvas = ctx.canvas;
+	let height = canvas.height;
+
+	// Returns pixel data for the specified rectangle.
+	let data = ctx.getImageData(0, 0, 1, height).data;
+
+	// Search image edge pixel position in case it is squashed vertically.
+	for (let i = 0; i < height; i++) {
+		let alphaPixel = data[(i * 4) + 3];
+		if (alphaPixel === 0) {
+			return true;
+		}
+	}
+	return false;
+};
+
+
+let transformCoordinate = (ctx, orientation, width, height) => {
+	switch (orientation) {
+		case 1:
+			// nothing
+			break;
+		case 2:
+			// horizontal flip
+			ctx.translate(width, 0);
+			ctx.scale(-1, 1);
+			break;
+		case 3:
+			// 180 rotate left
+			ctx.translate(width, height);
+			ctx.rotate(Math.PI);
+			break;
+		case 4:
+			// vertical flip
+			ctx.translate(0, height);
+			ctx.scale(1, -1);
+			break;
+		case 5:
+			// vertical flip + 90 rotate right
+			ctx.rotate(0.5 * Math.PI);
+			ctx.scale(1, -1);
+			break;
+		case 6:
+			// 90 rotate right
+			ctx.rotate(0.5 * Math.PI);
+			ctx.translate(0, -height);
+			break;
+		case 7:
+			// horizontal flip + 90 rotate right
+			ctx.rotate(0.5 * Math.PI);
+			ctx.translate(width, -height);
+			ctx.scale(-1, 1);
+			break;
+		case 8:
+			// 90 rotate left
+			ctx.rotate(-0.5 * Math.PI);
+			ctx.translate(-width, 0);
+			break;
+		default:
+			break;
+	}
+};
+
+let isCanvasSupported = () => {
+	let elem = document.createElement('canvas');
+	return !!(elem.getContext && elem.getContext('2d'));
+};
+
+let scaleAndCropImage = (img, fileType) => {
+	let maxLength = 800, QUALITY = 0.9;
+	let cropRatio = 800 / 600;
+	let originalWidth = img.width;
+	let originalHeight = img.height;//console.log(originalWidth + " " + originalHeight);
+
+	// 90 degrees CW or CCW, flip width and height.
+	let $img = $(img);
+	let orientation = 0;
+	if (img.exifData && img.exifData.Orientation) {
+		orientation = img.exifData.Orientation;
+	}
+
+	switch (orientation) {
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			cropRatio = 1 / cropRatio;
+			break;
+		default:
+	}
+
+	// Calculate width and height based on desired X/Y ratio.
+	let ret = determineCropWidthAndHeight(cropRatio, originalWidth, originalHeight);
+	let cropWidth = ret.width;
+	let cropHeight = ret.height;
+
+	// Determine if longest side exceeds max length.
+	ret = determineScaleWidthAndHeight(maxLength, cropWidth, cropHeight);
+	let scaleWidth = ret.width;
+	let scaleHeight = ret.height;
+	let scaleRatio = cropWidth / scaleWidth;
+
+	// Crop and scale.
+	let x = -1 * (Math.round(((originalWidth - cropWidth) / 2) / scaleRatio));
+	let y = -1 * (Math.round(((originalHeight - cropHeight) / 2) / scaleRatio));
+	x = Math.min(0, x);
+	y = Math.min(0, y);
+	let w = Math.round(originalWidth / scaleRatio);
+	let h = Math.round(originalHeight / scaleRatio);
+
+	let canvas = document.createElement("canvas");
+
+	switch (orientation) {
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+			canvas.width = scaleHeight;
+			canvas.height = scaleWidth;
+			break;
+		default:
+			canvas.width = scaleWidth;
+			canvas.height = scaleHeight;
+	}
+
+	let ctx = canvas.getContext("2d");
+	if (orientation) {
+		// Transform canvas coordination according to specified frame size and orientation.
+		transformCoordinate(ctx, orientation, scaleWidth, scaleHeight);
+	}
+
+	// For now just a white background, in the future possibly background color based on dominating image color?
+	if (isIOS()) {
+		ctx.fillStyle = "rgba(255,255,255, 0)";
+	}
+	ctx.fillRect(0, 0, scaleWidth, scaleHeight);
+	ctx.drawImage(img, x, y, w, h);
+
+	// Try to fix IOS6s image squash bug.
+	// Test for transparency. This trick only works with JPEGs.
+	if (isIOS() && fileType === 'image/jpeg') {
+		let transparent = detectTransparency(ctx);
+		if (transparent) {
+			// Redraw image, doubling the height seems to fix the iOS6 issue.
+			ctx.drawImage(img, x, y, w, h * 2.041);
+		}
+	}
+
+	// Notify listeners of scaled and cropped image.
+	//settings.onProcessed && settings.onProcessed(canvas);
+
+	return convertCanvasToBlob(canvas, fileType, QUALITY);
+
+};
+
+
+let readEXIFData = (file, start) => {
+	if (file.getStringAt(start, 4) !== "Exif") {
+		if (debug) {
+			console.log("Not valid EXIF data! " + file.getStringAt(start, 4));
+		}
+		return false;
+	}
+
+	let bigEnd, tags, tag, exifData, gpsData, tiffOffset = start + 6;
+
+	// test for TIFF validity and endianness
+	if (file.getShortAt(tiffOffset) === 0x4949) {
+		bigEnd = false;
+	} else if (file.getShortAt(tiffOffset) === 0x4D4D) {
+		bigEnd = true;
+	} else {
+		if (debug) {
+			console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)");
+		}
+		return false;
+	}
+
+	if (file.getShortAt(tiffOffset + 2, bigEnd) !== 0x002A) {
+		if (debug) {
+			console.log("Not valid TIFF data! (no 0x002A)");
+		}
+		return false;
+	}
+
+	if (file.getLongAt(tiffOffset + 4, bigEnd) !== 0x00000008) {
+		if (debug) {
+			console.log("Not valid TIFF data! (First offset not 8)", file.getShortAt(tiffOffset + 4, bigEnd));
+		}
+		return false;
+	}
+
+	tags = readTags(file, tiffOffset, tiffOffset + 8, TiffTags, bigEnd);
+
+	return tags;
+};
+
+// Add thumbnail url by replacing _18 to _14, See EPS server
+let convertThumbImgURL14 = (url) => {
+	let reg = /\_\d*\.JPG/ig;
+	return url.replace(reg, "_14.JPG");
+};
+
+let convertThumbImgURL18 = (url) => {
+	let reg = /\_\d*\.JPG/ig;
+	return url.replace(reg, "_18.JPG");
+};
+
+let getThumbImgURL = (url) => {
+	let result;
+	if (!this.EPS.IsEbayDirectUL) {
+		result = url.split("?")[0];
+	} else {
+		// for direct zoom
+		result = url.split(";")[1];
+	}
+
+	if (result && result.match(/^http/)) {
+		return result;  // url looks fine
+	}
+};
+
+let extractEPSServerError = (respText) => {
+	// format, ERROR:ME200
+	let reg = /ERROR\:(\w*)/i;
+	return respText.replace(reg, "$1");
+};
+
+let getUrlVars = (url) => {
+	let vars = {};
+	let parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+		vars[key] = value;
+	});
+	return vars;
+};
+
+let isProgressEventSupported = () => {
+	try {
+		let xhr = new XMLHttpRequest();
+
+		if ('onprogress' in xhr) {
+			if ($.isSafari() && !IsSafariMUSupport()) {
+				return false;
+			}
+			return true;
+		} else {
+			return false;
+		}
+	} catch (e) {
+		return false;
+	}
+};
+
+// then anywhere:
+
+
+let convertToBinaryFile = (dataUrl, img) => {
+	let byteString, binaryFile;
+	try {
+		byteString = atob(dataUrl.split(',')[1]);
+		binaryFile = new BinaryFile(byteString, 0, byteString.length);
+
+	} catch (e) {
+		if (debug) {
+			console.log("something went wrong");
+		}
+	}
+	;
+	return binaryFile;
+};
+
+let BinaryFile = (strData, iDataOffset, iDataLength) => {
+	let data = strData;
+	let dataOffset = iDataOffset || 0;
+	let dataLength = 0;
+
+	this.getRawData = function() {
+		return data;
+	};
+
+	if (typeof strData === "string") {
+		dataLength = iDataLength || data.length;
+
+		this.getByteAt = function(iOffset) {
+			return data.charCodeAt(iOffset + dataOffset) & 0xFF;
+		};
+
+		this.getBytesAt = function(iOffset, iLength) {
+			let aBytes = [];
+
+			for (let i = 0; i < iLength; i++) {
+				aBytes[i] = data.charCodeAt((iOffset + i) + dataOffset) & 0xFF
+			}
+
+
+			return aBytes;
+		}
+	} else if (typeof strData === "unknown") {
+		dataLength = iDataLength || IEBinary_getLength(data);
+
+		this.getByteAt = function(iOffset) {
+			return IEBinary_getByteAt(data, iOffset + dataOffset);
+		};
+
+		this.getBytesAt = function(iOffset, iLength) {
+			return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray();
+		}
+	}
+
+	this.getLength = function() {
+		return dataLength;
+	};
+
+	this.getSByteAt = function(iOffset) {
+		let iByte = this.getByteAt(iOffset);
+		if (iByte > 127) {
+			return iByte - 256;
+		} else {
+			return iByte;
+		}
+	};
+
+	this.getShortAt = function(iOffset, bBigEndian) {
+		let iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1) : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset);
+		if (iShort < 0) {
+			iShort += 65536;
+		}
+		return iShort;
+	};
+
+	this.getSShortAt = function(iOffset, bBigEndian) {
+		let iUShort = this.getShortAt(iOffset, bBigEndian);
+		if (iUShort > 32767) {
+			return iUShort - 65536;
+		} else {
+			return iUShort;
+		}
+	};
+
+	this.getLongAt = function(iOffset, bBigEndian) {
+		let iByte1 = this.getByteAt(iOffset), iByte2 = this.getByteAt(iOffset + 1), iByte3 = this.getByteAt(iOffset + 2), iByte4 = this.getByteAt(iOffset + 3);
+
+		let iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4 : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
+		if (iLong < 0) {
+			iLong += 4294967296;
+		}
+		return iLong;
+	};
+
+	this.getSLongAt = function(iOffset, bBigEndian) {
+		let iULong = this.getLongAt(iOffset, bBigEndian);
+		if (iULong > 2147483647) {
+			return iULong - 4294967296;
+		} else {
+			return iULong;
+		}
+	};
+
+	this.getStringAt = function(iOffset, iLength) {
+		let aStr = [];
+
+		let aBytes = this.getBytesAt(iOffset, iLength);
+		for (let j = 0; j < iLength; j++) {
+			aStr[j] = String.fromCharCode(aBytes[j]);
+		}
+		return aStr.join("");
+	};
+
+	this.getCharAt = function(iOffset) {
+		return String.fromCharCode(this.getByteAt(iOffset));
+	};
+
+	this.toBase64 = function() {
+		return window.btoa(data);
+	};
+
+	this.fromBase64 = function(strBase64) {
+		data = window.atob(strBase64);
+	}
+};
+
+
+let findEXIFinJPEG = (file) => {
+	if (file.getByteAt(0) !== 0xFF || file.getByteAt(1) !== 0xD8) {
+		return false; // not a valid jpeg
+	}
+
+	let offset = 2, length = file.getLength(), marker;
+
+	while (offset < length) {
+		if (file.getByteAt(offset) !== 0xFF) {
+			if (debug) {
+				console.log("Not a valid marker at offset " + offset + ", found: " + file.getByteAt(offset));
+			}
+			return false; // not a valid marker, something is wrong
+		}
+
+		marker = file.getByteAt(offset + 1);
+
+		// we could implement handling for other markers here,
+		// but we're only looking for 0xFFE1 for EXIF data
+
+		if (marker === 22400) {
+			if (debug) {
+				console.log("Found 0xFFE1 marker");
+			}
+
+			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
+
+			// offset += 2 + file.getShortAt(offset+2, true);
+
+		} else if (marker === 225) {
+			// 0xE1 = Application-specific 1 (for EXIF)
+			if (debug) {
+				console.log("Found 0xFFE1 marker");
+			}
+
+			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
+
+		} else {
+			offset += 2 + file.getShortAt(offset + 2, true);
+		}
+
+	}
+
+};
+
+
+let readTags = (file, tiffStart, dirStart, strings, bigEnd) => {
+	let entries = file.getShortAt(dirStart, bigEnd), tags = {}, entryOffset, tag, i;
+
+	for (i = 0; i < entries; i++) {
+		entryOffset = dirStart + i * 12 + 2;
+		tag = strings[file.getShortAt(entryOffset, bigEnd)];
+		if (!tag && debug) {
+			console.log("Unknown tag: " + file.getShortAt(entryOffset, bigEnd));
+		}
+		if (tag && tag === "Orientation") {
+			tags[tag] = readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd);
+		}
+	}
+	return tags;
+};
+
+
+let readTagValue = (file, entryOffset, tiffStart, dirStart, bigEnd) => {
+	let type = file.getShortAt(entryOffset + 2, bigEnd),
+		numValues = file.getLongAt(entryOffset + 4, bigEnd),
+		valueOffset = file.getLongAt(entryOffset + 8, bigEnd) + tiffStart, offset, vals, val, n, numerator, denominator;
+
+	switch (type) {
+		case 1: // byte, 8-bit unsigned int
+		case 7: // undefined, 8-bit byte, value depending on field
+			if (numValues === 1) {
+				return file.getByteAt(entryOffset + 8, bigEnd);
+			}
+			break;
+
+		case 2: // ascii, 8-bit byte
+			offset = numValues > 4 ? valueOffset : (entryOffset + 8);
+			return file.getStringAt(offset, numValues - 1);
+
+
+		case 3: // short, 16 bit int
+			if (numValues === 1) {
+				return file.getShortAt(entryOffset + 8, bigEnd);
+			}
+			break;
+
+		case 4: // long, 32 bit int
+			if (numValues === 1) {
+				return file.getLongAt(entryOffset + 8, bigEnd);
+			}
+			break;
+
+		case 5:	// rational = two long values, first is numerator, second is denominator
+			if (numValues === 1) {
+				numerator = file.getLongAt(valueOffset, bigEnd);
+				denominator = file.getLongAt(valueOffset + 4, bigEnd);
+				val = Number(numerator / denominator);
+				val.numerator = numerator;
+				val.denominator = denominator;
+				return val;
+			}
+			break;
+
+		case 9: // slong, 32 bit signed int
+			if (numValues === 1) {
+				return file.getSLongAt(entryOffset + 8, bigEnd);
+			}
+			break;
+
+		case 10: // signed rational, two slongs, first is numerator, second is denominator
+			if (numValues === 1) {
+				return file.getSLongAt(valueOffset, bigEnd) / file.getSLongAt(valueOffset + 4, bigEnd);
+			}
+			break;
+	}
+};
+
+let ExtractURLClass = (url) => {
+	// extract, url
+	let normalImageURLZoom = getThumbImgURL(url);
+
+	if (!normalImageURLZoom) {
+		// not been able to find out a valid url
+		return;
+	}
+
+	//zoom url VERSION:2;http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/r84AAOSwE2lTf~HM/$_1.JPG?set_id=8800005007
+
+	// convert to _18.JPG format saved in backend
+	normalImageURLZoom = convertThumbImgURL18(normalImageURLZoom);
+
+	// convert to _14.JPG thumb format
+
+	return {
+		"thumbImage": convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
+	}
+
+};
+
+//TODO: DOM-required functions need fix
+
+
+let supportMultiple = () => {
+	// lets not do it for safari until we find a solution
+	//if ($.isSafari()) return false;
+	//if ($.isSafari() && !(IsSafariMUSupport())) return false;
+	// do i support FileList API
+	if ($("#file").files && document.getElementById("file").files.length === 0) {
+		return false;
+	}
+	//do I support input type=file/multiple
+	let el = document.createElement("input");
+	return ("multiple" in el);
+};
+
+
+let createImgObj = (i, urlThumb, urlNormal) => {
+	let imagePlaceHolder = $("#image-place-holder-" + i);
+	$(imagePlaceHolder).css("background-position-y", "1em");
+
+	let ul = $("<input class='pThumb' id ='pThumb" + i + "' type='hidden' name='picturesThumb' value=''/><input class='pict' id='pict" + i + "' type='hidden' name='pictures' value=''/>");
+	ul.prependTo(imagePlaceHolder);
+
+	$("#thumb-img-" + i).attr("src", urlThumb);
+	$("#pThumb" + i).val(encode_utf8(urlThumb));
+	$("#pict" + i).val(encode_utf8(urlNormal));
+};
+
+// BOLT IMAGE UPLOADER
+
+let UploadMsgClass = {
+	hideThumb: function(i) {
+		$("#file-upload-" + i).css("margin-top", "1.8em").css("color", "red");
+		$("#thumb-img-" + i).remove();
+		$("#progress-cnt-" + i).hide();
+		$("#percents-" + i).hide();
+	},
+	successMsg: function(i) {
+		$("#file-upload-" + i).html(this.messages.successMsg);
+	},
+	failMsg: function(i) {
+		$("#file-upload-" + i).html(this.messages.failMsg);
+		this.hideThumb(i);
+	},
+	loadingMsg: function(i) {
+		$("#file-upload-" + i).html(this.messages.loadingMsg);
+	},
+	resizing: function(i) {
+		$("#file-upload-" + i).html(this.messages.resizing);
+	},
+	invalidSize: function(i) {
+		$("#file-upload-" + i).html(this.messages.invalidSize);
+	},
+	invalidType: function(i) {
+		$("#file-upload-" + i).html(this.messages.invalidType);
+		this.hideThumb(i);
+	},
+	invalidDimensions: function(i) {
+		$("#file-upload-" + i).html(this.messages.invalidDimensions);
+		this.hideThumb(i);
+	},
+	firewall: function(i) {
+		$("#file-upload-" + i).html(this.messages.firewall);
+		this.hideThumb(i);
+	},
+	colorspace: function(i) {
+		$("#file-upload-" + i).html(this.messages.colorspace);
+		this.hideThumb(i);
+	},
+	corrupt: function(i) {
+		$("#file-upload-" + i).html(this.messages.corrupt);
+		this.hideThumb(i);
+	},
+	pictureSrv: function(i) {
+		$("#file-upload-" + i).html(this.messages.pictureSrv);
+		this.hideThumb(i);
+	},
+	translateErrorCodes: function(i, error) {
+		if (error === "FS002") {
+			this.invalidDimensions(i);
+		} else if (error === "FS001") {
+			this.invalidSize(i);
+		} else if (error === "FF001" || error === "FF002" || error === "SD015") {
+			this.invalidType(i);
+		} else if (error === "FC002") {
+			this.colorspace(i);
+		} else if (error === "SD001" || error === "SD013" || error === "ME100") {
+			this.firewall(i);
+		} else if (error === "SD005" || error === "SD007" || error === "SD009" || error === "SD019" || error === "SD020" || error === "SD021") {
+			this.pictureSrv(i);
+		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
+			this.corrupt(i);
+		}
+		this.hideThumb(i);
+	}
+};
+
+//todo HERE
+let loadData = (i, file) => {
+
+	let formData = new FormData();
+	// direct upload via EPS proxy
+	if (!EPS.IsEbayDirectUL) {
+		formData.append("s", "1C5000");
+		formData.append("r", "0");
+		formData.append("pltfrm", "bolt");
+	} else {
+		// direct upload to zoom
+		formData.append("s", "Standard");
+		//formData.append("wm", "USER,ICON" );
+		formData.append("aXRequest", "2");
+	}
+
+	formData.append("v", "2");
+	formData.append("b", "18");
+	formData.append("n", "g");
+	formData.append("a", EPS.token);
+
+	formData.append("u", file);
+	formData.append("rqt", $.now());
+	formData.append("rqis", file.size);
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', EPS.url, true);
+	xhr.responseType = 'text';
+	xhr.bCount = i;
+	xhr.upload.bCount = i;
+	xhr.fileSize = file.size;
+
+	$("#filesize-" + i).html((file.size / 1024).toFixed(0));
+
+	xhr.upload.progress = $("#progress-" + i);
+	xhr.upload.percents = $("#percents-" + i);
+
+	xhr.onload = function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		let i = this.bCount;
+		let url;
+		let statusOk = (this.status == 200);
+
+		// try to extract the url and figure out if it looks like to be valid
+		if (statusOk) {
+			url = ExtractURLClass(this.response);
+			if (!url) {
+				// url is not reconized => consider the download in error
+				statusOk = false;
+				// console.log("cannot extract from response given by EPS  => " + this.response);
+			}
+		}
+
+		if (!statusOk) {
+			UploadMsgClass.failMsg(i);
+		}
+
+		if (this.readyState == 4 && statusOk) {
+
+			let url = ExtractURLClass(this.response);
+
+			// any errors don't do anything after display error msg
+			if (!url) {
+				let error = extractEPSServerError(this.response);
+				UploadMsgClass.translateErrorCodes(i, error);
+				return;
+			}
+			;
+
+			// add the image once EPS returns the uploaded image URL
+			createImgObj(this.bCount, url.thumbImage, url.normal);
+
+			$("#progress-" + this.bCount).css("width", "100%");
+			$("#percents-" + this.bCount).html("100%");
+
+			UploadMsgClass.successMsg(i);
+		}
+
+	};
+
+	xhr.onabort = function(e) {
+
+	};
+
+
+	xhr.upload.addEventListener("progress", function(event) {
+		let i = this.bCount;
+
+		if (event.lengthComputable) {
+			this.percents.html(" " + ((event.loaded / event.total) * 100).toFixed() + "%");
+
+
+			// display image from client
+			if (event.loaded == event.total) {
+				$("#thumb-img-" + i).attr("src", imageUploads.getURL(i));
+			}
+		} else {
+			UploadMsgClass.failMsg(i);
+		}
+	}, false);
+
+	xhr.send(formData);  // multipart/form-data
+};
+
+let resetForm = (name) => {
+	if ($(name).doesExist()) {
+		$(name).get(0).reset();
+	}
+};
+
+let CpsImage = (function() {
+	let gif = "gif", jpeg = "jpeg", jpg = "jpg", png = "png", bmp = "bmp";
+
+	let getFileExt = function(f) {
+		let fn = f.toLowerCase();
+		return fn.substring((Math.max(0, fn.lastIndexOf(".")) || fn.length) + 1);
+	};
+
+	return {
+		isSupported: function(f) {
+			let ext = getFileExt(f);
+			return !!(ext === gif || ext === jpeg || ext === jpg || ext === png || ext === bmp);
+		}, getFileExt: function(f) {
+			return getFileExt(f);
+		}
+	}
+
+})();
+
+
+let featuredImage = () => {
+
+	$("#thumb-nails").on("click", ".img-box", function(e) {
+		let target = $(e.target);
+		if (target.is("div") && $(this).hasClass("icon-remove-gray")) {
+			return;
+		}
+		imageUploads.removeClassFeatured();
+		$(this).insertBefore($("#image-place-holder-0"));
+		imageUploads.resetThumbDOM();
+		imageUploads.addClassFeatured();
+	});
+};
+
+let removeTitleFirstEle = function(index) {
+	if (!isDnDElement() && (index != 0 )) {
+		return 'title="' + l18n.clickFeatured + '"';
+	} else if (index != 0) {
+		return 'title="' + l18n.dragToReorder + '"';
+	}
+};
+//TODO: here minus a few dom references
+let prepareForImageUpload = (i, file) => {
+
+	$("#upload-status-" + i).show();
+	UploadMsgClass.loadingMsg(i);
+
+	let mediaType = CpsImage.isSupported(file.name);
+
+	if (!mediaType) {
+		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
+		return;
+	}
+
+	let reader = null, isResizing = false;
+
+	let img = new Image();
+
+	if (window.FileReader) {
+		UploadMsgClass.resizing(i);
+
+		reader = new FileReader();
+
+		reader.onload = (function(img, file) {
+
+			return function(e) {
+				let dataUrl = e.target.result;
+
+
+				img.onload = function() {
+					let resizedImageFile = scaleAndCropImage(this, file.type);
+					loadData(i, resizedImageFile);
+				};
+
+				window.URL = window.URL || window.webkitURL || false;
+				img.src = URL.createObjectURL(file);//window.URL.createObjectURL(blob);
+
+				if (file.type === 'image/jpeg') {
+					let binaryFile = convertToBinaryFile(dataUrl);
+					img.exifData = findEXIFinJPEG(binaryFile);
+				}
+
+				imageUploads.setURL(i, img.src);
+				UploadMsgClass.loadingMsg(i);
+
+			};
+		})(img, file);
+
+		reader.readAsDataURL(file);
+	} else {
+		window.URL = window.URL || window.webkitURL || false;
+		let imageUrl = URL.createObjectURL(file);
+		img.onload = function() {
+			let resizedImageFile = scaleAndCropImage(this, file.type);
+			loadData(i, resizedImageFile);
+		};
+		img.src = imageUrl;
+	}
+};
+
+
+//todo: unusable
+let imageUploads = (function() {
+
+	let images = [],
+		urls = [];
+
+	// reset the dome when thumb element is removed.
+	function resetThumbDOM() {
+		$(".img-box").each(function(i) {
+			$(this).attr("id", "image-place-holder-" + i);
+			$(this).find(".thumb").attr("id", "thumb-img-" + i);
+			$(this).find(".upload-status").attr("id", "upload-status-" + i);
+			$(this).find(".progress").attr("id", "progress-" + i);
+			$(this).find(".percents").attr("id", "percents-" + i);
+			$(this).find(".uploading").attr("id", "file-upload-" + i);
+			$(this).find(".pThumb").attr("id", "pThumb" + i);
+			$(this).find(".pict").attr("id", "pict" + i);
+		});
+	}
+
+	return {
+		add: function(l) {
+
+			let html = "", total = images.length;
+			if (total === allowedUploads - 1) {
+				//case: to hide camera icon
+				$('.uploadWrapper').addClass('hiddenElt');
+			} else {
+				if (total > allowedUploads - 1) {
+					return false;
+				}
+			}
+			for (let i = total; i < l + total; i++) {
+				let index = i, title = removeTitleFirstEle(index);
+
+				let htmlThumb = '<li draggable="true" class="img-box" id="image-place-holder-' + index + '" ' + title + ' id="img-' + index + '">' + '<div class="icon-remove-gray"></div>' + '<img class="thumb" id="thumb-img-' + index + '"  width="64px" height="64px" src="" />' + '<ul id="upload-status-' + index + '" class="upload-status">' + '<li>' + '<div id="progress-cnt-' + index + '" class="progress-holder">' + '<div id="progress-' + index + '" class="progress"></div>' + '</div>' + '<span id="percents-' + index + '" class="percents"></span>' + '</li>' + '<li>' + '<div class="uploading" id="file-upload-' + index + '"></div>' + '</li>' + '</ul>' + '</li>';
+
+				images.push(index);
+				html = html + htmlThumb;
+				$("#thumb-nails").append(htmlThumb);
+				dragAndDropElements.init("image-place-holder-" + i);
+			}
+
+			this.addClassFeatured();
+			if (!isDnDElement()) {
+				$(".img-box").css("cursor", "pointer");
+			} else {
+				firefoxStopImageEleDrag();
+			}
+			return true;
+		},
+
+		remove: function(i) {
+			if (isNumber(i)) {
+				$("#image-place-holder-" + i).remove();
+				images.pop();
+				urls.remove(i);
+				$('#thumb-nails').next('.uploadWrapper').removeClass('hiddenElt');
+			}
+			resetThumbDOM();
+			// hightlight
+			imageUploads.addClassFeatured();
+		},
+
+		addFromImageUrls: function(urlThumbArray, urlArray) {
+
+			let html = "";
+
+			for (let i = 0; i < urlArray.length; i++) {
+				let index = i, title = 'title-' + i;
+
+				let htmlThumb = '<li draggable="true" class="img-box" id="image-place-holder-' + index + '" ' + title + ' id="img-' + index + '">' + '<div class="icon-remove-gray"></div>' + '<img class="thumb" id="thumb-img-' + index + '"  width="64px" height="64px" src="' + urlArray[i] + '" />' + '<ul id="upload-status-' + index + '" class="upload-status">' + '<li>' + '<div id="progress-cnt-' + index + '" class="progress-holder">' + '<div id="progress-' + index + '" class="progress"></div>' + '</div>' + '<span id="percents-' + index + '" class="percents"></span>' + '</li>' + '<li>' + '<div class="uploading" id="file-upload-' + index + '"></div>' + '</li>' + '</ul>' + '</li>';
+
+				images.push(index);
+				html = html + htmlThumb;
+				$("#thumb-nails").append(htmlThumb);
+				dragAndDropElements.init("image-place-holder-" + i);
+
+				createImgObj(i, urlThumbArray[i], urlArray[i]);
+
+				if (i >= allowedUploads - 1) {
+					//case: to hide camera icon
+					$('.uploadWrapper').addClass('hiddenElt');
+				}
+			}
+
+			this.addClassFeatured();
+			if (!isDnDElement()) {
+				$(".img-box").css("cursor", "pointer");
+			} else {
+				firefoxStopImageEleDrag();
+			}
+			return true;
+		},
+
+		count: function() {
+			return images.length;
+		}, setURL: function(i, u) {
+			urls.push(u);
+		}, getURL: function(i) {
+			return urls[i];
+		}, addDuringPreview: function(i) {
+			images.push(i);
+		}, resetThumbDOM: function() {
+			resetThumbDOM();
+		}, addClassFeatured: function() {
+			$("#image-place-holder-0").addClass("featured");
+			if (!$("#featuredImage").doesExist()) {
+				$("#image-place-holder-0").append("<div id='featuredImage'>" + l18n.imageFeatured + "</div>");
+			}
+		}, removeClassFeatured: function() {
+			$("#image-place-holder-0").removeClass("featured");
+			$("#featuredImage").remove();
+		}
+	}
+})();
+
+//TODO: here
+let html5Upload = (evt) => {
+	// drag and drop
+	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
+	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
+
+	// if user
+	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
+		// create image place holders
+		imageUploads.add(totalFiles);
+		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
+		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
+	} else {
+
+		if (prvCount === allowedUploads) {
+			return;
+		}
+		// create image place holders
+		let currTotal = imageUploads.count();
+
+		if (currTotal === 0) {
+			if (totalFiles > allowedUploads) {
+				imageUploads.add(allowedUploads);
+			} else {
+				imageUploads.add(totalFiles);
+			}
+
+		} else if (currTotal > 0 && currTotal <= allowedUploads) {
+			let emptyCells = allowedUploads - currTotal;
+
+			if (totalFiles < emptyCells) {
+				imageUploads.add(totalFiles);
+			} else {
+				imageUploads.add(emptyCells);
+			}
+		}
+
+		for (let i = 0, file; file = uploadedFiles[i]; i++) {
+			if (prvCount === allowedUploads) {
+				return;
+			}
+			UploadMsgClass.loadingMsg(prvCount);
+			prepareForImageUpload(prvCount, file);
+			prvCount = prvCount + 1;
+
+		} // end for
+	}
+};
+
+
+let uploadNoneHtml5 = (fileEle) => {
+
+	let count = imageUploads.count();
+	if (count === allowedUploads) {
+		return;
+	}
+
+	imageUploads.add(1);
+
+
+	// hide progress bar
+	$(".progress-holder").hide();
+
+	let i = imageUploads.count() - 1;
+
+	$("#upload-status-" + i).show();
+
+	UploadMsgClass.loadingMsg(i);
+
+	$("#file-upload-" + i).css("margin-top", "1.4em");
+
+	let fname = $(fileEle).val(), mediaType = CpsImage.isSupported(fname);
+
+
+	let epsForm = {
+		action: this.EPS.url, id: "epsForm" + count, fieldNames: [
+			{
+				name: "s", value: !this.EPS.IsEbayDirectUL ? "1C5000" : "Standard"
+			}, {
+				name: "v", value: "2"
+			}, {
+				name: "b", value: "18"
+			}, {
+				name: "n", value: "g"
+			}, {
+				name: "a", value: this.EPS.token
+			}, {
+				name: "pltfrm", value: "bolt"
+			}, {
+				name: "rqt", value: $.now()
+			}
+		]
+
+	};
+
+	let iframe = $('<iframe />', {
+		name: 'eps-frame-' + count,
+		id: 'eps-frame-' + count,
+		style: 'position:absolute;left:-10000px',
+		src: "about:blank"
+	});
+
+	if ($("#eps-frame" + count)) {
+		iframe.appendTo('body');
+		// Add the iframe with a unique name
+	}
+
+
+	// work around for IE 9
+	// Clone the "real" input element
+	let real = $("#file");
+	let cloned = real.clone(true);
+
+	// Put the cloned element directly after the real element
+	// (the cloned element will take the real input element's place in your UI
+	// after you move the real element in the next step)
+	real.hide();
+	real.value = "";
+	cloned.insertAfter(real);
+
+	$('<form style="position:absolute;left:-10000px" method="post" action="' + epsForm.action + '" name="' + epsForm.id + '" id="' + epsForm.id + '" target="eps-frame-' + count + '" enctype="multipart/form-data">' + '<input type="hidden" name="s" value="' + epsForm.fieldNames[0].value + '"/><input type="hidden" name="v" value="' + epsForm.fieldNames[1].value + '"/>' + '<input type="hidden" name="b" value="' + epsForm.fieldNames[2].value + '"><input type="hidden" name="n" value="k"/><input type="hidden" name="pltfrm" value="bolt"/><input type="hidden" name="rqt" value="' + $.now() + '"/>' + '<input type="hidden" name="a" value="' + epsForm.fieldNames[4].value + '"/>' + '</form>').append($("#file")).appendTo('body');
+
+	$("#" + epsForm.id).submit();
+};
+
+
+//drag and drop
+// class drop
+
+var dragAndDrop = function() {
+
+	var dropbox = document.getElementById("dnd");
+
+	function defaults(e) {
+		e.stopPropagation();
+		e.preventDefault();
+	};
+	function dragenter(e) {
+		$(this).addClass("active");
+		defaults(e);
+	};
+
+	function dragover(e) {
+		$(this).removeClass("active");
+		defaults(e);
+		return false;
+	};
+	function dragleave(e) {
+		$(this).removeClass("active");
+		defaults(e);
+	};
+
+	function drop(e) {
+		$(this).removeClass("active");
+		defaults(e);
+		html5Upload(e);
+	};
+
+
+	function dragEnd(e) {
+		defaults(e);
+		return false;
+	};
+	if (dropbox) {
+		dropbox.addEventListener("dragenter", dragenter, false);
+		dropbox.addEventListener("dragleave", dragleave, false);
+		dropbox.addEventListener("dragover", dragover, false);
+		dropbox.addEventListener("drop", drop, false);
+		dropbox.addEventListener("dragEnd", dragEnd, false);
+	}
+	;
+
+
+};
+
+function defaults(e) {
+	e.stopPropagation();
+	e.preventDefault();
+};
+
+
+var firefoxStopImageEleDrag = function() {
+	jQuery.browser.firefox = /firefox/.test(navigator.userAgent.toLowerCase());
+	if (!jQuery.browser.firefox) {
+		return;
+	}
+
+
+	var images = document.querySelectorAll('.img-box img');
+
+	function dStrart(e) {
+		defaults(e)
+	}
+
+	function dEnter(e) {
+		defaults(e)
+	}
+
+	function dOver(e) {
+		defaults(e)
+	}
+
+	function dLeave(e) {
+		defaults(e)
+	}
+
+	function dDrop(e) {
+		defaults(e)
+	}
+
+	function dEnd(e) {
+		defaults(e)
+	}
+
+
+	[].forEach.call(images, function(image) {
+		image.addEventListener('dragstart', dStrart, false);
+		image.addEventListener('dragenter', dEnter, false);
+		image.addEventListener('dragover', dOver, false);
+		image.addEventListener('dragleave', dLeave, false);
+		image.addEventListener('drop', dDrop, false);
+		image.addEventListener('dragend', dEnd, false);
+	});
+
+};
+
+
+var dragAndDropElements = function() {
+	var dragSrcEl = null;
+	jQuery.browser = {};
+	jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
+
+	function handleDragOver(e) {
+		if (e.preventDefault) {
+			e.preventDefault(); // Necessary. Allows us to drop.
+		}
+
+		e.dataTransfer.dropEffect = 'move';
+		this.classList.add('over');
+
+		return false;
+	}
+
+	function handleDragEnter(e) {
+		// this / e.target is the current hover target.
+		this.classList.add('over');
+	}
+
+	function handleDragLeave(e) {
+		this.classList.remove('over');  // this / e.target is previous target element.
+	}
+
+	function handleDragStart(e) {
+		// Target (this) element is the source node.
+		//this.style.opacity = '0.4';
+
+		dragSrcEl = this;
+
+		e.dataTransfer.effectAllowed = 'move';
+
+		if (jQuery.browser.msie) {
+			e.dataTransfer.setData('text', this.innerHTML);
+		} else {
+			e.dataTransfer.setData('text/html', this.innerHTML);
+		}
+
+	}
+
+	function handleDrop(e) {
+		// this/e.target is current target element.
+
+		if (e.stopPropagation) {
+			e.stopPropagation(); // Stops some browsers from redirecting.
+		}
+
+		// Don't do anything if dropping the same column we're dragging.
+		if (dragSrcEl != this && this.innerHTML != null) {
+			// Set the source column's HTML to the HTML of the column we dropped on.
+			dragSrcEl.innerHTML = this.innerHTML;
+
+			if (jQuery.browser.msie) {
+				this.innerHTML = e.dataTransfer.getData('text');
+			} else {
+				this.innerHTML = e.dataTransfer.getData('text/html');
+
+			}
+
+		}
+
+		var cols = document.querySelectorAll('.img-box');
+
+		[].forEach.call(cols, function(col) {
+			col.classList.remove('over');
+		});
+		this.style.opacity = '1';
+		imageUploads.resetThumbDOM();
+
+		$("#featuredImage").remove();
+
+		imageUploads.addClassFeatured();
+
+
+		return false;
+	}
+
+	function handleDragEnd(e) {
+		// this/e.target is the source node.
+		if (e.stopPropagation) {
+			e.stopPropagation(); // Stops some browsers from redirecting.
+		}
+
+		firefoxStopImageEleDrag();
+	}
+
+	var cols = document.querySelectorAll('.img-box');
+
+	return {
+		initAll: function() {
+			if (isDnDElement()) {
+				[].forEach.call(cols, function(col) {
+					col.addEventListener('dragstart', handleDragStart, false);
+					col.addEventListener('dragenter', handleDragEnter, false);
+					col.addEventListener('dragover', handleDragOver, false);
+					col.addEventListener('dragleave', handleDragLeave, false);
+					col.addEventListener('drop', handleDrop, false);
+					col.addEventListener('dragend', handleDragEnd, false);
+
+					// mobile devices has no support for elements drag and drop
+					//col.addEventListener("touchstart", handleDragStart, false);
+					//col.addEventListener("touchend", handleDrop, false);
+					// col.addEventListener("touchcancel", handleCancel, false);
+					// col.addEventListener("touchleave", handleDragEnd, false);
+					// col.addEventListener("touchmove", handleDragOver, false);
+
+				});
+
+				firefoxStopImageEleDrag();
+
+			}
+		},
+
+		init: function(ele) {
+			if (isDnDElement()) {
+				var col = document.getElementById(ele);
+				col.addEventListener('dragstart', handleDragStart, false);
+				col.addEventListener('dragenter', handleDragEnter, false);
+				col.addEventListener('dragover', handleDragOver, false);
+				col.addEventListener('dragleave', handleDragLeave, false);
+				col.addEventListener('drop', handleDrop, false);
+				col.addEventListener('dragend', handleDragEnd, false);
+
+			}
+
+		}
+	};
+}();
+
+//jQuery stuff
+
+var allowedUploads = 4;
+$(document).ready(function() {
+	$(".img-box").each(function(i) {
+		imageUploads.addDuringPreview(i);
+	});
+});
+
+Array.prototype.remove = function(from, to) {
+	var rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
+};
+// Listen for event
+$(window).on('showPostBtn', function(e) {
+	$(".post-ad-btn-container").css("opacity", "1");
+	$('#postSubmit').attr('disabled', false);
+	$('#postPreview').attr('disabled', false);
+	$("#uploading").hide();
+});
+
+// IE hack
+var cloneInputFileField = function(selectThumb) {
+	// work around for IE
+	// Clone the "real" input element
+	var real = $(selectThumb);
+	var cloned = real.clone(true);
+
+	// Put the cloned element directly after the real element
+	// (the cloned element will take the real input element's place in your UI
+	// after you move the real element in the next step)
+	real.hide();
+	real.value = "";
+	cloned.insertAfter(real);
+	$(real).remove();
+
+};
+
+
+/// Multiple images upload
+
+
+// end
+
+let initialize = () => {
+	this.epsData = $('#js-eps-data');
+	this.isProgressEventSupport = isProgressEventSupported();
+	this.imageProgress = $('#js-image-progress');
+	this.EPS = {};
+	this.EPS.IsEbayDirectUL = this.epsData.data('eps-IsEbayDirectUL');
+	this.EPS.token = this.epsData.data('eps-token');
+	this.EPS.url = this.epsData.data('eps-url');
+	this.Bolt = {};
+	this.Bolt._postFormMsgs = {
+		selectLocationLabel: this.epsData.data('eps-selectLocationLabel'),
+		selectCategoryLabel: this.epsData.data('eps-selectCategoryLabel'),
+		categorySearchPlaceholder: this.epsData.data('eps-categorySearchPlaceholder')
+	};
+	this.Bolt.imgThumbUrls = JSON.parse(this.epsData.find('#js-bolt-imgThumbUrls').text());
+	this.Bolt.imgUrls = JSON.parse(this.epsData.find('#js-bolt-imgUrls').text());
+	//i18n strings
+	this.messages = {
+		successMsg: this.epsData.data('successMsg'),
+		failMsg: this.epsData.data('failMsg'),
+		loadingMsg: this.epsData.data('loadingMsg'),
+		resizing: this.epsData.data('resizing'),
+		invalidSize: this.epsData.data('invalidSize'),
+		invalidType: this.epsData.data('invalidType'),
+		invalidDimensions: this.epsData.data('invalidDimensions'),
+		firewall: this.epsData.data('firewall'),
+		colorspace: this.epsData.data('colorspace'),
+		corrupt: this.epsData.data('corrupt'),
+		pictureSrv: this.epsData.data('pictureSrv')
+	};
+
+	//TODO: uncomment this out
+	/*
+	$(document).ready(function() {
+		if ($.isSafari() && !IsSafariMUSupport() && !isIOS()) {
+			$("#file").removeAttr("multiple");
+		}
+
+		// hightlight
+		imageUploads.addClassFeatured();
+
+		//register elements for drag and drop
+		if (isDnDElement()) {
+			dragAndDropElements.initAll();
+		} else {
+			featuredImage();
+		}
+
+		$("#thumb-nails > li").each(function(index) {
+			if (!isDnDElement() && (index != 0 )) {
+				$(this).attr("title", l18n.clickFeatured);
+			} else if (index != 0) {
+				$(this).attr('title', l18n.dragToReorder);
+			}
+		});
+
+
+		if (isProgressEventSupport === true) {
+			$(".upload-status").show();
+		}
+
+		// some devices doesn't support file upload.
+		if (!isFileInputSupported) {
+			$("#upload-btn").hide();
+			$("#or").hide();
+			$("#dndArea").hide();
+			$("#dnd-cnt").css("float", "left");
+			$("#dnd").show();
+		}
+
+		if (window.addEventListener) {
+			dragAndDrop();
+		}
+
+		$(window).on("load", function(evt) {
+			imageUploads.addFromImageUrls(Bolt.imgThumbUrls, Bolt.imgUrls);
+		});
+
+		// on select file
+		$('#postForm').on("change", "#fileUpload", function(evt) {
+			var whichEleClicked = 0, imgHolderEle = "";
+
+			evt.stopImmediatePropagation();
+			// get img-box
+
+			// multiple image upload
+
+			// lets only do if there is support for multiple
+			if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
+				html5Upload(evt);
+			} else {
+				$("#fileUpload").removeAttr("multiple");
+				uploadNoneHtml5(this);
+			}
+		});
+
+
+		$("#postForm").on("click", ".icon-remove-gray", function(evt) {
+			evt.stopImmediatePropagation();
+			var i = parseInt($($(this).parents(".img-box")).attr("id").split("-")[3]);
+			if (isNumber(i)) {
+				imageUploads.remove(i);
+				// Trigger an event to indicate that an image was removed
+				// $('#postForm').trigger("removedImage", {});
+
+			}
+		});
+
+	});
+	*/
+
+};
+
+module.exports = {
+	initialize
+};
+
+
+

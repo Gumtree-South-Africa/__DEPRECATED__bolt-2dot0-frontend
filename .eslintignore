@@ -85,7 +85,7 @@ app/views/templates/pages/homepage/js/homepage.js
 app/views/templates/pages/quickpost/js/postPageValidator.js
 app/views/templates/pages/quickpost/js/quickpost.js
 app/views/templates/pages/quickpost/js/quickpostPrecompilation.js
-
+app/views/components/uploadImage/js/uploadImage.js
 
 server/middlewares/check-authentication.js
 server/middlewares/check-ip.js
