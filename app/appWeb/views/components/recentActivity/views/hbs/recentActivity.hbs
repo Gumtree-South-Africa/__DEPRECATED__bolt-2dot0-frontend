@@ -1,4 +1,5 @@
- <div class="feed-tiles">
+{{#if this.recentActivities.recent}}
+<div class="feed-tiles">
      {{#each this.recentActivities.recent}}
          <div class="feed-tile">
 			 <a href="{{seller.soiSeoUrl}}">
@@ -19,4 +20,4 @@
          </div>
      {{/each}}
 </div>
-
+{{/if}}
