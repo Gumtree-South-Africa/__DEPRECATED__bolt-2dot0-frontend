@@ -17,7 +17,7 @@
 	    	"configService"		:	"/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/ads",
-			"trendingSearch"	:	"/ads"
+			"recentActivities"  :	"/ads/activities/recent"
 	    }
 	},
 	"kafka": {
