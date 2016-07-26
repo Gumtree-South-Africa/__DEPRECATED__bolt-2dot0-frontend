@@ -106,6 +106,5 @@ let createSiteApps = () => {
 eventLoopMonitor();
 monitorAgent.startMonitoring();
 
-
 module.exports = app;
 module.exports.createSiteApps = createSiteApps;
