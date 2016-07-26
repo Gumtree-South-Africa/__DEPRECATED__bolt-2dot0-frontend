@@ -9,7 +9,7 @@ $feedTextSize: 16px;
 
         .feed-text-wrapper {
             position: relative;
-            width: 210px;
+            width: 75%;
             padding-left: 10px;
             height: 100px;
             float: left;
@@ -29,7 +29,7 @@ $feedTextSize: 16px;
         }
 
         .user-photo-wrapper {
-            margin-left: 20px;
+            margin-left: 7px;
             position: relative;
             width: 50px;
             float:left;
@@ -44,16 +44,17 @@ $feedTextSize: 16px;
 			border-radius: 100%;
 			float: left;
 			margin-top: 50%;
-			border:1px solid $button-bgcolor;
+			border:1px solid #FF9800;
 		}
 
         float:left;
     }
 
     background-color: $vivaWhite;
-    border: 1px solid $common-background-color;
-    margin: 0.5em 0;
+	border: 1px solid #D4D4D4;
+    margin: 0.5em 2% 0;
     height: 100px;
+	width: 96%;
 }
 
 @include from-breakpoint($medium-break){
