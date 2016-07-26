@@ -1,8 +1,30 @@
 'use strict';
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
+let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
 describe('Footer', () => {
+	beforeEach(() => {
+		specHelper.registerMockEndpoint(
+			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/LocationList.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.topKeywords}?limit=15&_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/keywords.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.trendingKeywords}?limit=15&_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/keywords.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.homepageGallery}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/GallerySlice.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.adStatistics}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/GallerySlice.json');
+		specHelper.registerMockEndpoint(
+			`/users/logged-in-user-info?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+	});
+
 	it('should show footer', (done) => {
 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest

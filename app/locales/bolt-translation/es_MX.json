@@ -1147,6 +1147,7 @@
 	"quickpost.error.priceLong": "El precio es muy alto",
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
+	"location.defaultcity": "M\u00E9xico",
 	"postad.button": "Publica Gratis",
 	"welcomescreen": {
 		"title": "¡Bienvenido!",
