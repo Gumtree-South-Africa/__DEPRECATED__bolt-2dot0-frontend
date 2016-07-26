@@ -6,8 +6,6 @@ let bapiService      = require("./bapi/bapiService");
 
 class RecentActivityService {
 	getRecentActivities(bapiHeaderValues, geoLatLng) {
-		// return require(process.cwd() + '/server/services/mockData/recentActivityMock');
-
 		let queryEndpoint = config.get('BAPI.endpoints.recentActivities');
 
 		let apiParameters = {};
@@ -21,10 +19,6 @@ class RecentActivityService {
 			extraParameters: apiParameters
 		});
 
-		console.log('################################');
-		console.log(bapiHeaderValues);
-		console.log(bapiOptions);
-		console.log('################################');
 		return bapiService.bapiPromiseGet(bapiOptions, bapiHeaderValues, 'recentActivities');
 	}
 }
