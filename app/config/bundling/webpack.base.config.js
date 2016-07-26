@@ -38,6 +38,10 @@ module.exports = {
 			compress: {
 				warnings: false
 			}
-		})
+		}),
+		new webpack.ProvidePlugin({
+			$: 'jquery'  // provide jquery on the global $
+		}),
+		new webpack.optimize.CommonsChunkPlugin("MainV2.min.js") // common Main.js File
 	]
 };

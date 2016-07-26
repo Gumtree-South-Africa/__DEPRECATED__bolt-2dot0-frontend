@@ -1,7 +1,5 @@
 'use strict';
 
-let $ = require("jquery");
-
 /**
  * abort and remove an ajax request from the currentTypeAheadAjaxMap
  * @param {string} key - search term for ajax request to be removed
