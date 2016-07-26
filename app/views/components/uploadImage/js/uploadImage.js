@@ -1,6 +1,10 @@
 'use strict';
 
 let I18n = require('i18n-2');
+let $ = require('jquery');
+$.prototype.doesExist = function() {
+	return $(this).length > 0;
+};
 
 let debug = false;
 
@@ -32,7 +36,7 @@ let isNumber = (o) => {
 };
 
 // Detect file input support
-let isFileInputSupported = (function() {
+let isFileInputSupported = (() => {
 	// Handle devices which falsely report support
 	if (navigator.userAgent.match(/(Android (1.0|1.1|1.5|1.6|2.0|2.1|4.3))|(Windows Phone (OS 7|8.0))|(XBLWP)|(ZuneWP)|(w(eb)?OSBrowser)|(webOS)|(Kindle\/(1.0|2.0|2.5|3.0))/)) {
 		return false;
@@ -62,7 +66,7 @@ let IsSafariMUSupport = () => {
 		let safariVersions = ["5.0", "4.0"];
 		let v = regExp.exec(navigator.userAgent);
 		if ($.isArray(v)) {
-			$.map(safariVersions, function(ele, i) {
+			$.map(safariVersions, (ele, i) => {
 
 				if ($.trim(ele) === $.trim(v[1])) {
 					return true;
@@ -408,7 +412,7 @@ let extractEPSServerError = (respText) => {
 
 let getUrlVars = (url) => {
 	let vars = {};
-	let parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m, key, value) {
+	let parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
 		vars[key] = value;
 	});
 	return vars;
@@ -454,18 +458,18 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 	let dataOffset = iDataOffset || 0;
 	let dataLength = 0;
 
-	this.getRawData = function() {
+	this.getRawData = () => {
 		return data;
 	};
 
 	if (typeof strData === "string") {
 		dataLength = iDataLength || data.length;
 
-		this.getByteAt = function(iOffset) {
+		this.getByteAt = (iOffset) => {
 			return data.charCodeAt(iOffset + dataOffset) & 0xFF;
 		};
 
-		this.getBytesAt = function(iOffset, iLength) {
+		this.getBytesAt = (iOffset, iLength) => {
 			let aBytes = [];
 
 			for (let i = 0; i < iLength; i++) {
@@ -478,20 +482,20 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 	} else if (typeof strData === "unknown") {
 		dataLength = iDataLength || IEBinary_getLength(data);
 
-		this.getByteAt = function(iOffset) {
+		this.getByteAt = (iOffset) => {
 			return IEBinary_getByteAt(data, iOffset + dataOffset);
 		};
 
-		this.getBytesAt = function(iOffset, iLength) {
+		this.getBytesAt = (iOffset, iLength) => {
 			return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray();
 		}
 	}
 
-	this.getLength = function() {
+	this.getLength = () => {
 		return dataLength;
 	};
 
-	this.getSByteAt = function(iOffset) {
+	this.getSByteAt = (iOffset) => {
 		let iByte = this.getByteAt(iOffset);
 		if (iByte > 127) {
 			return iByte - 256;
@@ -500,7 +504,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		}
 	};
 
-	this.getShortAt = function(iOffset, bBigEndian) {
+	this.getShortAt = (iOffset, bBigEndian) => {
 		let iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1) : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset);
 		if (iShort < 0) {
 			iShort += 65536;
@@ -508,7 +512,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return iShort;
 	};
 
-	this.getSShortAt = function(iOffset, bBigEndian) {
+	this.getSShortAt = (iOffset, bBigEndian) => {
 		let iUShort = this.getShortAt(iOffset, bBigEndian);
 		if (iUShort > 32767) {
 			return iUShort - 65536;
@@ -517,7 +521,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		}
 	};
 
-	this.getLongAt = function(iOffset, bBigEndian) {
+	this.getLongAt = (iOffset, bBigEndian) => {
 		let iByte1 = this.getByteAt(iOffset), iByte2 = this.getByteAt(iOffset + 1), iByte3 = this.getByteAt(iOffset + 2), iByte4 = this.getByteAt(iOffset + 3);
 
 		let iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4 : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
@@ -527,7 +531,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return iLong;
 	};
 
-	this.getSLongAt = function(iOffset, bBigEndian) {
+	this.getSLongAt = (iOffset, bBigEndian) => {
 		let iULong = this.getLongAt(iOffset, bBigEndian);
 		if (iULong > 2147483647) {
 			return iULong - 4294967296;
@@ -536,7 +540,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		}
 	};
 
-	this.getStringAt = function(iOffset, iLength) {
+	this.getStringAt = (iOffset, iLength) => {
 		let aStr = [];
 
 		let aBytes = this.getBytesAt(iOffset, iLength);
@@ -546,15 +550,15 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return aStr.join("");
 	};
 
-	this.getCharAt = function(iOffset) {
+	this.getCharAt = (iOffset) => {
 		return String.fromCharCode(this.getByteAt(iOffset));
 	};
 
-	this.toBase64 = function() {
+	this.toBase64 = () => {
 		return window.btoa(data);
 	};
 
-	this.fromBase64 = function(strBase64) {
+	this.fromBase64 = (strBase64) => {
 		data = window.atob(strBase64);
 	}
 };
@@ -732,51 +736,51 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 // BOLT IMAGE UPLOADER
 
 let UploadMsgClass = {
-	hideThumb: function(i) {
+	hideThumb: (i) => {
 		$("#file-upload-" + i).css("margin-top", "1.8em").css("color", "red");
 		$("#thumb-img-" + i).remove();
 		$("#progress-cnt-" + i).hide();
 		$("#percents-" + i).hide();
 	},
-	successMsg: function(i) {
+	successMsg: (i) => {
 		$("#file-upload-" + i).html(this.messages.successMsg);
 	},
-	failMsg: function(i) {
+	failMsg: (i) => {
 		$("#file-upload-" + i).html(this.messages.failMsg);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	loadingMsg: function(i) {
+	loadingMsg: (i) => {
 		$("#file-upload-" + i).html(this.messages.loadingMsg);
 	},
-	resizing: function(i) {
+	resizing: (i) => {
 		$("#file-upload-" + i).html(this.messages.resizing);
 	},
-	invalidSize: function(i) {
+	invalidSize: (i) => {
 		$("#file-upload-" + i).html(this.messages.invalidSize);
 	},
-	invalidType: function(i) {
+	invalidType: (i) => {
 		$("#file-upload-" + i).html(this.messages.invalidType);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	invalidDimensions: function(i) {
+	invalidDimensions: (i) => {
 		$("#file-upload-" + i).html(this.messages.invalidDimensions);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	firewall: function(i) {
+	firewall: (i) => {
 		$("#file-upload-" + i).html(this.messages.firewall);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	colorspace: function(i) {
+	colorspace: (i) => {
 		$("#file-upload-" + i).html(this.messages.colorspace);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	corrupt: function(i) {
+	corrupt: (i) => {
 		$("#file-upload-" + i).html(this.messages.corrupt);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
-	pictureSrv: function(i) {
+	pictureSrv: (i) => {
 		$("#file-upload-" + i).html(this.messages.pictureSrv);
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	},
 	translateErrorCodes: function(i, error) {
 		if (error === "FS002") {
@@ -794,7 +798,7 @@ let UploadMsgClass = {
 		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
 			this.corrupt(i);
 		}
-		this.hideThumb(i);
+		UploadMsgClass.hideThumb(i);
 	}
 };
 
@@ -803,7 +807,7 @@ let loadData = (i, file) => {
 
 	let formData = new FormData();
 	// direct upload via EPS proxy
-	if (!EPS.IsEbayDirectUL) {
+	if (!this.EPS.IsEbayDirectUL) {
 		formData.append("s", "1C5000");
 		formData.append("r", "0");
 		formData.append("pltfrm", "bolt");
@@ -817,14 +821,14 @@ let loadData = (i, file) => {
 	formData.append("v", "2");
 	formData.append("b", "18");
 	formData.append("n", "g");
-	formData.append("a", EPS.token);
+	formData.append("a", this.EPS.token);
 
 	formData.append("u", file);
 	formData.append("rqt", $.now());
 	formData.append("rqis", file.size);
 
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', EPS.url, true);
+	xhr.open('POST', this.EPS.url, true);
 	xhr.responseType = 'text';
 	xhr.bCount = i;
 	xhr.upload.bCount = i;
@@ -885,13 +889,14 @@ let loadData = (i, file) => {
 	};
 
 
+	let that = this;
 	xhr.upload.addEventListener("progress", function(event) {
 		let i = this.bCount;
 
 		if (event.lengthComputable) {
 			this.percents.html(" " + ((event.loaded / event.total) * 100).toFixed() + "%");
 
-
+			that.imageProgress.attr('value', event.loaded / event.total * 100);
 			// display image from client
 			if (event.loaded == event.total) {
 				$("#thumb-img-" + i).attr("src", imageUploads.getURL(i));
@@ -910,7 +915,7 @@ let resetForm = (name) => {
 	}
 };
 
-let CpsImage = (function() {
+let CpsImage = (() => {
 	let gif = "gif", jpeg = "jpeg", jpg = "jpg", png = "png", bmp = "bmp";
 
 	let getFileExt = function(f) {
@@ -946,9 +951,9 @@ let featuredImage = () => {
 
 let removeTitleFirstEle = function(index) {
 	if (!isDnDElement() && (index != 0 )) {
-		return 'title="' + l18n.clickFeatured + '"';
+		return 'title="' + this.i18n.clickFeatured + '"';
 	} else if (index != 0) {
-		return 'title="' + l18n.dragToReorder + '"';
+		return 'title="' + this.i18n.dragToReorder + '"';
 	}
 };
 //TODO: here minus a few dom references
@@ -1002,7 +1007,7 @@ let prepareForImageUpload = (i, file) => {
 	} else {
 		window.URL = window.URL || window.webkitURL || false;
 		let imageUrl = URL.createObjectURL(file);
-		img.onload = function() {
+		img.onload = () => {
 			let resizedImageFile = scaleAndCropImage(this, file.type);
 			loadData(i, resizedImageFile);
 		};
@@ -1012,14 +1017,14 @@ let prepareForImageUpload = (i, file) => {
 
 
 //todo: unusable
-let imageUploads = (function() {
+let imageUploads = (() => {
 
 	let images = [],
 		urls = [];
 
 	// reset the dome when thumb element is removed.
-	function resetThumbDOM() {
-		$(".img-box").each(function(i) {
+	this.resetThumbDOM = () => {
+		$(".img-box").each((i) => {
 			$(this).attr("id", "image-place-holder-" + i);
 			$(this).find(".thumb").attr("id", "thumb-img-" + i);
 			$(this).find(".upload-status").attr("id", "upload-status-" + i);
@@ -1029,10 +1034,16 @@ let imageUploads = (function() {
 			$(this).find(".pThumb").attr("id", "pThumb" + i);
 			$(this).find(".pict").attr("id", "pict" + i);
 		});
-	}
+	};
 
 	return {
-		add: function(l) {
+		addClassFeatured: () => {
+			$("#image-place-holder-0").addClass("featured");
+			if (!$("#featuredImage").doesExist()) {
+				$("#image-place-holder-0").append("<div id='featuredImage'>" + this.i18n.imageFeatured + "</div>");
+			}
+		},
+		add: (l) => {
 
 			let html = "", total = images.length;
 			if (total === allowedUploads - 1) {
@@ -1054,7 +1065,7 @@ let imageUploads = (function() {
 				dragAndDropElements.init("image-place-holder-" + i);
 			}
 
-			this.addClassFeatured();
+			imageUploads.addClassFeatured();
 			if (!isDnDElement()) {
 				$(".img-box").css("cursor", "pointer");
 			} else {
@@ -1063,7 +1074,7 @@ let imageUploads = (function() {
 			return true;
 		},
 
-		remove: function(i) {
+		remove: (i) => {
 			if (isNumber(i)) {
 				$("#image-place-holder-" + i).remove();
 				images.pop();
@@ -1075,7 +1086,7 @@ let imageUploads = (function() {
 			imageUploads.addClassFeatured();
 		},
 
-		addFromImageUrls: function(urlThumbArray, urlArray) {
+		addFromImageUrls: (urlThumbArray, urlArray) => {
 
 			let html = "";
 
@@ -1106,22 +1117,18 @@ let imageUploads = (function() {
 			return true;
 		},
 
-		count: function() {
+		count: () => {
 			return images.length;
-		}, setURL: function(i, u) {
+		}, setURL: (i, u) => {
 			urls.push(u);
-		}, getURL: function(i) {
+		}, getURL: (i) => {
 			return urls[i];
-		}, addDuringPreview: function(i) {
+		}, addDuringPreview: (i) => {
 			images.push(i);
-		}, resetThumbDOM: function() {
+		}, resetThumbDOM: () => {
 			resetThumbDOM();
-		}, addClassFeatured: function() {
-			$("#image-place-holder-0").addClass("featured");
-			if (!$("#featuredImage").doesExist()) {
-				$("#image-place-holder-0").append("<div id='featuredImage'>" + l18n.imageFeatured + "</div>");
-			}
-		}, removeClassFeatured: function() {
+
+		}, removeClassFeatured: () => {
 			$("#image-place-holder-0").removeClass("featured");
 			$("#featuredImage").remove();
 		}
@@ -1257,9 +1264,9 @@ let uploadNoneHtml5 = (fileEle) => {
 //drag and drop
 // class drop
 
-var dragAndDrop = function() {
+let dragAndDrop = () => {
 
-	var dropbox = document.getElementById("dnd");
+	let dropbox = document.getElementById("dnd");
 
 	function defaults(e) {
 		e.stopPropagation();
@@ -1309,14 +1316,14 @@ function defaults(e) {
 };
 
 
-var firefoxStopImageEleDrag = function() {
+let firefoxStopImageEleDrag = () => {
 	jQuery.browser.firefox = /firefox/.test(navigator.userAgent.toLowerCase());
 	if (!jQuery.browser.firefox) {
 		return;
 	}
 
 
-	var images = document.querySelectorAll('.img-box img');
+	let images = document.querySelectorAll('.img-box img');
 
 	function dStrart(e) {
 		defaults(e)
@@ -1343,7 +1350,7 @@ var firefoxStopImageEleDrag = function() {
 	}
 
 
-	[].forEach.call(images, function(image) {
+	[].forEach.call(images, (image) => {
 		image.addEventListener('dragstart', dStrart, false);
 		image.addEventListener('dragenter', dEnter, false);
 		image.addEventListener('dragover', dOver, false);
@@ -1355,8 +1362,8 @@ var firefoxStopImageEleDrag = function() {
 };
 
 
-var dragAndDropElements = function() {
-	var dragSrcEl = null;
+let dragAndDropElements = (() => {
+	let dragSrcEl = null;
 	jQuery.browser = {};
 	jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
 
@@ -1417,9 +1424,9 @@ var dragAndDropElements = function() {
 
 		}
 
-		var cols = document.querySelectorAll('.img-box');
+		let cols = document.querySelectorAll('.img-box');
 
-		[].forEach.call(cols, function(col) {
+		[].forEach.call(cols, (col) => {
 			col.classList.remove('over');
 		});
 		this.style.opacity = '1';
@@ -1442,12 +1449,12 @@ var dragAndDropElements = function() {
 		firefoxStopImageEleDrag();
 	}
 
-	var cols = document.querySelectorAll('.img-box');
+	let cols = document.querySelectorAll('.img-box');
 
 	return {
-		initAll: function() {
+		initAll: () => {
 			if (isDnDElement()) {
-				[].forEach.call(cols, function(col) {
+				[].forEach.call(cols, (col) => {
 					col.addEventListener('dragstart', handleDragStart, false);
 					col.addEventListener('dragenter', handleDragEnter, false);
 					col.addEventListener('dragover', handleDragOver, false);
@@ -1469,38 +1476,39 @@ var dragAndDropElements = function() {
 			}
 		},
 
-		init: function(ele) {
+		init: (ele) => {
 			if (isDnDElement()) {
-				var col = document.getElementById(ele);
-				col.addEventListener('dragstart', handleDragStart, false);
-				col.addEventListener('dragenter', handleDragEnter, false);
-				col.addEventListener('dragover', handleDragOver, false);
-				col.addEventListener('dragleave', handleDragLeave, false);
-				col.addEventListener('drop', handleDrop, false);
-				col.addEventListener('dragend', handleDragEnd, false);
+				//todo: mike uncomment
+				// let col = document.getElementById(ele);
+				// col.addEventListener('dragstart', handleDragStart, false);
+				// col.addEventListener('dragenter', handleDragEnter, false);
+				// col.addEventListener('dragover', handleDragOver, false);
+				// col.addEventListener('dragleave', handleDragLeave, false);
+				// col.addEventListener('drop', handleDrop, false);
+				// col.addEventListener('dragend', handleDragEnd, false);
 
 			}
 
 		}
-	};
-}();
+	}
+})();
 
 //jQuery stuff
 
-var allowedUploads = 4;
-$(document).ready(function() {
-	$(".img-box").each(function(i) {
+let allowedUploads = 4;
+$(document).ready(() => {
+	$(".img-box").each((i) => {
 		imageUploads.addDuringPreview(i);
 	});
 });
 
-Array.prototype.remove = function(from, to) {
-	var rest = this.slice((to || from) + 1 || this.length);
+Array.prototype.remove = (from, to) => {
+	let rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
 	return this.push.apply(this, rest);
 };
 // Listen for event
-$(window).on('showPostBtn', function(e) {
+$(window).on('showPostBtn', (e) => {
 	$(".post-ad-btn-container").css("opacity", "1");
 	$('#postSubmit').attr('disabled', false);
 	$('#postPreview').attr('disabled', false);
@@ -1508,11 +1516,11 @@ $(window).on('showPostBtn', function(e) {
 });
 
 // IE hack
-var cloneInputFileField = function(selectThumb) {
+let cloneInputFileField = (selectThumb) => {
 	// work around for IE
 	// Clone the "real" input element
-	var real = $(selectThumb);
-	var cloned = real.clone(true);
+	let real = $(selectThumb);
+	let cloned = real.clone(true);
 
 	// Put the cloned element directly after the real element
 	// (the cloned element will take the real input element's place in your UI
@@ -1535,111 +1543,116 @@ let initialize = () => {
 	this.isProgressEventSupport = isProgressEventSupported();
 	this.imageProgress = $('#js-image-progress');
 	this.EPS = {};
-	this.EPS.IsEbayDirectUL = this.epsData.data('eps-IsEbayDirectUL');
+	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
+
+	this.i18n = {
+		clickFeatured: this.epsData.data('i18n-clickfeatured'),
+		imageFeatured: this.epsData.data('i18n-imagefeatured'),
+		dragToReorder: this.epsData.data('i18n-dragtoreorder')
+	};
 	this.Bolt = {};
 	this.Bolt._postFormMsgs = {
-		selectLocationLabel: this.epsData.data('eps-selectLocationLabel'),
-		selectCategoryLabel: this.epsData.data('eps-selectCategoryLabel'),
-		categorySearchPlaceholder: this.epsData.data('eps-categorySearchPlaceholder')
+		selectLocationLabel: this.epsData.data('eps-selectlocationlabel'),
+		selectCategoryLabel: this.epsData.data('eps-selectcategorylabel'),
+		categorySearchPlaceholder: this.epsData.data('eps-categorysearchplaceholder')
 	};
 	this.Bolt.imgThumbUrls = JSON.parse(this.epsData.find('#js-bolt-imgThumbUrls').text());
 	this.Bolt.imgUrls = JSON.parse(this.epsData.find('#js-bolt-imgUrls').text());
 	//i18n strings
 	this.messages = {
-		successMsg: this.epsData.data('successMsg'),
-		failMsg: this.epsData.data('failMsg'),
-		loadingMsg: this.epsData.data('loadingMsg'),
+		successMsg: this.epsData.data('successmsg'),
+		failMsg: this.epsData.data('failmsg'),
+		loadingMsg: this.epsData.data('loadingmsg'),
 		resizing: this.epsData.data('resizing'),
-		invalidSize: this.epsData.data('invalidSize'),
-		invalidType: this.epsData.data('invalidType'),
-		invalidDimensions: this.epsData.data('invalidDimensions'),
+		invalidSize: this.epsData.data('invalidsize'),
+		invalidType: this.epsData.data('invalidtype'),
+		invalidDimensions: this.epsData.data('invaliddimensions'),
 		firewall: this.epsData.data('firewall'),
 		colorspace: this.epsData.data('colorspace'),
 		corrupt: this.epsData.data('corrupt'),
-		pictureSrv: this.epsData.data('pictureSrv')
+		pictureSrv: this.epsData.data('picturesrv')
 	};
+
+	// on select file
+	$('#postForm').on("change", "#fileUpload", (evt) => {
+
+		evt.stopImmediatePropagation();
+		// get img-box
+
+		// multiple image upload
+
+		// lets only do if there is support for multiple
+		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
+			html5Upload(evt);
+		} else {
+			$("#fileUpload").removeAttr("multiple");
+			uploadNoneHtml5(this);
+		}
+	});
 
 	//TODO: uncomment this out
 	/*
-	$(document).ready(function() {
-		if ($.isSafari() && !IsSafariMUSupport() && !isIOS()) {
-			$("#file").removeAttr("multiple");
-		}
+	 $(document).ready(() => {
+	 if ($.isSafari() && !IsSafariMUSupport() && !isIOS()) {
+	 $("#file").removeAttr("multiple");
+	 }
 
-		// hightlight
-		imageUploads.addClassFeatured();
+	 // hightlight
+	 imageUploads.addClassFeatured();
 
-		//register elements for drag and drop
-		if (isDnDElement()) {
-			dragAndDropElements.initAll();
-		} else {
-			featuredImage();
-		}
+	 //register elements for drag and drop
+	 if (isDnDElement()) {
+	 dragAndDropElements.initAll();
+	 } else {
+	 featuredImage();
+	 }
 
-		$("#thumb-nails > li").each(function(index) {
-			if (!isDnDElement() && (index != 0 )) {
-				$(this).attr("title", l18n.clickFeatured);
-			} else if (index != 0) {
-				$(this).attr('title', l18n.dragToReorder);
-			}
-		});
-
-
-		if (isProgressEventSupport === true) {
-			$(".upload-status").show();
-		}
-
-		// some devices doesn't support file upload.
-		if (!isFileInputSupported) {
-			$("#upload-btn").hide();
-			$("#or").hide();
-			$("#dndArea").hide();
-			$("#dnd-cnt").css("float", "left");
-			$("#dnd").show();
-		}
-
-		if (window.addEventListener) {
-			dragAndDrop();
-		}
-
-		$(window).on("load", function(evt) {
-			imageUploads.addFromImageUrls(Bolt.imgThumbUrls, Bolt.imgUrls);
-		});
-
-		// on select file
-		$('#postForm').on("change", "#fileUpload", function(evt) {
-			var whichEleClicked = 0, imgHolderEle = "";
-
-			evt.stopImmediatePropagation();
-			// get img-box
-
-			// multiple image upload
-
-			// lets only do if there is support for multiple
-			if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
-				html5Upload(evt);
-			} else {
-				$("#fileUpload").removeAttr("multiple");
-				uploadNoneHtml5(this);
-			}
-		});
+	 $("#thumb-nails > li").each(function(index) {
+	 if (!isDnDElement() && (index != 0 )) {
+	 $(this).attr("title", this.i18n.clickFeatured);
+	 } else if (index != 0) {
+	 $(this).attr('title', this.i18n.dragToReorder);
+	 }
+	 });
 
 
-		$("#postForm").on("click", ".icon-remove-gray", function(evt) {
-			evt.stopImmediatePropagation();
-			var i = parseInt($($(this).parents(".img-box")).attr("id").split("-")[3]);
-			if (isNumber(i)) {
-				imageUploads.remove(i);
-				// Trigger an event to indicate that an image was removed
-				// $('#postForm').trigger("removedImage", {});
+	 if (isProgressEventSupport === true) {
+	 $(".upload-status").show();
+	 }
 
-			}
-		});
+	 // some devices doesn't support file upload.
+	 if (!isFileInputSupported) {
+	 $("#upload-btn").hide();
+	 $("#or").hide();
+	 $("#dndArea").hide();
+	 $("#dnd-cnt").css("float", "left");
+	 $("#dnd").show();
+	 }
 
-	});
-	*/
+	 if (window.addEventListener) {
+	 dragAndDrop();
+	 }
+
+	 $(window).on("load", function(evt) {
+	 imageUploads.addFromImageUrls(Bolt.imgThumbUrls, Bolt.imgUrls);
+	 });
+
+
+	 $("#postForm").on("click", ".icon-remove-gray", function(evt) {
+	 evt.stopImmediatePropagation();
+	 let i = parseInt($($(this).parents(".img-box")).attr("id").split("-")[3]);
+	 if (isNumber(i)) {
+	 imageUploads.remove(i);
+	 // Trigger an event to indicate that an image was removed
+	 // $('#postForm').trigger("removedImage", {});
+
+	 }
+	 });
+
+	 });
+	 */
 
 };
 

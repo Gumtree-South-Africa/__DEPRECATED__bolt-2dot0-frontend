@@ -15,7 +15,10 @@
 	 data-firewall="{{i18n "postad.image.upload.network.firewall"}}"
 	 data-colorspace="{{i18n "postad.image.upload.colorspace"}}"
 	 data-corrupt="{{i18n "postad.image.upload.data.corrupt"}}"
-	 data-pictureSrv="{{i18n "postad.image.upload.failure.picture.down"}}">
+	 data-pictureSrv="{{i18n "postad.image.upload.failure.picture.down"}}"
+	 data-i18n-clickFeatured="{{i18n "postad.image.click.featured" locale=model.locale}}"
+	 data-i18n-imageFeatured="{{i18n "postad.image.featured" locale=model.locale}}"
+	 data-i18n-dragToReorder="{{i18n "postad.image.drag.reorder" locale=model.locale}}">
 	<div id="js-bolt-imgUrls">{{#if this.formContent.imgUrls}}{{json this.formContent.imgUrls}}{{else}}[]{{/if}}</div>
 	<div id="js-bolt-imgThumbUrls">{{#if this.formContent.imgThumbUrls}}{{json this.formContent.imgThumbUrls}}{{else}}
 		[]{{/if}}</div>

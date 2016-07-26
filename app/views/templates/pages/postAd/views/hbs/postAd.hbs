@@ -4,19 +4,24 @@
 
 {{#partial "content"}}
     {{> (dynamic "uploadImage")}}
-    <div class="post-ad-header">
+	<div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
             <span>{{i18n "postAd.confirm.back"}}</span>
         </span>
-        <div class="header-text">
-            <div>{{i18n "postAd.confirm.pageTitle"}}</div>
+		<div class="header-text">
+			<div>{{i18n "postAd.confirm.pageTitle"}}</div>
 			<div class="header-accent">-</div>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    <div class="user-image margin-auto"></div>
-    <progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
+	<form method="post" id="postForm" novalidate="novalidate">
+		<div class="file-upload-container">
+			<input class="file-input" type="file" name="pic" accept="image/*" id="fileUpload">
+			<div class="user-image margin-auto"></div>
+		</div>
+		<progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
+	</form>
 
 	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
 	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
