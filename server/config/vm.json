@@ -16,8 +16,8 @@
 	    	"adStatistics" 		: 	"/boltapi/v1/ads/statistics",
 	    	"configService"		:	"/boltapi/v1/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/boltapi/v1/configs/nodeapp/settings",
-		  	"quickpostAd"		:	"/boltapi/v1/ads",
-			"trendingSearch"	:	"/boltapi/v1/ads"
+		  	"quickpostAd"		:	"/boltapi/v1/ads"
+			"recentActivities"  :	"/boltapi/v1/ads/activities/recent"
 	    }
 	},
 	"kafka": {

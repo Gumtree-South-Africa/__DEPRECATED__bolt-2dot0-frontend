@@ -9,9 +9,6 @@ class RecentActivityModel {
 
 	getRecentActivities(geoLatLng) {
 		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLng).then((data) => {
-			console.log('$$$$$$$$$$$$$$$');
-			console.dir(data);
-
 			data.recent = [];
 
 			if (data.ads instanceof Array && data.ads.length>0) {

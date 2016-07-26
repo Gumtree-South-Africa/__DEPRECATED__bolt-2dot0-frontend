@@ -15,7 +15,8 @@
 			"homepageGallery": "/v1/ads/gallery",
 			"adStatistics": "/v1/ads/statistics",
 			"configService": "/v1/configs/nodeapp/settings.json",
-			"quickpostAd": "/v1/ads"
+			"quickpostAd": "/v1/ads",
+			"recentActivities":"/v1/ads/activities/recent"
 		}
 	},
 	"kafka": {
