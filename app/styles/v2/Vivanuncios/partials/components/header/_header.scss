@@ -203,7 +203,6 @@ $dropdown-width: 220px;
         border: 1px solid $headerMenuBorderColor;
 		display: inline-block;
 		white-space: nowrap;
-		padding-right: 1em;
 
 		&.hidden {
 			display: none;
@@ -211,6 +210,7 @@ $dropdown-width: 220px;
 
         .menu-item {
             border-bottom: 1px solid $headerMenuItemSeparatorColor;
+			padding-right: 1em;
 
             &:last-child {
                 border-bottom: none;

@@ -63,13 +63,16 @@ let initialize = () => {
 				$modalCp.removeClass('hiddenElt');
 		});
 
+
 		$('.modal-cp .btn').on('click', function(e) {
 			e.preventDefault(); e.stopPropagation();
 			let $selected = $('.ac-field.selected');
-			let cookieValue = $selected.attr('data-long') + 'ng' + $selected.attr('data-lat');
+			let cookieValue = $selected.attr('data-lat') + 'ng' + $selected.attr('data-long');
 			if($selected.attr('data-long') !== undefined) {
 				document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
 			}
+
+			location.reload(true);
 
 		});
 	});
