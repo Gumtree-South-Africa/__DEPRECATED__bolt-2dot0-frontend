@@ -145,4 +145,3 @@ class AbstractPageModel extends BasePageModel {
 
 module
 	.exports = AbstractPageModel;
-

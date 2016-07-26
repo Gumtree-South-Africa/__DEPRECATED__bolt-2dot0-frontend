@@ -150,7 +150,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	overflow: scroll;
+	overflow: auto;
 	z-index: 11;
 	&.hamburger-open {
 		left: 0;
