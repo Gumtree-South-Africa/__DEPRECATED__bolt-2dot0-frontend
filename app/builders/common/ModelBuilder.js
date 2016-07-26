@@ -39,6 +39,21 @@ class ModelBuilder {
 		return Q.all(promises);
 	}
 
+	getGeoFromCookie(geoIdCookie) {
+		let geoValue = null;
+
+		let geoIdCookieValue = ((typeof geoIdCookie === 'undefined') || geoIdCookie === '') ? null : geoIdCookie;
+
+		if (geoIdCookieValue !== null) {
+			let geoIdSplit = geoIdCookieValue.split('ng');
+			let geoLat = geoIdSplit[0];
+			let geoLng = geoIdSplit[1];
+			geoValue = '(' + geoLat + ',' + geoLng + ')';
+		}
+
+		return geoValue;
+	}
+
 	initModelData(config, locals, cookies) {
 		return {
 			env: 'public',
@@ -50,6 +65,7 @@ class ModelBuilder {
 			ip: locals.ip,
 			machineid: locals.machineid,
 			useragent: locals.useragent,
+			geoLatLng: this.getGeoFromCookie(cookies.geoId),
 
 			// Cached Location Data from BAPI
 			location: config.locationData,

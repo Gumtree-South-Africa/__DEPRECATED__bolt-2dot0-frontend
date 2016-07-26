@@ -77,8 +77,8 @@ class HomePageModelV2 {
 
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
-		let recentActivityModel = new RecentActivityModel(this.req, this.res);
 
+		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.bapiHeaders);
@@ -109,7 +109,12 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
-			return recentActivityModel.getRecentActivities();
+			return recentActivityModel.getRecentActivities(modelData.geoLatLng).then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
 		};
 
 		this.dataPromiseFunctionMap.search = () => {

@@ -3,21 +3,48 @@
 let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
 
 class RecentActivityModel {
-	constructor(req, res) {
-		this.req = req;
-		this.res = res;
+	constructor(bapiHeaderValues) {
+		this.bapiHeaderValues = bapiHeaderValues;
 	}
 
-	getRecentActivities() {
-		// let data = require(process.cwd() + '/test/serverUnit/mockData/components/recentActivityMock');
-		let data = recentActivityService.getRecentActivities();
-		data.recent = [];
+	getPrefix1(feed) {
+		return feed.action;
+	}
 
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
-		data.recent.push(data.recentActivities[Math.floor(Math.random()*data.recentActivities.length)]);
+	getPrefix2(feed) {
+		return feed.action;
+	}
 
-		return data;
+	isSold(feed) {
+		return !(feed.action === 'LISTED');
+	}
+
+	getRecentActivities(geoLatLng) {
+		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLng).then((data) => {
+			data.recent = [];
+
+			if (data.ads instanceof Array && data.ads.length>0) {
+				let feed1 = data.ads[Math.floor(Math.random() * data.ads.length)];
+				feed1.renderSold = this.isSold(feed1);
+				feed1.prefix1 = '11';
+				feed1.prefix2 = '12';
+				data.recent.push(feed1);
+
+				let feed2 = data.ads[Math.floor(Math.random() * data.ads.length)];
+				feed2.renderSold = this.isSold(feed2);
+				feed2.prefix1 = '21';
+				feed2.prefix2 = '22';
+				data.recent.push(feed2);
+
+				let feed3 = data.ads[Math.floor(Math.random() * data.ads.length)];
+				feed3.renderSold = this.isSold(feed3);
+				feed3.prefix1 = '31';
+				feed3.prefix2 = '32';
+				data.recent.push(feed3);
+			}
+
+			return data;
+		});
 	}
 }
 

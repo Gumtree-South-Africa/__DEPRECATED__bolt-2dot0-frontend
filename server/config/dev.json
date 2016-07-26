@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 		"server": {
-			"host": "api.bolt.ecg.ebay.com.localhost",
+			"host": "api.bolt.ebayclassifieds.com.localhost",
 			"port": 8080,
 			"parameters": null
 		},
@@ -16,7 +16,8 @@
 	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
 	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
-		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads"
+		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads",
+			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent"
 	    }
 	},
 	"kafka": {
@@ -44,12 +45,12 @@
 			"port"		: null,
 			"version"	: null
 		},
-		"baseSVGDataUrl"	: "/data-icon-css/",
-		"baseCSSUrl"	: "/css/",
-		"baseJSUrl"		: "/js/",
-		"baseJSMinUrl"	: "/jsmin/",
-		"baseImageUrl"	: "/images/",
-		"mainJSUrl"		: "/js/main.js",
+		"baseSVGDataUrl"	: "/public/data-icon-css/",
+		"baseCSSUrl"	: "/public/css/",
+		"baseJSUrl"		: "/public/js/",
+		"baseJSMinUrl"	: "/public/jsmin/",
+		"baseImageUrl"	: "/public/images/",
+		"mainJSUrl"		: "/public/js/main.js",
 		"min"			: false
 	}
 }
