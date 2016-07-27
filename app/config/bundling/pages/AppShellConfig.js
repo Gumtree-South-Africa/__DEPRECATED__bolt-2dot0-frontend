@@ -9,12 +9,12 @@
 
 module.exports = {
 		"bundleName": "AppShell",
-		"outputEntry": "app/appWeb/views/templates/pages/appshell/js/appshell",
+		"outputEntry": "app/views/templates/pages/appshell/js/appshell",
 		"common": {
 			"core": { // common->core is the base of the pages bundle and has the lowest priority
-				"Header": "app/appWeb/views/components/headerV2/js/header.js",
-				"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
-				"SectionMenu": "app/appWeb/views/components/sectionMenu/js/sectionMenu.js"
+				"Header": "app/views/components/headerV2/js/header.js",
+				"Footer": "app/views/components/footerV2/js/footer.js",
+				"SectionMenu": "app/views/components/sectionMenu/js/sectionMenu.js"
 			},
 			"mobile": {},
 			"desktop": {} // common locale and device specific has the second highest priority

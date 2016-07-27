@@ -1163,6 +1163,10 @@
 		"applink": "http://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
+		"upload": {
+			"photo": "Sube una foto",
+			"photos": "Sube foto(s)"
+		},
 		"image": {
 			"upload": {
 				"failure": "Por desgracia , se ha producido un error al cargar imágenes"
@@ -1314,5 +1318,13 @@
 		"trademark": {
 			"trademark": "2014-2016 eBay. Todos los derechos reservados"
 		}
+	},
+	"postAdModal": {
+		"helpText": "Los artículos con fotos tienen 10 veces más de probabilidades de venderse.",
+		"uploadPhotos": "Cargar foto(s)",
+		"uploadPhoto": "Carga una foto",
+		"uploadQuickly": "Publica un anuncio rápidamente",
+		"upload": "Publica un anuncio",
+		"close": "CERRAR"
 	}
 }
