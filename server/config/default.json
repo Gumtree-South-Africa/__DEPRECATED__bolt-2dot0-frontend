@@ -18,7 +18,8 @@
 	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads",
-			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent"
+			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent",
+			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending"
 	    }
 	},
 	"kafka": {
