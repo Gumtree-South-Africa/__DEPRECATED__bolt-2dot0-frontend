@@ -46,7 +46,7 @@ module.exports = function watch(gulp, plugins) {
 	    // Commit all files that got updated by release
 	    gulp.task('commit-changes', function () {
 			var stream =
-				gulp.src(['package.json', 'server/config/pp_phx_deploy.json', 'server/config/lnp_phx_deploy.json', 'server/config/prod_ix5_deploy.json', 'server/config/prod_phx_deploy.json'])
+				gulp.src(['CHANGELOG.md', 'package.json', 'server/config/pp_phx_deploy.json', 'server/config/lnp_phx_deploy.json', 'server/config/prod_ix5_deploy.json', 'server/config/prod_phx_deploy.json'])
 	        		.pipe(git.add())
 	        		.pipe(git.commit('[Prepare Release] Bumped version number --> app: '+ getAppVersion() + ', static: ' + getStaticVersion()));
 			return stream;
@@ -66,6 +66,7 @@ module.exports = function watch(gulp, plugins) {
 			        if (error) {
 			          return cb(error);
 			        }
+					git.pull('origin', 'HEAD:master', {args: '--tags'}, cb);
 			        git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 		    	});
 			return stream;
