@@ -1,18 +1,16 @@
 'use strict';
 
-let I18n = require('i18n-2');
 let $ = require('jquery');
+
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
 };
 
-let debug = false;
+let allowedUploads = 4;
 
 let TiffTags = {
 	0x0112: "Orientation"
 };
-
-//BoltImageUploadUtil
 
 let isCORS = () => {
 	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
@@ -23,32 +21,12 @@ let isDnDElement = () => {
 	return ('draggable' in div) && !matchMedia("mobile");
 };
 
-let encode_utf8 = (s) => {
+let encodeUtf8 = (s) => {
 	return encodeURIComponent(s);
-};
-
-let decode_utf8 = (s) => {
-	return decodeURIComponent(s);
 };
 
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
-};
-
-// Detect file input support
-let isFileInputSupported = (() => {
-	// Handle devices which falsely report support
-	if (navigator.userAgent.match(/(Android (1.0|1.1|1.5|1.6|2.0|2.1|4.3))|(Windows Phone (OS 7|8.0))|(XBLWP)|(ZuneWP)|(w(eb)?OSBrowser)|(webOS)|(Kindle\/(1.0|2.0|2.5|3.0))/)) {
-		return false;
-	}
-	// Create test element
-	let el = document.createElement("input");
-	el.type = "file";
-	return !el.disabled;
-})();
-
-let isAndroidNoImageResizeSupport = () => {
-	return !!navigator.userAgent.match(/(Android (2.3|4.1|4.2))/);
 };
 
 let isBlackBerryCurve = () => {
@@ -66,7 +44,7 @@ let IsSafariMUSupport = () => {
 		let safariVersions = ["5.0", "4.0"];
 		let v = regExp.exec(navigator.userAgent);
 		if ($.isArray(v)) {
-			$.map(safariVersions, (ele, i) => {
+			$.map(safariVersions, (ele) => {
 
 				if ($.trim(ele) === $.trim(v[1])) {
 					return true;
@@ -115,7 +93,7 @@ let createBlobFromDataUri = (dataURI) => {
 
 	} else {
 		window.BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder || window.MSBlobBuilder;
-		let bb = new BlobBuilder();
+		let bb = new window.BlobBuilder();
 		bb.append(buf);
 		return bb.getBlob(mimeString);
 	}
@@ -151,12 +129,12 @@ let determineCropWidthAndHeight = (ratio, width, height) => {
 		if (currentRatio > ratio) {
 			// Cut x
 			if (isIOS()) {
-				width = height * ratio
+				width = height * ratio;
 			}
 		} else {
 			// Cut y
 			if (isIOS()) {
-				height = width / ratio
+				height = width / ratio;
 			}
 		}
 	}
@@ -245,19 +223,13 @@ let transformCoordinate = (ctx, orientation, width, height) => {
 	}
 };
 
-let isCanvasSupported = () => {
-	let elem = document.createElement('canvas');
-	return !!(elem.getContext && elem.getContext('2d'));
-};
-
 let scaleAndCropImage = (img, fileType) => {
 	let maxLength = 800, QUALITY = 0.9;
 	let cropRatio = 800 / 600;
 	let originalWidth = img.width;
-	let originalHeight = img.height;//console.log(originalWidth + " " + originalHeight);
+	let originalHeight = img.height;//console.warn(originalWidth + " " + originalHeight);
 
 	// 90 degrees CW or CCW, flip width and height.
-	let $img = $(img);
 	let orientation = 0;
 	if (img.exifData && img.exifData.Orientation) {
 		orientation = img.exifData.Orientation;
@@ -337,300 +309,10 @@ let scaleAndCropImage = (img, fileType) => {
 
 };
 
-
-let readEXIFData = (file, start) => {
-	if (file.getStringAt(start, 4) !== "Exif") {
-		if (debug) {
-			console.log("Not valid EXIF data! " + file.getStringAt(start, 4));
-		}
-		return false;
-	}
-
-	let bigEnd, tags, tag, exifData, gpsData, tiffOffset = start + 6;
-
-	// test for TIFF validity and endianness
-	if (file.getShortAt(tiffOffset) === 0x4949) {
-		bigEnd = false;
-	} else if (file.getShortAt(tiffOffset) === 0x4D4D) {
-		bigEnd = true;
-	} else {
-		if (debug) {
-			console.log("Not valid TIFF data! (no 0x4949 or 0x4D4D)");
-		}
-		return false;
-	}
-
-	if (file.getShortAt(tiffOffset + 2, bigEnd) !== 0x002A) {
-		if (debug) {
-			console.log("Not valid TIFF data! (no 0x002A)");
-		}
-		return false;
-	}
-
-	if (file.getLongAt(tiffOffset + 4, bigEnd) !== 0x00000008) {
-		if (debug) {
-			console.log("Not valid TIFF data! (First offset not 8)", file.getShortAt(tiffOffset + 4, bigEnd));
-		}
-		return false;
-	}
-
-	tags = readTags(file, tiffOffset, tiffOffset + 8, TiffTags, bigEnd);
-
-	return tags;
-};
-
-// Add thumbnail url by replacing _18 to _14, See EPS server
-let convertThumbImgURL14 = (url) => {
-	let reg = /\_\d*\.JPG/ig;
-	return url.replace(reg, "_14.JPG");
-};
-
-let convertThumbImgURL18 = (url) => {
-	let reg = /\_\d*\.JPG/ig;
-	return url.replace(reg, "_18.JPG");
-};
-
-let getThumbImgURL = (url) => {
-	let result;
-	if (!this.EPS.IsEbayDirectUL) {
-		result = url.split("?")[0];
-	} else {
-		// for direct zoom
-		result = url.split(";")[1];
-	}
-
-	if (result && result.match(/^http/)) {
-		return result;  // url looks fine
-	}
-};
-
-let extractEPSServerError = (respText) => {
-	// format, ERROR:ME200
-	let reg = /ERROR\:(\w*)/i;
-	return respText.replace(reg, "$1");
-};
-
-let getUrlVars = (url) => {
-	let vars = {};
-	let parts = url.replace(/[?&]+([^=&]+)=([^&]*)/gi, (m, key, value) => {
-		vars[key] = value;
-	});
-	return vars;
-};
-
-let isProgressEventSupported = () => {
-	try {
-		let xhr = new XMLHttpRequest();
-
-		if ('onprogress' in xhr) {
-			if ($.isSafari() && !IsSafariMUSupport()) {
-				return false;
-			}
-			return true;
-		} else {
-			return false;
-		}
-	} catch (e) {
-		return false;
-	}
-};
-
-// then anywhere:
-
-
-let convertToBinaryFile = (dataUrl, img) => {
-	let byteString, binaryFile;
-	try {
-		byteString = atob(dataUrl.split(',')[1]);
-		binaryFile = new BinaryFile(byteString, 0, byteString.length);
-
-	} catch (e) {
-		if (debug) {
-			console.log("something went wrong");
-		}
-	}
-	;
-	return binaryFile;
-};
-
-let BinaryFile = (strData, iDataOffset, iDataLength) => {
-	let data = strData;
-	let dataOffset = iDataOffset || 0;
-	let dataLength = 0;
-
-	this.getRawData = () => {
-		return data;
-	};
-
-	if (typeof strData === "string") {
-		dataLength = iDataLength || data.length;
-
-		this.getByteAt = (iOffset) => {
-			return data.charCodeAt(iOffset + dataOffset) & 0xFF;
-		};
-
-		this.getBytesAt = (iOffset, iLength) => {
-			let aBytes = [];
-
-			for (let i = 0; i < iLength; i++) {
-				aBytes[i] = data.charCodeAt((iOffset + i) + dataOffset) & 0xFF
-			}
-
-
-			return aBytes;
-		}
-	} else if (typeof strData === "unknown") {
-		dataLength = iDataLength || IEBinary_getLength(data);
-
-		this.getByteAt = (iOffset) => {
-			return IEBinary_getByteAt(data, iOffset + dataOffset);
-		};
-
-		this.getBytesAt = (iOffset, iLength) => {
-			return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray();
-		}
-	}
-
-	this.getLength = () => {
-		return dataLength;
-	};
-
-	this.getSByteAt = (iOffset) => {
-		let iByte = this.getByteAt(iOffset);
-		if (iByte > 127) {
-			return iByte - 256;
-		} else {
-			return iByte;
-		}
-	};
-
-	this.getShortAt = (iOffset, bBigEndian) => {
-		let iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1) : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset);
-		if (iShort < 0) {
-			iShort += 65536;
-		}
-		return iShort;
-	};
-
-	this.getSShortAt = (iOffset, bBigEndian) => {
-		let iUShort = this.getShortAt(iOffset, bBigEndian);
-		if (iUShort > 32767) {
-			return iUShort - 65536;
-		} else {
-			return iUShort;
-		}
-	};
-
-	this.getLongAt = (iOffset, bBigEndian) => {
-		let iByte1 = this.getByteAt(iOffset), iByte2 = this.getByteAt(iOffset + 1), iByte3 = this.getByteAt(iOffset + 2), iByte4 = this.getByteAt(iOffset + 3);
-
-		let iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4 : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
-		if (iLong < 0) {
-			iLong += 4294967296;
-		}
-		return iLong;
-	};
-
-	this.getSLongAt = (iOffset, bBigEndian) => {
-		let iULong = this.getLongAt(iOffset, bBigEndian);
-		if (iULong > 2147483647) {
-			return iULong - 4294967296;
-		} else {
-			return iULong;
-		}
-	};
-
-	this.getStringAt = (iOffset, iLength) => {
-		let aStr = [];
-
-		let aBytes = this.getBytesAt(iOffset, iLength);
-		for (let j = 0; j < iLength; j++) {
-			aStr[j] = String.fromCharCode(aBytes[j]);
-		}
-		return aStr.join("");
-	};
-
-	this.getCharAt = (iOffset) => {
-		return String.fromCharCode(this.getByteAt(iOffset));
-	};
-
-	this.toBase64 = () => {
-		return window.btoa(data);
-	};
-
-	this.fromBase64 = (strBase64) => {
-		data = window.atob(strBase64);
-	}
-};
-
-
-let findEXIFinJPEG = (file) => {
-	if (file.getByteAt(0) !== 0xFF || file.getByteAt(1) !== 0xD8) {
-		return false; // not a valid jpeg
-	}
-
-	let offset = 2, length = file.getLength(), marker;
-
-	while (offset < length) {
-		if (file.getByteAt(offset) !== 0xFF) {
-			if (debug) {
-				console.log("Not a valid marker at offset " + offset + ", found: " + file.getByteAt(offset));
-			}
-			return false; // not a valid marker, something is wrong
-		}
-
-		marker = file.getByteAt(offset + 1);
-
-		// we could implement handling for other markers here,
-		// but we're only looking for 0xFFE1 for EXIF data
-
-		if (marker === 22400) {
-			if (debug) {
-				console.log("Found 0xFFE1 marker");
-			}
-
-			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
-
-			// offset += 2 + file.getShortAt(offset+2, true);
-
-		} else if (marker === 225) {
-			// 0xE1 = Application-specific 1 (for EXIF)
-			if (debug) {
-				console.log("Found 0xFFE1 marker");
-			}
-
-			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
-
-		} else {
-			offset += 2 + file.getShortAt(offset + 2, true);
-		}
-
-	}
-
-};
-
-
-let readTags = (file, tiffStart, dirStart, strings, bigEnd) => {
-	let entries = file.getShortAt(dirStart, bigEnd), tags = {}, entryOffset, tag, i;
-
-	for (i = 0; i < entries; i++) {
-		entryOffset = dirStart + i * 12 + 2;
-		tag = strings[file.getShortAt(entryOffset, bigEnd)];
-		if (!tag && debug) {
-			console.log("Unknown tag: " + file.getShortAt(entryOffset, bigEnd));
-		}
-		if (tag && tag === "Orientation") {
-			tags[tag] = readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd);
-		}
-	}
-	return tags;
-};
-
-
 let readTagValue = (file, entryOffset, tiffStart, dirStart, bigEnd) => {
 	let type = file.getShortAt(entryOffset + 2, bigEnd),
 		numValues = file.getLongAt(entryOffset + 4, bigEnd),
-		valueOffset = file.getLongAt(entryOffset + 8, bigEnd) + tiffStart, offset, vals, val, n, numerator, denominator;
+		valueOffset = file.getLongAt(entryOffset + 8, bigEnd) + tiffStart, offset, val, numerator, denominator;
 
 	switch (type) {
 		case 1: // byte, 8-bit unsigned int
@@ -679,8 +361,236 @@ let readTagValue = (file, entryOffset, tiffStart, dirStart, bigEnd) => {
 				return file.getSLongAt(valueOffset, bigEnd) / file.getSLongAt(valueOffset + 4, bigEnd);
 			}
 			break;
+		default:
+			break;
 	}
 };
+
+let readTags = (file, tiffStart, dirStart, strings, bigEnd) => {
+	let entries = file.getShortAt(dirStart, bigEnd), tags = {}, entryOffset, tag, i;
+
+	for (i = 0; i < entries; i++) {
+		entryOffset = dirStart + i * 12 + 2;
+		tag = strings[file.getShortAt(entryOffset, bigEnd)];
+		if (!tag) {
+			console.warn("Unknown tag: " + file.getShortAt(entryOffset, bigEnd));
+		}
+		if (tag && tag === "Orientation") {
+			tags[tag] = readTagValue(file, entryOffset, tiffStart, dirStart, bigEnd);
+		}
+	}
+	return tags;
+};
+
+
+
+let readEXIFData = (file, start) => {
+	if (file.getStringAt(start, 4) !== "Exif") {
+		return false;
+	}
+
+	let bigEnd, tags, tiffOffset = start + 6;
+
+	// test for TIFF validity and endianness
+	if (file.getShortAt(tiffOffset) === 0x4949) {
+		bigEnd = false;
+	} else if (file.getShortAt(tiffOffset) === 0x4D4D) {
+		bigEnd = true;
+	} else {
+		return false;
+	}
+
+	if (file.getShortAt(tiffOffset + 2, bigEnd) !== 0x002A) {
+		return false;
+	}
+
+	if (file.getLongAt(tiffOffset + 4, bigEnd) !== 0x00000008) {
+		return false;
+	}
+
+	tags = readTags(file, tiffOffset, tiffOffset + 8, TiffTags, bigEnd);
+
+	return tags;
+};
+
+// Add thumbnail url by replacing _18 to _14, See EPS server
+let convertThumbImgURL14 = (url) => {
+	let reg = /\_\d*\.JPG/ig;
+	return url.replace(reg, "_14.JPG");
+};
+
+let convertThumbImgURL18 = (url) => {
+	let reg = /\_\d*\.JPG/ig;
+	return url.replace(reg, "_18.JPG");
+};
+
+let getThumbImgURL = (url) => {
+	let result;
+	if (!this.EPS.IsEbayDirectUL) {
+		result = url.split("?")[0];
+	} else {
+		// for direct zoom
+		result = url.split(";")[1];
+	}
+
+	if (result && result.match(/^http/)) {
+		return result;  // url looks fine
+	}
+};
+
+let extractEPSServerError = (respText) => {
+	// format, ERROR:ME200
+	let reg = /ERROR\:(\w*)/i;
+	return respText.replace(reg, "$1");
+};
+
+
+let isProgressEventSupported = () => {
+	try {
+		let xhr = new XMLHttpRequest();
+
+		if ('onprogress' in xhr) {
+			if ($.isSafari() && !IsSafariMUSupport()) {
+				return false;
+			}
+			return true;
+		} else {
+			return false;
+		}
+	} catch (e) {
+		return false;
+	}
+};
+
+// then anywhere:
+
+let BinaryFile = (strData, iDataOffset, iDataLength) => {
+	let data = strData;
+	let dataOffset = iDataOffset || 0;
+	let dataLength = 0;
+
+	if (typeof strData === "string") {
+		dataLength = iDataLength || data.length;
+
+		this.getByteAt = (iOffset) => {
+			return data.charCodeAt(iOffset + dataOffset) & 0xFF;
+		};
+
+		this.getBytesAt = (iOffset, iLength) => {
+			let aBytes = [];
+
+			for (let i = 0; i < iLength; i++) {
+				aBytes[i] = data.charCodeAt((iOffset + i) + dataOffset) & 0xFF;
+			}
+
+
+			return aBytes;
+		};
+		//Turning off ESLint for this block because it's IE specific stuff
+		/*eslint-disable */
+	} else if (typeof strData === "unknown") {
+		dataLength = iDataLength || IEBinary_getLength(data);
+
+		this.getByteAt = (iOffset) => {
+			return IEBinary_getByteAt(data, iOffset + dataOffset);
+		};
+
+		this.getBytesAt = (iOffset, iLength) => {
+			return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray();
+		};
+	}
+
+	/*eslint-enable */
+	this.getLength = () => {
+		return dataLength;
+	};
+
+	this.getShortAt = (iOffset, bBigEndian) => {
+		let iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1) : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset);
+		if (iShort < 0) {
+			iShort += 65536;
+		}
+		return iShort;
+	};
+
+	this.getLongAt = (iOffset, bBigEndian) => {
+		let iByte1 = this.getByteAt(iOffset), iByte2 = this.getByteAt(iOffset + 1), iByte3 = this.getByteAt(iOffset + 2), iByte4 = this.getByteAt(iOffset + 3);
+
+		let iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4 : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
+		if (iLong < 0) {
+			iLong += 4294967296;
+		}
+		return iLong;
+	};
+
+	this.getSLongAt = (iOffset, bBigEndian) => {
+		let iULong = this.getLongAt(iOffset, bBigEndian);
+		if (iULong > 2147483647) {
+			return iULong - 4294967296;
+		} else {
+			return iULong;
+		}
+	};
+
+	this.getStringAt = (iOffset, iLength) => {
+		let aStr = [];
+
+		let aBytes = this.getBytesAt(iOffset, iLength);
+		for (let j = 0; j < iLength; j++) {
+			aStr[j] = String.fromCharCode(aBytes[j]);
+		}
+		return aStr.join("");
+	};
+
+};
+
+let convertToBinaryFile = (dataUrl) => {
+	let byteString, binaryFile;
+	try {
+		byteString = atob(dataUrl.split(',')[1]);
+		binaryFile = new BinaryFile(byteString, 0, byteString.length);
+
+	} catch (e) {
+		console.warn("something went wrong");
+	}
+	return binaryFile;
+};
+
+let findEXIFinJPEG = (file) => {
+	if (file.getByteAt(0) !== 0xFF || file.getByteAt(1) !== 0xD8) {
+		return false; // not a valid jpeg
+	}
+
+	let offset = 2, length = file.getLength(), marker;
+
+	while (offset < length) {
+		if (file.getByteAt(offset) !== 0xFF) {
+			return false; // not a valid marker, something is wrong
+		}
+
+		marker = file.getByteAt(offset + 1);
+
+		// we could implement handling for other markers here,
+		// but we're only looking for 0xFFE1 for EXIF data
+
+		if (marker === 22400) {
+
+			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
+
+			// offset += 2 + file.getShortAt(offset+2, true);
+
+		} else if (marker === 225) {
+			// 0xE1 = Application-specific 1 (for EXIF)
+			return readEXIFData(file, offset + 4, file.getShortAt(offset + 2, true) - 2);
+
+		} else {
+			offset += 2 + file.getShortAt(offset + 2, true);
+		}
+
+	}
+
+};
+
 
 let ExtractURLClass = (url) => {
 	// extract, url
@@ -700,7 +610,7 @@ let ExtractURLClass = (url) => {
 
 	return {
 		"thumbImage": convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
-	}
+	};
 
 };
 
@@ -729,13 +639,14 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 	ul.prependTo(imagePlaceHolder);
 
 	$("#thumb-img-" + i).attr("src", urlThumb);
-	$("#pThumb" + i).val(encode_utf8(urlThumb));
-	$("#pict" + i).val(encode_utf8(urlNormal));
+	$("#pThumb" + i).val(encodeUtf8(urlThumb));
+	$("#pict" + i).val(encodeUtf8(urlNormal));
 };
 
 // BOLT IMAGE UPLOADER
 
 let UploadMsgClass = {
+	//TODO: make a file-upload area that works with this.
 	hideThumb: (i) => {
 		$("#file-upload-" + i).css("margin-top", "1.8em").css("color", "red");
 		$("#thumb-img-" + i).remove();
@@ -802,118 +713,6 @@ let UploadMsgClass = {
 	}
 };
 
-//todo HERE
-let loadData = (i, file) => {
-
-	let formData = new FormData();
-	// direct upload via EPS proxy
-	if (!this.EPS.IsEbayDirectUL) {
-		formData.append("s", "1C5000");
-		formData.append("r", "0");
-		formData.append("pltfrm", "bolt");
-	} else {
-		// direct upload to zoom
-		formData.append("s", "Standard");
-		//formData.append("wm", "USER,ICON" );
-		formData.append("aXRequest", "2");
-	}
-
-	formData.append("v", "2");
-	formData.append("b", "18");
-	formData.append("n", "g");
-	formData.append("a", this.EPS.token);
-
-	formData.append("u", file);
-	formData.append("rqt", $.now());
-	formData.append("rqis", file.size);
-
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', this.EPS.url, true);
-	xhr.responseType = 'text';
-	xhr.bCount = i;
-	xhr.upload.bCount = i;
-	xhr.fileSize = file.size;
-
-	$("#filesize-" + i).html((file.size / 1024).toFixed(0));
-
-	xhr.upload.progress = $("#progress-" + i);
-	xhr.upload.percents = $("#percents-" + i);
-
-	xhr.onload = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
-
-		let i = this.bCount;
-		let url;
-		let statusOk = (this.status == 200);
-
-		// try to extract the url and figure out if it looks like to be valid
-		if (statusOk) {
-			url = ExtractURLClass(this.response);
-			if (!url) {
-				// url is not reconized => consider the download in error
-				statusOk = false;
-				// console.log("cannot extract from response given by EPS  => " + this.response);
-			}
-		}
-
-		if (!statusOk) {
-			UploadMsgClass.failMsg(i);
-		}
-
-		if (this.readyState == 4 && statusOk) {
-
-			let url = ExtractURLClass(this.response);
-
-			// any errors don't do anything after display error msg
-			if (!url) {
-				let error = extractEPSServerError(this.response);
-				UploadMsgClass.translateErrorCodes(i, error);
-				return;
-			}
-			;
-
-			// add the image once EPS returns the uploaded image URL
-			createImgObj(this.bCount, url.thumbImage, url.normal);
-
-			$("#progress-" + this.bCount).css("width", "100%");
-			$("#percents-" + this.bCount).html("100%");
-
-			UploadMsgClass.successMsg(i);
-		}
-
-	};
-
-	xhr.onabort = function(e) {
-
-	};
-
-
-	let that = this;
-	xhr.upload.addEventListener("progress", function(event) {
-		let i = this.bCount;
-
-		if (event.lengthComputable) {
-			this.percents.html(" " + ((event.loaded / event.total) * 100).toFixed() + "%");
-
-			that.imageProgress.attr('value', event.loaded / event.total * 100);
-			// display image from client
-			if (event.loaded == event.total) {
-				$("#thumb-img-" + i).attr("src", imageUploads.getURL(i));
-			}
-		} else {
-			UploadMsgClass.failMsg(i);
-		}
-	}, false);
-
-	xhr.send(formData);  // multipart/form-data
-};
-
-let resetForm = (name) => {
-	if ($(name).doesExist()) {
-		$(name).get(0).reset();
-	}
-};
 
 let CpsImage = (() => {
 	let gif = "gif", jpeg = "jpeg", jpg = "jpg", png = "png", bmp = "bmp";
@@ -930,92 +729,71 @@ let CpsImage = (() => {
 		}, getFileExt: function(f) {
 			return getFileExt(f);
 		}
-	}
+	};
 
 })();
 
-
-let featuredImage = () => {
-
-	$("#thumb-nails").on("click", ".img-box", function(e) {
-		let target = $(e.target);
-		if (target.is("div") && $(this).hasClass("icon-remove-gray")) {
-			return;
-		}
-		imageUploads.removeClassFeatured();
-		$(this).insertBefore($("#image-place-holder-0"));
-		imageUploads.resetThumbDOM();
-		imageUploads.addClassFeatured();
-	});
-};
-
 let removeTitleFirstEle = function(index) {
-	if (!isDnDElement() && (index != 0 )) {
+	if (!isDnDElement() && (index !== 0 )) {
 		return 'title="' + this.i18n.clickFeatured + '"';
-	} else if (index != 0) {
+	} else if (index !== 0) {
 		return 'title="' + this.i18n.dragToReorder + '"';
 	}
 };
-//TODO: here minus a few dom references
-let prepareForImageUpload = (i, file) => {
 
-	$("#upload-status-" + i).show();
-	UploadMsgClass.loadingMsg(i);
+function defaults(e) {
+	e.stopPropagation();
+	e.preventDefault();
+}
 
-	let mediaType = CpsImage.isSupported(file.name);
 
-	if (!mediaType) {
-		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
+let firefoxStopImageEleDrag = () => {
+	jQuery.browser.firefox = /firefox/.test(navigator.userAgent.toLowerCase());
+	if (!jQuery.browser.firefox) {
 		return;
 	}
 
-	let reader = null, isResizing = false;
 
-	let img = new Image();
+	let images = document.querySelectorAll('.img-box img');
 
-	if (window.FileReader) {
-		UploadMsgClass.resizing(i);
-
-		reader = new FileReader();
-
-		reader.onload = (function(img, file) {
-
-			return function(e) {
-				let dataUrl = e.target.result;
-
-
-				img.onload = function() {
-					let resizedImageFile = scaleAndCropImage(this, file.type);
-					loadData(i, resizedImageFile);
-				};
-
-				window.URL = window.URL || window.webkitURL || false;
-				img.src = URL.createObjectURL(file);//window.URL.createObjectURL(blob);
-
-				if (file.type === 'image/jpeg') {
-					let binaryFile = convertToBinaryFile(dataUrl);
-					img.exifData = findEXIFinJPEG(binaryFile);
-				}
-
-				imageUploads.setURL(i, img.src);
-				UploadMsgClass.loadingMsg(i);
-
-			};
-		})(img, file);
-
-		reader.readAsDataURL(file);
-	} else {
-		window.URL = window.URL || window.webkitURL || false;
-		let imageUrl = URL.createObjectURL(file);
-		img.onload = () => {
-			let resizedImageFile = scaleAndCropImage(this, file.type);
-			loadData(i, resizedImageFile);
-		};
-		img.src = imageUrl;
+	function dStrart(e) {
+		defaults(e);
 	}
+
+	function dEnter(e) {
+		defaults(e);
+	}
+
+	function dOver(e) {
+		defaults(e);
+	}
+
+	function dLeave(e) {
+		defaults(e);
+	}
+
+	function dDrop(e) {
+		defaults(e);
+	}
+
+	function dEnd(e) {
+		defaults(e);
+	}
+
+
+	[].forEach.call(images, (image) => {
+		image.addEventListener('dragstart', dStrart, false);
+		image.addEventListener('dragenter', dEnter, false);
+		image.addEventListener('dragover', dOver, false);
+		image.addEventListener('dragleave', dLeave, false);
+		image.addEventListener('drop', dDrop, false);
+		image.addEventListener('dragend', dEnd, false);
+	});
+
 };
 
 
+let dragAndDropElements;
 //todo: unusable
 let imageUploads = (() => {
 
@@ -1024,7 +802,7 @@ let imageUploads = (() => {
 
 	// reset the dome when thumb element is removed.
 	this.resetThumbDOM = () => {
-		$(".img-box").each((i) => {
+		$(".img-box").each(function(i) {
 			$(this).attr("id", "image-place-holder-" + i);
 			$(this).find(".thumb").attr("id", "thumb-img-" + i);
 			$(this).find(".upload-status").attr("id", "upload-status-" + i);
@@ -1081,7 +859,7 @@ let imageUploads = (() => {
 				urls.remove(i);
 				$('#thumb-nails').next('.uploadWrapper').removeClass('hiddenElt');
 			}
-			resetThumbDOM();
+			this.resetThumbDOM();
 			// hightlight
 			imageUploads.addClassFeatured();
 		},
@@ -1126,244 +904,18 @@ let imageUploads = (() => {
 		}, addDuringPreview: (i) => {
 			images.push(i);
 		}, resetThumbDOM: () => {
-			resetThumbDOM();
+			this.resetThumbDOM();
 
 		}, removeClassFeatured: () => {
 			$("#image-place-holder-0").removeClass("featured");
 			$("#featuredImage").remove();
 		}
-	}
+	};
 })();
 
-//TODO: here
-let html5Upload = (evt) => {
-	// drag and drop
-	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
-	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
 
-	// if user
-	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
-		// create image place holders
-		imageUploads.add(totalFiles);
-		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
-		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
-	} else {
-
-		if (prvCount === allowedUploads) {
-			return;
-		}
-		// create image place holders
-		let currTotal = imageUploads.count();
-
-		if (currTotal === 0) {
-			if (totalFiles > allowedUploads) {
-				imageUploads.add(allowedUploads);
-			} else {
-				imageUploads.add(totalFiles);
-			}
-
-		} else if (currTotal > 0 && currTotal <= allowedUploads) {
-			let emptyCells = allowedUploads - currTotal;
-
-			if (totalFiles < emptyCells) {
-				imageUploads.add(totalFiles);
-			} else {
-				imageUploads.add(emptyCells);
-			}
-		}
-
-		for (let i = 0, file; file = uploadedFiles[i]; i++) {
-			if (prvCount === allowedUploads) {
-				return;
-			}
-			UploadMsgClass.loadingMsg(prvCount);
-			prepareForImageUpload(prvCount, file);
-			prvCount = prvCount + 1;
-
-		} // end for
-	}
-};
-
-
-let uploadNoneHtml5 = (fileEle) => {
-
-	let count = imageUploads.count();
-	if (count === allowedUploads) {
-		return;
-	}
-
-	imageUploads.add(1);
-
-
-	// hide progress bar
-	$(".progress-holder").hide();
-
-	let i = imageUploads.count() - 1;
-
-	$("#upload-status-" + i).show();
-
-	UploadMsgClass.loadingMsg(i);
-
-	$("#file-upload-" + i).css("margin-top", "1.4em");
-
-	let fname = $(fileEle).val(), mediaType = CpsImage.isSupported(fname);
-
-
-	let epsForm = {
-		action: this.EPS.url, id: "epsForm" + count, fieldNames: [
-			{
-				name: "s", value: !this.EPS.IsEbayDirectUL ? "1C5000" : "Standard"
-			}, {
-				name: "v", value: "2"
-			}, {
-				name: "b", value: "18"
-			}, {
-				name: "n", value: "g"
-			}, {
-				name: "a", value: this.EPS.token
-			}, {
-				name: "pltfrm", value: "bolt"
-			}, {
-				name: "rqt", value: $.now()
-			}
-		]
-
-	};
-
-	let iframe = $('<iframe />', {
-		name: 'eps-frame-' + count,
-		id: 'eps-frame-' + count,
-		style: 'position:absolute;left:-10000px',
-		src: "about:blank"
-	});
-
-	if ($("#eps-frame" + count)) {
-		iframe.appendTo('body');
-		// Add the iframe with a unique name
-	}
-
-
-	// work around for IE 9
-	// Clone the "real" input element
-	let real = $("#file");
-	let cloned = real.clone(true);
-
-	// Put the cloned element directly after the real element
-	// (the cloned element will take the real input element's place in your UI
-	// after you move the real element in the next step)
-	real.hide();
-	real.value = "";
-	cloned.insertAfter(real);
-
-	$('<form style="position:absolute;left:-10000px" method="post" action="' + epsForm.action + '" name="' + epsForm.id + '" id="' + epsForm.id + '" target="eps-frame-' + count + '" enctype="multipart/form-data">' + '<input type="hidden" name="s" value="' + epsForm.fieldNames[0].value + '"/><input type="hidden" name="v" value="' + epsForm.fieldNames[1].value + '"/>' + '<input type="hidden" name="b" value="' + epsForm.fieldNames[2].value + '"><input type="hidden" name="n" value="k"/><input type="hidden" name="pltfrm" value="bolt"/><input type="hidden" name="rqt" value="' + $.now() + '"/>' + '<input type="hidden" name="a" value="' + epsForm.fieldNames[4].value + '"/>' + '</form>').append($("#file")).appendTo('body');
-
-	$("#" + epsForm.id).submit();
-};
-
-
-//drag and drop
-// class drop
-
-let dragAndDrop = () => {
-
-	let dropbox = document.getElementById("dnd");
-
-	function defaults(e) {
-		e.stopPropagation();
-		e.preventDefault();
-	};
-	function dragenter(e) {
-		$(this).addClass("active");
-		defaults(e);
-	};
-
-	function dragover(e) {
-		$(this).removeClass("active");
-		defaults(e);
-		return false;
-	};
-	function dragleave(e) {
-		$(this).removeClass("active");
-		defaults(e);
-	};
-
-	function drop(e) {
-		$(this).removeClass("active");
-		defaults(e);
-		html5Upload(e);
-	};
-
-
-	function dragEnd(e) {
-		defaults(e);
-		return false;
-	};
-	if (dropbox) {
-		dropbox.addEventListener("dragenter", dragenter, false);
-		dropbox.addEventListener("dragleave", dragleave, false);
-		dropbox.addEventListener("dragover", dragover, false);
-		dropbox.addEventListener("drop", drop, false);
-		dropbox.addEventListener("dragEnd", dragEnd, false);
-	}
-	;
-
-
-};
-
-function defaults(e) {
-	e.stopPropagation();
-	e.preventDefault();
-};
-
-
-let firefoxStopImageEleDrag = () => {
-	jQuery.browser.firefox = /firefox/.test(navigator.userAgent.toLowerCase());
-	if (!jQuery.browser.firefox) {
-		return;
-	}
-
-
-	let images = document.querySelectorAll('.img-box img');
-
-	function dStrart(e) {
-		defaults(e)
-	}
-
-	function dEnter(e) {
-		defaults(e)
-	}
-
-	function dOver(e) {
-		defaults(e)
-	}
-
-	function dLeave(e) {
-		defaults(e)
-	}
-
-	function dDrop(e) {
-		defaults(e)
-	}
-
-	function dEnd(e) {
-		defaults(e)
-	}
-
-
-	[].forEach.call(images, (image) => {
-		image.addEventListener('dragstart', dStrart, false);
-		image.addEventListener('dragenter', dEnter, false);
-		image.addEventListener('dragover', dOver, false);
-		image.addEventListener('dragleave', dLeave, false);
-		image.addEventListener('drop', dDrop, false);
-		image.addEventListener('dragend', dEnd, false);
-	});
-
-};
-
-
-let dragAndDropElements = (() => {
-	let dragSrcEl = null;
+dragAndDropElements = (() => {
+	let _this;
 	jQuery.browser = {};
 	jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
 
@@ -1378,12 +930,12 @@ let dragAndDropElements = (() => {
 		return false;
 	}
 
-	function handleDragEnter(e) {
+	function handleDragEnter() {
 		// this / e.target is the current hover target.
 		this.classList.add('over');
 	}
 
-	function handleDragLeave(e) {
+	function handleDragLeave() {
 		this.classList.remove('over');  // this / e.target is previous target element.
 	}
 
@@ -1391,7 +943,7 @@ let dragAndDropElements = (() => {
 		// Target (this) element is the source node.
 		//this.style.opacity = '0.4';
 
-		dragSrcEl = this;
+		_this = this;
 
 		e.dataTransfer.effectAllowed = 'move';
 
@@ -1411,9 +963,9 @@ let dragAndDropElements = (() => {
 		}
 
 		// Don't do anything if dropping the same column we're dragging.
-		if (dragSrcEl != this && this.innerHTML != null) {
+		if (_this !== this && this.innerHTML !== null) {
 			// Set the source column's HTML to the HTML of the column we dropped on.
-			dragSrcEl.innerHTML = this.innerHTML;
+			_this.innerHTML = this.innerHTML;
 
 			if (jQuery.browser.msie) {
 				this.innerHTML = e.dataTransfer.getData('text');
@@ -1479,47 +1031,314 @@ let dragAndDropElements = (() => {
 		init: (ele) => {
 			if (isDnDElement()) {
 				//todo: mike uncomment
-				// let col = document.getElementById(ele);
-				// col.addEventListener('dragstart', handleDragStart, false);
-				// col.addEventListener('dragenter', handleDragEnter, false);
-				// col.addEventListener('dragover', handleDragOver, false);
-				// col.addEventListener('dragleave', handleDragLeave, false);
-				// col.addEventListener('drop', handleDrop, false);
-				// col.addEventListener('dragend', handleDragEnd, false);
+				let col = document.getElementById(ele);
+				if (col) {
+					col.addEventListener('dragstart', handleDragStart, false);
+					col.addEventListener('dragenter', handleDragEnter, false);
+					col.addEventListener('dragover', handleDragOver, false);
+					col.addEventListener('dragleave', handleDragLeave, false);
+					col.addEventListener('drop', handleDrop, false);
+					col.addEventListener('dragend', handleDragEnd, false);
+				}
 
 			}
 
 		}
-	}
+	};
 })();
 
-//jQuery stuff
 
-let allowedUploads = 4;
-$(document).ready(() => {
-	$(".img-box").each((i) => {
-		imageUploads.addDuringPreview(i);
-	});
-});
 
-Array.prototype.remove = (from, to) => {
-	let rest = this.slice((to || from) + 1 || this.length);
-	this.length = from < 0 ? this.length + from : from;
-	return this.push.apply(this, rest);
+//todo HERE
+let loadData = (i, file) => {
+
+	let formData = new FormData();
+	// direct upload via EPS proxy
+	if (!this.EPS.IsEbayDirectUL) {
+		formData.append("s", "1C5000");
+		formData.append("r", "0");
+		formData.append("pltfrm", "bolt");
+	} else {
+		// direct upload to zoom
+		formData.append("s", "Standard");
+		//formData.append("wm", "USER,ICON" );
+		formData.append("aXRequest", "2");
+	}
+
+	formData.append("v", "2");
+	formData.append("b", "18");
+	formData.append("n", "g");
+	formData.append("a", this.EPS.token);
+
+	formData.append("u", file);
+	formData.append("rqt", $.now());
+	formData.append("rqis", file.size);
+
+	let xhr = new XMLHttpRequest();
+	xhr.open('POST', this.EPS.url, true);
+	xhr.responseType = 'text';
+	xhr.bCount = i;
+	xhr.upload.bCount = i;
+	xhr.fileSize = file.size;
+
+	$("#filesize-" + i).html((file.size / 1024).toFixed(0));
+
+	xhr.upload.progress = $("#progress-" + i);
+	xhr.upload.percents = $("#percents-" + i);
+
+	xhr.onload = function(e) {
+		e.stopPropagation();
+		e.preventDefault();
+
+		let count = this.bCount;
+		let url;
+		let statusOk = (this.status === 200);
+
+		// try to extract the url and figure out if it looks like to be valid
+		if (statusOk) {
+			url = ExtractURLClass(this.response);
+			if (!url) {
+				// url is not reconized => consider the download in error
+				statusOk = false;
+				// console.warn("cannot extract from response given by EPS  => " + this.response);
+			}
+		}
+
+		if (!statusOk) {
+			UploadMsgClass.failMsg(count);
+		}
+
+		if (this.readyState === 4 && statusOk) {
+
+			let urlClass = ExtractURLClass(this.response);
+
+			// any errors don't do anything after display error msg
+			if (!urlClass) {
+				let error = extractEPSServerError(this.response);
+				UploadMsgClass.translateErrorCodes(count, error);
+				return;
+			}
+
+			// add the image once EPS returns the uploaded image URL
+			createImgObj(this.bCount, url.thumbImage, url.normal);
+
+			$("#progress-" + this.bCount).css("width", "100%");
+			$("#percents-" + this.bCount).html("100%");
+
+			UploadMsgClass.successMsg(i);
+		}
+
+	};
+
+	xhr.onabort = function(e) {
+		console.warn('aborted', e);
+	};
+
+
+	let _this = this;
+	xhr.upload.addEventListener("progress", function(event) {
+		let index = this.bCount;
+
+		if (event.lengthComputable) {
+			this.percents.html(" " + ((event.loaded / event.total) * 100).toFixed() + "%");
+
+			_this.imageProgress.attr('value', event.loaded / event.total * 100);
+			// display image from client
+			if (event.loaded === event.total) {
+				//TODO: display the image from EPS in the div.
+				$("#thumb-img-" + index).attr("src", imageUploads.getURL(i));
+			}
+		} else {
+			UploadMsgClass.failMsg(index);
+		}
+	}, false);
+
+	xhr.send(formData);  // multipart/form-data
 };
-// Listen for event
-$(window).on('showPostBtn', (e) => {
-	$(".post-ad-btn-container").css("opacity", "1");
-	$('#postSubmit').attr('disabled', false);
-	$('#postPreview').attr('disabled', false);
-	$("#uploading").hide();
-});
 
-// IE hack
-let cloneInputFileField = (selectThumb) => {
-	// work around for IE
+// TODO: uncomment
+// let featuredImage = () => {
+//
+// 	$("#thumb-nails").on("click", ".img-box", function(e) {
+// 		let target = $(e.target);
+// 		if (target.is("div") && $(this).hasClass("icon-remove-gray")) {
+// 			return;
+// 		}
+// 		imageUploads.removeClassFeatured();
+// 		$(this).insertBefore($("#image-place-holder-0"));
+// 		imageUploads.resetThumbDOM();
+// 		imageUploads.addClassFeatured();
+// 	});
+// };
+
+//TODO: here minus a few dom references
+let prepareForImageUpload = (i, file) => {
+
+	$("#upload-status-" + i).show();
+	UploadMsgClass.loadingMsg(i);
+
+	let mediaType = CpsImage.isSupported(file.name);
+
+	if (!mediaType) {
+		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
+		return;
+	}
+
+	let reader = null;
+
+	let img = new Image();
+
+	if (window.FileReader) {
+		UploadMsgClass.resizing(i);
+
+		reader = new FileReader();
+
+		reader.onload = (function(image, thisFile) {
+
+			return function(e) {
+				let dataUrl = e.target.result;
+
+
+				image.onload = function() {
+					let resizedImageFile = scaleAndCropImage(this, thisFile.type);
+					loadData(i, resizedImageFile);
+				};
+
+				window.URL = window.URL || window.webkitURL || false;
+				image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
+
+				if (thisFile.type === 'image/jpeg') {
+					let binaryFile = convertToBinaryFile(dataUrl);
+					image.exifData = findEXIFinJPEG(binaryFile);
+				}
+
+				imageUploads.setURL(i, image.src);
+				UploadMsgClass.loadingMsg(i);
+
+			};
+		})(img, file);
+
+		reader.readAsDataURL(file);
+	} else {
+		window.URL = window.URL || window.webkitURL || false;
+		let imageUrl = URL.createObjectURL(file);
+		img.onload = () => {
+			let resizedImageFile = scaleAndCropImage(this, file.type);
+			loadData(i, resizedImageFile);
+		};
+		img.src = imageUrl;
+	}
+};
+
+
+//TODO: here
+let html5Upload = (evt) => {
+	// drag and drop
+	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
+	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
+
+	// if user
+	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
+		// create image place holders
+		imageUploads.add(totalFiles);
+		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
+		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
+	} else {
+
+		if (prvCount === allowedUploads) {
+			return;
+		}
+		// create image place holders
+		let currTotal = imageUploads.count();
+
+		if (currTotal === 0) {
+			if (totalFiles > allowedUploads) {
+				imageUploads.add(allowedUploads);
+			} else {
+				imageUploads.add(totalFiles);
+			}
+
+		} else if (currTotal > 0 && currTotal <= allowedUploads) {
+			let emptyCells = allowedUploads - currTotal;
+
+			if (totalFiles < emptyCells) {
+				imageUploads.add(totalFiles);
+			} else {
+				imageUploads.add(emptyCells);
+			}
+		}
+
+		for (let i = 0, file; file === uploadedFiles[i]; i++) {
+			if (prvCount === allowedUploads) {
+				return;
+			}
+			UploadMsgClass.loadingMsg(prvCount);
+			prepareForImageUpload(prvCount, file);
+			prvCount = prvCount + 1;
+
+		} // end for
+	}
+};
+
+
+let uploadNoneHtml5 = () => {
+
+	let count = imageUploads.count();
+	if (count === allowedUploads) {
+		return;
+	}
+
+	imageUploads.add(1);
+
+
+	// hide progress bar
+	$(".progress-holder").hide();
+
+	let i = imageUploads.count() - 1;
+
+	$("#upload-status-" + i).show();
+
+	UploadMsgClass.loadingMsg(i);
+
+	$("#file-upload-" + i).css("margin-top", "1.4em");
+
+	let epsForm = {
+		action: this.EPS.url, id: "epsForm" + count, fieldNames: [
+			{
+				name: "s", value: !this.EPS.IsEbayDirectUL ? "1C5000" : "Standard"
+			}, {
+				name: "v", value: "2"
+			}, {
+				name: "b", value: "18"
+			}, {
+				name: "n", value: "g"
+			}, {
+				name: "a", value: this.EPS.token
+			}, {
+				name: "pltfrm", value: "bolt"
+			}, {
+				name: "rqt", value: $.now()
+			}
+		]
+
+	};
+
+	let iframe = $('<iframe />', {
+		name: 'eps-frame-' + count,
+		id: 'eps-frame-' + count,
+		style: 'position:absolute;left:-10000px',
+		src: "about:blank"
+	});
+
+	if ($("#eps-frame" + count)) {
+		iframe.appendTo('body');
+		// Add the iframe with a unique name
+	}
+
+
+	// work around for IE 9
 	// Clone the "real" input element
-	let real = $(selectThumb);
+	let real = $("#file");
 	let cloned = real.clone(true);
 
 	// Put the cloned element directly after the real element
@@ -1528,15 +1347,75 @@ let cloneInputFileField = (selectThumb) => {
 	real.hide();
 	real.value = "";
 	cloned.insertAfter(real);
-	$(real).remove();
 
+	$('<form style="position:absolute;left:-10000px" method="post" action="' + epsForm.action + '" name="' + epsForm.id + '" id="' + epsForm.id + '" target="eps-frame-' + count + '" enctype="multipart/form-data">' + '<input type="hidden" name="s" value="' + epsForm.fieldNames[0].value + '"/><input type="hidden" name="v" value="' + epsForm.fieldNames[1].value + '"/>' + '<input type="hidden" name="b" value="' + epsForm.fieldNames[2].value + '"><input type="hidden" name="n" value="k"/><input type="hidden" name="pltfrm" value="bolt"/><input type="hidden" name="rqt" value="' + $.now() + '"/>' + '<input type="hidden" name="a" value="' + epsForm.fieldNames[4].value + '"/>' + '</form>').append($("#file")).appendTo('body');
+
+	$("#" + epsForm.id).submit();
 };
 
 
-/// Multiple images upload
+//drag and drop
+// class drop
+
+//TODO: uncomment
+// let dragAndDrop = () => {
+//
+// 	let dropbox = document.getElementById("dnd");
+//
+// 	function defaults(e) {
+// 		e.stopPropagation();
+// 		e.preventDefault();
+// 	}
+// 	function dragenter(e) {
+// 		$(this).addClass("active");
+// 		defaults(e);
+// 	}
+//
+// 	function dragover(e) {
+// 		$(this).removeClass("active");
+// 		defaults(e);
+// 		return false;
+// 	}
+//
+// 	function dragleave(e) {
+// 		$(this).removeClass("active");
+// 		defaults(e);
+// 	}
+//
+// 	function drop(e) {
+// 		$(this).removeClass("active");
+// 		defaults(e);
+// 		html5Upload(e);
+// 	}
+//
+//
+// 	function dragEnd(e) {
+// 		defaults(e);
+// 		return false;
+// 	}
+//
+// 	if (dropbox) {
+// 		dropbox.addEventListener("dragenter", dragenter, false);
+// 		dropbox.addEventListener("dragleave", dragleave, false);
+// 		dropbox.addEventListener("dragover", dragover, false);
+// 		dropbox.addEventListener("drop", drop, false);
+// 		dropbox.addEventListener("dragEnd", dragEnd, false);
+// 	}
+//
+// };
+
+//jQuery stuff
 
 
-// end
+Array.prototype.remove = (from, to) => {
+	let rest = this.slice((to || from) + 1 || this.length);
+	this.length = from < 0 ? this.length + from : from;
+	return this.push.apply(this, rest);
+};
+
+//TODO: remove all DOM references outside of the initialize function.
+//TODO: remove all deprecated functionality
+//TODO: tie in old functionality to new DOM
 
 let initialize = () => {
 	this.epsData = $('#js-eps-data');
@@ -1610,9 +1489,9 @@ let initialize = () => {
 	 }
 
 	 $("#thumb-nails > li").each(function(index) {
-	 if (!isDnDElement() && (index != 0 )) {
+	 if (!isDnDElement() && (index !== 0 )) {
 	 $(this).attr("title", this.i18n.clickFeatured);
-	 } else if (index != 0) {
+	 } else if (index !== 0) {
 	 $(this).attr('title', this.i18n.dragToReorder);
 	 }
 	 });
