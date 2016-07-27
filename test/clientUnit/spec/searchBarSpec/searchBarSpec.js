@@ -1,6 +1,6 @@
 "use strict";
 
-let searchBarController = require("app/appWeb/views/components/searchbarV2/js/searchbarV2.js");
+let searchBarController = require("app/views/components/searchbarV2/js/searchbarV2.js");
 let specHelper = require('../../helpers/commonSpecHelper.js');
 
 let mockTypeAheadResults = {
