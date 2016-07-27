@@ -28,15 +28,7 @@ describe("Header V2", () => {
 		$profileButton.click();
 
 		expect($profileDropdown.hasClass("hidden")).toBeFalsy("profile dropdown should be visible after click");
-
-
-
-
-
-		// setup js to call ajax, and mock it this way:
-		//specHelper.registerMockAjax("/api/postad/createad", mockTypeAheadResults);
-
-
+		
 		done();
 	});
 
