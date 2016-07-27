@@ -329,8 +329,8 @@ function createImgObj(i, urlThumb, urlNormal) {
 	ul.prependTo(imagePlaceHolder);
 
 	$("#thumb-img-" + i).attr("src", urlThumb);
-	$("#pThumb" + i).val(encode_utf8(urlThumb));
-	$("#pict" + i).val(encode_utf8(urlNormal));
+	$("#pThumb" + i).val(encodeUtf8(urlThumb));
+	$("#pict" + i).val(encodeUtf8(urlNormal));
 };
 
 var ExtractURLClass = function(url) {
