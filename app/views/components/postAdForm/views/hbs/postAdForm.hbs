@@ -1,0 +1,35 @@
+<div class="post-ad-form-container">
+	<div class="photo-switcher">
+        {{> (dynamic "photoCarousel")}}
+    </div>
+
+	<div class="input-form">
+		<div class="heading title-text">{{i18n "postAd.createAds.form.title"}}</div>
+		<div class="char-remaining">
+			<span class="char-count">#</span><span>/30</span>
+			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
+		</div>
+		<input class="text-input title-input" type="text">
+
+		<div class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
+		<input class="text-input price-input" type="text"
+			   placeholder="{{i18n "postAd.createAds.form.pricePlaceholder"}}">
+
+		<form class="radio-form">
+			<label class="control">
+				<input type="radio" name="radio"/>
+				<div class="outer-circle">
+					<div class="inner-circle"></div>
+				</div>
+				<span class="currency-type">MXN</span>
+			</label>
+			<label class="control">
+				<input type="radio" name="radio"/>
+				<div class="outer-circle">
+					<div class="inner-circle"></div>
+				</div>
+				<span class="currency-type">USD</span>
+			</label>
+		</form>
+	</div>
+</div>

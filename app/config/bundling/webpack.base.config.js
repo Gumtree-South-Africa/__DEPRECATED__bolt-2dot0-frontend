@@ -38,6 +38,10 @@ module.exports = {
 			compress: {
 				warnings: false
 			}
+		}),
+		new webpack.ProvidePlugin({
+			$: "jquery",
+			jQuery: "jquery"
 		})
 	]
 };
