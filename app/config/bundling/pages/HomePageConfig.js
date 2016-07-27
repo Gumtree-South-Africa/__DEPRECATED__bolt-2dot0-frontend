@@ -23,8 +23,7 @@ module.exports = {
 				"ProfileMenu": "app/views/components/profileMenu/js/profileMenu.js",
 				"HamburgerMenu": "app/views/components/hamburgerMenu/js/hamburgerMenu.js",
 				"TopLocations": "app/views/components/topLocations/js/topLocations.js",
-				"TopSearches": "app/views/components/topSearches/js/topSearches.js",
-				"PostAdModal": "app/views/components/postAdModal/js/postAdModal.js"
+				"TopSearches": "app/views/components/topSearches/js/topSearches.js"
 			},
 			"mobile": {},
 			"desktop": {} // common locale and device specific has the second highest priority

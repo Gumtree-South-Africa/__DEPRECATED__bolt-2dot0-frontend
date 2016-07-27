@@ -1487,6 +1487,7 @@ let initialize = () => {
 		let file = evt.target.files[0];
 		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
+			console.warn('not supported');
 			return;
 		}
 		reader.onloadend = () => {

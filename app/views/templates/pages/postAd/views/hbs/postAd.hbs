@@ -3,6 +3,7 @@
 {{/partial}}
 
 {{#partial "content"}}
+    {{> (dynamic "postAdModal")}}
 	<div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
@@ -19,7 +20,7 @@
 	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
 	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
 
-    {{> (dynamic "loginModal")}}
+    {{> (dynamic "loginModal") isHidden=true}}
 {{/partial}}
 
 {{#partial "footerWrapper"}}
