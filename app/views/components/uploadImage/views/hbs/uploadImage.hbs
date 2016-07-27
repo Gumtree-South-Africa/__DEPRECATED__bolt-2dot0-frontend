@@ -1,0 +1,36 @@
+<div class="upload-image-container">
+	<div id="js-eps-data" style="display: none;"
+		 data-eps-url="{{this.eps.epsUploadExternalURL}}"
+		 data-eps-token="{{this.eps.epsToken}}"
+		 data-eps-IsEbayDirectUL="{{this.eps.isEbayDirectUploadEnabled}}"
+		 data-eps-selectLocationLabel="{{i18n "postad.select.location"}}"
+		 data-eps-selectCategoryLabel="{{i18n "postad.select.category.$$"}}"
+		 data-eps-categorySearchPlaceholder="{{i18n "postad.select.category.sampleSearch"}}"
+		 data-successMsg="{{i18n "postad.image.upload.success"}}"
+		 data-failMsg="{{i18n "postad.image.upload.failure"}}"
+		 data-loadingMsg="{{i18n "postad.image.uploading"}}"
+		 data-resizing="{{i18n "postad.image.upload.resize"}}"
+		 data-invalidSize="{{i18n "postad.image.upload.failure.invalid.size"}}"
+		 data-invalidType="{{i18n "postad.image.upload.failure.invalid.types"}}"
+		 data-invalidDimensions="{{i18n "postad.image.upload.failure.invalid.dimensions"}}"
+		 data-firewall="{{i18n "postad.image.upload.network.firewall"}}"
+		 data-colorspace="{{i18n "postad.image.upload.colorspace"}}"
+		 data-corrupt="{{i18n "postad.image.upload.data.corrupt"}}"
+		 data-pictureSrv="{{i18n "postad.image.upload.failure.picture.down"}}"
+		 data-i18n-clickFeatured="{{i18n "postad.image.click.featured" locale=model.locale}}"
+		 data-i18n-imageFeatured="{{i18n "postad.image.featured" locale=model.locale}}"
+		 data-i18n-dragToReorder="{{i18n "postad.image.drag.reorder" locale=model.locale}}">
+		<div id="js-bolt-imgUrls">{{#if this.formContent.imgUrls}}{{json this.formContent.imgUrls}}{{else}}
+			[]{{/if}}</div>
+		<div id="js-bolt-imgThumbUrls">{{#if this.formContent.imgThumbUrls}}{{json this.formContent.imgThumbUrls}}{{else}}
+			[]{{/if}}</div>
+	</div>
+	<form method="post" id="postForm" novalidate="novalidate">
+		<div class="file-upload-container">
+			<input class="file-input" type="file" name="pic" accept="image/*" id="fileUpload">
+			<div class="user-image margin-auto">
+			</div>
+		</div>
+		<progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
+	</form>
+</div>

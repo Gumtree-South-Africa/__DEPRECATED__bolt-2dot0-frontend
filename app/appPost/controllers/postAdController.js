@@ -5,6 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
+let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 
 let postAdData = {
 	extendModelData: (req, modelData) => {
@@ -22,6 +23,7 @@ router.use('/', (req, res, next) => {
 		postAdData.extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
+		modelData.eps = EpsModel();
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {

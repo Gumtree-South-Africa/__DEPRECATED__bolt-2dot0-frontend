@@ -23,7 +23,29 @@ let _toggleProfileMenu = (shouldClose) => {
 	this.$profileHeaderIcon.toggleClass('icon-up', !shouldClose);
 };
 
-let initialize = () => {
+// onReady separated out for easy testing
+let onReady = () => {
+	this.$header.find('.browse').on('click', () => {
+		_toggleBrowseMenu();
+	}).mouseenter(() => {
+		_toggleBrowseMenu(false);
+	}).mouseleave(() => {
+		_toggleBrowseMenu(true);
+	});
+
+	this.$header.find('.profile').on('click', () => {
+		_toggleProfileMenu();
+	}).mouseenter(() => {
+		_toggleProfileMenu(false);
+	}).mouseleave(() => {
+		_toggleProfileMenu(true);
+	});
+	deepLink.initialize();
+};
+
+// Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
+let initialize = (registerOnReady = true) => {
+
 	this.$header = $(".headerV2");
 	this.$profileDrop = this.$header.find('#js-profile-dropdown');
 	this.$profileHeaderIcon = this.$header.find("#js-profile-header-item-icon");
@@ -31,27 +53,13 @@ let initialize = () => {
 	this.$catDrop = this.$header.find('#js-cat-dropdown');
 	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
 
-	$(document).ready(() => {
-		this.$header.find('.browse').on('click', () => {
-			_toggleBrowseMenu();
-		}).mouseenter(() => {
-			_toggleBrowseMenu(false);
-		}).mouseleave(() => {
-			_toggleBrowseMenu(true);
-		});
-
-		this.$header.find('.profile').on('click', () => {
-			_toggleProfileMenu();
-		}).mouseenter(() => {
-			_toggleProfileMenu(false);
-		}).mouseleave(() => {
-			_toggleProfileMenu(true);
-		});
-		deepLink.initialize();
-	});
+	if (registerOnReady) {
+		$(document).ready(onReady);
+	}
 };
 
 module.exports = {
+	onReady,
 	initialize
 };
 

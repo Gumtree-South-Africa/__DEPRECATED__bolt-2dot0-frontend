@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.113",
+  "version": "2.0.114",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
@@ -146,6 +146,7 @@
     "karma-phantomjs-launcher": "1.0.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.7.0",
     "loading-indicator": "2.0.0",
     "loading-spinner": "1.1.1",
     "map-stream": "0.0.6",

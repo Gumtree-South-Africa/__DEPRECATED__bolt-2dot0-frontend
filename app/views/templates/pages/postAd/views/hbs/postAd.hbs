@@ -3,23 +3,24 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <div class="post-ad-header">
+    {{> (dynamic "postAdModal")}}
+	<div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
             <span>{{i18n "postAd.confirm.back"}}</span>
         </span>
-        <div class="header-text">
-            <div>{{i18n "postAd.confirm.pageTitle"}}</div>
+		<div class="header-text">
+			<div>{{i18n "postAd.confirm.pageTitle"}}</div>
 			<div class="header-accent">-</div>
-        </div>
-    </div>
+		</div>
+	</div>
 
-    <div class="user-image margin-auto"></div>
+    {{> (dynamic "uploadImage")}}
 
 	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
 	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
 
-    {{> (dynamic "loginModal")}}
+    {{> (dynamic "loginModal") isHidden=true}}
 {{/partial}}
 
 {{#partial "footerWrapper"}}

@@ -62,25 +62,16 @@ module.exports = function watch(gulp, plugins) {
 			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
 		});
 
-		gulp.task('webpackTest', (done) => {
-			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.test.config.js"), function(err, stats) {
-				if(err) throw new gutil.PluginError("webpack", err);
-				console.log("[webpack]", stats.toString());
-
-				done();
-			});
-		});
 
 		gulp.task('karma', function (done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
-				singleRun: true
+				singleRun: false
 			}, done).start();
 		});
 
 		gulp.task('test:clientUnit', function (done) {
-			runSequence("precompileTemplates", "webpackTest", "karma", done)
+			runSequence("precompileTemplates", "karma", done)
 		});
 
 		// SERVER UNIT TEST TASKS

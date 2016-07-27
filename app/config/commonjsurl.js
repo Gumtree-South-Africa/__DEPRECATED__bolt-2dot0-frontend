@@ -21,7 +21,8 @@ module.exports = [
 		"common/banners/GoogleTagBanner.js",
 		"common/banners/BannerCookie.js",
 		"common/tracking/Analytics.js",
-		"common/header/searchbar.js"
+		"common/header/searchbar.js",
+		"common/pwa/service-worker-registration.js"
 	], "bundleName": "common.min.js"
 	}
 ]

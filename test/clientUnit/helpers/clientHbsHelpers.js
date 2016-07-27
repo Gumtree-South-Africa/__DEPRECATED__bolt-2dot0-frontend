@@ -1,4 +1,7 @@
 "use strict";
+
+let StringUtils = require("public/js/common/utils/StringUtilsV2.js");
+
 let locale;
 let _loadPartial = (name) => {
 	return Handlebars.partials[name];
@@ -56,14 +59,12 @@ let initialize = () => {
 		return new Handlebars.SafeString(JSON.stringify(context));
 	});
 
-	// TODO Once string utils have been modified for commonJS, require it
-	// and hookup
-	// Handlebars.registerHelper('obfuscateUrl', (value) => {
-	// 	if (!value) {
-	// 		return;
-	// 	}
-	// 	return new Handlebars.SafeString(StringUtils.obfsucate(value));
-	// });
+	Handlebars.registerHelper('obfuscateUrl', (value) => {
+		if (!value) {
+			return;
+		}
+		return new Handlebars.SafeString(StringUtils.obfsucate(value));
+	});
 
 	Handlebars.registerHelper('digitGrouping', (number, separator) => {
 		if (!number) {

@@ -1,18 +1,23 @@
- <div class="feed-tiles">
+{{#if this.recentActivities.recent}}
+<div class="feed-tiles">
      {{#each this.recentActivities.recent}}
-     <div class="feed-tile">
-         <div class="user-photo-wrapper">
-             <div class="user-photo" style="background-image: url({{userProfileImageUrl}});">
-             </div>
+         <div class="feed-tile">
+			 <a href="{{seller.soiSeoUrl}}">
+                <div class="user-photo-wrapper">
+					<img alt="" class='fallback-image icon-UserIcon-100px user-avatar' src='{{seller.profileImage}}'>
+                 </div>
+			 </a>
+             <a href="{{viewSeoUrl}}">
+                 <div class="feed-text-wrapper">
+                     {{#if renderSold}}
+                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.sold" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
+                     {{else}}
+                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.listing" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
+                     {{/if}}
+                 </div>
+                 <div class="clear"></div>
+             </a>
          </div>
-         <div class="feed-text-wrapper">
-             {{#if renderSold}}
-                 <span class="feed-text"><span class="bold">{{userFirstName}}</span>{{i18n "recentactivity.message.sold" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
-             {{else}}
-                 <span class="feed-text"><span class="bold">{{userFirstName}}</span>{{i18n "recentactivity.message.listing" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
-             {{/if}}
-         </div>
-         <div class="clear"></div>
-     </div>
      {{/each}}
 </div>
+{{/if}}

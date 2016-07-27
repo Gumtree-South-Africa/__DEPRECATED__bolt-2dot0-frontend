@@ -105,7 +105,7 @@
 		// the following rules documented on http://eslint.org/docs/rules/ as
 		// "Sytlistic Issues" - These rules relate to style guidelines, and are therefore quite subjective:
 
-		"no-bitwise": 2,
+		"no-bitwise": 0,
 		"brace-style": [
 			2,
 			"1tbs"
