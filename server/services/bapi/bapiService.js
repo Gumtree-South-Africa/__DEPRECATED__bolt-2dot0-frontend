@@ -97,7 +97,7 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.headers['Content-Type'] = 'application/json';
-	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOperations.parameters);
+	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
