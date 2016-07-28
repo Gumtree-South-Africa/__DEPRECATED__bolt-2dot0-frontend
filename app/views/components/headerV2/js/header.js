@@ -25,7 +25,7 @@ let _toggleProfileMenu = (shouldClose) => {
 
 // onReady separated out for easy testing
 let onReady = () => {
-	console.log('onReady');
+
 	this.$header.find('.browse').on('click', () => {
 		_toggleBrowseMenu();
 	}).mouseenter(() => {
