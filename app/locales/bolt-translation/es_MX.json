@@ -1237,6 +1237,18 @@
 			"didYouKnow": "Did you know that... TBT",
 			"tip": "Tip: You can go the My Ads page to view your ads and add more details. TBT"
 		},
+		"createAds": {
+			"directions": "It's as simple as add and post! More photos and edits can be added after posting. TBT",
+			"form": {
+				"title": "Ad Title TBT",
+				"remaining": "remaining TBT",
+				"price": "Price TBT",
+				"addPhotos": "Add Photos TBT",
+				"pricePlaceholder": "Ask Me for Pricing TBT"
+			},
+			"post": "Post TBT",
+			"ad": "Ad TBT"
+		},
 		"uploadModal": {
 			"title": "Upload an Image"
 		},

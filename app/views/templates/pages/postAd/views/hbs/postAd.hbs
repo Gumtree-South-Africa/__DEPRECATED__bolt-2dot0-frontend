@@ -4,6 +4,7 @@
 
 {{#partial "content"}}
     {{> (dynamic "postAdModal")}}
+
 	<div class="post-ad-header">
         <span class="back-button">
             <span class="icon-caret-left-blue"></span>
@@ -15,10 +16,23 @@
 		</div>
 	</div>
 
-    {{> (dynamic "uploadImage")}}
+	<div class="mobile-post-ad">
+        {{> (dynamic "uploadImage")}}
 
-	<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
-	<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
+		<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>
+		<div class="confirm-tip">{{i18n "postAd.confirm.tip"}}</div>
+	</div>
+	<div class="desktop-post-ad margin-auto">
+		<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
+
+        {{> (dynamic "postAdForm")}}
+
+		<div class="post-ad-btn btn-wrapper">
+			<a href="/post-TBD">
+                <span class="sudolink">{{i18n "postAd.createAds.post"}} # {{i18n "postAd.createAds.ad"}}</span>
+			</a>
+		</div>
+	</div>
 
     {{> (dynamic "loginModal") isHidden=true}}
 {{/partial}}
