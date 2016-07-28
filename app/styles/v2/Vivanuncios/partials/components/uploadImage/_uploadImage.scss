@@ -30,6 +30,13 @@
 			margin: auto;
 		}
 	}
+	.spinner {
+		height: 50px;
+	}
+	.upload-photo-progress {
+		text-align: center;
+		font-size: 1.5em;
+	}
 }
 
 .message-modal {
@@ -42,14 +49,70 @@
 	text-align: center;
 	.message {
 		position: fixed;
-		top: 0;
-		right: 0;
 		bottom: 0;
 		left: 0;
-		width: 80%;
-		height: 100px;
+		right: 0;
+		top: 35%;
 		margin: auto;
-		background-color: white;
+		.error-modal-container {
+			width: 90%;
+			height: auto;
+			margin: auto;
+			background-color: white;
+		}
+
+		.error-modal-close-section {
+			margin-right: 1em;
+			float: right;
+		}
+
+		.close-text {
+			color: gray;
+			font-size: .8em;
+			display: inline-block;
+		}
+
+		.icon-close {
+			background-size: 1800%;
+			height: 16px;
+			width: 16px;
+			vertical-align: text-bottom;
+			display: inline-block;
+		}
+
+		.error-icon {
+			vertical-align: middle;
+			display: inline-block;
+		}
+
+		.error-title-text {
+			vertical-align: middle;
+			display: inline-block;
+		}
+
+		.icon-unsupported-file-format {
+			width: 42px;
+		}
+
+		.error-title {
+			clear: both;
+			font: bold 1.5em Lato;
+			text-align: center;
+			vertical-align: middle;
+		}
+		.error-message {
+			font: normal 0.875em Lato;
+			text-align: center;
+			color: gray;
+			padding-left: 1em;
+			padding-right: 1em;
+		}
+
+		.error-modal-footer {
+			width: 90%;
+			padding: 20px 0 20px 0;
+			margin: auto;
+		}
 	}
 }
 

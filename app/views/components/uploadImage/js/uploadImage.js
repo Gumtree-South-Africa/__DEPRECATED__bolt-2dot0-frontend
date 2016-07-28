@@ -465,7 +465,7 @@ let isProgressEventSupported = () => {
 
 // then anywhere:
 
-let BinaryFile = (strData, iDataOffset, iDataLength) => {
+let BinaryFile = function(strData, iDataOffset, iDataLength) {
 	let data = strData;
 	let dataOffset = iDataOffset || 0;
 	let dataLength = 0;
@@ -506,7 +506,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return dataLength;
 	};
 
-	this.getShortAt = (iOffset, bBigEndian) => {
+	this.getShortAt = function(iOffset, bBigEndian) {
 		let iShort = bBigEndian ? (this.getByteAt(iOffset) << 8) + this.getByteAt(iOffset + 1) : (this.getByteAt(iOffset + 1) << 8) + this.getByteAt(iOffset);
 		if (iShort < 0) {
 			iShort += 65536;
@@ -514,7 +514,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return iShort;
 	};
 
-	this.getLongAt = (iOffset, bBigEndian) => {
+	this.getLongAt = function(iOffset, bBigEndian) {
 		let iByte1 = this.getByteAt(iOffset), iByte2 = this.getByteAt(iOffset + 1), iByte3 = this.getByteAt(iOffset + 2), iByte4 = this.getByteAt(iOffset + 3);
 
 		let iLong = bBigEndian ? (((((iByte1 << 8) + iByte2) << 8) + iByte3) << 8) + iByte4 : (((((iByte4 << 8) + iByte3) << 8) + iByte2) << 8) + iByte1;
@@ -524,7 +524,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		return iLong;
 	};
 
-	this.getSLongAt = (iOffset, bBigEndian) => {
+	this.getSLongAt = function(iOffset, bBigEndian) {
 		let iULong = this.getLongAt(iOffset, bBigEndian);
 		if (iULong > 2147483647) {
 			return iULong - 4294967296;
@@ -533,7 +533,7 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		}
 	};
 
-	this.getStringAt = (iOffset, iLength) => {
+	this.getStringAt = function(iOffset, iLength) {
 		let aStr = [];
 
 		let aBytes = this.getBytesAt(iOffset, iLength);
@@ -550,7 +550,6 @@ let convertToBinaryFile = (dataUrl) => {
 	try {
 		byteString = atob(dataUrl.split(',')[1]);
 		binaryFile = new BinaryFile(byteString, 0, byteString.length);
-
 	} catch (e) {
 		console.warn("something went wrong");
 	}
@@ -663,6 +662,7 @@ let UploadMsgClass = {
 	},
 	failMsg: (i) => {
 		this.messageError.html(this.messages.failMsg);
+		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
 		UploadMsgClass.hideThumb(i);
 	},
@@ -671,32 +671,39 @@ let UploadMsgClass = {
 	},
 	resizing: () => {
 		this.messageError.html(this.messages.resizing);
+		this.$errorMessageTitle.html(this.messages.error);
 	},
 	invalidSize: () => {
 		this.messageError.html(this.messages.invalidSize);
+		this.$errorMessageTitle.html(this.messages.error);
 	},
 	invalidType: (i) => {
 		this.messageError.html(this.messages.invalidType);
+		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
 		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
 	invalidDimensions: (i) => {
 		this.messageError.html(this.messages.invalidDimensions);
+		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
 	firewall: (i) => {
 		this.messageError.html(this.messages.firewall);
+		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
 	colorspace: (i) => {
 		this.messageError.html(this.messages.colorspace);
+		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
 	corrupt: (i) => {
 		this.messageError.html(this.messages.corrupt);
+		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
@@ -806,7 +813,7 @@ let firefoxStopImageEleDrag = () => {
 
 let dragAndDropElements;
 
-//todo: unusable
+//todo: handles all the image uploads
 let imageUploads = (() => {
 
 	let images = [],
@@ -1042,7 +1049,6 @@ dragAndDropElements = (() => {
 
 		init: (ele) => {
 			if (isDnDElement()) {
-				//todo: mike uncomment
 				let col = document.getElementById(ele);
 				if (col) {
 					col.addEventListener('dragstart', handleDragStart, false);
@@ -1104,8 +1110,6 @@ let loadData = (i, file) => {
 	xhr.upload.bCount = i;
 	xhr.fileSize = file.size;
 
-	$("#filesize-" + i).html((file.size / 1024).toFixed(0));
-
 	//TODO: for multiple upload
 	// xhr.upload.progress = $("#progress-" + i);
 	// xhr.upload.percents = $("#percents-" + i);
@@ -1149,9 +1153,9 @@ let loadData = (i, file) => {
 				//TODO: trigger post ad
 			}
 
-			$("#progress-" + this.bCount).css("width", "100%");
-			$("#percents-" + this.bCount).html("100%");
-
+			_this.$uploadSpinner.toggleClass('hidden');
+			_this.$uploadProgress.toggleClass('hidden');
+			_this.$uploadProgress.html("0%");
 			UploadMsgClass.successMsg(i);
 		}
 
@@ -1167,7 +1171,7 @@ let loadData = (i, file) => {
 
 		if (event.lengthComputable) {
 			let percent = event.loaded / event.total;
-			_this.percentSingleUpload.html((percent * 100).toFixed() + "%");
+			_this.$uploadProgress.html((percent * 100).toFixed() + "%");
 
 			_this.imageProgress.attr('value', percent * 100);
 			// updateSpinner(percent);
@@ -1296,7 +1300,8 @@ let html5Upload = (evt) => {
 			}
 		}
 
-		for (let i = 0, file; file === uploadedFiles[i]; i++) {
+		for (let i = 0; i < uploadedFiles.length; i++) {
+			let file = uploadedFiles[i];
 			if (prvCount === allowedUploads) {
 				return;
 			}
@@ -1435,7 +1440,7 @@ let uploadNoneHtml5 = () => {
 //jQuery stuff
 
 
-Array.prototype.remove = (from, to) => {
+Array.prototype.remove = function(from, to) {
 	let rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
 	return this.push.apply(this, rest);
@@ -1462,10 +1467,27 @@ let initialize = () => {
 
 	this.percentSingleUpload = $('#js-upload-percentage');
 	this.uploadPhotoText = this.uploadImageContainer.find('.upload-photo-text');
+	this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
+	this.$uploadProgress = this.uploadImageContainer.find('#js-upload-progress');
 
 	//TODO: multiple files
 	this.messageError = $('.error-message');
 	this.messageModal = $('.message-modal');
+	this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
+	this.$errorMessageTitle = $('#js-error-title');
+	this.$errorModalButton = this.messageModal.find('.btn');
+	this.$errorModalClose.click(() => {
+		this.messageModal.toggleClass('hidden');
+	});
+
+	this.$errorModalButton.click(() => {
+		this.messageModal.toggleClass('hidden');
+		this.$imageUpload.click();
+	});
+
+	this.uploadPhotoText.on('click', () => {
+		this.$imageUpload.click();
+	});
 
 	this.$imageUpload = $("#fileUpload");
 
@@ -1494,11 +1516,10 @@ let initialize = () => {
 		firewall: this.epsData.data('firewall'),
 		colorspace: this.epsData.data('colorspace'),
 		corrupt: this.epsData.data('corrupt'),
-		pictureSrv: this.epsData.data('picturesrv')
+		pictureSrv: this.epsData.data('picturesrv'),
+		error: this.epsData.data('error'),
+		unsupportedFileTitle: this.epsData.data('unsupported-file-title')
 	};
-	this.uploadPhotoText.on('click', () => {
-		this.$imageUpload.click();
-	});
 	// on select file
 	$('#postForm').on("change", "#fileUpload", (evt) => {
 
@@ -1509,6 +1530,9 @@ let initialize = () => {
 
 		//TODO: don't grab 0 off files
 		let file = evt.target.files[0];
+		if (!file) {
+			return;
+		}
 		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
@@ -1516,7 +1540,9 @@ let initialize = () => {
 		}
 		reader.onloadend = () => {
 			this.imageHolder.css('background-image', `url("${reader.result}")`);
-			this.uploadPhotoText.toggleClass('hidden');
+			this.uploadPhotoText.addClass('hidden');
+			this.$uploadSpinner.toggleClass('hidden');
+			this.$uploadProgress.toggleClass('hidden');
 		};
 		if (file) {
 			reader.readAsDataURL(file);

@@ -1169,7 +1169,7 @@
 		},
 		"image": {
 			"upload": {
-				"failure": "Por desgracia , se ha producido un error al cargar imágenes"
+				"failure": "Por desgracia, se ha producido un error al cargar imágenes"
 			}
 		}
 	},
@@ -1273,9 +1273,10 @@
 			"postMoreBtn": "Post More Ads TBT"
 		},
 		"unsupportedFileModal": {
+			"error": "Error",
 			"title": "Unsupported File Format",
 			"close": "Cerrar",
-			"mesage": "This file contains an unsupported media format. TBT",
+			"message": "This file contains an unsupported media format. TBT",
 			"uploadBtn": "Upload a different photo TBT"
 		}
 	},

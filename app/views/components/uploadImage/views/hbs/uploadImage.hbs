@@ -11,7 +11,9 @@
 		 data-loadingMsg="{{i18n "postad.image.uploading"}}"
 		 data-resizing="{{i18n "postad.image.upload.resize"}}"
 		 data-invalidSize="{{i18n "postad.image.upload.failure.invalid.size"}}"
-		 data-invalidType="{{i18n "postad.image.upload.failure.invalid.types"}}"
+		 data-invalidType="{{i18n "postAd.unsupportedFileModal.message"}}"
+		 data-unsupported-file-title="{{i18n "postAd.unsupportedFileModal.title"}}"
+         data-error="{{i18n "postAd.unsupportedFileModal.error"}}"
 		 data-invalidDimensions="{{i18n "postad.image.upload.failure.invalid.dimensions"}}"
 		 data-firewall="{{i18n "postad.image.upload.network.firewall"}}"
 		 data-colorspace="{{i18n "postad.image.upload.colorspace"}}"
@@ -25,12 +27,26 @@
 		<div id="js-bolt-imgThumbUrls">{{#if this.formContent.imgThumbUrls}}{{json this.formContent.imgThumbUrls}}{{else}}
 			[]{{/if}}</div>
 	</div>
-    <div class="message-modal hidden">
-        <div class="message">
-            <div class="icon-unsupported-file-format"></div>
-            <div class="error-message">Error</div>
-        </div>
-    </div>
+	<div class="message-modal hidden">
+		<div class="message">
+			<div class="error-modal-container">
+				<div id='js-close-error-modal' class="error-modal-close-section">
+					<div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
+					<div class="inline-block icon-close"></div>
+				</div>
+				<h1 class="error-title">
+                    <div class="error-icon icon-unsupported-file-format"></div>
+                    <div class="error-title-text" id="js-error-title">
+                        {{i18n "postAd.unsupportedFileModal.error"}}
+                    </div>
+                </h1>
+				<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
+                <div class="error-modal-footer">
+                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' buttonLink='#' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
+                </div>
+			</div>
+		</div>
+	</div>
 	<form method="post" id="postForm" novalidate="novalidate">
 		<div class="file-upload-container">
 			<input class="file-input" type="file" name="pic" accept="image/*" id="fileUpload">
@@ -38,6 +54,10 @@
 				<div class="upload-photo-text">{{i18n "postAdModal.uploadPhoto"}}
 					<div class="icon-post"></div>
 				</div>
+                <div id="js-upload-progress" class="upload-photo-progress hidden">
+                    0%
+                </div>
+                <div id="js-upload-spinner" class="spinner hidden"></div>
 			</div>
 		</div>
 		<progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
