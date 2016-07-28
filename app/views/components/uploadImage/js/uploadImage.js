@@ -12,6 +12,11 @@ let TiffTags = {
 	0x0112: "Orientation"
 };
 
+
+// let postAd = (options) => {
+//
+// };
+
 let isCORS = () => {
 	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
 };
@@ -650,44 +655,53 @@ let UploadMsgClass = {
 		$("#progress-cnt-" + i).hide();
 		$("#percents-" + i).hide();
 	},
-	successMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.successMsg);
+	showModal: () => {
+		this.messageModal.toggleClass('hidden');
+	},
+	successMsg: () => {
+		this.messageError.html(this.messages.successMsg);
 	},
 	failMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.failMsg);
+		this.messageError.html(this.messages.failMsg);
+		UploadMsgClass.showModal();
 		UploadMsgClass.hideThumb(i);
 	},
-	loadingMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.loadingMsg);
+	loadingMsg: () => {
+		this.messageError.html(this.messages.loadingMsg);
 	},
-	resizing: (i) => {
-		$("#file-upload-" + i).html(this.messages.resizing);
+	resizing: () => {
+		this.messageError.html(this.messages.resizing);
 	},
-	invalidSize: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidSize);
+	invalidSize: () => {
+		this.messageError.html(this.messages.invalidSize);
 	},
 	invalidType: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidType);
+		this.messageError.html(this.messages.invalidType);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	invalidDimensions: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidDimensions);
+		this.messageError.html(this.messages.invalidDimensions);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	firewall: (i) => {
-		$("#file-upload-" + i).html(this.messages.firewall);
+		this.messageError.html(this.messages.firewall);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	colorspace: (i) => {
-		$("#file-upload-" + i).html(this.messages.colorspace);
+		this.messageError.html(this.messages.colorspace);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	corrupt: (i) => {
-		$("#file-upload-" + i).html(this.messages.corrupt);
+		this.messageError.html(this.messages.corrupt);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	pictureSrv: (i) => {
-		$("#file-upload-" + i).html(this.messages.pictureSrv);
+		this.messageError.html(this.messages.pictureSrv);
 		UploadMsgClass.hideThumb(i);
 	},
 	translateErrorCodes: function(i, error) {
@@ -1447,6 +1461,13 @@ let initialize = () => {
 	this.EPS.url = this.epsData.data('eps-url');
 
 	this.percentSingleUpload = $('#js-upload-percentage');
+	this.uploadPhotoText = this.uploadImageContainer.find('.upload-photo-text');
+
+	//TODO: multiple files
+	this.messageError = $('.error-message');
+	this.messageModal = $('.message-modal');
+
+	this.$imageUpload = $("#fileUpload");
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -1475,7 +1496,9 @@ let initialize = () => {
 		corrupt: this.epsData.data('corrupt'),
 		pictureSrv: this.epsData.data('picturesrv')
 	};
-
+	this.uploadPhotoText.on('click', () => {
+		this.$imageUpload.click();
+	});
 	// on select file
 	$('#postForm').on("change", "#fileUpload", (evt) => {
 
@@ -1484,14 +1507,16 @@ let initialize = () => {
 
 		// multiple image upload
 
+		//TODO: don't grab 0 off files
 		let file = evt.target.files[0];
 		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
-			console.warn('not supported');
+			UploadMsgClass.invalidType(0);
 			return;
 		}
 		reader.onloadend = () => {
 			this.imageHolder.css('background-image', `url("${reader.result}")`);
+			this.uploadPhotoText.toggleClass('hidden');
 		};
 		if (file) {
 			reader.readAsDataURL(file);

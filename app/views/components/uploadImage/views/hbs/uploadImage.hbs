@@ -25,10 +25,19 @@
 		<div id="js-bolt-imgThumbUrls">{{#if this.formContent.imgThumbUrls}}{{json this.formContent.imgThumbUrls}}{{else}}
 			[]{{/if}}</div>
 	</div>
+    <div class="message-modal hidden">
+        <div class="message">
+            <div class="icon-unsupported-file-format"></div>
+            <div class="error-message">Error</div>
+        </div>
+    </div>
 	<form method="post" id="postForm" novalidate="novalidate">
 		<div class="file-upload-container">
 			<input class="file-input" type="file" name="pic" accept="image/*" id="fileUpload">
 			<div class="user-image margin-auto">
+				<div class="upload-photo-text">{{i18n "postAdModal.uploadPhoto"}}
+					<div class="icon-post"></div>
+				</div>
 			</div>
 		</div>
 		<progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
