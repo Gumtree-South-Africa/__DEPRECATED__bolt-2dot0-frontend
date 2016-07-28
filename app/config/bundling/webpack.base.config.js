@@ -33,8 +33,13 @@ module.exports = {
 		}
 	},
 	plugins: [
+		// todo: we need to turn off uglify for debugging locally
+		// with uglify, client script debugging is difficult because:
+		// 1) one cannot set breakpoints on jasmine expect statements
+		// 2) in the locals window, names are mangled, and one must use mangled names in console
+		// comment out this plugin for easier client script debugging
 		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true,
+			sourceMap: true,	// defaults to true, but nice to see it explicit
 			compress: {
 				warnings: false
 			}

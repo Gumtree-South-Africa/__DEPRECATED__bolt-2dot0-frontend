@@ -70,8 +70,19 @@ module.exports = function watch(gulp, plugins) {
 			}, done).start();
 		});
 
+		gulp.task('karmaCI', function (done) {
+			new Server({
+				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
+				singleRun: false
+			}, done).start();
+		});
+
 		gulp.task('test:clientUnit', function (done) {
 			runSequence("precompileTemplates", "karma", done)
+		});
+
+		gulp.task('test:clientUnitCI', function (done) {
+			runSequence("precompileTemplates", "karmaCI", done)
 		});
 
 		// SERVER UNIT TEST TASKS

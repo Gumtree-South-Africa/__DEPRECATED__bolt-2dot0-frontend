@@ -16,19 +16,18 @@ describe("Header V2", () => {
 		let $catDropdown = $testArea.find("#js-cat-dropdown");
 		expect($catDropdown.hasClass("hidden")).toBeTruthy("category dropdown should be hidden on initial load");
 
+		let $catButton = $testArea.find(".browse");
+		$catButton.click();
+		expect($catDropdown.hasClass("hidden")).toBeFalsy("category dropdown should be visible after click");
+
+
 		let $profileDropdown = $testArea.find("#js-profile-dropdown");
 		expect($profileDropdown.hasClass("hidden")).toBeTruthy("profile dropdown should be hidden on initial load");
 
-		// let $catButton = $testArea.find(".profile");
-		// $catButton.click();
-		//
-		// expect($catDropdown.hasClass("hidden")).toBeFalsy("category dropdown should be visible after click");
-		//
-		// let $profileButton = $testArea.find(".browse");
-		// $profileButton.click();
-		//
-		// expect($profileDropdown.hasClass("hidden")).toBeFalsy("profile dropdown should be visible after click");
-		//
+		let $profileButton = $testArea.find(".profile");
+		$profileButton.click();
+		expect($profileDropdown.hasClass("hidden")).toBeFalsy("profile dropdown should be visible after click");
+
 		done();
 	});
 
