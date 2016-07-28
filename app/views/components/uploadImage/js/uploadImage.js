@@ -12,6 +12,11 @@ let TiffTags = {
 	0x0112: "Orientation"
 };
 
+
+// let postAd = (options) => {
+//
+// };
+
 let isCORS = () => {
 	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
 };
@@ -21,9 +26,9 @@ let isDnDElement = () => {
 	return ('draggable' in div) && !matchMedia("mobile");
 };
 
-let encodeUtf8 = (s) => {
-	return encodeURIComponent(s);
-};
+// let encodeUtf8 = (s) => {
+// 	return encodeURIComponent(s);
+// };
 
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
@@ -383,7 +388,6 @@ let readTags = (file, tiffStart, dirStart, strings, bigEnd) => {
 };
 
 
-
 let readEXIFData = (file, start) => {
 	if (file.getStringAt(start, 4) !== "Exif") {
 		return false;
@@ -450,10 +454,7 @@ let isProgressEventSupported = () => {
 		let xhr = new XMLHttpRequest();
 
 		if ('onprogress' in xhr) {
-			if ($.isSafari() && !IsSafariMUSupport()) {
-				return false;
-			}
-			return true;
+			return !($.isSafari() && !IsSafariMUSupport());
 		} else {
 			return false;
 		}
@@ -498,9 +499,9 @@ let BinaryFile = (strData, iDataOffset, iDataLength) => {
 		this.getBytesAt = (iOffset, iLength) => {
 			return new VBArray(IEBinary_getBytesAt(data, iOffset + dataOffset, iLength)).toArray();
 		};
+		/*eslint-enable */
 	}
 
-	/*eslint-enable */
 	this.getLength = () => {
 		return dataLength;
 	};
@@ -631,6 +632,7 @@ let supportMultiple = () => {
 };
 
 
+//TODO: this appends extra images to page, need to remove except for desktop
 let createImgObj = (i, urlThumb, urlNormal) => {
 	let imagePlaceHolder = $("#image-place-holder-" + i);
 	$(imagePlaceHolder).css("background-position-y", "1em");
@@ -638,13 +640,13 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 	let ul = $("<input class='pThumb' id ='pThumb" + i + "' type='hidden' name='picturesThumb' value=''/><input class='pict' id='pict" + i + "' type='hidden' name='pictures' value=''/>");
 	ul.prependTo(imagePlaceHolder);
 
-	$("#thumb-img-" + i).attr("src", urlThumb);
-	$("#pThumb" + i).val(encodeUtf8(urlThumb));
-	$("#pict" + i).val(encodeUtf8(urlNormal));
+	//TODO: this is for mobile only
+	$(".user-image").css("background-image", `url(${urlNormal}`);
 };
 
 // BOLT IMAGE UPLOADER
 
+//TODO: fix this for the desktop carousel
 let UploadMsgClass = {
 	//TODO: make a file-upload area that works with this.
 	hideThumb: (i) => {
@@ -653,44 +655,53 @@ let UploadMsgClass = {
 		$("#progress-cnt-" + i).hide();
 		$("#percents-" + i).hide();
 	},
-	successMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.successMsg);
+	showModal: () => {
+		this.messageModal.toggleClass('hidden');
+	},
+	successMsg: () => {
+		this.messageError.html(this.messages.successMsg);
 	},
 	failMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.failMsg);
+		this.messageError.html(this.messages.failMsg);
+		UploadMsgClass.showModal();
 		UploadMsgClass.hideThumb(i);
 	},
-	loadingMsg: (i) => {
-		$("#file-upload-" + i).html(this.messages.loadingMsg);
+	loadingMsg: () => {
+		this.messageError.html(this.messages.loadingMsg);
 	},
-	resizing: (i) => {
-		$("#file-upload-" + i).html(this.messages.resizing);
+	resizing: () => {
+		this.messageError.html(this.messages.resizing);
 	},
-	invalidSize: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidSize);
+	invalidSize: () => {
+		this.messageError.html(this.messages.invalidSize);
 	},
 	invalidType: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidType);
+		this.messageError.html(this.messages.invalidType);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	invalidDimensions: (i) => {
-		$("#file-upload-" + i).html(this.messages.invalidDimensions);
+		this.messageError.html(this.messages.invalidDimensions);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	firewall: (i) => {
-		$("#file-upload-" + i).html(this.messages.firewall);
+		this.messageError.html(this.messages.firewall);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	colorspace: (i) => {
-		$("#file-upload-" + i).html(this.messages.colorspace);
+		this.messageError.html(this.messages.colorspace);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	corrupt: (i) => {
-		$("#file-upload-" + i).html(this.messages.corrupt);
+		this.messageError.html(this.messages.corrupt);
 		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.showModal();
 	},
 	pictureSrv: (i) => {
-		$("#file-upload-" + i).html(this.messages.pictureSrv);
+		this.messageError.html(this.messages.pictureSrv);
 		UploadMsgClass.hideThumb(i);
 	},
 	translateErrorCodes: function(i, error) {
@@ -733,7 +744,7 @@ let CpsImage = (() => {
 
 })();
 
-let removeTitleFirstEle = function(index) {
+let removeTitleFirstEle = (index) => {
 	if (!isDnDElement() && (index !== 0 )) {
 		return 'title="' + this.i18n.clickFeatured + '"';
 	} else if (index !== 0) {
@@ -794,6 +805,7 @@ let firefoxStopImageEleDrag = () => {
 
 
 let dragAndDropElements;
+
 //todo: unusable
 let imageUploads = (() => {
 
@@ -1047,11 +1059,22 @@ dragAndDropElements = (() => {
 	};
 })();
 
+// let updateSpinner = (percent) => {
+	// let transform_styles = ['-webkit-transform', '-ms-transform', 'transform'];
+	// let rotation = percent * 180;
+	// let fill_rotation = rotation;
+	// let fix_rotation = rotation * 2;
+	// transform_styles.forEach((style) => {
+	// 	$('.circle .fill, .circle .mask.full').css(style, 'rotate(' + fill_rotation + 'deg)');
+	// 	$('.circle .fill.fix').css(style, 'rotate(' + fix_rotation + 'deg)');
+	// });
+// };
 
 
 //todo HERE
 let loadData = (i, file) => {
 
+	let _this = this;
 	let formData = new FormData();
 	// direct upload via EPS proxy
 	if (!this.EPS.IsEbayDirectUL) {
@@ -1083,8 +1106,9 @@ let loadData = (i, file) => {
 
 	$("#filesize-" + i).html((file.size / 1024).toFixed(0));
 
-	xhr.upload.progress = $("#progress-" + i);
-	xhr.upload.percents = $("#percents-" + i);
+	//TODO: for multiple upload
+	// xhr.upload.progress = $("#progress-" + i);
+	// xhr.upload.percents = $("#percents-" + i);
 
 	xhr.onload = function(e) {
 		e.stopPropagation();
@@ -1121,6 +1145,9 @@ let loadData = (i, file) => {
 
 			// add the image once EPS returns the uploaded image URL
 			createImgObj(this.bCount, url.thumbImage, url.normal);
+			if (_this.mobile) {
+				//TODO: trigger post ad
+			}
 
 			$("#progress-" + this.bCount).css("width", "100%");
 			$("#percents-" + this.bCount).html("100%");
@@ -1135,14 +1162,15 @@ let loadData = (i, file) => {
 	};
 
 
-	let _this = this;
 	xhr.upload.addEventListener("progress", function(event) {
 		let index = this.bCount;
 
 		if (event.lengthComputable) {
-			this.percents.html(" " + ((event.loaded / event.total) * 100).toFixed() + "%");
+			let percent = event.loaded / event.total;
+			_this.percentSingleUpload.html((percent * 100).toFixed() + "%");
 
-			_this.imageProgress.attr('value', event.loaded / event.total * 100);
+			_this.imageProgress.attr('value', percent * 100);
+			// updateSpinner(percent);
 			// display image from client
 			if (event.loaded === event.total) {
 				//TODO: display the image from EPS in the div.
@@ -1413,18 +1441,33 @@ Array.prototype.remove = (from, to) => {
 	return this.push.apply(this, rest);
 };
 
+
 //TODO: remove all DOM references outside of the initialize function.
 //TODO: remove all deprecated functionality
 //TODO: tie in old functionality to new DOM
 
 let initialize = () => {
+	//TODO: this should not be hard coded
+	this.mobile = true;
+
 	this.epsData = $('#js-eps-data');
+	this.uploadImageContainer = $('.upload-image-container');
 	this.isProgressEventSupport = isProgressEventSupported();
-	this.imageProgress = $('#js-image-progress');
+	this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
+	this.imageHolder = this.uploadImageContainer.find('.user-image');
 	this.EPS = {};
 	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
+
+	this.percentSingleUpload = $('#js-upload-percentage');
+	this.uploadPhotoText = this.uploadImageContainer.find('.upload-photo-text');
+
+	//TODO: multiple files
+	this.messageError = $('.error-message');
+	this.messageModal = $('.message-modal');
+
+	this.$imageUpload = $("#fileUpload");
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -1453,7 +1496,9 @@ let initialize = () => {
 		corrupt: this.epsData.data('corrupt'),
 		pictureSrv: this.epsData.data('picturesrv')
 	};
-
+	this.uploadPhotoText.on('click', () => {
+		this.$imageUpload.click();
+	});
 	// on select file
 	$('#postForm').on("change", "#fileUpload", (evt) => {
 
@@ -1461,6 +1506,21 @@ let initialize = () => {
 		// get img-box
 
 		// multiple image upload
+
+		//TODO: don't grab 0 off files
+		let file = evt.target.files[0];
+		let reader = new FileReader();
+		if (!CpsImage.isSupported(file.name)) {
+			UploadMsgClass.invalidType(0);
+			return;
+		}
+		reader.onloadend = () => {
+			this.imageHolder.css('background-image', `url("${reader.result}")`);
+			this.uploadPhotoText.toggleClass('hidden');
+		};
+		if (file) {
+			reader.readAsDataURL(file);
+		}
 
 		// lets only do if there is support for multiple
 		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {

@@ -1,5 +1,8 @@
 $item-margin: 10px;
 $header-blue: #4A90E2;
+$grey-text-color: #808080;
+$orange: #FD9626;
+$photo-switcher-width: 30%;
 
 .margin-auto {
 	width: 90%;
@@ -53,29 +56,58 @@ $header-blue: #4A90E2;
 
 }
 
-.user-image {
-	height: 350px;
-	background-color: black;
-	background-image: url(http://www.superbbicycle.com/wp-content/uploads/2011/02/Rossin-Superb-47cm-1.jpg);
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: contain;
-	margin-bottom: $item-margin;
+.mobile-post-ad {
+	.didKnow-text, .confirm-tip {
+		width: 90%;
+		text-align: center;
+		margin: 20px auto;
+	}
+
+	.didKnow-text {
+		font-size: 30px;
+	}
+
+	.confirm-tip {
+		font-size: 18px;
+		color: #8F8F8F;
+	}
 }
 
-.didKnow-text, .confirm-tip {
-	width: 90%;
-	text-align: center;
-	margin: 20px auto;
+.desktop-post-ad {
+	display: none;
+	box-sizing: border-box;
+
+	.directions {
+		font-size: 18px;
+		color: $grey-text-color;
+		margin-bottom: 15px;
+	}
+
+	.post-ad-btn {
+		cursor: pointer;
+		background-color: $button-bgcolor;
+		border-radius: 2px;
+		display: inline-block;
+		padding: 12px;
+		font: bold 1.125em Lato;
+		text-align: center;
+		&:hover {
+			text-decoration: none;
+		}
+		width: 80%;
+		margin: 20px 10%;
+		vertical-align: top;
+	}
 }
 
-.didKnow-text {
-	font-size: 30px;
-}
+@include from-breakpoint($medium-break) {
+	.mobile-post-ad, .back-button {
+		display: none;
+	}
 
-.confirm-tip {
-	font-size: 18px;
-	color: #8F8F8F;
+	.desktop-post-ad {
+		display: block;
+	}
 }
 
 .image-upload-progress {

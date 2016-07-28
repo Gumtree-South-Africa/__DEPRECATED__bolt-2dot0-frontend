@@ -43,7 +43,7 @@ var augmentPathWithParams = function(path, parametersString, extraParameters) {
 	// fixup path with parameters
 	let urlParams = '';
 
-	if (parametersString !== undefined) {
+	if (parametersString !== undefined && parametersString !== null) {
 		urlParams += `${urlParams.length > 0 ? '&' : ''}${parametersString}`;
 	}
 

@@ -10,7 +10,11 @@ let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 let postAdData = {
 	extendModelData: (req, modelData) => {
 		// CSS
-		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
+		if (modelData.header.min) {
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.min.css');
+		} else {
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
+		}
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_es_MX.js");
 	}
 };

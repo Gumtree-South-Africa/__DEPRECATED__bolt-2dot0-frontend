@@ -1,8 +1,8 @@
 {{#block "adTile"}}
     {{!-- this.isFeatured --}}
-    <span class="inline-block panel {{#if this.featured}}featured{{/if}}" style="background-image: url({{this.pictures.0.sizeUrls.0.NORMAL}});">
+    <span class="inline-block panel {{#if this.features}}featured{{/if}}" style="background-image: url({{this.pictures.0.url}});">
         <span class="featured-bolt icon-featured-white"></span>
-        <a href="{{this.sellerInfo.sellerURL}}"><span class="inline-block user-photo" style="background-image: url({{this.sellerInfo.profileImg}});"></span></a>
+        <a href="{{this.seller.soiSeoUrl}}"><span class="inline-block user-photo" style="background-image: url({{this.seller.profileImage}}14.JPG);"></span></a>
         <section class="controls">
             <section class="ad-stats">
                 <div class="inline-block icon-heart-white"></div>
@@ -12,6 +12,6 @@
             </section>
             <span class="favorite-btn icon-heart-gray" role="button"></span>
         </section>
-        <a class="tile-link" href="vipPage-TBD"></a>
+        <a class="tile-link" href="{{this.viewSeoUrl}}"></a>
     </span>
 {{/block}}

@@ -14,7 +14,10 @@ module.exports = {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Footer": "app/views/components/footerV2/js/footer.js",
 			"LoginModal": "app/views/components/loginModal/js/loginModal.js",
-			"UploadImage": "app/views/components/uploadImage/js/uploadImage.js"
+			"UploadImage": "app/views/components/uploadImage/js/uploadImage.js",
+			"PostAdModal": "app/views/components/postAdModal/js/postAdModal.js",
+			"PostAdForm": "app/views/components/postAdForm/js/postAdForm.js",
+			"PhotoCarousel": "app/views/components/photoCarousel/js/photoCarousel.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority

@@ -77,8 +77,8 @@ class HomePageModelV2 {
 
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
-		let recentActivityModel = new RecentActivityModel(this.req, this.res);
 
+		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.bapiHeaders);
@@ -91,11 +91,14 @@ class HomePageModelV2 {
 				// user specific parameters are passed here, such as location lat/long
 				// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
 				return cardsModel.getCardItemsData(cardName, {
-					location: "(40.12,-71.34),(70.12,-73.34)"
+					geo: modelData.geoLatLng
 				}).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;
+				}).fail((err) => {
+					console.warn(`error getting data ${err}`);
+					return {};
 				});
 			};
 		}
@@ -109,7 +112,12 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
-			return recentActivityModel.getRecentActivities();
+			return recentActivityModel.getRecentActivities(modelData.geoLatLng).then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
 		};
 
 		this.dataPromiseFunctionMap.search = () => {
