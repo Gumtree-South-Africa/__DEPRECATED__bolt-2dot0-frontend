@@ -754,6 +754,7 @@ let prepareForImageUpload = (i, file) => {
 	let reader = null;
 
 	let img = new Image();
+	let _this = this;
 
 	if (window.FileReader) {
 		UploadMsgClass.resizing(i);
@@ -768,6 +769,14 @@ let prepareForImageUpload = (i, file) => {
 
 				image.onload = function() {
 					let resizedImageFile = imageHelper.scaleAndCropImage(this, thisFile.type);
+					let blobReader = new FileReader();
+					blobReader.readAsDataURL(resizedImageFile);
+					blobReader.onloadend = () => {
+						$(".user-image").css("background-image", `url(${reader.result}`);
+						_this.uploadPhotoText.addClass('hidden');
+						_this.$uploadSpinner.toggleClass('hidden');
+						_this.$uploadProgress.toggleClass('hidden');
+					};
 					loadData(i, resizedImageFile);
 				};
 
@@ -1070,20 +1079,10 @@ let initialize = () => {
 		if (!file) {
 			return;
 		}
-		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
 			this.$imageUpload.val('');
 			return;
-		}
-		reader.onloadend = () => {
-			this.imageHolder.css('background-image', `url("${reader.result}")`);
-			this.uploadPhotoText.addClass('hidden');
-			this.$uploadSpinner.toggleClass('hidden');
-			this.$uploadProgress.toggleClass('hidden');
-		};
-		if (file) {
-			reader.readAsDataURL(file);
 		}
 
 		// lets only do if there is support for multiple
