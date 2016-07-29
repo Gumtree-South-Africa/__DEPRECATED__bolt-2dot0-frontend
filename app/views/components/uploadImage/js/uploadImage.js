@@ -1,7 +1,7 @@
 'use strict';
 
 let $ = require('jquery');
-let imageHelper = require('./imageHelper');
+let ImageHelper = require('./imageHelper');
 let uploadAd = require('./uploadAd');
 
 $.prototype.doesExist = function() {
@@ -16,14 +16,8 @@ const AD_STATES = {
 let allowedUploads = 4;
 
 
-
 let isCORS = () => {
 	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
-};
-
-let isDnDElement = () => {
-	let div = document.createElement('div');
-	return ('draggable' in div) && !matchMedia("mobile");
 };
 
 let isNumber = (o) => {
@@ -56,44 +50,10 @@ let IsSafariMUSupport = () => {
 	}
 };
 
-
-
 let fileAPISupport = () => {
 
 	return !!(window.File && window.FileList && window.FileReader);
 };
-
-// Add thumbnail url by replacing _18 to _14, See EPS server
-let convertThumbImgURL14 = (url) => {
-	let reg = /\_\d*\.JPG/ig;
-	return url.replace(reg, "_14.JPG");
-};
-
-let convertThumbImgURL18 = (url) => {
-	let reg = /\_\d*\.JPG/ig;
-	return url.replace(reg, "_18.JPG");
-};
-
-let getThumbImgURL = (url) => {
-	let result;
-	if (!this.EPS.IsEbayDirectUL) {
-		result = url.split("?")[0];
-	} else {
-		// for direct zoom
-		result = url.split(";")[1];
-	}
-
-	if (result && result.match(/^http/)) {
-		return result;  // url looks fine
-	}
-};
-
-let extractEPSServerError = (respText) => {
-	// format, ERROR:ME200
-	let reg = /ERROR\:(\w*)/i;
-	return respText.replace(reg, "$1");
-};
-
 
 let isProgressEventSupported = () => {
 	try {
@@ -112,29 +72,23 @@ let isProgressEventSupported = () => {
 
 let ExtractURLClass = (url) => {
 	// extract, url
-	let normalImageURLZoom = getThumbImgURL(url);
+	let normalImageURLZoom = this.imageHelper.getThumbImgURL(url);
 
 	if (!normalImageURLZoom) {
 		// not been able to find out a valid url
 		return;
 	}
 
-	//zoom url VERSION:2;http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/r84AAOSwE2lTf~HM/$_1.JPG?set_id=8800005007
-
 	// convert to _18.JPG format saved in backend
-	normalImageURLZoom = convertThumbImgURL18(normalImageURLZoom);
-
-	// convert to _14.JPG thumb format
+	normalImageURLZoom = this.imageHelper.convertThumbImgURL18(normalImageURLZoom);
 
 	return {
-		"thumbImage": convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
+		"thumbImage": this.imageHelper.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
 	};
 
 };
 
 //TODO: DOM-required functions need fix
-
-
 let supportMultiple = () => {
 	// lets not do it for safari until we find a solution
 	//if ($.isSafari()) return false;
@@ -148,197 +102,34 @@ let supportMultiple = () => {
 	return ("multiple" in el);
 };
 
-
-//TODO: this appends extra images to page, need to remove except for desktop
-let createImgObj = (i) => {
-	let imagePlaceHolder = $("#image-place-holder-" + i);
-	$(imagePlaceHolder).css("background-position-y", "1em");
-
-	let ul = $("<input class='pThumb' id ='pThumb" + i + "' type='hidden' name='picturesThumb' value=''/><input class='pict' id='pict" + i + "' type='hidden' name='pictures' value=''/>");
-	ul.prependTo(imagePlaceHolder);
-};
-
-// BOLT IMAGE UPLOADER
-
-
-let CpsImage = (() => {
-	let gif = "gif", jpeg = "jpeg", jpg = "jpg", png = "png", bmp = "bmp";
-
-	let getFileExt = function(f) {
-		let fn = f.toLowerCase();
-		return fn.substring((Math.max(0, fn.lastIndexOf(".")) || fn.length) + 1);
-	};
-
-	return {
-		isSupported: function(f) {
-			let ext = getFileExt(f);
-			return !!(ext === gif || ext === jpeg || ext === jpg || ext === png || ext === bmp);
-		}, getFileExt: function(f) {
-			return getFileExt(f);
-		}
-	};
-
-})();
-
-let removeTitleFirstEle = (index) => {
-	if (!isDnDElement() && (index !== 0 )) {
-		return 'title="' + this.i18n.clickFeatured + '"';
-	} else if (index !== 0) {
-		return 'title="' + this.i18n.dragToReorder + '"';
-	}
-};
-
-function defaults(e) {
-	e.stopPropagation();
-	e.preventDefault();
-}
-
-
-let firefoxStopImageEleDrag = () => {
-	jQuery.browser.firefox = /firefox/.test(navigator.userAgent.toLowerCase());
-	if (!jQuery.browser.firefox) {
-		return;
-	}
-
-
-	let images = document.querySelectorAll('.img-box img');
-
-	function dStrart(e) {
-		defaults(e);
-	}
-
-	function dEnter(e) {
-		defaults(e);
-	}
-
-	function dOver(e) {
-		defaults(e);
-	}
-
-	function dLeave(e) {
-		defaults(e);
-	}
-
-	function dDrop(e) {
-		defaults(e);
-	}
-
-	function dEnd(e) {
-		defaults(e);
-	}
-
-
-	[].forEach.call(images, (image) => {
-		image.addEventListener('dragstart', dStrart, false);
-		image.addEventListener('dragenter', dEnter, false);
-		image.addEventListener('dragover', dOver, false);
-		image.addEventListener('dragleave', dLeave, false);
-		image.addEventListener('drop', dDrop, false);
-		image.addEventListener('dragend', dEnd, false);
-	});
-
-};
-
-
-let dragAndDropElements;
-
-//todo: handles all the image uploads
 let imageUploads = (() => {
 
 	let images = [],
 		urls = [];
 
-	// reset the dome when thumb element is removed.
-	this.resetThumbDOM = () => {
-		$(".img-box").each(function(i) {
-			$(this).attr("id", "image-place-holder-" + i);
-			$(this).find(".thumb").attr("id", "thumb-img-" + i);
-			$(this).find(".upload-status").attr("id", "upload-status-" + i);
-			$(this).find(".progress").attr("id", "progress-" + i);
-			$(this).find(".percents").attr("id", "percents-" + i);
-			$(this).find(".uploading").attr("id", "file-upload-" + i);
-			$(this).find(".pThumb").attr("id", "pThumb" + i);
-			$(this).find(".pict").attr("id", "pict" + i);
-		});
-	};
-
 	return {
-		addClassFeatured: () => {
-			$("#image-place-holder-0").addClass("featured");
-			if (!$("#featuredImage").doesExist()) {
-				$("#image-place-holder-0").append("<div id='featuredImage'>" + this.i18n.imageFeatured + "</div>");
-			}
-		},
 		add: (l) => {
-
-			let html = "", total = images.length;
-			if (total === allowedUploads - 1) {
-				//case: to hide camera icon
-				$('.uploadWrapper').addClass('hiddenElt');
-			} else {
-				if (total > allowedUploads - 1) {
-					return false;
-				}
+			let total = images.length;
+			if (total > allowedUploads - 1) {
+				return false;
 			}
 			for (let i = total; i < l + total; i++) {
-				let index = i, title = removeTitleFirstEle(index);
-
-				let htmlThumb = '<li draggable="true" class="img-box" id="image-place-holder-' + index + '" ' + title + ' id="img-' + index + '">' + '<div class="icon-remove-gray"></div>' + '<img class="thumb" id="thumb-img-' + index + '"  width="64px" height="64px" src="" />' + '<ul id="upload-status-' + index + '" class="upload-status">' + '<li>' + '<div id="progress-cnt-' + index + '" class="progress-holder">' + '<div id="progress-' + index + '" class="progress"></div>' + '</div>' + '<span id="percents-' + index + '" class="percents"></span>' + '</li>' + '<li>' + '<div class="uploading" id="file-upload-' + index + '"></div>' + '</li>' + '</ul>' + '</li>';
-
-				images.push(index);
-				html = html + htmlThumb;
-				$("#thumb-nails").append(htmlThumb);
-				dragAndDropElements.init("image-place-holder-" + i);
-			}
-
-			imageUploads.addClassFeatured();
-			if (!isDnDElement()) {
-				$(".img-box").css("cursor", "pointer");
-			} else {
-				firefoxStopImageEleDrag();
+				images.push(i);
 			}
 			return true;
 		},
 
 		remove: (i) => {
 			if (isNumber(i)) {
-				$("#image-place-holder-" + i).remove();
 				images.pop();
 				urls.remove(i);
-				$('#thumb-nails').next('.uploadWrapper').removeClass('hiddenElt');
 			}
 			this.resetThumbDOM();
-			// hightlight
-			imageUploads.addClassFeatured();
 		},
 
 		addFromImageUrls: (urlThumbArray, urlArray) => {
-
-			let html = "";
-
 			for (let i = 0; i < urlArray.length; i++) {
-				let index = i, title = 'title-' + i;
-
-				let htmlThumb = '<li draggable="true" class="img-box" id="image-place-holder-' + index + '" ' + title + ' id="img-' + index + '">' + '<div class="icon-remove-gray"></div>' + '<img class="thumb" id="thumb-img-' + index + '"  width="64px" height="64px" src="' + urlArray[i] + '" />' + '<ul id="upload-status-' + index + '" class="upload-status">' + '<li>' + '<div id="progress-cnt-' + index + '" class="progress-holder">' + '<div id="progress-' + index + '" class="progress"></div>' + '</div>' + '<span id="percents-' + index + '" class="percents"></span>' + '</li>' + '<li>' + '<div class="uploading" id="file-upload-' + index + '"></div>' + '</li>' + '</ul>' + '</li>';
-
-				images.push(index);
-				html = html + htmlThumb;
-				$("#thumb-nails").append(htmlThumb);
-				dragAndDropElements.init("image-place-holder-" + i);
-
-				createImgObj(i, urlThumbArray[i], urlArray[i]);
-
-				if (i >= allowedUploads - 1) {
-					//case: to hide camera icon
-					$('.uploadWrapper').addClass('hiddenElt');
-				}
-			}
-
-			this.addClassFeatured();
-			if (!isDnDElement()) {
-				$(".img-box").css("cursor", "pointer");
-			} else {
-				firefoxStopImageEleDrag();
+				images.push(i);
 			}
 			return true;
 		},
@@ -351,145 +142,6 @@ let imageUploads = (() => {
 			return urls[i];
 		}, addDuringPreview: (i) => {
 			images.push(i);
-		}, resetThumbDOM: () => {
-			this.resetThumbDOM();
-
-		}, removeClassFeatured: () => {
-			$("#image-place-holder-0").removeClass("featured");
-			$("#featuredImage").remove();
-		}
-	};
-})();
-
-
-dragAndDropElements = (() => {
-	let _this;
-	jQuery.browser = {};
-	jQuery.browser.msie = /msie/.test(navigator.userAgent.toLowerCase());
-
-	function handleDragOver(e) {
-		if (e.preventDefault) {
-			e.preventDefault(); // Necessary. Allows us to drop.
-		}
-
-		e.dataTransfer.dropEffect = 'move';
-		this.classList.add('over');
-
-		return false;
-	}
-
-	function handleDragEnter() {
-		// this / e.target is the current hover target.
-		this.classList.add('over');
-	}
-
-	function handleDragLeave() {
-		this.classList.remove('over');  // this / e.target is previous target element.
-	}
-
-	function handleDragStart(e) {
-		// Target (this) element is the source node.
-		//this.style.opacity = '0.4';
-
-		_this = this;
-
-		e.dataTransfer.effectAllowed = 'move';
-
-		if (jQuery.browser.msie) {
-			e.dataTransfer.setData('text', this.innerHTML);
-		} else {
-			e.dataTransfer.setData('text/html', this.innerHTML);
-		}
-
-	}
-
-	function handleDrop(e) {
-		// this/e.target is current target element.
-
-		if (e.stopPropagation) {
-			e.stopPropagation(); // Stops some browsers from redirecting.
-		}
-
-		// Don't do anything if dropping the same column we're dragging.
-		if (_this !== this && this.innerHTML !== null) {
-			// Set the source column's HTML to the HTML of the column we dropped on.
-			_this.innerHTML = this.innerHTML;
-
-			if (jQuery.browser.msie) {
-				this.innerHTML = e.dataTransfer.getData('text');
-			} else {
-				this.innerHTML = e.dataTransfer.getData('text/html');
-
-			}
-
-		}
-
-		let cols = document.querySelectorAll('.img-box');
-
-		[].forEach.call(cols, (col) => {
-			col.classList.remove('over');
-		});
-		this.style.opacity = '1';
-		imageUploads.resetThumbDOM();
-
-		$("#featuredImage").remove();
-
-		imageUploads.addClassFeatured();
-
-
-		return false;
-	}
-
-	function handleDragEnd(e) {
-		// this/e.target is the source node.
-		if (e.stopPropagation) {
-			e.stopPropagation(); // Stops some browsers from redirecting.
-		}
-
-		firefoxStopImageEleDrag();
-	}
-
-	let cols = document.querySelectorAll('.img-box');
-
-	return {
-		initAll: () => {
-			if (isDnDElement()) {
-				[].forEach.call(cols, (col) => {
-					col.addEventListener('dragstart', handleDragStart, false);
-					col.addEventListener('dragenter', handleDragEnter, false);
-					col.addEventListener('dragover', handleDragOver, false);
-					col.addEventListener('dragleave', handleDragLeave, false);
-					col.addEventListener('drop', handleDrop, false);
-					col.addEventListener('dragend', handleDragEnd, false);
-
-					// mobile devices has no support for elements drag and drop
-					//col.addEventListener("touchstart", handleDragStart, false);
-					//col.addEventListener("touchend", handleDrop, false);
-					// col.addEventListener("touchcancel", handleCancel, false);
-					// col.addEventListener("touchleave", handleDragEnd, false);
-					// col.addEventListener("touchmove", handleDragOver, false);
-
-				});
-
-				firefoxStopImageEleDrag();
-
-			}
-		},
-
-		init: (ele) => {
-			if (isDnDElement()) {
-				let col = document.getElementById(ele);
-				if (col) {
-					col.addEventListener('dragstart', handleDragStart, false);
-					col.addEventListener('dragenter', handleDragEnter, false);
-					col.addEventListener('dragover', handleDragOver, false);
-					col.addEventListener('dragleave', handleDragLeave, false);
-					col.addEventListener('drop', handleDrop, false);
-					col.addEventListener('dragend', handleDragEnd, false);
-				}
-
-			}
-
 		}
 	};
 })();
@@ -497,23 +149,16 @@ dragAndDropElements = (() => {
 //TODO: fix this for the desktop carousel
 let UploadMsgClass = {
 	//TODO: make a file-upload area that works with this.
-	hideThumb: (i) => {
-		$("#file-upload-" + i).css("margin-top", "1.8em").css("color", "red");
-		$("#thumb-img-" + i).remove();
-		$("#progress-cnt-" + i).hide();
-		$("#percents-" + i).hide();
-	},
 	showModal: () => {
 		this.messageModal.toggleClass('hidden');
 	},
 	successMsg: () => {
 		this.messageError.html(this.messages.successMsg);
 	},
-	failMsg: (i) => {
+	failMsg: () => {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
-		UploadMsgClass.hideThumb(i);
 	},
 	loadingMsg: () => {
 		this.messageError.html(this.messages.loadingMsg);
@@ -525,40 +170,35 @@ let UploadMsgClass = {
 	invalidSize: () => {
 		this.messageError.html(this.messages.invalidSize);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.showModal();
 	},
-	invalidType: (i) => {
+	invalidType: () => {
 		this.messageError.html(this.messages.invalidType);
 		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
-		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
-	invalidDimensions: (i) => {
+	invalidDimensions: () => {
 		this.messageError.html(this.messages.invalidDimensions);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
-	firewall: (i) => {
+	firewall: () => {
 		this.messageError.html(this.messages.firewall);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
-	colorspace: (i) => {
+	colorspace: () => {
 		this.messageError.html(this.messages.colorspace);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
-	corrupt: (i) => {
+	corrupt: () => {
 		this.messageError.html(this.messages.corrupt);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
 		UploadMsgClass.showModal();
 	},
-	pictureSrv: (i) => {
+	pictureSrv: () => {
 		this.messageError.html(this.messages.pictureSrv);
-		UploadMsgClass.hideThumb(i);
 	},
 	translateErrorCodes: function(i, error) {
 		if (error === "FS002") {
@@ -576,21 +216,8 @@ let UploadMsgClass = {
 		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
 			this.corrupt(i);
 		}
-		UploadMsgClass.hideThumb(i);
 	}
 };
-
-// let updateSpinner = (percent) => {
-	// let transform_styles = ['-webkit-transform', '-ms-transform', 'transform'];
-	// let rotation = percent * 180;
-	// let fill_rotation = rotation;
-	// let fix_rotation = rotation * 2;
-	// transform_styles.forEach((style) => {
-	// 	$('.circle .fill, .circle .mask.full').css(style, 'rotate(' + fill_rotation + 'deg)');
-	// 	$('.circle .fill.fix').css(style, 'rotate(' + fix_rotation + 'deg)');
-	// });
-// };
-
 
 //todo HERE
 let loadData = (i, file) => {
@@ -625,10 +252,6 @@ let loadData = (i, file) => {
 	xhr.upload.bCount = i;
 	xhr.fileSize = file.size;
 
-	//TODO: for multiple upload
-	// xhr.upload.progress = $("#progress-" + i);
-	// xhr.upload.percents = $("#percents-" + i);
-
 	xhr.onload = function(e) {
 		e.stopPropagation();
 		e.preventDefault();
@@ -657,16 +280,15 @@ let loadData = (i, file) => {
 
 			// any errors don't do anything after display error msg
 			if (!urlClass) {
-				let error = extractEPSServerError(this.response);
+				let error = this.imageHelper.extractEPSServerError(this.response);
 				UploadMsgClass.translateErrorCodes(count, error);
 				return;
 			}
 
 			// add the image once EPS returns the uploaded image URL
-			createImgObj(this.bCount, url.thumbImage, url.normal);
 			if (_this.mobile) {
 				//TODO: this is for mobile only
-				$(".user-image").css("background-image", `url(${url.normal}`);
+				// _this.imageHolder.css("background-image", `url(${url.normal}`);
 
 				//TODO: handle desktop
 				uploadAd.postAd([url.normal], (response) => {
@@ -688,6 +310,8 @@ let loadData = (i, file) => {
 					}
 				}, (err) => {
 					console.warn(err);
+					_this.$uploadSpinner.toggleClass('hidden');
+					_this.$uploadProgress.toggleClass('hidden');
 					UploadMsgClass.failMsg(i);
 				});
 			}
@@ -698,6 +322,9 @@ let loadData = (i, file) => {
 
 	xhr.onabort = function(e) {
 		console.warn('aborted', e);
+		_this.$uploadSpinner.toggleClass('hidden');
+		_this.$uploadProgress.toggleClass('hidden');
+		UploadMsgClass.failMsg(i);
 	};
 
 
@@ -723,28 +350,10 @@ let loadData = (i, file) => {
 	xhr.send(formData);  // multipart/form-data
 };
 
-// TODO: uncomment
-// let featuredImage = () => {
-//
-// 	$("#thumb-nails").on("click", ".img-box", function(e) {
-// 		let target = $(e.target);
-// 		if (target.is("div") && $(this).hasClass("icon-remove-gray")) {
-// 			return;
-// 		}
-// 		imageUploads.removeClassFeatured();
-// 		$(this).insertBefore($("#image-place-holder-0"));
-// 		imageUploads.resetThumbDOM();
-// 		imageUploads.addClassFeatured();
-// 	});
-// };
-
 //TODO: here minus a few dom references
 let prepareForImageUpload = (i, file) => {
 
-	$("#upload-status-" + i).show();
-	UploadMsgClass.loadingMsg(i);
-
-	let mediaType = CpsImage.isSupported(file.name);
+	let mediaType = this.imageHelper.isSupported(file.name);
 
 	if (!mediaType) {
 		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
@@ -768,11 +377,11 @@ let prepareForImageUpload = (i, file) => {
 
 
 				image.onload = function() {
-					let resizedImageFile = imageHelper.scaleAndCropImage(this, thisFile.type);
+					let resizedImageFile = _this.imageHelper.scaleAndCropImage(this, thisFile.type);
 					let blobReader = new FileReader();
 					blobReader.readAsDataURL(resizedImageFile);
 					blobReader.onloadend = () => {
-						$(".user-image").css("background-image", `url(${reader.result}`);
+						_this.imageHolder.css("background-image", `url(${blobReader.result}`);
 						_this.uploadPhotoText.addClass('hidden');
 						_this.$uploadSpinner.toggleClass('hidden');
 						_this.$uploadProgress.toggleClass('hidden');
@@ -784,13 +393,11 @@ let prepareForImageUpload = (i, file) => {
 				image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
 
 				if (thisFile.type === 'image/jpeg') {
-					let binaryFile = imageHelper.convertToBinaryFile(dataUrl);
-					image.exifData = imageHelper.findEXIFinJPEG(binaryFile);
+					let binaryFile = _this.imageHelper.convertToBinaryFile(dataUrl);
+					image.exifData = _this.imageHelper.findEXIFinJPEG(binaryFile);
 				}
 
 				imageUploads.setURL(i, image.src);
-				UploadMsgClass.loadingMsg(i);
-
 			};
 		})(img, file);
 
@@ -799,7 +406,7 @@ let prepareForImageUpload = (i, file) => {
 		window.URL = window.URL || window.webkitURL || false;
 		let imageUrl = URL.createObjectURL(file);
 		img.onload = () => {
-			let resizedImageFile = imageHelper.scaleAndCropImage(this, file.type);
+			let resizedImageFile = this.imageHelper.scaleAndCropImage(this, file.type);
 			loadData(i, resizedImageFile);
 		};
 		img.src = imageUrl;
@@ -867,7 +474,6 @@ let uploadNoneHtml5 = () => {
 
 	imageUploads.add(1);
 
-
 	// hide progress bar
 	$(".progress-holder").hide();
 
@@ -931,59 +537,6 @@ let uploadNoneHtml5 = () => {
 };
 
 
-//drag and drop
-// class drop
-
-//TODO: uncomment
-// let dragAndDrop = () => {
-//
-// 	let dropbox = document.getElementById("dnd");
-//
-// 	function defaults(e) {
-// 		e.stopPropagation();
-// 		e.preventDefault();
-// 	}
-// 	function dragenter(e) {
-// 		$(this).addClass("active");
-// 		defaults(e);
-// 	}
-//
-// 	function dragover(e) {
-// 		$(this).removeClass("active");
-// 		defaults(e);
-// 		return false;
-// 	}
-//
-// 	function dragleave(e) {
-// 		$(this).removeClass("active");
-// 		defaults(e);
-// 	}
-//
-// 	function drop(e) {
-// 		$(this).removeClass("active");
-// 		defaults(e);
-// 		html5Upload(e);
-// 	}
-//
-//
-// 	function dragEnd(e) {
-// 		defaults(e);
-// 		return false;
-// 	}
-//
-// 	if (dropbox) {
-// 		dropbox.addEventListener("dragenter", dragenter, false);
-// 		dropbox.addEventListener("dragleave", dragleave, false);
-// 		dropbox.addEventListener("dragover", dragover, false);
-// 		dropbox.addEventListener("drop", drop, false);
-// 		dropbox.addEventListener("dragEnd", dragEnd, false);
-// 	}
-//
-// };
-
-//jQuery stuff
-
-
 Array.prototype.remove = function(from, to) {
 	let rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
@@ -1010,8 +563,8 @@ let initialize = () => {
 	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
+	this.imageHelper = new ImageHelper(this.EPS);
 
-	this.percentSingleUpload = $('#js-upload-percentage');
 	this.uploadPhotoText = this.uploadImageContainer.find('.upload-photo-text');
 	this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
 	this.$uploadProgress = this.uploadImageContainer.find('#js-upload-progress');
@@ -1079,7 +632,7 @@ let initialize = () => {
 		if (!file) {
 			return;
 		}
-		if (!CpsImage.isSupported(file.name)) {
+		if (!this.imageHelper.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
 			this.$imageUpload.val('');
 			return;
@@ -1093,69 +646,6 @@ let initialize = () => {
 			uploadNoneHtml5(this);
 		}
 	});
-
-	//TODO: uncomment this out?
-	/*
-	 $(document).ready(() => {
-	 if ($.isSafari() && !IsSafariMUSupport() && !isIOS()) {
-	 $("#file").removeAttr("multiple");
-	 }
-
-	 // hightlight
-	 imageUploads.addClassFeatured();
-
-	 //register elements for drag and drop
-	 if (isDnDElement()) {
-	 dragAndDropElements.initAll();
-	 } else {
-	 featuredImage();
-	 }
-
-	 $("#thumb-nails > li").each(function(index) {
-	 if (!isDnDElement() && (index !== 0 )) {
-	 $(this).attr("title", this.i18n.clickFeatured);
-	 } else if (index !== 0) {
-	 $(this).attr('title', this.i18n.dragToReorder);
-	 }
-	 });
-
-
-	 if (isProgressEventSupport === true) {
-	 $(".upload-status").show();
-	 }
-
-	 // some devices doesn't support file upload.
-	 if (!isFileInputSupported) {
-	 $("#upload-btn").hide();
-	 $("#or").hide();
-	 $("#dndArea").hide();
-	 $("#dnd-cnt").css("float", "left");
-	 $("#dnd").show();
-	 }
-
-	 if (window.addEventListener) {
-	 dragAndDrop();
-	 }
-
-	 $(window).on("load", function(evt) {
-	 imageUploads.addFromImageUrls(Bolt.imgThumbUrls, Bolt.imgUrls);
-	 });
-
-
-	 $("#postForm").on("click", ".icon-remove-gray", function(evt) {
-	 evt.stopImmediatePropagation();
-	 let i = parseInt($($(this).parents(".img-box")).attr("id").split("-")[3]);
-	 if (isNumber(i)) {
-	 imageUploads.remove(i);
-	 // Trigger an event to indicate that an image was removed
-	 // $('#postForm').trigger("removedImage", {});
-
-	 }
-	 });
-
-	 });
-	 */
-
 };
 
 module.exports = {

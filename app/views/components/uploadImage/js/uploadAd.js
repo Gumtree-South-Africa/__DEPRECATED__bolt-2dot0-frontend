@@ -47,7 +47,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		dataType: 'json',
 		contentType: "application/json",
 		success: successCallback,
-		failure: failureCallback
+		error: failureCallback
 	});
 };
 

@@ -83,7 +83,8 @@ class BinaryFile {
 }
 
 class ImageHelper {
-	constructor() {
+	constructor(EPS) {
+		this.EPS = EPS;
 		this.TiffTags = {
 			0x0112: "Orientation"
 		};
@@ -330,7 +331,6 @@ class ImageHelper {
 		//settings.onProcessed && settings.onProcessed(canvas);
 
 		return this.convertCanvasToBlob(canvas, fileType, QUALITY);
-
 	}
 
 	convertToBinaryFile(dataUrl) {
@@ -481,6 +481,46 @@ class ImageHelper {
 		return tags;
 	}
 
+	getFileExt(f) {
+		let fn = f.toLowerCase();
+		return fn.substring((Math.max(0, fn.lastIndexOf(".")) || fn.length) + 1);
+	}
+
+	isSupported(f) {
+		let ext = this.getFileExt(f);
+		return !!(ext === 'gif' || ext === 'jpeg' || ext === 'jpg' || ext === 'png' || ext === 'bmp');
+	}
+
+	convertThumbImgURL14(url) {
+		let reg = /\_\d*\.JPG/ig;
+		return url.replace(reg, "_14.JPG");
+	}
+
+	convertThumbImgURL18(url) {
+		let reg = /\_\d*\.JPG/ig;
+		return url.replace(reg, "_18.JPG");
+	}
+
+	getThumbImgURL(url) {
+		let result;
+		if (!this.EPS.IsEbayDirectUL) {
+			result = url.split("?")[0];
+		} else {
+			// for direct zoom
+			result = url.split(";")[1];
+		}
+
+		if (result && result.match(/^http/)) {
+			return result;  // url looks fine
+		}
+	}
+
+	extractEPSServerError(respText) {
+		// format, ERROR:ME200
+		let reg = /ERROR\:(\w*)/i;
+		return respText.replace(reg, "$1");
+	}
+
 }
 
-module.exports = new ImageHelper();
+module.exports = ImageHelper;

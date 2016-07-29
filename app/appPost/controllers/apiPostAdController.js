@@ -50,6 +50,7 @@ router.post('/create', cors, (req, res) => {
 		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
 		res.contentType = "application/json";
 		res.status(400).send(validate.errors);
+		return;
 	}
 
 	// todo: is there any finer granularity of validation needed that schema doesnt take care of?
