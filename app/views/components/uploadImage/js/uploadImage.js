@@ -382,9 +382,6 @@ let prepareForImageUpload = (i, file) => {
 					blobReader.readAsDataURL(resizedImageFile);
 					blobReader.onloadend = () => {
 						_this.imageHolder.css("background-image", `url(${blobReader.result}`);
-						_this.uploadPhotoText.addClass('hidden');
-						_this.$uploadSpinner.toggleClass('hidden');
-						_this.$uploadProgress.toggleClass('hidden');
 					};
 					loadData(i, resizedImageFile);
 				};
@@ -637,7 +634,9 @@ let initialize = () => {
 			this.$imageUpload.val('');
 			return;
 		}
-
+		this.uploadPhotoText.addClass('hidden');
+		this.$uploadSpinner.toggleClass('hidden');
+		this.$uploadProgress.toggleClass('hidden');
 		// lets only do if there is support for multiple
 		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
 			html5Upload(evt);
