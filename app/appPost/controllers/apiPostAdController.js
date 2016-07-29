@@ -34,6 +34,24 @@ let uuid = require('node-uuid');
  *
  */
 
+// our request looks a little different, the pictures is a simple array of urls, so we map that not
+let mapToBapi = (request) => {
+	let result = JSON.parse(JSON.stringify(request));
+
+	result.ads.forEach((ad, index) => {
+		ad.pictures = {};
+		let pictures = request.ads[index].pictures;
+		ad.pictures.sizeUrls = pictures.map((elt) => {
+			return {
+				pictureUrl: elt,
+				size: "LARGE"
+			};
+		});
+	});
+
+	return result;
+};
+
 router.get('/create', cors, (req, res) => {
 
 	if (!req.is('application/json')) {
@@ -110,22 +128,5 @@ router.get('/create', cors, (req, res) => {
 	});
 });
 
-// our request looks a little different, the pictures is a simple array of urls, so we map that not
-let mapToBapi = (request) => {
-	let result = JSON.parse(JSON.stringify(request));;
-
-	result.ads.forEach((ad, index) => {
-		ad.pictures = {};
-		let pictures = request.ads[index].pictures;
-		ad.pictures.sizeUrls = pictures.map((elt) => {
-			return {
-				pictureUrl: elt,
-				size: "LARGE"
-			};
-		});
-	});
-
-	return result;
-};
 
 module.exports = router;
