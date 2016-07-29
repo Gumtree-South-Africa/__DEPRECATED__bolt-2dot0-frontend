@@ -10,7 +10,7 @@ let cors = require(cwd + '/modules/cors');
 let postAdService = require(cwd + '/server/services/postad');
 
 let validator = require('is-my-json-valid');
-let schema = require(cwd + '/app/appPost/jsonSchemas/postAdRequest.json');
+let schema = require(cwd + '/app/appPost/jsonSchemas/postAdRequest-schema.json');
 let uuid = require('node-uuid');
 
 /**
@@ -33,6 +33,7 @@ let uuid = require('node-uuid');
  *	}
  *
  */
+
 router.get('/create', cors, (req, res) => {
 
 	if (!req.is('application/json')) {
@@ -49,10 +50,14 @@ router.get('/create', cors, (req, res) => {
 	if (!valid) {
 		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
 		res.contentType = "application/json";
-		res.status(400).send(validate.errors);
+		res.status(400).send({
+			schemaErrors: validate.errors
+		});
+		return;
 	}
 
 	// todo: is there any finer granularity of validation needed that schema doesnt take care of?
+	// validate currency is either USD or MXN
 
 	// we're validated
 	let requestJson = req.body;
@@ -79,7 +84,9 @@ router.get('/create', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 
-	postAdService.quickpostAd(model.bapiHeaders, requestJson).then( (results) => {
+	let bapiRequestJson = mapToBapi(requestJson);
+
+	postAdService.quickpostAd(model.bapiHeaders, bapiRequestJson).then( (results) => {
 
 		// extract only what we need for the response
 		let vipLink = results._links.find( (elt) => {
@@ -96,11 +103,29 @@ router.get('/create', cors, (req, res) => {
 			vipLink: vipLink.href
 		};
 		res.send(responseJson);
-
+		return;
 	}).fail((error) => {
 		console.error(error);
 		res.status(500).send();
 	});
 });
+
+// our request looks a little different, the pictures is a simple array of urls, so we map that not
+let mapToBapi = (request) => {
+	let result = JSON.parse(JSON.stringify(request));;
+
+	result.ads.forEach((ad, index) => {
+		ad.pictures = {};
+		let pictures = request.ads[index].pictures;
+		ad.pictures.sizeUrls = pictures.map((elt) => {
+			return {
+				pictureUrl: elt,
+				size: "LARGE"
+			};
+		});
+	});
+
+	return result;
+};
 
 module.exports = router;
