@@ -1073,6 +1073,7 @@ let initialize = () => {
 		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
+			this.$imageUpload.val('');
 			return;
 		}
 		reader.onloadend = () => {
