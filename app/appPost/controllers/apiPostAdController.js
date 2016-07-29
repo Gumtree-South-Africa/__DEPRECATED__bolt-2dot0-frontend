@@ -33,7 +33,7 @@ let uuid = require('node-uuid');
  *	}
  *
  */
-router.get('/create', cors, (req, res) => {
+router.post('/create', cors, (req, res) => {
 
 	if (!req.is('application/json')) {
 		res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
@@ -79,7 +79,7 @@ router.get('/create', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 
-	postAdService.quickpostAd(model.bapiHeaders, requestJson).then( (results) => {
+	postAdService.quickpostAdMock(model.bapiHeaders, requestJson).then( (results) => {
 
 		// extract only what we need for the response
 		let vipLink = results._links.find( (elt) => {
