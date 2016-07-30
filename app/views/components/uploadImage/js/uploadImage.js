@@ -2,9 +2,15 @@
 
 let $ = require('jquery');
 let imageHelper = require('./imageHelper');
+let uploadAd = require('./uploadAd');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
+};
+
+const AD_STATES = {
+	AD_CREATED: "AD_CREATED",
+	AD_DEFERRED: "AD_DEFERRED"
 };
 
 let allowedUploads = 4;
@@ -144,15 +150,12 @@ let supportMultiple = () => {
 
 
 //TODO: this appends extra images to page, need to remove except for desktop
-let createImgObj = (i, urlThumb, urlNormal) => {
+let createImgObj = (i) => {
 	let imagePlaceHolder = $("#image-place-holder-" + i);
 	$(imagePlaceHolder).css("background-position-y", "1em");
 
 	let ul = $("<input class='pThumb' id ='pThumb" + i + "' type='hidden' name='picturesThumb' value=''/><input class='pict' id='pict" + i + "' type='hidden' name='pictures' value=''/>");
 	ul.prependTo(imagePlaceHolder);
-
-	//TODO: this is for mobile only
-	$(".user-image").css("background-image", `url(${urlNormal}`);
 };
 
 // BOLT IMAGE UPLOADER
@@ -662,13 +665,33 @@ let loadData = (i, file) => {
 			// add the image once EPS returns the uploaded image URL
 			createImgObj(this.bCount, url.thumbImage, url.normal);
 			if (_this.mobile) {
-				//TODO: trigger post ad
+				//TODO: this is for mobile only
+				$(".user-image").css("background-image", `url(${url.normal}`);
+
+				//TODO: handle desktop
+				uploadAd.postAd([url.normal], (response) => {
+					_this.$uploadSpinner.toggleClass('hidden');
+					_this.$uploadProgress.toggleClass('hidden');
+					_this.$uploadProgress.html("0%");
+					UploadMsgClass.successMsg(i);
+					switch (response.state) {
+						case AD_STATES.AD_CREATED:
+							window.location = response.ad.vipLink;
+							break;
+						case AD_STATES.AD_DEFERRED:
+							_this.$loginModal.toggleClass('hidden');
+							_this.$loginModalMask.toggleClass('hidden');
+							//TODO: set redirect URLS
+							break;
+						default:
+							break;
+					}
+				}, (err) => {
+					console.warn(err);
+					UploadMsgClass.failMsg(i);
+				});
 			}
 
-			_this.$uploadSpinner.toggleClass('hidden');
-			_this.$uploadProgress.toggleClass('hidden');
-			_this.$uploadProgress.html("0%");
-			UploadMsgClass.successMsg(i);
 		}
 
 	};
@@ -731,6 +754,7 @@ let prepareForImageUpload = (i, file) => {
 	let reader = null;
 
 	let img = new Image();
+	let _this = this;
 
 	if (window.FileReader) {
 		UploadMsgClass.resizing(i);
@@ -745,6 +769,14 @@ let prepareForImageUpload = (i, file) => {
 
 				image.onload = function() {
 					let resizedImageFile = imageHelper.scaleAndCropImage(this, thisFile.type);
+					let blobReader = new FileReader();
+					blobReader.readAsDataURL(resizedImageFile);
+					blobReader.onloadend = () => {
+						$(".user-image").css("background-image", `url(${reader.result}`);
+						_this.uploadPhotoText.addClass('hidden');
+						_this.$uploadSpinner.toggleClass('hidden');
+						_this.$uploadProgress.toggleClass('hidden');
+					};
 					loadData(i, resizedImageFile);
 				};
 
@@ -967,6 +999,8 @@ let initialize = () => {
 	//TODO: this should not be hard coded
 	this.mobile = true;
 
+	this.$loginModal = $('.login-modal');
+	this.$loginModalMask = $('.login-modal-mask');
 	this.epsData = $('#js-eps-data');
 	this.uploadImageContainer = $('.upload-image-container');
 	this.isProgressEventSupport = isProgressEventSupported();
@@ -1045,19 +1079,10 @@ let initialize = () => {
 		if (!file) {
 			return;
 		}
-		let reader = new FileReader();
 		if (!CpsImage.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
+			this.$imageUpload.val('');
 			return;
-		}
-		reader.onloadend = () => {
-			this.imageHolder.css('background-image', `url("${reader.result}")`);
-			this.uploadPhotoText.addClass('hidden');
-			this.$uploadSpinner.toggleClass('hidden');
-			this.$uploadProgress.toggleClass('hidden');
-		};
-		if (file) {
-			reader.readAsDataURL(file);
 		}
 
 		// lets only do if there is support for multiple

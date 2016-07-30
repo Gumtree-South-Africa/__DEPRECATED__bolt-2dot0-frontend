@@ -1,6 +1,5 @@
 {
 	"$schema": "http://json-schema.org/draft-04/schema",
-
 	"type": "object",
 	"required": true,
 	"properties": {
@@ -38,7 +37,11 @@
 						"properties": {
 							"currency": {
 								"type": "string",
-								"required": true
+								"required": true,
+								"enum": [
+									"USD",
+									"MXN"
+								]
 							},
 							"amount": {
 								"type": "number",

@@ -8,6 +8,10 @@ fdescribe('Post Ad Api', () => {
 	beforeEach(() => {
 
 		specHelper.registerMockEndpoint(
+			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+
+		specHelper.registerMockEndpoint(
 			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/postAd/postAdResponse.json');
 	});
@@ -15,10 +19,9 @@ fdescribe('Post Ad Api', () => {
 	it('should create an ad for logged in user', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'bt_auth="test value to simulate logged in"')
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -43,7 +46,7 @@ fdescribe('Post Ad Api', () => {
 	it('should defer creation of an ad because we are not logged in', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('ContentType', 'application/json')
 				.send(file)
@@ -62,7 +65,7 @@ fdescribe('Post Ad Api', () => {
 	});
 
 	it('should respond with 406 because we did not send json', (done) => {
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 			// .set('Cookie', 'b2dot0Version=2.0')
 				.send("sending this but it is not json")
@@ -76,9 +79,8 @@ fdescribe('Post Ad Api', () => {
 	it('should respond with 400, result should contain json schema error: "ads" required', (done) => {
 		let file = {};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -101,9 +103,8 @@ fdescribe('Post Ad Api', () => {
 			"ads": []
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -140,9 +141,8 @@ fdescribe('Post Ad Api', () => {
 			]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -170,9 +170,8 @@ fdescribe('Post Ad Api', () => {
 			}]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -197,10 +196,8 @@ fdescribe('Post Ad Api', () => {
 			}]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-			// .set('Cookie', 'b2dot0Version=2.0')
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -226,9 +223,8 @@ fdescribe('Post Ad Api', () => {
 			}]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -257,9 +253,8 @@ fdescribe('Post Ad Api', () => {
 			}]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -277,6 +272,39 @@ fdescribe('Post Ad Api', () => {
 		});
 	});
 
+	it('should respond with 400, result should contain json schema error: price fields missing', (done) => {
+		let file = {
+			"ads": [{
+				"location": {
+					"latitude": 10.999,
+					"longitude": 19.999
+				},
+				"price": {
+				}
+			}]
+		};
+
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(400);
+					let jsonResult = JSON.parse(res.text);
+					// console.log(JSON.stringify(jsonResult, null, 4));
+					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
+
+					expect(jsonResult.schemaErrors.length).toBe(2, 'there should be schema errors');
+					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.currency");
+					expect(jsonResult.schemaErrors[0].message).toBe("is required");
+					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.price.amount");
+					expect(jsonResult.schemaErrors[1].message).toBe("is required");
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+
 	it('should respond with 400, result should contain json schema error: invalid price amount', (done) => {
 		let file = {
 			"ads": [{
@@ -291,9 +319,8 @@ fdescribe('Post Ad Api', () => {
 			}]
 		};
 
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -310,6 +337,37 @@ fdescribe('Post Ad Api', () => {
 		});
 	});
 
+	it('should respond with 400, result should contain json schema error: invalid price currency', (done) => {
+		let file = {
+			"ads": [{
+				"location": {
+					"latitude": 10.999,
+					"longitude": 19.999
+				},
+				"price": {
+					"currency": "foo",
+					"amount": 123.00
+				}
+			}]
+		};
+
+		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(400);
+					let jsonResult = JSON.parse(res.text);
+					//console.log(JSON.stringify(jsonResult, null, 4));
+					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
+
+					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
+					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.currency");
+					expect(jsonResult.schemaErrors[0].message).toBe("must be an enum value");
+				})
+				.end(specHelper.finish(done));
+		});
+	});
 
 	/*
 	 curl --data @test/serverUnit/mockData/postAd/postAdRequest-invalid-1.json -H "Content-Type: application/json" -X GET http://www.vivanuncios.com.mx.localhost:8000/post/api/postad/create
