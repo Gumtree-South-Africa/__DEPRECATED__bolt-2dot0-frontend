@@ -149,6 +149,11 @@ let imageUploads = (() => {
 //TODO: fix this for the desktop carousel
 let UploadMsgClass = {
 	//TODO: make a file-upload area that works with this.
+	hideImage: () => {
+		this.imageHolder.css("background-image", `url()`);
+		this.uploadPhotoText.toggleClass('hidden');
+		this.$imageUpload.val('');
+	},
 	showModal: () => {
 		this.messageModal.toggleClass('hidden');
 	},
@@ -159,6 +164,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
+		UploadMsgClass.hideImage();
 	},
 	loadingMsg: () => {
 		this.messageError.html(this.messages.loadingMsg);
@@ -170,31 +176,37 @@ let UploadMsgClass = {
 	invalidSize: () => {
 		this.messageError.html(this.messages.invalidSize);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	invalidType: () => {
 		this.messageError.html(this.messages.invalidType);
 		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	invalidDimensions: () => {
 		this.messageError.html(this.messages.invalidDimensions);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	firewall: () => {
 		this.messageError.html(this.messages.firewall);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	colorspace: () => {
 		this.messageError.html(this.messages.colorspace);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	corrupt: () => {
 		this.messageError.html(this.messages.corrupt);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.hideImage();
 		UploadMsgClass.showModal();
 	},
 	pictureSrv: () => {
@@ -581,16 +593,19 @@ let initialize = () => {
 
 	this.$postMoreLink.click(window.location.reload);
 
-	this.$errorModalClose.click(() => {
+	this.$errorModalClose.click((e) => {
+		e.stopImmediatePropagation();
 		this.messageModal.toggleClass('hidden');
 	});
 
-	this.$errorModalButton.click(() => {
+	this.$errorModalButton.click((e) => {
+		e.stopImmediatePropagation();
 		this.messageModal.toggleClass('hidden');
 		this.$imageUpload.click();
 	});
 
-	this.uploadPhotoText.on('click', () => {
+	this.uploadPhotoText.on('click', (e) => {
+		e.stopImmediatePropagation();
 		this.$imageUpload.click();
 	});
 
@@ -640,7 +655,6 @@ let initialize = () => {
 		}
 		if (!this.imageHelper.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
-			this.$imageUpload.val('');
 			return;
 		}
 		this.uploadPhotoText.addClass('hidden');

@@ -1276,7 +1276,8 @@
 			"title": "Formato de archivo no admitido",
 			"close": "Cerrar",
 			"message": "Este archivo contiene un formato multimedia no admitido.",
-			"uploadBtn": "Cargar una foto diferente"
+			"uploadBtn": "Cargar una foto diferente",
+			"error": "Error"
 		}
 	},
 	"footer": {
