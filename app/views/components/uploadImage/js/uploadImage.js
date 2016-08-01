@@ -281,10 +281,8 @@ let _requestLocation = () => {
 			let lat = position.coords.latitude;
 			let lng = position.coords.longitude;
 			document.cookie = `geoId=${lat}ng${lng}`;
-		}, () => {
-			locationDeferred.reject();
-			console.log('position not available');
-		}, {
+		}, locationDeferred.resolve,
+		{
 			enableHighAccuracy: true,
 			maximumAge: 30000,
 			timeout: 27000
@@ -362,7 +360,7 @@ let loadData = (i, file) => {
 
 			if (_this.isMobile) {
 				_this.imageHolder.css("background-image", `url(${url.normal}`);
-				_requestLocation().finally(() => {
+				_requestLocation().then(() => {
 					//Don't care if they actually gave us location, just that it finished.
 					_postAd(url.normal);
 				});
