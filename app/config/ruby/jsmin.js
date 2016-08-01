@@ -205,6 +205,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/app/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/smartMobileBanner/js/smartMobileBanner.js",
 			rootDir + "/app/views/components/adCarousel/js/CarouselExt/modernizr.js",
 			rootDir + "/app/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
 			rootDir + "/app/views/components/adCarousel/js/CarouselExt/carouselExt.js",
@@ -233,6 +234,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
+			rootDir + "/app/views/components/smartMobileBanner/js/app.js",
 			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_en_ZA.min.js"
 	}, {

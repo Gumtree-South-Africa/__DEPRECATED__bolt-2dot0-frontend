@@ -1149,6 +1149,11 @@
 	"quickpost.error.locationNotInCountry": "Tu selección no es en México",
 	"quickpost.empty": "",
 	"postad.button": "Publica Gratis",
+	"smartmobilebanner": {
+		"title": "Abre la App",
+		"mobilelink": "o continúa en el sitio móvil >>",
+		"branchiolink": "http://go.vivanunc.io/gana-dinero"
+	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
