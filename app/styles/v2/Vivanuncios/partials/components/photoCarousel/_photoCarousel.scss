@@ -14,19 +14,42 @@
 	}
 
 	.cover-photo {
+		position: relative;
 		margin: 0 auto;
 		width: 150px;
 		height: 150px;
 		margin-top: 10px;
 		border: 1px solid black;
-		background-size: cover;
+		background-size: contain;
 		background-position: center;
+		background-repeat: no-repeat;
+
+		.delete-wrapper {
+			position: absolute;
+			left: 84%;
+			top: -8px;
+			width: 24px;
+			height: 24px;
+			background-color: #FAFAFA;
+			border-radius: 50%;
+			border: 1px solid black;
+			padding: 4px;
+
+			.icon-close {
+				margin-left: 2px;
+				margin-top: 2px;
+			}
+		}
 
 		.icon-camera-v2, .add-photo-text {
 			display: none;
 		}
 
 		&.no-photo {
+			.delete-wrapper {
+				display: none;
+			}
+
 			.icon-camera-v2 {
 				display: block;
 				width: 50px;
@@ -79,8 +102,12 @@
 			outline: none;
 
 			&.selected {
-				border: 3px solid red;
+				border: 3px solid $orange;
 				margin: 3px;
+			}
+
+			.spinner {
+				height: 100%;
 			}
 		}
 
@@ -94,7 +121,7 @@
 				position: absolute;
 				width: inherit;
 				height: inherit;
-				top: 0;
+				top: 10px;
 
 				.icon-camera-v2 {
 					width: 16px;
