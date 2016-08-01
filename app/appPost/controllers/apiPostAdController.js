@@ -168,7 +168,8 @@ router.post('/create', cors, (req, res) => {
 
 		let bapiRequestJson = mapToBapiRequest(requestJson);
 
-		postAdService.quickpostAd(model.bapiHeaders, bapiRequestJson).then( (results) => {
+		//TODO: do not have this as mock
+		postAdService.quickpostAdMock(model.bapiHeaders, bapiRequestJson).then( (results) => {
 
 			let responseJson = getAdPostedResponse(results);
 			if (!responseJson.ad.vipLink) {

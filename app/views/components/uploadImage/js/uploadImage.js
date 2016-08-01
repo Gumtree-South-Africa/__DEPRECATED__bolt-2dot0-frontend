@@ -88,7 +88,6 @@ let ExtractURLClass = (url) => {
 
 };
 
-//TODO: DOM-required functions need fix
 let supportMultiple = () => {
 	// lets not do it for safari until we find a solution
 	//if ($.isSafari()) return false;
@@ -146,9 +145,7 @@ let imageUploads = (() => {
 	};
 })();
 
-//TODO: fix this for the desktop carousel
 let UploadMsgClass = {
-	//TODO: make a file-upload area that works with this.
 	hideImage: () => {
 		this.imageHolder.css("background-image", `url()`);
 		this.uploadPhotoText.toggleClass('hidden');
@@ -231,7 +228,6 @@ let UploadMsgClass = {
 	}
 };
 
-//todo HERE
 let loadData = (i, file) => {
 
 	let _this = this;
@@ -297,12 +293,8 @@ let loadData = (i, file) => {
 				return;
 			}
 
-			// add the image once EPS returns the uploaded image URL
-			if (_this.mobile) {
-				//TODO: this is for mobile only
-				// _this.imageHolder.css("background-image", `url(${url.normal}`);
-
-				//TODO: handle desktop
+			if (_this.isMobile) {
+				_this.imageHolder.css("background-image", `url(${url.normal}`);
 				uploadAd.postAd([url.normal], (response) => {
 					_this.$uploadSpinner.toggleClass('hidden');
 					_this.$uploadProgress.toggleClass('hidden');
@@ -352,10 +344,6 @@ let loadData = (i, file) => {
 			_this.imageProgress.attr('value', percent * 100);
 			// updateSpinner(percent);
 			// display image from client
-			if (event.loaded === event.total) {
-				//TODO: display the image from EPS in the div.
-				$("#thumb-img-" + index).attr("src", imageUploads.getURL(i));
-			}
 		} else {
 			UploadMsgClass.failMsg(index);
 		}
@@ -364,9 +352,7 @@ let loadData = (i, file) => {
 	xhr.send(formData);  // multipart/form-data
 };
 
-//TODO: here minus a few dom references
 let prepareForImageUpload = (i, file) => {
-
 	let mediaType = this.imageHelper.isSupported(file.name);
 
 	if (!mediaType) {
@@ -425,7 +411,6 @@ let prepareForImageUpload = (i, file) => {
 };
 
 
-//TODO: here
 let html5Upload = (evt) => {
 	// drag and drop
 	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
@@ -554,14 +539,8 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
-
-//TODO: remove all DOM references outside of the initialize function.
-//TODO: remove all deprecated functionality
-//TODO: tie in old functionality to new DOM
-
 let initialize = () => {
-	//TODO: this should not be hard coded
-	this.mobile = true;
+	this.isMobile = true;
 
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
@@ -584,7 +563,6 @@ let initialize = () => {
 	this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
 	this.$uploadProgress = this.uploadImageContainer.find('#js-upload-progress');
 
-	//TODO: multiple files
 	this.messageError = $('.error-message');
 	this.messageModal = $('.message-modal');
 	this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
@@ -644,11 +622,6 @@ let initialize = () => {
 	$('#postForm').on("change", "#fileUpload", (evt) => {
 
 		evt.stopImmediatePropagation();
-		// get img-box
-
-		// multiple image upload
-
-		//TODO: don't grab 0 off files
 		let file = evt.target.files[0];
 		if (!file) {
 			return;
