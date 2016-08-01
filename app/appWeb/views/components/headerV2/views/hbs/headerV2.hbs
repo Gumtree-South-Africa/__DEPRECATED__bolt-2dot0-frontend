@@ -76,17 +76,17 @@
             <div class="profile right-item">
                 <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
-                        {{#if model.header.currentProfileImageUrl}}
+                        {{#if this.header.currentProfileImageUrl}}
                             profile-picture
                         {{else}}
                             icon-header-profile-out
                         {{/if}}"
 
-                        {{#if model.header.currentProfileImageUrl}}
-    						 style="background-image:url({{model.header.currentProfileImageUrl}});"
+                        {{#if this.header.currentProfileImageUrl}}
+    						 style="background-image:url({{this.header.currentProfileImageUrl}});"
                         {{/if}}>
                     </div>
-                    {{#if this.header.userEmail}}
+                    {{#if this.header.isUserLoggedIn}}
                         {{#if this.header.profileName}}
                             {{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!
                         {{else}}

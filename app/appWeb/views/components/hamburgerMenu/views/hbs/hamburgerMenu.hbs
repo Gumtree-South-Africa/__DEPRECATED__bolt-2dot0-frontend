@@ -6,14 +6,14 @@
         {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
 				<div class="profile-icon
-                    {{#if model.header.currentProfileImageUrl}}
+                    {{#if this.header.currentProfileImageUrl}}
                         profile-picture
                     {{else}}
                         icon-header-profile-out
                     {{/if}}"
 
-                    {{#if model.header.currentProfileImageUrl}}
-                        style="background-image:url({{model.header.currentProfileImageUrl}});"
+                    {{#if this.header.currentProfileImageUrl}}
+                        style="background-image:url({{this.header.currentProfileImageUrl}});"
                     {{/if}}>
                 </div>
 				<div class="profile-welcome-text">
