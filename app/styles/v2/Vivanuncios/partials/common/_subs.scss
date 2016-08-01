@@ -67,11 +67,18 @@
     &:first-child{
       border-top: 1px solid $modal-autocomplete-color;
     }
-    &:hover{
+    &.active, &:hover{
       background-color: $modal-autocomplete-bgcolor-hover;
       color: $modal-autocomplete-color-hover;
     }
   }
+}
+
+.spinner{
+  background-image: url('../../../../../images/spinner.gif');
+  background-repeat: no-repeat;
+  background-size: 2em;
+  background-position: center;
 }
 
 .card-title-cp{

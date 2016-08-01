@@ -15,7 +15,9 @@
 			"homepageGallery": "/v1/ads/gallery",
 			"adStatistics": "/v1/ads/statistics",
 			"configService": "/v1/configs/nodeapp/settings.json",
-			"quickpostAd": "/v1/ads"
+			"quickpostAd": "/v1/ads",
+			"recentActivities": "/v1/ads/activities/recent",
+			"trendingSearch": "/v1/ads/trending"
 		}
 	},
 	"solr": {
@@ -49,7 +51,7 @@
 		"server": {
 			"host": "static.staging2.qa-bolt.com",
 			"port": null,
-			"version": "2.0.113"
+			"version": "2.0.114"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

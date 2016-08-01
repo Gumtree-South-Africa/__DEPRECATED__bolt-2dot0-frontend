@@ -11,14 +11,6 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 
-/**
- * @method getHomepageDataFunctions
- * @description Retrieves the list of functions to call to get the model for the Homepage.
- * @param {Object} req Request object
- * @param {Object} res Response object
- * @private
- * @return {JSON}
- */
 class ManifestModel {
 	constructor(req, res) {
 		this.req = req;
