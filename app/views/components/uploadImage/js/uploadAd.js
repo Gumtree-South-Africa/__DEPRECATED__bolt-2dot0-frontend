@@ -5,13 +5,13 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	let getCookie = (cname) => {
 		let name = cname + "=";
 		let ca = document.cookie.split(';');
-		for(let i = 0; i <ca.length; i++) {
+		for (let i = 0; i < ca.length; i++) {
 			let c = ca[i];
-			while (c.charAt(0)===' ') {
+			while (c.charAt(0) === ' ') {
 				c = c.substring(1);
 			}
 			if (c.indexOf(name) === 0) {
-				return c.substring(name.length,c.length);
+				return c.substring(name.length, c.length);
 			}
 		}
 		return "";
@@ -24,20 +24,24 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		lng = Number(latLng[1]);
 	}
 
-	//TODO: allow multiple ads to be posted
 	let payload = {
 		"ads": [
 			{
 				"title": fields.title,
-				"location": {
-					"address": fields.address,
-					"latitude": lat,
-					"longitude": lng
-				},
 				"pictures": imageArray
 			}
 		]
 	};
+	if (lat && lng) {
+		payload.ads.forEach((ad) => {
+			ad.location = {
+				"address": fields.address,
+				"latitude": lat,
+				"longitude": lng
+			};
+		});
+	}
+
 	$.ajax({
 		url: '/post/api/postad/create',
 		type: 'POST',

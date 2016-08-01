@@ -1,6 +1,7 @@
 'use strict';
 
 let $ = require('jquery');
+let Q = require('q');
 let ImageHelper = require('./imageHelper');
 let uploadAd = require('./uploadAd');
 
@@ -228,6 +229,34 @@ let UploadMsgClass = {
 	}
 };
 
+let _postAd = (url) => {
+	uploadAd.postAd([url], (response) => {
+		this.$uploadSpinner.toggleClass('hidden');
+		this.$uploadProgress.toggleClass('hidden');
+		this.$uploadProgress.html("0%");
+		UploadMsgClass.successMsg(0);
+		switch (response.state) {
+			case AD_STATES.AD_CREATED:
+				this.$uploadSuccessLink.attr('href', response.ad.vipLink);
+				this.$uploadSuccessModal.toggleClass('hidden');
+				this.$uploadSuccessModalMask.toggleClass('hidden');
+				break;
+			case AD_STATES.AD_DEFERRED:
+				this.$loginModal.toggleClass('hidden');
+				this.$loginModalMask.toggleClass('hidden');
+				//TODO: set redirect URLS
+				break;
+			default:
+				break;
+		}
+	}, (err) => {
+		console.warn(err);
+		this.$uploadSpinner.toggleClass('hidden');
+		this.$uploadProgress.toggleClass('hidden');
+		UploadMsgClass.failMsg(0);
+	});
+};
+
 let loadData = (i, file) => {
 
 	let _this = this;
@@ -295,30 +324,9 @@ let loadData = (i, file) => {
 
 			if (_this.isMobile) {
 				_this.imageHolder.css("background-image", `url(${url.normal}`);
-				uploadAd.postAd([url.normal], (response) => {
-					_this.$uploadSpinner.toggleClass('hidden');
-					_this.$uploadProgress.toggleClass('hidden');
-					_this.$uploadProgress.html("0%");
-					UploadMsgClass.successMsg(i);
-					switch (response.state) {
-						case AD_STATES.AD_CREATED:
-							_this.$uploadSuccessLink.attr('href', response.ad.vipLink);
-							_this.$uploadSuccessModal.toggleClass('hidden');
-							_this.$uploadSuccessModalMask.toggleClass('hidden');
-							break;
-						case AD_STATES.AD_DEFERRED:
-							_this.$loginModal.toggleClass('hidden');
-							_this.$loginModalMask.toggleClass('hidden');
-							//TODO: set redirect URLS
-							break;
-						default:
-							break;
-					}
-				}, (err) => {
-					console.warn(err);
-					_this.$uploadSpinner.toggleClass('hidden');
-					_this.$uploadProgress.toggleClass('hidden');
-					UploadMsgClass.failMsg(i);
+				Q.allSettled([_this.locationPromise]).then(() => {
+					//Don't care if they actually gave us location, just that it finished.
+					_postAd(url.normal);
 				});
 			}
 
@@ -539,8 +547,44 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+let _getCookie = (cname) => {
+	let name = cname + "=";
+	let ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+};
+
 let initialize = () => {
 	this.isMobile = true;
+	this.locationDeferred = Q.defer();
+	this.locationPromise = this.locationDeferred.promise;
+
+	if ("geolocation" in navigator && _getCookie('geoId') === '') {
+		navigator.geolocation.getCurrentPosition((position) => {
+			//TODO: unblock posting semaphore
+			this.locationDeferred.resolve();
+			let lat = position.coords.latitude;
+			let lng = position.coords.longitude;
+			document.cookie = `geoId=${lat}ng${lng}`;
+		}, () => {
+			this.locationDeferred.reject();
+			console.log('position not available');
+		}, {
+			enableHighAccuracy: true,
+			maximumAge: 30000,
+			timeout: 27000
+		});
+	} else {
+		this.locationDeferred.resolve();
+	}
 
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');

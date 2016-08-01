@@ -112,27 +112,6 @@ router.post('/create', cors, (req, res) => {
 		return;
 	}
 
-	//console.log(`schema: ${JSON.stringify(schema)}`);
-	//console.log(`json received: ${JSON.stringify(req.body, null, 4)}`);
-
-	// validate the incoming JSON
-	let validate = validator(schemaPostAd);
-	let valid = validate(req.body);
-	if (!valid) {
-		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
-		res.contentType = "application/json";
-		res.status(400).send({
-			schemaErrors: validate.errors
-		});
-		return;
-	}
-
-	// is there any finer granularity of validation needed that schema doesnt take care of?
-	// there doesnt appear to be any so far
-
-	// we're validated
-	let requestJson = req.body;
-
 	let authenticationCookie = req.cookies['bt_auth'];
 
 	if (!authenticationCookie) {
@@ -145,6 +124,23 @@ router.post('/create', cors, (req, res) => {
 		res.send(responseJson);
 		return;
 	}
+
+	// validate the incoming JSON
+	let validate = validator(schemaPostAd);
+	let valid = validate(req.body);
+	if (!valid) {
+		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
+		res.contentType = "application/json";
+		res.status(400).send({
+			schemaErrors: validate.errors
+		});
+		return;
+	}
+	// is there any finer granularity of validation needed that schema doesnt take care of?
+	// there doesnt appear to be any so far
+
+	// we're validated
+	let requestJson = req.body;
 
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
