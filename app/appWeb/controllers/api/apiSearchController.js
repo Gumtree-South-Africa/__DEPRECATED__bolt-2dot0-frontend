@@ -15,18 +15,23 @@ router.get('/autocomplete', cors, (req, res) => {
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
 	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
-		let results = {
-			totalCount:	autoCompleteResults.response.numFound,
-			items: []
-		};
-		for(let i=0; i<autoCompleteResults.response.docs.length; i++) {
-			let element = autoCompleteResults.response.docs[i];
-			let content = {
-				keyword:	element.keywords_g110,
-				category:	element.categoryId_l110,
-				location:	element.locationId_l110
+		let results = {};
+
+		if (typeof autoCompleteResults !== 'undefined') {
+			results = {
+				totalCount: autoCompleteResults.response.numFound,
+				items: []
 			};
-			results.items.push(content);
+
+			for (let i = 0; i < autoCompleteResults.response.docs.length; i++) {
+				let element = autoCompleteResults.response.docs[i];
+				let content = {
+					keyword: element.keywords_g110,
+					category: element.categoryId_l110,
+					location: element.locationId_l110
+				};
+				results.items.push(content);
+			}
 		}
 
 		res.status(200);
