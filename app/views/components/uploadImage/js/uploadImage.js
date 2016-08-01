@@ -229,6 +229,21 @@ let UploadMsgClass = {
 	}
 };
 
+let _getCookie = (cname) => {
+	let name = cname + "=";
+	let ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+};
+
 let _postAd = (url) => {
 	uploadAd.postAd([url], (response) => {
 		this.$uploadSpinner.toggleClass('hidden');
@@ -255,6 +270,29 @@ let _postAd = (url) => {
 		this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg(0);
 	});
+};
+
+let _requestLocation = () => {
+	let locationDeferred = Q.defer();
+	if ("geolocation" in navigator && _getCookie('geoId') === '') {
+		navigator.geolocation.getCurrentPosition((position) => {
+			//TODO: unblock posting semaphore
+			locationDeferred.resolve();
+			let lat = position.coords.latitude;
+			let lng = position.coords.longitude;
+			document.cookie = `geoId=${lat}ng${lng}`;
+		}, () => {
+			locationDeferred.reject();
+			console.log('position not available');
+		}, {
+			enableHighAccuracy: true,
+			maximumAge: 30000,
+			timeout: 27000
+		});
+	} else {
+		locationDeferred.resolve();
+	}
+	return locationDeferred.promise;
 };
 
 let loadData = (i, file) => {
@@ -324,7 +362,7 @@ let loadData = (i, file) => {
 
 			if (_this.isMobile) {
 				_this.imageHolder.css("background-image", `url(${url.normal}`);
-				_this.locationPromise.finally(() => {
+				_requestLocation().finally(() => {
 					//Don't care if they actually gave us location, just that it finished.
 					_postAd(url.normal);
 				});
@@ -547,44 +585,8 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
-let _getCookie = (cname) => {
-	let name = cname + "=";
-	let ca = document.cookie.split(';');
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) === ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
-};
-
 let initialize = () => {
 	this.isMobile = true;
-	this.locationDeferred = Q.defer();
-	this.locationPromise = this.locationDeferred.promise;
-
-	if ("geolocation" in navigator && _getCookie('geoId') === '') {
-		navigator.geolocation.getCurrentPosition((position) => {
-			//TODO: unblock posting semaphore
-			this.locationDeferred.resolve();
-			let lat = position.coords.latitude;
-			let lng = position.coords.longitude;
-			document.cookie = `geoId=${lat}ng${lng}`;
-		}, () => {
-			this.locationDeferred.reject();
-			console.log('position not available');
-		}, {
-			enableHighAccuracy: true,
-			maximumAge: 30000,
-			timeout: 27000
-		});
-	} else {
-		this.locationDeferred.resolve();
-	}
 
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
