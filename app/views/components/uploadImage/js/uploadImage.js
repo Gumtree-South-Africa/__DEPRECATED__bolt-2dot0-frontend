@@ -324,7 +324,7 @@ let loadData = (i, file) => {
 
 			if (_this.isMobile) {
 				_this.imageHolder.css("background-image", `url(${url.normal}`);
-				Q.allSettled([_this.locationPromise]).then(() => {
+				_this.locationPromise.finally(() => {
 					//Don't care if they actually gave us location, just that it finished.
 					_postAd(url.normal);
 				});
