@@ -9,7 +9,7 @@ $grey-text-color: #808080;
 	width: 100%;
 	background: white;
 	text-align: center;
-	z-index: 4;
+	z-index: 10;
 
 	.close-button {
 		position: absolute;
@@ -19,11 +19,14 @@ $grey-text-color: #808080;
 		.icon-close, .close-text {
 			display: inline-block;
 			font-size: 12px;
+			color: grey;
 		}
 
 		.icon-close {
-			position: relative;
-			top: 6px;
+			background-size: 1800%;
+			height: 16px;
+			width: 16px;
+			vertical-align: text-bottom;
 		}
 	}
 
@@ -59,10 +62,11 @@ $grey-text-color: #808080;
 
 .success-modal-mask {
 	position: absolute;
-	top: 106px;
+	top: 0;
 	left: 0;
 	width: 100%;
-	height: calc(100% - 65px);
+	height: 100%;
 	background-color: #808080;
 	opacity: .5;
+	z-index: 9;
 }

@@ -17,7 +17,8 @@ module.exports = {
 			"UploadImage": "app/views/components/uploadImage/js/uploadImage.js",
 			"PostAdModal": "app/views/components/postAdModal/js/postAdModal.js",
 			"PostAdForm": "app/views/components/postAdForm/js/postAdForm.js",
-			"PhotoCarousel": "app/views/components/photoCarousel/js/photoCarousel.js"
+			"PhotoCarousel": "app/views/components/photoCarousel/js/photoCarousel.js",
+			"UploadSuccessModal": "app/views/components/uploadSuccessModal/js/uploadSuccessModal.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority

@@ -298,7 +298,9 @@ let loadData = (i, file) => {
 					UploadMsgClass.successMsg(i);
 					switch (response.state) {
 						case AD_STATES.AD_CREATED:
-							window.location = response.ad.vipLink;
+							_this.$uploadSuccessLink.attr('href', response.ad.vipLink);
+							_this.$uploadSuccessModal.toggleClass('hidden');
+							_this.$uploadSuccessModalMask.toggleClass('hidden');
 							break;
 						case AD_STATES.AD_DEFERRED:
 							_this.$loginModal.toggleClass('hidden');
@@ -552,6 +554,10 @@ let initialize = () => {
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
 	this.epsData = $('#js-eps-data');
+	this.$uploadSuccessModal = $('#js-success-modal');
+	this.$uploadSuccessLink = this.$uploadSuccessModal.find('#js-more-details-link');
+	this.$postMoreLink = this.$uploadSuccessModal.find('#js-post-more-ads-button');
+	this.$uploadSuccessModalMask = $('#js-success-modal-mask');
 	this.uploadImageContainer = $('.upload-image-container');
 	this.isProgressEventSupport = isProgressEventSupported();
 	this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
@@ -572,6 +578,9 @@ let initialize = () => {
 	this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
 	this.$errorMessageTitle = $('#js-error-title');
 	this.$errorModalButton = this.messageModal.find('.btn');
+
+	this.$postMoreLink.click(window.location.reload);
+
 	this.$errorModalClose.click(() => {
 		this.messageModal.toggleClass('hidden');
 	});
