@@ -152,10 +152,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong"]
 			}
 		},
 		"Homepage" : {

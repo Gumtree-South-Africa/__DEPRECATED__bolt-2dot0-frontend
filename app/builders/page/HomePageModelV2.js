@@ -133,6 +133,15 @@ class HomePageModelV2 {
 			});
 		};
 
+		this.dataPromiseFunctionMap.locationlatlong = () => {
+			return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
+		};
+
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
 				return data[0].keywords || {};

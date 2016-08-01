@@ -31,26 +31,24 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	});
 };
 
-let _geoShowMyLocation = (geoCookieValue) => {
-	geoCookieValue = geoCookieValue.replace('ng',',');
-	$.ajax({
-		url: 'https://maps.google.com/maps/api/geocode/json?latlng=' + geoCookieValue + '&sensor=false',
-		dataType: 'JSON',
-		type: 'GET',
-		success: function(resp) {
-			$('#modal-location').removeClass('spinner').attr('disabled', false);
-			if (resp.results instanceof Array) {
-				if(resp.results.length > 1) {
-					$('.search-textbox-container .location-text').html(resp.results[resp.results.length-2].address_components[0].long_name);
-					$('#modal-location').val(resp.results[resp.results.length-2].address_components[0].long_name);
-				} else {
-					$('.search-textbox-container .location-text').html(resp.results[resp.results.length-1].address_components[0].long_name);
-					$('#modal-location').val(resp.results[resp.results.length-1].address_components[0].long_name);
-				}
-			}
-		}
-	});
-};
+/*
+*  this method will be used when trending card and/or other module can refresh by themselves
+*/
+// let _geoShowMyLocation = (geoCookieValue) => {
+// 	geoCookieValue = geoCookieValue.replace('ng',',');
+// 	$.ajax({
+// 		url: '/api/locate/locationlatlong',
+// 		type: 'GET',
+// 		success: (resp) => {
+//
+// 			$('#modal-location').removeClass('spinner').attr('disabled', false);
+// 				if(resp !== undefined) {
+// 			 		$('.search-textbox-container .location-text').html(resp.localizedName);
+// 			   	$('#modal-location').val(resp.localizedName);
+// 			  }
+// 		  }
+// 	});
+// };
 
 let _geoFindMe = () => {
 	if (!navigator.geolocation) {
@@ -61,7 +59,7 @@ let _geoFindMe = () => {
 		let latitude  = position.coords.latitude;
 		let longitude = position.coords.longitude;
 		document.cookie = 'geoId' + "=" + escape(latitude + 'ng' + longitude) + ";path=/";
-		_geoShowMyLocation(escape(latitude + 'ng' + longitude));
+		//_geoShowMyLocation(escape(latitude + 'ng' + longitude));
 	}
 	function error() {
 		console.error('Unable to retrieve your location');
@@ -92,20 +90,21 @@ let _populateACData = (evt) => {
 	$('#modal-location').val($(evt.currentTarget).find('.suffix-addy').html());
 };
 
-let _getCookie = (cname) => {
-	let name = cname + "=";
-	let ca = document.cookie.split(';');
-	for(let i = 0; i <ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0)===' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length,c.length);
-		}
-	}
-	return "";
-};
+
+// let _getCookie = (cname) => {
+// 	let name = cname + "=";
+// 	let ca = document.cookie.split(';');
+// 	for(let i = 0; i <ca.length; i++) {
+// 		let c = ca[i];
+// 		while (c.charAt(0)===' ') {
+// 			c = c.substring(1);
+// 		}
+// 		if (c.indexOf(name) === 0) {
+// 			return c.substring(name.length,c.length);
+// 		}
+// 	}
+// 	return "";
+// };
 
 let _selectItem = () => {
 	let $active = this.$modal.find(".active");
@@ -171,7 +170,7 @@ let initialize = () => {
 		}
 	});
 
-	$('.card-title-cp').on('click', () => {
+	$('.card-title-cp, .location-link').on('click', () => {
 		_openModal(this.$locmodal);
 	});
 
@@ -204,7 +203,7 @@ let initialize = () => {
 	});
 
 	//on Initialize
-	_geoShowMyLocation(_getCookie('geoId'));
+	//_geoShowMyLocation(_getCookie('geoId'));
 
 };
 
