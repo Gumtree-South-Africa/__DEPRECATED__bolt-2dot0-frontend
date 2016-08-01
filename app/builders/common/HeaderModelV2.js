@@ -207,7 +207,7 @@ class HeaderModel {
 		// set currentProfileImage so the hbs templates don't need conditional logic for which image to display
 
 		if (data.userProfileImageUrl) {
-			data.currentProfileImageUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
+			data.currentProfileImageUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '') + "13.jpg";
 		}
 
 		if (data.socialMedia) {
