@@ -29,8 +29,6 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		"ads": [
 			{
 				"title": fields.title,
-				"price": {
-				},
 				"location": {
 					"address": fields.address,
 					"latitude": lat,
