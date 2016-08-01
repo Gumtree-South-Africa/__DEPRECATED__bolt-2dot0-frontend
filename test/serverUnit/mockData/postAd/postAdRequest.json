@@ -3,6 +3,8 @@
 		{
 			"title": "Test Ad",
 			"price": {
+				"amount": 200.00,
+				"currency": "MXN"
 			},
 			"location": {
 				"address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
