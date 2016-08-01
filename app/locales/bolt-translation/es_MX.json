@@ -1232,31 +1232,31 @@
 	},
 	"postAd": {
 		"confirm": {
-			"pageTitle": "Post An Ad TBT",
-			"back": "Back TBT",
-			"didYouKnow": "Did you know that... TBT",
-			"tip": "Tip: You can go the My Ads page to view your ads and add more details. TBT"
+			"pageTitle": "Publicar un anuncio",
+			"back": "Atrás",
+			"didYouKnow": "Sabías que...",
+			"tip": "Consejo: Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "It's as simple as add and post! More photos and edits can be added after posting. TBT",
+			"directions": "Es muy sencillo, solo tienes que agregarlo y publicarlo. Puedes agregar más fotos y hacer otros",
 			"form": {
-				"title": "Ad Title TBT",
-				"remaining": "remaining TBT",
-				"price": "Price TBT",
-				"addPhotos": "Add Photos TBT",
-				"pricePlaceholder": "Ask Me for Pricing TBT"
+				"title": "Título del anuncio",
+				"remaining": "restantes",
+				"price": "Precio",
+				"addPhotos": "Agregar fotos",
+				"pricePlaceholder": "Preguntarme el precio"
 			},
-			"post": "Post TBT",
-			"ad": "Ad TBT"
+			"post": "Publicar",
+			"ad": "Anuncio"
 		},
 		"uploadModal": {
-			"title": "Upload an Image"
+			"title": "Carga una foto"
 		},
 		"loginModal": {
-			"title": "Login to continue TBT",
-			"facebookBtn": "Continue with Facebook TBT",
-			"emailBtn": "Login with Email TBT",
-			"register": "Regístrate",
+			"title": "Inicia sesión para continuar",
+			"facebookBtn": "Continuar con Facebook",
+			"emailBtn": "Iniciar sesión con correo electrónico",
+			"register": "Registrarse",
 			"close": "Cerrar",
 			"legal1": "Al hacer clic en continùa declaro estar de acuerdo con los",
 			"termsAndConditions": "Tèrminos v Condiciones",
@@ -1267,17 +1267,16 @@
 			"legal3": "de Vivanuncios"
 		},
 		"successModal": {
-			"title": "Your Ad is Uploaded! TBT",
-			"tip": "Tip: Add more photos to increases your chances of selling quickly. TBT",
-			"moreDetails": "Add more details TBT",
-			"postMoreBtn": "Post More Ads TBT"
+			"title": "¡Ya se cargó tu anuncio!",
+			"tip": "Consejo: Agrega más fotos para mejorar tus posibilidades de vender rápidamente.",
+			"moreDetails": "Agregar más detalles",
+			"postMoreBtn": "Publicar más anuncios"
 		},
 		"unsupportedFileModal": {
-			"error": "Error",
-			"title": "Unsupported File Format",
+			"title": "Formato de archivo no admitido",
 			"close": "Cerrar",
-			"message": "This file contains an unsupported media format. TBT",
-			"uploadBtn": "Upload a different photo TBT"
+			"message": "Este archivo contiene un formato multimedia no admitido.",
+			"uploadBtn": "Cargar una foto diferente"
 		}
 	},
 	"footer": {
