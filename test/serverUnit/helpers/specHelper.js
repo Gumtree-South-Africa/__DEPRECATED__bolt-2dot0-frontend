@@ -69,7 +69,10 @@ let registerMockEndpoint = (url, file) => {
  * @returns {*|Promise.<supertest>} returns a promise that resolves to supertest
  *  call .then((supertest) => { supertest.expect/end() etc. }) on result from promise
  */
-module.exports.boltSupertest = (route, host) => {
+module.exports.boltSupertest = (route, host, method) => {
+	if (!method) {
+		method = "GET";
+	}
 	let app = require(cwd + '/app');
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
 	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
@@ -94,9 +97,16 @@ module.exports.boltSupertest = (route, host) => {
 			if (filePath === undefined) {
 				throw new Error(`No mocked endpoint for ${path}`);
 			}
-			let data = fs.readFileSync(filePath);
-			let json = JSON.parse(data);
-			return Q(json);
+			try {
+				let data = fs.readFileSync(filePath);
+				let json = JSON.parse(data);
+				return Q(json);
+			} catch (e) {
+				// we couldnt load the file, but we can simulate a failed promise
+				return Q.fcall( () => {
+					throw e;
+				});
+			}
 		}
 	};
 
@@ -111,10 +121,23 @@ module.exports.boltSupertest = (route, host) => {
 		console.warn('Server started');
 		host = host || 'gumtree.co.za';
 
-		return supertest(app)
-			.get(route)
-			.set('host', host)
-			.set('user-agent', 'testing');
+		let result = supertest(app);
+
+		if (method === 'GET') {
+			result = result.get(route);
+		} else if (method === 'POST') {
+			result = result.post(route);
+
+			// assume we're going to be posting and receiving json
+			result.set('ContentType', 'application/json');
+			result.set('Accept', 'application/json');
+		} else {
+			console.error(`specHelper - unrecognized "method" parameter: ${method}`);
+		}
+		// common to all requests regardless of method
+		result.set('host', host);
+		result.set('user-agent', 'testing');
+		return result;
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);

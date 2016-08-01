@@ -86,7 +86,7 @@ module.exports.four_o_four = function(app) {
 
 function isAjaxReq(req) {
 
-    if (req.xhr || stringUtl(req.path).contains("api")) {
+    if (req.xhr || stringUtl(req.path).contains("/api/")) {
         return true;
     }
 
