@@ -571,10 +571,10 @@ let deleteSelectedItem = (event) => {
 	// Set new cover photo, or trigger file selector on empty photo click
 	let firstItem = $(".carousel-item:first");
 	if (firstItem.length > 0) {
-		firstItem.trigger('click');
+		firstItem.click();
 	} else {
 		$(".photo-wrapper").on('click', () => {
-			$(".add-photo-item .file-input").trigger('click');
+			$(".add-photo-item #desktopFileUpload").click();
 		});
 	}
 };
@@ -646,7 +646,7 @@ let initialize = () => {
 		this.$imageUpload.click();
 	});
 
-	this.$imageUpload = $("#fileUpload");
+	this.$imageUpload = $("#desktopFileUpload");
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -680,7 +680,7 @@ let initialize = () => {
 	};
 
 	//listen for file uploads
-	$('#photo-carousel #fileUpload').on("change", (evt) => {
+	$('#photo-carousel #desktopFileUpload').on("change", (evt) => {
 		evt.stopImmediatePropagation();
 
 		if (imageUploads.count() === allowedUploads) {
@@ -700,7 +700,7 @@ let initialize = () => {
 		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
 			html5Upload(evt);
 		} else {
-			$("#fileUpload").removeAttr("multiple");
+			$("#desktopFileUpload").removeAttr("multiple");
 			uploadNoneHtml5(this);
 		}
 	});
@@ -728,7 +728,7 @@ let initialize = () => {
 
 	// Clicking empty cover photo should open file selector
 	$(".photo-wrapper").on('click', () => {
-		$(".add-photo-item .file-input").trigger('click');
+		$(".add-photo-item #desktopFileUpload").click();
 	});
 };
 

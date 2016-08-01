@@ -16,11 +16,18 @@ let initialize = () => {
 	this.$postAdWrapper = $('.post-ad-wrapper');
 	this.$postAdModal = $('.post-ad-modal-wrapper', this.$postAdWrapper);
 	this.$closeButton = $('#js-close-post-ad-modal', this.$postAdModal);
-	this.$postAdFooter = this.$postAdWrapper.find('.post-ad-footer');
-	this.$singleFileInput = $('#fileUpload');
-	this.$postAdFooter.on('click', (e) => {
+	this.$mobileFooter = $(".modal-footer-mobile");
+	this.$desktopFooter = $(".modal-footer-desktop");
+	this.$mobileFileInput = $('#mobileFileUpload');
+	this.$deskptopFileInput = $('#desktopFileUpload');
+	this.$mobileFooter.on('click', (e) => {
 		_toggleModal(e, true);
-		this.$singleFileInput.click();
+		this.$mobileFileInput.click();
+	});
+
+	this.$desktopFooter.on('click', (e) => {
+		_toggleModal(e, true);
+		this.$deskptopFileInput.click();
 	});
 
 	this.$postAdWrapper.on('click', (e) => {

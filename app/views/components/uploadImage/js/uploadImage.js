@@ -609,7 +609,7 @@ let initialize = () => {
 		this.$imageUpload.click();
 	});
 
-	this.$imageUpload = $("#fileUpload");
+	this.$imageUpload = $("#mobileFileUpload");
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -641,7 +641,7 @@ let initialize = () => {
 		unsupportedFileTitle: this.epsData.data('unsupported-file-title')
 	};
 	// on select file
-	$('#postForm').on("change", "#fileUpload", (evt) => {
+	$('#postForm').on("change", "#mobileFileUpload", (evt) => {
 
 		evt.stopImmediatePropagation();
 		// get img-box
@@ -664,7 +664,6 @@ let initialize = () => {
 		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
 			html5Upload(evt);
 		} else {
-			$("#fileUpload").removeAttr("multiple");
 			uploadNoneHtml5(this);
 		}
 	});
