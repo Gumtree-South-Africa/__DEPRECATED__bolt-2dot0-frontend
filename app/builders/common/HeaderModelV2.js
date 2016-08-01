@@ -197,8 +197,17 @@ class HeaderModel {
 //Build Profile
 	buildProfile(data) {
 
-		if (data.username) {
+		data.isUserLoggedIn = true;
+
+		// priority order for setting fields is 1. regular login  2. facebook login
+
+		if (data.username && data.username.length > 0) {
 			data.profileName = data.username;
+		}
+		// set currentProfileImage so the hbs templates don't need conditional logic for which image to display
+
+		if (data.userProfileImageUrl) {
+			data.currentProfileImageUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
 		}
 
 		if (data.socialMedia) {
@@ -206,13 +215,9 @@ class HeaderModel {
 				data.profileName = data.socialMedia.profileName;
 			}
 			if (data.socialMedia.type === 'FACEBOOK') {
-				data.smallFbProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+				data.currentProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
 				data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/feed?access_token=' + data.socialMedia.accessToken;
 			}
-		}
-
-		if (data.userProfileImageUrl) {
-			data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
 		}
 	}
 }

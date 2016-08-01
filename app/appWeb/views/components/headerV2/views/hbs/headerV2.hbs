@@ -76,24 +76,15 @@
             <div class="profile right-item">
                 <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
-                    {{#if this.header.username}}
-                        {{#if this.header.profilePictureCropUrl}}
-                            profile-picture
-                        {{else if this.header.smallFbProfileImageUrl}}
+                        {{#if model.header.currentProfileImageUrl}}
                             profile-picture
                         {{else}}
                             icon-header-profile-out
-                        {{/if}}
-                    {{else}}
-                        icon-header-profile-out
-                    {{/if}}"
-                    {{#if this.header.profilePictureCropUrl}}
-                         style="background: url('{{this.header.profilePictureCropUrl}}13.JPG') no-repeat;
-                                 background-size: contain;"
-                    {{else if this.header.smallFbProfileImageUrl}}
-                         style="background: url('{{this.header.smallFbProfileImageUrl}}13.JPG') no-repeat;
-                                 background-size: contain;"
-                    {{/if}}>
+                        {{/if}}"
+
+                        {{#if model.header.currentProfileImageUrl}}
+    						 style="background-image:url({{model.header.currentProfileImageUrl}});"
+                        {{/if}}>
                     </div>
                     {{#if this.header.userEmail}}
                         {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
