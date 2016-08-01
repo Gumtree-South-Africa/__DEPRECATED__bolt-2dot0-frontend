@@ -118,7 +118,7 @@ let setCoverPhoto = (event) => {
 
 	// remove 'selected' class from other items and add to new target
 	let cItems = document.querySelectorAll(".carousel-item");
-	cItems.forEach((item) => {
+	[].forEach.call(cItems, (item) => {
 		$(item).removeClass('selected');
 	});
 	$(event.target).addClass("selected");
@@ -128,7 +128,7 @@ let setCoverPhoto = (event) => {
 let updateCarouselImages = () => {
 	let cItems = document.querySelectorAll(".carousel-item[data-image]");
 
-	cItems.forEach((item) => {
+	[].forEach.call(cItems, (item) => {
 		let url = item.getAttribute('data-image');
 		item.style.backgroundImage = "url('" + url + "')";
 	});
