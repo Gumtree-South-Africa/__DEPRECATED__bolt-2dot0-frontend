@@ -569,7 +569,9 @@ let initialize = () => {
 	this.$errorMessageTitle = $('#js-error-title');
 	this.$errorModalButton = this.messageModal.find('.btn');
 
-	this.$postMoreLink.click(window.location.reload);
+	this.$postMoreLink.click(() => {
+		window.location.reload();
+	});
 
 	this.$errorModalClose.click((e) => {
 		e.stopImmediatePropagation();
