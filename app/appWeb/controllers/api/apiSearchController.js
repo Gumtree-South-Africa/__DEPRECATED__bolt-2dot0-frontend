@@ -15,13 +15,13 @@ router.get('/autocomplete', cors, (req, res) => {
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
 	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
-		let results = {};
+		let results = {
+			totalCount: 0,
+			items: []
+		};
 
 		if (typeof autoCompleteResults !== 'undefined') {
-			results = {
-				totalCount: autoCompleteResults.response.numFound,
-				items: []
-			};
+			results['totalCount'] = autoCompleteResults.response.numFound;
 
 			for (let i = 0; i < autoCompleteResults.response.docs.length; i++) {
 				let element = autoCompleteResults.response.docs[i];
