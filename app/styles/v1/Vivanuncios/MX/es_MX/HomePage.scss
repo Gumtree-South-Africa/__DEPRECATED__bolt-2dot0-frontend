@@ -2,6 +2,7 @@
     "../../theme",
     "../partials/pages/Homepage/categoryListHack",
     "../partials/pages/Homepage/categoryDisplay";
+ 
         
 @import "../../../partials/pages/Homepage/pageMain",
 		"../../../partials/pages/Homepage/carouselExt",
@@ -20,7 +21,6 @@
 }
 */
 
-
 .homepagewrapper{
 display:none;
 }
@@ -30,19 +30,6 @@ display:none;
       padding-left :0;
       padding-right :0;
       }
-      
-   .pitch{
-    background: url(/assets/2/mobile/img/549444268672/mobile/pizza_ad.jpg) no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    background-size: cover;
-    margin: 0;
-    height: 100%;
-    padding: 0 10px;
-    text-shadow: 0 0 8px rgba(0,0,0,0.8);
-   
-   
-   }   
   }
 
 
