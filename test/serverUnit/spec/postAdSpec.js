@@ -2,375 +2,67 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let cheerio = require('cheerio');
 
-fdescribe('Post Ad Api', () => {
+
+fdescribe('Post Ad Page', () => {
+	let i18n;
+
+	beforeAll(() => {
+		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
+	});
 
 	beforeEach(() => {
-
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
-
-		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=200`,
-			'test/serverUnit/mockData/postAd/postAdResponse.json');
 	});
 
-	it('should create an ad for logged in user', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+	it('should display header in distraction free mode', (done) => {
+		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
-				.set('Cookie', 'bt_auth="test value to simulate logged in"')
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
-					let jsonResult = JSON.parse(res.text);
-
-					expect(jsonResult.state).toBe("AD_CREATED");
-
-					let id = Number(jsonResult.ad.id);
-					expect(id).toEqual(jasmine.any(Number), `ad id value should be numeric`);
-
-					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
-					expect(jsonResult.ad.vipLink).toEqual('/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+07+01-17-44-50-307/1001099833810910650990709');
-
-					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
+					let c$ = cheerio.load(res.text);
+					expect(c$('.headerV2').length).toBe(1, 'header should be on the page');
+					expect(c$('.headerV2').children.length).toBe(1, 'header should have only child');
+					let button = c$('.post-ad-button');
+					expect(button.length).toBe(0, 'selector should produce 0 elements for post ad button');
 				})
 				.end(specHelper.finish(done));
 		});
 	});
 
-	it('should defer creation of an ad because we are not logged in', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+	it('should show footer in distraction free mode', (done) => {
+		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
 					expect(res.status).toBe(200);
+					let c$ = cheerio.load(res.text);
+					expect(c$('.footer-wrapper').length).toBe(1, 'footer should be displayed');
 
-					let jsonResult = JSON.parse(res.text);
-
-					expect(jsonResult.state).toBe("AD_DEFERRED");
-
-					expect(jsonResult.guid).toBeDefined('deferred ad should have a guid');
+					expect(c$('.footer-aboutus').length).toBe(0, 'footer should not display about us');
+					expect(c$('.df-footer-legal').length).toBe(1, 'footer should display legal information');
+					expect(c$('.app-downloads-container').length).toBe(0, 'footer should not display app download information');
 				})
 				.end(specHelper.finish(done));
 		});
 	});
 
-	it('should respond with 406 because we did not send json', (done) => {
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+	it('should show correct translations for tips', (done) => {
+		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
-			// .set('Cookie', 'b2dot0Version=2.0')
-				.send("sending this but it is not json")
 				.expect((res) => {
-					expect(res.status).toBe(406);
+					expect(res.status).toBe(200);
+					let c$ = cheerio.load(res.text);
+					expect(c$('.header-text').children('div').first().text().trim()).toBe(i18n.postAd.confirm.pageTitle);
+					expect(c$('.didKnow-text').text().trim()).toBe(i18n.postAd.confirm.didYouKnow);
+					expect(c$('.confirm-tip').text().trim()).toBe(i18n.postAd.confirm.tip);
+					expect(c$('.directions').text().trim()).toBe(i18n.postAd.createAds.directions);
+					expect(c$('.post-ad-btn').children('a').children('span').first().text().trim()).toBe(`${i18n.postAd.createAds.post} ${i18n.postAd.createAds.ad}`);
 				})
 				.end(specHelper.finish(done));
 		});
 	});
-
-	it('should respond with 400, result should contain json schema error: "ads" required', (done) => {
-		let file = {};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contain json schema error: "ads" too few items', (done) => {
-		let file = {
-			"ads": []
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads");
-					expect(jsonResult.schemaErrors[0].message).toBe("has less items than allowed");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	// Note: once we support multiple ads we can get rid of this test
-	it('should respond with 400, result should contain json schema error: "ads" too many items', (done) => {
-		let file = {
-			"ads": [
-				{
-					"location": {
-						"latitude": 10.000,
-						"longitude": 19.999
-					}
-				},
-				{
-					"location": {
-						"latitude": 10.000,
-						"longitude": 19.999
-					}
-				}
-			]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads");
-					expect(jsonResult.schemaErrors[0].message).toBe("has more items than allowed");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contain json schema error: invalid latitude', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-					"latitude": "invalid format",
-					"longitude": 19.999
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location.latitude");
-					expect(jsonResult.schemaErrors[0].message).toBe("is the wrong type");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contains json schema errors: lat/long required', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(2);
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location.latitude");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.location.longitude");
-					expect(jsonResult.schemaErrors[1].message).toBe("is required");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contains json schema error: location required', (done) => {
-		let file = {
-			"ads": [{
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contains json schema error: title too long', (done) => {
-		let file = {
-			"ads": [{
-				"title": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
-				"location": {
-					"latitude": 10.000,
-					"longitude": 19.999
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.title");
-					expect(jsonResult.schemaErrors[0].message).toBe("has longer length than allowed");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contain json schema error: price fields missing', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
-				"price": {
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(2, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.currency");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.price.amount");
-					expect(jsonResult.schemaErrors[1].message).toBe("is required");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-
-	it('should respond with 400, result should contain json schema error: invalid price amount', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
-				"price": {
-					"currency": "MXN",
-					"amount": "123.00"
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-					let jsonResult = JSON.parse(res.text);
-					// console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.amount");
-					expect(jsonResult.schemaErrors[0].message).toBe("is the wrong type");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contain json schema error: invalid price currency', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
-				"price": {
-					"currency": "foo",
-					"amount": 123.00
-				}
-			}]
-		};
-
-		boltSupertest('/post/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.price.currency");
-					expect(jsonResult.schemaErrors[0].message).toBe("must be an enum value");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	/*
-	 curl --data @test/serverUnit/mockData/postAd/postAdRequest-invalid-1.json -H "Content-Type: application/json" -X GET http://www.vivanuncios.com.mx.localhost:8000/post/api/postad/create
-	*/
-
 });

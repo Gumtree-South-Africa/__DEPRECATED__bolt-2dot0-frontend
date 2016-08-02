@@ -112,19 +112,6 @@ router.post('/create', cors, (req, res) => {
 		return;
 	}
 
-	let authenticationCookie = req.cookies['bt_auth'];
-
-	if (!authenticationCookie) {
-		let responseJson = getNotLoggedInResponse();
-		if (!responseJson.guid) {
-			console.error('unable to store deferred ad');
-			res.status(500).send();
-			return;
-		}
-		res.send(responseJson);
-		return;
-	}
-
 	// validate the incoming JSON
 	let validate = validator(schemaPostAd);
 	let valid = validate(req.body);
@@ -141,6 +128,19 @@ router.post('/create', cors, (req, res) => {
 
 	// we're validated
 	let requestJson = req.body;
+
+	let authenticationCookie = req.cookies['bt_auth'];
+
+	if (!authenticationCookie) {
+		let responseJson = getNotLoggedInResponse();
+		if (!responseJson.guid) {
+			console.error('unable to store deferred ad');
+			res.status(500).send();
+			return;
+		}
+		res.send(responseJson);
+		return;
+	}
 
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
@@ -165,7 +165,7 @@ router.post('/create', cors, (req, res) => {
 		let bapiRequestJson = mapToBapiRequest(requestJson);
 
 		//TODO: do not have this as mock
-		postAdService.quickpostAdMock(model.bapiHeaders, bapiRequestJson).then( (results) => {
+		postAdService.quickpostAd(model.bapiHeaders, bapiRequestJson).then( (results) => {
 
 			let responseJson = getAdPostedResponse(results);
 			if (!responseJson.ad.vipLink) {
