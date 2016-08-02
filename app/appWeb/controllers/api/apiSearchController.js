@@ -12,10 +12,30 @@ router.get('/autocomplete', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
-	model.searchModel = new SearchModel(model.bapiHeaders);
+	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
-	model.searchModel.getAjaxTypeAhead(req.query.searchTerm, req.query.location).then((typeAheadResults) => {
-		res.send(typeAheadResults);
+	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
+		let results = {
+			totalCount: 0,
+			items: []
+		};
+
+		if (typeof autoCompleteResults !== 'undefined') {
+			results['totalCount'] = autoCompleteResults.response.numFound;
+
+			for (let i = 0; i < autoCompleteResults.response.docs.length; i++) {
+				let element = autoCompleteResults.response.docs[i];
+				let content = {
+					keyword: element.keywords_g110,
+					category: element.categoryId_l110,
+					location: element.locationId_l110
+				};
+				results.items.push(content);
+			}
+		}
+
+		res.status(200);
+		res.send(results);
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);

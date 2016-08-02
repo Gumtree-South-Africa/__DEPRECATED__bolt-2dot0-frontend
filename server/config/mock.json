@@ -17,8 +17,17 @@
 	    	"configService"		:	"/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/ads",
-			"trendingSearch"	:	"/ads"
+			"recentActivities"  :	"/ads/activities/recent",
+			"trendingSearch"	: 	"/ads/trending"
 	    }
+	},
+	"solr": {
+		"server": {
+			"host"	: "localhost",
+			"port"	: 9090,
+			"path"	: "/solr",
+			"version": "4.0"
+		}
 	},
 	"kafka": {
 		"server": {

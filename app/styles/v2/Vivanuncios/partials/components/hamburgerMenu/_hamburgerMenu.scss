@@ -77,7 +77,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 		top: 18px;
 		right: 0;
 		&.icon-chevron {
-			background-size: 700%;
+			background-size: 800%;
 		}
 		&.icon-up {
 			background-size: 3500%;
@@ -131,7 +131,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 			margin-left: 0;
 			width: 26px;
 			height: 25px;
-			background-size: 2000%;
+			background-size: 2250%;
 		}
 		.item-text {
 			padding-left: 5px;
@@ -150,7 +150,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 	position: fixed;
 	top: 0;
 	bottom: 0;
-	overflow: scroll;
+	overflow: auto;
 	z-index: 11;
 	&.hamburger-open {
 		left: 0;

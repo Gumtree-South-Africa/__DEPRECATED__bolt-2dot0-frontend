@@ -7,7 +7,6 @@ let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControll
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
-let deviceDetection = require(cwd + '/modules/device-detection');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 
@@ -30,17 +29,9 @@ let HP = {
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
 		if (modelData.header.min) {
-			if (deviceDetection.isHomePageDevice()) {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
-			} else {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
-			}
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
 		} else {
-			if (deviceDetection.isHomePageDevice()) {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
-			} else {
-				modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
-			}
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
 		}
 
 		// Header Page Messages

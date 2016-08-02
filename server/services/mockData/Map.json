@@ -1,0 +1,366 @@
+{
+	"totalAds": 125238,
+	"ads" :
+	[
+		{
+			"id":109847304,
+			"title": "Nice beach view house for rent",
+			"description": "test post ad1",
+			"categoryId": 68,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Yf8AAOSwXSJXO8Cy/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.412358",
+				"lng": "-99.184474"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/qRYAAOSw8vZXNI8x/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.412358",
+				"lng": "-99.184474"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTMzWDgwMA==/z/GlIAAOSwXSJXO71v/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.412358",
+				"lng": "-99.184474"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTQ3WDMwOA==/z/0TkAAOSw41xXO7-v/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.409828",
+				"lng": "-99.177672"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/P7wAAOSwH71XO7vh/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.409828",
+				"lng": "-99.177672"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MTIwMFgxNjAw/z/QQ4AAOSwB9xXO7wa/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.409828",
+				"lng": "-99.177672"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/-jUAAOSw74FXO8Bv/$_19.jpg"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.409828",
+				"lng": "-99.177672"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MzYzWDMwOA==/z/IsMAAOSwf05XO7~4/$_19.jpg"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.416527",
+				"lng": "-99.172350"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/JYgAAOSwf05XO8AO/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.416527",
+				"lng": "-99.172350"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDUwWDgwMA==/z/thkAAOSw41xXO76I/$_19.jpg"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.416527",
+				"lng": "-99.172350"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/ODAwWDQ1MA==/z/etMAAOSwf05XO7kY/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.416527",
+				"lng": "-99.172350"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTk4WDgwMA==/z/CioAAOSw41xXO6r6/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.417924",
+				"lng": "-99.177221"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/Mzc5WDgwMA==/z/5dEAAOSwoudW5uUi/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.417924",
+				"lng": "-99.177221"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.417924",
+				"lng": "-99.177221"
+			}
+		},
+		{
+			"id":101849405,
+			"title": "BMW sedan - All wheel drive",
+			"description": "test post ad2",
+			"categoryId": 64,
+			"pictures": [
+				{
+					"sizeUrls":
+					[
+						{
+							"NORMAL": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDUxWDgwMA==/z/uqYAAOSwfC9XO74I/$_19.JPG?set_id=8800005007"
+						}
+					],
+					"imageSet": "CPSP_ZA"
+				}
+			],
+			"featureSet": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			],
+			"geoLocation": {
+				"lat": "19.417924",
+				"lng": "-99.177221"
+			}
+		}
+	]
+}
