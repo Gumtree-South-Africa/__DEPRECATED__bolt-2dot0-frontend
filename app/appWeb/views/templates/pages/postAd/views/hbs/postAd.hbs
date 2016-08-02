@@ -28,11 +28,9 @@
 
         {{> (dynamic "postAdForm")}}
 
-		<div class="post-ad-btn btn-wrapper">
-			<a href="/post-TBD">
-                <span class="sudolink">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-			</a>
-		</div>
+        <a href="/post-TBD" id="postAdBtn" class="post-ad-btn btn-wrapper disabled">
+            <span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+        </a>
 	</div>
 
     {{> (dynamic "loginModal") isHidden=true}}
