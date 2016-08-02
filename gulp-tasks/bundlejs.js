@@ -10,7 +10,7 @@ var es = require('event-stream');
 
 module.exports = function watch(gulp, plugins) {
 	return function() {
-			return gulp.task('bundlejs', function() {
+			gulp.task('bundlejs', function() {
 				return es.merge(bundles.map(function(obj) {
 					return gulp.src(obj.src)
 						.pipe(plugins.concat(obj.bundleName))

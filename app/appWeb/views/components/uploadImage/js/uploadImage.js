@@ -16,17 +16,8 @@ const AD_STATES = {
 
 let allowedUploads = 4;
 
-
-let isCORS = () => {
-	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
-};
-
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
-};
-
-let isBlackBerryCurve = () => {
-	return !!navigator.userAgent.match(/(BlackBerry (9320|9360))/);
 };
 
 /**
@@ -49,11 +40,6 @@ let IsSafariMUSupport = () => {
 			return false;
 		}
 	}
-};
-
-let fileAPISupport = () => {
-
-	return !!(window.File && window.FileList && window.FileReader);
 };
 
 let isProgressEventSupported = () => {
@@ -89,18 +75,6 @@ let ExtractURLClass = (url) => {
 
 };
 
-let supportMultiple = () => {
-	// lets not do it for safari until we find a solution
-	//if ($.isSafari()) return false;
-	//if ($.isSafari() && !(IsSafariMUSupport())) return false;
-	// do i support FileList API
-	if ($("#file").files && document.getElementById("file").files.length === 0) {
-		return false;
-	}
-	//do I support input type=file/multiple
-	let el = document.createElement("input");
-	return ("multiple" in el);
-};
 
 let imageUploads = (() => {
 
@@ -504,79 +478,6 @@ let html5Upload = (evt) => {
 	}
 };
 
-
-let uploadNoneHtml5 = () => {
-
-	let count = imageUploads.count();
-	if (count === allowedUploads) {
-		return;
-	}
-
-	imageUploads.add(1);
-
-	// hide progress bar
-	$(".progress-holder").hide();
-
-	let i = imageUploads.count() - 1;
-
-	$("#upload-status-" + i).show();
-
-	UploadMsgClass.loadingMsg(i);
-
-	$("#file-upload-" + i).css("margin-top", "1.4em");
-
-	let epsForm = {
-		action: this.EPS.url, id: "epsForm" + count, fieldNames: [
-			{
-				name: "s", value: !this.EPS.IsEbayDirectUL ? "1C5000" : "Standard"
-			}, {
-				name: "v", value: "2"
-			}, {
-				name: "b", value: "18"
-			}, {
-				name: "n", value: "g"
-			}, {
-				name: "a", value: this.EPS.token
-			}, {
-				name: "pltfrm", value: "bolt"
-			}, {
-				name: "rqt", value: $.now()
-			}
-		]
-
-	};
-
-	let iframe = $('<iframe />', {
-		name: 'eps-frame-' + count,
-		id: 'eps-frame-' + count,
-		style: 'position:absolute;left:-10000px',
-		src: "about:blank"
-	});
-
-	if ($("#eps-frame" + count)) {
-		iframe.appendTo('body');
-		// Add the iframe with a unique name
-	}
-
-
-	// work around for IE 9
-	// Clone the "real" input element
-	let real = $("#file");
-	let cloned = real.clone(true);
-
-	// Put the cloned element directly after the real element
-	// (the cloned element will take the real input element's place in your UI
-	// after you move the real element in the next step)
-	real.hide();
-	real.value = "";
-	cloned.insertAfter(real);
-
-	$('<form style="position:absolute;left:-10000px" method="post" action="' + epsForm.action + '" name="' + epsForm.id + '" id="' + epsForm.id + '" target="eps-frame-' + count + '" enctype="multipart/form-data">' + '<input type="hidden" name="s" value="' + epsForm.fieldNames[0].value + '"/><input type="hidden" name="v" value="' + epsForm.fieldNames[1].value + '"/>' + '<input type="hidden" name="b" value="' + epsForm.fieldNames[2].value + '"><input type="hidden" name="n" value="k"/><input type="hidden" name="pltfrm" value="bolt"/><input type="hidden" name="rqt" value="' + $.now() + '"/>' + '<input type="hidden" name="a" value="' + epsForm.fieldNames[4].value + '"/>' + '</form>').append($("#file")).appendTo('body');
-
-	$("#" + epsForm.id).submit();
-};
-
-
 Array.prototype.remove = function(from, to) {
 	let rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
@@ -646,8 +547,6 @@ let initialize = () => {
 		selectCategoryLabel: this.epsData.data('eps-selectcategorylabel'),
 		categorySearchPlaceholder: this.epsData.data('eps-categorysearchplaceholder')
 	};
-	this.Bolt.imgThumbUrls = JSON.parse(this.epsData.find('#js-bolt-imgThumbUrls').text());
-	this.Bolt.imgUrls = JSON.parse(this.epsData.find('#js-bolt-imgUrls').text());
 	//i18n strings
 	this.messages = {
 		successMsg: this.epsData.data('successmsg'),
@@ -680,11 +579,7 @@ let initialize = () => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
 		// lets only do if there is support for multiple
-		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
-			html5Upload(evt);
-		} else {
-			uploadNoneHtml5(this);
-		}
+		html5Upload(evt);
 	});
 };
 
