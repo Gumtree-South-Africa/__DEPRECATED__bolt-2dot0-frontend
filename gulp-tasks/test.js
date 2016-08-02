@@ -63,25 +63,25 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 
-		gulp.task('karma', function (done) {
+		gulp.task('karma', function(done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
 				singleRun: true
 			}, done).start();
 		});
 
-		gulp.task('karmaCI', function (done) {
+		gulp.task('karmaCI', function(done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
 				singleRun: false
 			}, done).start();
 		});
 
-		gulp.task('test:clientUnit', function (done) {
+		gulp.task('test:clientUnit', function(done) {
 			runSequence("precompileTemplates", "karma", done)
 		});
 
-		gulp.task('test:clientUnitCI', function (done) {
+		gulp.task('test:clientUnitCI', function(done) {
 			runSequence("precompileTemplates", "karmaCI", done)
 		});
 

@@ -1,5 +1,5 @@
 'use strict';
-let searchBarV2 = require('app/views/components/searchbarV2/js/searchbarV2.js');
+let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
 
 let toggleMenu = (shouldClose) => {

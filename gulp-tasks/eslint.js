@@ -11,10 +11,10 @@ module.exports = function watch(gulp) {
 			let argv = require('yargs').argv;
 			let stream = gulp.src([
 				// 'app/controllers/page/isotopePrototype/*.js',
-				// 'app/views/components/responsiveBreakpointDetection/js/*.js',
-				// 'app/views/components/adTile/js/*.js',
-				// 'app/views/components/recentActivity/js/*.js',
-				// 'app/views/components/tileGrid/js/*.js',
+				// 'app/appWeb/views/components/responsiveBreakpointDetection/js/*.js',
+				// 'app/appWeb/views/components/adTile/js/*.js',
+				// 'app/appWeb/views/components/recentActivity/js/*.js',
+				// 'app/appWeb/views/components/tileGrid/js/*.js',
 				'app.js',
 				'app/**/*.js',
 				'server/**/*.js',
@@ -25,7 +25,7 @@ module.exports = function watch(gulp) {
 			])
 				.pipe(gulpEslint())
 				.pipe(gulpEslint.format());
-			
+
 			if (!argv.hasOwnProperty("noLintHalt")) {
 				stream = stream.pipe(gulpEslint.failAfterError());
 			}

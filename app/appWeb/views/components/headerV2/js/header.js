@@ -1,7 +1,7 @@
 'use strict';
 
 let $ = require('jquery');
-let deepLink = require('app/views/components/headerV2/js/deepLink.js');
+let deepLink = require('app/appWeb/views/components/headerV2/js/deepLink.js');
 
 let _toggleBrowseMenu = (shouldClose) => {
 	if (shouldClose === undefined) {

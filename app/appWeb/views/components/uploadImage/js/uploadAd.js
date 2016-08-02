@@ -43,7 +43,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	}
 
 	$.ajax({
-		url: '/post/api/postad/create',
+		url: '/api/postad/create',
 		type: 'POST',
 		data: JSON.stringify(payload),
 		dataType: 'json',

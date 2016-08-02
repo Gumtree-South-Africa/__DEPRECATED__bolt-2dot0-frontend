@@ -16,7 +16,7 @@ module.exports = function watch(gulp, plugins) {
         srcFiles = pageJson.src; // Arr with all the source files
         destFile = pageJson.dest;
         // Read each key/value(array)
-        gulp.src(srcFiles, {base : './app/views/templates/precompile/hbs'})
+        gulp.src(srcFiles, {base : './app/appWeb/views/templates/precompile/hbs'})
             .pipe(plugins.handlebars())
             .pipe(plugins.declare({
               namespace: 'Handlebars.templates',

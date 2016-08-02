@@ -11,7 +11,7 @@ let postAdService = require(cwd + '/server/services/postad');
 let userService = require(cwd + '/server/services/user');
 
 let validator = require('is-my-json-valid');
-let schemaPostAd = require(cwd + '/app/appPost/jsonSchemas/postAdRequest-schema.json');
+let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let uuid = require('node-uuid');
 let _ = require('underscore');
 

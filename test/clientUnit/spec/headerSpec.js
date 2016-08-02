@@ -1,6 +1,6 @@
 "use strict";
 
-let headerController = require("app/views/components/headerV2/js/header.js");
+let headerController = require("app/appWeb/views/components/headerV2/js/header.js");
 let specHelper = require('../helpers/commonSpecHelper.js');
 
 
