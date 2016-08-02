@@ -115,19 +115,25 @@ let _selectItem = () => {
 
 let _highlightPrevItem = () => {
 	let $active = this.$modal.find(".active");
-	if ($active.length === 0) {
-		this.$locmodal.find(".ac-field").last().addClass("active");
-	} else {
-		$active.removeClass("active").prev(".ac-field").addClass("active");
-	}
+		if ($active.length === 0) {
+			this.$locmodal.find(".ac-field").last().addClass("active");
+		} else {
+			$('#autocompleteField').animate({
+	        scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
+	    }, 'fast');
+			$active.removeClass("active").prev(".ac-field").addClass("active");
+   }
 };
 
 let _highlightNextItem = () => {
 	let $active = this.$modal.find(".active");
 	if ($active.length === 0) {
-		this.$modal.find(".ac-field").first().addClass("active");
+		this.$modal.find(".ac-field:first-child").addClass("active");
 	} else {
-		$active.removeClass("active").next(".ac-field").addClass("active");
+			$active.removeClass("active").next(".ac-field").addClass("active");
+			$('#autocompleteField').animate({
+					scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
+			}, 'fast');
 	}
 };
 

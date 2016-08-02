@@ -134,6 +134,7 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.locationlatlong = () => {
+			modelData.geoCookie = modelData.geoCookie || '';
 			return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
 				return data;
 			}).fail((err) => {
