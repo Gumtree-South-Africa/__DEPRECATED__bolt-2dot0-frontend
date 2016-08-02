@@ -164,7 +164,6 @@ let imageUploads = (() => {
 				images.pop();
 				urls.remove(i);
 			}
-			this.resetThumbDOM();
 		},
 
 		addFromImageUrls: (urlThumbArray, urlArray) => {
@@ -188,7 +187,11 @@ let imageUploads = (() => {
 
 //TODO: fix this for the desktop carousel
 let UploadMsgClass = {
-	//TODO: make a file-upload area that works with this.
+	// remove carousel item after EPS failure
+	removeCarouselItem: (i) => {
+		$(".carousel-item.item-" + i).remove();
+		this.$imageUpload.val('');
+	},
 	showModal: () => {
 		this.messageModal.toggleClass('hidden');
 	},
@@ -199,7 +202,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 	},
 	loadingMsg: () => {
 		this.messageError.html(this.messages.loadingMsg);
@@ -208,43 +211,44 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.resizing);
 		this.$errorMessageTitle.html(this.messages.error);
 	},
-	invalidSize: () => {
+	invalidSize: (i) => {
 		this.messageError.html(this.messages.invalidSize);
 		this.$errorMessageTitle.html(this.messages.error);
+		UploadMsgClass.removeCarouselItem(i);
+		UploadMsgClass.showModal();
 	},
 	invalidType: (i) => {
 		this.messageError.html(this.messages.invalidType);
 		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 		UploadMsgClass.showModal();
 	},
 	invalidDimensions: (i) => {
 		this.messageError.html(this.messages.invalidDimensions);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 		UploadMsgClass.showModal();
 	},
 	firewall: (i) => {
 		this.messageError.html(this.messages.firewall);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 		UploadMsgClass.showModal();
 	},
 	colorspace: (i) => {
 		this.messageError.html(this.messages.colorspace);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 		UploadMsgClass.showModal();
 	},
 	corrupt: (i) => {
 		this.messageError.html(this.messages.corrupt);
 		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.hideThumb(i);
+		UploadMsgClass.removeCarouselItem(i);
 		UploadMsgClass.showModal();
 	},
-	pictureSrv: (i) => {
+	pictureSrv: () => {
 		this.messageError.html(this.messages.pictureSrv);
-		UploadMsgClass.hideThumb(i);
 	},
 	translateErrorCodes: function(i, error) {
 		if (error === "FS002") {
@@ -265,6 +269,16 @@ let UploadMsgClass = {
 	}
 };
 
+let removePendingImage = (index) => {
+	// onload complete, remove pending index from pendingImages array. Check if all complete
+	let arrIndex = this.pendingImages.indexOf(index);
+	if (arrIndex > -1) {
+		this.pendingImages.splice(arrIndex, 1);
+	}
+	if (this.pendingImages.length === 0) {
+		$("#postAdBtn").removeClass("disabled");
+	}
+};
 
 //todo HERE
 let loadData = (i, file) => {
@@ -341,12 +355,16 @@ let loadData = (i, file) => {
 			UploadMsgClass.successMsg(i);
 		}
 
+		removePendingImage(count);
 	};
 
 	xhr.onabort = function(e) {
+		let count = this.bCount;
+
 		console.warn('aborted', e);
 		_this.$uploadSpinner.toggleClass('hidden');
-		UploadMsgClass.failMsg(i);
+		UploadMsgClass.failMsg(count);
+		removePendingImage(count);
 	};
 
 
@@ -422,6 +440,9 @@ let prepareForImageUpload = (i, file) => {
 
 //TODO: here
 let html5Upload = (evt) => {
+	// disable post while image uploads
+	$("#postAdBtn").addClass("disabled");
+
 	// drag and drop
 	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
 	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
@@ -459,6 +480,8 @@ let html5Upload = (evt) => {
 		}
 
 		for (let i = 0; i < uploadedFiles.length; i++) {
+			this.pendingImages.push(prvCount);
+
 			let file = uploadedFiles[i];
 			if (prvCount === allowedUploads) {
 				console.error("Max uploads reached");
@@ -474,6 +497,8 @@ let html5Upload = (evt) => {
 
 
 let uploadNoneHtml5 = () => {
+	// disable post while image uploads
+	$("#postAdBtn").addClass("disabled");
 
 	let count = imageUploads.count();
 	if (count === allowedUploads) {
@@ -568,6 +593,12 @@ let deleteSelectedItem = (event) => {
 	let index = $(".carousel-item").index(toRemove);
 	$("#photo-carousel").slick('slickRemove', index);
 
+	// delete image from imageUploads
+	imageUploads.remove(index);
+	if (imageUploads.count() === 0) {
+		$("#postAdBtn").addClass("disabled");
+	}
+
 	// Set new cover photo, or trigger file selector on empty photo click
 	let firstItem = $(".carousel-item:first");
 	if (firstItem.length > 0) {
@@ -608,12 +639,19 @@ let parseFile = (file) => {
 			'<div class="carousel-item item-' + items + '">' +
 				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
 			'</div>', 0, true);
+		$('#photo-carousel').slick('slickGoTo', 0, false);
 
 		// resize items
 		resizeCarousel();
 	};
 	if (file) {
 		reader.readAsDataURL(file);
+	}
+};
+
+let preventDisabledButtonClick = (event) => {
+	if ($("#postAdBtn").hasClass("disabled")) {
+		event.preventDefault();
 	}
 };
 /******* END SLICK STUFF *******/
@@ -629,6 +667,7 @@ let initialize = () => {
 	this.EPS.url = this.epsData.data('eps-url');
 	this.imageHelper = new ImageHelper(this.EPS);
 
+	this.pendingImages = [];
 	this.$uploadSpinner = this.uploadImageContainer.find('#carousel-upload-spinner');
 
 	//TODO: multiple files
@@ -716,6 +755,10 @@ let initialize = () => {
 	// init carousel item images and heights
 	updateCarouselImages();
 	resizeCarousel();
+
+	// Ignore button click if it's disabled
+	$("#postAdBtn").on('click', preventDisabledButtonClick);
+	$("#postAdBtn .link-text").on("click", preventDisabledButtonClick);
 
 	// When page resizes, redraw carousel items
 	$(window).resize(resizeCarousel);
