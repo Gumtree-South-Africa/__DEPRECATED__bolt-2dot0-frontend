@@ -1227,6 +1227,10 @@
 			"sold": "%s acaba de vender: %s %s"
 		}
 	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
+	},
 	"footer": {
 		"help": {
 			"heretohelp": "Estamos aquí para ayudarte",

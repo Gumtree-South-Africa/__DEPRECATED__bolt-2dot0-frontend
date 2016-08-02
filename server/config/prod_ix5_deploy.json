@@ -20,6 +20,14 @@
 			"trendingSearch": "/v1/ads/trending"
 		}
 	},
+	"solr": {
+		"server": {
+			"host"	: "solrvip.ix5.ops.prod.bt.ecg.so",
+			"port"	: 8080,
+			"path"	: "/solr",
+			"version": "4.0"
+		}
+	}
 	"kafka": {
 		"server": {
 			"host": "elastic-01-6467.phx01.dev.ebayc3.com",

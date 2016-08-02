@@ -11,6 +11,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AppDownloadModel  = require(cwd + '/app/builders/common/AppDownloadModel');
+let GpsMapModel = require(cwd + '/app/builders/common/GpsMapModel');
 let RecentActivityModel = require(cwd + '/app/builders/common/RecentActivityModel');
 let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
@@ -81,7 +82,8 @@ class HomePageModelV2 {
 		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
 		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
-		let searchModel = new SearchModel(modelData.bapiHeaders);
+		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
+		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 
@@ -122,6 +124,18 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.search = () => {
 			return searchModel.getSearch();
+		};
+
+		this.dataPromiseFunctionMap.gpsMap = () => {
+			return gpsMapModel.getMap({
+				location: [19.414980,-99.177446]
+			}).then((data) => {
+				data.totalAds = data.response.numFound;
+				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+			});
 		};
 
 		this.dataPromiseFunctionMap.topLocations = () => {

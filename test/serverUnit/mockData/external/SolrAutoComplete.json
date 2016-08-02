@@ -1,0 +1,27 @@
+{
+	"responseHeader":{
+		"status":0,
+		"QTime":1
+	},
+	"response":{
+		"numFound":1,
+		"start":0,
+		"maxScore":6.528883,
+		"docs":[
+			{
+				"id":"12",
+				"country_s110":"AR",
+				"categoryId_l110":0,
+				"locationId_l110":1,
+				"keywords_g110":"autos",
+				"score_f110":9644.252,
+				"trending_b110":true,
+				"trendingScore_f110":416.0,
+				"totalSearches_l110":5097,
+				"totalListings_l110":129237,
+				"_version_":1540212605297098752,
+				"score":6.528883
+			}
+		]
+	}
+}
