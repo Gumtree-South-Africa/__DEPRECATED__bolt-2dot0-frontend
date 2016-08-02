@@ -17,7 +17,6 @@
 					},
 					"location": {
 						"type": "object",
-						"required": true,
 						"properties": {
 							"address": {
 								"type": "string"
