@@ -215,7 +215,7 @@ class HeaderModel {
 				data.profileName = data.socialMedia.profileName;
 			}
 			if (data.socialMedia.type === 'FACEBOOK') {
-				data.currentProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture?width=36&height=36';
+				data.currentProfileImageUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/picture';
 				data.publishPostUrl = 'https://graph.facebook.com/' + data.socialMedia.id + '/feed?access_token=' + data.socialMedia.accessToken;
 			}
 		}

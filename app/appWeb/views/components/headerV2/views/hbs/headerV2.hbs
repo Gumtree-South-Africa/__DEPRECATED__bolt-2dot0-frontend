@@ -83,7 +83,7 @@
                         {{/if}}"
 
                         {{#if this.header.currentProfileImageUrl}}
-    						 style="background-image:url({{this.header.currentProfileImageUrl}});"
+    						 style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
                         {{/if}}>
                     </div>
                     {{#if this.header.isUserLoggedIn}}
