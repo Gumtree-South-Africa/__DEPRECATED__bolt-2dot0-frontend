@@ -5,7 +5,7 @@ let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoin
 let cheerio = require('cheerio');
 
 
-fdescribe('Post Ad Page', () => {
+describe('Post Ad Page', () => {
 	let i18n;
 
 	beforeAll(() => {
