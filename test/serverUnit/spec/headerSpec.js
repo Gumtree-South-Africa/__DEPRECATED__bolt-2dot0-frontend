@@ -30,6 +30,12 @@ describe('Header', () => {
 		specHelper.registerMockEndpoint(
 			`/users/logged-in-user-info?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.recentActivities}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/recentActivity.json');
+		specHelper.registerMockEndpoint(
+			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=15&geo=null`,
+			'test/serverUnit/mockData/api/v1/TrendingCard.json');
 	});
 
 	it('should show header content', (done) => {
@@ -82,7 +88,7 @@ describe('Header', () => {
 					expect(buttonText).toBe(i18n.header.postAd, 'i18n string for button is does not match');
 
 					let href = c$('a', button).attr('href');
-					expect(href).toBe('/quickpost', 'the link href for the post ad button should link to post ad page');
+					expect(href).toBe('/post', 'the link href for the post ad button should link to post ad page');
 				})
 				.end(specHelper.finish(done));
 		});
@@ -103,7 +109,7 @@ describe('Header', () => {
 					expect(mainMenuItemText).toBe(i18n.header.help, 'i18n string for help menu item should match');
 
 					let href = c$('a:has(div.help)', header).attr('href');
-					expect(href).toBe('help-TBD', 'the link href for help should link to the help page');	// todo: define where these should link to
+					expect(href).toBe('http://ayuda.vivanuncios.com.mx/MX/', 'the link href for help should link to the help page');	// todo: define where these should link to
 				})
 				.end(specHelper.finish(done));
 		});
