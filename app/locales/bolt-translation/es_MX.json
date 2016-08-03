@@ -1230,6 +1230,10 @@
 			"sold": "%s acaba de vender: %s %s"
 		}
 	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
+	},
 	"postAd": {
 		"confirm": {
 			"pageTitle": "Publicar un anuncio",
