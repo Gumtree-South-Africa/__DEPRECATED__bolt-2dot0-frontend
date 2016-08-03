@@ -83,7 +83,7 @@ let getAdPostedResponse = (results) => {
 };
 
 /**
- * route is /post/api/postad/create
+ * route is /api/postad/create
  * request schema, see postAdRequest-schema.json
  * expects geo information to have arrived in the request
  *
