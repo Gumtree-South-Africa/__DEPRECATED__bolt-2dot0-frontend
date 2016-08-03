@@ -5,30 +5,53 @@
 {{#partial "content"}}
 	<div>
 
-    {{> (dynamic "searchbarV2") }}
-		{{> (dynamic "sectionMenu")}}
+        {{#if this.search}}
+            {{> (dynamic "searchbarV2") }}
+        {{/if}}
 
-    <div class="card trending-card">
-        <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
-            <span class="link inline-block underline card-title-cp">{{i18n "homepage.popularSearches.yourNeighborhood"}}</span>
-        </div>
-        {{> (dynamic "tileGrid")}}
-        <div class="card-view-more">
-            <a class="link" href="/viewMore-TBD">
-                <span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
-                <span class="no-underline">&nbsp;&gt;</span></a>
-        </div>
-    </div>
+        {{> (dynamic "sectionMenu")}}
 
-    {{> (dynamic "recentActivity")}}
-    {{> (dynamic "modal")}}
-    {{> (dynamic "appDownloadSection")}}
-    {{> (dynamic "safetyTips") }}
+        {{#if this.trendingCard}}
+            <div class="card trending-card">
+                <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
+                    <span class="link inline-block underline card-title-cp">{{i18n "homepage.popularSearches.yourNeighborhood"}}</span>
+                </div>
+                {{> (dynamic "tileGrid")}}
+                <div class="card-view-more">
+                    <a class="link" href="/viewMore-TBD">
+                        <span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
+                        <span class="no-underline">&nbsp;&gt;</span></a>
+                </div>
+            </div>
+        {{/if}}
 
-    <div class="seo-wrapper">
-            {{> (dynamic "topSearches")}}
-            {{> (dynamic "topLocations")}}
+        {{#if this.recentActivities}}
+            {{> (dynamic "recentActivity")}}
+        {{/if}}
+
+        {{> (dynamic "modal")}}
+
+        {{#if this.appDownload}}
+            {{> (dynamic "appDownloadSection")}}
+        {{/if}}
+
+        {{#if this.gpsMap}}
+            {{> (dynamic "gpsMap")}}
+        {{/if}}
+
+        {{#if this.safetyTips}}
+            {{> (dynamic "safetyTips") }}
+        {{/if}}
+
+        <div class="seo-wrapper">
+            {{#if this.topSearches}}
+                {{> (dynamic "topSearches")}}
+            {{/if}}
+            {{#if this.topLocations}}
+                {{> (dynamic "topLocations")}}
+            {{/if}}
 		</div>
+
 	</div>
 {{/partial}}
 
