@@ -1,32 +1,26 @@
 'use strict';
 
 require("slick-carousel");
+let Q = require('q');
 let $ = require('jquery');
 let ImageHelper = require('../../uploadImage/js/imageHelper');
+let uploadAd = require('../../uploadImage/js/uploadAd');
+
 
 /******* BEGIN EPS STUFF *******/
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
 };
 
-// TODO - needed for login flow
-// const AD_STATES = {
-// 	AD_CREATED: "AD_CREATED",
-// 	AD_DEFERRED: "AD_DEFERRED"
-// };
+const AD_STATES = {
+	AD_CREATED: "AD_CREATED",
+	AD_DEFERRED: "AD_DEFERRED"
+};
 
 let allowedUploads = 12;
 
-let isCORS = () => {
-	return 'XMLHttpRequest' in window && 'withCredentials' in new XMLHttpRequest();
-};
-
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
-};
-
-let isBlackBerryCurve = () => {
-	return !!navigator.userAgent.match(/(BlackBerry (9320|9360))/);
 };
 
 /**
@@ -51,10 +45,6 @@ let IsSafariMUSupport = () => {
 	}
 };
 
-let fileAPISupport = () => {
-
-	return !!(window.File && window.FileList && window.FileReader);
-};
 
 let isProgressEventSupported = () => {
 	try {
@@ -90,20 +80,6 @@ let ExtractURLClass = (url) => {
 		"thumbImage": this.imageHelper.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
 	};
 
-};
-
-//TODO: DOM-required functions need fix
-let supportMultiple = () => {
-	// lets not do it for safari until we find a solution
-	//if ($.isSafari()) return false;
-	//if ($.isSafari() && !(IsSafariMUSupport())) return false;
-	// do i support FileList API
-	if ($("#file").files && document.getElementById("file").files.length === 0) {
-		return false;
-	}
-	//do I support input type=file/multiple
-	let el = document.createElement("input");
-	return ("multiple" in el);
 };
 
 
@@ -191,9 +167,10 @@ let UploadMsgClass = {
 	removeCarouselItem: (i) => {
 		$(".carousel-item.item-" + i).remove();
 		this.$imageUpload.val('');
+		imageUploads.remove(i);
 	},
 	showModal: () => {
-		this.messageModal.toggleClass('hidden');
+		this.messageModal.removeClass('hidden');
 	},
 	successMsg: () => {
 		this.messageError.html(this.messages.successMsg);
@@ -202,7 +179,9 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
-		UploadMsgClass.removeCarouselItem(i);
+		if (i !== undefined) {
+			UploadMsgClass.removeCarouselItem(i);
+		}
 	},
 	loadingMsg: () => {
 		this.messageError.html(this.messages.loadingMsg);
@@ -278,6 +257,74 @@ let removePendingImage = (index) => {
 	if (this.pendingImages.length === 0) {
 		$("#postAdBtn").removeClass("disabled");
 	}
+};
+
+let _getCookie = (cname) => {
+	let name = cname + "=";
+	let ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) === ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
+};
+
+let _postAd = (urls) => {
+	uploadAd.postAd(urls, (response) => {
+		//TODO: add a loading spinner
+		// this.$uploadSpinner.toggleClass('hidden');
+		// this.$uploadProgress.toggleClass('hidden');
+		// this.$uploadProgress.html("0%");
+		// UploadMsgClass.successMsg(0);
+		this.$postAdButton.removeClass('disabled');
+		this.disableImageSelection = false;
+		switch (response.state) {
+			case AD_STATES.AD_CREATED:
+				this.$uploadSuccessLink.attr('href', response.ad.vipLink);
+				this.$uploadSuccessModal.toggleClass('hidden');
+				this.$uploadSuccessModalMask.toggleClass('hidden');
+				break;
+			case AD_STATES.AD_DEFERRED:
+				this.$loginModal.toggleClass('hidden');
+				this.$loginModalMask.toggleClass('hidden');
+				//TODO: set redirect URLS
+				break;
+			default:
+				break;
+		}
+	}, (err) => {
+		console.warn(err);
+		this.$postAdButton.removeClass('disabled');
+		this.disableImageSelection = false;
+		// this.$uploadSpinner.toggleClass('hidden');
+		// this.$uploadProgress.toggleClass('hidden');
+		UploadMsgClass.failMsg();
+	});
+};
+
+let _requestLocation = () => {
+	let locationDeferred = Q.defer();
+	if ("geolocation" in navigator && _getCookie('geoId') === '') {
+		navigator.geolocation.getCurrentPosition((position) => {
+			locationDeferred.resolve();
+			let lat = position.coords.latitude;
+			let lng = position.coords.longitude;
+			document.cookie = `geoId=${lat}ng${lng}`;
+		}, locationDeferred.resolve,
+		{
+			enableHighAccuracy: true,
+			maximumAge: 30000,
+			timeout: 10000
+		});
+	} else {
+		locationDeferred.resolve();
+	}
+	return locationDeferred.promise;
 };
 
 //todo HERE
@@ -495,82 +542,6 @@ let html5Upload = (evt) => {
 	}
 };
 
-
-let uploadNoneHtml5 = () => {
-	// disable post while image uploads
-	$("#postAdBtn").addClass("disabled");
-
-	let count = imageUploads.count();
-	if (count === allowedUploads) {
-		console.error("NoHtml5 Upload - Max uploads reached");
-		return;
-	}
-
-	imageUploads.add(1);
-
-
-	// hide progress bar
-	$(".progress-holder").hide();
-
-	let i = imageUploads.count() - 1;
-
-	$("#upload-status-" + i).show();
-
-	UploadMsgClass.loadingMsg(i);
-
-	$("#file-upload-" + i).css("margin-top", "1.4em");
-
-	let epsForm = {
-		action: this.EPS.url, id: "epsForm" + count, fieldNames: [
-			{
-				name: "s", value: !this.EPS.IsEbayDirectUL ? "1C5000" : "Standard"
-			}, {
-				name: "v", value: "2"
-			}, {
-				name: "b", value: "18"
-			}, {
-				name: "n", value: "g"
-			}, {
-				name: "a", value: this.EPS.token
-			}, {
-				name: "pltfrm", value: "bolt"
-			}, {
-				name: "rqt", value: $.now()
-			}
-		]
-
-	};
-
-	let iframe = $('<iframe />', {
-		name: 'eps-frame-' + count,
-		id: 'eps-frame-' + count,
-		style: 'position:absolute;left:-10000px',
-		src: "about:blank"
-	});
-
-	if ($("#eps-frame" + count)) {
-		iframe.appendTo('body');
-		// Add the iframe with a unique name
-	}
-
-
-	// work around for IE 9
-	// Clone the "real" input element
-	let real = $("#file");
-	let cloned = real.clone(true);
-
-	// Put the cloned element directly after the real element
-	// (the cloned element will take the real input element's place in your UI
-	// after you move the real element in the next step)
-	real.hide();
-	real.value = "";
-	cloned.insertAfter(real);
-
-	$('<form style="position:absolute;left:-10000px" method="post" action="' + epsForm.action + '" name="' + epsForm.id + '" id="' + epsForm.id + '" target="eps-frame-' + count + '" enctype="multipart/form-data">' + '<input type="hidden" name="s" value="' + epsForm.fieldNames[0].value + '"/><input type="hidden" name="v" value="' + epsForm.fieldNames[1].value + '"/>' + '<input type="hidden" name="b" value="' + epsForm.fieldNames[2].value + '"><input type="hidden" name="n" value="k"/><input type="hidden" name="pltfrm" value="bolt"/><input type="hidden" name="rqt" value="' + $.now() + '"/>' + '<input type="hidden" name="a" value="' + epsForm.fieldNames[4].value + '"/>' + '</form>').append($("#file")).appendTo('body');
-
-	$("#" + epsForm.id).submit();
-};
-
 Array.prototype.remove = function(from, to) {
 	let rest = this.slice((to || from) + 1 || this.length);
 	this.length = from < 0 ? this.length + from : from;
@@ -605,7 +576,9 @@ let deleteSelectedItem = (event) => {
 		firstItem.click();
 	} else {
 		$(".photo-wrapper").on('click', () => {
-			$(".add-photo-item #desktopFileUpload").click();
+			if (!this.disableImageSelection) {
+				$(".add-photo-item #desktopFileUpload").click();
+			}
 		});
 	}
 };
@@ -650,14 +623,26 @@ let parseFile = (file) => {
 };
 
 let preventDisabledButtonClick = (event) => {
-	if ($("#postAdBtn").hasClass("disabled")) {
+	if (this.$postAdButton.hasClass("disabled")) {
 		event.preventDefault();
+	} else {
+		this.$postAdButton.addClass('disabled');
+		this.disableImageSelection = true;
+		_requestLocation().then(() => {
+			let images = [];
+			for (let i=0; i < imageUploads.count(); i++) {
+				let image = $(".carousel-item.item-" + i).data("image");
+				images.push(image);
+			}
+			_postAd(images);
+		});
 	}
 };
 /******* END SLICK STUFF *******/
 
 let initialize = () => {
 	//EPS setup
+	this.disableImageSelection = false;
 	this.epsData = $('#js-eps-data');
 	this.uploadImageContainer = $('.upload-image-container');
 	this.isProgressEventSupport = isProgressEventSupported();
@@ -667,8 +652,11 @@ let initialize = () => {
 	this.EPS.url = this.epsData.data('eps-url');
 	this.imageHelper = new ImageHelper(this.EPS);
 
+	this.$loginModal = $('.login-modal');
+	this.$loginModalMask = $('.login-modal-mask');
 	this.pendingImages = [];
 	this.$uploadSpinner = this.uploadImageContainer.find('#carousel-upload-spinner');
+	this.$postAdButton = $('#postAdBtn');
 
 	//TODO: multiple files
 	this.messageError = $('.error-message');
@@ -698,8 +686,6 @@ let initialize = () => {
 		selectCategoryLabel: this.epsData.data('eps-selectcategorylabel'),
 		categorySearchPlaceholder: this.epsData.data('eps-categorysearchplaceholder')
 	};
-	this.Bolt.imgThumbUrls = JSON.parse(this.epsData.find('#js-bolt-imgThumbUrls').text());
-	this.Bolt.imgUrls = JSON.parse(this.epsData.find('#js-bolt-imgUrls').text());
 
 	//i18n strings
 	this.messages = {
@@ -735,13 +721,7 @@ let initialize = () => {
 		}
 
 		// TODO - EPS stuff
-		// lets only do if there is support for multiple
-		if (isCORS() && supportMultiple() && !isBlackBerryCurve() && fileAPISupport()) {
-			html5Upload(evt);
-		} else {
-			$("#desktopFileUpload").removeAttr("multiple");
-			uploadNoneHtml5(this);
-		}
+		html5Upload(evt);
 	});
 
 	// Slick setup
@@ -771,7 +751,15 @@ let initialize = () => {
 
 	// Clicking empty cover photo should open file selector
 	$(".photo-wrapper").on('click', () => {
-		$(".add-photo-item #desktopFileUpload").click();
+		if (!this.disableImageSelection) {
+			$(".add-photo-item #desktopFileUpload").click();
+		}
+	});
+
+	$('#desktopFileUpload').on('click', (e) => {
+		if (this.disableImageSelection) {
+			e.preventDefault();
+		}
 	});
 };
 

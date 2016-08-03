@@ -23,26 +23,7 @@
 		 data-i18n-imageFeatured="{{i18n "postad.image.featured" locale=model.locale}}"
 		 data-i18n-dragToReorder="{{i18n "postad.image.drag.reorder" locale=model.locale}}">
 	</div>
-	<div class="message-modal hidden">
-		<div class="message">
-			<div class="error-modal-container">
-				<div id='js-close-error-modal' class="error-modal-close-section">
-					<div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
-					<div class="inline-block icon-close"></div>
-				</div>
-				<h1 class="error-title">
-                    <div class="error-icon icon-unsupported-file-format"></div>
-                    <div class="error-title-text" id="js-error-title">
-                        {{i18n "postAd.unsupportedFileModal.error"}}
-                    </div>
-                </h1>
-				<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
-                <div class="error-modal-footer">
-                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' buttonLink='#' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
-                </div>
-			</div>
-		</div>
-	</div>
+
 	<form method="post" id="postForm" novalidate="novalidate">
 		<div class="file-upload-container">
 			<input class="file-input" type="file" name="pic" accept="image/*" id="mobileFileUpload">
@@ -56,6 +37,5 @@
                 <div id="js-upload-spinner" class="spinner hidden"></div>
 			</div>
 		</div>
-		<progress id="js-image-progress" class="image-upload-progress" value="0" max="100"></progress>
 	</form>
 </div>
