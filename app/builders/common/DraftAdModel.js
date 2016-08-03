@@ -22,7 +22,11 @@ class DraftAdModel {
 		});
 
 		return draftAdService.saveDraftMock(this.bapiHeaderValues, machguid, draftJson).then((result) => {
-			return result;
+			if (result.machguid === machguid) {
+				return true;
+			} else {
+				return false;
+			}
 		});
 	}
 
