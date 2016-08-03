@@ -18,10 +18,17 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	};
 	let geoCookie = getCookie('geoId');
 	let lat, lng;
+	/*eslint-disable */
 	if (geoCookie !== "") {
 		let latLng = geoCookie.split('ng');
 		lat = Number(latLng[0]);
 		lng = Number(latLng[1]);
+	} else if (google.loader.ClientLocation) {
+		lat = Number(google.loader.ClientLocation.latitude);
+		lng = Number(google.loader.ClientLocation.longitude);
+		/*eslint-enable*/
+	} else {
+		console.warn('no geolocation provided');
 	}
 
 	let payload = {
