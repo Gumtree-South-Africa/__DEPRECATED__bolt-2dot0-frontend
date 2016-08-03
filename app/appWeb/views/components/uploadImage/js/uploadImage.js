@@ -125,6 +125,7 @@ let UploadMsgClass = {
 		this.imageHolder.css("background-image", `url()`);
 		this.uploadPhotoText.toggleClass('hidden');
 		this.$imageUpload.val('');
+		this.inputDisabled = false;
 	},
 	showModal: () => {
 		this.messageModal.toggleClass('hidden');
@@ -223,17 +224,17 @@ let _postAd = (url) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
 		this.$uploadProgress.html("0%");
-		UploadMsgClass.successMsg(0);
+		this.inputDisabled = false;
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				this.$uploadSuccessLink.attr('href', response.ad.vipLink);
-				this.$uploadSuccessModal.toggleClass('hidden');
-				this.$uploadSuccessModalMask.toggleClass('hidden');
+				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
+				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
+				this.$loginModal.find('.register-link').attr('href', response.links.register);
+				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
 				this.$loginModal.toggleClass('hidden');
 				this.$loginModalMask.toggleClass('hidden');
-				//TODO: set redirect URLS
 				break;
 			default:
 				break;
@@ -249,8 +250,9 @@ let _postAd = (url) => {
 let _requestLocation = () => {
 	let locationDeferred = Q.defer();
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
+		//Don't want to sit and wait forever in case geolocation isn't working
+		setTimeout(locationDeferred.resolve, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-			//TODO: unblock posting semaphore
 			locationDeferred.resolve();
 			let lat = position.coords.latitude;
 			let lng = position.coords.longitude;
@@ -486,14 +488,10 @@ Array.prototype.remove = function(from, to) {
 
 let initialize = () => {
 	this.isMobile = true;
-
+	this.inputDisabled = false;
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
 	this.epsData = $('#js-eps-data');
-	this.$uploadSuccessModal = $('#js-success-modal');
-	this.$uploadSuccessLink = this.$uploadSuccessModal.find('#js-more-details-link');
-	this.$postMoreLink = this.$uploadSuccessModal.find('#js-post-more-ads-button');
-	this.$uploadSuccessModalMask = $('#js-success-modal-mask');
 	this.uploadImageContainer = $('.upload-image-container');
 	this.isProgressEventSupport = isProgressEventSupported();
 	this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
@@ -514,10 +512,6 @@ let initialize = () => {
 	this.$errorMessageTitle = $('#js-error-title');
 	this.$errorModalButton = this.messageModal.find('.btn');
 
-	this.$postMoreLink.click(() => {
-		window.location.reload();
-	});
-
 	this.$errorModalClose.click((e) => {
 		e.stopImmediatePropagation();
 		this.messageModal.toggleClass('hidden');
@@ -535,6 +529,12 @@ let initialize = () => {
 	});
 
 	this.$imageUpload = $("#mobileFileUpload");
+	this.$imageUpload.on('click', (e) => {
+		if (this.inputDisabled) {
+			e.preventDefault();
+			return;
+		}
+	});
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -575,6 +575,7 @@ let initialize = () => {
 			UploadMsgClass.invalidType(0);
 			return;
 		}
+		this.inputDisabled = true;
 		this.uploadPhotoText.addClass('hidden');
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');

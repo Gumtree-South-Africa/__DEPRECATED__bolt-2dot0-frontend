@@ -277,22 +277,18 @@ let _getCookie = (cname) => {
 let _postAd = (urls) => {
 	uploadAd.postAd(urls, (response) => {
 		//TODO: add a loading spinner
-		// this.$uploadSpinner.toggleClass('hidden');
-		// this.$uploadProgress.toggleClass('hidden');
-		// this.$uploadProgress.html("0%");
-		// UploadMsgClass.successMsg(0);
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				this.$uploadSuccessLink.attr('href', response.ad.vipLink);
-				this.$uploadSuccessModal.toggleClass('hidden');
-				this.$uploadSuccessModalMask.toggleClass('hidden');
+				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
+				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
+				this.$loginModal.find('.register-link').attr('href', response.links.register);
+				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
 				this.$loginModal.toggleClass('hidden');
 				this.$loginModalMask.toggleClass('hidden');
-				//TODO: set redirect URLS
 				break;
 			default:
 				break;
@@ -310,6 +306,8 @@ let _postAd = (urls) => {
 let _requestLocation = () => {
 	let locationDeferred = Q.defer();
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
+		//Don't want to sit and wait forever in case geolocation isn't working
+		setTimeout(locationDeferred.resolve, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
 			locationDeferred.resolve();
 			let lat = position.coords.latitude;
@@ -319,7 +317,7 @@ let _requestLocation = () => {
 		{
 			enableHighAccuracy: true,
 			maximumAge: 30000,
-			timeout: 10000
+			timeout: 27000
 		});
 	} else {
 		locationDeferred.resolve();
@@ -327,7 +325,6 @@ let _requestLocation = () => {
 	return locationDeferred.promise;
 };
 
-//todo HERE
 let loadData = (i, file) => {
 
 	let _this = this;
