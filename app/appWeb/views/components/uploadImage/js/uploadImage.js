@@ -122,7 +122,7 @@ let imageUploads = (() => {
 
 let UploadMsgClass = {
 	hideImage: () => {
-		this.imageHolder.css("background-image", `url()`);
+		this.imageHolder.css("background-image", `url('')`);
 		this.uploadPhotoText.toggleClass('hidden');
 		this.$imageUpload.val('');
 		this.inputDisabled = false;
@@ -335,7 +335,7 @@ let loadData = (i, file) => {
 			}
 
 			if (_this.isMobile) {
-				_this.imageHolder.css("background-image", `url(${url.normal}`);
+				_this.imageHolder.css("background-image", `url('${url.normal}')`);
 				_requestLocation().then(() => {
 					//Don't care if they actually gave us location, just that it finished.
 					_postAd(url.normal);
@@ -395,13 +395,12 @@ let prepareForImageUpload = (i, file) => {
 			return function(e) {
 				let dataUrl = e.target.result;
 
-
 				image.onload = function() {
 					let resizedImageFile = _this.imageHelper.scaleAndCropImage(this, thisFile.type);
 					let blobReader = new FileReader();
 					blobReader.readAsDataURL(resizedImageFile);
 					blobReader.onloadend = () => {
-						_this.imageHolder.css("background-image", `url(${blobReader.result}`);
+						_this.imageHolder.css('background-image', `url('${blobReader.result}')`);
 					};
 					loadData(i, resizedImageFile);
 				};
