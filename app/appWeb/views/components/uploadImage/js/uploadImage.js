@@ -584,7 +584,8 @@ let initialize = () => {
 };
 
 module.exports = {
-	initialize
+	initialize,
+	loadData
 };
 
 

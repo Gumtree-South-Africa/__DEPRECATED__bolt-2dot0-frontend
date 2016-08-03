@@ -11,7 +11,7 @@ class DraftAdModel {
 		let draftJson = [];
 		ads.forEach((ad) => {
 			let draft = {
-				imageURL: ad.pictures[0],
+				imageURL: ad.pictures,
 				title: ad.title,
 				price: {
 					currency: ad.priceCurrency,
@@ -22,11 +22,7 @@ class DraftAdModel {
 		});
 
 		return draftAdService.saveDraftMock(this.bapiHeaderValues, machguid, draftJson).then((result) => {
-			if (result.machguid === machguid) {
-				return true;
-			} else {
-				return false;
-			}
+			return result.machguid === machguid;
 		});
 	}
 
