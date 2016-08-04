@@ -15,14 +15,20 @@
 
 	.cover-photo {
 		position: relative;
-		margin: 0 auto;
 		width: 150px;
 		height: 150px;
+		margin: 0 auto;
 		margin-top: 10px;
+		padding: 1px;
 		border: 1px solid black;
 		background-size: contain;
 		background-position: center;
 		background-repeat: no-repeat;
+
+		&.red-border {
+			padding: 0;
+			border: 2px solid red;
+		}
 
 		.delete-wrapper {
 			position: absolute;
@@ -64,6 +70,34 @@
 		}
 	}
 
+	.error-msg-wrapper {
+		height: 21px;
+		font-size: 14px;
+		text-align: center;
+
+		.hidden {
+			display: none !important;
+		}
+
+		div {
+			display: inline-block;
+		}
+
+		.max-photo-msg {
+			color: #4990E2;
+		}
+
+		.photos-required-msg {
+			color: red;
+		}
+
+		.icon-contextual-info {
+			vertical-align: sub;
+			width: 15px;
+			height: 15px;
+		}
+	}
+
 	.slick-prev, .slick-next {
 		display: block;
 		position: absolute;
@@ -88,8 +122,6 @@
 	.slick-carousel {
 		text-align: center;
 		margin: 0 auto;
-		margin-top: 10px;
-		margin-bottom: 5px;
 		width: 80%;
 
 		.carousel-item {

@@ -4,30 +4,14 @@ let searchBarController = require("app/appWeb/views/components/searchbarV2/js/se
 let specHelper = require('../../helpers/commonSpecHelper.js');
 
 let mockTypeAheadResults = {
-	"autoCompletContentList": [
+	"items": [
 		{
 			"keyword": "kayak",
-			"seoUrl": "http://www.vivanuncios.com.mx.localhost:8000/s-deportes-pasatiempos/baja-california/kayak/v1c7l1001q0p1",
+			"seoUrl": "/search.html?q=kayak&locId=10015&catId=7",
 			"displayText": "kayak en Deportes y pasatiempos",
-			"catId": 7,
-			"locId": 10015,
+			"category": 7,
+			"location": 10015,
 			"localizedCatName": "Deportes y pasatiempos"
-		},
-		{
-			"keyword": "karman ghia",
-			"seoUrl": "http://www.vivanuncios.com.mx.localhost:8000/s-venta-autos/baja-california/karman+ghia/v1c65l1001q0p1",
-			"displayText": "karman ghia en Autos",
-			"catId": 65,
-			"locId": 10015,
-			"localizedCatName": "Autos"
-		},
-		{
-			"keyword": "karmann ghia",
-			"seoUrl": "http://www.vivanuncios.com.mx.localhost:8000/s-venta-autos/baja-california/karmann+ghia/v1c65l1001q0p1",
-			"displayText": "karmann ghia en Autos",
-			"catId": 65,
-			"locId": 10015,
-			"localizedCatName": "Autos"
 		}
 	],
 	"localizedInWord": "en"
@@ -46,8 +30,8 @@ describe("Search Bar V2", () => {
 			let $firstResult = $testArea.find(".type-ahead-link").first();
 
 			expect($testArea.find("#search-controls").hasClass("is-typing")).toBeTruthy();
-			expect($firstResult.attr('href')).toEqual(mockTypeAheadResults.autoCompletContentList[0].seoUrl);
-			expect($firstResult.html()).toEqual(mockTypeAheadResults.autoCompletContentList[0].displayText);
+			expect($firstResult.attr('href')).toEqual(mockTypeAheadResults.items[0].seoUrl);
+			expect($firstResult.html()).toEqual(mockTypeAheadResults.items[0].keyword);
 		});
 	});
 });

@@ -4,8 +4,9 @@
 
 	.input-form {
 		float: right;
-		width: 100% - $photo-switcher-width;
+		width: 99% - $photo-switcher-width;
 		padding-top: 10px;
+		padding-left: 5px;
 		font-size: 12px;
 		color: $grey-text-color;
 

@@ -15,11 +15,15 @@ module.exports = function watch(gulp, plugins) {
 		flatten = require("gulp-flatten"),
 		del = require("del");
 
-	let browser = "chrome";
+	let ciMode = false,
+		browser = "chrome";
 
 	if (argv.browser) {
 		browser = argv.browser;
 	}
+
+	ciMode = argv.CI;
+
 
 	return function() {
 		// Integration Tests Tasks
@@ -66,23 +70,12 @@ module.exports = function watch(gulp, plugins) {
 		gulp.task('karma', function(done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
-				singleRun: true
-			}, done).start();
-		});
-
-		gulp.task('karmaCI', function(done) {
-			new Server({
-				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
-				singleRun: false
+				singleRun: !ciMode
 			}, done).start();
 		});
 
 		gulp.task('test:clientUnit', function(done) {
 			runSequence("precompileTemplates", "karma", done)
-		});
-
-		gulp.task('test:clientUnitCI', function(done) {
-			runSequence("precompileTemplates", "karmaCI", done)
 		});
 
 		// SERVER UNIT TEST TASKS

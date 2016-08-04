@@ -116,6 +116,11 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 	$('.carousel-item.item-' + i).on('click', setCoverPhoto);
 	$('.carousel-item.item-' + i + ' .spinner').toggleClass("hidden");
 	updateCarouselImages();
+
+	// set cover photo if none found
+	if ($('.cover-photo').hasClass('no-photo')) {
+		$('.carousel-item:first').click();
+	}
 };
 
 //todo: handles all the image uploads
@@ -259,6 +264,8 @@ let removePendingImage = (index) => {
 	}
 	if (this.pendingImages.length === 0) {
 		$("#postAdBtn").removeClass("disabled");
+		$('.cover-photo').removeClass('red-border');
+		$('.photos-required-msg').addClass('hidden');
 	}
 };
 
@@ -480,7 +487,7 @@ let html5Upload = (evt) => {
 
 	// drag and drop
 	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
-	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
+	let totalFiles = uploadedFiles.length, uploadCount = imageUploads.count();
 
 	// if user
 	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
@@ -489,9 +496,10 @@ let html5Upload = (evt) => {
 		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
 		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
 	} else {
-
-		if (prvCount === allowedUploads) {
-			console.error("html5Upload - Max uploads reached");
+		if (uploadCount === allowedUploads) {
+			console.warn("Cannot upload more than 12 files!");
+			$(".max-photo-msg").removeClass("hidden");
+			$(".icon-contextual-info").removeClass("hidden");
 			return;
 		}
 		// create image place holders
@@ -515,16 +523,18 @@ let html5Upload = (evt) => {
 		}
 
 		for (let i = 0; i < uploadedFiles.length; i++) {
-			this.pendingImages.push(prvCount);
-
-			let file = uploadedFiles[i];
-			if (prvCount === allowedUploads) {
-				console.error("Max uploads reached");
+			if (uploadCount >= allowedUploads) {
+				console.warn("Cannot upload more than 12 files!");
+				$(".max-photo-msg").removeClass("hidden");
+				$(".icon-contextual-info").removeClass("hidden");
 				return;
 			}
-			UploadMsgClass.loadingMsg(prvCount);
-			prepareForImageUpload(prvCount, file);
-			prvCount = prvCount + 1;
+			this.pendingImages.push(uploadCount);
+
+			let file = uploadedFiles[i];
+			UploadMsgClass.loadingMsg(uploadCount);
+			prepareForImageUpload(uploadCount, file);
+			uploadCount = uploadCount + 1;
 
 		} // end for
 	}
@@ -596,14 +606,17 @@ let parseFile = (file) => {
 	reader.onloadend = () => {
 		// Add new carousel item to carousel
 		let items = $(".carousel-item").length;
-		$('#photo-carousel').slick('slickAdd',
-			'<div class="carousel-item item-' + items + '">' +
-			'<div id="$carousel-upload-spinner" class="spinner"></div>' +
-			'</div>', 0, true);
-		$('#photo-carousel').slick('slickGoTo', 0, false);
 
-		// resize items
-		resizeCarousel();
+		if (items < allowedUploads) {
+			$('#photo-carousel').slick('slickAdd',
+				'<div class="carousel-item item-' + items + '">' +
+				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
+				'</div>', items, true);
+			$('#photo-carousel').slick('slickGoTo', items, false);
+
+			// resize items
+			resizeCarousel();
+		}
 	};
 	if (file) {
 		reader.readAsDataURL(file);
@@ -613,6 +626,11 @@ let parseFile = (file) => {
 let preventDisabledButtonClick = (event) => {
 	if (this.$postAdButton.hasClass("disabled")) {
 		event.preventDefault();
+		// add red border to photo carousel if no photos
+		if ($('.carousel-item').length === 0) {
+		 	$('.cover-photo').addClass('red-border');
+			$('.photos-required-msg').removeClass('hidden');
+		}
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
@@ -700,8 +718,9 @@ let initialize = () => {
 		evt.stopImmediatePropagation();
 
 		if (imageUploads.count() === allowedUploads) {
-			//TODO - give message this UI
-			console.error("Cannot upload more than 12 files!");
+			console.warn("Cannot upload more than 12 files!");
+			$(".max-photo-msg").removeClass("hidden");
+			$(".icon-contextual-info").removeClass("hidden");
 			return;
 		}
 
@@ -711,7 +730,6 @@ let initialize = () => {
 			parseFile(files[i]);
 		}
 
-		// TODO - EPS stuff
 		html5Upload(evt);
 	});
 
