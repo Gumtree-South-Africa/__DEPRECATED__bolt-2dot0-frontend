@@ -35,7 +35,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		"ads": [
 			{
 				"title": fields.title,
-				"pictures": imageArray
+				"imageURLs": imageArray
 			}
 		]
 	};
