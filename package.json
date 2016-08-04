@@ -146,7 +146,7 @@
     "karma-chrome-launcher": "1.0.1",
     "karma-jasmine": "1.0.2",
     "karma-phantomjs-launcher": "1.0.1",
-    "karma-sourcemap-loader": "^0.3.7",
+    "karma-sourcemap-loader": "0.3.7",
     "karma-spec-reporter": "0.0.26",
     "loading-indicator": "2.0.0",
     "loading-spinner": "1.1.1",

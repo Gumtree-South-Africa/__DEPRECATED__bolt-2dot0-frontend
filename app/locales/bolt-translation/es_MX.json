@@ -1202,7 +1202,7 @@
 			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
-			"title": "¡Hola, ",
+			"title": "¡Hola",
 			"messages": "Mensajes",
 			"favorites": "Favoritos",
 			"myAlerts": "Mis avisos",

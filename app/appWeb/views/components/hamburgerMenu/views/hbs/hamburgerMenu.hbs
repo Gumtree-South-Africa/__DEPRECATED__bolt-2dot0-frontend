@@ -1,30 +1,22 @@
+{{#unless this.header.distractionFree}}
 <div id="js-body-overlay" class="body-overlay"></div>
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/quickpost" i18nPath="header.postAd"}}
+        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/post.html" i18nPath="header.postAd"}}
 
-        {{#if this.header.profileName}}
+        {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
 				<div class="profile-icon
-                    {{#if this.header.username}}
-                    {{#if this.header.profilePictureCropUrl}}
-                            profile-picture
-                        {{else if this.header.smallFbProfileImageUrl}}
-                            profile-picture
-                        {{else}}
-                            icon-header-profile-out
-                        {{/if}}
-                {{else}}
+                    {{#if this.header.currentProfileImageUrl}}
+                        profile-picture
+                    {{else}}
                         icon-header-profile-out
                     {{/if}}"
-                    {{#if this.header.profilePictureCropUrl}}
-					 style="background: url('{{this.header.profilePictureCropUrl}}13.JPG') no-repeat;
-							 background-size: contain;"
-                    {{else if this.header.smallFbProfileImageUrl}}
-					 style="background: url('{{this.header.smallFbProfileImageUrl}}') no-repeat;
-							 background-size: contain;"
+
+                    {{#if this.header.currentProfileImageUrl}}
+                        style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
                     {{/if}}>
-				</div>
+                </div>
 				<div class="profile-welcome-text">
                     {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
 				</div>
@@ -68,3 +60,4 @@
     <div id='js-is-mobile' class="is-mobile"></div>
     <div id='js-is-desktop' class="is-desktop"></div>
 </div>
+{{/unless}}
