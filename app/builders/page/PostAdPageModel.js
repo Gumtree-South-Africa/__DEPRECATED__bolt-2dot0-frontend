@@ -25,7 +25,7 @@ class PostAdPageModel {
 
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
-		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.QUICK_POST_AD_FORM;
+		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.POST_AD;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
