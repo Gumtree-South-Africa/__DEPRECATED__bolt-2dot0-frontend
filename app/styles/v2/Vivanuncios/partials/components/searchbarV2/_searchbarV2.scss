@@ -118,6 +118,15 @@ $mobileTextboxWidth: 84%;
 		.location-text {
 			display: block;
 			float: right;
+			@include to-breakpoint($small-break) {
+				max-width: 4em;
+			}
+			@include from-breakpoint($medium-break) {
+				max-width: 8.5em;
+			}
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 
 		.search-textbox-container {
