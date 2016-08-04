@@ -97,7 +97,7 @@ module.exports.boltSupertest = (route, host, method) => {
 		if (!endpointToFileMap[options.path]) {
 			throw new Error(`No mocked endpoint for ${path}`);
 		} else {
-			let filePath = endpointToFileMap[path].pop();
+			let filePath = endpointToFileMap[path].shift();
 			if (filePath === undefined) {
 				throw new Error(`No mocked endpoint for ${path}`);
 			}

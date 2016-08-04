@@ -1,7 +1,6 @@
 'use strict';
 
 require("slick-carousel");
-let Q = require('q');
 let $ = require('jquery');
 let ImageHelper = require('../../uploadImage/js/imageHelper');
 let uploadAd = require('../../uploadImage/js/uploadAd');
@@ -285,9 +284,8 @@ let _getCookie = (cname) => {
 	return "";
 };
 
-let _postAd = (urls) => {
+let _postAd = (urls, locationType) => {
 	uploadAd.postAd(urls, (response) => {
-		//TODO: add a loading spinner
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		switch (response.state) {
@@ -311,29 +309,31 @@ let _postAd = (urls) => {
 		// this.$uploadSpinner.toggleClass('hidden');
 		// this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg();
+	}, {
+		locationType: locationType
 	});
 };
 
-let _requestLocation = () => {
-	let locationDeferred = Q.defer();
+let requestLocation = (callback) => {
+	let timeout;
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
 		//Don't want to sit and wait forever in case geolocation isn't working
-		setTimeout(locationDeferred.resolve, 20000);
+		timeout = setTimeout(callback, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-				locationDeferred.resolve();
 				let lat = position.coords.latitude;
 				let lng = position.coords.longitude;
 				document.cookie = `geoId=${lat}ng${lng}`;
-			}, locationDeferred.resolve,
+				callback('geoLocation');
+			}, callback,
 			{
 				enableHighAccuracy: true,
 				maximumAge: 30000,
 				timeout: 27000
 			});
 	} else {
-		locationDeferred.resolve();
+		callback('cookie');
 	}
-	return locationDeferred.promise;
+	return timeout;
 };
 
 let _success = function(i, response) {
@@ -400,7 +400,6 @@ let loadData = (i, file) => {
 
 				if (event.lengthComputable) {
 					let percent = event.loaded / event.total;
-					_this.$uploadProgress.html((percent * 100).toFixed() + "%");
 
 					_this.imageProgress.attr('value', percent * 100);
 				} else {
@@ -635,13 +634,16 @@ let preventDisabledButtonClick = (event) => {
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
-		_requestLocation().then(() => {
+		let timeout = requestLocation((locationType) => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item.item-" + i).data("image");
 				images.push(image);
 			}
-			_postAd(images);
+			_postAd(images, locationType);
 		});
 	}
 };
