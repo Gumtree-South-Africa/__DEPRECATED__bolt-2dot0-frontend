@@ -64,7 +64,7 @@ let _geoFindMe = () => {
 	}
 	function error() {
 		console.error('Unable to retrieve your location');
-		$('#modal-location').removeClass('spinner');
+		$('#modal-location').removeClass('spinner').attr('disabled', false);
 	}
 	navigator.geolocation.getCurrentPosition(success, error);
 };
