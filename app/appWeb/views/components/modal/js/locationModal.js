@@ -32,23 +32,24 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 };
 
 /*
+*  As of now the method is used only for the GPS
 *  this method will be used when trending card and/or other module can refresh by themselves
 */
-// let _geoShowMyLocation = (geoCookieValue) => {
-// 	geoCookieValue = geoCookieValue.replace('ng',',');
-// 	$.ajax({
-// 		url: '/api/locate/locationlatlong',
-// 		type: 'GET',
-// 		success: (resp) => {
-//
-// 			$('#modal-location').removeClass('spinner').attr('disabled', false);
-// 				if(resp !== undefined) {
-// 			 		$('.search-textbox-container .location-text').html(resp.localizedName);
-// 			   	$('#modal-location').val(resp.localizedName);
-// 			  }
-// 		  }
-// 	});
-// };
+let _geoShowMyLocation = (geoCookieValue) => {
+	geoCookieValue = geoCookieValue.replace('ng',',');
+	$.ajax({
+		url: '/api/locate/locationlatlong',
+		type: 'GET',
+		success: (resp) => {
+
+			$('#modal-location').removeClass('spinner').attr('disabled', false);
+				if(resp !== undefined) {
+			 		$('.search-textbox-container .location-text').html(resp.localizedName);
+			   	$('#modal-location').val(resp.localizedName);
+			  }
+		  }
+	});
+};
 
 let _geoFindMe = () => {
 	if (!navigator.geolocation) {
@@ -59,7 +60,7 @@ let _geoFindMe = () => {
 		let latitude  = position.coords.latitude;
 		let longitude = position.coords.longitude;
 		document.cookie = 'geoId' + "=" + escape(latitude + 'ng' + longitude) + ";path=/";
-		//_geoShowMyLocation(escape(latitude + 'ng' + longitude));
+		_geoShowMyLocation(escape(latitude + 'ng' + longitude));
 	}
 	function error() {
 		console.error('Unable to retrieve your location');
@@ -113,28 +114,30 @@ let _selectItem = () => {
 	}
 };
 
-let _highlightPrevItem = () => {
-	let $active = this.$modal.find(".active");
-		if ($active.length === 0) {
-			this.$locmodal.find(".ac-field").last().addClass("active");
-		} else {
-			$('#autocompleteField').animate({
-	        scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
-	    }, 'fast');
-			$active.removeClass("active").prev(".ac-field").addClass("active");
-   }
+let _highlightUpItem = () => {
+		let $active = this.$modal.find(".active");
+		if ($active.length !== 0) {
+			if (!(this.$modal.find('.ac-field:first-child').hasClass('active'))) {
+				$('#autocompleteField').animate({
+		        scrollTop: $active.position().top + $("#autocompleteField").scrollTop() - 50
+		    }, 'fast');
+				$active.removeClass("active").prev(".ac-field").addClass("active");
+			}
+		}
 };
 
-let _highlightNextItem = () => {
-	let $active = this.$modal.find(".active");
-	if ($active.length === 0) {
-		this.$modal.find(".ac-field:first-child").addClass("active");
-	} else {
-			$active.removeClass("active").next(".ac-field").addClass("active");
-			$('#autocompleteField').animate({
-					scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
-			}, 'fast');
-	}
+let _highlightDownItem = () => {
+		let $active = this.$modal.find(".active");
+		if ($active.length === 0) {
+			this.$modal.find(".ac-field:first-child").addClass("active");
+		} else {
+				if (!(this.$modal.find('.ac-field:last-child').hasClass('active'))) {
+					$('#autocompleteField').animate({
+			        scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
+			    }, 'fast');
+					$active.removeClass("active").next(".ac-field").addClass("active");
+				}
+		}
 };
 
 
@@ -157,12 +160,12 @@ let initialize = () => {
 		switch (evt.keyCode) {
 			case 38:
 				//up
-				_highlightPrevItem();
+				_highlightUpItem();
 				evt.preventDefault();
 				break;
 			case 40:
 				//down
-				_highlightNextItem();
+				_highlightDownItem();
 				evt.preventDefault();
 				break;
 			case 13:
