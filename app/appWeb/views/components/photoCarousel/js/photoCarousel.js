@@ -18,6 +18,7 @@ const AD_STATES = {
 };
 
 let allowedUploads = 12;
+let _this = this;
 
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
@@ -179,6 +180,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
+		UploadMsgClass.removeCarouselItem(i);
 		if (i !== undefined) {
 			UploadMsgClass.removeCarouselItem(i);
 		}
@@ -244,6 +246,8 @@ let UploadMsgClass = {
 			this.pictureSrv(i);
 		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
 			this.corrupt(i);
+		} else {
+			this.failMsg(i);
 		}
 	}
 };
@@ -309,25 +313,56 @@ let _requestLocation = () => {
 		//Don't want to sit and wait forever in case geolocation isn't working
 		setTimeout(locationDeferred.resolve, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-			locationDeferred.resolve();
-			let lat = position.coords.latitude;
-			let lng = position.coords.longitude;
-			document.cookie = `geoId=${lat}ng${lng}`;
-		}, locationDeferred.resolve,
-		{
-			enableHighAccuracy: true,
-			maximumAge: 30000,
-			timeout: 27000
-		});
+				locationDeferred.resolve();
+				let lat = position.coords.latitude;
+				let lng = position.coords.longitude;
+				document.cookie = `geoId=${lat}ng${lng}`;
+			}, locationDeferred.resolve,
+			{
+				enableHighAccuracy: true,
+				maximumAge: 30000,
+				timeout: 27000
+			});
 	} else {
 		locationDeferred.resolve();
 	}
 	return locationDeferred.promise;
 };
 
-let loadData = (i, file) => {
+let _success = function(i, response) {
+	let url;
 
-	let _this = this;
+	// try to extract the url and figure out if it looks like to be valid
+	url = ExtractURLClass(response);
+
+	let urlClass = ExtractURLClass(response);
+
+	// any errors don't do anything after display error msg
+	if (!urlClass) {
+		let error = _this.imageHelper.extractEPSServerError(response);
+		UploadMsgClass.translateErrorCodes(i, error);
+		console.error("Failed to extract url class!");
+		console.error(error);
+		return;
+	}
+
+	// add the image once EPS returns the uploaded image URL
+	createImgObj(i, url.thumbImage, url.normal);
+
+	_this.$uploadSpinner.toggleClass('hidden');
+	UploadMsgClass.successMsg(i);
+
+	removePendingImage(i);
+};
+
+let _failure = (i, epsError) => {
+	let error = _this.imageHelper.extractEPSServerError(epsError);
+	this.$uploadSpinner.toggleClass('hidden');
+	UploadMsgClass.translateErrorCodes(i, error);
+	removePendingImage(i);
+};
+
+let loadData = (i, file) => {
 	let formData = new FormData();
 	// direct upload via EPS proxy
 	if (!this.EPS.IsEbayDirectUL) {
@@ -350,77 +385,35 @@ let loadData = (i, file) => {
 	formData.append("rqt", $.now());
 	formData.append("rqis", file.size);
 
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', this.EPS.url, true);
-	xhr.responseType = 'text';
-	xhr.bCount = i;
-	xhr.upload.bCount = i;
-	xhr.fileSize = file.size;
+	$.ajax({
+		xhr: () => {
+			let xhr = new window.XMLHttpRequest();
+			xhr.upload.addEventListener("progress", function(event) {
+				let index = this.bCount;
 
-	xhr.onload = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
+				if (event.lengthComputable) {
+					let percent = event.loaded / event.total;
+					_this.$uploadProgress.html((percent * 100).toFixed() + "%");
 
-		let count = this.bCount;
-		let url;
-		let statusOk = (this.status === 200);
-
-		// try to extract the url and figure out if it looks like to be valid
-		if (statusOk) {
-			url = ExtractURLClass(this.response);
-			if (!url) {
-				// url is not reconized => consider the download in error
-				statusOk = false;
-				// console.warn("cannot extract from response given by EPS  => " + this.response);
-			}
+					_this.imageProgress.attr('value', percent * 100);
+				} else {
+					UploadMsgClass.failMsg(index);
+				}
+			}, false);
+			return xhr;
+		},
+		type: 'POST',
+		contentType: false,
+		processData: false,
+		url: this.EPS.url,
+		data: formData,
+		success: (response) => {
+			_success(i, response);
+		},
+		error: (err) => {
+			_failure(i, err);
 		}
-
-		if (!statusOk) {
-			UploadMsgClass.failMsg(count);
-		}
-
-		if (this.readyState === 4 && statusOk) {
-
-			let urlClass = ExtractURLClass(this.response);
-
-			// any errors don't do anything after display error msg
-			if (!urlClass) {
-				let error = this.imageHelper.extractEPSServerError(this.response);
-				UploadMsgClass.translateErrorCodes(count, error);
-				console.error("Failed to extract url class!");
-				console.error(error);
-				return;
-			}
-
-			// add the image once EPS returns the uploaded image URL
-			createImgObj(this.bCount, url.thumbImage, url.normal);
-
-			_this.$uploadSpinner.toggleClass('hidden');
-			UploadMsgClass.successMsg(i);
-		}
-
-		removePendingImage(count);
-	};
-
-	xhr.onabort = function(e) {
-		let count = this.bCount;
-
-		console.warn('aborted', e);
-		_this.$uploadSpinner.toggleClass('hidden');
-		UploadMsgClass.failMsg(count);
-		removePendingImage(count);
-	};
-
-
-	xhr.upload.addEventListener("progress", function(event) {
-		let index = this.bCount;
-
-		if (!event.lengthComputable) {
-			UploadMsgClass.failMsg(index);
-		}
-	}, false);
-
-	xhr.send(formData);  // multipart/form-data
+	});
 };
 
 //TODO: here minus a few dom references
@@ -437,7 +430,6 @@ let prepareForImageUpload = (i, file) => {
 	let reader = null;
 
 	let img = new Image();
-	let _this = this;
 
 	if (window.FileReader) {
 		UploadMsgClass.resizing(i);
@@ -607,7 +599,7 @@ let parseFile = (file) => {
 		let items = $(".carousel-item").length;
 		$('#photo-carousel').slick('slickAdd',
 			'<div class="carousel-item item-' + items + '">' +
-				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
+			'<div id="$carousel-upload-spinner" class="spinner"></div>' +
 			'</div>', 0, true);
 		$('#photo-carousel').slick('slickGoTo', 0, false);
 
@@ -627,7 +619,7 @@ let preventDisabledButtonClick = (event) => {
 		this.disableImageSelection = true;
 		_requestLocation().then(() => {
 			let images = [];
-			for (let i=0; i < imageUploads.count(); i++) {
+			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item.item-" + i).data("image");
 				images.push(image);
 			}
