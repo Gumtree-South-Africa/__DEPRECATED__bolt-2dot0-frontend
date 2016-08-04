@@ -52,8 +52,8 @@ describe('Hamburger', () => {
 					let profileName = c$('.profile-welcome-text', hamburgerMenu);
 
 					expect(profileName.text().trim()).toContain('Bolt', 'expected it to show the correct username');
-					let profileImageEnding = 'theProfileImageUrl13.JPG';
-					expect(profilePicture.css('background')).toContain(profileImageEnding,
+					let profileImageEnding = '12345678901234567890/picture';
+					expect(profilePicture.css('background-image')).toContain(profileImageEnding,
 						`expected profile image for logged in user to be ${profileImageEnding}`);
 				})
 				.end(specHelper.finish(done));
