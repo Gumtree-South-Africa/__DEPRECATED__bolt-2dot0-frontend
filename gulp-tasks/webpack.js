@@ -49,6 +49,7 @@ module.exports = function webpack(gulp) {
 		let runSequence = require("gulp-run-sequence");
 		let walk = require("walkdir");
 		let fs = require("fs");
+		let argv = require('yargs').argv;
 		let openingFileLine = '"use strict";\n\n';
 		let closingFileLine = '\n';
 
@@ -94,8 +95,15 @@ module.exports = function webpack(gulp) {
 
 		// CLIENT UNIT TEST TASKS
 		gulp.task('webpack:build', (done) => {
+
+			let config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
+
+			if (argv.noUglifyJS || argv.CI) {
+				config.plugins.shift(); // remove uglify plugin
+			}
+
 			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.app.config.js"), function(err, stats) {
+			webpack(config, function(err, stats) {
 				if (err) {
 					throw new gutil.PluginError("webpack", err);
 				}
