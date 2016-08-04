@@ -194,7 +194,7 @@ let initialize = () => {
 
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 			$modalCp.addClass('hiddenElt');
-			$('#modal-location').removeClass('spinner');
+			$('#modal-location').removeClass('spinner').attr('disabled', false);
 	});
 
 	$('.card-title-cp').on('click', function() {
