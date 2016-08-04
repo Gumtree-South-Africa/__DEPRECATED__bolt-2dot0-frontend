@@ -6,7 +6,7 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	let htmlElt = '';
 	$.ajax({
 			//TODO: use proper google account key
-			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&components=country:' + country + '&language='+ lang + '&address=' + inputVal,
+			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + inputVal,
 			dataType: 'JSON',
 			type: 'GET',
 			success: function(resp) {
