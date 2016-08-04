@@ -681,13 +681,25 @@ self.addEventListener('install', function(e) {
 	console.log('[ServiceWorker] Install');
 	e.waitUntil(
 		toolbox.precache([
+			'/',
+			'manifest.json',
 			'/public/jsmin/HomePage_mobile_es_MX.js',
-			'/public/css/es_MX/svg/sprite.css-c9b909e6.svg'
+			'/public/css/es_MX/svg/sprite.css-c9b909e6.svg',
+			'/public/css/v2/Vivanuncios/MX/es_MX/HomePage.css',
+			'/public/css/v2/Vivanuncios/MX/es_MX/Main.css',
+			'/public/css/v2/Vivanuncios/MX/es_MX/appshell.css',
+			'/public/css/es_MX/es_MX.css',
+			'/public/css/es_MX/es_MX.png',
+			'/public/css/es_MX/fallback.css',
+			'/public/css/es_MX/icons.css',
+			'/public/css/es_MX/sprite.css',
+			'/public/css/es_MX/sprite.es_MX.html',
+			'/public/js/libraries/jQuery/jquery-2.0.0.min.js'
 		])
 	);
 });
 
-//use toolbox.router to define all the routes with the mechanism
+//Using toolbox.router to define routers for homepage
 //networkFirst
 //cacheFirst
 //fastest
@@ -695,27 +707,43 @@ self.addEventListener('install', function(e) {
 let i;
 let homepageCachePaths = [
 	'/',
-	'/public/css/es_MX/svg/sprite.css-c9b909e6.svg'
+	'/manifest.json',
+	'/public/css/es_MX/icons.css',
+	'/public/css/es_MX/sprite.css',
+	'/public/css/es_MX/fallback.css',
+	'/public/css/es_MX/svg/sprite.css-c9b909e6.svg',
+	'/public/css/v2/Vivanuncios/MX/es_MX/HomePage.css',
+	'/public/css/v2/Vivanuncios/MX/es_MX/Main.css',
+	'/public/fonts/Lato-Regular.ttf',
+	'/public/icons/icon_call.svg',
+	'/public/icons/icon_chat.svg',
+	'/public/icons/icon_email.svg',
+	'/public/icons/icon_social_facebook.svg',
+	'/public/icons/icon_social_google_plus.svg',
+	'/public/icons/icon_social_pinterest.svg',
+	'/public/icons/icon_social_twitter.svg',
+	'/public/icons/icon_social_youtube.svg',
+	'/public/images/carousel-arrow-right.png',
+	'/public/images/es_MX/appstore.png',
+	'/public/images/es_MX/googleplay.png',
+	'/public/images/es_MX/logo.png',
+	'/public/images/es_MX/rating.png',
+	'/public/images/es_MX/tutorial-imgs/appdownload_mobile.jpg',
+	'/public/images/safety-tips-1.jpg',
+	'/public/js/libraries/jQuery/jquery-2.0.0.min.js',
+	'/public/js/libraries/jQuery/plugins/jquery.smartbanner.js',
+	'/public/jsmin/HomePage_mobile_es_MX.js'
 ];
 
 for (i = 0; i < homepageCachePaths.length; i++) {
 	toolbox.router.get(homepageCachePaths[i], toolbox.networkFirst, {
 		cache: {
 			name: 'vivanuncios-homepage',
-			maxEntries: 50,
+			maxEntries: 100,
 			maxAgeSeconds: 86400
 		}
 	});
 }
-
-// CACHE EVERYTHING
-// toolbox.router.get('*', toolbox.networkFirst, {
-// 	cache: {
-// 		name: 'vivanuncios-homepage',
-// 		maxEntries: 50,
-// 		maxAgeSeconds: 86400
-// 	}
-// });
 
 
 
