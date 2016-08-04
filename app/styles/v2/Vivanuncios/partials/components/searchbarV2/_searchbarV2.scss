@@ -118,8 +118,9 @@ $mobileTextboxWidth: 84%;
 		.location-text {
 			display: block;
 			float: right;
-			@include to-breakpoint($small-break) {
-				max-width: 4em;
+			max-width: 4em;
+			@include in-breakpoint($small-break) {
+				max-width: 7em;
 			}
 			@include from-breakpoint($medium-break) {
 				max-width: 15em;
