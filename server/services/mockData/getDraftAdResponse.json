@@ -1,8 +1,21 @@
-[
-	{
-		"imageURL": ["http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"],
-		"title": "Hello World",
-		"description": "First draft ad",
-		"categoryId": 123456
-	}
-]
+{
+	"ads": [
+		{
+			"title": "Hello World",
+			"imageURLs": [
+				"http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+			],
+			"price": {
+				"amount": 200.00,
+				"currency": "MXN"
+			},
+			"location": {
+				"address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
+				"latitude": -33.918861,
+				"longitude": 18.423300
+			},
+			"categoryId": 123456
+		}
+	],
+	"extra": "{\"ads\":[{\"title\":\"Hello World\",\"imageURLs\":[\"http:\/\/i.ebayimg.sandbox.ebay.com\/00\/s\/Mjg2WDM1Ng==\/z\/ZK0AAOSw6XdWA6kM\/$_18.JPG\"],\"price\":{\"amount\":200,\"currency\":\"MXN\"},\"location\":{\"address\":\"491 Old Evans Rd, Milpitas, CA 95035, USA\",\"latitude\":-33.91886,\"longitude\":18.4233}}]}"
+}
