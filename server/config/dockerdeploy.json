@@ -17,8 +17,17 @@
 	    	"configService"		:	"/boltapi/v1/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/boltapi/v1/configs/nodeapp/settings",
 		 	"quickpostAd"		:	"/boltapi/v1/ads",
-			"recentActivities"	:	"/boltapi/v1/ads/activities/recent"
+			"recentActivities"	:	"/boltapi/v1/ads/activities/recent",
+			"trendingSearch"	: 	"/boltapi/v1/ads/trending"
 	    }
+	},
+	"solr": {
+		"server": {
+			"host"	: "localhost",
+			"port"	: 9090,
+			"path"	: "/solr",
+			"version": "4.0"
+		}
 	},
 	"kafka": {
 		"server": {

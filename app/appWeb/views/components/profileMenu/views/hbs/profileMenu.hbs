@@ -35,7 +35,7 @@
             <div class="profile-item-text">{{i18n "header.userDropdown.pricingGuide"}}</div>
         </span>
     </li>
-    {{#if this.header.username}}
+    {{#if this.header.isUserLoggedIn}}
         <li class="profile-item">
             <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.signOutURL}}">
                 <div class="item-icon icon-logout-1"></div>
@@ -45,4 +45,4 @@
     {{else}}
         {{> (dynamic "button") i18nPath="login.signin-button" buttonLink="/login.html" hideIcon=true iconName="icon-post" extraClasses='login-button'}}
     {{/if}}
-</ulc>
+</ul>

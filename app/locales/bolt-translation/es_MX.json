@@ -1202,7 +1202,7 @@
 			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
-			"title": "¡Hola, ",
+			"title": "¡Hola",
 			"messages": "Mensajes",
 			"favorites": "Favoritos",
 			"myAlerts": "Mis avisos",
@@ -1226,6 +1226,10 @@
 			"listing": "%s acaba de poner en venta: %s %s",
 			"sold": "%s acaba de vender: %s %s"
 		}
+	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
 	},
 	"footer": {
 		"help": {

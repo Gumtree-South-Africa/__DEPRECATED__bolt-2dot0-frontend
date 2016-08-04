@@ -16,7 +16,6 @@ router.get('/', (req, res, next) => {
 	} else {
 		homepageControllerV1(req, res, next);
 	}
-
 	console.timeEnd('Instrument-Homepage-Controller');
 });
 

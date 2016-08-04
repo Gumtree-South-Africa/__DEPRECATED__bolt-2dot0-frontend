@@ -35,6 +35,13 @@ $feedTextSize: 16px;
             float:left;
         }
 
+		.fallback-image {
+			background-image: url('../../../../../images/UserIcon-100px.png');
+			background-repeat: no-repeat;
+			background-size: 2em;
+			background-position: center;
+		}
+
 		.user-avatar {
 			background-size:100% 100%;
 			height: 50px;

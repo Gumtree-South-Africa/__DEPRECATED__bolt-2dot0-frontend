@@ -54,8 +54,8 @@ let _displayTypeAheadResults = (results) => {
 	$ul.empty();
 
 	// insert new results into the results container
-	results.autoCompletContentList.forEach((result) => {
-		let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="${result.seoUrl}">${result.displayText}</a></li>`;
+	results.items.forEach((result) => {
+		let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
 		$ul.append(templateString);
 	});
 
@@ -90,6 +90,8 @@ let _newTypeAhead = (currentSearchTerm) => {
 		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
 			url: "/api/search/autocomplete",
 			method: "GET",
+			data: {searchterm:currentSearchTerm},
+			dataType: 'json',
 			success: (results) => {
 				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
 
