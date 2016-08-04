@@ -71,9 +71,9 @@
 	}
 
 	.error-msg-wrapper {
+		height: 21px;
 		font-size: 14px;
 		text-align: center;
-		margin-top: 10px;
 
 		.hidden {
 			display: none !important;
@@ -121,7 +121,7 @@
 
 	.slick-carousel {
 		text-align: center;
-		margin: 5px auto;
+		margin: 0 auto;
 		width: 80%;
 
 		.carousel-item {
