@@ -7,7 +7,8 @@ let searchService = require(process.cwd() + '/server/services/search.js');
  * @constructor
  */
 class SearchModel {
-	constructor(bapiHeaders) {
+	constructor(country, bapiHeaders) {
+		this.country = country;
 		this.bapiHeaders = bapiHeaders;
 	}
 
@@ -17,12 +18,13 @@ class SearchModel {
 	}
 
 	/**
-	 * Returns type ahead results for use by client side ajax
+	 * Returns auto complete results for use by client side ajax
 	 * @param {string} searchTerm - user entered search team
-	 * @param {lat/long} location - latitude and longitude for users location
+	 * @param {locationId} locationId
+	 * @param {categoryId} categoryId
 	 */
-	getAjaxTypeAhead(searchTerm, location) {
-		return searchService.getTypeAheadResults(searchTerm, location);
+	autoComplete(searchTerm, locationId, categoryId) {
+		return searchService.getAutoCompleteResults(this.country, locationId, categoryId, searchTerm);
 	}
 }
 

@@ -1,7 +1,8 @@
+{{#unless this.header.distractionFree}}
 <div id="js-body-overlay" class="body-overlay"></div>
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/quickpost" i18nPath="header.postAd"}}
+        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/post.html" i18nPath="header.postAd"}}
 
         {{#if this.header.profileName}}
 			<div class="menu-profile">
@@ -68,3 +69,4 @@
     <div id='js-is-mobile' class="is-mobile"></div>
     <div id='js-is-desktop' class="is-desktop"></div>
 </div>
+{{/unless}}
