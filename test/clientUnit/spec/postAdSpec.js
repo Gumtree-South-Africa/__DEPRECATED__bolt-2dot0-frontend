@@ -59,6 +59,7 @@ fdescribe('Post Ad', () => {
 			let postAd = uploadAdController.postAd;
 			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, (response) => {
+					expect(options.locationType).toBe('cookie');
 					expect(response).toBe(mockPostAdResponse);
 					success(response);
 				}, fail, options);

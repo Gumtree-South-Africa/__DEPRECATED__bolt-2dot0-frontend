@@ -549,6 +549,7 @@ let initialize = () => {
 	};
 	// on select file
 	$('#postForm').on("change", "#mobileFileUpload", (evt) => {
+		this.uploadPhotoText.toggleClass('hidden');
 
 		evt.stopImmediatePropagation();
 		let file = evt.target.files[0];
