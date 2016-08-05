@@ -87,7 +87,7 @@ let getAdPostedResponse = (results) => {
 };
 
 /**
- * route is /api/postad/create
+ * route is /api/post/create
  * request schema, see postAdRequest-schema.json
  * expects geo information to have arrived in the request
  *
@@ -148,7 +148,7 @@ router.post('/create', cors, (req, res) => {
 			res.send(response);
 			return;
 		}).fail((error) => {
-			console.error(`error getting logged in response promise ${error.message}`);
+			console.error(`getNotLoggedInResponsePromise failure ${error.message}`);
 			res.status(500).send();
 			return;
 		});
@@ -163,8 +163,7 @@ router.post('/create', cors, (req, res) => {
 
 		let bapiRequestJson = mapToBapiRequest(requestJson);
 
-		//TODO: do not have this as mock
-		postAdService.quickpostAdMock(model.bapiHeaders, bapiRequestJson).then( (results) => {
+		postAdService.quickpostAd(model.bapiHeaders, bapiRequestJson).then( (results) => {
 
 			let responseJson = getAdPostedResponse(results);
 			if (!responseJson.ad.vipLink) {
@@ -178,7 +177,7 @@ router.post('/create', cors, (req, res) => {
 
 		}).fail((error) => {
 			// post ad has failed
-			console.error(`post ad failure ${error}`);
+			console.error(`postAdService.quickpostAd failure ${error}`);
 			res.status(500).send({
 				error: "postAd failed, see logs for details"
 			});
@@ -191,7 +190,7 @@ router.post('/create', cors, (req, res) => {
 				res.send(response);
 				return;
 			}).fail((e) => {
-				console.error(`error getting logged in response promise ${e.message}`);
+				console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
 				res.status(500).send();
 				return;
 			});
@@ -199,7 +198,7 @@ router.post('/create', cors, (req, res) => {
 		}
 
 		// user call has failed
-		console.error(`user call failure ${error}`);
+		console.error(`userService.getUserFromCookie failure ${error}`);
 		res.status(500).send({
 			error: "unable to validate user, see logs for details"
 		});

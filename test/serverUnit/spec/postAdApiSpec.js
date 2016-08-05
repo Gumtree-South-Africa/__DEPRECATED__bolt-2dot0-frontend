@@ -29,6 +29,10 @@ fdescribe('Post Ad Api', () => {
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
+		specHelper.registerMockEndpoint(
+			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			'server/services/mockData/postAdResponse.json');
+
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'bt_auth="test value"')
@@ -53,11 +57,39 @@ fdescribe('Post Ad Api', () => {
 		});
 	});
 
+	it('should fail because ad post failed for logged in user', (done) => {
+		let file = specHelper.getMockData("postAd", "postAdRequest");
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			'server/services/mockData/postAdResponse.json', { failStatusCode: 500 });
+
+		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.set('Cookie', 'bt_auth="test value"')
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(500);
+
+					let jsonResult = JSON.parse(res.text);
+
+					expect(jsonResult.error).toBe("postAd failed, see logs for details");
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+
 	it('should fail because the saveDraft API failed (deferred ad, not logged in)', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
 			'server/services/mockData/saveDraftAdResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -74,7 +106,7 @@ fdescribe('Post Ad Api', () => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
 			'server/services/mockData/saveDraftAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -108,7 +140,7 @@ fdescribe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json', { failStatusCode: 404 });
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
 			'server/services/mockData/saveDraftAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -130,6 +162,34 @@ fdescribe('Post Ad Api', () => {
 					expect(jsonResult.links.facebookLogin).toBeDefined('deferred ad should have facebook login link');
 					expect(jsonResult.links.register).toBeDefined('deferred ad should have register link');
 
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should fail because auth cookie is not valid (user call mocked 500)', (done) => {
+		let file = specHelper.getMockData("postAd", "postAdRequest");
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json', { failStatusCode: 500 });
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
+			'server/services/mockData/saveDraftAdResponse.json');
+
+		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.set('Cookie', 'bt_auth="test value"')
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(500);
+
+					let jsonResult = JSON.parse(res.text);
+					// console.log(JSON.stringify(jsonResult, null, 4));
+
+					expect(jsonResult.error).toBe("unable to validate user, see logs for details");
 				})
 				.end(specHelper.finish(done));
 		});
@@ -455,7 +515,12 @@ fdescribe('Post Ad Api', () => {
 	});
 
 	/*
-	 curl --data @test/serverUnit/mockData/postAd/postAdRequest-invalid-1.json -H "Content-Type: application/json" -X GET http://www.vivanuncios.com.mx.localhost:8000/api/postad/create
-	*/
+	deferred ad (no auth cookie)
+	 curl -X POST --data @test/serverUnit/mockData/postAd/postAdRequest.json -H "Content-Type: application/json" -H "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" http://www.vivanuncios.com.mx.localhost:8000/api/postad/create -v
+	post ad (auth cookie)
+	  curl -X POST --data @test/serverUnit/mockData/postAd/postAdRequest.json -H "Cookie: bt_auth=dummy" -H "Content-Type: application/json" -H "User-Agent:Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/51.0.2704.103 Safari/537.36" http://www.vivanuncios.com.mx.localhost:8000/api/postad/create -v
+
+	 */
+
 
 });

@@ -22,7 +22,7 @@ class DraftAdService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, draftJson, 'saveDraftAd');
+		}), bapiHeaderValues, JSON.stringify(draftJson), 'saveDraftAd');
 	}
 
 	getDraft(bapiHeaderValues, machguid) {

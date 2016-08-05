@@ -16,7 +16,7 @@ class PostAdService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: config.get('BAPI.endpoints.quickpostAd'),
-		}), bapiHeaderValues, 'quickpostAd');
+		}), bapiHeaderValues, JSON.stringify(adJson), 'quickpostAd');
 	}
 }
 
