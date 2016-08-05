@@ -5,30 +5,23 @@
 	$(document).ready(function() {
 	
 		$('.full-screen-smartbanner').css({'height': (($(window).height())) + 'px'});
-		
-		let checkw = null;
 
 		$(window).resize(function() {
-			
-			let w = $(window).width();
-		    if (typeof checkw === 'undefined') { 
-		    	checkw = w; 
+
+		    if (typeof $('.full-screen-smartbanner').attr("oldwidth") === 'undefined') { 
+	            $('.full-screen-smartbanner').attr("oldwidth", $(window).width());
 	    	}
-		    if (w!==checkw) {
+		    if ($(window).width() !==$('.full-screen-smartbanner').attr("oldwidth")) {
 	            $('.full-screen-smartbanner').css({'height': (($(window).height())) + 'px'});
-		        checkw = w;
+	            $('.full-screen-smartbanner').attr("oldwidth", $(window).width());
 		    }
 		});
-
 
 		$('.mobile-site-link').on('click', function() {
            $('.full-screen-smartbanner').addClass('hide-banner');
            
 		});
-
-
 	});
-
 })();
 
 
