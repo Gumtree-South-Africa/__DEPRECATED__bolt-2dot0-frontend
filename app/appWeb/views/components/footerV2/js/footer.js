@@ -9,11 +9,11 @@ let initialize = () => {
 		$(e.currentTarget).find('.menu-items').toggleClass('hide');
 		$(e.currentTarget).parents('.footer-inner-wrappper').toggleClass('expanded');
 
-		if ($('.footer-links div:nth-child(5)').hasClass('expanded')) {
-			 if ($('.footer-links div:nth-child(7)').hasClass('expanded')) {
-				 $('.seo-links').css({'display': 'inline-block', 'top': '-20.3em'});
+		if ($('.footer-links div:nth-child(3)').hasClass('expanded')) {
+			 if ($('.footer-links div:nth-child(4)').hasClass('expanded')) {
+				 $('.seo-links').css({'display': 'inline-block', 'top': '-21.2em'});
 			 } else {
-				 $('.seo-links').css({'display': 'inline-block', 'top': '-15em'});
+				 $('.seo-links').css({'display': 'inline-block', 'top': '-16.0em'});
 			 }
 		} else {
            $('.seo-links').css('display', 'none');
