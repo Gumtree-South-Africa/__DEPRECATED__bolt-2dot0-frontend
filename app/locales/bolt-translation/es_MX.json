@@ -1202,7 +1202,7 @@
 			"browseCategories": "Explorar Categorías"
 		},
 		"userDropdown": {
-			"title": "¡Hola, ",
+			"title": "¡Hola",
 			"messages": "Mensajes",
 			"favorites": "Favoritos",
 			"myAlerts": "Mis avisos",
@@ -1289,7 +1289,7 @@
 			"playstore": "Disponible en la App Store de Android"
 		},
 		"trademark": {
-			"trademark": "2014-2016 eBay. Todos los derechos reservados"
+			"trademark": "2014-%s eBay. Todos los derechos reservados"
 		}
 	}
 }
