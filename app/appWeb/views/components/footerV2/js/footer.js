@@ -10,13 +10,13 @@ let initialize = () => {
 		$(e.currentTarget).parents('.footer-inner-wrappper').toggleClass('expanded');
 
 		if ($('.footer-links div:nth-child(3)').hasClass('expanded')) {
-			 if ($('.footer-links div:nth-child(4)').hasClass('expanded')) {
-				 $('.seo-links').css({'display': 'inline-block', 'top': '-21.2em'});
-			 } else {
-				 $('.seo-links').css({'display': 'inline-block', 'top': '-16.0em'});
-			 }
+			if ($('.footer-links div:nth-child(4)').hasClass('expanded')) {
+				$('.seo-links').css({'display': 'inline-block', 'top': '-21.2em'});
+			} else {
+				$('.seo-links').css({'display': 'inline-block', 'top': '-16.0em'});
+			}
 		} else {
-           $('.seo-links').css('display', 'none');
+			$('.seo-links').css('display', 'none');
 		}
 
 	};
