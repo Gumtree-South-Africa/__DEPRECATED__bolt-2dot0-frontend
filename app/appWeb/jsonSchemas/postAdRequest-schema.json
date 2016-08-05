@@ -48,8 +48,10 @@
 							}
 						}
 					},
-					"pictures": {
+					"imageUrls": {
 						"type": "array",
+						"minItems": 1,
+						"required": true,
 						"items": {
 							"type": "string"
 						}

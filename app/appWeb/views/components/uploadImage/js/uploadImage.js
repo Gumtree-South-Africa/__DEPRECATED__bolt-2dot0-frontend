@@ -1,7 +1,6 @@
 'use strict';
 
 let $ = require('jquery');
-let Q = require('q');
 let ImageHelper = require('./imageHelper');
 let uploadAd = require('./uploadAd');
 
@@ -225,7 +224,7 @@ let _getCookie = (cname) => {
 	return "";
 };
 
-let _postAd = (url) => {
+let _postAd = (url, locationType) => {
 	uploadAd.postAd([url], (response) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
@@ -250,29 +249,31 @@ let _postAd = (url) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg(0);
+	}, {
+		locationType: locationType
 	});
 };
 
-let _requestLocation = () => {
-	let locationDeferred = Q.defer();
+let requestLocation = (callback) => {
+	let timeout;
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
 		//Don't want to sit and wait forever in case geolocation isn't working
-		setTimeout(locationDeferred.resolve, 20000);
+		timeout = setTimeout(callback, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-				locationDeferred.resolve();
 				let lat = position.coords.latitude;
 				let lng = position.coords.longitude;
 				document.cookie = `geoId=${lat}ng${lng}`;
-			}, locationDeferred.resolve,
+				callback('geoLocation');
+			}, callback,
 			{
 				enableHighAccuracy: true,
 				maximumAge: 30000,
 				timeout: 27000
 			});
 	} else {
-		locationDeferred.resolve();
+		callback('cookie');
 	}
-	return locationDeferred.promise;
+	return timeout;
 };
 
 let _success = function(response) {
@@ -286,9 +287,12 @@ let _success = function(response) {
 
 	if (_this.isMobile) {
 		_this.imageHolder.css("background-image", `url('${url.normal}')`);
-		_requestLocation().then(() => {
+		let timeout = requestLocation((locationType) => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
 			//Don't care if they actually gave us location, just that it finished.
-			_postAd(url.normal);
+			_postAd(url.normal, locationType);
 		});
 	}
 };
@@ -545,6 +549,7 @@ let initialize = () => {
 	};
 	// on select file
 	$('#postForm').on("change", "#mobileFileUpload", (evt) => {
+		this.uploadPhotoText.toggleClass('hidden');
 
 		evt.stopImmediatePropagation();
 		let file = evt.target.files[0];
@@ -566,7 +571,8 @@ let initialize = () => {
 
 module.exports = {
 	initialize,
-	loadData
+	loadData,
+	requestLocation
 };
 
 

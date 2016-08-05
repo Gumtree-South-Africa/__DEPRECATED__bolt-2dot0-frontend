@@ -123,7 +123,10 @@ BAPICall.prototype = {
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (res.statusCode !== 200) {
-						deferred.reject(new Error(`Received non-200 status: ${res.statusCode}`), data);
+						let error = new Error(`Received non-200 status: ${res.statusCode}`);
+						// attach the status code so consumers can check for it
+						error.statusCode = res.statusCode;
+						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);
 					}
