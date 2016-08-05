@@ -7,7 +7,7 @@ let bapiService      = require("./bapi/bapiService");
 class DraftAdService {
 
 	// this is a temporary hack because mock services are not available in other environments
-	saveDraftMock(bapiHeaders, machguid) {
+	saveDraftMock() {
 		return require('q')(require(process.cwd() + '/server/services/mockData/saveDraftAdResponse.json'));
 	}
 

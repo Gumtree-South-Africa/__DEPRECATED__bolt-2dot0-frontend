@@ -13,7 +13,6 @@ let userService = require(cwd + '/server/services/user');
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let uuid = require('node-uuid');
-let _ = require('underscore');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 
 
@@ -157,7 +156,7 @@ router.post('/create', cors, (req, res) => {
 	}
 
 	// validate login cookie is still good
-	userService.getUserFromCookie(model.bapiHeaders).then( (result) => {
+	userService.getUserFromCookie(model.bapiHeaders).then( () => {
 		// console.log(JSON.stringify(result, null, 4));
 
 		// user cookie checks out fine, go ahead and post the ad...
@@ -191,8 +190,8 @@ router.post('/create', cors, (req, res) => {
 			getNotLoggedInResponsePromise(model, requestJson).then((response) => {
 				res.send(response);
 				return;
-			}).fail((error) => {
-				console.error(`error getting logged in response promise ${error.message}`);
+			}).fail((e) => {
+				console.error(`error getting logged in response promise ${e.message}`);
 				res.status(500).send();
 				return;
 			});
