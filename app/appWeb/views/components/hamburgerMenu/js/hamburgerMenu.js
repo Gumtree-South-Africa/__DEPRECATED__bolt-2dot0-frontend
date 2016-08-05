@@ -1,13 +1,13 @@
 'use strict';
-let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
+let searchbarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
 
 let toggleMenu = (shouldClose) => {
 	if (this.open === undefined) {
 		this.open = shouldClose;
 	}
-	if (!this.open) {
-		searchBarV2.closeAutoComplete(true, true);
+	if (!this.open && searchbarV2.isOnPage()) {
+		searchbarV2.closeAutoComplete(true, true);
 	}
 	this.$hamburgerPopout[0].style.right = (this.open) ? '100%' : 0;
 	this.$hamburgerContents.animate({

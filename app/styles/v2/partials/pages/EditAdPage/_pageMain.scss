@@ -1,0 +1,175 @@
+$inputWidth: 88%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;
+
+.photo-carousel-placeholder {
+	width: 100%;
+	height: 150px;
+	background-color: $vivaBlue;
+
+	@include from-breakpoint($medium-break) {
+		width: 50%;
+		float: left;
+	}
+}
+
+.main-detail-edit {
+	width: 100%;
+	background-color: $mainDetailsBackgroundColor;
+
+	@include from-breakpoint($medium-break) {
+		width: 50%;
+		float: left;
+	}
+
+	.main-details-title {
+		width: 100%;
+		padding: 25px 0;
+		font-size: 20px;
+		line-height: 1;
+		text-align: center;
+		color: $mainDetailsTitleTextColor;
+	}
+
+	.submit-btn-wrapper {
+		width: 100%;
+
+		@include from-breakpoint($medium-break) {
+			width: 70%;
+			float: left;
+
+			.edit-ad-submit {
+				margin-top: auto !important;
+				margin-bottom: auto !important;
+			}
+		}
+
+		.edit-ad-submit {
+			width: $inputWidth;
+			margin: 0 $inputMargin 10px $inputMargin;
+			color: $formSubmitButtonTextColor;
+			background-color: $formSubmitButtonColor;
+			border-style: none;
+			height: 40px;
+			font-size: 18px;
+		}
+	}
+
+	.cancel-link-wrapper {
+		margin-bottom: 10px;
+		width: 100%;
+
+		@include from-breakpoint($medium-break) {
+			width: 25%;
+			float: left;
+
+			.cancel-form-link {
+				margin-top: 9px;
+			}
+		}
+
+		.cancel-form-link {
+			text-align: center;
+			color: $formCancelTextColor;
+			font-size: 18px;
+			height: 40px;
+			text-decoration: underline;
+		}
+	}
+
+	.separator-div {
+		height: 1px;
+		position: relative;
+		width: 100%;
+		margin-top: 15px;
+		margin-bottom: 15px;
+		&:after {
+			content: "";
+			background: $formSeparatorBarColor;
+			position: absolute;
+			bottom: 0;
+			height: 1px;
+			left: 5%;
+			right: 5%;
+		}
+	}
+
+	.ad-website-link-wrapper {
+		text-align: center;
+		a {
+			color: $addWebsiteLinkTextColor;
+			font-size: 18px;
+			text-decoration: underline;
+		}
+	}
+
+	.label-wrapper {
+		width: 100%;
+		margin: 5px 0;
+
+		label {
+			text-transform: uppercase;
+			width: $labelWidth;
+			margin: 0 $labelMargin;
+			font-size: 10px;
+			color: $formLabelTextColor;
+		}
+
+		.suggested-cat {
+			width: $labelWidth;
+			margin: 0 $labelMargin;
+			font-size: 13px;
+			color: $categoryDisplayTextColor;
+			font-style: italic;
+		}
+	}
+
+	.input-wrapper {
+		width: 100%;
+
+		input {
+			width: $inputWidth;
+			margin: 0 $inputMargin;
+
+			&.description-input {
+				height: 150px;
+			}
+			border: 1px solid $vivaBlack;
+		}
+
+		.category-name-display {
+			width: $labelWidth;
+			margin: 0 $labelMargin;
+			color: $categoryDisplayTextColor;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+	}
+
+	.location-warning {
+		width: 100%;
+		margin: 15px 0;
+		.location-warning-text {
+			width: $labelWidth;
+			margin: 0 $labelMargin;
+			color: $formLabelTextColor;
+			font-size: 10px;
+		}
+	}
+
+	.button-area {
+		padding-top: 20px;
+		background-color: $buttonAreaBackgroundColor;
+		width: 100%;
+		height: 80px;
+		padding-bottom: 10px;
+
+		@include from-breakpoint($medium-break) {
+			height: 40px;
+			background-color: $mainDetailsBackgroundColor;
+		}
+	}
+}
