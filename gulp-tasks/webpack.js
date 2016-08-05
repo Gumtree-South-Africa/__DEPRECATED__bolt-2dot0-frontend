@@ -65,7 +65,10 @@ module.exports = function webpack(gulp) {
 			let walker = walk(process.cwd() + "/app/config/bundling/pages");
 
 			walker.on("file", (filename) => {
-				pages.push(filename);
+				//Added to ignore .DS_Store
+				if (filename.indexOf("js") > 0) {
+					pages.push(filename);
+				}
 			});
 
 			walker.on("end", () => {
@@ -124,8 +127,22 @@ module.exports = function webpack(gulp) {
 			});
 		});
 
+		gulp.task('webpack:rui', (done) => {
+			// run webpack
+			webpack(require(process.cwd() + "/app/config/bundling/webpack.rui.config.js"), function(err, stats) {
+				if (err) {
+					throw new gutil.PluginError("webpack", err);
+				}
+				if (stats.hasErrors()) {
+					console.log("[webpack]", stats.toString());
+				}
+
+				done();
+			});
+		});
+
 		gulp.task("webpack", (done) => {
-			runSequence("webpack:prepare", "webpack:build", done);
+			runSequence("webpack:prepare", "webpack:build", "webpack:rui", done);
 		});
 	}
 };
