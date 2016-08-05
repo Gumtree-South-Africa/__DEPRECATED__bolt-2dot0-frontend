@@ -26,7 +26,6 @@ let mockPostAdResponse = {
 	]
 };
 
-
 describe('Post Ad', () => {
 	describe('Upload Image (mobile)', () => {
 		let $testArea;
@@ -39,7 +38,6 @@ describe('Post Ad', () => {
 				}
 			}, "es_MX");
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
-			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
 			file = {
 				size: 1024,
 				name: 'asdf.png'
@@ -47,6 +45,7 @@ describe('Post Ad', () => {
 		});
 
 		it('Should update background image after EPS', () => {
+			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
 			uploadImageController.initialize();
 			uploadImageController.loadData(0, file);
 
@@ -56,6 +55,7 @@ describe('Post Ad', () => {
 		});
 
 		it('Should not request location if cookie is set', () => {
+			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
 			let postAd = uploadAdController.postAd;
 			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, (response) => {
@@ -67,6 +67,39 @@ describe('Post Ad', () => {
 			document.cookie = 'geoId=123ng456';
 			uploadImageController.initialize();
 			uploadImageController.loadData(0, file);
+		});
+
+		//TODO: fix this
+		it('should show spinners during upload', () => {
+			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
+			let postAd = uploadAdController.postAd;
+			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
+				postAd(images, (response) => {
+					expect(options.locationType).toBe('cookie');
+					// expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be present.');
+					expect(response).toBe(mockPostAdResponse);
+					success(response);
+				}, fail, options);
+			});
+			document.cookie = 'geoId=123ng456';
+			uploadImageController.initialize();
+			uploadImageController.loadData(0, file);
+			// expect($('#js-upload-spinner').hasClass('hidden')).toBeTruthy('Expected the spinner to be gone.');
+		});
+
+		it('should show error modal for failed ajax', () => {
+			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, {fail: true});
+			let postAd = uploadAdController.postAd;
+			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
+				postAd(images, success, (err) => {
+					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be gone.');
+					fail(err);
+				}, options);
+			});
+			document.cookie = 'geoId=123ng456';
+			uploadImageController.initialize();
+			uploadImageController.loadData(0, file);
+			expect($('#js-upload-spinner').hasClass('hidden')).toBeTruthy('Expected the spinner to be gone.');
 		});
 	});
 });
