@@ -14,17 +14,18 @@ let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let uuid = require('node-uuid');
 let _ = require('underscore');
+let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 
 
 // front end request structure is different than the back end:
 // front end has array of ads, back end only supports one ad
-// front end pictures is array of urls, back end is more complex
+// front end imageUrls is array of urls, back end is more complex
 let mapToBapiRequest = (request) => {
-	let result = JSON.parse(JSON.stringify(request));
+	let result = JSON.parse(JSON.stringify(request));	// deep clone the structure
 
 	result.ads.forEach((ad, index) => {
 		ad.pictures = {};
-		let pictures = request.ads[index].pictures;
+		let pictures = request.ads[index].imageUrls;
 		ad.pictures.sizeUrls = pictures.map((elt) => {
 			return {
 				pictureUrl: elt,
@@ -36,30 +37,34 @@ let mapToBapiRequest = (request) => {
 	return result.ads[0];	// bapi currently only supports one ad
 };
 
-let getNotLoggedInResponse = () => {
+let getNotLoggedInResponsePromise = (model, requestJson) => {
 
 	let response = {};
 
 	response.state = 'AD_DEFERRED';
 
-	// todo: store the requestJson ads in backend
 	let guid = uuid.v4();		// todo: this guid should be from the backend store
-	// if we fail to store it, we should not set responseJson.guid
-	response.guid = guid;
 
-	// Note: we don't know the user's identity, so it is possible someone could hijack this deferred ad using the guid
+	// store the requestJson ads in backend (deferred ad creation)
+	let draftAdModel = new DraftAdModel(model.bapiHeaders);
 
-	// generate 3 links for client: login, register, facebook login
+	return draftAdModel.saveDraft(guid, requestJson).then(() => {
+		// the result is unused, it contains the guid we passed in
+		// Note: we don't know the user's identity, so it is possible someone could hijack this deferred ad using the guid
 
-	let returnUrl = `/post?guid=${guid}`;
+		//response.guid = guid;	// client currently checks for success this way <-- response.guid to be deprecated
 
-	response.links = {
-		emailLogin: `/login.html?return=${returnUrl}`,
-		register: `/register.html?return=${returnUrl}`,
-		facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
-	};
+		// generate 3 links for client: login, register, facebook login
 
-	return response;
+		let returnUrl = `/post?guid=${guid}`;
+
+		response.links = {
+			emailLogin: `/login.html?return=${returnUrl}`,
+			register: `/register.html?return=${returnUrl}`,
+			facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
+		};
+		return response;
+	});
 };
 
 let getAdPostedResponse = (results) => {
@@ -93,7 +98,11 @@ let getAdPostedResponse = (results) => {
  *
  *	AD_DEFERRED case:
  *
- *		guid: "string"
+ *		links: {
+ *			emailLogin: `/login.html?return=${returnUrl}`,
+ *			register: `/register.html?return=${returnUrl}`,
+ *			facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
+ *		}
  *
  *	AD_CREATED case:
  *
@@ -129,36 +138,27 @@ router.post('/create', cors, (req, res) => {
 	// we're validated
 	let requestJson = req.body;
 
-	let authenticationCookie = req.cookies['bt_auth'];
-
-	if (!authenticationCookie) {
-		let responseJson = getNotLoggedInResponse();
-		if (!responseJson.guid) {
-			console.error('unable to store deferred ad');
-			res.status(500).send();
-			return;
-		}
-		res.send(responseJson);
-		return;
-	}
 
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 
+	let authenticationCookie = req.cookies['bt_auth'];
+
+	if (!authenticationCookie) {
+		getNotLoggedInResponsePromise(model, requestJson).then((response) => {
+			res.send(response);
+			return;
+		}).fail((error) => {
+			console.error(`error getting logged in response promise ${error.message}`);
+			res.status(500).send();
+			return;
+		});
+		return;
+	}
+
 	// validate login cookie is still good
 	userService.getUserFromCookie(model.bapiHeaders).then( (result) => {
 		// console.log(JSON.stringify(result, null, 4));
-
-		if (_.isEmpty(result)) {	//   not logged in (with cookie)
-			let responseJson = getNotLoggedInResponse();
-			if (!responseJson.guid) {
-				console.error('unable to store deferred ad');
-				res.status(500).send();
-				return;
-			}
-			res.send(responseJson);
-			return;
-		}
 
 		// user cookie checks out fine, go ahead and post the ad...
 
@@ -187,6 +187,18 @@ router.post('/create', cors, (req, res) => {
 		});
 
 	}).fail((error) => {
+		if (error.statusCode && error.statusCode === 404) {
+			getNotLoggedInResponsePromise(model, requestJson).then((response) => {
+				res.send(response);
+				return;
+			}).fail((error) => {
+				console.error(`error getting logged in response promise ${error.message}`);
+				res.status(500).send();
+				return;
+			});
+			return;
+		}
+
 		// user call has failed
 		console.error(`user call failure ${error}`);
 		res.status(500).send({
