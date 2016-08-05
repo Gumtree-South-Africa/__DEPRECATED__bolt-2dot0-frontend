@@ -170,7 +170,10 @@ let imageUploads = (() => {
 let UploadMsgClass = {
 	// remove carousel item after EPS failure
 	removeCarouselItem: (i) => {
-		$(".carousel-item.item-" + i).remove();
+		let toRemove = $(".carousel-item.item-" + i);
+		let index = $(".carousel-item").index(toRemove);
+		$("#photo-carousel").slick('slickRemove', index);
+
 		this.$imageUpload.val('');
 		imageUploads.remove(i);
 	},
