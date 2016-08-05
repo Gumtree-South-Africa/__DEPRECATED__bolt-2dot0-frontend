@@ -26,6 +26,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	} else if (google.loader.ClientLocation) {
 		lat = Number(google.loader.ClientLocation.latitude);
 		lng = Number(google.loader.ClientLocation.longitude);
+		options.locationType = 'geoIp';
 		/*eslint-enable*/
 	} else {
 		console.warn('no geolocation provided');
@@ -35,7 +36,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		"ads": [
 			{
 				"title": fields.title,
-				"imageURLs": imageArray
+				"imageUrls": imageArray
 			}
 		]
 	};
@@ -44,7 +45,8 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 			ad.location = {
 				"address": fields.address,
 				"latitude": lat,
-				"longitude": lng
+				"longitude": lng,
+				"type": options.locationType
 			};
 		});
 	}

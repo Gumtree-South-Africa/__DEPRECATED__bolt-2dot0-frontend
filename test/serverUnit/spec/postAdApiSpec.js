@@ -2,26 +2,36 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let uuid = require('node-uuid');
 
-describe('Post Ad Api', () => {
+fdescribe('Post Ad Api', () => {
+
+	let guid = "12345678-e3cb-4fc5-a6a3-2cb2e54b93fc";
+
+	beforeAll(() => {
+		spyOn(uuid, "v4").and.callFake(() => {
+			return guid;
+		});
+	});
 
 	beforeEach(() => {
 
-		specHelper.registerMockEndpoint(
-			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
-			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+		// specHelper.registerMockEndpoint(
+		// 	`${endpoints.quickpostAd}?_forceExample=true&_statusCode=200`,
+		// 	'test/serverUnit/mockData/postAd/postAdResponse.json');
 
-		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=200`,
-			'test/serverUnit/mockData/postAd/postAdResponse.json');
 	});
 
 	it('should create an ad for logged in user', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
+		specHelper.registerMockEndpoint(
+			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
+
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('Cookie', 'bt_auth="test value to simulate logged in"')
+				.set('Cookie', 'bt_auth="test value"')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -35,7 +45,7 @@ describe('Post Ad Api', () => {
 					expect(id).toEqual(jasmine.any(Number), `ad id value should be numeric`);
 
 					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
-					expect(jsonResult.ad.vipLink).toEqual('/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+07+01-17-44-50-307/1001099833810910650990709');
+					expect(jsonResult.ad.vipLink).toEqual('/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+07+22-00-57-24-085/1001100557900910658758009');
 
 					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
@@ -43,22 +53,83 @@ describe('Post Ad Api', () => {
 		});
 	});
 
-	it('should defer creation of an ad because we are not logged in', (done) => {
+	it('should fail because the saveDraft API failed (deferred ad, not logged in)', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			'server/services/mockData/saveDraftAdResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('ContentType', 'application/json')
+				.send(file)
+				.expect((res) => {
+					expect(res.status).toBe(500);
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should defer creation of an ad because our auth cookie is not present (not logged in)', (done) => {
+		let file = specHelper.getMockData("postAd", "postAdRequest");
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			'server/services/mockData/saveDraftAdResponse.json');
+
+		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
 					let jsonResult = JSON.parse(res.text);
+					// console.log(JSON.stringify(jsonResult, null, 4));
 
 					expect(jsonResult.state).toBe("AD_DEFERRED");
 
-					expect(jsonResult.guid).toBeDefined('deferred ad should have a guid');
+					expect(jsonResult.links).toBeDefined('deferred ad should have links');
+
+					expect(jsonResult.links.emailLogin).toBeDefined('deferred ad should have email login link');
+					expect(jsonResult.links.facebookLogin).toBeDefined('deferred ad should have facebook login link');
+					expect(jsonResult.links.register).toBeDefined('deferred ad should have register link');
+
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should defer creation of an ad because auth cookie is not valid (user call mocked 404)', (done) => {
+		let file = specHelper.getMockData("postAd", "postAdRequest");
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json', { failStatusCode: 404 });
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
+			'server/services/mockData/saveDraftAdResponse.json');
+
+		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.set('Cookie', 'bt_auth="test value"')
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(200);
+
+					let jsonResult = JSON.parse(res.text);
+					// console.log(JSON.stringify(jsonResult, null, 4));
+
+					expect(jsonResult.state).toBe("AD_DEFERRED");
+
+					expect(jsonResult.links).toBeDefined('deferred ad should have links');
+
+					expect(jsonResult.links.emailLogin).toBeDefined('deferred ad should have email login link');
+					expect(jsonResult.links.facebookLogin).toBeDefined('deferred ad should have facebook login link');
+					expect(jsonResult.links.register).toBeDefined('deferred ad should have register link');
+
 				})
 				.end(specHelper.finish(done));
 		});
@@ -67,7 +138,6 @@ describe('Post Ad Api', () => {
 	it('should respond with 406 because we did not send json', (done) => {
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-			// .set('Cookie', 'b2dot0Version=2.0')
 				.send("sending this but it is not json")
 				.expect((res) => {
 					expect(res.status).toBe(406);
@@ -127,16 +197,10 @@ describe('Post Ad Api', () => {
 		let file = {
 			"ads": [
 				{
-					"location": {
-						"latitude": 10.000,
-						"longitude": 19.999
-					}
+					imageUrls: ["image"]
 				},
 				{
-					"location": {
-						"latitude": 10.000,
-						"longitude": 19.999
-					}
+					imageUrls: ["image"]
 				}
 			]
 		};
@@ -166,7 +230,8 @@ describe('Post Ad Api', () => {
 				"location": {
 					"latitude": "invalid format",
 					"longitude": 19.999
-				}
+				},
+				imageUrls: ["image"]
 			}]
 		};
 
@@ -192,7 +257,8 @@ describe('Post Ad Api', () => {
 		let file = {
 			"ads": [{
 				"location": {
-				}
+				},
+				imageUrls: ["image"]
 			}]
 		};
 
@@ -217,7 +283,7 @@ describe('Post Ad Api', () => {
 		});
 	});
 
-	it('should respond with 200, location is not required', (done) => {
+	it('should respond with 400, an empty ad, result should contains json schema: imageUrls required', (done) => {
 		let file = {
 			"ads": [{
 			}]
@@ -228,11 +294,45 @@ describe('Post Ad Api', () => {
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
-					expect(res.status).toBe(200);
+					expect(res.status).toBe(400);
 
 					let jsonResult = JSON.parse(res.text);
 					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeFalsy('there should be no schema errors');
+
+					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
+
+					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
+					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.imageUrls");
+					expect(jsonResult.schemaErrors[0].message).toBe("is required");
+
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should respond with 400, an empty ad, result should contains json schema: imageUrls has less items than allowed', (done) => {
+		let file = {
+			"ads": [{
+				imageUrls: []
+			}]
+		};
+
+		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(400);
+
+					let jsonResult = JSON.parse(res.text);
+					// console.log(JSON.stringify(jsonResult, null, 4));
+
+					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
+
+					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
+					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.imageUrls");
+					expect(jsonResult.schemaErrors[0].message).toBe("has less items than allowed");
+
 				})
 				.end(specHelper.finish(done));
 		});
@@ -241,11 +341,8 @@ describe('Post Ad Api', () => {
 	it('should respond with 400, result should contains json schema error: title too long', (done) => {
 		let file = {
 			"ads": [{
-				"title": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901",
-				"location": {
-					"latitude": 10.000,
-					"longitude": 19.999
-				}
+				imageUrls: ["image"],
+				"title": "12345678901234567890123456789012345678901234567890123456789012345678901234567890123456789012345678901"
 			}]
 		};
 
@@ -271,12 +368,10 @@ describe('Post Ad Api', () => {
 	it('should respond with 400, result should contain json schema error: price fields missing', (done) => {
 		let file = {
 			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
+				imageUrls: ["image"],
 				"price": {
-				}
+				},
+
 			}]
 		};
 
@@ -304,10 +399,7 @@ describe('Post Ad Api', () => {
 	it('should respond with 400, result should contain json schema error: invalid price amount', (done) => {
 		let file = {
 			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
+				imageUrls: ["image"],
 				"price": {
 					"currency": "MXN",
 					"amount": "123.00"
@@ -336,10 +428,7 @@ describe('Post Ad Api', () => {
 	it('should respond with 400, result should contain json schema error: invalid price currency', (done) => {
 		let file = {
 			"ads": [{
-				"location": {
-					"latitude": 10.999,
-					"longitude": 19.999
-				},
+				imageUrls: ["image"],
 				"price": {
 					"currency": "foo",
 					"amount": 123.00

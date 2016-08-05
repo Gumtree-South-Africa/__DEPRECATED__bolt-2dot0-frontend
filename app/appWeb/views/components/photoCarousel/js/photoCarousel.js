@@ -1,7 +1,6 @@
 'use strict';
 
 require("slick-carousel");
-let Q = require('q');
 let $ = require('jquery');
 let ImageHelper = require('../../uploadImage/js/imageHelper');
 let uploadAd = require('../../uploadImage/js/uploadAd');
@@ -171,7 +170,10 @@ let imageUploads = (() => {
 let UploadMsgClass = {
 	// remove carousel item after EPS failure
 	removeCarouselItem: (i) => {
-		$(".carousel-item.item-" + i).remove();
+		let toRemove = $(".carousel-item.item-" + i);
+		let index = $(".carousel-item").index(toRemove);
+		$("#photo-carousel").slick('slickRemove', index);
+
 		this.$imageUpload.val('');
 		imageUploads.remove(i);
 	},
@@ -264,7 +266,7 @@ let removePendingImage = (index) => {
 		this.pendingImages.splice(arrIndex, 1);
 	}
 	if (this.pendingImages.length === 0) {
-		$("#postAdBtn").removeClass("disabled");
+		this.$postAdButton.removeClass("disabled");
 		$('.cover-photo').removeClass('red-border');
 		$('.photos-required-msg').addClass('hidden');
 	}
@@ -285,9 +287,8 @@ let _getCookie = (cname) => {
 	return "";
 };
 
-let _postAd = (urls) => {
+let _postAd = (urls, locationType) => {
 	uploadAd.postAd(urls, (response) => {
-		//TODO: add a loading spinner
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		switch (response.state) {
@@ -308,44 +309,40 @@ let _postAd = (urls) => {
 		console.warn(err);
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
-		// this.$uploadSpinner.toggleClass('hidden');
-		// this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg();
+	}, {
+		locationType: locationType
 	});
 };
 
-let _requestLocation = () => {
-	let locationDeferred = Q.defer();
+let requestLocation = (callback) => {
+	let timeout;
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
 		//Don't want to sit and wait forever in case geolocation isn't working
-		setTimeout(locationDeferred.resolve, 20000);
+		timeout = setTimeout(callback, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-				locationDeferred.resolve();
 				let lat = position.coords.latitude;
 				let lng = position.coords.longitude;
 				document.cookie = `geoId=${lat}ng${lng}`;
-			}, locationDeferred.resolve,
+				callback('geoLocation');
+			}, callback,
 			{
 				enableHighAccuracy: true,
 				maximumAge: 30000,
 				timeout: 27000
 			});
 	} else {
-		locationDeferred.resolve();
+		callback('cookie');
 	}
-	return locationDeferred.promise;
+	return timeout;
 };
 
 let _success = function(i, response) {
-	let url;
-
 	// try to extract the url and figure out if it looks like to be valid
-	url = ExtractURLClass(response);
-
-	let urlClass = ExtractURLClass(response);
+	let url = ExtractURLClass(response);
 
 	// any errors don't do anything after display error msg
-	if (!urlClass) {
+	if (!url) {
 		let error = _this.imageHelper.extractEPSServerError(response);
 		UploadMsgClass.translateErrorCodes(i, error);
 		console.error("Failed to extract url class!");
@@ -398,12 +395,7 @@ let loadData = (i, file) => {
 			xhr.upload.addEventListener("progress", function(event) {
 				let index = this.bCount;
 
-				if (event.lengthComputable) {
-					let percent = event.loaded / event.total;
-					_this.$uploadProgress.html((percent * 100).toFixed() + "%");
-
-					_this.imageProgress.attr('value', percent * 100);
-				} else {
+				if (!event.lengthComputable) {
 					UploadMsgClass.failMsg(index);
 				}
 			}, false);
@@ -484,7 +476,7 @@ let prepareForImageUpload = (i, file) => {
 //TODO: here
 let html5Upload = (evt) => {
 	// disable post while image uploads
-	$("#postAdBtn").addClass("disabled");
+	this.$postAdButton.addClass("disabled");
 
 	// drag and drop
 	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
@@ -566,7 +558,7 @@ let deleteSelectedItem = (event) => {
 	// delete image from imageUploads
 	imageUploads.remove(index);
 	if (imageUploads.count() === 0) {
-		$("#postAdBtn").addClass("disabled");
+		this.$postAdButton.addClass("disabled");
 	}
 
 	// Set new cover photo, or trigger file selector on empty photo click
@@ -576,7 +568,7 @@ let deleteSelectedItem = (event) => {
 	} else {
 		$(".photo-wrapper").on('click', () => {
 			if (!this.disableImageSelection) {
-				$(".add-photo-item #desktopFileUpload").click();
+				this.$imageUpload.click();
 			}
 		});
 	}
@@ -629,23 +621,47 @@ let preventDisabledButtonClick = (event) => {
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
-		 	$('.cover-photo').addClass('red-border');
+			$('.cover-photo').addClass('red-border');
 			$('.photos-required-msg').removeClass('hidden');
 		}
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
-		_requestLocation().then(() => {
+		let timeout = requestLocation((locationType) => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item.item-" + i).data("image");
 				images.push(image);
 			}
-			_postAd(images);
+			_postAd(images, locationType);
 		});
 	}
 };
 /******* END SLICK STUFF *******/
+
+let fileInputChange = (evt) => {
+	if (evt.stopImmediatePropagation) {
+		evt.stopImmediatePropagation();
+	}
+
+	if (imageUploads.count() === allowedUploads) {
+		console.warn("Cannot upload more than 12 files!");
+		$(".max-photo-msg").removeClass("hidden");
+		$(".icon-contextual-info").removeClass("hidden");
+		return;
+	}
+
+	// parse file(s)
+	let files = evt.target.files;
+	for (let i = 0; i < files.length; i++) {
+		parseFile(files[i]);
+	}
+
+	html5Upload(evt);
+};
 
 let initialize = () => {
 	//EPS setup
@@ -712,24 +728,7 @@ let initialize = () => {
 	};
 
 	//listen for file uploads
-	$('#photo-carousel #desktopFileUpload').on("change", (evt) => {
-		evt.stopImmediatePropagation();
-
-		if (imageUploads.count() === allowedUploads) {
-			console.warn("Cannot upload more than 12 files!");
-			$(".max-photo-msg").removeClass("hidden");
-			$(".icon-contextual-info").removeClass("hidden");
-			return;
-		}
-
-		// parse file(s)
-		let files = evt.target.files;
-		for (let i = 0; i < files.length; i++) {
-			parseFile(files[i]);
-		}
-
-		html5Upload(evt);
-	});
+	this.$imageUpload.on("change", fileInputChange);
 
 	// Slick setup
 	$("#photo-carousel").slick({
@@ -744,7 +743,7 @@ let initialize = () => {
 	resizeCarousel();
 
 	// Ignore button click if it's disabled
-	$("#postAdBtn").on('click', preventDisabledButtonClick);
+	this.$postAdButton.on('click', preventDisabledButtonClick);
 	$("#postAdBtn .link-text").on("click", preventDisabledButtonClick);
 
 	// When page resizes, redraw carousel items
@@ -759,14 +758,30 @@ let initialize = () => {
 	// Clicking empty cover photo should open file selector
 	$(".photo-wrapper").on('click', () => {
 		if (!this.disableImageSelection) {
-			$(".add-photo-item #desktopFileUpload").click();
+			this.$imageUpload.click();
 		}
 	});
 
-	$('#desktopFileUpload').on('click', (e) => {
+	this.$imageUpload.on('click', (e) => {
 		if (this.disableImageSelection) {
 			e.preventDefault();
 		}
+	});
+
+	// Listen for file drag and drop uploads
+	let photoSwitcher = $(".photo-switcher");
+	photoSwitcher.on('drop dragover', (event) => {
+		// stop browser from opening dropped file(s)
+		event.preventDefault();
+		event.stopPropagation();
+
+		// trigger change on file input to start upload flow
+		let files = event.originalEvent.dataTransfer.files;
+		fileInputChange({
+			target: {
+				files: files
+			}
+		});
 	});
 };
 

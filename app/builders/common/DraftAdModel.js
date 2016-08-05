@@ -7,40 +7,20 @@ class DraftAdModel {
 		this.bapiHeaderValues = bapiHeaderValues;
 	}
 
-	saveDraft(machguid, input) {
-		// Draft is a combo of structured data (for image-rec, tracking) and unstructured data (to retrieve later)
-		let draftJson = {
-			ads: [],
-			extra: ''
-		};
-		input.ads.forEach((ad) => {
-			let draft = {
-				title: ad.title,
-				imageURLs: ad.pictures,
-				price: {
-					currency: ad.price.currency,
-					amount: ad.price.amount
-				},
-				location: {
-					"address": ad.location.address,
-					"latitude": ad.location.latitude,
-					"longitude": ad.location.longitude
-				}
-			};
-			draftJson.ads.push(draft);
-		});
-		draftJson['extra'] = JSON.stringify(input);
-
-		return draftAdService.saveDraftMock(this.bapiHeaderValues, machguid, draftJson).then((result) => {
-			return result.machguid === machguid;
+	// postAdRequest is object format specified by the front end request json schema
+	// see /app/appWeb/jsonSchemas/postAdRequest-schema.json
+	// this puts it into temporary storage for retrieval after the login process
+	saveDraft(machGuid, postAdRequest) {
+		return draftAdService.saveDraft(this.bapiHeaderValues, machGuid, postAdRequest).then((result) => {
+			return result;
 		});
 	}
 
-	getDraft(machguid) {
-		return draftAdService.getDraftMock(this.bapiHeaderValues, machguid).then((result) => {
+	getDraft(machGuid) {
+		return draftAdService.getDraftMock(this.bapiHeaderValues, machGuid).then((result) => {
 			let data = {};
 			try {
-				data = JSON.parse(result['extra']);
+				data = JSON.parse(result);
 			} catch(ex) {
 				console.error(ex);
 				console.error(ex.stack);

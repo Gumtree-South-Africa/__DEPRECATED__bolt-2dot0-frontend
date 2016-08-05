@@ -54,12 +54,21 @@ let endpointToFileMap = {};
  * Populates the mock endpoint map
  * @param url
  * @param file
+ * @param options
+ * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
-let registerMockEndpoint = (url, file) => {
+let registerMockEndpoint = (url, filePath, options) => {
 	if (!endpointToFileMap[url]) {
 		endpointToFileMap[url] = [];
 	}
-	endpointToFileMap[url].push(file);
+	let entry = {
+		filePath: filePath,
+		options: {}
+	};
+	if (options) {
+		entry.options = options;
+	}
+	endpointToFileMap[url].push(entry);
 };
 
 /**
@@ -97,19 +106,23 @@ module.exports.boltSupertest = (route, host, method) => {
 		if (!endpointToFileMap[options.path]) {
 			throw new Error(`No mocked endpoint for ${path}`);
 		} else {
-			let filePath = endpointToFileMap[path].pop();
-			if (filePath === undefined) {
+			let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
+			if (!entry) {
 				throw new Error(`No mocked endpoint for ${path}`);
 			}
+			let filePath = entry.filePath;
 			try {
 				let data = fs.readFileSync(filePath);
 				let json = JSON.parse(data);
+				if (entry.options.failStatusCode) {
+					let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
+					error.statusCode = entry.options.failStatusCode;
+					return Q.reject(error);
+				}
 				return Q(json);
 			} catch (e) {
 				// we couldnt load the file, but we can simulate a failed promise
-				return Q.fcall( () => {
-					throw e;
-				});
+				return Q.reject(e);
 			}
 		}
 	};
