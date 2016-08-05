@@ -1,7 +1,6 @@
 'use strict';
 
 require("slick-carousel");
-let Q = require('q');
 let $ = require('jquery');
 let ImageHelper = require('../../uploadImage/js/imageHelper');
 let uploadAd = require('../../uploadImage/js/uploadAd');
@@ -18,6 +17,7 @@ const AD_STATES = {
 };
 
 let allowedUploads = 12;
+let _this = this;
 
 let isNumber = (o) => {
 	return typeof o === 'number' && isFinite(o);
@@ -116,6 +116,11 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 	$('.carousel-item.item-' + i).on('click', setCoverPhoto);
 	$('.carousel-item.item-' + i + ' .spinner').toggleClass("hidden");
 	updateCarouselImages();
+
+	// set cover photo if none found
+	if ($('.cover-photo').hasClass('no-photo')) {
+		$('.carousel-item:first').click();
+	}
 };
 
 //todo: handles all the image uploads
@@ -179,6 +184,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
+		UploadMsgClass.removeCarouselItem(i);
 		if (i !== undefined) {
 			UploadMsgClass.removeCarouselItem(i);
 		}
@@ -244,6 +250,8 @@ let UploadMsgClass = {
 			this.pictureSrv(i);
 		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
 			this.corrupt(i);
+		} else {
+			this.failMsg(i);
 		}
 	}
 };
@@ -256,6 +264,8 @@ let removePendingImage = (index) => {
 	}
 	if (this.pendingImages.length === 0) {
 		$("#postAdBtn").removeClass("disabled");
+		$('.cover-photo').removeClass('red-border');
+		$('.photos-required-msg').addClass('hidden');
 	}
 };
 
@@ -274,9 +284,8 @@ let _getCookie = (cname) => {
 	return "";
 };
 
-let _postAd = (urls) => {
+let _postAd = (urls, locationType) => {
 	uploadAd.postAd(urls, (response) => {
-		//TODO: add a loading spinner
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		switch (response.state) {
@@ -300,34 +309,67 @@ let _postAd = (urls) => {
 		// this.$uploadSpinner.toggleClass('hidden');
 		// this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg();
+	}, {
+		locationType: locationType
 	});
 };
 
-let _requestLocation = () => {
-	let locationDeferred = Q.defer();
+let requestLocation = (callback) => {
+	let timeout;
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
 		//Don't want to sit and wait forever in case geolocation isn't working
-		setTimeout(locationDeferred.resolve, 20000);
+		timeout = setTimeout(callback, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-			locationDeferred.resolve();
-			let lat = position.coords.latitude;
-			let lng = position.coords.longitude;
-			document.cookie = `geoId=${lat}ng${lng}`;
-		}, locationDeferred.resolve,
-		{
-			enableHighAccuracy: true,
-			maximumAge: 30000,
-			timeout: 27000
-		});
+				let lat = position.coords.latitude;
+				let lng = position.coords.longitude;
+				document.cookie = `geoId=${lat}ng${lng}`;
+				callback('geoLocation');
+			}, callback,
+			{
+				enableHighAccuracy: true,
+				maximumAge: 30000,
+				timeout: 27000
+			});
 	} else {
-		locationDeferred.resolve();
+		callback('cookie');
 	}
-	return locationDeferred.promise;
+	return timeout;
+};
+
+let _success = function(i, response) {
+	let url;
+
+	// try to extract the url and figure out if it looks like to be valid
+	url = ExtractURLClass(response);
+
+	let urlClass = ExtractURLClass(response);
+
+	// any errors don't do anything after display error msg
+	if (!urlClass) {
+		let error = _this.imageHelper.extractEPSServerError(response);
+		UploadMsgClass.translateErrorCodes(i, error);
+		console.error("Failed to extract url class!");
+		console.error(error);
+		return;
+	}
+
+	// add the image once EPS returns the uploaded image URL
+	createImgObj(i, url.thumbImage, url.normal);
+
+	_this.$uploadSpinner.toggleClass('hidden');
+	UploadMsgClass.successMsg(i);
+
+	removePendingImage(i);
+};
+
+let _failure = (i, epsError) => {
+	let error = _this.imageHelper.extractEPSServerError(epsError);
+	this.$uploadSpinner.toggleClass('hidden');
+	UploadMsgClass.translateErrorCodes(i, error);
+	removePendingImage(i);
 };
 
 let loadData = (i, file) => {
-
-	let _this = this;
 	let formData = new FormData();
 	// direct upload via EPS proxy
 	if (!this.EPS.IsEbayDirectUL) {
@@ -350,77 +392,34 @@ let loadData = (i, file) => {
 	formData.append("rqt", $.now());
 	formData.append("rqis", file.size);
 
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', this.EPS.url, true);
-	xhr.responseType = 'text';
-	xhr.bCount = i;
-	xhr.upload.bCount = i;
-	xhr.fileSize = file.size;
+	$.ajax({
+		xhr: () => {
+			let xhr = new window.XMLHttpRequest();
+			xhr.upload.addEventListener("progress", function(event) {
+				let index = this.bCount;
 
-	xhr.onload = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
+				if (event.lengthComputable) {
+					let percent = event.loaded / event.total;
 
-		let count = this.bCount;
-		let url;
-		let statusOk = (this.status === 200);
-
-		// try to extract the url and figure out if it looks like to be valid
-		if (statusOk) {
-			url = ExtractURLClass(this.response);
-			if (!url) {
-				// url is not reconized => consider the download in error
-				statusOk = false;
-				// console.warn("cannot extract from response given by EPS  => " + this.response);
-			}
+					_this.imageProgress.attr('value', percent * 100);
+				} else {
+					UploadMsgClass.failMsg(index);
+				}
+			}, false);
+			return xhr;
+		},
+		type: 'POST',
+		contentType: false,
+		processData: false,
+		url: this.EPS.url,
+		data: formData,
+		success: (response) => {
+			_success(i, response);
+		},
+		error: (err) => {
+			_failure(i, err);
 		}
-
-		if (!statusOk) {
-			UploadMsgClass.failMsg(count);
-		}
-
-		if (this.readyState === 4 && statusOk) {
-
-			let urlClass = ExtractURLClass(this.response);
-
-			// any errors don't do anything after display error msg
-			if (!urlClass) {
-				let error = this.imageHelper.extractEPSServerError(this.response);
-				UploadMsgClass.translateErrorCodes(count, error);
-				console.error("Failed to extract url class!");
-				console.error(error);
-				return;
-			}
-
-			// add the image once EPS returns the uploaded image URL
-			createImgObj(this.bCount, url.thumbImage, url.normal);
-
-			_this.$uploadSpinner.toggleClass('hidden');
-			UploadMsgClass.successMsg(i);
-		}
-
-		removePendingImage(count);
-	};
-
-	xhr.onabort = function(e) {
-		let count = this.bCount;
-
-		console.warn('aborted', e);
-		_this.$uploadSpinner.toggleClass('hidden');
-		UploadMsgClass.failMsg(count);
-		removePendingImage(count);
-	};
-
-
-	xhr.upload.addEventListener("progress", function(event) {
-		let index = this.bCount;
-
-		if (!event.lengthComputable) {
-			UploadMsgClass.failMsg(index);
-		}
-	}, false);
-
-	xhr.send(formData);  // multipart/form-data
+	});
 };
 
 //TODO: here minus a few dom references
@@ -437,7 +436,6 @@ let prepareForImageUpload = (i, file) => {
 	let reader = null;
 
 	let img = new Image();
-	let _this = this;
 
 	if (window.FileReader) {
 		UploadMsgClass.resizing(i);
@@ -489,7 +487,7 @@ let html5Upload = (evt) => {
 
 	// drag and drop
 	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
-	let totalFiles = uploadedFiles.length, prvCount = imageUploads.count();
+	let totalFiles = uploadedFiles.length, uploadCount = imageUploads.count();
 
 	// if user
 	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
@@ -498,9 +496,10 @@ let html5Upload = (evt) => {
 		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
 		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
 	} else {
-
-		if (prvCount === allowedUploads) {
-			console.error("html5Upload - Max uploads reached");
+		if (uploadCount === allowedUploads) {
+			console.warn("Cannot upload more than 12 files!");
+			$(".max-photo-msg").removeClass("hidden");
+			$(".icon-contextual-info").removeClass("hidden");
 			return;
 		}
 		// create image place holders
@@ -524,16 +523,18 @@ let html5Upload = (evt) => {
 		}
 
 		for (let i = 0; i < uploadedFiles.length; i++) {
-			this.pendingImages.push(prvCount);
-
-			let file = uploadedFiles[i];
-			if (prvCount === allowedUploads) {
-				console.error("Max uploads reached");
+			if (uploadCount >= allowedUploads) {
+				console.warn("Cannot upload more than 12 files!");
+				$(".max-photo-msg").removeClass("hidden");
+				$(".icon-contextual-info").removeClass("hidden");
 				return;
 			}
-			UploadMsgClass.loadingMsg(prvCount);
-			prepareForImageUpload(prvCount, file);
-			prvCount = prvCount + 1;
+			this.pendingImages.push(uploadCount);
+
+			let file = uploadedFiles[i];
+			UploadMsgClass.loadingMsg(uploadCount);
+			prepareForImageUpload(uploadCount, file);
+			uploadCount = uploadCount + 1;
 
 		} // end for
 	}
@@ -605,14 +606,17 @@ let parseFile = (file) => {
 	reader.onloadend = () => {
 		// Add new carousel item to carousel
 		let items = $(".carousel-item").length;
-		$('#photo-carousel').slick('slickAdd',
-			'<div class="carousel-item item-' + items + '">' +
-				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
-			'</div>', 0, true);
-		$('#photo-carousel').slick('slickGoTo', 0, false);
 
-		// resize items
-		resizeCarousel();
+		if (items < allowedUploads) {
+			$('#photo-carousel').slick('slickAdd',
+				'<div class="carousel-item item-' + items + '">' +
+				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
+				'</div>', items, true);
+			$('#photo-carousel').slick('slickGoTo', items, false);
+
+			// resize items
+			resizeCarousel();
+		}
 	};
 	if (file) {
 		reader.readAsDataURL(file);
@@ -622,16 +626,24 @@ let parseFile = (file) => {
 let preventDisabledButtonClick = (event) => {
 	if (this.$postAdButton.hasClass("disabled")) {
 		event.preventDefault();
+		// add red border to photo carousel if no photos
+		if ($('.carousel-item').length === 0) {
+		 	$('.cover-photo').addClass('red-border');
+			$('.photos-required-msg').removeClass('hidden');
+		}
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
-		_requestLocation().then(() => {
+		let timeout = requestLocation((locationType) => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
 			let images = [];
-			for (let i=0; i < imageUploads.count(); i++) {
+			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item.item-" + i).data("image");
 				images.push(image);
 			}
-			_postAd(images);
+			_postAd(images, locationType);
 		});
 	}
 };
@@ -706,8 +718,9 @@ let initialize = () => {
 		evt.stopImmediatePropagation();
 
 		if (imageUploads.count() === allowedUploads) {
-			//TODO - give message this UI
-			console.error("Cannot upload more than 12 files!");
+			console.warn("Cannot upload more than 12 files!");
+			$(".max-photo-msg").removeClass("hidden");
+			$(".icon-contextual-info").removeClass("hidden");
 			return;
 		}
 
@@ -717,7 +730,6 @@ let initialize = () => {
 			parseFile(files[i]);
 		}
 
-		// TODO - EPS stuff
 		html5Upload(evt);
 	});
 

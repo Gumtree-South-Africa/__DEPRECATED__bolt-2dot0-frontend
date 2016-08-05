@@ -1,7 +1,6 @@
 'use strict';
 
 let $ = require('jquery');
-let Q = require('q');
 let ImageHelper = require('./imageHelper');
 let uploadAd = require('./uploadAd');
 
@@ -13,6 +12,8 @@ const AD_STATES = {
 	AD_CREATED: "AD_CREATED",
 	AD_DEFERRED: "AD_DEFERRED"
 };
+
+let _this = this;
 
 let allowedUploads = 4;
 
@@ -126,6 +127,8 @@ let UploadMsgClass = {
 		this.uploadPhotoText.toggleClass('hidden');
 		this.$imageUpload.val('');
 		this.inputDisabled = false;
+		this.$uploadSpinner.addClass('hidden');
+		this.$uploadProgress.addClass('hidden');
 	},
 	showModal: () => {
 		this.messageModal.toggleClass('hidden');
@@ -200,6 +203,8 @@ let UploadMsgClass = {
 			this.pictureSrv(i);
 		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
 			this.corrupt(i);
+		} else {
+			this.failMsg();
 		}
 	}
 };
@@ -219,7 +224,7 @@ let _getCookie = (cname) => {
 	return "";
 };
 
-let _postAd = (url) => {
+let _postAd = (url, locationType) => {
 	uploadAd.postAd([url], (response) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
@@ -244,34 +249,64 @@ let _postAd = (url) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
 		UploadMsgClass.failMsg(0);
+	}, {
+		locationType: locationType
 	});
 };
 
-let _requestLocation = () => {
-	let locationDeferred = Q.defer();
+let requestLocation = (callback) => {
+	let timeout;
 	if ("geolocation" in navigator && _getCookie('geoId') === '') {
 		//Don't want to sit and wait forever in case geolocation isn't working
-		setTimeout(locationDeferred.resolve, 20000);
+		timeout = setTimeout(callback, 20000);
 		navigator.geolocation.getCurrentPosition((position) => {
-			locationDeferred.resolve();
-			let lat = position.coords.latitude;
-			let lng = position.coords.longitude;
-			document.cookie = `geoId=${lat}ng${lng}`;
-		}, locationDeferred.resolve,
-		{
-			enableHighAccuracy: true,
-			maximumAge: 30000,
-			timeout: 27000
-		});
+				let lat = position.coords.latitude;
+				let lng = position.coords.longitude;
+				document.cookie = `geoId=${lat}ng${lng}`;
+				callback('geoLocation');
+			}, callback,
+			{
+				enableHighAccuracy: true,
+				maximumAge: 30000,
+				timeout: 27000
+			});
 	} else {
-		locationDeferred.resolve();
+		callback('cookie');
 	}
-	return locationDeferred.promise;
+	return timeout;
+};
+
+let _success = function(response) {
+	let url = ExtractURLClass(response);
+
+	if (!url) {
+		let error = _this.imageHelper.extractEPSServerError(response);
+		UploadMsgClass.translateErrorCodes(0, error);
+		return;
+	}
+
+	if (_this.isMobile) {
+		_this.imageHolder.css("background-image", `url('${url.normal}')`);
+		let timeout = requestLocation((locationType) => {
+			if (timeout) {
+				clearTimeout(timeout);
+			}
+			//Don't care if they actually gave us location, just that it finished.
+			_postAd(url.normal, locationType);
+		});
+	}
+};
+
+let _failure = (err) => {
+	let error = this.imageHelper.extractEPSServerError(err);
+	this.$uploadSpinner.toggleClass('hidden');
+	this.$uploadProgress.toggleClass('hidden');
+	UploadMsgClass.translateErrorCodes(0, error);
+	UploadMsgClass.failMsg(0);
 };
 
 let loadData = (i, file) => {
 
-	let _this = this;
 	let formData = new FormData();
 	// direct upload via EPS proxy
 	if (!this.EPS.IsEbayDirectUL) {
@@ -294,82 +329,33 @@ let loadData = (i, file) => {
 	formData.append("rqt", $.now());
 	formData.append("rqis", file.size);
 
-	let xhr = new XMLHttpRequest();
-	xhr.open('POST', this.EPS.url, true);
-	xhr.responseType = 'text';
-	xhr.bCount = i;
-	xhr.upload.bCount = i;
-	xhr.fileSize = file.size;
+	$.ajax({
+		xhr: () => {
+			let xhr = new window.XMLHttpRequest();
+			xhr.upload.addEventListener("progress", function(event) {
+				let index = this.bCount;
 
-	xhr.onload = function(e) {
-		e.stopPropagation();
-		e.preventDefault();
+				if (event.lengthComputable) {
+					let percent = event.loaded / event.total;
+					_this.$uploadProgress.html((percent * 100).toFixed() + "%");
 
-		let count = this.bCount;
-		let url;
-		let statusOk = (this.status === 200);
-
-		// try to extract the url and figure out if it looks like to be valid
-		if (statusOk) {
-			url = ExtractURLClass(this.response);
-			if (!url) {
-				// url is not reconized => consider the download in error
-				statusOk = false;
-				// console.warn("cannot extract from response given by EPS  => " + this.response);
-			}
+					_this.imageProgress.attr('value', percent * 100);
+				} else {
+					UploadMsgClass.failMsg(index);
+				}
+			}, false);
+			return xhr;
+		},
+		type: 'POST',
+		contentType: false,
+		processData: false,
+		url: this.EPS.url,
+		data: formData,
+		success: _success,
+		error: (err) => {
+			_failure(err);
 		}
-
-		if (!statusOk) {
-			UploadMsgClass.failMsg(count);
-		}
-
-		if (this.readyState === 4 && statusOk) {
-
-			let urlClass = ExtractURLClass(this.response);
-
-			// any errors don't do anything after display error msg
-			if (!urlClass) {
-				let error = this.imageHelper.extractEPSServerError(this.response);
-				UploadMsgClass.translateErrorCodes(count, error);
-				return;
-			}
-
-			if (_this.isMobile) {
-				_this.imageHolder.css("background-image", `url('${url.normal}')`);
-				_requestLocation().then(() => {
-					//Don't care if they actually gave us location, just that it finished.
-					_postAd(url.normal);
-				});
-			}
-
-		}
-
-	};
-
-	xhr.onabort = function(e) {
-		console.warn('aborted', e);
-		_this.$uploadSpinner.toggleClass('hidden');
-		_this.$uploadProgress.toggleClass('hidden');
-		UploadMsgClass.failMsg(i);
-	};
-
-
-	xhr.upload.addEventListener("progress", function(event) {
-		let index = this.bCount;
-
-		if (event.lengthComputable) {
-			let percent = event.loaded / event.total;
-			_this.$uploadProgress.html((percent * 100).toFixed() + "%");
-
-			_this.imageProgress.attr('value', percent * 100);
-			// updateSpinner(percent);
-			// display image from client
-		} else {
-			UploadMsgClass.failMsg(index);
-		}
-	}, false);
-
-	xhr.send(formData);  // multipart/form-data
+	});
 };
 
 let prepareForImageUpload = (i, file) => {
@@ -383,7 +369,6 @@ let prepareForImageUpload = (i, file) => {
 	let reader = null;
 
 	let img = new Image();
-	let _this = this;
 
 	if (window.FileReader) {
 		UploadMsgClass.resizing(i);
@@ -564,6 +549,7 @@ let initialize = () => {
 	};
 	// on select file
 	$('#postForm').on("change", "#mobileFileUpload", (evt) => {
+		this.uploadPhotoText.toggleClass('hidden');
 
 		evt.stopImmediatePropagation();
 		let file = evt.target.files[0];
@@ -585,7 +571,8 @@ let initialize = () => {
 
 module.exports = {
 	initialize,
-	loadData
+	loadData,
+	requestLocation
 };
 
 

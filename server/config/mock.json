@@ -19,7 +19,7 @@
 		  	"quickpostAd"		:	"/ads",
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
-			"draftAd"			:	"/saveDraftAd"
+			"draftAd"			:	"/ads/drafts"
 	    }
 	},
 	"solr": {

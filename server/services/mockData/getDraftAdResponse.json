@@ -1,10 +1,23 @@
 {
 	"ads": [
 		{
-			"title": "Hello World",
+			"title": "Test Ad 1",
+			"price": {
+				"amount": 200.00,
+				"currency": "USD"
+			},
+			"location": {
+				"address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
+				"latitude": -33.918861,
+				"longitude": 18.423300
+			},
 			"imageUrls": [
 				"http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
-			],
+			]
+
+		},
+		{
+			"title": "Test Ad 2",
 			"price": {
 				"amount": 200.00,
 				"currency": "MXN"
@@ -14,8 +27,10 @@
 				"latitude": -33.918861,
 				"longitude": 18.423300
 			},
-			"categoryId": 123456
+			"imageUrls": [
+				"http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+			]
+
 		}
-	],
-	"extra": "{\"ads\":[{\"title\":\"Hello World\",\"imageURLs\":[\"http:\/\/i.ebayimg.sandbox.ebay.com\/00\/s\/Mjg2WDM1Ng==\/z\/ZK0AAOSw6XdWA6kM\/$_18.JPG\"],\"price\":{\"amount\":200,\"currency\":\"MXN\"},\"location\":{\"address\":\"491 Old Evans Rd, Milpitas, CA 95035, USA\",\"latitude\":-33.91886,\"longitude\":18.4233}}]}"
+	]
 }

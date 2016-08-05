@@ -17,31 +17,20 @@ class DraftAdService {
 	}
 
 	saveDraft(bapiHeaderValues, machguid, draftJson) {
-		let apiParameters = {};
-		if (machguid !== null) {
-			apiParameters['machguid'] = machguid;
-		}
-		if (draftJson !== null) {
-			apiParameters['draftJson'] = draftJson;
-		}
+		let pathValue = config.get('BAPI.endpoints.draftAd') + '/' + machguid;
 
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
-			path: config.get('BAPI.endpoints.draftAd'),
-			extraParameters: apiParameters
-		}), bapiHeaderValues, 'saveDraftAd');
+			path: pathValue
+		}), bapiHeaderValues, draftJson, 'saveDraftAd');
 	}
 
 	getDraft(bapiHeaderValues, machguid) {
-		let apiParameters = {};
-		if (machguid !== null) {
-			apiParameters['machguid'] = machguid;
-		}
+		let pathValue = config.get('BAPI.endpoints.draftAd') + '/' + machguid;
 
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
-			path: config.get('BAPI.endpoints.draftAd'),
-			extraParameters: apiParameters
+			path: pathValue
 		}), bapiHeaderValues, 'getDraftAd');
 	}
 }
