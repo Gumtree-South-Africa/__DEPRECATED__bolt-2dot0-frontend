@@ -3,87 +3,99 @@
 {{/partial}}
 
 {{#partial "content"}}
-    {{> (dynamic "postAdHeader")}}
-    {{#block "editPhotoCarousel"}}
-        <div class="photo-carousel-placeholder">
-
-        </div>
-    {{/block}}
-    {{#block "editMainDetails"}}
-        <div class="main-detail-edit">
-            <div class="main-details-title">
-                {{i18n "editAd.mainDetails.title"}}
-            </div>
-            <form method="POST" action="#">
-                <div class="form-category">
-                    <div class="label-wrapper">
-						<label for="adCategory">{{i18n "editAd.mainDetails.labels.category"}}</label>
-                        <div class="suggested-cat">* {{i18n "editAd.mainDetails.suggestedCategory"}}</div>
-                    </div>
-                    <div class="input-wrapper">
-                        <div class="category-name-display">
-                            <u>Home</u> >
-                        </div>
-                    </div>
-                </div>
-                <div class="separator-div"></div>
-                <div class="form-ad-title">
-					<div class="label-wrapper">
-                        <label for="adTitle">{{i18n "editAd.mainDetails.labels.adTitle"}}</label>
-					</div>
-					<div class="input-wrapper">
-					    <input title="adTitle" type="text"/>
-					</div>
-                </div>
-				<div class="form-ad-price">
-                    <div class="label-wrapper">
-						<label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
-                    </div>
-                    <div class="input-wrapper">
-						<input title="adPrice" type="text"/>
-                    </div>
+    <section class="edit-ad-page">
+        {{> (dynamic "postAdHeader")}}
+        {{#block "editPhotoCarousel"}}
+			<div class="photo-carousel">
+				<div class="photo-switcher">
+                    {{> (dynamic "photoCarousel")}}
 				</div>
-				<div class="form-ad-description">
-					<div class="label-wrapper">
-                        <label for="adDescription">{{i18n "editAd.mainDetails.labels.description"}}</label>
-                    </div>
-					<div class="input-wrapper">
-					    <input class="description-input" title="adDescription" type="text"/>
-                    </div>
+				<div class="reorder-images-link">
+                <span role="link" class="reorder-images-link-text">
+                    {{i18n "editAd.reorderImages"}}
+				</span>
 				</div>
-                <div class="separator-div"></div>
-                <div class="ad-website-link-wrapper">
-                    <a href="adAdLink-tbd">{{i18n "editAd.mainDetails.adWebsiteLink"}}</a>
-                    <span class="lightning-bolt"></span>
-                </div>
 				<div class="separator-div"></div>
-                <div class="form-location-selection">
-                    <div class="label-wrapper">
-						<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
-                    </div>
-                    <div class="input-wrapper">
-                        <input type="text"/>
-                    </div>
-                    <div class="location-warning">
-                        <div class="location-warning-text">
-                            {{i18n "editAd.mainDetails.locationWarning"}}
-                        </div>
-                    </div>
-                </div>
-				<div class="button-area">
-                    <div class="submit-btn-wrapper">
-						<button class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
-                    </div>
-                    <div class="cancel-link-wrapper">
-						<div class="cancel-form-link">
-                            {{i18n "editAd.mainDetails.cancel"}}
+                {{> (dynamic "adStats") }}
+			</div>
+        {{/block}}
+        {{#block "editMainDetails"}}
+			<div class="main-detail-edit">
+                {{> (dynamic "shareAdCard") }}
+				<div class="main-details-title">
+                    {{i18n "editAd.mainDetails.title"}}
+				</div>
+				<form method="POST" action="#">
+					<div class="form-category">
+						<div class="label-wrapper">
+							<label for="adCategory">{{i18n "editAd.mainDetails.labels.category"}}</label>
+							<div class="suggested-cat">* {{i18n "editAd.mainDetails.suggestedCategory"}}</div>
 						</div>
-                    </div>
+						<div class="input-wrapper">
+							<div class="category-name-display">
+								<u>Home</u> >
+							</div>
+						</div>
+					</div>
+					<div class="separator-div"></div>
+					<div class="form-ad-title">
+						<div class="label-wrapper">
+							<label for="adTitle">{{i18n "editAd.mainDetails.labels.adTitle"}}</label>
+						</div>
+						<div class="input-wrapper">
+							<input title="adTitle" type="text"/>
+						</div>
+					</div>
+					<div class="form-ad-price">
+						<div class="label-wrapper">
+							<label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
+						</div>
+						<div class="input-wrapper">
+							<input title="adPrice" type="text"/>
+						</div>
+					</div>
+					<div class="form-ad-description">
+						<div class="label-wrapper">
+							<label for="adDescription">{{i18n "editAd.mainDetails.labels.description"}}</label>
+						</div>
+						<div class="input-wrapper">
+							<input class="description-input" title="adDescription" type="text"/>
+						</div>
+					</div>
+					<div class="separator-div"></div>
+					<div class="ad-website-link-wrapper">
+						<a href="adAdLink-tbd">{{i18n "editAd.mainDetails.adWebsiteLink"}}</a>
+						<span class="lightning-bolt"></span>
+					</div>
+					<div class="separator-div"></div>
+					<div class="form-location-selection">
+						<div class="label-wrapper">
+							<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
+						</div>
+						<div class="input-wrapper">
+							<input type="text"/>
+						</div>
+						<div class="location-warning">
+							<div class="location-warning-text">
+                                {{i18n "editAd.mainDetails.locationWarning"}}
+							</div>
+						</div>
+					</div>
+					<div class="button-area">
+						<div class="submit-btn-wrapper">
+							<button class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
+						</div>
+						<div class="cancel-link-wrapper">
+							<div class="cancel-form-link">
+                                {{i18n "editAd.mainDetails.cancel"}}
+							</div>
+						</div>
 
-                </div>
-            </form>
-        </div>
-    {{/block}}
+					</div>
+				</form>
+			</div>
+        {{/block}}
+    </section>
 {{/partial}}
 
 {{#partial "footerWrapper"}}
