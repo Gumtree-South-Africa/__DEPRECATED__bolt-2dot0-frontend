@@ -50,6 +50,20 @@ let spyOnService = (service, method, fileName) => {
  */
 let endpointToFileMap = {};
 
+
+let verifyMockEndpointsClean = () => {
+
+	console.error("verifyMockEndpointsClean Begin");
+	let keys = Object.keys(endpointToFileMap);
+	for (let i = 0; i < keys.length; i++) {
+		if (endpointToFileMap[keys[i]].length > 0) {
+			console.error(`mock endpoint not consumed ${keys[i]}, count ${endpointToFileMap[keys[i]].length}`);
+		}
+	}
+	endpointToFileMap = {};
+	console.error("verifyMockEndpointsClean End");
+};
+
 /**
  * Populates the mock endpoint map
  * @param url
@@ -160,6 +174,7 @@ module.exports.boltSupertest = (route, host, method) => {
 	});
 };
 
+module.exports.verifyMockEndpointsClean = verifyMockEndpointsClean;
 module.exports.registerMockEndpoint = registerMockEndpoint;
 module.exports.spyOnService = spyOnService;
 

@@ -15,14 +15,16 @@ describe('Post Ad Api', () => {
 	});
 
 	beforeEach(() => {
+		specHelper.verifyMockEndpointsClean();
+	});
 
-		// specHelper.registerMockEndpoint(
-		// 	`${endpoints.quickpostAd}?_forceExample=true&_statusCode=200`,
-		// 	'test/serverUnit/mockData/postAd/postAdResponse.json');
-
+	afterEach(() => {
+		specHelper.verifyMockEndpointsClean();
 	});
 
 	it('should create an ad for logged in user', (done) => {
+		//console.log("first test - Post Ad Api");
+
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
@@ -167,16 +169,12 @@ describe('Post Ad Api', () => {
 		});
 	});
 
-	it('should fail because auth cookie is not valid (user call mocked 500)', (done) => {
+	it('should fail because attempting to validate auth cookie failed (user call mocked 500)', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json', { failStatusCode: 500 });
-
-		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
-			'server/services/mockData/saveDraftAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
