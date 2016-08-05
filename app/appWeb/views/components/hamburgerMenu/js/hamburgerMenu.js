@@ -3,6 +3,10 @@ let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV
 let Hammer = require('hammerjs');
 
 let toggleMenu = () => {
+	if (this.open === undefined) {
+		this.open = shouldClose;
+	}
+
 	if (!this.open && searchBarV2.isOnPage()) {
 		searchBarV2.closeAutoComplete(true, true);
 	}

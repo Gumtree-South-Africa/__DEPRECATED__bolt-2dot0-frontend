@@ -8,10 +8,8 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
-let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
-
-class PostAdPageModel {
+class EditAdPageModel {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
@@ -23,14 +21,14 @@ class PostAdPageModel {
 		this.locale = res.locals.config.locale;
 	}
 
-	populateData(deferredAd) {
+	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
-		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.POST_AD;
+		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.EDIT_AD;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
-		let modelBuilder = new ModelBuilder(this.getPostAdData());
+		let modelBuilder = new ModelBuilder(this.getEditAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
-		modelData.deferredAd = deferredAd;
+
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -45,7 +43,7 @@ class PostAdPageModel {
 	}
 
 	// Function getPostAdData
-	getPostAdData() {
+	getEditAdData() {
 		return [
 			() => {
 				// initialize
@@ -53,14 +51,12 @@ class PostAdPageModel {
 					'homePageUrl': this.urlProtocol + 'www.' + this.fullDomainName + this.baseDomainSuffix + this.basePort,
 					'languageCode': this.locale,
 					'progressBarText': "postAd.confirm.pageTitle"
-
-			};
+				};
 			}
 		];
 	}
 
 	mapData(modelData, data) {
-		modelData.deferredAd = data.deferredAd;
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.dataLayer = data.common.dataLayer || {};
@@ -70,14 +66,9 @@ class PostAdPageModel {
 		return modelData;
 	}
 
-	getPageDataFunctions(modelData) {
-		let seo = new SeoModel(modelData.bapiHeaders);
+	getPageDataFunctions(/*modelData*/) {
 		this.dataPromiseFunctionMap = {};
-
-		this.dataPromiseFunctionMap.seo = () => {
-			return seo.getQuickPostSeoInfo();
-		};
 	}
 }
 
-module.exports = PostAdPageModel;
+module.exports = EditAdPageModel;

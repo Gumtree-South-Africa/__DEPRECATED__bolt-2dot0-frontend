@@ -4,12 +4,9 @@
 
 {{#partial "content"}}
     {{> (dynamic "postAdModal")}}
-	<div class="post-ad-header">
-		<div class="header-text">
-			<div class="title-text">{{i18n "postAd.confirm.pageTitle"}}</div>
-			<div class="header-accent">-</div>
-		</div>
-	</div>
+
+    {{> (dynamic "postAdHeader")}}
+
 	<div class="message-modal hidden">
 		<div class="message">
 			<div class="error-modal-container">
@@ -51,4 +48,5 @@
 
 {{#partial "footerWrapper"}}
     {{> (dynamic "footerV2")}}
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {{/partial}}

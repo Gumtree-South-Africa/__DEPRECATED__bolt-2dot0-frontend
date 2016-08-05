@@ -1361,5 +1361,23 @@
 		"uploadQuickly": "Publica un anuncio rápidamente",
 		"upload": "Publica un anuncio",
 		"close": "CERRAR"
+	},
+	"editAd": {
+		"mainDetails": {
+			"title": "Agregar detalles (opcional)",
+			"labels": {
+				"category": "Categoría",
+				"adTitle": "Título del anuncio",
+				"price": "Precio",
+				"description": "Descripción",
+				"location": "Ciudad, zona o código postal"
+			},
+			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"submit": "Listo",
+			"cancel": "Cancelar",
+			"locationWarning": "Tu ubicación exacta no se publicará",
+			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+
+		}
 	}
 }
