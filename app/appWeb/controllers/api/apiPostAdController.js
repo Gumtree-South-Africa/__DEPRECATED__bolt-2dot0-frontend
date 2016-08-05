@@ -58,7 +58,7 @@ let getNotLoggedInResponsePromise = (model, requestJson) => {
 		let returnUrl = `/post?guid=${guid}`;
 
 		response.links = {
-			emailLogin: `/login.html?return=${returnUrl}`,
+			emailLogin: `/login.html?redirect=${returnUrl}`,
 			register: `/register.html?return=${returnUrl}`,
 			facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
 		};

@@ -11,7 +11,6 @@ class DraftAdModel {
 	// see /app/appWeb/jsonSchemas/postAdRequest-schema.json
 	// this puts it into temporary storage for retrieval after the login process
 	saveDraft(machGuid, postAdRequest) {
-
 		return draftAdService.saveDraft(this.bapiHeaderValues, machGuid, postAdRequest).then((result) => {
 			return result;
 		});
