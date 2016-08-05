@@ -1349,6 +1349,7 @@
 		"close": "CERRAR"
 	},
 	"editAd": {
+		"reorderImages": "Volver a ordenar imágenes",
 		"mainDetails": {
 			"title": "Agregar detalles (opcional)",
 			"labels": {
@@ -1363,7 +1364,15 @@
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
 			"adWebsiteLink": "Agrega un enlace a tu sitio web"
-
 		}
+	},
+	"adStats": {
+		"views": "Visitas",
+		"messages": "Mensajes",
+		"favorites": "Favoritos"
+	},
+	"shareAd": {
+		"title": "Compartir este anuncio",
+		"dateString": "Publicado hace %s días"
 	}
 }
