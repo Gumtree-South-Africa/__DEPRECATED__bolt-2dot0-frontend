@@ -704,7 +704,7 @@ self.addEventListener('install', function(e) {
 //cacheFirst
 //fastest
 
-let i;
+let cacheIndex
 let homepageCachePaths = [
 	'/',
 	'/manifest.json',
@@ -735,8 +735,8 @@ let homepageCachePaths = [
 	'/public/jsmin/HomePage_mobile_es_MX.js'
 ];
 
-for (i = 0; i < homepageCachePaths.length; i++) {
-	toolbox.router.get(homepageCachePaths[i], toolbox.networkFirst, {
+for (cacheIndex = 0; cacheIndex < homepageCachePaths.length; cacheIndex++) {
+	toolbox.router.get(homepageCachePaths[cacheIndex], toolbox.networkFirst, {
 		cache: {
 			name: 'vivanuncios-homepage',
 			maxEntries: 100,
