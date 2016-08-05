@@ -2,8 +2,17 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let uuid = require('node-uuid');
 
 fdescribe('Post Ad Api', () => {
+
+	let guid = "12345678-e3cb-4fc5-a6a3-2cb2e54b93fc";
+
+	beforeAll(() => {
+		spyOn(uuid, "v4").and.callFake(() => {
+			return guid;
+		});
+	});
 
 	beforeEach(() => {
 
@@ -48,7 +57,7 @@ fdescribe('Post Ad Api', () => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
 			'server/services/mockData/saveDraftAdResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -65,7 +74,7 @@ fdescribe('Post Ad Api', () => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
 			'server/services/mockData/saveDraftAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -99,7 +108,7 @@ fdescribe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json', { failStatusCode: 404 });
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.draftAd}?_forceExample=true&_statusCode=200`,
+			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=200`,
 			'server/services/mockData/saveDraftAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
