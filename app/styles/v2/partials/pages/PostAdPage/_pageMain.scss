@@ -24,19 +24,6 @@ $photo-switcher-width: 30%;
 	background-color: #F7F7F7;
 	border-bottom: 1px solid $header-blue;
 
-	.back-button {
-		position: absolute;
-		margin-left: 20px;
-	}
-
-	.icon-caret-left-blue {
-		display: inline-block;
-		position: relative;
-		top: 2px;
-		width: 10px;
-		height: 14px;
-	}
-
 	.header-accent {
 		font-size: 0;
 		margin-top: 6px;
