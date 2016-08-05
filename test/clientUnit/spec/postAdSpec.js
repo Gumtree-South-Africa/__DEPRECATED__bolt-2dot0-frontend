@@ -27,7 +27,7 @@ let mockPostAdResponse = {
 };
 
 
-fdescribe('Post Ad', () => {
+describe('Post Ad', () => {
 	describe('Upload Image (mobile)', () => {
 		let $testArea;
 		let file;
