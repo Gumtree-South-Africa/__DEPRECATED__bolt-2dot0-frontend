@@ -12,23 +12,6 @@
 	text-align: center;
 	z-index: 10;
 
-	.close-button {
-		position: absolute;
-		top: 15px;
-		right: 15px;
-
-		.icon-close, .close-text {
-			display: inline-block;
-			font-size: 12px;
-			text-transform: uppercase;
-		}
-
-		.icon-close {
-			position: relative;
-			top: 6px;
-		}
-	}
-
 	.login-title {
 		font-weight: bold;
 		margin-top: 50px;
