@@ -7,34 +7,16 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
-let postAdService = require(cwd + '/server/services/postad');
 let userService = require(cwd + '/server/services/user');
 
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let uuid = require('node-uuid');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
+let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 
-// front end request structure is different than the back end:
-// front end has array of ads, back end only supports one ad
-// front end imageUrls is array of urls, back end is more complex
-let mapToBapiRequest = (request) => {
-	let result = JSON.parse(JSON.stringify(request));	// deep clone the structure
 
-	result.ads.forEach((ad, index) => {
-		ad.pictures = {};
-		let pictures = request.ads[index].imageUrls;
-		ad.pictures.sizeUrls = pictures.map((elt) => {
-			return {
-				pictureUrl: elt,
-				size: "LARGE"
-			};
-		});
-	});
-
-	return result.ads[0];	// bapi currently only supports one ad
-};
 
 let getNotLoggedInResponsePromise = (model, requestJson) => {
 
@@ -72,17 +54,12 @@ let getAdPostedResponse = (results) => {
 	// extract only what we need for the response, minimal response
 	response.state = "AD_CREATED";
 
-	// unpack the vipUrl
-	let vipLink = results._links.find( (elt) => {
-		return elt.rel === "vipSeoUrl";
-	});
 	response.ad = {
 		id: results.id,
 	};
 
-	if (vipLink) {
-		response.ad.vipLink = vipLink.href;
-	}
+	response.ad.vipLink = results.vipLink;
+
 	return response;
 };
 
@@ -140,6 +117,7 @@ router.post('/create', cors, (req, res) => {
 
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let postAdModel = new PostAdModel(model.bapiHeaders);
 
 	let authenticationCookie = req.cookies['bt_auth'];
 
@@ -161,23 +139,14 @@ router.post('/create', cors, (req, res) => {
 
 		// user cookie checks out fine, go ahead and post the ad...
 
-		let bapiRequestJson = mapToBapiRequest(requestJson);
-
-		postAdService.quickpostAdMock(model.bapiHeaders, bapiRequestJson).then( (results) => {
-
-			let responseJson = getAdPostedResponse(results);
-			if (!responseJson.ad.vipLink) {
-				console.error(`create ad result is missing vipSeoUrl ${JSON.stringify(results, null, 4)}`);
-				res.status(500).send();
-				return;
-			}
+		postAdModel.postAd(requestJson).then((adResults) => {
+			let responseJson = getAdPostedResponse(adResults);
 
 			res.send(responseJson);
 			return;
-
 		}).fail((error) => {
 			// post ad has failed
-			console.error(`postAdService.quickpostAd failure ${error}`);
+			console.error(`postAdModel.postAd failure ${error}`);
 			res.status(500).send({
 				error: "postAd failed, see logs for details"
 			});
