@@ -4,7 +4,7 @@ let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 let uuid = require('node-uuid');
 
-fdescribe('Post Ad Api', () => {
+describe('Post Ad Api', () => {
 
 	let guid = "12345678-e3cb-4fc5-a6a3-2cb2e54b93fc";
 
@@ -61,7 +61,7 @@ fdescribe('Post Ad Api', () => {
 
 /*
 	out until we remove the postAdMock() call
-	
+
 	it('should fail because the postAd API is mocked to fail (logged in user)', (done) => {
 		let file = specHelper.getMockData("postAd", "postAdRequest");
 
