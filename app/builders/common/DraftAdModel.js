@@ -10,7 +10,7 @@ class DraftAdModel {
 	// postAdRequest is object format specified by the front end request json schema
 	// see /app/appWeb/jsonSchemas/postAdRequest-schema.json
 	// this puts it into temporary storage for retrieval after the login process
-	saveDraf(machGuid, postAdRequest) {
+	saveDraft(machGuid, postAdRequest) {
 		return draftAdService.saveDraftMock(this.bapiHeaderValues, machGuid, postAdRequest).then((result) => {
 			return result;
 		});
