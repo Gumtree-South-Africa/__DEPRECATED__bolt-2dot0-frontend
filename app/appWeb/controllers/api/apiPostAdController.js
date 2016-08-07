@@ -7,24 +7,21 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
-let userService = require(cwd + '/server/services/user');
-
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
-let uuid = require('node-uuid');
+let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 
 
-
-let getNotLoggedInResponsePromise = (model, requestJson) => {
-
+let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 	let response = {};
 
 	response.state = 'AD_DEFERRED';
 
-	let guid = uuid.v4();		// todo: this guid should be from the backend store
+	// get the machguid from cookie to use in draft
+	let guid = machguidCookie;
 
 	// store the requestJson ads in backend (deferred ad creation)
 	let draftAdModel = new DraftAdModel(model.bapiHeaders);
@@ -48,6 +45,18 @@ let getNotLoggedInResponsePromise = (model, requestJson) => {
 	});
 };
 
+let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
+	getNotLoggedInResponsePromise(model, machguidCookie, requestJson).then((response) => {
+		res.send(response);
+		return;
+	}).fail((e) => {
+		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
+		res.status(500).send();
+		return;
+	});
+	return;
+};
+
 let getAdPostedResponse = (results) => {
 
 	let response = {};
@@ -62,6 +71,7 @@ let getAdPostedResponse = (results) => {
 
 	return response;
 };
+
 
 /**
  * route is /api/post/create
@@ -91,13 +101,13 @@ let getAdPostedResponse = (results) => {
  */
 router.post('/create', cors, (req, res) => {
 
-
+	// Step 1: Check if request type sent is JSON
 	if (!req.is('application/json')) {
 		res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
 		return;
 	}
 
-	// validate the incoming JSON
+	// Step 2: Validate the incoming JSON
 	let validate = validator(schemaPostAd);
 	let valid = validate(req.body);
 	if (!valid) {
@@ -111,34 +121,30 @@ router.post('/create', cors, (req, res) => {
 	// is there any finer granularity of validation needed that schema doesnt take care of?
 	// there doesnt appear to be any so far
 
-	// we're validated
+	// Step 3: Retrieve info from request since we're validated
 	let requestJson = req.body;
+	let authenticationCookie = req.cookies['bt_auth'];
+	let machguidCookie = req.cookies['machguid'];
 
-
+	// Step 4: Initialize Model
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let postAdModel = new PostAdModel(model.bapiHeaders);
+	let userModel = new UserModel(model.bapiHeaders);
 
-	let authenticationCookie = req.cookies['bt_auth'];
-
+	// Step 5: Check if user has logged in
+	//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
 	if (!authenticationCookie) {
-		getNotLoggedInResponsePromise(model, requestJson).then((response) => {
-			res.send(response);
-			return;
-		}).fail((error) => {
-			console.error(`getNotLoggedInResponsePromise failure ${error.message}`);
-			res.status(500).send();
-			return;
-		});
-		return;
+		forceUserToLogin(model, machguidCookie, requestJson, res);
 	}
 
-	// validate login cookie is still good
-	userService.getUserFromCookie(model.bapiHeaders).then( () => {
+	// Step 6: Validate authentication cookie is still good
+	userModel.getUserFromCookie().then( () => {
 		// console.log(JSON.stringify(result, null, 4));
 
 		// user cookie checks out fine, go ahead and post the ad...
 
+		// Step 7: Post The Ad
 		postAdModel.postAd(requestJson).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
 
@@ -155,15 +161,7 @@ router.post('/create', cors, (req, res) => {
 
 	}).fail((error) => {
 		if (error.statusCode && error.statusCode === 404) {
-			getNotLoggedInResponsePromise(model, requestJson).then((response) => {
-				res.send(response);
-				return;
-			}).fail((e) => {
-				console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
-				res.status(500).send();
-				return;
-			});
-			return;
+			forceUserToLogin(model, machguidCookie, requestJson, res);
 		}
 
 		// user call has failed
