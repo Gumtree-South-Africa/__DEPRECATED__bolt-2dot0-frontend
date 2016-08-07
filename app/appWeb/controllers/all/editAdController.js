@@ -11,7 +11,7 @@ let EditAdPage = {
 	extendModelData: (req, modelData) => {
 		// CSS
 		if (modelData.header.min) {
-			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAd.min.css');
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.min.css');
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.css');
 		}
