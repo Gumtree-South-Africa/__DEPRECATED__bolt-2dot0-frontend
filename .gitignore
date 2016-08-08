@@ -61,6 +61,7 @@ test/clientUnit/SpecRunnerBundle.js*
 test/clientUnit/helpers/webTemplates.js*
 app/templateStaging/
 app/config/bundling/bundleMap.json
+app/config/bundling/rui/compiled/
 app/**/*.compiled.js
 
 .idea/*
