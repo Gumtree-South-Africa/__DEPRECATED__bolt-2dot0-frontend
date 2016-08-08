@@ -31,7 +31,9 @@ module.exports = function watch(gulp, plugins) {
 					args: [
 						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
-				}));
+				})).on('error', () => {
+					console.log("!!!!!!!INTEGRATION TESTS ARE FAILING, test is unstable");
+				});
 
 			return stream;
 		});
@@ -76,7 +78,10 @@ module.exports = function watch(gulp, plugins) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
 				singleRun: true
-			}, done).start();
+			}, (exitStatus) => {
+				let exitText = exitStatus ? "!!!!!!!CLIENT_UNIT TESTS ARE FAILING, test is unstable" : undefined;
+				done(exitText);
+			}).start();
 		});
 
 		gulp.task('test:clientUnit', function (done) {
@@ -86,7 +91,9 @@ module.exports = function watch(gulp, plugins) {
 		// SERVER UNIT TEST TASKS
 		gulp.task('test:serverUnit', shell.task([
 			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
-		]));
+		], {
+			errorMessage: "!!!!!!!SERVER_UNIT TESTs ARE FAILING, test is unstable"
+		}));
 
 		gulp.task('test', (done) => {
 			runSequence('build', 'test:clientUnit', 'test:serverUnit', 'test:integration', done);

@@ -80,6 +80,7 @@ app/appWeb/views/templates/pages/homepage/js/homepage.js
 app/appWeb/views/templates/pages/quickpost/js/postPageValidator.js
 app/appWeb/views/templates/pages/quickpost/js/quickpost.js
 app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
+app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
 
 
 server/middlewares/check-authentication.js
