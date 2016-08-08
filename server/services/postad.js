@@ -12,12 +12,11 @@ class PostAdService {
 		return require('q')(require(process.cwd() + '/server/services/mockData/postAdResponse.json'));
 	}
 
-	quickpostAd(bapiHeaderValues, adJson) {
-
+	quickpost(bapiHeaderValues, adJson) {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: config.get('BAPI.endpoints.quickpostAd'),
-		}), bapiHeaderValues, JSON.stringify(adJson), 'quickpostAd');
+		}), bapiHeaderValues, JSON.stringify(adJson), 'postAd');
 	}
 }
 
