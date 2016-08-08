@@ -1,3 +1,4 @@
+'use strict';
 importScripts('/js/libraries/sw-toolbox/sw-toolbox.js');  //Update path to match your own setup
 importScripts('/js/swCacheConfig.js'); //@Videep possibly not able to fetch in production
 
@@ -6,7 +7,7 @@ toolbox.precache(['/']);
 
 //Adding set array to precache
 if (cacheObj) {
-	toolbox.precache(cacheObj['homepagePreCache'])
+	toolbox.precache(cacheObj['homepagePreCache']);
 }
 
 toolbox.router.get('/', toolbox.networkFirst, {

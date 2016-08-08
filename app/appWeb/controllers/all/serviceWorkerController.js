@@ -29,11 +29,19 @@ router.get('/', (req, res, next) => {
 						return writeErr;
 					}
 					res.set('Content-Type', 'application/javascript');
-					res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
+					if (urlHost!==null) {
+						res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
+					} else {
+						res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale +  '-local.js'));
+					}
 				});
 			} else {
 				res.set('Content-Type', 'application/javascript');
-				res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
+				if (urlHost!==null) {
+					res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
+				} else {
+					res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale +  '-local.js'));
+				}
 			}
 		});
 	}).fail((err) => {
