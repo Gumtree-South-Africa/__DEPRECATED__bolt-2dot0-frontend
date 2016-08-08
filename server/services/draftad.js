@@ -13,6 +13,7 @@ class DraftAdService {
 
 	// this is a temporary hack because mock services are not available in other environments
 	getDraftMock() {
+		// return require('q').reject(new Error("test error - could not get draft"));
 		return require('q')(require(process.cwd() + '/server/services/mockData/getDraftAdResponse.json'));
 	}
 
@@ -22,7 +23,7 @@ class DraftAdService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, draftJson, 'saveDraftAd');
+		}), bapiHeaderValues, JSON.stringify(draftJson), 'saveDraftAd');
 	}
 
 	getDraft(bapiHeaderValues, machguid) {

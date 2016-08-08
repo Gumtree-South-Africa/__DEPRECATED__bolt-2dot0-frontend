@@ -99,6 +99,13 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 	bapiOptions.headers['Content-Type'] = 'application/json';
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
+	// special fix when running in mock mode (using server/config/mock.json) during POST
+	if ((serviceName === "saveDraftAd" || serviceName === "quickpostAd") &&
+		(bapiOptions.parameters && bapiOptions.parameters.indexOf("_statusCode=200") > -1)) {
+		// we're in mock mode, and we need to tell mock server to return a 201 (Created), otherwise it will send us 500, because a 200 is not available
+		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
+	}
+
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	return bapi.doPost(postData, bapiOptions, null).then((output) => {

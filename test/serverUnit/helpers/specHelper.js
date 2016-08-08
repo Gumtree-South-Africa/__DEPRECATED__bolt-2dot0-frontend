@@ -50,6 +50,20 @@ let spyOnService = (service, method, fileName) => {
  */
 let endpointToFileMap = {};
 
+
+let verifyMockEndpointsClean = () => {
+
+	console.error("verifyMockEndpointsClean Begin");
+	let keys = Object.keys(endpointToFileMap);
+	for (let i = 0; i < keys.length; i++) {
+		if (endpointToFileMap[keys[i]].length > 0) {
+			console.error(`mock endpoint not consumed ${keys[i]}, count ${endpointToFileMap[keys[i]].length}`);
+		}
+	}
+	endpointToFileMap = {};
+	console.error("verifyMockEndpointsClean End");
+};
+
 /**
  * Populates the mock endpoint map
  * @param url
@@ -103,27 +117,26 @@ module.exports.boltSupertest = (route, host, method) => {
 			options = postData;
 		}
 		let path = options.path;
-		if (!endpointToFileMap[options.path]) {
-			throw new Error(`No mocked endpoint for ${path}`);
-		} else {
-			let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
-			if (!entry) {
-				throw new Error(`No mocked endpoint for ${path}`);
+		if (!endpointToFileMap[path]) {
+			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+		}
+		let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
+		if (!entry) {
+			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+		}
+		let filePath = entry.filePath;
+		try {
+			let data = fs.readFileSync(filePath);
+			let json = JSON.parse(data);
+			if (entry.options.failStatusCode) {
+				let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
+				error.statusCode = entry.options.failStatusCode;
+				return Q.reject(error);
 			}
-			let filePath = entry.filePath;
-			try {
-				let data = fs.readFileSync(filePath);
-				let json = JSON.parse(data);
-				if (entry.options.failStatusCode) {
-					let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
-					error.statusCode = entry.options.failStatusCode;
-					return Q.reject(error);
-				}
-				return Q(json);
-			} catch (e) {
-				// we couldnt load the file, but we can simulate a failed promise
-				return Q.reject(e);
-			}
+			return Q(json);
+		} catch (e) {
+			// we couldnt load the file, but we can simulate a failed promise
+			return Q.reject(e);
 		}
 	};
 
@@ -161,6 +174,7 @@ module.exports.boltSupertest = (route, host, method) => {
 	});
 };
 
+module.exports.verifyMockEndpointsClean = verifyMockEndpointsClean;
 module.exports.registerMockEndpoint = registerMockEndpoint;
 module.exports.spyOnService = spyOnService;
 

@@ -7,42 +7,21 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
-let postAdService = require(cwd + '/server/services/postad');
-let userService = require(cwd + '/server/services/user');
-
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
-let uuid = require('node-uuid');
+let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
+let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 
-// front end request structure is different than the back end:
-// front end has array of ads, back end only supports one ad
-// front end imageUrls is array of urls, back end is more complex
-let mapToBapiRequest = (request) => {
-	let result = JSON.parse(JSON.stringify(request));	// deep clone the structure
 
-	result.ads.forEach((ad, index) => {
-		ad.pictures = {};
-		let pictures = request.ads[index].imageUrls;
-		ad.pictures.sizeUrls = pictures.map((elt) => {
-			return {
-				pictureUrl: elt,
-				size: "LARGE"
-			};
-		});
-	});
-
-	return result.ads[0];	// bapi currently only supports one ad
-};
-
-let getNotLoggedInResponsePromise = (model, requestJson) => {
-
+let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 	let response = {};
 
 	response.state = 'AD_DEFERRED';
 
-	let guid = uuid.v4();		// todo: this guid should be from the backend store
+	// get the machguid from cookie to use in draft
+	let guid = machguidCookie;
 
 	// store the requestJson ads in backend (deferred ad creation)
 	let draftAdModel = new DraftAdModel(model.bapiHeaders);
@@ -66,28 +45,36 @@ let getNotLoggedInResponsePromise = (model, requestJson) => {
 	});
 };
 
+let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
+	getNotLoggedInResponsePromise(model, machguidCookie, requestJson).then((response) => {
+		res.send(response);
+		return;
+	}).fail((e) => {
+		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
+		res.status(500).send();
+		return;
+	});
+	return;
+};
+
 let getAdPostedResponse = (results) => {
 
 	let response = {};
 	// extract only what we need for the response, minimal response
 	response.state = "AD_CREATED";
 
-	// unpack the vipUrl
-	let vipLink = results._links.find( (elt) => {
-		return elt.rel === "vipSeoUrl";
-	});
 	response.ad = {
 		id: results.id,
 	};
 
-	if (vipLink) {
-		response.ad.vipLink = vipLink.href;
-	}
+	response.ad.vipLink = results.vipLink;
+
 	return response;
 };
 
+
 /**
- * route is /api/postad/create
+ * route is /api/post/create
  * request schema, see postAdRequest-schema.json
  * expects geo information to have arrived in the request
  *
@@ -114,13 +101,13 @@ let getAdPostedResponse = (results) => {
  */
 router.post('/create', cors, (req, res) => {
 
-
+	// Step 1: Check if request type sent is JSON
 	if (!req.is('application/json')) {
 		res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
 		return;
 	}
 
-	// validate the incoming JSON
+	// Step 2: Validate the incoming JSON
 	let validate = validator(schemaPostAd);
 	let valid = validate(req.body);
 	if (!valid) {
@@ -134,51 +121,39 @@ router.post('/create', cors, (req, res) => {
 	// is there any finer granularity of validation needed that schema doesnt take care of?
 	// there doesnt appear to be any so far
 
-	// we're validated
+	// Step 3: Retrieve info from request since we're validated
 	let requestJson = req.body;
+	let authenticationCookie = req.cookies['bt_auth'];
+	let machguidCookie = req.cookies['machguid'];
 
-
+	// Step 4: Initialize Model
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let postAdModel = new PostAdModel(model.bapiHeaders);
+	let userModel = new UserModel(model.bapiHeaders);
 
-	let authenticationCookie = req.cookies['bt_auth'];
-
+	// Step 5: Check if user has logged in
+	//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
 	if (!authenticationCookie) {
-		getNotLoggedInResponsePromise(model, requestJson).then((response) => {
-			res.send(response);
-			return;
-		}).fail((error) => {
-			console.error(`error getting logged in response promise ${error.message}`);
-			res.status(500).send();
-			return;
-		});
+		forceUserToLogin(model, machguidCookie, requestJson, res);
 		return;
 	}
 
-	// validate login cookie is still good
-	userService.getUserFromCookie(model.bapiHeaders).then( () => {
+	// Step 6: Validate authentication cookie is still good
+	userModel.getUserFromCookie().then( () => {
 		// console.log(JSON.stringify(result, null, 4));
 
 		// user cookie checks out fine, go ahead and post the ad...
 
-		let bapiRequestJson = mapToBapiRequest(requestJson);
-
-		//TODO: do not have this as mock
-		postAdService.quickpostAdMock(model.bapiHeaders, bapiRequestJson).then( (results) => {
-
-			let responseJson = getAdPostedResponse(results);
-			if (!responseJson.ad.vipLink) {
-				console.error(`create ad result is missing vipSeoUrl ${JSON.stringify(results, null, 4)}`);
-				res.status(500).send();
-				return;
-			}
+		// Step 7: Post The Ad
+		postAdModel.postAd(requestJson).then((adResults) => {
+			let responseJson = getAdPostedResponse(adResults);
 
 			res.send(responseJson);
 			return;
-
 		}).fail((error) => {
 			// post ad has failed
-			console.error(`post ad failure ${error}`);
+			console.error(`postAdModel.postAd failure ${error}`);
 			res.status(500).send({
 				error: "postAd failed, see logs for details"
 			});
@@ -187,19 +162,12 @@ router.post('/create', cors, (req, res) => {
 
 	}).fail((error) => {
 		if (error.statusCode && error.statusCode === 404) {
-			getNotLoggedInResponsePromise(model, requestJson).then((response) => {
-				res.send(response);
-				return;
-			}).fail((e) => {
-				console.error(`error getting logged in response promise ${e.message}`);
-				res.status(500).send();
-				return;
-			});
+			forceUserToLogin(model, machguidCookie, requestJson, res);
 			return;
 		}
 
 		// user call has failed
-		console.error(`user call failure ${error}`);
+		console.error(`userService.getUserFromCookie failure ${error}`);
 		res.status(500).send({
 			error: "unable to validate user, see logs for details"
 		});
