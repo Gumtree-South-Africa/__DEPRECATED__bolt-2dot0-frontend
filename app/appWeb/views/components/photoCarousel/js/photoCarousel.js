@@ -112,9 +112,9 @@ let updateCarouselImages = () => {
 
 
 let createImgObj = (i, urlThumb, urlNormal) => {
-	$(".carousel-item.item-" + i).attr("data-image", urlNormal);
-	$('.carousel-item.item-' + i).on('click', setCoverPhoto);
-	$('.carousel-item.item-' + i + ' .spinner').toggleClass("hidden");
+	let currItem = $('.carousel-item[data-item="' + i + '"]');
+	currItem.attr("data-image", urlNormal);
+	currItem.on('click', setCoverPhoto);
 	updateCarouselImages();
 
 	// set cover photo if none found
@@ -170,9 +170,9 @@ let imageUploads = (() => {
 let UploadMsgClass = {
 	// remove carousel item after EPS failure
 	removeCarouselItem: (i) => {
-		let toRemove = $(".carousel-item.item-" + i);
+		let toRemove = $(".carousel-item[data-item='" + i + "']");
 		let index = $(".carousel-item").index(toRemove);
-		$("#photo-carousel").slick('slickRemove', index);
+		this.$carousel.slick('slickRemove', index);
 
 		this.$imageUpload.val('');
 		imageUploads.remove(i);
@@ -352,16 +352,16 @@ let _success = function(i, response) {
 
 	// add the image once EPS returns the uploaded image URL
 	createImgObj(i, url.thumbImage, url.normal);
+	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 
-	_this.$uploadSpinner.toggleClass('hidden');
 	UploadMsgClass.successMsg(i);
-
 	removePendingImage(i);
 };
 
 let _failure = (i, epsError) => {
 	let error = _this.imageHelper.extractEPSServerError(epsError);
-	this.$uploadSpinner.toggleClass('hidden');
+	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
+
 	UploadMsgClass.translateErrorCodes(i, error);
 	removePendingImage(i);
 };
@@ -479,8 +479,9 @@ let html5Upload = (evt) => {
 	this.$postAdButton.addClass("disabled");
 
 	// drag and drop
-	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
-	let totalFiles = uploadedFiles.length, uploadCount = imageUploads.count();
+	let uploadedFiles = evt.target.files || evt.dataTransfer.files,
+		totalFiles = uploadedFiles.length,
+		uploadCount = imageUploads.count();
 
 	// if user
 	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
@@ -516,7 +517,8 @@ let html5Upload = (evt) => {
 		}
 
 		for (let i = 0; i < uploadedFiles.length; i++) {
-			if (uploadCount >= allowedUploads) {
+			let itemCount = $(".carousel-item").length;
+			if (itemCount >= allowedUploads) {
 				console.warn("Cannot upload more than 12 files!");
 				$(".max-photo-msg").removeClass("hidden");
 				$(".icon-contextual-info").removeClass("hidden");
@@ -553,7 +555,7 @@ let deleteSelectedItem = (event) => {
 	// delete carousel item
 	let toRemove = $(".carousel-item.selected");
 	let index = $(".carousel-item").index(toRemove);
-	$("#photo-carousel").slick('slickRemove', index);
+	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
 	imageUploads.remove(index);
@@ -598,14 +600,17 @@ let parseFile = (file) => {
 
 	reader.onloadend = () => {
 		// Add new carousel item to carousel
-		let items = $(".carousel-item").length;
+		let totalItems = $(".carousel-item").length;
 
-		if (items < allowedUploads) {
-			$('#photo-carousel').slick('slickAdd',
-				'<div class="carousel-item item-' + items + '">' +
-				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
-				'</div>', items, true);
-			$('#photo-carousel').slick('slickGoTo', items, false);
+		if (totalItems < allowedUploads) {
+			this.$carousel.slick('slickAdd',
+				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
+				'<div id="carousel-upload-spinner" class="spinner"></div>' +
+				'</div>', totalItems, true);
+			this.$carousel.slick('slickGoTo', totalItems, false);
+
+			// increment loaded count
+			this.$loadedImages++;
 
 			// resize items
 			resizeCarousel();
@@ -633,7 +638,7 @@ let preventDisabledButtonClick = (event) => {
 			}
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
-				let image = $(".carousel-item.item-" + i).data("image");
+				let image = $(".carousel-item[data-item='" + i + "']").data("image");
 				images.push(image);
 			}
 			_postAd(images, locationType);
@@ -675,11 +680,12 @@ let initialize = () => {
 	this.EPS.url = this.epsData.data('eps-url');
 	this.imageHelper = new ImageHelper(this.EPS);
 
+	this.$carousel = $('#photo-carousel');
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
 	this.pendingImages = [];
-	this.$uploadSpinner = this.uploadImageContainer.find('#carousel-upload-spinner');
 	this.$postAdButton = $('#postAdBtn');
+	this.$loadedImages = 0;
 
 	//TODO: multiple files
 	this.messageError = $('.error-message');
@@ -731,7 +737,7 @@ let initialize = () => {
 	this.$imageUpload.on("change", fileInputChange);
 
 	// Slick setup
-	$("#photo-carousel").slick({
+	this.$carousel.slick({
 		arrows: true,
 		infinite: false,
 		slidesToShow: 3,
