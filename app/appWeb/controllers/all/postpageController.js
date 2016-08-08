@@ -21,13 +21,12 @@ let postAdData = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_es_MX.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_" + modelData.locale + ".js");
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');
 	}
 };
 
 router.use('/', (req, res, next) => {
-
 	let deferredAdPromise = Q.fcall(() => {
 		if (req.query.guid) {
 			// we've got a query string
@@ -72,7 +71,6 @@ router.use('/', (req, res, next) => {
 
 		return modelPromise;
 	}).then((modelData) => {
-
 		postAdData.extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
@@ -80,7 +78,6 @@ router.use('/', (req, res, next) => {
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
-
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected
 		if (err.redirect) {
 			// want this to go all the way out

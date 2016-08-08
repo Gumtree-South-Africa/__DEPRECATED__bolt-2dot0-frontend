@@ -288,6 +288,14 @@ let _getCookie = (cname) => {
 };
 
 let _postAd = (urls, locationType) => {
+	let extraPayload = [{
+		locationType: locationType,
+		title: $("#title-input").val(),
+		price: {
+			amount: parseFloat($("#price-input").val()),
+			currency: $('input[name="currency"]:checked').val()
+		}
+	}];
 	uploadAd.postAd(urls, (response) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
@@ -310,9 +318,7 @@ let _postAd = (urls, locationType) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		UploadMsgClass.failMsg();
-	}, {
-		locationType: locationType
-	});
+	}, extraPayload);
 };
 
 let requestLocation = (callback) => {
