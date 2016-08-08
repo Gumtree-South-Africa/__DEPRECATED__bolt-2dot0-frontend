@@ -1187,5 +1187,11 @@
 	"footer.download.playstore": "Avaiable on the Android App Store",
 	"footer.trademark.trademark": "2014-2016 eBay. All rights reserved",
 	"footer.help.contact": "Contact Customer Service",
-	"footer.help.meet": "Meet Our Customer Team"
+	"footer.help.meet": "Meet Our Customer Team",
+	"smartmobilebanner": {
+	    "title":"Open App",
+		"mobilelink": "continue to mobile site >",
+		"branchiolink": "http://go.gumt.io/open"
+	}	
+
 }
