@@ -35,8 +35,9 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	let payload = {
 		"ads": [
 			{
-				"title": fields.title,
-				"imageUrls": imageArray
+				"title": fields[0].title,
+				"imageUrls": imageArray,
+				"price": fields[0].price
 			}
 		]
 	};

@@ -1,8 +1,8 @@
 'use strict';
 
 let $ = require('jquery');
-let ImageHelper = require('./imageHelper');
-let uploadAd = require('./uploadAd');
+let ImageHelper = require('./imageHelper.js');
+let uploadAd = require('./uploadAd.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
