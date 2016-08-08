@@ -1,5 +1,5 @@
-importScripts('/public/js/libraries/sw-toolbox/sw-toolbox.js');  //Update path to match your own setup
-importScripts('/public/js/swCacheConfig.js'); //@Videep possibly not able to fetch in production
+importScripts('/js/libraries/sw-toolbox/sw-toolbox.js');  //Update path to match your own setup
+importScripts('/js/swCacheConfig.js'); //@Videep possibly not able to fetch in production
 
 //Initial precaching homepage
 toolbox.precache(['/']);
