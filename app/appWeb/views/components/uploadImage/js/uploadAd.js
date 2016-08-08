@@ -35,12 +35,19 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 	let payload = {
 		"ads": [
 			{
-				"title": fields[0].title,
-				"imageUrls": imageArray,
-				"price": fields[0].price
+				"imageUrls": imageArray
 			}
 		]
 	};
+
+	if (fields.price) {
+		payload.ads[0].price = fields.price;
+	}
+
+	if (fields.title) {
+		payload.ads[0].title = fields.title;
+	}
+
 	if (lat && lng) {
 		payload.ads.forEach((ad) => {
 			ad.location = {
