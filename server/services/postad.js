@@ -8,6 +8,7 @@ class PostAdService {
 
 	// this is a temporary hack because mock services are not available in other environments
 	quickpostAdMock() {
+		// return require('q').reject(new Error("test error - could not post ad"));
 		return require('q')(require(process.cwd() + '/server/services/mockData/postAdResponse.json'));
 	}
 

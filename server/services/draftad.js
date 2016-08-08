@@ -13,6 +13,7 @@ class DraftAdService {
 
 	// this is a temporary hack because mock services are not available in other environments
 	getDraftMock() {
+		// return require('q').reject(new Error("test error - could not get draft"));
 		return require('q')(require(process.cwd() + '/server/services/mockData/getDraftAdResponse.json'));
 	}
 

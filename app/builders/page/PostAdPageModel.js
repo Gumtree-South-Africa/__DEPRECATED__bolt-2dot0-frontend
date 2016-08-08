@@ -23,14 +23,14 @@ class PostAdPageModel {
 		this.locale = res.locals.config.locale;
 	}
 
-	populateData() {
+	populateData(deferredAd) {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.POST_AD;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
-
+		modelData.deferredAd = deferredAd;
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -58,6 +58,7 @@ class PostAdPageModel {
 	}
 
 	mapData(modelData, data) {
+		modelData.deferredAd = data.deferredAd;
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.dataLayer = data.common.dataLayer || {};
