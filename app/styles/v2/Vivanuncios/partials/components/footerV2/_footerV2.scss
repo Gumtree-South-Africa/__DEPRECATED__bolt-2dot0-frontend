@@ -293,7 +293,6 @@
             width: 22%;
             text-align: center;
             margin-top: 10px;
-            margin-bottom: 32px;
             .menu-items {
                 display: block;
                 margin-top: 30px;
@@ -391,12 +390,12 @@
     }
 
  .page .seo-links {
-		display: inline-block !important;
+		display: block !important;
 		left: 57%;
-		top: -13em !important;
+		top: -11em !important;
 		margin-top: 10px;
 		.seo-topsearches {
-			margin-left: -23%;
+			margin-left: -4%;
 		  }
    }
 
