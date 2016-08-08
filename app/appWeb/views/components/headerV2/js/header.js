@@ -3,6 +3,8 @@
 let $ = require('jquery');
 let deepLink = require('app/appWeb/views/components/headerV2/js/deepLink.js');
 
+let hamburgerMenu = require('app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js');
+
 let _toggleBrowseMenu = (shouldClose) => {
 	if (shouldClose === undefined) {
 		shouldClose = !this.$catDrop.hasClass('hidden');
@@ -30,6 +32,8 @@ let initialize = () => {
 
 	this.$catDrop = this.$header.find('#js-cat-dropdown');
 	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
+
+	hamburgerMenu.initialize();
 
 	$(document).ready(() => {
 		this.$header.find('.browse').on('click', () => {
