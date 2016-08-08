@@ -41,13 +41,15 @@ let _geoShowMyLocation = (geoCookieValue) => {
 		url: '/api/locate/locationlatlong',
 		type: 'GET',
 		success: (resp) => {
-
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
-				if(resp !== undefined) {
-			 		$('.search-textbox-container .location-text').html(resp.localizedName);
-			   	$('#modal-location').val(resp.localizedName);
-			  }
+			if(resp !== undefined) {
+		 		$('.search-textbox-container .location-text').html(resp.localizedName);
+		   	$('#modal-location').val(resp.localizedName);
 		  }
+		},
+		error: () => {
+			$('#modal-location').removeClass('spinner').attr('disabled', false);
+		}
 	});
 };
 
