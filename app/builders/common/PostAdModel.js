@@ -10,7 +10,6 @@ class PostAdModel {
 	}
 
 	postAd(postAdRequest) {
-
 		let bapiRequestJson = this.mapToBapiRequest(postAdRequest);
 
 		return postAdService.quickpostAdMock(this.bapiHeaders, bapiRequestJson).then( (results) => {
@@ -31,18 +30,6 @@ class PostAdModel {
 	// // front end imageUrls is array of urls, back end is more complex
 	mapToBapiRequest(postAdRequest) {
 		let result = JSON.parse(JSON.stringify(postAdRequest));	// deep clone the structure
-
-		// RAML has changed to accept an array of imageUrl
-		//result.ads.forEach((ad, index) => {
-		//	ad.pictures = {};
-		//	let pictures = postAdRequest.ads[index].imageUrls;
-		//	ad.pictures.sizeUrls = pictures.map((elt) => {
-		//		return {
-		//			pictureUrl: elt,
-		//			size: "LARGE"
-		//		};
-		//	});
-		//});
 
 		return result.ads[0];	// bapi currently only supports one ad
 	}
