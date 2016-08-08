@@ -1359,6 +1359,7 @@
 				"description": "Descripción",
 				"location": "Ciudad, zona o código postal"
 			},
+			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
 			"submit": "Listo",
 			"cancel": "Cancelar",
