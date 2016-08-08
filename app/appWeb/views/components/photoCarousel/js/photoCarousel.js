@@ -68,15 +68,16 @@ let ExtractURLClass = (url) => {
 	if (!normalImageURLZoom) {
 		// not been able to find out a valid url
 		console.error("not been able to find out a valid url");
-		// return;
-	} else {
-		// convert to _18.JPG format saved in backend
-		normalImageURLZoom = this.imageHelper.convertThumbImgURL18(normalImageURLZoom);
+		return;
 	}
 
+	// convert to _18.JPG format saved in backend
+	normalImageURLZoom = this.imageHelper.convertThumbImgURL18(normalImageURLZoom);
+
+	// convert to _14.JPG thumb format
 
 	return {
-		"thumbImage": normalImageURLZoom, "normal": url
+		"thumbImage": this.imageHelper.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
 	};
 
 };
@@ -336,19 +337,17 @@ let requestLocation = (callback) => {
 	return timeout;
 };
 
-
-// TODO - undo this fix for EPS outage
 let _success = function(i, response) {
 	// try to extract the url and figure out if it looks like to be valid
 	let url = ExtractURLClass(response);
 
 	// any errors don't do anything after display error msg
 	if (!url) {
-		// let error = _this.imageHelper.extractEPSServerError(response);
-		// UploadMsgClass.translateErrorCodes(i, error);
-		// console.error("Failed to extract url class!");
-		// console.error(error);
-		// return;
+		let error = _this.imageHelper.extractEPSServerError(response);
+		UploadMsgClass.translateErrorCodes(i, error);
+		console.error("Failed to extract url class!");
+		console.error(error);
+		return;
 	}
 
 	// add the image once EPS returns the uploaded image URL
@@ -407,19 +406,8 @@ let loadData = (i, file) => {
 		processData: false,
 		url: this.EPS.url,
 		data: formData,
-		success: (/*response*/) => {
-			let arr = [
-				"https://upload.wikimedia.org/wikipedia/commons/7/79/Bruce_Campbell_2014_Phoenix_Comicon_(cropped).jpg",
-				"https://upload.wikimedia.org/wikipedia/commons/0/03/Bruce_Willis_by_Gage_Skidmore.jpg",
-				"http://ia.media-imdb.com/images/M/MV5BMTU4NzM5NTQ4NV5BMl5BanBnXkFtZTcwMDA1MTUyMg@@._V1_UX214_CR0,0,214,317_AL_.jpg",
-				"http://www.thewallpapers.org/photo/5800/Bruce_Almighty-004.jpg",
-				"http://content.internetvideoarchive.com/content/photos/143/00603901_.jpg",
-				"http://www.wildsound-filmmaking-feedback-events.com/images/the_dark_knight_bruce_wayne.jpg",
-				"http://txmgv24xack1i8jje2nayxpr.wpengine.netdna-cdn.com/us/files/2013/02/bruce-bowen-310x310.jpg",
-				"http://l1.yimg.com/bt/api/res/1.2/y7hk4Pp.ns_dV_NfU5zfdA--/YXBwaWQ9eW5ld3NfbGVnbztpbD1wbGFuZTtxPTc1O3c9NjAw/http://media.zenfs.com/en/person/Ysports/jay-bruce-baseball-headshot-photo.jpg",
-				"https://upload.wikimedia.org/wikipedia/commons/7/79/Bruce_Campbell_2014_Phoenix_Comicon_(cropped).jpg"
-			];
-			_success(i, arr[i%8]);
+		success: (response) => {
+			_success(i, response);
 		},
 		error: (err) => {
 			_failure(i, err);
