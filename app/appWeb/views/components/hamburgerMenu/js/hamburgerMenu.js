@@ -3,7 +3,7 @@ let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV
 let Hammer = require('hammerjs');
 
 let _toggleMenu = () => {
-	if (!this.open) {
+	if (!this.open && searchBarV2.isOnPage()) {
 		searchBarV2.closeAutoComplete(true, true);
 	}
 	this.$hamburgerPopout[0].style.right = (this.open) ? '100%' : 0;

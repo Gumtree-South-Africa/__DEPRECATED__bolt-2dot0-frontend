@@ -20,7 +20,6 @@ module.exports = {
 				"SectionMenu": "app/appWeb/views/components/sectionMenu/js/sectionMenu.js",
 				"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
 				"ProfileMenu": "app/appWeb/views/components/profileMenu/js/profileMenu.js",
-				"HamburgerMenu": "app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js",
 				"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
 				"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js"
 			},
