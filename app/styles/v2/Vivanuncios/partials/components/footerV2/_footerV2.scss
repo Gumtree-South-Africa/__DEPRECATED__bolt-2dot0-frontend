@@ -250,6 +250,32 @@
     }
 }
 
+.seo-links {
+	position: relative;
+	left: 0.8em;
+	top: -21.4em;
+	margin-top: 7px;
+	height: 0;
+	margin-left: 0;
+	display: none;
+	a {
+		color: $seofooter-color;
+	}
+}
+
+.footer-explore .menu-category .menu-items {
+	margin-bottom: 52px;
+
+}
+
+.footer-inner-wrappper .inner {
+	margin-bottom: 32px;
+}
+
+.footer-links div:nth-child(3).expanded .footer-explore {
+	margin-bottom: -3px;
+}
+
 @include from-breakpoint($medium-break){
     .footer-wrapper {
         .desktop-only {
@@ -267,7 +293,7 @@
             width: 22%;
             text-align: center;
             margin-top: 10px;
-
+            margin-bottom: 32px;
             .menu-items {
                 display: block;
                 margin-top: 30px;
@@ -363,4 +389,16 @@
         }
 
     }
+
+ .page .seo-links {
+		display: inline-block !important;
+		left: 57%;
+		top: -13em !important;
+		margin-top: 10px;
+		.seo-topsearches {
+			margin-left: -23%;
+		  }
+   }
+
+
 }

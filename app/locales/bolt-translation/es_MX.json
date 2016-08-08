@@ -1256,7 +1256,11 @@
 				"aboutviva": "Acerca de Vivanuncios",
 				"vivablog": "Blog de Vivanuncios",
 				"vivabusiness": "Vivanuncios para negocios",
-				"rules": "Reglas para publicar anuncios"
+				"rules": "Reglas para publicar anuncios",
+				"staysafe": "Mantente Seguro",
+                "staysafelink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+                "protool": "Agented Immobiliarios",
+                "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
 				"legal": "Información legal",
@@ -1269,11 +1273,16 @@
 				"classifieds": "Sitio de clasificados de eBay",
 				"mobile": "Aplicaciones móviles",
 				"partners": "Socios",
-				"carprice": "Índice de precios de autos"
+				"carprice": "Índice de precios de autos",
+				"location": "Ubicaciones",
+                "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
+                "topsearches": "Busquedas mas destacadas",
+                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
+				"helplink": "http://ayuda.vivanuncios.com.mx/MX/",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar"
