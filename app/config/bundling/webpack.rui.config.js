@@ -6,10 +6,10 @@ let baseWebpackConfig = require("./webpack.base.config.js");
 
 let ruiWebpackConfig = {
 	entry: {
-		"HeaderFooterV2": "app/config/bundling/rui/HeaderFooterV2Config.js"
+		"HeaderFooterV2": "app/config/bundling/rui/HeaderFooterV2Rui.js"
 	},
 	output: {
-		path: 'app/config/bundling/rui/',
+		path: 'app/config/bundling/rui/compiled',
 		filename: '[name].js'
 	}
 };

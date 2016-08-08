@@ -120,5 +120,4 @@ server/utils/monitor/reportFunctions.js
 server/utils/monitor/setupOptions.js
 
 node_modules
-/app/config/bundling/rui/HeaderFooterV2.js
-/app/config/bundling/rui/HeaderFooterV2.js.map
+/app/config/bundling/rui/compiled

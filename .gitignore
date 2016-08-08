@@ -61,8 +61,7 @@ test/clientUnit/SpecRunnerBundle.js*
 test/clientUnit/helpers/webTemplates.js*
 app/templateStaging/
 app/config/bundling/bundleMap.json
-app/config/bundling/rui/HeaderFooterV2.js
-app/config/bundling/rui/HeaderFooterV2.js.map
+app/config/bundling/rui/compiled/
 app/**/*.compiled.js
 
 .idea/*
