@@ -1,3 +1,5 @@
+"use strict";
+let webpackConfig = require(process.cwd() + "/app/config/bundling/webpack.test.config.js");
 module.exports = function (config) {
 	config.set({
 		frameworks: ["jasmine"],
@@ -35,7 +37,7 @@ module.exports = function (config) {
 			"karma-spec-reporter",
 			"karma-jasmine",
 			require("karma-webpack"),
-			"karma-chrome-launcher"
+			"karma-phantomjs-launcher"
 		]
 	});
 };

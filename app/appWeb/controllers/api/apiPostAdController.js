@@ -136,6 +136,7 @@ router.post('/create', cors, (req, res) => {
 	//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
 	if (!authenticationCookie) {
 		forceUserToLogin(model, machguidCookie, requestJson, res);
+		return;
 	}
 
 	// Step 6: Validate authentication cookie is still good
@@ -162,6 +163,7 @@ router.post('/create', cors, (req, res) => {
 	}).fail((error) => {
 		if (error.statusCode && error.statusCode === 404) {
 			forceUserToLogin(model, machguidCookie, requestJson, res);
+			return;
 		}
 
 		// user call has failed
