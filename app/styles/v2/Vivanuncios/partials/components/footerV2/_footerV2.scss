@@ -278,6 +278,7 @@
 
 @include from-breakpoint($medium-break){
     .footer-wrapper {
+        margin-bottom: -11px;
         .desktop-only {
             display: block;
         }
@@ -392,7 +393,7 @@
  .page .seo-links {
 		display: block !important;
 		left: 57%;
-		top: -11em !important;
+		top: -10.5em !important;
 		margin-top: 10px;
 		.seo-topsearches {
 			margin-left: -4%;
