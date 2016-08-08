@@ -149,6 +149,7 @@ router.post('/create', cors, (req, res) => {
 		postAdModel.postAd(requestJson).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
 
+			responseJson.ad.vipLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
 			res.send(responseJson);
 			return;
 		}).fail((error) => {

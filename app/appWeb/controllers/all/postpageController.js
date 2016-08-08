@@ -46,7 +46,7 @@ router.use('/', (req, res, next) => {
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
 					// deferred ad resolved, redirect to vip
-					return Q.reject({ redirect: adResult.vipLink });
+					return Q.reject({ redirect: postAdModel.fixupVipUrl(adResult.vipLink) });
 				});
 			}).fail((error) => {
 				// all errors specific to deferred ad processing land here

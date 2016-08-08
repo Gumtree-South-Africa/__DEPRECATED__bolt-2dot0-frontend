@@ -3,6 +3,7 @@
 let cwd = process.cwd();
 let postAdService = require(cwd + '/server/services/postad');
 
+let VIP_URL_SUFFIX = "?activateStatus=adActivateSuccess";
 
 class PostAdModel {
 	constructor(bapiHeaders) {
@@ -41,6 +42,10 @@ class PostAdModel {
 		});
 
 		return result.ads[0];	// bapi currently only supports one ad
+	}
+
+	fixupVipUrl(redirectUrl) {
+		return redirectUrl + VIP_URL_SUFFIX;
 	}
 }
 
