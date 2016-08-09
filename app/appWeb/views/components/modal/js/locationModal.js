@@ -6,7 +6,7 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	let htmlElt = '';
 	$.ajax({
 			//TODO: use proper google account key
-			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&components=country:' + country + '&language='+ lang + '&address=' + inputVal,
+			url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=' + inputVal,
 			dataType: 'JSON',
 			type: 'GET',
 			success: function(resp) {
@@ -31,23 +31,24 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	});
 };
 
+/*
+*  As of now the method is used only for the GPS
+*  this method will be used when trending card and/or other module can refresh by themselves
+*/
 let _geoShowMyLocation = (geoCookieValue) => {
 	geoCookieValue = geoCookieValue.replace('ng',',');
 	$.ajax({
-		url: 'https://maps.google.com/maps/api/geocode/json?latlng=' + geoCookieValue + '&sensor=false',
-		dataType: 'JSON',
+		url: '/api/locate/locationlatlong',
 		type: 'GET',
-		success: function(resp) {
+		success: (resp) => {
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
-			if (resp.results instanceof Array) {
-				if(resp.results.length > 1) {
-					$('.search-textbox-container .location-text').html(resp.results[resp.results.length-2].address_components[0].long_name);
-					$('#modal-location').val(resp.results[resp.results.length-2].address_components[0].long_name);
-				} else {
-					$('.search-textbox-container .location-text').html(resp.results[resp.results.length-1].address_components[0].long_name);
-					$('#modal-location').val(resp.results[resp.results.length-1].address_components[0].long_name);
-				}
-			}
+			if(resp !== undefined) {
+		 		$('.search-textbox-container .location-text').html(resp.localizedName);
+		   	$('#modal-location').val(resp.localizedName);
+		  }
+		},
+		error: () => {
+			$('#modal-location').removeClass('spinner').attr('disabled', false);
 		}
 	});
 };
@@ -65,6 +66,7 @@ let _geoFindMe = () => {
 	}
 	function error() {
 		console.error('Unable to retrieve your location');
+		$('#modal-location').removeClass('spinner').attr('disabled', false);
 	}
 	navigator.geolocation.getCurrentPosition(success, error);
 };
@@ -92,20 +94,21 @@ let _populateACData = (evt) => {
 	$('#modal-location').val($(evt.currentTarget).find('.suffix-addy').html());
 };
 
-let _getCookie = (cname) => {
-	let name = cname + "=";
-	let ca = document.cookie.split(';');
-	for(let i = 0; i <ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0)===' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length,c.length);
-		}
-	}
-	return "";
-};
+
+// let _getCookie = (cname) => {
+// 	let name = cname + "=";
+// 	let ca = document.cookie.split(';');
+// 	for(let i = 0; i <ca.length; i++) {
+// 		let c = ca[i];
+// 		while (c.charAt(0)===' ') {
+// 			c = c.substring(1);
+// 		}
+// 		if (c.indexOf(name) === 0) {
+// 			return c.substring(name.length,c.length);
+// 		}
+// 	}
+// 	return "";
+// };
 
 let _selectItem = () => {
 	let $active = this.$modal.find(".active");
@@ -114,22 +117,30 @@ let _selectItem = () => {
 	}
 };
 
-let _highlightPrevItem = () => {
-	let $active = this.$modal.find(".active");
-	if ($active.length === 0) {
-		this.$locmodal.find(".ac-field").last().addClass("active");
-	} else {
-		$active.removeClass("active").prev(".ac-field").addClass("active");
-	}
+let _highlightUpItem = () => {
+		let $active = this.$modal.find(".active");
+		if ($active.length !== 0) {
+			if (!(this.$modal.find('.ac-field:first-child').hasClass('active'))) {
+				$('#autocompleteField').animate({
+		        scrollTop: $active.position().top + $("#autocompleteField").scrollTop() - 50
+		    }, 'fast');
+				$active.removeClass("active").prev(".ac-field").addClass("active");
+			}
+		}
 };
 
-let _highlightNextItem = () => {
-	let $active = this.$modal.find(".active");
-	if ($active.length === 0) {
-		this.$modal.find(".ac-field").first().addClass("active");
-	} else {
-		$active.removeClass("active").next(".ac-field").addClass("active");
-	}
+let _highlightDownItem = () => {
+		let $active = this.$modal.find(".active");
+		if ($active.length === 0) {
+			this.$modal.find(".ac-field:first-child").addClass("active");
+		} else {
+				if (!(this.$modal.find('.ac-field:last-child').hasClass('active'))) {
+					$('#autocompleteField').animate({
+			        scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
+			    }, 'fast');
+					$active.removeClass("active").next(".ac-field").addClass("active");
+				}
+		}
 };
 
 
@@ -152,12 +163,12 @@ let initialize = () => {
 		switch (evt.keyCode) {
 			case 38:
 				//up
-				_highlightPrevItem();
+				_highlightUpItem();
 				evt.preventDefault();
 				break;
 			case 40:
 				//down
-				_highlightNextItem();
+				_highlightDownItem();
 				evt.preventDefault();
 				break;
 			case 13:
@@ -171,7 +182,7 @@ let initialize = () => {
 		}
 	});
 
-	$('.card-title-cp').on('click', () => {
+	$('.card-title-cp, .location-link').on('click', () => {
 		_openModal(this.$locmodal);
 	});
 
@@ -185,6 +196,7 @@ let initialize = () => {
 
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 			$modalCp.addClass('hiddenElt');
+			$('#modal-location').removeClass('spinner').attr('disabled', false);
 	});
 
 	$('.card-title-cp').on('click', function() {
@@ -204,7 +216,7 @@ let initialize = () => {
 	});
 
 	//on Initialize
-	_geoShowMyLocation(_getCookie('geoId'));
+	//_geoShowMyLocation(_getCookie('geoId'));
 
 };
 

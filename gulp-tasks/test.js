@@ -15,11 +15,15 @@ module.exports = function watch(gulp, plugins) {
 		flatten = require("gulp-flatten"),
 		del = require("del");
 
-	let browser = "chrome";
+	let ciMode = false,
+		browser = "chrome";
 
 	if (argv.browser) {
 		browser = argv.browser;
 	}
+
+	ciMode = argv.CI;
+
 
 	return function() {
 		// Integration Tests Tasks
@@ -31,7 +35,9 @@ module.exports = function watch(gulp, plugins) {
 					args: [
 						'--param.debug=true', `--params.baseUrl=http://www.vivanuncios.com.mx.localhost:${port}`
 					]
-				}));
+				})).on('error', () => {
+					console.log("!!!!!!!INTEGRATION TESTS ARE FAILING, test is unstable");
+				});
 
 			return stream;
 		});
@@ -62,31 +68,27 @@ module.exports = function watch(gulp, plugins) {
 			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
 		});
 
-		gulp.task('webpackTest', (done) => {
-			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.test.config.js"), function(err, stats) {
-				if(err) throw new gutil.PluginError("webpack", err);
-				console.log("[webpack]", stats.toString());
 
-				done();
-			});
-		});
-
-		gulp.task('karma', function (done) {
+		gulp.task('karma', function(done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
-				singleRun: true
-			}, done).start();
+				singleRun: !ciMode
+			}, (exitStatus) => {
+				let exitText = exitStatus ? "!!!!!!!CLIENT_UNIT TESTS ARE FAILING, test is unstable" : undefined;
+				done(exitText);
+			}).start();
 		});
 
-		gulp.task('test:clientUnit', function (done) {
-			runSequence("precompileTemplates", "webpackTest", "karma", done)
+		gulp.task('test:clientUnit', function(done) {
+			runSequence("precompileTemplates", "karma", done)
 		});
 
 		// SERVER UNIT TEST TASKS
 		gulp.task('test:serverUnit', shell.task([
 			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
-		]));
+		], {
+			errorMessage: "!!!!!!!SERVER_UNIT TESTs ARE FAILING, test is unstable"
+		}));
 
 		gulp.task('test', (done) => {
 			runSequence('build', 'test:clientUnit', 'test:serverUnit', 'test:integration', done);

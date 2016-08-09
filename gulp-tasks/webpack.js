@@ -56,6 +56,7 @@ module.exports = function webpack(gulp) {
 		let runSequence = require("gulp-run-sequence");
 		let walk = require("walkdir");
 		let fs = require("fs");
+		let argv = require('yargs').argv;
 		let openingFileLine = '"use strict";\n\n';
 		let closingFileLine = '\n';
 
@@ -65,7 +66,10 @@ module.exports = function webpack(gulp) {
 			let walker = walk(process.cwd() + "/app/config/bundling/pages");
 
 			walker.on("file", (filename) => {
-				pages.push(filename);
+				//Added to ignore .DS_Store
+				if (filename.indexOf("js") > 0) {
+					pages.push(filename);
+				}
 			});
 
 			walker.on("end", () => {
@@ -111,8 +115,29 @@ module.exports = function webpack(gulp) {
 
 		// CLIENT UNIT TEST TASKS
 		gulp.task('webpack:build', (done) => {
+
+			let config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
+
+			if (argv.noUglifyJS || argv.CI) {
+				config.plugins.shift(); // remove uglify plugin
+			}
+
 			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.app.config.js"), function(err, stats) {
+			webpack(config, function(err, stats) {
+				if (err) {
+					throw new gutil.PluginError("webpack", err);
+				}
+				if (stats.hasErrors()) {
+					console.log("[webpack]", stats.toString());
+				}
+
+				done();
+			});
+		});
+
+		gulp.task('webpack:rui', (done) => {
+			// run webpack
+			webpack(require(process.cwd() + "/app/config/bundling/webpack.rui.config.js"), function(err, stats) {
 				if (err) {
 					throw new gutil.PluginError("webpack", err);
 				}
@@ -125,7 +150,7 @@ module.exports = function webpack(gulp) {
 		});
 
 		gulp.task("webpack", (done) => {
-			runSequence("webpack:prepare", "webpack:build", done);
+			runSequence("webpack:prepare", "webpack:build", "webpack:rui", done);
 		});
 	}
 };

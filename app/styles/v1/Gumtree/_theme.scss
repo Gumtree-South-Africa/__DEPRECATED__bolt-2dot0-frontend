@@ -99,6 +99,11 @@ $mc-bg-color:#fffee0;
 $mc-report-color: #468100;
 $mc-max-width: 83.41em;
 
+// FULLSREEN-SMARTBANNER 
+$smartbanner-bgcolor :#f89301;
+$smartbanner-image :url('../../../../../../images/en_ZA/smartmobilebanner.jpg');
+
+
 // FEATURE LEGEND
 $feature-legend-shadow:-1px 1px 1px rgba(black,0.75);
 $feature-legend-icon-width:96px;
@@ -180,6 +185,10 @@ $boxRowBGColor: #FFFFFF !default;
 	%box {
 		background-color: $boxBGColor;
 		padding: .75em;
+	}
+	.viewport .full-screen-smartbanner 
+	.smartbanner-content {
+	  top: 26%;
 	}
 }
 

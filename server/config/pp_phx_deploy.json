@@ -17,7 +17,8 @@
 			"configService": "/v1/configs/nodeapp/settings.json",
 			"quickpostAd": "/v1/ads",
 			"recentActivities": "/v1/ads/activities/recent",
-			"trendingSearch": "/v1/ads/trending"
+			"trendingSearch": "/v1/ads/trending",
+			"draftAd":"/v1/ads/drafts"
 		}
 	},
 	"solr": {

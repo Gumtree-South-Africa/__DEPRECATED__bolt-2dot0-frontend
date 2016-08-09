@@ -18,7 +18,8 @@
 			"updateConfig"		:	"/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/ads",
 			"recentActivities"  :	"/ads/activities/recent",
-			"trendingSearch"	: 	"/ads/trending"
+			"trendingSearch"	: 	"/ads/trending",
+			"draftAd"			:	"/ads/drafts"
 	    }
 	},
 	"solr": {

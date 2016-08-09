@@ -99,6 +99,9 @@ $mc-bg-color:white;
 $mc-report-color: #4A90E2;
 $mc-max-width: 75em;
 
+// full screen smartbanner 
+$smartbanner-bgcolor: #FF9720;
+$smartbanner-image:url('../../../../../../images/es_MX/smartmobilebanner.png');
 
 // FEATURE LEGEND
 $feature-legend-shadow:-1px 1px 1px rgba($vivaBlack,0.75);
@@ -214,6 +217,12 @@ $preview-image-gallery-right-margin: 32px;
 
 .header .post-btn {
    color: $color-white;
+}
+
+.full-screen-smartbanner 
+.top-bar .logo{
+  top:7px;
+
 }
 
 @media screen and (max-width:47em) {

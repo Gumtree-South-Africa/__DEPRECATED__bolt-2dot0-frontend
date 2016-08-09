@@ -18,7 +18,11 @@
                     {{/if}}>
                 </div>
 				<div class="profile-welcome-text">
-                    {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
+                    {{#if this.header.profileName}}
+                        {{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!
+                    {{else}}
+                        {{i18n "header.userDropdown.title"}}!
+                    {{/if}}
 				</div>
 			</div>
         {{/if}}
