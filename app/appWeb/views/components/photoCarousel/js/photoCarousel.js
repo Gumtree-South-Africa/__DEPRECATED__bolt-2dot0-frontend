@@ -89,7 +89,7 @@ let setCoverPhoto = (event) => {
 	coverPhoto[0].style.backgroundImage = "url('" + data.image + "')";
 
 	// remove no-photo class and click handler
-	$(".photo-wrapper").off('click');
+	$("#cover-photo-wrapper").off('click');
 	coverPhoto.removeClass("no-photo");
 
 	// remove 'selected' class from other items and add to new target
@@ -496,10 +496,10 @@ let html5Upload = (evt) => {
 		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
 		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
 	} else {
-		if (uploadCount === allowedUploads) {
+		if ($(".carousel-items").length === allowedUploads) {
 			console.warn("Cannot upload more than 12 files!");
-			$(".max-photo-msg").removeClass("hidden");
-			$(".icon-contextual-info").removeClass("hidden");
+			$("#max-photo-msg").removeClass("hidden");
+			$("#carousel-info-icon").removeClass("hidden");
 			return;
 		}
 		// create image place holders
@@ -526,8 +526,8 @@ let html5Upload = (evt) => {
 			let itemCount = $(".carousel-item").length;
 			if (itemCount >= allowedUploads) {
 				console.warn("Cannot upload more than 12 files!");
-				$(".max-photo-msg").removeClass("hidden");
-				$(".icon-contextual-info").removeClass("hidden");
+				$("#max-photo-msg").removeClass("hidden");
+				$("#carousel-info-icon").removeClass("hidden");
 				return;
 			}
 			this.pendingImages.push(uploadCount);
@@ -553,7 +553,7 @@ let deleteSelectedItem = (event) => {
 	event.stopPropagation();
 
 	// remove cover photo
-	let coverPhoto = $(".cover-photo");
+	let coverPhoto = $("#cover-photo");
 	coverPhoto.css("background-image", "");
 	coverPhoto.addClass("no-photo");
 	coverPhoto.attr("data-image", "");
@@ -564,7 +564,6 @@ let deleteSelectedItem = (event) => {
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
-	imageUploads.remove(index);
 	if (imageUploads.count() === 0) {
 		this.$postAdButton.addClass("disabled");
 	}
@@ -574,7 +573,7 @@ let deleteSelectedItem = (event) => {
 	if (firstItem.length > 0) {
 		firstItem.click();
 	} else {
-		$(".photo-wrapper").on('click', () => {
+		$("#cover-photo-wrapper").on('click', () => {
 			if (!this.disableImageSelection) {
 				this.$imageUpload.click();
 			}
@@ -658,10 +657,10 @@ let fileInputChange = (evt) => {
 		evt.stopImmediatePropagation();
 	}
 
-	if (imageUploads.count() === allowedUploads) {
+	if ($(".carousel-item").length === allowedUploads) {
 		console.warn("Cannot upload more than 12 files!");
-		$(".max-photo-msg").removeClass("hidden");
-		$(".icon-contextual-info").removeClass("hidden");
+		$("#max-photo-msg").removeClass("hidden");
+		$("#carousel-info-icon").removeClass("hidden");
 		return;
 	}
 
@@ -765,10 +764,10 @@ let initialize = () => {
 	$(".carousel-item").on('click', setCoverPhoto);
 
 	// delete image, remove current cover photo from carousel
-	$(".delete-wrapper").on('click', deleteSelectedItem);
+	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
 
 	// Clicking empty cover photo should open file selector
-	$(".photo-wrapper").on('click', () => {
+	$("#cover-photo-wrapper").on('click', () => {
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
 		}
