@@ -14,7 +14,7 @@ let AppShell = {
 	 */
 	extendFooterData: (modelData) => {
 		// JS
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "appshellBundle.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AppShell_mobile_es_MX.js");
 	}
 };
 

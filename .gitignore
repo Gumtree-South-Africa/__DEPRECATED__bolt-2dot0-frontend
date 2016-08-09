@@ -44,7 +44,6 @@ npm-debug.log
 .build
 build
 tmp
-app/views/components/__default
 app/locales/json
 public/css
 public/cssmin

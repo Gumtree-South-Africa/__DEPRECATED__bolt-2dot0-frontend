@@ -104,7 +104,7 @@ FE dependencies are managed using [Bower](http://bower.io). BE's and Gulp's are 
 
 #### Create a Component
 To do so:
-You will have to run the ```gulp component -n [name-of-the-component]``` tasks and it will create a base folder structure for that component under ./app/views/components
+You will have to run the ```gulp component -n [name-of-the-component]``` tasks and it will create a base folder structure for that component under ./app/appWeb/views/components
 
 
 

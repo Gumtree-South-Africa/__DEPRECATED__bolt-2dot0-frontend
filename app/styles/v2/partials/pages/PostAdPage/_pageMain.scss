@@ -1,0 +1,104 @@
+$item-margin: 10px;
+$photo-switcher-width: 30%;
+
+.margin-auto {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.headerV2 {
+	box-shadow: none !important;
+}
+
+.post-ad-header {
+	height: 25px;
+	width: 100%;
+	color: $postAdHeaderBlue;
+	margin-bottom: $item-margin;
+	padding-top: 10px;
+	padding-bottom: 5px;
+	font-size: 14px;
+	background-color: $postAdHeaderBackground;
+	border-bottom: 1px solid $postAdHeaderBlue;
+
+	.header-accent {
+		font-size: 0;
+		margin-top: 6px;
+		background: $postAdHeaderBlue;
+		line-height: 3px;
+		color: $postAdHeaderBlue;
+	}
+
+	.header-text {
+		position: absolute;
+		transform: translateX(-50%);
+		display: inline-block;
+		left: 50%;
+		text-align: center;
+		font-weight: bold;
+	}
+
+}
+
+.mobile-post-ad {
+	.didKnow-text, .confirm-tip {
+		width: 90%;
+		text-align: center;
+		margin: 20px auto;
+	}
+
+	.didKnow-text {
+		font-size: 30px;
+	}
+
+	.confirm-tip {
+		font-size: 18px;
+		color: $postAdTextGray;
+	}
+}
+
+.desktop-post-ad {
+	display: none;
+	box-sizing: border-box;
+
+	.directions {
+		font-size: 18px;
+		color: $postAdTextGray;
+		margin-bottom: 15px;
+	}
+
+	.post-ad-btn {
+		cursor: pointer;
+		background-color: $button-bgcolor;
+		border-radius: 2px;
+		display: inline-block;
+		padding: 12px;
+		font: bold 1.125em Lato;
+		text-align: center;
+		&:hover {
+			text-decoration: none;
+		}
+		width: 80%;
+		margin: 20px 10%;
+		vertical-align: top;
+
+		.link-text {
+			color: white;
+		}
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.mobile-post-ad, .back-button {
+		display: none;
+	}
+
+	.desktop-post-ad {
+		display: block;
+	}
+}
+
+.image-upload-progress {
+	width: 100%;
+	margin: auto;
+}

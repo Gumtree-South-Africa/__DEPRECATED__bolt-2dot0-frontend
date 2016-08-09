@@ -40,4 +40,20 @@ LocationService.prototype.getTopL2LocationsData = function(bapiHeaders) {
 	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "topL2Locations");
 };
 
+/**
+ * Gets a list of locations from Lat/Lng
+ */
+LocationService.prototype.getLatLongResults = function (bapiHeaders, geoId) {
+	// Invoke BAPI
+	var geoIdSplit = geoId.split('ng');
+	var geoLat = geoIdSplit[0];
+	var geoLng = geoIdSplit[1];
+
+	this.bapiOptions.methods = 'GET';
+	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLat + '/' + geoLng;
+
+	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders);
+}
+
+
 module.exports = new LocationService();

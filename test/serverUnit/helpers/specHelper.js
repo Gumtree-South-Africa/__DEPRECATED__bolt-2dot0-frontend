@@ -50,16 +50,39 @@ let spyOnService = (service, method, fileName) => {
  */
 let endpointToFileMap = {};
 
+
+let verifyMockEndpointsClean = () => {
+
+	console.error("verifyMockEndpointsClean Begin");
+	let keys = Object.keys(endpointToFileMap);
+	for (let i = 0; i < keys.length; i++) {
+		if (endpointToFileMap[keys[i]].length > 0) {
+			console.error(`mock endpoint not consumed ${keys[i]}, count ${endpointToFileMap[keys[i]].length}`);
+		}
+	}
+	endpointToFileMap = {};
+	console.error("verifyMockEndpointsClean End");
+};
+
 /**
  * Populates the mock endpoint map
  * @param url
  * @param file
+ * @param options
+ * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
-let registerMockEndpoint = (url, file) => {
+let registerMockEndpoint = (url, filePath, options) => {
 	if (!endpointToFileMap[url]) {
 		endpointToFileMap[url] = [];
 	}
-	endpointToFileMap[url].push(file);
+	let entry = {
+		filePath: filePath,
+		options: {}
+	};
+	if (options) {
+		entry.options = options;
+	}
+	endpointToFileMap[url].push(entry);
 };
 
 /**
@@ -73,7 +96,10 @@ let registerMockEndpoint = (url, file) => {
  * @returns {*|Promise.<supertest>} returns a promise that resolves to supertest
  *  call .then((supertest) => { supertest.expect/end() etc. }) on result from promise
  */
-module.exports.boltSupertest = (route, host) => {
+module.exports.boltSupertest = (route, host, method) => {
+	if (!method) {
+		method = "GET";
+	}
 	let app = require(cwd + '/app');
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
 	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
@@ -91,16 +117,26 @@ module.exports.boltSupertest = (route, host) => {
 			options = postData;
 		}
 		let path = options.path;
-		if (!endpointToFileMap[options.path]) {
-			throw new Error(`No mocked endpoint for ${path}`);
-		} else {
-			let filePath = endpointToFileMap[path].pop();
-			if (filePath === undefined) {
-				throw new Error(`No mocked endpoint for ${path}`);
-			}
+		if (!endpointToFileMap[path]) {
+			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+		}
+		let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
+		if (!entry) {
+			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+		}
+		let filePath = entry.filePath;
+		try {
 			let data = fs.readFileSync(filePath);
 			let json = JSON.parse(data);
+			if (entry.options.failStatusCode) {
+				let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
+				error.statusCode = entry.options.failStatusCode;
+				return Q.reject(error);
+			}
 			return Q(json);
+		} catch (e) {
+			// we couldnt load the file, but we can simulate a failed promise
+			return Q.reject(e);
 		}
 	};
 
@@ -115,16 +151,30 @@ module.exports.boltSupertest = (route, host) => {
 		console.warn('Server started');
 		host = host || 'gumtree.co.za';
 
-		return supertest(app)
-			.get(route)
-			.set('host', host)
-			.set('user-agent', 'testing');
+		let result = supertest(app);
+
+		if (method === 'GET') {
+			result = result.get(route);
+		} else if (method === 'POST') {
+			result = result.post(route);
+
+			// assume we're going to be posting and receiving json
+			result.set('ContentType', 'application/json');
+			result.set('Accept', 'application/json');
+		} else {
+			console.error(`specHelper - unrecognized "method" parameter: ${method}`);
+		}
+		// common to all requests regardless of method
+		result.set('host', host);
+		result.set('user-agent', 'testing');
+		return result;
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
 	});
 };
 
+module.exports.verifyMockEndpointsClean = verifyMockEndpointsClean;
 module.exports.registerMockEndpoint = registerMockEndpoint;
 module.exports.spyOnService = spyOnService;
 
@@ -157,6 +207,26 @@ module.exports.getMockDataByLocale = (mockDataPath, fileName, locale) => {
 	} else {
 		fullFileName = `${locale}.json`;
 	}
+	if (mockDataPath.indexOf('/') === -1) {
+		fullPath = `${cwd}/test/serverUnit/mockData/${mockDataPath}/${fullFileName}`;
+	} else {
+		fullPath = `${cwd}${mockDataPath}/${fullFileName}`;
+	}
+	let file = fs.readFileSync(fullPath);
+	return JSON.parse(file);
+};
+
+/**
+ * get Mock Data By Locale - fetch a file from the file system for mock data
+ * @param mockDataPath - either fully qualified relative to the project root, or relative to the test mockData directory
+ * @param fileName - a file name "prefix" (will use <fileName>_<locale>.json), can be empty to use "<locale>.json"
+ * @param locale - locale like es_MX
+ * @returns json data from specified file
+ */
+module.exports.getMockData = (mockDataPath, fileName) => {
+	let fullPath;
+	let fullFileName = `${fileName}.json`;
+
 	if (mockDataPath.indexOf('/') === -1) {
 		fullPath = `${cwd}/test/serverUnit/mockData/${mockDataPath}/${fullFileName}`;
 	} else {

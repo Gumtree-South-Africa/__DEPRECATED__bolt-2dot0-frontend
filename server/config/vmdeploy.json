@@ -18,7 +18,8 @@
 			"updateConfig"		:	"/boltapi/v1/configs/nodeapp/settings",
 		 	"quickpostAd"		:	"/boltapi/v1/ads",
 			"recentActivities"	:	"/boltapi/v1/ads/activities/recent",
-			"trendingSearch"	: 	"/boltapi/v1/ads/trending"
+			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
+			"draftAd"			:	"/boltapi/v1/ads/drafts"
 	    }
 	},
 	"solr": {
@@ -60,6 +61,7 @@
 		"baseJSMinUrl"	: "/public/jsmin/",
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
+		"baseUrl"		: "/public/",
 		"min"			: true
 	}
 }

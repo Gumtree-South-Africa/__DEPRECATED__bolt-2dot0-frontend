@@ -2,7 +2,7 @@
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
 
-let _toggleMenu = () => {
+let toggleMenu = () => {
 	if (!this.open && searchBarV2.isOnPage()) {
 		searchBarV2.closeAutoComplete(true, true);
 	}
@@ -72,7 +72,7 @@ let initialize = () => {
 
 	this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 		if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 
@@ -82,22 +82,23 @@ let initialize = () => {
 	this.menuHammer = new Hammer(this.hamburgerMenu);
 	this.overlayHammer.on('swipeleft', () => {
 		if (this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 	this.menuHammer.on('swipeleft', () => {
 		if (this.open) {
-			_toggleMenu();
+			toggleMenu();
 		}
 	});
 	this.$pageContent.addClass('open-menu');
 	this.$browseCategories.on('click', _toggleBrowseCategory);
-	this.$hamburgerIcon.on('click', _toggleMenu);
-	this.$hamburgerPopout.on('click', _toggleMenu);
+	this.$hamburgerIcon.on('click', toggleMenu);
+	this.$hamburgerPopout.on('click', toggleMenu);
 };
 
 module.exports = {
-	initialize
+	initialize,
+	toggleMenu
 };
 
 

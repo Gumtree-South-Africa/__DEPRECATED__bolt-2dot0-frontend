@@ -14,8 +14,8 @@ exports.config = {
 			'args': ['no-sandbox']
 		}
 	},
-	
-	specs: ['./test/integration/**/*Spec.js'],
+
+	specs: ['./spec/**/*Spec.js'],
 
 	onPrepare: function() {
 		browser.driver.manage().window().setSize(375, 667);

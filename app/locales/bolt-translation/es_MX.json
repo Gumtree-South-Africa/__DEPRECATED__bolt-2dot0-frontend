@@ -1,5 +1,4 @@
 {
-
 	"greeting": "Saludos desde el Valle del Silicio",
 	"welcome": "Bienvenidos a BOLT 2.0",
 	"coworkers.nacer": "Nacer Mexicano",
@@ -1169,9 +1168,13 @@
 		"applink": "http://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
+		"upload": {
+			"photo": "Sube una foto",
+			"photos": "Sube foto(s)"
+		},
 		"image": {
 			"upload": {
-				"failure": "Por desgracia , se ha producido un error al cargar imágenes"
+				"failure": "Por desgracia, se ha producido un error al cargar imágenes"
 			}
 		}
 	},
@@ -1221,11 +1224,11 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-    "close": "cerrar",
-    "buttonText": "Confirmar",
-    "message": "Cambia Tu Ubicaci\u00FBn",
-    "info": "Ciudad, Colonia o Delegaci\u00F3n"
-  },
+		"close": "cerrar",
+		"buttonText": "Confirmar",
+		"message": "Cambia Tu Ubicaci\u00FBn",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+	},
 	"recentactivity": {
 		"message": {
 			"listing": "%s acaba de poner en venta: %s %s",
@@ -1235,6 +1238,60 @@
 	"gpsMap": {
 		"label": "Venta Ahora",
 		"items": "artículos"
+	},
+	"postAd": {
+		"confirm": {
+			"pageTitle": "Publicar un anuncio",
+			"back": "Atrás",
+			"didYouKnow": "Sabías que...",
+			"tip": "Consejo: Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+		},
+		"createAds": {
+			"directions": "Es muy sencillo, solo tienes que agregarlo y publicarlo. Puedes agregar más fotos y hacer otros",
+			"error":{
+				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
+				"photoRequired": "Foto requerido"
+			},
+			"form": {
+				"title": "Título del anuncio",
+				"remaining": "restantes",
+				"price": "Precio",
+				"addPhotos": "Agregar fotos",
+				"pricePlaceholder": "Preguntarme el precio"
+			},
+			"post": "Publicar",
+			"ad": "Anuncio"
+		},
+		"uploadModal": {
+			"title": "Carga una foto"
+		},
+		"loginModal": {
+			"title": "Inicia sesión para continuar",
+			"facebookBtn": "Continuar con Facebook",
+			"emailBtn": "Iniciar sesión con correo electrónico",
+			"register": "Registrarse",
+			"close": "Cerrar",
+			"legal1": "Al hacer clic en continùa declaro estar de acuerdo con los",
+			"termsAndConditions": "Tèrminos v Condiciones",
+			"legal2": "y reconozco que que he leído las Notificaciones de",
+			"privacy": "Privacidad",
+			"and": "y",
+			"cookies": "Cookies",
+			"legal3": "de Vivanuncios"
+		},
+		"successModal": {
+			"title": "¡Ya se cargó tu anuncio!",
+			"tip": "Consejo: Agrega más fotos para mejorar tus posibilidades de vender rápidamente.",
+			"moreDetails": "Agregar más detalles",
+			"postMoreBtn": "Publicar más anuncios"
+		},
+		"unsupportedFileModal": {
+			"title": "Formato de archivo no admitido",
+			"close": "Cerrar",
+			"message": "Este archivo contiene un formato multimedia no admitido.",
+			"uploadBtn": "Cargar una foto diferente",
+			"error": "Error"
+		}
 	},
 	"footer": {
 		"help": {
@@ -1296,5 +1353,13 @@
 		"trademark": {
 			"trademark": "2014-%s eBay. Todos los derechos reservados"
 		}
+	},
+	"postAdModal": {
+		"helpText": "¿Qué quieres anunciar?",
+		"uploadPhotos": "Cargar foto(s)",
+		"uploadPhoto": "Carga una foto",
+		"uploadQuickly": "Publica un anuncio rápidamente",
+		"upload": "Publica un anuncio",
+		"close": "CERRAR"
 	}
 }

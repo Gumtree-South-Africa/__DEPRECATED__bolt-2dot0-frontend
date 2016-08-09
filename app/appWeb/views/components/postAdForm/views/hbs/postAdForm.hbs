@@ -1,0 +1,49 @@
+<div class="post-ad-form-container">
+	<div class="photo-switcher">
+        {{> (dynamic "photoCarousel")}}
+    </div>
+
+	<div class="input-form">
+		<div class="heading title-text">{{i18n "postAd.createAds.form.title"}}</div>
+		<div class="char-remaining">
+			<span class="char-count">0</span><span>/30</span>
+			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
+		</div>
+        <input id="title-input" class="text-input title-input" type="text" maxlength="30"
+               {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.title}}"{{/if}}>
+
+		<div  class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
+		<input id="price-input" class="text-input price-input" type="text"
+			   placeholder="{{i18n "postAd.createAds.form.pricePlaceholder"}}"
+               {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.price.amount}}"{{/if}}>
+
+		<div class="radio-form">
+			<label class="control">
+				<input type="radio" name="currency" value="MXN"
+                    {{#if this.deferredAd.ads}}
+                        {{#compare  this.deferredAd.ads.0.price.currency "===" "MXN"}}
+                            checked="checked"
+                        {{/compare }}
+                    {{/if}}
+	            />
+				<div class="outer-circle">
+					<div class="inner-circle"></div>
+				</div>
+				<span class="currency-type">MXN</span>
+			</label>
+			<label class="control">
+				<input type="radio" name="currency" value="USD"
+                    {{#if this.deferredAd.ads}}
+                        {{#compare  this.deferredAd.ads.0.price.currency "===" "USD"}}
+                            checked="checked"
+                        {{/compare }}
+                    {{/if}}
+                />
+				<div class="outer-circle">
+					<div class="inner-circle"></div>
+				</div>
+				<span class="currency-type">USD</span>
+			</label>
+		</div>
+	</div>
+</div>

@@ -93,9 +93,13 @@ module.exports = {
 beforeEach(() => {
 	spyOn($, 'ajax').and.callFake((options) => {
 		let ajaxInfo = _dequeue(options.url);
-
+		if (!ajaxInfo) {
+			throw new Error(`no mocked endpoint for ${options.url}`);
+		}
 		if (ajaxInfo.options) {
-			if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
+			if (ajaxInfo.options.fail) {
+				options.error(ajaxInfo.returnData);
+			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {
 					options.success(ajaxInfo.returnData);
 				}, ajaxInfo.delay);

@@ -6,3 +6,4 @@ let router = express.Router();
 router.use('/', require('./post'));
 
 module.exports = router;
+
