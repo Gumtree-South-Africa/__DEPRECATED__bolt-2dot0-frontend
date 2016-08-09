@@ -48,15 +48,18 @@ class ServiceWorkerModel {
 
 		let baseUrl = modelData.footer.baseUrl;
 
-		modelData.homepagePreCache = _.reduceRight(cacheConfig.homepagePreCachePaths, function(a,b) {
+		let homepagePreCache = _.reduceRight(cacheConfig.homepagePreCachePaths, function(a,b) {
 			b = baseUrl + b;
 			return a.concat(b);
 		}, []);
 
-		modelData.homepageCache = _.reduceRight(cacheConfig.homepageCachePaths, function(a,b) {
+		let homepageCache = _.reduceRight(cacheConfig.homepageCachePaths, function(a,b) {
 			b = baseUrl + b;
 			return a.concat(b);
 		}, []);
+
+
+		modelData.footer.cachPath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache};
 
 		return modelData;
 	}

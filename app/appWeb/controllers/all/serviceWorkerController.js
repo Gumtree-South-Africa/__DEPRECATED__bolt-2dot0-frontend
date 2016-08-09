@@ -2,8 +2,6 @@
 
 let express = require('express');
 let router = express.Router();
-let config = require('config');
-let path = require('path');
 let cwd = process.cwd();
 let fs = require('fs');
 
@@ -18,32 +16,18 @@ router.get('/', (req, res, next) => {
 	let modelPromise = serviceWorker.populateData();
 
 	modelPromise.then((modelData) => {
-		let urlHost = config.get('static.server.host');
-		let baseUrl = modelData.footer.baseUrl;
-		let cacheObj = 'let cacheObj =' + JSON.stringify({'homepagePreCache': modelData.homepagePreCache, 'homepageCache': modelData.homepageCache}) + ';';
-		let cacheFilePath = process.cwd() + baseUrl + 'js/swCacheConfig.js';
-		fs.access(cacheFilePath, fs.F_OK, function(err) {
-			if (err) {
-				fs.writeFile(cacheFilePath, cacheObj, function(writeErr) {
-					if(err) {
-						return writeErr;
-					}
-					res.set('Content-Type', 'application/javascript');
-					if (urlHost!==null) {
-						res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
-					} else {
-						res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale +  '-local.js'));
-					}
-				});
-			} else {
-				res.set('Content-Type', 'application/javascript');
-				if (urlHost!==null) {
-					res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js'));
-				} else {
-					res.sendFile(path.join(process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale +  '-local.js'));
-				}
-			}
-		});
+		let swtoolboxPath = process.cwd() + '/node_modules/sw-toolbox/sw-toolbox.js';
+		let swtoolboxContent = fs.readFileSync(swtoolboxPath);
+
+		let swCacheConfigContent = 'let cacheObj=' + JSON.stringify(modelData.footer.cachPath) + ';';
+
+		let serviceWorkerPath = process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js';
+		let serviceWorkerContent = fs.readFileSync(serviceWorkerPath);
+
+		let finalContent = swCacheConfigContent + swtoolboxContent  + serviceWorkerContent;
+
+		res.set('Content-Type', 'application/javascript');
+		res.send(finalContent);
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
