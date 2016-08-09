@@ -1,6 +1,6 @@
 'use strict';
-importScripts('/public/js/libraries/sw-toolbox/sw-toolbox.js');  //Update path to match your own setup
-importScripts('/public/js/swCacheConfig.js'); //@Videep possibly not able to fetch in production
+importScripts('public/js/libraries/sw-toolbox/sw-toolbox.js');  //Update path to match your own setup
+importScripts('public/js/swCacheConfig.js'); //Local Version
 
 //Initial precaching homepage
 toolbox.precache(['/']);

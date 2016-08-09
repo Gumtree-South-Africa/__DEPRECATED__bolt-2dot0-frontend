@@ -10,8 +10,6 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let cacheConfig = require(cwd + '/app/appWeb/serviceWorkers/swCacheConfig');
-let config = require('config');
-
 
 class ServiceWorkerModel {
 	constructor(req, res) {
@@ -48,16 +46,15 @@ class ServiceWorkerModel {
 		modelData.footer = data['common'].footer || {};
 		modelData.dataLayer = data['common'].dataLayer || {};
 
-		let urlHost = config.get('static.server.host');
-		let baseJSDir = (urlHost!==null) ? '' : '/public';
+		let baseUrl = modelData.footer.baseUrl;
 
 		modelData.homepagePreCache = _.reduceRight(cacheConfig.homepagePreCachePaths, function(a,b) {
-			b = baseJSDir + b;
+			b = baseUrl + b;
 			return a.concat(b);
 		}, []);
 
 		modelData.homepageCache = _.reduceRight(cacheConfig.homepageCachePaths, function(a,b) {
-			b = baseJSDir + b;
+			b = baseUrl + b;
 			return a.concat(b);
 		}, []);
 

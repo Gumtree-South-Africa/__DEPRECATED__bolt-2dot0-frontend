@@ -59,6 +59,7 @@
 		"baseJSMinUrl": "/jsmin/",
 		"baseImageUrl": "/images/",
 		"mainJSUrl": "/js/main.js",
+		"baseUrl": "/",
 		"min": true
 	}
 }

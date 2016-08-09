@@ -19,9 +19,9 @@ router.get('/', (req, res, next) => {
 
 	modelPromise.then((modelData) => {
 		let urlHost = config.get('static.server.host');
-		let baseJSDir = (urlHost!==null) ? '' : '/public';
+		let baseUrl = modelData.footer.baseUrl;
 		let cacheObj = 'let cacheObj =' + JSON.stringify({'homepagePreCache': modelData.homepagePreCache, 'homepageCache': modelData.homepageCache}) + ';';
-		let cacheFilePath = process.cwd() + baseJSDir + '/js/swCacheConfig.js';
+		let cacheFilePath = process.cwd() + baseUrl + 'js/swCacheConfig.js';
 		fs.access(cacheFilePath, fs.F_OK, function(err) {
 			if (err) {
 				fs.writeFile(cacheFilePath, cacheObj, function(writeErr) {
