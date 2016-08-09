@@ -133,9 +133,12 @@
             </div>
         </div>
     </div>
-    {{/unless}}
-    <div class="line-divider mobile-only"></div>
-  </div>
+   </div>   
+     {{/unless}}
+      <div class="line-divider mobile-only"></div>
+    
+
+
     {{#if this.footer.distractionFree}}
     <div class="footer-inner-wrappper">
         <div class="df-footer-legal">
@@ -236,7 +239,10 @@
     </div>
 </div>
 
-<div class="nonJsOnlyInlineBlock seo-links tested">
-	<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' target="/blank">{{i18n "footer.sitemap.explore.location"}}</a></div>
-	<div class="seo-topsearches"><a href='{{{this.footer.topSearchesLandingPageUrl}}}' target="/blank">{{i18n "footer.sitemap.explore.topsearches"}}</a></div>
-</div>
+{{#unless this.footer.distractionFree}}
+	<div class="nonJsOnlyInlineBlock seo-links tested">
+		<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' target="/blank">{{i18n "footer.sitemap.explore.location"}}</a></div>
+		<div class="seo-topsearches"><a href='{{{this.footer.topSearchesLandingPageUrl}}}' target="/blank">{{i18n "footer.sitemap.explore.topsearches"}}</a></div>
+	</div>
+{{/unless}}
+
