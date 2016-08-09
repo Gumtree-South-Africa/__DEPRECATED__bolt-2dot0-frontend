@@ -66,7 +66,7 @@ class ModelBuilder {
 			machineid: locals.machineid,
 			useragent: locals.useragent,
 			geoLatLng: this.getGeoFromCookie(cookies.geoId),
-
+			geoCookie: cookies.geoId,
 			// Cached Location Data from BAPI
 			location: config.locationData,
 			locationdropdown: config.locationdropdown,
@@ -94,4 +94,3 @@ class ModelBuilder {
 
 
 module.exports = ModelBuilder;
-
