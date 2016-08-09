@@ -8,7 +8,7 @@ module.exports = function watch(gulp, plugins) {
 		let shell = require("gulp-shell"),
 			runSequence = require('gulp-run-sequence');
 
-		gulp.task('watch:scss', function () {
+		gulp.task('watch:scss', function() {
 			return gulp.watch('./app/styles/v2/**/**/*.scss', ['sass']);
 		});
 

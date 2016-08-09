@@ -1,7 +1,7 @@
 # Environment Middleware Loader
 
-Environment based loading of middleware / Environment based bootstraping middleware. Better performance. 
- 
+Environment based loading of middleware / Environment based bootstraping middleware. Better performance.
+
 ### pre requirement
 
 var midlewareloader = require(process.cwd() + '/modules/environment-middleware-loader');
@@ -23,7 +23,7 @@ var midlewareloader = require(process.cwd() + '/modules/environment-middleware-l
             maxage:0,
             index:false
         }));
-        app.use("/views", express.static(config.root + '/app/views',{
+        app.use("/views", express.static(config.root + '/app/appWeb/views',{
             root: "/views",
             etag:false,
             maxage:0,
@@ -45,15 +45,15 @@ var midlewareloader = require(process.cwd() + '/modules/environment-middleware-l
 
 ```
 
-    
+
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-***Anton Ganeshalingam** - *Initial work* 
+***Anton Ganeshalingam** - *Initial work*
 
 
 

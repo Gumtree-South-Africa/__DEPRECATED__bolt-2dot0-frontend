@@ -1,0 +1,28 @@
+<div class="post-ad-wrapper">
+	<div class="post-ad-modal-wrapper">
+		<div class="post-ad-modal">
+			<div class="post-ad-modal-overlay"></div>
+			<div class="post-ad-modal-container">
+				<div id='js-close-post-ad-modal' class="post-ad-modal-close-section">
+					<div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
+					<div class="inline-block icon-close"></div>
+				</div>
+			</div>
+
+			<h1 class="h1-text-mobile">{{i18n "postAdModal.uploadQuickly"}}</h1>
+			<h1 class="h1-text-desktop">{{i18n "postAdModal.upload"}}</h1>
+			<div class="post-ad-modal-info">{{i18n "postAdModal.helpText"}}</div>
+
+		</div>
+
+		<div class="post-ad-footer">
+			<div class="modal-footer modal-footer-mobile">
+                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="#" i18nPath="postAdModal.uploadPhoto"}}
+			</div>
+			<div class="modal-footer modal-footer-desktop">
+                {{> (dynamic "button") hideIcon=true extraClasses='modal-post-ad-button' buttonLink="#" i18nPath="postAdModal.uploadPhotos"}}
+			</div>
+		</div>
+	</div>
+</div>
+
