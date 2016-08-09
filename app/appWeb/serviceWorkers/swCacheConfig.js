@@ -25,6 +25,7 @@ module.exports = {
 		'icons/icon_call.svg',
 		'icons/icon_chat.svg',
 		'icons/icon_email.svg',
+		'icons/icon_social_facebook.svg',
 		'icons/icon_social_google_plus.svg',
 		'icons/icon_social_pinterest.svg',
 		'icons/icon_social_twitter.svg',
