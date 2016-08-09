@@ -7,7 +7,7 @@
 	    "sendMetrics" : true
 	},
 	"appPost" : {
-		"mainRoute" : "/post",
+		"mainRoute" : "/poster",
 		"path" : "./app/appPost/app",
 		"routePath" : "./routes",
 		"viewPath" : "app/appPost/views",

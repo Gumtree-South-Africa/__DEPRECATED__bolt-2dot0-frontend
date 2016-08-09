@@ -15,7 +15,7 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 
 	app.use((req, res, next) => {
 		let pageVersion = process.env.PAGE_VER || 'v1';
-		
+
 		res.locals.b2dot0Version = false;
 		if (pageVersion === 'v2') {
 			res.locals.b2dot0Version = true;
@@ -36,7 +36,7 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 			root: '/views', etag: false, maxage: 0, index: false
 		}));
 	}
-	
+
 	this.getApp = () => {
 		return app;
 	};

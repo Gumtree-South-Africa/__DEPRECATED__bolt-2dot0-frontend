@@ -5,7 +5,7 @@ let shell = require('gulp-shell');
 let _ = require("underscore");
 
 let _buildBundleList = (pageConfig, locale, device) => {
-	let tempBundleConfig = {};
+	let moduleConfigPriority, tempBundleConfig = {};
 
 	let _applyConfiguration = (moduleConfig) => {
 		_.keys(moduleConfig).forEach((moduleName) => {
@@ -19,18 +19,25 @@ let _buildBundleList = (pageConfig, locale, device) => {
 		});
 	};
 
-	let localeDeviceMC = pageConfig.locales[locale][device];
-	let localeCoreMC = pageConfig.locales[locale].core;
 	let commonDeviceMC = pageConfig.common[device];
 	let commonCoreMC = pageConfig.common.core;
 
+	if (locale) {
+		let localeDeviceMC = pageConfig.locales[locale][device];
+		let localeCoreMC = pageConfig.locales[locale].core;
 
-	let moduleConfigPriority = [
-		commonCoreMC,
-		localeCoreMC,
-		commonDeviceMC,
-		localeDeviceMC
-	];
+		moduleConfigPriority = [
+			commonCoreMC,
+			localeCoreMC,
+			commonDeviceMC,
+			localeDeviceMC
+		];
+	} else {
+		moduleConfigPriority = [
+			commonCoreMC,
+			commonDeviceMC,
+		];
+	}
 
 	//
 	moduleConfigPriority.forEach(_applyConfiguration);
@@ -49,6 +56,7 @@ module.exports = function webpack(gulp) {
 		let runSequence = require("gulp-run-sequence");
 		let walk = require("walkdir");
 		let fs = require("fs");
+		let argv = require('yargs').argv;
 		let openingFileLine = '"use strict";\n\n';
 		let closingFileLine = '\n';
 
@@ -58,12 +66,25 @@ module.exports = function webpack(gulp) {
 			let walker = walk(process.cwd() + "/app/config/bundling/pages");
 
 			walker.on("file", (filename) => {
-				pages.push(filename);
+				//Added to ignore .DS_Store
+				if (filename.indexOf("js") > 0) {
+					pages.push(filename);
+				}
 			});
 
 			walker.on("end", () => {
 				_prepareWebpackBundles()
 			});
+
+			let _genCompiledFile = (outputPath, moduleFileList) => {
+				fs.writeFileSync(outputPath, openingFileLine);
+
+				moduleFileList.forEach((modulePath) => {
+					fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`);
+				});
+
+				fs.appendFileSync(outputPath, closingFileLine);
+			};
 
 
 			let _prepareWebpackBundles = () => {
@@ -71,18 +92,18 @@ module.exports = function webpack(gulp) {
 				pages.forEach((filename) => {
 					let pageConfig = require(filename);
 
-					_.keys(pageConfig.locales).forEach((locale) => {
-						["mobile", "desktop"].forEach((device) => {
+					["mobile", "desktop"].forEach((device) => {
+						// device general compile
+						let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}.compiled.js`;
+						pageConfigMap[`${pageConfig.bundleName}_${device}`] = outputPath;
+						let moduleFileList = _buildBundleList(pageConfig, null, device);
+						_genCompiledFile(outputPath, moduleFileList);
+
+						_.keys(pageConfig.locales).forEach((locale) => {
 							let outputPath = `${process.cwd()}/${pageConfig.outputEntry}_${device}_${locale}.compiled.js`;
 							pageConfigMap[`${pageConfig.bundleName}_${device}_${locale}`] = outputPath;
 							let moduleFileList = _buildBundleList(pageConfig, locale, device);
-							fs.writeFileSync(outputPath, openingFileLine);
-
-							moduleFileList.forEach((modulePath) => {
-								fs.appendFileSync(outputPath, `require("${modulePath}").initialize();\n`);
-							});
-
-							fs.appendFileSync(outputPath, closingFileLine);
+							_genCompiledFile(outputPath, moduleFileList);
 						})
 					});
 				});
@@ -94,8 +115,29 @@ module.exports = function webpack(gulp) {
 
 		// CLIENT UNIT TEST TASKS
 		gulp.task('webpack:build', (done) => {
+
+			let config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
+
+			if (argv.noUglifyJS || argv.CI) {
+				config.plugins.shift(); // remove uglify plugin
+			}
+
 			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.app.config.js"), function(err, stats) {
+			webpack(config, function(err, stats) {
+				if (err) {
+					throw new gutil.PluginError("webpack", err);
+				}
+				if (stats.hasErrors()) {
+					console.log("[webpack]", stats.toString());
+				}
+
+				done();
+			});
+		});
+
+		gulp.task('webpack:rui', (done) => {
+			// run webpack
+			webpack(require(process.cwd() + "/app/config/bundling/webpack.rui.config.js"), function(err, stats) {
 				if (err) {
 					throw new gutil.PluginError("webpack", err);
 				}
@@ -108,7 +150,7 @@ module.exports = function webpack(gulp) {
 		});
 
 		gulp.task("webpack", (done) => {
-			runSequence("webpack:prepare", "webpack:build", done);
+			runSequence("webpack:prepare", "webpack:build", "webpack:rui", done);
 		});
 	}
 };

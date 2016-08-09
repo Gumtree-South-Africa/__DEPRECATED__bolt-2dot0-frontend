@@ -1,4 +1,7 @@
+{{#unless this.header.distractionFree}}
 {{> (dynamic "hamburgerMenu")}}
+{{/unless}}
+
 <div class="headerV2">
     <a href="/">
         <div class="logo"></div>
@@ -7,7 +10,7 @@
         <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-menu">
         </div>
         <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
-            <div class="mobile-only app-icon {{#if header.isIphone}}icon-sms-2{{else}}icon-android{{/if}}"></div>
+            <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-sms-2{{else}}icon-android{{/if}}"></div>
         </a>
         <div class="left-items">
             {{#if this.header.username}}
@@ -76,27 +79,22 @@
             <div class="profile right-item">
                 <div id="js-profile-item-text" class="item-text">
                     <div class="profile-icon
-                    {{#if this.header.username}}
-                        {{#if this.header.profilePictureCropUrl}}
-                            profile-picture
-                        {{else if this.header.smallFbProfileImageUrl}}
+                        {{#if this.header.currentProfileImageUrl}}
                             profile-picture
                         {{else}}
                             icon-header-profile-out
-                        {{/if}}
-                    {{else}}
-                        icon-header-profile-out
-                    {{/if}}"
-                    {{#if this.header.profilePictureCropUrl}}
-                         style="background: url('{{this.header.profilePictureCropUrl}}13.JPG') no-repeat;
-                                 background-size: contain;"
-                    {{else if this.header.smallFbProfileImageUrl}}
-                         style="background: url('{{this.header.smallFbProfileImageUrl}}13.JPG') no-repeat;
-                                 background-size: contain;"
-                    {{/if}}>
+                        {{/if}}"
+
+                        {{#if this.header.currentProfileImageUrl}}
+    						 style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
+                        {{/if}}>
                     </div>
-                    {{#if this.header.userEmail}}
-                        {{i18n "header.userDropdown.title"}}{{this.header.profileName}}!
+                    {{#if this.header.isUserLoggedIn}}
+                        {{#if this.header.profileName}}
+                            {{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!
+                        {{else}}
+                            {{i18n "header.userDropdown.title"}}!
+                        {{/if}}
                         <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                     {{else}}
                         {{i18n "header.menu.my.gumtree"}}
@@ -109,7 +107,7 @@
                 </div>
             </div>
             {{!-- post ad button --}}
-            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post.html" i18nPath="header.postAd"}}
+            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
         </div>
     {{/unless}}
