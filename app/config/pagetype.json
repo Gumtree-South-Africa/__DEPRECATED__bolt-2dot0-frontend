@@ -42,6 +42,7 @@
 	    "POST_AD" : "PostAd",
 		"PWA_APP_SHELL" : "PwaAppShell",
 		"PWA_MANIFEST" : "PwaManifest",
+		"PWA_SERVICEWORKER" : "PwaServiceWorker",
 	  	"QUICK_POST_AD_FORM" : "QuickPostAdForm",
 	  	"QUICK_POST_AD_SUCCESS" : "QuickPostAdSuccess",
 	  	"QUICK_POST_AD_ERROR" : "QuickPostAdError",
