@@ -26,9 +26,9 @@ class PostAdModel {
 		});
 	}
 
-	// // front end request structure is different than the back end:
-	// // front end has array of ads, back end only supports one ad
-	// // front end imageUrls is array of urls, back end is more complex
+	// front end request structure is different than the back end:
+	// front end has array of ads, back end only supports one ad
+	// front end imageUrls is array of urls, back end is more complex
 	mapToBapiRequest(postAdRequest) {
 		let result = JSON.parse(JSON.stringify(postAdRequest));	// deep clone the structure
 

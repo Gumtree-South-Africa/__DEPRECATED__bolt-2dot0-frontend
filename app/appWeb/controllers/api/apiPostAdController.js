@@ -47,7 +47,7 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
 	getNotLoggedInResponsePromise(model, machguidCookie, requestJson).then((response) => {
-		res.send(response);
+		res.send(response.json);
 		return;
 	}).fail((e) => {
 		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
@@ -65,9 +65,8 @@ let getAdPostedResponse = (results) => {
 
 	response.ad = {
 		id: results.id,
+		vipLink: results.vipLink
 	};
-
-	response.ad.vipLink = results.vipLink;
 
 	return response;
 };
@@ -141,8 +140,6 @@ router.post('/create', cors, (req, res) => {
 
 	// Step 6: Validate authentication cookie is still good
 	userModel.getUserFromCookie().then( () => {
-		// console.log(JSON.stringify(result, null, 4));
-
 		// user cookie checks out fine, go ahead and post the ad...
 
 		// Step 7: Post The Ad

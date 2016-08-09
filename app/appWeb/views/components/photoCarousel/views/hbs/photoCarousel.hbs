@@ -1,23 +1,23 @@
-<div class="cover-photo no-photo">
-	<div class="delete-wrapper">
+<div id="cover-photo" class="cover-photo no-photo">
+	<div id="carousel-delete-wrapper" class="delete-wrapper">
 		<div class="icon-photo-close"></div>
 	</div>
 
-    <div class="photo-wrapper">
-        <div class="icon-camera-v2"></div>
-        <div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
-    </div>
+	<div id="cover-photo-wrapper" class="photo-wrapper">
+		<div class="icon-camera-v2"></div>
+		<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
+	</div>
 </div>
 <div class="error-msg-wrapper">
-	<div class="icon-contextual-info hidden"></div>
-	<div class="max-photo-msg hidden">{{i18n "postAd.createAds.error.maxPhotos"}}</div>
+	<div id="carousel-info-icon" class="icon-contextual-info hidden"></div>
+	<div id="max-photo-msg" class="max-photo-msg hidden">{{i18n "postAd.createAds.error.maxPhotos"}}</div>
 	<div class="photos-required-msg hidden">{{i18n "postAd.createAds.error.photoRequired"}}</div>
 </div>
 <div id="photo-carousel" class="slick-carousel">
 	<div class="add-photo-item">
-        <div class="icon-text-wrapper">
-            <div class="icon-camera-v2"></div>
-            <div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
+		<div class="icon-text-wrapper">
+			<div class="icon-camera-v2"></div>
+			<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
 		</div>
 
 		<form method="post" id="postForm" novalidate="novalidate">

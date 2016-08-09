@@ -3,9 +3,9 @@
 let $ = require('jquery');
 
 let initialize = () => {
-	$('.upload-success-modal .close-button').on('click', () => {
-		$('.upload-success-modal').toggleClass('hidden');
-		$('.success-modal-mask').toggleClass('hidden');
+	$('#success-modal-close-btn').on('click', () => {
+		$('#js-success-modal').toggleClass('hidden');
+		$('#js-success-modal-mask').toggleClass('hidden');
 	});
 };
 
