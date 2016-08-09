@@ -644,7 +644,9 @@ let preventDisabledButtonClick = (event) => {
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item[data-item='" + i + "']").data("image");
-				images.push(image);
+				if (image) {
+					images.push(image);
+				}
 			}
 			_postAd(images, locationType);
 		});
