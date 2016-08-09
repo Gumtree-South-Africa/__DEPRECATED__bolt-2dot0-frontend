@@ -46,6 +46,7 @@ class FooterV2Model {
 				data.baseSVGDataUrl = urlHost + urlPort + urlVersion + config.get('static.baseSVGDataUrl');
 				data.baseCSSUrl = urlHost + urlPort + urlVersion + config.get('static.baseCSSUrl');
 				data.baseImageUrl = urlHost + urlPort + urlVersion + config.get('static.baseImageUrl');
+				data.baseUrl = urlHost + urlPort + urlVersion + config.get('static.baseUrl');
 				data.min = config.get('static.min');
 
 				// add complex data to footer

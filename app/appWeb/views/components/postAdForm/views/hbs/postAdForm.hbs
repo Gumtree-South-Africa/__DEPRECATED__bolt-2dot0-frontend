@@ -9,17 +9,17 @@
 			<span class="char-count">0</span><span>/30</span>
 			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
 		</div>
-        <input class="text-input title-input" type="text" maxlength="30"
+        <input id="title-input" class="text-input title-input" type="text" maxlength="30"
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.title}}"{{/if}}>
 
-		<div class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
-		<input class="text-input price-input" type="text"
+		<div  class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
+		<input id="price-input" class="text-input price-input" type="text"
 			   placeholder="{{i18n "postAd.createAds.form.pricePlaceholder"}}"
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.price.amount}}"{{/if}}>
 
-		<form class="radio-form">
+		<div class="radio-form">
 			<label class="control">
-				<input type="radio" name="radio"
+				<input type="radio" name="currency" value="MXN"
                     {{#if this.deferredAd.ads}}
                         {{#compare  this.deferredAd.ads.0.price.currency "===" "MXN"}}
                             checked="checked"
@@ -32,7 +32,7 @@
 				<span class="currency-type">MXN</span>
 			</label>
 			<label class="control">
-				<input type="radio" name="radio"
+				<input type="radio" name="currency" value="USD"
                     {{#if this.deferredAd.ads}}
                         {{#compare  this.deferredAd.ads.0.price.currency "===" "USD"}}
                             checked="checked"
@@ -44,6 +44,6 @@
 				</div>
 				<span class="currency-type">USD</span>
 			</label>
-		</form>
+		</div>
 	</div>
 </div>

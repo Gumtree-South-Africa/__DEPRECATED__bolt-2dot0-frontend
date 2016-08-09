@@ -1,5 +1,7 @@
 'use strict';
 
+/*eslint no-bitwise: 0*/
+
 class BinaryFile {
 	constructor(strData, iDataOffset, iDataLength) {
 		let data = strData;

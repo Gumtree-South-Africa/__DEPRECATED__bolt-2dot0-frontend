@@ -89,7 +89,7 @@ let setCoverPhoto = (event) => {
 	coverPhoto[0].style.backgroundImage = "url('" + data.image + "')";
 
 	// remove no-photo class and click handler
-	$(".photo-wrapper").off('click');
+	$("#cover-photo-wrapper").off('click');
 	coverPhoto.removeClass("no-photo");
 
 	// remove 'selected' class from other items and add to new target
@@ -112,9 +112,9 @@ let updateCarouselImages = () => {
 
 
 let createImgObj = (i, urlThumb, urlNormal) => {
-	$(".carousel-item.item-" + i).attr("data-image", urlNormal);
-	$('.carousel-item.item-' + i).on('click', setCoverPhoto);
-	$('.carousel-item.item-' + i + ' .spinner').toggleClass("hidden");
+	let currItem = $('.carousel-item[data-item="' + i + '"]');
+	currItem.attr("data-image", urlNormal);
+	currItem.on('click', setCoverPhoto);
 	updateCarouselImages();
 
 	// set cover photo if none found
@@ -170,9 +170,9 @@ let imageUploads = (() => {
 let UploadMsgClass = {
 	// remove carousel item after EPS failure
 	removeCarouselItem: (i) => {
-		let toRemove = $(".carousel-item.item-" + i);
+		let toRemove = $(".carousel-item[data-item='" + i + "']");
 		let index = $(".carousel-item").index(toRemove);
-		$("#photo-carousel").slick('slickRemove', index);
+		this.$carousel.slick('slickRemove', index);
 
 		this.$imageUpload.val('');
 		imageUploads.remove(i);
@@ -288,6 +288,14 @@ let _getCookie = (cname) => {
 };
 
 let _postAd = (urls, locationType) => {
+	let extraPayload = {
+		locationType: locationType,
+		title: $("#title-input").val(),
+		price: {
+			amount: parseFloat($("#price-input").val()),
+			currency: $('input[name="currency"]:checked').val()
+		}
+	};
 	uploadAd.postAd(urls, (response) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
@@ -310,9 +318,7 @@ let _postAd = (urls, locationType) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		UploadMsgClass.failMsg();
-	}, {
-		locationType: locationType
-	});
+	}, extraPayload);
 };
 
 let requestLocation = (callback) => {
@@ -352,16 +358,16 @@ let _success = function(i, response) {
 
 	// add the image once EPS returns the uploaded image URL
 	createImgObj(i, url.thumbImage, url.normal);
+	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 
-	_this.$uploadSpinner.toggleClass('hidden');
 	UploadMsgClass.successMsg(i);
-
 	removePendingImage(i);
 };
 
 let _failure = (i, epsError) => {
 	let error = _this.imageHelper.extractEPSServerError(epsError);
-	this.$uploadSpinner.toggleClass('hidden');
+	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
+
 	UploadMsgClass.translateErrorCodes(i, error);
 	removePendingImage(i);
 };
@@ -479,8 +485,9 @@ let html5Upload = (evt) => {
 	this.$postAdButton.addClass("disabled");
 
 	// drag and drop
-	let uploadedFiles = evt.target.files || evt.dataTransfer.files;
-	let totalFiles = uploadedFiles.length, uploadCount = imageUploads.count();
+	let uploadedFiles = evt.target.files || evt.dataTransfer.files,
+		totalFiles = uploadedFiles.length,
+		uploadCount = imageUploads.count();
 
 	// if user
 	if (imageUploads.count() !== allowedUploads && totalFiles === 1) {
@@ -489,10 +496,10 @@ let html5Upload = (evt) => {
 		UploadMsgClass.loadingMsg(imageUploads.count() - 1); //UploadMsgClass(upDone).fail()
 		prepareForImageUpload(imageUploads.count() - 1, uploadedFiles[0]);
 	} else {
-		if (uploadCount === allowedUploads) {
+		if ($(".carousel-items").length === allowedUploads) {
 			console.warn("Cannot upload more than 12 files!");
-			$(".max-photo-msg").removeClass("hidden");
-			$(".icon-contextual-info").removeClass("hidden");
+			$("#max-photo-msg").removeClass("hidden");
+			$("#carousel-info-icon").removeClass("hidden");
 			return;
 		}
 		// create image place holders
@@ -516,10 +523,11 @@ let html5Upload = (evt) => {
 		}
 
 		for (let i = 0; i < uploadedFiles.length; i++) {
-			if (uploadCount >= allowedUploads) {
+			let itemCount = $(".carousel-item").length;
+			if (itemCount >= allowedUploads) {
 				console.warn("Cannot upload more than 12 files!");
-				$(".max-photo-msg").removeClass("hidden");
-				$(".icon-contextual-info").removeClass("hidden");
+				$("#max-photo-msg").removeClass("hidden");
+				$("#carousel-info-icon").removeClass("hidden");
 				return;
 			}
 			this.pendingImages.push(uploadCount);
@@ -545,7 +553,7 @@ let deleteSelectedItem = (event) => {
 	event.stopPropagation();
 
 	// remove cover photo
-	let coverPhoto = $(".cover-photo");
+	let coverPhoto = $("#cover-photo");
 	coverPhoto.css("background-image", "");
 	coverPhoto.addClass("no-photo");
 	coverPhoto.attr("data-image", "");
@@ -553,10 +561,9 @@ let deleteSelectedItem = (event) => {
 	// delete carousel item
 	let toRemove = $(".carousel-item.selected");
 	let index = $(".carousel-item").index(toRemove);
-	$("#photo-carousel").slick('slickRemove', index);
+	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
-	imageUploads.remove(index);
 	if (imageUploads.count() === 0) {
 		this.$postAdButton.addClass("disabled");
 	}
@@ -566,7 +573,7 @@ let deleteSelectedItem = (event) => {
 	if (firstItem.length > 0) {
 		firstItem.click();
 	} else {
-		$(".photo-wrapper").on('click', () => {
+		$("#cover-photo-wrapper").on('click', () => {
 			if (!this.disableImageSelection) {
 				this.$imageUpload.click();
 			}
@@ -598,14 +605,17 @@ let parseFile = (file) => {
 
 	reader.onloadend = () => {
 		// Add new carousel item to carousel
-		let items = $(".carousel-item").length;
+		let totalItems = $(".carousel-item").length;
 
-		if (items < allowedUploads) {
-			$('#photo-carousel').slick('slickAdd',
-				'<div class="carousel-item item-' + items + '">' +
-				'<div id="$carousel-upload-spinner" class="spinner"></div>' +
-				'</div>', items, true);
-			$('#photo-carousel').slick('slickGoTo', items, false);
+		if (totalItems < allowedUploads) {
+			this.$carousel.slick('slickAdd',
+				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
+				'<div id="carousel-upload-spinner" class="spinner"></div>' +
+				'</div>', totalItems, true);
+			this.$carousel.slick('slickGoTo', totalItems, false);
+
+			// increment loaded count
+			this.$loadedImages++;
 
 			// resize items
 			resizeCarousel();
@@ -633,7 +643,7 @@ let preventDisabledButtonClick = (event) => {
 			}
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
-				let image = $(".carousel-item.item-" + i).data("image");
+				let image = $(".carousel-item[data-item='" + i + "']").data("image");
 				images.push(image);
 			}
 			_postAd(images, locationType);
@@ -647,10 +657,10 @@ let fileInputChange = (evt) => {
 		evt.stopImmediatePropagation();
 	}
 
-	if (imageUploads.count() === allowedUploads) {
+	if ($(".carousel-item").length === allowedUploads) {
 		console.warn("Cannot upload more than 12 files!");
-		$(".max-photo-msg").removeClass("hidden");
-		$(".icon-contextual-info").removeClass("hidden");
+		$("#max-photo-msg").removeClass("hidden");
+		$("#carousel-info-icon").removeClass("hidden");
 		return;
 	}
 
@@ -675,11 +685,12 @@ let initialize = () => {
 	this.EPS.url = this.epsData.data('eps-url');
 	this.imageHelper = new ImageHelper(this.EPS);
 
+	this.$carousel = $('#photo-carousel');
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
 	this.pendingImages = [];
-	this.$uploadSpinner = this.uploadImageContainer.find('#carousel-upload-spinner');
 	this.$postAdButton = $('#postAdBtn');
+	this.$loadedImages = 0;
 
 	//TODO: multiple files
 	this.messageError = $('.error-message');
@@ -731,7 +742,7 @@ let initialize = () => {
 	this.$imageUpload.on("change", fileInputChange);
 
 	// Slick setup
-	$("#photo-carousel").slick({
+	this.$carousel.slick({
 		arrows: true,
 		infinite: false,
 		slidesToShow: 3,
@@ -753,10 +764,10 @@ let initialize = () => {
 	$(".carousel-item").on('click', setCoverPhoto);
 
 	// delete image, remove current cover photo from carousel
-	$(".delete-wrapper").on('click', deleteSelectedItem);
+	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
 
 	// Clicking empty cover photo should open file selector
-	$(".photo-wrapper").on('click', () => {
+	$("#cover-photo-wrapper").on('click', () => {
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
 		}

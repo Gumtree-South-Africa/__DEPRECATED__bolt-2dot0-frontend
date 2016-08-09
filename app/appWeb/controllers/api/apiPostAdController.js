@@ -33,7 +33,6 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 		//response.guid = guid;	// client currently checks for success this way <-- response.guid to be deprecated
 
 		// generate 3 links for client: login, register, facebook login
-
 		let returnUrl = `/post?guid=${guid}`;
 
 		response.links = {
@@ -65,9 +64,8 @@ let getAdPostedResponse = (results) => {
 
 	response.ad = {
 		id: results.id,
+		vipLink: results.vipLink
 	};
-
-	response.ad.vipLink = results.vipLink;
 
 	return response;
 };
@@ -141,14 +139,13 @@ router.post('/create', cors, (req, res) => {
 
 	// Step 6: Validate authentication cookie is still good
 	userModel.getUserFromCookie().then( () => {
-		// console.log(JSON.stringify(result, null, 4));
-
 		// user cookie checks out fine, go ahead and post the ad...
 
 		// Step 7: Post The Ad
 		postAdModel.postAd(requestJson).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
 
+			responseJson.ad.vipLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
 			res.send(responseJson);
 			return;
 		}).fail((error) => {

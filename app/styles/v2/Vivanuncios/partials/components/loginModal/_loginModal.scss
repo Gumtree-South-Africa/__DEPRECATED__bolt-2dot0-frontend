@@ -58,13 +58,13 @@
 	}
 
 	.register-link {
-		color: $grey-text-color;
+		color: $postAdTextGray;
 		text-decoration: underline;
 		cursor: pointer;
 	}
 
 	.legal-wrapper {
-		color: $grey-text-color;
+		color: $postAdTextGray;
 		font-size: 12px;
 		margin: 15px auto;
 		width: 95%;
@@ -72,7 +72,7 @@
 		background-color: white;
 
 		a {
-			color: #478BCD;
+			color: $loginModalLinkColor;
 			cursor: pointer;
 			text-decoration: underline;
 		}

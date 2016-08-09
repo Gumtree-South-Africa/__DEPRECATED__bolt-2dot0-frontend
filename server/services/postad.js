@@ -5,23 +5,12 @@ let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 let bapiService      = require("./bapi/bapiService");
 
 class PostAdService {
-
-	// this is a temporary hack because mock services are not available in other environments
-	quickpostAdMock() {
-		// return require('q').reject(new Error("test error - could not post ad"));
-		return require('q')(require(process.cwd() + '/server/services/mockData/postAdResponse.json'));
-	}
-
-	quickpostAd(bapiHeaderValues, adJson) {
-
+	quickpost(bapiHeaderValues, adJson) {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: config.get('BAPI.endpoints.quickpostAd'),
-		}), bapiHeaderValues, JSON.stringify(adJson), 'quickpostAd');
+		}), bapiHeaderValues, JSON.stringify(adJson), 'postAd');
 	}
 }
-
-
-
 
 module.exports = new PostAdService();

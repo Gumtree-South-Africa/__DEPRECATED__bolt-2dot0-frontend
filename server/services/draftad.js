@@ -5,18 +5,6 @@ let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 let bapiService      = require("./bapi/bapiService");
 
 class DraftAdService {
-
-	// this is a temporary hack because mock services are not available in other environments
-	saveDraftMock() {
-		return require('q')(require(process.cwd() + '/server/services/mockData/saveDraftAdResponse.json'));
-	}
-
-	// this is a temporary hack because mock services are not available in other environments
-	getDraftMock() {
-		// return require('q').reject(new Error("test error - could not get draft"));
-		return require('q')(require(process.cwd() + '/server/services/mockData/getDraftAdResponse.json'));
-	}
-
 	saveDraft(bapiHeaderValues, machguid, draftJson) {
 		let pathValue = config.get('BAPI.endpoints.draftAd') + '/' + machguid;
 
@@ -35,8 +23,5 @@ class DraftAdService {
 		}), bapiHeaderValues, 'getDraftAd');
 	}
 }
-
-
-
 
 module.exports = new DraftAdService();

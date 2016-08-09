@@ -1,7 +1,4 @@
 $item-margin: 10px;
-$header-blue: #4A90E2;
-$grey-text-color: #808080;
-$orange: #FD9626;
 $photo-switcher-width: 30%;
 
 .margin-auto {
@@ -26,7 +23,7 @@ $photo-switcher-width: 30%;
 
 	.confirm-tip {
 		font-size: 18px;
-		color: #8F8F8F;
+		color: $postAdTextGray;
 	}
 }
 
@@ -36,7 +33,7 @@ $photo-switcher-width: 30%;
 
 	.directions {
 		font-size: 18px;
-		color: $grey-text-color;
+		color: $postAdTextGray;
 		margin-bottom: 15px;
 	}
 

@@ -21,13 +21,12 @@ let postAdData = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_es_MX.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_" + modelData.locale + ".js");
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');
 	}
 };
 
 router.use('/', (req, res, next) => {
-
 	let deferredAdPromise = Q.fcall(() => {
 		if (req.query.guid) {
 			// we've got a query string
@@ -41,12 +40,12 @@ router.use('/', (req, res, next) => {
 			let draftAd = {};	// going to try and preserve the draftAd even if we can't post it
 
 			return draftAdModel.getDraft(guid).then((results) => {
-					draftAd = results;	// we'll need this later when postAd attempt fails
+				draftAd = results;	// we'll need this later when postAd attempt fails
 				// console.log(JSON.stringify(results, null, 4));
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
 					// deferred ad resolved, redirect to vip
-					return Q.reject({ redirect: adResult.vipLink });
+					return Q.reject({ redirect: postAdModel.fixupVipUrl(adResult.vipLink) });
 				});
 			}).fail((error) => {
 				// all errors specific to deferred ad processing land here
@@ -72,7 +71,6 @@ router.use('/', (req, res, next) => {
 
 		return modelPromise;
 	}).then((modelData) => {
-
 		postAdData.extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
@@ -80,7 +78,6 @@ router.use('/', (req, res, next) => {
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
-
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected
 		if (err.redirect) {
 			// want this to go all the way out

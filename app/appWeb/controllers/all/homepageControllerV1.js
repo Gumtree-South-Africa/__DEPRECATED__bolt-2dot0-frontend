@@ -99,6 +99,8 @@ let HP = {
 			let baseJSComponentDir = '/views/components/';
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
+			modelData.footer.javascripts.push(baseJSComponentDir + 'smartMobileBanner/js/smartMobileBanner.js');
+			
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.
 			// @todo: Make sure that for AR,MX we include the CarouselExt JS files (3) and for
@@ -110,6 +112,7 @@ let HP = {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
+				
 			}
 
 			let availableAdFeatures = modelData.footer.availableAdFeatures;

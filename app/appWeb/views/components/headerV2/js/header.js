@@ -2,7 +2,7 @@
 
 let $ = require('jquery');
 let deepLink = require('app/appWeb/views/components/headerV2/js/deepLink.js');
-let hamburgerMenu = require("app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js");
+let hamburgerMenu = require('app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js');
 
 let _toggleBrowseMenu = (shouldClose) => {
 	if (shouldClose === undefined) {
@@ -46,6 +46,7 @@ let onReady = () => {
 
 // Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 let initialize = (registerOnReady = true) => {
+	hamburgerMenu.initialize();
 
 	this.$header = $(".headerV2");
 	this.$profileDrop = this.$header.find('#js-profile-dropdown');
@@ -53,8 +54,6 @@ let initialize = (registerOnReady = true) => {
 
 	this.$catDrop = this.$header.find('#js-cat-dropdown');
 	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
-
-	hamburgerMenu.initialize();  // if we have the header we also want the hamburger js
 
 	if (registerOnReady) {
 		$(document).ready(onReady);

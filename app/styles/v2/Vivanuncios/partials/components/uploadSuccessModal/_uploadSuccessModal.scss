@@ -1,5 +1,3 @@
-$grey-text-color: #808080;
-
 .upload-success-modal {
 	position: fixed;
 	bottom: 0;
@@ -42,13 +40,13 @@ $grey-text-color: #808080;
 		margin: 0 auto;
 		text-align: left;
 		font-size: 12px;
-		color: $grey-text-color;
+		color: $postAdTextGray;
 		margin-bottom: 15px;
 	}
 
 	.more-details-link {
 		font-size: 20px;
-		color: $grey-text-color;
+		color: $postAdTextGray;
 		text-decoration: underline;
 		cursor: pointer;
 		margin-bottom: 15px;
