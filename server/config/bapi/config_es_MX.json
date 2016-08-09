@@ -173,6 +173,14 @@
 			"mobile" 	: {
 			  	"models" : ["seo"]
 			}
+		},
+		"PostAd" : {
+			"desktop" 	: {
+				"models" : ["seo"]
+			},
+			"mobile" 	: {
+				"models" : ["seo"]
+			}
 		}
 	}
 }

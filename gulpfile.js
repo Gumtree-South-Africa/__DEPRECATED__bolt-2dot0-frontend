@@ -91,6 +91,7 @@ gulp.task('default', function(done) {
 let testTasks = getTask("test");
 
 gulp.task('test:clientUnit', testTasks);
+gulp.task('test:clientUnitCI', testTasks);
 gulp.task('test:serverUnit', testTasks);
 gulp.task('test:integration', testTasks);
 gulp.task('test', testTasks);

@@ -15,11 +15,15 @@ module.exports = function watch(gulp, plugins) {
 		flatten = require("gulp-flatten"),
 		del = require("del");
 
-	let browser = "chrome";
+	let ciMode = false,
+		browser = "chrome";
 
 	if (argv.browser) {
 		browser = argv.browser;
 	}
+
+	ciMode = argv.CI;
+
 
 	return function() {
 		// Integration Tests Tasks
@@ -64,28 +68,19 @@ module.exports = function watch(gulp, plugins) {
 			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
 		});
 
-		gulp.task('webpackTest', (done) => {
-			// run webpack
-			webpack(require(process.cwd() + "/app/config/bundling/webpack.test.config.js"), function(err, stats) {
-				if(err) throw new gutil.PluginError("webpack", err);
-				console.log("[webpack]", stats.toString());
 
-				done();
-			});
-		});
-
-		gulp.task('karma', function (done) {
+		gulp.task('karma', function(done) {
 			new Server({
 				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
-				singleRun: true
+				singleRun: !ciMode
 			}, (exitStatus) => {
 				let exitText = exitStatus ? "!!!!!!!CLIENT_UNIT TESTS ARE FAILING, test is unstable" : undefined;
 				done(exitText);
 			}).start();
 		});
 
-		gulp.task('test:clientUnit', function (done) {
-			runSequence("precompileTemplates", "webpackTest", "karma", done)
+		gulp.task('test:clientUnit', function(done) {
+			runSequence("precompileTemplates", "karma", done)
 		});
 
 		// SERVER UNIT TEST TASKS

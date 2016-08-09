@@ -1,0 +1,17 @@
+<div id='js-success-modal' class="upload-success-modal hidden">
+	<div class="close-button">
+		<div class="close-text">{{i18n "postAdModal.close"}}</div>
+		<span class="icon-close"></span>
+	</div>
+
+	<div class="success-title">{{i18n "postAd.successModal.title"}}</div>
+
+    <div class="tip">{{i18n "postAd.successModal.tip"}}</div>
+
+    <a href='#' id="js-more-details-link" class="more-details-link">{{i18n "postAd.successModal.moreDetails"}}</a>
+
+    {{> (dynamic "button") buttonId='js-post-more-ads-button' iconName="icon-post" extraClasses='post-more-btn'
+    buttonLink="#" i18nPath="postAd.successModal.postMoreBtn"}}
+</div>
+
+<div id='js-success-modal-mask' class="success-modal-mask hidden"></div>

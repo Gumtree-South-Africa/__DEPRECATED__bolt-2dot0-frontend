@@ -60,8 +60,12 @@ router.post('/',
 
 		// Build Model Data
 		let bapiConfigData = res.locals.config.bapiConfigData;
-		let model = QuickPostPageModel(req, res);
-		model.then(function(modelData) {
+
+
+		let model = new QuickPostPageModel(req, res);
+
+		let modelPromise = model.populateData();
+		modelPromise.then(function(modelData) {
 			// Special Data needed for QuickPost in header, footer, content
 			QuickPost.extendHeaderData(req, modelData);
 			QuickPost.extendFooterData(modelData);
@@ -74,6 +78,32 @@ router.post('/',
 				// Build Ad JSON
 				let adJson = QuickPost.buildAdJson(modelData, req.body);
 				let ad = JSON.stringify(adJson);
+				/*
+				 {
+					 "description": "dsafsdf sdfs sdf",
+					 "categoryId": "9132",
+					 "location": {
+						 "address": "491 Old Evans Rd, Milpitas, CA 95035, USA",
+						 "latitude": "-33.918861",
+						 "longitude": "18.423300"
+					 },
+					 "ipAddress": "::1",
+					 "price": {
+						 "currency": "MXN",
+						 "amount": "123"
+					 },
+					 "pictures": {
+						"sizeUrls": [
+							{
+								"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/om4AAOSwAsNXlrMV/$_18.JPG?set_id=8800005007"
+							},
+							{
+								"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/DXwAAOSwyKBXlrMZ/$_18.JPG?set_id=8800005007"
+							}
+						]
+					 }
+					 }
+				 */
 
 				// Call BAPI to Post Ad
 				Q(postAdService.quickpostAd(modelData.bapiHeaders, ad))
@@ -104,6 +134,7 @@ router.post('/',
 						}
 					}).fail(function(err) {
 					QuickPost.respondSubmitError(req, res, next, modelData, err);
+					//Received non-200 status: 500
 				});
 			}
 
