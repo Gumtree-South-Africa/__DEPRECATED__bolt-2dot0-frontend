@@ -33,7 +33,6 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 		//response.guid = guid;	// client currently checks for success this way <-- response.guid to be deprecated
 
 		// generate 3 links for client: login, register, facebook login
-
 		let returnUrl = `/post?guid=${guid}`;
 
 		response.links = {
@@ -47,7 +46,7 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
 	getNotLoggedInResponsePromise(model, machguidCookie, requestJson).then((response) => {
-		res.send(response.json);
+		res.send(response);
 		return;
 	}).fail((e) => {
 		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);

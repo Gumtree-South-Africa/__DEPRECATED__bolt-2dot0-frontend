@@ -40,7 +40,7 @@ router.use('/', (req, res, next) => {
 			let draftAd = {};	// going to try and preserve the draftAd even if we can't post it
 
 			return draftAdModel.getDraft(guid).then((results) => {
-					draftAd = results;	// we'll need this later when postAd attempt fails
+				draftAd = results;	// we'll need this later when postAd attempt fails
 				// console.log(JSON.stringify(results, null, 4));
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
