@@ -549,6 +549,21 @@ Array.prototype.remove = function(from, to) {
 /******* END EPS STUFF *******/
 
 /******* BEGIN SLICK STUFF *******/
+let resizeCarousel = () => {
+	let width = $('.add-photo-item, .carousel-item').width();
+	//fix issue where images would sometimes be very small
+	if (width > 10) {
+		// set height of carousel items to be same as width (set by slick)
+		$('.add-photo-item, .carousel-item').css({'height': width + 'px'});
+
+		// vertical align arrows to new height
+		let arrowTop = width / 2 - 3;
+		$('.slick-arrow').css({'top': arrowTop + 'px'});
+		$('.slick-prev').addClass("icon-back");
+		$('.slick-next').addClass("icon-back");
+	}
+};
+
 let deleteSelectedItem = (event) => {
 	event.stopPropagation();
 
@@ -579,18 +594,7 @@ let deleteSelectedItem = (event) => {
 			}
 		});
 	}
-};
-
-let resizeCarousel = () => {
-	let width = $('.add-photo-item, .carousel-item').width();
-	//fix issue where images would sometimes be very small
-	if (width > 10) {
-		// set height of carousel items to be same as width (set by slick)
-		$('.add-photo-item, .carousel-item').css({'height': width + 'px'});
-
-		// vertical align arrows to new height
-		$('.slick-arrow').css({'top': width / 2 + 'px'});
-	}
+	resizeCarousel();
 };
 
 let parseFile = (file) => {
@@ -644,7 +648,9 @@ let preventDisabledButtonClick = (event) => {
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
 				let image = $(".carousel-item[data-item='" + i + "']").data("image");
-				images.push(image);
+				if (image) {
+					images.push(image);
+				}
 			}
 			_postAd(images, locationType);
 		});
