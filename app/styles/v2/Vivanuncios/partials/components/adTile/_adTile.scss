@@ -84,19 +84,6 @@ $panelCornerBorderRadius: 7px;
 
 		background: linear-gradient( 0deg, black, transparent );
 
-		.ad-stats {
-			position: absolute;
-			left: 5px;
-			bottom: 5px;
-			color: white;
-            font: $cardStatsFont;
-			line-height: 1;
-
-            .inline-block {
-                display: inline-block;
-            }
-		}
-
 		.favorite-btn {
 			bottom: 5px;
 			right: 5px;
