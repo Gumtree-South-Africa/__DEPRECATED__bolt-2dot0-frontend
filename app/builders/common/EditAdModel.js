@@ -14,9 +14,7 @@ class EditAdModel {
 		if (typeof adId === undefined || adId === null) {
 			return {};
 		}
-		return editAdService.getAd(this.bapiHeaders, adId).then( (results) => {
-			return results;
-		});
+		return editAdService.getAd(this.bapiHeaders, adId);
 	}
 
 	editAd(editAdRequest) {

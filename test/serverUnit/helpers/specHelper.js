@@ -72,6 +72,9 @@ let verifyMockEndpointsClean = () => {
  * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
 let registerMockEndpoint = (url, filePath, options) => {
+	if (url.indexOf('?_forceExample') === -1) {
+		url = `${url}?_forceExample=true&_statusCode=200`;
+	}
 	if (!endpointToFileMap[url]) {
 		endpointToFileMap[url] = [];
 	}
@@ -149,7 +152,7 @@ module.exports.boltSupertest = (route, host, method) => {
 	 */
 	return app.createSiteApps().then(() => {
 		console.warn('Server started');
-		host = host || 'gumtree.co.za';
+		host = host || 'vivanuncios.com.mx';
 
 		let result = supertest(app);
 

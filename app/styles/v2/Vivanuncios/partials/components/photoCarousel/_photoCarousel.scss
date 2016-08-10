@@ -140,12 +140,16 @@
 		}
 
 		.add-photo-item {
+			position: relative;
 			background-color: white;
 			margin: 5px;
 			outline: none;
 			border: 1px solid $postAdTextGray;
 
 			.icon-text-wrapper {
+				left: 0;
+				right: 0;
+				margin: auto;
 				position: absolute;
 				width: inherit;
 				height: inherit;

@@ -41,8 +41,9 @@ router.use('/:id?', (req, res, next) => {
 			modelData.getAdResults = getAdResults;
 
 			pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
-		}).fail((geterr) => {
-			return next(geterr);
+		}).fail((getError) => {
+			// Just throw a 404 instead of a 500 for a missing ad.
+			return (getError.statusCode === 404) ? next() : next(getError);
 		});
 	}).fail((err) => {
 		console.error(err);

@@ -36,12 +36,12 @@ module.exports = {
 		// *******************************************************************
 		// PLEASE DO NOT REMOVE THIS UGLIFYJS PLUGIN FROM THE TOP OF THE ARRAY
 		// *******************************************************************
-		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true,	// defaults to true, but nice to see it explicit
-			compress: {
-				warnings: false
-			}
-		}),
+		// new webpack.optimize.UglifyJsPlugin({
+		// 	sourceMap: true,	// defaults to true, but nice to see it explicit
+		// 	compress: {
+		// 		warnings: false
+		// 	}
+		// }),
 		new webpack.ProvidePlugin({
 			$: "jquery",
 			jQuery: "jquery"

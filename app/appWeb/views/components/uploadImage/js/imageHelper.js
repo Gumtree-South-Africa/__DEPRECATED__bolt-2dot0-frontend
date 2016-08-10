@@ -503,6 +503,11 @@ class ImageHelper {
 		return url.replace(reg, "_18.JPG");
 	}
 
+	convertThumbImgURL20(url) {
+		let reg = /\_\d*\.JPG/ig;
+		return url.replace(reg, "_20.JPG");
+	}
+
 	getThumbImgURL(url) {
 		let result;
 		if (!this.EPS.IsEbayDirectUL) {

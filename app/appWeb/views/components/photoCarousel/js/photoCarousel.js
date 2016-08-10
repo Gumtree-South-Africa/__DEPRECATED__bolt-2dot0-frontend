@@ -82,47 +82,6 @@ let ExtractURLClass = (url) => {
 
 };
 
-
-let setCoverPhoto = (event) => {
-	let data = $(event.target).data();
-	let coverPhoto = $('.cover-photo');
-	coverPhoto[0].style.backgroundImage = "url('" + data.image + "')";
-
-	// remove no-photo class and click handler
-	$("#cover-photo-wrapper").off('click');
-	coverPhoto.removeClass("no-photo");
-
-	// remove 'selected' class from other items and add to new target
-	let cItems = document.querySelectorAll(".carousel-item");
-	[].forEach.call(cItems, (item) => {
-		$(item).removeClass('selected');
-	});
-	$(event.target).addClass("selected");
-};
-
-// For each carousel item, set backgroundImage from data-image
-let updateCarouselImages = () => {
-	let cItems = document.querySelectorAll(".carousel-item[data-image]");
-
-	[].forEach.call(cItems, (item) => {
-		let url = item.getAttribute('data-image');
-		item.style.backgroundImage = "url('" + url + "')";
-	});
-};
-
-
-let createImgObj = (i, urlThumb, urlNormal) => {
-	let currItem = $('.carousel-item[data-item="' + i + '"]');
-	currItem.attr("data-image", urlNormal);
-	currItem.on('click', setCoverPhoto);
-	updateCarouselImages();
-
-	// set cover photo if none found
-	if ($('.cover-photo').hasClass('no-photo')) {
-		$('.carousel-item:first').click();
-	}
-};
-
 //todo: handles all the image uploads
 let imageUploads = (() => {
 
@@ -165,6 +124,90 @@ let imageUploads = (() => {
 		}
 	};
 })();
+
+let deleteCarouselItem = (event) => {
+	event.stopPropagation();
+
+	// delete carousel item
+	let toRemove = $(event.target).closest('.carousel-item');
+	let index = $(".carousel-item").index(toRemove);
+	this.$carousel.slick('slickRemove', index);
+
+	// remove cover photo
+	let coverPhoto = $("#cover-photo");
+	coverPhoto.css("background-image", "");
+	coverPhoto.addClass("no-photo");
+	coverPhoto.attr("data-image", "");
+
+	// delete image from imageUploads
+	if (imageUploads.count() === 0) {
+		this.$postAdButton.addClass("disabled");
+	}
+
+	// Set new cover photo, or trigger file selector on empty photo click
+	let firstItem = $(".carousel-item:first");
+	let selectedItem = $('.carousel-item.selected');
+	// Just reclick the selected one or the first item to refresh the featured
+	if (selectedItem.length > 0) {
+		selectedItem.click();
+	} else if (firstItem.length > 0) {
+		firstItem.click();
+	} else {
+		$("#cover-photo-wrapper").on('click', () => {
+			if (!this.disableImageSelection) {
+				this.$imageUpload.click();
+			}
+		});
+	}
+};
+
+let setCoverPhoto = (event) => {
+	let data = $(event.target).data();
+	if ($(event.target).hasClass('icon-photo-close')) {
+		deleteCarouselItem(event);
+		return;
+	}
+	if (!data.image) {
+		return;
+	}
+	let image = this.imageHelper.convertThumbImgURL20(data.image);
+	let coverPhoto = $('.cover-photo');
+	coverPhoto[0].style.backgroundImage = "url('" + image + "')";
+
+	// remove no-photo class and click handler
+	$("#cover-photo-wrapper").off('click');
+	coverPhoto.removeClass("no-photo");
+
+	// remove 'selected' class from other items and add to new target
+	let cItems = document.querySelectorAll(".carousel-item");
+	[].forEach.call(cItems, (item) => {
+		$(item).removeClass('selected');
+	});
+	$(event.target).addClass("selected");
+};
+
+// For each carousel item, set backgroundImage from data-image
+let updateCarouselImages = () => {
+	let cItems = document.querySelectorAll(".carousel-item[data-image]");
+
+	[].forEach.call(cItems, (item) => {
+		let url = item.getAttribute('data-image');
+		item.style.backgroundImage = "url('" + url + "')";
+	});
+};
+
+
+let createImgObj = (i, urlThumb, urlNormal) => {
+	let currItem = $('.carousel-item[data-item="' + i + '"]');
+	currItem.attr("data-image", urlNormal);
+	currItem.on('click', setCoverPhoto);
+	updateCarouselImages();
+
+	// set cover photo if none found
+	if ($('.cover-photo').hasClass('no-photo')) {
+		$('.carousel-item:first').click();
+	}
+};
 
 //TODO: fix this for the desktop carousel
 let UploadMsgClass = {
@@ -612,10 +655,21 @@ let parseFile = (file) => {
 		let totalItems = $(".carousel-item").length;
 
 		if (totalItems < allowedUploads) {
+			//Ternary for whether or not to show the blue X in the corner of each thumbnail
 			this.$carousel.slick('slickAdd',
+
+				(this.showDeleteImageIcons) ?
+				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
+				`<div id="carousel-delete-item" class="delete-wrapper">
+					<div class="icon-photo-close"></div>
+					</div>` +
+				'<div id="carousel-upload-spinner" class="spinner"></div>' +
+				'</div>'
+					: //Ternary else right here
 				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
 				'<div id="carousel-upload-spinner" class="spinner"></div>' +
-				'</div>', totalItems, true);
+				'</div>'
+				, totalItems, true);
 			this.$carousel.slick('slickGoTo', totalItems, false);
 
 			// increment loaded count
@@ -679,7 +733,19 @@ let fileInputChange = (evt) => {
 	html5Upload(evt);
 };
 
-let initialize = () => {
+let initialize = (options) => {
+	if (!options) {
+		options = {
+			slickOptions: {
+				arrows: true,
+				infinite: false,
+				slidesToShow: 3,
+				slidesToScroll: 3
+			},
+			showDeleteImageIcons: false
+		};
+	}
+	this.showDeleteImageIcons = options.showDeleteImageIcons;
 	//EPS setup
 	this.disableImageSelection = false;
 	this.epsData = $('#js-eps-data');
@@ -748,12 +814,7 @@ let initialize = () => {
 	this.$imageUpload.on("change", fileInputChange);
 
 	// Slick setup
-	this.$carousel.slick({
-		arrows: true,
-		infinite: false,
-		slidesToShow: 3,
-		slidesToScroll: 3
-	});
+	this.$carousel.slick(options.slickOptions);
 
 	// init carousel item images and heights
 	updateCarouselImages();
@@ -771,9 +832,10 @@ let initialize = () => {
 
 	// delete image, remove current cover photo from carousel
 	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
+	$("#carousel-delete-item").on('click', deleteCarouselItem);
 
 	// Clicking empty cover photo should open file selector
-	$("#cover-photo-wrapper").on('click', () => {
+	$("#cover-photo").on('click', () => {
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
 		}

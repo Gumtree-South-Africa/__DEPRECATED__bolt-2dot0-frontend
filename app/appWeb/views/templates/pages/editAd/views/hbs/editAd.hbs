@@ -3,8 +3,11 @@
 {{/partial}}
 
 {{#partial "content"}}
-    <section class="edit-ad-page">
+	<section class="edit-ad-page">
         {{> (dynamic "postAdHeader")}}
+		<div class="hidden">
+            {{> (dynamic "uploadImage")}}
+		</div>
         {{#block "editPhotoCarousel"}}
 			<div class="photo-carousel">
 				<div class="photo-switcher">
@@ -51,7 +54,8 @@
 							<label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
 						</div>
 						<div class="input-wrapper">
-							<input title="adPrice"  placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input" type="text"/>
+							<input title="adPrice" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+								   type="text"/>
 							<div class="radio-group">
 								<label class="control">
 									<input type="radio" name="radio"/>
@@ -111,7 +115,7 @@
 				</form>
 			</div>
         {{/block}}
-    </section>
+	</section>
 
     {{> (dynamic "modal")}}
 {{/partial}}
