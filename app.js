@@ -76,9 +76,14 @@ let createSiteApps = () => {
 			// ***** App Sites *****
 			//We need to configure the middleware stack in the correct order.
 			siteApps.forEach((siteApp) => {
-				// register bolt middleware
+				// Site Configuration for each Site App
 				siteApp.use(siteconfig(siteApp));
-				siteApp.use(versionconfig());
+
+				// Version Configuration for each Site App
+				// Only for Vivanuncios enable 2.0
+				if (siteApp.locals.config.locale === 'es_MX') {
+					siteApp.use(versionconfig());
+				}
 
 				_.each(appConfigJson, (appConfig) => {
 					let App = require(appConfig.path);
