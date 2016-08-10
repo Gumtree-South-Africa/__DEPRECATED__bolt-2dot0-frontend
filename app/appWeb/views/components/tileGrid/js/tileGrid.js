@@ -4,8 +4,10 @@
 let $ = require('jquery');
 let Isotope = require('isotope-layout');
 require('jquery-bridget');
+let adTile = require('app/appWeb/views/components/adTile/js/adTile.js');
 
 let initialize = () => {
+	adTile.initialize();
 	// Isotope requres document to be ready activated
 	$(document).ready(() => {
 

@@ -1,8 +1,13 @@
 {{#block "adTile"}}
     {{!-- this.isFeatured --}}
-    <span class="inline-block panel {{#if this.features}}featured{{/if}}" style="background-image: url({{this.pictures.0.url}});">
+    <span class="inline-block panel {{#if this.features}}featured{{/if}}">
+        <img class="lazy" data-original="{{this.pictures.0.url}}">
         <span class="featured-bolt icon-featured-white"></span>
-        <a href="{{this.seller.soiSeoUrl}}"><span class="inline-block user-photo" style="background-image: url({{this.seller.profileImage}}14.JPG);"></span></a>
+        <a href="{{this.seller.soiSeoUrl}}">
+            <span class="inline-block user-photo">
+                <img class="lazy" data-original="{{this.seller.profileImage}}">
+            </span>
+        </a>
         <section class="controls">
             <section class="ad-stats">
                 <div class="inline-block icon-heart-white"></div>
