@@ -7,6 +7,7 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 
 
 class EditAdPageModel {
@@ -66,8 +67,19 @@ class EditAdPageModel {
 		return modelData;
 	}
 
-	getPageDataFunctions(/*modelData*/) {
+	getPageDataFunctions(modelData) {
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		this.dataPromiseFunctionMap = {};
+
+		this.dataPromiseFunctionMap.locationlatlong = () => {
+			modelData.geoCookie = modelData.geoCookie || '';
+			return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
+		};
 	}
 }
 

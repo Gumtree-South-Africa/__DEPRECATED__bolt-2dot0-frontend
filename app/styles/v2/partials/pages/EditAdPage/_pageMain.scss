@@ -134,10 +134,21 @@ $labelMargin: 8%;
 			}
 		}
 
+		.location-link {
+			background-color: white;
+			padding-left: 10px;
+			color: $vivaBlack;
+
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+
 		.input-wrapper {
 			width: 100%;
 
-			input[type="text"] {
+			input[type="text"], .location-link {
 				width: $inputWidth;
 				margin: 0 $inputMargin;
 

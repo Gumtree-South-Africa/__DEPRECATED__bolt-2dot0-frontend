@@ -89,7 +89,7 @@
 							<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
 						</div>
 						<div class="input-wrapper">
-							<input type="text"/>
+							<div id="edit-location-input" role="link" class="location-link" data-default-location="{{i18n "location.defaultcity"}}">ServerLoc</div>
 						</div>
 						<div class="location-warning">
 							<div class="location-warning-text">
@@ -112,6 +112,8 @@
 			</div>
         {{/block}}
     </section>
+
+    {{> (dynamic "modal")}}
 {{/partial}}
 
 {{#partial "footerWrapper"}}

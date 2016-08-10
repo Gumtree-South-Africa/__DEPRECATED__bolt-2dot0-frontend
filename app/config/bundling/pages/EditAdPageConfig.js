@@ -16,7 +16,8 @@ module.exports = {
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"UploadImage": "app/appWeb/views/components/uploadImage/js/uploadImage.js",
 			"PhotoCarousel": "app/appWeb/views/components/photoCarousel/js/photoCarousel.js",
-			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js"
+			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
+			"PageMain": "app/appWeb/views/templates/pages/editAd/js/editPage.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
