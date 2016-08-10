@@ -63,7 +63,7 @@ class CardsModel {
 			}
 		}
 
-		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((dataItems) => {
+		return cardService.mockGetCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((dataItems) => {
 			let sizes = cardConfig.itemSizesString;
 			if (dataItems.ads.length > sizes.length) {
 				console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);

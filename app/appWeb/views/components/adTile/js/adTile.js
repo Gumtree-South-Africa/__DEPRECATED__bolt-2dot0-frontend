@@ -7,6 +7,9 @@ let initialize = () => {
 	$(document).ready(() => {
 		$("img.lazy").lazyload();
 
+		$("img.lazy").on("appear", () => {
+			console.log("appear");
+		});
 	});
 };
 
