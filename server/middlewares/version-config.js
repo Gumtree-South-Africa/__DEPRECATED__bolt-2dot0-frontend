@@ -7,6 +7,20 @@ module.exports = function() {
 		res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
 	}
 
+	//
+	//URL for version 1.0
+	//	?v=2c2832fd
+	//	?v=154c0359
+	//	?v=0adbd7c9
+	//	?v=0031e3f6
+	//	?v=1659313c
+	//
+	//URL for version 2.0
+	//	?v=10122d18
+	//	?v=0d81ed6b
+	//	?v=23f427a7
+	//	?v=34a285b4
+	//	?v=1b3a71ee
 	function checkUrlParam(req, res) {
 		switch (req.query.v) {
 			case '2c2832fd':
