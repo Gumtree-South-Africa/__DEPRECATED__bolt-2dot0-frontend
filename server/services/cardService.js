@@ -9,6 +9,11 @@ let bapiService      = require("./bapi/bapiService");
  */
 class CardService {
 
+	// this is a temporary hack because mock services are not available in other environments
+	mockGetCardItemsData() {
+		return require('q')(require(process.cwd() + '/test/serverUnit/mockData/vmAds.json'));
+	}
+
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
 	 	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 	 		method: 'GET',
