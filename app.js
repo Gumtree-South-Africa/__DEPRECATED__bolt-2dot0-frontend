@@ -12,6 +12,7 @@ let appConfigJson = require('./app/config/appConfig.json');
 // middleware
 let expressbuilder = require('./server/middlewares/express-builder');
 let siteconfig = require('./server/middlewares/site-config');
+let versionconfig = require('./server/middlewares/version-config');
 let responseMetrics = require('./server/middlewares/response-metrics');
 let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
@@ -77,6 +78,7 @@ let createSiteApps = () => {
 			siteApps.forEach((siteApp) => {
 				// register bolt middleware
 				siteApp.use(siteconfig(siteApp));
+				siteApp.use(versionconfig());
 
 				_.each(appConfigJson, (appConfig) => {
 					let App = require(appConfig.path);
