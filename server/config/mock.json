@@ -19,7 +19,8 @@
 		  	"quickpostAd"		:	"/ads",
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
-			"draftAd"			:	"/ads/drafts"
+			"draftAd"			:	"/ads/drafts",
+			"specificAd"		:	"/ads/{id}"
 	    }
 	},
 	"solr": {

@@ -19,7 +19,8 @@
 		  	"quickpostAd"		:	"/boltapi/v1/ads",
 			"recentActivities"  :	"/boltapi/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
-			"draftAd"			:	"/boltapi/v1/ads/drafts"
+			"draftAd"			:	"/boltapi/v1/ads/drafts",
+			"specificAd"		:	"/boltapi/v1/ads/{id}"
 	    }
 	},
 	"solr": {

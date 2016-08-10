@@ -20,7 +20,8 @@
 		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads",
 			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending",
-			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts"
+			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
+			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}"
 	    }
 	},
 	"kafka": {
