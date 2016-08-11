@@ -110,3 +110,7 @@ beforeEach(() => {
 
 	});
 });
+
+afterEach(() => {
+	$("#testArea").html("");
+});

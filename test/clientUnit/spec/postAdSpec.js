@@ -44,6 +44,9 @@ describe('Post Ad', () => {
 			};
 		});
 
+		// this test out until we can  fix the issue:
+		// Can't find variable: google in /Volumes/caseSensitive/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js (line 15858)
+
 		it('Should update background image after EPS', () => {
 			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
 			uploadImageController.initialize();
