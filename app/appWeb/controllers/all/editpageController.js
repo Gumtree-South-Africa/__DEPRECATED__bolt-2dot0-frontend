@@ -46,6 +46,7 @@ router.use('/:id?', (req, res, next) => {
 			return (getError.statusCode === 404) ? next() : next(getError);
 		});
 	}).fail((err) => {
+		//TODO: 401 back BAPI should redirect to 404 (user doesn't own this ad)
 		console.error(err);
 		console.error(err.stack);
 		next(err);

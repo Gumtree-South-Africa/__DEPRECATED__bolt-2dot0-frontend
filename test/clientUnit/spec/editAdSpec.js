@@ -20,7 +20,6 @@ describe('Edit Ad', () => {
 		editAdFormMainDetailsController.initialize();
 
 		specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=${inputVal}`, mockLocationData);
-		debugger;
 		specHelper.registerMockAjax("/api/locate/locationlatlong?latLong=" + encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString()) + "ng" + encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString()), mockLatLongData);
 
 		$locationLink.click();

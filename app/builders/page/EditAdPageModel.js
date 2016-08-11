@@ -57,6 +57,31 @@ class EditAdPageModel {
 		];
 	}
 
+	/**
+	 * a recursive function to return an array of breadcrumb category ids. (eg. [0, 30, 1110])
+	 * usage:
+	 * let result = []
+	 * this.getCategoryHierarchy(modelData.category, 1110, result);
+	 * console.log(result)
+	 * @param node starts with the whole category tree
+	 * @param leafId the leaf you are looking for
+	 * @param stack passed by reference array ([0, 30, 1110]), this is your result
+	 * @returns {*}
+	 */
+	getCategoryHierarchy(node, leafId, stack) {
+		if (node.id === leafId) {
+			stack.unshift(node.id);
+			return node.parentId;
+		} else {
+			for (let i = 0; i < node.children.length; i++) {
+				if (node.id === this.getCategoryHierarchy(node.children[i], leafId, stack)) {
+					stack.unshift(node.id);
+					return node.parentId;
+				}
+			}
+		}
+	}
+
 	mapData(modelData, data) {
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};

@@ -125,6 +125,24 @@ let imageUploads = (() => {
 	};
 })();
 
+let resizeCarousel = () => {
+	let $carouselImages = $('.add-photo-item, .carousel-item');
+	let width = $carouselImages.width();
+	// set height of carousel items to be same as width (set by slick)
+	[].forEach.call($carouselImages, (item) => {
+		// Slick will sometimes remove the css applied to an item.
+		let carouselItem = $(item);
+		let image = carouselItem.data('image');
+		carouselItem.css('background-image', `url("${image}")`);
+	});
+	//fix issue where images would sometimes be very small
+	if (width > 10) {
+		$carouselImages.css('height', width + 'px');
+		// vertical align arrows to new height
+		$('.slick-arrow').css('top', width / 2 + 'px');
+	}
+};
+
 let deleteCarouselItem = (event) => {
 	event.stopPropagation();
 
@@ -132,6 +150,7 @@ let deleteCarouselItem = (event) => {
 	let toRemove = $(event.target).closest('.carousel-item');
 	let index = $(".carousel-item").index(toRemove);
 	this.$carousel.slick('slickRemove', index);
+	resizeCarousel();
 
 	// remove cover photo
 	let coverPhoto = $("#cover-photo");
