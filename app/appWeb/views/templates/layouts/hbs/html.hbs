@@ -154,31 +154,46 @@
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
         <script type="text/javascript">
             var _gaq = _gaq || [];
-        {{#if this.footer.analytics.account}}
-            {{#with this.footer.analytics}}
-                _gaq.push(['siteTracker._setAccount', '{{account}}']);
-                _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
-                {{#each ignoredRefs}}
-                    _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
-                {{/each}}
-                _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
-                _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
-                _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
-                _gaq.push(['siteTracker._trackPageview']);
+            {{#if this.footer.analytics.account}}
+                {{#with this.footer.analytics}}
+                    _gaq.push(['siteTracker._setAccount', '{{account}}']);
+                    _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
+                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
+                    {{#each ignoredRefs}}
+                        _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
+                    {{/each}}
+                    _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
+                    _gaq.push(['siteTracker._trackPageview']);
 
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-                    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            {{/with}}
+                    (function() {
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                        //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                    })();
+                {{/with}}
         {{/if}}
         </script>
     {{/block}}
 
     {{#block "dynamicStyles"}}{{/block}}
+
+	<!-- Start of Google Analytics A/B Experiment code -->
+	<script>function utmx_section(){}function utmx(){}(function(){var
+			k='127456995-23',d=document,l=d.location,c=d.cookie;
+		if(l.search.indexOf('utm_expid='+k)>0)return;
+		function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
+				indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
+				length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
+				'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
+						'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
+				'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
+						valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
+				'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
+	</script><script>utmx('url','A/B');</script>
+	<!-- End of Google Analytics A/B Experiment code -->
 </head>
 <body>
 

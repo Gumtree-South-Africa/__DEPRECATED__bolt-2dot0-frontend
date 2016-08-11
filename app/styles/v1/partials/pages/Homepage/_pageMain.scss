@@ -18,6 +18,11 @@ $homepage-social-container-height: 100px !default;
 //--------------------------------------------------------
 // General rules included throughout all sizes
 //--------------------------------------------------------
+.footer{
+	max-width: 95em;
+	margin: 0 auto;
+}
+
 .hp-list-wrapper{
 	padding-bottom: $large-padding;
 }
@@ -75,9 +80,9 @@ $homepage-social-container-height: 100px !default;
     background-color: $postad-btn-color;
 }
 
-   
+
 #home_topbanner{
-	    
+
     width:970px;
     text-align:center;
     margin:15px auto 0 auto;
@@ -155,7 +160,7 @@ $homepage-social-container-height: 100px !default;
 		padding-left: $grid-padding;
 		padding-right: $grid-padding;
 	}
-	
+
 	.item-img-wrap{
 		position: relative;
 		top: 1em;
@@ -165,14 +170,14 @@ $homepage-social-container-height: 100px !default;
 		    margin:0 auto;
 		}
 	}
-	
+
 	.home_rghtbanner{
 		display:none;
 	}
-	
+
 
 }
-@media (max-width: 680px) { 
+@media (max-width: 680px) {
 	 #home_topbanner{
 		 display:none;
      }
@@ -207,15 +212,15 @@ $homepage-social-container-height: 100px !default;
 	  text-align: justify;
 	  padding-left: 10px;
     }
-   
+
 	.hp-recommend-sidebar {
 		margin-right: 0;
 		text-align: left;
 	}
-	
+
 	.item-img-wrap{
 		position: relative;
-		
+
 	}
 
 }
@@ -228,10 +233,10 @@ $homepage-social-container-height: 100px !default;
 	.hp-popular-searches-wrapper, .hp-trending-searches-wrapper{
 		ul{ @include columns(3); }
 	}
-	
+
 	.item-img-wrap{
 		position: relative;
-		
+
 	}
 
 	#state_Guanajuato, #state_Quintana_Roo{
@@ -285,5 +290,3 @@ $homepage-social-container-height: 100px !default;
 @include in-breakpoint($lt-ie9-class-name){
 	.hp-province-wrapper{ margin-right:0 !important; }
 }
-
-
