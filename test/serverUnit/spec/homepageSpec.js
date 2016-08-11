@@ -36,9 +36,9 @@ describe('Server to hit HomePage', function() {
 
 	});
 
-	describe('GET /', () => {
+	describe('V1 Home Page', () => {
 
-		it('returns status code 200', (done) => {
+		it('should return status code 200', (done) => {
 			boltSupertest('/').then((supertest) => {
 				supertest
 					.expect((res) => {
@@ -51,7 +51,7 @@ describe('Server to hit HomePage', function() {
 
 	describe('Geo Location', () => {
 
-		it('shows geo location on home page', (done) => {
+		it('should show geo location on home page (geoId cookie passed)', (done) => {
 
 			let file = specHelper.getMockData("geo", "geoLocation");
 
