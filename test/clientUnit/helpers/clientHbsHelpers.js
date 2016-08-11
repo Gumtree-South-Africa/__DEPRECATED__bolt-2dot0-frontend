@@ -9,6 +9,7 @@ let _loadPartial = (name) => {
 
 let setLocale = (newLocale) => {
 	locale = newLocale;
+	$("html").attr("data-locale", newLocale);
 };
 
 let initialize = () => {

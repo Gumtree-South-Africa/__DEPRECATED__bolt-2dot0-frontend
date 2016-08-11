@@ -3,8 +3,9 @@
 
 let $ = require("jquery");
 let clientHbsHelpers = require("./clientHbsHelpers.js");
+let _ = require("underscore");
 
-let mockAjaxMapQueue = {};
+let mockAjaxMapQueue = [];
 
 // fix HBS Template Helpers for the Client
 clientHbsHelpers.initialize();
@@ -33,16 +34,20 @@ let _prepareTemplate = (templateName, templateModel) => {
  * @param {object} returnData - returnData to return on dequeue
  */
 let _enqueue = (url, returnData, options) => {
-	if (mockAjaxMapQueue.hasOwnProperty(url) && Array.isArray(mockAjaxMapQueue[url])) {
-		mockAjaxMapQueue[url].push({
+	let queueObj = _.findWhere(mockAjaxMapQueue, { url: url.replace(/[^\u0000-\u007E]/g, "") });
+	if (queueObj) {
+		queueObj.queue.push({
 			returnData,
 			options
 		});
-	} else if (!mockAjaxMapQueue.hasOwnProperty(url)) {
-		mockAjaxMapQueue[url] = [{
-			returnData,
-			options
-		}];
+	} else {
+		mockAjaxMapQueue.push({
+			url: url.replace(/[^\u0000-\u007E]/g, ""),
+			queue: [{
+				returnData,
+				options
+			}]
+		});
 	}
 };
 
@@ -52,13 +57,14 @@ let _enqueue = (url, returnData, options) => {
  * @returns {object} - mocked data
  */
 let _dequeue = (url) => {
-	if (!mockAjaxMapQueue.hasOwnProperty(url) || !Array.isArray(mockAjaxMapQueue[url])) {
+	let queueObj = _.findWhere(mockAjaxMapQueue, {url: url.replace(/[^\u0000-\u007E]/g, "")});
+	if (!queueObj) {
 		throw Error('No Registered Mock Ajax for url -> ' + url);
 	}
 
-	let ajaxInfo = mockAjaxMapQueue[url].shift();
-	if (mockAjaxMapQueue[url].length <= 0) {
-		delete mockAjaxMapQueue[url];
+	let ajaxInfo = queueObj.queue.shift();
+	if (queueObj.queue.length <= 0) {
+		mockAjaxMapQueue.splice(mockAjaxMapQueue.indexOf(queueObj), 1);
 	}
 
 	return ajaxInfo;
@@ -67,6 +73,25 @@ let _dequeue = (url) => {
 let simulateTextInput = ($input, text) => {
 	$input.val(text);
 	$input.trigger("input").trigger("keyup").focus();
+};
+
+let setCookie = (cookieName, cookieValue) => {
+	document.cookie = `${cookieName}=${cookieValue};path=/`;
+};
+
+let getCookie = (cookieName) => {
+		let name = cookieName + "=";
+		let ca = document.cookie.split(';');
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) === ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) === 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
 };
 
 /**
@@ -86,7 +111,9 @@ let setupTest = (templateName, templateModel, locale) => {
 module.exports = {
 	simulateTextInput,
 	setupTest,
-	registerMockAjax
+	registerMockAjax,
+	setCookie,
+	getCookie
 };
 
 // spying on ajax and replacing with fake, mock function

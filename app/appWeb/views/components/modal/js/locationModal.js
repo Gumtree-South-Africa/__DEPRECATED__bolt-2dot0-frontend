@@ -204,7 +204,7 @@ let initialize = (setValueCb) => {
 		_openModal(this.$locmodal);
 	});
 
-	$('#autocompleteField').on('click', '.ac-field', (e) => {
+	this.$autocompleteField.on('click', '.ac-field', (e) => {
 		_populateACData(e);
 	});
 
