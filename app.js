@@ -12,6 +12,7 @@ let appConfigJson = require('./app/config/appConfig.json');
 // middleware
 let expressbuilder = require('./server/middlewares/express-builder');
 let siteconfig = require('./server/middlewares/site-config');
+let versionconfig = require('./server/middlewares/version-config');
 let responseMetrics = require('./server/middlewares/response-metrics');
 let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
@@ -75,8 +76,14 @@ let createSiteApps = () => {
 			// ***** App Sites *****
 			//We need to configure the middleware stack in the correct order.
 			siteApps.forEach((siteApp) => {
-				// register bolt middleware
+				// Site Configuration for each Site App
 				siteApp.use(siteconfig(siteApp));
+
+				// Version Configuration for each Site App
+				// Only for Vivanuncios enable 2.0
+				if (siteApp.locals.config.locale === 'es_MX') {
+					siteApp.use(versionconfig());
+				}
 
 				_.each(appConfigJson, (appConfig) => {
 					let App = require(appConfig.path);
