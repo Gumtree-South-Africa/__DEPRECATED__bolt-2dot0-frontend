@@ -88,7 +88,7 @@ describe('Header', () => {
 					expect(buttonText).toBe(i18n.header.postAd, 'i18n string for button is does not match');
 
 					let href = c$('a', button).attr('href');
-					expect(href).toBe('/post.html', 'the link href for the post ad button should link to post ad page');
+					expect(href).toBe('/post', 'the link href for the post ad button should link to post ad page');
 				})
 				.end(specHelper.finish(done));
 		});
@@ -246,7 +246,7 @@ describe('Header', () => {
 						let title = c$(el).attr('title');
 						expect(title).toBe(mapValue.localizedName, `link title ${title} should match mock data localizedName`);
 					});
-					
+
 					expect(linkCount).toBe(map.size, 'count of category items in the menu');
 
 				})

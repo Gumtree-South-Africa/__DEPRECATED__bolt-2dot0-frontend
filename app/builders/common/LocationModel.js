@@ -1,7 +1,7 @@
 'use strict';
 
 let locationService = require(process.cwd() + '/server/services/location');
-
+let Q = require("q");
 
 /**
  * @description A class that Handles the Location Model
@@ -30,11 +30,13 @@ class LocationModel {
 	/**
 	 * Returns results for use by client side ajax
 	 * @param {lat/long} location - latitude and longitude for users location
+	 * may return a rejected promise if no location was passed, avoid external call with bad payload
 	 */
 	getLocationLatLong(location) {
-		if (typeof location !== 'undefined') {
-			return locationService.getLatLongResults(this.bapiHeaders, location);
+		if (!location) {
+			return Q.reject(new Error(`getLocationLatLong expecting string location but got '${location}', rejecting promise`));
 		}
+		return locationService.getLatLongResults(this.bapiHeaders, location);
 	}
 }
 

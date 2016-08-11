@@ -3,6 +3,7 @@
 var config = require('config');
 
 var bapiOptions = require("./bapi/bapiOptions")(config);
+var Q = require("q");
 
 /**
  * @description A service class that talks to Location BAPI
@@ -44,15 +45,23 @@ LocationService.prototype.getTopL2LocationsData = function(bapiHeaders) {
  * Gets a list of locations from Lat/Lng
  */
 LocationService.prototype.getLatLongResults = function (bapiHeaders, geoId) {
-	// Invoke BAPI
-	var geoIdSplit = geoId.split('ng');
-	var geoLat = geoIdSplit[0];
-	var geoLng = geoIdSplit[1];
+	// because the code leading up to the promise could fail, wrap it in fcall so the caller will see a failed promise
+	return Q.fcall(() => {
+		if (!geoId) {
+			return Q.reject(`expected string format <lat>ng<long>, got: '${geoId}', rejecting promise`);
+		}
+		var geoIdSplit = geoId.split('ng');
+		if (geoIdSplit.length !== 2) {
+			return Q.reject(`expected string format <lat>ng<long>, got: '${geoId}', rejecting promise`);
+		}
+		var geoLat = geoIdSplit[0];
+		var geoLng = geoIdSplit[1];
 
-	this.bapiOptions.methods = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLat + '/' + geoLng;
+		this.bapiOptions.methods = 'GET';
+		this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLat + '/' + geoLng;
 
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders);
+		return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders);
+	});
 }
 
 

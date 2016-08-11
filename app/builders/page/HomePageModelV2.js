@@ -147,15 +147,17 @@ class HomePageModelV2 {
 			});
 		};
 
-		this.dataPromiseFunctionMap.locationlatlong = () => {
-			modelData.geoCookie = modelData.geoCookie || '';
-			return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
-				return data;
-			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
-				return {};
-			});
-		};
+		// when we don't have a geoCookie, we shouldn't make the call
+		if (modelData.geoLatLngObj) {
+			this.dataPromiseFunctionMap.locationlatlong = () => {
+				return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
+					return data;
+				}).fail((err) => {
+					console.warn(`error getting data ${err}`);
+					return {};
+				});
+			};
+		}
 
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
