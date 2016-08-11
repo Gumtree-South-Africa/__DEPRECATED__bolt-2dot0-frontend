@@ -2,15 +2,15 @@
 <div class="viewport" id="div-gpt-oop">
 
     {{#block "smartMobileWrapper"}}
-       
+
     {{/block}}
-    
+
     {{#block "headerWrapper"}}
         {{> (dynamic "header") }}
     {{/block}}
-    
-    
-    
+
+
+
     <div class="containment">
 
         {{#block "messaging-full-width"}}{{/block}}
@@ -38,16 +38,17 @@
             </div>
 
            {{#block "comscore"}}{{/block}}
-
-           {{#block "footerWrapper"}}
-            <div class="footer">
-                  {{> (dynamic "footer" ) }}
-                  {{#block "footer"}}
-                      <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
-                  {{/block}}
-            </div>
-            {{/block}}
         </div>
     </div>
+
+
+   {{#block "footerWrapper"}}
+    <div class="footer">
+          {{> (dynamic "footer" ) }}
+          {{#block "footer"}}
+              <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
+          {{/block}}
+    </div>
+    {{/block}}
 </div>
 {{!-- End Body.html --}}
