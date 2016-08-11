@@ -2,16 +2,12 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
-let uuid = require('node-uuid');
 
 describe('Post Ad Api', () => {
 
 	let guid = "12345678-e3cb-4fc5-a6a3-2cb2e54b93fc";
 
 	beforeAll(() => {
-		spyOn(uuid, "v4").and.callFake(() => {
-			return guid;
-		});
 	});
 
 	beforeEach(() => {
@@ -26,6 +22,7 @@ describe('Post Ad Api', () => {
 		//console.log("first test - Post Ad Api");
 
 		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let responseFile = specHelper.getMockData("postAd", "postAdResponse");
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
@@ -33,7 +30,8 @@ describe('Post Ad Api', () => {
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
-			'server/services/mockData/postAdResponse.json');
+			'test/serverUnit/mockData/postAd/postAdResponse.json');
+		// 'server/services/mockData/postAdResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
@@ -51,7 +49,8 @@ describe('Post Ad Api', () => {
 					expect(id).toEqual(jasmine.any(Number), `ad id value should be numeric`);
 
 					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
-					expect(jsonResult.ad.vipLink).toEqual('/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+07+22-00-57-24-085/1001100557900910658758009');
+					// the activateStatus is expected to cause a message to appear on the destination page
+					expect(jsonResult.ad.vipLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
 
 					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
@@ -97,7 +96,7 @@ describe('Post Ad Api', () => {
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
-			'server/services/mockData/saveDraftAdResponse.json', { failStatusCode: 500 });
+			'test/serverUnit/mockData/postAd/PostAdDraftResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
@@ -114,10 +113,11 @@ describe('Post Ad Api', () => {
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
-			'server/services/mockData/saveDraftAdResponse.json');
+			'test/serverUnit/mockData/postAd/PostAdDraftResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('cookie', `machguid=${guid}`)
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -148,11 +148,11 @@ describe('Post Ad Api', () => {
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
-			'server/services/mockData/saveDraftAdResponse.json');
+			'test/serverUnit/mockData/postAd/PostAdDraftResponse.json');
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.set('Cookie', 'bt_auth="test value"')
+				.set('Cookie', `bt_auth="test value; machguid=${guid}`)
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
