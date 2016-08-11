@@ -8,11 +8,7 @@ describe('Server to hit HomePage', function() {
 
 	let lat = "19.451054";
 	let lng = "-99.125519";
-
-	// let lat = "19.4968732";
-	// let lng = "-99.72326729999999";
 	let geoCookie = `${lat}ng${lng}`;
-
 
 	beforeEach(() => {
 		specHelper.registerMockEndpoint(

@@ -39,29 +39,22 @@ class ModelBuilder {
 		return Q.all(promises);
 	}
 
-	// todo: get rid of this function, see other todo: below
-	getGeoFromCookie(geoIdCookie) {
-		let geoValue = null;
-
-		let geoIdCookieValue = ((typeof geoIdCookie === 'undefined') || geoIdCookie === '') ? null : geoIdCookie;
-
-		if (geoIdCookieValue !== null) {
-			let geoIdSplit = geoIdCookieValue.split('ng');
-			let geoLat = geoIdSplit[0];
-			let geoLng = geoIdSplit[1];
-			geoValue = '(' + geoLat + ',' + geoLng + ')';
-		}
-
-		return geoValue;
-	}
-
-	//returns an unformatted lat/long for general purpose use, or null if no cookie present
+	//returns an unformatted lat/long for general purpose use, or null if no cookie present or improperly formed
 	getGeoFromCookieUnformatted(geoIdCookie) {
 
 		let geoIdCookieValue = ((typeof geoIdCookie === 'undefined') || geoIdCookie === '') ? null : geoIdCookie;
 
 		if (geoIdCookieValue !== null) {
-			let geoIdSplit = geoIdCookieValue.split('ng');
+			let splitDelim = 'ng';
+			let geoIdSplit = geoIdCookieValue.split(splitDelim);
+			if (geoIdSplit.length !== 2) {
+				console.error(`received badly formatted geoId cookie, tried to split using ${splitDelim} for: ${geoIdCookie}, cookie ignored`);
+				return null;
+			}
+			if (Number.isNaN(Number.parseFloat(geoIdSplit[0])) || Number.isNaN(Number.parseFloat(geoIdSplit[1]))) {
+				console.error(`received badly formatted geoId cookie, lat/long do not parse for: ${geoIdCookie}, cookie ignored`);
+				return null;
+			}
 			return {
 				lat: geoIdSplit[0],
 				lng: geoIdSplit[1]
@@ -82,17 +75,12 @@ class ModelBuilder {
 			ip: locals.ip,
 			machineid: locals.machineid,
 			useragent: locals.useragent,
-			// todo: ok folks, now we have two versions of lat long in the model, each formatted differently, there's a better way
-			// a side effect of this is that we now have several instances where the code parses the cookie format
-			// what we *should* be doing is creating a { lat: , lng: } object then consume that formatting as needed
-			// consuming services require format (<lat>,<long>) the services should take the geoLatLngObj and format it
-			// consumers needing to set the cookie need format <lat>ng<lng> and should also format appropriately
 
-			// todo: deprecate these two cookie formats in the model
-			geoLatLng: this.getGeoFromCookie(cookies.geoId),
-			geoCookie: cookies.geoId,
+			// creating a { lat: , lng: } object then consume that, formatting as needed
+			// consuming services require format (<lat>,<long>) use bapiService.bapiFormatLatLng()
+			// as of 8/11 the cookie is only set from the client, so no server side formatting into cookie format is done
 
-			// this is the lat long to be using going forward
+			// null if cookie is not present
 			geoLatLngObj: this.getGeoFromCookieUnformatted(cookies.geoId),
 
 			// Cached Location Data from BAPI

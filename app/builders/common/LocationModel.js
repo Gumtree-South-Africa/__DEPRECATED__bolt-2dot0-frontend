@@ -34,7 +34,7 @@ class LocationModel {
 	 */
 	getLocationLatLong(location) {
 		if (!location) {
-			return Q.reject(new Error(`getLocationLatLong expecting string location but got '${location}', rejecting promise`));
+			return Q.reject(new Error("getLocationLatLong expecting location parameter', rejecting promise"));
 		}
 		return locationService.getLatLongResults(this.bapiHeaders, location);
 	}
