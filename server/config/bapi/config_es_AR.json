@@ -29,7 +29,23 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    
+		"analytics": {
+			"account": "",
+			"domainName": ".alamaula.com",
+			"ignoredRefs": [
+				"alamaula.com"
+			],
+			"allowAnchor": true,
+			"sessionCookieTimeout": 1800000,
+			"campaignCookieTimeout": 15768000000,
+			"visitorCookieTimeout": 63072000000,
+			"gtmTagId":"GTM-5PS738",
+			"trackEvents" : [
+				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+			],
+			"enableABTest": "false"
+		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.alamaula/alamaula/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -38,7 +54,7 @@
 		"cookieNotice"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/cookie-policy-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
 		"privacyPolicy"						: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/politica-de-privacidad-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Poli_ticas_de_privacidad&s=a00F000000K9yOyIAJ",
 		"termOfUse"							: "http://ayuda.alamaula.com/AR/articles/es/KB_Article/terminos-y-condiciones-de-uso-ar?vgroup1=PKB&c=PKB%3Apoli_ticas_de_alamaula&vcategory2=Te_rminos_y_Condiciones&s=",
-		"postingRules"                      : "http://ayuda.alamaula.com/AR/articles/es/KB_Article/como-publico-un-clasificado?vgroup1=PKB&c=PKB%3Aconocimientos_ba_sicos_de_alamaula&vcategory2=Publicando_anuncios&s=a00F000000NVKXnIAP" , 
+		"postingRules"                      : "http://ayuda.alamaula.com/AR/articles/es/KB_Article/como-publico-un-clasificado?vgroup1=PKB&c=PKB%3Aconocimientos_ba_sicos_de_alamaula&vcategory2=Publicando_anuncios&s=a00F000000NVKXnIAP" ,
 		"helpLabel"							: "Ayuda",
 		"helpUrl"							: "http://ayuda.alamaula.com/",
 		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
@@ -54,37 +70,21 @@
 			"googleAdHeight"					: "250"
 		},
 		"seoBolt"							:	{
-			"enabled"							: true,			
+			"enabled"							: true,
 			"blogUrl" 							: "http://blog.alamaula.com/",
 			"vipLandingPageEnabled"				: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
-		"analytics": {
-	        "account": "",
-	        "domainName": ".alamaula.com",
-	        "ignoredRefs": [
-	            "alamaula.com"
-	        ],
-	        "allowAnchor": true,
-	        "sessionCookieTimeout": 1800000,
-	        "campaignCookieTimeout": 15768000000,
-	        "visitorCookieTimeout": 63072000000,
-	        "gtmTagId":"GTM-5PS738",
-	        "trackEvents" : [
-	            {"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
-	            {"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
-	        ]
-	    }
+		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: false,		
+			"swapTradeEnabled"		: false,
 			"swapTradeName"			: null,
 			"swapTradeUrl"			: null,
-			"freebiesEnabled"		: false,		
+			"freebiesEnabled"		: false,
 			"freebiesName"			: null,
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
@@ -94,7 +94,7 @@
               "currencyDisplay"    :    true,
               "currency"           :    ["ARS:Pesos","USD:D\u00f3lares"]
         }
-		
+
 	},
 	"bapi" : {
 		"Homepage" : {

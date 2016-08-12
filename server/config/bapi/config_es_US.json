@@ -4,7 +4,7 @@
 		"localeOpenGraph" 					: "es_LA",
 		"publisherUrl"						: "https://plus.google.com/+IbazarMx/",
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no_image_US.png",
-		"promoteAdsUrl"						: null,	
+		"promoteAdsUrl"						: null,
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: false,
@@ -31,7 +31,23 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	    
+		"analytics": {
+			"account": "UA-38622010-2",
+			"domainName": ".ibazar.com",
+			"ignoredRefs": [
+				"ibazar.com"
+			],
+			"allowAnchor": true,
+			"sessionCookieTimeout": 1800000,
+			"campaignCookieTimeout": 15768000000,
+			"visitorCookieTimeout": 63072000000,
+			"gtmTagId":"GTM-WPCWFX",
+			"trackEvents" : [
+				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+			],
+			"enableABTest": "false"
+		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -58,43 +74,27 @@
 		    "paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"							: false,			
+			"enabled"							: false,
 			"blogUrl" 							: "http://vivedf.ibazar.com.mx/",
 			"vipLandingPageEnabled"				: false
 		},
-		"availableAdFeatures" 				: [],
-		"analytics": {
-	        "account": "UA-38622010-2",
-	        "domainName": ".ibazar.com",
-	        "ignoredRefs": [
-	            "ibazar.com"
-	        ],
-	        "allowAnchor": true,
-	        "sessionCookieTimeout": 1800000,
-	        "campaignCookieTimeout": 15768000000,
-	        "visitorCookieTimeout": 63072000000,
-	        "gtmTagId":"GTM-WPCWFX",
-	        "trackEvents" : [
-	        	{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
-	        	{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
-	         ]
-	    }
+		"availableAdFeatures" 				: []
 	},
 	"content" : {
 		"homepage" : {
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: ["banner-publica.jpg", "banner-auto.gif", "banner-cv.gif"],
 			"bingMeta"				: "<meta name=\"msvalidate.01\" content=\"E03E7C8B4B4E1A0234A8D2042FD326E8\" />",
-			"swapTradeEnabled"		: false,		
+			"swapTradeEnabled"		: false,
 			"swapTradeName"			: null,
 			"swapTradeUrl"		 	: null,
-			"freebiesEnabled"		: false,		
+			"freebiesEnabled"		: false,
 			"freebiesName"			: null,
 			"freebiesUrl"			: null,
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
 		},
-		
+
 		 "quickpost" : {
               "currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]

@@ -56,5 +56,9 @@
 		"mainJSUrl"		: "/public/js/main.js",
 		"baseUrl"		: "/public/",
 		"min"			: false
+	},
+	"abTest": {
+		"type": "google",
+		"experimentId": ""
 	}
 }

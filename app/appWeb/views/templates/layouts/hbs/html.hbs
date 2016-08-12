@@ -86,7 +86,7 @@
 
     {{/block}}
     {{#block "GTMTag"}}
-      {{#if this.footer.analytics.gtmTagId}}
+      {{#if this.header.analytics.gtmTagId}}
             <script>
             var dataLayer = dataLayer || [];
             dataLayer.push({});(function(l) {
@@ -132,7 +132,7 @@
                      );var f=d.getElementsByTagName(s)[0],
                              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                     })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
+                     })(window,document,'script','dataLayer','{{this.header.analytics.gtmTagId}}');
        </script>
       {{/if}}
     {{/block}}
@@ -154,8 +154,8 @@
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
         <script type="text/javascript">
             var _gaq = _gaq || [];
-            {{#if this.footer.analytics.account}}
-                {{#with this.footer.analytics}}
+            {{#if this.header.analytics.account}}
+                {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
                     _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
@@ -180,27 +180,14 @@
 
     {{#block "dynamicStyles"}}{{/block}}
 
-	<!-- Start of Google Analytics A/B Experiment code -->
-	<script>function utmx_section(){}function utmx(){}(function(){var
-			k='127456995-23',d=document,l=d.location,c=d.cookie;
-		if(l.search.indexOf('utm_expid='+k)>0)return;
-		function f(n){if(c){var i=c.indexOf(n+'=');if(i>-1){var j=c.
-				indexOf(';',i);return escape(c.substring(i+n.length+1,j<0?c.
-				length:j))}}}var x=f('__utmx'),xx=f('__utmxx'),h=l.hash;d.write(
-				'<sc'+'ript src="'+'http'+(l.protocol=='https:'?'s://ssl':
-						'://www')+'.google-analytics.com/ga_exp.js?'+'utmxkey='+k+
-				'&utmx='+(x?x:'')+'&utmxx='+(xx?xx:'')+'&utmxtime='+new Date().
-						valueOf()+(h?'&utmxhash='+escape(h.substr(1)):'')+
-				'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
-	</script><script>utmx('url','A/B');</script>
-	<!-- End of Google Analytics A/B Experiment code -->
+    {{> (dynamic "abTest") }}
 </head>
 <body>
 
     {{> (dynamic "cookieBanner") }}
-    {{#if this.footer.analytics.gtmTagId}}
+    {{#if this.header.analytics.gtmTagId}}
         <noscript>
-            <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.analytics.gtmTagId}}"
+            <iframe src="//www.googletagmanager.com/ns.html?id={{this.header.analytics.gtmTagId}}"
               height="0" width="0" style="display:none;visibility:hidden">
             </iframe>
         </noscript>
