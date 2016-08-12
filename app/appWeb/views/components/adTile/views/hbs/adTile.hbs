@@ -1,11 +1,11 @@
 {{#block "adTile"}}
     {{!-- this.isFeatured --}}
     <span class="inline-block panel {{#if this.features}}featured{{/if}}">
-        <img class="lazy" data-original="{{this.pictures.0.url}}">
+        <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
         <span class="featured-bolt icon-featured-white"></span>
         <a href="{{this.seller.soiSeoUrl}}">
             <span class="inline-block user-photo">
-                <img class="lazy" data-original="{{this.seller.profileImage}}">
+                <img class="lazy profile-image" data-original="{{this.seller.profileImage}}">
             </span>
         </a>
         <section class="controls">

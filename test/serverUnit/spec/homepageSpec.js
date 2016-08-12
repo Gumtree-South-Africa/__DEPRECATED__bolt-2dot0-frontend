@@ -5,12 +5,15 @@ let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
 describe('Server to hit HomePage', function() {
-
+	let i18n, mockTrending;
 	let lat = "19.451054";
 	let lng = "-99.125519";
 	let geoCookie = `${lat}ng${lng}`;
 
 	beforeEach(() => {
+		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
+		mockTrending = specHelper.getMockData("/test/serverUnit/mockData/api/v1/", "TrendingCard");
+
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/LocationList.json');
@@ -32,8 +35,6 @@ describe('Server to hit HomePage', function() {
 		specHelper.registerMockEndpoint(
 			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=15&geo=null`,
 			'test/serverUnit/mockData/api/v1/TrendingCard.json');
-
-
 	});
 
 	describe('V1 Home Page', () => {
@@ -43,6 +44,58 @@ describe('Server to hit HomePage', function() {
 				supertest
 					.expect((res) => {
 						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+	});
+
+	describe('Trending Card', () => {
+		it('should show on vivanuncios', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						expect(c$('.trending-card')).toBeDefined();
+						expect(c$('.trending-card .card-title').text())
+							.toContain(i18n.homepage.popularSearches.popularIn, 'i18n string should match');
+						expect(c$('.trending-card .card-title').text())
+							.toContain(i18n.homepage.popularSearches.yourNeighborhood, 'i18n string should match');
+						expect(c$('.tile-item').length).toBe(3);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should show price, user profile image and product image on trending tiles', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						let trendingItem = c$('.tile-item').first();
+						expect(trendingItem).toBeDefined('Cannot find a trending tile');
+
+						// Item 1, priceType: MXN
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product image');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[0].seller.profileImage, 'Missing lazy load profile image');
+
+						// Item 2, priceType: USD
+						trendingItem = c$('.tile-item').next();
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product image');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[1].seller.profileImage, 'Missing lazy load profile image');
+
+						// Item 3, priceType: CONTACT_ME
+						trendingItem = c$('.tile-item').last();
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product image');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[2].seller.profileImage, 'Missing lazy load profile image');
 					})
 					.end(specHelper.finish(done));
 			});

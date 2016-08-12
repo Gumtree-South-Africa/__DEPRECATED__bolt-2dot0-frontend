@@ -13,8 +13,8 @@
 	],
 	"ads": [
 		{
-			"id": "100000100",
-			"viewSeoUrl": "/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+01+12-17-05-54-948/1001096096020910618300709",
+			"id": "100000000",
+			"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
 			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
 			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
 			"adPrice": {
@@ -36,7 +36,7 @@
 			}
 		},
 		{
-			"id": "100000100",
+			"id": "200000000",
 			"viewSeoUrl": "/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+01+12-17-05-54-948/1001096096020910618300709",
 			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
 			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
@@ -48,14 +48,35 @@
 			"pictures": [
 				{
 					"size": "NORMAL",
-					"url": "http://img.classistatic.com/crop/100x100/i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
+					"url": "http://www.mikesalkin.com/articles/images/house-for-sale.jpg"
 				}
 			],
 			"categoryId": 9000,
 			"seller": {
 				"name": "falex",
 				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
-				"profileImage": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"
+				"profileImage": "http://i2.cdn.turner.com/cnnnext/dam/assets/160630101057-michael-phelps-u-s-trials-exlarge-169.jpg"
+			}
+		},
+		{
+			"id": "300000000",
+			"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
+			"title": "hi title",
+			"description": "seller testing reply issue FOR ONCE using MASTER CODE",
+			"adPrice": {
+				"priceType": "CONTACT_ME"
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
+				}
+			],
+			"categoryId": 1097,
+			"seller": {
+				"name": "falex",
+				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
+				"profileImage": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg"
 			}
 		}
 	],
