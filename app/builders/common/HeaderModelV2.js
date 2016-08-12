@@ -92,6 +92,14 @@ class HeaderModel {
 				// manipulate data
 				data.enableLighterVersionForMobile = data.enableLighterVersionForMobile && deviceDetection.isMobile();
 
+				// AB Test Experiment Code
+				let abtestExperimentId = config.get('abTest.experimentId');
+				if (typeof abtestExperimentId === 'undefined' || abtestExperimentId === null) {
+					data.abtestExperimentId = '';
+				} else {
+					data.abtestExperimentId = abtestExperimentId;
+				}
+
 				// If locationCookie present, set id and name in model
 				if (typeof this.searchLocIdCookie !== 'undefined') {
 					data.cookieLocationId = this.searchLocIdCookie;
