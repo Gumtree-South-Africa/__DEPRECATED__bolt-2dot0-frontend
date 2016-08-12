@@ -4,6 +4,8 @@
 
 {{#partial "content"}}
 	<section class="edit-ad-page">
+		<div id="category-tree" class="hidden">{{json this.category}}</div>
+		<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
         {{> (dynamic "postAdHeader")}}
 		<div class="hidden">
             {{> (dynamic "uploadImage")}}
@@ -25,6 +27,7 @@
         {{> (dynamic "editAdFormMainDetails") }}
     </section>
 
+    {{> (dynamic "categorySelectionModal")}}
     {{> (dynamic "modal")}}
 {{/partial}}
 

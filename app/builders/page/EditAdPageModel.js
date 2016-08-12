@@ -22,6 +22,10 @@ class EditAdPageModel {
 		this.locale = res.locals.config.locale;
 	}
 
+	transformCategoryTree() {
+
+	}
+
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.EDIT_AD;
@@ -88,6 +92,10 @@ class EditAdPageModel {
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
+
+		modelData.categoryCurrentHierarchy = [];
+
+		this.getCategoryHierarchy(modelData.category, 5, modelData.categoryCurrentHierarchy);
 
 		return modelData;
 	}

@@ -1379,6 +1379,12 @@
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
 			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+		},
+		"categorySelect": {
+			"title": "Product Category",
+			"prompt": "Keyword Search in %s",
+			"noResults": "Sorry, '%s' is not a valid category. Please select a recommended category below or search.",
+			"selectPrompt": "Select a Category Below"
 		}
 	},
 	"adStats": {

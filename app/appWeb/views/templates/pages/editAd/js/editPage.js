@@ -22,7 +22,6 @@ let _slickOptions = {
 };
 
 let initialize = () => {
-
 	photoCarousel.initialize({
 		slickOptions: _slickOptions,
 		showDeleteImageIcons: true
