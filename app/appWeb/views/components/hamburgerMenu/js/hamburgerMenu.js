@@ -2,7 +2,7 @@
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
 
-let toggleMenu = () => {
+let toggleMenu = (shouldClose) => {
 	if (this.open === undefined) {
 		this.open = shouldClose;
 	}

@@ -611,21 +611,6 @@ Array.prototype.remove = function(from, to) {
 /******* END EPS STUFF *******/
 
 /******* BEGIN SLICK STUFF *******/
-let resizeCarousel = () => {
-	let width = $('.add-photo-item, .carousel-item').width();
-	//fix issue where images would sometimes be very small
-	if (width > 10) {
-		// set height of carousel items to be same as width (set by slick)
-		$('.add-photo-item, .carousel-item').css({'height': width + 'px'});
-
-		// vertical align arrows to new height
-		let arrowTop = width / 2 - 3;
-		$('.slick-arrow').css({'top': arrowTop + 'px'});
-		$('.slick-prev').addClass("icon-back");
-		$('.slick-next').addClass("icon-back");
-	}
-};
-
 let deleteSelectedItem = (event) => {
 	event.stopPropagation();
 
