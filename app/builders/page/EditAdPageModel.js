@@ -101,10 +101,8 @@ class EditAdPageModel {
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.locationlatlong = () => {
-			modelData.geoCookie = modelData.geoCookie || '';
-			return locationModel.getLocationLatLong(modelData.geoCookie).then((data) => {
-				return data;
-			}).fail((err) => {
+			modelData.geoLatLngObj = modelData.geoLatLngObj || '';
+			return locationModel.getLocationLatLong(modelData.geoLatLngObj).fail((err) => {
 				console.warn(`error getting data ${err}`);
 				return {};
 			});

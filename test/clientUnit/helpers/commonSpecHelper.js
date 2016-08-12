@@ -128,8 +128,12 @@ beforeEach(() => {
 				options.error(ajaxInfo.returnData);
 			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {
-					options.success(ajaxInfo.returnData);
+					let successCallback = (ajaxInfo.options.success) ? ajaxInfo.options.success : options.success;
+					successCallback(ajaxInfo.returnData);
 				}, ajaxInfo.delay);
+			} else {
+				let successCallback = (ajaxInfo.options.success) ? ajaxInfo.options.success : options.success;
+				successCallback(ajaxInfo.returnData);
 			}
 		} else {
 			options.success(ajaxInfo.returnData);

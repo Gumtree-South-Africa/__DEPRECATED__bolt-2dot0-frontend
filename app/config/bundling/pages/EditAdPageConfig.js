@@ -15,7 +15,6 @@ module.exports = {
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"UploadImage": "app/appWeb/views/components/uploadImage/js/uploadImage.js",
-			"PhotoCarousel": "app/appWeb/views/components/photoCarousel/js/photoCarousel.js",
 			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
 			"PageMain": "app/appWeb/views/templates/pages/editAd/js/editPage.js",
 			"EditAdFormMainDetails": "app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js"

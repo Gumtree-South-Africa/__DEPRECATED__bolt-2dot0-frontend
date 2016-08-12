@@ -72,7 +72,7 @@ let verifyMockEndpointsClean = () => {
  * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
 let registerMockEndpoint = (url, filePath, options) => {
-	if (url.indexOf('?_forceExample') === -1) {
+	if (url.indexOf('_forceExample') === -1) {
 		url = `${url}?_forceExample=true&_statusCode=200`;
 	}
 	if (!endpointToFileMap[url]) {

@@ -33,6 +33,8 @@ router.use('/:id?', (req, res, next) => {
 
 	modelPromise.then((modelData) => {
 		EditAdPage.extendModelData(req, modelData);
+		modelData.adId = adId;
+
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();

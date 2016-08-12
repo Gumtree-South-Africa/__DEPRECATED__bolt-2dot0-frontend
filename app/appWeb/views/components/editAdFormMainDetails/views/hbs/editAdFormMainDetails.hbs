@@ -1,9 +1,12 @@
-<div id="main-detail-edit" class="main-detail-edit">
+<div id="js-main-detail-edit" class="main-detail-edit">
     {{> (dynamic "shareAdCard") }}
 	<div class="main-details-title">
         {{i18n "editAd.mainDetails.title"}}
 	</div>
-	<form method="POST" action="#">
+	<form id='edit-form' method="POST" action="#">
+        <input id="location-lat" type="hidden" name="locationLatitude" value="{{this.getAdResults.location.latitude}}">
+        <input id="location-lng" type="hidden" name="locationLongitude" value="{{this.getAdResults.location.longitude}}">
+        <input type="hidden" name="adId" value="{{this.adId}}">
 		<div class="form-category">
 			<div class="label-wrapper">
 				<label for="adCategory">{{i18n "editAd.mainDetails.labels.category"}}</label>
@@ -20,7 +23,7 @@
 				<label for="adTitle">{{i18n "editAd.mainDetails.labels.adTitle"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="adTitle" type="text"/>
+				<input title="adTitle" name="adTitle" type="text"/>
 			</div>
 		</div>
 		<div class="form-ad-price">
@@ -28,18 +31,18 @@
 				<label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="adPrice" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+				<input title="adPrice" name="adPrice" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
 					   type="text"/>
 				<div class="radio-group">
 					<label class="control">
-						<input type="radio" name="radio"/>
+						<input type="radio" name="MXN"/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>
 						</div>
 						<span class="currency-type">MXN</span>
 					</label>
 					<label class="control">
-						<input type="radio" name="radio"/>
+						<input type="radio" name="USD"/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>
 						</div>
@@ -53,7 +56,7 @@
 				<label for="adDescription">{{i18n "editAd.mainDetails.labels.description"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input class="description-input" title="adDescription" type="text"/>
+				<textarea id='description-input' class="description-input" title="adDescription"></textarea>
 			</div>
 		</div>
 		<div class="separator-div"></div>
@@ -77,7 +80,7 @@
 		</div>
 		<div class="button-area">
 			<div class="submit-btn-wrapper">
-				<button class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
+				<button id="js-edit-submit-button" class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
 			</div>
 			<div class="cancel-link-wrapper">
 				<div class="cancel-form-link">

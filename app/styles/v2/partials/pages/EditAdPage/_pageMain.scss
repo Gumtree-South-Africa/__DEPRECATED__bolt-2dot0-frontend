@@ -155,6 +155,13 @@ $labelMargin: 8%;
 			}
 		}
 
+		.description-input {
+			height: 150px;
+			margin-left: 6%;
+			resize: none;
+			width: 88%;
+		}
+
 		.input-wrapper {
 			width: 100%;
 
@@ -162,9 +169,6 @@ $labelMargin: 8%;
 				width: $inputWidth;
 				margin: 0 $inputMargin;
 
-				&.description-input {
-					height: 150px;
-				}
 				border: 1px solid $vivaBlack;
 
 				&.price-input {
