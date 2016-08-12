@@ -1384,7 +1384,8 @@
 			"title": "Product Category",
 			"prompt": "Keyword Search in %s",
 			"noResults": "Sorry, '%s' is not a valid category. Please select a recommended category below or search.",
-			"selectPrompt": "Select a Category Below"
+			"selectPrompt": "Select a Category Below",
+			"save": "Save"
 		}
 	},
 	"adStats": {

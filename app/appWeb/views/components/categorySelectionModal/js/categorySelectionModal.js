@@ -1,18 +1,8 @@
 'use strict';
 
-let _highlightNextItem = () => {
-	let $active = this.$resultsList.find(".active");
-	if ($active.length === 0) {
-		this.$resultsList.find(".list-item").first().addClass("active");
-	} else {
-		let $newActive = $active.removeClass("active").next(".list-item");
-		$newActive.addClass("active");
-	}
-};
-
-let _traverseHierarchy = (hiearchyArray) => {
+let _traverseHierarchy = (hierarchyArray) => {
 	let currentLevel = this.categoryTree;
-	hiearchyArray.forEach((catId) => {
+	hierarchyArray.forEach((catId) => {
 		currentLevel.children.some((subCat) => {
 			if (subCat.id === catId) {
 				currentLevel = subCat;
@@ -28,6 +18,16 @@ let _traverseHierarchy = (hiearchyArray) => {
 	return this.currentLevel;
 };
 
+let _checkLeafNode = () => {
+	this.leafNodeSelected = !(this.currentLevel.children && this.currentLevel.children.length > 0);
+
+	return this.leafNodeSelected;
+};
+
+let _clearInput = () => {
+	this.$input.val("");
+	this.$input.keyup();
+};
 
 let _emptyResults = () => {
 	this.$resultsList.find(".list-item").off();
@@ -53,10 +53,8 @@ let _bindEventsToAllCatHierLinks = () => {
 	});
 };
 
-let _displayCategoryHierarchy = (passedHierarchy) => {
+let getFullBreadCrumbText = (passedHierarchy) => {
 	let hierarchy = passedHierarchy.slice(0); // cloning the array with slice
-	this.$hierarchyContainer.find(".hier-link").off();
-	this.$hierarchyContainer.empty();
 
 	if (hierarchy.length > 0) {
 		hierarchy.shift(); // remove L0 from hierarchy as a base case
@@ -78,7 +76,14 @@ let _displayCategoryHierarchy = (passedHierarchy) => {
 		});
 	});
 
-	this.$hierarchyContainer.append(breadcrumbText);
+	return breadcrumbText;
+};
+
+let _displayCategoryHierarchy = (hierarchy) => {
+	this.$hierarchyContainer.find(".hier-link").off();
+	this.$hierarchyContainer.empty();
+
+	this.$hierarchyContainer.append(getFullBreadCrumbText(hierarchy));
 
 	_bindEventsToAllCatHierLinks();
 };
@@ -90,9 +95,12 @@ let _fullRender = () => {
 
 
 this._hierarchyBack = (hierarchyIndex) => {
-	this.currentHierarchy = this.currentHierarchy.splice(0, hierarchyIndex + 1);
-
-	_fullRender();
+	if (hierarchyIndex !== this.currentHierarchy.length -1) {
+		this.$modal.removeClass("complete");
+		this.currentHierarchy = this.currentHierarchy.splice(0, hierarchyIndex + 1);
+		_fullRender();
+		_clearInput();
+	}
 };
 
 
@@ -102,10 +110,19 @@ let _addToHierarchy = (catObj) => {
 
 	if (catObj.children && catObj.children.length > 0) {
 		_renderResults(catObj.children);
+	} else {
+		this.$modal.addClass("complete");
 	}
 };
 
-let _selectItem = (id) => {
+let _unstageItem = () => {
+	_clearInput();
+	this.$input.prop("disabled", false);
+	this.$modal.removeClass("complete");
+	this.$saveButton.prop("disabled", true);
+};
+
+let _stageItem = (id) => {
 	let item;
 	this.currentLevel.children.some((cat) => {
 		if (cat.id === id) {
@@ -119,21 +136,42 @@ let _selectItem = (id) => {
 		throw Error("This item does not exist on the current tree level.");
 	}
 
+	this.$input.val(item.localizedName);
+	this.$input.prop("disabled", true);
+	this.$modal.addClass("complete");
+	this.$saveButton.prop("disabled", false);
+	this.stagedItem = item;
+};
+
+let _selectItem = (item) => {
 	_addToHierarchy(item);
 	_renderResults(item.children);
 	this.currentLevel = item;
+	if (!_checkLeafNode()) {
+		_unstageItem();
+	}
 };
 
 this._bindEventsToList = () => {
 	let $items  = this.$resultsList.find(".list-item");
 	$items.click((evt) => {
-		_selectItem($(evt.currentTarget).data("id"));
+		_stageItem($(evt.currentTarget).data("id"));
 	});
 
 	$items.hover((evt) => {
 		$items.removeClass("active");
 		$(evt.currentTarget).addClass("active");
 	});
+};
+
+let _highlightNextItem = () => {
+	let $active = this.$resultsList.find(".active");
+	if ($active.length === 0) {
+		this.$resultsList.find(".list-item").first().addClass("active");
+	} else {
+		let $newActive = $active.removeClass("active").next(".list-item");
+		$newActive.addClass("active");
+	}
 };
 
 let _highlightPrevItem = () => {
@@ -159,10 +197,31 @@ let _filterResults = (value) => {
 
 let _closeModal = () => {
 	this.$modal.addClass("hidden");
+	this.currentHierarchy = null;
+	this.onSaveCb = null;
 };
 
-let openModal = () => {
+let openModal = (options) => {
+	if (!options) {
+		throw Error("Options are required for categorySelectionModal.  Please pass in options with at least a currentHierarchy");
+	}
+
 	this.$modal.removeClass("hidden");
+	this.currentHierarchy = options.currentHierarchy;
+	this.onSaveCb = options.onSaveCb;
+
+	this.$saveButton.prop('disabled', true);
+	this.$input.prop('disabled', false);
+	_fullRender();
+	_checkLeafNode();
+};
+
+let _saveChanges = () => {
+	if (this.onSaveCb) {
+		this.onSaveCb(this.currentHierarchy, getFullBreadCrumbText(this.currentHierarchy));
+	}
+
+	_closeModal();
 };
 
 let initialize = () => {
@@ -171,10 +230,22 @@ let initialize = () => {
 	this.$closeButton = this.$modal.find(".close-button");
 	this.$input = this.$modal.find('input[type="text"]');
 	this.$hierarchyContainer = this.$modal.find(".current-hierarchy");
+	this.$saveButton = this.$modal.find(".save-button");
+	this.$clearTextButton = $("#clear-text-btn");
+
+	this.$saveButton.click(() => {
+		if (!this.leafNodeSelected) {
+			_selectItem(this.stagedItem);
+		} else {
+			_saveChanges();
+		}
+	});
 
 	this.$closeButton.click(() => {
 		_closeModal();
 	});
+
+	this.$clearTextButton.click(_clearInput);
 
 	this.$input.on('keyup', (evt) => {
 		switch (evt.keyCode) {
@@ -190,7 +261,7 @@ let initialize = () => {
 				break;
 			case 13:
 				//enter
-				_selectItem(this.$resultsList.find(".active").data("id"));
+				_stageItem(this.$resultsList.find(".active").data("id"));
 				evt.preventDefault();
 				break;
 			default:
@@ -199,16 +270,13 @@ let initialize = () => {
 		}
 	});
 
-
-	this.categoryTree = JSON.parse($("#category-tree").text());
-	this.currentHierarchy = JSON.parse($("#selected-cat-hierarchy").text());
-
-	_fullRender();
+	this.categoryTree = JSON.parse($("#category-tree").text() || "{}");
 };
 
 module.exports = {
 	initialize,
-	openModal
+	openModal,
+	getFullBreadCrumbText
 };
 
 
