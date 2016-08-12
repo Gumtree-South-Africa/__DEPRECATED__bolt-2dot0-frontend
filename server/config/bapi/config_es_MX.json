@@ -29,7 +29,23 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-
+		"analytics": {
+			"account": "UA-56697433-1",
+			"domainName": ".vivanuncios.com.mx",
+			"ignoredRefs": [
+				"vivanuncios.com.mx"
+			],
+			"allowAnchor": true,
+			"sessionCookieTimeout": 1800000,
+			"campaignCookieTimeout": 15768000000,
+			"visitorCookieTimeout": 63072000000,
+			"gtmTagId":"GTM-PC5HFW",
+			"trackEvents" : [
+				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+			],
+			"enableABTest": "true"
+		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/",
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
@@ -58,23 +74,7 @@
 			"blogUrl" 							: "http://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
-		"analytics": {
-	        "account": "",
-	        "domainName": ".vivanuncios.com.mx",
-	        "ignoredRefs": [
-	            "vivanuncios.com.mx"
-	        ],
-	        "allowAnchor": true,
-	        "sessionCookieTimeout": 1800000,
-	        "campaignCookieTimeout": 15768000000,
-	        "visitorCookieTimeout": 63072000000,
-	        "gtmTagId":"GTM-PC5HFW",
-	        "trackEvents" : [
-	            {"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
-	            {"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
-	        ]
-	    }
+		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
 	  	"homepageV2" : {

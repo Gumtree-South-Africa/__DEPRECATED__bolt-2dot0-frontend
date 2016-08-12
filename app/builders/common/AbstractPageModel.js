@@ -112,6 +112,9 @@ class AbstractPageModel extends BasePageModel {
 				fn.fnLabel = fnLabel;
 				arrFunctions.push(fn);
 			} else {
+				// todo: this error occurs when a page is NOT making a call to "locationlatlong",
+				// since that call is now conditional (on having a location cookie)
+				// we should refactor this so that a conditional api call doesnt flag this as an error
 				console.error('Error in loading component ' + fnLabel + ' : not found in ZK config');
 			}
 		}

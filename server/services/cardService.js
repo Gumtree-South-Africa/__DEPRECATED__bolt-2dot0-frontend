@@ -15,6 +15,15 @@ class CardService {
 	}
 
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
+		if (parameters) {
+			if (parameters.geo) {
+				parameters.geo = bapiService.bapiFormatLatLng(parameters.geo);
+			}
+			// if (parameters.geo === null) {
+			// 	// we don't have a location, delete the property to keep it from sending to the back end
+			// 	delete parameters.geo;
+			// }
+		}
 	 	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 	 		method: 'GET',
 	 		path: config.get(queryEndpoint),

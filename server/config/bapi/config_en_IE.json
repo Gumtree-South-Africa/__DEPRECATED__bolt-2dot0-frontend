@@ -28,7 +28,23 @@
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
 	    },
-	      
+		"analytics": {
+			"account": "UA-22887757-5",
+			"domainName": ".gumtree.ie",
+			"ignoredRefs": [
+				"gumtree.ie"
+			],
+			"allowAnchor": true,
+			"sessionCookieTimeout": 1800000,
+			"campaignCookieTimeout": 15768000000,
+			"visitorCookieTimeout": 63072000000,
+			"gtmTagId":"GTM-PBQWBG",
+			"trackEvents" : [
+				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
+				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
+			],
+			"enableABTest": "false"
+		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
 	  	"locationDropdownLevel"				: 2,
 	  	"categoryDropdownLevel"				: 2
@@ -53,49 +69,33 @@
 		    "paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"							: false,			
+			"enabled"							: false,
 			"blogUrl" 							: "http://blog.gumtree.ie/",
 			"vipLandingPageEnabled"				: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"],
-		"analytics": {
-	        "account": "UA-22887757-5",
-	        "domainName": ".gumtree.ie",
-	        "ignoredRefs": [
-	            "gumtree.ie"
-	        ],
-	        "allowAnchor": true,
-	        "sessionCookieTimeout": 1800000,
-	        "campaignCookieTimeout": 15768000000,
-	        "visitorCookieTimeout": 63072000000,
-	        "gtmTagId":"GTM-PBQWBG",
-	        "trackEvents" : [
-	        	{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
-	        	{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
-	         ]
-	    }
+		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
 		"homepage" : {
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: true,		
+			"swapTradeEnabled"		: true,
 			"swapTradeName"			: "home.swap-trade.$$",
 			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"		: true,		
+			"freebiesEnabled"		: true,
 			"freebiesName"			: "home.freebies.$$",
 			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
 		},
-		
+
 		   "quickpost" : {
               "currencyDisplay"    :    false,
               "currency"           :    ["EUR:EUR"]
         }
-		
-		
+
+
 	},
 	"bapi" : {
 		"Homepage" : {

@@ -124,5 +124,13 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 	});
 };
 
+// returns string formatted for use in BAPI api's
+// format is (<lat>,<long>)
+var bapiFormatLatLng = (geoLatLngObj) => {
+	return '(' + geoLatLngObj.lat + ',' + geoLatLngObj.lng + ')';
+};
+
 module.exports.bapiPromisePost = bapiPromisePost;
 module.exports.bapiPromiseGet = bapiPromiseGet;
+module.exports.bapiFormatLatLng = bapiFormatLatLng;
+

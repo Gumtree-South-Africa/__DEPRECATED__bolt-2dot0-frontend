@@ -123,7 +123,7 @@ let imageUploads = (() => {
 
 let UploadMsgClass = {
 	hideImage: () => {
-		this.imageHolder.css("background-image", `url('')`);
+		this.imageHolder.css("background-image", `url("")`);
 		this.uploadPhotoText.toggleClass('hidden');
 		this.$imageUpload.val('');
 		this.inputDisabled = false;
@@ -286,7 +286,7 @@ let _success = function(response) {
 	}
 
 	if (_this.isMobile) {
-		_this.imageHolder.css("background-image", `url('${url.normal}')`);
+		_this.imageHolder.css("background-image", `url("${url.normal}")`);
 		let timeout = requestLocation((locationType) => {
 			if (timeout) {
 				clearTimeout(timeout);

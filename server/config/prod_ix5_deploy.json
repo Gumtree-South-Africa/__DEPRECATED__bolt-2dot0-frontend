@@ -18,14 +18,14 @@
 			"quickpostAd": "/v1/ads",
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
-			"draftAd":"/v1/ads/drafts"
+			"draftAd": "/v1/ads/drafts"
 		}
 	},
 	"solr": {
 		"server": {
-			"host"	: "solrvip.ix5.ops.prod.bt.ecg.so",
-			"port"	: 8080,
-			"path"	: "/solr",
+			"host": "solrvip.ix5.ops.prod.bt.ecg.so",
+			"port": 8080,
+			"path": "/solr",
 			"version": "4.0"
 		}
 	},
@@ -52,7 +52,7 @@
 		"server": {
 			"host": "inc.t9.classistatic.com",
 			"port": null,
-			"version": "2.0.114"
+			"version": "2.0.115"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
@@ -62,5 +62,9 @@
 		"mainJSUrl": "/js/main.js",
 		"baseUrl": "/",
 		"min": true
+	},
+	"abTest": {
+		"type": "google",
+		"experimentId": ""
 	}
 }
