@@ -3,7 +3,7 @@ let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 
-fdescribe('Edit Ad Api', () => {
+describe('Edit Ad Api', () => {
 
 	afterEach(() => {
 		specHelper.verifyMockEndpointsClean();

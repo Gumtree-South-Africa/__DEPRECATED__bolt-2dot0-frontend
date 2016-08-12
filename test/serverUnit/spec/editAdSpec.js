@@ -4,7 +4,7 @@ let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 // let cheerio = require('cheerio');
 
-fdescribe('Edit Ad Page', () => {
+describe('Edit Ad Page', () => {
 	// let i18n;
 	//
 	// beforeAll(() => {

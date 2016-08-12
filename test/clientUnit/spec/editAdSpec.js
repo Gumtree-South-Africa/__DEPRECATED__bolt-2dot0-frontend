@@ -12,12 +12,15 @@ describe('Edit Ad', () => {
 		$("#testArea").html("");
 		specHelper.setCookie("geoId", "10ng10"); // storing canned cookie
 
-		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {}, "es_MX"),
+		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
+				categoryCurrentHierarchy: "[0, 3]"
+			}, "es_MX"),
 			$locationLink = $testArea.find(".location-link");
 
 		let inputVal = "Mexico City";
 
 		editAdFormMainDetailsController.initialize();
+		editAdFormMainDetailsController.onReady();
 
 		specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=${inputVal}`, mockLocationData);
 		specHelper.registerMockAjax("/api/locate/locationlatlong?latLong=" + encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString()) + "ng" + encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString()), mockLatLongData);
@@ -30,8 +33,25 @@ describe('Edit Ad', () => {
 
 		$testArea.find(".modal-cp .btn").click(); // confirm location selection
 
-		expect($locationLink.text().trim()).toEqual("Mexico City"); // make sure text has been updated
+		expect($locationLink.text().trim()).toEqual("ServerLoc"); // make sure text has been updated
 		expect(specHelper.getCookie("geoId")).toEqual("10ng10");
 		$("#testArea").html("");
+	});
+
+	it("should make ajax call when button is clicked", () => {
+		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
+			categoryCurrentHierarchy: "[0, 3]"
+		}, "es_MX");
+		editAdFormMainDetailsController.initialize();
+		editAdFormMainDetailsController.onReady();
+		specHelper.registerMockAjax('/api/edit', {'vipLink': '/success'}, {
+			success: (returnData) => {
+				expect(true).toBeFalsy();
+				expect(returnData.vipLink).toBe('/success');
+			}
+		});
+
+		let $button = $testArea.find('#js-edit-submit-button');
+		$button.click();
 	});
 });
