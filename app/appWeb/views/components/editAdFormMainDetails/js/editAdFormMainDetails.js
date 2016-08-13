@@ -85,7 +85,7 @@ let onReady = () => {
 	this.defaultLocation = this.$locationLink.data("default-location");
 	this.$categoryChangeLink = this.$detailsSection.find("#category-name-display");
 	this.$currentHierarchy = $("#selected-cat-hierarchy");
-	this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "{}");
+	this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
 
 	this.$editForm = this.$detailsSection.find('#edit-form');
 	this.$locationLat = this.$detailsSection.find('#location-lat');

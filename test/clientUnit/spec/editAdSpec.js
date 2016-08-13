@@ -8,8 +8,6 @@ let mockLatLongData = {"id":201,"localizedName":"Mexico City","level":"L0","isLe
 
 describe('Edit Ad', () => {
 	it("should allow location selection without modifying the cookie", () => {
-
-		$("#testArea").html("");
 		specHelper.setCookie("geoId", "10ng10"); // storing canned cookie
 
 		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
@@ -35,7 +33,6 @@ describe('Edit Ad', () => {
 
 		expect($locationLink.text().trim()).toEqual("ServerLoc"); // make sure text has been updated
 		expect(specHelper.getCookie("geoId")).toEqual("10ng10");
-		$("#testArea").html("");
 	});
 
 	it("should make ajax call when button is clicked", () => {

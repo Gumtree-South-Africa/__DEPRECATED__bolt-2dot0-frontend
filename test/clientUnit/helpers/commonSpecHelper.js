@@ -131,6 +131,9 @@ beforeEach(() => {
 					let successCallback = (ajaxInfo.success) ? ajaxInfo.success : options.success;
 					successCallback(ajaxInfo.returnData);
 				}, ajaxInfo.delay);
+			} else {
+				let successCallback = (ajaxInfo.options.success) ? ajaxInfo.options.success : options.success;
+				successCallback(ajaxInfo.returnData);
 			}
 		} else {
 			options.success(ajaxInfo.returnData);
