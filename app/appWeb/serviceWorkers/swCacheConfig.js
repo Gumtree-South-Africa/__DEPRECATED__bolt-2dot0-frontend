@@ -2,7 +2,7 @@
 module.exports = {
 	"homepagePreCachePaths": [
 		'jsmin/HomePage_mobile_es_MX.js',
-		'css/es_MX/svg/sprite.css-c9b909e6.svg',
+		'css/es_MX/svg/sprite.css-88b18283.svg',
 		'css/v2/Vivanuncios/MX/es_MX/HomePage.css',
 		'css/v2/Vivanuncios/MX/es_MX/Main.css',
 		'css/v2/Vivanuncios/MX/es_MX/appshell.css',
