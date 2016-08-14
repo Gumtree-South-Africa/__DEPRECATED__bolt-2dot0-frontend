@@ -21,7 +21,7 @@ describe('Edit Ad', () => {
 		editAdFormMainDetailsController.onReady();
 
 		specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=${inputVal}`, mockLocationData);
-		specHelper.registerMockAjax("/api/locate/locationlatlong?latLong=" + encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString()) + "ng" + encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString()), mockLatLongData);
+		specHelper.registerMockAjax(`/api/locate/locationlatlong?lat=${encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString())}&lng=${encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString())}`, mockLatLongData);
 
 		$locationLink.click();
 
@@ -31,7 +31,7 @@ describe('Edit Ad', () => {
 
 		$testArea.find(".modal-cp .btn").click(); // confirm location selection
 
-		expect($locationLink.text().trim()).toEqual("ServerLoc"); // make sure text has been updated
+		expect($locationLink.text().trim()).toEqual("Mexico City"); // make sure text has been updated
 		expect(specHelper.getCookie("geoId")).toEqual("10ng10");
 	});
 
@@ -43,7 +43,6 @@ describe('Edit Ad', () => {
 		editAdFormMainDetailsController.onReady();
 		specHelper.registerMockAjax('/api/edit', {'vipLink': '/success'}, {
 			success: (returnData) => {
-				expect(true).toBeFalsy();
 				expect(returnData.vipLink).toBe('/success');
 			}
 		});

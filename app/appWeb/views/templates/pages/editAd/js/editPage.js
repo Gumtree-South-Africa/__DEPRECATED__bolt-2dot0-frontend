@@ -5,6 +5,7 @@ let photoCarousel = require('app/appWeb/views/components/photoCarousel/js/photoC
 //TODO: update this breakpoint
 const MEDIUM_BREAKPOINT = 848;
 
+
 let _slickOptions = {
 	arrows: true,
 	infinite: false,
