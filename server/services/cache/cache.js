@@ -4,46 +4,52 @@
 'use strict';
 
 let LRU = require("lru-cache");
-let config = require('config');
+
+let cacheConfig = require('./server/config/site/cacheConfig.json');
 
 
-class CacheService {
+class BoltCache {
 
 	constructor() {
+		this.cache = {};
+
+		cacheConfig.cache.forEach((cache) => {
+			this.prePoopulate(cache.name, cache.max, cache.maxAge);
+		});
+	}
+
+	prePoopulate(name, maxConfig, maxAgeConfig) {
 		let options =
 			{
-				max: 2500,
+				max: maxConfig,
+				maxAge: maxAgeConfig,
 				length: function(n) {
 					return n.length;
 				},
 				dispose: function(key, n) {
 					n.close();
-				},
-				maxAge: 1000 * 60 * 60
+				}
 			};
-		this.cache = LRU(options);
-		this.otherCache = LRU(50);
-
-		this.cache.reset();
+		this.cache[name] = LRU(options);
+		this.cache[name].reset();
 	}
 
-	peekValueFromCache(cacheKey) {
-		this.cache.peek(cacheKey);
+	peekValueFromCache(cacheName, cacheKey) {
+		this.cache[cacheName].peek(cacheKey);
 	}
 
-	getValueFromCache(cacheKey) {
-		this.cache.get(cacheKey);
+	getValueFromCache(cacheName, cacheKey) {
+		this.cache[cacheName].get(cacheKey);
 	}
 
-	setValueInCache(cacheKey, cacheValue, cacheTimeConfigKey) {
-		if (typeof cacheTimeConfigKey === 'undefined' || cacheTimeConfigKey === null) {
-			this.cache.set(cacheKey, cacheValue);
+	setValueInCache(cacheName, cacheKey, cacheValue, cacheTimeConfig) {
+		if (typeof cacheTimeConfig === 'undefined' || cacheTimeConfig === null) {
+			this.cache[cacheName].set(cacheKey, cacheValue);
 		} else {
-			let cacheTimeConfigValue = config.get(cacheTimeConfigKey);
-			this.cache.set(cacheKey, cacheValue, cacheTimeConfigValue);
+			this.cache[cacheName].set(cacheKey, cacheValue, cacheTimeConfig);
 		}
 	}
 
 }
 
-module.exports = new CacheService();
+module.exports = new BoltCache();

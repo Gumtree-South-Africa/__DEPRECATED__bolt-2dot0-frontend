@@ -1,0 +1,14 @@
+{
+	"cache": {
+		"homepageTrendingCard": {
+			"name": "hp-trending",
+			"max": 7,
+			"maxAge": 86400000
+		},
+		"homepageRecentActivityCard" : {
+			"name": "hp-recent",
+			"max": 7,
+			"maxAge": 86400000
+		}
+	}
+}
