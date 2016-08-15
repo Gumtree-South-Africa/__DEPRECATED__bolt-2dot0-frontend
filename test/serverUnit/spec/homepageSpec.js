@@ -62,7 +62,7 @@ describe('Server to hit HomePage', function() {
 							.toContain(i18n.homepage.popularSearches.popularIn, 'i18n string should match');
 						expect(c$('.trending-card .card-title').text())
 							.toContain(i18n.homepage.popularSearches.yourNeighborhood, 'i18n string should match');
-						expect(c$('.tile-item').length).toBe(3);
+						expect(c$('.tile-item').length).toBe(mockTrending.ads.length);
 					})
 					.end(specHelper.finish(done));
 			});

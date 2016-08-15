@@ -37,11 +37,17 @@
 				}
 			],
 			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 20,
+				"viewCount": 201,
+				"favoriteCount": 110
+			},
 			"seller": {
-				"name": "falex",
+				"name": "Kobeee",
 				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
 				"profileImage": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"
-			}
+			},
+			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
 		},
 		{
 			"id": "200000000",
@@ -60,17 +66,23 @@
 				}
 			],
 			"categoryId": 9000,
+			"statistics": {
+				"replyCount": 16,
+				"viewCount": 92,
+				"favoriteCount": 66
+			},
 			"seller": {
-				"name": "falex",
-				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
+				"name": "mike phelps",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/cristian-zapata/v1u107937451p1",
 				"profileImage": "http://i2.cdn.turner.com/cnnnext/dam/assets/160630101057-michael-phelps-u-s-trials-exlarge-169.jpg"
-			}
+			},
+			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
 		},
 		{
 			"id": "300000000",
-			"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
-			"title": "hi title",
-			"description": "seller testing reply issue FOR ONCE using MASTER CODE",
+			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+			"title": "Nissan March Sedán 2013",
+			"description": "Nissan March Sedán 2013",
 			"adPrice": {
 				"priceType": "CONTACT_ME"
 			},
@@ -81,11 +93,17 @@
 				}
 			],
 			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 30,
+				"viewCount": 111,
+				"favoriteCount": 88
+			},
 			"seller": {
-				"name": "falex",
-				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
+				"name": "MJ23",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1",
 				"profileImage": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg"
-			}
+			},
+			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
 		}
 	]
 }

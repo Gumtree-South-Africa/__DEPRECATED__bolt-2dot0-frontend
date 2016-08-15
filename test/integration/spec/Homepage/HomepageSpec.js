@@ -39,7 +39,7 @@ describe('Homepage Spec', () => {
 		});
 
 		it('should lazy load the trending item image when it scrolls into view', () => {
-			expect(element.all(by.css('.trending-card img.lazy.ad-image')).count()).toEqual(1, 'Only trending items specified in Ad.json should display');
+			expect(element.all(by.css('.trending-card img.lazy.ad-image')).count()).toEqual(mockData.ads.length, 'Only trending items specified in mocked data should display');
 
 			// check trending item for src attr, lazy loaded images should not have loaded
 			let mockAdImgs = [mockData.ads[0].pictures[0].url];
