@@ -1,25 +1,29 @@
 {{#block "adTile"}}
-    {{!-- this.isFeatured --}}
-    <span class="inline-block panel {{#if this.features}}featured{{/if}}">
+{{!-- this.isFeatured --}}
+	<span class="inline-block panel {{#if this.features}}featured{{/if}}">
         <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
         <span class="featured-bolt icon-featured-white"></span>
         <a href="{{this.seller.soiSeoUrl}}">
             <span class="inline-block user-photo">
-                <img class="lazy profile-image" data-original="{{this.seller.profileImage}}">
+                {{#if this.seller.profileImage}}
+					<img class="lazy profile-image" data-original="{{this.seller.profileImage}}">
+                {{else}}
+					<div class="profile-image icon-header-profile-out"></div>
+                {{/if}}
             </span>
         </a>
         <section class="controls">
             {{#if this.adPrice}}
-                <span class="price-text">
+				<span class="price-text">
                     {{#compare  this.adPrice.priceType "===" "CONTACT_ME"}}
                         {{i18n "homepage.trending.contact"}}
                     {{/compare}}
                     {{#compare  this.adPrice.priceType "===" "FIXED"}}
-                        ${{this.adPrice.amount}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
+						${{this.adPrice.amount}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
                     {{/compare}}
 				</span>
             {{/if}}
-            <span class="favorite-btn icon-heart-gray" role="button"></span>
+			<span class="favorite-btn icon-heart-gray" role="button"></span>
         </section>
         <a class="tile-link" href="{{this.viewSeoUrl}}"></a>
     </span>

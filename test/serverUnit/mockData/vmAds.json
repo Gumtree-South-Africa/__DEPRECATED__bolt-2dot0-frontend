@@ -78,6 +78,32 @@
 				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
 				"profileImage": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg"
 			}
+		},
+		{
+			"id": "400000000",
+			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+			"title": "Nissan March Sedán 2013",
+			"description": "Nissan March Sedán 2013",
+			"adPrice": {
+				"priceType": "CONTACT_ME"
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
+				}
+			],
+			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 30,
+				"viewCount": 111,
+				"favoriteCount": 88
+			},
+			"seller": {
+				"name": "MJ23",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1"
+			},
+			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
 		}
 	],
 	"totalAds": 4591,
