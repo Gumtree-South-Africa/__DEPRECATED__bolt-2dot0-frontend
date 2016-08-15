@@ -1,0 +1,26 @@
+[
+  {
+    "dependencyValue": "acura",
+    "value": "integra",
+    "canonicalValue": "integra",
+    "localizedValue": "Integra"
+  },
+  {
+    "dependencyValue": "acura",
+    "value": "legend",
+    "canonicalValue": "legend",
+    "localizedValue": "Legend"
+  },
+  {
+    "dependencyValue": "audi",
+    "value": "100",
+    "canonicalValue": "100",
+    "localizedValue": "100"
+  },
+  {
+    "dependencyValue": "audi",
+    "value": "200",
+    "canonicalValue": "200",
+    "localizedValue": "200"
+  }
+]

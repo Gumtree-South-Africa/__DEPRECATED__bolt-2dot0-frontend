@@ -1,0 +1,135 @@
+{
+  "id": 110015504,
+  "title": "Post House Ad From bapi at 2016-07-12 01:21:39.168",
+  "description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
+  "categoryId": 9000,
+  "categoryName": "pokoje do wynajęcia",
+  "postedDate": 1468286500000,
+  "location": {
+    "id": 3200453,
+    "name": "Żmigród",
+    "latitude": 51.46654,
+    "longitude": 16.90582
+  },
+  "price": {
+    "priceType": "FIXED",
+    "amount": 50000,
+    "currency": "PLN"
+  },
+  "pictures": {
+    "sizeUrls":[
+      {
+      "LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
+      },
+      {
+      "SMALL": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
+      }
+    ]
+  },
+  "attributes": [
+    {
+      "name": "AreaInMeters",
+      "value": {
+        "attributeType": "Integer",
+        "attributeName": "AreaInMeters",
+        "attributeValue": 100
+      }
+    },
+    {
+      "name": "Description",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "Description",
+        "attributeValue": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE"
+      }
+    },
+    {
+      "name": "DwellingType",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "DwellingType",
+        "attributeValue": "house"
+      }
+    },
+    {
+      "name": "Email",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "Email",
+        "attributeValue": "email927034449@domain.com"
+      }
+    },
+    {
+      "name": "ForRentBy",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "ForRentBy",
+        "attributeValue": "ownr"
+      }
+    },
+    {
+      "name": "NumberRooms",
+      "value": {
+        "attributeType": "Integer",
+        "attributeName": "NumberRooms",
+        "attributeValue": 2
+      }
+    },
+    {
+      "name": "PreferredGender",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "PreferredGender",
+        "attributeValue": "femal"
+      }
+    },
+    {
+      "name": "Price",
+      "value": {
+        "attributeType": "Price",
+        "attributeName": "Price",
+        "priceType": "FIXED",
+        "currency": "PLN",
+        "amount": 50000
+      }
+    },
+    {
+      "name": "ShareBasis",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "ShareBasis",
+        "attributeValue": "romshar"
+      }
+    },
+    {
+      "name": "Smoking",
+      "value": {
+        "attributeType": "Integer",
+        "attributeName": "Smoking",
+        "attributeValue": 1
+      }
+    },
+    {
+      "name": "Title",
+      "value": {
+        "attributeType": "String",
+        "attributeName": "Title",
+        "attributeValue": "Post House Ad From bapi at 2016-07-12 01:21:39.168"
+      }
+    }
+  ],
+  "features": {
+    "BUMP_UP": {
+      "startDate": 1468286795702,
+      "endDate": null
+    },
+    "TOP_AD": {
+      "startDate": 1468286795769,
+      "endDate": 1470965195769
+    },
+    "SRP_GALLERY": {
+      "startDate": 1468286796174,
+      "endDate": 1470965196174
+    }
+  }
+}

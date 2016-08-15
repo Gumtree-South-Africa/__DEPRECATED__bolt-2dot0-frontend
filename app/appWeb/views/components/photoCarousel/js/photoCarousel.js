@@ -128,12 +128,15 @@ let imageUploads = (() => {
 let resizeCarousel = () => {
 	let $carouselImages = $('.add-photo-item, .carousel-item');
 	let width = $carouselImages.width();
+	let $carouselUserImages = $('.carousel-item');
 	// set height of carousel items to be same as width (set by slick)
-	[].forEach.call($carouselImages, (item) => {
+	$carouselUserImages.each((item) => {
 		// Slick will sometimes remove the css applied to an item.
 		let carouselItem = $(item);
 		let image = carouselItem.data('image');
-		carouselItem.css('background-image', `url("${image}")`);
+		if (image) {
+			carouselItem.css('background-image', `url("${image}")`);
+		}
 	});
 	//fix issue where images would sometimes be very small
 	if (width > 10) {
@@ -644,6 +647,31 @@ let deleteSelectedItem = (event) => {
 	resizeCarousel();
 };
 
+let _slickAdd = (totalItems) => {
+	//Ternary for whether or not to show the blue X in the corner of each thumbnail
+	this.$carousel.slick('slickAdd',
+
+		(this.showDeleteImageIcons) ?
+		'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
+		`<div id="carousel-delete-item" class="delete-wrapper">
+					<div class="icon-photo-close"></div>
+					</div>` +
+		'<div id="carousel-upload-spinner" class="spinner"></div>' +
+		'</div>'
+			: //Ternary else right here
+		'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
+		'<div id="carousel-upload-spinner" class="spinner"></div>' +
+		'</div>'
+		, totalItems, true);
+	this.$carousel.slick('slickGoTo', totalItems, false);
+
+	// increment loaded count
+	this.$loadedImages++;
+
+	// resize items
+	resizeCarousel();
+};
+
 let parseFile = (file) => {
 	let reader = new FileReader();
 
@@ -659,28 +687,7 @@ let parseFile = (file) => {
 		let totalItems = $(".carousel-item").length;
 
 		if (totalItems < allowedUploads) {
-			//Ternary for whether or not to show the blue X in the corner of each thumbnail
-			this.$carousel.slick('slickAdd',
-
-				(this.showDeleteImageIcons) ?
-				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
-				`<div id="carousel-delete-item" class="delete-wrapper">
-					<div class="icon-photo-close"></div>
-					</div>` +
-				'<div id="carousel-upload-spinner" class="spinner"></div>' +
-				'</div>'
-					: //Ternary else right here
-				'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
-				'<div id="carousel-upload-spinner" class="spinner"></div>' +
-				'</div>'
-				, totalItems, true);
-			this.$carousel.slick('slickGoTo', totalItems, false);
-
-			// increment loaded count
-			this.$loadedImages++;
-
-			// resize items
-			resizeCarousel();
+			_slickAdd(totalItems);
 		}
 	};
 	if (file) {
@@ -746,7 +753,8 @@ let initialize = (options) => {
 				slidesToShow: 3,
 				slidesToScroll: 3
 			},
-			showDeleteImageIcons: false
+			showDeleteImageIcons: false,
+			initialImages: []
 		};
 	}
 	this.showDeleteImageIcons = options.showDeleteImageIcons;
@@ -819,6 +827,16 @@ let initialize = (options) => {
 
 	// Slick setup
 	this.$carousel.slick(options.slickOptions);
+	imageUploads.add(options.initialImages.length);
+	options.initialImages.forEach((image, i) => {
+		let thumb = (image.LARGE) ? image.LARGE : image.SMALL;
+		let totalItems = $(".carousel-item").length;
+		if (totalItems < allowedUploads) {
+			_slickAdd(totalItems);
+		}
+		createImgObj(i, thumb, thumb);
+		$(".carousel-item[data-item='" + i + "'] .spinner").addClass('hidden');
+	});
 
 	// init carousel item images and heights
 	updateCarouselImages();

@@ -38,19 +38,21 @@ let _ajaxEditForm = () => {
 		images.push(featured);
 	}
 
-	[].forEach.call($carouselImages, (el) => {
+	$carouselImages.each((i, el) => {
 		let image = $(el).data('image');
+		image = this.imageHelper.convertThumbImgURL18(image);
 		if (image && image !== featured) {
 			images.push(image);
 		}
 	});
 	let description = this.$textarea.val();
+	let category = Number(this.$categoryId.val());
 
 	let payload = {
 		"adId": serialized.adId,
 		"title": serialized.adTitle,
 		"description": description,
-		"categoryId": 9077,
+		"categoryId": category,
 		"price": {
 			"currency": (serialized.USD) ? 'USD' : 'MXN',
 			"amount": Number(serialized.adPrice)
@@ -79,6 +81,7 @@ let onReady = () => {
 	this.imageHelper = new ImageHelper();
 	this.$detailsSection = $("#js-main-detail-edit");
 	this.$photoCarousel = $('.photo-carousel');
+	this.$categoryId = this.$detailsSection.find('#category-id');
 	this.$submitButton = this.$detailsSection.find('#js-edit-submit-button');
 	this.$locationLink = $("#edit-location-input");
 
