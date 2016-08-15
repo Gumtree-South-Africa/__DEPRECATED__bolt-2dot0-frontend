@@ -115,11 +115,12 @@ module.exports = function webpack(gulp) {
 
 		// CLIENT UNIT TEST TASKS
 		gulp.task('webpack:build', (done) => {
-
-			let config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
+			let config;
 
 			if (argv.noUglifyJS || argv.CI) {
-				config.plugins.shift(); // remove uglify plugin
+				config = require(process.cwd() + "/app/config/bundling/webpack.noUglifyApp.config.js");
+			} else {
+				config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
 			}
 
 			// run webpack
