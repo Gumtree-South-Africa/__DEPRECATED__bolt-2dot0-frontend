@@ -9,6 +9,16 @@
             </span>
         </a>
         <section class="controls">
+            {{#if this.adPrice}}
+                <span class="price-text">
+                    {{#compare  this.adPrice.priceType "===" "CONTACT_ME"}}
+                        {{i18n "homepage.trending.contact"}}
+                    {{/compare}}
+                    {{#compare  this.adPrice.priceType "===" "FIXED"}}
+                        ${{this.adPrice.amount}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
+                    {{/compare}}
+				</span>
+            {{/if}}
             <span class="favorite-btn icon-heart-gray" role="button"></span>
         </section>
         <a class="tile-link" href="{{this.viewSeoUrl}}"></a>

@@ -82,6 +82,8 @@ describe('Server to hit HomePage', function() {
 							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product image');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
 							.toBe(mockTrending.ads[0].seller.profileImage, 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain(mockTrending.ads[0].adPrice.amount);
+						expect(trendingItem.find(".price-text").text()).not.toContain("USD");
 
 						// Item 2, priceType: USD
 						trendingItem = c$('.tile-item').next();
@@ -89,6 +91,8 @@ describe('Server to hit HomePage', function() {
 							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product image');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
 							.toBe(mockTrending.ads[1].seller.profileImage, 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain(mockTrending.ads[1].adPrice.amount);
+						expect(trendingItem.find(".price-text").text()).toContain("USD");
 
 						// Item 3, priceType: CONTACT_ME
 						trendingItem = c$('.tile-item').last();
@@ -96,6 +100,7 @@ describe('Server to hit HomePage', function() {
 							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product image');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
 							.toBe(mockTrending.ads[2].seller.profileImage, 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 					})
 					.end(specHelper.finish(done));
 			});

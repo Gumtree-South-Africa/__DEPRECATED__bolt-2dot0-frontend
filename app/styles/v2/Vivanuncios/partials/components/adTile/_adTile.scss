@@ -84,9 +84,21 @@ $panelCornerBorderRadius: 7px;
 
 		background: linear-gradient( 0deg, black, transparent );
 
+		.price-text {
+			position: absolute;
+			left: 5px;
+			bottom: 2px;
+			width: calc(100% - 32px);
+			font-size: 20px;
+			color: white;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
 		.favorite-btn {
-			bottom: 5px;
-			right: 5px;
+			bottom: 3px;
+			right: 3px;
 			position: absolute;
 
             &:hover {
