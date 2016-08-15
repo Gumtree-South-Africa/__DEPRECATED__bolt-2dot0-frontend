@@ -13,6 +13,8 @@ let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+
 let postAdData = {
 	extendModelData: (req, modelData) => {
 		// CSS
@@ -27,6 +29,9 @@ let postAdData = {
 };
 
 router.use('/', (req, res, next) => {
+	// Retrieve Data from Model Builders
+	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
+
 	let deferredAdPromise = Q.fcall(() => {
 		if (req.query.guid) {
 			// we've got a query string

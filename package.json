@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.114",
+  "version": "2.0.115",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
@@ -52,7 +52,7 @@
     "i18n-2": "0.6.3",
     "imports-loader": "0.6.5",
     "ipware": "0.0.8",
-	"is-my-json-valid": "2.13.1",
+    "is-my-json-valid": "2.13.1",
     "isotope-layout": "3.0.1",
     "javascript-precommit": "0.0.8",
     "jquery": "1.12.4",

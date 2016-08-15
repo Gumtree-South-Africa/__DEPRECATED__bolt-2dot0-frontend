@@ -108,12 +108,11 @@
 
 	.slick-prev {
 		left: -20px;
-		background: url('../../../../../../../public/images/carousel-arrow-left.png') no-repeat;
 	}
 
 	.slick-next {
 		right: -25px;
-		background: url('../../../../../../../public/images/carousel-arrow-right.png') no-repeat;
+		transform: scaleX(-1);
 	}
 
 	.slick-carousel {

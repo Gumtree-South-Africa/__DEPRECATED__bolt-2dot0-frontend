@@ -23,7 +23,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		let latLng = geoCookie.split('ng');
 		lat = Number(latLng[0]);
 		lng = Number(latLng[1]);
-	} else if (google.loader.ClientLocation) {
+	} else if (window.google && window.google.loader.ClientLocation) {
 		lat = Number(google.loader.ClientLocation.latitude);
 		lng = Number(google.loader.ClientLocation.longitude);
 		options.locationType = 'geoIp';

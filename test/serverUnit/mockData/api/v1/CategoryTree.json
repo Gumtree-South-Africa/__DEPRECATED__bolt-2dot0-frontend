@@ -412,14 +412,14 @@
 			"localizedMobileName": "Clerical & Administrative jobs",
 			"children": [],
 			"_links": [{
-				"rel": "self",
-				"href": "/categories/9254",
-				"method": "GET"
-			}, {
-				"rel": "search",
-				"href": "/s-clerical-administrative-jobs/v1c9254p1",
-				"method": "GET"
-			}]
+			"rel": "self",
+			"href": "/categories/9254",
+			"method": "GET"
+		}, {
+			"rel": "search",
+			"href": "/s-clerical-administrative-jobs/v1c9254p1",
+			"method": "GET"
+		}]
 		}, {
 			"id": 9050,
 			"localizedName": "Computing & IT jobs",

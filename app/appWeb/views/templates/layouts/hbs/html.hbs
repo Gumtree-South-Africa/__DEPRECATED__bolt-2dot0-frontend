@@ -86,7 +86,7 @@
 
     {{/block}}
     {{#block "GTMTag"}}
-      {{#if this.footer.analytics.gtmTagId}}
+      {{#if this.header.analytics.gtmTagId}}
             <script>
             var dataLayer = dataLayer || [];
             dataLayer.push({});(function(l) {
@@ -132,7 +132,7 @@
                      );var f=d.getElementsByTagName(s)[0],
                              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                     })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
+                     })(window,document,'script','dataLayer','{{this.header.analytics.gtmTagId}}');
        </script>
       {{/if}}
     {{/block}}
@@ -154,38 +154,40 @@
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
         <script type="text/javascript">
             var _gaq = _gaq || [];
-        {{#if this.footer.analytics.account}}
-            {{#with this.footer.analytics}}
-                _gaq.push(['siteTracker._setAccount', '{{account}}']);
-                _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
-                {{#each ignoredRefs}}
-                    _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
-                {{/each}}
-                _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
-                _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
-                _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
-                _gaq.push(['siteTracker._trackPageview']);
+            {{#if this.header.analytics.account}}
+                {{#with this.header.analytics}}
+                    _gaq.push(['siteTracker._setAccount', '{{account}}']);
+                    _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
+                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
+                    {{#each ignoredRefs}}
+                        _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
+                    {{/each}}
+                    _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
+                    _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
+                    _gaq.push(['siteTracker._trackPageview']);
 
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-                    //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
-            {{/with}}
+                    (function() {
+                        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+                        ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+                        //ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+                        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+                    })();
+                {{/with}}
         {{/if}}
         </script>
     {{/block}}
 
     {{#block "dynamicStyles"}}{{/block}}
+
+    {{> (dynamic "abTest") }}
 </head>
 <body>
 
     {{> (dynamic "cookieBanner") }}
-    {{#if this.footer.analytics.gtmTagId}}
+    {{#if this.header.analytics.gtmTagId}}
         <noscript>
-            <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.analytics.gtmTagId}}"
+            <iframe src="//www.googletagmanager.com/ns.html?id={{this.header.analytics.gtmTagId}}"
               height="0" width="0" style="display:none;visibility:hidden">
             </iframe>
         </noscript>
