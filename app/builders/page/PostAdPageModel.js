@@ -16,7 +16,8 @@ class PostAdPageModel {
 		this.req = req;
 		this.res = res;
 
-		this.urlProtocol = this.secure ? 'https://' : 'http://';
+		//this.urlProtocol = this.secure ? 'https://' : 'http://';
+		this.urlProtocol = 'https://';
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;

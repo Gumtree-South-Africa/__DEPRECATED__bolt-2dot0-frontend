@@ -26,7 +26,8 @@ class HeaderModel {
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
 		// Local variables
 		this.secure = secure;
-		this.urlProtocol = this.secure ? 'https://' : 'http://';
+		//this.urlProtocol = this.secure ? 'https://' : 'http://';
+		this.urlProtocol = 'https://';
 
 		this.locale = res.locals.config.locale;
 		this.brandName = res.locals.config.name;
@@ -73,7 +74,8 @@ class HeaderModel {
 				_.extend(data, this.headerConfigData);
 
 				// build data
-				let urlProtocol = this.secure ? 'https://' : 'http://';
+				//let urlProtocol = this.secure ? 'https://' : 'http://';
+				let urlProtocol = 'https://';
 				let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
 				let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
 				let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';

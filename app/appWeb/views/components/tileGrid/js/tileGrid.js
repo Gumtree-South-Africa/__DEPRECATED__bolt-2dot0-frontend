@@ -1,6 +1,6 @@
 'use strict';
 
-// http://isotope.metafizzy.co/extras.html#browserify
+// https://isotope.metafizzy.co/extras.html#browserify
 let $ = require('jquery');
 let Isotope = require('isotope-layout');
 require('jquery-bridget');
@@ -28,4 +28,3 @@ let initialize = () => {
 module.exports = {
 	initialize
 };
-
