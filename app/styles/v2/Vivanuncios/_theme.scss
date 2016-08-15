@@ -7,27 +7,6 @@
 
 $container-width: 73em;
 
-.viewport{
-    
-}
-
-
-.page{
-		padding-left:0;
-		padding-right:0;
-		max-width: 64em;
-        margin-left: auto;
-        margin-right: auto;
-        background-color:white;
-	}
-	
-	
-	  .containment {
-        max-width: 73em;
-        margin: 0 auto
-   }
-   
-   
 // Headlines
 $viva-h1: bold 1.5em Lato;      // 24px
 $viva-h2: normal 1.5em Lato;    // 24px
@@ -71,6 +50,11 @@ $tertiary-link-color: $vivaWhite;
 
 // SEO h1 tag
 $seo-bordercolor: #FAFAFA;
+
+//Page 
+
+$page-bgcolor : $vivaWhite;
+$page-bordercolor : #f7f7f7;
 
 
 // Buttons
