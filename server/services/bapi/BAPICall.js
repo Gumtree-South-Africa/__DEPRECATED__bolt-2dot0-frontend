@@ -73,7 +73,6 @@ BAPICall.prototype = {
 				socket.setTimeout(Number(options.timeout));
 				socket.on("timeout", function () {
 					reqGet.abort();
-					options.callbackOnTimeout();
 				});
 			});
 

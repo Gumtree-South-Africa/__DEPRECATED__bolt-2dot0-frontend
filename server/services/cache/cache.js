@@ -3,9 +3,10 @@
  */
 'use strict';
 
+let _ = require('underscore');
 let LRU = require("lru-cache");
 
-let cacheConfig = require('./server/config/site/cacheConfig.json');
+let cacheConfig = require(process.cwd() + '/server/config/site/cacheConfig.json');
 
 
 class BoltCache {
@@ -13,7 +14,7 @@ class BoltCache {
 	constructor() {
 		this.cache = {};
 
-		cacheConfig.cache.forEach((cache) => {
+		_.each(cacheConfig.cache, (cache) => {
 			this.prePoopulate(cache.name, cache.maxElements, cache.maxAge);
 		});
 	}
@@ -35,11 +36,11 @@ class BoltCache {
 	}
 
 	peekValueFromCache(cacheName, cacheKey) {
-		this.cache[cacheName].peek(cacheKey);
+		return this.cache[cacheName].peek(cacheKey);
 	}
 
 	getValueFromCache(cacheName, cacheKey) {
-		this.cache[cacheName].get(cacheKey);
+		return this.cache[cacheName].get(cacheKey);
 	}
 
 	setValueInCache(cacheName, cacheKey, cacheValue, cacheTimeConfig) {

@@ -98,7 +98,16 @@ class HomePageModelV2 {
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;
 				}).fail((err) => {
-					console.warn(`error getting data ${err}`);
+					console.warn(`error getting card data ${err}`);
+					if(err.code === 'ECONNRESET') {
+						try {
+							return cardsModel.getCachedTrendingCard();
+						} catch (ex) {
+							console.warn('error getting card cached data');
+							console.warn(ex);
+							return {};
+						}
+					}
 					return {};
 				});
 			};
@@ -116,7 +125,16 @@ class HomePageModelV2 {
 			return recentActivityModel.getRecentActivities(modelData.geoLatLngObj).then((data) => {
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting recentActivities data ${err}`);
+				if(err.code === 'ECONNRESET') {
+					try {
+						return recentActivityModel.getCachedRecentActivities();
+					} catch (ex) {
+						console.warn('error getting recentActivities cached data');
+						console.warn(ex);
+						return {};
+					}
+				}
 				return {};
 			});
 		};
@@ -133,7 +151,7 @@ class HomePageModelV2 {
 				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting gpsMap data ${err}`);
 			});
 		};
 
@@ -141,7 +159,7 @@ class HomePageModelV2 {
 			return locationModel.getTopL2Locations().then((data) => {
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting topLocations data ${err}`);
 				return {};
 			});
 		};
@@ -152,7 +170,7 @@ class HomePageModelV2 {
 				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
 					return data;
 				}).fail((err) => {
-					console.warn(`error getting data ${err}`);
+					console.warn(`error getting locationlatlong data ${err}`);
 					return {};
 				});
 			};
@@ -162,7 +180,7 @@ class HomePageModelV2 {
 			return keywordModel.resolveAllPromises().then((data) => {
 				return data[0].keywords || {};
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting topSearches data ${err}`);
 				return {};
 			});
 		};

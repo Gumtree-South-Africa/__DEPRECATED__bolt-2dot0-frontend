@@ -1,8 +1,14 @@
 'use strict';
 
+let cwd = process.cwd();
 let config = require('config');
-let bapiOptionsModel = require("./bapi/bapiOptionsModel");
-let bapiService      = require("./bapi/bapiService");
+
+let bapiOptionsModel = require(cwd + "/server/services/bapi/bapiOptionsModel");
+let bapiService      = require(cwd + "/server/services/bapi/bapiService");
+
+let cacheConfig  = require(cwd + '/server/config/site/cacheConfig.json');
+let cacheService = require(cwd + "/server/services/cache/cacheService");
+
 
 /**
  * Gets data based on the endpoint and parameters passed
@@ -23,7 +29,14 @@ class CardService {
 	 		method: 'GET',
 	 		path: config.get(queryEndpoint),
 	 		extraParameters: parameters,    // bapiOptionsModel may bring 'parameters' in from config, so we use extraParameters
+			timeout: cacheConfig.cache.homepageTrendingCard.bapiTimeout
 	 	}), bapiHeaderValues, 'card');
 	}
+
+	getCachedTrendingCard(bapiHeaderValues) {
+		let cachedValue = cacheService.getValue(cacheConfig.cache.homepageTrendingCard.name, bapiHeaderValues.locale);
+		return (cachedValue !== undefined) ? cachedValue : {};
+	}
+
 }
 module.exports = new CardService();

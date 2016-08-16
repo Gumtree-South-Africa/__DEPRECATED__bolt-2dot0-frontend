@@ -1,13 +1,13 @@
 'use strict';
 
+let cwd = process.cwd();
 let config = require('config');
-let bapiOptionsModel = require("./bapi/bapiOptionsModel");
-let bapiService      = require("./bapi/bapiService");
 
+let bapiOptionsModel = require(cwd + "/server/services/bapi/bapiOptionsModel");
+let bapiService      = require(cwd + "/server/services/bapi/bapiService");
 
-function getCachedData() {
-	console.error('retreive cache data');
-}
+let cacheConfig  = require(cwd + '/server/config/site/cacheConfig.json');
+let cacheService = require(cwd + "/server/services/cache/cacheService");
 
 
 class RecentActivityService {
@@ -24,11 +24,15 @@ class RecentActivityService {
 			method: 'GET',
 			path: queryEndpoint,
 			extraParameters: apiParameters,
-			timeout: 20,
-			callbackOnTimeout: getCachedData
+			timeout: cacheConfig.cache.homepageRecentActivityCard.bapiTimeout
 		});
 
 		return bapiService.bapiPromiseGet(bapiOptions, bapiHeaderValues, 'recentActivities');
+	}
+
+	getCachedRecentActivities(bapiHeaderValues) {
+		let cachedValue = cacheService.getValue(cacheConfig.cache.homepageRecentActivityCard.name, bapiHeaderValues.locale);
+		return (cachedValue !== undefined) ? cachedValue : {};
 	}
 
 }
