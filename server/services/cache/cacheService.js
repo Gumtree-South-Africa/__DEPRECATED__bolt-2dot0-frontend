@@ -3,27 +3,28 @@
  */
 'use strict';
 
+let Q = require('q');
 let cache = require('./cache');
 
 
 class CacheService {
 
-	constructor() {
-
-	}
-
 	peekValue(cacheName, cacheKey) {
 		console.time('Instrument-Cache-PEEK-' + cacheName);
+		let deferred = Q.defer();
 		let value = cache.peekValueFromCache(cacheName, cacheKey);
+		deferred.resolve(value);
 		console.timeEnd('Instrument-Cache-PEEK-' + cacheName);
-		return value;
+		return deferred.promise;
 	}
 
 	getValue(cacheName, cacheKey) {
 		console.time('Instrument-Cache-GET-' + cacheName);
+		let deferred = Q.defer();
 		let value = cache.getValueFromCache(cacheName, cacheKey);
+		deferred.resolve(value);
 		console.timeEnd('Instrument-Cache-GET-' + cacheName);
-		return value;
+		return deferred.promise;
 	}
 
 	setValue(cacheName, cacheKey, cacheValue, cacheTimeConfig) {
