@@ -2,7 +2,7 @@
 
 let StringUtils = require("public/js/common/utils/StringUtilsV2.js");
 
-let comparisonHelpers = require("../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
+let comparisonHelpers = require("../../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
 
 let locale;
 let _loadPartial = (name) => {
@@ -14,7 +14,7 @@ let setLocale = (newLocale) => {
 	$("html").attr("data-locale", newLocale);
 };
 
-let initialize = () => {
+let initialize = (Handlebars) => {
 	Handlebars.registerHelper("partial", (name, options) => {
 			if (!name) {
 				return;
@@ -125,10 +125,6 @@ let initialize = () => {
 	// 	return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
 	// });
 };
-
-afterEach(() => {
-	locale = null;
-});
 
 module.exports = {
 	initialize,

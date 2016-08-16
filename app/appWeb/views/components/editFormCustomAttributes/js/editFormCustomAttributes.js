@@ -1,8 +1,25 @@
 'use strict';
 
-// let myDependency = require("../path/to/dependency");
+let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 class EditFormCustomAttributes {
+	_render(modelData) {
+		let $parentWrapper = this.$form.parent();
+
+		this._unbindDependencyEvents();
+
+		$parentWrapper.empty();
+		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`](modelData);
+
+		$parentWrapper.append(newDomString);
+
+		this._bindDependencyEvents();
+	}
+
+	_unbindDependencyEvents() {
+		this.$form.find('.edit-ad-select-box[data-dependency="true"]').off("change");
+	}
+
 	_insertSelectBoxOptions($selectBox, valuesArr) {
 		$selectBox.empty();
 		$selectBox.append('<option value="default" selected="selected"> --- </option>');
@@ -38,8 +55,21 @@ class EditFormCustomAttributes {
 		});
 	}
 
+	updateCustomAttributes(catId) {
+		$.ajax({
+			url: `/api/edit/customattributes/${catId}`,
+			method: "GET",
+			contentType: "application/json",
+			success: (customAttrData) => {
+				this._render(customAttrData);
+			}
+		});
+	}
+
 	initialize() {
 		this.$form = $("#edit-ad-custom-attributes-form");
+		this.locale = $("#client-hbs-locale").data("locale");
+		clientHbs.initialize(this.locale);
 		this._bindDependencyEvents();
 	}
 }

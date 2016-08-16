@@ -2,6 +2,7 @@
 let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/imageHelper');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
+let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 
 let _setHiddenLocationInput = (location) => {
 	this.$locationLat.val(location.lat);
@@ -108,10 +109,15 @@ let onReady = () => {
 				this.$categoryChangeLink.empty();
 				this.$categoryChangeLink.append(breadcrumbs);
 
+				// TODO HOOK UP ONCE WE HAVE MORE THAN ONE MOCKED DATA SET
+				// customAttributes.updateCustomAttributes(hierarchy[hierarchy.length-1]);
+
 				this.currentHierarchy = hierarchy;
 			}
 		});
 	});
+
+	customAttributes.initialize();
 };
 
 let initialize = () => {

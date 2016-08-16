@@ -223,6 +223,10 @@ class CategorySelectionModal {
 		this.currentHierarchy = options.currentHierarchy;
 		this.onSaveCb = options.onSaveCb;
 
+		if (this.currentHierarchy.length <= 0) {
+			this.currentHierarchy.push(0);
+		}
+
 		this.$saveButton.prop('disabled', true);
 		this.$input.prop('disabled', false);
 

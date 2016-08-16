@@ -2,13 +2,13 @@
 
 
 let $ = require("jquery");
-let clientHbsHelpers = require("./clientHbsHelpers.js");
+let clientHbsHelpers = require("./../../../public/js/common/utils/clientHbsHelpers.js");
 let _ = require("underscore");
 
 let mockAjaxMapQueue = [];
 
 // fix HBS Template Helpers for the Client
-clientHbsHelpers.initialize();
+clientHbsHelpers.initialize(Handlebars);
 
 /**
  * Prepare client template and return that DOM after appending to the screen

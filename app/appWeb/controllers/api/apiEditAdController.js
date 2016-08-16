@@ -22,7 +22,7 @@ router.post('/attributedependencies', cors, (req, res) => {
 	res.json(returnData);
 });
 
-router.get('/customAttributes/:categoryId', cors, (req, res) => {
+router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let editAdModel = new EditAdModel(model.bapiHeaders);

@@ -41,7 +41,7 @@ describe('Edit Ad', () => {
 		}, "es_MX");
 		editAdFormMainDetailsController.initialize();
 		editAdFormMainDetailsController.onReady();
-		specHelper.registerMockAjax('/api/edit', {'vipLink': '/success'}, {
+		specHelper.registerMockAjax('/api/edit/update', {'vipLink': '/success'}, {
 			success: (returnData) => {
 				expect(returnData.vipLink).toBe('/success');
 			}
