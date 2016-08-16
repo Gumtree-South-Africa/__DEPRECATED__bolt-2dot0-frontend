@@ -2,6 +2,8 @@
 
 let StringUtils = require("public/js/common/utils/StringUtilsV2.js");
 
+let comparisonHelpers = require("../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
+
 let locale;
 let _loadPartial = (name) => {
 	return Handlebars.partials[name];
@@ -91,6 +93,11 @@ let initialize = () => {
 		let str = keyvalue.split(":");
 		return new Handlebars.SafeString(str[1]);
 	});
+
+	Object.keys(comparisonHelpers).forEach((helperName) => {
+		Handlebars.registerHelper(helperName, comparisonHelpers[helperName]);
+	});
+
 
 	// TODO commenting these out as we are trying to do mobile/desktop split entirely in CSS
 	// Handlebars.registerHelper('ifDesktop', function(val, options) {
