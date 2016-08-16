@@ -180,6 +180,13 @@ class CategorySelectionModal {
 		}
 	}
 
+	_scrollContainer() {
+		let $active = this.$resultsList.find(".active");
+		if ($active.length !== 0) {
+			$active.closest('.results').scrollTop($active.index() * $active.outerHeight());
+		}
+	}
+
 	_highlightPrevItem() {
 		let $active = this.$resultsList.find(".active");
 		if ($active.length === 0) {
@@ -256,11 +263,13 @@ class CategorySelectionModal {
 				case 38:
 					//up
 					this._highlightPrevItem();
+					this._scrollContainer();
 					evt.preventDefault();
 					break;
 				case 40:
 					//down
 					this._highlightNextItem();
+					this._scrollContainer();
 					evt.preventDefault();
 					break;
 				case 13:

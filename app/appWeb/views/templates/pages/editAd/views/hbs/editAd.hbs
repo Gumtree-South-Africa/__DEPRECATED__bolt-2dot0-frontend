@@ -6,6 +6,7 @@
 	<section class="edit-ad-page">
 		<div id="category-tree" class="hidden">{{json this.category}}</div>
 		<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
+		<div id="image-urls" class="hidden">{{json this.getAdResults.pictures}}</div>
         {{> (dynamic "postAdHeader")}}
 		<div class="hidden">
             {{> (dynamic "uploadImage")}}

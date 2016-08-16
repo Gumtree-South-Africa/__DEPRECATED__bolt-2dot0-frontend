@@ -184,10 +184,10 @@
 		},
 		"EditAd": {
 			"desktop" 	: {
-				"models" : ["locationlatlong"]
+				"models" : ["locationlatlong", "getAd"]
 			},
 			"mobile" 	: {
-				"models" : ["locationlatlong"]
+				"models" : ["locationlatlong", "getAd"]
 			}
 		}
 	}

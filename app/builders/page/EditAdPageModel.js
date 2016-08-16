@@ -8,12 +8,15 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
+let _ = require('underscore');
 
 
 class EditAdPageModel {
-	constructor(req, res) {
+	constructor(req, res, adId) {
 		this.req = req;
 		this.res = res;
+		this.adId = adId;
 
 		this.urlProtocol = this.secure ? 'https://' : 'http://';
 		this.fullDomainName = res.locals.config.hostname;
@@ -37,9 +40,6 @@ class EditAdPageModel {
 			// for easy access from the client/controller
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			return this.mapData(abstractPageModel.getBaseModelData(data), data);
-		}).fail((err) => {
-			console.error(err);
-			console.error(err.stack);
 		});
 	}
 
@@ -83,21 +83,23 @@ class EditAdPageModel {
 	}
 
 	mapData(modelData, data) {
+		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
+		modelData.getAdResults = data.getAd;
 
 		modelData.categoryCurrentHierarchy = [];
-
-		this.getCategoryHierarchy(modelData.category, 0, modelData.categoryCurrentHierarchy);
+		this.getCategoryHierarchy(modelData.category, modelData.getAdResults.categoryId, modelData.categoryCurrentHierarchy);
 
 		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
+		let editAdModel = new EditAdModel(modelData.bapiHeaders);
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.locationlatlong = () => {
@@ -106,6 +108,10 @@ class EditAdPageModel {
 				console.warn(`error getting data ${err}`);
 				return {};
 			});
+		};
+
+		this.dataPromiseFunctionMap.getAd = () => {
+			return editAdModel.getAd(this.adId);
 		};
 	}
 }

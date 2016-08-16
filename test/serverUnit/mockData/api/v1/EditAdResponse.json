@@ -1,20 +1,20 @@
 {
-	"adId": "1001000002000910000000009",
-	"_links": [
-		{
-			"rel": "self",
-			"href": "/ads/1001000002000910000000009",
-			"method": "PUT"
-		},
-		{
-			"rel": "seoVipUrl",
-			"href": "/a-elektronarzedzia/buk/ad-posted-by-shuochen-ebay-com/1001000002000910000000009",
-			"method": "GET"
-		},
-		{
-			"rel": "getAdForEdit",
-			"href": "/ads/1001000002000910000000009",
-			"method": "GET"
-		}
-	]
+  "adId": "1001000002000910000000009",
+  "_links": [
+    {
+      "rel": "self",
+      "href": "/ads/1001000002000910000000009",
+      "method": "PUT"
+    },
+    {
+      "rel": "seoVipUrl",
+      "href": "/a-elektronarzedzia/buk/ad-posted-by-shuochen-ebay-com/1001000002000910000000009",
+      "method": "GET"
+    },
+    {
+      "rel": "getAdForEdit",
+      "href": "/ads/1001000002000910000000009",
+      "method": "GET"
+    }
+  ]
 }
