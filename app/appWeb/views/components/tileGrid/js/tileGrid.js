@@ -39,6 +39,7 @@ let initialize = () => {
 		},
 		filter: _filterFunction
 	};
+	let numTiles = $('.trending-card .tile-item').length;
 
 	adTile.initialize();
 	// Isotope requires document to be ready activated
@@ -51,8 +52,7 @@ let initialize = () => {
 	// 'View More' click handler
 	$(".card-view-more .link").on("click", () => {
 		filterMax += 16;
-		console.log(filterMax);
-		if (filterMax <= 48) {
+		if (filterMax <= 48 && filterMax <= numTiles) {
 			isotopeHandler.isotope(isotopeOptions);
 			isotopeHandler.trigger("scroll"); // trigger lazyload in webkit browsers
 		} else {
