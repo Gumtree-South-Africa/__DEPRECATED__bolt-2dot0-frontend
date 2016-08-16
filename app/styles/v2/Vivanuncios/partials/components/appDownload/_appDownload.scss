@@ -166,9 +166,17 @@
 @include in-breakpoint($medium-break){
 .downloadapp-wrapper
 .inner-wrapper {
-    width: 96% ;
+    width: 90% ;
     margin-top: 10%;
     }
+ .icon-app-store {
+    margin-left: 12px;
+ }
+ 
+ .icon-googleplay{
+   margin-right: 19px;
+ }
+  
 .downloadapp-wrapper  #downloadapp-imagewrapper {
   background-size: cover;
 }
@@ -238,6 +246,7 @@
 	float: right;
 	background-size: cover;
     background-position: center;
+    margin-right: 9px;
 
    }
 
