@@ -1,5 +1,7 @@
+<div class="label-wrapper">
+	<label for="{{this.name}}">{{this.localizedName}}</label>
+</div>
 <div class="input-wrapper">
-    <label for="{{this.name}}">{{this.localizedName}}</label>
 	<select name="{{this.name}}" class="edit-ad-select-box" data-attribute="{{this.name}}" {{#compare this.dependents.length ">" 0}}data-dependency="true"{{/compare}}>
         <option value="default" selected="selected">
             ---

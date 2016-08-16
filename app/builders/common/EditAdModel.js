@@ -2,8 +2,19 @@
 
 let cwd = process.cwd();
 let editAdService = require(cwd + '/server/services/editad');
+let _ = require("underscore");
 
 let VIP_URL_SUFFIX = "?activateStatus=adActivateSuccess";
+
+let commonAttributesToExclude = [
+	"Description",
+	"Price",
+	"UserName",
+	"Address",
+	"Phone",
+	"Title",
+	"Email"
+];
 
 class EditAdModel {
 	constructor(bapiHeaders) {
@@ -32,10 +43,14 @@ class EditAdModel {
 	}
 
 	translateCustomAttributes() {
-		let calMap = {}, customAttrList = require(`${cwd}/server/services/mockData/CustomAttributesEx.json`);
+		let exclusionIndexArray = [], calMap = {}, customAttrList = require(`${cwd}/server/services/mockData/CustomAttributesEx.json`);
 
-		customAttrList.forEach((customAttr) => {
+		customAttrList.forEach((customAttr, index) => {
 			let tempAllowedValues = {};
+			if (_.contains(commonAttributesToExclude, customAttr.name)) {
+				exclusionIndexArray.push(index);
+			}
+
 			if (customAttr.allowedValues && customAttr.allowedValues.length > 0 && customAttr.dependencies && customAttr.dependencies.length > 0) {
 				customAttr.allowedValues.forEach((allowedVal) => {
 					if (tempAllowedValues[allowedVal.dependencyValue]) {
@@ -50,6 +65,12 @@ class EditAdModel {
 				});
 			}
 			calMap[customAttr.name] = customAttr;
+		});
+
+		// remove common attributes already displayed without
+		// creating cavities in the array.
+		customAttrList = _.filter(customAttrList, (val, i) => {
+			return !_.contains(exclusionIndexArray, i);
 		});
 
 		return {

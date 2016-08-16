@@ -7,8 +7,12 @@ let _ = require("underscore");
 
 let mockAjaxMapQueue = [];
 
+window.test = {
+	Handlebars
+};
+
 // fix HBS Template Helpers for the Client
-clientHbsHelpers.initialize(Handlebars);
+clientHbsHelpers.initialize(window.test.Handlebars);
 
 /**
  * Prepare client template and return that DOM after appending to the screen
@@ -17,7 +21,7 @@ clientHbsHelpers.initialize(Handlebars);
  * @returns {jQuery} return testArea
  */
 let _prepareTemplate = (templateName, templateModel) => {
-	let template = Handlebars.partials[templateName];
+	let template = window.test.Handlebars.partials[templateName];
 
 	if (!template) {
 		throw Error(`No precompiled template with the name -> ${templateName}`);

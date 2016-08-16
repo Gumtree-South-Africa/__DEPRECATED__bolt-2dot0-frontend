@@ -165,7 +165,7 @@ $labelMargin: 8%;
 		.input-wrapper {
 			width: 100%;
 
-			input[type="text"], .location-link {
+			input[type="text"], .location-link, select {
 				width: $inputWidth;
 				margin: 0 $inputMargin;
 
@@ -175,6 +175,13 @@ $labelMargin: 8%;
 					width: 50%;
 					margin: 0 0 0 $inputMargin;
 				}
+			}
+
+			select {
+				width: 50%;
+				margin: 0 50% 0 $inputMargin;
+
+				border: 1px solid $vivaBlack;
 			}
 
 			.category-name-display {
