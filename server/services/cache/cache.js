@@ -14,7 +14,7 @@ class BoltCache {
 		this.cache = {};
 
 		cacheConfig.cache.forEach((cache) => {
-			this.prePoopulate(cache.name, cache.max, cache.maxAge);
+			this.prePoopulate(cache.name, cache.maxElements, cache.maxAge);
 		});
 	}
 

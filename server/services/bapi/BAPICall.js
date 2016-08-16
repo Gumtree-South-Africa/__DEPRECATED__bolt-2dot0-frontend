@@ -69,6 +69,14 @@ BAPICall.prototype = {
 
 			});
 
+			reqGet.on("socket", (socket) => {
+				socket.setTimeout(Number(options.timeout));
+				socket.on("timeout", function () {
+					reqGet.abort();
+					options.callbackOnTimeout();
+				});
+			});
+
 			reqGet.on('error', (ex) => {
 				deferred.reject(ex);
 			});
