@@ -92,9 +92,7 @@ class RecentActivityModel {
 	}
 
 	shuffleArr(inputArr) {
-
 		for (let i = inputArr.length - 1; i >= 0; i--) {
-
 			let randomIndex = Math.floor(Math.random() * (i + 1));
 			let itemAtIndex = inputArr[randomIndex];
 
@@ -107,11 +105,9 @@ class RecentActivityModel {
 	getRecentActivities(geoLatLngObj) {
 		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((data) => {
 			data.recent = [];
-
 			data.filteredArr = [];
-			data.filteredArr = this.filterArr(data.ads);
-
 			data.shuffledArr = [];
+			data.filteredArr = this.filterArr(data.ads);
 			data.shuffledArr = this.shuffleArr(data.filteredArr);
 
 			if (data.shuffledArr instanceof Array && data.shuffledArr.length > 2) {
@@ -127,7 +123,6 @@ class RecentActivityModel {
 				feed3.renderSold = this.isSold(feed3);
 				data.recent.push(feed3);
 			}
-
 			return data;
 		});
 	}
