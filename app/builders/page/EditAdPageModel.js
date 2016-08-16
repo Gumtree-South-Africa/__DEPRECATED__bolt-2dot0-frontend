@@ -91,9 +91,6 @@ class EditAdPageModel {
 		modelData.seo = data['seo'] || {};
 		modelData.getAdResults = data.getAd;
 
-		modelData.categoryCurrentHierarchy = [];
-		this.getCategoryHierarchy(modelData.category, modelData.getAdResults.categoryId, modelData.categoryCurrentHierarchy);
-
 		return modelData;
 	}
 
@@ -113,7 +110,11 @@ class EditAdPageModel {
 		};
 
 		this.dataPromiseFunctionMap.getAd = () => {
-			return editAdModel.getAd(this.adId);
+			return editAdModel.getAd(this.adId).then((data) => {
+				modelData.categoryCurrentHierarchy = [];
+				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
+				return data;
+			});
 		};
 	}
 }

@@ -25,7 +25,14 @@ class EditAdModel {
 		if (typeof adId === undefined || adId === null) {
 			return {};
 		}
-		return editAdService.getAd(this.bapiHeaders, adId);
+		return editAdService.getAd(this.bapiHeaders, adId).then((data) => {
+			let postDate = new Date(data.postedDate);
+			let currentDate = new Date();
+			let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+			data.daysUntil = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+			return data;
+		});
 	}
 
 	editAd(editAdRequest) {
