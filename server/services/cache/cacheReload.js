@@ -24,6 +24,10 @@ class CacheReloader {
 
 	kickoffReloadProcess(bapiHeaders) {
 		_.each(this.cacheReloadable, (cache) => {
+			// Set Cache
+			this.refreshCache(cache, bapiHeaders);
+
+			// Setup Timer to Reload Cache
 			let timer = new NanoTimer();
 			let interval = cache.reload + 'm';
 			timer.setInterval(this.refreshCache, [cache, bapiHeaders], interval);
