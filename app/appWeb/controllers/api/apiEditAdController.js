@@ -12,7 +12,26 @@ let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.j
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
 
-router.post('/', cors, (req, res) => {
+router.post('/attributedependencies', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let editAdModel = new EditAdModel(model.bapiHeaders);
+
+	let returnData = editAdModel.getAttrDependencyUpdateJson(req.body.catId, req.body.depAttr, req.body.depValue);
+
+	res.json(returnData);
+});
+
+router.get('/customAttributes/:categoryId', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let editAdModel = new EditAdModel(model.bapiHeaders);
+
+	editAdModel.getFullAttributeArray("catId").then(() => {
+	});
+});
+
+router.post('/update', cors, (req, res) => {
 	// Step 1: Check if request type sent is JSON
 	if (!req.is('application/json')) {
 		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
@@ -76,7 +95,6 @@ router.post('/', cors, (req, res) => {
 			error: returnMessage
 		});
 	});
-
 });
 
 

@@ -17,7 +17,8 @@ module.exports = {
 			"UploadImage": "app/appWeb/views/components/uploadImage/js/uploadImage.js",
 			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
 			"PageMain": "app/appWeb/views/templates/pages/editAd/js/editPage.js",
-			"EditAdFormMainDetails": "app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js"
+			"EditAdFormMainDetails": "app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js",
+			"EditFormCustomAttributes": "app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority

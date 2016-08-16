@@ -65,7 +65,7 @@ let _ajaxEditForm = () => {
 		"imageUrls": images
 	};
 	$.ajax({
-		url: '/api/edit',
+		url: '/api/edit/update',
 		type: 'POST',
 		data: JSON.stringify(payload),
 		dataType: 'json',

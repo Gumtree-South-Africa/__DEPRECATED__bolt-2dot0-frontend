@@ -1,0 +1,13 @@
+<div class="input-wrapper">
+    <label for="{{this.name}}">{{this.localizedName}}</label>
+	<select name="{{this.name}}" class="edit-ad-select-box" data-attribute="{{this.name}}" {{#compare this.dependents.length ">" 0}}data-dependency="true"{{/compare}}>
+        <option value="default" selected="selected">
+            ---
+        </option>
+        {{#if this.allowedValues}}
+            {{#each this.allowedValues}}
+				<option class="non-default" value="{{this.canonicalValue}}">{{this.localizedValue}}</option>
+            {{/each}}
+        {{/if}}
+	</select>
+</div>

@@ -31,6 +31,57 @@ class EditAdModel {
 		});
 	}
 
+	translateCustomAttributes() {
+		let calMap = {}, customAttrList = require(`${cwd}/server/services/mockData/CustomAttributesEx.json`);
+
+		customAttrList.forEach((customAttr) => {
+			let tempAllowedValues = {};
+			if (customAttr.allowedValues && customAttr.allowedValues.length > 0 && customAttr.dependencies && customAttr.dependencies.length > 0) {
+				customAttr.allowedValues.forEach((allowedVal) => {
+					if (tempAllowedValues[allowedVal.dependencyValue]) {
+						tempAllowedValues[allowedVal.dependencyValue].push(allowedVal);
+					} else {
+						tempAllowedValues[allowedVal.dependencyValue] = [allowedVal];
+					}
+
+					delete customAttr.allowedValues;
+
+					customAttr.allowedValuesDep = tempAllowedValues;
+				});
+			}
+			calMap[customAttr.name] = customAttr;
+		});
+
+		return {
+			customAttributes: customAttrList,
+			calMap: calMap
+		};
+	}
+
+	getFullAttributeArray() {
+
+	}
+
+	getAttrDependencyUpdateJson(catId, dependency, depValue) {
+		// check if we have the category cached already
+		// if (customAttributesService) {
+		// 	return ;// lookup
+		// } else {
+		let map = this.translateCustomAttributes().calMap;
+
+		let dependents = map[dependency].dependents;
+
+		let returnMap = {};
+
+		dependents.forEach((dep) => {
+			return returnMap[dep] = map[dep].allowedValuesDep[depValue];
+		});
+
+		return returnMap;
+
+		// }
+	}
+
 	fixupVipUrl(redirectUrl) {
 		return redirectUrl + VIP_URL_SUFFIX;
 	}

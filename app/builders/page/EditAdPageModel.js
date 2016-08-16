@@ -100,6 +100,8 @@ class EditAdPageModel {
 	getPageDataFunctions(modelData) {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let editAdModel = new EditAdModel(modelData.bapiHeaders);
+		modelData.editExtra = editAdModel.translateCustomAttributes();
+
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.locationlatlong = () => {

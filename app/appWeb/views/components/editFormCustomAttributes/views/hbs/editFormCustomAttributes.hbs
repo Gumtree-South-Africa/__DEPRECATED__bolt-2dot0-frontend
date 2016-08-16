@@ -1,0 +1,10 @@
+<div id="edit-ad-custom-attributes-form" class="custom-attributes">
+    {{#each this.customAttributes}}
+        {{#compare this.allowedValueType "===" "LIST"}}
+            {{> (base "editFormSelectBox") this}}
+        {{/compare}}
+        {{#compare this.allowedValueType "!==" "LIST"}}
+            {{> (base "editFormTextbox") this}}
+        {{/compare}}
+    {{/each}}
+</div>
