@@ -26,9 +26,6 @@ class BoltCache {
 				maxAge: maxAgeConfig,
 				length: function(n) {
 					return n.length;
-				},
-				dispose: function(key, n) {
-					n.close();
 				}
 			};
 		this.cache[name] = LRU(options);

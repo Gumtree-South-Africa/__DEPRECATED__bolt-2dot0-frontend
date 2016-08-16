@@ -25,12 +25,29 @@ class CardService {
 			// 	delete parameters.geo;
 			// }
 		}
-	 	return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 	 		method: 'GET',
 	 		path: config.get(queryEndpoint),
 	 		extraParameters: parameters,    // bapiOptionsModel may bring 'parameters' in from config, so we use extraParameters
 			timeout: cacheConfig.cache.homepageTrendingCard.bapiTimeout
 	 	}), bapiHeaderValues, 'card');
+	}
+
+	getTrendingCard(bapiHeaderValues) {
+		let parameters = {
+			geo: {
+				lat: 0.0,
+				lng: 0.0
+			}
+		};
+		switch (bapiHeaderValues.locale) {
+			case 'es_MX':
+				parameters.geo.lat = 23.6345; parameters.geo.lng = 102.5528;
+				break;
+			default:
+				parameters.geo.lat = 0.0; parameters.geo.lng = 0.0;
+		}
+		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', parameters);
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {
