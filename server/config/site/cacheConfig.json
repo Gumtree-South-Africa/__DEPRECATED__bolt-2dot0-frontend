@@ -3,8 +3,7 @@
 		"homepageTrendingCard": {
 			"name": "hp-trending",
 			"maxElements": 7,
-			"maxAge": 86400000,
-			"bapiTimeout": 200
+			"maxAge": 86400000
 		},
 		"homepageRecentActivityCard" : {
 			"name": "hp-recent",
