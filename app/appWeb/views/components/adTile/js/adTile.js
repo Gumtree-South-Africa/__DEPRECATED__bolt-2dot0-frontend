@@ -5,7 +5,9 @@ require("jquery-lazyload");
 
 let initialize = () => {
 	$(document).ready(() => {
-		$("img.lazy").lazyload();
+		$("img.lazy").lazyload({
+			"skip_invisible": true
+		});
 
 		$("img.lazy").on("appear", () => {
 			console.log("appear");

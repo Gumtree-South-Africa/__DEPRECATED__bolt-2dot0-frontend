@@ -9,7 +9,7 @@
 
             {{!-- now we iterate the items --}}
             {{#each trendingCard.ads}}
-                <div data-sort-position="1" class="tile-item {{this.sizeClass}}">
+                <div data-sort-position="1" data-index="{{@index}}" class="tile-item {{this.sizeClass}}">
                     {{> (base "adTile") this}}
                 </div>
             {{/each}}
