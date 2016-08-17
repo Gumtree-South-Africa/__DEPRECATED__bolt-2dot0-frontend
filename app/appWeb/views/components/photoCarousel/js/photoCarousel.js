@@ -192,7 +192,7 @@ let setCoverPhoto = (event) => {
 	if (!data.image) {
 		return;
 	}
-	let image = this.imageHelper.convertThumbImgURL20(data.image);
+	let image = this.epsUpload.convertThumbImgURL20(data.image);
 	let coverPhoto = $('.cover-photo');
 	coverPhoto[0].style.backgroundImage = "url('" + image + "')";
 

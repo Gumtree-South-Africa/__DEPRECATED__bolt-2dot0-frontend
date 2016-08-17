@@ -42,7 +42,7 @@ class CategorySelectionModal {
 		}
 		this._emptyResults();
 		this.displayListValues.forEach((listValue) => {
-			this.$resultsList.append(`<li class="list-item" data-id="${listValue.id}">${listValue.localizedName}</li>`);
+			this.$resultsList.append(`<li class="list-item" data-id="${listValue.id}" tabindex="0">${listValue.localizedName}</li>`);
 		});
 
 		this._bindEventsToList();
@@ -96,7 +96,7 @@ class CategorySelectionModal {
 
 	_hierarchyBack(hierarchyIndex) {
 		if (hierarchyIndex !== this.currentHierarchy.length - 1) {
-			this.$modal.removeClass("complete");
+			this.$modal.removeClass("staged");
 			this.currentHierarchy = this.currentHierarchy.splice(0, hierarchyIndex + 1);
 			this._fullRender();
 			this._clearInput();
@@ -106,28 +106,23 @@ class CategorySelectionModal {
 	_addToHierarchy(catObj) {
 		this.currentHierarchy.push(catObj.id);
 		this.$hierarchyContainer.append(`> <span role="link" data-index="${this.currentHierarchy.length - 1}" class="hier-link">${catObj.localizedName}</span>`);
-
-		if (catObj.children && catObj.children.length > 0) {
-			this._renderResults(catObj.children);
-		} else {
-			this.$modal.addClass("complete");
-		}
 	}
 
-	_unstageItem() {
+	_unstageItem(shouldRender) {
 		this._clearInput();
 		this.$input.prop("disabled", false);
-		this.$modal.removeClass("complete");
+		this.$modal.removeClass("staged");
 		this.$saveButton.prop("disabled", true);
 
-		if (this._checkLeafNode()) {
-			this.currentHierarchy.pop(); // we are entering in a leaf node state so make it seem like its staged.
+		if (shouldRender) {
+			this.currentHierarchy.pop();
 			this._fullRender();
 		}
 	}
 
-	_stageItem(id) {
+	_findItemOnLevel(id) {
 		let item;
+
 		this.currentLevel.children.some((cat) => {
 			if (cat.id === id) {
 				item = cat;
@@ -140,17 +135,41 @@ class CategorySelectionModal {
 			throw Error("This item does not exist on the current tree level.");
 		}
 
+		return item;
+	}
+
+	_stageItem(item) {
+		if (Number.isInteger(item)) {
+			item = this._findItemOnLevel(item);
+		}
+
 		this.$input.val(item.localizedName);
 		this.$input.prop("disabled", true);
-		this.$modal.addClass("complete");
+		this.$modal.addClass("staged");
 		this.$saveButton.prop("disabled", false);
+		this._addToHierarchy(item);
 		this.stagedItem = item;
 	}
 
+
 	_selectItem(item) {
+		if (Number.isInteger(item)) {
+			item = this._findItemOnLevel(item);
+		}
 		this._addToHierarchy(item);
 		this._renderResults(item.children);
 		this.currentLevel = item;
+		if (this._checkLeafNode()) {
+			this.currentHierarchy.pop();
+			this._stageItem(item);
+		} else {
+			this._unstageItem();
+		}
+	}
+
+	_selectStagedItem() {
+		this._renderResults(this.stagedItem.children);
+		this.currentLevel = this.stagedItem;
 		if (this._checkLeafNode()) {
 			this._saveChanges();
 		} else {
@@ -161,7 +180,7 @@ class CategorySelectionModal {
 	_bindEventsToList() {
 		let $items = this.$resultsList.find(".list-item");
 		$items.click((evt) => {
-			this._stageItem($(evt.currentTarget).data("id"));
+			this._selectItem($(evt.currentTarget).data("id"));
 		});
 
 		$items.hover((evt) => {
@@ -204,8 +223,11 @@ class CategorySelectionModal {
 			}
 		});
 
-		this.displayListValues = tempDisplayList;
-		this._renderResults();
+		// only re refilter if we have to.
+		if (tempDisplayList.length !== this.displayListValues.length) {
+			this.displayListValues = tempDisplayList;
+			this._renderResults();
+		}
 	}
 
 	_closeModal() {
@@ -215,6 +237,7 @@ class CategorySelectionModal {
 	}
 
 	openModal(options)  {
+		let stagedItem;
 		if (!options) {
 			throw Error("Options are required for categorySelectionModal.  Please pass in options with at least a currentHierarchy");
 		}
@@ -225,12 +248,18 @@ class CategorySelectionModal {
 
 		if (this.currentHierarchy.length <= 0) {
 			this.currentHierarchy.push(0);
+		} else if (this.currentHierarchy.length > 1) {
+			stagedItem = this.currentHierarchy.pop();
 		}
 
 		this.$saveButton.prop('disabled', true);
 		this.$input.prop('disabled', false);
 
 		this._fullRender();
+
+		if (stagedItem) {
+			this._stageItem(stagedItem);
+		}
 	}
 
 	_saveChanges() {
@@ -246,12 +275,13 @@ class CategorySelectionModal {
 		this.$resultsList = this.$modal.find(".results ul");
 		this.$closeButton = this.$modal.find(".close-button");
 		this.$input = this.$modal.find('input[type="text"]');
+		this.$results = this.$modal.find(".results");
 		this.$hierarchyContainer = this.$modal.find(".current-hierarchy");
 		this.$saveButton = this.$modal.find(".save-button");
 		this.$clearTextButton = $("#clear-text-btn");
 
 		this.$saveButton.click(() => {
-			this._selectItem(this.stagedItem);
+			this._selectStagedItem();
 		});
 
 		this.$closeButton.click(() => {
@@ -259,33 +289,33 @@ class CategorySelectionModal {
 		});
 
 		this.$clearTextButton.click(() => {
-			this._unstageItem();
+			this._unstageItem(true);
 		});
 
-		this.$input.on('keyup', (evt) => {
-			switch (evt.keyCode) {
-				case 38:
-					//up
-					this._highlightPrevItem();
-					this._scrollContainer();
-					evt.preventDefault();
-					break;
-				case 40:
-					//down
-					this._highlightNextItem();
-					this._scrollContainer();
-					evt.preventDefault();
-					break;
-				case 13:
-					//enter
-					this._stageItem(this.$resultsList.find(".active").data("id"));
-					evt.preventDefault();
-					break;
-				default:
-					this._filterResults($(evt.currentTarget).val());
-					break;
-			}
-		});
+		// this.$input.on('keyup', (evt) => {
+		// 	switch (evt.keyCode) {
+		// 		case 38:
+		// 			//up
+		// 			this._highlightPrevItem();
+		// 			this._scrollContainer();
+		// 			evt.preventDefault();
+		// 			break;
+		// 		case 40:
+		// 			//down
+		// 			this._highlightNextItem();
+		// 			this._scrollContainer();
+		// 			evt.preventDefault();
+		// 			break;
+		// 		case 13:
+		// 			//enter
+		// 			this._stageItem(this.$resultsList.find(".active").data("id"));
+		// 			evt.preventDefault();
+		// 			break;
+		// 		default:
+		// 			// this._filterResults($(evt.currentTarget).val());
+		// 			break;
+		// 	}
+		// });
 
 		this.categoryTree = JSON.parse($("#category-tree").text() || "{}");
 	}

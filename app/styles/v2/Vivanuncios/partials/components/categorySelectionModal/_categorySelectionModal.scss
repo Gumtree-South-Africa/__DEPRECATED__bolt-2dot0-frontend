@@ -9,7 +9,7 @@
 	height: 100%;
 	background-color: rgba(0, 0, 0, 0.5);
 
-	&.complete {
+	&.staged {
 		.results {
 			display: none;
 		}
@@ -28,8 +28,17 @@
 
 		.save-button {
 			margin-top: 30px;
+			display: block;
 		}
 
+		.staging-input {
+			display: block;
+		}
+
+	}
+
+	.staging-input {
+		display: none;
 	}
 
 	&.hidden {
@@ -46,7 +55,7 @@
 		margin: auto;
 
 		width: 400px;
-		height: 500px;
+		height: 420px;
 		background-color: $vivaWhite;
 	}
 
@@ -92,7 +101,6 @@
 		width: 90%;
 		margin: 0 5%;
 		border: 1px solid black;
-		border-top: none;
 		overflow-y: scroll;
 		overflow-x: hidden;
 
@@ -131,6 +139,7 @@
 	}
 
 	.save-button {
+		display: none;
 		color: $formSubmitButtonTextColor;
 		background-color: $formSubmitButtonColor;
 		border-style: none;

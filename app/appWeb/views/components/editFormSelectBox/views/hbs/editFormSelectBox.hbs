@@ -8,7 +8,7 @@
         </option>
         {{#if this.allowedValues}}
             {{#each this.allowedValues}}
-				<option class="non-default" value="{{this.canonicalValue}}">{{this.localizedValue}}</option>
+				<option class="non-default"{{#ifIn ../parent.adResult.attributeValues ../this.canonicalName this.canonicalValue}} selected='selected'{{/ifIn}} value="{{this.canonicalValue}}">{{this.localizedValue}}</option>
             {{/each}}
         {{/if}}
 	</select>

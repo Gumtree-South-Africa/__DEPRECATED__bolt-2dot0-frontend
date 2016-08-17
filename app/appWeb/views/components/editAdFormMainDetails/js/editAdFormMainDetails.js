@@ -1,6 +1,6 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
-let ImageHelper = require('app/appWeb/views/components/uploadImage/js/imageHelper');
+let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
@@ -37,13 +37,13 @@ let _ajaxEditForm = () => {
 	let featured = this.$photoCarousel.find('.carousel-item.selected').data('image');
 	let images = [];
 	if (featured) {
-		featured = this.imageHelper.convertThumbImgURL18(featured);
+		featured = this.epsUpload.convertThumbImgURL18(featured);
 		images.push(featured);
 	}
 
 	$carouselImages.each((i, el) => {
 		let image = $(el).data('image');
-		image = this.imageHelper.convertThumbImgURL18(image);
+		image = this.epsUpload.convertThumbImgURL18(image);
 		if (image && image !== featured) {
 			images.push(image);
 		}
@@ -82,7 +82,7 @@ let _ajaxEditForm = () => {
 let onReady = () => {
 	this.$detailsSection = $("#main-detail-edit");
 
-	this.imageHelper = new ImageHelper();
+	this.epsUpload = new EpsUpload();
 	this.$detailsSection = $("#js-main-detail-edit");
 	this.$photoCarousel = $('.photo-carousel');
 	this.$categoryId = this.$detailsSection.find('#category-id');
