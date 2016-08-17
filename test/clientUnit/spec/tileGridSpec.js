@@ -57,7 +57,7 @@ describe('Tile Grid', () => {
 
 			mapper.BREAKPOINT_TO_SIZE_MAP = {
 				"360": "AB",
-			}
+			};
 			mapper.adjustTileSizes(360, tiles);
 
 			// now see if our mapper is adjusting sizes the way we expect
@@ -91,7 +91,7 @@ describe('Tile Grid', () => {
 
 	describe('Tile Grid Controller', () => {
 
-		fit('should adjust tiles sizes', () => {
+		it('should adjust tiles sizes', () => {
 
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 

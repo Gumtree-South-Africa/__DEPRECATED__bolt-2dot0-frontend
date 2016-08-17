@@ -51,7 +51,7 @@ class BreakpointTileSizeMapper {
 
 			let $tile = $(tiles[index]);
 			for (let i = 0; i < sizeClasses.length; i++) {
-				if (sizeClasses[i] != className) {
+				if (sizeClasses[i] !== className) {
 					$tile.toggleClass(sizeClasses[i], false);
 				}
 			}
