@@ -1,7 +1,7 @@
 'use strict';
 
 let $ = require('jquery');
-let ImageHelper = require('./imageHelper.js');
+let EpsUpload = require('./epsUpload.js');
 let uploadAd = require('./uploadAd.js');
 
 $.prototype.doesExist = function() {
@@ -60,7 +60,7 @@ let isProgressEventSupported = () => {
 
 let ExtractURLClass = (url) => {
 	// extract, url
-	let normalImageURLZoom = this.imageHelper.getThumbImgURL(url);
+	let normalImageURLZoom = this.epsUpload.getThumbImgURL(url);
 
 	if (!normalImageURLZoom) {
 		// not been able to find out a valid url
@@ -68,10 +68,10 @@ let ExtractURLClass = (url) => {
 	}
 
 	// convert to _18.JPG format saved in backend
-	normalImageURLZoom = this.imageHelper.convertThumbImgURL18(normalImageURLZoom);
+	normalImageURLZoom = this.epsUpload.convertThumbImgURL18(normalImageURLZoom);
 
 	return {
-		"thumbImage": this.imageHelper.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
+		"thumbImage": this.epsUpload.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
 	};
 
 };
@@ -276,17 +276,17 @@ let requestLocation = (callback) => {
 	return timeout;
 };
 
-let _success = function(response) {
+let _success = (i, response) => {
 	let url = ExtractURLClass(response);
 
 	if (!url) {
-		let error = _this.imageHelper.extractEPSServerError(response);
+		let error = this.epsUpload.extractEPSServerError(response);
 		UploadMsgClass.translateErrorCodes(0, error);
 		return;
 	}
 
-	if (_this.isMobile) {
-		_this.imageHolder.css("background-image", `url("${url.normal}")`);
+	if (this.isMobile) {
+		this.imageHolder.css("background-image", `url("${url.normal}")`);
 		let timeout = requestLocation((locationType) => {
 			if (timeout) {
 				clearTimeout(timeout);
@@ -298,7 +298,7 @@ let _success = function(response) {
 };
 
 let _failure = (err) => {
-	let error = this.imageHelper.extractEPSServerError(err);
+	let error = this.epsUpload.extractEPSServerError(err);
 	this.$uploadSpinner.toggleClass('hidden');
 	this.$uploadProgress.toggleClass('hidden');
 	UploadMsgClass.translateErrorCodes(0, error);
@@ -306,112 +306,38 @@ let _failure = (err) => {
 };
 
 let loadData = (i, file) => {
+	this.epsUpload.uploadToEps(i, file, _success, _failure, () => {
+		let xhr = new window.XMLHttpRequest();
+		xhr.upload.addEventListener("progress", function(event) {
+			let index = this.bCount;
 
-	let formData = new FormData();
-	// direct upload via EPS proxy
-	if (!this.EPS.IsEbayDirectUL) {
-		formData.append("s", "1C5000");
-		formData.append("r", "0");
-		formData.append("pltfrm", "bolt");
-	} else {
-		// direct upload to zoom
-		formData.append("s", "Standard");
-		//formData.append("wm", "USER,ICON" );
-		formData.append("aXRequest", "2");
-	}
+			if (event.lengthComputable) {
+				let percent = event.loaded / event.total;
+				_this.$uploadProgress.html((percent * 100).toFixed() + "%");
 
-	formData.append("v", "2");
-	formData.append("b", "18");
-	formData.append("n", "g");
-	formData.append("a", this.EPS.token);
-
-	formData.append("u", file);
-	formData.append("rqt", $.now());
-	formData.append("rqis", file.size);
-
-	$.ajax({
-		xhr: () => {
-			let xhr = new window.XMLHttpRequest();
-			xhr.upload.addEventListener("progress", function(event) {
-				let index = this.bCount;
-
-				if (event.lengthComputable) {
-					let percent = event.loaded / event.total;
-					_this.$uploadProgress.html((percent * 100).toFixed() + "%");
-
-					_this.imageProgress.attr('value', percent * 100);
-				} else {
-					UploadMsgClass.failMsg(index);
-				}
-			}, false);
-			return xhr;
-		},
-		type: 'POST',
-		contentType: false,
-		processData: false,
-		url: this.EPS.url,
-		data: formData,
-		success: _success,
-		error: (err) => {
-			_failure(err);
-		}
+				_this.imageProgress.attr('value', percent * 100);
+			} else {
+				UploadMsgClass.failMsg(index);
+			}
+		}, false);
+		return xhr;
 	});
 };
 
 let prepareForImageUpload = (i, file) => {
-	let mediaType = this.imageHelper.isSupported(file.name);
-
-	if (!mediaType) {
-		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
-		return;
-	}
-
-	let reader = null;
-
-	let img = new Image();
-
-	if (window.FileReader) {
-		UploadMsgClass.resizing(i);
-
-		reader = new FileReader();
-
-		reader.onload = (function(image, thisFile) {
-
-			return function(e) {
-				let dataUrl = e.target.result;
-
-				image.onload = function() {
-					let resizedImageFile = _this.imageHelper.scaleAndCropImage(this, thisFile.type);
-					let blobReader = new FileReader();
-					blobReader.readAsDataURL(resizedImageFile);
-					blobReader.onloadend = () => {
-						_this.imageHolder.css('background-image', `url('${blobReader.result}')`);
-					};
-					loadData(i, resizedImageFile);
-				};
-
-				window.URL = window.URL || window.webkitURL || false;
-				image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
-
-				if (thisFile.type === 'image/jpeg') {
-					let binaryFile = _this.imageHelper.convertToBinaryFile(dataUrl);
-					image.exifData = _this.imageHelper.findEXIFinJPEG(binaryFile);
-				}
-
-				imageUploads.setURL(i, image.src);
+	let onload = (thisFile) => {
+		return function() {
+			let resizedImageFile = _this.epsUpload.scaleAndCropImage(this, thisFile.type);
+			let blobReader = new FileReader();
+			blobReader.readAsDataURL(resizedImageFile);
+			blobReader.onloadend = () => {
+				_this.imageHolder.css('background-image', `url('${blobReader.result}')`);
 			};
-		})(img, file);
-
-		reader.readAsDataURL(file);
-	} else {
-		window.URL = window.URL || window.webkitURL || false;
-		let imageUrl = URL.createObjectURL(file);
-		img.onload = () => {
-			let resizedImageFile = this.imageHelper.scaleAndCropImage(this, file.type);
 			loadData(i, resizedImageFile);
 		};
-		img.src = imageUrl;
-	}
+	};
+
+	this.epsUpload.prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload);
 };
 
 
@@ -484,7 +410,7 @@ let initialize = () => {
 	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
-	this.imageHelper = new ImageHelper(this.EPS);
+	this.epsUpload = new EpsUpload(this.EPS);
 
 	this.uploadPhotoText = this.uploadImageContainer.find('.upload-photo-text');
 	this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
@@ -556,7 +482,7 @@ let initialize = () => {
 		if (!file) {
 			return;
 		}
-		if (!this.imageHelper.isSupported(file.name)) {
+		if (!this.epsUpload.isSupported(file.name)) {
 			UploadMsgClass.invalidType(0);
 			return;
 		}
