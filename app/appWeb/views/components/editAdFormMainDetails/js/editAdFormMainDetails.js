@@ -18,6 +18,7 @@ let _setHiddenLocationInput = (location) => {
 };
 
 let _successCallback = (response) => {
+	window.onbeforeunload = () => {};
 	window.location.href = response.vipLink;
 };
 
@@ -47,6 +48,7 @@ let _ajaxEditForm = () => {
 			images.push(image);
 		}
 	});
+
 	let description = this.$textarea.val();
 	let category = Number(this.$categoryId.val());
 
@@ -56,7 +58,7 @@ let _ajaxEditForm = () => {
 		"description": description,
 		"categoryId": category,
 		"price": {
-			"currency": (serialized.USD) ? 'USD' : 'MXN',
+			"currency": (serialized.currency) ? serialized.currency : 'MXN',
 			"amount": Number(serialized.adPrice)
 		},
 		"location": {

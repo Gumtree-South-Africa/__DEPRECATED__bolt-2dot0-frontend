@@ -6,6 +6,7 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let EditAdPageModel = require(cwd + '/app/builders/page/EditAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let EditAdPage = {
 	extendModelData: (req, modelData) => {
@@ -20,6 +21,7 @@ let EditAdPage = {
 };
 
 router.use('/:id?', (req, res, next) => {
+	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let adId = req.params.id;
 	let editAdPageModel = new EditAdPageModel(req, res, adId);
 	let modelPromise = editAdPageModel.populateData();

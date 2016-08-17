@@ -64,8 +64,7 @@ router.post('/update', cors, (req, res) => {
 		});
 	}
 
-	userModel.getUserFromCookie().then((/* user */) => {
-		//TODO: do something with the user for validation
+	userModel.getUserFromCookie().then(() => {
 		return editAdModel.editAd(requestJson);
 	}).then((result) => {
 		res.contentType = "application/json";

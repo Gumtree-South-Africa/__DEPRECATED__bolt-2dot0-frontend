@@ -4,7 +4,7 @@ let cwd = process.cwd();
 let editAdService = require(cwd + '/server/services/editad');
 let _ = require("underscore");
 
-let VIP_URL_SUFFIX = "?activateStatus=adActivateSuccess";
+// let VIP_URL_SUFFIX = "?activateStatus=adActivateSuccess";
 
 let commonAttributesToExclude = [
 	"Description",
@@ -110,9 +110,9 @@ class EditAdModel {
 		// }
 	}
 
-	fixupVipUrl(redirectUrl) {
-		return redirectUrl + VIP_URL_SUFFIX;
-	}
+	// fixupVipUrl(redirectUrl) {
+	// 	return redirectUrl + VIP_URL_SUFFIX;
+	// }
 }
 
 module.exports = EditAdModel;

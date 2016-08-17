@@ -89,7 +89,10 @@ class EditAdPageModel {
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
-		modelData.getAdResults = data.getAd;
+		modelData.adResult.attributeValues = {};
+		modelData.adResult.attributes.forEach((attribute) => {
+			modelData.adResult.attributeValues[attribute.name] = attribute.value.attributeValue;
+		});
 
 		return modelData;
 	}
@@ -109,7 +112,7 @@ class EditAdPageModel {
 			});
 		};
 
-		this.dataPromiseFunctionMap.getAd = () => {
+		this.dataPromiseFunctionMap.adResult = () => {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);

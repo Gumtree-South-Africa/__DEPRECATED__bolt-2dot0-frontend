@@ -175,6 +175,10 @@ $labelMargin: 8%;
 					width: 50%;
 					margin: 0 0 0 $inputMargin;
 				}
+
+				&.validation-error {
+					background-color: red;
+				}
 			}
 
 			select {

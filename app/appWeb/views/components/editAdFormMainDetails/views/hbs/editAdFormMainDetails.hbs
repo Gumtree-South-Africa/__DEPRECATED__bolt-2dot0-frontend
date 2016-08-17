@@ -4,8 +4,8 @@
         {{i18n "editAd.mainDetails.title"}}
 	</div>
 	<form id='edit-form' method="POST" action="#">
-        <input id="location-lat" type="hidden" name="locationLatitude" value="{{this.getAdResults.location.latitude}}">
-        <input id="location-lng" type="hidden" name="locationLongitude" value="{{this.getAdResults.location.longitude}}">
+        <input id="location-lat" type="hidden" name="locationLatitude" value="{{this.adResult.location.latitude}}">
+        <input id="location-lng" type="hidden" name="locationLongitude" value="{{this.adResult.location.longitude}}">
         <input type="hidden" name="adId" value="{{this.adId}}">
 		<div class="form-category">
 			<div class="label-wrapper">
@@ -14,7 +14,7 @@
 			</div>
 			<div class="input-wrapper">
 				<div id="category-name-display" class="category-name-display"></div>
-                <input id="category-id" value="{{this.getAdResults.categoryId}}" type="hidden" />
+                <input id="category-id" value="{{this.adResult.categoryId}}" type="hidden" />
 			</div>
 		</div>
 		<div class="separator-div"></div>
@@ -23,7 +23,7 @@
 				<label for="adTitle">{{i18n "editAd.mainDetails.labels.adTitle"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="adTitle" name="adTitle" type="text" value="{{this.getAdResults.title}}"/>
+				<input title="adTitle" name="adTitle" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
 		<div class="form-ad-price">
@@ -31,19 +31,19 @@
 				<label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="adPrice" name="adPrice" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
-                        value="{{#if this.getAdResults.price.amount}}{{this.getAdResults.price.amount}}{{/if}}"
+				<input title="adPrice" name="adPrice" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+                        value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"
 					   type="text"/>
 				<div class="radio-group">
 					<label class="control">
-						<input type="radio" name="MXN" {{#ifeq this.getAdResults.price.currency compare='MXN'}}checked="checked"{{/ifeq}}/>
+						<input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>
 						</div>
 						<span class="currency-type">MXN</span>
 					</label>
 					<label class="control">
-						<input type="radio" name="USD" {{#ifeq this.getAdResults.price.currency compare='USD'}}checked="checked"{{/ifeq}}/>
+						<input type="radio" name="currency" value="USD" {{#ifeq this.adResult.price.currency compare='USD'}}checked="checked"{{/ifeq}}/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>
 						</div>
@@ -57,7 +57,7 @@
 				<label for="adDescription">{{i18n "editAd.mainDetails.labels.description"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<textarea id='description-input' class="description-input" title="adDescription">{{this.getAdResults.description}}</textarea>
+				<textarea id='description-input' class="description-input" title="adDescription" maxlength="4000">{{this.adResult.description}}</textarea>
 			</div>
 		</div>
 		<div class="separator-div"></div>
@@ -71,7 +71,7 @@
 				<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<div id="edit-location-input" role="link" class="location-link" data-default-location="{{i18n "location.defaultcity"}}">{{this.getAdResults.location.name}}</div>
+				<div id="edit-location-input" role="link" class="location-link" data-default-location="{{i18n "location.defaultcity"}}">{{this.adResult.location.name}}</div>
 			</div>
 			<div class="location-warning">
 				<div class="location-warning-text">
@@ -80,7 +80,7 @@
 			</div>
 		</div>
         <section id="custom-attributes">
-            {{> (dynamic "editFormCustomAttributes") this.editExtra}}
+            {{> (dynamic "editFormCustomAttributes") this.editExtra model=this}}
         </section>
 		<div class="button-area">
 			<div class="submit-btn-wrapper">

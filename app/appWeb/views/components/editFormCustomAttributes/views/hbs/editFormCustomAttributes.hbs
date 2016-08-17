@@ -2,10 +2,10 @@
     {{#each this.customAttributes}}
         <div class="form-field" data-field="{{this.name}}">
             {{#compare this.allowedValueType "===" "LIST"}}
-                {{> (base "editFormSelectBox") this}}
+                {{> (base "editFormSelectBox") this parent=../model}}
             {{/compare}}
             {{#compare this.allowedValueType "!==" "LIST"}}
-                {{> (base "editFormTextbox") this}}
+                {{> (base "editFormTextbox") this parent=../model}}
             {{/compare}}
         </div>
     {{/each}}

@@ -24,7 +24,7 @@ let _slickOptions = {
 
 let initialize = () => {
 	//TODO: this might be updated to imageUrls
-	let initialImages = JSON.parse($('#image-urls').text() || '{sizeUrls: []}').sizeUrls;
+	let initialImages = JSON.parse($('#image-urls').text() || '{"sizeUrls": []}').sizeUrls;
 	photoCarousel.initialize({
 		slickOptions: _slickOptions,
 		showDeleteImageIcons: true,

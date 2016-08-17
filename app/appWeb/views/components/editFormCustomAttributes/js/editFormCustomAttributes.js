@@ -66,7 +66,31 @@ class EditFormCustomAttributes {
 		});
 	}
 
+	_bindEvents() {
+		this.$inputFields = $("input[data-validation='NUMBER']");
+		this.$inputFields.on('keydown', (e) => {
+			if (e.keyCode > 57 || e.keyCode < 48) {
+				switch (e.keyCode) {
+					case 8:
+					case 9:
+					case 13:
+					case 37:
+					case 39:
+						break;
+					default:
+						e.preventDefault();
+						break;
+				}
+			}
+		});
+	}
+
+	_unbindEvents() {
+		this.$inputFields.off();
+	}
+
 	initialize() {
+		this._bindEvents();
 		this.$form = $("#edit-ad-custom-attributes-form");
 		this.locale = $("#client-hbs-locale").data("locale");
 		clientHbs.initialize(this.locale);

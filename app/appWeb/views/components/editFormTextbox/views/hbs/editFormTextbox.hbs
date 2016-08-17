@@ -2,5 +2,5 @@
 	<label for="{{this.name}}">{{this.localizedName}}</label>
 </div>
 <div class="input-wrapper">
-    <input type="text" data-validation="{{this.allowedValueType}}"/>
+    <input type="text" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
 </div>
