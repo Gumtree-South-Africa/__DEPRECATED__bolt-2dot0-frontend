@@ -1,19 +1,13 @@
 'use strict';
 
 //Initial precaching homepage
-
-
-self.addEventListener('install', function(e) {
-	console.log('[ServiceWorker] Install');
-	e.waitUntil(
-		toolbox.precache(['/'])
-	);
-});
+toolbox.precache(['/']);
 
 //Adding set array to precache
 if (cacheObj) {
 	toolbox.precache(cacheObj['homepagePreCache']);
 }
+
 
 toolbox.router.get('/', toolbox.networkFirst, {
 	cache: {

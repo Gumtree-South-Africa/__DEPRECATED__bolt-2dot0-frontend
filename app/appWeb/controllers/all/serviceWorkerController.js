@@ -16,15 +16,16 @@ router.get('/', (req, res, next) => {
 	let modelPromise = serviceWorker.populateData();
 
 	modelPromise.then((modelData) => {
+		let initialContent = '\'use strict\';\n\n';
+		let swCacheConfigContent = 'var cacheObj=' + JSON.stringify(modelData.footer.cachePath) + ';\n\n';
+
 		let swtoolboxPath = process.cwd() + '/node_modules/sw-toolbox/sw-toolbox.js';
 		let swtoolboxContent = fs.readFileSync(swtoolboxPath);
-
-		let swCacheConfigContent = 'let cacheObj=' + JSON.stringify(modelData.footer.cachPath) + ';';
 
 		let serviceWorkerPath = process.cwd() + '/app/appWeb/serviceWorkers/service-worker-' + locale + '.js';
 		let serviceWorkerContent = fs.readFileSync(serviceWorkerPath);
 
-		let finalContent = swCacheConfigContent + swtoolboxContent  + serviceWorkerContent;
+		let finalContent = initialContent + swCacheConfigContent + swtoolboxContent  + serviceWorkerContent;
 
 		res.set('Content-Type', 'application/javascript');
 		res.send(finalContent);

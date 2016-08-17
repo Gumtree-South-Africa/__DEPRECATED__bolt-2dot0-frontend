@@ -84,12 +84,102 @@ class BinaryFile {
 
 }
 
-class ImageHelper {
+class EpsUpload {
 	constructor(EPS) {
 		this.EPS = EPS;
 		this.TiffTags = {
 			0x0112: "Orientation"
 		};
+	}
+
+	uploadToEps(i, file, success, failure, xhr) {
+		let formData = new FormData();
+		// direct upload via EPS proxy
+		if (!this.EPS.IsEbayDirectUL) {
+			formData.append("s", "1C5000");
+			formData.append("r", "0");
+			formData.append("pltfrm", "bolt");
+		} else {
+			// direct upload to zoom
+			formData.append("s", "Standard");
+			//formData.append("wm", "USER,ICON" );
+			formData.append("aXRequest", "2");
+		}
+
+		formData.append("v", "2");
+		formData.append("b", "18");
+		formData.append("n", "g");
+		formData.append("a", this.EPS.token);
+
+		formData.append("u", file);
+		formData.append("rqt", $.now());
+		formData.append("rqis", file.size);
+
+		$.ajax({
+			xhr: xhr,
+			type: 'POST',
+			contentType: false,
+			processData: false,
+			url: this.EPS.url,
+			data: formData,
+			success: (response) => {
+				success(i, response);
+			},
+			error: (err) => {
+				failure(i, err);
+			}
+		});
+	}
+
+	prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload) {
+
+		let mediaType = this.isSupported(file.name);
+
+		if (!mediaType) {
+			UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
+			return;
+		}
+
+		let reader = null;
+
+		let img = new Image();
+
+		let _this = this;
+
+		if (window.FileReader) {
+			UploadMsgClass.resizing(i);
+
+			reader = new FileReader();
+
+			reader.onload = (function(image, thisFile) {
+
+				return function(e) {
+					let dataUrl = e.target.result;
+
+					image.onload = onload(thisFile);
+
+					window.URL = window.URL || window.webkitURL || false;
+					image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
+
+					if (thisFile.type === 'image/jpeg') {
+						let binaryFile = _this.convertToBinaryFile(dataUrl);
+						image.exifData = _this.findEXIFinJPEG(binaryFile);
+					}
+
+					imageUploads.setURL(i, image.src);
+				};
+			})(img, file);
+
+			reader.readAsDataURL(file);
+		} else {
+			window.URL = window.URL || window.webkitURL || false;
+			let imageUrl = URL.createObjectURL(file);
+			img.onload = function() {
+				let resizedImageFile = _this.scaleAndCropImage(this, file.type);
+				loadData(i, resizedImageFile);
+			};
+			img.src = imageUrl;
+		}
 	}
 
 	isIOS() {
@@ -530,4 +620,4 @@ class ImageHelper {
 
 }
 
-module.exports = ImageHelper;
+module.exports = EpsUpload;
