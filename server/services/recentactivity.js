@@ -31,8 +31,7 @@ class RecentActivityService {
 	}
 
 	getCachedRecentActivities(bapiHeaderValues) {
-		let cachedValue = cacheService.getValue(cacheConfig.cache.homepageRecentActivityCard.name, bapiHeaderValues.locale);
-		return (cachedValue !== undefined) ? cachedValue : {};
+		return cacheService.getValue(cacheConfig.cache.homepageRecentActivityCard.name, bapiHeaderValues.locale);
 	}
 
 }

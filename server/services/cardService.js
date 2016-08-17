@@ -51,8 +51,7 @@ class CardService {
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {
-		let cachedValue = cacheService.getValue(cacheConfig.cache.homepageTrendingCard.name, bapiHeaderValues.locale);
-		return (cachedValue !== undefined) ? cachedValue : {};
+		return cacheService.getValue(cacheConfig.cache.homepageTrendingCard.name, bapiHeaderValues.locale);
 	}
 
 }

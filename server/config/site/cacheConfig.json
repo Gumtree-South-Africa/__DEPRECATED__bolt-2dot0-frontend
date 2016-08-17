@@ -16,6 +16,21 @@
 			"reload": 300000,
 			"service": "/server/services/recentactivity",
 			"method": "getRecentActivities"
+		},
+		"categoryAllAttributes": {
+			"name": "cat-all-attributes",
+			"maxElements": 2000,
+			"maxAge": 86400000
+		},
+		"categoryAttributeInfo": {
+			"name": "cat-attribute-info",
+			"maxElements": 5000,
+			"maxAge": 86400000
+		},
+		"categoryAttributeDependencyInfo": {
+			"name": "cat-attribute-dependency-info",
+			"maxElements": 5000,
+			"maxAge": 86400000
 		}
 	}
 }
