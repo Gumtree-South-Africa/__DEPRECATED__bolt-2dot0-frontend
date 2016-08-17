@@ -11,26 +11,35 @@ class CacheService {
 
 	peekValue(cacheName, cacheKey) {
 		console.time('Instrument-Cache-PEEK-' + cacheName + ' ' + cacheKey);
-		let deferred = Q.defer();
 		let value = cache.peekValueFromCache(cacheName, cacheKey);
-		deferred.resolve(value);
+		if (value === undefined) {
+			return Q.reject({
+				"status": 404,
+				"message": "cache element " + cacheKey + " not found in cache " + cacheName
+			});
+		}
 		console.timeEnd('Instrument-Cache-PEEK-' + cacheName + ' ' + cacheKey);
-		return deferred.promise;
+		return Q(value);
 	}
 
 	getValue(cacheName, cacheKey) {
 		console.time('Instrument-Cache-GET-' + cacheName + ' ' + cacheKey);
-		let deferred = Q.defer();
 		let value = cache.getValueFromCache(cacheName, cacheKey);
-		deferred.resolve(value);
+		if (value === undefined) {
+			return Q.reject({
+				"status": 404,
+				"message": "cache element " + cacheKey + " not found in cache " + cacheName
+			});
+		}
 		console.timeEnd('Instrument-Cache-GET-' + cacheName + ' ' + cacheKey);
-		return deferred.promise;
+		return Q(value);
 	}
 
 	setValue(cacheName, cacheKey, cacheValue, cacheTimeConfig) {
 		console.time('Instrument-Cache-SET-' + cacheName + ' ' + cacheKey);
 		cache.setValueInCache(cacheName, cacheKey, cacheValue, cacheTimeConfig);
 		console.timeEnd('Instrument-Cache-SET-' + cacheName + ' ' + cacheKey);
+		return Q();
 	}
 
 }
