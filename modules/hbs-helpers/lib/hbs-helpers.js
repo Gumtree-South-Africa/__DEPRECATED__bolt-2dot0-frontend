@@ -179,11 +179,18 @@ module.exports  =  {
             return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
         });
 
-		exphbs.handlebars.registerHelper('ifIn', function(object, field, value, options) {
+		exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
 			if (!object || !field || value === undefined){
 				return;
 			}
 			return (object[field] === value) ? options.fn(this) : options.inverse(this);
+		});
+
+		exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+			if (!object || !field) {
+				return;
+			}
+			return (field in object) ? options.fn(this) : options.inverse(this);
 		});
     }
 

@@ -4,6 +4,7 @@ let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
+require('public/js/common/utils/jQueryUtil.js');
 
 let _setHiddenLocationInput = (location) => {
 	this.$locationLat.val(location.lat);
@@ -27,10 +28,15 @@ let _failureCallback = (error) => {
 };
 
 let _ajaxEditForm = () => {
-	let serialized = {};
-	$.each(this.$editForm.serializeArray(), (i, field) => {
-		serialized[field.name] = field.value || '';
+	let serialized = this.$editForm.serializeForm();
+	let attrs = this.$attributes.serializeForm();
+	let categoryAttributes = [];
+	$.each(attrs, (field, value) => {
+		let ob = {};
+		ob[field] = value;
+		categoryAttributes.push(ob);
 	});
+
 	let lat = Number(serialized.locationLatitude);
 	let lng = Number(serialized.locationLongitude);
 	let $carouselImages = this.$photoCarousel.find('.carousel-item');
@@ -65,7 +71,7 @@ let _ajaxEditForm = () => {
 			"latitude": lat,
 			"longitude": lng
 		},
-		//TODO: categoryAttributes {},
+		"categoryAttributes": categoryAttributes,
 		"imageUrls": images
 	};
 	$.ajax({
@@ -85,6 +91,7 @@ let onReady = () => {
 	this.epsUpload = new EpsUpload();
 	this.$detailsSection = $("#js-main-detail-edit");
 	this.$photoCarousel = $('.photo-carousel');
+	this.$attributes = $("#edit-ad-custom-attributes-form");
 	this.$categoryId = this.$detailsSection.find('#category-id');
 	this.$submitButton = this.$detailsSection.find('#js-edit-submit-button');
 	this.$locationLink = $("#edit-location-input");
