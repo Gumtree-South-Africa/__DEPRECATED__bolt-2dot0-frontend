@@ -13,9 +13,10 @@ $panelCornerBorderRadius: 7px;
 	border: 1.5px solid transparent;
 
 
-	img {
+	.ad-image {
 		width: 100%;
 		height: 100%;
+		object-fit: cover;
 		border-radius: 6px;
 	}
 
@@ -23,7 +24,7 @@ $panelCornerBorderRadius: 7px;
 		position: absolute;
 		top: 0;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 30px);
         display: block;
     }
 
@@ -108,6 +109,10 @@ $panelCornerBorderRadius: 7px;
 			bottom: 3px;
 			right: 3px;
 			position: absolute;
+
+			&.icon-heart-white {
+				right: 5px;
+			}
 
             &:hover {
                 cursor: pointer;

@@ -12,6 +12,13 @@ let initialize = () => {
 		$("img.lazy").on("appear", () => {
 			console.log("appear");
 		});
+
+		// update/set watchlist cookie when user 'favorites' an ad
+		$(".trending-card .favorite-btn").click((event) => {
+			let target = $(event.target);
+			target.toggleClass("icon-heart-gray");
+			target.toggleClass("icon-heart-white");
+		});
 	});
 };
 
