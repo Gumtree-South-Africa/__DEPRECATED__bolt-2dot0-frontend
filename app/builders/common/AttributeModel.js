@@ -21,24 +21,29 @@ class AttributeModel {
 		if (typeof this.bapiHeaders.locale !== 'undefined') {
 			return attributeService.getAllAttributesForCategoryCached(this.bapiHeaders, categoryId).then((cachedResult) => {
 				if (cachedResult === undefined) {
-					return attributeService.getAllAttributesForCategory(this.bapiHeaders, categoryId).then((bapiResult) => {
-						if (bapiResult === undefined) {
-							deferred.resolve({});
-						} else {
-							attributeService.setAllAttributesInCache(this.bapiHeaders, categoryId, bapiResult);
-							deferred.resolve(bapiResult);
-						}
-					});
+					this.getAllAttributesBapi(categoryId, deferred);
 				} else {
 					deferred.resolve(cachedResult);
 				}
 			}).fail(() => {
-				deferred.resolve({});
+				this.getAllAttributesBapi(categoryId, deferred);
 			});
 		} else {
 			deferred.reject(new Error('locale is undefined'));
 		}
 		return deferred.promise;
+	}
+	getAllAttributesBapi(categoryId, deferred) {
+		return attributeService.getAllAttributesForCategory(this.bapiHeaders, categoryId).then((bapiResult) => {
+			if (bapiResult.status) {
+				deferred.resolve({});
+			} else {
+				attributeService.setAllAttributesInCache(this.bapiHeaders, categoryId, bapiResult);
+				deferred.resolve(bapiResult);
+			}
+		}).fail(() => {
+			deferred.resolve({});
+		});
 	}
 
 //Function getAttribute
