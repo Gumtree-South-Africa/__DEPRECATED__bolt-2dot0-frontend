@@ -2,6 +2,7 @@
 
 let cwd = process.cwd();
 let _ = require('underscore');
+let Q = require('q');
 let config = require('config');
 
 let bapiOptionsModel = require(cwd + "/server/services/bapi/bapiOptionsModel");
@@ -35,26 +36,28 @@ class AttributeService {
 
 	// Cache: categoryAllAtributes
 	setAllAttributesInCache(bapiHeaderValues, categoryId, data) {
-		let cacheKey = bapiHeaderValues.locale + ':' + categoryId;
-		cacheService.setValue(cacheConfig.cache.categoryAllAttributes.name, cacheKey, data);
-		data.forEach((attributeData) => {
-			this.setAttributeInfoInCache(bapiHeaderValues, categoryId, attributeData.name, attributeData);
-			if ((attributeData!==undefined) && !_.isEmpty(attributeData.dependencies) && !_.isEmpty(attributeData.allowedValues)) {
-				// creating dependency valueMap
-				// acura: [ dependent1, dependent2, dependent3]
-				// dependent1: {"dependencyValue": "acura","value": "integra","canonicalValue": "integra","localizedValue": "Integra"}
-				let valueMap = {};
-				_.each(attributeData.allowedValues, (valueSet) => {
-					if(_.isEmpty(valueMap[valueSet.dependencyValue])) {
-						let dependents = [];
-						dependents.push(valueSet);
-						valueMap[valueSet.dependencyValue] = dependents;
-					} else {
-						valueMap[valueSet.dependencyValue].push(valueSet);
-					}
-				});
-				this.setAttributeDependencyInfoInCache(bapiHeaderValues, categoryId, attributeData.name, valueMap);
-			}
+		return Q.fcall(() => {
+			let cacheKey = bapiHeaderValues.locale + ':' + categoryId;
+			cacheService.setValue(cacheConfig.cache.categoryAllAttributes.name, cacheKey, data);
+			data.forEach((attributeData) => {
+				this.setAttributeInfoInCache(bapiHeaderValues, categoryId, attributeData.name, attributeData);
+				if ((attributeData !== undefined) && !_.isEmpty(attributeData.dependencies) && !_.isEmpty(attributeData.allowedValues)) {
+					// creating dependency valueMap
+					// acura: [ dependent1, dependent2, dependent3]
+					// dependent1: {"dependencyValue": "acura","value": "integra","canonicalValue": "integra","localizedValue": "Integra"}
+					let valueMap = {};
+					_.each(attributeData.allowedValues, (valueSet) => {
+						if (_.isEmpty(valueMap[valueSet.dependencyValue])) {
+							let dependents = [];
+							dependents.push(valueSet);
+							valueMap[valueSet.dependencyValue] = dependents;
+						} else {
+							valueMap[valueSet.dependencyValue].push(valueSet);
+						}
+					});
+					this.setAttributeDependencyInfoInCache(bapiHeaderValues, categoryId, attributeData.name, valueMap);
+				}
+			});
 		});
 	}
 
@@ -67,7 +70,7 @@ class AttributeService {
 	// Cache: categoryAttributeInfo
 	setAttributeInfoInCache(bapiHeaderValues, categoryId, attributeName, data) {
 		let cacheKey = bapiHeaderValues.locale + ':' + categoryId + ':' + attributeName;
-		cacheService.setValue(cacheConfig.cache.categoryAttributeInfo.name, cacheKey, data);
+		return cacheService.setValue(cacheConfig.cache.categoryAttributeInfo.name, cacheKey, data);
 	}
 
 	// Cache: categoryAttributeDependencyInfo
@@ -79,7 +82,7 @@ class AttributeService {
 	// Cache: categoryAttributeDependencyInfo
 	setAttributeDependencyInfoInCache(bapiHeaderValues, categoryId, attributeName, data) {
 		let cacheKey = bapiHeaderValues.locale + ':' + categoryId + ':' + attributeName;
-		cacheService.setValue(cacheConfig.cache.categoryAttributeDependencyInfo.name, cacheKey, data);
+		return cacheService.setValue(cacheConfig.cache.categoryAttributeDependencyInfo.name, cacheKey, data);
 	}
 }
 

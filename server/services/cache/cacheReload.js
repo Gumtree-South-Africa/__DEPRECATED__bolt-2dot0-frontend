@@ -39,7 +39,9 @@ class CacheReloader {
 		let method = cache.method;
 
 		service[method](bapiHeaders).then((data) => {
-			cacheService.setValue(cache.name, bapiHeaders.locale, data);
+			return cacheService.setValue(cache.name, bapiHeaders.locale, data).fail((err) => {
+				console.warn(err);
+			});
 		});
 	}
 
