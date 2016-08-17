@@ -112,7 +112,7 @@ class EditAdPageModel {
 		this.dataPromiseFunctionMap.getAd = () => {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
+				this.getCategoryHierarchy(modelData.category, 0, modelData.categoryCurrentHierarchy);
 				return data;
 			});
 		};

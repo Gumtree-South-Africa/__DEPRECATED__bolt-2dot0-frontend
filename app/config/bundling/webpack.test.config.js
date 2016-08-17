@@ -10,6 +10,11 @@ let testWebpackConfig = {
 
 baseWebpackConfig.plugins.shift(); //Dont UGlify tests
 
+baseWebpackConfig.module.loaders.push({
+	test: /\.json$/,
+	loader: "json-loader"
+});
+
 
 module.exports = _.extend(baseWebpackConfig, testWebpackConfig);
 

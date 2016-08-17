@@ -1382,8 +1382,8 @@
 		},
 		"categorySelect": {
 			"title": "Product Category",
-			"prompt": "Keyword Search in %s",
-			"noResults": "Sorry, '%s' is not a valid category. Please select a recommended category below or search.",
+			"prompt": "Búsqueda por palabra clave en %s",
+			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
 			"selectPrompt": "Select a Category Below",
 			"save": "Save"
 		}
