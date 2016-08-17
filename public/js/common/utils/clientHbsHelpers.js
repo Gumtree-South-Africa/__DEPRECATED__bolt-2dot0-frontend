@@ -38,7 +38,7 @@ let initialize = (Handlebars) => {
 		}
 
 		if (!locale) {
-			throw Error ("No Locale Set. Please set a locale when setting up a templated testing environment");
+			throw Error ("No Locale Set. Please set a locale if you are using dynamic locale based templating.");
 		}
 		return new Handlebars.SafeString(`${partialName}_${locale}`);
 	});
@@ -97,33 +97,6 @@ let initialize = (Handlebars) => {
 	Object.keys(comparisonHelpers).forEach((helperName) => {
 		Handlebars.registerHelper(helperName, comparisonHelpers[helperName]);
 	});
-
-
-	// TODO commenting these out as we are trying to do mobile/desktop split entirely in CSS
-	// Handlebars.registerHelper('ifDesktop', function(val, options) {
-	// 	if (!val) return;
-	// 	let fnTrue=options.fn, fnFalse=options.inverse;
-	// 	return val.isDesktop ? fnTrue(this) : fnFalse(this);
-	// });
-	//
-	// Handlebars.registerHelper('ifMobile', function(val, options) {
-	// 	if (!val) return;
-	// 	let fnTrue=options.fn, fnFalse=options.inverse;
-	// 	return val.isMobile ? fnTrue(this) : fnFalse(this);
-	// });
-	//
-	// Handlebars.registerHelper('ifTablet', function(val, options) {
-	// 	if (!val) return;
-	// 	let fnTrue=options.fn, fnFalse=options.inverse;
-	// 	return val.isTablet ? fnTrue(this) : fnFalse(this);
-	// });
-	//
-	// Handlebars.registerHelper('unlessMobile', function(val, options) {
-	// 	if (!val) return;
-	// 	// console.log("isTablet xxxxxxxxxxxxxxxxxxxxxxxxxx"  + util.inspect(val.isTablet, {showHidden: false, depth: 1}));
-	// 	let fnTrue=options.fn, fnFalse=options.inverse;
-	// 	return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
-	// });
 };
 
 module.exports = {

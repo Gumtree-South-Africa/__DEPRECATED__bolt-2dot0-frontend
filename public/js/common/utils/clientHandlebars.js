@@ -1,3 +1,4 @@
+"use strict";
 
 let initialize = (locale) => {
 	Handlebars = require("../../../../node_modules/handlebars/dist/handlebars.runtime.min.js");
@@ -5,9 +6,22 @@ let initialize = (locale) => {
 
 	let clientHelpers = require("./clientHbsHelpers.js");
 	clientHelpers.initialize(Handlebars);
-	clientHelpers.setLocale(locale);
+	if (locale) {
+		clientHelpers.setLocale(locale);
+	}
+};
+
+let renderTemplate = (templateName, model) => {
+	let template = Handlebars.partials[templateName];
+
+	if (!template) {
+		throw Error(`No precompiled template with the name -> ${templateName}`);
+	}
+
+	return template(model);
 };
 
 module.exports = {
-	initialize
+	initialize,
+	renderTemplate
 };
