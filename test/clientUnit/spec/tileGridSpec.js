@@ -4,45 +4,119 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 
 let tileGridController = require("app/appWeb/views/components/tileGrid/js/tileGrid.js");
 let tileGridModel = require('../mockData/trendingCardModel.json');
-let BreakpointMap = require('app/appWeb/views/components/tileGrid/js/BreakpointMap.js');
+let BreakpointTileSizeMapper = require('app/appWeb/views/components/tileGrid/js/BreakpointTileSizeMapper.js');
+let $ = require('jquery');
 
 
 describe('Tile Grid', () => {
-	describe('Responsive Breakpoint Detection', () => {
+	let $testArea;
 
-		let $testArea;
+	beforeEach(() => {
+		$testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
+	});
 
-		beforeEach(() => {
-			$testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
-		});
+	describe('Breakpoint Tile Size Mapper', () => {
 
 		// this test out until we can  fix the issue:
 		// Can't find variable: google in /Volumes/caseSensitive/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js (line 15858)
 
-		fit('should return proper breakpoint for specified browser window width', () => {
+		it('should return proper breakpoint for specified browser window width', () => {
 
-			let breakpointMap = new BreakpointMap();
-			expect(breakpointMap.nearestBreakpoint(200)).toBe(360);
-			expect(breakpointMap.nearestBreakpoint(360)).toBe(360);
-			expect(breakpointMap.nearestBreakpoint(361)).toBe(360);
+			let mapper = new BreakpointTileSizeMapper();
 
-			expect(breakpointMap.nearestBreakpoint(480)).toBe(480);
-			expect(breakpointMap.nearestBreakpoint(481)).toBe(480);
+			expect(mapper.nearestBreakpoint(200)).toBe(360);
+			expect(mapper.nearestBreakpoint(360)).toBe(360);
+			expect(mapper.nearestBreakpoint(361)).toBe(360);
 
-			expect(breakpointMap.nearestBreakpoint(600)).toBe(600);
-			expect(breakpointMap.nearestBreakpoint(601)).toBe(600);
+			expect(mapper.nearestBreakpoint(480)).toBe(480);
+			expect(mapper.nearestBreakpoint(481)).toBe(480);
 
-			expect(breakpointMap.nearestBreakpoint(769)).toBe(769);
-			expect(breakpointMap.nearestBreakpoint(770)).toBe(769);
+			expect(mapper.nearestBreakpoint(600)).toBe(600);
+			expect(mapper.nearestBreakpoint(601)).toBe(600);
 
-			expect(breakpointMap.nearestBreakpoint(962)).toBe(962);
-			expect(breakpointMap.nearestBreakpoint(963)).toBe(962);
+			expect(mapper.nearestBreakpoint(769)).toBe(769);
+			expect(mapper.nearestBreakpoint(770)).toBe(769);
 
-			tileGridController.initialize();
-			
-			expect($testArea.find('.tile-item').length).toBe(4);
+			expect(mapper.nearestBreakpoint(962)).toBe(962);
+			expect(mapper.nearestBreakpoint(963)).toBe(962);
+		});
 
-			// console.log("done");
+		it('should adjust tile size css styles according to map', () => {
+
+			let mapper = new BreakpointTileSizeMapper();
+
+			let tiles = $testArea.find('.tile-item');
+			expect(tiles.length).toBe(4);
+
+			// validate the sizes as defined by the mock file (baseline)
+			expect($(tiles[0]).hasClass('two-by-two')).toBeTruthy('first tile should have 2x2 as defined by mock');
+			expect($(tiles[1]).hasClass('one-by-two')).toBeTruthy('first tile should have 1x2 as defined by mock');
+			expect($(tiles[2]).hasClass('one-by-one')).toBeTruthy('first tile should have 1x1 as defined by mock');
+			expect($(tiles[3]).hasClass('two-by-three')).toBeTruthy('first tile should have 2x3 as defined by mock');
+
+
+			mapper.BREAKPOINT_TO_SIZE_MAP = {
+				"360": "AB",
+			}
+			mapper.adjustTileSizes(360, tiles);
+
+			// now see if our mapper is adjusting sizes the way we expect
+
+			expect($(tiles[0]).hasClass('one-by-one')).toBeTruthy('tile should have 1x1 after adjustment');
+			expect($(tiles[1]).hasClass('one-by-two')).toBeTruthy('tile should have 1x2 after adjustment');
+
+			// since there were only two sizes in the size map, it should repeat for additional tiles
+
+			expect($(tiles[2]).hasClass('one-by-one')).toBeTruthy('tile should have 1x1 after adjustment');
+			expect($(tiles[3]).hasClass('one-by-two')).toBeTruthy('tile should have 1x2 after adjustment');
+
+		});
+
+		it('should return size classes and breakpoints', () => {
+
+			let mapper = new BreakpointTileSizeMapper();
+
+			let sizes = mapper.getSizeClasses();
+			let testSizes = ['one-by-one', 'one-by-two', 'two-by-two', 'two-by-three'];
+
+			expect(JSON.stringify(sizes, null, 4)).toBe(JSON.stringify(testSizes, null, 4), 'size classes should match');
+
+			let breakpoints = mapper.getBreakpoints();
+			let testBreakpoints = ['360', '480', '600', '769', '962'];
+
+			expect(JSON.stringify(breakpoints, null, 4)).toBe(JSON.stringify(testBreakpoints, null, 4), 'breakpoints should match');
+
+		});
+	});
+
+	describe('Tile Grid Controller', () => {
+
+		fit('should adjust tiles sizes', () => {
+
+			tileGridController.initialize(false);		// we init with false because we're handing the onReady
+
+			let mapper = tileGridController.getMapper();
+			spyOn(mapper, 'adjustTileSizes').and.callThrough();
+
+			let tiles = $testArea.find('.tile-item');
+
+			// validate the sizes as defined by the mock file (baseline)
+			expect($(tiles[0]).hasClass('two-by-two')).toBeTruthy('first tile should have 2x2 as defined by mock');
+
+			tileGridController.onReady();
+
+			let breakpoint = tileGridController.getCurrentBreakpoint();
+			let sizes = mapper.BREAKPOINT_TO_SIZE_MAP[breakpoint];
+			let size = sizes.charAt(0);
+			let className = mapper.TILE_SIZE_TO_CLASS_NAME_MAP[size];
+
+			expect(mapper.adjustTileSizes.calls.count()).toBe(1, 'adjustTileSizes should be called once');
+
+			// validate the sizes as defined by the mock file (baseline)
+			expect($(tiles[0]).hasClass(className)).toBeTruthy(`first tile should have ${className} as defined by mapper`);
+
+
+
 		});
 
 	});

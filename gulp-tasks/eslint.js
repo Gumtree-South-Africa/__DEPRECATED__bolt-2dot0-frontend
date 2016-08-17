@@ -5,7 +5,7 @@ const gulpEslint = require('gulp-eslint');
 //////////////////////////////////////////////////
 //ES Lint
 //// /////////////////////////////////////////////
-module.exports = function watch(gulp) {
+module.exports = function eslint(gulp) {
 	return function() {
 		gulp.task('eslint', function() {
 			let argv = require('yargs').argv;

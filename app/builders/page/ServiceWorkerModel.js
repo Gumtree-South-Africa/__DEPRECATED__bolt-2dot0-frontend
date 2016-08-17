@@ -59,7 +59,7 @@ class ServiceWorkerModel {
 		}, []);
 
 
-		modelData.footer.cachPath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache};
+		modelData.footer.cachePath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache};
 
 		return modelData;
 	}

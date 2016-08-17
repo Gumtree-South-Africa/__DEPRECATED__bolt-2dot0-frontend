@@ -81,7 +81,7 @@ describe('Server to hit HomePage', function() {
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product url');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[0].seller.profileImage, 'Missing lazy load profile image');
+							.toBe(mockTrending.ads[0].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain(mockTrending.ads[0].adPrice.amount);
 						expect(trendingItem.find(".price-text").text()).not.toContain("USD");
 
@@ -90,7 +90,7 @@ describe('Server to hit HomePage', function() {
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product url');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[1].seller.profileImage, 'Missing lazy load profile image');
+							.toBe(mockTrending.ads[1].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain(mockTrending.ads[1].adPrice.amount);
 						expect(trendingItem.find(".price-text").text()).toContain("USD");
 
@@ -99,11 +99,11 @@ describe('Server to hit HomePage', function() {
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product url');
 						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[2].seller.profileImage, 'Missing lazy load profile image');
+							.toBe(mockTrending.ads[2].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 
 						// Item 4, no profile image
-						trendingItem = c$('.tile-item').last();
+						trendingItem = c$('.tile-item').next().next().next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[3].pictures[0].url, 'Missing lazy load product url');
 						expect(trendingItem.find("div.profile-image").hasClass('icon-header-profile-out'))
