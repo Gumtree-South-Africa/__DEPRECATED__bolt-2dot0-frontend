@@ -99,18 +99,12 @@ class HomePageModelV2 {
 					return result;
 				}).fail((err) => {
 					console.warn(`error getting card data ${err}`);
-					try {
-						cardsModel.getCachedTrendingCard().then((cachedResult) => {
-							cachedResult = (cachedResult !== undefined) ? cachedResult : {};
-							return cachedResult;
-						}).fail(() => {
-							return {};
-						});
-					} catch (ex) {
-						console.warn('error getting card cached data');
-						console.warn(ex);
+					return cardsModel.getCachedTrendingCard().then((cachedResult) => {
+						cachedResult = (cachedResult !== undefined) ? cachedResult : {};
+						return cachedResult;
+					}).fail(() => {
 						return {};
-					}
+					});
 				});
 			};
 		}
@@ -128,18 +122,12 @@ class HomePageModelV2 {
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting recentActivities data ${err}`);
-				try {
-					return recentActivityModel.getCachedRecentActivities().then((cachedResult) => {
-						cachedResult = (cachedResult !== undefined) ? cachedResult : {};
-						return cachedResult;
-					}).fail(() => {
-						return {};
-					});
-				} catch (ex) {
-					console.warn('error getting recentActivities cached data');
-					console.warn(ex);
+				return recentActivityModel.getCachedRecentActivities().then((cachedResult) => {
+					cachedResult = (cachedResult !== undefined) ? cachedResult : {};
+					return cachedResult;
+				}).fail(() => {
 					return {};
-				}
+				});
 			});
 		};
 
