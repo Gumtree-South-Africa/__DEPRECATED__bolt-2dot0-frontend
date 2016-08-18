@@ -3,7 +3,8 @@
 		"server": {
 	    	"host": "localhost",
 	    	"port": 5000,
-	    	"parameters": "_forceExample=true&_statusCode=200"
+	    	"parameters": "_forceExample=true&_statusCode=200",
+			"timeout": 200
 		},
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/categories",

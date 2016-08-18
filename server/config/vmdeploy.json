@@ -3,7 +3,8 @@
 	    "server": {
 	    	"host": "localhost",
 	    	"port": 80,
-	    	"parameters": null
+	    	"parameters": null,
+			"timeout": 2000
 	    },
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories",

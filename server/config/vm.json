@@ -3,7 +3,8 @@
 	    "server": {
 	    	"host": "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
 	    	"port": 80,
-	    	"parameters": null
+	    	"parameters": null,
+			"timeout": 2000
 	    },
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories",
@@ -20,7 +21,8 @@
 			"recentActivities"  :	"/boltapi/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
 			"draftAd"			:	"/boltapi/v1/ads/drafts",
-			"specificAd"		:	"/boltapi/v1/ads/{id}"
+			"specificAd"		:	"/boltapi/v1/ads/{id}",
+			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes"
 	    }
 	},
 	"solr": {
