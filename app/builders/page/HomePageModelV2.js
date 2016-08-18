@@ -99,12 +99,7 @@ class HomePageModelV2 {
 					return result;
 				}).fail((err) => {
 					console.warn(`error getting card data ${err}`);
-					return cardsModel.getCachedTrendingCard().then((cachedResult) => {
-						cachedResult = (cachedResult !== undefined) ? cachedResult : {};
-						return cachedResult;
-					}).fail(() => {
-						return {};
-					});
+					return {};
 				});
 			};
 		}
@@ -122,12 +117,7 @@ class HomePageModelV2 {
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting recentActivities data ${err}`);
-				return recentActivityModel.getCachedRecentActivities().then((cachedResult) => {
-					cachedResult = (cachedResult !== undefined) ? cachedResult : {};
-					return cachedResult;
-				}).fail(() => {
-					return {};
-				});
+				return {};
 			});
 		};
 

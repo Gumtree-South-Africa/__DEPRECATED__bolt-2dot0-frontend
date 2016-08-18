@@ -63,29 +63,43 @@ class CardsModel {
 			}
 		}
 
-		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((dataItems) => {
-			let sizes = cardConfig.itemSizesString;
-			if (dataItems.ads.length > sizes.length) {
-				console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);
-			}
-			dataItems.ads.forEach((ad, index) => {
-				if (sizes.length > index) {
-					ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
+		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((bapiResult) => {
+			return this.transformData(cardConfig, bapiResult);
+		}).fail((bapiErr) => {
+			console.warn(`Error getting BAPI card data ${bapiErr}`);
+			return cardService.getCachedTrendingCard(this.bapiHeaderValues).then((cachedResult) => {
+				cachedResult = (cachedResult !== undefined) ? cachedResult : {};
+				return this.transformData(cardConfig, cachedResult);
+			}).fail((cacheErr) => {
+				if (cacheErr.status) {
+					console.warn(cacheErr.message);
 				} else {
-					ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
-					console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
+					console.warn(`Error getting Cache card data ${cacheErr}`);
 				}
-				// todo: featured mapping algorithm, for now just a placeholder
-				if (ad.id === 1234567890) {
-					ad.featured = true;
-				}
+				return {};
 			});
-			return dataItems;
 		});
 	}
 
-	getCachedTrendingCard() {
-		return cardService.getCachedTrendingCard(this.bapiHeaderValues);
+	transformData(cardConfig, dataItems) {
+		let sizes = cardConfig.itemSizesString;
+		if (dataItems.ads.length > sizes.length) {
+			console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);
+		}
+		dataItems.ads.forEach((ad, index) => {
+			if (sizes.length > index) {
+				ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
+			} else {
+				ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
+				console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
+			}
+			// todo: featured mapping algorithm, for now just a placeholder
+			if (ad.id === 1234567890) {
+				ad.featured = true;
+			}
+		});
+
+		return dataItems;
 	}
 
 	/**
