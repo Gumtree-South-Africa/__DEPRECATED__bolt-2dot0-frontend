@@ -11,23 +11,30 @@ let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.json');
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
+let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
+
 
 router.post('/attributedependencies', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
-	let editAdModel = new EditAdModel(model.bapiHeaders);
+	let attributeModel = new AttributeModel(model.bapiHeaders);
 
-	let returnData = editAdModel.getAttrDependencyUpdateJson(req.body.catId, req.body.depAttr, req.body.depValue);
-
-	res.json(returnData);
+	let categoryId = req.body.catId;
+	let depAttrName = req.body.depAttr;
+	let depValue = req.body.depValue;
+	attributeModel.getAttributeDependency(categoryId, depAttrName).then((data) => {
+		res.json(data[depValue]);
+	});
 });
 
 router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
-	let editAdModel = new EditAdModel(model.bapiHeaders);
+	let attributeModel = new AttributeModel(model.bapiHeaders);
 
-	editAdModel.getFullAttributeArray("catId").then(() => {
+	let categoryId = req.params.categoryId;
+	attributeModel.getAllAttributes(categoryId).then((data) => {
+		res.json(data);
 	});
 });
 

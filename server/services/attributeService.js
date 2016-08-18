@@ -18,7 +18,7 @@ class AttributeService {
 	getAllAttributesForCategory(bapiHeaderValues, categoryId) {
 		let queryEndpoint = config.get('BAPI.endpoints.categoryAttributes');
 
-		queryEndpoint.replace('{catId}', categoryId);
+		queryEndpoint = queryEndpoint.replace('{catId}', categoryId);
 
 		let bapiOptions = bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
