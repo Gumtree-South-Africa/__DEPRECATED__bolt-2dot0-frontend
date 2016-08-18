@@ -62,7 +62,7 @@ module.exports = function watch(gulp, plugins) {
 				.pipe(gulp.dest("app/templateStaging"));
 		});
 
-		gulp.task("templateMaker", shell.task(["bash bin/scripts/templateMaker.sh"]));
+		gulp.task("templateMaker", shell.task(["bash bin/scripts/templateMaker.sh test/clientUnit/helpers/webTemplates.js"]));
 
 		gulp.task('precompileTemplates', (done) => {
 			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
@@ -91,7 +91,7 @@ module.exports = function watch(gulp, plugins) {
 		}));
 
 		gulp.task('test', (done) => {
-			runSequence('build', 'test:clientUnit', 'test:serverUnit', 'test:integration', done);
+			runSequence( 'test:serverUnit', 'test:integration', 'test:clientUnit', done);
 		});
 	};
 };

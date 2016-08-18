@@ -62,6 +62,7 @@ app/templateStaging/
 app/config/bundling/bundleMap.json
 app/config/bundling/rui/compiled/
 app/**/*.compiled.js
+/public/js/precompTemplates.js*
 
 .idea/*
 !.idea/runConfigurations
