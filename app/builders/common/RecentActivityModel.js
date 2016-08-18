@@ -1,7 +1,11 @@
 'use strict';
 
 let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
+let recentActivityConfig = require(process.cwd() + '/app/config/ui/recentActivityConfig.json');
 let _ = require('underscore');
+_.templateSettings = {
+	interpolate : /\{([\s\S]+?)\}/g
+};
 
 class RecentActivityModel {
 	constructor(bapiHeaderValues) {
@@ -12,83 +16,31 @@ class RecentActivityModel {
 		return !(feed.action === 'LISTED');
 	}
 
-	filterArr(inputArr) {
-		let filteredArr = [];
-		for (let i = 0; i < inputArr.length; i++) {
-			switch (inputArr[i].categoryId) {
-				case 1097 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'DwellingType' || attr.name === 'NumberBedrooms';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'DwellingType'});
-						let prefix2 = _.findWhere(inputArr[i].attributes, {name: 'NumberBedrooms'});
-						inputArr[i].prefix1 = 'una ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = 'con ' + prefix2.formattedValue + ' ' + prefix2.localizedName;
-						filteredArr.push(inputArr[i]);
+	filterArr(inputArr, locale) {
+		let inputLocale = recentActivityConfig[locale];
+
+		let res = _.reduceRight(inputArr, function(a, b){
+			let id=inputLocale[b['categoryId']];
+			if(id) {
+				let types = _.pluck(id.type, 'name'),
+					attributes = [],
+					prefix;
+				_.each(b.attributes, function(e) {
+					if(_.contains(types, e.name)) {
+						prefix = _.template(_.findWhere(id.type, {name: e.name}).prefix);
+						e.prefix = prefix({'formattedValue': e.formattedValue, 'localizedName': e.localizedName});
+						attributes.push(e);
 					}
-					break;
-				case 1089 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'CellPhoneType';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'CellPhoneType'});
-						inputArr[i].prefix1 = 'un ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = '';
-						filteredArr.push(inputArr[i]);
-					}
-					break;
-				case 6 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'ElectronicsType';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'ElectronicsType'});
-						inputArr[i].prefix1 = 'una ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = '';
-						filteredArr.push(inputArr[i]);
-					}
-					break;
-				case 65 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'AlmVehicleBrand' || attr.name === 'AlmVehicleModel';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'AlmVehicleBrand'});
-						let prefix2 = _.findWhere(inputArr[i].attributes, {name: 'AlmVehicleModel'});
-						inputArr[i].prefix1 = 'un ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = prefix2.formattedValue;
-						filteredArr.push(inputArr[i]);
-					}
-					break;
-				case 9 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'FurnitureType';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'FurnitureType'});
-						inputArr[i].prefix1 = 'un ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = '';
-						filteredArr.push(inputArr[i]);
-					}
-					break;
-				case 1076 :
-					inputArr[i].attributes = _.filter(inputArr[i].attributes, function(attr) {
-						return attr.name === 'ApplianceType';
-					});
-					if (inputArr[i].attributes.length) {
-						let prefix1 = _.findWhere(inputArr[i].attributes, {name: 'ApplianceType'});
-						inputArr[i].prefix1 = 'un ' + prefix1.formattedValue;
-						inputArr[i].prefix2 = '';
-						filteredArr.push(inputArr[i]);
-					}
-					break;
-				default :
-					continue;
+				}, []);
+
+				if(attributes.length) {
+					b.attributes = attributes;
+					a.push(b);
+				}
 			}
-		}
-		return filteredArr;
+			return a;
+		}, []);
+		return res;
 	}
 
 	shuffleArr(inputArr) {
@@ -107,20 +59,26 @@ class RecentActivityModel {
 			data.recent = [];
 			data.filteredArr = [];
 			data.shuffledArr = [];
-			data.filteredArr = this.filterArr(data.ads);
+			data.filteredArr = this.filterArr(data.ads, this.bapiHeaderValues.locale);
 			data.shuffledArr = this.shuffleArr(data.filteredArr);
 
 			if (data.shuffledArr instanceof Array && data.shuffledArr.length > 2) {
 				let feed1 = data.shuffledArr[0];
 				feed1.renderSold = this.isSold(feed1);
+				feed1.prefix1 = feed1.attributes[0].prefix;
+				feed1.prefix2 = feed1.attributes[1] ? feed1.attributes[1].prefix : '';
 				data.recent.push(feed1);
 
 				let feed2 = data.shuffledArr[1];
 				feed2.renderSold = this.isSold(feed2);
+				feed2.prefix1 = feed2.attributes[0].prefix;
+				feed2.prefix2 = feed2.attributes[1] ? feed2.attributes[1].prefix : '';
 				data.recent.push(feed2);
 
 				let feed3 = data.shuffledArr[2];
 				feed3.renderSold = this.isSold(feed3);
+				feed3.prefix1 = feed3.attributes[0].prefix;
+				feed3.prefix2 = feed3.attributes[1] ? feed3.attributes[1].prefix : '';
 				data.recent.push(feed3);
 			}
 			return data;
