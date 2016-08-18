@@ -2,7 +2,7 @@
 
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/uploadImage.js");
 let uploadAdController = require("app/appWeb/views/components/uploadImage/js/uploadAd.js");
-let ImageHelper = require('app/appWeb/views/components/uploadImage/js/imageHelper.js');
+let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
