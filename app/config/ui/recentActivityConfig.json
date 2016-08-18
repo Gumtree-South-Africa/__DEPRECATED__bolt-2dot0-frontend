@@ -1,0 +1,60 @@
+{
+	"es_MX": {
+		"1097": {
+			"type": [
+				{
+					"name": "DwellingType",
+					"prefix": "un(a) {formattedValue}"
+				},
+				{
+					"name": "NumberBedrooms",
+					"prefix": "con {formattedValue} {localizedName}"
+				}
+			]
+		},
+		"1089": {
+			"type": [
+				{
+					"name": "CellPhoneType",
+					"prefix": "un(a) {formattedValue}"
+				}
+			]
+		},
+		"6": {
+			"type": [
+				{
+					"name": "ElectronicsType",
+					"prefix": "un(a) {formattedValue}"
+				}
+			]
+		},
+		"65": {
+			"type": [
+				{
+					"name": "AlmVehicleBrand",
+					"prefix": "un(a) {formattedValue}"
+				},
+				{
+					"name": "AlmVehicleModel",
+					"prefix": "{formattedValue}"
+				}
+			]
+		},
+		"9": {
+			"type": [
+				{
+					"name": "FurnitureType",
+					"prefix": "un(a) {formattedValue}"
+				}
+			]
+		},
+		"1076": {
+			"type": [
+				{
+					"name": "ApplianceType",
+					"prefix": "un(a) {formattedValue}"
+				}
+			]
+		}
+	}
+}
