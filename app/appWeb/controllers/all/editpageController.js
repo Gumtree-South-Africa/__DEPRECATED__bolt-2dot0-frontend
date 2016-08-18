@@ -39,7 +39,7 @@ router.use('/:id?', (req, res, next) => {
 		console.error(err);
 		console.error(err.stack);
 		//Throw a 404 page for 404 or 401 (unauthorized). otherwise 500
-		return (err.statusCode === 404 || err.statusCode === 401) ? next() : next(err);
+		return (err.statusCode === 404 || err.statusCode === 400 || err.statusCode === 401) ? next() : next(err);
 	});
 });
 

@@ -61,6 +61,12 @@ BAPICall.prototype = {
 						let error = new Error(`Received non-200 status: ${res.statusCode}`);
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;
+						if (data) {
+							error.data = {
+								message: data.message,
+								details: data.details
+							};
+						}
 						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);
@@ -136,6 +142,12 @@ BAPICall.prototype = {
 						let error = new Error(`Received non-200/201 status: ${res.statusCode}`);
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;
+						if (data) {
+							error.data = {
+								message: data.message,
+								details: data.details
+							};
+						}
 						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);

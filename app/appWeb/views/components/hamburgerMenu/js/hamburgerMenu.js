@@ -11,9 +11,6 @@ let toggleMenu = (shouldClose) => {
 		searchBarV2.closeAutoComplete(true, true);
 	}
 	this.$hamburgerPopout[0].style.right = (this.open) ? '100%' : 0;
-	this.$postAdHeader.animate({
-		marginLeft: (this.open) ? 0 : '70%'
-	});
 	this.$hamburgerContents.animate({
 		left: (this.open) ? '-70%' : '0',
 		right: (this.open) ? '100%' : '30%'
@@ -66,7 +63,6 @@ let initialize = () => {
 	this.$hamburgerPopout = $('#js-body-overlay');
 	this.$hamburgerIcon = $('#js-hamburger-icon');
 	this.$hamburgerContents = $('.hamburger-contents');
-	this.$postAdHeader = $('.post-ad-header');
 	this.currentWindowSize = _currentBreakpoint();
 
 	this.$body.trigger('viewportChanged', this.currentWindowSize);

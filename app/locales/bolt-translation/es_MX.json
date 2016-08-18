@@ -1373,6 +1373,10 @@
 				"description": "Descripción",
 				"location": "Ciudad, zona o código postal"
 			},
+			"titleRestrictions": {
+				"minimumAvailable": "Minima: 2 palabras. Disponsibles: ",
+				"characters": " caracter(es)"
+			},
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
 			"submit": "Listo",

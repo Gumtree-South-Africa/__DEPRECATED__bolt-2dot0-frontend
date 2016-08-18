@@ -59,6 +59,12 @@ $labelMargin: 8%;
 			float: left;
 		}
 
+		button {
+			&.disabled {
+				opacity: .5;
+			}
+		}
+
 		.main-details-title {
 			width: 100%;
 			padding: 25px 0;
@@ -177,7 +183,7 @@ $labelMargin: 8%;
 				}
 
 				&.validation-error {
-					background-color: red;
+					border: 1px solid red;
 				}
 			}
 
@@ -223,6 +229,10 @@ $labelMargin: 8%;
 				background-color: $mainDetailsBackgroundColor;
 			}
 		}
+	}
+
+	.validation-error {
+		border: 1px solid red;
 	}
 
 	.radio-group {

@@ -71,8 +71,9 @@ router.post('/update', cors, (req, res) => {
 		res.status(200).json(result);
 	}).fail((error) => {
 		let returnCode = 500;
-		let returnMessage = 'Edit ad failed';
+		let returnMessage = (error.data) ? error.data.message : 'Edit ad failed';
 		console.error('Edit ad failed ' + error);
+		console.error(error.data);
 		if (error.statusCode) {
 			//Special error cases need to be handled differently
 			switch (error.statusCode) {
@@ -84,7 +85,7 @@ router.post('/update', cors, (req, res) => {
 				case 401:
 					returnCode = 401;
 					console.error('User attempted to edit an ad they did not own');
-					returnMessage = "Edit ad failed, user does not own this ad";
+					returnMessage = error.data.message || "Edit ad failed, user does not own this ad.";
 					break;
 				default:
 					break;

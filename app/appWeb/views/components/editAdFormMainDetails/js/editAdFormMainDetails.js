@@ -25,6 +25,21 @@ let _successCallback = (response) => {
 
 let _failureCallback = (error) => {
 	console.warn(error);
+	this.$submitButton.removeClass('disabled');
+	this.$submitButton.attr('disabled', false);
+	if (error.status === 400) {
+		let schemaErrors = JSON.parse(error.responseText || '{"schemaErrors": []}')
+			.schemaErrors || [];
+
+		schemaErrors.forEach((schemaError) => {
+			let selector = `[data-schema='${schemaError.field}']`;
+			let $el = $(selector);
+			$el.addClass('validation-error');
+			$el.on('change', () => {
+				$el.removeClass('validation-error');
+			});
+		});
+	}
 };
 
 let _ajaxEditForm = () => {
@@ -32,9 +47,12 @@ let _ajaxEditForm = () => {
 	let attrs = this.$attributes.serializeForm();
 	let categoryAttributes = [];
 	$.each(attrs, (field, value) => {
-		let ob = {};
-		ob[field] = value;
-		categoryAttributes.push(ob);
+		if (value !== '') {
+			categoryAttributes.push({
+				name: field,
+				value: value
+			});
+		}
 	});
 
 	let lat = Number(serialized.locationLatitude);
@@ -71,9 +89,11 @@ let _ajaxEditForm = () => {
 			"latitude": lat,
 			"longitude": lng
 		},
-		"categoryAttributes": categoryAttributes,
 		"imageUrls": images
 	};
+	if (categoryAttributes.length) {
+		payload.categoryAttributes = categoryAttributes;
+	}
 	$.ajax({
 		url: '/api/edit/update',
 		type: 'POST',
@@ -108,6 +128,8 @@ let onReady = () => {
 	this.$categoryChangeLink.append(categorySelectionModal.getFullBreadCrumbText(this.currentHierarchy));
 
 	this.$submitButton.on('click', (e) => {
+		this.$submitButton.addClass('disabled');
+		this.$submitButton.attr('disabled', true);
 		e.preventDefault();
 		_ajaxEditForm();
 	});
@@ -119,6 +141,7 @@ let onReady = () => {
 				this.$categoryChangeLink.empty();
 				this.$categoryChangeLink.append(breadcrumbs);
 
+				this.$categoryId.val(hierarchy[hierarchy.length-1]);
 				// TODO HOOK UP ONCE WE HAVE MORE THAN ONE MOCKED DATA SET
 				// customAttributes.updateCustomAttributes(hierarchy[hierarchy.length-1]);
 
