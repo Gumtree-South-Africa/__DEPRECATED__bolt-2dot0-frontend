@@ -57,7 +57,7 @@ LocationService.prototype.getLatLongResults = function (bapiHeaders, geoLatLngOb
 		this.bapiOptions.methods = 'GET';
 		this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLatLngObj.lat + '/' + geoLatLngObj.lng;
 
-		return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, 'getLatLongResults');
+		return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, 'locationLatLong');
 	});
 }
 
