@@ -24,7 +24,10 @@ describe('Tile Grid', () => {
 
 			let mapper = new BreakpointTileSizeMapper();
 
-			expect(mapper.nearestBreakpoint(200)).toBe(360);
+			expect(mapper.nearestBreakpoint(200)).toBe(250);
+			expect(mapper.nearestBreakpoint(250)).toBe(250);
+			expect(mapper.nearestBreakpoint(251)).toBe(250);
+
 			expect(mapper.nearestBreakpoint(360)).toBe(360);
 			expect(mapper.nearestBreakpoint(361)).toBe(360);
 
@@ -34,8 +37,8 @@ describe('Tile Grid', () => {
 			expect(mapper.nearestBreakpoint(600)).toBe(600);
 			expect(mapper.nearestBreakpoint(601)).toBe(600);
 
-			expect(mapper.nearestBreakpoint(769)).toBe(769);
-			expect(mapper.nearestBreakpoint(770)).toBe(769);
+			expect(mapper.nearestBreakpoint(768)).toBe(768);
+			expect(mapper.nearestBreakpoint(769)).toBe(768);
 
 			expect(mapper.nearestBreakpoint(962)).toBe(962);
 			expect(mapper.nearestBreakpoint(963)).toBe(962);
@@ -50,9 +53,9 @@ describe('Tile Grid', () => {
 
 			// validate the sizes as defined by the mock file (baseline)
 			expect($(tiles[0]).hasClass('two-by-two')).toBeTruthy('first tile should have 2x2 as defined by mock');
-			expect($(tiles[1]).hasClass('one-by-two')).toBeTruthy('first tile should have 1x2 as defined by mock');
+			expect($(tiles[1]).hasClass('two-by-one')).toBeTruthy('first tile should have 2x1 as defined by mock');
 			expect($(tiles[2]).hasClass('one-by-one')).toBeTruthy('first tile should have 1x1 as defined by mock');
-			expect($(tiles[3]).hasClass('two-by-three')).toBeTruthy('first tile should have 2x3 as defined by mock');
+			expect($(tiles[3]).hasClass('three-by-two')).toBeTruthy('first tile should have 3x2 as defined by mock');
 
 
 			mapper.BREAKPOINT_TO_SIZE_MAP = {
@@ -63,12 +66,12 @@ describe('Tile Grid', () => {
 			// now see if our mapper is adjusting sizes the way we expect
 
 			expect($(tiles[0]).hasClass('one-by-one')).toBeTruthy('tile should have 1x1 after adjustment');
-			expect($(tiles[1]).hasClass('one-by-two')).toBeTruthy('tile should have 1x2 after adjustment');
+			expect($(tiles[1]).hasClass('two-by-one')).toBeTruthy('tile should have 2x1 after adjustment');
 
 			// since there were only two sizes in the size map, it should repeat for additional tiles
 
 			expect($(tiles[2]).hasClass('one-by-one')).toBeTruthy('tile should have 1x1 after adjustment');
-			expect($(tiles[3]).hasClass('one-by-two')).toBeTruthy('tile should have 1x2 after adjustment');
+			expect($(tiles[3]).hasClass('two-by-one')).toBeTruthy('tile should have 2x1 after adjustment');
 
 		});
 
@@ -77,12 +80,12 @@ describe('Tile Grid', () => {
 			let mapper = new BreakpointTileSizeMapper();
 
 			let sizes = mapper.getSizeClasses();
-			let testSizes = ['one-by-one', 'one-by-two', 'two-by-two', 'two-by-three'];
+			let testSizes = ['one-by-one', 'two-by-one', 'two-by-two', 'three-by-two'];
 
 			expect(JSON.stringify(sizes, null, 4)).toBe(JSON.stringify(testSizes, null, 4), 'size classes should match');
 
 			let breakpoints = mapper.getBreakpoints();
-			let testBreakpoints = ['360', '480', '600', '769', '962'];
+			let testBreakpoints = ['250', '360', '480', '600', '768', '962'];
 
 			expect(JSON.stringify(breakpoints, null, 4)).toBe(JSON.stringify(testBreakpoints, null, 4), 'breakpoints should match');
 
@@ -91,7 +94,7 @@ describe('Tile Grid', () => {
 
 	describe('Tile Grid Controller', () => {
 
-		it('should adjust tiles sizes', () => {
+		it('should adjust tiles sizes and container width', () => {
 
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
@@ -115,7 +118,8 @@ describe('Tile Grid', () => {
 			// validate the sizes as defined by the mock file (baseline)
 			expect($(tiles[0]).hasClass(className)).toBeTruthy(`first tile should have ${className} as defined by mapper`);
 
-
+			let $outerContainer = $testArea.find('.tile-grid-width-container');
+			expect($outerContainer.width()).toBe(breakpoint, 'width should be breakpoint');
 
 		});
 

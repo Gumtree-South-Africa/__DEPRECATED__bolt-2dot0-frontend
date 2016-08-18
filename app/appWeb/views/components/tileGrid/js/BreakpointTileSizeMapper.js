@@ -11,26 +11,28 @@ class BreakpointTileSizeMapper {
 
 		this.BREAKPOINT_TO_SIZE_MAP = {
 			//	    1234567890123456
-			/*
+			"250": "CAABAACAABAABAAB",	// breakpoint added because less than 360 we cannot have any D's (they are too wide)
 			"360": "CAABADABAAAABAAA",
 			"480": "CBAADAABAAABAAAB",
 			"600": "CBAAAADBAABACAAA",
-			"769": "CBAABDAADABACAAB",
-			"962": "CAAAAAAAABAACAAB"
-			*/
+			"768": "CBAAADBADABACAAB",
+			"962": "CAAAABAACAAABAAA"
+			//	    1234567890123456
+		/*
+			// use these for visual testing of breakpoints
 			"360": "AAA",
 			"480": "BBB",
 			"600": "CCC",
 			"769": "DDD",
 			"962": "AAA"
-
+		*/
 		};
 
 		this.TILE_SIZE_TO_CLASS_NAME_MAP = {
 			'A': 'one-by-one',
-			'B': 'one-by-two',
+			'B': 'two-by-one',
 			'C': 'two-by-two',
-			'D': 'two-by-three'
+			'D': 'three-by-two'
 		};
 
 	}
@@ -47,7 +49,8 @@ class BreakpointTileSizeMapper {
 
 			// lookup our size in terms of A,B,C,D - wrap index to repeat the pattern for more tiles than we have in the map
 			let  sizeMapIndex = index % sizes.length;
-			let className = sizeToClassMap[sizes.charAt(sizeMapIndex)];
+			let sizeChar = sizes.charAt(sizeMapIndex);
+			let className = sizeToClassMap[sizeChar];
 
 			let $tile = $(tiles[index]);
 			for (let i = 0; i < sizeClasses.length; i++) {
@@ -56,6 +59,12 @@ class BreakpointTileSizeMapper {
 				}
 			}
 			$tile.toggleClass(className, true);
+
+			// for debugging, add a label with index and size
+			if (location.hash === "#debug-label") {
+				$tile.find('.debug-label').remove();
+				$tile.prepend(`<div class="debug-label" style="position: absolute;font-size: 30px;font-weight: bold;color: white; z-index: 9999; left:40px">${sizeMapIndex+1} ${sizeChar}</div>`);
+			}
 		}
 	}
 
