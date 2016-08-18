@@ -46,6 +46,10 @@ class RecentActivityModel {
 			return data;
 		});
 	}
+
+	getCachedRecentActivities() {
+		return recentActivityService.getCachedRecentActivities(this.bapiHeaderValues);
+	}
 }
 
 module.exports = RecentActivityModel;

@@ -84,6 +84,10 @@ class CardsModel {
 		});
 	}
 
+	getCachedTrendingCard() {
+		return cardService.getCachedTrendingCard(this.bapiHeaderValues);
+	}
+
 	/**
 	 * gets the config for the specified card
 	 * @param cardName
