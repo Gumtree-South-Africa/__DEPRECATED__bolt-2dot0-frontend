@@ -149,6 +149,9 @@
         Bolt.LOCALE = "{{this.locale}}";
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>
+
+    {{> (dynamic "abTest") }}
+
     {{#block "googleAnalytics"}}
         <input id='ga-account' type='hidden' value='{{account}}' />
         <input id='ga-domain' type='hidden' value='{{domainName}}' />
@@ -179,8 +182,6 @@
     {{/block}}
 
     {{#block "dynamicStyles"}}{{/block}}
-
-    {{> (dynamic "abTest") }}
 </head>
 <body>
 

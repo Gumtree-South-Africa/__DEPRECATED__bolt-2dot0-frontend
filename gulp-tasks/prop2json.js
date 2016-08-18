@@ -21,7 +21,7 @@ module.exports = function watch(gulp, plugins) {
 					.pipe(gulp.dest(function(files) {
 						var fileName = files.history[1].replace(/^.*\/(.*)$/, "$1").toString();
 						return arrangeFolder(fileName);
-					}))
+					}));
 
 			return stream;
 		})
