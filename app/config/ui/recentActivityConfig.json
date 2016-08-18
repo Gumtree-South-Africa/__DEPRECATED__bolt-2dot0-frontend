@@ -4,7 +4,7 @@
 			"type": [
 				{
 					"name": "DwellingType",
-					"prefix": "una {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				},
 				{
 					"name": "NumberBedrooms",
@@ -16,7 +16,7 @@
 			"type": [
 				{
 					"name": "CellPhoneType",
-					"prefix": "un {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				}
 			]
 		},
@@ -24,7 +24,7 @@
 			"type": [
 				{
 					"name": "ElectronicsType",
-					"prefix": "una {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				}
 			]
 		},
@@ -32,7 +32,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
@@ -44,7 +44,7 @@
 			"type": [
 				{
 					"name": "FurnitureType",
-					"prefix": "un {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				}
 			]
 		},
@@ -52,7 +52,7 @@
 			"type": [
 				{
 					"name": "ApplianceType",
-					"prefix": "un {formattedValue}"
+					"prefix": "un(a) {formattedValue}"
 				}
 			]
 		}
