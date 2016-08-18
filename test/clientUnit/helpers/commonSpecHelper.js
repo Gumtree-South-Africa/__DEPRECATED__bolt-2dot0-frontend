@@ -4,8 +4,13 @@ let clientHbsHelpers = require("./clientHbsHelpers.js");
 
 let mockAjaxMapQueue = {};
 
+window.TEST = {
+	Handlebars
+};
+
 // fix HBS Template Helpers for the Client
-clientHbsHelpers.initialize();
+clientHbsHelpers.initialize(window.TEST.Handlebars);
+
 
 /**
  * Prepare client template and return that DOM after appending to the screen
@@ -14,7 +19,7 @@ clientHbsHelpers.initialize();
  * @returns {jQuery} return testArea
  */
 let _prepareTemplate = (templateName, templateModel) => {
-	let template = Handlebars.partials[templateName];
+	let template = window.TEST.Handlebars.partials[templateName];
 
 	if (!template) {
 		throw Error(`No precompiled template with the name -> ${templateName}`);
@@ -91,9 +96,13 @@ module.exports = {
 beforeEach(() => {
 	spyOn($, 'ajax').and.callFake((options) => {
 		let ajaxInfo = _dequeue(options.url);
-
+		if (!ajaxInfo) {
+			throw new Error(`no mocked endpoint for ${options.url}`);
+		}
 		if (ajaxInfo.options) {
-			if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
+			if (ajaxInfo.options.fail) {
+				options.error(ajaxInfo.returnData);
+			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {
 					options.success(ajaxInfo.returnData);
 				}, ajaxInfo.delay);
@@ -103,4 +112,8 @@ beforeEach(() => {
 		}
 
 	});
+});
+
+afterEach(() => {
+	$("#testArea").html("");
 });

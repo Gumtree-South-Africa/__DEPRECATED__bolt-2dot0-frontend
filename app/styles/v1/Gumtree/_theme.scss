@@ -186,6 +186,10 @@ $boxRowBGColor: #FFFFFF !default;
 		background-color: $boxBGColor;
 		padding: .75em;
 	}
+	.viewport .full-screen-smartbanner 
+	.smartbanner-content {
+	  top: 26%;
+	}
 }
 
 @include from-breakpoint($small-break) {

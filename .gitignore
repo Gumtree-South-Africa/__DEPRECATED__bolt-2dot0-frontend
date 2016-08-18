@@ -44,7 +44,6 @@ npm-debug.log
 .build
 build
 tmp
-app/views/components/__default
 app/locales/json
 public/css
 public/cssmin
@@ -61,7 +60,9 @@ test/clientUnit/SpecRunnerBundle.js*
 test/clientUnit/helpers/webTemplates.js*
 app/templateStaging/
 app/config/bundling/bundleMap.json
+app/config/bundling/rui/compiled/
 app/**/*.compiled.js
+/public/js/precompTemplates.js*
 
 .idea/*
 !.idea/runConfigurations

@@ -27,7 +27,6 @@ let HP = {
 		}
 
 		// CSS
-		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
 		} else {

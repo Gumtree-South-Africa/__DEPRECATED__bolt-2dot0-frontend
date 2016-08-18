@@ -19,8 +19,8 @@ class RecentActivityModel {
 		return !(feed.action === 'LISTED');
 	}
 
-	getRecentActivities(geoLatLng) {
-		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLng).then((data) => {
+	getRecentActivities(geoLatLngObj) {
+		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((data) => {
 			data.recent = [];
 
 			if (data.ads instanceof Array && data.ads.length>0) {

@@ -91,9 +91,8 @@ class HomePageModelV2 {
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
 				// user specific parameters are passed here, such as location lat/long
-				// temporary - use MEXICO CITY Latitude	19.432608 Longitude	-99.133209, using the syntaxt the api needs
 				return cardsModel.getCardItemsData(cardName, {
-					geo: modelData.geoLatLng
+					geo: modelData.geoLatLngObj
 				}).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
@@ -114,7 +113,7 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
-			return recentActivityModel.getRecentActivities(modelData.geoLatLng).then((data) => {
+			return recentActivityModel.getRecentActivities(modelData.geoLatLngObj).then((data) => {
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting data ${err}`);
@@ -146,6 +145,18 @@ class HomePageModelV2 {
 				return {};
 			});
 		};
+
+		// when we don't have a geoCookie, we shouldn't make the call
+		if (modelData.geoLatLngObj) {
+			this.dataPromiseFunctionMap.locationlatlong = () => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
+					return data;
+				}).fail((err) => {
+					console.warn(`error getting data ${err}`);
+					return {};
+				});
+			};
+		}
 
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {

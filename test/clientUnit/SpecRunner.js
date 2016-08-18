@@ -4,3 +4,5 @@
 $('body').append('<div id="testArea"></div>');
 
 require('./spec/searchBarSpec/searchBarSpec.js');
+require('./spec/headerSpec.js');
+require('./spec/postAdSpec.js');

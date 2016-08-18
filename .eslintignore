@@ -23,6 +23,7 @@ app/appWeb/controllers/all/messagepageController.js
 app/appWeb/controllers/all/quickpostController.js
 app/appWeb/controllers/api/apiGalleryController.js
 app/appWeb/serviceWorkers/service-worker-es_MX.js
+app/appWeb/serviceWorkers/service-worker-es_MX-local.js
 app/appWeb/views/components/adBottomBanner/js/app.js
 app/appWeb/views/components/adCarousel/js/adCarousel.js
 app/appWeb/views/components/adCarousel/js/app.js
@@ -82,7 +83,6 @@ app/appWeb/views/templates/pages/quickpost/js/quickpost.js
 app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
 
-
 server/middlewares/check-authentication.js
 server/middlewares/check-ip.js
 server/middlewares/check-machineid.js
@@ -121,3 +121,6 @@ server/utils/monitor/reportFunctions.js
 server/utils/monitor/setupOptions.js
 
 node_modules
+/app/config/bundling/rui/compiled
+
+public/js/precompTemplates.js

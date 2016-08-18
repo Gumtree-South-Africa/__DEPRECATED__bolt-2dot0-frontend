@@ -19,7 +19,8 @@
 			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
 		  	"quickpostAd"		:	"/bolt-api-webapp/v1/ads",
 			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent",
-			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending"
+			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending",
+			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts"
 	    }
 	},
 	"kafka": {
@@ -53,6 +54,11 @@
 		"baseJSMinUrl"	: "/public/jsmin/",
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
+		"baseUrl"		: "/public/",
 		"min"			: false
+	},
+	"abTest": {
+		"type": "google",
+		"experimentId": ""
 	}
 }

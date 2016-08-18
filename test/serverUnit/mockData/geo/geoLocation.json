@@ -1,0 +1,19 @@
+{
+	"id": 10694,
+	"parentId": 1014,
+	"localizedName": "Ixtlahuaca-mock",
+	"level": "L2",
+	"isLeaf": true,
+	"_links": [
+		{
+			"rel": "self",
+			"href": "/locations/10694",
+			"method": "GET"
+		},
+		{
+			"rel": "search",
+			"href": "/s-ixtlahuaca/v1l10694p1",
+			"method": "GET"
+		}
+	]
+}

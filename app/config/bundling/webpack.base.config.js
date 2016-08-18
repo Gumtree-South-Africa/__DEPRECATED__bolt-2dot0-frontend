@@ -33,15 +33,19 @@ module.exports = {
 		}
 	},
 	plugins: [
+		// *******************************************************************
+		// PLEASE DO NOT REMOVE THIS UGLIFYJS PLUGIN FROM THE TOP OF THE ARRAY
+		// *******************************************************************
 		new webpack.optimize.UglifyJsPlugin({
-			sourceMap: true,
+			sourceMap: true,	// defaults to true, but nice to see it explicit
 			compress: {
 				warnings: false
 			}
 		}),
+		new webpack.optimize.CommonsChunkPlugin("MainV2.min.js"), // common Main.js File
 		new webpack.ProvidePlugin({
-			$: 'jquery'  // provide jquery on the global $
-		}),
-		new webpack.optimize.CommonsChunkPlugin("MainV2.min.js") // common Main.js File
+			$: "jquery",
+			jQuery: "jquery"
+		})
 	]
 };

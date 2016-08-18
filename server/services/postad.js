@@ -1,29 +1,16 @@
 'use strict';
 
-var config = require('config');
+let config = require('config');
+let bapiOptionsModel = require("./bapi/bapiOptionsModel");
+let bapiService      = require("./bapi/bapiService");
 
-var bapiOptions = require('./bapi/bapiOptions')(config);
-
-/**
- * @description A service class that talks to Post Ad BAPI
- * @constructor
- */
-var PostAdService = function() {
-	this.bapiOptions = bapiOptions;
-};
-
-/**
- * Gets a list of ads for homepage gallery
- */
-PostAdService.prototype.quickpostAd = function(bapiHeaders, adJson) {
-	// console.info('Inside PostAdService');
-
-	// Prepare BAPI call
-	this.bapiOptions.method = 'POST';
-	this.bapiOptions.path = config.get('BAPI.endpoints.quickpostAd');
-
-	// Invoke BAPI
-	return require('./bapi/bapiPromisePost')(this.bapiOptions, bapiHeaders, adJson, 'quickpostAd');
-};
+class PostAdService {
+	quickpost(bapiHeaderValues, adJson) {
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: config.get('BAPI.endpoints.quickpostAd'),
+		}), bapiHeaderValues, JSON.stringify(adJson), 'postAd');
+	}
+}
 
 module.exports = new PostAdService();

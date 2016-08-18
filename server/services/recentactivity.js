@@ -5,12 +5,12 @@ let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 let bapiService      = require("./bapi/bapiService");
 
 class RecentActivityService {
-	getRecentActivities(bapiHeaderValues, geoLatLng) {
+	getRecentActivities(bapiHeaderValues, geoLatLngObj) {
 		let queryEndpoint = config.get('BAPI.endpoints.recentActivities');
 
 		let apiParameters = {};
-		if (geoLatLng !== null) {
-			apiParameters['geo'] = geoLatLng;
+		if (geoLatLngObj) {
+			apiParameters['geo'] = bapiService.bapiFormatLatLng(geoLatLngObj);
 		}
 
 		let bapiOptions = bapiOptionsModel.initFromConfig(config, {

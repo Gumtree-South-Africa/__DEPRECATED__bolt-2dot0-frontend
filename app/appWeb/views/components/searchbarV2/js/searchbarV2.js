@@ -151,6 +151,10 @@ let _highlightNextItem = () => {
 	}
 };
 
+let isOnPage = () => {
+	return this.$searchControls && this.$searchControls.length > 0;
+};
+
 let closeAutoComplete = (dontClearText, dontFocusTextbox) => {
 	_setIsTyping(false);
 	if (!dontClearText) {
@@ -214,7 +218,8 @@ let initialize = () => {
 module.exports = {
 	// "public" functions
 	initialize,
-	closeAutoComplete
+	closeAutoComplete,
+	isOnPage
 };
 
 
