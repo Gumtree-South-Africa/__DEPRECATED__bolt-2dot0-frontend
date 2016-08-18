@@ -84,7 +84,7 @@
 				"features": [
 					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
 				],
-				"sizeClass": "one-by-two"
+				"sizeClass": "two-by-one"
 			},
 			{
 				"id": "300000000",
@@ -143,7 +143,7 @@
 				"features": [
 					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
 				],
-				"sizeClass": "two-by-three"
+				"sizeClass": "three-by-two"
 			}
 		],
 		"config": {

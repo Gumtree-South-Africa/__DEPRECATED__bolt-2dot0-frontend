@@ -29,10 +29,15 @@ let _getLocFailure = (resp) => {
  * @param {number} breakpoint
  */
 let handleBreakpointChanged = (breakpoint) => {
-	console.log(`handle breakpoint changed ${breakpoint}`);
+	// console.log(`handle breakpoint changed ${breakpoint}`);
 
 	let tiles = this.$body.find('.tile-item');
-	this.breakpointMapper.adjustTileSizes(breakpoint, tiles)
+	this.breakpointMapper.adjustTileSizes(breakpoint, tiles);
+
+	// adjust the outer container for this breakpoint, so it locks in the nested isotope container width
+	// isotope likes to modify its own container widths, so we control it via the outer container
+	$('.tile-grid-width-container').width(breakpoint);
+
 	this.isotopeElement.isotope('layout');
 }
 
@@ -41,6 +46,9 @@ let _filterFunction = function() {
 	let index = $(this).attr('data-index');
 	return parseInt(index) < filterMax;
 };
+
+
+
 
 /**
  * onReady can be called separately when testing
@@ -55,14 +63,14 @@ let onReady = () => {
 		masonry: {
 			columnWidth: '.column-sizer',
 			gutter: '.gutter-sizer-horizontal',
-			isFitWidth: true
+			fitWidth: true
 		},
 		filter: _filterFunction
 	};
 
 	this.isotopeElement.addClass("using-isotope");	// tag so we get configured sizes
 	this.isotopeElement.isotope(isotopeOptions);
-
+	window.temp = this.isotopeElement;
 	this.$body.trigger('breakpointChanged', this.currentBreakpoint);
 
 }
@@ -75,12 +83,14 @@ let initialize = (registerOnReady = true) => {
 
 	this.$body = $('body');
 	this.isotopeElement = $('.use-isotope-handler');
+	// we clear this class since we're handling it in javascript
+	this.isotopeElement.toggleClass('use-isotope-handler', false);
 
 	this.breakpointMapper = new BreakpointTileSizeMapper();
 	this.currentBreakpoint = this.breakpointMapper.nearestBreakpoint(window.innerWidth);
 
 	this.$body.on('breakpointChanged', (event, newBreakpoint, oldBreakpoint) => {
-		console.log(`breakpoint changed ${oldBreakpoint} => ${newBreakpoint}`);
+		// console.log(`breakpoint changed ${oldBreakpoint} => ${newBreakpoint}`);
 		handleBreakpointChanged(newBreakpoint);
 	});
 
@@ -100,7 +110,7 @@ let initialize = (registerOnReady = true) => {
 	$(".card-view-more .link").on("click", () => {
 		filterMax += 16;
 		if (filterMax <= 48 && filterMax <= numTiles) {
-			this.isotopeElement.isotope('arrange');
+			this.isotopeElement.isotope();
 			this.isotopeElement.trigger("scroll"); // trigger lazyload in webkit browsers
 		} else {
 			// nav to SRP
