@@ -122,3 +122,5 @@ server/utils/monitor/setupOptions.js
 
 node_modules
 /app/config/bundling/rui/compiled
+
+public/js/precompTemplates.js

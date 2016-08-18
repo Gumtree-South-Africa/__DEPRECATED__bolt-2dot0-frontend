@@ -58,7 +58,30 @@ module.exports = function webpack(gulp) {
 		let fs = require("fs");
 		let argv = require('yargs').argv;
 		let openingFileLine = '"use strict";\n\n';
-		let closingFileLine = '\n';
+		let closingFileLine = '\n'
+		let flatten = require("gulp-flatten");
+		let del = require("del");
+
+		// CLIENT TEMPLATING TASKS
+		gulp.task("cleanTemplates", () => {
+			return del([
+				"app/templateStaging",
+				"public/js/precompTemplates.js*"
+			]);
+		});
+
+		gulp.task('stageTemplates', () => {
+			let globs = require(`${process.cwd()}/app/config/precompilingTemplates/precompileConfig`).files;
+			return gulp.src(globs)
+				.pipe(flatten())
+				.pipe(gulp.dest("app/templateStaging"));
+		});
+
+		gulp.task("templateMaker", shell.task(["bash bin/scripts/templateMaker.sh public/js/precompTemplates.js"]));
+
+		gulp.task('precompile2', (done) => {
+			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
+		});
 
 		gulp.task('webpack:prepare', (done) => {
 			let pages = [];
@@ -151,7 +174,7 @@ module.exports = function webpack(gulp) {
 		});
 
 		gulp.task("webpack", (done) => {
-			runSequence("webpack:prepare", "webpack:build", "webpack:rui", done);
+			runSequence("precompile2", "webpack:prepare", "webpack:build", done);
 		});
 	}
 };
