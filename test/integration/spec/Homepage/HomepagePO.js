@@ -9,6 +9,7 @@ class HomepagePO {
 		this.trendingItemLink = element(by.css('.trending-card .tile-link'));
 		this.trendingAdImgs = element.all(by.css('.trending-card img.lazy.ad-image'));
 		this.trendingProfileImgs = element.all(by.css('.trending-card img.lazy.profile-image'));
+		this.viewMoreButton = element(by.css('.card-view-more .link'));
 	}
 
 	getUrl() {

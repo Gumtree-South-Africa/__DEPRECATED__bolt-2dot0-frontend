@@ -10,7 +10,7 @@ describe('Homepage Spec', () => {
 	let mockData;
 
 	beforeEach(() => {
-		mockData = specHelper.getMockData("/test/serverUnit/mockData/api/v1/", "Ads");
+		mockData = specHelper.getMockData("/test/serverUnit/mockData/api/v1/", "TrendingCard");
 
 		homepagePO.visitPage();
 		// set cookies
@@ -27,34 +27,89 @@ describe('Homepage Spec', () => {
 	});
 
 	describe('Trending Card', () => {
-		beforeEach(() => {
-			// set window size so that images dont lazy load immediately
-			browser.driver.manage().window().setSize(375, 200);
-		});
-
 		it('should navigate to the ad page when clicking trending item', () => {
 			homepagePO.trendingItemLink.click().then(() => {
 				expect(browser.getCurrentUrl()).toContain(mockData.ads[0].viewSeoUrl, 'Navigated to the incorrect ad url');
 			});
 		});
 
-		it('should lazy load the trending item image when it scrolls into view', () => {
-			expect(element.all(by.css('.trending-card img.lazy.ad-image')).count()).toEqual(mockData.ads.length, 'Only trending items specified in mocked data should display');
+		it('should filter w/ isotope so that only the first 16 elements display', () => {
+			// there are 48 items
+			expect(element.all(by.css('.trending-card .tile-item')).count()).toEqual(48);
 
-			// check trending item for src attr, lazy loaded images should not have loaded
-			let mockAdImgs = [mockData.ads[0].pictures[0].url];
-			let mockProfileImgs = [mockData.ads[0].seller.profileImage];
-			expect(homepagePO.trendingAdImgs.getAttribute('src')).not.toEqual(mockAdImgs, 'Tile is not in view and ad image should not be loaded yet');
-			expect(homepagePO.trendingProfileImgs.getAttribute('src')).not.toEqual(mockProfileImgs, 'Tile is not in view and profile image should not be loaded yet');
+			// 16 showing
+			let i;
+			for (i = 0; i < 16; i++) {
+				expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).not.toContain('display: none');
+			}
 
-			// resize window to show all trending items
-			browser.driver.manage().window().setSize(375, 667);
+			// 32 are hidden
+			for (i = 16; i < 48; i++) {
+				expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).toContain('display: none');
+			}
+		});
 
-			// check trending items for src attr, lazy load should be finished loading
-			setTimeout(() => {
-				expect(homepagePO.trendingAdImgs.getAttribute('src')).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
-				expect(homepagePO.trendingProfileImgs.getAttribute('src')).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
-			}, 1000);
+		it('should show 32 tiles after clicking View More button', () => {
+			// scroll down to 'View More' button
+			browser.executeScript('window.scrollTo(0, 1000)')
+				.then(homepagePO.viewMoreButton.click())
+				.then(() => {
+					// 32 showing
+					let i;
+					for (i = 0; i < 32; i++) {
+						expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).not.toContain('display: none');
+					}
+
+					// 16 are hidden
+					for (i = 32; i < 48; i++) {
+						expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).toContain('display: none');
+					}
+				});
+		});
+
+		it('should navigate to the search page after all 48 items have been shown', () => {
+			// scroll to 'View More' each time new tiles are added, then click it
+			browser.executeScript('window.scrollTo(0, 1000)')
+				.then(homepagePO.viewMoreButton.click())
+				.then(browser.executeScript('window.scrollTo(0, 3600)'))
+				.then(homepagePO.viewMoreButton.click())
+				.then(() => {
+					// 48 showing
+					for (let i = 0; i < 48; i++) {
+						expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).not.toContain('display: none');
+					}
+					browser.executeScript('window.scrollTo(0, 4000)');
+				})
+				.then(homepagePO.viewMoreButton.click())
+				.then(() => {
+					expect(browser.getCurrentUrl()).toContain('search.html');
+				});
+		});
+
+		describe('lazy load', () => {
+			beforeEach(() => {
+				// set window size so that images dont lazy load immediately
+				browser.driver.manage().window().setSize(375, 200);
+			});
+
+			it('should lazy load the trending item image when it scrolls into view', () => {
+				expect(element.all(by.css('.trending-card img.lazy.ad-image')).count()).toEqual(mockData.ads.length, 'Only trending items specified in mocked data should display');
+
+				// check trending item for src attr, lazy loaded images should not have loaded
+				let mockAdImgs = [mockData.ads[0].pictures[0].url];
+				let mockProfileImgs = [mockData.ads[0].seller.profileImage];
+				expect(homepagePO.trendingAdImgs.getAttribute('src')).not.toEqual(mockAdImgs, 'Tile is not in view and ad image should not be loaded yet');
+				expect(homepagePO.trendingProfileImgs.getAttribute('src')).not.toEqual(mockProfileImgs, 'Tile is not in view and profile image should not be loaded yet');
+
+				// resize window to show all trending items
+				browser.driver.manage().window().setSize(375, 667);
+
+				// check trending items for src attr, lazy load should be finished loading
+				setTimeout(() => {
+					expect(homepagePO.trendingAdImgs.getAttribute('src')).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
+					expect(homepagePO.trendingProfileImgs.getAttribute('src')).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
+				}, 500);
+			});
 		});
 	});
 });
