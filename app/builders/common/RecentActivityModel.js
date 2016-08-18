@@ -55,34 +55,73 @@ class RecentActivityModel {
 	}
 
 	getRecentActivities(geoLatLngObj) {
-		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((data) => {
-			data.recent = [];
-			data.filteredArr = [];
-			data.shuffledArr = [];
-			data.filteredArr = this.filterArr(data.ads, this.bapiHeaderValues.locale);
-			data.shuffledArr = this.shuffleArr(data.filteredArr);
+		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((bapiResult) => {
+			bapiResult.recent = [];
+			bapiResult.filteredArr = [];
+			bapiResult.shuffledArr = [];
+			bapiResult.filteredArr = this.filterArr(bapiResult.ads, this.bapiHeaderValues.locale);
+			bapiResult.shuffledArr = this.shuffleArr(bapiResult.filteredArr);
 
-			if (data.shuffledArr instanceof Array && data.shuffledArr.length > 2) {
-				let feed1 = data.shuffledArr[0];
+			if (bapiResult.shuffledArr instanceof Array && bapiResult.shuffledArr.length > 2) {
+				let feed1 = bapiResult.shuffledArr[0];
 				feed1.renderSold = this.isSold(feed1);
 				feed1.prefix1 = feed1.attributes[0].prefix;
 				feed1.prefix2 = feed1.attributes[1] ? feed1.attributes[1].prefix : '';
-				data.recent.push(feed1);
+				bapiResult.recent.push(feed1);
 
-				let feed2 = data.shuffledArr[1];
+				let feed2 = bapiResult.shuffledArr[1];
 				feed2.renderSold = this.isSold(feed2);
 				feed2.prefix1 = feed2.attributes[0].prefix;
 				feed2.prefix2 = feed2.attributes[1] ? feed2.attributes[1].prefix : '';
-				data.recent.push(feed2);
+				bapiResult.recent.push(feed2);
 
-				let feed3 = data.shuffledArr[2];
+				let feed3 = bapiResult.shuffledArr[2];
 				feed3.renderSold = this.isSold(feed3);
 				feed3.prefix1 = feed3.attributes[0].prefix;
 				feed3.prefix2 = feed3.attributes[1] ? feed3.attributes[1].prefix : '';
-				data.recent.push(feed3);
+				bapiResult.recent.push(feed3);
 			}
-			return data;
+			return this.transformData(bapiResult);
+		}).fail((bapiErr) => {
+			console.warn(`Error getting BAPI recentActivities data ${bapiErr}`);
+			return recentActivityService.getCachedRecentActivities(this.bapiHeaderValues).then((cachedResult) => {
+				cachedResult = (cachedResult !== undefined) ? cachedResult : {};
+				return this.transformData(cachedResult);
+			}).fail((cacheErr) => {
+				if (cacheErr.status) {
+					console.warn(cacheErr.message);
+				} else {
+					console.warn(`Error getting Cache recentActivities data ${cacheErr}`);
+				}
+				return {};
+			});
 		});
+	}
+
+	transformData(data) {
+		data.recent = [];
+
+		if (data.ads instanceof Array && data.ads.length>0) {
+			let feed1 = data.ads[Math.floor(Math.random() * data.ads.length)];
+			feed1.renderSold = this.isSold(feed1);
+			feed1.prefix1 = '11';
+			feed1.prefix2 = '12';
+			data.recent.push(feed1);
+
+			let feed2 = data.ads[Math.floor(Math.random() * data.ads.length)];
+			feed2.renderSold = this.isSold(feed2);
+			feed2.prefix1 = '21';
+			feed2.prefix2 = '22';
+			data.recent.push(feed2);
+
+			let feed3 = data.ads[Math.floor(Math.random() * data.ads.length)];
+			feed3.renderSold = this.isSold(feed3);
+			feed3.prefix1 = '31';
+			feed3.prefix2 = '32';
+			data.recent.push(feed3);
+		}
+
+		return data;
 	}
 }
 

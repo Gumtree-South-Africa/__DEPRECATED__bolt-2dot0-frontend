@@ -9,7 +9,7 @@ let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
-let config = require(`${cwd}/server/config/sites.json`);
+let config = require(`${cwd}/server/config/site/sites.json`);
 let endpoints = require(`${cwd}/server/config/mock.json`).BAPI.endpoints;
 
 /**
