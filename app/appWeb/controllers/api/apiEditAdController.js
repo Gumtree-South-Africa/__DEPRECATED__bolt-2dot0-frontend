@@ -2,6 +2,7 @@
 
 let express = require('express');
 let router = express.Router();
+let Q = require('q');
 
 let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
@@ -13,17 +14,26 @@ let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 
-
 router.post('/attributedependencies', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
-	let categoryId = req.body.catId;
-	let depAttrName = req.body.depAttr;
-	let depValue = req.body.depValue;
-	attributeModel.getAttributeDependency(categoryId, depAttrName).then((data) => {
-		res.json(data[depValue]);
+	attributeModel.getAttribute(req.body.catId, req.body.depAttr).then((attribute) => {
+		let dependents = attribute.dependents;
+
+		let dependentsPromises = dependents.map((dependent) => {
+			return attributeModel.getAttributeDependency(req.body.catId, dependent).then((dep) => {
+				return {
+					name: dependent,
+					values: dep[req.body.depValue]
+				};
+			});
+		});
+
+		return Q.all(dependentsPromises).then((data) => {
+			res.json(data);
+		});
 	});
 });
 
@@ -32,9 +42,8 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
-	let categoryId = req.params.categoryId;
-	attributeModel.getAllAttributes(categoryId).then((data) => {
-		res.json(data);
+	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
+		res.json(attributeModel.processCustomAttributesList(attributeData));
 	});
 });
 

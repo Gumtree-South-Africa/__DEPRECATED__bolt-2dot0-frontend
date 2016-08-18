@@ -9,8 +9,9 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
-let _ = require('underscore');
+let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 
+let _ = require('underscore');
 
 class EditAdPageModel {
 	constructor(req, res, adId) {
@@ -100,7 +101,7 @@ class EditAdPageModel {
 	getPageDataFunctions(modelData) {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let editAdModel = new EditAdModel(modelData.bapiHeaders);
-		modelData.editExtra = editAdModel.translateCustomAttributes();
+		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -116,7 +117,10 @@ class EditAdPageModel {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
-				return data;
+				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+					modelData.customAttributes = attributeModel.processCustomAttributesList(attributes, data);
+					return data;
+				});
 			});
 		};
 	}

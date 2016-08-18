@@ -2,6 +2,7 @@
 
 let attributeService = require(process.cwd() + '/server/services/attributeService');
 
+let _ = require("underscore");
 
 /**
  * @description A class that Handles the Attribute Model
@@ -10,6 +11,40 @@ let attributeService = require(process.cwd() + '/server/services/attributeServic
 class AttributeModel {
 	constructor(bapiHeaders) {
 		this.bapiHeaders = bapiHeaders;
+	}
+
+	// this function processes the custom attribute list for displaying an already existing ad
+	processCustomAttributesList(attributes, adData) {
+		let commonAttributesToExclude = [
+			"Description",
+			"Price",
+			"UserName",
+			"Address",
+			"Phone",
+			"Title",
+			"Email"
+		];
+
+		return attributes.filter((attr) => {
+			if (attr.dependencies && attr.dependencies.length > 0) {
+				let depAttrValObj;
+				if (adData) {
+					depAttrValObj = _.findWhere(adData.attributes, {
+						name: attr.dependencies[0]
+					});
+				}
+
+				if (depAttrValObj && depAttrValObj.value && depAttrValObj.value.attributeValue) {
+					attr.allowedValues.filter((val) => {
+						return val.dependencyValue === depAttrValObj.value.attributeValue;
+					});
+				} else {
+					attr.allowedValues = [];
+				}
+			}
+
+			return !_.contains(commonAttributesToExclude, attr.name);
+		});
 	}
 
 //Function getAllAttributes
@@ -57,7 +92,6 @@ class AttributeModel {
 			return attributeService.getAttributeDependencyInfoCached(this.bapiHeaders, categoryId, attributeName);
 		}
 	}
-
 }
 module.exports = AttributeModel;
 

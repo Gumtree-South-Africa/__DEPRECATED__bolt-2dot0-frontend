@@ -4,14 +4,15 @@ let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 class EditFormCustomAttributes {
 	_render(modelData) {
-		let $parentWrapper = this.$form.parent();
 
 		this._unbindDependencyEvents();
 
-		$parentWrapper.empty();
-		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`](modelData);
+		this.$form.empty();
+		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`]({
+			customAttributes: modelData
+		});
 
-		$parentWrapper.append(newDomString);
+		this.$form.append($(newDomString).unwrap());
 
 		this._bindDependencyEvents();
 	}
@@ -29,8 +30,8 @@ class EditFormCustomAttributes {
 	}
 
 	_updateDependentsLists(dependents) {
-		Object.keys(dependents).forEach((dependentName) => {
-			this._insertSelectBoxOptions(this.$form.find(`.edit-ad-select-box[data-attribute=${dependentName}]`), dependents[dependentName]);
+		dependents.forEach((dependent) => {
+			this._insertSelectBoxOptions(this.$form.find(`.edit-ad-select-box[data-attribute=${dependent.name}]`), dependent.values);
 		});
 	}
 
@@ -42,7 +43,7 @@ class EditFormCustomAttributes {
 				url: `/api/edit/attributedependencies`,
 				type: "POST",
 				data: JSON.stringify({
-					catId: 65,
+					catId: this.catId,
 					depAttr: $selectBox.data('attribute'),
 					depValue: $selectBox.val()
 				}),
@@ -55,9 +56,13 @@ class EditFormCustomAttributes {
 		});
 	}
 
-	updateCustomAttributes(catId) {
+	setCategoryId(catId) {
+		this.catId = catId;
+	}
+
+	updateCustomAttributes() {
 		$.ajax({
-			url: `/api/edit/customattributes/${catId}`,
+			url: `/api/edit/customattributes/${this.catId}`,
 			method: "GET",
 			contentType: "application/json",
 			success: (customAttrData) => {

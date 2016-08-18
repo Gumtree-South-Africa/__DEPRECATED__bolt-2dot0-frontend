@@ -121,6 +121,9 @@ let onReady = () => {
 	this.$currentHierarchy = $("#selected-cat-hierarchy");
 	this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
 
+	customAttributes.initialize();
+	customAttributes.setCategoryId(this.currentHierarchy[this.currentHierarchy.length - 1]);
+
 	this.$editForm = this.$detailsSection.find('#edit-form');
 	this.$locationLat = this.$detailsSection.find('#location-lat');
 	this.$locationLng = this.$detailsSection.find('#location-lng');
@@ -141,16 +144,14 @@ let onReady = () => {
 				this.$categoryChangeLink.empty();
 				this.$categoryChangeLink.append(breadcrumbs);
 
-				this.$categoryId.val(hierarchy[hierarchy.length-1]);
-				// TODO HOOK UP ONCE WE HAVE MORE THAN ONE MOCKED DATA SET
-				// customAttributes.updateCustomAttributes(hierarchy[hierarchy.length-1]);
-
+				let newCatId = hierarchy[hierarchy.length-1];
+				this.$categoryId.val(newCatId);
+				customAttributes.setCategoryId(newCatId);
+				customAttributes.updateCustomAttributes();
 				this.currentHierarchy = hierarchy;
 			}
 		});
 	});
-
-	customAttributes.initialize();
 };
 
 let initialize = () => {
