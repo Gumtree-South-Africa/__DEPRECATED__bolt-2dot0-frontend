@@ -78,7 +78,7 @@ class CardsModel {
 
 	transformData(cardConfig, dataItems) {
 
-		dataItems.ads.forEach((ad, index) => {
+		dataItems.ads.forEach((ad) => {
 			// todo: featured mapping algorithm, for now just a placeholder
 			if (ad.id === 1234567890) {
 				ad.featured = true;
