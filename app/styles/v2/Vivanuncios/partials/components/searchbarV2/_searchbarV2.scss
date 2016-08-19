@@ -5,7 +5,7 @@ $mobileTextboxWidth: 84%;
 
 .search-controls {
 	color: $searchBarTextColor;
-	margin-top: 15px;
+	padding: 2em;
 
 	.search-mask {
 		top: 0;
@@ -13,7 +13,7 @@ $mobileTextboxWidth: 84%;
 		left: 0;
 		right: 0;
 		position: fixed;
-		background-color: rgba(0, 0, 0, 0.7);
+		background-color: $vivaWhite;
 		z-index: 2;
 		display: none;
 	}
@@ -38,7 +38,7 @@ $mobileTextboxWidth: 84%;
 
 	.type-ahead-results-wrapper {
 		position: absolute;
-		margin-top: 66px;
+		margin-top: 81px;
 		top: 0;
 		right: 0;
 		left: 0;
@@ -72,6 +72,8 @@ $mobileTextboxWidth: 84%;
 		margin: 0 auto;
 		position: relative;
 		box-sizing: border-box;
+		background-color: white;
+		padding-bottom: 10px;
 
 		form {
 			height: 100%;
@@ -256,11 +258,16 @@ $mobileTextboxWidth: 84%;
 			display: block;
 		}
 
+		.search-mask {
+			background-color: rgba(0, 0, 0, 0.7);
+		}
+
 		.mobile-location-area, .loc-arrow-icon {
 			display: none !important;
 		}
 
 		.search-bar {
+			background: none;
 			.search-textbox {
 				width: 100%;
 				padding: 0 30px;
@@ -289,6 +296,11 @@ $mobileTextboxWidth: 84%;
 					float: right;
 					margin: auto 5px auto 0;
 				}
+			}
+
+			.location-link {
+				bottom: -7px;
+				top: -4px;
 			}
 
 			.search-textbox {

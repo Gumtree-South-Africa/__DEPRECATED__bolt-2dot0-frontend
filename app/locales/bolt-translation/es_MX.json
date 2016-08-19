@@ -1231,8 +1231,8 @@
 	},
 	"recentactivity": {
 		"message": {
-			"listing": "%s acaba de poner en venta: %s %s",
-			"sold": "%s acaba de vender: %s %s"
+			"listing": "%s acaba de poner en venta %s %s",
+			"sold": "%s acaba de vender %s %s"
 		}
 	},
 	"gpsMap": {

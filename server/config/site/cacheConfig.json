@@ -1,0 +1,36 @@
+{
+	"cache": {
+		"homepageTrendingCard": {
+			"name": "hp-trending",
+			"maxElements": 7,
+			"maxAge": 86400000,
+			"reload": 300000,
+			"service": "/server/services/cardService",
+			"method": "getTrendingCard"
+		},
+		"homepageRecentActivityCard" : {
+			"name": "hp-recent",
+			"maxElements": 7,
+			"maxAge": 86400000,
+			"bapiTimeout": 200,
+			"reload": 300000,
+			"service": "/server/services/recentactivity",
+			"method": "getRecentActivities"
+		},
+		"categoryAllAttributes": {
+			"name": "cat-all-attributes",
+			"maxElements": 2000,
+			"maxAge": 86400000
+		},
+		"categoryAttributeInfo": {
+			"name": "cat-attribute-info",
+			"maxElements": 5000,
+			"maxAge": 86400000
+		},
+		"categoryAttributeDependencyInfo": {
+			"name": "cat-attribute-dependency-info",
+			"maxElements": 5000,
+			"maxAge": 86400000
+		}
+	}
+}

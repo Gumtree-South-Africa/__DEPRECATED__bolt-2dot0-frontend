@@ -2,7 +2,7 @@
 
 require("slick-carousel");
 let $ = require('jquery');
-let ImageHelper = require('../../uploadImage/js/imageHelper');
+let EpsUpload = require('../../uploadImage/js/epsUpload');
 let uploadAd = require('../../uploadImage/js/uploadAd');
 
 
@@ -63,7 +63,7 @@ let isProgressEventSupported = () => {
 
 let ExtractURLClass = (url) => {
 	// extract, url
-	let normalImageURLZoom = this.imageHelper.getThumbImgURL(url);
+	let normalImageURLZoom = this.epsUpload.getThumbImgURL(url);
 
 	if (!normalImageURLZoom) {
 		// not been able to find out a valid url
@@ -72,12 +72,12 @@ let ExtractURLClass = (url) => {
 	}
 
 	// convert to _18.JPG format saved in backend
-	normalImageURLZoom = this.imageHelper.convertThumbImgURL18(normalImageURLZoom);
+	normalImageURLZoom = this.epsUpload.convertThumbImgURL18(normalImageURLZoom);
 
 	// convert to _14.JPG thumb format
 
 	return {
-		"thumbImage": this.imageHelper.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
+		"thumbImage": this.epsUpload.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
 	};
 
 };
@@ -343,13 +343,13 @@ let requestLocation = (callback) => {
 	return timeout;
 };
 
-let _success = function(i, response) {
+let _success = (i, response) => {
 	// try to extract the url and figure out if it looks like to be valid
 	let url = ExtractURLClass(response);
 
 	// any errors don't do anything after display error msg
 	if (!url) {
-		let error = _this.imageHelper.extractEPSServerError(response);
+		let error = this.epsUpload.extractEPSServerError(response);
 		UploadMsgClass.translateErrorCodes(i, error);
 		console.error("Failed to extract url class!");
 		console.error(error);
@@ -365,7 +365,7 @@ let _success = function(i, response) {
 };
 
 let _failure = (i, epsError) => {
-	let error = _this.imageHelper.extractEPSServerError(epsError);
+	let error = _this.epsUpload.extractEPSServerError(epsError);
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 
 	UploadMsgClass.translateErrorCodes(i, error);
@@ -373,109 +373,28 @@ let _failure = (i, epsError) => {
 };
 
 let loadData = (i, file) => {
-	let formData = new FormData();
-	// direct upload via EPS proxy
-	if (!this.EPS.IsEbayDirectUL) {
-		formData.append("s", "1C5000");
-		formData.append("r", "0");
-		formData.append("pltfrm", "bolt");
-	} else {
-		// direct upload to zoom
-		formData.append("s", "Standard");
-		//formData.append("wm", "USER,ICON" );
-		formData.append("aXRequest", "2");
-	}
+	this.epsUpload.uploadToEps(i, file, _success, _failure, () => {
+		let xhr = new window.XMLHttpRequest();
+		xhr.upload.addEventListener("progress", function(event) {
+			let index = this.bCount;
 
-	formData.append("v", "2");
-	formData.append("b", "18");
-	formData.append("n", "g");
-	formData.append("a", this.EPS.token);
-
-	formData.append("u", file);
-	formData.append("rqt", $.now());
-	formData.append("rqis", file.size);
-
-	$.ajax({
-		xhr: () => {
-			let xhr = new window.XMLHttpRequest();
-			xhr.upload.addEventListener("progress", function(event) {
-				let index = this.bCount;
-
-				if (!event.lengthComputable) {
-					UploadMsgClass.failMsg(index);
-				}
-			}, false);
-			return xhr;
-		},
-		type: 'POST',
-		contentType: false,
-		processData: false,
-		url: this.EPS.url,
-		data: formData,
-		success: (response) => {
-			_success(i, response);
-		},
-		error: (err) => {
-			_failure(i, err);
-		}
+			if (!event.lengthComputable) {
+				UploadMsgClass.failMsg(index);
+			}
+		}, false);
+		return xhr;
 	});
 };
 
 //TODO: here minus a few dom references
 let prepareForImageUpload = (i, file) => {
-
-	let mediaType = this.imageHelper.isSupported(file.name);
-
-	if (!mediaType) {
-		UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
-		console.error("prepareForImageUpload - Invalid file type");
-		return;
-	}
-
-	let reader = null;
-
-	let img = new Image();
-
-	if (window.FileReader) {
-		UploadMsgClass.resizing(i);
-
-		reader = new FileReader();
-
-		reader.onload = (function(image, thisFile) {
-
-			return function(e) {
-				let dataUrl = e.target.result;
-
-
-				image.onload = function() {
-					let resizedImageFile = _this.imageHelper.scaleAndCropImage(this, thisFile.type);
-					loadData(i, resizedImageFile);
-				};
-
-				window.URL = window.URL || window.webkitURL || false;
-				image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
-
-				if (thisFile.type === 'image/jpeg') {
-					let binaryFile = _this.imageHelper.convertToBinaryFile(dataUrl);
-					image.exifData = _this.imageHelper.findEXIFinJPEG(binaryFile);
-				}
-
-				imageUploads.setURL(i, image.src);
-				UploadMsgClass.loadingMsg(i);
-
-			};
-		})(img, file);
-
-		reader.readAsDataURL(file);
-	} else {
-		window.URL = window.URL || window.webkitURL || false;
-		let imageUrl = URL.createObjectURL(file);
-		img.onload = () => {
-			let resizedImageFile = this.imageHelper.scaleAndCropImage(this, file.type);
+	let onload = (thisFile) => {
+		return function() {
+			let resizedImageFile = _this.epsUpload.scaleAndCropImage(this, thisFile.type);
 			loadData(i, resizedImageFile);
 		};
-		img.src = imageUrl;
-	}
+	};
+	this.epsUpload.prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload);
 };
 
 
@@ -601,7 +520,7 @@ let parseFile = (file) => {
 	let reader = new FileReader();
 
 	//TODO - check file is supported
-	if (!this.imageHelper.isSupported(file.name)) {
+	if (!this.epsUpload.isSupported(file.name)) {
 		UploadMsgClass.invalidType(0);
 		console.error("Invalid File Type");
 		return;
@@ -689,7 +608,7 @@ let initialize = () => {
 	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
-	this.imageHelper = new ImageHelper(this.EPS);
+	this.epsUpload = new EpsUpload(this.EPS);
 
 	this.$carousel = $('#photo-carousel');
 	this.$loginModal = $('.login-modal');
