@@ -5,7 +5,7 @@ class CategorySelectionModal {
 		return !(this.currentLevel.children && this.currentLevel.children.length > 0);
 	}
 
-	_traverseHierarchy(hierarchyArray) {
+	_traverseHierarchy(hierarchyArray, setCategoryLevel) {
 		let currentLevel = this.categoryTree;
 		hierarchyArray.forEach((catId) => {
 			if (catId !== 0) {
@@ -21,8 +21,11 @@ class CategorySelectionModal {
 			}
 		});
 
-		this.currentLevel = currentLevel;
-		return this.currentLevel;
+		if (setCategoryLevel) {
+			this.currentLevel = currentLevel;
+
+		}
+		return currentLevel;
 	}
 
 	_clearInput() {
@@ -90,7 +93,7 @@ class CategorySelectionModal {
 	}
 
 	_fullRender() {
-		this._renderResults(this._traverseHierarchy(this.currentHierarchy).children);
+		this._renderResults(this._traverseHierarchy(this.currentHierarchy, true).children);
 		this._displayCategoryHierarchy(this.currentHierarchy);
 	}
 
@@ -234,6 +237,11 @@ class CategorySelectionModal {
 		this.$modal.addClass("hidden");
 		this.currentHierarchy = null;
 		this.onSaveCb = null;
+	}
+
+	isLeafCategory(hierarchy) {
+		let level = this._traverseHierarchy(hierarchy, false);
+		return !level.children || level.children.length === 0;
 	}
 
 	openModal(options)  {

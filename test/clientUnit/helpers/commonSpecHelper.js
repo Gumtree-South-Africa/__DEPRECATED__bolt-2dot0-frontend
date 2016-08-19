@@ -99,6 +99,10 @@ let getCookie = (cookieName) => {
 		return "";
 };
 
+let disableFormWarning = () => {
+	window.onbeforeunload = () => {};
+};
+
 /**
  * Given url and return data, store the mock for use later
  * @param {string} url - url to mock
@@ -118,7 +122,8 @@ module.exports = {
 	setupTest,
 	registerMockAjax,
 	setCookie,
-	getCookie
+	getCookie,
+	disableFormWarning
 };
 
 // spying on ajax and replacing with fake, mock function

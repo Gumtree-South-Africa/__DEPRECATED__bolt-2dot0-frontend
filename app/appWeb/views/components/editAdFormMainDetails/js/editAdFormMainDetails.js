@@ -19,7 +19,7 @@ let _setHiddenLocationInput = (location) => {
 };
 
 let _successCallback = (response) => {
-	window.onbeforeunload = () => {};
+	formChangeWarning.disableFormWarning();
 	window.location.href = response.vipLink;
 };
 
@@ -105,6 +105,10 @@ let _ajaxEditForm = () => {
 	});
 };
 
+let _toggleSubmitDisable = (shouldDisable) => {
+	this.$submitButton.prop("disabled", shouldDisable);
+};
+
 let onReady = () => {
 	this.$detailsSection = $("#main-detail-edit");
 
@@ -130,9 +134,10 @@ let onReady = () => {
 	this.$textarea = this.$detailsSection.find('#description-input');
 	this.$categoryChangeLink.append(categorySelectionModal.getFullBreadCrumbText(this.currentHierarchy));
 
+	_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
+
 	this.$submitButton.on('click', (e) => {
-		this.$submitButton.addClass('disabled');
-		this.$submitButton.attr('disabled', true);
+		_toggleSubmitDisable(true);
 		e.preventDefault();
 		_ajaxEditForm();
 	});
@@ -143,8 +148,9 @@ let onReady = () => {
 			onSaveCb: (hierarchy, breadcrumbs) => {
 				this.$categoryChangeLink.empty();
 				this.$categoryChangeLink.append(breadcrumbs);
+				_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
 
-				let newCatId = hierarchy[hierarchy.length-1];
+				let newCatId = hierarchy[hierarchy.length - 1];
 				this.$categoryId.val(newCatId);
 				customAttributes.setCategoryId(newCatId);
 				customAttributes.updateCustomAttributes();

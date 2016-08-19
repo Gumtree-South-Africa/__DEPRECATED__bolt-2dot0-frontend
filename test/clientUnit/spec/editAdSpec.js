@@ -16,6 +16,7 @@ describe('Edit Ad', () => {
 		}, "es_MX");
 		editAdFormMainDetailsController.initialize();
 		editAdFormMainDetailsController.onReady();
+		specHelper.disableFormWarning();
 		specHelper.registerMockAjax('/api/edit/update', {'vipLink': '/success'}, {
 			success: (returnData) => {
 				expect(returnData.vipLink).toBe('/success');
@@ -39,6 +40,7 @@ describe('Edit Ad', () => {
 
 			editAdFormMainDetailsController.initialize();
 			editAdFormMainDetailsController.onReady();
+			specHelper.disableFormWarning();
 
 			specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=${inputVal}`, mockLocationData);
 			specHelper.registerMockAjax(`/api/locate/locationlatlong?lat=${encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString())}&lng=${encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString())}`, mockLatLongData);

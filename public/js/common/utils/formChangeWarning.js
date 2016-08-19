@@ -5,6 +5,11 @@ let initialize = () => {
 	};
 };
 
+let disableFormWarning = () => {
+	window.onbeforeunload = () => {};
+};
+
 module.exports = {
-	initialize
+	initialize,
+	disableFormWarning
 };
