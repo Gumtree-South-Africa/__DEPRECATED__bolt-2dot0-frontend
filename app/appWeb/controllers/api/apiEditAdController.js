@@ -2,7 +2,6 @@
 
 let express = require('express');
 let router = express.Router();
-let Q = require('q');
 
 let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
@@ -19,20 +18,12 @@ router.post('/attributedependencies', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
-	attributeModel.getAttribute(req.body.catId, req.body.depAttr).then((attribute) => {
-		let dependents = attribute.dependents;
-
-		let dependentsPromises = dependents.map((dependent) => {
-			return attributeModel.getAttributeDependency(req.body.catId, dependent).then((dep) => {
-				return {
-					name: dependent,
-					values: dep[req.body.depValue]
-				};
-			});
-		});
-
-		return Q.all(dependentsPromises).then((data) => {
-			res.json(data);
+	attributeModel.getAttributeDependents(req.body.catId, req.body.depAttr, req.body.depValue).then((attributes) => {
+		res.json(attributes);
+	}).fail((err) => {
+		console.warn(`getAttributeDependents failed for categoryId: ${req.body.catId}, attributeName: ${req.body.depAttr}, error: ${err}`);
+		return res.status(500).json({
+			error: "attributesdependencies failed"
 		});
 	});
 });

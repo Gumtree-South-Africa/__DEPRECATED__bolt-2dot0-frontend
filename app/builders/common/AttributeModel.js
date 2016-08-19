@@ -80,6 +80,25 @@ class AttributeModel {
 			return attributeService.getAttributeDependencyInfoCached(this.bapiHeaders, categoryId, attributeName);
 		}
 	}
+
+	getAttributeDependents(categoryId, attributeName, attributeValue) {
+		if (typeof this.bapiHeaders.locale !== 'undefined') {
+			return this.getAttribute(categoryId, attributeName).then((attribute) => {
+				let dependents = attribute.dependents;
+
+				let dependentsPromises = dependents.map((dependent) => {
+					return this.getAttributeDependency(categoryId, dependent).then((dep) => {
+						return {
+							name: dependent,
+							values: dep[attributeValue]
+						};
+					});
+				});
+
+				return Q.all(dependentsPromises);
+			});
+		}
+	}
 }
 module.exports = AttributeModel;
 
