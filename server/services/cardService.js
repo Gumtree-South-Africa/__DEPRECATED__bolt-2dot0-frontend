@@ -21,7 +21,7 @@ class CardService {
 	}
 
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
-		console.log(parameters);
+		// console.log(parameters);
 
 		if (parameters) {
 			if (parameters.geo === null) {
