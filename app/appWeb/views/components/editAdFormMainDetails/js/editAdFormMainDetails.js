@@ -89,11 +89,11 @@ let _ajaxEditForm = () => {
 			"latitude": lat,
 			"longitude": lng
 		},
+		//TODO: enable this once bapi gets the endpoint updated
+		// "categoryAttributes": categoryAttributes,
 		"imageUrls": images
 	};
-	if (categoryAttributes.length) {
-		payload.categoryAttributes = categoryAttributes;
-	}
+
 	$.ajax({
 		url: '/api/edit/update',
 		type: 'POST',

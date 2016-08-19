@@ -21,7 +21,8 @@
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
 			"draftAd"			:	"/ads/drafts",
-			"specificAd"		:	"/ads/{id}"
+			"specificAd"		:	"/ads/{id}",
+			"categoryAttributes":	"/categories/{catId}/attributes"
 	    }
 	},
 	"solr": {
