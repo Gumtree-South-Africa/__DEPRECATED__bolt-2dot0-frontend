@@ -20,7 +20,7 @@ let EditAdPage = {
 	}
 };
 
-router.use('/:id?', (req, res, next) => {
+router.get('/:id?', (req, res, next) => {
 	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let adId = req.params.id;
 	let editAdPageModel = new EditAdPageModel(req, res, adId);
