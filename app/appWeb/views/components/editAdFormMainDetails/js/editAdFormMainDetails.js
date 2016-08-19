@@ -4,7 +4,7 @@ let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-require('public/js/common/utils/jQueryUtil.js');
+require('public/js/common/utils/JQueryUtil.js');
 
 let _setHiddenLocationInput = (location) => {
 	this.$locationLat.val(location.lat);
