@@ -31,9 +31,9 @@
 	    },
 		"analytics": {
 			"account": "UA-56697433-1",
-			"domainName": ".vivanuncios.com.mx",
+			"domainName": ".vivanuncios.com.mx.fp5.qa-bolt.com",
 			"ignoredRefs": [
-				"vivanuncios.com.mx"
+				"vivanuncios.com.mx.fp5.qa-bolt.com"
 			],
 			"allowAnchor": true,
 			"sessionCookieTimeout": 1800000,
