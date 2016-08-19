@@ -16,6 +16,12 @@ class AdvertModel {
 			return result;
 		});
 	}
+
+	unfavoriteTheAd(adId) {
+		return adService.unfavoriteAd(this.bapiHeaders, adId).then((result) => {
+			return result;
+		});
+	}
 }
 
 

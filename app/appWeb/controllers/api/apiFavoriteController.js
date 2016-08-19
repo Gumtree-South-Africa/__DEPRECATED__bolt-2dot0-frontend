@@ -25,7 +25,25 @@ router.post('/', cors, (req, res) => {
 			error: true
 		});
 	});
+});
 
+router.delete('/', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
+
+	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	model.advertModel = new AdvertModel(model.bapiHeaders);
+
+	model.advertModel.unfavoriteTheAd(req.body.adId).then(() => {
+		res.status(200);
+		res.send();
+	}).fail((err) => {
+		console.error(err);
+		console.error(err.stack);
+		res.status(500);
+		res.send({
+			error: true
+		});
+	});
 });
 
 module.exports = router;
