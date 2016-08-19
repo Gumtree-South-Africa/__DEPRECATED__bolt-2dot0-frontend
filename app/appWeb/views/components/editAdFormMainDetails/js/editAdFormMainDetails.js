@@ -109,6 +109,23 @@ let _toggleSubmitDisable = (shouldDisable) => {
 	this.$submitButton.prop("disabled", shouldDisable);
 };
 
+let _openCatSelectModal = () => {
+	categorySelectionModal.openModal({
+		currentHierarchy: this.currentHierarchy.slice(0),
+		onSaveCb: (hierarchy, breadcrumbs) => {
+			this.$categoryChangeLink.empty();
+			this.$categoryChangeLink.append(breadcrumbs);
+			_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
+
+			let newCatId = hierarchy[hierarchy.length - 1];
+			this.$categoryId.val(newCatId);
+			customAttributes.setCategoryId(newCatId);
+			customAttributes.updateCustomAttributes();
+			this.currentHierarchy = hierarchy;
+		}
+	});
+};
+
 let onReady = () => {
 	this.$detailsSection = $("#main-detail-edit");
 
@@ -142,22 +159,8 @@ let onReady = () => {
 		_ajaxEditForm();
 	});
 
-	this.$categoryChangeLink.click(() => {
-		categorySelectionModal.openModal({
-			currentHierarchy: this.currentHierarchy.slice(0),
-			onSaveCb: (hierarchy, breadcrumbs) => {
-				this.$categoryChangeLink.empty();
-				this.$categoryChangeLink.append(breadcrumbs);
-				_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
-
-				let newCatId = hierarchy[hierarchy.length - 1];
-				this.$categoryId.val(newCatId);
-				customAttributes.setCategoryId(newCatId);
-				customAttributes.updateCustomAttributes();
-				this.currentHierarchy = hierarchy;
-			}
-		});
-	});
+	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);
+	this.$categoryChangeLink.click(_openCatSelectModal);
 };
 
 let initialize = () => {
