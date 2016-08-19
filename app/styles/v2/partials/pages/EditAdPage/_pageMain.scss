@@ -55,6 +55,14 @@ $labelMargin: 8%;
 		width: 100%;
 		background-color: $mainDetailsBackgroundColor;
 
+		select, input {
+			height: 33px;
+		}
+
+		select {
+			text-indent: 2%;
+		}
+
 		.choose-category-button {
 			&.btn-wrapper {
 				width: 84%;
@@ -109,7 +117,7 @@ $labelMargin: 8%;
 				color: $formSubmitButtonTextColor;
 				background-color: $formSubmitButtonColor;
 				border-style: none;
-				height: 40px;
+				height: 45px;
 				font-size: 18px;
 			}
 		}
@@ -203,6 +211,10 @@ $labelMargin: 8%;
 				&.validation-error {
 					border: 1px solid red;
 				}
+			}
+
+			div.location-link {
+				padding: 3.5px 2%;
 			}
 
 			select {
