@@ -13,8 +13,6 @@ var STORE_NAME = 'urls';
 
 var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
 
-
-
 /**
  * PRE-CACHE
  **/
@@ -140,7 +138,7 @@ function queueFailedAnalyticsRequest(request) {
 }
 
 function handleAnalyticsCollectionRequest(request) {
-	return global.fetch(request).then(function(response) {
+	return fetch(request).then(function(response) {
 		if (response.status >= 500) {
 			return Response.error();
 		}
