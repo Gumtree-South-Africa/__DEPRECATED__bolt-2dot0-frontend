@@ -14,19 +14,16 @@
 	<div class="photos-required-msg hidden">{{i18n "postAd.createAds.error.photoRequired"}}</div>
 </div>
 <div id="photo-carousel" class="slick-carousel">
-    <div>
-		<div class="add-photo-item">
-			<div class="icon-text-wrapper">
-				<div class="icon-camera-v2"></div>
-				<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
-			</div>
-
-			<form method="post" id="postForm" novalidate="novalidate">
-				<div class="file-input-wrapper">
-					<input class="file-input" type="file" name="pic" accept="image/*" id="desktopFileUpload" multiple>
-				</div>
-			</form>
+	<div class="add-photo-item">
+		<div class="icon-text-wrapper">
+			<div class="icon-camera-v2"></div>
+			<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
 		</div>
-    </div>
 
+		<form method="post" id="postForm" novalidate="novalidate">
+			<div class="file-input-wrapper">
+				<input class="file-input" type="file" name="pic" accept="image/*" id="desktopFileUpload" multiple>
+			</div>
+		</form>
+	</div>
 </div>

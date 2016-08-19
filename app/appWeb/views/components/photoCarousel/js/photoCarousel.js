@@ -143,6 +143,8 @@ let resizeCarousel = () => {
 		$carouselImages.css('height', width + 'px');
 		// vertical align arrows to new height
 		$('.slick-arrow').css('top', width / 2 + 'px');
+		$('.slick-prev').addClass("icon-back");
+		$('.slick-next').addClass("icon-back");
 	}
 };
 
@@ -151,7 +153,7 @@ let deleteCarouselItem = (event) => {
 
 	// delete carousel item
 	let toRemove = $(event.target).closest('.carousel-item');
-	let index = $(".carousel-item").index(toRemove);
+	let index = $(".add-photo-item, .carousel-item").index(toRemove);
 	this.$carousel.slick('slickRemove', index);
 	resizeCarousel();
 
@@ -524,6 +526,7 @@ let html5Upload = (evt) => {
 
 		} // end for
 	}
+	this.$imageUpload.val('');
 };
 
 Array.prototype.remove = function(from, to) {
@@ -545,7 +548,7 @@ let deleteSelectedItem = (event) => {
 
 	// delete carousel item
 	let toRemove = $(".carousel-item.selected");
-	let index = $(".carousel-item").index(toRemove);
+	let index = $(".add-photo-item, .carousel-item").index(toRemove);
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
@@ -582,8 +585,8 @@ let _slickAdd = (totalItems) => {
 		'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
 		'<div id="carousel-upload-spinner" class="spinner"></div>' +
 		'</div>'
-		, totalItems, true);
-	this.$carousel.slick('slickGoTo', totalItems, false);
+		, totalItems, false);
+	// this.$carousel.slick('slickGoTo', totalItems, false);
 
 	// increment loaded count
 	this.$loadedImages++;
