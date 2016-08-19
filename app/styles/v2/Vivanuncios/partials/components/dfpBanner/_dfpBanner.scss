@@ -1,0 +1,21 @@
+@include from-breakpoint($small-break) {
+
+	#ad-bottombanner {
+        width: 970px;
+		margin: 15px auto;
+		max-width: 100%;
+		overflow: hidden;
+		text-align: center;
+		margin-bottom: 0.5em;
+	}
+
+	#home_topbanner {
+        width: 970px;
+		margin: 15px auto;
+		max-width: 100%;
+		overflow: hidden;
+		text-align: center;
+
+	}
+
+}

@@ -1,0 +1,7 @@
+<div id="ad-bottombanner"></div>
+
+{{#partial "googleBannerAdsBottom_Script"}}
+    {{#unlessMobile this.device}}
+		BOLT.displayBanner( $.extend( {pos:"bottom",slotDim: [[728,90],[970,250],[970,90]], slotId : 'ad-bottombanner'},bP));
+    {{/unlessMobile}}
+{{/partial}}

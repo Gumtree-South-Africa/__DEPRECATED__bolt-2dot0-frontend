@@ -18,14 +18,6 @@
                     </div>
                 </div>
 
-                <div class="safety-block block-right">
-                    <div class="image image-right">
-                    </div>
-                    <div class="help-text help-text-right">
-                        {{this.safetyTips.two}}
-                    </div>
-                </div>
-
             </div>
             <h3 class="faq">
                 <a href="http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad">
@@ -34,7 +26,13 @@
             </h3>
         </div>
     </div>
-    <div class="advertisement-placeholder">
-        <div class="ad"></div>
-    </div>
+
+	<div class="dfp-banner">
+        {{> (dynamic "rightBanner")}}
+        {{> (dynamic "rightBottomBanner")}}
+		<div class="clear"></div>
+	</div>
+	
+	<div class="clear"></div>
+	
 </div>
