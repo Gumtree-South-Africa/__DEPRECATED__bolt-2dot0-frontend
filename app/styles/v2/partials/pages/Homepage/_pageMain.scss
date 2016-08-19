@@ -1,9 +1,11 @@
+
 //$show-susy-grid: true;
 
 .page{
-   margin: 0 auto;
-   max-width: 65em;
-   background-color: $page-bgcolor;
-   border-left: 1px solid $page-bgcolor ;
-   border-right: 1px solid $page-bgcolor ;
-}
+		margin: 0 auto;
+		max-width: 64em;
+        background-color: $page-bgcolor;
+        border-left: 1px solid $page-bordercolor ;
+        border-right: 1px solid $page-bordercolor ;
+	}
+

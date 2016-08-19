@@ -1,4 +1,8 @@
 .footer-wrapper {
+    margin: 0 auto;
+    max-width: 64em;
+    border-left: 1px solid #f7f7f7 ;
+    border-right: 1px solid #f7f7f7 ;
 	width: 100%;
 	overflow-x: hidden;
     background-color: black;
@@ -390,13 +394,14 @@
 
     }
 
- .page .seo-links {
+.seo-links {
 		display: block !important;
-		left: 57%;
-		top: -10.5em !important;
-		margin-top: 10px;
+        margin-left: 56%;
+        top: -10.5em !important;
+        margin-top: 10px;
+        width: 35%;
 		.seo-topsearches {
-			margin-left: -4%;
+			margin-left: -11%;
 		  }
    }
 

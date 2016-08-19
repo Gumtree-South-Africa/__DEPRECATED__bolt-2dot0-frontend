@@ -60,3 +60,27 @@
     {{> (dynamic "footerV2")}}
     {{> (dynamic "welcomeModal")}}
 {{/partial}}
+
+{{#partial "pageTailScripts"}}
+		<script>
+		var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
+		var googleTagAccountId = "{{this.header.googleTagAccountId}}";
+		var bP = {
+			{{#ifMobile this.device}}
+				accId : ("/" + googleTagAccountMobId + "/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+			{{else}}
+				accId : ("/" + googleTagAccountId + "/home").split(' ').join('_').replace(/\,|&_|'/g,""),
+			{{/ifMobile}}
+			dc_ref: window.location.href,
+			kw: $('input[name=q]').val() || "no category",
+			ptype: 'test'
+		};
+
+		  {{#block "googleBannerAdsRightBottomV2_Script"}}{{/block}}
+
+			{{> (dynamic "skinBanner") }}
+	       {{#block "googleBannerSkinCampaign_ScriptV2"}}
+	       {{/block}}
+		
+		</script>
+{{/partial}}
