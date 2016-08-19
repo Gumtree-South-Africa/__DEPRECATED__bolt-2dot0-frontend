@@ -276,8 +276,6 @@ $mobileTextboxWidth: 84%;
 			.location-link {
 				border-left: 1px solid $vivaGray6;
 				right: 15.5%;
-				bottom: -7px;
-				top: -4px;
 			}
 		}
 	}
@@ -298,6 +296,11 @@ $mobileTextboxWidth: 84%;
 					float: right;
 					margin: auto 5px auto 0;
 				}
+			}
+
+			.location-link {
+				bottom: -7px;
+				top: -4px;
 			}
 
 			.search-textbox {
