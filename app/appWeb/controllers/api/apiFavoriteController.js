@@ -2,10 +2,13 @@
 
 let express = require('express');
 let router = express.Router();
+let validator = require('is-my-json-valid');
 
-let AdvertModel = require(process.cwd() + '/app/builders/common/AdvertModel');
-let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
-let cors = require(process.cwd() + '/modules/cors');
+let cwd = process.cwd();
+let favoriteSchema = require(cwd + '/app/appWeb/jsonSchemas/favoriteRequest-schema.json');
+let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let cors = require(cwd + '/modules/cors');
 
 // route is /api/ads/favorite
 router.post('/', cors, (req, res) => {
@@ -13,6 +16,18 @@ router.post('/', cors, (req, res) => {
 
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	model.advertModel = new AdvertModel(model.bapiHeaders);
+
+	// Validate the incoming JSON
+	let validate = validator(favoriteSchema);
+	let valid = validate(req.body);
+	if (!valid) {
+		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
+		res.contentType = "application/json";
+		res.status(400).send({
+			schemaErrors: validate.errors
+		});
+		return;
+	}
 
 	model.advertModel.favoriteTheAd(req.body.adId).then(() => {
 		res.status(200);
