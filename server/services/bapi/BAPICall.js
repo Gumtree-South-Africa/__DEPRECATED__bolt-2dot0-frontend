@@ -149,7 +149,9 @@ BAPICall.prototype = {
 			});
 
 			// Write the parametized/serialized data
-			reqPost.write(serializedData);
+			if (!_.isEmpty(serializedData)) {
+				reqPost.write(serializedData);
+			}
 
 			// Close the request
 			reqPost.end();
