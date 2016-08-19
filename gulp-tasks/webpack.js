@@ -140,11 +140,11 @@ module.exports = function webpack(gulp) {
 		gulp.task('webpack:build', (done) => {
 			let config;
 
-			if (argv.noUglifyJS || argv.CI) {
-				config = require(process.cwd() + "/app/config/bundling/webpack.noUglifyApp.config.js");
-			} else {
-				config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
-			}
+			// if (argv.noUglifyJS || argv.CI) {
+			// } else {
+			// 	config = require(process.cwd() + "/app/config/bundling/webpack.app.config.js");
+			// }
+			config = require(process.cwd() + "/app/config/bundling/webpack.noUglifyApp.config.js");
 
 			// run webpack
 			webpack(config, function(err, stats) {
