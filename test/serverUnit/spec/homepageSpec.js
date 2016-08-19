@@ -33,7 +33,7 @@ describe('Server to hit HomePage', function() {
 			`${endpoints.recentActivities}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/recentActivity.json');
 		specHelper.registerMockEndpoint(
-			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=48&minResults=48&geo=null`,
+			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=48&minResults=48`,
 			'test/serverUnit/mockData/api/v1/TrendingCard.json');
 	});
 
