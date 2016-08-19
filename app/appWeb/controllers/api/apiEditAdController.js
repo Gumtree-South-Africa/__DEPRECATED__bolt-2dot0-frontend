@@ -44,6 +44,11 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
 		res.json(attributeModel.processCustomAttributesList(attributeData));
+	}).fail((err) => {
+		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
+		return res.status(500).json({
+			error: "customattributes failed"
+		});
 	});
 });
 

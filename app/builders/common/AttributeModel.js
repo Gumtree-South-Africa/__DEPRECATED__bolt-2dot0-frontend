@@ -1,5 +1,7 @@
 'use strict';
 
+let Q = require('q');
+
 let attributeService = require(process.cwd() + '/server/services/attributeService');
 
 let _ = require("underscore");
@@ -53,29 +55,15 @@ class AttributeModel {
 		return attributeService.getAllAttributesForCategoryCached(this.bapiHeaders, categoryId).then((cachedResult) => {
 			return cachedResult;
 		}).fail((cacheErr) => {
-			if (cacheErr.status === 404) {
-				console.warn('Unable to retrieve AllAtrributes info from Cache for categoryId: ' + categoryId);
-				console.warn(cacheErr);
-				return attributeService.getAllAttributesForCategory(this.bapiHeaders, categoryId).then((bapiResult) => {
-					if (bapiResult.status) {
-						console.warn('Unable to retrieve AllAtrributes info from BAPI for categoryId: ' + categoryId);
-						console.warn(bapiResult);
-						return {};
-					}
-					return attributeService.setAllAttributesInCache(this.bapiHeaders, categoryId, bapiResult).then(() => {
-						return bapiResult;
-					}).fail((cacheSaveErr) => {
-						console.warn('Unable to cache AllAttributes info for categoryId: ' + categoryId);
-						console.warn(cacheSaveErr);
-						return {};
-					});
-				}).fail((bapiErr) => {
-					console.warn('Unable to retrieve AllAtrributes info from BAPI for categoryId: ' + categoryId);
-					console.warn(bapiErr);
-					return {};
+			console.warn('Unable to retrieve AllAtrributes info from Cache for categoryId: ' + categoryId + `, going to try BAPI ${cacheErr}`);
+			return attributeService.getAllAttributesForCategory(this.bapiHeaders, categoryId).then((bapiResult) => {
+				if (bapiResult.status) {
+					return Q.reject('Unable to retrieve AllAtrributes info from BAPI for categoryId: ' + categoryId + `, result ${bapiResult}`);
+				}
+				return attributeService.setAllAttributesInCache(this.bapiHeaders, categoryId, bapiResult).then(() => {
+					return bapiResult;
 				});
-			}
-			return {};
+			});
 		});
 	}
 

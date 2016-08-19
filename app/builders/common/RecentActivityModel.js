@@ -1,5 +1,7 @@
 'use strict';
 
+let Q = require('q');
+
 let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
 
 class RecentActivityModel {
@@ -23,17 +25,16 @@ class RecentActivityModel {
 		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((bapiResult) => {
 			return this.transformData(bapiResult);
 		}).fail((bapiErr) => {
-			console.warn(`Error getting BAPI recentActivities data ${bapiErr}`);
+			console.warn(`Error getting BAPI recentActivities data ${bapiErr}, going to try to get it from cache`);
 			return recentActivityService.getCachedRecentActivities(this.bapiHeaderValues).then((cachedResult) => {
 				cachedResult = (cachedResult !== undefined) ? cachedResult : {};
 				return this.transformData(cachedResult);
 			}).fail((cacheErr) => {
 				if (cacheErr.status) {
-					console.warn(cacheErr.message);
+					return Q.reject(cacheErr.message);
 				} else {
-					console.warn(`Error getting Cache recentActivities data ${cacheErr}`);
+					return Q.reject(`Error getting Cache recentActivities data ${cacheErr}`);
 				}
-				return {};
 			});
 		});
 	}
