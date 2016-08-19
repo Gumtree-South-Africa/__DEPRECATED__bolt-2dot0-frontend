@@ -6,7 +6,8 @@
 				"offset": "0",
 				"limit": "48",
 				"minResults": "48",
-				"geo": "${UserProvided}"
+				"geo": "${UserProvided}",
+				"withPicsOnly": true
 			},
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",
