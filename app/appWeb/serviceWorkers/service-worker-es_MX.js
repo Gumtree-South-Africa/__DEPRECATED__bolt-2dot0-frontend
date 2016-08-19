@@ -1,14 +1,34 @@
 'use strict';
 
-//Initial precaching homepage
+
+var CACHE_VERSION = 1;
+var CURRENT_CACHES = {
+	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
+};
+
+var idbDatabase;
+var IDB_VERSION = 1;
+var STOP_RETRYING_AFTER = 86400000; // One day, in milliseconds.
+var STORE_NAME = 'urls';
+
+var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
+
+/**
+ * PRE-CACHE
+ **/
+// Precaching homepage
 toolbox.precache(['/']);
 
-//Adding set array to precache
+// Precaching homepage assets
 if (cacheObj) {
 	toolbox.precache(cacheObj['homepagePreCache']);
 }
 
 
+/**
+ * CACHE
+ */
+// Add homepage
 toolbox.router.get('/', toolbox.networkFirst, {
 	cache: {
 		name: 'vivanuncios-homepage',
@@ -17,7 +37,7 @@ toolbox.router.get('/', toolbox.networkFirst, {
 	}
 });
 
-//Adding set array to cache
+// Adding homepage assets
 if (cacheObj) {
 	 for (let cacheIndex = 0; cacheIndex < cacheObj['homepageCache'].length; cacheIndex++) {
 	 	toolbox.router.get(cacheObj.homepageCache[cacheIndex], toolbox.networkFirst, {
@@ -31,4 +51,115 @@ if (cacheObj) {
 }
 
 
+/**
+ * Offline Google Analytics
+ */
+// This is basic boilerplate for interacting with IndexedDB. Adapted from
+function openDatabaseAndReplayRequests() {
+	var indexedDBOpenRequest = indexedDB.open('offline-analytics', IDB_VERSION);
+
+	// This top-level error handler will be invoked any time there's an IndexedDB-related error.
+	indexedDBOpenRequest.onerror = function(error) {
+		console.error('IndexedDB error:', error);
+	};
+
+	// This should only execute if there's a need to create a new database for the given IDB_VERSION.
+	indexedDBOpenRequest.onupgradeneeded = function() {
+		this.result.createObjectStore(STORE_NAME, {keyPath: 'url'});
+	};
+
+	// This will execute each time the database is opened.
+	indexedDBOpenRequest.onsuccess = function() {
+		idbDatabase = this.result;
+		replayAnalyticsRequests();
+	};
+}
+
+function getObjectStore(storeName, mode) {
+	return idbDatabase.transaction(storeName, mode).objectStore(storeName);
+}
+
+function replayAnalyticsRequests() {
+	var savedRequests = [];
+
+	getObjectStore(STORE_NAME).openCursor().onsuccess = function(event) {
+		// See https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API/Using_IndexedDB#Using_a_cursor
+		var cursor = event.target.result;
+
+		if (cursor) {
+			// Keep moving the cursor forward and collecting saved requests.
+			savedRequests.push(cursor.value);
+			cursor.continue();
+		} else {
+			// At this point, we have all the saved requests.
+			console.log('About to replay %d saved Google Analytics requests...',
+				savedRequests.length);
+
+			savedRequests.forEach(function(savedRequest) {
+				var queueTime = Date.now() - savedRequest.timestamp;
+				if (queueTime > STOP_RETRYING_AFTER) {
+					getObjectStore(STORE_NAME, 'readwrite').delete(savedRequest.url);
+					console.log(' Request has been queued for %d milliseconds. ' +
+						'No longer attempting to replay.', queueTime);
+				} else {
+					// The qt= URL parameter specifies the time delta in between right now, and when the
+					// /collect request was initially intended to be sent. See
+					// https://developers.google.com/analytics/devguides/collection/protocol/v1/parameters#qt
+					var requestUrl = savedRequest.url + '&qt=' + queueTime;
+
+					console.log(' Replaying', requestUrl);
+
+					fetch(requestUrl).then(function(response) {
+						if (response.status < 400) {
+							// If sending the /collect request was successful, then remove it from the IndexedDB.
+							getObjectStore(STORE_NAME, 'readwrite').delete(savedRequest.url);
+							console.log(' Replaying succeeded.');
+						} else {
+							// This will be triggered if, e.g., Google Analytics returns a HTTP 50x response.
+							// The request will be replayed the next time the service worker starts up.
+							console.error(' Replaying failed:', response);
+						}
+					}).catch(function(error) {
+						// This will be triggered if the network is still down. The request will be replayed again
+						// the next time the service worker starts up.
+						console.error(' Replaying failed:', error);
+					});
+				}
+			});
+		}
+	};
+}
+
+function queueFailedAnalyticsRequest(request) {
+	getObjectStore(STORE_NAME, 'readwrite').add({
+		url: request.url,
+		timestamp: Date.now()
+	});
+}
+
+function handleAnalyticsCollectionRequest(request) {
+	return fetch(request).then(function(response) {
+		if (response.status >= 500) {
+			return Response.error();
+		}
+		return response;
+	}).catch(function() {
+		queueFailedAnalyticsRequest(request);
+	});
+}
+
+toolbox.router.get('/collect',
+	handleAnalyticsCollectionRequest,
+	{origin: ORIGIN}
+);
+toolbox.router.get('/analytics.js',
+	toolbox.networkFirst,
+	{origin: ORIGIN}
+);
+
+// Open the IndexedDB and check for requests to replay each time the service worker starts up.
+// Since the service worker is terminated fairly frequently, it should start up again for most
+// page navigations. It also might start up if it's used in a background sync or a push
+// notification context.
+openDatabaseAndReplayRequests();
 
