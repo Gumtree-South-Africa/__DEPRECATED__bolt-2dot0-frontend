@@ -1,6 +1,6 @@
 'use strict';
 
-let adService = require(process.cwd() + '/server/services/AdService');
+let adService = require(process.cwd() + '/server/services/adService');
 
 /**
  * @description A class that Handles the Advert Model
