@@ -19,7 +19,7 @@ class RecentActivityModel {
 	filterArr(inputArr, locale) {
 		let inputLocale = recentActivityConfig[locale];
 
-		let res = _.reduceRight(inputArr, function(a, b){
+		let res = _.reduceRight(inputArr, function(a, b) {
 			let id=inputLocale[b['categoryId']];
 			if(id) {
 				let types = _.pluck(id.type, 'name'),
