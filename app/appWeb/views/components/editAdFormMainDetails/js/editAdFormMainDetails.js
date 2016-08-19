@@ -144,7 +144,7 @@ let onReady = () => {
 
 	this.$categoryChangeLink.click(() => {
 		categorySelectionModal.openModal({
-			currentHierarchy: this.currentHierarchy,
+			currentHierarchy: this.currentHierarchy.slice(0),
 			onSaveCb: (hierarchy, breadcrumbs) => {
 				this.$categoryChangeLink.empty();
 				this.$categoryChangeLink.append(breadcrumbs);

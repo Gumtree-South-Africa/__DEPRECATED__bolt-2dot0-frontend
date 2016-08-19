@@ -42,7 +42,7 @@
 	}
 
 	&.hidden {
-		dislay: none;
+		display: none;
 	}
 
 	.modal {
@@ -186,9 +186,6 @@
 		width: 100%;
 		margin-bottom: 7px;
 		margin-top: 7px;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
 
 		.hier-link {
 			&:hover {

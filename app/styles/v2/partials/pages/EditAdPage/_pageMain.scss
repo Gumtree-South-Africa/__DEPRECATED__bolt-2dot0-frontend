@@ -167,6 +167,7 @@ $labelMargin: 8%;
 			margin-left: 6%;
 			resize: none;
 			width: 88%;
+			padding: 0 2%;
 		}
 
 		.input-wrapper {
@@ -175,6 +176,7 @@ $labelMargin: 8%;
 			input[type="text"], .location-link, select {
 				width: $inputWidth;
 				margin: 0 $inputMargin;
+				padding: 0 2%;
 
 				border: 1px solid $vivaBlack;
 

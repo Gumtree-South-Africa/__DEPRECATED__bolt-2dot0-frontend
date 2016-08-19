@@ -22,11 +22,14 @@ class EditFormCustomAttributes {
 	}
 
 	_insertSelectBoxOptions($selectBox, valuesArr) {
+		let appendString = "";
 		$selectBox.empty();
 		$selectBox.append('<option value="default" selected="selected"> --- </option>');
 		valuesArr.forEach((val) => {
-			$selectBox.append(`<option value="${val.value}">${val.localizedValue}</option>`);
+			appendString += `<option value="${val.value}">${val.localizedValue}</option>`;
 		});
+		$selectBox.append(appendString);
+
 	}
 
 	_updateDependentsLists(dependents) {

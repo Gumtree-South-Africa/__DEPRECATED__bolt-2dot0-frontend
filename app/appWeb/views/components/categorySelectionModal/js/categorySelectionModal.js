@@ -83,13 +83,27 @@ class CategorySelectionModal {
 		return breadcrumbText;
 	}
 
+	_adjustModalSizeForTextWrap() {
+		let newCatHierHeight = parseInt(this.$hierarchyContainer.css("height").replace("px", ""));
+		let startingHeight = this.stagedItem ? this.startingModalStagedHeight : this.startingModalUnstagedHeight;
+		// 24 pixels is the height of the cat heierachy at one line height
+		this.$modalBox.css('height', `${startingHeight + (newCatHierHeight - 24)}px`);
+	}
+
 	_displayCategoryHierarchy(hierarchy) {
+		if (!this.startingModalUnstagedHeight && !this.stagedItem) {
+			this.$modalBox.css('height', '');
+			this.startingModalUnstagedHeight = parseInt(this.$modalBox.css('height').replace("px", ""));
+		}
+
 		this.$hierarchyContainer.find(".hier-link").off();
 		this.$hierarchyContainer.empty();
 
 		this.$hierarchyContainer.append(this.getFullBreadCrumbText(hierarchy));
 
 		this._bindEventsToAllCatHierLinks();
+
+		this._adjustModalSizeForTextWrap();
 	}
 
 	_fullRender() {
@@ -101,6 +115,7 @@ class CategorySelectionModal {
 		if (hierarchyIndex !== this.currentHierarchy.length - 1) {
 			this.$modal.removeClass("staged");
 			this.currentHierarchy = this.currentHierarchy.splice(0, hierarchyIndex + 1);
+			this.stagedItem = null;
 			this._fullRender();
 			this._clearInput();
 		}
@@ -109,6 +124,7 @@ class CategorySelectionModal {
 	_addToHierarchy(catObj) {
 		this.currentHierarchy.push(catObj.id);
 		this.$hierarchyContainer.append(`> <span role="link" data-index="${this.currentHierarchy.length - 1}" class="hier-link">${catObj.localizedName}</span>`);
+		this._adjustModalSizeForTextWrap();
 	}
 
 	_unstageItem(shouldRender) {
@@ -116,6 +132,7 @@ class CategorySelectionModal {
 		this.$input.prop("disabled", false);
 		this.$modal.removeClass("staged");
 		this.$saveButton.prop("disabled", true);
+		this.stagedItem = null;
 
 		if (shouldRender) {
 			this.currentHierarchy.pop();
@@ -150,8 +167,14 @@ class CategorySelectionModal {
 		this.$input.prop("disabled", true);
 		this.$modal.addClass("staged");
 		this.$saveButton.prop("disabled", false);
-		this._addToHierarchy(item);
+
+		if (!this.startingModalStagedHeight) {
+			this.$modalBox.css('height', '');
+			this.startingModalStagedHeight = parseInt(this.$modalBox.css('height').replace("px", ""));
+		}
+
 		this.stagedItem = item;
+		this._addToHierarchy(item);
 	}
 
 
@@ -159,13 +182,12 @@ class CategorySelectionModal {
 		if (Number.isInteger(item)) {
 			item = this._findItemOnLevel(item);
 		}
-		this._addToHierarchy(item);
 		this._renderResults(item.children);
 		this.currentLevel = item;
 		if (this._checkLeafNode()) {
-			this.currentHierarchy.pop();
 			this._stageItem(item);
 		} else {
+			this._addToHierarchy(item);
 			this._unstageItem();
 		}
 	}
@@ -280,6 +302,7 @@ class CategorySelectionModal {
 
 	initialize() {
 		this.$modal = $("#category-selection-modal");
+		this.$modalBox = this.$modal.find('.modal');
 		this.$resultsList = this.$modal.find(".results ul");
 		this.$closeButton = this.$modal.find(".close-button");
 		this.$input = this.$modal.find('input[type="text"]');
@@ -288,6 +311,7 @@ class CategorySelectionModal {
 		this.$saveButton = this.$modal.find(".save-button");
 		this.$clearTextButton = $("#clear-text-btn");
 
+		window.temp = this.$hierarchyContainer;
 		this.$saveButton.click(() => {
 			this._selectStagedItem();
 		});
