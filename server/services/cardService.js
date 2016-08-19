@@ -21,14 +21,16 @@ class CardService {
 	}
 
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
+		console.log(parameters);
+
 		if (parameters) {
+			if (parameters.geo === null) {
+				// we don't have a location, delete the property to keep it from sending to the back end
+				delete parameters.geo;
+			}
 			if (parameters.geo) {
 				parameters.geo = bapiService.bapiFormatLatLng(parameters.geo);
 			}
-			// if (parameters.geo === null) {
-			// 	// we don't have a location, delete the property to keep it from sending to the back end
-			// 	delete parameters.geo;
-			// }
 		}
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 	 		method: 'GET',
@@ -39,20 +41,7 @@ class CardService {
 	}
 
 	getTrendingCard(bapiHeaderValues) {
-		let parameters = {
-			geo: {
-				lat: 0.0,
-				lng: 0.0
-			}
-		};
-		switch (bapiHeaderValues.locale) {
-			case 'es_MX':
-				parameters.geo.lat = 23.6345; parameters.geo.lng = 102.5528;
-				break;
-			default:
-				parameters.geo.lat = 0.0; parameters.geo.lng = 0.0;
-		}
-		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', parameters);
+		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch');
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {

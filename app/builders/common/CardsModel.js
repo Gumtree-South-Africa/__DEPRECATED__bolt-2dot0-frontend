@@ -4,13 +4,14 @@
 // cards are UI elements that can be in pages, they are configuration driven
 let cardsConfig = require(process.cwd() + '/app/config/ui/cardsConfig.json');
 let cardService = require(process.cwd() + '/server/services/cardService');
+let adService = require(process.cwd() + '/server/services/AdService');
 
 
 const CARD_SIZE_CLASSES_MAP = {
 	'A': 'one-by-one',
 	'B': 'two-by-one',
 	'C': 'two-by-two',
-	'D': 'three-by-two',
+	'D': 'three-by-two'
 };
 
 
@@ -118,6 +119,12 @@ class CardsModel {
 	 */
 	getTemplateConfigForCard(cardName) {
 		return this.cardToConfigMap[cardName].templateConfig;
+	}
+
+	favoriteTheAd(adId) {
+		return adService.favoriteAd(this.bapiHeaderValues, adId).then((result) => {
+			return result;
+		});
 	}
 }
 
