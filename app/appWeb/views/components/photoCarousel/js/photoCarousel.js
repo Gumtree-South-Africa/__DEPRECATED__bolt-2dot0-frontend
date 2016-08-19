@@ -129,7 +129,13 @@ let resizeCarousel = () => {
 	let $carouselImages = $('.add-photo-item, .carousel-item');
 	let width = $carouselImages.width();
 	let $carouselUserImages = $('.carousel-item');
+	let $addPhoto = $('.add-photo-item');
 	// set height of carousel items to be same as width (set by slick)
+	if ($carouselUserImages.length === 12) {
+		$addPhoto.addClass('hidden');
+	} else {
+		$addPhoto.removeClass('hidden');
+	}
 	$carouselUserImages.each((item) => {
 		// Slick will sometimes remove the css applied to an item.
 		let carouselItem = $(item);

@@ -146,6 +146,10 @@
 			outline: none;
 			border: 1px solid $postAdTextGray;
 
+			&.hidden {
+				display: none !important;
+			}
+
 			.icon-text-wrapper {
 				left: 0;
 				right: 0;

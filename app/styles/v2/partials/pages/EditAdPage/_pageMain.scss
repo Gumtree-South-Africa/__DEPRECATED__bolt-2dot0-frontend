@@ -55,6 +55,19 @@ $labelMargin: 8%;
 		width: 100%;
 		background-color: $mainDetailsBackgroundColor;
 
+		.choose-category-button {
+			&.btn-wrapper {
+				width: 84%;
+			}
+
+			.btn {
+				padding-top: 11px;
+				padding-bottom: 10px;
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
 		@include from-breakpoint($medium-break) {
 			width: 50%;
 			float: left;
