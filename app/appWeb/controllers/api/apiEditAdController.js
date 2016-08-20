@@ -8,7 +8,7 @@ let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
 let validator = require('is-my-json-valid');
-let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.json');
+let schemaEditAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.json');
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
@@ -44,13 +44,22 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 });
 
 router.post('/update', cors, (req, res) => {
-	// Step 1: Check if request type sent is JSON
+	// Step 1: Validate user has an authentication cookie set
+	let authenticationCookie = req.cookies['bt_auth'];
+	if (!authenticationCookie) {
+		console.error('User attempted to edit an ad without cookie set');
+		return res.status(500).json({
+			error: "Edit ad failed, user not logged in"
+		});
+	}
+
+	// Step 2: Check if request type sent is JSON
 	if (!req.is('application/json')) {
 		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
 	}
 
-	// Step 2: Validate the incoming JSON
-	let validate = validator(schemaPostAd);
+	// Step 3: Validate the incoming JSON
+	let validate = validator(schemaEditAd);
 	let valid = validate(req.body);
 	if (!valid) {
 		console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
@@ -60,22 +69,14 @@ router.post('/update', cors, (req, res) => {
 		});
 	}
 
-	// Step 3: Retrieve info from request since we're validated
-	let requestJson = req.body;
-	let authenticationCookie = req.cookies['bt_auth'];
-
+	// Step 4: Retrieve info from request since we're validated
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	let editAdModel = new EditAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
-	// Validate user has a cookie set
-	if (!authenticationCookie) {
-		console.error('User attempted to edit an ad without cookie set');
-		return res.status(500).json({
-			error: "Edit ad failed, user not logged in"
-		});
-	}
 
+	// Step 5: Update Ad
+	let requestJson = req.body;
 	userModel.getUserFromCookie().then(() => {
 		return editAdModel.editAd(requestJson);
 	}).then((result) => {

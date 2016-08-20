@@ -67,37 +67,36 @@ class AttributeModel {
 		});
 	}
 
-//Function getAttribute
-	getAttribute(categoryId, attributeName) {
-		if (typeof this.bapiHeaders.locale !== 'undefined') {
-			return attributeService.getAttributeInfoCached(this.bapiHeaders, categoryId, attributeName);
-		}
-	}
-
-//Function getAttributeDependency
-	getAttributeDependency(categoryId, attributeName) {
-		if (typeof this.bapiHeaders.locale !== 'undefined') {
-			return attributeService.getAttributeDependencyInfoCached(this.bapiHeaders, categoryId, attributeName);
-		}
-	}
-
+//Function getAttributeDependents
 	getAttributeDependents(categoryId, attributeName, attributeValue) {
 		if (typeof this.bapiHeaders.locale !== 'undefined') {
-			return this.getAttribute(categoryId, attributeName).then((attribute) => {
-				let dependents = attribute.dependents;
-
-				let dependentsPromises = dependents.map((dependent) => {
-					return this.getAttributeDependency(categoryId, dependent).then((dep) => {
-						return {
-							name: dependent,
-							values: dep[attributeValue]
-						};
-					});
+			return attributeService.peekAttributeInfoCached(this.bapiHeaders, categoryId, attributeName).then(() => {
+				return this.getAttributeDependentsInternal(categoryId, attributeName, attributeValue);
+			}).fail((cacheErr) => {
+				console.warn(`getAttributeDependents Peek Cache failed in AttributeModel ${cacheErr}. Lets try to retrieve from BAPI`);
+				return this.getAllAttributes(categoryId).then(() => {
+					console.warn('Cache reloaded in AttributeModel, Lets try to retrieve from Cache');
+					return this.getAttributeDependentsInternal(categoryId, attributeName, attributeValue);
 				});
-
-				return Q.all(dependentsPromises);
 			});
 		}
+	}
+
+	getAttributeDependentsInternal(categoryId ,attributeName, attributeValue) {
+		return attributeService.getAttributeInfoCached(this.bapiHeaders, categoryId, attributeName).then((attribute) => {
+			let dependents = attribute.dependents;
+
+			let dependentsPromises = dependents.map((dependent) => {
+				return attributeService.getAttributeDependencyInfoCached(this.bapiHeaders, categoryId, dependent).then((dep) => {
+					return {
+						name: dependent,
+						values: dep[attributeValue]
+					};
+				});
+			});
+
+			return Q.all(dependentsPromises);
+		});
 	}
 }
 module.exports = AttributeModel;

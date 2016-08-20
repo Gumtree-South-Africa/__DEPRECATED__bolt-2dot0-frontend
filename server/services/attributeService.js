@@ -62,6 +62,12 @@ class AttributeService {
 	}
 
 	// Cache: categoryAttributeInfo
+	peekAttributeInfoCached(bapiHeaderValues, categoryId, attributeName) {
+		let cacheKey = bapiHeaderValues.locale + ':' + categoryId + ':' + attributeName;
+		return cacheService.peekValue(cacheConfig.cache.categoryAttributeInfo.name, cacheKey);
+	}
+
+	// Cache: categoryAttributeInfo
 	getAttributeInfoCached(bapiHeaderValues, categoryId, attributeName) {
 		let cacheKey = bapiHeaderValues.locale + ':' + categoryId + ':' + attributeName;
 		return cacheService.getValue(cacheConfig.cache.categoryAttributeInfo.name, cacheKey);
