@@ -12,10 +12,10 @@ class BreakpointTileSizeMapper {
 		this.BREAKPOINT_TO_SIZE_MAP = {
 			//	    1234567890123456
 			"250": "CAABAACAABAABAAB",	// breakpoint added because less than 360 we cannot have any D's (they are too wide)
-			"360": "CAABADABAAAABAAA",
-			"480": "CBAADAABAAABAAAB",
-			"600": "CBAAAADBAABACAAA",
-			"768": "CBAAADBADABACAAB",
+			"360": "CAABABAABBACAABA",
+			"480": "AAAABAABAABBCBAA",
+			"600": "BACAAABACABCBAAB",
+			"768": "CBAABCBBBCAABCBB",
 			"962": "CAAAABAACAAABAAA"
 			//	    1234567890123456
 		/*
