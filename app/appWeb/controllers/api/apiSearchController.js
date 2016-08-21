@@ -8,7 +8,7 @@ let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(process.cwd() + '/modules/cors');
 
 // route is /api/search/autocomplete
-router.get('/autocomplete', cors, (req, res) => {
+router.post('/autocomplete', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);

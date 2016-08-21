@@ -34,37 +34,37 @@ router.get('/', (req, res, next) => {
 			"orientation": "portrait",
 			"icons": [
 				{
-					"src": baseImageUrl + locale + "/shortcut.png",
+					"src": baseImageUrl + locale + "/icon-16x16.png",
 					"type": "image/png",
 					"sizes": "16x16",
-					"actualSize": "32x32"
+					"actualSize": "16x16"
 				},
 				{
-					"src": baseImageUrl + locale + "/shortcut.png",
+					"src": baseImageUrl + locale + "/icon-32x32.png",
 					"type": "image/png",
 					"sizes": "32x32",
 					"actualSize": "32x32"
 				},
 				{
-					"src": baseImageUrl + locale + "/touch-iphone.png",
+					"src": baseImageUrl + locale + "/icon-57x57.png",
 					"type": "image/png",
 					"sizes": "57x57",
 					"actualSize": "57x57"
 				},
 				{
-					"src": baseImageUrl + locale + "/touch-ipad.png",
+					"src": baseImageUrl + locale + "/icon-72x72.png",
 					"type": "image/png",
 					"sizes": "72x72",
 					"actualSize": "72x72"
 				},
 				{
-					"src": baseImageUrl + locale + "/touch-iphone-retina.png",
+					"src": baseImageUrl + locale + "/icon-114x114.png",
 					"type": "image/png",
 					"sizes": "114x114",
 					"actualSize": "114x114"
 				},
 				{
-					"src": baseImageUrl + locale + "/touch-ipad-retina.png",
+					"src": baseImageUrl + locale + "/icon-144x144.png",
 					"type": "image/png",
 					"sizes": "144x144",
 					"actualSize": "144x144"
