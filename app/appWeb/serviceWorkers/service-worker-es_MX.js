@@ -6,7 +6,7 @@ var IDB_VERSION = 1;
 var STOP_RETRYING_AFTER = 86400000; // One day, in milliseconds.
 var STORE_NAME = 'urls';
 
-var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
+var GA_ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
 
 var CACHE_VERSION = 1;
 var CURRENT_CACHES = {
@@ -180,11 +180,11 @@ function handleAnalyticsCollectionRequest(request) {
 
 toolbox.router.get('/collect',
 	handleAnalyticsCollectionRequest,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 toolbox.router.get('/analytics.js',
 	toolbox.networkFirst,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 
 // Open the IndexedDB and check for requests to replay each time the service worker starts up.
