@@ -283,7 +283,7 @@ $mobileTextboxWidth: 84%;
 
 	.search-controls {
 		.search-bar {
-			height: $desktopSearchBarHeight;
+			height: $desktopSearchBarHeight + 10px; // padding
 
 			.search-button {
 				.inner-text {
@@ -300,7 +300,7 @@ $mobileTextboxWidth: 84%;
 			}
 
 			.location-link {
-				bottom: -7px;
+				bottom: 0;
 				top: -4px;
 			}
 
@@ -314,6 +314,7 @@ $mobileTextboxWidth: 84%;
 			background-color: transparent;
 			position: relative;
 			margin-top: 0;
+			top: -10px;
 
 			.type-ahead-results-container {
 				padding-right: 0px;
