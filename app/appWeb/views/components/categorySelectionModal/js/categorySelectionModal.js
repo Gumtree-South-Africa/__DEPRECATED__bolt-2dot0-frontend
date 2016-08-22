@@ -7,16 +7,11 @@ class CategorySelectionModal {
 
 	_traverseHierarchy(hierarchyArray, setCategoryLevel) {
 		let currentLevel = this.categoryTree;
+		// for each value in the hierarchy array, we navigate down in the tree
 		hierarchyArray.forEach((catId) => {
 			if (catId !== 0) {
-				currentLevel.children.some((subCat) => {
-					if (subCat.id === catId) {
-						currentLevel = subCat;
-
-						return true;
-					}
-
-					return false;
+				currentLevel = currentLevel.children.find((subCat) => {
+					return subCat.id === catId;
 				});
 			}
 		});
@@ -39,14 +34,17 @@ class CategorySelectionModal {
 	}
 
 	_renderResults(listValues) {
+		let appendString = '';
 		if (listValues) {
 			this.currentLevelValues = listValues;
 			this.displayListValues = this.currentLevelValues;
 		}
 		this._emptyResults();
 		this.displayListValues.forEach((listValue) => {
-			this.$resultsList.append(`<li class="list-item" data-id="${listValue.id}" tabindex="0">${listValue.localizedName}</li>`);
+			appendString +=`<li class="list-item" data-id="${listValue.id}" tabindex="0">${listValue.localizedName}</li>`;
 		});
+
+		this.append(appendString);
 
 		this._bindEventsToList();
 	}
@@ -91,8 +89,9 @@ class CategorySelectionModal {
 	}
 
 	_displayCategoryHierarchy(hierarchy) {
+		// if we haven't set an initial unstaged height, then set it
 		if (!this.startingModalUnstagedHeight && !this.stagedItem) {
-			this.$modalBox.css('height', '');
+			this.$modalBox.css('height', ''); // clear any javascript set height so we get the css set height
 			this.startingModalUnstagedHeight = parseInt(this.$modalBox.css('height').replace("px", ""));
 		}
 
@@ -141,14 +140,8 @@ class CategorySelectionModal {
 	}
 
 	_findItemOnLevel(id) {
-		let item;
-
-		this.currentLevel.children.some((cat) => {
-			if (cat.id === id) {
-				item = cat;
-				return true;
-			}
-			return false;
+		let item = this.currentLevel.children.find((cat) => {
+			return cat.id === id;
 		});
 
 		if (!item) {
@@ -168,8 +161,9 @@ class CategorySelectionModal {
 		this.$modal.addClass("staged");
 		this.$saveButton.prop("disabled", false);
 
+		// if we haven't set an initial staged height, then set it
 		if (!this.startingModalStagedHeight) {
-			this.$modalBox.css('height', '');
+			this.$modalBox.css('height', ''); // clear any javascript set height so we can get the natural height from css
 			this.startingModalStagedHeight = parseInt(this.$modalBox.css('height').replace("px", ""));
 		}
 
@@ -184,9 +178,11 @@ class CategorySelectionModal {
 		}
 		this._renderResults(item.children);
 		this.currentLevel = item;
+		// if were a leaf node, we stage the item so the user has a chance to confirm
 		if (this._checkLeafNode()) {
 			this._stageItem(item);
 		} else {
+			// else add to heirarchy and make sure we are not staged for the next level
 			this._addToHierarchy(item);
 			this._unstageItem();
 		}
@@ -195,10 +191,9 @@ class CategorySelectionModal {
 	_selectStagedItem() {
 		this._renderResults(this.stagedItem.children);
 		this.currentLevel = this.stagedItem;
+		// make sure were a leaf node and then save the changes
 		if (this._checkLeafNode()) {
 			this._saveChanges();
-		} else {
-			this._unstageItem();
 		}
 	}
 
@@ -248,7 +243,7 @@ class CategorySelectionModal {
 			}
 		});
 
-		// only re refilter if we have to.
+		// only refilter if we have to.
 		if (tempDisplayList.length !== this.displayListValues.length) {
 			this.displayListValues = tempDisplayList;
 			this._renderResults();
@@ -311,7 +306,6 @@ class CategorySelectionModal {
 		this.$saveButton = this.$modal.find(".save-button");
 		this.$clearTextButton = $("#clear-text-btn");
 
-		window.temp = this.$hierarchyContainer;
 		this.$saveButton.click(() => {
 			this._selectStagedItem();
 		});
@@ -324,6 +318,8 @@ class CategorySelectionModal {
 			this._unstageItem(true);
 		});
 
+		// TODO this is the implemented search functionality to filter the lists,
+		// TODO this is not part of MVP so commenting out
 		// this.$input.on('keyup', (evt) => {
 		// 	switch (evt.keyCode) {
 		// 		case 38:

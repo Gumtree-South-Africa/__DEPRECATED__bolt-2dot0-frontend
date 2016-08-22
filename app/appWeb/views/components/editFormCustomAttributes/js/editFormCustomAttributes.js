@@ -7,11 +7,13 @@ class EditFormCustomAttributes {
 
 		this._unbindDependencyEvents();
 
+		// empty the contents of the form
 		this.$form.empty();
 		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`]({
 			customAttributes: modelData
 		});
 
+		// unwrapping the dom to remove the div already in the page as this.$form
 		this.$form.append($(newDomString).unwrap());
 
 		this._bindDependencyEvents();
