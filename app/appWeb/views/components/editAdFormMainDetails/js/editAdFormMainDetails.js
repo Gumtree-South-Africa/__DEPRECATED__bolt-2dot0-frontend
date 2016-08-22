@@ -89,8 +89,7 @@ let _ajaxEditForm = () => {
 			"latitude": lat,
 			"longitude": lng
 		},
-		//TODO: enable this once bapi gets the endpoint updated
-		// "categoryAttributes": categoryAttributes,
+		"categoryAttributes": categoryAttributes,
 		"imageUrls": images
 	};
 
