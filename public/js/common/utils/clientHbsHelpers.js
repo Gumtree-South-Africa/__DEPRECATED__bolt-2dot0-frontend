@@ -92,6 +92,12 @@ let initialize = (Handlebars) => {
 		let str = keyvalue.split(":");
 		return new Handlebars.SafeString(str[1]);
 	});
+
+	let comparisonHelpers = require("../../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
+
+	Object.keys(comparisonHelpers).forEach((helperName) => {
+		Handlebars.registerHelper(helperName, comparisonHelpers[helperName]);
+	});
 };
 
 module.exports = {

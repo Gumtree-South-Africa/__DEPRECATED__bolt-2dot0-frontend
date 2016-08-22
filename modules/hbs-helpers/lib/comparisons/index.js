@@ -410,3 +410,5 @@ module.exports.registerHelper = function (exphbs, options) {
         }
     }
 };
+
+module.exports.rawHelpers = helpers;
