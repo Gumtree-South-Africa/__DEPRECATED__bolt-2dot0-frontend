@@ -85,7 +85,7 @@ module.exports = function watch(gulp, plugins) {
 
 		// SERVER UNIT TEST TASKS
 		gulp.task('test:serverUnit', shell.task([
-			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config ' + 'JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ' + './node_modules/jasmine/bin/jasmine.js'
+			'NODE_ENV=mock NODE_CONFIG_DIR=./server/config JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ./node_modules/istanbul/lib/cli.js cover --include-all-source ./node_modules/jasmine/bin/jasmine.js'
 		], {
 			errorMessage: "!!!!!!!SERVER_UNIT TESTs ARE FAILING, test is unstable"
 		}));
