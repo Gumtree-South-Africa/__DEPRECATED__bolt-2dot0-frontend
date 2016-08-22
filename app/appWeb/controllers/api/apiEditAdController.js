@@ -98,7 +98,7 @@ router.post('/update', cors, (req, res) => {
 				case 401:
 					returnCode = 401;
 					console.error('User attempted to edit an ad they did not own');
-					returnMessage = error.data.message || "Edit ad failed, user does not own this ad.";
+					returnMessage = "Edit ad failed, user does not own this ad.";
 					break;
 				default:
 					break;

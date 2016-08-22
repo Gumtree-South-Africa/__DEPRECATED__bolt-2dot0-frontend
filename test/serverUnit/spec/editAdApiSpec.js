@@ -17,7 +17,7 @@ describe('Edit Ad Api', () => {
 		specHelper.registerMockEndpoint(endpoints.specificAd.replace('{id}', '1001000002000910000000009'),
 			'test/serverUnit/mockData/api/v1/EditAdResponse.json');
 
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'bt_auth="TEST"')
 				.send(file)
@@ -37,7 +37,7 @@ describe('Edit Ad Api', () => {
 
 	it('should throw an error for user without cookie', (done) => {
 		let file = specHelper.getMockData("editAd", "EditAdRequest");
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
@@ -60,7 +60,7 @@ describe('Edit Ad Api', () => {
 				failStatusCode: 404
 			});
 
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'bt_auth="WILL FAIL"')
 				.send(file)
@@ -84,7 +84,7 @@ describe('Edit Ad Api', () => {
 				failStatusCode: 401
 			});
 
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'bt_auth="WILL FAIL"')
 				.send(file)
@@ -93,14 +93,14 @@ describe('Edit Ad Api', () => {
 					expect(res.status).toBe(401);
 
 					let jsonResult = JSON.parse(res.text);
-					expect(jsonResult.error).toBe("Edit ad failed, user does not own this ad");
+					expect(jsonResult.error).toBe("Edit ad failed, user does not own this ad.");
 				})
 				.end(specHelper.finish(done));
 		});
 	});
 
 	it('should throw a 406 if we are sending something other than json', (done) => {
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.send("Hello")
 				.expect((res) => {
@@ -115,7 +115,7 @@ describe('Edit Ad Api', () => {
 		let file = specHelper.getMockData("editAd", "EditAdRequest");
 		delete file.adId;
 
-		boltSupertest('/api/edit', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')

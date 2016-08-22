@@ -232,6 +232,7 @@ let _postAd = (url, locationType) => {
 		this.inputDisabled = false;
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
+				window.onbeforeunload = () => {};
 				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:

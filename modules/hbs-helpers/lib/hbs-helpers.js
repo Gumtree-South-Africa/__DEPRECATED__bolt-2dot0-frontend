@@ -183,7 +183,12 @@ module.exports  =  {
 			if (!object || !field || value === undefined){
 				return;
 			}
-			return (object[field] === value) ? options.fn(this) : options.inverse(this);
+			let entry = object[field];
+			if (!isNaN(entry)) {
+				return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+			} else {
+				return (entry === value) ? options.fn(this) : options.inverse(this);
+			}
 		});
 
 		exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {

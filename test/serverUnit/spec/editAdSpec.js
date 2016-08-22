@@ -20,7 +20,11 @@ describe('Edit Ad Page', () => {
 	it('should show edit page for existing ad', (done) => {
 		specHelper.registerMockEndpoint(
 			endpoints.specificAd.replace('{id}', '12'),
-			'test/serverUnit/mockData/api/v1/EditAdResponse.json');
+			'test/serverUnit/mockData/api/v1/GetAdResponse.json');
+		specHelper.registerMockEndpoint(
+			endpoints.categoryAttributes.replace('{catId}', '9000'),
+			'test/serverUnit/mockData/api/v1/GetAttributeDefinitionsResponse.json'
+		);
 
 		boltSupertest('/edit/12').then((supertest) => {
 			supertest

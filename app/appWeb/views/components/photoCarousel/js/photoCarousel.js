@@ -45,6 +45,32 @@ let IsSafariMUSupport = () => {
 	}
 };
 
+let resizeCarousel = () => {
+	let $carouselImages = $('.add-photo-item, .carousel-item');
+	let width = $carouselImages.width();
+	let $carouselUserImages = $('.carousel-item');
+	// set height of carousel items to be same as width (set by slick)
+	if ($carouselUserImages.length === allowedUploads) {
+		this.$carousel.slick('slickRemove', 0);
+	}
+	$carouselUserImages.each((item) => {
+		// Slick will sometimes remove the css applied to an item.
+		let carouselItem = $(item);
+		let image = carouselItem.data('image');
+		if (image) {
+			carouselItem.css('background-image', `url("${image}")`);
+		}
+	});
+	//fix issue where images would sometimes be very small
+	if (width > 10) {
+		$carouselImages.css('height', width + 'px');
+		// vertical align arrows to new height
+		$('.slick-arrow').css('top', width / 2 + 'px');
+		$('.slick-prev').addClass("icon-back");
+		$('.slick-next').addClass("icon-back");
+	}
+};
+
 
 let isProgressEventSupported = () => {
 	try {
@@ -124,72 +150,6 @@ let imageUploads = (() => {
 		}
 	};
 })();
-
-let resizeCarousel = () => {
-	let $carouselImages = $('.add-photo-item, .carousel-item');
-	let width = $carouselImages.width();
-	let $carouselUserImages = $('.carousel-item');
-	let $addPhoto = $('.add-photo-item');
-	// set height of carousel items to be same as width (set by slick)
-	if ($carouselUserImages.length === 12) {
-		$addPhoto.addClass('hidden');
-	} else {
-		$addPhoto.removeClass('hidden');
-	}
-	$carouselUserImages.each((item) => {
-		// Slick will sometimes remove the css applied to an item.
-		let carouselItem = $(item);
-		let image = carouselItem.data('image');
-		if (image) {
-			carouselItem.css('background-image', `url("${image}")`);
-		}
-	});
-	//fix issue where images would sometimes be very small
-	if (width > 10) {
-		$carouselImages.css('height', width + 'px');
-		// vertical align arrows to new height
-		$('.slick-arrow').css('top', width / 2 + 'px');
-		$('.slick-prev').addClass("icon-back");
-		$('.slick-next').addClass("icon-back");
-	}
-};
-
-let deleteCarouselItem = (event) => {
-	event.stopPropagation();
-
-	// delete carousel item
-	let toRemove = $(event.target).closest('.carousel-item');
-	let index = $(".add-photo-item, .carousel-item").index(toRemove);
-	this.$carousel.slick('slickRemove', index);
-	resizeCarousel();
-
-	// remove cover photo
-	let coverPhoto = $("#cover-photo");
-	coverPhoto.css("background-image", "");
-	coverPhoto.addClass("no-photo");
-	coverPhoto.attr("data-image", "");
-
-	// delete image from imageUploads
-	if (imageUploads.count() === 0) {
-		this.$postAdButton.addClass("disabled");
-	}
-
-	// Set new cover photo, or trigger file selector on empty photo click
-	let firstItem = $(".carousel-item:first");
-	let selectedItem = $('.carousel-item.selected');
-	// Just reclick the selected one or the first item to refresh the featured
-	if (selectedItem.length > 0) {
-		selectedItem.click();
-	} else if (firstItem.length > 0) {
-		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
-	}
-};
 
 let setCoverPhoto = (event) => {
 	let data = $(event.target).data();
@@ -542,40 +502,6 @@ Array.prototype.remove = function(from, to) {
 };
 /******* END EPS STUFF *******/
 
-/******* BEGIN SLICK STUFF *******/
-let deleteSelectedItem = (event) => {
-	event.stopPropagation();
-
-	// remove cover photo
-	let coverPhoto = $("#cover-photo");
-	coverPhoto.css("background-image", "");
-	coverPhoto.addClass("no-photo");
-	coverPhoto.attr("data-image", "");
-
-	// delete carousel item
-	let toRemove = $(".carousel-item.selected");
-	let index = $(".add-photo-item, .carousel-item").index(toRemove);
-	this.$carousel.slick('slickRemove', index);
-
-	// delete image from imageUploads
-	if (imageUploads.count() === 0) {
-		this.$postAdButton.addClass("disabled");
-	}
-
-	// Set new cover photo, or trigger file selector on empty photo click
-	let firstItem = $(".carousel-item:first");
-	if (firstItem.length > 0) {
-		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
-	}
-	resizeCarousel();
-};
-
 let _slickAdd = (totalItems) => {
 	//Ternary for whether or not to show the blue X in the corner of each thumbnail
 	this.$carousel.slick('slickAdd',
@@ -617,6 +543,8 @@ let parseFile = (file) => {
 
 		if (totalItems < allowedUploads) {
 			_slickAdd(totalItems);
+		} else {
+			console.warn('nope');
 		}
 	};
 	if (file) {
@@ -673,6 +601,94 @@ let fileInputChange = (evt) => {
 	html5Upload(evt);
 };
 
+let _bindChangeListener = () => {
+	this.$imageUpload = $("#desktopFileUpload");
+	//listen for file uploads
+	this.$imageUpload.on("change", fileInputChange);
+};
+
+let deleteCarouselItem = (event) => {
+	event.stopPropagation();
+
+	// remove cover photo
+	let coverPhoto = $("#cover-photo");
+	coverPhoto.css("background-image", "");
+	coverPhoto.addClass("no-photo");
+	coverPhoto.attr("data-image", "");
+
+	let $carouselUserImages = $('.carousel-item');
+	if ($carouselUserImages.length === allowedUploads) {
+		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
+		_bindChangeListener();
+	}
+
+	let toRemove = $(event.target).closest('.carousel-item');
+	let index = $(".add-photo-item, .carousel-item").index(toRemove);
+	this.$carousel.slick('slickRemove', index);
+
+	// delete image from imageUploads
+	if (imageUploads.count() === 0) {
+		this.$postAdButton.addClass("disabled");
+	}
+
+	// Set new cover photo, or trigger file selector on empty photo click
+	let firstItem = $(".carousel-item:first");
+	let selectedItem = $('.carousel-item.selected');
+	// Just reclick the selected one or the first item to refresh the featured
+	if (selectedItem.length > 0) {
+		selectedItem.click();
+	} else if (firstItem.length > 0) {
+		firstItem.click();
+	} else {
+		$("#cover-photo-wrapper").on('click', () => {
+			if (!this.disableImageSelection) {
+				this.$imageUpload.click();
+			}
+		});
+	}
+	resizeCarousel();
+};
+
+/******* BEGIN SLICK STUFF *******/
+let deleteSelectedItem = (event) => {
+	event.stopPropagation();
+
+	// remove cover photo
+	let coverPhoto = $("#cover-photo");
+	coverPhoto.css("background-image", "");
+	coverPhoto.addClass("no-photo");
+	coverPhoto.attr("data-image", "");
+
+	let $carouselUserImages = $('.carousel-item');
+	if ($carouselUserImages.length === allowedUploads) {
+		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
+		_bindChangeListener();
+	}
+
+	// delete carousel item
+	let toRemove = $(".carousel-item.selected");
+	let index = $(".add-photo-item, .carousel-item").index(toRemove);
+	this.$carousel.slick('slickRemove', index);
+
+	// delete image from imageUploads
+	if (imageUploads.count() === 0) {
+		this.$postAdButton.addClass("disabled");
+	}
+
+	// Set new cover photo, or trigger file selector on empty photo click
+	let firstItem = $(".carousel-item:first");
+	if (firstItem.length > 0) {
+		firstItem.click();
+	} else {
+		$("#cover-photo-wrapper").on('click', () => {
+			if (!this.disableImageSelection) {
+				this.$imageUpload.click();
+			}
+		});
+	}
+	resizeCarousel();
+};
+
 let initialize = (options) => {
 	if (!options) {
 		options = {
@@ -698,6 +714,8 @@ let initialize = (options) => {
 	this.EPS.url = this.epsData.data('eps-url');
 	this.epsUpload = new EpsUpload(this.EPS);
 
+	this.$addPhotoItem = $('.add-photo-item');
+	this.addPhotoHtml = this.$addPhotoItem.prop('outerHTML');
 	this.$carousel = $('#photo-carousel');
 	this.$loginModal = $('.login-modal');
 	this.$loginModalMask = $('.login-modal-mask');
@@ -720,7 +738,7 @@ let initialize = (options) => {
 		this.$imageUpload.click();
 	});
 
-	this.$imageUpload = $("#desktopFileUpload");
+	_bindChangeListener();
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -751,8 +769,6 @@ let initialize = (options) => {
 		unsupportedFileTitle: this.epsData.data('unsupported-file-title')
 	};
 
-	//listen for file uploads
-	this.$imageUpload.on("change", fileInputChange);
 
 	// Slick setup
 	this.$carousel.slick(options.slickOptions);
