@@ -7,7 +7,9 @@ instrumentation:
     'public/**/*.js',
     'modules/**/*.js',
     'app/**/views/**/*.js',
-    'app/config/**/*.js']
+    'app/config/**/*.js',
+    'gulp-tasks/**/*.js',
+    'test/**/*.js']
     embed-source: false
     variable: __coverage__
     compact: true
@@ -17,8 +19,8 @@ instrumentation:
 reporting:
     print: summary
     reports:
-        - lcov
-    dir: ./coverage
+        - html
+    dir: ./test/coverage
     watermarks:
         statements: [50, 80]
         lines: [50, 80]
