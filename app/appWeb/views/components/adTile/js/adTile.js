@@ -27,9 +27,9 @@ let onReady = () => {
 		"skip_invisible": true
 	});
 
-	this.$lazyImage.on("appear", () => {
-		console.log("appear");
-	});
+	// this.$lazyImage.on("appear", () => {
+	// 	console.log("appear");
+	// });
 
 	// update/set watchlist cookie when user 'favorites' an ad
 	this.$favoriteButton.click((event) => {
