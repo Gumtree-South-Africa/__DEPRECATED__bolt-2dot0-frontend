@@ -22,8 +22,7 @@ module.exports = [
 		"common/banners/BannerCookie.js",
 		"common/tracking/Analytics.js",
 		"common/header/searchbar.js",
-		"common/pwa/service-worker-registration.js",
-		"libraries/sw-toolbox/sw-toolbox.js"
+		"common/pwa/service-worker-registration.js"
 	], "bundleName": "common.min.js"
 	}
 ]
