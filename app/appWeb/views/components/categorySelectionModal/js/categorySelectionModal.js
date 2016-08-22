@@ -44,7 +44,7 @@ class CategorySelectionModal {
 			appendString +=`<li class="list-item" data-id="${listValue.id}" tabindex="0">${listValue.localizedName}</li>`;
 		});
 
-		this.append(appendString);
+		this.$resultsList.append(appendString);
 
 		this._bindEventsToList();
 	}
@@ -267,6 +267,7 @@ class CategorySelectionModal {
 			throw Error("Options are required for categorySelectionModal.  Please pass in options with at least a currentHierarchy");
 		}
 
+		debugger;
 		this.$modal.removeClass("hidden");
 		this.currentHierarchy = options.currentHierarchy;
 		this.onSaveCb = options.onSaveCb;
