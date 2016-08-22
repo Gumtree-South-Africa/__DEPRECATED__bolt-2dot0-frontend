@@ -59,7 +59,7 @@ if (cacheObj) {
  * CACHE
  */
 // Add homepage
-toolbox.router.get('/', toolbox.cacheFirst, {
+toolbox.router.get('/', toolbox.networkFirst, {
 	cache: {
 		name: CURRENT_CACHES['homepage'],
 		maxEntries: 100,
