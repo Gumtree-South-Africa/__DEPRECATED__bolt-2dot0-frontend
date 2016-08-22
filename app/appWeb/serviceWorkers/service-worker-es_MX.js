@@ -1,18 +1,46 @@
 'use strict';
 
 
-var CACHE_VERSION = 1;
-var CURRENT_CACHES = {
-	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
-};
-
 var idbDatabase;
 var IDB_VERSION = 1;
 var STOP_RETRYING_AFTER = 86400000; // One day, in milliseconds.
 var STORE_NAME = 'urls';
 
-var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
+var GA_ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
 
+var CACHE_VERSION = 1;
+var CURRENT_CACHES = {
+	'homepage': 'vivanuncios-homepage-v' + CACHE_VERSION,
+	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
+};
+var PRECACHE = '$$$toolbox-cache$$$';
+
+/**
+ * Event Handlers
+ */
+self.addEventListener('activate', function(event) {
+	// Delete all caches that aren't named in CURRENT_CACHES.
+	var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
+		return CURRENT_CACHES[key];
+	});
+
+	event.waitUntil(
+		caches.keys().then(function(cacheNames) {
+			return Promise.all(
+				cacheNames.map(function(cacheName) {
+					if (cacheName.indexOf(PRECACHE) === -1) {
+						// Skip toolbox precache
+						if (expectedCacheNames.indexOf(cacheName) === -1) {
+							// If this cache name isn't present in the array of "expected" cache names, then delete it.
+							console.log('Deleting out of date cache:', cacheName);
+							return caches.delete(cacheName);
+						}
+					}
+				})
+			);
+		})
+	);
+});
 
 
 /**
@@ -33,7 +61,7 @@ if (cacheObj) {
 // Add homepage
 toolbox.router.get('/', toolbox.networkFirst, {
 	cache: {
-		name: 'vivanuncios-homepage',
+		name: CURRENT_CACHES['homepage'],
 		maxEntries: 100,
 		maxAgeSeconds: 86400
 	}
@@ -44,7 +72,7 @@ if (cacheObj) {
 	 for (let cacheIndex = 0; cacheIndex < cacheObj['homepageCache'].length; cacheIndex++) {
 	 	toolbox.router.get(cacheObj.homepageCache[cacheIndex], toolbox.networkFirst, {
 	 		cache: {
-	 			name: 'vivanuncios-homepage',
+	 			name: CURRENT_CACHES['homepage'],
 	 			maxEntries: 100,
 	 			maxAgeSeconds: 86400
 	 		}
@@ -140,7 +168,7 @@ function queueFailedAnalyticsRequest(request) {
 }
 
 function handleAnalyticsCollectionRequest(request) {
-	return global.fetch(request).then(function(response) {
+	return fetch(request).then(function(response) {
 		if (response.status >= 500) {
 			return Response.error();
 		}
@@ -152,11 +180,11 @@ function handleAnalyticsCollectionRequest(request) {
 
 toolbox.router.get('/collect',
 	handleAnalyticsCollectionRequest,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 toolbox.router.get('/analytics.js',
 	toolbox.networkFirst,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 
 // Open the IndexedDB and check for requests to replay each time the service worker starts up.
