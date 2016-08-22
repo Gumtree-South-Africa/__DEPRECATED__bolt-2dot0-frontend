@@ -104,7 +104,9 @@ class HomePageModelV2 {
 				});
 			};
 		}
-		this.dataPromiseFunctionMap.seo = seo.getHPSeoInfo();
+		this.dataPromiseFunctionMap.seo = () => {
+			return seo.getHPSeoInfo();
+		};
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();
