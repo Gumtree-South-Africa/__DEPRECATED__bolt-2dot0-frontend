@@ -115,7 +115,7 @@ let _openCatSelectModal = () => {
 		onSaveCb: (hierarchy, breadcrumbs) => {
 			this.$categoryChangeLink.empty();
 			this.$categoryChangeLink.append(breadcrumbs);
-			_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
+			_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(hierarchy));
 
 			let newCatId = hierarchy[hierarchy.length - 1];
 			this.$categoryId.val(newCatId);

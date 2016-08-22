@@ -267,7 +267,6 @@ class CategorySelectionModal {
 			throw Error("Options are required for categorySelectionModal.  Please pass in options with at least a currentHierarchy");
 		}
 
-		debugger;
 		this.$modal.removeClass("hidden");
 		this.currentHierarchy = options.currentHierarchy;
 		this.onSaveCb = options.onSaveCb;
