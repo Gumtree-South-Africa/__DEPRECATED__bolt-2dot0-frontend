@@ -273,7 +273,7 @@ class CategorySelectionModal {
 
 		if (this.currentHierarchy.length <= 0) {
 			this.currentHierarchy.push(0);
-		} else if (this.currentHierarchy.length > 1) {
+		} else if (this.isLeafCategory(this.currentHierarchy)) {
 			stagedItem = this.currentHierarchy.pop();
 		}
 
