@@ -102,6 +102,7 @@ describe('Edit Ad Api', () => {
 	it('should throw a 406 if we are sending something other than json', (done) => {
 		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('Cookie', 'bt_auth=nonce')
 				.send("Hello")
 				.expect((res) => {
 					expect(res.status).toBe(406);
@@ -117,6 +118,7 @@ describe('Edit Ad Api', () => {
 
 		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('Cookie', 'bt_auth=asdf')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
