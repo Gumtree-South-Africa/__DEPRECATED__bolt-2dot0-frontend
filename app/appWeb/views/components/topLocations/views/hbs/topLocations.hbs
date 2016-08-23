@@ -15,7 +15,7 @@
         {{#each this.topLocations}}
             {{#compare @index "<=" 5}}
 				<div class="nonJsOnlyInline top-content">
-					<a class="top-links" href="{{_links.[0].href}}">{{localizedName}}</a>
+					<a class="top-links" href="{{_links.[1].href}}">{{localizedName}}</a>
 				</div>
             {{/compare}}
             {{#compare @index ">" 5}}

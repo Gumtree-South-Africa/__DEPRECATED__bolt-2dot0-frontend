@@ -40,7 +40,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		]
 	};
 
-	if (fields.price) {
+	if (fields.price && fields.price.amount) {
 		payload.ads[0].price = fields.price;
 	}
 
