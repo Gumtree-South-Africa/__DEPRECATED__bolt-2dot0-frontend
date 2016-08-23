@@ -3,7 +3,8 @@
 		"server": {
 			"host": "api.bolt.ecg.ebay.com.localhost",
 			"port": 8080,
-			"parameters": null
+			"parameters": null,
+			"timeout": 2000
 		},
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories?depth=2",
@@ -55,6 +56,8 @@
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"baseUrl"		: "/public/",
+		"baseFontUrl"	: "/public/fonts/",
+		"baseIconUrl"	: "/public/icons/",
 		"min"			: false
 	},
 	"abTest": {

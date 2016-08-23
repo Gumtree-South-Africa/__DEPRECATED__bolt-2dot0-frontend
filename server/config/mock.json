@@ -3,7 +3,8 @@
 		"server": {
 	    	"host": "localhost",
 	    	"port": 5000,
-	    	"parameters": "_forceExample=true&_statusCode=200"
+	    	"parameters": "_forceExample=true&_statusCode=200",
+			"timeout": 200
 		},
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/categories",
@@ -62,6 +63,8 @@
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"baseUrl"		: "/public/",
+		"baseFontUrl"	: "/public/fonts/",
+		"baseIconUrl"	: "/public/icons/",
 		"min"			: false
 	},
 	"abTest": {

@@ -3,7 +3,8 @@
 		"server": {
 			"host": "api.bolt.ebayclassifieds.com.phx.ops.prod.bt.ecg.so",
 			"port": 80,
-			"parameters": null
+			"parameters": null,
+			"timeout": 1000
 		},
 		"endpoints": {
 			"categoryHomePage": "/v1/categories",
@@ -61,6 +62,8 @@
 		"baseImageUrl": "/images/",
 		"mainJSUrl": "/js/main.js",
 		"baseUrl": "/",
+		"baseFontUrl"	: "/fonts/",
+		"baseIconUrl"	: "/icons/",
 		"min": true
 	},
 	"abTest": {

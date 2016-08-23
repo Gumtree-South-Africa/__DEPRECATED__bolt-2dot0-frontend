@@ -10,7 +10,7 @@ describe('Search', () => {
 	});
 
 	it('should return correct format for type ahead search endpoint', (done) => {
-		boltSupertest('/api/search/autocomplete', 'vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/api/search/autocomplete', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {

@@ -3,7 +3,8 @@
 	    "server": {
 	    	"host": "docker_host_machine",
 	    	"port": 80,
-	    	"parameters": null
+	    	"parameters": null,
+			"timeout": 2000
 	    },
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories",
@@ -62,6 +63,8 @@
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"baseUrl"		: "/public/",
+		"baseFontUrl"	: "/public/fonts/",
+		"baseIconUrl"	: "/public/icons/",
 		"min"			: true
 	},
 	"abTest": {

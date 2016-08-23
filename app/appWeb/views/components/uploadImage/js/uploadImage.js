@@ -263,7 +263,7 @@ let requestLocation = (callback) => {
 				let lat = position.coords.latitude;
 				let lng = position.coords.longitude;
 				document.cookie = `geoId=${lat}ng${lng}`;
-				callback('geoLocation');
+				callback('geoLocation', timeout);
 			}, callback,
 			{
 				enableHighAccuracy: true,
@@ -271,9 +271,8 @@ let requestLocation = (callback) => {
 				timeout: 27000
 			});
 	} else {
-		callback('cookie');
+		callback('cookie', timeout);
 	}
-	return timeout;
 };
 
 let _success = (i, response) => {
@@ -287,8 +286,8 @@ let _success = (i, response) => {
 
 	if (this.isMobile) {
 		this.imageHolder.css("background-image", `url("${url.normal}")`);
-		let timeout = requestLocation((locationType) => {
-			if (timeout) {
+		requestLocation((locationType, timeout) => {
+			if (timeout !== undefined) {
 				clearTimeout(timeout);
 			}
 			//Don't care if they actually gave us location, just that it finished.

@@ -17,6 +17,7 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -86,7 +87,7 @@ class HomePageModelV2 {
 		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
-
+		let seo = new SeoModel(modelData.bapiHeaders);
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
@@ -98,11 +99,14 @@ class HomePageModelV2 {
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;
 				}).fail((err) => {
-					console.warn(`error getting data ${err}`);
+					console.warn(`error getting card data ${err}`);
 					return {};
 				});
 			};
 		}
+		this.dataPromiseFunctionMap.seo = () => {
+			return seo.getHPSeoInfo();
+		};
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();
@@ -116,7 +120,7 @@ class HomePageModelV2 {
 			return recentActivityModel.getRecentActivities(modelData.geoLatLngObj).then((data) => {
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting recentActivities data ${err}`);
 				return {};
 			});
 		};
@@ -133,7 +137,7 @@ class HomePageModelV2 {
 				data.facet = data.facet_counts.facet_pivot['Address.geolocation_p100_0_coordinate,Address.geolocation_p100_1_coordinate'];
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting gpsMap data ${err}`);
 			});
 		};
 
@@ -141,7 +145,7 @@ class HomePageModelV2 {
 			return locationModel.getTopL2Locations().then((data) => {
 				return data;
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting topLocations data ${err}`);
 				return {};
 			});
 		};
@@ -152,7 +156,7 @@ class HomePageModelV2 {
 				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
 					return data;
 				}).fail((err) => {
-					console.warn(`error getting data ${err}`);
+					console.warn(`error getting locationlatlong data ${err}`);
 					return {};
 				});
 			};
@@ -162,7 +166,7 @@ class HomePageModelV2 {
 			return keywordModel.resolveAllPromises().then((data) => {
 				return data[0].keywords || {};
 			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
+				console.warn(`error getting topSearches data ${err}`);
 				return {};
 			});
 		};
