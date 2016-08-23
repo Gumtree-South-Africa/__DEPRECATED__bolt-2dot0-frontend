@@ -13,7 +13,7 @@
             <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-sms-2{{else}}icon-android{{/if}}"></div>
         </a>
         <div class="left-items">
-            {{#if this.header.username}}
+            {{#if this.header.isUserLoggedIn}}
                 <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
                     <div class="messages icon-messages">
                         <div class="number-messages">
@@ -69,7 +69,7 @@
                     {{i18n "header.help"}}
                 </div>
             </a>
-            {{#if this.header.username}}
+            {{#if this.header.isUserLoggedIn}}
                 <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
                     <div class="my-ads right-item">
                         {{i18n "header.myAds"}}

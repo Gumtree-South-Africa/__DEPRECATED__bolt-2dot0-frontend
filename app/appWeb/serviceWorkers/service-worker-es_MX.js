@@ -67,10 +67,10 @@ toolbox.router.get('/', toolbox.networkFirst, {
 	}
 });
 
-// Adding homepage assets
+// Adding homepage CSS cache
 if (cacheObj) {
-	 for (let cacheIndex = 0; cacheIndex < cacheObj['homepageCache'].length; cacheIndex++) {
-	 	toolbox.router.get(cacheObj.homepageCache[cacheIndex], toolbox.networkFirst, {
+	 for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
+	 	toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
 	 		cache: {
 	 			name: CURRENT_CACHES['homepage'],
 	 			maxEntries: 100,
@@ -78,6 +78,71 @@ if (cacheObj) {
 	 		}
 	 	});
 	 }
+}
+
+// Adding homepage icons cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.icons.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.icons[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage images cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.images.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.images[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage fonts
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.fonts.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.fonts[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage JS cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage JSmin cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
 }
 
 
