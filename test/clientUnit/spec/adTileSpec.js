@@ -12,9 +12,11 @@ describe('Ad Tile', () => {
 
 	beforeEach(() => {
 		$testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
+		CookieUtils.setCookie('watchlist', "");
+		CookieUtils.setCookie('bt_auth', "");
 	});
 
-	fdescribe('Ad Tile Controller', () => {
+	describe('Ad Tile Controller', () => {
 
 		it('should save and retrieve map from cookie', () => {
 
@@ -81,23 +83,27 @@ describe('Ad Tile', () => {
 			cookieValue = CookieUtils.getCookie('watchlist');
 			expect(cookieValue).toBe('');
 
-	//		expect(adTileController._favoriteAd.calls.count()).toBe(2, '_favoriteAd should be called twice');
+			expect(adTileController._favoriteAd.calls.count()).toBe(2, '_favoriteAd should be called twice');
 
 		});
 
-		it('should set white heart icons on ads in the cookie when page first loads', () => {
+		it('should toggle heart icon and set cookie on click (with no server favorite calls)', () => {
 			let $heart = $testArea.find('.favorite-btn');
 
-			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
+			// for this one we don't have a bt_auth cookie, so we check for no calls through _favoriteAd
 			spyOn(adTileController, '_favoriteAd').and.callThrough();
 
 			adTileController.initialize(false);		// we init with false because we're handing the onReady
 			adTileController.onReady();
 
+			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
+
 			$heart.click();
+			expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
+			let cookieValue = CookieUtils.getCookie('watchlist');
+			expect(cookieValue).toBe(`${adTileModel.adId}`);
 
-			expect(adTileController._favoriteAd.calls.count()).toBe(0, 'adjustTileSizes should not be called');
-
+			expect(adTileController._favoriteAd.calls.count()).toBe(0, 'should not be calling the server for favorites');
 
 		});
 	});

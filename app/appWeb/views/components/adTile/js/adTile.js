@@ -4,14 +4,17 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 let $ = require('jquery');
 require("jquery-lazyload");
 
-/**
- * favorite the ad (to the server, assume user is logged in)
- * @param adId
- * @param success
- * @param error
- * @private
- */
+
 class AdTile {
+
+	/**
+	 * favorite the ad (to the server, assume user is logged in)
+	 * @param adId
+	 * @param success
+	 * @param error
+	 * @private
+	 */
+
 	_favoriteAd(method, adId, success, error) {
 		$.ajax({
 			url: '/api/ads/favorite',
@@ -22,6 +25,18 @@ class AdTile {
 			success: success,
 			error: error
 		});
+	}
+
+	getCookieFavoriteIds() {
+		let cookie = CookieUtils.getCookie('watchlist');
+		if (!cookie) {
+			return [];
+		}
+		return cookie.split(',');
+	}
+
+	toggleFavorite(tile) {
+		$(tile).toggleClass("icon-heart-gray icon-heart-white");
 	}
 
 	_getIdMapFromCookie(cookieName) {
@@ -43,7 +58,7 @@ class AdTile {
 		return cookieValue;
 	}
 
-	 onFavoriteClick(event) {
+	onFavoriteClick(event) {
 		let target = $(event.target);
 
 		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
@@ -85,8 +100,6 @@ class AdTile {
 				}
 			);
 		}
-
-
 	}
 
 	/**
@@ -119,10 +132,11 @@ class AdTile {
 		this.$lazyImage = this.$tile.find('img.lazy');
 
 		if (registerOnReady) {
-			$(document).ready(() => this.onReady);
+			$(document).ready(this.onReady.bind(this));	// need special bind here
 		}
 	}
 
 }
+
 
 module.exports = new AdTile();

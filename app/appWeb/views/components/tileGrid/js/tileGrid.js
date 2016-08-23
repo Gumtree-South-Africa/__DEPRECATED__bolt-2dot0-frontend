@@ -48,6 +48,17 @@ let _filterFunction = function() {
 };
 
 
+let syncFavoriteCookieWithTiles = ($tiles) => {
+	let  favoriteIds = adTile.getCookieFavoriteIds();
+	for  (let i = 0; i < favoriteIds.length; i++) {
+		let  selector = `[data-adid='${favoriteIds[i]}']`;
+		let tileElts = $tiles.find(selector);
+		if (tileElts.length > 0) {
+			adTile.toggleFavorite(tileElts[0]);
+		}
+	}
+
+}
 
 
 /**
@@ -102,7 +113,11 @@ let initialize = (registerOnReady = true) => {
 		}
 	});
 
-	let numTiles = $('.trending-card .tile-item').length;
+	let $tiles = $('.tile-container .tile-item');
+
+	syncFavoriteCookieWithTiles($tiles);
+
+	let numTiles = $tiles.length;
 
 	adTile.initialize();
 

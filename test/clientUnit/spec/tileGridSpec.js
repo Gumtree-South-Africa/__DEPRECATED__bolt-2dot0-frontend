@@ -6,6 +6,7 @@ let tileGridController = require("app/appWeb/views/components/tileGrid/js/tileGr
 let tileGridModel = require('../mockData/trendingCardModel.json');
 let BreakpointTileSizeMapper = require('app/appWeb/views/components/tileGrid/js/BreakpointTileSizeMapper.js');
 let $ = require('jquery');
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 
 describe('Tile Grid', () => {
@@ -120,6 +121,18 @@ describe('Tile Grid', () => {
 
 			let $outerContainer = $testArea.find('.tile-grid-width-container');
 			expect($outerContainer.width()).toBe(breakpoint, 'width should be breakpoint');
+
+		});
+
+		it('should set white icon on initial load for the tile with its id in the favorite cookie', () => {
+
+			CookieUtils.setCookie("watchlist", "200000000long");	// this enables the server calls to _favoriteAd
+
+			let tiles = $testArea.find('.tile-item');
+
+			tileGridController.initialize(false);		// we init with false because we're handing the onReady
+
+			expect($(tiles[1]).find('.icon-heart-white').length).toBeTruthy(`favorited cookie tile should have white icon`);
 
 		});
 
