@@ -12,15 +12,11 @@ class AdvertModel {
 	}
 
 	favoriteTheAd(adId) {
-		return adService.favoriteAd(this.bapiHeaders, adId).then((result) => {
-			return result;
-		});
+		return adService.favoriteAd(this.bapiHeaders, adId);
 	}
 
 	unfavoriteTheAd(adId) {
-		return adService.unfavoriteAd(this.bapiHeaders, adId).then((result) => {
-			return result;
-		});
+		return adService.unfavoriteAd(this.bapiHeaders, adId);
 	}
 }
 
