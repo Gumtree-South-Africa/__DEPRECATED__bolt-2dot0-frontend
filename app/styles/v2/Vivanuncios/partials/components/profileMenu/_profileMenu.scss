@@ -36,6 +36,10 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             vertical-align: middle;
             margin-left: 10px;
         }
+
+		&:hover {
+			background-color: $headerMenuItemHighlightColor;
+		}
     }
 
     .profile-item-text {
