@@ -52,7 +52,7 @@ describe('Ad Tile', () => {
 			cookieValue = CookieUtils.getCookie('watchlist');
 			expect(cookieValue).toBe('');
 
-	//		expect(adTileController._favoriteAd.calls.count()).toBe(2, '_favoriteAd should be called twice');
+			expect(adTileController._favoriteAd.calls.count()).toBe(2, '_favoriteAd should be called twice');
 
 		});
 
