@@ -27,6 +27,7 @@ router.get('/', (req, res, next) => {
 			"lang": lang,
 			"short_name": res.locals.config.name,
 			"name": res.locals.config.name,
+			"gcm_sender_id": "759612781184",
 			"background_color": "#2F3BA2",
 			"theme_color": "#512DA8",
 			"start_url": "/",
