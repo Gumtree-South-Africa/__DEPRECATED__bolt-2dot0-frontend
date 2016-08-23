@@ -14,7 +14,6 @@ class AdTile {
 	 * @param error
 	 * @private
 	 */
-
 	_favoriteAd(method, adId, success, error) {
 		$.ajax({
 			url: '/api/ads/favorite',
@@ -27,6 +26,11 @@ class AdTile {
 		});
 	}
 
+	/**
+	 * get the favorite IDs from the cookie
+	 * public, for example the tile grid uses this
+	 * because its public, the cookie name is abtracted from the caller intentionally
+	 */
 	getCookieFavoriteIds() {
 		let cookie = CookieUtils.getCookie('watchlist');
 		if (!cookie) {
@@ -35,10 +39,22 @@ class AdTile {
 		return cookie.split(',');
 	}
 
+	/**
+	 * toggle the state from favorite to non and visa versa
+	 * public, for use by the tile grid
+	 * @param tile
+	 */
 	toggleFavorite(tile) {
 		$(tile).toggleClass("icon-heart-gray icon-heart-white");
 	}
 
+	/**
+	 * extracts a map (of keys) from a cookie,
+	 * using a map to help prevent duplicates and simplify add/remove
+	 * @param cookieName
+	 * @returns {{object}} map
+	 * @private
+	 */
 	_getIdMapFromCookie(cookieName) {
 		let cookie = CookieUtils.getCookie(cookieName);
 		if (!cookie) {
@@ -52,13 +68,26 @@ class AdTile {
 		return map;
 	}
 
+	/**
+	 * Take the map (of keys) and store into a cookie (comma separated keys only)
+	 * @param cookieName
+	 * @param map
+	 * @returns {string} the map keys reduced to storage format: comma separated string (useful in testing)
+	 * @private
+	 */
 	_setIdMapToCookie(cookieName, map) {
 		let cookieValue = Object.getOwnPropertyNames(map).join(',');
 		CookieUtils.setCookie(cookieName, cookieValue, 10000);
 		return cookieValue;
 	}
 
-	onFavoriteClick(event) {
+	/**
+	 * Favorite Click to toggle the state of a favorite,
+	 * saved to both cookie and server (when bt_auth present)
+	 * @param event
+	 * @private
+	 */
+	_onFavoriteClick(event) {
 		let target = $(event.target);
 
 		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
@@ -118,7 +147,7 @@ class AdTile {
 		this.$favoriteButton.click((evt) => {
 			// push the click through without changing
 			// the scope of this
-			this.onFavoriteClick(evt);
+			this._onFavoriteClick(evt);
 		});
 	}
 
