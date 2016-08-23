@@ -154,7 +154,7 @@ let imageUploads = (() => {
 let setCoverPhoto = (event) => {
 	let data = $(event.target).data();
 	if ($(event.target).hasClass('icon-photo-close')) {
-		deleteCarouselItem(event);
+		this.deleteCarouselItem(event);
 		return;
 	}
 	if (!data.image) {
@@ -601,13 +601,13 @@ let fileInputChange = (evt) => {
 	html5Upload(evt);
 };
 
-let _bindChangeListener = () => {
+this._bindChangeListener = () => {
 	this.$imageUpload = $("#desktopFileUpload");
 	//listen for file uploads
 	this.$imageUpload.on("change", fileInputChange);
 };
 
-let deleteCarouselItem = (event) => {
+this.deleteCarouselItem = (event) => {
 	event.stopPropagation();
 
 	// remove cover photo
@@ -619,7 +619,7 @@ let deleteCarouselItem = (event) => {
 	let $carouselUserImages = $('.carousel-item');
 	if ($carouselUserImages.length === allowedUploads) {
 		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
-		_bindChangeListener();
+		this._bindChangeListener();
 	}
 
 	let toRemove = $(event.target).closest('.carousel-item');
@@ -662,7 +662,7 @@ let deleteSelectedItem = (event) => {
 	let $carouselUserImages = $('.carousel-item');
 	if ($carouselUserImages.length === allowedUploads) {
 		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
-		_bindChangeListener();
+		this._bindChangeListener();
 	}
 
 	// delete carousel item
@@ -738,7 +738,7 @@ let initialize = (options) => {
 		this.$imageUpload.click();
 	});
 
-	_bindChangeListener();
+	this._bindChangeListener();
 
 	this.i18n = {
 		clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -799,7 +799,9 @@ let initialize = (options) => {
 
 	// delete image, remove current cover photo from carousel
 	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
-	$("#carousel-delete-item").on('click', deleteCarouselItem);
+	$("#carousel-delete-item").on('click', (evt) => {
+		this.deleteCarouselItem(evt);
+	});
 
 	// Clicking empty cover photo should open file selector
 	$("#cover-photo").on('click', () => {
