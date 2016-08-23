@@ -47,17 +47,48 @@ class ServiceWorkerModel {
 		modelData.dataLayer = data['common'].dataLayer || {};
 
 		let baseUrl = modelData.footer.baseUrl;
+		let baseCSSUrl = modelData.footer.baseCSSUrl;
+		let baseJSUrl = modelData.footer.baseJSUrl;
+		let baseJSMinUrl = modelData.footer.baseJSMinUrl;
+		let baseImageUrl = modelData.footer.baseImageUrl;
+		let baseFontUrl = modelData.footer.baseFontUrl;
+		let baseIconUrl = modelData.footer.baseIconUrl;
+		let homepageCache = {};
 
 		let homepagePreCache = _.reduceRight(cacheConfig.homepagePreCachePaths, function(a,b) {
 			b = baseUrl + b;
 			return a.concat(b);
 		}, []);
 
-		let homepageCache = _.reduceRight(cacheConfig.homepageCachePaths, function(a,b) {
-			b = baseUrl + b;
+		homepageCache.css = _.reduceRight(cacheConfig.homepageCachePaths.css, function(a,b) {
+			b = baseCSSUrl + b;
 			return a.concat(b);
 		}, []);
 
+		homepageCache.icons = _.reduceRight(cacheConfig.homepageCachePaths.icons, function(a,b) {
+			b = baseIconUrl + b;
+			return a.concat(b);
+		}, []);
+
+		homepageCache.images = _.reduceRight(cacheConfig.homepageCachePaths.images, function(a,b) {
+			b = baseImageUrl + b;
+			return a.concat(b);
+		}, []);
+
+		homepageCache.fonts = _.reduceRight(cacheConfig.homepageCachePaths.fonts, function(a,b) {
+			b = baseFontUrl + b;
+			return a.concat(b);
+		}, []);
+
+		homepageCache.js = _.reduceRight(cacheConfig.homepageCachePaths.js, function(a,b) {
+			b = baseJSUrl + b;
+			return a.concat(b);
+		}, []);
+
+		homepageCache.jsmin = _.reduceRight(cacheConfig.homepageCachePaths.jsmin, function(a,b) {
+			b = baseJSMinUrl + b;
+			return a.concat(b);
+		}, []);
 
 		modelData.footer.cachePath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache};
 
