@@ -17,7 +17,12 @@
                     {{i18n "homepage.trending.contact"}}
                 {{/compare}}
                 {{#compare  this.adPrice.priceType "===" "FIXED"}}
-                    ${{this.adPrice.amount}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
+                    {{#compare this.adPrice.amount ">" 0}}
+                        {{formatPrice this.adPrice.amount ","}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
+                    {{/compare}}
+                    {{#compare this.adPrice.amount "<=" 0}}
+                        {{i18n "homepage.trending.contact"}}
+                    {{/compare}}
                 {{/compare}}
             </span>
         {{/if}}
