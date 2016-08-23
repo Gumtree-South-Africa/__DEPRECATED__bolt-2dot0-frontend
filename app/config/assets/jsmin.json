@@ -84,8 +84,7 @@
       "/app/appWeb/views/components/adCarousel/js/CarouselExt/modernizr.js",
       "/app/appWeb/views/components/adCarousel/js/CarouselExt/owl.carousel.js",
       "/app/appWeb/views/components/adCarousel/js/CarouselExt/carouselExt.js",
-      "/app/appWeb/views/components/countryMap/js/Map.js",
-	  "/public/js/libraries/sw-toolbox/sw-toolbox.js"
+      "/app/appWeb/views/components/countryMap/js/Map.js"
     ]
   },
 
