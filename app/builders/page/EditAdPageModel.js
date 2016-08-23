@@ -118,7 +118,7 @@ class EditAdPageModel {
 				modelData.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
-					modelData.customAttributes = attributeModel.processCustomAttributesList(attributes, data);
+					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
 					return data;
 				});
 			});

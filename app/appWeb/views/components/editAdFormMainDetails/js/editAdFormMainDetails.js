@@ -81,10 +81,6 @@ let _ajaxEditForm = () => {
 		"title": serialized.adTitle,
 		"description": description,
 		"categoryId": category,
-		"price": {
-			"currency": (serialized.currency) ? serialized.currency : 'MXN',
-			"amount": Number(serialized.adPrice)
-		},
 		"location": {
 			"latitude": lat,
 			"longitude": lng
@@ -92,6 +88,13 @@ let _ajaxEditForm = () => {
 		"categoryAttributes": categoryAttributes,
 		"imageUrls": images
 	};
+
+	if (!this.$priceFormField.hasClass("hidden")) {
+		payload.price = {
+			"currency": (serialized.currency) ? serialized.currency : 'MXN',
+			"amount": Number(serialized.adPrice)
+		};
+	}
 
 	$.ajax({
 		url: '/api/edit/update',
@@ -108,6 +111,10 @@ let _toggleSubmitDisable = (shouldDisable) => {
 	this.$submitButton.prop("disabled", shouldDisable);
 };
 
+let _toggleShowPriceField = (shouldHide) => {
+	this.$priceFormField.toggleClass('hidden', shouldHide);
+};
+
 let _openCatSelectModal = () => {
 	categorySelectionModal.openModal({
 		currentHierarchy: this.currentHierarchy.slice(0),
@@ -119,7 +126,9 @@ let _openCatSelectModal = () => {
 			let newCatId = hierarchy[hierarchy.length - 1];
 			this.$categoryId.val(newCatId);
 			customAttributes.setCategoryId(newCatId);
-			customAttributes.updateCustomAttributes();
+			 customAttributes.updateCustomAttributes((data) => {
+				 _toggleShowPriceField(data.isPriceExcluded);
+			 });
 			this.currentHierarchy = hierarchy;
 		}
 	});
@@ -140,6 +149,7 @@ let onReady = () => {
 	this.$categoryChangeLink = this.$detailsSection.find("#category-name-display");
 	this.$currentHierarchy = $("#selected-cat-hierarchy");
 	this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
+	this.$priceFormField = this.$detailsSection.find(".form-ad-price");
 
 	customAttributes.initialize();
 	customAttributes.setCategoryId(this.currentHierarchy[this.currentHierarchy.length - 1]);

@@ -9,9 +9,7 @@ class EditFormCustomAttributes {
 
 		// empty the contents of the form
 		this.$form.empty();
-		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`]({
-			customAttributes: modelData
-		});
+		let newDomString = Handlebars.partials[`editFormCustomAttributes_${this.locale}`](modelData);
 
 		// unwrapping the dom to remove the div already in the page as this.$form
 		this.$form.append($(newDomString).unwrap());
@@ -65,13 +63,14 @@ class EditFormCustomAttributes {
 		this.catId = catId;
 	}
 
-	updateCustomAttributes() {
+	updateCustomAttributes(postRenderCb) {
 		$.ajax({
 			url: `/api/edit/customattributes/${this.catId}`,
 			method: "GET",
 			contentType: "application/json",
 			success: (customAttrData) => {
 				this._render(customAttrData);
+				postRenderCb(customAttrData);
 			}
 		});
 	}

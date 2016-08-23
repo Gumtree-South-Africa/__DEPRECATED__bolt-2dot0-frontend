@@ -17,6 +17,7 @@ class AttributeModel {
 
 	// this function processes the custom attribute list for displaying an already existing ad
 	processCustomAttributesList(attributes, adData) {
+		let isPriceExcluded = true;
 		let commonAttributesToExclude = [
 			"Description",
 			"Price",
@@ -27,7 +28,7 @@ class AttributeModel {
 			"Email"
 		];
 
-		return attributes.filter((attr) => {
+		let customAttributes = attributes.filter((attr) => {
 			if (attr.dependencies && attr.dependencies.length > 0) {
 				let depAttrValObj;
 				if (adData) {
@@ -45,8 +46,17 @@ class AttributeModel {
 				}
 			}
 
+			if (attr.name === "Price") {
+				isPriceExcluded = false;
+			}
+
 			return !_.contains(commonAttributesToExclude, attr.name);
 		});
+
+		return {
+			customAttributes,
+			isPriceExcluded
+		};
 	}
 
 //Function getAllAttributes
