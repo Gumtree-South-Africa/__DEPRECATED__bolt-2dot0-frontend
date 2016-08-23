@@ -150,15 +150,6 @@
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>
 
-    {{#if this.header.analytics.account}}
-        {{#with this.header.analytics}}
-		    <script type="text/javascript">
-				var _gaq = _gaq || [];
-				_gaq.push(['siteTracker._setAccount', '{{account}}']);
-                _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
-            </script>
-        {{/with}}
-    {{/if}}
     {{> (dynamic "abTest") }}
 
     {{#block "googleAnalytics"}}
@@ -170,7 +161,6 @@
                 {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
                     {{#each ignoredRefs}}
                         _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
                     {{/each}}
