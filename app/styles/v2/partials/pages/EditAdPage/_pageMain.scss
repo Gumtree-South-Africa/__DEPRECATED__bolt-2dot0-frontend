@@ -112,8 +112,7 @@ $labelMargin: 8%;
 			}
 
 			.edit-ad-submit {
-				width: $inputWidth;
-				margin: 0 $inputMargin 10px $inputMargin;
+				width: 100%;
 				color: $formSubmitButtonTextColor;
 				background-color: $formSubmitButtonColor;
 				border-style: none;
@@ -124,11 +123,13 @@ $labelMargin: 8%;
 
 		.cancel-link-wrapper {
 			margin-bottom: 10px;
+			margin-top: 10px;
 			width: 100%;
 
 			@include from-breakpoint($medium-break) {
 				width: 25%;
 				float: left;
+				margin-top: 0;
 
 				.cancel-form-link {
 					margin-top: 9px;
@@ -163,6 +164,7 @@ $labelMargin: 8%;
 				margin: 0 $labelMargin;
 				font-size: 10px;
 				color: $formLabelTextColor;
+				display: inline-block; // this fixes text wrapping on smaller devices
 			}
 
 			.suggested-cat {
@@ -171,6 +173,13 @@ $labelMargin: 8%;
 				font-size: 13px;
 				color: $categoryDisplayTextColor;
 				font-style: italic;
+			}
+
+			.leaf-node-warning {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				font-size: 13px;
+				color: $vivaOrange;
 			}
 		}
 
@@ -187,9 +196,9 @@ $labelMargin: 8%;
 
 		.description-input {
 			height: 150px;
-			margin-left: 6%;
+			margin-left: $inputMargin;
 			resize: none;
-			width: 88%;
+			width: $inputWidth;
 			padding: 0 2%;
 		}
 
@@ -205,6 +214,11 @@ $labelMargin: 8%;
 
 				&.price-input {
 					width: 50%;
+
+					@media(max-width: 450px) {
+						width: 30%;
+					}
+
 					margin: 0 0 0 $inputMargin;
 				}
 
@@ -258,6 +272,11 @@ $labelMargin: 8%;
 				height: 40px;
 				background-color: $mainDetailsBackgroundColor;
 			}
+
+			.btn-area-inner {
+				width: $inputWidth;
+				margin: 0 auto;
+			}
 		}
 	}
 
@@ -268,6 +287,14 @@ $labelMargin: 8%;
 	.radio-group {
 		margin-left: 15px;
 		display: inline-block;
+
+		@media(max-width: 475px) {
+			margin-left: 5px;
+
+			.control {
+				margin-right: 5px;
+			}
+		}
 
 		/* Begin custom radio btns */
 		// Hide default browser input

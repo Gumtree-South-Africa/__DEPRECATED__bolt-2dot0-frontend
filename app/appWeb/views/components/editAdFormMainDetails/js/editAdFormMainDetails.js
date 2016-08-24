@@ -115,13 +115,20 @@ let _toggleShowPriceField = (shouldHide) => {
 	this.$priceFormField.toggleClass('hidden', shouldHide);
 };
 
+let _toggleShowLeafNodeWarning = (shouldHide) => {
+	this.$leafNodeWarning.toggleClass('hidden', shouldHide);
+};
+
 let _openCatSelectModal = () => {
 	categorySelectionModal.openModal({
 		currentHierarchy: this.currentHierarchy.slice(0),
 		onSaveCb: (hierarchy, breadcrumbs) => {
 			this.$categoryChangeLink.empty();
 			this.$categoryChangeLink.append(breadcrumbs);
-			_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(hierarchy));
+
+			let isLeafNode = categorySelectionModal.isLeafCategory(hierarchy);
+			_toggleSubmitDisable(!isLeafNode);
+			_toggleShowLeafNodeWarning(isLeafNode);
 
 			let newCatId = hierarchy[hierarchy.length - 1];
 			this.$categoryId.val(newCatId);
@@ -150,6 +157,7 @@ let onReady = () => {
 	this.$currentHierarchy = $("#selected-cat-hierarchy");
 	this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
 	this.$priceFormField = this.$detailsSection.find(".form-ad-price");
+	this.$leafNodeWarning = this.$detailsSection.find(".leaf-node-warning");
 
 	customAttributes.initialize();
 	customAttributes.setCategoryId(this.currentHierarchy[this.currentHierarchy.length - 1]);
@@ -160,7 +168,9 @@ let onReady = () => {
 	this.$textarea = this.$detailsSection.find('#description-input');
 	this.$categoryChangeLink.append(categorySelectionModal.getFullBreadCrumbText(this.currentHierarchy));
 
-	_toggleSubmitDisable(!categorySelectionModal.isLeafCategory(this.currentHierarchy));
+	let isLeafNode = categorySelectionModal.isLeafCategory(this.currentHierarchy);
+	_toggleSubmitDisable(!isLeafNode);
+	_toggleShowLeafNodeWarning(isLeafNode);
 
 	this.$submitButton.on('click', (e) => {
 		_toggleSubmitDisable(true);

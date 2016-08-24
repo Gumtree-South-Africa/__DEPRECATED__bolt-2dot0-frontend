@@ -1372,7 +1372,7 @@
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
 		"mainDetails": {
-			"title": "Agregar detalles (opcional)",
+			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
 				"adTitle": "Título del anuncio",
@@ -1386,6 +1386,7 @@
 			},
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"leafNodeWarning": "TODO: GET DESCRIPTIVE TEXT TO TELL USER TO PICK LEAF NODE CATEGORY",
 			"submit": "Listo",
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
