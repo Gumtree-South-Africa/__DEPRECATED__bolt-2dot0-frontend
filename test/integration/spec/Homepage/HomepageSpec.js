@@ -51,8 +51,10 @@ describe('Homepage Spec', () => {
 
 		it('should show 32 tiles after clicking View More button', () => {
 			// scroll down to 'View More' button
-			browser.executeScript('window.scrollTo(0, 1000)')
-				.then(homepagePO.viewMoreButton.click())
+			browser.executeScript('window.scrollTo(0, 2000)')
+				.then(
+					homepagePO.viewMoreButton.click()
+				)
 				.then(() => {
 					// 32 showing
 					let i;
@@ -69,20 +71,24 @@ describe('Homepage Spec', () => {
 
 		it('should navigate to the search page after all 48 items have been shown', () => {
 			// scroll to 'View More' each time new tiles are added, then click it
-			browser.executeScript('window.scrollTo(0, 1000)')
-				.then(homepagePO.viewMoreButton.click())
-				.then(browser.executeScript('window.scrollTo(0, 3600)'))
-				.then(homepagePO.viewMoreButton.click())
+			browser.executeScript('window.scrollTo(0, 2000)')
+				.then(
+					homepagePO.viewMoreButton.click()
+				)
+				.then(browser.executeScript('window.scrollTo(0, 4600)'))
+				.then(
+					homepagePO.viewMoreButton.click()
+				)
 				.then(() => {
 					// 48 showing
 					for (let i = 0; i < 48; i++) {
 						expect(element.all(by.css('.trending-card .tile-item')).get(i).getAttribute('style')).not.toContain('display: none');
 					}
-					browser.executeScript('window.scrollTo(0, 4000)');
+					browser.executeScript('window.scrollTo(0, 5000)');
 				})
 				.then(homepagePO.viewMoreButton.click())
 				.then(() => {
-					expect(browser.getCurrentUrl()).toContain('search.html');
+					expect(browser.getCurrentUrl()).toContain('search.html', 'Final "View More" click should navigate to the search page');
 				});
 		});
 
@@ -96,8 +102,13 @@ describe('Homepage Spec', () => {
 				expect(element.all(by.css('.trending-card img.lazy.ad-image')).count()).toEqual(mockData.ads.length, 'Only trending items specified in mocked data should display');
 
 				// check trending item for src attr, lazy loaded images should not have loaded
-				let mockAdImgs = [mockData.ads[0].pictures[0].url];
-				let mockProfileImgs = [mockData.ads[0].seller.profileImage];
+				let mockAdImgs = [];
+				let mockProfileImgs = [];
+				for (let i = 0; i < 48; i++) {
+					mockAdImgs.push(mockData.ads[i].seller.profileImage);
+					mockProfileImgs.push(mockData.ads[i].pictures[0].url);
+				}
+
 				expect(homepagePO.trendingAdImgs.getAttribute('src')).not.toEqual(mockAdImgs, 'Tile is not in view and ad image should not be loaded yet');
 				expect(homepagePO.trendingProfileImgs.getAttribute('src')).not.toEqual(mockProfileImgs, 'Tile is not in view and profile image should not be loaded yet');
 
@@ -108,7 +119,7 @@ describe('Homepage Spec', () => {
 				setTimeout(() => {
 					expect(homepagePO.trendingAdImgs.getAttribute('src')).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
 					expect(homepagePO.trendingProfileImgs.getAttribute('src')).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
-				}, 500);
+				}, 1000);
 			});
 		});
 	});
