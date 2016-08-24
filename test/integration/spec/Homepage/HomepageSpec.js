@@ -119,7 +119,7 @@ describe('Homepage Spec', () => {
 				setTimeout(() => {
 					expect(homepagePO.trendingAdImgs.getAttribute('src')).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
 					expect(homepagePO.trendingProfileImgs.getAttribute('src')).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
-				}, 500);
+				}, 1000);
 			});
 		});
 	});
