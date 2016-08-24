@@ -3,6 +3,7 @@
 let $ = require('jquery');
 let EpsUpload = require('./epsUpload.js');
 let uploadAd = require('./uploadAd.js');
+let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -230,9 +231,9 @@ let _postAd = (url, locationType) => {
 		this.$uploadProgress.toggleClass('hidden');
 		this.$uploadProgress.html("0%");
 		this.inputDisabled = false;
+		formChangeWarning.disable();
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				window.onbeforeunload = () => {};
 				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
@@ -249,6 +250,7 @@ let _postAd = (url, locationType) => {
 		console.warn(err);
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
+		formChangeWarning.enable();
 		UploadMsgClass.failMsg(0);
 	}, {
 		locationType: locationType

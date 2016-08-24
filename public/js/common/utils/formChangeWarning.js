@@ -1,15 +1,20 @@
 "use strict";
-let initialize = () => {
-	window.onbeforeunload = () => {
-		return '';
+
+class FormChangeWarning {
+	initialize() {
+		this.enable();
 	};
-};
 
-let disableFormWarning = () => {
-	window.onbeforeunload = () => {};
-};
+	enable() {
+		window.onbeforeunload = () => {
+			return '';
+		}
+	}
 
-module.exports = {
-	initialize,
-	disableFormWarning
-};
+	disable() {
+		window.onbeforeunload = () => {};
+	}
+}
+
+//singleton
+module.exports = new FormChangeWarning();

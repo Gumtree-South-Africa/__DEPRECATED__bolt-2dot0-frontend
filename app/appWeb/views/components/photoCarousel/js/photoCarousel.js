@@ -4,6 +4,7 @@ require("slick-carousel");
 let $ = require('jquery');
 let EpsUpload = require('../../uploadImage/js/epsUpload');
 let uploadAd = require('../../uploadImage/js/uploadAd');
+let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
 
 /******* BEGIN EPS STUFF *******/
@@ -332,9 +333,9 @@ let _postAd = (urls, locationType) => {
 	uploadAd.postAd(urls, (response) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
+		formChangeWarning.disable();
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				window.onbeforeunload = () => {};
 				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
@@ -352,6 +353,7 @@ let _postAd = (urls, locationType) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		UploadMsgClass.failMsg();
+		formChangeWarning.enable();
 	}, extraPayload);
 };
 

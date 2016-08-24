@@ -19,7 +19,7 @@ let _setHiddenLocationInput = (location) => {
 };
 
 let _successCallback = (response) => {
-	formChangeWarning.disableFormWarning();
+	formChangeWarning.disable();
 	window.location.href = response.vipLink;
 };
 
