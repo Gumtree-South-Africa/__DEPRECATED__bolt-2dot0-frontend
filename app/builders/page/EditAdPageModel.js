@@ -116,7 +116,7 @@ class EditAdPageModel {
 		this.dataPromiseFunctionMap.adResult = () => {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
+				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
 					return data;

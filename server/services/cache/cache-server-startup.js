@@ -80,6 +80,22 @@ function CacheBapiData(siteApp, requestId) {
             });
     };
 
+	/**
+	 * @method loadAllCategoryData
+	 * @description Loads All Category Data from BAPI. Exposes that data via
+	 *      siteApp.locals.config.categoryAllData
+	 * @private
+	 */
+	let loadAllCategoryData = function (bapiHeaders, categoryDepth) {
+		// Load All Category Data from BAPI
+		return Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
+			.then(function (dataReturned) {
+				siteApp.locals.config.categoryAllData = dataReturned;
+			}).fail(function (err) {
+				console.warn('Startup: Error in loading All Categories from CategoryService:- ', err);
+			});
+	};
+
 
     return {
 
@@ -132,10 +148,13 @@ function CacheBapiData(siteApp, requestId) {
                 // Load Category Data from BAPI
 			  	let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
 
-				// Start Cache Reloader
-				cacheReloader.kickoffReloadProcess(bapiHeaders);
+				// Load Category Data from BAPI
+				let allCategories = loadAllCategoryData(bapiHeaders, 3);
 
-				return Q.all([locations, categories]);
+				// Start Cache Reloader
+				let cacheReload = Q(cacheReloader.kickoffReloadProcess(bapiHeaders));
+
+				return Q.all([locations, categories, allCategories, cacheReload]);
             }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
                 siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
