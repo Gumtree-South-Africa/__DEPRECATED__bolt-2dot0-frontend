@@ -1335,16 +1335,22 @@
 				"privacy": "Política de privacidad",
 				"cookies": "Cookies"
 			},
+			"business": {
+				"business": "Agentes Inmobiliarios",
+				"protool": "La Tienda de Semi Nuevos",
+				"stores": "La Tienda Vivanuncios"
+			},
 			"explore": {
 				"explore": "Explorar",
 				"classifieds": "Sitio de clasificados de eBay",
-				"mobile": "Aplicaciones móviles",
+				"mobile": "Aplicaciones Móviles",
 				"partners": "Socios",
 				"carprice": "Índice de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Busquedas mas destacadas",
-                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0"
+                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+				"priceIndex": "Previos de Inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
@@ -1352,8 +1358,13 @@
 				"helplink": "http://ayuda.vivanuncios.com.mx/MX/",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
-				"givefeedback": "Comentar"
+				"givefeedback": "Comentar",
+				"listingRules": "Reglas para Publicar Anuncios"
 			}
+		},
+		"topSearches": {
+			"viewMore": "Ver Más",
+			"viewLess": "Ver Menos"
 		},
 		"download": {
 			"download": "Descargar la aplicación",
