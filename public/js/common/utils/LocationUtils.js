@@ -4,16 +4,17 @@ let CookieUtils = require("./CookieUtils");
 
 let LocationUtils = {
 	getLocationId: (successCallback, errorCallback) => {
-		if (CookieUtils.getCookie('searchLocId')) {
-			return {
-				id: CookieUtils.getCookie('searchLocId')
-			}
+		let cookieVal = CookieUtils.getCookie('searchLocId');
+		if (cookieVal) {
+			successCallback({
+				id: cookieVal
+			});
 		} else {
 			$.ajax({
 				url: '/api/locate/locationlatlong',
 				type: 'GET',
 				success: (res) => {
-					document.cookie = 'locId=' + res.id;
+					document.cookie = 'searchLocId=' + res.id;
 					successCallback(res);
 				},
 				error: errorCallback
