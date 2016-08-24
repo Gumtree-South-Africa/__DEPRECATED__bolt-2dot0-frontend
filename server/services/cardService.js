@@ -27,8 +27,7 @@ class CardService {
 			if (parameters.geo === null) {
 				// we don't have a location, delete the property to keep it from sending to the back end
 				delete parameters.geo;
-			}
-			if (parameters.geo) {
+			} else if (parameters.geo) {
 				parameters.geo = bapiService.bapiFormatLatLng(parameters.geo);
 			}
 		}
