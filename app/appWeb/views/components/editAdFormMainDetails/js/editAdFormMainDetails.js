@@ -149,7 +149,8 @@ let onReady = () => {
 	this.$photoCarousel = $('.photo-carousel');
 	this.$attributes = $("#edit-ad-custom-attributes-form");
 	this.$categoryId = this.$detailsSection.find('#category-id');
-	this.$submitButton = this.$detailsSection.find('#js-edit-submit-button');
+	this.$submitButton = this.$detailsSection.find('#edit-submit-button');
+	this.$cancelButton = this.$detailsSection.find('#cancel-button');
 	this.$locationLink = $("#edit-location-input");
 
 	this.defaultLocation = this.$locationLink.data("default-location");
@@ -176,6 +177,11 @@ let onReady = () => {
 		_toggleSubmitDisable(true);
 		e.preventDefault();
 		_ajaxEditForm();
+	});
+
+	this.$cancelButton.click(() => {
+		formChangeWarning.disable();
+		window.location.reload();
 	});
 
 	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);

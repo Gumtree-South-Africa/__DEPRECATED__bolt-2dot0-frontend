@@ -38,7 +38,7 @@
                        type="text"/>
                 <div class="radio-group" data-schema="data.price.currency">
                     <label class="control">
-                        <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}/>
+                        <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
                         <div class="outer-circle">
                             <div class="inner-circle"></div>
                         </div>
@@ -82,10 +82,10 @@
 		<div class="button-area">
             <div class="btn-area-inner">
 				<div class="submit-btn-wrapper">
-					<button id="js-edit-submit-button" class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
+					<button id="edit-submit-button" class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
 				</div>
 				<div class="cancel-link-wrapper">
-					<div class="cancel-form-link">
+					<div id="cancel-button" class="cancel-form-link">
                         {{i18n "editAd.mainDetails.cancel"}}
 					</div>
 				</div>

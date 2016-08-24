@@ -116,11 +116,16 @@ class EditAdPageModel {
 		this.dataPromiseFunctionMap.adResult = () => {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
+
+				if (data.price && data.price.currency !== "MXN" && data.price.currency !== "USD") {
+					modelData.shouldDefaultPrice = true;
+				}
 				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
 					return data;
 				});
+
 			});
 		};
 	}

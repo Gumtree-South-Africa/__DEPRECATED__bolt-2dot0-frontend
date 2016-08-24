@@ -4,6 +4,10 @@ $labelWidth: 86%;
 $labelMargin: 8%;
 
 .edit-ad-page {
+	.custom-attributes {
+		margin-bottom: 20px;
+	}
+
 	.cover-photo {
 		display: none;
 		@include from-breakpoint($medium-break) {
@@ -142,6 +146,10 @@ $labelMargin: 8%;
 				font-size: 18px;
 				height: 40px;
 				text-decoration: underline;
+
+				&:hover {
+					cursor: pointer;
+				}
 			}
 		}
 
