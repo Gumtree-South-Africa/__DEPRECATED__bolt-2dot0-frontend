@@ -12,11 +12,6 @@ let cors = require(cwd + '/modules/cors');
 
 // route is /api/ads/favorite
 router.post('/', cors, (req, res) => {
-	let modelBuilder = new ModelBuilder();
-
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
-	model.advertModel = new AdvertModel(model.bapiHeaders);
-
 	// Validate the incoming JSON
 	let validate = validator(favoriteSchema);
 	let valid = validate(req.body);
@@ -29,34 +24,57 @@ router.post('/', cors, (req, res) => {
 		return;
 	}
 
-	model.advertModel.favoriteTheAd(req.body.adId).then(() => {
-		res.status(200).send({});	// returning {} since consumer will expect json
-	}).fail((err) => {
-		console.error(err);
-		console.error(err.stack);
-		res.status(500).send({
-			error: "unable to favorite ad, see logs for details"
+	// Validate the body
+	if (req.body.adId) {
+		let modelBuilder = new ModelBuilder();
+
+		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		model.advertModel = new AdvertModel(model.bapiHeaders);
+
+		model.advertModel.favoriteTheAd(req.body.adId).then(() => {
+			res.status(200).send({});	// returning {} since consumer will expect json
+			return;
+		}).fail((err) => {
+			console.error(err);
+			console.error(err.stack);
+			res.status(500).send({
+				error: "unable to favorite ad, see logs for details"
+			});
+			return;
 		});
-	});
+	} else {
+		res.status(400).send({
+			error: "adId not found in the request"
+		});
+		return;
+	}
 });
 
 router.delete('/', cors, (req, res) => {
-	let modelBuilder = new ModelBuilder();
+	// Validate the body
+	if (! req.body.adId) {
+		let modelBuilder = new ModelBuilder();
 
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
-	model.advertModel = new AdvertModel(model.bapiHeaders);
+		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		model.advertModel = new AdvertModel(model.bapiHeaders);
 
-	model.advertModel.unfavoriteTheAd(req.body.adId).then(() => {
-		res.status(200);
-		res.send();
-	}).fail((err) => {
-		console.error(err);
-		console.error(err.stack);
-		res.status(500);
-		res.send({
-			error: true
+		model.advertModel.unfavoriteTheAd(req.body.adId).then(() => {
+			res.send();
+			return;
+		}).fail((err) => {
+			console.error(err);
+			console.error(err.stack);
+			res.status(500).send({
+				error: true
+			});
+			return;
 		});
-	});
+	} else {
+		res.status(400).send({
+			error: "adId not found in the request"
+		});
+		return;
+	}
 });
 
 module.exports = router;
