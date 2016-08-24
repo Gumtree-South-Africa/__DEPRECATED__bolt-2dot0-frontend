@@ -30,14 +30,12 @@ router.post('/', cors, (req, res) => {
 	}
 
 	model.advertModel.favoriteTheAd(req.body.adId).then(() => {
-		res.status(200);
-		res.send();
+		res.status(200).send({});	// returning {} since consumer will expect json
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
-		res.status(500);
-		res.send({
-			error: true
+		res.status(500).send({
+			error: "unable to favorite ad, see logs for details"
 		});
 	});
 });
