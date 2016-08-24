@@ -14,7 +14,7 @@ router.post('/autocomplete', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
-	model.searchModel.autoComplete(req.query.searchterm, req.query.location, req.query.category).then((autoCompleteResults) => {
+	model.searchModel.autoComplete(req.body.searchterm, req.body.location, req.body.category).then((autoCompleteResults) => {
 		let results = {
 			totalCount: 0,
 			items: []
