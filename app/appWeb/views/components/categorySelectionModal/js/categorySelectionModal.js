@@ -1,6 +1,18 @@
 'use strict';
 
 class CategorySelectionModal {
+
+	_findInArray(array, cb) {
+		let returnObj, alreadyFound = false;
+		for (let i = 0; i < array.length && !alreadyFound; i++) {
+			if (cb(array[i])) {
+				returnObj = array[i];
+				alreadyFound = true;
+			}
+		}
+		return returnObj;
+	}
+
 	_checkLeafNode() {
 		return !(this.currentLevel.children && this.currentLevel.children.length > 0);
 	}
@@ -10,7 +22,7 @@ class CategorySelectionModal {
 		// for each value in the hierarchy array, we navigate down in the tree
 		hierarchyArray.forEach((catId) => {
 			if (catId !== 0) {
-				currentLevel = currentLevel.children.find((subCat) => {
+				currentLevel = this._findInArray(currentLevel.children, (subCat) => {
 					return subCat.id === catId;
 				});
 			}
@@ -140,7 +152,7 @@ class CategorySelectionModal {
 	}
 
 	_findItemOnLevel(id) {
-		let item = this.currentLevel.children.find((cat) => {
+		let item = this._findInArray(this.currentLevel.children, (cat) => {
 			return cat.id === id;
 		});
 
