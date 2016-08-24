@@ -4,244 +4,241 @@ $item-top-padding: 12px;
 $item-bottom-padding: 12px;
 $dropdown-width: 220px;
 
-.header-wrapper {
-	background: $common-background-color;
-	border-bottom: 2px solid $vivaBlue2;
+.headerV2 {
+	z-index: 9;
+	position: relative;
+    width: 100%;
+    box-shadow: 0 0 10px black;
+    height: 65px;
+    background: $common-background-color;
+ 
+   color: $headerTextColor;
 
-	.headerV2 {
-		z-index: 9;
-		position: relative;
-		max-width: 1168px;
-		height: 65px;
-		color: $headerTextColor;
-		margin: 0 auto;
+    a {
+        color: $headerTextColor;
+        text-decoration: none;
+    }
 
+    .mobile-menu {
+        position: absolute;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+        left: 5px;
+    }
 
-		a {
-			color: $headerTextColor;
-			text-decoration: none;
-		}
+    .app-icon {
+        position: absolute;
+        top: 0;
+		bottom: 0;
+		margin: auto;
+        right: 5px;
+    }
 
-		.mobile-menu {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			left: 5px;
-		}
+    .mobile-only {
+        display: inline-block;
+        @include from-breakpoint($medium-break){
+            display: none;
+        }
+    }
 
-		.app-icon {
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			right: 5px;
-		}
+    .logo {
+        position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+        margin: auto;
+        display: inline-block;
+        min-width: 140px;
+        width: 60%;
+        height: 50px;
+        background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
+        background-size: contain;
+        @include from-breakpoint($medium-break){
+            min-width: 140px;
+            margin-left: 20px;
+            width: 20%;
+            height: 50px;
+        }
+    }
 
-		.mobile-only {
-			display: inline-block;
-			@include from-breakpoint($medium-break) {
-				display: none;
-			}
-		}
+    .left-items {
+        z-index: 10;
+        position: absolute;
+        left: 24%;
+        width: 20%;
+        text-align: center;
+        display: none;
+        @include from-breakpoint($medium-break){
+            display: inline-block;
+        }
 
-		.logo {
-			position: absolute;
-			left: 0;
-			right: 0;
-			top: 0;
-			bottom: 0;
-			margin: auto;
-			display: inline-block;
-			min-width: 140px;
-			width: 60%;
-			height: 50px;
-			background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
-			background-size: contain;
-			@include from-breakpoint($medium-break) {
-				min-width: 140px;
-				margin-left: 20px;
-				width: 20%;
-				height: 50px;
-			}
-		}
+        .logo, .messages, .browse {
+            float: left;
+            top: 50%;
+        }
 
-		.left-items {
-			z-index: 10;
-			position: absolute;
-			left: 24%;
-			width: 20%;
-			text-align: center;
+        .messages {
+            position:relative;
+            margin-top: 5px;
+            //width: 80px;
+        }
+
+        .browse {
+            min-width: 81px;
+            width: 40%;
+
+            &.item-text {
+                padding-top: $item-top-padding;
+            }
+        }
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .right-items {
+        position: absolute;
+        z-index: 10;
+        right: 0;
+        width: 60%;
+        text-align: center;
+        display: none;
+        @include from-breakpoint($medium-break){
+            display: inline-block;
+        }
+
+        .help, .my-ads {
+            padding-top: $item-top-padding;
+            width: 15%;
+        }
+
+        .profile {
+            vertical-align: middle;
+
+            &.normal-pad-top {
+                padding-top: $item-top-padding;
+            }
+            .profile-icon {
+                border-radius: 50%;
+                vertical-align: middle;
+                display: inline-block;
+                width: 24px;
+                height: 24px;
+            }
+            .profile-picture {
+                background-size: contain;
+                border: 1px solid $profile-border;
+                border-radius: 50%;
+            }
+        }
+    }
+
+    .number-messages {
+        height: 25px;
+        width: 25px;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $headerMessagesBackgroundColor;
+        border-radius: 50%;
+        color: white;
+    }
+
+    .right-items > .btn-wrapper {
+        margin: 0;
+        float: right;
+
+        .btn {
+			@include vivaBtn(on, 10px);
+            width: 83%;
+            min-width: 205px;
+
+            .sudolink {
+                vertical-align: middle;
+            }
+            .icon-camera {
+                height: 25px;
+            }
+        }
+    }
+
+    .right-item {
+        width: 20%;
+        float: right;
+    }
+
+    .item-text {
+        // position+bg-color used to hide dropdown top border
+        position: relative;
+        background-color: transparent;
+        width: 100%;
+		max-width: $dropdown-width;
+        height: 65px;
+        overflow: hidden;
+        text-align: left;
+		box-sizing: border-box;
+
+        // setup a border that will get border color when the menu is open
+        border-width: 0 1px;
+        border-style: solid;
+        border-color: transparent;
+        padding: $item-top-padding 0 $item-bottom-padding 5px;
+
+        &.menu-open {
+            background-color: $common-background-color;
+            border-color: $headerMenuBorderColor;
+        }
+    }
+
+    .menu-dropdown {
+        margin-top: -1px; // works with item-text to hide top border
+
+        font-weight: $fontWeightBold;
+        font-size: $fontSizeH4;
+        text-align: left;
+        background-color: $headerBackgroundColor;
+        border: 1px solid $headerMenuBorderColor;
+		display: inline-block;
+		white-space: nowrap;
+
+		&.hidden {
 			display: none;
-			@include from-breakpoint($medium-break) {
-				display: inline-block;
-			}
-
-			.logo, .messages, .browse {
-				float: left;
-				top: 50%;
-			}
-
-			.messages {
-				position: relative;
-				margin-top: 5px;
-				//width: 80px;
-			}
-
-			.browse {
-				min-width: 81px;
-				width: 40%;
-
-				&.item-text {
-					padding-top: $item-top-padding;
-				}
-			}
 		}
 
-		.hidden {
-			display: none;
-		}
+        .menu-item {
+            border-bottom: 1px solid $headerMenuItemSeparatorColor;
+			padding-right: 1em;
 
-		.right-items {
-			position: absolute;
-			z-index: 10;
-			right: 0;
-			width: 60%;
-			text-align: center;
-			display: none;
-			@include from-breakpoint($medium-break) {
-				display: inline-block;
-			}
+            &:last-child {
+                border-bottom: none;
+            }
+        }
 
-			.help, .my-ads {
-				padding-top: $item-top-padding;
-				width: 15%;
-			}
+        // link items should take the entire space of menu-item
+        .link-item {
+            display: block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
 
-			.profile {
-				vertical-align: middle;
+        .item-primary-text {
+            padding-left: 5px;
+        }
 
-				&.normal-pad-top {
-					padding-top: $item-top-padding;
-				}
-				.profile-icon {
-					border-radius: 50%;
-					vertical-align: middle;
-					display: inline-block;
-					width: 24px;
-					height: 24px;
-				}
-				.profile-picture {
-					background-size: contain;
-					border: 1px solid $profile-border;
-					border-radius: 50%;
-				}
-			}
-		}
 
-		.number-messages {
-			height: 25px;
-			width: 25px;
-			position: absolute;
-			top: 0;
-			right: 0;
-			background-color: $headerMessagesBackgroundColor;
-			border-radius: 50%;
-			color: white;
-		}
+        .menu-item:hover {
+            background-color: $headerMenuItemHighlightColor;
+         }
+    }
 
-		.right-items > .btn-wrapper {
-			margin: 0;
-			float: right;
-
-			.btn {
-				@include vivaBtn(on, 10px);
-				width: 83%;
-				min-width: 205px;
-
-				.sudolink {
-					vertical-align: middle;
-				}
-				.icon-camera {
-					height: 25px;
-				}
-			}
-		}
-
-		.right-item {
-			width: 20%;
-			float: right;
-		}
-
-		.item-text {
-			// position+bg-color used to hide dropdown top border
-			position: relative;
-			background-color: transparent;
-			width: 100%;
-			max-width: $dropdown-width;
-			height: 65px;
-			overflow: hidden;
-			text-align: left;
-			box-sizing: border-box;
-
-			// setup a border that will get border color when the menu is open
-			border-width: 0 1px;
-			border-style: solid;
-			border-color: transparent;
-			padding: $item-top-padding 0 $item-bottom-padding 5px;
-
-			&.menu-open {
-				background-color: $common-background-color;
-				border-color: $headerMenuBorderColor;
-			}
-		}
-
-		.menu-dropdown {
-			margin-top: -1px; // works with item-text to hide top border
-
-			font-weight: $fontWeightBold;
-			font-size: $fontSizeH4;
-			text-align: left;
-			background-color: $headerBackgroundColor;
-			border: 1px solid $headerMenuBorderColor;
-			display: inline-block;
-			white-space: nowrap;
-
-			&.hidden {
-				display: none;
-			}
-
-			.menu-item {
-				border-bottom: 1px solid $headerMenuItemSeparatorColor;
-				padding-right: 1em;
-
-				&:last-child {
-					border-bottom: none;
-				}
-			}
-
-			// link items should take the entire space of menu-item
-			.link-item {
-				display: block;
-				padding-top: 10px;
-				padding-bottom: 10px;
-			}
-
-			.item-primary-text {
-				padding-left: 5px;
-			}
-
-			.menu-item:hover {
-				background-color: $headerMenuItemHighlightColor;
-			}
-		}
-
-		.header-item-icon {
-			display: inline-block;
-			position: relative;
-			margin-right: 6px;
-			top: 1px;
-			left: 5px;
-		}
-	}
+    .header-item-icon {
+        display: inline-block;
+        position: relative;
+        margin-right: 6px;
+        top: 1px;
+        left: 5px;
+    }
 }
