@@ -1,39 +1,38 @@
 @import  "../profileMenu/profileMenu";
 
-$item-top-padding: 12px;
-$item-bottom-padding: 12px;
+$item-top-padding: 26px;
 $dropdown-width: 220px;
 
-.headerV2 {
-	z-index: 9;
-	position: relative;
-    width: 100%;
-    box-shadow: 0 0 10px black;
-    height: 65px;
-    background: $common-background-color;
- 
-   color: $headerTextColor;
+.header-wrapper {
+	background: $common-background-color;
+	border-bottom: 2px solid $vivaBlue2;
+	font-weight: bold;
+
+	.headerV2 {
+		z-index: 9;
+		position: relative;
+		max-width: 1168px;
+		height: 65px;
+		color: $headerTextColor;
+		margin: 0 auto;
+
 
     a {
         color: $headerTextColor;
         text-decoration: none;
     }
 
-    .mobile-menu {
-        position: absolute;
-		top: 0;
-		bottom: 0;
-		margin: auto;
-        left: 5px;
-    }
+		.mobile-menu {
+			position: absolute;
+			top: 36px;
+			left: 25px;
+		}
 
-    .app-icon {
-        position: absolute;
-        top: 0;
-		bottom: 0;
-		margin: auto;
-        right: 5px;
-    }
+		.app-icon {
+			position: absolute;
+			top: 34px;
+			right: 25px;
+		}
 
     .mobile-only {
         display: inline-block;
@@ -42,52 +41,55 @@ $dropdown-width: 220px;
         }
     }
 
-    .logo {
-        position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		bottom: 0;
-        margin: auto;
-        display: inline-block;
-        min-width: 140px;
-        width: 60%;
-        height: 50px;
-        background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
-        background-size: contain;
-        @include from-breakpoint($medium-break){
-            min-width: 140px;
-            margin-left: 20px;
-            width: 20%;
-            height: 50px;
-        }
-    }
+		.logo {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: auto;
 
-    .left-items {
-        z-index: 10;
-        position: absolute;
-        left: 24%;
-        width: 20%;
-        text-align: center;
-        display: none;
-        @include from-breakpoint($medium-break){
-            display: inline-block;
-        }
+			display: inline-block;
+			margin-top: 34px;
+			margin-bottom: 11px;
+			width: 200px;
+			height: 28px;
+			background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
+			background-size: contain;
+			@include from-breakpoint($medium-break) {
+				margin-left: 40px;
+				margin-top: 30px;
+			}
+		}
+
+		.left-items {
+			z-index: 10;
+			position: absolute;
+			left: 24%;
+			width: 25%;
+			text-align: center;
+			display: none;
+			@include from-breakpoint($medium-break) {
+				display: inline-block;
+			}
 
         .logo, .messages, .browse {
             float: left;
             top: 50%;
         }
 
-        .messages {
-            position:relative;
-            margin-top: 5px;
-            //width: 80px;
-        }
+			.messages {
+				position: relative;
+				left: 40px;
+				margin-top: 18px;
+				margin-right: 2%;
+			}
 
-        .browse {
-            min-width: 81px;
-            width: 40%;
+			.browse {
+				position: relative;
+				left: 42px;
+				width: 40%;
+				min-width: 81px;
 
             &.item-text {
                 padding-top: $item-top-padding;
@@ -99,62 +101,72 @@ $dropdown-width: 220px;
         display: none;
     }
 
-    .right-items {
-        position: absolute;
-        z-index: 10;
-        right: 0;
-        width: 60%;
-        text-align: center;
-        display: none;
-        @include from-breakpoint($medium-break){
-            display: inline-block;
-        }
+		.right-items {
+			position: absolute;
+			z-index: 10;
+			right: 0;
+			width: 32%;
+			text-align: center;
+			display: none;
+			@include from-breakpoint($medium-break) {
+				display: inline-block;
+			}
 
         .help, .my-ads {
             padding-top: $item-top-padding;
             width: 15%;
         }
 
-        .profile {
-            vertical-align: middle;
+			.profile {
+				&.normal-pad-top {
+					padding-top: $item-top-padding;
+				}
+				.profile-icon {
+					border-radius: 50%;
+					vertical-align: middle;
+					display: inline-block;
+					width: 40px;
+					height: 40px;
+				}
+				.profile-picture {
+					background-size: contain;
+					border: 1px solid $profile-border;
+					border-radius: 50%;
+				}
+			}
+		}
 
-            &.normal-pad-top {
-                padding-top: $item-top-padding;
-            }
-            .profile-icon {
-                border-radius: 50%;
-                vertical-align: middle;
-                display: inline-block;
-                width: 24px;
-                height: 24px;
-            }
-            .profile-picture {
-                background-size: contain;
-                border: 1px solid $profile-border;
-                border-radius: 50%;
-            }
-        }
-    }
+		.number-messages {
+			height: 25px;
+			width: 25px;
+			position: absolute;
+			top: 0;
+			right: 0;
+			background-color: $headerBlue;
+			border-radius: 50%;
+			color: white;
+		}
 
-    .number-messages {
-        height: 25px;
-        width: 25px;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background-color: $headerMessagesBackgroundColor;
-        border-radius: 50%;
-        color: white;
-    }
+		.post-ad-button {
+			position: absolute;
+			top: 0;
+			left: 58%;
+			transform: translateX(-58%);
 
-    .right-items > .btn-wrapper {
-        margin: 0;
-        float: right;
+			margin: 0;
+			border-radius: 2px;
+			margin-top: 20px;
+			margin-bottom: 15px;
+			box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+			display: none;
+			@include from-breakpoint($medium-break) {
+				display: inline-block;
+			}
 
-        .btn {
-			@include vivaBtn(on, 10px);
-            width: 83%;
-            min-width: 205px;
+			.btn {
+				@include vivaBtn(on, 10px);
+				min-width: 205px;
+				padding: 10px 0;
 
             .sudolink {
                 vertical-align: middle;
@@ -165,27 +177,35 @@ $dropdown-width: 220px;
         }
     }
 
-    .right-item {
-        width: 20%;
-        float: right;
-    }
+		.right-item {
+			width: 155px;
+			margin-right: 5px;
+			float: left;
 
-    .item-text {
-        // position+bg-color used to hide dropdown top border
-        position: relative;
-        background-color: transparent;
-        width: 100%;
-		max-width: $dropdown-width;
-        height: 65px;
-        overflow: hidden;
-        text-align: left;
-		box-sizing: border-box;
+			.item-text {
+				width: 155px;
+				white-space: nowrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				padding-top: 20px;
+			}
+		}
 
-        // setup a border that will get border color when the menu is open
-        border-width: 0 1px;
-        border-style: solid;
-        border-color: transparent;
-        padding: $item-top-padding 0 $item-bottom-padding 5px;
+		.item-text {
+			// position+bg-color used to hide dropdown top border
+			position: relative;
+			background-color: transparent;
+			width: 100%;
+			max-width: $dropdown-width;
+			overflow: hidden;
+			text-align: left;
+			box-sizing: border-box;
+
+			// setup a border that will get border color when the menu is open
+			border-width: 0 1px;
+			border-style: solid;
+			border-color: transparent;
+			padding: 26px 0 26px 5px;
 
         &.menu-open {
             background-color: $common-background-color;

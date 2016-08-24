@@ -78,6 +78,11 @@ $mobileTextboxWidth: 84%;
 		form {
 			position: relative;
 			height: 100%;
+			margin: 0 25px;
+			@include from-breakpoint($medium-break) {
+				margin: 0 40px;
+			}
+
 		}
 
 		.loc-arrow-icon, .close-search {
@@ -119,6 +124,8 @@ $mobileTextboxWidth: 84%;
 		}
 
 		.location-text {
+			color: $searchLocationTextColor;
+			text-decoration: underline;
 			display: block;
 			float: right;
 			max-width: 4em;
@@ -139,6 +146,26 @@ $mobileTextboxWidth: 84%;
 			width: 100%;
 			margin-left: auto;
 			margin-right: auto;
+			@include border-top-left-radius(0.25em);
+			@include border-bottom-left-radius(0.25em);
+
+			.search-textbox {
+				@include border-top-left-radius(0.25em);
+				@include border-bottom-left-radius(0.25em);
+			}
+		}
+
+		.divider {
+			border-right: 2px solid $searchLocationTextColor;
+			float: left;
+			width: 1%;
+			height: 25px;
+			margin-top: 10px;
+
+			@include to-breakpoint($medium-break) {
+				height: 20px;
+				margin-top: 6px;
+			}
 		}
 
 		.location-link {
@@ -338,5 +365,62 @@ $mobileTextboxWidth: 84%;
 @include to-breakpoint($medium-break) {
 	body.disable-scroll-mobile {
 		overflow-y: hidden;
+	}
+
+	.search-controls {
+		.search-bar {
+			height: $mobileSearchBarHeight;
+
+			.search-button {
+				.inner-text {
+					display: none;
+					width: 45%;
+					float: right;
+					text-align: left;
+				}
+
+				.icon-search-white {
+					margin: auto;
+					float: none;
+				}
+			}
+		}
+
+		&.is-typing {
+			.search-bar {
+				.location-link {
+					.location-text {
+						margin-top: 1%;
+					}
+				}
+			}
+		}
+	}
+}
+
+@include in-breakpoint($medium-break) {
+	.search-controls {
+		.type-ahead-results-wrapper .type-ahead-results-container {
+			width: 87% !important;
+			margin-left: 1em !important;
+		}
+	}
+}
+
+@include from-breakpoint($large-break) {
+	.search-controls {
+		.search-bar {
+			.location-text {
+				margin-top: 10px;
+			}
+
+			.search-loc-icon {
+				margin-top: 12px;
+			}
+		}
+	}
+
+	.search-controls.is-typing .search-bar button {
+		height: $desktopSearchBarHeight + 2px;
 	}
 }
