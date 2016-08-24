@@ -51,7 +51,7 @@ $tertiary-link-color: $vivaWhite;
 // SEO h1 tag
 $seo-bordercolor: #FAFAFA;
 
-//Page 
+//Page
 
 $page-bgcolor : $vivaWhite;
 $page-bordercolor : #f7f7f7;
@@ -162,10 +162,12 @@ $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaOrange;
+$searchBarLocationLinkColor: $vivaGray1;
 $searchBarTextBoxBorder: $vivaGray6;
 $searchBarButtonColor: $vivaBlue2;
 $searchBarButtonTextColor: $vivaWhite;
+$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+
 
 // Ad Tile
 
