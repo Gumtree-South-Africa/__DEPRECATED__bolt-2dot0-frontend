@@ -1,7 +1,7 @@
 var googletag = googletag || {};
 googletag.cmd = googletag.cmd || [];
 
-var BOLT = BOLT || {};
+window.BOLT = window.BOLT || {};
 (function (B) {
 	B.displayBanner = function(bannerParams){
  			googletag.cmd.push(function(){

@@ -21,7 +21,8 @@ module.exports = {
 				"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
 				"ProfileMenu": "app/appWeb/views/components/profileMenu/js/profileMenu.js",
 				"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
-				"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js"
+				"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
+				"PageMain": "app/appWeb/views/templates/pages/homepageV2/js/homepageV2.js"
 			},
 			"mobile": {},
 			"desktop": {} // common locale and device specific has the second highest priority

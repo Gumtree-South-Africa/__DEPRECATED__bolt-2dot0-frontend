@@ -6,7 +6,7 @@
  * @class BannerCookie
  * @author uroblesmellin@
  */
-var BOLT = BOLT || {};
+window.BOLT = window.BOLT || {};
 
 /**
  * @description A singleton object
@@ -150,7 +150,7 @@ BOLT.BannerCookie = (function () {
             cookieValue = null;
         }
     };
-        
+
 })();
 
 
