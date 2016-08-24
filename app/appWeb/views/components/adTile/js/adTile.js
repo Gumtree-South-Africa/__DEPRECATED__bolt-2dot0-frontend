@@ -76,7 +76,7 @@ class AdTile {
 	 * @private
 	 */
 	_setIdMapToCookie(cookieName, map) {
-		let cookieValue = Object.getOwnPropertyNames(map).join(',');
+		let cookieValue = Object.keys(map).join(',');
 		CookieUtils.setCookie(cookieName, cookieValue, 10000);
 		return cookieValue;
 	}
@@ -116,16 +116,14 @@ class AdTile {
 		}
 
 		if (CookieUtils.getCookie('bt_auth')) {
-			// console.log("user has auth cookie");
 
 			// perform server action, only if we have a bt_auth cookie
 			this._favoriteAd(action, adId
 				,() => {
-					// console.log(`${action} success`);
+					// no action on success
 				},
 				(/*res*/) => {
 					// there is no UX for a failure here, we just ignore any issues
-					// console.log(`${action} fail ${JSON.stringify(res, null, 4)}`);
 				}
 			);
 		}
@@ -135,13 +133,10 @@ class AdTile {
 	 * onReady - separated out for easy testing
 	 */
 	onReady() {
+		// for debugging you can listen like this: this.$lazyImage.on("appear", () => {
 		this.$lazyImage.lazyload({
 			"skip_invisible": true
 		});
-
-		// this.$lazyImage.on("appear", () => {
-		// 	console.log("appear");
-		// });
 
 		// update/set watchlist cookie when user 'favorites' an ad
 		this.$favoriteButton.click((evt) => {

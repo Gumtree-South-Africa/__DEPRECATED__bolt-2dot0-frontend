@@ -8,10 +8,8 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 
 describe('Ad Tile', () => {
-	let $testArea;
 
 	beforeEach(() => {
-		$testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
 		CookieUtils.setCookie('watchlist', "");
 		CookieUtils.setCookie('bt_auth', "");
 	});
@@ -31,6 +29,7 @@ describe('Ad Tile', () => {
 
 
 		it('should toggle heart icon and set cookie on click', () => {
+			let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
 			let $heart = $testArea.find('.favorite-btn');
 
 			// we're going to call twice, once on each click, one POST and one DELETE
@@ -60,6 +59,7 @@ describe('Ad Tile', () => {
 
 
 		it('should still toggle heart icon and set cookie on click (mock server fail)', () => {
+			let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
 			let $heart = $testArea.find('.favorite-btn');
 
 			// we're going to call twice, once on each click, one POST and one DELETE
@@ -88,6 +88,7 @@ describe('Ad Tile', () => {
 		});
 
 		it('should toggle heart icon and set cookie on click (with no server favorite calls)', () => {
+			let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
 			let $heart = $testArea.find('.favorite-btn');
 
 			// for this one we don't have a bt_auth cookie, so we check for no calls through _favoriteAd

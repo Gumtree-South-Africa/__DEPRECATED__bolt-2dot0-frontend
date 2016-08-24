@@ -73,7 +73,7 @@ class BreakpointTileSizeMapper {
 	 * @returns {Array} of class names
 	 */
 	getSizeClasses() {
-		let keys = Object.getOwnPropertyNames(this.TILE_SIZE_TO_CLASS_NAME_MAP);
+		let keys = Object.keys(this.TILE_SIZE_TO_CLASS_NAME_MAP);
 		let values = [];
 		for (let i = 0; i < keys.length; i++) {
 			let key = keys[i];
@@ -87,7 +87,7 @@ class BreakpointTileSizeMapper {
 	 * @returns {Array} of breakpoints
 	 */
 	getBreakpoints() {
-		return Object.getOwnPropertyNames(this.BREAKPOINT_TO_SIZE_MAP);
+		return Object.keys(this.BREAKPOINT_TO_SIZE_MAP);
 	}
 
 	/**
@@ -103,12 +103,10 @@ class BreakpointTileSizeMapper {
 			let max = Number(breakpoints[i]);
 			let breakpoint = min === 0 ? max : min;	// if we're between zero and the max, use max, otherwise use min
 			if (width >= min && width < max) {
-				// console.log(`nearestBreakpoint for ${width} is ${breakpoint}`);
 				return breakpoint;
 			}
 			min = max;
 		}
-		// console.log(`nearestBreakpoint is MAX ${breakpoints[breakpoints.length-1]}`);
 		return Number(breakpoints[breakpoints.length-1]);
 	}
 }

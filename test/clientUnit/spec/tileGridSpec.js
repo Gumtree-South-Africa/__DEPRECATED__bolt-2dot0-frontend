@@ -10,10 +10,8 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 
 describe('Tile Grid', () => {
-	let $testArea;
 
 	beforeEach(() => {
-		$testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
 	});
 
 	describe('Breakpoint Tile Size Mapper', () => {
@@ -47,6 +45,7 @@ describe('Tile Grid', () => {
 
 		it('should adjust tile size css styles according to map', () => {
 
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
 			let mapper = new BreakpointTileSizeMapper();
 
 			let tiles = $testArea.find('.tile-item');
@@ -97,6 +96,7 @@ describe('Tile Grid', () => {
 
 		it('should adjust tiles sizes and container width', () => {
 
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
 			let mapper = tileGridController.getMapper();
@@ -126,6 +126,7 @@ describe('Tile Grid', () => {
 
 		it('should set white icon on initial load for the tile with its id in the favorite cookie', () => {
 
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
 			CookieUtils.setCookie("watchlist", "200000000long");	// this enables the server calls to _favoriteAd
 
 			let tiles = $testArea.find('.tile-item');
