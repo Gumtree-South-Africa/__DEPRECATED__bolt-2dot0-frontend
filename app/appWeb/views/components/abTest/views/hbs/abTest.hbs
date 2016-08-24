@@ -2,7 +2,7 @@
     {{#ifeq this.header.analytics.enableABTest compare='true'}}
         {{#if this.header.abtestExperimentId}}
             {{#unless this.isNewHP}}
-                <!-- Google Analytics Content Experiment code -->
+				<!-- Google Analytics Content Experiment code -->
 				<script>function utmx_section(){}function utmx(){}(function(){var
 						k='{{this.header.abtestExperimentId}}',d=document,l=d.location,c=d.cookie;
 					if(l.search.indexOf('utm_expid='+k)>0)return;
