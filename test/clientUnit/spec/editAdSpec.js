@@ -42,7 +42,7 @@ describe('Edit Ad', () => {
 			editAdFormMainDetailsController.onReady();
 			specHelper.disableFormWarning();
 
-			specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&address=${inputVal}`, mockLocationData);
+			specHelper.registerMockAjax(`https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:MX&language=es&address=${inputVal}`, mockLocationData);
 			specHelper.registerMockAjax(`/api/locate/locationlatlong?lat=${encodeURIComponent(mockLocationData.results[0].geometry.location.lat.toString())}&lng=${encodeURIComponent(mockLocationData.results[0].geometry.location.lng.toString())}`, mockLatLongData);
 
 			$locationLink.click();
@@ -90,17 +90,17 @@ describe('Edit Ad', () => {
 				currentHierarchy: [0, 5]
 			});
 
-			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories> Automotive Vehicles");
+			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories > Automotive Vehicles");
 			let $listItems = $testArea.find(".list-item");
 
-			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeTruthy();
+			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeFalsy();
 
 			$testArea.find("#clear-text-btn").click();
 
 			expect($listItems.length).toBeGreaterThan(0);
-			expect($listItems.length).toEqual(mockCategoryTree.children.length);
+			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
 			expect($listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[i].localizedName);
+				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
 			}));
 		});
 

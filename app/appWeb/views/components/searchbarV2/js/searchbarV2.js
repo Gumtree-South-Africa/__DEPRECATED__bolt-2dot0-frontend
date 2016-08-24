@@ -118,20 +118,23 @@ let _newTypeAhead = (currentSearchTerm) => {
 	// });
 
 	//}
-	if (!this.currentTypeAheadRequest) {
+
+	if (this.currentTypeAheadRequest) {
 		this.currentTypeAheadRequest.abort(); // aborting old request
 	}
 
-	this.currentTypeAheadRequest = $.ajax({
-		url: "/api/search/autocomplete",
-		method: "POST",
-		data: {searchterm: currentSearchTerm},
-		dataType: 'json',
-		success: (results) => {
-			this.currentTypeAheadRequest = null;
-			_displayTypeAheadResults(results);
-		}
-	});
+	if (currentSearchTerm !== "") {
+		this.currentTypeAheadRequest = $.ajax({
+			url: "/api/search/autocomplete",
+			method: "POST",
+			data: { searchterm: currentSearchTerm },
+			dataType: 'json',
+			success: (results) => {
+				this.currentTypeAheadRequest = null;
+				_displayTypeAheadResults(results);
+			}
+		});
+	}
 };
 
 /**

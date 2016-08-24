@@ -152,7 +152,7 @@ class CategorySelectionModal {
 	}
 
 	_stageItem(item) {
-		if (Number.isInteger(item)) {
+		if (!isNaN(item)) {
 			item = this._findItemOnLevel(item);
 		}
 
@@ -173,7 +173,7 @@ class CategorySelectionModal {
 
 
 	_selectItem(item) {
-		if (Number.isInteger(item)) {
+		if (!isNaN(item)) {
 			item = this._findItemOnLevel(item);
 		}
 		this._renderResults(item.children);
