@@ -94,6 +94,12 @@ class DataLayerModel {
 							'pageData': getPageData(this)
 						};
 						break;
+					case pagetypeJson.pagetype.POST_AD:
+						data = {
+							'pageData': getPageData(this),
+							'userData': getUsereData(this)							
+						};
+						break;		
 					case pagetypeJson.pagetype.RESULTS_SEARCH:
 						data = {
 							'pageData': getPageData(this),

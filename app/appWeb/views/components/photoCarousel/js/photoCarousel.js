@@ -302,8 +302,10 @@ let _postAd = (urls, locationType) => {
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
 				window.location.href = response.ad.vipLink;
+				window.BOLT.trackEvents({ "event": "PostAdFreeSuccess", "p": {"t": "PostAdFreeSuccess"} });
 				break;
 			case AD_STATES.AD_DEFERRED:
+				window.BOLT.trackEvents({ "event": "PostAdOptionsModal", "p": {"t": "PostAdOptionsModal"} });
 				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
 				this.$loginModal.find('.register-link').attr('href', response.links.register);
 				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
@@ -511,6 +513,8 @@ let deleteSelectedItem = (event) => {
 			if (!this.disableImageSelection) {
 				this.$imageUpload.click();
 			}
+			
+			window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 		});
 	}
 	resizeCarousel();
@@ -551,6 +555,7 @@ let parseFile = (file) => {
 
 let preventDisabledButtonClick = (event) => {
 	if (this.$postAdButton.hasClass("disabled")) {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
@@ -693,15 +698,19 @@ let initialize = () => {
 
 	// Clicking empty cover photo should open file selector
 	$("#cover-photo-wrapper").on('click', () => {
+		
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
 		}
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this.$imageUpload.on('click', (e) => {
+		
 		if (this.disableImageSelection) {
 			e.preventDefault();
 		}
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});	
 	});
 
 	// Listen for file drag and drop uploads
