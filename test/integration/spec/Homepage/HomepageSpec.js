@@ -30,6 +30,10 @@ describe('Homepage Spec', () => {
 
 	describe('Trending Card', () => {
 		it('should navigate to the ad page when clicking trending item', () => {
+			/* fail in CI:
+			 ElementNotVisibleError: element not visible
+			 */
+
 			homepagePO.scrollTo(400);
 			homepagePO.trendingItemLink.click();
 
@@ -57,6 +61,9 @@ describe('Homepage Spec', () => {
 		});
 
 		it('should show 32 tiles after clicking View More button', () => {
+			/* fail in CI:
+			 Element is not clickable at point (33, 433). Other element would receive the click: <img class="lazy ad-image" data-original="http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDgwWDY0MA==/z/MIcAAOSw65FXsiB~/$_19.JPG?set_id=8800005007" src="http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDgwWDY0MA==/z/MIcAAOSw65FXsiB~/$_19.JPG?set_id=8800005007" style="display: inline;">
+			 */
 			// scroll down to 'View More' button
 			homepagePO.scrollTo(2000)
 				.then(homepagePO.viewMoreButton.click)
@@ -79,6 +86,8 @@ describe('Homepage Spec', () => {
 		});
 
 		it('should navigate to the search page after all 48 items have been shown', () => {
+			/* fail in CI:
+			 Failed: unknown error: Element is not clickable at point (33, 433). Other element would receive the click: <img class="lazy ad-image" data-original="http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Wa0AAOSw65FXsiGy/$_19.JPG?set_id=8800005007" src="http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Wa0AAOSw65FXsiGy/$_19.JPG?set_id=8800005007" style="display: inline;">			 */
 			// scroll to 'View More' each time new tiles are added, then click it
 			homepagePO.scrollTo(2000)
 				.then(homepagePO.viewMoreButton.click)
@@ -89,7 +98,7 @@ describe('Homepage Spec', () => {
 				.then(() => {
 					// 48 showing
 					for (let i = 0; i < 48; i++) {
-						expect(homepagePO.trendingTiles.get(i).getAttribute('style')).not.toContain('display: none');
+						expect(homepagePO.getTileStyle(i)).not.toContain('display: none');
 					}
 					//expect(homepagePO.getTileStyle(47)).not.toContain('display: none');
 					return homepagePO.scrollTo(5000);
