@@ -124,6 +124,7 @@ class EpsUpload {
 			data: formData,
 			success: (response) => {
 				success(i, response);
+				window.BOLT.trackEvents({"event":"PostAdPhotoSuccess"});
 			},
 			error: (err) => {
 				failure(i, err);
@@ -235,7 +236,7 @@ class EpsUpload {
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		} else {
 			// WebKit implementation.
-			// http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+			// https://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		}
 	}
