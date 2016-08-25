@@ -51,7 +51,7 @@ $tertiary-link-color: $vivaWhite;
 // SEO h1 tag
 $seo-bordercolor: #FAFAFA;
 
-//Page 
+//Page
 
 $page-bgcolor : $vivaWhite;
 $page-bordercolor : #f7f7f7;
@@ -72,7 +72,7 @@ $page-bordercolor: #f7f7f7;
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
-$appdownloadreview-font: $viva-p3;
+$appdownloadreview-font: $viva-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
@@ -159,7 +159,6 @@ $imagePlaceholderBackground: $vivaGray5;
 $headerBlue: $vivaBlue5;
 
 $searchBarTextColor: $vivaBlack;
-$searchLocationTextColor: $vivaGray5;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
@@ -168,6 +167,10 @@ $searchBarLocationLinkColor: $vivaOrange;
 $searchBarTextBoxBorder: $vivaGray6;
 $searchBarButtonColor: $vivaBlue2;
 $searchBarButtonTextColor: $vivaWhite;
+$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+
+// Get the App card
+$getAppCardMainBlue: $vivaBlue6;
 
 // Ad Tile
 

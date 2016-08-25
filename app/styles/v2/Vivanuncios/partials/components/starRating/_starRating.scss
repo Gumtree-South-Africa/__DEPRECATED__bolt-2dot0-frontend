@@ -1,0 +1,8 @@
+
+.stars-wrapper {
+	font-size: 0; //remove space between inline-block divs
+
+	.star {
+		display: inline-block;
+	}
+}

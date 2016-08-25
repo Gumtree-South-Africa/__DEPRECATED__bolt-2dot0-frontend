@@ -129,7 +129,21 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(JSON.stringify(context));
         });
 
-        exphbs.handlebars.registerHelper('obfuscateUrl', function(value) {
+		exphbs.handlebars.registerHelper('blueStars', function(n, block) {
+			var result = '';
+			for(var i = 0; i < n; ++i)
+				result += block.fn(i);
+			return result;
+		});
+
+		exphbs.handlebars.registerHelper('grayStars', function(n, block) {
+			var result = '';
+			for(var i = 0; i < 5 - n; ++i)
+				result += block.fn(i);
+			return result;
+		});
+
+		exphbs.handlebars.registerHelper('obfuscateUrl', function(value) {
             if (!value) return;
             return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
         });
