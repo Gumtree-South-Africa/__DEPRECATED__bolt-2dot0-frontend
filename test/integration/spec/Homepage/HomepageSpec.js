@@ -18,17 +18,19 @@ describe('Homepage Spec', () => {
 		browser.manage().addCookie('b2dot0Version', '2.0', '/', homepagePO.getDomain());
 	});
 
-	beforeEach(() => {
-		homepagePO.visitPage();
-	});
-
-	it('should visit with the 2.0 cookie value', () => {
-		browser.manage().getCookie('b2dot0Version').then(function(cookie) {
-			expect(cookie.value).toEqual('2.0');
-		});
-	});
 
 	describe('Trending Card', () => {
+
+		beforeEach(() => {
+			homepagePO.visitPage();
+		});
+
+		it('should visit with the 2.0 cookie value', () => {
+			browser.manage().getCookie('b2dot0Version').then(function(cookie) {
+				expect(cookie.value).toEqual('2.0');
+			});
+		});
+
 		// it('should navigate to the ad page when clicking trending item', () => {
 		// 	/* fail in CI:
 		// 	 ElementNotVisibleError: element not visible
@@ -108,35 +110,59 @@ describe('Homepage Spec', () => {
 		// 			expect(browser.getCurrentUrl()).toContain('search.html', 'Final "View More" click should navigate to the search page');
 		// 		});
 		// });
+	});
 
-		describe('lazy load', () => {
-			beforeEach(() => {
-				// set window size so that images dont lazy load immediately
-				browser.driver.manage().window().setSize(375, 200);
-			});
+	describe('lazy load', () => {
+		beforeEach(() => {
+			// set window size so that images dont lazy load immediately
+			browser.driver.manage().window().setSize(375, 200);
+			homepagePO.visitPage();
+		});
 
-			it('should lazy load the trending item image when it scrolls into view', () => {
-				expect(homepagePO.trendingAdImgs.count()).toEqual(mockData.ads.length, 'Only trending items specified in mocked data should display');
+		it('should lazy load the trending item image when it scrolls into view', () => {
+			// console.log(jasmine.DEFAULT_TIMEOUT_INTERVAL);
+
+			expect(homepagePO.trendingAdImgs.count()).toEqual(mockData.ads.length, 'should have an item for all 48 ads');
+
+			// load the actual source image urls
+			let mockAdImgs = [];
+			let mockProfileImgs = [];
+
+			// these numbers may need to change if header changes height
+			// this size assumes there is an ad banner above the tiles (ad banner appears only desktop)
+			let browserHeight = 705;	// this height browser will expose a certain number of image tiles
+			let imagesToCheck = 3;		// this number of images are exposed for the specified height
+
+			for (let i = 0; i < imagesToCheck; i++) {
+
+				//console.log(`ad ${mockData.ads[i].pictures[0].url}`);
+				mockAdImgs.push(mockData.ads[i].pictures[0].url);
+
+				// note: not all seller urls have data
+				//console.log(`pr ${mockData.ads[i].seller.profileImage}`);
+				mockProfileImgs.push(mockData.ads[i].seller.profileImage);
 
 				// check trending item for src attr, lazy loaded images should not have loaded
-				let mockAdImgs = [];
-				let mockProfileImgs = [];
-				for (let i = 0; i < 48; i++) {
-					mockAdImgs.push(mockData.ads[i].seller.profileImage);
-					mockProfileImgs.push(mockData.ads[i].pictures[0].url);
+				expect(homepagePO.getTileAdImage(i)).not.toEqual(mockAdImgs[i], 'Tile is not in view and ad image should not be loaded yet');
+				expect(homepagePO.getTileProfileImage(i)).not.toEqual(mockProfileImgs[i], 'Tile is not in view and profile image should not be loaded yet');
+			}
+
+			// resize window to show all trending items
+			browser.driver.manage().window().setSize(375, browserHeight).then(() => {
+				return browser.sleep(1000);
+			}).then(() => {
+				// only checking the 3 images we expect to be loaded based on our window size
+				for (let i = 0; i < imagesToCheck; i++) {
+					homepagePO.getTileAdImage(i).then((image) => {
+						expect(image).toEqual(mockAdImgs[i], `Ad image ${i} should be lazy loaded by now`);
+					});
+					if (mockProfileImgs[i]) {	// these may be undefined in mock data, not all ads have a seller profile
+						homepagePO.getTileProfileImage(i).then((image) => {
+							// concat the '13.JPG' like we do in the template
+							expect(image).toEqual(mockProfileImgs[i] + '13.JPG', `Profile image ${i} should be lazy loaded by now`);
+						});
+					}
 				}
-
-				expect(homepagePO.getTileAdImages()).not.toEqual(mockAdImgs, 'Tile is not in view and ad image should not be loaded yet');
-				expect(homepagePO.getTileProfileImages()).not.toEqual(mockProfileImgs, 'Tile is not in view and profile image should not be loaded yet');
-
-				// resize window to show all trending items
-				browser.driver.manage().window().setSize(375, 667);
-
-				// check trending items for src attr, lazy load should be finished loading
-				setTimeout(() => {
-					expect(homepagePO.getTileAdImages()).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
-					expect(homepagePO.getTileProfileImages()).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
-				}, 3000);
 			});
 		});
 	});

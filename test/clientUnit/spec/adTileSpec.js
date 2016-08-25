@@ -36,7 +36,8 @@ describe('Ad Tile', () => {
 			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
 			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
 			spyOn(adTileController, '_favoriteAd');//.and.callThrough();
-			CookieUtils.setCookie("bt_auth", "dummy");	// this enables the server calls to _favoriteAd
+			// no longer conditional on bt_auth, its an httpOnly cookie
+			//CookieUtils.setCookie("bt_auth", "dummy");	// this enables the server calls to _favoriteAd
 
 			adTileController.initialize(false);		// we init with false because we're handing the onReady
 			adTileController.onReady();
@@ -66,7 +67,8 @@ describe('Ad Tile', () => {
 			specHelper.registerMockAjax('/api/ads/favorite', { error: 'test error' }, { fail: true } );
 			specHelper.registerMockAjax('/api/ads/favorite', { error: 'test error' }, { fail: true } );
 			spyOn(adTileController, '_favoriteAd');//.and.callThrough();
-			CookieUtils.setCookie("bt_auth", "dummy");	// this enables the server calls to _favoriteAd
+			// no longer conditional on bt_auth, its an httpOnly cookie
+			//CookieUtils.setCookie("bt_auth", "dummy");	// this enables the server calls to _favoriteAd
 
 			adTileController.initialize(false);		// we init with false because we're handing the onReady
 			adTileController.onReady();
@@ -87,25 +89,27 @@ describe('Ad Tile', () => {
 
 		});
 
-		it('should toggle heart icon and set cookie on click (with no server favorite calls)', () => {
-			let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
-			let $heart = $testArea.find('.favorite-btn');
-
-			// for this one we don't have a bt_auth cookie, so we check for no calls through _favoriteAd
-			spyOn(adTileController, '_favoriteAd').and.callThrough();
-
-			adTileController.initialize(false);		// we init with false because we're handing the onReady
-			adTileController.onReady();
-
-			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
-
-			$heart.click();
-			expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
-			let cookieValue = CookieUtils.getCookie('watchlist');
-			expect(cookieValue).toBe(`${adTileModel.adId}`);
-
-			expect(adTileController._favoriteAd.calls.count()).toBe(0, 'should not be calling the server for favorites');
-
-		});
+		// this test is out because we always call the server on favorite regardless of logged in
+		// because we don't have a good way to detect that a user is logged in, bt_auth is httpOnly cookie
+		// it('should toggle heart icon and set cookie on click (with no server favorite calls)', () => {
+		// 	let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
+		// 	let $heart = $testArea.find('.favorite-btn');
+		//
+		// 	// for this one we don't have a bt_auth cookie, so we check for no calls through _favoriteAd
+		// 	spyOn(adTileController, '_favoriteAd').and.callThrough();
+		//
+		// 	adTileController.initialize(false);		// we init with false because we're handing the onReady
+		// 	adTileController.onReady();
+		//
+		// 	expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
+		//
+		// 	$heart.click();
+		// 	expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
+		// 	let cookieValue = CookieUtils.getCookie('watchlist');
+		// 	expect(cookieValue).toBe(`${adTileModel.adId}`);
+		//
+		// 	expect(adTileController._favoriteAd.calls.count()).toBe(0, 'should not be calling the server for favorites');
+		//
+		// });
 	});
 });

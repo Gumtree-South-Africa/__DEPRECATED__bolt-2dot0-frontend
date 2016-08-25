@@ -25,10 +25,31 @@ describe('Favorite Ad Api', () => {
 
 		boltSupertest('/api/ads/favorite', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('Cookie', 'bt_auth="test value"')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
 					expect(res.status).toBe(200, 'should return status 200');
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should respond with 401 (bt_auth cookie missing)', (done) => {
+		let file = {
+			"adId": "1234567890"
+		};
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.favoriteAd.replace('{id}',file.adId)}?_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/favorites/emptyResult.json');
+
+		boltSupertest('/api/ads/favorite', 'vivanuncios.com.mx', 'POST').then((supertest) => {
+			supertest
+				.send(file)
+				.expect('Content-Type', 'application/json; charset=utf-8')
+				.expect((res) => {
+					expect(res.status).toBe(401, 'should return status 401');
 				})
 				.end(specHelper.finish(done));
 		});
@@ -41,6 +62,7 @@ describe('Favorite Ad Api', () => {
 
 		boltSupertest('/api/ads/favorite', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('Cookie', 'bt_auth="test value"')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
@@ -70,6 +92,7 @@ describe('Favorite Ad Api', () => {
 
 		boltSupertest('/api/ads/favorite', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
+				.set('Cookie', 'bt_auth="test value"')
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {

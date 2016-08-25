@@ -29,16 +29,25 @@ router.post('/', cors, (req, res) => {
 		let modelBuilder = new ModelBuilder();
 
 		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		if (!model.bapiHeaders.authTokenValue) {
+			res.status(401).send({
+				error: "no authorization"
+			});
+			return;
+		}
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 
 		model.advertModel.favoriteTheAd(req.body.adId).then(() => {
 			res.status(200).send({});	// returning {} since consumer will expect json
 			return;
 		}).fail((err) => {
-			console.error(err);
+			console.error(err.message);
+			if (err.bapiJson) {
+				console.error(JSON.stringify(err.json, null, 4));
+			}
 			console.error(err.stack);
 			res.status(500).send({
-				error: "unable to favorite ad, see logs for details"
+				error: "unable to favorite ad, see logs for details",
 			});
 			return;
 		});
@@ -52,20 +61,29 @@ router.post('/', cors, (req, res) => {
 
 router.delete('/', cors, (req, res) => {
 	// Validate the body
-	if (! req.body.adId) {
+	if (req.body.adId) {
 		let modelBuilder = new ModelBuilder();
 
 		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		if (!model.bapiHeaders.authTokenValue) {
+			res.status(401).send({
+				error: "no authorization"
+			});
+			return;
+		}
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 
 		model.advertModel.unfavoriteTheAd(req.body.adId).then(() => {
 			res.send();
 			return;
 		}).fail((err) => {
-			console.error(err);
+			console.error(err.message);
+			if (err.bapiJson) {
+				console.error(JSON.stringify(err.json, null, 4));
+			}
 			console.error(err.stack);
 			res.status(500).send({
-				error: true
+				error: "unable to unfavorite ad, see logs for details",
 			});
 			return;
 		});

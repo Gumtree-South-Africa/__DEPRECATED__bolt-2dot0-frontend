@@ -20,8 +20,16 @@ class HomepagePO {
 		return this.trendingAdImgs.getAttribute('src');
 	}
 
+	getTileAdImage(index) {
+		return this.trendingAdImgs.get(index).getAttribute('src');
+	}
+
 	getTileProfileImages() {
 		return this.trendingProfileImgs.getAttribute('src');
+	}
+
+	getTileProfileImage(index) {
+		return this.trendingProfileImgs.get(index).getAttribute('src');
 	}
 
 	getTileStyle(index) {

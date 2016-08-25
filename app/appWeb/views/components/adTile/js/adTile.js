@@ -115,18 +115,17 @@ class AdTile {
 			action = "DELETE";
 		}
 
-		if (CookieUtils.getCookie('bt_auth')) {
+		// perform server action, prefer to do this only if we have a bt_auth cookie, but bt_auth is httpOnly
+		// if there is another cookie we could rely on for logged in check we could use that, for now we call no matter what
+		this._favoriteAd(action, adId
+			,() => {
+				// no action on success
+			},
+			(/*res*/) => {
+				// there is no UX for a failure here, we just ignore any issues
+			}
+		);
 
-			// perform server action, only if we have a bt_auth cookie
-			this._favoriteAd(action, adId
-				,() => {
-					// no action on success
-				},
-				(/*res*/) => {
-					// there is no UX for a failure here, we just ignore any issues
-				}
-			);
-		}
 	}
 
 	/**
