@@ -30,9 +30,8 @@ describe('Homepage Spec', () => {
 
 	describe('Trending Card', () => {
 		it('should navigate to the ad page when clicking trending item', () => {
-			homepagePO.trendingItemLink.click().then(() => {
-				expect(browser.getCurrentUrl()).toContain(mockData.ads[0].viewSeoUrl, 'Navigated to the incorrect ad url');
-			});
+			homepagePO.trendingItemLink.click();
+			expect(browser.getCurrentUrl()).toContain(mockData.ads[0].viewSeoUrl, 'Navigated to the incorrect ad url');
 		});
 
 		it('should filter w/ isotope so that only the first 16 elements display', () => {
