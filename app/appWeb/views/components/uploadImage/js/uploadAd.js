@@ -40,7 +40,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 		]
 	};
 
-	if (fields.price) {
+	if (fields.price && fields.price.amount) {
 		payload.ads[0].price = fields.price;
 	}
 
@@ -53,8 +53,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 			ad.location = {
 				"address": fields.address,
 				"latitude": lat,
-				"longitude": lng,
-				"type": options.locationType
+				"longitude": lng
 			};
 		});
 	}
