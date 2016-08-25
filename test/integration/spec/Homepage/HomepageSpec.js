@@ -40,37 +40,40 @@ describe('Homepage Spec', () => {
 			expect(homepagePO.trendingTiles.count()).toEqual(48);
 
 			// 16 showing
-			//let i;
-			// for (i = 0; i < 16; i++) {
-			// 	expect(homepagePO.trendingTiles.get(i).getAttribute('style')).not.toContain('display: none');
-			// }
-
-			expect(homepagePO.getTileStyle(15)).not.toContain('display: none');
+			let i;
+			for (i = 0; i < 16; i++) {
+				expect(homepagePO.getTileStyle(i)).not.toContain('display: none');
+			}
 
 			// 32 are hidden
-			// for (i = 16; i < 48; i++) {
-			// 	expect(homepagePO.trendingTiles.get(i).getAttribute('style')).toContain('display: none');
-			// }
-			expect(homepagePO.getTileStyle(16)).toContain('display: none');
+			for (i = 16; i < 48; i++) {
+				expect(homepagePO.getTileStyle(i)).toContain('display: none');
+			}
+
+			// thought this might speed up the test instead of the above looping, but it doesnt seem to
+			// expect(homepagePO.getTileStyle(15)).not.toContain('display: none');
+			// expect(homepagePO.getTileStyle(16)).toContain('display: none');
 		});
 
 		it('should show 32 tiles after clicking View More button', () => {
 			// scroll down to 'View More' button
 			homepagePO.scrollTo(2000)
-				.then(homepagePO.viewMoreButton.click())
+				.then(homepagePO.viewMoreButton.click)
 				.then(() => {
 					// 32 showing
-					//let i;
-					// for (i = 0; i < 32; i++) {
-					// 	expect(homepagePO.getTileStyle(i)).not.toContain('display: none');
-					// }
-					expect(homepagePO.getTileStyle(31)).not.toContain('display: none');
+					let i;
+					for (i = 0; i < 32; i++) {
+						expect(homepagePO.getTileStyle(i)).not.toContain('display: none');
+					}
 
 					// 16 are hidden
-					// for (i = 32; i < 48; i++) {
-					// 	expect(homepagePO.getTileStyle(i)).toContain('display: none');
-					// }
-					expect(homepagePO.getTileStyle(32)).toContain('display: none');
+					for (i = 32; i < 48; i++) {
+						expect(homepagePO.getTileStyle(i)).toContain('display: none');
+					}
+
+					// thought this might speed up the test instead of the above looping, but it doesnt seem to
+					// expect(homepagePO.getTileStyle(31)).not.toContain('display: none');
+					// expect(homepagePO.getTileStyle(32)).toContain('display: none');
 				});
 		});
 
@@ -84,10 +87,10 @@ describe('Homepage Spec', () => {
 				.then(homepagePO.viewMoreButton.click)
 				.then(() => {
 					// 48 showing
-					// for (let i = 0; i < 48; i++) {
-					// 	expect(homepagePO.trendingTiles.get(i).getAttribute('style')).not.toContain('display: none');
-					// }
-					expect(homepagePO.getTileStyle(47)).not.toContain('display: none');
+					for (let i = 0; i < 48; i++) {
+						expect(homepagePO.trendingTiles.get(i).getAttribute('style')).not.toContain('display: none');
+					}
+					//expect(homepagePO.getTileStyle(47)).not.toContain('display: none');
 					return homepagePO.scrollTo(5000);
 				})
 				.then(homepagePO.viewMoreButton.click)
@@ -123,7 +126,7 @@ describe('Homepage Spec', () => {
 				setTimeout(() => {
 					expect(homepagePO.getTileAdImages()).toEqual(mockAdImgs, 'Ad image should be lazy loaded by now');
 					expect(homepagePO.getTileProfileImages()).toEqual(mockProfileImgs, 'Profile image should be lazy loaded by now');
-				}, 1000);
+				}, 3000);
 			});
 		});
 	});
