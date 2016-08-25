@@ -17,9 +17,10 @@ module.exports = [
 	},
 	{
 		"dest": rootDir + "/public/jsmin", "src": [
+		rootDir + "/node_modules/jquery/dist/jquery.min.js",
 		rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 		rootDir + "/public/js/common/tracking/GoogleTag.js",
-		rootDir + "/public/js/common/banners/googletagbanner.js",
+		rootDir + "/public/js/common/banners/GoogleTagBanner.js",
 		rootDir + "/public/js/common/tracking/Analytics.js"
 	], "bundleName": "HomePageV2Legacy.min.js"
 	},{

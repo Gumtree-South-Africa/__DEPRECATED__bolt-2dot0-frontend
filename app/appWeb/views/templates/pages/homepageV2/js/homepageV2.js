@@ -5,7 +5,7 @@
 
 let initialize = () => {
 	// prime window with jquery object for use by inline scripts and legacy code
-	window.$ = window.jQuery = $;
+	// window.$ = window.jQuery = $;
 };
 
 module.exports = {

@@ -87,6 +87,7 @@ let HP = {
 	 * Special footer data for HomePage
 	 */
 	extendFooterData: (modelData) => {
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 		if (!modelData.footer.min) {
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
@@ -100,8 +101,6 @@ let HP = {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
 			}
 		}
-
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 	},
 
 	/**
