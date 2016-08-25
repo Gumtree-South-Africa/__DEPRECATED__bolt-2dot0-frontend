@@ -121,7 +121,7 @@ class EditAdPageModel {
 				if (!data.price || (data.price.currency !== "MXN" && data.price.currency !== "USD")) {
 					modelData.shouldDefaultPrice = true;
 				}
-				this.getCategoryHierarchy(modelData.category, data.categoryId, modelData.categoryCurrentHierarchy);
+				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
 					return data;
