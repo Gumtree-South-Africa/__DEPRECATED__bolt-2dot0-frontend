@@ -36,7 +36,7 @@ class AdTile {
 		if (!cookie) {
 			return [];
 		}
-		return cookie.split(',');
+		return cookie.replace(/\"/g,'').split(',');
 	}
 
 	/**
@@ -60,7 +60,7 @@ class AdTile {
 		if (!cookie) {
 			return {};
 		}
-		let ids = cookie.split(',');
+		let ids = cookie.replace(/\"/g,'').split(',');
 		let map = {};
 		for (let i = 0; i < ids.length; i++) {
 			map[ids[i]] = '';	// dont care about the values
