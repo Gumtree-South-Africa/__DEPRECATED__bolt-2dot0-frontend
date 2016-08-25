@@ -33,8 +33,8 @@ let toggleMenu = (shouldClose) => {
 };
 
 let _toggleBrowseCategory = () => {
-	this.$browseArrow.toggleClass('icon-chevron');
-	this.$browseArrow.toggleClass('icon-up');
+	this.$browseArrow.toggleClass('icon-chevron-blue');
+	this.$browseArrow.toggleClass('icon-up-blue');
 	$('li', this.$browse).toggleClass('hidden');
 };
 

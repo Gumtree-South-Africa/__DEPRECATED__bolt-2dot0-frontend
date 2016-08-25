@@ -95,14 +95,9 @@
                     </div>
                     {{!-- profile dropdown --}}
                     <div id="js-profile-dropdown" class="hidden">
-                        {{> (dynamic "profileMenu")}}
+                        {{> (dynamic "profileMenu") showMyAds=true}}
                     </div>
                 </div>
-				<a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
-					<div class="help right-item">
-                        {{i18n "header.help"}}
-					</div>
-				</a>
                 {{#if this.header.isUserLoggedIn}}
 					<span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
                         <div class="my-ads right-item">
@@ -110,6 +105,11 @@
 						</div>
                     </span>
                 {{/if}}
+				<a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
+					<div class="help right-item">
+                        {{i18n "header.help"}}
+					</div>
+				</a>
             </div>
         {{/unless}}
     </div>

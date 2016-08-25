@@ -125,8 +125,8 @@ $dropdown-width: 220px;
 					border-radius: 50%;
 					vertical-align: middle;
 					display: inline-block;
-					width: 40px;
-					height: 40px;
+					width: 45px;
+					height: 45px;
 				}
 				.profile-picture {
 					background-size: contain;
@@ -157,7 +157,6 @@ $dropdown-width: 220px;
 			border-radius: 2px;
 			margin-top: 20px;
 			margin-bottom: 15px;
-			box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24);
 			display: none;
 			@include from-breakpoint($medium-break) {
 				display: inline-block;
@@ -183,11 +182,11 @@ $dropdown-width: 220px;
 			float: left;
 
 			.item-text {
-				width: 155px;
+				width: 160px;
 				white-space: nowrap;
 				overflow: hidden;
 				text-overflow: ellipsis;
-				padding-top: 20px;
+				padding-top: 16px;
 			}
 		}
 
