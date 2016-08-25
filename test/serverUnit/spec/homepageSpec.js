@@ -3,16 +3,16 @@ let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let mockTrending = require(`${process.cwd()}/test/serverUnit/mockData/api/v1/TrendingCard.json`);
 
 describe('Server to hit HomePage', function() {
-	let i18n, mockTrending;
+	let i18n;
 	let lat = "19.451054";
 	let lng = "-99.125519";
 	let geoCookie = `${lat}ng${lng}`;
 
 	beforeEach(() => {
 		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
-		mockTrending = specHelper.getMockData("/test/serverUnit/mockData/api/v1/", "TrendingCard");
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
@@ -119,7 +119,7 @@ describe('Server to hit HomePage', function() {
 
 		it('should show geo location on home page (geoId cookie passed)', (done) => {
 
-			let file = specHelper.getMockData("geo", "geoLocation");
+			let file = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 			specHelper.registerMockEndpoint(
 				`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,
