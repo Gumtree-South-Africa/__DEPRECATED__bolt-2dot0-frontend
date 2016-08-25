@@ -73,7 +73,8 @@ module.exports = function watch(gulp, plugins) {
 					if (error) {
 						console.log(error);
 					} else {
-						git.pull('origin', 'HEAD:master', {args: '--tags'}, cb);
+						git.pull('origin', 'HEAD:master', cb);
+						git.fetch('origin', 'HEAD:master', {args: '--tags'}, cb);
 						git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 					}
 				});
