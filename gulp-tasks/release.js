@@ -71,11 +71,14 @@ module.exports = function watch(gulp, plugins) {
 			var stream =
 				git.tag(getAppVersion(), '[Release Tag] Created Tag for app with version: ' + getAppVersion(), function(error) {
 					if (error) {
-						return cb(error);
+						console.log(error);
+					} else {
+						git.pull('origin', 'HEAD:master', cb);
+						git.fetch('', '', {args: '--all'}, cb);
+						git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 					}
-					git.pull('origin', 'HEAD:master', {args: '--tags'}, cb);
-					git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 				});
+
 			return stream;
 		});
 
