@@ -53,7 +53,7 @@
 		"server": {
 			"host": "inc.t9.classistatic.com",
 			"port": null,
-			"version": "2.0.116"
+			"version": "2.0.115"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
@@ -62,8 +62,8 @@
 		"baseImageUrl": "/images/",
 		"mainJSUrl": "/js/main.js",
 		"baseUrl": "/",
-		"baseFontUrl": "/fonts/",
-		"baseIconUrl": "/icons/",
+		"baseFontUrl"	: "/fonts/",
+		"baseIconUrl"	: "/icons/",
 		"min": true
 	},
 	"abTest": {
