@@ -60,22 +60,41 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		// Push all committed changes to Git
-		gulp.task('push-changes', function(cb) {
+		gulp.task('push-changes', function() {
 			var stream =
-				git.push('origin', 'HEAD:master', cb);
+				git.push('origin', 'HEAD:master', function(err) {
+					if (err) {
+						throw err;
+					}
+				});
 			return stream;
 		});
 
 		// Create a new Tag in Git
-		gulp.task('create-new-tag', function(cb) {
+		gulp.task('create-new-tag', function() {
 			var stream =
 				git.tag(getAppVersion(), '[Release Tag] Created Tag for app with version: ' + getAppVersion(), function(error) {
 					if (error) {
-						return cb(error);
+						console.log(error);
+					} else {
+						git.pull('origin', 'HEAD:master', function(err) {
+							if (err) {
+								throw err;
+							}
+						});
+						git.fetch('', '', {args: '--all'}, function(err) {
+							if (err) {
+								throw err;
+							}
+						});
+						git.push('origin', 'HEAD:master', {args: '--tags'}, function(err) {
+							if (err) {
+								throw err;
+							}
+						});
 					}
-					git.pull('origin', 'HEAD:master', {args: '--tags'}, cb);
-					git.push('origin', 'HEAD:master', {args: '--tags'}, cb);
 				});
+
 			return stream;
 		});
 

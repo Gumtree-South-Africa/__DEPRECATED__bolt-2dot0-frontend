@@ -53,8 +53,7 @@ let postAd = (imageArray, successCallback, failureCallback, options) => {
 			ad.location = {
 				"address": fields.address,
 				"latitude": lat,
-				"longitude": lng,
-				"type": options.locationType
+				"longitude": lng
 			};
 		});
 	}
