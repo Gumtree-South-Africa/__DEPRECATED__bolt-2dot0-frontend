@@ -30,7 +30,9 @@ describe('Homepage Spec', () => {
 
 	describe('Trending Card', () => {
 		it('should navigate to the ad page when clicking trending item', () => {
+			homepagePO.scrollTo(400);
 			homepagePO.trendingItemLink.click();
+
 			expect(browser.getCurrentUrl()).toContain(mockData.ads[0].viewSeoUrl, 'Navigated to the incorrect ad url');
 		});
 
