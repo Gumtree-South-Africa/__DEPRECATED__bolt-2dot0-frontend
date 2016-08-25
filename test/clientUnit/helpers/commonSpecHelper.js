@@ -1,6 +1,6 @@
 'use strict';
 
-let clientHbsHelpers = require("./clientHbsHelpers.js");
+let clientHbsHelpers = require("public/js/common/utils/clientHbsHelpers.js");
 
 let mockAjaxMapQueue = {};
 
