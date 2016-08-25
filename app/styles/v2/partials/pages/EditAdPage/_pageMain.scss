@@ -83,7 +83,8 @@ $labelMargin: 8%;
 		}
 
 		@include from-breakpoint($medium-break) {
-			width: 50%;
+			width: 47%;
+			margin-right: 3%;
 			float: left;
 		}
 

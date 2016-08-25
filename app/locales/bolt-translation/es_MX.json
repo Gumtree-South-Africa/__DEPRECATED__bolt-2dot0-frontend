@@ -1386,7 +1386,7 @@
 			},
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
-			"leafNodeWarning": "TODO: GET DESCRIPTIVE TEXT TO TELL USER TO PICK LEAF NODE CATEGORY",
+			"leafNodeWarning": "Please select the category that best matches your listing",
 			"submit": "Listo",
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
