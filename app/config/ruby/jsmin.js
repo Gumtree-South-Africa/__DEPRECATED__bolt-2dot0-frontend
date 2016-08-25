@@ -14,7 +14,15 @@ module.exports = [
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/handlebars/*.js"
 		], "bundleName": "my-other-component.min.js"
-	}, {
+	},
+	{
+		"dest": rootDir + "/public/jsmin", "src": [
+		rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
+		rootDir + "/public/js/common/tracking/GoogleTag.js",
+		rootDir + "/public/js/common/banners/googletagbanner.js",
+		rootDir + "/public/js/common/tracking/Analytics.js"
+	], "bundleName": "HomePageV2Legacy.min.js"
+	},{
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
 			rootDir + "/public/bower-components/requirejs/require.js",
@@ -212,7 +220,7 @@ module.exports = [
 		], "bundleName": "HomePage_es_MX.min.js"
 	}, { //light version of page JS. Example: this will be used for mobile bp, since some  components will be turned off for mobile.
 		"dest": rootDir + "/public/jsmin", "src": [
-            rootDir + "/app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js",                                         
+            rootDir + "/app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js",
 			rootDir + "/app/appWeb/views/components/categoryList/js/app.js"
 		], "bundleName": "HomePage_es_MX_light.min.js"
 	}, {
@@ -234,7 +242,7 @@ module.exports = [
 	}, {
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/app/appWeb/views/components/categoryList/js/app.js",
-			rootDir + "/app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js",  
+			rootDir + "/app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js",
 			rootDir + "/app/appWeb/views/components/adCarousel/js/adCarousel.js"
 		], "bundleName": "HomePage_en_ZA.min.js"
 	}, {
