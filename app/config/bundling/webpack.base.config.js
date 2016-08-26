@@ -42,9 +42,9 @@ module.exports = {
 				warnings: false
 			}
 		}),
-		new webpack.ProvidePlugin({
-			$: "jquery",
-			jQuery: "jquery"
-		})
+		// *******************************************************************
+		// PLEASE DO NOT REMOVE THIS COMMONS CHUNK PLUGIN FROM SECOND IN THE ARRAY
+		// *******************************************************************
+		new webpack.optimize.CommonsChunkPlugin("MainV2.min.js") // common Main.js File
 	]
 };
