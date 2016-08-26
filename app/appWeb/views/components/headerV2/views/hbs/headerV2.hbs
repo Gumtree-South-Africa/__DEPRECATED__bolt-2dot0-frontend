@@ -14,11 +14,13 @@
             </a>
             <div class="left-items">
                 {{#if this.header.isUserLoggedIn}}
-                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|MessageIcon">
-                        <div class="messages icon-messages">
-                            <div class="number-messages">
-                                {{this.header.converstionInfo.totalUnreadMessageCount}}
-                            </div>
+                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
+                        <div class="messages icon-messages-blue">
+                            {{#compare this.header.converstionInfo.totalUnreadMessageCount ">=" 0}}
+                                <div class="number-messages">
+                                    {{this.header.converstionInfo.totalUnreadMessageCount}}
+                                </div>
+                            {{/compare}}
                         </div>
                     </span>
                 {{/if}}

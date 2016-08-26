@@ -1,39 +1,30 @@
-.sectionMenuWrapper{
-  @include from-breakpoint($small-break){
-    font-size: 1.3em;
-  }
+.sectionMenuWrapper {
+	@include from-breakpoint($small-break) {
+		font-size: 1.3em;
+	}
 }
 
 .sectionMenu {
-  margin-top: 1em;
-  text-align:center;
-  li, a {
-    display:inline-block;
-  }
-  a {
-    padding:4px 14px 4px 8px;
-    color: $secmenu-link-color;
-    border-right: 2px solid #ccc;
-    &.active {
-      color: $secmenu-link-color-hover;
-    }
-    &:hover {
-      font-weight:bold;
-      color: $secmenu-link-color-hover;
-      background-color: transparent;
-      cursor: pointer;
-    }
-    &:after {
-      display:block;
-      content:attr(title);
-      font-weight:bold;
-      height:1px;
-      color:transparent;
-      overflow:hidden;
-      visibility:hidden;
-    }
-    &.last {
-      border-right: 0;
-    }
-  }
+	margin-top: 10px;
+	text-align: center;
+	li, a {
+		display: inline-block;
+	}
+	a {
+		font-size: 14px;
+		text-transform: uppercase;
+		padding: 4px 14px;
+		color: $secmenu-link-color;
+		&.active {
+			color: $headerBlue;
+			border-bottom: 6px solid $headerBlue;
+		}
+		&:hover {
+			text-decoration: none;
+			font-weight: bold;
+			color: $headerBlue;
+			border-bottom: 6px solid $headerBlue;
+			cursor: pointer;
+		}
+	}
 }
