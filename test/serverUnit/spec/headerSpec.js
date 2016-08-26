@@ -144,7 +144,7 @@ describe('Header', () => {
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
 						let link = c$(el).attr('data-o-uri');
-						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
+						expect(map.has(link)).toBe(true, `link ${itemName} should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedInContent.length, 'count of category items in the menu');
 				})
@@ -181,7 +181,7 @@ describe('Header', () => {
 						expect(map.has(itemName)).toBe(true, `link ${itemName} should contain a name from mock data`);
 
 						let link = c$(el).attr('data-o-uri');
-						expect(map.has(link)).toBe(true, `link should have href: ${link}`);
+						expect(map.has(link)).toBe(true, `link ${itemName} should have href: ${link}`);
 					});
 					expect(linkCount).toBe(data.loggedOutContent.length, 'count of category items in the menu');
 
