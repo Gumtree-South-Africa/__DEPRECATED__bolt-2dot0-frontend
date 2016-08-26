@@ -10,6 +10,18 @@ let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
+/**
+ * emits the message, bapiJson (if present), and stack trace
+ * @param {Object} err (exception object)
+ */
+let logError = (err) => {
+	console.error(err.message);
+	if (err.bapiJson) {
+		console.error(`bapiJson: ${JSON.stringify(err.bapiJson, null, 4)}`);
+	}
+	console.error(err.stack);
+};
+
 // route is /api/ads/favorite
 router.post('/', cors, (req, res) => {
 	// Validate the incoming JSON
@@ -41,11 +53,7 @@ router.post('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json
 			return;
 		}).fail((err) => {
-			console.error(err.message);
-			if (err.bapiJson) {
-				console.error(JSON.stringify(err.json, null, 4));
-			}
-			console.error(err.stack);
+			logError(err);
 			res.status(500).send({
 				error: "unable to favorite ad, see logs for details",
 			});
@@ -89,11 +97,7 @@ router.delete('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json;
 			return;
 		}).fail((err) => {
-			console.error(err.message);
-			if (err.bapiJson) {
-				console.error(JSON.stringify(err.json, null, 4));
-			}
-			console.error(err.stack);
+			logError(err);
 			res.status(500).send({
 				error: "unable to unfavorite ad, see logs for details",
 			});
