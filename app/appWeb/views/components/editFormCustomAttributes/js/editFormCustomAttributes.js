@@ -1,3 +1,5 @@
+/*eslint no-fallthrough: 0*/
+
 'use strict';
 
 let clientHbs = require("public/js/common/utils/clientHandlebars.js");
@@ -5,6 +7,7 @@ let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 class EditFormCustomAttributes {
 	_render(modelData) {
 
+		this._unbindEvents();
 		this._unbindDependencyEvents();
 
 		// empty the contents of the form
@@ -15,6 +18,7 @@ class EditFormCustomAttributes {
 		this.$form.append($(newDomString).unwrap());
 
 		this._bindDependencyEvents();
+		this._bindEvents();
 	}
 
 	_unbindDependencyEvents() {
@@ -79,7 +83,6 @@ class EditFormCustomAttributes {
 		this.$inputFields = $("input[data-validation='NUMBER']");
 		this.$inputFields.on('keydown', (e) => {
 			if (e.keyCode > 57 || e.keyCode < 48) {
-				console.log(e.keyCode);
 				switch (e.keyCode) {
 					case 8:
 						//backspace

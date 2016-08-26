@@ -2,7 +2,7 @@
 
 
 let $ = require("jquery");
-let clientHbsHelpers = require("../../../public/js/common/utils/clientHbsHelpers.js");
+let clientHbsHelpers = require("public/js/common/utils/clientHbsHelpers.js");
 let _ = require("underscore");
 
 let mockAjaxMapQueue = [];

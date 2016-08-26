@@ -12,10 +12,10 @@
 }
 
 .homepagewrapper{
-    width: 100%; 
+    width: 100%;
     margin: 0 auto;
 #sticky_bottom_banner{
-	position: fixed; 
+	position: fixed;
 	bottom: 0px;
 	z-index: 9;
 	height: 30px;
@@ -25,7 +25,7 @@
 	width: 100%;
 	background-color: #8FBA31;
 	right:0;
-	}   
+	}
 .icon-close_icon{
 	position:absolute;
 	width:18px;
@@ -53,7 +53,7 @@
     {
         margin:0em 1em 0 1em;
     }
-    
+
     .homepagewrapper {
     #sticky_bottom_banner {
     line-height: 14px;
@@ -66,8 +66,8 @@
    .icon-close_icon{
     top: 18px;
     right: 3px;
-   } 
-  }  
+   }
+  }
 }
 
 @include in-breakpoint($medium-break) {
@@ -103,4 +103,9 @@
             }
         }
     }
+}
+
+.containment {
+	padding-bottom: 15em;
+	margin-bottom: -15em;
 }

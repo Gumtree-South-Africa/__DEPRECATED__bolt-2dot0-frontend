@@ -90,6 +90,18 @@
             background-size: contain;
             margin-top: 5px;
             border: .5px solid deepskyblue;
+			&.user-photo-1 {
+				background-image: url('../../../../../images/Agent01.jpg');
+			}
+			&.user-photo-2 {
+				background-image: url('../../../../../images/Agent02.jpg');
+			}
+			&.user-photo-3 {
+				background-image: url('../../../../../images/Agent03.jpg');
+			}
+			&.user-photo-4 {
+				background-image: url('../../../../../images/Agent04.jpg');
+			}
         }
     }
 
@@ -109,10 +121,10 @@
         margin-top: 5px;
     }
     .ios-icon {
-        background-image: url('../../../../../images/es_MX/appstore.png');
+        background-image: url('../../../../../images/es_MX/appstore.svg');
     }
     .googleplay-icon {
-        background-image: url('../../../../../images/es_MX/googleplay.png');
+        background-image: url('../../../../../images/es_MX/googleplay.svg');
     }
 
     .footer-download {

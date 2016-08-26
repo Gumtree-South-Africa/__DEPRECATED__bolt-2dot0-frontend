@@ -1,7 +1,5 @@
 'use strict';
 
-let $ = require("jquery");
-
 // Commenting out for lint
 // /**
 //  * abort and remove an ajax request from the currentTypeAheadAjaxMap
