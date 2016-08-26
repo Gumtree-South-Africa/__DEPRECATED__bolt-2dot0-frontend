@@ -61,7 +61,10 @@ class FooterV2Model {
 
 //Build JS
 	buildJs(data) {
-		data.javascripts = [data.baseJSMinUrl + "MainV2.min.js"];
+		data.javascripts = [
+			data.baseJSMinUrl + "jQuery.min.js",
+			data.baseJSMinUrl + "MainV2.min.js"
+		];
 	}
 
 //Build URL

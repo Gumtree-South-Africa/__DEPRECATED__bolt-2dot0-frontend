@@ -18,6 +18,9 @@ module.exports = [
 	{
 		"dest": rootDir + "/public/jsmin", "src": [
 		rootDir + "/node_modules/jquery/dist/jquery.min.js",
+	], "bundleName": "jQuery.min.js"},
+	{
+		"dest": rootDir + "/public/jsmin", "src": [
 		rootDir + "/public/js/libraries/jQuery/plugins/jquery.smartbanner.js",
 		rootDir + "/public/js/common/tracking/GoogleTag.js",
 		rootDir + "/public/js/common/banners/GoogleTagBanner.js",

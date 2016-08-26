@@ -1,7 +1,5 @@
 'use strict';
 
-let $ = require("jquery");
-
 let _getGeoCodeData = (country, lang, inputVal) => {
 	let htmlElt = '';
 	$.ajax({
