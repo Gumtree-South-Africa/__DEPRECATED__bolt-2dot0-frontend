@@ -305,7 +305,7 @@ let _postAd = (urls, locationType) => {
 				window.BOLT.trackEvents({ "event": "PostAdFreeSuccess", "p": {"t": "PostAdFreeSuccess"} });
 				break;
 			case AD_STATES.AD_DEFERRED:
-				window.BOLT.trackEvents({ "event": "PostAdOptionsModal", "p": {"t": "PostAdOptionsModal"} });
+				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });
 				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
 				this.$loginModal.find('.register-link').attr('href', response.links.register);
 				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
