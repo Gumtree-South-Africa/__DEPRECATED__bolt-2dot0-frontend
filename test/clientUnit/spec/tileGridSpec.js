@@ -124,7 +124,7 @@ describe('Tile Grid', () => {
 
 		});
 
-		it('should set white icon on initial load for the tile with its id in the favorite cookie', () => {
+		it('should set orange icon on initial load for the tile with its id in the favorite cookie', () => {
 
 			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
 			CookieUtils.setCookie("watchlist", "200000000long");	// this enables the server calls to _favoriteAd
@@ -133,7 +133,7 @@ describe('Tile Grid', () => {
 
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
-			expect($(tiles[1]).find('.icon-heart-white').length).toBeTruthy(`favorited cookie tile should have white icon`);
+			expect($(tiles[1]).find('.icon-heart-orange').length).toBeTruthy(`favorited cookie tile should have orange icon`);
 
 		});
 

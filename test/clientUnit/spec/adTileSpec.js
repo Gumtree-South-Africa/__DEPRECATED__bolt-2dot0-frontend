@@ -45,7 +45,7 @@ describe('Ad Tile', () => {
 			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
 
 			$heart.click();
-			expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
+			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 			let cookieValue = CookieUtils.getCookie('watchlist');
 			expect(cookieValue).toBe(`${adTileModel.adId}`);
 
@@ -76,7 +76,7 @@ describe('Ad Tile', () => {
 			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
 
 			$heart.click();
-			expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
+			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 			let cookieValue = CookieUtils.getCookie('watchlist');
 			expect(cookieValue).toBe(`${adTileModel.adId}`);
 
@@ -104,7 +104,7 @@ describe('Ad Tile', () => {
 		// 	expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
 		//
 		// 	$heart.click();
-		// 	expect($heart.hasClass('icon-heart-white')).toBeTruthy('should show white heart icon class after first click');
+		// 	expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 		// 	let cookieValue = CookieUtils.getCookie('watchlist');
 		// 	expect(cookieValue).toBe(`${adTileModel.adId}`);
 		//

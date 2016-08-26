@@ -45,7 +45,7 @@ class AdTile {
 	 * @param tile
 	 */
 	toggleFavorite(tile) {
-		$(tile).toggleClass("icon-heart-gray icon-heart-white");
+		$(tile).toggleClass("icon-heart-gray icon-heart-orange");
 	}
 
 	/**
@@ -91,13 +91,13 @@ class AdTile {
 		let target = $(event.target);
 
 		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
-		target.toggleClass("icon-heart-gray icon-heart-white");
+		this.toggleFavorite(target);
 
 		let ids = this._getIdMapFromCookie('watchlist');
 		let adId = target.data('adid');  // data attrs get lower-cased
 
 		let action;
-		if (target.hasClass("icon-heart-white")) {
+		if (target.hasClass("icon-heart-orange")) {
 
 			// add to cookie
 			ids[adId] = '';

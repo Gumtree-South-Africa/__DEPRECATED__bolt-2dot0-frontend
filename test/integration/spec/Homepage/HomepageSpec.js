@@ -149,7 +149,7 @@ describe('Homepage Spec', () => {
 
 			// resize window to show all trending items
 			browser.driver.manage().window().setSize(375, browserHeight).then(() => {
-				return browser.sleep(1000);
+				return browser.sleep(3000);
 			}).then(() => {
 				// only checking the 3 images we expect to be loaded based on our window size
 				for (let i = 0; i < imagesToCheck; i++) {
