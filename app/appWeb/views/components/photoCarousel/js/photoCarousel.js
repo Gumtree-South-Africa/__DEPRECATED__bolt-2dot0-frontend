@@ -555,12 +555,12 @@ let parseFile = (file) => {
 
 let preventDisabledButtonClick = (event) => {
 	if (this.$postAdButton.hasClass("disabled")) {
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
 			$('.cover-photo').addClass('red-border');
 			$('.photos-required-msg').removeClass('hidden');
+			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		}
 	} else {
 		this.$postAdButton.addClass('disabled');
