@@ -6,8 +6,12 @@ $photo-switcher-width: 30%;
 	margin: 0 auto;
 }
 
-.headerV2 {
-	box-shadow: none !important;
+.header-wrapper {
+	border-bottom: none !important;
+
+	.headerV2 {
+		box-shadow: none !important;
+	}
 }
 
 .mobile-post-ad {

@@ -277,11 +277,15 @@ let _getCookie = (cname) => {
 };
 
 let _postAd = (urls, locationType) => {
+	// default price to 0
+	let inputPrice = parseFloat($("#price-input").val());
+	let price = isNaN(inputPrice) ? 0 : inputPrice;
+
 	let extraPayload = {
 		locationType: locationType,
 		title: $("#title-input").val(),
 		price: {
-			amount: parseFloat($("#price-input").val()),
+			amount: price,
 			currency: $('input[name="currency"]:checked').val()
 		}
 	};
