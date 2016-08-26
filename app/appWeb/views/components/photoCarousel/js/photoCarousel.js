@@ -54,7 +54,7 @@ let resizeCarousel = () => {
 	if ($carouselUserImages.length === allowedUploads) {
 		this.$carousel.slick('slickRemove', 0);
 	}
-	$carouselUserImages.each((item) => {
+	$carouselUserImages.each((i, item) => {
 		// Slick will sometimes remove the css applied to an item.
 		let carouselItem = $(item);
 		let image = carouselItem.data('image');
@@ -64,7 +64,9 @@ let resizeCarousel = () => {
 	});
 	//fix issue where images would sometimes be very small
 	if (width > 10) {
-		$carouselImages.css('height', width + 'px');
+		$carouselImages.each((i, item) => {
+			$(item).css('height', width + 'px');
+		});
 		// vertical align arrows to new height
 		$('.slick-arrow').css('top', width / 2 + 'px');
 		$('.slick-prev').addClass("icon-back");
@@ -774,6 +776,9 @@ let initialize = (options) => {
 
 	// Slick setup
 	this.$carousel.slick(options.slickOptions);
+
+	this.$carousel.on('breakpoint', resizeCarousel);
+
 	imageUploads.add(options.initialImages.length);
 	options.initialImages.forEach((image, i) => {
 		let thumb = (image.LARGE) ? image.LARGE : image.SMALL;
