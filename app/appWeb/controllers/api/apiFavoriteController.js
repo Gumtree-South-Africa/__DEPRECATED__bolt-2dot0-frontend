@@ -60,6 +60,18 @@ router.post('/', cors, (req, res) => {
 });
 
 router.delete('/', cors, (req, res) => {
+	// Validate the incoming JSON
+	let validate = validator(favoriteSchema);
+	let valid = validate(req.body);
+	if (!valid) {
+		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
+		res.contentType = "application/json";
+		res.status(400).send({
+			schemaErrors: validate.errors
+		});
+		return;
+	}
+
 	// Validate the body
 	if (req.body.adId) {
 		let modelBuilder = new ModelBuilder();
@@ -74,7 +86,7 @@ router.delete('/', cors, (req, res) => {
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 
 		model.advertModel.unfavoriteTheAd(req.body.adId).then(() => {
-			res.send();
+			res.status(200).send({});	// returning {} since consumer will expect json;
 			return;
 		}).fail((err) => {
 			console.error(err.message);

@@ -161,6 +161,14 @@ module.exports.boltSupertest = (route, host, method) => {
 			// assume we're going to be posting and receiving json
 			result.set('ContentType', 'application/json');
 			result.set('Accept', 'application/json');
+
+		} else if (method === 'DELETE') {
+			result = result.del(route);
+
+			// assume we're going to be posting and receiving json
+			result.set('ContentType', 'application/json');
+			result.set('Accept', 'application/json');
+
 		} else {
 			console.error(`specHelper - unrecognized "method" parameter: ${method}`);
 		}
