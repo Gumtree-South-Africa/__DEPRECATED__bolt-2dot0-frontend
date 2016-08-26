@@ -86,7 +86,7 @@ router.post('/update', cors, (req, res) => {
 		let returnCode = 500;
 		let returnMessage = (error.data) ? error.data.message : 'Edit ad failed';
 		console.error('Edit ad failed ' + error);
-		console.error(error.data);
+		console.error(error.json);
 		if (error.statusCode) {
 			//Special error cases need to be handled differently
 			switch (error.statusCode) {
@@ -105,6 +105,7 @@ router.post('/update', cors, (req, res) => {
 			}
 		}
 		res.status(returnCode).json({
+			bapiError: error.json,
 			error: returnMessage
 		});
 	});

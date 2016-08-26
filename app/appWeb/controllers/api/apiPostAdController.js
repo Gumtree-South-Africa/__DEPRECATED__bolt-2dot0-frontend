@@ -151,7 +151,7 @@ router.post('/create', cors, (req, res) => {
 		}).fail((error) => {
 			// post ad has failed
 			console.error(`postAdModel.postAd failure ${error}`);
-			console.error(error.data);
+			console.error(error.json);
 			res.status(500).send({
 				error: "postAd failed, see logs for details"
 			});

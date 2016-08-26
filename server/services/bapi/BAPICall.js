@@ -60,13 +60,16 @@ BAPICall.prototype = {
 					if  (res.statusCode !== 200) {
 						let error = new Error(`Received non-200 status: ${res.statusCode}`);
 						// attach the status code so consumers can check for it
-						error.statusCode = res.statusCode;
-						if (data) {
-							error.data = {
-								message: data.message,
-								details: data.details
-							};
+						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
+							// if (data.details.length) {
+							// 	data.details = data.details.map((detail) => {
+							// 		delete detail._links;
+							// 		return detail;
+							// 	});
+							// }
+							error.json = data;
 						}
+						error.statusCode = res.statusCode;
 						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);
@@ -140,14 +143,17 @@ BAPICall.prototype = {
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (!(res.statusCode === 200 || res.statusCode === 201)) {
 						let error = new Error(`Received non-200/201 status: ${res.statusCode}`);
+						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
+							// if (data.details.length) {
+							// 	data.details = data.details.map((detail) => {
+							// 		delete detail._links;
+							// 		return detail;
+							// 	});
+							// }
+							error.json = data;
+						}
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;
-						if (data) {
-							error.data = {
-								message: data.message,
-								details: data.details
-							};
-						}
 						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);

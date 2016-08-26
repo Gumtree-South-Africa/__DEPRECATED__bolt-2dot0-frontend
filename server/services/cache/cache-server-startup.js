@@ -88,7 +88,7 @@ function CacheBapiData(siteApp, requestId) {
 	 */
 	let loadAllCategoryData = function (bapiHeaders, categoryDepth) {
 		// Load All Category Data from BAPI
-		return Q(categoryService.getCategoriesData(bapiHeaders, categoryDepth))
+		return categoryService.getCategoriesData(bapiHeaders, categoryDepth)
 			.then(function (dataReturned) {
 				siteApp.locals.config.categoryAllData = dataReturned;
 			}).fail(function (err) {

@@ -79,12 +79,18 @@ class EditFormCustomAttributes {
 		this.$inputFields = $("input[data-validation='NUMBER']");
 		this.$inputFields.on('keydown', (e) => {
 			if (e.keyCode > 57 || e.keyCode < 48) {
+				console.log(e.keyCode);
 				switch (e.keyCode) {
 					case 8:
+						//backspace
 					case 9:
+						//tab
 					case 13:
+						//delete
 					case 37:
+						//left arrow
 					case 39:
+						//right arrow
 						break;
 					default:
 						e.preventDefault();
