@@ -1,7 +1,6 @@
 'use strict';
 
 let CookieUtils = require("public/js/common/utils/CookieUtils.js");
-let $ = require('jquery');
 require("jquery-lazyload");
 
 
