@@ -127,7 +127,7 @@ describe('Tile Grid', () => {
 		it('should set orange icon on initial load for the tile with its id in the favorite cookie', () => {
 
 			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
-			CookieUtils.setCookie("watchlist", "200000000long");	// this enables the server calls to _favoriteAd
+			CookieUtils.setCookie("watchlist", "200000000");	// using short ad id to be compatible with RUI
 
 			let tiles = $testArea.find('.tile-item');
 

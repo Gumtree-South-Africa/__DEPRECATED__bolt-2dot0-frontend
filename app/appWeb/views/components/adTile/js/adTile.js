@@ -93,13 +93,16 @@ class AdTile {
 		this.toggleFavorite(target);
 
 		let ids = this._getIdMapFromCookie('watchlist');
-		let adId = target.data('adid');  // data attrs get lower-cased
+		let adId = target.data('adid');  // using attribute data-adid
+
+		// use short ad id for cookie to be compatible with RUI
+		let shortAdId = target.data('short-adid');	// using attribute data-short-adid
 
 		let action;
 		if (target.hasClass("icon-heart-orange")) {
 
 			// add to cookie
-			ids[adId] = '';
+			ids[shortAdId] = '';
 			this._setIdMapToCookie('watchlist', ids);
 
 			// add to server
@@ -107,7 +110,7 @@ class AdTile {
 		} else {
 
 			// delete from cookie
-			delete ids[adId];
+			delete ids[shortAdId];
 			this._setIdMapToCookie('watchlist', ids);
 
 			// remove from server

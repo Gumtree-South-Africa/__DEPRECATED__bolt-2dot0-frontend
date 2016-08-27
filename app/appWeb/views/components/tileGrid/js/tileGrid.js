@@ -49,7 +49,8 @@ let _filterFunction = function() {
 let syncFavoriteCookieWithTiles = ($tiles) => {
 	let  favoriteIds = adTile.getCookieFavoriteIds();
 	for  (let i = 0; i < favoriteIds.length; i++) {
-		let selector = `[data-adid="${favoriteIds[i]}"]`;
+		// lookup using short ad id because cookie must be compatible with RUI
+		let selector = `[data-short-adid="${favoriteIds[i]}"]`;
 		let tileElts = $tiles.find(selector);
 		if (tileElts.length > 0) {
 			adTile.toggleFavorite(tileElts[0]);

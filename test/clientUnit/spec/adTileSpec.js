@@ -47,7 +47,7 @@ describe('Ad Tile', () => {
 			$heart.click();
 			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 			let cookieValue = CookieUtils.getCookie('watchlist');
-			expect(cookieValue).toBe(`${adTileModel.adId}`);
+			expect(cookieValue).toBe(`${adTileModel.id}`);	// use short ad id for compatibility with RUI for the cookie
 
 			$heart.click();
 			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon class after second click');
@@ -78,7 +78,7 @@ describe('Ad Tile', () => {
 			$heart.click();
 			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 			let cookieValue = CookieUtils.getCookie('watchlist');
-			expect(cookieValue).toBe(`${adTileModel.adId}`);
+			expect(cookieValue).toBe(`${adTileModel.id}`);	// use short ad id for compatibility with RUI for the cookie
 
 			$heart.click();
 			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon class after second click');
