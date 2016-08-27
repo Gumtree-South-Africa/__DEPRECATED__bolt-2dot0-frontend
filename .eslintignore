@@ -124,3 +124,5 @@ node_modules
 /app/config/bundling/rui/compiled
 
 public/js/precompTemplates.js
+
+test/coverage/**/*.js

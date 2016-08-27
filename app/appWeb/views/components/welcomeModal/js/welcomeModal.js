@@ -1,6 +1,5 @@
 'use strict';
 
-
 let initialize = () => {
 
 	$(document).ready(() => {

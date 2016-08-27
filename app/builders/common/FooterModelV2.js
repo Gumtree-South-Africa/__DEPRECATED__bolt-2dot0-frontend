@@ -5,7 +5,6 @@ let _ = require('underscore');
 let ModelBuilder = require('./ModelBuilder');
 let StringUtils = require(process.cwd() + '/app/utils/StringUtils');
 let pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
-let jsmin = require(process.cwd() + '/app/config/commonjsurl.js');
 
 class FooterV2Model {
 	constructor(secure, req, res) {
@@ -62,28 +61,10 @@ class FooterV2Model {
 
 //Build JS
 	buildJs(data) {
-
-		let baseComponentDir = '/views/components/';
-
-		data.javascripts = [];
-		if (data.min) {
-			data.javascripts.push(data.baseJSMinUrl + 'Main_' + this.locale + '.min.js');
-		} else {
-
-			/*//todo: remove comments after minification is done
-			 jsAssets.forEach(function(jsFile){
-			 data.javascripts.push(jsFile);
-			 });*/
-
-
-			for (let k = 0; k < jsmin[0].src.length; k++) {
-				data.javascripts.push(data.baseJSUrl + jsmin[0].src[k]);
-			}
-
-			// @todo: Need to determine a way to detect which components will be used for a
-			// given page.
-			data.javascripts.push(baseComponentDir + 'header/js/header.js');
-		}
+		data.javascripts = [
+			data.baseJSMinUrl + "jQuery.min.js",
+			data.baseJSMinUrl + "MainV2.min.js"
+		];
 	}
 
 //Build URL
