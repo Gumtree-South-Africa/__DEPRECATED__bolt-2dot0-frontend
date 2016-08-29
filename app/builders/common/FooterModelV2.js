@@ -49,6 +49,8 @@ class FooterV2Model {
 				data.baseFontUrl = urlHost + urlPort + urlVersion + config.get('static.baseFontUrl');
 				data.baseIconUrl = urlHost + urlPort + urlVersion + config.get('static.baseIconUrl');
 				data.min = config.get('static.min');
+				data.epsImageBaseUrl = config.get('cdn.server.eps.host');
+				data.cropImageBaseUrl = config.get('cdn.server.crop.host');
 
 				// add complex data to footer
 				this.buildJs(data);

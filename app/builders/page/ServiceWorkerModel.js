@@ -53,6 +53,10 @@ class ServiceWorkerModel {
 		let baseImageUrl = modelData.footer.baseImageUrl;
 		let baseFontUrl = modelData.footer.baseFontUrl;
 		let baseIconUrl = modelData.footer.baseIconUrl;
+
+		let epsImageBaseUrl = modelData.footer.epsImageBaseUrl;
+		let cropImageBaseUrl = modelData.footer.cropImageBaseUrl;
+
 		let homepageCache = {};
 
 		let homepagePreCache = _.reduceRight(cacheConfig.homepagePreCachePaths, function(a,b) {
@@ -90,7 +94,7 @@ class ServiceWorkerModel {
 			return a.concat(b);
 		}, []);
 
-		modelData.footer.cachePath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache};
+		modelData.footer.cachePath = {'homepagePreCache': homepagePreCache, 'homepageCache': homepageCache, 'homepageCropCache': cropImageBaseUrl, 'homepageEpsCache': epsImageBaseUrl};
 
 		return modelData;
 	}
