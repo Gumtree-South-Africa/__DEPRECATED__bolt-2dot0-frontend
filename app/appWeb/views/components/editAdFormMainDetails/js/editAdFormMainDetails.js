@@ -5,7 +5,7 @@ let categorySelectionModal = require("app/appWeb/views/components/categorySelect
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 require('public/js/common/utils/JQueryUtil.js');
-require('../../../../../../node_modules/webshim/js-webshim/dev/polyfiller.js');
+require('public/js/libraries/webshims/polyfiller.js');
 
 let _setupPolyfillForm = () => {
 	// replacing jquery swap function for use by webshim
@@ -45,7 +45,7 @@ let _setupPolyfillForm = () => {
 		replaceUI: 'auto'
 	};
 
-	$.webshim.setOptions('basePath', '/public/jsmin/webshims/shims/');
+	$.webshim.setOptions('basePath', '/public/js/libraries/webshims/shims/');
 
 	$.webshims.setOptions('forms-ext', shimDefJSON);
 
@@ -61,7 +61,6 @@ let _characterCountCb = ($input, $label) => {
 };
 
 let _bindCharacterCountEvents = ($input, $label) => {
-
 	$input.keyup(() => {
 		_characterCountCb($input, $label);
 	});
