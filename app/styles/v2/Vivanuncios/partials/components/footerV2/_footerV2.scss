@@ -103,14 +103,22 @@
 	.app-downloads {
 		border: 1px solid white;
 		display: inline-block;
-		margin: 0 10px;
-		width: 146px;
+		margin: auto;
+		border-radius: .25em;
+		@include from-breakpoint($medium-break) {
+			margin: 0 10px;
+		}
+		max-width: 146px;
 		height: 50px;
 		background-repeat: no-repeat;
 		margin-top: 5px;
 	}
 
 	.footer-download {
+		width: 100%;
+		@include from-breakpoint($medium-break) {
+			width: 40%;
+		}
 		text-align: center;
 	}
 
@@ -262,6 +270,13 @@
 	a {
 		color: $seofooter-color;
 	}
+
+	&.display-mobile {
+		top: -16.4em;
+		&.mobile-extra-height {
+			top: -20.4em;
+		}
+	}
 }
 
 .footer-explore .menu-category .menu-items {
@@ -346,7 +361,7 @@
 			display: inline-block;
 		}
 		.app-downloads-container {
-			width: 500px;
+			width: 100%;
 			display: inline-block;
 			margin-top: 15px;
 			.app-downloads {
@@ -401,6 +416,10 @@
 	.seo-links {
 		display: block !important;
 		width: 100%;
+
+		&.display-mobile {
+			top: -10.4em;
+		}
 
 		.seo-links-text-container {
 			width: 22%;
