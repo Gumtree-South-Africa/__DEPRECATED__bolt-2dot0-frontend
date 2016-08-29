@@ -4,7 +4,7 @@ let recentActivityService = require(process.cwd() + '/server/services/recentacti
 let recentActivityConfig = require(process.cwd() + '/app/config/ui/recentActivityConfig.json');
 let _ = require('underscore');
 _.templateSettings = {
-	interpolate : /\{([\s\S]+?)\}/g
+	interpolate: /\{([\s\S]+?)\}/g
 };
 
 class RecentActivityModel {
@@ -20,25 +20,25 @@ class RecentActivityModel {
 		let inputLocale = recentActivityConfig[locale];
 
 		let res = _.reduceRight(inputArr, function(a, b) {
-				let id = inputLocale[b['categoryId']];
-				if (id) {
-					let types = _.pluck(id.type, 'name'),
-						attributes = [],
-						prefix;
-					_.each(b.attributes, function(e) {
-						if (_.contains(types, e.name)) {
-							prefix = _.template(_.findWhere(id.type, {name: e.name}).prefix);
-							e.prefix = prefix({'formattedValue': e.formattedValue, 'localizedName': e.localizedName});
-							attributes.push(e);
-						}
-					}, []);
-
-					if (attributes.length && b.seller.profileImage !== undefined) {
-						b.attributes = attributes;
-						a.push(b);
+			let id = inputLocale[b['categoryId']];
+			if (id) {
+				let types = _.pluck(id.type, 'name'),
+					attributes = [],
+					prefix;
+				_.each(b.attributes, function(e) {
+					if (_.contains(types, e.name)) {
+						prefix = _.template(_.findWhere(id.type, {name: e.name}).prefix);
+						e.prefix = prefix({'formattedValue': e.formattedValue, 'localizedName': e.localizedName});
+						attributes.push(e);
 					}
+				}, []);
+
+				if (attributes.length && b.seller.profileImage !== undefined) {
+					b.attributes = attributes;
+					a.push(b);
 				}
-				return a;
+			}
+			return a;
 		}, []);
 		return res;
 	}
@@ -59,7 +59,7 @@ class RecentActivityModel {
 			bapiResult.recent = [];
 			bapiResult.filteredArr = this.filterArr(bapiResult.ads, this.bapiHeaderValues.locale) || [];
 
-			if (bapiResult.filteredArr.length >2) {
+			if (bapiResult.filteredArr.length > 2) {
 				bapiResult.shuffledArr = this.shuffleArr(bapiResult.filteredArr) || [];
 			}
 
