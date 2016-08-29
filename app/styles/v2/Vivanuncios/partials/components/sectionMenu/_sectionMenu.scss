@@ -1,11 +1,16 @@
 .sectionMenuWrapper {
+	overflow: hidden;
+	height: 45px;
 	@include from-breakpoint($small-break) {
 		font-size: 1.3em;
 	}
 }
 
 .sectionMenu {
+	white-space: nowrap;
+	overflow: scroll;
 	margin-top: 10px;
+	padding-bottom: 10px;
 	text-align: center;
 	li, a {
 		display: inline-block;

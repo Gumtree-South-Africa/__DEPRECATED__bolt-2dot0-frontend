@@ -35,13 +35,6 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             display: inline-block;
             vertical-align: middle;
             margin-left: 10px;
-
-			&.icon-my-ads-active {
-				opacity: .3;
-				background-size: 745%;
-				width: 18px;
-				height: 18px;
-			}
         }
     }
 
@@ -62,4 +55,11 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             padding: $profile-login-btn-padding;
         }
     }
+}
+
+.profile .profile-dropdown &.icon-my-ads-active {
+	opacity: .3;
+	background-size: 745%;
+	width: 18px;
+	height: 18px;
 }
