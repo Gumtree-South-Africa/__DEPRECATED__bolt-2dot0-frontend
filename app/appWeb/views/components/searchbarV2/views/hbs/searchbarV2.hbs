@@ -14,7 +14,7 @@
 						<span class="search-loc-icon icon-location-marker"></span>
 						<span class="location-text">{{#if this.locationlatlong.localizedName}}{{this.locationlatlong.localizedName}}{{else}}{{i18n "location.defaultcity"}}{{/if}}</span>
                     </div>
-                    <input type="hidden" name="locId" value="1001">
+                    <input type="hidden" name="locId" value="{{this.locationlatlong.id}}">
 				</div>
                 <div class="search-button-wrap">
                     <button class="search-button" type="submit" data-gtm="npc|NavHeaderClick|eventLabel|SearchClick">

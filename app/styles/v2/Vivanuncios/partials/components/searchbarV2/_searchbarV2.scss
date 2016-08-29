@@ -91,6 +91,16 @@ $mobileTextboxWidth: 84%;
 			background-color: $color-white;
 		}
 
+		.search-wrap {
+			float: left;
+			width: 90%;
+			height: 100%;
+			border: 1px solid $searchBarTextBoxBorder;
+			@include border-top-left-radius(0.25em);
+			@include border-bottom-left-radius(0.25em);
+			background-color: $color-white;
+		}
+
 		.loc-arrow-icon, .close-search {
 			z-index: 1;
 			position: absolute;
