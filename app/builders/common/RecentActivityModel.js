@@ -63,25 +63,6 @@ class RecentActivityModel {
 				bapiResult.shuffledArr = this.shuffleArr(bapiResult.filteredArr) || [];
 			}
 
-			// if (bapiResult.shuffledArr instanceof Array && bapiResult.shuffledArr.length > 2) {
-			// 	let feed1 = bapiResult.shuffledArr[0];
-			// 	feed1.renderSold = this.isSold(feed1);
-			// 	feed1.prefix1 = feed1.attributes[0].prefix;
-			// 	feed1.prefix2 = feed1.attributes[1] ? feed1.attributes[1].prefix : '';
-			// 	bapiResult.recent.push(feed1);
-			//
-			// 	let feed2 = bapiResult.shuffledArr[1];
-			// 	feed2.renderSold = this.isSold(feed2);
-			// 	feed2.prefix1 = feed2.attributes[0].prefix;
-			// 	feed2.prefix2 = feed2.attributes[1] ? feed2.attributes[1].prefix : '';
-			// 	bapiResult.recent.push(feed2);
-			//
-			// 	let feed3 = bapiResult.shuffledArr[2];
-			// 	feed3.renderSold = this.isSold(feed3);
-			// 	feed3.prefix1 = feed3.attributes[0].prefix;
-			// 	feed3.prefix2 = feed3.attributes[1] ? feed3.attributes[1].prefix : '';
-			// 	bapiResult.recent.push(feed3);
-			// }
 			return bapiResult;
 		}).fail((bapiErr) => {
 			console.warn(`Error getting BAPI recentActivities data ${bapiErr}`);
