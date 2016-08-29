@@ -221,8 +221,9 @@ $labelMargin: 8%;
 
 		.input-wrapper {
 			width: 100%;
+			position: relative;
 
-			input[type="text"], .location-link, select {
+			input[type="text"], input[type="date"], .location-link, select {
 				width: $inputWidth;
 				margin: 0 $inputMargin;
 				padding: 0 2%;
@@ -242,6 +243,13 @@ $labelMargin: 8%;
 				&.validation-error {
 					border: 1px solid red;
 				}
+			}
+
+			// overriding webshims styles to properly place button
+			.input-buttons {
+				position: absolute;
+				right: 7%;
+				top: 25%;
 			}
 
 			div.location-link {

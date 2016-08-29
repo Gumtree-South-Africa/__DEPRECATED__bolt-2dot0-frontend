@@ -5,6 +5,69 @@ let categorySelectionModal = require("app/appWeb/views/components/categorySelect
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 require('public/js/common/utils/JQueryUtil.js');
+require('../../../../../../node_modules/webshim/js-webshim/dev/polyfiller.js');
+
+let _setupPolyfillForm = () => {
+	// replacing jquery swap function for use by webshim
+	/* eslint-disable */
+	jQuery.swap = function( elem, options, callback, args ) {
+		var ret, name, old = {};
+		// Remember the old values, and insert the new ones
+		for ( name in options ) {
+			old[ name ] = elem.style[ name ];
+			elem.style[ name ] = options[ name ];
+		}
+
+		ret = callback.apply( elem, args || [] );
+
+		// Revert the old values
+		for ( name in options ) {
+			elem.style[ name ] = old[ name ];
+		}
+		return ret;
+	};
+	/* eslint-enable */
+
+	let shimDefJSON = {
+		debug: false,
+		waitReady: false,
+		types: 'date number',
+		date: {
+			replaceUI: 'auto',
+			startView: 2,
+			openOnFocus: true,
+			calculateWidth: false
+		},
+		number : {
+			"nogrouping": true,
+			"calculateWidth": false
+		},
+		replaceUI: 'auto'
+	};
+
+	$.webshim.setOptions('basePath', '/public/jsmin/webshims/shims/');
+
+	$.webshims.setOptions('forms-ext', shimDefJSON);
+
+	let locale = $("html").data("locale").replace("_", "-");
+	// locale set to HTML lang in the format 'en_ZA'
+	$.webshims.activeLang(locale);
+	$.webshims.polyfill('forms forms-ext');
+};
+
+let _characterCountCb = ($input, $label) => {
+	let count = $input.val().length;
+	$label.find(".characters-available").text(`${count}/${$input.attr("maxLength")}`);
+};
+
+let _bindCharacterCountEvents = ($input, $label) => {
+
+	$input.keyup(() => {
+		_characterCountCb($input, $label);
+	});
+
+	_characterCountCb($input, $label);
+};
 
 let _setHiddenLocationInput = (location) => {
 	this.$locationLat.val(location.lat);
@@ -133,9 +196,10 @@ let _openCatSelectModal = () => {
 			let newCatId = hierarchy[hierarchy.length - 1];
 			this.$categoryId.val(newCatId);
 			customAttributes.setCategoryId(newCatId);
-			 customAttributes.updateCustomAttributes((data) => {
-				 _toggleShowPriceField(data.isPriceExcluded);
-			 });
+			customAttributes.updateCustomAttributes((data) => {
+				_toggleShowPriceField(data.isPriceExcluded);
+				this.$detailsSection.find("form").updatePolyfill();
+			});
 			this.currentHierarchy = hierarchy;
 		}
 	});
@@ -186,11 +250,16 @@ let onReady = () => {
 
 	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);
 	this.$categoryChangeLink.click(_openCatSelectModal);
+
+	_bindCharacterCountEvents(this.$detailsSection.find('input[title="adTitle"]'), this.$detailsSection.find('label[for="adTitle"]'));
+	_bindCharacterCountEvents(this.$detailsSection.find('textarea[title="adDescription"]'), this.$detailsSection.find('label[for="adDescription"]'));
+
 };
 
 let initialize = () => {
 	locationModal.initialize(_setHiddenLocationInput);
 	categorySelectionModal.initialize();
+	_setupPolyfillForm();
 
 	$(document).ready(onReady);
 
@@ -199,5 +268,5 @@ let initialize = () => {
 
 module.exports = {
 	initialize,
-	onReady
+	onReady,
 };

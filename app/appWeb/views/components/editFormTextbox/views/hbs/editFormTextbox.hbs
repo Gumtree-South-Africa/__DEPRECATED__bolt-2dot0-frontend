@@ -2,5 +2,10 @@
 	<label for="{{this.name}}">{{this.localizedName}}</label>
 </div>
 <div class="input-wrapper">
-    <input type="text" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
+    {{#compare this.allowedValueType "===" "DATE"}}
+		<input type="date" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
+    {{/compare}}
+    {{#compare this.allowedValueType "!==" "DATE"}}
+		<input type="text" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
+    {{/compare}}
 </div>
