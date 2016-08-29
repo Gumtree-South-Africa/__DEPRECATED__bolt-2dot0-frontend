@@ -145,6 +145,36 @@ if (cacheObj) {
 	}
 }
 
+// cache images from crop server
+if (cacheObj) {
+	toolbox.router.get('*',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageCropCache,
+			cache: {
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		}
+	);
+}
+
+//cache images from eps server
+if (cacheObj) {
+	toolbox.router.get('*',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageEpsCache,
+			cache: {
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		}
+	);
+}
+
 
 /**
  * Offline Google Analytics
