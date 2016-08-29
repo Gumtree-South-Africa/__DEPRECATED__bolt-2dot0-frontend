@@ -146,7 +146,7 @@ if (cacheObj) {
 }
 
 // cache images from crop server
-if (cacheObj) {
+if (cacheObj.homepageCache.length > 0) {
 	toolbox.router.get('*',
 		toolbox.networkFirst,
 		{
@@ -161,7 +161,7 @@ if (cacheObj) {
 }
 
 //cache images from eps server
-if (cacheObj) {
+if (cacheObj.homepageEpsCache.length > 0) {
 	toolbox.router.get('*',
 		toolbox.networkFirst,
 		{
