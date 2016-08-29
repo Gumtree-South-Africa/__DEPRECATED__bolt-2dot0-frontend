@@ -45,7 +45,7 @@ let _setupPolyfillForm = () => {
 		replaceUI: 'auto'
 	};
 
-	$.webshim.setOptions('basePath', '/public/jsmin/webshims/shims/');
+	$.webshim.setOptions('basePath', '/public/js/libraries/webshims/shims/');
 
 	$.webshims.setOptions('forms-ext', shimDefJSON);
 
@@ -61,7 +61,6 @@ let _characterCountCb = ($input, $label) => {
 };
 
 let _bindCharacterCountEvents = ($input, $label) => {
-
 	$input.keyup(() => {
 		_characterCountCb($input, $label);
 	});
