@@ -15,6 +15,7 @@ module.exports = {
 				"TileGrid": "app/appWeb/views/components/tileGrid/js/tileGrid.js",
 				"Header": "app/appWeb/views/components/headerV2/js/header.js",
 				"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
+				"RecentActivity": "app/appWeb/views/components/recentActivity/js/recentActivity.js",
 				"WelcomeModal": "app/appWeb/views/components/welcomeModal/js/welcomeModal.js",
 				"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
 				"SectionMenu": "app/appWeb/views/components/sectionMenu/js/sectionMenu.js",
