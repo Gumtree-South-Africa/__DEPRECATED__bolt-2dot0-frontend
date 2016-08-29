@@ -88,6 +88,7 @@
 	},
 	"content" : {
 	  	"homepageV2" : {
+			"safetyLink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"distractionFree": false,
 			"reviews" : [
 				{

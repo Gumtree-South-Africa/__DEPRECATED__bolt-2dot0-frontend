@@ -419,6 +419,9 @@
 
 		&.display-mobile {
 			top: -10.4em;
+			&.mobile-extra-height {
+				top: -10.4em;
+			}
 		}
 
 		.seo-links-text-container {
