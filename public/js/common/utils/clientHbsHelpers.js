@@ -4,7 +4,28 @@ let StringUtils = require("public/js/common/utils/StringUtilsV2.js");
 
 let comparisonHelpers = require("../../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
 
+let translations = JSON.parse($("#translation-block").text());
+
 let locale;
+let _walkAndReplace = (translation, values) => {
+	let tempTranslation = translation;
+	values.forEach((val) => {
+		tempTranslation = tempTranslation.replace("%s", val);
+	});
+
+	return tempTranslation;
+};
+
+let _getTranslation = (key) => {
+	let tempTranslation = translations[key];
+
+	if ($.type(tempTranslation) !== 'string') {
+		throw Error("I18n Key not Found in Client Translations");
+	}
+
+	return tempTranslation;
+};
+
 let _loadPartial = (name) => {
 	return Handlebars.partials[name];
 };
@@ -50,8 +71,10 @@ let initialize = (Handlebars) => {
 	});
 
 
-	Handlebars.registerHelper('i18n', (msg) => {
-		return msg;
+	Handlebars.registerHelper('i18n', (key, ...vals) => {
+		let translation = _getTranslation(key);
+		vals.pop(); // pop off express helper object passed as the last param
+		return new Handlebars.SafeString(_walkAndReplace(translation, vals));
 	});
 
 	Handlebars.registerHelper('json', (context) => {

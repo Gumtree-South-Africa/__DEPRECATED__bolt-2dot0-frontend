@@ -150,6 +150,12 @@
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>
 
+    {{#if this.clientTranslations}}
+		<div id="translation-block" class="hidden">
+            {{clientI18nTranslate this.clientTranslations}}
+		</div>
+    {{/if}}
+
     {{> (dynamic "abTest") }}
 
     {{#block "googleAnalytics"}}

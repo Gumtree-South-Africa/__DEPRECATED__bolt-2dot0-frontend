@@ -45,6 +45,11 @@ class HomePageModelV2 {
 
 		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
+		// register these translations as they are needed for client templating
+		abstractPageModel.addToClientTranslation(modelData, [
+			"recentactivity.message.listing",
+			"recentactivity.message.sold"
+		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
 				// Converts the data from an array format to a JSON format
