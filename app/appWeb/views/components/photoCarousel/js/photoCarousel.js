@@ -184,6 +184,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.successMsg);
 	},
 	failMsg: (i) => {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
@@ -513,8 +514,6 @@ let deleteSelectedItem = (event) => {
 			if (!this.disableImageSelection) {
 				this.$imageUpload.click();
 			}
-			
-			window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 		});
 	}
 	resizeCarousel();
@@ -702,7 +701,7 @@ let initialize = () => {
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
 		}
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		
 	});
 
 	this.$imageUpload.on('click', (e) => {
@@ -711,6 +710,7 @@ let initialize = () => {
 			e.preventDefault();
 		}
 		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});	
+		
 	});
 
 	// Listen for file drag and drop uploads
