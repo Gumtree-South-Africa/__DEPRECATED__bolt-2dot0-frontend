@@ -48,9 +48,9 @@ let resizeCarousel = () => {
 	let $carouselUserImages = $('.carousel-item');
 	let $carouselAddItem = $('.add-photo-item');
 	// set height of carousel items to be same as width (set by slick)
-	if ($carouselUserImages.length === allowedUploads) {
+	if ($carouselUserImages.length === allowedUploads && $carouselAddItem.length === 1) {
 		this.$carousel.slick('slickRemove', 0);
-	} else if ($carouselAddItem.length === 0) {
+	} else if ($carouselUserImages.length < allowedUploads && $carouselAddItem.length === 0) {
 		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
 		this._bindChangeListener();
 	}
@@ -347,7 +347,6 @@ let _failure = (i, epsError) => {
 };
 
 let _success = (i, response) => {
-	resizeCarousel();
 	if (response.indexOf('ERROR') !== -1) {
 		console.error("EPS error!");
 		return _failure(i, response);
@@ -364,6 +363,7 @@ let _success = (i, response) => {
 	// add the image once EPS returns the uploaded image URL
 	createImgObj(i, url.thumbImage, url.normal);
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
+	resizeCarousel();
 
 	removePendingImage(i);
 };
@@ -421,7 +421,9 @@ Array.prototype.remove = function(from, to) {
 /******* END EPS STUFF *******/
 
 let _slickAdd = () => {
-	this.$carousel.slick('slickRemove', 0);
+	if ($('.add-photo-item').length === 1) {
+		this.$carousel.slick('slickRemove', 0);
+	}
 	this.$carousel.slick('slickAdd',
 
 		//Ternary for whether or not to show the blue X in the corner of each thumbnail
@@ -441,7 +443,7 @@ let _slickAdd = () => {
 	// increment loaded count
 	this.$loadedImages++;
 
-	if ($('.carousel-items').length < 12) {
+	if ($('.carousel-item').length <= allowedUploads) {
 		this.$carousel.slick('slickAdd', this.addPhotoHtml, 0, true);
 		this._bindChangeListener();
 	}
@@ -520,8 +522,6 @@ let fileInputChange = (evt) => {
 	for (let i = 0; i < files.length; i++) {
 		parseFile(files[i]);
 	}
-
-	// html5Upload(evt);
 };
 
 this._bindChangeListener = () => {
