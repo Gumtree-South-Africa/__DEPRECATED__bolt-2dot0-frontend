@@ -20,7 +20,7 @@ let getPageData = function(scope) {
 
 //Calculate daysSinceRegistration
 let getdiffDays = function(s1) {
-	  let cdateArray = s1.split(" ");  
+	 let cdateArray = s1.split(" ");  
 	  let d1 = new Date(cdateArray[0],cdateArray[1],cdateArray[2]);
 	  let d2 = new Date();
 	  let ndays;
@@ -41,8 +41,8 @@ let getUsereData = function(scope) {
 		'loggedIn': (!(typeof scope.userid === 'undefined' || scope.userid === null)),
 		'hashedAccountId': '',
 		'accountType': '',
-	    'accountCreationDate': (typeof scope.userid === 'undefined' || scope.userid === null) ? '' : (scope.usercreationdate),
-        'daysSinceRegistration':(typeof scope.userid === 'undefined' || scope.userid === null) ? '' : getdiffDays(scope.usercreationdate)
+	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
+        'daysSinceRegistration':(typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : getdiffDays(scope.usercreationdate)
 	};
 };
 
