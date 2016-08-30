@@ -19,7 +19,22 @@ class EditAdModel {
 			let postDate = new Date(data.postedDate);
 			let currentDate = new Date();
 			let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
-			data.daysUntil = Math.ceil(timeDiff / (1000 * 3600 * 24));
+			var diffHrs =  Math.floor(timeDiff / (1000 * 60 * 60));// hours
+			var diffMins = Math.floor(timeDiff / (1000 * 60)).toFixed(1);
+
+			if (diffMins < 60) {
+				let pluralizationString = diffMins === 1 ? "singular" : "plural";
+				data.timeUntil = diffMins;
+				data.dateStringKey = `shareAd.dateStrings.minute.${pluralizationString}`
+			} else if (diffHrs < 24) {
+				let pluralizationString = diffHrs === 1 ? "singular" : "plural";
+				data.timeUntil = diffHrs;
+				data.dateStringKey = `shareAd.dateStrings.hour.${pluralizationString}`
+			} else {
+				data.timeUntil = null;
+				data.dateStringKey = null;
+				data.datePosted = postDate;
+			}
 
 			return data;
 		});

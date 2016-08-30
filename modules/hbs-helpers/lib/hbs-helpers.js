@@ -197,6 +197,22 @@ module.exports  =  {
 			}
 			return (field in object) ? options.fn(this) : options.inverse(this);
 		});
+
+		exphbs.handlebars.registerHelper('formatDate', (date) => {
+			let hours12, halfOfDay,
+				hours24 = date.getHours();
+
+			if (hours24 > 12) {
+				hours12 = hours24 - 12;
+				halfOfDay = 'pm';
+			} else {
+				hours12 = hours24;
+				halfOfDay = 'am';
+			}
+
+			let monthString = exphbs.handlebars.helpers.i18n(`common.abbreviations.months.${date.getMonth()}`, {}); // passing an empty object as the second parameter as i18n expects an extra parameter from handlebars
+			return `${date.getDate()} ${monthString} ${hours12}:${date.getMinutes()}:${date.getSeconds()} ${halfOfDay}`; // 29 dec 12:13:14 pm
+		});
     }
 
 
