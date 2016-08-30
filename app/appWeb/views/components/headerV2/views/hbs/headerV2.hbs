@@ -14,7 +14,7 @@
         </a>
         <div class="left-items">
             {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|MessageIconClick">
+                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|MessageIcon">
                     <div class="messages icon-messages">
                         <div class="number-messages">
                             {{this.header.converstionInfo.totalUnreadMessageCount}}
@@ -64,13 +64,13 @@
             </div>
         </div>
         <div class="right-items">
-            <a href="{{this.footer.helpUrl}}">
+            <a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick'>
                 <div class="help right-item">
                     {{i18n "header.help"}}
                 </div>
             </a>
             {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAdsLinkClick">
+                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds'>
                     <div class="my-ads right-item">
                         {{i18n "header.myAds"}}
                     </div>
