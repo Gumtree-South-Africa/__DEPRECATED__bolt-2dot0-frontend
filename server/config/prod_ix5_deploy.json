@@ -52,10 +52,10 @@
 	"cdn": {
 		"server": {
 			"eps": {
-				"host": null
+				"host": "https://i.ebayimg.com/"
 			},
 			"crop": {
-				"host": null
+				"host": "https://img.classistatic.com/crop/"
 			}
 		}
 	},

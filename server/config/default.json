@@ -46,10 +46,10 @@
 	"cdn": {
 		"server": {
 			"eps": {
-				"host": null
+				"host": "https://i.ebayimg.sandbox.ebay.com/"
 			},
 			"crop": {
-				"host": null
+				"host": "https://img.classistatic.com/crop/"
 			}
 		}
 	},
