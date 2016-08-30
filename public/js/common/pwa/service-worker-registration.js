@@ -21,7 +21,7 @@
 let $ = require('jquery');
 
 
-function sendSubscriptionToServer(subscription) {
+function subscribeInServer(subscription) {
 	let payload = {
 		subscription: subscription,
 		deviceid: ''
@@ -38,6 +38,28 @@ function sendSubscriptionToServer(subscription) {
 		},
 		error: function(err) {
 			console.log('Failed to subscribe to push notification in server');
+			console.log(err);
+		}
+	});
+}
+
+function unsubscribeInServer(subscription) {
+	let payload = {
+		subscription: subscription,
+		deviceid: ''
+	};
+	$.ajax({
+		url: '/api/push/subscribe',
+		type: 'DELETE',
+		data: JSON.stringify(payload),
+		dataType: 'json',
+		contentType: "application/json",
+		success: function(output) {
+			console.log('Success in unsubscribing to push notification in server');
+			console.log(output);
+		},
+		error: function(err) {
+			console.log('Failed to unsubscribe to push notification in server');
 			console.log(err);
 		}
 	});
@@ -84,7 +106,24 @@ function initializePushNotification() {
 			// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
 			// TODO: Keep your server in sync with the latest subscriptionId
-			sendSubscriptionToServer(subscription);
+			// if cookie value same as subscription
+			let subscriptionChanged = false;
+
+			let subscriptionFromCookie = document.cookie['GCMSubscription'];
+			subscriptionChanged = (subscription === subscriptionFromCookie);
+
+			if (subscriptionChanged) {
+				// unsubscribe if there exists a cookied subscription
+				if (typeof subscriptionFromCookie !== 'undefined') {
+					unsubscribeInServer(subscriptionFromCookie);
+				}
+
+				// subscribe anytime there is a change
+				subscribeInServer(subscription);
+
+				// save subscription in cookie
+				document.cookie="GCMSubscription=" + subscription;
+			}
 		});
 	}).catch(function(err) {
 		console.log(':^(', err);
