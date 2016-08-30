@@ -5,9 +5,10 @@
 
 .sectionMenu {
 	white-space: nowrap;
-	overflow: scroll;
+	overflow-x: scroll;
+	overflow-y: hidden;
 	margin-top: 10px;
-	padding-bottom: 10px;
+	padding-bottom: 20px;
 	text-align: center;
 	li, a {
 		display: inline-block;
