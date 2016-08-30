@@ -17,10 +17,36 @@
 /* eslint-env browser */
 'use strict';
 
+
+let $ = require('jquery');
+
+
+function sendSubscriptionToServer(subscription) {
+	let payload = {
+		subscription: subscription,
+		deviceid: ''
+	};
+	$.ajax({
+		url: '/api/push/subscribe',
+		type: 'POST',
+		data: JSON.stringify(payload),
+		dataType: 'json',
+		contentType: "application/json",
+		success: function(output) {
+			console.log('Success in subscribing to push notification in server');
+			console.log(output);
+		},
+		error: function(err) {
+			console.log('Failed to subscribe to push notification in server');
+			console.log(err);
+		}
+	});
+}
+
 // Once the service worker is registered set the initial state
 // working for auto subscribe: https://developers.google.com/web/fundamentals/getting-started/push-notifications/step-06?hl=en
 // for user subscribe/unsubscribe: https://developers.google.com/web/updates/2015/03/push-notifications-on-the-open-web?hl=en
-function initializeState() {
+function initializePushNotification() {
 	// Are Notifications supported in the service worker?
 	if (!('showNotification' in ServiceWorkerRegistration.prototype)) {
 		console.warn('Notifications aren\'t supported.');
@@ -58,7 +84,7 @@ function initializeState() {
 			// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
 			// TODO: Keep your server in sync with the latest subscriptionId
-			// sendSubscriptionToServer(subscription);
+			sendSubscriptionToServer(subscription);
 		});
 	}).catch(function(err) {
 		console.log(':^(', err);
@@ -100,7 +126,7 @@ if ('serviceWorker' in navigator) {
 			};
 		};
 
-		initializeState();
+		initializePushNotification();
 	}).catch (function(e) {
 		console.error('Error during service worker registration:', e);
 	});
