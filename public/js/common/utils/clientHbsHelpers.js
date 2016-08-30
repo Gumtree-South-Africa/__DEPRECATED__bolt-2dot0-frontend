@@ -68,14 +68,31 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(StringUtils.obfsucate(value));
 	});
 
-	Handlebars.registerHelper('digitGrouping', (number, separator) => {
+	Handlebars.registerHelper("formatPrice", (number, separator) => {
+		if (!number)  {
+			return;
+		}
+
+		if (number >= 1000000000) {
+			number /= 1000000000;
+			return new Handlebars.SafeString("$" + number.toFixed(1) + "B");
+		} else if (number >= 1000000) {
+			number /= 1000000;
+			return new Handlebars.SafeString("$" + number.toFixed(1) + "M");
+		} else {
+			return new Handlebars.SafeString("$" + _groupDigits(number, separator));
+		}
+	});
+
+	let _groupDigits = (number, separator) => {
 		if (!number) {
 			return;
 		}
 		number = parseFloat(number);
 		separator = (separator === undefined) ? ',' : separator;
 		return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
-	});
+	};
+	Handlebars.registerHelper('digitGrouping', _groupDigits);
 
 	Handlebars.registerHelper('splitKeyValueShowKey', (keyvalue) => {
 		if (!keyvalue) {
@@ -91,6 +108,10 @@ let initialize = (Handlebars) => {
 		}
 		let str = keyvalue.split(":");
 		return new Handlebars.SafeString(str[1]);
+	});
+
+	Object.keys(comparisonHelpers).forEach((helperName) => {
+		Handlebars.registerHelper(helperName, comparisonHelpers[helperName]);
 	});
 };
 

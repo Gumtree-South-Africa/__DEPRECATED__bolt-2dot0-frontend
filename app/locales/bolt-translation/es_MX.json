@@ -1202,6 +1202,9 @@
 				"¿Cómo reportar un anuncio?",
 				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
 			]
+		},
+		"trending": {
+			"contact": "Contactar"
 		}
 	},
 	"header": {
@@ -1228,6 +1231,13 @@
 		"buttonText": "Confirmar",
 		"message": "Cambia Tu Ubicaci\u00FBn",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+	},
+	"sectionMenu": {
+		"cars": "Veh\u00EDculos",
+		"trending": "Ofertas",
+		"goods": "Categor\u00EDas",
+		"realEstate": "Bienes Ra\u00EDces",
+		"jobs": "Empleos"
 	},
 	"recentactivity": {
 		"message": {

@@ -2,7 +2,7 @@
 <div id="js-body-overlay" class="body-overlay"></div>
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/post.html" i18nPath="header.postAd"}}
+        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
         {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
@@ -57,7 +57,7 @@
 			</ul>
 		</div>
 		<div class="profile-information">
-            {{> (dynamic "profileMenu")}}
+            {{> (dynamic "profileMenu") showMyAds=true}}
 		</div>
 	</div>
     {{!--These are used for breakpoint detection to hide menu on resize--}}

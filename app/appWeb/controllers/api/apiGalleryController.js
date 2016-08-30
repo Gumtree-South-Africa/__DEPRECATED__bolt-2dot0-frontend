@@ -7,7 +7,7 @@ let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 let cors = require(process.cwd() + '/modules/cors');
 
 
-router.get('/gallery', cors, function(req, res) {
+router.get('/', cors, function(req, res) {
 	let bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;

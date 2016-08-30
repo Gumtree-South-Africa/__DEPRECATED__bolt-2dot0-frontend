@@ -9,3 +9,4 @@ module.exports.getBaseUrl = () => {
 module.exports.loadApp = () => {
 	return browser.get(baseUrl);
 };
+

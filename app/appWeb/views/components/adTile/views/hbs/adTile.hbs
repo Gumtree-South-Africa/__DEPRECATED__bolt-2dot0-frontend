@@ -1,17 +1,32 @@
-{{#block "adTile"}}
-    {{!-- this.isFeatured --}}
-    <span class="inline-block panel {{#if this.features}}featured{{/if}}" style="background-image: url({{this.pictures.0.url}});">
-        <span class="featured-bolt icon-featured-white"></span>
-        <a href="{{this.seller.soiSeoUrl}}"><span class="inline-block user-photo" style="background-image: url({{this.seller.profileImage}}14.JPG);"></span></a>
-        <section class="controls">
-            <section class="ad-stats">
-                <div class="inline-block icon-heart-white"></div>
-                <span class="stat-num">{{this.statistics.favoriteCount}}</span>
-                <div class="inline-block icon-messages-white"></div>
-                <span class="stat-num">{{this.statistics.replyCount}}</span>
-            </section>
-            <span class="favorite-btn icon-heart-gray" role="button"></span>
-        </section>
-        <a class="tile-link" href="{{this.viewSeoUrl}}"></a>
-    </span>
-{{/block}}
+<span class="inline-block panel {{#if this.featured}}featured{{/if}}">
+    <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
+    <span class="featured-bolt icon-featured-white"></span>
+    <a href="{{this.seller.soiSeoUrl}}">
+        <span class="inline-block user-photo">
+            {{#if this.seller.profileImage}}
+                <img class="lazy profile-image" data-original="{{this.seller.profileImage}}13.JPG">
+            {{else}}
+                <div class="profile-image icon-header-profile-out"></div>
+            {{/if}}
+        </span>
+    </a>
+    <section class="controls">
+        {{#if this.adPrice}}
+            <span class="price-text">
+                {{#compare  this.adPrice.priceType "===" "CONTACT_ME"}}
+                    {{i18n "homepage.trending.contact"}}
+                {{/compare}}
+                {{#compare  this.adPrice.priceType "===" "FIXED"}}
+                    {{#compare this.adPrice.amount ">" 0}}
+                        {{formatPrice this.adPrice.amount ","}}{{#compare this.adPrice.currency "===" "USD"}} USD{{/compare}}
+                    {{/compare}}
+                    {{#compare this.adPrice.amount "<=" 0}}
+                        {{i18n "homepage.trending.contact"}}
+                    {{/compare}}
+                {{/compare}}
+            </span>
+        {{/if}}
+        <span class="favorite-btn icon-heart-gray" role="button" data-adid="{{this.adId}}" data-short-adid="{{this.id}}"></span>
+    </section>
+    <a class="tile-link" href="{{this.viewSeoUrl}}"></a>
+</span>

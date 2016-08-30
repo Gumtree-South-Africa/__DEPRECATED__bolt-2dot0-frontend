@@ -1,17 +1,47 @@
 'use strict';
 
 
-var CACHE_VERSION = 1;
-var CURRENT_CACHES = {
-	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
-};
-
 var idbDatabase;
 var IDB_VERSION = 1;
 var STOP_RETRYING_AFTER = 86400000; // One day, in milliseconds.
 var STORE_NAME = 'urls';
 
-var ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
+var GA_ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
+
+var CACHE_VERSION = 1;
+var CURRENT_CACHES = {
+	'homepage': 'vivanuncios-homepage-v' + CACHE_VERSION,
+	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
+};
+var PRECACHE = '$$$toolbox-cache$$$';
+
+/**
+ * Event Handlers
+ */
+self.addEventListener('activate', function(event) {
+	// Delete all caches that aren't named in CURRENT_CACHES.
+	var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
+		return CURRENT_CACHES[key];
+	});
+
+	event.waitUntil(
+		caches.keys().then(function(cacheNames) {
+			return Promise.all(
+				cacheNames.map(function(cacheName) {
+					if (cacheName.indexOf(PRECACHE) === -1) {
+						// Skip toolbox precache
+						if (expectedCacheNames.indexOf(cacheName) === -1) {
+							// If this cache name isn't present in the array of "expected" cache names, then delete it.
+							console.log('Deleting out of date cache:', cacheName);
+							return caches.delete(cacheName);
+						}
+					}
+				})
+			);
+		})
+	);
+});
+
 
 /**
  * PRE-CACHE
@@ -31,23 +61,88 @@ if (cacheObj) {
 // Add homepage
 toolbox.router.get('/', toolbox.networkFirst, {
 	cache: {
-		name: 'vivanuncios-homepage',
+		name: CURRENT_CACHES['homepage'],
 		maxEntries: 100,
 		maxAgeSeconds: 86400
 	}
 });
 
-// Adding homepage assets
+// Adding homepage CSS cache
 if (cacheObj) {
-	 for (let cacheIndex = 0; cacheIndex < cacheObj['homepageCache'].length; cacheIndex++) {
-	 	toolbox.router.get(cacheObj.homepageCache[cacheIndex], toolbox.networkFirst, {
+	 for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
+	 	toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
 	 		cache: {
-	 			name: 'vivanuncios-homepage',
+	 			name: CURRENT_CACHES['homepage'],
 	 			maxEntries: 100,
 	 			maxAgeSeconds: 86400
 	 		}
 	 	});
 	 }
+}
+
+// Adding homepage icons cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.icons.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.icons[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage images cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.images.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.images[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage fonts
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.fonts.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.fonts[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage JS cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
+}
+
+// Adding homepage JSmin cache
+if (cacheObj) {
+	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
+		toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
+	}
 }
 
 
@@ -150,11 +245,11 @@ function handleAnalyticsCollectionRequest(request) {
 
 toolbox.router.get('/collect',
 	handleAnalyticsCollectionRequest,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 toolbox.router.get('/analytics.js',
 	toolbox.networkFirst,
-	{origin: ORIGIN}
+	{origin: GA_ORIGIN}
 );
 
 // Open the IndexedDB and check for requests to replay each time the service worker starts up.

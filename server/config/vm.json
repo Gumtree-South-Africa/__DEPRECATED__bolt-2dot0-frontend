@@ -21,6 +21,7 @@
 			"recentActivities"  :	"/boltapi/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
 			"draftAd"			:	"/boltapi/v1/ads/drafts",
+			"favoriteAd"		:	"/boltapi/v1/ads/{id}/favorites",
 			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes"
 	    }
 	},
@@ -76,6 +77,8 @@
 		"baseImageUrl"	: "/public/images/",
 		"mainJSUrl"		: "/public/js/main.js",
 		"baseUrl"		: "/public/",
+		"baseFontUrl"	: "/public/fonts/",
+		"baseIconUrl"	: "/public/icons/",
 		"min"			: false
 	},
 	"abTest": {

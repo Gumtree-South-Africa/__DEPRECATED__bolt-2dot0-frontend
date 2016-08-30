@@ -17,6 +17,7 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -80,13 +81,13 @@ class HomePageModelV2 {
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 
 		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
-		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+		let cardsModel = new CardsModel(modelData.bapiHeaders);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
-
+		let seo = new SeoModel(modelData.bapiHeaders);
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
@@ -103,6 +104,9 @@ class HomePageModelV2 {
 				});
 			};
 		}
+		this.dataPromiseFunctionMap.seo = () => {
+			return seo.getHPSeoInfo();
+		};
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();

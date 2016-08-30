@@ -9,7 +9,7 @@ var config = {
 var legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
 	guardians = require(config.root + '/modules/guardians'),
 	deviceDetection = require(config.root + '/modules/device-detection'),
-	checkAuthentication = require(config.root + '/server/middlewares/check-authentication'), 
+	checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
 	boltExpressHbs = require(config.root + '/modules/handlebars'),
 	assets = require(config.root + '/modules/assets'),
 	checkIp = require(config.root + '/server/middlewares/check-ip'),
@@ -148,6 +148,7 @@ function BuildApp(siteObj) {
 		app.use(checkUserAgent());
 		app.use(requestId());
 		app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
+		app.use(writeHeader('Vary', 'User-Agent'));
 
 		/*
 		 * Bolt 2.0 Authentication
