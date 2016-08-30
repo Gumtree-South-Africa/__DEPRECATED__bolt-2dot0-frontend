@@ -20,16 +20,17 @@ let getPageData = function(scope) {
 
 //Calculate daysSinceRegistration
 let getdiffDays = function(s1) {
-		let cdateArray = s1.split("");
-		let d1 = new Date(cdateArray[0], cdateArray[1], cdateArray[2]);
-		let d2 = new Date();
-		let ndays;
-		d2.setHours(0, 0, 0, 0);
-		let tv1 = d1.valueOf();
-		let tv2 = d2.valueOf();
-		ndays = (tv2 - tv1) / 1000 / 86400;
-		ndays = Math.round(ndays - 0.5);
-		return ndays;
+	  let cdateArray = s1.split(" ");  
+	  let d1 = new Date(cdateArray[0],cdateArray[1],cdateArray[2]);
+	  let d2 = new Date();
+	  let ndays;
+	  d2.setHours(0,0,0,0);
+	  let tv1 = d1.valueOf();
+	  let tv2 = d2.valueOf();
+
+	  ndays = (tv2 - tv1) / 1000 / 86400;
+	  ndays = Math.round(ndays - 0.5);
+	  return ndays;
 };
 
 //Function getUserData

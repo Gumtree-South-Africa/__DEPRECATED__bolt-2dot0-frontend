@@ -18,10 +18,16 @@ let initialize = () => {
 	
 	
 	$('.email-login-btn').on('click', () => {
-		window.BOLT.trackEvents({"event": "PostAdLoginWithEmail", "p": {"t": "PostAdLoginWithEmail"} });   
+		window.BOLT.trackEvents({"event": "PostAdLoginWithEmail", "p": {"t": "LoginBegin"} });   
 	});
 	
+	$('.facebook-button').on('click', () => {
+		window.BOLT.trackEvents({"event": "PostAdLoginWithFacebook", "p": {"t": "LoginBegin"} });   
+	});
 	
+	$('.register-link').on('click', () => {
+		window.BOLT.trackEvents({"event": "PostAdRegister", "p": {"t": "UserRegisterBegin"} });   
+	});
 };
 
 module.exports = {
