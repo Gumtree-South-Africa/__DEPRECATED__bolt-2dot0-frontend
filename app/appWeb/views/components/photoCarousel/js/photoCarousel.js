@@ -182,6 +182,7 @@ let UploadMsgClass = {
 	},
 	successMsg: () => {
 		this.messageError.html(this.messages.successMsg);
+		window.BOLT.trackEvents({"event":"PostAdPhotoSuccess"});
 	},
 	failMsg: (i) => {
 		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
@@ -559,8 +560,8 @@ let preventDisabledButtonClick = (event) => {
 		if ($('.carousel-item').length === 0) {
 			$('.cover-photo').addClass('red-border');
 			$('.photos-required-msg').removeClass('hidden');
-			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		}
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});	
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
@@ -696,21 +697,17 @@ let initialize = () => {
 	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
 
 	// Clicking empty cover photo should open file selector
-	$("#cover-photo-wrapper").on('click', () => {
-		
+	$("#cover-photo-wrapper").on('click', () => {		
 		if (!this.disableImageSelection) {
 			this.$imageUpload.click();
-		}
-		
+		}		
 	});
 
-	this.$imageUpload.on('click', (e) => {
-		
+	this.$imageUpload.on('click', (e) => {		
 		if (this.disableImageSelection) {
 			e.preventDefault();
 		}
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});	
-		
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});			
 	});
 
 	// Listen for file drag and drop uploads

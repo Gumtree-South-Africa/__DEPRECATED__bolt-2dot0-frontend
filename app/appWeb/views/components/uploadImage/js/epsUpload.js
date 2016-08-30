@@ -124,7 +124,6 @@ class EpsUpload {
 			data: formData,
 			success: (response) => {
 				success(i, response);
-				window.BOLT.trackEvents({"event":"PostAdPhotoSuccess"});
 			},
 			error: (err) => {
 				failure(i, err);
