@@ -181,7 +181,7 @@ let onReady = () => {
 
 	this.$cancelButton.click(() => {
 		formChangeWarning.disable();
-		window.location.reload();
+		window.location.href = "/my/promote.html";
 	});
 
 	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);
