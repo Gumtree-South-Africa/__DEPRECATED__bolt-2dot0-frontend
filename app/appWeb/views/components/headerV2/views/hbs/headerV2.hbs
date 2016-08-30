@@ -16,7 +16,7 @@
                 {{#if this.header.isUserLoggedIn}}
                     <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
                         <div class="messages icon-messages-blue">
-                            {{#compare this.header.converstionInfo.totalUnreadMessageCount ">=" 0}}
+                            {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
                                 <div class="number-messages">
                                     {{this.header.converstionInfo.totalUnreadMessageCount}}
                                 </div>
