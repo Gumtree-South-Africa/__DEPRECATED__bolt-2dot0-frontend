@@ -566,8 +566,13 @@ let preventDisabledButtonClick = (event) => {
 			}
 			let images = [];
 			for (let i = 0; i < imageUploads.count(); i++) {
+				let selectedImage = $(".carousel-item.selected[data-item='" + i + "']").data("image");
 				let image = $(".carousel-item[data-item='" + i + "']").data("image");
-				if (image) {
+
+				// if image is cover photo add to front of array, otherwise push
+				if (selectedImage) {
+					images.unshift(selectedImage);
+				} else if (image) {
 					images.push(image);
 				}
 			}

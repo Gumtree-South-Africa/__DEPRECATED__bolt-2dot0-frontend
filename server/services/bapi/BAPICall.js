@@ -134,9 +134,13 @@ BAPICall.prototype = {
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (!(res.statusCode === 200 || res.statusCode === 201)) {
 						let error = new Error(`Received non-200/201 status: ${res.statusCode}`);
+						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
+							// attach the json so consumers can use it
+							error.bapiJson = data;
+						}
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;
-						deferred.reject(error, data);
+						deferred.reject(error);
 					} else {
 						deferred.resolve(data);
 					}
@@ -149,7 +153,9 @@ BAPICall.prototype = {
 			});
 
 			// Write the parametized/serialized data
-			reqPost.write(serializedData);
+			if (!_.isEmpty(serializedData)) {
+				reqPost.write(serializedData);
+			}
 
 			// Close the request
 			reqPost.end();
