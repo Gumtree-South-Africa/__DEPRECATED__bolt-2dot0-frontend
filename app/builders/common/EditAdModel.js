@@ -11,33 +11,35 @@ class EditAdModel {
 		this.bapiHeaders = bapiHeaders;
 	}
 
+	translateTimeToReadable(data) {
+		let postDate = new Date(data.postedDate);
+		let currentDate = new Date();
+		let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+		let diffHrs =  Math.floor(timeDiff / (1000 * 60 * 60));// hours
+		let diffMins = Math.floor(timeDiff / (1000 * 60)).toFixed(1);
+
+		if (diffMins < 60) {
+			let pluralizationString = diffMins === 1 ? "singular" : "plural";
+			data.timeUntil = diffMins;
+			data.dateStringKey = `shareAd.dateStrings.minute.${pluralizationString}`;
+		} else if (diffHrs < 24) {
+			let pluralizationString = diffHrs === 1 ? "singular" : "plural";
+			data.timeUntil = diffHrs;
+			data.dateStringKey = `shareAd.dateStrings.hour.${pluralizationString}`;
+		} else {
+			data.timeUntil = null;
+			data.dateStringKey = null;
+			data.datePosted = postDate;
+		}
+
+		return data;
+	}
+
 	getAd(adId) {
 		if (typeof adId === undefined || adId === null) {
 			return {};
 		}
-		return editAdService.getAd(this.bapiHeaders, adId).then((data) => {
-			let postDate = new Date(data.postedDate);
-			let currentDate = new Date();
-			let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
-			let diffHrs =  Math.floor(timeDiff / (1000 * 60 * 60));// hours
-			let diffMins = Math.floor(timeDiff / (1000 * 60)).toFixed(1);
-
-			if (diffMins < 60) {
-				let pluralizationString = diffMins === 1 ? "singular" : "plural";
-				data.timeUntil = diffMins;
-				data.dateStringKey = `shareAd.dateStrings.minute.${pluralizationString}`;
-			} else if (diffHrs < 24) {
-				let pluralizationString = diffHrs === 1 ? "singular" : "plural";
-				data.timeUntil = diffHrs;
-				data.dateStringKey = `shareAd.dateStrings.hour.${pluralizationString}`;
-			} else {
-				data.timeUntil = null;
-				data.dateStringKey = null;
-				data.datePosted = postDate;
-			}
-
-			return data;
-		});
+		return editAdService.getAd(this.bapiHeaders, adId).then(this.translateTimeToReadable);
 	}
 
 	editAd(editAdRequest) {
