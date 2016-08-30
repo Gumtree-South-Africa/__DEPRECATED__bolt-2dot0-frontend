@@ -1398,7 +1398,8 @@
 			"prompt": "Búsqueda por palabra clave en %s",
 			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
 			"selectPrompt": "Select a Category Below",
-			"save": "Save"
+			"save": "Guardar",
+			"rootLabel": "Categorias"
 		}
 	},
 	"adStats": {
@@ -1408,6 +1409,33 @@
 	},
 	"shareAd": {
 		"title": "Compartir este anuncio",
-		"dateString": "Publicado hace %s días"
+		"dateStrings": {
+			"minute": {
+				"plural": "hace %s minutos",
+				"singular": "hace %s minuto"
+			},
+			"hour": {
+				"plural": "hace %s horas",
+				"singular": "hace %s hora"
+			}
+		}
+	},
+	"common": {
+		"abbreviations": {
+			"months": {
+				"1": "Jan",
+				"2": "Feb",
+				"3": "Mar",
+				"4": "Apr",
+				"5": "May",
+				"6": "Jun",
+				"7": "Jul",
+				"8": "Aug",
+				"9": "Sep",
+				"10": "Oct",
+				"11": "Nov",
+				"12": "Dec"
+			}
+		}
 	}
 }
