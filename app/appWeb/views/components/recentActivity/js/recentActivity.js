@@ -19,7 +19,6 @@ let initialize = () => {
 		let $orgArr = JSON.parse($('.shuffled-arr').text()) || "";
 		this.locale = $(".client-hbs-locale").data("locale");
 		clientHbs.initialize(this.locale);
-
 		if ($orgArr !== "") {
 			setInterval(function() {
 				let shuffledArr = _shuffleArr($orgArr);
