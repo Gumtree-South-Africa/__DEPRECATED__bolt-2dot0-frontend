@@ -7,7 +7,7 @@
 		<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
 		<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
 		<div id="image-urls" class="hidden">{{json this.adResult.pictures}}</div>
-        {{> (dynamic "postAdHeader")}}
+        {{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
 		<div class="hidden">
             {{> (dynamic "uploadImage")}}
 		</div>
