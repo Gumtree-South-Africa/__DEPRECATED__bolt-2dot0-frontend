@@ -10,27 +10,28 @@ var helmet = require('helmet');
 
 module.exports = function(app) {
 
-      app.use(helmet());
-      app.use(helmet.xssFilter());
+	app.use(helmet());
+	app.use(helmet.xssFilter());
+	app.use(helmet.frameguard()); // defaults to sameorigin
 
-      // todo: we got to turn on Content-Security-Policy,  http://www.html5rocks.com/en/tutorials/security/content-security-policy/
-      return  helmet.csp({
-            
-            // Set to true if you only want browsers to report errors, not block them
-            reportOnly: false,
+	// todo: we got to turn on Content-Security-Policy,  http://www.html5rocks.com/en/tutorials/security/content-security-policy/
+	return helmet.csp({
 
-            // Set to true if you want to blindly set all headers: Content-Security-Policy,
-            // X-WebKit-CSP, and X-Content-Security-Policy.
-            setAllHeaders: false,
+		// Set to true if you only want browsers to report errors, not block them
+		reportOnly: false,
 
-            // Set to true if you want to disable CSP on Android where it can be buggy.
-            disableAndroid: false,
+		// Set to true if you want to blindly set all headers: Content-Security-Policy,
+		// X-WebKit-CSP, and X-Content-Security-Policy.
+		setAllHeaders: false,
 
-            // Set to false if you want to completely disable any user-agent sniffing.
-            // This may make the headers less compatible but it will be much faster.
-            // This defaults to `true`.
-            browserSniff: true
-      });
+		// Set to true if you want to disable CSP on Android where it can be buggy.
+		disableAndroid: false,
+
+		// Set to false if you want to completely disable any user-agent sniffing.
+		// This may make the headers less compatible but it will be much faster.
+		// This defaults to `true`.
+		browserSniff: true
+	});
 
 }
 

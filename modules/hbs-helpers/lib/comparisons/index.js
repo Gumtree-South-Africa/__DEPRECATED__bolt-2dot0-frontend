@@ -399,6 +399,8 @@ helpers.unlessGtEq = helpers.unless_gteq;
 helpers.ifLtEq     = helpers.if_lteq;
 helpers.unlessLtEq = helpers.unless_lteq;
 
+module.exports.rawHelpers = helpers;
+
 
 // Export helpers
 module.exports.registerHelper = function (exphbs, options) {

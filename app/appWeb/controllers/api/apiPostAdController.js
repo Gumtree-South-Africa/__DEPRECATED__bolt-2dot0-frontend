@@ -37,7 +37,7 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 		response.links = {
 			emailLogin: `/login.html?redirect=${returnUrl}`,
-			register: `/register.html?return=${returnUrl}`,
+			register: `/register.html?redirect=${returnUrl}`,
 			facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
 		};
 		return response;
