@@ -1,13 +1,11 @@
 <ul class="profile-dropdown">
-    {{#if showMyAds}}
-        {{#if this.header.isUserLoggedIn}}
-			<li class="profile-item">
-                <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+    {{#if this.header.isUserLoggedIn}}
+		<li class="profile-item">
+                <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
                     <div class="item-icon icon-my-ads-active"></div>
                     <div class="profile-item-text">{{i18n "header.myAds"}}</div>
                 </span>
-			</li>
-        {{/if}}
+		</li>
     {{/if}}
 	<li class="profile-item">
         <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.promoteAdsUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>

@@ -1,9 +1,6 @@
 .sectionMenuWrapper {
 	overflow: hidden;
-	height: 45px;
-	@include from-breakpoint($small-break) {
-		font-size: 1.3em;
-	}
+	height: 50px;
 }
 
 .sectionMenu {

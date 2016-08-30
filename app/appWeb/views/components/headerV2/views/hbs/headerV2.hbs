@@ -84,11 +84,13 @@
                             {{/if}}>
                         </div>
                         {{#if this.header.isUserLoggedIn}}
+							<div class="username-wrapper">
                             {{#if this.header.profileName}}
-                                {{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!
+                                <div class="username">{{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!</div>
                             {{else}}
-                                {{i18n "header.userDropdown.title"}}!
+                                <div class="username>{{i18n "header.userDropdown.title"}}!</div>
                             {{/if}}
+                            </div>
                             <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                         {{else}}
                             {{i18n "header.menu.my.gumtree"}}
@@ -97,7 +99,7 @@
                     </div>
                     {{!-- profile dropdown --}}
                     <div id="js-profile-dropdown" class="hidden">
-                        {{> (dynamic "profileMenu") showMyAds=true}}
+                        {{> (dynamic "profileMenu")}}
                     </div>
                 </div>
                 {{#if this.header.isUserLoggedIn}}
