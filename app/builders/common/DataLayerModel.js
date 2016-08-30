@@ -18,6 +18,20 @@ let getPageData = function(scope) {
 	};
 };
 
+//Calculate daysSinceRegistration
+let getdiffDays = function(s1) {
+		let cdateArray = s1.split("");
+		let d1 = new Date(cdateArray[0], cdateArray[1], cdateArray[2]);
+		let d2 = new Date();
+		let ndays;
+		d2.setHours(0, 0, 0, 0);
+		let tv1 = d1.valueOf();
+		let tv2 = d2.valueOf();
+		ndays = (tv2 - tv1) / 1000 / 86400;
+		ndays = Math.round(ndays - 0.5);
+		return ndays;
+};
+
 //Function getUserData
 let getUsereData = function(scope) {
 	return {
@@ -25,9 +39,12 @@ let getUsereData = function(scope) {
 		'hashedUserEmail': (typeof scope.useremail === 'undefined' || scope.useremail === null) ? '' : Encryptor.encrypt(scope.useremail),
 		'loggedIn': (!(typeof scope.userid === 'undefined' || scope.userid === null)),
 		'hashedAccountId': '',
-		'accountType': ''
+		'accountType': '',
+	    'accountCreationDate': (typeof scope.userid === 'undefined' || scope.userid === null) ? '' : (scope.usercreationdate),
+        'daysSinceRegistration':(typeof scope.userid === 'undefined' || scope.userid === null) ? '' : getdiffDays(scope.usercreationdate)
 	};
 };
+
 
 //Function getCatData
 let getCatData = function() {
@@ -59,7 +76,7 @@ let getLocData = function() {
  */
 class DataLayerModel {
 	constructor(req, res) {
-		// Local Variables
+		// Local letiables
 		this.locale = res.locals.config.locale;
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
@@ -77,6 +94,12 @@ class DataLayerModel {
 	setUserEmail(useremail) {
 		this.useremail = useremail;
 	}
+
+	setUserCreationDate(usercreationdate) {
+		this.usercreationdate = usercreationdate;
+	}
+
+
 
 	getData() {
 		return [
@@ -97,9 +120,9 @@ class DataLayerModel {
 					case pagetypeJson.pagetype.POST_AD:
 						data = {
 							'pageData': getPageData(this),
-							'userData': getUsereData(this)							
+							'userData': getUsereData(this)
 						};
-						break;		
+						break;
 					case pagetypeJson.pagetype.RESULTS_SEARCH:
 						data = {
 							'pageData': getPageData(this),
