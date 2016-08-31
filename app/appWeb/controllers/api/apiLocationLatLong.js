@@ -39,11 +39,10 @@ router.get('/locationlatlong', cors, (req, res) => {
 	model.LocationModel.getLocationLatLong(geoLatLngObj).then((results) => {
 		res.send(results);
 	}).fail((err) => {
-		console.error(err);
-		console.error(err.stack);
-		res.status(500);
-		res.send({
-			error: true
+		let bapiJson = err.logError();
+		res.status(err.getStatusCode(500)).send({
+			error: "latLong look up failed, see logs for details",
+			bapiJson: bapiJson
 		});
 	});
 

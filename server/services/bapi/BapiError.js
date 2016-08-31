@@ -45,7 +45,8 @@ class BapiError extends ExtendableError {
 	 */
 	parseBapiJson() {
 		this.parsedBapiJson = {
-			message: this.bapiJson.message
+			message: this.bapiJson.message,
+			details: this.bapiJson.details
 		};
 	}
 
