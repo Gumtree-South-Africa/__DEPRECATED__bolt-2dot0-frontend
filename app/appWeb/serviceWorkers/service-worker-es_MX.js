@@ -42,6 +42,14 @@ self.addEventListener('activate', function(event) {
 	);
 });
 
+self.addEventListener('fetch', function(event) {
+	event.respondWith(
+		caches.match(event.request).then(function(response) {
+			return response || fetch(event.request);
+		})
+	);
+});
+
 
 /**
  * PRE-CACHE
@@ -51,9 +59,14 @@ toolbox.precache(['/']);
 
 // Precaching homepage assets
 if (cacheObj) {
-	toolbox.precache(cacheObj['homepagePreCache']);
+	if (cacheObj.isServeMin) {
+		toolbox.precache(cacheObj.preCache.cssmin);
+		toolbox.precache(cacheObj.preCache.jsmin);
+	} else {
+		toolbox.precache(cacheObj.preCache.css);
+		toolbox.precache(cacheObj.preCache.js);
+	}
 }
-
 
 /**
  * CACHE
@@ -67,17 +80,29 @@ toolbox.router.get('/', toolbox.networkFirst, {
 	}
 });
 
-// Adding homepage CSS cache
+// Adding homepage CSS/CSSmin depending on config.get('static.min')
 if (cacheObj) {
-	 for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
-	 	toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
-	 		cache: {
-	 			name: CURRENT_CACHES['homepage'],
-	 			maxEntries: 100,
-	 			maxAgeSeconds: 86400
-	 		}
-	 	});
-	 }
+	if (cacheObj.isServeMin) {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.cssmin.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.cssmin[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	} else {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	}
 }
 
 // Adding homepage icons cache
@@ -119,35 +144,34 @@ if (cacheObj) {
 	}
 }
 
-// Adding homepage JS cache
+// Adding homepage JS/JSmin cache depending on config.get('static.min')
 if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
-
-// Adding homepage JSmin cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
+	if (cacheObj.isServeMin){
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	} else {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
 	}
 }
 
 // cache images from crop server
 // max of 300 entries, cached for 1 week
-if (cacheObj.homepageCache.length > 0) {
+if (cacheObj.homepageCropCache.length > 0) {
 	toolbox.router.get('*',
 		toolbox.networkFirst,
 		{
