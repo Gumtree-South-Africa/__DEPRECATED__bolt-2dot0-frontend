@@ -21,9 +21,11 @@ router.post('/attributedependencies', cors, (req, res) => {
 	attributeModel.getAttributeDependents(req.body.catId, req.body.depAttr, req.body.depValue).then((attributes) => {
 		res.json(attributes);
 	}).fail((err) => {
+		let bapiJson = err.logError();
 		console.warn(`getAttributeDependents failed for categoryId: ${req.body.catId}, attributeName: ${req.body.depAttr}, error: ${err}`);
-		return res.status(500).json({
-			error: "attributesdependencies failed"
+		return res.status(err.getStatusCode(500)).json({
+			error: "attributesdependencies failed",
+			bapiJson: bapiJson
 		});
 	});
 });
@@ -36,9 +38,11 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
 		res.json(attributeModel.processCustomAttributesList(attributeData));
 	}).fail((err) => {
+		let bapiJson = err.logError();
 		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
-		return res.status(500).json({
-			error: "customattributes failed"
+		return res.status(err.getStatusCode(500)).json({
+			error: "customattributes failed",
+			bapiJson: bapiJson
 		});
 	});
 });
@@ -83,30 +87,10 @@ router.post('/update', cors, (req, res) => {
 		res.contentType = "application/json";
 		res.status(200).json(result);
 	}).fail((error) => {
-		let returnCode = 500;
-		let returnMessage = (error.data) ? error.data.message : 'Edit ad failed';
-		console.error('Edit ad failed ' + error);
-		console.error(error.json);
-		if (error.statusCode) {
-			//Special error cases need to be handled differently
-			switch (error.statusCode) {
-				case 404:
-					returnCode = 500;
-					console.error('User attempted to edit an ad with invalid cookie');
-					returnMessage = "Edit ad failed, user not valid";
-					break;
-				case 401:
-					returnCode = 401;
-					console.error('User attempted to edit an ad they did not own');
-					returnMessage = "Edit ad failed, user does not own this ad.";
-					break;
-				default:
-					break;
-			}
-		}
-		res.status(returnCode).json({
-			bapiError: error.json,
-			error: returnMessage
+		let bapiJson = error.logError();
+		res.status(error.getStatusCode(500)).json({
+			error: "error updating ad, see logs for details",
+			bapiJson: bapiJson
 		});
 	});
 });
