@@ -56,7 +56,7 @@
 		"termOfUse"							: "http://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones",
 		"postingRules"                      : "http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios?vgroup1=PKB&c=PKB%3Apoli_ticas&vcategory2=Poli_ticas_de_publicacio_n22&s=a00F000000NVKVXIA5",
 		"helpLabel"							: "Ayuda",
-		"helpUrl"							: "http://ayuda.vivanuncios.com.mx/MX/",
+		"helpUrl"							: "https://ayuda.vivanuncios.com.mx/MX/",
 		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-los-mejores-anuncios/v1",
