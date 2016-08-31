@@ -18,20 +18,6 @@ let getPageData = function(scope) {
 	};
 };
 
-//Calculate daysSinceRegistration
-let getdiffDays = function(s1) {
-	 let cdateArray = s1.split(" ");  
-	  let d1 = new Date(cdateArray[0],cdateArray[1],cdateArray[2]);
-	  let d2 = new Date();
-	  let ndays;
-	  d2.setHours(0,0,0,0);
-	  let tv1 = d1.valueOf();
-	  let tv2 = d2.valueOf();
-
-	  ndays = (tv2 - tv1) / 1000 / 86400;
-	  ndays = Math.round(ndays - 0.5);
-	  return ndays;
-};
 
 //Function getUserData
 let getUsereData = function(scope) {
@@ -42,7 +28,7 @@ let getUsereData = function(scope) {
 		'hashedAccountId': '',
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
-        'daysSinceRegistration':(typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : getdiffDays(scope.usercreationdate)
+        'daysSinceRegistration': ''
 	};
 };
 
@@ -77,7 +63,7 @@ let getLocData = function() {
  */
 class DataLayerModel {
 	constructor(req, res) {
-		// Local letiables
+		// Local Variables
 		this.locale = res.locals.config.locale;
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
