@@ -67,10 +67,10 @@ describe('Edit Ad Api', () => {
 				.send(file)
 				.expect('Content-Type', 'application/json; charset=utf-8')
 				.expect((res) => {
-					expect(res.status).toBe(500);
+					expect(res.status).toBe(404);
 
 					let jsonResult = JSON.parse(res.text);
-					expect(jsonResult.error).toBe("Edit ad failed, user not valid");
+					expect(jsonResult.error).toBe("error updating ad, see logs for details");
 				})
 				.end(specHelper.finish(done));
 		});
@@ -94,7 +94,7 @@ describe('Edit Ad Api', () => {
 					expect(res.status).toBe(401);
 
 					let jsonResult = JSON.parse(res.text);
-					expect(jsonResult.error).toBe("Edit ad failed, user does not own this ad.");
+					expect(jsonResult.error).toBe("error updating ad, see logs for details");
 				})
 				.end(specHelper.finish(done));
 		});

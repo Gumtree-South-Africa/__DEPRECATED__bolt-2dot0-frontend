@@ -3,7 +3,7 @@
 let Q = require('q');
 
 let attributeService = require(process.cwd() + '/server/services/attributeService');
-let BapiError = require(`process.cwd()/server/services/bapi/BapiError`);
+let BapiError = require(`${process.cwd()}/server/services/bapi/BapiError`);
 let _ = require("underscore");
 
 /**
