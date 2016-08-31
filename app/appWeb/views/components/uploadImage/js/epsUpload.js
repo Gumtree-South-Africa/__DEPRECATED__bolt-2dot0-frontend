@@ -86,6 +86,11 @@ class BinaryFile {
 
 class EpsUpload {
 	constructor(EPS) {
+		this.AD_STATES = {
+			AD_CREATED: "AD_CREATED",
+			AD_DEFERRED: "AD_DEFERRED"
+		};
+
 		this.EPS = EPS;
 		this.TiffTags = {
 			0x0112: "Orientation"
@@ -135,12 +140,116 @@ class EpsUpload {
 		});
 	}
 
+	extractURLClass(url) {
+		// extract, url
+		let normalImageURLZoom = this.getThumbImgURL(url);
+
+		if (!normalImageURLZoom) {
+			// not been able to find out a valid url
+			return;
+		}
+
+		// convert to _18.JPG format saved in backend
+		normalImageURLZoom = this.convertThumbImgURL18(normalImageURLZoom);
+
+		return {
+			"thumbImage": this.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
+		};
+	}
+
+	getCookie(cname) {
+		let name = cname + "=";
+		let ca = document.cookie.split(';');
+		for (let i = 0; i < ca.length; i++) {
+			let c = ca[i];
+			while (c.charAt(0) === ' ') {
+				c = c.substring(1);
+			}
+			if (c.indexOf(name) === 0) {
+				return c.substring(name.length, c.length);
+			}
+		}
+		return "";
+	}
+
+	requestLocation(callback) {
+		let timeout;
+		if ("geolocation" in navigator && this.getCookie('geoId') === '') {
+			//Don't want to sit and wait forever in case geolocation isn't working
+			timeout = setTimeout(callback, 20000);
+			navigator.geolocation.getCurrentPosition((position) => {
+					let lat = position.coords.latitude;
+					let lng = position.coords.longitude;
+					document.cookie = `geoId=${lat}ng${lng}`;
+					callback('geoLocation');
+				}, callback,
+				{
+					enableHighAccuracy: true,
+					maximumAge: 30000,
+					timeout: 27000
+				});
+		} else {
+			callback('cookie');
+		}
+		return timeout;
+	}
+
+	handlePostResponse($loginModal, $loginModalMask, response) {
+		switch (response.state) {
+			case this.AD_STATES.AD_CREATED:
+				window.location.href = response.ad.redirectLink;
+				break;
+			case this.AD_STATES.AD_DEFERRED:
+				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });
+				$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
+				$loginModal.find('.register-link').attr('href', response.links.register);
+				$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
+				$loginModal.toggleClass('hidden');
+				$loginModalMask.toggleClass('hidden');
+				break;
+			default:
+				break;
+		}
+	}
+
+	IsSafariMUSupport() {
+		// a work around for safari 5.1 browsers which has bug for fileList
+
+		if ($.isSafari4Else5()) {
+			let regExp = /Version\/(\d+\.\d+)/g;
+			let safariVersions = ["5.0", "4.0"];
+			let v = regExp.exec(navigator.userAgent);
+			if ($.isArray(v)) {
+				$.map(safariVersions, (ele) => {
+
+					if ($.trim(ele) === $.trim(v[1])) {
+						return true;
+					}
+				});
+				return false;
+			}
+		}
+	}
+
+	isProgressEventSupported() {
+		try {
+			let xhr = new XMLHttpRequest();
+
+			if ('onprogress' in xhr) {
+				return !($.isSafari() && !this.IsSafariMUSupport());
+			} else {
+				return false;
+			}
+		} catch (e) {
+			return false;
+		}
+	}
+
 	prepareForImageUpload(i, file, UploadMsgClass, loadData, onload) {
 
 		let mediaType = this.isSupported(file.name);
 
 		if (!mediaType) {
-			UploadMsgClass.translateErrorCodes(i, "FF001"); // invalid file type
 			return;
 		}
 
@@ -151,7 +260,6 @@ class EpsUpload {
 		let _this = this;
 
 		if (window.FileReader) {
-			UploadMsgClass.resizing(i);
 
 			reader = new FileReader();
 
@@ -622,4 +730,95 @@ class EpsUpload {
 
 }
 
-module.exports = EpsUpload;
+class UploadMessageClass {
+	constructor(messages, $messageError, $messageModal, $errorMessageTitle, functions) {
+		this.hideImage = functions.hideImage|| (() => {});
+		this.messages = messages || {};
+		this.$messageError = $messageError;
+		this.$messageModal = $messageModal;
+		this.$errorMessageTitle = $errorMessageTitle;
+	}
+
+	failMsg(i) {
+		this.messageError.html(this.messages.failMsg);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.showModal(i);
+		this.hideImage(i);
+	}
+
+	showModal() {
+		this.$messageModal.toggleClass('hidden');
+	}
+
+	loadingMsg() {
+		this.$messageError.html(this.messages.loadingMsg);
+	}
+	resizing() {
+		this.$messageError.html(this.messages.resizing);
+		this.$errorMessageTitle.html(this.messages.error);
+	}
+	invalidSize(i) {
+		this.$messageError.html(this.messages.invalidSize);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.hideImage(i);
+		this.showModal();
+	}
+	invalidType(i) {
+		this.$messageError.html(this.messages.invalidType);
+		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
+		this.hideImage(i);
+		this.showModal();
+	}
+	invalidDimensions(i) {
+		this.$messageError.html(this.messages.invalidDimensions);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.hideImage(i);
+		this.showModal();
+	}
+	firewall(i) {
+		this.$messageError.html(this.messages.firewall);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.hideImage(i);
+		this.showModal();
+	}
+	colorspace(i) {
+		this.$messageError.html(this.messages.colorspace);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.hideImage(i);
+		this.showModal();
+	}
+	corrupt(i) {
+		this.$messageError.html(this.messages.corrupt);
+		this.$errorMessageTitle.html(this.messages.error);
+		this.hideImage(i);
+		this.showModal();
+	}
+	pictureSrv() {
+		this.$messageError.html(this.messages.pictureSrv);
+	}
+
+	translateErrorCodes(i, error) {
+		if (error === "FS002") {
+			this.invalidDimensions(i);
+		} else if (error === "FS001") {
+			this.invalidSize(i);
+		} else if (error === "FF001" || error === "FF002" || error === "SD015") {
+			this.invalidType(i);
+		} else if (error === "FC002") {
+			this.colorspace(i);
+		} else if (error === "SD001" || error === "SD013" || error === "ME100") {
+			this.firewall(i);
+		} else if (error === "SD005" || error === "SD007" || error === "SD009" || error === "SD019" || error === "SD020" || error === "SD021") {
+			this.pictureSrv(i);
+		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
+			this.corrupt(i);
+		} else {
+			this.failMsg(i);
+		}
+	}
+}
+
+module.exports = {
+	EpsUpload,
+	UploadMessageClass
+};
