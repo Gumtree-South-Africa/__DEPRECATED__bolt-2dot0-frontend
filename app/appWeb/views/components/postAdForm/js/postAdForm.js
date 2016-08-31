@@ -24,13 +24,14 @@ let initialize = () => {
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
 		$('.char-count').text(event.target.value.length);
+		
 	});
 	
-	$('.title-input').on('click change', () =>{
+	$('.title-input').on('click', () =>{
         window.BOLT.trackEvents({"event": " PostAdTitle"});
     });
 	
-	$('.price-input').on('click change', () => {
+	$('.price-input').on('click', () => {
 		window.BOLT.trackEvents({"event": " PostAdPrice"});
 	});
 	
