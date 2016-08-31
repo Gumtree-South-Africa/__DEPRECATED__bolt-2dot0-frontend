@@ -126,12 +126,16 @@ class EpsUpload {
 				success(i, response);
 			},
 			error: (err) => {
-				failure(i, err);
+				if (err.responseText !== undefined) {
+					failure(i, err.responseText);
+				} else {
+					failure(i, err);
+				}
 			}
 		});
 	}
 
-	prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload) {
+	prepareForImageUpload(i, file, UploadMsgClass, loadData, onload) {
 
 		let mediaType = this.isSupported(file.name);
 
@@ -165,8 +169,6 @@ class EpsUpload {
 						let binaryFile = _this.convertToBinaryFile(dataUrl);
 						image.exifData = _this.findEXIFinJPEG(binaryFile);
 					}
-
-					imageUploads.setURL(i, image.src);
 				};
 			})(img, file);
 

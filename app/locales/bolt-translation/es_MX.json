@@ -1202,6 +1202,9 @@
 				"¿Cómo reportar un anuncio?",
 				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
 			]
+		},
+		"trending": {
+			"contact": "Contactar"
 		}
 	},
 	"header": {
