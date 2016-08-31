@@ -4,8 +4,10 @@
 			"queryEndpoint": "BAPI.endpoints.trendingSearch",
 			"queryParameters": {
 				"offset": "0",
-				"limit": "15",
-				"geo": "${UserProvided}"
+				"limit": "48",
+				"minResults": "48",
+				"geo": "${UserProvided}",
+				"withPicsOnly": true
 			},
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",
@@ -20,7 +22,8 @@
 			"queryEndpoint": "BAPI.endpoints.trendingSearch",
 			"queryParameters": {
 				"offset": "0",
-				"limit": "15",
+				"limit": "48",
+				"minResults": "48",
 				"location": "${UserProvided}",
 				"radius": "25km",
 				"categoryIds": [0,1,2],

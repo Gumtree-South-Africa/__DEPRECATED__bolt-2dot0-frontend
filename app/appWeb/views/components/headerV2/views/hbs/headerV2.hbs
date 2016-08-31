@@ -3,7 +3,7 @@
 {{/unless}}
 
 <div class="headerV2">
-    <a href="/">
+    <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
         <div class="logo"></div>
     </a>
     {{#unless this.header.distractionFree}}
@@ -14,7 +14,7 @@
         </a>
         <div class="left-items">
             {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
+                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|MessageIcon">
                     <div class="messages icon-messages">
                         <div class="number-messages">
                             {{this.header.converstionInfo.totalUnreadMessageCount}}
@@ -29,7 +29,7 @@
                 </div>
                 <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
                     <li class="menu-item">
-                        <a href="{{this.category._links.[1].href}}" title="{{this.category.localizedName}}" class="link-item"
+                        <a href="{{this.category._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.category.localizedName}}" title="{{this.category.localizedName}}" class="link-item"
                            data-id="{{this.category.id}}">
                             <span class="item-primary-text">{{this.category.localizedName}}</span>
                             {{!-- item secondary is for category "counts", out for MVP
@@ -39,7 +39,7 @@
                     </li>
                     {{#each this.category.children}}
                         <li class="menu-item">
-                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" class="link-item"
+                            <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" class="link-item"
                                data-id="{{this.id}}">
                                 <span class="item-primary-text">{{this.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
@@ -64,13 +64,13 @@
             </div>
         </div>
         <div class="right-items">
-            <a href="{{this.footer.helpUrl}}">
+            <a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
                 <div class="help right-item">
                     {{i18n "header.help"}}
                 </div>
             </a>
             {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}">
+                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
                     <div class="my-ads right-item">
                         {{i18n "header.myAds"}}
                     </div>
@@ -107,7 +107,8 @@
                 </div>
             </div>
             {{!-- post ad button --}}
-            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+             {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+         
 
         </div>
     {{/unless}}

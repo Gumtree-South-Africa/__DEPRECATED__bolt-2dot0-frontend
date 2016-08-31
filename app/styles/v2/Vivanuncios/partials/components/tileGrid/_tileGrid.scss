@@ -21,15 +21,13 @@ $gutterHorizontal: 10px;
 }
 
 .tile-grid-width-container {
-    width: 90%;
-    margin: auto;
+    width: 100%;
+    margin: auto;	// allow centering of the isotope container within
 }
 
-
 .tile-container {
-
-	// adding a width to the isotope container without javascript
-	// this class will be replaced once javascript lands on the page
+	 //adding a width to the isotope container without javascript
+	 //this class will be replaced once javascript lands on the page
 	&.use-isotope-handler {
 		@for $i from 2 through 12 {
 			@media(min-width: tileWidth($i) ) {
@@ -38,7 +36,7 @@ $gutterHorizontal: 10px;
 		}
 	}
 
-    margin: auto;
+    margin: auto;	// this is here for the non-javscript tiles to appear centered
 
     .tile-item {
         border-radius: 10px;
@@ -55,7 +53,6 @@ $gutterHorizontal: 10px;
     // when the parent has class 'using-isotope', we know the client side js has taken over, so we get multiple sizes
     &.using-isotope > .tile-item {
         float: none;
-
         // 'A'
         &.one-by-one {
             width: tileWidth(1);
