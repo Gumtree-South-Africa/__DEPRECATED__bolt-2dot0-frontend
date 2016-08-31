@@ -15,23 +15,14 @@
 				"showReplies": true,
 				"showLikes": true,
 				"showFeatured": true
-			},
-			"itemSizesString": "CBAADABAAAABAA"
+			}
 		},
-		"trendingCardTemplate": {
-			"queryEndpoint": "BAPI.endpoints.trendingSearch",
+
+		"galleryCard": {
+			"queryEndpoint": "BAPI.endpoints.homepageGallery",
 			"queryParameters": {
 				"offset": "0",
-				"limit": "48",
-				"minResults": "48",
-				"location": "${UserProvided}",
-				"radius": "25km",
-				"categoryIds": [0,1,2],
-				"keywords": "foo,bar,baz",
-				"favoritesThreshold": 10,
-				"repliesThreshold": 10,
-				"sortBy" : "TBD",
-				"sellerIds": ["1", "2"]
+				"limit": "16"
 			},
 			"templateConfig": {
 				"clientJsHandlerCssClass": "use-isotope-handler",
@@ -39,13 +30,13 @@
 				"showReplies": true,
 				"showLikes": true,
 				"showFeatured": true
-			},
-			"itemSizesString": "CBAADABAAAABAA"
+			}
 		}
 	},
 	"cardsByPage": {
 		"homePage": [
-			"trendingCard"
+			"trendingCard",
+			"galleryCard"
 		]
 	}
 }

@@ -28,7 +28,11 @@ $panelCornerBorderRadius: 7px;
         display: block;
     }
 
-	&.featured {
+	&.is-gallery-tile {
+		border: 1.5px solid $galleryBorderColor;
+	}
+
+	&.is-featured-tile {
 		border: 1.5px solid $featuredBorderColor;
 
 		.featured-bolt {

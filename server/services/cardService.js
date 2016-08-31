@@ -20,7 +20,7 @@ class CardService {
 		return require('q')(require(process.cwd() + '/test/serverUnit/mockData/api/v1/TrendingCard.json'));
 	}
 
-	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
+	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters, cardName) {
 		// console.log(parameters);
 
 		if (parameters) {
@@ -36,7 +36,7 @@ class CardService {
 	 		path: config.get(queryEndpoint),
 	 		extraParameters: parameters,    // bapiOptionsModel may bring 'parameters' in from config, so we use extraParameters
 			timeout: cacheConfig.cache.homepageTrendingCard.bapiTimeout
-	 	}), bapiHeaderValues, 'card');
+	 	}), bapiHeaderValues, cardName);
 	}
 
 	getTrendingCard(bapiHeaderValues) {

@@ -1,6 +1,5 @@
-
-<span class="inline-block panel {{#if this.featured}}featured{{/if}}">
-    <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
+<span class="inline-block panel {{#if this.isFeaturedTile}}is-featured-tile{{/if}} {{#if this.isGalleryTile}}is-gallery-tile{{/if}}">
+    <img class="lazy ad-image" data-original="{{this.pictures.0.url}}" alt="{{this.title}}">
     <span class="featured-bolt icon-featured-white"></span>
     <a href="{{this.seller.soiSeoUrl}}">
         <span class="inline-block user-photo">
@@ -31,4 +30,3 @@
     </section>
     <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{this.viewSeoUrl}}"></a>
 </span>
-

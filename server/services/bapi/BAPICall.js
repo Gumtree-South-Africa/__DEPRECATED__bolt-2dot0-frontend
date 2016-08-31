@@ -61,7 +61,7 @@ BAPICall.prototype = {
 						let error = new Error(`Received non-200 status: ${res.statusCode}`);
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;
-						deferred.reject(error, data);
+						deferred.reject(error);
 					} else {
 						deferred.resolve(data);
 					}
