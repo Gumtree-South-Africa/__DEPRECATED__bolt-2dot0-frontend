@@ -304,7 +304,6 @@ let _postAd = (urls, locationType) => {
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
 				window.location.href = response.ad.vipLink;
-				window.BOLT.trackEvents({ "event": "PostAdFreeSuccess", "p": {"t": "PostAdFreeSuccess"} });
 				break;
 			case AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });
