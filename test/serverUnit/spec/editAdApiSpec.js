@@ -2,6 +2,7 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let cwd = process.cwd();
 
 describe('Edit Ad Api', () => {
 
@@ -10,7 +11,7 @@ describe('Edit Ad Api', () => {
 	});
 
 	it('should edit an ad for a logged in, valid user', (done) => {
-		let file = specHelper.getMockData("editAd", "EditAdRequest");
+		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 		specHelper.registerMockEndpoint(endpoints.userFromCookie,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
@@ -36,7 +37,7 @@ describe('Edit Ad Api', () => {
 	});
 
 	it('should throw an error for user without cookie', (done) => {
-		let file = specHelper.getMockData("editAd", "EditAdRequest");
+		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
 				.send(file)
@@ -52,7 +53,7 @@ describe('Edit Ad Api', () => {
 	});
 
 	it('should throw an error for invalid user', (done) => {
-		let file = specHelper.getMockData("editAd", "EditAdRequest");
+		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 
 		specHelper.registerMockEndpoint(endpoints.userFromCookie,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json',
@@ -76,7 +77,7 @@ describe('Edit Ad Api', () => {
 	});
 
 	it('should throw an error if user does not own this ad', (done) => {
-		let file = specHelper.getMockData("editAd", "EditAdRequest");
+		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 
 		specHelper.registerMockEndpoint(endpoints.userFromCookie,
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json',
@@ -113,7 +114,7 @@ describe('Edit Ad Api', () => {
 	});
 
 	it('should throw a schema error for missing id', (done) => {
-		let file = specHelper.getMockData("editAd", "EditAdRequest");
+		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 		delete file.adId;
 
 		boltSupertest('/api/edit/update', 'vivanuncios.com.mx', 'POST').then((supertest) => {
