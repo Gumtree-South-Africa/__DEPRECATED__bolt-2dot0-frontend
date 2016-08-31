@@ -46,14 +46,7 @@ let resizeCarousel = () => {
 	let $carouselImages = $('.add-photo-item, .carousel-item');
 	let width = $carouselImages.width();
 	let $carouselUserImages = $('.carousel-item');
-	let $carouselAddItem = $('.add-photo-item');
 	// set height of carousel items to be same as width (set by slick)
-	if ($carouselUserImages.length === allowedUploads && $carouselAddItem.length === 1) {
-		this.$carousel.slick('slickRemove', 0);
-	} else if ($carouselUserImages.length < allowedUploads && $carouselAddItem.length === 0) {
-		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
-		this._bindChangeListener();
-	}
 	$carouselUserImages.each((i, item) => {
 		// Slick will sometimes remove the css applied to an item.
 		let carouselItem = $(item);
@@ -168,6 +161,7 @@ let UploadMsgClass = {
 		this.$carousel.slick('slickRemove', index);
 		this.$imageUpload.val('');
 		this.imageCount--;
+		this.updateAddPhotoButton();
 		resizeCarousel();
 	},
 	showModal: () => {
@@ -363,8 +357,9 @@ let _success = (i, response) => {
 	// add the image once EPS returns the uploaded image URL
 	createImgObj(i, url.thumbImage, url.normal);
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
-	resizeCarousel();
+	this.updateAddPhotoButton();
 
+	resizeCarousel();
 	removePendingImage(i);
 };
 
@@ -421,11 +416,7 @@ Array.prototype.remove = function(from, to) {
 /******* END EPS STUFF *******/
 
 let _slickAdd = () => {
-	if ($('.add-photo-item').length === 1) {
-		this.$carousel.slick('slickRemove', 0);
-	}
 	this.$carousel.slick('slickAdd',
-
 		//Ternary for whether or not to show the blue X in the corner of each thumbnail
 		(this.showDeleteImageIcons) ?
 		'<div class="carousel-item" data-item="' + this.$loadedImages + '">' +
@@ -442,11 +433,7 @@ let _slickAdd = () => {
 
 	// increment loaded count
 	this.$loadedImages++;
-
-	if ($('.carousel-item').length <= allowedUploads) {
-		this.$carousel.slick('slickAdd', this.addPhotoHtml, 0, true);
-		this._bindChangeListener();
-	}
+	this.updateAddPhotoButton();
 
 	// resize items
 	resizeCarousel();
@@ -539,12 +526,6 @@ this.deleteCarouselItem = (event) => {
 	coverPhoto.addClass("no-photo");
 	coverPhoto.attr("data-image", "");
 
-	let $carouselUserImages = $('.carousel-item');
-	if ($carouselUserImages.length === allowedUploads) {
-		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
-		this._bindChangeListener();
-	}
-
 	let toRemove = $(event.target).closest('.carousel-item');
 	let index = $(".add-photo-item, .carousel-item").index(toRemove);
 	this.$carousel.slick('slickRemove', index);
@@ -569,6 +550,7 @@ this.deleteCarouselItem = (event) => {
 			}
 		});
 	}
+	this.updateAddPhotoButton();
 	resizeCarousel();
 };
 
@@ -581,12 +563,6 @@ let deleteSelectedItem = (event) => {
 	coverPhoto.css("background-image", "");
 	coverPhoto.addClass("no-photo");
 	coverPhoto.attr("data-image", "");
-
-	let $carouselUserImages = $('.carousel-item');
-	if ($carouselUserImages.length === allowedUploads) {
-		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
-		this._bindChangeListener();
-	}
 
 	// delete carousel item
 	let toRemove = $(".carousel-item.selected");
@@ -609,7 +585,24 @@ let deleteSelectedItem = (event) => {
 			}
 		});
 	}
+	this.updateAddPhotoButton();
 	resizeCarousel();
+};
+
+this.updateAddPhotoButton = () => {
+	let $addPhoto = $('.add-photo-item');
+	let $userImages = $('.carousel-item');
+	let $carousel = $('.add-photo-item, .carousel-item');
+	let i =  $carousel.index($addPhoto);
+
+	if ($userImages.length < 12) {
+		this.$carousel.slick('slickRemove', i);
+		this.$carousel.slick('slickAdd', this.addPhotoHtml, true);
+		this._bindChangeListener();
+	} else if ($addPhoto.length && $userImages.length === 12) {
+		this.$carousel.slick('slickRemove', i);
+	}
+
 };
 
 let initialize = (options) => {
