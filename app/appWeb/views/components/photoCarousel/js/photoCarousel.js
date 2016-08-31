@@ -557,10 +557,12 @@ let preventDisabledButtonClick = (event) => {
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
+			window.BOLT.trackEvents({"event": "PostAdFreeFail"});	
 			$('.cover-photo').addClass('red-border');
 			$('.photos-required-msg').removeClass('hidden');
+			
 		}
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});	
+		
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
