@@ -237,6 +237,16 @@ let onReady = () => {
 	_toggleShowLeafNodeWarning(isLeafNode);
 
 	this.$submitButton.on('click', (e) => {
+		let $carouselItems = $('.carousel-item');
+		if ($carouselItems.length === 0) {
+			$('#file-input').on('change', () => {
+				$('.cover-photo').removeClass('red-border');
+				$('.photos-required-msg').addClass('hidden');
+			});
+			$('.cover-photo').addClass('red-border');
+			$('.photos-required-msg').removeClass('hidden');
+			return e.preventDefault();
+		}
 		_toggleSubmitDisable(true);
 		e.preventDefault();
 		_ajaxEditForm();
