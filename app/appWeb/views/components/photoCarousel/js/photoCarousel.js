@@ -2,7 +2,8 @@
 
 require("slick-carousel");
 let $ = require('jquery');
-let EpsUpload = require('../../uploadImage/js/epsUpload');
+let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
+let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
 let uploadAd = require('../../uploadImage/js/uploadAd');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
@@ -12,35 +13,8 @@ $.prototype.doesExist = function() {
 	return $(this).length > 0;
 };
 
-const AD_STATES = {
-	AD_CREATED: "AD_CREATED",
-	AD_DEFERRED: "AD_DEFERRED"
-};
-
 let allowedUploads = 12;
 let _this = this;
-
-/**
- * @return {boolean}
- */
-let IsSafariMUSupport = () => {
-	// a work around for safari 5.1 browsers which has bug for fileList
-
-	if ($.isSafari4Else5()) {
-		let regExp = /Version\/(\d+\.\d+)/g;
-		let safariVersions = ["5.0", "4.0"];
-		let v = regExp.exec(navigator.userAgent);
-		if ($.isArray(v)) {
-			$.map(safariVersions, (ele) => {
-
-				if ($.trim(ele) === $.trim(v[1])) {
-					return true;
-				}
-			});
-			return false;
-		}
-	}
-};
 
 let resizeCarousel = () => {
 	let $carouselImages = $('.add-photo-item, .carousel-item');
@@ -65,43 +39,6 @@ let resizeCarousel = () => {
 		$('.slick-prev').addClass("icon-back");
 		$('.slick-next').addClass("icon-back");
 	}
-};
-
-
-let isProgressEventSupported = () => {
-	try {
-		let xhr = new XMLHttpRequest();
-
-		if ('onprogress' in xhr) {
-			return !($.isSafari() && !IsSafariMUSupport());
-		} else {
-			return false;
-		}
-	} catch (e) {
-		return false;
-	}
-};
-
-
-let ExtractURLClass = (url) => {
-	// extract, url
-	let normalImageURLZoom = this.epsUpload.getThumbImgURL(url);
-
-	if (!normalImageURLZoom) {
-		// not been able to find out a valid url
-		console.error("not been able to find out a valid url");
-		return;
-	}
-
-	// convert to _18.JPG format saved in backend
-	normalImageURLZoom = this.epsUpload.convertThumbImgURL18(normalImageURLZoom);
-
-	// convert to _14.JPG thumb format
-
-	return {
-		"thumbImage": this.epsUpload.convertThumbImgURL14(normalImageURLZoom), "normal": normalImageURLZoom
-	};
-
 };
 
 let setCoverPhoto = (event) => {
@@ -152,99 +89,6 @@ let createImgObj = (i, urlThumb, urlNormal) => {
 	}
 };
 
-let UploadMsgClass = {
-	// remove carousel item after EPS failure
-	removeCarouselItem: (i) => {
-		let toRemove = $(".carousel-item[data-item='" + i + "']");
-		let $selector = $(".add-photo-item, .carousel-item");
-		let index = $selector.index(toRemove);
-		this.$carousel.slick('slickRemove', index);
-		this.$imageUpload.val('');
-		this.imageCount--;
-		this.updateAddPhotoButton();
-		resizeCarousel();
-	},
-	showModal: () => {
-		this.messageModal.removeClass('hidden');
-	},
-	successMsg: () => {
-		this.messageError.html(this.messages.successMsg);
-	},
-	failMsg: (i) => {
-		this.messageError.html(this.messages.failMsg);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.showModal();
-		UploadMsgClass.removeCarouselItem(i);
-		if (i !== undefined) {
-			UploadMsgClass.removeCarouselItem(i);
-		}
-	},
-	loadingMsg: () => {
-		this.messageError.html(this.messages.loadingMsg);
-	},
-	resizing: () => {
-		this.messageError.html(this.messages.resizing);
-		this.$errorMessageTitle.html(this.messages.error);
-	},
-	invalidSize: (i) => {
-		this.messageError.html(this.messages.invalidSize);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	invalidType: (i) => {
-		this.messageError.html(this.messages.invalidType);
-		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	invalidDimensions: (i) => {
-		this.messageError.html(this.messages.invalidDimensions);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	firewall: (i) => {
-		this.messageError.html(this.messages.firewall);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	colorspace: (i) => {
-		this.messageError.html(this.messages.colorspace);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	corrupt: (i) => {
-		this.messageError.html(this.messages.corrupt);
-		this.$errorMessageTitle.html(this.messages.error);
-		UploadMsgClass.removeCarouselItem(i);
-		UploadMsgClass.showModal();
-	},
-	pictureSrv: () => {
-		this.messageError.html(this.messages.pictureSrv);
-	},
-	translateErrorCodes: function(i, error) {
-		if (error === "FS002") {
-			this.invalidDimensions(i);
-		} else if (error === "FS001") {
-			this.invalidSize(i);
-		} else if (error === "FF001" || error === "FF002" || error === "SD015") {
-			this.invalidType(i);
-		} else if (error === "FC002") {
-			this.colorspace(i);
-		} else if (error === "SD001" || error === "SD013" || error === "ME100") {
-			this.firewall(i);
-		} else if (error === "SD005" || error === "SD007" || error === "SD009" || error === "SD019" || error === "SD020" || error === "SD021") {
-			this.pictureSrv(i);
-		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
-			this.corrupt(i);
-		} else {
-			this.failMsg(i);
-		}
-	}
-};
 
 let removePendingImage = (index) => {
 	// onload complete, remove pending index from pendingImages array. Check if all complete
@@ -257,21 +101,6 @@ let removePendingImage = (index) => {
 		$('.cover-photo').removeClass('red-border');
 		$('.photos-required-msg').addClass('hidden');
 	}
-};
-
-let _getCookie = (cname) => {
-	let name = cname + "=";
-	let ca = document.cookie.split(';');
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) === ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
 };
 
 let _postAd = (urls, locationType) => {
@@ -287,56 +116,21 @@ let _postAd = (urls, locationType) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		formChangeWarning.disable();
-		switch (response.state) {
-			case AD_STATES.AD_CREATED:
-				window.location.href = response.ad.vipLink;
-				break;
-			case AD_STATES.AD_DEFERRED:
-				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
-				this.$loginModal.find('.register-link').attr('href', response.links.register);
-				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
-				this.$loginModal.toggleClass('hidden');
-				this.$loginModalMask.toggleClass('hidden');
-				break;
-			default:
-				break;
-		}
+		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
 	}, (err) => {
 		console.warn(err);
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
-		UploadMsgClass.failMsg();
+		this.uploadMessageClass.failMsg();
 		formChangeWarning.enable();
 	}, extraPayload);
-};
-
-let requestLocation = (callback) => {
-	let timeout;
-	if ("geolocation" in navigator && _getCookie('geoId') === '') {
-		//Don't want to sit and wait forever in case geolocation isn't working
-		timeout = setTimeout(callback, 20000);
-		navigator.geolocation.getCurrentPosition((position) => {
-				let lat = position.coords.latitude;
-				let lng = position.coords.longitude;
-				document.cookie = `geoId=${lat}ng${lng}`;
-				callback('geoLocation');
-			}, callback,
-			{
-				enableHighAccuracy: true,
-				maximumAge: 30000,
-				timeout: 27000
-			});
-	} else {
-		callback('cookie');
-	}
-	return timeout;
 };
 
 let _failure = (i, epsError) => {
 	let error = _this.epsUpload.extractEPSServerError(epsError);
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 
-	UploadMsgClass.translateErrorCodes(i, error);
+	this.uploadMessageClass.translateErrorCodes(i, error);
 	removePendingImage(i);
 };
 
@@ -346,7 +140,7 @@ let _success = (i, response) => {
 		return _failure(i, response);
 	}
 	// try to extract the url and figure out if it looks like to be valid
-	let url = ExtractURLClass(response);
+	let url = this.epsUpload.extractURLClass(response);
 
 	// any errors don't do anything after display error msg
 	if (!url) {
@@ -370,7 +164,7 @@ let loadData = (i, file) => {
 			let index = this.bCount;
 
 			if (!event.lengthComputable) {
-				UploadMsgClass.failMsg(index);
+				this.uploadMessageClass.failMsg(index);
 			}
 		}, false);
 		return xhr;
@@ -384,7 +178,7 @@ let prepareForImageUpload = (i, file) => {
 			loadData(i, resizedImageFile);
 		};
 	};
-	this.epsUpload.prepareForImageUpload(i, file, UploadMsgClass, loadData, onload);
+	this.epsUpload.prepareForImageUpload(i, file, this.uploadMessageClass, loadData, onload);
 };
 
 
@@ -395,7 +189,7 @@ let html5Upload = (uploadedFiles) => {
 	if (this.imageCount !== allowedUploads) {
 		// create image place holders
 		this.imageCount++;
-		UploadMsgClass.loadingMsg(this.imageCount - 1); //UploadMsgClass(upDone).fail()
+		this.uploadMessageClass.loadingMsg(this.imageCount - 1); //this.uploadMessageClass(upDone).fail()
 		prepareForImageUpload(this.$loadedImages - 1, uploadedFiles);
 	} else {
 		if ($(".carousel-items").length === allowedUploads) {
@@ -443,7 +237,7 @@ let parseFile = (file) => {
 	let reader = new FileReader();
 
 	if (!this.epsUpload.isSupported(file.name)) {
-		UploadMsgClass.invalidType(0);
+		this.uploadMessageClass.invalidType(0);
 		console.error("Invalid File Type");
 		return;
 	}
@@ -475,7 +269,7 @@ let preventDisabledButtonClick = (event) => {
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
-		let timeout = requestLocation((locationType) => {
+		let timeout = this.epsUpload.requestLocation((locationType) => {
 			if (timeout) {
 				clearTimeout(timeout);
 			}
@@ -628,12 +422,12 @@ let initialize = (options) => {
 	this.disableImageSelection = false;
 	this.epsData = $('#js-eps-data');
 	this.uploadImageContainer = $('.upload-image-container');
-	this.isProgressEventSupport = isProgressEventSupported();
 	this.EPS = {};
 	this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
 	this.EPS.token = this.epsData.data('eps-token');
 	this.EPS.url = this.epsData.data('eps-url');
 	this.epsUpload = new EpsUpload(this.EPS);
+	this.isProgressEventSupport = this.epsUpload.isProgressEventSupported();
 
 	this.$addPhotoItem = $('.add-photo-item');
 	this.addPhotoHtml = this.$addPhotoItem.prop('outerHTML');
@@ -690,6 +484,24 @@ let initialize = (options) => {
 		unsupportedFileTitle: this.epsData.data('unsupported-file-title')
 	};
 
+	this.uploadMessageClass = new UploadMessageClass(
+		this.messages,
+		this.messageError,
+		this.messageModal,
+		this.$errorMessageTitle,
+		{
+			hideImage: (i) => {
+				let toRemove = $(".carousel-item[data-item='" + i + "']");
+				let $selector = $(".add-photo-item, .carousel-item");
+				let index = $selector.index(toRemove);
+				this.$carousel.slick('slickRemove', index);
+				this.$imageUpload.val('');
+				this.imageCount--;
+				this.updateAddPhotoButton();
+				resizeCarousel();
+			}
+		}
+	);
 
 	// Slick setup
 	this.$carousel.slick(options.slickOptions);
