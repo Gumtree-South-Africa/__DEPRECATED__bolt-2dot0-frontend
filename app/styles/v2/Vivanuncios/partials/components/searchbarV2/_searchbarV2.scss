@@ -23,6 +23,10 @@ $mobileTextboxWidth: 84%;
 		height: 32px;
 
 		.type-ahead-link {
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+
 			box-sizing: border-box;
 			width: 90%;
 			height: 100%;
@@ -37,19 +41,23 @@ $mobileTextboxWidth: 84%;
 		}
 	}
 
+	.type-ahead-results-wrapper, .search-bar {
+		width: calc(100% - 40px);
+		margin: 0 auto;
+	}
+
 	.type-ahead-results-wrapper {
 		position: absolute;
-		margin-top: 81px;
+		margin-top: 60px;
 		display: none;
 		box-sizing: border-box;
 		margin-left: auto;
 		margin-right: auto;
-		width: 100%;
+		width: calc(100% - 40px);
 		background-color: white;
 		z-index: 3;
 
 		.type-ahead-results-container {
-			padding-top: 95px;
 			height: 100%;
 			z-index: 3;
 			width: 100%;
@@ -65,7 +73,7 @@ $mobileTextboxWidth: 84%;
 
 	.search-bar {
 		z-index: 4;
-		width: 100%;
+		width: calc(100% - 40px);
 		margin: 0 auto;
 		position: relative;
 		box-sizing: border-box;
@@ -74,11 +82,6 @@ $mobileTextboxWidth: 84%;
 		form {
 			position: relative;
 			height: 100%;
-			margin: 0 25px;
-			@include from-breakpoint($medium-break) {
-				margin: 0 40px;
-			}
-
 		}
 
 		.search-wrap {
@@ -275,6 +278,10 @@ $mobileTextboxWidth: 84%;
 			display: block;
 		}
 
+		.type-ahead-results-wrapper {
+			height: 100%;
+		}
+
 		.search-bar {
 			button {
 				height: 83px;
@@ -438,7 +445,6 @@ $mobileTextboxWidth: 84%;
 		}
 
 		.type-ahead-results-wrapper {
-			width: 100%;
 			background-color: transparent;
 			position: relative;
 			margin-top: 0;
@@ -494,15 +500,6 @@ $mobileTextboxWidth: 84%;
 					}
 				}
 			}
-		}
-	}
-}
-
-@include in-breakpoint($medium-break) {
-	.search-controls {
-		.type-ahead-results-wrapper .type-ahead-results-container {
-			width: 87% !important;
-			margin-left: 1em !important;
 		}
 	}
 }
