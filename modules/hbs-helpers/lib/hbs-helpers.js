@@ -134,12 +134,29 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
         });
 
-        exphbs.handlebars.registerHelper('digitGrouping', function(number, separator) {
-            if (!number) return;
-            number = parseFloat(number);
-            separator = util.isUndefined(separator) ? ',' : separator;
-            return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
-        });
+		exphbs.handlebars.registerHelper("formatPrice", (number, separator) => {
+			if (!number || !separator)  {
+				return;
+			}
+
+			if (number >= 1000000000) {
+				number /= 1000000000;
+				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "B");
+			} else if (number >= 1000000) {
+				number /= 1000000;
+				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "M");
+			} else {
+				return new exphbs.handlebars.SafeString("$" + _groupDigits(number, separator));
+			}
+		});
+
+		let _groupDigits = function(number, separator) {
+			if (!number) return;
+			number = parseFloat(number);
+			separator = util.isUndefined(separator) ? ',' : separator;
+			return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
+		};
+        exphbs.handlebars.registerHelper('digitGrouping', _groupDigits);
 
         exphbs.handlebars.registerHelper('splitKeyValueShowKey', function(keyvalue) {
             if (!keyvalue) return;

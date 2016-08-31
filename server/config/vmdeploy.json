@@ -23,6 +23,7 @@
 			"draftAd"			:	"/boltapi/v1/ads/drafts",
 			"specificAd"		:	"/boltapi/v1/ads/{id}",
 			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes"
+			"favoriteAd"		:	"/boltapi/v1/ads/{id}/favorites",
 	    }
 	},
 	"solr": {

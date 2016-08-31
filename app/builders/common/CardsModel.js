@@ -6,13 +6,8 @@ let Q = require('q');
 let cardsConfig = require(process.cwd() + '/app/config/ui/cardsConfig.json');
 let cardService = require(process.cwd() + '/server/services/cardService');
 
+// size mapping is now done on client via javascript, responsively
 
-const CARD_SIZE_CLASSES_MAP = {
-	'A': 'one-by-one',
-	'B': 'two-by-one',
-	'C': 'two-by-two',
-	'D': 'three-by-two',
-};
 
 
 class CardsModel {
@@ -82,17 +77,8 @@ class CardsModel {
 	}
 
 	transformData(cardConfig, dataItems) {
-		let sizes = cardConfig.itemSizesString;
-		if (dataItems.ads.length > sizes.length) {
-			console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);
-		}
-		dataItems.ads.forEach((ad, index) => {
-			if (sizes.length > index) {
-				ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
-			} else {
-				ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
-				console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
-			}
+
+		dataItems.ads.forEach((ad) => {
 			// todo: featured mapping algorithm, for now just a placeholder
 			if (ad.id === 1234567890) {
 				ad.featured = true;

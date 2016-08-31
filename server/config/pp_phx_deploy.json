@@ -19,7 +19,8 @@
 			"quickpostAd": "/v1/ads",
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
-			"draftAd":"/v1/ads/drafts",
+			"draftAd": "/v1/ads/drafts",
+			"favoriteAd":"/v1/ads/{id}/favorites",
 			"specificAd":"/v1/ads/{id}",
 			"categoryAttributes":"/v1/categories/{catId}/attributes"
 		}

@@ -12,9 +12,19 @@ $panelCornerBorderRadius: 7px;
 
 	border: 1.5px solid transparent;
 
+
+	.ad-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 6px;
+	}
+
     .tile-link {
+		position: absolute;
+		top: 0;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 30px);
         display: block;
     }
 
@@ -53,6 +63,21 @@ $panelCornerBorderRadius: 7px;
 		top: 5px;
 		border: .5px solid #ff9000;
 
+		div.profile-image {
+			background-color: lightgrey;
+			height: 30px;
+			width: 30px;
+			border-radius: 50%;
+		}
+
+		img.profile-image {
+			background-color: white;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+
         &:hover {
             cursor: pointer;
         }
@@ -69,23 +94,26 @@ $panelCornerBorderRadius: 7px;
 
 		background: linear-gradient( 0deg, black, transparent );
 
-		.ad-stats {
+		.price-text {
 			position: absolute;
 			left: 5px;
-			bottom: 5px;
+			bottom: 2px;
+			width: calc(100% - 32px);
+			font-size: 14px;
 			color: white;
-            font: $cardStatsFont;
-			line-height: 1;
-
-            .inline-block {
-                display: inline-block;
-            }
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 
 		.favorite-btn {
-			bottom: 5px;
-			right: 5px;
+			bottom: 3px;
+			right: 3px;
 			position: absolute;
+
+			&.icon-heart-orange {
+				right: 5px;
+			}
 
             &:hover {
                 cursor: pointer;
