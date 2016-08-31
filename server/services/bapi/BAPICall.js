@@ -6,6 +6,8 @@ var http = require('http');
 var _ = require('underscore');
 let Q = require('q');
 
+let BapiError = require(`${process.cwd()}/server/services/bapi/BapiError`);
+
 /**
  * @description A class that Handles a BAPI REST call
  * @constructor
@@ -51,16 +53,15 @@ BAPICall.prototype = {
 		    			data = {};
 						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
 						console.error(message);
-					    deferred.reject(new Error(message));
+					    deferred.reject(new BapiError(message));
 		    		}
 					if (! _.isEmpty(argData)) {
 						data = _.extend(argData, data);
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if  (res.statusCode !== 200) {
-						let error = new Error(`Received non-200 status: ${res.statusCode}`);
 						// attach the status code so consumers can check for it
-						error.statusCode = res.statusCode;
+						let error = new BapiError(`Received non-200 status: ${res.statusCode}`, { statusCode: res.statusCode });
 						deferred.reject(error, data);
 					} else {
 						deferred.resolve(data);
@@ -124,7 +125,7 @@ BAPICall.prototype = {
 						}
 					} catch(ex) {
 						console.log(ex);
-						deferred.reject(ex);
+						deferred.reject(new BapiError(ex));
 					}
 
 					// Aggregation of data with the original (passed) data
@@ -133,13 +134,14 @@ BAPICall.prototype = {
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (!(res.statusCode === 200 || res.statusCode === 201)) {
-						let error = new Error(`Received non-200/201 status: ${res.statusCode}`);
+						let bapiJson;
 						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
 							// attach the json so consumers can use it
-							error.bapiJson = data;
+							bapiJson = data;
 						}
+						let error = new BapiError(`Received non-200/201 status: ${res.statusCode}`, { statusCode: res.statusCode, bapiJson: bapiJson});
+
 						// attach the status code so consumers can check for it
-						error.statusCode = res.statusCode;
 						deferred.reject(error);
 					} else {
 						deferred.resolve(data);
