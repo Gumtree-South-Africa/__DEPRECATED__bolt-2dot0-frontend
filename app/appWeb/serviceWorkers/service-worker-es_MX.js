@@ -145,6 +145,38 @@ if (cacheObj) {
 	}
 }
 
+// cache images from crop server
+// max of 300 entries, cached for 1 week
+if (cacheObj.homepageCache.length > 0) {
+	toolbox.router.get('*',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageCropCache,
+			cache: {
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 300,
+				maxAgeSeconds: 604800
+			}
+		}
+	);
+}
+
+// cache images from eps server
+// max of 300 entries, cached for 1 week
+if (cacheObj.homepageEpsCache.length > 0) {
+	toolbox.router.get('*',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageEpsCache,
+			cache: {
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 300,
+				maxAgeSeconds: 604800
+			}
+		}
+	);
+}
+
 
 /**
  * Offline Google Analytics
