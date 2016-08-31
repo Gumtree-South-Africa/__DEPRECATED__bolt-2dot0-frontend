@@ -11,30 +11,6 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
 
-/**
- * removes unwanted bapiJson we dont want to log
- * emits elements to the console error log: bapiJson (if present), and stack trace,
- * prepares an object that can be returned to the client
- * @param {Object} err (exception object)
- * @returns	{object} empty object or bapi information that can be sent back to the client
- */
-let logError = (err) => {
-	console.error(err.message);
-	let bapiInfoForClient = {};
-	if (err.bapiJson) {
-		// strip out what we don't want to log from bapi
-		err.bapiJson.details = err.bapiJson.details.map((item) => {
-			delete item._links;
-			return item;
-		});
-		console.error(`bapiJson: ${JSON.stringify(err.bapiJson, null, 4)}`);
-		// for now, were just passing the message to the client
-		// todo: map the bapiJson for best exposure to client
-		bapiInfoForClient.message = err.bapiJson.message;
-	}
-	console.error(err.stack);
-	return bapiInfoForClient;
-};
 
 // route is /api/ads/favorite
 router.post('/', cors, (req, res) => {
@@ -67,10 +43,10 @@ router.post('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json
 			return;
 		}).fail((err) => {
-			let bapiInfo = logError(err);
+			let bapiInfo = err.logError();
 			// todo: err.jsonMessage = "unable to favorite ad, see logs for details";
 			// todo: return next(err);
-			res.status(err.statusCode ? err.statusCode : 500).send({
+			res.status(err.getStatusCode(500)).send({// 500 default status code
 				error: "unable to favorite ad, see logs for details",
 				bapiInfo: bapiInfo
 			});
@@ -114,8 +90,8 @@ router.delete('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json;
 			return;
 		}).fail((err) => {
-			let bapiInfo = logError(err);
-			res.status(err.statusCode ? err.statusCode : 500).send({
+			let bapiInfo = err.logError();
+			res.status(err.getStatusCode(500)).send({
 				error: "unable to unfavorite ad, see logs for details",
 				bapiInfo: bapiInfo
 			});
