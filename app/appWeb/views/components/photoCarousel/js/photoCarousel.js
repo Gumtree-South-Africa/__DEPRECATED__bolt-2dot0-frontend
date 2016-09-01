@@ -169,8 +169,10 @@ let UploadMsgClass = {
 	},
 	successMsg: () => {
 		this.messageError.html(this.messages.successMsg);
+		window.BOLT.trackEvents({"event":"PostAdPhotoSuccess"});
 	},
 	failMsg: (i) => {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
@@ -292,6 +294,7 @@ let _postAd = (urls, locationType) => {
 				window.location.href = response.ad.vipLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
+				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });
 				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
 				this.$loginModal.find('.register-link').attr('href', response.links.register);
 				this.$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
@@ -469,8 +472,9 @@ let preventDisabledButtonClick = (event) => {
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
+			window.BOLT.trackEvents({"event": "PostAdFreeFail"});	
 			$('.cover-photo').addClass('red-border');
-			$('.photos-required-msg').removeClass('hidden');
+			$('.photos-required-msg').removeClass('hidden');			
 		}
 	} else {
 		this.$postAdButton.addClass('disabled');
@@ -737,6 +741,7 @@ let initialize = (options) => {
 		if (this.disableImageSelection) {
 			e.preventDefault();
 		}
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});			
 	});
 
 	// Listen for file drag and drop uploads
