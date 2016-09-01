@@ -3,11 +3,8 @@
 // this file excepts GLOBS to HBS files that you wish to be precompiled
 module.exports = {
 	files: [
-		"app/appWeb/views/components/abTest/views/hbs/abTest.hbs"
-		/*
 		"app/appWeb/views/components/editFormCustomAttributes/views/hbs/*.hbs",
 		"app/appWeb/views/components/editFormTextbox/views/hbs/*.hbs",
 		"app/appWeb/views/components/editFormSelectBox/views/hbs/*.hbs"
-		*/
 	]
 };

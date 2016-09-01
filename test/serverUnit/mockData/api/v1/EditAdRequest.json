@@ -7,14 +7,12 @@
 		"latitude": "-33.918861",
 		"longitude": "18.423300"
 	},
-  "categoryAttributes": [
-    {"ForSaleBy":"delr"},
-    {"CarBodyType":"van"},
-    {"CarYear":"2015"}
-  ],
-	"pictures": {
-		"sizeUrls": [{
-			"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
-		}]
-	}
+  "categoryAttributes": {
+    "ForSaleBy":"delr",
+    "CarBodyType":"van",
+    "CarYear":"2015"
+  },
+  "imageUrls": [
+      "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+  ]
 }

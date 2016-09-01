@@ -196,6 +196,24 @@ module.exports  =  {
             return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
         });
 
+		exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+			if (!object || !field || value === undefined){
+				return;
+			}
+			let entry = object[field];
+			if (!isNaN(entry)) {
+				return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+			} else {
+				return (entry === value) ? options.fn(this) : options.inverse(this);
+			}
+		});
+
+		exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+			if (!object || !field) {
+				return;
+			}
+			return (field in object) ? options.fn(this) : options.inverse(this);
+		});
     }
 
 

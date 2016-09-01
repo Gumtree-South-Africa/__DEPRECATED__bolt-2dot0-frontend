@@ -1,3 +1,4 @@
+
 <span class="inline-block panel {{#if this.featured}}featured{{/if}}">
     <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
     <span class="featured-bolt icon-featured-white"></span>
@@ -28,5 +29,6 @@
         {{/if}}
         <span class="favorite-btn icon-heart-gray" role="button" data-adid="{{this.adId}}" data-short-adid="{{this.id}}"></span>
     </section>
-    <a class="tile-link" href="{{this.viewSeoUrl}}"></a>
+    <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{this.viewSeoUrl}}"></a>
 </span>
+

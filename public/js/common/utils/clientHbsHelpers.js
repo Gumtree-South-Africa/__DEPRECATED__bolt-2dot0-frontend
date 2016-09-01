@@ -11,6 +11,7 @@ let _loadPartial = (name) => {
 
 let setLocale = (newLocale) => {
 	locale = newLocale;
+	$("html").attr("data-locale", newLocale);
 };
 
 let initialize = (Handlebars) => {
@@ -108,6 +109,20 @@ let initialize = (Handlebars) => {
 		}
 		let str = keyvalue.split(":");
 		return new Handlebars.SafeString(str[1]);
+	});
+
+	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+		if (!object || !field || value === undefined){
+			return;
+		}
+		return (object[field] === value) ? options.fn(this) : options.inverse(this);
+	});
+
+	Handlebars.registerHelper('ifIn', function(object, field, options) {
+		if (!object || !field) {
+			return;
+		}
+		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
 	Object.keys(comparisonHelpers).forEach((helperName) => {

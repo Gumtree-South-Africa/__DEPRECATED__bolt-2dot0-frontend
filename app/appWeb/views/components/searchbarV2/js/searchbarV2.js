@@ -1,21 +1,22 @@
 'use strict';
 
-/**
- * abort and remove an ajax request from the currentTypeAheadAjaxMap
- * @param {string} key - search term for ajax request to be removed
- * @private
- */
-let _removeFromAjaxMap = (key) => {
-
-	let tempAjax = this.currentTypeAheadAjaxMap[key];
-
-	if (tempAjax) {
-		// abort the current running ajax request to free open the browser port
-		this.currentTypeAheadAjaxMap[key].abort();
-		// remove instance from the map
-		delete this.currentTypeAheadAjaxMap[key];
-	}
-};
+// Commenting out for lint
+// /**
+//  * abort and remove an ajax request from the currentTypeAheadAjaxMap
+//  * @param {string} key - search term for ajax request to be removed
+//  * @private
+//  */
+// let _removeFromAjaxMap = (key) => {
+//
+// 	let tempAjax = this.currentTypeAheadAjaxMap[key];
+//
+// 	if (tempAjax) {
+// 		// abort the current running ajax request to free open the browser port
+// 		this.currentTypeAheadAjaxMap[key].abort();
+// 		// remove instance from the map
+// 		delete this.currentTypeAheadAjaxMap[key];
+// 	}
+// };
 
 let _unbindTypeAheadResultsEvents = () => {
 	this.$typeAheadResults.find(".type-ahead-results-row").off();
@@ -68,46 +69,66 @@ let _displayTypeAheadResults = (results) => {
  * @private
  */
 let _newTypeAhead = (currentSearchTerm) => {
-	// already searching this value currently, make it the last in the queue so it doesnt get overwritten
-	if (this.currentTypeAheadAjaxMap[currentSearchTerm]) {
-		let index = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
 
-		while (this.currentTypeAheadQueue.length > index + 1) {
-			let searchedVal = this.currentTypeAheadQueue.pop();
-			_removeFromAjaxMap(searchedVal);
-		}
-	} else if (this.currentTypeAheadQueue.length > 2) {
-		// keep the queue at or below 3 requests so we don't hog all the browser ports
-		while(this.currentTypeAheadQueue.length > 2) {
-			let searchedVal = this.currentTypeAheadQueue.shift();
-			_removeFromAjaxMap(searchedVal);
-		}
-	} else {
-		// push textbox value into the queue
-		this.currentTypeAheadQueue.push(currentSearchTerm);
+	// // already searching this value currently, make it the last in the queue so it doesnt get overwritten
+	// if (this.currentTypeAheadAjaxMap[currentSearchTerm]) {
+	// 	let index = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
+	//
+	// 	while (this.currentTypeAheadQueue.length > index + 1) {
+	// 		let searchedVal = this.currentTypeAheadQueue.pop();
+	// 		_removeFromAjaxMap(searchedVal);
+	// 	}
+	// } else if (this.currentTypeAheadQueue.length > 2) {
+	// 	// keep the queue at or below 3 requests so we don't hog all the browser ports
+	// 	while(this.currentTypeAheadQueue.length > 2) {
+	// 		let searchedVal = this.currentTypeAheadQueue.shift();
+	// 		_removeFromAjaxMap(searchedVal);
+	// 	}
+	// } else {
+	// 	// push textbox value into the queue
+	// 	this.currentTypeAheadQueue.push(currentSearchTerm);
+	//
+	// 	// make the ajax request and save it in the AjaxMap
+	// 	this.currentTypeAheadAjaxMap[currentSearchTerm] =
+	// $.ajax({
+	// 	url: "/api/search/autocomplete",
+	// 	method: "POST",
+	// 	data: {searchterm: currentSearchTerm},
+	// 	dataType: 'json',
+	// 	success: (results) => {
+	// 		let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
+	//
+	// 		// base case, first request in queue skip the cleaning
+	// 		if (currentQueueIndex > 0) {
+	// 			for (let i = 0; i < currentQueueIndex; i++) {
+	// 				let tempOldValue = this.currentTypeAheadQueue.shift();
+	//
+	// 				// abort previous ajax requests
+	// 				_removeFromAjaxMap(tempOldValue);
+	// 			}
+	// 		}
+	//
+	// 		// remove succeeded request from map
+	// 		delete this.currentTypeAheadAjaxMap[currentSearchTerm];
+	//
+	// 		_displayTypeAheadResults(results);
+	// 	}
+	// });
 
-		// make the ajax request and save it in the AjaxMap
-		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
+	//}
+
+	if (this.currentTypeAheadRequest) {
+		this.currentTypeAheadRequest.abort(); // aborting old request
+	}
+
+	if (currentSearchTerm !== "") {
+		this.currentTypeAheadRequest = $.ajax({
 			url: "/api/search/autocomplete",
 			method: "POST",
-			data: {searchterm:currentSearchTerm},
+			data: { searchterm: currentSearchTerm },
 			dataType: 'json',
 			success: (results) => {
-				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
-
-				// base case, first request in queue skip the cleaning
-				if (currentQueueIndex > 0) {
-					for (let i = 0; i < currentQueueIndex; i++) {
-						let tempOldValue = this.currentTypeAheadQueue.shift();
-
-						// abort previous ajax requests
-						_removeFromAjaxMap(tempOldValue);
-					}
-				}
-
-				// remove succeeded request from map
-				delete this.currentTypeAheadAjaxMap[currentSearchTerm];
-
+				this.currentTypeAheadRequest = null;
 				_displayTypeAheadResults(results);
 			}
 		});

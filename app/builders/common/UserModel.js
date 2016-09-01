@@ -9,9 +9,7 @@ class UserModel {
 	}
 
 	getUserFromCookie() {
-		return userService.getUserFromCookie(this.bapiHeaderValues).then( (result) => {
-			return result;
-		});
+		return userService.getUserFromCookie(this.bapiHeaderValues);
 	}
 }
 
