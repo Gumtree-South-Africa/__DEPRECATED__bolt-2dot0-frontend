@@ -174,7 +174,7 @@ describe('Server to hit HomePage', function() {
 						let c$ = cheerio.load(res.text);
 						let faq = c$('.safetyTips .faq a')[0];
 						expect(faq.attribs.href)
-							.toBe('http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
+							.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
 						expect(faq.firstChild.data).toContain('Consejos de seguridad');
 					})
 					.end(specHelper.finish(done));
