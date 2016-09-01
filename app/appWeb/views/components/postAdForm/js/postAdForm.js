@@ -25,11 +25,8 @@ let initialize = () => {
 	window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdOptionsModal"} });   
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
-		$('.char-count').text(event.target.value.length);		
+		$('.char-count').text(event.target.value.length);
 	});
-
-	formChangeWarning.initialize();
-
 	
 	$('.title-input').on('click', () =>{
         window.BOLT.trackEvents({"event": " PostAdTitle"});
@@ -51,7 +48,8 @@ let initialize = () => {
 	$('.register-link').on('click', () => {
 		window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"} });   
 	});
-
+	
+	formChangeWarning.initialize();
 
 	this.$priceInput = $('#price-input');
 	_bindEvents();
