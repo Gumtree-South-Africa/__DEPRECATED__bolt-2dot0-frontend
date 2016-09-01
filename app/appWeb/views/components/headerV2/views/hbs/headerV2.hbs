@@ -39,7 +39,7 @@
                     </li>
                     {{#each this.category.children}}
                         <li class="menu-item">
-                            <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" class="link-item"
+                            <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
                                data-id="{{this.id}}">
                                 <span class="item-primary-text">{{this.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
@@ -108,7 +108,7 @@
             </div>
             {{!-- post ad button --}}
              {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
-         
+
 
         </div>
     {{/unless}}
