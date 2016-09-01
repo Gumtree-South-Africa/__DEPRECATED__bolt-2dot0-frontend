@@ -20,7 +20,7 @@ let _bindEvents = () => {
 
 let initialize = () => {
 	  
-	window.BOLT.trackEvents({"event": "PostAdOptionsModal", "p": {"t": "PostAdOptionsModal"} });   
+	window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdOptionsModal"} });   
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
 		$('.char-count').text(event.target.value.length);
@@ -37,15 +37,15 @@ let initialize = () => {
 	
 	
 	$('.email-login-btn').on('click', () => {
-		window.BOLT.trackEvents({"event": "PostAdLoginWithEmail", "p": {"t": "LoginBegin"} });   
+		window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithEmail"} });   
 	});
 	
 	$('.facebook-button').on('click', () => {
-		window.BOLT.trackEvents({"event": "PostAdLoginWithFacebook", "p": {"t": "LoginBegin"} });   
+		window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithFacebook"} });   
 	});
 	
 	$('.register-link').on('click', () => {
-		window.BOLT.trackEvents({"event": "PostAdRegister", "p": {"t": "UserRegisterBegin"} });   
+		window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"} });   
 	});
 
 	this.$priceInput = $('#price-input');
