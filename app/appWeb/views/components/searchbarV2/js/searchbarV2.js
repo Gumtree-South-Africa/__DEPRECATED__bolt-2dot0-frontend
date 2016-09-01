@@ -91,7 +91,7 @@ let _newTypeAhead = (currentSearchTerm) => {
 			url: "/api/search/autocomplete/",
 			method: "POST",
 			data: {searchterm:currentSearchTerm},
-			dataType: 'json',
+			dataType: 'jsonp',
 			success: (results) => {
 				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
 
