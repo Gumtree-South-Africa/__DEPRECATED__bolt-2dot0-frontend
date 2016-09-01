@@ -22,6 +22,7 @@
 			"trendingSearch"	: 	"/ads/trending",
 			"draftAd"			:	"/ads/drafts",
 			"favoriteAd"		:	"/ads/{id}/favorites",
+			"specificAd"		:	"/ads/{id}",
 			"categoryAttributes":	"/categories/{catId}/attributes"
 	    }
 	},

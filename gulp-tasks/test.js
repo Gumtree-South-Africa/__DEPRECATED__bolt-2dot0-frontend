@@ -95,7 +95,7 @@ module.exports = function watch(gulp, plugins) {
 				coverageString = './node_modules/istanbul/lib/cli.js cover --include-all-source'
 			}
 			shell.task([
-				`NODE_ENV=mock NODE_CONFIG_DIR=./server/config JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ${coverageString} ./node_modules/jasmine/bin/jasmine.js`
+				`NODE_ENV=mock NODE_CONFIG_DIR=./server/config ${coverageString} node test/serverUnit/SpecRunner.js`
 			], {
 				errorMessage: "!!!!!!!SERVER_UNIT TESTs ARE FAILING, test is unstable"
 			})(done)
