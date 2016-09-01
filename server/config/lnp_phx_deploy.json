@@ -20,6 +20,7 @@
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
 			"draftAd": "/v1/ads/drafts",
+			"specificAd":"/v1/ads/{id}",
 			"favoriteAd":"/v1/ads/{id}/favorites",
 			"categoryAttributes":"/v1/categories/{catId}/attributes"
 		}

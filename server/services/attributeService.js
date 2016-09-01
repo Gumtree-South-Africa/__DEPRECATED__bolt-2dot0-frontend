@@ -18,7 +18,7 @@ class AttributeService {
 	getAllAttributesForCategory(bapiHeaderValues, categoryId) {
 		let queryEndpoint = config.get('BAPI.endpoints.categoryAttributes');
 
-		queryEndpoint.replace('{catId}', categoryId);
+		queryEndpoint = queryEndpoint.replace('{catId}', categoryId);
 
 		let bapiOptions = bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
@@ -59,6 +59,12 @@ class AttributeService {
 				}
 			});
 		});
+	}
+
+	// Cache: categoryAttributeInfo
+	peekAttributeInfoCached(bapiHeaderValues, categoryId, attributeName) {
+		let cacheKey = bapiHeaderValues.locale + ':' + categoryId + ':' + attributeName;
+		return cacheService.peekValue(cacheConfig.cache.categoryAttributeInfo.name, cacheKey);
 	}
 
 	// Cache: categoryAttributeInfo

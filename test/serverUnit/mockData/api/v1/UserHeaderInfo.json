@@ -2,13 +2,16 @@
     "id": 10001,
     "username": "Bolt 20",
     "userEmail": "bolt20@ebay.com",
+    "userPhone": "4080000000",
     "registrationCountry": "ZA",
-    "creationDate": "2016 02 16 20:02:00.PST",
     "firstName": "Bolt",
     "lastName": "20",
     "brandCode":"",
     "registered":false,
     "userProfileImageUrl": "http://theProfileImageUrl",
+    "creationDate": "2016-06-01T04:47:07Z",
+    "lastPostDate": "2016-06-11T04:47:07Z",
+    "lastLoginDate": "2016-07-03T04:47:07Z",
     "socialMedia":
     {
       "type": "FACEBOOK",
@@ -19,6 +22,11 @@
     "converstionInfo": {
         "totalUnreadMessageCount": 5,
         "totalConversationCount": 12
+    },
+    "statistics": {
+      "totalPost": 30,
+      "totalSold": 10,
+      "avgResponseTime": 30
     },
     "_links":
     [

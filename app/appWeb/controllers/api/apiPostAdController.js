@@ -158,10 +158,11 @@ router.post('/create', cors, (req, res) => {
 			res.send(responseJson);
 			return;
 		}).fail((error) => {
+			let bapiInfo = error.logError();
 			// post ad has failed
-			console.error(`postAdModel.postAd failure ${error}`);
-			res.status(500).send({
-				error: "postAd failed, see logs for details"
+			res.status(error.getStatusCode(500)).send({
+				error: "postAd failed, see logs for details",
+				bapiJson: bapiInfo
 			});
 			return;
 		});

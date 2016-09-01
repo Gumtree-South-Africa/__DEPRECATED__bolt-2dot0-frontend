@@ -5,6 +5,7 @@ let supertest = require('supertest');
 let fs = require('fs');
 let cwd = process.cwd();
 
+let BapiError = require(`${cwd}/server/services/bapi/BapiError`);
 let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
@@ -72,6 +73,9 @@ let verifyMockEndpointsClean = () => {
  * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
 let registerMockEndpoint = (url, filePath, options) => {
+	if (url.indexOf('_forceExample') === -1) {
+		url = `${url}?_forceExample=true&_statusCode=200`;
+	}
 	if (!endpointToFileMap[url]) {
 		endpointToFileMap[url] = [];
 	}
@@ -129,8 +133,7 @@ module.exports.boltSupertest = (route, host, method) => {
 			let data = fs.readFileSync(filePath);
 			let json = JSON.parse(data);
 			if (entry.options.failStatusCode) {
-				let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
-				error.statusCode = entry.options.failStatusCode;
+				let error = new BapiError(`simulating failStatusCode: ${entry.options.failStatusCode}`, {statusCode: entry.options.failStatusCode});
 				return Q.reject(error);
 			}
 			return Q(json);
@@ -149,7 +152,7 @@ module.exports.boltSupertest = (route, host, method) => {
 	 */
 	return app.createSiteApps().then(() => {
 		console.warn('Server started');
-		host = host || 'gumtree.co.za';
+		host = host || 'vivanuncios.com.mx';
 
 		let result = supertest(app);
 

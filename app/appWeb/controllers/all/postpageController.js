@@ -23,6 +23,7 @@ let postAdData = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAdLegacy.min.js");
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_" + modelData.locale + ".js");
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');
 	}

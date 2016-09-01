@@ -1,7 +1,7 @@
 <div class="post-ad-form-container">
 	<div class="photo-switcher">
         {{> (dynamic "photoCarousel")}}
-    </div>
+	</div>
 
 	<div class="input-form">
 		<div class="heading title-text">{{i18n "postAd.createAds.form.title"}}</div>
@@ -9,10 +9,10 @@
 			<span class="char-count">0</span><span>/30</span>
 			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
 		</div>
-        <input id="title-input" class="text-input title-input" type="text" maxlength="30"
+		<input id="title-input" class="text-input title-input" type="text" maxlength="30"
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.title}}"{{/if}}>
 
-		<div  class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
+		<div class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>
 		<input id="price-input" class="text-input price-input" type="text"
 			   placeholder="{{i18n "postAd.createAds.form.pricePlaceholder"}}"
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.price.amount}}"{{/if}}>
@@ -22,12 +22,12 @@
 				<input type="radio" name="currency" value="MXN"
                     {{#if this.deferredAd.ads}}
                         {{#compare  this.deferredAd.ads.0.price.currency "===" "MXN"}}
-                            checked="checked"
+					   checked="checked"
                         {{/compare }}
                     {{else}}
-						checked="checked"
+					   checked="checked"
                     {{/if}}
-	            />
+				/>
 				<div class="outer-circle">
 					<div class="inner-circle"></div>
 				</div>
@@ -37,10 +37,10 @@
 				<input type="radio" name="currency" value="USD"
                     {{#if this.deferredAd.ads}}
                         {{#compare  this.deferredAd.ads.0.price.currency "===" "USD"}}
-                            checked="checked"
+					   checked="checked"
                         {{/compare }}
                     {{/if}}
-                />
+				/>
 				<div class="outer-circle">
 					<div class="inner-circle"></div>
 				</div>

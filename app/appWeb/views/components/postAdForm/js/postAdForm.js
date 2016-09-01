@@ -1,4 +1,5 @@
 'use strict';
+let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
 let _bindEvents = () => {
 	this.$priceInput.on('keydown', (e) => {
@@ -18,11 +19,38 @@ let _bindEvents = () => {
 	});
 };
 
+
 let initialize = () => {
+	  
+	window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdOptionsModal"} });   
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
 		$('.char-count').text(event.target.value.length);
 	});
+	
+	$('.title-input').on('click', () =>{
+        window.BOLT.trackEvents({"event": " PostAdTitle"});
+    });
+	
+	$('.price-input').on('click', () => {
+		window.BOLT.trackEvents({"event": " PostAdPrice"});
+	});
+	
+	
+	$('.email-login-btn').on('click', () => {
+		window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithEmail"} });   
+	});
+	
+	$('.facebook-button').on('click', () => {
+		window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithFacebook"} });   
+	});
+	
+	$('.register-link').on('click', () => {
+		window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"} });   
+	});
+	
+	formChangeWarning.initialize();
+
 	this.$priceInput = $('#price-input');
 	_bindEvents();
 };
