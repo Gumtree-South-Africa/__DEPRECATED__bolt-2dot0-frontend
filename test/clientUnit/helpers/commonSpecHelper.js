@@ -114,6 +114,7 @@ let registerMockAjax = (url, returnData, options) => {
 
 let setupTest = (templateName, templateModel, locale) => {
 	clientHbsHelpers.setLocale(locale);
+	$("html").attr("data-locale", locale);
 	return _prepareTemplate(templateName, templateModel);
 };
 
