@@ -14,8 +14,8 @@ var err;
     var whitelistRegExp = req.app.locals.config.hostnameRegex,
         corsOptions;
 
-    
-	corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
+
+	corsOptions = { origin: false }; // reflect (enable) the requested origin in the CORS response
 
     callback(err, corsOptions); // callback expects two parameters: error and options
 };
