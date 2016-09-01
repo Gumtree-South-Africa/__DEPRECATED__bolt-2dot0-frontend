@@ -88,10 +88,10 @@ let _newTypeAhead = (currentSearchTerm) => {
 
 		// make the ajax request and save it in the AjaxMap
 		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
-			url: "/api/search/autocomplete/",
+			url: "/api/search/autocomplete",
 			method: "POST",
 			data: {searchterm:currentSearchTerm},
-			dataType: 'jsonp',
+			dataType: 'json',
 			success: (results) => {
 				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
 
