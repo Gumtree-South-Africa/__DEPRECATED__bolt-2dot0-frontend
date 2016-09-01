@@ -28,10 +28,12 @@ module.exports = {
 	"homepageCachePaths":
 	{
 		"css": [
-			'v2/Vivanuncios/MX/es_MX/HomePage.css'
+			'v2/Vivanuncios/MX/es_MX/HomePage.css',
+			'es_MX/svg/sprite.css-*.svg'
 		],
 		"cssmin": [
-			'v2/Vivanuncios/MX/es_MX/HomePage.min.css'
+			'v2/Vivanuncios/MX/es_MX/HomePage.min.css',
+			'es_MX/svg/sprite.css-*.svg'
 		],
 		"icons": [
 			'icon_call.svg',
