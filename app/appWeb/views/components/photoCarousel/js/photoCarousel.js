@@ -174,8 +174,7 @@ let UploadMsgClass = {
 		this.messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		UploadMsgClass.showModal();
-		UploadMsgClass.removeCarouselItem(i);
-		if (i !== undefined) {
+		if (Number.isInteger(i)) {
 			UploadMsgClass.removeCarouselItem(i);
 		}
 	},
