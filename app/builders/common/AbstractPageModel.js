@@ -145,6 +145,11 @@ class AbstractPageModel extends BasePageModel {
 		return jsonObj;
 	}
 
+	addToClientTranslation(modelData, keys) {
+		modelData.clientTranslations = modelData.clientTranslations || [];
+
+		modelData.clientTranslations = modelData.clientTranslations.concat(keys);
+	}
 }
 
 module
