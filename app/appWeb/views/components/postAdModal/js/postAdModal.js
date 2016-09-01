@@ -24,6 +24,7 @@ let initialize = () => {
 	this.$mobileFileInput = $('#mobileFileUpload');
 	this.$deskptopFileInput = $('#desktopFileUpload');
 	this.$mobileFooter.on('click', (e) => {
+		window.BOLT.trackEvents({"event": "PostAdPhotoUpload", "p": {"t": "PostAdPhotoUpload"} });
 		_toggleModal(e, true);
 		this.$mobileFileInput.click();
 	});
