@@ -151,6 +151,9 @@ $dropdown-width: 220px;
 					border: 1px solid $profile-border;
 					border-radius: 50%;
 				}
+				.profile-item:hover {
+					background-color: $headerMenuItemHighlightColor;
+				}
 				.username-wrapper {
 					display: inline-block;
 					vertical-align: middle;
