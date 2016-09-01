@@ -68,7 +68,7 @@ class SolrService {
 	 */
 	autoComplete(country, locationId, categoryId, keywords) {
 		let deferred = Q.defer();
-
+		console.error('Solr Running to here 1');
 		let query = this.keywordsClient.createQuery()
 			.q(keywords)
 			.fl(querystring.escape('keywords_g110,locationId_l110,categoryId_l110,score'))
@@ -77,13 +77,14 @@ class SolrService {
 			//.matchFilter('leafLoc_b100', 'true')
 			//.matchFilter('leafCat_b100', 'true')
 			.rows(10);
+		console.error('Solr Running to here 2');
 		if (typeof categoryId !== 'undefined') {
 			query = query.matchFilter('categoryPath_l101', categoryId);
 		}
 		if (typeof locationId !== 'undefined') {
 			query = query.matchFilter('locationPath_l101', locationId);
 		}
-
+		console.error('Solr Running to here 3');
 		this.keywordsClient.search(query, function(err,obj) {
 			if (err) {
 				deferred.reject(err);
@@ -91,7 +92,7 @@ class SolrService {
 				deferred.resolve(obj);
 			}
 		});
-
+		console.error('Solr Running to here 4');
 		return deferred.promise;
 	}
 }

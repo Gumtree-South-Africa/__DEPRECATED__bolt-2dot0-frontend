@@ -149,7 +149,6 @@ function BuildApp(siteObj) {
 		app.use(requestId());
 		app.use(writeHeader('X-Powered-By', 'Bolt 2.0'));
 		app.use(writeHeader('Vary', 'User-Agent'));
-		app.use(writeHeader('Access-Control-Allow-Origin','*'));
 
 		/*
 		 * Bolt 2.0 Authentication
