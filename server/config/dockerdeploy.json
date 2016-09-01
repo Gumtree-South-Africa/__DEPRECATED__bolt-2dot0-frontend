@@ -28,7 +28,7 @@
 	},
 	"solr": {
 		"server": {
-			"host"	: "charlie-vm-002-7898.phx02.dev.ebayc3.com",
+			"host"	: "docker_host_machine",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
