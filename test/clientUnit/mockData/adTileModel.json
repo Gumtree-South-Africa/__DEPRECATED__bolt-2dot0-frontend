@@ -1,0 +1,33 @@
+{
+	"id": "100000000",
+	"adId": "1001000001000910000000009",
+	"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
+	"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
+	"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
+	"adPrice": {
+		"priceType": "FIXED",
+		"amount": 50000,
+		"currency": "MXN"
+	},
+	"pictures": [
+		{
+			"size": "NORMAL",
+			"url": "http://img.classistatic.com/crop/100x100/i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
+		}
+	],
+	"categoryId": 1097,
+	"statistics": {
+		"replyCount": 20,
+		"viewCount": 201,
+		"favoriteCount": 110
+	},
+	"seller": {
+		"name": "Kobeee",
+		"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
+		"profileImage": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"
+	},
+	"features": [
+		"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+	],
+	"sizeClass": "two-by-two"
+}

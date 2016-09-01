@@ -126,12 +126,16 @@ class EpsUpload {
 				success(i, response);
 			},
 			error: (err) => {
-				failure(i, err);
+				if (err.responseText !== undefined) {
+					failure(i, err.responseText);
+				} else {
+					failure(i, err);
+				}
 			}
 		});
 	}
 
-	prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload) {
+	prepareForImageUpload(i, file, UploadMsgClass, loadData, onload) {
 
 		let mediaType = this.isSupported(file.name);
 
@@ -165,8 +169,6 @@ class EpsUpload {
 						let binaryFile = _this.convertToBinaryFile(dataUrl);
 						image.exifData = _this.findEXIFinJPEG(binaryFile);
 					}
-
-					imageUploads.setURL(i, image.src);
 				};
 			})(img, file);
 
@@ -235,7 +237,7 @@ class EpsUpload {
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		} else {
 			// WebKit implementation.
-			// http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+			// https://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		}
 	}
@@ -591,6 +593,11 @@ class EpsUpload {
 	convertThumbImgURL18(url) {
 		let reg = /\_\d*\.JPG/ig;
 		return url.replace(reg, "_18.JPG");
+	}
+
+	convertThumbImgURL20(url) {
+		let reg = /\_\d*\.JPG/ig;
+		return url.replace(reg, "_20.JPG");
 	}
 
 	getThumbImgURL(url) {

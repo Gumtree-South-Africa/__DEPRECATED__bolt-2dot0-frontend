@@ -1,0 +1,197 @@
+.category-selection-modal {
+	z-index: 9;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	&.staged {
+		.results {
+			display: none;
+		}
+
+		.wrapper input {
+			border-bottom: 1px solid;
+		}
+
+		.modal {
+			height: 240px;
+		}
+
+		.separator-div {
+			display: none;
+		}
+
+		.save-button {
+			margin-top: 30px;
+			display: block;
+		}
+
+		.staging-input {
+			display: block;
+		}
+
+	}
+
+	.staging-input {
+		display: none;
+	}
+
+	&.hidden {
+		display: none;
+	}
+
+	.modal {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 10;
+		margin: auto;
+
+		width: 400px;
+		height: 420px;
+		background-color: $vivaWhite;
+	}
+
+	.title {
+		font-size: 21px;
+		font-weight: bold;
+		text-align: center;
+	}
+
+	.close-button {
+		font-size: 12px;
+		text-transform: uppercase;
+		height: 20px;
+		&:hover {
+			cursor: pointer;
+			.close-text {
+				text-decoration: underline;
+			}
+		}
+		.icon-close-small {
+			width: 14px;
+			height: 14px;
+			display: block;
+			box-sizing: border-box;
+			margin-top: 5px;
+			margin-right: 5px;
+		}
+
+		.close-text {
+			margin-top: 4px;
+			margin-right: 5px;
+		}
+
+		span {
+			float:right;
+		}
+	}
+
+	.results {
+
+		box-sizing: border-box;
+		height: 300px;
+		width: 90%;
+		margin: 0 5%;
+		border: 1px solid black;
+		overflow-y: scroll;
+		overflow-x: hidden;
+
+		ul {
+			margin-top: 5px;
+		}
+
+		.list-item {
+			width: 100%;
+			height: 30px;
+			box-sizing: border-box;
+			padding: 5px 5% 5px 5%;
+
+			&:hover {
+				cursor: pointer;
+			}
+
+			&.active {
+				background-color: $categorySelectionActiveListRowBgColor;
+			}
+		}
+	}
+
+	.separator-div {
+		width: 90%;
+		margin-right: 5%;
+		margin-left: 5%;
+		margin-top: 0;
+		margin-bottom: 0;
+		position: absolute;
+
+		&:after {
+			height: 2px;
+			background: $categorySelectionSeparatorColor;
+		}
+	}
+
+	.save-button {
+		display: none;
+		color: $formSubmitButtonTextColor;
+		background-color: $formSubmitButtonColor;
+		border-style: none;
+		height: 55px;
+		font-size: 18px;
+		width: 90%;
+		margin: 12px 5% 0 5%;
+
+		&:disabled {
+			opacity: 0.7
+		}
+	}
+
+	.wrapper {
+		width: 100%;
+		position: relative;
+
+		.icon-close-small {
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		input {
+			width: 90%;
+			margin: 0 10% 0 5%;
+			border: 1px solid black;
+			border-bottom: none;
+			box-sizing: border-box;
+			padding-left: 5%;
+			padding-right: 14px;
+		}
+
+		.icon-close-small {
+			position: absolute;
+			right: 40px;
+			top: 11px;
+		}
+	}
+
+	.current-hierarchy {
+		padding: 0 5%;
+		box-sizing: border-box;
+		width: 100%;
+		margin-bottom: 7px;
+		margin-top: 7px;
+
+		.hier-link {
+			&:hover {
+				text-decoration: underline;
+				cursor: pointer;
+			}
+		}
+	}
+}

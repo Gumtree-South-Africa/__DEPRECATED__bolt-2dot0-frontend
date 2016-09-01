@@ -20,7 +20,10 @@
 		  	"quickpostAd"		:	"/ads",
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
-			"draftAd"			:	"/ads/drafts"
+			"draftAd"			:	"/ads/drafts",
+			"favoriteAd"		:	"/ads/{id}/favorites",
+			"specificAd"		:	"/ads/{id}",
+			"categoryAttributes":	"/categories/{catId}/attributes"
 	    }
 	},
 	"solr": {

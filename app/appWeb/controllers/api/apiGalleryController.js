@@ -7,7 +7,7 @@ let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 let cors = require(process.cwd() + '/modules/cors');
 
 
-router.get('/gallery', cors, function(req, res) {
+router.get('/', cors, function(req, res) {
 	let bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
@@ -17,33 +17,31 @@ router.get('/gallery', cors, function(req, res) {
 
 	let gallery = new GalleryModel(bapiHeaders), galleryData = {}, offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
-		ajaxUrls = {}, galleryDeferred = Q.defer();
+		ajaxUrls = {};
 
 	// Only applicable for SRP Gallery where there is categoryId
 	// categoryId = req.query.categoryId;
 
-	Q(gallery.getAjaxGallery(offset, limit))
-		.then(function(dataG) {
-			dataG = dataG || {};
-			galleryData = {
-				'ads': dataG.ads || []
-			};
+	gallery.getAjaxGallery(offset, limit).then(function(dataG) {
+		dataG = dataG || {};
+		galleryData = {
+			'ads': dataG.ads || []
+		};
 
-			// Get the prev and next urls
-			ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
-			if (ajaxUrls.next) {
-				galleryData.nextAjaxUrl = ajaxUrls.next;
-			}
+		// Get the prev and next urls
+		ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
+		if (ajaxUrls.next) {
+			galleryData.nextAjaxUrl = ajaxUrls.next;
+		}
 
-			if (ajaxUrls.prev) {
-				galleryData.previousAjaxUrl = ajaxUrls.prev;
-			}
+		if (ajaxUrls.prev) {
+			galleryData.previousAjaxUrl = ajaxUrls.prev;
+		}
 
-			galleryDeferred.resolve(galleryData);
-			res.send(galleryData);
-		}).fail(function(err) {
-		galleryDeferred.reject(new Error(err));
 		res.send(galleryData);
+	}).fail(function(err) {
+		err.logError();
+		res.send(galleryData); // not modifying this to return the status code of bapi because its used for v1
 	});
 });
 

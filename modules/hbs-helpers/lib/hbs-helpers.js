@@ -107,12 +107,29 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
         });
 
-        exphbs.handlebars.registerHelper('digitGrouping', function(number, separator) {
-            if (!number) return;
-            number = parseFloat(number);
-            separator = util.isUndefined(separator) ? ',' : separator;
-            return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
-        });
+		exphbs.handlebars.registerHelper("formatPrice", (number, separator) => {
+			if (!number || !separator)  {
+				return;
+			}
+
+			if (number >= 1000000000) {
+				number /= 1000000000;
+				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "B");
+			} else if (number >= 1000000) {
+				number /= 1000000;
+				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "M");
+			} else {
+				return new exphbs.handlebars.SafeString("$" + _groupDigits(number, separator));
+			}
+		});
+
+		let _groupDigits = function(number, separator) {
+			if (!number) return;
+			number = parseFloat(number);
+			separator = util.isUndefined(separator) ? ',' : separator;
+			return number.toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1" + separator);
+		};
+        exphbs.handlebars.registerHelper('digitGrouping', _groupDigits);
 
         exphbs.handlebars.registerHelper('splitKeyValueShowKey', function(keyvalue) {
             if (!keyvalue) return;
@@ -154,12 +171,30 @@ module.exports  =  {
 
 		exphbs.handlebars.registerHelper('clientI18nTranslate', function (translations) {
 			let returnObj = {};
-
 			translations.forEach((trans) => {
 				returnObj[trans] = translate.call(this, trans);
 			});
 
 			return new exphbs.handlebars.SafeString(JSON.stringify(returnObj));
+		});
+
+		exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+			if (!object || !field || value === undefined){
+				return;
+			}
+			let entry = object[field];
+			if (!isNaN(entry)) {
+				return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+			} else {
+				return (entry === value) ? options.fn(this) : options.inverse(this);
+			}
+		});
+
+		exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+			if (!object || !field) {
+				return;
+			}
+			return (field in object) ? options.fn(this) : options.inverse(this);
 		});
     }
 };

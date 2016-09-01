@@ -1202,6 +1202,9 @@
 				"¿Cómo reportar un anuncio?",
 				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
 			]
+		},
+		"trending": {
+			"contact": "Contactar"
 		}
 	},
 	"header": {
@@ -1368,5 +1371,46 @@
 		"uploadQuickly": "Publica un anuncio rápidamente",
 		"upload": "Publica un anuncio",
 		"close": "CERRAR"
+	},
+	"editAd": {
+		"reorderImages": "Volver a ordenar imágenes",
+		"headerTitle": "Edita tu anuncio",
+		"mainDetails": {
+			"title": "Agregar detalles",
+			"labels": {
+				"category": "Categoría",
+				"adTitle": "Título del anuncio",
+				"price": "Precio",
+				"description": "Descripción",
+				"location": "Ciudad, zona o código postal"
+			},
+			"titleRestrictions": {
+				"minimumAvailable": "Disponsibles: ",
+				"characters": " caracter(es)"
+			},
+			"askMe": "Preguntarme",
+			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
+			"submit": "Listo",
+			"cancel": "Cancelar",
+			"locationWarning": "Tu ubicación exacta no se publicará",
+			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+		},
+		"categorySelect": {
+			"title": "Categoría del artículo",
+			"prompt": "Búsqueda por palabra clave en %s",
+			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
+			"selectPrompt": "Select a Category Below",
+			"save": "Save"
+		}
+	},
+	"adStats": {
+		"views": "Visitas",
+		"messages": "Mensajes",
+		"favorites": "Favoritos"
+	},
+	"shareAd": {
+		"title": "Compartir este anuncio",
+		"dateString": "Publicado hace %s días"
 	}
 }

@@ -1,17 +1,13 @@
 'use strict';
 
+let Q = require('q');
 
 // cards are UI elements that can be in pages, they are configuration driven
 let cardsConfig = require(process.cwd() + '/app/config/ui/cardsConfig.json');
 let cardService = require(process.cwd() + '/server/services/cardService');
 
+// size mapping is now done on client via javascript, responsively
 
-const CARD_SIZE_CLASSES_MAP = {
-	'A': 'one-by-one',
-	'B': 'two-by-one',
-	'C': 'two-by-two',
-	'D': 'three-by-two',
-};
 
 
 class CardsModel {
@@ -66,33 +62,23 @@ class CardsModel {
 		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams).then((bapiResult) => {
 			return this.transformData(cardConfig, bapiResult);
 		}).fail((bapiErr) => {
-			console.warn(`Error getting BAPI card data ${bapiErr}`);
+			console.warn(`Error getting BAPI card data ${bapiErr}, going to try to get it from cache`);
 			return cardService.getCachedTrendingCard(this.bapiHeaderValues).then((cachedResult) => {
 				cachedResult = (cachedResult !== undefined) ? cachedResult : {};
 				return this.transformData(cardConfig, cachedResult);
 			}).fail((cacheErr) => {
 				if (cacheErr.status) {
-					console.warn(cacheErr.message);
+					return Q.reject(cacheErr.message);
 				} else {
-					console.warn(`Error getting Cache card data ${cacheErr}`);
+					return Q.reject(`Error getting Cache card data ${cacheErr}`);
 				}
-				return {};
 			});
 		});
 	}
 
 	transformData(cardConfig, dataItems) {
-		let sizes = cardConfig.itemSizesString;
-		if (dataItems.ads.length > sizes.length) {
-			console.error(`card config 'itemSizesString' has sizes for ${sizes.length} items, but we received ${dataItems.ads.length} items`);
-		}
-		dataItems.ads.forEach((ad, index) => {
-			if (sizes.length > index) {
-				ad.sizeClass = CARD_SIZE_CLASSES_MAP[sizes.charAt(index)];
-			} else {
-				ad.sizeClass = CARD_SIZE_CLASSES_MAP['A'];
-				console.warn(`no configured size available for ad (index ${index}), assigned size ${ad.sizeClass}`);
-			}
+
+		dataItems.ads.forEach((ad) => {
 			// todo: featured mapping algorithm, for now just a placeholder
 			if (ad.id === 1234567890) {
 				ad.featured = true;

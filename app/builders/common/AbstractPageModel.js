@@ -35,6 +35,7 @@ class AbstractPageModel extends BasePageModel {
 		// Cached Category Data from BAPI
 		modelData.category = data.category;
 		modelData.categoryDropdown = data.categoryDropdown;
+		modelData.categoryAll = data.categoryAll;
 
 		modelData.categoryIdNameMap = data.categoryIdNameMap;
 		modelData.categoryData = data.categoryData;

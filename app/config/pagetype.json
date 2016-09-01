@@ -39,7 +39,7 @@
 	    "POST_AD_FORM" : "PostAdForm",
 	    "POST_AD_PREVIEW" : "PostAdPreview",
 	    "EDIT_AD" : "EditAd",
-	    "POST_AD" : "PostAd",
+	    "POST_AD" : "PostAdForm",
 		"PWA_APP_SHELL" : "PwaAppShell",
 		"PWA_MANIFEST" : "PwaManifest",
 		"PWA_SERVICEWORKER" : "PwaServiceWorker",
