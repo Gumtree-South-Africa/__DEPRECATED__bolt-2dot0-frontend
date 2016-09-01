@@ -10,6 +10,9 @@ $feedTileHeight: $feedTotalHeight - $tileTopBotPadding - $tileTopBotPadding;
 	width: 96%;
 
     .feed-tile {
+		&:not(:first-child){
+			display: none;
+		}
 		float: left;
 		width: 100%;
 		border: 1px solid #D4D4D4;
@@ -66,6 +69,9 @@ $feedTileHeight: $feedTotalHeight - $tileTopBotPadding - $tileTopBotPadding;
 @include from-breakpoint($medium-break){
     .feed-tiles {
         .feed-tile {
+			&:not(:first-child) {
+				display: block;
+			}
             width: 32%;
             margin: 0px 0px 0px 5px;
 			.user-avatar {
