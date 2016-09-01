@@ -86,6 +86,8 @@ class SolrService {
 		}
 		console.error('Solr Running to here 3');
 		this.keywordsClient.search(query, function(err,obj) {
+			console.error(err);
+			console.error(obj);
 			if (err) {
 				deferred.reject(err);
 			} else {
@@ -93,6 +95,7 @@ class SolrService {
 			}
 		});
 		console.error('Solr Running to here 4');
+		console.error(deferred.promise);
 		return deferred.promise;
 	}
 }
