@@ -12,8 +12,13 @@ router.post('/autocomplete', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	console.error('Running to here 1');
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	console.error(model.country);
+	console.error(model.bapiHeaders);
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 	console.error('Running to here 2');
+	console.error(req.body.searchterm);
+	console.error(req.body.location);
+	console.error(req.body.category);
 	model.searchModel.autoComplete(req.body.searchterm, req.body.location, req.body.category).then((autoCompleteResults) => {
 		let results = {
 			totalCount: 0,

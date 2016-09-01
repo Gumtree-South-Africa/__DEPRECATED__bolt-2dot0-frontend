@@ -24,7 +24,7 @@ var middlewareloader = require(config.root + '/modules/environment-middleware-lo
 var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
 var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 // morgan custom logging format
-var accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":Access-Control-Allow-Origin" ":Origin" ":user-agent" - :response-time-sec';
+var accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time-sec';
 
 var i18nOr = require(config.root + '/modules/bolt-i18n');
 
