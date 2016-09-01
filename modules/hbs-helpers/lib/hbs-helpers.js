@@ -18,6 +18,20 @@ module.exports  =  {
     init: function(obj) {
         exphbs = obj.hbs;
 
+		function translate(msg) {
+			// cast arguments to actual array
+			let args = Array.prototype.slice.call(arguments);
+			// get object container __ i18n translation library
+			let i18nFuncObj = this.__ ? this : obj.req.i18n;
+
+			if (!msg) {
+				return;
+			}
+
+			// apply aguments to i18n translation library
+			return i18nFuncObj.__.apply(i18nFuncObj, args);
+		}
+
 
         function loadPartial(name){
             var partial = exphbs.handlebars.partials[name];
@@ -77,51 +91,10 @@ module.exports  =  {
         });
 
 
-        exphbs.handlebars.registerHelper('i18n', function (msg, value) { //console.log("xxxxxxx -" + msg);
-
-            //TODO: this is a quick fix. the redodant code needs to be refactored shortly.
-            if (!(this.__)){
-              if (arguments.length == 5) {
-                  return new exphbs.handlebars.SafeString( obj.req.i18n.__(msg, arguments[1], arguments[2], arguments[3]));
-              }
-
-              // if there are 2 param values in {{i18n "my.name is %s. i'm %s old." "anton" "20" }}
-              else if (arguments.length == 4) {
-                  return new exphbs.handlebars.SafeString( obj.req.i18n.__(msg, arguments[1], arguments[2]));
-              }
-
-              // if there are 1 param values in {{i18n "my.name is %s." "anton"  }}
-              else if (arguments.length == 3) {
-                  return new exphbs.handlebars.SafeString( obj.req.i18n.__(msg, arguments[1]));
-              }
-              // if there are 2 param values in {{i18n "my.name" }}
-              else  if (arguments.length == 2) {
-                  return new exphbs.handlebars.SafeString( obj.req.i18n.__(msg));
-              }
-            }
-            else if (!msg || !(this.__)) return;
-
-            else{
-              // if there are 3 param values in {{i18n "my.name is %s. i'm %s old. I live in, %s" "anton" "20" "santa cruz"}}
-              if (arguments.length == 5) {
-                  return new exphbs.handlebars.SafeString( this.__(msg, arguments[1], arguments[2], arguments[3]));
-              }
-
-              // if there are 2 param values in {{i18n "my.name is %s. i'm %s old." "anton" "20" }}
-              else if (arguments.length == 4) {
-                  return new exphbs.handlebars.SafeString( this.__(msg, arguments[1], arguments[2]));
-              }
-
-              // if there are 1 param values in {{i18n "my.name is %s." "anton"  }}
-              else if (arguments.length == 3) {
-                  return new exphbs.handlebars.SafeString( this.__(msg, arguments[1]));
-              }
-              // if there are 2 param values in {{i18n "my.name" }}
-              else  if (arguments.length == 2) {
-                  return new exphbs.handlebars.SafeString( this.__(msg));
-              }
-            }
-
+        exphbs.handlebars.registerHelper('i18n', function () { //console.log("xxxxxxx -" + msg);
+			let args = Array.prototype.slice.call(arguments);
+			args.pop(); // remove handlebars helper option object
+			return new exphbs.handlebars.SafeString(translate.apply(this, args));
         });
 
         exphbs.handlebars.registerHelper('json', function(context) {
@@ -196,6 +169,15 @@ module.exports  =  {
             return val.isTablet || val.isDesktop? fnTrue(this) : fnFalse(this);
         });
 
+		exphbs.handlebars.registerHelper('clientI18nTranslate', function (translations) {
+			let returnObj = {};
+			translations.forEach((trans) => {
+				returnObj[trans] = translate.call(this, trans);
+			});
+
+			return new exphbs.handlebars.SafeString(JSON.stringify(returnObj));
+		});
+
 		exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
 			if (!object || !field || value === undefined){
 				return;
@@ -215,9 +197,6 @@ module.exports  =  {
 			return (field in object) ? options.fn(this) : options.inverse(this);
 		});
     }
-
-
-
 };
 
 
