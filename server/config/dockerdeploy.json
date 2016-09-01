@@ -27,7 +27,7 @@
 	},
 	"solr": {
 		"server": {
-			"host"	: "localhost",
+			"host"	: "docker_host_machine",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
