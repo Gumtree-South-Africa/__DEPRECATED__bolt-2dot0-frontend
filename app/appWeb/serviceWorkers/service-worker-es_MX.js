@@ -18,6 +18,12 @@ var PRECACHE = '$$$toolbox-cache$$$';
 /**
  * Event Handlers
  */
+// INSTALL
+self.addEventListener('install', function(event) {
+	event.waitUntil(self.skipWaiting())
+});
+
+// ACTIVATE
 self.addEventListener('activate', function(event) {
 	// Delete all caches that aren't named in CURRENT_CACHES.
 	var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
@@ -29,7 +35,6 @@ self.addEventListener('activate', function(event) {
 			return Promise.all(
 				cacheNames.map(function(cacheName) {
 					if (cacheName.indexOf(PRECACHE) === -1) {
-						// Skip toolbox precache
 						if (expectedCacheNames.indexOf(cacheName) === -1) {
 							// If this cache name isn't present in the array of "expected" cache names, then delete it.
 							console.log('Deleting out of date cache:', cacheName);
@@ -40,6 +45,8 @@ self.addEventListener('activate', function(event) {
 			);
 		})
 	);
+
+	event.waitUntil(self.clients.claim());
 });
 
 self.addEventListener('fetch', function(event) {
@@ -56,6 +63,7 @@ self.addEventListener('fetch', function(event) {
  **/
 // Precaching homepage
 toolbox.precache(['/']);
+toolbox.precache(['/manifest.json']);
 
 // Precaching homepage assets
 if (cacheObj) {
@@ -172,7 +180,7 @@ if (cacheObj) {
 // cache images from crop server
 // max of 300 entries, cached for 1 week
 if (cacheObj.homepageCropCache.length > 0) {
-	toolbox.router.get('*',
+	toolbox.router.get('/(.*)',
 		toolbox.networkFirst,
 		{
 			origin: cacheObj.homepageCropCache,
@@ -188,7 +196,7 @@ if (cacheObj.homepageCropCache.length > 0) {
 // cache images from eps server
 // max of 300 entries, cached for 1 week
 if (cacheObj.homepageEpsCache.length > 0) {
-	toolbox.router.get('*',
+	toolbox.router.get('/(.*)',
 		toolbox.networkFirst,
 		{
 			origin: cacheObj.homepageEpsCache,
