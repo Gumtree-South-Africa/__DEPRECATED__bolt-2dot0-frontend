@@ -88,7 +88,7 @@ let _newTypeAhead = (currentSearchTerm) => {
 
 		// make the ajax request and save it in the AjaxMap
 		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
-			url: "https://www.vivanuncios.com.mx.charlie-vm-002-7898.phx02.dev.ebayc3.com/api/search/autocomplete",
+			url: "/api/search/autocomplete/",
 			method: "POST",
 			data: {searchterm:currentSearchTerm},
 			dataType: 'json',
