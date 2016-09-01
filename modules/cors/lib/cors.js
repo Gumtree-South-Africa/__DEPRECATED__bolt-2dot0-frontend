@@ -14,17 +14,10 @@ var err;
     var whitelistRegExp = req.app.locals.config.hostnameRegex,
         corsOptions;
 
-    if(isOriginOk(req)){
-        corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
-    }else{
-        corsOptions = { origin: false }; // disable CORS for this request
-    };
+    
+	corsOptions = { origin: true }; // reflect (enable) the requested origin in the CORS response
 
     callback(err, corsOptions); // callback expects two parameters: error and options
-
-    function isOriginOk( req)  {
-       return (new RegExp(whitelistRegExp)).test(req.header("Origin"));
-    }
 };
 
 
