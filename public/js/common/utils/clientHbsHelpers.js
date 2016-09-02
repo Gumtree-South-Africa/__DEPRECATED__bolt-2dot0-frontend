@@ -4,7 +4,12 @@ let StringUtils = require("public/js/common/utils/StringUtilsV2.js");
 
 let comparisonHelpers = require("../../../../modules/hbs-helpers/lib/comparisons/index.js").rawHelpers;
 
-let translations = JSON.parse($("#translation-block").text());
+let translations = {};
+let $translationBlock = $("#translation-block");
+
+if ($translationBlock.length > 0) {
+	translations = JSON.parse($("#translation-block").text());
+}
 
 let locale;
 let _walkAndReplace = (translation, values) => {
@@ -17,13 +22,7 @@ let _walkAndReplace = (translation, values) => {
 };
 
 let _getTranslation = (key) => {
-	let tempTranslation = translations[key];
-
-	if ($.type(tempTranslation) !== 'string') {
-		throw Error("I18n Key not Found in Client Translations");
-	}
-
-	return tempTranslation;
+	return translations[key];
 };
 
 let _loadPartial = (name) => {
@@ -32,7 +31,6 @@ let _loadPartial = (name) => {
 
 let setLocale = (newLocale) => {
 	locale = newLocale;
-	$("html").attr("data-locale", newLocale);
 };
 
 let initialize = (Handlebars) => {
@@ -75,6 +73,9 @@ let initialize = (Handlebars) => {
 	Handlebars.registerHelper('i18n', (key, ...vals) => {
 		let translation = _getTranslation(key);
 		vals.pop(); // pop off express helper object passed as the last param
+		if (!translation) {
+			return Handlebars.SafeString(key);
+		}
 		return new Handlebars.SafeString(_walkAndReplace(translation, vals));
 	});
 
@@ -146,20 +147,6 @@ let initialize = (Handlebars) => {
 		}
 		let str = keyvalue.split(":");
 		return new Handlebars.SafeString(str[1]);
-	});
-
-	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
-		if (!object || !field || value === undefined){
-			return;
-		}
-		return (object[field] === value) ? options.fn(this) : options.inverse(this);
-	});
-
-	Handlebars.registerHelper('ifIn', function(object, field, options) {
-		if (!object || !field) {
-			return;
-		}
-		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
 	Object.keys(comparisonHelpers).forEach((helperName) => {
