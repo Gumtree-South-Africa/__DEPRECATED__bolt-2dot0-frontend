@@ -8,6 +8,9 @@ let testWebpackConfig = {
 	devtool: "inline-source-map"
 };
 
+baseWebpackConfig.plugins.shift(); //Dont UGlify tests
+baseWebpackConfig.plugins.shift(); // Dont common chunk creation
+
 baseWebpackConfig.module.loaders.push({
 	test: /\.json$/,
 	loader: "json-loader"
@@ -15,6 +18,7 @@ baseWebpackConfig.module.loaders.push({
 
 baseWebpackConfig.plugins.shift(); //Dont UGlify tests
 baseWebpackConfig.plugins.shift(); // Dont common chunk creation
+
 
 module.exports = _.extend(baseWebpackConfig, testWebpackConfig);
 

@@ -174,12 +174,20 @@
 			  	"models" : ["seo"]
 			}
 		},
-		"PostAd" : {
+		"PostAd": {
 			"desktop" 	: {
 				"models" : ["seo"]
 			},
 			"mobile" 	: {
 				"models" : ["seo"]
+			}
+		},
+		"EditAd": {
+			"desktop" 	: {
+				"models" : ["locationlatlong", "adResult"]
+			},
+			"mobile" 	: {
+				"models" : ["locationlatlong", "adResult"]
 			}
 		}
 	}

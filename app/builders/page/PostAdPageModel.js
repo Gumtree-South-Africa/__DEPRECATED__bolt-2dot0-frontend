@@ -51,8 +51,10 @@ class PostAdPageModel {
 				// initialize
 				return {
 					'homePageUrl': this.urlProtocol + 'www.' + this.fullDomainName + this.baseDomainSuffix + this.basePort,
-					'languageCode': this.locale
-				};
+					'languageCode': this.locale,
+					'progressBarText': "postAd.confirm.pageTitle"
+
+			};
 			}
 		];
 	}

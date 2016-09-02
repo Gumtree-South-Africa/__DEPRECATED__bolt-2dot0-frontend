@@ -59,6 +59,7 @@ gulp.task('compass', getTask('compass'));
 gulp.task('sass', getTask('sass'));
 gulp.task('icons', getTask('icons'));
 gulp.task('precompile', getTask('precompile'));
+gulp.task('precompile2', getTask('precompile2'));
 gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));

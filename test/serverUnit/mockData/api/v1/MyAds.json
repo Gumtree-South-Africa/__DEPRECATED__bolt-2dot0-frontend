@@ -1,0 +1,31 @@
+{
+  "_links": [{
+    "rel": "self",
+    "href": "/ads/myAds?offset=0&limit=1",
+    "method": "GET"
+  }, {
+    "rel": "next",
+    "href": "/ads/myAds?offset=1&limit=1",
+    "method": "GET"
+  }, {
+    "rel": "previous",
+    "href": null,
+    "method": "GET"
+  }],
+  "ads": [{
+    "id": "100008300",
+    "viewSeoUrl": "/a-moda/jalostotitlan/rui-ad-today-to-test-start-date/1001000083000910000040009",
+    "title": "RUI AD today to test START DATE",
+    "description": "<p>RUI today to test AD START DATE</p>",
+    "adPrice": {
+      "priceType": "CONTACT_ME"
+    },
+    "categoryId": 15,
+    "creationDate": 1463016505000,
+    "expirationDate": 1473834497000,
+    "adState": "DELETED"
+  }],
+  "total": 32,
+  "limit": 1,
+  "offset": 0
+}
