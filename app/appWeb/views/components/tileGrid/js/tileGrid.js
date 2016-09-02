@@ -139,6 +139,10 @@ let _viewMoreGalleryCard = (state) => {
 			let container = $(state.cardElement).find('.tile-container');
 			container.isotope('insert', tiles);
 
+			// now we need to give the new tiles their appropriate size, but we need all the card's tiles
+			this.breakpointMapper.adjustTileSizes(this.currentBreakpoint, _getTilesForCard(state));
+			container.isotope('layout');	// since sizes have changed, need to layout
+
 			tiles.find('img.lazy').lazyload({
 				"skip_invisible": true
 			});

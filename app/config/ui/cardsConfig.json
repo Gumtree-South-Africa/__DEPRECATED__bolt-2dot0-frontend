@@ -23,10 +23,10 @@
 			"queryEndpoint": "BAPI.endpoints.homepageGallery",
 			"queryParameters": {
 				"offset": "0",
-				"limit": "10"
+				"limit": "16"
 			},
 			"templateConfig": {
-				"viewMorePageSize": 10,
+				"viewMorePageSize": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
 				"showFavorites": true,
 				"showReplies": true,

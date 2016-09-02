@@ -1,6 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
 let EpsUpload = require('./epsUpload.js');
 let uploadAd = require('./uploadAd.js');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
