@@ -4,6 +4,8 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 
 let tileGridController = require("app/appWeb/views/components/tileGrid/js/tileGrid.js");
 let trendingCardModel = require('../mockData/trendingCardModel.json');
+let galleryCardModel = require('../mockData/galleryCardModel.json');
+let galleryCardModelNoMore = require('../mockData/galleryCardModel-noMore.json');
 let locResponse = require('../../serverUnit/mockData/geo/geoLocation.json');
 let BreakpointTileSizeMapper = require('app/appWeb/views/components/tileGrid/js/BreakpointTileSizeMapper.js');
 let $ = require('jquery');
@@ -105,6 +107,17 @@ describe('Card/Tile Grid', () => {
 
 	describe('Card/Tile Grid Controller', () => {
 
+		let tilesShown = ($tiles) => {
+			let shown = 0;
+			for (let i = 0; i < $tiles.length; i++) {
+				let $tile = $($tiles[i]);
+				if ($tile.css('display') === 'block') {
+					shown++;
+				}
+			}
+			return shown;
+		};
+
 		it('should adjust tiles sizes and container width (trending)', () => {
 
 			// using the card template so we get the proper card 'state'
@@ -152,23 +165,13 @@ describe('Card/Tile Grid', () => {
 
 		it('should get more items visible when clicking on view more (trending)', () => {
 
-			let tilesShown = ($tiles) => {
-				let shown = 0;
-				for (let i = 0; i < $tiles.length; i++) {
-					let $tile = $($tiles[i]);
-					if ($tile.css('display') === 'block') {
-						shown++;
-					}
-				}
-				return shown;
-			};
-
 			let model = {
 				card: trendingCardModel
 			};
 
 			specHelper.registerMockAjax('/api/locate/locationlatlong', locResponse);
-			// spyOn(tileGridController, '_redirectToSearch').and.callStub();
+			spyOn(tileGridController, '_redirectToSearch').and.callFake(() => {
+			});
 
 			// using the card template so we get the proper card 'state'
 			let $testArea = specHelper.setupTest("card_es_MX", model, "es_MX");
@@ -185,19 +188,61 @@ describe('Card/Tile Grid', () => {
 			let shown = tilesShown(tiles);
 			expect(shown).toBe(numShownInitially, 'should have tiles shown initially');
 
-			let $viewMore = $testArea.find('.card-view-more .link');
-			expect($viewMore.length).toBe(1, 'should have a view more link');
-			$viewMore[0].click();
+			let $viewMoreButtons = $testArea.find('.card-view-more .link');
+			expect($viewMoreButtons.length).toBe(1, 'should have a view more link');
+			let viewMore = $viewMoreButtons[0];
+			viewMore.click();
 
 			shown = tilesShown(tiles);
 			expect(shown).toBe(numShownInitially * 2, 'should have more tiles shown after clicking view more');
 
 			// another click throws us into a redirect pattern
-			$viewMore[0].click();
-			// expect(tileGridController._redirectToSearch.calls.count()).toBe(1, 'should have called _redirectToSearch');
+			viewMore.click();
+			expect(tileGridController._redirectToSearch.calls.count()).toBe(1, 'should have called _redirectToSearch');
 
 		});
 
+		it('should get more items visible when clicking on view more (gallery)', () => {
+
+
+			let model = {
+				card: galleryCardModel
+			};
+
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=1&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
+			// spyOn(tileGridController, '_redirectToSearch').and.callFake(() => {
+			// });
+
+			// using the card template so we get the proper card 'state'
+			let $testArea = specHelper.setupTest("card_es_MX", model, "es_MX");
+
+			tileGridController.initialize(false);		// we init with false because we're handing the onReady
+			tileGridController.onReady();
+
+			let numShownInitially = model.card.ads.length;
+
+			let tiles = $testArea.find('.tile-item');
+			expect(tiles.length).toBe(model.card.ads.length, 'should have all tiles loaded');
+
+			let shown = tilesShown(tiles);
+			expect(shown).toBe(numShownInitially, 'should have tiles shown initially');
+
+			let $viewMoreButtons = $testArea.find('.card-view-more .link');
+			expect($viewMoreButtons.length).toBe(1, 'should have a view more link');
+			let viewMore = $viewMoreButtons[0];
+			viewMore.click();
+
+			// pick up the additional tiles (gallery uses ajax)
+			tiles = $testArea.find('.tile-item');
+			shown = tilesShown(tiles);
+			expect(shown).toBe(numShownInitially * 2, 'should have more tiles shown after clicking view more');
+
+			// another click should do the same thing, but since we've set 'moreDataAvailable' to false, we'll hide the button
+			viewMore.click();
+			expect($(viewMore).hasClass('hidden')).toBeTruthy('should have view more styled as hidden');
+
+		});
 
 	});
 });

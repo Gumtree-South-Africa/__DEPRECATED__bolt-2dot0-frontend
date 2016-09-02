@@ -95,6 +95,8 @@ class CardsModel {
 			console.warn(`no ads found for card ${cardConfig.cardName}`);
 			return dataItems;
 		}
+		console.warn(`transforming ${dataItems.ads.length} ads for card ${cardConfig.cardName}`);
+
 		if (cardConfig.cardName === "galleryCard") {
 			dataItems.ads = dataItems.ads.map((ad) => {
 				return {

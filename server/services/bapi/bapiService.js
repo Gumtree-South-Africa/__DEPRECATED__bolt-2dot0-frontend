@@ -71,6 +71,9 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters, bapiOptions.extraParameters);
+	if (bapiOptions.path.indexOf('gallery') !== -1) {
+		console.warn(`calling bapi ${bapiOptions.path}`);
+	}
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
