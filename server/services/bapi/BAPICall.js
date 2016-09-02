@@ -61,13 +61,8 @@ BAPICall.prototype = {
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if  (res.statusCode !== 200) {
 						// attach the status code so consumers can check for it
-<<<<<<< HEAD
-						error.statusCode = res.statusCode;
-						deferred.reject(error);
-=======
 						let error = new BapiError(`Received non-200 status: ${res.statusCode}`, { statusCode: res.statusCode });
-						deferred.reject(error, data);
->>>>>>> master
+						deferred.reject(error);
 					} else {
 						deferred.resolve(data);
 					}
