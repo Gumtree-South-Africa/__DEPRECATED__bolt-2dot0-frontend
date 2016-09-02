@@ -64,32 +64,6 @@ function getAjaxsUrlFromBapiJSON(dataG) {
 	return ajaxUrls;
 }
 
-// todo: convert this to the new way
-/**
- * removes unwanted bapiJson we dont want to log
- * emits elements to the console error log: bapiJson (if present), and stack trace,
- * prepares an object that can be returned to the client
- * @param {Object} err (exception object)
- * @returns	{object} empty object or bapi information that can be sent back to the client
- */
-let logError = (err) => {
-	console.error(err.message);
-	let bapiInfoForClient = {};
-	if (err.bapiJson) {
-		// strip out what we don't want to log from bapi
-		err.bapiJson.details = err.bapiJson.details.map((item) => {
-			delete item._links;
-			return item;
-		});
-		console.error(`bapiJson: ${JSON.stringify(err.bapiJson, null, 4)}`);
-		// for now, were just passing the message to the client
-		// todo: map the bapiJson for best exposure to client
-		bapiInfoForClient.message = err.bapiJson.message;
-	}
-	console.error(err.stack);
-	return bapiInfoForClient;
-};
-
 
 /**
  * route is /api/ads/gallery/card
@@ -130,7 +104,7 @@ router.get('/card', cors, (req, res) => {
 		result.config = model.cardsModel.getTemplateConfigForCard("galleryCard");
 		res.status(200).send(result);
 	}).fail((err) => {
-		let bapiInfo = logError(err);
+		let bapiInfo = err.logError();
 		res.status(err.statusCode ? err.statusCode : 500).send({
 			error: "unable to get gallery data, see logs for details",
 			bapiInfo: bapiInfo
