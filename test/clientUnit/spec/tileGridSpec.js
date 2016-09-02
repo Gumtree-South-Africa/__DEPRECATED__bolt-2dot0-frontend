@@ -3,13 +3,23 @@
 let specHelper = require('../helpers/commonSpecHelper.js');
 
 let tileGridController = require("app/appWeb/views/components/tileGrid/js/tileGrid.js");
-let tileGridModel = require('../mockData/trendingCardModel.json');
+let trendingCardModel = require('../mockData/trendingCardModel.json');
+let locResponse = require('../../serverUnit/mockData/geo/geoLocation.json');
 let BreakpointTileSizeMapper = require('app/appWeb/views/components/tileGrid/js/BreakpointTileSizeMapper.js');
 let $ = require('jquery');
 let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
+let tileHasAnyClasses = (tile, classes) => {
+	let hasAny = false;
+	for (let classIndex = 0; classIndex < classes.length; classIndex++) {
+		if (tile.hasClass(classes[classIndex])) {
+			hasAny = true;
+		}
+	}
+	return hasAny;
+};
 
-describe('Tile Grid', () => {
+describe('Card/Tile Grid', () => {
 
 	beforeEach(() => {
 	});
@@ -45,18 +55,19 @@ describe('Tile Grid', () => {
 
 		it('should adjust tile size css styles according to map', () => {
 
-			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
+			// we have to put the entire card under test in order to have proper card 'state'
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", trendingCardModel, "es_MX");
 			let mapper = new BreakpointTileSizeMapper();
 
 			let tiles = $testArea.find('.tile-item');
 			expect(tiles.length).toBe(4);
 
-			// validate the sizes as defined by the mock file (baseline)
-			expect($(tiles[0]).hasClass('two-by-two')).toBeTruthy('first tile should have 2x2 as defined by mock');
-			expect($(tiles[1]).hasClass('two-by-one')).toBeTruthy('first tile should have 2x1 as defined by mock');
-			expect($(tiles[2]).hasClass('one-by-one')).toBeTruthy('first tile should have 1x1 as defined by mock');
-			expect($(tiles[3]).hasClass('three-by-two')).toBeTruthy('first tile should have 3x2 as defined by mock');
-
+			// validate the tiles have no pre-defined size styles
+			let sizeClasses = mapper.getSizeClasses();
+			for (let tileIndex = 0; tileIndex < 4; tileIndex++) {
+				let $tile = $(tiles[tileIndex]);
+				expect(tileHasAnyClasses($tile, sizeClasses)).toBeFalsy(`tile ${tileIndex} should not have any size classes`);
+			}
 
 			mapper.BREAKPOINT_TO_SIZE_MAP = {
 				"360": "AB",
@@ -92,11 +103,12 @@ describe('Tile Grid', () => {
 		});
 	});
 
-	describe('Tile Grid Controller', () => {
+	describe('Card/Tile Grid Controller', () => {
 
-		it('should adjust tiles sizes and container width', () => {
+		it('should adjust tiles sizes and container width (trending)', () => {
 
-			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
+			// using the card template so we get the proper card 'state'
+			let $testArea = specHelper.setupTest("card_es_MX", { card: trendingCardModel }, "es_MX");
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
 			let mapper = tileGridController.getMapper();
@@ -104,8 +116,9 @@ describe('Tile Grid', () => {
 
 			let tiles = $testArea.find('.tile-item');
 
-			// validate the sizes as defined by the mock file (baseline)
-			expect($(tiles[0]).hasClass('two-by-two')).toBeTruthy('first tile should have 2x2 as defined by mock');
+			// validate the tiles have no pre-defined size styles
+			let sizeClasses = mapper.getSizeClasses();
+			expect(tileHasAnyClasses($(tiles[0]), sizeClasses)).toBeFalsy(`tile should not have any size classes`);
 
 			tileGridController.onReady();
 
@@ -126,7 +139,7 @@ describe('Tile Grid', () => {
 
 		it('should set orange icon on initial load for the tile with its id in the favorite cookie', () => {
 
-			let $testArea = specHelper.setupTest("tileGrid_es_MX", tileGridModel, "es_MX");
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", trendingCardModel, "es_MX");
 			CookieUtils.setCookie("watchlist", "200000000");	// using short ad id to be compatible with RUI
 
 			let tiles = $testArea.find('.tile-item');
@@ -136,6 +149,55 @@ describe('Tile Grid', () => {
 			expect($(tiles[1]).find('.icon-heart-orange').length).toBeTruthy(`favorited cookie tile should have orange icon`);
 
 		});
+
+		it('should get more items visible when clicking on view more (trending)', () => {
+
+			let tilesShown = ($tiles) => {
+				let shown = 0;
+				for (let i = 0; i < $tiles.length; i++) {
+					let $tile = $($tiles[i]);
+					if ($tile.css('display') === 'block') {
+						shown++;
+					}
+				}
+				return shown;
+			};
+
+			let model = {
+				card: trendingCardModel
+			};
+
+			specHelper.registerMockAjax('/api/locate/locationlatlong', locResponse);
+			// spyOn(tileGridController, '_redirectToSearch').and.callStub();
+
+			// using the card template so we get the proper card 'state'
+			let $testArea = specHelper.setupTest("card_es_MX", model, "es_MX");
+
+			tileGridController.initialize(false);		// we init with false because we're handing the onReady
+			tileGridController.onReady();
+
+			let numShownInitially = model.card.config.viewMoreFilterIncrement;
+			expect(numShownInitially).toBe(2, 'should have config.viewMoreFilterIncrement value');
+
+			let tiles = $testArea.find('.tile-item');
+			expect(tiles.length).toBe(model.card.ads.length, 'should have all tiles loaded');
+
+			let shown = tilesShown(tiles);
+			expect(shown).toBe(numShownInitially, 'should have tiles shown initially');
+
+			let $viewMore = $testArea.find('.card-view-more .link');
+			expect($viewMore.length).toBe(1, 'should have a view more link');
+			$viewMore[0].click();
+
+			shown = tilesShown(tiles);
+			expect(shown).toBe(numShownInitially * 2, 'should have more tiles shown after clicking view more');
+
+			// another click throws us into a redirect pattern
+			$viewMore[0].click();
+			// expect(tileGridController._redirectToSearch.calls.count()).toBe(1, 'should have called _redirectToSearch');
+
+		});
+
 
 	});
 });

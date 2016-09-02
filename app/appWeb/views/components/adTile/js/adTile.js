@@ -1,7 +1,7 @@
 'use strict';
 
 let CookieUtils = require("public/js/common/utils/CookieUtils.js");
-require("jquery-lazyload");
+
 
 
 class AdTile {
@@ -89,15 +89,20 @@ class AdTile {
 	_onFavoriteClick(event) {
 		let target = $(event.target);
 
+
+		let adId = target.data('adid');  // using attribute data-adid
+		if (!adId) {
+			console.warn("unable to favorite item, missing ad id");
+			return;
+		}
+
 		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
 		this.toggleFavorite(target);
-
-		let ids = this._getIdMapFromCookie('watchlist');
-		let adId = target.data('adid');  // using attribute data-adid
 
 		// use short ad id for cookie to be compatible with RUI
 		let shortAdId = target.data('short-adid');	// using attribute data-short-adid
 
+		let ids = this._getIdMapFromCookie('watchlist');
 		let action;
 		if (target.hasClass("icon-heart-orange")) {
 
@@ -134,10 +139,7 @@ class AdTile {
 	 * onReady - separated out for easy testing
 	 */
 	onReady() {
-		// for debugging you can listen like this: this.$lazyImage.on("appear", () => {
-		this.$lazyImage.lazyload({
-			"skip_invisible": true
-		});
+
 
 		// update/set watchlist cookie when user 'favorites' an ad
 		this.$favoriteButton.click((evt) => {
@@ -154,7 +156,7 @@ class AdTile {
 	initialize(registerOnReady = true) {
 		this.$tile = $('.panel');
 		this.$favoriteButton = this.$tile.find('.favorite-btn');
-		this.$lazyImage = this.$tile.find('img.lazy');
+
 
 		if (registerOnReady) {
 			$(document).ready(this.onReady.bind(this));	// need special bind here

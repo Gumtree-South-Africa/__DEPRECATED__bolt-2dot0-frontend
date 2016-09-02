@@ -18,7 +18,15 @@ module.exports = {
 			{
 				test: /isotope-layout/,
 				loader: 'imports?define=>false&this=>window'
+			},
+			// because we have jquery outside of webpack to accommodate global "bolt",
+			// we need to force bridget to use that instance of jquery using the following,
+			// determined via analysis of the bridget library loading sequence
+			{
+				test: /bridget/,
+				loader: 'imports?define=>false&module=>false'
 			}
+
 		]
 	},
 	resolve: {

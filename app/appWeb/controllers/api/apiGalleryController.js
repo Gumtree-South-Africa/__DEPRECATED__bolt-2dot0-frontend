@@ -124,7 +124,10 @@ router.get('/card', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
 	model.cardsModel = new CardsModel(model.bapiHeaders);
 
-	model.cardsModel.getCardItemsData("galleryCard", {/* no need for lat long for gallery */}).then( (result) => {
+	model.cardsModel.getCardItemsData("galleryCard", {
+		offset: params.offset,
+		limit: params.limit
+	}).then( (result) => {
 		// augment the API result data with some additional card driven config for templates to use
 		result.config = model.cardsModel.getTemplateConfigForCard("galleryCard");
 		res.status(200).send(result);

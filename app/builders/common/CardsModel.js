@@ -59,6 +59,13 @@ class CardsModel {
 			}
 		}
 
+		// now walk the paramsMap and apply any overrides that may have been passed, ex: galleryApi will supply its own offset & limit
+		let keys = Object.getOwnPropertyNames(paramsMap);
+		for (let i = 0; i < keys.length; i++) {
+			let key = keys[i];
+			apiParams[key] = paramsMap[key];
+		}
+
 		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams, cardConfig.cardName).then((bapiResult) => {
 			return this.transformData(cardConfig, bapiResult);
 		}).fail((bapiErr) => {
@@ -106,6 +113,14 @@ class CardsModel {
 					// isGalleryTile:  true	// hbs generates a class that can be used for styling
 				};
 			});
+
+			if (dataItems.links) {
+				for (let i = 0; i < dataItems.links.length; i++) {
+					if (dataItems.links[i].rel === "next slice") {
+						dataItems.moreDataAvailable = true;	// flag that we have more
+					}
+				}
+			}
 		}
 
 		dataItems.ads.forEach((ad) => {

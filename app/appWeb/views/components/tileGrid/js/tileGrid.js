@@ -1,27 +1,40 @@
 'use strict';
 
 // http://isotope.metafizzy.co/extras.html#browserify
-let $ = require('jquery');
+
 let Isotope = require('isotope-layout');
+require('jquery-lazyload');
 require('jquery-bridget');
 let adTile = require('app/appWeb/views/components/adTile/js/adTile.js');
 let BreakpointTileSizeMapper = require('app/appWeb/views/components/tileGrid/js/BreakpointTileSizeMapper.js');
 let LocationUtils = require('public/js/common/utils/LocationUtils.js');
 let TileCard = require('app/appWeb/views/components/tileGrid/js/TileCard.js');
+let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 
-
-let _getLocSuccess = (resp) => {
-	if (resp.id) {
+/**
+ * redirect to the search page depending on location id received
+ * @param resp
+ * @private
+ */
+let _redirectToSearch = (resp) => {
+	if (resp && resp.id) {
 		window.location.href = "/search.html?locId=" + resp.id;
 	} else {
 		window.location.href = "/search.html";
 	}
 };
 
-let _getLocFailure = (resp) => {
-	window.location.href = "/search.html";
+/**
+ * get the tiles for the specified card
+ * @param state
+ * @return {*|jQuery} array of tiles
+ * @private
+ */
+let _getTilesForCard = (state) => {
+	return $(state.cardElement).find('.tile-item');
 };
+
 
 /**
  * when breakpoint changes we need to adjust tile sizes
@@ -32,7 +45,7 @@ let handleBreakpointChanged = (breakpoint) => {
 	// process card instances separately
 	let keys = Object.keys(this.tileCards);
 	keys.forEach( (key) => {
-		let tiles = this.tileCards[key].tiles;
+		let tiles = _getTilesForCard(this.tileCards[key]);
 		this.breakpointMapper.adjustTileSizes(breakpoint, tiles);
 	});
 
@@ -43,13 +56,11 @@ let handleBreakpointChanged = (breakpoint) => {
 	this.isotopeElement.isotope('layout');
 }
 
-let _filterFunction = (index, itemElem) => {
-	let dataIndex = $(itemElem).attr('data-index');
-	let filterMax = this.tileCards[$(itemElem).closest('.card').data('card-name')].filterMax;
-	return parseInt(dataIndex) < filterMax;
-};
 
-
+/**
+ * show the highlight state for each ad id in the cookie
+ * @param $tiles (expected to receive all tiles, regardless of which card it belongs to)
+ */
 let syncFavoriteCookieWithTiles = ($tiles) => {
 	let  favoriteIds = adTile.getCookieFavoriteIds();
 	for  (let i = 0; i < favoriteIds.length; i++) {
@@ -62,6 +73,14 @@ let syncFavoriteCookieWithTiles = ($tiles) => {
 	}
 };
 
+/**
+ * Ajax gallery card items
+ * @param offset (i.e. page number)
+ * @param limit (i.e. page size)
+ * @param success callback
+ * @param error callback
+ * @private
+ */
 let _getMoreGalleryItems = (offset, limit, success, error) => {
 
 	let url = `/api/ads/gallery/card?offset=${offset}&limit=${limit}`;
@@ -74,7 +93,7 @@ let _getMoreGalleryItems = (offset, limit, success, error) => {
 	});
 };
 
-// each card type can have different behaviors for View More
+// NOTE: each card can have different behaviors for View More
 
 /**
  * allow more to be displayed up to the number rendered by the server
@@ -83,45 +102,59 @@ let _getMoreGalleryItems = (offset, limit, success, error) => {
  */
 let _viewMoreTrendingCard = (state) => {
 
-	let numTiles = state.tiles.length;
+	let numTiles = _getTilesForCard(state).length;
 
 	// allow more to be displayed up to the number rendered by the server
-	if (state.filterMax < numTiles) {
+	if (state.currentFilterThreshold < numTiles) {
 		// we have more tiles to show the user
-		state.filterMax += state.itemsPerPage;	// move our filter threshold ahead
-		this.isotopeElement.isotope();
+		state.currentFilterThreshold += state.viewMoreFilterIncrement;	// move our filter threshold ahead
+		this.isotopeElement.isotope('arrange');
 		this.isotopeElement.trigger("scroll"); // trigger lazyload in webkit browsers
 	} else {
 		// nav to SRP
 		// window.location.href = "/search.html?locId=" + result.location;
-		LocationUtils.getLocationId(_getLocSuccess, _getLocFailure);
+		LocationUtils.getLocationId(_redirectToSearch, _redirectToSearch);
 	}
 };
 
 /**
- * ajax more until there are no more to get
+ * ajax more tiles into the view until there are no more to get
  * @param state
  * @private
  */
 let _viewMoreGalleryCard = (state) => {
 	if (state.viewMoreAjaxOffset === -1) {
-		// already at the end, ignore
+		// already at the end, ignore (shouldn't happen because we hide the link)
 		return;
 	}
 	// ajax more data
-	_getMoreGalleryItems(state.viewMoreAjaxOffset, state.itemsPerPage ,(data) => {
-			// now we need to add them in
-			console.log(data);
-			if (data.nextAjaxUrl) {
-				state.viewMoreAjaxOffset++;
-			} else {
-				// create tiles from the data
+	_getMoreGalleryItems(state.viewMoreAjaxOffset, state.viewMorePageSize ,(data) => {
+			// now we need to add the tiles we received
 
-				// disable the link style-wise
+			// create tiles from the data
+			let grid = clientHbs.renderTemplate("tileGrid", data);
+			let tiles = $(grid).find('.tile-item');
+
+			// now get the container and put the tiles in
+			let container = $(state.cardElement).find('.tile-container');
+			container.isotope('insert', tiles);
+
+			tiles.find('img.lazy').lazyload({
+				"skip_invisible": true
+			});
+
+			container.trigger("scroll"); // trigger lazyload in webkit browsers
+
+			// setup for more when server says we have it
+			if (data.moreDataAvailable) {
+				state.viewMoreAjaxOffset++;
+			} else  {
+				// hide the view more link
 				let link = $(state.cardElement).find('.card-view-more .link');
-				link.toggleClass("disable");
+				link.toggleClass("hidden");
 				state.viewMoreAjaxOffset = -1;	// signal to our handler, no more data
 			}
+
 		}, (/*res*/) => {
 			// there is no UX for a failure here, we just ignore any issues
 		}
@@ -150,6 +183,23 @@ let _onViewMore  = (evt) => {
 };
 
 /**
+ * Filter function used by isotope (typ. of Trending Card)
+ * @param index
+ * @param itemElem
+ * @return {boolean} true for item to show
+ * @private
+ */
+let _filterFunction = (index, itemElem) => {
+	let state = this.tileCards[$(itemElem).closest('.card').data('card-name')];
+	if (state.cardName == "galleryCard") {
+		return true;
+	}
+	let dataIndex = $(itemElem).attr('data-index');
+	let currentFilterThreshold = state.currentFilterThreshold;
+	return parseInt(dataIndex) < currentFilterThreshold;
+};
+
+/**
  * onReady can be called separately when testing
  */
 let onReady = () => {
@@ -171,6 +221,10 @@ let onReady = () => {
 	this.isotopeElement.isotope(isotopeOptions);
 	this.$body.trigger('breakpointChanged', this.currentBreakpoint);
 
+	// for debugging you can listen like this: <images>.on("appear", () => {
+	$('img.lazy').lazyload({
+		"skip_invisible": true
+	});
 };
 
 /**
@@ -179,17 +233,23 @@ let onReady = () => {
  */
 let initialize = (registerOnReady = true) => {
 
+	// setup for client templates
+	this.locale = $("#client-hbs-locale").data("locale");
+	clientHbs.initialize(this.locale);
+
 	// setup the tile cards to hold our state information specific to a card
 	this.tileCards = {};
 	let $tileCards = $('.card');
+
 	$tileCards.each((index, cardElement) => {
 		let tileCard = new TileCard(cardElement);
-		this.tileCards[tileCard.getName()] = tileCard;
-		tileCard.tiles = $(cardElement).find('.tile-item');
+		this.tileCards[tileCard.getName()] = tileCard;	// map of card state keyed by name
 
-		tileCard.filterMax = 16;		// trending
-		tileCard.viewMoreAjaxOffset = 1;	// gallery
-		tileCard.itemsPerPage = 16;
+		// pull configuration data from data attributes laid in by HBS into the DOM
+		tileCard.viewMoreAjaxOffset = 1;										// gallery
+		tileCard.viewMorePageSize = $(cardElement).data('view-more-page-size');		// gallery
+		tileCard.viewMoreFilterIncrement = $(cardElement).data('view-more-filter-increment');	// trending
+		tileCard.currentFilterThreshold = tileCard.viewMoreFilterIncrement;		// trending - initial filter setting
 	});
 
 	this.$body = $('body');
@@ -198,6 +258,7 @@ let initialize = (registerOnReady = true) => {
 	this.isotopeElement.toggleClass('use-isotope-handler', false);
 	this.$tileGridWidthContainer = $('.tile-grid-width-container');	// for efficiency, it is used in breakpointChanged
 
+	// setup breakpoint behavior for formatting tiles depending on breakpoint
 	this.breakpointMapper = new BreakpointTileSizeMapper();
 	this.currentBreakpoint = this.breakpointMapper.nearestBreakpoint(window.innerWidth);
 
@@ -213,9 +274,8 @@ let initialize = (registerOnReady = true) => {
 		}
 	});
 
-	let allTiles = $('.tile-container .tile-item');	// all tiles regardless of which card
-	syncFavoriteCookieWithTiles(allTiles);
-
+	let allCardsTiles = $('.tile-container .tile-item');	// all tiles regardless of which card
+	syncFavoriteCookieWithTiles(allCardsTiles);
 
 	adTile.initialize();
 
@@ -237,6 +297,7 @@ let getCurrentBreakpoint = () => {
 };
 
 module.exports = {
+	_redirectToSearch,		// for testing
 	onReady,				// for testing
 	getMapper,				// for testing
 	getCurrentBreakpoint,	// for testing

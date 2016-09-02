@@ -56,3 +56,5 @@ if ('serviceWorker' in navigator) {
 		console.error('Error during service worker registration:', e);
 	});
 }
+
+module.exports.initialize = () => {};

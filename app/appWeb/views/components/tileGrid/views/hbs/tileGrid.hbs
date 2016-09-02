@@ -9,7 +9,7 @@
 
         {{!-- now we iterate the items --}}
         {{#each this.ads}}
-            <div data-sort-position="1" data-index="{{@index}}" class="tile-item">
+            <div data-index="{{@index}}" class="tile-item">
                 {{> (base "adTile") this}}
             </div>
         {{/each}}
