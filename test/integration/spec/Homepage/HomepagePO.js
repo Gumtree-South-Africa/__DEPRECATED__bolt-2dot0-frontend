@@ -6,10 +6,10 @@ const homepageUrl = specHelper.getBaseUrl() + '';
 class HomepagePO {
 	constructor() {
 		this.blogLink = element(by.css('.blog a'));
-		this.trendingItemLink = element.all(by.css('.trending-card .tile-link')).first();
-		this.trendingTiles = element.all(by.css('.trending-card .tile-item'));
-		this.trendingAdImgs = element.all(by.css('.trending-card img.lazy.ad-image'));
-		this.trendingProfileImgs = element.all(by.css('.trending-card img.lazy.profile-image'));
+		this.trendingItemLink = element.all(by.css('.card-trendingCard .tile-link')).first();
+		this.trendingTiles = element.all(by.css('.card-trendingCard .tile-item'));
+		this.trendingAdImgs = element.all(by.css('.card-trendingCard img.lazy.ad-image'));
+		this.trendingProfileImgs = element.all(by.css('.card-trendingCard img.lazy.profile-image'));
 		this.viewMoreButton = element(by.css('.card-view-more .link'));
 	}
 
