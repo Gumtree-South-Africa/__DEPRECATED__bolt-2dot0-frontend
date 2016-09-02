@@ -1,8 +1,13 @@
-@import 
+@import
     "../../theme",
     "../../partials/pages/Homepage/pageMain",
     "../../partials/pages/Homepage/adCount",
     "../../../partials/common/smartMobileBanner",
     "../partials/pages/Homepage/categoryListHack";
-//    "../partials/pages/Homepage/categoryList", "../partials/pages/Homepage/flexboxCategory"; 
+//    "../partials/pages/Homepage/categoryList", "../partials/pages/Homepage/flexboxCategory";
 @import "../../../partials/pages/Homepage/carousel";
+
+.containment {
+	padding-bottom: 15em;
+	margin-bottom: -15em;
+}
