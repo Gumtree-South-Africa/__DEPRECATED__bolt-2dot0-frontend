@@ -1,37 +1,5 @@
 'use strict';
 
-let _getGeoCodeData = (country, lang, inputVal) => {
-	let htmlElt = '';
-	let that = this;
-	$.ajax({
-		//TODO: use proper google account key
-		url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:' + country + '&language=' + lang + '&address=' + inputVal,
-		dataType: 'JSON',
-		type: 'GET',
-		success: function(resp) {
-			if (resp.results instanceof Array) {
-				that.$autocompleteField.html('');
-				if (resp.results.length > 0) {
-					that.$autocompleteField.removeClass('hiddenElt');
-					for (let idx = 0; idx < resp.results.length; idx++) {
-						let address = resp.results[idx].formatted_address;
-						let latitude = resp.results[idx].geometry.location.lat;
-						let longitude = resp.results[idx].geometry.location.lng;
-						let splitAddress = address.split(',');
-						let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
-						htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
-					}
-
-					that.$autocompleteField.append(htmlElt);
-					_bindTypeAheadResultsEvents();
-				} else {
-					that.$autocompleteField.addClass('hiddenElt');
-				}
-			}
-		}
-	});
-};
-
 let _bindTypeAheadResultsEvents = () => {
 	let $resultsRows = this.$modal.find(".ac-field");
 
@@ -49,6 +17,38 @@ let _bindTypeAheadResultsEvents = () => {
 
 	$resultsRows.on('mouseleave', (evt) => {
 		$(evt.currentTarget).removeClass("active");
+	});
+};
+
+let _getGeoCodeData = (country, lang, inputVal) => {
+	let htmlElt = '';
+	$.ajax({
+		//TODO: use proper google account key
+		url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:' + country + '&language=' + lang + '&address=' + inputVal,
+		dataType: 'JSON',
+		type: 'GET',
+		success: function(resp) {
+			if (resp.results instanceof Array) {
+				let autocompleteField = $('#autocompleteField');
+				autocompleteField.html('');
+				if (resp.results.length > 0) {
+					autocompleteField.removeClass('hiddenElt');
+					for (let idx = 0; idx < resp.results.length; idx++) {
+						let address = resp.results[idx].formatted_address;
+						let latitude = resp.results[idx].geometry.location.lat;
+						let longitude = resp.results[idx].geometry.location.lng;
+						let splitAddress = address.split(',');
+						let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
+						htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
+					}
+
+					autocompleteField.append(htmlElt);
+					_bindTypeAheadResultsEvents();
+				} else {
+					autocompleteField.addClass('hiddenElt');
+				}
+			}
+		}
 	});
 };
 
