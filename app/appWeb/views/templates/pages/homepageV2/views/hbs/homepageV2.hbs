@@ -28,7 +28,9 @@
         {{/if}}
 
         {{#if this.recentActivities}}
-            {{> (dynamic "recentActivity")}}
+            <div class="refresh-div">
+                {{> (dynamic "recentActivity")}}
+			</div>
         {{/if}}
 
         {{> (dynamic "modal")}}
