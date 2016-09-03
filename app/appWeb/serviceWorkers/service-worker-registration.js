@@ -57,4 +57,10 @@ if ('serviceWorker' in navigator) {
 	});
 }
 
-module.exports.initialize = () => {};
+//do not remove
+let initialize = () => {
+};
+
+module.exports = {
+	initialize
+};

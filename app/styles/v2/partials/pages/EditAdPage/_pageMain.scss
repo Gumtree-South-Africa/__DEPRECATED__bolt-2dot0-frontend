@@ -259,10 +259,10 @@ $labelMargin: 8%;
 				width: $labelWidth;
 				margin: 0 $labelMargin;
 				color: $categoryDisplayTextColor;
+				text-decoration: underline;
 
 				&:hover {
 					cursor: pointer;
-					text-decoration: underline;
 				}
 			}
 		}
