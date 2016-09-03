@@ -1,5 +1,25 @@
 'use strict';
 
+let _bindTypeAheadResultsEvents = () => {
+	let $resultsRows = this.$modal.find(".ac-field");
+
+	$resultsRows.on('mouseenter', (evt) => {
+		let $active = this.$modal.find(".active");
+
+		// they have mouse entered after having selected one via arrow keys
+		// clear out the old selection
+		if ($active.length !== 0) {
+			$active.removeClass("active");
+		}
+
+		$(evt.currentTarget).addClass("active");
+	});
+
+	$resultsRows.on('mouseleave', (evt) => {
+		$(evt.currentTarget).removeClass("active");
+	});
+};
+
 let _getGeoCodeData = (country, lang, inputVal) => {
 	let htmlElt = '';
 	$.ajax({
@@ -9,9 +29,10 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 		type: 'GET',
 		success: function(resp) {
 			if (resp.results instanceof Array) {
-				$('#autocompleteField').html('');
+				let autocompleteField = $('#autocompleteField');
+				autocompleteField.html('');
 				if (resp.results.length > 0) {
-					$('#autocompleteField').removeClass('hiddenElt');
+					autocompleteField.removeClass('hiddenElt');
 					for (let idx = 0; idx < resp.results.length; idx++) {
 						let address = resp.results[idx].formatted_address;
 						let latitude = resp.results[idx].geometry.location.lat;
@@ -20,9 +41,11 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 						let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
 						htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
 					}
-					$('#autocompleteField').append(htmlElt);
+
+					autocompleteField.append(htmlElt);
+					_bindTypeAheadResultsEvents();
 				} else {
-					$('#autocompleteField').addClass('hiddenElt');
+					autocompleteField.addClass('hiddenElt');
 				}
 			}
 		}
@@ -133,28 +156,32 @@ let _selectItem = () => {
 
 let _highlightUpItem = () => {
 	let $active = this.$modal.find(".active");
-	if ($active.length !== 0) {
-		if (!(this.$modal.find('.ac-field:first-child').hasClass('active'))) {
-			$('#autocompleteField').animate({
-				scrollTop: $active.position().top + $("#autocompleteField").scrollTop() - 50
-			}, 'fast');
-			$active.removeClass("active").prev(".ac-field").addClass("active");
-		}
+
+	if ($active.length === 0) {
+		$active = this.$modal.find(".ac-field").last();
+		$active.addClass("active");
+	} else {
+		$active.removeClass("active").prev(".ac-field").addClass("active");
 	}
+
+	this.$autocompleteField.animate({
+		scrollTop: $active.position().top + $("#autocompleteField").scrollTop() - 50
+	}, 'fast');
 };
 
 let _highlightDownItem = () => {
 	let $active = this.$modal.find(".active");
+
 	if ($active.length === 0) {
-		this.$modal.find(".ac-field:first-child").addClass("active");
+		$active = this.$modal.find(".ac-field").first();
+		$active.addClass("active");
 	} else {
-		if (!(this.$modal.find('.ac-field:last-child').hasClass('active'))) {
-			$('#autocompleteField').animate({
-				scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
-			}, 'fast');
-			$active.removeClass("active").next(".ac-field").addClass("active");
-		}
+		$active.removeClass("active").next(".ac-field").addClass("active");
 	}
+
+	this.$autocompleteField.animate({
+		scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
+	}, 'fast');
 };
 
 
@@ -207,7 +234,7 @@ let initialize = (setValueCb) => {
 	});
 
 	$(':not(#autocompleteField)').on('click', () => {
-		$('#autocompleteField').addClass('hiddenElt');
+		this.$autocompleteField.addClass('hiddenElt');
 	});
 
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {

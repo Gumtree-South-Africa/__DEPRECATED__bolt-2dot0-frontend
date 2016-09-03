@@ -56,3 +56,11 @@ if ('serviceWorker' in navigator) {
 		console.error('Error during service worker registration:', e);
 	});
 }
+
+//do not remove
+let initialize = () => {
+};
+
+module.exports = {
+	initialize
+};
