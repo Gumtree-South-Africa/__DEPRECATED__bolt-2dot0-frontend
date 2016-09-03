@@ -19,10 +19,10 @@
 			"quickpostAd": "/v1/ads",
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
-			"draftAd": "/v1/ads/drafts",
-			"specificAd": "/v1/ads/{id}",
-			"favoriteAd": "/v1/ads/{id}/favorites",
-			"categoryAttributes": "/v1/categories/{catId}/attributes"
+			"draftAd":"/v1/ads/drafts",
+			"specificAd":"/v1/ads/{id}",
+			"favoriteAd":"/v1/ads/{id}/favorites",
+			"categoryAttributes":	"/v1/categories/{catId}/attributes"
 		}
 	},
 	"solr": {
@@ -56,7 +56,7 @@
 		"server": {
 			"host": "inc.latam.classistatic.com",
 			"port": null,
-			"version": "2.0.117"
+			"version": "2.0.116"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
