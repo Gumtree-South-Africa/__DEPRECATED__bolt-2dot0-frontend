@@ -19,7 +19,7 @@ let initialize = () => {
 		let $orgArr = JSON.parse($('.shuffled-arr').text() || "{}");
 		this.locale = $(".client-hbs-locale").data("locale");
 		clientHbs.initialize(this.locale);
-		if ($orgArr.length > 0) {
+		if ($orgArr.length > 5) {
 			setInterval(function() {
 				let shuffledArr = _shuffleArr($orgArr);
 				let templateString = clientHbs.renderTemplate("recentActivity", {"recentActivities": {shuffledArr}});
