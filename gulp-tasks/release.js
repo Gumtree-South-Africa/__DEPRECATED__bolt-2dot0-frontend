@@ -77,12 +77,12 @@ module.exports = function watch(gulp, plugins) {
 					if (error) {
 						console.log(error);
 					} else {
-						git.pull('origin', 'master', function(err) {
+						git.fetch('', '', {args: '--all'}, function(err) {
 							if (err) {
 								throw err;
 							}
 						});
-						git.fetch('', '', {args: '--all'}, function(err) {
+						git.pull('origin', 'master', {args: '--tags'}, function(err) {
 							if (err) {
 								throw err;
 							}
