@@ -16,10 +16,10 @@ let _shuffleArr = (inputArr) => {
 
 let initialize = () => {
 	$(document).ready(() => {
-		let $orgArr = JSON.parse($('.shuffled-arr').text()) || "";
+		let $orgArr = JSON.parse($('.shuffled-arr').text() || "{}");
 		this.locale = $(".client-hbs-locale").data("locale");
 		clientHbs.initialize(this.locale);
-		if ($orgArr !== "") {
+		if ($orgArr.length > 0) {
 			setInterval(function() {
 				let shuffledArr = _shuffleArr($orgArr);
 				let templateString = clientHbs.renderTemplate("recentActivity", {"recentActivities": {shuffledArr}});
