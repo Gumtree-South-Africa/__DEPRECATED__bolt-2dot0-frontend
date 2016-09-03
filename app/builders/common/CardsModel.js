@@ -69,9 +69,10 @@ class CardsModel {
 		return cardService.getCardItemsData(this.bapiHeaderValues, cardConfig.queryEndpoint, apiParams, cardConfig.cardName).then((bapiResult) => {
 			return this.transformData(cardConfig, bapiResult);
 		}).fail((bapiErr) => {
-			console.warn(`Error getting BAPI card data ${bapiErr}, going to try to get it from cache`);
 			// NOTE: cache is only wired for trendingSearch endpoint, but card service can invoke different endpoints
 			if (cardConfig.queryEndpoint === "BAPI.endpoints.trendingSearch") {
+				console.warn(`Error getting BAPI card data ${bapiErr}, going to try to get it from cache`);
+
 				return cardService.getCachedTrendingCard(this.bapiHeaderValues).then((cachedResult) => {
 					cachedResult = (cachedResult !== undefined) ? cachedResult : {};
 					return this.transformData(cardConfig, cachedResult);

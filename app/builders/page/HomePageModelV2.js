@@ -48,7 +48,8 @@ class HomePageModelV2 {
 		// register these translations as they are needed for client templating
 		abstractPageModel.addToClientTranslation(modelData, [
 			"recentactivity.message.listing",
-			"recentactivity.message.sold"
+			"recentactivity.message.sold",
+			"homepage.trending.contact"
 		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
