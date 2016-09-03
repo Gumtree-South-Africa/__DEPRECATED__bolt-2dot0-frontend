@@ -54,7 +54,7 @@
 		z-index: 10;
 		margin: auto;
 
-		width: 100%;
+		width: 400px;
 		height: 420px;
 		background-color: $vivaWhite;
 	}
@@ -188,8 +188,8 @@
 		margin-top: 7px;
 
 		.hier-link {
-			text-decoration: underline;
 			&:hover {
+				text-decoration: underline;
 				cursor: pointer;
 			}
 		}
