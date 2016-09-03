@@ -25,6 +25,11 @@ module.exports = {
 			{
 				test: /bridget/,
 				loader: 'imports?define=>false&module=>false'
+			},
+			// same for slick
+			{
+				test: /slick/,
+				loader: 'imports?define=>false&exports=>undefined'
 			}
 
 		]
