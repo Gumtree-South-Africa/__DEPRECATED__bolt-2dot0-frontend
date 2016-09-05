@@ -35,6 +35,7 @@ class AbstractPageModel extends BasePageModel {
 		// Cached Category Data from BAPI
 		modelData.category = data.category;
 		modelData.categoryDropdown = data.categoryDropdown;
+		modelData.categoryAll = data.categoryAll;
 
 		modelData.categoryIdNameMap = data.categoryIdNameMap;
 		modelData.categoryData = data.categoryData;
@@ -144,6 +145,11 @@ class AbstractPageModel extends BasePageModel {
 		return jsonObj;
 	}
 
+	addToClientTranslation(modelData, keys) {
+		modelData.clientTranslations = modelData.clientTranslations || [];
+
+		modelData.clientTranslations = modelData.clientTranslations.concat(keys);
+	}
 }
 
 module

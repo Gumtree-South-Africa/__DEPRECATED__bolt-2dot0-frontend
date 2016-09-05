@@ -48,10 +48,10 @@ LocationService.prototype.getLatLongResults = function (bapiHeaders, geoLatLngOb
 	// because the code leading up to the promise could fail, wrap it in fcall so the caller will see a failed promise
 	return Q.fcall(() => {
 		if (!geoLatLngObj) {
-			return Q.reject("getLatLongResults expecting location parameter, rejecting promise");
+			return Q.reject(new Error("getLatLongResults expecting location parameter, rejecting promise"));
 		}
 		if (!geoLatLngObj.lat || !geoLatLngObj.lng) {
-			return Q.reject(`getLatLongResults expecting lat/long, got: ${geoLatLngObj.lat}, ${geoLatLngObj.lng}, rejecting promise`);
+			return Q.reject(new Error(`getLatLongResults expecting lat/long, got: ${geoLatLngObj.lat}, ${geoLatLngObj.lng}, rejecting promise`));
 		}
 
 		this.bapiOptions.methods = 'GET';

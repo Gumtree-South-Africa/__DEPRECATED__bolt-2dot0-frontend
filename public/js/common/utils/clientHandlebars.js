@@ -6,7 +6,6 @@ let initialize = (locale) => {
 
 	let clientHelpers = require("./clientHbsHelpers.js");
 	clientHelpers.initialize(Handlebars);
-
 	if (locale) {
 		clientHelpers.setLocale(locale);
 	}

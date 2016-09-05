@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.116",
+  "version": "2.0.117",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
@@ -22,10 +22,10 @@
   "dependencies": {
     "async": "1.5.0",
     "body-parser": "1.13.2",
-    "breakpoint-sass": "^2.7.0",
+    "breakpoint-sass": "2.7.0",
     "cjson": "0.3.3",
     "cluster": "0.7.7",
-    "compass-mixins": "^0.12.10",
+    "compass-mixins": "0.12.10",
     "compression": "1.6.0",
     "config": "1.17.1",
     "cookie-parser": "1.3.5",
@@ -82,7 +82,7 @@
     "string": "3.3.1",
     "strip-comment": "1.1.3",
     "sw-toolbox": "3.2.1",
-    "susy": "^2.2.12",
+    "susy": "2.2.12",
     "toobusy-js": "0.5.0",
     "underscore": "1.8.3",
     "url-parse": "1.0.5",
@@ -151,6 +151,7 @@
     "jasmine": "2.4.1",
     "jasmine-console-reporter": "1.2.6",
     "jasmine-core": "2.4.1",
+    "jasmine-spec-reporter": "2.7.0",
     "jshint": "2.8.0",
     "jshint-stylish": "2.1.0",
     "json-loader": "0.5.4",

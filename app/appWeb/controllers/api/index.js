@@ -8,5 +8,6 @@ router.use('/ads/favorite', require('./apiFavoriteController'));
 router.use('/search', require('./apiSearchController'));
 router.use('/locate', require('./apiLocationLatLong'));
 router.use('/postad', require('./apiPostAdController'));
+router.use('/edit', require('./apiEditAdController'));
 
 module.exports = router;

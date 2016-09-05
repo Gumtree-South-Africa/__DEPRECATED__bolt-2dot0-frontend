@@ -20,8 +20,9 @@
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
 			"draftAd": "/v1/ads/drafts",
-			"favoriteAd":"/v1/ads/{id}/favorites",
-			"categoryAttributes":"/v1/categories/{catId}/attributes"
+			"specificAd": "/v1/ads/{id}",
+			"favoriteAd": "/v1/ads/{id}/favorites",
+			"categoryAttributes": "/v1/categories/{catId}/attributes"
 		}
 	},
 	"solr": {
@@ -55,7 +56,7 @@
 		"server": {
 			"host": "static.lnp.qa-bolt.com",
 			"port": null,
-			"version": "2.0.116"
+			"version": "2.0.117"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

@@ -1,0 +1,381 @@
+$inputWidth: 84%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;
+
+.edit-ad-page {
+	.custom-attributes {
+		margin-bottom: 20px;
+	}
+
+	.cover-photo {
+		display: none;
+		@include from-breakpoint($medium-break) {
+			display: block;
+		}
+	}
+
+	.ad-statistics {
+		display: none;
+		@include from-breakpoint($medium-break) {
+			display: block;
+		}
+	}
+	.photo-carousel {
+		width: 100%;
+
+		@include from-breakpoint($medium-break) {
+			width: 50%;
+			float: left;
+		}
+
+		.carousel-item {
+			height: auto;
+		}
+
+		.add-photo-item {
+			height: auto;
+		}
+
+		.reorder-images-link {
+			width: 100%;
+			margin-top: 20px;
+			text-align: center;
+
+			.reorder-images-link-text {
+				text-decoration: underline;
+				font-size: 21px;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		.photo-switcher {
+			width: 100%;
+
+			.cover-photo {
+				width: 90%;
+				max-width: 450px;
+				height: 450px;
+			}
+		}
+	}
+
+	.main-detail-edit {
+		width: 100%;
+		background-color: $mainDetailsBackgroundColor;
+
+		select, input {
+			height: 33px;
+		}
+
+		select {
+			text-indent: 2%;
+		}
+
+		.choose-category-button {
+			&.btn-wrapper {
+				width: 84%;
+			}
+
+			.btn {
+				margin-top: 7px;
+				margin-bottom: 7px;
+				padding-top: 11px;
+				padding-bottom: 10px;
+				padding-left: 0;
+				padding-right: 0;
+			}
+		}
+
+		@include from-breakpoint($medium-break) {
+			width: 47%;
+			margin-right: 3%;
+			float: left;
+		}
+
+		button {
+			&:disabled {
+				opacity: .5;
+			}
+		}
+
+		.main-details-title {
+			width: 100%;
+			padding: 25px 0;
+			font-size: 20px;
+			line-height: 1;
+			text-align: center;
+			color: $mainDetailsTitleTextColor;
+		}
+
+		.submit-btn-wrapper {
+			width: 100%;
+
+			@include from-breakpoint($medium-break) {
+				width: 70%;
+				float: left;
+
+				.edit-ad-submit {
+					margin-top: auto !important;
+					margin-bottom: auto !important;
+				}
+			}
+
+			.edit-ad-submit {
+				width: 100%;
+				color: $formSubmitButtonTextColor;
+				background-color: $formSubmitButtonColor;
+				border-style: none;
+				height: 45px;
+				font-size: 18px;
+			}
+		}
+
+		.cancel-link-wrapper {
+			margin-bottom: 10px;
+			margin-top: 10px;
+			width: 100%;
+
+			@include from-breakpoint($medium-break) {
+				width: 25%;
+				float: left;
+				margin-top: 0;
+
+				.cancel-form-link {
+					margin-top: 9px;
+				}
+			}
+
+			.cancel-form-link {
+				text-align: center;
+				color: $formCancelTextColor;
+				font-size: 18px;
+				height: 40px;
+				text-decoration: underline;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		.ad-website-link-wrapper {
+			text-align: center;
+			a {
+				color: $addWebsiteLinkTextColor;
+				font-size: 18px;
+				text-decoration: underline;
+			}
+		}
+
+		.label-wrapper {
+			width: 100%;
+			margin: 5px 0;
+
+			label {
+				text-transform: uppercase;
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				font-size: 10px;
+				color: $formLabelTextColor;
+				display: inline-block; // this fixes text wrapping on smaller devices
+			}
+
+			.suggested-cat {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				font-size: 13px;
+				color: $categoryDisplayTextColor;
+				font-style: italic;
+			}
+
+			.leaf-node-warning {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				font-size: 13px;
+				color: $vivaOrange;
+			}
+		}
+
+		.location-link {
+			background-color: white;
+			padding-left: 10px;
+			color: $vivaBlack;
+
+			&:hover {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+		}
+
+		.description-input {
+			height: 150px;
+			margin-left: $inputMargin;
+			resize: none;
+			width: $inputWidth;
+			padding: 0 2%;
+		}
+
+		.input-wrapper {
+			width: 100%;
+
+			input[type="text"], .location-link, select {
+				width: $inputWidth;
+				margin: 0 $inputMargin;
+				padding: 0 2%;
+
+				border: 1px solid $vivaBlack;
+
+				&.price-input {
+					width: 50%;
+
+					@media(max-width: 450px) {
+						width: 30%;
+					}
+
+					margin: 0 0 0 $inputMargin;
+				}
+
+				&.validation-error {
+					border: 1px solid red;
+				}
+			}
+
+			div.location-link {
+				padding: 3.5px 2%;
+			}
+
+			select {
+				width: 50%;
+				margin: 0 44% 0 $inputMargin;
+
+				border: 1px solid $vivaBlack;
+			}
+
+			.category-name-display {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				color: $categoryDisplayTextColor;
+				text-decoration: underline;
+
+				&:hover {
+					cursor: pointer;
+				}
+			}
+		}
+
+		.location-warning {
+			width: 100%;
+			margin: 15px 0;
+			.location-warning-text {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				color: $formLabelTextColor;
+				font-size: 10px;
+			}
+		}
+
+		.button-area {
+			padding-top: 20px;
+			background-color: $buttonAreaBackgroundColor;
+			width: 100%;
+			height: 80px;
+			padding-bottom: 10px;
+
+			@include from-breakpoint($medium-break) {
+				height: 40px;
+				background-color: $mainDetailsBackgroundColor;
+			}
+
+			.btn-area-inner {
+				width: $inputWidth;
+				margin: 0 auto;
+			}
+		}
+	}
+
+	.validation-error {
+		border: 1px solid red;
+	}
+
+	.radio-group {
+		margin-left: 15px;
+		display: inline-block;
+
+		@media(max-width: 475px) {
+			margin-left: 5px;
+
+			.control {
+				margin-right: 5px;
+			}
+		}
+
+		/* Begin custom radio btns */
+		// Hide default browser input
+		input[type="radio"] {
+			position: absolute;
+			z-index: -1;
+			opacity: 0;
+		}
+
+		.control {
+			margin-right: 10px;
+		}
+
+		// Checked
+		.control input:checked ~ .outer-circle .inner-circle {
+			background: $vivaOrange;
+		}
+		.control input:checked ~ .currency-type {
+			color: black;
+			font-weight: bold;
+		}
+
+		.inner-circle {
+			display: inline-block;
+			position: relative;
+			top: -4px;
+			left: 2px;
+			width: 12px;
+			height: 12px;
+			background: #FFFFFF;
+			border-radius: 50%;
+			z-index: 1;
+		}
+
+		.outer-circle {
+			display: inline-block;
+			position: relative;
+			top: 1px;
+			left: 0;
+			width: 16px;
+			height: 16px;
+			margin-right: 5px;
+			background: #FFFFFF;
+			border: 1px solid black;
+			border-radius: 50%;
+		}
+		/* End custom radio btns */
+	}
+}
+
+.separator-div {
+	height: 1px;
+	position: relative;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	&:after {
+		content: "";
+		background: $formSeparatorBarColor;
+		position: absolute;
+		bottom: 0;
+		height: 1px;
+		left: 5%;
+		right: 5%;
+	}
+}
+

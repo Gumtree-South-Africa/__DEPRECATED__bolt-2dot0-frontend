@@ -159,7 +159,7 @@ describe('Server to hit HomePage', function() {
 					.expect((res) => {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.safetyTips')).toBeDefined();
-						expect(c$('.safetyTips .title h1')[0]
+						expect(c$('.safetyTips .title h2')[0]
 							.firstChild.data).toContain('Vivanuncios Te Cuida');
 					})
 					.end(specHelper.finish(done));

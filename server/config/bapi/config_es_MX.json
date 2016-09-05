@@ -1,7 +1,7 @@
 {
 	"header" : {
 		"type" 								: "website",
-		"localeOpenGraph" 					: "es_LA",
+		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no-photo_MX.png",
 		"moreAdSizes"						: "",
@@ -174,12 +174,20 @@
 			  	"models" : ["seo"]
 			}
 		},
-		"PostAd" : {
+		"PostAd": {
 			"desktop" 	: {
 				"models" : ["seo"]
 			},
 			"mobile" 	: {
 				"models" : ["seo"]
+			}
+		},
+		"EditAd": {
+			"desktop" 	: {
+				"models" : ["locationlatlong", "adResult"]
+			},
+			"mobile" 	: {
+				"models" : ["locationlatlong", "adResult"]
 			}
 		}
 	}

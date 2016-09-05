@@ -1,8 +1,9 @@
-{{#if this.recentActivities.recent}}
+{{#if this.recentActivities.shuffledArr}}
 <div class="feed-tiles">
-     {{#each this.recentActivities.recent}}
+     {{#each this.recentActivities.shuffledArr}}
+         {{#compare @index "<=" 2}}
          <div class="feed-tile">
-			 <a href="{{seller.soiSeoUrl}}">
+			 <a class="user-link" href="{{seller.soiSeoUrl}}">
                 <div class="user-photo-wrapper">
                     {{#if seller.profileImage}}
 						<img class='user-avatar' src='{{seller.profileImage}}13.JPG'>
@@ -11,17 +12,20 @@
                     {{/if}}
                  </div>
 			 </a>
-             <a href="{{viewSeoUrl}}">
+			 <a class="page-link" href="{{viewSeoUrl}}">
                  <div class="feed-text-wrapper">
                      {{#if renderSold}}
-                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.sold" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
+                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.sold" '' '' ''}}<span class="bold">{{attributes.0.prefix}} {{attributes.1.prefix}}</span></span>
                      {{else}}
-                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.listing" '' '' ''}}<span class="bold">{{prefix1}} {{prefix2}}</span></span>
+                         <span class="feed-text"><span class="bold">{{seller.name}}</span>{{i18n "recentactivity.message.listing" '' '' ''}}<span class="bold">{{attributes.0.prefix}} {{attributes.1.prefix}}</span></span>
                      {{/if}}
                  </div>
                  <div class="clear"></div>
              </a>
          </div>
+        {{/compare}}
      {{/each}}
 </div>
+<span class="shuffled-arr hide">{{json this.recentActivities.shuffledArr}}</span>
+<span class="client-hbs-locale hide" data-locale="{{locale}}"></span>
 {{/if}}
