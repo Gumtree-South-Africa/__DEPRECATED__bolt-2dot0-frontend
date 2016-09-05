@@ -86,8 +86,8 @@
 
     {{/block}}
     {{#block "GTMTag"}}
-      {{#if this.header.analytics.gtmTagId}}
-            <script>
+      {{#if this.footer.analytics.gtmTagId}}
+                  <script>
             var dataLayer = dataLayer || [];
             dataLayer.push({});(function(l) {
                 var dl=l[0];
@@ -134,7 +134,7 @@
                      );var f=d.getElementsByTagName(s)[0],
                              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
                              '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-                     })(window,document,'script','dataLayer','{{this.header.analytics.gtmTagId}}');
+                     })(window,document,'script','dataLayer','{{this.footer.analytics.gtmTagId}}');
        </script>
       {{/if}}
     {{/block}}
@@ -194,9 +194,9 @@
 <body>
 
     {{> (dynamic "cookieBanner") }}
-    {{#if this.header.analytics.gtmTagId}}
+    {{#if this.footer.analytics.gtmTagId}}
         <noscript>
-            <iframe src="//www.googletagmanager.com/ns.html?id={{this.header.analytics.gtmTagId}}"
+            <iframe src="//www.googletagmanager.com/ns.html?id={{this.footer.analytics.gtmTagId}}"
               height="0" width="0" style="display:none;visibility:hidden">
             </iframe>
         </noscript>
