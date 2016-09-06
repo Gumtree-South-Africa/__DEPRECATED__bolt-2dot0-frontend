@@ -95,6 +95,14 @@
 	margin-bottom: 1em;
 	border: 1px solid $appdownloadreview-color;
 	border-radius: 5px;
+	&:not(:first-child) {
+		display: none;
+	}
+
+	@include from-breakpoint($medium-break) {
+		display: block !important;
+	}
+
 	.review-inner {
 		float: left;
 		width: 70%;
