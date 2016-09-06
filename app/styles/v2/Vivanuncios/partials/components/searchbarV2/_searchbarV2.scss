@@ -28,7 +28,7 @@ $mobileTextboxWidth: 84%;
 			text-overflow: ellipsis;
 
 			box-sizing: border-box;
-			width: 90%;
+			width: calc(100% - 65px);
 			height: 100%;
 			margin: auto;
 			display: block;
