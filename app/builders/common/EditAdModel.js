@@ -20,11 +20,11 @@ class EditAdModel {
 
 		if (diffMins < 60) {
 			let pluralizationString = diffMins === 1 ? "singular" : "plural";
-			data.timeUntil = diffMins;
+			data.timeUntil = Math.round(diffMins);
 			data.dateStringKey = `shareAd.dateStrings.minute.${pluralizationString}`;
 		} else if (diffHrs < 24) {
 			let pluralizationString = diffHrs === 1 ? "singular" : "plural";
-			data.timeUntil = diffHrs;
+			data.timeUntil = Math.round(diffHrs);
 			data.dateStringKey = `shareAd.dateStrings.hour.${pluralizationString}`;
 		} else {
 			data.timeUntil = null;
