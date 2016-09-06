@@ -86,21 +86,32 @@ let _successCallback = (response) => {
 };
 
 let _failureCallback = (error) => {
-	console.warn(error);
+	console.warn(error.toString());
 	this.$submitButton.removeClass('disabled');
 	this.$submitButton.attr('disabled', false);
 	if (error.status === 400) {
-		let schemaErrors = JSON.parse(error.responseText || '{"schemaErrors": []}')
-			.schemaErrors || [];
+		let responseText = JSON.parse(error.responseText || '{}');
 
-		schemaErrors.forEach((schemaError) => {
-			let selector = `[data-schema='${schemaError.field}']`;
-			let $el = $(selector);
-			$el.addClass('validation-error');
-			$el.on('change', () => {
-				$el.removeClass('validation-error');
+		if (responseText.hasOwnProperty("schemaErrors")) {
+			responseText.schemErrors.forEach((schemaError) => {
+				let selector = `[data-schema='${schemaError.field}']`;
+				let $el = $(selector);
+				$el.addClass('validation-error');
+				$el.on('change', () => {
+					$el.removeClass('validation-error');
+					$el.off('change');
+				});
 			});
-		});
+		} else if (responseText.hasOwnProperty("bapiValidationFields")) {
+			responseText.bapiValidationFields.forEach((attrName) => {
+				let $input = $(`[name="${attrName}"]`);
+				$input.addClass('validation-error');
+				$input.on('change', () => {
+					$input.removeClass('validation-error');
+					$input.off('change');
+				});
+			});
+		}
 	}
 };
 
@@ -150,7 +161,7 @@ let _ajaxEditForm = () => {
 
 	let payload = {
 		"adId": serialized.adId,
-		"title": serialized.adTitle,
+		"title": serialized.Title,
 		"description": description,
 		"categoryId": category,
 		"location": {
@@ -164,7 +175,7 @@ let _ajaxEditForm = () => {
 	if (!this.$priceFormField.hasClass("hidden")) {
 		payload.price = {
 			"currency": (serialized.currency) ? serialized.currency : 'MXN',
-			"amount": Number(serialized.adPrice)
+			"amount": Number(serialized.Price)
 		};
 	}
 

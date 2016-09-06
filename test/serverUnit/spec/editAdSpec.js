@@ -70,9 +70,9 @@ describe('Edit Ad Page', () => {
 					expect(res.status).toBe(200);
 
 					let c$ = cheerio.load(res.text);
-					expect(c$(`input[title='adTitle']`).val()).toBe(mockData.title);
+					expect(c$(`input[title='Title']`).val()).toBe(mockData.title);
 					expect(c$(`#description-input`).text()).toBe(mockData.description);
-					expect(c$(`input[title='adPrice']`).val()).toBe(`${mockData.price.amount}`);
+					expect(c$(`input[title='Price']`).val()).toBe(`${mockData.price.amount}`);
 					expect(c$(`input[value='USD']`).is(':checked')).toBeTruthy();
 
 					expect(c$(`input[name='AlmVehicleBrand']`).val()).toBe(mockData.attributes[0].value.attributeValue);

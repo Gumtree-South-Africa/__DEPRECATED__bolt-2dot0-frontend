@@ -22,18 +22,18 @@
 		<div class="separator-div"></div>
 		<div class="form-ad-title">
 			<div class="label-wrapper">
-				<label for="adTitle">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
+				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="adTitle" maxlength="100" data-schema="data.title" name="adTitle" type="text" value="{{this.adResult.title}}"/>
+				<input title="Title" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
         <div class="form-ad-price {{#if this.isPriceExcluded}}hidden{{/if}}">
             <div class="label-wrapper">
-                <label for="adPrice">{{i18n "editAd.mainDetails.labels.price"}}</label>
+                <label for="Price">{{i18n "editAd.mainDetails.labels.price"}}</label>
             </div>
             <div class="input-wrapper">
-                <input title="adPrice" name="adPrice" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+                <input title="Price" name="Price" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
                        value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"
                        type="text"/>
                 <div class="radio-group" data-schema="data.price.currency">
@@ -56,10 +56,10 @@
         </div>
 		<div class="form-ad-description">
 			<div class="label-wrapper">
-				<label for="adDescription">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
+				<label for="Description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
 			<div class="input-wrapper">
-				<textarea id='description-input' data-schema="data.description" class="description-input" title="adDescription" maxlength="4000">{{{this.adResult.description}}}</textarea>
+				<textarea id='description-input' data-schema="data.description" class="description-input" name="Description" title="Description" maxlength="4000">{{{this.adResult.description}}}</textarea>
 			</div>
 		</div>
 		<div class="separator-div"></div>
