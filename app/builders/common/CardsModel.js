@@ -96,9 +96,19 @@ class CardsModel {
 			console.warn(`no ads found for card ${cardConfig.cardName}`);
 			return dataItems;
 		}
+		// moreDataAvailable is set true for trending card (adds shown are pre-loaded), and conditional for gallery (which uses ajax)
 		console.warn(`transforming ${dataItems.ads.length} ads for card ${cardConfig.cardName}`);
-
+		dataItems.moreDataAvailable = true;
 		if (cardConfig.cardName === "galleryCard") {
+			dataItems.moreDataAvailable = false;	// will set to true below
+			if (dataItems.links) {
+				for (let i = 0; i < dataItems.links.length; i++) {
+					if (dataItems.links[i].rel === "next slice") {
+						dataItems.moreDataAvailable = true;	// flag that we have more
+					}
+				}
+			}
+
 			dataItems.ads = dataItems.ads.map((ad) => {
 				return {
 					title: ad.title,
@@ -117,13 +127,7 @@ class CardsModel {
 				};
 			});
 
-			if (dataItems.links) {
-				for (let i = 0; i < dataItems.links.length; i++) {
-					if (dataItems.links[i].rel === "next slice") {
-						dataItems.moreDataAvailable = true;	// flag that we have more
-					}
-				}
-			}
+
 		}
 
 		dataItems.ads.forEach((ad) => {

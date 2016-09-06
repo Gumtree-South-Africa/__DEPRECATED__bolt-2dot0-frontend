@@ -6,7 +6,8 @@
 	</div>
     {{> (dynamic "tileGrid") this.card}}
 	<div class="card-view-more">
-		<a class="link" href="javascript:;">
+        {{!-- moreDataAvailable is relevant for gallery since it uses ajax --}}
+        <a class="link{{#unless this.card.moreDataAvailable}} hidden{{/unless}}" href="javascript:;" y="f">
 			<span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
 			<span class="no-underline">&nbsp;&gt;</span></a>
 	</div>
