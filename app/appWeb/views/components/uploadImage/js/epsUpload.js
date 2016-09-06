@@ -245,7 +245,7 @@ class EpsUpload {
 		}
 	}
 
-	prepareForImageUpload(i, file, UploadMsgClass, loadData, onload) {
+	prepareForImageUpload(i, file, loadData, onload) {
 
 		let mediaType = this.isSupported(file.name);
 
@@ -740,7 +740,7 @@ class UploadMessageClass {
 	}
 
 	failMsg(i) {
-		this.messageError.html(this.messages.failMsg);
+		this.$messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.showModal(i);
 		this.hideImage(i);

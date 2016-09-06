@@ -92,7 +92,7 @@ let prepareForImageUpload = (i, file) => {
 		};
 	};
 
-	this.epsUpload.prepareForImageUpload(i, file, this.uploadMessageClass, loadData, onload);
+	this.epsUpload.prepareForImageUpload(i, file, loadData, onload);
 };
 
 

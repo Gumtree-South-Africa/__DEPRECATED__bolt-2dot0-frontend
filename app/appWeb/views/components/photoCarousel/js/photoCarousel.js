@@ -178,7 +178,7 @@ let prepareForImageUpload = (i, file) => {
 			loadData(i, resizedImageFile);
 		};
 	};
-	this.epsUpload.prepareForImageUpload(i, file, this.uploadMessageClass, loadData, onload);
+	this.epsUpload.prepareForImageUpload(i, file, loadData, onload);
 };
 
 
