@@ -28,7 +28,8 @@ let getUsereData = function(scope) {
 		'hashedAccountId': '',
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
-        'daysSinceRegistration': ''
+        'daysSinceRegistration': '',
+		'sessionLvTstGrp': this.sessionLvTstGrp
 	};
 };
 
@@ -68,6 +69,7 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
+		this.sessionLvTstGrp = res.locals.b2dot0Version ? "Jira Ticket 2.0" : "Jira Ticket 1.0";
 	}
 
 	getModelBuilder() {
