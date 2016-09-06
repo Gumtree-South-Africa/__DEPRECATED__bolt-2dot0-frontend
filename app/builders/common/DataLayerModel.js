@@ -29,7 +29,7 @@ let getUsereData = function(scope) {
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
         'daysSinceRegistration': '',
-		'sessionLvTstGrp': this.sessionLvTstGrp
+		'sessionLvTstGrp': scope.sessionLvTstGrp
 	};
 };
 
