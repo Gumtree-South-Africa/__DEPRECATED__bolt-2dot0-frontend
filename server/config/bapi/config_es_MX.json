@@ -93,75 +93,81 @@
 			"reviews" : [
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTQ3WDMwOA==/z/0TkAAOSw41xXO7-v/$_19.JPG?set_id=8800005007",
+					"primaryImageUrl": "yessenia_r.jpg",
 					"description": "Perfecta Encuentro lo que necesito a buen precio.",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/P7wAAOSwH71XO7vh/$_19.JPG?set_id=8800005007",
-					"description": "Es una buena forma de comprar y vende",
-					"rating": "4"
+					"primaryImageUrl": "morithaclid.jpg",
+					"description": "Me gusto Apenas subi cosas para vender",
+					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MTIwMFgxNjAw/z/QQ4AAOSwB9xXO7wa/$_19.JPG?set_id=8800005007",
+					"primaryImageUrl": "felix_o.jpg",
 					"description": "Excelente - Me gusto",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/-jUAAOSw74FXO8Bv/$_19.jpg",
+					"primaryImageUrl": "jackson_a.jpg",
 					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente.",
 					"rating": "4"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MzYzWDMwOA==/z/IsMAAOSwf05XO7~4/$_19.jpg",
+					"primaryImageUrl": "francisco_m.jpg",
 					"description": "Comparando barato Que bueno",
-					"rating": "4"
-				},
-				{
-					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/JYgAAOSwf05XO8AO/$_19.JPG?set_id=8800005007",
-					"description": "Excellent very good app",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDUwWDgwMA==/z/thkAAOSw41xXO76I/$_19.jpg",
+					"primaryImageUrl": "isabel_v.jpg",
 					"description": "Me gusta. Es muy eficaz gracias!!",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/ODAwWDQ1MA==/z/etMAAOSwf05XO7kY/$_19.JPG?set_id=8800005007",
+					"primaryImageUrl": "alan_z.jpg",
 					"description": "Nunca recomiendo nada, esta es genial, el chat ayuda con los interesados",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTk4WDgwMA==/z/CioAAOSw41xXO6r6/$_19.JPG?set_id=8800005007",
+					"primaryImageUrl": "victor_c.jpg",
 					"description": "Buena aplicacion",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/Mzc5WDgwMA==/z/5dEAAOSwoudW5uUi/$_19.JPG?set_id=8800005007",
+					"primaryImageUrl": "jesus.jpg",
 					"description": "El mejor sitio de Internet para hacer negocios, lo recomiendo mucho",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg",
+					"primaryImageUrl": "canal_v.jpg",
 					"description": "Esta app es de lo mejor por eso le doy 5 estrellas",
 					"rating": "5"
 				},
 				{
 					"locale": "es_MX",
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg",
+					"primaryImageUrl": "david_o.jpg",
 					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados",
 					"rating": "5"
+				},
+				{
+					"locale": "es_MX",
+					"primaryImageUrl": "dante_s.jpg",
+					"description": "Genial Busca y vende lo q quieras bastante práctico y fácil de filtrar",
+					"rating": "4"
+				},
+				{
+					"locale": "es_MX",
+					"primaryImageUrl": "christian_r.jpg",
+					"description": "Me es muy util y es muy facil de encontrar lo que necesito",
+					"rating": "4"
 				}
 			]
 	  	},

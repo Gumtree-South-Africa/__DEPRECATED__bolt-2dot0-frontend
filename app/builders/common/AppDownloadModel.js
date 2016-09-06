@@ -1,6 +1,7 @@
 'use strict';
 
 let deviceDetection = require(process.cwd() + '/modules/device-detection');
+let config = require('config');
 
 class AppDownloadModel {
 	constructor(req, res) {
@@ -37,8 +38,14 @@ class AppDownloadModel {
 			randomReviews[j] = reviews[randomIndexList[j]];
 		}
 
-
-		return randomReviews;
+		return randomReviews.map((review) => {
+			return {
+				locale: review.locale,
+				primaryImageUrl: `${config.get('static.baseImageUrl')}${this.res.locals.config.locale}/reviews/${review.primaryImageUrl}`,
+				description: review.description,
+				rating: review.rating
+			};
+		});
 
 	}
 }
