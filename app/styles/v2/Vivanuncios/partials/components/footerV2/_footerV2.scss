@@ -53,7 +53,7 @@
 
 		.social-icon {
 			width: 100%;
-			height: 40px;
+			height: 44px;
 			border-radius: 50%;
 			background-repeat: no-repeat;
 			background-position: center;
@@ -85,14 +85,14 @@
 		height: 60px;
 
 		.user-photo {
-			width: 50px;
-			height: 50px;
+			width: 64px;
+			height: 64px;
 			border-radius: 50%;
 			background-repeat: no-repeat;
 			background-position: center;
 			background-size: contain;
 			margin-top: 5px;
-			border: .5px solid deepskyblue;
+			border: 2px solid #1E98D5;
 		}
 	}
 
@@ -123,6 +123,7 @@
 	}
 
 	.footer-trademark {
+		margin-bottom: 10px;
 		margin-top: 15px;
 		font-size: 10px;
 		text-align: center;
@@ -262,7 +263,7 @@
 .seo-links {
 	position: relative;
 	left: 0.8em;
-	top: -10.4em;
+	top: -11em;
 	margin-top: 7px;
 	height: 0;
 	margin-left: 0;
@@ -272,9 +273,9 @@
 	}
 
 	&.display-mobile {
-		top: -16.4em;
+		top: -17em;
 		&.mobile-extra-height {
-			top: -20.4em;
+			top: -21em;
 		}
 	}
 }
@@ -310,10 +311,10 @@
 			float: left;
 			width: 22%;
 			text-align: center;
-			margin-top: 10px;
+			margin-top: 28px;
 			.menu-items {
 				display: block;
-				margin-top: 30px;
+				margin-top: 28px;
 			}
 		}
 
@@ -418,9 +419,9 @@
 		width: 100%;
 
 		&.display-mobile {
-			top: -10.4em;
+			top: -11em;
 			&.mobile-extra-height {
-				top: -10.4em;
+				top: -11em;
 			}
 		}
 
