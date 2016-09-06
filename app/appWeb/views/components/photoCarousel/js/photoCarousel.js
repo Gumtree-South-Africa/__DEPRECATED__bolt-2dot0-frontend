@@ -289,7 +289,7 @@ let _postAd = (urls, locationType) => {
 		formChangeWarning.disable();
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				window.location.href = response.ad.vipLink;
+				window.location.href = response.ad.redirectLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });

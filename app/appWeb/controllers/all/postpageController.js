@@ -50,8 +50,15 @@ router.use('/', (req, res, next) => {
 				// console.log(JSON.stringify(results, null, 4));
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
-					// deferred ad resolved, redirect to vip
-					return Q.reject({ redirect: postAdModel.fixupVipUrl(adResult.vipLink) });
+					// deferred ad resolved, redirect to VIP
+					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
+
+					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
+					if (adResult.adState === 'HOLD') {
+						redirectLink = '/edit/' + adResult.id;
+					}
+
+					return Q.reject({ redirect: redirectLink });
 				});
 			}).fail((error) => {
 				// all errors specific to deferred ad processing land here
