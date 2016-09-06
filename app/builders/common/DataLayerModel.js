@@ -18,6 +18,7 @@ let getPageData = function(scope) {
 	};
 };
 
+
 //Function getUserData
 let getUsereData = function(scope) {
 	return {
@@ -25,9 +26,12 @@ let getUsereData = function(scope) {
 		'hashedUserEmail': (typeof scope.useremail === 'undefined' || scope.useremail === null) ? '' : Encryptor.encrypt(scope.useremail),
 		'loggedIn': (!(typeof scope.userid === 'undefined' || scope.userid === null)),
 		'hashedAccountId': '',
-		'accountType': ''
+		'accountType': '',
+	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
+        'daysSinceRegistration': ''
 	};
 };
+
 
 //Function getCatData
 let getCatData = function() {
@@ -78,6 +82,12 @@ class DataLayerModel {
 		this.useremail = useremail;
 	}
 
+	setUserCreationDate(usercreationdate) {
+		this.usercreationdate = usercreationdate;
+	}
+
+
+
 	getData() {
 		return [
 			() => {
@@ -92,6 +102,12 @@ class DataLayerModel {
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
 						data = {
 							'pageData': getPageData(this)
+						};
+						break;
+					case pagetypeJson.pagetype.POST_AD:
+						data = {
+							'pageData': getPageData(this),
+							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.RESULTS_SEARCH:

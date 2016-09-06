@@ -60,6 +60,11 @@ let _displayTypeAheadResults = (results) => {
 		$ul.append(templateString);
 	});
 
+	// handler to update search bar text with clicked link
+	$('.type-ahead-link').on('click', (evt) => {
+		this.$searchTextbox.val(evt.target.text);
+	});
+
 	_bindTypeAheadResultsEvents();
 };
 

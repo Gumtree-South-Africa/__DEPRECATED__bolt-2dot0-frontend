@@ -3,7 +3,7 @@
 let Q = require('q');
 
 let attributeService = require(process.cwd() + '/server/services/attributeService');
-
+let BapiError = require(`${process.cwd()}/server/services/bapi/BapiError`);
 let _ = require("underscore");
 
 /**
@@ -68,7 +68,7 @@ class AttributeModel {
 			console.warn('Unable to retrieve AllAtrributes info from Cache for categoryId: ' + categoryId + `, going to try BAPI ${cacheErr}`);
 			return attributeService.getAllAttributesForCategory(this.bapiHeaders, categoryId).then((bapiResult) => {
 				if (bapiResult.status) {
-					return Q.reject('Unable to retrieve AllAtrributes info from BAPI for categoryId: ' + categoryId + `, result ${bapiResult}`);
+					return Q.reject(new BapiError('Unable to retrieve AllAtrributes info from BAPI for categoryId: ' + categoryId + `, result ${bapiResult}`));
 				}
 				return attributeService.setAllAttributesInCache(this.bapiHeaders, categoryId, bapiResult).then(() => {
 					return bapiResult;

@@ -234,7 +234,7 @@ let _postAd = (url, locationType) => {
 		formChangeWarning.disable();
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
-				window.location.href = response.ad.vipLink;
+				window.location.href = response.ad.redirectLink;
 				break;
 			case AD_STATES.AD_DEFERRED:
 				this.$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);

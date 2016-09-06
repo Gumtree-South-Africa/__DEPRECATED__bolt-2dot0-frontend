@@ -92,10 +92,12 @@ module.exports = function watch(gulp, plugins) {
 		gulp.task('test:serverUnit', (done) => {
 			let coverageString = "";
 			if (coverage) {
-				coverageString = './node_modules/istanbul/lib/cli.js cover --include-all-source'
+				coverageString = './node_modules/istanbul/lib/cli.js cover --include-all-source ./'
+			} else {
+				coverageString = 'node '
 			}
 			shell.task([
-				`NODE_ENV=mock NODE_CONFIG_DIR=./server/config JASMINE_CONFIG_PATH=./test/serverUnit/jasmine.json ${coverageString} ./node_modules/jasmine/bin/jasmine.js`
+				`NODE_ENV=mock NODE_CONFIG_DIR=./server/config ${coverageString}test/serverUnit/SpecRunner.js`
 			], {
 				errorMessage: "!!!!!!!SERVER_UNIT TESTs ARE FAILING, test is unstable"
 			})(done)

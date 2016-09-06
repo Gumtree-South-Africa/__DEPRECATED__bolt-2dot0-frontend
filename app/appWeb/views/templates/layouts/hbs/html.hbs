@@ -104,6 +104,8 @@
                      {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.accountCreationDate}}dl["u"]["a_cre"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.daysSinceRegistration}}dl["u"]["dsr"] ="{{this}}";{{/with}}
                      {{#block "dataLayerSpecifics"}}{{/block}}
                 dl["c"]={};
                 dl["c"]["c"]={};
@@ -149,6 +151,12 @@
         Bolt.LOCALE = "{{this.locale}}";
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>
+
+    {{#if this.clientTranslations}}
+		<div id="translation-block" class="hidden">
+            {{clientI18nTranslate this.clientTranslations}}
+		</div>
+    {{/if}}
 
     {{> (dynamic "abTest") }}
 

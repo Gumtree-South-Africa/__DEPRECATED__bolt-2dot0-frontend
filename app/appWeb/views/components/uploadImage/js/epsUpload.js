@@ -160,7 +160,7 @@ class EpsUpload {
 				return function(e) {
 					let dataUrl = e.target.result;
 
-					image.onload = onload(thisFile);
+					image.onload = onload(i, thisFile);
 
 					window.URL = window.URL || window.webkitURL || false;
 					image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);
@@ -237,7 +237,7 @@ class EpsUpload {
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		} else {
 			// WebKit implementation.
-			// http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+			// https://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
 			return this.createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 		}
 	}
