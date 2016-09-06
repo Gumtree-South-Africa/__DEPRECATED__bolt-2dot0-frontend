@@ -17,8 +17,8 @@ class CardsModel {
 
 		this.cardsToPageMap = cardsConfig.cardsByPage;
 		this.cardToConfigMap = cardsConfig.cards;
-		// todo: validate stuff:
-		// todo: validate the number of items requested, that we have size map of appropriate length
+		// todo: validate card config:
+		// todo: validate the number of items requested is numeric
 	}
 
 	/**
@@ -97,7 +97,6 @@ class CardsModel {
 			return dataItems;
 		}
 		// moreDataAvailable is set true for trending card (adds shown are pre-loaded), and conditional for gallery (which uses ajax)
-		console.warn(`transforming ${dataItems.ads.length} ads for card ${cardConfig.cardName}`);
 		dataItems.moreDataAvailable = true;
 		if (cardConfig.cardName === "galleryCard") {
 			dataItems.moreDataAvailable = false;	// will set to true below

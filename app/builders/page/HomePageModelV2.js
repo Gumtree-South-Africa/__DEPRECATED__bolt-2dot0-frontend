@@ -98,9 +98,11 @@ class HomePageModelV2 {
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
 				// user specific parameters are passed here, such as location lat/long
-				return cardsModel.getCardItemsData(cardName, {
-					geo: modelData.geoLatLngObj
-				}).then( (result) => {
+				let cardParams = {};
+				if (cardName === 'trendingCard') {
+					cardParams.geo = modelData.geoLatLngObj;
+				}
+				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;
