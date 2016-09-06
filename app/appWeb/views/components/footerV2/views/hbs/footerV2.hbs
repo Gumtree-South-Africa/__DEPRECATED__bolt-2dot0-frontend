@@ -27,18 +27,18 @@
     {{#if this.footer.distractionFree}}
         <div class="meet-team">{{i18n "footer.help.contact"}}</div>
         <div class="df-support-wrapper">
-            <div class="df-support-container">
-                <span class="support-icon email-icon"></span>
-                <a class="support-text" href="{{this.footer.emailUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>{{i18n "footer.support.em"}}</a>
-            </div>
+			<div class="desktop-only df-support-container">
+				<span class="support-icon chat-icon"></span>
+				<a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSLiveChat'>{{i18n "footer.support.ch"}}</a>
+			</div>
             <div class="df-support-container">
                 <span class="support-icon call-icon"></span>
                 <a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSPhone'>{{i18n "footer.support.ca"}}</a>
             </div>
-            <div class="df-support-container">
-                <span class="support-icon chat-icon"></span>
-                <a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSLiveChat'>{{i18n "footer.support.ch"}}</a>
-            </div>
+			<div class="df-support-container">
+				<span class="support-icon email-icon"></span>
+				<a class="support-text" href="{{this.footer.emailUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>{{i18n "footer.support.em"}}</a>
+			</div>
             <div class="clear"></div>
         </div>
         <div class="desktop-only line-divider"></div>
