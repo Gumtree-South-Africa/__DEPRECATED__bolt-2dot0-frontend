@@ -105,9 +105,19 @@ let _failureCallback = (error) => {
 };
 
 let _ajaxEditForm = () => {
+	let $dateFields = this.$editForm.find('input[type="date"]');
+	let serializedDates = $dateFields.serializeForm();
 	let serialized = this.$editForm.serializeForm();
 	let attrs = this.$attributes.serializeForm();
 	let categoryAttributes = [];
+
+	Object.keys(serializedDates).forEach((key) => {
+		let val = serializedDates[key];
+		if (val) {
+			attrs[key] = (new Date(val)).getTime() / 1000;
+		}
+	});
+
 	$.each(attrs, (field, value) => {
 		if (value !== '') {
 			categoryAttributes.push({
