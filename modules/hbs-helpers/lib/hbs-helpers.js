@@ -199,17 +199,22 @@ module.exports  =  {
 
 		exphbs.handlebars.registerHelper('lookupLocalDate', (attrVals, name) => {
 			let thisVal = attrVals[name];
-			let month = thisVal.monthOfYear.toString();
-			let day = thisVal.dayOfMonth.toString();
+			if (thisVal) {
+				let month = thisVal.monthOfYear.toString();
+				let day = thisVal.dayOfMonth.toString();
 
-			if (month.length === 1) {
-				month = "0" + month;
+				if (month.length === 1) {
+					month = "0" + month;
+				}
+
+				if (day.length === 1) {
+					day = "0" + day;
+				}
+				return `${thisVal.year}-${month}-${day}`;
+			} else {
+				return null;
 			}
 
-			if (day.length === 1) {
-				day = "0" + day;
-			}
-			return `${thisVal.year}-${month}-${day}`;
 		});
 
 		exphbs.handlebars.registerHelper('formatDate', (date) => {
