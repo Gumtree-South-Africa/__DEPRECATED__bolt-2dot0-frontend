@@ -15,6 +15,16 @@
       "rel": "getAdForEdit",
       "href": "/ads/1001000002000910000000009",
       "method": "GET"
-    }
+    },
+  	{
+	  "rel": "paymentUrl",
+	  "href": "/payment/payment.html?orderId=101016200",
+	  "method": "GET"
+  	},
+  	{
+	  "rel": "paymentRedirectUrl",
+	  "href": "/a-elektronarzedzia/buk/ad-posted-by-shuochen-ebay-com/1001000002000910000000009?activateStatus=adActivateSuccessWithIFPayment",
+	  "method": "GET"
+  	}
   ]
 }
