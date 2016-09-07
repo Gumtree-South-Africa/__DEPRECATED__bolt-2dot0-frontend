@@ -229,7 +229,7 @@ class HeaderModel {
 		}
 
 		if (data.userProfileImageUrl) {
-			data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '');
+			data.profilePictureCropUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('https://www', '').replace('https://', '').replace('www', '').replace('http://www', '').replace('http://', '').replace('www', '');
 		}
 	}
 }
