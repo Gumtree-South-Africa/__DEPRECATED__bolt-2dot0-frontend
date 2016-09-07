@@ -258,15 +258,24 @@ let parseFile = (file) => {
 	}
 };
 
+let hasImagesForUpload = () => {
+	// add red border to photo carousel if no photos
+	if ($('.carousel-item').length === 0) {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		$('.cover-photo').addClass('red-border');
+		$('.photos-required-msg').removeClass('hidden');
+		return false;
+	}
+	return true;
+};
+
 let preventDisabledButtonClick = (event) => {
+	if (!hasImagesForUpload()) {
+		this.$postAdButton.addClass('disabled');
+	}
+
 	if (this.$postAdButton.hasClass("disabled")) {
 		event.preventDefault();
-		// add red border to photo carousel if no photos
-		if ($('.carousel-item').length === 0) {
-			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
-			$('.cover-photo').addClass('red-border');
-			$('.photos-required-msg').removeClass('hidden');
-		}
 	} else {
 		this.$postAdButton.addClass('disabled');
 		this.disableImageSelection = true;
@@ -331,7 +340,7 @@ this.deleteCarouselItem = (event) => {
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
-	if (this.imageCount === 0) {
+	if (this.imageCount === 0 || $('.carousel-item').length === 0) {
 		this.$postAdButton.addClass("disabled");
 	}
 
@@ -370,7 +379,7 @@ let deleteSelectedItem = (event) => {
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
-	if (this.imageCount === 0) {
+	if (this.imageCount === 0 || $('.carousel-item').length === 0) {
 		this.$postAdButton.addClass("disabled");
 	}
 
