@@ -731,12 +731,31 @@ class EpsUpload {
 }
 
 class UploadMessageClass {
-	constructor(messages, $messageError, $messageModal, $errorMessageTitle, functions) {
+	constructor(epsData, $messageError, $messageModal, $errorMessageTitle, functions) {
+		this.epsData = epsData;
 		this.hideImage = functions.hideImage|| (() => {});
-		this.messages = messages || {};
 		this.$messageError = $messageError;
 		this.$messageModal = $messageModal;
 		this.$errorMessageTitle = $errorMessageTitle;
+		this.buildMessages();
+	}
+
+	buildMessages() {
+		this.messages = {
+			successMsg: this.epsData.data('successmsg'),
+			failMsg: this.epsData.data('failmsg'),
+			loadingMsg: this.epsData.data('loadingmsg'),
+			resizing: this.epsData.data('resizing'),
+			invalidSize: this.epsData.data('invalidsize'),
+			invalidType: this.epsData.data('invalidtype'),
+			invalidDimensions: this.epsData.data('invaliddimensions'),
+			firewall: this.epsData.data('firewall'),
+			colorspace: this.epsData.data('colorspace'),
+			corrupt: this.epsData.data('corrupt'),
+			pictureSrv: this.epsData.data('picturesrv'),
+			error: this.epsData.data('error'),
+			unsupportedFileTitle: this.epsData.data('unsupported-file-title')
+		};
 	}
 
 	failMsg(i) {
