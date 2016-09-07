@@ -1228,7 +1228,7 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "cerrar",
+		"close": "Cerrar",
 		"buttonText": "Confirmar",
 		"message": "Cambia Tu Ubicaci\u00FBn",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
@@ -1382,7 +1382,7 @@
 		"uploadPhoto": "Carga una foto",
 		"uploadQuickly": "Publica un anuncio rápidamente",
 		"upload": "Publica un anuncio",
-		"close": "CERRAR"
+		"close": "Cerrar"
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",

@@ -15,21 +15,37 @@
 		display: inline-block;
 	}
 
+	.post-ad-modal-container {
+		padding: 10px;
+	}
+
 	.close-text {
 		color: gray;
 		font-size: .8em;
+		vertical-align: middle;
+		margin-right: 0.5em;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	.icon-close {
-		background-size: 1800%;
-		height: 16px;
-		width: 16px;
-		vertical-align: text-bottom;
+		display: inline-block;
+		vertical-align: middle;
+		cursor: pointer;
 	}
 
 	.post-ad-modal-close-section {
 		margin-right: 8px;
 		float: right;
+		cursor: pointer;
+
+		&:hover {
+			.close-text {
+				text-decoration: underline;
+			}
+		}
 	}
 
 	.post-ad-modal-wrapper {

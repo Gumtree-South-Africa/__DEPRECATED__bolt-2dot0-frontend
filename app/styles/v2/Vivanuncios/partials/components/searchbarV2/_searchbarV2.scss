@@ -73,7 +73,7 @@ $mobileTextboxWidth: 84%;
 
 	.search-bar {
 		z-index: 4;
-		width: calc(100% - 80px);
+		width: calc(100% - 40px);
 		margin: 0 auto;
 		position: relative;
 		box-sizing: border-box;
@@ -500,7 +500,13 @@ $mobileTextboxWidth: 84%;
 
 @include from-breakpoint($large-break) {
 	.search-controls {
+		.type-ahead-results-wrapper {
+			width: calc(100% - 80px);
+		}
+
 		.search-bar {
+			width: calc(100% - 80px);
+
 			.location-text {
 				margin-top: 10px;
 			}
