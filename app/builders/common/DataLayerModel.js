@@ -97,19 +97,16 @@ class DataLayerModel {
 				switch (this.pagetype) {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
+					case pagetypeJson.pagetype.POST_AD:
+					case pagetypeJson.pagetype.EDIT_AD:
 						data = {
-							'pageData': getPageData(this), 'userData': getUsereData(this)
+							'pageData': getPageData(this),
+							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
 						data = {
 							'pageData': getPageData(this)
-						};
-						break;
-					case pagetypeJson.pagetype.POST_AD:
-						data = {
-							'pageData': getPageData(this),
-							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.RESULTS_SEARCH:
