@@ -39,8 +39,9 @@ class CardService {
 	 	}), bapiHeaderValues, cardName);
 	}
 
+	// NOTE: this is only called by the cache, specific to trending
 	getTrendingCard(bapiHeaderValues) {
-		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch');
+		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', {}, 'trendingCard');
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {
