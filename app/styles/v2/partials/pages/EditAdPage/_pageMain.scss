@@ -260,9 +260,12 @@ $labelMargin: 8%;
 				margin: 0 $labelMargin;
 				color: $categoryDisplayTextColor;
 
+				.hier-link {
+					text-decoration: underline;
+				}
+
 				&:hover {
 					cursor: pointer;
-					text-decoration: underline;
 				}
 			}
 		}

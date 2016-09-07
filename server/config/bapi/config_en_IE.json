@@ -1,7 +1,7 @@
 {
 	"header" : {
 		"type" 								: "website",
-		"localeOpenGraph" 					: "en_GB",
+		"localeOpenGraph" 					: "en_IE",
 		"publisherUrl"						: null,
 		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"						: "",
@@ -94,8 +94,6 @@
               "currencyDisplay"    :    false,
               "currency"           :    ["EUR:EUR"]
         }
-
-
 	},
 	"bapi" : {
 		"Homepage" : {

@@ -160,7 +160,7 @@ class EpsUpload {
 				return function(e) {
 					let dataUrl = e.target.result;
 
-					image.onload = onload(thisFile);
+					image.onload = onload(i, thisFile);
 
 					window.URL = window.URL || window.webkitURL || false;
 					image.src = URL.createObjectURL(thisFile);//window.URL.createObjectURL(blob);

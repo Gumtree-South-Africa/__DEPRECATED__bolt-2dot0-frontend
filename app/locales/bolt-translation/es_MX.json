@@ -1400,8 +1400,7 @@
 			"title": "Categoría del artículo",
 			"prompt": "Búsqueda por palabra clave en %s",
 			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
-			"selectPrompt": "Select a Category Below",
-			"save": "Save"
+			"save": "Guardar"
 		}
 	},
 	"adStats": {
