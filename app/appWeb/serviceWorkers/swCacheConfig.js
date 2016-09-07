@@ -1,26 +1,39 @@
 'use strict';
 module.exports = {
-	"homepagePreCachePaths": [
-		'css/v2/Vivanuncios/MX/es_MX/HomePage.css',
-		'css/v2/Vivanuncios/MX/es_MX/Main.css',
-		'css/v2/Vivanuncios/MX/es_MX/appshell.css',
-		'css/es_MX/es_MX.css',
-		'css/es_MX/es_MX.png',
-		'css/es_MX/fallback.css',
-		'css/es_MX/icons.css',
-		'css/es_MX/sprite.css',
-		'css/es_MX/sprite.es_MX.html',
-		'jsmin/HomePage_mobile_es_MX.js',
-		'js/libraries/jQuery/jquery-2.0.0.min.js'
-	],
+	"preCachePaths":
+	{
+		"css": [
+			'v2/Vivanuncios/MX/es_MX/Main.css',
+			'es_MX/es_MX.css',
+			'es_MX/fallback.css',
+			'es_MX/icons.css',
+			'es_MX/sprite.css'
+		],
+		"cssmin": [
+			'v2/Vivanuncios/MX/es_MX/Main.min.css',
+			'es_MX/es_MX.css',
+			'es_MX/fallback.css',
+			'es_MX/icons.css',
+			'es_MX/sprite.css'
+		],
+		"js": [
+			'jQuery.min.js',
+			'MainV2.min.js'
+		],
+		"jsmin": [
+			'jQuery.min.js',
+			'MainV2.min.js'
+		]
+	},
 	"homepageCachePaths":
 	{
 		"css": [
-			'es_MX/icons.css',
-			'es_MX/sprite.css',
-			'es_MX/fallback.css',
 			'v2/Vivanuncios/MX/es_MX/HomePage.css',
-			'v2/Vivanuncios/MX/es_MX/Main.css'
+			'es_MX/svg/sprite.css-*.svg'
+		],
+		"cssmin": [
+			'v2/Vivanuncios/MX/es_MX/HomePage.min.css',
+			'es_MX/svg/sprite.css-*.svg'
 		],
 		"icons": [
 			'icon_call.svg',
@@ -34,21 +47,25 @@ module.exports = {
 		],
 		"images": [
 			'carousel-arrow-right.png',
-			'es_MX/appstore.png',
-			'es_MX/googleplay.png',
+			'es_MX/appstore.svg',
+			'es_MX/googleplay.svg',
 			'es_MX/logo.png',
 			'es_MX/rating.png',
 			'es_MX/appdownload_mobile.jpg',
-			'safety-tips-1.jpg'
+			'safety-tips-1.jpg',
+			'Agent01.jpg',
+			'Agent02.jpg',
+			'Agent03.jpg'
 		],
 		"fonts": [
 			'Lato-Regular.ttf'
 		],
 		"js": [
-			'libraries/jQuery/jquery-2.0.0.min.js',
-			'libraries/jQuery/plugins/jquery.smartbanner.js'
+			'HomePageV2Legacy.min.js',
+			'HomePage_mobile_es_MX.js'
 		],
 		"jsmin": [
+			'HomePageV2Legacy.min.js',
 			'HomePage_mobile_es_MX.js'
 		]
 	}

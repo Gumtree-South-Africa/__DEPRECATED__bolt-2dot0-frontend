@@ -19,10 +19,10 @@
 			"quickpostAd": "/v1/ads",
 			"recentActivities": "/v1/ads/activities/recent",
 			"trendingSearch": "/v1/ads/trending",
-			"draftAd": "/v1/ads/drafts",
-			"specificAd": "/v1/ads/{id}",
-			"favoriteAd": "/v1/ads/{id}/favorites",
-			"categoryAttributes": "/v1/categories/{catId}/attributes"
+			"draftAd":"/v1/ads/drafts",
+			"specificAd":"/v1/ads/{id}",
+			"favoriteAd":"/v1/ads/{id}/favorites",
+			"categoryAttributes":	"/v1/categories/{catId}/attributes"
 		}
 	},
 	"solr": {
@@ -52,11 +52,21 @@
 		"epsToken": "AgAAAA**AQAAAA**aAAAAA**ChOCUQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AEmISmAJSEpwidj6x9nY+seQ**iFABAA**AAMAAA**IB0nQiem8a8xCL08yFP7FvxqlIQXsxVo2WA7iP02FAVraDUljrRbO//WKL/wf+dAr5kZhNKQJmH0/OlU9BsXudSVdmRBxgISzogAkMkUXaUU/Sn+F13QttnrDk/VnVQ0K0hKCqQMNjrl1eD/kqVb0tspZ51m67f5ZL7rMf74QBj/LvCZMu9qkqe2Cb9P0JkXR3JNNAqfbuXysX+BdcOlkAc899I2bYjSCvhNWJ83dDjQ4pOF3i/dsxW3Pj8L56XvqgiR/dTbNPhjtR5R6xnZZ/ixUJ6if2GWfRc3qPOFVr1gczdhc3AGj/eyCtdpOfW1SZHfj8dIjooWI2wq7bI+Qd1IbUjxA2Qvs+6YqmBL3l8UzNL7rxwLw1CvXsrNYOgThJOrzXUnWsudY7CFFCZJLpqQPeCIo4QeCiXqCrj3d5TqiJ0RThFFQg46YT5eI6FFEg8HaMp2ibb2a7v/4/ijlI+iqXUVBYcgRnOGYPLNQGg5yTQSID8eFY0vxG94yfpGI7NiudZDfpxxWyjaNbzk0nygg/2/jm3eov1U6YuNnRzIHysvvOOZT+g6tzM2yGVuLdyQurEZy6afsKAJNc6mZJEKcZDwLsArPmyb0MDUp3Z2WhzSQwDsmv4CUIOikl5fjS/E4UzFqJyWkxlymUdC65U6oic8q4C4/Nyvswlh59YKRnSgmIXnN8Orn48fujd0e4YWtw/nh/yd+m553mDcoqDU4JxZWSBTtZPdWukZE9EIyGMHbapCPURtXmWIL6Ql",
 		"IsEbayDirectUL": true
 	},
+	"cdn": {
+		"server": {
+			"eps": {
+				"host": "https://i.ebayimg.com/"
+			},
+			"crop": {
+				"host": "https://img.classistatic.com/crop/"
+			}
+		}
+	},
 	"static": {
 		"server": {
 			"host": "inc.latam.classistatic.com",
 			"port": null,
-			"version": "2.0.117"
+			"version": "2.0.116"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

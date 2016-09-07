@@ -18,6 +18,12 @@ var PRECACHE = '$$$toolbox-cache$$$';
 /**
  * Event Handlers
  */
+// INSTALL
+self.addEventListener('install', function(event) {
+	event.waitUntil(self.skipWaiting())
+});
+
+// ACTIVATE
 self.addEventListener('activate', function(event) {
 	// Delete all caches that aren't named in CURRENT_CACHES.
 	var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
@@ -29,7 +35,6 @@ self.addEventListener('activate', function(event) {
 			return Promise.all(
 				cacheNames.map(function(cacheName) {
 					if (cacheName.indexOf(PRECACHE) === -1) {
-						// Skip toolbox precache
 						if (expectedCacheNames.indexOf(cacheName) === -1) {
 							// If this cache name isn't present in the array of "expected" cache names, then delete it.
 							console.log('Deleting out of date cache:', cacheName);
@@ -40,6 +45,16 @@ self.addEventListener('activate', function(event) {
 			);
 		})
 	);
+
+	event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', function(event) {
+	event.respondWith(
+		caches.match(event.request).then(function(response) {
+			return response || fetch(event.request);
+		})
+	);
 });
 
 
@@ -48,12 +63,18 @@ self.addEventListener('activate', function(event) {
  **/
 // Precaching homepage
 toolbox.precache(['/']);
+toolbox.precache(['/manifest.json']);
 
 // Precaching homepage assets
 if (cacheObj) {
-	toolbox.precache(cacheObj['homepagePreCache']);
+	if (cacheObj.isServeMin) {
+		toolbox.precache(cacheObj.preCache.cssmin);
+		toolbox.precache(cacheObj.preCache.jsmin);
+	} else {
+		toolbox.precache(cacheObj.preCache.css);
+		toolbox.precache(cacheObj.preCache.js);
+	}
 }
-
 
 /**
  * CACHE
@@ -67,17 +88,29 @@ toolbox.router.get('/', toolbox.networkFirst, {
 	}
 });
 
-// Adding homepage CSS cache
+// Adding homepage CSS/CSSmin depending on config.get('static.min')
 if (cacheObj) {
-	 for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
-	 	toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
-	 		cache: {
-	 			name: CURRENT_CACHES['homepage'],
-	 			maxEntries: 100,
-	 			maxAgeSeconds: 86400
-	 		}
-	 	});
-	 }
+	if (cacheObj.isServeMin) {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.cssmin.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.cssmin[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	} else {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	}
 }
 
 // Adding homepage icons cache
@@ -119,30 +152,61 @@ if (cacheObj) {
 	}
 }
 
-// Adding homepage JS cache
+// Adding homepage JS/JSmin cache depending on config.get('static.min')
 if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
+	if (cacheObj.isServeMin){
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
+	} else {
+		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
+			toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
+				cache: {
+					name: CURRENT_CACHES['homepage'],
+					maxEntries: 100,
+					maxAgeSeconds: 86400
+				}
+			});
+		}
 	}
 }
 
-// Adding homepage JSmin cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
+// cache images from crop server
+// max of 300 entries, cached for 1 week
+if (cacheObj.homepageCropCache.length > 0) {
+	toolbox.router.get('/(.*)',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageCropCache,
 			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 300,
+				maxAgeSeconds: 604800
 			}
-		});
-	}
+		}
+	);
+}
+
+// cache images from eps server
+// max of 300 entries, cached for 1 week
+if (cacheObj.homepageEpsCache.length > 0) {
+	toolbox.router.get('/(.*)',
+		toolbox.networkFirst,
+		{
+			origin: cacheObj.homepageEpsCache,
+			cache: {
+				name: 'vivanuncios-dynamic-images',
+				maxEntries: 300,
+				maxAgeSeconds: 604800
+			}
+		}
+	);
 }
 
 
