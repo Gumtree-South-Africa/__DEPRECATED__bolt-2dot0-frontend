@@ -30,10 +30,10 @@
 		</div>
         <div class="form-ad-price {{#if this.isPriceExcluded}}hidden{{/if}}">
             <div class="label-wrapper">
-                <label for="Price">{{i18n "editAd.mainDetails.labels.price"}}</label>
+                <label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
             </div>
             <div class="input-wrapper">
-                <input title="Price" name="Price" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+                <input title="amount" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
                        value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"
                        type="text"/>
                 <div class="radio-group" data-schema="data.price.currency">

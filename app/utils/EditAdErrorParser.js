@@ -2,7 +2,7 @@
 
 class EditAdErrorParser {
 
-	parseError(messageString){
+	parseError(messageString) {
 		if (messageString) {
 			let sections = messageString.split(",");
 
