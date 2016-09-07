@@ -15,7 +15,7 @@
 							 alt="{{i18n "appdownload.userImageAltText"}}">
 						<div class="review-inner">
 							<div class="rating-wrapper">
-                                {{> (dynamic "starRating") rating=this.rating}}
+                                {{> (dynamic "starRating" ../locale) rating=this.rating}}
                             </div>
 							<div class="review-description">{{{this.description}}}</div>
 						</div>
