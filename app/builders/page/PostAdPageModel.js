@@ -29,7 +29,7 @@ class PostAdPageModel {
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
-		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
+		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 		modelData.deferredAd = deferredAd;
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);

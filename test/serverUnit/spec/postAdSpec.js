@@ -21,6 +21,7 @@ describe('Post Ad Page', () => {
 	it('should display header in distraction free mode', (done) => {
 		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -37,6 +38,7 @@ describe('Post Ad Page', () => {
 	it('should show footer in distraction free mode', (done) => {
 		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 					let c$ = cheerio.load(res.text);

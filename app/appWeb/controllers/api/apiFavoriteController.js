@@ -30,7 +30,7 @@ router.post('/', cors, (req, res) => {
 	if (req.body.adId) {
 		let modelBuilder = new ModelBuilder();
 
-		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		if (!model.bapiHeaders.authTokenValue) {
 			res.status(401).send({
 				error: "no authorization"
@@ -77,7 +77,7 @@ router.delete('/', cors, (req, res) => {
 	if (req.body.adId) {
 		let modelBuilder = new ModelBuilder();
 
-		let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		if (!model.bapiHeaders.authTokenValue) {
 			res.status(401).send({
 				error: "no authorization"

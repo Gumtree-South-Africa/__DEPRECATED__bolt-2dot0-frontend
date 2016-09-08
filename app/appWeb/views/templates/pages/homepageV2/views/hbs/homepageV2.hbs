@@ -1,7 +1,3 @@
-{{#partial "headerWrapper"}}
-    {{> (dynamic "headerV2")}}
-{{/partial}}
-
 {{#partial "content"}}
 	<div>
 
@@ -60,11 +56,9 @@
         {{> (dynamic "bottomBanner") }}
 
 	</div>
-{{/partial}}
 
-{{#partial "footerWrapper"}}
-    {{> (dynamic "footerV2")}}
     {{> (dynamic "welcomeModal")}}
+
 {{/partial}}
 
 {{#partial "pageTailScripts"}}
@@ -90,7 +84,7 @@
             {{#block "googleBannerAdsBottom_Script"}}{{/block}}
             {{> (dynamic "skinBanner") }}
 	        {{#block "googleBannerSkinCampaign_ScriptV2"}}{{/block}}
-		
+
 
 	</script>
 

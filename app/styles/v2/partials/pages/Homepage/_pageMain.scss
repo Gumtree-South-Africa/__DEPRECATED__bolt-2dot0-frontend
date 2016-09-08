@@ -11,3 +11,12 @@
     margin: 0 auto;
     max-width: 64em;
    }
+
+//legacy color from Bolt 2.1 version
+.confirm-content,
+.error-content,
+.empty-state-content{
+	a{
+		color: #1E98D5;
+	}
+}

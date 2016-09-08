@@ -55,16 +55,13 @@ module.exports.message = function (req, res, next) {
 		let model = new ErrorPageModel(req, res);
 		model.populateData().then(function(result) {
 			// Data from BAPI
-			modelData.header = result['common'].header;
-			modelData.footer = result['common'].footer;
-			modelData.dataLayer = result['common'].dataLayer;
-
 			//  Device data for handlebars
+			_.extend(modelData, result);
 			modelData.device = req.app.locals.deviceInfo;
 
 			// Special Data needed for HomePage in header, footer, content
-			error.extendHeaderData(modelData);
-			error.extendFooterData(modelData);
+			error.extendHeaderData(modelData, res.locals.b2dot0Version);
+			error.extendFooterData(modelData, res.locals.b2dot0Version);
 
 			// Render
 			// res.statusCode = errNum;
@@ -86,7 +83,7 @@ let error = {
     /**
      * Special header data for HomePage
      */
-    extendHeaderData : function(modelData) {
+    extendHeaderData : function(modelData, b2dot0Version) {
         // SEO
         modelData.header.pageType = modelData.pagename;
         modelData.header.canonical = modelData.header.homePageUrl;
@@ -96,20 +93,18 @@ let error = {
         }
 
         // CSS
-        modelData.header.pageCSSUrl = modelData.header.oneDot0CSSPath + 'HomePage.css';
+        modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
         if (modelData.header.min) {
-			modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/Main.min.css');
-			if (deviceDetection.isHomePageDevice()) {
-                modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/HomePageHack.min.css');
+            if (deviceDetection.isHomePageDevice() && !b2dot0Version) {
+                modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.min.css');
             } else {
-                modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/HomePage.min.css');
+                modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.min.css');
             }
         } else {
-			modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/Main.css');
-			if (deviceDetection.isHomePageDevice()) {
-                modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/HomePageHack.css');
+            if (deviceDetection.isHomePageDevice() && !b2dot0Version) {
+                modelData.header.containerCSS.push(modelData.header.localeCSSPathHack + '/HomePageHack.css');
             } else {
-                modelData.header.containerCSS.push(modelData.header.oneDot0CSSPath + '/HomePage.css');
+                modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/HomePage.css');
             }
         }
     },
@@ -117,32 +112,47 @@ let error = {
     /**
      * Special footer data for HomePage
      */
-    extendFooterData : function(modelData) {
-        modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
-        if (!modelData.footer.min) {
-        	let componentDirectory = '/views/components/';
-            modelData.footer.javascripts.push(componentDirectory + 'categoryList/js/app.js');
-            if (! modelData.header.enableLighterVersionForMobile) {
-                modelData.footer.javascripts.push(componentDirectory + 'countryMap/js/Map.js');
-                modelData.footer.javascripts.push(componentDirectory + 'adCarousel/js/CarouselExt/modernizr.js');
-                modelData.footer.javascripts.push(componentDirectory + 'adCarousel/js/CarouselExt/owl.carousel.js');
-                modelData.footer.javascripts.push(componentDirectory + 'adCarousel/js/CarouselExt/carouselExt.js');
-            }
-            let availableAdFeatures = modelData.footer.availableAdFeatures;
-            if (typeof availableAdFeatures !== 'undefined') {
-            	// I cant even find this file
-                // for (let i=0; i<availableAdFeatures.length; i++) {
-                //     if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
-                //         modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
-                //     }
-                // }
-            }
-        } else {
-            if (modelData.header.enableLighterVersionForMobile) {
-                modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
-            } else {
-                modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
-            }
-        }
+    extendFooterData : function(modelData, b2dot0Version) {
+    	if (b2dot0Version) {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
+			if (!modelData.footer.min) {
+				if (modelData.header.enableLighterVersionForMobile) {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
+				} else {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
+				}
+			} else {
+				if (modelData.header.enableLighterVersionForMobile) {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_mobile_${modelData.locale}.js`);
+				} else {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `HomePage_desktop_${modelData.locale}.js`);
+				}
+			}
+		} else {
+			modelData.footer.pageJSUrl = modelData.footer.baseJSUrl + 'HomePage.js';
+			if (!modelData.footer.min) {
+				modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'common/CategoryList.js');
+				if (! modelData.header.enableLighterVersionForMobile) {
+					modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/Map.js');
+					modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/modernizr.js');
+					modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/owl.carousel.js');
+					modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'HomePage/CarouselExt/carouselExt.js');
+				}
+				let availableAdFeatures = modelData.footer.availableAdFeatures;
+				if (typeof availableAdFeatures !== 'undefined') {
+					for (let i=0; i<availableAdFeatures.length; i++) {
+						if (availableAdFeatures[i] === 'HOME_PAGE_GALLERY') {
+							modelData.footer.javascripts.push(modelData.footer.baseJSUrl + 'widgets/carousel.js');
+						}
+					}
+				}
+			} else {
+				if (modelData.header.enableLighterVersionForMobile) {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '_light.min.js');
+				} else {
+					modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePage_' + modelData.locale + '.min.js');
+				}
+			}
+		}
     }
 };
