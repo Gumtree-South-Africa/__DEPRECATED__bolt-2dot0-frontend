@@ -163,7 +163,6 @@ beforeEach(() => {
 		} else {
 			options.success(ajaxInfo.returnData);
 		}
-
 	});
 });
 

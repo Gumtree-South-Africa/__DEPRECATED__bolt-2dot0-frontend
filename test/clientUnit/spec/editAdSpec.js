@@ -12,7 +12,10 @@ let mockCategoryTree = require("../mock/categoryTree.json");
 describe('Edit Ad', () => {
 	it("should make ajax call when button is clicked", () => {
 		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
-			categoryCurrentHierarchy: "[0, 3]"
+			categoryCurrentHierarchy: "[0, 3]",
+			footer: {
+				baseJSUrl: "/public/js/"
+			}
 		}, "es_MX");
 		specHelper.mockWebshim();
 

@@ -9,7 +9,7 @@ let $ = require('jquery');
 let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 
-describe('Tile Grid', () => {
+xdescribe('Tile Grid', () => {
 
 	beforeEach(() => {
 	});
