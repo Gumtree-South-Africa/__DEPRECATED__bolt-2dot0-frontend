@@ -20,7 +20,11 @@ let _setHiddenLocationInput = (location) => {
 
 let _successCallback = (response) => {
 	formChangeWarning.disable();
-	window.location.href = response.vipLink;
+	if (response.redirectLink.previp) {
+		window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
+	} else {
+		window.location.href = response.redirectLink.vip;
+	}
 };
 
 let _failureCallback = (error) => {

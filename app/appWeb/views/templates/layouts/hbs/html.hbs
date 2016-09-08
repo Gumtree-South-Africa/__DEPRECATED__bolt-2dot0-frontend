@@ -169,7 +169,6 @@
                 {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
                     {{#each ignoredRefs}}
                         _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
                     {{/each}}
