@@ -126,6 +126,9 @@ let setupTest = (templateName, templateModel, locale) => {
 let mockWebshim = () => {
 	registerMockAjax("/public/js/libraries/webshims/shims/form-core.js", {});
 	registerMockAjax("/public/js/libraries/webshims/shims/combos/10.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/combos/3.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/combos/17.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/form-shim-extend.js", {});
 };
 
 module.exports = {
