@@ -306,7 +306,21 @@ let preventDisabledButtonClick = (event) => {
 };
 /******* END SLICK STUFF *******/
 
+this.clickFileInput = () => {
+	if (!this.disableImageSelection) {
+		// prevent re-opening of file selector
+		this.disableImageSelection = true;
+		setTimeout(() => {
+			this.disableImageSelection = false;
+		}, 3000);
+
+		this.$imageUpload.click();
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+	}
+};
+
 let fileInputChange = (evt) => {
+	this.disableImageSelection = false;
 	if (evt.stopImmediatePropagation) {
 		evt.stopImmediatePropagation();
 	}
@@ -329,6 +343,10 @@ this._bindChangeListener = () => {
 	this.$imageUpload = $("#desktopFileUpload");
 	//listen for file uploads
 	this.$imageUpload.on("change", fileInputChange);
+
+	this.$inputClickArea = $('#input-click-area');
+	//listen for 'add photos' carousel item click
+	this.$inputClickArea.on('click', this.clickFileInput);
 };
 
 this.deleteCarouselItem = (event, toRemove) => {
@@ -425,6 +443,7 @@ let initialize = (options) => {
 	this.$errorModalButton.click(() => {
 		this.messageModal.toggleClass('hidden');
 		this.$imageUpload.click();
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this._bindChangeListener();
@@ -500,19 +519,8 @@ let initialize = (options) => {
 		this.deleteCarouselItem(evt, toRemove);
 	});
 
-	// Clicking empty cover photo should open file selector
-	$("#cover-photo").on('click', () => {
-		if (!this.disableImageSelection) {
-			this.$imageUpload.click();
-		}
-	});
-
-	this.$imageUpload.on('click', (e) => {
-		if (this.disableImageSelection) {
-			e.preventDefault();
-		}
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
-	});
+	// Clicking empty cover photo OR 'add photo' carousel item should open file selector
+	$("#cover-photo").on('click', this.clickFileInput);
 
 	// Listen for file drag and drop uploads
 	let photoSwitcher = $(".photo-switcher");
