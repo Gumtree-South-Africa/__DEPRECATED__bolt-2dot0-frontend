@@ -5,7 +5,7 @@
 	@include from-breakpoint($medium-break) {
 		margin-top: 20px;
 		margin-bottom: 20px;
-		height: 464px;
+		height: 474px;
 		width: 100%;
 	}
 
@@ -92,7 +92,7 @@
 .review {
 	background-color: $appdownloadreview-bgcolor;
 	height: 70px;
-	margin-bottom: 1em;
+	margin-bottom: 10px;
 	border: 1px solid $appdownloadreview-color;
 	border-radius: 5px;
 	&:not(:first-child) {
