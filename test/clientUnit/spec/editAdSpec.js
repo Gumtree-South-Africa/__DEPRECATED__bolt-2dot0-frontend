@@ -14,6 +14,8 @@ describe('Edit Ad', () => {
 		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
 			categoryCurrentHierarchy: "[0, 3]"
 		}, "es_MX");
+		specHelper.mockWebshim();
+
 		editAdFormMainDetailsController.initialize();
 		editAdFormMainDetailsController.onReady();
 		specHelper.disableFormWarning();
@@ -30,6 +32,8 @@ describe('Edit Ad', () => {
 	describe("Location Selection", () => {
 		it("should allow location selection without modifying the cookie", () => {
 			specHelper.setCookie("geoId", "10ng10"); // storing canned cookie
+
+			specHelper.mockWebshim();
 
 			let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
 					categoryCurrentHierarchy: "[0, 3]"
@@ -70,7 +74,7 @@ describe('Edit Ad', () => {
 				currentHierarchy: []
 			});
 
-			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories");
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
 			let $listItems = $testArea.find(".list-item");
 			expect($listItems.length).toBeGreaterThan(0);
 			expect($listItems.length).toEqual(mockCategoryTree.children.length);
@@ -90,7 +94,7 @@ describe('Edit Ad', () => {
 				currentHierarchy: [0, 5]
 			});
 
-			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories > Automotive Vehicles");
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel > Automotive Vehicles");
 			let $listItems = $testArea.find(".list-item");
 
 			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeFalsy();
@@ -116,7 +120,7 @@ describe('Edit Ad', () => {
 				currentHierarchy: [0]
 			});
 
-			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories");
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
 
 			$testArea.find(".list-item").first().click();
 
@@ -140,7 +144,7 @@ describe('Edit Ad', () => {
 				currentHierarchy: [0]
 			});
 
-			expect($testArea.find(".current-hierarchy").text()).toEqual("All Categories");
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
 
 			$testArea.find(".list-item").first().click();
 
