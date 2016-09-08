@@ -398,6 +398,7 @@ this.updateAddPhotoButton = () => {
 
 let initialize = (options) => {
 	if (!options) {
+		let images = JSON.parse($("#deferred-ad-images").text() || '[]');
 		options = {
 			slickOptions: {
 				arrows: true,
@@ -406,7 +407,7 @@ let initialize = (options) => {
 				slidesToScroll: 3
 			},
 			showDeleteImageIcons: false,
-			initialImages: []
+			initialImages: images
 		};
 	}
 	this.showDeleteImageIcons = options.showDeleteImageIcons;
@@ -485,7 +486,7 @@ let initialize = (options) => {
 	this.$carousel.on('breakpoint', resizeCarousel);
 
 	options.initialImages.forEach((image, i) => {
-		let thumb = (image.LARGE) ? image.LARGE : image.SMALL;
+		let thumb = (image.LARGE) ? image.LARGE : image.SMALL || image;
 		let totalItems = $(".carousel-item").length;
 		if (totalItems < allowedUploads) {
 			_slickAdd(totalItems);
