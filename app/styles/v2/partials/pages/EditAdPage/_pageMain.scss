@@ -335,6 +335,7 @@ $labelMargin: 8%;
 		.control input:checked ~ .currency-type {
 			color: black;
 			font-weight: bold;
+			display: inline-block;
 		}
 
 		.inner-circle {
