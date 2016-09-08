@@ -28,7 +28,8 @@ let getUsereData = function(scope) {
 		'hashedAccountId': '',
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
-        'daysSinceRegistration': ''
+        'daysSinceRegistration': '',
+		'sessionLvTstGrp': scope.sessionLvTstGrp
 	};
 };
 
@@ -68,6 +69,7 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
+		this.sessionLvTstGrp = res.locals.b2dot0Version ? "V2" : "V1";
 	}
 
 	getModelBuilder() {
@@ -95,19 +97,16 @@ class DataLayerModel {
 				switch (this.pagetype) {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
+					case pagetypeJson.pagetype.POST_AD:
+					case pagetypeJson.pagetype.EDIT_AD:
 						data = {
-							'pageData': getPageData(this), 'userData': getUsereData(this)
+							'pageData': getPageData(this),
+							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
 						data = {
 							'pageData': getPageData(this)
-						};
-						break;
-					case pagetypeJson.pagetype.POST_AD:
-						data = {
-							'pageData': getPageData(this),
-							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.RESULTS_SEARCH:
