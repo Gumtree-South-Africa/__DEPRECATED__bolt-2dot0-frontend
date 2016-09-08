@@ -356,13 +356,8 @@ this.deleteCarouselItem = (event, toRemove) => {
 		selectedItem.click();
 	} else if (firstItem.length > 0) {
 		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
 	}
+
 	this.updateAddPhotoButton();
 	resizeCarousel();
 };
