@@ -52,6 +52,10 @@ $photo-switcher-width: 30%;
 		margin: 20px 10%;
 		vertical-align: top;
 
+		&.disabled {
+			opacity: 0.5;
+		}
+
 		.link-text {
 			color: white;
 		}
