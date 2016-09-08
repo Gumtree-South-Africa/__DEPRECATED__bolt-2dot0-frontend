@@ -88,6 +88,9 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
+		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
+		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {

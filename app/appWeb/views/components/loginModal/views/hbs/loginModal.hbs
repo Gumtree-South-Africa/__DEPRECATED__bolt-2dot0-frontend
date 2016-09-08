@@ -4,7 +4,7 @@
     </div>
 
     <div class="facebook-button">
-        <a class="link" href="/fb-TBD">
+        <a class="link" href="/social/facebook/authorize">
 			<span class="icon-facebook_white"></span>
 			<span>{{i18n "postAd.loginModal.facebookBtn"}}</span>
         </a>
@@ -13,16 +13,16 @@
  {{> (dynamic "button") hideIcon=true extraClasses='email-login-btn'
      buttonLink="/post-TBD" i18nPath="postAd.loginModal.emailBtn"}}
 
-    <a class="register-link" href="/register-TBD">{{i18n "postAd.loginModal.register"}}</a>
+    <a class="register-link" href="/register.html">{{i18n "postAd.loginModal.register"}}</a>
 
     <div class="legal-wrapper">
         <input type="checkbox">
         <span>{{i18n "postAd.loginModal.legal1"}}</span>
-        <a href="/termsAndConditions-TBD">{{i18n "postAd.loginModal.termsAndConditions"}}</a>
+        <a target="_blank" href="{{termsOfUseLink}}">{{i18n "postAd.loginModal.termsAndConditions"}}</a>
 		<span>{{i18n "postAd.loginModal.legal2"}}</span>
-		<a href="/privacy-TBD">{{i18n "postAd.loginModal.privacy"}}</a>
+		<a target="_blank" href="{{privacyPolicyLink}}">{{i18n "postAd.loginModal.privacy"}}</a>
 		<span>{{i18n "postAd.loginModal.and"}}</span>
-		<a href="/cookies-TBD">{{i18n "postAd.loginModal.cookies"}}</a>
+		<a target="_blank" href="{{cookieNoticeLink}}">{{i18n "postAd.loginModal.cookies"}}</a>
 		<span>{{i18n "postAd.loginModal.legal3"}}</span>
     </div>
 </div>
