@@ -6,12 +6,10 @@ module.exports = {
 		"app/appWeb/views/components/abTest/views/hbs/abTest.hbs",
 		"app/appWeb/views/components/adTile/views/hbs/*.hbs",
 		"app/appWeb/views/components/tileGrid/views/hbs/*.hbs",
-		"app/appWeb/views/components/recentActivity/views/hbs/recentActivity.hbs"
-
-		/*
+		"app/appWeb/views/components/recentActivity/views/hbs/recentActivity.hbs",
 		"app/appWeb/views/components/editFormCustomAttributes/views/hbs/*.hbs",
 		"app/appWeb/views/components/editFormTextbox/views/hbs/*.hbs",
-		"app/appWeb/views/components/editFormSelectBox/views/hbs/*.hbs"
-		*/
+		"app/appWeb/views/components/editFormSelectBox/views/hbs/*.hbs",
+		"app/appWeb/views/components/editFormDateInput/views/hbs/*.hbs"
 	]
 };
