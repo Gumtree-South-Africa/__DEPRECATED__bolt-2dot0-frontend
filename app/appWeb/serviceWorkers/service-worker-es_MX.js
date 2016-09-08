@@ -88,21 +88,11 @@ toolbox.router.get('/', toolbox.networkFirst, {
 	}
 });
 
-// Adding homepage CSS/CSSmin depending on config.get('static.min')
-if (cacheObj) {
-	if (cacheObj.isServeMin) {
-		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.cssmin.length; cacheIndex++) {
-			toolbox.router.get(cacheObj.homepageCache.cssmin[cacheIndex], toolbox.cacheFirst, {
-				cache: {
-					name: CURRENT_CACHES['homepage'],
-					maxEntries: 100,
-					maxAgeSeconds: 86400
-				}
-			});
-		}
-	} else {
-		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
-			toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
+//Function to add objects to cache, cacheFirst algorithm
+function addToCache(objArr) {
+	if (cacheObj) {
+		for (let cacheIndex = 0; cacheIndex < objArr.length; cacheIndex++) {
+			toolbox.router.get(objArr[cacheIndex], toolbox.cacheFirst, {
 				cache: {
 					name: CURRENT_CACHES['homepage'],
 					maxEntries: 100,
@@ -113,68 +103,17 @@ if (cacheObj) {
 	}
 }
 
-// Adding homepage icons cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.icons.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.icons[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
-
-// Adding homepage images cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.images.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.images[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
-
-// Adding homepage fonts
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.fonts.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.fonts[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
+addToCache(cacheObj.homepageCache.icons);
+addToCache(cacheObj.homepageCache.images);
+addToCache(cacheObj.homepageCache.fonts);
 
 // Adding homepage JS/JSmin cache depending on config.get('static.min')
-if (cacheObj) {
-	if (cacheObj.isServeMin){
-		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
-			toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
-				cache: {
-					name: CURRENT_CACHES['homepage'],
-					maxEntries: 100,
-					maxAgeSeconds: 86400
-				}
-			});
-		}
-	} else {
-		for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
-			toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
-				cache: {
-					name: CURRENT_CACHES['homepage'],
-					maxEntries: 100,
-					maxAgeSeconds: 86400
-				}
-			});
-		}
-	}
+if (cacheObj.isServeMin){
+	addToCache(cacheObj.homepageCache.jsmin)
+	addToCache(cacheObj.homepageCache.cssmin)
+} else {
+	addToCache(cacheObj.homepageCache.js);
+	addToCache(cacheObj.homepageCache.css);
 }
 
 // cache images from crop server
@@ -208,6 +147,8 @@ if (cacheObj.homepageEpsCache.length > 0) {
 		}
 	);
 }
+
+
 
 
 /**
