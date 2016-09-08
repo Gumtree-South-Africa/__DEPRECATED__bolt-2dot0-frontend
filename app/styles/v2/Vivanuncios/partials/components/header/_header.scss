@@ -52,12 +52,13 @@ $dropdown-width: 220px;
 			margin-top: 34px;
 			margin-bottom: 11px;
 			width: 200px;
-			height: 28px;
+			height: 24px;
 			background: url("../../../../../images/es_MX/logo.png") no-repeat 50% 50%;
 			background-size: contain;
 			@include from-breakpoint($medium-break) {
 				margin-left: 40px;
 				margin-top: 30px;
+				height: 28px;
 			}
 		}
 
