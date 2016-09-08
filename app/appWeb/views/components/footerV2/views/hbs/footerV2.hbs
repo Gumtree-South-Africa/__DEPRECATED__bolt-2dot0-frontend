@@ -1,6 +1,8 @@
 <div class="footer-wrapper">
     {{#unless this.footer.distractionFree}}
 		<div class="meet-team">{{i18n "footer.help.heretohelp"}}</div>
+    <div class="customer-service-container">
+
 		<div class="team-photos">
 			<div class="user-photo-wrapper">
 				<div class="user-photo">
@@ -44,7 +46,6 @@
         <div class="desktop-only line-divider"></div>
     {{/if}}
 
-
     {{#unless this.footer.distractionFree}}
         <div class="support-wrapper">
 			<div class="desktop-only support-container">
@@ -62,7 +63,7 @@
                 <a class="desktop-only support-text" href="{{this.footer.emailUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
             </div>
         </div>
-
+	</div>
 		<div class="mobile-only social-container">
 			<div class="social-icon-wrapper">
 				<a href="#">
