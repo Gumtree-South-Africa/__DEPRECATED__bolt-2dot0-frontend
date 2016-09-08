@@ -89,13 +89,17 @@ toolbox.router.get('/', toolbox.networkFirst, {
 });
 
 //Function to add objects to cache, cacheFirst algorithm
-function addToCache(objArr) {
-	for (let cacheIndex = 0; cacheIndex < objArr.length; cacheIndex++) {
-		toolbox.router.get(objArr[cacheIndex], toolbox.cacheFirst, {
+function addToCache(cacheArr, cacheName, cacheStrategy, maxNumber, maxTime) {
+	cacheName = (typeof cacheName === 'undefined') ? CURRENT_CACHES['homepage'] : cacheName;
+	cacheStrategy = (typeof cacheStrategy === 'undefined') ? toolbox.cacheFirst : cacheStrategy;
+	maxNumber = (typeof maxNumber === 'undefined') ? 100 : maxNumber;
+	maxTime = (typeof maxTime === 'undefined') ? 86400 : maxTime;
+	for (let cacheIndex = 0; cacheIndex < cacheArr.length; cacheIndex++) {
+		toolbox.router.get(cacheArr[cacheIndex], cacheStrategy, {
 			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
+				name: cacheName,
+				maxEntries: maxNumber,
+				maxAgeSeconds: maxTime
 			}
 		});
 	}
