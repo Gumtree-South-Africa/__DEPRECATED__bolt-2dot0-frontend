@@ -90,31 +90,33 @@ toolbox.router.get('/', toolbox.networkFirst, {
 
 //Function to add objects to cache, cacheFirst algorithm
 function addToCache(objArr) {
-	if (cacheObj) {
-		for (let cacheIndex = 0; cacheIndex < objArr.length; cacheIndex++) {
-			toolbox.router.get(objArr[cacheIndex], toolbox.cacheFirst, {
-				cache: {
-					name: CURRENT_CACHES['homepage'],
-					maxEntries: 100,
-					maxAgeSeconds: 86400
-				}
-			});
-		}
+	for (let cacheIndex = 0; cacheIndex < objArr.length; cacheIndex++) {
+		toolbox.router.get(objArr[cacheIndex], toolbox.cacheFirst, {
+			cache: {
+				name: CURRENT_CACHES['homepage'],
+				maxEntries: 100,
+				maxAgeSeconds: 86400
+			}
+		});
 	}
 }
 
-addToCache(cacheObj.homepageCache.icons);
-addToCache(cacheObj.homepageCache.images);
-addToCache(cacheObj.homepageCache.fonts);
+if (cacheObj){
+	addToCache(cacheObj.homepageCache.icons);
+	addToCache(cacheObj.homepageCache.images);
+	addToCache(cacheObj.homepageCache.fonts);
 
-// Adding homepage JS/JSmin cache depending on config.get('static.min')
-if (cacheObj.isServeMin){
-	addToCache(cacheObj.homepageCache.jsmin)
-	addToCache(cacheObj.homepageCache.cssmin)
-} else {
-	addToCache(cacheObj.homepageCache.js);
-	addToCache(cacheObj.homepageCache.css);
+	// Adding homepage JS/JSmin cache depending on config.get('static.min')
+	if (cacheObj.isServeMin){
+		addToCache(cacheObj.homepageCache.jsmin)
+		addToCache(cacheObj.homepageCache.cssmin)
+	} else {
+		addToCache(cacheObj.homepageCache.js);
+		addToCache(cacheObj.homepageCache.css);
+	}
 }
+
+
 
 // cache images from crop server
 // max of 300 entries, cached for 1 week
