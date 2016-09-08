@@ -11,6 +11,7 @@
 
 
 
+
 // include typography and other utilities
 // necessary only once throughout the site
 @include blueprint-typography(1em);
@@ -83,3 +84,6 @@ a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[hr
     text-decoration: none;
   }
 }
+
+@import  "../../partials/components/messages/messages";
+

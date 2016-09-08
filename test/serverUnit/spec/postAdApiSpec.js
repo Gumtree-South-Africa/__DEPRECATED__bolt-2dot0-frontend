@@ -50,7 +50,7 @@ describe('Post Ad Api', () => {
 
 					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
 					// the activateStatus is expected to cause a message to appear on the destination page
-					expect(jsonResult.ad.vipLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
+					expect(jsonResult.ad.redirectLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
 
 					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})

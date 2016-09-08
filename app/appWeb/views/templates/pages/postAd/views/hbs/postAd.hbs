@@ -22,7 +22,7 @@
 				</h1>
 				<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
 				<div class="error-modal-footer">
-                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' buttonLink='#' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
+                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,7 @@
 
         {{> (dynamic "postAdForm")}}
 
-		<a href="#" id="postAdBtn" class="post-ad-btn btn-wrapper disabled">
+		<a id="postAdBtn" class="post-ad-btn btn-wrapper disabled">
 			<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
 		</a>
 	</div>
