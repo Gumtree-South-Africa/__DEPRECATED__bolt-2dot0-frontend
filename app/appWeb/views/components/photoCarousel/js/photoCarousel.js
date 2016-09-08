@@ -44,7 +44,12 @@ let resizeCarousel = () => {
 let setCoverPhoto = (event) => {
 	let data = $(event.target).data();
 	if ($(event.target).hasClass('icon-photo-close')) {
-		this.deleteCarouselItem(event);
+		let coverPhoto = $("#carousel-delete-wrapper").find($(event.target));
+		let toRemove = $(event.target).closest('.carousel-item');
+		if (coverPhoto.length) {
+			toRemove = $(".carousel-item.selected");
+		}
+		this.deleteCarouselItem(event, toRemove);
 		return;
 	}
 	if (!data.image) {
@@ -326,8 +331,8 @@ this._bindChangeListener = () => {
 	this.$imageUpload.on("change", fileInputChange);
 };
 
-this.deleteCarouselItem = (event) => {
-	event.stopPropagation();
+this.deleteCarouselItem = (event, toRemove) => {
+	event.stopImmediatePropagation();
 
 	// remove cover photo
 	let coverPhoto = $("#cover-photo");
@@ -335,7 +340,6 @@ this.deleteCarouselItem = (event) => {
 	coverPhoto.addClass("no-photo");
 	coverPhoto.attr("data-image", "");
 
-	let toRemove = $(event.target).closest('.carousel-item');
 	let index = $(".add-photo-item, .carousel-item").index(toRemove);
 	this.$carousel.slick('slickRemove', index);
 
@@ -351,41 +355,6 @@ this.deleteCarouselItem = (event) => {
 	if (selectedItem.length > 0) {
 		selectedItem.click();
 	} else if (firstItem.length > 0) {
-		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
-	}
-	this.updateAddPhotoButton();
-	resizeCarousel();
-};
-
-/******* BEGIN SLICK STUFF *******/
-let deleteSelectedItem = (event) => {
-	event.stopPropagation();
-
-	// remove cover photo
-	let coverPhoto = $("#cover-photo");
-	coverPhoto.css("background-image", "");
-	coverPhoto.addClass("no-photo");
-	coverPhoto.attr("data-image", "");
-
-	// delete carousel item
-	let toRemove = $(".carousel-item.selected");
-	let index = $(".add-photo-item, .carousel-item").index(toRemove);
-	this.$carousel.slick('slickRemove', index);
-
-	// delete image from imageUploads
-	if (this.imageCount === 0 || $('.carousel-item').length === 0) {
-		this.$postAdButton.addClass("disabled");
-	}
-
-	// Set new cover photo, or trigger file selector on empty photo click
-	let firstItem = $(".carousel-item:first");
-	if (firstItem.length > 0) {
 		firstItem.click();
 	} else {
 		$("#cover-photo-wrapper").on('click', () => {
@@ -526,9 +495,14 @@ let initialize = (options) => {
 	$(".carousel-item").on('click', setCoverPhoto);
 
 	// delete image, remove current cover photo from carousel
-	$("#carousel-delete-wrapper").on('click', deleteSelectedItem);
+	$("#carousel-delete-wrapper").on('click', (evt) => {
+		let toRemove = $(".carousel-item.selected");
+		this.deleteCarouselItem(evt, toRemove);
+	});
+
 	$("#carousel-delete-item").on('click', (evt) => {
-		this.deleteCarouselItem(evt);
+		let toRemove = $(event.target).closest('.carousel-item');
+		this.deleteCarouselItem(evt, toRemove);
 	});
 
 	// Clicking empty cover photo should open file selector
