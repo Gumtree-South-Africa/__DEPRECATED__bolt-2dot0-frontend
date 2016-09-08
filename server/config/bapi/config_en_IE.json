@@ -94,8 +94,6 @@
               "currencyDisplay"    :    false,
               "currency"           :    ["EUR:EUR"]
         }
-
-
 	},
 	"bapi" : {
 		"Homepage" : {

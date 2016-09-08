@@ -19,8 +19,10 @@ module.exports = function() {
         if (!util.isReqTypeAsserts(req) && isGumtreeZA(req) ) {
             if (isRedirectToLiteWebSite(req)) {
             	res.redirect(getLiteHomePageUrl());
+				return;
             } else if (isRedirectToMobileWebSite(req)) {
                 res.redirect(getHomePageUrl());
+				return;
             }
         }
         next();

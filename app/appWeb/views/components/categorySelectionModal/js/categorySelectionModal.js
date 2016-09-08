@@ -134,7 +134,11 @@ class CategorySelectionModal {
 
 	_addToHierarchy(catObj) {
 		this.currentHierarchy.push(catObj.id);
-		this.$hierarchyContainer.append(`> <span role="link" data-index="${this.currentHierarchy.length - 1}" class="hier-link">${catObj.localizedName}</span>`);
+		let $newHeirarchyText = $(`<span role="link" data-index="${this.currentHierarchy.length - 1}" class="hier-link">${catObj.localizedName}</span>`);
+		$newHeirarchyText.click((evt) => {
+			this._hierarchyBack($(evt.currentTarget).data("index"));
+		});
+		this.$hierarchyContainer.append(`> `).append($newHeirarchyText);
 		this._adjustModalSizeForTextWrap();
 	}
 
