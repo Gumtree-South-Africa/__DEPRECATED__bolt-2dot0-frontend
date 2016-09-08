@@ -14,16 +14,13 @@
 		top: 15px;
 		right: 15px;
 
-		.icon-close, .close-text {
+		.icon-close-small, .close-text {
 			display: inline-block;
 			font-size: 12px;
 			color: grey;
 		}
 
-		.icon-close {
-			background-size: 1800%;
-			height: 16px;
-			width: 16px;
+		.icon-close-small {
 			vertical-align: text-bottom;
 		}
 	}
