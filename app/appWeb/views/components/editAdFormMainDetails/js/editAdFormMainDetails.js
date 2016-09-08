@@ -45,7 +45,9 @@ let _setupPolyfillForm = () => {
 		replaceUI: 'auto'
 	};
 
-	$.webshim.setOptions('basePath', '/public/js/libraries/webshims/shims/');
+	let baseJsPath = this.$editForm.data('publicJs-url');
+
+	$.webshim.setOptions('basePath', `${baseJsPath}libraries/webshims/shims/`);
 
 	$.webshims.setOptions('forms-ext', shimDefJSON);
 
