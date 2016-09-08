@@ -110,6 +110,8 @@ class CardsModel {
 
 			dataItems.ads = dataItems.ads.map((ad) => {
 				return {
+					id: ad.id,		// short id
+					adId: ad.adId,	// long id
 					title: ad.title,
 					adPrice: {
 						priceType: ad.priceType,

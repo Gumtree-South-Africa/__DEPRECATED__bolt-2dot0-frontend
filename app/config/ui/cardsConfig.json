@@ -12,10 +12,8 @@
 			"templateConfig": {
 				"viewMoreFilterIncrement": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showFavorites": true,
-				"showReplies": true,
-				"showLikes": true,
-				"showFeatured": true
+				"showSellers": true,
+				"showFavorites": true
 			}
 		},
 
@@ -28,10 +26,8 @@
 			"templateConfig": {
 				"viewMorePageSize": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showFavorites": true,
-				"showReplies": true,
-				"showLikes": true,
-				"showFeatured": true
+				"showSellers": true,
+				"showFavorites": true
 			}
 		}
 	},

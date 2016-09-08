@@ -10,7 +10,7 @@
         {{!-- now we iterate the items --}}
         {{#each this.ads}}
             <div data-index="{{@index}}" class="tile-item">
-                {{> (base "adTile") this}}
+                {{> (base "adTile") this config=../config}}
             </div>
         {{/each}}
 

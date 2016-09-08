@@ -69,7 +69,10 @@ class TileGrid {
 			let selector = `[data-short-adid="${favoriteIds[i]}"]`;
 			let tileElts = $tiles.find(selector);
 			if (tileElts.length > 0) {
-				adTile.toggleFavorite(tileElts[0]);
+				// there could be multiple elements, one in trending card, and one in gallery
+				for (let elementIndex = 0; elementIndex < tileElts.length; elementIndex++) {
+					adTile.toggleFavorite(tileElts[elementIndex]);
+				}
 			}
 		}
 	}

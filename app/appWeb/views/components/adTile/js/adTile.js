@@ -35,7 +35,8 @@ class AdTile {
 		if (!cookie) {
 			return [];
 		}
-		return cookie.replace(/\"/g,'').split(',');
+		// V1 watchlist cookie has the commas encoded, we need to be compatible so we use decodeURIComponent
+		return decodeURIComponent(cookie.replace(/\"/g,'')).split(',');
 	}
 
 	/**
@@ -50,16 +51,14 @@ class AdTile {
 	/**
 	 * extracts a map (of keys) from a cookie,
 	 * using a map to help prevent duplicates and simplify add/remove
-	 * @param cookieName
 	 * @returns {{object}} map
 	 * @private
 	 */
-	_getIdMapFromCookie(cookieName) {
-		let cookie = CookieUtils.getCookie(cookieName);
-		if (!cookie) {
+	_getIdMapFromCookie() {
+		let ids = this.getCookieFavoriteIds();
+		if (ids.length === 0) {
 			return {};
 		}
-		let ids = cookie.replace(/\"/g,'').split(',');
 		let map = {};
 		for (let i = 0; i < ids.length; i++) {
 			map[ids[i]] = '';	// dont care about the values
@@ -74,9 +73,11 @@ class AdTile {
 	 * @returns {string} the map keys reduced to storage format: comma separated string (useful in testing)
 	 * @private
 	 */
-	_setIdMapToCookie(cookieName, map) {
-		let cookieValue = Object.keys(map).join(',');
-		CookieUtils.setCookie(cookieName, cookieValue, 10000);
+	_setIdMapToCookie(map) {
+		// V1 watchlist cookie has the commas encoded, we need to be compatible so we use encodeURIComponent
+		let cookieValue = encodeURIComponent(Object.keys(map).join(','));
+
+		CookieUtils.setCookie('watchlist', cookieValue, 10000);
 		return cookieValue;
 	}
 
@@ -108,7 +109,7 @@ class AdTile {
 
 			// add to cookie
 			ids[shortAdId] = '';
-			this._setIdMapToCookie('watchlist', ids);
+			this._setIdMapToCookie(ids);
 
 			// add to server
 			action = "POST";
@@ -116,7 +117,7 @@ class AdTile {
 
 			// delete from cookie
 			delete ids[shortAdId];
-			this._setIdMapToCookie('watchlist', ids);
+			this._setIdMapToCookie(ids);
 
 			// remove from server
 			action = "DELETE";

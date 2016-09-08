@@ -55,6 +55,16 @@ $panelCornerBorderRadius: 7px;
 		}
 	}
 
+	.tile-seller-link {
+		z-index: 1;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		// give the seller link a little more space for clicking (5px around the 30px seller photo)
+		width: 40px;
+		height: 40px;
+	}
+
 	.user-photo {
 		width: 30px;
 		height: 30px;
