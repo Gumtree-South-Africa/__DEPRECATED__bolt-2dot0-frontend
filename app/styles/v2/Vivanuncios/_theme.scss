@@ -142,6 +142,7 @@ $fontSizeH1: 1.5em;    // 24px
 $fontSizeH2: 1.5em;    // 24px
 $fontSizeH3: 1.25em;   // 20 px
 $fontSizeH4: 1em;      // 16 px
+$fontSizeLabel: .625em;      // 10 px
 
 // Colors, by specific item
 
@@ -167,9 +168,15 @@ $searchBarTextBoxBorder: $vivaGray6;
 $searchBarButtonColor: $vivaBlue2;
 $searchBarButtonTextColor: $vivaWhite;
 
+// Cards
+
+$gallerySponsoredTextColor: $vivaGray10;
+$galleryViewMoreColor: $vivaGreen1;
+
 // Ad Tile
 
 $featuredBorderColor: $vivaGreen1;
+$galleryBorderColor: $vivaGreen1;
 
 // Post Ad page
 

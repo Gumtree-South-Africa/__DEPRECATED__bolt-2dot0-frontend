@@ -1,6 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
 let EpsUpload = require('./epsUpload.js');
 let uploadAd = require('./uploadAd.js');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
@@ -339,7 +338,7 @@ let prepareForImageUpload = (i, file) => {
 		};
 	};
 
-	this.epsUpload.prepareForImageUpload(i, file, UploadMsgClass, imageUploads, loadData, onload);
+	this.epsUpload.prepareForImageUpload(i, file, UploadMsgClass, loadData, onload);
 };
 
 

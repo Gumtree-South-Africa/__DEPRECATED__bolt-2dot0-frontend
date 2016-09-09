@@ -1205,6 +1205,9 @@
 		},
 		"trending": {
 			"contact": "Contactar"
+		},
+		"gallery" : {
+			"cardTitle": "Galería Principal"
 		}
 	},
 	"header": {

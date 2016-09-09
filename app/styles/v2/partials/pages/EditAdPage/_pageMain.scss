@@ -73,6 +73,7 @@ $labelMargin: 8%;
 
 		select {
 			text-indent: 2%;
+			padding: 0 !important;
 		}
 
 		.choose-category-button {
@@ -343,6 +344,7 @@ $labelMargin: 8%;
 		.control input:checked ~ .currency-type {
 			color: black;
 			font-weight: bold;
+			display: inline-block;
 		}
 
 		.inner-circle {

@@ -20,7 +20,7 @@ class CardService {
 		return require('q')(require(process.cwd() + '/test/serverUnit/mockData/api/v1/TrendingCard.json'));
 	}
 
-	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters) {
+	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters, cardName) {
 		// console.log(parameters);
 
 		if (parameters) {
@@ -36,11 +36,12 @@ class CardService {
 	 		path: config.get(queryEndpoint),
 	 		extraParameters: parameters,    // bapiOptionsModel may bring 'parameters' in from config, so we use extraParameters
 			timeout: cacheConfig.cache.homepageTrendingCard.bapiTimeout
-	 	}), bapiHeaderValues, 'card');
+	 	}), bapiHeaderValues, cardName);
 	}
 
+	// NOTE: this is only called by the cache, specific to trending
 	getTrendingCard(bapiHeaderValues) {
-		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch');
+		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', {}, 'trendingCard');
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {

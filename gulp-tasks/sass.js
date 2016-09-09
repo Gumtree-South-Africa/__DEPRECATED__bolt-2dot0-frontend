@@ -17,6 +17,8 @@ module.exports = function watch(gulp, plugins) {
 			if (process.env.NODE_ENV !== undefined) {
 				configFileName = process.env.NODE_ENV;
 				isCompressed = require(process.cwd() + '/server/config/' + configFileName + '.json').static.min;
+			} else {
+				console.warn("no NODE_ENV is defined, building minified css, alternatively prefix your gulp command ex: NODE_ENV=vm gulp watch")
 			}
 
 			var stream =

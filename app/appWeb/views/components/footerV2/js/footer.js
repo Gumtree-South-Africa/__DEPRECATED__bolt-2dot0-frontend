@@ -1,7 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
-
 let initialize = () => {
 
 	let _toggleCategory = (e) => {

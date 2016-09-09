@@ -20,10 +20,10 @@ describe('Ad Tile', () => {
 
 			let map = {'bar': '', 'bas': ''};
 
-			let cookieValue = adTileController._setIdMapToCookie("foo", map);
-			expect(cookieValue).toBe("bar,bas");
+			let cookieValue = adTileController._setIdMapToCookie(map);
+			expect(cookieValue).toBe(encodeURIComponent("bar,bas"));
 
-			cookieValue = adTileController._getIdMapFromCookie("foo");
+			cookieValue = adTileController._getIdMapFromCookie();
 			expect(JSON.stringify(cookieValue, null, 4)).toBe(JSON.stringify(map, null, 4));
 		});
 
@@ -31,7 +31,8 @@ describe('Ad Tile', () => {
 		it('should toggle heart icon and set cookie on click', () => {
 			let $testArea = specHelper.setupTest("adTile_es_MX", adTileModel, "es_MX");
 			let $heart = $testArea.find('.favorite-btn');
-
+			expect($heart.length).toBe(1, 'should be a favorite button');
+			
 			// we're going to call twice, once on each click, one POST and one DELETE
 			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
 			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result

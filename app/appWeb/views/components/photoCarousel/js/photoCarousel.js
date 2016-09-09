@@ -1,7 +1,6 @@
 'use strict';
 
 require("slick-carousel");
-let $ = require('jquery');
 let EpsUpload = require('../../uploadImage/js/epsUpload');
 let uploadAd = require('../../uploadImage/js/uploadAd');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
@@ -471,9 +470,9 @@ let preventDisabledButtonClick = (event) => {
 		event.preventDefault();
 		// add red border to photo carousel if no photos
 		if ($('.carousel-item').length === 0) {
-			window.BOLT.trackEvents({"event": "PostAdFreeFail"});	
+			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 			$('.cover-photo').addClass('red-border');
-			$('.photos-required-msg').removeClass('hidden');			
+			$('.photos-required-msg').removeClass('hidden');
 		}
 	} else {
 		this.$postAdButton.addClass('disabled');
@@ -551,12 +550,6 @@ this.deleteCarouselItem = (event) => {
 		selectedItem.click();
 	} else if (firstItem.length > 0) {
 		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
 	}
 	this.updateAddPhotoButton();
 	resizeCarousel();
@@ -586,12 +579,6 @@ let deleteSelectedItem = (event) => {
 	let firstItem = $(".carousel-item:first");
 	if (firstItem.length > 0) {
 		firstItem.click();
-	} else {
-		$("#cover-photo-wrapper").on('click', () => {
-			if (!this.disableImageSelection) {
-				this.$imageUpload.click();
-			}
-		});
 	}
 	this.updateAddPhotoButton();
 	resizeCarousel();
@@ -740,7 +727,7 @@ let initialize = (options) => {
 		if (this.disableImageSelection) {
 			e.preventDefault();
 		}
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});			
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	// Listen for file drag and drop uploads

@@ -33,7 +33,7 @@
 			"account": "UA-56697433-1",
 			"domainName": ".vivanuncios.com.mx",
 			"ignoredRefs": [
-				"vivanuncios.com.mx"
+				"www.vivanuncios.com.mx"
 			],
 			"allowAnchor": true,
 			"sessionCookieTimeout": 1800000,
@@ -152,7 +152,7 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard"]
 			},
 			"mobile": {
 				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo"]

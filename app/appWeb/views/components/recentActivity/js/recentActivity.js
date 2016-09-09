@@ -1,6 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
 let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 let _shuffleArr = (inputArr) => {

@@ -1,6 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
 let _showMoreSearches = () => {
 	$('.show-more-searches').removeClass('hide');
 	$('.view-more-searches').addClass('hide');
