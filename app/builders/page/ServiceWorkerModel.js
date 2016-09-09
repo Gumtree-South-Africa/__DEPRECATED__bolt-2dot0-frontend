@@ -116,7 +116,7 @@ class ServiceWorkerModel {
 			return a.concat(b);
 		}, []);
 
-		modelData.footer.cachePath = {'preCache': preCache, 'homepageCache': homepageCache, 'homepageCropCache': cropImageBaseUrl, 'homepageEpsCache': epsImageBaseUrl, 'isServeMin': isServeMin};
+		modelData.footer.cachePath = {'preCache': preCache, 'homepageCache': homepageCache, 'cropCache': cropImageBaseUrl, 'epsCache': epsImageBaseUrl, 'isServeMin': isServeMin};
 
 		return modelData;
 	}
