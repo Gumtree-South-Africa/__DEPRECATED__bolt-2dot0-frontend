@@ -137,13 +137,12 @@ class AdTile {
 	}
 
 	/**
-	 * onReady - separated out for easy testing
+	 * tiles added sets up favorite handlers
+	 * @param $tiles
 	 */
-	onReady() {
-
-
-		// update/set watchlist cookie when user 'favorites' an ad
-		this.$favoriteButton.click((evt) => {
+	tilesAdded($tiles) {
+		let $favoriteButtons = $tiles.find('.favorite-btn');
+		$favoriteButtons.click((evt) => {
 			// push the click through without changing
 			// the scope of this
 			this._onFavoriteClick(evt);
@@ -151,13 +150,20 @@ class AdTile {
 	}
 
 	/**
+	 * onReady - separated out for easy testing
+	 */
+	onReady() {
+
+		this.$tiles = $('.panel');
+		this.tilesAdded(this.$tiles);
+
+	}
+
+	/**
 	 * Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 	 * @param registerOnReady
 	 */
 	initialize(registerOnReady = true) {
-		this.$tile = $('.panel');
-		this.$favoriteButton = this.$tile.find('.favorite-btn');
-
 
 		if (registerOnReady) {
 			$(document).ready(this.onReady.bind(this));	// need special bind here

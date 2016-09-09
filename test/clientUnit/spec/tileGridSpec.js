@@ -26,6 +26,10 @@ describe('Card/Tile Grid', () => {
 	beforeEach(() => {
 	});
 
+	afterEach(() => {
+		CookieUtils.setCookie("watchlist", "");	// clear the watchlist cookies
+	});
+
 	describe('Breakpoint Tile Size Mapper', () => {
 
 		// this test out until we can  fix the issue:
@@ -202,15 +206,15 @@ describe('Card/Tile Grid', () => {
 
 		});
 
-		it('should get more items visible when clicking on view more (gallery)', () => {
+		it('should get more items visible when clicking on view more, and new item can be favorited (gallery)', () => {
 
 
 			let model = {
 				card: galleryCardModel
 			};
 
-			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=1&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
-			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=3&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
 			// spyOn(tileGridController, '_redirectToSearch').and.callFake(() => {
 			// });
 
@@ -237,6 +241,21 @@ describe('Card/Tile Grid', () => {
 			tiles = $testArea.find('.tile-item');
 			shown = tilesShown(tiles);
 			expect(shown).toBe(numShownInitially * 2, 'should have more tiles shown after clicking view more');
+
+			// should be able to favorite the new tiles
+
+			let $hearts = $testArea.find('.card-galleryCard .tile-item .favorite-btn');
+			expect($hearts.length).toBe(numShownInitially * 2);
+			let $heart = $($hearts[numShownInitially]);	// first tile of the view more
+
+			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
+
+			$heart.click();
+			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
+			let cookieValue = CookieUtils.getCookie('watchlist');
+			expect(cookieValue).toBe(`${model.card.ads[0].id}`);	// use short ad id for compatibility with RUI for the cookie
+
+
 
 			// another click should do the same thing, but since we've set 'moreDataAvailable' to false, we'll hide the button
 			viewMore.click();

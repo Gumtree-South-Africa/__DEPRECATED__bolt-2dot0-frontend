@@ -137,17 +137,19 @@ class TileGrid {
 
 				// create tiles from the data
 				let grid = clientHbs.renderTemplate("tileGrid", data);
-				let tiles = $(grid).find('.tile-item');
+				let $tiles = $(grid).find('.tile-item');
 
 				// now get the container and put the tiles in
 				let container = $(state.cardElement).find('.tile-container');
-				container.isotope('insert', tiles);
+				container.isotope('insert', $tiles);
+				adTile.tilesAdded($tiles);
+				this._syncFavoriteCookieWithTiles($tiles);
 
 				// now we need to give the new tiles their appropriate size, but we need all the card's tiles
 				this.breakpointMapper.adjustTileSizes(this.currentBreakpoint, this._getTilesForCard(state));
 				container.isotope('layout');	// since sizes have changed, need to layout
 
-				tiles.find('img.lazy').lazyload({
+				$tiles.find('img.lazy').lazyload({
 					"skip_invisible": true
 				});
 
@@ -282,8 +284,8 @@ class TileGrid {
 			}
 		});
 
-		let allCardsTiles = $('.tile-container .tile-item');	// all tiles regardless of which card
-		this._syncFavoriteCookieWithTiles(allCardsTiles);
+		let $allCardsTiles = $('.tile-container .tile-item');	// all tiles regardless of which card
+		this._syncFavoriteCookieWithTiles($allCardsTiles);
 
 		adTile.initialize();
 
