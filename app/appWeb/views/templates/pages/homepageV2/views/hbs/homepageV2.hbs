@@ -4,11 +4,6 @@
 
 {{#partial "content"}}
 	<div>
-
-        {{#if this.search}}
-            {{> (dynamic "searchbarV2") }}
-        {{/if}}
-
         {{> (dynamic "sectionMenu")}}
 
         {{> (dynamic "topBanner")}}
@@ -85,8 +80,9 @@
 			ptype: 'home'
 		};
 
-
-            {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
+            {{#if this.showTopBanner}}
+                {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
+            {{/if}}
             {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
             {{#block "googleBannerAdsRightBottomV2_Script"}}{{/block}}
             {{#block "googleBannerAdsBottom_Script"}}{{/block}}

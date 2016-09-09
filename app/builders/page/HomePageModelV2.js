@@ -65,9 +65,16 @@ class HomePageModelV2 {
 
 	mapData(modelData, data) {
 		let distractionFreeMode = false;
+		let showTopBanner = true;
+
 		if (this.bapiConfigData.content.homepageV2) {
 			distractionFreeMode = this.bapiConfigData.content.homepageV2.distractionFree || false;
 		}
+
+		if (this.bapiConfigData.content.homepageV2.showTopBanner !== undefined) {
+			showTopBanner = this.bapiConfigData.content.homepageV2.showTopBanner;
+		}
+
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
 		modelData.header.distractionFree = distractionFreeMode;
@@ -75,6 +82,8 @@ class HomePageModelV2 {
 		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
+		modelData.showTopBanner = showTopBanner;
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 
 		modelData.isNewHP = true;
 

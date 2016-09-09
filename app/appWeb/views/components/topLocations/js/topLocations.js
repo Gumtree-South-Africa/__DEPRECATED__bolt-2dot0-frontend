@@ -1,23 +1,41 @@
 'use strict';
 
+
 let _showMoreLocations = () => {
-	$('.show-more-locations').removeClass('hide');
-	$('.view-more-locations').addClass('hide');
-	$('.desktop-seo').css('display', 'none');
+	this.$showMoreLocations.toggleClass('hide');
+	this.$viewMoreLocations.text(
+		(this.$showMoreLocations.is(':visible'))
+		? this.viewLessText : this.viewMoreText);
+
+	if (this.$desktopSeo.is(':visible')) {
+		this.$desktopSeo.css('display', 'none');
+	} else {
+		this.$desktopSeo.css('display', 'block');
+	}
 };
 
 let _toggleTabs = () => {
-	$('.top-searches').addClass('mobile-hide');
-	$('.top-locations').removeClass('mobile-hide');
-	$('.search-header-text').removeClass('thick-underline');
-	$('.location-header-text').addClass('thick-underline');
+	this.$topLocations.removeClass('mobile-hide');
+	this.$topSearches.addClass('mobile-hide');
+	this.$locationHeaderText.addClass('thick-underline');
+	this.$searchHeadertext.removeClass('thick-underline');
 };
 
 let initialize = () => {
-	$(document).ready(() => {
-		$('.view-more-locations').on('click', _showMoreLocations);
-		$('.top-locations-header').on('click', _toggleTabs);
-	});
+	this.$desktopSeo = $('.desktop-seo');
+	this.$viewMoreLocations = $('.view-more-locations');
+	this.$showMoreLocations = $('.show-more-locations');
+	this.$topLocationsHeader = $('.top-locations-header');
+	this.$topSearches = $('.top-searches');
+	this.$topLocations = $('.top-locations');
+	this.$locationHeaderText = $('.location-header-text');
+	this.$searchHeadertext = $('.search-header-text');
+
+	this.viewMoreText = this.$viewMoreLocations.data('view-more');
+	this.viewLessText = this.$viewMoreLocations.data('view-less');
+
+	this.$viewMoreLocations.on('click', _showMoreLocations);
+	this.$topLocationsHeader.on('click', _toggleTabs);
 };
 
 module.exports = {

@@ -1,6 +1,6 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
-let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload');
+let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');

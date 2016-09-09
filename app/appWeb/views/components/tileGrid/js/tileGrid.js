@@ -1,6 +1,5 @@
 'use strict';
 
-// http://isotope.metafizzy.co/extras.html#browserify
 
 let Isotope = require('isotope-layout');
 require('jquery-lazyload');
@@ -299,5 +298,4 @@ class TileGrid {
 }
 
 module.exports = new TileGrid();
-
 

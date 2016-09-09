@@ -206,7 +206,7 @@ describe('Card/Tile Grid', () => {
 
 		});
 
-		fit('should get more items visible when clicking on view more, new ajax items can be favorited by cookie or click (gallery)', () => {
+		it('should get more items visible when clicking on view more, new ajax items can be favorited by cookie or click (gallery)', () => {
 
 
 			let model = {

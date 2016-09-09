@@ -32,7 +32,7 @@ $p3: $viva-p3;
 
 $p2-secondary-color: $vivaGray1;
 
-$safety-card-background-color: #e8e6e6;
+$safety-card-background-color: #1E98D5;
 $common-background-color: #f7f7f7;
 
 // Primary link
@@ -72,7 +72,7 @@ $page-bordercolor: #f7f7f7;
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
-$appdownloadreview-font: $viva-p3;
+$appdownloadreview-font: $viva-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
@@ -157,16 +157,21 @@ $headerMessagesBackgroundColor: $vivaOrange;
 $profileDropdownLoginBtnColor: $vivaBlue;
 $headerMenuItemHighlightColor: $vivaGray5;
 $imagePlaceholderBackground: $vivaGray5;
+$headerBlue: $vivaBlue;
 
 $searchBarTextColor: $vivaBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaOrange;
+$searchBarLocationLinkColor: $vivaGray1;
 $searchBarTextBoxBorder: $vivaGray6;
 $searchBarButtonColor: $vivaBlue2;
 $searchBarButtonTextColor: $vivaWhite;
+$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+
+// Get the App card
+$getAppCardMainBlue: $vivaBlue6;
 
 // Cards
 
