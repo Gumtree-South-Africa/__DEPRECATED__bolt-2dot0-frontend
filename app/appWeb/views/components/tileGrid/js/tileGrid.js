@@ -54,8 +54,10 @@ class TileGrid {
 		// isotope likes to modify its own container widths, so we control it via the outer container
 		this.$tileGridWidthContainer.width(breakpoint);
 
+		console.error("HEY YOU");
 		this.isotopeElement.isotope('layout');
 	}
+};
 
 
 	/**

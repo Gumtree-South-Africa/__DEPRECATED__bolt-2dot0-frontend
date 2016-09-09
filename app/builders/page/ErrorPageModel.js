@@ -10,8 +10,8 @@ class ErrorPageModel {
 		this.req = req;
 		this.res = res;
 	}
-
 	/**
+
 	 * @description A class that Handles the Error Page Model
 	 * @param {Object} req Request object
 	 * @param {Object} res Response object
