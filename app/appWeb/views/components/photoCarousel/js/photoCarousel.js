@@ -3,7 +3,7 @@
 require("slick-carousel");
 let $ = require('jquery');
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
-let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
+let PostAdErrorModalClass = require('../../postAdErrorModal/js/postAdErrorModal').PostAdErrorModalClass;
 let uploadAd = require('../../uploadImage/js/uploadAd');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
@@ -130,7 +130,7 @@ let _postAd = (urls, locationType) => {
 		console.warn(err);
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
-		this.uploadMessageClass.failMsg();
+		this.postAdErrorModalClass.failMsg();
 		formChangeWarning.enable();
 	}, extraPayload);
 };
@@ -139,7 +139,7 @@ let _failure = (i, epsError) => {
 	let error = _this.epsUpload.extractEPSServerError(epsError);
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 
-	this.uploadMessageClass.translateErrorCodes(i, error);
+	this.postAdErrorModalClass.translateErrorCodes(i, error);
 	removePendingImage(i);
 };
 
@@ -173,7 +173,7 @@ let loadData = (i, file) => {
 			let index = this.bCount;
 
 			if (!event.lengthComputable) {
-				this.uploadMessageClass.failMsg(index);
+				this.postAdErrorModalClass.failMsg(index);
 			}
 		}, false);
 		return xhr;
@@ -198,7 +198,7 @@ let html5Upload = (uploadedFiles) => {
 	if (this.imageCount !== allowedUploads) {
 		// create image place holders
 		this.imageCount++;
-		this.uploadMessageClass.loadingMsg(this.imageCount - 1); //this.uploadMessageClass(upDone).fail()
+		this.postAdErrorModalClass.loadingMsg(this.imageCount - 1); //this.postAdErrorModalClass(upDone).fail()
 		prepareForImageUpload(this.$loadedImages - 1, uploadedFiles);
 	} else {
 		if ($(".carousel-items").length === allowedUploads) {
@@ -246,7 +246,7 @@ let parseFile = (file) => {
 	let reader = new FileReader();
 
 	if (!this.epsUpload.isSupported(file.name)) {
-		this.uploadMessageClass.invalidType(0);
+		this.postAdErrorModalClass.invalidType(0);
 		console.error("Invalid File Type");
 		return;
 	}
@@ -436,20 +436,7 @@ let initialize = (options) => {
 	this.$loadedImages = 0;
 	this.imageCount = 0;
 
-	this.messageError = $('.error-message');
-	this.messageModal = $('.message-modal');
-	this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
-	this.$errorMessageTitle = $('#js-error-title');
-	this.$errorModalButton = this.messageModal.find('.btn');
-	this.$errorModalClose.click(() => {
-		this.messageModal.toggleClass('hidden');
-	});
-
-	this.$errorModalButton.click(() => {
-		this.messageModal.toggleClass('hidden');
-		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
-	});
+	this.$postAdErrorModal = $('#postAd-error-modal');
 
 	this._bindChangeListener();
 
@@ -465,11 +452,8 @@ let initialize = (options) => {
 		categorySearchPlaceholder: this.epsData.data('eps-categorysearchplaceholder')
 	};
 
-	this.uploadMessageClass = new UploadMessageClass(
-		this.epsData,
-		this.messageError,
-		this.messageModal,
-		this.$errorMessageTitle,
+	this.postAdErrorModalClass = new PostAdErrorModalClass(
+		this.$postAdErrorModal,
 		{
 			hideImage: (i) => {
 				let toRemove = $(".carousel-item[data-item='" + i + "']");

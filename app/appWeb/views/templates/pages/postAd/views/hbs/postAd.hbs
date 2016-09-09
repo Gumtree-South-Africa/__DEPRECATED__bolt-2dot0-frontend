@@ -7,27 +7,9 @@
 
     {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle"}}
 
-	<div class="message-modal hidden">
-		<div class="message">
-			<div class="error-modal-container">
-				<div id='js-close-error-modal' class="error-modal-close-section">
-					<div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
-					<div class="inline-block icon-close"></div>
-				</div>
-				<h1 class="error-title">
-					<div class="error-icon icon-unsupported-file-format"></div>
-					<div class="error-title-text" id="js-error-title">
-                        {{i18n "postAd.unsupportedFileModal.error"}}
-					</div>
-				</h1>
-				<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
-				<div class="error-modal-footer">
-                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
-				</div>
-			</div>
-		</div>
-	</div>
-	<div class="mobile-post-ad">
+    {{> (dynamic "postAdErrorModal")}}
+
+    <div class="mobile-post-ad">
         {{> (dynamic "uploadImage")}}
 
 		<div class="didKnow-text">{{i18n "postAd.confirm.didYouKnow"}}</div>

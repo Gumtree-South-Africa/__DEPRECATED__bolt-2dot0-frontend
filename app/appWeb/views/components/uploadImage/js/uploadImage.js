@@ -2,7 +2,7 @@
 
 let $ = require('jquery');
 let EpsUpload = require('./epsUpload.js').EpsUpload;
-let UploadMessageClass = require('./epsUpload').UploadMessageClass;
+let PostAdErrorModalClass = require('../../postAdErrorModal/js/postAdErrorModal').PostAdErrorModalClass;
 let uploadAd = require('./uploadAd.js');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 
@@ -25,7 +25,7 @@ let _postAd = (url, locationType) => {
 		this.$uploadSpinner.toggleClass('hidden');
 		this.$uploadProgress.toggleClass('hidden');
 		formChangeWarning.enable();
-		this.uploadMessageClass.failMsg(0);
+		this.postAdErrorModalClass.failMsg(0);
 	}, {
 		locationType: locationType
 	});
@@ -36,7 +36,7 @@ let _success = (i, response) => {
 
 	if (!url) {
 		let error = this.epsUpload.extractEPSServerError(response);
-		this.uploadMessageClass.translateErrorCodes(0, error);
+		this.postAdErrorModalClass.translateErrorCodes(0, error);
 		return;
 	}
 
@@ -56,8 +56,8 @@ let _failure = (err) => {
 	let error = this.epsUpload.extractEPSServerError(err);
 	this.$uploadSpinner.toggleClass('hidden');
 	this.$uploadProgress.toggleClass('hidden');
-	this.uploadMessageClass.translateErrorCodes(0, error);
-	this.uploadMessageClass.failMsg(0);
+	this.postAdErrorModalClass.translateErrorCodes(0, error);
+	this.postAdErrorModalClass.failMsg(0);
 };
 
 let loadData = (i, file) => {
@@ -72,7 +72,7 @@ let loadData = (i, file) => {
 
 				_this.imageProgress.attr('value', percent * 100);
 			} else {
-				this.uploadMessageClass.failMsg(index);
+				this.postAdErrorModalClass.failMsg(index);
 			}
 		}, false);
 		return xhr;
@@ -104,7 +104,7 @@ let html5Upload = (evt) => {
 	// if user
 	if (totalFiles === 1) {
 		// create image place holders
-		this.uploadMessageClass.loadingMsg(0); //this.uploadMessageClass(upDone).fail()
+		this.postAdErrorModalClass.loadingMsg(0); //this.postAdErrorModalClass(upDone).fail()
 		prepareForImageUpload(0, uploadedFiles[0]);
 	}
 };
@@ -135,17 +135,10 @@ let initialize = () => {
 	this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
 	this.$uploadProgress = this.uploadImageContainer.find('#js-upload-progress');
 
-	this.messageError = $('.error-message');
-	this.messageModal = $('.message-modal');
-	this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
-	this.$errorMessageTitle = $('#js-error-title');
-	this.$errorModalButton = this.messageModal.find('.btn');
+	this.$postAdErrorModal = $('#postAd-error-modal');
 
-	this.uploadMessageClass = new UploadMessageClass(
-		this.epsData,
-		this.messageError,
-		this.messageModal,
-		this.$errorMessageTitle,
+	this.postAdErrorModalClass = new PostAdErrorModalClass(
+		this.$postAdErrorModal,
 		{
 			hideImage: () => {
 				this.imageHolder.css("background-image", `url("")`);
@@ -157,17 +150,6 @@ let initialize = () => {
 			}
 		}
 	);
-
-	this.$errorModalClose.click((e) => {
-		e.stopImmediatePropagation();
-		this.messageModal.toggleClass('hidden');
-	});
-
-	this.$errorModalButton.click((e) => {
-		e.stopImmediatePropagation();
-		this.messageModal.toggleClass('hidden');
-		this.$imageUpload.click();
-	});
 
 	this.uploadPhotoText.on('click', (e) => {
 		e.stopImmediatePropagation();
@@ -203,7 +185,7 @@ let initialize = () => {
 			return;
 		}
 		if (!this.epsUpload.isSupported(file.name)) {
-			this.uploadMessageClass.invalidType();
+			this.postAdErrorModalClass.invalidType();
 			return;
 		}
 		this.inputDisabled = true;
