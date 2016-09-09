@@ -3,7 +3,7 @@
 		"type" 								: "website",
 		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
-		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no-photo_MX.png",
+		"noPhotoUrl"						: "https://afs.googleusercontent.com/alamaula/no-photo_MX.png",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
@@ -33,7 +33,7 @@
 			"account": "UA-56697433-1",
 			"domainName": ".vivanuncios.com.mx",
 			"ignoredRefs": [
-				"vivanuncios.com.mx"
+				"www.vivanuncios.com.mx"
 			],
 			"allowAnchor": true,
 			"sessionCookieTimeout": 1800000,
@@ -66,8 +66,8 @@
 		"blog"								: "https://blog.vivanuncios.com.mx",
 		"about"								: "https://blog.vivanuncios.com.mx/noticias/que-es-vivanuncios/",
 		"helpLabel"							: "Ayuda",
-		"helpUrl"							: "http://ayuda.vivanuncios.com.mx/MX/",
-		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
+		"helpUrl"							: "https://ayuda.vivanuncios.com.mx/MX/",
+		"interLinkUrl"						: "https://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-los-mejores-anuncios/v1",
 		"topSearchesLandingPageUrl"			: "/t-busquedas-destacadas/todos-los-anuncios/v1b0",
@@ -81,7 +81,7 @@
 		},
 		"seoBolt"							:	{
 			"enabled"							: true,
-			"blogUrl" 							: "http://vivedf.vivanuncios.com.mx/",
+			"blogUrl" 							: "https://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
 		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
@@ -108,8 +108,7 @@
 				},
 				{
 					"primaryImageUrl": "jackson_a.jpg",
-					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente.",
-					"rating": "5"
+					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente."
 				},
 				{
 					"primaryImageUrl": "francisco_m.jpg",
@@ -139,16 +138,11 @@
 				{
 					"primaryImageUrl": "canal_v.jpg",
 					"description": "Esta app es de lo mejor por eso le doy 5 estrellas",
-					"rating": "5"
+					"rating": "4"
 				},
 				{
 					"primaryImageUrl": "david_o.jpg",
 					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados",
-					"rating": "5"
-				},
-				{
-					"primaryImageUrl": "dante_s.jpg",
-					"description": "Genial Busca y vende lo q quieras bastante práctico y fácil de filtrar",
 					"rating": "4"
 				},
 				{

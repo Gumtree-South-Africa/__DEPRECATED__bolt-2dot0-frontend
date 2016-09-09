@@ -107,6 +107,25 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(StringUtils.obfsucate(value));
 	});
 
+	exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+		if (!object || !field || value === undefined){
+			return;
+		}
+		let entry = object[field];
+		if (!isNaN(entry)) {
+			return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+		} else {
+			return (entry === value) ? options.fn(this) : options.inverse(this);
+		}
+	});
+
+	exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+		if (!object || !field) {
+			return;
+		}
+		return (field in object) ? options.fn(this) : options.inverse(this);
+	});
+
 	Handlebars.registerHelper("formatPrice", (number, separator) => {
 		if (!number)  {
 			return;

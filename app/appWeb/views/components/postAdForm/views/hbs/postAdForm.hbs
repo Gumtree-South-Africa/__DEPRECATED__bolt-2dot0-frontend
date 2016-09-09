@@ -9,7 +9,8 @@
 			<span class="char-count">0</span><span>/100</span>
 			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
 		</div>
-        <input id="title-input" class="text-input title-input" type="text" maxlength="100"
+		<div id="deferred-ad-images" class="hidden">{{json this.deferredAd.ads.0.imageUrls}}</div>
+		<input id="title-input" class="text-input title-input" type="text" maxlength="100"
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.title}}"{{/if}}>
 
 		<div class="heading price-text">{{i18n "postAd.createAds.form.price"}}</div>

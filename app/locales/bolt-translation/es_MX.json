@@ -1326,7 +1326,7 @@
 				"vivabusiness": "Vivanuncios para negocios",
 				"rules": "Reglas para publicar anuncios",
 				"staysafe": "Mantente Seguro",
-                "staysafelink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
                 "protool": "Agented Immobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
@@ -1356,7 +1356,7 @@
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
-				"helplink": "http://ayuda.vivanuncios.com.mx/MX/",
+				"helplink": "https://ayuda.vivanuncios.com.mx/MX/",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar",
@@ -1412,8 +1412,7 @@
 			"title": "Categoría del artículo",
 			"prompt": "Búsqueda por palabra clave en %s",
 			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
-			"selectPrompt": "Select a Category Below",
-			"save": "Save"
+			"save": "Guardar"
 		}
 	},
 	"adStats": {
