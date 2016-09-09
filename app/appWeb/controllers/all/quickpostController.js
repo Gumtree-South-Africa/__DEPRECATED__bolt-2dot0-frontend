@@ -95,10 +95,10 @@ router.post('/',
 					 "pictures": {
 						"sizeUrls": [
 							{
-								"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/om4AAOSwAsNXlrMV/$_18.JPG?set_id=8800005007"
+								"LARGE": "https://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/om4AAOSwAsNXlrMV/$_18.JPG?set_id=8800005007"
 							},
 							{
-								"LARGE": "http://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/DXwAAOSwyKBXlrMZ/$_18.JPG?set_id=8800005007"
+								"LARGE": "https://i.ebayimg.sandbox.ebay.com/00/s/NTMzWDgwMA==/z/DXwAAOSwyKBXlrMZ/$_18.JPG?set_id=8800005007"
 							}
 						]
 					 }

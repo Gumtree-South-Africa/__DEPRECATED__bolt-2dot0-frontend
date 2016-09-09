@@ -40,8 +40,8 @@ let initialize = () => {
 
 						let latLng = new google.maps.LatLng(lat, lng);
 
-						dataImages.push('http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Yf8AAOSwXSJXO8Cy/$_19.JPG?set_id=8800005007');
-						let markerImage = new google.maps.MarkerImage('http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Yf8AAOSwXSJXO8Cy/$_19.JPG?set_id=8800005007', new google.maps.Size(10, 12));
+						dataImages.push('https://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Yf8AAOSwXSJXO8Cy/$_19.JPG?set_id=8800005007');
+						let markerImage = new google.maps.MarkerImage('https://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/Yf8AAOSwXSJXO8Cy/$_19.JPG?set_id=8800005007', new google.maps.Size(10, 12));
 
 						let marker = new google.maps.Marker({
 							'position': latLng,
