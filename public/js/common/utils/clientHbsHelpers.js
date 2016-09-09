@@ -93,7 +93,7 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(StringUtils.obfsucate(value));
 	});
 
-	exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
 		if (!object || !field || value === undefined){
 			return;
 		}
@@ -105,7 +105,7 @@ let initialize = (Handlebars) => {
 		}
 	});
 
-	exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+	Handlebars.registerHelper('ifIn', function(object, field, options) {
 		if (!object || !field) {
 			return;
 		}
