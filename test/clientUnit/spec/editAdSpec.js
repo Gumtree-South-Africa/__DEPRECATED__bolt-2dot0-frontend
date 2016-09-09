@@ -9,7 +9,7 @@ let mockLatLongData = {"id":201,"localizedName":"Mexico City","level":"L0","isLe
 
 let mockCategoryTree = require("../mock/categoryTree.json");
 
-describe('Edit Ad', () => {
+xdescribe('Edit Ad', () => {
 	it("should make ajax call when button is clicked", () => {
 		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
 			categoryCurrentHierarchy: "[0, 3]",
