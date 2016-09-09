@@ -66,6 +66,10 @@ let _geoShowMyLocation = (geoCookieValue) => {
 			if (resp !== undefined) {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
+
+				// Set searchLocId Cookie
+				let searchLocIdcookieValue = resp.id;
+				document.cookie = 'searchLocId' + "=" + escape(searchLocIdcookieValue) + ";path=/";
 			}
 		},
 		error: () => {
@@ -74,16 +78,22 @@ let _geoShowMyLocation = (geoCookieValue) => {
 	});
 };
 
+let _setGeoCookie = (location) => {
+	let cookieValue = location.lat + 'ng' + location.long;
+	document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
+
+	_geoShowMyLocation(escape(cookieValue));
+};
+
 let _geoFindMe = () => {
-	if (!navigator.geolocation) {
-		console.error('Geolocation is not supported by your browser');
-		return;
-	}
 	function success(position) {
 		let latitude = position.coords.latitude;
 		let longitude = position.coords.longitude;
-		document.cookie = 'geoId' + "=" + escape(latitude + 'ng' + longitude) + ";path=/";
-		_geoShowMyLocation(escape(latitude + 'ng' + longitude));
+		let location = {
+			lat: latitude,
+			long: longitude
+		};
+		_setGeoCookie(location);
 	}
 
 	function error() {
@@ -91,6 +101,11 @@ let _geoFindMe = () => {
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
 	}
 
+	if (!navigator.geolocation) {
+		console.error('Geolocation is not supported by your browser');
+		error();
+		return;
+	}
 	navigator.geolocation.getCurrentPosition(success, error);
 };
 
@@ -100,12 +115,6 @@ let _openModal = () => {
 
 let _refreshPage = () => {
 	location.reload(true);
-};
-
-let _setCookie = (location) => {
-	let cookieValue = location.lat + 'ng' + location.long;
-
-	document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
 };
 
 let _closeModal = () => {
@@ -118,7 +127,7 @@ let _closeModal = () => {
 		if (this.setValueCb) {
 			this.setValueCb(location);
 		} else {
-			_setCookie(location);
+			_setGeoCookie(location);
 			_refreshPage();
 		}
 	}

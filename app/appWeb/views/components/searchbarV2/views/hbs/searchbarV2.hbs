@@ -12,12 +12,22 @@
                     <div class="divider"></div>
                     <div class="location-link" data-gtm="npc|NavHeaderClick|eventLabel|Location">
 						<span class="search-loc-icon icon-location-marker"></span>
-						<span class="location-text">{{#if this.locationlatlong.localizedName}}{{this.locationlatlong.localizedName}}{{else}}{{i18n "location.defaultcity"}}{{/if}}</span>
+						<span class="location-text">
+                            {{#if this.locationlatlong.localizedName}}
+                                {{this.locationlatlong.localizedName}}
+                            {{else}}
+                                {{#if this.header.cookieLocationName}}
+                                    {{this.header.cookieLocationName}}
+                                {{else}}
+                                    {{i18n "location.defaultcity"}}
+                                {{/if}}
+                            {{/if}}
+                        </span>
                     </div>
-                    <input type="hidden" name="locId" value="{{this.locationlatlong.id}}">
+					<input type="hidden" name="locId" value="{{#if this.locationlatlong.id}}{{this.locationlatlong.id}}{{else}}{{this.header.cookieLocationId}}{{/if}}">
 				</div>
                 <div class="search-button-wrap">
-                    <button class="search-button" type="submit" data-gtm="npc|NavHeaderClick|eventLabel|SearchClick">
+                    <button class="search-button" type="submit" data-gtm="npc|NavHeaderClick|eventLabel|SearchClick" aria-label="{{i18n "homepage.searchbar.search"}}">
                         <span class="button-content-container">
                             <span class="inner-text">{{i18n "homepage.searchbar.search"}}</span>
                             <span class="icon-search-white"></span>
