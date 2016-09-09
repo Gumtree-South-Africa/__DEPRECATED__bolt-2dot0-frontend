@@ -32,6 +32,14 @@ class BasePageModel {
 		return new ModelBuilder(this.getCommonData());
 	}
 
+	setCategoryData(categorydata) {
+		this.dataLayer.setCategoryData(categorydata);
+	}
+
+	setAdResult(adresult) {
+		this.dataLayer.setAdResult(adresult);
+	}
+
 	getCommonData() {
 		return [
 			() => {
@@ -44,7 +52,7 @@ class BasePageModel {
 					combinedData.footer = data[1][0];
 					this.dataLayer.setUserId(combinedData.header.id);
 					this.dataLayer.setUserEmail(combinedData.header.userEmail);
-					this.dataLayer.setUserCreationDate(combinedData.header.creationDate);					
+					this.dataLayer.setUserCreationDate(combinedData.header.creationDate);
 					return this.dataLayerBuilder.resolveAllPromises();
 				}).then((data) => {
 					combinedData.dataLayer = data[0];

@@ -35,9 +35,10 @@ let getUsereData = function(scope) {
 
 
 //Function getCatData
-let getCatData = function() {
+let getCatData = function(scope) {
 	return {
-		'current': '',
+		//TODO: this is just for testing, don't be serious about this :)
+		'current': scope.categoryData,
 		'level0': '',
 		'level1': '',
 		'level2': '',
@@ -47,9 +48,10 @@ let getCatData = function() {
 };
 
 //Function getLocData
-let getLocData = function() {
+let getLocData = function(scope) {
 	return {
-		'current': '',
+		//TODO: this is just for testing, don't be serious about this :)
+		'current': scope.adResult,
 		'level0': '',
 		'level1': '',
 		'level2': '',
@@ -88,7 +90,13 @@ class DataLayerModel {
 		this.usercreationdate = usercreationdate;
 	}
 
+	setCategoryData(categorydata) {
+		this.categoryData = categorydata;
+	}
 
+	setAdResult(adresult) {
+		this.adResult = adresult;
+	}
 
 	getData() {
 		return [
@@ -98,10 +106,17 @@ class DataLayerModel {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
 					case pagetypeJson.pagetype.POST_AD:
+						data = {
+							'pageData': getPageData(this),
+							'userData': getUsereData(this),
+						};
+						break;
 					case pagetypeJson.pagetype.EDIT_AD:
 						data = {
 							'pageData': getPageData(this),
-							'userData': getUsereData(this)
+							'userData': getUsereData(this),
+							'categoryData': getCatData(this),
+							'locationData': getLocData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
