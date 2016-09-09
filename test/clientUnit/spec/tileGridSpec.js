@@ -11,6 +11,10 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 describe('Tile Grid', () => {
 
+	afterEach(() => {
+		tileGridController._unbindBreakpoint();
+	});
+
 	beforeEach(() => {
 	});
 
