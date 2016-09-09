@@ -46,7 +46,7 @@
 	"adsense.title": "Enlaces patrocinados",
 	"post.thanks": "<h1 class='header'>Revisa tu correo electrónico para activar tu <b>anuncio gratis</b> ahora.</h1><p>Vivanuncios te ha enviado un mensaje de correo electrónico a %s con el título <b>Activa tu anuncio en Vivanuncios - \"%s\"</b>.Haz clic en el link incluido en el mensaje para validar tu dirección de correo electrónico y activar tu anuncio ahora.</p>",
 	"post.promote.publish-in": "Publica en:<br />",
-	"post.promote.category1": "Computadoras y electrónica",
+	"post.promote.category1": "Computadoras y Electrónica",
 	"post.promote.category2": "Moda y hogar",
 	"post.promote.category3": "Bebés, Niños, Embarazada",
 	"post.gotowebdomain": "Ir a %s",
@@ -1162,7 +1162,7 @@
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
 		"title": "¡Vende rápido!",
-		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta. La valoración promedio de la aplicación en Google Play es 4.2. Ejemplos de reseñas",
+		"description": "iCompra y vende por internet de forma rápida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos en venta. La valoración promedio de la aplicación en Google Play es 4.2. Ejemplos de reseñas",
 		"mobilebutton": "¡Descarga gratis y venue rápido!",
 		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
 		"googleplay": "https://app.adjust.com/oarq82",
@@ -1230,7 +1230,7 @@
 	"modal": {
 		"close": "Cerrar",
 		"buttonText": "Confirmar",
-		"message": "Cambia Tu Ubicaci\u00FBn",
+		"message": "Cambia tu Ubicación",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {
@@ -1327,7 +1327,7 @@
 				"rules": "Reglas para publicar anuncios",
 				"staysafe": "Mantente Seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agented Immobiliarios",
+                "protool": "Agentes Inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
@@ -1343,13 +1343,13 @@
 			},
 			"explore": {
 				"explore": "Explorar",
-				"classifieds": "Sitio de clasificados de eBay",
+				"classifieds": "Sitios de clasificados de eBay",
 				"mobile": "Aplicaciones Móviles",
 				"partners": "Socios",
-				"carprice": "Índice de precios de autos",
+				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
-                "topsearches": "Busquedas mas destacadas",
+                "topsearches": "Búsquedas destacadas",
                 "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
 				"priceIndex": "Previos de Inmuebles"
 			},
