@@ -37,7 +37,7 @@ let handleBreakpointChanged = (breakpoint) => {
 	this.$tileGridWidthContainer.width(breakpoint);
 
 	this.isotopeElement.isotope('layout');
-}
+};
 
 // cannot be arrow function, scoping issue referencing 'this'
 let _filterFunction = function() {
