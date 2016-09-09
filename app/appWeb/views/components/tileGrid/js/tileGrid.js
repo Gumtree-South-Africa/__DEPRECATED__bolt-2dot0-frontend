@@ -83,10 +83,6 @@ let onReady = () => {
 
 };
 
-let _unbindBreakpoint = () => {
-	this.$body.off('breakpointChanged');
-};
-
 /**
  * Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
  * @param registerOnReady
@@ -150,7 +146,6 @@ let getCurrentBreakpoint = () => {
 };
 
 module.exports = {
-	_unbindBreakpoint,
 	onReady,				// for testing
 	getMapper,				// for testing
 	getCurrentBreakpoint,	// for testing

@@ -11,10 +11,6 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 describe('Tile Grid', () => {
 
-	afterEach(() => {
-		tileGridController._unbindBreakpoint();
-	});
-
 	beforeEach(() => {
 	});
 
@@ -140,6 +136,5 @@ describe('Tile Grid', () => {
 			expect($(tiles[1]).find('.icon-heart-orange').length).toBeTruthy(`favorited cookie tile should have orange icon`);
 
 		});
-
 	});
 });

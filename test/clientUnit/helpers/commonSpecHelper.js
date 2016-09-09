@@ -168,4 +168,6 @@ beforeEach(() => {
 
 afterEach(() => {
 	$("#testArea").empty();
+	$(window).off();
+	$("body").off();
 });
