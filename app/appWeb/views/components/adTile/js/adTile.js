@@ -49,6 +49,23 @@ class AdTile {
 	}
 
 	/**
+	 * Toggle any matching the Id within the tiles specified
+	 * @param id (short id)
+	 * @param $tiles
+	 */
+	toggleFavoriteById(id, $tiles) {
+		// lookup using short ad id because cookie must be compatible with RUI
+		let selector = `[data-short-adid="${id}"]`;
+		let tileElts = $tiles.find(selector);
+		if (tileElts.length > 0) {
+			// there could be multiple elements, one in trending card, and one in gallery
+			for (let elementIndex = 0; elementIndex < tileElts.length; elementIndex++) {
+				this.toggleFavorite(tileElts[elementIndex]);
+			}
+		}
+	}
+
+	/**
 	 * extracts a map (of keys) from a cookie,
 	 * using a map to help prevent duplicates and simplify add/remove
 	 * @returns {{object}} map
@@ -97,11 +114,16 @@ class AdTile {
 			return;
 		}
 
-		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
-		this.toggleFavorite(target);
-
 		// use short ad id for cookie to be compatible with RUI
 		let shortAdId = target.data('short-adid');	// using attribute data-short-adid
+		if (!shortAdId) {
+			console.warn("unable to favorite item, missing short ad id");
+			return;
+		}
+
+		// since another tile could have the same id (the same tile in two separate cards), toggle them all
+		let $allCardsTiles = $('.tile-panel');	// all tiles regardless of which card
+		this.toggleFavoriteById(shortAdId, $allCardsTiles);
 
 		let ids = this._getIdMapFromCookie('watchlist');
 		let action;
@@ -154,7 +176,7 @@ class AdTile {
 	 */
 	onReady() {
 
-		this.$tiles = $('.panel');
+		this.$tiles = $('.tile-panel');
 		this.tilesAdded(this.$tiles);
 
 	}

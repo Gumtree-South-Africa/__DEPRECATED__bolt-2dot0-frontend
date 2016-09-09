@@ -65,15 +65,7 @@ class TileGrid {
 	_syncFavoriteCookieWithTiles($tiles) {
 		let favoriteIds = adTile.getCookieFavoriteIds();
 		for (let i = 0; i < favoriteIds.length; i++) {
-			// lookup using short ad id because cookie must be compatible with RUI
-			let selector = `[data-short-adid="${favoriteIds[i]}"]`;
-			let tileElts = $tiles.find(selector);
-			if (tileElts.length > 0) {
-				// there could be multiple elements, one in trending card, and one in gallery
-				for (let elementIndex = 0; elementIndex < tileElts.length; elementIndex++) {
-					adTile.toggleFavorite(tileElts[elementIndex]);
-				}
-			}
+			adTile.toggleFavoriteById(favoriteIds[i], $tiles);
 		}
 	}
 

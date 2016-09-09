@@ -206,7 +206,7 @@ describe('Card/Tile Grid', () => {
 
 		});
 
-		it('should get more items visible when clicking on view more, and new item can be favorited (gallery)', () => {
+		fit('should get more items visible when clicking on view more, new ajax items can be favorited by cookie or click (gallery)', () => {
 
 
 			let model = {
@@ -215,11 +215,17 @@ describe('Card/Tile Grid', () => {
 
 			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=3&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
 			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
+			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
 			// spyOn(tileGridController, '_redirectToSearch').and.callFake(() => {
 			// });
 
 			// using the card template so we get the proper card 'state'
 			let $testArea = specHelper.setupTest("card_es_MX", model, "es_MX");
+
+			// should be able to favorite the new tiles which are ajax'd when we View More
+			// in this test, we're going to have duplicate Ids since we use the same model for the first 16, and the ajax'd 16
+			CookieUtils.setCookie("watchlist", "200000000");	// using short ad id to be compatible with RUI
+
 
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 			tileGridController.onReady();
@@ -242,20 +248,29 @@ describe('Card/Tile Grid', () => {
 			shown = tilesShown(tiles);
 			expect(shown).toBe(numShownInitially * 2, 'should have more tiles shown after clicking view more');
 
-			// should be able to favorite the new tiles
-
+			// make sure we have more heart buttons after View More
 			let $hearts = $testArea.find('.card-galleryCard .tile-item .favorite-btn');
 			expect($hearts.length).toBe(numShownInitially * 2);
-			let $heart = $($hearts[numShownInitially]);	// first tile of the view more
 
+			// make sure that a cookied favorite is in the right state after loading tiles via View More ajax
+			// this will ensure the cookie sync occurs for the new items
+			let $heartAlreadyFavorited = $($hearts[numShownInitially + 1]);	// 2nd tile of the view more
+			expect ($heartAlreadyFavorited.hasClass('icon-heart-orange')).toBeTruthy('should show favorited initially because it is cookied');
+			CookieUtils.setCookie("watchlist", "");		// clear for next favorite
+
+			// make sure we are in non favorited state (no watchlist cookie for this heart)
+			let $heart = $($hearts[numShownInitially]);	// 1st tile of the view more
 			expect($heart.hasClass('icon-heart-gray')).toBeTruthy('should show grey heart icon initially');
 
+			// this will ensure the favorite click handlers are loaded for the new item
 			$heart.click();
 			expect($heart.hasClass('icon-heart-orange')).toBeTruthy('should show orange heart icon class after first click');
 			let cookieValue = CookieUtils.getCookie('watchlist');
 			expect(cookieValue).toBe(`${model.card.ads[0].id}`);	// use short ad id for compatibility with RUI for the cookie
 
-
+			// we can also ensure that we got multiple of the same ads favorited when they have the same Ids
+			let $favorites = $testArea.find('.icon-heart-orange');
+			expect($favorites.length).toBe(4);	// 1 favorite by cookie (but really 2 since duplicate ids), and 1 by click (but really 2 since dup)
 
 			// another click should do the same thing, but since we've set 'moreDataAvailable' to false, we'll hide the button
 			viewMore.click();
