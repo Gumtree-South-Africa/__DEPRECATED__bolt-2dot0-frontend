@@ -74,6 +74,7 @@ class HomePageModelV2 {
 		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 
 		modelData.isNewHP = true;
 

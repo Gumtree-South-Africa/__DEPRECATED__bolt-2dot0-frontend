@@ -86,6 +86,20 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(JSON.stringify(context));
 	});
 
+	Handlebars.registerHelper('blueStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
+	Handlebars.registerHelper('grayStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < 5 - n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
 	Handlebars.registerHelper('obfuscateUrl', (value) => {
 		if (!value) {
 			return;

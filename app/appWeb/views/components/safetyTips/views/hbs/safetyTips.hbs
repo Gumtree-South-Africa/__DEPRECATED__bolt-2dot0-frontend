@@ -1,26 +1,25 @@
 <div class="safety-tips-container">
     <div class="safety-tips-card">
         <div class="safetyTips">
-            <div class="title">
-                <div class="item icon-safety-1 safety-icon">
-
-                </div>
-                <h2 class="item safety-text">
-                    {{i18n "homepage.safetyTips.title"}}
-                </h2>
-            </div>
             <div class="image-container">
                 <div class="safety-block block-left">
                     <div class="image image-left">
                     </div>
-                    <div class="help-text help-text-left">
-                        {{this.safetyTips.one}}
-                    </div>
                 </div>
-
             </div>
+			<div class="title">
+				<div class="item safety-icon">
+
+				</div>
+				<h2 class="item safety-text">
+                    {{i18n "homepage.safetyTips.title"}}
+				</h2>
+			</div>
+			<div class="help-text help-text-left">
+                {{this.safetyTips.one}}
+			</div>
             <h3 class="faq">
-                <a href="https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad">
+                <a href="{{this.safetyTips.safetyLink}}">
                     {{i18n "homepage.safetyTips.faq"}}
                 </a>
             </h3>

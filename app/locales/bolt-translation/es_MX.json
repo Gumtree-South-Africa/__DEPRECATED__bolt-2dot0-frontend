@@ -1160,9 +1160,10 @@
 		"close": "Cerrar"
 	},
 	"appdownload": {
+		"userImageAltText": "clasificado app usario",
 		"title": "¡Vende rápido!",
-		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
-		"mobilebutton": "¡Baja la app!",
+		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta. La valoración promedio de la aplicación en Google Play es 4.2. Ejemplos de reseñas",
+		"mobilebutton": "¡Descarga gratis y venue rápido!",
 		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
 		"googleplay": "https://app.adjust.com/oarq82",
 		"applink": "http://go.vivanunc.io/baja-la-app"
@@ -1214,9 +1215,9 @@
 		},
 		"userDropdown": {
 			"title": "¡Hola",
-			"messages": "Mensajes",
+			"messages": "Mis mensajes",
 			"favorites": "Favoritos",
-			"myAlerts": "Mis avisos",
+			"myAlerts": "Búsquedas guardadas",
 			"myProfile": "Mi perfil",
 			"promoteMyAds": "Promocionar mis anuncios",
 			"pricingGuide": "Guía de precios",
@@ -1227,7 +1228,7 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "cerrar",
+		"close": "Cerrar",
 		"buttonText": "Confirmar",
 		"message": "Cambia Tu Ubicaci\u00FBn",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
@@ -1335,16 +1336,22 @@
 				"privacy": "Política de privacidad",
 				"cookies": "Cookies"
 			},
+			"business": {
+				"business": "Agentes Inmobiliarios",
+				"protool": "La Tienda de Semi Nuevos",
+				"stores": "La Tienda Vivanuncios"
+			},
 			"explore": {
 				"explore": "Explorar",
 				"classifieds": "Sitio de clasificados de eBay",
-				"mobile": "Aplicaciones móviles",
+				"mobile": "Aplicaciones Móviles",
 				"partners": "Socios",
 				"carprice": "Índice de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Busquedas mas destacadas",
-                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0"
+                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+				"priceIndex": "Previos de Inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
@@ -1352,8 +1359,13 @@
 				"helplink": "https://ayuda.vivanuncios.com.mx/MX/",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
-				"givefeedback": "Comentar"
+				"givefeedback": "Comentar",
+				"listingRules": "Reglas para Publicar Anuncios"
 			}
+		},
+		"topSearches": {
+			"viewMore": "Ver Más",
+			"viewLess": "Ver Menos"
 		},
 		"download": {
 			"download": "Descargar la aplicación",
@@ -1370,7 +1382,7 @@
 		"uploadPhoto": "Carga una foto",
 		"uploadQuickly": "Publica un anuncio rápidamente",
 		"upload": "Publica un anuncio",
-		"close": "CERRAR"
+		"close": "Cerrar"
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",

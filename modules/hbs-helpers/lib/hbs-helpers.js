@@ -6,6 +6,7 @@
 
 "use strict";
 
+var _ = require('underscore');
 var util = require('util');
 var comparisons = require('./comparisons');
 
@@ -61,10 +62,20 @@ module.exports  =  {
             }
         );
 
-        exphbs.handlebars.registerHelper('dynamic', function(partialName, options) {
+		/**
+		 * Helper for adding locale specific partials
+		 * @param {String} name of the partial
+		 * @param {String} optional, pass locale in case global context is lost. [Ex. {{> (dynamic "starRating" ../locale)}}]
+		 */
+        exphbs.handlebars.registerHelper('dynamic', function(partialName, locale) {
             if (!partialName) return;
-           // console.log("dp " + options.explicitPartialContext);
-            return new exphbs.handlebars.SafeString(partialName + "/views/hbs/" + partialName + "_" + this.locale);
+
+			// Case where context gets changed by something like an #each loop
+			let loc = _.isString(locale) ? locale : this.locale;
+			if (!loc) {
+				throw new Error(`Missing locale for partial: ${partialName}`);
+			}
+            return new exphbs.handlebars.SafeString(partialName + "/views/hbs/" + partialName + "_" + loc);
         });
 
         exphbs.handlebars.registerHelper('base', function(partialName, options) {
@@ -102,7 +113,21 @@ module.exports  =  {
             return new exphbs.handlebars.SafeString(JSON.stringify(context));
         });
 
-        exphbs.handlebars.registerHelper('obfuscateUrl', function(value) {
+		exphbs.handlebars.registerHelper('blueStars', function(n, block) {
+			var result = '';
+			for(var i = 0; i < n; ++i)
+				result += block.fn(i);
+			return result;
+		});
+
+		exphbs.handlebars.registerHelper('grayStars', function(n, block) {
+			var result = '';
+			for(var i = 0; i < 5 - n; ++i)
+				result += block.fn(i);
+			return result;
+		});
+
+		exphbs.handlebars.registerHelper('obfuscateUrl', function(value) {
             if (!value) return;
             return new exphbs.handlebars.SafeString(StringUtils.obfuscate(value));
         });

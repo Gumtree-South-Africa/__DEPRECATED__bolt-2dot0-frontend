@@ -27,14 +27,17 @@ let toggleMenu = (shouldClose) => {
 	this.$header.animate({
 		left: (this.open) ? 0 : '70%'
 	});
+	this.$searchbar.animate({
+		left: (this.open) ? 0 : '70%'
+	});
 	this.$pageContent.toggleClass('menu-closed');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };
 
 let _toggleBrowseCategory = () => {
-	this.$browseArrow.toggleClass('icon-chevron');
-	this.$browseArrow.toggleClass('icon-up');
+	this.$browseArrow.toggleClass('icon-chevron-blue');
+	this.$browseArrow.toggleClass('icon-up-blue');
 	$('li', this.$browse).toggleClass('hidden');
 };
 
@@ -59,6 +62,7 @@ let initialize = () => {
 	this.$browseCategories = $('#js-browse-categories', this.$browse);
 	this.$modalFooter = $('.modal-footer');
 	this.$header = $('.headerV2');
+	this.$searchbar = $("#search-bar");
 	this.$pageContent = $('.containment');
 	this.$hamburgerPopout = $('#js-body-overlay');
 	this.$hamburgerIcon = $('#js-hamburger-icon');
