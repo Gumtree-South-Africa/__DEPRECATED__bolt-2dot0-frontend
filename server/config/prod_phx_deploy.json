@@ -56,7 +56,7 @@
 		"server": {
 			"host": "securelatam.classistatic.com",
 			"port": null,
-			"version": "2.0.117"
+			"version": "2.0.118"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
