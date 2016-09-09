@@ -47,7 +47,6 @@ let _setupPolyfillForm = () => {
 
 	let baseJsPath = this.$editForm.data('publicjs-url');
 
-	debugger;
 	$.webshim.setOptions('basePath', `${baseJsPath}libraries/webshims/shims/`);
 
 	$.webshims.setOptions('forms-ext', shimDefJSON);
