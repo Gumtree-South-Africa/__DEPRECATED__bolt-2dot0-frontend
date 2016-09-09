@@ -82,6 +82,7 @@ class HomePageModelV2 {
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
 		modelData.showTopBanner = showTopBanner;
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 
 		modelData.isNewHP = true;
 

@@ -35,7 +35,8 @@ class FooterV2Model {
 				_.extend(data, this.footerConfigData);
 
 				// build data
-				let urlProtocol = this.secure ? 'https://' : 'http://';
+				//let urlProtocol = this.secure ? 'https://' : 'http://';
+				let urlProtocol = 'https://';
 				let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
 				let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
 				let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';

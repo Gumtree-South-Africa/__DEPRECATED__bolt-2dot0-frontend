@@ -3,7 +3,7 @@
 		"type" 								: "website",
 		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
-		"noPhotoUrl"						: "http://afs.googleusercontent.com/alamaula/no-photo_MX.png",
+		"noPhotoUrl"						: "https://afs.googleusercontent.com/alamaula/no-photo_MX.png",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
@@ -55,9 +55,19 @@
 		"privacyPolicy"						: "http://ayuda.vivanuncios.com.mx/MX/Privacidad_mx",
 		"termOfUse"							: "http://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones",
 		"postingRules"                      : "http://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios?vgroup1=PKB&c=PKB%3Apoli_ticas&vcategory2=Poli_ticas_de_publicacio_n22&s=a00F000000NVKVXIA5",
+		"emailUrl"							: "https://ayuda.vivanuncios.com.mx/MX?cu=1&fs=ContactUs&l=es&lang=es&q=&s",
+		"listingRulesUrl"					: "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Políticas-publicar",
+		"priceIndexUrl"						: "https://www.vivanuncios.com.mx/pages/propiedades/",
+		"mobileAppUrl"						: "https://www.vivanuncios.com.mx/pages/mobileapp/",
+		"classifieds"						: "https://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
+		"stores"							: "https://protool.vivanuncios.com.mx/tiendas",
+		"autosProtool"						: "https://protool.vivanuncios.com.mx/seminuevos",
+		"business"							: "https://protool.vivanuncios.com.mx",
+		"blog"								: "https://blog.vivanuncios.com.mx",
+		"about"								: "https://blog.vivanuncios.com.mx/noticias/que-es-vivanuncios/",
 		"helpLabel"							: "Ayuda",
-		"helpUrl"							: "http://ayuda.vivanuncios.com.mx/MX/",
-		"interLinkUrl"						: "http://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
+		"helpUrl"							: "https://ayuda.vivanuncios.com.mx/MX/",
+		"interLinkUrl"						: "https://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-los-mejores-anuncios/v1",
 		"topSearchesLandingPageUrl"			: "/t-busquedas-destacadas/todos-los-anuncios/v1b0",
@@ -71,63 +81,75 @@
 		},
 		"seoBolt"							:	{
 			"enabled"							: true,
-			"blogUrl" 							: "http://vivedf.vivanuncios.com.mx/",
+			"blogUrl" 							: "https://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
 		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
 	  	"homepageV2" : {
+			"safetyLink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"distractionFree": false,
 			"showTopBanner": false,
 			"reviews" : [
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTQ3WDMwOA==/z/0TkAAOSw41xXO7-v/$_19.JPG?set_id=8800005007",
-					"description": "Perfecta Encuentro lo que necesito a buen precio."
+					"primaryImageUrl": "yessenia_r.jpg",
+					"description": "Perfecta Encuentro lo que necesito a buen precio.",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/P7wAAOSwH71XO7vh/$_19.JPG?set_id=8800005007",
-					"description": "Es una buena forma de comprar y vende"
+					"primaryImageUrl": "morithaclid.jpg",
+					"description": "Me gusto Apenas subi cosas para vender",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MTIwMFgxNjAw/z/QQ4AAOSwB9xXO7wa/$_19.JPG?set_id=8800005007",
-					"description": "Excelente - Me gusto"
+					"primaryImageUrl": "felix_o.jpg",
+					"description": "Excelente - Me gusto",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/-jUAAOSw74FXO8Bv/$_19.jpg",
+					"primaryImageUrl": "jackson_a.jpg",
 					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente."
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/MzYzWDMwOA==/z/IsMAAOSwf05XO7~4/$_19.jpg",
-					"description": "Comparando barato Que bueno"
+					"primaryImageUrl": "francisco_m.jpg",
+					"description": "Comparando barato Que bueno",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/JYgAAOSwf05XO8AO/$_19.JPG?set_id=8800005007",
-					"description": "Excellent Very good app"
+					"primaryImageUrl": "isabel_v.jpg",
+					"description": "Me gusta. Es muy eficaz gracias!!",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NDUwWDgwMA==/z/thkAAOSw41xXO76I/$_19.jpg",
-					"description": "Me gusta. Es muy eficaz gracias!!"
+					"primaryImageUrl": "alan_z.jpg",
+					"description": "Nunca recomiendo nada, esta es genial, el chat ayuda con los interesados",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/ODAwWDQ1MA==/z/etMAAOSwf05XO7kY/$_19.JPG?set_id=8800005007",
-					"description": "Nunca recomiendo nada, esta es genial, el chat ayuda con los interesados"
+					"primaryImageUrl": "victor_c.jpg",
+					"description": "Buena aplicación",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NTk4WDgwMA==/z/CioAAOSw41xXO6r6/$_19.JPG?set_id=8800005007",
-					"description": "Buena aplicacion"
+					"primaryImageUrl": "jesus.jpg",
+					"description": "El mejor sitio de Internet para hacer negocios, lo recomiendo mucho",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/Mzc5WDgwMA==/z/5dEAAOSwoudW5uUi/$_19.JPG?set_id=8800005007",
-					"description": "El mejor sitio de Internet para hacer negocios, lo recomiendo mucho"
+					"primaryImageUrl": "canal_v.jpg",
+					"description": "Esta app es de lo mejor por eso le doy 5 estrellas",
+					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg",
-					"description": "Esta app es de lo mejor por eso le doy 5 estrellas"
+					"primaryImageUrl": "david_o.jpg",
+					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados",
+					"rating": "4"
 				},
 				{
-					"primaryImageUrl": "http://img.classistatic.com/crop/200x150/i.ebayimg.com/00/s/NjAwWDgwMA==/z/3E0AAOSw74FXO78U/$_19.jpg",
-					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados"
+					"primaryImageUrl": "christian_r.jpg",
+					"description": "Me es muy util y es muy facil de encontrar lo que necesito",
+					"rating": "4"
 				}
 			]
 	  	},

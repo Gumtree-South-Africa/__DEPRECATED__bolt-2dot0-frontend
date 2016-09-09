@@ -86,6 +86,20 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(JSON.stringify(context));
 	});
 
+	Handlebars.registerHelper('blueStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
+	Handlebars.registerHelper('grayStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < 5 - n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
 	Handlebars.registerHelper('obfuscateUrl', (value) => {
 		if (!value) {
 			return;
@@ -93,7 +107,7 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(StringUtils.obfsucate(value));
 	});
 
-	exphbs.handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
 		if (!object || !field || value === undefined){
 			return;
 		}
@@ -105,7 +119,7 @@ let initialize = (Handlebars) => {
 		}
 	});
 
-	exphbs.handlebars.registerHelper('ifIn', function(object, field, options) {
+	Handlebars.registerHelper('ifIn', function(object, field, options) {
 		if (!object || !field) {
 			return;
 		}
