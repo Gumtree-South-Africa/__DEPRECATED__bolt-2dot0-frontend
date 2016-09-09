@@ -116,7 +116,8 @@ class DataLayerModel {
 							'pageData': getPageData(this),
 							'userData': getUsereData(this),
 							'categoryData': getCatData(this),
-							'locationData': getLocData(this)
+							'locationData': getLocData(this),
+							 'adResult'   : this.adResult
 						};
 						break;
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:
