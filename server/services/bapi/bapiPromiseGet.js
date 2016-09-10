@@ -6,7 +6,7 @@ var Q = require('q');
 var bapi = require('./BAPICall');
 
 module.exports = function(bapiOptions, bapiHeaders, serviceName){
-	console.time(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaders.locale} ${bapiHeaders.requestId}`);
 
 	// Add Headers
 	bapiOptions.headers['X-BOLT-APPS-ID'] = 'RUI';
@@ -50,7 +50,7 @@ module.exports = function(bapiOptions, bapiHeaders, serviceName){
 			bapiError.serviceName = serviceName;
 			return Q.reject(bapiError);
 		} else {
-			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+			console.timeEnd(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaders.locale} ${bapiHeaders.requestId}`);
 			return output;
 		}
 	});
