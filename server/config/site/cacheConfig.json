@@ -4,7 +4,7 @@
 			"name": "hp-trending",
 			"maxElements": 7,
 			"maxAge": 86400000,
-			"reload": 300000,
+			"reload": 3600000,
 			"service": "/server/services/cardService",
 			"method": "getTrendingCard"
 		},
@@ -12,8 +12,8 @@
 			"name": "hp-recent",
 			"maxElements": 7,
 			"maxAge": 86400000,
-			"bapiTimeout": 200,
-			"reload": 300000,
+			"bapiTimeout": 1000,
+			"reload": 3600000,
 			"service": "/server/services/recentactivity",
 			"method": "getRecentActivities"
 		},

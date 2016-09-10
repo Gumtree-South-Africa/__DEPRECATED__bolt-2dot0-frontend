@@ -4,6 +4,7 @@
 'use strict';
 
 let _ = require('underscore');
+let cuid = require('cuid');
 let NanoTimer = require('nanotimer');
 
 let cacheService = require(process.cwd() + "/server/services/cache/cacheService");
@@ -25,6 +26,7 @@ class CacheReloader {
 	kickoffReloadProcess(bapiHeaders) {
 		_.each(this.cacheReloadable, (cache) => {
 			// Set Cache
+			bapiHeaders.requestId = 'cache$' + cuid();
 			this.refreshCache(cache, bapiHeaders);
 
 			// Setup Timer to Reload Cache

@@ -15,11 +15,6 @@ let cacheService = require(cwd + "/server/services/cache/cacheService");
  */
 class CardService {
 
-	// this is a temporary hack because mock services are not available in other environments
-	mockGetCardItemsData() {
-		return require('q')(require(process.cwd() + '/test/serverUnit/mockData/api/v1/TrendingCard.json'));
-	}
-
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters, cardName) {
 		// console.log(parameters);
 
