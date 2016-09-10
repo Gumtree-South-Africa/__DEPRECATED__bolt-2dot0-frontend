@@ -156,13 +156,13 @@ function CacheBapiData(siteApp, requestId) {
                 // Load Category Data from BAPI
 			  	let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
 
-				// Load Category Data from BAPI
+				// Load All Category Data from BAPI
 				let allCategories = loadAllCategoryData(bapiHeaders, 3);
 
-				// Start Cache Reloader
-				let cacheReload = Q(cacheReloader.kickoffReloadProcess(bapiHeaders));
-
-				return Q.all([locations, categories, allCategories, cacheReload]);
+				return Q.all([locations, categories, allCategories]).then(() => {
+					// Start Cache Reloader once all categories and locations retrieved
+					return cacheReloader.kickoffReloadProcess(bapiHeaders);
+				});
             }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
                 siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
