@@ -139,14 +139,13 @@
                      {{#with this.dataLayer.locationData.level4}}dl["l"]["l4"]={};dl["l"]["l4"]["n"]="{{this.name}}";{{/with}}
 
                 dl["a"]={};
-	                  {{#with this.dataLayer.adResult}}dl["a"]["id"] ="{{this.id}}";{{/with}}
-	                  {{#with this.dataLayer.adResult}}dl["a"]["prc.amt"]="{{this.price.amount}}";{{/with}}
-	                  {{#with this.dataLayer.adResult}}dl["a"]["prc.t"] ="{{this.price.priceType}}";{{/with}}
-	                  {{#with this.dataLayer.adResult}}dl["a"]["ic"] ="{{this.price.pictures.sizeUrls}}";{{/with}}
-	                  {{#with this.dataLayer.adResult}}dl["a"]["lpdt"] ="{{this.lastUserEditDate}}";{{/with}}
-	                  {{#with this.dataLayer.adResult}}dl["a"]["cdt"] ="{{this.postedDate}}";{{/with}}
-
-
+                dl["a"]["prc"]={}
+		              {{#with this.dataLayer.adResult}}dl["a"]["id"] ="{{this.id}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["prc"]["amt"]="{{this.price.amount}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["prc"]["t"] ="{{this.price.priceType}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["ic"] ="{{this.pictures.sizeUrls.length}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["lpdt"] ="{{this.lastUserEditDate}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["cdt"] ="{{this.postedDate}}";{{/with}}
 
              {{#block "GoogleTagManager"}}{{/block}}
 
