@@ -34,30 +34,43 @@ let getUsereData = function(scope) {
 };
 
 
-//Function getCatData
+///Function getCatData
 let getCatData = function(scope) {
 	return {
-		//TODO: this is just for testing, don't be serious about this :)
-		'current': scope.categoryData,
-		'level0': '',
-		'level1': '',
-		'level2': '',
-		'level3': '',
-		'level4': ''
+		'current': scope.currentCategory,
+		'level0': scope.L0Category,
+		'level1': scope.L1Category,
+		'level2': scope.L2Category,
+		'level3': scope.L3Category,
+		'level4': scope.L4Category
 	};
 };
 
 //Function getLocData
 let getLocData = function(scope) {
 	return {
-		//TODO: this is just for testing, don't be serious about this :)
-		'current': scope.adResult,
-		'level0': '',
-		'level1': '',
-		'level2': '',
-		'level3': '',
-		'level4': ''
+		'current': scope.currentLocation,
+		'level0': scope.L0Location,
+		'level1': scope.L1Location,
+		'level2': scope.L2Location,
+		'level3': scope.L3Location,
+		'level4': scope.L4Location
 	};
+};
+
+let getPathLevel = function(scope, parent, id, type) {
+	for (let i=0 ; i < parent.children.length; i++ ) {
+		let item = parent.children[i];
+		if (id === item.id) {
+			scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
+			return true;
+		} else {
+			if (getPathLevel(scope, item, id)) {
+				scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
+				return true;
+			}
+		}
+	}
 };
 
 /**
@@ -90,12 +103,27 @@ class DataLayerModel {
 		this.usercreationdate = usercreationdate;
 	}
 
-	setCategoryData(categorydata) {
-		this.categoryData = categorydata;
-	}
-
 	setAdResult(adresult) {
 		this.adResult = adresult;
+	}
+
+	setCategoryData(categorydata) {
+		let currentId = this.adResult.categoryId;
+		this.currentCategory = {'id': currentId, 'name': this.adResult.categoryName};
+		if (categorydata.id !== currentId) {
+			this.L0Category = {'id': categorydata.id, 'name': categorydata.localizedName};
+			getPathLevel(this, categorydata, currentId, 'Category');
+		}
+	}
+
+	setLocationData(locationdata, locationlatlong) {
+		let currentId = this.adResult.location.id;
+		this.currentLocation = {'id': currentId, 'name': this.adResult.location.name};
+		this[locationlatlong.level + 'Location'] = {'id': currentId, 'name': this.adResult.location.name};
+		if (locationdata.id !== locationlatlong.parentId) {
+			this.L0Location = {'id': locationdata.id, 'name': locationdata.localizedName};
+			getPathLevel(this, locationdata, locationlatlong.parentId, 'Location');
+		}
 	}
 
 	getData() {

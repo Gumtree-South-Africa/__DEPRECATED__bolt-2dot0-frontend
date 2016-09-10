@@ -47,8 +47,9 @@ class EditAdPageModel {
 		}).then((data) => {
 			// 2. Ad specific content is ready, now construct the dataLayer
 			let basePageModel = new BasePageModel(this.req, this.res);
-			basePageModel.setCategoryData(data.category);
 			basePageModel.setAdResult(data.adResult);
+			basePageModel.setCategoryData(data.category);
+			basePageModel.setLocationData(data.location, data.locationlatlong);
 			return basePageModel.getModelBuilder().resolveAllPromises();
 		}).then((data) => {
 			// 3. Setting the dataLayer of modelData after promises resolved, then get out of the whole function

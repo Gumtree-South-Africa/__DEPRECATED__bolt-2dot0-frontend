@@ -32,12 +32,16 @@ class BasePageModel {
 		return new ModelBuilder(this.getCommonData());
 	}
 
+	setAdResult(adresult) {
+		this.dataLayer.setAdResult(adresult);
+	}
+
 	setCategoryData(categorydata) {
 		this.dataLayer.setCategoryData(categorydata);
 	}
 
-	setAdResult(adresult) {
-		this.dataLayer.setAdResult(adresult);
+	setLocationData(locationdata, locationlatlong) {
+		this.dataLayer.setLocationData(locationdata, locationlatlong);
 	}
 
 	getCommonData() {
