@@ -11,7 +11,7 @@ let cors = require(process.cwd() + '/modules/cors');
 router.post('/autocomplete', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	model.searchModel = new SearchModel(model.country, model.bapiHeaders);
 
 	model.searchModel.autoComplete(req.body.searchterm, req.body.location, req.body.category).then((autoCompleteResults) => {

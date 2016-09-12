@@ -1,7 +1,3 @@
-{{#partial "headerWrapper"}}
-    {{> (dynamic "headerV2")}}
-{{/partial}}
-
 {{#partial "content"}}
 	<section class="edit-ad-page">
 		<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
@@ -30,8 +26,4 @@
 
     {{> (dynamic "categorySelectionModal")}}
     {{> (dynamic "modal")}}
-{{/partial}}
-
-{{#partial "footerWrapper"}}
-    {{> (dynamic "footerV2")}}
 {{/partial}}

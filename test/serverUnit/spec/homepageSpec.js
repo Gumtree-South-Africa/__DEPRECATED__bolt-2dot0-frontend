@@ -166,23 +166,23 @@ describe('Server to hit HomePage', function() {
 			});
 		});
 
-	//This needs to be uncommented out after Https Branch gets released.
+		//This needs to be uncommented out after Https Branch gets released.
 
-	// 	it('should show safety faq text on vivanuncios', (done) => {
-	// 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
-	// 			supertest
-	// 				.set('Cookie', 'b2dot0Version=2.0')
-	// 				.expect((res) => {
-	// 					let c$ = cheerio.load(res.text);
-	// 					let faq = c$('.safetyTips .faq a')[0];
-	// 					expect(faq.attribs.href)
-	// 						.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
-	// 					expect(faq.firstChild.data).toContain('Consejos de seguridad');
-	// 				})
-	// 				.end(specHelper.finish(done));
-	// 		});
-	// 	});
-  });
+		// 	it('should show safety faq text on vivanuncios', (done) => {
+		// 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+		// 			supertest
+		// 				.set('Cookie', 'b2dot0Version=2.0')
+		// 				.expect((res) => {
+		// 					let c$ = cheerio.load(res.text);
+		// 					let faq = c$('.safetyTips .faq a')[0];
+		// 					expect(faq.attribs.href)
+		// 						.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
+		// 					expect(faq.firstChild.data).toContain('Consejos de seguridad');
+		// 				})
+		// 				.end(specHelper.finish(done));
+		// 		});
+		// 	});
+  	});
 
 	describe('Recent Activitiy', () => {
 		it('should show feed tiles on vivanuncios', (done) => {

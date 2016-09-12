@@ -6,6 +6,10 @@ $dropdown-width: 220px;
 .header-wrapper {
 	background: $common-background-color;
 	border-bottom: 2px solid $vivaBlue2;
+	@include from-breakpoint($medium-break) {
+		position: relative;
+	}
+	z-index: 2;
 
 	.headerV2 {
 		z-index: 9;

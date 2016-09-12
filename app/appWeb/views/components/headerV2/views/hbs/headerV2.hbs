@@ -2,6 +2,7 @@
 {{> (dynamic "hamburgerMenu")}}
 {{/unless}}
 
+<div id="search-mask" class="search-mask hidden"></div>
 <div class="header-wrapper">
     <div class="headerV2">
         <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
@@ -67,7 +68,7 @@
             </div>
 
             {{!-- post ad button --}}
-            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+            {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
             <div class="right-items">
                 <div class="profile right-item">

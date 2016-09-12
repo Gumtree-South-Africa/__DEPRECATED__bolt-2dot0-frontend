@@ -93,7 +93,7 @@ router.get('/card', cors, (req, res) => {
 
 	let modelBuilder = new ModelBuilder();
 
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	model.cardsModel = new CardsModel(model.bapiHeaders);
 
 	model.cardsModel.getCardItemsData("galleryCard", {

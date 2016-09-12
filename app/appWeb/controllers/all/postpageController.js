@@ -44,7 +44,7 @@ router.use('/', (req, res, next) => {
 			let guid = req.query.guid;
 			// now we need to get the draft
 			let modelBuilder = new ModelBuilder();
-			let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+			let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 			let draftAdModel = new DraftAdModel(model.bapiHeaders);
 			let postAdModel = new PostAdModel(model.bapiHeaders);
 
