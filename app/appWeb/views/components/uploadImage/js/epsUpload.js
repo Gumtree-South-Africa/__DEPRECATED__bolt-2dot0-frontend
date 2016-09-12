@@ -759,6 +759,7 @@ class UploadMessageClass {
 	}
 
 	failMsg(i) {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		this.$messageError.html(this.messages.failMsg);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.showModal(i);

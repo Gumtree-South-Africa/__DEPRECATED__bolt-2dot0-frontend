@@ -147,6 +147,7 @@ let _success = (i, response) => {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
+	window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 	// try to extract the url and figure out if it looks like to be valid
 	let url = this.epsUpload.extractURLClass(response);
 
