@@ -1268,7 +1268,7 @@
 			"directions": "Es muy sencillo, solo tienes que agregarlo y publicarlo. Puedes agregar más fotos y hacer otros",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
-				"photoRequired": "Foto requerido"
+				"photoRequired": "Foto requerida"
 			},
 			"form": {
 				"title": "Título del anuncio",
