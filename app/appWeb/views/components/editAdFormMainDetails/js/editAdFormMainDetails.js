@@ -45,7 +45,7 @@ let _setupPolyfillForm = () => {
 		replaceUI: 'auto'
 	};
 
-	let baseJsPath = this.$editForm.data('publicJs-url');
+	let baseJsPath = this.$editForm.data('publicjs-url');
 
 	$.webshim.setOptions('basePath', `${baseJsPath}libraries/webshims/shims/`);
 
@@ -273,6 +273,8 @@ let onReady = () => {
 		window.location.href = "/my/promote.html";
 	});
 
+	_setupPolyfillForm();
+
 	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);
 	this.$categoryChangeLink.click(_openCatSelectModal);
 
@@ -284,7 +286,6 @@ let onReady = () => {
 let initialize = () => {
 	locationModal.initialize(_setHiddenLocationInput);
 	categorySelectionModal.initialize();
-	_setupPolyfillForm();
 
 	$(document).ready(onReady);
 
