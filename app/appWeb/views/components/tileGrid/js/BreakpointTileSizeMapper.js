@@ -1,7 +1,5 @@
 'use strict';
 
-let $ = require('jquery');
-
 class BreakpointTileSizeMapper {
 
 	constructor() {

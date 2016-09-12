@@ -86,11 +86,44 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(JSON.stringify(context));
 	});
 
+	Handlebars.registerHelper('blueStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
+	Handlebars.registerHelper('grayStars', (n, block) => {
+		var result = '';
+		for(var i = 0; i < 5 - n; ++i)
+			result += block.fn(i);
+		return result;
+	});
+
 	Handlebars.registerHelper('obfuscateUrl', (value) => {
 		if (!value) {
 			return;
 		}
 		return new Handlebars.SafeString(StringUtils.obfsucate(value));
+	});
+
+	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+		if (!object || !field || value === undefined){
+			return;
+		}
+		let entry = object[field];
+		if (!isNaN(entry)) {
+			return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+		} else {
+			return (entry === value) ? options.fn(this) : options.inverse(this);
+		}
+	});
+
+	Handlebars.registerHelper('ifIn', function(object, field, options) {
+		if (!object || !field) {
+			return;
+		}
+		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
 	Handlebars.registerHelper("formatPrice", (number, separator) => {

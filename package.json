@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.117",
+  "version": "2.0.119",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=8443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
@@ -58,11 +58,11 @@
     "isotope-layout": "3.0.1",
     "javascript-precommit": "0.0.8",
     "jquery": "1.12.4",
-    "jquery-bridget": "2.0.0",
+    "jquery-bridget": "2.0.1",
     "jquery-lazyload": "1.9.7",
     "kafka-node": "0.3.1",
     "lru-cache": "4.0.1",
-    "masonry-layout": "4.1.0",
+    "masonry-layout": "4.1.1",
     "measured": "1.1.0",
     "method-override": "2.3.5",
     "morgan": "1.6.1",

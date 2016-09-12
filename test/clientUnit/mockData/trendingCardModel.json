@@ -1,161 +1,156 @@
 {
-	"foo": "bar",
-	"trendingCard": {
-		"total": 60,
-		"offset": 2,
-		"limit": 2,
-		"_links": [
-			{
-				"rel": "self",
-				"href": "/ads/trending?offset=10&limit=10&geo=(40.12,-71.34)&radius=25km",
-				"method": "GET"
-			},
-			{
-				"rel": "next",
-				"href": "/ads/trending?offset=20&limit=10&geo=(40.12,-71.34)&radius=25km",
-				"method": "GET"
-			},
-			{
-				"rel": "previous",
-				"href": "/ads/trending?offset=0&limit=10&geo=(40.12,-71.34)&radius=25km",
-				"method": "GET"
-			}
-		],
-		"ads": [
-			{
-				"id": "100000000",
-				"adId": "100000000long",
-				"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
-				"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
-				"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
-				"adPrice": {
-					"priceType": "FIXED",
-					"amount": 50000,
-					"currency": "MXN"
-				},
-				"pictures": [
-					{
-						"size": "NORMAL",
-						"url": "http://img.classistatic.com/crop/100x100/i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
-					}
-				],
-				"categoryId": 1097,
-				"statistics": {
-					"replyCount": 20,
-					"viewCount": 201,
-					"favoriteCount": 110
-				},
-				"seller": {
-					"name": "Kobeee",
-					"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
-					"profileImage": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"
-				},
-				"features": [
-					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
-				],
-				"sizeClass": "two-by-two"
-			},
-			{
-				"id": "200000000",
-				"adId": "200000000long",
-				"viewSeoUrl": "/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+01+12-17-05-54-948/1001096096020910618300709",
-				"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
-				"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
-				"adPrice": {
-					"priceType": "FIXED",
-					"currency": "USD",
-					"amount": 50000
-				},
-				"pictures": [
-					{
-						"size": "NORMAL",
-						"url": "http://www.mikesalkin.com/articles/images/house-for-sale.jpg"
-					}
-				],
-				"categoryId": 9000,
-				"statistics": {
-					"replyCount": 16,
-					"viewCount": 92,
-					"favoriteCount": 66
-				},
-				"seller": {
-					"name": "mike phelps",
-					"soiSeoUrl": "/u-anuncios-del-vendedor/cristian-zapata/v1u107937451p1",
-					"profileImage": "http://i2.cdn.turner.com/cnnnext/dam/assets/160630101057-michael-phelps-u-s-trials-exlarge-169.jpg"
-				},
-				"features": [
-					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
-				],
-				"sizeClass": "two-by-one"
-			},
-			{
-				"id": "300000000",
-				"adId": "300000000long",
-				"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
-				"title": "Nissan March Sedán 2013",
-				"description": "Nissan March Sedán 2013",
-				"adPrice": {
-					"priceType": "CONTACT_ME"
-				},
-				"pictures": [
-					{
-						"size": "NORMAL",
-						"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
-					}
-				],
-				"categoryId": 1097,
-				"statistics": {
-					"replyCount": 30,
-					"viewCount": 111,
-					"favoriteCount": 88
-				},
-				"seller": {
-					"name": "MJ23",
-					"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1",
-					"profileImage": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg"
-				},
-				"features": [
-					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
-				],
-				"sizeClass": "one-by-one"
-			},
-			{
-				"id": "400000000",
-				"adId": "400000000long",
-				"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
-				"title": "Nissan March Sedán 2013",
-				"description": "Nissan March Sedán 2013",
-				"adPrice": {
-					"priceType": "CONTACT_ME"
-				},
-				"pictures": [
-					{
-						"size": "NORMAL",
-						"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
-					}
-				],
-				"categoryId": 1097,
-				"statistics": {
-					"replyCount": 30,
-					"viewCount": 111,
-					"favoriteCount": 88
-				},
-				"seller": {
-					"name": "MJ23",
-					"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1"
-				},
-				"features": [
-					"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
-				],
-				"sizeClass": "three-by-two"
-			}
-		],
-		"config": {
-			"clientJsHandlerCssClass": "use-isotope-handler",
-			"showFavorites": true,
-			"showReplies": true,
-			"showLikes": true,
-			"showFeatured": true
+	"total": 60,
+	"offset": 2,
+	"limit": 2,
+	"_links": [
+		{
+			"rel": "self",
+			"href": "/ads/trending?offset=10&limit=10&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
+		},
+		{
+			"rel": "next",
+			"href": "/ads/trending?offset=20&limit=10&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
+		},
+		{
+			"rel": "previous",
+			"href": "/ads/trending?offset=0&limit=10&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
 		}
+	],
+	"ads": [
+		{
+			"id": "100000000",
+			"adId": "100000000long",
+			"viewSeoUrl": "/a-venta-inmuebles/chimalli/hi-title/1001000001000910000000009",
+			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
+			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
+			"adPrice": {
+				"priceType": "FIXED",
+				"amount": 50000,
+				"currency": "MXN"
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://img.classistatic.com/crop/100x100/i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_19.JPG"
+				}
+			],
+			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 20,
+				"viewCount": 201,
+				"favoriteCount": 110
+			},
+			"seller": {
+				"name": "Kobeee",
+				"soiSeoUrl": "/u-seller-listings/falex/v1u100000000p1",
+				"profileImage": "http://a.espncdn.com/combiner/i?img=/i/headshots/nba/players/full/110.png&w=350&h=254"
+			},
+			"features": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			]
+		},
+		{
+			"id": "200000000",
+			"adId": "200000000long",
+			"viewSeoUrl": "/a-house-shares-flat-shares-offered/groblersdal/post-house-ad-from-bapi-at-2016+01+12-17-05-54-948/1001096096020910618300709",
+			"title": "Post House Ad from bapi at 2016-01-12 17:05:54.948",
+			"description": "Test description for Post AD for room WITH CAR LARGE  PICS with small ones too FOR SURE",
+			"adPrice": {
+				"priceType": "FIXED",
+				"currency": "USD",
+				"amount": 50000
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://www.mikesalkin.com/articles/images/house-for-sale.jpg"
+				}
+			],
+			"categoryId": 9000,
+			"statistics": {
+				"replyCount": 16,
+				"viewCount": 92,
+				"favoriteCount": 66
+			},
+			"seller": {
+				"name": "mike phelps",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/cristian-zapata/v1u107937451p1",
+				"profileImage": "http://i2.cdn.turner.com/cnnnext/dam/assets/160630101057-michael-phelps-u-s-trials-exlarge-169.jpg"
+			},
+			"features": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			]
+		},
+		{
+			"id": "300000000",
+			"adId": "300000000long",
+			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+			"title": "Nissan March Sedán 2013",
+			"description": "Nissan March Sedán 2013",
+			"adPrice": {
+				"priceType": "CONTACT_ME"
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
+				}
+			],
+			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 30,
+				"viewCount": 111,
+				"favoriteCount": 88
+			},
+			"seller": {
+				"name": "MJ23",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1",
+				"profileImage": "https://upload.wikimedia.org/wikipedia/commons/a/ae/Michael_Jordan_in_2014.jpg"
+			},
+			"features": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			]
+		},
+		{
+			"id": "400000000",
+			"adId": "400000000long",
+			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
+			"title": "Nissan March Sedán 2013",
+			"description": "Nissan March Sedán 2013",
+			"adPrice": {
+				"priceType": "CONTACT_ME"
+			},
+			"pictures": [
+				{
+					"size": "NORMAL",
+					"url": "http://strongautomotive.com/wp-content/uploads/2015/02/for-sale-car-signJPEG.jpg"
+				}
+			],
+			"categoryId": 1097,
+			"statistics": {
+				"replyCount": 30,
+				"viewCount": 111,
+				"favoriteCount": 88
+			},
+			"seller": {
+				"name": "MJ23",
+				"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1"
+			},
+			"features": [
+				"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
+			]
+		}
+	],
+	"config": {
+		"cardName": "trendingCard",
+		"viewMoreFilterIncrement": 2,
+		"clientJsHandlerCssClass": "use-isotope-handler",
+		"showFavorites": true,
+		"showReplies": true,
+		"showLikes": true,
+		"showFeatured": true
 	}
 }
