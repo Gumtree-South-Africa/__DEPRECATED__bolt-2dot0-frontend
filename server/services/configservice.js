@@ -24,7 +24,7 @@ class ConfigService {
 		this.bapiOptions.path = config.get('BAPI.endpoints.configService');
 
 		// Invoke BAPI
-		return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "config");
+		return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "getConfig");
 	}
 
 	/**
@@ -38,7 +38,7 @@ class ConfigService {
 		this.bapiOptions.path = config.get('BAPI.endpoints.updateConfig');
 
 		// Invoke BAPI
-		return require('./bapi/bapiPromisePost')(this.bapiOptions, bapiHeaders, configDataJson, 'config');
+		return require('./bapi/bapiPromisePost')(this.bapiOptions, bapiHeaders, configDataJson, 'updateConfig');
 	}
 }
 

@@ -23,7 +23,7 @@ CategoryService.prototype.getCategoriesData = function(bapiHeaders, depth) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.categoryHomePage') + '?depth=' + depth;
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category:depth'+depth);
 };
 
 /**
@@ -40,7 +40,7 @@ CategoryService.prototype.getCategoriesDataWithLocId = function(bapiHeaders, dep
 	}
 
 	// Invoke BAPI
-	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category');
+	return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'category:depth'+depth+':location'+locationId);
 };
 
 module.exports = new CategoryService();

@@ -7,6 +7,7 @@ module.exports = function (config) {
         files: [
 			"../../../public/js/libraries/handlebars/handlebars-v4.0.5.js",
 			"../helpers/webTemplates.js",
+			"../../../node_modules/jquery/dist/jquery.js",
 			"../SpecRunner.js"
         ],
 		reporters: ["spec"],

@@ -28,11 +28,11 @@ let initialize = () => {
 		$('.char-count').text(event.target.value.length);
 	});
 	
-	$('.title-input').on('click', () =>{
+	$('.title-input').on('change', () =>{
         window.BOLT.trackEvents({"event": " PostAdTitle"});
     });
 	
-	$('.price-input').on('click', () => {
+	$('.price-input').on('change', () => {
 		window.BOLT.trackEvents({"event": " PostAdPrice"});
 	});
 	

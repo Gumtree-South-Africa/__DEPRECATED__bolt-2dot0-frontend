@@ -29,5 +29,9 @@
 	"features": [
 		"TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"
 	],
-	"sizeClass": "two-by-two"
+	"sizeClass": "two-by-two",
+	"config": {
+		"showSellers": true,
+		"showFavorites": true
+	}
 }
