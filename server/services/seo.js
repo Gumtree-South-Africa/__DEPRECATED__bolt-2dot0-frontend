@@ -42,6 +42,17 @@ SeoService.prototype.getQuickPostSeoData = function(bapiHeaders) {
 	return seoData;
 }
 
+/**
+ * Gets a list of SEO info for PostAd
+ */
+SeoService.prototype.getPostSeoData = function(bapiHeaders) {
+	// console.info('Inside Post SeoService');
+	var seoData = {};
+	seoData.pageTitle = 'postAd.page.title';
+	seoData.description = 'postAd.page.desc';
+	seoData.robots = 'index,follow';
+	return seoData;
+}
 
 /**
  * Gets a list of SEO info for SRP
