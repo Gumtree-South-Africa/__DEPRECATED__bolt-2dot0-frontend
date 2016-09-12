@@ -201,7 +201,7 @@ describe('Post Ad Api', () => {
 	it('should respond with 406 because we did not send json', (done) => {
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.send("sending this but it is not json")
+				.send(null)
 				.expect((res) => {
 					expect(res.status).toBe(406);
 				})
