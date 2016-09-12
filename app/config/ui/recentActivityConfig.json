@@ -28,6 +28,18 @@
 				}
 			]
 		},
+		"68": {
+			"type": [
+				{
+					"name": "AlmVehicleBrand",
+					"prefix": "un(a) {formattedValue}"
+				},
+				{
+					"name": "AlmVehicleModel",
+					"prefix": "{formattedValue}"
+				}
+			]
+		},
 		"65": {
 			"type": [
 				{
