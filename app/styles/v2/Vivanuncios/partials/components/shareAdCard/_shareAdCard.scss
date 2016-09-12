@@ -1,7 +1,7 @@
 .share-my-ad-card {
 	display: none;
 	width: 100%;
-	height: 80px;
+	height: 25px; //height: 80px with share links in the dom
 	background-color: $vivaWhite;
 
 	@include from-breakpoint($medium-break) {
