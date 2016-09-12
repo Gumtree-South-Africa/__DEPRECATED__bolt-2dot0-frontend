@@ -2,6 +2,7 @@
 {{> (dynamic "hamburgerMenu")}}
 {{/unless}}
 
+<div id="search-mask" class="search-mask hidden"></div>
 <div class="header-wrapper">
     <div class="headerV2">
         <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
@@ -14,7 +15,7 @@
             </a>
             <div class="left-items">
                 {{#if this.header.isUserLoggedIn}}
-                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
+                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
                         <div class="messages icon-messages-blue">
                             {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
                                 <div class="number-messages">
@@ -67,7 +68,7 @@
             </div>
 
             {{!-- post ad button --}}
-            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+            {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
             <div class="right-items">
                 <div class="profile right-item">

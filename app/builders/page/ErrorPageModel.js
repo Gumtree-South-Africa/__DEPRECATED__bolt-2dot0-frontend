@@ -23,18 +23,33 @@ class ErrorPageModel {
 
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, functionMap, []);
-
 		let errorPageModel = new ModelBuilder(arrFunctions);
+
+		let initModelData = errorPageModel.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
+
 		return errorPageModel.resolveAllPromises()
-			.then(function(data) {
+			.then((data) => {
 				// Converts the data from an array format to a JSON format
 				// for easy access from the client/controller
-				return abstractPageModel.convertListToObject(data, arrFunctions);
+				data = abstractPageModel.convertListToObject(data, arrFunctions, initModelData);
+				return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			}).fail((err) => {
+				console.error(err);
+				console.error(err.stack);
 			});
 	}
 
 	getErrorpageDataFunctions() {
 		return {};
+	}
+
+	mapData(modelData, data) {
+		modelData.header = data.common.header || {};
+		modelData.footer = data.common.footer || {};
+		modelData.dataLayer = data.common.dataLayer || {};
+		modelData.categoryData = this.res.locals.config.categoryflattened;
+
+		return modelData;
 	}
 }
 

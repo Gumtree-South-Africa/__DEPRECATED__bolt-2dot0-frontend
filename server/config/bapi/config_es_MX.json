@@ -197,7 +197,7 @@
 			  	"models" : ["seo"]
 			}
 		},
-		"PostAd": {
+		"PostAdForm": {
 			"desktop" 	: {
 				"models" : ["seo"]
 			},
@@ -207,10 +207,10 @@
 		},
 		"EditAd": {
 			"desktop" 	: {
-				"models" : ["locationlatlong", "adResult"]
+				"models" : ["locationlatlong", "adResult", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["locationlatlong", "adResult"]
+				"models" : ["locationlatlong", "adResult", "seo"]
 			}
 		}
 	}

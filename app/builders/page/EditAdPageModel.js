@@ -11,6 +11,8 @@ let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
+let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+
 
 let _ = require('underscore');
 
@@ -31,9 +33,8 @@ class EditAdPageModel {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.EDIT_AD;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
-
 		let modelBuilder = new ModelBuilder(this.getEditAdData());
-		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
+		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
@@ -116,8 +117,13 @@ class EditAdPageModel {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let editAdModel = new EditAdModel(modelData.bapiHeaders);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
+		let seo = new SeoModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
+
+		this.dataPromiseFunctionMap.seo = () => {
+			return seo.getHPSeoInfo();
+		};
 
 		this.dataPromiseFunctionMap.locationlatlong = () => {
 			modelData.geoLatLngObj = modelData.geoLatLngObj || '';

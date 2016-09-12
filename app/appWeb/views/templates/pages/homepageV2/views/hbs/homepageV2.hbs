@@ -1,7 +1,3 @@
-{{#partial "headerWrapper"}}
-    {{> (dynamic "headerV2")}}
-{{/partial}}
-
 {{#partial "content"}}
 	<div>
         {{> (dynamic "sectionMenu")}}
@@ -57,11 +53,9 @@
         {{> (dynamic "bottomBanner") }}
 
 	</div>
-{{/partial}}
 
-{{#partial "footerWrapper"}}
-    {{> (dynamic "footerV2")}}
     {{> (dynamic "welcomeModal")}}
+
 {{/partial}}
 
 {{#partial "pageTailScripts"}}
