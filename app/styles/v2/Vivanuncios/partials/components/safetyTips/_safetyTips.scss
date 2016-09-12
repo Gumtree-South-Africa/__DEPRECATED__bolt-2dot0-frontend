@@ -1,3 +1,4 @@
+$textColor: white;
 .safety-tips-container {
     width: 100%;
     margin: .5em auto;
@@ -15,7 +16,6 @@
             display: inline-block;
         }
         .ad {
-            background-image: url('http://placehold.it/336x280');
             background-size: contain;
             background-position: center;
             width: 90%;
@@ -33,22 +33,30 @@
     background-color: $safety-card-background-color;
     float: left;
     margin-bottom: 0.5em;
-   
+
     @media (min-width: 768px) {
         width: 27.6667%;;
     }
 
     .safetyTips {
+		height: 320px;
+		@media (min-width: 768px) {
+			height: 280px;
+		}
         max-width: 800px;
         width: 100%;
         margin: auto;
         position: relative;
 
         .title {
-            padding: 5px;
+			padding-top: 10px;
         }
 
         .safety-icon {
+			margin-right: 6px;
+			width: 24px;
+			height: 25px;
+			background-image: url("../../../../../images/es_MX/shield.png");
             vertical-align: sub;
             display: inline-block;
             align-self: center;
@@ -76,62 +84,53 @@
 
         }
 
-        .image-container {
-            @media (min-width: 768px) {
-                margin-left: 10px;
-            }
-        }
+		.image-container {
+			height: 193px;
+			@media (min-width: 768px) {
+				height: 151px;
+			}
+		}
 
         .image {
-            height: 200px;
-            margin: 10px;
+            height: 193px;
             background-repeat: no-repeat;
             background-position: center;
-            background-size: contain;
+            background-size: cover;
             @media (min-width: 768px) {
-                height: 131px;
+                height: 151px;
             }
             &.image-left {
-                background-image: url('../../../../../images/safety-tips-1.jpg');
-            }
-            &.image-right {
-                display: none;
-                background-image: url('../../../../../images/safety-tips-2.jpg');
-                @media (min-width: 768px) {
-                    display: block;
-                }
+                background-image: url('../../../../../images/safety-tips.jpg');
             }
         }
 
         .faq {
+			position: absolute;
+			bottom: 22px;
             width: 100%;
             padding-top: 5px;
-            padding-bottom: 15px;
             clear: both;
+			font: $h3;
+			line-height: 29px;
+			color: $textColor;
         }
 
         a {
             font: $secondary-link-font;
-            color: $secondary-link-color;
+			color: $textColor;
             text-decoration: underline;
         }
 
-        h1 {
+        h2 {
             font: $h1;
             line-height: 37px;
             font-weight: bold;
-            color: $h1-color;
-        }
-
-        h3 {
-            font: $h3;
-            line-height: 29px;
-            color: $h3-secondary-color;
+			color: $textColor;
         }
 
         .help-text {
             font: $p2;
-            color: $p2-secondary-color;
+			color: $textColor;
         }
     }
 }
@@ -164,11 +163,6 @@
 	.safety-tips-card {
 		width: 24.6667%;
         margin-left: 25px;
-
-	}
-
-	.safety-tips-card .safetyTips .image {
-		height: 102px;
 	}
 }
 
@@ -176,22 +170,19 @@
 
 	.home_rghtbanner {
 		float: left;
-		width: 336px;
+		width: 31%;
 		height: 280px;
 		margin: auto 10px;
 		text-align: center;
-		background: #EEE;
 		margin-right: 22px;
 	}
 
 	.home_rghtbanner2 {
 		float: left;
-		width: 336px;
+		width: 31%;
 		height: 280px;
 		margin: auto;
 		text-align: center;
-		background: #EEE;
-
 	}
 
 	.safety-tips-container {
@@ -201,6 +192,7 @@
 
 	.safety-tips-card {
 		margin-right: 12px;
+		width: 30%;
 	}
 
 }

@@ -1,0 +1,13 @@
+{
+    "id": 201,
+    "localizedName": "South Africa",
+    "level": "L0",
+    "isLeaf": false,
+    "_links": [
+      {
+        "rel": "self",
+        "href": "/locations/90/-70.5",
+        "method": "GET"
+      }
+    ]
+}

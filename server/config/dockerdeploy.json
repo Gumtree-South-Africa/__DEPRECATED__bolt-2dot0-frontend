@@ -4,7 +4,7 @@
 	    	"host": "docker_host_machine",
 	    	"port": 80,
 	    	"parameters": null,
-			"timeout": 2000
+			"timeout": 10000
 	    },
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories",
@@ -20,12 +20,15 @@
 		 	"quickpostAd"		:	"/boltapi/v1/ads",
 			"recentActivities"	:	"/boltapi/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
-			"draftAd"			:	"/boltapi/v1/ads/drafts"
+			"draftAd"			:	"/boltapi/v1/ads/drafts",
+			"specificAd"		:	"/boltapi/v1/ads/{id}",
+			"favoriteAd"		:	"/boltapi/v1/ads/{id}/favorites",
+			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes"
 	    }
 	},
 	"solr": {
 		"server": {
-			"host"	: "localhost",
+			"host"	: "docker_host_machine",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"

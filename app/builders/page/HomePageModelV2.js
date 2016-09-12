@@ -45,6 +45,12 @@ class HomePageModelV2 {
 
 		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
+		// register these translations as they are needed for client templating
+		abstractPageModel.addToClientTranslation(modelData, [
+			"recentactivity.message.listing",
+			"recentactivity.message.sold",
+			"homepage.trending.contact"
+		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
 				// Converts the data from an array format to a JSON format
@@ -59,9 +65,16 @@ class HomePageModelV2 {
 
 	mapData(modelData, data) {
 		let distractionFreeMode = false;
+		let showTopBanner = true;
+
 		if (this.bapiConfigData.content.homepageV2) {
 			distractionFreeMode = this.bapiConfigData.content.homepageV2.distractionFree || false;
 		}
+
+		if (this.bapiConfigData.content.homepageV2.showTopBanner !== undefined) {
+			showTopBanner = this.bapiConfigData.content.homepageV2.showTopBanner;
+		}
+
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
 		modelData.header.distractionFree = distractionFreeMode;
@@ -69,6 +82,8 @@ class HomePageModelV2 {
 		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
+		modelData.showTopBanner = showTopBanner;
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 
 		modelData.isNewHP = true;
 
@@ -81,7 +96,7 @@ class HomePageModelV2 {
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 
 		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
-		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+		let cardsModel = new CardsModel(modelData.bapiHeaders);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
@@ -92,9 +107,11 @@ class HomePageModelV2 {
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
 				// user specific parameters are passed here, such as location lat/long
-				return cardsModel.getCardItemsData(cardName, {
-					geo: modelData.geoLatLngObj
-				}).then( (result) => {
+				let cardParams = {};
+				if (cardName === 'trendingCard') {
+					cardParams.geo = modelData.geoLatLngObj;
+				}
+				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;

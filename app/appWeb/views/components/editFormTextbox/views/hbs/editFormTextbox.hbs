@@ -1,0 +1,6 @@
+<div class="label-wrapper">
+	<label for="{{this.name}}">{{this.localizedName}}</label>
+</div>
+<div class="input-wrapper">
+    <input type="text" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
+</div>

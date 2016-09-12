@@ -4,10 +4,12 @@
 let express = require('express'), router = express.Router(), Q = require('q');
 
 let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
+let CardsModel = require(process.cwd() + '/app/builders/common/CardsModel');
+let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(process.cwd() + '/modules/cors');
 
-
-router.get('/gallery', cors, function(req, res) {
+//todo: get rid of this route (or replace it with /cards below) once V1 homepage is no longer in use
+router.get('/', cors, function(req, res) {
 	let bapiHeaders = {};
 	bapiHeaders.requestId = req.app.locals.requestId;
 	bapiHeaders.ip = req.app.locals.ip;
@@ -17,33 +19,31 @@ router.get('/gallery', cors, function(req, res) {
 
 	let gallery = new GalleryModel(bapiHeaders), galleryData = {}, offset = req.query.offset, // Start Index
 		limit = req.query.limit, // Limit
-		ajaxUrls = {}, galleryDeferred = Q.defer();
+		ajaxUrls = {};
 
 	// Only applicable for SRP Gallery where there is categoryId
 	// categoryId = req.query.categoryId;
 
-	Q(gallery.getAjaxGallery(offset, limit))
-		.then(function(dataG) {
-			dataG = dataG || {};
-			galleryData = {
-				'ads': dataG.ads || []
-			};
+	gallery.getAjaxGallery(offset, limit).then(function(dataG) {
+		dataG = dataG || {};
+		galleryData = {
+			'ads': dataG.ads || []
+		};
 
-			// Get the prev and next urls
-			ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
-			if (ajaxUrls.next) {
-				galleryData.nextAjaxUrl = ajaxUrls.next;
-			}
+		// Get the prev and next urls
+		ajaxUrls = getAjaxsUrlFromBapiJSON(dataG);
+		if (ajaxUrls.next) {
+			galleryData.nextAjaxUrl = ajaxUrls.next;
+		}
 
-			if (ajaxUrls.prev) {
-				galleryData.previousAjaxUrl = ajaxUrls.prev;
-			}
+		if (ajaxUrls.prev) {
+			galleryData.previousAjaxUrl = ajaxUrls.prev;
+		}
 
-			galleryDeferred.resolve(galleryData);
-			res.send(galleryData);
-		}).fail(function(err) {
-		galleryDeferred.reject(new Error(err));
 		res.send(galleryData);
+	}).fail(function(err) {
+		err.logError();
+		res.send(galleryData); // not modifying this to return the status code of bapi because its used for v1
 	});
 });
 
@@ -64,5 +64,53 @@ function getAjaxsUrlFromBapiJSON(dataG) {
 	return ajaxUrls;
 }
 
+
+/**
+ * route is /api/ads/gallery/card
+ * this is a new ajax layer that uses the card model
+ * it can replace the other gallery ajax endpoint when V1 homepage is no longer in use
+ */
+router.get('/card', cors, (req, res) => {
+
+	let params;
+	// validate the inputs
+	if (req.query.offset && req.query.limit) {
+		if (Number.isNaN(Number.parseInt(req.query.offset)) || Number.isNaN(Number.parseInt(req.query.limit))) {
+			res.status(400);
+			res.send({  error: "query params could not be parsed into numbers"});
+			return;
+		}
+		// params are good
+		params = {
+			offset: req.query.offset,
+			limit: req.query.limit
+		}
+	} else {
+		res.status(400);
+		res.send({  error: "query params required"});
+		return;
+	}
+
+	let modelBuilder = new ModelBuilder();
+
+	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	model.cardsModel = new CardsModel(model.bapiHeaders);
+
+	model.cardsModel.getCardItemsData("galleryCard", {
+		offset: params.offset,
+		limit: params.limit
+	}).then( (result) => {
+		// augment the API result data with some additional card driven config for templates to use
+		result.config = model.cardsModel.getTemplateConfigForCard("galleryCard");
+		res.status(200).send(result);
+	}).fail((err) => {
+		let bapiInfo = err.logError();
+		res.status(err.statusCode ? err.statusCode : 500).send({
+			error: "unable to get gallery data, see logs for details",
+			bapiInfo: bapiInfo
+		});
+		return;
+	});
+});
 
 module.exports = router;

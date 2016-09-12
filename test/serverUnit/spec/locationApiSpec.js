@@ -19,7 +19,7 @@ describe('Location Api', () => {
 
 	it('should return a location for a lat long (from cookie)', (done) => {
 
-		let responseFile = specHelper.getMockData("geo", "geoLocation");
+		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,
@@ -43,7 +43,7 @@ describe('Location Api', () => {
 
 	it('should return a location for a lat long (using query parameters)', (done) => {
 
-		let responseFile = specHelper.getMockData("geo", "geoLocation");
+		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,

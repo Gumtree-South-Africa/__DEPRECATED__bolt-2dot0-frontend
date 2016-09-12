@@ -1,244 +1,175 @@
 
-/// ----------------------------------------------------------------------------
+.downloadapp-wrapper {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	@include from-breakpoint($medium-break) {
+		margin-top: 20px;
+		margin-bottom: 20px;
+		height: 474px;
+		width: 100%;
+	}
 
-		/// Mobile First Styles
-/// ----------------------------------------------------------------------------
-
-.inner-wrapper{
-     h1 {
-      font: $h1;
-      color: $h1-color;
-     }
-	.description{
-	   font: $p2;
-	   color:$p2-secondary-color;
-	 }
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
 }
 
-#downloadapp-content{
-    background-color: $appdownload-bgcolor;
- }
+#downloadapp-imagewrapper {
+	float: left;
+	background-image: url('../../../../../images/es_MX/appdownload_mobile.jpg');
+	background-position: center;
+	background-size: cover;
+	background-repeat: no-repeat;
+	width: 100%;
+	height: 205px;
 
+	@include to-breakpoint($medium-break) {
+		height: 337px;
+	}
 
- .user-avatar {
-  background-size:100% 100%;
-  height: 50px;
-  width: 50px;
- -moz-border-radius: 100%;
- -webkit-border-radius: 100%;
-  border-radius: 100%;
-  float: left;
-  margin:10px 4px 0px 10px;
-  border:1px solid $button-bgcolor;
- }
-
- #downloadapp-imagewrapper{
-    float:left;
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    }
-
- .rating-wrapper{
-
-  text-align:left;
-  }
-
-
- .review{
-    background-color: $appdownloadreview-bgcolor;
-    height: 70px;
-    margin-bottom: 1em;
-    border: 1px solid  $appdownloadreview-color;
-    border-radius: 5px;
-   .review-inner{
-   height:100%;
-   margin-top:13px
-   }
-   .rating{
-      background-image: url('../../../../../images/es_MX/rating.png');
-	  background-size:100% 100%;
-	  display:inline-block;
-	  height: 21px;
-      width: 96px;
-	   }
-   .review-description{
-     text-align:left;
-     overflow: hidden;
-      font: $appdownloadreview-font;
-      color:  $appdownloadreview-color;
-       margin-left: 0.8em;
-      }
+	@include from-breakpoint($medium-break) {
+		background-image: url('../../../../../images/es_MX/appdownload_desktop.jpg');
+		width: 60%;
+		height: 100%;
+	}
 }
 
+#downloadapp-content {
+	float: left;
+	width: 100%;
+	text-align: center;
+	background-color: $getAppCardMainBlue;
+	@include from-breakpoint($medium-break) {
+		float: left;
+		width: 40%;
+		height: 100%;
+		text-align: center;
+	}
+}
 
+.inner-wrapper {
+	margin: 0 20px;
+	@include from-breakpoint($medium-break) {
+		margin: 0 45px;
+	}
 
-.downloadapp-wrapper{
-    margin-top:0.5em;
-    margin-bottom:0.5em;
-   }
-#downloadapp-imagewrapper{
-    background-image: url('../../../../../images/es_MX/appdownload_mobile.jpg');
-    width:100%;
-    height:205px;
-    }
+	.title {
+		font: $h1;
+		color: white;
+		margin-top: 18px;
+		margin-bottom: 18px;
+		@include from-breakpoint($medium-break) {
+			margin-top: 20px;
+		}
+	}
+	.description {
+		font: $p2;
+		color: white;
+		text-align: left;
+	}
+	.review-wrapper {
+		margin-top: 0.5em;
+	}
+}
 
-#downloadapp-content{
-    float:left;
-    width:100%;
-    text-align:center;
-    }
+.user-avatar {
+	background-size: 100% 100%;
+	height: 50px;
+	width: 50px;
+	-moz-border-radius: 100%;
+	-webkit-border-radius: 100%;
+	border-radius: 100%;
+	float: left;
+	margin: 10px 10px 0 10px;
+	border: 1px solid $getAppCardMainBlue;
+	@include in-breakpoint($no-break) {
+		margin-right: 5px !important;
+	}
+}
 
-.review-inner{
-    width: 75%;
-    float: left;
-    text-align: left;
-   }
+.review {
+	background-color: $appdownloadreview-bgcolor;
+	height: 70px;
+	margin-bottom: 10px;
+	border: 1px solid $appdownloadreview-color;
+	border-radius: 5px;
+	&:not(:first-child) {
+		display: none;
+	}
 
- .user-avatar {
- margin-right:10px;
+	@include from-breakpoint($medium-break) {
+		display: block !important;
+	}
 
- }
+	.review-inner {
+		float: left;
+		width: 70%;
+		height: 100%;
+		text-align: left;
+		margin-top: 13px;
+	}
+	.rating-wrapper {
+		text-align: left;
+		margin-left: 2px;
+	}
+	.review-description {
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
 
-.inner-wrapper{
-   width:92%;
-   margin:auto;
-   margin-top: 5px;
-   }
-
-.review-wrapper{
-  margin-top: 0.5em;
+		text-align: left;
+		overflow: hidden;
+		font: $appdownloadreview-font;
+		color: $appdownloadreview-color;
+		margin-left: 2px;
+	}
 }
 
 .appmobile-button {
-   display: block;
-   margin-top: 1em;
-  a{
-    background-color: $button-bgcolor;
-    text-align: center;
-    font-size: $button-fontsize;
-    display: block;
-    margin-bottom: 1em;
-    padding: 0.4em;
-    color: $button-color;
-    cursor:pointer;
-    }
+	display: block;
+	margin-top: 1em;
+	@include from-breakpoint($medium-break) {
+		display: none;
+	}
+	a {
+		text-decoration: underline;
+		background-color: transparent;
+		text-align: center;
+		font-size: $button-fontsize;
+		display: block;
+		margin-bottom: 1em;
+		padding: 0.4em;
+		color: $button-color;
+		cursor: pointer;
+	}
+}
 
-  }
-
-
-
-
-@include in-breakpoint($large-break){
-	.review-inner{
-	float: left;
-
+@include from-breakpoint($medium-break) {
+	.app-button {
+		font-size: 0; // remove gap between inline-block elements
+		width: 100%;
+		height: 50px;
+		margin-bottom: 20px;
 	}
 
-.inner-wrapper .description {
-     margin-bottom: .7em;
- }
-
-  }
-
-@include in-breakpoint($small-break){
-
-.downloadapp-wrapper  #downloadapp-imagewrapper {
-  background-size: cover;
-   height: 337px !important;
-}
-
-}
-
-@include in-breakpoint($no-break){
-
-.user-avatar {
-    margin-right: 5px !important;
-}
-
-.review .rating {
- display: block;
- }
-
-}
-
-
-@include in-breakpoint($medium-break){
-.downloadapp-wrapper
-.inner-wrapper {
-    width: 92% ;
-    margin-top: 10%;
-    }
-     
-.downloadapp-wrapper  #downloadapp-imagewrapper {
-  background-size: cover;
-}
-
-}
-
-
-@include from-breakpoint($medium-break){
-
-.downloadapp-wrapper{
-	margin-top:1em;
-	margin-bottom:1em;
-	height:464px;
-	width:100%;
-	}
- #downloadapp-imagewrapper{
-    background-image: url('../../../../../images/es_MX/appdownload_desktop.jpg');
-    width:60%;
-    height:100%;
-}
-#downloadapp-content{
-	float: left;
-	width: 220px;
-	width: 40%;
-	height: 100%;
-	text-align: center;
-   }
-
-.inner-wrapper{
-	width: 80%;
-	margin: 0 auto;
-    margin-top: 6%;
-    .title{
-     margin-bottom: 0.2em;
-    }
-   }
-
-
- .appmobile-button{
-    display: none;
-  }
-
-
-  .app-button{
-    margin-bottom: 1em;
-    width: 100%;
-    height: 40px;
-    margin-top:1.5em ;
-   }
-
-.icon-app-store{
-    display: inline-block;
-	background-repeat: no-repeat;
-	width: 44%;
-	height: 2.75em;
-	background-size: cover;
-    background-position: center;
-
+	.icon-app-store {
+		display: inline-block;
+		background-repeat: no-repeat;
+		width: 44%;
+		height: 2.75em;
+		background-size: cover;
+		background-position: center;
+		margin-right: 8px;
 	}
 
-.icon-googleplay{
-	display: inline-block;
-	background-repeat: no-repeat;
-	width: 44%;
-	height: 2.75em;
-	background-size: cover;
-    background-position: center;
-    margin-right: 9px;
-
-   }
-
- }
+	.icon-googleplay {
+		display: inline-block;
+		background-repeat: no-repeat;
+		width: 44%;
+		height: 2.75em;
+		background-size: cover;
+		background-position: center;
+	}
+}

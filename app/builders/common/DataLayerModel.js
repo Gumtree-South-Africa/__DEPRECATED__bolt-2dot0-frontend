@@ -18,6 +18,7 @@ let getPageData = function(scope) {
 	};
 };
 
+
 //Function getUserData
 let getUsereData = function(scope) {
 	return {
@@ -25,9 +26,13 @@ let getUsereData = function(scope) {
 		'hashedUserEmail': (typeof scope.useremail === 'undefined' || scope.useremail === null) ? '' : Encryptor.encrypt(scope.useremail),
 		'loggedIn': (!(typeof scope.userid === 'undefined' || scope.userid === null)),
 		'hashedAccountId': '',
-		'accountType': ''
+		'accountType': '',
+	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
+        'daysSinceRegistration': '',
+		'sessionLvTstGrp': scope.sessionLvTstGrp
 	};
 };
+
 
 //Function getCatData
 let getCatData = function() {
@@ -64,6 +69,7 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
+		this.sessionLvTstGrp = res.locals.b2dot0Version ? "V2" : "V1";
 	}
 
 	getModelBuilder() {
@@ -78,6 +84,12 @@ class DataLayerModel {
 		this.useremail = useremail;
 	}
 
+	setUserCreationDate(usercreationdate) {
+		this.usercreationdate = usercreationdate;
+	}
+
+
+
 	getData() {
 		return [
 			() => {
@@ -85,8 +97,11 @@ class DataLayerModel {
 				switch (this.pagetype) {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
+					case pagetypeJson.pagetype.POST_AD:
+					case pagetypeJson.pagetype.EDIT_AD:
 						data = {
-							'pageData': getPageData(this), 'userData': getUsereData(this)
+							'pageData': getPageData(this),
+							'userData': getUsereData(this)
 						};
 						break;
 					case pagetypeJson.pagetype.QUICK_POST_AD_FORM:

@@ -1,5 +1,7 @@
 'use strict';
 
+let Q = require("q");
+
 let ModelBuilder = require('./ModelBuilder');
 
 let hpAdService = require(process.cwd() + '/server/services/homepage-ads');
@@ -38,7 +40,7 @@ class GalleryModel {
 		if (typeof this.bapiHeaders.locale !== 'undefined') {
 			return hpAdService.getAjaxGallery(this.bapiHeaders, offset, limit);
 		} else {
-			return {};
+			return Q({});
 		}
 	}
 

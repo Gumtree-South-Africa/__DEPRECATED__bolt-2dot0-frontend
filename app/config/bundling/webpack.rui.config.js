@@ -3,6 +3,9 @@
 let _ = require("underscore");
 
 let baseWebpackConfig = require("./webpack.base.config.js");
+let uglify = baseWebpackConfig.plugins.shift();
+baseWebpackConfig.plugins.shift(); // remove common bundle
+baseWebpackConfig.plugins.push(uglify);
 
 let ruiWebpackConfig = {
 	entry: {

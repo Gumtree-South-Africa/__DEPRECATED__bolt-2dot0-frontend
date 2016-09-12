@@ -32,7 +32,7 @@ $p3: $viva-p3;
 
 $p2-secondary-color: $vivaGray1;
 
-$safety-card-background-color: #e8e6e6;
+$safety-card-background-color: #1E98D5;
 $common-background-color: #f7f7f7;
 
 // Primary link
@@ -51,7 +51,7 @@ $tertiary-link-color: $vivaWhite;
 // SEO h1 tag
 $seo-bordercolor: #FAFAFA;
 
-//Page 
+//Page
 
 $page-bgcolor : $vivaWhite;
 $page-bordercolor : #f7f7f7;
@@ -72,7 +72,7 @@ $page-bordercolor: #f7f7f7;
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
-$appdownloadreview-font: $viva-p3;
+$appdownloadreview-font: $viva-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
@@ -142,6 +142,7 @@ $fontSizeH1: 1.5em;    // 24px
 $fontSizeH2: 1.5em;    // 24px
 $fontSizeH3: 1.25em;   // 20 px
 $fontSizeH4: 1em;      // 16 px
+$fontSizeLabel: .625em;      // 10 px
 
 // Colors, by specific item
 
@@ -156,20 +157,31 @@ $headerMessagesBackgroundColor: $vivaOrange;
 $profileDropdownLoginBtnColor: $vivaBlue;
 $headerMenuItemHighlightColor: $vivaGray5;
 $imagePlaceholderBackground: $vivaGray5;
+$headerBlue: $vivaBlue;
 
 $searchBarTextColor: $vivaBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaOrange;
+$searchBarLocationLinkColor: $vivaGray1;
 $searchBarTextBoxBorder: $vivaGray6;
 $searchBarButtonColor: $vivaBlue2;
 $searchBarButtonTextColor: $vivaWhite;
+$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+
+// Get the App card
+$getAppCardMainBlue: $vivaBlue6;
+
+// Cards
+
+$gallerySponsoredTextColor: $vivaGray10;
+$galleryViewMoreColor: $vivaGreen1;
 
 // Ad Tile
 
 $featuredBorderColor: $vivaGreen1;
+$galleryBorderColor: $vivaGreen1;
 
 // Post Ad page
 
@@ -181,4 +193,19 @@ $postAdShadowColor: $vivaGray6;
 $postAdOrange: $vivaOrange;
 $postAdHeaderBlue: $vivaBlue3;
 $postAdHeaderBackground: $vivaGray4;
-$postAdTextGray: $vivaGray10;
+$postAdTextGray: $vivaGray11;
+
+//Edit Ad Page
+$mainDetailsBackgroundColor: $vivaGray7;
+$mainDetailsTitleTextColor: $vivaGray1;
+$formSubmitButtonColor: $vivaOrange;
+$formSubmitButtonTextColor: $vivaWhite;
+$formCancelTextColor: $vivaBlack;
+$formSeparatorBarColor: $vivaGray9;
+$addWebsiteLinkTextColor: $vivaGreen1;
+$formLabelTextColor: $vivaGray3;
+$categoryDisplayTextColor: $vivaGray1;
+$buttonAreaBackgroundColor: $vivaWhite;
+$categorySelectionActiveListRowBgColor: $vivaGray5;
+$categorySelectionModalBgColor: $vivaWhite;
+$categorySelectionSeparatorColor: $vivaGray10;

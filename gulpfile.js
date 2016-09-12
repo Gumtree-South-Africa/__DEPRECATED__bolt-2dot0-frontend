@@ -50,6 +50,8 @@ function errorlog(err) {
 	this.emit('end');
 }
 
+let webpackTasks =  getTask('webpack');
+
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
 gulp.task('bumpup', getTask('bumpup'));
@@ -59,6 +61,7 @@ gulp.task('compass', getTask('compass'));
 gulp.task('sass', getTask('sass'));
 gulp.task('icons', getTask('icons'));
 gulp.task('precompile', getTask('precompile'));
+gulp.task('precompile2', getTask('precompile2'));
 gulp.task('component', getTask('component'));
 gulp.task('set-env', getTask('set-env'));
 gulp.task('develop', getTask('develop'));
@@ -66,7 +69,8 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
-gulp.task('webpack', getTask('webpack'));
+gulp.task('webpack', webpackTasks);
+gulp.task('webpack:rui', webpackTasks);
 gulp.task('svgSprite', getTask('svgSprite'));
 gulp.task('svgFallback', getTask('svgFallback'));
 gulp.task('webpackPrepare', getTask('webpackPrepare'));

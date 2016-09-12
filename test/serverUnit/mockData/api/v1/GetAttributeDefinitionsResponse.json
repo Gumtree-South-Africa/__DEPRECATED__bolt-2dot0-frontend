@@ -1,0 +1,91 @@
+[
+  {
+    "name": "AlmAutomoviles",
+    "canonicalName": "automoviles",
+    "localizedName": "Automoviles",
+    "allowedValues": [],
+    "dependencies": [
+      "AlmVehicleBrand",
+      "AlmVehicleModel"
+    ]
+  },
+  {
+    "name": "AlmVehicleBrand",
+    "canonicalName": "marca",
+    "localizedName": "Marca",
+    "allowedValueType": "STRING",
+    "allowedValues": [
+      {
+        "dependencyValue": null,
+        "value": "acura",
+        "canonicalValue": "acura",
+        "localizedValue": "Acura"
+      },
+      {
+        "dependencyValue": null,
+        "value": "audi",
+        "canonicalValue": "audi",
+        "localizedValue": "Audi"
+      },
+      {
+        "dependencyValue": null,
+        "value": "bmw",
+        "canonicalValue": "bmw",
+        "localizedValue": "BMW"
+      }
+    ],
+    "dependencies": []
+  },
+  {
+    "name": "AlmVehicleModel",
+    "canonicalName": "modelo",
+    "localizedName": "Modelo",
+    "allowedValueType": "STRING",
+    "allowedValues": [
+      {
+        "dependencyValue": "acura",
+        "value": "integra",
+        "canonicalValue": "integra",
+        "localizedValue": "Integra"
+      },
+      {
+        "dependencyValue": "acura",
+        "value": "legend",
+        "canonicalValue": "legend",
+        "localizedValue": "Legend"
+      },
+      {
+        "dependencyValue": "audi",
+        "value": "100",
+        "canonicalValue": "100",
+        "localizedValue": "100"
+      },
+      {
+        "dependencyValue": "audi",
+        "value": "200",
+        "canonicalValue": "200",
+        "localizedValue": "200"
+      }
+    ],
+    "dependencies": [
+      "AlmVehicleBrand"
+    ]
+  },
+  {
+    "name": "Address",
+    "canonicalName": "Direccion-en-el-mapa",
+    "localizedName": "Dirección",
+    "fullAddress": "491 Old Evans Rd, Mexico city",
+    "countryCode": "MX",
+    "latitude": "-33.918861",
+    "longitude": "18.423300"
+  },
+  {
+    "name": "Price",
+    "canonicalName": "precio",
+    "localizedName": "Precio",
+    "priceType": "FIXED",
+    "currency": "MXN",
+    "amount": 100
+  }
+]

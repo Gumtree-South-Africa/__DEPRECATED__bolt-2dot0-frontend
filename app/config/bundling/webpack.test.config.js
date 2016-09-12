@@ -1,7 +1,6 @@
 "use strict";
 
 let _ = require("underscore");
-let webpack = require('webpack');
 
 let baseWebpackConfig = require("./webpack.base.config.js");
 
@@ -11,10 +10,15 @@ let testWebpackConfig = {
 
 baseWebpackConfig.plugins.shift(); //Dont UGlify tests
 baseWebpackConfig.plugins.shift(); // Dont common chunk creation
-baseWebpackConfig.plugins.push(new webpack.ProvidePlugin({
-	$: "jquery",
-	jQuery: "jquery"
-}));
+
+baseWebpackConfig.module.loaders.push({
+	test: /\.json$/,
+	loader: "json-loader"
+});
+
+baseWebpackConfig.plugins.shift(); //Dont UGlify tests
+baseWebpackConfig.plugins.shift(); // Dont common chunk creation
+
 
 module.exports = _.extend(baseWebpackConfig, testWebpackConfig);
 

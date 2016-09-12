@@ -67,7 +67,7 @@
     &:first-child{
       border-top: 1px solid $modal-autocomplete-color;
     }
-    &.active, &:hover{
+    &.active {
       background-color: $modal-autocomplete-bgcolor-hover;
       color: $modal-autocomplete-color-hover;
     }

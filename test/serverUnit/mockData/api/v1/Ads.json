@@ -1,89 +1,48 @@
 {
 	"total": 60,
 	"offset": 2,
-	"limit":2,
-	"_links":
-    [
-        {
-            "rel": "self",
-            "href": "/ads?categoryId=65&offset=2&limit=2&geo=(40.12,-71.34)&radius=25km",
-            "method": "GET"
-        },
-				{
-            "rel": "selfSeo",
-            "href": "/s-venta-autos-camionetas/chihuahua/v1c81l1005p1",
-            "method": "GET"
-        },
-        {
-            "rel": "next",
-            "href": "/ads?categoryId=7765&offset=4&limit=2&geo=(40.12,-71.34)&radius=25km",
-            "method": "GET"
-        },
-        {
-            "rel": "previous",
-            "href": "/ads?categoryId=7765&offset=0&limit=2&geo=(40.12,-71.34)&radius=25km",
-            "method": "GET"
-        }
-    ],
-	"ads" :
-	[
+	"limit": 2,
+	"_links": [
 		{
-			"id":119996500,
+			"rel": "self",
+			"href": "/ads?categoryId=65&offset=2&limit=2&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
+		},
+		{
+			"rel": "selfSeo",
+			"href": "/s-venta-autos-camionetas/chihuahua/v1c81l1005p1",
+			"method": "GET"
+		},
+		{
+			"rel": "next",
+			"href": "/ads?categoryId=7765&offset=4&limit=2&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
+		},
+		{
+			"rel": "previous",
+			"href": "/ads?categoryId=7765&offset=0&limit=2&geo=(40.12,-71.34)&radius=25km",
+			"method": "GET"
+		}
+	],
+	"ads": [
+		{
+			"id": "119996500",
 			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/nissan-march-sedan-2013/1001199965000910793745109",
-			"title": "Nissan March Sedán 2013",
-			"description": "Nissan March Sedán 2013",
 			"categoryId": 65,
-			"adPrice":
-			{
-				"priceType": "FIXED",
-				"currency": "MXN",
-				"amount": 50000
-			},
-			"pictures": [
-		    {
-		      "size": "NORMAL",
-		      "url": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
-		    }
-		  ],
-			"statistics": {
-				"replyCount": 20,
-				"viewCount": 201,
-				"favoriteCount": 110
-			},
 			"seller": {
 				"name": "John",
 				"profileImage": "https://img.classistatic.com/crop/50x50/i.ebayimg.sandbox.ebay.com/00/s/MjAwWDEwNg==/z/2EcAAOSwyKBW8YmN/$_13.jpg",
 				"soiSeoUrl": "/u-anuncios-del-vendedor/cristian-zapata/v1u107937451p1"
 			},
-			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
-		},
-		{
-			"id":119997523,
-			"viewSeoUrl": "/a-venta-autos/chihuahua-chih/chevrolet-otro-modelo-sedan-2012/1001199975230910331834409",
-			"title": "Chevrolet Otro Modelo Sedán 2012",
-			"description": "Chevrolet Otro Modelo Sedán 2012",
-			"categoryId": 64,
-			"adPrice":
-			{
-				"priceType": "FIXED",
-				"currency": "MXN",
-				"amount": 50000
-			},
 			"pictures": [
-		    {
-		      "size": "NORMAL",
-		      "url": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
-		    }
-		  ],
+				{
+					"size": "NORMAL",
+					"url": "http://i.ebayimg.sandbox.ebay.com/00/s/Mjg2WDM1Ng==/z/ZK0AAOSw6XdWA6kM/$_18.JPG"
+				}
+			],
 			"statistics": {
-				"replyCount": 30,
-				"viewCount": 111,
-				"favoriteCount": 89
-			},
-			"seller": {
-				"name": "John",
-				"profileImage": "https://img.classistatic.com/crop/50x50/i.ebayimg.sandbox.ebay.com/00/s/MjAwWDEwNg==/z/2EcAAOSwyKBW8YmN/$_13.jpg",
-				"soiSeoUrl": "/u-anuncios-del-vendedor/fernando-marquez-ruiz/v1u103318344p1"
+				"replyCount": 20,
+				"favoriteCount": 110
 			},
 			"features": ["TOP_AD, BUMP_UP, HOME_PAGE_GALLERY"]
 		}

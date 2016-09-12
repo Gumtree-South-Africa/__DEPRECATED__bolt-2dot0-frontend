@@ -18,6 +18,10 @@ $cardHeaderPadding: 20px;
         font-weight: bold;
         color: $cardLinksColor;
         text-decoration: none;
+
+		&.for-gallery {
+			color: $galleryViewMoreColor;
+		}
     }
 
     .inline-block {
@@ -34,5 +38,37 @@ $cardHeaderPadding: 20px;
         padding-top: $cardHeaderPadding/2;
         padding-bottom: $cardHeaderPadding;
     }
+
+	&.featured-card {
+		position: relative;
+		border: 1.5px solid $galleryBorderColor;
+
+		.sponsored-text {
+			position: absolute;
+			top: 2px;
+			right: 50px;
+			color: $gallerySponsoredTextColor;
+			font-size: $fontSizeLabel;
+		}
+
+		.featured-bolt {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 2px;
+			right: 0px;
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-width: 16px;
+			border-style: solid;
+			border-color: $galleryBorderColor $galleryBorderColor transparent transparent;
+		}
+
+	}
 
 }

@@ -4,45 +4,37 @@
 			"queryEndpoint": "BAPI.endpoints.trendingSearch",
 			"queryParameters": {
 				"offset": "0",
-				"limit": "15",
-				"geo": "${UserProvided}"
+				"limit": "48",
+				"minResults": "48",
+				"geo": "${UserProvided}",
+				"withPicsOnly": true
 			},
 			"templateConfig": {
+				"viewMoreFilterIncrement": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showFavorites": true,
-				"showReplies": true,
-				"showLikes": true,
-				"showFeatured": true
-			},
-			"itemSizesString": "CBAADABAAAABAA"
+				"showSellers": true,
+				"showFavorites": true
+			}
 		},
-		"trendingCardTemplate": {
-			"queryEndpoint": "BAPI.endpoints.trendingSearch",
+
+		"galleryCard": {
+			"queryEndpoint": "BAPI.endpoints.homepageGallery",
 			"queryParameters": {
-				"offset": "0",
-				"limit": "15",
-				"location": "${UserProvided}",
-				"radius": "25km",
-				"categoryIds": [0,1,2],
-				"keywords": "foo,bar,baz",
-				"favoritesThreshold": 10,
-				"repliesThreshold": 10,
-				"sortBy" : "TBD",
-				"sellerIds": ["1", "2"]
+				"offset": "1",
+				"limit": "16"
 			},
 			"templateConfig": {
+				"viewMorePageSize": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showFavorites": true,
-				"showReplies": true,
-				"showLikes": true,
-				"showFeatured": true
-			},
-			"itemSizesString": "CBAADABAAAABAA"
+				"showSellers": true,
+				"showFavorites": true
+			}
 		}
 	},
 	"cardsByPage": {
 		"homePage": [
-			"trendingCard"
+			"trendingCard",
+			"galleryCard"
 		]
 	}
 }

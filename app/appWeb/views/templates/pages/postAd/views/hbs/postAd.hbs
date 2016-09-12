@@ -4,12 +4,9 @@
 
 {{#partial "content"}}
     {{> (dynamic "postAdModal")}}
-	<div class="post-ad-header">
-		<div class="header-text">
-			<div class="title-text">{{i18n "postAd.confirm.pageTitle"}}</div>
-			<div class="header-accent">-</div>
-		</div>
-	</div>
+
+    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle"}}
+
 	<div class="message-modal hidden">
 		<div class="message">
 			<div class="error-modal-container">
@@ -25,7 +22,7 @@
 				</h1>
 				<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
 				<div class="error-modal-footer">
-                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' buttonLink='#' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
+                    {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
 				</div>
 			</div>
 		</div>
@@ -41,7 +38,7 @@
 
         {{> (dynamic "postAdForm")}}
 
-		<a href="#" id="postAdBtn" class="post-ad-btn btn-wrapper disabled">
+		<a id="postAdBtn" class="post-ad-btn btn-wrapper disabled">
 			<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
 		</a>
 	</div>
@@ -51,4 +48,5 @@
 
 {{#partial "footerWrapper"}}
     {{> (dynamic "footerV2")}}
+	<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 {{/partial}}

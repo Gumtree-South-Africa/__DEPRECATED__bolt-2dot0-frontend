@@ -3,14 +3,17 @@ let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let cheerio = require('cheerio');
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
+let mockTrending = require(`${process.cwd()}/test/serverUnit/mockData/api/v1/TrendingCard.json`);
 
 describe('Server to hit HomePage', function() {
-
+	let i18n;
 	let lat = "19.451054";
 	let lng = "-99.125519";
 	let geoCookie = `${lat}ng${lng}`;
 
 	beforeEach(() => {
+		i18n = specHelper.getMockDataByLocale("/app/locales/bolt-translation", "", "es_MX");
+
 		specHelper.registerMockEndpoint(
 			`${endpoints.topLocationsL2}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/LocationList.json');
@@ -30,10 +33,8 @@ describe('Server to hit HomePage', function() {
 			`${endpoints.recentActivities}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/recentActivity.json');
 		specHelper.registerMockEndpoint(
-			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=15&geo=null`,
+			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=48&minResults=48&withPicsOnly=true`,
 			'test/serverUnit/mockData/api/v1/TrendingCard.json');
-
-
 	});
 
 	describe('V1 Home Page', () => {
@@ -49,11 +50,76 @@ describe('Server to hit HomePage', function() {
 		});
 	});
 
+	describe('Trending Card', () => {
+		it('should show on vivanuncios', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						expect(c$('.trending-card')).toBeDefined();
+						expect(c$('.card-trendingCard .card-title').text())
+							.toContain(i18n.homepage.popularSearches.popularIn, 'i18n string should match');
+						expect(c$('.card-trendingCard .card-title').text())
+							.toContain(i18n.homepage.popularSearches.yourNeighborhood, 'i18n string should match');
+						expect(c$('.tile-item').length).toBe(mockTrending.ads.length);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should show price, user profile image and product image on trending tiles', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						let trendingItem = c$('.tile-item').first();
+						expect(trendingItem).toBeDefined('Cannot find a trending tile');
+
+						// Item 1, priceType: MXN
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product url');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[0].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
+						expect(trendingItem.find(".price-text").text()).not.toContain("USD");
+
+						// Item 2, priceType: USD
+						trendingItem = c$('.tile-item').next();
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product url');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[1].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
+						expect(trendingItem.find(".price-text").text()).toContain("USD");
+
+						// Item 3, priceType: CONTACT_ME
+						trendingItem = c$('.tile-item').next().next();
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product url');
+						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
+							.toBe(mockTrending.ads[2].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
+						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
+
+						// Item 4, no profile image
+						trendingItem = c$('.tile-item').next().next().next();
+						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
+							.toBe(mockTrending.ads[3].pictures[0].url, 'Missing lazy load product url');
+						expect(trendingItem.find("div.profile-image").hasClass('icon-header-profile-out'))
+							.toBe(true, 'Placeholder profile icon is missing');
+						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+	});
+
 	describe('Geo Location', () => {
 
 		it('should show geo location on home page (geoId cookie passed)', (done) => {
 
-			let file = specHelper.getMockData("geo", "geoLocation");
+			let file = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 			specHelper.registerMockEndpoint(
 				`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,
@@ -93,28 +159,30 @@ describe('Server to hit HomePage', function() {
 					.expect((res) => {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.safetyTips')).toBeDefined();
-						expect(c$('.safetyTips .title h1')[0]
+						expect(c$('.safetyTips .title h2')[0]
 							.firstChild.data).toContain('Vivanuncios Te Cuida');
 					})
 					.end(specHelper.finish(done));
 			});
 		});
 
-		it('should show safety faq text on vivanuncios', (done) => {
-			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
-				supertest
-					.set('Cookie', 'b2dot0Version=2.0')
-					.expect((res) => {
-						let c$ = cheerio.load(res.text);
-						let faq = c$('.safetyTips .faq a')[0];
-						expect(faq.attribs.href)
-							.toBe('http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
-						expect(faq.firstChild.data).toContain('Consejos de seguridad');
-					})
-					.end(specHelper.finish(done));
-			});
-		});
-	});
+	//This needs to be uncommented out after Https Branch gets released.
+
+	// 	it('should show safety faq text on vivanuncios', (done) => {
+	// 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+	// 			supertest
+	// 				.set('Cookie', 'b2dot0Version=2.0')
+	// 				.expect((res) => {
+	// 					let c$ = cheerio.load(res.text);
+	// 					let faq = c$('.safetyTips .faq a')[0];
+	// 					expect(faq.attribs.href)
+	// 						.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
+	// 					expect(faq.firstChild.data).toContain('Consejos de seguridad');
+	// 				})
+	// 				.end(specHelper.finish(done));
+	// 		});
+	// 	});
+  });
 
 	describe('Recent Activitiy', () => {
 		it('should show feed tiles on vivanuncios', (done) => {
