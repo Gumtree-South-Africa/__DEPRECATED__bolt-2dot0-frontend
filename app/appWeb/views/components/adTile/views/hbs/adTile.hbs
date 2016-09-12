@@ -1,16 +1,18 @@
-
-<span class="inline-block panel {{#if this.featured}}featured{{/if}}">
-    <img class="lazy ad-image" data-original="{{this.pictures.0.url}}">
+<span class="inline-block tile-panel {{#if this.isFeaturedTile}}is-featured-tile{{/if}} {{#if this.isGalleryTile}}is-gallery-tile{{/if}}">
+    <img class="lazy ad-image" data-original="{{this.pictures.0.url}}" alt="{{this.title}}">
     <span class="featured-bolt icon-featured-white"></span>
-    <a href="{{this.seller.soiSeoUrl}}">
-        <span class="inline-block user-photo">
-            {{#if this.seller.profileImage}}
-                <img class="lazy profile-image" data-original="{{this.seller.profileImage}}13.JPG">
-            {{else}}
-                <div class="profile-image icon-header-profile-out"></div>
-            {{/if}}
-        </span>
-    </a>
+    {{#if config.showSellers}}
+        {{!-- seller link goes away of there is no url but the icon will remain --}}
+        {{#if this.seller.profileImage}}<a href="{{this.seller.soiSeoUrl}}" class="tile-seller-link">{{/if}}
+            <span class="inline-block user-photo">
+                {{#if this.seller.profileImage}}
+                    <img class="lazy profile-image" data-original="{{this.seller.profileImage}}13.JPG">
+                {{else}}
+                    <div class="profile-image icon-header-profile-out"></div>
+                {{/if}}
+            </span>
+        {{#if this.seller.profileImage}}</a>{{/if}}
+    {{/if}}
     <section class="controls">
         {{#if this.adPrice}}
             <span class="price-text">
@@ -27,8 +29,11 @@
                 {{/compare}}
             </span>
         {{/if}}
+        {{#if config.showFavorites}}
         <span class="favorite-btn icon-heart-gray" role="button" data-adid="{{this.adId}}" data-short-adid="{{this.id}}"></span>
+        {{/if}}
     </section>
-    <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{this.viewSeoUrl}}"></a>
+    <div>
+        <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{this.viewSeoUrl}}"></a>
+    </div>
 </span>
-

@@ -3,9 +3,17 @@ $inputMargin: 6%;
 $labelWidth: 86%;
 $labelMargin: 8%;
 
+.header-wrapper {
+	border-bottom: none !important;
+}
+
 .edit-ad-page {
 	.custom-attributes {
 		margin-bottom: 20px;
+	}
+
+	.icon-photo-close {
+		cursor: pointer;
 	}
 
 	.cover-photo {
@@ -72,7 +80,8 @@ $labelMargin: 8%;
 		}
 
 		select {
-			text-indent: 2%;
+			text-indent: 1%;
+			padding: 0 !important;
 		}
 
 		.choose-category-button {
@@ -125,6 +134,7 @@ $labelMargin: 8%;
 			}
 
 			.edit-ad-submit {
+				cursor: pointer;
 				width: 100%;
 				color: $formSubmitButtonTextColor;
 				background-color: $formSubmitButtonColor;
@@ -259,7 +269,10 @@ $labelMargin: 8%;
 				width: $labelWidth;
 				margin: 0 $labelMargin;
 				color: $categoryDisplayTextColor;
-				text-decoration: underline;
+
+				.hier-link {
+					text-decoration: underline;
+				}
 
 				&:hover {
 					cursor: pointer;
@@ -329,9 +342,15 @@ $labelMargin: 8%;
 		.control input:checked ~ .outer-circle .inner-circle {
 			background: $vivaOrange;
 		}
+
+		.currency-type {
+			cursor: pointer;
+		}
+
 		.control input:checked ~ .currency-type {
 			color: black;
 			font-weight: bold;
+			display: inline-block;
 		}
 
 		.inner-circle {
@@ -347,6 +366,7 @@ $labelMargin: 8%;
 		}
 
 		.outer-circle {
+			cursor: pointer;
 			display: inline-block;
 			position: relative;
 			top: 1px;

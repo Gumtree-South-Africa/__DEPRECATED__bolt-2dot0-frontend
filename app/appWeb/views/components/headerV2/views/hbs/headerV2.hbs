@@ -2,116 +2,125 @@
 {{> (dynamic "hamburgerMenu")}}
 {{/unless}}
 
-<div class="headerV2">
-    <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
-        <div class="logo"></div>
-    </a>
-    {{#unless this.header.distractionFree}}
-        <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-menu">
-        </div>
-        <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
-            <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-sms-2{{else}}icon-android{{/if}}"></div>
+<div id="search-mask" class="search-mask hidden"></div>
+<div class="header-wrapper">
+    <div class="headerV2">
+        <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
+            <div class="logo"></div>
         </a>
-        <div class="left-items">
-            {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|MessageIcon">
-                    <div class="messages icon-messages">
-                        <div class="number-messages">
-                            {{this.header.converstionInfo.totalUnreadMessageCount}}
+        {{#unless this.header.distractionFree}}
+            <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-hamburger"></div>
+            <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
+                <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-apple-dark-gray{{else}}icon-android-dark-gray{{/if}}"></div>
+            </a>
+            <div class="left-items">
+                {{#if this.header.isUserLoggedIn}}
+                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}">
+                        <div class="messages icon-messages-blue">
+                            {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
+                                <div class="number-messages">
+                                    {{this.header.converstionInfo.totalUnreadMessageCount}}
+                                </div>
+                            {{/compare}}
                         </div>
+                    </span>
+                {{/if}}
+                <div id='js-browse-dropdown' class="browse">
+                    <div id='js-browse-item-text' class="item-text">
+                        {{i18n "header.catDropdown.browse"}}
+                        <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                     </div>
-                </span>
-            {{/if}}
-            <div id='js-browse-dropdown' class="browse">
-                <div id='js-browse-item-text' class="item-text">
-                    {{i18n "header.catDropdown.browse"}}
-                    <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
-                </div>
-                <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
-                    <li class="menu-item">
-                        <a href="{{this.category._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.category.localizedName}}" title="{{this.category.localizedName}}" class="link-item"
-                           data-id="{{this.category.id}}">
-                            <span class="item-primary-text">{{this.category.localizedName}}</span>
-                            {{!-- item secondary is for category "counts", out for MVP
-                            <span class="item-secondary-text">(tbd)</span>
-                            --}}
-                        </a>
-                    </li>
-                    {{#each this.category.children}}
+                    <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
                         <li class="menu-item">
-                            <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
-                               data-id="{{this.id}}">
-                                <span class="item-primary-text">{{this.localizedName}}</span>
+                            <a href="{{this.category._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.category.localizedName}}" title="{{this.category.localizedName}}" class="link-item"
+                               data-id="{{this.category.id}}">
+                                <span class="item-primary-text">{{this.category.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
                                 <span class="item-secondary-text">(tbd)</span>
                                 --}}
                             </a>
-                            {{!-- l2 categories removed from sprint 4 7/14/16
-                            https://jira.corp.ebay.com/browse/BOLT-22118
-                                <ul class="menu-dropdown-l2">
-                                {{#each this.children}}
-                                    <li class="menu-item l2">
-                                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
-                                            <span class="item-primary-text">{{this.localizedName}}</span>
-                                        </a>
-                                    </li>
-                                {{/each}}
-                                </ul>
-                            --}}
                         </li>
-                    {{/each}}
-                </ul>
-            </div>
-        </div>
-        <div class="right-items">
-            <a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
-                <div class="help right-item">
-                    {{i18n "header.help"}}
+                        {{#each this.category.children}}
+                            <li class="menu-item">
+                                <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
+                                   data-id="{{this.id}}">
+                                    <span class="item-primary-text">{{this.localizedName}}</span>
+                                    {{!-- item secondary is for category "counts", out for MVP
+                                    <span class="item-secondary-text">(tbd)</span>
+                                    --}}
+                                </a>
+                                {{!-- l2 categories removed from sprint 4 7/14/16
+                                https://jira.corp.ebay.com/browse/BOLT-22118
+                                    <ul class="menu-dropdown-l2">
+                                    {{#each this.children}}
+                                        <li class="menu-item l2">
+                                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
+                                                <span class="item-primary-text">{{this.localizedName}}</span>
+                                            </a>
+                                        </li>
+                                    {{/each}}
+                                    </ul>
+                                --}}
+                            </li>
+                        {{/each}}
+                    </ul>
                 </div>
-            </a>
-            {{#if this.header.isUserLoggedIn}}
-                <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
-                    <div class="my-ads right-item">
-                        {{i18n "header.myAds"}}
-                    </div>
-                </span>
-            {{/if}}
-            <div class="profile right-item">
-                <div id="js-profile-item-text" class="item-text">
-                    <div class="profile-icon
-                        {{#if this.header.currentProfileImageUrl}}
-                            profile-picture
-                        {{else}}
-                            icon-header-profile-out
-                        {{/if}}"
+            </div>
 
-                        {{#if this.header.currentProfileImageUrl}}
-    						 style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
-                        {{/if}}>
-                    </div>
-                    {{#if this.header.isUserLoggedIn}}
-                        {{#if this.header.profileName}}
-                            {{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!
-                        {{else}}
-                            {{i18n "header.userDropdown.title"}}!
-                        {{/if}}
-                        <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
-                    {{else}}
-                        {{i18n "header.menu.my.gumtree"}}
-                        <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
-                    {{/if}}
-                </div>
-                {{!-- profile dropdown --}}
-                <div id="js-profile-dropdown" class="hidden">
-                    {{> (dynamic "profileMenu")}}
-                </div>
-            </div>
             {{!-- post ad button --}}
-             {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+            {{> (dynamic "button") extraClasses='post-ad-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
+            <div class="right-items">
+                <div class="profile right-item">
+                    <div id="js-profile-item-text" class="item-text">
+                        <div class="profile-icon
+                            {{#if this.header.currentProfileImageUrl}}
+                                profile-picture
+                            {{else}}
+                                icon-header-profile-out
+                            {{/if}}"
 
-        </div>
+                            {{#if this.header.currentProfileImageUrl}}
+                                 style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
+                            {{/if}}>
+                        </div>
+                        {{#if this.header.isUserLoggedIn}}
+							<div class="username-wrapper">
+                            {{#if this.header.profileName}}
+                                <div class="username">{{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!</div>
+                            {{else}}
+                                <div class="username">{{i18n "header.userDropdown.title"}}!</div>
+                            {{/if}}
+                            </div>
+                            <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
+                        {{else}}
+                            {{i18n "header.menu.my.gumtree"}}
+                            <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
+                        {{/if}}
+                    </div>
+                    {{!-- profile dropdown --}}
+                    <div id="js-profile-dropdown" class="hidden">
+                        {{> (dynamic "profileMenu")}}
+                    </div>
+                </div>
+                {{#if this.header.isUserLoggedIn}}
+					<span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
+                        <div class="my-ads right-item">
+                            {{i18n "header.myAds"}}
+						</div>
+                    </span>
+                {{/if}}
+				<a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
+					<div class="help right-item">
+                        {{i18n "header.help"}}
+					</div>
+				</a>
+            </div>
+        {{/unless}}
+    </div>
+    {{#unless this.header.distractionFree}}
+        {{#if this.search}}
+            {{> (dynamic "searchbarV2") }}
+        {{/if}}
     {{/unless}}
 </div>
-
-

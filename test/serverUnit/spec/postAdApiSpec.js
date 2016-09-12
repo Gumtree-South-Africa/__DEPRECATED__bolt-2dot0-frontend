@@ -50,7 +50,7 @@ describe('Post Ad Api', () => {
 
 					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
 					// the activateStatus is expected to cause a message to appear on the destination page
-					expect(jsonResult.ad.vipLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
+					expect(jsonResult.ad.redirectLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
 
 					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
@@ -201,7 +201,7 @@ describe('Post Ad Api', () => {
 	it('should respond with 406 because we did not send json', (done) => {
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.send("sending this but it is not json")
+				.send(null)
 				.expect((res) => {
 					expect(res.status).toBe(406);
 				})

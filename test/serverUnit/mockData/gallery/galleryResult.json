@@ -1,0 +1,161 @@
+{
+	"links": [
+		{
+			"rel": "self",
+			"href": "/ads/gallery?offset=0&limit=16",
+			"method": "GET"
+		},
+		{
+			"rel": "next slice",
+			"href": "/ads/gallery?offset=1&limit=16",
+			"method": "GET"
+		}
+	],
+	"ads": [
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101319240910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101329960910606012609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101330110910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101331660910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101299560910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101321830910609892809",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101277350910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101331680910606541509",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101272940910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101330140910605548909",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101296850910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101299580910608454609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101296870910610062509",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101319260910605545609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101320440910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		},
+		{
+			"primaryImgUrl": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG",
+			"viewPageUrl": "/a-venta+camionetas/alvaro-obregon/capitest-cars-mx-ads-from-capi/1001101329940910608898609",
+			"title": "capiTest cars mx ads from capi",
+			"priceType": "FIXED",
+			"currency": "MXN",
+			"amount": 535,
+			"formattedAmount": "$535"
+		}
+	],
+	"sliceSize": 16
+}

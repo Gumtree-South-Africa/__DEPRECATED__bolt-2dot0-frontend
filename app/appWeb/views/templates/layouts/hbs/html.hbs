@@ -106,6 +106,7 @@
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountCreationDate}}dl["u"]["a_cre"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.daysSinceRegistration}}dl["u"]["dsr"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.sessionLvTstGrp}}dl["u"]["tg"]["stg"] ="{{this}}";{{/with}}
                      {{#block "dataLayerSpecifics"}}{{/block}}
                 dl["c"]={};
                 dl["c"]["c"]={};
@@ -169,7 +170,6 @@
                 {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
                     {{#each ignoredRefs}}
                         _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
                     {{/each}}

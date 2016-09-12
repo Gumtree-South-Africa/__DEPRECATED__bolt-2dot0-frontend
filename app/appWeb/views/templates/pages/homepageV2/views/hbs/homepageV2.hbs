@@ -1,30 +1,17 @@
-{{#partial "headerWrapper"}}
-    {{> (dynamic "headerV2")}}
-{{/partial}}
-
 {{#partial "content"}}
 	<div>
-
-        {{#if this.search}}
-            {{> (dynamic "searchbarV2") }}
-        {{/if}}
-
         {{> (dynamic "sectionMenu")}}
 
         {{> (dynamic "topBanner")}}
 
         {{#if this.trendingCard}}
-            <div class="card trending-card">
-                <div class="card-title">{{i18n "homepage.popularSearches.popularIn"}}
-                    <span class="link inline-block underline card-title-cp">{{i18n "homepage.popularSearches.yourNeighborhood"}}</span>
-                </div>
-                {{> (dynamic "tileGrid")}}
-                <div class="card-view-more">
-                    <a class="link" href="javascript:;">
-                        <span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
-                        <span class="no-underline">&nbsp;&gt;</span></a>
-                </div>
-            </div>
+            {{> (dynamic "card") card=this.trendingCard
+                i18nTitle="homepage.popularSearches.popularIn"
+                i18nSubtitle="homepage.popularSearches.yourNeighborhood" }}
+        {{/if}}
+
+        {{#if this.trendingCard}}
+
         {{/if}}
 
         {{#if this.recentActivities}}
@@ -47,7 +34,13 @@
             {{> (dynamic "safetyTips") }}
         {{/if}}
 
-        <div class="seo-wrapper">
+        {{#if this.galleryCard}}
+            {{> (dynamic "card") card=this.galleryCard
+                i18nTitle="homepage.gallery.cardTitle" }}
+        {{/if}}
+
+
+		<div class="seo-wrapper">
            <h1>{{i18n "home.h1Tag"}}</h1>
             {{#if this.topSearches}}
                 {{> (dynamic "topSearches")}}
@@ -60,11 +53,9 @@
         {{> (dynamic "bottomBanner") }}
 
 	</div>
-{{/partial}}
 
-{{#partial "footerWrapper"}}
-    {{> (dynamic "footerV2")}}
     {{> (dynamic "welcomeModal")}}
+
 {{/partial}}
 
 {{#partial "pageTailScripts"}}
@@ -83,14 +74,15 @@
 			ptype: 'home'
 		};
 
-
-            {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
+            {{#if this.showTopBanner}}
+                {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
+            {{/if}}
             {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
             {{#block "googleBannerAdsRightBottomV2_Script"}}{{/block}}
             {{#block "googleBannerAdsBottom_Script"}}{{/block}}
             {{> (dynamic "skinBanner") }}
 	        {{#block "googleBannerSkinCampaign_ScriptV2"}}{{/block}}
-		
+
 
 	</script>
 

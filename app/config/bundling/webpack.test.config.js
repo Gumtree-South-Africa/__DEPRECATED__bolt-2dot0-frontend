@@ -2,8 +2,6 @@
 
 let _ = require("underscore");
 
-let webpack = require("webpack");
-
 let baseWebpackConfig = require("./webpack.base.config.js");
 
 let testWebpackConfig = {
@@ -18,10 +16,9 @@ baseWebpackConfig.module.loaders.push({
 	loader: "json-loader"
 });
 
-baseWebpackConfig.plugins.push(new webpack.ProvidePlugin({
-	$: "jquery",
-	jQuery: "jquery"
-}));
+baseWebpackConfig.plugins.shift(); //Dont UGlify tests
+baseWebpackConfig.plugins.shift(); // Dont common chunk creation
+
 
 module.exports = _.extend(baseWebpackConfig, testWebpackConfig);
 

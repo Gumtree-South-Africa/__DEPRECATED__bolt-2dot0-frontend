@@ -32,6 +32,7 @@ let initialize = () => {
 	this.$desktopFooter.on('click', (e) => {
 		_toggleModal(e, true);
 		this.$deskptopFileInput.click();
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this.$postAdWrapper.on('click', (e) => {

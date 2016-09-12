@@ -181,8 +181,10 @@ class HeaderModel {
 		data.iconsCSSFallbackUrl.push(`${data.baseCSSUrl}${this.locale}/fallback.css`);
 
 		if (deviceDetection.isMobile()) {
+			data.oneDot0CSSPath = data.baseCSSUrl + 'mobile/v1/' + this.brandName + '/' + this.country + '/' + this.locale;
 			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		} else {
+			data.oneDot0CSSPath = data.baseCSSUrl + 'all/v1/' + this.brandName + '/' + this.country + '/' + this.locale;
 			data.localeCSSPath = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
 		}
 		data.localeCSSPathHack = data.baseCSSUrl + b2dot0Ver + '/' + this.brandName + '/' + this.country + '/' + this.locale;
