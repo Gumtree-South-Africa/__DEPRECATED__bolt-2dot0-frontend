@@ -1,0 +1,67 @@
+
+@import
+    "../../theme-my-pages";
+
+
+.my-top-navigation {
+    @extend %section-header;
+
+    ul {
+        li {
+            @extend %small-regular-title;
+            color: $vivaBlack40;
+
+            &.current-page {
+                @extend %small-title;
+                color: #000;
+            }
+
+            a {
+                display: inline-block;
+                padding: 1em 0;
+                color: inherit;
+            }
+        }
+    }
+}
+
+
+@include in-breakpoint($no-break) {
+    .my-top-navigation {
+        ul {
+            li {
+                display: none;
+
+                &.current-page {
+                    display: block;
+                    // disable <a> action
+                    pointer-events: none;
+                }
+            }
+        }
+    }
+}
+
+
+@include from-breakpoint($small-break) {
+    .my-top-navigation {
+        ul {
+            li {
+                display: inline-block;
+                margin-right: 2em;
+
+                &.current-page {
+                    border-bottom: 4px solid $cheddar;
+                }
+            }
+        }
+    }
+}
+
+//needs to move this from here later at some point
+@include in-breakpoint($large-break){
+	.reply-msg-container {
+	  width: 75.5em;
+	}
+}
+

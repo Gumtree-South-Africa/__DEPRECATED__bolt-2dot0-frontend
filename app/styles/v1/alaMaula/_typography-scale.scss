@@ -1,0 +1,90 @@
+// FONT FAMILY
+$blueprint-font-family: Helvetica, Arial, sans-serif;
+
+
+
+$font-size-base-new: 0.75em; // 12px
+
+$font-size-xsmall: 0.625em; // 10px
+$font-size-small: 0.75em; // 12px
+$font-size-medium: 0.875em; // 14px
+$font-size-large: 1em; // 16px
+$font-size-xlarge: 1.5em; // 24px
+
+// for backwards compatibility
+$font-size-micro: $font-size-xsmall;
+
+
+
+
+
+
+// ------------------------------------------
+// TEXT GLOBAL CLASSES
+// ------------------------------------------
+%title-abstract {
+    font-weight: bold;
+    color: #000;
+}
+%title-regular-abstract {
+    font-weight: normal;
+}
+%paragraph-abstract {
+    font-weight: normal;
+    color: $vivaBlack;
+}
+
+
+%xlarge-title {
+    @extend %title-abstract;
+    font-size: $font-size-xlarge;
+}
+%xlarge-regular-title {
+    @extend %xlarge-title;
+    @extend %title-regular-abstract;
+}
+
+%large-title {
+    @extend %title-abstract;
+    font-size: $font-size-large;
+}
+%large-regular-title {
+    @extend %large-title;
+    @extend %title-regular-abstract;
+}
+
+
+%medium-title {
+    @extend %title-abstract;
+    font-size: $font-size-medium;
+}
+%medium-regular-title {
+    @extend %medium-title;
+    @extend %title-regular-abstract;
+}
+
+%small-title {
+    @extend %title-abstract;
+    font-size: $font-size-medium;
+}
+%small-regular-title {
+    @extend %small-title;
+    @extend %title-regular-abstract;
+}
+
+%p-regular {
+    @extend %paragraph-abstract;
+    font-size: $font-size-medium;
+}
+%p-small {
+    @extend %paragraph-abstract;
+    font-size: $font-size-small;
+}
+%p-xsmall {
+    @extend %paragraph-abstract;
+    font-size: $font-size-xsmall;
+}
+// ------------------------------------------
+// TEXT GLOBAL CLASSES
+// ------------------------------------------
+
