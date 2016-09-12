@@ -134,8 +134,6 @@ describe('Tile Grid', () => {
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
 			expect($(tiles[1]).find('.icon-heart-orange').length).toBeTruthy(`favorited cookie tile should have orange icon`);
-
 		});
-
 	});
 });
