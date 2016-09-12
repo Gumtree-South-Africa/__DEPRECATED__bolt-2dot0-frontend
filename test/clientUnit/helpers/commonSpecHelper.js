@@ -168,5 +168,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-	$("#testArea").html("");
+	$("#testArea").empty();
+	$("body").off();
+	$(window).off();
 });

@@ -3,7 +3,7 @@
 	<div class="main-details-title">
         {{i18n "editAd.mainDetails.title"}}
 	</div>
-	<form id='edit-form' method="POST" action="#">
+	<form id='edit-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
         <input id="location-lat" type="hidden" data-schema="data.location.latitude" name="locationLatitude" value="{{this.adResult.location.latitude}}">
         <input id="location-lng" type="hidden" data-schema="data.location.longitude" name="locationLongitude" value="{{this.adResult.location.longitude}}">
         <input type="hidden" name="adId" value="{{this.adId}}">
