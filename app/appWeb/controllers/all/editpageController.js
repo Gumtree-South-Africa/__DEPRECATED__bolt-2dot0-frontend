@@ -10,6 +10,11 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let EditAdPage = {
 	extendModelData: (req, modelData) => {
+		modelData.header.pageType = modelData.pagename;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description;
+		modelData.header.metaRobots = modelData.seo.robots;
+		modelData.header.canonical = modelData.header.homePageUrl;
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.min.css');

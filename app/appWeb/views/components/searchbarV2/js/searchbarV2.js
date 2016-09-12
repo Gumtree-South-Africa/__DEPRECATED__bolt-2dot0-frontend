@@ -147,6 +147,7 @@ let _newTypeAhead = (currentSearchTerm) => {
  */
 let _setIsTyping = (isTyping) => {
 	this.$searchControls.toggleClass("is-typing", isTyping);
+	this.$searchMask.toggleClass("is-typing", isTyping);
 	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
@@ -199,46 +200,55 @@ let initialize = () => {
 
 	this.currentTypeAheadQueue = [];
 	this.currentTypeAheadAjaxMap = {};
+	this.$searchMask = $('#search-mask');
 
 	this.$searchTextbox = this.$searchControls.find("input.search-textbox");
 	this.$typeAheadResults = this.$searchControls.find("#type-ahead-results");
 	this.$searchButton = this.$searchControls.find(".search-button");
 
-	let eventName = ('oninput' in this.$searchTextbox[0]) ? 'input' : 'keyup';
+	if (this.$searchTextbox.length > 0) {
+		let eventName = ('oninput' in this.$searchTextbox[0]) ? 'input' : 'keyup';
 
-	this.$searchTextbox.on(eventName, () => {
-		let textBoxVal = this.$searchTextbox.val();
-		_setIsTyping(textBoxVal !== "");
-		_newTypeAhead(textBoxVal);
-	});
 
-	this.$searchTextbox.on('keyup', (evt) => {
-		switch (evt.keyCode) {
-			case 38:
-				_highlightPrevItem();
-				evt.preventDefault();
-				break;
-			case 40:
-				_highlightNextItem();
-				evt.preventDefault();
-				break;
-			case 13:
-				_selectItem();
-				evt.preventDefault();
-				break;
-			case 27:
-				closeAutoComplete(true);
-				evt.preventDefault();
-				break;
-			default:
-				break;
-		}
+		this.$searchTextbox.on(eventName, () => {
+			let textBoxVal = this.$searchTextbox.val();
+			_setIsTyping(textBoxVal !== "");
+			_newTypeAhead(textBoxVal);
+		});
 
-	});
+		this.$searchMask.on('click', () => {
+			closeAutoComplete(true, true);
+		});
 
-	this.$searchControls.find(".close-search").on('click', () => {
-		closeAutoComplete();
-	});
+		this.$searchTextbox.on('keyup', (evt) => {
+			switch (evt.keyCode) {
+				case 38:
+					_highlightPrevItem();
+					evt.preventDefault();
+					break;
+				case 40:
+					_highlightNextItem();
+					evt.preventDefault();
+					break;
+				case 13:
+					_selectItem();
+					evt.preventDefault();
+					break;
+				case 27:
+					closeAutoComplete(true);
+					evt.preventDefault();
+					break;
+				default:
+					break;
+			}
+
+		});
+
+		this.$searchControls.find(".close-search").on('click', () => {
+			closeAutoComplete();
+		});
+	}
+
 };
 
 module.exports = {

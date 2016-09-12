@@ -3,6 +3,10 @@ $inputMargin: 6%;
 $labelWidth: 86%;
 $labelMargin: 8%;
 
+.header-wrapper {
+	border-bottom: none !important;
+}
+
 .edit-ad-page {
 	.custom-attributes {
 		margin-bottom: 20px;
@@ -76,7 +80,7 @@ $labelMargin: 8%;
 		}
 
 		select {
-			text-indent: 2%;
+			text-indent: 1%;
 			padding: 0 !important;
 		}
 
