@@ -4,7 +4,7 @@
 .confirm-content,
 .error-content,
 .empty-state-content{
-	color: lighten($color-black, 50%);
+	color: lighten( rgb(51, 51, 51), 50%);
 	padding: 2em 1em;
 }
 

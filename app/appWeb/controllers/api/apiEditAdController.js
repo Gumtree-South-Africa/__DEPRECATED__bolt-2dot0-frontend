@@ -15,7 +15,7 @@ let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 
 router.post('/attributedependencies', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
 	attributeModel.getAttributeDependents(req.body.catId, req.body.depAttr, req.body.depValue).then((attributes) => {
@@ -32,7 +32,7 @@ router.post('/attributedependencies', cors, (req, res) => {
 
 router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
@@ -75,7 +75,7 @@ router.post('/update', cors, (req, res) => {
 
 	// Step 4: Retrieve info from request since we're validated
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let editAdModel = new EditAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
 

@@ -127,7 +127,7 @@ router.post('/create', cors, (req, res) => {
 
 	// Step 4: Initialize Model
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let postAdModel = new PostAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
 
