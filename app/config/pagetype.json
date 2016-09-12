@@ -38,7 +38,7 @@
 	    "REPOST_AD_PREVIEW" : "RepostAdPreview",
 	    "POST_AD_FORM" : "PostAdForm",
 	    "POST_AD_PREVIEW" : "PostAdPreview",
-	    "EDIT_AD" : "EditAd",
+	    "EDIT_AD" : "EditAdForm",
 	    "POST_AD" : "PostAdForm",
 		"PWA_APP_SHELL" : "PwaAppShell",
 		"PWA_MANIFEST" : "PwaManifest",

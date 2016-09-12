@@ -205,7 +205,7 @@
 				"models" : ["seo"]
 			}
 		},
-		"EditAd": {
+		"EditAdForm": {
 			"desktop" 	: {
 				"models" : ["locationlatlong", "adResult", "seo"]
 			},
