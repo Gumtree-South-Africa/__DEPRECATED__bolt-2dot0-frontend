@@ -27,7 +27,9 @@
           color: gray;
           font-size: 0.8em;
           :hover{
-            text-decoration: underline;
+			  .close-text {
+				  text-decoration: underline;
+			  }
           }
           > div .close-text {
             vertical-align: middle;
@@ -36,6 +38,7 @@
           > div .icon-close{
               display: inline-block;
               vertical-align: middle;
+			  cursor: pointer;
           }
       }
   }

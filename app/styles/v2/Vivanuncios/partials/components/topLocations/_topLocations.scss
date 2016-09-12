@@ -64,6 +64,10 @@
 		border-bottom: 0px;
 	}
 	.view-more-locations {
+		&:hover {
+			text-decoration: underline;
+		}
 		text-align: center;
+		cursor: pointer;
 	}
 }

@@ -28,6 +28,11 @@ class SeoModel {
 	getQuickPostSeoInfo() {
 		return seoService.getQuickPostSeoData(this.bapiHeaders);
 	}
+
+// Function getQuickPostSeoInfo
+	getPostSeoInfo() {
+		return seoService.getPostSeoData(this.bapiHeaders);
+	}
 }
 
 module.exports = SeoModel;

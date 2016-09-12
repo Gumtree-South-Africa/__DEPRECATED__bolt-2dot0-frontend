@@ -4,7 +4,7 @@
 	    	"host": "docker_host_machine",
 	    	"port": 80,
 	    	"parameters": null,
-			"timeout": 2000
+			"timeout": 10000
 	    },
 	    "endpoints": {
 	    	"categoryHomePage"	:	"/boltapi/v1/categories",
@@ -28,7 +28,7 @@
 	},
 	"solr": {
 		"server": {
-			"host"	: "localhost",
+			"host"	: "docker_host_machine",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"

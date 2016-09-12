@@ -44,8 +44,6 @@ router.post('/', cors, (req, res) => {
 			return;
 		}).fail((err) => {
 			let bapiInfo = err.logError();
-			// todo: err.jsonMessage = "unable to favorite ad, see logs for details";
-			// todo: return next(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code
 				error: "unable to favorite ad, see logs for details",
 				bapiInfo: bapiInfo

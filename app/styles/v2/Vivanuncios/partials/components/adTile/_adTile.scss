@@ -1,7 +1,7 @@
 $panelCornerBorderRadius: 7px;
 
 
-.panel {
+.tile-panel {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -28,7 +28,11 @@ $panelCornerBorderRadius: 7px;
         display: block;
     }
 
-	&.featured {
+	&.is-gallery-tile {
+		border: 1.5px solid $galleryBorderColor;
+	}
+
+	&.is-featured-tile {
 		border: 1.5px solid $featuredBorderColor;
 
 		.featured-bolt {
@@ -49,6 +53,16 @@ $panelCornerBorderRadius: 7px;
 			border-style: solid;
 			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
 		}
+	}
+
+	.tile-seller-link {
+		z-index: 1;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		// give the seller link a little more space for clicking (5px around the 30px seller photo)
+		width: 40px;
+		height: 40px;
 	}
 
 	.user-photo {
