@@ -147,6 +147,7 @@ let _newTypeAhead = (currentSearchTerm) => {
  */
 let _setIsTyping = (isTyping) => {
 	this.$searchControls.toggleClass("is-typing", isTyping);
+	this.$searchMask.toggleClass("is-typing", isTyping);
 	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
@@ -199,6 +200,7 @@ let initialize = () => {
 
 	this.currentTypeAheadQueue = [];
 	this.currentTypeAheadAjaxMap = {};
+	this.$searchMask = $('#search-mask');
 
 	this.$searchTextbox = this.$searchControls.find("input.search-textbox");
 	this.$typeAheadResults = this.$searchControls.find("#type-ahead-results");
@@ -210,6 +212,10 @@ let initialize = () => {
 		let textBoxVal = this.$searchTextbox.val();
 		_setIsTyping(textBoxVal !== "");
 		_newTypeAhead(textBoxVal);
+	});
+
+	this.$searchMask.on('click', () => {
+		closeAutoComplete(true, true);
 	});
 
 	this.$searchTextbox.on('keyup', (evt) => {
@@ -227,7 +233,7 @@ let initialize = () => {
 				evt.preventDefault();
 				break;
 			case 27:
-				closeAutoComplete(true);
+				closeAutoComplete(true, true);
 				evt.preventDefault();
 				break;
 			default:
