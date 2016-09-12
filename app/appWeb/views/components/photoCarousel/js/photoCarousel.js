@@ -112,6 +112,9 @@ let _postAd = (urls, locationType) => {
 	let inputPrice = parseFloat($("#price-input").val());
 	let price = isNaN(inputPrice) ? 0 : inputPrice;
 
+	let spinner = $("#spinner-modal");
+	spinner.removeClass('hidden');
+
 	let extraPayload = {
 		locationType: locationType,
 		title: $("#title-input").val(),
@@ -127,6 +130,7 @@ let _postAd = (urls, locationType) => {
 		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
 	}, (err) => {
 		console.warn(err);
+		spinner.addClass('hidden');
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		this.uploadMessageClass.failMsg();
