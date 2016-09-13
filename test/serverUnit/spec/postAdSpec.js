@@ -68,7 +68,7 @@ describe('Post Ad Page', () => {
 		});
 	});
 
-	fit('should redirect if b2dot0Version cookie not set', (done) => {
+	it('should redirect if b2dot0Version cookie not set', (done) => {
 		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.expect((res) => {
