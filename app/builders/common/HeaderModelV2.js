@@ -22,7 +22,9 @@ class HeaderModel {
 		this.authCookie = req.cookies[authCookieName];
 
 		let searchLocIdCookieName = 'searchLocId';
+		let searchLocNameCookieName = 'searchLocName';
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
+		this.searchLocNameCookie = req.cookies[searchLocNameCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
 		// Local variables
 		this.secure = secure;
@@ -106,10 +108,14 @@ class HeaderModel {
 				if (typeof this.searchLocIdCookie !== 'undefined') {
 					data.cookieLocationId = this.searchLocIdCookie;
 
-					if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
-						data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
+					if (typeof this.searchLocNameCookie !== 'undefined') {
+						data.cookieLocationName = this.searchLocNameCookie;
 					} else {
-						data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
+						if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
+							data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
+						} else {
+							data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
+						}
 					}
 				}
 
@@ -219,7 +225,7 @@ class HeaderModel {
 		// set currentProfileImage so the hbs templates don't need conditional logic for which image to display
 
 		if (data.userProfileImageUrl) {
-			data.currentProfileImageUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('http://', '').replace('www', '') + "13.jpg";
+			data.currentProfileImageUrl = 'https://img.classistatic.com/crop/50x50/' + data.userProfileImageUrl.replace('http://www', '').replace('https://www', '').replace('http://', '').replace('https://', '').replace('www', '') + "13.jpg";
 		}
 
 		if (data.socialMedia) {

@@ -11,7 +11,7 @@
 			<div class="review-wrapper">
                 {{#each this.appDownload}}
 					<div class="review">
-						<img class='user-avatar' src='{{this.primaryImageUrl}}'
+						<img class='user-avatar' src='{{../this.header.baseImageUrl}}{{this.primaryImageUrl}}'
 							 alt="{{i18n "appdownload.userImageAltText"}}">
 						<div class="review-inner">
 							<div class="rating-wrapper">
