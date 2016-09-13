@@ -65,7 +65,7 @@ let getPathLevel = function(scope, parent, id, type) {
 			scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
 			return true;
 		} else {
-			if (getPathLevel(scope, item, id)) {
+			if (getPathLevel(scope, item, id, type)) {
 				scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
 				return true;
 			}
