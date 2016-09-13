@@ -32,6 +32,13 @@ class EditAdModel {
 			data.datePosted = postDate;
 		}
 
+		data.statistics = data.statistics || {};
+
+		// defaulting to zero if it isnt returned
+		data.statistics.viewCount = data.statistics.viewCount || 0;
+		data.statistics.replyCount = data.statistics.replyCount || 0;
+		data.statistics.favoriteCount = data.statistics.favoriteCount || 0;
+
 		return data;
 	}
 

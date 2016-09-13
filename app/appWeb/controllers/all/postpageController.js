@@ -17,6 +17,11 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let postAdData = {
 	extendModelData: (req, modelData) => {
+		modelData.header.pageType = modelData.pagename;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description;
+		modelData.header.metaRobots = modelData.seo.robots;
+		modelData.header.canonical = modelData.header.homePageUrl;
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.min.css');
@@ -39,7 +44,7 @@ router.use('/', (req, res, next) => {
 			let guid = req.query.guid;
 			// now we need to get the draft
 			let modelBuilder = new ModelBuilder();
-			let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+			let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 			let draftAdModel = new DraftAdModel(model.bapiHeaders);
 			let postAdModel = new PostAdModel(model.bapiHeaders);
 
@@ -88,6 +93,9 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
+		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
+		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {

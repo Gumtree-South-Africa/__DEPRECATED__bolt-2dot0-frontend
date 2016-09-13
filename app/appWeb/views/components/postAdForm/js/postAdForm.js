@@ -44,7 +44,7 @@ let initialize = () => {
 
 	$('.title-input').on('click', () => {
 		window.BOLT.trackEvents({"event": " PostAdTitle"});
-	});
+    });
 
 	$('.price-input').on('click', () => {
 		window.BOLT.trackEvents({"event": " PostAdPrice"});

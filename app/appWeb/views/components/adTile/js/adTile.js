@@ -1,7 +1,7 @@
 'use strict';
 
 let CookieUtils = require("public/js/common/utils/CookieUtils.js");
-require("jquery-lazyload");
+
 
 
 class AdTile {
@@ -35,7 +35,8 @@ class AdTile {
 		if (!cookie) {
 			return [];
 		}
-		return cookie.replace(/\"/g,'').split(',');
+		// V1 watchlist cookie has the commas encoded, we need to be compatible so we use decodeURIComponent
+		return decodeURIComponent(cookie.replace(/\"/g,'')).split(',');
 	}
 
 	/**
@@ -48,18 +49,33 @@ class AdTile {
 	}
 
 	/**
+	 * Toggle any matching the Id within the tiles specified
+	 * @param id (short id)
+	 * @param $tiles
+	 */
+	toggleFavoriteById(id, $tiles) {
+		// lookup using short ad id because cookie must be compatible with RUI
+		let selector = `[data-short-adid="${id}"]`;
+		let tileElts = $tiles.find(selector);
+		if (tileElts.length > 0) {
+			// there could be multiple elements, one in trending card, and one in gallery
+			for (let elementIndex = 0; elementIndex < tileElts.length; elementIndex++) {
+				this.toggleFavorite(tileElts[elementIndex]);
+			}
+		}
+	}
+
+	/**
 	 * extracts a map (of keys) from a cookie,
 	 * using a map to help prevent duplicates and simplify add/remove
-	 * @param cookieName
 	 * @returns {{object}} map
 	 * @private
 	 */
-	_getIdMapFromCookie(cookieName) {
-		let cookie = CookieUtils.getCookie(cookieName);
-		if (!cookie) {
+	_getIdMapFromCookie() {
+		let ids = this.getCookieFavoriteIds();
+		if (ids.length === 0) {
 			return {};
 		}
-		let ids = cookie.replace(/\"/g,'').split(',');
 		let map = {};
 		for (let i = 0; i < ids.length; i++) {
 			map[ids[i]] = '';	// dont care about the values
@@ -74,9 +90,11 @@ class AdTile {
 	 * @returns {string} the map keys reduced to storage format: comma separated string (useful in testing)
 	 * @private
 	 */
-	_setIdMapToCookie(cookieName, map) {
-		let cookieValue = Object.keys(map).join(',');
-		CookieUtils.setCookie(cookieName, cookieValue, 10000);
+	_setIdMapToCookie(map) {
+		// V1 watchlist cookie has the commas encoded, we need to be compatible so we use encodeURIComponent
+		let cookieValue = encodeURIComponent(Object.keys(map).join(','));
+
+		CookieUtils.setCookie('watchlist', cookieValue, 10000);
 		return cookieValue;
 	}
 
@@ -89,21 +107,31 @@ class AdTile {
 	_onFavoriteClick(event) {
 		let target = $(event.target);
 
-		// we change the visual state right away so user sees it, assuming we'll succeed, but we could fail...
-		this.toggleFavorite(target);
 
-		let ids = this._getIdMapFromCookie('watchlist');
 		let adId = target.data('adid');  // using attribute data-adid
+		if (!adId) {
+			console.warn("unable to favorite item, missing ad id");
+			return;
+		}
 
 		// use short ad id for cookie to be compatible with RUI
 		let shortAdId = target.data('short-adid');	// using attribute data-short-adid
+		if (!shortAdId) {
+			console.warn("unable to favorite item, missing short ad id");
+			return;
+		}
 
+		// since another tile could have the same id (the same tile in two separate cards), toggle them all
+		let $allCardsTiles = $('.tile-panel');	// all tiles regardless of which card
+		this.toggleFavoriteById(shortAdId, $allCardsTiles);
+
+		let ids = this._getIdMapFromCookie('watchlist');
 		let action;
 		if (target.hasClass("icon-heart-orange")) {
 
 			// add to cookie
 			ids[shortAdId] = '';
-			this._setIdMapToCookie('watchlist', ids);
+			this._setIdMapToCookie(ids);
 
 			// add to server
 			action = "POST";
@@ -111,7 +139,7 @@ class AdTile {
 
 			// delete from cookie
 			delete ids[shortAdId];
-			this._setIdMapToCookie('watchlist', ids);
+			this._setIdMapToCookie(ids);
 
 			// remove from server
 			action = "DELETE";
@@ -131,16 +159,12 @@ class AdTile {
 	}
 
 	/**
-	 * onReady - separated out for easy testing
+	 * tiles added sets up favorite handlers
+	 * @param $tiles
 	 */
-	onReady() {
-		// for debugging you can listen like this: this.$lazyImage.on("appear", () => {
-		this.$lazyImage.lazyload({
-			"skip_invisible": true
-		});
-
-		// update/set watchlist cookie when user 'favorites' an ad
-		this.$favoriteButton.click((evt) => {
+	tilesAdded($tiles) {
+		let $favoriteButtons = $tiles.find('.favorite-btn');
+		$favoriteButtons.click((evt) => {
 			// push the click through without changing
 			// the scope of this
 			this._onFavoriteClick(evt);
@@ -148,13 +172,20 @@ class AdTile {
 	}
 
 	/**
+	 * onReady - separated out for easy testing
+	 */
+	onReady() {
+
+		this.$tiles = $('.tile-panel');
+		this.tilesAdded(this.$tiles);
+
+	}
+
+	/**
 	 * Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 	 * @param registerOnReady
 	 */
 	initialize(registerOnReady = true) {
-		this.$tile = $('.panel');
-		this.$favoriteButton = this.$tile.find('.favorite-btn');
-		this.$lazyImage = this.$tile.find('img.lazy');
 
 		if (registerOnReady) {
 			$(document).ready(this.onReady.bind(this));	// need special bind here

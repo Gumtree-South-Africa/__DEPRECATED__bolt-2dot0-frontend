@@ -10,7 +10,7 @@ let cors = require(process.cwd() + '/modules/cors');
 // route is /api/locate/locationlatlong
 router.get('/locationlatlong', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	let geoLatLngObj;
 	// if a lat long is passed as a query param use it over the cookie

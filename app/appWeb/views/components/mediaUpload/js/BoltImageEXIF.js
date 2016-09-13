@@ -214,7 +214,7 @@ function convertCanvasToBlob(canvas, fileType, QUALITY) {
 		return createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 	} else {
 		// WebKit implementation.
-		// http://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
+		// https://stackoverflow.com/questions/4998908/convert-data-uri-to-file-then-append-to-formdata
 		return createBlobFromDataUri(canvas.toDataURL(fileType, QUALITY));
 	}
 }
@@ -342,7 +342,7 @@ var ExtractURLClass = function(url) {
 		return;
 	}
 
-	//zoom url VERSION:2;http://i.ebayimg.com/00/s/NjAwWDgwMA==/z/r84AAOSwE2lTf~HM/$_1.JPG?set_id=8800005007
+	//zoom url VERSION:2;https://i.ebayimg.com/00/s/NjAwWDgwMA==/z/r84AAOSwE2lTf~HM/$_1.JPG?set_id=8800005007
 
 	// convert to _18.JPG format saved in backend
 	normalImageURLZoom = convertThumbImgURL18(normalImageURLZoom);
@@ -650,4 +650,3 @@ function readEXIFData(file, start) {
 
 	return tags;
 }
-

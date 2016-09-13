@@ -31,7 +31,9 @@ class AttributeService {
 	// Cache: categoryAllAtributes
 	getAllAttributesForCategoryCached(bapiHeaderValues, categoryId) {
 		let cacheKey = bapiHeaderValues.locale + ':' + categoryId;
-		return cacheService.getValue(cacheConfig.cache.categoryAllAttributes.name, cacheKey);
+		return cacheService.getValue(cacheConfig.cache.categoryAllAttributes.name, cacheKey).then((results) => {
+			return JSON.parse(JSON.stringify(results));
+		});
 	}
 
 	// Cache: categoryAllAtributes

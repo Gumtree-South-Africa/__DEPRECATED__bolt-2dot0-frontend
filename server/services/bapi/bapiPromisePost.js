@@ -6,7 +6,7 @@ var Q = require('q');
 let bapi = require('./BAPICall');
 
 module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
-	console.time(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaders.locale} ${bapiHeaders.requestId}`);
 
 	// Add Headers
 	bapiOptions.headers['Content-Type'] = 'application/json';
@@ -54,7 +54,7 @@ module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 			bapiError.serviceName = serviceName;
 			return Q.reject(bapiError);
 		} else {
-			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaders.locale}`);
+			console.timeEnd(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaders.locale} ${bapiHeaders.requestId}`);
 			return output;
 		}
 	});
