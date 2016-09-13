@@ -105,12 +105,28 @@ function BuildApp(siteObj) {
 			if (app.locals.config) {
 				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
 			}
+
+			// register eps sandbox image url middleware
+		});
+
+		/*
+		 * Pre-Production based middlewares
+		 */
+		middlewareloader()(['pp_phx_deploy', 'lnp_phx_deploy'], function() {
+			app.locals.devMode = false;
+			app.use(logger('short'));
+
+			if (app.locals.config) {
+				app.locals.config.basePort = '';
+			}
+
+			// register eps sandbox image url middleware
 		});
 
 		/*
 		 * Production based middlewares
 		 */
-		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy'], function() {
 			app.locals.devMode = false;
 			app.use(logger('short'));
 
