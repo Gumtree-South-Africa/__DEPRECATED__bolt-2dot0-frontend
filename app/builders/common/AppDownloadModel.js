@@ -40,7 +40,7 @@ class AppDownloadModel {
 
 		return randomReviews.map((review) => {
 			return {
-				primaryImageUrl: `${config.get('static.baseImageUrl')}${this.res.locals.config.locale}/reviews/${review.primaryImageUrl}`,
+				primaryImageUrl: `${this.res.locals.config.locale}/reviews/${review.primaryImageUrl}`,
 				description: review.description,
 				rating: review.rating
 			};
