@@ -280,17 +280,14 @@ let parseFile = (file) => {
 
 let hasImagesForUpload = () => {
 	// add red border to photo carousel if no photos
-	if ($('.carousel-item').length === 0) {
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
-		$('.cover-photo').addClass('red-border');
-		$('.photos-required-msg').removeClass('hidden');
-		return false;
-	}
-	return true;
+	return $('.carousel-item').length !== 0;
 };
 
 let preventDisabledButtonClick = (event) => {
-	if (!hasImagesForUpload()) {
+	if (!hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		$('.cover-photo').addClass('red-border');
+		$('.photos-required-msg').removeClass('hidden');
 		this.$postAdButton.addClass('disabled');
 	}
 
@@ -304,7 +301,7 @@ let preventDisabledButtonClick = (event) => {
 				clearTimeout(timeout);
 			}
 			let images = [];
-			for (let i = 0; i < this.imageCount; i++) {
+			for (let i = 0; i < this.$loadedImages; i++) {
 				let selectedImage = $(".carousel-item.selected[data-item='" + i + "']").data("image");
 				let image = $(".carousel-item[data-item='" + i + "']").data("image");
 
