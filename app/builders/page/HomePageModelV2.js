@@ -188,6 +188,7 @@ class HomePageModelV2 {
 			});
 		};
 	}
+
 }
 
 module.exports = HomePageModelV2;

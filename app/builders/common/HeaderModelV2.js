@@ -1,6 +1,7 @@
 'use strict';
 
 let _ = require('underscore');
+let Q = require('q');
 
 let ModelBuilder = require('./ModelBuilder');
 
@@ -9,6 +10,7 @@ let deviceDetection = require(`${cwd}/modules/device-detection`);
 let pageurlJson = require(`${cwd}/app/config/pageurl.json`);
 let config = require('config');
 let userService = require(`${cwd}/server/services/user`);
+let CategoryModel = require(`${cwd}/app/builders/common/CategoryModel`);
 
 /**
  * @description A class that Handles the Header Model
@@ -20,6 +22,8 @@ class HeaderModel {
 		// Cookie variables
 		let authCookieName = 'bt_auth';
 		this.authCookie = req.cookies[authCookieName];
+		this.req = req;
+		this.res = res;
 
 		let searchLocIdCookieName = 'searchLocId';
 		let searchLocNameCookieName = 'searchLocName';
@@ -104,8 +108,13 @@ class HeaderModel {
 					data.abtestExperimentId = abtestExperimentId;
 				}
 
+				let promises = [];
 				// If locationCookie present, set id and name in model
 				if (typeof this.searchLocIdCookie !== 'undefined') {
+					let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
+					promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
+						data.categoryList = categoryList;
+					}));
 					data.cookieLocationId = this.searchLocIdCookie;
 
 					if (typeof this.searchLocNameCookie !== 'undefined') {
@@ -127,9 +136,8 @@ class HeaderModel {
 
 						// build user profile
 						this.buildProfile(data);
-						return data;
 					} else {
-						return userService.getUserFromCookie(this.bapiHeaders)
+						promises.push(userService.getUserFromCookie(this.bapiHeaders)
 							.then((dataReturned) => {
 								if (!_.isEmpty(dataReturned)) {
 									// merge user cookie data
@@ -137,20 +145,20 @@ class HeaderModel {
 
 									// build user profile
 									this.buildProfile(data);
-									return data;
 								}
 							})
 							.fail((err) => {
 								console.error(`Failed to get user from cookie ${this.authCookie}`, err);
-								//TODO: make sure the error is an expected error (404).
-								//fall through without error, we don't care
-								return data;
-							});
+							}));
 					}
-				} else {
-					return data;
 				}
-
+				return Q.all(promises).then(() => {
+					// Data has userdata and categorList appended to it at this point, just return
+					if (!data.categoryList) {
+						data.categoryList = this.res.locals.config.categoryData;
+					}
+					return data;
+				});
 			}
 		];
 	}

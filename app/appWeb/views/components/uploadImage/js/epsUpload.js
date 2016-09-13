@@ -200,7 +200,7 @@ class EpsUpload {
 				window.location.href = response.ad.redirectLink;
 				break;
 			case this.AD_STATES.AD_DEFERRED:
-				window.BOLT.trackEvents({ "event": "PostAdLoginModal", "p": {"t": "PostAdLoginModal"} });
+				window.BOLT.trackEvents({ "event": "LoginBegin", "p": {"t": "PostAdLoginModal"} });
 				$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
 				$loginModal.find('.register-link').attr('href', response.links.register);
 				$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
