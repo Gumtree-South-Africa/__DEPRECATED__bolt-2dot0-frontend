@@ -158,7 +158,18 @@ let _success = (i, response) => {
 	}
 
 	// add the image once EPS returns the uploaded image URL
-	createImgObj(i, url.thumbImage, url.normal);
+	let secureNormalUrl;
+	let secureThumbImageUrl;
+
+	// for secure protocole and not non secure protocole
+	if(url.normal.toLowerCase().indexOf("https") < 0) {
+		secureNormalUrl = url.normal.replace('http', 'https');
+		secureThumbImageUrl = url.thumbImage.replace('http', 'https');
+		createImgObj(i, secureThumbImageUrl, secureNormalUrl);
+	} else {
+		createImgObj(i, url.thumbImage, url.normal);
+	}
+
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 	this.updateAddPhotoButton();
 
@@ -547,6 +558,3 @@ let initialize = (options) => {
 module.exports = {
 	initialize
 };
-
-
-
