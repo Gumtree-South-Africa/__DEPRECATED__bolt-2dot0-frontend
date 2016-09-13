@@ -12,7 +12,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un(a) {formattedValue}"
+					"prefix": "una {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
@@ -24,7 +24,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un(a) {formattedValue}"
+					"prefix": "un {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
@@ -72,7 +72,7 @@
 			"type": [
 				{
 					"name": "Address",
-					"prefix": "un cellular"
+					"prefix": "un celular"
 				}
 			]
 		}
