@@ -10,7 +10,7 @@ let deviceDetection = require(`${cwd}/modules/device-detection`);
 let pageurlJson = require(`${cwd}/app/config/pageurl.json`);
 let config = require('config');
 let userService = require(`${cwd}/server/services/user`);
-let CategoryModel = require(cwd + '/app/builders/common/CategoryModel');
+let CategoryModel = require(`${cwd}/app/builders/common/CategoryModel`);
 
 /**
  * @description A class that Handles the Header Model
@@ -155,7 +155,6 @@ class HeaderModel {
 				return Q.all(promises).then(() => {
 					// Data has userdata and categorList appended to it at this point, just return
 					if (!data.categoryList) {
-						console.log('unset');
 						data.categoryList = this.res.locals.config.categoryData;
 					}
 					return data;
