@@ -96,31 +96,40 @@ class AbstractPageModel extends BasePageModel {
 	/**
 	 * @method getArrFunctions
 	 * @description
-	 * @param {Object} Request
-	 * @param {Object} Response
-	 * @param {Map} Map of Page related model labels and respective functions to get their model data
+	 * @param {Object} req
+	 * @param {Object} res
+	 * @param {Map} functionMap: map of Page related model labels and respective functions to get their model data
 	 * @param {JSON} pageModelConfig for the respective page
 	 * @return {Array}
 	 */
 	getArrFunctionPromises(req, res, functionMap, pageModelConfig) {
 		let arrFunctions = [this.getCommonDataPromises(req, res)];
 
-		let index, fnLabel, fn;
-		for (index = 0; index < pageModelConfig.length; index++) {
-			fnLabel = pageModelConfig[index];
-			fn = functionMap[fnLabel];
-			if (typeof fn !== 'undefined') {
+		for (let fnLabel of pageModelConfig) {
+			let fn = functionMap[fnLabel];
+			if (fn !== undefined) {
 				fn.fnLabel = fnLabel;
 				arrFunctions.push(fn);
+				//Remove it from original functionMap so we can check for ZK/modelbulder inconsistencies
+				delete functionMap[fnLabel];
 			} else {
-				// todo: this error occurs when a page is NOT making a call to "locationlatlong",
-				// since that call is now conditional (on having a location cookie)
-				// we should refactor this so that a conditional api call doesnt flag this as an error
-				console.error('Error in loading component ' + fnLabel + ' : not found in ZK config');
+				this.logConfigError(`Function: ${fnLabel} found in ZK config but not implemented in model`);
 			}
 		}
 
+		Object.keys(functionMap).forEach((fn) => {
+			this.logConfigError(`Function: ${fn} implemented in model but not found in ZK config, function will not be executed.`);
+		});
+
 		return arrFunctions;
+	}
+
+	/**
+	 * This is a separate function to allow the above method to be tested
+	 * @param err
+	 */
+	logConfigError(err) {
+		console.error(err);
 	}
 
 	/**
@@ -152,5 +161,4 @@ class AbstractPageModel extends BasePageModel {
 	}
 }
 
-module
-	.exports = AbstractPageModel;
+module.exports = AbstractPageModel;
