@@ -1,4 +1,8 @@
 .footer-wrapper {
+	margin-bottom: 50px;
+	@include from-breakpoint($medium-break) {
+		margin-bottom: 0;
+	}
 	width: 100%;
 	overflow-x: hidden;
 	background-color: black;
@@ -274,9 +278,9 @@
 	}
 
 	&.display-mobile {
-		top: -17em;
+		top: -20em;
 		&.mobile-extra-height {
-			top: -21em;
+			top: -24em;
 		}
 	}
 }
