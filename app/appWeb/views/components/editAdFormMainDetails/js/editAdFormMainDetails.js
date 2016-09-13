@@ -22,7 +22,8 @@ let _setupScrollTo = () => {
 			}
 
 			let offsets = [[elOffset.left, elOffset.top], [elOffset.right, elOffset.top], [elOffset.left, elOffset.bottom], [elOffset.right, elOffset.bottom]];
-			for (let off of offsets) {
+			/* eslint-disable */
+			for (let off in offsets) {
 				dx = offsets[off][0] - x;
 				dy = offsets[off][1] - y;
 				distance = Math.sqrt((dx*dx) + (dy*dy));
@@ -31,6 +32,7 @@ let _setupScrollTo = () => {
 					el = $(this);
 				}
 			}
+			/* eslint-enable */
 		});
 		return el;
 	}});
@@ -146,11 +148,15 @@ let _failureCallback = (error) => {
 		if (responseText.hasOwnProperty("schemaErrors")) {
 			responseText.schemaErrors.forEach((schemaError) => {
 				let $input = $(`[data-schema="${schemaError.field}"]`);
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
 			});
 		} else if (responseText.hasOwnProperty("bapiValidationFields")) {
 			responseText.bapiValidationFields.forEach((attrName) => {
 				let $input = $(`[name="${attrName}"]`);
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
 			});
 		}
@@ -161,7 +167,6 @@ let _failureCallback = (error) => {
 			scrollTo = Math.max($highestFailure.offset().top - 50, 0); // get scroll value, or zero
 			window.scrollTo(0, scrollTo);
 		}
-
 	}
 };
 
@@ -334,7 +339,7 @@ let onReady = () => {
 	this.$categoryChangeLink.click(_openCatSelectModal);
 
 	_bindCharacterCountEvents(this.$detailsSection.find('input[title="Title"]'), this.$detailsSection.find('label[for="Title"]'));
-	_bindCharacterCountEvents(this.$detailsSection.find('textarea[title="Description"]'), this.$detailsSection.find('label[for="Description"]'));
+	_bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
 
 	_setupScrollTo();
 
