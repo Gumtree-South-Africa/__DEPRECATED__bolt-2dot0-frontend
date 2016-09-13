@@ -319,7 +319,13 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		if (this.showImageTracking == undefined) {
+		   window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		}
+		else {
+		   window.BOLT.trackEvents({"event": "ImagePhotoBegin"});
+		}
+		
 	}
 };
 
@@ -415,6 +421,7 @@ let initialize = (options) => {
 		};
 	}
 	this.showDeleteImageIcons = options.showDeleteImageIcons;
+	this.showImageTracking = options.showImageTracking;
 	//EPS setup
 	this.disableImageSelection = false;
 	this.epsData = $('#js-eps-data');
