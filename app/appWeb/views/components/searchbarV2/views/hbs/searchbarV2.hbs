@@ -13,19 +13,19 @@
                     <div class="location-link" data-gtm="npc|NavHeaderClick|eventLabel|Location">
 						<span class="search-loc-icon icon-location-marker"></span>
 						<span class="location-text">
-                            {{#if this.locationlatlong.localizedName}}
-                                {{this.locationlatlong.localizedName}}
+                            {{#if this.header.cookieLocationName}}
+                                {{this.header.cookieLocationName}}
                             {{else}}
-                                {{#if this.header.cookieLocationName}}
-                                    {{this.header.cookieLocationName}}
+                                {{#if this.locationlatlong.localizedName}}
+                                    {{this.locationlatlong.localizedName}}
                                 {{else}}
                                     {{i18n "location.defaultcity"}}
                                 {{/if}}
                             {{/if}}
                         </span>
                     </div>
-					<input type="hidden" name="locId" value="{{#if this.locationlatlong.id}}{{this.locationlatlong.id}}{{else}}{{this.header.cookieLocationId}}{{/if}}">
-				</div>
+					<input type="hidden" name="locId" value="{{#if this.header.cookieLocationId}}{{this.header.cookieLocationId}}{{else}}{{this.locationlatlong.id}}{{/if}}">
+                </div>
                 <div class="search-button-wrap">
                     <button class="search-button" type="submit" data-gtm="npc|NavHeaderClick|eventLabel|SearchClick" aria-label="{{i18n "homepage.searchbar.search"}}">
                         <span class="button-content-container">

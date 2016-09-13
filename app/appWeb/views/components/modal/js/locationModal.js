@@ -67,9 +67,9 @@ let _geoShowMyLocation = (geoCookieValue) => {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 
-				// Set searchLocId Cookie
-				let searchLocIdcookieValue = resp.id;
-				document.cookie = 'searchLocId' + "=" + escape(searchLocIdcookieValue) + ";path=/";
+				// Set searchLocId and searchLocName Cookie
+				document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
+				document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
 			}
 		},
 		error: () => {
