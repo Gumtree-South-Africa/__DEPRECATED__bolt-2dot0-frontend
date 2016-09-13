@@ -55,6 +55,7 @@ describe('Post Ad Page', () => {
 	it('should show correct translations for tips', (done) => {
 		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 					let c$ = cheerio.load(res.text);
