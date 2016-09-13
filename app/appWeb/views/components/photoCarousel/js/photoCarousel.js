@@ -319,13 +319,12 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		if (this.showImageTracking == undefined) {
+		if (this.showImageTracking === 'undefined') {
 		   window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
-		}
-		else {
+		} else {
 		   window.BOLT.trackEvents({"event": "ImagePhotoBegin"});
 		}
-		
+
 	}
 };
 
