@@ -12,7 +12,6 @@ module.exports = function(app) {
 
 	app.use(helmet());
 	app.use(helmet.xssFilter());
-	app.use(helmet.iexss());
 	app.use(helmet.xframe('sameorigin'));
 	app.use(helmet.frameguard());
 
