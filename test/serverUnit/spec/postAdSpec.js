@@ -67,4 +67,15 @@ describe('Post Ad Page', () => {
 				.end(specHelper.finish(done));
 		});
 	});
+
+	fit('should redirect if b2dot0Version cookie not set', (done) => {
+		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.expect((res) => {
+					expect(res.status).toBe(302);
+					expect(res.headers.location).toBe("/post.html");
+				})
+				.end(specHelper.finish(done));
+		});
+	});
 });
