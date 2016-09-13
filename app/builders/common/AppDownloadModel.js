@@ -1,7 +1,6 @@
 'use strict';
 
 let deviceDetection = require(process.cwd() + '/modules/device-detection');
-let config = require('config');
 
 class AppDownloadModel {
 	constructor(req, res) {
