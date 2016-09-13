@@ -17,7 +17,6 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
-let CategoryModel = require(cwd + '/app/builders/common/CategoryModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 
 /**
@@ -40,16 +39,6 @@ class HomePageModelV2 {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.HOMEPAGE;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
-
-		// Add this into pageModelConfig dynamically
-		let idxCatWithLocId = pageModelConfig.indexOf('catWithLocId');
-		if (this.getCookieLocationId(this.req) !== null) {
-			if (idxCatWithLocId < 0) {
-				pageModelConfig.push('catWithLocId');
-			}
-		} else if (idxCatWithLocId >= 0) {
-			pageModelConfig.splice(idxCatWithLocId, 1);
-		}
 
 		let modelBuilder = new ModelBuilder();
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
@@ -96,8 +85,6 @@ class HomePageModelV2 {
 		modelData.showTopBanner = showTopBanner;
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 
-		modelData.categoryList = _.isEmpty(data['catWithLocId']) ? modelData.category : data['catWithLocId'];
-
 		modelData.isNewHP = true;
 
 		return modelData;
@@ -114,7 +101,6 @@ class HomePageModelV2 {
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
-		let categoryModel = new CategoryModel(modelData.bapiHeaders, 1, this.getCookieLocationId(this.req));
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 		let seo = new SeoModel(modelData.bapiHeaders);
 		// now make we get all card data returned for home page
@@ -201,23 +187,8 @@ class HomePageModelV2 {
 				return {};
 			});
 		};
-
-		this.dataPromiseFunctionMap.catWithLocId = () => {
-			return categoryModel.getCategoriesWithLocId().then((data) => {
-				return data;
-			}).fail((err) => {
-				console.warn(`error getting data ${err}`);
-				return {};
-			});
-		};
 	}
 
-	getCookieLocationId(req) {
-		let searchLocIdCookieName = 'searchLocId';
-		let searchLocIdCookie = req.cookies[searchLocIdCookieName];
-
-		return ((typeof searchLocIdCookie === 'undefined') || searchLocIdCookie === '') ? null : searchLocIdCookie;
-	}
 }
 
 module.exports = HomePageModelV2;

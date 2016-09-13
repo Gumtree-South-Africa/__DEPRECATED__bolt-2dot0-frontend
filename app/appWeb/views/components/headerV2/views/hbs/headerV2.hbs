@@ -32,15 +32,15 @@
                     </div>
                     <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
                         <li class="menu-item">
-                            <a href="{{this.categoryList._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.categoryList.localizedName}}" title="{{this.categoryList.localizedName}}" class="link-item"
-                               data-id="{{this.categoryList.id}}">
-                                <span class="item-primary-text">{{this.categoryList.localizedName}}</span>
+                            <a href="{{this.header.categoryList._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}" title="{{this.categoryList.localizedName}}" class="link-item"
+                               data-id="{{this.header.categoryList.id}}">
+                                <span class="item-primary-text">{{this.header.categoryList.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
                                 <span class="item-secondary-text">(tbd)</span>
                                 --}}
                             </a>
                         </li>
-                        {{#each this.categoryList.children}}
+                        {{#each this.header.categoryList.children}}
                             <li class="menu-item">
                                 <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
                                    data-id="{{this.id}}">
