@@ -10,7 +10,8 @@ let pagetypeJson = require(process.cwd() + '/app/config/pagetype.json');
 //Function getPageData
 let getPageData = function(scope) {
 	return {
-		'pageType': scope.pagetype,
+		// For AB Testing no matter which home page landed, the p.t will always be Homepage
+		'pageType': (pagetypeJson.pagetype.HOMEPAGEV2 === scope.pagetype) ? pagetypeJson.pagetype.HOMEPAGE : scope.pagetype,
 		'platform': 'BOLT-RUI',
 		'version': config.get('static.server.version'),
 		'language': scope.locale,
