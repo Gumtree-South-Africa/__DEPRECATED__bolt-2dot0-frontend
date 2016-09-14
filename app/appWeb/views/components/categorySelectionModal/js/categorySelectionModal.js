@@ -267,6 +267,7 @@ class CategorySelectionModal {
 	}
 
 	_closeModal() {
+		this.$body.removeClass('hide-overflow');
 		this.$modal.addClass("hidden");
 		this.currentHierarchy = null;
 		this.onSaveCb = null;
@@ -301,6 +302,7 @@ class CategorySelectionModal {
 		if (stagedItem) {
 			this._stageItem(stagedItem);
 		}
+		this.$body.addClass('hide-overflow');
 	}
 
 	_saveChanges() {
@@ -312,6 +314,7 @@ class CategorySelectionModal {
 	}
 
 	initialize() {
+		this.$body = $('body');
 		this.$modal = $("#category-selection-modal");
 		this.$modalBox = this.$modal.find('.modal');
 		this.$resultsList = this.$modal.find(".results ul");
