@@ -142,6 +142,12 @@ let _failure = (i, epsError) => {
 	removePendingImage(i);
 };
 
+//this needs to be removed when HTTPS for EPS gets a certificate
+let transformEpsUrl = (url) => {
+	let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+	return newUrl;
+};
+
 let _success = (i, response) => {
 	if (response.indexOf('ERROR') !== -1) {
 		console.error("EPS error!");
@@ -180,11 +186,6 @@ let _success = (i, response) => {
 	removePendingImage(i);
 };
 
-//this needs to be removed when HTTPS for EPS gets a certificate
-let transformEpsUrl = (url) => {
-  let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
-  return newUrl;
-};
 
 let loadData = (i, file) => {
 	this.epsUpload.uploadToEps(i, file, _success, _failure, () => {
