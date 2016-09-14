@@ -1,8 +1,4 @@
 .footer-wrapper {
-	margin-bottom: 50px;
-	@include from-breakpoint($medium-break) {
-		margin-bottom: 0;
-	}
 	width: 100%;
 	overflow-x: hidden;
 	background-color: black;
