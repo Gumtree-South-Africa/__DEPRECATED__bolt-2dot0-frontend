@@ -58,8 +58,18 @@ let _setupPolyfillForm = () => {
 };
 
 let _characterCountCb = ($input, $label) => {
-	let count = $input.val().length;
-	$label.find(".characters-available").text(`${count}/${$input.attr("maxLength")}`);
+	let val = $input.val();
+
+	// Using HTML5 maxLength, chrome counts new lines as 2 characters (\r\n)
+	// regardless of whether the browser is on unix or windows while other browser use the OS to decide
+	// Thus we count as if all new lines are two characters so keep the same accross all browsers
+	// replacing all two character line breaks (\r\n) with single line breaks (\n), then replacing all \n
+	// including any that were originally just \n to \r\n and counting.
+	// this is not placed back into the text area it is only for counting purposes
+	val = val.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
+	let count = val.length;
+	let maxLength = $input.attr("maxLength");
+	$label.find(".characters-available").text(`${Math.min(count, maxLength)}/${maxLength}`);
 };
 
 let _bindCharacterCountEvents = ($input, $label) => {

@@ -46,7 +46,12 @@ class EditAdModel {
 		if (typeof adId === undefined || adId === null) {
 			return {};
 		}
-		return editAdService.getAd(this.bapiHeaders, adId).then(this.translateTimeToReadable);
+		return editAdService.getAd(this.bapiHeaders, adId).then(this.translateTimeToReadable).then((data) => {
+			// replacing new line characters with the line feed html entity so that spaces
+			// arent injected into the text area
+			data.description = data.description.replace(/\n/g, "&#10;");
+			return data;
+		});
 	}
 
 	editAd(editAdRequest) {
