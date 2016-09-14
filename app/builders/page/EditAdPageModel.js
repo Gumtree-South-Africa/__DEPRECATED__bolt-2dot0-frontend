@@ -7,7 +7,6 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
@@ -99,7 +98,6 @@ class EditAdPageModel {
 	}
 
 	getPageDataFunctions(modelData) {
-		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let editAdModel = new EditAdModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
@@ -108,14 +106,6 @@ class EditAdPageModel {
 
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getHPSeoInfo();
-		};
-
-		this.dataPromiseFunctionMap.locationlatlong = () => {
-			modelData.geoLatLngObj = modelData.geoLatLngObj || '';
-			return locationModel.getLocationLatLong(modelData.geoLatLngObj).fail((err) => {
-				console.warn(`error getting data ${err}`);
-				return {};
-			});
 		};
 
 		this.dataPromiseFunctionMap.adResult = () => {
