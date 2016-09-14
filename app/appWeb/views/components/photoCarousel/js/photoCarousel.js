@@ -153,7 +153,7 @@ let _success = (i, response) => {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
-	if (!this.showImageTracking){
+	if (!this.showImageTracking) {
 	  window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
      }
 	// try to extract the url and figure out if it looks like to be valid
