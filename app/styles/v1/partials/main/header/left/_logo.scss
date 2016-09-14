@@ -7,7 +7,6 @@ $header-logo-desktop-height: auto !default;;
     a{ display:block; }
 
     img{
-		width: 75%;
 		max-width:100%;
 
         @include in-breakpoint($no-break){
@@ -29,4 +28,3 @@ $header-logo-desktop-height: auto !default;;
     }
 
 }
-
