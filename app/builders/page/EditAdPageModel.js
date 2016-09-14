@@ -100,7 +100,7 @@ class EditAdPageModel {
 
 	getPageDataFunctions(modelData) {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
-		let editAdModel = new EditAdModel(modelData.bapiHeaders);
+		let editAdModel = new EditAdModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
 

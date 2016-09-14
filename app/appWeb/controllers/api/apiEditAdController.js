@@ -76,7 +76,7 @@ router.post('/update', cors, (req, res) => {
 	// Step 4: Retrieve info from request since we're validated
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
-	let editAdModel = new EditAdModel(model.bapiHeaders);
+	let editAdModel = new EditAdModel(model.bapiHeaders, req.app.locals.prodEpsMode);
 	let userModel = new UserModel(model.bapiHeaders);
 
 	// Step 5: Update Ad
