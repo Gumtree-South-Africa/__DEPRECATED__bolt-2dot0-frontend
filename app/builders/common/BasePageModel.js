@@ -40,8 +40,8 @@ class BasePageModel {
 		this.dataLayer.setCategoryData(categorydata);
 	}
 
-	setLocationData(locationdata, locationlatlong) {
-		this.dataLayer.setLocationData(locationdata, locationlatlong);
+	setLocationData(locationdata) {
+		this.dataLayer.setLocationData(locationdata);
 	}
 
 	getCommonData() {
