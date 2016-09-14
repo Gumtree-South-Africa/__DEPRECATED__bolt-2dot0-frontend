@@ -59,15 +59,33 @@ let getLocData = function(scope) {
 	};
 };
 
-let getPathLevel = function(scope, parent, id, type) {
-	for (let i=0 ; i < parent.children.length; i++ ) {
+let getCategoryHierarchy = function(scope, parent, id) {
+	for (let i=0 ; parent.children !=='undefined' && i < parent.children.length; i++ ) {
 		let item = parent.children[i];
 		if (id === item.id) {
-			scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
+			scope[item.level + 'Category'] = {'id': item.id, 'name': item.localizedName};
 			return true;
 		} else {
-			if (getPathLevel(scope, item, id, type)) {
-				scope[item.level + type] = {'id': item.id, 'name': item.localizedName};
+			if (getCategoryHierarchy(scope, item, id)) {
+				scope[item.level + 'Category'] = {'id': item.id, 'name': item.localizedName};
+				return true;
+			}
+		}
+	}
+};
+
+let getLocationHierarchy = function(scope, parent, id) {
+	if (parent.isLeaf === true) {
+		return false;
+	}
+	for (let i=0 ; parent.children !=='undefined' && i < parent.children.length; i++ ) {
+		let item = parent.children[i];
+		if (id === item.id) {
+			scope[item.level + 'Location'] = {'id': item.id, 'name': item.localizedName};
+			return true;
+		} else {
+			if (getLocationHierarchy(scope, item, id)) {
+				scope[item.level + 'Location'] = {'id': item.id, 'name': item.localizedName};
 				return true;
 			}
 		}
@@ -113,17 +131,16 @@ class DataLayerModel {
 		this.currentCategory = {'id': currentId, 'name': this.adResult.categoryName};
 		if (categorydata.id !== currentId) {
 			this.L0Category = {'id': categorydata.id, 'name': categorydata.localizedName};
-			getPathLevel(this, categorydata, currentId, 'Category');
+			getCategoryHierarchy(this, categorydata, currentId);
 		}
 	}
 
-	setLocationData(locationdata, locationlatlong) {
+	setLocationData(locationdata) {
 		let currentId = this.adResult.location.id;
 		this.currentLocation = {'id': currentId, 'name': this.adResult.location.name};
-		this[locationlatlong.level + 'Location'] = {'id': currentId, 'name': this.adResult.location.name};
-		if (locationdata.id !== locationlatlong.parentId) {
+		if (locationdata.id !== currentId) {
 			this.L0Location = {'id': locationdata.id, 'name': locationdata.localizedName};
-			getPathLevel(this, locationdata, locationlatlong.parentId, 'Location');
+			getLocationHierarchy(this, locationdata, currentId);
 		}
 	}
 
