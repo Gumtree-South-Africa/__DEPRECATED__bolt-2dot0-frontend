@@ -340,7 +340,7 @@ this.clickFileInput = () => {
 		if (this.showImageTracking === 'undefined') {
 		   window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 		} else {
-		   window.BOLT.trackEvents({"event": "ImagePhotoBegin"});
+		   window.BOLT.trackEvents({"event": "AddImageBegin","eventLabel":"AddImageBegin"});
 		}
 
 	}
