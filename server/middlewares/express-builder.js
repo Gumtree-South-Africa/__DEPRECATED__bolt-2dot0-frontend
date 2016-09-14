@@ -91,7 +91,7 @@ function BuildApp(siteObj) {
 		 */
 		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
 			app.locals.devMode = true;
-			app.locals.prodMode = false;
+			app.locals.prodEpsMode = false;
 			app.use(logger('dev'));
 
 			// assets for local developments and populates  app.locals.jsAssets
@@ -115,7 +115,7 @@ function BuildApp(siteObj) {
 		 */
 		middlewareloader()(['pp_phx_deploy', 'lnp_phx_deploy'], function() {
 			app.locals.devMode = false;
-			app.locals.prodMode = false;
+			app.locals.prodEpsMode = false;
 			app.use(logger('short'));
 
 			if (app.locals.config) {
@@ -130,7 +130,7 @@ function BuildApp(siteObj) {
 		 */
 		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy'], function() {
 			app.locals.devMode = false;
-			app.locals.prodMode = true;
+			app.locals.prodEpsMode = true;
 			app.use(logger('short'));
 
 			if (app.locals.config) {
