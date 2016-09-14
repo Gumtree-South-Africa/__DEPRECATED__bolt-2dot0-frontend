@@ -92,7 +92,7 @@ $mobileTextboxWidth: 84%;
 
 		.search-wrap {
 			float: left;
-			width: 86%;
+			width: 82%;
 			height: calc(100% - 2px);
 			border: 1px solid $searchBarTextBoxBorder;
 			@include border-top-left-radius(0.25em);
@@ -162,7 +162,7 @@ $mobileTextboxWidth: 84%;
 		.search-textbox-container {
 			float: left;
 			height: 100%;
-			width: 69%;
+			width: 64%;
 			margin-left: auto;
 			margin-right: auto;
 			@include border-top-left-radius(0.25em);
@@ -189,7 +189,7 @@ $mobileTextboxWidth: 84%;
 
 		.location-link {
 			float: left;
-			width: 29%;
+			width: 32%;
 			color: $searchBarLocationLinkColor;
 			display: block;
 			&:hover{
@@ -226,7 +226,7 @@ $mobileTextboxWidth: 84%;
 			margin-left: -2px;
 			height: $desktopSearchBarHeight;
 			box-sizing: border-box;
-			width: 14%;
+			width: 18%;
 		}
 
 		.search-button {
@@ -380,7 +380,7 @@ $mobileTextboxWidth: 84%;
 			}
 
 			.location-link {
-				width: 29%;
+				width: 32%;
 				border: none;
 				right: 15.5%;
 
@@ -397,7 +397,7 @@ $mobileTextboxWidth: 84%;
 				width: 90%;
 
 				.search-textbox-container {
-					width: 69%;
+					width: 64%;
 				}
 
 				.location-link {
