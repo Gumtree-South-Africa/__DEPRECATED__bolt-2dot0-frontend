@@ -49,7 +49,7 @@ class EditAdPageModel {
 			// 2. Ad specific content is ready, now construct the dataLayer
 			let basePageModel = new BasePageModel(this.req, this.res);
 			basePageModel.setAdResult(data.adResult);
-			basePageModel.setCategoryData(data.category);
+			basePageModel.setCategoryData(data.categoryAll);
 			basePageModel.setLocationData(data.location, data.locationlatlong);
 			return basePageModel.getModelBuilder().resolveAllPromises();
 		}).then((data) => {
