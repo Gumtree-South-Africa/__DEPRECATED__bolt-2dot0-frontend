@@ -28,7 +28,7 @@ let initialize = () => {
 			}
 
 			let locId = $('input[name="locId"]').val();
-			if (locId && locId.length > 0) {
+			if (locId && locId.length > 0 && href.indexOf(locId) === -1) {
 				href = href.substr(0, href.length - 2) + 'l' + locId + 'p1';
 				link.attr('href', href);
 			}

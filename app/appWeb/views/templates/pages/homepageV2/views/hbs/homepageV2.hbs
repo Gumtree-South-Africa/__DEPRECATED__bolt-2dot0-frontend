@@ -54,8 +54,9 @@
 
 	</div>
 
-    {{> (dynamic "welcomeModal")}}
-
+    {{#partial "welcomeModal"}}
+        {{> (dynamic "welcomeModal")}}
+    {{/partial}}
 {{/partial}}
 
 {{#partial "pageTailScripts"}}

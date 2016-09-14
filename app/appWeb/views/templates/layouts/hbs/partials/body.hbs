@@ -49,6 +49,7 @@
    {{#block "footerWrapper"}}
     {{#if b2dot0Version}}
         {{> (dynamic "footerV2") }}
+        {{#block "welcomeModal"}}{{/block}}
     {{else}}
 		<div class="footer">
             {{> (dynamic "footer" ) }}
