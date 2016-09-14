@@ -7,8 +7,9 @@ let editAdService = require(cwd + '/server/services/editad');
 
 
 class EditAdModel {
-	constructor(bapiHeaders) {
+	constructor(bapiHeaders, prodEpsMode) {
 		this.bapiHeaders = bapiHeaders;
+		this.prodEpsMode = prodEpsMode;
 	}
 
 	getAd(adId) {
@@ -21,6 +22,9 @@ class EditAdModel {
 			let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
 			data.daysUntil = Math.ceil(timeDiff / (1000 * 3600 * 24));
 
+			if (!this.prodEpsMode) {
+				data = JSON.parse(JSON.stringify(data).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
 			return data;
 		});
 	}

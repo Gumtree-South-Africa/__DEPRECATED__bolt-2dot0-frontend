@@ -89,7 +89,7 @@
 	},
 	"content" : {
 	  	"homepageV2" : {
-			"safetyLink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+			"safetyLink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"distractionFree": false,
 			"showTopBanner": false,
 			"reviews" : [
@@ -110,7 +110,8 @@
 				},
 				{
 					"primaryImageUrl": "jackson_a.jpg",
-					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente."
+					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente.",
+					"rating": "5"
 				},
 				{
 					"primaryImageUrl": "francisco_m.jpg",

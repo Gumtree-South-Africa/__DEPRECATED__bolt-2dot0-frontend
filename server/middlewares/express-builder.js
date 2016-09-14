@@ -91,6 +91,7 @@ function BuildApp(siteObj) {
 		 */
 		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
 			app.locals.devMode = true;
+			app.locals.prodEpsMode = false;
 			app.use(logger('dev'));
 
 			// assets for local developments and populates  app.locals.jsAssets
@@ -105,13 +106,31 @@ function BuildApp(siteObj) {
 			if (app.locals.config) {
 				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
 			}
+
+			// register eps sandbox image url middleware
+		});
+
+		/*
+		 * Pre-Production based middlewares
+		 */
+		middlewareloader()(['pp_phx_deploy', 'lnp_phx_deploy'], function() {
+			app.locals.devMode = false;
+			app.locals.prodEpsMode = false;
+			app.use(logger('short'));
+
+			if (app.locals.config) {
+				app.locals.config.basePort = '';
+			}
+
+			// register eps sandbox image url middleware
 		});
 
 		/*
 		 * Production based middlewares
 		 */
-		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy'], function() {
 			app.locals.devMode = false;
+			app.locals.prodEpsMode = true;
 			app.use(logger('short'));
 
 			if (app.locals.config) {

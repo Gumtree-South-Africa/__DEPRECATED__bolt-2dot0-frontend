@@ -103,8 +103,7 @@ class TileGrid {
 		if (state.currentFilterThreshold < numTiles) {
 			// we have more tiles to show the user
 			state.currentFilterThreshold += state.viewMoreFilterIncrement;	// move our filter threshold ahead
-			this.isotopeElement.isotope('arrange');
-			this.isotopeElement.trigger("scroll"); // trigger lazyload in webkit browsers
+			this.isotopeElement.isotope('arrange');	// raises arrangeComplete, we use to help with lazy load
 		} else {
 			// nav to SRP
 			// window.location.href = "/search.html?locId=" + result.location;
@@ -143,8 +142,6 @@ class TileGrid {
 				$tiles.find('img.lazy').lazyload({
 					"skip_invisible": true
 				});
-
-				container.trigger("scroll"); // trigger lazyload in webkit browsers
 
 				// setup for more when server says we have it
 				if (data.moreDataAvailable) {
@@ -220,6 +217,13 @@ class TileGrid {
 
 		this.isotopeElement.addClass("using-isotope");	// tag so we get configured sizes
 		this.isotopeElement.isotope(isotopeOptions);
+		this.isotopeElement.on('arrangeComplete', (event, filteredItems) => {
+			// we are called twice per 'arrange', because there are 2 cards - trending and gallery,
+			// but that wont matter for what we need to do
+			// trigger the scroll event so lazy load takes a look at its items
+			this.isotopeElement.trigger("scroll"); // trigger lazyload to take a look
+		});
+
 		this.$body.trigger('breakpointChanged', this.currentBreakpoint);
 
 		// for debugging you can listen like this: <images>.on("appear", () => {

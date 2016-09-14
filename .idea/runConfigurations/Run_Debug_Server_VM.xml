@@ -3,10 +3,14 @@
     <envs>
       <env name="NODE_ENV" value="vm" />
       <env name="PORT" value="8000" />
-      <env name="SSL_PORT" value="7443" />
+      <env name="SSL_PORT" value="8443" />
       <env name="BASEDOMAINSUFFIX" value="localhost" />
       <env name="NODE_CONFIG_DIR" value="./server/config" />
     </envs>
+    <profiling v8-profiler-path="" />
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling v8-profiler-path="" />
+    </EXTENSION>
     <method />
   </configuration>
 </component>

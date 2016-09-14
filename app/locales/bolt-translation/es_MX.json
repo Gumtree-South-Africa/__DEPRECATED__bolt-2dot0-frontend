@@ -889,7 +889,7 @@
 	"watchlist.syncbutton.tooltip": "Al guardar tus favoritos, estarán disponibles en tus dispositivos móviles",
 	"watchlist.emailbutton": "o, Enviar por correo electrónico",
 	"watchlist.emailSubject": "Mis Anuncios Favoritos en Vivanuncios",
-	"watchlist.emailBody": "Hola,||Quiero compartir contigo mis anuncios favoritos más recientes en Vivanuncios.||%s||¡Disfrútalos!||Cortesía del equipo de Vivanuncios|http://www.vivanuncios.com.mx/",
+	"watchlist.emailBody": "Hola,||Quiero compartir contigo mis anuncios favoritos más recientes en Vivanuncios.||%s||¡Disfrútalos!||Cortesía del equipo de Vivanuncios|https://www.vivanuncios.com.mx/",
 	"watchlist.noADHint_part1": "Haz clic en las estrellas de los anuncios que desees agregar a tu lista de Favoritos.",
 	"watchlist.noADHint_part2": "O,",
 	"watchlist.noADHint_part3": "entra",
@@ -1152,7 +1152,7 @@
 	"smartmobilebanner": {
 		"title": "Abre la App",
 		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "http://go.vivanunc.io/gana-dinero"
+		"branchiolink": "https://go.vivanunc.io/gana-dinero"
 	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
@@ -1166,7 +1166,7 @@
 		"mobilebutton": "¡Descarga gratis y vende rápido!",
 		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
 		"googleplay": "https://app.adjust.com/oarq82",
-		"applink": "http://go.vivanunc.io/baja-la-app"
+		"applink": "https://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
 		"upload": {
@@ -1222,7 +1222,7 @@
 			"favorites": "Favoritos",
 			"myAlerts": "Búsquedas guardadas",
 			"myProfile": "Mi perfil",
-			"promoteMyAds": "Promocionar mis anuncios",
+			"promoteMyAds": "Destacar mis anuncios",
 			"pricingGuide": "Guía de precios",
 			"logout": "Cerrar sesión"
 		},
@@ -1355,9 +1355,9 @@
 				"partners": "Socios",
 				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
-                "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
+                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Búsquedas destacadas",
-                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
 				"priceIndex": "Previos de Inmuebles"
 			},
 			"tips": {

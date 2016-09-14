@@ -142,12 +142,18 @@ let _failure = (i, epsError) => {
 	removePendingImage(i);
 };
 
+//this needs to be removed when HTTPS for EPS gets a certificate
+let transformEpsUrl = (url) => {
+	let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+	return newUrl;
+};
+
 let _success = (i, response) => {
 	if (response.indexOf('ERROR') !== -1) {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
-	window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+	//window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 	// try to extract the url and figure out if it looks like to be valid
 	let url = this.epsUpload.extractURLClass(response);
 
@@ -157,17 +163,20 @@ let _success = (i, response) => {
 		return _failure(i, response);
 	}
 
+  let normalUrl = transformEpsUrl(url.normal);
+  let thumbUrl = transformEpsUrl(url.thumbImage);
+
 	// add the image once EPS returns the uploaded image URL
 	let secureNormalUrl;
 	let secureThumbImageUrl;
 
 	// for secure protocole and not non secure protocole
 	if(url.normal.toLowerCase().indexOf("https") < 0) {
-		secureNormalUrl = url.normal.replace('http', 'https');
-		secureThumbImageUrl = url.thumbImage.replace('http', 'https');
+		secureNormalUrl = normalUrl.replace('http', 'https');
+		secureThumbImageUrl = thumbUrl.replace('http', 'https');
 		createImgObj(i, secureThumbImageUrl, secureNormalUrl);
 	} else {
-		createImgObj(i, url.thumbImage, url.normal);
+		createImgObj(i, thumbUrl, normalUrl);
 	}
 
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
@@ -176,6 +185,7 @@ let _success = (i, response) => {
 	resizeCarousel();
 	removePendingImage(i);
 };
+
 
 let loadData = (i, file) => {
 	this.epsUpload.uploadToEps(i, file, _success, _failure, () => {
@@ -285,7 +295,7 @@ let hasImagesForUpload = () => {
 
 let preventDisabledButtonClick = (event) => {
 	if (!hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		//window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		$('.cover-photo').addClass('red-border');
 		$('.photos-required-msg').removeClass('hidden');
 		this.$postAdButton.addClass('disabled');
@@ -327,7 +337,7 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	}
 };
 
@@ -418,7 +428,7 @@ let initialize = (options) => {
 				slidesToShow: 3,
 				slidesToScroll: 3
 			},
-			showDeleteImageIcons: false,
+			showDeleteImageIcons: true,
 			initialImages: images
 		};
 	}
@@ -456,7 +466,7 @@ let initialize = (options) => {
 	this.$errorModalButton.click(() => {
 		this.messageModal.toggleClass('hidden');
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this._bindChangeListener();

@@ -95,8 +95,8 @@ class HomePageModelV2 {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 
-		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
-		let cardsModel = new CardsModel(modelData.bapiHeaders);
+		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
+		let cardsModel = new CardsModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
