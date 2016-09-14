@@ -12,6 +12,12 @@
 	text-align: center;
 	z-index: 10;
 
+	.consent-error {
+		padding-top: 10px;
+		position: absolute;
+		background-color: white;
+	}
+
 	.login-title {
 		font-weight: bold;
 		margin-top: 50px;
@@ -66,9 +72,8 @@
 	.legal-wrapper {
 		color: $postAdTextGray;
 		font-size: 12px;
-		margin: 15px auto;
 		width: 95%;
-		padding: 2.5%;
+		padding: 15px 2.5% 15px 2.5%;
 		background-color: white;
 
 		a {
