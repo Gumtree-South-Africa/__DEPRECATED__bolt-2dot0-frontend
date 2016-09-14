@@ -27,37 +27,44 @@ let _bindTypeAheadResultsEvents = () => {
  * @param inputVal
  * @private
  */
-let _getGeoCodeData = (country, lang, inputVal) => {
-	let htmlElt = '';
-	$.ajax({
-		//TODO: use proper google account key
-		url: 'https://maps.googleapis.com/maps/api/geocode/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:' + country + '&language=' + lang + '&address=' + inputVal,
-		dataType: 'JSON',
-		type: 'GET',
-		success: function(resp) {
-			if (resp.results instanceof Array) {
-				let autocompleteField = $('#autocompleteField');
-				autocompleteField.html('');
-				if (resp.results.length > 0) {
-					autocompleteField.removeClass('hiddenElt');
-					for (let idx = 0; idx < resp.results.length; idx++) {
-						let address = resp.results[idx].formatted_address;
-						let latitude = resp.results[idx].geometry.location.lat;
-						let longitude = resp.results[idx].geometry.location.lng;
-						let splitAddress = address.split(',');
-						let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
-						htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
-					}
+let _geoAutoComplete = () => {
+	console.log('innnnnnnnnnnnnnnnnnnnnnnn');
+	let $place = this.$autocomplete.getPlace();
+	console.log($place);
+	console.log(this.$autocomplete);
+}
 
-					autocompleteField.append(htmlElt);
-					_bindTypeAheadResultsEvents();
-				} else {
-					autocompleteField.addClass('hiddenElt');
-				}
-			}
-		}
-	});
-};
+//let _getGeoCodeData = (country, lang, inputVal) => {
+	//let htmlElt = '';
+	//$.ajax({
+	//	//TODO: use proper google account key
+	//	url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:' + country + '&language=' + lang + '&input=' + inputVal,
+	//	dataType: 'JSONP',
+	//	type: 'GET',
+	//	success: function(resp) {
+	//		if (resp.results instanceof Array) {
+	//			let autocompleteField = $('#autocompleteField');
+	//			autocompleteField.html('');
+	//			if (resp.results.length > 0) {
+	//				autocompleteField.removeClass('hiddenElt');
+	//				for (let idx = 0; idx < resp.results.length; idx++) {
+	//					let address = resp.results[idx].formatted_address;
+	//					let latitude = resp.results[idx].geometry.location.lat;
+	//					let longitude = resp.results[idx].geometry.location.lng;
+	//					let splitAddress = address.split(',');
+	//					let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
+	//					htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
+	//				}
+	//
+	//				autocompleteField.append(htmlElt);
+	//				_bindTypeAheadResultsEvents();
+	//			} else {
+	//				autocompleteField.addClass('hiddenElt');
+	//			}
+	//		}
+	//	}
+	//});
+//};
 
 let _refreshPage = () => {
 	location.reload(true);
@@ -222,28 +229,29 @@ let initialize = (setValueCb) => {
 
 	this.setValueCb = setValueCb;
 
-	let eventName = 'keyup';
 	let $modalCp = $('.modal-cp');
 
+	let eventName = 'keyup';
 	this.$locmodal.on(eventName, (evt) => {
 		switch (evt.keyCode) {
-			case 38:
-				//up
-				_highlightUpItem();
-				evt.preventDefault();
-				break;
-			case 40:
-				//down
-				_highlightDownItem();
-				evt.preventDefault();
-				break;
+			//case 38:
+			//	//up
+			//	_highlightUpItem();
+			//	evt.preventDefault();
+			//	break;
+			//case 40:
+			//	//down
+			//	_highlightDownItem();
+			//	evt.preventDefault();
+			//	break;
 			case 13:
 				//enter
-				_selectItem();
+				// _selectItem();
+				_geoAutoComplete();
 				evt.preventDefault();
 				break;
 			default:
-				_getGeoCodeData(this.country, this.langs, this.$locmodal.val());
+				// _getGeoCodeData(this.country, this.langs, this.$locmodal.val());
 				break;
 		}
 	});
@@ -275,11 +283,22 @@ let initialize = (setValueCb) => {
 		_closeModal();
 	});
 
-	//click on gps icon
+	// gps icon
 	$('.modal-cp .icon-location-v2').on('click', function() {
 		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoFindMe();
 	});
+
+	// google autocomplete
+	this.$autocomplete = new google.maps.places.Autocomplete(
+		/** @type {!HTMLInputElement} */(document.getElementById('modal-location')),
+		{
+			types: ['(regions)'],
+			componentRestrictions: {'country': this.country},
+			language: this.langs
+		}
+	);
+	this.$autocomplete.addListener('place_changed', _geoAutoComplete());
 
 };
 
