@@ -6,7 +6,9 @@ $header-logo-desktop-height: auto !default;;
 
     a{ display:block; }
 
-    img{ max-width:100%;
+    img{
+		width: 75%;
+		max-width:100%;
 
         @include in-breakpoint($no-break){
             max-height:$header-logo-mobile-height;
