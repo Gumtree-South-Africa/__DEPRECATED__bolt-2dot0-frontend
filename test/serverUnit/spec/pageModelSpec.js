@@ -12,7 +12,7 @@ describe('Page Models', () => {
 				}
 			},
 			cookies: {
-				bt_auth: 'adsf'
+				"bt_auth": 'adsf'
 			}
 		};
 		let res = {
@@ -47,7 +47,7 @@ describe('Page Models', () => {
 				return `Function: ${entry} found in ZK config but not implemented in model`;
 			});
 			let errorStringsModel = homePageConfig.map((entry) => {
-				return `Function: ${entry} implemented in model but not found in ZK config, function will not be executed.`
+				return `Function: ${entry} implemented in model but not found in ZK config, function will not be executed.`;
 			});
 			spyOn(abstractPageModel, 'logConfigError').and.callFake((string) => {
 				errorStringsZk.splice(errorStringsZk.indexOf(string), 1);
