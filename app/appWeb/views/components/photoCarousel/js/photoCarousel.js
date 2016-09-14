@@ -153,7 +153,7 @@ let _success = (i, response) => {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
-	window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+	//window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 	// try to extract the url and figure out if it looks like to be valid
 	let url = this.epsUpload.extractURLClass(response);
 
@@ -295,7 +295,7 @@ let hasImagesForUpload = () => {
 
 let preventDisabledButtonClick = (event) => {
 	if (!hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		//window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		$('.cover-photo').addClass('red-border');
 		$('.photos-required-msg').removeClass('hidden');
 		this.$postAdButton.addClass('disabled');
@@ -337,7 +337,7 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	}
 };
 
@@ -466,7 +466,7 @@ let initialize = (options) => {
 	this.$errorModalButton.click(() => {
 		this.messageModal.toggleClass('hidden');
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this._bindChangeListener();
