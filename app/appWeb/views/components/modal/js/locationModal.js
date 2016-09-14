@@ -52,9 +52,12 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	});
 };
 
+let _refreshPage = () => {
+	location.reload(true);
+};
+
 /*
- *  As of now the method is used only for the GPS
- *  this method will be used when trending card and/or other module can refresh by themselves
+ * This method will be used when trending card and/or other module can refresh by themselves
  */
 let _geoShowMyLocation = (geoCookieValue) => {
 	geoCookieValue = geoCookieValue.replace('ng', ',');
@@ -67,9 +70,12 @@ let _geoShowMyLocation = (geoCookieValue) => {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 
-				// Set searchLocId Cookie
-				let searchLocIdcookieValue = resp.id;
-				document.cookie = 'searchLocId' + "=" + escape(searchLocIdcookieValue) + ";path=/";
+				// Set searchLocId and searchLocName Cookie
+				document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
+				document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
+
+				// refresh page
+				_refreshPage();
 			}
 		},
 		error: () => {
@@ -113,10 +119,6 @@ let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
 };
 
-let _refreshPage = () => {
-	location.reload(true);
-};
-
 let _closeModal = () => {
 	let $selected = $('.ac-field.selected');
 	let location = {
@@ -128,7 +130,6 @@ let _closeModal = () => {
 			this.setValueCb(location);
 		} else {
 			_setGeoCookie(location);
-			_refreshPage();
 		}
 	}
 

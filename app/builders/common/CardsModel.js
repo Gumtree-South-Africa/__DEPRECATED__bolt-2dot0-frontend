@@ -12,11 +12,12 @@ let Q = require("q");
 
 class CardsModel {
 
-	constructor(bapiHeaderValues) {
+	constructor(bapiHeaderValues, prodEpsMode) {
 		this.bapiHeaderValues = bapiHeaderValues;
 
 		this.cardsToPageMap = cardsConfig.cardsByPage;
 		this.cardToConfigMap = cardsConfig.cards;
+		this.prodEpsMode = prodEpsMode;
 		// todo: validate card config:
 		// todo: validate the number of items requested is numeric
 	}
@@ -127,8 +128,6 @@ class CardsModel {
 					// isGalleryTile:  true	// hbs generates a class that can be used for styling
 				};
 			});
-
-
 		}
 
 		dataItems.ads.forEach((ad) => {
@@ -137,6 +136,10 @@ class CardsModel {
 				ad.isFeaturedTile = true;	// hbs generates a class that can be used for styling
 			}
 		});
+
+		if (!this.prodEpsMode) {
+			dataItems = JSON.parse(JSON.stringify(dataItems).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+		}
 
 		return dataItems;
 	}

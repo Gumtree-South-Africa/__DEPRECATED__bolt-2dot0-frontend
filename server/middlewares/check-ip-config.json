@@ -18,5 +18,10 @@
 
   "IPV4_LOOPBACK_IP_PREFIX": [
     "127."
+  ],
+
+  "IPV6_LOOPBACK_IP_PREFIX": [
+	"::1"
   ]
+
 }

@@ -24,7 +24,7 @@ let initialize = () => {
 				let templateString = clientHbs.renderTemplate("recentActivity", {"recentActivities": {shuffledArr}});
 				let $refreshDiv = $(".refresh-div");
 				$refreshDiv.empty().hide().append(templateString).fadeIn(2000);
-			}, 18000);
+			}, 13000);
 		}
 	});
 };

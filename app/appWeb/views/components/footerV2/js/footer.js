@@ -2,10 +2,7 @@
 
 
 let _toggleCategory = (e) => {
-
-	$(e.currentTarget).find('.menu-items').toggleClass('hide');
 	$(e.currentTarget).parents('.footer-inner-wrappper').toggleClass('expanded');
-
 	if (this.$footerLinks.find('div:nth-child(4)').hasClass('expanded')) {
 		if (this.$footerLinks.find('div:nth-child(5)').hasClass('expanded')) {
 			this.$seoLinks.addClass('mobile-extra-height');
@@ -18,6 +15,18 @@ let _toggleCategory = (e) => {
 		this.$seoLinks.removeClass('display-mobile');
 		this.$seoLinks.css('display', 'none');
 	}
+
+	if ($(e.currentTarget).find('.menu-items').hasClass('hide')) {
+		$(e.currentTarget).find('.chevron').css({
+			'transform': 'rotate(90deg)'
+		});
+	} else {
+		$(e.currentTarget).find('.chevron').css({
+			'transform': 'rotate(0deg)'
+		});
+	}
+
+	$(e.currentTarget).find('.menu-items').toggleClass('hide');
 };
 
 
