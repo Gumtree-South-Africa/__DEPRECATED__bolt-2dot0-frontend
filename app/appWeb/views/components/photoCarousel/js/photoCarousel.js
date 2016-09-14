@@ -157,17 +157,20 @@ let _success = (i, response) => {
 		return _failure(i, response);
 	}
 
+  let normalUrl = transformEpsUrl(url.normal);
+  let thumbUrl = transformEpsUrl(url.thumbImage);
+
 	// add the image once EPS returns the uploaded image URL
 	let secureNormalUrl;
 	let secureThumbImageUrl;
 
 	// for secure protocole and not non secure protocole
 	if(url.normal.toLowerCase().indexOf("https") < 0) {
-		secureNormalUrl = url.normal.replace('http', 'https');
-		secureThumbImageUrl = url.thumbImage.replace('http', 'https');
+		secureNormalUrl = normalUrl.replace('http', 'https');
+		secureThumbImageUrl = thumbUrl.replace('http', 'https');
 		createImgObj(i, secureThumbImageUrl, secureNormalUrl);
 	} else {
-		createImgObj(i, url.thumbImage, url.normal);
+		createImgObj(i, thumbUrl, normalUrl);
 	}
 
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
@@ -175,6 +178,12 @@ let _success = (i, response) => {
 
 	resizeCarousel();
 	removePendingImage(i);
+};
+
+//this needs to be removed when HTTPS for EPS gets a certificate
+let transformEpsUrl = (url) => {
+  let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+  return newUrl;
 };
 
 let loadData = (i, file) => {
