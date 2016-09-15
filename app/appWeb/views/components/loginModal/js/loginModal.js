@@ -2,7 +2,7 @@
 
 let _checkConsent = (e) => {
 	if (!this.hasConsented) {
-		this.$consentError.removeClass('hidden');
+		this.$consentError.removeClass('invisible');
 		e.preventDefault();
 	}
 };
@@ -15,8 +15,8 @@ let initialize = () => {
 	this.hasConsented = this.$consentCheck.is(':checked');
 	this.$consentCheck.on('change', () => {
 		this.hasConsented = this.$consentCheck.is(':checked');
-		if (this.hasConsented && !this.$consentError.hasClass('hidden')) {
-			this.$consentError.addClass('hidden');
+		if (this.hasConsented && !this.$consentError.hasClass('invisible')) {
+			this.$consentError.addClass('invisible');
 		}
 	});
 

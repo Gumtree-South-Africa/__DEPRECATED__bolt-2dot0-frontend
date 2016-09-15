@@ -20,6 +20,9 @@
 		font-size: 12px;
 		padding-top: 15px;
 		background-color: white;
+		&.invisible {
+			visibility: hidden;
+		}
 	}
 
 	.login-title {
