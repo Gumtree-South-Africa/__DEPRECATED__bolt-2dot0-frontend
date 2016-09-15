@@ -13,17 +13,20 @@ $.prototype.doesExist = function() {
 let _this = this;
 
 let _postAd = (url, locationType) => {
+
+	let spinner = $("#spinner-modal");
+	spinner.removeClass('hidden');
+	this.$uploadSpinner.toggleClass('hidden');
+	this.$uploadProgress.toggleClass('hidden');
+	this.$uploadProgress.html("0%");
+
 	uploadAd.postAd([url], (response) => {
-		this.$uploadSpinner.toggleClass('hidden');
-		this.$uploadProgress.toggleClass('hidden');
-		this.$uploadProgress.html("0%");
 		this.inputDisabled = false;
 		formChangeWarning.disable();
 		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
 	}, (err) => {
 		console.warn(err);
-		this.$uploadSpinner.toggleClass('hidden');
-		this.$uploadProgress.toggleClass('hidden');
+		spinner.addClass('hidden');
 		formChangeWarning.enable();
 		this.uploadMessageClass.failMsg(0);
 	}, {
