@@ -1,10 +1,17 @@
 $inputWidth: 84%;
+$inputFieldWidth: 46%;
 $inputMargin: 6%;
 $labelWidth: 86%;
 $labelMargin: 8%;
 
 .header-wrapper {
 	border-bottom: none !important;
+}
+
+body {
+	&.hide-overflow {
+		overflow: hidden;
+	}
 }
 
 .edit-ad-page {
@@ -201,13 +208,6 @@ $labelMargin: 8%;
 				color: $categoryDisplayTextColor;
 				font-style: italic;
 			}
-
-			.leaf-node-warning {
-				width: $labelWidth;
-				margin: 0 $labelMargin;
-				font-size: 13px;
-				color: $vivaOrange;
-			}
 		}
 
 		.location-link {
@@ -231,16 +231,24 @@ $labelMargin: 8%;
 
 		.input-wrapper {
 			width: 100%;
+			position: relative;
 
-			input[type="text"], .location-link, select {
-				width: $inputWidth;
+			.leaf-node-warning {
+				width: $labelWidth;
+				margin: 0 $labelMargin;
+				font-size: 13px;
+				color: $vivaOrange;
+			}
+
+			input[type="text"], input[type="date"], .location-link, select {
+				width: $inputFieldWidth;
 				margin: 0 $inputMargin;
 				padding: 0 2%;
 
 				border: 1px solid $vivaBlack;
 
 				&.price-input {
-					width: 50%;
+					width: $inputFieldWidth;
 
 					@media(max-width: 450px) {
 						width: 30%;
@@ -252,6 +260,13 @@ $labelMargin: 8%;
 				&.validation-error {
 					border: 1px solid red;
 				}
+			}
+
+			// overriding webshims styles to properly place button
+			.input-buttons {
+				position: absolute;
+				right: 7%;
+				top: 25%;
 			}
 
 			div.location-link {
@@ -266,9 +281,9 @@ $labelMargin: 8%;
 			}
 
 			.category-name-display {
+				color: #478BCD;
 				width: $labelWidth;
 				margin: 0 $labelMargin;
-				color: $categoryDisplayTextColor;
 
 				.hier-link {
 					text-decoration: underline;
@@ -286,7 +301,7 @@ $labelMargin: 8%;
 			.location-warning-text {
 				width: $labelWidth;
 				margin: 0 $labelMargin;
-				color: $formLabelTextColor;
+				color: #FF9800;
 				font-size: 10px;
 			}
 		}

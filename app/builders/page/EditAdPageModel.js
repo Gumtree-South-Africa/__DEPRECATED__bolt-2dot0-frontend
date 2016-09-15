@@ -9,7 +9,9 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
+let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+
 
 let _ = require('underscore');
 
@@ -39,7 +41,20 @@ class EditAdPageModel {
 			// Converts the data from an array format to a JSON format
 			// for easy access from the client/controller
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
-			return this.mapData(abstractPageModel.getBaseModelData(data), data);
+			// 1. Save the modelData, don't return the functions since the dataLayer is partially constructed
+			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
+			return this.modelData;
+		}).then((data) => {
+			// 2. Ad specific content is ready, now construct the dataLayer
+			let basePageModel = new BasePageModel(this.req, this.res);
+			basePageModel.setAdResult(data.adResult);
+			basePageModel.setCategoryData(data.categoryAll);
+			basePageModel.setLocationData(data.location);
+			return basePageModel.getModelBuilder().resolveAllPromises();
+		}).then((data) => {
+			// 3. Setting the dataLayer of modelData after promises resolved, then get out of the whole function
+			this.modelData.dataLayer = data[0].dataLayer;
+			return this.modelData;
 		});
 	}
 
@@ -86,7 +101,7 @@ class EditAdPageModel {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
-		modelData.dataLayer = data.common.dataLayer || {};
+		modelData.category = data.category || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
 		modelData.adResult.attributeValues = {};

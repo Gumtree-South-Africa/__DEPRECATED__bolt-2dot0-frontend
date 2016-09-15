@@ -13,14 +13,21 @@
 	z-index: 10;
 
 	.consent-error {
-		padding-top: 10px;
-		position: absolute;
+		left: 0;
+		right: 0;
+		margin: auto;
+		color: red;
+		font-size: 12px;
+		padding-top: 15px;
 		background-color: white;
+		&.invisible {
+			visibility: hidden;
+		}
 	}
 
 	.login-title {
 		font-weight: bold;
-		margin-top: 50px;
+		margin-top: 10px;
 		margin-bottom: 15px;
 		font-size: 24px;
 	}

@@ -7,6 +7,7 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
+let editAdErrorParser = require(`${cwd}/app/utils/EditAdErrorParser.js`);
 let validator = require('is-my-json-valid');
 let schemaEditAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.json');
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
@@ -87,10 +88,15 @@ router.post('/update', cors, (req, res) => {
 		res.contentType = "application/json";
 		res.status(200).json(result);
 	}).fail((error) => {
+		let errInfoObj;
+		if (error && error.bapiJson) {
+			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
+		}
 		let bapiJson = error.logError();
 		res.status(error.getStatusCode(500)).json({
 			error: "error updating ad, see logs for details",
-			bapiJson: bapiJson
+			bapiJson: bapiJson,
+			bapiValidationFields: errInfoObj
 		});
 	});
 });

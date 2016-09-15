@@ -12,15 +12,45 @@ class EditAdModel {
 		this.prodEpsMode = prodEpsMode;
 	}
 
+	translateTimeToReadable(data) {
+		let postDate = new Date(data.postedDate);
+		let currentDate = new Date();
+		let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
+		let diffHrs =  Math.floor(timeDiff / (1000 * 60 * 60));// hours
+		let diffMins = Math.floor(timeDiff / (1000 * 60)).toFixed(1);
+
+		if (diffMins < 60) {
+			let pluralizationString = diffMins === 1 ? "singular" : "plural";
+			data.timeUntil = Math.round(diffMins);
+			data.dateStringKey = `shareAd.dateStrings.minute.${pluralizationString}`;
+		} else if (diffHrs < 24) {
+			let pluralizationString = diffHrs === 1 ? "singular" : "plural";
+			data.timeUntil = Math.round(diffHrs);
+			data.dateStringKey = `shareAd.dateStrings.hour.${pluralizationString}`;
+		} else {
+			data.timeUntil = null;
+			data.dateStringKey = null;
+			data.datePosted = postDate;
+		}
+
+		data.statistics = data.statistics || {};
+
+		// defaulting to zero if it isnt returned
+		data.statistics.viewCount = data.statistics.viewCount || 0;
+		data.statistics.replyCount = data.statistics.replyCount || 0;
+		data.statistics.favoriteCount = data.statistics.favoriteCount || 0;
+
+		return data;
+	}
+
 	getAd(adId) {
 		if (typeof adId === undefined || adId === null) {
 			return {};
 		}
-		return editAdService.getAd(this.bapiHeaders, adId).then((data) => {
-			let postDate = new Date(data.postedDate);
-			let currentDate = new Date();
-			let timeDiff = Math.abs(currentDate.getTime() - postDate.getTime());
-			data.daysUntil = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		return editAdService.getAd(this.bapiHeaders, adId).then(this.translateTimeToReadable).then((data) => {
+			// replacing new line characters with the line feed html entity so that spaces
+			// arent injected into the text area
+			data.description = data.description.replace(/\n/g, "&#10;");
 
 			if (!this.prodEpsMode) {
 				data = JSON.parse(JSON.stringify(data).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
