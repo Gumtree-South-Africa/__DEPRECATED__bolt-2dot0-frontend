@@ -97,6 +97,21 @@ function CacheBapiData(siteApp, requestId) {
 			});
 	};
 
+	/**
+	 * @method loadAllLocationData
+	 * @description Loads All Location Data from BAPI. Exposes that data via
+	 *      siteApp.locals.config.locationAllData
+	 * @private
+	 */
+	let loadAllLocationData = function (bapiHeaders, locationDepth) {
+		// Load All Category Data from BAPI
+		return locationService.getLocationsData(bapiHeaders, locationDepth)
+			.then(function (dataReturned) {
+				siteApp.locals.config.locationAllData = dataReturned;
+			}).fail(function (err) {
+				console.warn('Startup: Error in loading locations from LocationService:- ', err);
+			});
+	};
 
     return {
 
@@ -159,7 +174,10 @@ function CacheBapiData(siteApp, requestId) {
 				// Load All Category Data from BAPI
 				let allCategories = loadAllCategoryData(bapiHeaders, 3);
 
-				return Q.all([locations, categories, allCategories]).then(() => {
+				// Load All Location Data from BAPI
+				let allLocations = loadAllLocationData(bapiHeaders, 3);
+
+				return Q.all([locations, categories, allCategories, allLocations]).then(() => {
 					// Start Cache Reloader once all categories and locations retrieved
 					return cacheReloader.kickoffReloadProcess(bapiHeaders);
 				});

@@ -36,6 +36,7 @@ class AbstractPageModel extends BasePageModel {
 		modelData.category = data.category;
 		modelData.categoryDropdown = data.categoryDropdown;
 		modelData.categoryAll = data.categoryAll;
+		modelData.locationAll = data.locationAll;
 
 		modelData.categoryIdNameMap = data.categoryIdNameMap;
 		modelData.categoryData = data.categoryData;
