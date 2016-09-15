@@ -20,6 +20,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 			if (resp !== undefined) {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
+				$('.login-button').removeClass('disable-click');
 
 				// Set searchLocId and searchLocName Cookie
 				document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
@@ -97,6 +98,7 @@ let _geoAutoComplete = () => {
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
 	$('body').addClass('stop-scrolling');
+	$('.login-button').addClass('disable-click');
 };
 
 let _refreshPage = () => {

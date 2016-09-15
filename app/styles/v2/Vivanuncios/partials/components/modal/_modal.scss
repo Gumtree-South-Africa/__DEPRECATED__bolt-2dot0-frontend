@@ -97,3 +97,8 @@
 	height: 100%;
 	overflow: hidden;
 }
+
+.disable-click {
+	pointer-events: none;
+	opacity: 0.5;
+}
