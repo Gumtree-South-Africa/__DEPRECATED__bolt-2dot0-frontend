@@ -243,6 +243,7 @@ module.exports  =  {
 		});
 
 		exphbs.handlebars.registerHelper('formatDate', (date) => {
+			date = new Date(date);
 			let hours12, halfOfDay,
 				hours24 = date.getHours();
 

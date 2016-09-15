@@ -1,6 +1,7 @@
 "use strict";
 
-let initialize = (locale) => {
+let initialize = () => {
+	let locale = $('html').data('locale');
 	window.Handlebars = require("../../../../node_modules/handlebars/dist/handlebars.runtime.min.js");
 	require("../../precompTemplates.js");
 

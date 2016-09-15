@@ -142,12 +142,18 @@ let _failure = (i, epsError) => {
 	removePendingImage(i);
 };
 
+//this needs to be removed when HTTPS for EPS gets a certificate
+let transformEpsUrl = (url) => {
+	let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+	return newUrl;
+};
+
 let _success = (i, response) => {
 	if (response.indexOf('ERROR') !== -1) {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
-	window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+	//window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 	// try to extract the url and figure out if it looks like to be valid
 	let url = this.epsUpload.extractURLClass(response);
 
@@ -157,14 +163,29 @@ let _success = (i, response) => {
 		return _failure(i, response);
 	}
 
+  let normalUrl = transformEpsUrl(url.normal);
+  let thumbUrl = transformEpsUrl(url.thumbImage);
+
 	// add the image once EPS returns the uploaded image URL
-	createImgObj(i, url.thumbImage, url.normal);
+	let secureNormalUrl;
+	let secureThumbImageUrl;
+
+	// for secure protocole and not non secure protocole
+	if(url.normal.toLowerCase().indexOf("https") < 0) {
+		secureNormalUrl = normalUrl.replace('http', 'https');
+		secureThumbImageUrl = thumbUrl.replace('http', 'https');
+		createImgObj(i, secureThumbImageUrl, secureNormalUrl);
+	} else {
+		createImgObj(i, thumbUrl, normalUrl);
+	}
+
 	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
 	this.updateAddPhotoButton();
 
 	resizeCarousel();
 	removePendingImage(i);
 };
+
 
 let loadData = (i, file) => {
 	this.epsUpload.uploadToEps(i, file, _success, _failure, () => {
@@ -201,10 +222,7 @@ let html5Upload = (uploadedFiles) => {
 		this.uploadMessageClass.loadingMsg(this.imageCount - 1); //this.uploadMessageClass(upDone).fail()
 		prepareForImageUpload(this.$loadedImages - 1, uploadedFiles);
 	} else {
-		if ($(".carousel-items").length === allowedUploads) {
-			console.warn("Cannot upload more than 12 files!");
-			$("#max-photo-msg").removeClass("hidden");
-			$("#carousel-info-icon").removeClass("hidden");
+		if (!this.checkMaxPhotos()) {
 			return;
 		}
 	}
@@ -269,17 +287,14 @@ let parseFile = (file) => {
 
 let hasImagesForUpload = () => {
 	// add red border to photo carousel if no photos
-	if ($('.carousel-item').length === 0) {
-		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
-		$('.cover-photo').addClass('red-border');
-		$('.photos-required-msg').removeClass('hidden');
-		return false;
-	}
-	return true;
+	return $('.carousel-item').length !== 0;
 };
 
 let preventDisabledButtonClick = (event) => {
-	if (!hasImagesForUpload()) {
+	if (!hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
+		//window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		$('.cover-photo').addClass('red-border');
+		$('.photos-required-msg').removeClass('hidden');
 		this.$postAdButton.addClass('disabled');
 	}
 
@@ -293,7 +308,7 @@ let preventDisabledButtonClick = (event) => {
 				clearTimeout(timeout);
 			}
 			let images = [];
-			for (let i = 0; i < this.imageCount; i++) {
+			for (let i = 0; i < this.$loadedImages; i++) {
 				let selectedImage = $(".carousel-item.selected[data-item='" + i + "']").data("image");
 				let image = $(".carousel-item[data-item='" + i + "']").data("image");
 
@@ -310,7 +325,20 @@ let preventDisabledButtonClick = (event) => {
 };
 /******* END SLICK STUFF *******/
 
+this.checkMaxPhotos = () => {
+	if ($(".carousel-item").length === allowedUploads) {
+		console.warn("Cannot upload more than 12 files!");
+		$("#max-photo-msg").removeClass("hidden");
+		$("#carousel-info-icon").removeClass("hidden");
+		return false;
+	}
+	return true;
+};
+
 this.clickFileInput = () => {
+	if (!this.checkMaxPhotos()) {
+		return;
+	}
 	if (!this.disableImageSelection) {
 		// prevent re-opening of file selector
 		this.disableImageSelection = true;
@@ -319,7 +347,7 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	}
 };
 
@@ -329,10 +357,7 @@ let fileInputChange = (evt) => {
 		evt.stopImmediatePropagation();
 	}
 
-	if ($(".carousel-item").length === allowedUploads) {
-		console.warn("Cannot upload more than 12 files!");
-		$("#max-photo-msg").removeClass("hidden");
-		$("#carousel-info-icon").removeClass("hidden");
+	if (!this.checkMaxPhotos()) {
 		return;
 	}
 
@@ -380,6 +405,7 @@ this.deleteCarouselItem = (event, toRemove) => {
 		firstItem.click();
 	}
 
+	this.imageCount--;
 	this.updateAddPhotoButton();
 	resizeCarousel();
 };
@@ -410,7 +436,7 @@ let initialize = (options) => {
 				slidesToShow: 3,
 				slidesToScroll: 3
 			},
-			showDeleteImageIcons: false,
+			showDeleteImageIcons: true,
 			initialImages: images
 		};
 	}
@@ -448,7 +474,7 @@ let initialize = (options) => {
 	this.$errorModalButton.click(() => {
 		this.messageModal.toggleClass('hidden');
 		this.$imageUpload.click();
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this._bindChangeListener();
@@ -547,6 +573,3 @@ let initialize = (options) => {
 module.exports = {
 	initialize
 };
-
-
-

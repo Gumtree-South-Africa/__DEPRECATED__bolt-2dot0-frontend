@@ -55,6 +55,7 @@ describe('Post Ad Page', () => {
 	it('should show correct translations for tips', (done) => {
 		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 					let c$ = cheerio.load(res.text);
@@ -63,6 +64,17 @@ describe('Post Ad Page', () => {
 					expect(c$('.confirm-tip').text().trim()).toBe(i18n.postAd.confirm.tip);
 					expect(c$('.directions').text().trim()).toBe(i18n.postAd.createAds.directions);
 					expect(c$('.post-ad-btn .link-text').text().trim()).toBe(`${i18n.postAd.createAds.post} ${i18n.postAd.createAds.ad}`);
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should redirect if b2dot0Version cookie not set', (done) => {
+		boltSupertest('/post', 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.expect((res) => {
+					expect(res.status).toBe(302);
+					expect(res.headers.location).toBe("/post.html");
 				})
 				.end(specHelper.finish(done));
 		});

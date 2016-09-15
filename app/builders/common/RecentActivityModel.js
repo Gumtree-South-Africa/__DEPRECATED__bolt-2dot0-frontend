@@ -10,8 +10,9 @@ _.templateSettings = {
 };
 
 class RecentActivityModel {
-	constructor(bapiHeaderValues) {
+	constructor(bapiHeaderValues, prodEpsMode) {
 		this.bapiHeaderValues = bapiHeaderValues;
+		this.prodEpsMode = prodEpsMode;
 	}
 
 	isSold(feed) {
@@ -53,6 +54,11 @@ class RecentActivityModel {
 			inputArr[randomIndex] = inputArr[i];
 			inputArr[i] = itemAtIndex;
 		}
+
+		if (!this.prodEpsMode) {
+			inputArr = JSON.parse(JSON.stringify(inputArr).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+		}
+
 		return inputArr;
 	}
 

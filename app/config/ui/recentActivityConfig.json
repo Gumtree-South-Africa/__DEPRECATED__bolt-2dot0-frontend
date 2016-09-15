@@ -1,25 +1,5 @@
 {
 	"es_MX": {
-		"1097": {
-			"type": [
-				{
-					"name": "DwellingType",
-					"prefix": "un(a) {formattedValue}"
-				},
-				{
-					"name": "NumberBedrooms",
-					"prefix": "con {formattedValue} {localizedName}"
-				}
-			]
-		},
-		"1089": {
-			"type": [
-				{
-					"name": "CellPhoneType",
-					"prefix": "un(a) {formattedValue}"
-				}
-			]
-		},
 		"6": {
 			"type": [
 				{
@@ -32,7 +12,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un(a) {formattedValue}"
+					"prefix": "una {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
@@ -44,7 +24,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un(a) {formattedValue}"
+					"prefix": "un {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
@@ -55,16 +35,44 @@
 		"9": {
 			"type": [
 				{
-					"name": "FurnitureType",
+					"name": "Address",
+					"prefix": "un mueble"
+				}
+			]
+		},
+		"1097": {
+			"type": [
+				{
+					"name": "DwellingType",
 					"prefix": "un(a) {formattedValue}"
+				},
+				{
+					"name": "NumberBedrooms",
+					"prefix": "con {formattedValue} {localizedName}"
 				}
 			]
 		},
 		"1076": {
 			"type": [
 				{
-					"name": "ApplianceType",
-					"prefix": "un(a) {formattedValue}"
+					"name": "Address",
+					"prefix": "un electrodoméstico"
+				}
+			]
+		},
+		"1": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "un accesorio para el hogar"
+				}
+			]
+		},
+		"1089": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "un celular"
 				}
 			]
 		}

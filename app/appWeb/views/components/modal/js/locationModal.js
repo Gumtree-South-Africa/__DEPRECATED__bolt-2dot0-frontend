@@ -20,6 +20,13 @@ let _bindTypeAheadResultsEvents = () => {
 	});
 };
 
+/**
+ * Auto-Complete for Location via Google
+ * @param country
+ * @param lang
+ * @param inputVal
+ * @private
+ */
 let _getGeoCodeData = (country, lang, inputVal) => {
 	let htmlElt = '';
 	$.ajax({
@@ -52,9 +59,18 @@ let _getGeoCodeData = (country, lang, inputVal) => {
 	});
 };
 
-/*
- *  As of now the method is used only for the GPS
- *  this method will be used when trending card and/or other module can refresh by themselves
+let _refreshPage = () => {
+	location.reload(true);
+};
+
+/**
+ * Given a geoId cookie:
+ * 1. talk to BAPI to retreive the location info
+ * 2. set in the page
+ * 3. set searchLocId, searchLocName cookie
+ * 4. Refresh Page
+ * @param geoCookieValue
+ * @private
  */
 let _geoShowMyLocation = (geoCookieValue) => {
 	geoCookieValue = geoCookieValue.replace('ng', ',');
@@ -67,9 +83,9 @@ let _geoShowMyLocation = (geoCookieValue) => {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 
-				// Set searchLocId Cookie
-				let searchLocIdcookieValue = resp.id;
-				document.cookie = 'searchLocId' + "=" + escape(searchLocIdcookieValue) + ";path=/";
+				// Set searchLocId and searchLocName Cookie
+				document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
+				document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
 			}
 		},
 		error: () => {
@@ -78,6 +94,11 @@ let _geoShowMyLocation = (geoCookieValue) => {
 	});
 };
 
+/**
+ * Set geoId Cookie
+ * @param location
+ * @private
+ */
 let _setGeoCookie = (location) => {
 	let cookieValue = location.lat + 'ng' + location.long;
 	document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
@@ -85,6 +106,10 @@ let _setGeoCookie = (location) => {
 	_geoShowMyLocation(escape(cookieValue));
 };
 
+/**
+ * Use GPS to find the current location.
+ * @private
+ */
 let _geoFindMe = () => {
 	function success(position) {
 		let latitude = position.coords.latitude;
@@ -109,12 +134,12 @@ let _geoFindMe = () => {
 	navigator.geolocation.getCurrentPosition(success, error);
 };
 
+
+
+// ACTIONS ---------------------------------------------------------------------------
+
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
-};
-
-let _refreshPage = () => {
-	location.reload(true);
 };
 
 let _closeModal = () => {
@@ -126,35 +151,24 @@ let _closeModal = () => {
 	if ($selected.attr('data-long') !== undefined) {
 		if (this.setValueCb) {
 			this.setValueCb(location);
-		} else {
-			_setGeoCookie(location);
-			_refreshPage();
 		}
 	}
 
+	// refresh page
+	_refreshPage();
 };
 
 let _populateACData = (evt) => {
 	$(evt.currentTarget).removeClass('selected').addClass('selected');
 	$('#autocompleteField').addClass('hiddenElt');
-	$('#modal-location').val($(evt.currentTarget).find('.suffix-addy').html());
+
+	let $selected = $('.ac-field.selected');
+	let location = {
+		lat: $selected.attr('data-lat'),
+		long: $selected.attr('data-long')
+	};
+	_setGeoCookie(location);
 };
-
-
-// let _getCookie = (cname) => {
-// 	let name = cname + "=";
-// 	let ca = document.cookie.split(';');
-// 	for(let i = 0; i <ca.length; i++) {
-// 		let c = ca[i];
-// 		while (c.charAt(0)===' ') {
-// 			c = c.substring(1);
-// 		}
-// 		if (c.indexOf(name) === 0) {
-// 			return c.substring(name.length,c.length);
-// 		}
-// 	}
-// 	return "";
-// };
 
 let _selectItem = () => {
 	let $active = this.$modal.find(".active");
@@ -266,9 +280,6 @@ let initialize = (setValueCb) => {
 		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoFindMe();
 	});
-
-	//on Initialize
-	//_geoShowMyLocation(_getCookie('geoId'));
 
 };
 

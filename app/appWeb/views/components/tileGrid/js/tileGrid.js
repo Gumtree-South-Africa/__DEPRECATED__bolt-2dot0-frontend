@@ -12,6 +12,11 @@ let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 class TileGrid {
 
+
+	constructor() {
+		this.pendingServerSync = false;		// used when getting watchlist cookie async (typ. after logout)
+	}
+
 	/**
 	 * redirect to the search page depending on location id received
 	 * @param resp
@@ -56,16 +61,51 @@ class TileGrid {
 		this.isotopeElement.isotope('layout');
 	}
 
+	/**
+	 * sets the watchlist cookie by calling the server
+	 * RUI based API call, this is intentionally NOT a node API, only RUI currently supports this function
+	 * uses flag pendingServerSync to prevent recursion
+	 * @param success function to be called async
+	 * @param $tiles the collection of tiles to be sync'd
+	 * @private
+	 */
+	_serverSyncFavorites(success, $tiles) {
+		//
+		$.ajax({
+			url: `/rui-api/synchwatchlist/model/synch/${$('html').data('locale')}`,
+			type: 'GET',
+			success: () => {
+				success($tiles)
+			},
+			error: () => {
+				// when running locally but without RUI, we expect a 404
+				console.warn('failed to sync favorites with server');
+				this.pendingServerSync = false;
+			}
+		});
+	}
 
 	/**
 	 * show the highlight state for each ad id in the cookie
-	 * @param $tiles (expected to receive all tiles, regardless of which card it belongs to)
+	 * transparently will ajax to server when there are no ids (logout clears watchlist cookie,
+	 * this assumes user subsequently logged in, to get a fresh cookie we sync from server)
+	 * @param $tiles (typ. expects to receive all tiles, regardless of which card it belongs to,
+	 * can also receive tiles that have been newly ajaxed in)
 	 */
 	_syncFavoriteCookieWithTiles($tiles) {
 		let favoriteIds = adTile.getCookieFavoriteIds();
+		if (favoriteIds.length === 0 && !this.pendingServerSync) {
+			// lets call sync with the server, we may be in a freshly logged in scenario
+			console.warn('no favorites cookie, going to try sync favorites with server');
+			this.pendingServerSync = true;
+			// when the server sync finished, we're going to come back here, use pending flag to prevent infinite recursion
+			this._serverSyncFavorites(this._syncFavoriteCookieWithTiles.bind(this), $tiles)
+			return;
+		}
 		for (let i = 0; i < favoriteIds.length; i++) {
 			adTile.toggleFavoriteById(favoriteIds[i], $tiles);
 		}
+		this.pendingServerSync = false;
 	}
 
 	/**
@@ -103,8 +143,7 @@ class TileGrid {
 		if (state.currentFilterThreshold < numTiles) {
 			// we have more tiles to show the user
 			state.currentFilterThreshold += state.viewMoreFilterIncrement;	// move our filter threshold ahead
-			this.isotopeElement.isotope('arrange');
-			this.isotopeElement.trigger("scroll"); // trigger lazyload in webkit browsers
+			this.isotopeElement.isotope('arrange');	// raises arrangeComplete, we use to help with lazy load
 		} else {
 			// nav to SRP
 			// window.location.href = "/search.html?locId=" + result.location;
@@ -127,7 +166,7 @@ class TileGrid {
 				// now we need to add the tiles we received
 
 				// create tiles from the data
-				let grid = clientHbs.renderTemplate("tileGrid", data);
+				let grid = clientHbs.renderTemplate("tileGrid", { tileGrid: data });
 				let $tiles = $(grid).find('.tile-item');
 
 				// now get the container and put the tiles in
@@ -143,8 +182,6 @@ class TileGrid {
 				$tiles.find('img.lazy').lazyload({
 					"skip_invisible": true
 				});
-
-				container.trigger("scroll"); // trigger lazyload in webkit browsers
 
 				// setup for more when server says we have it
 				if (data.moreDataAvailable) {
@@ -220,6 +257,13 @@ class TileGrid {
 
 		this.isotopeElement.addClass("using-isotope");	// tag so we get configured sizes
 		this.isotopeElement.isotope(isotopeOptions);
+		this.isotopeElement.on('arrangeComplete', (event, filteredItems) => {
+			// we are called twice per 'arrange', because there are 2 cards - trending and gallery,
+			// but that wont matter for what we need to do
+			// trigger the scroll event so lazy load takes a look at its items
+			this.isotopeElement.trigger("scroll"); // trigger lazyload to take a look
+		});
+
 		this.$body.trigger('breakpointChanged', this.currentBreakpoint);
 
 		// for debugging you can listen like this: <images>.on("appear", () => {
@@ -235,8 +279,7 @@ class TileGrid {
 	initialize(registerOnReady = true) {
 
 		// setup for client templates
-		this.locale = $("#client-hbs-locale").data("locale");
-		clientHbs.initialize(this.locale);
+		clientHbs.initialize();
 
 		// setup the tile cards to hold our state information specific to a card
 		this.tileCards = {};

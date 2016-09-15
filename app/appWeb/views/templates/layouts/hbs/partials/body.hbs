@@ -47,12 +47,18 @@
 
 
    {{#block "footerWrapper"}}
-        {{#if b2dot0Version}}
-            {{> (dynamic "footerV2") }}
-        {{else}}
-            {{> (dynamic "footer") }}
-        {{/if}}
-        {{#block "footerExtend"}}{{/block}}
+    {{#if b2dot0Version}}
+        {{> (dynamic "footerV2") }}
+        {{#block "welcomeModal"}}{{/block}}
+    {{else}}
+		<div class="footer">
+            {{> (dynamic "footer" ) }}
+            {{#block "footer"}}
+				<footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
+            {{/block}}
+		</div>
+    {{/if}}
+    {{#block "footerExtend"}}{{/block}}
     {{/block}}
 </div>
 {{!-- End Body.html --}}

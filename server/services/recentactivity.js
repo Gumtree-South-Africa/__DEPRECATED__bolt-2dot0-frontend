@@ -19,6 +19,7 @@ class RecentActivityService {
 		if (geoLatLngObj) {
 			apiParameters['geo'] = bapiService.bapiFormatLatLng(geoLatLngObj);
 		}
+		apiParameters.limit = 50;
 
 		let bapiOptions = bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',

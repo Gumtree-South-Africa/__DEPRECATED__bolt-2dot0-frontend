@@ -7,8 +7,9 @@ let editAdService = require(cwd + '/server/services/editad');
 
 
 class EditAdModel {
-	constructor(bapiHeaders) {
+	constructor(bapiHeaders, prodEpsMode) {
 		this.bapiHeaders = bapiHeaders;
+		this.prodEpsMode = prodEpsMode;
 	}
 
 	translateTimeToReadable(data) {
@@ -50,6 +51,10 @@ class EditAdModel {
 			// replacing new line characters with the line feed html entity so that spaces
 			// arent injected into the text area
 			data.description = data.description.replace(/\n/g, "&#10;");
+
+			if (!this.prodEpsMode) {
+				data = JSON.parse(JSON.stringify(data).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
 			return data;
 		});
 	}

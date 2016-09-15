@@ -16,15 +16,14 @@ let _shuffleArr = (inputArr) => {
 let initialize = () => {
 	$(document).ready(() => {
 		let $orgArr = JSON.parse($('.shuffled-arr').text() || "{}");
-		this.locale = $(".client-hbs-locale").data("locale");
-		clientHbs.initialize(this.locale);
+		clientHbs.initialize();
 		if ($orgArr.length > 5) {
 			setInterval(function() {
 				let shuffledArr = _shuffleArr($orgArr);
 				let templateString = clientHbs.renderTemplate("recentActivity", {"recentActivities": {shuffledArr}});
 				let $refreshDiv = $(".refresh-div");
 				$refreshDiv.empty().hide().append(templateString).fadeIn(2000);
-			}, 18000);
+			}, 13000);
 		}
 	});
 };

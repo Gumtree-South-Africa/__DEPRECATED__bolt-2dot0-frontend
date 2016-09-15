@@ -22,7 +22,7 @@ let _bindEvents = () => {
 
 let initialize = () => {
 	  
-	window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdOptionsModal"} });   
+	window.BOLT.trackEvents({"event": "PostAdOptionsModal", "p": {"t": "PostAdOptionsModal"} });   
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
 		$('.char-count').text(event.target.value.length);

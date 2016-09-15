@@ -62,7 +62,7 @@ describe('Card/Tile Grid', () => {
 		it('should adjust tile size css styles according to map', () => {
 
 			// we have to put the entire card under test in order to have proper card 'state'
-			let $testArea = specHelper.setupTest("tileGrid_es_MX", trendingCardModel, "es_MX");
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", { tileGrid: trendingCardModel }, "es_MX");
 			let mapper = new BreakpointTileSizeMapper();
 
 			let tiles = $testArea.find('.tile-item');
@@ -111,6 +111,11 @@ describe('Card/Tile Grid', () => {
 
 	describe('Card/Tile Grid Controller', () => {
 
+		beforeEach(() => {
+			// all the tileGridControllers will need this ajax
+			specHelper.registerMockAjax('/rui-api/synchwatchlist/model/synch/es_MX', { error: 'test error' }, { fail: true } );
+		});
+
 		let tilesShown = ($tiles) => {
 			let shown = 0;
 			for (let i = 0; i < $tiles.length; i++) {
@@ -126,6 +131,7 @@ describe('Card/Tile Grid', () => {
 
 			// using the card template so we get the proper card 'state'
 			let $testArea = specHelper.setupTest("card_es_MX", { card: trendingCardModel }, "es_MX");
+
 			tileGridController.initialize(false);		// we init with false because we're handing the onReady
 
 			let mapper = tileGridController.getMapper();
@@ -156,7 +162,7 @@ describe('Card/Tile Grid', () => {
 
 		it('should set orange icon on initial load for the tile with its id in the favorite cookie', () => {
 
-			let $testArea = specHelper.setupTest("tileGrid_es_MX", trendingCardModel, "es_MX");
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", { tileGrid: trendingCardModel }, "es_MX");
 			CookieUtils.setCookie("watchlist", "200000000");	// using short ad id to be compatible with RUI
 
 			let tiles = $testArea.find('.tile-item');
@@ -276,5 +282,26 @@ describe('Card/Tile Grid', () => {
 			expect($(viewMore).hasClass('hidden')).toBeTruthy('should have view more styled as hidden');
 
 		});
+
+		it('should set orange icon on initial load for the tile with its id in the favorite cookie (server sync cookie)', () => {
+
+			let $testArea = specHelper.setupTest("tileGrid_es_MX", { tileGrid: trendingCardModel }, "es_MX");
+
+			spyOn(tileGridController, '_serverSyncFavorites').and.callFake((success, $tiles) => {
+				// simulate the side effect of the sync call and the bring down the watchlist cookie
+
+				CookieUtils.setCookie("watchlist", "200000000");	// using short ad id to be compatible with RUI
+				success($tiles);
+
+			});
+
+			let tiles = $testArea.find('.tile-item');
+
+			tileGridController.initialize(false);		// we init with false because we're handing the onReady
+
+			expect($(tiles[1]).find('.icon-heart-orange').length).toBeTruthy(`favorited cookie tile should have orange icon`);
+
+		});
+
 	});
 });

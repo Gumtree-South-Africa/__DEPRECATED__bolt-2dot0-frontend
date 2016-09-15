@@ -8,7 +8,7 @@
 			"link": "/zl/nqf.ugzy"
 		},
 		{
-			"localizedName": "Promocionar mis anuncios",
+			"localizedName": "Destacar mis anuncios",
 			"link": "/zl/cebzbgr.ugzy"
 		},
 		{
@@ -39,7 +39,11 @@
 	],
 	"loggedOutContent": [
 		{
-			"localizedName": "Promocionar mis anuncios",
+			"localizedName": "Mis anuncios",
+			"link": "/zl/nqf.ugzy"
+		},
+		{
+			"localizedName": "Destacar mis anuncios",
 			"link": "/zl/cebzbgr.ugzy"
 		},
 		{
