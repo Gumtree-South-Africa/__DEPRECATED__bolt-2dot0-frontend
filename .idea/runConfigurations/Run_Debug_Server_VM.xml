@@ -8,6 +8,9 @@
       <env name="NODE_CONFIG_DIR" value="./server/config" />
     </envs>
     <profiling log-folder="test/profiling" do-profile="true" />
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling log-folder="test/profiling" do-profile="true" />
+    </EXTENSION>
     <method />
   </configuration>
 </component>

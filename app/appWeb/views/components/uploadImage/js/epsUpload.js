@@ -181,17 +181,18 @@ class EpsUpload {
 					let lat = position.coords.latitude;
 					let lng = position.coords.longitude;
 					document.cookie = `geoId=${lat}ng${lng}`;
-					callback('geoLocation');
-				}, callback,
+					callback('geoLocation', timeout);
+				}, () => {
+					callback('geoFailed', timeout);
+				},
 				{
 					enableHighAccuracy: true,
 					maximumAge: 30000,
 					timeout: 27000
 				});
 		} else {
-			callback('cookie');
+			callback('cookie', timeout);
 		}
-		return timeout;
 	}
 
 	handlePostResponse($loginModal, $loginModalMask, response) {
@@ -203,13 +204,16 @@ class EpsUpload {
 				}, 300);
 				break;
 			case this.AD_STATES.AD_DEFERRED:
-				window.BOLT.trackEvents({ "event": "LoginBegin", "p": {"t": "PostAdLoginModal"} });
-				$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
-				$loginModal.find('.register-link').attr('href', response.links.register);
-				$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
-				$loginModal.toggleClass('hidden');
-				$loginModalMask.toggleClass('hidden');
-				$("#spinner-modal").addClass('hidden');
+				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
+				$('#spinner-modal .loading-spinner').addClass('complete');
+				setTimeout(() => {
+					$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
+					$loginModal.find('.register-link').attr('href', response.links.register);
+					$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
+					$loginModal.toggleClass('hidden');
+					$loginModalMask.toggleClass('hidden');
+					$("#spinner-modal").addClass('hidden');
+				}, 300);
 				break;
 			default:
 				break;
@@ -737,7 +741,8 @@ class EpsUpload {
 class UploadMessageClass {
 	constructor(epsData, $messageError, $messageModal, $errorMessageTitle, functions) {
 		this.epsData = epsData;
-		this.hideImage = functions.hideImage|| (() => {});
+		this.hideImage = functions.hideImage || (() => {
+			});
 		this.$messageError = $messageError;
 		this.$messageModal = $messageModal;
 		this.$errorMessageTitle = $errorMessageTitle;
@@ -777,46 +782,54 @@ class UploadMessageClass {
 	loadingMsg() {
 		this.$messageError.html(this.messages.loadingMsg);
 	}
+
 	resizing() {
 		this.$messageError.html(this.messages.resizing);
 		this.$errorMessageTitle.html(this.messages.error);
 	}
+
 	invalidSize(i) {
 		this.$messageError.html(this.messages.invalidSize);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	invalidType(i) {
 		this.$messageError.html(this.messages.invalidType);
 		this.$errorMessageTitle.html(this.messages.unsupportedFileTitle);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	invalidDimensions(i) {
 		this.$messageError.html(this.messages.invalidDimensions);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	firewall(i) {
 		this.$messageError.html(this.messages.firewall);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	colorspace(i) {
 		this.$messageError.html(this.messages.colorspace);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	corrupt(i) {
 		this.$messageError.html(this.messages.corrupt);
 		this.$errorMessageTitle.html(this.messages.error);
 		this.hideImage(i);
 		this.showModal();
 	}
+
 	pictureSrv() {
 		this.$messageError.html(this.messages.pictureSrv);
 	}

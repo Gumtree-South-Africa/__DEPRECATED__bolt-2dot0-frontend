@@ -74,6 +74,33 @@ body {
 				width: 90%;
 				max-width: 450px;
 				height: 450px;
+				&.no-photo {
+					.icon-camera-v2 {
+						width: 100px;
+						height: 100px;
+					}
+				}
+			}
+
+			.slick-carousel {
+				.add-photo-item {
+					.icon-text-wrapper {
+						.icon-camera-v2 {
+							width: 50px;
+							height: 50px;
+							@include from-breakpoint($medium-break) {
+								width: 30px;
+								height: 30px;
+							}
+						}
+						.add-photo-text {
+							font-size: 16px;
+							@include from-breakpoint($medium-break) {
+								font-size: 12px;
+							}
+						}
+					}
+				}
 			}
 		}
 	}
