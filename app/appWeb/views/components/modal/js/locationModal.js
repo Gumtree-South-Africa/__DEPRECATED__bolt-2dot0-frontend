@@ -96,6 +96,7 @@ let _geoAutoComplete = () => {
  */
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
+	$('body').addClass('stop-scrolling');
 };
 
 let _refreshPage = () => {
@@ -103,6 +104,7 @@ let _refreshPage = () => {
 };
 
 let _closeModal = () => {
+	$('body').removeClass('stop-scrolling');
 	let value = "; " + document.cookie;
 	let parts = value.split("; geoId=");
 	if (parts.length == 2) {
