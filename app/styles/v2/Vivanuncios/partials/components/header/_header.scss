@@ -62,7 +62,8 @@ $dropdown-width: 220px;
 			@include from-breakpoint($medium-break) {
 				margin-left: 40px;
 				margin-top: 30px;
-				height: 28px;
+				height: 100%;
+				top: -18px;
 			}
 		}
 
