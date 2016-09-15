@@ -18,6 +18,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 		success: (resp) => {
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
 			if (resp !== undefined) {
+				console.log(resp.localizedName);
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 
@@ -103,15 +104,19 @@ let _refreshPage = () => {
 };
 
 let _closeModal = () => {
-	let geoIdCookievalue = $.cookie("geoId");
-	let location = {
-		lat: geoIdCookievalue.split('ng')[0],
-		long: geoIdCookievalue.split('ng')[1]
-	};
-	if (this.setValueCb) {
-		this.setValueCb(location);
-	} else {
-		_refreshPage();
+	let value = "; " + document.cookie;
+	let parts = value.split("; geoId=");
+	if (parts.length == 2) {
+		let geoIdCookievalue = parts.pop().split(";").shift();
+		let location = {
+			lat: geoIdCookievalue.split('ng')[0],
+			long: geoIdCookievalue.split('ng')[1]
+		};
+		if (this.setValueCb) {
+			this.setValueCb(location);
+		} else {
+			_refreshPage();
+		}
 	}
 };
 
