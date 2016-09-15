@@ -1,7 +1,7 @@
 <div class="ad-statistics">
     <div class="stats-views">
 		<div class="stat-count">
-			34
+            {{ adResult.statistics.viewCount }}
 		</div>
 		<div class="stat-label">
             {{i18n "adStats.views"}}
@@ -9,18 +9,19 @@
     </div>
     <div class="stats-messages">
 		<div class="stat-count">
-			3
-		</div>
+			{{ adResult.statistics.replyCount }}
+
+        </div>
 		<div class="stat-label">
             {{i18n "adStats.messages"}}
 		</div>
     </div>
-    <div class="stats-favs">
-        <div class="stat-count">
-            8
-        </div>
-        <div class="stat-label">
-            {{i18n "adStats.favorites"}}
-        </div>
-    </div>
+    <!--<div class="stats-favs">-->
+        <!--<div class="stat-count">-->
+            <!--{{ adResult.statistics.favoriteCount }}-->
+        <!--</div>-->
+        <!--<div class="stat-label">-->
+            <!--{{i18n "adStats.favorites"}}-->
+        <!--</div>-->
+    <!--</div>-->
 </div>

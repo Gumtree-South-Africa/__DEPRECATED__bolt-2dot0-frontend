@@ -5,8 +5,13 @@
                 {{#compare this.allowedValueType "===" "LIST"}}
                     {{> (base "editFormSelectBox") this parent=../model}}
                 {{/compare}}
+                {{#compare this.allowedValueType "===" "DATE"}}
+                    {{> (base "editFormDateInput") this parent=../model}}
+                {{/compare}}
                 {{#compare this.allowedValueType "!==" "LIST"}}
-                    {{> (base "editFormTextbox") this parent=../model}}
+                    {{#compare this.allowedValueType "!==" "DATE"}}
+                        {{> (base "editFormTextbox") this parent=../model}}
+                    {{/compare}}
                 {{/compare}}
 			</div>
         {{/each}}

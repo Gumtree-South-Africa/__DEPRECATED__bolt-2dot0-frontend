@@ -74,7 +74,7 @@ class CategorySelectionModal {
 			hierarchy.shift(); // remove L0 from hierarchy as a base case
 		}
 
-		let breadcrumbText = `<span role="link" data-index="0" class="hier-link">${this.categoryTree.localizedName}</span>`;
+		let breadcrumbText = `<span role="link" data-index="0" class="hier-link">${this.rootLabel}</span>`;
 
 		let currentLevel = this.categoryTree;
 		hierarchy.forEach((catId, i) => {
@@ -267,6 +267,7 @@ class CategorySelectionModal {
 	}
 
 	_closeModal() {
+		this.$body.removeClass('hide-overflow');
 		this.$modal.addClass("hidden");
 		this.currentHierarchy = null;
 		this.onSaveCb = null;
@@ -301,6 +302,7 @@ class CategorySelectionModal {
 		if (stagedItem) {
 			this._stageItem(stagedItem);
 		}
+		this.$body.addClass('hide-overflow');
 	}
 
 	_saveChanges() {
@@ -312,6 +314,7 @@ class CategorySelectionModal {
 	}
 
 	initialize() {
+		this.$body = $('body');
 		this.$modal = $("#category-selection-modal");
 		this.$modalBox = this.$modal.find('.modal');
 		this.$resultsList = this.$modal.find(".results ul");
@@ -321,6 +324,7 @@ class CategorySelectionModal {
 		this.$hierarchyContainer = this.$modal.find(".current-hierarchy");
 		this.$saveButton = this.$modal.find(".save-button");
 		this.$clearTextButton = $("#clear-text-btn");
+		this.rootLabel = this.$modal.data("root-label");
 
 		this.$saveButton.click(() => {
 			this._selectStagedItem();

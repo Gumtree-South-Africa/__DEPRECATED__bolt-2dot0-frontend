@@ -168,6 +168,64 @@ let initialize = (Handlebars) => {
 		return new Handlebars.SafeString(str[1]);
 	});
 
+	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
+		if (!object || !field || value === undefined){
+			return;
+		}
+		return (object[field] === value) ? options.fn(this) : options.inverse(this);
+	});
+
+	Handlebars.registerHelper('ifIn', function(object, field, options) {
+		if (!object || !field) {
+			return;
+		}
+		return (field in object) ? options.fn(this) : options.inverse(this);
+	});
+
+	Handlebars.registerHelper('lookupLocalDate', (attrVals, name) => {
+		let thisVal;
+		if (attrVals) {
+			thisVal = attrVals[name];
+		}
+		if (thisVal) {
+			let month = thisVal.monthOfYear.toString();
+			let day = thisVal.dayOfMonth.toString();
+
+			if (month.length === 1) {
+				month = "0" + month;
+			}
+
+			if (day.length === 1) {
+				day = "0" + day;
+			}
+			return `${thisVal.year}-${month}-${day}`;
+		} else {
+			return null;
+		}
+	});
+
+	Handlebars.registerHelper('formatDate', (date) => {
+		if (date) {
+			let hours12, halfOfDay,
+				hours24 = date.getHours();
+
+			// converting to 12 hours time
+			if (hours24 > 12) {
+				hours12 = hours24 - 12;
+				halfOfDay = 'pm';
+			} else {
+				hours12 = hours24;
+				halfOfDay = 'am';
+			}
+
+			// grabbing localized month abbreviation from i18n
+			let monthString = exphbs.handlebars.helpers.i18n(`common.abbreviations.months.${date.getMonth()}`, {}); // passing an empty object as the second parameter as i18n expects an extra parameter from handlebars
+			return `${date.getDate()} ${monthString} ${hours12}:${date.getMinutes()}:${date.getSeconds()} ${halfOfDay}`; // 29 dec 12:13:14 pm
+		} else {
+			return null;
+		}
+	});
+
 	Object.keys(comparisonHelpers).forEach((helperName) => {
 		Handlebars.registerHelper(helperName, comparisonHelpers[helperName]);
 	});

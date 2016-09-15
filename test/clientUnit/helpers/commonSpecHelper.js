@@ -13,6 +13,10 @@ window.TEST = {
 // fix HBS Template Helpers for the Client
 clientHbsHelpers.initialize(window.TEST.Handlebars);
 
+window.TEST.Handlebars.registerHelper('i18n', (key) => {
+	return key;
+});
+
 
 /**
  * Prepare client template and return that DOM after appending to the screen
@@ -117,13 +121,23 @@ let setupTest = (templateName, templateModel, locale) => {
 	return _prepareTemplate(templateName, templateModel);
 };
 
+
+let mockWebshim = () => {
+	registerMockAjax("/public/js/libraries/webshims/shims/form-core.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/combos/10.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/combos/3.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/combos/17.js", {});
+	registerMockAjax("/public/js/libraries/webshims/shims/form-shim-extend.js", {});
+};
+
 module.exports = {
 	simulateTextInput,
 	setupTest,
 	registerMockAjax,
 	setCookie,
 	getCookie,
-	disableFormWarning
+	disableFormWarning,
+	mockWebshim
 };
 
 // spying on ajax and replacing with fake, mock function
@@ -153,5 +167,7 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-	$("#testArea").html("");
+	$("#testArea").empty();
+	$("body").off();
+	$(window).off();
 });

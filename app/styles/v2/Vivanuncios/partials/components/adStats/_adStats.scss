@@ -22,15 +22,13 @@
 
 	.stats-messages {
 		position: absolute;
-		left: 0;
-		right: 0;
+		left: 33%;
+		transform: translateX(-50%);
 	}
 
 	.stats-views {
-		float: left;
-	}
-
-	.stats-favs{
-		float: right;
+		position: absolute;
+		right: 33%;
+		transform: translateX(50%);
 	}
 }

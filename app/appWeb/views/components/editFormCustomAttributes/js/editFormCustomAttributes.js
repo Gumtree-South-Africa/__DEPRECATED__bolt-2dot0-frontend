@@ -82,23 +82,32 @@ class EditFormCustomAttributes {
 	_bindEvents() {
 		this.$inputFields = $("input[data-validation='NUMBER']");
 		this.$inputFields.on('keydown', (e) => {
-			if (e.keyCode > 57 || e.keyCode < 48) {
+			if ((e.keyCode > 57 || e.keyCode < 48)) {
 				switch (e.keyCode) {
-					case 8:
-						//backspace
-					case 9:
-						//tab
-					case 13:
-						//delete
-					case 37:
-						//left arrow
-					case 39:
-						//right arrow
+					case 8://backspace
+					case 9://tab
+					case 13://delete
+					case 37://left arrow
+					case 39://right arrow
+					case 189: //negative
 						break;
 					default:
 						e.preventDefault();
 						break;
 				}
+			} else if (e.ctrlKey) {
+				switch (e.keyCode) {
+					case 65: //Ctrl-a
+					case 67: // ctrl-c
+					case 86: // ctrl-v
+						break;
+					default:
+						e.preventDefault();
+						break;
+				}
+			} else if (e.shiftKey) {
+				//Prevent special characters (shift + number: !**@#%)
+				e.preventDefault();
 			}
 		});
 	}
@@ -110,6 +119,7 @@ class EditFormCustomAttributes {
 	initialize() {
 		this._bindEvents();
 		this.$form = $("#edit-ad-custom-attributes-form");
+		this.locale = $("html").data("locale");
 		clientHbs.initialize();
 		this._bindDependencyEvents();
 	}
