@@ -119,8 +119,7 @@ class EditFormCustomAttributes {
 	initialize() {
 		this._bindEvents();
 		this.$form = $("#edit-ad-custom-attributes-form");
-		this.locale = $("html").data("locale");locale
-		st
+		this.locale = $("html").data("locale");
 		clientHbs.initialize();
 		this._bindDependencyEvents();
 	}

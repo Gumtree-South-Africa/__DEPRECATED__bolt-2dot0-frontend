@@ -22,6 +22,7 @@ let EditAdPage = {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.css');
 		}
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "EditAd_desktop_es_MX.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
 	}
 };
 
