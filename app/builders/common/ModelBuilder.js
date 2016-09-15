@@ -95,6 +95,7 @@ class ModelBuilder {
 			category: config.categoryData,
 			categoryDropdown: config.categoryDropdown,
 			categoryAll: config.categoryAllData,
+			locationAll: config.locationAllData,
 
 			categoryIdNameMap: config.categoryIdNameMap,
 			categoryData: config.categoryflattened,

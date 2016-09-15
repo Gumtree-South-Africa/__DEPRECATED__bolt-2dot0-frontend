@@ -49,7 +49,7 @@ class EditAdPageModel {
 			let basePageModel = new BasePageModel(this.req, this.res);
 			basePageModel.setAdResult(data.adResult);
 			basePageModel.setCategoryData(data.categoryAll);
-			basePageModel.setLocationData(data.location);
+			basePageModel.setLocationData(data.locationAll);
 			return basePageModel.getModelBuilder().resolveAllPromises();
 		}).then((data) => {
 			// 3. Setting the dataLayer of modelData after promises resolved, then get out of the whole function

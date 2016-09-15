@@ -47,7 +47,7 @@
 			"enableABTest": "true"
 		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.vivanuncios.mx/vivanunciosmx/",
-		"locationDropdownLevel"				: 2,
+		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
