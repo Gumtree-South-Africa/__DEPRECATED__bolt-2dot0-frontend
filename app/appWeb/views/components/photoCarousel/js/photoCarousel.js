@@ -222,10 +222,7 @@ let html5Upload = (uploadedFiles) => {
 		this.uploadMessageClass.loadingMsg(this.imageCount - 1); //this.uploadMessageClass(upDone).fail()
 		prepareForImageUpload(this.$loadedImages - 1, uploadedFiles);
 	} else {
-		if ($(".carousel-items").length === allowedUploads) {
-			console.warn("Cannot upload more than 12 files!");
-			$("#max-photo-msg").removeClass("hidden");
-			$("#carousel-info-icon").removeClass("hidden");
+		if (!this.checkMaxPhotos()) {
 			return;
 		}
 	}
@@ -328,7 +325,20 @@ let preventDisabledButtonClick = (event) => {
 };
 /******* END SLICK STUFF *******/
 
+this.checkMaxPhotos = () => {
+	if ($(".carousel-item").length === allowedUploads) {
+		console.warn("Cannot upload more than 12 files!");
+		$("#max-photo-msg").removeClass("hidden");
+		$("#carousel-info-icon").removeClass("hidden");
+		return false;
+	}
+	return true;
+};
+
 this.clickFileInput = () => {
+	if (!this.checkMaxPhotos()) {
+		return;
+	}
 	if (!this.disableImageSelection) {
 		// prevent re-opening of file selector
 		this.disableImageSelection = true;
@@ -347,10 +357,7 @@ let fileInputChange = (evt) => {
 		evt.stopImmediatePropagation();
 	}
 
-	if ($(".carousel-item").length === allowedUploads) {
-		console.warn("Cannot upload more than 12 files!");
-		$("#max-photo-msg").removeClass("hidden");
-		$("#carousel-info-icon").removeClass("hidden");
+	if (!this.checkMaxPhotos()) {
 		return;
 	}
 
@@ -398,6 +405,7 @@ this.deleteCarouselItem = (event, toRemove) => {
 		firstItem.click();
 	}
 
+	this.imageCount--;
 	this.updateAddPhotoButton();
 	resizeCarousel();
 };
