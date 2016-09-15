@@ -20,19 +20,6 @@ let _bindTypeAheadResultsEvents = () => {
 	});
 };
 
-/**
- * Auto-Complete for Location via Google
- * @param country
- * @param lang
- * @param inputVal
- * @private
- */
-let _geoAutoComplete = () => {
-	console.log('innnnnnnnnnnnnnnnnnnnnnnn');
-	let $place = this.$autocomplete.getPlace();
-	console.log($place);
-	console.log(this.$autocomplete);
-}
 
 //let _getGeoCodeData = (country, lang, inputVal) => {
 	//let htmlElt = '';
@@ -141,6 +128,23 @@ let _geoFindMe = () => {
 	navigator.geolocation.getCurrentPosition(success, error);
 };
 
+/**
+ * Auto-Complete for Location via Google
+ * @param country
+ * @param lang
+ * @param inputVal
+ * @private
+ */
+let _geoAutoComplete = () => {
+	let $place = this.$autocomplete.getPlace();
+	let latitude = $place.geometry.location.lat();
+	let longitude = $place.geometry.location.lng();
+	let location = {
+		lat: latitude,
+		long: longitude
+	};
+	_setGeoCookie(location);
+}
 
 
 // ACTIONS ---------------------------------------------------------------------------
