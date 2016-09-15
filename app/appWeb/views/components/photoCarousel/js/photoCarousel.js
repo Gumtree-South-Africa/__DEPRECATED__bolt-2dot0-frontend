@@ -153,7 +153,11 @@ let _success = (i, response) => {
 		console.error("EPS error!");
 		return _failure(i, response);
 	}
-	//window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+
+	if (!this.showImageTracking) {
+	  window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+     }
+
 	// try to extract the url and figure out if it looks like to be valid
 	let url = this.epsUpload.extractURLClass(response);
 
@@ -347,7 +351,14 @@ this.clickFileInput = () => {
 		}, 3000);
 
 		this.$imageUpload.click();
-		//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+
+		if (this.showImageTracking === undefined) {
+		   window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+		} else {
+		   window.BOLT.trackEvents({"event": "AddImageBegin","eventLabel":"AddImageBegin"});
+		}
+
+
 	}
 };
 
@@ -441,6 +452,7 @@ let initialize = (options) => {
 		};
 	}
 	this.showDeleteImageIcons = options.showDeleteImageIcons;
+	this.showImageTracking = options.showImageTracking;
 	//EPS setup
 	this.disableImageSelection = false;
 	this.epsData = $('#js-eps-data');

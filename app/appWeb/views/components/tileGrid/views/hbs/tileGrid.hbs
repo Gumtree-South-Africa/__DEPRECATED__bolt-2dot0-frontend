@@ -1,16 +1,16 @@
 
 {{!-- we're expecting this card to have "use-isotope-handler", config driven attribute --}}
 <div class="tile-grid-width-container">
-    <div class="tile-container {{this.config.clientJsHandlerCssClass}}">
+    <div class="tile-container {{this.tileGrid.config.clientJsHandlerCssClass}}">
 
         {{!--  gutter and column sizers are how we're using elements and their css to drive settings in javascript  --}}
         <div class="gutter-sizer-horizontal"></div>
         <div class="column-sizer"></div>
 
         {{!-- now we iterate the items --}}
-        {{#each this.ads}}
+        {{#each this.tileGrid.ads}}
             <div data-index="{{@index}}" class="tile-item">
-                {{> (base "adTile") this config=../config}}
+                {{> (dynamic "adTile" ../locale) this config=../tileGrid.config}}
             </div>
         {{/each}}
 
