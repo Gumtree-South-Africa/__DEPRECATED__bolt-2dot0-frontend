@@ -1,61 +1,5 @@
 'use strict';
 
-let _bindTypeAheadResultsEvents = () => {
-	let $resultsRows = this.$modal.find(".ac-field");
-
-	$resultsRows.on('mouseenter', (evt) => {
-		let $active = this.$modal.find(".active");
-
-		// they have mouse entered after having selected one via arrow keys
-		// clear out the old selection
-		if ($active.length !== 0) {
-			$active.removeClass("active");
-		}
-
-		$(evt.currentTarget).addClass("active");
-	});
-
-	$resultsRows.on('mouseleave', (evt) => {
-		$(evt.currentTarget).removeClass("active");
-	});
-};
-
-
-//let _getGeoCodeData = (country, lang, inputVal) => {
-	//let htmlElt = '';
-	//$.ajax({
-	//	//TODO: use proper google account key
-	//	url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&&components=country:' + country + '&language=' + lang + '&input=' + inputVal,
-	//	dataType: 'JSONP',
-	//	type: 'GET',
-	//	success: function(resp) {
-	//		if (resp.results instanceof Array) {
-	//			let autocompleteField = $('#autocompleteField');
-	//			autocompleteField.html('');
-	//			if (resp.results.length > 0) {
-	//				autocompleteField.removeClass('hiddenElt');
-	//				for (let idx = 0; idx < resp.results.length; idx++) {
-	//					let address = resp.results[idx].formatted_address;
-	//					let latitude = resp.results[idx].geometry.location.lat;
-	//					let longitude = resp.results[idx].geometry.location.lng;
-	//					let splitAddress = address.split(',');
-	//					let partialAddy = (splitAddress.length < 2) ? splitAddress[splitAddress.length - 1] : (splitAddress[splitAddress.length - 2] + splitAddress[splitAddress.length - 1]);
-	//					htmlElt += "<div class='ac-field' data-long=" + longitude + " data-lat=" + latitude + "><span class='suffix-addy hiddenElt'>" + partialAddy + "</span><span class='full-addy'>" + address + "</span></div>";
-	//				}
-	//
-	//				autocompleteField.append(htmlElt);
-	//				_bindTypeAheadResultsEvents();
-	//			} else {
-	//				autocompleteField.addClass('hiddenElt');
-	//			}
-	//		}
-	//	}
-	//});
-//};
-
-let _refreshPage = () => {
-	location.reload(true);
-};
 
 /**
  * Given a geoId cookie:
@@ -147,85 +91,38 @@ let _geoAutoComplete = () => {
 }
 
 
-// ACTIONS ---------------------------------------------------------------------------
-
+/**
+ * Modal Related
+ */
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
 };
 
+let _refreshPage = () => {
+	location.reload(true);
+};
+
 let _closeModal = () => {
-	let $selected = $('.ac-field.selected');
+	let geoIdCookievalue = $.cookie("geoId");
 	let location = {
-		lat: $selected.attr('data-lat'),
-		long: $selected.attr('data-long')
+		lat: geoIdCookievalue.split('ng')[0],
+		long: geoIdCookievalue.split('ng')[1]
 	};
-	if ($selected.attr('data-long') !== undefined) {
-		if (this.setValueCb) {
-			this.setValueCb(location);
-		}
-	}
-
-	// refresh page
-	_refreshPage();
-};
-
-let _populateACData = (evt) => {
-	$(evt.currentTarget).removeClass('selected').addClass('selected');
-	$('#autocompleteField').addClass('hiddenElt');
-
-	let $selected = $('.ac-field.selected');
-	let location = {
-		lat: $selected.attr('data-lat'),
-		long: $selected.attr('data-long')
-	};
-	_setGeoCookie(location);
-};
-
-let _selectItem = () => {
-	let $active = this.$modal.find(".active");
-	if ($active.length !== 0) {
-		$active.click();
-	}
-};
-
-let _highlightUpItem = () => {
-	let $active = this.$modal.find(".active");
-
-	if ($active.length === 0) {
-		$active = this.$modal.find(".ac-field").last();
-		$active.addClass("active");
+	if (this.setValueCb) {
+		this.setValueCb(location);
 	} else {
-		$active.removeClass("active").prev(".ac-field").addClass("active");
+		_refreshPage();
 	}
-
-	this.$autocompleteField.animate({
-		scrollTop: $active.position().top + $("#autocompleteField").scrollTop() - 50
-	}, 'fast');
-};
-
-let _highlightDownItem = () => {
-	let $active = this.$modal.find(".active");
-
-	if ($active.length === 0) {
-		$active = this.$modal.find(".ac-field").first();
-		$active.addClass("active");
-	} else {
-		$active.removeClass("active").next(".ac-field").addClass("active");
-	}
-
-	this.$autocompleteField.animate({
-		scrollTop: $active.position().top + $("#autocompleteField").scrollTop()
-	}, 'fast');
 };
 
 
 /**
+ * Initialize
  * Sets up module for use and binds events to the dom
  */
 let initialize = (setValueCb) => {
 	this.$locale = $('html').attr('data-locale');
 	this.$locmodal = $('#modal-location');
-	this.$autocompleteField = $('#autocompleteField');
 	this.$modal = $('#locationModal');
 
 	this.langs = this.$locale.split('_')[0];
@@ -233,45 +130,29 @@ let initialize = (setValueCb) => {
 
 	this.setValueCb = setValueCb;
 
-	let $modalCp = $('.modal-cp');
-
+	// Event handling on autocomplete dropdown
 	let eventName = 'keyup';
 	this.$locmodal.on(eventName, (evt) => {
 		switch (evt.keyCode) {
-			//case 38:
-			//	//up
-			//	_highlightUpItem();
-			//	evt.preventDefault();
-			//	break;
-			//case 40:
-			//	//down
-			//	_highlightDownItem();
-			//	evt.preventDefault();
-			//	break;
 			case 13:
 				//enter
-				// _selectItem();
 				_geoAutoComplete();
 				evt.preventDefault();
 				break;
 			default:
-				// _getGeoCodeData(this.country, this.langs, this.$locmodal.val());
 				break;
 		}
 	});
+	//this.$autocomplete.on('click', (e) => {
+	//	_geoAutoComplete();
+	//});
 
+	// Event handling on modal
 	$('.card-title-cp, .location-link').on('click', () => {
 		_openModal(this.$locmodal);
 	});
 
-	this.$autocompleteField.on('click', '.ac-field', (e) => {
-		_populateACData(e);
-	});
-
-	$(':not(#autocompleteField)').on('click', () => {
-		this.$autocompleteField.addClass('hiddenElt');
-	});
-
+	let $modalCp = $('.modal-cp');
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
@@ -298,11 +179,10 @@ let initialize = (setValueCb) => {
 		/** @type {!HTMLInputElement} */(document.getElementById('modal-location')),
 		{
 			types: ['(regions)'],
-			componentRestrictions: {'country': this.country},
-			language: this.langs
+			componentRestrictions: {'country': this.country}
 		}
 	);
-	this.$autocomplete.addListener('place_changed', _geoAutoComplete());
+	this.$autocomplete.addListener('click', _geoAutoComplete());
 
 };
 

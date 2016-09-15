@@ -70,6 +70,7 @@ class ModelBuilder {
 			env: 'public',
 			locale: config.locale,
 			country: config.country,
+			lang: config.locale.split('_')[0],
 			site: config.name,
 			pagename: appLocals.pagetype,
 			device: appLocals.deviceInfo,
