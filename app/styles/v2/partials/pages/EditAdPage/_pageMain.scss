@@ -7,6 +7,12 @@ $labelMargin: 8%;
 	border-bottom: none !important;
 }
 
+body {
+	&.hide-overflow {
+		overflow: hidden;
+	}
+}
+
 .edit-ad-page {
 	.custom-attributes {
 		margin-bottom: 20px;
