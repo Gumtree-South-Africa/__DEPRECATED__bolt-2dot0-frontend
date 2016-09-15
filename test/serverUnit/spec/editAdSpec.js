@@ -80,8 +80,9 @@ describe('Edit Ad Page', () => {
 
 					let imageJson = JSON.parse(c$('#image-urls').text()).sizeUrls;
 					expect(imageJson.length).toBe(2);
-					expect(imageJson[0].LARGE).toBe(mockData.pictures.sizeUrls[0].LARGE);
-					expect(imageJson[1].SMALL).toBe(mockData.pictures.sizeUrls[1].SMALL);
+					// mimicking the replace for fixing self signed ssl cert issue on ebayimg.sandbox.ebay domain
+					expect(imageJson[0].LARGE).toBe(mockData.pictures.sizeUrls[0].LARGE.replace( "ebayimg.sandbox.ebay", "sandbox.ebayimg"));
+					expect(imageJson[1].SMALL).toBe(mockData.pictures.sizeUrls[1].SMALL.replace("ebayimg.sandbox.ebay", "sandbox.ebayimg"));
 				})
 				.end(specHelper.finish(done));
 		});
