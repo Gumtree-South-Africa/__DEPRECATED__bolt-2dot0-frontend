@@ -1,4 +1,5 @@
 <div id="locationModal" class="modal modal-cp hiddenElt">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&language={{this.lang}}"></script>
 	<div class="modal-overlay"></div>
 	<div class="modal-container">
 		<div class="modal-close-section">
@@ -26,6 +27,5 @@
                 {{> (dynamic "button") i18nPath="modal.buttonText" hideIcon=true iconName="icon-post" extraClasses='login-button'}}
 			</div>
             {{!-- end of modal content --}}
-
 	</div>
 </div>
