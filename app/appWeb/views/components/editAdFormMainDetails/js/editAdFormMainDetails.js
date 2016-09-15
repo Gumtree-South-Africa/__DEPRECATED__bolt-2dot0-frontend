@@ -7,6 +7,37 @@ let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
 
+let _setupScrollTo = () => {
+	jQuery.fn.extend({closestToOffset: function(offset) {
+		let el = null, elOffset, x = offset.left, y = offset.top, distance, dx, dy, minDistance;
+		this.each(function() {
+			elOffset = $(this).offset();
+
+			if (
+				(x >= elOffset.left)  && (x <= elOffset.right) &&
+				(y >= elOffset.top)   && (y <= elOffset.bottom)
+			) {
+				el = $(this);
+				return false;
+			}
+
+			let offsets = [[elOffset.left, elOffset.top], [elOffset.right, elOffset.top], [elOffset.left, elOffset.bottom], [elOffset.right, elOffset.bottom]];
+			/* eslint-disable */
+			for (let off in offsets) {
+				dx = offsets[off][0] - x;
+				dy = offsets[off][1] - y;
+				distance = Math.sqrt((dx*dx) + (dy*dy));
+				if (minDistance === undefined || distance < minDistance) {
+					minDistance = distance;
+					el = $(this);
+				}
+			}
+			/* eslint-enable */
+		});
+		return el;
+	}});
+};
+
 let _setupPolyfillForm = () => {
 	// replacing jquery swap function for use by webshim
 	/* eslint-disable */
@@ -101,22 +132,51 @@ let _successCallback = (response) => {
 	}
 };
 
+let _markValidationError = ($input, $accumlator) => {
+	$input.addClass('validation-error');
+	$input.on('change', () => {
+		$input.removeClass('validation-error');
+		$input.off('change');
+	});
+
+	if (!$accumlator) {
+		$accumlator = $input;
+	} else {
+		$accumlator.add($input);
+	}
+
+	return $accumlator;
+};
+
 let _failureCallback = (error) => {
-	console.warn(error);
+	let $failedFields, $highestFailure, scrollTo;
 	this.$submitButton.removeClass('disabled');
 	this.$submitButton.attr('disabled', false);
 	if (error.status === 400) {
-		let schemaErrors = JSON.parse(error.responseText || '{"schemaErrors": []}')
-			.schemaErrors || [];
+		let responseText = JSON.parse(error.responseText || '{}');
 
-		schemaErrors.forEach((schemaError) => {
-			let selector = `[data-schema='${schemaError.field}']`;
-			let $el = $(selector);
-			$el.addClass('validation-error');
-			$el.on('change', () => {
-				$el.removeClass('validation-error');
+		if (responseText.hasOwnProperty("schemaErrors")) {
+			responseText.schemaErrors.forEach((schemaError) => {
+				let $input = $(`[data-schema="${schemaError.field}"]`);
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = _markValidationError($input, $failedFields);
 			});
-		});
+		} else if (responseText.hasOwnProperty("bapiValidationFields")) {
+			responseText.bapiValidationFields.forEach((attrName) => {
+				let $input = $(`[name="${attrName}"]`);
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = _markValidationError($input, $failedFields);
+			});
+		}
+
+		// if we have a failed field, scroll to 50px above the highest element on the page
+		if ($failedFields && $failedFields.length > 0) {
+			$highestFailure = $failedFields.closestToOffset(0, 0);
+			scrollTo = Math.max($highestFailure.offset().top - 50, 0); // get scroll value, or zero
+			window.scrollTo(0, scrollTo);
+		}
 	}
 };
 
@@ -166,7 +226,7 @@ let _ajaxEditForm = () => {
 
 	let payload = {
 		"adId": serialized.adId,
-		"title": serialized.adTitle,
+		"title": serialized.Title,
 		"description": description,
 		"categoryId": category,
 		"location": {
@@ -180,7 +240,7 @@ let _ajaxEditForm = () => {
 	if (!this.$priceFormField.hasClass("hidden")) {
 		payload.price = {
 			"currency": (serialized.currency) ? serialized.currency : 'MXN',
-			"amount": Number(serialized.adPrice)
+			"amount": Number(serialized.amount)
 		};
 	}
 
@@ -288,8 +348,10 @@ let onReady = () => {
 	this.$detailsSection.find(".choose-category-button").click(_openCatSelectModal);
 	this.$categoryChangeLink.click(_openCatSelectModal);
 
-	_bindCharacterCountEvents(this.$detailsSection.find('input[title="adTitle"]'), this.$detailsSection.find('label[for="adTitle"]'));
-	_bindCharacterCountEvents(this.$detailsSection.find('textarea[title="adDescription"]'), this.$detailsSection.find('label[for="adDescription"]'));
+	_bindCharacterCountEvents(this.$detailsSection.find('input[title="Title"]'), this.$detailsSection.find('label[for="Title"]'));
+	_bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
+
+	_setupScrollTo();
 
 };
 
