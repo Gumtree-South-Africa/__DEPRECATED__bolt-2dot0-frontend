@@ -29,7 +29,7 @@ module.exports = [
 	},{
 		"dest": rootDir + "/public/jsmin", "src": [
 		rootDir + "/public/js/common/tracking/Analytics.js"
-	], "bundleName": "PostAdLegacy.min.js"
+	], "bundleName": "AnalyticsLegacyBundle.min.js"
 	},{
 		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
