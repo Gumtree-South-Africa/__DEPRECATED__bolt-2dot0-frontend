@@ -80,7 +80,7 @@ describe('Post Ad', () => {
 			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, (response) => {
 					expect(options.locationType).toBe('cookie');
-					expect($('#js-upload-spinner').hasClass('hidden')).toBeTruthy('Expected the spinner to be present.');
+					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the old spinner to be present.');
 					expect(response).toBe(mockPostAdResponse);
 					success(response);
 				}, fail, options);
@@ -96,7 +96,7 @@ describe('Post Ad', () => {
 			let postAd = uploadAdController.postAd;
 			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, success, (err) => {
-					expect($('#js-upload-spinner').hasClass('hidden')).toBeTruthy('Expected the spinner to be present.');
+					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be present.');
 					fail(err);
 				}, options);
 			});

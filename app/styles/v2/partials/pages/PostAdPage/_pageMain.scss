@@ -31,6 +31,32 @@ $photo-switcher-width: 30%;
 	}
 }
 
+.spinner-modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, .5);
+	z-index: 10;
+	.loading-spinner {
+		width: 100px;
+		height: 100px;
+		position:fixed;
+		left: 0;
+		right: 0;
+		top: 0;
+		bottom: 0;
+		margin: auto;
+		background-image: url('../../../../../images/es_MX/loading-circle.gif');
+		background-size: contain;
+		background-repeat: no-repeat;
+		&.complete {
+			background-image: url('../../../../../images/es_MX/loading-circle-complete.gif');
+		}
+	}
+}
+
 .desktop-post-ad {
 	display: none;
 	box-sizing: border-box;

@@ -197,7 +197,10 @@ class EpsUpload {
 	handlePostResponse($loginModal, $loginModalMask, response) {
 		switch (response.state) {
 			case this.AD_STATES.AD_CREATED:
-				window.location.href = response.ad.redirectLink;
+				$('#spinner-modal .loading-spinner').addClass('complete');
+				setTimeout(() => {
+					window.location.href = response.ad.redirectLink;
+				}, 300);
 				break;
 			case this.AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({ "event": "LoginBegin", "p": {"t": "PostAdLoginModal"} });
@@ -206,6 +209,7 @@ class EpsUpload {
 				$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
 				$loginModal.toggleClass('hidden');
 				$loginModalMask.toggleClass('hidden');
+				$("#spinner-modal").addClass('hidden');
 				break;
 			default:
 				break;
