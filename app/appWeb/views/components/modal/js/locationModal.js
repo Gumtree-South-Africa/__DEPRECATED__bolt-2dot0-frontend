@@ -18,7 +18,6 @@ let _geoShowMyLocation = (geoCookieValue) => {
 		success: (resp) => {
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
 			if (resp !== undefined) {
-				console.log(resp.localizedName);
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 
@@ -135,23 +134,6 @@ let initialize = (setValueCb) => {
 
 	this.setValueCb = setValueCb;
 
-	// Event handling on autocomplete dropdown
-	let eventName = 'keyup';
-	this.$locmodal.on(eventName, (evt) => {
-		switch (evt.keyCode) {
-			case 13:
-				//enter
-				_geoAutoComplete();
-				evt.preventDefault();
-				break;
-			default:
-				break;
-		}
-	});
-	//this.$autocomplete.on('click', (e) => {
-	//	_geoAutoComplete();
-	//});
-
 	// Event handling on modal
 	$('.card-title-cp, .location-link').on('click', () => {
 		_openModal(this.$locmodal);
@@ -187,7 +169,9 @@ let initialize = (setValueCb) => {
 			componentRestrictions: {'country': this.country}
 		}
 	);
-	this.$autocomplete.addListener('click', _geoAutoComplete());
+	google.maps.event.addListener(this.$autocomplete, 'place_changed', function() {
+		_geoAutoComplete();
+	});
 
 };
 
