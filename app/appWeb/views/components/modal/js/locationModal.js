@@ -31,11 +31,12 @@ let _geoShowMyLocation = (geoCookieValue) => {
 					document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
 				} else {
 					this.valueCbLocation = location;
+					this.valueCbLocation.localizedName = resp.localizedName;
 				}
 
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
-				$('.login-button').removeClass('disable-click');
+				$('.confirm-button').removeClass('disable-click');
 			}
 		},
 		error: () => {
@@ -113,7 +114,7 @@ let _geoAutoComplete = () => {
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
 	$('body').addClass('stop-scrolling');
-	$('.login-button').addClass('disable-click');
+	$('.confirm-button').addClass('disable-click');
 };
 
 let _refreshPage = () => {
@@ -154,6 +155,8 @@ let initialize = (setValueCb) => {
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
+		$('body').removeClass('stop-scrolling');
+
 	});
 
 	$('.card-title-cp').on('click', function() {

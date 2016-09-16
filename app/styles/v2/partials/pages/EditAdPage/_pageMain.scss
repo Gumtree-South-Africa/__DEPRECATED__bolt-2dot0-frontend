@@ -94,10 +94,7 @@ body {
 							}
 						}
 						.add-photo-text {
-							font-size: 16px;
-							@include from-breakpoint($medium-break) {
-								font-size: 12px;
-							}
+							font-size: 12px;
 						}
 					}
 				}
