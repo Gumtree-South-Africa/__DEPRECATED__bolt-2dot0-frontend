@@ -62,7 +62,7 @@ self.addEventListener('fetch', function(event) {
  * PRE-CACHE
  **/
 // Precaching homepage
-toolbox.precache(['/']);
+toolbox.precache(['/?v=10122d18']);
 toolbox.precache(['/manifest.json']);
 
 // Precaching homepage assets
