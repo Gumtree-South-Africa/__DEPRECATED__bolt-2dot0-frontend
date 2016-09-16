@@ -300,7 +300,7 @@ let hasImagesForUpload = () => {
 
 let preventDisabledButtonClick = (event) => {
 	if (!hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
-		//window.BOLT.trackEvents({"event": "PostAdFreeFail"});
+		window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 		$('.cover-photo').addClass('red-border');
 		$('.photos-required-msg').removeClass('hidden');
 		this.$postAdButton.addClass('disabled');
