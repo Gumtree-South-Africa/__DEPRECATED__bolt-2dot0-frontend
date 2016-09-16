@@ -76,7 +76,7 @@ module.exports.four_o_four = function(app) {
             err.status = 200;
            return next();
         } else {
-            var err = new Error('Not Found');
+            var err = new Error(`${req.originalUrl} Not Found`);
             err.status = 404;
            return next(err);
         }

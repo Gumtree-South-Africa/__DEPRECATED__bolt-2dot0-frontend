@@ -7,7 +7,7 @@ let mockTypeAheadResults = {
 	"items": [
 		{
 			"keyword": "kayak",
-			"seoUrl": "/search.html?q=kayak&locId=10015&catId=7",
+			"seoUrl": "/search.html?q=kayak&catId=7",
 			"displayText": "kayak en Deportes y pasatiempos",
 			"category": 7,
 			"location": 10015,

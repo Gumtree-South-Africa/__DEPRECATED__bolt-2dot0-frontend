@@ -1,5 +1,6 @@
 'use strict';
 
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 // Commenting out for lint
 // /**
 //  * abort and remove an ajax request from the currentTypeAheadAjaxMap
@@ -48,24 +49,35 @@ let _bindTypeAheadResultsEvents = () => {
  * @private
  */
 let _displayTypeAheadResults = (results) => {
-	let $ul = this.$typeAheadResults.find("ul");
+	let hasResults = results.items.length > 0;
+	_setIsTyping(hasResults);
+	if (hasResults) {
 
-	_unbindTypeAheadResultsEvents();
-	// remove existing results
-	$ul.empty();
+		let $ul = this.$typeAheadResults.find("ul");
 
-	// insert new results into the results container
-	results.items.forEach((result) => {
-		let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
-		$ul.append(templateString);
-	});
+		_unbindTypeAheadResultsEvents();
+		// remove existing results
+		$ul.empty();
 
-	// handler to update search bar text with clicked link
-	$('.type-ahead-link').on('click', (evt) => {
-		this.$searchTextbox.val(evt.target.text);
-	});
+		// insert new results into the results container
+		results.items.forEach((result) => {
+			console.warn(result);
+			// removing locationId per https://jira.corp.ebay.com/browse/BOLT-23578
+			// &locId=${result.location}
+			// as part of this change, the location is going to be passed into the ajax query for type-ahead search terms (via searchLocId cookie)
+			// so the terms should all be in preferred location anyway
+			// if we don't have a cookie, we might get terms back from other locations, but we aren't going to pass them along to the SRP
+			let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&catId=${result.category}">${result.keyword}</a></li>`;
+			$ul.append(templateString);
+		});
 
-	_bindTypeAheadResultsEvents();
+		// handler to update search bar text with clicked link
+		$('.type-ahead-link').on('click', (evt) => {
+			this.$searchTextbox.val(evt.target.text);
+		});
+
+		_bindTypeAheadResultsEvents();
+	}
 };
 
 /**
@@ -126,11 +138,19 @@ let _newTypeAhead = (currentSearchTerm) => {
 		this.currentTypeAheadRequest.abort(); // aborting old request
 	}
 
+	let postData = {
+		searchterm: currentSearchTerm
+	};
+	// also add the location if we have one, this will narrow down results to only the cookied location
+	let locId = CookieUtils.getCookie('searchLocId');
+	if (locId) {
+		postData.location = locId;
+	}
 	if (currentSearchTerm !== "") {
 		this.currentTypeAheadRequest = $.ajax({
 			url: "/api/search/autocomplete",
 			method: "POST",
-			data: { searchterm: currentSearchTerm },
+			data: postData,
 			dataType: 'json',
 			success: (results) => {
 				this.currentTypeAheadRequest = null;
@@ -212,7 +232,11 @@ let initialize = () => {
 
 		this.$searchTextbox.on(eventName, () => {
 			let textBoxVal = this.$searchTextbox.val();
-			_setIsTyping(textBoxVal !== "");
+			// _setIsTyping(textBoxVal !== "");
+			if (textBoxVal === "") {
+				// make sure we close it when the text is empty (it may have been opened because we had results)
+				_setIsTyping(false);
+			}
 			_newTypeAhead(textBoxVal);
 		});
 
