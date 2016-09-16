@@ -11,20 +11,31 @@
  * @private
  */
 let _geoShowMyLocation = (geoCookieValue) => {
-	geoCookieValue = geoCookieValue.replace('ng', ',');
+	let location = {
+		lat: geoCookieValue.split('ng')[0],
+		long: geoCookieValue.split('ng')[1]
+	};
 	$.ajax({
 		url: '/api/locate/locationlatlong',
+		data: {
+			lat: location.lat,
+			lng: location.long
+		},
 		type: 'GET',
 		success: (resp) => {
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
 			if (resp !== undefined) {
+				// Set searchLocId and searchLocName Cookie only if no Cb specified
+				if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
+					document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
+					document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
+				} else {
+					this.valueCbLocation = location;
+				}
+
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 				$('.login-button').removeClass('disable-click');
-
-				// Set searchLocId and searchLocName Cookie
-				document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
-				document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
 			}
 		},
 		error: () => {
@@ -40,7 +51,11 @@ let _geoShowMyLocation = (geoCookieValue) => {
  */
 let _setGeoCookie = (location) => {
 	let cookieValue = location.lat + 'ng' + location.long;
-	document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
+
+	// Set geoId cookie only if no Cb specified
+	if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
+		document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
+	}
 
 	_geoShowMyLocation(escape(cookieValue));
 };
@@ -107,19 +122,10 @@ let _refreshPage = () => {
 
 let _closeModal = () => {
 	$('body').removeClass('stop-scrolling');
-	let value = "; " + document.cookie;
-	let parts = value.split("; geoId=");
-	if (parts.length == 2) {
-		let geoIdCookievalue = parts.pop().split(";").shift();
-		let location = {
-			lat: geoIdCookievalue.split('ng')[0],
-			long: geoIdCookievalue.split('ng')[1]
-		};
-		if (this.setValueCb) {
-			this.setValueCb(location);
-		} else {
-			_refreshPage();
-		}
+	if (this.setValueCb) {
+		this.setValueCb(this.valueCbLocation);
+	} else {
+		_refreshPage();
 	}
 };
 
@@ -137,6 +143,7 @@ let initialize = (setValueCb) => {
 	this.country = this.$locale.split('_')[1];
 
 	this.setValueCb = setValueCb;
+	this.valueCbLocation = null;
 
 	// Event handling on modal
 	$('.card-title-cp, .location-link').on('click', () => {
