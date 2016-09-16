@@ -61,7 +61,7 @@ $dropdown-width: 220px;
 			background-size: contain;
 			@include from-breakpoint($medium-break) {
 				margin-left: 40px;
-				margin-top: 30px;
+				margin-top: 23px;
 				height: 100%;
 				top: -18px;
 			}
@@ -76,6 +76,9 @@ $dropdown-width: 220px;
 			display: none;
 			@include from-breakpoint($medium-break) {
 				display: inline-block;
+			}
+			&.logged-out {
+				left: calc(29% + 52px);
 			}
 
 			.logo, .messages, .browse {
@@ -195,7 +198,7 @@ $dropdown-width: 220px;
 
 			margin: 0;
 			border-radius: 2px;
-			margin-top: 20px;
+			margin-top: 15px;
 			margin-bottom: 15px;
 			display: none;
 			@include from-breakpoint($medium-break) {
@@ -222,7 +225,7 @@ $dropdown-width: 220px;
 			float: left;
 
 			.item-text {
-				padding-top: 16px;
+				padding-top: 15px;
 			}
 		}
 
