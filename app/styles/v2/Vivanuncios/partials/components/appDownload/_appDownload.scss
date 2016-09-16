@@ -65,9 +65,13 @@
 		}
 	}
 	.description {
+		clear: both;
 		font: $p2;
 		color: white;
 		text-align: left;
+		&.secondary {
+			padding-bottom: 5px;
+		}
 	}
 	.review-wrapper {
 		margin-top: 0.5em;
