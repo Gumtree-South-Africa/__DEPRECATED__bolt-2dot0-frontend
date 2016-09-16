@@ -118,11 +118,14 @@
 
 	.slick-prev {
 		left: -20px;
+		padding: 0;
 	}
 
 	.slick-next {
 		right: -25px;
 		transform: scaleX(-1);
+		-webkit-transform: scaleX(-1);
+		padding: 0;
 	}
 
 	.slick-carousel {
