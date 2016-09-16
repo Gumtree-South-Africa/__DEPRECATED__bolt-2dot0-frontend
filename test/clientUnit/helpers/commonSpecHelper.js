@@ -42,7 +42,7 @@ let _prepareTemplate = (templateName, templateModel) => {
  * @param {object} returnData - returnData to return on dequeue
  */
 let _enqueue = (url, returnData, options) => {
-	let queueObj = _.findWhere(mockAjaxMapQueue, { url: url.replace(/[^\u0000-\u007E]/g, "") });
+	let queueObj = _.findWhere(mockAjaxMapQueue, {url: url.replace(/[^\u0000-\u007E]/g, "")});
 	if (queueObj) {
 		queueObj.queue.push({
 			returnData,
@@ -51,10 +51,12 @@ let _enqueue = (url, returnData, options) => {
 	} else {
 		mockAjaxMapQueue.push({
 			url: url.replace(/[^\u0000-\u007E]/g, ""),
-			queue: [{
-				returnData,
-				options
-			}]
+			queue: [
+				{
+					returnData,
+					options
+				}
+			]
 		});
 	}
 };
@@ -88,22 +90,23 @@ let setCookie = (cookieName, cookieValue) => {
 };
 
 let getCookie = (cookieName) => {
-		let name = cookieName + "=";
-		let ca = document.cookie.split(';');
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) === ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) === 0) {
-				return c.substring(name.length, c.length);
-			}
+	let name = cookieName + "=";
+	let ca = document.cookie.split(';');
+	for (let i = 0; i < ca.length; i++) {
+		let c = ca[i];
+		while (c.charAt(0) === ' ') {
+			c = c.substring(1);
 		}
-		return "";
+		if (c.indexOf(name) === 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return "";
 };
 
 let disableFormWarning = () => {
-	window.onbeforeunload = () => {};
+	window.onbeforeunload = () => {
+	};
 };
 
 /**
@@ -121,6 +124,15 @@ let setupTest = (templateName, templateModel, locale) => {
 	return _prepareTemplate(templateName, templateModel);
 };
 
+let mockGoogleLocationApi = () => {
+	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&language=");
+	window.google = window.google || {};
+	window.google.maps = window.google.maps || {};
+	window.google.maps.places = window.google.maps.places || {};
+	window.google.maps.places.Autocomplete = window.google.maps.places.Autocomplete || function() {}; // no op
+	window.google.maps.event = window.google.maps.event || {};
+	window.google.maps.event.addListener = window.google.maps.addListener || function() {}; // no op
+};
 
 let mockWebshim = () => {
 	registerMockAjax("/public/js/libraries/webshims/shims/form-core.js", {});
@@ -137,7 +149,8 @@ module.exports = {
 	setCookie,
 	getCookie,
 	disableFormWarning,
-	mockWebshim
+	mockWebshim,
+	mockGoogleLocationApi
 };
 
 // spying on ajax and replacing with fake, mock function
@@ -160,7 +173,9 @@ beforeEach(() => {
 				successCallback(ajaxInfo.returnData);
 			}
 		} else {
-			options.success(ajaxInfo.returnData);
+			if (options.success) {
+				options.success(ajaxInfo.returnData);
+			}
 		}
 
 	});
