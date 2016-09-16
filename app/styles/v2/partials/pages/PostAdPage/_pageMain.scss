@@ -68,6 +68,9 @@ $photo-switcher-width: 30%;
 	}
 
 	.post-ad-btn {
+		&.disabled {
+			cursor: not-allowed;
+		}
 		cursor: pointer;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
