@@ -154,6 +154,8 @@ let initialize = (setValueCb) => {
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
+		$('body').removeClass('stop-scrolling');
+
 	});
 
 	$('.card-title-cp').on('click', function() {
