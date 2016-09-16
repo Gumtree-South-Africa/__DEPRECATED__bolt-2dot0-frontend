@@ -334,7 +334,7 @@ let onReady = () => {
 
 	this.$cancelButton.click(() => {
 		formChangeWarning.disable();
-		window.location.href = "/my/promote.html";
+		window.location.href = "/my/ads.html";
 	});
 
 	_setupPolyfillForm();
