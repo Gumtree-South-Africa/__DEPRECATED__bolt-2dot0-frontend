@@ -114,13 +114,7 @@ let _bindCharacterCountEvents = ($input, $label) => {
 let _setHiddenLocationInput = (location) => {
 	this.$locationLat.val(location.lat);
 	this.$locationLng.val(location.long);
-	$.ajax({
-		method: "GET",
-		url: `/api/locate/locationlatlong?lat=${encodeURIComponent(location.lat.toString())}&lng=${encodeURIComponent(location.long.toString())}`,
-		success: (data) => {
-			this.$locationLink.text(data.localizedName || this.defaultLocation);
-		}
-	});
+	this.$locationLink.text(location.localizedName || this.defaultLocation);
 };
 
 let _successCallback = (response) => {

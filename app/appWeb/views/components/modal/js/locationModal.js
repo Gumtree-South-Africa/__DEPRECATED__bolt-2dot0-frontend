@@ -31,6 +31,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 					document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
 				} else {
 					this.valueCbLocation = location;
+					this.valueCbLocation.localizedName = resp.localizedName;
 				}
 
 				$('.search-textbox-container .location-text').html(resp.localizedName);
