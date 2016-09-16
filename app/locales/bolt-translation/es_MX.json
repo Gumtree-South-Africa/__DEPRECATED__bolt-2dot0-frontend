@@ -96,10 +96,10 @@
 	"ad.flagged": "Anuncio reportado exitosamente",
 	"activate.ad.success.$$": "¡Felicidades! Tu anuncio está activo y será visible a todos nuestros usuarios en breve<br />¿Quieres que tus contactos se enteren? ¡Compártelo en redes sociales! Usa los botones de abajo.",
 	"activate.ad.success.without.social.buttons": "¡Felicidades! Tu anuncio está activo y será visible a todos nuestros usuarios en breve",
-	"activate.ad.success.not.yet.active": "¡Gracias! Recibimos tu solicitud de activación. Tu anuncio estará disponible en %s en breve.",
+	"activate.ad.success.not.yet.active": "¡Gracias! Hemos recibido tu anuncio y estamos revisándolo. Te avisaremos una vez quede publicado.",
 	"post.upsell.activate.ad.success.not.yet.active": "Revisa tu correo electrónico para activar tu <b>anuncio gratis</b> ahora. Abre el correo de %s y haz clic en el link de activación.",
 	"edit.ad.success.$$": "¡Felicidades! Tu anuncio ha sido actualizado y será visible a todos nuestros usuarios en breve.",
-	"edit.ad.success.not.yet.active": "¡Gracias! Recibimos tu solicitud de edición. Tu anuncio estará disponible en %s en breve.",
+	"edit.ad.success.not.yet.active": "¡Gracias! Hemos recibido tu anuncio y estamos revisándolo. Te avisaremos una vez quede publicado.",
 	"repost.ad.success": "¡Felicidades! Tu anuncio ha sido renovado exitosamente.",
 	"edit.expired.ad.failure": "Hola, el anuncio que tratabas de editar o renovar desafortunadamente ya expiró. Por favor, crea un anuncio nuevo.",
 	"email.greeting.attention": "¡Hola %s!",
@@ -1175,7 +1175,7 @@
 		},
 		"image": {
 			"upload": {
-				"failure": "Por desgracia, se ha producido un error al cargar imágenes"
+				"failure": "Por desgracia, se ha producido un error al cargar tus imágenes. Por favor, inténtalo de nuevo."
 			}
 		}
 	},
@@ -1262,10 +1262,10 @@
 			"pageTitle": "Publicar un anuncio",
 			"back": "Atrás",
 			"didYouKnow": "Sabías que...",
-			"tip": "Consejo: Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo tienes que agregarlo y publicarlo. Puedes agregar más fotos y hacer otros",
+			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1289,7 +1289,7 @@
 			"emailBtn": "Iniciar sesión con correo electrónico",
 			"register": "Registrarse",
 			"close": "Cerrar",
-			"legal1": "Al hacer clic en continùa declaro estar de acuerdo con los",
+			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
 			"termsAndConditions": "Tèrminos v Condiciones",
 			"legal2": "y reconozco que que he leído las Notificaciones de",
 			"privacy": "Privacidad",
