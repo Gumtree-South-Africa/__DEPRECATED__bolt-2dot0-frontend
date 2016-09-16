@@ -114,6 +114,7 @@ let _geoAutoComplete = () => {
 let _openModal = () => {
 	$('#locationModal').removeClass('hiddenElt');
 	$('body').addClass('stop-scrolling');
+	$('#modal-location').focusin();
 	$('.confirm-button').addClass('disable-click');
 };
 
