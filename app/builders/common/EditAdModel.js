@@ -3,7 +3,7 @@
 let cwd = process.cwd();
 let editAdService = require(cwd + '/server/services/editad');
 
-// let VIP_URL_SUFFIX = "?activateStatus=adActivateSuccess";
+let VIP_URL_SUFFIX = "?activateStatus=adEdited";
 
 
 class EditAdModel {
@@ -73,7 +73,7 @@ class EditAdModel {
 
 			if (vipLink) {
 				results.redirectLink = {
-					vip: vipLink.href,
+					vip: this.fixupVipUrl(vipLink.href),
 					previp: paymentLink.href,
 					previpRedirect: paymentRedirectLink.href
 				};
@@ -84,9 +84,9 @@ class EditAdModel {
 		});
 	}
 
-	// fixupVipUrl(redirectUrl) {
-	// 	return redirectUrl + VIP_URL_SUFFIX;
-	// }
+	 fixupVipUrl(redirectUrl) {
+	 	return redirectUrl + VIP_URL_SUFFIX;
+	 }
 }
 
 module.exports = EditAdModel;
