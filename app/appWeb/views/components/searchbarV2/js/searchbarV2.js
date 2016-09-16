@@ -19,6 +19,17 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 // 	}
 // };
 
+/**
+ * sets the is typing class on the search controls so while typing styles can be applied
+ * @param {boolean} isTyping
+ * @private
+ */
+let _setIsTyping = (isTyping) => {
+	this.$searchControls.toggleClass("is-typing", isTyping);
+	this.$searchMask.toggleClass("is-typing", isTyping);
+	$("body").toggleClass("disable-scroll-mobile", isTyping);
+};
+
 let _unbindTypeAheadResultsEvents = () => {
 	this.$typeAheadResults.find(".type-ahead-results-row").off();
 };
@@ -158,17 +169,6 @@ let _newTypeAhead = (currentSearchTerm) => {
 			}
 		});
 	}
-};
-
-/**
- * sets the is typing class on the search controls so while typing styles can be applied
- * @param {boolean} isTyping
- * @private
- */
-let _setIsTyping = (isTyping) => {
-	this.$searchControls.toggleClass("is-typing", isTyping);
-	this.$searchMask.toggleClass("is-typing", isTyping);
-	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
 let _selectItem = () => {
