@@ -550,7 +550,12 @@ let initialize = (options) => {
 	$("#postAdBtn .link-text").on("click", preventDisabledButtonClick);
 
 	// When page resizes, redraw carousel items
-	$(window).resize(resizeCarousel);
+	$(window).resize((evt) => {
+		// on mobile device rotations this gets called slightly too early, before the dom has expanded
+		setTimeout(() => {
+			resizeCarousel(evt);
+		}, 0);
+	});
 
 	// click handler for changing the ad cover photo
 	$(".carousel-item").on('click', setCoverPhoto);

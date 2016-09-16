@@ -138,6 +138,7 @@ body {
 
 		button {
 			&:disabled {
+				cursor: not-allowed;
 				opacity: .5;
 			}
 		}
@@ -326,7 +327,7 @@ body {
 				width: $labelWidth;
 				margin: 0 $labelMargin;
 				color: #FF9800;
-				font-size: 10px;
+				font-size: 13px;
 			}
 		}
 
@@ -395,8 +396,8 @@ body {
 		.inner-circle {
 			display: inline-block;
 			position: relative;
-			top: -4px;
-			left: 2px;
+			top: -3.6px;
+			left: 2.1px;
 			width: 12px;
 			height: 12px;
 			background: #FFFFFF;
