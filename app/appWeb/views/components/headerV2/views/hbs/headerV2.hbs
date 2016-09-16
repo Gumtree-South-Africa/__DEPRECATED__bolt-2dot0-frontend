@@ -65,10 +65,9 @@
                         {{/each}}
                     </ul>
                 </div>
+                {{!-- post ad button --}}
+                {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
             </div>
-
-            {{!-- post ad button --}}
-            {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
             <div class="right-items">
                 <div class="profile right-item">

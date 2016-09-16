@@ -70,8 +70,8 @@ $dropdown-width: 220px;
 		.left-items {
 			z-index: 10;
 			position: absolute;
-			left: 24%;
-			width: 25%;
+			left: 29%;
+			width: 50%;
 			text-align: center;
 			display: none;
 			@include from-breakpoint($medium-break) {
@@ -85,15 +85,14 @@ $dropdown-width: 220px;
 
 			.messages {
 				position: relative;
-				left: 40px;
+				left: 10px;
 				margin-top: 24px;
 				margin-right: 2%;
 			}
 
 			.browse {
 				position: relative;
-				left: 42px;
-				width: 40%;
+				width: 16%;
 				min-width: 81px;
 
 				&.item-text {
@@ -191,10 +190,8 @@ $dropdown-width: 220px;
 		}
 
 		.post-ad-button {
-			position: absolute;
 			top: 0;
-			left: 58%;
-			transform: translateX(-58%);
+			float: left;
 
 			margin: 0;
 			border-radius: 2px;
