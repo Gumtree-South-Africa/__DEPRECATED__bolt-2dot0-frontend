@@ -28,6 +28,10 @@
             margin-bottom: 0.8em;
             margin-top: 0.8em;
         }
+		h2 {
+			font: $h2;
+			font-weight: $fontWeightBold;
+		}
         .modal-info {
             text-align: center;
             margin-left: 0;
