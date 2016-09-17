@@ -78,7 +78,7 @@ let _displayTypeAheadResults = (results) => {
 			// as part of this change, the location is going to be passed into the ajax query for type-ahead search terms (via searchLocId cookie)
 			// so the terms should all be in preferred location anyway
 			// if we don't have a cookie, we might get terms back from other locations, but we aren't going to pass them along to the SRP
-			let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&catId=${result.category}">${result.keyword}</a></li>`;
+			let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
 			$ul.append(templateString);
 		});
 
