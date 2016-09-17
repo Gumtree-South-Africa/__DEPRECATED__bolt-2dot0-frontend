@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Run Debug Server VM" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="$USER_HOME$/.nvm/versions/node/v4.4.5/bin/node" path-to-js-file="bin/server" node-parameters="--debug" working-dir="$PROJECT_DIR$">
+  <configuration default="false" name="Run Debug Server VM" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="bin/server" node-parameters="--debug" working-dir="$PROJECT_DIR$">
     <envs>
       <env name="NODE_ENV" value="vm" />
       <env name="PORT" value="8000" />
@@ -7,9 +7,9 @@
       <env name="BASEDOMAINSUFFIX" value="localhost" />
       <env name="NODE_CONFIG_DIR" value="./server/config" />
     </envs>
-    <profiling log-folder="test/profiling" do-profile="true" />
+    <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="" />
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
-      <profiling log-folder="test/profiling" do-profile="true" />
+      <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="" />
     </EXTENSION>
     <method />
   </configuration>

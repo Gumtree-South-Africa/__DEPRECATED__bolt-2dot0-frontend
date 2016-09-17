@@ -22,7 +22,7 @@ let initialize = () => {
 		if (getCookie('alreadyVisited') === "") {
 			document.cookie = 'alreadyVisited=true';
 			$('.modal-wrapper .modal').css('display', 'block');
-			 $('.viewport').addClass('modal-open');
+			$('.viewport').addClass('modal-open');
 		}
 
 

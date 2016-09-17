@@ -78,6 +78,7 @@
 @include in-breakpoint($no-break) {
  .modal-open {
    position: fixed;
+	 width: 100%;
    }
 }
 
