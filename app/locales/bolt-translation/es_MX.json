@@ -1161,10 +1161,10 @@
 	},
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
-		"title": "¡Vende rápido!",
-		"description": "iCompra y vende por internet de forma rápida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos en venta.",
-		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2. Ejemplos de reseñas",
-		"mobilebutton": "¡Descarga gratis y vende rápido!",
+		"title": "¡Con el app es más fácil!",
+		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
+		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
+		"mobilebutton": "¡Baja la app!",
 		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
 		"googleplay": "https://app.adjust.com/oarq82",
 		"applink": "https://go.vivanunc.io/baja-la-app"

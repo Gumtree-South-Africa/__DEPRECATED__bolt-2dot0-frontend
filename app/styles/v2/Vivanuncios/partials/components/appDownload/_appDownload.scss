@@ -65,16 +65,21 @@
 		}
 	}
 	.description {
-		clear: both;
+		padding-bottom: 10px;
 		font: $p2;
 		color: white;
 		text-align: left;
-		&.secondary {
-			padding-bottom: 5px;
-		}
 	}
 	.review-wrapper {
 		margin-top: 0.5em;
+	}
+}
+
+.description {
+	&.secondary {
+		font: $p3;
+		color: white;
+		padding-bottom: 10px;
 	}
 }
 
@@ -134,7 +139,6 @@
 
 .appmobile-button {
 	display: block;
-	margin-top: 1em;
 	@include from-breakpoint($medium-break) {
 		display: none;
 	}
@@ -142,9 +146,9 @@
 		text-decoration: underline;
 		background-color: transparent;
 		text-align: center;
-		font-size: $button-fontsize;
+		font-size: 1.5em;
 		display: block;
-		margin-bottom: 1em;
+		margin-bottom: 5px;
 		padding: 0.4em;
 		color: $button-color;
 		cursor: pointer;
