@@ -105,15 +105,20 @@ let _geoAutoComplete = () => {
 		long: longitude
 	};
 	_setGeoCookie(location);
-}
+};
 
+let _preventDefault = (e) => {
+	e.preventDefault();
+};
 
 /**
  * Modal Related
  */
 let _openModal = () => {
+	document.addEventListener('touchmove', _preventDefault, false);
 	$('#locationModal').removeClass('hiddenElt');
 	$('body').addClass('stop-scrolling');
+	$('.modal-input').focus();
 	$('.confirm-button').addClass('disable-click');
 };
 
@@ -122,6 +127,7 @@ let _refreshPage = () => {
 };
 
 let _closeModal = () => {
+	document.removeEventListener('touchmove', _preventDefault, false);
 	$('body').removeClass('stop-scrolling');
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
@@ -156,7 +162,20 @@ let initialize = (setValueCb) => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
 		$('body').removeClass('stop-scrolling');
+		document.removeEventListener('touchmove', _preventDefault, false);
+	});
 
+	this.$locmodal.on('keyup', (evt) => {
+		switch (evt.keyCode) {
+			case 27:
+				$modalCp.addClass('hiddenElt');
+				$('#modal-location').removeClass('spinner').attr('disabled', false);
+				$('body').removeClass('stop-scrolling');
+				document.removeEventListener('touchmove', _preventDefault, false);
+				break;
+			default:
+				break;
+		}
 	});
 
 	$('.card-title-cp').on('click', function() {
