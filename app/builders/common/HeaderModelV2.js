@@ -118,7 +118,7 @@ class HeaderModel {
 					data.cookieLocationId = this.searchLocIdCookie;
 
 					if (typeof this.searchLocNameCookie !== 'undefined') {
-						data.cookieLocationName = unescape(this.searchLocNameCookie);
+						data.cookieLocationName = unescape(JSON.parse('"' + this.searchLocNameCookie + '"'));
 					} else {
 						if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
 							data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
