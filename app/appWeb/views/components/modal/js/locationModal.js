@@ -157,7 +157,19 @@ let initialize = (setValueCb) => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
 		$('body').removeClass('stop-scrolling');
+	});
 
+	let eventName = 'keyup';
+	this.$locmodal.on(eventName, (evt) => {
+		switch (evt.keyCode) {
+			case 27:
+				$modalCp.addClass('hiddenElt');
+				$('#modal-location').removeClass('spinner').attr('disabled', false);
+				$('body').removeClass('stop-scrolling');
+				break;
+			default:
+				break;
+		}
 	});
 
 	$('.card-title-cp').on('click', function() {
