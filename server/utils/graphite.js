@@ -23,6 +23,9 @@ var GraphiteService = function() {
 
 	this.graphite.on('error', function(error) {
 		console.error('Graphite connection failure. ' + error);
+		this.graphite.connect(function() { //'connect' listener
+			console.log('Re-connected to Graphite server');
+		});
 	});
 };
 
