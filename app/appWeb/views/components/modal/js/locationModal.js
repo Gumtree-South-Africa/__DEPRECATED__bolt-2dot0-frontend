@@ -206,6 +206,7 @@ let initialize = (setValueCb) => {
 		}
 	);
 	google.maps.event.addListener(this.$autocomplete, 'place_changed', function() {
+		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoAutoComplete();
 	});
 
