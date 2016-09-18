@@ -1,5 +1,7 @@
 'use strict';
 
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
+
 
 /**
  * Given a geoId cookie:
@@ -27,12 +29,13 @@ let _geoShowMyLocation = (geoCookieValue) => {
 			if (resp !== undefined) {
 				// Set searchLocId and searchLocName Cookie only if no Cb specified
 				if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
-					document.cookie = 'searchLocId' + "=" + escape(resp.id) + ";path=/";
-					document.cookie = 'searchLocName' + "=" + escape(resp.localizedName) + ";path=/";
+					CookieUtils.setCookie('searchLocId', escape(resp.id), 365);
+					CookieUtils.setCookie('searchLocName', escape(resp.localizedName), 365);
 				} else {
 					this.valueCbLocation = location;
 					this.valueCbLocation.localizedName = resp.localizedName;
 				}
+				this.setNewCookieValues = true;
 
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
@@ -47,19 +50,43 @@ let _geoShowMyLocation = (geoCookieValue) => {
 };
 
 /**
+ * Store the current cookie values for later reset if needed.
+ * @private
+ */
+let _getCurrentCookieValues = () => {
+	this.geoIdCookieOldValue = CookieUtils.getCookie('geoId');
+	this.searchLocIdCookieOldValue = CookieUtils.getCookie('searchLocId');
+	this.searchLocNameCookieOldValue = CookieUtils.getCookie('searchLocName');
+};
+
+/**
+ * Reset the cookie values to what was before entering the location modal.
+ * @private
+ */
+let _resetCookieValues = () => {
+	if (this.setNewCookieValues) {
+		CookieUtils.setCookie('geoId', escape(this.geoIdCookieOldValue), 365);
+		CookieUtils.setCookie('searchLocId', escape(this.searchLocIdCookieOldValue), 365);
+		CookieUtils.setCookie('searchLocName', escape(this.searchLocNameCookieOldValue), 365);
+		this.valueCbLocation = null;
+	}
+};
+
+/**
  * Set geoId Cookie
  * @param location
  * @private
  */
 let _setGeoCookie = (location) => {
-	let cookieValue = location.lat + 'ng' + location.long;
+	_getCurrentCookieValues();
+	let geoCookieValue = location.lat + 'ng' + location.long;
 
 	// Set geoId cookie only if no Cb specified
 	if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
-		document.cookie = 'geoId' + "=" + escape(cookieValue) + ";path=/";
+		CookieUtils.setCookie('geoId', escape(geoCookieValue), 365);
 	}
 
-	_geoShowMyLocation(escape(cookieValue));
+	_geoShowMyLocation(escape(geoCookieValue));
 };
 
 /**
@@ -155,12 +182,19 @@ let initialize = (setValueCb) => {
 	this.setValueCb = setValueCb;
 	this.valueCbLocation = null;
 
+	this.setNewCookieValues = false;
+
 	// Event handling on modal
+	let $modalCp = $('.modal-cp');
+
 	$('.card-title-cp, .location-link').on('click', () => {
 		_openModal(this.$locmodal);
 	});
 
-	let $modalCp = $('.modal-cp');
+	$('.card-title-cp').on('click', function() {
+		$modalCp.removeClass('hiddenElt');
+	});
+
 	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
 		$modalCp.addClass('hiddenElt');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
@@ -168,9 +202,16 @@ let initialize = (setValueCb) => {
 		document.removeEventListener('touchmove', _preventDefault, false);
 	});
 
+	// close clicked
+	$('.modal-closearea').on('click', () => {
+		_resetCookieValues();
+	});
+
+	// Escape key listener
 	this.$locmodal.on('keyup', (evt) => {
 		switch (evt.keyCode) {
 			case 27:
+				_resetCookieValues();
 				$modalCp.addClass('hiddenElt');
 				$('#modal-location').removeClass('spinner').attr('disabled', false);
 				$('body').removeClass('stop-scrolling');
@@ -181,10 +222,7 @@ let initialize = (setValueCb) => {
 		}
 	});
 
-	$('.card-title-cp').on('click', function() {
-		$modalCp.removeClass('hiddenElt');
-	});
-
+	// confirm button
 	$('.modal-cp .btn').on('click', (ev) => {
 		ev.preventDefault();
 		ev.stopPropagation();
