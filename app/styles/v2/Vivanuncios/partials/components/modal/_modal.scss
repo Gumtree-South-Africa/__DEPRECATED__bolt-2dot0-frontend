@@ -46,10 +46,10 @@
 
 .modal {
   h1{
-    font: $h1;
+    font: $h2;
     text-align: center;
     margin-top: 0.5em;
-    margin-bottom: 1em;
+    margin-bottom: 0.6em;
   }
   .modal-info{
     font: $p2;
@@ -102,3 +102,11 @@
 	pointer-events: none;
 	opacity: 0.5;
 }
+
+.change-loc {
+	font: $p2;
+	color: $modal-info;
+	margin-top: 0.25em;
+	margin-left: 1em;
+}
+

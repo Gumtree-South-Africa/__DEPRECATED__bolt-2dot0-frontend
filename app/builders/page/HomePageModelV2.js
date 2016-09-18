@@ -2,7 +2,7 @@
 
 
 let cwd = process.cwd();
-
+let deviceDetection = require(`${cwd}/modules/device-detection`);
 let _ = require("underscore");
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
@@ -84,6 +84,9 @@ class HomePageModelV2 {
 		modelData.seo = data['seo'] || {};
 		modelData.showTopBanner = showTopBanner;
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
+		modelData.isLocationMobile = deviceDetection.isMobile();
+
+		console.log(modelData.isLocationMobile);
 
 		modelData.isNewHP = true;
 

@@ -1235,6 +1235,8 @@
 		"close": "Cerrar",
 		"buttonText": "Confirmar",
 		"message": "Cambia tu Ubicación",
+		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
+		"locationAutoMobile": "Ubicación más cercana",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {

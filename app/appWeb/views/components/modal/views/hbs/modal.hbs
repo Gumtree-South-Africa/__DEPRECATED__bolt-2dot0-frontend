@@ -23,6 +23,12 @@
 				<div class="clear"></div>
 				<div id="autocompleteField" class="hiddenElt"></div>
 			</div>
+            {{#if this.isLocationMobile}}
+				<div class="change-loc">{{i18n "modal.locationAutoMobile"}}</div>
+            {{else}}
+				<div class="change-loc">{{i18n "modal.locationAutoDesktop"}}</div>
+            {{/if}}
+
 			<div class="modal-footer">
                 {{> (dynamic "button") i18nPath="modal.buttonText" hideIcon=true iconName="icon-post" extraClasses='login-button confirm-button'}}
 			</div>

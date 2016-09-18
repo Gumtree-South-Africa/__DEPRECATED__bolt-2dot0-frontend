@@ -37,6 +37,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
 				$('.confirm-button').removeClass('disable-click');
+				$('.change-loc').removeClass('hidden');
 			}
 		},
 		error: () => {
@@ -118,8 +119,10 @@ let _openModal = () => {
 	document.addEventListener('touchmove', _preventDefault, false);
 	$('#locationModal').removeClass('hiddenElt');
 	$('body').addClass('stop-scrolling');
+	$('.modal-input').val('');
 	$('.modal-input').focus();
 	$('.confirm-button').addClass('disable-click');
+	$('.change-loc').addClass('hidden');
 };
 
 let _refreshPage = () => {
