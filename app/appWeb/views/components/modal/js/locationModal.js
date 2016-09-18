@@ -54,9 +54,11 @@ let _geoShowMyLocation = (geoCookieValue) => {
  * @private
  */
 let _getCurrentCookieValues = () => {
-	this.geoIdCookieOldValue = CookieUtils.getCookie('geoId');
-	this.searchLocIdCookieOldValue = CookieUtils.getCookie('searchLocId');
-	this.searchLocNameCookieOldValue = CookieUtils.getCookie('searchLocName');
+	if (this.settingCookieAgain === 0) {
+		this.geoIdCookieOldValue = unescape(CookieUtils.getCookie('geoId'));
+		this.searchLocIdCookieOldValue = unescape(CookieUtils.getCookie('searchLocId'));
+		this.searchLocNameCookieOldValue = unescape(CookieUtils.getCookie('searchLocName'));
+	}
 };
 
 /**
@@ -78,6 +80,7 @@ let _resetCookieValues = () => {
  * @private
  */
 let _setGeoCookie = (location) => {
+	this.settingCookieAgain = (this.settingCookieAgain === null) ? 0 : this.settingCookieAgain + 1;
 	_getCurrentCookieValues();
 	let geoCookieValue = location.lat + 'ng' + location.long;
 
@@ -183,6 +186,7 @@ let initialize = (setValueCb) => {
 	this.valueCbLocation = null;
 
 	this.setNewCookieValues = false;
+	this.settingCookieAgain = null;
 
 	// Event handling on modal
 	let $modalCp = $('.modal-cp');

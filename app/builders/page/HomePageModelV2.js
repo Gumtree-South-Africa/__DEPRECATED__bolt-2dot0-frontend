@@ -86,8 +86,6 @@ class HomePageModelV2 {
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.isLocationMobile = deviceDetection.isMobile();
 
-		console.log(modelData.isLocationMobile);
-
 		modelData.isNewHP = true;
 
 		return modelData;
