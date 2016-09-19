@@ -262,6 +262,10 @@ body {
 			padding: 0 calc(2% - 1px);
 		}
 
+		.form-ad-title .input-wrapper input {
+			width: $inputWidth !important;
+		}
+
 		.input-wrapper {
 			width: 100%;
 			position: relative;
