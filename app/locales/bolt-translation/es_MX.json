@@ -1424,7 +1424,7 @@
 			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
 			"selectPrompt": "Select a Category Below",
 			"save": "Guardar",
-			"rootLabel": "Categorias"
+			"rootLabel": "Categorías"
 		}
 	},
 	"adStats": {
