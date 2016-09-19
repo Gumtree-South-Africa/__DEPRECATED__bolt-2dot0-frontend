@@ -16,8 +16,6 @@ let cacheService = require(cwd + "/server/services/cache/cacheService");
 class CardService {
 
 	getCardItemsData(bapiHeaderValues, queryEndpoint, parameters, cardName) {
-		// console.log(parameters);
-
 		if (parameters) {
 			if (parameters.geo === null) {
 				// we don't have a location, delete the property to keep it from sending to the back end
@@ -36,7 +34,14 @@ class CardService {
 
 	// NOTE: this is only called by the cache, specific to trending
 	getTrendingCard(bapiHeaderValues) {
-		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', {}, 'trendingCard');
+		let parameters = {
+			"offset": "0",
+			"limit": "48",
+			"minResults": "48",
+			"geo": null,
+			"withPicsOnly": true
+		};
+		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', parameters, 'trendingCard');
 	}
 
 	getCachedTrendingCard(bapiHeaderValues) {
