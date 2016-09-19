@@ -21,7 +21,8 @@ let _geoShowMyLocation = (geoCookieValue) => {
 		url: '/api/locate/locationlatlong',
 		data: {
 			lat: location.lat,
-			lng: location.long
+			lng: location.long,
+			leaf: ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) ? false : true
 		},
 		type: 'GET',
 		success: (resp) => {
@@ -29,8 +30,14 @@ let _geoShowMyLocation = (geoCookieValue) => {
 			if (resp !== undefined) {
 				// Set searchLocId and searchLocName Cookie only if no Cb specified
 				if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
-					CookieUtils.setCookie('searchLocId', escape(resp.id), 365);
-					CookieUtils.setCookie('searchLocName', escape(resp.localizedName), 365);
+					let searchLocIdValue = escape(resp.id);
+					if (searchLocIdValue!==null && searchLocIdValue!=='') {
+						CookieUtils.setCookie('searchLocId', searchLocIdValue, 365);
+					}
+					let searchLocNameValue = escape(resp.localizedName);
+					if (searchLocNameValue!==null && searchLocNameValue!=='') {
+						CookieUtils.setCookie('searchLocName', searchLocNameValue, 365);
+					}
 				} else {
 					this.valueCbLocation = location;
 					this.valueCbLocation.localizedName = resp.localizedName;
@@ -67,9 +74,24 @@ let _getCurrentCookieValues = () => {
  */
 let _resetCookieValues = () => {
 	if (this.setNewCookieValues) {
-		CookieUtils.setCookie('geoId', escape(this.geoIdCookieOldValue), 365);
-		CookieUtils.setCookie('searchLocId', escape(this.searchLocIdCookieOldValue), 365);
-		CookieUtils.setCookie('searchLocName', escape(this.searchLocNameCookieOldValue), 365);
+		let geoIdValue = escape(this.geoIdCookieOldValue);
+		if (geoIdValue!==null && geoIdValue!=='') {
+			CookieUtils.setCookie('geoId', geoIdValue, 365);
+		} else {
+			CookieUtils.setCookie('geoId', geoIdValue, -1);
+		}
+		let searchLocIdValue = escape(this.searchLocIdCookieOldValue);
+		if (searchLocIdValue!==null && searchLocIdValue!=='') {
+			CookieUtils.setCookie('searchLocId', searchLocIdValue, 365);
+		} else {
+			CookieUtils.setCookie('searchLocId', searchLocIdValue, -1);
+		}
+		let searchLocNameValue = escape(this.searchLocNameCookieOldValue);
+		if (searchLocNameValue!==null && searchLocNameValue!=='') {
+			CookieUtils.setCookie('searchLocName', searchLocNameValue, 365);
+		} else {
+			CookieUtils.setCookie('searchLocName', searchLocNameValue, -1);
+		}
 		this.valueCbLocation = null;
 	}
 };

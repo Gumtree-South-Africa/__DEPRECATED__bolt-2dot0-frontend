@@ -171,7 +171,7 @@ class HomePageModelV2 {
 		// when we don't have a geoCookie, we shouldn't make the call
 		if (modelData.geoLatLngObj) {
 			this.dataPromiseFunctionMap.locationlatlong = () => {
-				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj, false).then((data) => {
 					return data;
 				}).fail((err) => {
 					console.warn(`error getting locationlatlong data ${err}`);
