@@ -30,7 +30,6 @@ class HeaderModel {
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 		this.searchLocNameCookie = req.cookies[searchLocNameCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
-		this.locationdropdown = res.locals.config.locationdropdown;
 		// Local variables
 		this.secure = secure;
 		//this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -133,8 +132,6 @@ class HeaderModel {
 					promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
 						data.categoryList = categoryList;
 					}));
-				} else {
-					data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[this.locationdropdown.id].value);
 				}
 
 				// If authCookie present, make a call to user BAPI to retrieve user info and set in model

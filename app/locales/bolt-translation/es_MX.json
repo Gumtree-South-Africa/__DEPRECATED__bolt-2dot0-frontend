@@ -37,6 +37,7 @@
 	"picture.description.too.long": "La descripción de la imagen es demasiado larga",
 	"currencyNotValid": "La moneda no es válida",
 	"searchbar.locationDisplayname.prefix": "Todo %s",
+	"country.all": "Todo ",
 	"onetouch.cardinfo": "%s terminación %s",
 	"onetouch.confirm": "Confirmar",
 	"onetouch.paynow": "Paga ahora con un clic y confirma",
