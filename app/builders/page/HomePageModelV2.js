@@ -34,6 +34,10 @@ class HomePageModelV2 {
 		this.res = res;
 		this.dataPromiseFunctionMap = {};
 		this.bapiConfigData = this.res.locals.config.bapiConfigData;
+
+		let searchLocIdCookieName = 'searchLocId';
+		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
+		this.locationdropdown = this.res.locals.config.locationdropdown;
 	}
 
 	populateData() {
@@ -117,7 +121,15 @@ class HomePageModelV2 {
 				// user specific parameters are passed here, such as location lat/long
 				let cardParams = {};
 				if (cardName === 'trendingCard') {
-					cardParams.geo = modelData.geoLatLngObj;
+					// Check if there is no searchLocIdCookie, then send in lat/long
+					if ((typeof this.searchLocIdCookie === 'undefined') || (this.searchLocIdCookie === null)) {
+						cardParams.geo = modelData.geoLatLngObj;
+					} else {
+						// Check if searchLocIdCookie is not the root location, then send in lat/long
+						if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+							cardParams.geo = modelData.geoLatLngObj;
+						}
+					}
 				}
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
