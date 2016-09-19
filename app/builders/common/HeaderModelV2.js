@@ -30,6 +30,7 @@ class HeaderModel {
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 		this.searchLocNameCookie = req.cookies[searchLocNameCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
+		this.locationdropdown = res.locals.config.locationdropdown;
 		// Local variables
 		this.secure = secure;
 		//this.urlProtocol = this.secure ? 'https://' : 'http://';
@@ -110,22 +111,30 @@ class HeaderModel {
 
 				let promises = [];
 				// If locationCookie present, set id and name in model
-				if (typeof this.searchLocIdCookie !== 'undefined') {
+				if ((typeof this.searchLocIdCookie !== 'undefined') && (this.searchLocIdCookie !== null)) {
+					data.cookieLocationId = this.searchLocIdCookie;
+
+					let locationNameFromCookie = null;
+					if( (typeof this.searchLocNameCookie !== 'undefined') && (this.searchLocNameCookie !== null)) {
+						locationNameFromCookie = unescape(JSON.parse('"' + this.searchLocNameCookie + '"'));
+					}
+
+					if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
+						data.cookieLocationName = (locationNameFromCookie === null) ?
+							this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value) :
+							this.i18n.__('searchbar.locationDisplayname.prefix', locationNameFromCookie);
+					} else {
+						data.cookieLocationName = (locationNameFromCookie === null) ?
+							(this.locationIdNameMap[data.cookieLocationId] || '') :
+							(locationNameFromCookie || '');
+					}
+
 					let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
 					promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
 						data.categoryList = categoryList;
 					}));
-					data.cookieLocationId = this.searchLocIdCookie;
-
-					if (typeof this.searchLocNameCookie !== 'undefined') {
-						data.cookieLocationName = unescape(JSON.parse('"' + this.searchLocNameCookie + '"'));
-					} else {
-						if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
-							data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
-						} else {
-							data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
-						}
-					}
+				} else {
+					data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[this.locationdropdown.id].value);
 				}
 
 				// If authCookie present, make a call to user BAPI to retrieve user info and set in model
