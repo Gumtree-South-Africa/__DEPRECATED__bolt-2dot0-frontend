@@ -36,7 +36,7 @@
 			</div>
 			<ul class="l0-categories">
 				<li class="hidden">
-					<div class="category-name">
+					<div class="category-name" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.category.localizedName}}">
 						<a href="{{this.category._links.[1].href}}">
                             {{this.category.localizedName}}
 						</a>
@@ -48,7 +48,7 @@
                 {{#each this.category.children}}
 					<li class="hidden">
 						<div class="category-name">
-							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}">
+							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}">
                                 {{this.localizedName}}
 							</a>
 						</div>
