@@ -113,6 +113,7 @@ body {
 		select {
 			text-indent: 1%;
 			padding: 0 !important;
+			border-radius: 0;
 		}
 
 		.choose-category-button {
@@ -220,7 +221,7 @@ body {
 			label {
 				text-transform: uppercase;
 				width: $labelWidth;
-				margin: 0 $labelMargin;
+				margin: 0 0 0 $labelMargin;
 				font-size: 10px;
 				color: $formLabelTextColor;
 				display: inline-block; // this fixes text wrapping on smaller devices
@@ -290,7 +291,7 @@ body {
 			// overriding webshims styles to properly place button
 			.input-buttons {
 				position: absolute;
-				right: 7%;
+				right: 45%;
 				top: 25%;
 			}
 
