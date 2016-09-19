@@ -33,10 +33,11 @@ router.get('/locationlatlong', cors, (req, res) => {
 		}
 		geoLatLngObj = model.geoLatLngObj;
 	}
+	let checkLeafLocations = (req.query.leaf === 'true');
 
 	model.LocationModel = new LocationModel(model.bapiHeaders);
 
-	model.LocationModel.getLocationLatLong(geoLatLngObj).then((results) => {
+	model.LocationModel.getLocationLatLong(geoLatLngObj, checkLeafLocations).then((results) => {
 		res.send(results);
 	}).fail((err) => {
 		let bapiJson = err.logError();
