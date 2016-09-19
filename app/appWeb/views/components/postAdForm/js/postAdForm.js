@@ -43,11 +43,11 @@ let initialize = () => {
 	});
 
 	$('.title-input').on('change', () => {
-		window.BOLT.trackEvents({"event": " PostAdTitle"});
+		window.BOLT.trackEvents({"event": "PostAdTitle"});
     });
 
 	$('.price-input').on('change', () => {
-		window.BOLT.trackEvents({"event": " PostAdPrice"});
+		window.BOLT.trackEvents({"event": "PostAdPrice"});
 	});
 
 	$('.email-login-btn').on('click', () => {
