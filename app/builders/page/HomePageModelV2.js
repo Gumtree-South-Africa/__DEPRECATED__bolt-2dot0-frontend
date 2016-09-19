@@ -18,6 +18,7 @@ let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -88,6 +89,10 @@ class HomePageModelV2 {
 
 		modelData.isNewHP = true;
 
+		if (data['adstatistics']) {
+			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
+		}
+
 		return modelData;
 	}
 
@@ -104,6 +109,8 @@ class HomePageModelV2 {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 		let seo = new SeoModel(modelData.bapiHeaders);
+		let adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder();
+
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
@@ -185,6 +192,15 @@ class HomePageModelV2 {
 				return data[0].keywords || {};
 			}).fail((err) => {
 				console.warn(`error getting topSearches data ${err}`);
+				return {};
+			});
+		};
+
+		this.dataPromiseFunctionMap.adstatistics = () => {
+			return adstatistics.resolveAllPromises().then((data) => {
+				return data[0];
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
 				return {};
 			});
 		};
