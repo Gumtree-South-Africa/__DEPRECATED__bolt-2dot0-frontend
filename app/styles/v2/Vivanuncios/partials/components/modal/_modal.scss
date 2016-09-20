@@ -45,8 +45,8 @@
 }
 
 .modal {
-  h1{
-    font: $h1;
+  .modal-header-message {
+    font: $h3;
     text-align: center;
     margin-top: 0.5em;
     margin-bottom: 0.6em;
