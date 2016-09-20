@@ -38,7 +38,6 @@ class CardService {
 			"offset": "0",
 			"limit": "48",
 			"minResults": "48",
-			"geo": null,
 			"withPicsOnly": true
 		};
 		return this.getCardItemsData(bapiHeaderValues, 'BAPI.endpoints.trendingSearch', parameters, 'trendingCard');
