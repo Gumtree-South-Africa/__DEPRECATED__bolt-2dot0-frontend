@@ -8,6 +8,10 @@
       <env name="BASEDOMAINSUFFIX" value="localhost" />
       <env name="NODE_ENV" value="mock" />
     </envs>
+    <profiling v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
+    </EXTENSION>
     <method />
   </configuration>
 </component>
