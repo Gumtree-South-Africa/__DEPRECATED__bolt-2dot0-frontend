@@ -1,6 +1,6 @@
 'use strict';
 
-
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let uploadAd = require('./uploadAd.js');
@@ -14,8 +14,7 @@ let _this = this;
 
 let _postAd = (url, locationType) => {
 
-	let spinner = $("#spinner-modal");
-	spinner.removeClass('hidden');
+	spinnerModal.showModal();
 	this.$uploadSpinner.toggleClass('hidden');
 	this.$uploadProgress.toggleClass('hidden');
 	this.$uploadProgress.html("0%");
@@ -26,7 +25,7 @@ let _postAd = (url, locationType) => {
 		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
 	}, (err) => {
 		console.warn(err);
-		spinner.addClass('hidden');
+		spinnerModal.hideModal();
 		formChangeWarning.enable();
 		this.uploadMessageClass.failMsg(0);
 	}, {

@@ -2,6 +2,8 @@
 
 /*eslint no-bitwise: 0*/
 
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+
 class BinaryFile {
 	constructor(strData, iDataOffset, iDataLength) {
 		let data = strData;
@@ -198,22 +200,19 @@ class EpsUpload {
 	handlePostResponse($loginModal, $loginModalMask, response) {
 		switch (response.state) {
 			case this.AD_STATES.AD_CREATED:
-				$('#spinner-modal .loading-spinner').addClass('complete');
-				setTimeout(() => {
+				spinnerModal.completeSpinner(() => {
 					window.location.href = response.ad.redirectLink;
-				}, 300);
+				});
 				break;
 			case this.AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
-				$('#spinner-modal .loading-spinner').addClass('complete');
-				setTimeout(() => {
+				spinnerModal.completeSpinner(() => {
 					$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
 					$loginModal.find('.register-link').attr('href', response.links.register);
 					$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
 					$loginModal.toggleClass('hidden');
 					$loginModalMask.toggleClass('hidden');
-					$("#spinner-modal").addClass('hidden');
-				}, 300);
+				});
 				break;
 			default:
 				break;
