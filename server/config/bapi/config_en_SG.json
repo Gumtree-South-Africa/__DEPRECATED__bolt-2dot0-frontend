@@ -7,7 +7,7 @@
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
-		"skinCampaignOn"					: false,
+		"skinCampaignOn"					: true,
 		"googleTagAccountId"				: "169054071/Gumtree_SG",
 		"googleTagAccountMobId"				: "169054071/Gumtree_SG_mobresp",
 		"enableLighterVersionForMobile"		: false,
