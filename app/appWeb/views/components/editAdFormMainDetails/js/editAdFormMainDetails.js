@@ -1,6 +1,7 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
@@ -119,11 +120,13 @@ let _setHiddenLocationInput = (location) => {
 
 let _successCallback = (response) => {
 	formChangeWarning.disable();
-	if (response.redirectLink.previp) {
-		window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
-	} else {
-		window.location.href = response.redirectLink.vip;
-	}
+	spinnerModal.completeSpinner(() => {
+		if (response.redirectLink.previp) {
+			window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
+		} else {
+			window.location.href = response.redirectLink.vip;
+		}
+	});
 };
 
 let _markValidationError = ($input, $accumlator) => {
@@ -146,6 +149,7 @@ let _failureCallback = (error) => {
 	let $failedFields, $highestFailure, scrollTo;
 	this.$submitButton.removeClass('disabled');
 	this.$submitButton.attr('disabled', false);
+	spinnerModal.hideModal();
 	if (error.status === 400) {
 		let responseText = JSON.parse(error.responseText || '{}');
 
@@ -237,6 +241,8 @@ let _ajaxEditForm = () => {
 			"amount": Number(serialized.amount)
 		};
 	}
+
+	spinnerModal.showModal();
 
 	$.ajax({
 		url: '/api/edit/update',
@@ -356,6 +362,7 @@ let initialize = () => {
 	$(document).ready(onReady);
 
 	formChangeWarning.initialize();
+	spinnerModal.initialize();
 };
 
 module.exports = {
