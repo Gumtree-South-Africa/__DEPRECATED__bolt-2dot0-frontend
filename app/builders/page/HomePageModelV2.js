@@ -18,6 +18,7 @@ let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -33,6 +34,10 @@ class HomePageModelV2 {
 		this.res = res;
 		this.dataPromiseFunctionMap = {};
 		this.bapiConfigData = this.res.locals.config.bapiConfigData;
+
+		let searchLocIdCookieName = 'searchLocId';
+		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
+		this.locationdropdown = this.res.locals.config.locationdropdown;
 	}
 
 	populateData() {
@@ -88,6 +93,10 @@ class HomePageModelV2 {
 
 		modelData.isNewHP = true;
 
+		if (data['adstatistics']) {
+			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
+		}
+
 		return modelData;
 	}
 
@@ -104,13 +113,23 @@ class HomePageModelV2 {
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 		let seo = new SeoModel(modelData.bapiHeaders);
+		let adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder();
+
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
 				// user specific parameters are passed here, such as location lat/long
 				let cardParams = {};
 				if (cardName === 'trendingCard') {
-					cardParams.geo = modelData.geoLatLngObj;
+					// Check if there is no searchLocIdCookie, then send in lat/long
+					if ((typeof this.searchLocIdCookie === 'undefined') || (this.searchLocIdCookie === null)) {
+						cardParams.geo = modelData.geoLatLngObj;
+					} else {
+						// Check if searchLocIdCookie is not the root location, then send in lat/long
+						if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+							cardParams.geo = modelData.geoLatLngObj;
+						}
+					}
 				}
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
@@ -171,7 +190,7 @@ class HomePageModelV2 {
 		// when we don't have a geoCookie, we shouldn't make the call
 		if (modelData.geoLatLngObj) {
 			this.dataPromiseFunctionMap.locationlatlong = () => {
-				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj, false).then((data) => {
 					return data;
 				}).fail((err) => {
 					console.warn(`error getting locationlatlong data ${err}`);
@@ -185,6 +204,15 @@ class HomePageModelV2 {
 				return data[0].keywords || {};
 			}).fail((err) => {
 				console.warn(`error getting topSearches data ${err}`);
+				return {};
+			});
+		};
+
+		this.dataPromiseFunctionMap.adstatistics = () => {
+			return adstatistics.resolveAllPromises().then((data) => {
+				return data[0];
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
 				return {};
 			});
 		};

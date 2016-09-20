@@ -111,8 +111,16 @@ body {
 		}
 
 		select {
-			text-indent: 1%;
+			// this is for firefox only.  percentage text indent is bigger
+			// on firefox than chrome/safari etc.
+			@-moz-document url-prefix() {
+				text-indent: 1% !important;
+			}
+
+			text-indent: 2%;
+
 			padding: 0 !important;
+			border-radius: 0;
 		}
 
 		.choose-category-button {
@@ -220,7 +228,7 @@ body {
 			label {
 				text-transform: uppercase;
 				width: $labelWidth;
-				margin: 0 $labelMargin;
+				margin: 0 0 0 $labelMargin;
 				font-size: 10px;
 				color: $formLabelTextColor;
 				display: inline-block; // this fixes text wrapping on smaller devices
@@ -251,7 +259,11 @@ body {
 			margin-left: $inputMargin;
 			resize: none;
 			width: $inputWidth;
-			padding: 0 2%;
+			padding: 0 calc(2% - 1px);
+		}
+
+		.form-ad-title .input-wrapper input {
+			width: $inputWidth !important;
 		}
 
 		.input-wrapper {
@@ -268,7 +280,7 @@ body {
 			input[type="text"], input[type="date"], .location-link, select {
 				width: $inputFieldWidth;
 				margin: 0 $inputMargin;
-				padding: 0 2%;
+				padding: 0 calc(2% - 1px);
 
 				border: 1px solid $vivaBlack;
 
@@ -290,12 +302,12 @@ body {
 			// overriding webshims styles to properly place button
 			.input-buttons {
 				position: absolute;
-				right: 7%;
+				right: 45%;
 				top: 25%;
 			}
 
 			div.location-link {
-				padding: 3.5px 2%;
+				padding: 3.5px calc(2% - 1px);
 			}
 
 			select {
@@ -344,7 +356,7 @@ body {
 			}
 
 			.btn-area-inner {
-				width: 88%;
+				width: 84%;
 				margin: 0 auto;
 			}
 		}

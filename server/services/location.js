@@ -44,7 +44,7 @@ LocationService.prototype.getTopL2LocationsData = function(bapiHeaders) {
 /**
  * Gets a list of locations from Lat/Lng
  */
-LocationService.prototype.getLatLongResults = function (bapiHeaders, geoLatLngObj) {
+LocationService.prototype.getLatLongResults = function (bapiHeaders, geoLatLngObj, checkLeafLocations) {
 	// because the code leading up to the promise could fail, wrap it in fcall so the caller will see a failed promise
 	return Q.fcall(() => {
 		if (!geoLatLngObj) {
@@ -55,7 +55,7 @@ LocationService.prototype.getLatLongResults = function (bapiHeaders, geoLatLngOb
 		}
 
 		this.bapiOptions.methods = 'GET';
-		this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLatLngObj.lat + '/' + geoLatLngObj.lng;
+		this.bapiOptions.path = config.get('BAPI.endpoints.locationHomePage') + '/' + geoLatLngObj.lat + '/' + geoLatLngObj.lng + '?isLeaf=' + checkLeafLocations;
 
 		return require('./bapi/bapiPromiseGet')(this.bapiOptions, bapiHeaders, 'locationLatLong');
 	});

@@ -17,7 +17,7 @@ describe('Location Api', () => {
 		specHelper.verifyMockEndpointsClean();
 	});
 
-	it('should return a location for a lat long (from cookie)', (done) => {
+	it('should return a location for a lat long (from cookie)', () => {
 
 		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
@@ -37,11 +37,11 @@ describe('Location Api', () => {
 
 					expect(jsonResult.localizedName).toBe(responseFile.localizedName);
 				})
-				.end(specHelper.finish(done));
+				.end(specHelper.finish());
 		});
 	});
 
-	it('should return a location for a lat long (using query parameters)', (done) => {
+	it('should return a location for a lat long (using query parameters)', () => {
 
 		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
@@ -60,7 +60,7 @@ describe('Location Api', () => {
 
 					expect(jsonResult.localizedName).toBe(responseFile.localizedName);
 				})
-				.end(specHelper.finish(done));
+				.end(specHelper.finish());
 		});
 	});
 

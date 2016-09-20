@@ -4,7 +4,7 @@
 			"host": "api.bolt.ebayclassifieds.com.phx.ops.prod.bt.ecg.so",
 			"port": 80,
 			"parameters": null,
-			"timeout": 1000
+			"timeout": 2000
 		},
 		"endpoints": {
 			"categoryHomePage": "/v1/categories",
@@ -66,7 +66,7 @@
 		"server": {
 			"host": "securelatam.classistatic.com",
 			"port": null,
-			"version": "2.0.120"
+			"version": "2.0.121"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",
@@ -81,6 +81,6 @@
 	},
 	"abTest": {
 		"type": "google",
-		"experimentId": ""
+		"experimentId": "93878906-31"
 	}
 }

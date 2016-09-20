@@ -37,6 +37,7 @@
 	"picture.description.too.long": "La descripción de la imagen es demasiado larga",
 	"currencyNotValid": "La moneda no es válida",
 	"searchbar.locationDisplayname.prefix": "Todo %s",
+	"country.all": "Todo ",
 	"onetouch.cardinfo": "%s terminación %s",
 	"onetouch.confirm": "Confirmar",
 	"onetouch.paynow": "Paga ahora con un clic y confirma",
@@ -1235,6 +1236,7 @@
 		"close": "Cerrar",
 		"buttonText": "Confirmar",
 		"message": "Cambia tu Ubicación",
+		"placeholderText": "Escribe una ubicación",
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
@@ -1242,7 +1244,7 @@
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",
 		"trending": "Ofertas",
-		"goods": "Categor\u00EDas",
+		"goods": "Hogar y m\u00E1s",
 		"realEstate": "Bienes Ra\u00EDces",
 		"jobs": "Empleos"
 	},
@@ -1293,7 +1295,7 @@
 			"register": "Registrarse",
 			"close": "Cerrar",
 			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
-			"termsAndConditions": "Tèrminos v Condiciones",
+			"termsAndConditions": "Términos v Condiciones",
 			"legal2": "y reconozco que que he leído las Notificaciones de",
 			"privacy": "Privacidad",
 			"and": "y",
@@ -1366,7 +1368,7 @@
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
-				"helplink": "https://ayuda.vivanuncios.com.mx/MX/",
+				"helplink": "https://ayuda.vivanuncios.com.mx",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar",
@@ -1424,7 +1426,7 @@
 			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
 			"selectPrompt": "Select a Category Below",
 			"save": "Guardar",
-			"rootLabel": "Categorias"
+			"rootLabel": "Categorías"
 		}
 	},
 	"adStats": {
