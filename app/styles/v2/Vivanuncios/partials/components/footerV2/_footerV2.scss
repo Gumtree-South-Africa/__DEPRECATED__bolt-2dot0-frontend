@@ -3,6 +3,7 @@
 	overflow-x: hidden;
 	background-color: black;
 	color: white;
+	position: relative;
 
 	.meet-team {
 		text-align: center;
@@ -117,8 +118,10 @@
 	.footer-download {
 		width: 100%;
 		@include from-breakpoint($medium-break) {
-			float: right;
 			width: 40%;
+			position: absolute;
+			right: 0;
+			bottom: 40px;
 		}
 		text-align: center;
 	}
