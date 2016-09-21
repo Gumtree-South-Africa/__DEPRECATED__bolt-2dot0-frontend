@@ -14,7 +14,7 @@ class SpinnerModal {
 			setTimeout(() => {
 				completionCb();
 				this.hideModal();
-			}, 300);
+			}, 600);
 		}
 	}
 
