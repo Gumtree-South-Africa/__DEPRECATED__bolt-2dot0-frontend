@@ -35,10 +35,11 @@ class HomePageModelV2 {
 		this.dataPromiseFunctionMap = {};
 		this.bapiConfigData = this.res.locals.config.bapiConfigData;
 
-		this.useGeo = false;
 		let searchLocIdCookieName = 'searchLocId';
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
 		this.locationdropdown = this.res.locals.config.locationdropdown;
+
+		this.useGeo = false;
 		// Check if there is no searchLocIdCookie, then send in lat/long
 		if ((typeof this.searchLocIdCookie === 'undefined') || (this.searchLocIdCookie === null)) {
 			this.useGeo = true;
@@ -132,7 +133,6 @@ class HomePageModelV2 {
 				let cardParams = {};
 				if (cardName === 'trendingCard') {
 					cardParams.geo = (this.useGeo === true) ? modelData.geoLatLngObj : null;
-					console.log('cardparams : ', cardParams.geo);
 				}
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
