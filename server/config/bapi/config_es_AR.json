@@ -99,7 +99,7 @@
 	"bapi" : {
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "gallery", "seo"]
+				"models" : ["keyword", "adstatistics", "gallery", "seo"]
 			},
 			"mobile" 	: {
 				"models" : ["keyword", "adstatistics", "seo"]
