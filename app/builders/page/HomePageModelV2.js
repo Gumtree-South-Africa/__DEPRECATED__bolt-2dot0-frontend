@@ -41,7 +41,7 @@ class HomePageModelV2 {
 
 		this.useGeo = false;
 		// Check if there is no searchLocIdCookie, then send in lat/long
-		if ((typeof this.searchLocIdCookie === 'undefined') || (this.searchLocIdCookie === null)) {
+		if ((typeof this.searchLocIdCookie === 'undefined') || _.isEmpty(this.searchLocIdCookie)) {
 			this.useGeo = true;
 		} else {
 			// Check if searchLocIdCookie is not the root location, then send in lat/long
