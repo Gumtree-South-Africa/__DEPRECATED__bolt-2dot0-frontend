@@ -121,6 +121,7 @@ class HomePageModelV2 {
 				// user specific parameters are passed here, such as location lat/long
 				let cardParams = {};
 				if (cardName === 'trendingCard') {
+					cardParams.geo = null;
 					// Check if there is no searchLocIdCookie, then send in lat/long
 					if ((typeof this.searchLocIdCookie === 'undefined') || (this.searchLocIdCookie === null)) {
 						cardParams.geo = modelData.geoLatLngObj;
