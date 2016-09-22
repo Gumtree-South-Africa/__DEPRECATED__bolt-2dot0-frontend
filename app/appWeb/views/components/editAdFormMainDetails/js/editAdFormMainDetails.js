@@ -1,6 +1,7 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
@@ -62,7 +63,7 @@ let _setupPolyfillForm = () => {
 	let shimDefJSON = {
 		debug: false,
 		waitReady: false,
-		types: 'date number',
+		types: 'date',
 		date: {
 			replaceUI: 'auto',
 			startView: 2,
@@ -119,18 +120,20 @@ let _setHiddenLocationInput = (location) => {
 
 let _successCallback = (response) => {
 	formChangeWarning.disable();
-	if (response.redirectLink.previp) {
-		window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
-	} else {
-		window.location.href = response.redirectLink.vip;
-	}
+	spinnerModal.completeSpinner(() => {
+		if (response.redirectLink.previp) {
+			window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
+		} else {
+			window.location.href = response.redirectLink.vip;
+		}
+	});
 };
 
 let _markValidationError = ($input, $accumlator) => {
 	$input.addClass('validation-error');
-	$input.on('change', () => {
+	$input.on('click', () => {
 		$input.removeClass('validation-error');
-		$input.off('change');
+		$input.off('click');
 	});
 
 	if (!$accumlator) {
@@ -146,12 +149,17 @@ let _failureCallback = (error) => {
 	let $failedFields, $highestFailure, scrollTo;
 	this.$submitButton.removeClass('disabled');
 	this.$submitButton.attr('disabled', false);
+	spinnerModal.hideModal();
 	if (error.status === 400) {
 		let responseText = JSON.parse(error.responseText || '{}');
 
 		if (responseText.hasOwnProperty("schemaErrors")) {
 			responseText.schemaErrors.forEach((schemaError) => {
 				let $input = $(`[data-schema="${schemaError.field}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
 				// filtering out collision with meta tags
 				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
@@ -159,6 +167,10 @@ let _failureCallback = (error) => {
 		} else if (responseText.hasOwnProperty("bapiValidationFields")) {
 			responseText.bapiValidationFields.forEach((attrName) => {
 				let $input = $(`[name="${attrName}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
 				// filtering out collision with meta tags
 				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
@@ -237,6 +249,8 @@ let _ajaxEditForm = () => {
 			"amount": Number(serialized.amount)
 		};
 	}
+
+	spinnerModal.showModal();
 
 	$.ajax({
 		url: '/api/edit/update',
@@ -356,6 +370,7 @@ let initialize = () => {
 	$(document).ready(onReady);
 
 	formChangeWarning.initialize();
+	spinnerModal.initialize();
 };
 
 module.exports = {

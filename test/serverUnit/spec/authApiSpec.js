@@ -34,12 +34,8 @@ describe('Authentication Api', () => {
 		it('should login the user', (done) => {
 
 			specHelper.registerMockEndpoint(
-				`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
-				'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
-
-			specHelper.registerMockEndpoint(
-				`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
-				'test/serverUnit/mockData/postAd/postAdResponse.json');
+				`${endpoints.authLogin}?_forceExample=true&_statusCode=200`,
+				'test/serverUnit/mockData/auth/loginResponse.json');
 
 			boltSupertest('/api/auth/login', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 				supertest
@@ -267,6 +263,11 @@ describe('Authentication Api', () => {
 	describe('register', () => {
 
 		it('should register the user', (done) => {
+
+			specHelper.registerMockEndpoint(
+				`${endpoints.authRegister}?_forceExample=true&_statusCode=200`,
+				'test/serverUnit/mockData/auth/registerResponse.json');
+
 
 			boltSupertest('/api/auth/register', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 				supertest

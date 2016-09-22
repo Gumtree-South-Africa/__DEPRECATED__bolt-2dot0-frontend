@@ -56,8 +56,6 @@ router.post('/login', cors, (req, res) => {
 		return;
 	});
 
-
-	res.send({ success: true }).end();
 });
 
 // route is /api/auth/register
@@ -78,7 +76,7 @@ router.post('/register', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	model.authModel = new AuthModel(model.bapiHeaders);
-	model.authModel.login(req.body).then(() => {
+	model.authModel.register(req.body).then(() => {
 
 		// not setting expires or age so it will be a "session" cookie
 		res.cookie('bt_auth', 'cookievalue', { httpOnly: true });

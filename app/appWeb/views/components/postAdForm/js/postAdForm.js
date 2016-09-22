@@ -1,5 +1,6 @@
 'use strict';
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 let _bindEvents = () => {
 	this.$priceInput.on('keydown', (e) => {
@@ -63,6 +64,7 @@ let initialize = () => {
 	});
 
 	formChangeWarning.initialize();
+	spinnerModal.initialize();
 
 	this.$priceInput = $('#price-input');
 	_bindEvents();
