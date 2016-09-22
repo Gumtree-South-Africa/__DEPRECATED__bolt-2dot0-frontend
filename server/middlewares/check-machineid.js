@@ -16,7 +16,7 @@ module.exports = function() {
 
 			// Set back in cookie
 			res.clearCookie(machguidCookieName);
-			res.cookie(machguidCookieName, machguidCookie, {maxAge: 1000 * 60 * 60 * 24 * 365, httpOnly: true});
+			res.cookie(machguidCookieName, machguidCookie, {maxAge: 1000 * 60 * 60 * 24 * 365, httpOnly: false});
 		}
 
 		// Set in request context
