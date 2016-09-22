@@ -3,13 +3,12 @@
     <envs>
       <env name="NODE_ENV" value="vm" />
       <env name="PORT" value="8000" />
-      <env name="SSL_PORT" value="8443" />
+      <env name="SSL_PORT" value="7443" />
       <env name="BASEDOMAINSUFFIX" value="localhost" />
       <env name="NODE_CONFIG_DIR" value="./server/config" />
     </envs>
-    <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
-      <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
+      <profiling allow-runtime-heap-snapshot="true" log-folder="test/profiling" do-profile="true" v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
     </EXTENSION>
     <method />
   </configuration>

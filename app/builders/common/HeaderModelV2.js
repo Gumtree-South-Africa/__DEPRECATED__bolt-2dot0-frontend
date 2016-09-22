@@ -26,9 +26,7 @@ class HeaderModel {
 		this.res = res;
 
 		let searchLocIdCookieName = 'searchLocId';
-		let searchLocNameCookieName = 'searchLocName';
 		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
-		this.searchLocNameCookie = req.cookies[searchLocNameCookieName];
 		this.locationIdNameMap = res.locals.config.locationIdNameMap;
 		// Local variables
 		this.secure = secure;
@@ -110,22 +108,13 @@ class HeaderModel {
 
 				let promises = [];
 				// If locationCookie present, set id and name in model
-				if ((typeof this.searchLocIdCookie !== 'undefined') && (this.searchLocIdCookie !== null)) {
+				if ((typeof this.searchLocIdCookie !== 'undefined') && !_.isEmpty(this.searchLocIdCookie)) {
 					data.cookieLocationId = this.searchLocIdCookie;
 
-					let locationNameFromCookie = null;
-					if( (typeof this.searchLocNameCookie !== 'undefined') && (this.searchLocNameCookie !== null)) {
-						locationNameFromCookie = unescape(JSON.parse('"' + this.searchLocNameCookie + '"'));
-					}
-
 					if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
-						data.cookieLocationName = (locationNameFromCookie === null) ?
-							this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value) :
-							this.i18n.__('searchbar.locationDisplayname.prefix', locationNameFromCookie);
+						data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
 					} else {
-						data.cookieLocationName = (locationNameFromCookie === null) ?
-							(this.locationIdNameMap[data.cookieLocationId] || '') :
-							(locationNameFromCookie || '');
+						data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
 					}
 
 					let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);

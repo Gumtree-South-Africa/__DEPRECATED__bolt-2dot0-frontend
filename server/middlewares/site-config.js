@@ -4,6 +4,7 @@ module.exports = function(app) {
 	return function(req, res, next) {
 		// send site information along
 		res.locals.config = {};
+		res.locals.config.devMode = app.locals.devMode;
 		res.locals.config.name = app.locals.config.name;
 		res.locals.config.locale = app.locals.config.locale;
 		res.locals.config.country = app.locals.config.country;

@@ -21,7 +21,7 @@ let postAdData = {
 		modelData.header.pageTitle = modelData.seo.pageTitle;
 		modelData.header.metaDescription = modelData.seo.description;
 		modelData.header.metaRobots = modelData.seo.robots;
-		modelData.header.canonical = modelData.header.homePageUrl;
+		modelData.header.canonical = modelData.header.homePageUrl + "/post";
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.min.css');
