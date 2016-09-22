@@ -82,7 +82,7 @@ let _dequeue = (url) => {
 
 let simulateTextInput = ($input, text) => {
 	$input.val(text);
-	$input.trigger("input").trigger("keyup").focus();
+	$input.input().keyup().focus().change();
 };
 
 let setCookie = (cookieName, cookieValue) => {

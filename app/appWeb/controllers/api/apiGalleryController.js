@@ -7,6 +7,7 @@ let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
 let CardsModel = require(process.cwd() + '/app/builders/common/CardsModel');
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(process.cwd() + '/modules/cors');
+let logger = require(`${cwd}/server/utils/logger`);
 
 //todo: get rid of this route (or replace it with /cards below) once V1 homepage is no longer in use
 router.get('/', cors, function(req, res) {
@@ -42,7 +43,7 @@ router.get('/', cors, function(req, res) {
 
 		res.send(galleryData);
 	}).fail(function(err) {
-		err.logError();
+		logger.logError(err);
 		res.send(galleryData); // not modifying this to return the status code of bapi because its used for v1
 	});
 });
@@ -104,7 +105,7 @@ router.get('/card', cors, (req, res) => {
 		result.config = model.cardsModel.getTemplateConfigForCard("galleryCard");
 		res.status(200).send(result);
 	}).fail((err) => {
-		let bapiInfo = err.logError();
+		let bapiInfo = logger.logError(err);
 		res.status(err.statusCode ? err.statusCode : 500).send({
 			error: "unable to get gallery data, see logs for details",
 			bapiInfo: bapiInfo
