@@ -93,7 +93,7 @@ router.post('/update', cors, (req, res) => {
 		if (error && error.bapiJson) {
 			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
 		}
-		let bapiJson = logger.logError(err);
+		let bapiJson = logger.logError(error);
 		res.status(error.getStatusCode(500)).json({
 			error: "error updating ad, see logs for details",
 			bapiJson: bapiJson,

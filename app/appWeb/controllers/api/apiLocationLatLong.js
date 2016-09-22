@@ -2,10 +2,10 @@
 
 let express = require('express');
 let router = express.Router();
-
-let LocationModel = require(process.cwd() + '/app/builders/common/LocationModel');
-let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
-let cors = require(process.cwd() + '/modules/cors');
+let cwd = process.cwd();
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let cors = require(cwd + '/modules/cors');
 let logger = require(`${cwd}/server/utils/logger`);
 
 // route is /api/locate/locationlatlong

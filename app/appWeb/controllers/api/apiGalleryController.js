@@ -3,10 +3,11 @@
 
 let express = require('express'), router = express.Router(), Q = require('q');
 
-let GalleryModel = require(process.cwd() + '/app/builders/common/GalleryModel');
-let CardsModel = require(process.cwd() + '/app/builders/common/CardsModel');
-let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
-let cors = require(process.cwd() + '/modules/cors');
+let cwd = process.cwd();
+let GalleryModel = require(cwd + '/app/builders/common/GalleryModel');
+let CardsModel = require(cwd + '/app/builders/common/CardsModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let cors = require(cwd + '/modules/cors');
 let logger = require(`${cwd}/server/utils/logger`);
 
 //todo: get rid of this route (or replace it with /cards below) once V1 homepage is no longer in use
