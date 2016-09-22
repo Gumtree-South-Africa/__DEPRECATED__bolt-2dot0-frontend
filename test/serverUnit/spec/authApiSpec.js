@@ -5,7 +5,7 @@ let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoin
 let loginRequest = require('../../serverUnit/mockData/auth/loginRequest.json');
 let registerRequest = require('../../serverUnit/mockData/auth/registerRequest.json');
 
-fdescribe('Authentication Api', () => {
+describe('Authentication Api', () => {
 	beforeEach(() => {
 		specHelper.verifyMockEndpointsClean();
 	});
@@ -274,7 +274,7 @@ fdescribe('Authentication Api', () => {
 					.expect('Content-Type', 'application/json; charset=utf-8')
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						let jsonResult = JSON.parse(res.text);
+						// let jsonResult = JSON.parse(res.text);
 						// console.log(JSON.stringify(jsonResult, null, 4));
 
 						// no json data, but the cookie coming back from this call, unless there is an error
@@ -295,7 +295,7 @@ fdescribe('Authentication Api', () => {
 					.expect('Content-Type', 'application/json; charset=utf-8')
 					.expect((res) => {
 						expect(res.status).toBe(400);
-						// let jsonResult = JSON.parse(res.text);
+						let jsonResult = JSON.parse(res.text);
 						// console.log(JSON.stringify(jsonResult, null, 4));
 						expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
 
