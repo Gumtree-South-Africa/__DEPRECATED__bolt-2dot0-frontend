@@ -213,6 +213,14 @@
 			"mobile" 	: {
 				"models" : ["locationlatlong", "adResult", "seo"]
 			}
+		},
+		"LoginPage": {
+			"desktop": {
+				"models": ["seo"]
+			},
+			"mobile": {
+				"models": ["seo"]
+			}
 		}
 	}
 }
