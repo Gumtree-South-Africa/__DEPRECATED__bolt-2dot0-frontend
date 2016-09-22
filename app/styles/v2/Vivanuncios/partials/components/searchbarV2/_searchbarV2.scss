@@ -93,7 +93,8 @@ $mobileTextboxWidth: 84%;
 		.search-wrap {
 			float: left;
 			width: 82%;
-			height: calc(100% - 2px);
+			box-sizing: border-box;
+			height: 100%;
 			border: 1px solid $searchBarTextBoxBorder;
 			@include border-top-left-radius(0.25em);
 			@include border-bottom-left-radius(0.25em);

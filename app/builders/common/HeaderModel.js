@@ -103,7 +103,7 @@ class HeaderModel {
 				}
 
 				// If locationCookie present, set id and name in model
-				if (typeof this.searchLocIdCookie !== 'undefined') {
+				if ((typeof this.searchLocIdCookie !== 'undefined') && !_.isEmpty(this.searchLocIdCookie)) {
 					data.cookieLocationId = this.searchLocIdCookie;
 
 					if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
