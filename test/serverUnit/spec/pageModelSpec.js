@@ -34,7 +34,7 @@ describe('Page Models', () => {
 			spyOn(abstractPageModel, 'logConfigError').and.callFake((string) => {
 				errorStrings.splice(errorStrings.indexOf(string), 1);
 			});
-			abstractPageModel.getArrFunctionPromises(null, null, {}, homePageConfig);
+			abstractPageModel.getArrFunctionPromises(req, res, {}, homePageConfig);
 			expect(errorStrings.length).toBe(0);
 			done();
 		});
@@ -59,7 +59,7 @@ describe('Page Models', () => {
 			functionMap[homePageConfig[1]] = () => { };
 			functionMap[homePageConfig[2]] = () => { };
 
-			abstractPageModel.getArrFunctionPromises(null, null, functionMap, homePageConfig);
+			abstractPageModel.getArrFunctionPromises(req, res, functionMap, homePageConfig);
 
 			expect(errorStringsZk.length).toBe(3);
 			expect(errorStringsModel.length).toBe(3);
