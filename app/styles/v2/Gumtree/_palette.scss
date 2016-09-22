@@ -1,0 +1,41 @@
+// -------------------------------------------------- //
+// Vars containing color codes should be in this file //
+// -------------------------------------------------- //
+
+//Primary Color
+$vivaBlack: #333333;
+$vivaWhite: #FFFFFF;
+$vivaOrange: #FF9800;
+// gray  palette colors
+$vivaGray1: #747474;    // todo: where did this come from?
+$vivaGray2: #EBEBEB;    // defined for use in home page
+$vivaGray3: #8E8E93;    // defined for the home page app download card
+$vivaGray4: #f7f7f7;    // defined for use in card backgrounds
+$vivaGray5: #E8E6E6;    // defined for use in all tips
+$vivaGray6: #C6C6C6;    // defined for use in border around header menu dropdowns
+$vivaGray7: #F0F0F0;    // defined for use in menu header item separators
+$vivaGray8: #F8F8F8;
+$vivaGray9: #FAFAFA;	// defined for use in postAd page as background color
+$vivaGray10: #808080;	// defined for use on postAd page as secondary text color
+$vivaGray11: #A6A6AB; // defined as dividers on edit ad page
+
+
+$vivaGreen1: #87BC1C;    // defined for the "featured" Ad tile
+
+$vivaBlue: #1E98D5;     // defined for use as frequently used blue color on home page
+$vivaBlue2: #0B96D7;
+$vivaBlue3: #478BCD;	// defined for use in login modal links
+$vivaBlue4: #4990E2;	// defined for use in postAdHeader and photoCarousel max photos message
+$vivaBlue6: #196ED2;	// defined for use in 'Get the App' card
+$vivaBlue7: #478BCD;
+
+$vivaRed: red;
+
+/* latin-ext */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format("truetype");
+}
+

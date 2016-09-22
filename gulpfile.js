@@ -50,7 +50,7 @@ function errorlog(err) {
 	this.emit('end');
 }
 
-let webpackTasks =  getTask('webpack');
+//let webpackTasks =  getTask('webpack');
 
 // STAND ALONE TASKS
 gulp.task('bundlejs', getTask('bundlejs'));
@@ -69,18 +69,18 @@ gulp.task('jsonlint', getTask('jsonlint'));
 gulp.task('prop2json', getTask('prop2json'));
 gulp.task('eslint', getTask('eslint'));
 gulp.task('watch', getTask('watch'));
-gulp.task('webpack', webpackTasks);
-gulp.task('webpack:rui', webpackTasks);
+//gulp.task('webpack', webpackTasks);
+//gulp.task('webpack:rui', webpackTasks);
 gulp.task('svgSprite', getTask('svgSprite'));
 gulp.task('svgFallback', getTask('svgFallback'));
-gulp.task('webpackPrepare', getTask('webpackPrepare'));
+//gulp.task('webpackPrepare', getTask('webpackPrepare'));
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
 
 // BUILD
 
-gulp.task('build', ['set-env', 'eslint', 'webpack', 'svgSprite', 'svgFallback', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
+gulp.task('build', ['set-env', 'eslint', 'svgSprite', 'svgFallback', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
 gulp.task('icons', getTask('icons'));
 
