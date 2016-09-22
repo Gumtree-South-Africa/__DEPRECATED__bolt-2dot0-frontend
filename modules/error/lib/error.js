@@ -11,6 +11,7 @@ var util = require('util'),
     str = require('string'),
     displayError = require('./displayError'),
     stringUtl = require('string');
+let config = require('config');
 
 
 module.exports = function(app) {
@@ -36,7 +37,11 @@ module.exports = function(app) {
                 console.error(err);
                 res.status(404).json({status:404, message: 'Invalid API'});
             } else {
-                displayError.message(req, res, next);
+				if (res.locals.b2dot0Version) {
+					errorVersionTwo(err, req, res);
+				} else {
+					displayError.message(req, res, next);
+				}
             }
 
         }
@@ -57,12 +62,47 @@ module.exports = function(app) {
                 console.error(err);
                 res.status(500).json({status:500, message: 'server error', type:'internal'});
             } else {
-                displayError.message(req, res, next);
+            	if (res.locals.b2dot0Version) {
+					errorVersionTwo(err, req, res);
+				} else {
+					displayError.message(req, res, next);
+				}
             }
 
         }
 
     };
+};
+
+let errorVersionTwo = (err, req, res) => {
+	let errNum = res.locals.err.status,
+		errMsg;
+	if (errNum === 404 || errNum === 500  || errNum === 410) {
+		errMsg = "error" + parseInt(errNum, 10) + ".message";
+	} else {
+		errMsg = "";
+	}
+
+	let modelData =
+	{
+		env: 'public',
+		locale: res.locals.config.locale,
+		country: res.locals.config.country,
+		site: res.locals.config.name,
+		pagename: req.pagetype,
+		err: errMsg,
+		requestId: req.app.locals.requestId
+	};
+	let brandName = res.locals.config.name;
+	let country = res.locals.config.country;
+	let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
+	let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
+	let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+	modelData.baseImageUrl = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseImageUrl')}`;
+	modelData.cssPath = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseCSSUrl')}v2/${brandName}/${country}/${modelData.locale}/ErrorPage.css`;
+	modelData.font = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseUrl')}`;
+
+	return res.render(`errorV2/views/hbs/errorV2_${modelData.locale}`, modelData);
 };
 
 
