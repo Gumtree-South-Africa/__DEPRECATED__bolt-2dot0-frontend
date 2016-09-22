@@ -1,5 +1,7 @@
 'use strict';
 
+let loginForm = require("app/appWeb/views/components/loginForm/js/loginForm.js");
+
 let _checkConsent = (e) => {
 	if (!this.hasConsented) {
 		this.$consentError.removeClass('invisible');
@@ -21,6 +23,7 @@ let initialize = () => {
 	});
 
 	this.$facebookButton.on('click', _checkConsent);
+	loginForm.initialize();
 };
 
 module.exports = {

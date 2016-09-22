@@ -82,7 +82,7 @@ let _dequeue = (url) => {
 
 let simulateTextInput = ($input, text) => {
 	$input.val(text);
-	$input.trigger("input").trigger("keyup").focus();
+	$input.trigger("input").trigger("keyup").focus().change();
 };
 
 let setCookie = (cookieName, cookieValue) => {
@@ -162,7 +162,11 @@ beforeEach(() => {
 		}
 		if (ajaxInfo.options) {
 			if (ajaxInfo.options.fail) {
-				options.error(ajaxInfo.returnData);
+				debugger;
+				let err = new Error();
+				err.responseText = JSON.stringify(ajaxInfo.returnData);
+				err.statusCode = ajaxInfo.options.statusCode || 500;
+				options.error(err);
 			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {
 					let successCallback = (ajaxInfo.success) ? ajaxInfo.success : options.success;

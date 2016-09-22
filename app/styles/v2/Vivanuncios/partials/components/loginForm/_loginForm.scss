@@ -1,0 +1,56 @@
+.login-form {
+	.facebook-button {
+		background-color: blue;
+		width: 250px;
+		height: 35px;
+		margin-top: 40px;
+	}
+
+	.divider {
+		border-bottom: 1px solid grey;
+		margin: 30px auto;
+		width: 300px;
+	}
+
+	.sign-in-section {
+		height: 150px;
+		overflow-y: hidden;
+
+		&.open {
+			input[type="password"] {
+				height: 30px;
+			}
+		}
+
+		input[type="email"], input[type="password"] {
+			width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+
+			&.validation-error {
+				border-color: $vivaOrange;
+			}
+		}
+
+		input[type="email"] {
+			margin-bottom: 20px;
+			height: 30px;
+		}
+
+		input[type="password"] {
+			transition: 0.7s height;
+			height: 0;
+		}
+
+		button {
+			width: 80%;
+			margin-top: 20px;
+			height: 35px;
+			color: white;
+			background-color: $vivaOrange;
+			margin-left: auto;
+			margin-right: auto;
+			border: 0;
+		}
+	}
+}

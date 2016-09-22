@@ -1,16 +1,22 @@
 .login-modal {
+	overflow-y: hidden;
 	position: absolute;
-	top: 0;
+	top: 50%;
 	left: 0;
 	right: 0;
-	bottom: 0;
-	height: 350px;
+	margin: auto;
+	transform: translateY(-50%);
+	transition: 1.3s height;
+	height: 175px;
 	width: 85%;
 	max-width: 400px;
-	margin: auto;
 	background: white;
 	text-align: center;
 	z-index: 10;
+
+	&.open {
+		height: 300px;
+	}
 
 	.consent-error {
 		left: 0;
