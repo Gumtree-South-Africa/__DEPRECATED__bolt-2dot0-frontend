@@ -13,7 +13,8 @@ module.exports = function watch(gulp, plugins) {
 		Server = require('karma').Server,
 		webpack = require("webpack"),
 		flatten = require("gulp-flatten"),
-		del = require("del");
+		del = require("del"),
+		fs = require("fs-extra");
 
 	let coverage = false,
 		ciMode = false,
@@ -75,8 +76,10 @@ module.exports = function watch(gulp, plugins) {
 
 
 		gulp.task('karma', function(done) {
+			fs.copySync(__dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`, 'karma.temp.conf.js');
+
 			new Server({
-				configFile: __dirname + `/../test/clientUnit/karmaConfig/karma.${browser}.conf.js`,
+				configFile: `${__dirname}/../karma.temp.conf.js`,
 				singleRun: !ciMode
 			}, (exitStatus) => {
 				let exitText = exitStatus ? "!!!!!!!CLIENT_UNIT TESTS ARE FAILING, test is unstable" : undefined;

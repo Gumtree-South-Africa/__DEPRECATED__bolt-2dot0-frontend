@@ -127,4 +127,5 @@ node_modules
 
 public/js/precompTemplates.js
 
-test/coverage/**/*.js
+test/**/coverage/**/*.js
+

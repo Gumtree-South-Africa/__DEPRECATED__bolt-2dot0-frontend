@@ -58,6 +58,7 @@ logs
 dist
 test/clientUnit/SpecRunnerBundle.js*
 test/clientUnit/helpers/webTemplates.js*
+karma.temp.conf.js
 app/templateStaging/
 app/config/bundling/bundleMap.json
 app/config/bundling/rui/compiled/
