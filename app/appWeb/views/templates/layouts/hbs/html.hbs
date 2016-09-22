@@ -192,13 +192,17 @@
                 {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                    {{#each ignoredRefs}}
-                        _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
-                    {{/each}}
-                    _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
-                    _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
-                    _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
-                    _gaq.push(['siteTracker._trackPageview']);
+
+                    {{#ifeq enableGaTracking compare='true'}}
+					    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
+                        {{#each ignoredRefs}}
+						    _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
+                        {{/each}}
+                        _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
+                        _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
+                        _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
+                        _gaq.push(['siteTracker._trackPageview']);
+                    {{/ifeq}}
 
                     (function() {
                         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

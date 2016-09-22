@@ -33,9 +33,8 @@
                 <label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
             </div>
             <div class="input-wrapper">
-                <input title="amount" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
-                       value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"
-                       type="text"/>
+                <input title="amount" type="number" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
+                       value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"/>
                 <div class="radio-group" data-schema="data.price.currency">
                     <label class="control">
                         <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>

@@ -1,5 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Integration Specs" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" path-to-js-file="node_modules/protractor/built/cli.js" application-parameters="test/integration/protractor.chrome.conf.js --params.baseUrl=http://www.vivanuncios.com.mx.localhost:8000/ --params.debug=true" working-dir="$PROJECT_DIR$">
+    <profiling v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
+    <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
+      <profiling v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
+    </EXTENSION>
     <method />
   </configuration>
 </component>

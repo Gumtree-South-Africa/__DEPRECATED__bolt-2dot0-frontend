@@ -7,9 +7,8 @@
       <env name="BASEDOMAINSUFFIX" value="localhost" />
       <env name="NODE_CONFIG_DIR" value="./server/config" />
     </envs>
-    <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="" />
     <EXTENSION ID="com.jetbrains.nodejs.run.NodeJSProfilingRunConfigurationExtension">
-      <profiling log-folder="test/profiling" do-profile="true" v8-profiler-path="" />
+      <profiling allow-runtime-heap-snapshot="true" log-folder="test/profiling" do-profile="true" v8-profiler-path="$PROJECT_DIR$/node_modules/v8-profiler" />
     </EXTENSION>
     <method />
   </configuration>

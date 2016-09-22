@@ -61,6 +61,7 @@ class AbstractPageModel extends BasePageModel {
 		let bapiConfigData = res.locals.config.bapiConfigData;
 
 		let pageModelConfig = bapiConfigData.bapi[pagetype];
+		this.pageType = pagetype;
 
 		if (typeof pageModelConfig !== 'undefined') {
 			if (deviceDetection.isMobile()) {
@@ -106,6 +107,8 @@ class AbstractPageModel extends BasePageModel {
 	getArrFunctionPromises(req, res, functionMap, pageModelConfig) {
 		let arrFunctions = [this.getCommonDataPromises(req, res)];
 
+		let devMode = res.locals.config.devMode;
+		let locale = res.locals.config.locale;
 		for (let fnLabel of pageModelConfig) {
 			let fn = functionMap[fnLabel];
 			if (fn !== undefined) {
@@ -114,12 +117,12 @@ class AbstractPageModel extends BasePageModel {
 				//Remove it from original functionMap so we can check for ZK/modelbulder inconsistencies
 				delete functionMap[fnLabel];
 			} else {
-				this.logConfigError(`Function: ${fnLabel} found in ZK config but not implemented in model`);
+				this.logConfigError(devMode, `[${this.pageType}, ${locale}] Function: ${fnLabel} found in ZK config but not implemented in model`);
 			}
 		}
 
 		Object.keys(functionMap).forEach((fn) => {
-			this.logConfigError(`Function: ${fn} implemented in model but not found in ZK config, function will not be executed.`);
+			this.logConfigError(devMode, `[${this.pageType}, ${locale}] Function: ${fn} implemented in model but not found in ZK config, function will not be executed.`);
 		});
 
 		return arrFunctions;
@@ -127,10 +130,13 @@ class AbstractPageModel extends BasePageModel {
 
 	/**
 	 * This is a separate function to allow the above method to be tested
+	 * @param devMode
 	 * @param err
 	 */
-	logConfigError(err) {
-		console.error(err);
+	logConfigError(devMode, err) {
+		if (devMode) {
+			console.error(err);
+		}
 	}
 
 	/**

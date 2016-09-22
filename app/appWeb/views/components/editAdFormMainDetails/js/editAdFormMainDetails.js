@@ -63,7 +63,7 @@ let _setupPolyfillForm = () => {
 	let shimDefJSON = {
 		debug: false,
 		waitReady: false,
-		types: 'date number',
+		types: 'date',
 		date: {
 			replaceUI: 'auto',
 			startView: 2,
@@ -131,9 +131,9 @@ let _successCallback = (response) => {
 
 let _markValidationError = ($input, $accumlator) => {
 	$input.addClass('validation-error');
-	$input.on('change', () => {
+	$input.on('click', () => {
 		$input.removeClass('validation-error');
-		$input.off('change');
+		$input.off('click');
 	});
 
 	if (!$accumlator) {
@@ -156,6 +156,10 @@ let _failureCallback = (error) => {
 		if (responseText.hasOwnProperty("schemaErrors")) {
 			responseText.schemaErrors.forEach((schemaError) => {
 				let $input = $(`[data-schema="${schemaError.field}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
 				// filtering out collision with meta tags
 				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
@@ -163,6 +167,10 @@ let _failureCallback = (error) => {
 		} else if (responseText.hasOwnProperty("bapiValidationFields")) {
 			responseText.bapiValidationFields.forEach((attrName) => {
 				let $input = $(`[name="${attrName}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
 				// filtering out collision with meta tags
 				$input = $input.not("meta");
 				$failedFields = _markValidationError($input, $failedFields);
