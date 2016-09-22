@@ -62,6 +62,7 @@ class PostAdPageModel {
 	mapData(modelData, data) {
 		modelData.deferredAd = data.deferredAd;
 		modelData.header = data.common.header || {};
+		modelData.header.canonical = modelData.header.canonical + "/post";
 		modelData.footer = data.common.footer || {};
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
