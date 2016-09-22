@@ -23,7 +23,9 @@
 			"draftAd"			:	"/ads/drafts",
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
-			"categoryAttributes":	"/categories/{catId}/attributes"
+			"categoryAttributes":	"/categories/{catId}/attributes",
+			"authLogin"			:	"/auth/login",
+			"authRegister"		:	"/auth/register"
 	    }
 	},
 	"solr": {
