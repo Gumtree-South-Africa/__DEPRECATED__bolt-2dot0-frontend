@@ -1,0 +1,104 @@
+{{#partial "headerWrapper"}}
+	<style>
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 400;
+			src: url('{{this.font}}fonts/Lato-Regular.ttf') format("truetype");
+		}
+
+		.viewport {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+		}
+
+		.header-wrapper {
+			background: #f7f7f7;
+		}
+
+		@media (min-width: 53em) {
+			.header-wrapper {
+				position: relative
+			}
+		}
+
+		.header-wrapper .headerV2 {
+			position: relative;
+			height: 65px;
+			color: #8E8E93;
+			margin: 0 auto;
+			padding-bottom: 5px;
+			border-bottom: 1px solid #478BCD;
+		}
+
+		.header-wrapper .headerV2 a {
+			color: #8E8E93;
+			text-decoration: none
+		}
+
+		.header-wrapper .headerV2 .logo {
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 0;
+			bottom: 0;
+			margin: 34px auto 11px;
+			display: inline-block;
+			width: 200px;
+			height: 24px;
+			background: url('{{this.baseImageUrl}}es_MX/logo_v2.png') 50% 50% no-repeat;
+			background-size: contain
+		}
+
+		@media (min-width: 53em) {
+			.header-wrapper .headerV2 .logo {
+				margin-left: 40px;
+				margin-top: 23px;
+				height: 100%;
+				top: -18px;
+			}
+		}
+		.error-content {
+			font-family: Lato;
+			color: #b3b3b3;
+			padding: 2em 1em;
+		}
+		p {
+			margin: 0 0 0 1.5em;
+		}
+
+		@media (min-width: 35em) {
+			.error-content {
+				text-align: center;
+				font-size: 1.25em;
+				padding: 5em 0em;
+			}
+		}
+		.request-id {
+			padding-top: 10px;
+		}
+
+	</style>
+
+	<div class="header-wrapper">
+		<div class="headerV2">
+			<a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
+				<div class="logo"></div>
+			</a>
+		</div>
+	</div>
+{{/partial}}
+
+{{#partial "title"}}
+    {{i18n "postAd.unsupportedFileModal.error"}}
+{{/partial}}
+{{#partial "content"}}
+	<div class="error-content">{{i18n this.err "/" }}
+		<div class="request-id">({{this.requestId}})</div>
+	</div>
+{{/partial}}
+
+{{#partial "footerWrapper"}}{{/partial}}
