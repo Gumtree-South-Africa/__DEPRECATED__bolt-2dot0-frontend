@@ -2,5 +2,5 @@
 	<label for="{{this.name}}">{{this.localizedName}}</label>
 </div>
 <div class="input-wrapper">
-    <input type="{{#if this.allowedValueType}}{{this.allowedValueType}}{{else}}text{{/if}}" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
+    <input type="{{#compare this.allowedValueType "===" "NUMBER"}}{{this.allowedValueType}}{{else}}text{{/compare}}" name="{{this.name}}" data-validation="{{this.allowedValueType}}" value="{{lookup parent.adResult.attributeValues this.name}}"/>
 </div>
