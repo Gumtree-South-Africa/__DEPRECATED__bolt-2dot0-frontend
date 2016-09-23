@@ -42,4 +42,12 @@
 		width: 941px;
 		margin: auto;
 	}
+
+	//-----------
+
+	.footer-links{
+		.menu-category:first-child span{
+			text-transform: uppercase;
+		}
+	}
 }
