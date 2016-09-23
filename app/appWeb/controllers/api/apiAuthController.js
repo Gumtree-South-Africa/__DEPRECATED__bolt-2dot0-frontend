@@ -116,7 +116,7 @@ router.post('/register', cors, (req, res) => {
 });
 
 // route is /api/auth/activate
-router.get('/activate', cors, (req, res) => {
+router.get('/activate/:emailAddress', cors, (req, res) => {
 
 	// validate the inputs
 	if (!req.query.activationcode) {
@@ -125,11 +125,17 @@ router.get('/activate', cors, (req, res) => {
 		return;
 	}
 
+	if (!req.params.emailAddress) {
+		res.status(400);
+		res.send({error: "email param missing"});
+		return;
+	}
+
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	model.authModel = new AuthModel(model.bapiHeaders);
-	model.authModel.activate(req.query.activationCode).then((result) => {
+	model.authModel.activate(req.params.emailAddress, req.query.activationCode).then((result) => {
 
 		if (!result.accessToken) {
 			console.error(`bapi activate did not return access token, returning status 500`);
@@ -138,7 +144,8 @@ router.get('/activate', cors, (req, res) => {
 		}
 		// not setting expires or age so it will be a "session" cookie
 		res.cookie('bt_auth', result.accessToken, { httpOnly: true });
-		res.status(200).send({});	// returning {} since consumer will expect json
+		res.redirect("/activate?pagecode=success");	// redirect to home page once activated
+		return;
 
 	}).fail((err) => {
 		let bapiInfo = err.logError();

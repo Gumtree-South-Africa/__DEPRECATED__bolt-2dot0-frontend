@@ -331,13 +331,14 @@ describe('Authentication Api', () => {
 				`${endpoints.authActivate.replace("{email}", emailAddress)}?${registerResponse.activationCode}&_forceExample=true&_statusCode=200`,
 				'test/serverUnit/mockData/auth/registerResponse.json');
 
-			boltSupertest('/api/auth/activate', 'vivanuncios.com.mx', 'GET').then((supertest) => {
+			boltSupertest(`/api/auth/activate/${emailAddress}`, 'vivanuncios.com.mx', 'GET').then((supertest) => {
 				supertest
 					.query(`activationcode=${registerResponse.activationCode}`)
 					// .expect('Content-Type', 'application/json; charset=utf-8')
 
 					.expect((res) => {
 						expect(res.status).toBe(302);
+						expect(res.header.location).toBe("/activate?pagecode=success");
 						// let jsonResult = JSON.parse(res.text);
 						// console.log(JSON.stringify(jsonResult, null, 4));
 
@@ -352,7 +353,45 @@ describe('Authentication Api', () => {
 					})
 					.end(specHelper.finish(done));
 			});
-
 		});
+
+		fit('should fail activate (missing email on url)', (done) => {
+
+			let emailAddress = "test@test.com";
+			specHelper.registerMockEndpoint(
+				`${endpoints.authActivate.replace("{email}", emailAddress)}?${registerResponse.activationCode}&_forceExample=true&_statusCode=200`,
+				'test/serverUnit/mockData/auth/registerResponse.json');
+
+			boltSupertest('/api/auth/activate', 'vivanuncios.com.mx', 'GET').then((supertest) => {
+				supertest
+					.query(`activationcode=${registerResponse.activationCode}`)
+					// .expect('Content-Type', 'application/json; charset=utf-8')
+
+					.expect((res) => {
+						expect(res.status).toBe(404);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		fit('should fail activate (missing activation code in query)', (done) => {
+
+			let emailAddress = "test@test.com";
+			specHelper.registerMockEndpoint(
+				`${endpoints.authActivate.replace("{email}", emailAddress)}?${registerResponse.activationCode}&_forceExample=true&_statusCode=200`,
+				'test/serverUnit/mockData/auth/registerResponse.json');
+
+			boltSupertest(`/api/auth/activate/${emailAddress}`, 'vivanuncios.com.mx', 'GET').then((supertest) => {
+				supertest
+					//.query(`activationcode=${registerResponse.activationCode}`)
+					// .expect('Content-Type', 'application/json; charset=utf-8')
+
+					.expect((res) => {
+						expect(res.status).toBe(400);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
 	});
 });
