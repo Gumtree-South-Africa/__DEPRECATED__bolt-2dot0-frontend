@@ -1,5 +1,5 @@
-<div class="login-modal {{#if isHidden}}hidden{{/if}}">
-    {{> (dynamic "loginForm")}}
+<div id="login-modal" class="login-modal {{#if isHidden}}hidden{{/if}}">
+    {{> (dynamic "loginForm") startOpen=false}}
 </div>
 
-<div class="login-modal-mask {{#if isHidden}}hidden{{/if}}"></div>
+<div id="login-modal-mask" class="login-modal-mask {{#if isHidden}}hidden{{/if}}"></div>

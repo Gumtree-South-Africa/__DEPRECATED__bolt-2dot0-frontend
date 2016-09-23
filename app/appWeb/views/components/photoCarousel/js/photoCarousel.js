@@ -127,7 +127,7 @@ let _postAd = (urls, locationType) => {
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		formChangeWarning.disable();
-		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
+		this.epsUpload.handlePostResponse(response);
 	}, (err) => {
 		console.warn(err);
 		spinnerModal.hideModal();
@@ -471,8 +471,6 @@ let initialize = (options) => {
 	this.$addPhotoItem = $('.add-photo-item');
 	this.addPhotoHtml = this.$addPhotoItem.prop('outerHTML');
 	this.$carousel = $('#photo-carousel');
-	this.$loginModal = $('.login-modal');
-	this.$loginModalMask = $('.login-modal-mask');
 	this.pendingImages = [];
 	this.$postAdButton = $('#postAdBtn');
 	this.$loadedImages = 0;
