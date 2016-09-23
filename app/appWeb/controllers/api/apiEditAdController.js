@@ -13,6 +13,7 @@ let schemaEditAd = require(cwd + '/app/appWeb/jsonSchemas/editAdRequest-schema.j
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
+let logger = require(`${cwd}/server/utils/logger`);
 
 router.post('/attributedependencies', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
@@ -22,7 +23,7 @@ router.post('/attributedependencies', cors, (req, res) => {
 	attributeModel.getAttributeDependents(req.body.catId, req.body.depAttr, req.body.depValue).then((attributes) => {
 		res.json(attributes);
 	}).fail((err) => {
-		let bapiJson = err.logError();
+		let bapiJson = logger.logError(err);
 		console.warn(`getAttributeDependents failed for categoryId: ${req.body.catId}, attributeName: ${req.body.depAttr}, error: ${err}`);
 		return res.status(err.getStatusCode(500)).json({
 			error: "attributesdependencies failed",
@@ -39,7 +40,7 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
 		res.json(attributeModel.processCustomAttributesList(attributeData));
 	}).fail((err) => {
-		let bapiJson = err.logError();
+		let bapiJson = logger.logError(err);
 		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
 		return res.status(err.getStatusCode(500)).json({
 			error: "customattributes failed",
@@ -92,7 +93,7 @@ router.post('/update', cors, (req, res) => {
 		if (error && error.bapiJson) {
 			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
 		}
-		let bapiJson = error.logError();
+		let bapiJson = logger.logError(error);
 		res.status(error.getStatusCode(500)).json({
 			error: "error updating ad, see logs for details",
 			bapiJson: bapiJson,

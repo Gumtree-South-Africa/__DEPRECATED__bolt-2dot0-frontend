@@ -12,6 +12,7 @@ let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.j
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
+let logger = require(`${cwd}/server/utils/logger`);
 
 
 
@@ -158,7 +159,7 @@ router.post('/create', cors, (req, res) => {
 			res.send(responseJson);
 			return;
 		}).fail((error) => {
-			let bapiInfo = error.logError();
+			let bapiInfo = logger.logError(error);
 			// post ad has failed
 			res.status(error.getStatusCode(500)).send({
 				error: "postAd failed, see logs for details",

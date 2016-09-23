@@ -1,49 +1,49 @@
 <ul class="profile-dropdown">
     <li class="profile-item">
-            <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+            <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.myAds"}}'>
                 <div class="item-icon icon-my-ads-active"></div>
                 <div class="profile-item-text">{{i18n "header.myAds"}}</div>
             </span>
     </li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.promoteAdsUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.promoteAdsUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.promoteMyAds"}}'>
             <div class="item-icon icon-promote-1"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.promoteMyAds"}}</div>
         </span>
 	</li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.messages"}}'>
             <div class="item-icon icon-chat"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.messages"}}</div>
         </span>
 	</li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.watchListUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.watchListUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.favorites"}}'>
             <div class="item-icon icon-favorites icon-favorites"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.favorites"}}</div>
         </span>
 	</li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.mySavedSearchUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.mySavedSearchUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.myAlerts"}}'>
             <div class="item-icon icon-alerts"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.myAlerts"}}</div>
         </span>
 	</li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myProfileUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myProfileUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.myProfile"}}'>
             <div class="item-icon icon-photo-library-3"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.myProfile"}}</div>
         </span>
 	</li>
 	<li class="profile-item">
-        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.pricingGuideUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|MyAccountClick'>
+        <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.pricingGuideUrl}}" data-gtm='pc|NavHeaderClick|eventLabel|{{obfuscateUrl this.header.pricingGuideUrl}}'>
             <div class="item-icon icon-pricing-guide"></div>
             <div class="profile-item-text">{{i18n "header.userDropdown.pricingGuide"}}</div>
         </span>
 	</li>
     {{#if this.header.isUserLoggedIn}}
 		<li class="profile-item">
-            <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.signOutURL}}">
+            <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.signOutURL}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.logout"}}'>
                 <div class="item-icon icon-logout-1"></div>
                 <div class="profile-item-text">{{i18n "header.userDropdown.logout"}}</div>
             </span>
