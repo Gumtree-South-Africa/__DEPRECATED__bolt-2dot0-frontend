@@ -9,11 +9,18 @@ let bapiService      = require(cwd + "/server/services/bapi/bapiService");
 
 class AuthService {
 
-	login(bapiHeaderValues, loginJson) {
+	loginBolt(bapiHeaderValues, loginJson) {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
-			path: config.get('BAPI.endpoints.authLogin')
-		}), bapiHeaderValues, JSON.stringify(loginJson), 'authLogin');
+			path: config.get('BAPI.endpoints.authBoltLogin')
+		}), bapiHeaderValues, JSON.stringify(loginJson), 'authBoltLogin');
+	}
+
+	loginFb(bapiHeaderValues, loginJson) {
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: config.get('BAPI.endpoints.authFbLogin')
+		}), bapiHeaderValues, JSON.stringify(loginJson), 'authFbLogin');
 	}
 
 	register(bapiHeaderValues, registerJson) {
@@ -23,6 +30,26 @@ class AuthService {
 		}), bapiHeaderValues, JSON.stringify(registerJson), 'authRegister');
 	}
 
+	activate(bapiHeaderValues, email, activateJson) {
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: config.get('BAPI.endpoints.authActivate').replace('{email}', email)
+		}), bapiHeaderValues, JSON.stringify(activateJson), 'authActivate');
+	}
+
+	checkEmailExists(bapiHeaderValues, email) {
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'HEAD',
+			path: config.get('BAPI.endpoints.authEmailExists').replace('{email}', email)
+		}), bapiHeaderValues, 'authEmailExists');
+	}
+
+	checkPhoneExists(bapiHeaderValues, phone) {
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'HEAD',
+			path: config.get('BAPI.endpoints.authPhoneExists').replace('{phone}', phone)
+		}), bapiHeaderValues, 'authPhoneExists');
+	}
 }
 
 module.exports = new AuthService();

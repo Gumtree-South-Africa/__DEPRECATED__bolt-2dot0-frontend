@@ -24,8 +24,12 @@
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
 			"categoryAttributes":	"/categories/{catId}/attributes",
-			"authLogin"			:	"/auth/login",
-			"authRegister"		:	"/auth/register"
+			"authBoltLogin"		:	"/user/actions/login-with-bolt",
+			"authFbLogin"		:	"/user/actions/login-with-facebook",
+			"authRegister"		:	"/user",
+			"authActivate"		:	"/user/{email}/actions/activate",
+			"authEmailExists"	:	"/user/email/{email}",
+			"authPhoneExists"	:	"/user/phone/{phone}"
 	    }
 	},
 	"solr": {
