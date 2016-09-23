@@ -243,6 +243,7 @@
 </div>
 
 {{#unless this.footer.distractionFree}}
+  {{#block "seo-links-text"}}
 	<div class="nonJsOnlyInlineBlock seo-links tested">
         <div class="seo-links-text-container">
 			<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.location"}}' target="/blank">{{i18n
@@ -251,5 +252,6 @@
                 "footer.sitemap.explore.topsearches"}}</a></div>
         </div>
 	</div>
+  {{/block}}
 {{/unless}}
 
