@@ -162,7 +162,6 @@ beforeEach(() => {
 		}
 		if (ajaxInfo.options) {
 			if (ajaxInfo.options.fail) {
-				debugger;
 				let err = new Error();
 				err.responseText = JSON.stringify(ajaxInfo.returnData);
 				err.statusCode = ajaxInfo.options.statusCode || 500;

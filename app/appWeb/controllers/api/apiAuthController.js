@@ -48,8 +48,8 @@ router.post('/login', cors, (req, res) => {
 	model.authModel.loginViaBolt(req.body).then((result) => {
 
 		if (!result.accessToken) {
-			console.err(`bapi loginViaBolt did not return access token, returning status 500`);
-			res.status(500).send('missing access token');
+			console.error(`bapi loginViaBolt did not return access token, returning status 500`);
+			res.status(500).send({ error: 'missing access token' });
 			return;
 		}
 		// not setting expires or age so it will be a "session" cookie
@@ -95,12 +95,12 @@ router.post('/register', cors, (req, res) => {
 
 		// activation code
 		if (!result.activationCode) {
-			console.err(`bapi register did not return activation code, returning status 500`);
+			console.error(`bapi register did not return activation code, returning status 500`);
 			res.status(500).send('missing activation code');
 			return;
 		}
 		// ex: "/users/abc@yahoo.com/actions/activate?activationCode=xyz"
-		let activationLink = result._links[0].href;	// there is only one, so we don't need to search for "activationUrl";
+		//let activationLink = result._links[0].href;	// there is only one, so we don't need to search for "activationUrl";
 
 		res.status(200).send({});	// returning {} since consumer will expect json
 		return;
@@ -130,7 +130,14 @@ router.get('/activate', cors, (req, res) => {
 
 	model.authModel = new AuthModel(model.bapiHeaders);
 	model.authModel.activate(req.query.activationCode).then((result) => {
-		console.log("hello");
+
+		if (!result.accessToken) {
+			console.error(`bapi activate did not return access token, returning status 500`);
+			res.status(500).send({ error: 'missing access token' });
+			return;
+		}
+		// not setting expires or age so it will be a "session" cookie
+		res.cookie('bt_auth', result.accessToken, { httpOnly: true });
 		res.status(200).send({});	// returning {} since consumer will expect json
 
 	}).fail((err) => {

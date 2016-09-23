@@ -62,7 +62,7 @@ describe('Authentication Api', () => {
 						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
 						expect(cookie).toBeTruthy('should have bt_auth cookie set');
 						if (cookie) {
-							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response')
+							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response');
 							expect(cookie.raw.indexOf("HttpOnly") !== -1).toBeTruthy('should have cookie with HttpOnly on bt_auth');
 						}
 					})
@@ -346,7 +346,7 @@ describe('Authentication Api', () => {
 						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
 						expect(cookie).toBeTruthy('should have bt_auth cookie set');
 						if (cookie) {
-							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response')
+							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response');
 							expect(cookie.raw.indexOf("HttpOnly") !== -1).toBeTruthy('should have cookie with HttpOnly on bt_auth');
 						}
 					})
