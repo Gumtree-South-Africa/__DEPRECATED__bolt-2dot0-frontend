@@ -2,6 +2,7 @@
 	"pagetype" : {
 		"HOMEPAGE" : "Homepage",
 		"HOMEPAGEV2" : "HomepageV2",
+		"ACTIVATE_PAGE": "ActivatePage",
 		"LOGIN_PAGE": "LoginPage",
 	    "RESULTS_SEARCH" : "ResultsSearch",
 	    "HOME_PAGE_LOCATION" : "HomepageLocation",

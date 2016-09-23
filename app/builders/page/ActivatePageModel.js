@@ -7,7 +7,7 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let _ = require('underscore');
 
-class LoginPageModel {
+class ActivatePageModel {
 	constructor(req, res) {
 		this.req = req;
 		this.res = res;
@@ -19,9 +19,9 @@ class LoginPageModel {
 
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
-		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.LOGIN_PAGE;
+		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.ACTIVATE_PAGE;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
-		let modelBuilder = new ModelBuilder(this.getLoginPageData());
+		let modelBuilder = new ModelBuilder(this.getActivatePageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
@@ -32,7 +32,7 @@ class LoginPageModel {
 		});
 	}
 
-	getLoginPageData() {
+	getActivatePageData() {
 		return [
 			() => {
 				return {
@@ -65,4 +65,4 @@ class LoginPageModel {
 
 }
 
-module.exports = LoginPageModel;
+module.exports = ActivatePageModel;
