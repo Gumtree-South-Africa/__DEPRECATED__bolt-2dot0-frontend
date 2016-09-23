@@ -4,6 +4,9 @@ let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 let loginRequest = require('../../serverUnit/mockData/auth/loginRequest.json');
 let registerRequest = require('../../serverUnit/mockData/auth/registerRequest.json');
+let loginResponse = require('../../serverUnit/mockData/auth/loginResponse.json');
+let registerResponse = require('../../serverUnit/mockData/auth/registerResponse.json');
+
 
 describe('Authentication Api', () => {
 	beforeEach(() => {
@@ -18,15 +21,23 @@ describe('Authentication Api', () => {
 	let getCookie = (headers, cookieName) => {
 		let cookies = headers;
 		let foundCookie;
+		let parts;
 		for (let i = 0; i < cookies.length; i++) {
 			let cookie = cookies[i];
-			let parts = cookie.split('=');
+			parts = cookie.split(/;|=/);
 			if (parts.length > 0 && parts[0] === cookieName) {
 				foundCookie = cookie;
 				break;
 			}
 		}
-		return foundCookie;
+		if (foundCookie) {
+			return {
+				name: parts[0],
+				value: parts[1],
+				raw: foundCookie
+			};
+		}
+		return null;
 	};
 
 	describe('login', () => {
@@ -34,7 +45,7 @@ describe('Authentication Api', () => {
 		it('should login the user', (done) => {
 
 			specHelper.registerMockEndpoint(
-				`${endpoints.authLogin}?_forceExample=true&_statusCode=200`,
+				`${endpoints.authBoltLogin}?_forceExample=true&_statusCode=200`,
 				'test/serverUnit/mockData/auth/loginResponse.json');
 
 			boltSupertest('/api/auth/login', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -50,8 +61,10 @@ describe('Authentication Api', () => {
 						// cookie should be set (but it will be a http only cookie, we shouldn't see it this way)
 						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
 						expect(cookie).toBeTruthy('should have bt_auth cookie set');
-						expect(cookie.indexOf("HttpOnly") !== -1).toBeTruthy('should have HttpOnly on bt_auth');
-
+						if (cookie) {
+							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response')
+							expect(cookie.raw.indexOf("HttpOnly") !== -1).toBeTruthy('should have cookie with HttpOnly on bt_auth');
+						}
 					})
 					.end(specHelper.finish(done));
 			});
@@ -277,12 +290,6 @@ describe('Authentication Api', () => {
 						expect(res.status).toBe(200);
 						// let jsonResult = JSON.parse(res.text);
 						// console.log(JSON.stringify(jsonResult, null, 4));
-
-						// no json data, but the cookie coming back from this call, unless there is an error
-						// cookie should be set (but it will be a http only cookie, we shouldn't see it this way)
-						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
-						expect(cookie).toBeTruthy('should have bt_auth cookie set');
-						expect(cookie.indexOf("HttpOnly") !== -1).toBeTruthy('should have HttpOnly on bt_auth');
 					})
 					.end(specHelper.finish(done));
 			});
@@ -317,5 +324,35 @@ describe('Authentication Api', () => {
 			});
 		});
 
+		fit('should activate and redirect to an activate page', (done) => {
+
+			let emailAddress = "test@test.com";
+			specHelper.registerMockEndpoint(
+				`${endpoints.authActivate.replace("{email}", emailAddress)}?${registerResponse.activationCode}&_forceExample=true&_statusCode=200`,
+				'test/serverUnit/mockData/auth/registerResponse.json');
+
+			boltSupertest('/api/auth/activate', 'vivanuncios.com.mx', 'GET').then((supertest) => {
+				supertest
+					.query(`activationcode=${registerResponse.activationCode}`)
+					// .expect('Content-Type', 'application/json; charset=utf-8')
+
+					.expect((res) => {
+						expect(res.status).toBe(302);
+						// let jsonResult = JSON.parse(res.text);
+						// console.log(JSON.stringify(jsonResult, null, 4));
+
+						// no json data, but the cookie coming back from this call, unless there is an error
+						// cookie should be set (but it will be a http only cookie, we shouldn't see it this way)
+						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
+						expect(cookie).toBeTruthy('should have bt_auth cookie set');
+						if (cookie) {
+							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response')
+							expect(cookie.raw.indexOf("HttpOnly") !== -1).toBeTruthy('should have cookie with HttpOnly on bt_auth');
+						}
+					})
+					.end(specHelper.finish(done));
+			});
+
+		});
 	});
 });

@@ -15,6 +15,10 @@ let logger = require(`${cwd}/server/utils/logger`);
 // route is /api/auth/login
 router.post('/login', cors, (req, res) => {
 
+	if (!req.is('application/json')) {
+		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
+	}
+
 	// Validate the incoming JSON
 	/* Reference this regex from RUI we are using "as-is", see usage in appWeb/jsonSchemas/login and register
 	 String EMAIL_STR = "(([A-Za-z0-9-]+_+)|" +
@@ -41,10 +45,15 @@ router.post('/login', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	model.authModel = new AuthModel(model.bapiHeaders);
-	model.authModel.login(req.body).then(() => {
+	model.authModel.loginViaBolt(req.body).then((result) => {
 
+		if (!result.accessToken) {
+			console.err(`bapi loginViaBolt did not return access token, returning status 500`);
+			res.status(500).send('missing access token');
+			return;
+		}
 		// not setting expires or age so it will be a "session" cookie
-		res.cookie('bt_auth', 'cookievalue', { httpOnly: true });
+		res.cookie('bt_auth', result.accessToken, { httpOnly: true });
 
 		res.status(200).send({});	// returning {} since consumer will expect json
 		return;
@@ -61,6 +70,11 @@ router.post('/login', cors, (req, res) => {
 
 // route is /api/auth/register
 router.post('/register', cors, (req, res) => {
+
+	if (!req.is('application/json')) {
+		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
+	}
+
 	// Validate the incoming JSON
 	let validate = validator(registerSchema);
 	let valid = validate(req.body);
@@ -77,10 +91,16 @@ router.post('/register', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	model.authModel = new AuthModel(model.bapiHeaders);
-	model.authModel.register(req.body).then(() => {
+	model.authModel.register(req.body).then((result) => {
 
-		// not setting expires or age so it will be a "session" cookie
-		res.cookie('bt_auth', 'cookievalue', { httpOnly: true });
+		// activation code
+		if (!result.activationCode) {
+			console.err(`bapi register did not return activation code, returning status 500`);
+			res.status(500).send('missing activation code');
+			return;
+		}
+		// ex: "/users/abc@yahoo.com/actions/activate?activationCode=xyz"
+		let activationLink = result._links[0].href;	// there is only one, so we don't need to search for "activationUrl";
 
 		res.status(200).send({});	// returning {} since consumer will expect json
 		return;
@@ -95,6 +115,33 @@ router.post('/register', cors, (req, res) => {
 
 });
 
+// route is /api/auth/activate
+router.get('/activate', cors, (req, res) => {
+
+	// validate the inputs
+	if (!req.query.activationcode) {
+		res.status(400);
+		res.send({error: "query param missing"});
+		return;
+	}
+
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
+
+	model.authModel = new AuthModel(model.bapiHeaders);
+	model.authModel.activate(req.query.activationCode).then((result) => {
+		console.log("hello");
+		res.status(200).send({});	// returning {} since consumer will expect json
+
+	}).fail((err) => {
+		let bapiInfo = err.logError();
+		res.status(err.getStatusCode(500)).send({// 500 default status code
+			error: "unable to activate, see logs for details",
+			bapiInfo: bapiInfo
+		});
+		return;
+	});
+});
 
 module.exports = router;
 
