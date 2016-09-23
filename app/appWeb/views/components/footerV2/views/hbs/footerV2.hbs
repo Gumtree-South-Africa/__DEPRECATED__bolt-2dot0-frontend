@@ -116,6 +116,7 @@
 		</div>
 
 		<div class="footer-legal">
+    {{#block "footer-links-legal"}}
 			<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
 				<span class="chevron mobile-only"></span>
 				<div class="menu-items">
@@ -123,6 +124,7 @@
 					<div><a href="{{this.footer.stores}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.stores"}}'>{{i18n "footer.sitemap.business.stores"}}</a></div>
 				</div>
 			</div>
+    {{/block}}
 		</div>
     {{/unless}}
 	<div class="line-divider mobile-only"></div>
@@ -146,6 +148,7 @@
     {{#unless this.footer.distractionFree}}
 		<div class="footer-inner-wrappper inner">
 			<div class="footer-explore">
+        {{#block "footer-links-explore"}}
 				<div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
 					<span class="chevron mobile-only"></span>
 					<div class="menu-items">
@@ -154,6 +157,7 @@
 						<div><a href="{{this.footer.priceIndexUrl}}"data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.priceIndex"}}'>{{i18n "footer.sitemap.explore.priceIndex"}}</a></div>
 					</div>
 				</div>
+        {{/block}}
 			</div>
 
 			<div class="line-divider mobile-only"></div>
@@ -161,6 +165,7 @@
 
 		<div class="footer-inner-wrappper">
 			<div class="footer-tips">
+      {{#block "footer-links-tips"}}
 				<div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
 					<span class="chevron mobile-only"></span>
 					<div class="menu-items">
@@ -168,6 +173,7 @@
 						<div><a href="{{this.footer.listingRulesUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.listingRules"}}'>{{i18n "footer.sitemap.tips.listingRules"}}</a></div>
 					</div>
 				</div>
+      {{/block}}
 			</div>
 		</div>
 	</div>
@@ -221,6 +227,7 @@
 		</div>
     {{/unless}}
 
+    {{#block "footer-trademark"}}
 	<div class="footer-trademark">
 		<span class="trademark">&copy {{i18n "footer.trademark.trademark"
             '<script>document.write(new Date().getFullYear())</script>'}}.
@@ -229,6 +236,7 @@
 		<span><b><a href="{{this.footer.privacyPolicy}}">{{i18n "footer.sitemap.legal.privacy"}}</a></b>. </span>
 		<span><b><a href="{{this.footer.cookieNotice}}">{{i18n "footer.sitemap.legal.cookies"}}</a></b>. </span>
 	</div>
+    {{/block}}
 </div>
 
 {{#unless this.footer.distractionFree}}
