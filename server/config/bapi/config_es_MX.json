@@ -221,6 +221,18 @@
 			"mobile": {
 				"models": ["seo"]
 			}
+		},
+		"ActivatePage": {
+			"desktop": {
+				"models": [
+					"seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"seo"
+				]
+			}
 		}
 	}
 }

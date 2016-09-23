@@ -8,13 +8,12 @@
 
 
 module.exports = {
-	"bundleName": "LoginPage",
-	"outputEntry": "app/appWeb/views/templates/pages/loginPage/js/loginPage",
+	"bundleName": "ActivatePage",
+	"outputEntry": "app/appWeb/views/templates/pages/activatePage/js/activatePage",
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
-			"RegistrationForm": "app/appWeb/views/components/registrationForm/js/registrationForm.js",
-			"PageMain": "app/appWeb/views/templates/pages/loginPage/js/loginPage.js"
+			"PageMain": "app/appWeb/views/templates/pages/activatePage/js/activatePage.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
