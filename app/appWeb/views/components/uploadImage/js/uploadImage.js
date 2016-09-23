@@ -22,7 +22,7 @@ let _postAd = (url, locationType) => {
 	uploadAd.postAd([url], (response) => {
 		this.inputDisabled = false;
 		formChangeWarning.disable();
-		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
+		this.epsUpload.handlePostResponse(response);
 	}, (err) => {
 		console.warn(err);
 		spinnerModal.hideModal();
@@ -120,8 +120,6 @@ Array.prototype.remove = function(from, to) {
 let initialize = () => {
 	this.isMobile = true;
 	this.inputDisabled = false;
-	this.$loginModal = $('.login-modal');
-	this.$loginModalMask = $('.login-modal-mask');
 	this.epsData = $('#js-eps-data');
 	this.uploadImageContainer = $('.upload-image-container');
 	this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
