@@ -1,1 +1,45 @@
+{{#partial "footer-links-legal"}}
+<div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
+  <span class="chevron mobile-only"></span>
+  <div class="menu-items">
+    <div><a href="{{this.footer.terms}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.terms"}}'>{{i18n "footer.sitemap.business.terms"}}</a></div>
+    <div><a href="{{this.footer.privacy}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.privacy"}}'>{{i18n "footer.sitemap.business.privacy"}}</a></div>
+    <div><a href="{{this.footer.cookies}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.cookies"}}'>{{i18n "footer.sitemap.business.cookies"}}</a></div>
+  </div>
+</div>
+{{/partial}}
+
+{{#partial "footer-links-explore"}}
+<div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
+  <span class="chevron mobile-only"></span>
+  <div class="menu-items">
+    <div><a href="{{this.footer.classifieds}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.classifieds"}}'>{{i18n "footer.sitemap.explore.classifieds"}}</a></div>
+    <div><a href="{{this.footer.mobileAppUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.mobile"}}'>{{i18n "footer.sitemap.explore.mobile"}}</a></div>
+    <div><a href="{{this.footer.partnersUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.partners"}}'>{{i18n "footer.sitemap.explore.partners"}}</a></div>
+    <div><a href="{{this.footer.carPriceUrl}}"data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.carprice"}}'>{{i18n "footer.sitemap.explore.carprice"}}</a></div>
+  </div>
+</div>
+{{/partial}}
+
+{{#partial "footer-links-tips"}}
+<div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
+  <span class="chevron mobile-only"></span>
+  <div class="menu-items">
+    <div><a rel="nofollow" href='{{i18n "footer.sitemap.tips.helplink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
+    <div><a rel="nofollow" href='' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
+    <div><a rel="nofollow" href='' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.vivaguides"}}' target="/blank">{{i18n "footer.sitemap.tips.vivaguides"}}</a></div>
+    <div><a rel="nofollow" href='' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.givefeedback"}}' target="/blank">{{i18n "footer.sitemap.tips.givefeedback"}}</a></div>
+  </div>
+</div>
+{{/partial}}
+
+{{#partial "footer-trademark"}}
+<div class="footer-trademark">
+  <span class="trademark">&copy {{i18n "footer.trademark.trademark"
+    '<script>document.write(new Date().getFullYear())</script>'}}.
+  </span>
+</div>
+{{/partial}}
+
+
 {{> (base "footerV2") }}
