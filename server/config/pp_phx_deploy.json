@@ -22,7 +22,13 @@
 			"draftAd": "/v1/ads/drafts",
 			"favoriteAd": "/v1/ads/{id}/favorites",
 			"specificAd": "/v1/ads/{id}",
-			"categoryAttributes": "/v1/categories/{catId}/attributes"
+			"categoryAttributes": "/v1/categories/{catId}/attributes",
+			"authBoltLogin": "/v1/user/actions/login-with-bolt",
+			"authFbLogin" :	"/v1/user/actions/login-with-facebook",
+			"authRegister" : "/v1/user",
+			"authActivate" : "/v1/user/{email}/actions/activate",
+			"authEmailExists" :	"/v1/user/email/{email}",
+			"authPhoneExists" :	"/v1/user/phone/{phone}"
 		}
 	},
 	"solr": {
