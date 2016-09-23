@@ -48,7 +48,7 @@ $colors: (
 		base: #CFCDC1,
 		shade: #605D4C
 	)
-)
+);
 
 @function color($name, $tone: base) {
 	@return map-get(map-get($colors, $name), $tone)
