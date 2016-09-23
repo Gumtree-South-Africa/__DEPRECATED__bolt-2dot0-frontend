@@ -2,8 +2,14 @@
 
 class LoginForm {
 
-	_handleLoginSuccess() {
-
+	_handleLoginSuccess(data) {
+		// if exists and is a function
+		if (this.submitCb && !!(this.submitCb && this.submitCb.constructor && this.submitCb.call && this.submitCb.apply)) {
+			this.submitCb(data);
+		} else {
+			// default redirect to homepage
+			window.location.href = "/";
+		}
 	}
 
 	_handleLoginFailure(err) {
@@ -53,6 +59,10 @@ class LoginForm {
 				password
 			};
 
+			if (this.extraPayload) {
+				payload[this.extraPayload.key] = this.extraPayload.payload;
+			}
+
 			$.ajax({
 				method: "POST",
 				url: "/api/auth/login",
@@ -69,17 +79,28 @@ class LoginForm {
 		}
 	}
 
-	initialize() {
+	setSubmitCb(cb) {
+		this.submitCb = cb;
+	}
+
+	initialize(options) {
+		options = options || {};
+		this.$extraOpenDom = options.extraOpenDom;
 		this.$form = $("#login-form");
 		this.$signInSection = this.$form.find(".sign-in-section");
 		this.$emailInput = this.$form.find('input[type="email"]');
 		this.$passwordInput = this.$form.find('input[type="password"]');
 		this.$submitButton = this.$form.find('.submit-btn');
 
-		this.$emailInput.focus(() => {
-			this.$signInSection.addClass("open");
-			$(".login-modal").addClass("open");
-		});
+		// already open on initialize
+		if (!this.$signInSection.hasClass("open")) {
+			this.$emailInput.focus(() => {
+				this.$signInSection.addClass("open");
+				if (this.$extraOpenDom) {
+					this.$extraOpenDom.addClass("open");
+				}
+			});
+		}
 
 		this.$submitButton.click(() => {
 			let emailVal = this.$emailInput.val();

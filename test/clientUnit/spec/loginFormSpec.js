@@ -8,11 +8,16 @@ describe("Login Form", () => {
 	it("should expand sign in area when drawing focus to the email field", () => {
 		let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");
 
-		loginFormController.initialize();
+		let $extraOpenDom = $testArea.append("<div></div>");
+
+		loginFormController.initialize({
+			extraOpenDom: $extraOpenDom
+		});
 
 		expect($testArea.find(".sign-in-section").hasClass("open")).toBeFalsy();
 		$testArea.find('input[type="email"]').focus();
 		expect($testArea.find(".sign-in-section").hasClass("open")).toBeTruthy();
+		expect($extraOpenDom.hasClass("open")).toBeTruthy();
 	});
 
 	describe("Login Failure", () => {
@@ -116,6 +121,27 @@ describe("Login Form", () => {
 
 			expect($emailInput.hasClass("validation-error")).toBeFalsy();
 			expect($passInput.hasClass("validation-error")).toBeFalsy();
+		});
+	});
+
+	describe("Login Success", () => {
+		it("should call the submitCb if one is set on the component", () => {
+			let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");
+
+			loginFormController.initialize();
+			loginFormController.setSubmitCb(() => {});
+
+			spyOn(loginFormController, "submitCb");
+
+			specHelper.registerMockAjax("/api/auth/login", {}); // 200 ok but we dont care about the response
+
+			let $emailInput = $testArea.find('input[type="email"]');
+			let $passInput = $testArea.find('input[type="password"]');
+			$emailInput.val("noReply@noReply.com");
+			$passInput.val("longEnough");
+			$testArea.find('.submit-btn').click();
+
+			expect(loginFormController.submitCb).toHaveBeenCalled();
 		});
 	});
 });

@@ -3,6 +3,7 @@
 /*eslint no-bitwise: 0*/
 
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 
 class BinaryFile {
 	constructor(strData, iDataOffset, iDataLength) {
@@ -197,7 +198,7 @@ class EpsUpload {
 		}
 	}
 
-	handlePostResponse($loginModal, $loginModalMask, response) {
+	handlePostResponse(response) {
 		switch (response.state) {
 			case this.AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
@@ -207,11 +208,11 @@ class EpsUpload {
 			case this.AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
 				spinnerModal.completeSpinner(() => {
-					$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
-					$loginModal.find('.register-link').attr('href', response.links.register);
-					$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
-					$loginModal.toggleClass('hidden');
-					$loginModalMask.toggleClass('hidden');
+					loginModal.openModal({
+						submitCb: () => {
+							window.location.href = response.links.defferalLink;
+						}
+					});
 				});
 				break;
 			default:

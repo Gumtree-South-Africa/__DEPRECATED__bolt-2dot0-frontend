@@ -150,5 +150,6 @@ router.get('/activate', cors, (req, res) => {
 	});
 });
 
+
 module.exports = router;
 

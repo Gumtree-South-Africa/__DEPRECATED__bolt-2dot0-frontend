@@ -2,30 +2,44 @@
 
 let loginForm = require("app/appWeb/views/components/loginForm/js/loginForm.js");
 
-let _checkConsent = (e) => {
-	if (!this.hasConsented) {
-		this.$consentError.removeClass('invisible');
-		e.preventDefault();
+class LoginModal {
+	openModal(options) {
+		this.$loginModal.removeClass("hidden");
+		this.$mask.removeClass("hidden");
+		loginForm.setSubmitCb(options.submitCb);
 	}
-};
 
-let initialize = () => {
-	this.$loginModal = $('.login-modal');
-	this.$facebookButton = this.$loginModal.find('#facebook-link');
-	this.$consentCheck = this.$loginModal.find('#consent-checkbox');
-	this.$consentError = this.$loginModal.find('#consent-error');
-	this.hasConsented = this.$consentCheck.is(':checked');
-	this.$consentCheck.on('change', () => {
-		this.hasConsented = this.$consentCheck.is(':checked');
-		if (this.hasConsented && !this.$consentError.hasClass('invisible')) {
-			this.$consentError.addClass('invisible');
+	closeModal() {
+		this.$loginModal.addClass("hidden");
+		this.$mask.addClass("hidden");
+	}
+
+	_checkConsent(e) {
+		if (!this.hasConsented) {
+			this.$consentError.removeClass('invisible');
+			e.preventDefault();
 		}
-	});
+	}
 
-	this.$facebookButton.on('click', _checkConsent);
-	loginForm.initialize();
-};
+	initialize() {
+		this.$loginModal = $('#login-modal');
+		this.$mask = $("#login-modal-mask");
+		this.$facebookButton = this.$loginModal.find('#facebook-link');
+		this.$consentCheck = this.$loginModal.find('#consent-checkbox');
+		this.$consentError = this.$loginModal.find('#consent-error');
+		this.hasConsented = this.$consentCheck.is(':checked');
+		this.$consentCheck.on('change', () => {
+			this.hasConsented = this.$consentCheck.is(':checked');
+			if (this.hasConsented && !this.$consentError.hasClass('invisible')) {
+				this.$consentError.addClass('invisible');
+			}
+		});
 
-module.exports = {
-	initialize
-};
+		// this.$facebookButton.on('click', _checkConsent);
+		loginForm.initialize({
+			extraOpenDom: this.$loginModal
+		});
+	}
+}
+
+module.exports = new LoginModal();
