@@ -1464,5 +1464,13 @@
 				"12": "Dic"
 			}
 		}
+	},
+	"registrationForm": {
+		"registerWithEmail": "Regístrate con tu correo electrónico.",
+		"invalidEmail": "El correo electrónico no es válido ",
+		"acceptTerms": "Por favor acepta los Términos y Condiciones antes de proceder",
+		"termsAndConditions": "Al registrarse, usted acepta los Términos y Condiciones de Uso y que sus datos podrán ser tratados de la manera descrita en nuestro Aviso de Privacidad.",
+		"emailConsent": "Acepto recibir comunicaciones de marketing de Vivanuncios (Aviso de Privacidad).",
+		"email": "Correo electrónico"
 	}
 }
