@@ -256,6 +256,7 @@
 	"home.provinces": "Provinces",
 	"home.main-locations": "Popular cities",
 	"home.popular-searches": "Popular",
+	"home.popular.searches": "Top Searches",
 	"home.trending-searches": "Trending",
 	"home.user.registered": "Congratulations and welcome! You have registered successfully at Gumtree.",
 	"home.ad.notyetactive": "Oops, the ad you are looking for is not yet live. Check back very soon!",
@@ -1381,6 +1382,7 @@
 			"viewMore": "Ver Más",
 			"viewLess": "Ver Menos"
 		},
+		"toplocations": "Top Locations",
 		"download": {
 			"download": "Download the App",
 			"itunes": "Available on the App Store",
