@@ -1,9 +1,45 @@
-.footer-wrapper {
-  background-color: color(foxtail, light);
-  .user-photo-wrapper {
-    .user-photo {
-      width: 10px;
-      height: 10px;
-    }
-  }
+.footer-wrapper{
+	&,& a{
+		color: color(swirl, shade);
+		background-color: color(foxtail, light);
+	}
+	.customer-service-container{
+		height:88px;
+	}
+	.meet-team{
+		margin-bottom: 17px;
+	}
+
+  	.team-photos{
+  		width: auto;
+  		padding: 0 35px;
+  		height: auto;
+  		.user-photo-wrapper {
+  			max-width: 103px;
+  			width: 103px;
+			.user-photo {
+				width: 64px;
+				height: 64px;	
+				border: 2px solid color(leaf);
+			}
+  		}
+	}
+
+	.support-wrapper{
+		.chat-icon{
+			font-size: 26px;
+			color: color(leaf);
+		}
+		.support-text{
+			font-size:12px;
+			text-transform:uppercase;
+
+		}
+
+	}
+
+	.line-divider{
+		width: 941px;
+		margin: auto;
+	}
 }
