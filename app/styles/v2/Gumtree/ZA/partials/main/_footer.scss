@@ -295,12 +295,35 @@
 	//-----------
 
 	.social-container{
-
+		height: 92px;
+		margin:0;
+		.social-icon{
+			margin-top: 0;
+		}
 	}
 	.footer-download{
 		position: inherit;
 	    right: inherit;
 	    bottom: inherit;
 	    float: right;
+		.app-downloads-container{
+			padding-top:20px;
+			padding-bottom:20px;
+			height:52px;
+		    .app-downloads{
+				width: 100%;
+				background: url("https://securelatam.classistatic.com/2.0.122/css/es_MX/svg/sprite.css-5329f80e.svg") 42.19653179190752% 0 no-repeat;
+				top:0;
+				margin: 0 2.5px;
+		    }
+			width: 100%;
+		    display: inherit;
+		    margin-top: inherit;				
+		}
+	}
+
+	//-----
+	.seo-wrapper{
+		display:inline-block;
 	}
 }
