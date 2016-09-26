@@ -1,5 +1,121 @@
-@include in-breakpoint($medium-break, $lt-ie9-class-name){
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
     .footer-wrapper{
-		background-color: black;
-	}
+    	background:green;
+
+    	.support-wrapper{
+    		.chat-icon{
+    			font-size: 26px;
+    		}
+    		.support-text{
+    			font-size:12px;
+    		}
+    	}
+    	
+    	.customer-service-container{
+    		height:88px;
+    	}
+    	
+    	.meet-team{
+    		margin-bottom: 17px;
+    	}
+      	
+      	.team-photos{
+      		width: auto;
+      		padding: 0 35px;
+      		height: auto;
+      		.user-photo-wrapper {
+      			max-width: 103px;
+      			width: 103px;
+    			.user-photo {
+    				width: 64px;
+    				height: 64px;	
+    				border: 2px solid color(leaf);
+    			}
+      		}
+    	}
+    	
+    	.support-wrapper{
+    		.chat-icon{
+    			font-size: 26px;
+    			color: color(leaf);
+    		}
+    		.support-text{
+    			font-size:12px;
+    			text-transform:uppercase;
+    		}
+    	}
+
+//-----------------------------------
+    	
+    	.footer-links{
+    		.menu-category{
+    			margin-top: 0;
+    			padding-top: 25px;
+    			padding-bottom: 20px;
+    			&:first-child span{
+    				text-transform: uppercase;
+    				font-weight: bold;
+    			}
+    			.menu-items{
+    				margin: 25px 0 0 0;
+    				div{
+    					margin-top: 25px;
+
+    				}
+    			}
+    			
+    		}
+    	}
+
+//-----------------------------------
+
+    	.social-container{
+    		height: 92px;
+    		margin:0;
+    		.social-icon{
+    			margin-top: 0;
+    		}
+    	}
+    	.footer-download{
+    		position: inherit;
+    	    right: inherit;
+    	    bottom: inherit;
+    	    float: right;
+    	    width:40%;
+    	    padding-right: 35px;
+    		.app-downloads-container{
+    			padding-top:20px;
+    			padding-bottom:20px;
+    			height:52px;
+    			text-align: right;
+    		    .app-downloads{
+    				width: 100%;
+    				background: url("https://securelatam.classistatic.com/2.0.122/css/es_MX/svg/sprite.css-5329f80e.svg") 42.19653179190752% 0 no-repeat;
+    				top:0;
+    				margin: 0 2.5px;
+    		    }
+    			width: 100%;
+    		    display: inherit;
+    		    margin-top: inherit;				
+    		}
+    	}
+
+    	.social-container{
+    		padding-top: 20px;
+    		padding-left:20px;
+    		width: 50%;
+    		.social-icon-wrapper{
+    			width: 44px;
+    			padding: 0 20px;
+    		}
+    	}
+
+//-----------------------------
+    	
+    	.seo-wrapper{
+    		display:inline-block;
+    		position: relative;
+    		top: -28px;
+    	}
+    }
 }
