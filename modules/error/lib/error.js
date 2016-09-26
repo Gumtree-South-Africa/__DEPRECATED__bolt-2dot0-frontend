@@ -60,9 +60,14 @@ let errorVersionTwo = (err, req, res) => {
 	let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
 	let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
 	let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
+	let min = config.get('static.min');
 	modelData.baseImageUrl = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseImageUrl')}`;
-	modelData.cssPath = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseCSSUrl')}v2/${brandName}/${country}/${modelData.locale}/ErrorPage.css`;
 	modelData.font = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseUrl')}`;
+	if (min) {
+		modelData.cssPath = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseCSSUrl')}v2/${brandName}/${country}/${modelData.locale}/ErrorPage.min.css`;
+	} else {
+		modelData.cssPath = `${urlHost}${urlPort}${urlVersion}${config.get('static.baseCSSUrl')}v2/${brandName}/${country}/${modelData.locale}/ErrorPage.css`;
+	}
 
 	return res.render(`errorV2/views/hbs/errorV2_${modelData.locale}`, modelData);
 };

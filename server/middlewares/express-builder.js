@@ -28,6 +28,7 @@ let checkUserAgent = require(config.root + '/server/middlewares/check-useragent'
 // let checkAuthentication = require(config.root + '/server/middlewares/check-authentication');
 let requestId = require(config.root + '/server/middlewares/request-id');
 let writeHeader = require(config.root + '/server/middlewares/write-header');
+let responseMetrics = require(config.root + '/server/middlewares/response-metrics');
 
 let middlewareloader = require(config.root + '/modules/environment-middleware-loader');
 
@@ -203,6 +204,9 @@ function BuildApp(siteObj) {
 		if (process.env.NODE_ENV) {
 			app.enable('view cache');
 		}
+
+		// Bolt Response Metrics
+		app.use(responseMetrics());
 	}
 }
 

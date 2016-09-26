@@ -1,12 +1,37 @@
 'use strict';
 
-
+let urlPattern = require("url-pattern");
+let stringUtl = require('string');
 let onResponse = require('on-response');
 
 let cwd = process.cwd();
 let metrics = require(cwd + '/server/utils/monitor/metrics');
 let graphiteService = require(cwd + '/server/utils/graphite');
 let requestsInProcess = 0;
+
+
+// check if it is ajax request
+let isAjaxReq = (req) => {
+	if (req.xhr || stringUtl(req.path).contains("/api/")) {
+		return true;
+	}
+
+	return false;
+};
+
+// check if it is app resource request
+let isResourceReq = (req) => {
+	// set url pattern object
+	let urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|svg|js|css|txt)$/i, ['ext']);
+
+	// match the url pattern
+	let matchedImageExt = urlPttrn.match(req.originalUrl);
+	if(matchedImageExt) {
+		return true;
+	}
+	return false;
+};
+
 
 module.exports = function() {
 	return function(req, res, next) {
@@ -25,6 +50,10 @@ module.exports = function() {
 
 
 		onResponse(req, res, function(err, summary) {
+			if (isAjaxReq(req) || isResourceReq(req)) {
+				return;
+			}
+
 			let pagetype = req.app.locals.pagetype;
 			let country = res.locals.config.country;
 			let status = parseInt(res.statusCode);

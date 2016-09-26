@@ -13,7 +13,6 @@ let appConfigJson = require('./app/config/appConfig.json');
 let expressbuilder = require('./server/middlewares/express-builder');
 let siteconfig = require('./server/middlewares/site-config');
 let versionconfig = require('./server/middlewares/version-config');
-let responseMetrics = require('./server/middlewares/response-metrics');
 let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
 let error = require('./modules/error');
@@ -91,7 +90,6 @@ let createSiteApps = () => {
 				let App = require(appConfig.path);
 				let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
 
-				appObj.use(responseMetrics());
 				siteApp.use(appConfig.mainRoute, appObj);
 			});
 
