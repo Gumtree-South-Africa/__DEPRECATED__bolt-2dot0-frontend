@@ -59,7 +59,7 @@ class LoginPageModel {
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.seo = () => {
-			return seo.getHPSeoInfo();
+			return seo.getLoginSeoInfo();
 		};
 	}
 

@@ -29,9 +29,14 @@ class SeoModel {
 		return seoService.getQuickPostSeoData(this.bapiHeaders);
 	}
 
-// Function getQuickPostSeoInfo
+// Function getPostSeoInfo
 	getPostSeoInfo() {
 		return seoService.getPostSeoData(this.bapiHeaders);
+	}
+
+// Function getLoginSeoInfo
+	getLoginSeoInfo() {
+		return seoService.getLoginSeoData(this.bapiHeaders);
 	}
 }
 

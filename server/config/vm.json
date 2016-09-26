@@ -49,7 +49,7 @@
 	},
 	"graphite": {
 		"server": {
-			"host"		: "api.bolt.ebayclassifieds.com.df-dev-6354.lvs01.dev.ebayc3.com",
+			"host"		: "api.bolt.ecg.ebay.com.df-dev-6354.lvs01.dev.ebayc3.com",
 			"port"		: 2003,
 			"interval" 	: 30
 		}

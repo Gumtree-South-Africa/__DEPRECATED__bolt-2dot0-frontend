@@ -55,6 +55,18 @@ SeoService.prototype.getPostSeoData = function(bapiHeaders) {
 }
 
 /**
+ * Gets a list of SEO info for Login
+ */
+SeoService.prototype.getLoginSeoData = function(bapiHeaders) {
+	// console.info('Inside Login SeoService');
+	var seoData = {};
+	seoData.pageTitle = 'default.home.page.title.text';
+	seoData.description = 'home.page.desc.tag';
+	seoData.robots = 'noindex,follow';
+	return seoData;
+}
+
+/**
  * Gets a list of SEO info for SRP
  */
 SeoService.prototype.getSRPSeoData = function(bapiHeaders) {
