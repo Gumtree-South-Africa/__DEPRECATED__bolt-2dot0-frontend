@@ -233,6 +233,18 @@
 					"seo"
 				]
 			}
+		},
+		"RegisterPage": {
+			"desktop": {
+				"models": [
+					"seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"seo"
+				]
+			}
 		}
 	}
 }

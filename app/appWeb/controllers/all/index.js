@@ -4,6 +4,7 @@ let express = require('express');
 let router = express.Router();
 
 router.use('/activate', require('./activatePageController'));
+router.use('/register', require('./registerPageController'));
 router.use('/login', require('./loginPageController'));
 router.use('/app-shell', require('./appShellController'));
 router.use('/manifest.json', require('./manifestController'));

@@ -37,8 +37,7 @@ class ActivatePageModel {
 			() => {
 				return {
 					'homePageUrl': this.urlProtocol + 'www.' + this.fullDomainName + this.baseDomainSuffix + this.basePort,
-					'languageCode': this.locale,
-					'progressBarText': "postAd.confirm.pageTitle"
+					'languageCode': this.locale
 				};
 			}
 		];
@@ -47,8 +46,6 @@ class ActivatePageModel {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
-		modelData.category = data.category || {};
-		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
 		return modelData;
 	}

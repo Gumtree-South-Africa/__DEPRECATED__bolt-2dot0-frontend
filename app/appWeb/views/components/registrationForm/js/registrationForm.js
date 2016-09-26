@@ -10,6 +10,11 @@ class RegistrationForm {
 	_markValidationError(dom) {
 		dom.addClass("validation-error");
 		dom.change(() => {
+			if (dom === this.$emailField) {
+				this.$invalidEmail.addClass('hidden');
+			} else if (dom === this.$termsCheckbox) {
+				this.$termsError.addClass('hidden');
+			}
 			dom.removeClass("validation-error");
 			dom.off("change");
 			this._toggleRegisterButton();
@@ -29,21 +34,23 @@ class RegistrationForm {
 			agreeTerms: agreeTerms,
 			optInMarketing: optInMarketing
 		};
+		this.$registerButton.prop('disabled', true);
 
 		$.ajax({
 			method: "POST",
 			url: "/api/auth/register",
-			data: payload,
+			data: JSON.stringify(payload),
 			dataType: "json",
 			contentType: "application/json",
 			success: (res) => {
+				this.$registerButton.prop('disabled', false);
 				this._handleSuccess(res);
 			},
 			error: (err) => {
+				this._toggleRegisterButton();
 				this._handleFailure(err);
 			}
 		});
-
 	}
 
 	_handleSuccess() {
@@ -51,7 +58,7 @@ class RegistrationForm {
 	}
 
 	_handleFailure(err) {
-		if (err.statusCode === 400) {
+		if (err.status === 400) {
 			//Validation errors
 			let response = JSON.parse(err.responseText || '{}');
 			let schemaErrors = response.schemaErrors;
@@ -59,8 +66,8 @@ class RegistrationForm {
 			if (schemaErrors) {
 				schemaErrors.forEach((error) => {
 					if (error.field.indexOf("emailAddress") >= 0) {
-						this._toggleEmailError();
 						this._markValidationError(this.$emailField);
+						this._toggleEmailError();
 					} else if (error.field.indexOf("password") >= 0) {
 						this._markValidationError(this.$firstPassword);
 						this._markValidationError(this.$secondPassword);
@@ -97,7 +104,7 @@ class RegistrationForm {
 	_checkPasswords() {
 		let password = this.$firstPassword.val();
 		let secondPassword = this.$secondPassword.val();
-		if (password && password === secondPassword) {
+		if (password && password === secondPassword && password.length >= 6 && password.length <= 25) {
 			this.$firstPassword.removeClass('validation-error');
 			this.$secondPassword.removeClass('validation-error');
 		} else {
@@ -114,7 +121,7 @@ class RegistrationForm {
 	}
 
 	_toggleEmailError() {
-		this.$invalidEmail.toggleClass('hidden');
+		this.$invalidEmail.toggleClass('hidden', !this.$emailField.hasClass('validation-error'));
 		return this.$invalidEmail.hasClass('hidden');
 	}
 
