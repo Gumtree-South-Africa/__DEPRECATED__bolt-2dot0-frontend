@@ -1,3 +1,5 @@
+//:::::::: Desktop ::::::::::
+
 .footer-wrapper{
 	&,& a{
 		color: color(swirl, shade)!important;
@@ -119,3 +121,8 @@
 		}
 	}
 }
+
+//::::::::Responsive :::::::
+@import './footer/small.scss',
+		'./footer/medium.scss',
+		'./footer/desktop.scss'
