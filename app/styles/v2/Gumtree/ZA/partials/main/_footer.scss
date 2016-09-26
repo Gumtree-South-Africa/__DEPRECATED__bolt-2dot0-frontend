@@ -1,7 +1,7 @@
 //:::::::: Desktop / Medium ::::::::::
 
 .footer-wrapper{
-	&,& a{
+	&,& a, .top-links{
 		color: color(swirl, shade);
 		background-color: color(foxtail, light);
 	}
@@ -127,11 +127,50 @@
 //:::::::: Small ::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
-
+		.meet-team{
+			margin-top: 22px;
+			margin-bottom: 14px;
+		}
 		.customer-service-container{
+			height:auto;
 		  	.team-photos{
 		  		width:100%;
+		  		.user-photo-wrapper{
+		  			width: 25%;
+		  			max-width: 25%;
+		  			.user-photo{
+		  				height: 50px;
+		  				width: 50px;
+		  			}
+		  		}
 			}
+			.support-wrapper{
+				text-align: center;
+				width:100%;
+				
+				.support-container{
+					display: inline-block;
+					.support-text, .support-icon{
+						margin:0;
+					}
+					.mobile-only.support-text, .chat-icon + .support-text{
+						display:block;
+					}
+				}
+			}
+
+		}
+		.social-container{
+			width: 100%;
+			padding: 0;
+			height: auto;
+			.social-icon-wrapper{
+				width: 20%;
+				padding: 0;
+			}
+		}
+		.footer-download{
+			display: none;
 		}
 	}
 
