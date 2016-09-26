@@ -1,0 +1,5 @@
+@include to-breakpoint($small-break, $lt-ie9-class-name){
+    .footer-wrapper{
+		background-color: red;
+	}
+}
