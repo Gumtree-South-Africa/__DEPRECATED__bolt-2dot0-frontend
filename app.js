@@ -102,11 +102,11 @@ let createSiteApps = () => {
 		// ***** App 404 Error *****
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
-		app.use(error.four_o_four(app));
+		app.use(error.four_o_four());
 
 		// ***** App Error *****
 		// Overwriting the express's default error handler should always appear after 404 middleware
-		app.use(error(app));
+		app.use(error());
 	});
 };
 

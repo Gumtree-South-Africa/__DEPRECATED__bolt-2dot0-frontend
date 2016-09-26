@@ -6,72 +6,33 @@
 
 "use strict";
 
-var urlPattern = require("url-pattern");
-var util = require('util'),
-    str = require('string'),
-    displayError = require('./displayError'),
-    stringUtl = require('string');
+let urlPattern = require("url-pattern");
+let stringUtl = require('string');
 let config = require('config');
 
+let displayError = require('./displayError');
 
-module.exports = function(app) {
-    return function(err, req, res, next) {
 
-		// sometimes we'll get errors that do not have a status property, so we force a status property to accomodate the handling logic below
-	    if (!err.hasOwnProperty('status')) {
-		    err.status = 500;
-	    }
+// check if it is ajax request
+let isAjaxReq = (req) => {
+	if (req.xhr || stringUtl(req.path).contains("/api/")) {
+		return true;
+	}
 
-        if (err.status === 0) {
-            // next();
-            res.send("");
-        }
+	return false;
+}
 
-        // if 404 request then to error page
-        if (err.status == 404 || err.status == 410) {
-            res.locals.err = err;
+// check if it is app resource request
+let isResourceReq = (req) => {
+	// set url pattern object
+	let urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|svg|js|css|txt)$/i, ['ext']);
 
-            // set the http status code
-            res.statusCode = 404;
-            if (isAjaxReq(req)) {
-                console.error(err);
-                res.status(404).json({status:404, message: 'Invalid API'});
-            } else {
-				if (res.locals.b2dot0Version) {
-					errorVersionTwo(err, req, res);
-				} else {
-					displayError.message(req, res, next);
-				}
-            }
-
-        }
-        // if 500 request then to error page
-        else if (err.status == 500) {
-
-            // hack: increace the stack trace for NodeJS
-            Error.stackTraceLimit = 100;
-
-            console.log("\n\n =====  Error Message ==== \n");
-            console.log(err.message + "\n\n");
-            console.log("======= error stack trace =========");
-	        console.log(err.stack);
-            res.locals.err = err;
-            res.statusCode = 500;
-            //console.error(err.stackTrace);
-            if ( isAjaxReq(req)) {
-                console.error(err);
-                res.status(500).json({status:500, message: 'server error', type:'internal'});
-            } else {
-            	if (res.locals.b2dot0Version) {
-					errorVersionTwo(err, req, res);
-				} else {
-					displayError.message(req, res, next);
-				}
-            }
-
-        }
-
-    };
+	// match the url pattern
+	let matchedImageExt = urlPttrn.match(req.originalUrl);
+	if(matchedImageExt) {
+		return true;
+	}
+	return false;
 };
 
 let errorVersionTwo = (err, req, res) => {
@@ -95,6 +56,7 @@ let errorVersionTwo = (err, req, res) => {
 	};
 	let brandName = res.locals.config.name;
 	let country = res.locals.config.country;
+	let urlProtocol = 'https://';
 	let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
 	let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
 	let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
@@ -106,50 +68,78 @@ let errorVersionTwo = (err, req, res) => {
 };
 
 
-// 404 middleware
-module.exports.four_o_four = function(app) {
+module.exports = function() {
+    return function(err, req, res, next) {
+		// sometimes we'll get errors that do not have a status property, so we force a status property to accomodate the handling logic below
+	    if (!err.hasOwnProperty('status')) {
+		    err.status = 500;
+	    }
 
+        if (err.status === 0) {
+            // next();
+            res.send("");
+        }
+
+        // if 404 request then to error page
+        if (err.status === 404 || err.status === 410) {
+            res.locals.err = err;
+
+            // set the http status code
+            res.statusCode = 404;
+            if (isAjaxReq(req)) {
+                console.error(err);
+                res.status(404).json({status:404, message: 'Invalid API'});
+            } else {
+				if (res.locals.b2dot0Version) {
+					errorVersionTwo(err, req, res);
+				} else {
+					displayError.message(req, res, next);
+				}
+            }
+
+        } else if(err.status === 500) { // if 500 request then to error page
+            // hack: increace the stack trace for NodeJS
+            Error.stackTraceLimit = 100;
+
+            console.log("\n\n =====  Error Message ==== \n");
+            console.log(err.message + "\n\n");
+            console.log("======= error stack trace =========");
+	        console.log(err.stack);
+            res.locals.err = err;
+            res.statusCode = 500;
+            //console.error(err.stackTrace);
+            if ( isAjaxReq(req)) {
+                console.error(err);
+                res.status(500).json({status:500, message: 'Server Error', type:'internal'});
+            } else {
+            	if (res.locals.b2dot0Version) {
+					errorVersionTwo(err, req, res);
+				} else {
+					displayError.message(req, res, next);
+				}
+            }
+        }
+    };
+};
+
+
+// 404 middleware
+module.exports.four_o_four = function() {
     return function(req, res, next) {
         // avoid going to error page for resource pages
         if (isResourceReq(req)) {
-            var err = new Error('Not Found');
+        	let err = new Error('Not Found');
             err.status = 200;
-           return next();
+			return next();
         } else {
-            var err = new Error(`${req.originalUrl} Not Found`);
+            let err = new Error(`${req.originalUrl} Not Found`);
             err.status = 404;
-           return next(err);
+			return next(err);
         }
-
-    }
+    };
 };
 
-function isAjaxReq(req) {
 
-    if (req.xhr || stringUtl(req.path).contains("/api/")) {
-        return true;
-    }
-
-
-    return false;
-}
-
-// check if it is app resource request
-function isResourceReq(req) {
-
-    // set url pattern object
-    var urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|js|css|txt)$/i, ['ext']);
-    // match the url pattern
-    var matchedImageExt = urlPttrn.match(req.originalUrl);
-
-   // console.log("req.originalUrl ====== " + req.originalUrl);
-    //if (matchedImageExt)
-    //console.log("matchedImageExt ====== " + matchedImageExt.ext);
-
-    if (matchedImageExt)
-        return true;
-    return false;
-}
 
 
 
