@@ -7,11 +7,13 @@
 
 $container-width: 73em;
 
+$bodyFont: Lato;    // attach this to body element
+
 // Headlines
-$viva-h1: bold 1.5em Lato;      // 24px
-$viva-h2: normal 1.5em Lato;    // 24px
-$viva-h3: normal 1.25em Lato;   // 20 px
-$viva-h4: normal 1em Lato;      // 16 px
+$viva-h1: bold 1.5em $bodyFont;      // 24px
+$viva-h2: normal 1.5em $bodyFont;    // 24px
+$viva-h3: normal 1.25em $bodyFont;   // 20 px
+$viva-h4: normal 1em $bodyFont;      // 16 px
 
 $h1: $viva-h1;
 $h2: $viva-h2;
@@ -22,9 +24,9 @@ $h1-color: $vivaBlack;
 $h3-secondary-color: $vivaOrange;
 
 // Paragraphs
-$viva-p1: normal 0.875em Lato;  //14px
-$viva-p2: normal 0.75em Lato;   //12px
-$viva-p3: normal 0.625em Lato;  //10px
+$viva-p1: normal 0.875em $bodyFont;  //14px
+$viva-p2: normal 0.75em $bodyFont;   //12px
+$viva-p3: normal 0.625em $bodyFont;  //10px
 
 $p1: $viva-p1;
 $p2: $viva-p2;
@@ -37,12 +39,12 @@ $common-background-color: #f7f7f7;
 
 // Primary link
 $primary-link-color: $vivaBlack;
-$primary-link-font: bold 1.5em Lato;
+$primary-link-font: bold 1.5em $bodyFont;
 
 
 // Secondary link
 $secondary-link-color: $vivaOrange;
-$secondary-link-font: bold 1em Lato;
+$secondary-link-font: bold 1em $bodyFont;
 
 
 // Tertiary link
@@ -117,8 +119,6 @@ $profile-border: $vivaOrange;
 
 
 // Conventions:  all SCSS is camelCase, all css classes are dash separated
-
-$bodyFont: Lato;    // attach this to body element
 
 /*
     Here is an example of font treatement in css:
