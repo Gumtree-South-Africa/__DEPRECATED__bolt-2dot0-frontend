@@ -1,9 +1,8 @@
 //:::::::: Desktop ::::::::::
-
 .footer-wrapper{
 	&,& a{
-		color: color(swirl, shade)!important;
-		background-color: color(foxtail, light)!important;
+		color: color(swirl, shade);
+		background-color: color(foxtail, light);
 	}
 	.customer-service-container{
 		height:88px;
