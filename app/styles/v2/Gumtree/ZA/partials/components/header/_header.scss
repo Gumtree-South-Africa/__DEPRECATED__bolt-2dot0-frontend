@@ -1,0 +1,138 @@
+.header-wrapper {
+	border-bottom-color: color(leaf);
+
+	.headerV2 {
+		height: auto;
+		margin: auto;
+		max-width: 942px;
+		padding: 20px 40px 0;
+
+		.app-icon {
+			top: 25px;
+		}
+
+		.item-text {
+			max-width: none;
+			padding: 0;
+		}
+
+		.left-items {
+			width: auto;
+
+			&.logged-out {
+				left: auto;
+				margin-left: 40px;
+			}
+
+			.browse {
+				line-height: 35px;
+				min-width: 0;
+				width: auto;
+			}
+		}
+
+		.logo {
+			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
+			background-size: contain;
+			display: inline-block;
+			height: 28px;
+			margin-left: 20px;
+			outline: dotted 1px;
+			position: static;
+			width: 200px;
+			@include from-breakpoint($medium-break) {
+				height: 28px;
+				margin: 0 0 0 20px;
+				top: 0;
+			}
+		}
+
+		.mobile-menu {
+			top: 25px
+		}
+
+		.post-ad-button	{
+			margin: 0 0 0 40px;
+			min-width: 0;
+
+			.btn {
+				line-height: 35px;
+				min-width: 0;
+				padding: 0 15px;
+				width: auto;
+			}
+		}
+
+		.right-item {
+			margin-right: 0;
+			width: auto;
+
+			.item-text {
+				padding: 0;
+			}
+		}
+
+		.right-items {
+			float: right;
+			margin-right: 20px;
+			position: static;
+			width: auto;
+
+			.help {
+				line-height: 35px;
+				margin-left: 40px;
+				padding: 0;
+				width: auto;
+			}
+
+			.profile {
+				.header-item-icon {
+					right: 0;
+				}
+
+				.profile-icon {
+					height: 35px;
+					width: 35px;
+				}
+			}
+		}
+	}
+}
+
+@include to-breakpoint($medium-break) {
+	.header-wrapper {
+		.headerV2 {
+			.logo {
+				margin-left: 0;
+			}
+
+			.post-ad-button {
+				margin-left: 30px;
+			}
+
+			.right-items {
+				margin-right: 0;
+
+				.help {
+					margin-left: 30px;
+				}
+			}
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.header-wrapper {
+		.headerV2 {
+			height: 30px !important;
+
+			.logo {
+				height: 24px;
+				left: 50%;
+				margin: 0 0 0 -100px;
+				position: absolute;
+				top: 23px;
+			}
+		}
+	}
+}
