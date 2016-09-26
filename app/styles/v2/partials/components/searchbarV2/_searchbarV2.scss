@@ -245,20 +245,20 @@ $mobileTextboxWidth: 84%;
 
 			.inner-text {
 				display: none;
-				width: 45%;
-				float: right;
-				text-align: left;
+				vertical-align: middle;
 			}
 
 			.button-content-container {
+				display: block;
+				line-height: 38px;
 				position: relative;
-				height: 100%;
 			}
 
 			.icon-search-white {
-				display: block;
+				display: inline-block;
 				margin: 0;
 				height: 20px;
+				vertical-align: middle;
 				width: 20px;
 			}
 
@@ -424,15 +424,8 @@ $mobileTextboxWidth: 84%;
 
 			.search-button {
 				.inner-text {
-					width: 63%;
-					float: right;
-					display: block;
-					text-align: left;
-				}
-
-				.icon-search-white {
-					float: right;
-					margin: auto 5px auto 0;
+					display: inline-block;
+					margin-left: 5px;
 				}
 			}
 
@@ -480,16 +473,14 @@ $mobileTextboxWidth: 84%;
 			height: $mobileSearchBarHeight;
 
 			.search-button {
+				.button-content-container {
+					line-height: 30px;
+				}
+			}
+
+			.search-button {
 				.inner-text {
 					display: none;
-					width: 45%;
-					float: right;
-					text-align: left;
-				}
-
-				.icon-search-white {
-					margin: auto;
-					float: none;
 				}
 			}
 		}
