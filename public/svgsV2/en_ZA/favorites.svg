@@ -3,7 +3,11 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="18px" height="18px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <style type="text/css">
+<<<<<<< 6d62054c20d70f2fa4e49e62bd6fc9ebc4e31cbf
 	.st0{fill:#6E6A60;}
+=======
+	.st0{fill:#B3B3B3;}
+>>>>>>> feat(Gumtree/layout): adds application icons assets
 </style>
 <path class="st0" d="M36.5,4.1c-4.9,0-9.3,2.7-11.5,7c-2.2-4.3-6.6-7-11.5-7C6.4,4.1,0.6,9.9,0.6,17c0,13.7,22.9,28,23.9,28.6
 	l0.5,0.3l0.5-0.3c1-0.6,23.9-14.9,23.9-28.6C49.4,9.9,43.6,4.1,36.5,4.1z M25,43.6C21.6,41.4,2.6,28.5,2.6,17
