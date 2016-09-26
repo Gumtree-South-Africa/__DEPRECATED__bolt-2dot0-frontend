@@ -1,4 +1,4 @@
-//:::::::: Desktop / Medium / Small ::::::::::
+//:::::::: Desktop ::::::::::
 
 .footer-wrapper{
 	&,& a{
@@ -346,3 +346,8 @@
 		}
 	}
 }
+
+//::::::::Responsive :::::::
+@import './footer/small.scss',
+		'./footer/medium.scss',
+		'./footer/desktop.scss'
