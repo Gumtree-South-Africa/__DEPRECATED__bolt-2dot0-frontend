@@ -60,8 +60,8 @@ SeoService.prototype.getPostSeoData = function(bapiHeaders) {
 SeoService.prototype.getLoginSeoData = function(bapiHeaders) {
 	// console.info('Inside Login SeoService');
 	var seoData = {};
-	seoData.pageTitle = 'default.home.page.title.text';
-	seoData.description = 'home.page.desc.tag';
+	seoData.pageTitle = 'login.page.title';
+	seoData.description = 'login.page.desc';
 	seoData.robots = 'noindex,follow';
 	return seoData;
 }

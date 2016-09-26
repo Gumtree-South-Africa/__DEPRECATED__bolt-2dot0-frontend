@@ -514,7 +514,6 @@
 	"register.continue-message": "<h1>¡Revisa tu correo electrónico!</h1><p>Te hemos enviado un enlace de invitación para completar tu registro.</p>",
 	"register.error.wrongemail": "El correo electrónico no es válido",
 	"register.error.acceptterms": "Por favor acepta los Términos y Condiciones antes de proceder",
-	"login.page.title": "Bienvenido a Vivanuncios",
 	"login.title": "Entra a tu cuenta",
 	"login.facebook": "Entra con Facebook",
 	"login.or": "ó",
@@ -1472,5 +1471,12 @@
 		"termsAndConditions": "Al registrarse, usted acepta los Términos y Condiciones de Uso y que sus datos podrán ser tratados de la manera descrita en nuestro Aviso de Privacidad.",
 		"emailConsent": "Acepto recibir comunicaciones de marketing de Vivanuncios (Aviso de Privacidad).",
 		"email": "Correo electrónico"
+	},
+	"login": {
+		"page": {
+			"title": "Bienvenido a Vivanuncios",
+			"desc": "Clasificados Gratis en Mexico, Compra - Venta, Viajes - Turismo, Bienes Raices, Empleo, Clases - Talleres, Vehiculos, Servicios en Vivanuncios"
+		}
 	}
+
 }
