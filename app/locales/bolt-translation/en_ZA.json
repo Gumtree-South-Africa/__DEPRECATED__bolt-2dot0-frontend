@@ -431,7 +431,6 @@
 	"footer.tips-help.title": "Tips & help",
 	"footer.tips-help.helpContact": "Help & Contact Us",
 	"footer.tips-help.staySafe": "Stay Safe",
-	"footer.tips-help.giveFeedback": "Give Feedback",
 	"footer.followUs.title": "Follow us",
 	"footer.followUs.facebook": "Facebook",
 	"footer.followUs.google": "Google+",
@@ -1154,9 +1153,6 @@
 	"quickpost.error.priceLong": "The price is very high",
 	"quickpost.empty": "",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	
-	
-
 	"smartmobilebanner": {
 		"title": "Abre la App",
 		"mobilelink": "o continúa en el sitio móvil >>",
