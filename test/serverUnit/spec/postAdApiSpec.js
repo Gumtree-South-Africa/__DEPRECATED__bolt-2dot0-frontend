@@ -128,11 +128,7 @@ describe('Post Ad Api', () => {
 
 					expect(jsonResult.state).toBe("AD_DEFERRED");
 
-					expect(jsonResult.links).toBeDefined('deferred ad should have links');
-
-					expect(jsonResult.links.emailLogin).toBeDefined('deferred ad should have email login link');
-					expect(jsonResult.links.facebookLogin).toBeDefined('deferred ad should have facebook login link');
-					expect(jsonResult.links.register).toBeDefined('deferred ad should have register link');
+					expect(jsonResult.defferedLink).toBeDefined('deferred ad should have link');
 
 				})
 				.end(specHelper.finish(done));
@@ -163,12 +159,7 @@ describe('Post Ad Api', () => {
 
 					expect(jsonResult.state).toBe("AD_DEFERRED");
 
-					expect(jsonResult.links).toBeDefined('deferred ad should have links');
-
-					expect(jsonResult.links.emailLogin).toBeDefined('deferred ad should have email login link');
-					expect(jsonResult.links.facebookLogin).toBeDefined('deferred ad should have facebook login link');
-					expect(jsonResult.links.register).toBeDefined('deferred ad should have register link');
-
+					expect(jsonResult.defferedLink).toBeDefined('deferred ad should have link');
 				})
 				.end(specHelper.finish(done));
 		});
