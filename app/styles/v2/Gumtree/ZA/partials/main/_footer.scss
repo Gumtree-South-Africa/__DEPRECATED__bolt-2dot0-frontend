@@ -1,50 +1,50 @@
-//:::::::: Desktop ::::::::::
+//:::::::: Desktop / Medium ::::::::::
 
 .footer-wrapper{
 	&,& a{
-		color: color(swirl, shade)!important;
-		background-color: color(foxtail, light)!important;
-	}
-	.customer-service-container{
-		height:88px;
+		color: color(swirl, shade);
+		background-color: color(foxtail, light);
 	}
 	.meet-team{
 		margin-bottom: 17px;
 	}
 
-  	.team-photos{
-  		width: auto;
-  		padding: 0 35px;
-  		height: auto;
-  		.user-photo-wrapper {
-  			max-width: 103px;
-  			width: 103px;
-			.user-photo {
-				width: 64px;
-				height: 64px;	
-				border: 2px solid color(leaf);
-			}
-  		}
-	}
-
-	.support-wrapper{
-		width: 50%;
-
-		.support-container{
-			margin: 20px 12.5px;
-			.chat-icon{
-				font-size: 26px;
-				color: color(leaf);
-			}
-			.support-text{
-				font-size: 12px;
-				text-transform:uppercase;
+	.customer-service-container{
+		height:88px;
+		display: inline-block;
+		width:100%;
+	  	.team-photos{
+	  		height: auto;
+	  		width: 49%;
+	  		.user-photo-wrapper {
+	  			max-width: 103px;
+	  			width: 103px;
+				.user-photo {
+					width: 64px;
+					height: 64px;	
+					border: 2px solid color(leaf);
+				}
+	  		}
+		}
+		.support-wrapper{
+			width: 49%;
+			.support-container{
+				margin: 0 12.5px;
+				.chat-icon{
+					font-size: 26px;
+					color: color(leaf);
+				}
+				.support-text{
+					font-size: 12px;
+					text-transform:uppercase;
+				}
 			}
 		}
 	}
 
+
+
 	.line-divider{
-		display:inline-block;
 		width: 941px;
 		margin: auto;
 	}
@@ -123,4 +123,19 @@
 		color: inherit;
 	}
 }
+
+//:::::::: Small ::::::::::
+@include to-breakpoint($small-break){
+	.footer-wrapper{
+
+		.customer-service-container{
+		  	.team-photos{
+		  		width:100%;
+			}
+		}
+	}
+
+}
+
+
 
