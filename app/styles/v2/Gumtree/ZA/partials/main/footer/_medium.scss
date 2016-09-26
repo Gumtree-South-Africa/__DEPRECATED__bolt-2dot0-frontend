@@ -1,4 +1,4 @@
-@include to-breakpoint($medium-break, $lt-ie9-class-name){
+@include in-breakpoint($medium-break, $lt-ie9-class-name){
     .footer-wrapper{
 		background-color: black;
 	}
