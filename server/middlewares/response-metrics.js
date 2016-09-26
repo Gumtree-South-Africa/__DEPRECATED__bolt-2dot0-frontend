@@ -1,12 +1,12 @@
 'use strict';
 
 
-var onResponse = require('on-response');
+let onResponse = require('on-response');
 
-var cwd = process.cwd();
-var metrics = require(cwd + '/server/utils/monitor/metrics');
-var graphiteService = require(cwd + '/server/utils/graphite');
-var requestsInProcess = 0;
+let cwd = process.cwd();
+let metrics = require(cwd + '/server/utils/monitor/metrics');
+let graphiteService = require(cwd + '/server/utils/graphite');
+let requestsInProcess = 0;
 
 module.exports = function() {
 	return function(req, res, next) {
@@ -25,19 +25,19 @@ module.exports = function() {
 
 
 		onResponse(req, res, function(err, summary) {
-			var pagetype = req.app.locals.pagetype;
-			var country = res.locals.config.country;
-			var status = parseInt(res.statusCode);
+			let pagetype = req.app.locals.pagetype;
+			let country = res.locals.config.country;
+			let status = parseInt(res.statusCode);
 
-			var responseTime = summary.response.time;
-			var requestSize = (typeof summary.request.size !== 'undefined') ? summary.request.size : 0;
-			var responseSize = (typeof summary.response.size !== 'undefined') ? summary.response.size : 0;
+			let responseTime = summary.response.time;
+			let requestSize = (typeof summary.request.size !== 'undefined') ? summary.request.size : 0;
+			let responseSize = (typeof summary.response.size !== 'undefined') ? summary.response.size : 0;
 
 			// Metrics On Response
 			requestsInProcess -= 1;
 			if (req.session) {
-				var sessSize = JSON.stringify(req.session).length;
-				metrics.sessionSize = Math.max(metric.sessionSize, sessSize);
+				let sessSize = JSON.stringify(req.session).length;
+				metrics.sessionSize = Math.max(metrics.sessionSize, sessSize);
 			}
 			metrics.urltime.update(Date.now() - res.startingTime);
 			if (status >= 200 && status <= 299) {
@@ -62,5 +62,5 @@ module.exports = function() {
 		});
 
 		next();
-	}
+	};
 };

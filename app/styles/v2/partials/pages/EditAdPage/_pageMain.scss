@@ -277,10 +277,15 @@ body {
 				color: $vivaOrange;
 			}
 
-			input[type="text"], input[type="date"], .location-link, select {
+			.step-controls {
+				display: none;
+			}
+
+			input[type="text"], input[type="tel"], input[type="number"], input[type="date"], .location-link, select {
 				width: $inputFieldWidth;
 				margin: 0 $inputMargin;
 				padding: 0 calc(2% - 1px);
+				font-size: 1em;
 
 				border: 1px solid $vivaBlack;
 
@@ -294,6 +299,7 @@ body {
 					margin: 0 0 0 $inputMargin;
 				}
 
+				&.user-error,
 				&.validation-error {
 					border: 1px solid red;
 				}

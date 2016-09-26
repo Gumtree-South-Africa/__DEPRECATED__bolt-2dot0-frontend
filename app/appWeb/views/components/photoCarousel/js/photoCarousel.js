@@ -2,6 +2,7 @@
 
 require("slick-carousel");
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
 let uploadAd = require('../../uploadImage/js/uploadAd');
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
@@ -112,8 +113,7 @@ let _postAd = (urls, locationType) => {
 	let inputPrice = parseFloat($("#price-input").val());
 	let price = isNaN(inputPrice) ? 0 : inputPrice;
 
-	let spinner = $("#spinner-modal");
-	spinner.removeClass('hidden');
+	spinnerModal.showModal();
 
 	let extraPayload = {
 		locationType: locationType,
@@ -130,7 +130,7 @@ let _postAd = (urls, locationType) => {
 		this.epsUpload.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
 	}, (err) => {
 		console.warn(err);
-		spinner.addClass('hidden');
+		spinnerModal.hideModal();
 		this.$postAdButton.removeClass('disabled');
 		this.disableImageSelection = false;
 		this.uploadMessageClass.failMsg();

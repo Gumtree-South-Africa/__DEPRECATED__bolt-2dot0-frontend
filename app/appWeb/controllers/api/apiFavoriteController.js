@@ -9,6 +9,7 @@ let favoriteSchema = require(cwd + '/app/appWeb/jsonSchemas/favoriteRequest-sche
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
+let logger = require(`${cwd}/server/utils/logger`);
 
 
 
@@ -43,7 +44,7 @@ router.post('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json
 			return;
 		}).fail((err) => {
-			let bapiInfo = err.logError();
+			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code
 				error: "unable to favorite ad, see logs for details",
 				bapiInfo: bapiInfo
@@ -88,7 +89,7 @@ router.delete('/', cors, (req, res) => {
 			res.status(200).send({});	// returning {} since consumer will expect json;
 			return;
 		}).fail((err) => {
-			let bapiInfo = err.logError();
+			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({
 				error: "unable to unfavorite ad, see logs for details",
 				bapiInfo: bapiInfo
