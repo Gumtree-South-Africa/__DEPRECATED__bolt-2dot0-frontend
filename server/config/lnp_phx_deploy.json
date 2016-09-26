@@ -23,12 +23,12 @@
 			"specificAd": "/v1/ads/{id}",
 			"favoriteAd": "/v1/ads/{id}/favorites",
 			"categoryAttributes": "/v1/categories/{catId}/attributes",
-			"authBoltLogin": "/v1/user/actions/login-with-bolt",
-			"authFbLogin" :	"/v1/user/actions/login-with-facebook",
-			"authRegister" : "/v1/user",
-			"authActivate" : "/v1/user/{email}/actions/activate",
-			"authEmailExists" :	"/v1/user/email/{email}",
-			"authPhoneExists" :	"/v1/user/phone/{phone}"
+			"authBoltLogin": "/v1/users/actions/login-with-bolt",
+			"authFbLogin" :	"/v1/users/actions/login-with-facebook",
+			"authRegister" : "/v1/users",
+			"authActivate" : "/v1/users/{email}/actions/activate",
+			"authEmailExists" :	"/v1/users/email/{email}",
+			"authPhoneExists" :	"/v1/users/phone/{phone}"
 		}
 	},
 	"solr": {

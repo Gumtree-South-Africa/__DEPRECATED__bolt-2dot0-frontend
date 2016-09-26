@@ -24,12 +24,12 @@
 			"favoriteAd"		:	"/boltapi/v1/ads/{id}/favorites",
 			"specificAd"		:	"/boltapi/v1/ads/{id}",
 			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes",
-			"authBoltLogin"		:	"/boltapi/v1/user/actions/login-with-bolt",
-			"authFbLogin"		:	"/boltapi/v1/user/actions/login-with-facebook",
-			"authRegister"		:	"/boltapi/v1/user",
-			"authActivate"		:	"/boltapi/v1/user/{email}/actions/activate",
-			"authEmailExists"	:	"/boltapi/v1/user/email/{email}",
-			"authPhoneExists"	:	"/boltapi/v1/user/phone/{phone}"
+			"authBoltLogin"		:	"/boltapi/v1/users/actions/login-with-bolt",
+			"authFbLogin"		:	"/boltapi/v1/users/actions/login-with-facebook",
+			"authRegister"		:	"/boltapi/v1/users",
+			"authActivate"		:	"/boltapi/v1/users/{email}/actions/activate",
+			"authEmailExists"	:	"/boltapi/v1/users/email/{email}",
+			"authPhoneExists"	:	"/boltapi/v1/users/phone/{phone}"
 	    }
 	},
 	"solr": {
