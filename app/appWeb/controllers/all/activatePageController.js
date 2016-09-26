@@ -6,7 +6,7 @@ let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let ActivatePageModel = require('../../../builders/page/ActivatePageModel');
-let EpsModel = require('../../../builders/common/EpsModel');
+
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -24,15 +24,43 @@ let extendModelData = (req, modelData) => {
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
 };
 
-router.get('/', (req, res, next) => {
+router.get('/:emailAddress', (req, res, next) => {
+
+	let activateParams = {};
+	
+	// validate the inputs
+	// note query string is all lower cased
+	if (!req.query.activationcode) {
+		res.status(400);
+		res.send({error: "query param missing"});
+		return;
+	}
+	activateParams.activationCode = req.query.activationcode;
+
+	if (activateParams.activationCode === "resend") {
+		// todo: resend the email
+		activateParams.resent = true;
+	}
+
+	if (!req.params.emailAddress) {
+		res.status(400);
+		res.send({error: "email param missing"});
+		return;
+	}
+	activateParams.emailAddress = req.params.emailAddress;
+
 	req.app.locals.pagetype = pageTypeJson.pagetype.ACTIVATE_PAGE;
-	let activatePageModel = new ActivatePageModel(req, res);
+	let activatePageModel = new ActivatePageModel(req, res, activateParams);
 
 	activatePageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
-		modelData.eps = EpsModel();
+
+		if (modelData.activate.accessToken) {
+			// not setting expires or age so it will be a "session" cookie
+			res.cookie('bt_auth', modelData.activate.accessToken, { httpOnly: true });
+		}
 
 		pageControllerUtil.postController(req, res, next, 'activatePage/views/hbs/activatePage_', modelData);
 	}).fail((err) => {

@@ -10,25 +10,25 @@ class AuthModel {
 	}
 
 	loginViaBolt(loginRequest) {
-		return authService.mockLogin(this.bapiHeaders, loginRequest).then( (results) => {
+		return authService.loginBolt(this.bapiHeaders, loginRequest).then( (results) => {
 			return results;
 		});
 	}
 
 	loginViaFb(loginRequest) {
-		return authService.mockLogin(this.bapiHeaders, loginRequest).then( (results) => {
+		return authService.loginFb(this.bapiHeaders, loginRequest).then( (results) => {
 			return results;
 		});
 	}
 
 	register(registerRequest) {
-		return authService.mockRegister(this.bapiHeaders, registerRequest).then( (results) => {
+		return authService.register(this.bapiHeaders, registerRequest).then( (results) => {
 			return results;
 		});
 	}
 
-	activate(email, activateRequest) {
-		return authService.mockActivate(this.bapiHeaders, email, activateRequest).then( (results) => {
+	activate(activateRequest) {
+		return authService.activate(this.bapiHeaders, activateRequest).then( (results) => {
 			return results;
 		});
 	}

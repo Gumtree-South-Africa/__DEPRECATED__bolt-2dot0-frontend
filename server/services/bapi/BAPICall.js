@@ -135,7 +135,10 @@ BAPICall.prototype = {
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (!(res.statusCode === 200 || res.statusCode === 201)) {
 						let bapiJson;
-						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
+						// content-type can have different format for the charset:
+						// RAML Mock Server: 'application/json; charset=utf-8' or BAPI: 'application/json;charset=UTF-8'
+						// so we're now just checking for application/json without regard to charset
+						if (res.headers['content-type'].indexOf("application/json") !== -1) {
 							// attach the json so consumers can use it
 							bapiJson = data;
 						}

@@ -225,12 +225,12 @@
 		"ActivatePage": {
 			"desktop": {
 				"models": [
-					"seo"
+					"seo", "activate"
 				]
 			},
 			"mobile": {
 				"models": [
-					"seo"
+					"seo", "activate"
 				]
 			}
 		}

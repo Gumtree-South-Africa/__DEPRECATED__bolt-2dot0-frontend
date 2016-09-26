@@ -1,3 +1,4 @@
+
 'use strict';
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;

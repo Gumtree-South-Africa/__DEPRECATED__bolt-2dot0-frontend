@@ -1,3 +1,18 @@
 {{#partial "content"}}
-    Activation success
+    <div class="activate-content">
+    {{#if this.activate.params.resent}}
+		<div class="activate-email-sent">Activation email sent to {{this.activate.params.emailAddress}}!</div>
+		<div>Please check your email to continue activation</div>
+    {{else if  this.activate.success}}
+		<div class="activate-success">Activation Success for {{this.activate.params.emailAddress}}!</div>
+		<div>You have been logged in</div>
+		<a href="/">Home</a>
+    {{else}}
+        <div class="activate-fail">Activation Fail!</div>
+        {{#if this.activate.failReason}}
+            <div>Reason code: <span class="fail-reason">{{this.activate.failReason}}</div>
+        {{/if}}
+        <a class="activate-resend" href="/activate/{{this.activate.params.emailAddress}}?activationcode=resend">Click here to send another activation email</a>
+    {{/if}}
+	</div>
 {{/partial}}

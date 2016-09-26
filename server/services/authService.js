@@ -14,17 +14,17 @@ class AuthService {
 	/**
 	 * Mock Services till BAPI is built out
 	 */
-	mockLogin() {
-		return Q(require(process.cwd() + '/server/services/mockData/UserLoginResponse.json'));
-	}
-
-	mockActivate() {
-		return Q(require(process.cwd() + '/server/services/mockData/UserLoginResponse.json'));
-	}
-
-	mockRegister() {
-		return Q(require(process.cwd() + '/server/services/mockData/UserRegistrationResponse.json'));
-	}
+	// mockLogin() {
+	// 	return Q(require(process.cwd() + '/server/services/mockData/UserLoginResponse.json'));
+	// }
+	//
+	// mockActivate() {
+	// 	return Q(require(process.cwd() + '/server/services/mockData/UserLoginResponse.json'));
+	// }
+	//
+	// mockRegister() {
+	// 	return Q(require(process.cwd() + '/server/services/mockData/UserRegistrationResponse.json'));
+	// }
 
 	mockCheck() {
 		return Q({});
@@ -54,10 +54,10 @@ class AuthService {
 		}), bapiHeaderValues, JSON.stringify(registerJson), 'authRegister');
 	}
 
-	activate(bapiHeaderValues, email, activateJson) {
+	activate(bapiHeaderValues, activateJson) {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
-			path: config.get('BAPI.endpoints.authActivate').replace('{email}', email) + '?activationCode=' + activateJson.activationCode
+			path: config.get('BAPI.endpoints.authActivate').replace('{email}', activateJson.emailAddress) + '?activationCode=' + activateJson.activationCode
 		}), bapiHeaderValues, {}, 'authActivate');
 	}
 

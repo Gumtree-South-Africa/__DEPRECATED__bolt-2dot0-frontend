@@ -114,7 +114,7 @@ router.post('/register', cors, (req, res) => {
 	});
 
 });
-
+/*
 // route is /api/auth/activate
 router.get('/activate/:emailAddress', cors, (req, res) => {
 
@@ -157,6 +157,6 @@ router.get('/activate/:emailAddress', cors, (req, res) => {
 	});
 });
 
-
+*/
 module.exports = router;
 
