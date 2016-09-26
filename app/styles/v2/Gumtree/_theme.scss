@@ -35,7 +35,7 @@ $p3: $viva-p3;
 $p2-secondary-color: $vivaGray1;
 
 $safety-card-background-color: #1E98D5;
-$common-background-color: #f7f7f7;
+$common-background-color: color(foxtail, medium);
 
 // Primary link
 $primary-link-color: $vivaBlack;
@@ -61,7 +61,7 @@ $page-bordercolor : #f7f7f7;
 
 // Buttons
 $button-color: $vivaWhite;
-$button-bgcolor: $vivaOrange;
+$button-bgcolor: color(crane);
 $button-fontsize: 1.125em;
 
 
@@ -148,7 +148,7 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Header
 
-$headerBackgroundColor: $vivaGray4;
+$headerBackgroundColor: color(foxtail, medium);
 $headerTextColor: $vivaGray3;
 $headerMenuBorderColor: $vivaGray6;
 $headerMenuItemSecondaryColor: $vivaGray6;
