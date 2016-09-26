@@ -23,7 +23,7 @@
 		font: 1.25em Lato normal;
 	}
 
-	.input-wrapper, .checkbox-wrapper {
+	.input-wrapper {
 		padding-top: 10px;
 		&.password {
 			.password-length-label {
@@ -39,12 +39,6 @@
 		font-size: 1em;
 		font-family: inherit;
 		padding: 0;
-	}
-
-	.terms-and-conditions-container, .email-consent-container {
-		label {
-			font-size: 12px;
-		}
 	}
 
 	button {

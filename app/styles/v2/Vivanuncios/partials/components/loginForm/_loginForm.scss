@@ -1,7 +1,7 @@
 .login-form {
 	.facebook-button {
-		background-color: blue;
-		width: 250px;
+		background-color: #3C5A96;
+		width: 80%;
 		height: 35px;
 		margin-top: 40px;
 		margin-left: auto;
@@ -12,6 +12,14 @@
 		border-bottom: 1px solid grey;
 		margin: 30px auto;
 		width: 300px;
+		text-align: center;
+		height: 15px;
+
+		.divider-text {
+			padding: 0 10px;
+			height: 16px;
+			background-color: $vivaWhite;
+		}
 	}
 
 	.sign-in-section {
@@ -28,6 +36,7 @@
 			width: 80%;
 			margin-left: auto;
 			margin-right: auto;
+			box-sizing: border-box;
 
 			&.validation-error {
 				border-color: $vivaOrange;

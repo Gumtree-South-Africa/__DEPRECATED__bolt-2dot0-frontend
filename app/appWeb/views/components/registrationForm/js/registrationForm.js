@@ -1,10 +1,12 @@
 'use strict';
 
+let termsAndConditions = require("app/appWeb/views/components/termsAndConditions/js/termsAndConditions.js");
+
 class RegistrationForm {
 
 	_validateFields() {
 		this._toggleRegisterButton();
-		return this.hasAcceptedTerms && this._validEmail();
+		return termsAndConditions.getCheckedStatus().hasAcceptedTerms && this._validEmail();
 	}
 
 	_markValidationError(dom) {
@@ -25,14 +27,13 @@ class RegistrationForm {
 		let emailAddress = this.$emailField.val();
 		let passwordOne = this.$firstPassword.val();
 		let passwordTwo = this.$secondPassword.val();
-		let agreeTerms = this.hasAcceptedTerms;
-		let optInMarketing = this.$emailConsent.is(':checked');
+		let checkboxStatus = termsAndConditions.getCheckedStatus();
 		let payload = {
 			emailAddress: emailAddress,
 			password: passwordOne,
 			password2: passwordTwo,
-			agreeTerms: agreeTerms,
-			optInMarketing: optInMarketing
+			agreeTerms: checkboxStatus.hasAcceptedTerms,
+			optInMarketing: checkboxStatus.marketingConsent
 		};
 		this.$registerButton.prop('disabled', true);
 
@@ -96,7 +97,7 @@ class RegistrationForm {
 		let secondPassword = this.$secondPassword.val();
 		let validEmail = this._validEmail();
 		let shouldDisable = !password || password !== secondPassword
-			|| !validEmail || !this.hasAcceptedTerms;
+			|| !validEmail || !termsAndConditions.getCheckedStatus().hasAcceptedTerms;
 
 		this.$registerButton.prop('disabled', shouldDisable);
 	}
@@ -127,8 +128,6 @@ class RegistrationForm {
 
 	initialize() {
 		this.$form = $('#registration-form');
-		this.$termsCheckbox = this.$form.find('#accept-terms');
-		this.$emailConsent = this.$form.find('#email-consent');
 		this.$emailField = this.$form.find('#email-input');
 		this.$firstPassword = this.$form.find('#password-one');
 		this.$secondPassword = this.$form.find('#password-two');
@@ -136,11 +135,10 @@ class RegistrationForm {
 		this.$termsError = this.$form.find('#terms-error');
 		this.$invalidEmail = this.$form.find('#invalid-email');
 
-		this.hasAcceptedTerms = this.$termsCheckbox.is(':checked');
-
-		this.$termsCheckbox.on('change', () => {
-			this.hasAcceptedTerms = this.$termsCheckbox.is(':checked');
-			this._toggleRegisterButton();
+		termsAndConditions.initialize({
+			termsChangeCb: () => {
+				this._toggleRegisterButton();
+			}
 		});
 
 		this.$firstPassword.on('change keyup', () => {
