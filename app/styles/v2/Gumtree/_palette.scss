@@ -30,3 +30,33 @@ $vivaBlue6: #196ED2;	// defined for use in 'Get the App' card
 $vivaBlue7: #478BCD;
 
 $vivaRed: red;
+
+$colors: (
+	crane: (
+		base: #F66429,
+		shade: #B0481A
+	),
+	foxtail: (
+		base: #FCECC7,
+		light: #FCFAf4,
+		medium: #FAF5EA
+	),
+	leaf: (
+		base: #72EF36
+	),
+	swirl: (
+		base: #CFCDC1,
+		shade: #605D4C
+	)
+);
+
+@function color($name, $tone: base) {
+	@return map-get(map-get($colors, $name), $tone)
+};
+
+@font-face {
+    font-family: 'Castledown';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Castledown Regular'), local('Castledown-Regular'), url('../../../../../fonts/Castledown-Regular.otf') format('eot');
+};
