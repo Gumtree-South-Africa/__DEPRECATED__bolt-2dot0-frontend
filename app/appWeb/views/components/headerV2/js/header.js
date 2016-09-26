@@ -56,12 +56,14 @@ let initialize = (registerOnReady = true) => {
 	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
 
 	if (registerOnReady) {
-		$(document).ready(onReady);
+		$(window).load(function(){
+			$(document).ready(onReady);
+		});
 	}
 };
 
 module.exports = {
-	onReady,
-	initialize
+	initialize,
+	onReady
 };
 
