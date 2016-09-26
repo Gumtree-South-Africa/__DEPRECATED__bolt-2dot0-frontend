@@ -3,7 +3,8 @@
 		display: none;
 	}
 
-	.error-message {
+	.error-message, .general-error {
+		text-align: center;
 		color: red;
 	}
 
@@ -55,4 +56,16 @@
 			cursor: not-allowed !important;
 		}
 	}
+}
+
+.registration-success {
+	&.hidden {
+		display: none;
+	}
+	text-align: center;
+
+	h1, p {
+		margin: 20px;
+	}
+
 }

@@ -110,6 +110,7 @@ router.post('/register', cors, (req, res) => {
 			error: "unable to register, see logs for details",
 			bapiInfo: bapiInfo
 		});
+		console.error(err);
 		return;
 	});
 

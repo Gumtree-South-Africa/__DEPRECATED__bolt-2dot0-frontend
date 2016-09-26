@@ -14,7 +14,7 @@ class LoginForm {
 
 	_handleLoginFailure(err) {
 		// validation error
-		if (err.statusCode === 400) {
+		if (err.status === 400) {
 			let responseText = JSON.parse(err.responseText || '{}');
 
 			if (responseText.hasOwnProperty("schemaErrors")) {
@@ -26,7 +26,7 @@ class LoginForm {
 					}
 				});
 			}
-		} else if (err.statusCode === 401) {
+		} else if (err.status === 401) {
 			// server authentication error (bad user/pass)
 			let $inputs = this.$emailInput.add(this.$passwordInput);
 			this._markValidationError($inputs);

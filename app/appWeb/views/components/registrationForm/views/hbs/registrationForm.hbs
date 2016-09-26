@@ -2,15 +2,15 @@
 	<div class="title">
         {{i18n "registrationForm.registerWithEmail"}}
 	</div>
-	<div class="error-message">
-		<div id="invalid-email" class="invalid-email hidden">
-            {{i18n "registrationForm.invalidEmail"}}
-		</div>
-		<div id="terms-error" class="accept-terms hidden">
-            {{i18n "registrationForm.acceptTerms"}}
-		</div>
-	</div>
     <form id="registration-form" method="POST" action="#">
+		<div class="error-message">
+			<div id="invalid-email" class="invalid-email hidden">
+                {{i18n "registrationForm.invalidEmail"}}
+			</div>
+			<div id="terms-error" class="accept-terms hidden">
+                {{i18n "registrationForm.acceptTerms"}}
+			</div>
+		</div>
         <div class="input-wrapper email">
 			<input id="email-input" placeholder="{{i18n "registrationForm.email"}}" type="text" name="email-address" class="email-address">
         </div>
@@ -25,7 +25,13 @@
 			<input id="password-two" placeholder="{{i18n "postad.contact.password"}}" type="password" name="password-two"
 				   class="password password-two">
         </div>
+        {{> (dynamic "termsAndConditions") }}
         <button id="registration-submit-button" class="registration-submit-button" disabled>{{i18n "register.continue"}}</button>
+        <div id="general-error" class="general-error hidden">
+            {{i18n "postad.image.upload.failure.$$"}}
+        </div>
 	</form>
-    {{> (dynamic "termsAndConditions") }}
+</div>
+<div id="registration-success" class="registration-success hidden">
+    {{i18n "register.continue-message"}}
 </div>

@@ -55,7 +55,8 @@ class RegistrationForm {
 	}
 
 	_handleSuccess() {
-		//TODO: handle success case
+		this.$form.addClass('hidden');
+		this.$registrationSuccess.removeClass('hidden');
 	}
 
 	_handleFailure(err) {
@@ -78,8 +79,8 @@ class RegistrationForm {
 				});
 			}
 
-		} else if (err.statusCode === 500) {
-			//TODO: handle this
+		} else if (err.status === 500) {
+			this.$failure.removeClass('hidden');
 		}
 	}
 
@@ -115,25 +116,22 @@ class RegistrationForm {
 		this._toggleRegisterButton();
 	}
 
-	// Don't let user click the submit button anyway, might not need these.
-	_toggleTermsError() {
-		this.$termsError.toggleClass('hidden');
-		return this.$termsError.hasClass('hidden');
-	}
-
 	_toggleEmailError() {
 		this.$invalidEmail.toggleClass('hidden', !this.$emailField.hasClass('validation-error'));
 		return this.$invalidEmail.hasClass('hidden');
 	}
 
 	initialize() {
-		this.$form = $('#registration-form');
-		this.$emailField = this.$form.find('#email-input');
-		this.$firstPassword = this.$form.find('#password-one');
-		this.$secondPassword = this.$form.find('#password-two');
-		this.$registerButton = this.$form.find('#registration-submit-button');
-		this.$termsError = this.$form.find('#terms-error');
-		this.$invalidEmail = this.$form.find('#invalid-email');
+		this.$registrationForm = $('#registration-form');
+		this.$form = this.$registrationForm.find('form');
+		this.$emailField = this.$registrationForm.find('#email-input');
+		this.$firstPassword = this.$registrationForm.find('#password-one');
+		this.$secondPassword = this.$registrationForm.find('#password-two');
+		this.$registerButton = this.$registrationForm.find('#registration-submit-button');
+		this.$termsError = this.$registrationForm.find('#terms-error');
+		this.$invalidEmail = this.$registrationForm.find('#invalid-email');
+		this.$failure = this.$registrationForm.find('#general-error');
+		this.$registrationSuccess = this.$registrationForm.siblings('#registration-success');
 
 		termsAndConditions.initialize({
 			termsChangeCb: () => {

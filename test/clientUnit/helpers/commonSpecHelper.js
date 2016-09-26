@@ -164,7 +164,7 @@ beforeEach(() => {
 			if (ajaxInfo.options.fail) {
 				let err = new Error();
 				err.responseText = JSON.stringify(ajaxInfo.returnData);
-				err.statusCode = ajaxInfo.options.statusCode || 500;
+				err.status = ajaxInfo.options.status || 500;
 				options.error(err);
 			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {

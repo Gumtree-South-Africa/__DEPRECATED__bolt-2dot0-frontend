@@ -37,7 +37,7 @@ describe("Login Form", () => {
 				]
 			}, {
 				fail: true,
-				statusCode: 400
+				status: 400
 			});
 
 			loginFormController.initialize();
@@ -57,7 +57,7 @@ describe("Login Form", () => {
 
 			specHelper.registerMockAjax("/api/auth/login", {}, {
 				fail: true,
-				statusCode: 401
+				status: 401
 			});
 
 			loginFormController.initialize();
