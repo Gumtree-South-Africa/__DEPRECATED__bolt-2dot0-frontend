@@ -34,7 +34,7 @@
 	},
 	"solr": {
 		"server": {
-			"host"	: "df-dev-6354.lvs01.dev.ebayc3.com,
+			"host"	: "df-dev-6354.lvs01.dev.ebayc3.com",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
