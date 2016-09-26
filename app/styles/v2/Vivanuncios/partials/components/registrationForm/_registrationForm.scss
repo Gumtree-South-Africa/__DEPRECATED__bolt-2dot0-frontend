@@ -1,4 +1,16 @@
 .registration-form {
+	.hidden {
+		display: none;
+	}
+
+	.error-message {
+		color: red;
+	}
+
+	.title, .error-message {
+		text-align: center;
+	}
+
 	box-sizing: border-box;
 	width: 100%;
 	padding: 10px;
@@ -11,8 +23,14 @@
 		font: 1.25em Lato normal;
 	}
 
-	.input-wrapper, .checkbox-wrapper {
+	.input-wrapper {
 		padding-top: 10px;
+		&.password {
+			.password-length-label {
+				font-size: 12px;
+			}
+			padding-top: 0;
+		}
 	}
 
 	input[type="password"], input[type="text"] {
@@ -21,12 +39,6 @@
 		font-size: 1em;
 		font-family: inherit;
 		padding: 0;
-	}
-
-	.terms-and-conditions-container, .email-consent-container {
-		label {
-			font-size: 12px;
-		}
 	}
 
 	button {

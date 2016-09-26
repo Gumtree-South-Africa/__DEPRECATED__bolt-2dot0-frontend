@@ -5,7 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
-let LoginPageModel = require('../../../builders/page/LoginPageModel');
+let RegisterPageModel = require('../../../builders/page/RegisterPageModel');
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -15,24 +15,24 @@ let extendModelData = (req, modelData) => {
 	modelData.header.canonical = modelData.header.homePageUrl;
 	// CSS
 	if (modelData.header.min) {
-		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/LoginPage.min.css');
+		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/RegisterPage.min.css');
 	} else {
-		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/LoginPage.css');
+		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/RegisterPage.css');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "LoginPage_desktop_es_MX.js");
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "RegisterPage_desktop_es_MX.js");
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
 };
 
 router.get('/', (req, res, next) => {
-	req.app.locals.pagetype = pageTypeJson.pagetype.LOGIN_PAGE;
-	let loginPageModel = new LoginPageModel(req, res);
+	req.app.locals.pagetype = pageTypeJson.pagetype.REGISTER_PAGE;
+	let registerPageModel = new RegisterPageModel(req, res);
 
-	loginPageModel.populateData().then((modelData) => {
+	registerPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 
-		pageControllerUtil.postController(req, res, next, 'loginPage/views/hbs/loginPage_', modelData);
+		pageControllerUtil.postController(req, res, next, 'registerPage/views/hbs/registerPage_', modelData);
 	}).fail((err) => {
 		next(err);
 	});

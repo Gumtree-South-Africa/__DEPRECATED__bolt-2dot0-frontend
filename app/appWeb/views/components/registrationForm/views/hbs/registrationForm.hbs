@@ -15,6 +15,9 @@
 			<input id="email-input" placeholder="{{i18n "registrationForm.email"}}" type="text" name="email-address" class="email-address">
         </div>
         <div class="input-wrapper password">
+            <label for="password-one" class="password-length-label">
+                ({{i18n "pass.too.long"}})
+            </label>
 			<input id="password-one" placeholder="{{i18n "postad.contact.password"}}" type="password" name="password-one"
 				   class="password password-one">
         </div>
@@ -22,14 +25,7 @@
 			<input id="password-two" placeholder="{{i18n "postad.contact.password"}}" type="password" name="password-two"
 				   class="password password-two">
         </div>
-        <div class="checkbox-wrapper terms-and-conditions-container">
-			<input id="accept-terms" type="checkbox" name="accept-terms" class="accept-terms">
-			<label for="accept-terms">{{i18n "registrationForm.termsAndConditions"}}</label>
-        </div>
-        <div class="checkbox-wrapper email-consent-container">
-			<input id="email-consent" type="checkbox" name="email-consent" class="email-consent" checked>
-			<label for="email-consent">{{i18n "registrationForm.emailConsent"}}</label>
-        </div>
         <button id="registration-submit-button" class="registration-submit-button" disabled>{{i18n "register.continue"}}</button>
 	</form>
+    {{> (dynamic "termsAndConditions") }}
 </div>

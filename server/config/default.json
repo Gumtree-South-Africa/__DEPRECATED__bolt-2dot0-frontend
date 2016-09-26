@@ -25,12 +25,12 @@
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
 			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
-			"authBoltLogin"		:	"/bolt-api-webapp/v1/user/actions/login-with-bolt",
-			"authFbLogin"		:	"/bolt-api-webapp/v1/user/actions/login-with-facebook",
-			"authRegister"		:	"/bolt-api-webapp/v1/user",
-			"authActivate"		:	"/bolt-api-webapp/v1/user/{email}/actions/activate",
-			"authEmailExists"	:	"/bolt-api-webapp/v1/user/email/{email}",
-			"authPhoneExists"	:	"/bolt-api-webapp/v1/user/phone/{phone}"
+			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
+			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",
+			"authRegister"		:	"/bolt-api-webapp/v1/users",
+			"authActivate"		:	"/bolt-api-webapp/v1/users/{email}/actions/activate",
+			"authEmailExists"	:	"/bolt-api-webapp/v1/users/email/{email}",
+			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}"
 	    }
 	},
 	"kafka": {
