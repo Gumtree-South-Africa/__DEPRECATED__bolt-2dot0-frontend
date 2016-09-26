@@ -1,7 +1,7 @@
 .footer-wrapper{
 	&,& a{
-		color: color(swirl, shade);
-		background-color: color(foxtail, light);
+		color: color(swirl, shade)!important;
+		background-color: color(foxtail, light)!important;
 	}
 	.customer-service-container{
 		height:88px;
@@ -79,10 +79,13 @@
 	    right: inherit;
 	    bottom: inherit;
 	    float: right;
+	    width:45%;
+	    padding-right: 35px;
 		.app-downloads-container{
 			padding-top:20px;
 			padding-bottom:20px;
 			height:52px;
+			text-align: right;
 		    .app-downloads{
 				width: 100%;
 				background: url("https://securelatam.classistatic.com/2.0.122/css/es_MX/svg/sprite.css-5329f80e.svg") 42.19653179190752% 0 no-repeat;
@@ -95,8 +98,24 @@
 		}
 	}
 
+	.social-container{
+		padding-top: 20px;
+		padding-left:20px;
+		width: 45%;
+		.social-icon-wrapper{
+			width: 44px;
+			padding: 0 20px;
+		}
+	}
+
 	//-----
+	
 	.seo-wrapper{
 		display:inline-block;
+		position: relative;
+		top: -7px;
+		color: inherit;
+		.top-content .top-link{
+		}
 	}
 }
