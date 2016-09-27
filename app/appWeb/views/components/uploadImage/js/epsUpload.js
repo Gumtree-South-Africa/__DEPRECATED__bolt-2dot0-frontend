@@ -215,7 +215,7 @@ class EpsUpload {
 				spinnerModal.completeSpinner(() => {
 					loginModal.openModal({
 						submitCb: () => {
-							window.location.href = response.links.defferedLink;
+							window.location.href = response.defferedLink;
 						}
 					});
 				});

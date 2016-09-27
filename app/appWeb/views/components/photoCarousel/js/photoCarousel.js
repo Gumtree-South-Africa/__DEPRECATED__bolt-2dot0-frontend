@@ -402,8 +402,6 @@ this.deleteCarouselItem = (event, toRemove) => {
 	coverPhoto.attr("data-image", "");
 
 	let index = $(".add-photo-item, .carousel-item").index(toRemove);
-	console.log(toRemove);
-	console.log(index);
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
@@ -529,6 +527,8 @@ let initialize = (options) => {
 	this.$carousel.slick(options.slickOptions);
 
 	this.$carousel.on('breakpoint', resizeCarousel);
+	options.initialImages.push('https://img.classistatic.com/crop/200x150/i.sandbox.ebayimg.com/00/s/NDg5WDgwMA==/z/wUYAAOSwuy5X4dvO/$_19.JPG?set_id=8800005007');
+
 
 	options.initialImages.forEach((image, i) => {
 		let thumb = (image.LARGE) ? image.LARGE : image.SMALL || image;

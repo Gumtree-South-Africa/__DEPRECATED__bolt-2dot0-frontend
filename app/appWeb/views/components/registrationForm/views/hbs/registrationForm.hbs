@@ -3,6 +3,7 @@
         {{i18n "registrationForm.registerWithEmail"}}
 	</div>
     <form id="registration-form" method="POST" action="#">
+        <input type="hidden" value="{{this.redirectUrl}}" name="redirect-url" id="redirect-url">
 		<div class="error-message">
 			<div id="invalid-email" class="invalid-email hidden">
                 {{i18n "registrationForm.invalidEmail"}}

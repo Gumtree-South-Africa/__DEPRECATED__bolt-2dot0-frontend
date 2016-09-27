@@ -7,10 +7,11 @@ let validator = require('is-my-json-valid');
 let cwd = process.cwd();
 let loginSchema = require(cwd + '/app/appWeb/jsonSchemas/loginRequest-schema.json');
 let registerSchema = require(cwd + '/app/appWeb/jsonSchemas/registerRequest-schema.json');
-let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AuthModel = require(cwd + '/app/builders/common/AuthModel');
 let cors = require(cwd + '/modules/cors');
 let logger = require(`${cwd}/server/utils/logger`);
+let activateEmailService = require(`${cwd}/server/services/activateEmailService`);
 
 // route is /api/auth/login
 router.post('/login', cors, (req, res) => {
@@ -99,14 +100,14 @@ router.post('/register', cors, (req, res) => {
 			res.status(500).send('missing activation code');
 			return;
 		}
-		//TODO: send email with activation code
-		//TODO: loginhack
-		console.warn(`/activate/${req.body.emailAddress}?activationcode=${result.activationCode}`);
-		// ex: "/users/abc@yahoo.com/actions/activate?activationCode=xyz"
-		//let activationLink = result._links[0].href;	// there is only one, so we don't need to search for "activationUrl";
 
-		res.status(200).send({});	// returning {} since consumer will expect json
-		return;
+		return activateEmailService.sendActivationEmail({
+			emailAddress: req.body.emailAddress,
+			activationCode: result.activationCode,
+			redirectUrl: req.body.redirectUrl || '/'
+		});
+	}).then(() => {
+		return res.status(200).send({});	// returning {} since consumer will expect json
 	}).fail((err) => {
 		let bapiInfo = err.logError();
 		res.status(err.getStatusCode(500)).send({// 500 default status code

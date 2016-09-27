@@ -182,7 +182,7 @@ let initialize = (Handlebars) => {
 		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
-	exphbs.handlebars.registerHelper('wrapWithTagAndClass', function(tagName, className, stringToWrap, options) {
+	Handlebars.registerHelper('wrapWithTagAndClass', function(tagName, className, stringToWrap, options) {
 		if (!tagName || !className || !stringToWrap) {
 			return;
 		}

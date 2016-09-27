@@ -50,7 +50,6 @@ BAPICall.prototype = {
 		    		try {
 		    			data = JSON.parse(body);
 		    		} catch(ex) {
-		    			data = {};
 						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
 						console.error(message);
 					    deferred.reject(new BapiError(message));
@@ -124,8 +123,9 @@ BAPICall.prototype = {
 							data = JSON.parse(body);
 						}
 					} catch(ex) {
-						console.log(ex);
-						deferred.reject(new BapiError(ex));
+						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
+						console.error(message);
+						deferred.reject(new BapiError(message));
 					}
 
 					// Aggregation of data with the original (passed) data

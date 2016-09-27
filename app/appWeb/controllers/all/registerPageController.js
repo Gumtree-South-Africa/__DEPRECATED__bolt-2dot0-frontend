@@ -26,11 +26,13 @@ let extendModelData = (req, modelData) => {
 router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.REGISTER_PAGE;
 	let registerPageModel = new RegisterPageModel(req, res);
+	let redirectUrl = req.query.redirect;
 
 	registerPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
+		modelData.redirectUrl = redirectUrl;
 
 		pageControllerUtil.postController(req, res, next, 'registerPage/views/hbs/registerPage_', modelData);
 	}).fail((err) => {
