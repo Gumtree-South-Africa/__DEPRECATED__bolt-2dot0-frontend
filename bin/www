@@ -11,7 +11,7 @@
 process.chdir(process.env.PM_CWD || '.');
 
 
-var cluster = require('cluster'),
+let cluster = require('cluster'),
     numCPUs = require('os').cpus().length;
 
 if (cluster.isMaster) {
@@ -22,14 +22,14 @@ if (cluster.isMaster) {
     });
 
     // Spawn an environment per CPU
-    for (var i = 0; i < numCPUs; i++) {
+    for (let i = 0; i < numCPUs; i++) {
         cluster.fork();
     }
 
-    cluster.on('listening', function (worker) {
+    cluster.on('listening', function(worker) {
         console.info('Worker-' + worker.id + ' is listening');
     });
-    cluster.on('exit', function (worker, code, signal) {
+    cluster.on('exit', function(worker, code, signal) {
         console.log('Worker-%d (PID: %s) has died (%s). restarting...',
             worker.id, worker.process.pid, signal || code);
         cluster.fork();
