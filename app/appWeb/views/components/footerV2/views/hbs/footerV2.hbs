@@ -47,6 +47,7 @@
     {{/if}}
 
     {{#unless this.footer.distractionFree}}
+    {{#block "support-links"}}
         <div class="support-wrapper">
 			<div class="desktop-only support-container">
 				<span class="support-icon chat-icon"></span>
@@ -63,6 +64,7 @@
                 <a class="desktop-only support-text" href="{{this.footer.emailUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
             </div>
         </div>
+    {{/block}}
 	</div>
     {{#block "social-container-mobile"}}
 		<div class="mobile-only social-container">
