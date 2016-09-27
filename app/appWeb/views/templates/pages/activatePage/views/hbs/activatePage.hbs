@@ -22,7 +22,7 @@
             {{#if this.activate.failReason}}
                 <div class="fail-reason">
                     {{i18n "activate.page.failReason"}}
-                    <span class="fail-reason-code">R-10{{this.activate.failReason}}</span>
+                    <span class="fail-reason-code">{{this.activate.failReason}}</span>
                 </div>
             {{/if}}
             <a class="activate-resend" href="/activate/{{this.activate.params.emailAddress}}?activationcode=resend">{{i18n "activate.page.sendAnother"}}</a>

@@ -56,7 +56,7 @@ describe('Activate Page', () => {
 
 					let c$ = cheerio.load(res.text);
 					expect(c$('.activate-fail').length).toBe(1, 'should have activate fail message');
-					let failReason = c$('.fail-reason');
+					let failReason = c$('.fail-reason-code');
 					expect(failReason.length).toBe(1, 'should have a fail reason');
 					expect(failReason.text()).toBe('R-00', 'should have a fail reason R-00');
 
@@ -84,7 +84,7 @@ describe('Activate Page', () => {
 
 					let c$ = cheerio.load(res.text);
 					expect(c$('.activate-fail').length).toBe(1, 'should have activate fail message');
-					let failReason = c$('.fail-reason');
+					let failReason = c$('.fail-reason-code');
 					expect(failReason.length).toBe(1, 'should have a fail reason');
 					expect(failReason.text()).toBe('R-40', 'should have a fail reason R-40');
 
@@ -112,7 +112,7 @@ describe('Activate Page', () => {
 
 					let c$ = cheerio.load(res.text);
 					expect(c$('.activate-fail').length).toBe(1, 'should have activate fail message');
-					let failReason = c$('.fail-reason');
+					let failReason = c$('.fail-reason-code');
 					expect(failReason.length).toBe(1, 'should have a fail reason');
 					expect(failReason.text()).toBe('R-50', 'should have a fail reason R-50');
 
