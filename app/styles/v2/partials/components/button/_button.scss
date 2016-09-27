@@ -3,7 +3,8 @@
 	background-color: $button-bgcolor;
 	border-radius: 2px;
 	display: inline-block;
-	font: bold 1.125em Lato;
+	font-size: 1.125em;
+	font-weight: bold;
 	padding: $padding;
 	text-align: center;
 	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.24);
