@@ -71,11 +71,14 @@
 		width: 941px;
 		margin: auto;
 	}
+<<<<<<< a75e929557ad2386941cc97e2573f4a84414e1e0
 <<<<<<< aa1f962cd000c5adc37b538d02bd197e9aa204a5
 =======
 	.clear.line-divider{
 		display: none;
 	}
+=======
+>>>>>>> refactor(_footer.scss) Footer - hidding Line divider only mobile
 
 	//-----------
 
@@ -272,7 +275,13 @@
 		}
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 	}
+<<<<<<< a75e929557ad2386941cc97e2573f4a84414e1e0
 
+=======
+	.clear.line-divider{
+		display: none;
+	}
+>>>>>>> refactor(_footer.scss) Footer - hidding Line divider only mobile
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
