@@ -2,10 +2,19 @@
 	.facebook-button {
 		background-color: #3C5A96;
 		width: 80%;
-		height: 35px;
+		height: 45px;
+		border: none;
 		margin-top: 40px;
 		margin-left: auto;
 		margin-right: auto;
+
+		.icon-facebook_white {
+			display: inline-block;
+		}
+
+		.facebook-text {
+			color: $vivaWhite;
+		}
 	}
 
 	.divider {
@@ -37,6 +46,7 @@
 			margin-left: auto;
 			margin-right: auto;
 			box-sizing: border-box;
+			font-size: 16px;
 
 			&.validation-error {
 				border-color: $vivaOrange;
@@ -56,7 +66,7 @@
 		button {
 			width: 80%;
 			margin-top: 20px;
-			height: 35px;
+			height: 45px;
 			color: white;
 			background-color: $vivaOrange;
 			margin-left: auto;

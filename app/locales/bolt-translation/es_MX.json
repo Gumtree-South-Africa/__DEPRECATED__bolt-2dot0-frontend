@@ -1476,7 +1476,8 @@
 		"page": {
 			"title": "Bienvenido a Vivanuncios",
 			"desc": "Clasificados Gratis en Mexico, Compra - Venta, Viajes - Turismo, Bienes Raices, Empleo, Clases - Talleres, Vehiculos, Servicios en Vivanuncios"
-		}
+		},
+		"facebookSignIn": "Continuar con Facebook"
 	}
 
 }
