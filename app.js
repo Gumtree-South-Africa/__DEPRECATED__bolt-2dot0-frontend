@@ -45,7 +45,7 @@ let createSiteApps = () => {
 	_.each(config.sites, (site) => {
 		if (siteLocales.indexOf(site.locale) > -1) {
 			(function(siteObj) {
-				let builderObj = new expressbuilder(siteObj);
+				let builderObj = new expressbuilder(siteObj, false);
 				let siteApp = builderObj.getApp();
 				siteApp.locals.siteObj = siteObj;
 				siteApps.push(siteApp);

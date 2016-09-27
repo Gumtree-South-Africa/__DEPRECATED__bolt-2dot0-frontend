@@ -41,7 +41,7 @@ let accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":
 let i18nOr = require(config.root + '/modules/bolt-i18n');
 
 
-function BuildApp(siteObj) {
+function BuildApp(siteObj, loggingEnabled) {
 	let app = new express();
 
 	this.getApp = function() {
@@ -107,7 +107,6 @@ function BuildApp(siteObj) {
 		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
 			app.locals.devMode = true;
 			app.locals.prodEpsMode = false;
-			app.use(logger('dev'));
 
 			// assets for local developments and populates  app.locals.jsAssets
 			app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
@@ -122,7 +121,10 @@ function BuildApp(siteObj) {
 				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
 			}
 
-			// register eps sandbox image url middleware
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('dev'));
+			}
 		});
 
 		/*
@@ -131,13 +133,15 @@ function BuildApp(siteObj) {
 		middlewareloader()(['pp_phx_deploy', 'lnp_phx_deploy'], function() {
 			app.locals.devMode = false;
 			app.locals.prodEpsMode = false;
-			app.use(logger('short'));
 
 			if (app.locals.config) {
 				app.locals.config.basePort = '';
 			}
 
-			// register eps sandbox image url middleware
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('short'));
+			}
 		});
 
 		/*
@@ -146,10 +150,14 @@ function BuildApp(siteObj) {
 		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy'], function() {
 			app.locals.devMode = false;
 			app.locals.prodEpsMode = true;
-			app.use(logger('short'));
 
 			if (app.locals.config) {
 				app.locals.config.basePort = '';
+			}
+
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('short'));
 			}
 		});
 
@@ -173,7 +181,11 @@ function BuildApp(siteObj) {
 				minifyJS: true
 			}
 		}));
-		app.use(logger(accessLogFormat, {stream: accessLogStream}));
+
+		// Only for Specific Apps within a Site App
+		if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+			app.use(logger(accessLogFormat, {stream: accessLogStream}));
+		}
 
 		/*
 		 * Bolt 2.0 Rendering middlewares
