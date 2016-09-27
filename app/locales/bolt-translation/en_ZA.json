@@ -1322,10 +1322,10 @@
 	"footer": {
 		"help": {
 			"heretohelp": "Meet Our Customer Team",
-			"sendemail": "Envía un correo electrónico",
-			"callus": "Llámanos",
+			"sendemail": "Email",
+			"callus": "Call",
 			"chatwithus": "Chatea con nosotros",
-			"contact": "CHAT WITH US",
+			"contact": "Chat",
 			"meet": "Contacta a nuestro equipo de Atención al cliente"
 		},
 		"support": {
