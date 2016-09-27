@@ -87,9 +87,14 @@
 	}
 	.social-container{
 		margin:0;
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 		display: inline-table;
 		padding-top:20px;
 		.social-icon-wrapper{
+=======
+		.social-icon-wrapper{
+			padding-top:20px;
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 			margin:0;
 			.social-icon{
 				margin-top: 0;
@@ -113,9 +118,13 @@
 			display: none;
 		}
 		.app-downloads-container{
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 			padding-top:16px;
 			padding-bottom:9px;
 			margin-top: inherit;				
+=======
+			padding-top:20px;
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 			height:52px;
 			text-align: right;
 			width: 100%;
@@ -138,6 +147,12 @@
 			}
 		}
 	}
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
+=======
+
+	//-----
+	
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 	.seo-wrapper{
 		display:inline-block;
 		color: inherit;
@@ -207,7 +222,13 @@
 					}
 				}
 			}
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 		}
+=======
+
+		}
+
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 		.seo-wrapper{
 			.seo-line{
 				border-bottom: 1px solid color(swirl, shade); 
@@ -224,6 +245,7 @@
 			display: inline-block;
 			width: 100%;
 			padding: 0;
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 			.app-downloads-container{
 				text-align: center;
 				padding: 18px 0 9px 0;
@@ -232,17 +254,35 @@
 	}
 	.clear.line-divider{
 		display: none;
+=======
+			height: 80px;
+			.app-downloads-container{
+				text-align: center;
+				padding: 18px 0 0 0;
+			}
+		}
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 	}
 
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+<<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 	.footer-wrapper{
 		
 		.desktop-only.social-container{
 			display: inline-table;
 			padding-left: 2.5%;
 		}
+=======
+	.footer-download{
+		height: 109px;
+	}
+	.footer-wrapper .desktop-only.social-container{
+		display: inline-block;
+	}
+}
+>>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 
 		.customer-service-container{
 			.support-wrapper{
