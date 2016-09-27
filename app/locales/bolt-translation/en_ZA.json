@@ -416,14 +416,6 @@
 	"footer.getToKnowUs.rules": "Rules for posting ads",
 	"footer.getToKnowUs.blog": "Gumtree Blog",
 	"footer.getToKnowUs.forbusiness": "Gumtree for Business",
-	"footer.explore.title": "Explore",
-	"footer.explore.bestof": "Best Ads",
-	"footer.explore.topSearches": "Top Searches",
-	"footer.explore.mobilesite": "Old mobile site",
-	"footer.explore.sitemap": "Gumtree Content",
-	"footer.explore.locations": "Locations",
-	"footer.explore.interlink": "eBay Classifieds Sites",
-	"footer.explore.mobileApp": "Mobile App",
 	"footer.legalbits.title": "Legal bits",
 	"footer.legalbits.terms": "Terms of Use",
 	"footer.legalbits.privacy": "Privacy Policy",
@@ -1335,10 +1327,10 @@
 		},
 		"sitemap": {
 			"aboutus": {
-				"aboutus": "About us",
-				"aboutviva": "About Vivanuncios",
-				"vivablog": "Vivanuncios Blog",
-				"vivabusiness": "Vivanuncios for Business",
+				"aboutus": "Get to know us",
+				"aboutgumtree": "About Gumtree",
+				"gumtreeblog": "Gumtree Blog",
+				"gumtreebusiness": "Gumtree for Business",
 				"rules": "Rules for Posting Ads",
 				"staysafe": "Mantente Seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
@@ -1346,10 +1338,10 @@
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
-				"legal": "Legal",
+				"legal": "Legal Bits",
 				"terms": "Terms of Use",
 				"privacy": "Privacy Policy",
-				"cookies": "Cookies"
+				"cookies": "Cookie Notice"
 			},
 			"business": {
 				"business": "Agentes Inmobiliarios",
@@ -1363,16 +1355,22 @@
 				"partners": "Partners",
 				"carprice": "Car Price Index",
 				"location": "Ubicaciones",
-                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
-                "topsearches": "Búsquedas destacadas",
-                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-				"priceIndex": "Previos de Inmuebles"
+        "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
+        "topsearches": "Búsquedas destacadas",
+        "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+				"priceIndex": "Previos de Inmuebles",
+				"bestof": "Best Ads",
+				"topSearches": "Top Searches",
+				"mobilesite": "Old mobile site",
+				"sitemap": "Gumtree Content",
+				"locations": "Locations",
+				"interlink": "eBay Classifieds Sites",
+				"mobileApp": "Mobile App"
 			},
 			"tips": {
 				"tips": "Tips & Help",
-				"help": "Help Pages",
-				"helplink": "https://ayuda.vivanuncios.com.mx",
-				"onlinesafety": "Online Safety",
+				"help": "Help & Contact Us",
+				"onlinesafety": "Stay Safe",
 				"vivaguides": "Vivanuncios Guides",
 				"givefeedback": "Give Feedback",
 				"listingRules": "Reglas para Publicar Anuncios"
