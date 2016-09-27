@@ -182,6 +182,13 @@ let initialize = (Handlebars) => {
 		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
+	exphbs.handlebars.registerHelper('wrapWithTagAndClass', function(tagName, className, stringToWrap, options) {
+		if (!tagName || !className || !stringToWrap) {
+			return;
+		}
+		return `<${tagName} class="${className}">${stringToWrap}</${tagName}>`;
+	});
+
 	Handlebars.registerHelper('lookupLocalDate', (attrVals, name) => {
 		let thisVal;
 		if (attrVals) {

@@ -1481,11 +1481,11 @@
 	},
 	"activate": {
 		"page": {
-			"emailSent": "Activation email sent to ",
-			"success": "Activation Success for ",
+			"emailSent": "Activation email sent to %s",
+			"success": "Activation Success for %s",
 			"fail": "Oops, something went wrong during activation",
 			"loggedIn": "You are now logged in",
-			"failReason": "Reason code:",
+			"failReason": "Reason code: %s",
 			"sendAnother": "Click here to send another activation email",
 			"continueActivation": "Please check your email to continue activation"
 		}
