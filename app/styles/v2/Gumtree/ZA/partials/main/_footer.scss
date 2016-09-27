@@ -40,6 +40,18 @@
 				&:nth-of-type(4) .user-photo {
 				    background-image: url(../../../../../images/en_ZA/CS4.png);
 				}
+				&:nth-of-type(1) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS1.png);
+				}
+				&:nth-of-type(2) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS2.png);
+				}
+				&:nth-of-type(3) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS3.png);
+				}
+				&:nth-of-type(4) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS4.png);
+				}
 			}
 		}
 		.support-wrapper{
@@ -62,7 +74,12 @@
 					position: relative;
 					top:-3px;
 					margin-left:0;
+<<<<<<< 1ab2e43186bb844d8ab7327b5929808e0ac3ee18
 					font-size: 14px;
+=======
+					font-size: 12px;
+					text-transform:uppercase;
+>>>>>>> refactor(_footer.scss) Footer - Local images hardcoded
 				}
 			}
 		}
@@ -144,6 +161,7 @@
 				width: 100%;
 				top:0;
 				margin: 0 2.5px;
+<<<<<<< 1ab2e43186bb844d8ab7327b5929808e0ac3ee18
 				&.icon-logo_app_store{
 					background: url(../../../../../images/en_ZA/appstore.svg) no-repeat;
 					border: none;
@@ -155,6 +173,13 @@
 					background-position: center;
 					background-size: 115%;
 					border: none;
+=======
+				.icon-logo_app_store{
+					background: url(../../../../../images/en_ZA/itunes.png) 42.19653179190752% 0 no-repeat;
+				}
+				.icon-logo_google_play{
+					background: url(../../../../../images/en_ZA/google-play.png) 42.19653179190752% 0 no-repeat;
+>>>>>>> refactor(_footer.scss) Footer - Local images hardcoded
 				}
 			}
 		}
@@ -226,7 +251,7 @@
 					display: inline-block;
 					margin: 0;
 					.support-text, .support-icon{
-						margin:0;
+						margin:0 45px;
 					}
 					.mobile-only.support-text, .chat-icon + .support-text{
 						display:inline;
