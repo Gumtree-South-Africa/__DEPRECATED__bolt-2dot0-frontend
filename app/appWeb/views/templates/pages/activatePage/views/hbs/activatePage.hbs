@@ -1,18 +1,32 @@
 {{#partial "content"}}
-    <div class="activate-content">
-    {{#if this.activate.params.resent}}
-		<div class="activate-email-sent">Activation email sent to {{this.activate.params.emailAddress}}!</div>
-		<div>Please check your email to continue activation</div>
-    {{else if  this.activate.success}}
-		<div class="activate-success">Activation Success for {{this.activate.params.emailAddress}}!</div>
-		<div>You have been logged in</div>
-		<a href="/">Home</a>
-    {{else}}
-        <div class="activate-fail">Activation Fail!</div>
-        {{#if this.activate.failReason}}
-            <div>Reason code: <span class="fail-reason">{{this.activate.failReason}}</div>
+    <div class="activate-page">
+        <div class="activate-wrapper">
+            <!--this.activate.params.resent-->
+        {{#if this.activate.params.resent}}
+            <div class="activate-email-sent">
+                {{i18n "activate.page.emailSent"}}
+                <span class="email-address">{{this.activate.params.emailAddress}}</span>
+            </div>
+            <div>{{i18n "activate.page.continueActivation"}}</div>
+            <!--this.activate.success-->
+        {{else if this.activate.success}}
+            <div class="activate-success">
+                {{i18n "activate.page.success"}}
+				<span class="email-address">{{this.activate.params.emailAddress}}</span>
+            </div>
+            <div> {{i18n "activate.page.loggedIn"}}</div>
+            <a class="home-link" href="/">Home</a>
+        {{else}}
+            <div class="activate-fail">{{i18n "activate.page.fail"}}</div>
+             <!--this.activate.failReason-->
+            {{#if this.activate.failReason}}
+                <div class="fail-reason">
+                    {{i18n "activate.page.failReason"}}
+                    <span class="fail-reason-code">R-10{{this.activate.failReason}}</span>
+                </div>
+            {{/if}}
+            <a class="activate-resend" href="/activate/{{this.activate.params.emailAddress}}?activationcode=resend">{{i18n "activate.page.sendAnother"}}</a>
         {{/if}}
-        <a class="activate-resend" href="/activate/{{this.activate.params.emailAddress}}?activationcode=resend">Click here to send another activation email</a>
-    {{/if}}
+		</div>
 	</div>
 {{/partial}}

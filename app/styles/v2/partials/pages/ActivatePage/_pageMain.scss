@@ -1,0 +1,34 @@
+.activate-page {
+	padding-top: 50px;
+	height: 200px;
+	width: 100%;
+
+	.activate-wrapper {
+		padding: 10px;
+		margin: auto;
+		border: 1px solid $activateBorderColor;
+		width: 30%;
+		text-align: center;
+	}
+
+	.activate-email-sent {
+
+	}
+
+	.email-address {
+		font-weight: $fontWeightBold;
+		color: $activateEmailAddressColor;
+	}
+
+	.activate-resend, .home-link {
+		font-weight: $fontWeightBold;
+		color: $activateHomeLinkColor;
+	}
+
+	.fail-reason {
+		color: $activateReasonColor;
+	}
+
+	.fail-reason-code {
+	}
+}

@@ -27,7 +27,7 @@ let extendModelData = (req, modelData) => {
 router.get('/:emailAddress', (req, res, next) => {
 
 	let activateParams = {};
-	
+
 	// validate the inputs
 	// note query string is all lower cased
 	if (!req.query.activationcode) {
