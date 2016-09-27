@@ -153,11 +153,6 @@ let transformEpsUrl = (url) => {
 };
 
 let _success = (i, response) => {
-	if (response.indexOf('ERROR') !== -1) {
-		console.error("EPS error!");
-		return _failure(i, response);
-	}
-
 	if (!this.showImageTracking) {
 	  window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
      }

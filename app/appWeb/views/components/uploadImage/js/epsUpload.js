@@ -131,7 +131,12 @@ class EpsUpload {
 			url: this.EPS.url,
 			data: formData,
 			success: (response) => {
-				success(i, response);
+				if (response.indexOf('ERROR') !== -1) {
+					console.error("EPS error!");
+					return failure(i, response);
+				} else {
+					return success(i, response);
+				}
 			},
 			error: (err) => {
 				if (err.responseText !== undefined) {
@@ -732,7 +737,7 @@ class EpsUpload {
 
 	extractEPSServerError(respText) {
 		// format, ERROR:ME200
-		let reg = /ERROR\:(\w*)/i;
+		let reg = /VERSION:2;ERROR\:(\w*)/i;
 		return respText.replace(reg, "$1");
 	}
 
@@ -832,9 +837,11 @@ class UploadMessageClass {
 
 	pictureSrv() {
 		this.$messageError.html(this.messages.pictureSrv);
+		this.showModal();
 	}
 
 	translateErrorCodes(i, error) {
+		console.error(`EPS code: ${error}`);
 		if (error === "FS002") {
 			this.invalidDimensions(i);
 		} else if (error === "FS001") {
