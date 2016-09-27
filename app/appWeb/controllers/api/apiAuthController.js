@@ -99,6 +99,9 @@ router.post('/register', cors, (req, res) => {
 			res.status(500).send('missing activation code');
 			return;
 		}
+		//TODO: send email with activation code
+		//TODO: loginhack
+		console.warn(`/activate/${req.body.emailAddress}?activationcode=${result.activationCode}`);
 		// ex: "/users/abc@yahoo.com/actions/activate?activationCode=xyz"
 		//let activationLink = result._links[0].href;	// there is only one, so we don't need to search for "activationUrl";
 

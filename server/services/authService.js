@@ -1,12 +1,31 @@
 'use strict';
 
 let cwd = process.cwd();
-let config = require('config');
+// let config = require('config');
+
+//TODO: loginhack
+let config = require(`${process.cwd()}/server/config/mock.json`);
+
+config.get = function(key) {
+	let getImpl = function(object, property) {
+		let elems = Array.isArray(property) ? property : property.split('.'),
+			name = elems[0],
+			value = object[name];
+		if (elems.length <= 1) {
+			return value;
+		}
+		if (typeof value !== 'object') {
+			return undefined;
+		}
+		return getImpl(value, elems.slice(1));
+	};
+	return getImpl(this, key);
+};
 
 let Q = require('q');
 
 let bapiOptionsModel = require(cwd + "/server/services/bapi/bapiOptionsModel");
-let bapiService      = require(cwd + "/server/services/bapi/bapiService");
+let bapiService = require(cwd + "/server/services/bapi/bapiService");
 
 
 class AuthService {

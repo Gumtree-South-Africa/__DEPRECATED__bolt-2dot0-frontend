@@ -73,8 +73,6 @@ class RegistrationForm {
 					} else if (error.field.indexOf("password") >= 0) {
 						this._markValidationError(this.$firstPassword);
 						this._markValidationError(this.$secondPassword);
-					} else if (error.field.indexOf('agreeTerms') >= 0) {
-						this._toggleTermsError();
 					}
 				});
 			}

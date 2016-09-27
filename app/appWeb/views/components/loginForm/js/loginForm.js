@@ -66,7 +66,7 @@ class LoginForm {
 			$.ajax({
 				method: "POST",
 				url: "/api/auth/login",
-				data: payload,
+				data: JSON.stringify(payload),
 				dataType: "json",
 				contentType: "application/json",
 				success: (res) => {
