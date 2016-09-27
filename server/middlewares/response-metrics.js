@@ -1,7 +1,6 @@
 'use strict';
 
 let urlPattern = require("url-pattern");
-let stringUtl = require('string');
 let onResponse = require('on-response');
 
 let cwd = process.cwd();
@@ -10,16 +9,7 @@ let graphiteService = require(cwd + '/server/utils/graphite');
 let requestsInProcess = 0;
 
 
-// check if it is ajax request
-let isAjaxReq = (req) => {
-	if (req.xhr || stringUtl(req.path).contains("/api/")) {
-		return true;
-	}
-
-	return false;
-};
-
-// check if it is app resource request
+// check if it is an App resource request
 let isResourceReq = (req) => {
 	// set url pattern object
 	let urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|svg|js|css|txt)$/i, ['ext']);
@@ -33,7 +23,7 @@ let isResourceReq = (req) => {
 };
 
 
-module.exports = function() {
+module.exports = function(loggingEnabled) {
 	return function(req, res, next) {
 		res.startingTime = Date.now();
 
@@ -48,9 +38,11 @@ module.exports = function() {
 		}
 		metrics.maxConcurrentRequests = Math.max(metrics.maxConcurrentRequests, requestsInProcess);
 
-
 		onResponse(req, res, function(err, summary) {
-			if (isAjaxReq(req) || isResourceReq(req)) {
+			if (loggingEnabled === false) {
+				return;
+			}
+			if (isResourceReq(req)) {
 				return;
 			}
 

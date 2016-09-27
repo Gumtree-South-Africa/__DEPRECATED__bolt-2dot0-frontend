@@ -108,6 +108,10 @@ function BuildApp(siteObj, loggingEnabled) {
 			app.locals.devMode = true;
 			app.locals.prodEpsMode = false;
 
+			if (app.locals.config) {
+				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
+			}
+
 			// assets for local developments and populates  app.locals.jsAssets
 			app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
 
@@ -116,10 +120,6 @@ function BuildApp(siteObj, loggingEnabled) {
 			app.use('/public', express.static(config.root + '/public', {
 				root: '/public', etag: false, maxage: 0, index: false
 			}));
-
-			if (app.locals.config) {
-				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
-			}
 
 			// Only for Specific Apps within a Site App
 			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
@@ -218,7 +218,7 @@ function BuildApp(siteObj, loggingEnabled) {
 		}
 
 		// Bolt Response Metrics
-		app.use(responseMetrics());
+		app.use(responseMetrics(loggingEnabled));
 	}
 }
 
