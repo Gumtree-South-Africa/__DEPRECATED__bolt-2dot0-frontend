@@ -54,7 +54,7 @@
 		"termOfUse"							: "https://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
 		"postingRules"                      : "https://help.gumtree.co.za/articles/KB_Article/What-are-the-General-posting-rules/?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
 		"helpLabel"							: "Help",
-		"helpUrl"							: "https://gumtreehelp.com/za/",
+		"helpUrl"							: "https://help.gumtree.co.za/",
 		"interLinkUrl"						: null,
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
