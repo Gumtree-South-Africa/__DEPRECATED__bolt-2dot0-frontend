@@ -140,9 +140,11 @@ let _postAd = (urls, locationType) => {
 
 let _failure = (i, epsError) => {
 	let error = _this.epsUpload.extractEPSServerError(epsError);
-	$(".carousel-item[data-item='" + i + "'] .spinner").toggleClass('hidden');
+	let toRemove = $(".carousel-item[data-item='" + i + "']");
+	toRemove.find('.spinner').toggleClass('hidden');
 
 	this.uploadMessageClass.translateErrorCodes(i, error);
+	this.deleteCarouselItem(null, toRemove);
 	removePendingImage(i);
 };
 
@@ -389,7 +391,9 @@ this._bindChangeListener = () => {
 };
 
 this.deleteCarouselItem = (event, toRemove) => {
-	event.stopImmediatePropagation();
+	if (event) {
+		event.stopImmediatePropagation();
+	}
 
 	// remove cover photo
 	let coverPhoto = $("#cover-photo");
@@ -398,6 +402,8 @@ this.deleteCarouselItem = (event, toRemove) => {
 	coverPhoto.attr("data-image", "");
 
 	let index = $(".add-photo-item, .carousel-item").index(toRemove);
+	console.log(toRemove);
+	console.log(index);
 	this.$carousel.slick('slickRemove', index);
 
 	// delete image from imageUploads
