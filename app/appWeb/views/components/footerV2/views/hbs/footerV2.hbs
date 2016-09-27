@@ -224,16 +224,19 @@
       {{/block}}
 
 		<div class="mobile-only clear"></div>
-
-		<div class="footer-download">
-			<div class="mobile-only menu-category">{{i18n "footer.download.download"}}</div>
-			<div class="app-downloads-container">
-				<a href='{{i18n "appdownload.ioslink"}}' data-gtm="pc|AppDownloadBegin" target="/blank"><span
-						class="app-downloads icon-logo_app_store"></span></a>
-				<a href='{{i18n "appdownload.googleplay"}}'data-gtm="pc|AppDownloadBegin" target="/blank"><span
-						class="app-downloads icon-logo_google_play"></span></a>
-			</div>
-		</div>
+    {{#block "download-container-desktop"}}
+    	<div class="footer-download">
+    		<div class="mobile-only menu-category">{{i18n "footer.download.download"}}</div>
+    		<div class="app-downloads-container">
+    			<a href='{{i18n "appdownload.ioslink"}}' data-gtm="pc|AppDownloadBegin" target="/blank"><span
+    					class="app-downloads icon-logo_app_store"></span></a>
+    			<a href='{{i18n "appdownload.googleplay"}}'data-gtm="pc|AppDownloadBegin" target="/blank"><span
+    					class="app-downloads icon-logo_google_play"></span></a>
+    		</div>
+    	</div>
+    {{/block}}
+	
+		
     {{/unless}}
 
     {{#block "seo-wrapper"}}
