@@ -13,18 +13,18 @@
 		height:88px;
 		display: inline-block;
 		width:100%;
-	  	.team-photos{
-	  		height: auto;
-	  		width: 49%;
-	  		.user-photo-wrapper {
-	  			max-width: 103px;
-	  			width: 103px;
+		.team-photos{
+			height: auto;
+			width: 49%;
+			.user-photo-wrapper {
+				max-width: 103px;
+				width: 103px;
 				.user-photo {
 					width: 64px;
 					height: 64px;	
 					border: 2px solid color(leaf);
 				}
-	  		}
+			}
 		}
 		.support-wrapper{
 			width: 49%;
@@ -82,25 +82,25 @@
 	}
 	.footer-download{
 		position: inherit;
-	    right: inherit;
-	    bottom: inherit;
-	    float: right;
-	    width:40%;
-	    padding-right: 35px;
+		right: inherit;
+		bottom: inherit;
+		float: right;
+		width:40%;
+		padding-right: 35px;
 		.app-downloads-container{
 			padding-top:20px;
 			padding-bottom:20px;
 			height:52px;
 			text-align: right;
-		    .app-downloads{
+			.app-downloads{
 				width: 100%;
 				background: url("https://securelatam.classistatic.com/2.0.122/css/es_MX/svg/sprite.css-5329f80e.svg") 42.19653179190752% 0 no-repeat;
 				top:0;
 				margin: 0 2.5px;
-		    }
+			}
 			width: 100%;
-		    display: inherit;
-		    margin-top: inherit;				
+			display: inherit;
+			margin-top: inherit;				
 		}
 	}
 
@@ -133,16 +133,16 @@
 		}
 		.customer-service-container{
 			height:auto;
-		  	.team-photos{
-		  		width:100%;
-		  		.user-photo-wrapper{
-		  			width: 25%;
-		  			max-width: 25%;
-		  			.user-photo{
-		  				height: 50px;
-		  				width: 50px;
-		  			}
-		  		}
+			.team-photos{
+				width:100%;
+				.user-photo-wrapper{
+					width: 25%;
+					max-width: 25%;
+					.user-photo{
+						height: 50px;
+						width: 50px;
+					}
+				}
 			}
 			.support-wrapper{
 				text-align: center;
@@ -169,19 +169,19 @@
 				padding: 0;
 			}
 		}
-		.footer-download{
-			display: none;
-		}
+		// .footer-download{
+		// 	display: none;
+		// }
 		.seo-wrapper{
 			top: -1px;
 			.seo-line{
 				border-bottom: 1px solid color(swirl, shade); 
 			}
 			.thick-underline {
-			    border-bottom: 3px solid color(swirl, shade);
+				border-bottom: 3px solid color(swirl, shade);
 			}
 			.top-headers-text {
-			    padding-bottom: 6px;
+				padding-bottom: 6px;
 			}
 		}
 	}
