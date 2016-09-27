@@ -26,6 +26,14 @@ let _toggleProfileMenu = (shouldClose) => {
 
 // onReady separated out for easy testing
 let onReady = () => {
+	hamburgerMenu.initialize();
+	this.$header = $(".headerV2");
+	this.$profileDrop = this.$header.find('#js-profile-dropdown');
+	this.$profileHeaderIcon = this.$header.find("#js-profile-header-item-icon");
+
+	this.$catDrop = this.$header.find('#js-cat-dropdown');
+	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
+
 	this.$header.find('.browse').on('click', () => {
 		_toggleBrowseMenu();
 	}).mouseenter(() => {
@@ -46,14 +54,6 @@ let onReady = () => {
 
 // Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 let initialize = (registerOnReady = true) => {
-	hamburgerMenu.initialize();
-
-	this.$header = $(".headerV2");
-	this.$profileDrop = this.$header.find('#js-profile-dropdown');
-	this.$profileHeaderIcon = this.$header.find("#js-profile-header-item-icon");
-
-	this.$catDrop = this.$header.find('#js-cat-dropdown');
-	this.$browseHeaderIcon = this.$header.find("#js-browse-header-item-icon");
 
 	if (registerOnReady) {
 		$(document).ready(onReady);
@@ -64,4 +64,3 @@ module.exports = {
 	onReady,
 	initialize
 };
-
