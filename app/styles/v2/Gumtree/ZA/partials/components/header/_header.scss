@@ -12,8 +12,12 @@
 		}
 
 		.item-text {
+			background-color: $common-background-color;
+			cursor: pointer;
+			margin-top: -20px;
 			max-width: none;
-			padding: 0;
+			padding: 20px 5px 1px;
+			z-index: 1;
 		}
 
 		.left-items {
@@ -21,7 +25,7 @@
 
 			&.logged-out {
 				left: auto;
-				margin-left: 40px;
+				margin-left: 35px;
 			}
 
 			.browse {
@@ -32,19 +36,24 @@
 		}
 
 		.logo {
-			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
+			background: url("../../../../../images/en_ZA/logo_v2.png") no-repeat 50% 50%;
 			background-size: contain;
 			display: inline-block;
-			height: 28px;
+			height: 35px;
 			margin-left: 20px;
-			outline: dotted 1px;
 			position: static;
-			width: 200px;
+			width: 127px;
 			@include from-breakpoint($medium-break) {
-				height: 28px;
+				height: 35px;
 				margin: 0 0 0 20px;
 				top: 0;
 			}
+		}
+
+		.menu-dropdown {
+			position: absolute;
+			left: 0;
+			top: 100%;
 		}
 
 		.mobile-menu {
@@ -52,14 +61,19 @@
 		}
 
 		.post-ad-button	{
-			margin: 0 0 0 40px;
+			margin: 0 0 0 35px;
 			min-width: 0;
 
 			.btn {
+				height: 35px;
 				line-height: 35px;
 				min-width: 0;
 				padding: 0 15px;
 				width: auto;
+
+				&:hover {
+					background-color: color(crane, shade);
+				}
 			}
 		}
 
@@ -68,7 +82,7 @@
 			width: auto;
 
 			.item-text {
-				padding: 0;
+				padding: 20px 5px 1px;
 			}
 		}
 
@@ -80,7 +94,7 @@
 
 			.help {
 				line-height: 35px;
-				margin-left: 40px;
+				margin-left: 35px;
 				padding: 0;
 				width: auto;
 			}
@@ -99,6 +113,10 @@
 	}
 }
 
+.profile-dropdown {
+	position: absolute;
+}
+
 @include to-breakpoint($medium-break) {
 	.header-wrapper {
 		.headerV2 {
@@ -107,14 +125,14 @@
 			}
 
 			.post-ad-button {
-				margin-left: 30px;
+				margin-left: 25px;
 			}
 
 			.right-items {
 				margin-right: 0;
 
 				.help {
-					margin-left: 30px;
+					margin-left: 25px;
 				}
 			}
 		}
@@ -123,13 +141,22 @@
 
 @include to-breakpoint($small-break) {
 	.header-wrapper {
+		&.header-distraction-free {
+			.headerV2 {
+				height: 40px;
+
+				.logo {
+					top: 15px;
+				}
+			}
+		}
+
 		.headerV2 {
-			height: 30px !important;
+			height: 30px;
 
 			.logo {
-				height: 24px;
 				left: 50%;
-				margin: 0 0 0 -100px;
+				margin: 0 0 0 -63.5px;
 				position: absolute;
 				top: 23px;
 			}
