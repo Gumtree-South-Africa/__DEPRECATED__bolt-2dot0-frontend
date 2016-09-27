@@ -46,9 +46,6 @@
 		width: 941px;
 		margin: auto;
 	}
-	.clear.line-divider{
-		display: none;
-	}
 
 	//-----------
 
@@ -184,6 +181,9 @@
 				padding: 18px 0 0 0;
 			}
 		}
+	}
+	.clear.line-divider{
+		display: none;
 	}
 }
 //:::::::: Desktop ::::::::::
