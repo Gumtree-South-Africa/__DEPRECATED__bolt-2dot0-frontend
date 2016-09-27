@@ -24,17 +24,41 @@
 					height: 64px;	
 					border: 2px solid color(leaf);
 				}
+				&:nth-of-type(1) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS1.png);
+				}
+				&:nth-of-type(2) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS2.png);
+				}
+				&:nth-of-type(3) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS3.png);
+				}
+				&:nth-of-type(4) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS4.png);
+				}
 			}
 		}
 		.support-wrapper{
 			width: 49%;
 			.support-container{
 				margin: 0 12.5px;
+				.support-icon{
+					width: 26px;
+					height: 26px;
+				}
 				.chat-icon{
-					font-size: 26px;
-					color: color(leaf);
+				  background-image: url(../../../../../images/en_ZA/chat-icon.png);
+				}
+				.email-icon{
+				  background-image: url(../../../../../images/en_ZA/email-icon.png);
+				}
+				.call-icon{
+				  background-image: url(../../../../../images/en_ZA/call-icon.png);
 				}
 				.support-text{
+					position: relative;
+					top:-3px;
+					margin-left:0;
 					font-size: 12px;
 					text-transform:uppercase;
 				}
@@ -105,9 +129,14 @@
 			margin-top: inherit;				
 			.app-downloads{
 				width: 100%;
-				background: url("https://securelatam.classistatic.com/2.0.122/css/es_MX/svg/sprite.css-5329f80e.svg") 42.19653179190752% 0 no-repeat;
 				top:0;
 				margin: 0 2.5px;
+				.icon-logo_app_store{
+					background: url(../../../../../images/en_ZA/itunes.png) 42.19653179190752% 0 no-repeat;
+				}
+				.icon-logo_google_play{
+					background: url(../../../../../images/en_ZA/google-play.png) 42.19653179190752% 0 no-repeat;
+				}
 			}
 		}
 	}
@@ -148,7 +177,7 @@
 				.support-container{
 					display: inline-block;
 					.support-text, .support-icon{
-						margin:0;
+						margin:0 45px;
 					}
 					.mobile-only.support-text, .chat-icon + .support-text{
 						display:block;
