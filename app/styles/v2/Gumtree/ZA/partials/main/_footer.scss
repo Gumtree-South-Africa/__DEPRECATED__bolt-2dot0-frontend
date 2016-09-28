@@ -8,6 +8,10 @@
 	.top-links{
 		color: color(swirl, shade);
 		background-color: color(foxtail, medium);
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
+=======
+
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 	}
 	.meet-team{
 		margin: 15px 0;
@@ -106,16 +110,28 @@
 			padding-top: 18px;
 			padding-bottom: 18px;
 			&:first-child span{
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 				font-weight: bold;
 			}
 			.menu-items{
 				margin: 15px 0 0 0;
+=======
+				//text-transform: uppercase;
+				font-weight: bold;
+			}
+			.menu-items{
+				margin: 25px 0 0 0;
+				div{
+					//margin-top: 25px;
+				}
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 			}
 			
 		}
 	}
 	.social-container{
 		margin:0;
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 		display: inline-table;
 		padding-top:20px;
@@ -124,6 +140,11 @@
 		.social-icon-wrapper{
 			padding-top:20px;
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
+=======
+		display: inline-table;
+		padding-top:20px;
+		.social-icon-wrapper{
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 			margin:0;
 			.social-icon{
 				margin-top: 0;
@@ -153,7 +174,12 @@
 			margin-top: inherit;				
 =======
 			padding-top:20px;
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
+=======
+			padding-bottom:9px;
+			margin-top: inherit;				
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 			height:52px;
 			text-align: right;
 			width: 100%;
@@ -161,6 +187,7 @@
 				width: 100%;
 				top:0;
 				margin: 0 2.5px;
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< 1ab2e43186bb844d8ab7327b5929808e0ac3ee18
 				&.icon-logo_app_store{
 					background: url(../../../../../images/en_ZA/appstore.svg) no-repeat;
@@ -180,6 +207,17 @@
 				.icon-logo_google_play{
 					background: url(../../../../../images/en_ZA/google-play.png) 42.19653179190752% 0 no-repeat;
 >>>>>>> refactor(_footer.scss) Footer - Local images hardcoded
+=======
+				&.icon-logo_app_store{
+					background: url(../../../../../images/en_ZA/itunes.png) no-repeat;
+					background-position: center;
+					background-size: 100%;
+				}
+				&.icon-logo_google_play{
+					background: url(../../../../../images/en_ZA/google-play.png) no-repeat;
+					background-position: center;
+					background-size: 100%;
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 				}
 			}
 		}
@@ -211,6 +249,7 @@
 			background-color: color(foxtail, medium);
 		}
 	}
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 	.df-support-wrapper {
     margin: auto;
     max-width: 942px;
@@ -224,6 +263,17 @@
       }
     }
   }
+=======
+	.footer-trademark {
+		margin: 0;
+		padding-bottom: 10px;
+		font-size: 10px;
+		text-align: center;
+		&{
+			background-color: color(foxtail, medium);
+		}
+	}
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 }
 
 //:::::::: Small Only::::::::::
@@ -243,15 +293,25 @@
 				}
 			}
 			.support-wrapper{
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 				text-align: left;
 				padding: 12px 12px;
+=======
+				text-align: center;
+				width:80%;
+				padding: 10px 10%;
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 				display: inline-table;
 				margin: 0px;
 				.support-container{
 					display: inline-block;
 					margin: 0;
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
+=======
+					width: 33%;
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 					.support-text, .support-icon{
-						margin:0 45px;
+						margin:0;
 					}
 					.mobile-only.support-text, .chat-icon + .support-text{
 						display:inline;
@@ -282,6 +342,7 @@
 			display: inline-block;
 			width: 100%;
 			padding: 0;
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 			.app-downloads-container{
 				text-align: center;
@@ -293,9 +354,11 @@
 		display: none;
 =======
 			height: 80px;
+=======
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 			.app-downloads-container{
 				text-align: center;
-				padding: 18px 0 0 0;
+				padding: 18px 0 9px 0;
 			}
 		}
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
@@ -310,6 +373,7 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+<<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 	.footer-wrapper{
 		
@@ -321,8 +385,11 @@
 	.footer-download{
 		height: 109px;
 	}
+=======
+>>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 	.footer-wrapper .desktop-only.social-container{
-		display: inline-block;
+		display: inline-table;
+		padding-left: 2.5%;
 	}
 }
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
