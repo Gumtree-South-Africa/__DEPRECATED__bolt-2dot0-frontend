@@ -196,6 +196,7 @@
 
     {{#if this.footer.distractionFree}}
     {{#block "footer-links-legal-df"}}
+<<<<<<< f920baa18c4e5c9601810e6839666fd409fcc338
     <div class="footer-inner-wrappper">
       <div class="df-footer-legal">
         <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
@@ -209,6 +210,21 @@
 
       <div class="line-divider clear"></div>
     </div>
+=======
+		<div class="footer-inner-wrappper">
+			<div class="df-footer-legal">
+				<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
+					<span class="chevron mobile-only"></span>
+					<div class="menu-items">
+						<div class="df-legal-links"><a href="{{this.footer.business}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.business"}}'>{{i18n "footer.sitemap.business.business"}}</a></div>
+						<div class="df-legal-links"><a href="{{this.footer.stores}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.stores"}}'>{{i18n "footer.sitemap.business.stores"}}</a></div>
+					</div>
+				</div>
+			</div>
+
+			<div class="line-divider clear"></div>
+		</div>
+>>>>>>> fix(footerV2.hbs, footerV2_en_ZA.hbs) removing the seo footer
     {{/block}}
     {{/if}}
 
