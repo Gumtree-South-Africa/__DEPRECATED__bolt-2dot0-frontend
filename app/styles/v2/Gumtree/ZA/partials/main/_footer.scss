@@ -110,6 +110,7 @@
 			padding-top: 18px;
 			padding-bottom: 18px;
 			&:first-child span{
+<<<<<<< 1fa83701bff1a7d618214485a7218a5c5883cbdb
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 				font-weight: bold;
 			}
@@ -117,14 +118,20 @@
 				margin: 15px 0 0 0;
 =======
 				//text-transform: uppercase;
+=======
+				text-transform: capitalize;
+>>>>>>> style(_footer.scss) Footer - Capitalize header links
 				font-weight: bold;
 			}
 			.menu-items{
 				margin: 25px 0 0 0;
+<<<<<<< 1fa83701bff1a7d618214485a7218a5c5883cbdb
 				div{
 					//margin-top: 25px;
 				}
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
+=======
+>>>>>>> style(_footer.scss) Footer - Capitalize header links
 			}
 			
 		}
