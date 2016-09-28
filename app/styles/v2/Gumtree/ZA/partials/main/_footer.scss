@@ -236,6 +236,17 @@
 }
 //:::::::: Desktop ::::::::::
 @include from-breakpoint($medium-break){
+	.footer-wrapper .df-support-wrapper {
+    //margin: 0 auto;
+    width: 100%;
+    .df-support-container{
+      padding: 10px 0;
+      text-align: center;
+      width: 33%;
+      float: left;
+      margin: 0;
+    }
+  },
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
