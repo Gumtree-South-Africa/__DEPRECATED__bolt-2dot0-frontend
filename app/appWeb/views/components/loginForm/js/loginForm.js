@@ -79,6 +79,18 @@ class LoginForm {
 		}
 	}
 
+	_toggleShowHidePassword() {
+		if (this.$passwordInput.hasClass("hidden")) {
+			this.$passwordInput.val(this.$showPassInput.val());
+			this.$passwordInput.removeClass("hidden");
+			this.$showPassInput.addClass("hidden");
+		} else {
+			this.$showPassInput.val(this.$passwordInput.val());
+			this.$passwordInput.addClass("hidden");
+			this.$showPassInput.removeClass("hidden");
+		}
+	}
+
 	setSubmitCb(cb) {
 		this.submitCb = cb;
 	}
@@ -90,6 +102,7 @@ class LoginForm {
 		this.$signInSection = this.$form.find(".sign-in-section");
 		this.$emailInput = this.$form.find('input[type="email"]');
 		this.$passwordInput = this.$form.find('input[type="password"]');
+		this.$showPassInput = this.$form.find('input[type="text"]');
 		this.$submitButton = this.$form.find('.submit-btn');
 
 		// already open on initialize
@@ -107,6 +120,12 @@ class LoginForm {
 			let passVal = this.$passwordInput.val();
 
 			this._login(emailVal, passVal);
+		});
+
+		this.$form.find(".show-hide-password").click((evt) => {
+			this._toggleShowHidePassword();
+			evt.stopPropagation();
+			evt.preventDefault();
 		});
 	}
 }
