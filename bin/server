@@ -6,76 +6,27 @@
 /**
  * Module dependencies.
  */
-var http = require('http'),
-    https = require('https'),
-    fs = require('fs');
+let http = require('http');
+let https = require('https');
+let fs = require('fs');
 
-var cwd = process.cwd();
-var app = require(cwd + '/app');
-var debug = require('debug')('bolt-2dot0-frontend:server');
-
-
-/**
- * check if server is startting with root privalges
- */
+let cwd = process.cwd();
+let app = require(cwd + '/app');
+let debug = require('debug')('bolt-2dot0-frontend:server');
 
 
-if (ifRootDontRun()) {
-  console.error(" ******* Running with root previlages ? No! No! *********");
-  process.exit(1);
+
+function ifRootDontRun() {
+	if (process.env.SUDO_GID && process.env.SUDO_UID) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
-
-/**
- * Get port from environment and store in Express.
- */
-var httpPort = normalizePort(process.env.PORT || '8000');
-app.locals.httpPort = httpPort;
-
-var httpsPort = normalizePort(process.env.SSL_PORT || '8443');
-app.locals.httpsPort = httpsPort;
-
-
-/**
- * Create HTTP server.
- */
-var httpServer = http.createServer(app);
-httpServer.on('error', onError);
-httpServer.on('listening', onListening);
-
-/**
- * Create HTTPS server.
- */
-var nodekey = process.env.KEY_PEM || (cwd + '/bin/ssl/nodekey.pem');
-var nodecsr = process.env.CSR_PEM || (cwd + '/bin/ssl/nodecsr.pem');
-var nodecert = process.env.CERT_PEM || (cwd + '/bin/ssl/nodecert.pem');
-var options = {
-  key  : fs.readFileSync(nodekey),
-  ca   : fs.readFileSync(nodecsr),
-  cert : fs.readFileSync(nodecert)
-}
-var httpsServer = https.createServer(options, app);
-httpsServer.on('error', onError);
-httpsServer.on('listening', onListening);
-
-/**
- * Spin up all express apps before listening on the server to prevent race condition.
- */
-app.createSiteApps().then(() => {
-  console.log('Server started');
-	httpServer.listen(httpPort);
-	httpsServer.listen(httpsPort);
-}).fail((err) => {
-	console.error("Error spinning up each country app", err);
-	console.error(err.stack);
-	process.exit(1);
-});
-
-/**
- * Normalize a port into a number, string, or false.
- */
+// Normalize a port into a number, string, or false.
 function normalizePort(val) {
-  var port = parseInt(val, 10);
+  let port = parseInt(val, 10);
 
   if (isNaN(port)) {
     // named pipe
@@ -90,50 +41,99 @@ function normalizePort(val) {
   return false;
 }
 
+// Event listener for server "error" event.
+function onError(error, port) {
+	if (error.syscall !== 'listen') {
+		throw error;
+	}
+
+	let bind = typeof port === 'string'
+		? 'Pipe ' + port
+		: 'Port ' + port;
+
+	// handle specific listen errors with friendly messages
+	switch (error.code) {
+		case 'EACCES':
+			console.error(bind + ' requires elevated privileges');
+			process.exit(1);
+			break;
+		case 'EADDRINUSE':
+			console.error(bind + ' is already in use');
+			process.exit(1);
+			break;
+		default:
+			throw error;
+	}
+}
+
+// Event listener for server "listening" event.
+function onListening(server) {
+	let addr = server.address();
+	let bind = typeof addr === 'string'
+		? 'pipe ' + addr
+		: 'port ' + addr.port;
+	debug('Listening on ' + bind);
+}
+
+
 
 /**
- * Event listener for HTTP server "error" event.
+ * check if server is startting with root privalges
  */
-function onError(error) {
-  if (error.syscall !== 'listen') {
-    throw error;
-  }
-
-  var bind = typeof httpPort === 'string'
-      ? 'Pipe ' + httpPort
-      : 'Port ' + httpPort;
-
-  // handle specific listen errors with friendly messages
-  switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
-      process.exit(1);
-      break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
-      process.exit(1);
-      break;
-    default:
-      throw error;
-  }
+if (ifRootDontRun()) {
+	console.error(" ******* Running with root previlages ? No! No! *********");
+	process.exit(1);
 }
-
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Get port from environment and store in Express.
  */
-function onListening() {
-  var addr = httpServer.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
-}
+let httpPort = normalizePort(process.env.PORT || '8000');
+app.locals.httpPort = httpPort;
 
+let httpsPort = normalizePort(process.env.SSL_PORT || '7443');
+app.locals.httpsPort = httpsPort;
 
-function ifRootDontRun() {
-  if (process.env.SUDO_GID && process.env.SUDO_UID) {
-    return true;
-  }
-  else false;
+/**
+ * Create HTTP server.
+ */
+let httpServer = http.createServer(app);
+httpServer.on('listening', function(){
+	onListening(httpServer);
+});
+httpServer.on('error', function(err) {
+	onError(err, httpPort);
+});
+
+/**
+ * Create HTTPS server.
+ */
+let nodekey = process.env.KEY_PEM || (cwd + '/bin/ssl/nodekey.pem');
+let nodecsr = process.env.CSR_PEM || (cwd + '/bin/ssl/nodecsr.pem');
+let nodecert = process.env.CERT_PEM || (cwd + '/bin/ssl/nodecert.pem');
+let options = {
+	key  : fs.readFileSync(nodekey),
+	ca   : fs.readFileSync(nodecsr),
+	cert : fs.readFileSync(nodecert)
 }
+let httpsServer = https.createServer(options, app);
+httpsServer.on('listening', function(){
+	onListening(httpsServer);
+});
+httpsServer.on('error', function(err) {
+	onError(err, httpsPort);
+});
+
+/**
+ * Spin up all express apps before listening on the server to prevent race condition.
+ */
+app.createSiteApps().then(() => {
+	console.log('Server started');
+	httpServer.listen(httpPort);
+	httpsServer.listen(httpsPort);
+}).fail((err) => {
+	console.error("Error spinning up each country app", err);
+	console.error(err.stack);
+	process.exit(1);
+});
+

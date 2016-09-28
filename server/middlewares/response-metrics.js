@@ -1,14 +1,29 @@
 'use strict';
 
+let urlPattern = require("url-pattern");
+let onResponse = require('on-response');
 
-var onResponse = require('on-response');
+let cwd = process.cwd();
+let metrics = require(cwd + '/server/utils/monitor/metrics');
+let graphiteService = require(cwd + '/server/utils/graphite');
+let requestsInProcess = 0;
 
-var cwd = process.cwd();
-var metrics = require(cwd + '/server/utils/monitor/metrics');
-var graphiteService = require(cwd + '/server/utils/graphite');
-var requestsInProcess = 0;
 
-module.exports = function() {
+// check if it is an App resource request
+let isResourceReq = (req) => {
+	// set url pattern object
+	let urlPttrn = new urlPattern(/\.(gif|jpg|jpeg|tiff|png|svg|js|css|txt)$/i, ['ext']);
+
+	// match the url pattern
+	let matchedImageExt = urlPttrn.match(req.originalUrl);
+	if(matchedImageExt) {
+		return true;
+	}
+	return false;
+};
+
+
+module.exports = function(loggingEnabled) {
 	return function(req, res, next) {
 		res.startingTime = Date.now();
 
@@ -23,21 +38,27 @@ module.exports = function() {
 		}
 		metrics.maxConcurrentRequests = Math.max(metrics.maxConcurrentRequests, requestsInProcess);
 
-
 		onResponse(req, res, function(err, summary) {
-			var pagetype = req.app.locals.pagetype;
-			var country = res.locals.config.country;
-			var status = parseInt(res.statusCode);
+			if (loggingEnabled === false) {
+				return;
+			}
+			if (isResourceReq(req)) {
+				return;
+			}
 
-			var responseTime = summary.response.time;
-			var requestSize = (typeof summary.request.size !== 'undefined') ? summary.request.size : 0;
-			var responseSize = (typeof summary.response.size !== 'undefined') ? summary.response.size : 0;
+			let pagetype = req.app.locals.pagetype;
+			let country = res.locals.config.country;
+			let status = parseInt(res.statusCode);
+
+			let responseTime = summary.response.time;
+			let requestSize = (typeof summary.request.size !== 'undefined') ? summary.request.size : 0;
+			let responseSize = (typeof summary.response.size !== 'undefined') ? summary.response.size : 0;
 
 			// Metrics On Response
 			requestsInProcess -= 1;
 			if (req.session) {
-				var sessSize = JSON.stringify(req.session).length;
-				metrics.sessionSize = Math.max(metric.sessionSize, sessSize);
+				let sessSize = JSON.stringify(req.session).length;
+				metrics.sessionSize = Math.max(metrics.sessionSize, sessSize);
 			}
 			metrics.urltime.update(Date.now() - res.startingTime);
 			if (status >= 200 && status <= 299) {
@@ -62,5 +83,5 @@ module.exports = function() {
 		});
 
 		next();
-	}
+	};
 };

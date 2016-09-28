@@ -1,16 +1,20 @@
 'use strict';
 
 
-var Q = require('q');
-var _ = require('underscore');
-var pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
+let Q = require('q');
+let _ = require('underscore');
+let pageurlJson = require(process.cwd() + '/app/config/pageurl.json');
 
-var userService = require(process.cwd() + '/server/services/user');
+let userService = require(process.cwd() + '/server/services/user');
 
+function redirectLogin(res) {
+	let loginLink = pageurlJson.header.signInURL;
+	res.redirect(loginLink);
+}
 
 module.exports = function(locale) {
 	return function(req, res, next) {
-		var nonSecurePaths = ['/', '/api'];
+		let nonSecurePaths = ['/', '/api'];
 
 		// If it is a non secure path, let the request through
 		if (_.contains(nonSecurePaths, req.path)) {
@@ -18,19 +22,19 @@ module.exports = function(locale) {
         }
 
 		// Check if User has logged in already, else redirect to login page
-		var authCookieName = 'bt_auth';
-		var authenticationCookie = req.cookies[authCookieName];
+		let authCookieName = 'bt_auth';
+		let authenticationCookie = req.cookies[authCookieName];
 		if (typeof authenticationCookie === 'undefined') {
 			redirectLogin(res);
 		} else {
-			var bapiHeaders = {
+			let bapiHeaders = {
 				'requestId': req.app.locals.requestId,
 				'ip': req.app.locals.ip,
 				'machineid': req.app.locals.machineid,
 				'useragent': req.app.locals.useragent,
 				'locale': locale,
 				'authTokenValue': authenticationCookie
-			}
+			};
 
 			Q(userService.getUserFromCookie(bapiHeaders))
 				.then(function(dataReturned) {
@@ -47,9 +51,4 @@ module.exports = function(locale) {
 			});
 		}
 	};
-
-	function redirectLogin(res) {
-		var loginLink = pageurlJson.header.signInURL;
-		res.redirect(loginLink);
-	}
 };

@@ -16,8 +16,14 @@ baseWebpackConfig.module.loaders.push({
 	loader: "json-loader"
 });
 
-baseWebpackConfig.plugins.shift(); //Dont UGlify tests
-baseWebpackConfig.plugins.shift(); // Dont common chunk creation
+baseWebpackConfig.module.preLoaders = [
+		// instrument only testing sources with Istanbul
+		{
+			test: /\.js$/,
+			loader: 'istanbul-instrumenter',
+			exclude: /(test|node_modules|modules)/
+		}
+];
 
 
 module.exports = _.extend(baseWebpackConfig, testWebpackConfig);
