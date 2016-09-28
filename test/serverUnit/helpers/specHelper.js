@@ -122,7 +122,7 @@ module.exports.boltSupertest = (route, host, method) => {
 		}
 		let path = options.path;
 		if (!endpointToFileMap[path]) {
-			return Q.reject(new BapiError(`No mocked endpoint for ${path}`, {statusCode: 999}));
+			return Q.reject(new BapiError(`No mocked endpoint for ${path}`, {statusCode: 67891}));	// this status code intentional to make searching for it in the code easy (few results)
 		}
 		let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
 		if (!entry) {

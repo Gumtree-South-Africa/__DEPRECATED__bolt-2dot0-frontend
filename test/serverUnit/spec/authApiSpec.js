@@ -278,7 +278,7 @@ describe('Authentication Api', () => {
 		it('should register the user', (done) => {
 
 			specHelper.registerMockEndpoint(
-				`${endpoints.authRegister}?_forceExample=true&_statusCode=200`,
+				`${endpoints.authRegister}?_forceExample=true&_statusCode=201`,
 				'test/serverUnit/mockData/auth/registerResponse.json');
 
 
