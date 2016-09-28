@@ -28,12 +28,20 @@
 
 		.left-items {
 			left: auto;
+<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 			margin-left: 8%;
+=======
+			margin-left: 20px;
+>>>>>>> feat(Gumtree/components/header): adds styles for session only elements
 			width: auto;
 
 			&.logged-out {
 				left: auto;
+<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				margin-left: 11%;
+=======
+				margin-left: 35px;
+>>>>>>> feat(Gumtree/components/header): adds styles for session only elements
 
 				.post-ad-button {
 					margin-left: 35px;
@@ -103,7 +111,11 @@
 
 			.item-text {
 				line-height: 35px;
+<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				padding: 20px 5px 12px;
+=======
+				padding: 20px 5px 1px;
+>>>>>>> feat(Gumtree/components/header): adds styles for session only elements
 			}
 		}
 
