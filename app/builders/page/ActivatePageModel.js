@@ -68,7 +68,7 @@ class ActivatePageModel {
 		if (!this.activateParams.resent) {
 			this.dataPromiseFunctionMap.activate = () => {
 				return authModel.activate(this.activateParams).then((result) => {
-					// we map fail cases to failReason codes (R-00, R-10, R-40, R-50) so we can display messages in the hbs if desired
+					// we map fail cases to failReason codes (R-00, R-40, R-50) so we can display messages in the hbs if desired
 					if (!result.accessToken) {
 						console.error(`bapi activate returned success but without the expected access token, signaling fail to consumer`);
 

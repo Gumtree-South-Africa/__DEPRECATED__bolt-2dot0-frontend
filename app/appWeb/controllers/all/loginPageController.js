@@ -26,11 +26,13 @@ let extendModelData = (req, modelData) => {
 router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.LOGIN_PAGE;
 	let loginPageModel = new LoginPageModel(req, res);
+	let redirectUrl = req.query.redirect;
 
 	loginPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
+		modelData.redirectUrl = redirectUrl;
 
 		pageControllerUtil.postController(req, res, next, 'loginPage/views/hbs/loginPage_', modelData);
 	}).fail((err) => {

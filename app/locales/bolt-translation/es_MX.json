@@ -1487,7 +1487,8 @@
 			"loggedIn": "You are now logged in",
 			"failReason": "Reason code: %s",
 			"sendAnother": "Click here to send another activation email",
-			"continueActivation": "Please check your email to continue activation"
+			"continueActivation": "Please check your email to continue activation",
+			"continue": "Continúa"
 		}
 	}
 }

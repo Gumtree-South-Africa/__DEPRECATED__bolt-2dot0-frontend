@@ -33,7 +33,8 @@ class RegistrationForm {
 			password: passwordOne,
 			password2: passwordTwo,
 			agreeTerms: checkboxStatus.hasAcceptedTerms,
-			optInMarketing: checkboxStatus.marketingConsent
+			optInMarketing: checkboxStatus.marketingConsent,
+			redirectUrl: this.redirectUrl || '/'
 		};
 		this.$registerButton.prop('disabled', true);
 
@@ -130,6 +131,7 @@ class RegistrationForm {
 		this.$invalidEmail = this.$registrationForm.find('#invalid-email');
 		this.$failure = this.$registrationForm.find('#general-error');
 		this.$registrationSuccess = this.$registrationForm.siblings('#registration-success');
+		this.redirectUrl = this.$registrationForm.find('#redirect-url').val();
 
 		termsAndConditions.initialize({
 			termsChangeCb: () => {

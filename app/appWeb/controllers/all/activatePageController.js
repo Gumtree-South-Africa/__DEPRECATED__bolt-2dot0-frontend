@@ -51,6 +51,7 @@ router.get('/:emailAddress', (req, res, next) => {
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.ACTIVATE_PAGE;
 	let activatePageModel = new ActivatePageModel(req, res, activateParams);
+	let redirectUrl = req.query.redirect;
 
 	activatePageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
@@ -62,6 +63,7 @@ router.get('/:emailAddress', (req, res, next) => {
 			res.cookie('bt_auth', modelData.activate.accessToken, { httpOnly: true });
 		}
 
+		modelData.activate.params.redirect = redirectUrl || '/';
 		pageControllerUtil.postController(req, res, next, 'activatePage/views/hbs/activatePage_', modelData);
 	}).fail((err) => {
 		next(err);

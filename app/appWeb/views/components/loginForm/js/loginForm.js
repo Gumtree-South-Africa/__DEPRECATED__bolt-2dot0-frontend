@@ -8,7 +8,7 @@ class LoginForm {
 			this.submitCb(data);
 		} else {
 			// default redirect to homepage
-			window.location.href = "/";
+			window.location.href = this.redirectUrl;
 		}
 	}
 
@@ -104,6 +104,7 @@ class LoginForm {
 		this.$passwordInput = this.$form.find('input[type="password"]');
 		this.$showPassInput = this.$form.find('input[type="text"]');
 		this.$submitButton = this.$form.find('.submit-btn');
+		this.redirectUrl = this.$form.find('#redirect-url').text();
 
 		// already open on initialize
 		if (!this.$signInSection.hasClass("open")) {

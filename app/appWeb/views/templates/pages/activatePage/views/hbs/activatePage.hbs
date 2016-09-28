@@ -14,7 +14,7 @@
                 {{i18n "activate.page.success" (wrapWithTagAndClass "span" "email-address" this.activate.params.emailAddress)}}
             </div>
             <div> {{i18n "activate.page.loggedIn"}}</div>
-            <a class="home-link" href="/">Home</a>
+            <a class="home-link" href="{{this.activate.params.redirect}}">{{i18n "activate.page.continue"}}</a>
         {{else}}
             <div class="activate-fail">{{i18n "activate.page.fail"}}</div>
              <!--this.activate.failReason-->
