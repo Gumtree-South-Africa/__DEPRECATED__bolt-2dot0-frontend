@@ -39,6 +39,11 @@ module.exports = {
 			"core": {}, // locale specific core modules have the third h
 			"mobile": {}, // device and locale specific has the highest priority
 			"desktop": {}
+		},
+		"en_ZA": {
+			"core": {}, // locale specific core modules have the third h
+			"mobile": {}, // device and locale specific has the highest priority
+			"desktop": {}
 		}
 	}
 };
