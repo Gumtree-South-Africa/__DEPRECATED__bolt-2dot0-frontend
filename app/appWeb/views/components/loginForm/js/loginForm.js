@@ -1,7 +1,6 @@
 'use strict';
 
 class LoginForm {
-
 	_handleLoginSuccess(data) {
 		// if exists and is a function
 		if (this.submitCb && !!(this.submitCb && this.submitCb.constructor && this.submitCb.call && this.submitCb.apply)) {
@@ -91,6 +90,10 @@ class LoginForm {
 		}
 	}
 
+	setFbRedirectUrl(url) {
+		this.fbRedirectUrl = url;
+	}
+
 	setSubmitCb(cb) {
 		this.submitCb = cb;
 	}
@@ -99,6 +102,7 @@ class LoginForm {
 		options = options || {};
 		this.$extraOpenDom = options.extraOpenDom;
 		this.$form = $("#login-form");
+		this.$fbButton = $(".facebook-button");
 		this.$signInSection = this.$form.find(".sign-in-section");
 		this.$emailInput = this.$form.find('input[type="email"]');
 		this.$passwordInput = this.$form.find('input[type="password"]');
@@ -115,6 +119,14 @@ class LoginForm {
 				}
 			});
 		}
+
+		this.$fbButton.on("click", () => {
+			// let baseFacebookPath = "";
+			let path = `${this.$form.data("site-base-path")}/login?showTerms=true&deferred="${this.fbRedirectUrl || $("#login-container").data('deferred-link')}"`; // `${baseFacebookPath}?redirectUrl=${this.$form.data("site-base-path")}/login?showTerms=true&deferred="${this.fbRedirectUrl || $("#login-container").data('deferred-link')}
+
+			path = path.replace("https", "http");
+			window.location.href = path;
+		});
 
 		this.$submitButton.click(() => {
 			let emailVal = this.$emailInput.val();

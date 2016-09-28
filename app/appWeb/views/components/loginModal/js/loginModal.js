@@ -7,6 +7,7 @@ class LoginModal {
 		this.$loginModal.removeClass("hidden");
 		this.$mask.removeClass("hidden");
 		loginForm.setSubmitCb(options.submitCb);
+		loginForm.setFbRedirectUrl(options.fbRedirectUrl);
 	}
 
 	closeModal() {

@@ -1,5 +1,9 @@
 {{#partial "content"}}
-    <div id="login-container" class="login-container">
-        {{> (dynamic "loginForm") startOpen=false}}
+    <div id="login-container" data-deferred-link="{{deferredLink}}" class="login-container {{#if showTerms}}display-terms{{/if}}">
+        {{#if showTerms}}
+            {{> (dynamic "termsAndConditions") showButton=true}}
+        {{else}}
+            {{> (dynamic "loginForm") startOpen=false}}
+        {{/if}}
     </div>
 {{/partial}}

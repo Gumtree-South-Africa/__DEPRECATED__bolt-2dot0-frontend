@@ -27,12 +27,18 @@ router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.LOGIN_PAGE;
 	let loginPageModel = new LoginPageModel(req, res);
 	let redirectUrl = req.query.redirect;
+	let showTerms = req.query.showterms;
+	let code = req.query.code;
+	let deferredLink = req.query.deferred;
 
 	loginPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.redirectUrl = redirectUrl;
+		modelData.showTerms = showTerms;
+		modelData.fbCode = code;
+		modelData.deferredLink = deferredLink;
 
 		pageControllerUtil.postController(req, res, next, 'loginPage/views/hbs/loginPage_', modelData);
 	}).fail((err) => {

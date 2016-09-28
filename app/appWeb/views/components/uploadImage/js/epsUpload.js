@@ -216,7 +216,8 @@ class EpsUpload {
 					loginModal.openModal({
 						submitCb: () => {
 							window.location.href = response.defferedLink;
-						}
+						},
+						fbRedirectUrl: response.defferedLink
 					});
 				});
 				break;

@@ -9,6 +9,11 @@
 	text-align: center;
 	transition: 1.3s height;
 
+	&.display-terms {
+		max-width: 600px;
+		height: 250px;
+	}
+
 	&.open {
 		height: 330px
 	}

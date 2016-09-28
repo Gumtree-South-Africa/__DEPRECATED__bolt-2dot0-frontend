@@ -1,3 +1,19 @@
+// login modal specific styling for displaying terms and conditions
+.login-container .terms-and-conditions {
+	margin-top: 40px;
+
+	.checkbox-wrapper {
+		padding-top: 5px;
+		text-align: left;
+		width: 95%;
+		margin: auto;
+	}
+
+	.save-terms-btn {
+		display: block;
+	}
+}
+
 .terms-and-conditions {
 	.terms-and-conditions-container, .marketing-consent-container {
 		label {
@@ -7,5 +23,24 @@
 
 	.checkbox-wrapper {
 		padding-top: 5px;
+	}
+
+	.save-terms-btn {
+		display: none;
+		width: 250px;
+		border: none;
+		margin: 30px auto;
+		height: 45px;
+		color: $vivaWhite;
+		background-color: $vivaOrange;
+
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed !important;
+		}
+
+		&:hover {
+			cursor: pointer;
+		}
 	}
 }

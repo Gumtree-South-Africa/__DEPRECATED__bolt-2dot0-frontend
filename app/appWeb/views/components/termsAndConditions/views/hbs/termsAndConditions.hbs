@@ -1,4 +1,4 @@
-<div id="terms-and-conditions" class="terms-and-conditions">
+<div id="terms-and-conditions" class="terms-and-conditions" data-fb-code="{{fbCode}}">
 	<div class="checkbox-wrapper terms-and-conditions-container">
 		<input id="accept-terms" type="checkbox" name="accept-terms" class="accept-terms">
 		<label for="accept-terms">{{i18n "registrationForm.termsAndConditions"}}</label>
@@ -7,4 +7,8 @@
 		<input id="marketing-consent" type="checkbox" name="marketing-consent" class="marketing-consent" checked>
 		<label for="marketing-consent">{{i18n "registrationForm.emailConsent"}}</label>
 	</div>
+
+    {{#if showButton}}
+		<button class="save-terms-btn hidden" disabled>Confirm(Translate This)</button>
+    {{/if}}
 </div>
