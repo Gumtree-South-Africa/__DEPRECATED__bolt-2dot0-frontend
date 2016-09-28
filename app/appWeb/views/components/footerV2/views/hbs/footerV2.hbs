@@ -134,6 +134,7 @@
 	<div class="line-divider mobile-only"></div>
 
     {{#if this.footer.distractionFree}}
+    {{#block "footer-links-legal-df"}}
 		<div class="footer-inner-wrappper">
 			<div class="df-footer-legal">
 				<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
@@ -147,6 +148,7 @@
 
 			<div class="line-divider clear"></div>
 		</div>
+    {{/block}}
     {{/if}}
 
     {{#unless this.footer.distractionFree}}
