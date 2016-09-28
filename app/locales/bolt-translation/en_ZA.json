@@ -1236,14 +1236,14 @@
 			"browseCategories": "Browse Categories"
 		},
 		"userDropdown": {
-			"title": "¡Hola",
-			"messages": "Mis mensajes",
-			"favorites": "Favoritos",
-			"myAlerts": "Búsquedas guardadas",
-			"myProfile": "Mi perfil",
-			"promoteMyAds": "Destacar mis anuncios",
+			"title": "Hi",
+			"messages": "My Messages",
+			"favorites": "Watchlist",
+			"myAlerts": "My Alerts",
+			"myProfile": "My Profile",
+			"promoteMyAds": "Promote Ads",
 			"pricingGuide": "Guía de precios",
-			"logout": "Cerrar sesión"
+			"logout": "Sign Out"
 		},
 		"myAds": "My Ads",
 		"help": "Help",
@@ -1274,6 +1274,9 @@
 	"gpsMap": {
 		"label": "Venta Ahora",
 		"items": "artículos"
+	},
+	"postad": {
+		"button": "Post FREE Ad"
 	},
 	"postAd": {
 		"page": {
