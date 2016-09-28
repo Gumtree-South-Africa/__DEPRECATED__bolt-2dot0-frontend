@@ -76,10 +76,12 @@
 {{/partial}}
 
 {{#partial "seo-wrapper"}}
+{{#unless this.footer.distractionFree}}
 <div class="seo-wrapper">
   {{> (dynamic "topSearches")}}
   {{> (dynamic "topLocations")}}
 </div>
+{{/unless}}
 {{/partial}}
 
 {{#partial "seo-links-text"}}
