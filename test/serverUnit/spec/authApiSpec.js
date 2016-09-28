@@ -275,7 +275,7 @@ describe('Authentication Api', () => {
 
 	describe('register', () => {
 
-		fit('should register the user', (done) => {
+		it('should register the user', (done) => {
 
 			specHelper.registerMockEndpoint(
 				`${endpoints.authRegister}?_forceExample=true&_statusCode=201`,
