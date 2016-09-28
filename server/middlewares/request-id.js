@@ -1,6 +1,6 @@
 'use strict';
 
-var cuid = require('cuid');
+let cuid = require('cuid');
 
 module.exports = function() {
 	return function(req, res, next) {
