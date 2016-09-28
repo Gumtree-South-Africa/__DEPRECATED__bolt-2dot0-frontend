@@ -373,6 +373,7 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+<<<<<<< 30117d40a0472036ec31ab9cd95a4bdc187723ba
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 	.footer-wrapper{
@@ -387,6 +388,19 @@
 	}
 =======
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
+=======
+	.footer-wrapper .df-support-wrapper {
+    //margin: 0 auto;
+    width: 100%;
+    .df-support-container{
+      padding: 10px 0;
+      text-align: center;
+      width: 33%;
+      float: left;
+      margin: 0;
+    }
+  },
+>>>>>>> fix(__footer.scss) fixing the distraction free footer
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
