@@ -221,15 +221,6 @@
 	"map.dlg.title.3": "Or use the address that you entered:",
 	"map.dlg.title.4": "Click “cancel” to try again",
 	"map.dlg.cancel": "Cancel",
-	"header.logo.altTag": "Free Classifieds",
-	"header.interlink.title": "Free Classifieds %s",
-	"header.breadcrumb-search": "in %s",
-	"header.breadcrumb-result": "%s ads",
-	"header.popular-search.popular": "Popular",
-	"header.related-search.items": "Related",
-	"header.related-search.relatedvip": "Related",
-	"header.related-search.vipitems": "Related Vip Items",
-	"header.popular-trending.items": "Trending",
 	"mc.menu.title": "My Messages",
 	"mc.you": "You:",
 	"mc.no.converastion.msg": "You have no messages at this time.",
@@ -466,31 +457,6 @@
 	"vip.flagadSuccess": "Thank you for reporting this ad",
 	"vip.flagad.error.email": "Please enter your email",
 	"vip.flagad.error.comments": "Please enter your comments",
-	"header.postad-long": "Post FREE Ad",
-	"header.postad-medium": "Post FREE Ad",
-	"header.postad-short": "Post",
-	"header.search-help_center": "Help Centre",
-	"header.search-keyword": "What are you looking for?",
-	"header.search-go": "Search",
-	"header.search-category": "Category",
-	"header.search-location": "All South Africa",
-	"header.search-all-categories": "All categories",
-	"header.search-all-locations": "All South Africa",
-	"header.clear-recent-searches": "Clear Recent",
-	"header.menu.sign.in": "Sign In",
-	"header.menu.my.gumtree": "My Gumtree",
-	"header.menu.my.watchlist": "Watchlist",
-	"header.menu.my.messages": "My Messages",
-	"header.menu.my.savedsearch": "My Alerts",
-	"header.menu.your.ads": "My Ads",
-	"header.menu.promote.ads": "Promote Ads",
-	"header.menu.my.profile": "My Profile",
-	"header.menu.contact": "Contact us",
-	"header.menu.signout": "Sign Out",
-	"header.menu.register": "Register",
-	"header.menu.termCond": "Terms and Conditions",
-	"header.suggested-links": "Suggested",
-	"header.published": "Published in:",
 	"footer.twitter": "@gumtreecoza",
 	"footer.facebook": "Like",
 	"footer.googleplus": "Recommend",
@@ -1102,7 +1068,6 @@
 	"branchiosmartbanner.sendLinkText": "Send Link",
 	"my-ads.sellerbadge.label.large": "Large",
 	"my-ads.sellerbadge.label.small": "Small",
-	"header.country.label": "South Africa",
 	"quickpost.pageTitle": "Sell Your Item",
 	"quickpost.page.title": "Sell Your Item via Free Classifieds on Gumtree South Africa",
 	"quickpost.page.desc": "Sell an iPhone, Clothes, Furniture, Kids Toys, Laptops, Appliances, TV on Gumtree South Africa",
@@ -1183,8 +1148,8 @@
 			"viewMore": "Ver más"
 		},
 		"searchbar": {
-			"lookingFor": "Estoy buscando un...",
-			"search": "Buscar"
+			"lookingFor": "I'm Looking For...",
+			"search": "Search"
 		},
 		"safetyTips": {
 			"title": "Vivanuncios Te Cuida",
@@ -1209,9 +1174,66 @@
 		}
 	},
 	"header": {
+    "breadcrumb-search": "in %s",
+    "breadcrumb-result": "%s ads",
+    "suggested-links": "Suggested",
+    "published": "Published in:",
+    "country": {
+      "label": "South Africa"
+    },
+    "postad-long": "Post FREE Ad",
+    "postad-medium": "Post FREE Ad",
+    "postad-short": "Post",
+    "search-help_center": "Help Centre",
+    "search-keyword": "What are you looking for?",
+    "search-go": "Search",
+    "search-category": "Category",
+    "search-location": "All South Africa",
+    "search-all-categories": "All categories",
+    "search-all-locations": "All South Africa",
+    "clear-recent-searches": "Clear Recent",
+    "logo": {
+      "altTag":"Free Classifieds"
+    },
+    "interlink": {
+      "title":"Free Classifieds %s"
+    },
+    "popular-search": {
+      "popular": "Popular"
+    },
+    "popular-trending": {
+      "items": "Trending"
+    },
+    "related-search": {
+      "items": "Related",
+      "relatedvip": "Related",
+      "vipitems": "Related Vip Items"
+    },
+    "menu": {
+      "sign": {
+        "in": "Sign In"
+      },
+      "your": {
+        "ads": "My Ads"
+      },
+      "promote": {
+        "ads": "Promote Ads"
+      },
+      "my": {
+        "gumtree": "My Gumtree",
+        "watchlist": "Watchlist",
+        "messages": "My Messages",
+        "savedsearch": "My Alerts",
+        "profile": "My Profile"
+      },
+      "contact": "Contact us",
+      "signout": "Sign Out",
+      "register": "Register",
+      "termCond": "Terms and Conditions"
+    },
 		"catDropdown": {
-			"browse": "Explorar",
-			"browseCategories": "Explorar Categorías"
+			"browse": "Browse",
+			"browseCategories": "Browse Categories"
 		},
 		"userDropdown": {
 			"title": "¡Hola",
@@ -1223,9 +1245,9 @@
 			"pricingGuide": "Guía de precios",
 			"logout": "Cerrar sesión"
 		},
-		"myAds": "Mis anuncios",
-		"help": "Ayuda",
-		"postAd": "Publica Gratis"
+		"myAds": "My Ads",
+		"help": "Help",
+		"postAd": "Post an Ad"
 	},
 	"modal": {
 		"close": "Cerrar",
