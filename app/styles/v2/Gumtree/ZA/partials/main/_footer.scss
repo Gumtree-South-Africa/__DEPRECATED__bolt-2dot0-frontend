@@ -1,9 +1,14 @@
 //:::::::: Desktop / Medium ::::::::::
 
 .footer-wrapper{
-	&,& a, .top-links{
+	&,& a{
 		color: color(swirl, shade);
 		background-color: color(foxtail, light);
+	}
+	.top-links{
+		color: color(swirl, shade);
+		background-color: color(foxtail, medium);
+
 	}
 	.meet-team{
 		margin-bottom: 17px;
@@ -79,14 +84,13 @@
 			padding-top: 25px;
 			padding-bottom: 20px;
 			&:first-child span{
-				text-transform: uppercase;
+				//text-transform: uppercase;
 				font-weight: bold;
 			}
 			.menu-items{
 				margin: 25px 0 0 0;
 				div{
-					margin-top: 25px;
-
+					//margin-top: 25px;
 				}
 			}
 			
@@ -97,8 +101,9 @@
 
 	.social-container{
 		margin:0;
+		display: inline-table;
+		padding-top:20px;
 		.social-icon-wrapper{
-			padding-top:20px;
 			margin:0;
 			.social-icon{
 				margin-top: 0;
@@ -123,19 +128,24 @@
 		}
 		.app-downloads-container{
 			padding-top:20px;
+			padding-bottom:9px;
+			margin-top: inherit;				
 			height:52px;
 			text-align: right;
 			width: 100%;
-			margin-top: inherit;				
 			.app-downloads{
 				width: 100%;
 				top:0;
 				margin: 0 2.5px;
-				.icon-logo_app_store{
-					background: url(../../../../../images/en_ZA/itunes.png) 42.19653179190752% 0 no-repeat;
+				&.icon-logo_app_store{
+					background: url(../../../../../images/en_ZA/itunes.png) no-repeat;
+					background-position: center;
+					background-size: 100%;
 				}
-				.icon-logo_google_play{
-					background: url(../../../../../images/en_ZA/google-play.png) 42.19653179190752% 0 no-repeat;
+				&.icon-logo_google_play{
+					background: url(../../../../../images/en_ZA/google-play.png) no-repeat;
+					background-position: center;
+					background-size: 100%;
 				}
 			}
 		}
@@ -145,9 +155,16 @@
 	
 	.seo-wrapper{
 		display:inline-block;
-		position: relative;
-		top: -28px;
 		color: inherit;
+	}
+	.footer-trademark {
+		margin: 0;
+		padding-bottom: 10px;
+		font-size: 10px;
+		text-align: center;
+		&{
+			background-color: color(foxtail, medium);
+		}
 	}
 }
 //:::::::: Small ::::::::::
@@ -172,12 +189,16 @@
 			}
 			.support-wrapper{
 				text-align: center;
-				width:100%;
-				
+				width:80%;
+				padding: 10px 10%;
+				display: inline-table;
+				margin: 0px;
 				.support-container{
 					display: inline-block;
+					margin: 0;
+					width: 33%;
 					.support-text, .support-icon{
-						margin:0 45px;
+						margin:0;
 					}
 					.mobile-only.support-text, .chat-icon + .support-text{
 						display:block;
@@ -188,7 +209,6 @@
 		}
 
 		.seo-wrapper{
-			top: -1px;
 			.seo-line{
 				border-bottom: 1px solid color(swirl, shade); 
 			}
@@ -204,10 +224,9 @@
 			display: inline-block;
 			width: 100%;
 			padding: 0;
-			height: 80px;
 			.app-downloads-container{
 				text-align: center;
-				padding: 18px 0 0 0;
+				padding: 18px 0 9px 0;
 			}
 		}
 	}
@@ -217,11 +236,9 @@
 }
 //:::::::: Desktop ::::::::::
 @include from-breakpoint($medium-break){
-	.footer-download{
-		height: 109px;
-	}
 	.footer-wrapper .desktop-only.social-container{
-		display: inline-block;
+		display: inline-table;
+		padding-left: 2.5%;
 	}
 }
 
