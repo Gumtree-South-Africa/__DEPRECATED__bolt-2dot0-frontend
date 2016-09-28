@@ -1,7 +1,7 @@
 'use strict';
 
-let uploadImageController = require("app/appWeb/views/components/uploadImage/js/uploadImage.js");
-let uploadAdController = require("app/appWeb/views/components/uploadImage/js/uploadAd.js");
+let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
+let uploadAdController = require("app/appWeb/views/components/uploadImage/js/postAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
 
@@ -61,8 +61,8 @@ describe('Post Ad', () => {
 
 		it('Should not request location if cookie is set', () => {
 			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
-			let postAd = uploadAdController.postAd;
-			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
+			let postAd = uploadAdController._postAd;
+			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, (response) => {
 					expect(options.locationType).toBe('cookie');
 					expect(response).toBe(mockPostAdResponse);
@@ -76,8 +76,8 @@ describe('Post Ad', () => {
 
 		it('should show spinners during upload', () => {
 			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
-			let postAd = uploadAdController.postAd;
-			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
+			let postAd = uploadAdController._postAd;
+			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, (response) => {
 					expect(options.locationType).toBe('cookie');
 					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the old spinner to be present.');
@@ -93,8 +93,8 @@ describe('Post Ad', () => {
 
 		it('should show error modal for failed ajax', () => {
 			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, {fail: true});
-			let postAd = uploadAdController.postAd;
-			spyOn(uploadAdController, 'postAd').and.callFake((images, success, fail, options) => {
+			let postAd = uploadAdController._postAd;
+			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
 				postAd(images, success, (err) => {
 					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be present.');
 					fail(err);
