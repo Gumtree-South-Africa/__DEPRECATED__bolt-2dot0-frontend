@@ -11,7 +11,7 @@ if ($translationBlock.length > 0) {
 	translations = JSON.parse($("#translation-block").text());
 }
 
-let locale;
+let locale = $("html").data("locale");
 let _walkAndReplace = (translation, values) => {
 	let tempTranslation = translation;
 	values.forEach((val) => {
