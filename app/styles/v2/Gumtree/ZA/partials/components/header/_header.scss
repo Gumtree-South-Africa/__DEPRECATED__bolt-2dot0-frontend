@@ -28,20 +28,28 @@
 
 		.left-items {
 			left: auto;
+<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
 <<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 			margin-left: 8%;
 =======
 			margin-left: 20px;
 >>>>>>> feat(Gumtree/components/header): adds styles for session only elements
+=======
+			margin-left: 9%;
+>>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 			width: auto;
 
 			&.logged-out {
 				left: auto;
+<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
 <<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				margin-left: 11%;
 =======
 				margin-left: 35px;
 >>>>>>> feat(Gumtree/components/header): adds styles for session only elements
+=======
+				margin-left: 12%;
+>>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 
 				.post-ad-button {
 					margin-left: 35px;
@@ -76,9 +84,13 @@
 		}
 
 		.menu-dropdown {
+<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
 			border-radius: 0 2px 2px 2px;
 			line-height: 20px;
 			padding: 5px;
+=======
+			line-height: 20px;
+>>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 			position: absolute;
 			left: 0;
 			top: 100%;
@@ -111,11 +123,15 @@
 
 			.item-text {
 				line-height: 35px;
+<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
 <<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				padding: 20px 5px 12px;
 =======
 				padding: 20px 5px 1px;
 >>>>>>> feat(Gumtree/components/header): adds styles for session only elements
+=======
+				padding: 20px 5px 12px;
+>>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 			}
 		}
 
