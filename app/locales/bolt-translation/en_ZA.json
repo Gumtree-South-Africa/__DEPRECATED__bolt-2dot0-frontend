@@ -1343,7 +1343,7 @@
 			"heretohelp": "Meet Our Customer Team",
 			"sendemail": "Email",
 			"callus": "Call",
-			"chatwithus": "Chatea con nosotros",
+			"chatwithus": "Chat with us",
 			"contact": "Chat",
 			"meet": "Contacta a nuestro equipo de Atención al cliente"
 		},
@@ -1356,19 +1356,19 @@
 			"aboutus": {
 				"aboutus": "Get to know us",
 				"aboutgumtree": "About Gumtree",
-				"gumtreeblog": "Gumtree Blog",
-				"gumtreebusiness": "Gumtree for Business",
-				"rules": "Rules for Posting Ads",
-				"staysafe": "Mantente Seguro",
+				"gumtreeblog": "Gumtree blog",
+				"gumtreebusiness": "Gumtree for business",
+				"rules": "Rules for posting ads",
+				"staysafe": "Stay safe",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
                 "protool": "Agentes Inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
-				"legal": "Legal Bits",
-				"terms": "Terms of Use",
-				"privacy": "Privacy Policy",
-				"cookies": "Cookie Notice"
+				"legal": "Legal bits",
+				"terms": "Terms of use",
+				"privacy": "Privacy policy",
+				"cookies": "Cookie notice"
 			},
 			"business": {
 				"business": "Agentes Inmobiliarios",
@@ -1386,27 +1386,26 @@
         "topsearches": "Búsquedas destacadas",
         "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
 				"priceIndex": "Previos de Inmuebles",
-				"bestof": "Best Ads",
-				"topSearches": "Top Searches",
+				"bestof": "Best ads",
+				"topSearches": "Top searches",
 				"mobilesite": "Old mobile site",
-				"sitemap": "Gumtree Content",
+				"sitemap": "Gumtree content",
 				"locations": "Locations",
 				"interlink": "eBay Classifieds Sites",
-				"mobileApp": "Mobile App"
+				"mobileApp": "Mobile app"
 			},
 			"tips": {
-				"tips": "Tips & Help",
-				"help": "Help & Contact Us",
-				"onlinesafety": "Stay Safe",
-				"onlinesafety": "Online Safety",
-				"vivaguides": "Vivanuncios Guides",
-				"givefeedback": "Give Feedback",
-				"listingRules": "Reglas para Publicar Anuncios"
+				"tips": "Tips & help",
+				"help": "Help & contact us",
+				"onlinesafety": "Stay safe",
+				"grumtreeguides": "Gumtree guides",
+				"givefeedback": "Give feedback",
+				"listingRules": "Listing rules"
 			}
 		},
 		"topSearches": {
-			"viewMore": "View More",
-			"viewLess": "View Less"
+			"viewMore": "View more",
+			"viewLess": "View less"
 		},
 		"toplocations": "Top Locations",
 		"download": {
