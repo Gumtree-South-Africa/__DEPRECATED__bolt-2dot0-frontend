@@ -16,18 +16,18 @@
 			cursor: pointer;
 			margin-top: -20px;
 			max-width: none;
-			padding: 20px 5px 1px;
+			padding: 20px 5px 12px;
 			z-index: 1;
 		}
 
 		.left-items {
 			left: auto;
-			margin-left: 20px;
+			margin-left: 9%;
 			width: auto;
 
 			&.logged-out {
 				left: auto;
-				margin-left: 35px;
+				margin-left: 12%;
 
 				.post-ad-button {
 					margin-left: 35px;
@@ -62,6 +62,7 @@
 		}
 
 		.menu-dropdown {
+			line-height: 20px;
 			position: absolute;
 			left: 0;
 			top: 100%;
@@ -79,12 +80,8 @@
 				height: 35px;
 				line-height: 30px;
 				min-width: 0;
-				padding: 0 15px;
+				padding: 0 20px;
 				width: auto;
-
-				&:hover {
-					background-color: color(crane, shade);
-				}
 			}
 		}
 
@@ -94,7 +91,7 @@
 
 			.item-text {
 				line-height: 35px;
-				padding: 20px 5px 1px;
+				padding: 20px 5px 12px;
 			}
 		}
 
@@ -179,6 +176,8 @@
 
 @include to-breakpoint($small-break) {
 	.header-wrapper {
+		border-bottom-color: color(crane);
+
 		&.header-distraction-free {
 			.headerV2 {
 				height: 40px;
@@ -196,7 +195,7 @@
 				left: 50%;
 				margin: 0 0 0 -63.5px;
 				position: absolute;
-				top: 23px;
+				top: 18px;
 			}
 		}
 	}
