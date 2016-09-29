@@ -136,6 +136,7 @@
 				font-weight: bold;
 			}
 			.menu-items{
+<<<<<<< 35fb1d6ff55ecbe3eb982175769b809940ed55f0
 				margin: 25px 0 0 0;
 <<<<<<< 1fa83701bff1a7d618214485a7218a5c5883cbdb
 				div{
@@ -144,6 +145,9 @@
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 =======
 >>>>>>> style(_footer.scss) Footer - Capitalize header links
+=======
+				margin: 15px 0 0 0;
+>>>>>>> style(_footer.scss) Footer - fixing pixels, padding on headers, zoom to photo
 			}
 			
 		}
@@ -173,6 +177,9 @@
 	.mobile-only.social-container{
 		display: none;
 	}
+	.desktop-only.social-container{
+		display: block;
+	}
 	.footer-download{
 		position: inherit;
 		right: inherit;
@@ -184,6 +191,7 @@
 			display: none;
 		}
 		.app-downloads-container{
+<<<<<<< 35fb1d6ff55ecbe3eb982175769b809940ed55f0
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 			padding-top:16px;
 			padding-bottom:9px;
@@ -193,6 +201,9 @@
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 =======
+=======
+			padding-top:16px;
+>>>>>>> style(_footer.scss) Footer - fixing pixels, padding on headers, zoom to photo
 			padding-bottom:9px;
 			margin-top: inherit;				
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
@@ -303,6 +314,13 @@
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
+<<<<<<< 35fb1d6ff55ecbe3eb982175769b809940ed55f0
+=======
+		.meet-team{
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+>>>>>>> style(_footer.scss) Footer - fixing pixels, padding on headers, zoom to photo
 		.customer-service-container{
 			height:auto;
 			.team-photos{
