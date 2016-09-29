@@ -1,0 +1,76 @@
+{
+	"templateModel": {
+		"customAttributes": [
+			{
+				"name": "Make",
+				"canonicalName": "Make",
+				"localizedName": "Make",
+				"allowedValueType": "LIST",
+				"allowedValues": [
+					{
+						"dependencyValue": null,
+						"value": "Pontiac",
+						"canonicalValue": "pont",
+						"localizedValue": "Pontiac"
+					},
+					{
+						"dependencyValue": null,
+						"value": "Ford",
+						"canonicalValue": "ford",
+						"localizedValue": "Ford"
+					}
+				],
+				"dependencies": null,
+				"dependents": [
+					"Model"
+				]
+			},
+			{
+				"name": "Model",
+				"canonicalName": "Model",
+				"localizedName": "Model",
+				"allowedValueType": "LIST",
+				"allowedValues": [
+				],
+				"dependencies": [
+					"Make"
+				],
+				"dependents": null
+			}
+		]
+	},
+	"dependencies": {
+		"Pontiac": [
+			{
+				"name": "Model",
+				"values": [
+					{
+						"dependencyValue": "Pontiac",
+						"value": "Trans Am",
+						"canonicalValue": "transam",
+						"localizedValue": "Trans Am"
+					},
+					{
+						"dependencyValue": "Pontiac",
+						"value": "Firebird",
+						"canonicalValue": "firebird",
+						"localizedValue": "Firebird"
+					}
+				]
+			}
+		],
+		"Ford": [
+			{
+				"name": "Model",
+				"values": [
+					{
+						"dependencyValue": "Ford",
+						"value": "Mustang",
+						"canonicalValue": "mustang",
+						"localizedValue": "Mustang"
+					}
+				]
+			}
+		]
+	}
+}

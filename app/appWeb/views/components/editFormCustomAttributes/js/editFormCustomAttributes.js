@@ -18,7 +18,7 @@ class EditFormCustomAttributes {
 		// empty the contents of the form
 		this.$form.empty();
 		// generate the dom string using handlebars
-		let newDomString = clientHbs.renderTemplate(modelData);
+		let newDomString = clientHbs.renderTemplate(`editFormCustomAttributes`, modelData);
 
 		// unwrapping the dom to remove the div already in the page as this.$form
 		this.$form.append($(newDomString).unwrap());
@@ -70,7 +70,6 @@ class EditFormCustomAttributes {
 	_bindDependencyEvents() {
 		this.$form.find('.edit-ad-select-box[data-dependency="true"]').change((evt) => {
 			let $selectBox = $(evt.currentTarget);
-
 			// go get the necessary attribute dependency information that you can get from the server
 			$.ajax({
 				url: `/api/edit/attributedependencies`,
@@ -105,7 +104,7 @@ class EditFormCustomAttributes {
 	 * @param postRenderCb
 	 */
 	updateCustomAttributes(postRenderCb, categoryId) {
-		if (this.categoryId) {
+		if (categoryId) {
 			this.setCategoryId(categoryId);
 		}
 		$.ajax({
