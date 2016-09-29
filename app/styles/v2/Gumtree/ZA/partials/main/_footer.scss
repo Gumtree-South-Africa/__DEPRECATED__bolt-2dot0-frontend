@@ -31,6 +31,7 @@
 					height: 64px;	
 					border: 2px solid color(leaf);
 					background-size: 115%;
+<<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 				}
 				&:nth-of-type(1) .user-photo {
 				    background-image: url(../../../../../images/en_ZA/CS1.png);
@@ -43,6 +44,8 @@
 				}
 				&:nth-of-type(4) .user-photo {
 				    background-image: url(../../../../../images/en_ZA/CS4.png);
+=======
+>>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
 				}
 				&:nth-of-type(1) .user-photo {
 				    background-image: url(../../../../../images/en_ZA/CS1.png);
@@ -78,12 +81,17 @@
 					position: relative;
 					top:-3px;
 					margin-left:0;
+<<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 <<<<<<< 1ab2e43186bb844d8ab7327b5929808e0ac3ee18
 					font-size: 14px;
 =======
 					font-size: 12px;
 					text-transform:uppercase;
 >>>>>>> refactor(_footer.scss) Footer - Local images hardcoded
+=======
+					font-size: 14px;
+					//text-transform:uppercase;
+>>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
 				}
 			}
 		}
@@ -110,6 +118,7 @@
 			padding-top: 18px;
 			padding-bottom: 18px;
 			&:first-child span{
+<<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 <<<<<<< 1fa83701bff1a7d618214485a7218a5c5883cbdb
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 				font-weight: bold;
@@ -121,6 +130,9 @@
 =======
 				text-transform: capitalize;
 >>>>>>> style(_footer.scss) Footer - Capitalize header links
+=======
+				//text-transform: capitalize;
+>>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
 				font-weight: bold;
 			}
 			.menu-items{
@@ -160,9 +172,6 @@
 	}
 	.mobile-only.social-container{
 		display: none;
-	}
-	.desktop-only.social-container{
-		display: block;
 	}
 	.footer-download{
 		position: inherit;
@@ -252,6 +261,7 @@
 		padding-bottom: 10px;
 		font-size: 10px;
 		text-align: center;
+<<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 <<<<<<< 4f704b5d56e4d0fa972303d9e3ae10a35051efc0
 		.HomepageV2 &{
 			background-color: color(foxtail, medium);
@@ -281,6 +291,9 @@
 =======
 		HomepageV2 &{
 >>>>>>> refactor(footer) adding the final styles
+=======
+		.HomepageV2 &{
+>>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
 			background-color: color(foxtail, medium);
 		}
 	}
