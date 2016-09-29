@@ -248,7 +248,7 @@
 	"home.provinces": "Provinces",
 	"home.main-locations": "Popular cities",
 	"home.popular-searches": "Popular",
-	"home.popular.searches": "Top Searches",
+	"home.popular.searches": "Top searches",
 	"home.trending-searches": "Trending",
 	"home.user.registered": "Congratulations and welcome! You have registered successfully at Gumtree.",
 	"home.ad.notyetactive": "Oops, the ad you are looking for is not yet live. Check back very soon!",
@@ -428,7 +428,7 @@
 	"footer.motors.h-l": "Cars H-L",
 	"footer.motors.m-o": "Cars M-O",
 	"footer.motors.p-z": "Cars P-Z",
-	"footer.toplocations": "Top Locations",
+	"footer.toplocations": "Top locations",
 	"footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
 	"error404.message": "\"We’re sorry, this page does not exist\" <br /><a href=\"%s\">Please go to the homepage</a>",
 	"error410.message": "Sorry, this ad is no longer available.",
@@ -920,7 +920,7 @@
 	"my.watchlist.clearAll": "Clear All",
 	"my-watchlist.emptystatemessage": "<br /> Or, <a href=\"%s\">login</a> to see your previously saved Watchlist.",
 	"my-watchlist.emptysigninmessage": "Click the star of listings you want to add to your Watchlist.",
-	"top-searches.breadcrumbs.root": "Top Searches",
+	"top-searches.breadcrumbs.root": "Top searches",
 	"topsearches.title.category-location": "Category / Location",
 	"topsearches.filter.button": "Filter",
 	"topsearches.url.prefix": "top-searches",
@@ -1340,7 +1340,7 @@
 	},
 	"footer": {
 		"help": {
-			"heretohelp": "Meet Our Customer Team",
+			"heretohelp": "Meet our customer team",
 			"sendemail": "Email",
 			"callus": "Call",
 			"chatwithus": "Chat with us",
@@ -1407,7 +1407,7 @@
 			"viewMore": "View more",
 			"viewLess": "View less"
 		},
-		"toplocations": "Top Locations",
+		"toplocations": "Top locations",
 		"download": {
 			"download": "Download the App",
 			"itunes": "Available on the App Store",
