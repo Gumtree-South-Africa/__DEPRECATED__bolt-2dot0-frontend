@@ -11,6 +11,7 @@
 		width: auto;
 
 		.divider {
+			border-color: $searchBarTextBoxBorder;
 			width: auto;
 		}
 
@@ -29,6 +30,7 @@
 		}
 
 		.search-button {
+			border: solid 1px $searchBarTextBoxBorder;
 			padding: 0;
 		}
 
@@ -41,6 +43,16 @@
 			float: none;
 			margin: 10px 0 0;
 			vertical-align: top;
+		}
+
+		.search-textbox-container {
+			.search-textbox {
+				color: color(swirl, medium);
+
+				&::-moz-placeholder {
+					opacity: 1;
+				}
+			}
 		}
 
 		.search-textbox, .mobile-location-area {
