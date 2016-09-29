@@ -2,6 +2,7 @@
 
 
 let clientHbsHelpers = require("public/js/common/utils/clientHbsHelpers.js");
+let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 let _ = require("underscore");
 
 let mockAjaxMapQueue = [];
@@ -188,4 +189,5 @@ afterEach(() => {
 	$("#testArea").empty();
 	$("body").off();
 	$(window).off();
+	formChangeWarning.disable();
 });

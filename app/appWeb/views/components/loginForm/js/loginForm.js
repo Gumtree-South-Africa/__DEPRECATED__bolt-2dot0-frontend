@@ -21,7 +21,7 @@ class LoginForm {
 					if (error.field.indexOf("emailAddress") >= 0) {
 						this._markValidationError(this.$emailInput);
 					} else if (error.field.indexOf("password") >= 0) {
-						this._markValidationError(this.$passwordInput);
+						this._markValidationError(this.$passwordInput.add(this.$showPassInput));
 					}
 				});
 			}
@@ -48,7 +48,7 @@ class LoginForm {
 		}
 
 		if (!password || password.length < 6 || password.length > 25) {
-			this._markValidationError(this.$passwordInput);
+			this._markValidationError(this.$passwordInput.add(this.$showPassInput));
 			hasErrors = true;
 		}
 
@@ -128,11 +128,13 @@ class LoginForm {
 			window.location.href = path;
 		});
 
-		this.$submitButton.click(() => {
+		this.$submitButton.click((evt) => {
 			let emailVal = this.$emailInput.val();
 			let passVal = this.$passwordInput.val();
 
 			this._login(emailVal, passVal);
+
+			evt.preventDefault();
 		});
 
 		this.$form.find(".show-hide-password").click((evt) => {
