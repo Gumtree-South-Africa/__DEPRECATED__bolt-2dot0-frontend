@@ -82,7 +82,7 @@ $welcomeSreen-bgcolor: $vivaWhite;
 
 
 // Section Menu
-$secmenu-link-color: $vivaBlack;
+$secmenu-link-color: color(swirl, dark);
 $secmenu-link-color-hover: $vivaOrange;
 
 
@@ -149,13 +149,13 @@ $fontSizeLabel: .625em;      // 10 px
 // Header
 
 $headerBackgroundColor: color(foxtail, medium);
-$headerTextColor: $vivaGray3;
-$headerMenuBorderColor: $vivaGray6;
+$headerTextColor: color(swirl, dark);
+$headerMenuBorderColor: color(swirl, shade);
 $headerMenuItemSecondaryColor: $vivaGray6;
 $headerMenuItemSeparatorColor: $vivaGray7;
 $headerMessagesBackgroundColor: $vivaOrange;
-$profileDropdownLoginBtnColor: $vivaBlue;
-$headerMenuItemHighlightColor: $vivaGray5;
+$profileDropdownLoginBtnColor: color(crane);
+$headerMenuItemHighlightColor: color(swirl);
 $imagePlaceholderBackground: $vivaGray5;
 $headerBlue: color(leaf);
 
@@ -164,8 +164,8 @@ $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaGray1;
-$searchBarTextBoxBorder: $vivaGray6;
+$searchBarLocationLinkColor: color(swirl, medium);
+$searchBarTextBoxBorder: color(swirl, shade);
 $searchBarButtonColor: color(crane);
 $searchBarButtonTextColor: $vivaWhite;
 $searchBarButtonMouseOverColor: color(crane, shade) !default;
