@@ -103,4 +103,39 @@
 {{#partial "seo-links-text"}}
 {{/partial}}
 
+{{#partial 'desktop-social-container'}}
+    <div class="desktop-only social-container">
+        <div class="social-icon-wrapper">
+            <a href={{i18n "footer.social.facebookUrl"}} data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
+                <div class="social-icon fb-icon">
+                </div>
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href={{i18n "footer.social.twitterUrl"}} data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
+                <div class="social-icon twitter-icon">
+                </div>
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href={{i18n "footer.social.pinterestUrl"}} data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
+                <div class="social-icon pinterest-icon">
+                </div>
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href={{i18n "footer.social.youTubeUrl"}} data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
+                <div class="social-icon youtube-icon">
+                </div>
+            </a>
+        </div>
+        <div class="social-icon-wrapper">
+            <a href={{i18n "footer.social.googlePlusUrl"}} data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
+                <div class="social-icon googleplus-icon">
+                </div>
+            </a>
+        </div>
+    </div>
+   {{/partial}}
+
 {{> (base "footerV2") }}
