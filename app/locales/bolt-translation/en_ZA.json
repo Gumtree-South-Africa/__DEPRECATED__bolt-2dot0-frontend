@@ -30,6 +30,7 @@
 	"learnmore.show": "See more...",
 	"learnmore.less": "Show less",
 	"searchbar.locationDisplayname.prefix": "All %s",
+	"country.all": "All ",
 	"onetouch.cardinfo": "%s ending in %s",
 	"onetouch.confirm": "Confirm",
 	"onetouch.paynow": "Click and confirm",
@@ -1109,6 +1110,7 @@
 	"quickpost.error.locationNotInCountry": "The location you selected is not in South Africa",
 	"quickpost.error.priceLong": "The price is very high",
 	"quickpost.empty": "",
+	"location.defaultcity": "South Africa",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
 	"smartmobilebanner": {
 		"title": "Open App",
@@ -1148,7 +1150,7 @@
 			"viewMore": "Ver más"
 		},
 		"searchbar": {
-			"lookingFor": "I'm Looking For...",
+			"lookingFor": "I'm looking for...",
 			"search": "Search"
 		},
 		"safetyTips": {
@@ -1259,11 +1261,11 @@
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {
-		"cars": "Veh\u00EDculos",
-		"trending": "Ofertas",
-		"goods": "Hogar y m\u00E1s",
-		"realEstate": "Bienes Ra\u00EDces",
-		"jobs": "Empleos"
+		"cars": "Cars",
+		"trending": "Trending",
+		"goods": "Goods",
+		"realEstate": "Real Estate",
+		"jobs": "Jobs"
 	},
 	"recentactivity": {
 		"message": {
