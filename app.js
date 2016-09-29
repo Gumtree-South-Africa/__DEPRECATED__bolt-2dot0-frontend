@@ -13,7 +13,6 @@ let appConfigJson = require('./app/config/appConfig.json');
 let expressbuilder = require('./server/middlewares/express-builder');
 let siteconfig = require('./server/middlewares/site-config');
 let versionconfig = require('./server/middlewares/version-config');
-let responseMetrics = require('./server/middlewares/response-metrics');
 let eventLoopMonitor = require('./server/utils/monitor-event-loop');
 let monitorAgent = require('./server/utils/monitor/monitor-agent');
 let error = require('./modules/error');
@@ -46,7 +45,7 @@ let createSiteApps = () => {
 	_.each(config.sites, (site) => {
 		if (siteLocales.indexOf(site.locale) > -1) {
 			(function(siteObj) {
-				let builderObj = new expressbuilder(siteObj);
+				let builderObj = new expressbuilder(siteObj, false);
 				let siteApp = builderObj.getApp();
 				siteApp.locals.siteObj = siteObj;
 				siteApps.push(siteApp);
@@ -91,7 +90,6 @@ let createSiteApps = () => {
 				let App = require(appConfig.path);
 				let appObj = new App(siteApp, appConfig.routePath, appConfig.viewPath).getApp();
 
-				appObj.use(responseMetrics());
 				siteApp.use(appConfig.mainRoute, appObj);
 			});
 
@@ -102,11 +100,11 @@ let createSiteApps = () => {
 		// ***** App 404 Error *****
 		// Warning: do not reorder this middleware.
 		// Order of this should always appear after controller middlewares are setup.
-		app.use(error.four_o_four(app));
+		app.use(error.four_o_four());
 
 		// ***** App Error *****
 		// Overwriting the express's default error handler should always appear after 404 middleware
-		app.use(error(app));
+		app.use(error());
 	});
 };
 

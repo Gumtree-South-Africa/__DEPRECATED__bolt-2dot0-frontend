@@ -4,49 +4,46 @@
  * @author aganeshalingam@ebay.com
  */
 
-
 "use strict";
 
-var cjson = require('cjson');
-var json = cjson.load(process.cwd() + "/app/config/assets/jsmin.json");
+let cjson = require('cjson');
+let json = cjson.load(process.cwd() + "/app/config/assets/jsmin.json");
+
+
+let isLocalePresent = (locales, locale) => {
+	if (Array.isArray(locales) ) {
+		for(let i=0; i<locales.length; i++) {
+			if (locales[i] === locale) {
+				return true;
+			}
+		}
+	}
+
+	return false;
+};
+
+let getAssets = (locale) => {
+	let jsArry = [];
+
+	json.forEach(function(site) {
+		let localeOk = isLocalePresent(site.locales, locale);
+
+		if (localeOk ) {
+			site.src.forEach(function(jsUrl){
+				jsArry.push(jsUrl);
+			});
+		}
+	});
+	return jsArry;
+};
+
 
 module.exports = function(app, locale) {
     return function(req, res, next) {
-            res.locals.jsAssets = getAssets(locale);
-            next();
+		res.locals.jsAssets = getAssets(locale);
 
-    }
+		next();
+    };
 };
-
-function getAssets(locale) {
-
-    var jsArry = [];
-   // var locales = "en_ZA";
-
-
-    json.forEach(function(site) {
-        var localeOk = isLocalePresent(site.locales, locale);
-
-        if (localeOk ) {
-            site.src.forEach(function(jsUrl){
-                jsArry.push(jsUrl);
-            });
-        }
-    });
-    return jsArry;
-};
-
-function isLocalePresent(locales, locale) {
-    //console.log(locales)
-    if (Array.isArray(locales) ) {
-        for(var i=0; i<locales.length; i++) {
-            if (locales[i] == locale) {
-                return true;
-            }
-        }
-    }
-
-    return false;
-}
 
 
