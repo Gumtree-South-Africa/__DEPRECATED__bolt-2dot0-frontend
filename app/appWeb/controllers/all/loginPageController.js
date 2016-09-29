@@ -30,10 +30,9 @@ router.get('/', (req, res, next) => {
 	let loginPageModel = new LoginPageModel(req, res);
 	let redirectUrl = req.query.redirect;
 	let showTerms = req.query.showterms;
-	let facebookToken = req.query.facebookToken;
+	let facebookToken = req.query.facebooktoken;
 	let email = req.query.email;
-	let facebookId = req.query.facebookId;
-	let deferredLink = req.query.deferred;
+	let facebookId = req.query.facebookid;
 
 	loginPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
@@ -44,7 +43,6 @@ router.get('/', (req, res, next) => {
 		modelData.facebookToken = facebookToken;
 		modelData.email = email;
 		modelData.facebookId = facebookId;
-		modelData.deferredLink = deferredLink;
 
 		pageControllerUtil.postController(req, res, next, 'loginPage/views/hbs/loginPage_', modelData);
 	}).fail((err) => {
@@ -101,7 +99,7 @@ router.get('/facebook/callback', (req, res, next) => {
 				//User not found, redirect to terms
 				let facebookToken = user.facebookToken;
 				let facebookId = user.id;
-				return res.redirect(`/login?showTerms=true&facebookToken=${facebookToken}&facebookId=${facebookId}&email=${email}&redirect=${redirect}`);
+				return res.redirect(`/login?showterms=true&facebooktoken=${facebookToken}&facebookid=${facebookId}&email=${email}&redirect=${redirect}`);
 			} else {
 				next(error);
 			}

@@ -109,6 +109,7 @@ class LoginForm {
 		this.$showPassInput = this.$form.find('input[type="text"]');
 		this.$submitButton = this.$form.find('.submit-btn');
 		this.redirectUrl = this.$form.find('#redirect-url').text() || '/';
+		this.fbRedirectUrl = options.fbRedirectUrl || "/";
 
 		// already open on initialize
 		if (!this.$signInSection.hasClass("open")) {
@@ -122,9 +123,7 @@ class LoginForm {
 
 		this.$fbButton.on("click", () => {
 			// let baseFacebookPath = "";
-			let path = `${this.$form.data("site-base-path")}/login?showTerms=true&deferred="${this.fbRedirectUrl || $("#login-container").data('deferred-link')}"`; // `${baseFacebookPath}?redirectUrl=${this.$form.data("site-base-path")}/login?showTerms=true&deferred="${this.fbRedirectUrl || $("#login-container").data('deferred-link')}
-
-			path = path.replace("https", "http");
+			let path = `/login/facebook?redirect=${this.fbRedirectUrl}"`;
 			window.location.href = path;
 		});
 

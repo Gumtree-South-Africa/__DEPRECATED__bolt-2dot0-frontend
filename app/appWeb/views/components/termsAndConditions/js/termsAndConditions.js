@@ -16,6 +16,7 @@ class TermsAndConditions {
 	initialize(options) {
 		options = options || {};
 		this._termsChangeCb = options.termsChangeCb;
+		this._termsSubmitCb = options.termsSubmitCb;
 
 		this.$form = $("#terms-and-conditions");
 
@@ -34,6 +35,10 @@ class TermsAndConditions {
 			if (this.$button.length > 0) {
 				this.$button.attr('disabled', shouldDisable);
 			}
+		});
+
+		this.$button.on('click', () => {
+			this._termsSubmitCb();
 		});
 	}
 }
