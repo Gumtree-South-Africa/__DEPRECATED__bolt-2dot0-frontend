@@ -5,7 +5,7 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let compress = require('compression');
 let cookieParser = require('cookie-parser');
-// let expressUncapitalize = require('express-uncapitalize');
+let expressUncapitalize = require('express-uncapitalize');
 let logger = require('morgan');
 let methodOverride = require('method-override');
 let minifyHTML = require('express-minify-html');
@@ -169,7 +169,14 @@ function BuildApp(siteObj, loggingEnabled) {
 		app.use(bodyParser.urlencoded({extended: true}));
 		app.use(cookieParser());
 		app.use(methodOverride());
-		// app.use(expressUncapitalize());
+		app.use((req, res, next) => {
+			//Need this to be excluded from lowercase for facebook auth token query param.
+			if (req.url.indexOf('/login') !== -1) {
+				next();
+			} else {
+				expressUncapitalize().bind(this, req, res, next)();
+			}
+		});
 		app.use(minifyHTML({
 			override: false,
 			htmlMinifier: {

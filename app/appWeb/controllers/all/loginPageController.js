@@ -91,7 +91,7 @@ router.get('/facebook/callback', (req, res, next) => {
 			authTokenValue: req.cookies.bt_auth
 		};
 		let email = user.email;
-		redirect = decodeURIComponent(redirect);
+		redirect = decodeURIComponent(redirect) || '/';
 		authService.checkEmailExists(bapiHeaders, email).then((/* result */) => {
 			//User exists, do something with result then redirect
 			//TODO: set a valid cookie
