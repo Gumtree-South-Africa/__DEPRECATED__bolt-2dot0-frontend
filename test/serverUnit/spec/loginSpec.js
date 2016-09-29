@@ -18,7 +18,7 @@ describe('Login Page', () => {
 					email: 'test@test.com'
 				});
 				//Function to be returned for the controller to execute, do nothing, just suppress error.
-				return (req, res, next) => {};
+				return () => {};
 			});
 			spyOn(authService, 'checkEmailExists').and.callFake(() => {
 				return Q({});
@@ -47,7 +47,7 @@ describe('Login Page', () => {
 					email: email
 				});
 				//Function to be returned for the controller to execute, do nothing, just suppress error.
-				return (req, res, next) => {};
+				return () => {};
 			});
 			spyOn(authService, 'checkEmailExists').and.callFake(() => {
 				return Q.reject({
@@ -79,7 +79,7 @@ describe('Login Page', () => {
 					email: email
 				});
 				//Function to be returned for the controller to execute, do nothing, just suppress error.
-				return (req, res, next) => {};
+				return () => {};
 			});
 			spyOn(authService, 'checkEmailExists').and.callFake(() => {
 				return Q.reject({
