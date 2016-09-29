@@ -1,0 +1,10 @@
+@include to-breakpoint($small-break) {
+	.sectionMenu {
+		a {
+			&:hover, &.active {
+				border-bottom-color: color(crane);
+				color: color(crane);
+			}
+		}
+	}
+}
