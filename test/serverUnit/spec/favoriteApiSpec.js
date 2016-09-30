@@ -9,14 +9,6 @@ describe('Favorite Ad Api', () => {
 
 	describe('Favorite Ad (POST)', () => {
 
-		beforeEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
-
-		afterEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
-
 		it('should respond with 200', (done) => {
 			let file = {
 				"adId": "1234567890"
@@ -113,14 +105,6 @@ describe('Favorite Ad Api', () => {
 	});
 
 	describe('Unfavorite Ad (DELETE)', () => {
-
-		beforeEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
-
-		afterEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
 
 		it('should respond with 200 (unfavorite)', (done) => {
 			let file = {

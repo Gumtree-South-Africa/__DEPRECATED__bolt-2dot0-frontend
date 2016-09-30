@@ -21,6 +21,10 @@ describe('Activate Page', () => {
 	beforeEach(() => {
 	});
 
+	afterEach(() => {
+	//	specHelper.verifyMockEndpointsClean();
+	});
+
 	it('should display activate success', (done) => {
 
 		specHelper.registerMockEndpoint(
@@ -36,6 +40,39 @@ describe('Activate Page', () => {
 
 					let c$ = cheerio.load(res.text);
 					expect(c$('.activate-success').length).toBe(1, 'should have activate success message');
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should fail with 400 (missing activationcode)', (done) => {
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.authActivate.replace("{email}", activateParams.emailAddress)}?activationCode=${activateParams.activationCode}&_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/auth/loginResponse.json');
+
+		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
+				.expect((res) => {
+					expect(res.status).toBe(400);
+				})
+				.end(specHelper.finish(done));
+		});
+	});
+
+	it('should fail with 404 (missing email in url)', (done) => {
+
+		specHelper.registerMockEndpoint(
+			`${endpoints.authActivate.replace("{email}", activateParams.emailAddress)}?activationCode=${activateParams.activationCode}&_forceExample=true&_statusCode=200`,
+			'test/serverUnit/mockData/auth/loginResponse.json');
+
+		boltSupertest(`/activate/`, 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
+				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.expect((res) => {
+					expect(res.status).toBe(404);
 				})
 				.end(specHelper.finish(done));
 		});
