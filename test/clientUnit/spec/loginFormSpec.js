@@ -20,6 +20,28 @@ describe("Login Form", () => {
 		expect($extraOpenDom.hasClass("open")).toBeTruthy();
 	});
 
+	it("should toggle the visible password inputs when clicking the show/hide password button/icon", () => {
+		let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");
+
+		let $passwordInput = $testArea.find('input[type="password"]');
+		let $showPassInput = $testArea.find('input[type="text"]');
+		let $showHideBtn = $testArea.find('.show-hide-password');
+
+		loginFormController.initialize();
+		expect($passwordInput.hasClass("hidden")).toBeFalsy(); // password input is visible on load
+		expect($showPassInput.hasClass("hidden")).toBeTruthy(); // show password input is hidden on load
+
+		$showHideBtn.click();
+
+		expect($passwordInput.hasClass("hidden")).toBeTruthy(); // password input is hidden after one click (toggle)
+		expect($showPassInput.hasClass("hidden")).toBeFalsy(); // show password is visible after one click (toggle)
+
+		$showHideBtn.click();
+
+		expect($passwordInput.hasClass("hidden")).toBeFalsy(); // password input is visible after second click (toggle back)
+		expect($showPassInput.hasClass("hidden")).toBeTruthy(); // show password is hidden after second click (toggle back)
+	});
+
 	describe("Login Failure", () => {
 		it("should mark validation errors returned to us in the ajax response", () => {
 			let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");

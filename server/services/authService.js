@@ -84,14 +84,14 @@ class AuthService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'HEAD',
 			path: config.get('BAPI.endpoints.authEmailExists').replace('{email}', email)
-		}), bapiHeaderValues, 'authEmailExists');
+		}), bapiHeaderValues, {}, 'authEmailExists');
 	}
 
 	checkPhoneExists(bapiHeaderValues, phone) {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'HEAD',
 			path: config.get('BAPI.endpoints.authPhoneExists').replace('{phone}', phone)
-		}), bapiHeaderValues, 'authPhoneExists');
+		}), bapiHeaderValues, {}, 'authPhoneExists');
 	}
 }
 

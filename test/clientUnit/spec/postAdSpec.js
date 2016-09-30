@@ -4,6 +4,7 @@ let uploadImageController = require("app/appWeb/views/components/uploadImage/js/
 let uploadAdController = require("app/appWeb/views/components/uploadImage/js/uploadAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
+let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -27,6 +28,27 @@ let mockPostAdResponse = {
 };
 
 describe('Post Ad', () => {
+
+	it('should open and close the login modal when called', () => {
+		let $testArea = specHelper.setupTest("loginModal", {
+			isHidden: true,
+		}, "es_MX");
+
+		loginModalController.initialize();
+
+		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
+		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
+
+		loginModalController.openModal({});
+
+		expect($testArea.find('#login-modal').hasClass("hidden")).toBeFalsy();
+		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeFalsy();
+
+		loginModalController.closeModal();
+
+		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
+		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
+	});
 	describe('Upload Image (mobile)', () => {
 		let $testArea;
 		let file;

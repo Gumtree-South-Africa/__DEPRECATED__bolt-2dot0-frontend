@@ -169,7 +169,14 @@ function BuildApp(siteObj, loggingEnabled) {
 		app.use(bodyParser.urlencoded({extended: true}));
 		app.use(cookieParser());
 		app.use(methodOverride());
-		app.use(expressUncapitalize());
+		app.use((req, res, next) => {
+			//Need this to be excluded from lowercase for facebook auth token query param.
+			if (req.url.indexOf('/login') !== -1) {
+				next();
+			} else {
+				expressUncapitalize().bind(this, req, res, next)();
+			}
+		});
 		app.use(minifyHTML({
 			override: false,
 			htmlMinifier: {

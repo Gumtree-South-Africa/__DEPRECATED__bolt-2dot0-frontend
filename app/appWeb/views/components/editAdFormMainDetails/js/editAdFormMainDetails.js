@@ -332,11 +332,11 @@ class EditAdFormMainDetails {
 			data: JSON.stringify(payload),
 			dataType: 'json',
 			contentType: 'application/json',
-			success: () => {
-				this._successCallback();
+			success: (evt) => {
+				this._successCallback(evt);
 			},
-			error: () => {
-				this._failureCallback();
+			error: (e) => {
+				this._failureCallback(e);
 			}
 		});
 	}
@@ -482,15 +482,17 @@ class EditAdFormMainDetails {
 		this._setupScrollTo();
 	}
 
-	initialize() {
+	initialize(registerOnReady = true) {
 		locationModal.initialize((data) => {
 			this._setHiddenLocationInput(data);
 		});
 		categorySelectionModal.initialize();
 
-		$(document).ready(() => {
-			this.onReady();
-		});
+		if (registerOnReady) {
+			$(document).ready(() => {
+				this.onReady();
+			});
+		}
 
 		formChangeWarning.initialize();
 		spinnerModal.initialize();

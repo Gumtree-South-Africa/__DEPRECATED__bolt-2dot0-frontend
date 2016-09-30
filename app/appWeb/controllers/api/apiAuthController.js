@@ -12,6 +12,7 @@ let AuthModel = require(cwd + '/app/builders/common/AuthModel');
 let cors = require(cwd + '/modules/cors');
 let logger = require(`${cwd}/server/utils/logger`);
 let activateEmailService = require(`${cwd}/server/services/activateEmailService`);
+let facebookSchema = require(`${cwd}/app/appWeb/jsonSchemas/userLoginWithFacebookRequest.json`);
 
 // route is /api/auth/login
 router.post('/login', cors, (req, res) => {
@@ -116,6 +117,47 @@ router.post('/register', cors, (req, res) => {
 		});
 		console.error(err);
 		return;
+	});
+});
+
+router.post('/facebook', (req, res) => {
+
+	if (!req.is('application/json')) {
+		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
+	}
+
+	// Validate the incoming JSON
+	let validate = validator(facebookSchema);
+	let valid = validate(req.body);
+	if (!valid) {
+		//console.error(`schema errors: ${JSON.stringify(validate.errors, null, 4)}`);
+		res.contentType = "application/json";
+		return res.status(400).send({
+			schemaErrors: validate.errors
+		});
+	}
+
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
+
+	model.authModel = new AuthModel(model.bapiHeaders);
+	model.authModel.loginViaFb(req.body).then((result) => {
+
+		if (!result.accessToken) {
+			console.error(`bapi loginViaFb did not return access token, returning status 500`);
+			return res.status(500).send({ error: 'missing access token' });
+		}
+		// not setting expires or age so it will be a "session" cookie
+		res.cookie('bt_auth', result.accessToken, { httpOnly: true });
+
+		res.status(200).send({});
+	}).fail((err) => {
+		let bapiInfo = err.logError();
+		console.error(err);
+		return res.status(err.getStatusCode(500)).send({// 500 default status code
+			error: "unable to login via facebook, see logs for details",
+			bapiInfo: bapiInfo
+		});
 	});
 
 });
