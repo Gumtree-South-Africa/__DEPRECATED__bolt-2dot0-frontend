@@ -2,9 +2,56 @@
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let authService = require(`${process.cwd()}/server/services/authService`);
+let cheerio = require('cheerio');
 let Q = require('q');
 
 describe('Login Page', () => {
+
+	it('should render a form with login and redirect url', (done) => {
+
+		boltSupertest(`/login/`, 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
+				.query("redirect=foo")
+				.expect((res) => {
+					expect(res.statusCode).toBe(200);
+
+					let c$ = cheerio.load(res.text);
+					let loginContainer = c$('.login-container');
+					expect(loginContainer.length).toBe(1, 'should have a login container');
+
+					expect(c$('.save-terms-btn', loginContainer).length).toBe(0, 'should NOT have save terms button');
+					expect(c$('.facebook-button', loginContainer).length).toBe(1, 'should have a faccebook button');
+					expect(c$('.submit-btn', loginContainer).length).toBe(1, 'should have submit button');
+
+					let redirectUrl = c$('#redirect-url', loginContainer);
+					expect(redirectUrl.length).toBe(1, 'should have an element for redirect url');
+					expect(redirectUrl.hasClass('hidden')).toBeTruthy('should have redirect url hidden');
+					expect(redirectUrl.text()).toBe("foo", 'should have a redirect url value');
+
+				}).end(specHelper.finish(done));
+		});
+	});
+
+	it('should render a form with only terms and conditions checkboxes', (done) => {
+
+		boltSupertest(`/login/`, 'vivanuncios.com.mx').then((supertest) => {
+			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
+				.query("showterms=true")
+				.expect((res) => {
+					expect(res.statusCode).toBe(200);
+
+					let c$ = cheerio.load(res.text);
+					let loginContainer = c$('.login-container');
+					expect(loginContainer.length).toBe(1, 'should have a login container');
+
+					expect(c$('.terms-and-conditions', loginContainer).length).toBe(1, 'should have a terms and conditions element');
+					expect(c$('.save-terms-btn', loginContainer).length).toBe(1, 'should have save terms button');
+
+				}).end(specHelper.finish(done));
+		});
+	});
 
 	describe('Facebook Login', () => {
 		it('should redirect to passed url if email exists in BAPI', (done) => {
