@@ -37,7 +37,7 @@ PageControllerUtil.prototype.preController = function(req, res) {
  */
 PageControllerUtil.prototype.postController = function(req, res, next, pageTemplateName, modelData) {
 	// Render
-	res.renderMin(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
+	res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
 		if (err) {
 			err.status = 500;
 			return next(err);

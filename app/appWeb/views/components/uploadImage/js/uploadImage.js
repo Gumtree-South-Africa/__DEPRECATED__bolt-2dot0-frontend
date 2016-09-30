@@ -43,6 +43,7 @@ let _success = (i, response) => {
 	}
 
 	if (this.isMobile) {
+		window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 		this.imageHolder.css("background-image", `url("${url.normal}")`);
 		this.epsUpload.requestLocation((locationType, timeout) => {
 			if (timeout !== undefined) {
