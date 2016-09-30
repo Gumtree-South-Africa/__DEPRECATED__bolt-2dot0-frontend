@@ -12,17 +12,25 @@ class LoginPage {
 				termsSubmitCb: () => {
 					let checkboxStatus = termsAndConditions.getCheckedStatus();
 					let payload = {
-						fbCode: queryParams.facebooktoken,
+						facebookToken: queryParams.facebooktoken,
+						facebookId: queryParams.facebookid,
+						email: queryParams.email,
 						agreeTerms: checkboxStatus.hasAcceptedTerms,
-						optInMarketing: checkboxStatus.marketingConsent,
-						redirectUrl: queryParams.redirect
+						optInMarketing: checkboxStatus.marketingConsent
 					};
 					$.ajax({
 						url: "/api/auth/loginWithFacebook",
 						method: "POST",
 						dataType: "json",
 						contentType: "application/json",
-						data: JSON.stringify(payload)
+						data: JSON.stringify(payload),
+						success: () => {
+							window.location.href = queryParams.redirect || '/';
+						},
+						error: (err) => {
+							//TODO: error handling
+							console.error(err);
+						}
 					});
 				}
 			});

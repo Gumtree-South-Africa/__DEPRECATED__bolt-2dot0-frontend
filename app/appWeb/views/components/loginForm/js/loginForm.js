@@ -109,7 +109,7 @@ class LoginForm {
 		this.$showPassInput = this.$form.find('input[type="text"]');
 		this.$submitButton = this.$form.find('.submit-btn');
 		this.redirectUrl = this.$form.find('#redirect-url').text() || '/';
-		this.fbRedirectUrl = options.fbRedirectUrl || "/";
+		this.fbRedirectLink = options.fbRedirectLink || "/";
 
 		// already open on initialize
 		if (!this.$signInSection.hasClass("open")) {
@@ -123,7 +123,7 @@ class LoginForm {
 
 		this.$fbButton.on("click", () => {
 			// let baseFacebookPath = "";
-			let path = `/login/facebook?redirect=${this.fbRedirectUrl}"`;
+			let path = `/login/facebook?redirect=${this.fbRedirectLink}`;
 			window.location.href = path;
 		});
 
