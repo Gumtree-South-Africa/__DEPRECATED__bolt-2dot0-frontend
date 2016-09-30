@@ -91,7 +91,7 @@ class LoginForm {
 	}
 
 	setFbRedirectUrl(url) {
-		this.fbRedirectUrl = url;
+		this.fbRedirectLink = url;
 	}
 
 	setSubmitCb(cb) {
