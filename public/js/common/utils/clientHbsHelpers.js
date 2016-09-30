@@ -104,7 +104,7 @@ let initialize = (Handlebars) => {
 		if (!value) {
 			return;
 		}
-		return new Handlebars.SafeString(StringUtils.obfsucate(value));
+		return new Handlebars.SafeString(StringUtils.rot13(value));
 	});
 
 	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {

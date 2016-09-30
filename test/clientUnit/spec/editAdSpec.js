@@ -171,6 +171,30 @@ describe('Edit Ad', () => {
 	});
 
 	describe("Category Selection Modal", () => {
+		it("should open the category selection modal when pressing the breadcrumb links", () => {
+			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+
+			spyOn(categorySelectionModal, "openModal").and.stub();
+
+			editAdFormMainDetailsController.initialize();
+
+			$testArea.find("#category-name-display").click();
+
+			expect(categorySelectionModal.openModal).toHaveBeenCalled();
+		});
+
+		it("should open the category selection modal when pressing the change button links", () => {
+			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+
+			spyOn(categorySelectionModal, "openModal").and.stub();
+
+			editAdFormMainDetailsController.initialize();
+
+			$testArea.find(".choose-category-button").click();
+
+			expect(categorySelectionModal.openModal).toHaveBeenCalled();
+		});
+
 		it("should open with an empty category hierarchy at all categories", () => {
 			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
 
