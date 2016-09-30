@@ -8,10 +8,13 @@
 	.top-links{
 		color: color(swirl, shade);
 		background-color: color(foxtail, medium);
+<<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 =======
 
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
+=======
+>>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 	}
 	.meet-team{
 		margin: 15px 0;
@@ -262,6 +265,7 @@
 			margin: 0;
 			padding: 0;
 		}
+<<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
 		.view-more-locations, .view-more-searches{
 			float: left;
 			width: 100%;
@@ -277,6 +281,12 @@
 		.HomepageV2 &{
 			background-color: color(foxtail, medium);
 		}
+=======
+		.view-more-locations{
+			float: left;
+			width: 100%;
+		}
+>>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 	}
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 	.df-support-wrapper {
@@ -308,9 +318,14 @@
 			background-color: color(foxtail, medium);
 		}
 	}
+<<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 }
 
+=======
+
+}
+>>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
@@ -441,12 +456,34 @@
       float: left;
       margin: 0;
     }
+<<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
   },
 >>>>>>> fix(__footer.scss) fixing the distraction free footer
+=======
+  }
+>>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
 	}
+	.seo-wrapper{
+		.tab-content{
+			margin:0;
+			text-align: center;
+			.top-content{
+				float: left;
+				width: 49%;
+			}
+			.top-content-wrapper .top-content .top-links{
+				position: relative;
+				left: 0;
+			}
+			.top-content-wrapper .top-content:nth-child(even){
+				display: inline-block;
+			}
+		}
+	}
+	
 }
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 
