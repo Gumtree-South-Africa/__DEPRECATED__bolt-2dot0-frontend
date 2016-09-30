@@ -9,14 +9,6 @@ describe('Gallery Ad Api', () => {
 
 	describe('Gallery Ads (GET)', () => {
 
-		beforeEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
-
-		afterEach(() => {
-			specHelper.verifyMockEndpointsClean();
-		});
-
 		it('should respond with 200', (done) => {
 			let requestData = {
 				offset: 0,

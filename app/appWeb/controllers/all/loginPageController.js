@@ -7,7 +7,8 @@ let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let LoginPageModel = require('../../../builders/page/LoginPageModel');
 let passport = require('passport');
-let authService = require(`${process.cwd()}/server/services/authService`);
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let AuthModel = require(cwd + '/app/builders/common/AuthModel');
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -52,7 +53,7 @@ router.get('/', (req, res, next) => {
 
 //Kick off initial redirect to facebook
 router.get('/facebook', (req, res, next) => {
-	let redirect = encodeURIComponent(req.query.redirect);
+	let redirect = encodeURIComponent(req.query.redirect || '/');
 	let callbackUrl = '/login/facebook/callback';
 	if (redirect) {
 		callbackUrl += `?redirect=${redirect}`;
@@ -68,37 +69,44 @@ router.get('/facebook', (req, res, next) => {
 //Control comes back from the passport.use(new FacebookStrategy... callback
 //done(error, userJson);
 router.get('/facebook/callback', (req, res, next) => {
-	let redirect = encodeURIComponent(req.query.redirect);
+	let redirect = encodeURIComponent(req.query.redirect || '/');
 	//TODO: match this url with facebook app config
 	let callbackUrl = '/login/facebook/callback';
 	if (redirect) {
 		callbackUrl += `?redirect=${redirect}`;
 	}
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	passport.authenticate('facebook', {
-		"callbackURL": callbackUrl,
+		"callbackURL": callbackUrl
 	}, (err, user) => {
 		if (err) {
 			return next(err);
 		}
-		let bapiHeaders = {
-			requestId: req.app.locals.requestId,
-			ip: req.app.locals.ip,
-			machineid: req.app.locals.machineid,
-			useragent: req.app.locals.useragent,
-			locale: res.locals.config.locale,
-			authTokenValue: req.cookies.bt_auth
-		};
 		let email = user.email;
-		redirect = decodeURIComponent(redirect) || '/';
-		authService.checkEmailExists(bapiHeaders, email).then((/* result */) => {
+		let facebookToken = user.facebookToken;
+		let facebookId = user.id;
+		redirect = decodeURIComponent(redirect);
+		model.authModel = new AuthModel(model.bapiHeaders);
+		model.authModel.checkEmailExists(email).then((/* result */) => {
 			//User exists, do something with result then redirect
 			//TODO: set a valid cookie
+			return model.authModel.loginViaFb({
+				email: email,
+				facebookToken: facebookToken,
+				facebookId: facebookId
+			});
+		}).then((result) => {
+			if (!result.accessToken) {
+				let error = new Error(`bapi loginViaFb did not return access token, returning status 500`);
+				console.error(error);
+				return next(error);
+			}
+			res.cookie('bt_auth', result.accessToken, { httpOnly: true });
 			res.redirect(redirect);
 		}).fail((error) => {
 			if (error.statusCode === 404) {
 				//User not found, redirect to terms
-				let facebookToken = user.facebookToken;
-				let facebookId = user.id;
 				return res.redirect(`/login?showterms=true&facebooktoken=${facebookToken}&facebookid=${facebookId}&email=${email}&redirect=${redirect}`);
 			} else {
 				next(error);

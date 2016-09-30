@@ -109,15 +109,6 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
 	}
 
-	//TODO: loginhack
-	//TODO: delete this, until the auth email exists endpoint exists, fake the repsonse in mock mode
-	if (serviceName === "authEmailExists") {
-		let random = Math.floor(Math.random() * 10);
-		if (random % 2) {
-			bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=404");
-		}
-	}
-
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	return bapi.doPost(postData, bapiOptions, null).then((output) => {
