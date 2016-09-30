@@ -9,13 +9,6 @@ let loginResponse = require('../../serverUnit/mockData/auth/loginResponse.json')
 
 
 describe('Authentication Api', () => {
-	beforeEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
-	afterEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
 
 	// todo: move this into spec helper
 	let getCookie = (headers, cookieName) => {

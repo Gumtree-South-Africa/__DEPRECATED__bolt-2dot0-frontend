@@ -7,17 +7,6 @@ describe('Post Ad Api', () => {
 
 	let guid = "12345678-e3cb-4fc5-a6a3-2cb2e54b93fc";
 
-	beforeAll(() => {
-	});
-
-	beforeEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
-	afterEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
 	it('should create an ad for logged in user', (done) => {
 		//console.log("first test - Post Ad Api");
 

@@ -42,11 +42,15 @@ router.get('/:emailAddress', (req, res, next) => {
 		activateParams.resent = true;
 	}
 
+	// since this is a url param, the route will fail with a 404 before we even get here
+	// todo: change this to test for a valid email
+	/*
 	if (!req.params.emailAddress) {
 		res.status(400);
 		res.send({error: "email param missing"});
 		return;
 	}
+	*/
 	activateParams.emailAddress = req.params.emailAddress;
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.ACTIVATE_PAGE;

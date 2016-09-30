@@ -42,7 +42,7 @@ describe('Hamburger', () => {
 	});
 
 	it('should show logged in user name for logged in user', (done) => {
-		boltSupertest('/', 'www.vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0; bt_auth=loggedin')
 				.expect((res) => {
@@ -61,7 +61,7 @@ describe('Hamburger', () => {
 	});
 
 	it('should show correct category information', (done) => {
-		boltSupertest('/', 'www.vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0;')
 				.expect((res) => {
@@ -92,7 +92,7 @@ describe('Hamburger', () => {
 	});
 
 	it('should show correct profile information for logged in', (done) => {
-		boltSupertest('/', 'www.vivanuncios.com.mx').then((supertest) => {
+		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0; bt_auth=on')
 				.expect((res) => {

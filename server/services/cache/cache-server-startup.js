@@ -179,7 +179,9 @@ function CacheBapiData(siteApp, requestId) {
 
 				return Q.all([locations, categories, allCategories, allLocations]).then(() => {
 					// Start Cache Reloader once all categories and locations retrieved
-					return cacheReloader.kickoffReloadProcess(bapiHeaders);
+					return Q.all(cacheReloader.kickoffReloadProcess(bapiHeaders));
+				}).fail((err) => {
+					console.error(err.message);
 				});
             }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
