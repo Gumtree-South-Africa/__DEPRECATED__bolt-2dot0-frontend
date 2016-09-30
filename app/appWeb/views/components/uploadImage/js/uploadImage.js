@@ -90,6 +90,7 @@ let prepareForImageUpload = (i, file) => {
 			blobReader.onloadend = () => {
 				_this.imageHolder.css('background-image', `url('${blobReader.result}')`);
 			};
+			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 			loadData(i, resizedImageFile);
 		};
 	};
