@@ -84,17 +84,29 @@ router.get('/facebook/callback', (req, res, next) => {
 			return next(err);
 		}
 		let email = user.email;
+		let facebookToken = user.facebookToken;
+		let facebookId = user.id;
 		redirect = decodeURIComponent(redirect);
 		model.authModel = new AuthModel(model.bapiHeaders);
 		model.authModel.checkEmailExists(email).then((/* result */) => {
 			//User exists, do something with result then redirect
 			//TODO: set a valid cookie
+			return model.authModel.loginViaFb({
+				email: email,
+				facebookToken: facebookToken,
+				facebookId: facebookId
+			});
+		}).then((result) => {
+			if (!result.accessToken) {
+				let error = new Error(`bapi loginViaFb did not return access token, returning status 500`);
+				console.error(error);
+				return next(error);
+			}
+			res.cookie('bt_auth', result.accessToken, { httpOnly: true });
 			res.redirect(redirect);
 		}).fail((error) => {
 			if (error.statusCode === 404) {
 				//User not found, redirect to terms
-				let facebookToken = user.facebookToken;
-				let facebookId = user.id;
 				return res.redirect(`/login?showterms=true&facebooktoken=${facebookToken}&facebookid=${facebookId}&email=${email}&redirect=${redirect}`);
 			} else {
 				next(error);

@@ -10,7 +10,34 @@ let simulateSelectBoxSelect = ($selectBox, value) => {
 	$selectBox.change();
 };
 
+let _simulateKeyUp = ($elem, keyCode) => {
+	$elem.focus();
+	let e = $.Event("keyup");
+	e.keyCode = keyCode;
+	$elem.trigger(e);
+};
+
+let simulateEsc = ($elem) => {
+	_simulateKeyUp($elem, 27);
+};
+
+let simulateEnter = ($elem) => {
+	_simulateKeyUp($elem, 13);
+};
+
+let simulateUpArrow = ($elem) => {
+	_simulateKeyUp($elem, 38);
+};
+
+let simulateDownArrow = ($elem) => {
+	_simulateKeyUp($elem, 40);
+};
+
 module.exports = {
 	simulateSelectBoxSelect,
-	simulateTextInput
+	simulateTextInput,
+	simulateDownArrow,
+	simulateUpArrow,
+	simulateEnter,
+	simulateEsc
 };

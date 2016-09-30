@@ -353,68 +353,68 @@ class CategorySelectionModal {
 		});
 	}
 
-	/***
-	 * scroll the container for when arrow keys go below the modal view
-	 * @private
-	 */
-	_scrollContainer() {
-		let $active = this.$resultsList.find(".active");
-		if ($active.length !== 0) {
-			$active.closest('.results').scrollTop($active.index() * $active.outerHeight());
-		}
-	}
+	// /***
+	//  * scroll the container for when arrow keys go below the modal view
+	//  * @private
+	//  */
+	// _scrollContainer() {
+	// 	let $active = this.$resultsList.find(".active");
+	// 	if ($active.length !== 0) {
+	// 		$active.closest('.results').scrollTop($active.index() * $active.outerHeight());
+	// 	}
+	// }
 
-	/***
-	 * highlight the next item in the list (used for down arrow key interaction)
-	 * @private
-	 */
-	_highlightNextItem() {
-		let $active = this.$resultsList.find(".active");
-		if ($active.length === 0) {
-			// if none is selected then select the first
-			this.$resultsList.find(".list-item").first().addClass("active");
-		} else {
-			// else select the next item in the dom from the currently selected item
-			let $newActive = $active.removeClass("active").next(".list-item");
-			$newActive.addClass("active");
-		}
-	}
+	// /***
+	//  * highlight the next item in the list (used for down arrow key interaction)
+	//  * @private
+	//  */
+	// _highlightNextItem() {
+	// 	let $active = this.$resultsList.find(".active");
+	// 	if ($active.length === 0) {
+	// 		// if none is selected then select the first
+	// 		this.$resultsList.find(".list-item").first().addClass("active");
+	// 	} else {
+	// 		// else select the next item in the dom from the currently selected item
+	// 		let $newActive = $active.removeClass("active").next(".list-item");
+	// 		$newActive.addClass("active");
+	// 	}
+	// }
 
-	/***
-	 * highlight the previous item in the list (used for up arrow key interaction)
-	 * @private
-	 */
-	_highlightPrevItem() {
-		let $active = this.$resultsList.find(".active");
-		if ($active.length === 0) {
-			// if nothing is selected then select the last item in the list
-			this.$resultsList.find(".list-item").last().addClass("active");
-		} else {
-			// else select the previous item in the dom from the currently selected item
-			$active.removeClass("active").prev(".list-item").addClass("active");
-		}
-	}
+	// /***
+	//  * highlight the previous item in the list (used for up arrow key interaction)
+	//  * @private
+	//  */
+	// _highlightPrevItem() {
+	// 	let $active = this.$resultsList.find(".active");
+	// 	if ($active.length === 0) {
+	// 		// if nothing is selected then select the last item in the list
+	// 		this.$resultsList.find(".list-item").last().addClass("active");
+	// 	} else {
+	// 		// else select the previous item in the dom from the currently selected item
+	// 		$active.removeClass("active").prev(".list-item").addClass("active");
+	// 	}
+	// }
 
-	/***
-	 * filter the results based on passed in string value (not in use, commented out for mvp)
-	 * @param value string, the value to filter on
-	 * @private
-	 */
-	_filterResults(value) {
-		let tempDisplayList = [];
-		this.currentLevelValues.forEach((current) => {
-			// filter contents based on if search string is contained anywhere in the string
-			if (current.localizedName.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
-				tempDisplayList.push(current);
-			}
-		});
-
-		// only refilter if we have to.
-		if (tempDisplayList.length !== this.displayListValues.length) {
-			this.displayListValues = tempDisplayList;
-			this._renderResults();
-		}
-	}
+	// /***
+	//  * filter the results based on passed in string value (not in use, commented out for mvp)
+	//  * @param value string, the value to filter on
+	//  * @private
+	//  */
+	// _filterResults(value) {
+	// 	let tempDisplayList = [];
+	// 	this.currentLevelValues.forEach((current) => {
+	// 		// filter contents based on if search string is contained anywhere in the string
+	// 		if (current.localizedName.toLowerCase().indexOf(value.toLowerCase()) >= 0) {
+	// 			tempDisplayList.push(current);
+	// 		}
+	// 	});
+	//
+	// 	// only refilter if we have to.
+	// 	if (tempDisplayList.length !== this.displayListValues.length) {
+	// 		this.displayListValues = tempDisplayList;
+	// 		this._renderResults();
+	// 	}
+	// }
 
 	/***
 	 * close the modal and clean up instance variables
