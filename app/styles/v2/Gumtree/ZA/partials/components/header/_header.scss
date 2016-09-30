@@ -184,6 +184,7 @@
 	}
 }
 
+<<<<<<< 8eabad5a6fa5726ffcae1d7ae99d57ec41c0a791
 <<<<<<< c8ad1105ef4312967e2fc51c7c3960fc7aac231f
 .icon-header-profile-out {
 	background-image: url("../../../../../images/en_ZA/icon-my-profile.svg") !important;
@@ -192,8 +193,18 @@
 .icon-my-ads-active {
 	opacity: 1 !important;
 =======
+=======
+.icon-down {
+	background: url("../../../../../images/en_ZA/down-arrow.svg") no-repeat !important;
+}
+
+>>>>>>> feat(Gumtree/components/header): updates up and down arrows for dropdown menus
 .icon-messages-blue {
 	background: url("../../../../../images/en_ZA/icon-messages.svg") no-repeat !important;
+}
+
+.icon-up {
+	background: url("../../../../../images/en_ZA/up-arrow.svg") no-repeat !important;
 }
 
 .profile-dropdown {
