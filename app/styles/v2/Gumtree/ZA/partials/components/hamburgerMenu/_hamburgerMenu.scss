@@ -1,0 +1,9 @@
+.profile-information {
+	.profile-item {
+		.link-item {
+			&:hover {
+				color: color(crane);
+			}
+		}
+	}
+}
