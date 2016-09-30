@@ -1,0 +1,7 @@
+{
+	"email": "abc@test-123.com",
+	"facebookId": "myfacebookIdGuid",
+	"facebookToken": "myfacebookTokenGuid",
+	"agreeTerms": true,
+	"optInMarketing": true
+}

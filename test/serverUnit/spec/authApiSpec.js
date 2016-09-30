@@ -3,6 +3,7 @@ let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
 let endpoints = require(`${process.cwd()}/server/config/mock.json`).BAPI.endpoints;
 let loginRequest = require('../../serverUnit/mockData/auth/loginRequest.json');
+let facebookLoginRequest = require('../../serverUnit/mockData/auth/loginWithFacebookRequest.json');
 let registerRequest = require('../../serverUnit/mockData/auth/registerRequest.json');
 let loginResponse = require('../../serverUnit/mockData/auth/loginResponse.json');
 // let registerResponse = require('../../serverUnit/mockData/auth/registerResponse.json');
@@ -271,6 +272,111 @@ describe('Authentication Api', () => {
 			});
 		});
 
+	});
+
+	describe('facebook login', () => {
+		let apiEndpoint = '/api/auth/loginWithFacebook';
+		it('should log in the user', (done) => {
+
+			specHelper.registerMockEndpoint(
+				endpoints.authFbLogin,
+				'test/serverUnit/mockData/auth/loginResponse.json');
+
+			boltSupertest(apiEndpoint, 'vivanuncios.com.mx', 'POST').then((supertest) => {
+				supertest
+					.send(facebookLoginRequest)
+					.expect('Content-Type', 'application/json; charset=utf-8')
+					.expect((res) => {
+						expect(res.status).toBe(200);
+
+						let cookie = getCookie(res.headers["set-cookie"], "bt_auth");
+						expect(cookie).toBeTruthy('should have bt_auth cookie set');
+						if (cookie) {
+							expect(cookie.value).toBe(loginResponse.accessToken, 'should have cookie value match the accessToken of the login response');
+							expect(cookie.raw.indexOf("HttpOnly") !== -1).toBeTruthy('should have cookie with HttpOnly on bt_auth');
+						}
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should throw an error if they are missing the agreeTerms field and email', (done) => {
+
+			// specHelper.registerMockEndpoint(
+			// 	endpoints.authFbLogin,
+			// 	'test/serverUnit/mockData/auth/loginResponse.json');
+			boltSupertest(apiEndpoint, 'vivanuncios.com.mx', 'POST').then((supertest) => {
+				supertest
+					.send({
+						email: "asdf",
+						facebookId: "fake",
+						facebookToken: "guid",
+						optInMarketing: true
+					})
+					.expect((res) => {
+						expect(res.status).toBe(400);
+						let responseJson = JSON.parse(res.text);
+						expect(responseJson.schemaErrors.length).toBe(3);
+						expect(responseJson.schemaErrors[0].field).toBe('data.email');
+						expect(responseJson.schemaErrors[0].message).toBe('pattern mismatch');
+						expect(responseJson.schemaErrors[1].field).toBe('data.email');
+						expect(responseJson.schemaErrors[1].message).toBe('has less length than allowed');
+						expect(responseJson.schemaErrors[2].field).toBe('data.agreeTerms');
+						expect(responseJson.schemaErrors[2].message).toBe('is required');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should throw an error if they are missing the facebook id and token', (done) => {
+
+			// specHelper.registerMockEndpoint(
+			// 	endpoints.authFbLogin,
+			// 	'test/serverUnit/mockData/auth/loginResponse.json');
+			boltSupertest(apiEndpoint, 'vivanuncios.com.mx', 'POST').then((supertest) => {
+				supertest
+					.send({
+						email: "asdf@asdf.com",
+						agreeTerms: true,
+						optInMarketing: true
+					})
+					.expect((res) => {
+						expect(res.status).toBe(400);
+						let responseJson = JSON.parse(res.text);
+						expect(responseJson.schemaErrors.length).toBe(2);
+						expect(responseJson.schemaErrors[0].field).toBe('data.facebookId');
+						expect(responseJson.schemaErrors[0].message).toBe('is required');
+						expect(responseJson.schemaErrors[1].field).toBe('data.facebookToken');
+						expect(responseJson.schemaErrors[1].message).toBe('is required');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should throw an error if agreeTerms field is set to false', (done) => {
+
+			// specHelper.registerMockEndpoint(
+			// 	endpoints.authFbLogin,
+			// 	'test/serverUnit/mockData/auth/loginResponse.json');
+
+			boltSupertest(apiEndpoint, 'vivanuncios.com.mx', 'POST').then((supertest) => {
+				supertest
+					.send({
+						email: "asdf@asdf.com",
+						facebookId: "fake",
+						facebookToken: "guid",
+						agreeTerms: false,
+						optInMarketing: true
+					})
+					.expect((res) => {
+						expect(res.status).toBe(400);
+						let responseJson = JSON.parse(res.text);
+						expect(responseJson.schemaErrors[0].field).toBe("data.agreeTerms");
+						expect(responseJson.schemaErrors[0].message).toBe("must be an enum value");
+					})
+					.end(specHelper.finish(done));
+			});
+		});
 	});
 
 	describe('register', () => {
