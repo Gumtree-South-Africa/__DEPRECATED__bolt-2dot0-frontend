@@ -11,6 +11,9 @@ describe('Login Page', () => {
 			let passport = require('passport');
 			let code = 'asdf';
 			let redirect = '/post';
+			specHelper.registerMockEndpoint(
+				'/users/actions/login-with-facebook?_forceExample=true&_statusCode=200',
+				'test/serverUnit/mockData/auth/loginResponse.json');
 			spyOn(passport, 'authenticate').and.callFake((type, options, callback) => {
 				callback(null, {
 					id: 123456,
@@ -29,13 +32,12 @@ describe('Login Page', () => {
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
 						expect(res.statusCode).toBe(302);
-						expect(res.text).toBe(`Found. Redirecting to ${redirect}`);
+						expect(res.headers.location).toBe(redirect);
 					}).end(specHelper.finish(done));
 			});
 		});
 
 		//These tests are not working because the authmodel calls mock which always returns success.
-		/*
 		it('should bring user to login page if the email does not exist', (done) => {
 			let passport = require('passport');
 			let code = 'asdf';
@@ -61,9 +63,9 @@ describe('Login Page', () => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
-						let redirectUrl = `/login?showTerms=true&facebookToken=${code}&facebookId=${id}&email=${email}&redirect=${redirect}`;
+						let redirectUrl = `/login?showterms=true&facebooktoken=${code}&facebookid=${id}&email=${email}&redirect=${redirect}`;
 						expect(res.statusCode).toBe(302);
-						expect(res.text).toBe(`Found. Redirecting to ${redirectUrl}`);
+						expect(res.headers.location).toBe(redirectUrl);
 					}).end(specHelper.finish(done));
 			});
 		});
@@ -98,6 +100,5 @@ describe('Login Page', () => {
 					}).end(specHelper.finish(done));
 			});
 		});
-		*/
 	});
 });

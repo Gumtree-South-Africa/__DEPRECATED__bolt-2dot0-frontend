@@ -34,7 +34,7 @@ class AuthModel {
 	}
 
 	checkEmailExists(email) {
-		return authService.mockCheck(this.bapiHeaders, email).then( (results) => {
+		return authService.checkEmailExists(this.bapiHeaders, email).then( (results) => {
 			return results;
 		});
 	}
