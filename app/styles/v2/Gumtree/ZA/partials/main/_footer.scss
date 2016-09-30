@@ -1,4 +1,4 @@
-//:::::::: Desktop / Medium ::::::::::
+//:::::::: Desktop / Medium / Small ::::::::::
 
 .footer-wrapper{
 	&,& a{
@@ -8,7 +8,6 @@
 	.top-links{
 		color: color(swirl, shade);
 		background-color: color(foxtail, medium);
-
 	}
 	.meet-team{
 		margin-bottom: 17px;
@@ -71,7 +70,6 @@
 			}
 		}
 	}
-
 	.line-divider{
 		width: 941px;
 		margin: auto;
@@ -154,6 +152,14 @@
 	.seo-wrapper{
 		display:inline-block;
 		color: inherit;
+		.top-locations-header, .top-headers{
+			margin: 0;
+			padding: 0;
+		}
+		.view-more-locations{
+			float: left;
+			width: 100%;
+		}
 	}
 	.footer-trademark {
 		margin: 0;
@@ -164,8 +170,9 @@
 			background-color: color(foxtail, medium);
 		}
 	}
+
 }
-//:::::::: Small ::::::::::
+//:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
 		.meet-team{
@@ -232,7 +239,7 @@
 		display: none;
 	}
 }
-//:::::::: Desktop ::::::::::
+//:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
 	.footer-wrapper .df-support-wrapper {
     //margin: 0 auto;
@@ -244,11 +251,29 @@
       float: left;
       margin: 0;
     }
-  },
+  }
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
 	}
+	.seo-wrapper{
+		.tab-content{
+			margin:0;
+			text-align: center;
+			.top-content{
+				float: left;
+				width: 49%;
+			}
+			.top-content-wrapper .top-content .top-links{
+				position: relative;
+				left: 0;
+			}
+			.top-content-wrapper .top-content:nth-child(even){
+				display: inline-block;
+			}
+		}
+	}
+	
 }
 
 
