@@ -78,7 +78,7 @@ router.get('/facebook/callback', (req, res, next) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	passport.authenticate('facebook', {
-		"callbackURL": callbackUrl,
+		"callbackURL": callbackUrl
 	}, (err, user) => {
 		if (err) {
 			return next(err);

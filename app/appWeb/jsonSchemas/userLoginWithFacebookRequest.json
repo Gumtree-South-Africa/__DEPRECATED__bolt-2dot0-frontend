@@ -19,6 +19,9 @@
 		},
 		"agreeTerms": {
 			"required": true,
+			"enum": [
+				true
+			],
 			"type": "boolean"
 		}
 	},

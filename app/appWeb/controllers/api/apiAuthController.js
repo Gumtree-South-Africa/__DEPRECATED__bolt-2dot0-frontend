@@ -120,7 +120,7 @@ router.post('/register', cors, (req, res) => {
 	});
 });
 
-router.post('/facebook', (req, res) => {
+router.post('/loginWithFacebook', (req, res) => {
 
 	if (!req.is('application/json')) {
 		return res.status(406).send();	// we expect only JSON,  406 = "Not Acceptable"
