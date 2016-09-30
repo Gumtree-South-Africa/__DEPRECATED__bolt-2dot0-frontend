@@ -55,20 +55,10 @@
 
 {{#partial "support-links"}}
 <div class="support-wrapper">
-  <div class="desktop-only support-container">
-    <span class="support-icon chat-icon"></span>
-    <a class="mobile-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSPhone">{{i18n "footer.help.contact"}}</a>
-    <a class="desktop-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSLiveChat">{{i18n "footer.support.ch"}}</a>
-  </div>
-  <div class="support-container">
-    <span class="support-icon call-icon"></span>
-    <a class="mobile-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSPhone">{{i18n "footer.help.callus"}}</a>
-    <a class="desktop-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSPhone">{{i18n "footer.support.ca"}}</a>
-  </div>
   <div class="support-container">
     <span class="support-icon email-icon"></span>
-    <a class="mobile-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
-    <a class="desktop-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
+    <a class="mobile-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
+    <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
   </div>
 </div>
 {{/partial}}
