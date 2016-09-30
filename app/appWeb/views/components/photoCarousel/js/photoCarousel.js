@@ -184,6 +184,7 @@ class PhotoCarousel {
 			this.uploadMessageClass.translateErrorCodes(i, error);
 			this.deleteCarouselItem(null, toRemove);
 			this.removePendingImage(i);
+			return epsError;
 		};
 
 		/**
@@ -376,6 +377,7 @@ class PhotoCarousel {
 	 * reads the file in then kicks off the events for eps upload
 	 * @param file
 	 */
+	//TODO: rewrite this to be more testable.
 	parseFile(file) {
 		let reader = new FileReader();
 
