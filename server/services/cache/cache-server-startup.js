@@ -10,6 +10,7 @@ let locationService = require(pCwd + '/server/services/location');
 let categoryService = require(pCwd + '/server/services/category');
 let cacheReloader = require(pCwd + '/server/services/cache/cacheReload');
 let crypto = require('crypto');
+let logger = require(`${pCwd}/server/utils/logger`);
 
 
 module.exports = function(siteApp, requestId) {
@@ -181,7 +182,7 @@ function CacheBapiData(siteApp, requestId) {
 					// Start Cache Reloader once all categories and locations retrieved
 					return Q.all(cacheReloader.kickoffReloadProcess(bapiHeaders));
 				}).fail((err) => {
-					console.error(err.message);
+					logger.logError(err);
 				});
             }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
