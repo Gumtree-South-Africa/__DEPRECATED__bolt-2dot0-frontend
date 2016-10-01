@@ -79,4 +79,5 @@ describe('Post Ad Page', () => {
 				.end(specHelper.finish(done));
 		});
 	});
+
 });

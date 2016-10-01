@@ -20,7 +20,9 @@ describe('Login Page', () => {
 					let loginContainer = c$('.login-container');
 					expect(loginContainer.length).toBe(1, 'should have a login container');
 
+					expect(c$('.terms-and-conditions', loginContainer).length).toBe(0, 'should NOT have terms and conditions');
 					expect(c$('.save-terms-btn', loginContainer).length).toBe(0, 'should NOT have save terms button');
+
 					expect(c$('.facebook-button', loginContainer).length).toBe(1, 'should have a faccebook button');
 					expect(c$('.submit-btn', loginContainer).length).toBe(1, 'should have submit button');
 
