@@ -127,4 +127,77 @@ describe('Post Ad', () => {
 			uploadImageController.loadData(0, file);
 		});
 	});
+
+	describe("upload image (desktop)", () => {
+		let $testArea;
+		beforeEach(() => {
+			$testArea = specHelper.setupTest("photoCarousel", {}, "es_MX");
+			specHelper.registerMockAjax('/eps', mockEpsResponse);
+		});
+
+		it('should successfully post ad with created response', () => {
+			specHelper.registerMockAjax('/api/postad/create', {
+				state: 'AD_CREATED',
+				ad: {
+					redirectLink: '/'
+				}
+			});
+			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
+				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+				</a>`);
+			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+
+			uploadAdController.initialize();
+			let $postAdButton = $('#postAdBtn');
+			$postAdButton.click();
+			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+		});
+
+		it('should successfully post ad with deferred response', () => {
+			specHelper.registerMockAjax('/api/postad/create', {
+				state: 'AD_DEFERRED',
+				deferredLink: '/'
+			});
+			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
+				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+				</a>`);
+			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+
+			uploadAdController.initialize();
+			let $postAdButton = $('#postAdBtn');
+			$postAdButton.click();
+			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+		});
+
+		it('should fail to post with no images', () => {
+			specHelper.registerMockAjax('/api/postad/create', {
+				state: 'AD_DEFERRED',
+				deferredLink: '/'
+			});
+			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
+				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+				</a>`);
+			// $testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+
+			uploadAdController.initialize();
+			let $postAdButton = $('#postAdBtn');
+			$postAdButton.click();
+			expect($postAdButton.hasClass('disabled')).toBeTruthy();
+			expect($('.cover-photo').hasClass('red-border')).toBeTruthy();
+			expect($('.photos-required-msg').hasClass('hidden')).toBeFalsy();
+		});
+
+		it('should error out with returned failed ajax', () => {
+			specHelper.registerMockAjax('/api/postad/create', {}, {fail: true, status: 500});
+			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
+				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+				</a>`);
+			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+
+			uploadAdController.initialize();
+			let $postAdButton = $('#postAdBtn');
+			$postAdButton.click();
+			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+		});
+	});
 });
