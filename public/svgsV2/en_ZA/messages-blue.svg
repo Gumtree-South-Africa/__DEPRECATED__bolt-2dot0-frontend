@@ -6,11 +6,15 @@
 	<desc>Created with Sketch.</desc>
 	<defs></defs>
 	<g id="Symbols" stroke="none" stroke-width="1" transform="scale(.95)" fill="none" fill-rule="evenodd">
+<<<<<<< 34394fe1fa4e8aa8b78f70d94756df1b785ce88a
 <<<<<<< 6d62054c20d70f2fa4e49e62bd6fc9ebc4e31cbf
 		<g id="Header---Signed-In" transform="translate(-267.000000, -25.000000)" stroke="#F66429">
 =======
 		<g id="Header---Signed-In" transform="translate(-267.000000, -25.000000)" stroke="#1E98D5">
 >>>>>>> feat(Gumtree/layout): adds application icons assets
+=======
+		<g id="Header---Signed-In" transform="translate(-267.000000, -25.000000)" stroke="#F66429">
+>>>>>>> refactor(Gumtree/components/header): syncs SVG assets with Gumtree color palette
 			<g id="Message-Alert">
 				<g transform="translate(268.000000, 22.000000)">
 					<path
