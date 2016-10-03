@@ -10,8 +10,21 @@
 		background-color: color(foxtail, medium);
 	}
 	.meet-team{
-		margin-bottom: 17px;
+		margin: 15px 0;
 	}
+	.df-support-wrapper {
+    width: 100%;
+    margin: 0;
+    .df-support-container{
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      .support-icon{
+      	margin: 0;
+      }
+    }
+  }
 
 	.customer-service-container{
 		height:88px;
@@ -70,6 +83,7 @@
 			}
 		}
 	}
+	
 	.line-divider{
 		width: 941px;
 		margin: auto;
@@ -177,10 +191,6 @@
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
-		.meet-team{
-			margin-top: 15px;
-			margin-bottom: 15px;
-		}
 		.customer-service-container{
 			height:auto;
 			.team-photos{
@@ -212,7 +222,6 @@
 					}
 				}
 			}
-
 		}
 
 		.seo-wrapper{
@@ -243,17 +252,6 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
-	.footer-wrapper .df-support-wrapper {
-    //margin: 0 auto;
-    width: 100%;
-    .df-support-container{
-      padding: 10px 0;
-      text-align: center;
-      width: 33%;
-      float: left;
-      margin: 0;
-    }
-  }
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
