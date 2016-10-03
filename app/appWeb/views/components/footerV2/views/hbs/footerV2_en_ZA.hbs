@@ -54,23 +54,37 @@
 {{/partial}}
 
 {{#partial "support-links"}}
-<div class="support-wrapper">
-  <div class="support-container">
-    <span class="support-icon email-icon"></span>
-    <a class="mobile-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
-    <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
+  <div class="support-wrapper">
+    <div class="support-container">
+      <span class="support-icon email-icon"></span>
+      <a class="mobile-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
+      <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
+    </div>
   </div>
-</div>
+{{/partial}}
+
+{{#partial "distraction-free-support-links"}}
+  <div class="meet-team">{{i18n "footer.help.contact"}}</div>
+  <div class="df-support-wrapper">
+    <div class="df-support-container">
+      <span class="support-icon email-icon"></span>
+      <a class="support-text" href="{{this.footer.emailUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>
+        {{i18n "footer.support.em"}}
+      </a>
+    </div>
+    <div class="clear"></div>
+  </div>
+  <div class="desktop-only line-divider"></div>
 {{/partial}}
 
 {{#partial "footer-links-tips"}}
-<div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
-  <span class="chevron mobile-only"></span>
-  <div class="menu-items">
-    <div><a rel="nofollow" href='{{this.footer.helpUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
-    <div><a rel="nofollow" href='{{this.footer.staySafeUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
+  <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
+    <span class="chevron mobile-only"></span>
+    <div class="menu-items">
+      <div><a rel="nofollow" href='{{this.footer.helpUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
+      <div><a rel="nofollow" href='{{this.footer.staySafeUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
+    </div>
   </div>
-</div>
 {{/partial}}
 
 {{#partial "footer-trademark"}}
@@ -82,50 +96,45 @@
 {{/partial}}
 
 {{#partial "seo-wrapper"}}
-{{#unless this.footer.distractionFree}}
-<div class="seo-wrapper">
-  {{> (dynamic "topSearches")}}
-  {{> (dynamic "topLocations")}}
-</div>
-{{/unless}}
+  {{#unless this.footer.distractionFree}}
+    <div class="seo-wrapper">
+      {{> (dynamic "topSearches")}}
+      {{> (dynamic "topLocations")}}
+    </div>
+  {{/unless}}
 {{/partial}}
 
 {{#partial "seo-links-text"}}
 {{/partial}}
 
 {{#partial 'desktop-social-container'}}
-    <div class="desktop-only social-container">
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.facebookUrl"}} data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
-                <div class="social-icon fb-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.twitterUrl"}} data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
-                <div class="social-icon twitter-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.pinterestUrl"}} data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
-                <div class="social-icon pinterest-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.youTubeUrl"}} data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
-                <div class="social-icon youtube-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.googlePlusUrl"}} data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
-                <div class="social-icon googleplus-icon">
-                </div>
-            </a>
-        </div>
+  <div class="desktop-only social-container">
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.facebookUrl"}} data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
+        <div class="social-icon fb-icon"></div>
+      </a>
     </div>
-   {{/partial}}
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.twitterUrl"}} data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
+        <div class="social-icon twitter-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.pinterestUrl"}} data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
+        <div class="social-icon pinterest-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.youTubeUrl"}} data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
+        <div class="social-icon youtube-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.googlePlusUrl"}} data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
+        <div class="social-icon googleplus-icon"></div>
+      </a>
+    </div>
+  </div>
+{{/partial}}
 
 {{> (base "footerV2") }}
