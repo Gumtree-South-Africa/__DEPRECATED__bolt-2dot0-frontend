@@ -1,11 +1,14 @@
 .header-wrapper {
 	border-bottom-color: color(crane);
+<<<<<<< dcfc4e6cc4646e910205c629bf9ae858e7265e0d
 
 	&.header-distraction-free {
 		.headerV2 {
 			padding-bottom: 10px;
 		}
 	}
+=======
+>>>>>>> refactor(Gumtree/components/header): makes header border and section menu colors consistent across all layouts
 
 	.headerV2 {
 		height: auto;
