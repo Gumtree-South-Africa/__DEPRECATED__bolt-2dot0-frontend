@@ -19,6 +19,23 @@
 	.meet-team{
 		margin: 15px 0;
 	}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
+=======
+	.df-support-wrapper {
+    width: 100%;
+    margin: 0;
+    .df-support-container{
+      padding: 10px 0;
+      text-align: center;
+      width: 100%;
+      margin: 0;
+      .support-icon{
+      	margin: 0;
+      }
+    }
+  }
+
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 	.customer-service-container{
 		height:88px;
 		display: inline-block;
@@ -99,6 +116,7 @@
 			}
 		}
 	}
+	
 	.line-divider{
 		width: 941px;
 		margin: auto;
@@ -338,6 +356,7 @@
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< 35fb1d6ff55ecbe3eb982175769b809940ed55f0
 =======
 		.meet-team{
@@ -345,6 +364,8 @@
 			margin-bottom: 15px;
 		}
 >>>>>>> style(_footer.scss) Footer - fixing pixels, padding on headers, zoom to photo
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 		.customer-service-container{
 			height:auto;
 			.team-photos{
@@ -385,10 +406,13 @@
 					}
 				}
 			}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 		}
 =======
 
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 		}
 
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
@@ -439,6 +463,7 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< 30117d40a0472036ec31ab9cd95a4bdc187723ba
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
@@ -471,6 +496,8 @@
 =======
   }
 >>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
