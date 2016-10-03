@@ -116,7 +116,7 @@
 			}
 		}
 	}
-	
+
 	.line-divider{
 		width: 941px;
 		margin: auto;
@@ -292,6 +292,7 @@
 			margin: 0;
 			padding: 0;
 		}
+<<<<<<< 0f0495bceb8090eaf36256dcc50a651454fffe23
 <<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
 		.view-more-locations, .view-more-searches{
 			float: left;
@@ -310,6 +311,9 @@
 		}
 =======
 		.view-more-locations{
+=======
+		.view-more-locations, .view-more-searches{
+>>>>>>> style(_footer.scss) Footer - Top Locations/Searches view more display 100%
 			float: left;
 			width: 100%;
 		}
