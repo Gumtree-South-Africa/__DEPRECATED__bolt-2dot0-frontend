@@ -27,6 +27,7 @@
 	<div class="clear mobile-only"></div>
 
     {{#if this.footer.distractionFree}}
+    {{#block "distraction-free-support-links"}}
         <div class="meet-team">{{i18n "footer.help.contact"}}</div>
         <div class="df-support-wrapper">
 			<div class="desktop-only df-support-container">
@@ -44,6 +45,7 @@
             <div class="clear"></div>
         </div>
         <div class="desktop-only line-divider"></div>
+    {{/block}}
     {{/if}}
 
     {{#unless this.footer.distractionFree}}
