@@ -3,11 +3,15 @@
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="18px" height="18px" viewBox="0 0 50 50" style="enable-background:new 0 0 50 50;" xml:space="preserve">
 <style type="text/css">
+<<<<<<< 34394fe1fa4e8aa8b78f70d94756df1b785ce88a
 <<<<<<< 6d62054c20d70f2fa4e49e62bd6fc9ebc4e31cbf
 	.st0{fill:#6E6A60;}
 =======
 	.st0{fill:#B3B3B3;}
 >>>>>>> feat(Gumtree/layout): adds application icons assets
+=======
+	.st0{fill:#6E6A60;}
+>>>>>>> refactor(Gumtree/components/header): syncs SVG assets with Gumtree color palette
 </style>
 <path class="st0" d="M25,6.4C13.5,6.4,4.1,14,4.1,23.3c0,4,1.8,7.9,5,10.9c-0.7,5.5-2.4,7.9-2.4,7.9l-1.1,1.4l1.9-0.2
 	c5.9-0.6,10-2.7,11.8-3.8c1.9,0.4,3.8,0.6,5.7,0.6c11.5,0,20.9-7.6,20.9-16.9S36.5,6.4,25,6.4z"/>
