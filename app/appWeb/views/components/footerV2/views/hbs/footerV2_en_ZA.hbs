@@ -71,6 +71,7 @@
 {{/partial}}
 
 {{#partial "support-links"}}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< fae96bda584a6f530b7c5dfd7e133cb1dc7c8749
   <div class="support-wrapper">
     <div class="support-container">
@@ -106,17 +107,43 @@
     <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
 >>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
   </div>
+=======
+  <div class="support-wrapper">
+    <div class="support-container">
+      <span class="support-icon email-icon"></span>
+      <a class="mobile-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
+      <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
+    </div>
+  </div>
+{{/partial}}
+
+{{#partial "distraction-free-support-links"}}
+  <div class="meet-team">{{i18n "footer.help.contact"}}</div>
+  <div class="df-support-wrapper">
+    <div class="df-support-container">
+      <span class="support-icon email-icon"></span>
+      <a class="support-text" href="{{this.footer.emailUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>
+        {{i18n "footer.support.em"}}
+      </a>
+    </div>
+    <div class="clear"></div>
+  </div>
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
   <div class="desktop-only line-divider"></div>
 {{/partial}}
 
 {{#partial "footer-links-tips"}}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< d62d2acc40f27ef87938b1b6e2bc42cc6d38a6dd
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
   <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
     <span class="chevron mobile-only"></span>
     <div class="menu-items">
       <div><a rel="nofollow" href='{{this.footer.helpUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
       <div><a rel="nofollow" href='{{this.footer.staySafeUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
     </div>
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 =======
 <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
   <span class="chevron mobile-only"></span>
@@ -124,6 +151,8 @@
     <div><a rel="nofollow" href='{{this.footer.helpUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
     <div><a rel="nofollow" href='{{this.footer.staySafeUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
 >>>>>>> refactor(en_ZA.json, config_en_ZA.json, footerV2.hbs, footerV2_en_ZA.hbs) adding the links specified in the excel file
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
   </div>
 {{/partial}}
 
@@ -136,14 +165,18 @@
 {{/partial}}
 
 {{#partial "seo-wrapper"}}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< bff3cd6e5023cbfaaba281255aebbf99029aef99
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
   {{#unless this.footer.distractionFree}}
     <div class="seo-wrapper">
       {{> (dynamic "topSearches")}}
       {{> (dynamic "topLocations")}}
     </div>
   {{/unless}}
+<<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 =======
 =======
 {{#unless this.footer.distractionFree}}
@@ -157,6 +190,8 @@
 =======
 {{/unless}}
 >>>>>>> fix(footerV2_en_ZA.hbs) hiding the locations and searches block for the distraction free mode
+=======
+>>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 {{/partial}}
 
 {{#partial "seo-links-text"}}
@@ -168,39 +203,34 @@
 =======
 =======
 {{#partial 'desktop-social-container'}}
-    <div class="desktop-only social-container">
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.facebookUrl"}} data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
-                <div class="social-icon fb-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.twitterUrl"}} data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
-                <div class="social-icon twitter-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.pinterestUrl"}} data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
-                <div class="social-icon pinterest-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.youTubeUrl"}} data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
-                <div class="social-icon youtube-icon">
-                </div>
-            </a>
-        </div>
-        <div class="social-icon-wrapper">
-            <a href={{i18n "footer.social.googlePlusUrl"}} data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
-                <div class="social-icon googleplus-icon">
-                </div>
-            </a>
-        </div>
+  <div class="desktop-only social-container">
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.facebookUrl"}} data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
+        <div class="social-icon fb-icon"></div>
+      </a>
     </div>
-   {{/partial}}
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.twitterUrl"}} data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
+        <div class="social-icon twitter-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.pinterestUrl"}} data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
+        <div class="social-icon pinterest-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.youTubeUrl"}} data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
+        <div class="social-icon youtube-icon"></div>
+      </a>
+    </div>
+    <div class="social-icon-wrapper">
+      <a href={{i18n "footer.social.googlePlusUrl"}} data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
+        <div class="social-icon googleplus-icon"></div>
+      </a>
+    </div>
+  </div>
+{{/partial}}
 
 >>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
 {{> (base "footerV2") }}
