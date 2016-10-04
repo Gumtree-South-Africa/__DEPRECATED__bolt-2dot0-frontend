@@ -19,8 +19,8 @@ let extendModelData = (req, modelData) => {
 	} else {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/RegisterPage.css');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "RegisterPage_desktop_es_MX.js");
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'RegisterPage_desktop_es_MX.js');
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
 router.get('/', (req, res, next) => {

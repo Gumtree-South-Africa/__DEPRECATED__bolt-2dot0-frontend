@@ -22,18 +22,18 @@ let extendModelData = (req, modelData) => {
 	} else {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/LoginPage.css');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "LoginPage_desktop_es_MX.js");
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'LoginPage_desktop_es_MX.js');
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
 router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.LOGIN_PAGE;
 	let loginPageModel = new LoginPageModel(req, res);
 	let redirectUrl = req.query.redirect;
-	let showTerms = req.query.showterms;
-	let facebookToken = req.query.facebooktoken;
+	let showTerms = req.query.showTerms;
+	let facebookToken = req.query.facebookToken;
 	let email = req.query.email;
-	let facebookId = req.query.facebookid;
+	let facebookId = req.query.facebookId;
 
 	loginPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
@@ -59,7 +59,7 @@ router.get('/facebook', (req, res, next) => {
 		callbackUrl += `?redirect=${redirect}`;
 	}
 	passport.authenticate('facebook', {
-		"callbackURL": callbackUrl,
+		'callbackURL': callbackUrl,
 		//TODO: scope params might need to change
 		scope: ['user_about_me', 'email', 'publish_actions', 'public_profile']
 	})(req, res, next);
@@ -78,7 +78,7 @@ router.get('/facebook/callback', (req, res, next) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	passport.authenticate('facebook', {
-		"callbackURL": callbackUrl
+		'callbackURL': callbackUrl
 	}, (err, user) => {
 		if (err) {
 			return next(err);
@@ -90,7 +90,6 @@ router.get('/facebook/callback', (req, res, next) => {
 		model.authModel = new AuthModel(model.bapiHeaders);
 		model.authModel.checkEmailExists(email).then((/* result */) => {
 			//User exists, do something with result then redirect
-			//TODO: set a valid cookie
 			return model.authModel.loginViaFb({
 				email: email,
 				facebookToken: facebookToken,
@@ -102,12 +101,13 @@ router.get('/facebook/callback', (req, res, next) => {
 				console.error(error);
 				return next(error);
 			}
+			// not setting expires or age so it will be a "session" cookie
 			res.cookie('bt_auth', result.accessToken, { httpOnly: true });
 			res.redirect(redirect);
 		}).fail((error) => {
 			if (error.statusCode === 404) {
 				//User not found, redirect to terms
-				return res.redirect(`/login?showterms=true&facebooktoken=${facebookToken}&facebookid=${facebookId}&email=${email}&redirect=${redirect}`);
+				return res.redirect(`/login?showTerms=true&facebookToken=${facebookToken}&facebookId=${facebookId}&email=${email}&redirect=${redirect}`);
 			} else {
 				next(error);
 			}

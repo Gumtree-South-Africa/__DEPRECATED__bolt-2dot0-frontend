@@ -14,6 +14,7 @@ let logger = require(`${cwd}/server/utils/logger`);
 let activateEmailService = require(`${cwd}/server/services/activateEmailService`);
 let facebookSchema = require(`${cwd}/app/appWeb/jsonSchemas/userLoginWithFacebookRequest.json`);
 
+
 // route is /api/auth/login
 router.post('/login', cors, (req, res) => {
 
@@ -70,6 +71,7 @@ router.post('/login', cors, (req, res) => {
 
 });
 
+
 // route is /api/auth/register
 router.post('/register', cors, (req, res) => {
 
@@ -120,6 +122,8 @@ router.post('/register', cors, (req, res) => {
 	});
 });
 
+
+// route is /api/auth/loginWithFacebook
 router.post('/loginWithFacebook', (req, res) => {
 
 	if (!req.is('application/json')) {
@@ -161,6 +165,8 @@ router.post('/loginWithFacebook', (req, res) => {
 	});
 
 });
+
+
 /*
 // route is /api/auth/activate
 router.get('/activate/:emailAddress', cors, (req, res) => {
@@ -202,8 +208,10 @@ router.get('/activate/:emailAddress', cors, (req, res) => {
 		});
 		return;
 	});
-});
 
+});
 */
+
+
 module.exports = router;
 

@@ -8,7 +8,7 @@ class ActivateEmailService {
 		//TODO: wire this up to SMTP service
 		//TODO: loginhack
 		return Q.fcall(() => {
-			console.warn(`/activate/${activationParams.emailAddress}?activationcode=${activationParams.activationCode}&redirect=${activationParams.redirectUrl}`);
+			console.warn(`/activate/${activationParams.emailAddress}?activationCode=${activationParams.activationCode}&redirect=${activationParams.redirectUrl}`);
 			return;
 		});
 	}

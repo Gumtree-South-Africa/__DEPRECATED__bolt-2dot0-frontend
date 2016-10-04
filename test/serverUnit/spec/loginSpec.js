@@ -112,7 +112,7 @@ describe('Login Page', () => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
 					.expect((res) => {
-						let redirectUrl = `/login?showterms=true&facebooktoken=${code}&facebookid=${id}&email=${email}&redirect=${redirect}`;
+						let redirectUrl = `/login?showTerms=true&facebookToken=${code}&facebookId=${id}&email=${email}&redirect=${redirect}`;
 						expect(res.statusCode).toBe(302);
 						expect(res.headers.location).toBe(redirectUrl);
 					}).end(specHelper.finish(done));

@@ -20,8 +20,8 @@ let extendModelData = (req, modelData) => {
 	} else {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ActivatePage.css');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "ActivatePage_desktop_es_MX.js");
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'ActivatePage_desktop_es_MX.js');
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
 router.get('/:emailAddress', (req, res, next) => {
@@ -29,15 +29,14 @@ router.get('/:emailAddress', (req, res, next) => {
 	let activateParams = {};
 
 	// validate the inputs
-	// note query string is all lower cased
-	if (!req.query.activationcode) {
+	if (!req.query.activationCode) {
 		res.status(400);
 		res.send({error: "query param missing"});
 		return;
 	}
-	activateParams.activationCode = req.query.activationcode;
+	activateParams.activationCode = req.query.activationCode;
 
-	if (activateParams.activationCode === "resend") {
+	if (activateParams.activationCode === 'resend') {
 		// todo: resend the email
 		activateParams.resent = true;
 	}

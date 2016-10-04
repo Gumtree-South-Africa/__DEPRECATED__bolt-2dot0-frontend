@@ -14,8 +14,8 @@ function BuildWebApp(siteApp, routePath, viewPath) {
 
 	//TODO: config drive this
 	let passportConfig = {
-		"clientID": '272914303107836',
-		"clientSecret": "04d970e3e8aa0d0dda586a1f5c54a248",
+		"clientID": '1642858169378231',
+		"clientSecret": "231b50f25a1aaaac1bf70ca96325ad42",
 		"profileFields": ['id', 'displayName', 'email']
 	};
 

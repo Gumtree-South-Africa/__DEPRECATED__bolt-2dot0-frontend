@@ -51,7 +51,7 @@ let HP = {
 	buildHeaderPageMessages: (req, modelData) => {
 		modelData.header.pageMessages = {};
 		switch (req.query.status) {
-			case 'userregistered' :
+			case 'userRegistered' :
 				modelData.header.pageMessages.success = 'home.user.registered';
 				modelData.header.pageType = pagetypeJson.pagetype.USER_REGISTRATION_SUCCESS;
 
@@ -64,10 +64,10 @@ let HP = {
 					modelData.header.marketo.marketoAttributeJsonStr = '';
 				}
 				break;
-			case 'adinactive':
+			case 'adInactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
 				break;
-			case 'resetpassword':
+			case 'resetPassword':
 				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
 				break;
@@ -79,11 +79,11 @@ let HP = {
 				modelData.header.pageMessages.success = '';
 				modelData.header.pageMessages.error = '';
 		}
-		switch (req.query.resumeabandonedordererror) {
-			case 'adnotactive':
+		switch (req.query.resumeAbandonedOrderError) {
+			case 'adNotActive':
 				modelData.header.pageMessages.error = 'abandonedorder.adNotActive';
 				break;
-			case 'adfeaturepaid':
+			case 'adFeaturePaid':
 				modelData.header.pageMessages.error = 'abandonedorder.adFeaturePaid.multiple_ads';
 				break;
 			default:
@@ -100,7 +100,7 @@ let HP = {
 
 			modelData.footer.javascripts.push(baseJSComponentDir + 'categoryList/js/app.js');
 			modelData.footer.javascripts.push(baseJSComponentDir + 'smartMobileBanner/js/smartMobileBanner.js');
-			
+
 
 			// @Nacer, @Videep, we are including the code for both carousels for all the countries.
 			// @todo: Make sure that for AR,MX we include the CarouselExt JS files (3) and for
@@ -112,7 +112,7 @@ let HP = {
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/modernizr.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/owl.carousel.js');
 				modelData.footer.javascripts.push(baseJSComponentDir + 'adCarousel/js/CarouselExt/carouselExt.js');
-				
+
 			}
 
 			let availableAdFeatures = modelData.footer.availableAdFeatures;
@@ -204,7 +204,7 @@ module.exports = (req, res, next) => {
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
-	
+
 	// Cookies drop for Version of template
 
 	// Retrieve Data from Model Builders
