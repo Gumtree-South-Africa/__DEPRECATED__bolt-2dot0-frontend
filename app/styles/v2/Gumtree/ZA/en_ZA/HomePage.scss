@@ -20,6 +20,7 @@
 @import  "../../../partials/components/topLocations/topLocations";
 @import  "../../../../v1/partials/main/emptyStateMessages.scss";
 
+<<<<<<< 215efa89ba392ad736a9477149fcf69ff28da32d
 <<<<<<< dcfc4e6cc4646e910205c629bf9ae858e7265e0d
 @import  "../partials/components/header/header";
 @import  "../partials/components/hamburgerMenu/hamburgerMenu";
@@ -30,5 +31,10 @@
 @import  "../partials/components/hamburgerMenu/_hamburgerMenu";
 @import  "../partials/components/searchbarv2/_searchbarv2";
 >>>>>>> refactor(Gumtree/components/header): makes header border and section menu colors consistent across all layouts
+=======
+@import  "../partials/components/header/header";
+@import  "../partials/components/hamburgerMenu/hamburgerMenu";
+@import  "../partials/components/searchbarv2/searchbarv2";
+>>>>>>> refactor(components, bapi/config_*, footer) using the config to store the social networks urls and avoiding _ on import statements
 @import  "../partials/main/footer.scss";
 @import  "../partials/main/seo.scss";
