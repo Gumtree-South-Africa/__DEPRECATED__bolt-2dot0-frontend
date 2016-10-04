@@ -81,6 +81,13 @@
 			"blogUrl" 							: "https://blog.gumtree.co.za/",
 			"vipLandingPageEnabled"				: true
 		},
+		"social": {
+			"facebookUrl": "https://www.facebook.com/GumtreeSouthAfrica",
+			"twitterUrl": "https://twitter.com/gumtreecoza",
+			"pinterestUrl": "https://www.pinterest.com/gumtreesa",
+			"youTubeUrl": "https://www.youtube.com/user/GumtreeSouthAfrica",
+			"googlePlusUrl": "https://plus.google.com/+gumtreecoza"
+		},
 		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
 	"content" : {
