@@ -233,7 +233,8 @@ $mobileTextboxWidth: 84%;
 		.search-button {
 			color: $searchBarButtonTextColor;
 			background-color: $searchBarButtonColor;
-			border: $searchBarButtonColor;
+			border: solid 1px $searchBarButtonColor;
+			vertical-align: top;
 			width: 100%;
 
 			@include border-top-right-radius(0.25em);
@@ -250,7 +251,8 @@ $mobileTextboxWidth: 84%;
 
 			.button-content-container {
 				display: block;
-				line-height: 38px;
+				height: 100%;
+				line-height: 36px;
 				position: relative;
 			}
 
@@ -474,7 +476,7 @@ $mobileTextboxWidth: 84%;
 
 			.search-button {
 				.button-content-container {
-					line-height: 18px;
+					line-height: 26px;
 				}
 			}
 
