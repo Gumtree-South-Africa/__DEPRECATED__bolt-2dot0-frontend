@@ -20,6 +20,8 @@
 
 let $ = require('jquery');
 
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
+
 
 function subscribeInServer(subscription) {
 	let payload = {
@@ -63,6 +65,22 @@ function unsubscribeInServer(subscription) {
 			console.log(err);
 		}
 	});
+}
+
+function subscribe(subscription) {
+	// subscribe anytime there is a change
+	subscribeInServer(subscription);
+
+	// save subscription in cookie for 1 week
+	CookieUtils.setCookie('GCMSubscription', JSON.stringify(subscription), 7);
+}
+
+function unsubscribe(subscription) {
+	// unsubscribe from server
+	unsubscribeInServer(subscription);
+
+	// delete subscription cookie
+	CookieUtils.setCookie('GCMSubscription', '');
 }
 
 // Once the service worker is registered set the initial state
@@ -109,20 +127,21 @@ function initializePushNotification() {
 			// if cookie value same as subscription
 			let subscriptionChanged = false;
 
-			let subscriptionFromCookie = document.cookie['GCMSubscription'];
-			subscriptionChanged = (subscription === subscriptionFromCookie);
+			let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
+			if(subscriptionFromCookieStr === '') {
+				// set subscription in cookie
+				subscribe(subscription);
+			} else {
+				let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
 
-			if (subscriptionChanged) {
-				// unsubscribe if there exists a cookied subscription
-				if (typeof subscriptionFromCookie !== 'undefined') {
-					unsubscribeInServer(subscriptionFromCookie);
+				subscriptionChanged = (subscription.endpoint !== subscriptionFromCookie.endpoint);
+				if (subscriptionChanged) {
+					// unsubscribe if there exists a cookied subscription
+					unsubscribe(subscriptionFromCookie);
+
+					// subscribe the new subscription
+					subscribe(subscription);
 				}
-
-				// subscribe anytime there is a change
-				subscribeInServer(subscription);
-
-				// save subscription in cookie
-				document.cookie="GCMSubscription=" + subscription;
 			}
 		});
 	}).catch(function(err) {
