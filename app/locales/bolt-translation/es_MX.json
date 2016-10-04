@@ -37,6 +37,7 @@
 	"picture.description.too.long": "La descripción de la imagen es demasiado larga",
 	"currencyNotValid": "La moneda no es válida",
 	"searchbar.locationDisplayname.prefix": "Todo %s",
+	"country.all": "Todo ",
 	"onetouch.cardinfo": "%s terminación %s",
 	"onetouch.confirm": "Confirmar",
 	"onetouch.paynow": "Paga ahora con un clic y confirma",
@@ -46,7 +47,7 @@
 	"adsense.title": "Enlaces patrocinados",
 	"post.thanks": "<h1 class='header'>Revisa tu correo electrónico para activar tu <b>anuncio gratis</b> ahora.</h1><p>Vivanuncios te ha enviado un mensaje de correo electrónico a %s con el título <b>Activa tu anuncio en Vivanuncios - \"%s\"</b>.Haz clic en el link incluido en el mensaje para validar tu dirección de correo electrónico y activar tu anuncio ahora.</p>",
 	"post.promote.publish-in": "Publica en:<br />",
-	"post.promote.category1": "Computadoras y electrónica",
+	"post.promote.category1": "Computadoras y Electrónica",
 	"post.promote.category2": "Moda y hogar",
 	"post.promote.category3": "Bebés, Niños, Embarazada",
 	"post.gotowebdomain": "Ir a %s",
@@ -96,10 +97,10 @@
 	"ad.flagged": "Anuncio reportado exitosamente",
 	"activate.ad.success.$$": "¡Felicidades! Tu anuncio está activo y será visible a todos nuestros usuarios en breve<br />¿Quieres que tus contactos se enteren? ¡Compártelo en redes sociales! Usa los botones de abajo.",
 	"activate.ad.success.without.social.buttons": "¡Felicidades! Tu anuncio está activo y será visible a todos nuestros usuarios en breve",
-	"activate.ad.success.not.yet.active": "¡Gracias! Recibimos tu solicitud de activación. Tu anuncio estará disponible en %s en breve.",
+	"activate.ad.success.not.yet.active": "¡Gracias! Hemos recibido tu anuncio y estamos revisándolo. Te avisaremos una vez quede publicado.",
 	"post.upsell.activate.ad.success.not.yet.active": "Revisa tu correo electrónico para activar tu <b>anuncio gratis</b> ahora. Abre el correo de %s y haz clic en el link de activación.",
 	"edit.ad.success.$$": "¡Felicidades! Tu anuncio ha sido actualizado y será visible a todos nuestros usuarios en breve.",
-	"edit.ad.success.not.yet.active": "¡Gracias! Recibimos tu solicitud de edición. Tu anuncio estará disponible en %s en breve.",
+	"edit.ad.success.not.yet.active": "¡Gracias! Hemos recibido tu anuncio y estamos revisándolo. Te avisaremos una vez quede publicado.",
 	"repost.ad.success": "¡Felicidades! Tu anuncio ha sido renovado exitosamente.",
 	"edit.expired.ad.failure": "Hola, el anuncio que tratabas de editar o renovar desafortunadamente ya expiró. Por favor, crea un anuncio nuevo.",
 	"email.greeting.attention": "¡Hola %s!",
@@ -889,7 +890,7 @@
 	"watchlist.syncbutton.tooltip": "Al guardar tus favoritos, estarán disponibles en tus dispositivos móviles",
 	"watchlist.emailbutton": "o, Enviar por correo electrónico",
 	"watchlist.emailSubject": "Mis Anuncios Favoritos en Vivanuncios",
-	"watchlist.emailBody": "Hola,||Quiero compartir contigo mis anuncios favoritos más recientes en Vivanuncios.||%s||¡Disfrútalos!||Cortesía del equipo de Vivanuncios|http://www.vivanuncios.com.mx/",
+	"watchlist.emailBody": "Hola,||Quiero compartir contigo mis anuncios favoritos más recientes en Vivanuncios.||%s||¡Disfrútalos!||Cortesía del equipo de Vivanuncios|https://www.vivanuncios.com.mx/",
 	"watchlist.noADHint_part1": "Haz clic en las estrellas de los anuncios que desees agregar a tu lista de Favoritos.",
 	"watchlist.noADHint_part2": "O,",
 	"watchlist.noADHint_part3": "entra",
@@ -1152,7 +1153,7 @@
 	"smartmobilebanner": {
 		"title": "Abre la App",
 		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "http://go.vivanunc.io/gana-dinero"
+		"branchiolink": "https://go.vivanunc.io/gana-dinero"
 	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
@@ -1160,12 +1161,14 @@
 		"close": "Cerrar"
 	},
 	"appdownload": {
-		"title": "¡Vende rápido!",
-		"description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
+		"userImageAltText": "clasificado app usario",
+		"title": "¡Con el app es más fácil!",
+		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
+		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
 		"mobilebutton": "¡Baja la app!",
 		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
 		"googleplay": "https://app.adjust.com/oarq82",
-		"applink": "http://go.vivanunc.io/baja-la-app"
+		"applink": "https://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
 		"upload": {
@@ -1174,7 +1177,7 @@
 		},
 		"image": {
 			"upload": {
-				"failure": "Por desgracia, se ha producido un error al cargar imágenes"
+				"failure": "Por desgracia, se ha producido un error al cargar tus imágenes. Por favor, inténtalo de nuevo."
 			}
 		}
 	},
@@ -1202,6 +1205,12 @@
 				"¿Cómo reportar un anuncio?",
 				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
 			]
+		},
+		"trending": {
+			"contact": "Contactar"
+		},
+		"gallery" : {
+			"cardTitle": "Galería Principal"
 		}
 	},
 	"header": {
@@ -1211,11 +1220,11 @@
 		},
 		"userDropdown": {
 			"title": "¡Hola",
-			"messages": "Mensajes",
+			"messages": "Mis mensajes",
 			"favorites": "Favoritos",
-			"myAlerts": "Mis avisos",
+			"myAlerts": "Búsquedas guardadas",
 			"myProfile": "Mi perfil",
-			"promoteMyAds": "Promocionar mis anuncios",
+			"promoteMyAds": "Destacar mis anuncios",
 			"pricingGuide": "Guía de precios",
 			"logout": "Cerrar sesión"
 		},
@@ -1224,15 +1233,18 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "cerrar",
+		"close": "Cerrar",
 		"buttonText": "Confirmar",
-		"message": "Cambia Tu Ubicaci\u00FBn",
+		"message": "Cambia tu Ubicación",
+		"placeholderText": "Escribe una ubicación",
+		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
+		"locationAutoMobile": "Ubicación más cercana",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",
 		"trending": "Ofertas",
-		"goods": "Categor\u00EDas",
+		"goods": "Hogar y m\u00E1s",
 		"realEstate": "Bienes Ra\u00EDces",
 		"jobs": "Empleos"
 	},
@@ -1247,17 +1259,21 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"page": {
+			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
+		},
 		"confirm": {
 			"pageTitle": "Publicar un anuncio",
 			"back": "Atrás",
 			"didYouKnow": "Sabías que...",
-			"tip": "Consejo: Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo tienes que agregarlo y publicarlo. Puedes agregar más fotos y hacer otros",
+			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
-				"photoRequired": "Foto requerido"
+				"photoRequired": "Foto requerida"
 			},
 			"form": {
 				"title": "Título del anuncio",
@@ -1278,8 +1294,8 @@
 			"emailBtn": "Iniciar sesión con correo electrónico",
 			"register": "Registrarse",
 			"close": "Cerrar",
-			"legal1": "Al hacer clic en continùa declaro estar de acuerdo con los",
-			"termsAndConditions": "Tèrminos v Condiciones",
+			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
+			"termsAndConditions": "Términos v Condiciones",
 			"legal2": "y reconozco que que he leído las Notificaciones de",
 			"privacy": "Privacidad",
 			"and": "y",
@@ -1322,8 +1338,8 @@
 				"vivabusiness": "Vivanuncios para negocios",
 				"rules": "Reglas para publicar anuncios",
 				"staysafe": "Mantente Seguro",
-                "staysafelink": "http://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agented Immobiliarios",
+                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+                "protool": "Agentes Inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
@@ -1332,25 +1348,36 @@
 				"privacy": "Política de privacidad",
 				"cookies": "Cookies"
 			},
+			"business": {
+				"business": "Agentes Inmobiliarios",
+				"protool": "La Tienda de Semi Nuevos",
+				"stores": "La Tienda Vivanuncios"
+			},
 			"explore": {
 				"explore": "Explorar",
-				"classifieds": "Sitio de clasificados de eBay",
-				"mobile": "Aplicaciones móviles",
+				"classifieds": "Sitios de clasificados de eBay",
+				"mobile": "Aplicaciones Móviles",
 				"partners": "Socios",
-				"carprice": "Índice de precios de autos",
+				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
-                "locationlink": "http://www.vivanuncios.com.mx/pages/localidades/",
-                "topsearches": "Busquedas mas destacadas",
-                "topsearcheslink": "http://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0"
+                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
+                "topsearches": "Búsquedas destacadas",
+                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+				"priceIndex": "Previos de Inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
-				"helplink": "http://ayuda.vivanuncios.com.mx/MX/",
+				"helplink": "https://ayuda.vivanuncios.com.mx",
 				"onlinesafety": "Seguridad en Internet",
 				"vivaguides": "Guías de Vivanuncios",
-				"givefeedback": "Comentar"
+				"givefeedback": "Comentar",
+				"listingRules": "Reglas para Publicar Anuncios"
 			}
+		},
+		"topSearches": {
+			"viewMore": "Ver Más",
+			"viewLess": "Ver Menos"
 		},
 		"download": {
 			"download": "Descargar la aplicación",
@@ -1367,6 +1394,75 @@
 		"uploadPhoto": "Carga una foto",
 		"uploadQuickly": "Publica un anuncio rápidamente",
 		"upload": "Publica un anuncio",
-		"close": "CERRAR"
+		"close": "Cerrar"
+	},
+	"editAd": {
+		"reorderImages": "Volver a ordenar imágenes",
+		"headerTitle": "Edita tu anuncio",
+		"mainDetails": {
+			"title": "Agregar detalles",
+			"labels": {
+				"category": "Categoría",
+				"adTitle": "Título del anuncio",
+				"price": "Precio",
+				"description": "Descripción",
+				"location": "Ciudad, zona o código postal"
+			},
+			"titleRestrictions": {
+				"minimumAvailable": "Disponsibles: ",
+				"characters": " caracter(es)"
+			},
+			"askMe": "Preguntarme",
+			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
+			"submit": "Listo",
+			"cancel": "Cancelar",
+			"locationWarning": "Tu ubicación exacta no se publicará",
+			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+		},
+		"categorySelect": {
+			"title": "Categoría del artículo",
+			"prompt": "Búsqueda por palabra clave en %s",
+			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
+			"selectPrompt": "Select a Category Below",
+			"save": "Guardar",
+			"rootLabel": "Categorías"
+		}
+	},
+	"adStats": {
+		"views": "Visitas",
+		"messages": "Mensajes",
+		"favorites": "Favoritos"
+	},
+	"shareAd": {
+		"title": "Compartir este anuncio",
+		"dateStrings": {
+			"minute": {
+				"plural": "hace %s minutos",
+				"singular": "hace %s minuto"
+			},
+			"hour": {
+				"plural": "hace %s horas",
+				"singular": "hace %s hora"
+			}
+		}
+	},
+	"common": {
+		"abbreviations": {
+			"months": {
+				"1": "Ene",
+				"2": "Feb",
+				"3": "Mar",
+				"4": "Abr",
+				"5": "Mayo",
+				"6": "Jun",
+				"7": "Jul",
+				"8": "Ago",
+				"9": "Sep",
+				"10": "Oct",
+				"11": "Nov",
+				"12": "Dic"
+			}
+		}
 	}
 }

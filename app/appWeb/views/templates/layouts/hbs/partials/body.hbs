@@ -6,9 +6,13 @@
     {{/block}}
 
     {{#block "headerWrapper"}}
-        {{> (dynamic "header") }}
+        {{#if b2dot0Version}}
+            {{> (dynamic "headerV2") }}
+        {{else}}
+            {{> (dynamic "header") }}
+        {{/if}}
+        {{#block "headerExtend"}}{{/block}}
     {{/block}}
-
 
 
     <div class="containment">
@@ -43,12 +47,18 @@
 
 
    {{#block "footerWrapper"}}
-    <div class="footer">
-          {{> (dynamic "footer" ) }}
-          {{#block "footer"}}
-              <footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
-          {{/block}}
-    </div>
+    {{#if b2dot0Version}}
+        {{> (dynamic "footerV2") }}
+        {{#block "welcomeModal"}}{{/block}}
+    {{else}}
+		<div class="footer">
+            {{> (dynamic "footer" ) }}
+            {{#block "footer"}}
+				<footer>FOOTER SHOULD BE OVERWRITE HERE</footer>
+            {{/block}}
+		</div>
+    {{/if}}
+    {{#block "footerExtend"}}{{/block}}
     {{/block}}
 </div>
 {{!-- End Body.html --}}

@@ -32,11 +32,11 @@ class LocationModel {
 	 * @param {lat/long} location - latitude and longitude for users location
 	 * may return a rejected promise if no location was passed, avoid external call with bad payload
 	 */
-	getLocationLatLong(location) {
+	getLocationLatLong(location, checkLeafLocations) {
 		if (!location) {
-			return Q.reject(new Error("getLocationLatLong expecting location parameter', rejecting promise"));
+			return Q.reject(new Error("getLocationLatLong expecting location parameter, rejecting promise"));
 		}
-		return locationService.getLatLongResults(this.bapiHeaders, location);
+		return locationService.getLatLongResults(this.bapiHeaders, location, checkLeafLocations);
 	}
 }
 

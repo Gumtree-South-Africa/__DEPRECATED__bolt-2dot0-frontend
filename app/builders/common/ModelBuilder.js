@@ -64,17 +64,20 @@ class ModelBuilder {
 		return null;
 	}
 
-	initModelData(config, locals, cookies) {
+	initModelData(resLocals, appLocals, cookies) {
+		let config = resLocals.config;
 		return {
 			env: 'public',
 			locale: config.locale,
 			country: config.country,
+			lang: config.locale.split('_')[0],
 			site: config.name,
-			pagename: locals.pagetype,
-			device: locals.deviceInfo,
-			ip: locals.ip,
-			machineid: locals.machineid,
-			useragent: locals.useragent,
+			pagename: appLocals.pagetype,
+			device: appLocals.deviceInfo,
+			ip: appLocals.ip,
+			machineid: appLocals.machineid,
+			useragent: appLocals.useragent,
+			b2dot0Version: resLocals.b2dot0Version,
 
 			// creating a { lat: , lng: } object then consume that, formatting as needed
 			// consuming services require format (<lat>,<long>) use bapiService.bapiFormatLatLng()
@@ -91,16 +94,18 @@ class ModelBuilder {
 			// Cached Category Data from BAPI
 			category: config.categoryData,
 			categoryDropdown: config.categoryDropdown,
+			categoryAll: config.categoryAllData,
+			locationAll: config.locationAllData,
 
 			categoryIdNameMap: config.categoryIdNameMap,
 			categoryData: config.categoryflattened,
 
 			// Bapi Header Data
 			bapiHeaders: {
-				requestId: locals.requestId,
-				ip: locals.ip,
-				machineid: locals.machineid,
-				useragent: locals.useragent,
+				requestId: appLocals.requestId,
+				ip: appLocals.ip,
+				machineid: appLocals.machineid,
+				useragent: appLocals.useragent,
 				locale: config.locale,
 				authTokenValue: cookies.bt_auth
 			}

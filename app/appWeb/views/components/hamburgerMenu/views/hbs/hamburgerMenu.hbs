@@ -2,7 +2,7 @@
 <div id="js-body-overlay" class="body-overlay"></div>
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 
         {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
@@ -32,12 +32,12 @@
 				<div class="inline-block vertical-align-middle browse-categories-text">
                     {{i18n "header.catDropdown.browseCategories"}}
 				</div>
-				<div id="js-browse-arrow" class="browse-arrow icon-chevron"></div>
+				<div id="js-browse-arrow" class="browse-arrow icon-chevron-blue"></div>
 			</div>
 			<ul class="l0-categories">
 				<li class="hidden">
-					<div class="category-name">
-						<a href="{{this.category._links.[1].href}}">
+					<div class="category-name" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}">
+						<a href="{{this.header.categoryList._links.[1].href}}">
                             {{this.category.localizedName}}
 						</a>
 					</div>
@@ -45,10 +45,10 @@
 				</li>
 			</ul>
 			<ul class="l1-categories">
-                {{#each this.category.children}}
+                {{#each this.header.categoryList.children}}
 					<li class="hidden">
 						<div class="category-name">
-							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}">
+							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}">
                                 {{this.localizedName}}
 							</a>
 						</div>
@@ -57,7 +57,7 @@
 			</ul>
 		</div>
 		<div class="profile-information">
-            {{> (dynamic "profileMenu") showMyAds=true}}
+            {{> (dynamic "profileMenu")}}
 		</div>
 	</div>
     {{!--These are used for breakpoint detection to hide menu on resize--}}

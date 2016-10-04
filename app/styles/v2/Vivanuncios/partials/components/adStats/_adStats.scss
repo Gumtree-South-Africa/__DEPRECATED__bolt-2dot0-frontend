@@ -1,0 +1,34 @@
+.ad-statistics {
+	position: relative;
+	width: 80%;
+	margin: 20px 10% 10px 10%;
+
+	.stat-views {
+		width: 35px;
+		height: 50px;
+	}
+	.stat-label {
+		text-transform: uppercase;
+		color: $formLabelTextColor;
+		text-align: center;
+		font-size: 10px;
+		width: 100%;
+	}
+
+	.stat-count {
+		font-size: 21px;
+		text-align: center;
+	}
+
+	.stats-messages {
+		position: absolute;
+		left: 33%;
+		transform: translateX(-50%);
+	}
+
+	.stats-views {
+		position: absolute;
+		right: 33%;
+		transform: translateX(50%);
+	}
+}

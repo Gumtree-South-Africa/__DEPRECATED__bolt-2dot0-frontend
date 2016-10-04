@@ -28,6 +28,10 @@ module.exports = [
 	], "bundleName": "HomePageV2Legacy.min.js"
 	},{
 		"dest": rootDir + "/public/jsmin", "src": [
+		rootDir + "/public/js/common/tracking/Analytics.js"
+	], "bundleName": "AnalyticsLegacyBundle.min.js"
+	},{
+		"dest": rootDir + "/public/jsmin", "src": [
 			rootDir + "/public/js/libraries/jQuery/jquery-2.0.0.js",
 			rootDir + "/public/bower-components/requirejs/require.js",
 			// rootDir + "/public/js/common/*.js",

@@ -9,6 +9,7 @@ let configService = require(pCwd + '/server/services/configservice');
 let locationService = require(pCwd + '/server/services/location');
 let categoryService = require(pCwd + '/server/services/category');
 let cacheReloader = require(pCwd + '/server/services/cache/cacheReload');
+let crypto = require('crypto');
 
 
 module.exports = function(siteApp, requestId) {
@@ -80,6 +81,37 @@ function CacheBapiData(siteApp, requestId) {
             });
     };
 
+	/**
+	 * @method loadAllCategoryData
+	 * @description Loads All Category Data from BAPI. Exposes that data via
+	 *      siteApp.locals.config.categoryAllData
+	 * @private
+	 */
+	let loadAllCategoryData = function (bapiHeaders, categoryDepth) {
+		// Load All Category Data from BAPI
+		return categoryService.getCategoriesData(bapiHeaders, categoryDepth)
+			.then(function (dataReturned) {
+				siteApp.locals.config.categoryAllData = dataReturned;
+			}).fail(function (err) {
+				console.warn('Startup: Error in loading All Categories from CategoryService:- ', err);
+			});
+	};
+
+	/**
+	 * @method loadAllLocationData
+	 * @description Loads All Location Data from BAPI. Exposes that data via
+	 *      siteApp.locals.config.locationAllData
+	 * @private
+	 */
+	let loadAllLocationData = function (bapiHeaders, locationDepth) {
+		// Load All Category Data from BAPI
+		return locationService.getLocationsData(bapiHeaders, locationDepth)
+			.then(function (dataReturned) {
+				siteApp.locals.config.locationAllData = dataReturned;
+			}).fail(function (err) {
+				console.warn('Startup: Error in loading locations from LocationService:- ', err);
+			});
+	};
 
     return {
 
@@ -94,6 +126,9 @@ function CacheBapiData(siteApp, requestId) {
 			bapiHeaders.requestId = requestId;
 
 			let configData = require(pCwd + '/server/config/bapi/config_' + locale + '.json');
+			if (locale === "es_MX") {
+				console.warn(`dev config hash for pid ${process.pid} ${locale} ${crypto.createHash('md5').update(JSON.stringify(configData, null, 4)).digest('hex')}`);
+			}
 
 			// Update config in BAPI
 			return configService.updateConfigData(bapiHeaders, JSON.stringify(configData));
@@ -115,7 +150,11 @@ function CacheBapiData(siteApp, requestId) {
             return Q(configService.getConfigData(bapiHeaders))
               .then(function (dataReturned) {
 
-                if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
+				  if (bapiHeaders.locale === 'es_MX') {
+					  console.warn(`got config hash ${process.pid} ${bapiHeaders.locale} ${crypto.createHash('md5').update(JSON.stringify(dataReturned, null, 4)).digest('hex')}`);
+				  }
+
+				  if (typeof dataReturned.error !== 'undefined' && dataReturned.error !== null) {
 					console.warn(`picking up bapi config locally due to error ${dataReturned.error}`);
                     siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');
  					console.warn(`models: ${siteApp.locals.config.bapiConfigData.bapi.Homepage.desktop.models} for locale ${siteApp.locals.config.locale}`);
@@ -132,10 +171,16 @@ function CacheBapiData(siteApp, requestId) {
                 // Load Category Data from BAPI
 			  	let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
 
-				// Start Cache Reloader
-				cacheReloader.kickoffReloadProcess(bapiHeaders);
+				// Load All Category Data from BAPI
+				let allCategories = loadAllCategoryData(bapiHeaders, 3);
 
-				return Q.all([locations, categories]);
+				// Load All Location Data from BAPI
+				let allLocations = loadAllLocationData(bapiHeaders, 3);
+
+				return Q.all([locations, categories, allCategories, allLocations]).then(() => {
+					// Start Cache Reloader once all categories and locations retrieved
+					return cacheReloader.kickoffReloadProcess(bapiHeaders);
+				});
             }).catch((err) => {
                 console.warn('Startup: Error in ConfigService, reverting to local files:- ', err);
                 siteApp.locals.config.bapiConfigData = require(pCwd + '/server/config/bapi/config_' + siteApp.locals.config.locale + '.json');

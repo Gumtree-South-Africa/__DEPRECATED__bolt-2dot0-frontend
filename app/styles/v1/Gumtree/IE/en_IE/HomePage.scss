@@ -1,4 +1,4 @@
-@import 
+@import
     "../../theme",
     "../../partials/pages/Homepage/pageMain",
     "../../partials/pages/Homepage/adCount",
@@ -6,6 +6,9 @@
     "../partials/pages/Homepage/flexboxCategory",
     "../partials/pages/Homepage/categoryListHack";
 
-
-
 @import "../../../partials/pages/Homepage/carousel";
+
+.containment {
+	padding-bottom: 12em;
+	margin-bottom: -12em;
+}

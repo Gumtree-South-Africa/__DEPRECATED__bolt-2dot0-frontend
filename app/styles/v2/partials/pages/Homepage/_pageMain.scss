@@ -4,15 +4,20 @@
 .page{
 		margin: 0 auto;
 		max-width: 64em;
+	overflow-x: hidden;
         background-color: $page-bgcolor;
-        border-left: 1px solid $page-bordercolor ;
-        border-right: 1px solid $page-bordercolor ;
 	}
 
 .footer-wrapper {
     margin: 0 auto;
-    max-width: 64em;	
-   }	
-	
-	
+    max-width: 64em;
+   }
 
+//legacy color from Bolt 2.1 version
+.confirm-content,
+.error-content,
+.empty-state-content{
+	a{
+		color: #1E98D5;
+	}
+}

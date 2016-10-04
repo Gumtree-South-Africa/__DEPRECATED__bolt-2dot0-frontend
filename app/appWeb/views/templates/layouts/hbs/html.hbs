@@ -104,6 +104,9 @@
                      {{#with this.dataLayer.userData.hashedAccountId}}dl["u"]["haid"] = "{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountType}}dl["u"]["at"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.accountCreationDate}}dl["u"]["a_cre"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.daysSinceRegistration}}dl["u"]["dsr"] ="{{this}}";{{/with}}
+                     {{#with this.dataLayer.userData.sessionLvTstGrp}}dl["u"]["tg"]["stg"] ="{{this}}";{{/with}}
                      {{#block "dataLayerSpecifics"}}{{/block}}
                 dl["c"]={};
                 dl["c"]["c"]={};
@@ -113,6 +116,13 @@
                      {{#with this.dataLayer.categoryData.level2}}dl["c"]["l2"]={};dl["c"]["l2"]["id"]="{{this.id}}";{{/with}}
                      {{#with this.dataLayer.categoryData.level3}}dl["c"]["l3"]={};dl["c"]["l3"]["id"]="{{this.id}}";{{/with}}
                      {{#with this.dataLayer.categoryData.level4}}dl["c"]["l4"]={};dl["c"]["l4"]["id"]="{{this.id}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.current}}dl["c"]["c"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.level0}}dl["c"]["l0"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.level1}}dl["c"]["l1"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.level2}}dl["c"]["l2"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.level3}}dl["c"]["l3"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.categoryData.level4}}dl["c"]["l4"]["n"]="{{this.name}}";{{/with}}
+
                 dl["l"]={};
                 dl["l"]["c"]={};
                      {{#with this.dataLayer.locationData.current}} dl["l"]["c"]["id"] = "{{this.id}}";{{/with}}
@@ -121,6 +131,21 @@
                      {{#with this.dataLayer.locationData.level2}}dl["l"]["l2"]={};dl["l"]["l2"]["id"]="{{this.id}}";{{/with}}
                      {{#with this.dataLayer.locationData.level3}}dl["l"]["l3"]={};dl["l"]["l3"]["id"]="{{this.id}}";{{/with}}
                      {{#with this.dataLayer.locationData.level4}}dl["l"]["l4"]={};dl["l"]["l4"]["id"]="{{this.id}}";{{/with}}
+                     {{#with this.dataLayer.locationData.current}}dl["l"]["c"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.locationData.level0}}dl["l"]["l0"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.locationData.level1}}dl["l"]["l1"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.locationData.level2}}dl["l"]["l2"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.locationData.level3}}dl["l"]["l3"]["n"]="{{this.name}}";{{/with}}
+                     {{#with this.dataLayer.locationData.level4}}dl["l"]["l4"]["n"]="{{this.name}}";{{/with}}
+
+                dl["a"]={};
+                dl["a"]["prc"]={}
+		              {{#with this.dataLayer.adResult}}dl["a"]["id"] ="{{this.id}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["prc"]["amt"]="{{this.price.amount}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["prc"]["t"] ="{{this.price.priceType}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["ic"] ="{{this.pictures.sizeUrls.length}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["lpdt"] ="{{this.lastUserEditDate}}";{{/with}}
+		              {{#with this.dataLayer.adResult}}dl["a"]["cdt"] ="{{this.postedDate}}";{{/with}}
 
              {{#block "GoogleTagManager"}}{{/block}}
 
@@ -150,6 +175,12 @@
         Bolt.LOCALIZEAPIROOTURL = "{{this.footer.localizeApiRootUrl}}{{this.locale}}";
     </script>
 
+    {{#if this.clientTranslations}}
+		<div id="translation-block" class="hidden">
+            {{clientI18nTranslate this.clientTranslations}}
+		</div>
+    {{/if}}
+
     {{> (dynamic "abTest") }}
 
     {{#block "googleAnalytics"}}
@@ -161,14 +192,17 @@
                 {{#with this.header.analytics}}
                     _gaq.push(['siteTracker._setAccount', '{{account}}']);
                     _gaq.push(['siteTracker._setAllowAnchor', {{allowAnchor}}]);
-                    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
-                    {{#each ignoredRefs}}
-                        _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
-                    {{/each}}
-                    _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
-                    _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
-                    _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
-                    _gaq.push(['siteTracker._trackPageview']);
+
+                    {{#ifeq enableGaTracking compare='true'}}
+					    _gaq.push(['siteTracker._setDomainName', '{{domainName}}']);
+                        {{#each ignoredRefs}}
+						    _gaq.push(['siteTracker._addIgnoredRef', '{{this}}']);
+                        {{/each}}
+                        _gaq.push(['siteTracker._setSessionCookieTimeout', {{sessionCookieTimeout}}]);
+                        _gaq.push(['siteTracker._setCampaignCookieTimeout', {{campaignCookieTimeout}}]);
+                        _gaq.push(['siteTracker._setVisitorCookieTimeout', {{visitorCookieTimeout}}]);
+                        _gaq.push(['siteTracker._trackPageview']);
+                    {{/ifeq}}
 
                     (function() {
                         var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;

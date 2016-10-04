@@ -4,15 +4,23 @@
 	},
 	"loggedInContent": [
 		{
+			"localizedName": "Mis anuncios",
+			"link": "/zl/nqf.ugzy"
+		},
+		{
+			"localizedName": "Destacar mis anuncios",
+			"link": "/zl/cebzbgr.ugzy"
+		},
+		{
+			"localizedName": "Mis mensajes",
+			"link": "/zl/zrffntr.ugzy"
+		},
+		{
 			"localizedName": "Favoritos",
 			"link": "/zljngpuyvfg.ugzy"
 		},
 		{
-			"localizedName": "Mensajes",
-			"link": "/zl/zrffntr.ugzy"
-		},
-		{
-			"localizedName": "Mis avisos",
+			"localizedName": "Búsquedas guardadas",
 			"link": "/zl/nyregf.ugzy"
 		},
 		{
@@ -20,12 +28,8 @@
 			"link": "/zl/cebsvyr.ugzy"
 		},
 		{
-			"localizedName": "Promocionar mis anuncios",
-			"link": "/zl/cebzbgr.ugzy"
-		},
-		{
 			"localizedName": "Guía de precios",
-			"link": "/cntrf/cebcvrqnqrf/"
+			"link": "/cntrf/"
 		},
 		{
 			"localizedName": "Cerrar sesión",
@@ -35,15 +39,23 @@
 	],
 	"loggedOutContent": [
 		{
+			"localizedName": "Mis anuncios",
+			"link": "/zl/nqf.ugzy"
+		},
+		{
+			"localizedName": "Destacar mis anuncios",
+			"link": "/zl/cebzbgr.ugzy"
+		},
+		{
+			"localizedName": "Mis mensajes",
+			"link": "/zl/zrffntr.ugzy"
+		},
+		{
 			"localizedName": "Favoritos",
 			"link": "/zljngpuyvfg.ugzy"
 		},
 		{
-			"localizedName": "Mensajes",
-			"link": "/zl/zrffntr.ugzy"
-		},
-		{
-			"localizedName": "Mis avisos",
+			"localizedName": "Búsquedas guardadas",
 			"link": "/zl/nyregf.ugzy"
 		},
 		{
@@ -51,12 +63,8 @@
 			"link": "/zl/cebsvyr.ugzy"
 		},
 		{
-			"localizedName": "Promocionar mis anuncios",
-			"link": "/zl/cebzbgr.ugzy"
-		},
-		{
 			"localizedName": "Guía de precios",
-			"link": "/cntrf/cebcvrqnqrf/"
+			"link": "/cntrf/"
 		}
 	]
 }

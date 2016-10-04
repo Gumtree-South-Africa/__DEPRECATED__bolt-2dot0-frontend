@@ -19,10 +19,10 @@ describe('Location Api', () => {
 
 	it('should return a location for a lat long (from cookie)', (done) => {
 
-		let responseFile = specHelper.getMockData("geo", "geoLocation");
+		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,
+			`${endpoints.locationHomePage}/${lat}/${lng}?isLeaf=false&_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/geo/geoLocation.json');
 
 		boltSupertest('/api/locate/locationlatlong', 'vivanuncios.com.mx', 'GET').then((supertest) => {
@@ -43,10 +43,10 @@ describe('Location Api', () => {
 
 	it('should return a location for a lat long (using query parameters)', (done) => {
 
-		let responseFile = specHelper.getMockData("geo", "geoLocation");
+		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.locationHomePage}/${lat}/${lng}?_forceExample=true&_statusCode=200`,
+			`${endpoints.locationHomePage}/${lat}/${lng}?isLeaf=false&_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/geo/geoLocation.json');
 
 		boltSupertest('/api/locate/locationlatlong', 'vivanuncios.com.mx', 'GET').then((supertest) => {

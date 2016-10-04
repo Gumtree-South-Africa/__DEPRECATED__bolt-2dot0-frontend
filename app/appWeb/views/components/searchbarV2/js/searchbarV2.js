@@ -1,20 +1,33 @@
 'use strict';
 
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
+// Commenting out for lint
+// /**
+//  * abort and remove an ajax request from the currentTypeAheadAjaxMap
+//  * @param {string} key - search term for ajax request to be removed
+//  * @private
+//  */
+// let _removeFromAjaxMap = (key) => {
+//
+// 	let tempAjax = this.currentTypeAheadAjaxMap[key];
+//
+// 	if (tempAjax) {
+// 		// abort the current running ajax request to free open the browser port
+// 		this.currentTypeAheadAjaxMap[key].abort();
+// 		// remove instance from the map
+// 		delete this.currentTypeAheadAjaxMap[key];
+// 	}
+// };
+
 /**
- * abort and remove an ajax request from the currentTypeAheadAjaxMap
- * @param {string} key - search term for ajax request to be removed
+ * sets the is typing class on the search controls so while typing styles can be applied
+ * @param {boolean} isTyping
  * @private
  */
-let _removeFromAjaxMap = (key) => {
-
-	let tempAjax = this.currentTypeAheadAjaxMap[key];
-
-	if (tempAjax) {
-		// abort the current running ajax request to free open the browser port
-		this.currentTypeAheadAjaxMap[key].abort();
-		// remove instance from the map
-		delete this.currentTypeAheadAjaxMap[key];
-	}
+let _setIsTyping = (isTyping) => {
+	this.$searchControls.toggleClass("is-typing", isTyping);
+	this.$searchMask.toggleClass("is-typing", isTyping);
+	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
 let _unbindTypeAheadResultsEvents = () => {
@@ -47,19 +60,35 @@ let _bindTypeAheadResultsEvents = () => {
  * @private
  */
 let _displayTypeAheadResults = (results) => {
-	let $ul = this.$typeAheadResults.find("ul");
+	let hasResults = results.items.length > 0;
+	_setIsTyping(hasResults);
+	if (hasResults) {
 
-	_unbindTypeAheadResultsEvents();
-	// remove existing results
-	$ul.empty();
+		let $ul = this.$typeAheadResults.find("ul");
 
-	// insert new results into the results container
-	results.items.forEach((result) => {
-		let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
-		$ul.append(templateString);
-	});
+		_unbindTypeAheadResultsEvents();
+		// remove existing results
+		$ul.empty();
 
-	_bindTypeAheadResultsEvents();
+		// insert new results into the results container
+		results.items.forEach((result) => {
+			console.warn(result);
+			// removing locationId per https://jira.corp.ebay.com/browse/BOLT-23578
+			// &locId=${result.location}
+			// as part of this change, the location is going to be passed into the ajax query for type-ahead search terms (via searchLocId cookie)
+			// so the terms should all be in preferred location anyway
+			// if we don't have a cookie, we might get terms back from other locations, but we aren't going to pass them along to the SRP
+			let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
+			$ul.append(templateString);
+		});
+
+		// handler to update search bar text with clicked link
+		$('.type-ahead-link').on('click', (evt) => {
+			this.$searchTextbox.val(evt.target.text);
+		});
+
+		_bindTypeAheadResultsEvents();
+	}
 };
 
 /**
@@ -68,60 +97,78 @@ let _displayTypeAheadResults = (results) => {
  * @private
  */
 let _newTypeAhead = (currentSearchTerm) => {
-	// already searching this value currently, make it the last in the queue so it doesnt get overwritten
-	if (this.currentTypeAheadAjaxMap[currentSearchTerm]) {
-		let index = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
 
-		while (this.currentTypeAheadQueue.length > index + 1) {
-			let searchedVal = this.currentTypeAheadQueue.pop();
-			_removeFromAjaxMap(searchedVal);
-		}
-	} else if (this.currentTypeAheadQueue.length > 2) {
-		// keep the queue at or below 3 requests so we don't hog all the browser ports
-		while(this.currentTypeAheadQueue.length > 2) {
-			let searchedVal = this.currentTypeAheadQueue.shift();
-			_removeFromAjaxMap(searchedVal);
-		}
-	} else {
-		// push textbox value into the queue
-		this.currentTypeAheadQueue.push(currentSearchTerm);
+	// // already searching this value currently, make it the last in the queue so it doesnt get overwritten
+	// if (this.currentTypeAheadAjaxMap[currentSearchTerm]) {
+	// 	let index = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
+	//
+	// 	while (this.currentTypeAheadQueue.length > index + 1) {
+	// 		let searchedVal = this.currentTypeAheadQueue.pop();
+	// 		_removeFromAjaxMap(searchedVal);
+	// 	}
+	// } else if (this.currentTypeAheadQueue.length > 2) {
+	// 	// keep the queue at or below 3 requests so we don't hog all the browser ports
+	// 	while(this.currentTypeAheadQueue.length > 2) {
+	// 		let searchedVal = this.currentTypeAheadQueue.shift();
+	// 		_removeFromAjaxMap(searchedVal);
+	// 	}
+	// } else {
+	// 	// push textbox value into the queue
+	// 	this.currentTypeAheadQueue.push(currentSearchTerm);
+	//
+	// 	// make the ajax request and save it in the AjaxMap
+	// 	this.currentTypeAheadAjaxMap[currentSearchTerm] =
+	// $.ajax({
+	// 	url: "/api/search/autocomplete",
+	// 	method: "POST",
+	// 	data: {searchterm: currentSearchTerm},
+	// 	dataType: 'json',
+	// 	success: (results) => {
+	// 		let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
+	//
+	// 		// base case, first request in queue skip the cleaning
+	// 		if (currentQueueIndex > 0) {
+	// 			for (let i = 0; i < currentQueueIndex; i++) {
+	// 				let tempOldValue = this.currentTypeAheadQueue.shift();
+	//
+	// 				// abort previous ajax requests
+	// 				_removeFromAjaxMap(tempOldValue);
+	// 			}
+	// 		}
+	//
+	// 		// remove succeeded request from map
+	// 		delete this.currentTypeAheadAjaxMap[currentSearchTerm];
+	//
+	// 		_displayTypeAheadResults(results);
+	// 	}
+	// });
 
-		// make the ajax request and save it in the AjaxMap
-		this.currentTypeAheadAjaxMap[currentSearchTerm] = $.ajax({
+	//}
+
+	if (this.currentTypeAheadRequest) {
+		this.currentTypeAheadRequest.abort(); // aborting old request
+	}
+
+	let postData = {
+		searchterm: currentSearchTerm
+	};
+	// also add the location if we have one, this will narrow down results to only the cookied location
+	let locId = CookieUtils.getCookie('searchLocId');
+	if (locId) {
+		postData.location = locId;
+	}
+	if (currentSearchTerm !== "") {
+		this.currentTypeAheadRequest = $.ajax({
 			url: "/api/search/autocomplete",
 			method: "POST",
-			data: {searchterm:currentSearchTerm},
+			data: postData,
 			dataType: 'json',
 			success: (results) => {
-				let currentQueueIndex = this.currentTypeAheadQueue.indexOf(currentSearchTerm);
-
-				// base case, first request in queue skip the cleaning
-				if (currentQueueIndex > 0) {
-					for (let i = 0; i < currentQueueIndex; i++) {
-						let tempOldValue = this.currentTypeAheadQueue.shift();
-
-						// abort previous ajax requests
-						_removeFromAjaxMap(tempOldValue);
-					}
-				}
-
-				// remove succeeded request from map
-				delete this.currentTypeAheadAjaxMap[currentSearchTerm];
-
+				this.currentTypeAheadRequest = null;
 				_displayTypeAheadResults(results);
 			}
 		});
 	}
-};
-
-/**
- * sets the is typing class on the search controls so while typing styles can be applied
- * @param {boolean} isTyping
- * @private
- */
-let _setIsTyping = (isTyping) => {
-	this.$searchControls.toggleClass("is-typing", isTyping);
-	$("body").toggleClass("disable-scroll-mobile", isTyping);
 };
 
 let _selectItem = () => {
@@ -173,46 +220,59 @@ let initialize = () => {
 
 	this.currentTypeAheadQueue = [];
 	this.currentTypeAheadAjaxMap = {};
+	this.$searchMask = $('#search-mask');
 
 	this.$searchTextbox = this.$searchControls.find("input.search-textbox");
 	this.$typeAheadResults = this.$searchControls.find("#type-ahead-results");
 	this.$searchButton = this.$searchControls.find(".search-button");
 
-	let eventName = ('oninput' in this.$searchTextbox[0]) ? 'input' : 'keyup';
+	if (this.$searchTextbox.length > 0) {
+		let eventName = ('oninput' in this.$searchTextbox[0]) ? 'input' : 'keyup';
 
-	this.$searchTextbox.on(eventName, () => {
-		let textBoxVal = this.$searchTextbox.val();
-		_setIsTyping(textBoxVal !== "");
-		_newTypeAhead(textBoxVal);
-	});
 
-	this.$searchTextbox.on('keyup', (evt) => {
-		switch (evt.keyCode) {
-			case 38:
-				_highlightPrevItem();
-				evt.preventDefault();
-				break;
-			case 40:
-				_highlightNextItem();
-				evt.preventDefault();
-				break;
-			case 13:
-				_selectItem();
-				evt.preventDefault();
-				break;
-			case 27:
-				closeAutoComplete(true);
-				evt.preventDefault();
-				break;
-			default:
-				break;
-		}
+		this.$searchTextbox.on(eventName, () => {
+			let textBoxVal = this.$searchTextbox.val();
+			// _setIsTyping(textBoxVal !== "");
+			if (textBoxVal === "") {
+				// make sure we close it when the text is empty (it may have been opened because we had results)
+				_setIsTyping(false);
+			}
+			_newTypeAhead(textBoxVal);
+		});
 
-	});
+		this.$searchMask.on('click', () => {
+			closeAutoComplete(true, true);
+		});
 
-	this.$searchControls.find(".close-search").on('click', () => {
-		closeAutoComplete();
-	});
+		this.$searchTextbox.on('keyup', (evt) => {
+			switch (evt.keyCode) {
+				case 38:
+					_highlightPrevItem();
+					evt.preventDefault();
+					break;
+				case 40:
+					_highlightNextItem();
+					evt.preventDefault();
+					break;
+				case 13:
+					_selectItem();
+					evt.preventDefault();
+					break;
+				case 27:
+					closeAutoComplete(true);
+					evt.preventDefault();
+					break;
+				default:
+					break;
+			}
+
+		});
+
+		this.$searchControls.find(".close-search").on('click', () => {
+			closeAutoComplete();
+		});
+	}
+
 };
 
 module.exports = {

@@ -2,7 +2,11 @@
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
 
-let toggleMenu = () => {
+let toggleMenu = (shouldClose) => {
+	if (this.open === undefined) {
+		this.open = shouldClose;
+	}
+
 	if (!this.open && searchBarV2.isOnPage()) {
 		searchBarV2.closeAutoComplete(true, true);
 	}
@@ -23,14 +27,17 @@ let toggleMenu = () => {
 	this.$header.animate({
 		left: (this.open) ? 0 : '70%'
 	});
+	this.$searchbar.animate({
+		left: (this.open) ? 0 : '70%'
+	});
 	this.$pageContent.toggleClass('menu-closed');
 	this.$hamburgerContents.toggleClass('hamburger-open hamburger-closed');
 	this.open = !this.open;
 };
 
 let _toggleBrowseCategory = () => {
-	this.$browseArrow.toggleClass('icon-chevron');
-	this.$browseArrow.toggleClass('icon-up');
+	this.$browseArrow.toggleClass('icon-chevron-blue');
+	this.$browseArrow.toggleClass('icon-up-blue');
 	$('li', this.$browse).toggleClass('hidden');
 };
 
@@ -55,6 +62,7 @@ let initialize = () => {
 	this.$browseCategories = $('#js-browse-categories', this.$browse);
 	this.$modalFooter = $('.modal-footer');
 	this.$header = $('.headerV2');
+	this.$searchbar = $("#search-bar");
 	this.$pageContent = $('.containment');
 	this.$hamburgerPopout = $('#js-body-overlay');
 	this.$hamburgerIcon = $('#js-hamburger-icon');

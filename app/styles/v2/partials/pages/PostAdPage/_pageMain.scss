@@ -6,38 +6,12 @@ $photo-switcher-width: 30%;
 	margin: 0 auto;
 }
 
-.headerV2 {
-	box-shadow: none !important;
-}
+.header-wrapper {
+	border-bottom: none !important;
 
-.post-ad-header {
-	height: 25px;
-	width: 100%;
-	color: $postAdHeaderBlue;
-	margin-bottom: $item-margin;
-	padding-top: 10px;
-	padding-bottom: 5px;
-	font-size: 14px;
-	background-color: $postAdHeaderBackground;
-	border-bottom: 1px solid $postAdHeaderBlue;
-
-	.header-accent {
-		font-size: 0;
-		margin-top: 6px;
-		background: $postAdHeaderBlue;
-		line-height: 3px;
-		color: $postAdHeaderBlue;
+	.headerV2 {
+		box-shadow: none !important;
 	}
-
-	.header-text {
-		position: absolute;
-		transform: translateX(-50%);
-		display: inline-block;
-		left: 50%;
-		text-align: center;
-		font-weight: bold;
-	}
-
 }
 
 .mobile-post-ad {
@@ -68,6 +42,9 @@ $photo-switcher-width: 30%;
 	}
 
 	.post-ad-btn {
+		&.disabled {
+			cursor: not-allowed;
+		}
 		cursor: pointer;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
@@ -81,6 +58,10 @@ $photo-switcher-width: 30%;
 		width: 80%;
 		margin: 20px 10%;
 		vertical-align: top;
+
+		&.disabled {
+			opacity: 0.5;
+		}
 
 		.link-text {
 			color: white;
@@ -101,4 +82,10 @@ $photo-switcher-width: 30%;
 .image-upload-progress {
 	width: 100%;
 	margin: auto;
+}
+
+@media(min-width: 768px) and (max-width:769px) {
+	.containment {
+		min-height: 733px;
+	}
 }

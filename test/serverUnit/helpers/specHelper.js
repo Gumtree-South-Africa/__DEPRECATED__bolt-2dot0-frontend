@@ -5,6 +5,7 @@ let supertest = require('supertest');
 let fs = require('fs');
 let cwd = process.cwd();
 
+let BapiError = require(`${cwd}/server/services/bapi/BapiError`);
 let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
@@ -72,6 +73,9 @@ let verifyMockEndpointsClean = () => {
  * 	ex. failStatusCode: 404 (use "failStatusCode" to force a non-200 promise reject)
  */
 let registerMockEndpoint = (url, filePath, options) => {
+	if (url.indexOf('_forceExample') === -1) {
+		url = `${url}?_forceExample=true&_statusCode=200`;
+	}
 	if (!endpointToFileMap[url]) {
 		endpointToFileMap[url] = [];
 	}
@@ -118,19 +122,18 @@ module.exports.boltSupertest = (route, host, method) => {
 		}
 		let path = options.path;
 		if (!endpointToFileMap[path]) {
-			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+			return Q.reject(new BapiError(`No mocked endpoint for ${path}`));
 		}
 		let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
 		if (!entry) {
-			return Q.reject(new Error(`No mocked endpoint for ${path}`));
+			return Q.reject(new BapiError(`No mocked endpoint for ${path}`));
 		}
 		let filePath = entry.filePath;
 		try {
 			let data = fs.readFileSync(filePath);
 			let json = JSON.parse(data);
 			if (entry.options.failStatusCode) {
-				let error = new Error(`simulating failStatusCode: ${entry.options.failStatusCode}`);
-				error.statusCode = entry.options.failStatusCode;
+				let error = new BapiError(`simulating failStatusCode: ${entry.options.failStatusCode}`, {statusCode: entry.options.failStatusCode});
 				return Q.reject(error);
 			}
 			return Q(json);
@@ -149,7 +152,7 @@ module.exports.boltSupertest = (route, host, method) => {
 	 */
 	return app.createSiteApps().then(() => {
 		console.warn('Server started');
-		host = host || 'gumtree.co.za';
+		host = host || 'vivanuncios.com.mx';
 
 		let result = supertest(app);
 
@@ -161,6 +164,14 @@ module.exports.boltSupertest = (route, host, method) => {
 			// assume we're going to be posting and receiving json
 			result.set('ContentType', 'application/json');
 			result.set('Accept', 'application/json');
+
+		} else if (method === 'DELETE') {
+			result = result.del(route);
+
+			// assume we're going to be posting and receiving json
+			result.set('ContentType', 'application/json');
+			result.set('Accept', 'application/json');
+
 		} else {
 			console.error(`specHelper - unrecognized "method" parameter: ${method}`);
 		}
@@ -193,6 +204,7 @@ module.exports.finish = (done) => {
 
 /**
  * get Mock Data By Locale - fetch a file from the file system for mock data
+ * NOTE: if you need to load a json file (not localized), just use  require like this: require('../../serverUnit/mockData/<dir>/<file>.json');
  * @param mockDataPath - either fully qualified relative to the project root, or relative to the test mockData directory
  * @param fileName - a file name "prefix" (will use <fileName>_<locale>.json), can be empty to use "<locale>.json"
  * @param locale - locale like es_MX
@@ -216,23 +228,4 @@ module.exports.getMockDataByLocale = (mockDataPath, fileName, locale) => {
 	return JSON.parse(file);
 };
 
-/**
- * get Mock Data By Locale - fetch a file from the file system for mock data
- * @param mockDataPath - either fully qualified relative to the project root, or relative to the test mockData directory
- * @param fileName - a file name "prefix" (will use <fileName>_<locale>.json), can be empty to use "<locale>.json"
- * @param locale - locale like es_MX
- * @returns json data from specified file
- */
-module.exports.getMockData = (mockDataPath, fileName) => {
-	let fullPath;
-	let fullFileName = `${fileName}.json`;
-
-	if (mockDataPath.indexOf('/') === -1) {
-		fullPath = `${cwd}/test/serverUnit/mockData/${mockDataPath}/${fullFileName}`;
-	} else {
-		fullPath = `${cwd}${mockDataPath}/${fullFileName}`;
-	}
-	let file = fs.readFileSync(fullPath);
-	return JSON.parse(file);
-};
 

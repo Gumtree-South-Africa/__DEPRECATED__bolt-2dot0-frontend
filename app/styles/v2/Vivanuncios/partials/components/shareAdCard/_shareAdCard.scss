@@ -1,0 +1,33 @@
+.share-my-ad-card {
+	display: none;
+	width: 100%;
+	height: 25px; //height: 80px with share links in the dom
+	background-color: $vivaWhite;
+
+	@include from-breakpoint($medium-break) {
+		display: block; // show only on desktop
+	}
+
+	.share-link {
+		width: 50px;
+		margin-left: 15px;
+		float: left;
+
+		&:hover {
+			cursor: pointer;
+		}
+	}
+
+	.title-wrapper {
+		width: 86%;
+		margin: 0 8%;
+		color: $formLabelTextColor;
+		text-transform: uppercase;
+		font-size: 10px;
+		padding-bottom: 5px;
+
+		.posted-date-string {
+			float: right;
+		}
+	}
+}

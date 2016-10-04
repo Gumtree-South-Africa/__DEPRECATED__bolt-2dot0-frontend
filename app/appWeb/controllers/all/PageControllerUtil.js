@@ -36,25 +36,21 @@ PageControllerUtil.prototype.preController = function(req, res) {
  * @param {JSON} modelData
  */
 PageControllerUtil.prototype.postController = function(req, res, next, pageTemplateName, modelData) {
+	// Render
+	res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
+		if (err) {
+			err.status = 500;
+			return next(err);
+		} else {
+			res.send(html);
+		}
 
-	process.nextTick(function() {
-		// Render
-		res.render(pageTemplateName + res.locals.config.locale, modelData, function(err, html) {
-			if (err) {
-				err.status = 500;
-				return next(err);
-			} else {
-				res.send(html);
-			}
+		// Kafka Logging
+		// let log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
+		// kafkaService.logInfo(res.locals.config.locale, log);
 
-			// Kafka Logging
-			// let log = res.locals.config.country + ' homepage visited with requestId = ' + req.app.locals.requestId;
-			// kafkaService.logInfo(res.locals.config.locale, log);
-
-			// Redis Logging - to get data to ELK
-		});
+		// Redis Logging - to get data to ELK
 	});
-
 };
 
 module.exports = new PageControllerUtil();

@@ -18,6 +18,12 @@ var PRECACHE = '$$$toolbox-cache$$$';
 /**
  * Event Handlers
  */
+// INSTALL
+self.addEventListener('install', function(event) {
+	event.waitUntil(self.skipWaiting());
+});
+
+// ACTIVATE
 self.addEventListener('activate', function(event) {
 	// Delete all caches that aren't named in CURRENT_CACHES.
 	var expectedCacheNames = Object.keys(CURRENT_CACHES).map(function(key) {
@@ -29,7 +35,6 @@ self.addEventListener('activate', function(event) {
 			return Promise.all(
 				cacheNames.map(function(cacheName) {
 					if (cacheName.indexOf(PRECACHE) === -1) {
-						// Skip toolbox precache
 						if (expectedCacheNames.indexOf(cacheName) === -1) {
 							// If this cache name isn't present in the array of "expected" cache names, then delete it.
 							console.log('Deleting out of date cache:', cacheName);
@@ -40,6 +45,16 @@ self.addEventListener('activate', function(event) {
 			);
 		})
 	);
+
+	event.waitUntil(self.clients.claim());
+});
+
+self.addEventListener('fetch', function(event) {
+	event.respondWith(
+		caches.match(event.request).then(function(response) {
+			return response || fetch(event.request);
+		})
+	);
 });
 
 
@@ -47,103 +62,91 @@ self.addEventListener('activate', function(event) {
  * PRE-CACHE
  **/
 // Precaching homepage
-toolbox.precache(['/']);
+toolbox.precache(['/?v=10122d18']);
+toolbox.precache(['/manifest.json']);
 
 // Precaching homepage assets
 if (cacheObj) {
-	toolbox.precache(cacheObj['homepagePreCache']);
+	if (cacheObj.isServeMin) {
+		toolbox.precache(cacheObj.preCache.cssmin);
+		toolbox.precache(cacheObj.preCache.jsmin);
+	} else {
+		toolbox.precache(cacheObj.preCache.css);
+		toolbox.precache(cacheObj.preCache.js);
+	}
 }
-
 
 /**
  * CACHE
  */
-// Add homepage
-toolbox.router.get('/', toolbox.networkFirst, {
-	cache: {
-		name: CURRENT_CACHES['homepage'],
-		maxEntries: 100,
-		maxAgeSeconds: 86400
-	}
-});
-
-// Adding homepage CSS cache
-if (cacheObj) {
-	 for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.css.length; cacheIndex++) {
-	 	toolbox.router.get(cacheObj.homepageCache.css[cacheIndex], toolbox.cacheFirst, {
-	 		cache: {
-	 			name: CURRENT_CACHES['homepage'],
-	 			maxEntries: 100,
-	 			maxAgeSeconds: 86400
-	 		}
-	 	});
-	 }
-}
-
-// Adding homepage icons cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.icons.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.icons[cacheIndex], toolbox.cacheFirst, {
+// Function to add route to cache
+function addToCacheInternal(cacheRoute, cacheStrategy, cacheOrigin, cacheName, maxNumber, maxTime) {
+	if ((typeof cacheOrigin === 'undefined') || (cacheOrigin === null)) {
+		toolbox.router.get(cacheRoute, cacheStrategy, {
 			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
+				name: cacheName,
+				maxEntries: maxNumber,
+				maxAgeSeconds: maxTime
+			}
+		});
+	} else {
+		toolbox.router.get(cacheRoute, cacheStrategy, {
+			origin: cacheOrigin,
+			cache: {
+				name: cacheName,
+				maxEntries: maxNumber,
+				maxAgeSeconds: maxTime
 			}
 		});
 	}
 }
 
-// Adding homepage images cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.images.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.images[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
+// Function to add a single route or array of routes to cache
+function addToCache(cachePath, cacheStrategy, cacheOrigin, cacheName, maxNumber, maxTime) {
+	cacheStrategy = (typeof cacheStrategy === 'undefined') ? toolbox.cacheFirst : cacheStrategy;
+
+	cacheName = (typeof cacheName === 'undefined') ? CURRENT_CACHES['homepage'] : cacheName;
+	maxNumber = (typeof maxNumber === 'undefined') ? 100 : maxNumber;
+	maxTime = (typeof maxTime === 'undefined') ? 86400 : maxTime;
+
+	if (typeof cachePath !== 'undefined' && cachePath && cachePath.constructor === Array) {
+		for (let cacheIndex = 0; cacheIndex < cachePath.length; cacheIndex++) {
+			addToCacheInternal(cachePath[cacheIndex], cacheStrategy, cacheOrigin, cacheName, maxNumber, maxTime);
+		}
+	} else {
+		addToCacheInternal(cachePath, cacheStrategy, cacheOrigin, cacheName, maxNumber, maxTime);
 	}
 }
 
-// Adding homepage fonts
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.fonts.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.fonts[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
+// cache homepage
+addToCache('/', toolbox.networkFirst, null, CURRENT_CACHES['homepage'], 100, 86400);
+addToCache('/manifest.json', toolbox.networkFirst, null, CURRENT_CACHES['homepage'], 100, 86400);
+
+if (cacheObj){
+	// cache homepage assets
+	addToCache(cacheObj.homepageCache.icons, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+	addToCache(cacheObj.homepageCache.images, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+	addToCache(cacheObj.homepageCache.fonts, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+	if (cacheObj.isServeMin){
+		addToCache(cacheObj.homepageCache.jsmin, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+		addToCache(cacheObj.homepageCache.cssmin, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+	} else {
+		addToCache(cacheObj.homepageCache.js, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+		addToCache(cacheObj.homepageCache.css, toolbox.cacheFirst, null, CURRENT_CACHES['homepage'], 100, 604800);
+	}
+
+	// cache images from crop server : max of 300 entries, cached for 1 week
+	if (cacheObj.cropCache.length > 0) {
+		addToCache('/(.*)', toolbox.networkFirst, cacheObj.cropCache, 'vivanuncios-dynamic-images', 300, 86400);
+	}
+
+	// cache images from eps server : max of 300 entries, cached for 1 week
+	if (cacheObj.epsCache.length > 0) {
+		addToCache('/(.*)', toolbox.networkFirst, cacheObj.epsCache, 'vivanuncios-dynamic-images', 300, 86400);
 	}
 }
 
-// Adding homepage JS cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.js.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.js[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
 
-// Adding homepage JSmin cache
-if (cacheObj) {
-	for (let cacheIndex = 0; cacheIndex < cacheObj.homepageCache.jsmin.length; cacheIndex++) {
-		toolbox.router.get(cacheObj.homepageCache.jsmin[cacheIndex], toolbox.cacheFirst, {
-			cache: {
-				name: CURRENT_CACHES['homepage'],
-				maxEntries: 100,
-				maxAgeSeconds: 86400
-			}
-		});
-	}
-}
 
 
 /**

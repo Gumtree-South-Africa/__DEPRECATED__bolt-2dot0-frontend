@@ -46,6 +46,7 @@
 				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
 				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
 			],
+			"enableGaTracking": "true",
 			"enableABTest": "false"
 		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,

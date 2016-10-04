@@ -17,12 +17,18 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
 let postAdData = {
 	extendModelData: (req, modelData) => {
+		modelData.header.pageType = modelData.pagename;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description;
+		modelData.header.metaRobots = modelData.seo.robots;
+		modelData.header.canonical = modelData.header.homePageUrl + "/post";
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.min.css');
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_" + modelData.locale + ".js");
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');
 	}
@@ -30,6 +36,11 @@ let postAdData = {
 
 router.use('/', (req, res, next) => {
 	// Retrieve Data from Model Builders
+
+	if (!res.locals.b2dot0Version) {
+		res.redirect("/post.html");	// redirect to 1.0 version of this page
+		return;
+	}
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 
 	let deferredAdPromise = Q.fcall(() => {
@@ -38,7 +49,7 @@ router.use('/', (req, res, next) => {
 			let guid = req.query.guid;
 			// now we need to get the draft
 			let modelBuilder = new ModelBuilder();
-			let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+			let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 			let draftAdModel = new DraftAdModel(model.bapiHeaders);
 			let postAdModel = new PostAdModel(model.bapiHeaders);
 
@@ -49,8 +60,15 @@ router.use('/', (req, res, next) => {
 				// console.log(JSON.stringify(results, null, 4));
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
-					// deferred ad resolved, redirect to vip
-					return Q.reject({ redirect: postAdModel.fixupVipUrl(adResult.vipLink) });
+					// deferred ad resolved, redirect to VIP
+					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
+
+					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
+					if (adResult.adState === 'HOLD') {
+						redirectLink = '/edit/' + adResult.id;
+					}
+
+					return Q.reject({ redirect: redirectLink });
 				});
 			}).fail((error) => {
 				// all errors specific to deferred ad processing land here
@@ -80,6 +98,9 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
+		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
+		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
 
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {

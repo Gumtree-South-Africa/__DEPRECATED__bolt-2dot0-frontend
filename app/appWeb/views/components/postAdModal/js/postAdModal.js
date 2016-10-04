@@ -8,6 +8,9 @@ let _toggleModal = (e, shouldClose) => {
 	}
 
 	if (shouldClose) {
+		window.BOLT.trackEvents({
+			"event": "PostAdForm", "p": {"t": "PostAdForm"}
+		});
 		this.$postAdWrapper.toggleClass('hidden');
 	}
 };
@@ -21,6 +24,7 @@ let initialize = () => {
 	this.$mobileFileInput = $('#mobileFileUpload');
 	this.$deskptopFileInput = $('#desktopFileUpload');
 	this.$mobileFooter.on('click', (e) => {
+		window.BOLT.trackEvents({"event": "PostAdPhotoUpload", "p": {"t": "PostAdPhotoUpload"} });
 		_toggleModal(e, true);
 		this.$mobileFileInput.click();
 	});
@@ -28,6 +32,7 @@ let initialize = () => {
 	this.$desktopFooter.on('click', (e) => {
 		_toggleModal(e, true);
 		this.$deskptopFileInput.click();
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 	});
 
 	this.$postAdWrapper.on('click', (e) => {

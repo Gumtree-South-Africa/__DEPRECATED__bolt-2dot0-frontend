@@ -21,8 +21,8 @@ describe('Post Ad Api', () => {
 	it('should create an ad for logged in user', (done) => {
 		//console.log("first test - Post Ad Api");
 
-		let file = specHelper.getMockData("postAd", "postAdRequest");
-		let responseFile = specHelper.getMockData("postAd", "postAdResponse");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
+		let responseFile = require('../../serverUnit/mockData/postAd/postAdResponse.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
@@ -50,7 +50,7 @@ describe('Post Ad Api', () => {
 
 					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
 					// the activateStatus is expected to cause a message to appear on the destination page
-					expect(jsonResult.ad.vipLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
+					expect(jsonResult.ad.redirectLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
 
 					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
@@ -62,7 +62,7 @@ describe('Post Ad Api', () => {
 	out until we remove the postAdMock() call
 
 	it('should fail because the postAd API is mocked to fail (logged in user)', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
@@ -92,7 +92,7 @@ describe('Post Ad Api', () => {
 	out until we remove the saveDraftMock() call
 
 	it('should fail because the saveDraft API is mocked to fail (deferred ad, not logged in)', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
@@ -109,7 +109,7 @@ describe('Post Ad Api', () => {
 	});
 */
 	it('should defer creation of an ad because our auth cookie is not present (not logged in)', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.draftAd}/${guid}?_forceExample=true&_statusCode=201`,
@@ -140,7 +140,7 @@ describe('Post Ad Api', () => {
 	});
 
 	it('should defer creation of an ad because auth cookie is not valid (user call mocked 404)', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
@@ -175,7 +175,7 @@ describe('Post Ad Api', () => {
 	});
 
 	it('should fail because attempting to validate auth cookie failed (user call mocked 500)', (done) => {
-		let file = specHelper.getMockData("postAd", "postAdRequest");
+		let file = require('../../serverUnit/mockData/postAd/postAdRequest.json');
 
 		specHelper.registerMockEndpoint(
 			`${endpoints.userFromCookie}?_forceExample=true&_statusCode=200`,
@@ -201,7 +201,7 @@ describe('Post Ad Api', () => {
 	it('should respond with 406 because we did not send json', (done) => {
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
 			supertest
-				.send("sending this but it is not json")
+				.send(null)
 				.expect((res) => {
 					expect(res.status).toBe(406);
 				})

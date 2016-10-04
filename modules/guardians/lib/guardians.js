@@ -12,11 +12,15 @@ module.exports = function(app) {
 
 	app.use(helmet());
 	app.use(helmet.xssFilter());
-	app.use(helmet.frameguard()); // defaults to sameorigin
+	app.use(helmet.xframe('sameorigin'));
+	app.use(helmet.frameguard());
 
 	// todo: we got to turn on Content-Security-Policy,  http://www.html5rocks.com/en/tutorials/security/content-security-policy/
 	return helmet.csp({
 
+		directives: {
+			connectSrc: ["*", "'self'"]
+		},
 		// Set to true if you only want browsers to report errors, not block them
 		reportOnly: false,
 

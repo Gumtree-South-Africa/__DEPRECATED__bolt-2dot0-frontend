@@ -1,4 +1,4 @@
-$profile-dropdown-width: 220px;
+$profile-dropdown-width: 250px;
 $profile-login-btn-margin: 5px;
 $profile-login-btn-padding: 10px;
 $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding + $profile-login-btn-margin) * 2;
@@ -35,11 +35,6 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             display: inline-block;
             vertical-align: middle;
             margin-left: 10px;
-
-			&.icon-my-ads-active {
-				opacity: .3;
-				background-size: 700%;
-			}
         }
     }
 
@@ -60,4 +55,11 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
             padding: $profile-login-btn-padding;
         }
     }
+}
+
+.profile .profile-dropdown .icon-my-ads-active {
+	opacity: .3;
+	background-size: 745%;
+	width: 18px;
+	height: 18px;
 }

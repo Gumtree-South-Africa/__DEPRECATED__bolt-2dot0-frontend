@@ -1,244 +1,244 @@
 <div class="footer-wrapper">
     {{#unless this.footer.distractionFree}}
-        <div class="meet-team">{{i18n "footer.help.heretohelp"}}</div>
-        <div class="team-photos">
-            <div class="user-photo-wrapper">
-                <div class="user-photo user-photo-1">
-                </div>
-            </div>
-            <div class="user-photo-wrapper">
-                <div class="user-photo user-photo-2">
-                </div>
-            </div>
-            <div class="user-photo-wrapper">
-                <div class="user-photo user-photo-3">
-                </div>
-            </div>
+		<div class="meet-team">{{i18n "footer.help.heretohelp"}}</div>
+    <div class="customer-service-container">
 
-            <div class="user-photo-wrapper desktop-only">
-                <div class="user-photo user-photo-4">
-                </div>
-            </div>
-        </div>
+		<div class="team-photos">
+			<div class="user-photo-wrapper">
+				<div class="user-photo">
+				</div>
+			</div>
+			<div class="user-photo-wrapper">
+				<div class="user-photo">
+				</div>
+			</div>
+			<div class="user-photo-wrapper">
+				<div class="user-photo">
+				</div>
+			</div>
+
+			<div class="user-photo-wrapper">
+				<div class="user-photo">
+				</div>
+			</div>
+		</div>
     {{/unless}}
 
-    <div class="clear mobile-only"></div>
+	<div class="clear mobile-only"></div>
 
     {{#if this.footer.distractionFree}}
         <div class="meet-team">{{i18n "footer.help.contact"}}</div>
         <div class="df-support-wrapper">
-            <div class="df-support-container">
-                <span class="support-icon email-icon"></span>
-                <a class="support-text" href="#">{{i18n "footer.support.em"}}</a>
-            </div>
+			<div class="desktop-only df-support-container">
+				<span class="support-icon chat-icon"></span>
+				<a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSLiveChat'>{{i18n "footer.support.ch"}}</a>
+			</div>
             <div class="df-support-container">
                 <span class="support-icon call-icon"></span>
-                <a class="support-text" href="#">{{i18n "footer.support.ca"}}</a>
+                <a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSPhone'>{{i18n "footer.support.ca"}}</a>
             </div>
-            <div class="df-support-container">
-                <span class="support-icon chat-icon"></span>
-                <a class="support-text" href="#">{{i18n "footer.support.ch"}}</a>
-            </div>
+			<div class="df-support-container">
+				<span class="support-icon email-icon"></span>
+				<a class="support-text" href="{{this.footer.emailUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>{{i18n "footer.support.em"}}</a>
+			</div>
             <div class="clear"></div>
         </div>
         <div class="desktop-only line-divider"></div>
     {{/if}}
 
-
     {{#unless this.footer.distractionFree}}
         <div class="support-wrapper">
+			<div class="desktop-only support-container">
+				<span class="support-icon chat-icon"></span>
+				<a class="support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSLiveChat">{{i18n "footer.support.ch"}}</a>
+			</div>
+			<div class="support-container">
+				<span class="support-icon call-icon"></span>
+				<a class="mobile-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSPhone">{{i18n "footer.help.callus"}}</a>
+				<a class="desktop-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSPhone">{{i18n "footer.support.ca"}}</a>
+			</div>
             <div class="support-container">
                 <span class="support-icon email-icon"></span>
-                <a class="mobile-only support-text" href="#">{{i18n "footer.help.sendemail"}}</a>
-                <a class="desktop-only support-text" href="#">{{i18n "footer.support.em"}}</a>
-            </div>
-            <div class="support-container">
-                <span class="support-icon call-icon"></span>
-                <a class="mobile-only support-text" href="#">{{i18n "footer.help.callus"}}</a>
-                <a class="desktop-only support-text" href="#">{{i18n "footer.support.ca"}}</a>
-            </div>
-            <div class="support-container">
-                <span class="support-icon chat-icon"></span>
-                <a class="mobile-only support-text" href="#">{{i18n "footer.help.chatwithus"}}</a>
-                <a class="desktop-only support-text" href="#">{{i18n "footer.support.ch"}}</a>
+                <a class="mobile-only support-text" href="{{this.footer.emailUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
+                <a class="desktop-only support-text" href="{{this.footer.emailUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
             </div>
         </div>
+	</div>
+		<div class="mobile-only social-container">
+			<div class="social-icon-wrapper">
+				<a href="https://www.facebook.com/vivanuncios" data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
+					<div class="social-icon fb-icon">
+					</div>
+				</a>
+			</div>
+			<div class="social-icon-wrapper">
+				<a href="https://twitter.com/vivanuncios" data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
+					<div class="social-icon twitter-icon">
+					</div>
+				</a>
+			</div>
+			<div class="social-icon-wrapper">
+				<a href="https://www.pinterest.com/vivanuncios/" data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
+					<div class="social-icon pinterest-icon">
+					</div>
+				</a>
+			</div>
+			<div class="social-icon-wrapper">
+				<a href="https://www.youtube.com/c/VivanunciosMx" data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
+					<div class="social-icon youtube-icon">
+					</div>
+				</a>
+			</div>
+			<div class="social-icon-wrapper">
+				<a href="https://plus.google.com/101549338197518663406" data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
+					<div class="social-icon googleplus-icon">
+					</div>
+				</a>
+			</div>
+		</div>
 
-        <div class="mobile-only social-container">
-            <div class="social-icon-wrapper">
-                <a href="#">
-                    <div class="social-icon fb-icon">
-                    </div>
-                </a>
-            </div>
-            <div class="social-icon-wrapper">
-                <a href="#">
-                    <div class="social-icon twitter-icon">
-                    </div>
-                </a>
-            </div>
-            <div class="social-icon-wrapper">
-                <a href="#">
-                    <div class="social-icon pinterest-icon">
-                    </div>
-                </a>
-            </div>
-            <div class="social-icon-wrapper">
-                <a href="#">
-                    <div class="social-icon youtube-icon">
-                    </div>
-                </a>
-            </div>
-            <div class="social-icon-wrapper">
-                <a href="#">
-                    <div class="social-icon googleplus-icon">
-                    </div>
-                </a>
-            </div>
-        </div>
+		<div class="clear"></div>
+		<div class="line-divider mobile-only"></div>
 
-        <div class="clear"></div>
-        <div class="line-divider mobile-only"></div>
-<div class="footer-links">
-     <div class="footer-inner-wrappper">
-        <div class="footer-aboutus">
-            <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.aboutus"}}</span>
-                <span class="chevron mobile-only"></span>
-                <div class="menu-items">
-                    <div><a href="#">{{i18n "footer.sitemap.aboutus.aboutviva"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.aboutus.vivablog"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.aboutus.vivabusiness"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.aboutus.rules"}}</a></div>
-                    <div><a rel="nofollow" href='{{i18n "footer.sitemap.aboutus.staysafelink"}}' target="/blank">{{i18n "footer.sitemap.aboutus.staysafe"}}</a></div>
-				    <div><a rel="nofollow" href='{{i18n "footer.sitemap.aboutus.protoollink"}}' target="/blank">{{i18n "footer.sitemap.aboutus.protool"}}</a></div>
-                </div>
-            </div>
-        </div>
+	    <div class="footer-links">
+		<div class="footer-inner-wrappper">
+			<div class="footer-aboutus">
+				<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.aboutus"}}</span>
+					<span class="chevron mobile-only"></span>
+					<div class="menu-items">
+						<div><a href="{{this.footer.about}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.aboutviva"}}'>{{i18n "footer.sitemap.aboutus.aboutviva"}}</a></div>
+						<div><a href="{{this.footer.blog}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.vivablog"}}'>{{i18n "footer.sitemap.aboutus.vivablog"}}</a></div>
+					</div>
+				</div>
+			</div>
 
-      <div class="line-divider mobile-only"></div>
-     </div>
+			<div class="line-divider mobile-only"></div>
+		</div>
 
- <div class="footer-inner-wrappper">
-    <div class="footer-legal">
-        <div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
-            <span class="chevron mobile-only"></span>
-            <div class="menu-items">
-                <div><a href="#">{{i18n "footer.sitemap.legal.terms"}}</a></div>
-                <div><a href="#">{{i18n "footer.sitemap.legal.privacy"}}</a></div>
-                <div><a href="#">{{i18n "footer.sitemap.legal.cookies"}}</a></div>
-            </div>
-        </div>
-    </div>
-   </div>
-     {{/unless}}
-      <div class="line-divider mobile-only"></div>
-
-
+		<div class="footer-legal">
+			<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
+				<span class="chevron mobile-only"></span>
+				<div class="menu-items">
+					<div><a href="{{this.footer.business}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.business"}}'>{{i18n "footer.sitemap.business.business"}}</a></div>
+					<div><a href="{{this.footer.stores}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.stores"}}'>{{i18n "footer.sitemap.business.stores"}}</a></div>
+				</div>
+			</div>
+		</div>
+    {{/unless}}
+	<div class="line-divider mobile-only"></div>
 
     {{#if this.footer.distractionFree}}
-    <div class="footer-inner-wrappper">
-        <div class="df-footer-legal">
-            <div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
-                <span class="chevron mobile-only"></span>
-                <div class="menu-items">
-                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.terms"}}</a></div>
-                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.privacy"}}</a></div>
-                    <div class="df-legal-links"><a href="#">{{i18n "footer.sitemap.legal.cookies"}}</a></div>
-                </div>
-            </div>
-        </div>
+		<div class="footer-inner-wrappper">
+			<div class="df-footer-legal">
+				<div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.vivabusiness"}}</span>
+					<span class="chevron mobile-only"></span>
+					<div class="menu-items">
+						<div class="df-legal-links"><a href="{{this.footer.business}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.business"}}'>{{i18n "footer.sitemap.business.business"}}</a></div>
+						<div class="df-legal-links"><a href="{{this.footer.stores}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.business.stores"}}'>{{i18n "footer.sitemap.business.stores"}}</a></div>
+					</div>
+				</div>
+			</div>
 
-        <div class="line-divider clear"></div>
-    </div>
+			<div class="line-divider clear"></div>
+		</div>
     {{/if}}
 
     {{#unless this.footer.distractionFree}}
-    <div class="footer-inner-wrappper inner">
-        <div class="footer-explore">
-            <div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
-                <span class="chevron mobile-only"></span>
-                <div class="menu-items">
-                    <div><a href="#">{{i18n "footer.sitemap.explore.classifieds"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.explore.mobile"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.explore.partners"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.explore.carprice"}}</a></div>
-                </div>
-            </div>
-        </div>
+		<div class="footer-inner-wrappper inner">
+			<div class="footer-explore">
+				<div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
+					<span class="chevron mobile-only"></span>
+					<div class="menu-items">
+						<div><a href="{{this.footer.classifieds}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.classifieds"}}'>{{i18n "footer.sitemap.explore.classifieds"}}</a></div>
+						<div><a href="{{this.footer.mobileAppUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.mobile"}}'>{{i18n "footer.sitemap.explore.mobile"}}</a></div>
+						<div><a href="{{this.footer.priceIndexUrl}}"data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.priceIndex"}}'>{{i18n "footer.sitemap.explore.priceIndex"}}</a></div>
+					</div>
+				</div>
+			</div>
 
-        <div class="line-divider mobile-only"></div>
-     </div>
+			<div class="line-divider mobile-only"></div>
+		</div>
 
-     <div class="footer-inner-wrappper">
-        <div class="footer-tips">
-            <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
-                <span class="chevron mobile-only"></span>
-                <div class="menu-items">
-                    <div><a rel="nofollow" href='{{i18n "footer.sitemap.tips.helplink"}}'  target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.tips.vivaguides"}}</a></div>
-                    <div><a href="#">{{i18n "footer.sitemap.tips.givefeedback"}}</a></div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-        <div class="line-divider"></div>
+		<div class="footer-inner-wrappper">
+			<div class="footer-tips">
+				<div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
+					<span class="chevron mobile-only"></span>
+					<div class="menu-items">
+						<div><a rel="nofollow" href='{{i18n "footer.sitemap.tips.helplink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
+						<div><a href="{{this.footer.listingRulesUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.listingRules"}}'>{{i18n "footer.sitemap.tips.listingRules"}}</a></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+		<div class="line-divider"></div>
 
-        <div class="clear line-divider"></div>
+		<div class="clear line-divider"></div>
 
         <div class="desktop-only social-container">
             <div class="social-icon-wrapper">
-                <a href="#">
+                <a href="https://www.facebook.com/vivanuncios" data-gtm="pc|NavFooterClick|eventLabel|FacebookClick">
                     <div class="social-icon fb-icon">
                     </div>
                 </a>
             </div>
             <div class="social-icon-wrapper">
-                <a href="#">
+                <a href="https://twitter.com/vivanuncios" data-gtm="pc|NavFooterClick|eventLabel|TwitterClick">
                     <div class="social-icon twitter-icon">
                     </div>
                 </a>
             </div>
             <div class="social-icon-wrapper">
-                <a href="#">
+                <a href="https://www.pinterest.com/vivanuncios/" data-gtm="pc|NavFooterClick|eventLabel|PinterestClick">
                     <div class="social-icon pinterest-icon">
                     </div>
                 </a>
             </div>
             <div class="social-icon-wrapper">
-                <a href="#">
+                <a href="https://www.youtube.com/c/VivanunciosMx" data-gtm="pc|NavFooterClick|eventLabel|youtubeClick">
                     <div class="social-icon youtube-icon">
                     </div>
                 </a>
             </div>
             <div class="social-icon-wrapper">
-                <a href="#">
+                <a href="https://plus.google.com/101549338197518663406" data-gtm="pc|NavFooterClick|eventLabel|Googleplus">
                     <div class="social-icon googleplus-icon">
                     </div>
                 </a>
             </div>
         </div>
 
-        <div class="mobile-only clear"></div>
+		<div class="mobile-only clear"></div>
 
-        <div class="footer-download">
-            <div class="mobile-only menu-category">{{i18n "footer.download.download"}}</div>
-            <div class="app-downloads-container">
-                <a href='{{i18n "appdownload.ioslink"}}' target="/blank"><span class="app-downloads ios-icon"></span></a>
-                <a href='{{i18n "appdownload.googleplay"}}' target="/blank"><span class="app-downloads googleplay-icon"></span></a>
-            </div>
-        </div>
+		<div class="footer-download">
+			<div class="mobile-only menu-category">{{i18n "footer.download.download"}}</div>
+			<div class="app-downloads-container">
+				<a href='{{i18n "appdownload.ioslink"}}' data-gtm="pc|AppDownloadBegin" target="/blank"><span
+						class="app-downloads icon-logo_app_store"></span></a>
+				<a href='{{i18n "appdownload.googleplay"}}'data-gtm="pc|AppDownloadBegin" target="/blank"><span
+						class="app-downloads icon-logo_google_play"></span></a>
+			</div>
+		</div>
     {{/unless}}
 
-    <div class="footer-trademark">
-        <div class="trademark">&copy {{i18n "footer.trademark.trademark" '<script>document.write(new Date().getFullYear())</script>'}}</div>
-    </div>
+	<div class="footer-trademark">
+		<span class="trademark">&copy {{i18n "footer.trademark.trademark"
+            '<script>document.write(new Date().getFullYear())</script>'}}.
+        </span>
+		<span><b><a href="{{this.footer.termOfUse}}">{{i18n "footer.sitemap.legal.terms"}}</a></b>. </span>
+		<span><b><a href="{{this.footer.privacyPolicy}}">{{i18n "footer.sitemap.legal.privacy"}}</a></b>. </span>
+		<span><b><a href="{{this.footer.cookieNotice}}">{{i18n "footer.sitemap.legal.cookies"}}</a></b>. </span>
+	</div>
 </div>
 
 {{#unless this.footer.distractionFree}}
 	<div class="nonJsOnlyInlineBlock seo-links tested">
-		<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' target="/blank">{{i18n "footer.sitemap.explore.location"}}</a></div>
-		<div class="seo-topsearches"><a href='{{{this.footer.topSearchesLandingPageUrl}}}' target="/blank">{{i18n "footer.sitemap.explore.topsearches"}}</a></div>
+        <div class="seo-links-text-container">
+			<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.location"}}' target="/blank">{{i18n
+                "footer.sitemap.explore.location"}}</a></div>
+			<div class="seo-topsearches"><a href='{{this.footer.topSearchesLandingPageUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.topsearches"}}' target="/blank">{{i18n
+                "footer.sitemap.explore.topsearches"}}</a></div>
+        </div>
 	</div>
 {{/unless}}
 

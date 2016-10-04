@@ -1,0 +1,77 @@
+{
+	"type": "object",
+	"properties": {
+		"adId": {
+			"type": "string",
+			"required": true
+		},
+		"_links": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"rel": { "type": "string" },
+					"href": { "type": "string" },
+					"method": { "type": "string" }
+				},
+				"required": [
+					"rel",
+					"href"
+				]
+			}
+		},
+		"title": { "type": "string"},
+		"description": { "type": "string" },
+		"categoryId": { "type": "number" },
+		"location": {
+			"type": "object",
+			"properties":{
+				"address": {"type":"string"},
+				"latitude": {"type":"number"},
+				"longitude": {"type":"number"}
+			}
+		},
+		"price": {
+			"type": "object",
+			"properties": {
+				"currency": { "type": "string" },
+				"amount": { "type": "number" }
+			}
+		},
+		"pictures": {
+			"type": "object",
+			"properties": {
+				"sizeUrls": {
+					"type": "array",
+					"items": {
+						"type":"object",
+						"properties":{
+							"size":{"enum":["SMALL","MEDIUM","LARGE"]},
+							"pictureUrl":{"type":"string"}
+						}
+					}
+				}
+			}
+		},
+		"categoryAttributes": {
+			"type": "array",
+			"items": {
+				"type": "object",
+				"properties": {
+					"name": { "type": "string" },
+					"required": [
+						"name",
+						"value"
+					]
+				}
+			}
+		},
+		"required": [
+			"title",
+			"categoryId",
+			"categoryAttributes",
+			"pictures",
+			"location"
+		]
+	}
+}

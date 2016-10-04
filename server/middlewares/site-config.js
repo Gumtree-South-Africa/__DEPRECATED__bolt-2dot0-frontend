@@ -4,6 +4,7 @@ module.exports = function(app) {
 	return function(req, res, next) {
 		// send site information along
 		res.locals.config = {};
+		res.locals.config.devMode = app.locals.devMode;
 		res.locals.config.name = app.locals.config.name;
 		res.locals.config.locale = app.locals.config.locale;
 		res.locals.config.country = app.locals.config.country;
@@ -22,6 +23,8 @@ module.exports = function(app) {
 		res.locals.config.categoryIdNameMap = app.locals.config.categoryIdNameMap;
 		res.locals.config.categoryDropdown = app.locals.config.categoryDropdown;
 		res.locals.config.categoryflattened = app.locals.config.categoryflattened;
+		res.locals.config.categoryAllData = app.locals.config.categoryAllData;
+		res.locals.config.locationAllData = app.locals.config.locationAllData;
 
 		// call next middleware
 		next();

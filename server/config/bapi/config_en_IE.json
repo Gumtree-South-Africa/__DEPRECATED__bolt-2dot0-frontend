@@ -1,9 +1,9 @@
 {
 	"header" : {
 		"type" 								: "website",
-		"localeOpenGraph" 					: "en_GB",
+		"localeOpenGraph" 					: "en_IE",
 		"publisherUrl"						: null,
-		"noPhotoUrl"						: "http://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"noPhotoUrl"						: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: false,
@@ -43,6 +43,7 @@
 				{"trackEventName":"VIPWebSiteUrl","category":"VIP","action":"websiteURL", "optLabel":"WebSiteUrlInVIP", "optValue":1, "optNonInteraction":false},
 				{"trackEventName":"SRPWebSiteUrl","category":"SRP","action":"websiteURL", "optLabel":"WebSiteUrlInSRP", "optValue":1, "optNonInteraction":false}
 			],
+			"enableGaTracking": "true",
 			"enableABTest": "false"
 		},
 	    "seoDeepLinkingBaseUrlAndroid" 		: null,
@@ -53,9 +54,9 @@
 		"cookieNotice"						: "/cookie-notice",
 		"privacyPolicy"						: "/privacy-policy",
 		"termOfUse"							: "/terms-of-service",
-		"postingRules"	                    : "http://gumtreehelp.com/ie/knowledgebase.php?article=22",
+		"postingRules"	                    : "https://gumtreehelp.com/ie/knowledgebase.php?article=22",
 		"helpLabel"							: "Help",
-		"helpUrl"							: "http://gumtreehelp.com/ie/",
+		"helpUrl"							: "https://gumtreehelp.com/ie/",
 		"interLinkUrl"						: null,
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
@@ -70,7 +71,7 @@
 		},
 		"seoBolt"							:	{
 			"enabled"							: false,
-			"blogUrl" 							: "http://blog.gumtree.ie/",
+			"blogUrl" 							: "https://blog.gumtree.ie/",
 			"vipLandingPageEnabled"				: true
 		},
 		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
@@ -94,8 +95,6 @@
               "currencyDisplay"    :    false,
               "currency"           :    ["EUR:EUR"]
         }
-
-
 	},
 	"bapi" : {
 		"Homepage" : {

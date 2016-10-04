@@ -12,6 +12,7 @@ let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.j
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
+let logger = require(`${cwd}/server/utils/logger`);
 
 
 
@@ -64,7 +65,8 @@ let getAdPostedResponse = (results) => {
 
 	response.ad = {
 		id: results.id,
-		vipLink: results.vipLink
+		vipLink: results.vipLink,
+		status: results.adState
 	};
 
 	return response;
@@ -126,7 +128,7 @@ router.post('/create', cors, (req, res) => {
 
 	// Step 4: Initialize Model
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let postAdModel = new PostAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
 
@@ -145,14 +147,23 @@ router.post('/create', cors, (req, res) => {
 		postAdModel.postAd(requestJson).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
 
-			responseJson.ad.vipLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
+			// redirect to VIP by default
+			let redirectLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
+
+			// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
+			if (responseJson.ad.status === 'HOLD') {
+				redirectLink = '/edit/' + responseJson.ad.id;
+			}
+
+			responseJson.ad.redirectLink = redirectLink;
 			res.send(responseJson);
 			return;
 		}).fail((error) => {
+			let bapiInfo = logger.logError(error);
 			// post ad has failed
-			console.error(`postAdModel.postAd failure ${error}`);
-			res.status(500).send({
-				error: "postAd failed, see logs for details"
+			res.status(error.getStatusCode(500)).send({
+				error: "postAd failed, see logs for details",
+				bapiJson: bapiInfo
 			});
 			return;
 		});

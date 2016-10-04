@@ -1,35 +1,48 @@
 'use strict';
 
+// Express Middlewares
+let express = require('express');
+let bodyParser = require('body-parser');
+let compress = require('compression');
+let cookieParser = require('cookie-parser');
+let expressUncapitalize = require('express-uncapitalize');
+let logger = require('morgan');
+let methodOverride = require('method-override');
+let minifyHTML = require('express-minify-html');
 
-var express = require('express'), bodyParser = require('body-parser'), compress = require('compression'), cookieParser = require('cookie-parser'), expressUncapitalize = require('express-uncapitalize'), logger = require('morgan'), methodOverride = require('method-override'), path = require('path'), fs = require('fs');
+let fs = require('fs');
 
-var config = {
+let  config = {
 	root: process.cwd()
 };
-var legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection'),
-	guardians = require(config.root + '/modules/guardians'),
-	deviceDetection = require(config.root + '/modules/device-detection'),
-	checkAuthentication = require(config.root + '/server/middlewares/check-authentication'),
-	boltExpressHbs = require(config.root + '/modules/handlebars'),
-	assets = require(config.root + '/modules/assets'),
-	checkIp = require(config.root + '/server/middlewares/check-ip'),
-	checkMachineId = require(config.root + '/server/middlewares/check-machineid'),
-	checkUserAgent = require(config.root + '/server/middlewares/check-useragent'),
-	requestId = require(config.root + '/server/middlewares/request-id'),
-	writeHeader = require(config.root + '/server/middlewares/write-header');
 
-var middlewareloader = require(config.root + '/modules/environment-middleware-loader');
+// BOLT Custom Middlewares
+let legacyDeviceRedirection = require(config.root + '/modules/legacy-mobile-redirection');
+let guardians = require(config.root + '/modules/guardians');
+let deviceDetection = require(config.root + '/modules/device-detection');
+let boltExpressHbs = require(config.root + '/modules/handlebars');
+let assets = require(config.root + '/modules/assets');
+let checkIp = require(config.root + '/server/middlewares/check-ip');
+let checkMachineId = require(config.root + '/server/middlewares/check-machineid');
+let checkUserAgent = require(config.root + '/server/middlewares/check-useragent');
+// let checkAuthentication = require(config.root + '/server/middlewares/check-authentication');
+let requestId = require(config.root + '/server/middlewares/request-id');
+let writeHeader = require(config.root + '/server/middlewares/write-header');
+let responseMetrics = require(config.root + '/server/middlewares/response-metrics');
 
-// create a write stream (in append mode)
-var accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
-var accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
+let middlewareloader = require(config.root + '/modules/environment-middleware-loader');
+
+// Access Logging
+let accessLog = (process.env.LOG_DIR || config.root) + '/access.log';
+let accessLogStream = fs.createWriteStream(accessLog, {flags: 'a'});
 // morgan custom logging format
-var accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time-sec';
+let accessLogFormat = ':client-ip - :remote-user [:date[clf]] :cuid :hostname ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" - :response-time-sec';
 
-var i18nOr = require(config.root + '/modules/bolt-i18n');
+let i18nOr = require(config.root + '/modules/bolt-i18n');
 
-function BuildApp(siteObj) {
-	var app = new express();
+
+function BuildApp(siteObj, loggingEnabled) {
+	let app = new express();
 
 	this.getApp = function() {
 		this.setLoggerTokens();
@@ -38,23 +51,25 @@ function BuildApp(siteObj) {
 
 	// morgan custom logging tokens
 	this.setLoggerTokens = function() {
-		logger.token('hostname', function getHostname(req, res) {
+		logger.token('hostname', function getHostname(req) {
 			return req.hostname;
 		});
-		logger.token('client-ip', function getClientIp(req, res) {
+		logger.token('client-ip', function getClientIp(req) {
 			return req.app.locals.ip;
 		});
-		logger.token('cuid', function getCuid(req, res) {
+		logger.token('cuid', function getCuid(req) {
 			return req.app.locals.requestId;
 		});
 		logger.token('response-time-sec', function getResponseTimeToken(req, res) {
-			if (!req._startAt || !res._startAt) {return;}
+			if (!req._startAt || !res._startAt) {
+				return;
+			}
 			// calculate diff
-			var ms = (res._startAt[0] - req._startAt[0]) * 1e3 + (res._startAt[1] - req._startAt[1]) * 1e-6
-			var sec = ms / 1000;
+			let ms = (res._startAt[0] - req._startAt[0]) * 1e3 + (res._startAt[1] - req._startAt[1]) * 1e-6;
+			let sec = ms / 1000;
 			return sec.toFixed(3);
 		});
-	}
+	};
 
 
 	// Only for Site Specific App
@@ -91,7 +106,11 @@ function BuildApp(siteObj) {
 		 */
 		middlewareloader()(['dev', 'mock', 'vm', 'vmdeploy', 'dockerdeploy'], function() {
 			app.locals.devMode = true;
-			app.use(logger('dev'));
+			app.locals.prodEpsMode = false;
+
+			if (app.locals.config) {
+				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
+			}
 
 			// assets for local developments and populates  app.locals.jsAssets
 			app.use(assets(app, typeof siteObj !== 'undefined' ? siteObj.locale : ''));
@@ -102,20 +121,43 @@ function BuildApp(siteObj) {
 				root: '/public', etag: false, maxage: 0, index: false
 			}));
 
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('dev'));
+			}
+		});
+
+		/*
+		 * Pre-Production based middlewares
+		 */
+		middlewareloader()(['pp_phx_deploy', 'lnp_phx_deploy'], function() {
+			app.locals.devMode = false;
+			app.locals.prodEpsMode = false;
+
 			if (app.locals.config) {
-				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
+				app.locals.config.basePort = '';
+			}
+
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('short'));
 			}
 		});
 
 		/*
 		 * Production based middlewares
 		 */
-		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy', 'pp_phx_deploy', 'lnp_phx_deploy'], function() {
+		middlewareloader()(['prod_ix5_deploy', 'prod_phx_deploy'], function() {
 			app.locals.devMode = false;
-			app.use(logger('short'));
+			app.locals.prodEpsMode = true;
 
 			if (app.locals.config) {
 				app.locals.config.basePort = '';
+			}
+
+			// Only for Specific Apps within a Site App
+			if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+				app.use(logger('short'));
 			}
 		});
 
@@ -128,7 +170,22 @@ function BuildApp(siteObj) {
 		app.use(cookieParser());
 		app.use(methodOverride());
 		app.use(expressUncapitalize());
-		app.use(logger(accessLogFormat, {stream: accessLogStream}));
+		app.use(minifyHTML({
+			override: false,
+			htmlMinifier: {
+				removeComments: true,
+				collapseWhitespace: true,
+				collapseBooleanAttributes: true,
+				removeAttributeQuotes: true,
+				removeEmptyAttributes: true,
+				minifyJS: true
+			}
+		}));
+
+		// Only for Specific Apps within a Site App
+		if ((typeof loggingEnabled === 'undefined') || loggingEnabled===true) {
+			app.use(logger(accessLogFormat, {stream: accessLogStream}));
+		}
 
 		/*
 		 * Bolt 2.0 Rendering middlewares
@@ -159,6 +216,9 @@ function BuildApp(siteObj) {
 		if (process.env.NODE_ENV) {
 			app.enable('view cache');
 		}
+
+		// Bolt Response Metrics
+		app.use(responseMetrics(loggingEnabled));
 	}
 }
 

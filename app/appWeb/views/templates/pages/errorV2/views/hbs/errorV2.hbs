@@ -1,0 +1,22 @@
+{{#partial "headerWrapper"}}
+    <link rel="stylesheet" href="{{this.cssPath}}">
+
+	<div class="header-wrapper">
+		<div class="headerV2">
+			<a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
+				<div class="logo"></div>
+			</a>
+		</div>
+	</div>
+{{/partial}}
+
+{{#partial "title"}}
+    {{i18n "postAd.unsupportedFileModal.error"}}
+{{/partial}}
+{{#partial "content"}}
+	<div class="error-content">{{i18n this.err "/" }}
+		<div class="request-id">({{this.requestId}})</div>
+	</div>
+{{/partial}}
+
+{{#partial "footerWrapper"}}{{/partial}}

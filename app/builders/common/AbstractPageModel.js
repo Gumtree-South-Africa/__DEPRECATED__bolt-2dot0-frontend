@@ -35,6 +35,8 @@ class AbstractPageModel extends BasePageModel {
 		// Cached Category Data from BAPI
 		modelData.category = data.category;
 		modelData.categoryDropdown = data.categoryDropdown;
+		modelData.categoryAll = data.categoryAll;
+		modelData.locationAll = data.locationAll;
 
 		modelData.categoryIdNameMap = data.categoryIdNameMap;
 		modelData.categoryData = data.categoryData;
@@ -59,6 +61,7 @@ class AbstractPageModel extends BasePageModel {
 		let bapiConfigData = res.locals.config.bapiConfigData;
 
 		let pageModelConfig = bapiConfigData.bapi[pagetype];
+		this.pageType = pagetype;
 
 		if (typeof pageModelConfig !== 'undefined') {
 			if (deviceDetection.isMobile()) {
@@ -95,31 +98,45 @@ class AbstractPageModel extends BasePageModel {
 	/**
 	 * @method getArrFunctions
 	 * @description
-	 * @param {Object} Request
-	 * @param {Object} Response
-	 * @param {Map} Map of Page related model labels and respective functions to get their model data
+	 * @param {Object} req
+	 * @param {Object} res
+	 * @param {Map} functionMap: map of Page related model labels and respective functions to get their model data
 	 * @param {JSON} pageModelConfig for the respective page
 	 * @return {Array}
 	 */
 	getArrFunctionPromises(req, res, functionMap, pageModelConfig) {
 		let arrFunctions = [this.getCommonDataPromises(req, res)];
 
-		let index, fnLabel, fn;
-		for (index = 0; index < pageModelConfig.length; index++) {
-			fnLabel = pageModelConfig[index];
-			fn = functionMap[fnLabel];
-			if (typeof fn !== 'undefined') {
+		let devMode = res.locals.config.devMode;
+		let locale = res.locals.config.locale;
+		for (let fnLabel of pageModelConfig) {
+			let fn = functionMap[fnLabel];
+			if (fn !== undefined) {
 				fn.fnLabel = fnLabel;
 				arrFunctions.push(fn);
+				//Remove it from original functionMap so we can check for ZK/modelbulder inconsistencies
+				delete functionMap[fnLabel];
 			} else {
-				// todo: this error occurs when a page is NOT making a call to "locationlatlong",
-				// since that call is now conditional (on having a location cookie)
-				// we should refactor this so that a conditional api call doesnt flag this as an error
-				console.error('Error in loading component ' + fnLabel + ' : not found in ZK config');
+				this.logConfigError(devMode, `[${this.pageType}, ${locale}] Function: ${fnLabel} found in ZK config but not implemented in model`);
 			}
 		}
 
+		Object.keys(functionMap).forEach((fn) => {
+			this.logConfigError(devMode, `[${this.pageType}, ${locale}] Function: ${fn} implemented in model but not found in ZK config, function will not be executed.`);
+		});
+
 		return arrFunctions;
+	}
+
+	/**
+	 * This is a separate function to allow the above method to be tested
+	 * @param devMode
+	 * @param err
+	 */
+	logConfigError(devMode, err) {
+		if (devMode) {
+			console.error(err);
+		}
 	}
 
 	/**
@@ -144,7 +161,11 @@ class AbstractPageModel extends BasePageModel {
 		return jsonObj;
 	}
 
+	addToClientTranslation(modelData, keys) {
+		modelData.clientTranslations = modelData.clientTranslations || [];
+
+		modelData.clientTranslations = modelData.clientTranslations.concat(keys);
+	}
 }
 
-module
-	.exports = AbstractPageModel;
+module.exports = AbstractPageModel;

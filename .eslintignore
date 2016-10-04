@@ -82,14 +82,8 @@ app/appWeb/views/templates/pages/quickpost/js/postPageValidator.js
 app/appWeb/views/templates/pages/quickpost/js/quickpost.js
 app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
-
-server/middlewares/check-authentication.js
-server/middlewares/check-ip.js
-server/middlewares/check-machineid.js
-server/middlewares/check-useragent.js
-server/middlewares/express-builder.js
-server/middlewares/request-id.js
-server/middlewares/response-metrics.js
+app/appWeb/serviceWorkers/service-worker-registration.js
+app/appWeb/views/components/modal/js/locationModal.js
 
 server/services/category.js
 server/services/configservice.js
@@ -125,4 +119,5 @@ node_modules
 
 public/js/precompTemplates.js
 
-test/coverage/**/*.js
+test/**/coverage/**/*.js
+

@@ -2,15 +2,16 @@
 
 let express = require('express');
 let router = express.Router();
-
-let LocationModel = require(process.cwd() + '/app/builders/common/LocationModel');
-let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
-let cors = require(process.cwd() + '/modules/cors');
+let cwd = process.cwd();
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+let cors = require(cwd + '/modules/cors');
+let logger = require(`${cwd}/server/utils/logger`);
 
 // route is /api/locate/locationlatlong
 router.get('/locationlatlong', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
-	let model = modelBuilder.initModelData(res.locals.config, req.app.locals, req.cookies);
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 	let geoLatLngObj;
 	// if a lat long is passed as a query param use it over the cookie
@@ -33,17 +34,17 @@ router.get('/locationlatlong', cors, (req, res) => {
 		}
 		geoLatLngObj = model.geoLatLngObj;
 	}
+	let checkLeafLocations = (req.query.leaf === 'true');
 
 	model.LocationModel = new LocationModel(model.bapiHeaders);
 
-	model.LocationModel.getLocationLatLong(geoLatLngObj).then((results) => {
+	model.LocationModel.getLocationLatLong(geoLatLngObj, checkLeafLocations).then((results) => {
 		res.send(results);
 	}).fail((err) => {
-		console.error(err);
-		console.error(err.stack);
-		res.status(500);
-		res.send({
-			error: true
+		let bapiJson = logger.logError(err);
+		res.status(err.getStatusCode(500)).send({
+			error: "latLong look up failed, see logs for details",
+			bapiJson: bapiJson
 		});
 	});
 

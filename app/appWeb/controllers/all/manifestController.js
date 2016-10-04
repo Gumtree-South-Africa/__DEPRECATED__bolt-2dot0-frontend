@@ -30,7 +30,7 @@ router.get('/', (req, res, next) => {
 			"gcm_sender_id": "759612781184",
 			"background_color": "#2F3BA2",
 			"theme_color": "#512DA8",
-			"start_url": "/",
+			"start_url": "/?v=10122d18",
 			"display": "standalone",
 			"orientation": "portrait",
 			"icons": [

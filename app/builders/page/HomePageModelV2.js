@@ -2,7 +2,7 @@
 
 
 let cwd = process.cwd();
-
+let deviceDetection = require(`${cwd}/modules/device-detection`);
 let _ = require("underscore");
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
@@ -18,6 +18,7 @@ let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
 
 /**
  * @method getHomepageDataFunctions
@@ -33,6 +34,21 @@ class HomePageModelV2 {
 		this.res = res;
 		this.dataPromiseFunctionMap = {};
 		this.bapiConfigData = this.res.locals.config.bapiConfigData;
+
+		let searchLocIdCookieName = 'searchLocId';
+		this.searchLocIdCookie = req.cookies[searchLocIdCookieName];
+		this.locationdropdown = this.res.locals.config.locationdropdown;
+
+		this.useGeo = false;
+		// Check if there is no searchLocIdCookie, then send in lat/long
+		if ((typeof this.searchLocIdCookie === 'undefined') || _.isEmpty(this.searchLocIdCookie)) {
+			this.useGeo = true;
+		} else {
+			// Check if searchLocIdCookie is not the root location, then send in lat/long
+			if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+				this.useGeo = true;
+			}
+		}
 	}
 
 	populateData() {
@@ -41,10 +57,16 @@ class HomePageModelV2 {
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
 
 		let modelBuilder = new ModelBuilder();
-		let modelData = modelBuilder.initModelData(this.res.locals.config, this.req.app.locals, this.req.cookies);
+		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 
 		this.getHomepageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
+		// register these translations as they are needed for client templating
+		abstractPageModel.addToClientTranslation(modelData, [
+			"recentactivity.message.listing",
+			"recentactivity.message.sold",
+			"homepage.trending.contact"
+		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
 				// Converts the data from an array format to a JSON format
@@ -59,9 +81,16 @@ class HomePageModelV2 {
 
 	mapData(modelData, data) {
 		let distractionFreeMode = false;
+		let showTopBanner = true;
+
 		if (this.bapiConfigData.content.homepageV2) {
 			distractionFreeMode = this.bapiConfigData.content.homepageV2.distractionFree || false;
 		}
+
+		if (this.bapiConfigData.content.homepageV2.showTopBanner !== undefined) {
+			showTopBanner = this.bapiConfigData.content.homepageV2.showTopBanner;
+		}
+
 		modelData = _.extend(modelData, data);
 		modelData.header = data['common'].header || {};
 		modelData.header.distractionFree = distractionFreeMode;
@@ -69,8 +98,15 @@ class HomePageModelV2 {
 		modelData.footer.distractionFree = distractionFreeMode;
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.seo = data['seo'] || {};
+		modelData.showTopBanner = showTopBanner;
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
+		modelData.isLocationMobile = deviceDetection.isMobile();
 
 		modelData.isNewHP = true;
+
+		if (data['adstatistics']) {
+			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
+		}
 
 		return modelData;
 	}
@@ -80,21 +116,25 @@ class HomePageModelV2 {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
 
-		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders);
-		let cardsModel = new CardsModel(modelData.bapiHeaders, modelData.cardsConfig);
+		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
+		let cardsModel = new CardsModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let cardNames = cardsModel.getCardNamesForPage("homePage");
 		let searchModel = new SearchModel(modelData.country, modelData.bapiHeaders);
 		let gpsMapModel = new GpsMapModel(modelData.country);
 		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 		let seo = new SeoModel(modelData.bapiHeaders);
+		let adstatistics = (new AdStatisticsModel(modelData.bapiHeaders)).getModelBuilder();
+
 		// now make we get all card data returned for home page
 		for (let cardName of cardNames) {
 			this.dataPromiseFunctionMap[cardName] = () => {
 				// user specific parameters are passed here, such as location lat/long
-				return cardsModel.getCardItemsData(cardName, {
-					geo: modelData.geoLatLngObj
-				}).then( (result) => {
+				let cardParams = {};
+				if (cardName === 'trendingCard') {
+					cardParams.geo = (this.useGeo === true) ? modelData.geoLatLngObj : null;
+				}
+				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
 					return result;
@@ -117,7 +157,7 @@ class HomePageModelV2 {
 		};
 
 		this.dataPromiseFunctionMap.recentActivities = () => {
-			return recentActivityModel.getRecentActivities(modelData.geoLatLngObj).then((data) => {
+			return recentActivityModel.getRecentActivities((this.useGeo === true) ? modelData.geoLatLngObj : null).then((data) => {
 				return data;
 			}).fail((err) => {
 				console.warn(`error getting recentActivities data ${err}`);
@@ -153,7 +193,7 @@ class HomePageModelV2 {
 		// when we don't have a geoCookie, we shouldn't make the call
 		if (modelData.geoLatLngObj) {
 			this.dataPromiseFunctionMap.locationlatlong = () => {
-				return locationModel.getLocationLatLong(modelData.geoLatLngObj).then((data) => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj, false).then((data) => {
 					return data;
 				}).fail((err) => {
 					console.warn(`error getting locationlatlong data ${err}`);
@@ -170,7 +210,17 @@ class HomePageModelV2 {
 				return {};
 			});
 		};
+
+		this.dataPromiseFunctionMap.adstatistics = () => {
+			return adstatistics.resolveAllPromises().then((data) => {
+				return data[0];
+			}).fail((err) => {
+				console.warn(`error getting data ${err}`);
+				return {};
+			});
+		};
 	}
+
 }
 
 module.exports = HomePageModelV2;

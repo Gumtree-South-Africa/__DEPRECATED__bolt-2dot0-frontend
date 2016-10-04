@@ -35,7 +35,8 @@ class FooterV2Model {
 				_.extend(data, this.footerConfigData);
 
 				// build data
-				let urlProtocol = this.secure ? 'https://' : 'http://';
+				//let urlProtocol = this.secure ? 'https://' : 'http://';
+				let urlProtocol = 'https://';
 				let urlHost = config.get('static.server.host') !== null ? urlProtocol + config.get('static.server.host') : '';
 				let urlPort = config.get('static.server.port') !== null ? ':' + config.get('static.server.port') : '';
 				let urlVersion = config.get('static.server.version') !== null ? '/' + config.get('static.server.version') : '';
@@ -49,6 +50,8 @@ class FooterV2Model {
 				data.baseFontUrl = urlHost + urlPort + urlVersion + config.get('static.baseFontUrl');
 				data.baseIconUrl = urlHost + urlPort + urlVersion + config.get('static.baseIconUrl');
 				data.min = config.get('static.min');
+				data.epsImageBaseUrl = config.get('cdn.server.eps.host');
+				data.cropImageBaseUrl = config.get('cdn.server.crop.host');
 
 				// add complex data to footer
 				this.buildJs(data);

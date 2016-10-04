@@ -67,7 +67,7 @@ var augmentPathWithParams = function(path, parametersString, extraParameters) {
 }
 
 var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
-	console.time(`Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
+	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters, bapiOptions.extraParameters);
@@ -84,7 +84,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 			bapiError.serviceName = serviceName;
 			return Q.reject(bapiError);
 		} else {
-			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
+			console.timeEnd(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 			return output;
 		}
 	});
@@ -93,7 +93,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 
 
 var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceName){
-	console.time(`Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
+	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.headers['Content-Type'] = 'application/json';
@@ -118,7 +118,7 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 			bapiError.serviceName = serviceName;
 			return Q.reject(bapiError);
 		} else {
-			console.timeEnd(`Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
+			console.timeEnd(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 			return output;
 		}
 	});

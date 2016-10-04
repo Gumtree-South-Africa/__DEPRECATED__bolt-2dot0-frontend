@@ -1,0 +1,30 @@
+{{#partial "content"}}
+	<section class="edit-ad-page">
+		<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
+		<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
+		<div id="image-urls" class="hidden">{{json this.adResult.pictures}}</div>
+        {{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
+		<div class="hidden">
+            {{> (dynamic "uploadImage")}}
+		</div>
+        {{#block "editPhotoCarousel"}}
+			<div class="photo-carousel">
+				<div class="photo-switcher">
+                    {{> (dynamic "photoCarousel")}}
+				</div>
+				<!--<div class="reorder-images-link">-->
+                    <!--<span role="link" class="reorder-images-link-text">-->
+                        <!--{{i18n "editAd.reorderImages"}}-->
+                    <!--</span>-->
+				<!--</div>-->
+				<div class="separator-div"></div>
+                {{> (dynamic "adStats") }}
+			</div>
+        {{/block}}
+        {{> (dynamic "editAdFormMainDetails") }}
+    </section>
+
+    {{> (dynamic "categorySelectionModal")}}
+    {{> (dynamic "modal")}}
+    {{> (dynamic "spinnerModal")}}
+{{/partial}}
