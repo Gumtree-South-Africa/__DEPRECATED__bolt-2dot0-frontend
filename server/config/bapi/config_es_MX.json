@@ -84,6 +84,13 @@
 			"blogUrl" 							: "https://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
+		"social": {
+			"facebookUrl": "https://www.facebook.com/vivanuncios",
+			"twitterUrl": "https://twitter.com/vivanuncios",
+			"pinterestUrl": "https://www.pinterest.com/vivanuncios/",
+			"youTubeUrl": "https://www.youtube.com/c/VivanunciosMx",
+			"googlePlusUrl": "https://plus.google.com/101549338197518663406"
+		},
 		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
