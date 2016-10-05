@@ -1341,14 +1341,14 @@
 	"footer": {
 		"help": {
 			"heretohelp": "Meet our customer team",
-			"sendemail": "Email",
+			"sendemail": "Contact us",
 			"callus": "Call",
 			"chatwithus": "Chat with us",
 			"contact": "Customer care",
 			"meet": "Meet our customer team"
 		},
 		"support": {
-			"em": "Email us",
+			"em": "Contact us",
 			"ca": "Call us",
 			"ch": "Chat with us"
 		},
