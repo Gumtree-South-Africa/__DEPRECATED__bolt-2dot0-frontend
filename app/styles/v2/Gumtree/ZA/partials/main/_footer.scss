@@ -57,7 +57,7 @@
 			}
 		}
 		.support-wrapper{
-			width: 49%;
+			//width: 49%;
 			.support-container{
 				margin: 0 12.5px;
 				.support-icon{
@@ -205,20 +205,21 @@
 				}
 			}
 			.support-wrapper{
-				text-align: center;
-				width:80%;
-				padding: 10px 10%;
+				text-align: left;
+				//width:80%;
+				padding: 12px 12px;
 				display: inline-table;
 				margin: 0px;
 				.support-container{
 					display: inline-block;
 					margin: 0;
-					width: 33%;
+					//width: 33%;
 					.support-text, .support-icon{
 						margin:0;
 					}
 					.mobile-only.support-text, .chat-icon + .support-text{
-						display:block;
+						display:inline;
+						padding-left: 5px;
 					}
 				}
 			}
@@ -252,6 +253,14 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+	.footer-wrapper{
+		.customer-service-container{
+			.support-wrapper{
+				text-align: right;
+				padding-right: 25px;
+			}
+		}
+	}
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
