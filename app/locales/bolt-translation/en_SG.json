@@ -1164,11 +1164,354 @@
   "quickpost.error.locationNotInCountry": "The location you selected is not in Singapore",
   "quickpost.error.priceLong": "The price is very high",
   "quickpost.empty": "",
-   "appdownload.title": "¡Vende rápido!",
-  "appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
-  "appdownload.mobilebutton": "¡Baja la app!",
-  "appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
-  "appdownload.googleplay":"https://app.adjust.com/oarq82",
-  "appdownload.applink":"http://go.vivanunc.io/baja-la-app",
-  "postad.image.upload.failure": "Unfortunately, an error has occurred while loading images"
+  "appdownload.title": "¡Vende rápido!",
+	"appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
+	"appdownload.mobilebutton": "¡Baja la app!",
+	"appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
+	"appdownload.googleplay": "https://app.adjust.com/oarq82",
+	"appdownload.applink": "http://go.vivanunc.io/baja-la-app",
+	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
+	"footer.help.heretohelp": "We're Here to Help!",
+	"footer.help.sendemail": "Send an Email",
+	"footer.help.callus": "Call Us",
+	"footer.help.chatwithus": "Chat with Us",
+	"footer.sitemap.aboutus.aboutus": "About us",
+	"footer.sitemap.aboutus.aboutviva": "About Vivanuncios",
+	"footer.sitemap.aboutus.vivablog": "Vivanuncios Blog",
+	"footer.sitemap.aboutus.vivabusiness": "Vivanuncios for Business",
+	"footer.sitemap.aboutus.rules": "Rules for Posting Ads",
+	"footer.sitemap.legal.legal": "Legal",
+	"footer.sitemap.legal.terms": "Terms of Use",
+	"footer.sitemap.legal.privacy": "Privacy Policy",
+	"footer.sitemap.legal.cookies": "Cookies",
+	"footer.sitemap.explore.explore": "Explore",
+	"footer.sitemap.explore.classifieds": "eBay Classifieds Site",
+	"footer.sitemap.explore.mobile": "Mobile Apps",
+	"footer.sitemap.explore.partners": "Partners",
+	"footer.sitemap.explore.carprice": "Car Price Index",
+	"footer.sitemap.tips.tips": "Tips & Help",
+	"footer.sitemap.tips.help": "Help Pages",
+	"footer.sitemap.tips.onlinesafety": "Online Safety",
+	"footer.sitemap.tips.vivaguides": "Vivanuncios Guides",
+	"footer.download.download": "Download the App",
+	"footer.download.itunes": "Available on the App Store",
+	"footer.download.playstore": "Avaiable on the Android App Store",
+	"footer.trademark.trademark": "2014-2016 eBay. All rights reserved",
+	"footer.help.contact": "Contact Customer Service",
+	"footer.help.meet": "Meet Our Customer Team",
+	"smartmobilebanner": {
+		"title": "Abre la App",
+		"mobilelink": "o continúa en el sitio móvil >>",
+		"branchiolink": "https://go.vivanunc.io/gana-dinero"
+	},
+    "welcomescreen": {
+		"title": "¡Bienvenido!",
+		"description": "¡Gana dinero ahora!",
+		"close": "Cerrar"
+	},
+	"appdownload": {
+		"userImageAltText": "clasificado app usario",
+		"title": "¡Con el app es más fácil!",
+		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
+		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
+		"mobilebutton": "¡Baja la app!",
+		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
+		"googleplay": "https://app.adjust.com/oarq82",
+		"applink": "https://go.vivanunc.io/baja-la-app"
+	},
+	"postad": {
+		"upload": {
+			"photo": "Sube una foto",
+			"photos": "Sube foto(s)"
+		},
+		"image": {
+			"upload": {
+				"failure": "Por desgracia, se ha producido un error al cargar tus imágenes. Por favor, inténtalo de nuevo."
+			}
+		}
+	},
+	"homepage": {
+		"popularSearches": {
+			"popularIn": "Popular en",
+			"yourNeighborhood": "Tu Colonia",
+			"viewMore": "Ver más"
+		},
+		"searchbar": {
+			"lookingFor": "Estoy buscando un...",
+			"search": "Buscar"
+		},
+		"safetyTips": {
+			"title": "Vivanuncios Te Cuida",
+			"faq": "Consejos de seguridad",
+			"tip": [
+				"Consejos de cómo protegerte en internet",
+				"¿Vivanuncios coopera con las autoridades?",
+				"¿Cómo mantengo mi cuenta de usuario segura?",
+				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
+				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+				"¿Cuáles son los fraudes más comunes?",
+				"¿Qué puedo hacer si he sido víctima de una estafa?",
+				"¿Cómo reportar un anuncio?",
+				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+			]
+		},
+		"trending": {
+			"contact": "Contactar"
+		},
+		"gallery" : {
+			"cardTitle": "Galería Principal"
+		}
+	},
+	"header": {
+		"catDropdown": {
+			"browse": "Explorar",
+			"browseCategories": "Explorar Categorías"
+		},
+		"userDropdown": {
+			"title": "¡Hola",
+			"messages": "Mis mensajes",
+			"favorites": "Favoritos",
+			"myAlerts": "Búsquedas guardadas",
+			"myProfile": "Mi perfil",
+			"promoteMyAds": "Destacar mis anuncios",
+			"pricingGuide": "Guía de precios",
+			"logout": "Cerrar sesión"
+		},
+		"myAds": "Mis anuncios",
+		"help": "Ayuda",
+		"postAd": "Publica Gratis"
+	},
+	"modal": {
+		"close": "Cerrar",
+		"buttonText": "Confirmar",
+		"message": "Cambia tu Ubicación",
+		"placeholderText": "Escribe una ubicación",
+		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
+		"locationAutoMobile": "Ubicación más cercana",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+	},
+	"sectionMenu": {
+		"cars": "Veh\u00EDculos",
+		"trending": "Ofertas",
+		"goods": "Hogar y m\u00E1s",
+		"realEstate": "Bienes Ra\u00EDces",
+		"jobs": "Empleos"
+	},
+	"recentactivity": {
+		"message": {
+			"listing": "%s acaba de poner en venta %s %s",
+			"sold": "%s acaba de vender %s %s"
+		}
+	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
+	},
+	"postAd": {
+		"page": {
+			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
+		},
+		"confirm": {
+			"pageTitle": "Publicar un anuncio",
+			"back": "Atrás",
+			"didYouKnow": "Sabías que...",
+			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+		},
+		"createAds": {
+			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"error":{
+				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
+				"photoRequired": "Foto requerida"
+			},
+			"form": {
+				"title": "Título del anuncio",
+				"remaining": "restantes",
+				"price": "Precio",
+				"addPhotos": "Agregar fotos",
+				"pricePlaceholder": "Preguntarme el precio"
+			},
+			"post": "Publicar",
+			"ad": "Anuncio"
+		},
+		"uploadModal": {
+			"title": "Carga una foto"
+		},
+		"loginModal": {
+			"title": "Inicia sesión para continuar",
+			"facebookBtn": "Continuar con Facebook",
+			"emailBtn": "Iniciar sesión con correo electrónico",
+			"register": "Registrarse",
+			"close": "Cerrar",
+			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
+			"termsAndConditions": "Términos v Condiciones",
+			"legal2": "y reconozco que que he leído las Notificaciones de",
+			"privacy": "Privacidad",
+			"and": "y",
+			"cookies": "Cookies",
+			"legal3": "de Vivanuncios"
+		},
+		"successModal": {
+			"title": "¡Ya se cargó tu anuncio!",
+			"tip": "Consejo: Agrega más fotos para mejorar tus posibilidades de vender rápidamente.",
+			"moreDetails": "Agregar más detalles",
+			"postMoreBtn": "Publicar más anuncios"
+		},
+		"unsupportedFileModal": {
+			"title": "Formato de archivo no admitido",
+			"close": "Cerrar",
+			"message": "Este archivo contiene un formato multimedia no admitido.",
+			"uploadBtn": "Cargar una foto diferente",
+			"error": "Error"
+		}
+	},
+	"footer": {
+		"help": {
+			"heretohelp": "Estamos aquí para ayudarte",
+			"sendemail": "Envía un correo electrónico",
+			"callus": "Llámanos",
+			"chatwithus": "Chatea con nosotros",
+			"contact": "Atención al cliente",
+			"meet": "Contacta a nuestro equipo de Atención al cliente"
+		},
+		"support": {
+			"em": "Email",
+			"ca": "Teléfono",
+			"ch": "Chat"
+		},
+		"sitemap": {
+			"aboutus": {
+				"aboutus": "Acerca de nosotros",
+				"aboutviva": "Acerca de Vivanuncios",
+				"vivablog": "Blog de Vivanuncios",
+				"vivabusiness": "Vivanuncios para negocios",
+				"rules": "Reglas para publicar anuncios",
+				"staysafe": "Mantente Seguro",
+                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+                "protool": "Agentes Inmobiliarios",
+                "protoollink": "https://protool.vivanuncios.com.mx/"
+			},
+			"legal": {
+				"legal": "Información legal",
+				"terms": "Condiciones de uso",
+				"privacy": "Política de privacidad",
+				"cookies": "Cookies"
+			},
+			"business": {
+				"business": "Agentes Inmobiliarios",
+				"protool": "La Tienda de Semi Nuevos",
+				"stores": "La Tienda Vivanuncios"
+			},
+			"explore": {
+				"explore": "Explorar",
+				"classifieds": "Sitios de clasificados de eBay",
+				"mobile": "Aplicaciones Móviles",
+				"partners": "Socios",
+				"carprice": "Guía de precios de autos",
+				"location": "Ubicaciones",
+                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
+                "topsearches": "Búsquedas destacadas",
+                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+				"priceIndex": "Previos de Inmuebles"
+			},
+			"tips": {
+				"tips": "Consejos y ayuda",
+				"help": "Páginas de ayuda",
+				"helplink": "https://ayuda.vivanuncios.com.mx",
+				"onlinesafety": "Seguridad en Internet",
+				"vivaguides": "Guías de Vivanuncios",
+				"givefeedback": "Comentar",
+				"listingRules": "Reglas para Publicar Anuncios"
+			}
+		},
+		"topSearches": {
+			"viewMore": "Ver Más",
+			"viewLess": "Ver Menos"
+		},
+		"download": {
+			"download": "Descargar la aplicación",
+			"itunes": "Disponible en la App Store",
+			"playstore": "Disponible en la App Store de Android"
+		},
+		"trademark": {
+			"trademark": "2014-%s eBay. Todos los derechos reservados"
+		}
+	},
+	"postAdModal": {
+		"helpText": "¿Qué quieres anunciar?",
+		"uploadPhotos": "Cargar foto(s)",
+		"uploadPhoto": "Carga una foto",
+		"uploadQuickly": "Publica un anuncio rápidamente",
+		"upload": "Publica un anuncio",
+		"close": "Cerrar"
+	},
+	"editAd": {
+		"reorderImages": "Volver a ordenar imágenes",
+		"headerTitle": "Edita tu anuncio",
+		"mainDetails": {
+			"title": "Agregar detalles",
+			"labels": {
+				"category": "Categoría",
+				"adTitle": "Título del anuncio",
+				"price": "Precio",
+				"description": "Descripción",
+				"location": "Ciudad, zona o código postal"
+			},
+			"titleRestrictions": {
+				"minimumAvailable": "Disponsibles: ",
+				"characters": " caracter(es)"
+			},
+			"askMe": "Preguntarme",
+			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
+			"submit": "Listo",
+			"cancel": "Cancelar",
+			"locationWarning": "Tu ubicación exacta no se publicará",
+			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+		},
+		"categorySelect": {
+			"title": "Categoría del artículo",
+			"prompt": "Búsqueda por palabra clave en %s",
+			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
+			"selectPrompt": "Select a Category Below",
+			"save": "Guardar",
+			"rootLabel": "Categorías"
+		}
+	},
+	"adStats": {
+		"views": "Visitas",
+		"messages": "Mensajes",
+		"favorites": "Favoritos"
+	},
+	"shareAd": {
+		"title": "Compartir este anuncio",
+		"dateStrings": {
+			"minute": {
+				"plural": "hace %s minutos",
+				"singular": "hace %s minuto"
+			},
+			"hour": {
+				"plural": "hace %s horas",
+				"singular": "hace %s hora"
+			}
+		}
+	},
+	"common": {
+		"abbreviations": {
+			"months": {
+				"1": "Ene",
+				"2": "Feb",
+				"3": "Mar",
+				"4": "Abr",
+				"5": "Mayo",
+				"6": "Jun",
+				"7": "Jul",
+				"8": "Ago",
+				"9": "Sep",
+				"10": "Oct",
+				"11": "Nov",
+				"12": "Dic"
+			}
+		}
+	}
 }
