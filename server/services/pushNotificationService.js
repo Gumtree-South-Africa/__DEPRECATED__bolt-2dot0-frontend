@@ -19,11 +19,11 @@ class PushNotificationService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, JSON.stringify(data), 'saveDraftAd');
+		}), bapiHeaderValues, JSON.stringify(data), 'pushSubscribe');
 	}
 
 	subscribeChatGCM(bapiHeaderValues, subscription) {
-		let pathValue = config.get('BAPI.endpoints.pushSubscribe') + '/' + notificationType.chat;
+		let pathValue = config.get('BAPI.endpoints.pushUnsubscribe') + '/' + notificationType.chat;
 		let data = {
 			subscription: subscription
 		};
@@ -31,7 +31,7 @@ class PushNotificationService {
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, JSON.stringify(data), 'saveDraftAd');
+		}), bapiHeaderValues, JSON.stringify(data), 'pushUnsubscribe');
 	}
 }
 

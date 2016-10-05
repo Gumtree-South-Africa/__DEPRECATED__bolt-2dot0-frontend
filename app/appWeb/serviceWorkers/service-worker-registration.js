@@ -80,7 +80,7 @@ function unsubscribe(subscription) {
 	unsubscribeInServer(subscription);
 
 	// delete subscription cookie
-	CookieUtils.setCookie('GCMSubscription', '');
+	CookieUtils.setCookie('GCMSubscription', '', -1);
 }
 
 // Once the service worker is registered set the initial state
@@ -107,6 +107,19 @@ function initializePushNotification() {
 		return;
 	}
 
+	// If user is not logged in, no push notification
+	let btAuthStr = CookieUtils.getCookie('bt_auth');
+	if(btAuthStr === '') {
+		console.warn('User not logged in, push message not enabled');
+
+		// unsubscribe any existing subscription if present
+		let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
+		if(subscriptionFromCookieStr !== '') {
+			unsubscribe(JSON.parse(subscriptionFromCookieStr));
+		}
+		return;
+	}
+
 	// We need the service worker registration to check for a subscription
 	navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
 		console.log(':^)', serviceWorkerRegistration);
@@ -123,7 +136,6 @@ function initializePushNotification() {
 			// Example Subscription: eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j
 			// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
-			// TODO: Keep your server in sync with the latest subscriptionId
 			// if cookie value same as subscription
 			let subscriptionChanged = false;
 
