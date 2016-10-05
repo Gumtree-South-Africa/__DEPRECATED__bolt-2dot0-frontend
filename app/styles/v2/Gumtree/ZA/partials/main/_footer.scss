@@ -82,6 +82,10 @@
 			}
 		}
 		.support-wrapper{
+<<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
+=======
+			//width: 49%;
+>>>>>>> style(_footer.scss) Footer - email text changed to contact us
 			.support-container{
 				margin: 0 12.5px;
 				.support-icon{
@@ -384,6 +388,7 @@
 				}
 			}
 			.support-wrapper{
+<<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 				text-align: left;
 				padding: 12px 12px;
@@ -392,15 +397,24 @@
 				width:80%;
 				padding: 10px 10%;
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
+=======
+				text-align: left;
+				//width:80%;
+				padding: 12px 12px;
+>>>>>>> style(_footer.scss) Footer - email text changed to contact us
 				display: inline-table;
 				margin: 0px;
 				.support-container{
 					display: inline-block;
 					margin: 0;
+<<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 =======
 					width: 33%;
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
+=======
+					//width: 33%;
+>>>>>>> style(_footer.scss) Footer - email text changed to contact us
 					.support-text, .support-icon{
 						margin:0;
 					}
@@ -467,6 +481,7 @@
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
+<<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
 <<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 <<<<<<< 30117d40a0472036ec31ab9cd95a4bdc187723ba
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
@@ -502,6 +517,16 @@
 >>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 =======
 >>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
+=======
+	.footer-wrapper{
+		.customer-service-container{
+			.support-wrapper{
+				text-align: right;
+				padding-right: 25px;
+			}
+		}
+	}
+>>>>>>> style(_footer.scss) Footer - email text changed to contact us
 	.footer-wrapper .desktop-only.social-container{
 		display: inline-table;
 		padding-left: 2.5%;
