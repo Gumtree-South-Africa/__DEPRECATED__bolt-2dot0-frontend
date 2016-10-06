@@ -12,20 +12,6 @@
 	.meet-team{
 		margin: 15px 0;
 	}
-	.df-support-wrapper {
-    width: 100%;
-    margin: 0;
-    .df-support-container{
-      padding: 10px 0;
-      text-align: center;
-      width: 100%;
-      margin: 0;
-      .support-icon{
-      	margin: 0;
-      }
-    }
-  }
-
 	.customer-service-container{
 		height:88px;
 		display: inline-block;
@@ -57,7 +43,6 @@
 			}
 		}
 		.support-wrapper{
-			//width: 49%;
 			.support-container{
 				margin: 0 12.5px;
 				.support-icon{
@@ -78,26 +63,20 @@
 					top:-3px;
 					margin-left:0;
 					font-size: 14px;
-					//text-transform:uppercase;
 				}
 			}
 		}
 	}
-
 	.line-divider{
 		width: 941px;
 		margin: auto;
 	}
-
-	//-----------
-
 	.footer-links{
 		.menu-category{
 			margin-top: 0;
 			padding-top: 18px;
 			padding-bottom: 18px;
 			&:first-child span{
-				//text-transform: capitalize;
 				font-weight: bold;
 			}
 			.menu-items{
@@ -106,9 +85,6 @@
 			
 		}
 	}
-
-	//-----------
-
 	.social-container{
 		margin:0;
 		display: inline-table;
@@ -162,9 +138,6 @@
 			}
 		}
 	}
-
-	//-----
-	
 	.seo-wrapper{
 		display:inline-block;
 		color: inherit;
@@ -186,8 +159,20 @@
 			background-color: color(foxtail, medium);
 		}
 	}
-
+	.df-support-wrapper {
+    width: 100%;
+    margin: 0;
+    .df-support-container{
+      text-align: left;
+      width: 100%;
+      margin: 0;
+      .support-icon{
+      	margin: 0;
+      }
+    }
+  }
 }
+
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
@@ -206,14 +191,12 @@
 			}
 			.support-wrapper{
 				text-align: left;
-				//width:80%;
 				padding: 12px 12px;
 				display: inline-table;
 				margin: 0px;
 				.support-container{
 					display: inline-block;
 					margin: 0;
-					//width: 33%;
 					.support-text, .support-icon{
 						margin:0;
 					}
@@ -224,7 +207,6 @@
 				}
 			}
 		}
-
 		.seo-wrapper{
 			.seo-line{
 				border-bottom: 1px solid color(swirl, shade); 
@@ -246,43 +228,57 @@
 				padding: 18px 0 9px 0;
 			}
 		}
+		.df-support-wrapper {
+	    .df-support-container{
+	    	padding: 12px 12px;
+	    }
+	  }
 	}
 	.clear.line-divider{
 		display: none;
 	}
+
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
 	.footer-wrapper{
+		
+		.desktop-only.social-container{
+			display: inline-table;
+			padding-left: 2.5%;
+		}
+
 		.customer-service-container{
 			.support-wrapper{
 				text-align: right;
 				padding-right: 25px;
 			}
 		}
-	}
-	.footer-wrapper .desktop-only.social-container{
-		display: inline-table;
-		padding-left: 2.5%;
-	}
-	.seo-wrapper{
-		.tab-content{
-			margin:0;
-			text-align: center;
-			.top-content{
-				float: left;
-				width: 49%;
-			}
-			.top-content-wrapper .top-content .top-links{
-				position: relative;
-				left: 0;
-			}
-			.top-content-wrapper .top-content:nth-child(even){
-				display: inline-block;
+
+		.seo-wrapper{
+			.tab-content{
+				margin:0;
+				text-align: center;
+				.top-content{
+					float: left;
+					width: 49%;
+				}
+				.top-content-wrapper .top-content .top-links{
+					position: relative;
+					left: 0;
+				}
+				.top-content-wrapper .top-content:nth-child(even){
+					display: inline-block;
+				}
 			}
 		}
+
+		.df-support-wrapper {
+	    .df-support-container{
+	    	padding: 12px 40px;
+	    }
+	  }
 	}
-	
 }
 
 
