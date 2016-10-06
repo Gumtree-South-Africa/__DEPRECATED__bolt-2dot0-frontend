@@ -160,12 +160,13 @@
 		}
 	}
 	.df-support-wrapper {
-    width: 100%;
-    margin: 0;
+    margin: auto;
+    max-width: 942px;
+    width: inherit;
+    padding: 12px 12px;
     .df-support-container{
-      text-align: left;
-      width: 100%;
-      margin: 0;
+      height: auto;
+      margin: auto;
       .support-icon{
       	margin: 0;
       }
@@ -228,11 +229,6 @@
 				padding: 18px 0 9px 0;
 			}
 		}
-		.df-support-wrapper {
-	    .df-support-container{
-	    	padding: 12px 12px;
-	    }
-	  }
 	}
 	.clear.line-divider{
 		display: none;
@@ -272,13 +268,5 @@
 				}
 			}
 		}
-
-		.df-support-wrapper {
-	    .df-support-container{
-	    	padding: 12px 40px;
-	    }
-	  }
 	}
 }
-
-
