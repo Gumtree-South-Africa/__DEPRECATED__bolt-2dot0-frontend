@@ -26,6 +26,7 @@
 @import  "../partials/components/hamburgerMenu/hamburgerMenu";
 @import  "../partials/components/profileMenu/profileMenu";
 @import  "../partials/components/searchbarv2/searchbarv2";
+<<<<<<< ca49c8d45e8e565dc0ac1bc187e872884fb4fc3a
 =======
 @import  "../partials/components/header/_header";
 @import  "../partials/components/hamburgerMenu/_hamburgerMenu";
@@ -38,3 +39,8 @@
 >>>>>>> refactor(components, bapi/config_*, footer) using the config to store the social networks urls and avoiding _ on import statements
 @import  "../partials/main/footer.scss";
 @import  "../partials/main/seo.scss";
+=======
+@import  "../partials/components/footer/footer.scss";
+@import  "../partials/components/footer/seo.scss";
+@import  "../partials/components/card/card.scss";
+>>>>>>> feat(card, footer) adding the card and footer folders
