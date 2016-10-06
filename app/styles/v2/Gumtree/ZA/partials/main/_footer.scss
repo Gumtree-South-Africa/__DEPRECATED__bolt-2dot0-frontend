@@ -19,6 +19,7 @@
 	.meet-team{
 		margin: 15px 0;
 	}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< dbefbf779e4e38102dd8c105512f4c93f8c275cc
 =======
 	.df-support-wrapper {
@@ -36,6 +37,8 @@
   }
 
 >>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 	.customer-service-container{
 		height:88px;
 		display: inline-block;
@@ -82,10 +85,13 @@
 			}
 		}
 		.support-wrapper{
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
 =======
 			//width: 49%;
 >>>>>>> style(_footer.scss) Footer - email text changed to contact us
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 			.support-container{
 				margin: 0 12.5px;
 				.support-icon{
@@ -114,17 +120,20 @@
 >>>>>>> refactor(_footer.scss) Footer - Local images hardcoded
 =======
 					font-size: 14px;
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 					//text-transform:uppercase;
 >>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 				}
 			}
 		}
 	}
-
 	.line-divider{
 		width: 941px;
 		margin: auto;
 	}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< a75e929557ad2386941cc97e2573f4a84414e1e0
 <<<<<<< aa1f962cd000c5adc37b538d02bd197e9aa204a5
 =======
@@ -137,12 +146,15 @@
 	//-----------
 
 >>>>>>> refactor(_footer.scss) Footer - Line divider
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 	.footer-links{
 		.menu-category{
 			margin-top: 0;
 			padding-top: 18px;
 			padding-bottom: 18px;
 			&:first-child span{
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 <<<<<<< 1fa83701bff1a7d618214485a7218a5c5883cbdb
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
@@ -158,6 +170,8 @@
 =======
 				//text-transform: capitalize;
 >>>>>>> style(_footer.scss) Footer - Links, Support Photo and !capitalize
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 				font-weight: bold;
 			}
 			.menu-items{
@@ -283,12 +297,15 @@
 			}
 		}
 	}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 =======
 
 	//-----
 	
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 	.seo-wrapper{
 		display:inline-block;
 		color: inherit;
@@ -323,6 +340,7 @@
 		}
 >>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
 	}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 	.df-support-wrapper {
     margin: auto;
@@ -332,11 +350,21 @@
     .df-support-container{
       height: auto;
       margin: auto;
+=======
+	.df-support-wrapper {
+    width: 100%;
+    margin: 0;
+    .df-support-container{
+      text-align: left;
+      width: 100%;
+      margin: 0;
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
       .support-icon{
       	margin: 0;
       }
     }
   }
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 =======
 	.footer-trademark {
 		margin: 0;
@@ -361,6 +389,10 @@
 
 }
 >>>>>>> refactor(_footer.scss) Footer - Deleting chat and telephone icons, padding and margin from top Locations
+=======
+}
+
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
@@ -399,7 +431,6 @@
 >>>>>>> style(_footer.scss) Footer - Padding links, download images, social container display
 =======
 				text-align: left;
-				//width:80%;
 				padding: 12px 12px;
 >>>>>>> style(_footer.scss) Footer - email text changed to contact us
 				display: inline-table;
@@ -407,6 +438,7 @@
 				.support-container{
 					display: inline-block;
 					margin: 0;
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< dd0cdb44467f220bb792a273373877d2865d1d2e
 <<<<<<< d29eeb18b440d18504e5f15e18e0259a895ceaf8
 =======
@@ -415,6 +447,8 @@
 =======
 					//width: 33%;
 >>>>>>> style(_footer.scss) Footer - email text changed to contact us
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 					.support-text, .support-icon{
 						margin:0;
 					}
@@ -432,8 +466,11 @@
 =======
 >>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 		}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 		.seo-wrapper{
 			.seo-line{
 				border-bottom: 1px solid color(swirl, shade); 
@@ -457,6 +494,11 @@
 				padding: 18px 0 9px 0;
 			}
 		}
+		.df-support-wrapper {
+	    .df-support-container{
+	    	padding: 12px 12px;
+	    }
+	  }
 	}
 	.clear.line-divider{
 		display: none;
@@ -477,7 +519,11 @@
 	.clear.line-divider{
 		display: none;
 	}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 >>>>>>> refactor(_footer.scss) Footer - hidding Line divider only mobile
+=======
+
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 }
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
@@ -519,12 +565,19 @@
 >>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 =======
 	.footer-wrapper{
+		
+		.desktop-only.social-container{
+			display: inline-table;
+			padding-left: 2.5%;
+		}
+
 		.customer-service-container{
 			.support-wrapper{
 				text-align: right;
 				padding-right: 25px;
 			}
 		}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 	}
 >>>>>>> style(_footer.scss) Footer - email text changed to contact us
 	.footer-wrapper .desktop-only.social-container{
@@ -545,10 +598,33 @@
 			}
 			.top-content-wrapper .top-content:nth-child(even){
 				display: inline-block;
+=======
+
+		.seo-wrapper{
+			.tab-content{
+				margin:0;
+				text-align: center;
+				.top-content{
+					float: left;
+					width: 49%;
+				}
+				.top-content-wrapper .top-content .top-links{
+					position: relative;
+					left: 0;
+				}
+				.top-content-wrapper .top-content:nth-child(even){
+					display: inline-block;
+				}
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 			}
 		}
+
+		.df-support-wrapper {
+	    .df-support-container{
+	    	padding: 12px 40px;
+	    }
+	  }
 	}
-	
 }
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 
