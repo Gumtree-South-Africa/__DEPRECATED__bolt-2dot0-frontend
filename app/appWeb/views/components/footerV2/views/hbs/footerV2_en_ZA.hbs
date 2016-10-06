@@ -27,7 +27,10 @@
 {{/partial}}
 
 {{#partial "footer-links-legal-df"}}
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< f920baa18c4e5c9601810e6839666fd409fcc338
+=======
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
   <div class="footer-inner-wrappper">
     <div class="df-footer-legal">
       <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.gumtreebusiness"}}</span>
@@ -39,6 +42,7 @@
             </a>
           </div>
         </div>
+<<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
       </div>
     </div>
     <div class="line-divider clear"></div>
@@ -56,6 +60,11 @@
 
   <div class="line-divider clear"></div>
 >>>>>>> fix(footerV2.hbs, footerV2_en_ZA.hbs) removing the seo footer
+=======
+      </div>
+    </div>
+    <div class="line-divider clear"></div>
+>>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 </div>
 {{/partial}}
 
@@ -111,8 +120,8 @@
   <div class="support-wrapper">
     <div class="support-container">
       <span class="support-icon email-icon"></span>
-      <a class="mobile-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
-      <a class="desktop-only support-text" href="{{this.footer.helpEmailURL}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
+      <a class="mobile-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.help.sendemail"}}</a>
+      <a class="desktop-only support-text" href="{{this.footer.helpUrl}}" data-gtm="pc|NavFooterClick|eventLabel|CSEmail">{{i18n "footer.support.em"}}</a>
     </div>
   </div>
 {{/partial}}
@@ -122,7 +131,7 @@
   <div class="df-support-wrapper">
     <div class="df-support-container">
       <span class="support-icon email-icon"></span>
-      <a class="support-text" href="{{this.footer.helpEmailURL}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>
+      <a class="support-text" href="{{this.footer.helpUrl}}" data-gtm='pc|NavFooterClick|eventLabel|CSEmail'>
         {{i18n "footer.support.em"}}
       </a>
     </div>
