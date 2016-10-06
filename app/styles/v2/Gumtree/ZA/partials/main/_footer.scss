@@ -352,13 +352,20 @@
       margin: auto;
 =======
 	.df-support-wrapper {
-    width: 100%;
-    margin: 0;
+    margin: auto;
+    max-width: 942px;
+    width: inherit;
+    padding: 12px 12px;
     .df-support-container{
+<<<<<<< cb911d909e7b0906603a33d2d2a4cedfa33422e4
       text-align: left;
       width: 100%;
       margin: 0;
 >>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
+=======
+      height: auto;
+      margin: auto;
+>>>>>>> fix(postAdPageConfig.js) Deleting duplicated en_ZA key
       .support-icon{
       	margin: 0;
       }
@@ -494,11 +501,6 @@
 				padding: 18px 0 9px 0;
 			}
 		}
-		.df-support-wrapper {
-	    .df-support-container{
-	    	padding: 12px 12px;
-	    }
-	  }
 	}
 	.clear.line-divider{
 		display: none;
@@ -618,13 +620,8 @@
 >>>>>>> refactor(_footer.scss) Footer - Help us links and contact us left alignment
 			}
 		}
-
-		.df-support-wrapper {
-	    .df-support-container{
-	    	padding: 12px 40px;
-	    }
-	  }
 	}
+<<<<<<< cb911d909e7b0906603a33d2d2a4cedfa33422e4
 }
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
 
@@ -653,4 +650,6 @@
 			}
 		}
 	}
+=======
+>>>>>>> fix(postAdPageConfig.js) Deleting duplicated en_ZA key
 }
