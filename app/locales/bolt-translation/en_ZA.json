@@ -1145,8 +1145,8 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular",
-			"yourNeighborhood": "Ads",
+			"popularIn": "Popular Ads in",
+			"yourNeighborhood": "Your neighborhood",
 			"viewMore": "View more"
 		},
 		"searchbar": {
