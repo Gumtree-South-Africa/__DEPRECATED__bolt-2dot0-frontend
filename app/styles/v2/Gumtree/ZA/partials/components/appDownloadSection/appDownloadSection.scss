@@ -1,3 +1,24 @@
-#downloadapp-content {
-  background-color: #4A4539
+.downloadapp-wrapper{
+	#downloadapp-content {
+	  background-color: #4A4539;
+	  .review-wrapper{
+	  	.user-avatar{
+	  		border: 1px solid #f66429;
+	  	}
+	  }
+	  .app-button{
+			.icon-app-store{
+				background: url(../../../../../images/en_ZA/appstore.svg) no-repeat;
+				border: none;
+				background-position: center;
+				background-size: 100%;
+			}
+			.icon-googleplay{
+				background: url(../../../../../images/en_ZA/google-play.png) no-repeat;
+				border: none;
+				background-position: center;
+				background-size: 115%;
+			}
+	  }
+	}
 }
