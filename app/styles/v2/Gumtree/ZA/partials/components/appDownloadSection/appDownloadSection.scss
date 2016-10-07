@@ -1,4 +1,9 @@
 .downloadapp-wrapper{
+	#downloadapp-imagewrapper{
+		background: url(../../../../../images/en_ZA/AppDownload.png) no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
 	#downloadapp-content {
 	  background-color: #4A4539;
 	  .review-wrapper{
