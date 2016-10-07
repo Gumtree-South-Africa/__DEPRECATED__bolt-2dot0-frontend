@@ -60,6 +60,7 @@ class ServiceWorkerModel {
 		let homepageCache = {};
 
 		// start of precache
+		preCache.baseImageUrl = baseImageUrl;
 		preCache.css = _.reduceRight(cacheConfig.preCachePaths.css, function(a,b) {
 			b = baseCSSUrl + b;
 			return a.concat(b);

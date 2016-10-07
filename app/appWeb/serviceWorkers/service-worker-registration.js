@@ -26,7 +26,7 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 function subscribeInServer(subscription) {
 	let payload = {
 		subscription: subscription,
-		deviceid: ''
+		endpoint: subscription.endpoint
 	};
 	$.ajax({
 		url: '/api/push/subscribe',
@@ -48,7 +48,7 @@ function subscribeInServer(subscription) {
 function unsubscribeInServer(subscription) {
 	let payload = {
 		subscription: subscription,
-		deviceid: ''
+		endpoint: subscription.endpoint
 	};
 	$.ajax({
 		url: '/api/push/subscribe',
@@ -111,51 +111,45 @@ function initializePushNotification() {
 	let btAuthStr = CookieUtils.getCookie('bt_auth');
 	if(btAuthStr === '') {
 		console.warn('User not logged in, push message not enabled');
-
-		// unsubscribe any existing subscription if present
-		let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
-		if(subscriptionFromCookieStr !== '') {
-			unsubscribe(JSON.parse(subscriptionFromCookieStr));
-		}
 		return;
 	}
 
 	// We need the service worker registration to check for a subscription
 	navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
 		console.log(':^)', serviceWorkerRegistration);
-		serviceWorkerRegistration.pushManager.subscribe({
-			userVisibleOnly: true
-		}).then(function(subscription) {
-			console.log('endpoint:', subscription.endpoint);
-			if (!subscription) {
-				return;
-			}
-			// endpoint: https://android.googleapis.com/gcm/send/
-			// API Key : AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58
-			// sender Id:  759612781184
-			// Example Subscription: eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j
-			// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
-			// if cookie value same as subscription
-			let subscriptionChanged = false;
+		serviceWorkerRegistration.pushManager.getSubscription()
+			.then(function(existingSubscription) {
+				if (existingSubscription) {
+					subscribe(existingSubscription);
+				} else {
+					serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
+						.then(function(newSubscription) {
+							if (!newSubscription) {
+								return;
+							}
 
-			let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
-			if(subscriptionFromCookieStr === '') {
-				// set subscription in cookie
-				subscribe(subscription);
-			} else {
-				let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
+							// endpoint: https://android.googleapis.com/gcm/send/
+							// API Key : AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58
+							// sender Id:  759612781184
+							// Example Subscription: eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j
+							// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
-				subscriptionChanged = (subscription.endpoint !== subscriptionFromCookie.endpoint);
-				if (subscriptionChanged) {
-					// unsubscribe if there exists a cookied subscription
-					unsubscribe(subscriptionFromCookie);
-
-					// subscribe the new subscription
-					subscribe(subscription);
+							let subscriptionChanged = false;
+							let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
+							if(subscriptionFromCookieStr === '') {
+								subscribe(newSubscription);
+							} else {
+								let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
+								subscriptionChanged = (newSubscription.endpoint !== subscriptionFromCookie.endpoint);
+								if (subscriptionChanged) {
+									unsubscribe(subscriptionFromCookie);
+									subscribe(newSubscription);
+								}
+							}
+						});
 				}
-			}
-		});
+			});
 	}).catch(function(err) {
 		console.log(':^(', err);
 	});

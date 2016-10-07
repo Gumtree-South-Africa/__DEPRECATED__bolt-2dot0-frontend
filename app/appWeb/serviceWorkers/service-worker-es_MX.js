@@ -36,7 +36,7 @@ self.addEventListener('activate', function(event) {
 				cacheNames.map(function(cacheName) {
 					if (cacheName.indexOf(PRECACHE) === -1) {
 						if (expectedCacheNames.indexOf(cacheName) === -1) {
-							// If this cache name isn't present in the array of "expected" cache names, then delete it.
+							// If this cache name isn't present in the array of 'expected' cache names, then delete it.
 							console.log('Deleting out of date cache:', cacheName);
 							return caches.delete(cacheName);
 						}
@@ -268,40 +268,46 @@ openDatabaseAndReplayRequests();
 self.addEventListener('push', function(event) {
 	console.log('Received a push message', event);
 
-	var title = 'Yay a message.';
-	var body = 'We have received a push message.';
-	var icon = '/images/icon-192x192.png';
-	var tag = 'simple-push-demo-notification-tag';
+	/*
+	 [email=linai@ebay.com, message=Su búsqueda [Mobiletest1] tiene nuevos resultados. Haga clic para verlos.,
+	 activity=SEARCHALERTS, alertCounter=Optional.absent(), details={senderId=null, receiverId=101594800, adId=null, adTitle=null, alertId=101683800, locale=es_AR_},
+	 gcmDetails=Optional.absent(), apnsDetails=Optional.absent()]
+	 */
+
+	var notificationTitle = 'Yay a message.';
+	const notificationOptions = {
+		'body': 'Su búsqueda [Mobiletest1] tiene nuevos resultados. Haga clic para verlos.',
+		'icon': cacheObj.preCache.baseImageUrl + '/es_MX/icon-192x192.png',
+		'tag': 'simple-push-demo-notification-tag',
+		'vibrate': [200, 100, 200, 100, 200, 100, 400],
+		'data': {
+			'url': '/search.html?alertId=101681500'
+		}
+	};
 
 	event.waitUntil(
-		self.registration.showNotification(title, {
-			body: body,
-			icon: icon,
-			tag: tag
-		})
+		Promise.all([
+			self.registration.showNotification(notificationTitle, notificationOptions)
+		])
 	);
 });
 
 self.addEventListener('notificationclick', function(event) {
-	console.log('On notification click: ', event.notification.tag);
+	var url = event.notification.data.url;
+
+	console.log('On notification click: ', url);
 	// Android doesn't close the notification when you click on it
 	// See: http://crbug.com/463146
 	event.notification.close();
 
-	// This looks to see if the current is already open and
-	// focuses if it is
+	var clickResponsePromise = Promise.resolve();
+	if (event.notification.data && event.notification.data.url) {
+		clickResponsePromise = clients.openWindow(event.notification.data.url);
+	}
+
 	event.waitUntil(
-		clients.matchAll({
-			type: "window"
-		}).then(function(clientList) {
-			for (var i = 0; i < clientList.length; i++) {
-				var client = clientList[i];
-				if (client.url == '/' && 'focus' in client)
-					return client.focus();
-			}
-			if (clients.openWindow) {
-				return clients.openWindow('/');
-			}
-		})
+		Promise.all([
+			clickResponsePromise
+		])
 	);
 });

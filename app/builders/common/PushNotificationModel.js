@@ -15,8 +15,16 @@ class PushNotificationModel {
 	 * Subscribes user's device to Push Notification Service
 	 * @param {string} subscription
 	 */
-	subscribe(subscription) {
-		return pushNotificationService.subscribeAlertsGCM(this.bapiHeaderValues, subscription);
+	subscribe(endpoint) {
+		return pushNotificationService.subscribeGCM(this.bapiHeaderValues, endpoint);
+	}
+
+	/**
+	 * Unsubscribes user's device from Push Notification Service
+	 * @param {string} subscription
+	 */
+	unsubscribe(endpoint) {
+		return pushNotificationService.unsubscribeGCM(this.bapiHeaderValues, endpoint);
 	}
 
 }

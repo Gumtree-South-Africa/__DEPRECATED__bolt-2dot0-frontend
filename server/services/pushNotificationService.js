@@ -10,28 +10,44 @@ let notificationType = {
 };
 
 class PushNotificationService {
-	subscribeAlertsGCM(bapiHeaderValues, subscription) {
-		let pathValue = config.get('BAPI.endpoints.pushSubscribe') + '/' + notificationType.alert;
+	subscribeGCM(bapiHeaderValues, endpoint) {
+		let pathValue = config.get('BAPI.endpoints.pushSubscribe');
+		let pattern = 'https://android.googleapis.com/gcm/send/';
+		let registrationId = endpoint.substr(endpoint.indexOf(pattern) + pattern.length, endpoint.length);
 		let data = {
-			subscription: subscription
+			'registrationId': registrationId,
+			'provider': 'gcm',
+			'appType': 'pwa',
+			'notifications': [
+				{'notificationFeatureType': notificationType.alert},
+				{'notificationFeatureType': notificationType.chat}
+			]
 		};
 
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, JSON.stringify(data), 'pushSubscribe');
+		}), bapiHeaderValues, JSON.stringify(data), 'pushSubscribeGcm');
 	}
 
-	subscribeChatGCM(bapiHeaderValues, subscription) {
-		let pathValue = config.get('BAPI.endpoints.pushUnsubscribe') + '/' + notificationType.chat;
+	unsubscribeGCM(bapiHeaderValues, endpoint) {
+		let pathValue = config.get('BAPI.endpoints.pushUnsubscribe');
+		let pattern = 'https://android.googleapis.com/gcm/send/';
+		let registrationId = endpoint.substr(endpoint.indexOf(pattern) + pattern.length, endpoint.length);
 		let data = {
-			subscription: subscription
+			'registrationId': registrationId,
+			'provider': 'gcm',
+			'appType': 'pwa',
+			'notifications': [
+				{'notificationFeatureType': notificationType.alert},
+				{'notificationFeatureType': notificationType.chat}
+			]
 		};
 
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: pathValue
-		}), bapiHeaderValues, JSON.stringify(data), 'pushUnsubscribe');
+		}), bapiHeaderValues, JSON.stringify(data), 'pushUnsubscribeGcm');
 	}
 }
 
