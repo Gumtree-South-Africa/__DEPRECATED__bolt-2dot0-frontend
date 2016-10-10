@@ -1389,10 +1389,10 @@
 	},
 	"postAdModal": {
 		"helpText": "¿Qué quieres anunciar?",
-		"uploadPhotos": "Cargar foto(s)",
-		"uploadPhoto": "Carga una foto",
-		"uploadQuickly": "Publica un anuncio rápidamente",
-		"upload": "Publica un anuncio",
+		"uploadPhotos": "Agrega tu foto(s)",
+		"uploadPhoto": "Agrega tu foto(s)",
+		"uploadQuickly": "Toma una foto y comienza a vender",
+		"upload": "Toma una foto y comienza a vender",
 		"close": "Cerrar"
 	},
 	"editAd": {
