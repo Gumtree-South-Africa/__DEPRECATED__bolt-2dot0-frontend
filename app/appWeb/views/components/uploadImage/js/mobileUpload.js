@@ -19,8 +19,6 @@ class MobileUpload {
 	initialize() {
 		postAd.initialize();
 		this.inputDisabled = false;
-		this.$loginModal = $('.login-modal');
-		this.$loginModalMask = $('.login-modal-mask');
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.imageProgress = this.uploadImageContainer.find('#js-image-progress');

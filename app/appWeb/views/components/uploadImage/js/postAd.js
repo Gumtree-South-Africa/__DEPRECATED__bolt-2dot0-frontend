@@ -19,8 +19,6 @@ class PostAd {
 		});
 		this.messageError = $('.error-message');
 		this.messageModal = $('.message-modal');
-		this.$loginModal = $('.login-modal');
-		this.$loginModalMask = $('.login-modal-mask');
 		this.disableImageSelection = false;
 		this.inputDisabled = false;
 		this.uploadImageContainer = $('.upload-image-container');
@@ -61,7 +59,7 @@ class PostAd {
 		this._postAd([url], (response) => {
 			this.inputDisabled = false;
 			formChangeWarning.disable();
-			this.handlePostResponse(this.$loginModal, this.$loginModalMask, response);
+			this.handlePostResponse(response);
 		}, (err) => {
 			console.warn(err);
 			spinnerModal.hideModal();
@@ -152,8 +150,6 @@ class PostAd {
 	/**
 	 * handles the response from posting for created/deferred cases.
 	 * finishes the spinner with a delay before redirecting or showing login modal
-	 * @param $loginModal
-	 * @param $loginModalMask
 	 * @param response
 	 */
 	handlePostResponse(response) {
@@ -170,7 +166,8 @@ class PostAd {
 						submitCb: () => {
 							window.location.href = response.defferedLink;
 						},
-						fbRedirectUrl: response.defferedLink
+						fbRedirectUrl: response.defferedLink,
+						links: response.links
 					});
 				});
 				break;

@@ -1,5 +1,34 @@
 <div id="login-modal" class="login-modal {{#if isHidden}}hidden{{/if}}">
-    {{> (dynamic "loginForm") startOpen=false}}
+    {{!-- {{> (dynamic "loginForm") startOpen=false}} --}}
+
+	<div id="consent-error" class="consent-error invisible">
+        {{i18n "register.error.acceptterms"}}
+	</div>
+	<div class="login-title">
+        {{i18n "postAd.loginModal.title"}}
+	</div>
+
+	<div class="facebook-button">
+		<a id="facebook-link" class="link" href="/social/facebook/authorize">
+			<span class="icon-facebook_white"></span>
+			<span>{{i18n "postAd.loginModal.facebookBtn"}}</span>
+		</a>
+	</div>
+
+    {{> (dynamic "button") hideIcon=true extraClasses='email-login-btn'
+        buttonLink="/post-TBD" i18nPath="postAd.loginModal.emailBtn"}}
+
+	<a class="register-link" href="/register.html">{{i18n "postAd.loginModal.register"}}</a>
+	<div class="legal-wrapper">
+		<input id="consent-checkbox" type="checkbox">
+		<span>{{i18n "postAd.loginModal.legal1"}}</span>
+		<a target="_blank" href="{{termsOfUseLink}}">{{i18n "postAd.loginModal.termsAndConditions"}}</a>
+		<span>{{i18n "postAd.loginModal.legal2"}}</span>
+		<a target="_blank" href="{{privacyPolicyLink}}">{{i18n "postAd.loginModal.privacy"}}</a>
+		<span>{{i18n "postAd.loginModal.and"}}</span>
+		<a target="_blank" href="{{cookieNoticeLink}}">{{i18n "postAd.loginModal.cookies"}}</a>
+		<span>{{i18n "postAd.loginModal.legal3"}}</span>
+	</div>
 </div>
 
 <div id="login-modal-mask" class="login-modal-mask {{#if isHidden}}hidden{{/if}}"></div>
