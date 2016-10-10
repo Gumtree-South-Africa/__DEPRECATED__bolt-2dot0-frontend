@@ -37,7 +37,6 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 		let returnUrl = `/post?guid=${guid}`;
 
 		console.log("returnUrl" + returnUrl);
-		alert("returnUrl" + returnUrl);
 		
 		response.links = {
 			emailLogin: `/login.html?redirect=${returnUrl}`,
