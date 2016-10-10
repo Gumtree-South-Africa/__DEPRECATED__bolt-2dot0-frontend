@@ -38,6 +38,7 @@ router.use('/', (req, res, next) => {
 	// Retrieve Data from Model Builders
 
 	console.log("christal-test postpageController.js");
+	alert("christal-test postpageController.js");
 	
 	if (!res.locals.b2dot0Version) {
 		res.redirect("/post.html");	// redirect to 1.0 version of this page
@@ -67,6 +68,8 @@ router.use('/', (req, res, next) => {
 					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
 
 					console.log("adResult.vipLink " + adResult.vipLink);
+					alert("adResult.vipLink " + adResult.vipLink);
+					
 					
 					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
 					if (adResult.adState === 'HOLD') {
@@ -74,6 +77,7 @@ router.use('/', (req, res, next) => {
 					}
 
 					console.log("redirectLink " + redirectLink);
+					alert("redirectLink " + redirectLink);
 					
 					return Q.reject({ redirect: redirectLink });
 				});

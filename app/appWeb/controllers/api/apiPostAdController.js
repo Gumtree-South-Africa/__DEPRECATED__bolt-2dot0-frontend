@@ -36,6 +36,9 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 		// generate 3 links for client: login, register, facebook login
 		let returnUrl = `/post?guid=${guid}`;
 
+		console.log("returnUrl" + returnUrl);
+		alert("returnUrl" + returnUrl);
+		
 		response.links = {
 			emailLogin: `/login.html?redirect=${returnUrl}`,
 			register: `/register.html?redirect=${returnUrl}`,
