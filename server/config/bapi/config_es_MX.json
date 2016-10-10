@@ -245,6 +245,18 @@
 					"seo"
 				]
 			}
+		},
+		"VIP": {
+			"desktop": {
+				"models": [
+					"seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"seo"
+				]
+			}
 		}
 	}
 }
