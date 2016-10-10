@@ -37,8 +37,11 @@ let postAdData = {
 router.use('/', (req, res, next) => {
 	// Retrieve Data from Model Builders
 
+	console.log("christal-test postpageController.js");
+	
 	if (!res.locals.b2dot0Version) {
 		res.redirect("/post.html");	// redirect to 1.0 version of this page
+		console.log("b2dot0Version is false");
 		return;
 	}
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
@@ -63,11 +66,15 @@ router.use('/', (req, res, next) => {
 					// deferred ad resolved, redirect to VIP
 					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
 
+					console.log("adResult.vipLink " + adResult.vipLink);
+					
 					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
 					if (adResult.adState === 'HOLD') {
 						redirectLink = '/edit/' + adResult.id;
 					}
 
+					console.log("redirectLink " + redirectLink);
+					
 					return Q.reject({ redirect: redirectLink });
 				});
 			}).fail((error) => {
