@@ -11,6 +11,9 @@ let _toggleModal = (e, shouldClose) => {
 		window.BOLT.trackEvents({
 			"event": "PostAdForm", "p": {"t": "PostAdForm"}
 		});
+		window.BOLT.trackEvents({
+			"event": "PostAdOptionModalClosed"
+		});
 		this.$postAdWrapper.toggleClass('hidden');
 	}
 };
