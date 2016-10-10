@@ -62,10 +62,16 @@
 		}
 
 		.menu-dropdown {
+			border-radius: 0 2px 2px 2px;
 			line-height: 20px;
+			padding: 5px;
 			position: absolute;
 			left: 0;
 			top: 100%;
+
+			.menu-item {
+				border-bottom-color: color(swirl);
+			}
 		}
 
 		.mobile-menu {
@@ -150,10 +156,6 @@
 
 .icon-my-ads-active {
 	opacity: 1 !important;
-}
-
-.profile-dropdown {
-	position: absolute;
 }
 
 @include to-breakpoint($medium-break) {
