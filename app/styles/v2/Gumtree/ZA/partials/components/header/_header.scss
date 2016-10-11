@@ -1,6 +1,12 @@
 .header-wrapper {
 	border-bottom-color: color(crane);
 
+	&.header-distraction-free {
+		.headerV2 {
+			padding-bottom: 10px;
+		}
+	}
+
 	.headerV2 {
 		height: auto;
 		margin: auto;
