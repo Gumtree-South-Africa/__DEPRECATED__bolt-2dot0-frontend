@@ -35,9 +35,11 @@ class BapiError extends ExtendableError {
 	 */
 	cleanBapiJson() {
 		// strip out what we don't want to log from bapi
-		this.bapiJson.details.forEach((item) => {
-			delete item._links;
-		});
+		if (this.bapiJson.details) {
+			this.bapiJson.details.forEach((item) => {
+				delete item._links;
+			});
+		}
 	}
 
 	/**

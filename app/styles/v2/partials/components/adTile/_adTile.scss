@@ -134,4 +134,12 @@ $panelCornerBorderRadius: 7px;
             }
 		}
 	}
+
+	img.lazy {
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		color: transparent;
+	}
 }

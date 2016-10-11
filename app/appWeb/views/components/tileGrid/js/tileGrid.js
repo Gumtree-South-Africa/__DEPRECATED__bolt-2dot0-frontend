@@ -180,7 +180,9 @@ class TileGrid {
 				container.isotope('layout');	// since sizes have changed, need to layout
 
 				$tiles.find('img.lazy').lazyload({
-					"skip_invisible": true
+					"skip_invisible": true,
+					"effect" : "fadeIn",
+					"effect_speed": 1000
 				});
 
 				// setup for more when server says we have it
@@ -268,8 +270,11 @@ class TileGrid {
 
 		// for debugging you can listen like this: <images>.on("appear", () => {
 		$('img.lazy').lazyload({
-			"skip_invisible": true
+			"skip_invisible": true,
+			"effect": "fadeIn",
+			"effect_speed": 1000
 		});
+		debugger;
 	}
 
 	/**

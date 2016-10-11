@@ -1,0 +1,35 @@
+{
+	"customAttributes": [
+		{
+			"name": "ForSaleBy",
+			"canonicalName": "ForSaleBy",
+			"localizedName": "Vendedor(a)",
+			"allowedValueType": "LIST",
+			"allowedValues": [
+				{
+					"dependencyValue": null,
+					"value": "ownr",
+					"canonicalValue": "ownr",
+					"localizedValue": "Particular"
+				},
+				{
+					"dependencyValue": null,
+					"value": "pfnl",
+					"canonicalValue": "pfnl",
+					"localizedValue": "Profesional"
+				}
+			],
+			"dependencies": null,
+			"dependents": null
+		},
+		{
+			"name": "Youtube",
+			"canonicalName": "url-de-youtube",
+			"localizedName": "Indique la URL de Youtube",
+			"allowedValueType": "STRING",
+			"allowedValues": [],
+			"dependencies": null,
+			"dependents": null
+		}
+	]
+}

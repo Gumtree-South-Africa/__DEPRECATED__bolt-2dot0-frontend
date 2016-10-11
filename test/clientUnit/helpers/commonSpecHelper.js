@@ -2,6 +2,8 @@
 
 
 let clientHbsHelpers = require("public/js/common/utils/clientHbsHelpers.js");
+let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
+let simulateInteractionHelpers = require("./simulateInteractionHelpers");
 let _ = require("underscore");
 
 let mockAjaxMapQueue = [];
@@ -80,10 +82,6 @@ let _dequeue = (url) => {
 	return ajaxInfo;
 };
 
-let simulateTextInput = ($input, text) => {
-	$input.val(text);
-	$input.trigger('input').keyup().focus().change();
-};
 
 let setCookie = (cookieName, cookieValue) => {
 	document.cookie = `${cookieName}=${cookieValue};path=/`;
@@ -142,8 +140,7 @@ let mockWebshim = () => {
 	registerMockAjax("/public/js/libraries/webshims/shims/form-shim-extend.js", {});
 };
 
-module.exports = {
-	simulateTextInput,
+let exports = {
 	setupTest,
 	registerMockAjax,
 	setCookie,
@@ -152,6 +149,9 @@ module.exports = {
 	mockWebshim,
 	mockGoogleLocationApi
 };
+
+_.extend(exports, simulateInteractionHelpers);
+module.exports = exports;
 
 // spying on ajax and replacing with fake, mock function
 beforeEach(() => {
@@ -162,7 +162,10 @@ beforeEach(() => {
 		}
 		if (ajaxInfo.options) {
 			if (ajaxInfo.options.fail) {
-				options.error(ajaxInfo.returnData);
+				let err = new Error();
+				err.responseText = JSON.stringify(ajaxInfo.returnData);
+				err.status = ajaxInfo.options.status || 500;
+				options.error(err);
 			} else if (ajaxInfo.delay && Number.isInteger(ajaxInfo.delay)) {
 				setTimeout(() => {
 					let successCallback = (ajaxInfo.success) ? ajaxInfo.success : options.success;
@@ -185,4 +188,6 @@ afterEach(() => {
 	$("#testArea").empty();
 	$("body").off();
 	$(window).off();
+	formChangeWarning.disable();
+	mockAjaxMapQueue = [];
 });

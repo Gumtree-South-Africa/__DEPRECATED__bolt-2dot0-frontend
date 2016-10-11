@@ -1,0 +1,20 @@
+.login-container {
+	max-width: 400px;
+	height: 210px;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	text-align: center;
+	transition: 1.3s height;
+
+	&.display-terms {
+		max-width: 600px;
+		height: 250px;
+	}
+
+	&.open {
+		height: 330px
+	}
+}

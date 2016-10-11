@@ -23,7 +23,7 @@ let cacheBapiData = require('./server/services/cache/cache-server-startup');
 let config = require('./server/config/site/sites.json');
 
 // Default list of all locales, if new locales are added, add it in this list
-let allLocales = 'es_MX,es_AR,es_US,en_ZA,en_IE,pl_PL,en_SG';
+let allLocales = 'es_MX,es_AR,en_ZA,en_IE,pl_PL,en_SG';
 // If SITES param is passed as input param, load only those countries
 let siteLocales = process.env.SITES || allLocales;
 

@@ -1,0 +1,10 @@
+{
+  "activationCode": "xyz",
+  "_links": [
+    {
+      "rel": "activationUrl",
+      "href": "/users/abc@yahoo.com/actions/activate?activationCode=xyz",
+      "method": "POST"
+    }
+  ]
+}

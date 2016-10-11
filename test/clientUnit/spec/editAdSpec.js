@@ -1,6 +1,7 @@
 'use strict';
 
 let editAdFormMainDetailsController = require("app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js");
+let editFormCustomAttributesController = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
 let specHelper = require('../helpers/commonSpecHelper.js');
 
@@ -22,8 +23,35 @@ let mockEditAdResponse = {
 //};
 
 let mockCategoryTree = require("../mock/categoryTree.json");
+let editPageModel = require("../mockData/EditPageModel.json");
+let customAttributeAjaxResponse = require("../mockData/customAttributesAjaxResponse.json");
+let dependentAttributesModel = require("../mockData/dependentAttributesModel.json");
 
 describe('Edit Ad', () => {
+	it("should validate edit ad fields on submit", () => {
+		specHelper.mockGoogleLocationApi();
+		let editPageModelCopy = JSON.parse(JSON.stringify(editPageModel));
+		editPageModelCopy.customAttributes = customAttributeAjaxResponse.customAttributes;
+		let failPayload = {"error":"error updating ad, see logs for details","bapiJson":{"message":"Validation Errors","details":[{"code":"INVALID_PARAM_ATTRIBUTE","message":"Param: categoryAttribute-Youtube, Value: 3000, Message: Invalid param"}]},"bapiValidationFields":["Youtube"]};
+		let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModelCopy, "es_MX");
+
+		specHelper.mockWebshim();
+
+		specHelper.registerMockAjax('/api/edit/update', failPayload, {fail: true, status: 400});
+
+		editAdFormMainDetailsController.initialize(false);
+		editAdFormMainDetailsController.onReady();
+
+		spyOn(editAdFormMainDetailsController, "_validatePhotoCarousel").and.callFake(() => {
+			return true; // fake validation for the photo carousel to true
+		});
+
+
+		$testArea.find('#edit-submit-button').click();
+
+		expect($testArea.find('[name="Youtube"]').hasClass("validation-error")).toBeTruthy();
+	});
+
 	it("should make ajax call when button is clicked", () => {
 		specHelper.mockGoogleLocationApi();
 		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
@@ -83,7 +111,90 @@ describe('Edit Ad', () => {
 	// 	});
 	// });
 
+	describe("Custom Attribute Rendering", () => {
+		it("should render custom attributes on category changes", () => {
+			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+			let newCatId = 64;
+			editFormCustomAttributesController.initialize();
+
+			specHelper.registerMockAjax(`/api/edit/customattributes/${newCatId}`, customAttributeAjaxResponse);
+
+			let spyStuff = {
+				postRenderCb: () => {
+					expect($testArea.find('[data-field="ForSaleBy"]').length).toEqual(1);
+					expect($testArea.find('[data-field="Youtube"]').length).toEqual(1);
+				}
+			};
+
+			spyOn(spyStuff, "postRenderCb").and.callThrough();
+
+			editFormCustomAttributesController.updateCustomAttributes(spyStuff.postRenderCb, newCatId);
+			expect(spyStuff.postRenderCb).toHaveBeenCalled();
+		});
+
+		it("should render custom attributes on category changes", () => {
+			let $makeOptions, $modelOptions;
+			let $testArea = specHelper.setupTest("editFormCustomAttributes", dependentAttributesModel.templateModel, "es_MX");
+
+			specHelper.registerMockAjax(`/api/edit/attributedependencies`, dependentAttributesModel.dependencies.Pontiac);
+			specHelper.registerMockAjax(`/api/edit/attributedependencies`, dependentAttributesModel.dependencies.Ford);
+
+			editFormCustomAttributesController.initialize();
+
+			let $makeSelect = $testArea.find('select[name="Make"]');
+			let $modelSelect = $testArea.find('select[name="Model"]');
+			$makeOptions = $makeSelect.find("option");
+			$modelOptions = $modelSelect.find("option");
+			expect($makeOptions.length).toEqual(3); // default value plus (Pontiac, Ford)
+			expect($modelOptions.length).toEqual(1); // default value plus (Pontiac, Ford)
+
+			specHelper.simulateSelectBoxSelect($makeSelect, "Pontiac");
+
+			$modelOptions = $modelSelect.find("option");
+			expect($makeOptions.length).toEqual(3); // default value plus (Pontiac, Ford)
+			expect($modelOptions.length).toEqual(3); // default value plus (Trans Am, Fire Bird)
+
+			expect($($modelOptions[0]).attr("value")).toEqual("default"); // default value plus (Trans Am, Fire Bird)
+			expect($($modelOptions[1]).attr("value")).toEqual("Trans Am"); // default value plus (Trans Am, Fire Bird)
+			expect($($modelOptions[2]).attr("value")).toEqual("Firebird"); // default value plus (Trans Am, Fire Bird)
+
+			specHelper.simulateSelectBoxSelect($makeSelect, "Ford");
+
+			$modelOptions = $modelSelect.find("option");
+			expect($makeOptions.length).toEqual(3); // default value plus (Pontiac, Ford)
+			expect($modelOptions.length).toEqual(2); // default value plus (Trans Am, Fire Bird)
+
+			expect($($modelOptions[0]).attr("value")).toEqual("default"); // default value plus (Trans Am, Fire Bird)
+			expect($($modelOptions[1]).attr("value")).toEqual("Mustang"); // default value plus (Trans Am, Fire Bird)
+		});
+
+	});
+
 	describe("Category Selection Modal", () => {
+		it("should open the category selection modal when pressing the breadcrumb links", () => {
+			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+
+			spyOn(categorySelectionModal, "openModal").and.stub();
+
+			editAdFormMainDetailsController.initialize();
+
+			$testArea.find("#category-name-display").click();
+
+			expect(categorySelectionModal.openModal).toHaveBeenCalled();
+		});
+
+		it("should open the category selection modal when pressing the change button links", () => {
+			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+
+			spyOn(categorySelectionModal, "openModal").and.stub();
+
+			editAdFormMainDetailsController.initialize();
+
+			$testArea.find(".choose-category-button").click();
+
+			expect(categorySelectionModal.openModal).toHaveBeenCalled();
+		});
+
 		it("should open with an empty category hierarchy at all categories", () => {
 			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
 
@@ -99,9 +210,9 @@ describe('Edit Ad', () => {
 			let $listItems = $testArea.find(".list-item");
 			expect($listItems.length).toBeGreaterThan(0);
 			expect($listItems.length).toEqual(mockCategoryTree.children.length);
-			expect($testArea.find(".list-item").each((i, item) => {
+			$testArea.find(".list-item").each((i, item) => {
 				expect($(item).text()).toEqual(mockCategoryTree.children[i].localizedName);
-			}));
+			});
 		});
 
 		it("should open with a selected category and its list if selected category is not a leaf", () => {
@@ -124,9 +235,43 @@ describe('Edit Ad', () => {
 
 			expect($listItems.length).toBeGreaterThan(0);
 			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			expect($listItems.each((i, item) => {
+			$listItems.each((i, item) => {
 				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			}));
+			});
+		});
+
+		it("should allow you to press a breadcrumb link to go backwards", () => {
+			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
+
+			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
+
+			categorySelectionModal.initialize();
+
+			categorySelectionModal.openModal({
+				currentHierarchy: [0, 5]
+			});
+
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel > Automotive Vehicles");
+			let $listItems = $testArea.find(".list-item");
+
+			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeFalsy();
+
+			$testArea.find("#clear-text-btn").click();
+
+			expect($listItems.length).toBeGreaterThan(0);
+			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
+			$listItems.each((i, item) => {
+				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
+			});
+
+			$testArea.find(".hier-link").first().click();
+			$listItems = $testArea.find(".list-item");
+
+			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
+			expect($listItems.length).toEqual(mockCategoryTree.children.length);
+			$listItems.each((i, item) => {
+				expect($(item).text()).toEqual(mockCategoryTree.children[i].localizedName);
+			});
 		});
 
 
@@ -149,9 +294,9 @@ describe('Edit Ad', () => {
 
 			expect($listItems.length).toBeGreaterThan(0);
 			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			expect($listItems.each((i, item) => {
+			$listItems.each((i, item) => {
 				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			}));
+			});
 		});
 
 		it("should stage a leaf node", () => {
@@ -172,9 +317,9 @@ describe('Edit Ad', () => {
 			let $listItems = $testArea.find(".list-item");
 
 			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			expect($listItems.each((i, item) => {
+			$listItems.each((i, item) => {
 				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			}));
+			});
 
 			$listItems.first().click();
 

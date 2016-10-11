@@ -1,0 +1,30 @@
+{{#partial "content"}}
+    <div class="activate-page">
+        <div class="activate-wrapper">
+            <!--this.activate.params.resent-->
+        {{#if this.activate.params.resent}}
+            <div class="activate-email-sent">
+                {{i18n "activate.page.emailSent" (wrapWithTagAndClass "span" "email-address" this.activate.params.emailAddress)}}
+
+            </div>
+            <div>{{i18n "activate.page.continueActivation"}}</div>
+            <!--this.activate.success-->
+        {{else if this.activate.success}}
+            <div class="activate-success">
+                {{i18n "activate.page.success" (wrapWithTagAndClass "span" "email-address" this.activate.params.emailAddress)}}
+            </div>
+            <div> {{i18n "activate.page.loggedIn"}}</div>
+            <a class="home-link" href="{{this.activate.params.redirect}}">{{i18n "activate.page.continue"}}</a>
+        {{else}}
+            <div class="activate-fail">{{i18n "activate.page.fail"}}</div>
+             <!--this.activate.failReason-->
+            {{#if this.activate.failReason}}
+                <div class="fail-reason">
+                    {{i18n "activate.page.failReason" (wrapWithTagAndClass "span" "fail-reason-code" this.activate.failReason)}}
+                </div>
+            {{/if}}
+            <a class="activate-resend" href="/activate/{{this.activate.params.emailAddress}}?activationcode=resend">{{i18n "activate.page.sendAnother"}}</a>
+        {{/if}}
+		</div>
+	</div>
+{{/partial}}

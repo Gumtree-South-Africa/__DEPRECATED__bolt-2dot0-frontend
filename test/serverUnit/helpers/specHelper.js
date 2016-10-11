@@ -1,6 +1,5 @@
 'use strict';
 let Q = require('q');
-let _ = require('underscore');
 let supertest = require('supertest');
 let fs = require('fs');
 let cwd = process.cwd();
@@ -10,7 +9,7 @@ let configService = require(`${cwd}/server/services/configservice`);
 let locationService = require(`${cwd}/server/services/location`);
 let categoryService = require(`${cwd}/server/services/category`);
 let bapiService = require(`${cwd}/server/services/bapi/BAPICall`);
-let config = require(`${cwd}/server/config/site/sites.json`);
+let sitesConfig = require(`${cwd}/server/config/site/sites.json`);
 let endpoints = require(`${cwd}/server/config/mock.json`).BAPI.endpoints;
 
 /**
@@ -65,6 +64,16 @@ let verifyMockEndpointsClean = () => {
 	console.error("verifyMockEndpointsClean End");
 };
 
+// if we don't clean up the endpoints after each test, strange failures can occur
+// ex. with two separate tests:
+// 		test 1 = register an endpoint to return a file/200 in a test and accidently not consume it
+//		test 2 = register an endpoint to return a file/400, for the same endpoint, and consume it, but suprise! your test recieves the file/200
+//   	you wonder why when you run test 2 by iteself it works, but when running with other tests it doesn't.
+// prevent "leakage" caused by registered but unconsumed mock endpoints
+afterEach(() => {
+	verifyMockEndpointsClean();
+});
+
 /**
  * Populates the mock endpoint map
  * @param url
@@ -104,30 +113,34 @@ module.exports.boltSupertest = (route, host, method) => {
 	if (!method) {
 		method = "GET";
 	}
+	// we need to load only the site we need because if we load all sites, the cache will try to pre-load data and consume registerMockEndpoints
+	// if we didnt restrict the site, for data that is cached, we would need to call registerMockEndpoint twice for each site (once for the cache to pre-load, and once for the test)
+	let testSite = sitesConfig.sites[host];
+	if (!testSite) {
+		console.error(`Error: host '${host}' does not match any configured sites`);
+		return;
+	}
+	process.env.SITES = testSite.locale;	// so we don't load all the sites for the test, only what we need for the test, based on host name specifed by the test
 	let app = require(cwd + '/app');
 	spyOnService(configService, 'getConfigData', `${cwd}/server/config/bapi/config_`);
 	spyOnService(categoryService, 'getCategoriesData', `${cwd}/test/serverUnit/mockData/categories/categories_`);
 	spyOnService(locationService, 'getLocationsData', `${cwd}/test/serverUnit/mockData/locations/locations_`);
-	_.each(config.sites, () => {
-		//Register POST config routes before startup
-		// Response file doesn't matter, just the 200
-		registerMockEndpoint(
-			`${endpoints.updateConfig}?_forceExample=true&_statusCode=200`,
-			'test/serverUnit/mockData/api/v1/Ad.json');
-	});
+
+	// we cant spy on endpoints.updateConfig one in the same way, so we register a mock endpoint on it
+	// Response file doesn't matter, just the 200, because the updateConfig is to force BAPI to get the latest zookeeper (dev mode only)
+	registerMockEndpoint(
+		`${endpoints.updateConfig}?_forceExample=true&_statusCode=200`,
+		'test/serverUnit/mockData/api/v1/EmptySuccess.json');
 
 	let fakeEndpoint = (postData, options) => {
 		if (options === null) {
 			options = postData;
 		}
 		let path = options.path;
-		if (!endpointToFileMap[path]) {
-			return Q.reject(new BapiError(`No mocked endpoint for ${path}`));
+		if (!endpointToFileMap[path] || endpointToFileMap[path].length === 0) {
+			return Q.reject(new BapiError(`No mocked endpoint for ${path}`, {statusCode: 67891}));	// this status code intentional to make searching for it in the code easy (few results)
 		}
 		let entry = endpointToFileMap[path].shift();	// use shift so its a queue not a stack
-		if (!entry) {
-			return Q.reject(new BapiError(`No mocked endpoint for ${path}`));
-		}
 		let filePath = entry.filePath;
 		try {
 			let data = fs.readFileSync(filePath);

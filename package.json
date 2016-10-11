@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.122",
+  "version": "2.0.123",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
@@ -43,7 +43,6 @@
     "express-form": "0.12.5",
     "express-handlebars": "3.0.0",
     "express-minify-html": "0.6.0",
-    "express-uncapitalize": "1.0.0",
     "fbgraph": "1.1.0",
     "fs": "0.0.2",
     "glob": "6.0.1",
@@ -70,6 +69,8 @@
     "nanotimer": "0.3.14",
     "node-uuid": "1.4.7",
     "on-response": "1.0.1",
+    "passport": "0.3.2",
+    "passport-facebook": "2.1.1",
     "path": "0.12.7",
     "phantomjs": "2.1.7",
     "prepend-file": "1.3.0",
@@ -176,6 +177,7 @@
     "protractor": "3.3.0",
     "supertest": "0.9.0",
     "through2": "2.0.1",
+    "v8-profiler": "5.6.5",
     "walkdir": "0.0.11",
     "webpack": "1.13.1",
     "yargs": "3.31.0"
