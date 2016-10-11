@@ -162,6 +162,13 @@
 			]
 	  	},
 		"homepage" : {
+			"sectionMenu": {
+				"trending": "#",
+				"goods": "/s-hogar/v1c1p1",
+				"cars": "/s-venta-autos/v1c64p1",
+				"realEstate": "/s-inmuebles/v1c30p1",
+				"jobs": "/s-ofertas+trabajo/v1c36p1"
+			},
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
