@@ -174,17 +174,24 @@
 			]
   	},
 		"homepage" : {
-			"topHomePageAdBanner"	: true,
+			"sectionMenu": {
+				"trending": "https://www.gumtree.co.za/",
+				"goods": "https://www.gumtree.co.za/s-home-garden/v1c9175p1",
+				"cars": "https://www.gumtree.co.za/s-automotive-vehicles/v1c5p1",
+				"realEstate": "https://www.gumtree.co.za/s-property/v1c2p1",
+				"jobs": "https://www.gumtree.co.za/s-jobs/v1c8p1"
+			},
+			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: true,
-			"swapTradeName"			: "home.swap-trade.$$",
-			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"		: true,
-			"freebiesName"			: "home.freebies.$$",
-			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
-			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
-		  	"defaultKeywordsCount"	: 15
+			"swapTradeEnabled"		: false,
+			"swapTradeName"			: null,
+			"swapTradeUrl"			: null,
+			"freebiesEnabled"		: false,
+			"freebiesName"			: null,
+			"freebiesUrl"			: null,
+	  	"adCarouselSeeAllUrl"	: null,
+	  	"defaultKeywordsCount"	: 15
 		},
 
 		 "quickpost" : {
