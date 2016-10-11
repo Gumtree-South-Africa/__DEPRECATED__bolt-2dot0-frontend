@@ -20,49 +20,9 @@
 @import  "../../../partials/components/topLocations/topLocations";
 @import  "../../../../v1/partials/main/emptyStateMessages.scss";
 
-<<<<<<< 215efa89ba392ad736a9477149fcf69ff28da32d
-<<<<<<< dcfc4e6cc4646e910205c629bf9ae858e7265e0d
 @import  "../partials/components/header/header";
 @import  "../partials/components/hamburgerMenu/hamburgerMenu";
 @import  "../partials/components/profileMenu/profileMenu";
 @import  "../partials/components/searchbarv2/searchbarv2";
-<<<<<<< bd17e427538996cae6bcd29eadd63eb9890ff394
-<<<<<<< ca49c8d45e8e565dc0ac1bc187e872884fb4fc3a
-=======
-@import  "../partials/components/header/_header";
-@import  "../partials/components/hamburgerMenu/_hamburgerMenu";
-@import  "../partials/components/searchbarv2/_searchbarv2";
->>>>>>> refactor(Gumtree/components/header): makes header border and section menu colors consistent across all layouts
-=======
-@import  "../partials/components/header/header";
-@import  "../partials/components/hamburgerMenu/hamburgerMenu";
-@import  "../partials/components/searchbarv2/searchbarv2";
->>>>>>> refactor(components, bapi/config_*, footer) using the config to store the social networks urls and avoiding _ on import statements
 @import  "../partials/main/footer.scss";
 @import  "../partials/main/seo.scss";
-=======
-@import  "../partials/components/footer/footer.scss";
-@import  "../partials/components/footer/seo.scss";
-@import  "../partials/components/card/card.scss";
-<<<<<<< 9c17e9a3b0492a0b56045aa73c3b576325162995
->>>>>>> feat(card, footer) adding the card and footer folders
-=======
-@import  "../partials/components/appDownloadSection/appDownloadSection.scss";
-<<<<<<< 0493ab335e09bd50da2a28de5929d06374025f20
->>>>>>> feat(appDownloadSection) folder for the appDownloadSection styles
-=======
-@import  "../partials/components/safetyTips/safetyTips.scss";
-<<<<<<< 152fc810c8c5429199e447fe021240b20f520c04
->>>>>>> feat(_safetyTips.scss) Safety Tips new component for ZA
-=======
-@import  "../partials/components/recentActivity/recentActivity.scss";
->>>>>>> styles(recentActivity) adding the background
-=======
-@import  "../partials/components/footer/footer.scss";
-@import  "../partials/components/footer/seo.scss";
-@import  "../partials/components/card/card.scss";
-<<<<<<< 39a655005cfa33c1fc8d3f3712d480f7b3b88c72
->>>>>>> feat(card, footer) adding the card and footer folders
-=======
-@import  "../partials/components/appDownloadSection/appDownloadSection.scss";
->>>>>>> feat(appDownloadSection) folder for the appDownloadSection styles
