@@ -1,7 +1,9 @@
 {{#partial "content"}}
-    <div class="register-page-container">
-		<div class="registration-form-container">
-            {{> (dynamic "registrationForm")}}
+    <div class="view-page-container">
+        {{> (dynamic "modal")}}
+
+		<div class="view-content-container">
+            {{> (dynamic "viewPageDetails")}}
 		</div>
     </div>
 {{/partial}}

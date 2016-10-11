@@ -19,7 +19,19 @@ let extendModelData = (req, modelData) => {
 	} else {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'ViewPage_desktop_es_MX.js');
+	if (!modelData.footer.min) {
+		if (modelData.header.enableLighterVersionForMobile) {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
+		} else {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+		}
+	} else {
+		if (modelData.header.enableLighterVersionForMobile) {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
+		} else {
+			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+		}
+	}
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
@@ -30,8 +42,9 @@ router.get('/', (req, res, next) => {
 
 	viewPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
-		modelData.header.distractionFree = true;
-		modelData.footer.distractionFree = true;
+		modelData.header.distractionFree = false;
+		modelData.footer.distractionFree = false;
+		modelData.search = true;
 		modelData.redirectUrl = redirectUrl;
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
