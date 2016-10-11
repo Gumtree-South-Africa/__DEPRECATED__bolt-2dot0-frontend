@@ -1260,10 +1260,12 @@
 	},
 	"sectionMenu": {
 		"trending": "Trending",
-		"goods": "Home & Garden",
-		"cars": "Automotive Vehicles",
-		"realEstate": "Property",
-		"jobs": "Jobs"
+		"goods": "Goods",
+		"realEstate": "Real Estate",
+		"jobs": "Jobs",
+		"homeGarden": "Home & Garden",
+		"automotiveVehicles": "Automotive Vehicles",
+		"property": "Property"
 	},
 	"recentactivity": {
 		"message": {
