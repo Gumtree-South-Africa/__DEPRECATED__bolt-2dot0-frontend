@@ -1145,9 +1145,9 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
-			"viewMore": "Ver más"
+			"popularIn": "Popular",
+			"yourNeighborhood": "Ads",
+			"viewMore": "View more"
 		},
 		"searchbar": {
 			"lookingFor": "I'm looking for...",
