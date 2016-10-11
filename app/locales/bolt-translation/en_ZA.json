@@ -1145,8 +1145,8 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular Ads in",
-			"yourNeighborhood": "Your neighborhood",
+			"popularIn": "Popular ads in your",
+			"yourNeighborhood": "neighbourhood",
 			"viewMore": "View more"
 		},
 		"searchbar": {
@@ -1172,7 +1172,7 @@
 			"contact": "Contactar"
 		},
 		"gallery" : {
-			"cardTitle": "Galería Principal"
+			"cardTitle": "Homepage Gallery Ad"
 		}
 	},
 	"header": {
