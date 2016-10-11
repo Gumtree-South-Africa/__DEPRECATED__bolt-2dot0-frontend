@@ -38,6 +38,11 @@ class SeoModel {
 	getLoginSeoInfo() {
 		return seoService.getLoginSeoData(this.bapiHeaders);
 	}
+
+// Function getVIPSeoInfo
+	getVIPSeoInfo() {
+		return seoService.getVIPSeoData(this.bapiHeaders);
+	}
 }
 
 module.exports = SeoModel;

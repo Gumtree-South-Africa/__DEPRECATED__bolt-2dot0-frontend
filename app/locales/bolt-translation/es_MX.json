@@ -1490,5 +1490,10 @@
 			"continueActivation": "Please check your email to continue activation",
 			"continue": "Continúa"
 		}
+	},
+	"vip": {
+		"page": {
+			"itemid": "Anuncios #%s"
+		}
 	}
 }

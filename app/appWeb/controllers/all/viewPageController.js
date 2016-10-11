@@ -35,13 +35,16 @@ let extendModelData = (req, modelData) => {
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
-router.get('/', (req, res, next) => {
+router.get('/:id?', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
-	let viewPageModel = new ViewPageModel(req, res);
+	let adId = req.params.id;
+	let viewPageModel = new ViewPageModel(req, res, adId);
 	let redirectUrl = req.query.redirect;
 
 	viewPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
+		modelData.adId = adId;
+
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.search = true;
@@ -49,7 +52,10 @@ router.get('/', (req, res, next) => {
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 	}).fail((err) => {
-		next(err);
+		console.error(err);
+		console.error(err.stack);
+		//Throw a 404 page for 404 or 401 (unauthorized). otherwise 500
+		return (err.statusCode === 404 || err.statusCode === 400 || err.statusCode === 401) ? next() : next(err);
 	});
 });
 

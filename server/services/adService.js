@@ -5,6 +5,14 @@ let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 let bapiService      = require("./bapi/bapiService");
 
 class AdService {
+
+	viewAd(bapiHeaderValues, adId) {
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET',
+			path: config.get('BAPI.endpoints.specificAd').replace('{id}', adId),
+		}), bapiHeaderValues, 'viewAd');
+	}
+
 	favoriteAd(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.favoriteAd');
 		queryEndpoint = queryEndpoint.replace('{id}', adId);

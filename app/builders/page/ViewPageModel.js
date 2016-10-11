@@ -3,14 +3,17 @@ let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
+// let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let _ = require('underscore');
 
 class ViewPageModel {
-	constructor(req, res) {
+	constructor(req, res, adId) {
 		this.req = req;
 		this.res = res;
+		this.adId = adId;
+
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
@@ -51,12 +54,26 @@ class ViewPageModel {
 	}
 
 	getPageDataFunctions(modelData) {
+		// let advert = new AdvertModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
 
+		this.dataPromiseFunctionMap.advert = () => {
+			let data = {
+				title: 'Samsung Galaxy',
+				adId: this.adId,
+				seoGroupName: 'Electronics',
+				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009'
+			};
+			return data;
+			// return advert.viewTheAd(this.adId).then((data) => {
+			// 	return data;
+			// });
+		};
+
 		this.dataPromiseFunctionMap.seo = () => {
-			return seo.getHPSeoInfo();
+			return seo.getVIPSeoInfo();
 		};
 	}
 
