@@ -191,12 +191,7 @@
 			"freebiesName"			: null,
 			"freebiesUrl"			: null,
 	  	"adCarouselSeeAllUrl"	: null,
-	  	"defaultKeywordsCount"	: 15,
-			"trending": "https://www.gumtree.co.za/",
-			"homeGarden": "https://www.gumtree.co.za/s-home-garden/v1c9175p1",
-			"automotiveVehicles": "https://www.gumtree.co.za/s-automotive-vehicles/v1c5p1",
-			"property": "https://www.gumtree.co.za/s-property/v1c2p1",
-			"jobs": "https://www.gumtree.co.za/s-jobs/v1c8p1"
+	  	"defaultKeywordsCount"	: 15
 		},
 		"quickpost" : {
       "currencyDisplay"    :    true,
