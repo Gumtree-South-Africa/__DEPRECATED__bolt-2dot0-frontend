@@ -1,0 +1,37 @@
+{{#if this.advert.pictures}}
+	<div class="wrap {{#if this.advert.hasMultiplePictures}}has-thumbs{{else}}no-thumbs{{/if}}" data-base-js-url="{{this.footer.baseJSUrl}}">
+
+        {{#if this.images}}
+			<div class="main-bg">
+				<div class="main">
+					<span class="icon-vip-arrow-left"></span>
+					<span class='vertical-alignment-helper'></span><img  data-index="0" src = "{{{this.images.[0]}}}" alt="{{this.title.value}}" />
+                    {{#if this.advert.seoGroupName}}
+						<meta itemprop="image" content="{{{this.images.[0]}}}" />
+                    {{/if}}
+					<span class="icon-vip-arrow-right"></span>
+					<span class="icon-zoom-image"></span>
+				</div>
+                {{#if this.hasMultiplePictures}}
+                    {{#block "PictureCount"}}{{/block}}
+                {{/if}}
+			</div>
+        {{/if}}
+
+        {{#block "thumbs"}}
+            {{#if this.hasMultiplePictures}}
+				<div class="thumbs">
+					<div class="wrap">
+                        {{#each this.thumbnails}}
+							<img {{#ifEq @index 0}}class="active"{{/ifEq}} data-index="{{@index}}" src="{{this}}" alt="{{valueInArray thumbnailAltTags @index}}" onerror="this.alt='';" />
+                        {{/each}}
+					</div>
+				</div>
+            {{/if}}
+        {{/block}}
+
+		<script id="vip-gallery-data" type="text/x-bolt-json">
+            {"small":"{{{this.thumbnails}}}","medium":"{{{this.images}}}","large":"{{{this.largestPictures}}}","alt-tags":"{{{escapeArrayForJS this.imageAltTags}}}"}
+        </script>
+	</div>
+{{/if}}
