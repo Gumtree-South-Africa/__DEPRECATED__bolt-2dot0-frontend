@@ -61,9 +61,33 @@ class ViewPageModel {
 
 		this.dataPromiseFunctionMap.advert = () => {
 			let data = {
-				title: 'Samsung Galaxy',
+				title: 'Honda Accord EX-L v6',
 				adId: this.adId,
-				seoGroupName: 'Electronics',
+				hasMultiplePictures: true,
+				pictures: {
+					thumbnails: [
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_14.JPG',
+						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_14.JPG',
+						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_14.JPG',
+						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_14.JPG',
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_14.JPG'
+					],
+					images: [
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_25.JPG',
+						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_25.JPG',
+						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_25.JPG',
+						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_25.JPG',
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_25.JPG'
+					],
+					largestPictures: [
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_20.JPG',
+						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_20.JPG'
+					]
+				},
+				seoGroupName: 'Automobiles',
 				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009'
 			};
 			return data;

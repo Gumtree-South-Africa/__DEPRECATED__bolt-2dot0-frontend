@@ -1,0 +1,130 @@
+.vertical-alignment-helper {
+	display: inline-block;
+	height: 100%;
+	vertical-align: middle;
+}
+
+.vip-gallery .wrap {
+	position: relative;
+	background: {
+		position: center;
+		repeat: no-repeat;
+	}
+
+	.main-bg {
+		background: {
+			image: url(../../../../../images/loading.gif);
+			position: center;
+			repeat: no-repeat;
+			color: $vip-gallery-wrap-background-color;
+		}
+
+		width: 100%;
+		position: relative;
+
+		height: 400px;
+		line-height: 200px;
+
+		img {
+			max-height: 400px;
+		}
+	}
+
+	.sliderize-container.main-bg {
+		background-image: none;
+	}
+
+	.main {
+		width: 100%;
+		height: 100%;
+		border: 1px solid #ddd;
+		@include transition(height 500ms);
+
+		text-align: center;
+		img {
+			max-width: 100%;
+			max-height: 100%;
+			vertical-align: middle;
+		}
+	}
+
+	.thumbs {
+		display: none;
+		margin-top: 10px;
+		background-color: #eee;
+		border: 1px solid #ddd;
+		padding-top: 5px;
+		text-align: center;
+
+		&.images-1 .wrap {
+			width: 50px;
+		}
+		&.images-2 .wrap {
+			width: 50px + 56px * 1;
+		}
+		&.images-3 .wrap {
+			width: 12em;
+		}
+		&.images-4 .wrap {
+			width: 50px + 56px * 3;
+		}
+		&.images-5 .wrap {
+			width: 50px + 56px * 4;
+		}
+		&.images-6 .wrap {
+			width: 50px + 56px * 5;
+		}
+		&.images-7 .wrap {
+			width: 50px + 56px * 6;
+		}
+		&.images-8 .wrap {
+			width: 50px + 56px * 7;
+		}
+
+		.wrap {
+			margin: 0 auto;
+			margin-top: 0.8em;
+		}
+
+		img {
+			max-width: 50px;
+			max-height: 50px;
+			border: 0 solid transparent;
+			cursor: pointer;
+			@include transition(border-color 150ms, border-width 150ms, margin 150ms);
+
+			&.active {
+				@include box-shadow(0px 1px 5px rgba(0, 0, 0, 0.5));
+				border-width: 2px;
+				border-color: $color-navy;
+			}
+		}
+	}
+}
+.icon-vip-arrow-left,
+.icon-vip-arrow-right {
+	display: none;
+	height: 3.5em;
+	vertical-align: middle;
+	width: 1.75em;
+	z-index: 100;
+	position: absolute;
+	top: 75px;
+	left: 0px;
+}
+
+.icon-vip-arrow-right {
+	left: auto;
+	right: -1px; // Fixes em rounding error in Firefox, while keeping aligned for other browsers.
+}
+
+.icon-zoom-image {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+	height: 2em;
+	width: 3.25em;
+
+	z-index: 100;
+}
