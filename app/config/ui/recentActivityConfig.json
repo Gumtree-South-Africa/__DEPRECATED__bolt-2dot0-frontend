@@ -76,5 +76,135 @@
 				}
 			]
 		}
+	},
+	"en_ZA": {
+		"5": {
+			"type": [
+				{
+					"name": "automotive-vehicles",
+					"prefix": "el "
+				}
+			]
+		},
+		"2": {
+			"type": [
+				{
+					"name": "property",
+					"prefix": "el "
+				}
+			]
+		},
+		"8": {
+			"type": [
+				{
+					"name": "jobs",
+					"prefix": "el "
+				}
+			]
+		},
+		"9389": {
+			"type": [
+				{
+					"name": "job-seekers",
+					"prefix": "el "
+				}
+			]
+		},
+		"9": {
+			"type": [
+				{
+					"name": "services",
+					"prefix": "el "
+				}
+			]
+		},
+		"9175": {
+			"type": [
+				{
+					"name": "home-garden",
+					"prefix": "el "
+				}
+			]
+		},
+		"9178": {
+			"type": [
+				{
+					"name": "electronics",
+					"prefix": "el "
+				}
+			]
+		},
+		"9176": {
+			"type": [
+				{
+					"name": "baby-kids",
+					"prefix": "el "
+				}
+			]
+		},
+		"9101": {
+			"type": [
+				{
+					"name": "boats-watercraft",
+					"prefix": "el "
+				}
+			]
+		},
+		"9171": {
+			"type": [
+				{
+					"name": "business+to+business",
+					"prefix": "el "
+				}
+			]
+		},
+		"9177": {
+			"type": [
+				{
+					"name": "fashion",
+					"prefix": "el "
+				}
+			]
+		},
+		"9122": {
+			"type": [
+				{
+					"name": "pets",
+					"prefix": "el "
+				}
+			]
+		},
+		"9179": {
+			"type": [
+				{
+					"name": "sports-leisure",
+					"prefix": "el "
+				}
+			]
+		},
+		"4": {
+			"type": [
+				{
+					"name": "charity-donations",
+					"prefix": "el "
+				}
+			]
+		},
+		"6": {
+			"type": [
+				{
+					"name": "community",
+					"prefix": "el "
+				}
+			]
+		},
+		"9067": {
+			"type": [
+				{
+					"name": "events",
+					"prefix": "el "
+				}
+			]
+		}
 	}
 }
