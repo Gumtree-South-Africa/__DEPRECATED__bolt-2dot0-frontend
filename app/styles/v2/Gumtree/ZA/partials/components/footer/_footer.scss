@@ -132,6 +132,7 @@
 	.line-divider{
 		width: 941px;
 		margin: auto;
+		border-top: 1px solid color(swirl, base)
 	}
 <<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< a75e929557ad2386941cc97e2573f4a84414e1e0
@@ -297,6 +298,7 @@
 			}
 		}
 	}
+<<<<<<< a12adf860827b204a03797e9f55f22e442e27246
 <<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 <<<<<<< b9e11fcf089118f07c4acfc2c09474e4a01ae06f
 =======
@@ -320,15 +322,16 @@
 			width: 100%;
 		}
 	}
+=======
+>>>>>>> refactor(_seo.scss) Moving Top Locations at the top of the footer again
 	.footer-trademark {
-		margin: 0;
 		padding-bottom: 10px;
 		font-size: 10px;
 		text-align: center;
 <<<<<<< 2912cc914a28f2149f1dc6af3d41d9c27ab260ef
 <<<<<<< 4f704b5d56e4d0fa972303d9e3ae10a35051efc0
 		.HomepageV2 &{
-			background-color: color(foxtail, medium);
+			background-color: color(foxtail, light);
 		}
 =======
 		.view-more-locations{
@@ -473,6 +476,7 @@
 =======
 >>>>>>> style(_footer.scss) Footer - Distraction Free, deleting support icons (chat, telephone)
 		}
+<<<<<<< a12adf860827b204a03797e9f55f22e442e27246
 <<<<<<< 6f660e5cbea50bb1834eca4934fc17cd28eea608
 
 >>>>>>> refactor(_footer.scss) Footer - Social icons and Download icons => Right order. Lato Font
@@ -489,6 +493,8 @@
 				padding-bottom: 6px;
 			}
 		}
+=======
+>>>>>>> refactor(_seo.scss) Moving Top Locations at the top of the footer again
 
 		.footer-download{
 			display: inline-block;
@@ -632,23 +638,6 @@
 			}
 		}
 
-		.seo-wrapper{
-			.tab-content{
-				margin:0;
-				text-align: center;
-				.top-content{
-					float: left;
-					width: 49%;
-				}
-				.top-content-wrapper .top-content .top-links{
-					position: relative;
-					left: 0;
-				}
-				.top-content-wrapper .top-content:nth-child(even){
-					display: inline-block;
-				}
-			}
-		}
 	}
 =======
 >>>>>>> fix(postAdPageConfig.js) Deleting duplicated en_ZA key
