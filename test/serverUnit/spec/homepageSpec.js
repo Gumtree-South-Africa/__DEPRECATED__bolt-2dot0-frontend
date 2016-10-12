@@ -209,12 +209,12 @@ describe('Server to hit HomePage', function() {
 					.query("status=userregistered")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.user.registered']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text()).toBe(i18n['home.user.registered']);
 					})
 					.end(specHelper.finish(done));
 			});
@@ -228,12 +228,12 @@ describe('Server to hit HomePage', function() {
 					.query("status=adinactive")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.ad.notyetactive']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text()).toBe(i18n['home.ad.notyetactive']);
 					})
 					.end(specHelper.finish(done));
 			});
@@ -247,12 +247,12 @@ describe('Server to hit HomePage', function() {
 					.query("status=resetpassword")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.reset.password.success']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text()).toBe(i18n['home.reset.password.success']);
 					})
 					.end(specHelper.finish(done));
 			});
