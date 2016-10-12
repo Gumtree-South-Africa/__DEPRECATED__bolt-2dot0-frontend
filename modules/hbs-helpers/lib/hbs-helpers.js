@@ -222,6 +222,14 @@ module.exports  =  {
 			return (field in object) ? options.fn(this) : options.inverse(this);
 		});
 
+		exphbs.handlebars.registerHelper('wrapWithTagAndClass', function(tagName, className, stringToWrap, options) {
+			if (!tagName || !className || !stringToWrap) {
+				return;
+			}
+			return `<${tagName} class="${className}">${stringToWrap}</${tagName}>`;
+		});
+
+
 		exphbs.handlebars.registerHelper('lookupLocalDate', (attrVals, name) => {
 			let thisVal = attrVals[name];
 			if (thisVal) {

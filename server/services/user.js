@@ -25,7 +25,7 @@ UserService.prototype.getUserFromCookie = function(bapiHeaders) {
 	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
 
 	// Invoke BAPI
-	return require("./bapi/bapiPromiseGet")(this.bapiOptions, bapiHeaders, "user");
+	return require("./bapi/bapiService").bapiPromiseGet(this.bapiOptions, bapiHeaders, "user");
 };
 
 module.exports = new UserService();

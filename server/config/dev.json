@@ -23,7 +23,13 @@
 			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
-			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes"
+			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
+			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
+			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",
+			"authRegister"		:	"/bolt-api-webapp/v1/users",
+			"authActivate"		:	"/bolt-api-webapp/v1/users/{email}/actions/activate",
+			"authEmailExists"	:	"/bolt-api-webapp/v1/users/email/{email}",
+			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}"
 	    }
 	},
 	"solr": {

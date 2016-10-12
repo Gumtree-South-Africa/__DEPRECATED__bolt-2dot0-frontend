@@ -213,6 +213,38 @@
 			"mobile" 	: {
 				"models" : ["locationlatlong", "adResult", "seo"]
 			}
+		},
+		"LoginPage": {
+			"desktop": {
+				"models": ["seo"]
+			},
+			"mobile": {
+				"models": ["seo"]
+			}
+		},
+		"ActivatePage": {
+			"desktop": {
+				"models": [
+					"seo", "activate"
+				]
+			},
+			"mobile": {
+				"models": [
+					"seo", "activate"
+				]
+			}
+		},
+		"RegisterPage": {
+			"desktop": {
+				"models": [
+					"seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"seo"
+				]
+			}
 		}
 	}
 }

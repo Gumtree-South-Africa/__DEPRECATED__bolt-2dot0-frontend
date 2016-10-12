@@ -2,8 +2,7 @@
 
 /*eslint no-bitwise: 0*/
 
-let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-
+//Legacy functions written to help with eps upload
 class BinaryFile {
 	constructor(strData, iDataOffset, iDataLength) {
 		let data = strData;
@@ -86,13 +85,9 @@ class BinaryFile {
 
 }
 
+//Lots of legacy EPS code from quickpost
 class EpsUpload {
 	constructor(EPS) {
-		this.AD_STATES = {
-			AD_CREATED: "AD_CREATED",
-			AD_DEFERRED: "AD_DEFERRED"
-		};
-
 		this.EPS = EPS;
 		this.TiffTags = {
 			0x0112: "Orientation"
@@ -130,7 +125,12 @@ class EpsUpload {
 			url: this.EPS.url,
 			data: formData,
 			success: (response) => {
-				success(i, response);
+				if (response.indexOf('ERROR') !== -1) {
+					console.error("EPS error!");
+					return failure(i, response);
+				} else {
+					return success(i, response);
+				}
 			},
 			error: (err) => {
 				if (err.responseText !== undefined) {
@@ -159,65 +159,6 @@ class EpsUpload {
 		};
 	}
 
-	getCookie(cname) {
-		let name = cname + "=";
-		let ca = document.cookie.split(';');
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) === ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) === 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
-
-	requestLocation(callback) {
-		let timeout;
-		if ("geolocation" in navigator && this.getCookie('geoId') === '') {
-			//Don't want to sit and wait forever in case geolocation isn't working
-			timeout = setTimeout(callback, 20000);
-			navigator.geolocation.getCurrentPosition((position) => {
-					let lat = position.coords.latitude;
-					let lng = position.coords.longitude;
-					document.cookie = `geoId=${lat}ng${lng}`;
-					callback('geoLocation', timeout);
-				}, () => {
-					callback('geoFailed', timeout);
-				},
-				{
-					enableHighAccuracy: true,
-					maximumAge: 30000,
-					timeout: 27000
-				});
-		} else {
-			callback('cookie', timeout);
-		}
-	}
-
-	handlePostResponse($loginModal, $loginModalMask, response) {
-		switch (response.state) {
-			case this.AD_STATES.AD_CREATED:
-				spinnerModal.completeSpinner(() => {
-					window.location.href = response.ad.redirectLink;
-				});
-				break;
-			case this.AD_STATES.AD_DEFERRED:
-				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
-				spinnerModal.completeSpinner(() => {
-					$loginModal.find('.email-login-btn a').attr('href', response.links.emailLogin);
-					$loginModal.find('.register-link').attr('href', response.links.register);
-					$loginModal.find('.facebook-button a').attr('href', response.links.facebookLogin);
-					$loginModal.toggleClass('hidden');
-					$loginModalMask.toggleClass('hidden');
-				});
-				break;
-			default:
-				break;
-		}
-	}
 
 	IsSafariMUSupport() {
 		// a work around for safari 5.1 browsers which has bug for fileList
@@ -731,7 +672,7 @@ class EpsUpload {
 
 	extractEPSServerError(respText) {
 		// format, ERROR:ME200
-		let reg = /ERROR\:(\w*)/i;
+		let reg = /VERSION:2;ERROR\:(\w*)/i;
 		return respText.replace(reg, "$1");
 	}
 
@@ -749,21 +690,23 @@ class UploadMessageClass {
 	}
 
 	buildMessages() {
-		this.messages = {
-			successMsg: this.epsData.data('successmsg'),
-			failMsg: this.epsData.data('failmsg'),
-			loadingMsg: this.epsData.data('loadingmsg'),
-			resizing: this.epsData.data('resizing'),
-			invalidSize: this.epsData.data('invalidsize'),
-			invalidType: this.epsData.data('invalidtype'),
-			invalidDimensions: this.epsData.data('invaliddimensions'),
-			firewall: this.epsData.data('firewall'),
-			colorspace: this.epsData.data('colorspace'),
-			corrupt: this.epsData.data('corrupt'),
-			pictureSrv: this.epsData.data('picturesrv'),
-			error: this.epsData.data('error'),
-			unsupportedFileTitle: this.epsData.data('unsupported-file-title')
-		};
+		if (this.epsData.data) {
+			this.messages = {
+				successMsg: this.epsData.data('successmsg'),
+				failMsg: this.epsData.data('failmsg'),
+				loadingMsg: this.epsData.data('loadingmsg'),
+				resizing: this.epsData.data('resizing'),
+				invalidSize: this.epsData.data('invalidsize'),
+				invalidType: this.epsData.data('invalidtype'),
+				invalidDimensions: this.epsData.data('invaliddimensions'),
+				firewall: this.epsData.data('firewall'),
+				colorspace: this.epsData.data('colorspace'),
+				corrupt: this.epsData.data('corrupt'),
+				pictureSrv: this.epsData.data('picturesrv'),
+				error: this.epsData.data('error'),
+				unsupportedFileTitle: this.epsData.data('unsupported-file-title')
+			};
+		}
 	}
 
 	failMsg(i) {
@@ -831,9 +774,11 @@ class UploadMessageClass {
 
 	pictureSrv() {
 		this.$messageError.html(this.messages.pictureSrv);
+		this.showModal();
 	}
 
 	translateErrorCodes(i, error) {
+		console.error(`EPS code: ${error}`);
 		if (error === "FS002") {
 			this.invalidDimensions(i);
 		} else if (error === "FS001") {

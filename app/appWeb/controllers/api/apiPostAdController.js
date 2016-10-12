@@ -33,14 +33,17 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 		//response.guid = guid;	// client currently checks for success this way <-- response.guid to be deprecated
 
-		// generate 3 links for client: login, register, facebook login
-		let returnUrl = `/post?guid=${guid}`;
+		response.defferedLink = `/post?guid=${guid}`;
 
+		// TODO Old Login Modal - till login is enabled on 2.0
+		let returnUrl = `/post?guid=${guid}`;
 		response.links = {
 			emailLogin: `/login.html?redirect=${returnUrl}`,
 			register: `/register.html?redirect=${returnUrl}`,
 			facebookLogin: `/social/facebook/authorize?return=${returnUrl}`
 		};
+		// End Old Login Modal - till login is enabled on 2.0
+
 		return response;
 	});
 };

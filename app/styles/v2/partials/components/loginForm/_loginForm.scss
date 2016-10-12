@@ -1,0 +1,103 @@
+.login-form {
+	.hidden {
+		display: none;
+	}
+
+	.facebook-button {
+		background-color: #3C5A96;
+		width: 80%;
+		height: 45px;
+		border: none;
+		margin-top: 40px;
+		margin-left: auto;
+		margin-right: auto;
+
+		.icon-facebook_white {
+			display: inline-block;
+		}
+
+		.facebook-text {
+			color: $vivaWhite;
+		}
+	}
+
+	.divider {
+		border-bottom: 1px solid grey;
+		margin: 30px auto;
+		width: 300px;
+		text-align: center;
+		height: 15px;
+
+		.divider-text {
+			padding: 0 10px;
+			height: 16px;
+			background-color: $vivaWhite;
+		}
+	}
+
+	.sign-in-section {
+		height: 150px;
+		overflow-y: hidden;
+
+		&.open {
+			input[type="password"] {
+				height: 30px;
+			}
+		}
+
+		.input-wrapper {
+			position: relative;
+		}
+
+		.icon-eye, .icon-email_small {
+			position: absolute;
+			right: calc(10% + 5px);
+		}
+
+		.icon-eye {
+			top: 10%;
+
+			&:hover {
+				cursor: pointer;
+			}
+		}
+
+		.icon-email_small {
+			top: 8%;
+		}
+
+		input[type="email"], input[type="password"], input[type="text"] {
+			width: 80%;
+			margin-left: auto;
+			margin-right: auto;
+			box-sizing: border-box;
+			font-size: 16px;
+			height: 30px;
+			font-family: 'Lato';
+
+			&.validation-error {
+				border-color: $vivaOrange;
+			}
+		}
+
+		input[type="email"] {
+			margin-bottom: 20px;
+		}
+
+
+		button {
+			width: 80%;
+			margin-top: 20px;
+			height: 45px;
+			color: white;
+			background-color: $vivaOrange;
+			margin-left: auto;
+			margin-right: auto;
+			border: 0;
+		}
+	}
+
+	.hidden {
+		display: none;
+	}
+}

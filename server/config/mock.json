@@ -23,7 +23,13 @@
 			"draftAd"			:	"/ads/drafts",
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
-			"categoryAttributes":	"/categories/{catId}/attributes"
+			"categoryAttributes":	"/categories/{catId}/attributes",
+			"authBoltLogin"		:	"/users/actions/login-with-bolt",
+			"authFbLogin"		:	"/users/actions/login-with-facebook",
+			"authRegister"		:	"/users",
+			"authActivate"		:	"/users/{email}/actions/activate",
+			"authEmailExists"	:	"/users/email/{email}",
+			"authPhoneExists"	:	"/users/phone/{phone}"
 	    }
 	},
 	"solr": {

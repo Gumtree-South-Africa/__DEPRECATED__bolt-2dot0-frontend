@@ -5,7 +5,6 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let compress = require('compression');
 let cookieParser = require('cookie-parser');
-let expressUncapitalize = require('express-uncapitalize');
 let logger = require('morgan');
 let methodOverride = require('method-override');
 let minifyHTML = require('express-minify-html');
@@ -169,7 +168,6 @@ function BuildApp(siteObj, loggingEnabled) {
 		app.use(bodyParser.urlencoded({extended: true}));
 		app.use(cookieParser());
 		app.use(methodOverride());
-		app.use(expressUncapitalize());
 		app.use(minifyHTML({
 			override: false,
 			htmlMinifier: {

@@ -25,7 +25,7 @@ var makeHeaders = function (bapiHeaderValues) {
 		headers['X-BOLT-USER-AGENT'] = bapiHeaderValues.useragent;
 	}
 	if (typeof bapiHeaderValues.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaderValues.authTokenValue)) {
-		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;
+		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;		
 	}
 	return headers;
 };
@@ -100,7 +100,7 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
 	// special fix when running in mock mode (using server/config/mock.json) during POST
-	if ((serviceName === "saveDraftAd" || serviceName === "postAd") &&
+	if ((serviceName === "saveDraftAd" || serviceName === "postAd" || serviceName === 'authRegister') &&
 		(bapiOptions.parameters && bapiOptions.parameters.indexOf("_statusCode=200") > -1)) {
 		// we're in mock mode, and we need to tell mock server to return a 201 (Created), otherwise it will send us 500, because a 200 is not available
 		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
@@ -133,4 +133,3 @@ var bapiFormatLatLng = (geoLatLngObj) => {
 module.exports.bapiPromisePost = bapiPromisePost;
 module.exports.bapiPromiseGet = bapiPromiseGet;
 module.exports.bapiFormatLatLng = bapiFormatLatLng;
-
