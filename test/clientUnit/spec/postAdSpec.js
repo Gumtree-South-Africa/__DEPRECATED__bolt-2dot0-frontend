@@ -39,7 +39,7 @@ describe('Post Ad', () => {
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
 
-		loginModalController.openModal({});
+		loginModalController.openModal({links:{emailLogin:'',register:'',facebookLogin:''}});
 
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeFalsy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeFalsy();
