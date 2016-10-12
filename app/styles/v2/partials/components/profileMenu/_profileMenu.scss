@@ -15,7 +15,7 @@ $profile-login-btn-width: $profile-dropdown-width - ($profile-login-btn-padding 
 
     .profile-item {
         border-bottom: 1px solid $headerMenuItemSeparatorColor;
-		line-height: 24px;
+		padding: 10px 0px;
 
         .link-item {
             display: block;
