@@ -48,8 +48,8 @@ describe('Login Page', () => {
 					let loginContainer = c$('.login-container');
 					expect(loginContainer.length).toBe(1, 'should have a login container');
 
-					expect(c$('.terms-and-conditions', loginContainer).length).toBe(1, 'should have a terms and conditions element');
-					expect(c$('.save-terms-btn', loginContainer).length).toBe(1, 'should have save terms button');
+					//expect(c$('.terms-and-conditions', loginContainer).length).toBe(1, 'should have a terms and conditions element');
+					//expect(c$('.save-terms-btn', loginContainer).length).toBe(1, 'should have save terms button');
 
 				}).end(specHelper.finish(done));
 		});
