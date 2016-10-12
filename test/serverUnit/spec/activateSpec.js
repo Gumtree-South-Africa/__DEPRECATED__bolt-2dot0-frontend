@@ -34,7 +34,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -70,7 +70,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(404);
 				})
@@ -87,7 +87,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -115,7 +115,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -143,7 +143,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -168,7 +168,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=resend`)	// note this is lower case param name due to middleware
+				.query(`activationCode=resend`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -188,7 +188,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 
@@ -212,7 +212,7 @@ describe('Activate Page', () => {
 		boltSupertest(`/activate/${activateParams.emailAddress}`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query(`activationcode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
+				.query(`activationCode=${activateParams.activationCode}`)	// note this is lower case param name due to middleware
 				.expect((res) => {
 					expect(res.status).toBe(200);
 					let c$ = cheerio.load(res.text);
