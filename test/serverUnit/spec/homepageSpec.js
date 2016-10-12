@@ -209,10 +209,10 @@ describe('Server to hit HomePage', function() {
 					.query("status=userregistered")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						let c$ = cheerio.load(res.text);
-						let messages = c$('.gl-messages');
+						//let c$ = cheerio.load(res.text);
+						//let messages = c$('.gl-messages');
 						//expect(messages.length).toBe(1, 'should have messages element');
-						let message = c$(messages, '.message');
+						//let message = c$(messages, '.message');
 						//expect(message.length).toBe(1, 'should have a message element');
 						//expect(message.text()).toBe(i18n['home.user.registered']);
 					})
@@ -228,10 +228,10 @@ describe('Server to hit HomePage', function() {
 					.query("status=adinactive")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						let c$ = cheerio.load(res.text);
-						let messages = c$('.gl-messages');
+						//let c$ = cheerio.load(res.text);
+						//let messages = c$('.gl-messages');
 						//expect(messages.length).toBe(1, 'should have messages element');
-						let message = c$(messages, '.message');
+						//let message = c$(messages, '.message');
 						//expect(message.length).toBe(1, 'should have a message element');
 						//expect(message.text()).toBe(i18n['home.ad.notyetactive']);
 					})
@@ -247,10 +247,10 @@ describe('Server to hit HomePage', function() {
 					.query("status=resetpassword")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						let c$ = cheerio.load(res.text);
-						let messages = c$('.gl-messages');
+						//let c$ = cheerio.load(res.text);
+						//let messages = c$('.gl-messages');
 						//expect(messages.length).toBe(1, 'should have messages element');
-						let message = c$(messages, '.message');
+						//let message = c$(messages, '.message');
 						//expect(message.length).toBe(1, 'should have a message element');
 						//expect(message.text()).toBe(i18n['home.reset.password.success']);
 					})
