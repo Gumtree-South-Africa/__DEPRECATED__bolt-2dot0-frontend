@@ -1157,22 +1157,20 @@
 			"title": "Safety First!",
 			"faq": "View the FAQ",
 			"tip": [
-				"Consejos de cómo protegerte en internet",
-				"¿Vivanuncios coopera con las autoridades?",
-				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
-				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
-				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+				"How do I stay safe while using Gumtree?",
+				"Watch out for a new payment scam doing the rounds on Gumtree",
+				"What are the scams I should watch out for?",
+				"How do I report scams or fraud?",
+				"Did you receive a dodgy email claiming to be from Gumtree?",
+				"Staying Safe When Renting a Holiday Property",
+				"Think carefully before buying an exotic pe"
 			]
 		},
 		"trending": {
 			"contact": "Contactar"
 		},
 		"gallery" : {
-			"cardTitle": "Homepage Gallery Ad"
+			"cardTitle": "Homepage Gallery Ads"
 		}
 	},
 	"header": {
