@@ -78,83 +78,131 @@
 		}
 	},
 	"en_ZA": {
-		"9198": {
+		"5": {
 			"type": [
 				{
-					"name": "Address",
-					"prefix": "a mobile device"
+					"name": "automotive-vehicles",
+					"prefix": "el "
 				}
 			]
 		},
-		"9074": {
+		"2": {
 			"type": [
 				{
-					"name": "NumberBedrooms",
-					"prefix": "a {formattedValue} {localizedName}"
-				},
-				{
-					"name": "DwellingType",
-					"prefix": "{formattedValue}"
-				}
-			]
-		},
-		"9438": {
-			"type": [
-				{
-					"name": "laptop",
-					"prefix": "a laptop"
-				}
-			]
-		},
-		"9077": {
-			"type": [
-				{
-					"name": "AlmVehicleBrand",
-					"prefix": "un {formattedValue}"
-				},
-				{
-					"name": "AlmVehicleModel",
-					"prefix": "{formattedValue}"
-				}
-			]
-		},
-		"9181": {
-			"type": [
-				{
-					"name": "Address",
-					"prefix": "a piece of furniture"
-				}
-			]
-		},
-		"9193": {
-			"type": [
-				{
-					"name": "Address",
-					"prefix": "a piece of clothes"
-				}
-			]
-		},
-		"9194": {
-			"type": [
-				{
-					"name": "Address",
-					"prefix": "a pair of shoes"
-				}
-			]
-		},
-		"9184": {
-			"type": [
-				{
-					"name": "Address",
-					"prefix": "a home appliance"
+					"name": "property",
+					"prefix": "el "
 				}
 			]
 		},
 		"8": {
 			"type": [
 				{
-					"name": "Address",
-					"prefix": "a job"
+					"name": "jobs",
+					"prefix": "el "
+				}
+			]
+		},
+		"9389": {
+			"type": [
+				{
+					"name": "job-seekers",
+					"prefix": "el "
+				}
+			]
+		},
+		"9": {
+			"type": [
+				{
+					"name": "services",
+					"prefix": "el "
+				}
+			]
+		},
+		"9175": {
+			"type": [
+				{
+					"name": "home-garden",
+					"prefix": "el "
+				}
+			]
+		},
+		"9178": {
+			"type": [
+				{
+					"name": "electronics",
+					"prefix": "el "
+				}
+			]
+		},
+		"9176": {
+			"type": [
+				{
+					"name": "baby-kids",
+					"prefix": "el "
+				}
+			]
+		},
+		"9101": {
+			"type": [
+				{
+					"name": "boats-watercraft",
+					"prefix": "el "
+				}
+			]
+		},
+		"9171": {
+			"type": [
+				{
+					"name": "business+to+business",
+					"prefix": "el "
+				}
+			]
+		},
+		"9177": {
+			"type": [
+				{
+					"name": "fashion",
+					"prefix": "el "
+				}
+			]
+		},
+		"9122": {
+			"type": [
+				{
+					"name": "pets",
+					"prefix": "el "
+				}
+			]
+		},
+		"9179": {
+			"type": [
+				{
+					"name": "sports-leisure",
+					"prefix": "el "
+				}
+			]
+		},
+		"4": {
+			"type": [
+				{
+					"name": "charity-donations",
+					"prefix": "el "
+				}
+			]
+		},
+		"6": {
+			"type": [
+				{
+					"name": "community",
+					"prefix": "el "
+				}
+			]
+		},
+		"9067": {
+			"type": [
+				{
+					"name": "events",
+					"prefix": "el "
 				}
 			]
 		}
