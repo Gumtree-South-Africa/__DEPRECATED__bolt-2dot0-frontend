@@ -1,0 +1,16 @@
+.post-ad-form-container {
+	.input-form {
+		.control input:checked ~ .currency-type {
+			color: color(swirl, shade);
+		}
+
+		.outer-circle {
+			border-color: color(swirl, shade);
+		}
+
+		.text-input {
+			border-color: color(swirl, shade);
+			border-radius: 2px;
+		}
+	}
+}
