@@ -1,0 +1,12 @@
+.photo-switcher {
+	.cover-photo {
+		border-color: color(swirl, shade);
+		border-radius: 2px;
+	}
+
+	.slick-carousel {
+		.add-photo-item {
+			border-radius: 2px;
+		}
+	}
+}
