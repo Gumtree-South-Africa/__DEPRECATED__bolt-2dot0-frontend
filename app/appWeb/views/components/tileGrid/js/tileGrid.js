@@ -274,7 +274,6 @@ class TileGrid {
 			"effect": "fadeIn",
 			"effect_speed": 1000
 		});
-		debugger;
 	}
 
 	/**
