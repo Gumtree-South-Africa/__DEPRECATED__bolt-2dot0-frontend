@@ -46,7 +46,7 @@ module.exports = function (config) {
 			"karma-spec-reporter",
 			"karma-jasmine",
 			require("karma-webpack"),
-			"karma-chrome-launcher",
+			"karma-phantomjs-launcher",
 			"karma-coverage",
 			"istanbul-instrumenter-loader"
 		]
