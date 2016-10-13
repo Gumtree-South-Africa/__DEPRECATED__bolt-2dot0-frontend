@@ -1285,54 +1285,54 @@
 		},
 		"confirm": {
 			"pageTitle": "Post Ad",
-			"back": "Atrás",
-			"didYouKnow": "Sabías que...",
-			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+			"back": "Back",
+			"didYouKnow": "Did you know...",
+			"tip": "Yo can go to My Ads page to see your ads and add more details."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "It's easy, just upload a photo and post. You can add more photos and edit the details later.",
 			"error":{
-				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
-				"photoRequired": "Foto requerida"
+				"maxPhotos": "Max. 12. Make you ad shine!",
+				"photoRequired": "Photo required"
 			},
 			"form": {
-				"title": "Título del anuncio",
-				"remaining": "restantes",
-				"price": "Precio",
-				"addPhotos": "Agregar fotos",
-				"pricePlaceholder": "Preguntarme el precio"
+				"title": "Ad title",
+				"remaining": "remaining",
+				"price": "Price",
+				"addPhotos": "Add photos",
+				"pricePlaceholder": "Ask me for the price"
 			},
-			"post": "Publicar",
-			"ad": "Anuncio"
+			"post": "Post",
+			"ad": "Ad"
 		},
 		"uploadModal": {
-			"title": "Carga una foto"
+			"title": "Upload a photo"
 		},
 		"loginModal": {
-			"title": "Inicia sesión para continuar",
-			"facebookBtn": "Continuar con Facebook",
-			"emailBtn": "Iniciar sesión con correo electrónico",
-			"register": "Registrarse",
-			"close": "Cerrar",
-			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
-			"termsAndConditions": "Términos v Condiciones",
-			"legal2": "y reconozco que que he leído las Notificaciones de",
-			"privacy": "Privacidad",
-			"and": "y",
+			"title": "Login to continue",
+			"facebookBtn": "Continue with Facebook",
+			"emailBtn": "Signin with an email address",
+			"register": "Signup",
+			"close": "Close",
+			"legal1": "By clicking \"Continue\" you accept the",
+			"termsAndConditions": "Terms of Use",
+			"legal2": "and acknowledge having read Notice of",
+			"privacy": "Privacy",
+			"and": "and",
 			"cookies": "Cookies",
-			"legal3": "de Vivanuncios"
+			"legal3": "."
 		},
 		"successModal": {
-			"title": "¡Ya se cargó tu anuncio!",
-			"tip": "Consejo: Agrega más fotos para mejorar tus posibilidades de vender rápidamente.",
-			"moreDetails": "Agregar más detalles",
-			"postMoreBtn": "Publicar más anuncios"
+			"title": "Your ad is online!",
+			"tip": "Tip: Upload as many photos as possible; this will get you ad more views and replies!",
+			"moreDetails": "Add more details",
+			"postMoreBtn": "Post more ads"
 		},
 		"unsupportedFileModal": {
-			"title": "Formato de archivo no admitido",
-			"close": "Cerrar",
-			"message": "Este archivo contiene un formato multimedia no admitido.",
-			"uploadBtn": "Cargar una foto diferente",
+			"title": "File type not supported",
+			"close": "Close",
+			"message": "This file contains an unsupported media type.",
+			"uploadBtn": "Upload a different photo",
 			"error": "Error"
 		}
 	},
@@ -1417,11 +1417,11 @@
 	},
 	"postAdModal": {
 		"helpText": "¿Qué quieres anunciar?",
-		"uploadPhotos": "Cargar foto(s)",
-		"uploadPhoto": "Carga una foto",
+		"uploadPhotos": "Upload photo(s)",
+		"uploadPhoto": "Upload a photo",
 		"uploadQuickly": "Publica un anuncio rápidamente",
-		"upload": "Publica un anuncio",
-		"close": "Cerrar"
+		"upload": "Post an ad",
+		"close": "Close"
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
