@@ -40,7 +40,7 @@ describe('Login Page', () => {
 		boltSupertest(`/login/`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query("showterms=true")
+				.query("showTerms=true")
 				.expect((res) => {
 					expect(res.statusCode).toBe(200);
 
@@ -48,8 +48,8 @@ describe('Login Page', () => {
 					let loginContainer = c$('.login-container');
 					expect(loginContainer.length).toBe(1, 'should have a login container');
 
-					//expect(c$('.terms-and-conditions', loginContainer).length).toBe(1, 'should have a terms and conditions element');
-					//expect(c$('.save-terms-btn', loginContainer).length).toBe(1, 'should have save terms button');
+					expect(c$('.terms-and-conditions', loginContainer).length).toBe(1, 'should have a terms and conditions element');
+					expect(c$('.save-terms-btn', loginContainer).length).toBe(1, 'should have save terms button');
 
 				}).end(specHelper.finish(done));
 		});

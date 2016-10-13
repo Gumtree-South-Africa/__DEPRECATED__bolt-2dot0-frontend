@@ -201,58 +201,58 @@ describe('Server to hit HomePage', function() {
 
 	describe('Header Page Messages', () => {
 
-		it('should return status code 200 with flash message (userregistered)', (done) => {
+		it('should return status code 200 with flash message (userRegistered)', (done) => {
 
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
-					.query("status=userregistered")
+					.query("status=userRegistered")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.user.registered']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.user.registered']);
 					})
 					.end(specHelper.finish(done));
 			});
 		});
 
-		it('should return status code 200 with flash message (adinactive)', (done) => {
+		it('should return status code 200 with flash message (adInactive)', (done) => {
 
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
-					.query("status=adinactive")
+					.query("status=adInactive")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.ad.notyetactive']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.ad.notyetactive']);
 					})
 					.end(specHelper.finish(done));
 			});
 		});
 
-		it('should return status code 200 with flash message (resetpassword)', (done) => {
+		it('should return status code 200 with flash message (resetPassword)', (done) => {
 
 			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.set('Cookie', 'b2dot0Version=2.0')
-					.query("status=resetpassword")
+					.query("status=resetPassword")
 					.expect((res) => {
 						expect(res.status).toBe(200);
-						//let c$ = cheerio.load(res.text);
-						//let messages = c$('.gl-messages');
-						//expect(messages.length).toBe(1, 'should have messages element');
-						//let message = c$(messages, '.message');
-						//expect(message.length).toBe(1, 'should have a message element');
-						//expect(message.text()).toBe(i18n['home.reset.password.success']);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.reset.password.success']);
 					})
 					.end(specHelper.finish(done));
 			});
