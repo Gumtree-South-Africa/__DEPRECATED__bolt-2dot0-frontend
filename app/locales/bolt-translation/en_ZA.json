@@ -278,7 +278,7 @@
 	"srp.categories": "Categories",
 	"srp.category_in_location": "in",
 	"srp.section.top-ads": "Top Ads",
-	"srp.section.gallery-ads": "Homepage Gallery Ads",
+	"srp.section.gallery-ads": "Homepage gallery ads",
 	"srp.section.ads": "Ads",
 	"srp.section.list": "List",
 	"srp.section.grid": "Gallery",
@@ -1170,7 +1170,7 @@
 			"contact": "Contactar"
 		},
 		"gallery" : {
-			"cardTitle": "Homepage Gallery Ads"
+			"cardTitle": "Homepage gallery ads"
 		}
 	},
 	"header": {
