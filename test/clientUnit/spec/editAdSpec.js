@@ -23,7 +23,7 @@ let mockEditAdResponse = {
 //};
 
 let mockCategoryTree = require("../mock/categoryTree.json");
-let editPageModel = require("../mockData/EditPageModel.json");
+let editPageModel = require("../mockData/editPageModel.json");
 let customAttributeAjaxResponse = require("../mockData/customAttributesAjaxResponse.json");
 let dependentAttributesModel = require("../mockData/dependentAttributesModel.json");
 
