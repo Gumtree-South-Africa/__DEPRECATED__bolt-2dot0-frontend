@@ -1,0 +1,272 @@
+//:::::::: Desktop / Medium / Small ::::::::::
+
+.footer-wrapper{
+	&,& a{
+		color: color(swirl, shade);
+		background-color: color(foxtail, light);
+	}
+	.top-links{
+		color: color(swirl, shade);
+		background-color: color(foxtail, medium);
+	}
+	.meet-team{
+		margin: 15px 0;
+	}
+	.customer-service-container{
+		height:88px;
+		display: inline-block;
+		width:100%;
+		.team-photos{
+			height: auto;
+			width: 49%;
+			.user-photo-wrapper {
+				max-width: 103px;
+				width: 103px;
+				.user-photo {
+					width: 64px;
+					height: 64px;	
+					border: 2px solid color(leaf);
+					background-size: 115%;
+				}
+				&:nth-of-type(1) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS1.png);
+				}
+				&:nth-of-type(2) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS2.png);
+				}
+				&:nth-of-type(3) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS3.png);
+				}
+				&:nth-of-type(4) .user-photo {
+				    background-image: url(../../../../../images/en_ZA/CS4.png);
+				}
+			}
+		}
+		.support-wrapper{
+			.support-container{
+				margin: 0 12.5px;
+				.support-icon{
+					width: 26px;
+					height: 26px;
+				}
+				.chat-icon{
+				  background-image: url(../../../../../images/en_ZA/chat-icon.png);
+				}
+				.email-icon{
+				  background-image: url(../../../../../images/en_ZA/email-icon.png);
+				}
+				.call-icon{
+				  background-image: url(../../../../../images/en_ZA/call-icon.png);
+				}
+				.support-text{
+					position: relative;
+					top:-3px;
+					margin-left:0;
+					font-size: 14px;
+				}
+			}
+		}
+	}
+	.line-divider{
+		width: 941px;
+		margin: auto;
+	}
+	.footer-links{
+		.menu-category{
+			margin-top: 0;
+			padding-top: 18px;
+			padding-bottom: 18px;
+			&:first-child span{
+				font-weight: bold;
+			}
+			.menu-items{
+				margin: 15px 0 0 0;
+			}
+			
+		}
+	}
+	.social-container{
+		margin:0;
+		display: inline-table;
+		padding-top:20px;
+		.social-icon-wrapper{
+			margin:0;
+			.social-icon{
+				margin-top: 0;
+			}
+		}
+	}
+	.mobile-only.social-container{
+		display: none;
+	}
+	.desktop-only.social-container{
+		display: block;
+	}
+	.footer-download{
+		position: inherit;
+		right: inherit;
+		bottom: inherit;
+		float: right;
+		width:40%;
+		padding-right: 35px;
+		.menu-category{
+			display: none;
+		}
+		.app-downloads-container{
+			padding-top:16px;
+			padding-bottom:9px;
+			margin-top: inherit;				
+			height:52px;
+			text-align: right;
+			width: 100%;
+			.app-downloads{
+				width: 100%;
+				top:0;
+				margin: 0 2.5px;
+				&.icon-logo_app_store{
+					background: url(../../../../../images/en_ZA/appstore.svg) no-repeat;
+					border: none;
+					background-position: center;
+					background-size: 100%;
+				}
+				&.icon-logo_google_play{
+					background: url(../../../../../images/en_ZA/google-play.png) no-repeat;
+					background-position: center;
+					background-size: 115%;
+					border: none;
+				}
+			}
+		}
+	}
+	.seo-wrapper{
+		display:inline-block;
+		color: inherit;
+		.top-locations-header, .top-headers{
+			margin: 0;
+			padding: 0;
+		}
+		.view-more-locations, .view-more-searches{
+			float: left;
+			width: 100%;
+		}
+	}
+	.footer-trademark {
+		margin: 0;
+		padding-bottom: 10px;
+		font-size: 10px;
+		text-align: center;
+		.HomepageV2 &{
+			background-color: color(foxtail, medium);
+		}
+	}
+	.df-support-wrapper {
+    margin: auto;
+    max-width: 942px;
+    width: inherit;
+    padding: 12px 12px;
+    .df-support-container{
+      height: auto;
+      margin: auto;
+      .support-icon{
+      	margin: 0;
+      }
+    }
+  }
+}
+
+//:::::::: Small Only::::::::::
+@include to-breakpoint($small-break){
+	.footer-wrapper{
+		.customer-service-container{
+			height:auto;
+			.team-photos{
+				width:100%;
+				.user-photo-wrapper{
+					width: 25%;
+					max-width: 25%;
+					.user-photo{
+						height: 50px;
+						width: 50px;
+					}
+				}
+			}
+			.support-wrapper{
+				text-align: left;
+				padding: 12px 12px;
+				display: inline-table;
+				margin: 0px;
+				.support-container{
+					display: inline-block;
+					margin: 0;
+					.support-text, .support-icon{
+						margin:0;
+					}
+					.mobile-only.support-text, .chat-icon + .support-text{
+						display:inline;
+						padding-left: 5px;
+					}
+				}
+			}
+		}
+		.seo-wrapper{
+			.seo-line{
+				border-bottom: 1px solid color(swirl, shade); 
+			}
+			.thick-underline {
+				border-bottom: 3px solid color(swirl, shade);
+			}
+			.top-headers-text {
+				padding-bottom: 6px;
+			}
+		}
+
+		.footer-download{
+			display: inline-block;
+			width: 100%;
+			padding: 0;
+			.app-downloads-container{
+				text-align: center;
+				padding: 18px 0 9px 0;
+			}
+		}
+	}
+	.clear.line-divider{
+		display: none;
+	}
+
+}
+//:::::::: Desktop Only::::::::::
+@include from-breakpoint($medium-break){
+	.footer-wrapper{
+		
+		.desktop-only.social-container{
+			display: inline-table;
+			padding-left: 2.5%;
+		}
+
+		.customer-service-container{
+			.support-wrapper{
+				text-align: right;
+				padding-right: 25px;
+			}
+		}
+
+		.seo-wrapper{
+			.tab-content{
+				margin:0;
+				text-align: center;
+				.top-content{
+					float: left;
+					width: 49%;
+				}
+				.top-content-wrapper .top-content .top-links{
+					position: relative;
+					left: 0;
+				}
+				.top-content-wrapper .top-content:nth-child(even){
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
