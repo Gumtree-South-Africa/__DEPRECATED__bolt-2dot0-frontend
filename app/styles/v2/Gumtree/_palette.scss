@@ -31,25 +31,45 @@ $vivaBlue7: #478BCD;
 
 $vivaRed: red;
 
+//ZA Palette
 $colors: (
 	crane: (
 		base: #F66429,
-		shade: #B0481A
+		shade: #B0481A,
+		light: #FD9E5A
 	),
 	foxtail: (
 		base: #FCECC7,
 		light: #FCFAf4,
-		medium: #FAF5EA
+		medium: #FAF5EA,
+		shade: #FAF6EE
 	),
 	leaf: (
-		base: #72EF36
+		base: #72EF36,
+		light: #76EC46,
+		dark: #5FB69C
 	),
 	swirl: (
 		base: #CFCDC1,
 		dark: #6E6A60,
 		medium: #A4A29C,
 		shade: #605D4C
+	),
+	taupe:(
+		base: #55404E
+	),
+	rock: (
+		base: #C9C7C3,
+		medium: #B7b5AF,
+		dark: #888888
+	),
+	watermelon: (
+		base: #FF6B7A
+	),
+	curious:(
+		base: #3397BA
 	)
+
 );
 
 @function color($name, $tone: base) {

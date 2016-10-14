@@ -36,6 +36,7 @@ $p2-secondary-color: $vivaGray1;
 
 $safety-card-background-color: #1E98D5;
 $common-background-color: color(foxtail, medium);
+$recent-activity-background-color: white;
 
 // Primary link
 $primary-link-color: $vivaBlack;
@@ -152,7 +153,7 @@ $headerBackgroundColor: color(foxtail, medium);
 $headerTextColor: color(swirl, dark);
 $headerMenuBorderColor: color(swirl, shade);
 $headerMenuItemSecondaryColor: $vivaGray6;
-$headerMenuItemSeparatorColor: color(swirl);
+$headerMenuItemSeparatorColor: $vivaGray7;
 $headerMessagesBackgroundColor: $vivaOrange;
 $profileDropdownLoginBtnColor: color(crane);
 $headerMenuItemHighlightColor: color(swirl);
@@ -191,7 +192,7 @@ $photoCarouselMaxPhotosMsgColor: $vivaBlue4;
 $photoCarouselRequiredMsgColor: $vivaRed;
 $postAdShadowColor: $vivaGray6;
 $postAdOrange: $vivaOrange;
-$postAdHeaderBlue: color(crane);
+$postAdHeaderBlue: color(leaf);
 $postAdHeaderBackground: color(foxtail, medium);
 $postAdTextGray: $vivaGray11;
 
