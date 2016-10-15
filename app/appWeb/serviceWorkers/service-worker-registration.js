@@ -29,7 +29,7 @@ function subscribeInServer(subscription) {
 		endpoint: subscription.endpoint
 	};
 	$.ajax({
-		url: '/api/push/subscribe',
+		url: '/api/push/subscription',
 		type: 'POST',
 		data: JSON.stringify(payload),
 		dataType: 'json',
@@ -51,7 +51,7 @@ function unsubscribeInServer(subscription) {
 		endpoint: subscription.endpoint
 	};
 	$.ajax({
-		url: '/api/push/subscribe',
+		url: '/api/push/subscription',
 		type: 'DELETE',
 		data: JSON.stringify(payload),
 		dataType: 'json',

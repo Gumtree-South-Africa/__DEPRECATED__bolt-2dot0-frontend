@@ -7,8 +7,8 @@ let PushNotificationModel = require(process.cwd() + '/app/builders/common/PushNo
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(process.cwd() + '/modules/cors');
 
-// route is /api/push/subscribe
-router.post('/subscribe', cors, (req, res) => {
+// route is /api/push/subscription
+router.post('/subscription', cors, (req, res) => {
 	if (typeof req.cookies['bt_auth'] === 'undefined') {
 		res.status(401).send({
 			error: true
@@ -37,7 +37,7 @@ router.post('/subscribe', cors, (req, res) => {
 	});
 });
 
-router.delete('/subscribe', cors, (req, res) => {
+router.delete('/subscription', cors, (req, res) => {
 	if (typeof req.cookies['bt_auth'] === 'undefined') {
 		res.status(401).send({
 			error: true

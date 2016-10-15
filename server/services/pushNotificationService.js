@@ -11,7 +11,7 @@ let notificationType = {
 
 class PushNotificationService {
 	subscribeGCM(bapiHeaderValues, endpoint) {
-		let pathValue = config.get('BAPI.endpoints.pushSubscribe');
+		let pathValue = config.get('BAPI.endpoints.pushSubscription');
 		let pattern = 'https://android.googleapis.com/gcm/send/';
 		let registrationId = endpoint.substr(endpoint.indexOf(pattern) + pattern.length, endpoint.length);
 		let data = {
@@ -31,7 +31,7 @@ class PushNotificationService {
 	}
 
 	unsubscribeGCM(bapiHeaderValues, endpoint) {
-		let pathValue = config.get('BAPI.endpoints.pushUnsubscribe');
+		let pathValue = config.get('BAPI.endpoints.pushSubscription');
 		let pattern = 'https://android.googleapis.com/gcm/send/';
 		let registrationId = endpoint.substr(endpoint.indexOf(pattern) + pattern.length, endpoint.length);
 		let data = {
@@ -45,7 +45,7 @@ class PushNotificationService {
 		};
 
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
-			method: 'POST',
+			method: 'DELETE',
 			path: pathValue
 		}), bapiHeaderValues, JSON.stringify(data), 'pushUnsubscribeGcm');
 	}

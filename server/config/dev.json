@@ -23,7 +23,8 @@
 			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
-			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes"
+			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
+			"pushSubscription"	:	"/bolt-api-webapp/v1/notifications/actions/subscription"
 	    }
 	},
 	"solr": {

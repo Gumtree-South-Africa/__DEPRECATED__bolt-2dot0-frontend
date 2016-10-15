@@ -24,8 +24,7 @@
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
 			"categoryAttributes":	"/categories/{catId}/attributes",
-			"pushSubscribe"		:	"/notifications/actions/subscribe",
-			"pushUnsubscribe"	:	"/notifications/actions/unsubscribe"
+			"pushSubscription"	:	"/notifications/actions/subscription"
 	    }
 	},
 	"solr": {

@@ -24,7 +24,8 @@
 			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
-			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes"
+			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
+			"pushSubscription"	:	"/bolt-api-webapp/v1/notifications/actions/subscription"
 	    }
 	},
 	"kafka": {
