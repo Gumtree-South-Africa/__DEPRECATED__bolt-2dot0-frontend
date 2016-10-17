@@ -38,6 +38,7 @@ class HamburgerMenu {
 	}
 
 	_toggleBrowseCategory() {
+		console.log('hellllo');
 		this.$browseArrow.toggleClass('icon-chevron-blue');
 		this.$browseArrow.toggleClass('icon-up-blue');
 		$('li', this.$browse).toggleClass('hidden');
@@ -112,6 +113,3 @@ class HamburgerMenu {
 }
 
 module.exports = new HamburgerMenu();
-
-
-
