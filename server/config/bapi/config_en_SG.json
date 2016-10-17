@@ -51,12 +51,35 @@
 		"categoryDropdownLevel"				: 2
 	},
 	"footer" : {
+		"about"										: "https://help.gumtree.sg/SG/articles/en_US/KB_Article/About-us?vgroup1=PKB&c=PKB%3AbasicsSG&vcategory2=aboutSG&s=",
+		"termOfUse"								: "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Terms-of-Use?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+		"postingRules"            : "https://help.gumtree.sg/SG/articles/en_US/KB_Article/General-posting-rules?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+		"privacyPolicy"						: "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Privacy-Policy?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+		
+		"classifieds" 	: "http://www.gumtree.sg/pages/ClassifiedsNetwork/",
+		"directory" 		: "http://profile.gumtree.sg/directory",
+		"priceIndex" 		: "http://www.gumtree.sg/pages/pricechecker/",
+		"jobs" 					: "https://www.gumtreejobs.sg",
+		
+		"post" 					: "Please Advice new URL",
+		"mobile" 				: "http://info.gumtree.sg/promo/mobile-apps/",
+		"top" 					: "Please Advice new URL",
+		"recruiter" 		: "http://protool.gumtree.sg",
+		
+		"helpUrl"				: "http://help.gumtree.sg/",
+		"onlinesafety"	: "https://help.gumtree.sg/SG?lang=en_US&l=en_US&c=PKB%3AsafetySG",
+		"contact"				: "https://help.gumtree.sg/SG/?cu=1&fs=ContactUs&l=en_US",
+		"report"				: "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Reporting-ads-Singapore?vgroup1=PKB&c=PKB%3AsafetySG&vcategory2=Reporting_Ads&s=",
+
+		"social"				: {
+			"facebookUrl" 	: "https://www.facebook.com/gumtreeSG",
+			"twitterUrl" 		: "https://help.gumtree.sg/SG?cu=1&fs=ContactUs&l=en_US&lang=en_US&q=&s=",
+			"pinterestUrl"	: "https://help.gumtree.sg/SG?cu=1&fs=ContactUs&l=en_US&lang=en_US&q=&s=",
+			"youTubeUrl" 		: "https://www.youtube.com/user/GumtreeSingapore",
+			"googlePlusUrl" : "https://plus.google.com/102984486916979382186"
+		},					
 		"cookieNotice"						: "https://gumtreehelp.com/sg/knowledgebase.php?article=190",
-		"privacyPolicy"						: "https://gumtreehelp.com/sg/knowledgebase.php?article=121",
-		"termOfUse"							: "https://gumtreehelp.com/sg/knowledgebase.php?article=120",
-		"postingRules"                      : "https://gumtreehelp.com/sg/knowledgebase.php?article=22",
-		"helpLabel"							: "Help",
-		"helpUrl"							: "https://gumtreehelp.com/sg/",
+		"helpLabel"								: "Help",
 		"interLinkUrl"						: null,
 		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
 		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
@@ -157,9 +180,8 @@
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
 		},
-
 		 "quickpost" : {
-              "currencyDisplay"    :    true,
+		 	"currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]
         }
 	},

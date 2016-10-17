@@ -239,26 +239,28 @@
     {{/unless}}
 
     {{#block "footer-trademark"}}
-	<div class="footer-trademark">
-		<span class="trademark">&copy {{i18n "footer.trademark.trademark"
-            '<script>document.write(new Date().getFullYear())</script>'}}.
-        </span>
-		<span><b><a href="{{this.footer.termOfUse}}">{{i18n "footer.sitemap.legal.terms"}}</a></b>. </span>
-		<span><b><a href="{{this.footer.privacyPolicy}}">{{i18n "footer.sitemap.legal.privacy"}}</a></b>. </span>
-		<span><b><a href="{{this.footer.cookieNotice}}">{{i18n "footer.sitemap.legal.cookies"}}</a></b>. </span>
-	</div>
+			<div class="footer-trademark">
+				<span class="trademark">&copy {{i18n "footer.trademark.trademark"
+		            '<script>document.write(new Date().getFullYear())</script>'}}.
+		    </span>
+				<span><b><a href="{{this.footer.termOfUse}}">{{i18n "footer.sitemap.legal.terms"}}</a></b>. </span>
+				<span><b><a href="{{this.footer.privacyPolicy}}">{{i18n "footer.sitemap.legal.privacy"}}</a></b>. </span>
+				<span><b><a href="{{this.footer.cookieNotice}}">{{i18n "footer.sitemap.legal.cookies"}}</a></b>. </span>
+			</div>
     {{/block}}
 </div>
 
 {{#unless this.footer.distractionFree}}
   {{#block "seo-links-text"}}
 	<div class="nonJsOnlyInlineBlock seo-links tested">
-        <div class="seo-links-text-container">
-			<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.location"}}' target="/blank">{{i18n
-                "footer.sitemap.explore.location"}}</a></div>
-			<div class="seo-topsearches"><a href='{{this.footer.topSearchesLandingPageUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.topsearches"}}' target="/blank">{{i18n
-                "footer.sitemap.explore.topsearches"}}</a></div>
-        </div>
+    <div class="seo-links-text-container">
+			<div><a href='{{i18n "footer.sitemap.explore.locationlink"}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.location"}}' target="/blank">
+				{{i18n "footer.sitemap.explore.location"}}
+			</a></div>
+			<div class="seo-topsearches"><a href='{{this.footer.topSearchesLandingPageUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.topsearches"}}' target="/blank">
+				{{i18n "footer.sitemap.explore.topsearches"}}
+			</a></div>
+    </div>
 	</div>
   {{/block}}
 {{/unless}}

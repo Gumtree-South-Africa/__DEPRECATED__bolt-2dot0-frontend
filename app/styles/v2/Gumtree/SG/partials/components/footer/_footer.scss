@@ -2,7 +2,7 @@
 
 .footer-wrapper{
 	&,& a{
-		color: color(swirl, shade);
+		color: #FFF;
 		background-color: color(rock, base);
 	}
 	.top-links{
@@ -11,6 +11,7 @@
 	}
 	.meet-team{
 		margin: 15px 0;
+		color: color(taupe, base)
 	}
 	.customer-service-container{
 		height:88px;
@@ -25,20 +26,20 @@
 				.user-photo {
 					width: 64px;
 					height: 64px;	
-					border: 2px solid color(leaf);
+					border: 2px solid color(rock, dark);
 					background-size: 115%;
 				}
 				&:nth-of-type(1) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS1.png);
+				    background-image: url(../../../../../images/en_SG/CS1.jpg);
 				}
 				&:nth-of-type(2) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS2.png);
+				    background-image: url(../../../../../images/en_SG/CS2.jpg);
 				}
 				&:nth-of-type(3) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS3.png);
+				    background-image: url(../../../../../images/en_SG/CS3.jpg);
 				}
 				&:nth-of-type(4) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS4.png);
+				    background-image: url(../../../../../images/en_SG/CS4.jpg);
 				}
 			}
 		}
@@ -70,7 +71,7 @@
 	.line-divider{
 		width: 941px;
 		margin: auto;
-		border-top: 1px solid color(swirl, base)
+		border-top: 1px solid #FFFFFF;
 	}
 	.footer-links{
 		.menu-category{
@@ -144,7 +145,7 @@
 		font-size: 10px;
 		text-align: center;
 		.HomepageV2 &{
-			background-color: color(foxtail, light);
+			background-color: color(rock, base);
 		}
 	}
 	.df-support-wrapper {

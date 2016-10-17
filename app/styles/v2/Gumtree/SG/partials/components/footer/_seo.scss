@@ -2,13 +2,15 @@
 .seo-wrapper{
 	background-color: color(rock, medium);
 	display:inline-block;
-	&,.top-links{color: color(swirl, shade);}
+	&,.top-links{
+		color: #FFF;
+	}
 	h1{
+		color: color(taupe, base);
 		font-weight: 500;
 		text-align: center;
 		margin: 0 auto 20px;
-		//max-width: 941px;
-		border-bottom: 1px solid color(swirl, medium);
+		border-bottom: 1px solid #FFFFFF;
 	}
 	
 	.top-locations-header, .top-headers{
