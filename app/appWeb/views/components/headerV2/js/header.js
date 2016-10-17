@@ -28,7 +28,9 @@ let _toggleProfileMenu = (shouldClose) => {
 
 let _logoutUnsubscribePushNotification = () => {
 	let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
-	subscriptionFromCookieStr = (typeof subscriptionFromCookieStr !== 'undefined') ? subscriptionFromCookieStr : '';
+	if (subscriptionFromCookieStr === '') {
+		return;
+	}
 
 	let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
 	let payload = {

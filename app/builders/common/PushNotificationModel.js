@@ -1,6 +1,6 @@
 'use strict';
 
-let pushNotificationService = require(process.cwd() + '/server/services/PushNotificationService.js');
+let pushNotificationService = require(process.cwd() + '/server/services/pushNotificationService.js');
 
 /**
  * @description A class that Handles the Push Notification Model
