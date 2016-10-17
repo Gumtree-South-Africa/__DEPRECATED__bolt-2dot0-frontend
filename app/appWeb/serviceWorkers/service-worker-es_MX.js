@@ -274,7 +274,7 @@ self.addEventListener('push', function(event) {
 	 gcmDetails=Optional.absent(), apnsDetails=Optional.absent()]
 	 */
 
-	var notificationTitle = 'Yay a message.';
+	var notificationTitle = 'Se acaba de publicar algo que estas buscando.';
 	const notificationOptions = {
 		'body': 'Su búsqueda [Mobiletest1] tiene nuevos resultados. Haga clic para verlos.',
 		'icon': cacheObj.preCache.baseImageUrl + '/es_MX/icon-192x192.png',
