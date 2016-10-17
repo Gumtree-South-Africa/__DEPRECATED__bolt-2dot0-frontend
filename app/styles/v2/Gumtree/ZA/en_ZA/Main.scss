@@ -41,11 +41,11 @@
 }
 
 body {
-  background-color: #FAF5EA;
+  background-color: $gumtree-bg-color;
 }
 
 #wrapper {
-  background-color: #FCFAF4;
+  background-color: $gumtree-bg-container-color;
 }
 
 // limit the image to the maximum
