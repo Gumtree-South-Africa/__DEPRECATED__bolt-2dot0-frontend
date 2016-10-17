@@ -101,7 +101,9 @@ class HamburgerMenu {
 			}
 		});
 		this.$pageContent.addClass('open-menu');
-		this.$browseCategories.on('click', () => this._toggleBrowseCategory);
+		this.$browseCategories.on('click', () => {
+			this._toggleBrowseCategory();
+		});
 		this.$hamburgerIcon.on('click', () => {
 			this.toggleMenu();
 		});
@@ -112,6 +114,3 @@ class HamburgerMenu {
 }
 
 module.exports = new HamburgerMenu();
-
-
-
