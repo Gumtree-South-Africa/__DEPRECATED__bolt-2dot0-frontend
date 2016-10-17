@@ -38,7 +38,6 @@ class HamburgerMenu {
 	}
 
 	_toggleBrowseCategory() {
-		console.log('hellllo');
 		this.$browseArrow.toggleClass('icon-chevron-blue');
 		this.$browseArrow.toggleClass('icon-up-blue');
 		$('li', this.$browse).toggleClass('hidden');
@@ -102,7 +101,9 @@ class HamburgerMenu {
 			}
 		});
 		this.$pageContent.addClass('open-menu');
-		this.$browseCategories.on('click', () => this._toggleBrowseCategory);
+		this.$browseCategories.on('click', () => {
+			this._toggleBrowseCategory();
+		});
 		this.$hamburgerIcon.on('click', () => {
 			this.toggleMenu();
 		});
