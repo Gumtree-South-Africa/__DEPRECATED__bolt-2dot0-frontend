@@ -1,5 +1,7 @@
 'use strict';
 
+let CookieUtils = require("public/js/common/utils/CookieUtils.js");
+
 let deepLink = require('app/appWeb/views/components/headerV2/js/deepLink.js');
 let hamburgerMenu = require("app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js");
 require("app/appWeb/views/components/profileMenu/js/profileMenu.js").initialize();
@@ -22,6 +24,35 @@ let _toggleProfileMenu = (shouldClose) => {
 	$('#js-profile-item-text').toggleClass('menu-open', !shouldClose);
 	this.$profileHeaderIcon.toggleClass('icon-down', shouldClose);
 	this.$profileHeaderIcon.toggleClass('icon-up', !shouldClose);
+};
+
+let _logoutUnsubscribePushNotification = () => {
+	let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
+	subscriptionFromCookieStr = (typeof subscriptionFromCookieStr !== 'undefined') ? subscriptionFromCookieStr : '';
+
+	let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
+	let payload = {
+		subscription: subscriptionFromCookie,
+		endpoint: subscriptionFromCookie.endpoint
+	};
+	$.ajax({
+		url: '/api/push/subscription',
+		type: 'DELETE',
+		data: JSON.stringify(payload),
+		dataType: 'json',
+		contentType: "application/json",
+		success: function(output) {
+			console.log('Success in unsubscribing to push notification in server');
+			console.log(output);
+
+			// delete subscription cookie
+			CookieUtils.setCookie('GCMSubscription', '', -1);
+		},
+		error: function(err) {
+			console.log('Failed to unsubscribe to push notification in server');
+			console.log(err);
+		}
+	});
 };
 
 // onReady separated out for easy testing
@@ -58,6 +89,11 @@ let initialize = (registerOnReady = true) => {
 	if (registerOnReady) {
 		$(document).ready(onReady);
 	}
+
+	this.$headerlogout = this.$header.find('#header-logout');
+	this.$headerlogout.on('click', ()  => {
+		_logoutUnsubscribePushNotification();
+	});
 };
 
 module.exports = {

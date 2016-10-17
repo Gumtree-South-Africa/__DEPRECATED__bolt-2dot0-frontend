@@ -43,7 +43,7 @@
 	</li>
     {{#if this.header.isUserLoggedIn}}
 		<li class="profile-item">
-            <span class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.signOutURL}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.logout"}}'>
+            <span id="header-logout" class="link-item rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.signOutURL}}" data-gtm='pc|NavHeaderClick|eventLabel|{{i18n "header.userDropdown.logout"}}'>
                 <div class="item-icon icon-logout-1"></div>
                 <div class="profile-item-text">{{i18n "header.userDropdown.logout"}}</div>
             </span>
