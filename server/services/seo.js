@@ -67,6 +67,19 @@ SeoService.prototype.getLoginSeoData = function(bapiHeaders) {
 }
 
 /**
+ * Gets a list of SEO info for VIP
+ */
+SeoService.prototype.getVIPSeoData = function(bapiHeaders) {
+	// console.info('Inside VIP SeoService');
+
+	var seoData = {};
+	seoData.pageTitle = 'title | locationSeoWord | adId';
+	seoData.description = 'description trimmed to 140 chars...adId';
+	seoData.robots = 'index,follow';
+	return seoData;
+}
+
+/**
  * Gets a list of SEO info for SRP
  */
 SeoService.prototype.getSRPSeoData = function(bapiHeaders) {
