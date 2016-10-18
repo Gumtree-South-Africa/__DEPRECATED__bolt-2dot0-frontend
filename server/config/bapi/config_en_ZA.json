@@ -195,7 +195,7 @@
 		},
 		"quickpost" : {
       "currencyDisplay"    :    true,
-      "currency"           :    ["MXN:MXN","USD:USD"]
+      "currency"           :    ["ZAR:ZAR"]
     }
 	},
 	"bapi" : {
