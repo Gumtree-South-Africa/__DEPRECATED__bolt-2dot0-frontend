@@ -1189,7 +1189,7 @@
 	"smartmobilebanner": {
 		"title": "Open App",
 		"mobilelink": "continue to mobile site >",
-		"branchiolink": "http://go.gumt.io/open"
+		"branchiolink": "https://go.gumt.io/open"
 	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
