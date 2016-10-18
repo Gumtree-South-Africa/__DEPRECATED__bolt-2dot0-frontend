@@ -186,7 +186,6 @@
 			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
 		},
-
 		 "quickpost" : {
               "currencyDisplay"    :    false,
               "currency"           :    ["ZAR:ZAR"]
