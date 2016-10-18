@@ -1187,9 +1187,9 @@
 	"footer.help.contact": "Contact Customer Service",
 	"footer.help.meet": "Meet Our Customer Team",
 	"smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
+		"title": "Open App",
+		"mobilelink": "continue to mobile site >",
+		"branchiolink": "http://go.gumt.io/open"
 	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
