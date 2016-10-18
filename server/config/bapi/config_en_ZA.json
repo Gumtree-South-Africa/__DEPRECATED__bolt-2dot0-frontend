@@ -193,11 +193,10 @@
 	  	"adCarouselSeeAllUrl"	: null,
 	  	"defaultKeywordsCount"	: 15
 		},
-
-		 "quickpost" : {
-              "currencyDisplay"    :    false,
-              "currency"           :    ["ZAR:ZAR"]
-        }
+		"quickpost" : {
+      "currencyDisplay"    :    true,
+      "currency"           :    ["ZAR:ZAR"]
+    }
 	},
 	"bapi" : {
 		"HomepageV2": {
