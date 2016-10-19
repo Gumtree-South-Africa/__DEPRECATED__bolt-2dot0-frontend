@@ -1,6 +1,8 @@
 //:::::::: Desktop / Medium / Small ::::::::::
 
 .footer-wrapper{
+	margin: 0 auto;
+    max-width: 64em;
 	&,& a{
 		color: color(swirl, shade);
 		background-color: color(foxtail, light);
@@ -24,7 +26,7 @@
 				width: 103px;
 				.user-photo {
 					width: 64px;
-					height: 64px;	
+					height: 64px;
 					border: 2px solid color(leaf);
 					background-size: 115%;
 				}
@@ -82,7 +84,7 @@
 			.menu-items{
 				margin: 15px 0 0 0;
 			}
-			
+
 		}
 	}
 	.social-container{
@@ -115,7 +117,7 @@
 		.app-downloads-container{
 			padding-top:16px;
 			padding-bottom:9px;
-			margin-top: inherit;				
+			margin-top: inherit;
 			height:52px;
 			text-align: right;
 			width: 100%;
@@ -155,9 +157,6 @@
 		padding-bottom: 10px;
 		font-size: 10px;
 		text-align: center;
-		.HomepageV2 &{
-			background-color: color(foxtail, medium);
-		}
 	}
 	.df-support-wrapper {
     margin: auto;
@@ -210,7 +209,7 @@
 		}
 		.seo-wrapper{
 			.seo-line{
-				border-bottom: 1px solid color(swirl, shade); 
+				border-bottom: 1px solid color(swirl, shade);
 			}
 			.thick-underline {
 				border-bottom: 3px solid color(swirl, shade);
@@ -238,7 +237,7 @@
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
 	.footer-wrapper{
-		
+
 		.desktop-only.social-container{
 			display: inline-table;
 			padding-left: 2.5%;
