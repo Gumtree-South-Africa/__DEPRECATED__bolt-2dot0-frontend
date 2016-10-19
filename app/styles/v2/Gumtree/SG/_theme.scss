@@ -7,7 +7,8 @@
 
 $container-width: 73em;
 
-$bodyFont: Lato;    // attach this to body element
+$bodyFont: Chivo;   // attach this to body element
+$bodyFontSecondary: Montserrat;
 
 // Headlines
 $viva-h1: bold 1.5em $bodyFont;      // 24px
@@ -206,3 +207,20 @@ $categorySelectionModalBgColor: $vivaWhite;
 $categorySelectionSeparatorColor: $vivaGray10;
 $leafNodeWarningColor: $gumOrange;
 $categoryNameColor: $vivaBlue7;
+
+// FOOTER
+//Footer Seo Background section
+$footerSeoBackgroundColor: color(rock, medium);
+
+//Footer Main Background section
+$footerMainBackgroundColor: color(rock, base);
+$footerTrademarkBackgroundColor: color(rock, base);
+//Footer Main Text
+$footerMainTextColor: $gumWhite;
+
+//Footer Headers
+$footerHeaderTextColor: color(taupe,base);
+$footerHeaderFont: normal 18px Montserrat;
+
+//Footer divider
+$footerDividerLineColor: $gumWhite;
