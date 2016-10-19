@@ -3,7 +3,7 @@
 
 {{!-- DISTRACTION FREE Support Links  --}}
 {{#partial "distraction-free-support-links"}}
-  <div class="meet-team">{{i18n "footer.help.contact"}}</div>
+  <div class="meet-team">{{i18n "footer.help.contactDF"}}</div>
   <div class="df-support-wrapper">
     <div class="df-support-container">
       <span class="support-icon email-icon"></span>
@@ -81,14 +81,16 @@
   </div>
 {{/partial}}
 
+{{!-- Trademark Section --}}
 {{#partial "footer-trademark"}}
-<div class="footer-trademark">
-  <span class="trademark">&copy {{i18n "footer.trademark.trademark"
-    '<script>document.write(new Date().getFullYear())</script>'}}.
-  </span>
-</div>
+	<div class="footer-trademark">
+	  <span class="trademark">&copy {{i18n "footer.trademark.trademark"
+	    '<script>document.write(new Date().getFullYear())</script>'}}.
+	  </span>
+	</div>
 {{/partial}}
 
+{{!-- Gumtree Business DISTRACTION FREE --}}
 {{#partial "footer-links-legal-df"}}
   <div class="footer-inner-wrappper">
     <div class="df-footer-legal">
@@ -96,7 +98,7 @@
         <span class="chevron mobile-only"></span>
         <div class="menu-items">
           <div class="df-legal-links">
-            <a href="{{this.footer.businessUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.gumtreebusiness"}}'>
+            <a href="{{this.footer.sitemap.aboutus.gumtreebusiness}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.gumtreebusiness"}}'>
               {{i18n "footer.sitemap.aboutus.gumtreebusiness"}}
             </a>
           </div>
@@ -104,11 +106,7 @@
       </div>
     </div>
     <div class="line-divider clear"></div>
-</div>
+	</div>
 {{/partial}}
-
-
-
-
 
 {{> (base "footerV2") }}

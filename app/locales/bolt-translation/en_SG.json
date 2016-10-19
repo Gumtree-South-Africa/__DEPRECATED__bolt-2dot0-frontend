@@ -1173,7 +1173,8 @@
     "toplocations": "Top locations",
     "help": {
       "heretohelp": "Meet our customer team",
-      "contact": "Contact us"
+      "contact": "Contact us",
+      "contactDF": "Customer care"
     },
     "support": {
       "contact": "Contact us"
@@ -1184,7 +1185,8 @@
         "aboutgumtree": "About Gumtree",
         "termofuse": "Terms of Use",
         "postingpolicy": "Posting Policy",
-        "privacypolicy": "Privacy Policy"
+        "privacypolicy": "Privacy Policy",
+        "gumtreebusiness": "Gumtree Jobs for Recruiter"
       },
       "explore": {
         "title": "Explore",
