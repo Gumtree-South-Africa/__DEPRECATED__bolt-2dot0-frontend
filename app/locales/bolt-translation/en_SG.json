@@ -1118,14 +1118,10 @@
   "appdownload.title": "¡Vende rápido!",
 	"appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
 	"appdownload.mobilebutton": "¡Baja la app!",
-	"appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
-	"appdownload.googleplay": "https://app.adjust.com/oarq82",
-	"appdownload.applink": "http://go.vivanunc.io/baja-la-app",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
 	"footer.download.download": "Download the App",
 	"footer.download.itunes": "Available on the App Store",
 	"footer.download.playstore": "Avaiable on the Android App Store",
-	"footer.trademark.trademark": "2014-2016 eBay. All rights reserved",
 	"footer.twitter": "@gumtreecoza",
   "footer.facebook": "Like",
   "footer.googleplus": "Recommend",
@@ -1227,7 +1223,7 @@
       "playstore": "Disponible en la App Store de Android"
     },
     "trademark": {
-      "trademark": "2014-%s eBay. Todos los derechos reservados"
+      "trademark": "2014-%s eBay. All rights reserved"
     }
   },
   "home": {
@@ -1284,8 +1280,8 @@
 		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
 		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
 		"mobilebutton": "¡Baja la app!",
-		"ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
-		"googleplay": "https://app.adjust.com/oarq82",
+		"ioslink": "https://itunes.apple.com/sg/app/gumtree-sg/id684141699?ls=1&mt=8",
+		"googleplay": "https://play.google.com/store/apps/details?id=com.gumtree.sg",
 		"applink": "https://go.vivanunc.io/baja-la-app"
 	},
 	"postad": {
