@@ -2,7 +2,10 @@
 .seo-wrapper{
 	background-color: $footerSeoBackgroundColor;
 	display:inline-block;
-	&,.top-links{color: $footerMainTextColor;}
+	&,.top-links{
+		color: $footerMainTextColor;
+		font-family: $footerMainTextFont;
+	}
 	h1{
 		text-align: center;
 		margin: 0 auto 20px;
