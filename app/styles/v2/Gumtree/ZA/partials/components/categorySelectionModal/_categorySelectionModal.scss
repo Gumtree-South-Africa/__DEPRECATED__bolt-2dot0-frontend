@@ -1,0 +1,33 @@
+.category-selection-modal {
+	.close-button {
+		color: color(swirl, medium);
+	}
+
+	.current-hierarchy {
+		color: color(swirl, shade);
+	}
+
+	.modal {
+		background: color(foxtail, light);
+	}
+
+	.results {
+		border-color: color(swirl, shade);
+
+		.list-item {
+			&.active {
+				background: color(crane);
+				color: white;
+			}
+		}
+	}
+
+	.wrapper {
+		color: color(swirl, medium);
+
+		input {
+			border-color: color(swirl, shade);
+			border-radius: 2px;
+		}
+	}
+}
