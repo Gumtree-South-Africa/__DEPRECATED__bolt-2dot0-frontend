@@ -1120,7 +1120,7 @@
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
-		"close": "Cerrar"
+		"close": "Close"
 	},
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
@@ -1250,13 +1250,13 @@
 		"postAd": "Post FREE Ad"
 	},
 	"modal": {
-		"close": "Cerrar",
-		"buttonText": "Confirmar",
-		"message": "Cambia tu Ubicación",
-		"placeholderText": "Escribe una ubicación",
-		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
-		"locationAutoMobile": "Ubicación más cercana",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"close": "Close",
+		"buttonText": "Confirm",
+		"message": "Change your location",
+		"placeholderText": "Type a location",
+		"locationAutoDesktop": "According to our system, this is the nearest location",
+		"locationAutoMobile": "Nearest location",
+		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
 		"trending": "Trending",
@@ -1416,61 +1416,61 @@
 		}
 	},
 	"postAdModal": {
-		"helpText": "¿Qué quieres anunciar?",
+		"helpText": "What do you advertise?",
 		"uploadPhotos": "Upload photo(s)",
 		"uploadPhoto": "Upload a photo",
-		"uploadQuickly": "Publica un anuncio rápidamente",
+		"uploadQuickly": "Post an ad quickly",
 		"upload": "Post an ad",
 		"close": "Close"
 	},
 	"editAd": {
-		"reorderImages": "Volver a ordenar imágenes",
-		"headerTitle": "Edita tu anuncio",
+		"reorderImages": "Reorder images",
+		"headerTitle": "Edit your ad",
 		"mainDetails": {
-			"title": "Agregar detalles",
+			"title": "Add details",
 			"labels": {
-				"category": "Categoría",
-				"adTitle": "Título del anuncio",
-				"price": "Precio",
-				"description": "Descripción",
-				"location": "Ciudad, zona o código postal"
+				"category": "Category",
+				"adTitle": "Ad title",
+				"price": "Price",
+				"description": "Description",
+				"location": "City, region or zip code"
 			},
 			"titleRestrictions": {
-				"minimumAvailable": "Disponsibles: ",
-				"characters": " caracter(es)"
+				"minimumAvailable": "Available: ",
+				"characters": " character(s)"
 			},
-			"askMe": "Preguntarme",
-			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
-			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
-			"submit": "Listo",
-			"cancel": "Cancelar",
-			"locationWarning": "Tu ubicación exacta no se publicará",
-			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+			"askMe": "Ask me",
+			"suggestedCategory": "This category has been suggested by Gumtree",
+			"leafNodeWarning": "Choose the category that fits best with your item",
+			"submit": "Done",
+			"cancel": "Cancel",
+			"locationWarning": "Your exact location will not be published",
+			"adWebsiteLink": "Add a link to your website"
 		},
 		"categorySelect": {
-			"title": "Categoría del artículo",
-			"prompt": "Búsqueda por palabra clave en %s",
-			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
+			"title": "Item's category",
+			"prompt": "Search by keyword in %s",
+			"noResults": "'%s' is not a valid category. Select another category and search again.",
 			"selectPrompt": "Select a Category Below",
-			"save": "Guardar",
-			"rootLabel": "Categorías"
+			"save": "Save",
+			"rootLabel": "Categories"
 		}
 	},
 	"adStats": {
-		"views": "Visitas",
-		"messages": "Mensajes",
-		"favorites": "Favoritos"
+		"views": "Views",
+		"messages": "Messages",
+		"favorites": "Favorites"
 	},
 	"shareAd": {
-		"title": "Compartir este anuncio",
+		"title": "Share this ad",
 		"dateStrings": {
 			"minute": {
-				"plural": "hace %s minutos",
-				"singular": "hace %s minuto"
+				"plural": "%s minutes ago",
+				"singular": "%s minute ago"
 			},
 			"hour": {
-				"plural": "hace %s horas",
-				"singular": "hace %s hora"
+				"plural": "%s hours ago",
+				"singular": "%s hour ago"
 			}
 		}
 	},
