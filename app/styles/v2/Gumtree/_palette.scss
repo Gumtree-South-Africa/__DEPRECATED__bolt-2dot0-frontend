@@ -1,11 +1,12 @@
-// -------------------------------------------------- //
-// Vars containing color codes should be in this file //
-// -------------------------------------------------- //
-
+$gumBlack: #000;
+$gumWhite: #FFFFFF; 
+$gumOrange: #FF9800;
+$gumGray1: #747474;
 //Primary Color
 $vivaBlack: #333333;
-$vivaWhite: #FFFFFF;
-$vivaOrange: #FF9800;
+$vivaWhite: #FFFFFF; 
+$vivaOrange: #FF9800; // color(orange, peel)
+
 // gray  palette colors
 $vivaGray1: #747474;    // todo: where did this come from?
 $vivaGray2: #EBEBEB;    // defined for use in home page
@@ -61,4 +62,18 @@ $colors: (
     font-style: normal;
     font-weight: 400;
     src: local('Lato-Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format('truetype');
+};
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat-Regular'), local('Montserrat-Regular'), url('../../../../../fonts/Montserrat-Regular.otf') format('opentype');
+};
+
+@font-face {
+    font-family: 'Chivo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Chivo-Regular'), local('Chivo-Regular'), url('../../../../../fonts/Chivo-Regular.ttf') format('truetype');
 };
