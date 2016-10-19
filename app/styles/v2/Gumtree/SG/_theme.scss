@@ -217,10 +217,11 @@ $footerMainBackgroundColor: color(rock, base);
 $footerTrademarkBackgroundColor: color(rock, base);
 //Footer Main Text
 $footerMainTextColor: $gumWhite;
-
+$footerMainTextFont: $bodyFont; //Chivo Font
 //Footer Headers
 $footerHeaderTextColor: color(taupe,base);
-$footerHeaderFont: normal 18px Montserrat;
-
+$footerHeaderFont: normal 18px $bodyFontSecondary;
 //Footer divider
 $footerDividerLineColor: $gumWhite;
+//Support section
+$footerCircleBorderColor: color(rock, dark);

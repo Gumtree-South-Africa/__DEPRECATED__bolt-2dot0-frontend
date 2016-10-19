@@ -4,6 +4,7 @@
 	&,& a{
 		color: $gumWhite;
 		background-color: $footerMainBackgroundColor;
+		font-family: $footerMainTextFont;
 	}
 	.top-links{
 		color: $gumWhite;
@@ -27,21 +28,14 @@
 				.user-photo {
 					width: 64px;
 					height: 64px;	
-					border: 2px solid color(leaf);
+					border: 2px solid $footerCircleBorderColor;
 					background-size: 115%;
 				}
-				&:nth-of-type(1) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS1.png);
-				}
-				&:nth-of-type(2) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS2.png);
-				}
-				&:nth-of-type(3) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS3.png);
-				}
-				&:nth-of-type(4) .user-photo {
-				    background-image: url(../../../../../images/en_ZA/CS4.png);
-				}
+				@for $i from 1 through 4{
+					&:nth-of-type(#{$i}) .user-photo {
+					   background-image: url(../../../../../images/en_SG/CS#{$i}.jpg);
+					}
+				} 
 			}
 		}
 		.support-wrapper{
@@ -51,20 +45,16 @@
 					width: 26px;
 					height: 26px;
 				}
-				.chat-icon{
-				  background-image: url(../../../../../images/en_ZA/chat-icon.png);
-				}
-				.email-icon{
-				  background-image: url(../../../../../images/en_ZA/email-icon.png);
-				}
-				.call-icon{
-				  background-image: url(../../../../../images/en_ZA/call-icon.png);
+				.email-icon {
+					background-image: url(../../../../../icons/icon_email_SG.svg);
+					width: 20px;
+					height: 20px;
+					margin: 0;
 				}
 				.support-text{
-					position: relative;
-					top:-3px;
-					margin-left:0;
+					margin-left:5px;
 					font-size: 14px;
+					font-family: $footerMainTextFont;
 				}
 			}
 		}
