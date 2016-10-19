@@ -1,0 +1,17 @@
+.modal {
+	> .modal-container {
+		background: color(foxtail, light);
+
+		> .modal-close-section {
+			color: color(swirl, medium);
+		}
+	}
+
+	.container {
+		border-color: color(swirl, shade);
+	}
+
+	.modal-field {
+		background: white;
+	}
+}
