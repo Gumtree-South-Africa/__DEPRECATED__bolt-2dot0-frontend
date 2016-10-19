@@ -52,14 +52,15 @@
 	},
 	"footer" : {
 		"support": {
-			"contact": "https://help.gumtree.sg/SG/?cu=1&fs=ContactUs&l=en_US"
+			"contact": "http://help.gumtree.sg/"
 		},
 		"sitemap" : {
 			"aboutus": {
 				"aboutgumtree": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/About-us?vgroup1=PKB&c=PKB%3AbasicsSG&vcategory2=aboutSG&s=",
 				"termofuse": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Terms-of-Use?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
 				"postingpolicy": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/General-posting-rules?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
-				"privacypolicy": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Privacy-Policy?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s="
+				"privacypolicy": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Privacy-Policy?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+				"gumtreebusiness": "https://protool.gumtree.sg"
 			},
 			"explore": {
 				"classifieds" : "http://www.gumtree.sg/pages/ClassifiedsNetwork/",
