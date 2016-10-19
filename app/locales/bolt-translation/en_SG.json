@@ -1122,24 +1122,6 @@
 	"appdownload.googleplay": "https://app.adjust.com/oarq82",
 	"appdownload.applink": "http://go.vivanunc.io/baja-la-app",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	"footer.sitemap.aboutus.aboutus": "About us",
-	"footer.sitemap.aboutus.aboutviva": "About Vivanuncios",
-	"footer.sitemap.aboutus.vivablog": "Vivanuncios Blog",
-	"footer.sitemap.aboutus.vivabusiness": "Vivanuncios for Business",
-	"footer.sitemap.aboutus.rules": "Rules for Posting Ads",
-	"footer.sitemap.legal.legal": "Legal",
-	"footer.sitemap.legal.terms": "Terms of Use",
-	"footer.sitemap.legal.privacy": "Privacy Policy",
-	"footer.sitemap.legal.cookies": "Cookies",
-	"footer.sitemap.explore.explore": "Explore",
-	"footer.sitemap.explore.classifieds": "eBay Classifieds Site",
-	"footer.sitemap.explore.mobile": "Mobile Apps",
-	"footer.sitemap.explore.partners": "Partners",
-	"footer.sitemap.explore.carprice": "Car Price Index",
-	"footer.sitemap.tips.tips": "Tips & Help",
-	"footer.sitemap.tips.help": "Help Pages",
-	"footer.sitemap.tips.onlinesafety": "Online Safety",
-	"footer.sitemap.tips.vivaguides": "Vivanuncios Guides",
 	"footer.download.download": "Download the App",
 	"footer.download.itunes": "Available on the App Store",
 	"footer.download.playstore": "Avaiable on the Android App Store",
@@ -1195,61 +1177,44 @@
     "toplocations": "Top locations",
     "help": {
       "heretohelp": "Meet our customer team",
-      "sendemail": "Envía un correo electrónico",
-      "callus": "Llámanos",
-      "chatwithus": "Chatea con nosotros",
-      "contact": "Contact us",
-      "meet": "Contacta a nuestro equipo de Atención al cliente"
+      "contact": "Contact us"
     },
     "support": {
-      "em": "Email",
-      "ca": "Teléfono",
-      "ch": "Chat",
       "contact": "Contact us"
     },
     "sitemap": {
       "aboutus": {
-        "aboutus": "Acerca de nosotros",
-        "aboutviva": "Acerca de Vivanuncios",
-        "vivablog": "Blog de Vivanuncios",
-        "vivabusiness": "Vivanuncios para negocios",
-        "rules": "Reglas para publicar anuncios",
-        "staysafe": "Mantente Seguro",
-                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agentes Inmobiliarios",
-                "protoollink": "https://protool.vivanuncios.com.mx/"
+        "title": "About us",
+        "aboutgumtree": "About Gumtree",
+        "termofuse": "Terms of Use",
+        "postingpolicy": "Posting Policy",
+        "privacypolicy": "Privacy Policy"
       },
-      "legal": {
-        "legal": "Información legal",
-        "terms": "Condiciones de uso",
-        "privacy": "Política de privacidad",
-        "cookies": "Cookies"
+      "explore": {
+        "title": "Explore",
+        "classifieds": "eBay Classifieds Sites",
+        "directory": "Gumtree profile directory",
+        "pricecheckers": "Gumtree price checkers",
+        "jobs": "Gumtree jobs"
+      },
+      "usinggumtree": {
+        "title": "Using Gumtree",
+        "post": "Post an ad",
+        "mobile": "Mobile apps",
+        "topsearches": "Top searches",
+        "recruiter": "Gumtree for recruiter"
+      },
+      "tips": {
+        "title": "Help & Support",
+        "help": "Gumtree help pages",
+        "safetytips": "Online safety tips",
+        "contact": "Contact Gumtree",
+        "scams": "Report scams or fraud"
       },
       "business": {
         "business": "Agentes Inmobiliarios",
         "protool": "La Tienda de Semi Nuevos",
         "stores": "La Tienda Vivanuncios"
-      },
-      "explore": {
-        "explore": "Explorar",
-        "classifieds": "Sitios de clasificados de eBay",
-        "mobile": "Aplicaciones Móviles",
-        "partners": "Socios",
-        "carprice": "Guía de precios de autos",
-        "location": "Ubicaciones",
-                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
-                "topsearches": "Búsquedas destacadas",
-                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-        "priceIndex": "Previos de Inmuebles"
-      },
-      "tips": {
-        "tips": "Consejos y ayuda",
-        "help": "Páginas de ayuda",
-        "helplink": "https://ayuda.vivanuncios.com.mx",
-        "onlinesafety": "Seguridad en Internet",
-        "vivaguides": "Guías de Vivanuncios",
-        "givefeedback": "Comentar",
-        "listingRules": "Reglas para Publicar Anuncios"
       }
     },
     "topSearches": {
