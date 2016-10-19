@@ -27,34 +27,58 @@
   </div>
 {{/partial}}
 
-
-
+{{!-- About Us Section --}}
 {{#partial "footer-links-about"}}
-<div class="footer-aboutus">
-  <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.aboutus"}}</span>
-    <span class="chevron mobile-only"></span>
-    <div class="menu-items">
-      <div><a href="{{this.footer.about}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.aboutgumtree"}}'>{{i18n "footer.sitemap.aboutus.aboutgumtree"}}</a></div>
-      <div><a href="{{this.footer.postingRules}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.rules"}}'>{{i18n "footer.sitemap.aboutus.rules"}}</a></div>
-      <div><a href="{{this.footer.blogUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.gumtreeblog"}}'>{{i18n "footer.sitemap.aboutus.gumtreeblog"}}</a></div>
-      <div><a href="{{this.footer.businessUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.gumtreebusiness"}}'>{{i18n "footer.sitemap.aboutus.gumtreebusiness"}}</a></div>
-    </div>
+	<div class="footer-aboutus">
+	  <div class="menu-category"><span>{{i18n "footer.sitemap.aboutus.title"}}</span>
+	    <span class="chevron mobile-only"></span>
+	    <div class="menu-items">
+	      <div><a href="{{this.footer.about}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.aboutgumtree"}}'>{{i18n "footer.sitemap.aboutus.aboutgumtree"}}</a></div>
+	      <div><a href="{{this.footer.postingRules}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.termofuse"}}'>{{i18n "footer.sitemap.aboutus.termofuse"}}</a></div>
+	      <div><a href="{{this.footer.blogUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.postingpolicy"}}'>{{i18n "footer.sitemap.aboutus.postingpolicy"}}</a></div>
+	      <div><a href="{{this.footer.businessUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.aboutus.privacypolicy"}}'>{{i18n "footer.sitemap.aboutus.privacypolicy"}}</a></div>
+	    </div>
+	  </div>
+	</div>
+{{/partial}}
+
+{{!-- Explore Section (CHANGE Legal -> to EXPLORE in ZA)--}}
+{{#partial "footer-links-explore"}}
+<div class="menu-category"><span>{{i18n "footer.sitemap.explore.title"}}</span>
+  <span class="chevron mobile-only"></span>
+  <div class="menu-items">
+    <div><a href="{{this.footer.classifieds}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.classifieds"}}'>{{i18n "footer.sitemap.explore.classifieds"}}</a></div>
+    <div><a href="{{this.footer.directory}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.directory"}}'>{{i18n "footer.sitemap.explore.directory"}}</a></div>
+    <div><a href="{{this.footer.pricecheckers}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.pricecheckers"}}'>{{i18n "footer.sitemap.explore.pricecheckers"}}</a></div>
+    <div><a href="{{this.footer.jobs}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.jobs"}}'>{{i18n "footer.sitemap.explore.jobs"}}</a></div>
   </div>
 </div>
 {{/partial}}
 
+{{!-- Legal Section // Using Gumtree --}}
 {{#partial "footer-links-legal"}}
-<div class="menu-category"><span>{{i18n "footer.sitemap.explore.explore"}}</span>
-  <span class="chevron mobile-only"></span>
-  <div class="menu-items">
-    <div><a href="{{this.footer.bestAdsLandingPageUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.bestof"}}'>{{i18n "footer.sitemap.explore.bestof"}}</a></div>
-    <div><a href="{{this.footer.topSearchesLandingPageUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.topSearches"}}'>{{i18n "footer.sitemap.explore.topSearches"}}</a></div>
-    <div><a href="{{this.footer.sitemapUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.sitemap"}}'>{{i18n "footer.sitemap.explore.sitemap"}}</a></div>
-    <div><a href="{{this.footer.locationsPageUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.locations"}}'>{{i18n "footer.sitemap.explore.locations"}}</a></div>
-    <div><a href="{{this.footer.interLinkUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.interlink"}}'>{{i18n "footer.sitemap.explore.interlink"}}</a></div>
-    <div><a href="{{this.footer.mobileAppUrl}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.explore.mobileApp"}}'>{{i18n "footer.sitemap.explore.mobileApp"}}</a></div>
+	<div class="menu-category"><span>{{i18n "footer.sitemap.usinggumtree.title"}}</span>
+	  <span class="chevron mobile-only"></span>
+	  <div class="menu-items">
+	    <div><a href="{{aquiellink}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.usinggumtree.post"}}'>{{i18n "footer.sitemap.usinggumtree.post"}}</a></div>
+	    <div><a href="{{this.fo}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.usinggumtree.mobile"}}'>{{i18n "footer.sitemap.usinggumtree.mobile"}}</a></div>
+	    <div><a href="{{this.footer.cookieNotice}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.usinggumtree.topsearches"}}'>{{i18n "footer.sitemap.usinggumtree.topsearches"}}</a></div>
+	    <div><a href="{{this.footer.cookieNotice}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.usinggumtree.recruiter"}}'>{{i18n "footer.sitemap.usinggumtree.recruiter"}}</a></div>
+	  </div>
+	</div>
+{{/partial}}
+
+{{!-- Help & Support section --}}
+{{#partial "footer-links-tips"}}
+  <div class="menu-category"><span>{{i18n "footer.sitemap.tips.title"}}</span>
+    <span class="chevron mobile-only"></span>
+    <div class="menu-items">
+      <div><a rel="nofollow" href='{{this.footer}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
+      <div><a rel="nofollow" href='{{this.footer}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.safetytips"}}' target="/blank">{{i18n "footer.sitemap.tips.safetytips"}}</a></div>
+      <div><a rel="nofollow" href='{{this.footer}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.contact"}}' target="/blank">{{i18n "footer.sitemap.tips.contact"}}</a></div>
+      <div><a rel="nofollow" href='{{this.footer}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.scams"}}' target="/blank">{{i18n "footer.sitemap.tips.scams"}}</a></div>
+    </div>
   </div>
-</div>
 {{/partial}}
 
 {{#partial "footer-links-legal-df"}}
@@ -75,30 +99,7 @@
 </div>
 {{/partial}}
 
-{{#partial "footer-links-explore"}}
-<div class="menu-category"><span>{{i18n "footer.sitemap.legal.legal"}}</span>
-  <span class="chevron mobile-only"></span>
-  <div class="menu-items">
-    <div><a href="{{this.footer.termOfUse}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.legal.terms"}}'>{{i18n "footer.sitemap.legal.terms"}}</a></div>
-    <div><a href="{{this.footer.privacyPolicy}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.legal.privacy"}}'>{{i18n "footer.sitemap.legal.privacy"}}</a></div>
-    <div><a href="{{this.footer.cookieNotice}}" data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.legal.cookies"}}'>{{i18n "footer.sitemap.legal.cookies"}}</a></div>
-  </div>
-</div>
-{{/partial}}
 
-
-
-
-
-{{#partial "footer-links-tips"}}
-  <div class="menu-category"><span>{{i18n "footer.sitemap.tips.tips"}}</span>
-    <span class="chevron mobile-only"></span>
-    <div class="menu-items">
-      <div><a rel="nofollow" href='{{this.footer.helpUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.help"}}' target="/blank">{{i18n "footer.sitemap.tips.help"}}</a></div>
-      <div><a rel="nofollow" href='{{this.footer.staySafeUrl}}' data-gtm='pc|NavFooterClick|eventLabel|{{i18n "footer.sitemap.tips.onlinesafety"}}' target="/blank">{{i18n "footer.sitemap.tips.onlinesafety"}}</a></div>
-    </div>
-  </div>
-{{/partial}}
 
 {{#partial "footer-trademark"}}
 <div class="footer-trademark">
