@@ -15,7 +15,6 @@
   "currency.symbol": "$",
   "currency.format": "$%s",
   "home.$$": "Home",
-  "home.h1Tag": "Singapore - Free local classifieds",
   "AdNotFound": "Oops, Your ad %s could not be found",
   "AdDeleted": "Your ad %s has been deleted",
   "AdNotDeleted": "Oops, Your ad %s could not be deleted",
@@ -405,49 +404,6 @@
   "vip.attribute.label.location": "Location",
   "vip.reply.attachmentUpload.title": "Attach a file",
   "vip.reply.attachmentUpload.help": "(maximum 2MB)",
-  "footer.getToKnowUs.title": "About Us",
-  "footer.getToKnowUs.about": "About Gumtree",
-  "footer.getToKnowUs.rules": "Posting Policy",
-  "footer.getToKnowUs.blog": "Gumtree Blog",
-  "footer.explore.title": "Explore",
-  "footer.explore.bestof": "Best Ads",
-  "footer.explore.topSearches": "Top Searches",
-  "footer.explore.mobilesite": "Old mobile site",
-  "footer.explore.sitemap": "Gumtree Content",
-  "footer.explore.locations": "Locations",
-  "footer.explore.interlink": "eBay Classifieds Sites",
-  "footer.explore.directory": "Gumtree Profile Directory",
-  "footer.explore.propertyPriceChecker": "Gumtree Price Checkers",
-  "footer.legalbits.title": "Using Gumtree",
-  "footer.legalbits.terms": "Terms of Use",
-  "footer.legalbits.privacy": "Privacy Policy",
-  "footer.legalbits.cookie": "Cookie Notice",
-  "footer.legalbit.postAd": "Post an Ad",
-  "footer.explore.mobileApp": "Mobile Apps",
-  "footer.tips-help.title": "Help & Support",
-  "footer.tips-help.help": "Gumtree Help Pages",
-  "footer.tips-help.staySafe": "Online Safety Tips",
-  "footer.tips-help.contact": "Contact Gumtree",
-  "footer.tips-help.report": "Report scams or fraud",
-  "footer.tips-help.giveFeedback": "Give Feedback",
-  "footer.followUs.title": "Follow us",
-  "footer.followUs.facebook": "Facebook",
-  "footer.followUs.google": "Google+",
-  "footer.followUs.twitter": "Twitter",
-  "footer.followUs.youTube": "YouTube",
-  "footer.followUs.pinterest": "Pinterest",
-  "footer.motors.title": "Gumtree Motors",
-  "footer.motors.a-c": "Cars A-C",
-  "footer.motors.d-g": "Cars D-G",
-  "footer.motors.h-l": "Cars H-L",
-  "footer.motors.m-o": "Cars M-O",
-  "footer.motors.p-z": "Cars P-Z",
-  "footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
-  "footer.bestof": "The Best Ads in Gumtree",
-  "footer.cr": "Copyright © 2014-2016 eBay.  All rights reserved. <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Terms of Use</span>, <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Privacy</span> and <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_self\">Cookies</span>.",
-  "footer.topSearches": "Top Searches",
-  "footer.locations": "Locations",
-  "footer.our-sites": "Our classifieds sites",
   "error404.message": "\"We’re sorry, this page does not exist\" <br /><a href=\"%s\">Please go to the homepage</a>",
   "error410.message": "Sorry, this ad is no longer available.",
   "error500.message": "\"We’re sorry, one of our servers got a hiccup.\" <br /><a href=\"%s\">Please go to the homepage</a>",
@@ -501,12 +457,7 @@
   "header.menu.termCond": "Terms and Conditions",
   "header.suggested-links": "Suggested",
   "header.published": "Published in:",
-  "footer.twitter": "@gumtreecoza",
-  "footer.facebook": "Like",
-  "footer.googleplus": "Recommend",
-  "footer.pinterest": "Pinterest",
-  "footer.youtube": "Youtube",
-  "footer.blog": "El estilo de vida en DF se disfruta en <a href=\"%s\">viveDF,el blog de iBazar</a>",
+  
   "register.page.title": "Register on Gumtree",
   "register.title": "Start Registration",
   "register.facebook": "Register via Facebook",
@@ -1171,10 +1122,6 @@
 	"appdownload.googleplay": "https://app.adjust.com/oarq82",
 	"appdownload.applink": "http://go.vivanunc.io/baja-la-app",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	"footer.help.heretohelp": "We're Here to Help!",
-	"footer.help.sendemail": "Send an Email",
-	"footer.help.callus": "Call Us",
-	"footer.help.chatwithus": "Chat with Us",
 	"footer.sitemap.aboutus.aboutus": "About us",
 	"footer.sitemap.aboutus.aboutviva": "About Vivanuncios",
 	"footer.sitemap.aboutus.vivablog": "Vivanuncios Blog",
@@ -1197,17 +1144,174 @@
 	"footer.download.itunes": "Available on the App Store",
 	"footer.download.playstore": "Avaiable on the Android App Store",
 	"footer.trademark.trademark": "2014-2016 eBay. All rights reserved",
-	"footer.help.contact": "Contact Customer Service",
-	"footer.help.meet": "Meet Our Customer Team",
-	"smartmobilebanner": {
+	"footer.twitter": "@gumtreecoza",
+  "footer.facebook": "Like",
+  "footer.googleplus": "Recommend",
+  "footer.pinterest": "Pinterest",
+  "footer.youtube": "Youtube",
+  "footer.blog": "El estilo de vida en DF se disfruta en <a href=\"%s\">viveDF,el blog de iBazar</a>",
+  "footer.getToKnowUs.title": "About Us",
+  "footer.getToKnowUs.about": "About Gumtree",
+  "footer.getToKnowUs.rules": "Posting Policy",
+  "footer.getToKnowUs.blog": "Gumtree Blog",
+  "footer.explore.title": "Explore",
+  "footer.explore.bestof": "Best Ads",
+  "footer.explore.topSearches": "Top Searches",
+  "footer.explore.mobilesite": "Old mobile site",
+  "footer.explore.sitemap": "Gumtree Content",
+  "footer.explore.locations": "Locations",
+  "footer.explore.interlink": "eBay Classifieds Sites",
+  "footer.explore.directory": "Gumtree Profile Directory",
+  "footer.explore.propertyPriceChecker": "Gumtree Price Checkers",
+  "footer.legalbits.title": "Using Gumtree",
+  "footer.legalbits.terms": "Terms of Use",
+  "footer.legalbits.privacy": "Privacy Policy",
+  "footer.legalbits.cookie": "Cookie Notice",
+  "footer.legalbit.postAd": "Post an Ad",
+  "footer.explore.mobileApp": "Mobile Apps",
+  "footer.tips-help.title": "Help & Support",
+  "footer.tips-help.help": "Gumtree Help Pages",
+  "footer.tips-help.staySafe": "Online Safety Tips",
+  "footer.tips-help.contact": "Contact Gumtree",
+  "footer.tips-help.report": "Report scams or fraud",
+  "footer.tips-help.giveFeedback": "Give Feedback",
+  "footer.followUs.title": "Follow us",
+  "footer.followUs.facebook": "Facebook",
+  "footer.followUs.google": "Google+",
+  "footer.followUs.twitter": "Twitter",
+  "footer.followUs.youTube": "YouTube",
+  "footer.followUs.pinterest": "Pinterest",
+  "footer.motors.title": "Gumtree Motors",
+  "footer.motors.a-c": "Cars A-C",
+  "footer.motors.d-g": "Cars D-G",
+  "footer.motors.h-l": "Cars H-L",
+  "footer.motors.m-o": "Cars M-O",
+  "footer.motors.p-z": "Cars P-Z",
+  "footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
+  "footer.bestof": "The Best Ads in Gumtree",
+  "footer.cr": "Copyright © 2014-2016 eBay.  All rights reserved. <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Terms of Use</span>, <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Privacy</span> and <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_self\">Cookies</span>.",
+  "footer.our-sites": "Our classifieds sites",
+  "footer": {
+    "toplocations": "Top locations",
+    "help": {
+      "heretohelp": "Meet our customer team",
+      "sendemail": "Envía un correo electrónico",
+      "callus": "Llámanos",
+      "chatwithus": "Chatea con nosotros",
+      "contact": "Contact us",
+      "meet": "Contacta a nuestro equipo de Atención al cliente"
+    },
+    "support": {
+      "em": "Email",
+      "ca": "Teléfono",
+      "ch": "Chat",
+      "contact": "Contact us"
+    },
+    "sitemap": {
+      "aboutus": {
+        "aboutus": "Acerca de nosotros",
+        "aboutviva": "Acerca de Vivanuncios",
+        "vivablog": "Blog de Vivanuncios",
+        "vivabusiness": "Vivanuncios para negocios",
+        "rules": "Reglas para publicar anuncios",
+        "staysafe": "Mantente Seguro",
+                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+                "protool": "Agentes Inmobiliarios",
+                "protoollink": "https://protool.vivanuncios.com.mx/"
+      },
+      "legal": {
+        "legal": "Información legal",
+        "terms": "Condiciones de uso",
+        "privacy": "Política de privacidad",
+        "cookies": "Cookies"
+      },
+      "business": {
+        "business": "Agentes Inmobiliarios",
+        "protool": "La Tienda de Semi Nuevos",
+        "stores": "La Tienda Vivanuncios"
+      },
+      "explore": {
+        "explore": "Explorar",
+        "classifieds": "Sitios de clasificados de eBay",
+        "mobile": "Aplicaciones Móviles",
+        "partners": "Socios",
+        "carprice": "Guía de precios de autos",
+        "location": "Ubicaciones",
+                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
+                "topsearches": "Búsquedas destacadas",
+                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
+        "priceIndex": "Previos de Inmuebles"
+      },
+      "tips": {
+        "tips": "Consejos y ayuda",
+        "help": "Páginas de ayuda",
+        "helplink": "https://ayuda.vivanuncios.com.mx",
+        "onlinesafety": "Seguridad en Internet",
+        "vivaguides": "Guías de Vivanuncios",
+        "givefeedback": "Comentar",
+        "listingRules": "Reglas para Publicar Anuncios"
+      }
+    },
+    "topSearches": {
+      "viewMore": "View more",
+      "viewLess": "View less"
+    },
+    "download": {
+      "download": "Descargar la aplicación",
+      "itunes": "Disponible en la App Store",
+      "playstore": "Disponible en la App Store de Android"
+    },
+    "trademark": {
+      "trademark": "2014-%s eBay. Todos los derechos reservados"
+    }
+  },
+  "home": {
+    "h1Tag": "Gumtree Singapore - Free local classifieds",
+    "popular": {
+      "searches": "Top searches"
+    }
+  },
+  "homepage": {
+    "popularSearches": {
+      "popularIn": "Popular en",
+      "yourNeighborhood": "Tu Colonia",
+      "viewMore": "Ver más"
+    },
+    "searchbar": {
+      "lookingFor": "Estoy buscando un...",
+      "search": "Buscar"
+    },
+    "safetyTips": {
+      "title": "Vivanuncios Te Cuida",
+      "faq": "Consejos de seguridad",
+      "tip": [
+        "Consejos de cómo protegerte en internet",
+        "¿Vivanuncios coopera con las autoridades?",
+        "¿Cómo mantengo mi cuenta de usuario segura?",
+        "¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
+        "¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+        "¿Cuáles son los fraudes más comunes?",
+        "¿Qué puedo hacer si he sido víctima de una estafa?",
+        "¿Cómo reportar un anuncio?",
+        "He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+      ]
+    },
+    "trending": {
+      "contact": "Contactar"
+    },
+    "gallery" : {
+      "cardTitle": "Galería Principal"
+    }
+  },
+  "smartmobilebanner": {
 		"title": "Abre la App",
 		"mobilelink": "o continúa en el sitio móvil >>",
 		"branchiolink": "https://go.vivanunc.io/gana-dinero"
 	},
-    "welcomescreen": {
-		"title": "¡Bienvenido!",
-		"description": "¡Gana dinero ahora!",
-		"close": "Cerrar"
+  "welcomescreen": {
+  	"title": "¡Bienvenido!",
+  	"description": "¡Gana dinero ahora!",
+  	"close": "Cerrar"
 	},
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
@@ -1230,38 +1334,7 @@
 			}
 		}
 	},
-	"homepage": {
-		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
-			"viewMore": "Ver más"
-		},
-		"searchbar": {
-			"lookingFor": "Estoy buscando un...",
-			"search": "Buscar"
-		},
-		"safetyTips": {
-			"title": "Vivanuncios Te Cuida",
-			"faq": "Consejos de seguridad",
-			"tip": [
-				"Consejos de cómo protegerte en internet",
-				"¿Vivanuncios coopera con las autoridades?",
-				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
-				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
-				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
-			]
-		},
-		"trending": {
-			"contact": "Contactar"
-		},
-		"gallery" : {
-			"cardTitle": "Galería Principal"
-		}
-	},
+	
 	"header": {
 		"catDropdown": {
 			"browse": "Explorar",
@@ -1363,78 +1436,6 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
-		}
-	},
-	"footer": {
-		"help": {
-			"heretohelp": "Estamos aquí para ayudarte",
-			"sendemail": "Envía un correo electrónico",
-			"callus": "Llámanos",
-			"chatwithus": "Chatea con nosotros",
-			"contact": "Atención al cliente",
-			"meet": "Contacta a nuestro equipo de Atención al cliente"
-		},
-		"support": {
-			"em": "Email",
-			"ca": "Teléfono",
-			"ch": "Chat"
-		},
-		"sitemap": {
-			"aboutus": {
-				"aboutus": "Acerca de nosotros",
-				"aboutviva": "Acerca de Vivanuncios",
-				"vivablog": "Blog de Vivanuncios",
-				"vivabusiness": "Vivanuncios para negocios",
-				"rules": "Reglas para publicar anuncios",
-				"staysafe": "Mantente Seguro",
-                "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agentes Inmobiliarios",
-                "protoollink": "https://protool.vivanuncios.com.mx/"
-			},
-			"legal": {
-				"legal": "Información legal",
-				"terms": "Condiciones de uso",
-				"privacy": "Política de privacidad",
-				"cookies": "Cookies"
-			},
-			"business": {
-				"business": "Agentes Inmobiliarios",
-				"protool": "La Tienda de Semi Nuevos",
-				"stores": "La Tienda Vivanuncios"
-			},
-			"explore": {
-				"explore": "Explorar",
-				"classifieds": "Sitios de clasificados de eBay",
-				"mobile": "Aplicaciones Móviles",
-				"partners": "Socios",
-				"carprice": "Guía de precios de autos",
-				"location": "Ubicaciones",
-                "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
-                "topsearches": "Búsquedas destacadas",
-                "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-				"priceIndex": "Previos de Inmuebles"
-			},
-			"tips": {
-				"tips": "Consejos y ayuda",
-				"help": "Páginas de ayuda",
-				"helplink": "https://ayuda.vivanuncios.com.mx",
-				"onlinesafety": "Seguridad en Internet",
-				"vivaguides": "Guías de Vivanuncios",
-				"givefeedback": "Comentar",
-				"listingRules": "Reglas para Publicar Anuncios"
-			}
-		},
-		"topSearches": {
-			"viewMore": "Ver Más",
-			"viewLess": "Ver Menos"
-		},
-		"download": {
-			"download": "Descargar la aplicación",
-			"itunes": "Disponible en la App Store",
-			"playstore": "Disponible en la App Store de Android"
-		},
-		"trademark": {
-			"trademark": "2014-%s eBay. Todos los derechos reservados"
 		}
 	},
 	"postAdModal": {

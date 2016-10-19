@@ -5,32 +5,33 @@
     "../../partials/main/theme",
     "../typography-scale";
 
+
 $container-width: 73em;
 
 $bodyFont: Lato;    // attach this to body element
 
 // Headlines
-$viva-h1: bold 1.5em $bodyFont;      // 24px
-$viva-h2: normal 1.5em $bodyFont;    // 24px
-$viva-h3: normal 1.25em $bodyFont;   // 20 px
-$viva-h4: normal 1em $bodyFont;      // 16 px
+$gum-h1: bold 1.5em $bodyFont;      // 24px
+$gum-h2: normal 1.5em $bodyFont;    // 24px
+$gum-h3: normal 1.25em $bodyFont;   // 20 px
+$gum-h4: normal 1em $bodyFont;      // 16 px
 
-$h1: $viva-h1;
-$h2: $viva-h2;
-$h3: $viva-h3;
-$h4: $viva-h4;
+$h1: $gum-h1;
+$h2: $gum-h2;
+$h3: $gum-h3;
+$h4: $gum-h4;
 
 $h1-color: $gumBlack;
 $h3-secondary-color: $gumOrange;
 
 // Paragraphs
-$viva-p1: normal 0.875em $bodyFont;  //14px
-$viva-p2: normal 0.75em $bodyFont;   //12px
-$viva-p3: normal 0.625em $bodyFont;  //10px
+$gum-p1: normal 0.875em $bodyFont;  //14px
+$gum-p2: normal 0.75em $bodyFont;   //12px
+$gum-p3: normal 0.625em $bodyFont;  //10px
 
-$p1: $viva-p1;
-$p2: $viva-p2;
-$p3: $viva-p3;
+$p1: $gum-p1;
+$p2: $gum-p2;
+$p3: $gum-p3;
 
 $p2-secondary-color: $vivaGray1;
 
@@ -68,7 +69,7 @@ $button-fontsize: 1.125em;
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
-$appdownloadreview-font: $viva-p2;
+$appdownloadreview-font: $gum-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
@@ -104,8 +105,8 @@ $recentactivity-bgcolor:$vivaGray2;
 $cardBackgroundColor: $vivaGray4;
 $cardLinksColor: $gumOrange;
 
-$cardStatsFont: $viva-p3;
-$cardHeadersFont: $viva-h4;
+$cardStatsFont: $gum-p3;
+$cardHeadersFont: $gum-h4;
 
 // Activity card and header profile image circlular border
 $profile-border: $gumOrange;
