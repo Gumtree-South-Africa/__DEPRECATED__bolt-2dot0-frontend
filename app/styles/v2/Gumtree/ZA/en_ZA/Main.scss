@@ -40,7 +40,13 @@
   color: $vivaWhite;
 }
 
+body {
+ background-color: $gumtree-bg-color;
+}
 
+#wrapper {
+ background-color: $gumtree-bg-container-color;
+}
 
 // limit the image to the maximum
 // container width
