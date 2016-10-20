@@ -133,12 +133,12 @@ let initialize = (Handlebars) => {
 
 		if (number >= 1000000000) {
 			number /= 1000000000;
-			return new Handlebars.SafeString("$" + number.toFixed(1) + "B");
+			return new Handlebars.SafeString(number.toFixed(1) + "B");
 		} else if (number >= 1000000) {
 			number /= 1000000;
-			return new Handlebars.SafeString("$" + number.toFixed(1) + "M");
+			return new Handlebars.SafeString(number.toFixed(1) + "M");
 		} else {
-			return new Handlebars.SafeString("$" + _groupDigits(number, separator));
+			return new Handlebars.SafeString(_groupDigits(number, separator));
 		}
 	});
 
