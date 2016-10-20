@@ -1,14 +1,11 @@
 .header-wrapper {
 	border-bottom-color: color(crane);
-<<<<<<< dcfc4e6cc4646e910205c629bf9ae858e7265e0d
 
 	&.header-distraction-free {
 		.headerV2 {
 			padding-bottom: 10px;
 		}
 	}
-=======
->>>>>>> refactor(Gumtree/components/header): makes header border and section menu colors consistent across all layouts
 
 	.headerV2 {
 		height: auto;
@@ -31,36 +28,12 @@
 
 		.left-items {
 			left: auto;
-<<<<<<< 17cf55465b7553dbe002b3004cef813b578f130e
-<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
-<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 			margin-left: 8%;
-=======
-			margin-left: 20px;
->>>>>>> feat(Gumtree/components/header): adds styles for session only elements
-=======
-			margin-left: 9%;
->>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
-=======
-			margin-left: 8%;
->>>>>>> refactor(Gumtree/components/header): changes translation string for post ad button
 			width: auto;
 
 			&.logged-out {
 				left: auto;
-<<<<<<< 17cf55465b7553dbe002b3004cef813b578f130e
-<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
-<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				margin-left: 11%;
-=======
-				margin-left: 35px;
->>>>>>> feat(Gumtree/components/header): adds styles for session only elements
-=======
-				margin-left: 12%;
->>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
-=======
-				margin-left: 11%;
->>>>>>> refactor(Gumtree/components/header): changes translation string for post ad button
 
 				.post-ad-button {
 					margin-left: 35px;
@@ -95,13 +68,9 @@
 		}
 
 		.menu-dropdown {
-<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
 			border-radius: 0 2px 2px 2px;
 			line-height: 20px;
 			padding: 5px;
-=======
-			line-height: 20px;
->>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 			position: absolute;
 			left: 0;
 			top: 100%;
@@ -134,15 +103,7 @@
 
 			.item-text {
 				line-height: 35px;
-<<<<<<< 1b844606a2f5b30b63323baa4716ab4fc173bf0e
-<<<<<<< c1b0d4b560e37ed58196bf7b8431cc5482f65450
 				padding: 20px 5px 12px;
-=======
-				padding: 20px 5px 1px;
->>>>>>> feat(Gumtree/components/header): adds styles for session only elements
-=======
-				padding: 20px 5px 12px;
->>>>>>> refactor(Gumtree/components/header): adjusts padding and margin for several elements
 			}
 		}
 
@@ -195,37 +156,12 @@
 	}
 }
 
-<<<<<<< 34394fe1fa4e8aa8b78f70d94756df1b785ce88a
-<<<<<<< 8eabad5a6fa5726ffcae1d7ae99d57ec41c0a791
-<<<<<<< c8ad1105ef4312967e2fc51c7c3960fc7aac231f
 .icon-header-profile-out {
 	background-image: url("../../../../../images/en_ZA/icon-my-profile.svg") !important;
 }
 
 .icon-my-ads-active {
 	opacity: 1 !important;
-=======
-=======
-.icon-down {
-	background: url("../../../../../images/en_ZA/down-arrow.svg") no-repeat !important;
-}
-
->>>>>>> feat(Gumtree/components/header): updates up and down arrows for dropdown menus
-.icon-messages-blue {
-	background: url("../../../../../images/en_ZA/icon-messages.svg") no-repeat !important;
-}
-
-.icon-up {
-	background: url("../../../../../images/en_ZA/up-arrow.svg") no-repeat !important;
-=======
-.icon-my-ads-active {
-	opacity: 1 !important;
->>>>>>> refactor(Gumtree/components/header): syncs SVG assets with Gumtree color palette
-}
-
-.profile-dropdown {
-	position: absolute;
->>>>>>> feat(Gumtree/components/header): updates messages icon to orange
 }
 
 @include to-breakpoint($medium-break) {
