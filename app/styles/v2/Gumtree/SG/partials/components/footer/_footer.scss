@@ -139,6 +139,7 @@
 			background-color: $footerTrademarkBackgroundColor;
 		}
 	}
+	
 	.df-support-wrapper {
     margin: auto;
     max-width: 942px;
@@ -149,6 +150,13 @@
       margin: auto;
       .support-icon{
       	margin: 0;
+      }
+      .email-icon{
+      	background-image: url(../../../../../icons/icon_email_SG.svg);
+      }
+      .support-text{
+      	position: relative;
+      	top: 1px;
       }
     }
   }
