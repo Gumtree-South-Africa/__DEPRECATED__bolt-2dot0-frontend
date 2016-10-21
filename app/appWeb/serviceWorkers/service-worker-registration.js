@@ -108,7 +108,7 @@ function initializePushNotification() {
 	}
 
 	// If user is not logged in, no push notification
-	let btAuthStr = CookieUtils.getCookie('bt_auth');
+	let btAuthStr = CookieUtils.getCookie('bt_logged_in');
 	if(btAuthStr === '') {
 		console.warn('User not logged in, push message not enabled');
 		return;
