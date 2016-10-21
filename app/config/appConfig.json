@@ -12,5 +12,12 @@
 		"routePath" : "./routes",
 		"viewPath" : "app/appPost/views",
 		"sendMetrics" : false
+	},
+	"appBots" : {
+		"mainRoute" : "/bots",
+		"path" : "./app/appBots/app",
+		"routePath" : "./routes",
+		"viewPath" : "app/appBots/views",
+		"sendMetrics" : false
 	}
 }
