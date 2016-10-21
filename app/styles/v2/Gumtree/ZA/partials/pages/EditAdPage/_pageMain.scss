@@ -13,12 +13,14 @@
 		.description-input {
 			border-color: color(swirl, shade);
 			border-radius: 2px;
+			color: color(swirl, shade);
 		}
 
 		.input-wrapper {
 			input[type="text"], input[type="tel"], input[type="number"], input[type="date"], .location-link, select {
 				border-color: color(swirl, shade);
 				border-radius: 2px;
+				color: color(swirl, shade);
 			}
 
 			.category-name-display {
