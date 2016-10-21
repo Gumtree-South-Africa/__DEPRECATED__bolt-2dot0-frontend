@@ -1309,10 +1309,10 @@
 			"title": "Upload a photo"
 		},
 		"loginModal": {
-			"title": "Login to continue",
+			"title": "Log in to continue",
 			"facebookBtn": "Continue with Facebook",
-			"emailBtn": "Signin with an email address",
-			"register": "Signup",
+			"emailBtn": "Log in with an email address",
+			"register": "Sign Up",
 			"close": "Close",
 			"legal1": "By clicking \"Continue\" you accept the",
 			"termsAndConditions": "Terms of Use",
