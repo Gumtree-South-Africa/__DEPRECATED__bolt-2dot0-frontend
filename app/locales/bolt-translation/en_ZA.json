@@ -1287,7 +1287,7 @@
 			"pageTitle": "Post Ad",
 			"back": "Back",
 			"didYouKnow": "Did you know...",
-			"tip": "Yo can go to My Ads page to see your ads and add more details."
+			"tip": "You can go to My Ads page and see your ads to add more details."
 		},
 		"createAds": {
 			"directions": "It's easy, just upload a photo and post. You can add more photos and edit the details later.",
@@ -1300,7 +1300,7 @@
 				"remaining": "remaining",
 				"price": "Price",
 				"addPhotos": "Add photos",
-				"pricePlaceholder": "Ask me for the price"
+				"pricePlaceholder": "Contact for price"
 			},
 			"post": "Post",
 			"ad": "Ad"
@@ -1420,7 +1420,7 @@
 		"uploadPhotos": "Upload photo(s)",
 		"uploadPhoto": "Upload a photo",
 		"uploadQuickly": "Post an ad quickly",
-		"upload": "Post an ad",
+		"upload": "Take a photo and start selling",
 		"close": "Close"
 	},
 	"editAd": {
@@ -1439,7 +1439,7 @@
 				"minimumAvailable": "Available: ",
 				"characters": " character(s)"
 			},
-			"askMe": "Ask me",
+			"askMe": "Contact for price",
 			"suggestedCategory": "This category has been suggested by Gumtree",
 			"leafNodeWarning": "Choose the category that fits best with your item",
 			"submit": "Done",
