@@ -38,6 +38,12 @@
 			}
 		}
 
+		.separator-div {
+			&:after {
+				background: color(foxtail, light);
+			}
+		}
+
 		.submit-btn-wrapper {
 			.edit-ad-submit {
 				background: color(crane);
@@ -65,5 +71,7 @@
 }
 
 .separator-div {
-	display: none;
+	&:after {
+		background: color(foxtail, medium);
+	}
 }
