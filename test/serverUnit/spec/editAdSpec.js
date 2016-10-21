@@ -26,7 +26,7 @@ describe('Edit Ad Page', () => {
 			'test/serverUnit/mockData/api/v1/GetAttributeDefinitionsResponse.json'
 		);
 
-		boltSupertest('/edit/12').then((supertest) => {
+		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.expect((res) => {
 					expect(res.status).toBe(200);
@@ -45,7 +45,7 @@ describe('Edit Ad Page', () => {
 			}
 		);
 
-		boltSupertest('/edit/12').then((supertest) => {
+		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.expect((res) => {
 					expect(res.status).toBe(404);
@@ -64,7 +64,7 @@ describe('Edit Ad Page', () => {
 		);
 		let mockData = require('../mockData/api/v1/GetAdResponse.json');
 
-		boltSupertest('/edit/12').then((supertest) => {
+		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.expect((res) => {
 					expect(res.status).toBe(200);

@@ -9,14 +9,6 @@ describe('Location Api', () => {
 	let lng = "-99.6789";
 	let geoCookie = `${lat}ng${lng}`;
 
-	beforeEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
-	afterEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
 	it('should return a location for a lat long (from cookie)', (done) => {
 
 		let responseFile = require('../../serverUnit/mockData/geo/geoLocation.json');

@@ -1,3 +1,4 @@
+
 'use strict';
 let specHelper = require('../helpers/specHelper');
 let boltSupertest = specHelper.boltSupertest;
@@ -30,7 +31,7 @@ describe('Server to hit HomePage', function() {
 			`${endpoints.adStatistics}?_forceExample=true&_statusCode=200`,
 			'test/serverUnit/mockData/api/v1/GallerySlice.json');
 		specHelper.registerMockEndpoint(
-			`${endpoints.recentActivities}?_forceExample=true&_statusCode=200`,
+			`${endpoints.recentActivities}?_forceExample=true&_statusCode=200&limit=50`,
 			'test/serverUnit/mockData/api/v1/recentActivity.json');
 		specHelper.registerMockEndpoint(
 			`${endpoints.trendingSearch}?_forceExample=true&_statusCode=200&offset=0&limit=48&minResults=48&withPicsOnly=true`,
@@ -40,7 +41,7 @@ describe('Server to hit HomePage', function() {
 	describe('V1 Home Page', () => {
 
 		it('should return status code 200', (done) => {
-			boltSupertest('/').then((supertest) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
 				supertest
 					.expect((res) => {
 						expect(res.status).toBe(200);
@@ -166,22 +167,21 @@ describe('Server to hit HomePage', function() {
 			});
 		});
 
-		//This needs to be uncommented out after Https Branch gets released.
 
-		// 	it('should show safety faq text on vivanuncios', (done) => {
-		// 		boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
-		// 			supertest
-		// 				.set('Cookie', 'b2dot0Version=2.0')
-		// 				.expect((res) => {
-		// 					let c$ = cheerio.load(res.text);
-		// 					let faq = c$('.safetyTips .faq a')[0];
-		// 					expect(faq.attribs.href)
-		// 						.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
-		// 					expect(faq.firstChild.data).toContain('Consejos de seguridad');
-		// 				})
-		// 				.end(specHelper.finish(done));
-		// 		});
-		// 	});
+		it('should show safety faq text on vivanuncios', (done) => {
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.expect((res) => {
+						let c$ = cheerio.load(res.text);
+						let faq = c$('.safetyTips .faq a')[0];
+						expect(faq.attribs.href)
+							.toBe('https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad');
+						expect(faq.firstChild.data).toContain('Consejos de seguridad');
+					})
+					.end(specHelper.finish(done));
+			});
+		});
   	});
 
 	describe('Recent Activitiy', () => {
@@ -193,6 +193,66 @@ describe('Server to hit HomePage', function() {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.feed-tiles')).toBeDefined();
 						expect(res.status).toBe(200);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+	});
+
+	describe('Header Page Messages', () => {
+
+		it('should return status code 200 with flash message (userRegistered)', (done) => {
+
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.query("status=userRegistered")
+					.expect((res) => {
+						expect(res.status).toBe(200);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.user.registered']);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should return status code 200 with flash message (adInactive)', (done) => {
+
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.query("status=adInactive")
+					.expect((res) => {
+						expect(res.status).toBe(200);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.ad.notyetactive']);
+					})
+					.end(specHelper.finish(done));
+			});
+		});
+
+		it('should return status code 200 with flash message (resetPassword)', (done) => {
+
+			boltSupertest('/', 'vivanuncios.com.mx').then((supertest) => {
+				supertest
+					.set('Cookie', 'b2dot0Version=2.0')
+					.query("status=resetPassword")
+					.expect((res) => {
+						expect(res.status).toBe(200);
+						let c$ = cheerio.load(res.text);
+						let messages = c$('.gl-messages');
+						expect(messages.length).toBe(1, 'should have messages element');
+						let message = c$(messages, '.message');
+						expect(message.length).toBe(1, 'should have a message element');
+						expect(message.text().trim()).toBe(i18n['home.reset.password.success']);
 					})
 					.end(specHelper.finish(done));
 			});

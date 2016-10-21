@@ -1,0 +1,71 @@
+.registration-form {
+	.hidden {
+		display: none;
+	}
+
+	.error-message, .general-error {
+		text-align: center;
+		color: red;
+	}
+
+	.title, .error-message {
+		text-align: center;
+	}
+
+	box-sizing: border-box;
+	width: 100%;
+	padding: 10px;
+
+	.validation-error {
+		border: 1px red solid !important;
+	}
+
+	.title {
+		font: 1.25em Lato normal;
+	}
+
+	.input-wrapper {
+		padding-top: 10px;
+		&.password {
+			.password-length-label {
+				font-size: 12px;
+			}
+			padding-top: 0;
+		}
+	}
+
+	input[type="password"], input[type="text"] {
+		box-sizing: border-box;
+		width: 100%;
+		font-size: 1em;
+		font-family: inherit;
+		padding: 0;
+	}
+
+	button {
+		font-size: 18px;
+		padding: 10px;
+		margin-top: 10px;
+		width: 100%;
+		height: 45px;
+		color: white;
+		border-style: none;
+		background-color: $vivaOrange;
+		&:disabled {
+			opacity: 0.5;
+			cursor: not-allowed !important;
+		}
+	}
+}
+
+.registration-success {
+	&.hidden {
+		display: none;
+	}
+	text-align: center;
+
+	h1, p {
+		margin: 20px;
+	}
+
+}

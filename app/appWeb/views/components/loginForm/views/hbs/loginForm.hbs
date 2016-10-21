@@ -1,0 +1,25 @@
+<div id="login-form" class="login-form" data-site-base-path="{{header.homePageUrl}}">
+    <button class="facebook-button">
+        <span class="icon-facebook_white"></span>
+        <span class="facebook-text">{{i18n "login.page.facebookSignIn"}}</span>
+    </button>
+    <div class="divider">
+        <span class="divider-text">or</span>
+    </div>
+    <div class="sign-in-section {{#if startOpen}}open{{/if}}">
+		<div id="redirect-url" class="hidden">{{this.redirectUrl}}</div>
+        <form>
+            <div class="input-wrapper">
+				<input placeholder="{{i18n 'login.placeholder-email'}}" type="email"/>
+                <span class="icon-email_small"></span>
+            </div>
+			<div class="input-wrapper">
+				<input placeholder="{{i18n 'login.placeholder-password'}}" type="password">
+				<input class="hidden" placeholder="{{i18n 'login.placeholder-password'}}" type="text">
+                <span class="icon-eye show-hide-password"></span>
+            </div>
+
+			<button class="submit-btn">{{i18n "login.signin-button"}}</button>
+        </form>
+    </div>
+</div>

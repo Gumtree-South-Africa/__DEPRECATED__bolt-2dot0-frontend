@@ -6,10 +6,6 @@ let cwd = process.cwd();
 
 describe('Edit Ad Api', () => {
 
-	afterEach(() => {
-		specHelper.verifyMockEndpointsClean();
-	});
-
 	it('should edit an ad for a logged in, valid user', (done) => {
 		let file = require(cwd + '/test/serverUnit/mockData/editAd/EditAdRequest.json');
 		specHelper.registerMockEndpoint(endpoints.userFromCookie,

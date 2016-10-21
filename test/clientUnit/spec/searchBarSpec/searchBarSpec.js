@@ -12,6 +12,14 @@ let mockTypeAheadResults = {
 			"category": 7,
 			"location": 10015,
 			"localizedCatName": "Deportes y pasatiempos"
+		},
+		{
+			"keyword": "kite",
+			"seoUrl": "/search.html?q=kite&catId=7",
+			"displayText": "kite en Deportes y pasatiempos",
+			"category": 7,
+			"location": 10015,
+			"localizedCatName": "Deportes y pasatiempos"
 		}
 	],
 	"localizedInWord": "en"
@@ -34,7 +42,7 @@ describe("Search Bar V2", () => {
 			expect($firstResult.html()).toEqual(mockTypeAheadResults.items[0].keyword);
 		});
 
-		it("items that are clicked should populate the search field", () => {
+		it("should populate the search field with items that are clicked", () => {
 			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
 			searchBarController.initialize();
 
@@ -45,6 +53,99 @@ describe("Search Bar V2", () => {
 
 			$firstResult.click();
 			expect($testArea.find('input[type="text"]').val()).toEqual($firstResult.text());
+		});
+
+		it("items should highlight the top item when arrowing down if none are selected", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			specHelper.simulateDownArrow($textInput);
+			expect($testArea.find(".type-ahead-results-row").first().hasClass("active")).toBeTruthy();
+		});
+
+		it("should highlight the top item when arrowing down if none are selected", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			specHelper.simulateUpArrow($textInput);
+			expect($testArea.find(".type-ahead-results-row").last().hasClass("active")).toBeTruthy();
+		});
+
+		it("should highlight the next item when arrowing down if one is already selected", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			let $typeAheadRows = $testArea.find(".type-ahead-results-row");
+			$typeAheadRows.first().addClass("active");
+
+			specHelper.simulateDownArrow($textInput);
+			let $secondRow = $($typeAheadRows[1]);
+			expect($secondRow.hasClass("active")).toBeTruthy();
+		});
+
+		it("should highlight the previous item when arrowing up if one is already selected", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			let $typeAheadRows = $testArea.find(".type-ahead-results-row");
+			$typeAheadRows.last().addClass("active");
+
+			specHelper.simulateUpArrow($textInput);
+			let $secondToLastRow = $($typeAheadRows[$typeAheadRows.length - 2]);
+			expect($secondToLastRow.hasClass("active")).toBeTruthy();
+		});
+
+		it("should select the highlighted item when pressing enter", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			let $typeAheadRows = $testArea.find(".type-ahead-results-row");
+			$typeAheadRows.first().addClass("active");
+
+			spyOn(searchBarController, "_selectItem").and.stub();
+
+			specHelper.simulateEnter($textInput);
+		});
+
+		it("should close the autocomplete when pressing esc", () => {
+			let $testArea = specHelper.setupTest("searchbarV2_es_MX", {}, "es_MX");
+			searchBarController.initialize();
+
+			let $textInput = $testArea.find('input[type="text"]');
+			specHelper.registerMockAjax("/api/search/autocomplete", mockTypeAheadResults);
+
+			specHelper.simulateTextInput($textInput, "k");
+
+			expect($testArea.find("#search-controls").hasClass("is-typing")).toBeTruthy();
+
+			specHelper.simulateEsc($textInput);
+
+			expect($testArea.find("#search-controls").hasClass("is-typing")).toBeFalsy();
 		});
 	});
 });

@@ -50,8 +50,7 @@ BAPICall.prototype = {
 		    		try {
 		    			data = JSON.parse(body);
 		    		} catch(ex) {
-		    			data = {};
-						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
+						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} ${res.req._headers["x-bolt-site-locale"]} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
 						console.error(message);
 					    deferred.reject(new BapiError(message));
 		    		}
@@ -60,8 +59,13 @@ BAPICall.prototype = {
 					}
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if  (res.statusCode !== 200) {
+						let bapiJson;
 						// attach the status code so consumers can check for it
-						let error = new BapiError(`Received non-200 status: ${res.statusCode}`, { statusCode: res.statusCode });
+						if (res.headers['content-type'].indexOf("application/json") !== -1) {
+							// attach the json so consumers can use it
+							bapiJson = data;
+						}
+						let error = new BapiError(`Received non-200 status: ${res.statusCode} for ${res.req._headers["x-bolt-site-locale"]} ${res.req.path}`, { statusCode: res.statusCode, bapiJson: bapiJson });
 						deferred.reject(error);
 					} else {
 						deferred.resolve(data);
@@ -124,8 +128,9 @@ BAPICall.prototype = {
 							data = JSON.parse(body);
 						}
 					} catch(ex) {
-						console.log(ex);
-						deferred.reject(new BapiError(ex));
+						let message = `Unable to parse JSON ${ex.message} status: ${res.statusCode} contentType: ${res.headers['content-type']} ${res.req._headers["x-bolt-site-locale"]} path: ${res.req.path} body sample: ${body.length > 30 ? body.substr(0, 30) : 'too small to sample'}`;
+						console.error(message);
+						deferred.reject(new BapiError(message));
 					}
 
 					// Aggregation of data with the original (passed) data
@@ -135,11 +140,14 @@ BAPICall.prototype = {
 					// Any other HTTP Status code than 200 from BAPI, send to error handling, and return error data
 					if (!(res.statusCode === 200 || res.statusCode === 201)) {
 						let bapiJson;
-						if (res.headers['content-type'] === "application/json;charset=UTF-8") {
+						// content-type can have different format for the charset:
+						// RAML Mock Server: 'application/json; charset=utf-8' or BAPI: 'application/json;charset=UTF-8'
+						// so we're now just checking for application/json without regard to charset
+						if (res.headers['content-type'].indexOf("application/json") !== -1) {
 							// attach the json so consumers can use it
 							bapiJson = data;
 						}
-						let error = new BapiError(`Received non-200/201 status: ${res.statusCode}`, { statusCode: res.statusCode, bapiJson: bapiJson});
+						let error = new BapiError(`Received non-200/201 status: ${res.statusCode} for ${res.req._headers["x-bolt-site-locale"]} ${res.req.path}`, { statusCode: res.statusCode, bapiJson: bapiJson});
 
 						// attach the status code so consumers can check for it
 						error.statusCode = res.statusCode;

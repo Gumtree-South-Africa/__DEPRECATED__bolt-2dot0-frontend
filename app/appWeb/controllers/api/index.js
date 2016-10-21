@@ -9,6 +9,7 @@ router.use('/search', require('./apiSearchController'));
 router.use('/locate', require('./apiLocationLatLong'));
 router.use('/postad', require('./apiPostAdController'));
 router.use('/edit', require('./apiEditAdController'));
+router.use('/auth', require('./apiAuthController'));
 router.use('/push', require('./apiPushController'));
 
 module.exports = router;

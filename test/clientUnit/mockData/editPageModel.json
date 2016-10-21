@@ -1,0 +1,3133 @@
+{
+   "categoryAll": {
+      "id": 0,
+      "localizedName": "Todas las Categorías",
+      "parentId": null,
+      "level": "L0",
+      "description": "Todas las Categorías",
+      "localizedMobileName": "Todas las Categorías",
+      "children": [
+         {
+            "id": 64,
+            "localizedName": "Vehículos",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Vehículos",
+            "localizedMobileName": "Vehículos",
+            "children": [
+               {
+                  "id": 81,
+                  "localizedName": "Autos y camionetas",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Autos y camionetas",
+                  "localizedMobileName": "Autos y camionetas",
+                  "children": [
+                     {
+                        "id": 68,
+                        "localizedName": "Camionetas",
+                        "parentId": 81,
+                        "level": "L3",
+                        "description": "Camionetas",
+                        "localizedMobileName": "Camionetas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/68",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-venta+camionetas/v1c68p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 65,
+                        "localizedName": "Autos",
+                        "parentId": 81,
+                        "level": "L3",
+                        "description": "Autos",
+                        "localizedMobileName": "Autos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/65",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-venta-autos/v1c65p1",
+                              "method": "GET"
+                           }
+                        ]
+                     }
+                  ],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/81",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-autos-camionetas/v1c81p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 69,
+                  "localizedName": "Motos",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Motos",
+                  "localizedMobileName": "Motos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/69",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-motos/v1c69p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 66,
+                  "localizedName": "Camiones y comerciales",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Camiones y comerciales",
+                  "localizedMobileName": "Camiones y comerciales",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/66",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-camiones/v1c66p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 91,
+                  "localizedName": "Casas rodantes, motorhomes",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Casas rodantes, motorhomes",
+                  "localizedMobileName": "Casas rodantes, motorhomes",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/91",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-motorhome/v1c91p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 70,
+                  "localizedName": "Náutica y aviación",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Náutica y aviación",
+                  "localizedMobileName": "Náutica y aviación",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/70",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-nautica-aviacion/v1c70p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 92,
+                  "localizedName": "Piezas, accesorios y repuestos",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Piezas, accesorios y repuestos",
+                  "localizedMobileName": "Piezas, accesorios y repuestos",
+                  "children": [
+                     {
+                        "id": 93,
+                        "localizedName": "Motos - repuestos y accesorios",
+                        "parentId": 92,
+                        "level": "L3",
+                        "description": "Motos - repuestos y accesorios",
+                        "localizedMobileName": "Motos - repuestos y accesorios",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/93",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-motos-+-repuestos-y-accesorios/v1c93p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 94,
+                        "localizedName": "Náutica, repuestos y accesorios",
+                        "parentId": 92,
+                        "level": "L3",
+                        "description": "Náutica, repuestos y accesorios",
+                        "localizedMobileName": "Náutica, repuestos y accesorios",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/94",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-nautica+repuestos+y+accesorios/v1c94p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 95,
+                        "localizedName": "Accesorios motorhome",
+                        "parentId": 92,
+                        "level": "L3",
+                        "description": "Accesorios motorhome",
+                        "localizedMobileName": "Accesorios motorhome",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/95",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-accesorios-motorhome/v1c95p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 96,
+                        "localizedName": "Repuestos - piezas camiones",
+                        "parentId": 92,
+                        "level": "L3",
+                        "description": "Repuestos - piezas camiones",
+                        "localizedMobileName": "Repuestos - piezas camiones",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/96",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-repuestos-+-piezas-camiones/v1c96p1",
+                              "method": "GET"
+                           }
+                        ]
+                     }
+                  ],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/92",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-piezas-accesorios-repuestos/v1c92p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 85,
+                  "localizedName": "Autopartes, repuestos y servicios",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Autopartes, repuestos y servicios",
+                  "localizedMobileName": "Autopartes, repuestos y servicios",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/85",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-autopartes-repuestos-y-servicios/v1c85p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 72,
+                  "localizedName": "Otros vehículos",
+                  "parentId": 64,
+                  "level": "L2",
+                  "description": "Otros vehículos",
+                  "localizedMobileName": "Otros vehículos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/72",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-otros-veh%25C3%25ADculos/v1c72p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/64",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-venta-vehiculos/v1c64p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 30,
+            "localizedName": "Bienes raíces",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Bienes raíces",
+            "localizedMobileName": "Bienes raíces",
+            "children": [
+               {
+                  "id": 1097,
+                  "localizedName": "Inmuebles en venta",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Inmuebles en venta",
+                  "localizedMobileName": "Inmuebles en venta",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1097",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-inmuebles/v1c1097p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 31,
+                  "localizedName": "Terrenos en venta",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Terrenos en venta",
+                  "localizedMobileName": "Terrenos en venta",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/31",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-terrenos/v1c31p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1098,
+                  "localizedName": "Inmuebles en renta",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Inmuebles en renta",
+                  "localizedMobileName": "Inmuebles en renta",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1098",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-renta-inmuebles/v1c1098p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1099,
+                  "localizedName": "Cuartos en renta",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Cuartos en renta",
+                  "localizedMobileName": "Cuartos en renta",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1099",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-renta-cuartos/v1c1099p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 35,
+                  "localizedName": "Rentas vacacionales",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Rentas vacacionales",
+                  "localizedMobileName": "Rentas vacacionales",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/35",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-renta-vacacional/v1c35p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1110,
+                  "localizedName": "Propiedades comerciales",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Propiedades comerciales",
+                  "localizedMobileName": "Propiedades comerciales",
+                  "children": [
+                     {
+                        "id": 32,
+                        "localizedName": "Oficinas y consultorios",
+                        "parentId": 1110,
+                        "level": "L3",
+                        "description": "Oficinas y consultorios",
+                        "localizedMobileName": "Oficinas y consultorios",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/32",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-oficinas+consultorios/v1c32p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1112,
+                        "localizedName": "Locales comerciales",
+                        "parentId": 1110,
+                        "level": "L3",
+                        "description": "Locales comerciales",
+                        "localizedMobileName": "Locales comerciales",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1112",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-locales-comerciales/v1c1112p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1113,
+                        "localizedName": "Traspasos",
+                        "parentId": 1110,
+                        "level": "L3",
+                        "description": "Traspasos",
+                        "localizedMobileName": "Traspasos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1113",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-traspasos/v1c1113p1",
+                              "method": "GET"
+                           }
+                        ]
+                     }
+                  ],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1110",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-inmuebles-comerciales/v1c1110p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 33,
+                  "localizedName": "Bodegas",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Bodegas",
+                  "localizedMobileName": "Bodegas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/33",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-bodegas/v1c33p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 90,
+                  "localizedName": "Otros bienes raices",
+                  "parentId": 30,
+                  "level": "L2",
+                  "description": "Otros bienes raices",
+                  "localizedMobileName": "Otros bienes raices",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/90",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-otros-bienes-raices/v1c90p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/30",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-inmuebles/v1c30p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 36,
+            "localizedName": "Empleos",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Empleos",
+            "localizedMobileName": "Empleos",
+            "children": [
+               {
+                  "id": 1150,
+                  "localizedName": "Ofertas de empleo",
+                  "parentId": 36,
+                  "level": "L2",
+                  "description": "Ofertas de empleo",
+                  "localizedMobileName": "Ofertas de empleo",
+                  "children": [
+                     {
+                        "id": 38,
+                        "localizedName": "Diseño",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Diseño",
+                        "localizedMobileName": "Diseño",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/38",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-diseno/v1c38p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 39,
+                        "localizedName": "Programación",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Programación",
+                        "localizedMobileName": "Programación",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/39",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-programacion/v1c39p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 40,
+                        "localizedName": "Ingeniería",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Ingeniería",
+                        "localizedMobileName": "Ingeniería",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/40",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-ingenieria/v1c40p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 41,
+                        "localizedName": "Hotelería - Turismo",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Hotelería - Turismo",
+                        "localizedMobileName": "Hotelería - Turismo",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/41",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-administracion/v1c41p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 42,
+                        "localizedName": "Docente",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Docente",
+                        "localizedMobileName": "Docente",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/42",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-docentes/v1c42p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 44,
+                        "localizedName": "Finanzas",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Finanzas",
+                        "localizedMobileName": "Finanzas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/44",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-finanzas/v1c44p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 45,
+                        "localizedName": "Construcción",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Construcción",
+                        "localizedMobileName": "Construcción",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/45",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-construccion/v1c45p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 80,
+                        "localizedName": "Medicina",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Medicina",
+                        "localizedMobileName": "Medicina",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/80",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-medicina/v1c80p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 86,
+                        "localizedName": "Secretaria",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Secretaria",
+                        "localizedMobileName": "Secretaria",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/86",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-secretaria/v1c86p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1151,
+                        "localizedName": "Actuación y música",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Actuación y música",
+                        "localizedMobileName": "Actuación y música",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1151",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-actuacion/v1c1151p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1152,
+                        "localizedName": "Arquitectura",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Arquitectura",
+                        "localizedMobileName": "Arquitectura",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1152",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-arquitectura/v1c1152p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1153,
+                        "localizedName": "Atención al cliente",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Atención al cliente",
+                        "localizedMobileName": "Atención al cliente",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1153",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-atencion/v1c1153p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1154,
+                        "localizedName": "Científico",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Científico",
+                        "localizedMobileName": "Científico",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1154",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-ciencias/v1c1154p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1155,
+                        "localizedName": "Compras y abastecimiento",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Compras y abastecimiento",
+                        "localizedMobileName": "Compras y abastecimiento",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1155",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-compras/v1c1155p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1156,
+                        "localizedName": "Comunicaciones",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Comunicaciones",
+                        "localizedMobileName": "Comunicaciones",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1156",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-comunicaciones/v1c1156p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1157,
+                        "localizedName": "Con comisión - desde casa",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Con comisión - desde casa",
+                        "localizedMobileName": "Con comisión - desde casa",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1157",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-mlm/v1c1157p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1158,
+                        "localizedName": "Contabilidad",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Contabilidad",
+                        "localizedMobileName": "Contabilidad",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1158",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-contabilidad/v1c1158p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1159,
+                        "localizedName": "Cuidado de mayores - enfermos",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Cuidado de mayores - enfermos",
+                        "localizedMobileName": "Cuidado de mayores - enfermos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1159",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-emfermeria/v1c1159p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1160,
+                        "localizedName": "Empleadas domésticas",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Empleadas domésticas",
+                        "localizedMobileName": "Empleadas domésticas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1160",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleadas+domesticas/v1c1160p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1161,
+                        "localizedName": "Gerencial",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Gerencial",
+                        "localizedMobileName": "Gerencial",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1161",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-gerencia/v1c1161p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1162,
+                        "localizedName": "Legal",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Legal",
+                        "localizedMobileName": "Legal",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1162",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-derecho/v1c1162p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1163,
+                        "localizedName": "Logística",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Logística",
+                        "localizedMobileName": "Logística",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1163",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-logistica/v1c1163p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1164,
+                        "localizedName": "Marketing",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Marketing",
+                        "localizedMobileName": "Marketing",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1164",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-marketing/v1c1164p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1165,
+                        "localizedName": "Niñeras - guarderías",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Niñeras - guarderías",
+                        "localizedMobileName": "Niñeras - guarderías",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1165",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-nineras/v1c1165p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1166,
+                        "localizedName": "Producción - operación",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Producción - operación",
+                        "localizedMobileName": "Producción - operación",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1166",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-produccion/v1c1166p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1167,
+                        "localizedName": "Recursos humanos",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Recursos humanos",
+                        "localizedMobileName": "Recursos humanos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1167",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-rrhh/v1c1167p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1168,
+                        "localizedName": "Seguridad",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Seguridad",
+                        "localizedMobileName": "Seguridad",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1168",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-seguridad/v1c1168p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1169,
+                        "localizedName": "Ventas",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Ventas",
+                        "localizedMobileName": "Ventas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1169",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-ventas/v1c1169p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1170,
+                        "localizedName": "Otros",
+                        "parentId": 1150,
+                        "level": "L3",
+                        "description": "Otros",
+                        "localizedMobileName": "Otros",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1170",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-empleos-otros/v1c1170p1",
+                              "method": "GET"
+                           }
+                        ]
+                     }
+                  ],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1150",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-ofertas-empleo/v1c1150p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1180,
+                  "localizedName": "Aspirantes y curriculums",
+                  "parentId": 36,
+                  "level": "L2",
+                  "description": "Aspirantes y curriculums",
+                  "localizedMobileName": "Aspirantes y curriculums",
+                  "children": [
+                     {
+                        "id": 1181,
+                        "localizedName": "Actuación y música",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Actuación y música",
+                        "localizedMobileName": "Actuación y música",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1181",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-actores-musicos/v1c1181p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1182,
+                        "localizedName": "Hotelería - turismo",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Hotelería - turismo",
+                        "localizedMobileName": "Hotelería - turismo",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1182",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-administracion/v1c1182p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1183,
+                        "localizedName": "Arquitectura",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Arquitectura",
+                        "localizedMobileName": "Arquitectura",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1183",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-arquitectura/v1c1183p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1184,
+                        "localizedName": "Atención al cliente",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Atención al cliente",
+                        "localizedMobileName": "Atención al cliente",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1184",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-atencion/v1c1184p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1185,
+                        "localizedName": "Científico",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Científico",
+                        "localizedMobileName": "Científico",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1185",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-ciencias/v1c1185p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1186,
+                        "localizedName": "Compras y abastecimiento",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Compras y abastecimiento",
+                        "localizedMobileName": "Compras y abastecimiento",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1186",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-compras/v1c1186p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1187,
+                        "localizedName": "Comunicaciones",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Comunicaciones",
+                        "localizedMobileName": "Comunicaciones",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1187",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-comunicaciones/v1c1187p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1188,
+                        "localizedName": "Con comisión - desde casa",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Con comisión - desde casa",
+                        "localizedMobileName": "Con comisión - desde casa",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1188",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-mlm/v1c1188p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1189,
+                        "localizedName": "Construcción",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Construcción",
+                        "localizedMobileName": "Construcción",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1189",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-construccion/v1c1189p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1190,
+                        "localizedName": "Contabilidad",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Contabilidad",
+                        "localizedMobileName": "Contabilidad",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1190",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-contadores/v1c1190p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1191,
+                        "localizedName": "Cuidado de mayores - enfermos",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Cuidado de mayores - enfermos",
+                        "localizedMobileName": "Cuidado de mayores - enfermos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1191",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-emfermeria/v1c1191p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1192,
+                        "localizedName": "Diseño",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Diseño",
+                        "localizedMobileName": "Diseño",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1192",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-diseno/v1c1192p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1193,
+                        "localizedName": "Docente",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Docente",
+                        "localizedMobileName": "Docente",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1193",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-docentes/v1c1193p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1194,
+                        "localizedName": "Empleadas domésticas",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Empleadas domésticas",
+                        "localizedMobileName": "Empleadas domésticas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1194",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-domesticas/v1c1194p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1195,
+                        "localizedName": "Finanzas",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Finanzas",
+                        "localizedMobileName": "Finanzas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1195",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-finanzas/v1c1195p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1196,
+                        "localizedName": "Gerencial",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Gerencial",
+                        "localizedMobileName": "Gerencial",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1196",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-gerentes/v1c1196p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1197,
+                        "localizedName": "Ingeniería",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Ingeniería",
+                        "localizedMobileName": "Ingeniería",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1197",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-ingenieros/v1c1197p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1198,
+                        "localizedName": "Legal",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Legal",
+                        "localizedMobileName": "Legal",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1198",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-legal/v1c1198p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1199,
+                        "localizedName": "Logística",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Logística",
+                        "localizedMobileName": "Logística",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1199",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-logistica/v1c1199p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1200,
+                        "localizedName": "Marketing",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Marketing",
+                        "localizedMobileName": "Marketing",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1200",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-marketing/v1c1200p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1201,
+                        "localizedName": "Medicina",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Medicina",
+                        "localizedMobileName": "Medicina",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1201",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-medicina/v1c1201p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1202,
+                        "localizedName": "Niñeras - guarderías",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Niñeras - guarderías",
+                        "localizedMobileName": "Niñeras - guarderías",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1202",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-nineras/v1c1202p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1203,
+                        "localizedName": "Producción - operación",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Producción - operación",
+                        "localizedMobileName": "Producción - operación",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1203",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-produccion/v1c1203p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1204,
+                        "localizedName": "Programación",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Programación",
+                        "localizedMobileName": "Programación",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1204",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-programadores/v1c1204p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1205,
+                        "localizedName": "Recursos humanos",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Recursos humanos",
+                        "localizedMobileName": "Recursos humanos",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1205",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-rrhh/v1c1205p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1206,
+                        "localizedName": "Secretaria",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Secretaria",
+                        "localizedMobileName": "Secretaria",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1206",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-secretarias/v1c1206p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1207,
+                        "localizedName": "Seguridad",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Seguridad",
+                        "localizedMobileName": "Seguridad",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1207",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-seguridad/v1c1207p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1208,
+                        "localizedName": "Ventas",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Ventas",
+                        "localizedMobileName": "Ventas",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1208",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-ventas/v1c1208p1",
+                              "method": "GET"
+                           }
+                        ]
+                     },
+                     {
+                        "id": 1209,
+                        "localizedName": "Otros",
+                        "parentId": 1180,
+                        "level": "L3",
+                        "description": "Otros",
+                        "localizedMobileName": "Otros",
+                        "children": [],
+                        "_links": [
+                           {
+                              "rel": "self",
+                              "href": "/categories/1209",
+                              "method": "GET"
+                           },
+                           {
+                              "rel": "search",
+                              "href": "/s-cv-otros/v1c1209p1",
+                              "method": "GET"
+                           }
+                        ]
+                     }
+                  ],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1180",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-aspirantes-curriculums/v1c1180p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/36",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-ofertas+trabajo/v1c36p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 3,
+            "localizedName": "Computadoras y electrónica",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Computadoras y electrónica",
+            "localizedMobileName": "Computadoras y electrónica",
+            "children": [
+               {
+                  "id": 6,
+                  "localizedName": "Computadoras y accesorios",
+                  "parentId": 3,
+                  "level": "L2",
+                  "description": "Computadoras y accesorios",
+                  "localizedMobileName": "Computadoras y accesorios",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/6",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-computacion/v1c6p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 18,
+                  "localizedName": "Consolas y videojuegos",
+                  "parentId": 3,
+                  "level": "L2",
+                  "description": "Consolas y videojuegos",
+                  "localizedMobileName": "Consolas y videojuegos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/18",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-videojuegos/v1c18p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1071,
+                  "localizedName": "Audio-tv-foto-video",
+                  "parentId": 3,
+                  "level": "L2",
+                  "description": "Audio-tv-foto-video",
+                  "localizedMobileName": "Audio-tv-foto-video",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1071",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-audio-tv-foto-video/v1c1071p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/3",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-computadoras-electronica/v1c3p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 1089,
+            "localizedName": "Celulares y tablets",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Celulares y tablets",
+            "localizedMobileName": "Celulares y tablets",
+            "children": [],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/1089",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-venta-telefonos/v1c1089p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 1,
+            "localizedName": "Hogar",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Hogar",
+            "localizedMobileName": "Hogar",
+            "children": [
+               {
+                  "id": 9,
+                  "localizedName": "Muebles",
+                  "parentId": 1,
+                  "level": "L2",
+                  "description": "Muebles",
+                  "localizedMobileName": "Muebles",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/9",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-muebles/v1c9p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1075,
+                  "localizedName": "Decoración y arte",
+                  "parentId": 1,
+                  "level": "L2",
+                  "description": "Decoración y arte",
+                  "localizedMobileName": "Decoración y arte",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1075",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-decoracion/v1c1075p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1076,
+                  "localizedName": "Electrodomésticos",
+                  "parentId": 1,
+                  "level": "L2",
+                  "description": "Electrodomésticos",
+                  "localizedMobileName": "Electrodomésticos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1076",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-electrodomesticos/v1c1076p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1077,
+                  "localizedName": "Jardín y construcción",
+                  "parentId": 1,
+                  "level": "L2",
+                  "description": "Jardín y construcción",
+                  "localizedMobileName": "Jardín y construcción",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1077",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-jardin-herramientas/v1c1077p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/1",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-hogar/v1c1p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 15,
+            "localizedName": "Moda",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Moda",
+            "localizedMobileName": "Moda",
+            "children": [],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/15",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-moda/v1c15p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 5,
+            "localizedName": "Bebés, niños, embarazadas",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Bebés, niños, embarazadas",
+            "localizedMobileName": "Bebés, niños, embarazadas",
+            "children": [
+               {
+                  "id": 1057,
+                  "localizedName": "Accesorios, bebés y niños",
+                  "parentId": 5,
+                  "level": "L2",
+                  "description": "Accesorios, bebés y niños",
+                  "localizedMobileName": "Accesorios, bebés y niños",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1057",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-accesorios-bebes/v1c1057p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1058,
+                  "localizedName": "Juegos y juguetes",
+                  "parentId": 5,
+                  "level": "L2",
+                  "description": "Juegos y juguetes",
+                  "localizedMobileName": "Juegos y juguetes",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1058",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-juegos-juguetes/v1c1058p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1060,
+                  "localizedName": "Ropa de bebés y niños",
+                  "parentId": 5,
+                  "level": "L2",
+                  "description": "Ropa de bebés y niños",
+                  "localizedMobileName": "Ropa de bebés y niños",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1060",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-ropa-bebes/v1c1060p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/5",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-bebes-ninos-embarazadas/v1c5p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 17,
+            "localizedName": "Tiempo libre",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Tiempo libre",
+            "localizedMobileName": "Tiempo libre",
+            "children": [
+               {
+                  "id": 7,
+                  "localizedName": "Deportes y pasatiempos",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Deportes y pasatiempos",
+                  "localizedMobileName": "Deportes y pasatiempos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/7",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-deportes-pasatiempos/v1c7p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 10,
+                  "localizedName": "Instrumentos musicales",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Instrumentos musicales",
+                  "localizedMobileName": "Instrumentos musicales",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/10",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-instrumentos/v1c10p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 13,
+                  "localizedName": "Música, películas, libros",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Música, películas, libros",
+                  "localizedMobileName": "Música, películas, libros",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/13",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-musica-peliculas-libros/v1c13p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 48,
+                  "localizedName": "Boletos",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Boletos",
+                  "localizedMobileName": "Boletos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/48",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-boletos/v1c48p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1050,
+                  "localizedName": "Comida y bebida",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Comida y bebida",
+                  "localizedMobileName": "Comida y bebida",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1050",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-comida-bebida/v1c1050p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1100,
+                  "localizedName": "Coleccionables, antigüedades",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Coleccionables, antigüedades",
+                  "localizedMobileName": "Coleccionables, antigüedades",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1100",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-coleccionables/v1c1100p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 16,
+                  "localizedName": "Productos de belleza y salud",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Productos de belleza y salud",
+                  "localizedMobileName": "Productos de belleza y salud",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/16",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-productos-belleza/v1c16p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 19,
+                  "localizedName": "Otras ventas",
+                  "parentId": 17,
+                  "level": "L2",
+                  "description": "Otras ventas",
+                  "localizedMobileName": "Otras ventas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/19",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-otras-ventas/v1c19p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/17",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-tiempo-libre/v1c17p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 1120,
+            "localizedName": "Mascotas",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Mascotas",
+            "localizedMobileName": "Mascotas",
+            "children": [
+               {
+                  "id": 1121,
+                  "localizedName": "Mascotas en venta",
+                  "parentId": 1120,
+                  "level": "L2",
+                  "description": "Mascotas en venta",
+                  "localizedMobileName": "Mascotas en venta",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1121",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-mascotas/v1c1121p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1122,
+                  "localizedName": "Mascotas en adopción",
+                  "parentId": 1120,
+                  "level": "L2",
+                  "description": "Mascotas en adopción",
+                  "localizedMobileName": "Mascotas en adopción",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1122",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-adopcion-mascotas/v1c1122p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1123,
+                  "localizedName": "Servicios, accesorios mascotas",
+                  "parentId": 1120,
+                  "level": "L2",
+                  "description": "Servicios, accesorios mascotas",
+                  "localizedMobileName": "Servicios, accesorios mascotas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1123",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-accesorios-mascotas/v1c1123p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1124,
+                  "localizedName": "Perdido, encontrado",
+                  "parentId": 1120,
+                  "level": "L2",
+                  "description": "Perdido, encontrado",
+                  "localizedMobileName": "Perdido, encontrado",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1124",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-mascotas-perdidas/v1c1124p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/1120",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-mascotas/v1c1120p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 1230,
+            "localizedName": "Agro e industria",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Agro e industria",
+            "localizedMobileName": "Agro e industria",
+            "children": [
+               {
+                  "id": 1231,
+                  "localizedName": "Ranchos - fincas y granjas",
+                  "parentId": 1230,
+                  "level": "L2",
+                  "description": "Ranchos - fincas y granjas",
+                  "localizedMobileName": "Ranchos - fincas y granjas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1231",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-ranchos-fincas-granjas/v1c1231p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1232,
+                  "localizedName": "Maquinaria y equipamiento",
+                  "parentId": 1230,
+                  "level": "L2",
+                  "description": "Maquinaria y equipamiento",
+                  "localizedMobileName": "Maquinaria y equipamiento",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1232",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-maquinaria-equipamiento/v1c1232p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1233,
+                  "localizedName": "Insumos agropecuarios",
+                  "parentId": 1230,
+                  "level": "L2",
+                  "description": "Insumos agropecuarios",
+                  "localizedMobileName": "Insumos agropecuarios",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1233",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-insumos-agro/v1c1233p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1234,
+                  "localizedName": "Animales de campo",
+                  "parentId": 1230,
+                  "level": "L2",
+                  "description": "Animales de campo",
+                  "localizedMobileName": "Animales de campo",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1234",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-animales-campo/v1c1234p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1235,
+                  "localizedName": "Servicios agropecuarios",
+                  "parentId": 1230,
+                  "level": "L2",
+                  "description": "Servicios agropecuarios",
+                  "localizedMobileName": "Servicios agropecuarios",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1235",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-agro/v1c1235p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/1230",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-agro-industria/v1c1230p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 25,
+            "localizedName": "Eventos y fiestas",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Eventos y fiestas",
+            "localizedMobileName": "Eventos y fiestas",
+            "children": [
+               {
+                  "id": 1211,
+                  "localizedName": "Fiestas, eventos",
+                  "parentId": 25,
+                  "level": "L2",
+                  "description": "Fiestas, eventos",
+                  "localizedMobileName": "Fiestas, eventos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1211",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-fiestas/v1c1211p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1212,
+                  "localizedName": "Entradas para eventos",
+                  "parentId": 25,
+                  "level": "L2",
+                  "description": "Entradas para eventos",
+                  "localizedMobileName": "Entradas para eventos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1212",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-venta-tickets/v1c1212p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1213,
+                  "localizedName": "Servicios para eventos",
+                  "parentId": 25,
+                  "level": "L2",
+                  "description": "Servicios para eventos",
+                  "localizedMobileName": "Servicios para eventos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1213",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-eventos/v1c1213p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/25",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-eventos-fiestas/v1c25p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 53,
+            "localizedName": "Cursos",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Cursos",
+            "localizedMobileName": "Cursos",
+            "children": [
+               {
+                  "id": 54,
+                  "localizedName": "Cursos de idiomas",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Cursos de idiomas",
+                  "localizedMobileName": "Cursos de idiomas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/54",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-cursos-idiomas/v1c54p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1240,
+                  "localizedName": "Capacitación profesional",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Capacitación profesional",
+                  "localizedMobileName": "Capacitación profesional",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1240",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-capacitaciones/v1c1240p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 56,
+                  "localizedName": "Computación, informática",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Computación, informática",
+                  "localizedMobileName": "Computación, informática",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/56",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-cursos-computacion/v1c56p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 55,
+                  "localizedName": "Música, danza, arte",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Música, danza, arte",
+                  "localizedMobileName": "Música, danza, arte",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/55",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-cursos-arte/v1c55p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1241,
+                  "localizedName": "Apoyo escolar",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Apoyo escolar",
+                  "localizedMobileName": "Apoyo escolar",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1241",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-clases-particulares/v1c1241p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1242,
+                  "localizedName": "Manualidades, cocina",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Manualidades, cocina",
+                  "localizedMobileName": "Manualidades, cocina",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1242",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-cursos-manualidades/v1c1242p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1243,
+                  "localizedName": "Otros cursos",
+                  "parentId": 53,
+                  "level": "L2",
+                  "description": "Otros cursos",
+                  "localizedMobileName": "Otros cursos",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1243",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-otros-cursos/v1c1243p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/53",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-cursos/v1c53p1",
+                  "method": "GET"
+               }
+            ]
+         },
+         {
+            "id": 20,
+            "localizedName": "Servicios",
+            "parentId": 0,
+            "level": "L1",
+            "description": "Servicios",
+            "localizedMobileName": "Servicios",
+            "children": [
+               {
+                  "id": 1141,
+                  "localizedName": "Audiciones, casting",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Audiciones, casting",
+                  "localizedMobileName": "Audiciones, casting",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1141",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-audiciones-castings/v1c1141p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 27,
+                  "localizedName": "Bienestar, belleza",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Bienestar, belleza",
+                  "localizedMobileName": "Bienestar, belleza",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/27",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-belleza/v1c27p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1142,
+                  "localizedName": "Fletes y mundanzas",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Fletes y mundanzas",
+                  "localizedMobileName": "Fletes y mundanzas",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1142",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-fletes-mudanzas/v1c1142p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1143,
+                  "localizedName": "Horóscopos y espiritualidad",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Horóscopos y espiritualidad",
+                  "localizedMobileName": "Horóscopos y espiritualidad",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1143",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-horoscopos-espiritualidad/v1c1143p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 26,
+                  "localizedName": "Reparación, decoración",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Reparación, decoración",
+                  "localizedMobileName": "Reparación, decoración",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/26",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-reparacion/v1c26p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 21,
+                  "localizedName": "Servicios de informática",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Servicios de informática",
+                  "localizedMobileName": "Servicios de informática",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/21",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-informatica/v1c21p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 1144,
+                  "localizedName": "Servicios profesionales",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Servicios profesionales",
+                  "localizedMobileName": "Servicios profesionales",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/1144",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-profesionales/v1c1144p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 28,
+                  "localizedName": "Traducciones, transcripciones",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Traducciones, transcripciones",
+                  "localizedMobileName": "Traducciones, transcripciones",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/28",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-traductores/v1c28p1",
+                        "method": "GET"
+                     }
+                  ]
+               },
+               {
+                  "id": 29,
+                  "localizedName": "Otros servicios",
+                  "parentId": 20,
+                  "level": "L2",
+                  "description": "Otros servicios",
+                  "localizedMobileName": "Otros servicios",
+                  "children": [],
+                  "_links": [
+                     {
+                        "rel": "self",
+                        "href": "/categories/29",
+                        "method": "GET"
+                     },
+                     {
+                        "rel": "search",
+                        "href": "/s-servicios-otros/v1c29p1",
+                        "method": "GET"
+                     }
+                  ]
+               }
+            ],
+            "_links": [
+               {
+                  "rel": "self",
+                  "href": "/categories/20",
+                  "method": "GET"
+               },
+               {
+                  "rel": "search",
+                  "href": "/s-servicios/v1c20p1",
+                  "method": "GET"
+               }
+            ]
+         }
+      ],
+      "_links": [
+         {
+            "rel": "self",
+            "href": "/categories/0",
+            "method": "GET"
+         },
+         {
+            "rel": "search",
+            "href": "/s-all-the-ads/v1b0p1",
+            "method": "GET"
+         }
+      ]
+   },
+   "categoryCurrentHierarchy": [
+      0,
+      1
+   ],
+   "customAttributes": [],
+   "isPriceExcluded": false,
+   "adResult": {
+      "id": 110267908,
+      "title": "1978 Pontiac Trans Am",
+      "description": "1978 Pontiac Trans Am. Anuncio publicado por Usario Vivanuncios en Isla Holbox. Categoría generada por Vivanuncios para este anuncio: Hogar",
+      "categoryId": 1,
+      "categoryName": "Hogar",
+      "postedDate": 1475086463000,
+      "location": {
+         "id": 14855,
+         "name": "Isla Holbox",
+         "latitude": 21.537779,
+         "longitude": -87.22
+      },
+      "price": {
+         "priceType": "FIXED",
+         "amount": 30000,
+         "currency": "USD",
+         "formattedAmount": "$30,000"
+      },
+      "pictures": {
+         "sizeUrls": [
+            {
+               "LARGE": "https://i.sandbox.ebayimg.com/00/s/OTBYMTM5/z/7NoAAOSwy59X7Ahv/$_19.JPG?set_id=8800004005"
+            }
+         ]
+      },
+      "attributes": [],
+      "features": {},
+      "statistics": {
+         "replyCount": 0,
+         "viewCount": 0,
+         "favoriteCount": 0
+      },
+      "timeUntil": 22,
+      "dateStringKey": "shareAd.dateStrings.hour.plural",
+      "attributeValues": {}
+   },
+   "adId": "1001102679080910682710009",
+   "footer": {
+      "baseJSUrl": "/public/js/"
+   }
+}

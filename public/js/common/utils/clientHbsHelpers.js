@@ -11,7 +11,7 @@ if ($translationBlock.length > 0) {
 	translations = JSON.parse($("#translation-block").text());
 }
 
-let locale;
+let locale = $("html").data("locale");
 let _walkAndReplace = (translation, values) => {
 	let tempTranslation = translation;
 	values.forEach((val) => {
@@ -104,7 +104,7 @@ let initialize = (Handlebars) => {
 		if (!value) {
 			return;
 		}
-		return new Handlebars.SafeString(StringUtils.obfsucate(value));
+		return new Handlebars.SafeString(StringUtils.rot13(value));
 	});
 
 	Handlebars.registerHelper('ifValueIn', function(object, field, value, options) {
@@ -182,6 +182,13 @@ let initialize = (Handlebars) => {
 		return (field in object) ? options.fn(this) : options.inverse(this);
 	});
 
+	Handlebars.registerHelper('wrapWithTagAndClass', function(tagName, className, stringToWrap, options) {
+		if (!tagName || !className || !stringToWrap) {
+			return;
+		}
+		return `<${tagName} class="${className}">${stringToWrap}</${tagName}>`;
+	});
+
 	Handlebars.registerHelper('lookupLocalDate', (attrVals, name) => {
 		let thisVal;
 		if (attrVals) {
@@ -219,7 +226,7 @@ let initialize = (Handlebars) => {
 			}
 
 			// grabbing localized month abbreviation from i18n
-			let monthString = exphbs.handlebars.helpers.i18n(`common.abbreviations.months.${date.getMonth()}`, {}); // passing an empty object as the second parameter as i18n expects an extra parameter from handlebars
+			let monthString = Handlebars.helpers.i18n(`common.abbreviations.months.${date.getMonth()}`, {}); // passing an empty object as the second parameter as i18n expects an extra parameter from handlebars
 			return `${date.getDate()} ${monthString} ${hours12}:${date.getMinutes()}:${date.getSeconds()} ${halfOfDay}`; // 29 dec 12:13:14 pm
 		} else {
 			return null;

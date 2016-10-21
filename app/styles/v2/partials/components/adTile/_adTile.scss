@@ -1,0 +1,145 @@
+$panelCornerBorderRadius: 7px;
+
+
+.tile-panel {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	border-radius: $panelCornerBorderRadius;
+
+	border: 1.5px solid transparent;
+
+
+	.ad-image {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		border-radius: 6px;
+	}
+
+    .tile-link {
+		position: absolute;
+		top: 0;
+        width: 100%;
+        height: calc(100% - 30px);
+        display: block;
+    }
+
+	&.is-gallery-tile {
+		border: 1.5px solid $galleryBorderColor;
+	}
+
+	&.is-featured-tile {
+		border: 1.5px solid $featuredBorderColor;
+
+		.featured-bolt {
+			width: 15px;
+			height: 15px;
+			position: absolute;
+			top: 2px;
+			right: 0px;
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-width: 16px;
+			border-radius: 0 $panelCornerBorderRadius - 2 0 0;
+			border-style: solid;
+			border-color: $featuredBorderColor $featuredBorderColor transparent transparent;
+		}
+	}
+
+	.tile-seller-link {
+		z-index: 1;
+		position: absolute;
+		top: 0px;
+		left: 0px;
+		// give the seller link a little more space for clicking (5px around the 30px seller photo)
+		width: 40px;
+		height: 40px;
+	}
+
+	.user-photo {
+		width: 30px;
+		height: 30px;
+		border-radius: 50%;
+		position: absolute;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: contain;
+		left: 5px;
+		top: 5px;
+		border: .5px solid #ff9000;
+
+		div.profile-image {
+			background-color: lightgrey;
+			height: 30px;
+			width: 30px;
+			border-radius: 50%;
+		}
+
+		img.profile-image {
+			background-color: white;
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			border-radius: 50%;
+		}
+
+        &:hover {
+            cursor: pointer;
+        }
+	}
+
+	.controls {
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		height: 40px;
+		border-bottom-right-radius: $panelCornerBorderRadius;
+		border-bottom-left-radius: $panelCornerBorderRadius;
+
+		background: linear-gradient( 0deg, black, transparent );
+
+		.price-text {
+			position: absolute;
+			left: 5px;
+			bottom: 2px;
+			width: calc(100% - 32px);
+			font-size: 14px;
+			color: white;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		.favorite-btn {
+			bottom: 3px;
+			right: 3px;
+			position: absolute;
+
+			&.icon-heart-orange {
+				right: 5px;
+			}
+
+            &:hover {
+                cursor: pointer;
+            }
+		}
+	}
+
+	img.lazy {
+		background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC");
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+		color: transparent;
+	}
+}

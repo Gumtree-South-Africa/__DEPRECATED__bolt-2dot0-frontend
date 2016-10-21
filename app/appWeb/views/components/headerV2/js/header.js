@@ -79,7 +79,12 @@ let onReady = () => {
 
 // Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 let initialize = (registerOnReady = true) => {
-	hamburgerMenu.initialize();
+
+	this.ishamburgerMenu = typeof($('#js-hamburger-menu')[0]) !== "undefined";
+
+	if (this.ishamburgerMenu) {
+		hamburgerMenu.initialize();
+	}
 
 	this.$header = $(".headerV2");
 	this.$profileDrop = this.$header.find('#js-profile-dropdown');
@@ -102,4 +107,3 @@ module.exports = {
 	onReady,
 	initialize
 };
-

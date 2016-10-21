@@ -23,6 +23,12 @@
 			"specificAd": "/v1/ads/{id}",
 			"favoriteAd": "/v1/ads/{id}/favorites",
 			"categoryAttributes": "/v1/categories/{catId}/attributes",
+			"authBoltLogin": "/v1/users/actions/login-with-bolt",
+			"authFbLogin": "/v1/users/actions/login-with-facebook",
+			"authRegister": "/v1/users",
+			"authActivate": "/v1/users/{email}/actions/activate",
+			"authEmailExists": "/v1/users/email/{email}",
+			"authPhoneExists": "/v1/users/phone/{phone}",
 			"pushSubscription": "/v1/notifications/actions/subscription"
 		}
 	},
@@ -67,7 +73,7 @@
 		"server": {
 			"host": "securet9.classistatic.com",
 			"port": null,
-			"version": "2.0.123"
+			"version": "2.0.125"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

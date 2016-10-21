@@ -1,0 +1,10 @@
+{
+	"accessToken": "xyz123abc",
+	"_links": [
+		{
+			"rel": "logoutUrl",
+			"href": "/users/actions/logout",
+			"method": "POST"
+		}
+	]
+}

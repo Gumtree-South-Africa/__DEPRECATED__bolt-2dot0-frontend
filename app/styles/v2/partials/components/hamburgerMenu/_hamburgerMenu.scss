@@ -1,0 +1,187 @@
+@import '../button/button';
+.body-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 100%;
+	bottom: 0;
+	z-index: 10;
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.is-mobile {
+	display: block;
+	@include from-breakpoint($medium-break) {
+		display: none;
+	}
+}
+
+.is-desktop {
+	display: none;
+	@include from-breakpoint($medium-break) {
+		display: block;
+	}
+}
+
+.inline-block {
+	display: inline-block
+}
+
+.menu-container {
+	position: relative;
+	margin: auto;
+	margin-top: 10px;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	width: 95%;
+
+	.profile-icon {
+		left: 0;
+		right: 0;
+		margin: auto;
+		width: 75px;
+		height: 75px;
+		border: 1px solid $profile-border;
+		border-radius: 50%;
+	}
+
+	.menu-profile {
+		left: 0;
+		right: 0;
+		width: 80%;
+		margin: auto;
+		margin-top: 10px;
+		text-align: center;
+		font-size: 2em;
+	}
+	.profile-information .profile-dropdown .btn-wrapper {
+		margin: 1em auto auto;
+		.btn {
+			width: 100%;
+			padding: 0.875em 0;
+		}
+	}
+
+	.js-post-button.btn-wrapper {
+		.btn {
+			@include vivaBtn(on, 0.85em 0, 100%);
+		}
+	}
+}
+
+$borderColor: $headerMenuItemSeparatorColor;
+.browse-categories {
+	.browse-arrow {
+		position: absolute;
+		top: 18px;
+		right: 0;
+		&.icon-chevron-blue {
+			background-size: 1000%;
+		}
+		&.icon-up-blue {
+			background-size: 4800%;
+		}
+		width: 20px;
+		height: 20px;
+	}
+
+	li {
+		margin-left: 3px;
+	}
+
+	.l1-categories {
+		margin-left: 15px;
+		border-left: 1px solid $borderColor;
+	}
+
+	.browse-categories-text {
+		color: $profileDropdownLoginBtnColor;
+		padding-left: 5px;
+	}
+
+	.category-name {
+		a {
+			display: block;
+			height: 100%;
+			width: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+		position: relative;
+		border-bottom: 1px solid $borderColor;
+		padding: 15px;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		cursor: pointer;
+	}
+}
+
+.profile-information {
+	.profile-dropdown {
+		width: 100%;
+		border: none;
+		.login-button {
+			width: 100%;
+		}
+	}
+	.profile-item {
+		.item-icon {
+			margin-left: 0;
+			width: 26px;
+			height: 25px;
+			background-size: 2750%;
+
+			&.icon-my-ads-active {
+				opacity: .3;
+				background-size: 740%;
+			}
+		}
+		.item-text {
+			padding-left: 5px;
+		}
+		.link-item {
+			padding: 15px;
+		}
+	}
+}
+
+.vertical-align-middle {
+	vertical-align: middle;
+}
+
+.hamburger-contents {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	overflow: auto;
+	z-index: 11;
+	&.hamburger-open {
+		left: 0;
+		right: 30%;
+	}
+	&.hamburger-closed {
+		left: -70%;
+		right: 100%;
+	}
+	background-color: $headerBackgroundColor;
+}
+
+.hidden {
+	display: none;
+}
+
+.open-menu {
+	min-width: 100%;
+	left: 0;
+	&.menu-closed {
+		left: 70%;
+	}
+}
+
+.overflow-hidden {
+	overflow: hidden;
+	height: 100%;
+}
