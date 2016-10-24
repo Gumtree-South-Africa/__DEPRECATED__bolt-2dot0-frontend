@@ -1118,8 +1118,8 @@
 		"branchiolink": "https://go.gumt.io/open"
 	},
     "welcomescreen": {
-		"title": "¡Bienvenido!",
-		"description": "¡Gana dinero ahora!",
+		"title": "Welcome!",
+		"description": "Earn money now!",
 		"close": "Close"
 	},
 	"appdownload": {
@@ -1419,7 +1419,7 @@
 		"helpText": "What do you advertise?",
 		"uploadPhotos": "Upload photo(s)",
 		"uploadPhoto": "Upload a photo",
-		"uploadQuickly": "Post an ad quickly",
+		"uploadQuickly": "Take a photo and start selling",
 		"upload": "Take a photo and start selling",
 		"close": "Close"
 	},
