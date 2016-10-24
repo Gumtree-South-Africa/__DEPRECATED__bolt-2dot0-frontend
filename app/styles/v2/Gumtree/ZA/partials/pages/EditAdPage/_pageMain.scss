@@ -40,7 +40,7 @@
 
 		.separator-div {
 			&:after {
-				background: color(foxtail, light);
+				background: color(foxtail, medium);
 			}
 		}
 
@@ -72,6 +72,6 @@
 
 .separator-div {
 	&:after {
-		background: color(foxtail, medium);
+		background: color(foxtail, light);
 	}
 }
