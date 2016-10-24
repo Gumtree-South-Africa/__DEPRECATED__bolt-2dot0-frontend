@@ -36,7 +36,7 @@ $p3: $viva-p3;
 $p2-secondary-color: $gumGray1;
 
 $safety-card-background-color: #1E98D5;
-$common-background-color: color(foxtail, medium);
+$common-background-color: color(taupe);
 $recent-activity-background-color: white;
 
 // Primary link
@@ -64,7 +64,7 @@ $gumtree-bg-container-color: #FCFAF4;
 
 // Buttons
 $button-color: $vivaWhite;
-$button-bgcolor: color(crane);
+$button-bgcolor: color(melon);
 $button-fontsize: 1.125em;
 
 //App Download
@@ -144,16 +144,16 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Header
 
-$headerBackgroundColor: color(foxtail, medium);
-$headerTextColor: color(swirl, dark);
-$headerMenuBorderColor: color(swirl, shade);
+$headerBackgroundColor: color(taupe, base);
+$headerTextColor: $gumWhite;
+$headerMenuBorderColor: $gumWhite;
 $headerMenuItemSecondaryColor: $vivaGray6;
 $headerMenuItemSeparatorColor: color(swirl);
-$headerMessagesBackgroundColor: $gumOrange;
-$profileDropdownLoginBtnColor: color(crane);
+$headerMessagesBackgroundColor: color(melon);
+$profileDropdownLoginBtnColor: color(melon);
 $headerMenuItemHighlightColor: color(swirl);
 $imagePlaceholderBackground: $vivaGray5;
-$headerBlue: color(crane);
+$headerBlue: color(taupe);
 
 $searchBarTextColor: $gumBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
@@ -162,9 +162,9 @@ $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $gumGray1;
 $searchBarLocationLinkColor: color(swirl, medium);
 $searchBarTextBoxBorder: color(swirl, shade);
-$searchBarButtonColor: color(crane);
+$searchBarButtonColor: color(melon);
 $searchBarButtonTextColor: $vivaWhite;
-$searchBarButtonMouseOverColor: color(crane, shade) !default;
+$searchBarButtonMouseOverColor: color(melon, shade) !default;
 
 // Get the App card
 $getAppCardMainBlue: $vivaBlue6;
@@ -211,7 +211,6 @@ $categoryNameColor: $vivaBlue7;
 // FOOTER
 //Footer Seo Background section
 $footerSeoBackgroundColor: color(rock, medium);
-
 //Footer Main Background section
 $footerMainBackgroundColor: color(rock, base);
 $footerTrademarkBackgroundColor: color(rock, base);
@@ -225,3 +224,10 @@ $footerHeaderFont: normal 18px $bodyFontSecondary;
 $footerDividerLineColor: $gumWhite;
 //Support section
 $footerCircleBorderColor: color(rock, dark);
+
+//HEADER
+$headerMainBackgroundColor: color(taupe, base);
+$headerMainTextColor: $gumWhite;
+$headerMainTextFont: $bodyFont; //Chivo Font
+$headerBorderColor: $gumWhite;
+
