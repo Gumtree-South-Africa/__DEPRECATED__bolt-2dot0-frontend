@@ -71,7 +71,7 @@ $appdownloadreview-font: $viva-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
-$welcomeSreen-bgcolor: $vivaWhite;
+$welcomeSreen-bgcolor: color(foxtail, light);
 
 
 // Section Menu
@@ -80,7 +80,7 @@ $secmenu-link-color-hover: $vivaOrange;
 
 
 // modal
-$modal-color: $vivaBlack;
+$modal-color: color(swirl, shade);
 $modal-bgcolor: $vivaBlack;
 $modal-info: color(swirl, medium);
 $modal-autocomplete-color: $vivaGray1;
