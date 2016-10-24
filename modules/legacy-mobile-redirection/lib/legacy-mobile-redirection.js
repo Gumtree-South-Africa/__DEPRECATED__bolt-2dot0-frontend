@@ -16,16 +16,11 @@ var liteBlacklist = ["Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "S
 
 module.exports = function() {
     return function(req, res, next) {
-        if (!util.isReqTypeAsserts(req) && isGumtreeZA(req) ) {
-            if (isRedirectToLiteWebSite(req)) {
-            	res.redirect(getLiteHomePageUrl());
-				return;
-            } else if (isRedirectToMobileWebSite(req)) {
-                res.redirect(getHomePageUrl());
-				return;
-            }
-        }
-        next();
+      if (!util.isReqTypeAsserts(req) && isGumtreeZA(req) && isRedirectToMobileWebSite(req) ) {
+        res.redirect(getHomePageUrl());
+        return;
+      }
+      next();
     }
 };
 
@@ -65,10 +60,6 @@ function checkBlackbery(list, req) {
     return doesExist;
 }
 
-function getLiteHomePageUrl(){
-    return "http://lite.gumtree.co.za";
-}
-
 function getHomePageUrl() {
     return "http://m.gumtree.co.za";
 }
@@ -80,5 +71,3 @@ function getPostAdPageUrl(){
 function getLoginPageUrl(){
     return "https://m.gumtree.co.za/login";
 }
-
-

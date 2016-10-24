@@ -6,7 +6,6 @@ class ProfileMenu {
 	_revealUrl($dom) {
 		let unmaskedUrl = StringUtilsV2.rot13($dom.data("o-uri")) || "";
 		$dom.removeAttr("data-o-uri");
-
 		if (unmaskedUrl) {
 			$dom.attr("href", unmaskedUrl);
 
@@ -16,7 +15,8 @@ class ProfileMenu {
 			}
 			//create new A tag
 			let $newTag = $("<a></a>").append($dom.contents().clone());
-			$.each(this.attributes, function(i, attrib) {
+
+			$.each($dom.context.attributes, function(i, attrib) {
 				$newTag.attr(attrib.name, attrib.value);
 			});
 			$dom.replaceWith($newTag);

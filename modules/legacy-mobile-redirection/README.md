@@ -1,6 +1,6 @@
 # Legacy-mobile-redirection
 
-A legacy mobile redirection for za m.gumtee.co.za. 
+A legacy mobile redirection for za m.gumtee.co.za.
 
 ## Legacy Device list redirection use cases
 
@@ -9,7 +9,7 @@ A legacy mobile redirection for za m.gumtee.co.za.
  ( "sgh-e250i", "series40", "series60",
  "opera mini", "opera mobi", "n905i", "blackberry9300/5", "BLACKBERRY9300", "BLACKBERRY 9300", "lumia 520")
 
-### use case 2
+### use case 2 (Deprecated - Lite site no longer live)
 #### Lite site device user agents and redirects to http://lite.gumtree.co.za
 ("Nokia201", "Nokia111", "Nokia6110", "SAMSUNG-SGH-E250", "SAMSUNG-GT-E2220", "BlackBerry8520")
 
@@ -17,11 +17,11 @@ A legacy mobile redirection for za m.gumtee.co.za.
 
 ## Versioning
 
-We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags). 
+We use [SemVer](http://semver.org/) for versioning. For the versions available, see the [tags on this repository](https://github.com/your/project/tags).
 
 ## Authors
 
-* **Anton Ganeshalingam** - *Initial work* 
+* **Anton Ganeshalingam** - *Initial work*
 
 
 
@@ -30,5 +30,3 @@ We use [SemVer](http://semver.org/) for versioning. For the versions available, 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
 
 ## Acknowledgments
-
-

@@ -49,9 +49,9 @@
 	},
 	"graphite": {
 		"server": {
-			"host"		: "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
-			"port"		: 2003,
-			"interval" 	: 30
+				"host"  : "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
+				"port"  : 2003,
+				"interval" : 30
 		}
 	},
 	"eps": {

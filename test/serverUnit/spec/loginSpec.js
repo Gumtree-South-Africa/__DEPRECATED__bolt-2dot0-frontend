@@ -40,7 +40,7 @@ describe('Login Page', () => {
 		boltSupertest(`/login/`, 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.set('Cookie', 'b2dot0Version=2.0')
-				.query("showterms=true")
+				.query("showTerms=true")
 				.expect((res) => {
 					expect(res.statusCode).toBe(200);
 

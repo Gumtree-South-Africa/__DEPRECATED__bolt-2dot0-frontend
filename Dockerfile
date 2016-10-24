@@ -16,17 +16,13 @@ RUN npm install -g gulp && \
     npm install -g karma-chrome-launcher --save-dev && \
     npm install -g phantomjs@1.9.20
 
-# for karam test 
-RUN apt-get update
-RUN apt-get install -y xdg-utils fonts-liberation libpango1.0-0 libgconf2-4 libnss3-1d libxss1 libappindicator1 libindicator7
-RUN wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
-RUN dpkg --configure -a 
-RUN dpkg -i google-chrome*.deb
-RUN apt-get install -f
-ENV CHROME_BIN /usr/local/bin/google-chrome
-
-RUN apt-get update && apt-get install -y Xvfb; \
+# Install chromium, xvfb for karam test 
+RUN apt-get update && \
+    apt-get install -qqy --no-install-recommends \
+    Xvfb\
+    chromium-browser && \
     apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+ENV CHROME_BIN /usr/bin/chromium-browser
 ADD ./bin/CI/xvfb.sh /etc/init.d/xvfb
 ENV DISPLAY :99.0
 
