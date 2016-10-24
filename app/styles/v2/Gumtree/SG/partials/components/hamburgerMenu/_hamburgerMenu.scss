@@ -1,7 +1,7 @@
 .browse-categories {
 	.category-name {
-		a:hover {
-			color: color(crane);
+		a,a:hover {
+			color: white;
 		}
 	}
 }
@@ -54,8 +54,9 @@
 			}
 
 			.link-item {
+				color: white;
 				&:hover {
-					color: color(crane);
+					color: white;
 				}
 			}
 		}
