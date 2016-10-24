@@ -22,7 +22,6 @@ $h3: $viva-h3;
 $h4: $viva-h4;
 
 $h1-color: $gumBlack;
-$h3-secondary-color: $gumOrange;
 
 // Paragraphs
 $viva-p1: normal 0.875em $bodyFont;  //14px
@@ -37,10 +36,10 @@ $p2-secondary-color: $gumGray1;
 
 $safety-card-background-color: #1E98D5;
 $common-background-color: color(taupe);
-$recent-activity-background-color: white;
+$recent-activity-background-color: $gumWhite;
 
 // Primary link
-$primary-link-color: $gumBlack;
+$primary-link-color: $gumWhite;
 $primary-link-font: bold 1.5em $bodyFont;
 
 
@@ -79,7 +78,7 @@ $welcomeSreen-bgcolor: $vivaWhite;
 
 // Section Menu
 $secmenu-link-color: color(swirl, dark);
-$secmenu-link-color-hover: $gumOrange;
+$secmenu-link-color-hover: color(melon);
 
 
 // modal
@@ -144,7 +143,7 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Header
 
-$headerBackgroundColor: color(taupe, base);
+$headerBackgroundColor: color(taupe);
 $headerTextColor: $gumWhite;
 $headerMenuBorderColor: $gumWhite;
 $headerMenuItemSecondaryColor: $vivaGray6;
@@ -153,15 +152,15 @@ $headerMessagesBackgroundColor: color(melon);
 $profileDropdownLoginBtnColor: color(melon);
 $headerMenuItemHighlightColor: color(swirl);
 $imagePlaceholderBackground: $vivaGray5;
-$headerBlue: color(taupe);
+$headerBlue: color(melon);
 
-$searchBarTextColor: $gumBlack;
-$searchBarTypeAheadWrapperBackground: $vivaGray5;
+$searchBarTextColor: color(rock,dark);
+$searchBarTypeAheadWrapperBackground: color(rock,dark);
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
-$searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
-$searchBarTypeAheadBorder: $gumGray1;
-$searchBarLocationLinkColor: color(swirl, medium);
-$searchBarTextBoxBorder: color(swirl, shade);
+$searchBarTypeAheadContainerBackgroundDesktop: color(rock,dark);
+$searchBarTypeAheadBorder: color(rock,dark);
+$searchBarLocationLinkColor: color(rock,dark);
+$searchBarTextBoxBorder: color(rock, dark);
 $searchBarButtonColor: color(melon);
 $searchBarButtonTextColor: $vivaWhite;
 $searchBarButtonMouseOverColor: color(melon, shade) !default;
@@ -230,4 +229,5 @@ $headerMainBackgroundColor: color(taupe, base);
 $headerMainTextColor: $gumWhite;
 $headerMainTextFont: $bodyFont; //Chivo Font
 $headerBorderColor: $gumWhite;
+$headerMainBorderColor: color(melon);
 
