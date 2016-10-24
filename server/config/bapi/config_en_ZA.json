@@ -145,22 +145,22 @@
 			]
 	  	},
 		"homepage" : {
-			"topHomePageAdBanner"	: false,
+			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: false,
-			"swapTradeName"			: null,
-			"swapTradeUrl"			: null,
-			"freebiesEnabled"		: false,
-			"freebiesName"			: null,
-			"freebiesUrl"			: null,
-		  	"adCarouselSeeAllUrl"	: null,
+			"swapTradeEnabled"		: true,
+			"swapTradeName"			: "home.swap-trade.$$",
+			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"		: true,
+			"freebiesName"			: "home.freebies.$$",
+			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
+			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
 		},
 
 		 "quickpost" : {
-              "currencyDisplay"    :    true,
-              "currency"           :    ["MXN:MXN","USD:USD"]
+              "currencyDisplay"    :    false,
+              "currency"           :    ["ZAR:ZAR"]
         }
 	},
 	"bapi" : {
