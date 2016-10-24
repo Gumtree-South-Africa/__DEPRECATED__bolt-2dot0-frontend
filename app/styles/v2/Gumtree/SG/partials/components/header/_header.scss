@@ -1,6 +1,6 @@
 .header-wrapper {
 	font-family: $headerMainTextFont; //Chivo Font
-	border-bottom-color: $headerMainBackgroundColor;
+	border-bottom-color: $headerMainBorderColor;
 
 	&.header-distraction-free {
 		.headerV2 {
@@ -209,8 +209,6 @@
 
 @include to-breakpoint($small-break) {
 	.header-wrapper {
-		border-bottom-color: $headerMainBackgroundColor;
-
 		&.header-distraction-free {
 			.headerV2 {
 				height: 40px;
