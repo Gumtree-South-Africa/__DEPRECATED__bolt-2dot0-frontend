@@ -6,7 +6,6 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 // let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
-//let AdDetailsModel = require(cwd + '/app/builders/common/AdDetailsModel');
 
 let _ = require('underscore');
 
@@ -59,7 +58,6 @@ class ViewPageModel {
 	getPageDataFunctions(modelData) {
 		// let advert = new AdvertModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
-		// let adDetails = new AdDetailsModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
 
