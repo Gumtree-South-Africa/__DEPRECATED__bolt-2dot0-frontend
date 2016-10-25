@@ -69,10 +69,10 @@
 				"jobs" : "https://www.gumtreejobs.sg"
 			},
 			"usinggumtree":{
-				"post":"",
-				"mobile":"http://info.gumtree.sg/promo/mobile-apps/",
-				"topsearches":"",
-				"recruiter":"http://protool.gumtree.sg"
+				"post":"https://help.gumtree.sg/?category=2",
+				"mobile":"https://info.gumtree.sg/promo/mobile-apps/",
+				"topsearches":"https://www.gumtree.sg/t-top-searches/all-ads/v1b0",
+				"recruiter":"https://protool.gumtree.sg"
 			},
 			"tips":{
 				"help":"http://help.gumtree.sg/",
