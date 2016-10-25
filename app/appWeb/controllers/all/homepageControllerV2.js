@@ -150,6 +150,11 @@ let HP = {
 
 			// Gallery See All Url
 			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
+
+			// Menu Section (the one below the navbar)
+			if(homepageConfigData.sectionMenu !== null) {
+				modelData.sectionMenu = homepageConfigData.sectionMenu;
+			}
 		}
 
 		// Gallery AJAX

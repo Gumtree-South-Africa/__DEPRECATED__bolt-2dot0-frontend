@@ -278,7 +278,7 @@
 	"srp.categories": "Categories",
 	"srp.category_in_location": "in",
 	"srp.section.top-ads": "Top Ads",
-	"srp.section.gallery-ads": "Homepage Gallery Ads",
+	"srp.section.gallery-ads": "Homepage gallery ads",
 	"srp.section.ads": "Ads",
 	"srp.section.list": "List",
 	"srp.section.grid": "Gallery",
@@ -1124,13 +1124,13 @@
 	},
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
-		"title": "¡Con el app es más fácil!",
-		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
+		"title": "Sell in a Snap!",
+		"description": "Buy and sell online quickly and safely! Download Gumtree application today and shop for the best deal around you with thousands of items listed every minute.",
 		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
-		"mobilebutton": "¡Baja la app!",
+		"mobilebutton": "Download the app!",
 		"ioslink": "https://itunes.apple.com/za/app/gumtree-south-africa-sell/id491883603?mt=8",
 		"googleplay": "https://play.google.com/store/apps/details?id=com.ebay.gumtree.za&hl=en",
-		"applink": "https://go.vivanunc.io/baja-la-app"
+		"applink": "https://www.gumtree.co.za/pages/mobileapp/"
 	},
 	"postad": {
 		"upload": {
@@ -1145,34 +1145,32 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
-			"viewMore": "Ver más"
+			"popularIn": "Popular ads in your",
+			"yourNeighborhood": "neighbourhood",
+			"viewMore": "View more"
 		},
 		"searchbar": {
 			"lookingFor": "I'm looking for...",
 			"search": "Search"
 		},
 		"safetyTips": {
-			"title": "Vivanuncios Te Cuida",
-			"faq": "Consejos de seguridad",
+			"title": "Safety First!",
+			"faq": "View the FAQ",
 			"tip": [
-				"Consejos de cómo protegerte en internet",
-				"¿Vivanuncios coopera con las autoridades?",
-				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
-				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
-				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+				"How do I stay safe while using Gumtree?",
+				"Watch out for a new payment scam doing the rounds on Gumtree",
+				"What are the scams I should watch out for?",
+				"How do I report scams or fraud?",
+				"Did you receive a dodgy email claiming to be from Gumtree?",
+				"Staying Safe When Renting a Holiday Property",
+				"Think carefully before buying an exotic pet"
 			]
 		},
 		"trending": {
-			"contact": "Contactar"
+			"contact": "Contact for price"
 		},
 		"gallery" : {
-			"cardTitle": "Galería Principal"
+			"cardTitle": "Homepage gallery ads"
 		}
 	},
 	"header": {
@@ -1261,10 +1259,10 @@
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {
-		"cars": "Cars",
 		"trending": "Trending",
-		"goods": "Goods",
-		"realEstate": "Real Estate",
+		"goods": "Home & Garden",
+		"cars": "Automotive Vehicles",
+		"realEstate": "Property",
 		"jobs": "Jobs"
 	},
 	"recentactivity": {
