@@ -249,12 +249,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "seo", "adDetails"
+					"advert", "seo"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "seo", "adDetails"
+					"advert", "seo"
 				]
 			}
 		}

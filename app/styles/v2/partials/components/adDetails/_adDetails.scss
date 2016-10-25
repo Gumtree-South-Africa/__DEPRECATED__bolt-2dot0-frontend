@@ -137,6 +137,12 @@
 				color: $vivaGray1;
 			}
 		}
+		.ad-desktop-only {
+			display: none;
+		}
+		.ad-mobile-only {
+			display: block;
+		}
 	}
 }
 .clear-line {
@@ -164,6 +170,14 @@
 
 			.ad-posted-by {
 				text-align: right;
+			}
+
+			.ad-desktop-only {
+				display: inline-block;
+			}
+
+			.ad-mobile-only {
+				display: none;
 			}
 		}
 	}

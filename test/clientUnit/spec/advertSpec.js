@@ -2,7 +2,7 @@
 
 let specHelper = require('../helpers/commonSpecHelper.js');
 
-describe("Ad Details", () => {
+describe("Advert Details", () => {
 
 	it("should display ad details", (done) => {
 
