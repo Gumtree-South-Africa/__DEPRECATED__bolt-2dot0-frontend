@@ -1119,6 +1119,8 @@
 	"appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
 	"appdownload.mobilebutton": "¡Baja la app!",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
+  "location.defaultcity": "Singapore",
+  "country.all": "All ",
 	"footer.download.download": "Download the App",
 	"footer.download.itunes": "Available on the App Store",
 	"footer.download.playstore": "Avaiable on the Android App Store",
@@ -1241,8 +1243,8 @@
       "viewMore": "Ver más"
     },
     "searchbar": {
-      "lookingFor": "Estoy buscando un...",
-      "search": "Buscar"
+      "lookingFor": "I'm looking for...",
+      "search": "Search"
     },
     "safetyTips": {
       "title": "Vivanuncios Te Cuida",
@@ -1272,9 +1274,9 @@
 		"branchiolink": "https://go.vivanunc.io/gana-dinero"
 	},
   "welcomescreen": {
-  	"title": "¡Bienvenido!",
-  	"description": "¡Gana dinero ahora!",
-  	"close": "Cerrar"
+  	"title": "Welcome!",
+  	"description": "Earn money now!",
+  	"close": "Close"
 	},
 	"appdownload": {
 		"userImageAltText": "clasificado app usario",
@@ -1288,50 +1290,50 @@
 	},
 	"postad": {
 		"upload": {
-			"photo": "Sube una foto",
-			"photos": "Sube foto(s)"
+			"photo": "Upload a photo",
+			"photos": "Upload a photo(s)"
 		},
 		"image": {
 			"upload": {
-				"failure": "Por desgracia, se ha producido un error al cargar tus imágenes. Por favor, inténtalo de nuevo."
+				"failure": "An error has ocurred trying to load the image. Please, try again."
 			}
 		}
 	},
 	
 	"header": {
 		"catDropdown": {
-			"browse": "Explorar",
-			"browseCategories": "Explorar Categorías"
+			"browse": "Explore",
+			"browseCategories": "Browse Categories"
 		},
 		"userDropdown": {
-			"title": "¡Hola",
-			"messages": "Mis mensajes",
-			"favorites": "Favoritos",
-			"myAlerts": "Búsquedas guardadas",
-			"myProfile": "Mi perfil",
-			"promoteMyAds": "Destacar mis anuncios",
-			"pricingGuide": "Guía de precios",
-			"logout": "Cerrar sesión"
+			"title": "Hello!",
+			"messages": "My messages",
+			"favorites": "Favorites",
+			"myAlerts": "My alerts",
+			"myProfile": "My profile",
+			"promoteMyAds": "Promote my ads",
+			"pricingGuide": "Price guide",
+			"logout": "Log out"
 		},
-		"myAds": "Mis anuncios",
-		"help": "Ayuda",
-		"postAd": "Publica Gratis"
+		"myAds": "My ads",
+		"help": "Help",
+		"postAd": "Post FREE ad"
 	},
 	"modal": {
-		"close": "Cerrar",
-		"buttonText": "Confirmar",
-		"message": "Cambia tu Ubicación",
-		"placeholderText": "Escribe una ubicación",
-		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
-		"locationAutoMobile": "Ubicación más cercana",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"close": "Close",
+		"buttonText": "Confirm",
+		"message": "Change your location",
+		"placeholderText": "Type your location",
+		"locationAutoDesktop": "This is the nearest location",
+		"locationAutoMobile": "Nearest location",
+		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
-		"cars": "Veh\u00EDculos",
-		"trending": "Ofertas",
-		"goods": "Hogar y m\u00E1s",
-		"realEstate": "Bienes Ra\u00EDces",
-		"jobs": "Empleos"
+		"cars": "Cars",
+		"trending": "Trending",
+		"goods": "Goods",
+		"realEstate": "Real state",
+		"jobs": "Jobs"
 	},
 	"recentactivity": {
 		"message": {
