@@ -7,11 +7,13 @@
 
 $container-width: 73em;
 
+$bodyFont: Lato;    // attach this to body element
+
 // Headlines
-$viva-h1: bold 1.5em Lato;      // 24px
-$viva-h2: normal 1.5em Lato;    // 24px
-$viva-h3: normal 1.25em Lato;   // 20 px
-$viva-h4: normal 1em Lato;      // 16 px
+$viva-h1: bold 1.5em $bodyFont;      // 24px
+$viva-h2: normal 1.5em $bodyFont;    // 24px
+$viva-h3: normal 1.25em $bodyFont;   // 20 px
+$viva-h4: normal 1em $bodyFont;      // 16 px
 
 $h1: $viva-h1;
 $h2: $viva-h2;
@@ -22,9 +24,9 @@ $h1-color: $vivaBlack;
 $h3-secondary-color: $vivaOrange;
 
 // Paragraphs
-$viva-p1: normal 0.875em Lato;  //14px
-$viva-p2: normal 0.75em Lato;   //12px
-$viva-p3: normal 0.625em Lato;  //10px
+$viva-p1: normal 0.875em $bodyFont;  //14px
+$viva-p2: normal 0.75em $bodyFont;   //12px
+$viva-p3: normal 0.625em $bodyFont;  //10px
 
 $p1: $viva-p1;
 $p2: $viva-p2;
@@ -33,16 +35,16 @@ $p3: $viva-p3;
 $p2-secondary-color: $vivaGray1;
 
 $safety-card-background-color: #1E98D5;
-$common-background-color: #f7f7f7;
+$common-background-color: color(foxtail, medium);
 
 // Primary link
 $primary-link-color: $vivaBlack;
-$primary-link-font: bold 1.5em Lato;
+$primary-link-font: bold 1.5em $bodyFont;
 
 
 // Secondary link
 $secondary-link-color: $vivaOrange;
-$secondary-link-font: bold 1em Lato;
+$secondary-link-font: bold 1em $bodyFont;
 
 
 // Tertiary link
@@ -59,7 +61,7 @@ $page-bordercolor : #f7f7f7;
 
 // Buttons
 $button-color: $vivaWhite;
-$button-bgcolor: $vivaOrange;
+$button-bgcolor: color(crane);
 $button-fontsize: 1.125em;
 
 
@@ -80,7 +82,7 @@ $welcomeSreen-bgcolor: $vivaWhite;
 
 
 // Section Menu
-$secmenu-link-color: $vivaBlack;
+$secmenu-link-color: color(swirl, dark);
 $secmenu-link-color-hover: $vivaOrange;
 
 
@@ -118,8 +120,6 @@ $profile-border: $vivaOrange;
 
 // Conventions:  all SCSS is camelCase, all css classes are dash separated
 
-$bodyFont: Lato;    // attach this to body element
-
 /*
     Here is an example of font treatement in css:
 
@@ -148,27 +148,27 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Header
 
-$headerBackgroundColor: $vivaGray4;
-$headerTextColor: $vivaGray3;
-$headerMenuBorderColor: $vivaGray6;
+$headerBackgroundColor: color(foxtail, medium);
+$headerTextColor: color(swirl, dark);
+$headerMenuBorderColor: color(swirl, shade);
 $headerMenuItemSecondaryColor: $vivaGray6;
-$headerMenuItemSeparatorColor: $vivaGray7;
+$headerMenuItemSeparatorColor: color(swirl);
 $headerMessagesBackgroundColor: $vivaOrange;
-$profileDropdownLoginBtnColor: $vivaBlue;
-$headerMenuItemHighlightColor: $vivaGray5;
+$profileDropdownLoginBtnColor: color(crane);
+$headerMenuItemHighlightColor: color(swirl);
 $imagePlaceholderBackground: $vivaGray5;
-$headerBlue: $vivaBlue;
+$headerBlue: color(crane);
 
 $searchBarTextColor: $vivaBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaGray1;
-$searchBarTextBoxBorder: $vivaGray6;
-$searchBarButtonColor: $vivaBlue2;
+$searchBarLocationLinkColor: color(swirl, medium);
+$searchBarTextBoxBorder: color(swirl, shade);
+$searchBarButtonColor: color(crane);
 $searchBarButtonTextColor: $vivaWhite;
-$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+$searchBarButtonMouseOverColor: color(crane, shade) !default;
 
 // Get the App card
 $getAppCardMainBlue: $vivaBlue6;
@@ -191,8 +191,8 @@ $photoCarouselMaxPhotosMsgColor: $vivaBlue4;
 $photoCarouselRequiredMsgColor: $vivaRed;
 $postAdShadowColor: $vivaGray6;
 $postAdOrange: $vivaOrange;
-$postAdHeaderBlue: $vivaBlue3;
-$postAdHeaderBackground: $vivaGray4;
+$postAdHeaderBlue: color(crane);
+$postAdHeaderBackground: color(foxtail, medium);
 $postAdTextGray: $vivaGray11;
 
 //Edit Ad Page

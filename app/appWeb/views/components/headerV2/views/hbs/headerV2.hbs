@@ -3,7 +3,7 @@
 {{/unless}}
 
 <div id="search-mask" class="search-mask hidden"></div>
-<div class="header-wrapper">
+<div class="header-wrapper {{#if this.header.distractionFree}}header-distraction-free{{/if}}">
     <div class="headerV2">
         <a href="/" data-gtm="npc|NavHeaderClick|eventLabel|LogoClick">
             <div class="logo"></div>
@@ -69,7 +69,7 @@
                 {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
             </div>
 
-            <div class="right-items">
+            <div class="right-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
                 <div class="profile right-item">
                     <div id="js-profile-item-text" class="item-text">
                         <div class="profile-icon
