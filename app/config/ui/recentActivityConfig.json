@@ -110,7 +110,7 @@
 			"type": [
 				{
 					"name": "AlmVehicleBrand",
-					"prefix": "un {formattedValue}"
+					"prefix": "a {formattedValue}"
 				},
 				{
 					"name": "AlmVehicleModel",
