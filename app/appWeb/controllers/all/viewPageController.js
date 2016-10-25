@@ -36,8 +36,13 @@ let extendModelData = (req, modelData) => {
 };
 
 router.get('/:id?', (req, res, next) => {
-	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
 	let adId = req.params.id;
+	if (adId === undefined) {
+		res.redirect('/');
+		return;
+	}
+
+	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
 	let viewPageModel = new ViewPageModel(req, res, adId);
 	let redirectUrl = req.query.redirect;
 
@@ -48,6 +53,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.search = true;
+
 		modelData.redirectUrl = redirectUrl;
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
