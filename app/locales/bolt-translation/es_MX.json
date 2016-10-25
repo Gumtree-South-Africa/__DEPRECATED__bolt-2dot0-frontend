@@ -419,15 +419,6 @@
 	"vip.attribute.label.location": "Ubicación",
 	"vip.reply.attachmentUpload.title": "Adjuntar un archivo",
 	"vip.reply.attachmentUpload.help": "(máximo 1MB)",
-	"vip.details.edit": "Edit",
-	"vip.details.favorite": "Favorite",
-	"vip.details.posted": "Posted",
-	"vip.details.views": "VIEWS",
-	"vip.details.replies": "REPLIES",
-	"vip.details.category": "CATEGORY",
-	"vip.details.location": "LOCATION",
-	"vip.details.updated": "UPDATED",
-	"vip.details.postedby": "POSTED BY",
 	"footer.toplocations": "Los Mejores Lugares",
 	"footer.bestof": "Los Mejores Anuncios de Vivanuncios",
 	"footer.cr.$$": "Copyright © 2014-2016 eBay.  Todos los derechos reservados.",
@@ -1503,6 +1494,17 @@
 	"vip": {
 		"page": {
 			"itemid": "Anuncios #%s"
+		},
+		"details": {
+			"edit": "Edit",
+			"favorite": "Favorite",
+			"posted": "Posted",
+			"views": "VIEWS",
+			"replies": "REPLIES",
+			"category": "CATEGORY",
+			"location": "LOCATION",
+			"updated": "UPDATED",
+			"postedby": "POSTED BY"
 		}
 	}
 }
