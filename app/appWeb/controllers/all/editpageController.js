@@ -27,8 +27,17 @@ let EditAdPage = {
 };
 
 router.get('/:id?', (req, res, next) => {
-	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let adId = req.params.id;
+
+	// If user is not logged in, force user to login; and on login success it comes back to edit
+	let authenticationCookie = req.cookies['bt_auth'];
+	if (!authenticationCookie) {
+		let returnUrl = `/edit/${adId}`;
+		res.redirect(`/login.html?redirect=${returnUrl}`);
+		return;
+	}
+
+	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let editAdPageModel = new EditAdPageModel(req, res, adId);
 	let modelPromise = editAdPageModel.populateData();
 
