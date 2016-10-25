@@ -6,6 +6,8 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 // let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+//let AdDetailsModel = require(cwd + '/app/builders/page/AdDetailsModel');
+
 let _ = require('underscore');
 
 class ViewPageModel {
@@ -50,12 +52,15 @@ class ViewPageModel {
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.seo = data['seo'] || {};
+
+		console.log('HEADER DATa-----', modelData.header);
 		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
 		// let advert = new AdvertModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
+		// let adDetails = new AdDetailsModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -90,6 +95,7 @@ class ViewPageModel {
 				seoGroupName: 'Automobiles',
 				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009'
 			};
+
 			return data;
 			// return advert.viewTheAd(this.adId).then((data) => {
 			// 	return data;
@@ -99,8 +105,44 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getVIPSeoInfo();
 		};
-	}
+		// this.dataPromiseFunctionMap.adDetails = () => {
+		// 	return adDetails.getAdDetails();
+		// };
+		this.dataPromiseFunctionMap.adDetails = () => {
+			let data = {
+				'userId': 'testUser123',
+				'title': 'Cozy 3 Bedroom Apartment',
+				'price': '$150',
+				'posted': '3 days ago',
+				'priAttributes': {
+					'BEDROOM': '3',
+					'SIZE': '700 m',
+					'GARAGE': '2',
+					'BATHROOMS': '2',
+					'PETS': 'OK'
+				},
+				'description': 'Cozy 3 bedroom apartment in the heart of downtown Mexico City. A quick 15 minute walked to the lively downtown scene where you can find shopping, food and all night music and dancing. First Months rent and $1500 security deposit due upon signing lease.',
+				'phone': '808-555-5555',
+				'viewCount': '44',
+				'repliesCount': '3',
+				'category': 'T1 Category Goes Here / T2 Category Goes Here / T3 Category Goes Here',
+				'categoryT1': 'T1 Category',
+				'categoryT2': 'T2 Category',
+				'categoryT3': 'T3 Category',
+				'location': 'Mexico City',
+				'lastUpdated': '1 Day Ago',
+				'postedBy': 'Owner'
+			};
 
+			//TODO: check to see if userId matches header data's userID to show favorite or edit
+			data.isOwnerAd = false;
+
+			//TODO: check if ad is right category
+			data.isRealEstate = true;
+
+			return data;
+		};
+	}
 }
 
 module.exports = ViewPageModel;

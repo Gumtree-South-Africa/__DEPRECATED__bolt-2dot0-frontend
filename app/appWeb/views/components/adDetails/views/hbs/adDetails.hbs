@@ -1,0 +1,41 @@
+<div class="ad-details-container">
+	<div class="pri-attrs">
+        <div class="title-fav">
+		    <div class="ad-title">{{this.adDetails.title}}</div>
+            {{#if this.adDetails.isOwnerAd}}
+				<div class="edit-favorite">EDIT<div class="edit-favorite-icon icon-apple-dark-gray"></div></div>
+            {{else}}
+				<div class="edit-favorite">FAV<div class="edit-favorite-icon icon-apple-dark-gray"></div></div>
+            {{/if}}
+		</div>
+        <div class="price-update">
+			<div class="ad-price">{{this.adDetails.price}}</div>
+			<div class="ad-last-updated"><span>Posted: </span>{{this.adDetails.posted}}</div>
+        </div>
+        <div class="clear-line"></div>
+        {{#if this.adDetails.isRealEstate}}
+            <div class="category-pri-attrs">
+                {{#each this.adDetails.priAttributes}}
+                    <div class="pri-props" id="desktop-pri-props">{{@key}} : {{this}}</div>
+                {{/each}}
+            </div>
+        <div class="clear-line"></div>
+        {{/if}}
+	</div>
+    <div class="sec-attrs">
+        <div class="ad-description">{{this.adDetails.description}}<div class="ad-phone"> {{this.adDetails.phone}}</div></div>
+        {{#if this.adDetails.isOwnerAd}}
+			<div class="view-replies-count">
+				<div class="ad-view-count">{{this.adDetails.viewCount}}<div class="views-text">VIEWS</div></div>
+				<div class="ad-replies-count">{{this.adDetails.repliesCount}}<div class="replies-text">REPLIES</div></div>
+			</div>
+        {{/if}}
+        <div class="clear-line"></div>
+        <div class="ad-category"><span class="category-attr">CATEGORY </span><div>{{this.adDetails.category}}</div></div>
+        <div class="ad-user-attrs">
+            <div class="ad-location"><span class="location-attr">LOCATION </span><div>{{this.adDetails.location}}</div></div>
+            <div class="ad-last-updated"><span class="last-updated-attr">UPDATED</span><div>{{this.adDetails.lastUpdated}}</div></div>
+            <div class="ad-posted-by"><span class="posted-by-attr">POSTED BY </span><div>{{ this.adDetails.postedBy}}</div></div>
+        </div>
+    </div>
+</div>
