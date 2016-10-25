@@ -53,7 +53,6 @@ class ViewPageModel {
 		modelData.footer = data.common.footer || {};
 		modelData.seo = data['seo'] || {};
 
-		console.log('HEADER DATa-----', modelData.header);
 		return modelData;
 	}
 
