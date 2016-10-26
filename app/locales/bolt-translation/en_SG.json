@@ -1147,12 +1147,6 @@
   "footer.legalbits.cookie": "Cookie Notice",
   "footer.legalbit.postAd": "Post an Ad",
   "footer.explore.mobileApp": "Mobile Apps",
-  "footer.tips-help.title": "Help & Support",
-  "footer.tips-help.help": "Gumtree Help Pages",
-  "footer.tips-help.staySafe": "Online Safety Tips",
-  "footer.tips-help.contact": "Contact Gumtree",
-  "footer.tips-help.report": "Report scams or fraud",
-  "footer.tips-help.giveFeedback": "Give Feedback",
   "footer.followUs.title": "Follow us",
   "footer.followUs.facebook": "Facebook",
   "footer.followUs.google": "Google+",
@@ -1203,7 +1197,7 @@
         "recruiter": "Gumtree for recruiter"
       },
       "tips": {
-        "title": "Help & Support",
+        "title": "Help & support",
         "help": "Gumtree help pages",
         "safetytips": "Online safety tips",
         "contact": "Contact Gumtree",
