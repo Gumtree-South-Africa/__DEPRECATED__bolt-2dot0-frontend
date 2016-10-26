@@ -177,7 +177,7 @@
 				"models" : ["level2Loc", "keyword", "adstatistics", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["level2Loc", "keyword", "adstatistics", "seo"]
+				"models" : ["level2Loc", "keyword", "adstatistics", "gallery", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
