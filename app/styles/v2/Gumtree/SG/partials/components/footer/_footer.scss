@@ -1,6 +1,8 @@
 //:::::::: Desktop / Medium / Small ::::::::::
 
 .footer-wrapper{
+	margin: 0 auto;
+  max-width: 64em;
 	&,& a{
 		color: $gumWhite;
 		background-color: $footerMainBackgroundColor;
