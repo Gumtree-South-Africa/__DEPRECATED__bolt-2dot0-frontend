@@ -80,7 +80,7 @@
 	}
 	.social-container{
 		margin:0;
-		display: inline-table;
+		display: none;
 		padding-top:20px;
 		.social-icon-wrapper{
 			margin:0;
@@ -89,11 +89,9 @@
 			}
 		}
 	}
-	.mobile-only.social-container{
-		display: none;
-	}
+	
 	.desktop-only.social-container{
-		display: block;
+		display: none;
 	}
 	.footer-download{
 		position: inherit;
@@ -102,9 +100,6 @@
 		float: right;
 		width:40%;
 		padding-right: 35px;
-		.menu-category{
-			display: none;
-		}
 		.app-downloads-container{
 			padding-top:16px;
 			padding-bottom:9px;
@@ -166,9 +161,14 @@
 @include to-breakpoint($small-break){
 	.footer-wrapper{
 		.social-container{
+			display:none;
 			.social-icon-wrapper{
 				width: 25%;
 			}
+    }
+    .mobile-only.social-container{
+    	display: block;
+    	padding-bottom: 20px;
     }
 		.customer-service-container{
 			height:auto;
@@ -185,7 +185,7 @@
 			}
 			.support-wrapper{
 				text-align: left;
-				padding: 12px 12px;
+				padding: 12px 12px 0 12px;
 				display: inline-table;
 				margin: 0px;
 				.support-container{
@@ -208,7 +208,7 @@
 			padding: 0;
 			.app-downloads-container{
 				text-align: center;
-				padding: 18px 0 9px 0;
+				padding: 0 0 9px 0;
 			}
 		}
 	}
@@ -224,6 +224,10 @@
 		.desktop-only.social-container{
 			display: inline-table;
 			padding-left: 2.5%;
+		}
+		.mobile-only.social-container{
+			display: none;
+			padding-bottom: 20px;
 		}
 
 		.customer-service-container{
