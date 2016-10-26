@@ -48,6 +48,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
+		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {

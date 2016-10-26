@@ -157,7 +157,7 @@
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
 		},
-
+		"localCurrencies": ["MXN", "USD"],
 		 "quickpost" : {
               "currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]

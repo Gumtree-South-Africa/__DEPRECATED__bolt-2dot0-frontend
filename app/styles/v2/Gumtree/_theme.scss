@@ -54,11 +54,10 @@ $tertiary-link-color: $vivaWhite;
 $seo-bordercolor: #FAFAFA;
 
 //Page
-$page-bgcolor: $vivaWhite;
-$page-bordercolor: #f7f7f7;
-$gumtree-bg-color: #FAF5EA;
-$gumtree-bg-container-color: #FCFAF4;
-
+$gumtree-bg-color: color(foxtail, medium);
+$gumtree-bg-container-color: color(foxtail, light);
+$page-bgcolor : $vivaWhite;
+$page-bordercolor : #f7f7f7;
 
 // Buttons
 $button-color: $vivaWhite;
@@ -72,7 +71,7 @@ $appdownloadreview-font: $viva-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
-$welcomeSreen-bgcolor: $vivaWhite;
+$welcomeSreen-bgcolor: color(foxtail, light);
 
 
 // Section Menu
@@ -81,9 +80,9 @@ $secmenu-link-color-hover: $vivaOrange;
 
 
 // modal
-$modal-color: $vivaBlack;
+$modal-color: color(swirl, shade);
 $modal-bgcolor: $vivaBlack;
-$modal-info: $vivaGray1;
+$modal-info: color(swirl, medium);
 $modal-autocomplete-color: $vivaGray1;
 $modal-autocomplete-color-hover: $vivaWhite;
 $modal-autocomplete-bgcolor-hover: $vivaGray1;
@@ -150,7 +149,7 @@ $headerMenuItemSeparatorColor: color(swirl);
 $headerMessagesBackgroundColor: $vivaOrange;
 $profileDropdownLoginBtnColor: color(crane);
 $headerMenuItemHighlightColor: color(swirl);
-$imagePlaceholderBackground: $vivaGray5;
+$imagePlaceholderBackground: color(swirl);
 $headerBlue: color(crane);
 
 $searchBarTextColor: $vivaBlack;
@@ -179,27 +178,27 @@ $galleryBorderColor: $vivaGreen1;
 
 // Post Ad page
 
-$postAdBackgroundColor: $vivaGray9;
-$loginModalLinkColor: $vivaBlue3;
+$postAdBackgroundColor: color(foxtail, light);
+$loginModalLinkColor: color(crane);
 $photoCarouselMaxPhotosMsgColor: $vivaBlue4;
 $photoCarouselRequiredMsgColor: $vivaRed;
-$postAdShadowColor: $vivaGray6;
-$postAdOrange: $vivaOrange;
+$postAdShadowColor: color(swirl, medium);
+$postAdOrange: color(leaf);
 $postAdHeaderBlue: color(crane);
 $postAdHeaderBackground: color(foxtail, medium);
-$postAdTextGray: $vivaGray11;
+$postAdTextGray: color(swirl, medium);
 
 //Edit Ad Page
-$mainDetailsBackgroundColor: $vivaGray7;
-$mainDetailsTitleTextColor: $vivaGray1;
-$formSubmitButtonColor: $vivaOrange;
+$mainDetailsBackgroundColor: color(foxtail, light);
+$mainDetailsTitleTextColor: color(swirl, medium);
+$formSubmitButtonColor: color(crane);
 $formSubmitButtonTextColor: $vivaWhite;
 $formCancelTextColor: $vivaBlack;
 $formSeparatorBarColor: $vivaGray9;
 $addWebsiteLinkTextColor: $vivaGreen1;
-$formLabelTextColor: $vivaGray3;
-$categoryDisplayTextColor: $vivaGray1;
-$buttonAreaBackgroundColor: $vivaWhite;
+$formLabelTextColor: color(swirl, medium);
+$categoryDisplayTextColor: color(swirl, medium);
+$buttonAreaBackgroundColor: color(foxtail, medium);
 $categorySelectionActiveListRowBgColor: $vivaGray5;
 $categorySelectionModalBgColor: $vivaWhite;
 $categorySelectionSeparatorColor: $vivaGray10;
