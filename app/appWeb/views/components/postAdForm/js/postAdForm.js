@@ -40,7 +40,7 @@ let initialize = () => {
 	window.BOLT.trackEvents({"event": "PostAdOptionsModal", "p": {"t": "PostAdOptionsModal"} });
 	// update title input char count
 	$('.title-input').on('keyup', (event) => {
-		$('.char-count').text(event.target.value.length);
+		$('.char-count').text(Number($(event.target).attr('maxlength')) - event.target.value.length);
 	});
 
 	$('.title-input').on('change', () => {
@@ -73,6 +73,3 @@ let initialize = () => {
 module.exports = {
 	initialize
 };
-
-
-
