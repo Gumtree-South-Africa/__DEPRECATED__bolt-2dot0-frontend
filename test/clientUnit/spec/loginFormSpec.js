@@ -5,20 +5,20 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 
 
 describe("Login Form", () => {
-	it("should expand sign in area when drawing focus to the email field", () => {
-		let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");
-
-		let $extraOpenDom = $testArea.append("<div></div>");
-
-		loginFormController.initialize({
-			extraOpenDom: $extraOpenDom
-		});
-
-		expect($testArea.find(".sign-in-section").hasClass("open")).toBeFalsy();
-		$testArea.find('input[type="email"]').focus();
-		expect($testArea.find(".sign-in-section").hasClass("open")).toBeTruthy();
-		expect($extraOpenDom.hasClass("open")).toBeTruthy();
-	});
+	// it("should expand sign in area when drawing focus to the email field", () => {
+	// 	let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");
+	//
+	// 	let $extraOpenDom = $testArea.append("<div></div>");
+	//
+	// 	loginFormController.initialize({
+	// 		extraOpenDom: $extraOpenDom
+	// 	});
+	//
+	// 	expect($testArea.find(".sign-in-section").hasClass("open")).toBeFalsy();
+	// 	$testArea.find('input[type="email"]').focus();
+	// 	expect($testArea.find(".sign-in-section").hasClass("open")).toBeTruthy();
+	// 	expect($extraOpenDom.hasClass("open")).toBeTruthy();
+	// });
 
 	it("should toggle the visible password inputs when clicking the show/hide password button/icon", () => {
 		let $testArea = specHelper.setupTest("loginForm", {}, "es_MX");

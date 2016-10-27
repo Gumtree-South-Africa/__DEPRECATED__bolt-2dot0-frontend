@@ -36,6 +36,16 @@
                 <input title="amount" type="number" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"
                        value="{{#if this.adResult.price.amount}}{{this.adResult.price.amount}}{{/if}}"/>
                 <div class="radio-group" data-schema="data.price.currency">
+                    {{#each this.localCurrencies}}
+                        <label class="control">
+                            <input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}}/>
+                            <div class="outer-circle">
+                                <div class="inner-circle"></div>
+                            </div>
+                            <span class="currency-type">{{this}}</span>
+                        </label>
+                    {{/each}}
+                    <!--
                     <label class="control">
                         <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
                         <div class="outer-circle">
@@ -50,6 +60,7 @@
                         </div>
                         <span class="currency-type">USD</span>
                     </label>
+                    -->
                 </div>
             </div>
         </div>
@@ -92,5 +103,3 @@
 		</div>
 	</form>
 </div>
-
-

@@ -1,0 +1,77 @@
+.ad-statistics {
+	color: color(swirl, shade);
+}
+
+.edit-ad-page {
+	.main-detail-edit {
+		.cancel-link-wrapper {
+			.cancel-form-link {
+				color: color(swirl, shade);
+			}
+		}
+
+		.description-input {
+			border-color: color(swirl, shade);
+			border-radius: 2px;
+			color: color(swirl, shade);
+		}
+
+		.input-wrapper {
+			input[type="text"], input[type="tel"], input[type="number"], input[type="date"], .location-link, select {
+				border-color: color(swirl, shade);
+				border-radius: 2px;
+				color: color(swirl, shade);
+			}
+
+			.category-name-display {
+				color: color(crane);
+			}
+
+			.leaf-node-warning {
+				color: color(crane, shade);
+			}
+		}
+
+		.location-warning {
+			.location-warning-text {
+				color: color(crane, shade);
+			}
+		}
+
+		.separator-div {
+			&:after {
+				background: color(foxtail, medium);
+			}
+		}
+
+		.submit-btn-wrapper {
+			.edit-ad-submit {
+				background: color(crane);
+			}
+		}
+	}
+
+	.radio-group {
+		.control input:checked ~ .outer-circle .inner-circle {
+			background: color(leaf);
+		}
+
+		.control input:checked ~ .currency-type {
+			color: color(swirl, shade);
+		}
+
+		.currency-type {
+			color: color(swirl, shade);
+		}
+
+		.outer-circle {
+			border-color: color(swirl, shade);
+		}
+	}
+}
+
+.separator-div {
+	&:after {
+		background: color(foxtail, light);
+	}
+}

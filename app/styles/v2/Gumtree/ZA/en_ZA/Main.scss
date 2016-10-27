@@ -27,7 +27,6 @@
 // import global styles necessary throughout the site
 //@import "../partials/main/footer";
 
-
 // setup selection colors
 // not necessary, but nice to have
 // when user selects any text
@@ -41,7 +40,9 @@
   color: $vivaWhite;
 }
 
-
+body, #wrapper {
+ background-color: $gumtree-bg-color;
+}
 
 // limit the image to the maximum
 // container width

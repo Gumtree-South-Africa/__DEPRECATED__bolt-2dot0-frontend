@@ -1,0 +1,25 @@
+.message-modal {
+	.message {
+		.close-text {
+			color: color(swirl, medium);
+		}
+
+		.error-message {
+			color: color(swirl, medium);
+		}
+
+		.error-modal-container {
+			background: color(foxtail, light)
+		}
+
+		.error-title {
+			color: color(swirl, shade);
+		}
+	}
+}
+
+.user-image {
+	.upload-photo-text {
+		color: color(swirl, dark);
+	}
+}
