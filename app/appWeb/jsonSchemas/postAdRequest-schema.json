@@ -39,7 +39,8 @@
 								"required": true,
 								"enum": [
 									"USD",
-									"MXN"
+									"MXN",
+									"ZAR"
 								]
 							},
 							"amount": {
