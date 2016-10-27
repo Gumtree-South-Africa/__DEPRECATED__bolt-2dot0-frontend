@@ -1,7 +1,57 @@
-{{#if this.advert.pictures}}
+<div id="vipGallery">
+	<div class="main">
+		<div class="main-bgImg" style="background-image: url('https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_14.JPG'); width: 100%;"></div>
+		<div class="counter">
+			<span class="currentImg">1</span>
+			<span class="separator">/</span>
+			<span class="totalImg">{{this.advert.pictures.thumbnails.length}}</span>
+		</div>
+		<div class="vip-gallery">
+			{{#each this.advert.pictures.thumbnails}}
+				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
+			{{/each}}
+		</div>
+	</div>
+</div>
+
+<script>
+ //this is just a hack for images - it will be remove after integration with BE
+ // var prevImgLength = $('#vipGallery img[data-index]').length;
+ // console.log('prevImgLength: ',prevImgLength);
+ // for (var i=0; i<prevImgLength; i++){
+ //  $prevImgSrc = $('#vipGallery img[data-index]').eq(i).attr('src');
+ //  $prevImgSrc = $prevImgSrc.replace('$_14.JPG', '$_25.JPG');
+ //  $('#vipGallery img[data-index]').eq(i).attr('src', $prevImgSrc);
+ // }
+</script>
+
+<!-- <div id="vipGallery">
+	<div class="main">
+		{{#each this.advert.pictures}}
+			<img data-index="{{@index}}" src ="{{{this}}}" alt="{{this.title}}" />
+		{{/each}}
+	</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- {{#if this.advert.pictures}}
 	<div class="wrap {{#if this.advert.hasMultiplePictures}}has-thumbs{{else}}no-thumbs{{/if}}" data-base-js-url="{{this.footer.baseJSUrl}}">
 
-        {{#if this.advert.pictures.images}}
+      {{#if this.advert.pictures.images}}
 			<div class="main-bg">
 				<div class="main">
 					<span class="icon-vip-arrow-left"></span>
@@ -39,4 +89,4 @@
             }
         </script>
 	</div>
-{{/if}}
+{{/if}} -->

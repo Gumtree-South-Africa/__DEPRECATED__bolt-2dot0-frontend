@@ -1,11 +1,34 @@
 'use strict';
 
-let viewContent = require("app/appWeb/views/components/registrationForm/js/registrationForm.js");
+let viewPageGallery = require('app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js');
 
-class ViewPage {
-	initialize() {
-		viewContent.initialize();
-	}
-}
+//TODO: update this breakpoint
+const MEDIUM_BREAKPOINT = 848;
 
-module.exports = new ViewPage();
+let _slickOptions = {
+	arrows: true,
+	infinite: false,
+	responsive: [
+		{
+			breakpoint: MEDIUM_BREAKPOINT,
+			settings: {
+				arrows: false,
+				slidesToShow: 1,
+				slidesToScroll: 1
+			}
+		}
+	],
+	slidesToShow: 3,
+	slidesToScroll: 1
+};
+
+let initialize = () => {
+	viewPageGallery.initialize({
+		slickOptions: _slickOptions,
+		showImageTracking: true
+	});
+};
+
+module.exports = {
+	initialize
+};
