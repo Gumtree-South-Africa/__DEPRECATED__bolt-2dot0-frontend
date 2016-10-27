@@ -42,8 +42,15 @@ class viewPageGallery {
 			this.updatePhotoCounter($(evt.target).context.attributes[2].value);
 		});
 
-		//update photo count
-		//this.updatePhotoCounter(0);
+		this.$vipGallery.find('.main-bgImg, .slick-carousel').on('click', (evt) => {
+			let bgImg = $(evt.target).context.style.backgroundImage;
+			$('body').addClass('noScroll');
+
+			this.$vipGallery.find('.overlay-img').css('background-image', bgImg);
+			this.$vipGallery.find('.vip-overlay').removeClass('hidden');
+
+		});
+
 
 	}
 
@@ -62,6 +69,10 @@ class viewPageGallery {
 
 	updatePhotoCounter(idx) {
 		this.$vipGallery.find('.counter .currentImg').html(++idx);
+	}
+
+	displayOverlay() {
+
 	}
 
 }
