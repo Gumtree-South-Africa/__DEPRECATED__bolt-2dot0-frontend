@@ -39,7 +39,10 @@ class viewPageGallery {
 		});
 
 		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-				this.updatePhotoCounter(nextSlide);
+				let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
+				if(isMobile) {
+					this.updatePhotoCounter(nextSlide);
+				}
 		});
 
 
