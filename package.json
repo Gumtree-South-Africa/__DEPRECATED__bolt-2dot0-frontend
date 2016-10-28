@@ -1,6 +1,6 @@
 {
   "name": "bolt-2dot0-frontend",
-  "version": "2.0.126",
+  "version": "2.0.127",
   "private": true,
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
