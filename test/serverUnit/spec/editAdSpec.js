@@ -29,7 +29,7 @@ describe('Edit Ad Page', () => {
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
 				.expect((res) => {
-					expect(res.status).toBe(200);
+					expect(res.status).toBe(302);
 					// let c$ = cheerio.load(res.text);
 				})
 				.end(specHelper.finish(done));
@@ -46,7 +46,7 @@ describe('Edit Ad Page', () => {
 		);
 
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
-			supertest
+			supertest.set('Cookie', 'bt_auth=Bear XXX')
 				.expect((res) => {
 					expect(res.status).toBe(404);
 				})
@@ -65,7 +65,7 @@ describe('Edit Ad Page', () => {
 		let mockData = require('../mockData/api/v1/GetAdResponse.json');
 
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
-			supertest
+			supertest.set('Cookie', 'bt_auth=Bear XXX')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 

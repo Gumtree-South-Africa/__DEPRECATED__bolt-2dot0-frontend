@@ -174,10 +174,10 @@
 		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "adstatistics", "gallery", "seo"]
+				"models" : ["level2Loc", "keyword", "adstatistics", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "adstatistics", "seo"]
+				"models" : ["level2Loc", "keyword", "adstatistics", "gallery", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
