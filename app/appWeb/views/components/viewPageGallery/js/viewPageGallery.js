@@ -28,38 +28,21 @@ class viewPageGallery {
 
 		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
 
-		this.$vipGallery.find('.vip-gallery').on('breakpoint', () => {
-			this.resizeCarousel();
-		});
-
 		this.$vipGallery.find('.slick-slide').on('click', (evt) => {
 			let cItems = document.querySelectorAll('.slick-carousel');
-			[].forEach.call(cItems, (item) => {
-				$(item).removeClass('selected');
-			});
-			$(evt.target).addClass('selected');
-			this.updateMainImage(evt);
-			this.updatePhotoCounter($(evt.target).context.attributes[2].value);
+				[].forEach.call(cItems, (item) => {
+					$(item).removeClass('selected');
+				});
+				$(evt.target).addClass('selected');
+				this.updateMainImage(evt);
+				this.updatePhotoCounter($(evt.target).context.attributes[2].value);
 		});
 
-		this.$vipGallery.find('.main-bgImg, .slick-carousel').on('click', (evt) => {
-			let bgImg = $(evt.target).context.style.backgroundImage;
-			$('body').addClass('noScroll');
-
-			this.$vipGallery.find('.overlay-img').css('background-image', bgImg);
-			this.$vipGallery.find('.vip-overlay').removeClass('hidden');
-
+		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+				this.updatePhotoCounter(nextSlide);
 		});
 
 
-	}
-
-	resizeCarousel() {
-		$('#vipGallery .vip-gallery').slick('unslick');
-		$('#vipGallery .vip-gallery').slick({
-		  slidesToShow: 3,
-		  slidesToScroll: 1,
-		});
 	}
 
 	updateMainImage(event) {
@@ -71,8 +54,10 @@ class viewPageGallery {
 		this.$vipGallery.find('.counter .currentImg').html(++idx);
 	}
 
-	displayOverlay() {
-
+	//for Zoom
+	backgroundImageHeight() {
+		let bgHeight = this.$vipGallery.find('.vip-gallery').height() - (this.$vipGallery.find('.bottom-overlay').eq(1).height()) * 2;
+		this.$vipGallery.find('.slick-carousel.selected').height(bgHeight);
 	}
 
 }

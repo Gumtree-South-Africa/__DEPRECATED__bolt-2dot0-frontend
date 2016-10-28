@@ -1,4 +1,17 @@
 #vipGallery{
+	.vip-gallery{
+		height: 100%;
+		&.zoomed{
+			position: fixed;
+			z-index: 9;
+			background-color: wheat;
+			width: 100%;
+			overflow: hidden;
+			.slick-carousel.selected{
+				background-size: cover;
+			}
+		}
+	}
 	.vip-overlay{
 		 height: 100%;
 		 position: fixed;
@@ -10,7 +23,7 @@
 		 .overlay-img{
 				width: 100%;
 				z-index: 20;
-				height: 100%;
+				height: 85%;
 				background-repeat: no-repeat;
 				background-position: center;
 				position: fixed;
@@ -22,17 +35,18 @@
 		 position: fixed;
 		 bottom: 0;
 		 width: 100%;
-		 height: 8em;
+		 height: 15%;
+     max-height: 6em;
 		 text-align: center;
 		 padding-top: 1em;
+		 z-index: 9;
 	}
 	.slick-slide, .main-bgImg {
     height: 20em;
     background-repeat: no-repeat;
 		background-position: center;
-		background-color: #fff;
-		margin: 5px;
-		border: 1px solid #000;
+		background-size: contain;
+		background-color: #000;
 		outline: 0;
 	}
 	.main-bgImg{
@@ -45,10 +59,38 @@
 	.counter{
 		position: absolute;
 		right: 1em;
-    bottom: 1em;
+		bottom: 0.55em;
 		z-index: 3;
+		color: white;
+		font-size: 0.8em;
 	}
 }
+
+
+@include to-breakpoint($medium-break){
+	.slick-dots{
+		bottom: 0em;
+		li {
+			margin: 0;
+			button:before{
+				font-size: 20px;
+				border: 1px solid white;
+				border-radius: 15px;
+				content: "";
+				width: 5px;
+				height: 5px;
+				opacity: 1;
+			}
+			&.slick-active{
+				button:before{
+					background-color: white;
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
 
 @include from-breakpoint($medium-break){
 	#vipGallery{
@@ -56,14 +98,16 @@
 		.main-bgImg{
 			display: block;
 			margin-bottom: 2em;
-			background-color: #fff;
+			background-color: #000;
+			background-size: contain;
 			margin: 5px;
 			border: 1px solid #000;
 			outline: 0;
 		}
 		.slick-slide{
-			max-height: 75px;
+			max-height: 62px;
 			margin: auto 10px;
+			background-size: cover;
 			&.selected{
 				border: 3px solid $postAdOrange;
 				margin: 3px;
@@ -77,12 +121,16 @@
 	    border: none;
 	    color: transparent;
 	    outline: 0;
-			top: 30px;
+		}
+		.slick-dots{
+			//to remove
+			display: none!important;
 		}
 		.slick-prev{
-			left: -1.3em;
+			top: 38px;
 		}
 		.slick-next{
+			top: 28px;
 			right: -25px;
     	transform: scaleX(-1);
     	-webkit-transform: scaleX(-1);
@@ -90,7 +138,7 @@
     	padding: 0;
 		}
 		.slick-carousel{
-			background-color: #fff;
+			background-color: #000;
 			margin: 5px;
 			border: 1px solid #000;
 			outline: 0;
@@ -101,8 +149,9 @@
 			width: 80%;
 		}
 		.counter{
-			right: 0;
-			bottom: 6em;
+			right: 1em;
+			bottom: 7.5em;
+			font-size: 0.7em;
 		}
 	}
 }

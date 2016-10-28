@@ -7,6 +7,7 @@ const MEDIUM_BREAKPOINT = 848;
 
 let _slickOptions = {
 	arrows: true,
+	dots: true,
 	infinite: false,
 	responsive: [
 		{
@@ -18,7 +19,7 @@ let _slickOptions = {
 			}
 		}
 	],
-	slidesToShow: 3,
+	slidesToShow: 5,
 	slidesToScroll: 1
 };
 
