@@ -206,8 +206,8 @@ class PostAd {
 					let image = item.data("image");
 
 					// if image is cover photo add to front of array, otherwise push
-					if (selectedImage) {
-						images.unshift(selectedImage);
+					if (selectedImage === image) {
+						images.unshift(image);
 					} else if (image) {
 						images.push(image);
 					}
