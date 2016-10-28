@@ -24,7 +24,7 @@ class viewPageGallery {
 		this.$vipGallery = $('#vipGallery');
 
 		// Slick setup
-		this.$vipGallery.find('.vip-gallery').slick(options.slickOptions);
+		this.$vipGallery.find('.vip-gallery').not('.slick-initialized').slick(options.slickOptions);
 
 		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
 
@@ -35,7 +35,7 @@ class viewPageGallery {
 				});
 				$(evt.target).addClass('selected');
 				this.updateMainImage(evt);
-				this.updatePhotoCounter($(evt.target).context.attributes[2].value);
+				this.updatePhotoCounter($(evt.target).index());
 		});
 
 		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
