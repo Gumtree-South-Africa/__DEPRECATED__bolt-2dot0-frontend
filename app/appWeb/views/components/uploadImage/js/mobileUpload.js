@@ -3,6 +3,7 @@
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let postAd = require('./postAd.js');
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -130,12 +131,34 @@ class MobileUpload {
 			}
 
 			this.imageHolder.css("background-image", `url("${url.normal}")`);
+
+			spinnerModal.showModal();
+			this.$uploadSpinner.toggleClass('hidden');
+			this.$uploadProgress.toggleClass('hidden');
+			this.$uploadProgress.html("0%");
+
+			$.ajax({
+				url: '/api/irs',
+				type: 'POST',
+				data: JSON.stringify({"url" : url.normal}),
+				dataType: 'json',
+				contentType: "application/json",
+				success: (categoryId) => spinnerModal.completeSpinner(() => {
+					console.error(categoryId);
+				}),
+				error: (err) => {
+					console.warn(err);
+					spinnerModal.hideModal();
+				}
+			});
+
+
 			postAd.requestLocation((locationType, timeout) => {
 				if (timeout !== undefined) {
 					clearTimeout(timeout);
 				}
 				//Don't care if they actually gave us location, just that it finished.
-				postAd.postAdMobile(url.normal, locationType);
+				//postAd.postAdMobile(url.normal, locationType);
 			});
 		};
 

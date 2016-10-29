@@ -40,6 +40,14 @@
 			"version": "4.0"
 		}
 	},
+	"irs": {
+		"server": {
+			"host"	: "charlie-vm-002-7898.phx02.dev.ebayc3.com",
+			"port"	: 10741,
+			"parameters": "/imageCategory/es_MX_VNS/url?",
+			"timeout": 2000
+		}
+	},
 	"kafka": {
 		"server": {
 			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",

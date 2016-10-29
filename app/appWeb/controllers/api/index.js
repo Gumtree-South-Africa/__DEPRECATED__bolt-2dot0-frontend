@@ -10,5 +10,6 @@ router.use('/locate', require('./apiLocationLatLong'));
 router.use('/postad', require('./apiPostAdController'));
 router.use('/edit', require('./apiEditAdController'));
 router.use('/auth', require('./apiAuthController'));
+router.use('/irs', require('./apiImageCategory'));
 
 module.exports = router;
