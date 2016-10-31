@@ -11,6 +11,10 @@ class AdvertModel {
 		this.bapiHeaders = bapiHeaders;
 	}
 
+	viewTheAd(adId) {
+		return adService.viewAd(this.bapiHeaders, adId);
+	}
+
 	favoriteTheAd(adId) {
 		return adService.favoriteAd(this.bapiHeaders, adId);
 	}

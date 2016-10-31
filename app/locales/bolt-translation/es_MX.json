@@ -1490,5 +1490,21 @@
 			"continueActivation": "Please check your email to continue activation",
 			"continue": "Continúa"
 		}
+	},
+	"vip": {
+		"page": {
+			"itemid": "Anuncios #%s"
+		},
+		"details": {
+			"edit": "Edit",
+			"favorite": "Favorite",
+			"posted": "Posted",
+			"views": "VIEWS",
+			"replies": "REPLIES",
+			"category": "CATEGORY",
+			"location": "LOCATION",
+			"updated": "UPDATED",
+			"postedby": "POSTED BY"
+		}
 	}
 }
