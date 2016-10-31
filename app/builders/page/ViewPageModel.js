@@ -91,7 +91,7 @@ class ViewPageModel {
 					]
 				},
 				seoGroupName: 'Automobiles',
-				seoVipUrl: '/edit/',
+				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009',
 				userId: 'testUser123',
 				adTitle: 'Cozy 3 Bedroom Apartment',
 				price: '$150',
