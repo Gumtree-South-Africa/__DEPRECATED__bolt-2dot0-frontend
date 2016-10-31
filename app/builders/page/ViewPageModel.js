@@ -65,7 +65,7 @@ class ViewPageModel {
 			let data = {
 				title: 'Honda Accord EX-L v6',
 				adId: this.adId,
-				viewSeoUrl: "/a-venta-autos/coyoacan/anuncio-publicado-por-usernameischangedtest" + this.adId,
+				editUrl: "/edit/" + this.adId,
 				hasMultiplePictures: true,
 				pictures: {
 					thumbnails: [
