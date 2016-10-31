@@ -65,6 +65,7 @@ class ViewPageModel {
 			let data = {
 				title: 'Honda Accord EX-L v6',
 				adId: this.adId,
+				viewSeoUrl: "/a-venta-autos/coyoacan/anuncio-publicado-por-usernameischangedtest" + this.adId,
 				hasMultiplePictures: true,
 				pictures: {
 					thumbnails: [
@@ -115,7 +116,7 @@ class ViewPageModel {
 				postedBy: 'Owner'
 			};
 			//TODO: check to see if userId matches header data's userID to show favorite or edit
-			data.isOwnerAd = true;
+			data.isOwnerAd = false;
 
 			//TODO: check to see if additional attributes should be displayed based on specific categories
 			data.displayMoreAttributes = true;

@@ -3,9 +3,14 @@
         <div class="title-fav">
 		    <div class="ad-title">{{this.advert.adTitle}}</div>
             {{#if this.advert.isOwnerAd}}
-				<div class="edit-favorite">{{i18n "vip.details.edit"}}<div class="edit-favorite-icon icon-apple-dark-gray"></div></div>
+				<div class="edit-favorite">{{i18n "vip.details.edit"}}
+                    <a class="edit-favorite-icon edit-icon icon-apple-dark-gray" href="{{this.advert.viewSeoUrl}}">
+                    </a>
+                </div>
             {{else}}
-				<div class="edit-favorite">{{i18n "vip.details.favorite"}}<div class="edit-favorite-icon icon-apple-dark-gray"></div></div>
+				<div class="edit-favorite">
+                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.adId}}"></span>
+                </div>
             {{/if}}
 		</div>
         <div class="price-update">
