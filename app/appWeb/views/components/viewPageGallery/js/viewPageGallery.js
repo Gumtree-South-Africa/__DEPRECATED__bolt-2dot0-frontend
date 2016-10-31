@@ -54,6 +54,10 @@ class viewPageGallery {
 				}
 		});
 
+		this.$vipGallery.find('.vip-gallery').on('breakpoint', () => {
+			$('.slick-arrow').addClass("icon-back");
+		});
+
 		// this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
 		// 	evt.stopPropagation();
 		// 	evt.preventDefault();
