@@ -65,7 +65,7 @@ class ViewPageModel {
 			let data = {
 				title: 'Honda Accord EX-L v6',
 				adId: this.adId,
-				viewSeoUrl: "/a-venta-autos/coyoacan/anuncio-publicado-por-usernameischangedtest" + this.adId,
+				editUrl: "/edit/" + this.adId,
 				hasMultiplePictures: true,
 				pictures: {
 					thumbnails: [
@@ -91,7 +91,7 @@ class ViewPageModel {
 					]
 				},
 				seoGroupName: 'Automobiles',
-				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009',
+				seoVipUrl: '/edit/',
 				userId: 'testUser123',
 				adTitle: 'Cozy 3 Bedroom Apartment',
 				price: '$150',
