@@ -14,7 +14,7 @@ class viewPageGallery {
 			options = {
 				slickOptions: {
 					arrows: false,
-					infinite: false,
+					infinite: true,
 					slidesToShow: 1,
 					slidesToScroll: 1
 				},
@@ -29,22 +29,38 @@ class viewPageGallery {
 		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
 
 		this.$vipGallery.find('.slick-slide').on('click', (evt) => {
+			let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
+			let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
 			let cItems = document.querySelectorAll('.slick-carousel');
-				[].forEach.call(cItems, (item) => {
-					$(item).removeClass('selected');
-				});
-				$(evt.target).addClass('selected');
-				this.updateMainImage(evt);
-				this.updatePhotoCounter($(evt.target).index());
+
+			[].forEach.call(cItems, (item) => {
+				$(item).removeClass('selected');
+			});
+
+			$(evt.target).addClass('selected');
+			this.updateMainImage(evt);
+			if(!isMobile) {
+				this.updatePhotoCounter(parseInt($(evt.target).attr('data-slick-index')), count);
+			}
 		});
 
 		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+				event.stopPropagation();
+				event.preventDefault();
 				let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
+				let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
 				if(isMobile) {
-					this.updatePhotoCounter(nextSlide);
+					this.updatePhotoCounter(nextSlide, count);
 				}
 		});
 
+		// this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
+		// 	evt.stopPropagation();
+		// 	evt.preventDefault();
+		// 	this.$vipGallery.find('.vip-gallery').clone().appendTo('#vipOverlay .vipOverlay-container');
+		// 	$('#vipOverlay .vipOverlay-container').not('.slick-initialized').slick(options.slickOptions);
+		// 	$('#vipOverlay').removeClass('hidden');
+		// });
 
 	}
 
@@ -53,14 +69,11 @@ class viewPageGallery {
 			this.$vipGallery.find('.main-bgImg').css('background-image', bgImg);
 	}
 
-	updatePhotoCounter(idx) {
-		this.$vipGallery.find('.counter .currentImg').html(++idx);
-	}
-
-	//for Zoom
-	backgroundImageHeight() {
-		let bgHeight = this.$vipGallery.find('.vip-gallery').height() - (this.$vipGallery.find('.bottom-overlay').eq(1).height()) * 2;
-		this.$vipGallery.find('.slick-carousel.selected').height(bgHeight);
+	updatePhotoCounter(idx, count) {
+		if(((idx + 1) % count) === 0) {
+			count = count+1;
+		}
+		this.$vipGallery.find('.counter .currentImg').html((idx+1)%count);
 	}
 
 }

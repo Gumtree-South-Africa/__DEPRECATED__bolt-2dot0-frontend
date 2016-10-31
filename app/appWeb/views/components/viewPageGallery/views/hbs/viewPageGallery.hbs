@@ -1,11 +1,7 @@
 <div id="vipGallery">
-	<div class="vip-overlay hidden">
-    <div class="overlay-img"></div>
-    <div class="bottom-overlay">here is the bottom overlay</div>
-  </div>
 	<div class="main">
 		<div class="main-bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
-		<div class="counter">
+		<div class="counter" data-image-length="{{this.advert.pictures.testPictures.length}}">
 			<span class="currentImg">1</span>
 			<span class="separator">/</span>
 			<span class="totalImg">{{this.advert.pictures.testPictures.length}}</span>
@@ -16,4 +12,8 @@
 			{{/each}}
 		</div>
 	</div>
+</div>
+<div id="vipOverlay" class="modal hidden">
+	<div class="modal-overlay"></div>
+	<div class="vipOverlay-container"></div>
 </div>
