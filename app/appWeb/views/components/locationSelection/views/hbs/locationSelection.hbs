@@ -1,0 +1,24 @@
+<div id="locationModal" class="location-selection">
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+	<div class="location-selection-container">
+        {{!-- this should change depending on the modal content --}}
+			<div class="location-selection-info">{{i18n "modal.info"}}</div>
+			<div class="location-selection-field container">
+				<div class="right">
+					<span class="icon-location-v2 btn-icon"></span>
+					<div class="clear"></div>
+				</div>
+				<div class="left">
+					<input type="text" id="modal-location" class="location-selection-input" placeholder="{{i18n 'modal.placeholderText'}}"/>
+				</div>
+				<div class="clear"></div>
+				<div id="autocompleteField" class="hiddenElt"></div>
+			</div>
+            {{#if this.isLocationMobile}}
+				<div class="location-selection-info">{{i18n "modal.locationAutoMobile"}}</div>
+            {{else}}
+				<div class="location-selection-info">{{i18n "modal.locationAutoDesktop"}}</div>
+            {{/if}}
+            {{!-- end of modal content --}}
+	</div>
+</div>

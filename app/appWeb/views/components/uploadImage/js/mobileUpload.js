@@ -2,6 +2,7 @@
 
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
+let categoryUpdateModal = require('./categoryUpdateModal');
 let postAd = require('./postAd.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
@@ -19,6 +20,7 @@ Array.prototype.remove = function(from, to) {
 class MobileUpload {
 	initialize() {
 		postAd.initialize();
+		categoryUpdateModal.initialize();
 		this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
@@ -144,14 +146,13 @@ class MobileUpload {
 				dataType: 'json',
 				contentType: "application/json",
 				success: (categoryId) => spinnerModal.completeSpinner(() => {
-					console.error(categoryId);
+					categoryUpdateModal.updateCategory(categoryId);
 				}),
 				error: (err) => {
 					console.warn(err);
 					spinnerModal.hideModal();
 				}
 			});
-
 
 			postAd.requestLocation((locationType, timeout) => {
 				if (timeout !== undefined) {

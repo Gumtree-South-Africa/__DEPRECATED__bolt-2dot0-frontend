@@ -1,0 +1,20 @@
+<div id="post-ad-custom-attributes-form" class="">
+    <div>
+        {{#each this.customAttributes}}
+			<div class="form-field" data-field="{{this.name}}">
+                {{#compare this.allowedValueType "===" "LIST"}}
+                    {{> (base "editFormSelectBox") this parent=../model}}
+                {{/compare}}
+                {{#compare this.allowedValueType "===" "DATE"}}
+                    {{> (base "editFormDateInput") this parent=../model}}
+                {{/compare}}
+                {{#compare this.allowedValueType "!==" "LIST"}}
+                    {{#compare this.allowedValueType "!==" "DATE"}}
+                        {{> (base "editFormTextbox") this parent=../model}}
+                    {{/compare}}
+                {{/compare}}
+			</div>
+        {{/each}}
+    </div>
+</div>
+

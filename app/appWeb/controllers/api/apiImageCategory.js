@@ -19,7 +19,7 @@ router.post('/', cors, (req, res) => {
 
 		let category = categories.reduce((pre, cur) => {
 			return pre.quality > cur.quality ? pre : cur;
-		},{"categoryId":"0","matches":1,"quality":0});
+		},{"categoryId":"1","matches":1,"quality":0});
 
 		res.send(category.categoryId);
 
