@@ -1,9 +1,9 @@
 {{#partial "content"}}
-    <div class="view-page-container">
-        {{> (dynamic "modal")}}
+    <div id="viewPage">
+        {{> (dynamic "viewPageGallery")}}
 
-		<div class="view-content-container">
-            {{> (dynamic "viewPageDetails")}}
+		<div class="item-details">
+            {{> (dynamic "adDetails")}}
 		</div>
     </div>
 {{/partial}}
