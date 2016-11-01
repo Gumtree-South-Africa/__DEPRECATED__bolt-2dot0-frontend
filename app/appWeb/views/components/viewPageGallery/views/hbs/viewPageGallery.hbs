@@ -1,42 +1,19 @@
-{{#if this.advert.pictures}}
-	<div class="wrap {{#if this.advert.hasMultiplePictures}}has-thumbs{{else}}no-thumbs{{/if}}" data-base-js-url="{{this.footer.baseJSUrl}}">
-
-        {{#if this.advert.pictures.images}}
-			<div class="main-bg">
-				<div class="main">
-					<span class="icon-vip-arrow-left"></span>
-					<span class='vertical-alignment-helper'></span><img  data-index="0" src = "{{{this.advert.pictures.images.[0]}}}" alt="{{this.advert.title}}" />
-                    {{#if this.advert.seoGroupName}}
-						<meta itemprop="image" content="{{{this.advert.pictures.images.[0]}}}" />
-                    {{/if}}
-					<span class="icon-vip-arrow-right"></span>
-					<span class="icon-zoom-image"></span>
-				</div>
-                {{#if this.hasMultiplePictures}}
-                    {{#block "PictureCount"}}{{/block}}
-                {{/if}}
-			</div>
-        {{/if}}
-
-        {{#block "thumbs"}}
-            {{#if this.advert.hasMultiplePictures}}
-				<div class="thumbs">
-					<div class="wrap">
-                        {{#each this.advert.pictures.thumbnails}}
-							<img {{#ifeq @index compare='0'}}class="active"{{/ifeq}} data-index="{{@index}}" src="{{this}}" onerror="this.alt='';" />
-                        {{/each}}
-					</div>
-				</div>
-            {{/if}}
-        {{/block}}
-
-		<script id="vip-gallery-data" type="text/x-bolt-json">
-            {
-                "small":"{{{this.advert.pictures.thumbnails}}}",
-                "medium":"{{{this.advert.pictures.images}}}",
-                "large":"{{{this.advert.pictures.largestPictures}}}",
-                "alt-tags":"{{{this.imageAltTags}}}"
-            }
-        </script>
+<div id="vipGallery">
+	<div class="main">
+		<div class="main-bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
+		<div class="counter" data-image-length="{{this.advert.pictures.testPictures.length}}">
+			<span class="currentImg">1</span>
+			<span class="separator">/</span>
+			<span class="totalImg">{{this.advert.pictures.testPictures.length}}</span>
+		</div>
+		<div class="vip-gallery">
+			{{#each this.advert.pictures.testPictures}}
+				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
+			{{/each}}
+		</div>
 	</div>
-{{/if}}
+</div>
+<div id="vipOverlay" class="modal hidden">
+	<div class="modal-overlay"></div>
+	<div class="vipOverlay-container"></div>
+</div>

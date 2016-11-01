@@ -88,7 +88,20 @@ class ViewPageModel {
 						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_20.JPG',
 						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_20.JPG',
 						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_20.JPG'
+					],
+					testPictures: [
+						'https://i.ebayimg.com/00/s/NDMwWDY0MA==/z/qvAAAOSwmLlX6QqV/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NTMzWDgwMA==/z/gnUAAOSwPCVX6Qqk/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NTM0WDgwMA==/z/E0gAAOSwNRdX6Qqz/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NDUwWDgwMA==/z/KvAAAOSwAuZX6Qrv/$_20.JPG',
+						'https://i.ebayimg.com/00/s/MzAyWDY0MA==/z/JicAAOSwTA9X6QsN/$_20.JPG',
+						'https://i.ebayimg.com/00/s/MzIwWDYzMA==/z/ZIAAAOSw4shX6QtA/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NjAwWDgwMA==/z/kJIAAOSw8w1X6QtR/$_20.JPG',
+						'https://i.ebayimg.com/00/s/MjUwWDUwMA==/z/73YAAOSw8gVX6Qts/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NDAwWDY0MA==/z/8m8AAOSw8gVX6Qt9/$_20.JPG',
+						'https://i.ebayimg.com/00/s/NDAwWDY2MA==/z/GYEAAOSwzaJX6Qus/$_20.JPG'
 					]
+
 				},
 				seoGroupName: 'Automobiles',
 				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009',

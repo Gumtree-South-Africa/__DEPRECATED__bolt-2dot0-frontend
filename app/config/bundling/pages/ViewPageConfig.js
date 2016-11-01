@@ -14,12 +14,12 @@ module.exports = {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
-			"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
+			//"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"PageMain": "app/appWeb/views/templates/pages/viewPage/js/viewPage.js",
-			"ViewPageDetails": "app/appWeb/views/components/viewPageDetails/js/viewPageDetails.js",
-			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js",
-			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js"
+			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
+		//	"ViewPageDetails": "app/appWeb/views/components/viewPageDetails/js/viewPageDetails.js",
+			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
