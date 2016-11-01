@@ -49,6 +49,10 @@ module.exports = function(locale) {
 			// ALWAYS enable 1.0
 			res.locals.b2dot0Version = false;
 			res.cookie('b2dot0Version', '1.0', {'httpOnly': true});
+		} else if (locale === 'es_MX') {
+			// For MX, ALWAYS enable 2.0
+			res.locals.b2dot0Version = true;
+			res.cookie('b2dot0Version', '2.0', {'httpOnly': true});
 		} else {
 			// ALLOW the cookie/v parameter to decide
 			// Step 0: Default b2dot0Version to v1
