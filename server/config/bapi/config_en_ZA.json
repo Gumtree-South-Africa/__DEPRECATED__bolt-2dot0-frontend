@@ -175,7 +175,7 @@
   	},
 		"homepage" : {
 			"sectionMenu": {
-				"trending": "/",
+				"trending": "#",
 				"goods": "/s-home-garden/v1c9175p1",
 				"cars": "/s-automotive-vehicles/v1c5p1",
 				"realEstate": "/s-property/v1c2p1",
