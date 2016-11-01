@@ -28,6 +28,8 @@ let _geoShowMyLocation = (geoCookieValue) => {
 		success: (resp) => {
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
 			if (resp !== undefined) {
+				this.$locationLat.val(location.lat);
+				this.$locationLng.val(location.long);
 				// Set searchLocId and searchLocName Cookie only if no Cb specified
 				if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
 					let searchLocIdValue = escape(resp.id);
@@ -200,6 +202,9 @@ let initialize = (setValueCb) => {
 	this.$locale = $('html').attr('data-locale');
 	this.$locmodal = $('#modal-location');
 	this.$modal = $('#locationModal');
+
+	this.$locationLat = this.$modal.find('#location-lat');
+	this.$locationLng = this.$modal.find('#location-lng');
 
 	this.langs = this.$locale.split('_')[0];
 	this.country = this.$locale.split('_')[1];

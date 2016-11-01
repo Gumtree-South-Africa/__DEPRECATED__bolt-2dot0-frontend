@@ -1,4 +1,4 @@
-<div class="main-detail-post">
+<div id="js-main-detail-post" class="main-detail-post">
 	<form id='post-form' method="POST" action="#" data-publicJs-url="/post">
 		<div class="post-add-detail">Add Details</div>
 		<div class="label-wrapper">
@@ -23,21 +23,11 @@
 			</div>
 		</div>
 		<div class="separator-div"></div>
-		<div class="form-location-selection">
-			<div class="label-wrapper">
-				<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
-			</div>
-			<div class="input-wrapper">
-				<div id="edit-location-input" role="link" class="location-link" data-default-location="{{i18n "location.defaultcity"}}">Placeholder</div>
-			</div>
-			<div class="location-warning">
-				<div class="location-warning-text">
-                    {{i18n "editAd.mainDetails.locationWarning"}}
-				</div>
-			</div>
-		</div>
         <section id="custom-attributes">
             {{> (dynamic "postFormCustomAttributes") model=this}}
         </section>
+
+        {{> (dynamic "locationSelection")}}
     </form>
+    {{> (dynamic "postAdButton")}}
 </div>

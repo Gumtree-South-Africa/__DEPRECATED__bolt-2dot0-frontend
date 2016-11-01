@@ -1,5 +1,6 @@
 'use strict';
 let postFormCustomAttributes = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
+let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 class CategoryUpdateModal {
 	initialize() {
@@ -58,9 +59,10 @@ class CategoryUpdateModal {
 		}
 	}
 
-	updateCategory(categoryId) {
+	updateCategory(categoryId, imgUrl) {
 		this.getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
 		this.traverseHierarchy(this.hierarchyArray);
+		postAdFormMainDetails.setImgUrl(imgUrl);
 		postFormCustomAttributes.updateCustomAttributes(categoryId);
 	}
 }

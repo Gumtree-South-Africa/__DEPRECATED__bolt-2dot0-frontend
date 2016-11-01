@@ -146,7 +146,7 @@ class MobileUpload {
 				dataType: 'json',
 				contentType: "application/json",
 				success: (categoryId) => spinnerModal.completeSpinner(() => {
-					categoryUpdateModal.updateCategory(categoryId);
+					categoryUpdateModal.updateCategory(categoryId, url.normal);
 				}),
 				error: (err) => {
 					console.warn(err);

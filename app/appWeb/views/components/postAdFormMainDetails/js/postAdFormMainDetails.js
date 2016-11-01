@@ -1,9 +1,10 @@
 'use strict';
-let locationModal = require("app/appWeb/views/components/modal/js/locationModal.js");
+let locationModal = require("app/appWeb/views/components/locationSelection/js/locationModal.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-//let customAttributes = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
+let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
+
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
 
@@ -158,7 +159,7 @@ class PostAdFormMainDetails {
 	_setHiddenLocationInput(location) {
 		this.$locationLat.val(location.lat);
 		this.$locationLng.val(location.long);
-		this.$locationLink.text(location.localizedName || this.defaultLocation);
+		this.$locationLink.text(location.localizedName);
 	}
 
 	/**
@@ -197,13 +198,26 @@ class PostAdFormMainDetails {
 	 */
 	_successCallback(response) {
 		formChangeWarning.disable();
-		spinnerModal.completeSpinner(() => {
-			if (response.redirectLink.previp) {
-				window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
-			} else {
-				window.location.href = response.redirectLink.vip;
-			}
-		});
+		switch (response.state) {
+			case this.AD_STATES.AD_CREATED:
+				spinnerModal.completeSpinner(() => {
+					window.location.href = response.ad.redirectLink;
+				});
+				break;
+			case this.AD_STATES.AD_DEFERRED:
+				spinnerModal.completeSpinner(() => {
+					loginModal.openModal({
+						submitCb: () => {
+							window.location.href = response.defferedLink;
+						},
+						fbRedirectUrl: response.defferedLink,
+						links: response.links
+					});
+				});
+				break;
+			default:
+				break;
+		}
 	}
 
 	/**
@@ -284,49 +298,43 @@ class PostAdFormMainDetails {
 
 		let lat = Number(serialized.locationLatitude);
 		let lng = Number(serialized.locationLongitude);
-		let $carouselImages = this.$photoCarousel.find('.carousel-item');
-		let featured = this.$photoCarousel.find('.carousel-item.selected').data('image');
-		let images = [];
-		if (featured) {
-			featured = this.epsUpload.convertThumbImgURL18(featured);
-			images.push(featured);
-		}
-
-		$carouselImages.each((i, el) => {
-			let image = $(el).data('image');
-			image = this.epsUpload.convertThumbImgURL18(image);
-			if (image && image !== featured) {
-				images.push(image);
-			}
-		});
+		//let images = [];
 
 		let description = this.$textarea.val();
-		let category = Number(this.$categoryId.val());
-
+		let category = Number(this.$categorySelection.find("select").last().val());
+		//images.push(this.$imageUrls.val());
 		let payload = {
-			"adId": serialized.adId,
-			"title": serialized.Title,
-			"description": description,
-			"categoryId": category,
-			"location": {
-				"latitude": lat,
-				"longitude": lng
-			},
-			"categoryAttributes": categoryAttributes,
-			"imageUrls": images
+			"ads": [
+				{
+					"title": serialized.Title,
+					"description": description,
+					"categoryId": category,
+					"location": {
+						"latitude": lat,
+						"longitude": lng
+					},
+					"categoryAttributes": categoryAttributes,
+					"imageUrls": this.imgUrls
+				}
+			]
 		};
 
 		if (!this.$priceFormField.hasClass("hidden")) {
-			payload.price = {
+			payload.ads[0].price = {
 				"currency": (serialized.currency) ? serialized.currency : 'MXN',
 				"amount": Number(serialized.amount)
 			};
 		}
 
+		payload.ads[0].price = {
+			"currency": 'MXN',
+			"amount": 100
+		};
+
 		spinnerModal.showModal();
 
 		$.ajax({
-			url: '/api/edit/update',
+			url: '/api/postad/create',
 			type: 'POST',
 			data: JSON.stringify(payload),
 			dataType: 'json',
@@ -359,71 +367,37 @@ class PostAdFormMainDetails {
 	}
 
 	/**
-	 * toggle the leaf node warning
-	 * @param shouldHide
-	 * @private
+	 * sets the imgUrl for the singleton instance
+	 * @param imgUrl
 	 */
-	_toggleShowLeafNodeWarning(shouldHide) {
-		this.$leafNodeWarning.toggleClass('hidden', shouldHide);
-	}
-
-	_validatePhotoCarousel() {
-		let $carouselItems = $('.carousel-item');
-		if ($carouselItems.length === 0) {
-			$('#file-input').on('change', () => {
-				$('.cover-photo').removeClass('red-border');
-				$('.photos-required-msg').addClass('hidden');
-			});
-			$('.cover-photo').addClass('red-border');
-			$('.photos-required-msg').removeClass('hidden');
-			return false;
-		}
-
-		return true;
+	setImgUrl(imgUrl) {
+		this.imgUrls.push(imgUrl);
 	}
 
 	onReady() {
+		this.AD_STATES = {
+			AD_CREATED: "AD_CREATED",
+			AD_DEFERRED: "AD_DEFERRED"
+		};
 		this.epsUpload = new EpsUpload();
 		this.$detailsSection = $("#js-main-detail-post");
-		this.$photoCarousel = $('.photo-carousel');
 		this.$attributes = $("#post-ad-custom-attributes-form");
-		this.$categoryId = this.$detailsSection.find('#category-id');
+		this.$categorySelection = this.$detailsSection.find('#category-selection');
 		this.$submitButton = this.$detailsSection.find('#post-submit-button');
-		this.$cancelButton = this.$detailsSection.find('#cancel-button');
 		this.$locationLink = $("#post-location-input");
 
-		this.defaultLocation = this.$locationLink.data("default-location");
-		this.$categoryChangeLink = this.$detailsSection.find("#category-name-display");
-		this.$currentHierarchy = $("#selected-cat-hierarchy");
-		this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
 		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
-		this.$leafNodeWarning = this.$detailsSection.find(".leaf-node-warning");
 
-		// initialize the custom attributes section
-		//customAttributes.initialize();
-		// set the initial cateogry id
-		//customAttributes.setCategoryId(this.currentHierarchy[this.currentHierarchy.length - 1]);
-
-		this.$editForm = this.$detailsSection.find('#edit-form');
+		this.$editForm = this.$detailsSection.find('#post-form');
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
+
+		this.imgUrls = [];
 		this.$textarea = this.$detailsSection.find('#description-input');
-		/*
-		let isLeafNode = categorySelectionModal.isLeafCategory(this.currentHierarchy);
-		this._toggleSubmitDisable(!isLeafNode);
-		this._toggleShowLeafNodeWarning(isLeafNode);
-		*/
+
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
-			if (this._validatePhotoCarousel()) {
-				this._toggleSubmitDisable(true);
-				this._ajaxEditForm();
-			}
-		});
-
-		this.$cancelButton.click(() => {
-			formChangeWarning.disable();
-			window.location.href = "/my/ads.html";
+			this._ajaxEditForm();
 		});
 
 		this._setupPolyfillForm();
