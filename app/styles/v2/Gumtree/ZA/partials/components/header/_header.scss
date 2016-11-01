@@ -145,6 +145,11 @@
 				}
 
 				.username {
+					display: inline-block;
+					max-width: 127px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 					width: auto;
 				}
 
@@ -167,6 +172,10 @@
 @include to-breakpoint($medium-break) {
 	.header-wrapper {
 		.headerV2 {
+			.left-items {
+				margin-left: 5%;
+			}
+
 			.logo {
 				margin-left: 0;
 			}
