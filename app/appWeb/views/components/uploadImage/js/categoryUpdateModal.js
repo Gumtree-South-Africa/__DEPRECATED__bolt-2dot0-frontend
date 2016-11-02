@@ -10,13 +10,13 @@ class CategoryUpdateModal {
 		postFormCustomAttributes.initialize();
 	}
 
-	getCategoryHierarchy(node, leafId, stack) {
+	_getCategoryHierarchy(node, leafId, stack) {
 		if (node.id === leafId) {
 			stack.unshift(node.id);
 			return node.parentId;
 		} else {
 			for (let i = 0; i < node.children.length; i++) {
-				if (node.id === this.getCategoryHierarchy(node.children[i], leafId, stack)) {
+				if (node.id === this._getCategoryHierarchy(node.children[i], leafId, stack)) {
 					stack.unshift(node.id);
 					return node.parentId;
 				}
@@ -24,15 +24,14 @@ class CategoryUpdateModal {
 		}
 	}
 
-	traverseHierarchy(hierarchyArray) {
+	_traverseHierarchy(hierarchyArray) {
 		let currentCategory = this.categoryTree;
 		// for each value in the hierarchy array, we navigate down in the tree
-		let categoryLevel = 1;
-		hierarchyArray.forEach((catId) => {
+		hierarchyArray.forEach((catId, index) => {
 			// ignore level 0 (all Categories)
 			if (catId !== 0) {
 				let nextLvCategory = {};
-				let id = "L" + categoryLevel + "Category";
+				let id = "L" + index + "Category";
 				let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
 				currentCategory.children.forEach((node) => {
 					let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
@@ -44,24 +43,53 @@ class CategoryUpdateModal {
 				});
 				this.$categorySelection.append(select);
 				currentCategory = nextLvCategory;
-				categoryLevel++;
 			}
 		});
 		// Display next level for selection
 		if (currentCategory.children !== 'undefined' && currentCategory.children.length > 0) {
-			let id = "L" + categoryLevel + "Category";
+			let id = "L" + hierarchyArray.length + "Category";
 			let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
+			select.append($(document.createElement('option')).attr("value", "").attr("selected", "selected").html("---"));
 			currentCategory.children.forEach((node) => {
 				let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
 				select.append(option);
 			});
 			this.$categorySelection.append(select);
+			select.change((evt) => {
+				let newLastSelectedCatId = Number($(evt.currentTarget).val());
+				this._updateCatHierarchyArray(newLastSelectedCatId);
+			});
 		}
 	}
 
+	_updateCatHierarchyArray(newLastSelectedCatId) {
+		this.hierarchyArray.push(newLastSelectedCatId);
+		this.$categorySelection.empty();
+		this._traverseHierarchy(this.hierarchyArray);
+		//Bind change event
+		this._bindEventForSelectedCat();
+		postFormCustomAttributes.updateCustomAttributes(newLastSelectedCatId);
+	}
+
+	_bindEventForSelectedCat() {
+		this.hierarchyArray.forEach((catId, index) => {
+			// ignore level 0 (all Categories)
+			if (catId !== 0) {
+				let id = "#L" + index + "Category";
+				$(id).change((evt) => {
+					//Update category hierarchy Array length
+					this.hierarchyArray.length = index;
+					let newLastSelectedCatId = Number($(evt.currentTarget).val());
+					this._updateCatHierarchyArray(newLastSelectedCatId);
+				});
+			}
+		});
+	}
+
 	updateCategory(categoryId, imgUrl) {
-		this.getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
-		this.traverseHierarchy(this.hierarchyArray);
+		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
+		this._traverseHierarchy(this.hierarchyArray);
+		this._bindEventForSelectedCat();
 		postAdFormMainDetails.setImgUrl(imgUrl);
 		postFormCustomAttributes.updateCustomAttributes(categoryId);
 		postAdFormMainDetails.showModal();
