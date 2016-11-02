@@ -1,4 +1,5 @@
 {{#partial "content"}}
+    {{> (dynamic "postAdModal")}}
     {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle"}}
     {{> (dynamic "spinnerModal") }}
 	<div class="message-modal hidden">
@@ -28,7 +29,6 @@
 	</div>
 	<div class="desktop-post-ad margin-auto">
 		<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
-        {{> (dynamic "postAdModal")}}
         {{> (dynamic "postAdForm")}}
 
 		<a id="postAdBtn" class="post-ad-btn btn-wrapper">

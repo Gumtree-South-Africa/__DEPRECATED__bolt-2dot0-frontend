@@ -1,4 +1,4 @@
-<div id="js-main-detail-post" class="main-detail-post">
+<div id="js-main-detail-post" class="main-detail-post hidden">
 	<form id='post-form' method="POST" action="#" data-publicJs-url="/post">
 		<div class="post-add-detail">Add Details</div>
 		<div class="label-wrapper">
@@ -29,5 +29,34 @@
 
         {{> (dynamic "locationSelection")}}
     </form>
-    {{> (dynamic "postAdButton")}}
+    <div class="mobile-post-ad-wrapper">
+    	<div class="mobile-post-ad-modal-wrapper">
+    		<div class="mobile-post-ad-modal">
+    			<div class="mobile-post-ad-modal-overlay"></div>
+    		</div>
+
+    		<div id="post-submit-button" class="mobile-post-ad-footer">
+    			<div class="modal-footer modal-footer-mobile">
+                    <div class="btn-wrapper">
+                        <a class="btn"  data-gtm="{{gtmEvent}}">
+                            <span class="sudolink">
+                                Post My Ad
+                            </span>
+                        </a>
+    			    </div>
+    			</div>
+    		</div>
+    		<div class="retake-photo">
+                <div>
+                    <div>
+    					<a class=""  data-gtm="{{gtmEvent}}" href="">
+                            <span class="">
+                                Retake Photo
+                            </span>
+    					</a>
+                    </div>
+                </div>
+    		</div>
+    	</div>
+    </div>
 </div>

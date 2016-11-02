@@ -270,10 +270,10 @@ class PostAdFormMainDetails {
 	}
 
 	/**
-	 * ajax the edited ad up to the server
+	 * ajax the post ad up to the server
 	 * @private
 	 */
-	_ajaxEditForm() {
+	_ajaxPostForm() {
 		let $dateFields = this.$editForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();
 		let serialized = this.$editForm.serializeForm();
@@ -374,6 +374,10 @@ class PostAdFormMainDetails {
 		this.imgUrls.push(imgUrl);
 	}
 
+	showModal() {
+		this.$detailsSection.removeClass("hidden");
+	}
+
 	onReady() {
 		this.AD_STATES = {
 			AD_CREATED: "AD_CREATED",
@@ -397,7 +401,7 @@ class PostAdFormMainDetails {
 
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
-			this._ajaxEditForm();
+			this._ajaxPostForm();
 		});
 
 		this._setupPolyfillForm();

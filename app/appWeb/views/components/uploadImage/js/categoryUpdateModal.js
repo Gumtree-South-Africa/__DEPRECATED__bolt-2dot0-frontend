@@ -64,6 +64,7 @@ class CategoryUpdateModal {
 		this.traverseHierarchy(this.hierarchyArray);
 		postAdFormMainDetails.setImgUrl(imgUrl);
 		postFormCustomAttributes.updateCustomAttributes(categoryId);
+		postAdFormMainDetails.showModal();
 	}
 }
 
