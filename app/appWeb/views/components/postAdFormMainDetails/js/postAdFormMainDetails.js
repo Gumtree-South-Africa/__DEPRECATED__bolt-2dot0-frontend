@@ -4,6 +4,7 @@ let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
+let postFormCustomAttributes = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
@@ -298,17 +299,14 @@ class PostAdFormMainDetails {
 
 		let lat = Number(serialized.locationLatitude);
 		let lng = Number(serialized.locationLongitude);
-		//let images = [];
 
 		let description = this.$textarea.val();
-		let category = Number(this.$categorySelection.find("select").last().val());
-		//images.push(this.$imageUrls.val());
 		let payload = {
 			"ads": [
 				{
 					"title": serialized.Title,
 					"description": description,
-					"categoryId": category,
+					"categoryId": this.categoryId,
 					"location": {
 						"latitude": lat,
 						"longitude": lng
@@ -325,11 +323,6 @@ class PostAdFormMainDetails {
 				"amount": Number(serialized.amount)
 			};
 		}
-
-		payload.ads[0].price = {
-			"currency": 'MXN',
-			"amount": 100
-		};
 
 		spinnerModal.showModal();
 
@@ -372,6 +365,14 @@ class PostAdFormMainDetails {
 	 */
 	setImgUrl(imgUrl) {
 		this.imgUrls.push(imgUrl);
+	}
+
+	setCategoryId(categoryId) {
+		this.categoryId = categoryId;
+		postFormCustomAttributes.updateCustomAttributes((data) => {
+			// toggle price field based on if its excluded from new category
+			this._toggleShowPriceField(data.isPriceExcluded);
+		}, categoryId);
 	}
 
 	showModal() {
@@ -425,6 +426,7 @@ class PostAdFormMainDetails {
 
 		formChangeWarning.initialize();
 		spinnerModal.initialize();
+		postFormCustomAttributes.initialize();
 	}
 }
 

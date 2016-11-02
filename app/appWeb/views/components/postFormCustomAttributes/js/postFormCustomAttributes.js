@@ -103,7 +103,7 @@ class PostFormCustomAttributes {
 	 * update the whole custom attributes section with the new categories custom attributes
 	 * @param postRenderCb
 	 */
-	updateCustomAttributes(categoryId) {
+	updateCustomAttributes(postRenderCb, categoryId) {
 		if (categoryId) {
 			this.setCategoryId(categoryId);
 		}
@@ -112,7 +112,7 @@ class PostFormCustomAttributes {
 			method: "GET",
 			contentType: "application/json",
 			success: (customAttrData) => {
-				// render the new results and call the passed in callback
+				postRenderCb(customAttrData);
 				this._render(customAttrData);
 			}
 		});

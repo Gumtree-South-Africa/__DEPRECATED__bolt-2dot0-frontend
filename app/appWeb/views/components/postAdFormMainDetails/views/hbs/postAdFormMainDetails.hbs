@@ -13,7 +13,30 @@
 				<input title="Title" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-        <!-- TBD Ad Price -->
+        <div class="form-ad-price hidden">
+            <div class="label-wrapper">
+                <label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
+            </div>
+            <div class="input-wrapper">
+                <input title="amount" type="number" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
+                <div class="radio-group" data-schema="data.price.currency">
+                    <label class="control">
+                        <input type="radio" name="currency" value="MXN" checked="checked"{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">MXN</span>
+                    </label>
+                    <label class="control">
+                        <input type="radio" name="currency" value="USD"/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">USD</span>
+                    </label>
+                </div>
+            </div>
+        </div>
 		<div class="form-ad-description">
 			<div class="label-wrapper">
 				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>

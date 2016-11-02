@@ -1,5 +1,4 @@
 'use strict';
-let postFormCustomAttributes = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
 let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 class CategoryUpdateModal {
@@ -7,7 +6,7 @@ class CategoryUpdateModal {
 		this.categoryTree = JSON.parse($("#category-tree").text() || "{}");
 		this.$categorySelection = $("#category-selection");
 		this.hierarchyArray = [];
-		postFormCustomAttributes.initialize();
+		postAdFormMainDetails.initialize();
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {
@@ -68,7 +67,7 @@ class CategoryUpdateModal {
 		this._traverseHierarchy(this.hierarchyArray);
 		//Bind change event
 		this._bindEventForSelectedCat();
-		postFormCustomAttributes.updateCustomAttributes(newLastSelectedCatId);
+		postAdFormMainDetails.setCategoryId(newLastSelectedCatId);
 	}
 
 	_bindEventForSelectedCat() {
@@ -91,7 +90,7 @@ class CategoryUpdateModal {
 		this._traverseHierarchy(this.hierarchyArray);
 		this._bindEventForSelectedCat();
 		postAdFormMainDetails.setImgUrl(imgUrl);
-		postFormCustomAttributes.updateCustomAttributes(categoryId);
+		postAdFormMainDetails.setCategoryId(categoryId);
 		postAdFormMainDetails.showModal();
 	}
 }
