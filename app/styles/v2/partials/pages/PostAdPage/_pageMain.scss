@@ -176,7 +176,7 @@ $labelMargin: 8%;
 			display: none;
 		}
 
-		input[type="text"], input[type="tel"], input[type="number"], input[type="date"], .location-link, select {
+		input[type="text"], input[type="tel"], input[type="number"], input[type="date"], select {
 			width: $inputFieldWidth;
 			margin: 0 $inputMargin;
 			padding: 0 calc(2% - 1px);

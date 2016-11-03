@@ -167,34 +167,6 @@ let _preventDefault = (e) => {
 };
 
 /**
- * Modal Related
- */
-let _openModal = () => {
-	document.addEventListener('touchmove', _preventDefault, false);
-	$('#locationModal').removeClass('hiddenElt');
-	$('body').addClass('stop-scrolling');
-	$('.modal-input').val('');
-	$('.modal-input').focus();
-	$('.confirm-button').addClass('disable-click');
-	$('.change-loc').addClass('hidden');
-};
-
-let _refreshPage = () => {
-	location.reload(true);
-};
-
-let _closeModal = () => {
-	document.removeEventListener('touchmove', _preventDefault, false);
-	$('body').removeClass('stop-scrolling');
-	if (this.setValueCb) {
-		this.setValueCb(this.valueCbLocation);
-	} else {
-		_refreshPage();
-	}
-};
-
-
-/**
  * Initialize
  * Sets up module for use and binds events to the dom
  */
@@ -215,35 +187,11 @@ let initialize = (setValueCb) => {
 	this.setNewCookieValues = false;
 	this.settingCookieAgain = null;
 
-	// Event handling on modal
-	let $modalCp = $('.modal-cp');
-
-	$('.card-title-cp, .location-link').on('click', () => {
-		_openModal(this.$locmodal);
-	});
-
-	$('.card-title-cp').on('click', function() {
-		$modalCp.removeClass('hiddenElt');
-	});
-
-	$('.modal-closearea, .modal-cp .btn, .modal-cp .modal-overlay').on('click', () => {
-		$modalCp.addClass('hiddenElt');
-		$('#modal-location').removeClass('spinner').attr('disabled', false);
-		$('body').removeClass('stop-scrolling');
-		document.removeEventListener('touchmove', _preventDefault, false);
-	});
-
-	// close clicked
-	$('.modal-closearea').on('click', () => {
-		_resetCookieValues();
-	});
-
 	// Escape key listener
 	this.$locmodal.on('keyup', (evt) => {
 		switch (evt.keyCode) {
 			case 27:
 				_resetCookieValues();
-				$modalCp.addClass('hiddenElt');
 				$('#modal-location').removeClass('spinner').attr('disabled', false);
 				$('body').removeClass('stop-scrolling');
 				document.removeEventListener('touchmove', _preventDefault, false);
@@ -253,15 +201,9 @@ let initialize = (setValueCb) => {
 		}
 	});
 
-	// confirm button
-	$('.modal-cp .btn').on('click', (ev) => {
-		ev.preventDefault();
-		ev.stopPropagation();
-		_closeModal();
-	});
-
 	// gps icon
-	$('.modal-cp .icon-location-v2').on('click', function() {
+	$('.current-location').on('click', function(e) {
+		e.preventDefault();
 		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoFindMe();
 	});
@@ -280,7 +222,6 @@ let initialize = (setValueCb) => {
 	});
 
 };
-
 
 module.exports = {
 	initialize
