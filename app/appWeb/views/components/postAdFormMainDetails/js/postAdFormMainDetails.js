@@ -1,6 +1,7 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/locationSelection/js/locationModal.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
+let postAd = require('app/appWeb/views/components/uploadImage/js/postAd.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
@@ -299,6 +300,13 @@ class PostAdFormMainDetails {
 
 		let lat = Number(serialized.locationLatitude);
 		let lng = Number(serialized.locationLongitude);
+
+		// No location input, get lat,lng from geoIp cookie
+		if (!lat || !lng) {
+			let latLng = postAd.getLatLngFromGeoCookie();
+			lat = latLng.lat;
+			lng = latLng.lng;
+		}
 
 		let description = this.$textarea.val();
 		let payload = {

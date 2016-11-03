@@ -29,20 +29,24 @@
       border: 1px solid blue;
       float: left;
     }
-	.right {
-		float: right;
-		padding-right: 1.5em;
+	.current-location {
+		width: 90%;
+		margin: 1% 44% 1% 1%;
+		.icon-location-marker {
+			margin: 0 0 0 8%;
+			display: block;
+			float: left;
+			width: 20px;
+			height: 20px;
+		}
 	}
-	.left {
-		border: 1px solid #333333;
-		padding: 0 calc(2% - 1px);
-		margin: 0 6%;
+	.location-input {
 		background: transparent;
 		.location-selection-input {
 			width: 90%;
+			margin: 1% 44% 1% 6%;
+			border: 1px solid #333333;
 			position: relative;
-			margin-left: -4px;
-
 		}
 	}
   }

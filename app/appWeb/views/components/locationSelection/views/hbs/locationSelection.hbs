@@ -2,14 +2,17 @@
 	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
 	<div class="location-selection-container">
         {{!-- this should change depending on the modal content --}}
-			<div class="location-selection-info">{{i18n "modal.info"}}</div>
+			<div class="location-selection-info">Your Location*</div>
 			<div class="location-selection-field container">
-				<div class="right">
-					<span class="icon-location-v2 btn-icon"></span>
+				<div class="current-location">
+					<a class="" data-gtm="" href="">
+                        <span class="search-loc-icon icon-location-marker"></span>
+                        Current Location
+					</a>
 					<div class="clear"></div>
 				</div>
-				<div class="left">
-					<input type="text" id="modal-location" class="location-selection-input" placeholder="{{i18n 'modal.placeholderText'}}"/>
+				<div class="location-input">
+					<input type="text" id="modal-location" class="location-selection-input" placeholder="{{i18n 'modal.info'}}"/>
 					<input id="location-lat" type="hidden" data-schema="data.location.latitude" name="locationLatitude" value="">
 					<input id="location-lng" type="hidden" data-schema="data.location.longitude" name="locationLongitude" value="">
 				</div>

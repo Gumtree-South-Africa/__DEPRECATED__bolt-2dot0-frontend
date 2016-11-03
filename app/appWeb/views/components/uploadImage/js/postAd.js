@@ -217,32 +217,8 @@ class PostAd {
 		}
 	}
 
-	/**
-	 * private function called by both postAdDesktop and postAdMobile
-	 * Does the ajaxing then calls callbacks passed to it
-	 * @param imageArray
-	 * @param successCallback
-	 * @param failureCallback
-	 * @param options
-	 * @private
-	 */
-	_postAd(imageArray, successCallback, failureCallback, options) {
-		let fields = options || {};
-		let getCookie = (cname) => {
-			let name = cname + "=";
-			let ca = document.cookie.split(';');
-			for (let i = 0; i < ca.length; i++) {
-				let c = ca[i];
-				while (c.charAt(0) === ' ') {
-					c = c.substring(1);
-				}
-				if (c.indexOf(name) === 0) {
-					return c.substring(name.length, c.length);
-				}
-			}
-			return "";
-		};
-		let geoCookie = getCookie('geoId');
+	getLatLngFromGeoCookie() {
+		let geoCookie = this.getCookie('geoId');
 		let lat, lng;
 		/*eslint-disable */
 		if (geoCookie !== "") {
@@ -257,6 +233,24 @@ class PostAd {
 		} else {
 			console.warn('no geolocation provided');
 		}
+
+		return {lat: lat, lng: lng};
+	}
+
+	/**
+	 * private function called by both postAdDesktop and postAdMobile
+	 * Does the ajaxing then calls callbacks passed to it
+	 * @param imageArray
+	 * @param successCallback
+	 * @param failureCallback
+	 * @param options
+	 * @private
+	 */
+	_postAd(imageArray, successCallback, failureCallback, options) {
+		let fields = options || {};
+		let latLng = this.getLatLngFromGeoCookie();
+		let lat = latLng.lat;
+		let lng = latLng.lng;
 
 		let payload = {
 			"ads": [
