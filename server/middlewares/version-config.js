@@ -45,7 +45,7 @@ module.exports = function(locale) {
 	}
 
 	return function(req, res, next) {
-		if(locale==='en_ZA' || locale==='en_SG' || locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
+		if(locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
 			// ALWAYS enable 1.0
 			res.locals.b2dot0Version = false;
 			res.cookie('b2dot0Version', '1.0', {'httpOnly': true});
