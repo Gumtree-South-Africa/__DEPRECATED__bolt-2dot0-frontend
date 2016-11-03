@@ -148,6 +148,7 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
@@ -164,6 +165,7 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
@@ -181,6 +183,7 @@ describe('Post Ad', () => {
 
 			uploadAdController.initialize();
 			let $postAdButton = $('#postAdBtn');
+			expect($postAdButton.hasClass('disabled')).toBeTruthy();
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeTruthy();
 			expect($('.cover-photo').hasClass('red-border')).toBeTruthy();
@@ -195,9 +198,11 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
-			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+			$postAdButton.click();
+			expect($postAdButton.hasClass('disabled')).toBeTruthy();
 		});
 	});
 });

@@ -3,9 +3,21 @@ let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerM
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
+let photoCarousel = require('app/appWeb/views/components/photoCarousel/js/photoCarousel.js');
 
+// View model for post ad page
+class PostAdPageVM {
+	constructor() {
+		// True as default value to be consistent with default view
+		this.valid = true;
+	}
+}
 
 class PostAd {
+	constructor() {
+		this.viewModel = new PostAdPageVM();
+	}
+
 	initialize() {
 		// Ignore button click if it's disabled
 		this.AD_STATES = {
@@ -38,6 +50,28 @@ class PostAd {
 		$("#postAdBtn .link-text").on("click", (e) => {
 			this.preventDisabledButtonClick(e);
 		});
+
+		this.photoCarouselVM = this.getPhotoCarouselVM();
+		this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
+		this.updateValidStatus();
+	}
+
+	// Get children view models. Should change to use DI in the future
+	getPhotoCarouselVM() {
+		// Currently photo carousel is a singleton.
+		return photoCarousel.viewModel;
+	}
+
+	updateValidStatus() {
+		let newValidStatus = !!this.photoCarouselVM.imageUrls.length;
+		if (this.viewModel.valid !== newValidStatus) {
+			this.viewModel.valid = newValidStatus;
+			if (newValidStatus) {
+				this.$postAdButton.removeClass('disabled');
+			} else {
+				this.$postAdButton.addClass('disabled');
+			}
+		}
 	}
 
 	hasImagesForUpload() {

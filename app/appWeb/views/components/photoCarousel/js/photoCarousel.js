@@ -14,7 +14,47 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+/**
+ * Simple event emitter, which doesn't handle running context or concurrency.
+ */
+class SimpleEventEmitter {
+	constructor() {
+		this.handlers = [];
+	}
+
+	addHandler(handler) {
+		this.handlers.push(handler);
+	}
+
+	trigger() {
+		this.handlers.forEach(handler => handler.apply(null, arguments));
+	}
+}
+
+// View model for photo carousel
+class PhotoCarouselVM {
+	constructor() {
+		this.imageUrls = [];
+		this.imageUrlsChangeEmitter = new SimpleEventEmitter();
+	}
+
+	addImageUrlsChangeHandler(handler) {
+		this.imageUrlsChangeEmitter.addHandler(handler);
+	}
+
+	updateImageUrls(newImageUrls) {
+		if (newImageUrls.length !== this.imageUrls.length ||
+			newImageUrls.some((imageUrl, index) => newImageUrls[index] !== this.imageUrls[index])) {
+			this.imageUrls = [].concat(newImageUrls);
+			this.imageUrlsChangeEmitter.trigger();
+		}
+	}
+}
+
 class PhotoCarousel {
+	constructor() {
+		this.viewModel = new PhotoCarouselVM();
+	}
 
 	/**
 	 * sets up all the variables and two functions (success and failure)
@@ -99,6 +139,8 @@ class PhotoCarousel {
 					this.imageCount--;
 					this.updateAddPhotoButton();
 					this.resizeCarousel();
+
+					this.refreshViewModel();
 				}
 			}
 		);
@@ -233,7 +275,21 @@ class PhotoCarousel {
 
 			this.resizeCarousel();
 			this.removePendingImage(i);
+
+			this.refreshViewModel();
 		};
+
+		this.refreshViewModel();
+	}
+
+	/**
+	 * Refresh view model
+	 */
+	refreshViewModel() {
+		let cItems = document.querySelectorAll(".carousel-item[data-image]");
+
+		let newImageUrls = [].map.call(cItems, (item) => item.getAttribute('data-image'));
+		this.viewModel.updateImageUrls(newImageUrls);
 	}
 
 	/**
@@ -291,6 +347,8 @@ class PhotoCarousel {
 		this.imageCount--;
 		this.updateAddPhotoButton();
 		this.resizeCarousel();
+
+		this.refreshViewModel();
 	}
 
 	/**
