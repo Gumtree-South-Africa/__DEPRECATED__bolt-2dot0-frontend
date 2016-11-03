@@ -15,5 +15,20 @@
 </div>
 <div id="vipOverlay" class="modal hidden">
 	<div class="modal-overlay"></div>
-	<div class="vipOverlay-container"></div>
+	<div class="modal-container">
+		<div class="title">Cozy 3 Bedrooms</div>
+		<div class="price">$150</div>
+		<div class="modal-close-section">
+			<div class="modal-closearea">
+				<span class="close-text">{{i18n "modal.close"}}</span>
+				<span class="icon-close"></span>
+			</div>
+		</div>
+		<div class="overlay-bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
+		<div class="vipOverlay-container">
+			{{#each this.advert.pictures.testPictures}}
+				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
+			{{/each}}
+		</div>
+	</div>
 </div>

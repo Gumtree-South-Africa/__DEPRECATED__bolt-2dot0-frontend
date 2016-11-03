@@ -13,7 +13,8 @@ class viewPageGallery {
 		if (!options) {
 			options = {
 				slickOptions: {
-					arrows: false,
+					arrows: true,
+					dots: false,
 					infinite: true,
 					slidesToShow: 1,
 					slidesToScroll: 1
@@ -58,14 +59,25 @@ class viewPageGallery {
 			$('.slick-arrow').addClass("icon-back");
 		});
 
-		// this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
-		// 	evt.stopPropagation();
-		// 	evt.preventDefault();
-		// 	this.$vipGallery.find('.vip-gallery').clone().appendTo('#vipOverlay .vipOverlay-container');
-		// 	$('#vipOverlay .vipOverlay-container').not('.slick-initialized').slick(options.slickOptions);
-		// 	$('#vipOverlay').removeClass('hidden');
-		// });
+		this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
+			evt.stopPropagation();
+			evt.preventDefault();
+			//this.$vipGallery.find('.vip-gallery').clone().appendTo('#vipOverlay .vipOverlay-container');
+			$('#vipOverlay .vipOverlay-container').not('.slick-initialized').slick(options.slickOptions);
+			$('#vipOverlay').removeClass('hidden');
+			$('.slick-arrow').addClass("icon-back");
+		});
 
+		//to refactor
+		$('.modal-closearea').on('click', () => {
+			$('#vipOverlay').addClass('hidden');
+		});
+
+		$(document).on('keyup', (evt) => {
+			if (evt.keyCode === 27 && !($('#vipOverlay').hasClass('hidden'))) {
+				$('#vipOverlay').addClass('hidden');
+			}
+		});
 	}
 
 	updateMainImage(event) {
