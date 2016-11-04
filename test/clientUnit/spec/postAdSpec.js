@@ -1,5 +1,6 @@
 'use strict';
 
+let photoCarouselController = require("app/appWeb/views/components/photoCarousel/js/photoCarousel.js");
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
 let uploadAdController = require("app/appWeb/views/components/uploadImage/js/postAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
@@ -133,6 +134,9 @@ describe('Post Ad', () => {
 		beforeEach(() => {
 			$testArea = specHelper.setupTest("photoCarousel", {}, "es_MX");
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
+			// Reset view model to avoid former tests affecting latter ones.
+			photoCarouselController.setupViewModel();
+			uploadAdController.setupViewModel();
 		});
 
 		it('should successfully post ad with created response', () => {
@@ -202,7 +206,7 @@ describe('Post Ad', () => {
 			let $postAdButton = $('#postAdBtn');
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
 			$postAdButton.click();
-			expect($postAdButton.hasClass('disabled')).toBeTruthy();
+			expect($postAdButton.hasClass('disabled')).toBeFalsy();
 		});
 	});
 });

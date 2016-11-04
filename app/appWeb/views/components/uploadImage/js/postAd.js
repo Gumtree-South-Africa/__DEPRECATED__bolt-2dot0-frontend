@@ -15,7 +15,7 @@ class PostAdPageVM {
 
 class PostAd {
 	constructor() {
-		this.viewModel = new PostAdPageVM();
+		this.setupViewModel();
 	}
 
 	initialize() {
@@ -54,6 +54,10 @@ class PostAd {
 		this.photoCarouselVM = this.getPhotoCarouselVM();
 		this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
 		this.updateValidStatus();
+	}
+
+	setupViewModel() {
+		this.viewModel = new PostAdPageVM();
 	}
 
 	// Get children view models. Should change to use DI in the future
@@ -216,11 +220,11 @@ class PostAd {
 	 * @param event
 	 */
 	preventDisabledButtonClick(event) {
-		if (!this.hasImagesForUpload() && !this.$postAdButton.hasClass('disabled')) {
+		if (!this.hasImagesForUpload()) {
+			// As view model has set up button correctly. We'll not check / set post ad button here.
 			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
 			$('.cover-photo').addClass('red-border');
 			$('.photos-required-msg').removeClass('hidden');
-			this.$postAdButton.addClass('disabled');
 		}
 
 		if (this.$postAdButton.hasClass("disabled")) {

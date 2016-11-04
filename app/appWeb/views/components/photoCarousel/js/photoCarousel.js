@@ -53,7 +53,7 @@ class PhotoCarouselVM {
 
 class PhotoCarousel {
 	constructor() {
-		this.viewModel = new PhotoCarouselVM();
+		this.setupViewModel();
 	}
 
 	/**
@@ -280,6 +280,10 @@ class PhotoCarousel {
 		};
 
 		this.refreshViewModel();
+	}
+
+	setupViewModel() {
+		this.viewModel = new PhotoCarouselVM();
 	}
 
 	/**
