@@ -144,10 +144,12 @@ let fallback = (done) => {
 };
 
 module.exports = function watch(gulp, plugins) {
-	return function(done) {
-		return gulp.src('public/svgs/**/*.svg')
-			.pipe(newer('public/css/.built_fallback'))
-			.pipe(svgmin())
-			.pipe(fallback(done));
-	}
+	return function() {
+		gulp.task('icons', (done) => {
+			return gulp.src('public/svgs/**/*.svg')
+				.pipe(newer('public/css/.built_fallback'))
+				.pipe(svgmin())
+				.pipe(fallback(done));
+		});
+	};
 };
