@@ -35,12 +35,6 @@ var gulp = require('gulp'),
 	runSequence = require('gulp-run-sequence'),
 	reload = browserSync.reload;
 
-// ////////////////////////////////////////////////
-// Get Tasks //
-// // /////////////////////////////////////////////
-function getTask(task) {
-	return require('./gulp-tasks/' + task)(gulp, plugins);
-}
 
 // ////////////////////////////////////////////////
 // Log Errors
@@ -50,30 +44,41 @@ function errorlog(err) {
 	this.emit('end');
 }
 
-let webpackTasks =  getTask('webpack');
-
-// STAND ALONE TASKS
-gulp.task('bundlejs', getTask('bundlejs'));
-gulp.task('bumpup', getTask('bumpup'));
-gulp.task('precommit', ['eslint', 'jsonlint']);
-gulp.task('clean', getTask('clean'));
-gulp.task('compass', getTask('compass'));
-gulp.task('sass', getTask('sass'));
-gulp.task('icons', getTask('icons'));
-gulp.task('precompile', getTask('precompile'));
-gulp.task('precompile2', getTask('precompile2'));
-gulp.task('component', getTask('component'));
-gulp.task('set-env', getTask('set-env'));
-gulp.task('develop', getTask('develop'));
-gulp.task('jsonlint', getTask('jsonlint'));
-gulp.task('prop2json', getTask('prop2json'));
-gulp.task('eslint', getTask('eslint'));
-gulp.task('watch', getTask('watch'));
-gulp.task('webpack', webpackTasks);
-gulp.task('webpack:rui', webpackTasks);
-gulp.task('svgSprite', getTask('svgSprite'));
-gulp.task('svgFallback', getTask('svgFallback'));
-gulp.task('webpackPrepare', getTask('webpackPrepare'));
+// ////////////////////////////////////////////////
+// Register gulp tasks
+// // /////////////////////////////////////////////
+(function runTaskRegisters(taskRegisterNames) {
+	// Each gulp-task file will actually return a function which will register
+	// corresponding tasks.
+	taskRegisterNames.forEach(
+		taskRegisterName => require('./gulp-tasks/' + taskRegisterName)(gulp, plugins)());
+})([
+	'bundlejs',
+	'bumpup',
+	'clean',
+	'compass',
+	'sass',
+	'icons',
+	'precompile',
+	'precompile2',
+	'component',
+	'set-env',
+	'develop',
+	'jsonlint',
+	'prop2json',
+	'eslint',
+	'watch',
+	'webpack',
+	'svgSprite',
+	'svgFallback',
+	'webpackPrepare',
+	'svgIcons',
+	'test',
+	'icons2',
+	'jasminebrowser',
+	'pak',
+	'release'
+]);
 
 // PRE-COMMIT
 gulp.task('precommit', ['jsonlint', 'eslint']);
@@ -82,36 +87,7 @@ gulp.task('precommit', ['jsonlint', 'eslint']);
 
 gulp.task('build', ['set-env', 'eslint', 'webpack', 'svgSprite', 'svgFallback', 'bundlejs', 'svgIcons', 'icons', 'sass', 'compass', 'precompile', 'jsonlint']);
 
-gulp.task('icons', getTask('icons'));
-
-gulp.task('svgIcons', getTask('svgIcons'));
-
 // DEFAULT is used by Developers
 gulp.task('default', function(done) {
 	runSequence('build', ['develop', 'watch'], done);
 });
-
-
-let testTasks = getTask("test");
-
-gulp.task('test:clientUnit', testTasks);
-gulp.task('test:clientUnitCI', testTasks);
-gulp.task('test:serverUnit', testTasks);
-gulp.task('test:integration', testTasks);
-gulp.task('test', testTasks);
-
-
-let icons2 = getTask('icons2');
-
-gulp.task('icons2', icons2);
-gulp.task('rebuildSprites', icons2);
-gulp.task('cleanSprites', icons2);
-
-
-gulp.task('jasminebrowser', getTask('jasminebrowser'));
-
-// PACKAGE
-gulp.task('pak', getTask('pak'));
-
-//RELEASE
-gulp.task('release', getTask('release'));
