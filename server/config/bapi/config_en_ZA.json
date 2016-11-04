@@ -1,31 +1,31 @@
 {
 	"header": {
-		"type" 								: "website",
-		"localeOpenGraph" 					: "en_ZA",
-		"publisherUrl"						: "https://plus.google.com/+gumtreecoza/",
-		"noPhotoUrl"						: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
-		"moreAdSizes"						: "",
-		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: true,
-		"skinCampaignOn"					: true,
-		"googleTagAccountId"				: "7162/Gumtree_ZA",
-		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
-		"enableLighterVersionForMobile"		: false,
-		"headerConfig"						: null,
-		"navigationConfig"					: {
+		"type" 				: "website",
+		"localeOpenGraph" 		: "en_ZA",
+		"publisherUrl"			: "https://plus.google.com/+gumtreecoza/",
+		"noPhotoUrl"			: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"moreAdSizes"			: "",
+		"homepageHeroAdvertisement" 	: false,
+		"isMessageCenterEnabled"	: true,
+		"skinCampaignOn"		: true,
+		"googleTagAccountId"		: "7162/Gumtree_ZA",
+		"googleTagAccountMobId"		: "7162/Gumtree_ZA_mobresp",
+		"enableLighterVersionForMobile"	: false,
+		"headerConfig"			: null,
+		"navigationConfig"		: {
 			"savedSearch"		: true,
 			"autoComplete"		: true,
-			"locationSelection" : true,
+			"locationSelection" 	: true,
 			"geoLocator"		: false
 		},
-	    "marketo"							: {
-	        "enabled"			: true,
-	    	"trackAnonUser"		: false,
-	    	"munchkinId"		: "038-AZF-323",
-	    	"privateKey"		: "boltisking123",
+	    	"marketo"			: {
+		        "enabled"		: true,
+		    	"trackAnonUser"		: false,
+		    	"munchkinId"		: "038-AZF-323",
+		    	"privateKey"		: "boltisking123",
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
-	    },
+	    	},
 		"analytics": {
 			"account": "UA-24259029-1",
 			"domainName": ".gumtree.co.za",
@@ -44,9 +44,9 @@
 			"enableGaTracking": "true",
 			"enableABTest": "false"
 		},
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
-		"locationDropdownLevel"				: 2,
-		"categoryDropdownLevel"				: 2
+	    	"seoDeepLinkingBaseUrlAndroid" 	: "android-app://com.ebay.gumtree.za/gumtreeza/",
+		"locationDropdownLevel"		: 2,
+		"categoryDropdownLevel"		: 2
 	},
 	"footer": {
 		"about": "https://help.gumtree.co.za/articles/KB_Article/About-Us?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_Basics&vcategory2=About_us",
@@ -64,22 +64,22 @@
 		"locationsPageUrl": "/pages/locations/",
 		"mobileAppUrl": "/pages/mobileapp/",
 		"staySafeUrl": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB%3ASafety_advice",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
-		"googleAdSense"						:	{
-		"enabled"							: true,
-		"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-  	"googleAdClient"					: "ca-pub-4933925025705454",
-		"googleAdSlot"						: "2590683807",
-		"googleAdWidth"						: "300",
-		"googleAdHeight"					: "250",
-		"paidSearchTopAdsenseCountDesktop"	: "0",
-    "paidSearchTopAdsenseCountMobile"	: "0"
+		"bestAdsLandingPageUrl"		: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"	: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"			: {
+			"enabled"				: true,
+			"googleAdUrl"				: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+	  		"googleAdClient"			: "ca-pub-4933925025705454",
+			"googleAdSlot"				: "2590683807",
+			"googleAdWidth"				: "300",
+			"googleAdHeight"			: "250",
+			"paidSearchTopAdsenseCountDesktop"	: "0",
+	    		"paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"							: true,
-			"blogUrl" 							: "https://blog.gumtree.co.za/",
-			"vipLandingPageEnabled"				: true
+			"enabled"			: true,
+			"blogUrl" 			: "https://blog.gumtree.co.za/",
+			"vipLandingPageEnabled"		: true
 		},
 		"social": {
 			"facebookUrl": "https://www.facebook.com/GumtreeSouthAfrica",
@@ -88,10 +88,10 @@
 			"youTubeUrl": "https://www.youtube.com/user/GumtreeSouthAfrica",
 			"googlePlusUrl": "https://plus.google.com/+gumtreecoza"
 		},
-		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
+		"availableAdFeatures" : ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
 	"content": {
-  	"homepageV2" : {
+  		"homepageV2" : {
 			"safetyLink": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB:Gumtree_basics",
 			"distractionFree": false,
 			"showTopBanner": false,
@@ -172,7 +172,7 @@
 					"rating": "4"
 				}
 			]
-  	},
+	  	},
 		"homepage" : {
 			"sectionMenu": {
 				"trending": "#",
@@ -181,23 +181,23 @@
 				"realEstate": "/s-property/v1c2p1",
 				"jobs": "/s-jobs/v1c8p1"
 			},
-			"topHomePageAdBanner"	: false,
-			"homepageBanners"		: null,
-			"bingMeta"				: null,
-			"swapTradeEnabled"		: false,
-			"swapTradeName"			: null,
-			"swapTradeUrl"			: null,
-			"freebiesEnabled"		: false,
-			"freebiesName"			: null,
-			"freebiesUrl"			: null,
-	  	"adCarouselSeeAllUrl"	: null,
-	  	"defaultKeywordsCount"	: 15
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"	: null,
+			"bingMeta"		: null,
+			"swapTradeEnabled"	: true,
+			"swapTradeName"		: "home.swap-trade.$$",
+			"swapTradeUrl"		: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"	: true,
+			"freebiesName"		: "home.freebies.$$",
+			"freebiesUrl"		: "s-freebies/v1p1?priceType=free",
+			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
+		  	"defaultKeywordsCount"	: 15
 		},
 		"localCurrencies": ["ZAR"],
-		 "quickpost" : {
-              "currencyDisplay"    :    false,
-              "currency"           :    ["ZAR:ZAR"]
-        }
+		"quickpost" : {
+	              "currencyDisplay"    :    false,
+	              "currency"           :    ["ZAR:ZAR"]
+	        }
 	},
 	"bapi" : {
 		"HomepageV2": {
