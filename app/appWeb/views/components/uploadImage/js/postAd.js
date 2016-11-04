@@ -220,13 +220,6 @@ class PostAd {
 	 * @param event
 	 */
 	preventDisabledButtonClick(event) {
-		if (!this.hasImagesForUpload()) {
-			// As view model has set up button correctly. We'll not check / set post ad button here.
-			window.BOLT.trackEvents({"event": "PostAdFreeFail"});
-			$('.cover-photo').addClass('red-border');
-			$('.photos-required-msg').removeClass('hidden');
-		}
-
 		if (this.$postAdButton.hasClass("disabled")) {
 			event.preventDefault();
 		} else {

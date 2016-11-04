@@ -188,10 +188,6 @@ describe('Post Ad', () => {
 			uploadAdController.initialize();
 			let $postAdButton = $('#postAdBtn');
 			expect($postAdButton.hasClass('disabled')).toBeTruthy();
-			$postAdButton.click();
-			expect($postAdButton.hasClass('disabled')).toBeTruthy();
-			expect($('.cover-photo').hasClass('red-border')).toBeTruthy();
-			expect($('.photos-required-msg').hasClass('hidden')).toBeFalsy();
 		});
 
 		it('should error out with returned failed ajax', () => {
