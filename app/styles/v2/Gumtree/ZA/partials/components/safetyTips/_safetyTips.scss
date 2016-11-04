@@ -1,0 +1,21 @@
+.safety-tips-container{
+	.safety-tips-card{
+		background-color: color(crane,base);
+		.safetyTips{
+			.image.image-left{
+				background: url(../../../../../images/en_ZA/safety.jpg) no-repeat;
+				background-position: center;
+				background-size: cover;
+			}
+			.title{
+				padding-top:10px;
+			}
+			.help-text{
+				padding-top:5px;
+			}
+			.faq{
+				height: 20px;
+			}
+		}
+	}
+}

@@ -30,3 +30,35 @@ $vivaBlue6: #196ED2;	// defined for use in 'Get the App' card
 $vivaBlue7: #478BCD;
 
 $vivaRed: red;
+
+$colors: (
+	crane: (
+		base: #F66429,
+		shade: #B0481A
+	),
+	foxtail: (
+		base: #FCECC7,
+		light: #FCFAf4,
+		medium: #FAF5EA
+	),
+	leaf: (
+		base: #72EF36
+	),
+	swirl: (
+		base: #CFCDC1,
+		dark: #6E6A60,
+		medium: #A4A29C,
+		shade: #605D4C
+	)
+);
+
+@function color($name, $tone: base) {
+	@return map-get(map-get($colors, $name), $tone)
+};
+
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Lato-Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format('truetype');
+};

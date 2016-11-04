@@ -76,5 +76,87 @@
 				}
 			]
 		}
+	},
+	"en_ZA": {
+		"9198": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a mobile device"
+				}
+			]
+		},
+		"9074": {
+			"type": [
+				{
+					"name": "NumberBedrooms",
+					"prefix": "a {formattedValue} {localizedName}"
+				},
+				{
+					"name": "DwellingType",
+					"prefix": "{formattedValue}"
+				}
+			]
+		},
+		"9438": {
+			"type": [
+				{
+					"name": "laptop",
+					"prefix": "a laptop"
+				}
+			]
+		},
+		"9077": {
+			"type": [
+				{
+					"name": "AlmVehicleBrand",
+					"prefix": "a {formattedValue}"
+				},
+				{
+					"name": "AlmVehicleModel",
+					"prefix": "{formattedValue}"
+				}
+			]
+		},
+		"9181": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a piece of furniture"
+				}
+			]
+		},
+		"9193": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a piece of clothes"
+				}
+			]
+		},
+		"9194": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a pair of shoes"
+				}
+			]
+		},
+		"9184": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a home appliance"
+				}
+			]
+		},
+		"8": {
+			"type": [
+				{
+					"name": "Address",
+					"prefix": "a job"
+				}
+			]
+		}
 	}
 }

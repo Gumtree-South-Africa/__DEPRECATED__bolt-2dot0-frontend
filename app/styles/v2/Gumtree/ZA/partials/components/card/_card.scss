@@ -1,0 +1,35 @@
+//:::::::::: Desktop, Medium and Small
+.card{
+	background-color: color(foxtail, light);
+	.card-title{
+		color: color(swirl,shade);
+	}
+	.tile-grid-width-container{
+		.tile-container.using-isotope{
+			//common styles
+			>.tile-item{
+				//margin: 0;
+				.controls{
+					background: rgba(0,0,0,0.5);
+					height: 40px;
+					border-radius:0;
+				}
+				.tile-link{
+					//background: red;
+				}
+			}
+			>.tile-item.two-by-two{
+				//height: 264px;
+				//width: 210px;
+			}
+			>.tile-item.two-by-one{
+				//height: 178px;
+				//width: 300px;
+			}
+			>.tile-item.one-by-one{
+				//height: 178px;
+				//width: 140px;
+			}
+		}
+	}	
+}
