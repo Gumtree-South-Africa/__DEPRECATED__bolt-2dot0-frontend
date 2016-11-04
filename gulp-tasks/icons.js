@@ -138,6 +138,10 @@ let fallback = (done) => {
 			phantom.create()
 				.then((instance) => {
 					return generate(instance);
+				})
+				.catch((err) => {
+					console.error(err);
+					console.error(err.stack);
 				});
 		}
 	});
