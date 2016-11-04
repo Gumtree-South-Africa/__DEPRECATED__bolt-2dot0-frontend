@@ -84,7 +84,7 @@ app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
 app/appWeb/serviceWorkers/service-worker-registration.js
 app/appWeb/views/components/modal/js/locationModal.js
-app/appWeb/views/components/locationSelection/js/locationModal.js
+app/appWeb/views/components/locationSelection/js/locationSelection.js
 
 server/services/category.js
 server/services/configservice.js

@@ -1,5 +1,5 @@
 'use strict';
-let locationModal = require("app/appWeb/views/components/locationSelection/js/locationModal.js");
+let locationModal = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
 let postAd = require('app/appWeb/views/components/uploadImage/js/postAd.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
@@ -106,7 +106,7 @@ class PostAdFormMainDetails {
 			replaceUI: 'auto'
 		};
 
-		let baseJsPath = this.$editForm.data('publicjs-url');
+		let baseJsPath = this.$postForm.data('publicjs-url');
 
 		$.webshim.setOptions('basePath', `${baseJsPath}libraries/webshims/shims/`);
 
@@ -276,9 +276,9 @@ class PostAdFormMainDetails {
 	 * @private
 	 */
 	_ajaxPostForm() {
-		let $dateFields = this.$editForm.find('input[type="date"]');
+		let $dateFields = this.$postForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();
-		let serialized = this.$editForm.serializeForm();
+		let serialized = this.$postForm.serializeForm();
 		let attrs = this.$attributes.serializeForm();
 		let categoryAttributes = [];
 
@@ -375,6 +375,10 @@ class PostAdFormMainDetails {
 		this.imgUrls.push(imgUrl);
 	}
 
+	/**
+	 * sets the category id for the singleton instance
+	 * @param categoryId
+	 */
 	setCategoryId(categoryId) {
 		this.categoryId = categoryId;
 		postFormCustomAttributes.updateCustomAttributes((data) => {
@@ -383,6 +387,9 @@ class PostAdFormMainDetails {
 		}, categoryId);
 	}
 
+	/**
+	 * Show add detail form for post
+	 */
 	showModal() {
 		this.$detailsSection.removeClass("hidden");
 	}
@@ -398,10 +405,11 @@ class PostAdFormMainDetails {
 		this.$categorySelection = this.$detailsSection.find('#category-selection');
 		this.$submitButton = this.$detailsSection.find('#post-submit-button');
 		this.$locationLink = $("#post-location-input");
+		this.$addDetail = $(".post-add-detail");
 
 		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
 
-		this.$editForm = this.$detailsSection.find('#post-form');
+		this.$postForm = this.$detailsSection.find('#post-form');
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 
@@ -410,7 +418,16 @@ class PostAdFormMainDetails {
 
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
+			e.stopImmediatePropagation();
+			this._toggleSubmitDisable(true);
+			this.$postForm.toggleClass('hidden', true);
 			this._ajaxPostForm();
+		});
+
+		this.$addDetail.on('click', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			this.$postForm.toggleClass('hidden');
 		});
 
 		this._setupPolyfillForm();

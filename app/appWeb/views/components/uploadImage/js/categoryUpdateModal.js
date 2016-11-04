@@ -85,6 +85,11 @@ class CategoryUpdateModal {
 		});
 	}
 
+	/**
+	 * After image upload, update categoryId and imgUrl for post form
+	 * @param categoryId
+	 * @param imgUrl
+	 */
 	updateCategory(categoryId, imgUrl) {
 		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
 		this._traverseHierarchy(this.hierarchyArray);
