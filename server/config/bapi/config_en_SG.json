@@ -77,32 +77,107 @@
 		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
 	"content" : {
+	  	"homepageV2" : {
+			"safetyLink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+			"distractionFree": false,
+			"showTopBanner": false,
+			"reviews" : [
+				{
+					"primaryImageUrl": "yessenia_r.jpg",
+					"description": "Perfecta Encuentro lo que necesito a buen precio.",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "morithaclid.jpg",
+					"description": "Me gusto Apenas subi cosas para vender",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "felix_o.jpg",
+					"description": "Excelente - Me gusto",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "jackson_a.jpg",
+					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente.",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "francisco_m.jpg",
+					"description": "Comparando barato Que bueno",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "isabel_v.jpg",
+					"description": "Me gusta. Es muy eficaz gracias!!",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "alan_z.jpg",
+					"description": "Nunca recomiendo nada, esta es genial, el chat ayuda con los interesados",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "victor_c.jpg",
+					"description": "Buena aplicación",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "jesus.jpg",
+					"description": "El mejor sitio de Internet para hacer negocios, lo recomiendo mucho",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "canal_v.jpg",
+					"description": "Esta app es de lo mejor por eso le doy 5 estrellas",
+					"rating": "5"
+				},
+				{
+					"primaryImageUrl": "david_o.jpg",
+					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados",
+					"rating": "4"
+				},
+				{
+					"primaryImageUrl": "christian_r.jpg",
+					"description": "Me es muy util y es muy facil de encontrar lo que necesito",
+					"rating": "4"
+				}
+			]
+	  	},
 		"homepage" : {
-			"topHomePageAdBanner"	: true,
+			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
-			"swapTradeEnabled"		: true,
-			"swapTradeName"			: "home.swap-trade.$$",
-			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"		: true,
-			"freebiesName"			: "home.freebies.$$",
-			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
-		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
-		  	"defaultKeywordsCount"	: 10
+			"swapTradeEnabled"		: false,
+			"swapTradeName"			: null,
+			"swapTradeUrl"			: null,
+			"freebiesEnabled"		: false,
+			"freebiesName"			: null,
+			"freebiesUrl"			: null,
+		  	"adCarouselSeeAllUrl"	: null,
+		  	"defaultKeywordsCount"	: 15
 		},
-
-	     "quickpost" : {
-              "currencyDisplay"    :    false,
-              "currency"           :    ["SGD:SGD"]
+		"localCurrencies": ["MXN", "USD"],
+		 "quickpost" : {
+              "currencyDisplay"    :    true,
+              "currency"           :    ["MXN:MXN","USD:USD"]
         }
 	},
 	"bapi" : {
+		"HomepageV2": {
+			"desktop": {
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+			},
+			"mobile": {
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+			}
+		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+				"models" : ["keyword", "adstatistics", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+				"models" : ["keyword", "adstatistics", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
@@ -111,6 +186,22 @@
 			},
 			"mobile" 	: {
 			  	"models" : ["seo"]
+			}
+		},
+		"PostAdForm": {
+			"desktop" 	: {
+				"models" : ["seo"]
+			},
+			"mobile" 	: {
+				"models" : ["seo"]
+			}
+		},
+		"EditAdForm": {
+			"desktop" 	: {
+				"models" : ["locationlatlong", "adResult", "seo"]
+			},
+			"mobile" 	: {
+				"models" : ["locationlatlong", "adResult", "seo"]
 			}
 		}
 	}

@@ -84,6 +84,13 @@
 			"blogUrl" 							: "https://vivedf.vivanuncios.com.mx/",
 			"vipLandingPageEnabled"				: true
 		},
+		"social": {
+			"facebookUrl": "https://www.facebook.com/vivanuncios",
+			"twitterUrl": "https://twitter.com/vivanuncios",
+			"pinterestUrl": "https://www.pinterest.com/vivanuncios/",
+			"youTubeUrl": "https://www.youtube.com/c/VivanunciosMx",
+			"googlePlusUrl": "https://plus.google.com/101549338197518663406"
+		},
 		"availableAdFeatures" 				: ["BUMP_UP_XY", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY"]
 	},
 	"content" : {
@@ -155,6 +162,13 @@
 			]
 	  	},
 		"homepage" : {
+			"sectionMenu": {
+				"trending": "#",
+				"goods": "/s-hogar/v1c1p1",
+				"cars": "/s-venta-autos/v1c64p1",
+				"realEstate": "/s-inmuebles/v1c30p1",
+				"jobs": "/s-ofertas+trabajo/v1c36p1"
+			},
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
@@ -167,7 +181,7 @@
 		  	"adCarouselSeeAllUrl"	: null,
 		  	"defaultKeywordsCount"	: 15
 		},
-
+		"localCurrencies": ["MXN", "USD"],
 		 "quickpost" : {
               "currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]
@@ -176,10 +190,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {
@@ -243,6 +257,18 @@
 			"mobile": {
 				"models": [
 					"seo"
+				]
+			}
+		},
+		"VIP": {
+			"desktop": {
+				"models": [
+					"advert", "seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "seo"
 				]
 			}
 		}
