@@ -140,7 +140,7 @@ class MobileUpload {
 			this.$uploadProgress.html("0%");
 
 			$.ajax({
-				url: '/api/irs',
+				url: '/api/postad/imagerecognition',
 				type: 'POST',
 				data: JSON.stringify({"url" : url.normal}),
 				dataType: 'json',

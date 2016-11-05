@@ -17,8 +17,18 @@ class PostAdModel {
 			let vipLink = results._links.find( (elt) => {
 				return elt.rel === "seoVipUrl";
 			});
+			let paymentLink = results._links.find( (elt) => {
+				return elt.rel === "paymentUrl";
+			});
+			let paymentRedirectLink = results._links.find( (elt) => {
+				return elt.rel === "paymentRedirectUrl";
+			});
 			if (vipLink) {
-				results.vipLink = vipLink.href;
+				results.redirectLinks = {
+					vip: this.fixupVipUrl(vipLink.href),
+					previp: paymentLink.href,
+					previpRedirect: paymentRedirectLink.href
+				};
 			} else {
 				throw new Error(`post ad result is missing seoVipUrl ${JSON.stringify(results, null, 4)}`);
 			}

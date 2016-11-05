@@ -68,7 +68,7 @@ let getAdPostedResponse = (results) => {
 
 	response.ad = {
 		id: results.id,
-		vipLink: results.vipLink,
+		redirectLinks: results.redirectLinks,
 		status: results.adState
 	};
 
@@ -149,16 +149,6 @@ router.post('/create', cors, (req, res) => {
 		// Step 7: Post The Ad
 		postAdModel.postAd(requestJson).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
-
-			// redirect to VIP by default
-			let redirectLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
-
-			// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
-			if (responseJson.ad.status === 'HOLD') {
-				redirectLink = '/edit/' + responseJson.ad.id;
-			}
-
-			responseJson.ad.redirectLink = redirectLink;
 			res.send(responseJson);
 			return;
 		}).fail((error) => {

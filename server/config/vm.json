@@ -40,7 +40,7 @@
 			"version": "4.0"
 		}
 	},
-	"irs": {
+	"imageRecognitionService": {
 		"server": {
 			"host"	: "charlie-vm-002-7898.phx02.dev.ebayc3.com",
 			"port"	: 10741,

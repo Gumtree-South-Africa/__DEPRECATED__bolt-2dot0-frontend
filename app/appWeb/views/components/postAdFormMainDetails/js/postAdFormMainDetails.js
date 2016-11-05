@@ -203,7 +203,13 @@ class PostAdFormMainDetails {
 		switch (response.state) {
 			case this.AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
-					window.location.href = response.ad.redirectLink;
+					if (response.ad.redirectLinks.previp) {
+						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
+					} else if (response.ad.status === 'HOLD') {
+						window.location.href = '/edit/' + response.ad.id;
+					} else {
+						window.location.href = response.ad.redirectLinks.vip;
+					}
 				});
 				break;
 			case this.AD_STATES.AD_DEFERRED:
