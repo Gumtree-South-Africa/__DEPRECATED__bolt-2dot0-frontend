@@ -3,6 +3,7 @@
 require("slick-carousel");
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
 let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -13,23 +14,6 @@ Array.prototype.remove = function(from, to) {
 	this.length = from < 0 ? this.length + from : from;
 	return this.push.apply(this, rest);
 };
-
-/**
- * Simple event emitter, which doesn't handle running context or concurrency.
- */
-class SimpleEventEmitter {
-	constructor() {
-		this.handlers = [];
-	}
-
-	addHandler(handler) {
-		this.handlers.push(handler);
-	}
-
-	trigger() {
-		this.handlers.forEach(handler => handler.apply(null, arguments));
-	}
-}
 
 // View model for photo carousel
 class PhotoCarouselVM {
