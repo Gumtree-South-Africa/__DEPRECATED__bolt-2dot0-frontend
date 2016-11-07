@@ -43,8 +43,9 @@
 	.location-input {
 		background: transparent;
 		.location-selection-input {
-			width: 80%;
+			width: 86%;
 			margin: 1% 44% 1% 6%;
+			padding: 0 calc(2% - 1px);
 			border: 1px solid #333333;
 			position: relative;
 			text-indent: 2%;

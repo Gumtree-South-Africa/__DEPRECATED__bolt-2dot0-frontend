@@ -91,6 +91,8 @@ class CategoryUpdateModal {
 	 * @param imgUrl
 	 */
 	updateCategory(categoryId, imgUrl) {
+		this.hierarchyArray=[];
+		this.$categorySelection.empty();
 		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
 		this._traverseHierarchy(this.hierarchyArray);
 		this._bindEventForSelectedCat();

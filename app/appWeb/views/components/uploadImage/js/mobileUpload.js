@@ -21,7 +21,7 @@ class MobileUpload {
 	initialize() {
 		postAd.initialize();
 		categoryUpdateModal.initialize();
-		this.inputDisabled = false;
+		//this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
@@ -53,7 +53,7 @@ class MobileUpload {
 					this.imageHolder.css("background-image", `url("")`);
 					this.uploadPhotoText.toggleClass('hidden');
 					this.$imageUpload.val('');
-					this.inputDisabled = false;
+					//this.inputDisabled = false;
 					this.$uploadSpinner.addClass('hidden');
 					this.$uploadProgress.addClass('hidden');
 				}
@@ -77,11 +77,13 @@ class MobileUpload {
 		});
 
 		this.$imageUpload = $("#mobileFileUpload");
+		/*
 		this.$imageUpload.on('click', (e) => {
 			if (this.inputDisabled) {
 				return e.preventDefault();
 			}
 		});
+		*/
 
 		this.i18n = {
 			clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -107,7 +109,7 @@ class MobileUpload {
 				this.uploadMessageClass.invalidType();
 				return;
 			}
-			this.inputDisabled = true;
+			//this.inputDisabled = true;
 			this.uploadPhotoText.addClass('hidden');
 			this.$uploadSpinner.toggleClass('hidden');
 			this.$uploadProgress.toggleClass('hidden');

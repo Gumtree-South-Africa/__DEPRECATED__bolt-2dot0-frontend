@@ -414,6 +414,7 @@ class PostAdFormMainDetails {
 		this.$addDetail = $(".post-add-detail");
 
 		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
+		this.$changePhoto = $(".change-photo");
 
 		this.$postForm = this.$detailsSection.find('#post-form');
 		this.$locationLat = this.$detailsSection.find('#location-lat');
@@ -434,6 +435,12 @@ class PostAdFormMainDetails {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.$postForm.toggleClass('hidden');
+		});
+
+		this.$changePhoto.on('click', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			$("#mobileFileUpload").click();
 		});
 
 		this._setupPolyfillForm();

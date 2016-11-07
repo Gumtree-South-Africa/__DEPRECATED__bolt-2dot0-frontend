@@ -14,15 +14,15 @@
 		position: fixed;
 		background-color: white;
 		height: auto;
-		width: 95%;
-		top: 85%;
+		width: 98%;
+		top: 81%;
 		left: 0;
 		right: 0;
 		margin: auto;
 		@include from-breakpoint($medium-break) {
 			width: 60%;
 		}
-		.retake-photo {
+		.change-photo {
 			width: 25%;
 			float: right;
 			margin-top: 0.25em;
