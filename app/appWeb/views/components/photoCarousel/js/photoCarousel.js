@@ -140,7 +140,7 @@ class PhotoCarousel {
 					this.updateAddPhotoButton();
 					this.resizeCarousel();
 
-					this.refreshViewModel();
+					this.refreshPhotoCarouselViewModel();
 				}
 			}
 		);
@@ -276,12 +276,14 @@ class PhotoCarousel {
 			this.resizeCarousel();
 			this.removePendingImage(i);
 
-			this.refreshViewModel();
+			this.refreshPhotoCarouselViewModel();
 		};
 
-		this.refreshViewModel();
+		this.refreshPhotoCarouselViewModel();
 	}
 
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
 	setupViewModel() {
 		this.viewModel = new PhotoCarouselVM();
 	}
@@ -289,7 +291,7 @@ class PhotoCarousel {
 	/**
 	 * Refresh view model
 	 */
-	refreshViewModel() {
+	refreshPhotoCarouselViewModel() {
 		let cItems = document.querySelectorAll(".carousel-item[data-image]");
 
 		let newImageUrls = [].map.call(cItems, (item) => item.getAttribute('data-image'));
@@ -352,7 +354,7 @@ class PhotoCarousel {
 		this.updateAddPhotoButton();
 		this.resizeCarousel();
 
-		this.refreshViewModel();
+		this.refreshPhotoCarouselViewModel();
 	}
 
 	/**

@@ -56,6 +56,8 @@ class PostAd {
 		this.updateValidStatus();
 	}
 
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
 	setupViewModel() {
 		this.viewModel = new PostAdPageVM();
 	}
