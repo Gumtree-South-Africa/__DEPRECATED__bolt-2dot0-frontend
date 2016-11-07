@@ -1,33 +1,33 @@
 {
 	"header" : {
-		"type" 								: "website",
-		"localeOpenGraph" 					: "en_SG",
-		"publisherUrl"						: null,
-		"noPhotoUrl"						: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
-		"moreAdSizes"						: "",
+		"type" 					: "website",
+		"localeOpenGraph" 			: "en_SG",
+		"publisherUrl"				: null,
+		"noPhotoUrl"				: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"moreAdSizes"				: "",
 		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: true,
-		"skinCampaignOn"					: true,
-		"googleTagAccountId"				: "169054071/Gumtree_SG",
-		"googleTagAccountMobId"				: "169054071/Gumtree_SG_mobresp",
+		"isMessageCenterEnabled"		: true,
+		"skinCampaignOn"			: true,
+		"googleTagAccountId"			: "169054071/Gumtree_SG",
+		"googleTagAccountMobId"			: "169054071/Gumtree_SG_mobresp",
 		"enableLighterVersionForMobile"		: false,
-		"headerConfig"						: {
+		"headerConfig"				: {
 			"isolatedLoginLink"	: true
 		},
-		"navigationConfig"					: {
+		"navigationConfig"			: {
 			"savedSearch"		: true,
 			"autoComplete"		: true,
-			"locationSelection" : true,
+			"locationSelection" 	: true,
 			"geoLocator"		: false
 		},
-		"marketo"							: {
-	        "enabled"			: true,
-	    	"trackAnonUser"		: false,
-	    	"munchkinId"		: "038-AZF-323",
-	    	"privateKey"		: "boltisking123",
+		"marketo"			: {
+			"enabled"		: true,
+	    		"trackAnonUser"		: false,
+	    		"munchkinId"		: "038-AZF-323",
+	    		"privateKey"		: "boltisking123",
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
-	    },
+	    	},
 		"analytics": {
 			"account": "UA-9157674-1",
 			"domainName": ".gumtree.sg",
@@ -46,35 +46,35 @@
 			"enableGaTracking": "true",
 			"enableABTest": "false"
 		},
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/",
-		"locationDropdownLevel"				: 2,
-		"categoryDropdownLevel"				: 2
+	    	"seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.gumtree.sg/gumtreesg/",
+		"locationDropdownLevel"			: 2,
+		"categoryDropdownLevel"			: 2
 	},
 	"footer" : {
-		"cookieNotice"						: "https://gumtreehelp.com/sg/knowledgebase.php?article=190",
-		"privacyPolicy"						: "https://gumtreehelp.com/sg/knowledgebase.php?article=121",
-		"termOfUse"							: "https://gumtreehelp.com/sg/knowledgebase.php?article=120",
-		"postingRules"                      : "https://gumtreehelp.com/sg/knowledgebase.php?article=22",
-		"helpLabel"							: "Help",
-		"helpUrl"							: "https://gumtreehelp.com/sg/",
-		"interLinkUrl"						: null,
-		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
-		"googleAdSense"						:	{
-			"enabled"							: true,
+		"cookieNotice"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=190",
+		"privacyPolicy"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=121",
+		"termOfUse"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=120",
+		"postingRules"                  	: "https://gumtreehelp.com/sg/knowledgebase.php?article=22",
+		"helpLabel"				: "Help",
+		"helpUrl"				: "https://gumtreehelp.com/sg/",
+		"interLinkUrl"				: null,
+		"locationsPageUrl"			: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"			: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"		: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"				:	{
+			"enabled"						: true,
 			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
 			"googleAdClient"					: "ca-pub-4933925025705454",
 			"googleAdSlot"						: "2590683807",
 			"googleAdWidth"						: "300",
 			"googleAdHeight"					: "250"
 		},
-		"seoBolt"							:	{
-			"enabled"							: false,
-			"blogUrl" 							: "http://blog.gumtree.sg/",
-			"vipLandingPageEnabled"				: true
+		"seoBolt"				:	{
+			"enabled"						: false,
+			"blogUrl" 						: "http://blog.gumtree.sg/",
+			"vipLandingPageEnabled"					: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
+		"availableAdFeatures" 			: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
 	"content" : {
 	  	"homepageV2" : {
@@ -145,23 +145,23 @@
 			]
 	  	},
 		"homepage" : {
-			"topHomePageAdBanner"	: false,
-			"homepageBanners"		: null,
-			"bingMeta"				: null,
-			"swapTradeEnabled"		: false,
-			"swapTradeName"			: null,
-			"swapTradeUrl"			: null,
-			"freebiesEnabled"		: false,
-			"freebiesName"			: null,
-			"freebiesUrl"			: null,
-		  	"adCarouselSeeAllUrl"	: null,
-		  	"defaultKeywordsCount"	: 15
+			"topHomePageAdBanner"	: true,
+			"homepageBanners"	: null,
+			"bingMeta"		: null,
+			"swapTradeEnabled"	: true,
+			"swapTradeName"		: "home.swap-trade.$$",
+			"swapTradeUrl"		: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"	: true,
+			"freebiesName"		: "home.freebies.$$",
+			"freebiesUrl"		: "s-freebies/v1p1?priceType=free",
+		  	"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
+		  	"defaultKeywordsCount"	: 10
 		},
 		"localCurrencies": ["MXN", "USD"],
-		 "quickpost" : {
-              "currencyDisplay"    :    true,
-              "currency"           :    ["MXN:MXN","USD:USD"]
-        }
+		"quickpost" : {
+              		"currencyDisplay"    :    true,
+        		 "currency"          :    ["MXN:MXN","USD:USD"]
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {
@@ -174,10 +174,10 @@
 		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "adstatistics", "gallery", "seo"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "adstatistics", "seo"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
