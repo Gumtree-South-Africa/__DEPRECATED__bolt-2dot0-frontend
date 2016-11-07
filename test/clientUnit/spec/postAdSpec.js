@@ -1,5 +1,6 @@
 'use strict';
 
+let photoCarouselController = require("app/appWeb/views/components/photoCarousel/js/photoCarousel.js");
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
 let uploadAdController = require("app/appWeb/views/components/uploadImage/js/postAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
@@ -133,6 +134,9 @@ describe('Post Ad', () => {
 		beforeEach(() => {
 			$testArea = specHelper.setupTest("photoCarousel", {}, "es_MX");
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
+			// Reset view model to avoid former tests affecting latter ones.
+			photoCarouselController.setupViewModel();
+			uploadAdController.setupViewModel();
 		});
 
 		it('should successfully post ad with created response', () => {
@@ -148,6 +152,7 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
@@ -164,6 +169,7 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
@@ -181,10 +187,7 @@ describe('Post Ad', () => {
 
 			uploadAdController.initialize();
 			let $postAdButton = $('#postAdBtn');
-			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeTruthy();
-			expect($('.cover-photo').hasClass('red-border')).toBeTruthy();
-			expect($('.photos-required-msg').hasClass('hidden')).toBeFalsy();
 		});
 
 		it('should error out with returned failed ajax', () => {
@@ -195,7 +198,9 @@ describe('Post Ad', () => {
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
 			uploadAdController.initialize();
+			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
+			expect($postAdButton.hasClass('disabled')).toBeFalsy();
 			$postAdButton.click();
 			expect($postAdButton.hasClass('disabled')).toBeFalsy();
 		});

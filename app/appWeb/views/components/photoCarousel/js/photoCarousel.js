@@ -3,6 +3,7 @@
 require("slick-carousel");
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
 let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -14,7 +15,30 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+// View model for photo carousel
+class PhotoCarouselVM {
+	constructor() {
+		this.imageUrls = [];
+		this.imageUrlsChangeEmitter = new SimpleEventEmitter();
+	}
+
+	addImageUrlsChangeHandler(handler) {
+		this.imageUrlsChangeEmitter.addHandler(handler);
+	}
+
+	updateImageUrls(newImageUrls) {
+		if (newImageUrls.length !== this.imageUrls.length ||
+			newImageUrls.some((imageUrl, index) => newImageUrls[index] !== this.imageUrls[index])) {
+			this.imageUrls = [].concat(newImageUrls);
+			this.imageUrlsChangeEmitter.trigger();
+		}
+	}
+}
+
 class PhotoCarousel {
+	constructor() {
+		this.setupViewModel();
+	}
 
 	/**
 	 * sets up all the variables and two functions (success and failure)
@@ -99,6 +123,8 @@ class PhotoCarousel {
 					this.imageCount--;
 					this.updateAddPhotoButton();
 					this.resizeCarousel();
+
+					this.refreshPhotoCarouselViewModel();
 				}
 			}
 		);
@@ -233,7 +259,27 @@ class PhotoCarousel {
 
 			this.resizeCarousel();
 			this.removePendingImage(i);
+
+			this.refreshPhotoCarouselViewModel();
 		};
+
+		this.refreshPhotoCarouselViewModel();
+	}
+
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
+	setupViewModel() {
+		this.viewModel = new PhotoCarouselVM();
+	}
+
+	/**
+	 * Refresh view model
+	 */
+	refreshPhotoCarouselViewModel() {
+		let cItems = document.querySelectorAll(".carousel-item[data-image]");
+
+		let newImageUrls = [].map.call(cItems, (item) => item.getAttribute('data-image'));
+		this.viewModel.updateImageUrls(newImageUrls);
 	}
 
 	/**
@@ -291,6 +337,8 @@ class PhotoCarousel {
 		this.imageCount--;
 		this.updateAddPhotoButton();
 		this.resizeCarousel();
+
+		this.refreshPhotoCarouselViewModel();
 	}
 
 	/**

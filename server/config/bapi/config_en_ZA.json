@@ -1,31 +1,31 @@
 {
-	"header" : {
-		"type" 								: "website",
-		"localeOpenGraph" 					: "en_ZA",
-		"publisherUrl"						: "https://plus.google.com/+gumtreecoza/",
-		"noPhotoUrl"						: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
-		"moreAdSizes"						: "",
-		"homepageHeroAdvertisement" 		: false,
-		"isMessageCenterEnabled"			: true,
-		"skinCampaignOn"					: true,
-		"googleTagAccountId"				: "7162/Gumtree_ZA",
-		"googleTagAccountMobId"				: "7162/Gumtree_ZA_mobresp",
-		"enableLighterVersionForMobile"		: false,
-		"headerConfig"						: null,
-		"navigationConfig"					: {
+	"header": {
+		"type" 				: "website",
+		"localeOpenGraph" 		: "en_ZA",
+		"publisherUrl"			: "https://plus.google.com/+gumtreecoza/",
+		"noPhotoUrl"			: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
+		"moreAdSizes"			: "",
+		"homepageHeroAdvertisement" 	: false,
+		"isMessageCenterEnabled"	: true,
+		"skinCampaignOn"		: true,
+		"googleTagAccountId"		: "7162/Gumtree_ZA",
+		"googleTagAccountMobId"		: "7162/Gumtree_ZA_mobresp",
+		"enableLighterVersionForMobile"	: false,
+		"headerConfig"			: null,
+		"navigationConfig"		: {
 			"savedSearch"		: true,
 			"autoComplete"		: true,
-			"locationSelection" : true,
+			"locationSelection" 	: true,
 			"geoLocator"		: false
 		},
-	    "marketo"							: {
-	        "enabled"			: true,
-	    	"trackAnonUser"		: false,
-	    	"munchkinId"		: "038-AZF-323",
-	    	"privateKey"		: "boltisking123",
+	    	"marketo"			: {
+		        "enabled"		: true,
+		    	"trackAnonUser"		: false,
+		    	"munchkinId"		: "038-AZF-323",
+		    	"privateKey"		: "boltisking123",
 			"domainName" 		: "fakefornow",
 			"deletecookie"		: false
-	    },
+	    	},
 		"analytics": {
 			"account": "UA-24259029-1",
 			"domainName": ".gumtree.co.za",
@@ -44,132 +44,168 @@
 			"enableGaTracking": "true",
 			"enableABTest": "false"
 		},
-	    "seoDeepLinkingBaseUrlAndroid" 		: "android-app://com.ebay.gumtree.za/gumtreeza/",
-		"locationDropdownLevel"				: 2,
-		"categoryDropdownLevel"				: 2
+	    	"seoDeepLinkingBaseUrlAndroid" 	: "android-app://com.ebay.gumtree.za/gumtreeza/",
+		"locationDropdownLevel"		: 2,
+		"categoryDropdownLevel"		: 2
 	},
-	"footer" : {
-		"cookieNotice"						: "/cookie-notice",
-		"privacyPolicy"						: "https://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
-		"termOfUse"							: "https://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKBAGumtree_policies&vcategory2=General_policies",
-		"postingRules"                      : "https://help.gumtree.co.za/articles/KB_Article/What-are-the-General-posting-rules/?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
-		"helpLabel"							: "Help",
-		"helpUrl"							: "https://gumtreehelp.com/za/",
-		"interLinkUrl"						: null,
-		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
-		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
-		"googleAdSense"						:	{
-			"enabled"							: true,
-			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
-	        "googleAdClient"					: "ca-pub-4933925025705454",
-			"googleAdSlot"						: "2590683807",
-			"googleAdWidth"						: "300",
-			"googleAdHeight"					: "250",
+	"footer": {
+		"about": "https://help.gumtree.co.za/articles/KB_Article/About-Us?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_Basics&vcategory2=About_us",
+		"blogUrl" : "https://blog.gumtree.co.za/",
+		"businessUrl": "https://protool.gumtree.co.za/",
+		"sitemapUrl": "/pages/sitemap/",
+		"cookieNotice": "/cookie-notice",
+		"privacyPolicy": "https://help.gumtree.co.za/articles/KB_Article/Gumtree-Privacy-Policy?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies&vcategory2=General_policies",
+		"termOfUse": "https://help.gumtree.co.za/articles/KB_Article/Gumtree-Terms-of-Use?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies&vcategory2=General_policies",
+		"postingRules": "https://help.gumtree.co.za/articles/KB_Article/What-are-the-General-posting-rules/?vgroup1=PublicKB&vcategory1=PublicKB%3AGumtree_policies",
+		"helpLabel": "Help",
+		"helpUrl": "https://help.gumtree.co.za",
+		"helpEmailURL": "https://help.gumtree.co.za/?cu=1&fs=ContactUs&l=en_US&q=&s=",
+		"interLinkUrl": "/pages/ClassifiedsNetwork/",
+		"locationsPageUrl": "/pages/locations/",
+		"mobileAppUrl": "/pages/mobileapp/",
+		"staySafeUrl": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB%3ASafety_advice",
+		"bestAdsLandingPageUrl"		: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"	: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"			: {
+			"enabled"				: true,
+			"googleAdUrl"				: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
+	  		"googleAdClient"			: "ca-pub-4933925025705454",
+			"googleAdSlot"				: "2590683807",
+			"googleAdWidth"				: "300",
+			"googleAdHeight"			: "250",
 			"paidSearchTopAdsenseCountDesktop"	: "0",
-		    "paidSearchTopAdsenseCountMobile"	: "0"
+	    		"paidSearchTopAdsenseCountMobile"	: "0"
 		},
 		"seoBolt"							:	{
-			"enabled"							: true,
-			"blogUrl" 							: "https://blog.gumtree.co.za/",
-			"vipLandingPageEnabled"				: true
+			"enabled"			: true,
+			"blogUrl" 			: "https://blog.gumtree.co.za/",
+			"vipLandingPageEnabled"		: true
 		},
-		"availableAdFeatures" 				: ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
+		"social": {
+			"facebookUrl": "https://www.facebook.com/GumtreeSouthAfrica",
+			"twitterUrl": "https://twitter.com/gumtreecoza",
+			"pinterestUrl": "https://www.pinterest.com/gumtreesa",
+			"youTubeUrl": "https://www.youtube.com/user/GumtreeSouthAfrica",
+			"googlePlusUrl": "https://plus.google.com/+gumtreecoza"
+		},
+		"availableAdFeatures" : ["BUMP_UP", "URGENT_AD", "HIGHLIGHT_AD", "TOP_AD", "HOME_PAGE_GALLERY", "SRP_GALLERY", "WEB_SITE_URL"]
 	},
-	"content" : {
-	  	"homepageV2" : {
-			"safetyLink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+	"content": {
+  		"homepageV2" : {
+			"safetyLink": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB:Gumtree_basics",
 			"distractionFree": false,
 			"showTopBanner": false,
 			"reviews" : [
 				{
-					"primaryImageUrl": "yessenia_r.jpg",
-					"description": "Perfecta Encuentro lo que necesito a buen precio.",
+					"primaryImageUrl": "tamie_k.jpg",
+					"description": "Very good and helpful",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "morithaclid.jpg",
-					"description": "Me gusto Apenas subi cosas para vender",
+					"primaryImageUrl": "meredith_c.jpg",
+					"description": "Buying App Love it, use it all the time",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "felix_o.jpg",
-					"description": "Excelente - Me gusto",
+					"primaryImageUrl": "thandokazi_t.jpg",
+					"description": "Love this app...really helpful!!!!",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "jackson_a.jpg",
-					"description": "Excelente App Nunca me he tardado más de 4 días en vender cualquier cosa... Excelente.",
+					"primaryImageUrl": "langton_m.jpg",
+					"description": "Not nid to go around jst get yo gumtree nd do ol th searchin u wil find t ther",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "francisco_m.jpg",
-					"description": "Comparando barato Que bueno",
+					"primaryImageUrl": "yolande_h.jpg",
+					"description": "Gumtree Awesome app. Search is easy and fun.",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "isabel_v.jpg",
-					"description": "Me gusta. Es muy eficaz gracias!!",
+					"primaryImageUrl": "peter_m.jpg",
+					"description": "Mr Fast sales or buy of products",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "alan_z.jpg",
-					"description": "Nunca recomiendo nada, esta es genial, el chat ayuda con los interesados",
+					"primaryImageUrl": "mega_m.jpg",
+					"description": "Loving it I don't need to run around looking for wat I need, Gumtree brings everything at my doorstep",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "victor_c.jpg",
-					"description": "Buena aplicación",
+					"primaryImageUrl": "johan_w.jpg",
+					"description": "Great Adds I always find what I need on Gumtree",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "jesus.jpg",
-					"description": "El mejor sitio de Internet para hacer negocios, lo recomiendo mucho",
+					"primaryImageUrl": "cindy_joy_w.jpg",
+					"description": "Effective and Easy to Use I absolutely love this app! Gumtree is a wonderful means of buying and selling anything -  from products to professional services. It also works well as an advertising service. The app is wonderful, because it means I can search things at any time without needing to get out my laptop.",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "canal_v.jpg",
-					"description": "Esta app es de lo mejor por eso le doy 5 estrellas",
+					"primaryImageUrl": "xander_a.jpg",
+					"description": "Awesome Oh how easy life is with Gumtree",
 					"rating": "5"
 				},
 				{
-					"primaryImageUrl": "david_o.jpg",
-					"description": "Excelente Una herramienta muy útil para compra venta de artículos usados",
+					"primaryImageUrl": "siphokazi_m.jpg",
+					"description": "Helpful Ilove it cos it so simple to use it and it helpful to anyone",
 					"rating": "4"
 				},
 				{
-					"primaryImageUrl": "christian_r.jpg",
-					"description": "Me es muy util y es muy facil de encontrar lo que necesito",
+					"primaryImageUrl": "riaan_s.jpg",
+					"description": "Good app I like the ergonomics of the app. Everything is pretty easy to use and find. Searching is a breaze. Well done.",
+					"rating": "4"
+				},
+				{
+					"primaryImageUrl": "raxwell_k.jpg",
+					"description": "Awesome Very fast and easy to use app. This is brilliant, got me hooked",
+					"rating": "4"
+				},
+				{
+					"primaryImageUrl": "morgan_m.jpg",
+					"description": "Excellent Gumtree is an excellent app that has made my purchasing easy. I used it find a rental house and then a car. It gives me opportunity to link with with the owner directly and save on middleman costs. I love it and I recommend to everyone.",
+					"rating": "4"
+				},
+				{
+					"primaryImageUrl": "liezl_b.jpg",
+					"description": "Great app very user friendly and logical Superb functionability. FAST and FRIENDLY.Does stall at times. Had to reinstall mine. No other gripes though",
 					"rating": "4"
 				}
 			]
 	  	},
 		"homepage" : {
+			"sectionMenu": {
+				"trending": "#",
+				"goods": "/s-home-garden/v1c9175p1",
+				"cars": "/s-automotive-vehicles/v1c5p1",
+				"realEstate": "/s-property/v1c2p1",
+				"jobs": "/s-jobs/v1c8p1"
+			},
 			"topHomePageAdBanner"	: true,
-			"homepageBanners"		: null,
-			"bingMeta"				: null,
-			"swapTradeEnabled"		: true,
-			"swapTradeName"			: "home.swap-trade.$$",
-			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"		: true,
-			"freebiesName"			: "home.freebies.$$",
-			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
+			"homepageBanners"	: null,
+			"bingMeta"		: null,
+			"swapTradeEnabled"	: true,
+			"swapTradeName"		: "home.swap-trade.$$",
+			"swapTradeUrl"		: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"	: true,
+			"freebiesName"		: "home.freebies.$$",
+			"freebiesUrl"		: "s-freebies/v1p1?priceType=free",
 			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
 		},
-
-		 "quickpost" : {
-              "currencyDisplay"    :    false,
-              "currency"           :    ["ZAR:ZAR"]
-        }
+		"localCurrencies": ["ZAR"],
+		"quickpost" : {
+	              "currencyDisplay"    :    false,
+	              "currency"           :    ["ZAR:ZAR"]
+	        }
 	},
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {
