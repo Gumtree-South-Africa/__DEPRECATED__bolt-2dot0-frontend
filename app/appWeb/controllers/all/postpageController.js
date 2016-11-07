@@ -35,12 +35,11 @@ let postAdData = {
 };
 
 router.use('/', (req, res, next) => {
-	// Retrieve Data from Model Builders
-
-	if (!res.locals.b2dot0Version) {
+	if (!pageControllerUtil.is2dot0Version(res)) {
 		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;
 	}
+
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 
 	let deferredAdPromise = Q.fcall(() => {

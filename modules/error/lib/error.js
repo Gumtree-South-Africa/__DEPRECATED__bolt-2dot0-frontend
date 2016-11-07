@@ -4,18 +4,20 @@
  * @author aganeshalingam@ebay.com
  */
 
-"use strict";
+'use strict';
 
-let urlPattern = require("url-pattern");
+let urlPattern = require('url-pattern');
 let stringUtl = require('string');
 let config = require('config');
 
 let displayError = require('./displayError');
 
+let abtestpagesJson = require(process.cwd() + '/app/config/abtestpages.json');
+
 
 // check if it is ajax request
 let isAjaxReq = (req) => {
-	if (req.xhr || stringUtl(req.path).contains("/api/")) {
+	if (req.xhr || stringUtl(req.path).contains('/api/')) {
 		return true;
 	}
 
@@ -39,9 +41,9 @@ let errorVersionTwo = (err, req, res) => {
 	let errNum = res.locals.err.status,
 		errMsg;
 	if (errNum === 404 || errNum === 500  || errNum === 410) {
-		errMsg = "error" + parseInt(errNum, 10) + ".message";
+		errMsg = 'error' + parseInt(errNum, 10) + '.message';
 	} else {
-		errMsg = "";
+		errMsg = '';
 	}
 
 	let modelData =
@@ -75,6 +77,16 @@ let errorVersionTwo = (err, req, res) => {
 
 module.exports = function() {
     return function(err, req, res, next) {
+		if (res.locals.b2dot0Pages) {
+			let pages = res.locals.b2dot0Pages;
+			for (let i=0; i<res.locals.b2dot0Pages.length; i++) {
+				if (pages[i] === abtestpagesJson.pages.ER) {
+					res.locals.b2dot0PageVersion = true;
+					break;
+				}
+			}
+		}
+
 		// sometimes we'll get errors that do not have a status property, so we force a status property to accomodate the handling logic below
 	    if (!err.hasOwnProperty('status')) {
 		    err.status = 500;
@@ -82,7 +94,7 @@ module.exports = function() {
 
         if (err.status === 0) {
             // next();
-            res.send("");
+            res.send('');
         }
 
         // if 404 request then to error page
@@ -95,7 +107,7 @@ module.exports = function() {
                 console.error(err);
                 res.status(404).json({status:404, message: 'Invalid API'});
             } else {
-				if (res.locals.b2dot0Version) {
+				if (res.locals.b2dot0PageVersion) {
 					errorVersionTwo(err, req, res);
 				} else {
 					displayError.message(req, res, next);
@@ -106,9 +118,9 @@ module.exports = function() {
             // hack: increace the stack trace for NodeJS
             Error.stackTraceLimit = 100;
 
-            console.log("\n\n =====  Error Message ==== \n");
-            console.log(err.message + "\n\n");
-            console.log("======= error stack trace =========");
+            console.log('\n\n =====  Error Message ==== \n');
+            console.log(err.message + '\n\n');
+            console.log('======= error stack trace =========');
 	        console.log(err.stack);
             res.locals.err = err;
             res.statusCode = 500;
@@ -117,7 +129,7 @@ module.exports = function() {
                 console.error(err);
                 res.status(500).json({status:500, message: 'Server Error', type:'internal'});
             } else {
-            	if (res.locals.b2dot0Version) {
+            	if (res.locals.b2dot0PageVersion) {
 					errorVersionTwo(err, req, res);
 				} else {
 					displayError.message(req, res, next);
