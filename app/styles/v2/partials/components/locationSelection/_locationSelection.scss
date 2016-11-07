@@ -17,7 +17,7 @@
 	  margin: 0 0 0 8%;
 	  font-size: 10px;
 	  display: inline-block;
-	  color: #8E8E93;
+	  color: $vivaGray3;
   }
   .location-selection-field{
     position: relative;
@@ -30,7 +30,7 @@
       float: left;
     }
 	.current-location {
-		width: 90%;
+		width: 80%;
 		margin: 1% 44% 1% 1%;
 		.icon-location-marker {
 			margin: 0 0 0 8%;
@@ -43,7 +43,7 @@
 	.location-input {
 		background: transparent;
 		.location-selection-input {
-			width: 90%;
+			width: 80%;
 			margin: 1% 44% 1% 6%;
 			border: 1px solid #333333;
 			position: relative;
