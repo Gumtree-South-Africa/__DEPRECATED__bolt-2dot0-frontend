@@ -9,6 +9,7 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
  *
  * - Events:
  *   - postButtonClicked
+ *   - openStatusChanged
  *
  * - APIs:
  *   - setPostButtonEnabled
@@ -17,6 +18,9 @@ class HamburgerMenuVM {
 	constructor() {
 		this.postButtonClicked = new SimpleEventEmitter();
 		this._postButtonEnabled = true;
+
+		this._isOpened = false;
+		this.openStatusChanged = new SimpleEventEmitter();
 	}
 
 	/**
@@ -57,6 +61,16 @@ class HamburgerMenuVM {
 			this._postButton.addClass('disabled');
 		}
 	}
+
+	setIsOpened(isOpened) {
+		isOpened = !!isOpened;
+		if (this._isOpened === isOpened) {
+			return;
+		}
+		this._isOpened = isOpened;
+		this.openStatusChanged.trigger(this._isOpened);
+	}
+
 }
 
 class HamburgerMenu {
@@ -142,7 +156,7 @@ class HamburgerMenu {
 
 		this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 			if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
-				this.toggleMenu();
+				this.viewModel.setIsOpened(false);
 			}
 		});
 
@@ -152,12 +166,12 @@ class HamburgerMenu {
 		this.menuHammer = new Hammer(this.hamburgerMenu);
 		this.overlayHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.toggleMenu();
+				this.viewModel.setIsOpened(false);
 			}
 		});
 		this.menuHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.toggleMenu();
+				this.viewModel.setIsOpened(false);
 			}
 		});
 		this.$pageContent.addClass('open-menu');
@@ -165,13 +179,22 @@ class HamburgerMenu {
 			this._toggleBrowseCategory();
 		});
 		this.$hamburgerIcon.on('click', () => {
-			this.toggleMenu();
+			// The icon is clickable only when menu is closed
+			this.viewModel.setIsOpened(true);
 		});
 		this.$hamburgerPopout.on('click', () => {
-			this.toggleMenu();
+			// The popout is clickable only when menu is opened
+			this.viewModel.setIsOpened(false);
 		});
 
 		this.viewModel.componentDidMount($('#js-hamburger-menu'));
+		this.viewModel.setIsOpened(this.open);
+		this.viewModel.openStatusChanged.addHandler((newOpenStatus) => {
+			var currentOpenStatus = this.open;
+			if (currentOpenStatus !== newOpenStatus) {
+				this.toggleMenu();
+			}
+		});
 	}
 
 	// Common interface for all component to setup view model. In the future, we'll have a manager

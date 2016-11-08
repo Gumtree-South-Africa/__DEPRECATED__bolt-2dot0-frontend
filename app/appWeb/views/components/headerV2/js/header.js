@@ -58,7 +58,7 @@ class Header {
 	 * Lifecycle callback which will be called when component has been loaded
 	 * @param domElement The jquery object for the root element of this component
 	 */
-	componentDidMount(domElement) {
+	componentDidMount(/*domElement*/) {
 		// As hamburger menu is still a singleton, will initialize field here
 		this.hamburgerMenu = hamburgerMenu.viewModel;
 	}
