@@ -55,6 +55,19 @@
 
 				&::-moz-placeholder {
 					opacity: 1;
+					font-weight: 100;
+				}
+				&:-moz-placeholder {
+					opacity: 1;
+					font-weight: 100;
+				}
+				&::-webkit-input-placeholder {
+					opacity: 1;
+					font-weight: 100;
+				}
+				&:-ms-input-placeholder {
+					opacity: 1;
+					font-weight: 100;
 				}
 			}
 		}
