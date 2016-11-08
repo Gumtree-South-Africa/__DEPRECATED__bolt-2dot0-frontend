@@ -8,6 +8,7 @@ let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 
 
 let HP = {
@@ -194,6 +195,8 @@ module.exports = (req, res, next) => {
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, res.locals.config.bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
+
+		modelData.eps = EpsModel();
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {
