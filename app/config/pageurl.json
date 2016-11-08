@@ -9,7 +9,7 @@
 		"promoteAdsUrl"			: "/my/promote.html",
 		"myProfileUrl"			: "/my/profile.html",
 		"mySettingsUrl"			: "/my/settings.html",
-		"pricingGuideUrl"		: "/pages/",
+		"pricingGuideUrl"		: "/pages/sitemap",
 		"signOutURL"			: "/logout",
 		"registerURL"			: "/register.html",
 		"searchPageUrl"			: "/search.html?page=1",
