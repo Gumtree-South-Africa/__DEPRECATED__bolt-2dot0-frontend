@@ -61,10 +61,11 @@ router.use('/', (req, res, next) => {
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
 					// deferred ad resolved, redirect to VIP
-					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
-
-					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
-					if (adResult.adState === 'HOLD') {
+					let redirectLink = adResult.redirectLinks.vip;
+					if (adResult.redirectLinks.previp) {
+						redirectLink = adResult.redirectLinks.previp + '&redirectUrl=https://www.' + res.locals.config.hostname + res.locals.config.baseDomainSuffix + res.locals.config.basePort + adResult.redirectLinks.previpRedirect;
+					} else if (adResult.status === 'HOLD') {
+						// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
 						redirectLink = '/edit/' + adResult.id;
 					}
 
