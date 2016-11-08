@@ -27,6 +27,8 @@
 			display: inline-block;
 			float: none;
 			margin: 0;
+			font-weight: bold;
+			color: color(swirl, dark);
 		}
 
 		.search-button {
@@ -47,8 +49,8 @@
 
 		.search-textbox-container {
 			.search-textbox {
-				color: color(swirl, medium);
-
+				color: color(swirl, dark);
+				font-weight: bold;
 				&::-moz-placeholder {
 					opacity: 1;
 				}
