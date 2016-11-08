@@ -678,6 +678,58 @@ class EpsUpload {
 
 }
 
+// Client error code. Client error code is different from server error code:
+// the latter one shows the reason, while the former one shows expected behavior to fix the problem.
+const EPS_CLIENT_ERROR_CODES = {
+	// Big or small image dimension. Expecting editing image dimension before uploading
+	INVALID_DIMENSION: 1,
+	// Big file size. Expecting editing file size before uploading
+	INVALID_SIZE: 2,
+	// Unsupported image type. Expecting editing image type before uploading.
+	INVALID_TYPE: 3,
+	// Unsupported color space. Expecting editing to RGB before uploading.
+	COLOR_SPACE: 4,
+	// Connection problem caused by firewall. Expecting fixing network problem.
+	FIREWALL: 5,
+	// Server problem. Expecting retry.
+	PICTURE_SRV: 6,
+	// Corrupt image. Expecting checking image and uploading the correct one.
+	CORRUPT: 7,
+
+	// Unknown reason. Expecting retry.
+	UNKNOWN: 1000
+};
+
+// Documentation for server error code can be found at https://wiki.vip.corp.ebay.com/display/EPS/EpsBasic
+const SERVER_ERROR_CODE_MAPPING = {
+	FS001: EPS_CLIENT_ERROR_CODES.INVALID_SIZE,
+	FS002: EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION,
+	FS003: EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION,
+
+	FF001: EPS_CLIENT_ERROR_CODES.INVALID_TYPE,
+	FF002: EPS_CLIENT_ERROR_CODES.INVALID_TYPE,
+	FC001: EPS_CLIENT_ERROR_CODES.CORRUPT,
+	FC002: EPS_CLIENT_ERROR_CODES.COLOR_SPACE,
+
+	SD001: EPS_CLIENT_ERROR_CODES.FIREWALL,
+	SD005: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+	SD007: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+	SD009: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+	SD011: EPS_CLIENT_ERROR_CODES.CORRUPT,
+	SD017: EPS_CLIENT_ERROR_CODES.CORRUPT,
+	SD013: EPS_CLIENT_ERROR_CODES.FIREWALL,
+	SD015: EPS_CLIENT_ERROR_CODES.INVALID_TYPE,
+	SD019: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+	SD020: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+	SD021: EPS_CLIENT_ERROR_CODES.PICTURE_SRV,
+
+	ME100: EPS_CLIENT_ERROR_CODES.FIREWALL
+};
+
+function getClientErrorCode(serverErrorCode) {
+	return SERVER_ERROR_CODE_MAPPING[serverErrorCode] || EPS_CLIENT_ERROR_CODES.UNKNOWN;
+}
+
 class UploadMessageClass {
 	constructor(epsData, $messageError, $messageModal, $errorMessageTitle, functions) {
 		this.epsData = epsData;
@@ -778,28 +830,42 @@ class UploadMessageClass {
 	}
 
 	translateErrorCodes(i, error) {
-		console.error(`EPS code: ${error}`);
-		if (error === "FS002") {
-			this.invalidDimensions(i);
-		} else if (error === "FS001") {
-			this.invalidSize(i);
-		} else if (error === "FF001" || error === "FF002" || error === "SD015") {
-			this.invalidType(i);
-		} else if (error === "FC002") {
-			this.colorspace(i);
-		} else if (error === "SD001" || error === "SD013" || error === "ME100") {
-			this.firewall(i);
-		} else if (error === "SD005" || error === "SD007" || error === "SD009" || error === "SD019" || error === "SD020" || error === "SD021") {
-			this.pictureSrv(i);
-		} else if (error === "SD011" || error === "SD017" || error === "SD013") {
-			this.corrupt(i);
-		} else {
-			this.failMsg(i);
+		this.translateClientErrorCodes(getClientErrorCode(error));
+	}
+
+	translateClientErrorCodes(i, clientErrorCode) {
+		switch(clientErrorCode) {
+			case EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION:
+				this.invalidDimensions(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.INVALID_SIZE:
+				this.invalidSize(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.INVALID_TYPE:
+				this.invalidType(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.COLOR_SPACE:
+				this.colorspace(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.FIREWALL:
+				this.firewall(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.PICTURE_SRV:
+				this.pictureSrv(i);
+				break;
+			case EPS_CLIENT_ERROR_CODES.CORRUPT:
+				this.corrupt(i);
+				break;
+			default:
+				this.failMsg(i);
+				break;
 		}
 	}
 }
 
 module.exports = {
 	EpsUpload,
-	UploadMessageClass
+	UploadMessageClass,
+	EPS_CLIENT_ERROR_CODES,
+	getClientErrorCode
 };
