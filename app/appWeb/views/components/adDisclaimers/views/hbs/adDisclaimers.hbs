@@ -1,0 +1,10 @@
+<div class="ads-disclaimers-container">
+    <div class="ads-disclaimers">
+        <div class="lock-icon icon-lock"></div>
+        <div class="ads-disclaimers-text">{{i18n "vip.disclaimer.disclosure"}}</div>
+        {{#if this.advert.isRealEstate}}
+			<div class="ads-realestate">{{i18n "vip.disclaimer.realEstateDisclaimer"}}</div>
+        {{/if}}
+		<a class="ads-disclaimers-more" href='{{i18n "vip.disclaimer.moreInfoUrl"}}'>{{i18n "vip.disclaimer.moreInfo"}}</a>
+    </div>
+</div>

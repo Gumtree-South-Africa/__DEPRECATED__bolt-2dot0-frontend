@@ -126,8 +126,19 @@ class ViewPageModel {
 				categoryT3: 'T3 Category',
 				location: 'Mexico City',
 				lastUpdated: '1 Day Ago',
-				postedBy: 'Owner'
+				postedBy: 'Owner',
+				seller: {
+					fname: "Diego",
+					sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
+					profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
+					adsPosted: "14",
+					adsActive: "10",
+					emailVerified: true
+				}
 			};
+			//TODO: check if it's real estate category for disclaimer
+			data.isRealEstate = true;
+
 			//TODO: check to see if userId matches header data's userID to show favorite or edit
 			data.isOwnerAd = false;
 

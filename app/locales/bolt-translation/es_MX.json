@@ -1505,6 +1505,17 @@
 			"location": "LOCATION",
 			"updated": "UPDATED",
 			"postedby": "POSTED BY"
+		},
+		"seller": {
+			"emailVerified": "Email Verificado",
+			"adsPosted": "ADS POSTED",
+			"adsActive": "ACTIVE"
+		},
+		"disclaimer": {
+			"disclosure": "Consejos de seguridad - Tu seguridad es importante. Aprende a reducir los riesgos en la compra-venta.",
+			"moreInfo": "Más información.",
+			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
 		}
 	}
 }
