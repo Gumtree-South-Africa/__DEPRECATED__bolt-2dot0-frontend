@@ -213,6 +213,7 @@ class PostAdFormMainDetails {
 				});
 				break;
 			case this.AD_STATES.AD_DEFERRED:
+				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
 				spinnerModal.completeSpinner(() => {
 					loginModal.openModal({
 						submitCb: () => {
