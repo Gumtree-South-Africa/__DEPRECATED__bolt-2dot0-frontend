@@ -4,6 +4,7 @@ let NoUIImageUploader =
 	require('app/appWeb/views/components/noUIImageUploader/js/noUIImageUploader.js').NoUIImageUploader;
 let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js').WelcomeModal;
 let Header = require('app/appWeb/views/components/headerV2/js/header.js').Header;
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 // Home page
 class HomePage {
@@ -12,6 +13,8 @@ class HomePage {
 		this.noUIImageUploader = new NoUIImageUploader();
 		this.welcomeModal = new WelcomeModal();
 		this.header = new Header();
+		// Initialize singleton components
+		this.spinnerModal = spinnerModal;
 	}
 
 	/**
@@ -22,6 +25,9 @@ class HomePage {
 		this.noUIImageUploader.componentDidMount($('.no-ui-image-uploader'));
 		this.welcomeModal.componentDidMount($('.welcome-wrapper'));
 		this.header.componentDidMount($('.header-wrapper'));
+
+		// Callback for singleton components
+		this.spinnerModal.initialize();
 
 		// Register event
 		this.noUIImageUploader.imageWillUpload.addHandler(() => this._imageWillUpload());
@@ -34,18 +40,19 @@ class HomePage {
 	_imageWillUpload() {
 		this.welcomeModal.setPostButtonEnabled(false);
 		this.header.hamburgerMenu.setPostButtonEnabled(false);
-		// TODO Enable mask
+		this.header.hamburgerMenu.setIsOpened(false);
+		this.spinnerModal.showModal();
 	}
 
 	_imageDidUpload(error, resultUrlObj) {
 		this.welcomeModal.setPostButtonEnabled(true);
 		this.header.hamburgerMenu.setPostButtonEnabled(true);
-		// TODO Disable mask
 		if (error || !resultUrlObj || !resultUrlObj.normal) {
 			// TODO Error handling
+			this.spinnerModal.hideModal();
 			return;
 		}
-		this._redirectToPostPage(resultUrlObj.normal);
+		this.spinnerModal.completeSpinner(() => this._redirectToPostPage(resultUrlObj.normal));
 	}
 
 	_redirectToPostPage(imageUrl) {
