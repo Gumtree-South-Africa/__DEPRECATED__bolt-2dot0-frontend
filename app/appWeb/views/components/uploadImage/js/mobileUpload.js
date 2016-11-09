@@ -3,7 +3,6 @@
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let categoryUpdateModal = require('./categoryUpdateModal');
-let postAd = require('./postAd.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 $.prototype.doesExist = function() {
@@ -16,10 +15,29 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+// View model for mobile upload
+class MobileUploadVM {
+	constructor() {
+		this.handleLocationRequest = null;
+	}
+
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMount(domElement) {
+		this.initialImage = domElement.find('input[name=initialImage]').val();
+	}
+}
+
 
 class MobileUpload {
+	constructor() {
+		this.setupViewModel();
+	}
+
 	initialize() {
-		postAd.initialize();
+		// postAd.initialize();
 		categoryUpdateModal.initialize();
 		//this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
@@ -134,35 +152,7 @@ class MobileUpload {
 				return;
 			}
 
-			this.imageHolder.css("background-image", `url("${url.normal}")`);
-
-			spinnerModal.showModal();
-			this.$uploadSpinner.toggleClass('hidden');
-			this.$uploadProgress.toggleClass('hidden');
-			this.$uploadProgress.html("0%");
-
-			$.ajax({
-				url: '/api/postad/imagerecognition',
-				type: 'POST',
-				data: JSON.stringify({"url" : url.normal}),
-				dataType: 'json',
-				contentType: "application/json",
-				success: (categoryId) => spinnerModal.completeSpinner(() => {
-					categoryUpdateModal.updateCategory(categoryId, url.normal);
-				}),
-				error: (err) => {
-					console.warn(err);
-					spinnerModal.hideModal();
-				}
-			});
-
-			postAd.requestLocation((locationType, timeout) => {
-				if (timeout !== undefined) {
-					clearTimeout(timeout);
-				}
-				//Don't care if they actually gave us location, just that it finished.
-				//postAd.postAdMobile(url.normal, locationType);
-			});
+			this.handleImageUrlChanged(url.normal);
 		};
 
 		/**
@@ -177,6 +167,53 @@ class MobileUpload {
 			this.uploadMessageClass.translateErrorCodes(0, error);
 			this.uploadMessageClass.failMsg(0);
 		};
+
+		// Logic for initial image
+		this.viewModel.componentDidMount(this.uploadImageContainer);
+		if (this.viewModel.initialImage) {
+			this.uploadPhotoText.addClass('hidden');
+			this.handleImageUrlChanged(this.viewModel.initialImage);
+		}
+	}
+
+	handleImageUrlChanged(url) {
+		this.imageHolder.css("background-image", `url("${url}")`);
+
+		spinnerModal.showModal();
+		this.$uploadSpinner.addClass('hidden');
+		this.$uploadProgress.addClass('hidden');
+		this.$uploadProgress.html("0%");
+
+		$.ajax({
+			url: '/api/postad/imagerecognition',
+			type: 'POST',
+			data: JSON.stringify({"url" : url}),
+			dataType: 'json',
+			contentType: "application/json",
+			success: (categoryId) => spinnerModal.completeSpinner(() => {
+				categoryUpdateModal.updateCategory(categoryId, url);
+			}),
+			error: (err) => {
+				console.warn(err);
+				spinnerModal.hideModal();
+			}
+		});
+
+		if (this.viewModel.handleLocationRequest) {
+			this.viewModel.handleLocationRequest((locationType, timeout) => {
+				if (timeout !== undefined) {
+					clearTimeout(timeout);
+				}
+				//Don't care if they actually gave us location, just that it finished.
+				//postAd.postAdMobile(url.normal, locationType);
+			});
+		}
+	}
+
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
+	setupViewModel() {
+		this.viewModel = new MobileUploadVM();
 	}
 
 

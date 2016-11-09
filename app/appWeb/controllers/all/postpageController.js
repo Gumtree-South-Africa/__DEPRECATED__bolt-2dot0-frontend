@@ -103,7 +103,7 @@ router.use('/', (req, res, next) => {
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
-
+		modelData.initialImage = req.query.initialImage || '';
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected

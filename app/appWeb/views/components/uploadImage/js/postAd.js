@@ -5,11 +5,27 @@ let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 let photoCarousel = require('app/appWeb/views/components/photoCarousel/js/photoCarousel.js');
 
+let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
+let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
+let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
+
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
 		// True as default value to be consistent with default view
 		this.valid = true;
+	}
+
+	/**
+	 * Lifecycle callback which will be called when page has been loaded
+	 */
+	pageDidMount() {
+		this.mobileUpload = mobileUpload.viewModel;
+		this.postAdModal = postAdModal.viewModel;
+		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
+		if (!this.mobileUpload.initialImage) {
+			this.postAdModal.isShown = true;
+		}
 	}
 }
 
@@ -54,6 +70,9 @@ class PostAd {
 		this.photoCarouselVM = this.getPhotoCarouselVM();
 		this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
 		this.updateValidStatus();
+		this.viewModel.pageDidMount();
+		this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
+		this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
 	}
 
 	// Common interface for all component to setup view model. In the future, we'll have a manager

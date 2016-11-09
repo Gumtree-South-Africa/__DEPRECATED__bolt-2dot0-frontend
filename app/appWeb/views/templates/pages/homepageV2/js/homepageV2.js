@@ -6,7 +6,7 @@ let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeM
 let Header = require('app/appWeb/views/components/headerV2/js/header.js').Header;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
-const FILE_SELECT_DEBOUNCE_TIMEOUT = 300;
+const FILE_SELECT_DEBOUNCE_TIMEOUT = 1000;
 
 // Home page
 class HomePage {
@@ -79,7 +79,7 @@ class HomePage {
 	}
 
 	_redirectToPostPage(imageUrl) {
-		window.location.assign('./post?initImage=' + encodeURIComponent(imageUrl));
+		window.location.assign('./post?initialImage=' + encodeURIComponent(imageUrl));
 	}
 }
 
