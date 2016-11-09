@@ -81,6 +81,7 @@
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
+			"googleConsoleMeta"		: null,
 			"swapTradeEnabled"		: true,
 			"swapTradeName"			: "home.swap-trade.$$",
 			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",

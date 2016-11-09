@@ -82,6 +82,7 @@
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
+			"googleConsoleMeta"		: null,
 			"swapTradeEnabled"		: false,
 			"swapTradeName"			: null,
 			"swapTradeUrl"			: null,

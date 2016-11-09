@@ -176,29 +176,30 @@
 	  	},
 		"homepage" : {
 			"sectionMenu": {
-				"trending": "#",
-				"goods": "/s-home-garden/v1c9175p1",
-				"cars": "/s-automotive-vehicles/v1c5p1",
-				"realEstate": "/s-property/v1c2p1",
-				"jobs": "/s-jobs/v1c8p1"
+				"trending"		: "#",
+				"goods"			: "/s-home-garden/v1c9175p1",
+				"cars"			: "/s-automotive-vehicles/v1c5p1",
+				"realEstate"	: "/s-property/v1c2p1",
+				"jobs"			: "/s-jobs/v1c8p1"
 			},
 			"topHomePageAdBanner"	: true,
-			"homepageBanners"	: null,
-			"bingMeta"		: null,
-			"swapTradeEnabled"	: true,
-			"swapTradeName"		: "home.swap-trade.$$",
-			"swapTradeUrl"		: "s-swap-trade/v1p1?priceType=barter_swap",
-			"freebiesEnabled"	: true,
-			"freebiesName"		: "home.freebies.$$",
-			"freebiesUrl"		: "s-freebies/v1p1?priceType=free",
+			"homepageBanners"		: null,
+			"bingMeta"				: null,
+			"googleConsoleMeta"		: null,
+			"swapTradeEnabled"		: true,
+			"swapTradeName"			: "home.swap-trade.$$",
+			"swapTradeUrl"			: "s-swap-trade/v1p1?priceType=barter_swap",
+			"freebiesEnabled"		: true,
+			"freebiesName"			: "home.freebies.$$",
+			"freebiesUrl"			: "s-freebies/v1p1?priceType=free",
 			"adCarouselSeeAllUrl"	: "/s-all-the-ads/v1b0p1?fe=2",
 		  	"defaultKeywordsCount"	: 15
 		},
-		"localCurrencies": ["ZAR"],
+		"localCurrencies"	: ["ZAR"],
 		"quickpost" : {
-	              "currencyDisplay"    :    false,
-	              "currency"           :    ["ZAR:ZAR"]
-	        }
+			"currencyDisplay"   	: false,
+			"currency"           	: ["ZAR:ZAR"]
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {

@@ -4,7 +4,7 @@
 		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
 		"noPhotoUrl"						: "https://afs.googleusercontent.com/alamaula/no-photo_MX.png",
-		"pricingGuideUrl" 			: "/pages/",
+		"pricingGuideUrl" 					: "/pages/",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
@@ -164,15 +164,16 @@
 	  	},
 		"homepage" : {
 			"sectionMenu": {
-				"trending": "#",
-				"goods": "/s-hogar/v1c1p1",
-				"cars": "/s-venta-autos/v1c64p1",
-				"realEstate": "/s-inmuebles/v1c30p1",
-				"jobs": "/s-ofertas+trabajo/v1c36p1"
+				"trending"		: "#",
+				"goods"			: "/s-hogar/v1c1p1",
+				"cars"			: "/s-venta-autos/v1c64p1",
+				"realEstate"	: "/s-inmuebles/v1c30p1",
+				"jobs"			: "/s-ofertas+trabajo/v1c36p1"
 			},
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
+			"googleConsoleMeta"		: "<meta name=\"google-site-verification\" content=\"-lGtIcfGZF8JFABYZLobi5IxLWBx4eZzMvE2ivUxgII\" />",
 			"swapTradeEnabled"		: false,
 			"swapTradeName"			: null,
 			"swapTradeUrl"			: null,

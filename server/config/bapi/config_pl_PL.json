@@ -79,6 +79,7 @@
 			"topHomePageAdBanner"	: true,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,
+			"googleConsoleMeta"		: null,
 			"swapTradeEnabled"		: true,
 			"swapTradeName"			: "home.swap-trade.$$",
 			"swapTradeUrl"			: "s-Wymiana/zamiana/v1p1?priceType=barter_swap",

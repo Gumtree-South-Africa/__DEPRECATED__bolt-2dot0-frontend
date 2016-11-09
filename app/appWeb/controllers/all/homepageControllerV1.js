@@ -177,6 +177,9 @@ let HP = {
 			// Bing Meta
 			modelData.content.bingMeta = homepageConfigData.bingMeta;
 
+			// Google Console Meta
+			modelData.content.googleConsoleMeta = homepageConfigData.googleConsoleMeta;
+
 			// Gallery See All Url
 			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
 		}
