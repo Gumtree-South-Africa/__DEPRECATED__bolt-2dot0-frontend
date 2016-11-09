@@ -271,6 +271,18 @@
 					"advert", "seo"
 				]
 			}
+		},
+		"ResultsSearch": {
+			"desktop": {
+				"models": [
+					"advert", "seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "seo"
+				]
+			}
 		}
 	}
 }

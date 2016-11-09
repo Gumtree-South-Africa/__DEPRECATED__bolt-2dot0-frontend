@@ -9,10 +9,10 @@ let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let _ = require('underscore');
 
 class SearchPageModel {
-	constructor(req, res, adId) {
+	constructor(req, res, keyword) {
 		this.req = req;
 		this.res = res;
-		this.adId = adId;
+		this.keyword = keyword;
 
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
@@ -39,7 +39,7 @@ class SearchPageModel {
 		let seo = new SeoModel(modelData.bapiHeaders);
 		this.dataPromiseFunctionMap = {};
 
-		this.dataPromiseFunctionMap.seo = () => seo.getLoginSeoInfo();
+		this.dataPromiseFunctionMap.seo = () => seo.getSearchPageSeoInfo();
 	}
 
 	getSearchPageData() {

@@ -36,17 +36,17 @@ let extendModelData = (req, modelData) => {
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
-router.get('/:id?', (req, res, next) => {
-	let adId = req.params.id;
+router.get('/search/:keyword?', (req, res, next) => {
+	let keyword = req.params.keyword;
 
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.RESULTS_SEARCH;
-	let searchPageModel = new SearchPageModel(req, res, adId);
+	let searchPageModel = new SearchPageModel(req, res, keyword);
 	let redirectUrl = req.query.redirect;
 
 	searchPageModel.populateData().then((modelData) => {
 		extendModelData(req, modelData);
-		modelData.adId = adId;
+		modelData.keyword = keyword;
 
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
