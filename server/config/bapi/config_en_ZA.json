@@ -5,6 +5,7 @@
 		"publisherUrl"			: "https://plus.google.com/+gumtreecoza/",
 		"noPhotoUrl"			: "https://afs.googleusercontent.com/gumtree-za/1-a-v2.jpg",
 		"moreAdSizes"			: "",
+		"pricingGuideUrl" : "/pages/sitemap/",
 		"homepageHeroAdvertisement" 	: false,
 		"isMessageCenterEnabled"	: true,
 		"skinCampaignOn"		: true,
