@@ -24,17 +24,17 @@
 
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
-  .seo-wrapper{
-    .seo-line{
-      border-bottom: 1px solid color(swirl, shade); 
-    }
-    .thick-underline {
-      border-bottom: 3px solid color(swirl, shade);
-    }
-    .top-headers-text {
-      padding-bottom: 6px;
-    }
-  }
+	.seo-wrapper{
+		.seo-line{
+			border-bottom: 1px solid color(swirl, shade); 
+		}
+		.thick-underline {
+			border-bottom: 3px solid color(swirl, shade);
+		}
+		.top-headers-text {
+			padding-bottom: 6px;
+		}
+	}
 }
 
 

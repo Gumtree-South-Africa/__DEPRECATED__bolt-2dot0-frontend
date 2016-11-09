@@ -51,18 +51,49 @@
 		"categoryDropdownLevel"			: 2
 	},
 	"footer" : {
-		"cookieNotice"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=190",
-		"privacyPolicy"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=121",
-		"termOfUse"				: "https://gumtreehelp.com/sg/knowledgebase.php?article=120",
-		"postingRules"                  	: "https://gumtreehelp.com/sg/knowledgebase.php?article=22",
-		"helpLabel"				: "Help",
-		"helpUrl"				: "https://gumtreehelp.com/sg/",
-		"interLinkUrl"				: null,
-		"locationsPageUrl"			: "/l-$text$/all-locs/v1b0",
-		"bestAdsLandingPageUrl"			: "/b-best-ads/v1",
-		"topSearchesLandingPageUrl"		: "/t-top-searches/all-ads/v1b0",
-		"googleAdSense"				:	{
-			"enabled"						: true,
+		"support": {
+			"contact": "http://help.gumtree.sg/"
+		},
+		"sitemap" : {
+			"aboutus": {
+				"aboutgumtree": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/About-us?vgroup1=PKB&c=PKB%3AbasicsSG&vcategory2=aboutSG&s=",
+				"termofuse": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Terms-of-Use?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+				"postingpolicy": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/General-posting-rules?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+				"privacypolicy": "https://help.gumtree.sg/SG/articles/en_US/KB_Article/Gumtree-Singapore-Privacy-Policy?vgroup1=PKB&c=PKB%3ApoliciesSG&vcategory2=generalpoliciesSG&s=",
+				"gumtreebusiness": "https://protool.gumtree.sg"
+			},
+			"explore": {
+				"classifieds" : "http://www.gumtree.sg/pages/ClassifiedsNetwork/",
+				"directory" : "http://profile.gumtree.sg/directory",
+				"pricecheckers" : "http://www.gumtree.sg/pages/pricechecker/",
+				"jobs" : "https://www.gumtreejobs.sg"
+			},
+			"usinggumtree":{
+				"post":"",
+				"mobile":"http://info.gumtree.sg/promo/mobile-apps/",
+				"topsearches":"",
+				"recruiter":"http://protool.gumtree.sg"
+			},
+			"tips":{
+				"help":"http://help.gumtree.sg/",
+				"safetytips":"https://help.gumtree.sg/SG?lang=en_US&l=en_US&c=PKB%3AsafetySG",
+				"contact":"https://help.gumtree.sg/SG/?cu=1&fs=ContactUs&l=en_US",
+				"scams":"https://help.gumtree.sg/SG/articles/en_US/KB_Article/Reporting-ads-Singapore?vgroup1=PKB&c=PKB%3AsafetySG&vcategory2=Reporting_Ads&s="
+			}
+		},
+		"social": {
+			"facebookUrl":"https://www.facebook.com/gumtreeSG",
+			"twitterUrl":"https://instagram.com/gumtreeSG/",
+			"pinterestUrl":"https://instagram.com/gumtreeSG/",
+			"youTubeUrl":"https://www.youtube.com/user/GumtreeSingapore",
+			"googlePlusUrl":"https://plus.google.com/102984486916979382186"
+		},
+		"interLinkUrl"						: null,
+		"locationsPageUrl"					: "/l-$text$/all-locs/v1b0",
+		"bestAdsLandingPageUrl"				: "/b-best-ads/v1",
+		"topSearchesLandingPageUrl"			: "/t-top-searches/all-ads/v1b0",
+		"googleAdSense"						:	{
+			"enabled"							: true,
 			"googleAdUrl"						: "pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",
 			"googleAdClient"					: "ca-pub-4933925025705454",
 			"googleAdSlot"						: "2590683807",
@@ -174,10 +205,10 @@
 		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+				"models" : ["keyword", "adstatistics", "gallery", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
+				"models" : ["keyword", "adstatistics", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
