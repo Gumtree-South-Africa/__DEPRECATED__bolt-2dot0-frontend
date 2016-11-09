@@ -190,7 +190,7 @@ class HamburgerMenu {
 		this.viewModel.componentDidMount($('#js-hamburger-menu'));
 		this.viewModel.setIsOpened(this.open);
 		this.viewModel.openStatusChanged.addHandler((newOpenStatus) => {
-			var currentOpenStatus = this.open;
+			let currentOpenStatus = this.open;
 			if (currentOpenStatus !== newOpenStatus) {
 				this.toggleMenu();
 			}
