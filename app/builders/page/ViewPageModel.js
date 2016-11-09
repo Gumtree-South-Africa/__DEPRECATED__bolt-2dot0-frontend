@@ -137,7 +137,7 @@ class ViewPageModel {
 				}
 			};
 			//TODO: check if it's real estate category for disclaimer
-			data.isRealEstate = true;
+			data.showAdditionalDisclaimers = true;
 
 			//TODO: check to see if userId matches header data's userID to show favorite or edit
 			data.isOwnerAd = false;
