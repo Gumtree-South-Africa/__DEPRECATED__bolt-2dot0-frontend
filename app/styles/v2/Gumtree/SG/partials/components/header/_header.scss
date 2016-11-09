@@ -11,8 +11,8 @@
 	//Text and backgorund colors
 	.headerV2,.right-item,.menu-item a, .profile-item a{
 		color: $headerMainTextColor;
-		
 	}
+
 	.headerV2 .menu-dropdown,.headerV2 .item-text.menu-open{
 		border-color: $headerBorderColor;
 	}
@@ -87,6 +87,7 @@
 			position: absolute;
 			left: 0;
 			top: 100%;
+
 
 			.menu-item {
 				border-bottom-color: $headerBorderColor;
