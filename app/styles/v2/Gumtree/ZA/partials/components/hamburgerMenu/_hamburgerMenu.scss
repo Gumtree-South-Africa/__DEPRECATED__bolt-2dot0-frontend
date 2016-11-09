@@ -54,6 +54,8 @@
 			}
 
 			.link-item {
+				color: color(swirl, dark);
+				font-weight: 100!important;
 				&:hover {
 					color: color(crane);
 				}
