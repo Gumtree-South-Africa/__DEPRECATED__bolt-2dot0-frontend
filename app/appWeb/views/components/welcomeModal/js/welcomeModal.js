@@ -10,52 +10,55 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
  * - Events:
  *   - postButtonClicked
  *
- * - APIs:
- *   - setPostButtonEnabled
+ * - Properties:
+ *   - isPostAllowed
  */
 class WelcomeModal {
 	constructor() {
 		this.postButtonClicked = new SimpleEventEmitter();
-		this._postButtonEnabled = true;
+		this._isPostAllowed = true;
 	}
 
 	/**
-	 * Lifecycle callback which will be called when component has been loaded
+	 * Lifecycle callback which will be called when component has been loaded.
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMount(domElement) {
+		// Bind property and event
 		this._postButton = domElement.find('.login-button a');
-		this._postButtonEnabled = !this._postButton.hasClass('disabled');
-		this._postButton.on('click', (evt) => this._onPostButtonClicked(evt));
+		this._handleIsPostAllowedChanged = (newValue) => {
+			if (newValue) {
+				this._postButton.attr('tabindex', '0');
+				this._postButton.removeClass('disabled');
+			} else {
+				this._postButton.attr('tabindex', '-1');
+				this._postButton.addClass('disabled');
+			}
+		};
+		this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
 	}
 
-	_onPostButtonClicked(evt) {
+	_handlePostButtonClicked(evt) {
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();
-		if (!this._postButtonEnabled) {
+		if (!this._isPostAllowed) {
 			return;
 		}
 		this.postButtonClicked.trigger();
 	}
 
-	/**
-	 * Set enabled status of post button
-	 * @param enabled
-	 */
-	setPostButtonEnabled(enabled) {
-		enabled = !!enabled;
-		if (this._postButtonEnabled === enabled) {
+	get isPostAllowed() {
+		return this._isPostAllowed;
+	}
+
+	set isPostAllowed(newValue) {
+		newValue = !!newValue;
+		if (this._isPostAllowed === newValue) {
 			return;
 		}
-		this._postButtonEnabled = enabled;
-		if (enabled) {
-			this._postButton.attr('tabindex', '0');
-			this._postButton.removeClass('disabled');
-		} else {
-			this._postButton.attr('tabindex', '-1');
-			this._postButton.addClass('disabled');
-		}
+		this._isPostAllowed = newValue;
+		this._handleIsPostAllowedChanged(newValue);
 	}
 }
 

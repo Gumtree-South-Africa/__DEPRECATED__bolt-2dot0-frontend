@@ -9,16 +9,16 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
  *
  * - Events:
  *   - postButtonClicked
- *   - openStatusChanged
+ *   - openStatusChanged: internal event before HamburgerMenu.toggleMenu is implemented here
  *
- * - APIs:
- *   - setPostButtonEnabled
+ * - Properties:
+ *   - isPostAllowed
  */
 class HamburgerMenuVM {
 	constructor() {
 		this.postButtonClicked = new SimpleEventEmitter();
-		this._postButtonEnabled = true;
 
+		this._isPostAllowed = true;
 		this._isOpened = false;
 		this.openStatusChanged = new SimpleEventEmitter();
 	}
@@ -29,45 +29,51 @@ class HamburgerMenuVM {
 	 */
 	componentDidMount(domElement) {
 		this._postButton = domElement.find('.js-post-button a');
-		this._postButtonEnabled = !this._postButton.hasClass('disabled');
-		this._postButton.on('click', (evt) => this._onPostButtonClicked(evt));
+		this._handleIsPostAllowedChanged = (newValue) => {
+			if (newValue) {
+				this._postButton.attr('tabindex', '0');
+				this._postButton.removeClass('disabled');
+			} else {
+				this._postButton.attr('tabindex', '-1');
+				this._postButton.addClass('disabled');
+			}
+		};
+		this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
 	}
 
-	_onPostButtonClicked(evt) {
+	_handlePostButtonClicked(evt) {
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();
-		if (!this._postButtonEnabled) {
+		if (!this._isPostAllowed) {
 			return;
 		}
 		this.postButtonClicked.trigger();
 	}
 
-	/**
-	 * Set enabled status of post button
-	 * @param enabled
-	 */
-	setPostButtonEnabled(enabled) {
-		enabled = !!enabled;
-		if (this._postButtonEnabled === enabled) {
-			return;
-		}
-		this._postButtonEnabled = enabled;
-		if (enabled) {
-			this._postButton.attr('tabindex', '0');
-			this._postButton.removeClass('disabled');
-		} else {
-			this._postButton.attr('tabindex', '-1');
-			this._postButton.addClass('disabled');
-		}
+		get isPostAllowed() {
+		return this._isPostAllowed;
 	}
 
-	setIsOpened(isOpened) {
-		isOpened = !!isOpened;
-		if (this._isOpened === isOpened) {
+	set isPostAllowed(newValue) {
+		newValue = !!newValue;
+		if (this._isPostAllowed === newValue) {
 			return;
 		}
-		this._isOpened = isOpened;
+		this._isPostAllowed = newValue;
+		this._handleIsPostAllowedChanged(newValue);
+	}
+
+	get isOpened() {
+		return this._isOpened;
+	}
+
+	set isOpened(newValue) {
+		newValue = !!newValue;
+		if (this._isOpened === newValue) {
+			return;
+		}
+		this._isOpened = newValue;
 		this.openStatusChanged.trigger(this._isOpened);
 	}
 
@@ -156,7 +162,7 @@ class HamburgerMenu {
 
 		this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 			if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
-				this.viewModel.setIsOpened(false);
+				this.viewModel.isOpened = false;
 			}
 		});
 
@@ -166,12 +172,12 @@ class HamburgerMenu {
 		this.menuHammer = new Hammer(this.hamburgerMenu);
 		this.overlayHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.viewModel.setIsOpened(false);
+				this.viewModel.isOpened = false;
 			}
 		});
 		this.menuHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.viewModel.setIsOpened(false);
+				this.viewModel.isOpened = false;
 			}
 		});
 		this.$pageContent.addClass('open-menu');
@@ -180,15 +186,14 @@ class HamburgerMenu {
 		});
 		this.$hamburgerIcon.on('click', () => {
 			// The icon is clickable only when menu is closed
-			this.viewModel.setIsOpened(true);
+			this.viewModel.isOpened = true;
 		});
 		this.$hamburgerPopout.on('click', () => {
 			// The popout is clickable only when menu is opened
-			this.viewModel.setIsOpened(false);
+			this.viewModel.isOpened = false;
 		});
 
 		this.viewModel.componentDidMount($('#js-hamburger-menu'));
-		this.viewModel.setIsOpened(this.open);
 		this.viewModel.openStatusChanged.addHandler((newOpenStatus) => {
 			let currentOpenStatus = this.open;
 			if (currentOpenStatus !== newOpenStatus) {
