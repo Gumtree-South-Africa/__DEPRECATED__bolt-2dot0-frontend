@@ -14,6 +14,10 @@ router.use('/post', require('./postpageController'));
 router.use('/edit', require('./editpageController'));
 router.use('/quickpost', require('./quickpostController'));
 router.use('/view', require('./viewPageController'));
+
+// Regex Routes
+router.use('/a-[0-9A-Za-z\-]+/[A-Za-z0-9\+\-]+', require('./viewPageController'));
+
 router.use('/', require('./homepageController'));
 
 module.exports = router;
