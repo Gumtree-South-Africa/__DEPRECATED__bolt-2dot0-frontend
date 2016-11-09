@@ -46,4 +46,3 @@ class SeoModel {
 }
 
 module.exports = SeoModel;
-

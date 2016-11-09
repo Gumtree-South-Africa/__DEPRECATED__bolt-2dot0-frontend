@@ -15,5 +15,6 @@ router.use('/edit', require('./editpageController'));
 router.use('/quickpost', require('./quickpostController'));
 router.use('/view', require('./viewPageController'));
 router.use('/', require('./homepageController'));
+router.use('/', require('./searchPageController'));
 
 module.exports = router;
