@@ -68,10 +68,10 @@ class HomePage {
 	}
 
 	_imageDidUpload(error, resultUrlObj) {
-		this.welcomeModal.isPostAllowed = true;
-		this.header.hamburgerMenu.isPostAllowed = true;
 		if (error || !resultUrlObj || !resultUrlObj.normal) {
 			// TODO Error handling
+			this.welcomeModal.isPostAllowed = true;
+			this.header.hamburgerMenu.isPostAllowed = true;
 			this.spinnerModal.hideModal();
 			return;
 		}
