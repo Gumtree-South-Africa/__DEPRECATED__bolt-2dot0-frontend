@@ -205,10 +205,10 @@
 		},
 		"Homepage" : {
 			"desktop" 	: {
-				"models" : ["keyword", "adstatistics", "gallery", "seo"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["keyword", "adstatistics", "seo"]
+				"models" : ["level2Loc", "keyword", "gallery", "adstatistics", "seo"]
 			}
 		},
 		"QuickPostAdForm" : {
