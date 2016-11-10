@@ -48,6 +48,7 @@ module.exports = function(locale) {
 
 	return function(req, res, next) {
 		// b2dot0Pages
+		res.locals.b2dot0Pages = [];
 		if (locale === 'es_MX') {
 			// Set which pages have to be in 2.0
 			let pages = [];

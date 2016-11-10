@@ -14,7 +14,7 @@ let homepageControllerV2 = require('./homepageControllerV2');
  */
 router.get('/', (req, res, next) => {
 	console.time('Instrument-Homepage-Controller');
-	if (pageControllerUtil.is2dot0Page(res, abtestpagesJson.pages.H)) {
+	if (pageControllerUtil.is2dot0Version(res) || pageControllerUtil.is2dot0Page(res, abtestpagesJson.pages.H)) {
 		homepageControllerV2(req, res, next);
 	} else {
 		homepageControllerV1(req, res, next);
