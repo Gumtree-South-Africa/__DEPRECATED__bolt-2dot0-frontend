@@ -1290,7 +1290,7 @@
           "message": "TThere is a problem with your network."
         },
         "picturesrv": {
-          "title": "Please retry.",
+          "title": "Try again.",
           "message": "There is a problem uploading your image."
         },
         "corrupt": {
