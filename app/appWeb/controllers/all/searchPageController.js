@@ -14,7 +14,7 @@ let extendModelData = (req, modelData) => {
 	modelData.header.metaRobots = modelData.seo.robots;
 	modelData.header.canonical = modelData.header.homePageUrl;
 	// CSS
-	console.log(modelData.footer.baseJSMinUrl);
+
 	if (modelData.header.min) {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/SearchPage.min.css');
 	} else {
@@ -36,9 +36,13 @@ let extendModelData = (req, modelData) => {
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
-router.get('/search/:keyword?', (req, res, next) => {
+router.get('/:keyword?', (req, res, next) => {
 	let keyword = req.params.keyword;
 
+	if (!res.locals.b2dot0Version) {
+		res.redirect("/s-" + keyword + '/v1q0p1');	// redirect to 1.0 version of this page
+		return;
+	}
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.RESULTS_SEARCH;
 	let searchPageModel = new SearchPageModel(req, res, keyword);

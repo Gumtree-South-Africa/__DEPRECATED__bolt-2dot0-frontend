@@ -274,14 +274,10 @@
 		},
 		"ResultsSearch": {
 			"desktop": {
-				"models": [
-					"advert", "seo"
-				]
+				"models": ["seo"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "seo"
-				]
+				"models": ["seo"]
 			}
 		}
 	}

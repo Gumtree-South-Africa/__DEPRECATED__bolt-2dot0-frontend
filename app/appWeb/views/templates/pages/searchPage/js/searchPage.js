@@ -1,34 +1,11 @@
 'use strict';
 
-let viewPageGallery = require('app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js');
+// this is where we require what the page needs, so we can bundle per-page
 
-//TODO: update this breakpoint
-const MEDIUM_BREAKPOINT = 848;
-
-let _slickOptions = {
-	arrows: true,
-	infinite: true,
-	dots: true,
-	responsive: [
-		{
-			breakpoint: MEDIUM_BREAKPOINT,
-			settings: {
-				arrows: false,
-				infinite: true,
-				slidesToShow: 1,
-				slidesToScroll: 1
-			}
-		}
-	],
-	slidesToShow: 5,
-	slidesToScroll: 1
-};
 
 let initialize = () => {
-	viewPageGallery.initialize({
-		slickOptions: _slickOptions,
-		showImageTracking: true
-	});
+	// prime window with jquery object for use by inline scripts and legacy code
+	// window.$ = window.jQuery = $;
 };
 
 module.exports = {
