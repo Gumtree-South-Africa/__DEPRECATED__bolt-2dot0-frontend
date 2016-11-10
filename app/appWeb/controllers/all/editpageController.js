@@ -21,13 +21,22 @@ let EditAdPage = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.css');
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "EditAd_desktop_es_MX.js");
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'EditAd_desktop_es_MX.js');
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 	}
 };
 
 router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
+	if (adId === undefined) {
+		res.redirect('/');
+		return;
+	}
+
+	if (!pageControllerUtil.is2dot0Version(res)) {
+		res.redirect('/post.html?adId=adId');	// redirect to 1.0 version of this page
+		return;
+	}
 
 	// If user is not logged in, force user to login; and on login success it comes back to edit
 	let authenticationCookie = req.cookies['bt_auth'];

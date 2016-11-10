@@ -78,6 +78,7 @@ class ModelBuilder {
 			machineid: appLocals.machineid,
 			useragent: appLocals.useragent,
 			b2dot0Version: resLocals.b2dot0Version,
+			b2dot0PageVersion: resLocals.b2dot0PageVersion,
 
 			// creating a { lat: , lng: } object then consume that, formatting as needed
 			// consuming services require format (<lat>,<long>) use bapiService.bapiFormatLatLng()

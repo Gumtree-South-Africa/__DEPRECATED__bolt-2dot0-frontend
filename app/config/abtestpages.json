@@ -1,0 +1,14 @@
+{
+	"pages" : {
+		"H" : "Homepage",
+		"N" : "Navigation",
+		"P" : "PostAd",
+		"E" : "EditAd",
+		"A" : "ActivatePage",
+		"L" : "LoginPage",
+		"R" : "RegisterPage",
+	    "V" : "VIP",
+	    "S" : "SRP",
+		"ER": "ERROR"
+	}
+}
