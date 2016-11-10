@@ -14,11 +14,11 @@
 		position: fixed;
 		background-color: white;
 		height: auto;
-		width: 98%;
-		top: 81%;
+		bottom: 0;
 		left: 0;
 		right: 0;
 		margin: auto;
+		padding: 10px 20px;
 		@include from-breakpoint($medium-break) {
 			width: 60%;
 		}

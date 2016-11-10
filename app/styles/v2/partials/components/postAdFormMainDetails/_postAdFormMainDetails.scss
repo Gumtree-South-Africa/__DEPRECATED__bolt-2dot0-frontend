@@ -1,0 +1,209 @@
+$categoryIndent: 20px;
+$categoryArrowLeftOffset: 2px;
+$categoryArrowTopOffset: 10px;
+$categoryArrowIconWidth: 13px;
+
+.main-detail-post {
+	width: 100%;
+	background-color: $mainDetailsBackgroundColor;
+	margin-bottom: 10px;
+
+	.post-add-detail {
+		padding: 0.618em 0;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
+	}
+
+	select, input {
+		height: 33px;
+	}
+
+	select {
+		// this is for firefox only.  percentage text indent is bigger
+		// on firefox than chrome/safari etc.
+		@-moz-document url-prefix() {
+			text-indent: 1% !important;
+		}
+
+		text-indent: 2%;
+
+		padding: 0 !important;
+		border-radius: 0;
+	}
+
+	.main-details-title {
+		width: 100%;
+		padding: 25px 0;
+		font-size: 20px;
+		line-height: 1;
+		text-align: center;
+		color: $mainDetailsTitleTextColor;
+	}
+
+	.label-wrapper {
+		width: 100%;
+		margin: 5px 0;
+
+		label {
+			text-transform: uppercase;
+			width: $labelWidth;
+			margin: 0 0 0 $labelMargin;
+			font-size: 10px;
+			color: $formLabelTextColor;
+			display: inline-block; // this fixes text wrapping on smaller devices
+		}
+
+		.suggested-cat {
+			width: $labelWidth;
+			margin: 0 $labelMargin;
+			font-size: 13px;
+			color: $categoryDisplayTextColor;
+			font-style: italic;
+		}
+	}
+
+	.description-input {
+		height: 150px;
+		margin-left: $inputMargin;
+		resize: none;
+		width: $inputWidth;
+		padding: 0 calc(2% - 1px);
+	}
+
+	.form-ad-title .input-wrapper input {
+		width: $inputWidth !important;
+	}
+
+	.input-wrapper {
+		width: 100%;
+		position: relative;
+
+		.step-controls {
+			display: none;
+		}
+
+		input[type="text"], input[type="tel"], input[type="number"], input[type="date"], select {
+			width: $inputFieldWidth;
+			margin: 0 $inputMargin;
+			padding: 0 calc(2% - 1px);
+			font-size: 1em;
+
+			border: 1px solid $vivaBlack;
+
+			&.price-input {
+				width: $inputFieldWidth;
+
+				@media(max-width: 450px) {
+					width: 30%;
+				}
+
+				margin: 0 0 0 $inputMargin;
+			}
+
+			&.user-error,
+			&.validation-error {
+				border: 1px solid red;
+			}
+		}
+
+		select {
+			width: 88%;
+			margin: 1% 44% 1% $inputMargin;
+			border: 1px solid $vivaBlack;
+		}
+
+		.edit-ad-select-box ~ .edit-ad-select-box {
+			width: unquote("calc(88% - ") $categoryIndent unquote(")");
+			margin-left: 0;
+			margin-right: 0;
+		}
+
+		.edit-ad-select-box ~ .edit-ad-select-box ~ .edit-ad-select-box {
+			width: unquote("calc(88% - ") 2*$categoryIndent unquote(")");
+		}
+
+		.category-arrow {
+			display: inline-block;
+			float: left;
+			margin-top: unquote("calc(1% + ") $categoryArrowTopOffset unquote(")");
+			margin-left: unquote("calc(6% + ") $categoryArrowLeftOffset unquote(")");
+			margin-right: $categoryIndent - $categoryArrowIconWidth - $categoryArrowLeftOffset;
+		}
+
+		.category-arrow ~ .category-arrow {
+			margin-left: unquote("calc(6% + ") ($categoryIndent + $categoryArrowLeftOffset) unquote(")");
+		}
+	}
+	.radio-group {
+		margin-left: 15px;
+		display: inline-block;
+
+		@media(max-width: 475px) {
+			margin-left: 5px;
+
+			.control {
+				margin-right: 5px;
+			}
+		}
+
+		/* Begin custom radio btns */
+		// Hide default browser input
+		input[type="radio"] {
+			position: absolute;
+			z-index: -1;
+			opacity: 0;
+		}
+
+		.control {
+			margin-right: 10px;
+		}
+
+		// Checked
+		.control input:checked ~ .outer-circle .inner-circle {
+			background: $vivaOrange;
+		}
+
+		.currency-type {
+			cursor: pointer;
+		}
+
+		.control input:checked ~ .currency-type {
+			color: black;
+			font-weight: bold;
+			display: inline-block;
+		}
+
+		.inner-circle {
+			display: inline-block;
+			position: relative;
+			top: -4px;
+			left: 2.1px;
+			width: 12px;
+			height: 12px;
+			background: #FFFFFF;
+			border-radius: 50%;
+			z-index: 1;
+		}
+
+		.outer-circle {
+			cursor: pointer;
+			display: inline-block;
+			position: relative;
+			top: 3px;
+			left: 0;
+			width: 16px;
+			height: 16px;
+			margin-right: 5px;
+			background: #FFFFFF;
+			border: 1px solid black;
+			border-radius: 50%;
+		}
+		/* End custom radio btns */
+	}
+
+	.form-ad-price .radio-group {
+		vertical-align: middle;
+		margin-left: 25px;
+	}
+}
