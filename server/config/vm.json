@@ -43,7 +43,7 @@
 	"imageRecognitionService": {
 		"server": {
 			"host"	: "charlie-vm-002-7898.phx02.dev.ebayc3.com",
-			"port"	: 10741,
+			"port"	: 10965,
 			"parameters": "/imageCategory/es_MX_VNS/url?",
 			"timeout": 2000
 		}
