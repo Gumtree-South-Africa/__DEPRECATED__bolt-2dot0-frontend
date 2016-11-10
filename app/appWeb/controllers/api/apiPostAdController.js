@@ -12,6 +12,7 @@ let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.j
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
+let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let logger = require(`${cwd}/server/utils/logger`);
 
 
@@ -75,6 +76,19 @@ let getAdPostedResponse = (results) => {
 	return response;
 };
 
+let getCategoryHierarchy =  (node, leafId, stack) => {
+	if (node.id === leafId) {
+		stack.unshift(node.id);
+		return node.parentId;
+	} else {
+		for (let i = 0; i < node.children.length; i++) {
+			if (node.id === getCategoryHierarchy(node.children[i], leafId, stack)) {
+				stack.unshift(node.id);
+				return node.parentId;
+			}
+		}
+	}
+};
 
 /**
  * route is /api/post/create
@@ -177,5 +191,38 @@ router.post('/create', cors, (req, res) => {
 
 });
 
+router.get('/customattributes/:categoryId', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
+	let categoryHierachyArray = [];
+	getCategoryHierarchy(res.locals.config.categoryAllData, Number(req.params.categoryId), categoryHierachyArray);
+	let verticalCategoriesConfig = res.locals.config.bapiConfigData.content.verticalCategories;
+
+	let isVertical = false;
+	categoryHierachyArray.forEach((categoryId) => {
+		if (verticalCategoriesConfig.find((item) => {
+				return categoryId === Number(item);
+			})) {
+			isVertical = true;
+		}
+	});
+
+	if (!isVertical) {
+		return res.json({});  // Only for vertical categories post support customer attributes
+	}
+
+	let attributeModel = new AttributeModel(model.bapiHeaders);
+
+	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
+		res.json(attributeModel.processCustomAttributesList(attributeData));
+	}).fail((err) => {
+		let bapiJson = logger.logError(err);
+		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
+		return res.status(err.getStatusCode(500)).json({
+			error: "customattributes failed",
+			bapiJson: bapiJson
+		});
+	});
+});
 
 module.exports = router;

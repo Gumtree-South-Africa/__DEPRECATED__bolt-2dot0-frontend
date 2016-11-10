@@ -183,10 +183,11 @@
 		  	"defaultKeywordsCount"	: 15
 		},
 		"localCurrencies": ["MXN", "USD"],
-		 "quickpost" : {
+		"quickpost" : {
               "currencyDisplay"    :    true,
               "currency"           :    ["MXN:MXN","USD:USD"]
-        }
+        },
+		"verticalCategories": ["30", "64", "36"]
 	},
 	"bapi" : {
 		"HomepageV2": {

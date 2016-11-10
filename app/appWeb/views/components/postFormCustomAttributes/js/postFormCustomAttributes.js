@@ -108,12 +108,16 @@ class PostFormCustomAttributes {
 			this.setCategoryId(categoryId);
 		}
 		$.ajax({
-			url: `/api/edit/customattributes/${this.catId}`,
+			url: `/api/postad/customattributes/${this.catId}`,
 			method: "GET",
 			contentType: "application/json",
 			success: (customAttrData) => {
 				postRenderCb(customAttrData);
 				this._render(customAttrData);
+			},
+			error: () => {
+				// empty the contents of the form when no customAtrr return
+				this.$form.empty();
 			}
 		});
 	}
