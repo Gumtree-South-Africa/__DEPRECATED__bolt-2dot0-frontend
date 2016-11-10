@@ -52,6 +52,12 @@ class CategoryUpdateModal {
 					}
 					select.append(option);
 				});
+				if (index >= 2) {
+					// Explicitly add category icons, as we can't use presudo element in select.
+					// We only add icons for level 2 and more
+					$(document.createElement('div')).addClass('category-arrow').addClass('icon-category-arrow')
+						.appendTo(this.$categorySelection);
+				}
 				this.$categorySelection.append(select);
 				currentCategory = nextLvCategory;
 			}
@@ -65,6 +71,9 @@ class CategoryUpdateModal {
 				let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
 				select.append(option);
 			});
+			// Explicitly add category icons, as we can't use presudo element in select.
+			$(document.createElement('div')).addClass('category-arrow').addClass('icon-category-arrow')
+				.appendTo(this.$categorySelection);
 			this.$categorySelection.append(select);
 			select.change((evt) => {
 				let newLastSelectedCatId = Number($(evt.currentTarget).val());
