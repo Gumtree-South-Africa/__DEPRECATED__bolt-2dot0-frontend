@@ -215,10 +215,10 @@
 		},
 		"PostAdForm": {
 			"desktop" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory"]
 			},
 			"mobile" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory"]
 			}
 		},
 		"EditAdForm": {

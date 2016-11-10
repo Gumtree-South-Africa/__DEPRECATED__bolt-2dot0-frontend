@@ -26,8 +26,8 @@ class PostAdModel {
 			if (vipLink) {
 				results.redirectLinks = {
 					vip: this.fixupVipUrl(vipLink.href),
-					previp: paymentLink.href,
-					previpRedirect: paymentRedirectLink.href
+					previp: paymentLink ? paymentLink.href : "",
+					previpRedirect: paymentRedirectLink ? paymentRedirectLink.href : ""
 				};
 			} else {
 				throw new Error(`post ad result is missing seoVipUrl ${JSON.stringify(results, null, 4)}`);

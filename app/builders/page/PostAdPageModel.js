@@ -9,7 +9,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
-
+let ImageRecognitionModel = require(cwd + '/app/builders/common/ImageRecognitionModel');
 
 class PostAdPageModel {
 	constructor(req, res) {
@@ -31,6 +31,7 @@ class PostAdPageModel {
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 		modelData.deferredAd = deferredAd;
+		modelData.initialImage = this.req.query.initialImage || '';
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -67,12 +68,27 @@ class PostAdPageModel {
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
+
+		let categories = data['initialCategory'] || '';
+		modelData.initialCategory = categories.reduce((pre, cur) => {
+			return pre.quality > cur.quality ? pre : cur;
+		},{"categoryId":"1","matches":1,"quality":0});
+
 		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
 		let seo = new SeoModel(modelData.bapiHeaders);
+		let imageRecognitionModel = new ImageRecognitionModel(modelData.bapiHeaders);
 		this.dataPromiseFunctionMap = {};
+
+		this.dataPromiseFunctionMap.initialCategory = () => {
+			if (modelData.initialImage !== '') {
+				return imageRecognitionModel.recognizeCategoryFromImage(modelData.initialImage);
+			} else {
+				return [{"categoryId":"","matches":0,"quality":0}];
+			}
+		};
 
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getPostSeoInfo();

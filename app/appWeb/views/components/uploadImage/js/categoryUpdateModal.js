@@ -5,8 +5,20 @@ class CategoryUpdateModal {
 	initialize() {
 		this.categoryTree = JSON.parse($("#category-tree").text() || "{}");
 		this.$categorySelection = $("#category-selection");
+		this.initialCategory = JSON.parse($("#initialCategory").text() || "{}");
+		this.initialImage = $('#postForm').find('input[name="initialImage"]');
 		this.hierarchyArray = [];
 		postAdFormMainDetails.initialize();
+		$(document).ready(() => {
+			this.onReady();
+		});
+	}
+
+	// If Post with initialImage and categoryId, update post Ad form main detail with category and image
+	onReady() {
+		if (this.initialCategory.categoryId !== '') {
+			this.updateCategory(Number(this.initialCategory.categoryId), this.initialImage.val());
+		}
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {

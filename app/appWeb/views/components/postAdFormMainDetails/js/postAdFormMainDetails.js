@@ -444,7 +444,6 @@ class PostAdFormMainDetails {
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 
-		this.imgUrls = [];
 		this.$textarea = this.$detailsSection.find('#description-input');
 
 		this.$submitButton.on('click', (e) => {
@@ -479,6 +478,7 @@ class PostAdFormMainDetails {
 		locationModal.initialize((data) => {
 			this._setHiddenLocationInput(data);
 		});
+		this.imgUrls = [];
 
 		if (registerOnReady) {
 			$(document).ready(() => {

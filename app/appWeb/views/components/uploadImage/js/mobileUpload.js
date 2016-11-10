@@ -172,7 +172,7 @@ class MobileUpload {
 		this.viewModel.componentDidMount(this.uploadImageContainer);
 		if (this.viewModel.initialImage) {
 			this.uploadPhotoText.addClass('hidden');
-			this.handleImageUrlChanged(this.viewModel.initialImage);
+			this.imageHolder.css("background-image", `url("${this.viewModel.initialImage}")`);
 		}
 	}
 
