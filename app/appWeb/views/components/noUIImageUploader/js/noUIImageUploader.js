@@ -109,7 +109,12 @@ class NoUIImageUploader {
 				};
 			}
 			this.imageDidUpload.trigger(err);
-		}).then(() => this._uploadPromise = null, () => this._uploadPromise = null);
+		}).then(() => this._cleanup(), () => this._cleanup());
+	}
+
+	_cleanup() {
+		this._uploadPromise = null;
+		this._$fileUploader.val('');
 	}
 
 	_extractClientError(response, fileName) {
