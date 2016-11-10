@@ -190,7 +190,7 @@ $categoryArrowIconWidth: 13px;
 			cursor: pointer;
 			display: inline-block;
 			position: relative;
-			top: 1px;
+			top: 3px;
 			left: 0;
 			width: 16px;
 			height: 16px;
@@ -200,5 +200,10 @@ $categoryArrowIconWidth: 13px;
 			border-radius: 50%;
 		}
 		/* End custom radio btns */
+	}
+
+	.form-ad-price .radio-group {
+		vertical-align: middle;
+		margin-left: 25px;
 	}
 }
