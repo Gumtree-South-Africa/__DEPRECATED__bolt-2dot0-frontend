@@ -1179,6 +1179,42 @@
 		},
 		"gallery" : {
 			"cardTitle": "Homepage gallery ads"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Try other images?!",
+					"message": "There is a problem with your image dimension."
+				},
+				"invalidSize": {
+					"title": "Try other images?!",
+					"message": "There is a problem with your image size."
+				},
+				"invalidType": {
+					"title": "Try other images?!",
+					"message": "There is a problem with your image type."
+				},
+				"colorspace": {
+					"title": "Try other images?!",
+					"message": "There is a problem uploading your image."
+				},
+				"firewall": {
+					"title": "Try again.",
+					"message": "TThere is a problem with your network."
+				},
+				"picturesrv": {
+					"title": "Please retry.",
+					"message": "There is a problem uploading your image."
+				},
+				"corrupt": {
+					"title": "Try other images?!",
+					"message": "There is a problem with your image."
+				},
+				"unknown": {
+					"title": "Try other images?!",
+					"message": "There is a problem uploading your image."
+				}
+			}
 		}
 	},
 	"header": {

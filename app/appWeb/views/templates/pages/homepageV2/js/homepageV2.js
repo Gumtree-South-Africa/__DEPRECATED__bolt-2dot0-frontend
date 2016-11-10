@@ -2,9 +2,10 @@
 
 let NoUIImageUploader =
 	require('app/appWeb/views/components/noUIImageUploader/js/noUIImageUploader.js').NoUIImageUploader;
-let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js').WelcomeModal;
+let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js');
 let Header = require('app/appWeb/views/components/headerV2/js/header.js').Header;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let EPS_CLIENT_ERROR_CODES = require('app/appWeb/views/components/uploadImage/js/epsUpload.js').EPS_CLIENT_ERROR_CODES;
 
 const FILE_SELECT_DEBOUNCE_TIMEOUT = 1000;
 
@@ -38,6 +39,42 @@ class HomePage {
 
 		// Callback for singleton components
 		this.spinnerModal.initialize();
+
+		// Initialize self
+		let $uploadFailureMessages = $('#uploadFailureMessages');
+		this._errorMessages = {};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION] = {
+			title: $uploadFailureMessages.data('invalid-dimension-title'),
+			message: $uploadFailureMessages.data('invalid-dimension-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_SIZE] = {
+			title: $uploadFailureMessages.data('invalid-size-title'),
+			message: $uploadFailureMessages.data('invalid-size-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_TYPE] = {
+			title: $uploadFailureMessages.data('invalid-type-title'),
+			message: $uploadFailureMessages.data('invalid-type-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.COLOR_SPACE] = {
+			title: $uploadFailureMessages.data('colorspace-title'),
+			message: $uploadFailureMessages.data('colorspace-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.FIREWALL] = {
+			title: $uploadFailureMessages.data('firewall-title'),
+			message: $uploadFailureMessages.data('firewall-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.PICTURE_SRV] = {
+			title: $uploadFailureMessages.data('picturesrv-title'),
+			message: $uploadFailureMessages.data('picturesrv-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.CORRUPT] = {
+			title: $uploadFailureMessages.data('corrupt-title'),
+			message: $uploadFailureMessages.data('corrupt-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.UNKNOWN] = {
+			title: $uploadFailureMessages.data('unknown-title'),
+			message: $uploadFailureMessages.data('unknown-message')
+		};
 
 		// Register event
 		this.noUIImageUploader.imageWillUpload.addHandler(() => this._imageWillUpload());
@@ -73,6 +110,12 @@ class HomePage {
 			this.welcomeModal.isPostAllowed = true;
 			this.header.hamburgerMenu.isPostAllowed = true;
 			this.spinnerModal.hideModal();
+
+			let errorMessage = this._errorMessages[error.errorCode] ||
+				this._errorMessages[EPS_CLIENT_ERROR_CODES.UNKNOWN];
+			this.welcomeModal.title = errorMessage.title;
+			this.welcomeModal.message = errorMessage.message;
+			this.welcomeModal.isOpened = true;
 			return;
 		}
 		this.spinnerModal.completeSpinner(() => this._redirectToPostPage(resultUrlObj.normal));
