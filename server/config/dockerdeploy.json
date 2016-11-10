@@ -43,7 +43,7 @@
 	"imageRecognitionService": {
 		"server": {
 			"host"	: "docker_host_machine",
-			"port"	: 10741,
+			"port"	: 10965,
 			"parameters": "/imageCategory/es_MX_VNS/url?",
 			"timeout": 2000
 		}
