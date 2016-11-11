@@ -18,6 +18,7 @@ describe('Page Models', () => {
 		let res = {
 			locals: {
 				b2dot0Version: true,
+				b2dot0PageVersion: true,
 				config: {
 					bapiConfigData: {}
 				}

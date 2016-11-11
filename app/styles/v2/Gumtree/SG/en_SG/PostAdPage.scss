@@ -1,4 +1,4 @@
-@import  "../../theme";
+@import  "../theme";
 @import  "../../../../../../node_modules/slick-carousel/slick/slick.scss";
 @import  "../../../partials/pages/PostAdPage/pageMain";
 @import  "../../../partials/components/loginModal/loginModal";
@@ -13,3 +13,8 @@
 @import  "../../../partials/components/postAdModal/postAdModal";
 @import  "../../../partials/components/postAdHeader/postAdHeader";
 @import "../../../partials/components/spinnerModal/spinnerModal";
+
+@import  "../partials/components/header/header";
+
+@import  "../partials/components/footer/footer.scss";
+@import  "../partials/components/footer/seo.scss";

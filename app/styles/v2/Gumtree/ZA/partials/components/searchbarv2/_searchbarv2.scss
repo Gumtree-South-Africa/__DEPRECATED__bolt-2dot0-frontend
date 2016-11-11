@@ -27,7 +27,7 @@
 			display: inline-block;
 			float: none;
 			margin: 0;
-			font-weight: bold;
+			font-weight: 500;
 			color: color(swirl, dark);
 		}
 
@@ -50,9 +50,23 @@
 		.search-textbox-container {
 			.search-textbox {
 				color: color(swirl, dark);
-				font-weight: bold;
+				font-weight: 500;
+
 				&::-moz-placeholder {
 					opacity: 1;
+					font-weight: 100;
+				}
+				&:-moz-placeholder {
+					opacity: 1;
+					font-weight: 100;
+				}
+				&::-webkit-input-placeholder {
+					opacity: 1;
+					font-weight: 100;
+				}
+				&:-ms-input-placeholder {
+					opacity: 1;
+					font-weight: 100;
 				}
 			}
 		}

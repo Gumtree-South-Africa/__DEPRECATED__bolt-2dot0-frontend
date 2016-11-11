@@ -1,5 +1,7 @@
 'use strict';
 
+let abtestpagesJson = require(process.cwd() + '/app/config/abtestpages.json');
+
 
 module.exports = function(locale) {
 
@@ -45,7 +47,19 @@ module.exports = function(locale) {
 	}
 
 	return function(req, res, next) {
-		if(locale==='en_SG' || locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
+		// b2dot0Pages
+		res.locals.b2dot0Pages = [];
+		if (locale === 'es_MX') {
+			// Set which pages have to be in 2.0
+			let pages = [];
+			pages.push(abtestpagesJson.pages.H);
+			pages.push(abtestpagesJson.pages.N);
+			pages.push(abtestpagesJson.pages.ER);
+			res.locals.b2dot0Pages = pages;
+		}
+
+		// b2dot0Version
+		if(locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
 			// ALWAYS enable 1.0
 			res.locals.b2dot0Version = false;
 			res.cookie('b2dot0Version', '1.0', {'httpOnly': true});
@@ -67,6 +81,9 @@ module.exports = function(locale) {
 				}
 			}
 		}
+
+		// b2dot0PageVersion
+		res.locals.b2dot0PageVersion = res.locals.b2dot0Version;
 
 		// call next middleware
 		next();
