@@ -28,8 +28,6 @@ let EditAdPage = {
 
 router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
-	console.log('$$$$$$$$$$$', adId);
-	console.log('####################', pageControllerUtil.is2dot0Version(res));
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
