@@ -1,0 +1,88 @@
+// import the base file
+@import
+    "../theme",
+    "../../typography-scale";
+
+
+// Compass reset - runs global reset mixin and inserts styles
+// Based on Eric Meyer's reset 2.0 Global reset rules.
+// If more granular control is needed over reset rules, include and use reset utilities.
+@import "../../../../../../node_modules/compass-mixins/lib/compass/reset";
+
+
+
+
+// include typography and other utilities
+// necessary only once throughout the site
+@include blueprint-typography(1em);
+@include blueprint-utilities;
+
+
+
+// import the icons
+@import "../../../partials/main/icons";
+
+
+
+// import global styles necessary throughout the site
+//@import "../partials/main/footer";
+
+
+// setup selection colors
+// not necessary, but nice to have
+// when user selects any text
+// keeps it consistent with styles
+::selection {
+  background: $color-navy;
+  color: $vivaWhite;
+}
+::-moz-selection {
+  background: $color-navy;
+  color: $vivaWhite;
+}
+
+
+
+// limit the image to the maximum
+// container width
+img {
+  max-width: 100%;
+}
+
+
+[data-uri],
+[data-o-uri],
+.sudo-link,
+span[href]{
+	@extend a;
+	cursor: pointer;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="checkbox"],
+textarea,
+select,
+button {
+  font-size: 1em;
+  font-family: inherit;
+  margin: 0;
+}
+
+a, [data-uri], [data-o-uri], .sudo-link, span[href] {
+  font-size: 100%;  // override global setting of 88%
+}
+
+a, [data-uri], [data-o-uri], .sudo-link, span[href],
+a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[href]:visited {
+  color: $vivaBlack;
+}
+
+.sudolink{
+  color: $tertiary-link-color;
+  &:visited{
+    text-decoration: none;
+  }
+}
+
+@import  "../../../partials/components/messages/messages";

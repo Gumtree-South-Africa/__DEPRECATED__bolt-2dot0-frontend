@@ -1,7 +1,9 @@
 'use strict';
 
+let abtestpagesJson = require(process.cwd() + '/app/config/abtestpages.json');
 
-module.exports = function() {
+
+module.exports = function(locale) {
 
 	function checkCookie(req, res) {
 		res.locals.b2dot0Version = req.cookies.b2dot0Version === '2.0';
@@ -45,21 +47,43 @@ module.exports = function() {
 	}
 
 	return function(req, res, next) {
-		// Step 0: Default b2dot0Version to v1
-		res.locals.b2dot0Version = false;
+		// b2dot0Pages
+		res.locals.b2dot0Pages = [];
+		if (locale === 'es_MX') {
+			// Set which pages have to be in 2.0
+			let pages = [];
+			pages.push(abtestpagesJson.pages.H);
+			pages.push(abtestpagesJson.pages.N);
+			pages.push(abtestpagesJson.pages.ER);
+			res.locals.b2dot0Pages = pages;
+		}
 
-		// Step 1: Check the ENV variable
-		let pageVersion = process.env.PAGE_VER || 'v1';
-		if (pageVersion === 'v2') {
-			res.locals.b2dot0Version = true;
+		// b2dot0Version
+		if(locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
+			// ALWAYS enable 1.0
+			res.locals.b2dot0Version = false;
+			res.cookie('b2dot0Version', '1.0', {'httpOnly': true});
 		} else {
-			// Step 2: Check the URL parameter
-			if ((typeof req.query.v === 'undefined') || (req.query.v === null) || (req.query.v === '')) {
-				checkCookie(req, res);
+			// ALLOW the cookie/v parameter to decide
+			// Step 0: Default b2dot0Version to v1
+			res.locals.b2dot0Version = false;
+
+			// Step 1: Check the ENV variable
+			let pageVersion = process.env.PAGE_VER || 'v1';
+			if (pageVersion === 'v2') {
+				res.locals.b2dot0Version = true;
 			} else {
-				checkUrlParam(req, res);
+				// Step 2: Check the URL parameter
+				if ((typeof req.query.v === 'undefined') || (req.query.v === null) || (req.query.v === '')) {
+					checkCookie(req, res);
+				} else {
+					checkUrlParam(req, res);
+				}
 			}
 		}
+
+		// b2dot0PageVersion
+		res.locals.b2dot0PageVersion = res.locals.b2dot0Version;
 
 		// call next middleware
 		next();

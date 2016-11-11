@@ -1,4 +1,4 @@
-@import  "../../theme";
+@import  "../theme";
 @import  "../../../../../../node_modules/slick-carousel/slick/slick.scss";
 @import  "../../../partials/pages/EditAdPage/pageMain";
 @import  "../../../partials/components/postAdHeader/postAdHeader";
@@ -7,8 +7,22 @@
 @import  "../../../partials/components/header/header";
 @import  "../../../partials/components/footerV2/footerV2";
 @import  "../../../partials/components/hamburgerMenu/hamburgerMenu";
+@import  "../../../partials/components/topSearches/topSearches";
+@import  "../../../partials/components/topLocations/topLocations";
 @import  "../../../partials/components/shareAdCard/shareAdCard";
 @import  "../../../partials/components/photoCarousel/photoCarousel";
 @import  "../../../partials/components/adStats/adStats";
 @import "../../../partials/components/categorySelectionModal/categorySelectionModal";
 @import "../../../partials/components/spinnerModal/spinnerModal";
+
+@import  "../partials/components/categorySelectionModal/categorySelectionModal";
+@import  "../partials/components/header/header";
+@import  "../partials/components/hamburgerMenu/hamburgerMenu";
+@import  "../partials/components/modal/modal";
+@import  "../partials/components/photoCarousel/photoCarousel";
+@import  "../partials/components/profileMenu/profileMenu";
+@import  "../partials/components/shareAdCard/shareAdCard";
+@import  "../partials/components/uploadImage/uploadImage";
+@import  "../partials/components/footer/footer.scss";
+@import  "../partials/components/footer/seo.scss";
+@import  "../partials/pages/EditAdPage/pageMain";

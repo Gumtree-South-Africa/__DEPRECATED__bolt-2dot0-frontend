@@ -1,0 +1,230 @@
+.sectionMenu{
+	font-family: 'Lato';
+}
+.header-wrapper {
+	border-bottom-color: color(crane);
+
+	&.header-distraction-free {
+		.headerV2 {
+			padding-bottom: 10px;
+		}
+	}
+
+	.headerV2 {
+		font-family: 'Lato';
+		height: auto;
+		margin: auto;
+		max-width: 942px;
+		padding: 20px 40px 0;
+		a{
+			font-weight: normal;
+		}
+
+		.app-icon {
+			top: 25px;
+		}
+
+		.item-text {
+			background-color: $common-background-color;
+			cursor: pointer;
+			margin-top: -20px;
+			max-width: none;
+			padding: 20px 5px 12px;
+			z-index: 1;
+		}
+
+		.left-items {
+			left: auto;
+			margin-left: 8%;
+			width: auto;
+
+			&.logged-out {
+				left: auto;
+				margin-left: 11%;
+
+				.post-ad-button {
+					margin-left: 35px;
+				}
+			}
+
+			.browse {
+				line-height: 35px;
+				min-width: 0;
+				width: auto;
+			}
+
+			.messages {
+				left: 0;
+				margin: 0 15px 0 0;
+			}
+		}
+
+		.logo {
+			background: url("../../../../../images/en_ZA/logo_v2.png") no-repeat 50% 50%;
+			background-size: contain;
+			display: inline-block;
+			height: 35px;
+			margin-left: 20px;
+			position: static;
+			width: 127px;
+			@include from-breakpoint($medium-break) {
+				height: 35px;
+				margin: 0 0 0 20px;
+				top: 0;
+			}
+		}
+
+		.menu-dropdown {
+			border-radius: 0 2px 2px 2px;
+			line-height: 20px;
+			padding: 5px;
+			position: absolute;
+			left: 0;
+			top: 100%;
+
+			.menu-item {
+				border-bottom-color: color(swirl);
+			}
+		}
+
+		.mobile-menu {
+			top: 25px
+		}
+
+		.post-ad-button	{
+			margin: 0 0 0 15px;
+			min-width: 0;
+
+			.btn {
+				height: 35px;
+				line-height: 30px;
+				min-width: 0;
+				padding: 0 20px;
+				width: auto;
+			}
+		}
+
+		.right-item {
+			margin-right: 0;
+			width: auto;
+
+			.item-text {
+				line-height: 35px;
+				padding: 20px 5px 12px;
+			}
+		}
+
+		.right-items {
+			float: right;
+			margin-right: 20px;
+			position: static;
+			width: auto;
+
+			&.logged-out {
+				.help {
+					margin-left: 35px;
+				}
+			}
+
+			.help {
+				line-height: 35px;
+				margin-left: 20px;
+				padding: 0;
+				width: auto;
+			}
+
+			.my-ads {
+				line-height: 35px;
+				margin-left: 15px;
+				padding: 0;
+				width: auto !important;
+			}
+
+			.profile {
+				.header-item-icon {
+					right: 0;
+				}
+
+				.profile-icon {
+					box-sizing: border-box;
+					height: 35px;
+					width: 35px;
+				}
+
+				.username {
+					display: inline-block;
+					max-width: 127px;
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+					width: auto;
+				}
+
+				.username-wrapper {
+					vertical-align: top;
+				}
+			}
+		}
+	}
+}
+
+.icon-header-profile-out {
+	background-image: url("../../../../../images/en_ZA/icon-my-profile.svg") !important;
+}
+
+.icon-my-ads-active {
+	opacity: 1 !important;
+}
+
+@include to-breakpoint($medium-break) {
+	.header-wrapper {
+		.headerV2 {
+			.left-items {
+				margin-left: 5%;
+			}
+
+			.logo {
+				margin-left: 0;
+			}
+
+			.post-ad-button {
+				margin-left: 25px;
+			}
+
+			.right-items {
+				margin-right: 0;
+
+				.help {
+					margin-left: 25px;
+				}
+			}
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.header-wrapper {
+		border-bottom-color: color(crane);
+
+		&.header-distraction-free {
+			.headerV2 {
+				height: 40px;
+
+				.logo {
+					top: 15px;
+				}
+			}
+		}
+
+		.headerV2 {
+			height: 30px;
+
+			.logo {
+				left: 50%;
+				margin: 0 0 0 -63.5px;
+				position: absolute;
+				top: 18px;
+			}
+		}
+	}
+}

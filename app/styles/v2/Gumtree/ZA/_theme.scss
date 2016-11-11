@@ -1,48 +1,52 @@
 @import
     //'swatches',
-    'palette',
-    "../partials/base",
-    "../partials/main/theme",
-    "typography-scale";
+    '../palette',
+    "../../partials/base",
+    "../../partials/main/theme",
+    "../typography-scale";
+
 
 $container-width: 73em;
 
+$bodyFont: Lato;    // attach this to body element
+
 // Headlines
-$viva-h1: bold 1.5em Lato;      // 24px
-$viva-h2: normal 1.5em Lato;    // 24px
-$viva-h3: normal 1.25em Lato;   // 20 px
-$viva-h4: normal 1em Lato;      // 16 px
+$gum-h1: bold 1.5em $bodyFont;      // 24px
+$gum-h2: normal 1.5em $bodyFont;    // 24px
+$gum-h3: normal 1.25em $bodyFont;   // 20 px
+$gum-h4: normal 1em $bodyFont;      // 16 px
 
-$h1: $viva-h1;
-$h2: $viva-h2;
-$h3: $viva-h3;
-$h4: $viva-h4;
+$h1: $gum-h1;
+$h2: $gum-h2;
+$h3: $gum-h3;
+$h4: $gum-h4;
 
-$h1-color: $vivaBlack;
-$h3-secondary-color: $vivaOrange;
+$h1-color: $gumBlack;
+$h3-secondary-color: $gumOrange;
 
 // Paragraphs
-$viva-p1: normal 0.875em Lato;  //14px
-$viva-p2: normal 0.75em Lato;   //12px
-$viva-p3: normal 0.625em Lato;  //10px
+$gum-p1: normal 0.875em $bodyFont;  //14px
+$gum-p2: normal 0.75em $bodyFont;   //12px
+$gum-p3: normal 0.625em $bodyFont;  //10px
 
-$p1: $viva-p1;
-$p2: $viva-p2;
-$p3: $viva-p3;
+$p1: $gum-p1;
+$p2: $gum-p2;
+$p3: $gum-p3;
 
 $p2-secondary-color: $vivaGray1;
 
 $safety-card-background-color: #1E98D5;
-$common-background-color: #f7f7f7;
+$common-background-color: color(foxtail, medium);
+$recent-activity-background-color: white;
 
 // Primary link
-$primary-link-color: $vivaBlack;
-$primary-link-font: bold 1.5em Lato;
+$primary-link-color: $gumBlack;
+$primary-link-font: bold 1.5em $bodyFont;
 
 
 // Secondary link
-$secondary-link-color: $vivaOrange;
-$secondary-link-font: bold 1em Lato;
+$secondary-link-color: $gumOrange;
+$secondary-link-font: bold 1em $bodyFont;
 
 
 // Tertiary link
@@ -52,42 +56,35 @@ $tertiary-link-color: $vivaWhite;
 $seo-bordercolor: #FAFAFA;
 
 //Page
-
+$gumtree-bg-color: color(foxtail, medium);
+$gumtree-bg-container-color: color(foxtail, light);
 $page-bgcolor : $vivaWhite;
 $page-bordercolor : #f7f7f7;
 
-
 // Buttons
 $button-color: $vivaWhite;
-$button-bgcolor: $vivaOrange;
+$button-bgcolor: color(crane);
 $button-fontsize: 1.125em;
-
-
-//Page
-
-$page-bgcolor: $vivaWhite;
-$page-bordercolor: #f7f7f7;
-
 
 //App Download
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
-$appdownloadreview-font: $viva-p2;
+$appdownloadreview-font: $gum-p2;
 $appdownloadreview-color: $vivaGray1;
 
 //Welcomescreen
-$welcomeSreen-bgcolor: $vivaWhite;
+$welcomeSreen-bgcolor: color(foxtail, light);
 
 
 // Section Menu
-$secmenu-link-color: $vivaBlack;
-$secmenu-link-color-hover: $vivaOrange;
+$secmenu-link-color: color(swirl, dark);
+$secmenu-link-color-hover: $gumOrange;
 
 
 // modal
-$modal-color: $vivaBlack;
+$modal-color: color(swirl, shade);
 $modal-bgcolor: $vivaBlack;
-$modal-info: $vivaGray1;
+$modal-info: color(swirl, medium);
 $modal-autocomplete-color: $vivaGray1;
 $modal-autocomplete-color-hover: $vivaWhite;
 $modal-autocomplete-bgcolor-hover: $vivaGray1;
@@ -106,19 +103,17 @@ $recentactivity-bgcolor:$vivaGray2;
 // use the naming convention: <where used><thing (font, color, etc)>
 
 $cardBackgroundColor: $vivaGray4;
-$cardLinksColor: $vivaOrange;
+$cardLinksColor: $gumOrange;
 
-$cardStatsFont: $viva-p3;
-$cardHeadersFont: $viva-h4;
+$cardStatsFont: $gum-p3;
+$cardHeadersFont: $gum-h4;
 
 // Activity card and header profile image circlular border
-$profile-border: $vivaOrange;
+$profile-border: $gumOrange;
 
 
 
 // Conventions:  all SCSS is camelCase, all css classes are dash separated
-
-$bodyFont: Lato;    // attach this to body element
 
 /*
     Here is an example of font treatement in css:
@@ -148,27 +143,27 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Header
 
-$headerBackgroundColor: $vivaGray4;
-$headerTextColor: $vivaGray3;
-$headerMenuBorderColor: $vivaGray6;
+$headerBackgroundColor: color(foxtail, medium);
+$headerTextColor: color(swirl, dark);
+$headerMenuBorderColor: color(swirl, shade);
 $headerMenuItemSecondaryColor: $vivaGray6;
-$headerMenuItemSeparatorColor: $vivaGray7;
-$headerMessagesBackgroundColor: $vivaOrange;
-$profileDropdownLoginBtnColor: $vivaBlue;
-$headerMenuItemHighlightColor: $vivaGray5;
-$imagePlaceholderBackground: $vivaGray5;
-$headerBlue: $vivaBlue;
+$headerMenuItemSeparatorColor: color(swirl);
+$headerMessagesBackgroundColor: $gumOrange;
+$profileDropdownLoginBtnColor: color(crane);
+$headerMenuItemHighlightColor: color(swirl);
+$imagePlaceholderBackground: color(swirl);
+$headerBlue: color(crane);
 
-$searchBarTextColor: $vivaBlack;
+$searchBarTextColor: $gumBlack;
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
 $searchBarTypeAheadBorder: $vivaGray1;
-$searchBarLocationLinkColor: $vivaGray1;
-$searchBarTextBoxBorder: $vivaGray6;
-$searchBarButtonColor: $vivaBlue2;
+$searchBarLocationLinkColor: color(swirl, medium);
+$searchBarTextBoxBorder: color(swirl, shade);
+$searchBarButtonColor: color(crane);
 $searchBarButtonTextColor: $vivaWhite;
-$searchBarButtonMouseOverColor: darken($searchBarButtonColor, 10%) !default;
+$searchBarButtonMouseOverColor: color(crane, shade) !default;
 
 // Get the App card
 $getAppCardMainBlue: $vivaBlue6;
@@ -185,29 +180,29 @@ $galleryBorderColor: $vivaGreen1;
 
 // Post Ad page
 
-$postAdBackgroundColor: $vivaGray9;
-$loginModalLinkColor: $vivaBlue3;
+$postAdBackgroundColor: color(foxtail, light);
+$loginModalLinkColor: color(crane);
 $photoCarouselMaxPhotosMsgColor: $vivaBlue4;
 $photoCarouselRequiredMsgColor: $vivaRed;
-$postAdShadowColor: $vivaGray6;
-$postAdOrange: $vivaOrange;
-$postAdHeaderBlue: $vivaBlue3;
-$postAdHeaderBackground: $vivaGray4;
-$postAdTextGray: $vivaGray11;
+$postAdShadowColor: color(swirl, medium);
+$postAdOrange: color(leaf);
+$postAdHeaderBlue: color(crane);
+$postAdHeaderBackground: color(foxtail, medium);
+$postAdTextGray: color(swirl, medium);
 
 //Edit Ad Page
-$mainDetailsBackgroundColor: $vivaGray7;
-$mainDetailsTitleTextColor: $vivaGray1;
-$formSubmitButtonColor: $vivaOrange;
+$mainDetailsBackgroundColor: color(foxtail, light);
+$mainDetailsTitleTextColor: color(swirl, medium);
+$formSubmitButtonColor: color(crane);
 $formSubmitButtonTextColor: $vivaWhite;
-$formCancelTextColor: $vivaBlack;
+$formCancelTextColor: $gumBlack;
 $formSeparatorBarColor: $vivaGray9;
 $addWebsiteLinkTextColor: $vivaGreen1;
-$formLabelTextColor: $vivaGray3;
-$categoryDisplayTextColor: $vivaGray1;
-$buttonAreaBackgroundColor: $vivaWhite;
+$formLabelTextColor: color(swirl, medium);
+$categoryDisplayTextColor: color(swirl, medium);
+$buttonAreaBackgroundColor: color(foxtail, medium);
 $categorySelectionActiveListRowBgColor: $vivaGray5;
 $categorySelectionModalBgColor: $vivaWhite;
 $categorySelectionSeparatorColor: $vivaGray10;
-$leafNodeWarningColor: $vivaOrange;
+$leafNodeWarningColor: $gumOrange;
 $categoryNameColor: $vivaBlue7;

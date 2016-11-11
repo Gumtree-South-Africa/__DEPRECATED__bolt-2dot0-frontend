@@ -6,7 +6,7 @@
 	<div class="input-form">
 		<div class="heading title-text">{{i18n "postAd.createAds.form.title"}}</div>
 		<div class="char-remaining">
-			<span class="char-count">0</span><span>/100</span>
+			<span class="char-count">100</span><span>/100</span>
 			<span>{{i18n "postAd.createAds.form.remaining"}}</span>
 		</div>
 		<div id="deferred-ad-images" class="hidden">{{json this.deferredAd.ads.0.imageUrls}}</div>
@@ -19,34 +19,23 @@
                {{#if this.deferredAd.ads}}value="{{this.deferredAd.ads.0.price.amount}}"{{/if}}>
 
 		<div class="radio-form">
-			<label class="control">
-				<input type="radio" name="currency" value="MXN"
-                    {{#if this.deferredAd.ads}}
-                        {{#compare  this.deferredAd.ads.0.price.currency "===" "MXN"}}
-					   checked="checked"
-                        {{/compare }}
-                    {{else}}
-					   checked="checked"
-                    {{/if}}
-				/>
-				<div class="outer-circle">
-					<div class="inner-circle"></div>
-				</div>
-				<span class="currency-type">MXN</span>
-			</label>
-			<label class="control">
-				<input type="radio" name="currency" value="USD"
-                    {{#if this.deferredAd.ads}}
-                        {{#compare  this.deferredAd.ads.0.price.currency "===" "USD"}}
-					   checked="checked"
-                        {{/compare }}
-                    {{/if}}
-				/>
-				<div class="outer-circle">
-					<div class="inner-circle"></div>
-				</div>
-				<span class="currency-type">USD</span>
-			</label>
+			{{#each this.localCurrencies}}
+				<label class="control">
+					<input type="radio" name="currency" value="{{this}}"
+	                    {{#if this.deferredAd.ads}}
+	                        {{#compare  this.deferredAd.ads.0.price.currency "===" this}}
+						   checked="checked"
+	                        {{/compare }}
+	                    {{else if @first}}
+						   checked="checked"
+	                    {{/if}}
+					/>
+					<div class="outer-circle">
+						<div class="inner-circle"></div>
+					</div>
+					<span class="currency-type">{{this}}</span>
+				</label>
+			{{/each}}
 		</div>
 	</div>
 </div>

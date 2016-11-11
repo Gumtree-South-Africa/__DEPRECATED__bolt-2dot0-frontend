@@ -139,12 +139,12 @@ module.exports  =  {
 
 			if (number >= 1000000000) {
 				number /= 1000000000;
-				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "B");
+				return new exphbs.handlebars.SafeString(number.toFixed(1) + "B");
 			} else if (number >= 1000000) {
 				number /= 1000000;
-				return new exphbs.handlebars.SafeString("$" + number.toFixed(1) + "M");
+				return new exphbs.handlebars.SafeString(number.toFixed(1) + "M");
 			} else {
-				return new exphbs.handlebars.SafeString("$" + _groupDigits(number, separator));
+				return new exphbs.handlebars.SafeString(_groupDigits(number, separator));
 			}
 		});
 

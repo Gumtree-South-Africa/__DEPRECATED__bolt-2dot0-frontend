@@ -21,26 +21,25 @@ let postAdData = {
 		modelData.header.pageTitle = modelData.seo.pageTitle;
 		modelData.header.metaDescription = modelData.seo.description;
 		modelData.header.metaRobots = modelData.seo.robots;
-		modelData.header.canonical = modelData.header.homePageUrl + "/post";
+		modelData.header.canonical = modelData.header.homePageUrl + '/post';
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.min.css');
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "PostAd_desktop_" + modelData.locale + ".js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'PostAd_desktop_' + modelData.locale + '.js');
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');
 	}
 };
 
 router.use('/', (req, res, next) => {
-	// Retrieve Data from Model Builders
-
-	if (!res.locals.b2dot0Version) {
-		res.redirect("/post.html");	// redirect to 1.0 version of this page
+	if (!pageControllerUtil.is2dot0Version(res)) {
+		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;
 	}
+
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 
 	let deferredAdPromise = Q.fcall(() => {
@@ -98,6 +97,7 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;

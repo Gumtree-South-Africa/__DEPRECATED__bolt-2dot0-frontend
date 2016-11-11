@@ -81,10 +81,7 @@ let createSiteApps = () => {
 			siteApp.use(siteconfig(siteApp));
 
 			// Version Configuration for each Site App
-			// Only for Vivanuncios enable 2.0
-			if (siteApp.locals.config.locale === 'es_MX') {
-				siteApp.use(versionconfig());
-			}
+			siteApp.use(versionconfig(siteApp.locals.config.locale));
 
 			_.each(appConfigJson, (appConfig) => {
 				let App = require(appConfig.path);

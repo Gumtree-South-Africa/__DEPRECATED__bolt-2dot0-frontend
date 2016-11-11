@@ -28,8 +28,9 @@ describe('Edit Ad Page', () => {
 
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
-					expect(res.status).toBe(200);
+					expect(res.status).toBe(302);
 					// let c$ = cheerio.load(res.text);
 				})
 				.end(specHelper.finish(done));
@@ -47,6 +48,7 @@ describe('Edit Ad Page', () => {
 
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0;bt_auth=Bear XXX')
 				.expect((res) => {
 					expect(res.status).toBe(404);
 				})
@@ -66,6 +68,7 @@ describe('Edit Ad Page', () => {
 
 		boltSupertest('/edit/12', 'vivanuncios.com.mx').then((supertest) => {
 			supertest
+				.set('Cookie', 'b2dot0Version=2.0;bt_auth=Bear XXX')
 				.expect((res) => {
 					expect(res.status).toBe(200);
 

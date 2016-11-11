@@ -1,0 +1,72 @@
+.vip-header-and-details{
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.vip-title {
+	font-size: 2.0em;
+	.myAdTitle{
+		font-weight: bolder;
+		color: #000000;
+	}
+}
+
+.vip-itemid {
+	font-size: 0.7em;
+}
+
+.vip-details, .vip-sponsoredads, .vip-left-column{
+	.attribute{
+		.name {
+			width:43%;
+			display:inline-block;
+			vertical-align: top;
+		}
+		.value{
+			width:55%;
+			display:inline-block;
+			vertical-align: top;
+		}
+		a, [data-o-uri] {
+			font-size: 1em;
+		}
+	}
+
+	.description{
+		word-break: break-word;
+		border-top: 1px solid #eee;
+		padding: 1em 0 0.5em 0;
+		i{
+			font-style: italic;
+		}
+		ul, ol{
+			margin-left: 2em;
+		}
+		ul{
+			list-style: disc;
+		}
+		ol{
+			list-style: decimal;
+		}
+	}
+
+	.websiteurl{
+		margin-top: 1.5em;
+		margin-bottom: 1em;
+		span{
+			color: #0000ff;
+			font-weight: bold;
+			word-wrap: break-word;
+			line-height: 10pt;
+		}
+	}
+}
+
+.vip-details {
+	margin: .5em 0;
+	padding-bottom: .5em;
+}
+
+.vip-sponsoredads {
+	width: 100%;
+}

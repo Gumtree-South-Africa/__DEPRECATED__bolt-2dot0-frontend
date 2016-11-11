@@ -12,3 +12,4 @@ require("./spec/editAdSpec.js");
 require("./spec/loginFormSpec.js");
 require("./spec/registrationFormSpec.js");
 require("./spec/photoCarouselSpec.js");
+require("./spec/advertSpec.js");

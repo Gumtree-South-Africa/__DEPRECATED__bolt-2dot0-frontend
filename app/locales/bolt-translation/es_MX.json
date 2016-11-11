@@ -1413,7 +1413,7 @@
 			},
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
-			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
+			"leafNodeWarning": "Por favor selecciona la categoría y subcategoría que coincida más con tu anuncio para guardar los cambios.",
 			"submit": "Listo",
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
@@ -1489,6 +1489,22 @@
 			"sendAnother": "Click here to send another activation email",
 			"continueActivation": "Please check your email to continue activation",
 			"continue": "Continúa"
+		}
+	},
+	"vip": {
+		"page": {
+			"itemid": "Anuncios #%s"
+		},
+		"details": {
+			"edit": "Edit",
+			"favorite": "Favorite",
+			"posted": "Posted",
+			"views": "VIEWS",
+			"replies": "REPLIES",
+			"category": "CATEGORY",
+			"location": "LOCATION",
+			"updated": "UPDATED",
+			"postedby": "POSTED BY"
 		}
 	}
 }

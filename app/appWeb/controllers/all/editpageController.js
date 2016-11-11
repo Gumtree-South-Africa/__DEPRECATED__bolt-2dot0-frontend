@@ -21,14 +21,32 @@ let EditAdPage = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/EditAdPage.css');
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "EditAd_desktop_es_MX.js");
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + "AnalyticsLegacyBundle.min.js");
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'EditAd_desktop_es_MX.js');
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 	}
 };
 
 router.get('/:id?', (req, res, next) => {
-	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let adId = req.params.id;
+	if (adId === undefined) {
+		res.redirect('/');
+		return;
+	}
+
+	if (!pageControllerUtil.is2dot0Version(res)) {
+		res.redirect('/post.html?adId=' + adId);	// redirect to 1.0 version of this page
+		return;
+	}
+
+	// If user is not logged in, force user to login; and on login success it comes back to edit
+	let authenticationCookie = req.cookies['bt_auth'];
+	if (!authenticationCookie) {
+		let returnUrl = `/edit/${adId}`;
+		res.redirect(`/login.html?redirect=${returnUrl}`);
+		return;
+	}
+
+	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let editAdPageModel = new EditAdPageModel(req, res, adId);
 	let modelPromise = editAdPageModel.populateData();
 
@@ -39,6 +57,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
+		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {

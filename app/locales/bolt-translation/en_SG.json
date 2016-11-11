@@ -15,7 +15,6 @@
   "currency.symbol": "$",
   "currency.format": "$%s",
   "home.$$": "Home",
-  "home.h1Tag": "Singapore - Free local classifieds",
   "AdNotFound": "Oops, Your ad %s could not be found",
   "AdDeleted": "Your ad %s has been deleted",
   "AdNotDeleted": "Oops, Your ad %s could not be deleted",
@@ -405,49 +404,6 @@
   "vip.attribute.label.location": "Location",
   "vip.reply.attachmentUpload.title": "Attach a file",
   "vip.reply.attachmentUpload.help": "(maximum 2MB)",
-  "footer.getToKnowUs.title": "About Us",
-  "footer.getToKnowUs.about": "About Gumtree",
-  "footer.getToKnowUs.rules": "Posting Policy",
-  "footer.getToKnowUs.blog": "Gumtree Blog",
-  "footer.explore.title": "Explore",
-  "footer.explore.bestof": "Best Ads",
-  "footer.explore.topSearches": "Top Searches",
-  "footer.explore.mobilesite": "Old mobile site",
-  "footer.explore.sitemap": "Gumtree Content",
-  "footer.explore.locations": "Locations",
-  "footer.explore.interlink": "eBay Classifieds Sites",
-  "footer.explore.directory": "Gumtree Profile Directory",
-  "footer.explore.propertyPriceChecker": "Gumtree Price Checkers",
-  "footer.legalbits.title": "Using Gumtree",
-  "footer.legalbits.terms": "Terms of Use",
-  "footer.legalbits.privacy": "Privacy Policy",
-  "footer.legalbits.cookie": "Cookie Notice",
-  "footer.legalbit.postAd": "Post an Ad",
-  "footer.explore.mobileApp": "Mobile Apps",
-  "footer.tips-help.title": "Help & Support",
-  "footer.tips-help.help": "Gumtree Help Pages",
-  "footer.tips-help.staySafe": "Online Safety Tips",
-  "footer.tips-help.contact": "Contact Gumtree",
-  "footer.tips-help.report": "Report scams or fraud",
-  "footer.tips-help.giveFeedback": "Give Feedback",
-  "footer.followUs.title": "Follow us",
-  "footer.followUs.facebook": "Facebook",
-  "footer.followUs.google": "Google+",
-  "footer.followUs.twitter": "Twitter",
-  "footer.followUs.youTube": "YouTube",
-  "footer.followUs.pinterest": "Pinterest",
-  "footer.motors.title": "Gumtree Motors",
-  "footer.motors.a-c": "Cars A-C",
-  "footer.motors.d-g": "Cars D-G",
-  "footer.motors.h-l": "Cars H-L",
-  "footer.motors.m-o": "Cars M-O",
-  "footer.motors.p-z": "Cars P-Z",
-  "footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
-  "footer.bestof": "The Best Ads in Gumtree",
-  "footer.cr": "Copyright © 2014-2016 eBay.  All rights reserved. <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Terms of Use</span>, <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Privacy</span> and <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_self\">Cookies</span>.",
-  "footer.topSearches": "Top Searches",
-  "footer.locations": "Locations",
-  "footer.our-sites": "Our classifieds sites",
   "error404.message": "\"We’re sorry, this page does not exist\" <br /><a href=\"%s\">Please go to the homepage</a>",
   "error410.message": "Sorry, this ad is no longer available.",
   "error500.message": "\"We’re sorry, one of our servers got a hiccup.\" <br /><a href=\"%s\">Please go to the homepage</a>",
@@ -501,12 +457,7 @@
   "header.menu.termCond": "Terms and Conditions",
   "header.suggested-links": "Suggested",
   "header.published": "Published in:",
-  "footer.twitter": "@gumtreecoza",
-  "footer.facebook": "Like",
-  "footer.googleplus": "Recommend",
-  "footer.pinterest": "Pinterest",
-  "footer.youtube": "Youtube",
-  "footer.blog": "El estilo de vida en DF se disfruta en <a href=\"%s\">viveDF,el blog de iBazar</a>",
+  
   "register.page.title": "Register on Gumtree",
   "register.title": "Start Registration",
   "register.facebook": "Register via Facebook",
@@ -1164,11 +1115,369 @@
   "quickpost.error.locationNotInCountry": "The location you selected is not in Singapore",
   "quickpost.error.priceLong": "The price is very high",
   "quickpost.empty": "",
-   "appdownload.title": "¡Vende rápido!",
-  "appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
-  "appdownload.mobilebutton": "¡Baja la app!",
-  "appdownload.ioslink": "https://itunes.apple.com/mx/app/vivanuncios-clasificados-gratis/id872789604?mt=8&uo=4",
-  "appdownload.googleplay":"https://app.adjust.com/oarq82",
-  "appdownload.applink":"http://go.vivanunc.io/baja-la-app",
-  "postad.image.upload.failure": "Unfortunately, an error has occurred while loading images"
+  "appdownload.title": "¡Vende rápido!",
+	"appdownload.description": "iCompra y vende por internet de forma rapida y segura! Descarga la aplicación de Vivanuncios y encuentra la mejores oferatas cerca de ti entre miles de productos le venta",
+	"appdownload.mobilebutton": "¡Baja la app!",
+	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
+  "location.defaultcity": "Singapore",
+  "country.all": "All ",
+	"footer.download.download": "Download the App",
+	"footer.download.itunes": "Available on the App Store",
+	"footer.download.playstore": "Avaiable on the Android App Store",
+	"footer.twitter": "@gumtreecoza",
+  "footer.facebook": "Like",
+  "footer.googleplus": "Recommend",
+  "footer.pinterest": "Pinterest",
+  "footer.youtube": "Youtube",
+  "footer.blog": "El estilo de vida en DF se disfruta en <a href=\"%s\">viveDF,el blog de iBazar</a>",
+  "footer.getToKnowUs.title": "About Us",
+  "footer.getToKnowUs.about": "About Gumtree",
+  "footer.getToKnowUs.rules": "Posting Policy",
+  "footer.getToKnowUs.blog": "Gumtree Blog",
+  "footer.explore.title": "Explore",
+  "footer.explore.bestof": "Best Ads",
+  "footer.explore.topSearches": "Top Searches",
+  "footer.explore.mobilesite": "Old mobile site",
+  "footer.explore.sitemap": "Gumtree Content",
+  "footer.explore.locations": "Locations",
+  "footer.explore.interlink": "eBay Classifieds Sites",
+  "footer.explore.directory": "Gumtree Profile Directory",
+  "footer.explore.propertyPriceChecker": "Gumtree Price Checkers",
+  "footer.legalbits.title": "Using Gumtree",
+  "footer.legalbits.terms": "Terms of Use",
+  "footer.legalbits.privacy": "Privacy Policy",
+  "footer.legalbits.cookie": "Cookie Notice",
+  "footer.legalbit.postAd": "Post an Ad",
+  "footer.explore.mobileApp": "Mobile Apps",
+  "footer.tips-help.title": "Help & Support",
+  "footer.tips-help.help": "Gumtree Help Pages",
+  "footer.tips-help.staySafe": "Online Safety Tips",
+  "footer.tips-help.contact": "Contact Gumtree",
+  "footer.tips-help.report": "Report scams or fraud",
+  "footer.tips-help.giveFeedback": "Give Feedback",
+  "footer.followUs.title": "Follow us",
+  "footer.followUs.facebook": "Facebook",
+  "footer.followUs.google": "Google+",
+  "footer.followUs.twitter": "Twitter",
+  "footer.followUs.youTube": "YouTube",
+  "footer.followUs.pinterest": "Pinterest",
+  "footer.motors.title": "Gumtree Motors",
+  "footer.motors.a-c": "Cars A-C",
+  "footer.motors.d-g": "Cars D-G",
+  "footer.motors.h-l": "Cars H-L",
+  "footer.motors.m-o": "Cars M-O",
+  "footer.motors.p-z": "Cars P-Z",
+  "footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
+  "footer.bestof": "The Best Ads in Gumtree",
+  "footer.cr": "Copyright © 2014-2016 eBay.  All rights reserved. <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Terms of Use</span>, <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_blank\">Privacy</span> and <span class='sudo-link' data-o-uri=\"%s\" data-target=\"_self\">Cookies</span>.",
+  "footer.our-sites": "Our classifieds sites",
+  "footer": {
+    "toplocations": "Top locations",
+    "help": {
+      "heretohelp": "Meet our customer team",
+      "contact": "Contact us",
+      "contactDF": "Customer care"
+    },
+    "support": {
+      "contact": "Contact us"
+    },
+    "sitemap": {
+      "aboutus": {
+        "title": "About us",
+        "aboutgumtree": "About Gumtree",
+        "termofuse": "Terms of Use",
+        "postingpolicy": "Posting Policy",
+        "privacypolicy": "Privacy Policy",
+        "gumtreebusiness": "Gumtree Jobs for Recruiter"
+      },
+      "explore": {
+        "title": "Explore",
+        "classifieds": "eBay Classifieds Sites",
+        "directory": "Gumtree profile directory",
+        "pricecheckers": "Gumtree price checkers",
+        "jobs": "Gumtree jobs"
+      },
+      "usinggumtree": {
+        "title": "Using Gumtree",
+        "post": "Post an ad",
+        "mobile": "Mobile apps",
+        "topsearches": "Top searches",
+        "recruiter": "Gumtree for recruiter"
+      },
+      "tips": {
+        "title": "Help & Support",
+        "help": "Gumtree help pages",
+        "safetytips": "Online safety tips",
+        "contact": "Contact Gumtree",
+        "scams": "Report scams or fraud"
+      },
+      "business": {
+        "business": "Agentes Inmobiliarios",
+        "protool": "La Tienda de Semi Nuevos",
+        "stores": "La Tienda Vivanuncios"
+      }
+    },
+    "topSearches": {
+      "viewMore": "View more",
+      "viewLess": "View less"
+    },
+    "download": {
+      "download": "Descargar la aplicación",
+      "itunes": "Disponible en la App Store",
+      "playstore": "Disponible en la App Store de Android"
+    },
+    "trademark": {
+      "trademark": "2014-%s eBay. All rights reserved"
+    }
+  },
+  "home": {
+    "h1Tag": "Gumtree Singapore - Free local classifieds",
+    "popular": {
+      "searches": "Top searches"
+    }
+  },
+  "homepage": {
+    "popularSearches": {
+      "popularIn": "Popular en",
+      "yourNeighborhood": "Tu Colonia",
+      "viewMore": "Ver más"
+    },
+    "searchbar": {
+      "lookingFor": "I'm looking for...",
+      "search": "Search"
+    },
+    "safetyTips": {
+      "title": "Vivanuncios Te Cuida",
+      "faq": "Consejos de seguridad",
+      "tip": [
+        "Consejos de cómo protegerte en internet",
+        "¿Vivanuncios coopera con las autoridades?",
+        "¿Cómo mantengo mi cuenta de usuario segura?",
+        "¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
+        "¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+        "¿Cuáles son los fraudes más comunes?",
+        "¿Qué puedo hacer si he sido víctima de una estafa?",
+        "¿Cómo reportar un anuncio?",
+        "He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+      ]
+    },
+    "trending": {
+      "contact": "Contactar"
+    },
+    "gallery" : {
+      "cardTitle": "Galería Principal"
+    }
+  },
+  "smartmobilebanner": {
+		"title": "Abre la App",
+		"mobilelink": "o continúa en el sitio móvil >>",
+		"branchiolink": "https://go.vivanunc.io/gana-dinero"
+	},
+  "welcomescreen": {
+  	"title": "Welcome!",
+  	"description": "Earn money now!",
+  	"close": "Close"
+	},
+	"appdownload": {
+		"userImageAltText": "clasificado app usario",
+		"title": "¡Con el app es más fácil!",
+		"description": "Compra y vende con la app de Vivanuncios: es fácil, rápido y sencillo. Descárgala, publica y gana dinero.",
+		"secondary": "La valoración promedio de la aplicación en Google Play es 4.2.",
+		"mobilebutton": "¡Baja la app!",
+		"ioslink": "https://itunes.apple.com/sg/app/gumtree-sg/id684141699?ls=1&mt=8",
+		"googleplay": "https://play.google.com/store/apps/details?id=com.gumtree.sg",
+		"applink": "https://go.vivanunc.io/baja-la-app"
+	},
+	"postad": {
+		"upload": {
+			"photo": "Upload a photo",
+			"photos": "Upload a photo(s)"
+		},
+		"image": {
+			"upload": {
+				"failure": "An error has ocurred trying to load the image. Please, try again."
+			}
+		}
+	},
+	
+	"header": {
+		"catDropdown": {
+			"browse": "Explore",
+			"browseCategories": "Browse Categories"
+		},
+		"userDropdown": {
+			"title": "Hello!",
+			"messages": "My messages",
+			"favorites": "Favorites",
+			"myAlerts": "My alerts",
+			"myProfile": "My profile",
+			"promoteMyAds": "Promote my ads",
+			"pricingGuide": "Price guide",
+			"logout": "Log out"
+		},
+		"myAds": "My ads",
+		"help": "Help",
+		"postAd": "Post FREE Ad"
+	},
+	"modal": {
+		"close": "Close",
+		"buttonText": "Confirm",
+		"message": "Change your location",
+		"placeholderText": "Type your location",
+		"locationAutoDesktop": "This is the nearest location",
+		"locationAutoMobile": "Nearest location",
+		"info": "City, Zone or Region"
+	},
+	"sectionMenu": {
+		"cars": "Cars",
+		"trending": "Trending",
+		"goods": "Goods",
+		"realEstate": "Real state",
+		"jobs": "Jobs"
+	},
+	"recentactivity": {
+		"message": {
+			"listing": "%s acaba de poner en venta %s %s",
+			"sold": "%s acaba de vender %s %s"
+		}
+	},
+	"gpsMap": {
+		"label": "Venta Ahora",
+		"items": "artículos"
+	},
+	"postAd": {
+		"page": {
+			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
+		},
+		"confirm": {
+			"pageTitle": "Publicar un anuncio",
+			"back": "Atrás",
+			"didYouKnow": "Sabías que...",
+			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
+		},
+		"createAds": {
+			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"error":{
+				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
+				"photoRequired": "Foto requerida"
+			},
+			"form": {
+				"title": "Título del anuncio",
+				"remaining": "restantes",
+				"price": "Precio",
+				"addPhotos": "Agregar fotos",
+				"pricePlaceholder": "Preguntarme el precio"
+			},
+			"post": "Publicar",
+			"ad": "Anuncio"
+		},
+		"uploadModal": {
+			"title": "Carga una foto"
+		},
+		"loginModal": {
+			"title": "Inicia sesión para continuar",
+			"facebookBtn": "Continuar con Facebook",
+			"emailBtn": "Iniciar sesión con correo electrónico",
+			"register": "Registrarse",
+			"close": "Cerrar",
+			"legal1": "Al hacer clic en continúa declaro estar de acuerdo con los",
+			"termsAndConditions": "Términos v Condiciones",
+			"legal2": "y reconozco que que he leído las Notificaciones de",
+			"privacy": "Privacidad",
+			"and": "y",
+			"cookies": "Cookies",
+			"legal3": "de Vivanuncios"
+		},
+		"successModal": {
+			"title": "¡Ya se cargó tu anuncio!",
+			"tip": "Consejo: Agrega más fotos para mejorar tus posibilidades de vender rápidamente.",
+			"moreDetails": "Agregar más detalles",
+			"postMoreBtn": "Publicar más anuncios"
+		},
+		"unsupportedFileModal": {
+			"title": "Formato de archivo no admitido",
+			"close": "Cerrar",
+			"message": "Este archivo contiene un formato multimedia no admitido.",
+			"uploadBtn": "Cargar una foto diferente",
+			"error": "Error"
+		}
+	},
+	"postAdModal": {
+		"helpText": "¿Qué quieres anunciar?",
+		"uploadPhotos": "Cargar foto(s)",
+		"uploadPhoto": "Carga una foto",
+		"uploadQuickly": "Publica un anuncio rápidamente",
+		"upload": "Publica un anuncio",
+		"close": "Cerrar"
+	},
+	"editAd": {
+		"reorderImages": "Volver a ordenar imágenes",
+		"headerTitle": "Edita tu anuncio",
+		"mainDetails": {
+			"title": "Agregar detalles",
+			"labels": {
+				"category": "Categoría",
+				"adTitle": "Título del anuncio",
+				"price": "Precio",
+				"description": "Descripción",
+				"location": "Ciudad, zona o código postal"
+			},
+			"titleRestrictions": {
+				"minimumAvailable": "Disponsibles: ",
+				"characters": " caracter(es)"
+			},
+			"askMe": "Preguntarme",
+			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
+			"leafNodeWarning": "Selecciona la categoría que coincida más con tu artículo",
+			"submit": "Listo",
+			"cancel": "Cancelar",
+			"locationWarning": "Tu ubicación exacta no se publicará",
+			"adWebsiteLink": "Agrega un enlace a tu sitio web"
+		},
+		"categorySelect": {
+			"title": "Categoría del artículo",
+			"prompt": "Búsqueda por palabra clave en %s",
+			"noResults": "'%s' no es una categoría válida. Selecciona otra categoría y haz una búsqueda de nuevo.",
+			"selectPrompt": "Select a Category Below",
+			"save": "Guardar",
+			"rootLabel": "Categorías"
+		}
+	},
+	"adStats": {
+		"views": "Visitas",
+		"messages": "Mensajes",
+		"favorites": "Favoritos"
+	},
+	"shareAd": {
+		"title": "Compartir este anuncio",
+		"dateStrings": {
+			"minute": {
+				"plural": "hace %s minutos",
+				"singular": "hace %s minuto"
+			},
+			"hour": {
+				"plural": "hace %s horas",
+				"singular": "hace %s hora"
+			}
+		}
+	},
+	"common": {
+		"abbreviations": {
+			"months": {
+				"1": "Ene",
+				"2": "Feb",
+				"3": "Mar",
+				"4": "Abr",
+				"5": "Mayo",
+				"6": "Jun",
+				"7": "Jul",
+				"8": "Ago",
+				"9": "Sep",
+				"10": "Oct",
+				"11": "Nov",
+				"12": "Dic"
+			}
+		}
+	}
 }
