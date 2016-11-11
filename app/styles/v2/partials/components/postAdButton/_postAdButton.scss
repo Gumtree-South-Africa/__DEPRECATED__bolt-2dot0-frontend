@@ -25,14 +25,17 @@
 		left: 0;
 		right: 0;
 		margin: auto;
-		padding: 10px 20px;
+		padding: 5px 20px;
 		@include from-breakpoint($medium-break) {
 			width: 60%;
 		}
 		.change-photo {
+			// To emphasize the other button, the "post" one
+			font-size: 80%;
+			text-align: center;
 			width: 25%;
 			float: right;
-			margin-top: 0.25em;
+			margin-top: 0.85em;
 			text-decoration: underline;
 		}
 	}
