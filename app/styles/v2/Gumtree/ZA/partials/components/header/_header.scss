@@ -1,3 +1,6 @@
+.sectionMenu{
+	font-family: 'Lato';
+}
 .header-wrapper {
 	border-bottom-color: color(crane);
 
@@ -8,10 +11,14 @@
 	}
 
 	.headerV2 {
+		font-family: 'Lato';
 		height: auto;
 		margin: auto;
 		max-width: 942px;
 		padding: 20px 40px 0;
+		a{
+			font-weight: normal;
+		}
 
 		.app-icon {
 			top: 25px;

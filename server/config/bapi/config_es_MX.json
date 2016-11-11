@@ -4,6 +4,7 @@
 		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
 		"noPhotoUrl"						: "https://afs.googleusercontent.com/alamaula/no-photo_MX.png",
+		"pricingGuideUrl" 					: "/pages/",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
@@ -58,7 +59,7 @@
 		"postingRules"                      : "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios?vgroup1=PKB&c=PKB%3Apoli_ticas&vcategory2=Poli_ticas_de_publicacio_n22&s=a00F000000NVKVXIA5",
 		"emailUrl"							: "https://ayuda.vivanuncios.com.mx/MX?cu=1&fs=ContactUs&l=es&lang=es&q=&s",
 		"listingRulesUrl"					: "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Políticas-publicar",
-		"priceIndexUrl"						: "https://www.vivanuncios.com.mx/pages/propiedades/",
+		"priceIndexUrl"						: "https://www.vivanuncios.com.mx/pages/",
 		"mobileAppUrl"						: "https://www.vivanuncios.com.mx/pages/mobileapp/",
 		"classifieds"						: "https://www.vivanuncios.com.mx/pages/red-de-clasificados-de-ebay/",
 		"stores"							: "https://protool.vivanuncios.com.mx/tiendas",
@@ -163,11 +164,11 @@
 	  	},
 		"homepage" : {
 			"sectionMenu": {
-				"trending": "#",
-				"goods": "/s-hogar/v1c1p1",
-				"cars": "/s-venta-autos/v1c64p1",
+				"trending"	: "#",
+				"goods"		: "/s-hogar/v1c1p1",
+				"cars"		: "/s-venta-autos/v1c64p1",
 				"realEstate": "/s-inmuebles/v1c30p1",
-				"jobs": "/s-ofertas+trabajo/v1c36p1"
+				"jobs"		: "/s-ofertas+trabajo/v1c36p1"
 			},
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
@@ -183,8 +184,8 @@
 		},
 		"localCurrencies": ["MXN", "USD"],
 		 "quickpost" : {
-              "currencyDisplay"    :    true,
-              "currency"           :    ["MXN:MXN","USD:USD"]
+			"currencyDisplay"    : true,
+			"currency"           : ["MXN:MXN","USD:USD"]
         }
 	},
 	"bapi" : {
