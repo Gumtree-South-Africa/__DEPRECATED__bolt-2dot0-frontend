@@ -115,7 +115,7 @@ class CategoryUpdateModal {
 	 * @param imgUrl
 	 */
 	updateCategory(categoryId, imgUrl) {
-		if (categoryId == null || isNaN(categoryId)) {
+		if (isNaN(categoryId)) {
 			return;
 		}
 		this.hierarchyArray=[];
