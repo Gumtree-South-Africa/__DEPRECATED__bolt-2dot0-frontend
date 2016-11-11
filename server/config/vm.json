@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "vm-7988.lvs02.dev.ebayc3.com",
+	    	"host": "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
 	    	"port": 80,
 	    	"parameters": null,
 			"timeout": 2000
@@ -34,7 +34,7 @@
 	},
 	"solr": {
 		"server": {
-			"host"	: "vm-7988.lvs02.dev.ebayc3.com",
+			"host"	: "sharon-fp003-4464.slc01.dev.ebayc3.com",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
@@ -49,7 +49,7 @@
 	},
 	"graphite": {
 		"server": {
-				"host"  : "vm-7988.lvs02.dev.ebayc3.com",
+				"host"  : "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
 				"port"  : 2003,
 				"interval" : 30
 		}
