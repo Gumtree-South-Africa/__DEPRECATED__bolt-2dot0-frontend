@@ -6,6 +6,13 @@
 	position: fixed;
 	z-index: 1;
 
+
+	@include to-breakpoint($medium-break) {
+		& {
+			position: absolute;
+		}
+	}
+
 	.inline-block {
 		display: inline-block;
 	}

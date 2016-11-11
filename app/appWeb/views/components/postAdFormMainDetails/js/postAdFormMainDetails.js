@@ -422,10 +422,8 @@ class PostAdFormMainDetails {
 	 */
 	showModal() {
 		this.$detailsSection.removeClass("hidden");
-		this.$downIcon.addClass("hidden");
-		this.$upIcon.removeClass("hidden");
 		// TODO Move below line out of this class
-		$('.viewport').addClass('.covered');
+		$('.viewport').addClass('covered');
 	}
 
 	onReady() {
