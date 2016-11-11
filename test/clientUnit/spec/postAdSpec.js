@@ -6,6 +6,7 @@ let uploadAdController = require("app/appWeb/views/components/uploadImage/js/pos
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
+let postAdModalController = require("app/appWeb/views/components/postAdModal/js/postAdModal.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -151,6 +152,7 @@ describe('Post Ad', () => {
 				</a>`);
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
+			postAdModalController.initialize();
 			uploadAdController.initialize();
 			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
@@ -168,6 +170,7 @@ describe('Post Ad', () => {
 				</a>`);
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
+			postAdModalController.initialize();
 			uploadAdController.initialize();
 			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
@@ -185,6 +188,7 @@ describe('Post Ad', () => {
 				</a>`);
 			// $testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
+			postAdModalController.initialize();
 			uploadAdController.initialize();
 			let $postAdButton = $('#postAdBtn');
 			expect($postAdButton.hasClass('disabled')).toBeTruthy();
@@ -197,6 +201,7 @@ describe('Post Ad', () => {
 				</a>`);
 			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
 
+			postAdModalController.initialize();
 			uploadAdController.initialize();
 			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
