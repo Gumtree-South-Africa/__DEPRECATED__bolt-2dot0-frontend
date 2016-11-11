@@ -1378,6 +1378,10 @@
 			"message": "This file contains an unsupported media type.",
 			"uploadBtn": "Upload a different photo",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Post My Ad",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"footer": {

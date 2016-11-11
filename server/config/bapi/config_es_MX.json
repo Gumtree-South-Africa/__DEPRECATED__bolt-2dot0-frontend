@@ -4,7 +4,7 @@
 		"localeOpenGraph" 					: "es_MX",
 		"publisherUrl"						: "https://plus.google.com/101549338197518663406/",
 		"noPhotoUrl"						: "https://afs.googleusercontent.com/alamaula/no-photo_MX.png",
-		"pricingGuideUrl" 			: "/pages/",
+		"pricingGuideUrl" 					: "/pages/",
 		"moreAdSizes"						: "",
 		"homepageHeroAdvertisement" 		: false,
 		"isMessageCenterEnabled"			: true,
@@ -164,11 +164,11 @@
 	  	},
 		"homepage" : {
 			"sectionMenu": {
-				"trending": "#",
-				"goods": "/s-hogar/v1c1p1",
-				"cars": "/s-venta-autos/v1c64p1",
+				"trending"	: "#",
+				"goods"		: "/s-hogar/v1c1p1",
+				"cars"		: "/s-venta-autos/v1c64p1",
 				"realEstate": "/s-inmuebles/v1c30p1",
-				"jobs": "/s-ofertas+trabajo/v1c36p1"
+				"jobs"		: "/s-ofertas+trabajo/v1c36p1"
 			},
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
@@ -184,9 +184,9 @@
 		},
 		"localCurrencies": ["MXN", "USD"],
 		"quickpost" : {
-              "currencyDisplay"    :    true,
-              "currency"           :    ["MXN:MXN","USD:USD"]
-        },
+			"currencyDisplay"    : true,
+			"currency"           : ["MXN:MXN","USD:USD"]
+		},
 		"verticalCategories": ["30", "64", "36"]
 	},
 	"bapi" : {
