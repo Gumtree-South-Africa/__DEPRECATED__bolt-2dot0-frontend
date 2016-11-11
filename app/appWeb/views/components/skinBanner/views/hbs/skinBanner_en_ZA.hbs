@@ -1,1 +1,10 @@
-{{> (base "skinBanner") }}
+{{#partial "googleBannerSkinCampaign_ScriptV2"}}
+
+    {{#unlessMobile this.device}}
+		if (matchMedia('desktop') || matchMedia('largeScr') || $('#div-gpt-oop').css('border-bottom-color') == 'yellow' || $('#div-gpt-oop').css('border-bottom-color') == "rgb(255, 255, 0)") {
+		BOLT.displaySkinCampaign($.extend({slotId: 'div-gpt-oop', tile: '99', pos: 'oop'}, bP));
+
+		}
+    {{/unlessMobile}}
+
+{{/partial}}

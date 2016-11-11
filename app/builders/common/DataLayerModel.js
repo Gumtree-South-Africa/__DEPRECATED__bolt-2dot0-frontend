@@ -103,7 +103,7 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
-		this.sessionLvTstGrp = res.locals.b2dot0Version ? "V2" : "V1";
+		this.sessionLvTstGrp = res.locals.b2dot0PageVersion ? "V2" : "V1";
 	}
 
 	getModelBuilder() {

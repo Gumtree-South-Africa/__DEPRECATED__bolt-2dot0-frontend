@@ -72,7 +72,7 @@
 		"server": {
 			"host": "static.lnp.qa-bolt.com",
 			"port": null,
-			"version": "2.0.128"
+			"version": "2.0.129"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

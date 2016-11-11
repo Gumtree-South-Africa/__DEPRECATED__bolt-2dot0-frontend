@@ -42,6 +42,11 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
+	if (!pageControllerUtil.is2dot0Version(res)) {
+		res.redirect('/view.html?adId=adId');	// redirect to 1.0 version of this page
+		return;
+	}
+
 	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
 	let viewPageModel = new ViewPageModel(req, res, adId);
 	let redirectUrl = req.query.redirect;

@@ -15,7 +15,7 @@ let DataLayerModel = require('./DataLayerModel');
  */
 class BasePageModel {
 	constructor(req, res) {
-		if (res.locals.b2dot0Version) {
+		if (res.locals.b2dot0PageVersion) {
 			this.header = new HeaderModelV2(req.secure, req, res);
 			this.footer = new FooterModelV2(req.secure, req, res);
 		} else {
