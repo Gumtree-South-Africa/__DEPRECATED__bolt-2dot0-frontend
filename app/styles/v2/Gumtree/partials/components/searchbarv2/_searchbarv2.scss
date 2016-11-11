@@ -30,7 +30,7 @@
 			float: none;
 			margin: 0;
 			font-weight: 500;
-			color: color(swirl, dark);
+			color: $searchBarTextColor;
 		}
 
 		.search-button {
@@ -51,7 +51,7 @@
 
 		.search-textbox-container {
 			.search-textbox {
-				color: color(swirl, dark);
+				color: $searchBarTextColor;
 				font-weight: 500;
 
 				&::-moz-placeholder {
