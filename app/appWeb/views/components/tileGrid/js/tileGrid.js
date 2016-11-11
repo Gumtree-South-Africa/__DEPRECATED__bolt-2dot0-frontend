@@ -26,7 +26,7 @@ class TileGrid {
 		if (resp && resp.id) {
 			window.location.href = "/search.html?locId=" + resp.id;
 		} else {
-			window.location.href = "/search.html";
+			window.location.href = "/search/";
 		}
 	}
 
@@ -345,4 +345,3 @@ class TileGrid {
 }
 
 module.exports = new TileGrid();
-

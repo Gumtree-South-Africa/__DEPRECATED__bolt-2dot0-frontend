@@ -12,10 +12,13 @@ module.exports = {
 	"outputEntry": "app/appWeb/views/templates/pages/searchPage/js/searchPage",
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
+			"TileGrid": "app/appWeb/views/components/tileGrid/js/tileGrid.js",
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
 			"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
+			"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
+			"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
 			"ServiceWorker": "app/appWeb/serviceWorkers/service-worker-registration.js",
 			"PageMain": "app/appWeb/views/templates/pages/searchPage/js/searchPage.js"
 		},
