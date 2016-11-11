@@ -1437,6 +1437,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Post My Ad",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"postAdModal": {

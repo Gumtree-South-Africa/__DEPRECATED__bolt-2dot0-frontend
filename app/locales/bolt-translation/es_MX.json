@@ -1350,6 +1350,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Publica mi Anuncio",
+			"changePhoto": "Cambia <br>la Foto"
 		}
 	},
 	"footer": {
