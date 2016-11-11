@@ -1,0 +1,12 @@
+{{#partial "content"}}
+    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle"}}
+	<div class="mobile-promote-ad">
+		<div id="PlaceHolderAdResult" style="display:none;">{{json this.adResult}}</div>
+		<div id="PlaceHolderFeature" style="display:none;">{{json this.features}}</div>
+	</div>
+	<div class="desktop-promote-ad margin-auto">
+	</div>
+
+    {{> (dynamic "loginModal") isHidden=true}}
+{{/partial}}
+

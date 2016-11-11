@@ -273,6 +273,18 @@
 					"advert", "seo"
 				]
 			}
+		},
+		"AdPromote": {
+			"desktop": {
+				"models": [
+					"advert", "seo", "adResult"
+			]
+			},
+			"mobile": {
+				"models": [
+					"advert", "seo", "adResult"
+				]
+			}
 		}
 	}
 }

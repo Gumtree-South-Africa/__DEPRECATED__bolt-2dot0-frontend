@@ -63,7 +63,7 @@ class CategoryUpdateModal {
 			}
 		});
 		// Display next level for selection
-		if (currentCategory.children !== 'undefined' && currentCategory.children.length > 0) {
+		if (currentCategory.children !== undefined && currentCategory.children.length > 0) {
 			let id = "L" + hierarchyArray.length + "Category";
 			let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
 			select.append($(document.createElement('option')).attr("value", "").attr("selected", "selected").html("---"));

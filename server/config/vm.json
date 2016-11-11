@@ -1,7 +1,7 @@
 {
 	"BAPI": {
 	    "server": {
-	    	"host": "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
+	    	"host": "api.bolt.ebayclassifieds.com.alice01slc01-9681.slc01.dev.ebayc3.com",
 	    	"port": 80,
 	    	"parameters": null,
 			"timeout": 2000
@@ -29,12 +29,13 @@
 			"authRegister"		:	"/boltapi/v1/users",
 			"authActivate"		:	"/boltapi/v1/users/{email}/actions/activate",
 			"authEmailExists"	:	"/boltapi/v1/users/email/{email}",
-			"authPhoneExists"	:	"/boltapi/v1/users/phone/{phone}"
+			"authPhoneExists"	:	"/boltapi/v1/users/phone/{phone}",
+			"adFeatures"        :   "/boltapi/v1/features?"
 	    }
 	},
 	"solr": {
 		"server": {
-			"host"	: "sharon-fp003-4464.slc01.dev.ebayc3.com",
+			"host"	: "alice01slc01-9681.slc01.dev.ebayc3.com",
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
@@ -57,7 +58,7 @@
 	},
 	"graphite": {
 		"server": {
-				"host"  : "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
+				"host"  : "api.bolt.ebayclassifieds.com.alice01slc01-9681.slc01.dev.ebayc3.com",
 				"port"  : 2003,
 				"interval" : 30
 		}
