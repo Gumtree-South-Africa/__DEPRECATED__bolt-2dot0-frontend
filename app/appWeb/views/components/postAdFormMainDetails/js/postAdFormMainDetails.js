@@ -148,7 +148,7 @@ class PostAdFormMainDetails {
 	 * @private
 	 */
 	_characterCountCb($input, $label) {
-		let val = $input.val();
+		let val = $input.val() || '';
 
 		// Using HTML5 maxLength, chrome counts new lines as 2 characters (\r\n)
 		// regardless of whether the browser is on unix or windows while other browser use the OS to decide

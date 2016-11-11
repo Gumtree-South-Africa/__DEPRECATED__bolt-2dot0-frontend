@@ -7,6 +7,8 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let postAdModalController = require("app/appWeb/views/components/postAdModal/js/postAdModal.js");
+let postAdFormMainDetailsController =
+	require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -54,6 +56,7 @@ describe('Post Ad', () => {
 	describe('Upload Image (mobile)', () => {
 		let $testArea;
 		let file;
+
 		beforeEach(() => {
 			$testArea = specHelper.setupTest("uploadImage_es_MX", {
 				eps: {
@@ -61,12 +64,19 @@ describe('Post Ad', () => {
 					isEbayDirectUploadEnabled: true
 				}
 			}, "es_MX");
+			// Used by editAdFormMainDetails.js
+			$testArea.append('<div id="js-main-detail-post"><input title="Title"></div>');
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
+			specHelper.registerMockAjax('/api/postad/imagerecognition', {});
 			file = {
 				size: 1024,
 				name: 'asdf.png'
 			};
+
+			specHelper.mockGoogleLocationApi();
 		});
+
+
 
 		// this test out until we can  fix the issue:
 		// Can't find variable: google in /Volumes/caseSensitive/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js (line 15858)
@@ -98,23 +108,6 @@ describe('Post Ad', () => {
 			uploadImageController.loadData(0, file);
 		});
 
-		it('should show spinners during upload', () => {
-			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
-			let postAd = uploadAdController._postAd;
-			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
-				postAd(images, (response) => {
-					expect(options.locationType).toBe('cookie');
-					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the old spinner to be present.');
-					expect(response).toBe(mockPostAdResponse);
-					success(response);
-				}, fail, options);
-			});
-			document.cookie = 'geoId=123ng456';
-			uploadImageController.initialize();
-			uploadImageController.loadData(0, file);
-			expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be gone.');
-		});
-
 		it('should show error modal for failed ajax', () => {
 			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, {fail: true});
 			let postAd = uploadAdController._postAd;
@@ -138,6 +131,9 @@ describe('Post Ad', () => {
 			// Reset view model to avoid former tests affecting latter ones.
 			photoCarouselController.setupViewModel();
 			uploadAdController.setupViewModel();
+
+			spyOn(uploadAdController, 'handlePostResponse');
+			spyOn(postAdFormMainDetailsController, '_setupPolyfillForm');
 		});
 
 		it('should successfully post ad with created response', () => {

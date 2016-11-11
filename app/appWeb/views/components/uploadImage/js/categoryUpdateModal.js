@@ -26,12 +26,15 @@ class CategoryUpdateModal {
 			stack.unshift(node.id);
 			return node.parentId;
 		} else {
-			for (let i = 0; i < node.children.length; i++) {
-				if (node.id === this._getCategoryHierarchy(node.children[i], leafId, stack)) {
-					stack.unshift(node.id);
-					return node.parentId;
+			if (node.children) {
+				for (let i = 0; i < node.children.length; i++) {
+					if (node.id === this._getCategoryHierarchy(node.children[i], leafId, stack)) {
+						stack.unshift(node.id);
+						return node.parentId;
+					}
 				}
 			}
+			return null;
 		}
 	}
 
@@ -63,7 +66,7 @@ class CategoryUpdateModal {
 			}
 		});
 		// Display next level for selection
-		if (currentCategory.children !== 'undefined' && currentCategory.children.length > 0) {
+		if (currentCategory.children && currentCategory.children.length > 0) {
 			let id = "L" + hierarchyArray.length + "Category";
 			let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
 			select.append($(document.createElement('option')).attr("value", "").attr("selected", "selected").html("---"));
@@ -112,6 +115,9 @@ class CategoryUpdateModal {
 	 * @param imgUrl
 	 */
 	updateCategory(categoryId, imgUrl) {
+		if (categoryId == null || isNaN(categoryId)) {
+			return;
+		}
 		this.hierarchyArray=[];
 		this.$categorySelection.empty();
 		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);

@@ -104,7 +104,7 @@ class PostFormCustomAttributes {
 	 * @param postRenderCb
 	 */
 	updateCustomAttributes(postRenderCb, categoryId) {
-		if (categoryId) {
+		if (categoryId != null) {
 			this.setCategoryId(categoryId);
 		}
 		$.ajax({
