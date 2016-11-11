@@ -96,6 +96,15 @@ $labelMargin: 8%;
 	}
 }
 
-div {
-
+@include to-breakpoint($medium-break) {
+	.viewport.covered {
+		// To ensure nothing in page is covered by post button overlay
+		position: absolute;
+		left: 0;
+		right: 0;
+		top: 0;
+		// The height of post button layer
+		bottom: 83px;
+		overflow-y: auto;
+	}
 }
