@@ -13,6 +13,13 @@ $categoryArrowIconWidth: 13px;
 		text-align: center;
 		font-size: large;
 		color: $formLabelTextColor;
+
+		.icon-down, .icon-up {
+			float: right;
+			margin-right: 10%;
+			margin-top: 10px;
+			cursor: pointer;
+		}
 	}
 
 	select, input {

@@ -422,6 +422,8 @@ class PostAdFormMainDetails {
 	 */
 	showModal() {
 		this.$detailsSection.removeClass("hidden");
+		this.$downIcon.addClass("hidden");
+		this.$upIcon.removeClass("hidden");
 		// TODO Move below line out of this class
 		$('.viewport').addClass('.covered');
 	}
@@ -443,6 +445,8 @@ class PostAdFormMainDetails {
 		this.$changePhoto = $(".change-photo");
 
 		this.$postForm = this.$detailsSection.find('#post-form');
+		this.$downIcon = this.$detailsSection.find('.icon-down');
+		this.$upIcon = this.$detailsSection.find('.icon-up');
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 
@@ -460,6 +464,8 @@ class PostAdFormMainDetails {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.$postForm.toggleClass('hidden');
+			this.$downIcon.toggleClass('hidden');
+			this.$upIcon.toggleClass('hidden');
 		});
 
 		this.$changePhoto.on('click', (e) => {
