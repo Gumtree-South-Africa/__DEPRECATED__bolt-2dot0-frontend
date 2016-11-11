@@ -5,10 +5,10 @@
     "../../partials/main/theme",
     "../typography-scale";
 
-
 $container-width: 73em;
 
 $bodyFont: Lato;    // attach this to body element
+$bodyFontSecondary: Lato;    // attach this to body element
 
 // Headlines
 $gum-h1: bold 1.5em $bodyFont;      // 24px
@@ -33,21 +33,19 @@ $p1: $gum-p1;
 $p2: $gum-p2;
 $p3: $gum-p3;
 
-$p2-secondary-color: $vivaGray1;
+$p2-secondary-color: $gumGray1;
 
 $safety-card-background-color: #1E98D5;
 $common-background-color: color(foxtail, medium);
-$recent-activity-background-color: white;
+$recent-activity-background-color: $gumWhite;
 
 // Primary link
 $primary-link-color: $gumBlack;
 $primary-link-font: bold 1.5em $bodyFont;
 
-
 // Secondary link
 $secondary-link-color: $gumOrange;
 $secondary-link-font: bold 1em $bodyFont;
-
 
 // Tertiary link
 $tertiary-link-color: $vivaWhite;
@@ -70,34 +68,25 @@ $button-fontsize: 1.125em;
 $appdownload-bgcolor: #f7f7f7;
 $appdownloadreview-bgcolor: $vivaWhite;
 $appdownloadreview-font: $gum-p2;
-$appdownloadreview-color: $vivaGray1;
+$appdownloadreview-color: $gumGray1;
 
 //Welcomescreen
 $welcomeSreen-bgcolor: color(foxtail, light);
-
 
 // Section Menu
 $secmenu-link-color: color(swirl, dark);
 $secmenu-link-color-hover: $gumOrange;
 
-
 // modal
-$modal-color: color(swirl, shade);
-$modal-bgcolor: $vivaBlack;
+$modal-color: color(swirl, dark);
+$modal-bgcolor: $gumWhite;
 $modal-info: color(swirl, medium);
-$modal-autocomplete-color: $vivaGray1;
+$modal-autocomplete-color: $gumGray1;
 $modal-autocomplete-color-hover: $vivaWhite;
-$modal-autocomplete-bgcolor-hover: $vivaGray1;
-
-//Seolinks
-
-$seofooter-color: $vivaWhite;
-
+$modal-autocomplete-bgcolor-hover: $gumGray1;
 
 // Recent Activity
 $recentactivity-bgcolor:$vivaGray2;
-
-
 
 // color palette, independent of viva, map your "viva" to local independent names here
 // use the naming convention: <where used><thing (font, color, etc)>
@@ -110,8 +99,6 @@ $cardHeadersFont: $gum-h4;
 
 // Activity card and header profile image circlular border
 $profile-border: $gumOrange;
-
-
 
 // Conventions:  all SCSS is camelCase, all css classes are dash separated
 
@@ -141,10 +128,17 @@ $fontSizeLabel: .625em;      // 10 px
 
 // Colors, by specific item
 
-// Header
-
+//HEADER
 $headerBackgroundColor: color(foxtail, medium);
+$headerMainBackgroundColor: color(foxtail, medium);
+
 $headerTextColor: color(swirl, dark);
+$headerMainTextColor: color(swirl, dark);
+
+$headerMainTextFont: $bodyFont; //Chivo Font
+$headerBorderColor: color(crane, base);
+$headerMainBorderColor: color(melon);
+
 $headerMenuBorderColor: color(swirl, shade);
 $headerMenuItemSecondaryColor: $vivaGray6;
 $headerMenuItemSeparatorColor: color(swirl);
@@ -154,7 +148,7 @@ $headerMenuItemHighlightColor: color(swirl);
 $imagePlaceholderBackground: color(swirl);
 $headerBlue: color(crane);
 
-$searchBarTextColor: $gumBlack;
+$searchBarTextColor: color(swirl, shade);
 $searchBarTypeAheadWrapperBackground: $vivaGray5;
 $searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: $vivaGray8;
@@ -206,3 +200,26 @@ $categorySelectionModalBgColor: $vivaWhite;
 $categorySelectionSeparatorColor: $vivaGray10;
 $leafNodeWarningColor: $gumOrange;
 $categoryNameColor: $vivaBlue7;
+
+// FOOTER
+//Footer Seo Background section
+$footerSeoBackgroundColor: color(foxtail, base);
+$seofooter-color: $gumWhite;
+
+//Footer Main Background section
+$footerMainBackgroundColor: color(foxtail, light);
+$footerTrademarkBackgroundColor: color(rock, base);
+//Footer Main Text
+$footerMainTextColor: color(swirl, shade);
+$footerMainTextFont: $bodyFont; //Lato
+//Footer Headers
+$footerHeaderTextColor: color(swirl, shade);
+$footerHeaderFont: normal 18px $bodyFontSecondary;
+//Footer divider
+$footerDividerLineColor: color(swirl, base);
+//Support section
+$footerCircleBorderColor: color(leaf);
+
+//Any Image/Icon
+$photoFolder: en_ZA;
+$locale: ZA;
