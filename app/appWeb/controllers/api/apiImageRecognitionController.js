@@ -24,11 +24,9 @@ router.post('/', cors, (req, res) => {
 		res.send(category.categoryId);
 
 	}).fail((err) => {
-		let bapiJson = logger.logError(err);
-		res.status(err.getStatusCode(500)).send({
-			error: "Image recognition did not return a category, see logs for details",
-			bapiJson: bapiJson
-		});
+		console.error("[API Image recognition] Did not recognize a category for the image, set default to Hogar !");
+		logger.logError(err);
+		res.send("1"); // If category recognition fail, return default Hogar category
 	});
 
 });

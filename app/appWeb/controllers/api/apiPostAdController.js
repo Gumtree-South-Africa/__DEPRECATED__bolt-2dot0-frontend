@@ -203,7 +203,7 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 		if (verticalCategoriesConfig.find((item) => {
 				return categoryId === Number(item);
 			})) {
-			isVertical = true;
+			isVertical = true; // If the categoryId is one of the Verticals or child of one Vertical
 		}
 	});
 
