@@ -272,6 +272,8 @@ self.addEventListener('push', function(event) {
 	 [email=linai@ebay.com, message=Su búsqueda [Mobiletest1] tiene nuevos resultados. Haga clic para verlos.,
 	 activity=SEARCHALERTS, alertCounter=Optional.absent(), details={senderId=null, receiverId=101594800, adId=null, adTitle=null, alertId=101683800, locale=es_AR_},
 	 gcmDetails=Optional.absent(), apnsDetails=Optional.absent()]
+
+	 Send push notification via https://web-push-codelab.appspot.com/
 	 */
 
 	var notificationTitle = 'Se acaba de publicar algo que estas buscando.';
