@@ -1300,6 +1300,7 @@
 		"placeholderText": "Type a location",
 		"locationAutoDesktop": "According to our system, this is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {

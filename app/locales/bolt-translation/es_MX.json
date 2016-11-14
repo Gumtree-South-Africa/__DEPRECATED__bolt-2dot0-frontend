@@ -1275,6 +1275,7 @@
 		"placeholderText": "Escribe una ubicación",
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
+		"locationWarning": "Tu ubicación exacta no se publicará",
 		"info": "Ciudad, Colonia o Delegaci\u00F3n"
 	},
 	"sectionMenu": {
