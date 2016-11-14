@@ -1,0 +1,44 @@
+<noscript>
+  <style type="text/css">
+    .jsOnly {display:none !important;}
+    .nonJsOnlyInlineBlock{display:inline-block !important;}
+    .nonJsOnlyBlock {display:block !important;}
+    .nonJsOnlyInline {display:inline !important;}
+  </style>
+</noscript>
+<div class="tab-content categories-wrapper">
+  <div class="nonJsOnlyInline top-categories mobile-hide">
+    
+    <div class="jsOnly top-searches-header top-headers desktop-hide">
+      <span class="top-headers-text search-header-text">{{i18n "home.popular.searches"}}</span>
+    </div>
+    <div class="jsOnly top-locations-header top-headers desktop-hide">
+      <span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span>
+    </div>
+    <div class="top-categories-header top-headers">
+      <span class="top-headers-text category-header-text">{{i18n "footer.topCategories"}}</span>
+    </div>
+
+        <div class="seo-line desktop-hide"></div>
+        <div class="top-content-wrapper">
+        <ul>
+          {{#each this.topCategories}}
+
+            {{#compare @index "<=" 5}}
+              <div class="nonJsOnlyInline top-content">
+                <a class="top-links" href="{{this.link}}" data-gtm="pc|NavFooterClick|eventLabel|topCategories:{{this.text}}">{{this.text}}</a>
+              </div>
+            {{/compare}}
+            {{#compare @index ">" 5}}
+              <div class="nonJsOnlyInline hide top-content show-more-categories">
+                <a class="top-links" href="{{this.link}}" data-gtm="pc|NavFooterClick|eventLabel|topCategories:{{this.text}}">{{this.text}}</a>
+              </div>
+            {{/compare}}
+          {{/each}}
+        </ul>
+    </div>
+    <div class="jsOnly view-more-categories"
+       data-view-less="{{i18n "footer.topSearches.viewLess"}}"
+       data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
+    </div>
+</div>
