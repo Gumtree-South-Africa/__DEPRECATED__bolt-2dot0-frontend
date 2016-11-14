@@ -9,6 +9,7 @@
 {{#each this.topSearches}}
 <div class="tab-content searches-wrapper container-width-{{this.total}}">
     <div class="top-searches">
+<<<<<<< 569e42d47e2393cdeaef57ee85a403f7f3ab50d7
 		{{#each this.menuTitles}}
 			{{#compare @../index "==" @index}}
 				<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this}}</span></div>
@@ -16,6 +17,19 @@
 				<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
 			{{/compare}}
 		{{/each}}
+=======
+		
+        <div class="top-searches-header top-headers">
+          <span class="top-headers-text search-header-text">{{i18n "home.popular.searches"}}</span>
+        </div>
+        <div class="jsOnly top-locations-header top-headers desktop-hide">
+          <span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span>
+        </div>
+        <div class="jsOnly top-categories-header top-headers desktop-hide">
+          <span class="top-headers-text category-header-text">{{i18n "footer.topCategories"}}</span>
+        </div>
+        
+>>>>>>> adding the category tree V2
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
 				{{#each this.keywords}}

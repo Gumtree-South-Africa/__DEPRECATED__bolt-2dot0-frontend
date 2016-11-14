@@ -36,11 +36,13 @@
                 i18nTitle="homepage.gallery.cardTitle" }}
         {{/if}}
 
-
 		<div class="seo-wrapper">
            <h1>{{i18n "home.h1Tag"}}</h1>
             {{> (dynamic "topSearches")}}
             {{> (dynamic "topLocations")}}
+            {{#if this.topCategories}}
+                {{> (dynamic "topCategories")}}
+            {{/if}}
 		</div>
 
         {{> (dynamic "bottomBanner") }}

@@ -420,7 +420,6 @@
 	"vip.attribute.label.location": "Ubicación",
 	"vip.reply.attachmentUpload.title": "Adjuntar un archivo",
 	"vip.reply.attachmentUpload.help": "(máximo 1MB)",
-	"footer.toplocations": "Los Mejores Lugares",
 	"footer.bestof": "Los Mejores Anuncios de Vivanuncios",
 	"footer.cr.$$": "Copyright © 2014-2016 eBay.  Todos los derechos reservados.",
 	"footer.cr.termsAndConditions": "Términos y Condiciones",
@@ -1364,6 +1363,8 @@
 		}
 	},
 	"footer": {
+		"toplocations": "Los Mejores Lugares",
+		"topCategories": "Categorías",
 		"help": {
 			"heretohelp": "Estamos aquí para ayudarte",
 			"sendemail": "Envía un correo electrónico",
