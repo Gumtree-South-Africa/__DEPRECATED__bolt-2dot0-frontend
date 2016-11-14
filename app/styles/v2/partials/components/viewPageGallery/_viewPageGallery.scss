@@ -19,6 +19,9 @@
 		background-size: contain;
 		background-color: #000;
 		outline: 0;
+		&.fullsize{
+			background-size: inherit;
+		}
 	}
 	.main-bgImg{
 		display: none;
@@ -35,6 +38,16 @@
 		color: white;
 		font-size: 0.8em;
 	}
+}
+.vip-bottom-container{
+	position: fixed;
+	background-color: white;
+	bottom: 0;
+	z-index: 7;
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 
@@ -99,6 +112,9 @@
 }
 
 @include from-breakpoint($medium-break){
+	.vip-bottom-container{
+		display: none;
+	}
 	#vipGallery{
 		width: 50%;
 		.main-bgImg{
@@ -168,8 +184,13 @@
 	}
 	#vipOverlay{
 		.slick-carousel{
-			min-height: 4em;
+			min-height: 4.5em;
 			margin: 6px;
+			cursor: pointer;
+			&.selected{
+				border: 3px solid $postAdOrange;
+				margin: 3px;
+			}
 		}
 		.overlay-info{
 			width: 80%;
@@ -180,24 +201,31 @@
 	    background-size: cover;
 	    border: 1px solid #000;
 	    outline: 0;
-	    height: 31em;
+			height: 75%;
 	    background-repeat: no-repeat;
+			background-position: center;
 		}
 		.modal-container {
-			max-width: 100%;
+			width: 48em;
+			max-width: 48em;
 			font-weight: bold;
 			color: gray;
+			height: 80%;
+			max-height: 36em;
 		}
 		.container{
 			position: relative;
 		}
 		.vipOverlay-container{
-			margin-top: 2em;
+			margin-top: 0.1em;
 		}
 		.slick-initialized{
 			width: 60%;
 		}
 		.slick-carousel{
+			background-size: contain;
+			background-repeat: no-repeat;
+			background-position: center;
 			background-color: #000;
 			border: 1px solid #000;
 			outline: 0;
@@ -217,7 +245,7 @@
 			top: 2em;
 		}
 		.slick-next{
-	    left: 28.5em;
+	    left: 29.9em;
 	    top: 2em;
 			transform: scaleX(-1);
     	-webkit-transform: scaleX(-1);
