@@ -14,10 +14,12 @@ let _showMoreSearches = () => {
 };
 
 let _toggleTabs = () => {
-	this.$topSearches.removeClass('mobile-hide');
-	this.$topLocations.addClass('mobile-hide');
-	this.$locationHeaderText.removeClass('thick-underline');
-	this.$searchHeadertext.addClass('thick-underline');
+	this.$topCategories.addClass('mobile-hide');
+  this.$topLocations.addClass('mobile-hide');
+  this.$topSearches.removeClass('mobile-hide');
+  this.$categoryHeadertext.removeClass('thick-underline');
+  this.$locationHeaderText.removeClass('thick-underline');
+  this.$searchHeadertext.addClass('thick-underline');
 };
 
 let initialize = () => {
@@ -26,9 +28,11 @@ let initialize = () => {
 	this.$showMoreSearches = $('.show-more-searches');
 	this.$topSearchesHeader = $('.top-searches-header');
 	this.$topSearches = $('.top-searches');
-	this.$topLocations = $('.top-locations');
-	this.$locationHeaderText = $('.location-header-text');
-	this.$searchHeadertext = $('.search-header-text');
+  this.$topLocations = $('.top-locations');
+  this.$topCategories = $('.top-categories');
+  this.$locationHeaderText = $('.location-header-text');
+  this.$searchHeadertext = $('.search-header-text');
+  this.$categoryHeadertext = $('.category-header-text');
 
 	this.viewMoreText = this.$viewMoreSearches.data('view-more');
 	this.viewLessText = this.$viewMoreSearches.data('view-less');

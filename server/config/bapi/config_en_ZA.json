@@ -203,10 +203,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {

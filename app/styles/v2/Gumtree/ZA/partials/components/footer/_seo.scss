@@ -16,7 +16,7 @@
     margin: 0;
     padding: 0;
   }
-  .view-more-locations, .view-more-searches{
+  .view-more-locations, .view-more-searches, .view-more-categories{
     float: left;
     width: 100%;
   }
@@ -42,6 +42,11 @@
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
   .seo-wrapper{
+    .locations-wrapper, .searches-wrapper, .categories-wrapper {
+      width: 30%;
+      display: inline-block;
+      vertical-align: top;
+    }
     .tab-content{
       margin:0;
       text-align: center;

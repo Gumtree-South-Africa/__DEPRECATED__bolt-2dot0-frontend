@@ -9,8 +9,17 @@
 
 <div class="tab-content searches-wrapper">
     <div class="top-searches">
-		<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n "home.popular.searches"}}</span></div>
-		<div class="jsOnly top-locations-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
+		
+        <div class="top-searches-header top-headers">
+          <span class="top-headers-text search-header-text">{{i18n "home.popular.searches"}}</span>
+        </div>
+        <div class="jsOnly top-locations-header top-headers desktop-hide">
+          <span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span>
+        </div>
+        <div class="jsOnly top-categories-header top-headers desktop-hide">
+          <span class="top-headers-text category-header-text">{{i18n "footer.topCategories"}}</span>
+        </div>
+        
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
         {{#each this.topSearches}}

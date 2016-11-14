@@ -17,6 +17,7 @@ let CardsModel = require(cwd + '/app/builders/common/CardsModel');
 let SearchModel = require(cwd + '/app/builders/common/SearchModel');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let TopCategoriesModel = require(cwd + '/app/builders/common/TopCategoriesModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AdStatisticsModel = require(cwd + '/app/builders/common/AdStatisticsModel');
 
@@ -115,6 +116,7 @@ class HomePageModelV2 {
 
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let appDownloadModel = new AppDownloadModel(this.req, this.res);
+		let topCategoriesModel = new TopCategoriesModel(this.req, this.res);
 
 		let recentActivityModel = new RecentActivityModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let cardsModel = new CardsModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
@@ -210,6 +212,8 @@ class HomePageModelV2 {
 				return {};
 			});
 		};
+
+		this.dataPromiseFunctionMap.topCategories = () => topCategoriesModel.enabled;
 
 		this.dataPromiseFunctionMap.adstatistics = () => {
 			return adstatistics.resolveAllPromises().then((data) => {
