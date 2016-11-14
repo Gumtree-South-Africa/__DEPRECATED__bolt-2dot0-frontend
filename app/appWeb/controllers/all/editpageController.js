@@ -34,7 +34,7 @@ router.get('/:id?', (req, res, next) => {
 	}
 
 	if (!pageControllerUtil.is2dot0Version(res)) {
-		res.redirect('/post.html?adId=adId');	// redirect to 1.0 version of this page
+		res.redirect('/post.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;
 	}
 

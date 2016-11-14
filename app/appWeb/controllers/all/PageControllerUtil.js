@@ -50,7 +50,7 @@ PageControllerUtil.prototype.is2dot0Page = function(res, abtestpage) {
 	let is2dot0 = false;
 	if (res.locals.b2dot0Pages) {
 		let pages = res.locals.b2dot0Pages;
-		for (let i=0; i<res.locals.b2dot0Pages.length; i++) {
+		for (let i=0; i<pages.length; i++) {
 			if (pages[i] === abtestpage) {
 				res.locals.b2dot0PageVersion = true;
 				is2dot0 = true;
