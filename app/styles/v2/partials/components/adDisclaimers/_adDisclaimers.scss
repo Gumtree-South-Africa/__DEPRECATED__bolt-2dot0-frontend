@@ -1,0 +1,46 @@
+.ads-disclaimers-container {
+	color: $vivaOrange;
+	background-color: $common-background-color;
+	border-top: 2px solid $vivaOrange;
+	border-bottom: 2px solid $vivaOrange;
+	margin-top: 5px;
+	margin-bottom: 5px;
+
+	.ads-disclaimers {
+		margin: 10px 20px 10px 20px;
+		.ads-disclaimers-text {
+			display: inline;
+			text-align: center;
+		}
+		.ads-realestate {
+			padding-top: 10px;
+		}
+	}
+	.ads-disclaimers-more {
+		font-size: 18px;
+		padding-top: 15px;
+		display:block;
+		text-align: center;
+		text-decoration: underline;
+		font-weight: bold;
+		color: $vivaOrange;
+	}
+
+	.lock-icon {
+		display: inline-block;
+		width: 30px;
+		height: 36px;
+		top: 10px;
+		position: relative;
+	}
+}
+
+@include from-breakpoint($medium-break){
+	.ads-disclaimers-container {
+		margin-left: 5px;
+		margin-right: 5px;
+		width: 50%;
+		border-left: 2px solid $vivaOrange;
+		border-right: 2px solid $vivaOrange;
+	}
+}
