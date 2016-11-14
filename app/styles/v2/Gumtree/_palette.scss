@@ -1,11 +1,17 @@
-// -------------------------------------------------- //
-// Vars containing color codes should be in this file //
-// -------------------------------------------------- //
+//Please do NOT use directly these colors, use _theme.scss
+
+// Primary Gumtree color
+$gumBlack: #000;
+$gumWhite: #FFFFFF; 
+$gumOrange: #FF9800;
+
+$gumGray1: #747474;
 
 //Primary Color
 $vivaBlack: #333333;
-$vivaWhite: #FFFFFF;
+$vivaWhite: #FFFFFF; 
 $vivaOrange: #FF9800;
+
 // gray  palette colors
 $vivaGray1: #747474;    // todo: where did this come from?
 $vivaGray2: #EBEBEB;    // defined for use in home page
@@ -30,3 +36,69 @@ $vivaBlue6: #196ED2;	// defined for use in 'Get the App' card
 $vivaBlue7: #478BCD;
 
 $vivaRed: red;
+
+$colors: (
+	crane: (
+		base: #F66429,
+		light: #FD9E5A,
+		shade: #B0481A
+	),
+	foxtail: (
+		base: #FCECC7,
+		light: #FCFAf4,
+		medium: #FAF5EA,
+		shine: #FAF6EE,
+	),
+	taupe: (
+		base: #55404E,
+		shade: #bda8b6
+	),
+	melon: (
+		base: #FF6B7A,
+		shade: #d44d5b
+	),
+	sky: (
+		base: #3997BA
+	),
+	leaf: (
+		base: #72EF36,
+		light: #76EC46,
+		dark: #5FB69C
+	),
+	swirl: (
+		base: #CFCDC1,
+		dark: #6E6A60,
+		medium: #A4A29C,
+		shade: #605D4C
+	),
+	rock: (
+		base: #C9C7C3,
+		medium: #B7B5AF,
+		dark: #888888
+	)
+);
+
+@function color($name, $tone: base) {
+	@return map-get(map-get($colors, $name), $tone)
+};
+
+@font-face {
+  font-family: 'Lato';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Lato-Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format('truetype');
+};
+
+@font-face {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Montserrat-Regular'), local('Montserrat-Regular'), url('../../../../../fonts/Montserrat-Regular.otf') format('opentype');
+};
+
+@font-face {
+    font-family: 'Chivo';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Chivo-Regular'), local('Chivo-Regular'), url('../../../../../fonts/Chivo-Regular.ttf') format('truetype');
+};

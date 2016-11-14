@@ -1,4 +1,4 @@
-@import  "../../theme";
+@import  "../theme";
 @import  "../../../partials/pages/Homepage/pageMain";
 @import  "../../../partials/components/welcomeModal/welcomeModal";
 @import  "../../../partials/components/modal/modal";
@@ -18,5 +18,17 @@
 @import  "../../../partials/components/hamburgerMenu/hamburgerMenu";
 @import  "../../../partials/components/topSearches/topSearches";
 @import  "../../../partials/components/topLocations/topLocations";
-@import  "../../../../v1/partials/main/emptyStateMessages.scss";
-@import  "../partials/main/footer.scss";
+@import  "../../../../v1/partials/main/emptyStateMessages";
+
+@import  "../partials/components/header/header";
+@import  "../partials/components/hamburgerMenu/hamburgerMenu";
+@import  "../partials/components/modal/modal";
+@import  "../partials/components/profileMenu/profileMenu";
+@import  "../partials/components/searchbarv2/searchbarv2";
+
+@import  "../partials/components/footer/footer";
+@import  "../partials/components/footer/seo";
+@import  "../partials/components/card/card";
+@import  "../partials/components/appDownloadSection/appDownloadSection";
+@import  "../partials/components/safetyTips/safetyTips";
+@import  "../partials/components/recentActivity/recentActivity";

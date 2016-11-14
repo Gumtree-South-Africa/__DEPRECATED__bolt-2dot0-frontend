@@ -1,4 +1,7 @@
-{{> (base "topBanner") }}
+<div id="home_topbanner"></div>
 
-
-
+{{#partial "googleBannerAdsTopV2_Script"}}
+    {{#unlessMobile this.device}}
+		BOLT.displayBanner( $.extend( {pos:"atf",slotDim: [[728,90],[970,250],[970,90]], slotId : 'home_topbanner'},bP));
+    {{/unlessMobile}}
+{{/partial}}

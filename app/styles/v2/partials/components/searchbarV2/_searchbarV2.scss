@@ -224,7 +224,7 @@ $mobileTextboxWidth: 84%;
 
 		.search-button-wrap {
 			float: left;
-			margin-left: -2px;
+			margin-left: -1px;
 			height: $desktopSearchBarHeight;
 			box-sizing: border-box;
 			width: 18%;
@@ -233,7 +233,8 @@ $mobileTextboxWidth: 84%;
 		.search-button {
 			color: $searchBarButtonTextColor;
 			background-color: $searchBarButtonColor;
-			border: $searchBarButtonColor;
+			border: solid 1px $searchBarButtonColor;
+			vertical-align: top;
 			width: 100%;
 
 			@include border-top-right-radius(0.25em);
@@ -245,20 +246,21 @@ $mobileTextboxWidth: 84%;
 
 			.inner-text {
 				display: none;
-				width: 45%;
-				float: right;
-				text-align: left;
+				vertical-align: middle;
 			}
 
 			.button-content-container {
-				position: relative;
+				display: block;
 				height: 100%;
+				line-height: 36px;
+				position: relative;
 			}
 
 			.icon-search-white {
-				display: block;
+				display: inline-block;
 				margin: 0;
 				height: 20px;
+				vertical-align: middle;
 				width: 20px;
 			}
 
@@ -424,15 +426,8 @@ $mobileTextboxWidth: 84%;
 
 			.search-button {
 				.inner-text {
-					width: 63%;
-					float: right;
-					display: block;
-					text-align: left;
-				}
-
-				.icon-search-white {
-					float: right;
-					margin: auto 5px auto 0;
+					display: inline-block;
+					margin-left: 5px;
 				}
 			}
 
@@ -480,16 +475,14 @@ $mobileTextboxWidth: 84%;
 			height: $mobileSearchBarHeight;
 
 			.search-button {
+				.button-content-container {
+					line-height: 26px;
+				}
+			}
+
+			.search-button {
 				.inner-text {
 					display: none;
-					width: 45%;
-					float: right;
-					text-align: left;
-				}
-
-				.icon-search-white {
-					margin: auto;
-					float: none;
 				}
 			}
 		}
