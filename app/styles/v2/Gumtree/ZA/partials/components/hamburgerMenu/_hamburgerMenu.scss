@@ -7,6 +7,7 @@
 }
 
 .hamburger-contents {
+	font-family: $bodyFont;
 	padding: 10px;
 
 	&.hamburger-open {
@@ -68,5 +69,6 @@
 		display: block;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		color: $headerTextColor;
 	}
 }
