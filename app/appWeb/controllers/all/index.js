@@ -16,9 +16,7 @@ router.use('/quickpost', require('./quickpostController'));
 router.use('/view', require('./viewPageController'));
 
 // Regex Routes
-router.use('/:seo(a\-[0-9A-Za-z\-\+]+)', require('./viewPageController'));
-// router.use('/:seo(a\-[0-9A-Za-z\-]+\/[0-9A-Za-z\-\+]+)', require('./viewPageController'));
-// router.use('/a-[0-9A-Za-z\-]+/[A-Za-z0-9\+\-]+', require('./viewPageController'));
+router.use('/:seo(a-[0-9A-Za-z-+\/]+)', require('./viewPageController'));
 
 router.use('/', require('./homepageController'));
 
