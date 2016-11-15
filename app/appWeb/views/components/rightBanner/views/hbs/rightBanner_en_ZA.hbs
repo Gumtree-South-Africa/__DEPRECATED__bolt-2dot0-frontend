@@ -1,9 +1,7 @@
-<div id='div-gpt-ad-1318934199048-0' class="home_rghtbanner"></div>
+{{>  (base "rightBanner")}}
 
 {{#partial "googleBannerAdsRightV2_Script"}}
     {{#unlessMobile this.device}}
 		BOLT.displayBanner( $.extend( {pos:"top",slotDim: [[300, 250],[336 ,280]], slotId : 'div-gpt-ad-1318934199048-0'},bP));
     {{/unlessMobile}}
 {{/partial}}
-
-{{> (base "rightBanner") }}

@@ -1,9 +1,7 @@
-<div id="home_topbanner"></div>
+{{> (base "topBanner") }}
 
 {{#partial "googleBannerAdsTopV2_Script"}}
     {{#unlessMobile this.device}}
 		BOLT.displayBanner( $.extend( {pos:"atf",slotDim: [[728,90],[970,250],[970,90]], slotId : 'home_topbanner'},bP));
     {{/unlessMobile}}
 {{/partial}}
-
-{{> (base "topBanner") }}
