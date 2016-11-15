@@ -9,7 +9,7 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
  *
  * - Events:
  *   - postButtonClicked
- *   - openStatusChanged: internal event before HamburgerMenu.toggleMenu is implemented here
+ *   - propertyChanged, triggered with propertyName and newValue
  *
  * - Properties:
  *   - isPostAllowed
@@ -17,10 +17,12 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
 class HamburgerMenuVM {
 	constructor() {
 		this.postButtonClicked = new SimpleEventEmitter();
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._isPostDirectly = false;
 
 		this._isPostAllowed = true;
 		this._isOpened = false;
-		this.openStatusChanged = new SimpleEventEmitter();
 	}
 
 	/**
@@ -28,8 +30,12 @@ class HamburgerMenuVM {
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMount(domElement) {
+		this._isPostDirectly = domElement.find('.js-post-button').hasClass('directly-post');
 		this._postButton = domElement.find('.js-post-button a');
-		this._handleIsPostAllowedChanged = (newValue) => {
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isPostAllowed') {
+				return;
+			}
 			if (newValue) {
 				this._postButton.attr('tabindex', '0');
 				this._postButton.removeClass('disabled');
@@ -37,11 +43,15 @@ class HamburgerMenuVM {
 				this._postButton.attr('tabindex', '-1');
 				this._postButton.addClass('disabled');
 			}
-		};
+		});
 		this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
 	}
 
 	_handlePostButtonClicked(evt) {
+		if (!this._isPostDirectly) {
+			// Use default way of post
+			return;
+		}
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();
@@ -51,7 +61,7 @@ class HamburgerMenuVM {
 		this.postButtonClicked.trigger();
 	}
 
-		get isPostAllowed() {
+	get isPostAllowed() {
 		return this._isPostAllowed;
 	}
 
@@ -61,7 +71,7 @@ class HamburgerMenuVM {
 			return;
 		}
 		this._isPostAllowed = newValue;
-		this._handleIsPostAllowedChanged(newValue);
+		this.propertyChanged.trigger('isPostAllowed', newValue);
 	}
 
 	get isOpened() {
@@ -74,7 +84,7 @@ class HamburgerMenuVM {
 			return;
 		}
 		this._isOpened = newValue;
-		this.openStatusChanged.trigger(this._isOpened);
+		this.propertyChanged.trigger('isOpened', newValue);
 	}
 
 }
@@ -194,9 +204,12 @@ class HamburgerMenu {
 		});
 
 		this.viewModel.componentDidMount($('#js-hamburger-menu'));
-		this.viewModel.openStatusChanged.addHandler((newOpenStatus) => {
+		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isOpened') {
+				return;
+			}
 			let currentOpenStatus = this.open;
-			if (currentOpenStatus !== newOpenStatus) {
+			if (currentOpenStatus !== newValue) {
 				this.toggleMenu();
 			}
 		});

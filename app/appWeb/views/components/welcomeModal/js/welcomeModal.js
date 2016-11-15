@@ -23,6 +23,7 @@ function getCookie(cname) {
  *
  * - Events:
  *   - postButtonClicked
+ *   - propertyChanged, triggered with propertyName and newValue
  *
  * - Properties:
  *   - isPostAllowed
@@ -33,10 +34,11 @@ function getCookie(cname) {
 class WelcomeModal {
 	constructor() {
 		this.postButtonClicked = new SimpleEventEmitter();
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._isPostDirectly = false;
+
 		this._isPostAllowed = true;
-
-		this._hasBeenShown = false;
-
 		this._isOpened = false;
 		this._title = '';
 		this._message = '';
@@ -48,8 +50,13 @@ class WelcomeModal {
 	 */
 	componentDidMount(domElement) {
 		// Bind property and event
+		this._isPostDirectly = domElement.find('.login-button').hasClass('directly-post');
 		this._$postButton = domElement.find('.login-button a');
-		this._handleIsPostAllowedChanged = (newValue) => {
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isPostAllowed') {
+				return;
+			}
+
 			if (newValue) {
 				this._$postButton.attr('tabindex', '0');
 				this._$postButton.removeClass('disabled');
@@ -57,7 +64,7 @@ class WelcomeModal {
 				this._$postButton.attr('tabindex', '-1');
 				this._$postButton.addClass('disabled');
 			}
-		};
+		});
 		this._$postButton.on('click', evt => this._handlePostButtonClicked(evt));
 
 		this._$modal = domElement.find('.modal-wrapper .modal');
@@ -66,7 +73,11 @@ class WelcomeModal {
 		this._$message = domElement.find('.modal-container .modal-info');
 		this._title = this._$title.text();
 		this._message = this._$message.text();
-		this._handleIsOpenedChanged = (newValue) => {
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isOpened') {
+				return;
+			}
+
 			if (newValue) {
 				this._$modal.addClass('modal');
 				this._$modal.css('display', 'block');
@@ -80,9 +91,14 @@ class WelcomeModal {
 					$('.viewport').removeClass('modal-open');
 				});
 			}
-		};
-		this._handleTitleChanged = (newValue) => this._$title.text(newValue);
-		this._handleMessageChanged = (newValue) => this._$message.text(newValue);
+		});
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'title') {
+				this._$title.text(newValue);
+			} else if (propName === 'message') {
+				this._$message.text(newValue);
+			}
+		});
 
 		domElement.find('.modal-wrapper .modal-close-section').on('click', () => this.isOpened = false);
 
@@ -93,6 +109,10 @@ class WelcomeModal {
 	}
 
 	_handlePostButtonClicked(evt) {
+		if (!this._isPostDirectly) {
+			// Use default way of post
+			return;
+		}
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();
@@ -112,7 +132,7 @@ class WelcomeModal {
 			return;
 		}
 		this._isPostAllowed = newValue;
-		this._handleIsPostAllowedChanged(newValue);
+		this.propertyChanged.trigger('isPostAllowed', newValue);
 	}
 
 	get isOpened() {
@@ -125,7 +145,7 @@ class WelcomeModal {
 			return;
 		}
 		this._isOpened = newValue;
-		this._handleIsOpenedChanged(newValue);
+		this.propertyChanged.trigger('isOpened', newValue);
 	}
 
 	get title() {
@@ -137,7 +157,7 @@ class WelcomeModal {
 			return;
 		}
 		this._title = newValue;
-		this._handleTitleChanged(newValue);
+		this.propertyChanged.trigger('title', newValue);
 	}
 
 	get message() {
@@ -149,7 +169,7 @@ class WelcomeModal {
 			return;
 		}
 		this._message = newValue;
-		this._handleMessageChanged(newValue);
+		this.propertyChanged.trigger('message', newValue);
 	}
 }
 
