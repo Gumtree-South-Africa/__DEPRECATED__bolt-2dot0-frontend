@@ -1,6 +1,7 @@
 'use strict';
 
 require("slick-carousel");
+require("jquery-zoom");
 
 class viewPageGallery {
 
@@ -27,6 +28,19 @@ class viewPageGallery {
 
 		// Slick setup
 		this.$vipGallery.find('.vip-gallery').not('.slick-initialized').slick(options.slickOptions);
+
+		//testing zoom
+		$('.test').on('click', () => {
+
+			$('.test').zoom({
+				url: 'https://i.ebayimg.com/00/s/NDMwWDY0MA==/z/qvAAAOSwmLlX6QqV/$_20.JPG',
+				on:'click',
+				callback: function() {
+					console.log('zoooooooooommmmmjjsjs');
+				}
+			});
+
+		});
 
 		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
 		this.$vipGallery.find('.slick-carousel.slick-slide[data-slick-index=0]').addClass('selected');
