@@ -126,9 +126,11 @@ class CategoryUpdateModal {
 		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
 		this._traverseHierarchy(this.hierarchyArray);
 		this._bindEventForSelectedCat();
-		postAdFormMainDetails.setImgUrl(imgUrl);
-		postAdFormMainDetails.setCategoryId(categoryId);
-		if (categoryId !== Number("0")) {
+		if (imgUrl !== "") {
+			postAdFormMainDetails.setImgUrl(imgUrl);
+		}
+		if (categoryId !== 0) {
+			postAdFormMainDetails.setCategoryId(categoryId);
 			postAdFormMainDetails.showModal(); // Display only when category is settled
 		}
 	}

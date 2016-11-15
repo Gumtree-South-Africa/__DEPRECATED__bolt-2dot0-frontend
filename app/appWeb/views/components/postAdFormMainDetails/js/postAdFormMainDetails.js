@@ -435,7 +435,7 @@ class PostAdFormMainDetails {
 		this.$detailsSection = $("#js-main-detail-post");
 		this.$attributes = $("#post-ad-custom-attributes-form");
 		this.$categorySelection = this.$detailsSection.find('#category-selection');
-		this.$submitButton = this.$detailsSection.find('#post-submit-button');
+		this.$submitButton = $('#post-submit-button');
 		this.$locationLink = $("#post-location-input");
 		this.$addDetail = $(".post-add-detail");
 
@@ -451,6 +451,9 @@ class PostAdFormMainDetails {
 		this.$textarea = this.$detailsSection.find('#description-input');
 
 		this.$submitButton.on('click', (e) => {
+			if (this.imgUrls.length === 0) {
+				return;
+			}
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this._toggleSubmitDisable(true);
