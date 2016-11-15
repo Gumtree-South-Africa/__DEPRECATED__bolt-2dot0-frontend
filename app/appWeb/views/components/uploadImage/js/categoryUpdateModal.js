@@ -16,9 +16,8 @@ class CategoryUpdateModal {
 
 	// If Post with initialImage and categoryId, update post Ad form main detail with category and image
 	onReady() {
-		if (this.initialCategory.categoryId !== '') {
-			this.updateCategory(Number(this.initialCategory.categoryId), this.initialImage.val());
-		}
+		let catId = this.initialCategory.categoryId !== '' ? this.initialCategory.categoryId : "0";
+		this.updateCategory(Number(catId), this.initialImage.val());
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {
@@ -75,9 +74,12 @@ class CategoryUpdateModal {
 				let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
 				select.append(option);
 			});
-			// Explicitly add category icons, as we can't use presudo element in select.
-			$(document.createElement('div')).addClass('category-arrow').addClass('icon-category-arrow')
-				.appendTo(this.$categorySelection);
+			if (hierarchyArray.length >= 2) {
+				// Explicitly add category icons, as we can't use presudo element in select.
+				// We only add icons for level 2 and more
+				$(document.createElement('div')).addClass('category-arrow').addClass('icon-category-arrow')
+					.appendTo(this.$categorySelection);
+			}
 			this.$categorySelection.append(select);
 			select.change((evt) => {
 				let newLastSelectedCatId = Number($(evt.currentTarget).val());
@@ -126,7 +128,9 @@ class CategoryUpdateModal {
 		this._bindEventForSelectedCat();
 		postAdFormMainDetails.setImgUrl(imgUrl);
 		postAdFormMainDetails.setCategoryId(categoryId);
-		postAdFormMainDetails.showModal();
+		if (categoryId !== Number("0")) {
+			postAdFormMainDetails.showModal(); // Display only when category is settled
+		}
 	}
 }
 

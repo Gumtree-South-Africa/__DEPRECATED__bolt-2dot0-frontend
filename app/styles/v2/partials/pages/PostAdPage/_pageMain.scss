@@ -55,14 +55,14 @@ $labelMargin: 8%;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
 		display: inline-block;
-		padding: 12px;
+		padding: 12px 5px;
 		font: bold 1.125em Lato;
 		text-align: center;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 80%;
-		margin: 20px 10%;
+		width: 96%;
+		margin: 20px 0%;
 		vertical-align: top;
 
 		&.disabled {
@@ -96,7 +96,7 @@ $labelMargin: 8%;
 	}
 }
 
-@include to-breakpoint($medium-break) {
+@include to-breakpoint($small-break) {
 	.viewport.covered {
 		// To ensure nothing in page is covered by post button overlay
 		position: absolute;
@@ -108,4 +108,28 @@ $labelMargin: 8%;
 		overflow-y: auto;
 		overflow-x: hidden;
 	}
+	.main-detail-post {
+		display:none;
+		background-color: $mainDetailsBackgroundColor;
+	}
+}
+
+@include from-breakpoint($small-break) {
+	.main-detail-post {
+		width: 65%;
+		float: right;
+		background-color: $postAdBackgroundColor;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		margin-right: 15px;
+	}
+	.icon-down {
+		display: none;
+	}
+	.icon-up {
+		display: none;
+	}
+	.location-selection {
+		margin-left: 3%;
+	}
+
 }

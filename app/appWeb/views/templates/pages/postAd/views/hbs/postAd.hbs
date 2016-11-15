@@ -25,15 +25,51 @@
 	<div class="mobile-post-ad">
 		<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
         {{> (dynamic "uploadImage")}}
-        {{> (dynamic "postAdFormMainDetails")}}
+    </div>
+	<div class="mobile-post-ad">
+			<div class="mobile-post-ad-wrapper hidden">
+			<div class="mobile-post-ad-modal-wrapper">
+				<div class="mobile-post-ad-modal">
+					<div class="mobile-post-ad-modal-overlay"></div>
+				</div>
+
+				<div id="post-submit-button" class="mobile-post-ad-footer">
+					<div class="modal-footer">
+						<div class="btn-wrapper">
+							<a class="btn"  data-gtm="{{gtmEvent}}">
+								<span class="sudolink">{{i18n "postAd.mobileUpload.post"}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="change-photo">
+					<div>
+						<div>
+							<a class=""  data-gtm="{{gtmEvent}}" href="">
+								<span class="">{{i18n "postAd.mobileUpload.changePhoto"}}</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
 	</div>
 	<div class="desktop-post-ad margin-auto">
 		<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
-        {{> (dynamic "postAdForm")}}
+		<div class="photo-switcher">
+            {{> (dynamic "photoCarousel")}}
+		</div>
+    </div>
+    {{> (dynamic "postAdFormMainDetails")}}
+	<div class="desktop-post-ad margin-auto">
+		<div class="input-form">
 
-		<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-			<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-		</a>
+			<div>
+				<a id="postAdBtn" class="post-ad-btn btn-wrapper">
+					<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+				</a>
+			</div>
+        </div>
 	</div>
 
     {{> (dynamic "loginModal") isHidden=true}}

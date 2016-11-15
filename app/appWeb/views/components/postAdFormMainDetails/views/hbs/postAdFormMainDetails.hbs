@@ -1,7 +1,7 @@
-<div id="js-main-detail-post" class="main-detail-post hidden">
+<div id="js-main-detail-post" class="main-detail-post">
 	<div class="post-add-detail">{{i18n "editAd.mainDetails.title"}}<div class="icon-down"></div><div class="icon-up hidden"></div></div>
     <div id="initialCategory" class="hidden">{{json this.initialCategory}}</div>
-	<form id='post-form' class="hidden" method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
+	<form id='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
 		<div class="label-wrapper">
 			<label for="category-selection">{{i18n "editAd.mainDetails.labels.category"}}*</label>
 		</div>
@@ -52,30 +52,4 @@
 		</section>
 		{{> (dynamic "locationSelection")}}
 	</form>
-	<div class="mobile-post-ad-wrapper">
-		<div class="mobile-post-ad-modal-wrapper">
-			<div class="mobile-post-ad-modal">
-				<div class="mobile-post-ad-modal-overlay"></div>
-			</div>
-
-			<div id="post-submit-button" class="mobile-post-ad-footer">
-				<div class="modal-footer">
-					<div class="btn-wrapper">
-						<a class="btn"  data-gtm="{{gtmEvent}}">
-                            <span class="sudolink">{{i18n "postAd.mobileUpload.post"}}</span>
-						</a>
-					</div>
-				</div>
-			</div>
-			<div class="change-photo">
-				<div>
-					<div>
-						<a class=""  data-gtm="{{gtmEvent}}" href="">
-                            <span class="">{{i18n "postAd.mobileUpload.changePhoto"}}</span>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </div>

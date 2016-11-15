@@ -421,7 +421,7 @@ class PostAdFormMainDetails {
 	 * Show add detail form for post
 	 */
 	showModal() {
-		this.$detailsSection.removeClass("hidden");
+		this.$detailsSection.show();
 		// TODO Move below line out of this class
 		$('.viewport').addClass('covered');
 	}
@@ -454,11 +454,13 @@ class PostAdFormMainDetails {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this._toggleSubmitDisable(true);
-			this.$postForm.toggleClass('hidden', true);
 			this._ajaxPostForm();
 		});
 
 		this.$addDetail.on('click', (e) => {
+			if (this.$downIcon.css('display') === 'none' && this.$upIcon.css('display') === 'none') {
+				return; // Don't fold up when no arrow icon display
+			}
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.$postForm.toggleClass('hidden');
