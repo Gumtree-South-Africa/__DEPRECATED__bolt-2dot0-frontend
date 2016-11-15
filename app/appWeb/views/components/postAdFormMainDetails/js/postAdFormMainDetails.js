@@ -451,11 +451,11 @@ class PostAdFormMainDetails {
 		this.$textarea = this.$detailsSection.find('#description-input');
 
 		this.$submitButton.on('click', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
 			if (this.imgUrls.length === 0) {
 				return;
 			}
-			e.preventDefault();
-			e.stopImmediatePropagation();
 			this._toggleSubmitDisable(true);
 			this._ajaxPostForm();
 		});
