@@ -48,7 +48,7 @@ $secondary-link-color: $gumOrange;
 $secondary-link-font: bold 1em $bodyFont;
 
 // Tertiary link
-$tertiary-link-color: $vivaWhite;
+$tertiary-link-color: $gumWhite;
 
 // SEO h1 tag
 $seo-bordercolor: #FAFAFA;
@@ -56,22 +56,22 @@ $seo-bordercolor: #FAFAFA;
 //Page
 $gumtree-bg-color: #FAF5EA;
 $gumtree-bg-container-color: #FCFAF4;
-$page-bgcolor: $vivaWhite;
+$page-bgcolor: $gumWhite;
 $page-bordercolor: #f7f7f7;
 
 // Buttons
-$button-color: $vivaWhite;
+$button-color: $gumWhite;
 $button-bgcolor: color(melon);
 $button-fontsize: 1.125em;
 
 //App Download
 $appdownload-bgcolor: #f7f7f7;
-$appdownloadreview-bgcolor: $vivaWhite;
+$appdownloadreview-bgcolor: $gumWhite;
 $appdownloadreview-font: $gum-p2;
 $appdownloadreview-color: $gumGray1;
 
 //Welcomescreen
-$welcomeSreen-bgcolor: $vivaWhite;
+$welcomeSreen-bgcolor: $gumWhite;
 
 // Section Menu
 $secmenu-link-color: color(swirl, dark);
@@ -82,7 +82,7 @@ $modal-color: color(taupe);
 $modal-bgcolor: $gumWhite;
 $modal-info: $gumGray1;
 $modal-autocomplete-color: $gumGray1;
-$modal-autocomplete-color-hover: $vivaWhite;
+$modal-autocomplete-color-hover: $gumWhite;
 $modal-autocomplete-bgcolor-hover: $gumGray1;
 
 // Recent Activity
@@ -150,13 +150,13 @@ $headerBlue: color(melon);
 
 $searchBarTextColor: color(taupe);
 $searchBarTypeAheadWrapperBackground: color(rock,dark);
-$searchBarTypeAheadContainerBackgroundMobile: $vivaWhite;
+$searchBarTypeAheadContainerBackgroundMobile: $gumWhite;
 $searchBarTypeAheadContainerBackgroundDesktop: color(rock,dark);
 $searchBarTypeAheadBorder: color(rock,dark);
 $searchBarLocationLinkColor: color(rock,dark);
 $searchBarTextBoxBorder: color(rock, dark);
 $searchBarButtonColor: color(melon);
-$searchBarButtonTextColor: $vivaWhite;
+$searchBarButtonTextColor: $gumWhite;
 $searchBarButtonMouseOverColor: color(melon, shade) !default;
 
 // Get the App card
@@ -188,7 +188,7 @@ $postAdTextGray: $vivaGray11;
 $mainDetailsBackgroundColor: $vivaGray7;
 $mainDetailsTitleTextColor: $gumGray1;
 $formSubmitButtonColor: $gumOrange;
-$formSubmitButtonTextColor: $vivaWhite;
+$formSubmitButtonTextColor: $gumWhite;
 $formCancelTextColor: $gumBlack;
 $formSeparatorBarColor: $vivaGray9;
 $addWebsiteLinkTextColor: $vivaGreen1;
@@ -196,7 +196,7 @@ $formLabelTextColor: $vivaGray3;
 $categoryDisplayTextColor: $gumGray1;
 $buttonAreaBackgroundColor: $gumWhite;
 $categorySelectionActiveListRowBgColor: $vivaGray5;
-$categorySelectionModalBgColor: $vivaWhite;
+$categorySelectionModalBgColor: $gumWhite;
 $categorySelectionSeparatorColor: $vivaGray10;
 $leafNodeWarningColor: $gumOrange;
 $categoryNameColor: $vivaBlue7;
