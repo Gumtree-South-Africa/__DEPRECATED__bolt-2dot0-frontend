@@ -68,6 +68,11 @@
 
 		.control {
 			margin-right: 10px;
+
+			&:only-of-type{
+				.outer-circle{display:none;}
+				.currency-type{cursor: default;}
+			}
 		}
 
 		// Checked
