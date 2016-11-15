@@ -3,6 +3,7 @@
 let cuid = require('cuid');
 
 let cwd = process.cwd();
+let abtestpagesJson = require(cwd + '/app/config/abtestpages.json');
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
@@ -197,6 +198,9 @@ module.exports = (req, res, next) => {
 		HP.deleteMarketoCookie(res, modelData);
 
 		modelData.eps = EpsModel();
+
+		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res) ||
+			pageControllerUtil.is2dot0Page(res, abtestpagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {

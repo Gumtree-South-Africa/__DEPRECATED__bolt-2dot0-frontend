@@ -20,4 +20,32 @@ describe("Advert Details", () => {
 		done();
 	});
 
+	it("should display seller profile", (done) => {
+
+		let $testArea = specHelper.setupTest("sellerProfile_es_MX", {}, "es_MX");
+
+		let $sellerPic = $testArea.find(".seller-pic");
+		expect($sellerPic).toBeDefined('seller picture should be shown');
+
+		let $userFirstName = $testArea.find(".user-fname");
+		expect($userFirstName).toBeTruthy('user first name should exist');
+
+		let $userAds = $testArea.find(".user-ads");
+		expect($userAds).toBeDefined('should show user ads posted and active');
+
+		done();
+	});
+
+	it("should display disclaimers", (done) => {
+
+		let $testArea = specHelper.setupTest("adDisclaimers_es_MX", {}, "es_MX");
+
+		let $adDisclaimers = $testArea.find(".ads-disclaimers");
+		expect($adDisclaimers).toBeDefined('ads disclaimers should be defined');
+
+		let $lockIcon = $testArea.find(".lock-icon");
+		expect($lockIcon).toBeTruthy('lock icon should be shown');
+
+		done();
+	});
 });
