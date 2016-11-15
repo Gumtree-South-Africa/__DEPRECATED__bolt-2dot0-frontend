@@ -454,7 +454,6 @@ class PostAdFormMainDetails {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this._toggleSubmitDisable(true);
-			this.$postForm.toggleClass('hidden', true);
 			this._ajaxPostForm();
 		});
 

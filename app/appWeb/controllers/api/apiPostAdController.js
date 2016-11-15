@@ -7,6 +7,7 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
+let editAdErrorParser = require(`${cwd}/app/utils/EditAdErrorParser.js`);
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
@@ -166,11 +167,16 @@ router.post('/create', cors, (req, res) => {
 			res.send(responseJson);
 			return;
 		}).fail((error) => {
+			let errInfoObj;
+			if (error && error.bapiJson) {
+				errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
+			}
 			let bapiInfo = logger.logError(error);
 			// post ad has failed
 			res.status(error.getStatusCode(500)).send({
 				error: "postAd failed, see logs for details",
-				bapiJson: bapiInfo
+				bapiJson: bapiInfo,
+				bapiValidationFields: errInfoObj
 			});
 			return;
 		});
