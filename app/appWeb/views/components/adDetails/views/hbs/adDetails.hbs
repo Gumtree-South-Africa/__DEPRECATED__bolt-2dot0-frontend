@@ -1,7 +1,7 @@
 <div class="ad-details-container">
 	<div class="pri-attrs">
         <div class="title-fav">
-		    <div class="ad-title">{{this.advert.adTitle}}</div>
+		    <div class="ad-title">{{this.advert.title}}</div>
             {{#if this.advert.isOwnerAd}}
 				<div class="edit-favorite">{{i18n "vip.details.edit"}}
                     <a class="edit-favorite-icon edit-icon icon-apple-dark-gray" href="{{this.advert.editUrl}}">
@@ -9,19 +9,19 @@
                 </div>
             {{else}}
 				<div class="edit-favorite">
-                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.adId}}"></span>
+                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.id}}" data-short-adid="{{this.advert.id}}"></span>
                 </div>
             {{/if}}
 		</div>
         <div class="price-update">
-			<div class="ad-price">{{this.advert.price}}</div>
-			<div class="ad-last-updated"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.posted}}</div>
+			<div class="ad-price">{{this.advert.price.formattedAmount}}</div>
+			<div class="ad-last-updated"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}}</div>
         </div>
         <div class="clear-line"></div>
         {{#if this.advert.displayMoreAttributes}}
             <div class="category-pri-attrs">
                 {{#each this.advert.priAttributes}}
-                    <div class="pri-props" id="desktop-pri-props">{{@key}} : {{this}}</div>
+                    <div class="pri-props" id="desktop-pri-props">{{this.name}} : {{this.value}}</div>
                 {{/each}}
             </div>
         <div class="clear-line"></div>
@@ -36,10 +36,10 @@
 			</div>
         {{/if}}
 		<div class="clear-line ad-mobile-only"></div>
-        <div class="ad-category"><span class="category-attr">{{i18n "vip.details.category"}} </span><div>{{this.advert.category}}</div></div>
+        <div class="ad-category"><span class="category-attr">{{i18n "vip.details.category"}} </span><div>{{this.advert.categoryName}}</div></div>
         <div class="ad-user-attrs">
-            <div class="ad-location"><span class="location-attr">{{i18n "vip.details.location"}} </span><div>{{this.advert.location}}</div></div>
-            <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span><div>{{this.advert.lastUpdated}}</div></div>
+            <div class="ad-location"><span class="location-attr">{{i18n "vip.details.location"}} </span><div>{{this.advert.location.name}}</div></div>
+            <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span><div>{{this.advert.updatedDate}}</div></div>
             <div class="ad-posted-by"><span class="posted-by-attr">{{i18n "vip.details.postedby"}} </span><div>{{ this.advert.postedBy}}</div></div>
         </div>
     </div>

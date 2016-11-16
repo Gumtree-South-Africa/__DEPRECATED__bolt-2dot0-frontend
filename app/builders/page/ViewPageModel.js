@@ -3,7 +3,7 @@ let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
-// let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
+let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
@@ -46,6 +46,32 @@ class ViewPageModel {
 			}
 		];
 	}
+
+	/**
+	 * a recursive function to return an array of breadcrumb category ids. (eg. [0, 30, 1110])
+	 * usage:
+	 * let result = []
+	 * this.getCategoryHierarchy(modelData.category, 1110, result);
+	 * console.log(result)
+	 * @param node starts with the whole category tree
+	 * @param leafId the leaf you are looking for
+	 * @param stack passed by reference array ([0, 30, 1110]), this is your result
+	 * @returns {*}
+	 */
+	getCategoryHierarchy(node, leafId, stack) {
+		if (node.id === leafId) {
+			stack.unshift(node.id);
+			return node.parentId;
+		} else {
+			for (let i = 0; i < node.children.length; i++) {
+				if (node.id === this.getCategoryHierarchy(node.children[i], leafId, stack)) {
+					stack.unshift(node.id);
+					return node.parentId;
+				}
+			}
+		}
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
@@ -56,99 +82,70 @@ class ViewPageModel {
 	}
 
 	getPageDataFunctions(modelData) {
-		// let advert = new AdvertModel(modelData.bapiHeaders);
+		let advertModel = new AdvertModel(modelData.bapiHeaders);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.advert = () => {
-			let data = {
-				title: 'Honda Accord EX-L v6',
-				adId: this.adId,
-				editUrl: "/edit/" + this.adId,
-				hasMultiplePictures: true,
-				pictures: {
-					thumbnails: [
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_14.JPG',
-						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_14.JPG',
-						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_14.JPG',
-						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_14.JPG',
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_14.JPG'
-					],
-					images: [
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_25.JPG',
-						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_25.JPG',
-						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_25.JPG',
-						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_25.JPG',
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_25.JPG'
-					],
-					largestPictures: [
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_20.JPG',
-						'https://i.ebayimg.com/00/s/MjgwWDgwMA==/z/NMgAAOSwZJBX~XeN/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NDE2WDgwMA==/z/tOcAAOSwxKtX~Xeb/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NTY0WDgwMA==/z/k0YAAOSwmLlX~XfE/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NjQ1WDgwMA==/z/aw4AAOSwPCVX~XeE/$_20.JPG'
-					],
-					testPictures: [
-						'https://i.ebayimg.com/00/s/NDMwWDY0MA==/z/qvAAAOSwmLlX6QqV/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NTMzWDgwMA==/z/gnUAAOSwPCVX6Qqk/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NTM0WDgwMA==/z/E0gAAOSwNRdX6Qqz/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NDUwWDgwMA==/z/KvAAAOSwAuZX6Qrv/$_20.JPG',
-						'https://i.ebayimg.com/00/s/MzAyWDY0MA==/z/JicAAOSwTA9X6QsN/$_20.JPG',
-						'https://i.ebayimg.com/00/s/MzIwWDYzMA==/z/ZIAAAOSw4shX6QtA/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NjAwWDgwMA==/z/kJIAAOSw8w1X6QtR/$_20.JPG',
-						'https://i.ebayimg.com/00/s/MjUwWDUwMA==/z/73YAAOSw8gVX6Qts/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NDAwWDY0MA==/z/8m8AAOSw8gVX6Qt9/$_20.JPG',
-						'https://i.ebayimg.com/00/s/NDAwWDY2MA==/z/GYEAAOSwzaJX6Qus/$_20.JPG'
-					]
+			return advertModel.viewTheAd(this.adId).then((bapiData) => {
+				let data = {
+					editUrl: "/edit/" + this.adId,
+					seoGroupName: 'Automobiles',
+					userId: 'testUser123',
+					phone: '808-555-5555',
+					viewCount: '44',
+					repliesCount: '3',
+					postedBy: 'Owner',
+					seller: {
+						fname: "Diego",
+						sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
+						profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
+						adsPosted: "14",
+						adsActive: "10",
+						emailVerified: true
+					}
+				};
+				//TODO: check if it's real estate category for disclaimer
+				data.showAdditionalDisclaimers = true;
+				//TODO: check to see if userId matches header data's userID to show favorite or edit
+				data.isOwnerAd = false;
+				//TODO: check to see if additional attributes should be displayed based on specific categories
+				data.displayMoreAttributes = true;
 
-				},
-				seoGroupName: 'Automobiles',
-				seoVipUrl: '/a-venta+camionetas/canitas-de-felipe-pescador/anuncio-publicado-por-lenny-test-test-etst-test-test/1001102366130910000020009',
-				userId: 'testUser123',
-				adTitle: 'Cozy 3 Bedroom Apartment',
-				price: '$150',
-				posted: '3 days ago',
-				priAttributes: {
-					BEDROOM: '3',
-					SIZE: '700 m',
-					GARAGE: '2',
-					BATHROOMS: '2',
-					PETS: 'OK'
-				},
-				description: 'Cozy 3 bedroom apartment in the heart of downtown Mexico City. A quick 15 minute walked to the lively downtown scene where you can find shopping, food and all night music and dancing. First Months rent and $1500 security deposit due upon signing lease.',
-				phone: '808-555-5555',
-				viewCount: '44',
-				repliesCount: '3',
-				category: 'T1 Category Goes Here / T2 Category Goes Here / T3 Category Goes Here',
-				categoryT1: 'T1 Category',
-				categoryT2: 'T2 Category',
-				categoryT3: 'T3 Category',
-				location: 'Mexico City',
-				lastUpdated: '1 Day Ago',
-				postedBy: 'Owner',
-				seller: {
-					fname: "Diego",
-					sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
-					profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
-					adsPosted: "14",
-					adsActive: "10",
-					emailVerified: true
+				_.extend(data, bapiData);
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+					_.each(data.pictures.sizeUrls, (picture) => {
+						let pic = picture['LARGE'];
+						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
 				}
-			};
-			//TODO: check if it's real estate category for disclaimer
-			data.showAdditionalDisclaimers = true;
+				data.priAttributes = [];
+				_.each(data.attributes, (attribute) => {
+					if (attribute.name!=='Title' && attribute.name!=='Description' && attribute.name!=='Email' && attribute.name!=='ForRentBy') {
+						let attr = {};
+						attr ['name'] = attribute.name;
+						attr ['value'] = attribute.value.attributeValue;
+						data.priAttributes.push(attr);
+					}
+				});
+				let seoVipElt = data._links.find( (elt) => {
+					return elt.rel === "seoVipUrl";
+				});
+				data.seoVipUrl = seoVipElt.href;
+				// let categoryCurrentHierarchy = [];
+				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, categoryCurrentHierarchy);
 
-			//TODO: check to see if userId matches header data's userID to show favorite or edit
-			data.isOwnerAd = false;
-
-			//TODO: check to see if additional attributes should be displayed based on specific categories
-			data.displayMoreAttributes = true;
-
-			return data;
-			// return advert.viewTheAd(this.adId).then((data) => {
-			// 	return data;
-			// });
+				console.log('$$$$$$$ ', data);
+				return data;
+			});
 		};
 
 		this.dataPromiseFunctionMap.seo = () => {
