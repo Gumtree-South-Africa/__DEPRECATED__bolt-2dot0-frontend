@@ -1,6 +1,6 @@
 {{#partial "content"}}
     {{> (dynamic "postAdModal")}}
-    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle"}}
+    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle" backKey="postAd.back" backUrl=this.backUrl }}
     {{> (dynamic "spinnerModal") }}
 	<div class="message-modal hidden">
 		<div class="message">

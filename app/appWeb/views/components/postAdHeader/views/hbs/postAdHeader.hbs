@@ -1,4 +1,10 @@
 <div class="post-ad-header">
+	{{#if this.backUrl}}
+		<div class="header-back">
+			<span>&lt;</span>
+			<a href="{{this.backUrl}}">{{i18n this.backKey}}</a>
+		</div>
+	{{/if}}
 	<div class="header-text">
 		<div class="title-text">{{i18n this.titleKey}}</div>
 		<div class="header-accent">-</div>
