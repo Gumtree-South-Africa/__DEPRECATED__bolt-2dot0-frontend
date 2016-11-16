@@ -70,7 +70,6 @@ class RecentActivityModel {
 
 			if (bapiResult.filteredArr.length > 2) {
 				bapiResult.shuffledArr = this.shuffleArr(bapiResult.filteredArr) || [];
-				// bapiResult.shuffledArr = bapiResult.filteredArr;
 			}
 
 			return bapiResult;
