@@ -116,6 +116,7 @@ class ViewPageModel {
 				_.extend(data, bapiData);
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
 				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
 				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
@@ -127,15 +128,17 @@ class ViewPageModel {
 						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
+
 				data.priAttributes = [];
 				_.each(data.attributes, (attribute) => {
-					if (attribute.name!=='Title' && attribute.name!=='Description' && attribute.name!=='Email' && attribute.name!=='ForRentBy') {
+					if (attribute.name!=='Title' && attribute.name!=='Description' && attribute.name!=='Email' && attribute.name!=='ForRentBy' && attribute.name!=='Price') {
 						let attr = {};
 						attr ['name'] = attribute.name;
 						attr ['value'] = attribute.value.attributeValue;
 						data.priAttributes.push(attr);
 					}
 				});
+
 				let seoVipElt = data._links.find( (elt) => {
 					return elt.rel === "seoVipUrl";
 				});
