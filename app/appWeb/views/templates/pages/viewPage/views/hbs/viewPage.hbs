@@ -1,17 +1,19 @@
 {{#partial "content"}}
+  <div class="vip-left-columns">
     <div id="viewPage">
         {{> (dynamic "viewPageGallery")}}
-
-		<div class="item-details">
-            {{> (dynamic "adDetails")}}
-		</div>
-
-        <div class="seller-profile">
-            {{> (dynamic "sellerProfile")}}
-        </div>
-
-        <div class="ad-disclaimers">
-            {{> (dynamic "adDisclaimers")}}
-        </div>
+    		<div class="item-details">
+          {{> (dynamic "adDetails")}}
+    		</div>
     </div>
+  </div>
+
+  <div class="vip-right-columns">
+    <div class="seller-profile">
+      {{> (dynamic "sellerProfile")}}
+    </div>
+    <div class="ad-disclaimers">
+        {{> (dynamic "adDisclaimers")}}
+    </div>
+  </div>
 {{/partial}}
