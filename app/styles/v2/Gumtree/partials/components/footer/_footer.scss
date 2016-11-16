@@ -2,8 +2,8 @@
 
 .footer-wrapper{
 	font-family: $bodyFont;
-	margin: 0 auto;
-    max-width: 64em;
+	//margin: 0 auto;
+  //max-width: 64em;
 	&,& a{
 		color: $footerMainTextColor;
 		background-color: $footerMainBackgroundColor;
@@ -62,8 +62,8 @@
 		}
 	}
 	.line-divider{
-		width: 941px;
-		margin: auto;
+		//width: 941px;
+		margin: auto 20px;
 		border-top: 1px solid $footerDividerLineColor;
 	}
 	.footer-links{
