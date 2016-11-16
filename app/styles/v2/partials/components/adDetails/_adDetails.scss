@@ -155,7 +155,6 @@
 
 @include from-breakpoint($medium-break) {
 	.ad-details-container {
-		width: 50%;
 		.pri-attrs {
 			background-color: $vivaWhite;
 		}

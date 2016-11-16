@@ -1,0 +1,76 @@
+.seller-profile-container {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid $common-background-color;
+	background-color: $common-background-color;
+	.seller-pic {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		margin-left: 10px;
+	}
+	.user-avatar {
+		background-size:100% 100%;
+		height: 50px;
+		width: 50px;
+		-moz-border-radius: 100%;
+		-webkit-border-radius: 100%;
+		border-radius: 100%;
+		float: left;
+		border: 1px solid $vivaOrange;
+		margin-left: 7px;
+	}
+
+	.user-fname {
+		display: inline-block;
+		color: $vivaGray1;
+		padding-left: 10px;
+	}
+
+	.email-verified-text {
+		font-size: 9px;
+		line-height: 9px;
+		margin-left: 30px;
+		color: $vivaGray1;
+	}
+
+	.email-icon {
+		display:block;
+		float:right;
+		width:30px;
+		height:30px;
+		position: relative;
+		right: 66px;
+	}
+
+	.user-ads {
+		left: 10px;
+		position: relative;
+		margin-top: 5px;
+
+		.user-ads-posted {
+			color: $vivaOrange;
+		}
+
+		.user-ads-active {
+			color: $vivaGreen1;
+			margin-left: 10px;
+			padding-left: 10px;
+			border-left: 1px solid;
+			border-color: $vivaGray2;
+		}
+
+		.ads-posted-text, .ads-active-text{
+			font-size: 10px;
+			color: $vivaGray1;
+			margin-left: 5px;
+		}
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.seller-profile-container {
+		margin-left: 5px;
+		margin-right: 5px;
+	}
+}
