@@ -1268,8 +1268,8 @@
 	},
 	"recentactivity": {
 		"message": {
-			"listing": "%s acaba de poner en venta %s %s",
-			"sold": "%s acaba de vender %s %s"
+			"listing": "%s just listed %s %s",
+			"sold": "%s just sold %s %s"
 		}
 	},
 	"gpsMap": {
