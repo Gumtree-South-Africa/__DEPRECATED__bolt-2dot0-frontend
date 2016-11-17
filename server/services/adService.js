@@ -8,7 +8,7 @@ class AdService {
 
 	viewAd(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
-		queryEndpoint = queryEndpoint + '?_expand=category,location,tracking';
+		queryEndpoint = queryEndpoint + '?_expand=category,location,seller-stats,tracking';
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
 			path: queryEndpoint,
@@ -58,6 +58,20 @@ class AdService {
 			method: 'GET',
 			path: queryEndpoint,
 		}), bapiHeaderValues, 'adService$viewAdSeoUrls');
+	}
+
+	searchAds(bapiHeaderValues, searchOptions) {
+		let queryEndpoint = config.get('BAPI.endpoints.ads');
+		if ((typeof searchOptions !== 'undefined') && (searchOptions !== null)) {
+			let excludeAdId = searchOptions.excludeAdId;
+			if ((typeof excludeAdId !== 'undefined') && (excludeAdId !== null)) {
+				queryEndpoint = queryEndpoint + '?excludeAdId=' + excludeAdId;
+			}
+		}
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET',
+			path: queryEndpoint,
+		}), bapiHeaderValues, 'adService$searchAds');
 	}
 
 	favoriteAd(bapiHeaderValues, adId) {

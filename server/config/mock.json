@@ -19,7 +19,7 @@
 	    	"adStatistics" 		: 	"/ads/statistics",
 	    	"configService"		:	"/configs/nodeapp/settings.json",
 			"updateConfig"		:	"/configs/nodeapp/settings",
-		  	"quickpostAd"		:	"/ads",
+		  	"ads"				:	"/ads",
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
 			"draftAd"			:	"/ads/drafts",
