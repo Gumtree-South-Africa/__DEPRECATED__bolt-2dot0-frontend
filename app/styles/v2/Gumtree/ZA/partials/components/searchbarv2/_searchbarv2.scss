@@ -1,4 +1,5 @@
 .search-controls {
+	font-family: $bodyFont;
 	margin: auto;
 	max-width: 942px;
 	padding: 15px 40px;
@@ -16,6 +17,7 @@
 		}
 
 		.location-link {
+			white-space:nowrap;
 			box-sizing: border-box;
 			height: 100%;
 			line-height: 43px;

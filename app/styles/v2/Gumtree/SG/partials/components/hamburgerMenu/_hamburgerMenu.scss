@@ -46,6 +46,7 @@
 			.item-icon {
 				&.icon-my-ads-active {
 					background-position: 23.5% 29.7%;
+					background-size: 198px;
 				}
 
 				&.icon-favorites {
@@ -60,5 +61,11 @@
 				}
 			}
 		}
+	}
+	.profile-welcome-text {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: $headerTextColor;
 	}
 }
