@@ -1,8 +1,5 @@
 "use strict";
-let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
-let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 let categoryUpdateModal = require('app/appWeb/views/components/uploadImage/js/categoryUpdateModal');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
@@ -79,7 +76,7 @@ class PostAd {
 		});
 		photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
 			postAdFormMainDetails.setImgUrls(imgUrls);
-		})
+		});
 	}
 
 	// Common interface for all component to setup view model. In the future, we'll have a manager
