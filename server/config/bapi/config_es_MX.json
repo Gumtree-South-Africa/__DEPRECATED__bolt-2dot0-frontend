@@ -272,6 +272,14 @@
 					"advert", "seo", "topSearches", "topLocations"
 				]
 			}
+		},
+		"ResultsSearch": {
+			"desktop": {
+				"models": ["seo"]
+			},
+			"mobile": {
+				"models": ["seo"]
+			}
 		}
 	}
 }
