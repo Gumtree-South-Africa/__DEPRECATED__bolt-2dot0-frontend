@@ -112,6 +112,13 @@ $categoryArrowIconWidth: 13px;
 			}
 		}
 
+		textArea {
+			&.user-error,
+			&.validation-error {
+				border: 1px solid red;
+			}
+		}
+
 		select {
 			width: 88%;
 			margin: 1% 44% 1% $inputMargin;

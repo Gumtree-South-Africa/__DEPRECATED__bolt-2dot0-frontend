@@ -10,6 +10,7 @@ let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let ImageRecognitionModel = require(cwd + '/app/builders/common/ImageRecognitionModel');
+let logger = require(`${cwd}/server/utils/logger`);
 
 class PostAdPageModel {
 	constructor(req, res) {
@@ -81,7 +82,14 @@ class PostAdPageModel {
 
 		this.dataPromiseFunctionMap.initialCategory = () => {
 			if (modelData.initialImage !== '') {
-				return imageRecognitionModel.recognizeCategoryFromImage(modelData.initialImage);
+				return imageRecognitionModel.recognizeCategoryFromImage(modelData.initialImage).fail(err => {
+					console.error(
+						"[API Image recognition] Did not recognize a category for the image, set default to Hogar !");
+					logger.logError(err);
+					return {
+						suggestion: { categoryId: 1 }
+					};
+				});
 			} else {
 				return {"suggestion": {"categoryId": ""}};
 			}

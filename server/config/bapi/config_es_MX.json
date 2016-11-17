@@ -187,7 +187,16 @@
 			"currencyDisplay"    : true,
 			"currency"           : ["MXN:MXN","USD:USD"]
 		},
-		"verticalCategories": ["30", "64", "36"]
+		"verticalCategories": [{
+			"id": 30,
+			"requiredCustomAttributes": ["DwellingType", "NumberBedrooms", "NumberBathrooms"]
+		}, {
+			"id": 64,
+			"requiredCustomAttributes": ["AlmVehicleBrand", "AlmVehicleModel", "CarYear", "CarMileageInKms"]
+		}, {
+			"id": 36,
+			"requiredCustomAttributes": ["JobType"]
+		}]
 	},
 	"bapi" : {
 		"HomepageV2": {

@@ -21,7 +21,7 @@ router.post('/', cors, (req, res) => {
 	}).fail((err) => {
 		console.error("[API Image recognition] Did not recognize a category for the image, set default to Hogar !");
 		logger.logError(err);
-		res.status(200).send({categoryId: "1"}); // If category recognition fail, return default Hogar category
+		res.status(200).send({categoryId: 1}); // If category recognition fail, return default Hogar category
 		return;
 	});
 

@@ -16,6 +16,10 @@ let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let logger = require(`${cwd}/server/utils/logger`);
 
+let VerticalCategoryUtil = require(`${cwd}/app/utils/VerticalCategoryUtil.js`);
+let BapiError = require(`${cwd}/server/services/bapi/BapiError.js`);
+let Q = require('q');
+
 
 
 let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
@@ -75,20 +79,6 @@ let getAdPostedResponse = (results) => {
 	};
 
 	return response;
-};
-
-let getCategoryHierarchy =  (node, leafId, stack) => {
-	if (node.id === leafId) {
-		stack.unshift(node.id);
-		return node.parentId;
-	} else {
-		for (let i = 0; i < node.children.length; i++) {
-			if (node.id === getCategoryHierarchy(node.children[i], leafId, stack)) {
-				stack.unshift(node.id);
-				return node.parentId;
-			}
-		}
-	}
 };
 
 /**
@@ -161,8 +151,39 @@ router.post('/create', cors, (req, res) => {
 	userModel.getUserFromCookie().then( () => {
 		// user cookie checks out fine, go ahead and post the ad...
 
-		// Step 7: Post The Ad
-		postAdModel.postAd(requestJson).then((adResults) => {
+		// Step 7: Validate against vertical category
+		let ads = requestJson.ads;
+		let verticalCategoryValidationPromise;
+		if (ads) {
+			verticalCategoryValidationPromise =
+				Q.all(ads.map(ad => VerticalCategoryUtil.verticalCategoryValidate(
+					ad, res.locals.config.categoryAllData,
+					res.locals.config.bapiConfigData.content.verticalCategories,
+					model.bapiHeaders))).then(errorsArray => {
+					let allErrors = [];
+					errorsArray.forEach(errors => {
+						if (errors && errors.length) {
+							allErrors = allErrors.concat(errors);
+						}
+					});
+					if (allErrors && allErrors.length) {
+						throw new BapiError('Vertical category validation failed', {
+							statusCode: 400,
+							bapiJson: {
+								statusCode: 400,
+								message: "Validation Errors",
+								details: allErrors
+							}
+						});
+					}
+
+				});
+		} else {
+			verticalCategoryValidationPromise = Q.resolve(null);
+		}
+
+		// Step 8: Post The Ad
+		verticalCategoryValidationPromise.then(() => postAdModel.postAd(requestJson)).then((adResults) => {
 			let responseJson = getAdPostedResponse(adResults);
 			res.send(responseJson);
 			return;
@@ -200,27 +221,21 @@ router.post('/create', cors, (req, res) => {
 router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
-	let categoryHierachyArray = [];
-	getCategoryHierarchy(res.locals.config.categoryAllData, Number(req.params.categoryId), categoryHierachyArray);
-	let verticalCategoriesConfig = res.locals.config.bapiConfigData.content.verticalCategories;
 
-	let isVertical = false;
-	categoryHierachyArray.forEach((categoryId) => {
-		if (verticalCategoriesConfig.find((item) => {
-				return categoryId === Number(item);
-			})) {
-			isVertical = true; // If the categoryId is one of the Verticals or child of one Vertical
-		}
-	});
+	let verticalCategory = VerticalCategoryUtil.getVerticalCategory(
+		Number(req.params.categoryId), res.locals.config.categoryAllData,
+		res.locals.config.bapiConfigData.content.verticalCategories);
 
-	if (!isVertical) {
+	if (!verticalCategory) {
 		return res.json({});  // Only for vertical categories post support customer attributes
 	}
 
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
-		res.json(attributeModel.processCustomAttributesList(attributeData));
+		let processedCustomAttributesList = attributeModel.processCustomAttributesList(attributeData);
+		processedCustomAttributesList.verticalCategory = verticalCategory;
+		res.json(processedCustomAttributesList);
 	}).fail((err) => {
 		let bapiJson = logger.logError(err);
 		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
