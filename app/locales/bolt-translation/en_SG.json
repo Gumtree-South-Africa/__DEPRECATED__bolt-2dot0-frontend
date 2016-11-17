@@ -1383,6 +1383,7 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
@@ -1440,7 +1441,7 @@
 			"error": "Error"
 		},
 		"mobileUpload": {
-			"post": "Post My Ad",
+			"post": "Done",
 			"changePhoto": "Change Photo"
 		}
 	},

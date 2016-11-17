@@ -1324,6 +1324,7 @@
 		"button": "Post FREE Ad"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Free Classifieds on Gumtree South Africa",
 			"desc": "Come to Gumtree South Africa, your local online classifieds site with undefined live classified listings. List free classifieds ads or buy and sell what you want for free!"
@@ -1381,7 +1382,7 @@
 			"error": "Error"
 		},
 		"mobileUpload": {
-			"post": "Post My Ad",
+			"post": "Done",
 			"changePhoto": "Change Photo"
 		}
 	},
