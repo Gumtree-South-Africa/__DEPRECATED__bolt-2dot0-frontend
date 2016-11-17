@@ -279,6 +279,3 @@ class SearchBar {
 
 
 module.exports = new SearchBar();
-
-
-
