@@ -37,13 +37,18 @@ let extendModelData = (req, modelData) => {
 
 router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
+	if(adId === undefined) {
+		// Parse adId from SEO URL
+		// Example of view seo url: /a-rddf-efefddc-3434-dfdf34/dsds-wee-d+33+3434+34343/dfdfd/1001239674240910887886609
+		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/'));
+	}
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
 	}
 
 	if (!pageControllerUtil.is2dot0Version(res)) {
-		res.redirect('/view.html?adId=adId');	// redirect to 1.0 version of this page
+		res.redirect('/view.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;
 	}
 
