@@ -67,7 +67,6 @@ app/appWeb/views/components/siteFlow/js/app.js
 app/appWeb/views/components/skinBanner/js/app.js
 app/appWeb/views/components/smartBanner/js/app.js
 app/appWeb/views/components/socialMediaLinks/js/app.js
-app/appWeb/views/components/smartBannerInterstitial/js/app.js
 app/appWeb/views/components/speechRecognition/js/app.js
 app/appWeb/views/components/speechRecognition/js/speech.js
 app/appWeb/views/components/switchButton/js/app.js
