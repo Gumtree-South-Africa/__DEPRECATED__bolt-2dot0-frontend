@@ -2,8 +2,7 @@
 	font-family: 'Lato';
 }
 .header-wrapper {
-	border-bottom-color: color(crane);
-
+	border-bottom-color: $headerBorderColor;
 	&.header-distraction-free {
 		.headerV2 {
 			padding-bottom: 10px;
@@ -11,7 +10,7 @@
 	}
 
 	.headerV2 {
-		font-family: 'Lato';
+		font-family: $bodyFont;
 		height: auto;
 		margin: auto;
 		max-width: 942px;
@@ -60,7 +59,7 @@
 		}
 
 		.logo {
-			background: url("../../../../../images/en_ZA/logo_v2.png") no-repeat 50% 50%;
+			background: url("../../../../../images/#{$photoFolder}/logo_gumtree.png") no-repeat 50% 50%;
 			background-size: contain;
 			display: inline-block;
 			height: 35px;
@@ -83,7 +82,7 @@
 			top: 100%;
 
 			.menu-item {
-				border-bottom-color: color(swirl);
+				border-bottom-color: $headerMenuItemSeparatorColor;
 			}
 		}
 
@@ -169,13 +168,13 @@
 }
 
 .icon-header-profile-out {
-	background-image: url("../../../../../images/en_ZA/icon-my-profile.svg") !important;
+	background-image: url("../../../../../images/#{$photoFolder}/icon-my-profile.svg") !important;
 }
 
 .icon-my-ads-active {
 	opacity: 1 !important;
 }
-
+// ::::: MEDIUM ONLY
 @include to-breakpoint($medium-break) {
 	.header-wrapper {
 		.headerV2 {
@@ -202,10 +201,9 @@
 	}
 }
 
+// ::: SMALL ONLY
 @include to-breakpoint($small-break) {
 	.header-wrapper {
-		border-bottom-color: color(crane);
-
 		&.header-distraction-free {
 			.headerV2 {
 				height: 40px;

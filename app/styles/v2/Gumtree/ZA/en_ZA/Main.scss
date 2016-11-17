@@ -33,11 +33,11 @@
 // keeps it consistent with styles
 ::selection {
   background: $color-navy;
-  color: $vivaWhite;
+  color: $gumWhite;
 }
 ::-moz-selection {
   background: $color-navy;
-  color: $vivaWhite;
+  color: $gumWhite;
 }
 
 body, #wrapper {
@@ -76,7 +76,7 @@ a, [data-uri], [data-o-uri], .sudo-link, span[href] {
 
 a, [data-uri], [data-o-uri], .sudo-link, span[href],
 a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[href]:visited {
-  color: $vivaBlack;
+  color: $gumBlack;
 }
 
 .sudolink{
