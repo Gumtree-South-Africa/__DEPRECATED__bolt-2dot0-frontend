@@ -24,6 +24,7 @@
 			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending",
 			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
+			"availableFlagsAd"	:	"/bolt-api-webapp/v1/ads/flags",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
 			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",

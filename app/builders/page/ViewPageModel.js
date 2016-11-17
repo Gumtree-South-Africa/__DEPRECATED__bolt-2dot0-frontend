@@ -106,6 +106,7 @@ class ViewPageModel {
 				advertData.adSimilars = bapiData[3];
 				advertData.adSellerOthers = bapiData[4];
 				advertData.adSeoUrls = bapiData[5];
+				advertData.adFlags = bapiData[6];
 
 				// Basic Data for Ad Display
 				let data = {
@@ -124,11 +125,12 @@ class ViewPageModel {
 						adsActive: "10",
 						emailVerified: true
 					},
-					features: {},
-					statistics: {},
-					similars: {},
-					sellerOtherAds: {},
-					seoUrls: {}
+					features: advertData.adFeatures,
+					statistics: advertData.adStatistics,
+					similars: advertData.adSimilars,
+					sellerOtherAds: advertData.adSellerOthers,
+					seoUrls: advertData.adSeoUrls,
+					flags: advertData.adFlags
 				};
 				//TODO: check if it's real estate category for disclaimer
 				data.showAdditionalDisclaimers = true;
@@ -170,21 +172,6 @@ class ViewPageModel {
 				data.seoVipUrl = seoVipElt.href;
 				// let categoryCurrentHierarchy = [];
 				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, categoryCurrentHierarchy);
-
-				// Merge Bapi Ad Features data
-				_.extend(data.features, advertData.adFeatures);
-
-				// Merge Bapi Ad Statistics data
-				_.extend(data.statistics, advertData.adStatistics);
-
-				// Merge Bapi Ad Similars data
-				_.extend(data.similars, advertData.adSimilars);
-
-				// Merge Bapi Ad Seller Other Ads data
-				_.extend(data.sellerOtherAds, advertData.adSellerOthers);
-
-				// Merge Bapi Ad SEO Urls data
-				_.extend(data.seoUrls, advertData.adSeoUrls);
 
 				console.log('$$$$$$$ ', data);
 				return data;

@@ -60,6 +60,14 @@ class AdService {
 		}), bapiHeaderValues, 'adService$viewAdSeoUrls');
 	}
 
+	viewAdFlags(bapiHeaderValues) {
+		let queryEndpoint = config.get('BAPI.endpoints.availableFlagsAd');
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET',
+			path: queryEndpoint,
+		}), bapiHeaderValues, 'adService$viewAdFlags');
+	}
+
 	searchAds(bapiHeaderValues, searchOptions) {
 		let queryEndpoint = config.get('BAPI.endpoints.ads');
 		if ((typeof searchOptions !== 'undefined') && (searchOptions !== null)) {

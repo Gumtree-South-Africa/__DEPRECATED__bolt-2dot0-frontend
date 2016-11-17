@@ -23,6 +23,7 @@
 			"recentActivities"	:	"/boltapi/v1/ads/activities/recent",
 			"trendingSearch"	: 	"/boltapi/v1/ads/trending",
 			"draftAd"			:	"/boltapi/v1/ads/drafts",
+			"availableFlagsAd"	:	"/boltapi/v1/ads/flags",
 			"specificAd"		:	"/boltapi/v1/ads/{id}",
 			"favoriteAd"		:	"/boltapi/v1/ads/{id}/favorites",
 			"categoryAttributes":	"/boltapi/v1/categories/{catId}/attributes",

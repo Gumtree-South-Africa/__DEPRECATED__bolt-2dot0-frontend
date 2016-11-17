@@ -23,6 +23,7 @@
 			"recentActivities"  :	"/ads/activities/recent",
 			"trendingSearch"	: 	"/ads/trending",
 			"draftAd"			:	"/ads/drafts",
+			"availableFlagsAd"	:	"/ads/flags",
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
 			"categoryAttributes":	"/categories/{catId}/attributes",

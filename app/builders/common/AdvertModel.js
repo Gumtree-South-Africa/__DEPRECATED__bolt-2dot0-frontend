@@ -35,8 +35,11 @@ class AdvertModel {
 		let viewAdSeoUrlsFunction = () => {
 			return adService.viewAdSeoUrls(this.bapiHeaders, adId);
 		};
+		let viewAdFlagsFunction = () => {
+			return adService.viewAdFlags(this.bapiHeaders, adId);
+		};
 
-		return [viewAdFunction, viewAdFeaturesFunction, viewAdStatisticsFunction, viewAdSimilarsFunction, viewAdSellerOthersFunction, viewAdSeoUrlsFunction];
+		return [viewAdFunction, viewAdFeaturesFunction, viewAdStatisticsFunction, viewAdSimilarsFunction, viewAdSellerOthersFunction, viewAdSeoUrlsFunction, viewAdFlagsFunction];
 	}
 
 	favoriteTheAd(adId) {
