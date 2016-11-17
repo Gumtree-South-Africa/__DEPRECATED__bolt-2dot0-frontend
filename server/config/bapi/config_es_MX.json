@@ -264,12 +264,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "seo"
+					"advert", "seo", "topSearches", "topLocations"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "seo"
+					"advert", "seo", "topSearches", "topLocations"
 				]
 			}
 		}

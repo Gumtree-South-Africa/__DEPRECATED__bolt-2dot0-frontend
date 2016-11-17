@@ -5,6 +5,8 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 // let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
 let _ = require('underscore');
@@ -16,6 +18,7 @@ class ViewPageModel {
 		this.adId = adId;
 
 		this.fullDomainName = res.locals.config.hostname;
+		this.bapiConfigData = this.res.locals.config.bapiConfigData;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
 		this.locale = res.locals.config.locale;
@@ -52,12 +55,54 @@ class ViewPageModel {
 		modelData.footer = data.common.footer || {};
 		modelData.seo = data['seo'] || {};
 
+		// Changing Version of template depending of the cookie
+		// Dynamic Data from BAPI
+		modelData.categoryList = _.isEmpty(data['catWithLocId']) ? modelData.category : data['catWithLocId'];
+		modelData.level2Location = data['level2Loc'] || {};
+		modelData.initialGalleryInfo = data['gallery'] || {};
+
+		if (data['adstatistics']) {
+			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
+		}
+
+		if (data['keyword']) {
+			modelData.trendingKeywords = data['keyword'][1].keywords || null;
+			modelData.topKeywords = data['keyword'][0].keywords || null;
+		}
+
+		// Make the loc level 2 (Popular locations) data null if it comes as an empty
+		if (_.isEmpty(modelData.level2Location)) {
+			modelData.level2Location = null;
+		}
+
+		// Check for top or trending keywords existence
+		modelData.topOrTrendingKeywords = false;
+		if (modelData.trendingKeywords || modelData.topKeywords) {
+			modelData.topOrTrendingKeywords = true;
+		}
+
+		// Special Data needed for HomePage in header, footer, content
+
+		// Make the location data null if it comes as an empty object from bapi
+		if (_.isEmpty(modelData.location)) {
+			modelData.location = null;
+		}
+
+		// Determine if we show the Popular locations container
+		modelData.showPopularLocations = true;
+		if (!modelData.level2Location && !modelData.location) {
+			modelData.showPopularLocations = false;
+		}
+
 		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
 		// let advert = new AdvertModel(modelData.bapiHeaders);
+
 		let seo = new SeoModel(modelData.bapiHeaders);
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
+		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.homepage.defaultKeywordsCount)).getModelBuilder();
 
 		this.dataPromiseFunctionMap = {};
 
@@ -149,6 +194,24 @@ class ViewPageModel {
 			// return advert.viewTheAd(this.adId).then((data) => {
 			// 	return data;
 			// });
+		};
+
+		this.dataPromiseFunctionMap.topLocations = () => {
+			return locationModel.getTopL2Locations().then((data) => {
+				return data;
+			}).fail((err) => {
+				console.warn(`error getting topLocations data ${err}`);
+				return {};
+			});
+		};
+
+		this.dataPromiseFunctionMap.topSearches = () => {
+			return keywordModel.resolveAllPromises().then((data) => {
+				return data[0].keywords || {};
+			}).fail((err) => {
+				console.warn(`error getting topSearches data ${err}`);
+				return {};
+			});
 		};
 
 		this.dataPromiseFunctionMap.seo = () => {
