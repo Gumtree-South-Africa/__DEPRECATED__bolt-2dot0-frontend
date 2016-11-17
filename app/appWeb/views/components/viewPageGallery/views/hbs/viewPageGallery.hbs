@@ -1,7 +1,7 @@
 <div class="test" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
 <div id="vipGallery">
 	<div class="main">
-		<div class="main-bgImg bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
+		<img class="main-bgImg bgImg" src="{{this.advert.pictures.testPictures.[0]}}" alt="FREE 2yr WARRANTY Unltd KM-THIS WEEK ONLY!!! MERCEDES B 180 manual in Milnerton image 1" />
 		<div class="counter" data-image-length="{{this.advert.pictures.testPictures.length}}">
 			<span class="currentImg">1</span>
 			<span class="separator">/</span>
@@ -9,7 +9,7 @@
 		</div>
 		<div class="vip-gallery">
 			{{#each this.advert.pictures.testPictures}}
-				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
+				<span class="slick-carousel" style="background-image: url('{{this}}')" data-imgurl="{{this}}"></span>
 			{{/each}}
 		</div>
 		<div class="vip-bottom-container hidden">
@@ -29,10 +29,10 @@
 				<span class="icon-close"></span>
 			</div>
 		</div>
-		<div class="overlay-bgImg bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
+		<img class="overlay-bgImg bgImg" src="{{this.advert.pictures.testPictures.[0]}}" alt="FREE 2yr WARRANTY Unltd KM-THIS WEEK ONLY!!! MERCEDES B 180 manual in Milnerton image 1"/>
 		<div class="vipOverlay-container">
 			{{#each this.advert.pictures.testPictures}}
-				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
+				<span class="slick-carousel" style="background-image: url('{{this}}')" data-imgurl="{{this}}"></span>
 			{{/each}}
 		</div>
 	</div>

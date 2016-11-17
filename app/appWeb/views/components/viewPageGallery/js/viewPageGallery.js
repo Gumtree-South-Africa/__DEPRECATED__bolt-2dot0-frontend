@@ -36,7 +36,7 @@ class viewPageGallery {
 				url: 'https://i.ebayimg.com/00/s/NDMwWDY0MA==/z/qvAAAOSwmLlX6QqV/$_20.JPG',
 				on:'click',
 				callback: function() {
-					console.log('zoooooooooommmmmjjsjs');
+				//	console.log('zoooooooooommmmmjjsjs');
 				}
 			});
 
@@ -146,8 +146,8 @@ class viewPageGallery {
 	}
 
 	updateMainImage(event) {
-			let bgImg = $(event.target).context.style.backgroundImage;
-			this.$pageClassId.find('.bgImg').css('background-image', bgImg);
+			let bgImg = $(event.target).attr('data-imgurl');
+			this.$pageClassId.find('.bgImg').attr('src', bgImg);
 	}
 
 	updatePhotoCounter(idx, count) {

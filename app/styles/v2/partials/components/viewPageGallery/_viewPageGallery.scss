@@ -257,6 +257,11 @@
 		.modal-close-section{
 			position: relative;
 			top: -45px;
+			cursor: default;
+			.modal-closearea{
+				display: inline-block;
+				cursor: pointer;
+			}
 		}
 	}
 }
