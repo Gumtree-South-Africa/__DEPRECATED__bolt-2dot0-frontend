@@ -4,6 +4,11 @@
 	overflow-x: hidden;
   background-color: $page-bgcolor;
 }
+.footer-wrapper {
+	margin: 0 auto;
+	max-width: 64em;
+}
+
 
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
