@@ -1,28 +1,16 @@
-// @include in-breakpoint($small-break){
-// 	.vip-left-columns{
-// 		@include span(1);
-//   }
-// 	.vip-right-columns{
-// 		@include span(1);
-// 	}
-// }
+.page{
+	margin: 0 auto;
+	max-width: 64em;
+	overflow-x: hidden;
+  background-color: $page-bgcolor;
+}
 
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
-		@include span(3 of 5);
+		@include span(3 of 6);
 	}
 	.vip-right-columns{
-		@include span(2 of 5);
+		@include span(3 of 6);
 		margin-right: 0;
 	}
 }
-
-// @include from-breakpoint($large-break, $lt-ie9-class-name){
-// 	.vip-left-columns{
-//     @include span(3 of 5);
-//   }
-// 	.vip-right-columns{
-// 		@include span(2 of 5);
-// 		margin-right: 0;
-// 	}
-// }
