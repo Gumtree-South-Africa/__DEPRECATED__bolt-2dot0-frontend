@@ -26,7 +26,7 @@ class TileGrid {
 		if (resp && resp.id) {
 			window.location.href = "/search.html?locId=" + resp.id;
 		} else {
-			window.location.href = "/search";
+			window.location.href = "/search.html";
 		}
 	}
 
