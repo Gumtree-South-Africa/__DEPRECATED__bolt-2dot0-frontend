@@ -16,7 +16,7 @@ class CategoryUpdateModal {
 
 	// If Post with initialImage and categoryId, update post Ad form main detail with category and image
 	onReady() {
-		let catId = this.initialCategory.categoryId !== '' ? this.initialCategory.categoryId : "0";
+		let catId = this.initialCategory.suggestion.categoryId !== '' ? this.initialCategory.suggestion.categoryId : "0";
 		this.updateCategory(Number(catId), this.initialImage.val());
 	}
 
@@ -127,7 +127,7 @@ class CategoryUpdateModal {
 		this._traverseHierarchy(this.hierarchyArray);
 		this._bindEventForSelectedCat();
 		if (imgUrl !== "") {
-			postAdFormMainDetails.setImgUrl(imgUrl);
+			postAdFormMainDetails.addImgUrl(imgUrl);
 		}
 		if (categoryId !== 0) {
 			postAdFormMainDetails.setCategoryId(categoryId);

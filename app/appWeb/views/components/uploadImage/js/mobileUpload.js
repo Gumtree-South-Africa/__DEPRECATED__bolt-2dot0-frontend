@@ -190,8 +190,8 @@ class MobileUpload {
 			data: JSON.stringify({"url" : url}),
 			dataType: 'json',
 			contentType: "application/json",
-			success: (categoryId) => spinnerModal.completeSpinner(() => {
-				categoryUpdateModal.updateCategory(categoryId, url);
+			success: (result) => spinnerModal.completeSpinner(() => {
+				categoryUpdateModal.updateCategory(result.categoryId, url);
 			}),
 			error: (err) => {
 				console.warn(err);

@@ -29,7 +29,9 @@
 			"authRegister"		:	"/boltapi/v1/users",
 			"authActivate"		:	"/boltapi/v1/users/{email}/actions/activate",
 			"authEmailExists"	:	"/boltapi/v1/users/email/{email}",
-			"authPhoneExists"	:	"/boltapi/v1/users/phone/{phone}"
+			"authPhoneExists"	:	"/boltapi/v1/users/phone/{phone}",
+			"adFeatures"        :   "/boltapi/v1/features?",
+			"categorySuggest"   :   "/boltapi/v1/categories/action/suggestion?"
 	    }
 	},
 	"solr": {
@@ -38,14 +40,6 @@
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
-		}
-	},
-	"imageRecognitionService": {
-		"server": {
-			"host"	: "docker_host_machine",
-			"port"	: 10965,
-			"parameters": "/imageCategory/es_MX_VNS/url?",
-			"timeout": 2000
 		}
 	},
 	"kafka": {

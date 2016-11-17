@@ -398,10 +398,10 @@ class PostAdFormMainDetails {
 	}
 
 	/**
-	 * sets the imgUrl for the singleton instance
+	 * add the imgUrl for the singleton instance
 	 * @param imgUrl
 	 */
-	setImgUrl(imgUrl) {
+	addImgUrl(imgUrl) {
 		this.imgUrls.push(imgUrl);
 	}
 

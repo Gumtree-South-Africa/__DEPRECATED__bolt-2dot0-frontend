@@ -69,10 +69,7 @@ class PostAdPageModel {
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
 
-		let categories = data['initialCategory'] || '';
-		modelData.initialCategory = categories.reduce((pre, cur) => {
-			return pre.quality > cur.quality ? pre : cur;
-		},{"categoryId":"1","matches":1,"quality":0});
+		modelData.initialCategory = data['initialCategory'] || '';
 
 		return modelData;
 	}
@@ -86,7 +83,7 @@ class PostAdPageModel {
 			if (modelData.initialImage !== '') {
 				return imageRecognitionModel.recognizeCategoryFromImage(modelData.initialImage);
 			} else {
-				return [{"categoryId":"","matches":0,"quality":0}];
+				return {"suggestion": {"categoryId": ""}};
 			}
 		};
 

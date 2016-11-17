@@ -3,7 +3,7 @@ let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerM
 let formChangeWarning = require("public/js/common/utils/formChangeWarning.js");
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
-let photoCarousel = require('app/appWeb/views/components/photoCarousel/js/photoCarousel.js');
+let photoCarousel = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');

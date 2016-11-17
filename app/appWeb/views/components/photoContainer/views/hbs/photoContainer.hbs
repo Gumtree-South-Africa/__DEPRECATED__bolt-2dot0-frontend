@@ -1,0 +1,32 @@
+<div class="image-container">
+	<div id="photo-0" class="cover-photo-big no-photo">
+		<div class="delete-wrapper">
+			<div class="icon-photo-close"></div>
+		</div>
+
+		<div class="photo-wrapper">
+			<div class="icon-camera-v2"></div>
+			<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
+		</div>
+	</div>
+</div>
+<div class="error-msg-wrapper">
+	<div id="carousel-info-icon" class="icon-contextual-info hidden"></div>
+	<div id="max-photo-msg" class="max-photo-msg hidden">{{i18n "postAd.createAds.error.maxPhotos"}}</div>
+	<div class="photos-required-msg hidden">{{i18n "postAd.createAds.error.photoRequired"}}</div>
+</div>
+<div id="photo-carousel" class="slick-carousel hidden">
+	<div class="add-photo-item">
+		<div class="icon-text-wrapper">
+			<div class="icon-camera-v2"></div>
+			<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
+		</div>
+
+		<form method="post" id="postForm" novalidate="novalidate">
+			<div class="file-input-wrapper">
+				<div class="input-click-area"></div>
+                <input class="file-input" type="file" name="pic" accept="image/*" id="desktopFileUpload" multiple>
+			</div>
+		</form>
+	</div>
+</div>

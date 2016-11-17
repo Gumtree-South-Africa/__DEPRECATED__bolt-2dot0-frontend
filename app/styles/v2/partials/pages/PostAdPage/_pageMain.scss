@@ -45,6 +45,7 @@ $labelMargin: 8%;
 		font-size: 18px;
 		color: $postAdTextGray;
 		margin-bottom: 15px;
+		text-align: center;
 	}
 
 	.post-ad-btn {
@@ -61,9 +62,10 @@ $labelMargin: 8%;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 96%;
+		width: 65%;
 		margin: 20px 0%;
 		vertical-align: top;
+		float: right;
 
 		&.disabled {
 			opacity: 0.5;
@@ -83,6 +85,23 @@ $labelMargin: 8%;
 	.desktop-post-ad {
 		display: block;
 	}
+
+	.main-detail-post {
+		width: 59%;
+		float: right;
+		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		margin-right: 5%;
+		display: block !important; //TBD, need to find why another breakpoint created
+	}
+
+	.icon-down {
+		display: none;
+	}
+
+	.icon-up {
+		display: none;
+	}
 }
 
 .image-upload-progress {
@@ -96,7 +115,7 @@ $labelMargin: 8%;
 	}
 }
 
-@include to-breakpoint($small-break) {
+@include to-breakpoint($medium-break) {
 	.viewport.covered {
 		// To ensure nothing in page is covered by post button overlay
 		position: absolute;
@@ -112,24 +131,4 @@ $labelMargin: 8%;
 		display:none;
 		background-color: $mainDetailsBackgroundColor;
 	}
-}
-
-@include from-breakpoint($small-break) {
-	.main-detail-post {
-		width: 65%;
-		float: right;
-		background-color: $postAdBackgroundColor;
-		box-shadow: 1px 1px 6px $postAdShadowColor;
-		margin-right: 15px;
-	}
-	.icon-down {
-		display: none;
-	}
-	.icon-up {
-		display: none;
-	}
-	.location-selection {
-		margin-left: 3%;
-	}
-
 }

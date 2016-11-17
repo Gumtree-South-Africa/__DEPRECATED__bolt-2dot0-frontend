@@ -57,18 +57,15 @@
 	<div class="desktop-post-ad margin-auto">
 		<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
 		<div class="photo-switcher">
-            {{> (dynamic "photoCarousel")}}
+            {{> (dynamic "photoContainer")}}
 		</div>
     </div>
     {{> (dynamic "postAdFormMainDetails")}}
 	<div class="desktop-post-ad margin-auto">
 		<div class="input-form">
-
-			<div>
-				<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-					<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>
-			</div>
+            <a id="postAdBtn" class="post-ad-btn btn-wrapper">
+                <span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+            </a>
         </div>
 	</div>
 

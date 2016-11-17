@@ -15,18 +15,14 @@ router.post('/', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	model.ImageRecognitionModel = new ImageRecognitionModel(model.bapiHeaders);
 
-	model.ImageRecognitionModel.recognizeCategoryFromImage(imageUrl).then((categories) => {
-
-		let category = categories.reduce((pre, cur) => {
-			return pre.quality > cur.quality ? pre : cur;
-		},{"categoryId":"1","matches":1,"quality":0});
-
-		res.send(category.categoryId);
-
+	model.ImageRecognitionModel.recognizeCategoryFromImage(imageUrl).then((result) => {
+		res.status(200).send({categoryId: result.suggestion.categoryId});
+		return;
 	}).fail((err) => {
 		console.error("[API Image recognition] Did not recognize a category for the image, set default to Hogar !");
 		logger.logError(err);
-		res.send("1"); // If category recognition fail, return default Hogar category
+		res.status(200).send({categoryId: "1"}); // If category recognition fail, return default Hogar category
+		return;
 	});
 
 });
