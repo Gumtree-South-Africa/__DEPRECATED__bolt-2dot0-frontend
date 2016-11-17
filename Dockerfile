@@ -33,6 +33,10 @@ COPY . /src/bolt-2dot0-frontend/
 
 # Install app dependencies
 # When this image goto production, we only do npm install --production
+
+# (TODO) get unicode.txt https://github.com/dodo/node-unicodetable
+RUN wget http://unicode.org/Public/UNIDATA/UnicodeData.txt
+ENV NODE_UNICODETABLE_UNICODEDATA_TXT /src/bolt-2dot0-frontend/UnicodeData.txt
 RUN rm -rf /src/bolt-2dot0-frontend/node_modules
 RUN npm install
 
