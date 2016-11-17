@@ -4,6 +4,7 @@ let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let categoryUpdateModal = require('./categoryUpdateModal');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -191,7 +192,8 @@ class MobileUpload {
 			dataType: 'json',
 			contentType: "application/json",
 			success: (result) => spinnerModal.completeSpinner(() => {
-				categoryUpdateModal.updateCategory(result.categoryId, url);
+				postAdFormMainDetails.addImgUrl(url);
+				categoryUpdateModal.updateCategory(result.categoryId);
 			}),
 			error: (err) => {
 				console.warn(err);
@@ -204,8 +206,6 @@ class MobileUpload {
 				if (timeout !== undefined) {
 					clearTimeout(timeout);
 				}
-				//Don't care if they actually gave us location, just that it finished.
-				//postAd.postAdMobile(url.normal, locationType);
 			});
 		}
 	}

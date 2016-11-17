@@ -338,6 +338,13 @@ class PostAdFormMainDetails {
 			lng = latLng.lng;
 		}
 
+		let imgUrls = [];
+		for(let img of this.imgUrls) {
+			if (img) {
+				imgUrls.push(img);
+			}
+		}
+
 		let description = this.$textarea.val();
 		let payload = {
 			"ads": [
@@ -350,7 +357,7 @@ class PostAdFormMainDetails {
 						"longitude": lng
 					},
 					"categoryAttributes": categoryAttributes,
-					"imageUrls": this.imgUrls
+					"imageUrls": imgUrls
 				}
 			]
 		};
@@ -403,6 +410,13 @@ class PostAdFormMainDetails {
 	 */
 	addImgUrl(imgUrl) {
 		this.imgUrls.push(imgUrl);
+	}
+
+	setImgUrls(imgUrls) {
+		this.imgUrls.length = 0;
+		for(let img of imgUrls) {
+			this.imgUrls.push(img);
+		}
 	}
 
 	/**

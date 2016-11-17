@@ -4,8 +4,6 @@ require("slick-carousel");
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
 let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
-let categoryUpdateModal = require('app/appWeb/views/components/uploadImage/js/categoryUpdateModal');
-let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 $.prototype.doesExist = function() {
@@ -52,25 +50,11 @@ class PhotoContainer {
 	/**
 	 * sets up all the variables and two functions (success and failure)
 	 * these functions are in here to be properly bound to this
-	 * @param options
+	 * @param
 	 */
-	initialize(options) {
-		if (!options) {
-			let images = JSON.parse($("#deferred-ad-images").text() || '[]');
-			options = {
-				slickOptions: {
-					arrows: true,
-					infinite: false,
-					slidesToShow: 3,
-					slidesToScroll: 3
-				},
+	initialize() {
 
-				initialImages: images
-			};
-		}
 		this.allowedUploads = 12;
-
-		this.showImageTracking = options.showImageTracking;
 		//EPS setup
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
@@ -80,13 +64,10 @@ class PhotoContainer {
 		this.EPS.url = this.epsData.data('eps-url');
 		this.epsUpload = new EpsUpload(this.EPS);
 		this.$postAdButton = $('#postAdBtn');
-
-		this.pendingImages = [];
-		this.$loadedImages = 0;
+		this.imgUrls = [];
 		this.imageCount = 0;
 		this.latestPosition = 0;
-		this.isTryUploaded = false;
-		this.$spinnerDiv = $('#photo-0');
+		this.haveTryUploadBefore = false;
 
 		this.messageError = $('.error-message');
 		this.messageModal = $('.message-modal');
@@ -97,13 +78,18 @@ class PhotoContainer {
 			this.messageModal.toggleClass('hidden');
 		});
 
+		this.$imageUpload = $(".file-input-wrapper").find('input[name="pic"]');
+		//listen for file uploads
+		this.$imageUpload.on("change", (event) => {
+			$($('#photo-0').find('.add-photo-text')).addClass('spinner');
+			this._uploadImageShowSpinner();
+			this.fileInputChange(event);
+		});
+
 		this.$errorModalButton.click(() => {
 			this.messageModal.toggleClass('hidden');
 			this.$imageUpload.click();
-			//window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 		});
-
-		this._bindChangeListener();
 
 		this.i18n = {
 			clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -132,7 +118,6 @@ class PhotoContainer {
 
 		// Clicking empty cover photo OR 'add photo' carousel item should open file selector
 		$("#photo-0").on('click', () => {
-			$(this.$spinnerDiv.find(".add-photo-text")).addClass("spinner");
 			this.clickFileInput();
 		});
 
@@ -164,7 +149,6 @@ class PhotoContainer {
 			toRemove.find('.spinner').toggleClass('hidden');
 
 			this.uploadMessageClass.translateErrorCodes(i, error);
-			this.removePendingImage(i);
 			return epsError;
 		};
 
@@ -182,6 +166,11 @@ class PhotoContainer {
 				console.error("EPS error!");
 				return this._failure(i, response);
 			}
+			// For the first time, update the photo layout
+			if (!this.haveTryUploadBefore) {
+				this._updatePhotoContainerLayout();
+				this.haveTryUploadBefore = true;
+			}
 
 			// try to extract the url and figure out if it looks like to be valid
 			let url = this.epsUpload.extractURLClass(response);
@@ -192,7 +181,7 @@ class PhotoContainer {
 			}
 			let normalUrl = this.transformEpsUrl(url.normal);
 			this._uploadImageHideSpinner();
-			if (i === 0) {
+			if (this.latestPosition === 0) {
 				// Recognize the first image category
 				spinnerModal.showModal();
 				$.ajax({
@@ -202,60 +191,96 @@ class PhotoContainer {
 					dataType: 'json',
 					contentType: "application/json",
 					success: (result) => spinnerModal.completeSpinner(() => {
-						categoryUpdateModal.updateCategory(result.categoryId, normalUrl);
+						if (this.categoryUpdateCallback) {
+							this.categoryUpdateCallback(result.categoryId);
+						}
 					}),
 					error: (err) => {
 						console.warn(err);
 						spinnerModal.hideModal();
 					}
 				});
-			} else {
-				postAdFormMainDetails.addImgUrl(normalUrl);
 			}
-
-			let coverPhoto = $('#photo-' + (i + 1));
-			coverPhoto.css("background-image", "url('" + normalUrl + "')");
-			coverPhoto.removeClass("no-photo");
-			if (!this.showImageTracking) {
-				window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
-			}
+			this._updatePhotoDivBackgroundImg(normalUrl);
+			// Enable post button when image upload success
+			this.$postAdButton.removeClass("disabled");
+			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 		};
+	}
+
+	_updatePhotoDivBackgroundImg(imagUrl) {
+		// Switch from single layout to multiple layout, need to update location
+		this.latestPosition = this.latestPosition === 0 ? 1 : this.latestPosition;
+		let coverPhoto = $('#photo-' + this.latestPosition);
+		coverPhoto.css("background-image", "url('" + imagUrl + "')");
+		coverPhoto.removeClass("no-photo");
+		this.imgUrls[this.latestPosition] = imagUrl;
+		if (this.imageUrlsUpdateCallback) {
+			this.imageUrlsUpdateCallback(this.imgUrls);
+		}
+		this.viewModel.updateImageUrls(this.imgUrls);
+		// Find next position for image upload
+		for (let i=1; i<=this.allowedUploads; i++) {
+			if ($('#photo-' + i).css("background-image") === "none") {
+				this.latestPosition = i;
+				break;
+			}
+		}
 	}
 
 	/**
 	 * Change photo container layout when upload first image
 	 */
 	_updatePhotoContainerLayout() {
+		// 1.Using the first camera photo div as template
 		let newDiv = $("#photo-0").clone();
+		// 2.Adjust style for multiple photo laylout
 		newDiv.removeClass("cover-photo-big");
 		newDiv.addClass("cover-photo-small");
 		newDiv.find(".add-photo-text").css("font-size", "15px");
 		$(newDiv.find(".add-photo-text")).removeClass('spinner');
+		// 3.Hide the first camera photo div
 		$("#photo-0").hide();
+		// 4.Create multiple photo upload layout
 		for (let j = 1; j <= this.allowedUploads; j++) {
 			newDiv.attr("id", "photo-" + j);
-			newDiv.on('click', () => {
-				this.$imageUpload.click();
-				this.$spinnerDiv = $("#photo-" + j);
-			});
-			newDiv.find(".delete-wrapper").on('click', (e) => {
-				e.stopImmediatePropagation();
-				let imageDiv = $(e.target.parentNode.parentNode);
-				let imageUrl = imageDiv.css("background-image").aa.split('"');
-				if (imageUrl[1]) {
-					// RMV url for post;
-				}
-				imageDiv.css("background-image", "");
-				imageDiv.addClass("no-photo");
-
-			});
+			this._bindEventToNewPhotoUploadDiv(newDiv);
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
 	}
 
+	_bindEventToNewPhotoUploadDiv(newDiv) {
+		newDiv.on('click', () => {
+			this.$imageUpload.click();
+		});
+		newDiv.find(".delete-wrapper").on('click', (e) => {
+			e.stopImmediatePropagation();
+			let imageDiv = $(e.target.parentNode.parentNode);
+			let imageUrl = imageDiv.css("background-image").split('"');
+			if (imageUrl[1]) {
+				let position = this.imgUrls.indexOf(imageUrl[1]);
+				if (position !== -1) {
+					this.imgUrls[position] = null;
+					if (this.imageUrlsUpdateCallback) {
+						this.imageUrlsUpdateCallback(this.imgUrls);
+					}
+					this.viewModel.updateImageUrls(this.imgUrls);
+				}
+			}
+			imageDiv.css("background-image", "");
+			imageDiv.addClass("no-photo");
+
+			this.imageCount--;
+			if (this.imageCount === 0) {
+				this.$postAdButton.addClass("disabled");
+			}
+
+		});
+	}
+
 	_uploadImageShowSpinner() {
-		for (let i=1; i<=12; i++) {
+		for (let i=1; i<=this.allowedUploads; i++) {
 			if ($('#photo-' + i).css("background-image") === "none") {
 				$($('#photo-' + i).find('.add-photo-text')).addClass('spinner');
 				this.latestPosition = i;
@@ -266,29 +291,6 @@ class PhotoContainer {
 
 	_uploadImageHideSpinner() {
 		$($('#photo-' + this.latestPosition).find('.add-photo-text')).removeClass('spinner');
-	}
-
-	/**
-	 * rebinds the click and change events to trigger the file input
-	 * @private
-	 */
-	_bindChangeListener() {
-		this.$imageUpload = $(".file-input-wrapper").find('input[name="pic"]');
-		//listen for file uploads
-		this.$imageUpload.on("change", (event) => {
-			if (!this.isTryUploaded) {
-				this._updatePhotoContainerLayout();
-				this.isTryUploaded = true;
-			}
-			this._uploadImageShowSpinner();
-			this.fileInputChange(event);
-		});
-
-		this.$inputClickArea = $('.input-click-area');
-		//listen for 'add photos' carousel item click
-		this.$inputClickArea.on('click', () => {
-			this.clickFileInput();
-		});
 	}
 
 	/**
@@ -387,18 +389,14 @@ class PhotoContainer {
 		return newUrl;
 	}
 
-	removePendingImage(index) {
-		// onload complete, remove pending index from pendingImages array. Check if all complete
-		let arrIndex = this.pendingImages.indexOf(index);
-		if (arrIndex > -1) {
-			this.pendingImages.splice(arrIndex, 1);
-		}
-		if (this.pendingImages.length === 0) {
-			this.$postAdButton.removeClass("disabled");
-			$('.cover-photo').removeClass('red-border');
-			$('.photos-required-msg').addClass('hidden');
-		}
+	setCategoryUpdateCallback(func) {
+		this.categoryUpdateCallback = func;
 	}
+
+	setImageUrlsUpdateCallback(func) {
+		this.imageUrlsUpdateCallback = func;
+	}
+
 }
 
 module.exports = new PhotoContainer();

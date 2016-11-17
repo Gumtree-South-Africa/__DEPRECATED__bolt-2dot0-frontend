@@ -17,7 +17,10 @@ class CategoryUpdateModal {
 	// If Post with initialImage and categoryId, update post Ad form main detail with category and image
 	onReady() {
 		let catId = this.initialCategory.suggestion.categoryId !== '' ? this.initialCategory.suggestion.categoryId : "0";
-		this.updateCategory(Number(catId), this.initialImage.val());
+		if (this.initialImage.val() !== "") {
+			postAdFormMainDetails.addImgUrl(this.initialImage.val());
+		}
+		this.updateCategory(Number(catId));
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {
@@ -117,7 +120,7 @@ class CategoryUpdateModal {
 	 * @param categoryId
 	 * @param imgUrl
 	 */
-	updateCategory(categoryId, imgUrl) {
+	updateCategory(categoryId) {
 		if (isNaN(categoryId)) {
 			return;
 		}
@@ -126,9 +129,6 @@ class CategoryUpdateModal {
 		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
 		this._traverseHierarchy(this.hierarchyArray);
 		this._bindEventForSelectedCat();
-		if (imgUrl !== "") {
-			postAdFormMainDetails.addImgUrl(imgUrl);
-		}
 		if (categoryId !== 0) {
 			postAdFormMainDetails.setCategoryId(categoryId);
 			postAdFormMainDetails.showModal(); // Display only when category is settled
