@@ -117,9 +117,9 @@ class HomePage {
 	}
 
 	_imageDidUpload(error, resultUrlObj) {
+		this.welcomeModal.isPostAllowed = true;
+		this.header.hamburgerMenu.isPostAllowed = true;
 		if (error || !resultUrlObj || !resultUrlObj.normal) {
-			this.welcomeModal.isPostAllowed = true;
-			this.header.hamburgerMenu.isPostAllowed = true;
 			this.spinnerModal.hideModal();
 
 			let errorMessage = this._errorMessages[error.errorCode] ||
