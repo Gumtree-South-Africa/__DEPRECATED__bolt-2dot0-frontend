@@ -1,7 +1,8 @@
 .browse-categories {
 	.category-name {
+		a{color: $headerTextColor }
 		a:hover {
-			color: color(crane);
+			color: $searchBarButtonMouseOverColor;
 		}
 	}
 }
@@ -56,10 +57,10 @@
 			}
 
 			.link-item {
-				color: color(swirl, dark);
+				color: $headerTextColor;
 				font-weight: 100!important;
 				&:hover {
-					color: color(crane);
+					color: $searchBarButtonMouseOverColor;
 				}
 			}
 		}

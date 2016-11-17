@@ -1,17 +1,16 @@
 .modal {
-	color: color(swirl, shade);
+	color: $modal-color;
 	font-family: $bodyFont;
-
 	> .modal-container {
-		background: color(foxtail, light);
+		background: $modal-bgcolor;
 
 		> .modal-close-section {
-			color: color(swirl, medium);
+			color: $modal-color;
 		}
 	}
 
 	.container {
-		border-color: color(swirl, shade);
+		border-color: $modal-color;
 	}
 
 	.modal-field {
@@ -19,7 +18,7 @@
 	}
 
 	.modal-header-message {
-		color: color(swirl, shade);
+		color: $modal-color;
 		font-weight: bold;
 	}
 }

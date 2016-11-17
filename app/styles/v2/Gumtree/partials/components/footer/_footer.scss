@@ -1,19 +1,21 @@
 //:::::::: Desktop / Medium / Small ::::::::::
 
 .footer-wrapper{
+	font-family: $bodyFont;
+	//margin: 0 auto;
+  //max-width: 64em;
 	&,& a{
-		color: $gumWhite;
+		color: $footerMainTextColor;
 		background-color: $footerMainBackgroundColor;
-		font-family: $footerMainTextFont;
 	}
 	.top-links{
-		color: $gumWhite;
-		background-color: color(foxtail, medium);
+		color: $footerMainTextColor;
 	}
 	.meet-team{
 		margin: 15px 0;
-		font: $footerHeaderFont;
 		color: $footerHeaderTextColor;
+  		font: $footerHeaderFont;
+
 	}
 	.customer-service-container{
 		height:88px;
@@ -27,15 +29,15 @@
 				width: 103px;
 				.user-photo {
 					width: 64px;
-					height: 64px;	
+					height: 64px;
 					border: 2px solid $footerCircleBorderColor;
 					background-size: 115%;
 				}
 				@for $i from 1 through 4{
-					&:nth-of-type(#{$i}) .user-photo {
-					   background-image: url(../../../../../images/en_SG/CS#{$i}.jpg);
+					&:nth-of-type(#{$i}) .user-photo{
+						background-image: url(../../../../../images/#{$photoFolder}/CS#{$i}.jpg);
 					}
-				} 
+				}
 			}
 		}
 		.support-wrapper{
@@ -45,11 +47,11 @@
 					width: 26px;
 					height: 26px;
 				}
-				.email-icon {
-					background-image: url(../../../../../icons/icon_email_SG.svg);
-					width: 20px;
-					height: 20px;
-					margin: 0;
+				.email-icon{
+				  background-image: url(../../../../../icons/icon_email_#{$locale}.svg);
+				  width: 20px;
+				  height: 20px;
+				  margin: 0;
 				}
 				.support-text{
 					margin-left:5px;
@@ -60,8 +62,8 @@
 		}
 	}
 	.line-divider{
-		width: 941px;
-		margin: auto;
+		//width: 941px;
+		margin: auto 20px;
 		border-top: 1px solid $footerDividerLineColor;
 	}
 	.footer-links{
@@ -75,7 +77,7 @@
 			.menu-items{
 				margin: 15px 0 0 0;
 			}
-			
+
 		}
 	}
 	.social-container{
@@ -89,12 +91,6 @@
 			}
 		}
 	}
-	.mobile-only.social-container{
-		display: none;
-	}
-	.desktop-only.social-container{
-		display: block;
-	}
 	.footer-download{
 		position: inherit;
 		right: inherit;
@@ -102,13 +98,10 @@
 		float: right;
 		width:40%;
 		padding-right: 35px;
-		.menu-category{
-			display: none;
-		}
 		.app-downloads-container{
 			padding-top:16px;
 			padding-bottom:9px;
-			margin-top: inherit;				
+			margin-top: inherit;
 			height:52px;
 			text-align: right;
 			width: 100%;
@@ -117,13 +110,13 @@
 				top:0;
 				margin: 0 2.5px;
 				&.icon-logo_app_store{
-					background: url(../../../../../images/en_ZA/appstore.svg) no-repeat;
+					background: url(../../../../../images/#{$photoFolder}/appstore.svg) no-repeat;
 					border: none;
 					background-position: center;
 					background-size: 100%;
 				}
 				&.icon-logo_google_play{
-					background: url(../../../../../images/en_ZA/google-play.png) no-repeat;
+					background: url(../../../../../images/#{$photoFolder}/google-play.png) no-repeat;
 					background-position: center;
 					background-size: 115%;
 					border: none;
@@ -135,11 +128,7 @@
 		padding-bottom: 10px;
 		font-size: 10px;
 		text-align: center;
-		.HomepageV2 &{
-			background-color: $footerTrademarkBackgroundColor;
-		}
 	}
-	
 	.df-support-wrapper {
     margin: auto;
     max-width: 942px;
@@ -151,13 +140,13 @@
       .support-icon{
       	margin: 0;
       }
-      .email-icon{
-      	background-image: url(../../../../../icons/icon_email_SG.svg);
-      }
-      .support-text{
-      	position: relative;
-      	top: 1px;
-      }
+	  .email-icon{
+		  background-image: url(../../../../../icons/icon_email_#{$locale}.svg);
+	  }
+	  .support-text{
+		  position: relative;
+		  top: 1px;
+	  }
     }
   }
 }
@@ -165,6 +154,16 @@
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
+		.social-container{
+			display:none;
+			.social-icon-wrapper{
+				width: 20%;
+			}
+    }
+    .mobile-only.social-container{
+    	display: block;
+    	padding-bottom: 20px;
+    }
 		.customer-service-container{
 			height:auto;
 			.team-photos{
@@ -180,7 +179,7 @@
 			}
 			.support-wrapper{
 				text-align: left;
-				padding: 12px 12px;
+				padding: 12px 12px 0 12px;
 				display: inline-table;
 				margin: 0px;
 				.support-container{
@@ -203,22 +202,26 @@
 			padding: 0;
 			.app-downloads-container{
 				text-align: center;
-				padding: 18px 0 9px 0;
+				padding: 0 0 9px 0;
 			}
 		}
 	}
 	.clear.line-divider{
 		display: none;
 	}
-
 }
+
 //:::::::: Desktop Only::::::::::
 @include from-breakpoint($medium-break){
 	.footer-wrapper{
-		
+
 		.desktop-only.social-container{
 			display: inline-table;
 			padding-left: 2.5%;
+		}
+		.mobile-only.social-container{
+			display: none;
+			padding-bottom: 20px;
 		}
 
 		.customer-service-container{
