@@ -13,6 +13,8 @@
 	    	"userFromCookie"	:	"/users/logged-in-user-info",
 	    	"topKeywords" 		: 	"/keywords/top",
 	    	"trendingKeywords" 	: 	"/keywords/trending",
+			"suggestedKeywords" : 	"/keywords/suggestions",
+			"relatedKeywords" 	: 	"/keywords/related",
 	    	"homepageGallery" 	: 	"/ads/gallery",
 	    	"adStatistics" 		: 	"/ads/statistics",
 	    	"configService"		:	"/configs/nodeapp/settings.json",

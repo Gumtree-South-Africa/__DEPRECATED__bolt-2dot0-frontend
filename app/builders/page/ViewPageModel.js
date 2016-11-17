@@ -4,6 +4,7 @@ let cwd = process.cwd();
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
+let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 
@@ -19,16 +20,20 @@ class ViewPageModel {
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
 		this.locale = res.locals.config.locale;
+		this.bapiConfigData = this.res.locals.config.bapiConfigData;
 	}
 
 	populateData() {
 		let abstractPageModel = new AbstractPageModel(this.req, this.res);
 		let pagetype = this.req.app.locals.pagetype || pagetypeJson.pagetype.VIP;
 		let pageModelConfig = abstractPageModel.getPageModelConfig(this.res, pagetype);
-		let modelBuilder = new ModelBuilder(this.getRegisterPageData());
+
+		let modelBuilder = new ModelBuilder(this.getViewPageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
+
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
+
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
@@ -36,7 +41,7 @@ class ViewPageModel {
 		});
 	}
 
-	getRegisterPageData() {
+	getViewPageData() {
 		return [
 			() => {
 				return {
@@ -83,12 +88,26 @@ class ViewPageModel {
 
 	getPageDataFunctions(modelData) {
 		let advertModel = new AdvertModel(modelData.bapiHeaders);
+		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
+		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let seo = new SeoModel(modelData.bapiHeaders);
+
+		let adIdElements = advertModel.decodeLongAdId(this.adId);
+		console.log('******** ', adIdElements);
 
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.advert = () => {
-			return advertModel.viewTheAd(this.adId).then((bapiData) => {
+			return advertModelBuilder.resolveAllPromises().then((bapiData) => {
+				let advertData = {};
+				advertData.ad = bapiData[0];
+				advertData.adFeatures = bapiData[1];
+				advertData.adStatistics = bapiData[2];
+				advertData.adSimilars = bapiData[3];
+				advertData.adSellerOthers = bapiData[4];
+				advertData.adSeoUrls = bapiData[5];
+
+				// Basic Data for Ad Display
 				let data = {
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
@@ -104,7 +123,12 @@ class ViewPageModel {
 						adsPosted: "14",
 						adsActive: "10",
 						emailVerified: true
-					}
+					},
+					features: {},
+					statistics: {},
+					similars: {},
+					sellerOtherAds: {},
+					seoUrls: {}
 				};
 				//TODO: check if it's real estate category for disclaimer
 				data.showAdditionalDisclaimers = true;
@@ -113,7 +137,8 @@ class ViewPageModel {
 				//TODO: check to see if additional attributes should be displayed based on specific categories
 				data.displayMoreAttributes = true;
 
-				_.extend(data, bapiData);
+				// Merge Bapi Ad data
+				_.extend(data, advertData.ad);
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
@@ -146,8 +171,37 @@ class ViewPageModel {
 				// let categoryCurrentHierarchy = [];
 				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, categoryCurrentHierarchy);
 
+				// Merge Bapi Ad Features data
+				_.extend(data.features, advertData.adFeatures);
+
+				// Merge Bapi Ad Statistics data
+				_.extend(data.statistics, advertData.adStatistics);
+
+				// Merge Bapi Ad Similars data
+				_.extend(data.similars, advertData.adSimilars);
+
+				// Merge Bapi Ad Seller Other Ads data
+				_.extend(data.sellerOtherAds, advertData.adSellerOthers);
+
+				// Merge Bapi Ad SEO Urls data
+				_.extend(data.seoUrls, advertData.adSeoUrls);
+
 				console.log('$$$$$$$ ', data);
 				return data;
+			});
+		};
+
+		this.dataPromiseFunctionMap.keywords = () => {
+			return keywordModel.resolveAllPromises().then((data) => {
+				let keywordsData = {};
+				keywordsData.top = data[0].keywords || {};
+				keywordsData.trending = data[1].keywords || {};
+				keywordsData.suggested = data[2].keywords || {};
+				console.log('$$$$$$$ ', keywordsData);
+				return keywordsData;
+			}).fail((err) => {
+				console.warn(`error getting keywords data ${err}`);
+				return {};
 			});
 		};
 
