@@ -2,7 +2,7 @@
 	<div class="post-add-detail">{{i18n "editAd.mainDetails.title"}}<div class="icon-down"></div><div class="icon-up hidden"></div></div>
 	<form id='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
 		{{> (dynamic "categoryDropdownSelection")}}
-		<div class="form-ad-title">
+		<div class="form-ad-title form-field">
 			<div class="label-wrapper">
 				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
@@ -10,7 +10,7 @@
 				<input title="Title" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price hidden">
+		<div class="form-ad-price form-field hidden">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
@@ -34,7 +34,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-ad-description">
+		<div class="form-ad-description form-field">
 			<div class="label-wrapper">
 				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>

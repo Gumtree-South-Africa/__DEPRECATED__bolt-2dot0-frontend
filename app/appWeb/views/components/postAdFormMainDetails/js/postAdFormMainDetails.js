@@ -28,6 +28,12 @@ class PostAdFormMainDetailsVM {
 
 		this._isPriceExcluded = true;
 		this._isShown = false;
+		this._isFixMode = false;
+		this._isRequiredTitleAndDescription = false;
+		this._title = '';
+		this._description = '';
+		this._isValid = true;
+		this._isFormValid = true;
 	}
 
 	/**
@@ -44,21 +50,39 @@ class PostAdFormMainDetailsVM {
 		this._categoryDropdownSelection.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'categoryId') {
 				this.categoryId = newValue;
+				// Return to normal mode when category is changed
+				this.isFixMode = false;
+				this.isFormValid = true;
+			} else if (propName === 'isValid') {
+				this._refreshIsValid();
 			}
-		})
+		});
 		this.postFormCustomAttributes.propertyChanged.addHandler((propName, newValue) => {
-			if (propName === 'customAttributeMetadata' && newValue) {
-				this.isPriceExcluded = newValue.isPriceExcluded;
+			if (propName === 'customAttributeMetadata') {
+				if (newValue) {
+					this.isPriceExcluded = newValue.isPriceExcluded;
+					this._categoryDropdownSelection.isMustLeaf = this.isRequiredTitleAndDescription =
+						!!(newValue.verticalCategory && newValue.verticalCategory.id);
+				}
+			} else if (propName === 'isValid') {
+				this._refreshIsValid();
 			}
 		});
 
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
-		this._isPriceExcluded = !this.$priceFormField.hasClass('hidden');
+		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isPriceExcluded') {
 				this.$priceFormField.toggleClass('hidden', newValue);
+			} else if (propName === 'isFixMode') {
+				this._categoryDropdownSelection.isFixMode = newValue;
+			} else if (propName === 'title' || propName === 'description' || propName === 'isFormValid') {
+				this._refreshIsValid();
+			} else if (propName === 'isRequiredTitleAndDescription') {
+				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
+				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
 			}
 		});
 
@@ -86,6 +110,88 @@ class PostAdFormMainDetailsVM {
 		}
 		this._isPriceExcluded = newValue;
 		this.propertyChanged.trigger('isPriceExcluded', newValue);
+	}
+
+	get isFixMode() {
+		return this._isFixMode;
+	}
+
+	set isFixMode(newValue) {
+		newValue = !!newValue;
+		if (this._isFixMode === newValue) {
+			return;
+		}
+		this._isFixMode = newValue;
+		this.propertyChanged.trigger('isFixMode', newValue);
+	}
+
+
+	get isRequiredTitleAndDescription() {
+		return this._isFixMode;
+	}
+
+	set isRequiredTitleAndDescription(newValue) {
+		newValue = !!newValue;
+		if (this._isRequiredTitleAndDescription === newValue) {
+			return;
+		}
+		this._isRequiredTitleAndDescription = newValue;
+		this.propertyChanged.trigger('isRequiredTitleAndDescription', newValue);
+	}
+
+	get isValid() {
+		return this._isValid;
+	}
+
+	set isValid(newValue) {
+		newValue = !!newValue;
+		if (this._isValid === newValue) {
+			return;
+		}
+		this._isValid = newValue;
+		this.propertyChanged.trigger('isValid', newValue);
+	}
+
+	get isFormValid() {
+		return this._isFormValid;
+	}
+
+	set isFormValid(newValue) {
+		newValue = !!newValue;
+		if (this._isFormValid === newValue) {
+			return;
+		}
+		this._isFormValid = newValue;
+		this.propertyChanged.trigger('isFormValid', newValue);
+	}
+
+	_refreshIsValid() {
+		this.isValid = this._title && this._title.length && this._description && this._description &&
+				this._categoryDropdownSelection.isValid && this._isFormValid;
+	}
+
+	get title() {
+		return this._title;
+	}
+
+	set title(newValue) {
+		if (this._title === newValue) {
+			return;
+		}
+		this._title = newValue;
+		this.propertyChanged.trigger('title', newValue);
+	}
+
+	get description() {
+		return this._description;
+	}
+
+	set description(newValue) {
+		if (this._description === newValue) {
+			return;
+		}
+		this._description = newValue;
+		this.propertyChanged.trigger('description', newValue);
 	}
 
 	show() {
@@ -269,10 +375,23 @@ class PostAdFormMainDetails {
 		// add the validation error class to the input
 		$input.addClass('validation-error');
 		// set up click event to remove validation border
-		$input.on('click', () => {
+		$input.one('click', () => {
 			$input.removeClass('validation-error');
-			// unbind event
-			$input.off('click');
+			this.viewModel.isFormValid = !this.$postForm.find('.validation-error').length;
+		});
+		$input.one('change', () => {
+			// If clicking on a dropdown after editing a textbox, the scroll animation will start
+			// after dropdown is expanded, which will make the dropdown list away from the select
+			// box. So we should wait for a short time to ensure no input is focused on
+			setTimeout(() => {
+				let focusedElement = $(document.activeElement);
+				// Change but still focus on same element will trigger refocus
+				if ((focusedElement.length && focusedElement[0] === $input[0]) ||
+					(!focusedElement.is('input, select, textarea') &&
+					!focusedElement.parents('input, select, textarea').length)) {
+					this._focusFirstValidationError();
+				}
+			}, 100);
 		});
 
 		// if an $accumulator is passed in then add the dom input it,
@@ -286,6 +405,17 @@ class PostAdFormMainDetails {
 		return $accumlator;
 	}
 
+	_focusFirstValidationError() {
+		if (this.viewModel.isFixMode) {
+			let errorElements = this.$postForm.find('.validation-error');
+			if (errorElements.length) {
+				let $highestFailure = errorElements.closestToOffset(0, 0);
+				let scrollTo = $highestFailure.offset().top - 50;
+				let viewportElement = $('.viewport');
+				viewportElement.animate({ scrollTop: Math.max(scrollTo + viewportElement.scrollTop(), 0) }, 200);
+			}
+		}
+	}
 
 	/**
 	 * success callback for saving the edited ad
@@ -329,7 +459,7 @@ class PostAdFormMainDetails {
 	 * @private
 	 */
 	_failureCallback(error) {
-		let $failedFields, $highestFailure, scrollTo;
+		let $failedFields, scrollTo;
 		this.$submitButton.removeClass('disabled');
 		this.$submitButton.attr('disabled', false);
 		spinnerModal.hideModal();
@@ -363,11 +493,17 @@ class PostAdFormMainDetails {
 				});
 			}
 
+			this.viewModel.isFormValid = false;
+			// This should happen after all error fields been marked
+			this.viewModel.isFixMode = true;
+
 			// if we have a failed field, scroll to 50px above the highest element on the page
-			if ($failedFields && $failedFields.length > 0) {
-				$highestFailure = $failedFields.closestToOffset(0, 0);
-				scrollTo = Math.max($highestFailure.offset().top - 50, 0); // get scroll value, or zero
-				window.scrollTo(0, scrollTo);
+			let errorElements = this.$postForm.find('.validation-error');
+			if (errorElements.length) {
+				let $highestFailure = errorElements.closestToOffset(0, 0);
+				scrollTo = $highestFailure.offset().top - 50;
+				let viewportElement = $('.viewport');
+				viewportElement.animate({ scrollTop: Math.max(scrollTo + viewportElement.scrollTop(), 0) }, 200);
 			}
 		}
 	}
@@ -459,7 +595,7 @@ class PostAdFormMainDetails {
 	 * @private
 	 */
 	_toggleSubmitDisable(shouldDisable) {
-		this.$submitButton.prop("disabled", shouldDisable);
+		this.$submitButton.find('a').toggleClass("disabled", shouldDisable);
 	}
 
 	onReady() {
@@ -469,7 +605,7 @@ class PostAdFormMainDetails {
 		};
 		this.epsUpload = new EpsUpload();
 		this.$detailsSection = $("#js-main-detail-post");
-		this.$attributes = $("#post-ad-custom-attributes-form");
+		this.$attributes = $(".post-ad-custom-attributes-form");
 		this.$categorySelection = this.$detailsSection.find('#category-selection');
 		this.$submitButton = $('#post-submit-button');
 		this.$locationLink = $("#post-location-input");
@@ -483,12 +619,13 @@ class PostAdFormMainDetails {
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 
+		this.$titleField = this.$detailsSection.find('input[title="Title"]');
 		this.$textarea = this.$detailsSection.find('#description-input');
 
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			if (this.viewModel.imageUrls.length === 0) {
+			if (this.viewModel.imageUrls.length === 0 || (this.viewModel.isFixMode && !this.viewModel.isValid)) {
 				return;
 			}
 			this._toggleSubmitDisable(true);
@@ -514,12 +651,31 @@ class PostAdFormMainDetails {
 
 		this._setupPolyfillForm();
 
-		this._bindCharacterCountEvents(this.$detailsSection.find('input[title="Title"]'), this.$detailsSection.find('label[for="Title"]'));
+		this._bindCharacterCountEvents(this.$titleField, this.$detailsSection.find('label[for="Title"]'));
 		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
 
 		this._setupScrollTo();
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
+		this.$titleField.on('change', () => this.viewModel.title = this.$titleField.val());
+		this.$textarea.on('change', () => this.viewModel.description = this.$textarea.val());
+		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'isValid' || propName === 'isFixMode') {
+				this._toggleSubmitDisable(this.viewModel.isFixMode && !this.viewModel.isValid);
+			}
+			if (propName === 'title' || propName === 'isFixMode') {
+				this.$titleField.toggleClass('validation-error',
+					this.viewModel.isFixMode && (!this.viewModel.title || !this.viewModel.title.length));
+			}
+			if (propName === 'description' || propName === 'isFixMode') {
+				this.$textarea.toggleClass('validation-error',
+					this.viewModel.isFixMode && (!this.viewModel.description || !this.viewModel.description.length));
+			}
+
+			if (propName === 'isFixMode' && !newValue) {
+				this.$postForm.find('.validation-error').removeClass('validation-error');
+			}
+		});
 	}
 
 	initialize(registerOnReady = true) {

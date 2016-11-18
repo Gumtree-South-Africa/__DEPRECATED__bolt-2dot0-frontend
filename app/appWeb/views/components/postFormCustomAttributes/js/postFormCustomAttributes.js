@@ -77,7 +77,7 @@ class PostFormCustomAttributes {
 			if (propName === 'customAttributeMetadata') {
 				this._render(newValue);
 			}
-		})
+		});
 	}
 
 	get categoryId() {
@@ -176,7 +176,7 @@ class PostFormCustomAttributes {
 				url: `/api/edit/attributedependencies`,
 				type: "POST",
 				data: JSON.stringify({
-					catId: this.catId, // selected category id
+					catId: this.categoryId, // selected category id
 					depAttr: $selectBox.data('attribute'), // select box that changed
 					depValue: $selectBox.val() // value the select box was changed to
 				}),

@@ -1214,36 +1214,36 @@
 		"imageUpload": {
 			"error": {
 				"invalidDimension": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image dimension."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema con las dimensiones de tu imagen."
 				},
 				"invalidSize": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image size."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema con el tamaño de tu imagen."
 				},
 				"invalidType": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image type."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema con el tipo de imagen."
 				},
 				"colorspace": {
-					"title": "Try other images?!",
-					"message": "There is a problem uploading your image."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema para cargar tu imagen."
 				},
 				"firewall": {
-					"title": "Try again.",
-					"message": "TThere is a problem with your network."
+					"title": "Intenta nuevamente.",
+					"message": "Hay una problema con tu conxion a internet."
 				},
 				"picturesrv": {
-					"title": "Try again.",
-					"message": "There is a problem uploading your image."
+					"title": "Intenta nuevamente.",
+					"message": "Hay un problema para cargar tu imagen."
 				},
 				"corrupt": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema con tu imagen."
 				},
 				"unknown": {
-					"title": "Try other images?!",
-					"message": "There is a problem uploading your image."
+					"title": "Intenta con otras imágenes?!",
+					"message": "Hay un problema para cargar tu imagen."
 				}
 			}
 		}
@@ -1445,6 +1445,8 @@
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"categoryOptional": "Seleccionar categoría (opcional)",
+				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",

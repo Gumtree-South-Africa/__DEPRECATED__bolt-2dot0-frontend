@@ -2,7 +2,6 @@
 
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
-let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
