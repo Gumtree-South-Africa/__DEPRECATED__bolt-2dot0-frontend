@@ -6,16 +6,6 @@ let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessage
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
-$.prototype.doesExist = function() {
-	return $(this).length > 0;
-};
-
-Array.prototype.remove = function(from, to) {
-	let rest = this.slice((to || from) + 1 || this.length);
-	this.length = from < 0 ? this.length + from : from;
-	return this.push.apply(this, rest);
-};
-
 let isPhotoDivAndDraggable = function(target) {
 	let id = $(target).attr('id');
 	let url = $(target).css("background-image");
@@ -93,10 +83,16 @@ class PhotoContainer {
 
 		$("#imgUrls").on("click", () => {
 			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-			if (this.imageUrlsUpdateCallback) {
-				this.imageUrlsUpdateCallback(imgUrls);
+			let validUrls = [];
+			for (let img of imgUrls) {
+				if (img) {
+					validUrls.push(img);
+				}
 			}
-			this.viewModel.updateImageUrls(imgUrls);
+			if (this.imageUrlsUpdateCallback) {
+				this.imageUrlsUpdateCallback(validUrls);
+			}
+			this.viewModel.updateImageUrls(validUrls);
 		});
 
 		this.$errorModalButton.click(() => {
@@ -216,11 +212,6 @@ class PhotoContainer {
 		coverPhoto.removeClass("no-photo");
 		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
 		imgUrls[this.latestPosition] = urlNormal;
-		if (this.imageUrlsUpdateCallback) {
-			this.imageUrlsUpdateCallback(imgUrls);
-		}
-		this.viewModel.updateImageUrls(imgUrls);
-		$("#imgUrls").html(JSON.stringify(imgUrls));
 		// Find next position for image upload
 		for (let i=1; i<=this.allowedUploads; i++) {
 			if ($('#photo-' + i).css("background-image") === "none") {
@@ -228,6 +219,8 @@ class PhotoContainer {
 				break;
 			}
 		}
+		$("#imgUrls").html(JSON.stringify(imgUrls));
+		$("#imgUrls").click();
 	}
 	/**
 	 * Change photo container layout when upload first image
@@ -265,16 +258,6 @@ class PhotoContainer {
 			e.stopImmediatePropagation();
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
-			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-			let position = imgUrls.indexOf(urlNormal);
-			if (position !== -1) {
-				imgUrls[position] = null;
-				if (this.imageUrlsUpdateCallback) {
-					this.imageUrlsUpdateCallback(imgUrls);
-				}
-				this.viewModel.updateImageUrls(imgUrls);
-				$("#imgUrls").html(JSON.stringify(imgUrls));
-			}
 			imageDiv.css("background-image", "");
 			imageDiv.addClass("no-photo");
 
@@ -282,7 +265,13 @@ class PhotoContainer {
 			if (this.imageCount === 0) {
 				this.$postAdButton.addClass("disabled");
 			}
-
+			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+			let position = imgUrls.indexOf(urlNormal);
+			if (position !== -1) {
+				imgUrls[position] = null;
+				$("#imgUrls").html(JSON.stringify(imgUrls));
+				$("#imgUrls").click();
+			}
 		});
 
 		/*
