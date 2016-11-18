@@ -133,6 +133,7 @@ class HomePage {
 	}
 
 	_redirectToPostPage(imageUrl) {
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "p": {"t": "PostAdPhotoUploadModal"}});
 		window.location.assign('./post?initialImage=' + encodeURIComponent(imageUrl) + '&backUrl=' + encodeURIComponent('./'));
 	}
 }
