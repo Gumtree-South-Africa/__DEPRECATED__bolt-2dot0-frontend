@@ -60,7 +60,6 @@
     "jquery": "1.12.4",
     "jquery-bridget": "2.0.1",
     "jquery-lazyload": "1.9.7",
-    "jquery-zoom": "^1.7.18",
     "kafka-node": "0.3.1",
     "lru-cache": "4.0.1",
     "masonry-layout": "4.1.1",
