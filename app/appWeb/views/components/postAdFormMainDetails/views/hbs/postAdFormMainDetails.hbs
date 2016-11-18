@@ -1,11 +1,7 @@
 <div id="js-main-detail-post" class="main-detail-post">
 	<div class="post-add-detail">{{i18n "editAd.mainDetails.title"}}<div class="icon-down"></div><div class="icon-up hidden"></div></div>
-    <div id="initialCategory" class="hidden">{{json this.initialCategory}}</div>
 	<form id='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
-		<div class="label-wrapper">
-			<label for="category-selection">{{i18n "editAd.mainDetails.labels.category"}}*</label>
-		</div>
-		<div id='category-selection' class="input-wrapper"></div>
+		{{> (dynamic "categoryDropdownSelection")}}
 		<div class="form-ad-title">
 			<div class="label-wrapper">
 				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>

@@ -1,27 +1,64 @@
 "use strict";
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
-let categoryUpdateModal = require('app/appWeb/views/components/uploadImage/js/categoryUpdateModal');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
+let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
 		// True as default value to be consistent with default view
 		this.valid = true;
+
+		// Initialize old singleton components
+		this.spinnerModal = spinnerModal;
 	}
 
 	/**
-	 * Lifecycle callback which will be called when page has been loaded
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
 	 */
-	pageDidMount() {
+	componentDidMount(/*domElement*/) {
 		this.mobileUpload = mobileUpload.viewModel;
 		this.postAdModal = postAdModal.viewModel;
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
-		if (!this.mobileUpload.initialImage) {
+
+		// Callback for old singleton components
+		this.spinnerModal.initialize();
+
+		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'imageUrl' || !newValue) {
+				return;
+			}
+
+			this.postAdFormMainDetails.show();
+
+			this.postAdFormMainDetails.imageUrls = [newValue];
+			this.spinnerModal.showModal();
+
+			$.ajax({
+				url: '/api/postad/imagerecognition',
+				type: 'POST',
+				data: JSON.stringify({"url" : newValue}),
+				dataType: 'json',
+				contentType: "application/json",
+				success: (result) => spinnerModal.completeSpinner(() => {
+					this.postAdFormMainDetails.categoryId = result.categoryId;
+				}),
+				error: (err) => {
+					console.warn(err);
+					this.spinnerModal.hideModal();
+				}
+			});
+		});
+
+		if (!this.mobileUpload.imageUrl) {
 			this.postAdModal.isShown = true;
+		} else {
+			this.postAdFormMainDetails.imageUrls = [this.mobileUpload.imageUrl];
+			this.postAdFormMainDetails.show();
 		}
 	}
 }
@@ -63,19 +100,21 @@ class PostAd {
 			this.preventDisabledButtonClick(e);
 		});
 
-		this.photoCarouselVM = this.getPhotoCarouselVM();
-		this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
-		this.updateValidStatus();
-		this.viewModel.pageDidMount();
-		this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
-		this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
+		$(document).ready(() => {
+			this.photoCarouselVM = this.getPhotoCarouselVM();
+			this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
+			this.updateValidStatus();
+			this.viewModel.componentDidMount($(document.body));
+			this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
+			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
 
-		// TBD Need to refactor follow previous convention
-		photoContainer.setCategoryUpdateCallback((catId) => {
-			categoryUpdateModal.updateCategory(catId);
-		});
-		photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
-			postAdFormMainDetails.setImgUrls(imgUrls);
+			// TBD Need to refactor follow previous convention
+			photoContainer.setCategoryUpdateCallback((catId) => {
+				this.viewModel.postAdFormMainDetails.categoryId = catId;
+			});
+			photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
+				this.viewModel.postAdFormMainDetails.imageUrls = [].concat(imgUrls);
+			});
 		});
 	}
 

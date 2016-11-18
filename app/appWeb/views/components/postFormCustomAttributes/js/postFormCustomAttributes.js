@@ -2,9 +2,107 @@
 
 'use strict';
 
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
+let clientHbsInitialized = false;
+
+function initializeClientHbsIfNot() {
+	if (!clientHbsInitialized) {
+		clientHbsInitialized = true;
+		clientHbs.initialize();
+	}
+}
+
+/**
+ * A form to fill in custom attributes.
+ *
+ * - Events:
+ *   - propertyChanged, triggered with propertyName and newValue
+ *
+ * - Properties:
+ *   - categoryId
+ *   - customAttributeMetadata, the metadata returned from /api/postad/customattributes/:categoryId
+ */
 class PostFormCustomAttributes {
+	constructor() {
+		initializeClientHbsIfNot();
+
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._categoryId = 0;
+		this._customAttributeMetadata = null;
+	}
+
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMount(domElement) {
+		this.$form = domElement;
+
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'categoryId') {
+				return;
+			}
+
+			$.ajax({
+				url: `/api/postad/customattributes/${newValue}`,
+				method: "GET",
+				contentType: "application/json",
+				success: (customAttrData) => {
+					if (newValue !== this._categoryId) {
+						// This is to ensure the attributes will be for the latter one
+						// even if the category is changed during the attribute loading and the attributes
+						// loaded for latter one return earlier than former one.
+						return;
+					}
+					// Mixin required property
+					if (customAttrData.verticalCategory && customAttrData.verticalCategory.requiredCustomAttributes &&
+						customAttrData.verticalCategory.requiredCustomAttributes.length) {
+						let requiredAttributes = customAttrData.verticalCategory.requiredCustomAttributes;
+						customAttrData.customAttributes.forEach(
+							attr => attr.required = requiredAttributes.indexOf(attr.name) >= 0);
+					}
+
+					this.customAttributeMetadata = customAttrData;
+				},
+				error: () => {
+					this.customAttributeMetadata = null;
+				}
+			});
+		});
+
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'customAttributeMetadata') {
+				this._render(newValue);
+			}
+		})
+	}
+
+	get categoryId() {
+		return this._categoryId;
+	}
+
+	set categoryId(newValue) {
+		if (this._categoryId === newValue) {
+			return;
+		}
+		this._categoryId = newValue;
+		this.propertyChanged.trigger('categoryId', newValue);
+	}
+
+	get customAttributeMetadata() {
+		return this._customAttributeMetadata;
+	}
+
+	set customAttributeMetadata(newValue) {
+		if (this._customAttributeMetadata === newValue) {
+			return;
+		}
+		this._customAttributeMetadata = newValue;
+		this.propertyChanged.trigger('customAttributeMetadata', newValue);
+	}
 
 	/**
 	 * renders the custom attributes using handlebars client side templating
@@ -17,14 +115,17 @@ class PostFormCustomAttributes {
 
 		// empty the contents of the form
 		this.$form.empty();
-		// generate the dom string using handlebars
-		let newDomString = clientHbs.renderTemplate(`postFormCustomAttributes`, modelData);
 
-		// unwrapping the dom to remove the div already in the page as this.$form
-		this.$form.append($(newDomString).unwrap());
+		if (modelData) {
+			// generate the dom string using handlebars
+			let newDomString = clientHbs.renderTemplate(`postFormCustomAttributes`, modelData);
 
-		// rebind the dependency events to the custom attributes
-		this._bindDependencyEvents();
+			// unwrapping the dom to remove the div already in the page as this.$form
+			this.$form.append($(newDomString).unwrap());
+
+			// rebind the dependency events to the custom attributes
+			this._bindDependencyEvents();
+		}
 	}
 
 	/**
@@ -90,41 +191,6 @@ class PostFormCustomAttributes {
 			});
 		});
 	}
-
-	/**
-	 * sets the category id for the singleton instance
-	 * @param catId
-	 */
-	setCategoryId(catId) {
-		this.catId = catId;
-	}
-
-	/**
-	 * update the whole custom attributes section with the new categories custom attributes
-	 * @param postRenderCb
-	 */
-	updateCustomAttributes(postRenderCb, categoryId) {
-		if (!isNaN(categoryId)) {
-			this.setCategoryId(categoryId);
-		}
-		$.ajax({
-			url: `/api/postad/customattributes/${this.catId}`,
-			method: "GET",
-			contentType: "application/json",
-			success: (customAttrData) => {
-				postRenderCb(customAttrData);
-				this._render(customAttrData);
-			},
-			error: () => {
-				// empty the contents of the form when no customAtrr return
-				this.$form.empty();
-			}
-		});
-	}
-
-	initialize() {
-		this.$form = $("#post-ad-custom-attributes-form");
-		clientHbs.initialize();
-	}
 }
-module.exports = new PostFormCustomAttributes();
+
+module.exports = PostFormCustomAttributes;

@@ -68,6 +68,12 @@ $categoryArrowIconWidth: 13px;
 		}
 	}
 
+	.form-field.required-field label:after {
+		content: '*';
+		color: red;
+		margin-left: 5px;
+	}
+
 	.description-input {
 		height: 150px;
 		margin-left: $inputMargin;
@@ -112,13 +118,6 @@ $categoryArrowIconWidth: 13px;
 			}
 		}
 
-		textArea {
-			&.user-error,
-			&.validation-error {
-				border: 1px solid red;
-			}
-		}
-
 		select {
 			width: 88%;
 			margin: 1% 44% 1% $inputMargin;
@@ -147,6 +146,11 @@ $categoryArrowIconWidth: 13px;
 			margin-left: unquote("calc(6% + ") ($categoryIndent + $categoryArrowLeftOffset) unquote(")");
 		}
 	}
+
+	.validation-error {
+		border: 1px solid red;
+	}
+
 	.radio-group {
 		margin-left: 15px;
 		display: inline-block;
