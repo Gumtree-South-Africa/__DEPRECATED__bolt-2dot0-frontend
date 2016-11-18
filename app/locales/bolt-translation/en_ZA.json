@@ -1200,7 +1200,7 @@
 				},
 				"firewall": {
 					"title": "Try again.",
-					"message": "TThere is a problem with your network."
+					"message": "There is a problem with your network."
 				},
 				"picturesrv": {
 					"title": "Try again.",
@@ -1480,6 +1480,8 @@
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",
 				"price": "Price",
 				"description": "Description",

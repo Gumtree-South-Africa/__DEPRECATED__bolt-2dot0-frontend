@@ -21,7 +21,14 @@ const DEFAULT_CATEGORY_ID = 0;
 class CategoryDropdownSelection {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
+
 		this._categoryId = DEFAULT_CATEGORY_ID;
+		this._isFixMode = false;
+		this._isLeaf = false;
+		this._isMustLeaf = false;
+		this._isValid = true;
+
+		this.$leafCategorySelect = null;
 	}
 
 	/**
@@ -29,6 +36,8 @@ class CategoryDropdownSelection {
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMound(domElement) {
+		this._emptyCategoryOptional = domElement.data('category-optional');
+		this._emptyCategoryRequired = domElement.data('category-required');
 		this.$categorySelection = domElement.find('.category-selection');
 
 		// Initialize property from DOM
@@ -45,6 +54,18 @@ class CategoryDropdownSelection {
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'categoryId') {
 				this._updateCategory(newValue);
+			} else if (propName === 'isMustLeaf') {
+				this._updateEmptyOptionText(newValue);
+			}
+		});
+		this.propertyChanged.addHandler((propName/*, newValue*/) => {
+			if (propName === 'isMustLeaf' || propName === 'isLeaf') {
+				this.isValid = !this._isMustLeaf || this._isLeaf;
+			} else if (propName === 'isValid' || propName === 'isFixMode') {
+				if (!this.$leafCategorySelect) {
+					return;
+				}
+				this.$leafCategorySelect.toggleClass('validation-error', this._isFixMode && !this._isValid);
 			}
 		});
 
@@ -64,6 +85,58 @@ class CategoryDropdownSelection {
 		}
 		this._categoryId = newValue;
 		this.propertyChanged.trigger('categoryId', newValue);
+	}
+
+	get isFixMode() {
+		return this._isFixMode;
+	}
+
+	set isFixMode(newValue) {
+		newValue = !!newValue;
+		if (this._isFixMode === newValue) {
+			return;
+		}
+		this._isFixMode = newValue;
+		this.propertyChanged.trigger('isFixMode', newValue);
+	}
+
+	get isMustLeaf() {
+		return this._isMustLeaf;
+	}
+
+	set isMustLeaf(newValue) {
+		newValue = !!newValue;
+		if (this._isMustLeaf === newValue) {
+			return;
+		}
+		this._isMustLeaf = newValue;
+		this.propertyChanged.trigger('isMustLeaf', newValue);
+	}
+
+	get isLeaf() {
+		return this._isLeaf;
+	}
+
+	set isLeaf(newValue) {
+		newValue = !!newValue;
+		if (this._isLeaf === newValue) {
+			return;
+		}
+		this._isLeaf = newValue;
+		this.propertyChanged.trigger('isLeaf', newValue);
+	}
+
+	get isValid() {
+		return this._isValid;
+	}
+
+	set isValid(newValue) {
+		newValue = !!newValue;
+		if (this._isValid === newValue) {
+			return;
+		}
+		this._isValid = newValue;
+		this.propertyChanged.trigger('isValid', newValue);
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {
@@ -110,12 +183,15 @@ class CategoryDropdownSelection {
 				currentCategory = nextLvCategory;
 			}
 		});
-		// Display next level for selection
 
-		if (currentCategory.children && currentCategory.children.length > 0) {
+		let isLeaf = !currentCategory.children || !currentCategory.children.length;
+
+		// Display next level for selection
+		if (!isLeaf) {
 			let id = "L" + hierarchyArray.length + "Category";
 			let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
-			select.append($(document.createElement('option')).attr("value", "").attr("selected", "selected").html("---"));
+			select.append($(document.createElement('option')).attr("value", "").attr("selected", "selected").text(
+				(this._isMustLeaf ? this._emptyCategoryRequired : this._emptyCategoryOptional) || "---"));
 			currentCategory.children.forEach((node) => {
 				let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
 				select.append(option);
@@ -131,12 +207,18 @@ class CategoryDropdownSelection {
 				let newLastSelectedCatId = Number($(evt.currentTarget).val());
 				this._updateCatHierarchyArray(newLastSelectedCatId);
 			});
+			this.$leafCategorySelect = select;
+			this.$leafCategorySelect.toggleClass('validation-error', this._isFixMode && !this._isValid);
 		}
+
+		// This should only be set after this.$leafCategorySelect has been updated
+		this.isLeaf = isLeaf;
 	}
 
 	_updateCatHierarchyArray(newLastSelectedCatId) {
 		this._hierarchyArray.push(newLastSelectedCatId);
 		this.$categorySelection.empty();
+		this.$leafCategorySelect = null;
 		this._traverseHierarchy(this._hierarchyArray);
 		//Bind change event
 		this._bindEventForSelectedCat();
@@ -161,9 +243,20 @@ class CategoryDropdownSelection {
 	_updateCategory(newValue) {
 		this._hierarchyArray=[];
 		this.$categorySelection.empty();
+		this.$leafCategorySelect = null;
 		this._getCategoryHierarchy(this._categoryTree, newValue, this._hierarchyArray);
 		this._traverseHierarchy(this._hierarchyArray);
 		this._bindEventForSelectedCat();
+	}
+
+	_updateEmptyOptionText() {
+		if (this.$leafCategorySelect) {
+			let options = this.$leafCategorySelect.find('option');
+			if (options.length) {
+				$(options[0]).text(
+					(this._isMustLeaf ? this._emptyCategoryRequired : this._emptyCategoryOptional) || '---');
+			}
+		}
 	}
 }
 
