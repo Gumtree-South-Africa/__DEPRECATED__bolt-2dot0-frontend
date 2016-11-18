@@ -1,26 +1,69 @@
 'use strict';
-let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
-class CategoryUpdateModal {
-	initialize() {
-		this.categoryTree = JSON.parse($("#category-tree").text() || "{}");
-		this.$categorySelection = $("#category-selection");
-		this.initialCategory = JSON.parse($("#initialCategory").text() || "{}");
-		this.initialImage = $('#postForm').find('input[name="initialImage"]');
-		this.hierarchyArray = [];
-		postAdFormMainDetails.initialize();
-		$(document).ready(() => {
-			this.onReady();
-		});
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
+
+const DEFAULT_CATEGORY_ID = 0;
+
+/**
+ * A group of dropdown list to select category.
+ *
+ * - Server-side properties used by template
+ *   - categoryAll All categories information, the children property of each node is the
+ *       sub-categories
+ *   - initialCategory An object whose suggestion.categoryId is the initial category
+ *
+ * - Events:
+ *   - propertyChanged, triggered with propertyName and newValue
+ *
+ * - Properties:
+ *   - categoryId
+ */
+class CategoryDropdownSelection {
+	constructor() {
+		this.propertyChanged = new SimpleEventEmitter();
+		this._categoryId = DEFAULT_CATEGORY_ID;
 	}
 
-	// If Post with initialImage and categoryId, update post Ad form main detail with category and image
-	onReady() {
-		let catId = this.initialCategory.suggestion.categoryId !== '' ? this.initialCategory.suggestion.categoryId : "0";
-		if (this.initialImage.val() !== "") {
-			postAdFormMainDetails.addImgUrl(this.initialImage.val());
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMound(domElement) {
+		this.$categorySelection = domElement.find('.category-selection');
+
+		// Initialize property from DOM
+		let allCategoryValue = domElement.find('.all-categories').text();
+		this._categoryTree = allCategoryValue ? JSON.parse(allCategoryValue) : {};
+		let initialCategoryValue = domElement.find('.initial-category').text();
+		let initialCategory = initialCategoryValue ? JSON.parse(initialCategoryValue) : {};
+		if (initialCategory.suggestion && initialCategory.suggestion.categoryId) {
+			let initialCategoryId = Number(initialCategory.suggestion.categoryId);
+			if (!isNaN(initialCategoryId)) {
+				this._categoryId = initialCategoryId;
+			}
 		}
-		this.updateCategory(Number(catId));
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'categoryId') {
+				this._updateCategory(newValue);
+			}
+		});
+
+		this._updateCategory(this._categoryId);
+	}
+
+	get categoryId() {
+		return this._categoryId;
+	}
+
+	set categoryId(newValue) {
+		if (isNaN(newValue)) {
+			newValue = DEFAULT_CATEGORY_ID;
+		}
+		if (this._categoryId === newValue) {
+			return;
+		}
+		this._categoryId = newValue;
+		this.propertyChanged.trigger('categoryId', newValue);
 	}
 
 	_getCategoryHierarchy(node, leafId, stack) {
@@ -41,7 +84,7 @@ class CategoryUpdateModal {
 	}
 
 	_traverseHierarchy(hierarchyArray) {
-		let currentCategory = this.categoryTree;
+		let currentCategory = this._categoryTree;
 		// for each value in the hierarchy array, we navigate down in the tree
 		hierarchyArray.forEach((catId, index) => {
 			// ignore level 0 (all Categories)
@@ -92,22 +135,22 @@ class CategoryUpdateModal {
 	}
 
 	_updateCatHierarchyArray(newLastSelectedCatId) {
-		this.hierarchyArray.push(newLastSelectedCatId);
+		this._hierarchyArray.push(newLastSelectedCatId);
 		this.$categorySelection.empty();
-		this._traverseHierarchy(this.hierarchyArray);
+		this._traverseHierarchy(this._hierarchyArray);
 		//Bind change event
 		this._bindEventForSelectedCat();
-		postAdFormMainDetails.setCategoryId(newLastSelectedCatId);
+		this.categoryId = newLastSelectedCatId;
 	}
 
 	_bindEventForSelectedCat() {
-		this.hierarchyArray.forEach((catId, index) => {
+		this._hierarchyArray.forEach((catId, index) => {
 			// ignore level 0 (all Categories)
 			if (catId !== 0) {
 				let id = "#L" + index + "Category";
 				$(id).change((evt) => {
 					//Update category hierarchy Array length
-					this.hierarchyArray.length = index;
+					this._hierarchyArray.length = index;
 					let newLastSelectedCatId = Number($(evt.currentTarget).val());
 					this._updateCatHierarchyArray(newLastSelectedCatId);
 				});
@@ -115,28 +158,16 @@ class CategoryUpdateModal {
 		});
 	}
 
-	/**
-	 * After image upload, update categoryId and imgUrl for post form
-	 * @param categoryId
-	 * @param imgUrl
-	 */
-	updateCategory(categoryId) {
-		if (isNaN(categoryId)) {
-			return;
-		}
-		this.hierarchyArray=[];
+	_updateCategory(newValue) {
+		this._hierarchyArray=[];
 		this.$categorySelection.empty();
-		this._getCategoryHierarchy(this.categoryTree, categoryId, this.hierarchyArray);
-		this._traverseHierarchy(this.hierarchyArray);
+		this._getCategoryHierarchy(this._categoryTree, newValue, this._hierarchyArray);
+		this._traverseHierarchy(this._hierarchyArray);
 		this._bindEventForSelectedCat();
-		if (categoryId !== 0) {
-			postAdFormMainDetails.setCategoryId(categoryId);
-			postAdFormMainDetails.showModal(); // Display only when category is settled
-		}
 	}
 }
 
-module.exports = new CategoryUpdateModal();
+module.exports = CategoryDropdownSelection;
 
 
 
