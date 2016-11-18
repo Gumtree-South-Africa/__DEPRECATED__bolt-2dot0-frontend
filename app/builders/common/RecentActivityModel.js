@@ -69,7 +69,6 @@ class RecentActivityModel {
 		return recentActivityService.getRecentActivities(this.bapiHeaderValues, geoLatLngObj).then((bapiResult) => {
 			bapiResult.recent = [];
 			bapiResult.filteredArr = this.filterArr(bapiResult.ads, this.bapiHeaderValues.locale) || [];
-			console.log(JSON.stringify(bapiResult.ads, null, 2));
 
 			if (bapiResult.filteredArr.length > 2) {
 				bapiResult.shuffledArr = this.shuffleArr(bapiResult.filteredArr) || [];
