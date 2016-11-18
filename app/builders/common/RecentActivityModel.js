@@ -25,18 +25,21 @@ class RecentActivityModel {
 		let res = _.reduceRight(inputArr, function(a, b) {
 			let id = inputLocale[b['categoryId']];
 			if (id) {
-				let types = _.pluck(id.type, 'name'),
-					attributes = [],
-					prefix;
-				_.each(b.attributes, function(e) {
-					if (_.contains(types, e.name)) {
-						prefix = _.template(_.findWhere(id.type, {name: e.name}).prefix);
-						e.prefix = prefix({'formattedValue': e.formattedValue, 'localizedName': e.localizedName});
-						attributes.push(e);
-					}
-				}, []);
+				let attributes = [], prefix;
+				id.type.forEach(t => {
+					let foundAttribute = b.attributes.find(at => at.name === t.name);
 
-				if (attributes.length) {
+					if (foundAttribute) {
+						prefix = _.template(t.prefix);
+						foundAttribute.prefix = prefix({
+							'formattedValue': foundAttribute.formattedValue,
+							'localizedName': foundAttribute.localizedName
+						});
+						attributes.push(foundAttribute);
+					}
+				});
+
+				if (attributes.length && b.seller.profileImage !== undefined) {
 					b.attributes = attributes;
 					a.push(b);
 				}
