@@ -6,6 +6,7 @@ test/clientUnit/helpers/webTemplates.js
 
 app/builders/page/ErrorPageModel.js
 app/builders/page/HomePageModel.js
+app/builders/page/ViewPageModel.js
 app/builders/page/QuickPostPageModel.js
 app/config/gulpIcons/gulpSvgConfig.js
 app/config/ruby/jsmin.js

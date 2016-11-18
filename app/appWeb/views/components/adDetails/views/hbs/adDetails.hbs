@@ -20,15 +20,15 @@
         <div class="clear-line"></div>
         {{#if this.advert.displayMoreAttributes}}
             <div class="category-pri-attrs">
-                {{#each this.advert.customAttributes}}
-                    <div class="pri-props" id="desktop-pri-props">{{this.localizedName}} : {{lookup parent.priAttributes this.name}}</div>
+                {{#each this.advert.displayAttributes}}
+                    <div class="pri-props" id="desktop-pri-props">{{this.name}} : {{this.value}}</div>
                 {{/each}}
             </div>
         <div class="clear-line"></div>
         {{/if}}
 	</div>
     <div class="sec-attrs">
-        <div class="ad-description">{{this.advert.description}}<div class="ad-phone"> {{this.advert.phone}}</div></div>
+        <div class="ad-description">{{this.advert.description}}</div>
         {{#if this.advert.isOwnerAd}}
 			<div class="view-replies-count ad-desktop-only">
 				<div class="ad-view-count">{{this.advert.viewCount}}<div class="views-text">{{i18n "vip.details.views"}}</div></div>

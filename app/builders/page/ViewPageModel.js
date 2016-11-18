@@ -8,6 +8,7 @@ let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
+let StringUtils = require(cwd + '/app/utils/StringUtils');
 
 let _ = require('underscore');
 
@@ -122,7 +123,6 @@ class ViewPageModel {
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
 					userId: 'testUser123',
-					phone: '808-555-5555',
 					viewCount: '44',
 					repliesCount: '3',
 					postedBy: 'Owner',
@@ -165,16 +165,6 @@ class ViewPageModel {
 					});
 				}
 
-				data.priAttributes = [];
-				_.each(data.attributes, (attribute) => {
-					if (attribute.name!=='Title' && attribute.name!=='Description' && attribute.name!=='Email' && attribute.name!=='ForRentBy' && attribute.name!=='Price') {
-						let attr = {};
-						attr ['name'] = attribute.name;
-						attr ['value'] = attribute.value.attributeValue;
-						data.priAttributes.push(attr);
-					}
-				});
-
 				// let seoVipElt = data._links.find( (elt) => {
 				// 	return elt.rel === "seoVipUrl";
 				// });
@@ -194,6 +184,35 @@ class ViewPageModel {
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+					data.displayAttributes = [];
+					_.each(data.attributes, (attribute) => {
+						let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
+							return customAttribute.name === attribute.name;
+						});
+						if (typeof customAttributeObj !== 'undefined') {
+							let attr = {};
+							attr ['name'] = customAttributeObj.localizedName;
+							switch (customAttributeObj.allowedValueType) {
+								case 'NUMBER':
+									attr ['value'] = attribute.value.attributeValue;
+									break;
+								case 'LIST':
+									_.each(customAttributeObj.allowedValues, (allowedValues) => {
+										if (allowedValues.value == attribute.value.attributeValue) {
+											attr ['value'] = allowedValues.localizedValue;
+										}
+									});
+									break;
+								case 'DATE':
+									attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
+									break;
+								default:
+									attr ['value'] = '';
+							}
+							data.displayAttributes.push(attr);
+						}
+					});
+
 					console.log('$$$$$$$ ', data);
 					return data;
 				});
