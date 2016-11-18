@@ -23,7 +23,7 @@
   {{#unless this.device.isMobile}}
   <div class="carousel-images slider-nav original">
     {{#each this.advert.pictures.testPictures}}
-      <span class="slick-carousel" style="background-image: url('{{this}}')" data-imgurl="{{this}}"></span>
+      <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
     {{/each}}
   </div>
   {{/unless}}
@@ -59,7 +59,7 @@
 
     <div class="carousel-images slider-nav slider-nav-overlay">
       {{#each this.advert.pictures.testPictures}}
-        <span class="slick-carousel" style="background-image: url('{{this}}')" data-imgurl="{{this}}"></span>
+        <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
       {{/each}}
     </div>
 

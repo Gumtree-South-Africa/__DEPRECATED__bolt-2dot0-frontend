@@ -9,7 +9,7 @@ class viewPageGallery {
 	 * these functions are in here to be properly bound to this
 	 * @param options
 	 */
-	 initialize(options) {
+	 initialize() {
 	// 	if (!options) {
 	// 		options = {
 	// 			slickOptions: {
@@ -223,7 +223,7 @@ class viewPageGallery {
 		$('body').removeClass('noScroll');
 	});
 
-	$('.container').on('click', '.slider-for', (evt) => {
+	$('.container').on('click', '.slider-for', () => {
 		let isMobile = $('.container .slider-nav').css('display') === 'none';
 		if(isMobile) {
 			$('.zoomT').removeClass('hidden');
