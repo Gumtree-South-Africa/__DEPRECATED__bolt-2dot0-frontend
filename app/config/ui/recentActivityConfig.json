@@ -90,7 +90,7 @@
 			"type": [
 				{
 					"name": "NumberBedrooms",
-					"prefix": "a {formattedValue} {localizedName}"
+					"prefix": "a {formattedValue}"
 				},
 				{
 					"name": "DwellingType",
