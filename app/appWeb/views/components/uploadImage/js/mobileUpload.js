@@ -2,9 +2,9 @@
 
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
-let categoryDropdownSelection = require('./../../categoryDropdownSelection/js/categoryDropdownSelection');
-let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
+
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -19,7 +19,10 @@ Array.prototype.remove = function(from, to) {
 // View model for mobile upload
 class MobileUploadVM {
 	constructor() {
+		this.propertyChanged = new SimpleEventEmitter();
 		this.handleLocationRequest = null;
+
+		this._imageUrl = null;
 	}
 
 	/**
@@ -27,7 +30,20 @@ class MobileUploadVM {
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMount(domElement) {
-		this.initialImage = domElement.find('input[name=initialImage]').val();
+		this._imageUrl = domElement.find('input[name=initialImage]').val();
+	}
+
+	get imageUrl() {
+		return this._imageUrl;
+	}
+
+	// Internal API which will be removed after MobileUpload has been componentized
+	set imageUrl(newValue) {
+		if (this._imageUrl === newValue) {
+			return;
+		}
+		this._imageUrl = newValue;
+		this.propertyChanged.trigger('imageUrl', newValue);
 	}
 }
 
@@ -38,8 +54,6 @@ class MobileUpload {
 	}
 
 	initialize() {
-		// postAd.initialize();
-		categoryDropdownSelection.initialize();
 		//this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
@@ -171,35 +185,18 @@ class MobileUpload {
 
 		// Logic for initial image
 		this.viewModel.componentDidMount(this.uploadImageContainer);
-		if (this.viewModel.initialImage) {
+		if (this.viewModel.imageUrl) {
 			this.uploadPhotoText.addClass('hidden');
-			this.imageHolder.css("background-image", `url("${this.viewModel.initialImage}")`);
+			this.imageHolder.css("background-image", `url("${this.viewModel.imageUrl}")`);
 		}
 	}
 
 	handleImageUrlChanged(url) {
 		this.imageHolder.css("background-image", `url("${url}")`);
 
-		spinnerModal.showModal();
 		this.$uploadSpinner.addClass('hidden');
 		this.$uploadProgress.addClass('hidden');
 		this.$uploadProgress.html("0%");
-
-		$.ajax({
-			url: '/api/postad/imagerecognition',
-			type: 'POST',
-			data: JSON.stringify({"url" : url}),
-			dataType: 'json',
-			contentType: "application/json",
-			success: (result) => spinnerModal.completeSpinner(() => {
-				postAdFormMainDetails.addImgUrl(url);
-				categoryDropdownSelection.updateCategory(result.categoryId);
-			}),
-			error: (err) => {
-				console.warn(err);
-				spinnerModal.hideModal();
-			}
-		});
 
 		if (this.viewModel.handleLocationRequest) {
 			this.viewModel.handleLocationRequest((locationType, timeout) => {
@@ -208,6 +205,8 @@ class MobileUpload {
 				}
 			});
 		}
+
+		this.viewModel.imageUrl = url;
 	}
 
 	// Common interface for all component to setup view model. In the future, we'll have a manager

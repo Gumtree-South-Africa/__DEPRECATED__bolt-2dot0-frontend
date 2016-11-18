@@ -4,7 +4,12 @@ let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
-let postFormCustomAttributes = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
+
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
+let CategoryDropdownSelection = require(
+	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
+let PostFormCustomAttributes = require(
+	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
@@ -13,14 +18,80 @@ require('public/js/libraries/webshims/polyfiller.js');
 // View model for post ad form main details
 class PostAdFormMainDetailsVM {
 	constructor() {
+		this.propertyChanged = new SimpleEventEmitter();
 		this.handleGetLatLngFromGeoCookie = null;
+
+		this._categoryDropdownSelection = new CategoryDropdownSelection();
+		this.postFormCustomAttributes = new PostFormCustomAttributes();
+
+		this.imageUrls = [];
+
+		this._isPriceExcluded = true;
+		this._isShown = false;
 	}
 
 	/**
 	 * Lifecycle callback which will be called when component has been loaded
 	 * @param domElement The jquery object for the root element of this component
 	 */
-	componentDidMount(/*domElement*/) {
+	componentDidMount(domElement) {
+		// Callback for all children components have been mounted
+		this._categoryDropdownSelection.componentDidMound(domElement.find('.category-component'));
+		this.postFormCustomAttributes.componentDidMount(domElement.find('.post-ad-custom-attributes-form'));
+
+
+		// Register event or update property according to children components
+		this._categoryDropdownSelection.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'categoryId') {
+				this.categoryId = newValue;
+			}
+		})
+		this.postFormCustomAttributes.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'customAttributeMetadata' && newValue) {
+				this.isPriceExcluded = newValue.isPriceExcluded;
+			}
+		});
+
+		// Initialize self properties from DOM, usually done after mounting all children components.
+		this.$postAdForm = domElement;
+		this.$priceFormField = domElement.find(".form-ad-price");
+		this._isPriceExcluded = !this.$priceFormField.hasClass('hidden');
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName === 'isPriceExcluded') {
+				this.$priceFormField.toggleClass('hidden', newValue);
+			}
+		});
+
+		// Initialize self properties from children
+		this.categoryId = this._categoryDropdownSelection.categoryId;
+	}
+
+	get categoryId() {
+		return this._categoryDropdownSelection.categoryId;
+	}
+
+	set categoryId(newValue) {
+		this._categoryDropdownSelection.categoryId = newValue;
+		this.postFormCustomAttributes.categoryId = newValue;
+	}
+
+	get isPriceExcluded() {
+		return this._isPriceExcluded;
+	}
+
+	set isPriceExcluded(newValue) {
+		newValue = !!newValue;
+		if (this._isPriceExcluded === newValue) {
+			return;
+		}
+		this._isPriceExcluded = newValue;
+		this.propertyChanged.trigger('isPriceExcluded', newValue);
+	}
+
+	show() {
+		this.$postAdForm.show();
+		// TODO Move below line out of this class
+		$('.viewport').addClass('covered');
 	}
 }
 
@@ -338,12 +409,8 @@ class PostAdFormMainDetails {
 			lng = latLng.lng;
 		}
 
-		let imgUrls = [];
-		for(let img of this.imgUrls) {
-			if (img) {
-				imgUrls.push(img);
-			}
-		}
+		// Copy imageUrls to avoid changing original values
+		let imgUrls = [].concat(this.viewModel.imageUrls);
 
 		let description = this.$textarea.val();
 		let payload = {
@@ -351,7 +418,7 @@ class PostAdFormMainDetails {
 				{
 					"title": serialized.Title,
 					"description": description,
-					"categoryId": this.categoryId,
+					"categoryId": this.viewModel.categoryId,
 					"location": {
 						"latitude": lat,
 						"longitude": lng
@@ -362,7 +429,7 @@ class PostAdFormMainDetails {
 			]
 		};
 
-		if (!this.$priceFormField.hasClass("hidden")) {
+		if (!this.viewModel.isPriceExcluded) {
 			payload.ads[0].price = {
 				"currency": (serialized.currency) ? serialized.currency : 'MXN',
 				"amount": Number(serialized.amount)
@@ -395,51 +462,6 @@ class PostAdFormMainDetails {
 		this.$submitButton.prop("disabled", shouldDisable);
 	}
 
-	/**
-	 * toggle showing the price field
-	 * @param shouldHide
-	 * @private
-	 */
-	_toggleShowPriceField(shouldHide) {
-		this.$priceFormField.toggleClass('hidden', shouldHide);
-	}
-
-	/**
-	 * add the imgUrl for the singleton instance
-	 * @param imgUrl
-	 */
-	addImgUrl(imgUrl) {
-		this.imgUrls.push(imgUrl);
-	}
-
-	setImgUrls(imgUrls) {
-		this.imgUrls.length = 0;
-		for(let img of imgUrls) {
-			this.imgUrls.push(img);
-		}
-	}
-
-	/**
-	 * sets the category id for the singleton instance
-	 * @param categoryId
-	 */
-	setCategoryId(categoryId) {
-		this.categoryId = categoryId;
-		postFormCustomAttributes.updateCustomAttributes((data) => {
-			// toggle price field based on if its excluded from new category
-			this._toggleShowPriceField(data.isPriceExcluded);
-		}, categoryId);
-	}
-
-	/**
-	 * Show add detail form for post
-	 */
-	showModal() {
-		this.$detailsSection.show();
-		// TODO Move below line out of this class
-		$('.viewport').addClass('covered');
-	}
-
 	onReady() {
 		this.AD_STATES = {
 			AD_CREATED: "AD_CREATED",
@@ -453,7 +475,6 @@ class PostAdFormMainDetails {
 		this.$locationLink = $("#post-location-input");
 		this.$addDetail = $(".post-add-detail");
 
-		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
 		this.$changePhoto = $(".change-photo");
 
 		this.$postForm = this.$detailsSection.find('#post-form');
@@ -467,7 +488,7 @@ class PostAdFormMainDetails {
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			if (this.imgUrls.length === 0) {
+			if (this.viewModel.imageUrls.length === 0) {
 				return;
 			}
 			this._toggleSubmitDisable(true);
@@ -497,13 +518,15 @@ class PostAdFormMainDetails {
 		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
 
 		this._setupScrollTo();
+
+		this.viewModel.componentDidMount($("#js-main-detail-post"));
 	}
 
 	initialize(registerOnReady = true) {
 		locationModal.initialize((data) => {
 			this._setHiddenLocationInput(data);
 		});
-		this.imgUrls = [];
+
 
 		if (registerOnReady) {
 			$(document).ready(() => {
@@ -513,7 +536,6 @@ class PostAdFormMainDetails {
 
 		formChangeWarning.initialize();
 		spinnerModal.initialize();
-		postFormCustomAttributes.initialize();
 	}
 }
 

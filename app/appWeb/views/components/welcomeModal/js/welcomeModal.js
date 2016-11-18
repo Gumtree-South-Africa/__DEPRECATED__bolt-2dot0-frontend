@@ -93,7 +93,7 @@ class WelcomeModal {
 			}
 		});
 		this.propertyChanged.addHandler((propName, newValue) => {
-			if (propName !== 'title') {
+			if (propName === 'title') {
 				this._$title.text(newValue);
 			} else if (propName === 'message') {
 				this._$message.text(newValue);
