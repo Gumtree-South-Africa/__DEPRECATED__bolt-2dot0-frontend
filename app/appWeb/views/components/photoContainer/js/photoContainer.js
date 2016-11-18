@@ -16,6 +16,12 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+let isPhotoDivAndDraggable = function(target) {
+	let id = $(target).attr('id');
+	let url = $(target).css("background-image");
+	return (id && id.indexOf('photo') !== -1 && url !== 'none') ;
+};
+
 // View model for photo carousel
 class PhotoCarouselVM {
 	constructor() {
@@ -64,7 +70,6 @@ class PhotoContainer {
 		this.EPS.url = this.epsData.data('eps-url');
 		this.epsUpload = new EpsUpload(this.EPS);
 		this.$postAdButton = $('#postAdBtn');
-		this.imgUrls = [];
 		this.imageCount = 0;
 		this.latestPosition = 0;
 		this.haveTryUploadBefore = false;
@@ -86,16 +91,19 @@ class PhotoContainer {
 			this.fileInputChange(event);
 		});
 
+		$("#imgUrls").on("click", () => {
+			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+			if (this.imageUrlsUpdateCallback) {
+				this.imageUrlsUpdateCallback(imgUrls);
+			}
+			this.viewModel.updateImageUrls(imgUrls);
+		});
+
 		this.$errorModalButton.click(() => {
 			this.messageModal.toggleClass('hidden');
 			this.$imageUpload.click();
 		});
 
-		this.i18n = {
-			clickFeatured: this.epsData.data('i18n-clickfeatured'),
-			imageFeatured: this.epsData.data('i18n-imagefeatured'),
-			dragToReorder: this.epsData.data('i18n-dragtoreorder')
-		};
 		this.Bolt = {};
 		this.Bolt._postFormMsgs = {
 			selectLocationLabel: this.epsData.data('eps-selectlocationlabel'),
@@ -121,22 +129,6 @@ class PhotoContainer {
 			this.clickFileInput();
 		});
 
-		// Listen for file drag and drop uploads
-		let photoSwitcher = $(".photo-switcher");
-		photoSwitcher.on('drop dragover', (event) => {
-			// stop browser from opening dropped file(s)
-			event.preventDefault();
-			event.stopPropagation();
-
-			// trigger change on file input to start upload flow
-			let files = event.originalEvent.dataTransfer.files;
-			this.fileInputChange({
-				target: {
-					files: files
-				}
-			});
-		});
-
 		/**
 		 * failure case for eps upload, in the initialize function to get arrow function this binding
 		 * @param i
@@ -151,8 +143,6 @@ class PhotoContainer {
 			this.uploadMessageClass.translateErrorCodes(i, error);
 			return epsError;
 		};
-
-
 
 		/**
 		 * success case for eps upload, in the initialize function to get arrow function this binding
@@ -201,6 +191,9 @@ class PhotoContainer {
 					}
 				});
 			}
+			if (url.normal.toLowerCase().indexOf("https") < 0) {
+				normalUrl = normalUrl.replace('http', 'https');
+			}
 			this._updatePhotoDivBackgroundImg(normalUrl);
 			// Enable post button when image upload success
 			this.$postAdButton.removeClass("disabled");
@@ -208,17 +201,26 @@ class PhotoContainer {
 		};
 	}
 
-	_updatePhotoDivBackgroundImg(imagUrl) {
+	/**
+	 * Update photo container div image background
+	 * @param urlNormal
+	 * @param thumbUrl
+	 * @private
+	 */
+	_updatePhotoDivBackgroundImg(urlNormal) {
 		// Switch from single layout to multiple layout, need to update location
 		this.latestPosition = this.latestPosition === 0 ? 1 : this.latestPosition;
 		let coverPhoto = $('#photo-' + this.latestPosition);
-		coverPhoto.css("background-image", "url('" + imagUrl + "')");
+		coverPhoto.css("background-image", "url('" + urlNormal + "')");
+		coverPhoto.attr("data-image", urlNormal);
 		coverPhoto.removeClass("no-photo");
-		this.imgUrls[this.latestPosition] = imagUrl;
+		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+		imgUrls[this.latestPosition] = urlNormal;
 		if (this.imageUrlsUpdateCallback) {
-			this.imageUrlsUpdateCallback(this.imgUrls);
+			this.imageUrlsUpdateCallback(imgUrls);
 		}
-		this.viewModel.updateImageUrls(this.imgUrls);
+		this.viewModel.updateImageUrls(imgUrls);
+		$("#imgUrls").html(JSON.stringify(imgUrls));
 		// Find next position for image upload
 		for (let i=1; i<=this.allowedUploads; i++) {
 			if ($('#photo-' + i).css("background-image") === "none") {
@@ -227,9 +229,9 @@ class PhotoContainer {
 			}
 		}
 	}
-
 	/**
 	 * Change photo container layout when upload first image
+	 * @private
 	 */
 	_updatePhotoContainerLayout() {
 		// 1.Using the first camera photo div as template
@@ -237,7 +239,8 @@ class PhotoContainer {
 		// 2.Adjust style for multiple photo laylout
 		newDiv.removeClass("cover-photo-big");
 		newDiv.addClass("cover-photo-small");
-		newDiv.find(".add-photo-text").css("font-size", "15px");
+		newDiv.attr("draggable", "true");
+		newDiv.find(".add-photo-text").css("font-size", "small");
 		$(newDiv.find(".add-photo-text")).removeClass('spinner');
 		// 3.Hide the first camera photo div
 		$("#photo-0").hide();
@@ -250,6 +253,10 @@ class PhotoContainer {
 		}
 	}
 
+	/**
+	 * Bind event to later cloned new photo div
+	 * @private
+	 */
 	_bindEventToNewPhotoUploadDiv(newDiv) {
 		newDiv.on('click', () => {
 			this.$imageUpload.click();
@@ -257,16 +264,16 @@ class PhotoContainer {
 		newDiv.find(".delete-wrapper").on('click', (e) => {
 			e.stopImmediatePropagation();
 			let imageDiv = $(e.target.parentNode.parentNode);
-			let imageUrl = imageDiv.css("background-image").split('"');
-			if (imageUrl[1]) {
-				let position = this.imgUrls.indexOf(imageUrl[1]);
-				if (position !== -1) {
-					this.imgUrls[position] = null;
-					if (this.imageUrlsUpdateCallback) {
-						this.imageUrlsUpdateCallback(this.imgUrls);
-					}
-					this.viewModel.updateImageUrls(this.imgUrls);
+			let urlNormal = imageDiv.attr("data-image");
+			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+			let position = imgUrls.indexOf(urlNormal);
+			if (position !== -1) {
+				imgUrls[position] = null;
+				if (this.imageUrlsUpdateCallback) {
+					this.imageUrlsUpdateCallback(imgUrls);
 				}
+				this.viewModel.updateImageUrls(imgUrls);
+				$("#imgUrls").html(JSON.stringify(imgUrls));
 			}
 			imageDiv.css("background-image", "");
 			imageDiv.addClass("no-photo");
@@ -277,8 +284,74 @@ class PhotoContainer {
 			}
 
 		});
+
+		/*
+		* Drag and Reorder event start
+		* */
+		document.addEventListener("dragstart", function( event ) {
+			if (!isPhotoDivAndDraggable(event.target)) {
+				return;
+			}
+			// store a ref. on the dragged elem
+			this.dragged = event.target;
+			// make it half transparent
+			event.target.style.opacity = .5;
+		}, false);
+
+		document.addEventListener("dragend", function( event ) {
+			event.preventDefault();
+			if (!isPhotoDivAndDraggable(event.target)) {
+				return;
+			}
+			// reset the transparency
+			event.target.style.opacity = "";
+		}, false);
+
+		/* events fired on the drop targets */
+		document.addEventListener("dragover", function( event ) {
+			event.preventDefault();
+		}, false);
+
+		document.addEventListener("dragenter", function( event ) {
+			event.preventDefault();
+		}, false);
+
+		document.addEventListener("dragleave", function( event ) {
+			event.preventDefault();
+		}, false);
+		document.addEventListener("drop", function( event ) {
+			if (!isPhotoDivAndDraggable(event.target)) {
+				return;
+			}
+			event.preventDefault();
+			event.stopImmediatePropagation();
+			// Swap background
+			let toBackgroundUrl = $(event.target).css("background-image");
+			let fromBackgroundUrl = $(this.dragged).css("background-image");
+			$(event.target).css("background-image", fromBackgroundUrl);
+			$(this.dragged).css("background-image", toBackgroundUrl);
+
+			// Swap image array
+			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+			let toImg = $(event.target).attr("data-image");
+			let toIndex = imgUrls.indexOf(toImg);
+			let fromImg = $(this.dragged).attr("data-image");
+			let fromIndex = imgUrls.indexOf(fromImg);
+			imgUrls[toIndex] = fromImg;
+			imgUrls[fromIndex] = toImg;
+			$("#imgUrls").html(JSON.stringify(imgUrls));
+			$("#imgUrls").click();
+		}, false);
+
+		/*
+		 * Drag and Reorder event end
+		 * */
 	}
 
+	/**
+	 * Display spinner when uploading image
+	 * @private
+	 */
 	_uploadImageShowSpinner() {
 		for (let i=1; i<=this.allowedUploads; i++) {
 			if ($('#photo-' + i).css("background-image") === "none") {
@@ -289,6 +362,10 @@ class PhotoContainer {
 		}
 	}
 
+	/**
+	 * Hidden spinner when uploaded image
+	 * @private
+	 */
 	_uploadImageHideSpinner() {
 		$($('#photo-' + this.latestPosition).find('.add-photo-text')).removeClass('spinner');
 	}
@@ -328,7 +405,6 @@ class PhotoContainer {
 	 * reads the file in then kicks off the events for eps upload
 	 * @param file
 	 */
-	//TODO: rewrite this to be more testable.
 	parseFile(file) {
 		let reader = new FileReader();
 
@@ -349,6 +425,9 @@ class PhotoContainer {
 				this.$imageUpload.val('');
 			} else {
 				console.warn('No more than 12 images can be uploaded');
+				$(".error-msg-wrapper").removeClass("hidden");
+				$("#max-photo-msg").removeClass("hidden");
+				$("#carousel-info-icon").removeClass("hidden");
 			}
 		};
 		if (file) {
@@ -389,10 +468,18 @@ class PhotoContainer {
 		return newUrl;
 	}
 
+	/**
+	 * Register category change call back when first image get uploaded
+	 * @param func
+	 */
 	setCategoryUpdateCallback(func) {
 		this.categoryUpdateCallback = func;
 	}
 
+	/**
+	 * Register image change call back when image container has photo add or delete
+	 * @param func
+	 */
 	setImageUrlsUpdateCallback(func) {
 		this.imageUrlsUpdateCallback = func;
 	}
