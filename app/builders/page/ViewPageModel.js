@@ -4,6 +4,7 @@ let cwd = process.cwd();
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
+let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
@@ -89,6 +90,7 @@ class ViewPageModel {
 	getPageDataFunctions(modelData) {
 		let advertModel = new AdvertModel(modelData.bapiHeaders);
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
+		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
@@ -116,6 +118,7 @@ class ViewPageModel {
 
 				// Basic Data for Ad Display
 				let data = {
+					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
 					userId: 'testUser123',
@@ -177,11 +180,23 @@ class ViewPageModel {
 				// });
 				// data.seoVipUrl = seoVipElt.href;
 
-				// let categoryCurrentHierarchy = [];
-				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, categoryCurrentHierarchy);
+				let locationElt = data._links.find( (elt) => {
+					return elt.rel === "location";
+				});
+				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
 
-				console.log('$$$$$$$ ', data);
-				return data;
+				let categoryElt = data._links.find( (elt) => {
+					return elt.rel === "category";
+				});
+				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+
+				data.categoryCurrentHierarchy = [];
+				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+					console.log('$$$$$$$ ', data);
+					return data;
+				});
 			});
 		};
 

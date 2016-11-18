@@ -9,7 +9,7 @@
                 </div>
             {{else}}
 				<div class="edit-favorite">
-                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.id}}" data-short-adid="{{this.advert.id}}"></span>
+                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.adId}}"></span>
                 </div>
             {{/if}}
 		</div>
@@ -20,8 +20,8 @@
         <div class="clear-line"></div>
         {{#if this.advert.displayMoreAttributes}}
             <div class="category-pri-attrs">
-                {{#each this.advert.priAttributes}}
-                    <div class="pri-props" id="desktop-pri-props">{{this.name}} : {{this.value}}</div>
+                {{#each this.advert.customAttributes}}
+                    <div class="pri-props" id="desktop-pri-props">{{this.localizedName}} : {{lookup parent.priAttributes this.name}}</div>
                 {{/each}}
             </div>
         <div class="clear-line"></div>
