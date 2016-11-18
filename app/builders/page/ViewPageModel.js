@@ -98,15 +98,21 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.advert = () => {
-			return advertModelBuilder.resolveAllPromises().then((bapiData) => {
+			return advertModelBuilder.resolveAllSettledPromises().then((results) => {
+				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
 				let advertData = {};
-				advertData.ad = bapiData[0];
-				advertData.adFeatures = bapiData[1];
-				advertData.adStatistics = bapiData[2];
-				advertData.adSimilars = bapiData[3];
-				advertData.adSellerOthers = bapiData[4];
-				advertData.adSeoUrls = bapiData[5];
-				advertData.adFlags = bapiData[6];
+				let advertIndex = 0;
+				_.each(results, (result) => {
+					if (result.state === "fulfilled") {
+						let value = result.value;
+						advertData[advertPromiseArray[advertIndex]] = value;
+					} else {
+						let reason = result.reason;
+						console.error('Error in Ad Service : ', reason);
+						advertData[advertPromiseArray[advertIndex]] = {};
+					}
+					++advertIndex;
+				});
 
 				// Basic Data for Ad Display
 				let data = {
@@ -166,10 +172,11 @@ class ViewPageModel {
 					}
 				});
 
-				let seoVipElt = data._links.find( (elt) => {
-					return elt.rel === "seoVipUrl";
-				});
-				data.seoVipUrl = seoVipElt.href;
+				// let seoVipElt = data._links.find( (elt) => {
+				// 	return elt.rel === "seoVipUrl";
+				// });
+				// data.seoVipUrl = seoVipElt.href;
+
 				// let categoryCurrentHierarchy = [];
 				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, categoryCurrentHierarchy);
 
@@ -179,13 +186,23 @@ class ViewPageModel {
 		};
 
 		this.dataPromiseFunctionMap.keywords = () => {
-			return keywordModel.resolveAllPromises().then((data) => {
-				let keywordsData = {};
-				keywordsData.top = data[0].keywords || {};
-				keywordsData.trending = data[1].keywords || {};
-				keywordsData.suggested = data[2].keywords || {};
-				console.log('$$$$$$$ ', keywordsData);
-				return keywordsData;
+			return keywordModel.resolveAllSettledPromises().then((results) => {
+				let keywordPromiseArray = ['top', 'trending', 'suggested'];
+				let keywordData = {};
+				let keywordIndex = 0;
+				_.each(results, (result) => {
+					if (result.state === "fulfilled") {
+						let value = result.value;
+						keywordData[keywordPromiseArray[keywordIndex]] = value;
+					} else {
+						let reason = result.reason;
+						console.error('Error in Keyword Service : ', reason);
+						keywordData[keywordPromiseArray[keywordIndex]] = {};
+					}
+					++keywordIndex;
+				});
+				console.log('$$$$$$$ ', keywordData);
+				return keywordData;
 			}).fail((err) => {
 				console.warn(`error getting keywords data ${err}`);
 				return {};

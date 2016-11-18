@@ -39,8 +39,8 @@ router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
 	if(adId === undefined) {
 		// Parse adId from SEO URL
-		// Example of view seo url: /a-rddf-efefddc-3434-dfdf34/dsds-wee-d+33+3434+34343/dfdfd/1001239674240910887886609
-		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/'));
+		// Example of view seo url: /v-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+11+16-00-31-37-716/1001104219250910700294009
+		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/') + 1);
 	}
 	if (adId === undefined) {
 		res.redirect('/');
