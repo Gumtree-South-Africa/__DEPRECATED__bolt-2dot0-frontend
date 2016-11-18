@@ -45,7 +45,7 @@ class PostAdFormMainDetailsVM {
 			if (propName === 'categoryId') {
 				this.categoryId = newValue;
 			}
-		})
+		});
 		this.postFormCustomAttributes.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'customAttributeMetadata' && newValue) {
 				this.isPriceExcluded = newValue.isPriceExcluded;

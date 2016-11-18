@@ -77,7 +77,7 @@ class PostFormCustomAttributes {
 			if (propName === 'customAttributeMetadata') {
 				this._render(newValue);
 			}
-		})
+		});
 	}
 
 	get categoryId() {
