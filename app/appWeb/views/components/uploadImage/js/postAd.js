@@ -1,7 +1,7 @@
 "use strict";
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
-let categoryUpdateModal = require('app/appWeb/views/components/uploadImage/js/categoryUpdateModal');
+let categoryDropdownSelection = require('app/appWeb/views/components/uploadImage/js/categoryDropdownSelection');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
@@ -72,7 +72,7 @@ class PostAd {
 
 		// TBD Need to refactor follow previous convention
 		photoContainer.setCategoryUpdateCallback((catId) => {
-			categoryUpdateModal.updateCategory(catId);
+			categoryDropdownSelection.updateCategory(catId);
 		});
 		photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
 			postAdFormMainDetails.setImgUrls(imgUrls);

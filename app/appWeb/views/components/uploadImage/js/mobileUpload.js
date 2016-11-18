@@ -2,7 +2,7 @@
 
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
-let categoryUpdateModal = require('./categoryUpdateModal');
+let categoryDropdownSelection = require('./../../categoryDropdownSelection/js/categoryDropdownSelection');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let postAdFormMainDetails = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
@@ -39,7 +39,7 @@ class MobileUpload {
 
 	initialize() {
 		// postAd.initialize();
-		categoryUpdateModal.initialize();
+		categoryDropdownSelection.initialize();
 		//this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
@@ -193,7 +193,7 @@ class MobileUpload {
 			contentType: "application/json",
 			success: (result) => spinnerModal.completeSpinner(() => {
 				postAdFormMainDetails.addImgUrl(url);
-				categoryUpdateModal.updateCategory(result.categoryId);
+				categoryDropdownSelection.updateCategory(result.categoryId);
 			}),
 			error: (err) => {
 				console.warn(err);
