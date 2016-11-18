@@ -20,13 +20,11 @@
     {{/each}}
   </div>
 
-  {{#unless this.device.isMobile}}
   <div class="carousel-images slider-nav original">
     {{#each this.advert.pictures.testPictures}}
       <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
     {{/each}}
   </div>
-  {{/unless}}
 
 </div>
 
