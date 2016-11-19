@@ -174,10 +174,10 @@ class ViewPageModel {
 					});
 				}
 
-				let seoVipElt = data._links.find( (elt) => {
-					return elt.rel === "seoVipUrl";
-				});
-				data.seoVipUrl = seoVipElt.href;
+				// let seoVipElt = data._links.find( (elt) => {
+				// 	return elt.rel === "seoVipUrl";
+				// });
+				// data.seoVipUrl = seoVipElt.href;
 
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
