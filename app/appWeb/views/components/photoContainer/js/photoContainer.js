@@ -62,7 +62,6 @@ class PhotoContainer {
 		this.$postAdButton = $('#postAdBtn');
 		this.imageCount = 0;
 		this.latestPosition = 0;
-		this.haveTryUploadBefore = false;
 
 		this.messageError = $('.error-message');
 		this.messageModal = $('.message-modal');
@@ -76,7 +75,6 @@ class PhotoContainer {
 		this.$imageUpload = $(".file-input-wrapper").find('input[name="pic"]');
 		//listen for file uploads
 		this.$imageUpload.on("change", (event) => {
-			$($('#photo-0').find('.add-photo-text')).addClass('spinner');
 			this._uploadImageShowSpinner();
 			this.fileInputChange(event);
 		});
@@ -97,7 +95,7 @@ class PhotoContainer {
 
 		this.$errorModalButton.click(() => {
 			this.messageModal.toggleClass('hidden');
-			this.$imageUpload.click();
+			this.clickFileInput();
 		});
 
 		this.Bolt = {};
@@ -147,28 +145,32 @@ class PhotoContainer {
 		 * @private
 		 */
 		this._success = (i, response) => {
-
+			// 1. Check Error
 			if (response.indexOf('ERROR') !== -1) {
 				console.error("EPS error!");
 				return this._failure(i, response);
 			}
-			// For the first time, update the photo layout
-			if (!this.haveTryUploadBefore) {
-				this._updatePhotoContainerLayout();
-				this.haveTryUploadBefore = true;
-			}
-
-			// try to extract the url and figure out if it looks like to be valid
+			// 2. Try to extract the url and figure out if it looks like to be valid
 			let url = this.epsUpload.extractURLClass(response);
-			// any errors don't do anything after display error msg
+			// 3. Any errors don't do anything after display error msg
 			if (!url) {
 				console.error("Failed to extract url class!");
 				return this._failure(i, response);
 			}
 			let normalUrl = this.transformEpsUrl(url.normal);
-			this._uploadImageHideSpinner();
+			if (url.normal.toLowerCase().indexOf("https") < 0) {
+				normalUrl = normalUrl.replace('http', 'https');
+			}
+
+			// 4.For the first time, update the photo layout
 			if (this.latestPosition === 0) {
-				// Recognize the first image category
+				this._updatePhotoContainerLayout();
+				this.latestPosition++;
+			}
+			this._uploadImageHideSpinner();
+
+			// 5.If first image change, call category recognition
+			if (this.latestPosition === 1) {
 				spinnerModal.showModal();
 				$.ajax({
 					url: '/api/postad/imagerecognition',
@@ -187,14 +189,26 @@ class PhotoContainer {
 					}
 				});
 			}
-			if (url.normal.toLowerCase().indexOf("https") < 0) {
-				normalUrl = normalUrl.replace('http', 'https');
-			}
+
+			// 6. Update image background url
 			this._updatePhotoDivBackgroundImg(normalUrl);
-			// Enable post button when image upload success
-			this.$postAdButton.removeClass("disabled");
+			// 7. Enable post button when image upload success
+			this.$postAdButton.toggleClass("disabled", false);
 			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 		};
+	}
+
+	/**
+	 * Find next position for image upload
+	 */
+	_updateLatestPhotoPosition() {
+		// The image in single layout will replace the first image in multiple layout
+		for (let i=1; i<=this.allowedUploads; i++) {
+			if ($('#photo-' + i).css("background-image") === "none") {
+				this.latestPosition = i;
+				break;
+			}
+		}
 	}
 
 	/**
@@ -204,21 +218,13 @@ class PhotoContainer {
 	 * @private
 	 */
 	_updatePhotoDivBackgroundImg(urlNormal) {
-		// Switch from single layout to multiple layout, need to update location
-		this.latestPosition = this.latestPosition === 0 ? 1 : this.latestPosition;
 		let coverPhoto = $('#photo-' + this.latestPosition);
 		coverPhoto.css("background-image", "url('" + urlNormal + "')");
 		coverPhoto.attr("data-image", urlNormal);
-		coverPhoto.removeClass("no-photo");
+		coverPhoto.toggleClass('no-photo',false);
 		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
 		imgUrls[this.latestPosition] = urlNormal;
-		// Find next position for image upload
-		for (let i=1; i<=this.allowedUploads; i++) {
-			if ($('#photo-' + i).css("background-image") === "none") {
-				this.latestPosition = i;
-				break;
-			}
-		}
+		this._updateLatestPhotoPosition();
 		$("#imgUrls").html(JSON.stringify(imgUrls));
 		$("#imgUrls").click();
 	}
@@ -234,7 +240,7 @@ class PhotoContainer {
 		newDiv.addClass("cover-photo-small");
 		newDiv.attr("draggable", "true");
 		newDiv.find(".add-photo-text").css("font-size", "small");
-		$(newDiv.find(".add-photo-text")).removeClass('spinner');
+		$(newDiv.find(".add-photo-text")).toggleClass('spinner',false);
 		// 3.Hide the first camera photo div
 		$("#photo-0").hide();
 		// 4.Create multiple photo upload layout
@@ -252,18 +258,18 @@ class PhotoContainer {
 	 */
 	_bindEventToNewPhotoUploadDiv(newDiv) {
 		newDiv.on('click', () => {
-			this.$imageUpload.click();
+			this.clickFileInput();
 		});
 		newDiv.find(".delete-wrapper").on('click', (e) => {
 			e.stopImmediatePropagation();
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
 			imageDiv.css("background-image", "");
-			imageDiv.addClass("no-photo");
+			imageDiv.toggleClass("no-photo", true);
 
 			this.imageCount--;
 			if (this.imageCount === 0) {
-				this.$postAdButton.addClass("disabled");
+				this.$postAdButton.toggleClass("disabled", true);
 			}
 			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
 			let position = imgUrls.indexOf(urlNormal);
@@ -282,7 +288,7 @@ class PhotoContainer {
 				return;
 			}
 			// store a ref. on the dragged elem
-			this.dragged = event.target;
+			this.PhotoContainerDragged = event.target;
 			// make it half transparent
 			event.target.style.opacity = .5;
 		}, false);
@@ -314,21 +320,24 @@ class PhotoContainer {
 			}
 			event.preventDefault();
 			event.stopImmediatePropagation();
-			// Swap background
-			let toBackgroundUrl = $(event.target).css("background-image");
-			let fromBackgroundUrl = $(this.dragged).css("background-image");
-			$(event.target).css("background-image", fromBackgroundUrl);
-			$(this.dragged).css("background-image", toBackgroundUrl);
+			window.BOLT.trackEvents({"event": "PostAdPhotoReorder"});
 
-			// Swap image array
+			// 1.Swap background
+			let toBackgroundUrl = $(event.target).css("background-image");
+			let fromBackgroundUrl = $(this.PhotoContainerDragged).css("background-image");
+			$(event.target).css("background-image", fromBackgroundUrl);
+			$(this.PhotoContainerDragged).css("background-image", toBackgroundUrl);
+
+			// 2.Swap image array
 			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
 			let toImg = $(event.target).attr("data-image");
 			let toIndex = imgUrls.indexOf(toImg);
-			let fromImg = $(this.dragged).attr("data-image");
+			let fromImg = $(this.PhotoContainerDragged).attr("data-image");
 			let fromIndex = imgUrls.indexOf(fromImg);
 			imgUrls[toIndex] = fromImg;
 			imgUrls[fromIndex] = toImg;
 			$("#imgUrls").html(JSON.stringify(imgUrls));
+			// 3.Trigger image array change event
 			$("#imgUrls").click();
 		}, false);
 
@@ -342,13 +351,8 @@ class PhotoContainer {
 	 * @private
 	 */
 	_uploadImageShowSpinner() {
-		for (let i=1; i<=this.allowedUploads; i++) {
-			if ($('#photo-' + i).css("background-image") === "none") {
-				$($('#photo-' + i).find('.add-photo-text')).addClass('spinner');
-				this.latestPosition = i;
-				break;
-			}
-		}
+		this._updateLatestPhotoPosition();
+		$($('#photo-' + this.latestPosition).find('.add-photo-text')).toggleClass('spinner',true);
 	}
 
 	/**
@@ -356,9 +360,23 @@ class PhotoContainer {
 	 * @private
 	 */
 	_uploadImageHideSpinner() {
-		$($('#photo-' + this.latestPosition).find('.add-photo-text')).removeClass('spinner');
+		$($('#photo-' + this.latestPosition).find('.add-photo-text')).toggleClass('spinner',false);
 	}
-
+	/**
+	 * For multiple layout, show spinner accord to file count
+	 * @private
+	 */
+	_uploadImageShowSpinnerWithFileSize(size) {
+		if (this.latestPosition === 0) {
+			return;
+		}
+		for (let i=1, updated=0; updated < size && i <= this.allowedUploads; i++) {
+			if ($('#photo-' + i).css("background-image") === "none") {
+				$($('#photo-' + i).find('.add-photo-text')).toggleClass('spinner',true);
+				updated++;
+			}
+		}
+	}
 	/**
 	 * fires when the file input has a new image, triggers eps upload
 	 * @param evt
@@ -369,11 +387,11 @@ class PhotoContainer {
 		}
 		// parse file(s)
 		let files = evt.target.files;
+		this._uploadImageShowSpinnerWithFileSize(files.length);
 		for (let i = 0; i < files.length; i++) {
 			this.parseFile(files[i]);
 		}
 	}
-
 	/**
 	 * prevent the user from repeatedly clicking the file input field and triggering a file selection window
 	 * 	repeatedly
@@ -386,6 +404,7 @@ class PhotoContainer {
 			setTimeout(() => {
 				this.disableImageSelection = false;
 			}, 3000);
+			window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
 			this.$imageUpload.click();
 		}
 	}
@@ -406,7 +425,7 @@ class PhotoContainer {
 		reader.onloadend = () => {
 			if (this.imageCount < this.allowedUploads) {
 				// disable post while image uploads
-				this.$postAdButton.addClass("disabled");
+				this.$postAdButton.toggleClass("disabled", true);
 				// create image place holders
 				this.imageCount++;
 				this.uploadMessageClass.loadingMsg(this.imageCount - 1);
