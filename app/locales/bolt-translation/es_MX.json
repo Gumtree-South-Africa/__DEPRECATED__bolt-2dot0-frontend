@@ -1516,6 +1516,28 @@
 			"moreInfo": "Más información.",
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "Se requiere de un mensaje",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Es necesario tu correo electrónico",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
 		}
 	},
 	"search": {

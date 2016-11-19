@@ -2,18 +2,23 @@
   <div class="vip-left-columns">
     <div id="viewPage">
         {{> (dynamic "viewPageGallery")}}
-    		<div class="item-details">
+        <div class="item-details">
           {{> (dynamic "adDetails")}}
-    		</div>
+        </div>
     </div>
   </div>
 
   <div class="vip-right-columns">
-    <div class="seller-profile">
+  <div class="seller-profile">
       {{> (dynamic "sellerProfile")}}
-    </div>
-    <div class="ad-disclaimers">
-        {{> (dynamic "adDisclaimers")}}
-    </div>
   </div>
+
+  <div class="ad-disclaimers">
+      {{> (dynamic "adDisclaimers")}}
+  </div>
+
+  <div class="reply-form">
+      {{> (dynamic "replyForm")}}
+  </div>
+    </div>
 {{/partial}}

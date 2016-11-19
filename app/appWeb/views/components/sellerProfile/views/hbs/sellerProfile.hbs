@@ -1,3 +1,4 @@
+<a href="{{this.advert.seller.sellerAdsUrl}}">
 <div class="seller-profile-container">
     <div class="seller-pic">
     {{#if this.advert.seller.profilePicUrl}}
@@ -7,7 +8,7 @@
     {{/if}}
     </div>
 
-    <a class="user-fname" href="{{this.advert.seller.sellerAdsUrl}}">{{this.advert.seller.fname}}</a>
+    <div class="user-fname">{{this.advert.seller.fname}}</div>
 
     {{#if this.advert.seller.emailVerified}}
 		<div class="email-icon icon-email-verified"><div class="email-verified-text">{{i18n "vip.seller.emailVerified"}}</div></div>
@@ -20,3 +21,4 @@
 		<span class="user-ads-active">{{this.advert.seller.adsActive}}</span><span class="ads-active-text">{{i18n "vip.seller.adsActive"}}</span>
 	</div>
 </div>
+</a>
