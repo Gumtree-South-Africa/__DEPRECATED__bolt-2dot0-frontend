@@ -286,25 +286,24 @@
 				]
 			}
 		},
-<<<<<<< HEAD
 		"AdPromote": {
 			"desktop": {
 				"models": [
 					"advert", "seo", "adResult"
-			]
+				]
 			},
 			"mobile": {
 				"models": [
 					"advert", "seo", "adResult"
 				]
-=======
+			}
+		},
 		"ResultsSearch": {
 			"desktop": {
 				"models": ["seo"]
 			},
 			"mobile": {
 				"models": ["seo"]
->>>>>>> master
 			}
 		}
 	}
