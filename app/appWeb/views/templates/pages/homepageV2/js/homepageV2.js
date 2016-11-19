@@ -113,6 +113,7 @@ class HomePage {
 		this._isFileSelectBlocking = false;
 		this.welcomeModal.isPostAllowed = false;
 		this.header.hamburgerMenu.isPostAllowed = false;
+		window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "p": {"t": "PostAdPhotoUploadModal"}});
 		this.spinnerModal.showModal();
 	}
 
@@ -133,7 +134,7 @@ class HomePage {
 	}
 
 	_redirectToPostPage(imageUrl) {
-		window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "p": {"t": "PostAdPhotoUploadModal"}});
+		window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 		window.location.assign('./post?initialImage=' + encodeURIComponent(imageUrl) + '&backUrl=' + encodeURIComponent('./'));
 	}
 }

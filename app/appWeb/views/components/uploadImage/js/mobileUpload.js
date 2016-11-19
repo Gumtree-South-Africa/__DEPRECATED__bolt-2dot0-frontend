@@ -164,7 +164,7 @@ class MobileUpload {
 				this.uploadMessageClass.translateErrorCodes(0, error);
 				return;
 			}
-
+			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 			this.handleImageUrlChanged(url.normal);
 		};
 

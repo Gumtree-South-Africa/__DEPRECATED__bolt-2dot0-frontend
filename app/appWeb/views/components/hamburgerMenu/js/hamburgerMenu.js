@@ -58,6 +58,7 @@ class HamburgerMenuVM {
 		if (!this._isPostAllowed) {
 			return;
 		}
+		window.BOLT.trackEvents({"event": "PostAdBegin"});
 		this.postButtonClicked.trigger();
 	}
 

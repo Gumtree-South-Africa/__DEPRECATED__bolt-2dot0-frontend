@@ -125,6 +125,10 @@ class PostFormCustomAttributes {
 
 			// rebind the dependency events to the custom attributes
 			this._bindDependencyEvents();
+
+			$(".post-ad-custom-attributes-form").find(".form-field").on("change", (e) => {
+				window.BOLT.trackEvents({"event": "PostAd" + $(e.currentTarget).attr("data-field")});
+			});
 		}
 	}
 

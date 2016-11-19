@@ -234,6 +234,7 @@ class CategoryDropdownSelection {
 					//Update category hierarchy Array length
 					this._hierarchyArray.length = index;
 					let newLastSelectedCatId = Number($(evt.currentTarget).val());
+					window.BOLT.trackEvents({"event": "PostAdCategory" + index});
 					this._updateCatHierarchyArray(newLastSelectedCatId);
 				});
 			}

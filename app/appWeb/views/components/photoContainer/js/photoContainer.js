@@ -262,6 +262,7 @@ class PhotoContainer {
 		});
 		newDiv.find(".delete-wrapper").on('click', (e) => {
 			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "PostAdPhotoRemove"});
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
 			imageDiv.css("background-image", "");

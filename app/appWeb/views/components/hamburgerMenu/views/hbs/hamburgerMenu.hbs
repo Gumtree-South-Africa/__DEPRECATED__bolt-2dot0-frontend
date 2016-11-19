@@ -3,7 +3,7 @@
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
 		{{#if this.imageUploadFromHome}}
-			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button directly-post' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="#" i18nPath="header.postAd"}}
+			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button directly-post' iconName='icon-post' i18nPath="header.postAd"}}
 		{{else}}
 			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
 		{{/if}}

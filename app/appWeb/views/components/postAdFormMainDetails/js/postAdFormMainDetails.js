@@ -72,6 +72,9 @@ class PostAdFormMainDetailsVM {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
+		$(this.$priceFormField).on('change', () => {
+			window.BOLT.trackEvents({"event": "PostAdPrice"});
+		});
 		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isPriceExcluded') {
@@ -625,6 +628,7 @@ class PostAdFormMainDetails {
 		this.$submitButton.on('click', (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
 			if (this.viewModel.imageUrls.length === 0 || (this.viewModel.isFixMode && !this.viewModel.isValid)) {
 				return;
 			}
@@ -638,6 +642,7 @@ class PostAdFormMainDetails {
 			}
 			e.preventDefault();
 			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "PostAdFormFullDetail"});
 			this.$postForm.toggleClass('hidden');
 			this.$downIcon.toggleClass('hidden');
 			this.$upIcon.toggleClass('hidden');
@@ -646,6 +651,7 @@ class PostAdFormMainDetails {
 		this.$changePhoto.on('click', (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "eventLabel": "Retake Photo"});
 			$("#mobileFileUpload").click();
 		});
 
@@ -657,8 +663,14 @@ class PostAdFormMainDetails {
 		this._setupScrollTo();
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
-		this.$titleField.on('change', () => this.viewModel.title = this.$titleField.val());
-		this.$textarea.on('change', () => this.viewModel.description = this.$textarea.val());
+		this.$titleField.on('change', () => {
+			this.viewModel.title = this.$titleField.val();
+			window.BOLT.trackEvents({"event": "PostAdTitle"});
+		});
+		this.$textarea.on('change', () => {
+			this.viewModel.description = this.$textarea.val();
+			window.BOLT.trackEvents({"event": "PostAdDescription"});
+		});
 		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {
 				this._toggleSubmitDisable(this.viewModel.isFixMode && !this.viewModel.isValid);

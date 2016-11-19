@@ -53,6 +53,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 			}
 		},
 		error: () => {
+			window.BOLT.trackEvents({"event": "AutomaticLocationFail"});
 			$('#modal-location').removeClass('spinner').attr('disabled', false);
 		}
 	});
@@ -134,6 +135,7 @@ let _geoFindMe = () => {
 	function error() {
 		console.error('Unable to retrieve your location');
 		$('#modal-location').removeClass('spinner').attr('disabled', false);
+		window.BOLT.trackEvents({"event": "AutomaticLocationFail"});
 	}
 
 	if (!navigator.geolocation) {
@@ -204,6 +206,8 @@ let initialize = (setValueCb) => {
 	// gps icon
 	$('.current-location').on('click', function(e) {
 		e.preventDefault();
+		e.stopImmediatePropagation();
+		window.BOLT.trackEvents({"event": "PostAdCurrentLocation"});
 		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoFindMe();
 	});
@@ -218,6 +222,7 @@ let initialize = (setValueCb) => {
 	);
 	google.maps.event.addListener(this.$autocomplete, 'place_changed', function() {
 		$('#modal-location').addClass('spinner').attr('disabled', true);
+		window.BOLT.trackEvents({"event": "PostAdManualLocation"});
 		_geoAutoComplete();
 	});
 
