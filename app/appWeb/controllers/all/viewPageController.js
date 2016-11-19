@@ -37,13 +37,18 @@ let extendModelData = (req, modelData) => {
 
 router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
+	if(adId === undefined) {
+		// Parse adId from SEO URL
+		// Example of view seo url: /v-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+11+16-00-31-37-716/1001104219250910700294009
+		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/') + 1);
+	}
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
 	}
 
 	if (!pageControllerUtil.is2dot0Version(res)) {
-		res.redirect('/view.html?adId=adId');	// redirect to 1.0 version of this page
+		res.redirect('/view.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;
 	}
 

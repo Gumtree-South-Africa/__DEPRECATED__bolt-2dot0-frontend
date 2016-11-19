@@ -1,31 +1,25 @@
-"use strict";
+'use strict';
 
-var config = require('config');
-
-var Q = require('q');
-
-var bapiOptions = require("./bapi/bapiOptions")(config);
+let config = require('config');
+let bapiOptionsModel = require('./bapi/bapiOptionsModel');
+let bapiService      = require('./bapi/bapiService');
 
 /**
  * @description A service class that talks to User BAPI
  * @constructor
  */
-var UserService = function() {
-	this.bapiOptions = bapiOptions;
-};
+class UserService {
 
-/**
- * Gets User Info given a token from the cookie
- */
-UserService.prototype.getUserFromCookie = function(bapiHeaders) {
-	// console.info("Inside UserService");
-
-	// Prepare BAPI call
-	this.bapiOptions.method = 'GET';
-	this.bapiOptions.path = config.get('BAPI.endpoints.userFromCookie');
-
-	// Invoke BAPI
-	return require("./bapi/bapiService").bapiPromiseGet(this.bapiOptions, bapiHeaders, "user");
-};
+	/**
+	 * Gets User Info given a token from the cookie
+	 */
+	getUserFromCookie(bapiHeaderValues) {
+		let queryEndpoint = config.get('BAPI.endpoints.userFromCookie');
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET',
+			path: queryEndpoint,
+		}), bapiHeaderValues, 'userService$getUserFromCookie');
+	};
+}
 
 module.exports = new UserService();

@@ -1562,5 +1562,11 @@
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
 		}
+	},
+	"search": {
+		"page": {
+			"title": "Para anunciar tu bien o servicio, entra en Vivanuncios",
+			"desc": "Si quieres vender un producto o servicio -no importa cuál sea- publícalo en Vivanuncios. El sitio web ideal para ofrecer todos tus artículos."
+		}
 	}
 }
