@@ -131,6 +131,7 @@ class viewPageGallery {
 			$('#vipOverlay').addClass('hidden');
 			$('body').removeClass('noScroll');
 			$('.container .slider-nav').slick('slickGoTo', slickIdx);
+			$('.container .slider-nav .slick-current').focus();
 		}
 	}
 
