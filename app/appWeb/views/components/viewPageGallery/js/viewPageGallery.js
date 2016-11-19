@@ -13,9 +13,13 @@ class viewPageGallery {
 
 		const MEDIUM_BREAKPOINT = 848;
 
+		$('.slider-mobile-for').not('.slick-initialized').slick({
+			dots: true,
+			arrows: false,
+			infinite: true
+		});
+
 		$('.slider-for').not('.slick-initialized').slick({
-			slidesToShow: 1,
-			slidesToScroll: 1,
 			arrows: false,
 			fade: true,
 			infinite: true,
@@ -43,6 +47,7 @@ class viewPageGallery {
 
 		$('.slick-arrow').addClass('icon-back');
 		$('.slider-nav .slick-current').addClass('selected');
+		$('.container .slider-nav .slick-current').focus();
 
 		$('.modal-closearea').on('click', () => {
 			this._escapeFn();
@@ -63,13 +68,14 @@ class viewPageGallery {
 				$('#vipOverlay .slider-nav').slick('setPosition');
 				$('#vipOverlay .slider-for').slick('setPosition');
 				$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
-				$('#vipOverlay').removeClass('hidden').find('.slick-list').focus();
+				$('#vipOverlay').removeClass('hidden');
+				$('#vipOverlay .slider-nav .slick-current').focus();
 				$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
 				$('body').addClass('noScroll');
 			}
 		});
 
-		$('.slider-nav').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+		$('.slider-nav, .slider-mobile-for').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
 			event.stopPropagation();
 			event.preventDefault();
 			let count = parseInt($('.counter').attr('data-image-length'));

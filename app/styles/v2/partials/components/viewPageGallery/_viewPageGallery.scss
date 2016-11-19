@@ -1,4 +1,7 @@
-.slider-for{
+.isMobile .counter{
+	bottom: 37.65em;
+}
+.slider-for, .slider-mobile-for{
 	background-color: black;
 }
 .slider-nav{
@@ -66,10 +69,13 @@
 	#vipOverlay{
 		display: none;
 	}
-	.slider-for img {
-    object-fit: cover;
-    height: 28em;
-		margin: 0 auto;
+	.slider-for, .slider-mobile-for{
+		width: 100%;
+		img {
+	    object-fit: cover;
+	    height: 28em;
+			margin: 0 auto;
+		}
 	}
 	.slick-dots {
 		bottom: 0;
@@ -202,5 +208,16 @@
 	}
 	.counter{
 		bottom: 6.5em;
+	}
+}
+
+@include in-breakpoint($no-break){
+	.slider-mobile-for{
+		width: 100%;
+		img {
+			object-fit: cover;
+			height: 320px;
+			margin: 0 auto;
+		}
 	}
 }

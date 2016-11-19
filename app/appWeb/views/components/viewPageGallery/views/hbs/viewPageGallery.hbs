@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container {{#if this.device.isMobile}}isMobile{{/if}}">
 
   <div class="zoomI hidden"></div>
   <div class="zoomT hidden">
@@ -12,6 +12,15 @@
     <span class="totalImg">{{this.advert.pictures.testPictures.length}}</span>
   </div>
 
+{{#if this.device.isMobile}}
+	<div class="carousel-images slider-mobile-for">
+		{{#each this.advert.pictures.testPictures}}
+			<img class="slick-carousel" src="{{this}}" alt={{@index}}/>
+		{{/each}}
+	</div>
+{{/if}}
+
+{{#unless this.device.isMobile}}
   <div class="carousel-text slider-for">
     {{#each this.advert.pictures.testPictures}}
       <div>
@@ -28,7 +37,6 @@
 
 </div>
 
-{{#unless this.device.isMobile}}
 <div id="vipOverlay" class="modal hidden">
   <div class="modal-overlay"></div>
   <div class="modal-container">
