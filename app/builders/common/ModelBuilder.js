@@ -39,6 +39,16 @@ class ModelBuilder {
 		return Q.all(promises);
 	}
 
+	resolveAllSettledPromises(functions) {
+		if (!functions) {
+			functions = this.arrFunctions;
+		}
+		let promises = functions.map((fn) => {
+			return (_.isFunction(fn)) ? fn() : fn;
+		});
+		return Q.allSettled(promises);
+	}
+
 	//returns an unformatted lat/long for general purpose use, or null if no cookie present or improperly formed
 	getGeoFromCookieUnformatted(geoIdCookie) {
 

@@ -186,7 +186,10 @@
 		 "quickpost" : {
 			"currencyDisplay"    : true,
 			"currency"           : ["MXN:MXN","USD:USD"]
-        }
+        },
+		"vip" : {
+			"defaultKeywordsCount"	: 6
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {
@@ -264,12 +267,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "seo", "topSearches", "topLocations"
+					"advert", "keywords", "seo", "topSearches", "topLocations"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "seo", "topSearches", "topLocations"
+					"advert", "keywords", "seo", "topSearches", "topLocations"
 				]
 			}
 		},

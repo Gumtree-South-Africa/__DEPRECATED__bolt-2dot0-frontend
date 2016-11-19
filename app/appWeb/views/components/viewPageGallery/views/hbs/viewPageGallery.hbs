@@ -1,13 +1,13 @@
 <div id="vipGallery">
 	<div class="main">
-		<div class="main-bgImg" style="background-image: url('{{this.advert.pictures.testPictures.[0]}}')"></div>
-		<div class="counter" data-image-length="{{this.advert.pictures.testPictures.length}}">
+		<div class="main-bgImg" style="background-image: url('{{this.advert.picturesToDisplay.testPictures.[0]}}')"></div>
+		<div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
 			<span class="currentImg">1</span>
 			<span class="separator">/</span>
-			<span class="totalImg">{{this.advert.pictures.testPictures.length}}</span>
+			<span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
 		</div>
 		<div class="vip-gallery">
-			{{#each this.advert.pictures.testPictures}}
+			{{#each this.advert.picturesToDisplay.testPictures}}
 				<span class="slick-carousel" style="background-image: url('{{this}}')"></span>
 			{{/each}}
 		</div>
