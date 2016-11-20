@@ -219,9 +219,7 @@ class PhotoContainer {
 	 */
 	_updatePhotoDivBackgroundImg(urlNormal) {
 		let coverPhoto = $('#photo-' + this.latestPosition);
-		coverPhoto.css("background-image", "url('" + urlNormal + "')");
-		coverPhoto.attr("data-image", urlNormal);
-		coverPhoto.toggleClass('no-photo',false);
+		coverPhoto.css("background-image", "url('" + urlNormal + "')").attr("data-image", urlNormal).toggleClass('no-photo',false);
 		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
 		imgUrls[this.latestPosition] = urlNormal;
 		this._updateLatestPhotoPosition();
@@ -236,9 +234,7 @@ class PhotoContainer {
 		// 1.Using the first camera photo div as template
 		let newDiv = $("#photo-0").clone();
 		// 2.Adjust style for multiple photo laylout
-		newDiv.removeClass("cover-photo-big");
-		newDiv.addClass("cover-photo-small");
-		newDiv.attr("draggable", "true");
+		newDiv.removeClass("cover-photo-big").addClass("cover-photo-small").attr("draggable", "true");
 		newDiv.find(".add-photo-text").css("font-size", "small");
 		$(newDiv.find(".add-photo-text")).toggleClass('spinner',false);
 		// 3.Hide the first camera photo div
@@ -265,8 +261,7 @@ class PhotoContainer {
 			window.BOLT.trackEvents({"event": "PostAdPhotoRemove"});
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
-			imageDiv.css("background-image", "");
-			imageDiv.toggleClass("no-photo", true);
+			imageDiv.css("background-image", "").toggleClass("no-photo", true);
 
 			this.imageCount--;
 			if (this.imageCount === 0) {

@@ -1,3 +1,27 @@
+@mixin cover-photo-common {
+	cursor: pointer;
+	position: relative;
+	border: 1px solid black;
+	background-size: contain;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+@mixin delete-wrapper-mix {
+	.delete-wrapper {
+		position: absolute;
+		right: 0;
+		top: 0;
+		background-color: transparent;
+		border-radius: 50%;
+		border: 1px solid black;
+
+		.icon-close {
+			margin-left: 2px;
+			margin-top: 2px;
+		}
+	}
+}
+
 .photo-switcher {
 	display: inline-block;
 	width: 300px;  // Align with banner asset
@@ -31,32 +55,14 @@
 	}
 
 	.cover-photo-big {
-		cursor: pointer;
-		position: relative;
 		width: 120px;
 		height: 120px;
 		margin: 0 auto;
 		margin-top: 10%;
 		margin-bottom: 10%;
 		padding: 1px;
-		border: 1px solid black;
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
-
-		.delete-wrapper {
-			position: absolute;
-			right: 0;
-			top: 0;
-			background-color: transparent;
-			border-radius: 50%;
-			border: 1px solid black;
-
-			.icon-close {
-				margin-left: 2px;
-				margin-top: 2px;
-			}
-		}
+		@include cover-photo-common;
+		@include delete-wrapper-mix;
 
 		.icon-camera-v2 {
 			width: 50px;
@@ -69,31 +75,13 @@
 	}
 
 	.cover-photo-small {
-		cursor: pointer;
-		position: relative;
 		width: 72px;
 		height: 72px;
 		margin: 2% 2.8%;
-		border: 1px solid black;
-		background-size: contain;
-		background-position: center;
-		background-repeat: no-repeat;
 		float:left;
 		border-radius: 5px;
-
-		.delete-wrapper {
-			position: absolute;
-			right: 0;
-			top: 0;
-			background-color: transparent;
-			border-radius: 50%;
-			border: 1px solid black;
-
-			.icon-close {
-				margin-left: 2px;
-				margin-top: 2px;
-			}
-		}
+		@include cover-photo-common;
+		@include delete-wrapper-mix;
 
 		.icon-camera-v2 {
 			width: 21.5px;
