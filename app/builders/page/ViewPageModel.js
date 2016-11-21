@@ -7,6 +7,7 @@ let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
 
@@ -118,6 +119,7 @@ class ViewPageModel {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
 
 		return modelData;
@@ -128,6 +130,7 @@ class ViewPageModel {
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
+		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
@@ -191,53 +194,53 @@ class ViewPageModel {
 				_.extend(data, advertData.ad);
 
 				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
-				// if (this.req.app.locals.isSeoUrl === true) {
-				// 	let originalSeoUrl = this.req.originalUrl;
-				// 	let seoVipElt = data._links.find((elt) => {
-				// 		return elt.rel === "seoVipUrl";
-				// 	});
-				// 	let dataSeoVipUrl = seoVipElt.href;
-				// 	if (originalSeoUrl !== dataSeoVipUrl) {
-				// 		res.redirect(dataSeoVipUrl);
-				// 		return;
-				// 	}
-				// 	data.seoVipUrl = dataSeoVipUrl;
-				// }
+				if (this.req.app.locals.isSeoUrl === true) {
+					let originalSeoUrl = this.req.originalUrl;
+					let seoVipElt = data._links.find((elt) => {
+						return elt.rel === "seoVipUrl";
+					});
+					let dataSeoVipUrl = seoVipElt.href;
+					if (originalSeoUrl !== dataSeoVipUrl) {
+						res.redirect(dataSeoVipUrl);
+						return;
+					}
+					data.seoVipUrl = dataSeoVipUrl;
+				}
 
-				// // Manipulate Ad Data
-				// data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				// data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
-				//
-				// data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
-				// data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				// if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
-				// 	_.each(data.pictures.sizeUrls, (picture) => {
-				// 		let pic = picture['LARGE'];
-				// 		data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-				// 		data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-				// 		data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-				// 		data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-				// 	});
-				// }
-				//
-				// let locationElt = data._links.find( (elt) => {
-				// 	return elt.rel === "location";
-				// });
-				// data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
-				//
-				// let categoryElt = data._links.find( (elt) => {
-				// 	return elt.rel === "category";
-				// });
-				// data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
-				//
-				// data.categoryCurrentHierarchy = [];
-				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
-				// return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
-				// 	_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-				// 	this.prepareDisplayAttributes(data);
-				// 	console.log('$$$$$$$ ', data);
+				// Manipulate Ad Data
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
+				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+					_.each(data.pictures.sizeUrls, (picture) => {
+						let pic = picture['LARGE'];
+						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+
+				let locationElt = data._links.find( (elt) => {
+					return elt.rel === "location";
+				});
+				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
+
+				let categoryElt = data._links.find( (elt) => {
+					return elt.rel === "category";
+				});
+				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+
+				data.categoryCurrentHierarchy = [];
+				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+					this.prepareDisplayAttributes(data);
+					console.log('$$$$$$$ ', data);
 					return data;
-				// });
+				});
 			});
 		};
 
@@ -263,6 +266,10 @@ class ViewPageModel {
 				console.warn(`error getting keywords data ${err}`);
 				return {};
 			});
+		};
+
+		this.dataPromiseFunctionMap.safetyTips = () => {
+			return safetyTipsModel.getSafetyTips();
 		};
 
 		this.dataPromiseFunctionMap.seo = () => {

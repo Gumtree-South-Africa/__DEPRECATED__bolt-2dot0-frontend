@@ -16,12 +16,19 @@
             {{> (dynamic "sellerProfile")}}
         </div>
 
-		<div class="reply-form">
-            {{> (dynamic "replyForm")}}
-		</div>
+  		<div class="reply-form">
+              {{> (dynamic "replyForm")}}
+  		</div>
     </div>
 
-    {{> (dynamic "rightBanner")}}
+        {{> (dynamic "rightBanner")}}
+
+        {{#if this.safetyTips}}
+            <div class="vip-safety-tips">
+                {{> (dynamic "safetyTips") }}
+			</div>
+        {{/if}}
+    </div>
 
     {{> (dynamic "bottomBanner")}}
 

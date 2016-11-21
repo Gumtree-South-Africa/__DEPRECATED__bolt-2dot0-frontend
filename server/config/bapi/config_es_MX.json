@@ -267,12 +267,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "keywords", "seo"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "keywords", "seo"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			}
 		},
