@@ -1,3 +1,6 @@
+.PostAdForm body {
+	font-family: $bodyFont;
+}
 .post-ad-form-container {
 	.input-form {
 		.control input:checked ~ .currency-type {

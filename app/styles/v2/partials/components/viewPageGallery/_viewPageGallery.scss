@@ -13,7 +13,7 @@
 		}
 	}
 	.slick-slide, .main-bgImg {
-    height: 20em;
+    height: 28em;
     background-repeat: no-repeat;
 		background-position: center;
 		background-size: contain;
@@ -94,7 +94,6 @@
 
 @include from-breakpoint($medium-break){
 	#vipGallery{
-		width: 50%;
 		.main-bgImg{
 			display: block;
 			margin-bottom: 2em;

@@ -1,0 +1,24 @@
+.modal {
+	color: $modal-color;
+	font-family: $bodyFont;
+	> .modal-container {
+		background: $modal-bgcolor;
+
+		> .modal-close-section {
+			color: $modal-color;
+		}
+	}
+
+	.container {
+		border-color: $modal-color;
+	}
+
+	.modal-field {
+		background: white;
+	}
+
+	.modal-header-message {
+		color: $modal-color;
+		font-weight: bold;
+	}
+}

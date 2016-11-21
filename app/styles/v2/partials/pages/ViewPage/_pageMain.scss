@@ -1,7 +1,21 @@
-.view-page-container {
-	.view-content-container {
-		left: 0;
-		right: 0;
-		margin: auto;
+.page{
+	margin: 0 auto;
+	max-width: 64em;
+	overflow-x: hidden;
+  background-color: $page-bgcolor;
+}
+.footer-wrapper {
+	margin: 0 auto;
+	max-width: 64em;
+}
+
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	.vip-left-columns{
+		@include span(3 of 6);
+	}
+	.vip-right-columns{
+		@include span(3 of 6);
+		margin-right: 0;
 	}
 }

@@ -18,7 +18,7 @@ describe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			`${endpoints.ads}?_forceExample=true&_statusCode=201`,
 			'test/serverUnit/mockData/postAd/postAdResponse.json');
 		// 'server/services/mockData/postAdResponse.json');
 
@@ -58,7 +58,7 @@ describe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			`${endpoints.ads}?_forceExample=true&_statusCode=201`,
 			'server/services/mockData/postAdResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {

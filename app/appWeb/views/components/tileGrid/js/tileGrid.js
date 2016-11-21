@@ -345,4 +345,3 @@ class TileGrid {
 }
 
 module.exports = new TileGrid();
-
