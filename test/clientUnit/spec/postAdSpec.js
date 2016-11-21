@@ -9,6 +9,7 @@ let loginModalController = require("app/appWeb/views/components/loginModal/js/lo
 let postAdModalController = require("app/appWeb/views/components/postAdModal/js/postAdModal.js");
 let postAdFormMainDetailsController =
 	require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
+let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -53,12 +54,51 @@ describe('Post Ad', () => {
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
 	});
+
+	describe('Post Ad page', () => {
+		let $testArea;
+		beforeEach(() => {
+			specHelper.mockGoogleLocationApi();
+
+			$testArea = specHelper.setupTest("postAd_es_MX", {
+
+			}, "es_MX");
+			uploadImageController.initialize();
+			postAdModalController.initialize();
+			postAdFormMainDetailsController.initialize(false);
+			spinnerModalController.initialize();
+			uploadAdController.initialize();
+			uploadAdController.viewModel.componentDidMount();
+		});
+		it('should call IRS and set component status correctly when image is uploaded', () => {
+			specHelper.registerMockAjax('/api/postad/imagerecognition', { categoryId: 1 });
+			let postAdViewModel = uploadAdController.viewModel;
+
+			spyOn(postAdViewModel.postAdFormMainDetails, 'show');
+			spyOn(spinnerModalController, 'showModal').and.callThrough();
+			spyOn(spinnerModalController, 'completeSpinner').and.callFake(completionCb => completionCb());
+			specHelper.mockObjectProperty(postAdViewModel.postAdFormMainDetails, 'categoryId', 0);
+
+			postAdViewModel.mobileUpload.propertyChanged.trigger('imageUrl', 'http://fakeUrl/fakePath');
+
+			// Detail form should be shown
+			expect(postAdViewModel.postAdFormMainDetails.show).toHaveBeenCalled();
+			expect(spinnerModalController.showModal).toHaveBeenCalled();
+			expect(spinnerModalController.completeSpinner).toHaveBeenCalled();
+			expect(postAdViewModel.postAdFormMainDetails.categoryId).toBe(1);
+		});
+	});
+
+
 	describe('Upload Image (mobile)', () => {
 		let $testArea;
 		let file;
 
 		beforeEach(() => {
-			$testArea = specHelper.setupTest("uploadImage_es_MX", {
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
+
+			$testArea = specHelper.setupTest("uploadImage", {
 				eps: {
 					epsUploadExternalURL: '/eps',
 					isEbayDirectUploadEnabled: true
@@ -73,7 +113,13 @@ describe('Post Ad', () => {
 				name: 'asdf.png'
 			};
 
-			specHelper.mockGoogleLocationApi();
+			uploadImageController.initialize();
+			postAdModalController.initialize();
+			postAdFormMainDetailsController.initialize(false);
+			spinnerModalController.initialize();
+			uploadAdController.initialize();
+			uploadAdController.viewModel.componentDidMount();
+
 		});
 
 
@@ -83,7 +129,8 @@ describe('Post Ad', () => {
 
 		it('Should update background image after EPS', () => {
 			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
-			uploadImageController.initialize();
+			spyOn(uploadAdController.viewModel.mobileUpload.propertyChanged, 'trigger');
+
 			uploadImageController.loadData(0, file);
 
 			let $imagePreview = $testArea.find('.user-image');
@@ -94,32 +141,36 @@ describe('Post Ad', () => {
 		});
 
 		it('Should not request location if cookie is set', () => {
-			specHelper.registerMockAjax('/api/postad/create', mockPostAdResponse);
-			let postAd = uploadAdController._postAd;
-			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
-				postAd(images, (response) => {
-					expect(options.locationType).toBe('cookie');
-					expect(response).toBe(mockPostAdResponse);
-					success(response);
-				}, fail, options);
-			});
 			document.cookie = 'geoId=123ng456';
+			uploadAdController.requestLocation((locationType) =>
+				expect(locationType).toBe('cookie'));
+		});
+	});
+
+	describe('Main detail form', () => {
+		let $testArea;
+		beforeEach(() => {
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
+			$testArea = specHelper.setupTest("postAdFormMainDetails", {
+				'footer': {
+					"baseJSUrl": '/public/js/'
+				}
+			}, "es_MX");
+
 			uploadImageController.initialize();
-			uploadImageController.loadData(0, file);
+			postAdModalController.initialize();
+			postAdFormMainDetailsController.initialize(false);
+			postAdFormMainDetailsController.onReady();
+			spinnerModalController.initialize();
+			uploadAdController.initialize();
+			uploadAdController.viewModel.componentDidMount();
 		});
 
-		it('should show error modal for failed ajax', () => {
-			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, {fail: true});
-			let postAd = uploadAdController._postAd;
-			spyOn(uploadAdController, '_postAd').and.callFake((images, success, fail, options) => {
-				postAd(images, success, (err) => {
-					expect($('#js-upload-spinner').hasClass('hidden')).toBeFalsy('Expected the spinner to be present.');
-					fail(err);
-				}, options);
-			});
-			document.cookie = 'geoId=123ng456';
-			uploadImageController.initialize();
-			uploadImageController.loadData(0, file);
+		it('should be in fix mode for failed ajax', () => {
+			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, { fail: true, status: 400 });
+			postAdFormMainDetailsController._ajaxPostForm();
+			expect(postAdFormMainDetailsController.viewModel.isFormValid).toBeFalsy();
 		});
 	});
 
