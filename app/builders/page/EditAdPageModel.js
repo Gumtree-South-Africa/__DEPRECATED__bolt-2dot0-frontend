@@ -11,6 +11,7 @@ let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
 
 let _ = require('underscore');
@@ -134,6 +135,21 @@ class EditAdPageModel {
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
+
+					// Mixin "required" flag for attributes of vertical categories
+					let verticalCategory = VerticalCategoryUtil.getVerticalCategory(
+						data.categoryId, modelData.categoryAll,
+						this.res.locals.config.bapiConfigData.content.verticalCategories);
+					if (verticalCategory) {
+						modelData.customAttributes = modelData.customAttributes.map(attr => {
+							let mixedAttr = {};
+							_.extend(mixedAttr, attr);
+							mixedAttr.required = verticalCategory.requiredCustomAttributes.indexOf(attr.name) !== -1;
+							return mixedAttr;
+						});
+						modelData.verticalCategory = verticalCategory;
+					}
+
 					return data;
 				});
 

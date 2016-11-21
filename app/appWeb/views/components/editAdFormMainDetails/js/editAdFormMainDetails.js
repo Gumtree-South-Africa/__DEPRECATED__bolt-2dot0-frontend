@@ -396,9 +396,19 @@ class EditAdFormMainDetails {
 				customAttributes.updateCustomAttributes((data) => {
 					// toggle price field based on if its excluded from new category
 					this._toggleShowPriceField(data.isPriceExcluded);
+
+					// toggle required-field for title and description
+					this.$detailsSection.find('.form-ad-title').toggleClass('required-field', !!data.verticalCategory);
+					this.$detailsSection.find('.form-ad-description').toggleClass('required-field', !!data.verticalCategory);
+
 					// polyfill the form to get date pickers
 					this.$detailsSection.find("form").updatePolyfill();
 				}, newCatId);
+
+				// remove validation-error in title and description
+				this.$detailsSection.find('[name=Title]').removeClass('validation-error');
+				this.$detailsSection.find('[name=description]').removeClass('validation-error');
+
 				// save the current hierarchy that was returned
 				this.currentHierarchy = hierarchy;
 			}
