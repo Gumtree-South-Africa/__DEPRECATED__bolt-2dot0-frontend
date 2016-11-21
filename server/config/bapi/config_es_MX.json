@@ -188,7 +188,8 @@
 			"currency"           : ["MXN:MXN","USD:USD"]
         },
 		"vip" : {
-			"defaultKeywordsCount"	: 6
+			"defaultKeywordsCount"	: 6,
+			"payWithShepherd": false
 		}
 	},
 	"bapi" : {

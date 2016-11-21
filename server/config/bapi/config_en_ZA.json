@@ -196,9 +196,13 @@
 		},
 		"localCurrencies": ["ZAR"],
 		"quickpost" : {
-	              "currencyDisplay"	: false,
-	              "currency"		: ["ZAR:ZAR"]
-	        }
+			"currencyDisplay"	: false,
+			"currency"		: ["ZAR:ZAR"]
+		},
+		"vip" : {
+			"defaultKeywordsCount"	: 6,
+			"payWithShepherd": true
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {
