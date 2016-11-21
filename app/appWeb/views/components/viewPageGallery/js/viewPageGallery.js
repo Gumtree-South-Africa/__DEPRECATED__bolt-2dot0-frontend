@@ -5,79 +5,134 @@ require("slick-carousel");
 class viewPageGallery {
 
 	/**
-	 * sets up all the variables and two functions (success and failure)
-	 * these functions are in here to be properly bound to this
-	 * @param options
-	 */
-	initialize(options) {
-		if (!options) {
-			options = {
-				slickOptions: {
-					arrows: false,
-					infinite: true,
-					slidesToShow: 1,
-					slidesToScroll: 1
-				},
-			};
-		}
+	* sets up all the variables and two functions (success and failure)
+	* these functions are in here to be properly bound to this
+	* @param options
+	*/
+	initialize() {
 
-		this.$vipGallery = $('#vipGallery');
+		const MEDIUM_BREAKPOINT = 848;
 
-		// Slick setup
-		this.$vipGallery.find('.vip-gallery').not('.slick-initialized').slick(options.slickOptions);
+		$('.slider-mobile-for').not('.slick-initialized').slick({
+			dots: true,
+			arrows: false,
+			infinite: true
+		});
 
-		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
+		$('.slider-for').not('.slick-initialized').slick({
+			arrows: false,
+			fade: true,
+			infinite: true,
+			responsive: [
+				{
+					breakpoint: MEDIUM_BREAKPOINT,
+					settings: {
+						dots: true
+					}
+				}
+			],
+			asNavFor: '.slider-nav'
+		});
 
-		this.$vipGallery.find('.slick-slide').on('click', (evt) => {
-			let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
-			let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
-			let cItems = document.querySelectorAll('.slick-carousel');
+		$('.slider-nav').not('.slick-initialized').slick({
+			slidesToShow: 5,
+			slidesToScroll: 1,
+			//lazyLoad: 'ondemand',
+			asNavFor: '.slider-for',
+			focusOnSelect: true,
+			arrows: true,
+			infinite: true
+		});
 
-			[].forEach.call(cItems, (item) => {
-				$(item).removeClass('selected');
-			});
 
-			$(evt.target).addClass('selected');
-			this.updateMainImage(evt);
-			if(!isMobile) {
-				this.updatePhotoCounter(parseInt($(evt.target).attr('data-slick-index')), count);
+		$('.slick-arrow').addClass('icon-back');
+		$('.slider-nav .slick-current').addClass('selected');
+		$('.container .slider-nav .slick-current').focus();
+
+		$('.modal-closearea').on('click', () => {
+			this._escapeFn();
+		});
+
+		$('.container').on('click', '.slider-for', () => {
+			let isMobile = $('.container .slider-nav').css('display') === 'none';
+			if(isMobile) {
+				//$('.zoomT').removeClass('hidden');
+				//this.updateCarouselHeight();
+				//$(evt.target);
+				//let cloneImg = $('.container .slider-for .slick-current img').clone();
+				//$('.ZoomI').html(cloneImg);
+				//this.updateZoomImageHeight();
+			} else {
+
+				let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
+				$('#vipOverlay .slider-nav').slick('setPosition');
+				$('#vipOverlay .slider-for').slick('setPosition');
+				$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
+				$('#vipOverlay').removeClass('hidden');
+				$('#vipOverlay .slider-nav .slick-current').focus();
+				$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
+				$('body').addClass('noScroll');
 			}
 		});
 
-		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-				event.stopPropagation();
-				event.preventDefault();
-				let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
-				let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
-				if(isMobile) {
-					this.updatePhotoCounter(nextSlide, count);
-				}
+		$('.slider-nav, .slider-mobile-for').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+			event.stopPropagation();
+			event.preventDefault();
+			let count = parseInt($('.counter').attr('data-image-length'));
+			this.updatePhotoCounter(nextSlide, count);
+			return false;
 		});
 
-		this.$vipGallery.find('.vip-gallery').on('breakpoint', () => {
-			$('.slick-arrow').addClass("icon-back");
+		$('.ZoomI').on('click doubleTap', (event) => {
+			event.stopPropagation();
+			event.preventDefault();
+			$('.ZoomI').addClass('hidden');
+			$('body').removeClass('hidden');
 		});
 
-		// this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
-		// 	evt.stopPropagation();
-		// 	evt.preventDefault();
-		// 	this.$vipGallery.find('.vip-gallery').clone().appendTo('#vipOverlay .vipOverlay-container');
-		// 	$('#vipOverlay .vipOverlay-container').not('.slick-initialized').slick(options.slickOptions);
-		// 	$('#vipOverlay').removeClass('hidden');
-		// });
+		$(document).on('keyup', (evt) => {
+			switch (evt.keyCode) {
+				//escape key
+				case 27:
+				this._escapeFn();
+				break;
+				default:
+				break;
+			}
+		});
 
-	}
-
-	updateMainImage(event) {
-			let bgImg = $(event.target).context.style.backgroundImage;
-			this.$vipGallery.find('.main-bgImg').css('background-image', bgImg);
 	}
 
 	updatePhotoCounter(idx, count) {
 		if(((idx + 1) % count) === 0) {
 			count = count+1;
 		}
-		this.$vipGallery.find('.counter .currentImg').html((idx+1)%count);
+		$('.counter .currentImg').html((idx+1)%count);
+	}
+
+	updateCarouselHeight() {
+		let fullImgHeight = $(window).height() - 90; //90 is the height of the white area with the text on the bottom
+		$('body').addClass('noScroll');
+		$('.container .slider-for').addClass('fullsize').css('height', fullImgHeight);
+		//$('.ZoomI').css('height', fullImgHeight);
+		//$('.ZoomI img').css('height', fullImgHeight*2);
+	}
+
+	updateZoomImageHeight() {
+		let fullImgHeight = $(window).height() - 90; //90 is the height of the white area with the text on the bottom
+		$('body').addClass('noScroll');
+		$('.ZoomI').removeClass('hidden').addClass('fullsize').css('height', fullImgHeight);
+		$('.ZoomI img').css('height', fullImgHeight*2);
+	}
+
+	_escapeFn() {
+		if (!$('#vipOverlay').hasClass('hidden')) {
+			let slickIdx = $('#vipOverlay .slider-for .slick-current').attr('data-slick-index');
+			$('#vipOverlay').addClass('hidden');
+			$('body').removeClass('noScroll');
+			$('.container .slider-nav').slick('slickGoTo', slickIdx);
+			$('.container .slider-nav .slick-current').focus();
+		}
 	}
 
 }
