@@ -16,9 +16,15 @@
         <div class="seller-profile">
             {{> (dynamic "sellerProfile")}}
         </div>
-    </div>
 
-    {{> (dynamic "rightBanner")}}
+        {{> (dynamic "rightBanner")}}
+
+        {{#if this.safetyTips}}
+            <div class="vip-safety-tips">
+                {{> (dynamic "safetyTips") }}
+			</div>
+        {{/if}}
+    </div>
 
     {{> (dynamic "bottomBanner")}}
 

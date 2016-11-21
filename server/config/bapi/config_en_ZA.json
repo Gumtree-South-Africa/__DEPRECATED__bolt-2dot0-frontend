@@ -240,6 +240,18 @@
 			"mobile" 	: {
 				"models" : ["locationlatlong", "adResult", "seo"]
 			}
+		},
+		"VIP": {
+			"desktop": {
+				"models": [
+					"advert", "keywords", "safetyTips", "seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "keywords", "safetyTips", "seo"
+				]
+			}
 		}
 	}
 }
