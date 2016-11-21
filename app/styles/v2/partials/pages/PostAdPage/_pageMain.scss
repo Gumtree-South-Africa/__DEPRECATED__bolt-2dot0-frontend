@@ -97,6 +97,13 @@ $labelMargin: 8%;
 		display: block !important; //TBD, need to find why another breakpoint created
 	}
 
+	.two-step {
+		display: block !important;
+	}
+	.one-step {
+		display: none;
+	}
+
 	.icon-down {
 		display: none;
 	}
@@ -132,5 +139,12 @@ $labelMargin: 8%;
 	.main-detail-post {
 		display:none;
 		background-color: $mainDetailsBackgroundColor;
+	}
+
+	.two-step {
+		display: none;
+	}
+	.one-step {
+		display: block;
 	}
 }

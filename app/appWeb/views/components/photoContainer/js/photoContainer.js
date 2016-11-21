@@ -239,6 +239,7 @@ class PhotoContainer {
 		$(newDiv.find(".add-photo-text")).toggleClass('spinner',false);
 		// 3.Hide the first camera photo div
 		$("#photo-0").hide();
+		$(".photo-limits").hide();
 		// 4.Create multiple photo upload layout
 		for (let j = 1; j <= this.allowedUploads; j++) {
 			newDiv.attr("id", "photo-" + j);
@@ -246,6 +247,7 @@ class PhotoContainer {
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
+		$(".drag-reorder").show();
 	}
 
 	/**

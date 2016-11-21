@@ -1172,7 +1172,9 @@
 	"postad": {
 		"upload": {
 			"photo": "Sube una foto",
-			"photos": "Sube foto(s)"
+			"photos": "Sube foto(s)",
+			"photoLimits" : "Cargar hasta 12 fotos",
+			"dragReOrder": "Toca y arrastra para reacomodarlas"
 		},
 		"image": {
 			"upload": {
@@ -1276,7 +1278,9 @@
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
 		"locationWarning": "Tu ubicación exacta no se publicará",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"info": "Ciudad, Colonia o Delegaci\u00F3n",
+		"currentLocation": "Ubicación actual",
+		"yourLocation": "Ubicación de tu anuncio"
 	},
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",

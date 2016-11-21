@@ -1,5 +1,10 @@
 <div id="js-main-detail-post" class="main-detail-post">
-	<div class="post-add-detail">{{i18n "editAd.mainDetails.title"}}<div class="icon-down"></div><div class="icon-up hidden"></div></div>
+	<div class="post-add-detail">
+	    <span class="one-step">{{i18n "editAd.mainDetails.title"}} </span>
+	    <span class="two-step">2. {{i18n "editAd.mainDetails.title"}} </span>
+	    <div class="icon-down"></div>
+	    <div class="icon-up hidden"></div>
+	</div>
 	<form id='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
 		{{> (dynamic "categoryDropdownSelection")}}
 		<div class="form-ad-title form-field">

@@ -56,11 +56,10 @@ describe('Post Ad', () => {
 	});
 
 	describe('Post Ad page', () => {
-		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 
-			$testArea = specHelper.setupTest("postAd_es_MX", {
+			specHelper.setupTest("postAd_es_MX", {
 
 			}, "es_MX");
 			uploadImageController.initialize();
@@ -148,11 +147,10 @@ describe('Post Ad', () => {
 	});
 
 	describe('Main detail form', () => {
-		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-			$testArea = specHelper.setupTest("postAdFormMainDetails", {
+			specHelper.setupTest("postAdFormMainDetails", {
 				'footer': {
 					"baseJSUrl": '/public/js/'
 				}

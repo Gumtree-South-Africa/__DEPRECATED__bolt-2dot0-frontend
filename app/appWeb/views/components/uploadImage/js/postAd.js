@@ -108,7 +108,7 @@ class PostAd {
 			this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
 			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
 			this.viewModel.postAdFormMainDetails.propertyChanged.addHandler((propName, newValue) => {
-				if (propName === 'isFixMode' || propName === 'isValid') {
+				if ((propName === 'isFixMode' || propName === 'isValid') && newValue) {
 						photoContainer.setFormValid(!this.viewModel.postAdFormMainDetails.isFixMode ||
 							this.viewModel.postAdFormMainDetails.isValid);
 				}

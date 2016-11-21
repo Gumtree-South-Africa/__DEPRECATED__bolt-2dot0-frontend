@@ -37,7 +37,14 @@
 		color: $formLabelTextColor;
 	}
 	.drag-reorder {
-		padding: 0.618em 0;
+		padding: 1em 0;
+		text-align: center;
+		font-size: medium;
+		color: $formLabelTextColor;
+	}
+
+	.photo-limits {
+		padding: 1em 0;
 		text-align: center;
 		font-size: medium;
 		color: $formLabelTextColor;
