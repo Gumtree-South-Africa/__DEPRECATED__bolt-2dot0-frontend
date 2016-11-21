@@ -124,6 +124,7 @@ let setupTest = (templateName, templateModel, locale) => {
 
 let mockGoogleLocationApi = () => {
 	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&language=");
+	registerMockAjax("https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language=");
 	window.google = window.google || {};
 	window.google.maps = window.google.maps || {};
 	window.google.maps.places = window.google.maps.places || {};
@@ -140,6 +141,20 @@ let mockWebshim = () => {
 	registerMockAjax("/public/js/libraries/webshims/shims/form-shim-extend.js", {});
 };
 
+let objectPropertyMocks = [];
+
+// This should only be used to mock a property defined using getter / setter in class definition.
+// It will define a property on the object which will override the definition in prototype.
+// And delete this property will recover the property defined in prototype.
+let mockObjectProperty = (obj, prop, initValue) => {
+	objectPropertyMocks.push({obj: obj, prop: prop });
+	Object.defineProperty(obj, prop, { configurable: true, enumerable: false, writable: true, value: initValue });
+};
+
+let unmockAllObjectProperties = () => {
+	objectPropertyMocks.forEach(mockDefinition => delete mockDefinition.obj[mockDefinition.prop]);
+};
+
 let exports = {
 	setupTest,
 	registerMockAjax,
@@ -147,7 +162,8 @@ let exports = {
 	getCookie,
 	disableFormWarning,
 	mockWebshim,
-	mockGoogleLocationApi
+	mockGoogleLocationApi,
+	mockObjectProperty
 };
 
 _.extend(exports, simulateInteractionHelpers);
@@ -190,4 +206,5 @@ afterEach(() => {
 	$(window).off();
 	formChangeWarning.disable();
 	mockAjaxMapQueue = [];
+	unmockAllObjectProperties();
 });
