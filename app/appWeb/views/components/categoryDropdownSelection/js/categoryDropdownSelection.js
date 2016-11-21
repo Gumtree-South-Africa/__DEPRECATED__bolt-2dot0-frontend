@@ -204,6 +204,7 @@ class CategoryDropdownSelection {
 			}
 			this.$categorySelection.append(select);
 			select.change((evt) => {
+				window.BOLT.trackEvents({"event": "PostAdCategory" + hierarchyArray.length});
 				let newLastSelectedCatId = Number($(evt.currentTarget).val());
 				this._updateCatHierarchyArray(newLastSelectedCatId);
 			});

@@ -72,7 +72,9 @@ class PostAdFormMainDetailsVM {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
-		$(this.$priceFormField).on('change', () => {
+		$(this.$priceFormField).on('change', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
 			window.BOLT.trackEvents({"event": "PostAdPrice"});
 		});
 		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');

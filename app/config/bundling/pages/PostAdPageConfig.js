@@ -16,7 +16,6 @@ module.exports = {
 			"LoginModal": "app/appWeb/views/components/loginModal/js/loginModal.js",
 			"mobileUpload": "app/appWeb/views/components/uploadImage/js/mobileUpload.js",
 			"PostAdModal": "app/appWeb/views/components/postAdModal/js/postAdModal.js",
-			"PostAdForm": "app/appWeb/views/components/postAdForm/js/postAdForm.js",
 			"PhotoContainer": "app/appWeb/views/components/photoContainer/js/photoContainer.js",
 			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
 			"PostAdFormMainDetails": "app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js",
