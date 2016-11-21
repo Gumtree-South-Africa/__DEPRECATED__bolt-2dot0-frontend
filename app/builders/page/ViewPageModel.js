@@ -193,19 +193,19 @@ class ViewPageModel {
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
-				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
-				if (this.req.app.locals.isSeoUrl === true) {
-					let originalSeoUrl = this.req.originalUrl;
-					let seoVipElt = data._links.find((elt) => {
-						return elt.rel === "seoVipUrl";
-					});
-					let dataSeoVipUrl = seoVipElt.href;
-					if (originalSeoUrl !== dataSeoVipUrl) {
-						res.redirect(dataSeoVipUrl);
-						return;
-					}
-					data.seoVipUrl = dataSeoVipUrl;
-				}
+				// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// if (this.req.app.locals.isSeoUrl === true) {
+				// 	let originalSeoUrl = this.req.originalUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// 	if (originalSeoUrl !== dataSeoVipUrl) {
+				// 		res.redirect(dataSeoVipUrl);
+				// 		return;
+				// 	}
+				// 	data.seoVipUrl = dataSeoVipUrl;
+				// }
 
 				// Manipulate Ad Data
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
