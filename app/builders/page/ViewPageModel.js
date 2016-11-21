@@ -79,6 +79,41 @@ class ViewPageModel {
 		}
 	}
 
+	/**
+	 *
+	 * @param data
+	 */
+	prepareDisplayAttributes(data) {
+		data.displayAttributes = [];
+		_.each(data.attributes, (attribute) => {
+			let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
+				return customAttribute.name === attribute.name;
+			});
+			if (typeof customAttributeObj !== 'undefined') {
+				let attr = {};
+				attr ['name'] = customAttributeObj.localizedName;
+				switch (customAttributeObj.allowedValueType) {
+					case 'NUMBER':
+						attr ['value'] = attribute.value.attributeValue;
+						break;
+					case 'LIST':
+						_.each(customAttributeObj.allowedValues, (allowedValues) => {
+							if (allowedValues.value == attribute.value.attributeValue) {
+								attr ['value'] = allowedValues.localizedValue;
+							}
+						});
+						break;
+					case 'DATE':
+						attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
+						break;
+					default:
+						attr ['value'] = '';
+				}
+				data.displayAttributes.push(attr);
+			}
+		});
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
@@ -94,9 +129,6 @@ class ViewPageModel {
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let seo = new SeoModel(modelData.bapiHeaders);
-
-		let adIdElements = advertModel.decodeLongAdId(this.adId);
-		console.log('******** ', adIdElements);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -141,8 +173,6 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
-				//TODO: check if it's real estate category for disclaimer
-				data.showAdditionalDisclaimers = false;
 
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
 				data.isOwnerAd = false;
@@ -159,72 +189,55 @@ class ViewPageModel {
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
-				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
-				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
-					_.each(data.pictures.sizeUrls, (picture) => {
-						let pic = picture['LARGE'];
-						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-					});
-				}
+				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// if (this.req.app.locals.isSeoUrl === true) {
+				// 	let originalSeoUrl = this.req.originalUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// 	if (originalSeoUrl !== dataSeoVipUrl) {
+				// 		res.redirect(dataSeoVipUrl);
+				// 		return;
+				// 	}
+				// 	data.seoVipUrl = dataSeoVipUrl;
+				// }
 
-				// let seoVipElt = data._links.find( (elt) => {
-				// 	return elt.rel === "seoVipUrl";
+				// // Manipulate Ad Data
+				// data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				// data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+				//
+				// data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				// data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				// if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+				// 	_.each(data.pictures.sizeUrls, (picture) => {
+				// 		let pic = picture['LARGE'];
+				// 		data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+				// 		data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+				// 		data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+				// 		data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+				// 	});
+				// }
+				//
+				// let locationElt = data._links.find( (elt) => {
+				// 	return elt.rel === "location";
 				// });
-				// data.seoVipUrl = seoVipElt.href;
-
-				let locationElt = data._links.find( (elt) => {
-					return elt.rel === "location";
-				});
-				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
-
-				let categoryElt = data._links.find( (elt) => {
-					return elt.rel === "category";
-				});
-				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
-
-				data.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
-				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
-					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					data.displayAttributes = [];
-					_.each(data.attributes, (attribute) => {
-						let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
-							return customAttribute.name === attribute.name;
-						});
-						if (typeof customAttributeObj !== 'undefined') {
-							let attr = {};
-							attr ['name'] = customAttributeObj.localizedName;
-							switch (customAttributeObj.allowedValueType) {
-								case 'NUMBER':
-									attr ['value'] = attribute.value.attributeValue;
-									break;
-								case 'LIST':
-									_.each(customAttributeObj.allowedValues, (allowedValues) => {
-										if (allowedValues.value == attribute.value.attributeValue) {
-											attr ['value'] = allowedValues.localizedValue;
-										}
-									});
-									break;
-								case 'DATE':
-									attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
-									break;
-								default:
-									attr ['value'] = '';
-							}
-							data.displayAttributes.push(attr);
-						}
-					});
-
-					console.log('$$$$$$$ ', data);
+				// data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
+				//
+				// let categoryElt = data._links.find( (elt) => {
+				// 	return elt.rel === "category";
+				// });
+				// data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+				//
+				// data.categoryCurrentHierarchy = [];
+				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+				// return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+				// 	_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+				// 	this.prepareDisplayAttributes(data);
+				// 	console.log('$$$$$$$ ', data);
 					return data;
-				});
+				// });
 			});
 		};
 
