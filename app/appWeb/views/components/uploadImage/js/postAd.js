@@ -107,6 +107,12 @@ class PostAd {
 			this.viewModel.componentDidMount($(document.body));
 			this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
 			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
+			this.viewModel.postAdFormMainDetails.propertyChanged.addHandler((propName, newValue) => {
+				if (propName === 'isFixMode' || propName === 'isValid') {
+						photoContainer.setFormValid(!this.viewModel.postAdFormMainDetails.isFixMode ||
+							this.viewModel.postAdFormMainDetails.isValid);
+				}
+			});
 
 			// TBD Need to refactor follow previous convention
 			photoContainer.setCategoryUpdateCallback((catId) => {

@@ -30,8 +30,6 @@ class PostAdFormMainDetailsVM {
 		this._isShown = false;
 		this._isFixMode = false;
 		this._isRequiredTitleAndDescription = false;
-		this._title = '';
-		this._description = '';
 		this._isValid = true;
 		this._isFormValid = true;
 	}
@@ -83,7 +81,7 @@ class PostAdFormMainDetailsVM {
 				this.$priceFormField.toggleClass('hidden', newValue);
 			} else if (propName === 'isFixMode') {
 				this._categoryDropdownSelection.isFixMode = newValue;
-			} else if (propName === 'title' || propName === 'description' || propName === 'isFormValid') {
+			} else if (propName === 'isFormValid') {
 				this._refreshIsValid();
 			} else if (propName === 'isRequiredTitleAndDescription') {
 				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
@@ -132,7 +130,7 @@ class PostAdFormMainDetailsVM {
 
 
 	get isRequiredTitleAndDescription() {
-		return this._isFixMode;
+		return this._isRequiredTitleAndDescription;
 	}
 
 	set isRequiredTitleAndDescription(newValue) {
@@ -171,32 +169,7 @@ class PostAdFormMainDetailsVM {
 	}
 
 	_refreshIsValid() {
-		this.isValid = this._title && this._title.length && this._description && this._description &&
-				this._categoryDropdownSelection.isValid && this._isFormValid;
-	}
-
-	get title() {
-		return this._title;
-	}
-
-	set title(newValue) {
-		if (this._title === newValue) {
-			return;
-		}
-		this._title = newValue;
-		this.propertyChanged.trigger('title', newValue);
-	}
-
-	get description() {
-		return this._description;
-	}
-
-	set description(newValue) {
-		if (this._description === newValue) {
-			return;
-		}
-		this._description = newValue;
-		this.propertyChanged.trigger('description', newValue);
+		this.isValid = this._categoryDropdownSelection.isValid && this._isFormValid;
 	}
 
 	show() {
@@ -471,11 +444,24 @@ class PostAdFormMainDetails {
 		// validation error
 		if (error.status === 400) {
 			let responseText = JSON.parse(error.responseText || '{}');
-
+			let isLocationMarked = false;
 			// node layer validation based on schema checking
 			if (responseText.hasOwnProperty("schemaErrors")) {
 				responseText.schemaErrors.forEach((schemaError) => {
-					let $input = $(`[data-schema="${schemaError.field}"]`);
+					// To be consistent with edit page
+					schemaError.field = schemaError.field.replace('data.ads.0', 'data');
+					let $input;
+					if (schemaError.field === 'data.location.latitude' ||
+						schemaError.field === 'data.location.longitude') {
+						// Handle latitude and longitue specially because the UI for them
+						// has been combined
+						if (isLocationMarked) {
+							return;
+						}
+						$input = $('[data-schema="data.location"]');
+					} else {
+						$input = $(`[data-schema="${schemaError.field}"]`);
+					}
 					let siblings = $input.siblings("input");
 					if (siblings.length === 1) {
 						$input = siblings;
@@ -676,14 +662,6 @@ class PostAdFormMainDetails {
 		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {
 				this._toggleSubmitDisable(this.viewModel.isFixMode && !this.viewModel.isValid);
-			}
-			if (propName === 'title' || propName === 'isFixMode') {
-				this.$titleField.toggleClass('validation-error',
-					this.viewModel.isFixMode && (!this.viewModel.title || !this.viewModel.title.length));
-			}
-			if (propName === 'description' || propName === 'isFixMode') {
-				this.$textarea.toggleClass('validation-error',
-					this.viewModel.isFixMode && (!this.viewModel.description || !this.viewModel.description.length));
 			}
 
 			if (propName === 'isFixMode' && !newValue) {

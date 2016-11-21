@@ -488,6 +488,10 @@ class PhotoContainer {
 		this.imageUrlsUpdateCallback = func;
 	}
 
+	setFormValid(isFormValid) {
+		this.$postAdButton.toggleClass("disabled", !isFormValid || !this.imageCount);
+	}
+
 }
 
 module.exports = new PhotoContainer();
