@@ -79,6 +79,41 @@ class ViewPageModel {
 		}
 	}
 
+	/**
+	 *
+	 * @param data
+	 */
+	prepareDisplayAttributes(data) {
+		data.displayAttributes = [];
+		_.each(data.attributes, (attribute) => {
+			let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
+				return customAttribute.name === attribute.name;
+			});
+			if (typeof customAttributeObj !== 'undefined') {
+				let attr = {};
+				attr ['name'] = customAttributeObj.localizedName;
+				switch (customAttributeObj.allowedValueType) {
+					case 'NUMBER':
+						attr ['value'] = attribute.value.attributeValue;
+						break;
+					case 'LIST':
+						_.each(customAttributeObj.allowedValues, (allowedValues) => {
+							if (allowedValues.value == attribute.value.attributeValue) {
+								attr ['value'] = allowedValues.localizedValue;
+							}
+						});
+						break;
+					case 'DATE':
+						attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
+						break;
+					default:
+						attr ['value'] = '';
+				}
+				data.displayAttributes.push(attr);
+			}
+		});
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
@@ -94,9 +129,6 @@ class ViewPageModel {
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let seo = new SeoModel(modelData.bapiHeaders);
-
-		let adIdElements = advertModel.decodeLongAdId(this.adId);
-		console.log('******** ', adIdElements);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -148,8 +180,24 @@ class ViewPageModel {
 				//TODO: check to see if additional attributes should be displayed based on specific categories
 				data.displayMoreAttributes = true;
 
-				// Merge Bapi Ad data
+				// Merge Bapi Ad Data
 				_.extend(data, advertData.ad);
+
+				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// if (this.req.app.locals.isSeoUrl === true) {
+				// 	let originalSeoUrl = this.req.originalUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// 	if (originalSeoUrl !== dataSeoVipUrl) {
+				// 		res.redirect(dataSeoVipUrl);
+				// 		return;
+				// 	}
+				// 	data.seoVipUrl = dataSeoVipUrl;
+				// }
+
+				// Manipulate Ad Data
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
@@ -165,11 +213,6 @@ class ViewPageModel {
 					});
 				}
 
-				// let seoVipElt = data._links.find( (elt) => {
-				// 	return elt.rel === "seoVipUrl";
-				// });
-				// data.seoVipUrl = seoVipElt.href;
-
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
 				});
@@ -184,35 +227,7 @@ class ViewPageModel {
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					data.displayAttributes = [];
-					_.each(data.attributes, (attribute) => {
-						let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
-							return customAttribute.name === attribute.name;
-						});
-						if (typeof customAttributeObj !== 'undefined') {
-							let attr = {};
-							attr ['name'] = customAttributeObj.localizedName;
-							switch (customAttributeObj.allowedValueType) {
-								case 'NUMBER':
-									attr ['value'] = attribute.value.attributeValue;
-									break;
-								case 'LIST':
-									_.each(customAttributeObj.allowedValues, (allowedValues) => {
-										if (allowedValues.value == attribute.value.attributeValue) {
-											attr ['value'] = allowedValues.localizedValue;
-										}
-									});
-									break;
-								case 'DATE':
-									attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
-									break;
-								default:
-									attr ['value'] = '';
-							}
-							data.displayAttributes.push(attr);
-						}
-					});
-
+					this.prepareDisplayAttributes(data);
 					console.log('$$$$$$$ ', data);
 					return data;
 				});
