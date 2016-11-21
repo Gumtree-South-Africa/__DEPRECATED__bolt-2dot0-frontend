@@ -1214,36 +1214,36 @@
 		"imageUpload": {
 			"error": {
 				"invalidDimension": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema con las dimensiones de tu imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con las dimensiones de tu imagen"
 				},
 				"invalidSize": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema con el tamaño de tu imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tamaño de tu imagen"
 				},
 				"invalidType": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema con el tipo de imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tipo de imagen"
 				},
 				"colorspace": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema para cargar tu imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
 				},
 				"firewall": {
-					"title": "Intenta nuevamente.",
-					"message": "Hay una problema con tu conxion a internet."
+					"title": "Intenta nuevamente",
+					"message": "Hay una problema con tu conxion a internet"
 				},
 				"picturesrv": {
-					"title": "Intenta nuevamente.",
-					"message": "Hay un problema para cargar tu imagen."
+					"title": "Intenta nuevamente",
+					"message": "Hay un problema para cargar tu imagen"
 				},
 				"corrupt": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema con tu imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con tu imagen"
 				},
 				"unknown": {
-					"title": "Intenta con otras imágenes?!",
-					"message": "Hay un problema para cargar tu imagen."
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
 				}
 			}
 		}
@@ -1355,7 +1355,7 @@
 		},
 		"mobileUpload": {
 			"post": "Listo",
-			"changePhoto": "Cambia <br>la Foto"
+			"changePhoto": "Cambia <br>foto"
 		}
 	},
 	"footer": {

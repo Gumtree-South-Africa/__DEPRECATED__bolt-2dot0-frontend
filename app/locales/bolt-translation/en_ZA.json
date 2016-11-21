@@ -1183,36 +1183,36 @@
 		"imageUpload": {
 			"error": {
 				"invalidDimension": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image dimension."
+					"title": "Try other images",
+					"message": "There is a problem with your image dimension"
 				},
 				"invalidSize": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image size."
+					"title": "Try other images",
+					"message": "There is a problem with your image size"
 				},
 				"invalidType": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image type."
+					"title": "Try other images",
+					"message": "There is a problem with your image type"
 				},
 				"colorspace": {
-					"title": "Try other images?!",
-					"message": "There is a problem uploading your image."
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
 				},
 				"firewall": {
-					"title": "Try again.",
-					"message": "There is a problem with your network."
+					"title": "Try again",
+					"message": "There is a problem with your network"
 				},
 				"picturesrv": {
-					"title": "Try again.",
-					"message": "There is a problem uploading your image."
+					"title": "Try again",
+					"message": "There is a problem uploading your image"
 				},
 				"corrupt": {
-					"title": "Try other images?!",
-					"message": "There is a problem with your image."
+					"title": "Try other images",
+					"message": "There is a problem with your image"
 				},
 				"unknown": {
-					"title": "Try other images?!",
-					"message": "There is a problem uploading your image."
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
 				}
 			}
 		}
