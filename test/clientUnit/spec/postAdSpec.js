@@ -162,6 +162,8 @@ describe('Post Ad', () => {
 			postAdModalController.initialize();
 			postAdFormMainDetailsController.initialize(false);
 			postAdFormMainDetailsController.onReady();
+			specHelper.mockObjectProperty(postAdFormMainDetailsController.viewModel, 'isFormValid', true);
+			specHelper.mockObjectProperty(postAdFormMainDetailsController.viewModel, 'isFixMode', false);
 			spinnerModalController.initialize();
 			uploadAdController.initialize();
 			uploadAdController.viewModel.componentDidMount();
@@ -171,6 +173,7 @@ describe('Post Ad', () => {
 			specHelper.registerMockAjax('/api/postad/create', {error: 'test error'}, { fail: true, status: 400 });
 			postAdFormMainDetailsController._ajaxPostForm();
 			expect(postAdFormMainDetailsController.viewModel.isFormValid).toBeFalsy();
+			expect(postAdFormMainDetailsController.viewModel.isFixMode).toBeTruthy();
 		});
 	});
 
