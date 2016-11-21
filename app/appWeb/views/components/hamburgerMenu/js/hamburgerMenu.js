@@ -44,14 +44,13 @@ class HamburgerMenuVM {
 				this._postButton.addClass('disabled');
 			}
 		});
-		this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
+		if (this._isPostDirectly) {
+			// Use new way of post, upload image on the page
+			this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
+		}
 	}
 
 	_handlePostButtonClicked(evt) {
-		if (!this._isPostDirectly) {
-			// Use default way of post
-			return;
-		}
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();

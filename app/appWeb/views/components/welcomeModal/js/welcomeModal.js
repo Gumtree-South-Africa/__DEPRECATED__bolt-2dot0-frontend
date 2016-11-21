@@ -65,7 +65,10 @@ class WelcomeModal {
 				this._$postButton.addClass('disabled');
 			}
 		});
-		this._$postButton.on('click', evt => this._handlePostButtonClicked(evt));
+		if (this._isPostDirectly) {
+			// Use new way of post, upload image on the page
+			this._$postButton.on('click', evt => this._handlePostButtonClicked(evt));
+		}
 
 		this._$modal = domElement.find('.modal-wrapper .modal');
 		this._$footer = domElement.find('.welcome-footer');
@@ -109,10 +112,6 @@ class WelcomeModal {
 	}
 
 	_handlePostButtonClicked(evt) {
-		if (!this._isPostDirectly) {
-			// Use default way of post
-			return;
-		}
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
 		evt.stopPropagation();
