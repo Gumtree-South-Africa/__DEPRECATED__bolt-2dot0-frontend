@@ -173,8 +173,6 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
-				//TODO: check if it's real estate category for disclaimer
-				data.showAdditionalDisclaimers = true;
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
 				data.isOwnerAd = false;
 				//TODO: check to see if additional attributes should be displayed based on specific categories
