@@ -196,9 +196,13 @@
 		},
 		"localCurrencies": ["ZAR"],
 		"quickpost" : {
-	              "currencyDisplay"	: false,
-	              "currency"		: ["ZAR:ZAR"]
-	        }
+			"currencyDisplay"	: false,
+			"currency"		: ["ZAR:ZAR"]
+		},
+		"vip" : {
+			"defaultKeywordsCount"	: 6,
+			"payWithShepherd": true
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {
@@ -239,6 +243,18 @@
 			},
 			"mobile" 	: {
 				"models" : ["locationlatlong", "adResult", "seo"]
+			}
+		},
+		"VIP": {
+			"desktop": {
+				"models": [
+					"advert", "keywords", "safetyTips", "seo"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "keywords", "safetyTips", "seo"
+				]
 			}
 		}
 	}

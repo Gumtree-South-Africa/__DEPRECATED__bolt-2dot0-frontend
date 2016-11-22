@@ -19,6 +19,7 @@ let extendModelData = (req, modelData) => {
 	} else {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
 	}
+	// JS
 	if (!modelData.footer.min) {
 		if (modelData.header.enableLighterVersionForMobile) {
 			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
@@ -32,23 +33,35 @@ let extendModelData = (req, modelData) => {
 			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
 		}
 	}
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
 router.get('/:id?', (req, res, next) => {
 	let adId = req.params.id;
+	req.app.locals.isSeoUrl = false;
 	if(adId === undefined) {
 		// Parse adId from SEO URL
 		// Example of view seo url: /v-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+11+16-00-31-37-716/1001104219250910700294009
 		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/') + 1);
+		req.app.locals.isSeoUrl = true;
 	}
+
+	// If no adId, redirect to homepage.
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
 	}
 
+	// If not 2.0 context, then redirect to 1.0 VIP
 	if (!pageControllerUtil.is2dot0Version(res)) {
-		res.redirect('/view.html?adId=' + adId);	// redirect to 1.0 version of this page
+		let redirectUrl = '';
+		if (req.app.locals.isSeoUrl === true) {
+			redirectUrl = req.originalUrl.replace('v-', 'a-'); // redirect to 1.0 SEO version of this page
+		} else {
+			redirectUrl = '/view.html?adId=' + adId; // redirect to 1.0 version of this page
+		}
+		res.redirect(redirectUrl);
 		return;
 	}
 
