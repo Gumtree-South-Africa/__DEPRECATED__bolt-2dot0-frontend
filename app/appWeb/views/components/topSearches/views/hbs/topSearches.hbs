@@ -6,14 +6,14 @@
 		.nonJsOnlyInline {display:inline !important;}
 	</style>
 </noscript>
-
+{{#each this.topSearches}}
 <div class="tab-content searches-wrapper">
     <div class="top-searches">
-		<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n "home.popular.searches"}}</span></div>
+		<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this.title}}</span></div>
 		<div class="jsOnly top-locations-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
-        {{#each this.topSearches}}
+				{{#each this.keywords}}
             {{#compare @index "<=" 5}}
                 <div class="nonJsOnlyInline top-content">
                     <a class="top-links" href="{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
@@ -31,3 +31,4 @@
             data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
     </div>
 </div>
+{{/each}}
