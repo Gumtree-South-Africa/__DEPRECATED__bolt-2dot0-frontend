@@ -198,7 +198,8 @@
 			"requiredCustomAttributes": ["JobType"]
 		}],
 		"vip" : {
-			"defaultKeywordsCount"	: 6
+			"defaultKeywordsCount"	: 6,
+			"payWithShepherd": false
 		}
 	},
 	"bapi" : {
@@ -277,12 +278,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "keywords", "seo"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "keywords", "seo"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			}
 		},
