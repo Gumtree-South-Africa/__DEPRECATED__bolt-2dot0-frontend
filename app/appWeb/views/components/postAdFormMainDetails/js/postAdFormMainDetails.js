@@ -23,7 +23,7 @@ class PostAdFormMainDetailsVM {
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
-		this.imageUrls = [];
+		this._imageUrls = [];
 
 		this._isPriceExcluded = true;
 		this._isShown = false;
@@ -169,6 +169,18 @@ class PostAdFormMainDetailsVM {
 
 	_refreshIsValid() {
 		this.isValid = this._categoryDropdownSelection.isValid && this._isFormValid;
+	}
+
+	get imageUrls() {
+		return this._imageUrls;
+	}
+
+	set imageUrls(newValue) {
+		if (this._imageUrls === newValue) {
+			return;
+		}
+		this._imageUrls = newValue;
+		this.propertyChanged.trigger('imageUrls', newValue);
 	}
 
 	show() {
@@ -663,8 +675,9 @@ class PostAdFormMainDetails {
 			window.BOLT.trackEvents({"event": "PostAdDescription"});
 		});
 		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
-			if (propName === 'isValid' || propName === 'isFixMode') {
-				this._toggleSubmitDisable(this.viewModel.isFixMode && !this.viewModel.isValid);
+			if (propName === 'isValid' || propName === 'isFixMode' || propName === 'imageUrls') {
+				this._toggleSubmitDisable(!this.viewModel.imageUrls || !this.viewModel.imageUrls.length ||
+					(this.viewModel.isFixMode && !this.viewModel.isValid));
 			}
 
 			if (propName === 'isFixMode' && !newValue) {
