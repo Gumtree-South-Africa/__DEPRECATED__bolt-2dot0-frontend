@@ -105,7 +105,6 @@ class PostAd {
 			this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
 			this.updateValidStatus();
 			this.viewModel.componentDidMount($(document.body));
-			this.viewModel.mobileUpload.handleLocationRequest = (callback) => this.requestLocation(callback);
 			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
 			this.viewModel.postAdFormMainDetails.propertyChanged.addHandler((propName, newValue) => {
 				if ((propName === 'isFixMode' || propName === 'isValid') && newValue) {
@@ -113,7 +112,12 @@ class PostAd {
 							this.viewModel.postAdFormMainDetails.isValid);
 				}
 			});
-
+			// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
+			this.requestLocationFromBrowser((locationType, timeout) => {
+					if (timeout !== undefined) {
+						clearTimeout(timeout);
+					}
+			});
 			// TBD Need to refactor follow previous convention
 			photoContainer.setCategoryUpdateCallback((catId) => {
 				this.viewModel.postAdFormMainDetails.categoryId = catId;
@@ -169,10 +173,10 @@ class PostAd {
 	}
 
 	/**
-	 * tries to get the location from the browser, defaults to timeout after 20 seconds.
+	 * Tries to get the location from the browser, defaults to timeout after 20 seconds, will setup geoId cookie when success
 	 * @param callback callback function that takes a string and a timeout to use with clearTimeout
 	 */
-	requestLocation(callback) {
+	requestLocationFromBrowser(callback) {
 		let timeout;
 		if ("geolocation" in navigator && this.getCookie('geoId') === '') {
 			//Don't want to sit and wait forever in case geolocation isn't working
@@ -209,6 +213,9 @@ class PostAd {
 		}
 	}
 
+	/**
+	 * Tries to get the location from geoId, will setup geoId cookie when success
+	 */
 	getLatLngFromGeoCookie() {
 		let geoCookie = this.getCookie('geoId');
 		let lat, lng;
@@ -220,7 +227,7 @@ class PostAd {
 		} else if (window.google && window.google.loader.ClientLocation) {
 			lat = Number(google.loader.ClientLocation.latitude);
 			lng = Number(google.loader.ClientLocation.longitude);
-			options.locationType = 'geoIp';
+			document.cookie = `geoId=${lat}ng${lng}`;
 			/*eslint-enable*/
 		} else {
 			console.warn('no geolocation provided');

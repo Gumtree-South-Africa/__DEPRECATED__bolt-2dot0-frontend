@@ -18,7 +18,6 @@ Array.prototype.remove = function(from, to) {
 class MobileUploadVM {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-		this.handleLocationRequest = null;
 
 		this._imageUrl = null;
 	}
@@ -195,14 +194,6 @@ class MobileUpload {
 		this.$uploadSpinner.addClass('hidden');
 		this.$uploadProgress.addClass('hidden');
 		this.$uploadProgress.html("0%");
-
-		if (this.viewModel.handleLocationRequest) {
-			this.viewModel.handleLocationRequest((locationType, timeout) => {
-				if (timeout !== undefined) {
-					clearTimeout(timeout);
-				}
-			});
-		}
 
 		this.viewModel.imageUrl = url;
 	}

@@ -20,7 +20,6 @@ class PostAdFormMainDetailsVM {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
 		this.handleGetLatLngFromGeoCookie = null;
-
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
@@ -526,19 +525,23 @@ class PostAdFormMainDetails {
 			}
 		});
 
+		/* Location Resolving start */
+		// 1. Try to get lat / lng from user selected location, base on google map auto complete
 		let lat = Number(serialized.locationLatitude);
 		let lng = Number(serialized.locationLongitude);
-
-		// No location input, get lat,lng from geoIp cookie
+		// 2. No location input, get lat / lng by default
 		if (!lat || !lng) {
-			let latLng = this.viewModel.handleGetLatLngFromGeoCookie();
-			lat = latLng.lat;
-			lng = latLng.lng;
+			//Try to get lat / lng from geoId cookie, if not exist will call google client location
+			if (this.viewModel.handleGetLatLngFromGeoCookie) {
+				let latLng = this.viewModel.handleGetLatLngFromGeoCookie();
+				lat = latLng.lat;
+				lng = latLng.lng;
+			}
 		}
+		/* Location Resolving end */
 
 		// Copy imageUrls to avoid changing original values
 		let imgUrls = [].concat(this.viewModel.imageUrls);
-
 		let description = this.$textarea.val();
 		let payload = {
 			"ads": [
