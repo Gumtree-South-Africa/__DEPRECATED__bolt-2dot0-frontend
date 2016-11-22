@@ -57,12 +57,12 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 	let categoryId = ad.categoryId;
 	if (categoryId === null || categoryId === undefined) {
 		// This error will be handled by other validators
-		return null;
+		return Q.resolve(null);
 	}
 	let categoryHierarchy = fetchCategoryHierarchy(categoryAllData, categoryId);
 	if (!categoryHierarchy) {
 		// This error will be handled by other validators
-		return null;
+		return Q.resolve(null);
 	}
 	let verticalCategory = null;
 	for(let index = 0; index < categoryHierarchy.length; index++) {
@@ -74,7 +74,7 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 	}
 	if (!verticalCategory) {
 		// It's not vertical
-		return null;
+		return Q.resolve(null);
 	}
 	let errors = [];
 	if (categoryHierarchy[categoryHierarchy.length - 1].children &&
@@ -104,7 +104,6 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 	}
 
 	let attributeModel = new AttributeModel(bapiHeaders);
-
 	return attributeModel.getAllAttributes(categoryId).then(attributeData => {
 		// Don't check not-exist attribute
 		requiredAttributes = requiredAttributes.filter(
@@ -122,7 +121,7 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 				});
 			}
 		});
-		return errors;
+		return Q.resolve(errors);
 	});
 }
 
