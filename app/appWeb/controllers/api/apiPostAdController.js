@@ -171,7 +171,7 @@ router.post('/create', cors, (req, res) => {
 		verticalCategoryValidationPromise = Q.resolve(null);
 	}
 
-	var bapiErrorHandler = (error) => {
+	let bapiErrorHandler = (error) => {
 		let errInfoObj;
 		if (error && error.bapiJson) {
 			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
