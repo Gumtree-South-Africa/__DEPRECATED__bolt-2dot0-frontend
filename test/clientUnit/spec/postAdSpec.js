@@ -141,7 +141,7 @@ describe('Post Ad', () => {
 
 		it('Should not request location if cookie is set', () => {
 			document.cookie = 'geoId=123ng456';
-			uploadAdController.requestLocation((locationType) =>
+			uploadAdController.requestLocationFromBrowser((locationType) =>
 				expect(locationType).toBe('cookie'));
 		});
 	});
