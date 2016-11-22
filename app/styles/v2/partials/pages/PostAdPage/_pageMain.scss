@@ -124,17 +124,11 @@ $labelMargin: 8%;
 	}
 }
 
-@include to-breakpoint($medium-break) {
-	.viewport.covered {
+@include to-breakpoint($small-break) {
+	.viewport.covered .footer-wrapper{
 		// To ensure nothing in page is covered by post button overlay
-		position: absolute;
-		left: 0;
-		right: 0;
-		top: 0;
-		// The height of post button layer
-		bottom: 73px;
-		overflow-y: auto;
-		overflow-x: hidden;
+		// Magic number 73 is the height of post button layer
+		margin-bottom: 73px;
 	}
 	.main-detail-post {
 		display:none;
