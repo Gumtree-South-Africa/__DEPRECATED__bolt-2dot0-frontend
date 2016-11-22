@@ -118,12 +118,6 @@ $labelMargin: 8%;
 	margin: auto;
 }
 
-@media(min-width: 768px) and (max-width:769px) {
-	.containment {
-		min-height: 733px;
-	}
-}
-
 @include to-breakpoint($small-break) {
 	.viewport.covered .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
