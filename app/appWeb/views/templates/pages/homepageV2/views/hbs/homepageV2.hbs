@@ -67,16 +67,14 @@
 			ptype: 'home'
 		};
 
-            {{#if this.showTopBanner}}
-                {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
-            {{/if}}
-            {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
-            {{#block "googleBannerAdsRightBottomV2_Script"}}{{/block}}
-            {{#block "googleBannerAdsBottom_Script"}}{{/block}}
-            {{> (dynamic "skinBanner") }}
-	        {{#block "googleBannerSkinCampaign_ScriptV2"}}{{/block}}
-
-
+        {{#if this.showTopBanner}}
+            {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
+        {{/if}}
+        {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
+        {{#block "googleBannerAdsRightBottomV2_Script"}}{{/block}}
+        {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+        {{> (dynamic "skinBanner") }}
+        {{#block "googleBannerSkinCampaign_ScriptV2"}}{{/block}}
 	</script>
 
 {{/partial}}

@@ -7,7 +7,7 @@ let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
-let LocationModel = require(cwd + '/app/builders/common/LocationModel');
+let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
 
@@ -81,50 +81,51 @@ class ViewPageModel {
 		}
 	}
 
+	/**
+	 * Prepare the display of attributes
+	 * @param data
+	 */
+	prepareDisplayAttributes(data) {
+		data.displayAttributes = [];
+		_.each(data.attributes, (attribute) => {
+			let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
+				return customAttribute.name === attribute.name;
+			});
+			if (typeof customAttributeObj !== 'undefined') {
+				let attr = {};
+				attr ['name'] = customAttributeObj.localizedName;
+				switch (customAttributeObj.allowedValueType) {
+					case 'NUMBER':
+						attr ['value'] = attribute.value.attributeValue;
+						break;
+					case 'LIST':
+						_.each(customAttributeObj.allowedValues, (allowedValues) => {
+							if (allowedValues.value == attribute.value.attributeValue) {
+								attr ['value'] = allowedValues.localizedValue;
+							}
+						});
+						break;
+					case 'DATE':
+						attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
+						break;
+					default:
+						attr ['value'] = '';
+				}
+				data.displayAttributes.push(attr);
+			}
+		});
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
 
-		// Changing Version of template depending of the cookie
-		// Dynamic Data from BAPI
-		modelData.categoryList = _.isEmpty(data['catWithLocId']) ? modelData.category : data['catWithLocId'];
-		modelData.level2Location = data['level2Loc'] || {};
-		modelData.initialGalleryInfo = data['gallery'] || {};
-
-		if (data['adstatistics']) {
-			modelData.totalLiveAdCount = data['adstatistics'].totalLiveAds || 0;
-		}
-
-		if (data['keyword']) {
-			modelData.trendingKeywords = data['keyword'][1].keywords || null;
-			modelData.topKeywords = data['keyword'][0].keywords || null;
-		}
-
-		// Make the loc level 2 (Popular locations) data null if it comes as an empty
-		if (_.isEmpty(modelData.level2Location)) {
-			modelData.level2Location = null;
-		}
-
-		// Check for top or trending keywords existence
-		modelData.topOrTrendingKeywords = false;
-		if (modelData.trendingKeywords || modelData.topKeywords) {
-			modelData.topOrTrendingKeywords = true;
-		}
-
-		// Special Data needed for HomePage in header, footer, content
-
-		// Make the location data null if it comes as an empty object from bapi
-		if (_.isEmpty(modelData.location)) {
-			modelData.location = null;
-		}
-
-		// Determine if we show the Popular locations container
-		modelData.showPopularLocations = true;
-		if (!modelData.level2Location && !modelData.location) {
-			modelData.showPopularLocations = false;
-		}
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+		modelData.vip = {};
+		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
 	}
@@ -134,10 +135,8 @@ class ViewPageModel {
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
+		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
-		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
-		let adIdElements = advertModel.decodeLongAdId(this.adId);
-		console.log('******** ', adIdElements);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -182,21 +181,36 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
-				//TODO: check if it's real estate category for disclaimer
-				data.showAdditionalDisclaimers = true;
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
 				data.isOwnerAd = false;
 				//TODO: check to see if additional attributes should be displayed based on specific categories
 				data.displayMoreAttributes = true;
 
-				// Merge Bapi Ad data
+				// Merge Bapi Ad Data
 				_.extend(data, advertData.ad);
+
+				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// if (this.req.app.locals.isSeoUrl === true) {
+				// 	let originalSeoUrl = this.req.originalUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// 	if (originalSeoUrl !== dataSeoVipUrl) {
+				// 		res.redirect(dataSeoVipUrl);
+				// 		return;
+				// 	}
+				// 	data.seoVipUrl = dataSeoVipUrl;
+				// }
+
+				// Manipulate Ad Data
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
-				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
+					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
 						let pic = picture['LARGE'];
 						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
@@ -205,11 +219,6 @@ class ViewPageModel {
 						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
-
-				// let seoVipElt = data._links.find( (elt) => {
-				// 	return elt.rel === "seoVipUrl";
-				// });
-				// data.seoVipUrl = seoVipElt.href;
 
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
@@ -225,35 +234,7 @@ class ViewPageModel {
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					data.displayAttributes = [];
-					_.each(data.attributes, (attribute) => {
-						let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
-							return customAttribute.name === attribute.name;
-						});
-						if (typeof customAttributeObj !== 'undefined') {
-							let attr = {};
-							attr ['name'] = customAttributeObj.localizedName;
-							switch (customAttributeObj.allowedValueType) {
-								case 'NUMBER':
-									attr ['value'] = attribute.value.attributeValue;
-									break;
-								case 'LIST':
-									_.each(customAttributeObj.allowedValues, (allowedValues) => {
-										if (allowedValues.value == attribute.value.attributeValue) {
-											attr ['value'] = allowedValues.localizedValue;
-										}
-									});
-									break;
-								case 'DATE':
-									attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
-									break;
-								default:
-									attr ['value'] = '';
-							}
-							data.displayAttributes.push(attr);
-						}
-					});
-
+					this.prepareDisplayAttributes(data);
 					console.log('$$$$$$$ ', data);
 					return data;
 				});
@@ -284,15 +265,6 @@ class ViewPageModel {
 			});
 		};
 
-		this.dataPromiseFunctionMap.topLocations = () => {
-			return locationModel.getTopL2Locations().then((data) => {
-				return data;
-			}).fail((err) => {
-				console.warn(`error getting topLocations data ${err}`);
-				return {};
-			});
-		};
-
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
 				return data[0].keywords || {};
@@ -300,6 +272,10 @@ class ViewPageModel {
 				console.warn(`error getting topSearches data ${err}`);
 				return {};
 			});
+		}
+
+		this.dataPromiseFunctionMap.safetyTips = () => {
+			return safetyTipsModel.getSafetyTips();
 		};
 
 		this.dataPromiseFunctionMap.seo = () => {

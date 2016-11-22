@@ -19,7 +19,6 @@ module.exports = {
 			"PageMain": "app/appWeb/views/templates/pages/viewPage/js/viewPage.js",
 			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
 		//	"ViewPageDetails": "app/appWeb/views/components/viewPageDetails/js/viewPageDetails.js",
-			"TopLocations": "app/appWeb/views/components/topLocations/js/topLocations.js",
 			"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
 			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js"
 		},
@@ -28,6 +27,11 @@ module.exports = {
 	},
 	"locales": {
 		"es_MX": {
+			"core": {}, // locale specific core modules have the third h
+			"mobile": {}, // device and locale specific has the highest priority
+			"desktop": {}
+		},
+		"en_ZA": {
 			"core": {}, // locale specific core modules have the third h
 			"mobile": {}, // device and locale specific has the highest priority
 			"desktop": {}
