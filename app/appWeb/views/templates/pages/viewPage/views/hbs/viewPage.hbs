@@ -9,6 +9,13 @@
               {{> (dynamic "adDetails")}}
             </div>
         </div>
+
+        {{#if this.vip.payWithShepherd}}
+            <div>
+                <span class="icon-shepherd-pay-button" data-target='_blank' data-gtm="pc|ShepherdClick"
+                   data-uri="https://www.paywithshepherd.com/gumtree_buyer/buy_now?remote_url={{this.header.viewPageUrl}}"></span>
+            </div>
+        {{/if}}
     </div>
 
     <div class="vip-right-columns">

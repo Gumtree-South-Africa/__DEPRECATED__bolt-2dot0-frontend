@@ -19,6 +19,11 @@
 	width: 45.5em;
 }
 
+.icon-shepherd-pay-button{
+	display: block;
+	margin: 0 auto;
+}
+
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
 		@include span(3 of 6);

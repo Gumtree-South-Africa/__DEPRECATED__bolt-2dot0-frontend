@@ -81,7 +81,7 @@ class ViewPageModel {
 	}
 
 	/**
-	 *
+	 * Prepare the display of attributes
 	 * @param data
 	 */
 	prepareDisplayAttributes(data) {
@@ -121,6 +121,10 @@ class ViewPageModel {
 		modelData.footer = data.common.footer || {};
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
+
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+		modelData.vip = {};
+		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
 	}
@@ -211,9 +215,10 @@ class ViewPageModel {
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
-				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
+					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
 						let pic = picture['LARGE'];
 						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
