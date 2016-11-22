@@ -1,0 +1,54 @@
+.google-maps {
+	margin-left: 5px;
+	margin-right: 5px;
+
+	#map {
+		width: 100%;
+		height: 200px;
+	}
+
+	#noscript-map {
+		height: 200px;
+		width: 100%;
+	}
+
+	.map-wrapper {
+		margin-top: 5px;
+
+		.noscript-map-container {
+			height: 100%;
+			width: 100%;
+		}
+		//start homepage gpsmap
+		.hiddenElt{
+			display: none;
+		}
+
+		#nowselling h2{
+			font-weight: bold;
+			font-size: 1.5em;
+			margin-bottom: 0.4em;
+			opacity: 1;
+			padding-top: 0.3em;
+		}
+		#nowselling span{
+			opacity: 1;
+		}
+		#nowselling{
+			width: 65%;
+			max-width: 24em;
+			height: 90px;
+			position: relative;
+			top: -27em;
+			z-index: 20;
+			margin: 0 auto;
+			background-color: white;
+			text-align: center;
+			opacity: 0.9;
+			border-radius: 5px;
+			box-shadow: 1px 3px 6px;
+			margin-bottom: -5.7em;
+		}
+		//END homepage map
+	}
+}

@@ -1,5 +1,4 @@
 {{#partial "content"}}
-
     {{> (dynamic "topBanner")}}
 
     <div class="vip-left-columns">
@@ -24,6 +23,12 @@
             {{> (dynamic "sellerProfile")}}
         </div>
 
+        <div class="google-maps">
+            {{> (dynamic "gpsMap")}}
+            {{#block "vip-map"}}{{/block}}
+        </div>
+    </div>
+
         {{> (dynamic "rightBanner")}}
 
         {{#if this.safetyTips}}
@@ -31,7 +36,6 @@
                 {{> (dynamic "safetyTips") }}
 			</div>
         {{/if}}
-    </div>
 
     {{> (dynamic "bottomBanner")}}
 
@@ -59,5 +63,4 @@
         {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	</script>
-
 {{/partial}}
