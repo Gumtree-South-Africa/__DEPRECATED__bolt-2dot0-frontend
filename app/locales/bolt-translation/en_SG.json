@@ -1071,8 +1071,6 @@
   "smartbanner.free": "Free",
   "smartbanner.install": "Download",
   "smartbanner.open": "Open",
-  "smartbanner.interstitial.install": "DOWNLOAD IT NOW!",
-  "smartbanner.interstitial.continue-mobile": "or continue to the mobile site >",
   "header.country.label": "Singapore",
   "quickpost.pageTitle": "Sell Your Item",
   "quickpost.page.title": "Sell Your Item via Free Classifieds on Gumtree Singapore",
@@ -1268,11 +1266,6 @@
       "cardTitle": "Galería Principal"
     }
   },
-  "smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
-	},
   "welcomescreen": {
   	"title": "Welcome!",
   	"description": "Earn money now!",

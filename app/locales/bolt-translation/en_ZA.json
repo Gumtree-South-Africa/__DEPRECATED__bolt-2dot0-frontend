@@ -1068,8 +1068,6 @@
 	"smartbanner.free": "Free",
 	"smartbanner.install": "Download",
 	"smartbanner.open": "Open",
-	"smartbanner.interstitial.install": "DOWNLOAD IT NOW!",
-	"smartbanner.interstitial.continue-mobile": "or continue to the mobile site >",
 	"branchiosmartbanner.title": "Gumtree South Africa App",
 	"branchiosmartbanner.description": "Simple and easy to use. Fast to sale.",
 	"branchiosmartbanner.install": "Download",
@@ -1120,11 +1118,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "South Africa",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	"smartmobilebanner": {
-		"title": "Open App",
-		"mobilelink": "continue to mobile site >",
-		"branchiolink": "https://go.gumt.io/open"
-	},
     "welcomescreen": {
 		"title": "Welcome!",
 		"description": "Earn money now!",
