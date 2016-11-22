@@ -1095,8 +1095,6 @@
 	"smartbanner.free": "Gratis",
 	"smartbanner.install": "Descargar",
 	"smartbanner.open": "Abrir",
-	"smartbanner.interstitial.install": "DESCÁRGALA YA!",
-	"smartbanner.interstitial.continue-mobile": "o continuar al sitio móvil >",
 	"my-ads.sellerbadge.label.large": "Grande",
 	"my-ads.sellerbadge.label.small": "Chico",
 	"branchiosmartbanner.title": "Vivanuncios",
@@ -1149,11 +1147,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "M\u00E9xico",
 	"postad.button": "Publica Gratis",
-	"smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
-	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
