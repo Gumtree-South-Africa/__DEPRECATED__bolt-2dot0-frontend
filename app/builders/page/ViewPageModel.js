@@ -171,7 +171,7 @@ class ViewPageModel {
 					flags: advertData.adFlags,
 					map: {
 						defaultRadius: 2000, //2.0km default kilometers
-						passedRadius: 50000
+						passedRadius: 2000
 					}
 				};
 
