@@ -281,9 +281,15 @@ class PhotoContainer {
 		/*
 		* Drag and Reorder event start
 		* */
+		document.addEventListener("drag", function() {
+		}, false);
+
 		document.addEventListener("dragstart", function( event ) {
 			if (!isPhotoDivAndDraggable(event.target)) {
 				return;
+			}
+			if (event.dataTransfer) {
+				event.dataTransfer.setData("text/plain", "Workaround for FireFox!");
 			}
 			// store a ref. on the dragged elem
 			this.PhotoContainerDragged = event.target;
@@ -292,7 +298,6 @@ class PhotoContainer {
 		}, false);
 
 		document.addEventListener("dragend", function( event ) {
-			event.preventDefault();
 			if (!isPhotoDivAndDraggable(event.target)) {
 				return;
 			}
@@ -305,12 +310,10 @@ class PhotoContainer {
 			event.preventDefault();
 		}, false);
 
-		document.addEventListener("dragenter", function( event ) {
-			event.preventDefault();
+		document.addEventListener("dragenter", function() {
 		}, false);
 
-		document.addEventListener("dragleave", function( event ) {
-			event.preventDefault();
+		document.addEventListener("dragleave", function() {
 		}, false);
 		document.addEventListener("drop", function( event ) {
 			if (!isPhotoDivAndDraggable(event.target)) {
