@@ -1165,7 +1165,9 @@
 	"postad": {
 		"upload": {
 			"photo": "Sube una foto",
-			"photos": "Sube foto(s)"
+			"photos": "Sube foto(s)",
+			"photoLimits" : "Cargar hasta 12 fotos",
+			"dragReOrder": "Toca y arrastra para reacomodarlas"
 		},
 		"image": {
 			"upload": {
@@ -1203,7 +1205,44 @@
 		},
 		"gallery" : {
 			"cardTitle": "Galería Principal"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con las dimensiones de tu imagen"
+				},
+				"invalidSize": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tamaño de tu imagen"
+				},
+				"invalidType": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tipo de imagen"
+				},
+				"colorspace": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"firewall": {
+					"title": "Intenta nuevamente",
+					"message": "Hay una problema con tu conxion a internet"
+				},
+				"picturesrv": {
+					"title": "Intenta nuevamente",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"corrupt": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con tu imagen"
+				},
+				"unknown": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				}
+			}
 		}
+
 	},
 	"header": {
 		"catDropdown": {
@@ -1231,7 +1270,10 @@
 		"placeholderText": "Escribe una ubicación",
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"locationWarning": "Tu ubicación exacta no se publicará",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n",
+		"currentLocation": "Ubicación actual",
+		"yourLocation": "Ubicación de tu anuncio"
 	},
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",
@@ -1251,8 +1293,10 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Atrás",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1306,6 +1350,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Listo",
+			"changePhoto": "Cambia <br>foto"
 		}
 	},
 	"footer": {
@@ -1395,6 +1443,8 @@
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"categoryOptional": "Seleccionar categoría (opcional)",
+				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",

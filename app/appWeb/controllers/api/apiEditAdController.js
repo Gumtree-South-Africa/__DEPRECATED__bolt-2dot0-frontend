@@ -14,6 +14,8 @@ let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let EditAdModel = require(cwd + '/app/builders/common/EditAdModel.js');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let logger = require(`${cwd}/server/utils/logger`);
+let VerticalCategoryUtil = require(`${cwd}/app/utils/VerticalCategoryUtil.js`);
+let BapiError = require(`${cwd}/server/services/bapi/BapiError.js`);
 
 router.post('/attributedependencies', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
@@ -37,8 +39,16 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
+	let verticalCategory = VerticalCategoryUtil.getVerticalCategory(
+		Number(req.params.categoryId), res.locals.config.categoryAllData,
+		res.locals.config.bapiConfigData.content.verticalCategories);
+
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
-		res.json(attributeModel.processCustomAttributesList(attributeData));
+		let processedCustomAttributesList = attributeModel.processCustomAttributesList(attributeData);
+		if (verticalCategory) {
+			processedCustomAttributesList.verticalCategory = verticalCategory;
+		}
+		res.json(processedCustomAttributesList);
 	}).fail((err) => {
 		let bapiJson = logger.logError(err);
 		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
@@ -81,9 +91,26 @@ router.post('/update', cors, (req, res) => {
 	let editAdModel = new EditAdModel(model.bapiHeaders, req.app.locals.prodEpsMode);
 	let userModel = new UserModel(model.bapiHeaders);
 
-	// Step 5: Update Ad
 	let requestJson = req.body;
 	userModel.getUserFromCookie().then(() => {
+		// Step 5: Validate against vertical category
+		return VerticalCategoryUtil.verticalCategoryValidate(
+			requestJson, res.locals.config.categoryAllData,
+			res.locals.config.bapiConfigData.content.verticalCategories,
+			model.bapiHeaders).then(errors => {
+			if (errors && errors.length) {
+				throw new BapiError('Vertical category validation failed', {
+					statusCode: 400,
+					bapiJson: {
+						statusCode: 400,
+						message: "Validation Errors",
+						details: errors
+					}
+				});
+			}
+		});
+	}).then(() => {
+		// Step 6: Update Ad
 		return editAdModel.editAd(requestJson);
 	}).then((result) => {
 		res.contentType = "application/json";

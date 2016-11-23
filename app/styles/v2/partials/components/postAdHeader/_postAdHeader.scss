@@ -16,6 +16,16 @@ $photo-switcher-width: 30%;
 	background-color: $postAdHeaderBackground;
 	border-bottom: 1px solid $postAdHeaderBlue;
 
+	.header-back {
+		float: left;
+		margin-left: 6%;
+
+		a {
+			margin-left: 2px;
+			color: $postAdHeaderBlue;
+		}
+	}
+
 	.header-accent {
 		font-size: 0;
 		margin-top: 6px;

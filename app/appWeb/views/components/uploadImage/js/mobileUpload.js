@@ -2,7 +2,7 @@
 
 let EpsUpload = require('./epsUpload.js').EpsUpload;
 let UploadMessageClass = require('./epsUpload').UploadMessageClass;
-let postAd = require('./postAd.js');
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 $.prototype.doesExist = function() {
 	return $(this).length > 0;
@@ -14,11 +14,44 @@ Array.prototype.remove = function(from, to) {
 	return this.push.apply(this, rest);
 };
 
+// View model for mobile upload
+class MobileUploadVM {
+	constructor() {
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._imageUrl = null;
+	}
+
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMount(domElement) {
+		this._imageUrl = domElement.find('input[name=initialImage]').val();
+	}
+
+	get imageUrl() {
+		return this._imageUrl;
+	}
+
+	// Internal API which will be removed after MobileUpload has been componentized
+	set imageUrl(newValue) {
+		if (this._imageUrl === newValue) {
+			return;
+		}
+		this._imageUrl = newValue;
+		this.propertyChanged.trigger('imageUrl', newValue);
+	}
+}
+
 
 class MobileUpload {
+	constructor() {
+		this.setupViewModel();
+	}
+
 	initialize() {
-		postAd.initialize();
-		this.inputDisabled = false;
+		//this.inputDisabled = false;
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.imageProgress = this.uploadImageContainer.find('#js-image-progress');
@@ -50,7 +83,7 @@ class MobileUpload {
 					this.imageHolder.css("background-image", `url("")`);
 					this.uploadPhotoText.toggleClass('hidden');
 					this.$imageUpload.val('');
-					this.inputDisabled = false;
+					//this.inputDisabled = false;
 					this.$uploadSpinner.addClass('hidden');
 					this.$uploadProgress.addClass('hidden');
 				}
@@ -74,11 +107,13 @@ class MobileUpload {
 		});
 
 		this.$imageUpload = $("#mobileFileUpload");
+		/*
 		this.$imageUpload.on('click', (e) => {
 			if (this.inputDisabled) {
 				return e.preventDefault();
 			}
 		});
+		*/
 
 		this.i18n = {
 			clickFeatured: this.epsData.data('i18n-clickfeatured'),
@@ -104,7 +139,7 @@ class MobileUpload {
 				this.uploadMessageClass.invalidType();
 				return;
 			}
-			this.inputDisabled = true;
+			//this.inputDisabled = true;
 			this.uploadPhotoText.addClass('hidden');
 			this.$uploadSpinner.toggleClass('hidden');
 			this.$uploadProgress.toggleClass('hidden');
@@ -128,15 +163,8 @@ class MobileUpload {
 				this.uploadMessageClass.translateErrorCodes(0, error);
 				return;
 			}
-
-			this.imageHolder.css("background-image", `url("${url.normal}")`);
-			postAd.requestLocation((locationType, timeout) => {
-				if (timeout !== undefined) {
-					clearTimeout(timeout);
-				}
-				//Don't care if they actually gave us location, just that it finished.
-				postAd.postAdMobile(url.normal, locationType);
-			});
+			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+			this.handleImageUrlChanged(url.normal);
 		};
 
 		/**
@@ -151,6 +179,29 @@ class MobileUpload {
 			this.uploadMessageClass.translateErrorCodes(0, error);
 			this.uploadMessageClass.failMsg(0);
 		};
+
+		// Logic for initial image
+		this.viewModel.componentDidMount(this.uploadImageContainer);
+		if (this.viewModel.imageUrl) {
+			this.uploadPhotoText.addClass('hidden');
+			this.imageHolder.css("background-image", `url("${this.viewModel.imageUrl}")`);
+		}
+	}
+
+	handleImageUrlChanged(url) {
+		this.imageHolder.css("background-image", `url("${url}")`);
+
+		this.$uploadSpinner.addClass('hidden');
+		this.$uploadProgress.addClass('hidden');
+		this.$uploadProgress.html("0%");
+
+		this.viewModel.imageUrl = url;
+	}
+
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
+	setupViewModel() {
+		this.viewModel = new MobileUploadVM();
 	}
 
 

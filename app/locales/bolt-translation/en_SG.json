@@ -1264,6 +1264,42 @@
     },
     "gallery" : {
       "cardTitle": "Galería Principal"
+    },
+    "imageUpload": {
+      "error": {
+        "invalidDimension": {
+          "title": "Try other images",
+          "message": "There is a problem with your image dimension"
+        },
+        "invalidSize": {
+          "title": "Try other images",
+          "message": "There is a problem with your image size"
+        },
+        "invalidType": {
+          "title": "Try other images",
+          "message": "There is a problem with your image type"
+        },
+        "colorspace": {
+          "title": "Try other images",
+          "message": "There is a problem uploading your image"
+        },
+        "firewall": {
+          "title": "Try again",
+          "message": "There is a problem with your network"
+        },
+        "picturesrv": {
+          "title": "Try again",
+          "message": "There is a problem uploading your image"
+        },
+        "corrupt": {
+          "title": "Try other images",
+          "message": "There is a problem with your image"
+        },
+        "unknown": {
+          "title": "Try other images",
+          "message": "There is a problem uploading your image"
+        }
+      }
     }
   },
   "welcomescreen": {
@@ -1319,6 +1355,7 @@
 		"placeholderText": "Type your location",
 		"locationAutoDesktop": "This is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
@@ -1339,8 +1376,10 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"tips": "It's easy, just upload a photo. You can add more photos and edit the details later.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1394,6 +1433,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Done",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"postAdModal": {
@@ -1411,6 +1454,8 @@
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",

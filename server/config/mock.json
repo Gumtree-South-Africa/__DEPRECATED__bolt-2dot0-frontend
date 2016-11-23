@@ -32,7 +32,9 @@
 			"authRegister"		:	"/users",
 			"authActivate"		:	"/users/{email}/actions/activate",
 			"authEmailExists"	:	"/users/email/{email}",
-			"authPhoneExists"	:	"/users/phone/{phone}"
+			"authPhoneExists"	:	"/users/phone/{phone}",
+			"adFeatures"        :   "/boltapi/v1/features?",
+			"categorySuggest"   :   "/boltapi/v1/categories/action/suggestion?"
 	    }
 	},
 	"solr": {

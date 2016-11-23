@@ -3,7 +3,6 @@
 let express = require('express');
 let router = express.Router();
 
-
 let completeRoutesMap = {
   '/': './homepageController',
   '/activate': './activatePageController',
@@ -17,7 +16,8 @@ let completeRoutesMap = {
   '/register': './registerPageController',
   '/search': './searchPageController',
   '/service-worker.js': './serviceWorkerController',
-  '/view': './viewPageController'
+  '/view': './viewPageController',
+  '/promotead' : './promoteAdController'
 };
 
 for (let route in completeRoutesMap) {
@@ -36,5 +36,6 @@ for (let route in regexRoutesMap) {
 		router.use(route, require(regexRoutesMap[route]));
 	}
 }
+
 
 module.exports = router;
