@@ -1,7 +1,5 @@
 {{#partial "content"}}
 
-    {{> (dynamic "topBanner")}}
-
     <div class="vip-left-columns">
         <div id="viewPage">
             {{> (dynamic "viewPageGallery")}}
@@ -27,13 +25,13 @@
         {{> (dynamic "adStats") }}
         {{#block "vip-adstats"}}{{/block}}
 
-        {{> (dynamic "rightBanner")}}
-
         {{#if this.safetyTips}}
             <div class="vip-safety-tips">
                 {{> (dynamic "safetyTips") }}
 			</div>
         {{/if}}
+
+        {{> (dynamic "rightBanner")}}
     </div>
 
     {{> (dynamic "bottomBanner")}}
@@ -58,7 +56,6 @@
 			ptype: 'VIP'
 		};
 
-        {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
         {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	</script>
