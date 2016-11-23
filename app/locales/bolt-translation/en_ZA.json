@@ -1509,6 +1509,28 @@
 			"emailVerified": "Email Verified",
 			"adsPosted": "ADS POSTED",
 			"adsActive": "ACTIVE"
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "The message is required",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Your email is required",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
 		}
 	}
 }
