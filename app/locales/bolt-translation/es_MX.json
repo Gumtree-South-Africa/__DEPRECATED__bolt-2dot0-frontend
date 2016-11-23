@@ -1095,8 +1095,6 @@
 	"smartbanner.free": "Gratis",
 	"smartbanner.install": "Descargar",
 	"smartbanner.open": "Abrir",
-	"smartbanner.interstitial.install": "DESCÁRGALA YA!",
-	"smartbanner.interstitial.continue-mobile": "o continuar al sitio móvil >",
 	"my-ads.sellerbadge.label.large": "Grande",
 	"my-ads.sellerbadge.label.small": "Chico",
 	"branchiosmartbanner.title": "Vivanuncios",
@@ -1149,11 +1147,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "M\u00E9xico",
 	"postad.button": "Publica Gratis",
-	"smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
-	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
@@ -1383,9 +1376,9 @@
 				"vivablog": "Blog de Vivanuncios",
 				"vivabusiness": "Vivanuncios para negocios",
 				"rules": "Reglas para publicar anuncios",
-				"staysafe": "Mantente Seguro",
+				"staysafe": "Mantente seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agentes Inmobiliarios",
+                "protool": "Agentes inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
@@ -1395,30 +1388,30 @@
 				"cookies": "Cookies"
 			},
 			"business": {
-				"business": "Agentes Inmobiliarios",
-				"protool": "La Tienda de Semi Nuevos",
-				"stores": "La Tienda Vivanuncios"
+				"business": "Agentes tnmobiliarios",
+				"protool": "La tienda de semi nuevos",
+				"stores": "La tienda Vivanuncios"
 			},
 			"explore": {
 				"explore": "Explorar",
 				"classifieds": "Sitios de clasificados de eBay",
-				"mobile": "Aplicaciones Móviles",
+				"mobile": "Aplicaciones móviles",
 				"partners": "Socios",
 				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Búsquedas destacadas",
                 "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-				"priceIndex": "Previos de Inmuebles"
+				"priceIndex": "Precios de inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
 				"helplink": "https://ayuda.vivanuncios.com.mx",
-				"onlinesafety": "Seguridad en Internet",
+				"onlinesafety": "Seguridad en internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar",
-				"listingRules": "Reglas para Publicar Anuncios"
+				"listingRules": "Reglas para publicar anuncios"
 			}
 		},
 		"topSearches": {
@@ -1565,6 +1558,28 @@
 			"moreInfo": "Más información.",
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "Se requiere de un mensaje",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Es necesario tu correo electrónico",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
 		}
 	},
 	"search": {

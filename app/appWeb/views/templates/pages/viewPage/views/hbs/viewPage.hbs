@@ -1,5 +1,4 @@
 {{#partial "content"}}
-
     {{> (dynamic "topBanner")}}
 
     <div class="vip-left-columns">
@@ -24,7 +23,17 @@
             {{> (dynamic "sellerProfile")}}
         </div>
 
-        {{> (dynamic "rightBanner")}}
+        {{> (dynamic "adStats") }}
+        {{#block "vip-adstats"}}{{/block}}
+
+  		<div class="reply-form">
+              {{> (dynamic "replyForm")}}
+  		</div>
+
+        <div class="google-maps">
+            {{> (dynamic "gpsMap")}}
+          {{#block "vip-map"}}{{/block}}
+        </div>
 
         {{#if this.safetyTips}}
             <div class="vip-safety-tips">
@@ -55,9 +64,6 @@
 			ptype: 'VIP'
 		};
 
-        {{#block "googleBannerAdsTopV2_Script"}}{{/block}}
-        {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	</script>
-
 {{/partial}}

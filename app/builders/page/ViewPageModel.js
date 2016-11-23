@@ -141,7 +141,7 @@ class ViewPageModel {
 
 		this.dataPromiseFunctionMap.advert = () => {
 			return advertModelBuilder.resolveAllSettledPromises().then((results) => {
-				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
+				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSellerDetails', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
 				let advertData = {};
 				let advertIndex = 0;
 				_.each(results, (result) => {
@@ -161,34 +161,36 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					userId: 'testUser123',
-					viewCount: '44',
-					repliesCount: '3',
 					postedBy: 'Owner',
-					seller: {
-						fname: "Diego",
-						sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
-						profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
-						adsPosted: "14",
-						adsActive: "10",
-						emailVerified: true
-					},
 					features: advertData.adFeatures,
+					sellerDetails: advertData.adSellerDetails,
 					statistics: advertData.adStatistics,
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags
+					flags: advertData.adFlags,
+					map: {
+						defaultRadius: 2000, //2.0km default kilometers
+						 passedRadius: 50000
+					}
 				};
+
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
-				data.isOwnerAd = false;
 				//TODO: check to see if additional attributes should be displayed based on specific categories
 				data.displayMoreAttributes = true;
+				data.isOwnerAd = true;
 
-				// Merge Bapi Ad Data
+				//TODO: check if user is logged in
+				data.isUserLoggedIn = false;
+
+				//TODO: display real phone number
+				data.phoneNumber = "408-456-7890";
+				data.hiddenNumber = data.phoneNumber.split('-')[0] + '*******';
+
+				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
-				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
 				// if (this.req.app.locals.isSeoUrl === true) {
 				// 	let originalSeoUrl = this.req.originalUrl;
 				// 	let seoVipElt = data._links.find((elt) => {
@@ -200,11 +202,7 @@ class ViewPageModel {
 				// 		return;
 				// 	}
 				// 	data.seoVipUrl = dataSeoVipUrl;
-				// }
-
-				// Manipulate Ad Data
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+				// }g
 
 				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
@@ -216,6 +214,57 @@ class ViewPageModel {
 						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
 						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+
+				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
+				data.siteLanguage = this.locale.split('_')[0];
+
+				var findStr = "center=";
+				var searchString = data.ogSignedUrl;
+				var endOf = -1;
+				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
+				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
+				data.map.locationLat = center[0];
+				data.map.locationLong = center[1];
+
+				data.map.finalRadius;
+				if(data.map.passedRadius === 0){
+					data.map.showPin = true;
+					data.map.showCircle = false;
+				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
+					data.map.showCircle = true;
+					data.map.finalRadius = data.map.defaultRadius;
+					data.map.showPin = false;
+				} else {
+					data.map.finalRadius = data.map.passedRadius;
+					data.map.showCircle = true;
+					data.map.showPin = false;
+				}
+
+				// Manipulate Ad Data
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
+				data.hasMultiplePictures = false;
+				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
+					data.hasMultiplePictures = data.pictures.sizeUrls.length>1 ? true : false;
+					_.each(data.pictures.sizeUrls, (picture) => {
+						let pic = picture['LARGE'];
+						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
+					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
+						if (profilePicture.size === 'LARGE') {
+							let picUrl = profilePicture.url;
+							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
+							data.sellerDetails.publicDetails.displayPicture = picUrl;
+						}
 					});
 				}
 
@@ -234,7 +283,7 @@ class ViewPageModel {
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-					console.log('$$$$$$$ ', data);
+
 					return data;
 				});
 			});

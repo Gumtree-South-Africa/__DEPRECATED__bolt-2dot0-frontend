@@ -141,14 +141,9 @@
 	{{#partial "googleBannerAdsBottom_Container"}}
     	<div id="home_bottombanner" style="margin:0 auto; width:318px; overflow:hidden;"></div>
 	{{/partial}}
-	
-	{{#partial "smartMobileWrapper"}}
-        {{> (dynamic "smartMobileBanner") }}
-    {{/partial}}
-
-	{{!-- SmartBanner and Interstitial Banner overrides for Homepage --}}
+        
+	{{!-- SmartBanner and Banner overrides for Homepage --}}
 	{{#partial "smartBannerContainer"}}
         {{> (dynamic "smartBanner") }}
         {{#block "deviceSmartBanner"}}{{/block}}
     {{/partial}}
-    {{#partial "smartBannerInterstitialContainer"}}{{/partial}}
