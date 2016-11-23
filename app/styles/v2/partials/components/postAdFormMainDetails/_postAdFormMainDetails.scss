@@ -120,14 +120,13 @@ $categoryArrowIconWidth: 13px;
 
 		select {
 			width: 88%;
-			margin: 1% 44% 1% $inputMargin;
+			margin: 1% 0 1% $inputMargin;
 			border: 1px solid $vivaBlack;
 		}
 
 		.edit-ad-select-box ~ .edit-ad-select-box {
 			width: unquote("calc(88% - ") $categoryIndent unquote(")");
 			margin-left: 0;
-			margin-right: 0;
 		}
 
 		.edit-ad-select-box ~ .edit-ad-select-box ~ .edit-ad-select-box {
@@ -221,5 +220,10 @@ $categoryArrowIconWidth: 13px;
 	.form-ad-price .radio-group {
 		vertical-align: middle;
 		margin-left: 25px;
+	}
+
+	// TODO Move this to location-selection when edit page has been refactored
+	.location-selection-input {
+		margin-right: 0 !important;
 	}
 }
