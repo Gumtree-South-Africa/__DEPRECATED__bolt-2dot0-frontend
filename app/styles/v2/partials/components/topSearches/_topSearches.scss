@@ -20,7 +20,11 @@
 	}
 
 	.top-searches-header {
+		&:first-child {
+			margin-left: 0px;
+		}
 		display: inline-block;
+		margin-left: 10px;
 		padding-right: 20px;
 		font-weight: bold;
 	}
@@ -68,12 +72,23 @@
 			display: none;
 		}
 		.searches-wrapper {
-			width: 46%;
 			display: inline-block;
 			vertical-align: top;
+			&.container-width-1 {
+				width: 46%;
+			}
+			&.container-width-2 {
+				width: 46%;
+			}
+			&.container-width-3 {
+				width: 30%;
+			}
 			.top-searches {
 				margin-left: 30px;
 				.top-searches-header {
+					&.desktop-hide {
+						display: none;
+					}
 					display: block;
 				}
 			}

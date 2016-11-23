@@ -244,12 +244,14 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.keywords = () => {
 			return keywordModel.resolveAllSettledPromises().then((results) => {
 				let keywordPromiseArray = ['top', 'trending', 'suggested'];
-				let keywordTitle = ['home.popular.searches', 'home.trending-searches', 'home.suggested-searches'];
+				let keywordTitles = ['home.popular.searches', 'home.trending-searches', 'home.suggested-searches'];
 				let keywordData = {};
 				let keywordIndex = 0;
 				_.each(results, (result) => {
 					if (result.state === "fulfilled") {
-						result.value.title = keywordTitle[keywordIndex];
+						result.value.title = keywordTitles[keywordIndex];
+						result.value.menuTitles = keywordTitles;
+						result.value.total = results.length;
 						let value = result.value;
 						keywordData[keywordPromiseArray[keywordIndex]] = value;
 					} else {

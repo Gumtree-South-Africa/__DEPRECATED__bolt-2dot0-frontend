@@ -7,10 +7,18 @@
 	</style>
 </noscript>
 {{#each this.topSearches}}
-<div class="tab-content searches-wrapper">
+<div class="tab-content searches-wrapper container-width-{{this.total}}">
     <div class="top-searches">
-		<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this.title}}</span></div>
-		<div class="jsOnly top-locations-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
+		{{#each this.menuTitles}}
+			{{#compare @../index "==" @index}}
+				<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this}}</span></div>
+			{{else}}
+				<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
+			{{/compare}}
+			{{#if hasTopLocations}}
+				<div class="top-locations-header top-headers"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
+			{{/if}}
+		{{/each}}
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
 				{{#each this.keywords}}

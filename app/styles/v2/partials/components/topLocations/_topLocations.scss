@@ -1,4 +1,7 @@
 .top-locations-header {
+	&:first-child {
+		margin-left: 0px;
+	}
 	margin-left: 10px;
 	font-weight: bold;
 }
