@@ -26,6 +26,11 @@
   		<div class="reply-form">
               {{> (dynamic "replyForm")}}
   		</div>
+
+      <div class="google-maps">
+          {{> (dynamic "gpsMap")}}
+          {{#block "vip-map"}}{{/block}}
+      </div>
     </div>
 
         {{> (dynamic "adStats") }}

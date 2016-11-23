@@ -168,7 +168,11 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags
+					flags: advertData.adFlags,
+					map: {
+						defaultRadius: 2000, //2.0km default kilometers
+						 passedRadius: 50000
+					}
 				};
 
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
@@ -198,16 +202,53 @@ class ViewPageModel {
 				// 		return;
 				// 	}
 				// 	data.seoVipUrl = dataSeoVipUrl;
-				// }
-
-				// Manipulate Ad Data
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+				// }g
 
 				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
 					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
+					_.each(data.pictures.sizeUrls, (picture) => {
+						let pic = picture['LARGE'];
+						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+
+				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
+				data.siteLanguage = this.locale.split('_')[0];
+
+				var findStr = "center=";
+				var searchString = data.ogSignedUrl;
+				var endOf = -1;
+				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
+				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
+				data.map.locationLat = center[0];
+				data.map.locationLong = center[1];
+
+				data.map.finalRadius;
+				if(data.map.passedRadius === 0){
+					data.map.showPin = true;
+					data.map.showCircle = false;
+				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
+					data.map.showCircle = true;
+					data.map.finalRadius = data.map.defaultRadius;
+					data.map.showPin = false;
+				} else {
+					data.map.finalRadius = data.map.passedRadius;
+					data.map.showCircle = true;
+					data.map.showPin = false;
+				}
+
+				// Manipulate Ad Data
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
+				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
 					_.each(data.pictures.sizeUrls, (picture) => {
 						let pic = picture['LARGE'];
 						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
@@ -241,7 +282,7 @@ class ViewPageModel {
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-					console.log('$$$$$$$ ', data);
+
 					return data;
 				});
 			});
