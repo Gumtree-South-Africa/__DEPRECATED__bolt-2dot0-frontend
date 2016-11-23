@@ -20,10 +20,11 @@ class PostAdPageVM {
 	 * Lifecycle callback which will be called when component has been loaded
 	 * @param domElement The jquery object for the root element of this component
 	 */
-	componentDidMount(/*domElement*/) {
+	componentDidMount(domElement) {
 		this.mobileUpload = mobileUpload.viewModel;
 		this.postAdModal = postAdModal.viewModel;
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
+		this.$infoTips = domElement.find(".info-tips");
 
 		// Callback for old singleton components
 		this.spinnerModal.initialize();
@@ -33,6 +34,7 @@ class PostAdPageVM {
 				return;
 			}
 
+			this.$infoTips.hide();
 			this.postAdFormMainDetails.show();
 
 			this.postAdFormMainDetails.imageUrls = [newValue];

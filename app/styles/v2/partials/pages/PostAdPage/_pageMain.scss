@@ -21,18 +21,11 @@ $labelMargin: 8%;
 }
 
 .mobile-post-ad {
-	.didKnow-text, .confirm-tip {
-		width: 90%;
+	.info-tips {
+		width: 70%;
 		text-align: center;
-		margin: 20px auto;
-	}
-
-	.didKnow-text {
-		font-size: 30px;
-	}
-
-	.confirm-tip {
-		font-size: 18px;
+		margin: 10% auto;
+		font-size: 20px;
 		color: $postAdTextGray;
 	}
 }
