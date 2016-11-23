@@ -140,81 +140,88 @@ router.post('/create', cors, (req, res) => {
 	let postAdModel = new PostAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
 
-	// Step 5: Check if user has logged in
-	//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
-	if (!authenticationCookie) {
-		forceUserToLogin(model, machguidCookie, requestJson, res);
-		return;
-	}
-
-	// Step 6: Validate authentication cookie is still good
-	userModel.getUserFromCookie().then( () => {
-		// user cookie checks out fine, go ahead and post the ad...
-
-		// Step 7: Validate against vertical category
-		let ads = requestJson.ads;
-		let verticalCategoryValidationPromise;
-		if (ads) {
-			verticalCategoryValidationPromise =
-				Q.all(ads.map(ad => VerticalCategoryUtil.verticalCategoryValidate(
-					ad, res.locals.config.categoryAllData,
-					res.locals.config.bapiConfigData.content.verticalCategories,
-					model.bapiHeaders))).then(errorsArray => {
-					let allErrors = [];
-					errorsArray.forEach(errors => {
-						if (errors && errors.length) {
-							allErrors = allErrors.concat(errors);
+	// Step 5: Validate against vertical category
+	let ads = requestJson.ads;
+	let verticalCategoryValidationPromise;
+	if (ads) {
+		verticalCategoryValidationPromise =
+			Q.all(ads.map(ad => VerticalCategoryUtil.verticalCategoryValidate(
+				ad, res.locals.config.categoryAllData,
+				res.locals.config.bapiConfigData.content.verticalCategories,
+				model.bapiHeaders))).then(errorsArray => {
+				let allErrors = [];
+				errorsArray.forEach(errors => {
+					if (errors && errors.length) {
+						allErrors = allErrors.concat(errors);
+					}
+				});
+				if (allErrors && allErrors.length) {
+					throw new BapiError('Vertical category validation failed', {
+						statusCode: 400,
+						bapiJson: {
+							statusCode: 400,
+							message: "Validation Errors",
+							details: allErrors
 						}
 					});
-					if (allErrors && allErrors.length) {
-						throw new BapiError('Vertical category validation failed', {
-							statusCode: 400,
-							bapiJson: {
-								statusCode: 400,
-								message: "Validation Errors",
-								details: allErrors
-							}
-						});
-					}
+				}
 
-				});
-		} else {
-			verticalCategoryValidationPromise = Q.resolve(null);
-		}
-
-		// Step 8: Post The Ad
-		verticalCategoryValidationPromise.then(() => postAdModel.postAd(requestJson)).then((adResults) => {
-			let responseJson = getAdPostedResponse(adResults);
-			res.send(responseJson);
-			return;
-		}).fail((error) => {
-			let errInfoObj;
-			if (error && error.bapiJson) {
-				errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
-			}
-			let bapiInfo = logger.logError(error);
-			// post ad has failed
-			res.status(error.getStatusCode(500)).send({
-				error: "postAd failed, see logs for details",
-				bapiJson: bapiInfo,
-				bapiValidationFields: errInfoObj
 			});
-			return;
-		});
+	} else {
+		verticalCategoryValidationPromise = Q.resolve(null);
+	}
 
-	}).fail((error) => {
-		if (error.statusCode && error.statusCode === 404) {
+	let bapiErrorHandler = (error) => {
+		let errInfoObj;
+		if (error && error.bapiJson) {
+			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
+		}
+		let bapiInfo = logger.logError(error);
+		// post ad has failed
+		res.status(error.getStatusCode(500)).send({
+			error: "postAd failed, see logs for details",
+			bapiJson: bapiInfo,
+			bapiValidationFields: errInfoObj
+		});
+		return;
+	};
+
+	verticalCategoryValidationPromise.then(() => {
+
+		// Step 6: Check if user has logged in
+		//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
+		if (!authenticationCookie) {
 			forceUserToLogin(model, machguidCookie, requestJson, res);
 			return;
 		}
 
-		// user call has failed
-		console.error(`userService.getUserFromCookie failure ${error}`);
-		res.status(500).send({
-			error: "unable to validate user, see logs for details"
+
+		// Step 7: Validate authentication cookie is still good
+		userModel.getUserFromCookie().then( () => {
+			// user cookie checks out fine, go ahead and post the ad...
+
+
+			// Step 8: Post The Ad
+			postAdModel.postAd(requestJson).then((adResults) => {
+				let responseJson = getAdPostedResponse(adResults);
+				res.send(responseJson);
+				return;
+			}).fail(bapiErrorHandler);
+
+		}).fail((error) => {
+			if (error.statusCode && error.statusCode === 404) {
+				forceUserToLogin(model, machguidCookie, requestJson, res);
+				return;
+			}
+
+			// user call has failed
+			console.error(`userService.getUserFromCookie failure ${error}`);
+			res.status(500).send({
+				error: "unable to validate user, see logs for details"
+			});
+			return;
 		});
-		return;
-	});
+	}, bapiErrorHandler);
 
 });
 

@@ -1457,7 +1457,7 @@
 				"location": "Ciudad, zona o código postal"
 			},
 			"titleRestrictions": {
-				"minimumAvailable": "Disponsibles: ",
+				"minimumAvailable": "Disponibles: ",
 				"characters": " caracter(es)"
 			},
 			"askMe": "Preguntarme",
