@@ -243,6 +243,12 @@ body {
 			}
 		}
 
+		.form-field.required-field label:after {
+			content: '*';
+			color: red;
+			margin-left: 5px;
+		}
+
 		.location-link {
 			background-color: white;
 			padding-left: 10px;

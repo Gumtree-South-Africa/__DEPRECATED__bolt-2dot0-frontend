@@ -27,6 +27,7 @@
 	<form method="post" id="postForm" novalidate="novalidate">
 		<div class="file-upload-container">
 			<input class="file-input" type="file" name="pic" accept="image/*" id="mobileFileUpload">
+			<input type="hidden" name="initialImage" value="{{this.initialImage}}">
 			<div class="user-image margin-auto">
 				<div class="upload-photo-text">{{i18n "postAdModal.uploadPhoto"}}
 					<div class="icon-post"></div>

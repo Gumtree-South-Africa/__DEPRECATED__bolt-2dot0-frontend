@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<div class="separator-div"></div>
-		<div class="form-ad-title">
+		<div class="form-ad-title form-field {{#if this.verticalCategory}}required-field{{/if}}">
 			<div class="label-wrapper">
 				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
@@ -64,7 +64,7 @@
                 </div>
             </div>
         </div>
-		<div class="form-ad-description">
+		<div class="form-ad-description form-field {{#if this.verticalCategory}}required-field{{/if}}">
 			<div class="label-wrapper">
 				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>

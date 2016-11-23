@@ -36,12 +36,10 @@ describe('Post Ad Api', () => {
 
 					let id = Number(jsonResult.ad.id);
 					expect(id).toEqual(jasmine.any(Number), `ad id value should be numeric`);
-
-					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
+					expect(jsonResult.ad.redirectLinks).toBeDefined('ad should have a vipLink');
 					// the activateStatus is expected to cause a message to appear on the destination page
-					expect(jsonResult.ad.redirectLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
-
-					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
+					expect(jsonResult.ad.redirectLinks.vip).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
+					expect(jsonResult.ad.redirectLinks.vip).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
 				.end(specHelper.finish(done));
 		});

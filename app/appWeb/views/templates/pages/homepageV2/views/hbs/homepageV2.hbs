@@ -46,8 +46,37 @@
 
 	</div>
 
+    <input type="hidden" id="imageUploadFromHome" value="{{this.imageUploadFromHome}}">
+
+    {{#if this.imageUploadFromHome}}
+        {{> (dynamic "noUIImageUploader") }}
+
+        {{> (dynamic "spinnerModal") }}
+    {{/if}}
+
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal")}}
+
+        {{#if this.imageUploadFromHome}}
+            <input type="hidden" id="uploadFailureMessages"
+                data-invalid-dimension-title="{{i18n "homepage.imageUpload.error.invalidDimension.title"}}"
+                data-invalid-dimension-message="{{i18n "homepage.imageUpload.error.invalidDimension.message"}}"
+                data-invalid-size-title="{{i18n "homepage.imageUpload.error.invalidSize.title"}}"
+                data-invalid-size-message="{{i18n "homepage.imageUpload.error.invalidSize.message"}}"
+                data-invalid-type-title="{{i18n "homepage.imageUpload.error.invalidType.title"}}"
+                data-invalid-type-message="{{i18n "homepage.imageUpload.error.invalidType.message"}}"
+                data-colorspace-title="{{i18n "homepage.imageUpload.error.colorspace.title"}}"
+                data-colorspace-message="{{i18n "homepage.imageUpload.error.colorspace.message"}}"
+                data-firewall-title="{{i18n "homepage.imageUpload.error.firewall.title"}}"
+                data-firewall-message="{{i18n "homepage.imageUpload.error.firewall.message"}}"
+                data-picturesrv-title="{{i18n "homepage.imageUpload.error.picturesrv.title"}}"
+                data-picturesrv-message="{{i18n "homepage.imageUpload.error.picturesrv.message"}}"
+                data-corrupt-title="{{i18n "homepage.imageUpload.error.corrupt.title"}}"
+                data-corrupt-message="{{i18n "homepage.imageUpload.error.corrupt.message"}}"
+                data-unknown-title="{{i18n "homepage.imageUpload.error.unknown.title"}}"
+                data-unknown-message="{{i18n "homepage.imageUpload.error.unknown.message"}}">
+
+        {{/if}}
     {{/partial}}
 {{/partial}}
 

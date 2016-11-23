@@ -183,10 +183,20 @@
 		  	"defaultKeywordsCount"	: 15
 		},
 		"localCurrencies": ["MXN", "USD"],
-		 "quickpost" : {
+		"quickpost" : {
 			"currencyDisplay"    : true,
 			"currency"           : ["MXN:MXN","USD:USD"]
-        },
+		},
+		"verticalCategories": [{
+			"id": 30,
+			"requiredCustomAttributes": ["DwellingType", "NumberBedrooms", "NumberBathrooms"]
+		}, {
+			"id": 64,
+			"requiredCustomAttributes": ["AlmVehicleBrand", "AlmVehicleModel", "CarYear", "CarMileageInKms"]
+		}, {
+			"id": 36,
+			"requiredCustomAttributes": ["JobType"]
+		}],
 		"vip" : {
 			"defaultKeywordsCount"	: 6,
 			"payWithShepherd": false
@@ -219,10 +229,10 @@
 		},
 		"PostAdForm": {
 			"desktop" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory"]
 			},
 			"mobile" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory"]
 			}
 		},
 		"EditAdForm": {
@@ -274,6 +284,18 @@
 			"mobile": {
 				"models": [
 					"advert", "keywords", "safetyTips", "seo", "topSearches"
+				]
+			}
+		},
+		"AdPromote": {
+			"desktop": {
+				"models": [
+					"advert", "seo", "adResult"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "seo", "adResult"
 				]
 			}
 		},

@@ -66,7 +66,7 @@
                     </ul>
                 </div>
                 {{!-- post ad button --}}
-                {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+                {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post?&backUrl=./" i18nPath="header.postAd"}}
             </div>
 
             <div class="right-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">

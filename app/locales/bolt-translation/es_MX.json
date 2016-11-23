@@ -1166,7 +1166,9 @@
 	"postad": {
 		"upload": {
 			"photo": "Sube una foto",
-			"photos": "Sube foto(s)"
+			"photos": "Sube foto(s)",
+			"photoLimits" : "Cargar hasta 12 fotos",
+			"dragReOrder": "Toca y arrastra para reacomodarlas"
 		},
 		"image": {
 			"upload": {
@@ -1204,7 +1206,44 @@
 		},
 		"gallery" : {
 			"cardTitle": "Galería Principal"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con las dimensiones de tu imagen"
+				},
+				"invalidSize": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tamaño de tu imagen"
+				},
+				"invalidType": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tipo de imagen"
+				},
+				"colorspace": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"firewall": {
+					"title": "Intenta nuevamente",
+					"message": "Hay una problema con tu conxion a internet"
+				},
+				"picturesrv": {
+					"title": "Intenta nuevamente",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"corrupt": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con tu imagen"
+				},
+				"unknown": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				}
+			}
 		}
+
 	},
 	"header": {
 		"catDropdown": {
@@ -1232,7 +1271,10 @@
 		"placeholderText": "Escribe una ubicación",
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"locationWarning": "Tu ubicación exacta no se publicará",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n",
+		"currentLocation": "Ubicación actual",
+		"yourLocation": "Ubicación de tu anuncio"
 	},
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",
@@ -1252,8 +1294,10 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Atrás",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1307,6 +1351,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Listo",
+			"changePhoto": "Cambia <br>foto"
 		}
 	},
 	"footer": {
@@ -1330,9 +1378,9 @@
 				"vivablog": "Blog de Vivanuncios",
 				"vivabusiness": "Vivanuncios para negocios",
 				"rules": "Reglas para publicar anuncios",
-				"staysafe": "Mantente Seguro",
+				"staysafe": "Mantente seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agentes Inmobiliarios",
+                "protool": "Agentes inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
@@ -1342,30 +1390,30 @@
 				"cookies": "Cookies"
 			},
 			"business": {
-				"business": "Agentes Inmobiliarios",
-				"protool": "La Tienda de Semi Nuevos",
-				"stores": "La Tienda Vivanuncios"
+				"business": "Agentes tnmobiliarios",
+				"protool": "La tienda de semi nuevos",
+				"stores": "La tienda Vivanuncios"
 			},
 			"explore": {
 				"explore": "Explorar",
 				"classifieds": "Sitios de clasificados de eBay",
-				"mobile": "Aplicaciones Móviles",
+				"mobile": "Aplicaciones móviles",
 				"partners": "Socios",
 				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Búsquedas destacadas",
                 "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-				"priceIndex": "Previos de Inmuebles"
+				"priceIndex": "Precios de inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
 				"helplink": "https://ayuda.vivanuncios.com.mx",
-				"onlinesafety": "Seguridad en Internet",
+				"onlinesafety": "Seguridad en internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar",
-				"listingRules": "Reglas para Publicar Anuncios"
+				"listingRules": "Reglas para publicar anuncios"
 			}
 		},
 		"topSearches": {
@@ -1396,13 +1444,15 @@
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"categoryOptional": "Seleccionar categoría (opcional)",
+				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",
 				"location": "Ciudad, zona o código postal"
 			},
 			"titleRestrictions": {
-				"minimumAvailable": "Disponsibles: ",
+				"minimumAvailable": "Disponibles: ",
 				"characters": " caracter(es)"
 			},
 			"askMe": "Preguntarme",
@@ -1510,6 +1560,28 @@
 			"moreInfo": "Más información.",
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "Se requiere de un mensaje",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Es necesario tu correo electrónico",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
 		}
 	},
 	"search": {
