@@ -72,35 +72,6 @@
 				color: $vivaBlue;
 			}
 		}
-		.view-replies-count {
-			margin: 10px 0px;
-			padding: 10px 0px;
-			width: 100%;
-			border-top: 1px solid $vivaGray2;
-			border-bottom: 1px solid $vivaGray2;
-
-			.ad-view-count {
-				display: inline-block;
-				text-align: center;
-				width: 48%;
-				border-right: 1px solid $vivaGray2;
-				font-size: 18px;
-				.views-text {
-					font-size: 14px;
-					color: $vivaGray1;
-				}
-			}
-			.ad-replies-count {
-				text-align: center;
-				display: inline-block;
-				width: 48%;
-				font-size: 18px;
-				.replies-text {
-					font-size: 14px;
-					color: $vivaGray1;
-				}
-			}
-		}
 		.ad-category {
 			.category-attr {
 				display: block;

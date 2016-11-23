@@ -90,7 +90,7 @@
 			"type": [
 				{
 					"name": "NumberBedrooms",
-					"prefix": "a {formattedValue} {localizedName}"
+					"prefix": "a {formattedValue}"
 				},
 				{
 					"name": "DwellingType",
@@ -109,11 +109,11 @@
 		"9077": {
 			"type": [
 				{
-					"name": "AlmVehicleBrand",
+					"name": "CarMake",
 					"prefix": "a {formattedValue}"
 				},
 				{
-					"name": "AlmVehicleModel",
+					"name": "CarModel",
 					"prefix": "{formattedValue}"
 				}
 			]
@@ -153,8 +153,8 @@
 		"8": {
 			"type": [
 				{
-					"name": "Address",
-					"prefix": "a job"
+					"name": "JobType",
+					"prefix": "a {formattedValue} job"
 				}
 			]
 		}
