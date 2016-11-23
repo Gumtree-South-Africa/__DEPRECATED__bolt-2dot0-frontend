@@ -1,6 +1,12 @@
 $item-margin: 10px;
 $photo-switcher-width: 30%;
 
+$inputWidth: 84%;
+$inputFieldWidth: 46%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;
+
 .margin-auto {
 	width: 90%;
 	margin: 0 auto;
@@ -15,18 +21,11 @@ $photo-switcher-width: 30%;
 }
 
 .mobile-post-ad {
-	.didKnow-text, .confirm-tip {
-		width: 90%;
+	.info-tips {
+		width: 70%;
 		text-align: center;
-		margin: 20px auto;
-	}
-
-	.didKnow-text {
-		font-size: 30px;
-	}
-
-	.confirm-tip {
-		font-size: 18px;
+		margin: 10% auto;
+		font-size: 20px;
 		color: $postAdTextGray;
 	}
 }
@@ -39,6 +38,7 @@ $photo-switcher-width: 30%;
 		font-size: 18px;
 		color: $postAdTextGray;
 		margin-bottom: 15px;
+		text-align: center;
 	}
 
 	.post-ad-btn {
@@ -49,15 +49,18 @@ $photo-switcher-width: 30%;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
 		display: inline-block;
-		padding: 12px;
+		padding: 12px 5px;
 		font: bold 1.125em Lato;
 		text-align: center;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 80%;
-		margin: 20px 10%;
+		width: 59.6%;
 		vertical-align: top;
+		float: left;
+		margin-left: calc(6% + 300px);
+		margin-top: 1%;
+		margin-bottom: 2%;
 
 		&.disabled {
 			opacity: 0.5;
@@ -77,6 +80,30 @@ $photo-switcher-width: 30%;
 	.desktop-post-ad {
 		display: block;
 	}
+
+	.main-detail-post {
+		width: 54%;
+		float: left;
+		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		margin-left: 1%;
+		display: block !important; //TBD, need to find why another breakpoint created
+	}
+
+	.two-step {
+		display: block !important;
+	}
+	.one-step {
+		display: none !important;
+	}
+
+	.icon-down {
+		display: none;
+	}
+
+	.icon-up {
+		display: none;
+	}
 }
 
 .image-upload-progress {
@@ -84,8 +111,21 @@ $photo-switcher-width: 30%;
 	margin: auto;
 }
 
-@media(min-width: 768px) and (max-width:769px) {
-	.containment {
-		min-height: 733px;
+@include to-breakpoint($small-break) {
+	.viewport.covered .footer-wrapper {
+		// To ensure nothing in page is covered by post button overlay
+		// Magic number 73 is the height of post button layer
+		margin-bottom: 73px;
+	}
+	.main-detail-post {
+		display:none;
+		background-color: $mainDetailsBackgroundColor;
+	}
+
+	.two-step {
+		display: none;
+	}
+	.one-step {
+		display: block;
 	}
 }

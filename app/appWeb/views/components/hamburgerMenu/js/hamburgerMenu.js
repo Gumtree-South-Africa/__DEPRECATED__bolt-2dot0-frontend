@@ -1,9 +1,99 @@
 'use strict';
 let searchBarV2 = require('app/appWeb/views/components/searchbarV2/js/searchbarV2.js');
 let Hammer = require('hammerjs');
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
+
+/**
+ * A hamburger menu.
+ *
+ * - Events:
+ *   - postButtonClicked
+ *   - propertyChanged, triggered with propertyName and newValue
+ *
+ * - Properties:
+ *   - isPostAllowed
+ */
+class HamburgerMenuVM {
+	constructor() {
+		this.postButtonClicked = new SimpleEventEmitter();
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._isPostDirectly = false;
+
+		this._isPostAllowed = true;
+		this._isOpened = false;
+	}
+
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMount(domElement) {
+		this._isPostDirectly = domElement.find('.js-post-button').hasClass('directly-post');
+		this._postButton = domElement.find('.js-post-button a');
+		this.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isPostAllowed') {
+				return;
+			}
+			if (newValue) {
+				this._postButton.attr('tabindex', '0');
+				this._postButton.removeClass('disabled');
+			} else {
+				this._postButton.attr('tabindex', '-1');
+				this._postButton.addClass('disabled');
+			}
+		});
+		if (this._isPostDirectly) {
+			// Use new way of post, upload image on the page
+			this._postButton.on('click', evt => this._handlePostButtonClicked(evt));
+		}
+	}
+
+	_handlePostButtonClicked(evt) {
+		evt.preventDefault();
+		evt.stopImmediatePropagation();
+		evt.stopPropagation();
+		if (!this._isPostAllowed) {
+			return;
+		}
+		window.BOLT.trackEvents({"event": "PostAdBegin"});
+		this.postButtonClicked.trigger();
+	}
+
+	get isPostAllowed() {
+		return this._isPostAllowed;
+	}
+
+	set isPostAllowed(newValue) {
+		newValue = !!newValue;
+		if (this._isPostAllowed === newValue) {
+			return;
+		}
+		this._isPostAllowed = newValue;
+		this.propertyChanged.trigger('isPostAllowed', newValue);
+	}
+
+	get isOpened() {
+		return this._isOpened;
+	}
+
+	set isOpened(newValue) {
+		newValue = !!newValue;
+		if (this._isOpened === newValue) {
+			return;
+		}
+		this._isOpened = newValue;
+		this.propertyChanged.trigger('isOpened', newValue);
+	}
+
+}
 
 class HamburgerMenu {
+	constructor() {
+		this.setupViewModel();
+	}
+
 	toggleMenu(shouldClose) {
 		if (this.open === undefined) {
 			this.open = shouldClose;
@@ -82,7 +172,7 @@ class HamburgerMenu {
 
 		this.$body.on('viewportChanged', (event, newSize, oldSize) => {
 			if (newSize === 'desktop' && oldSize === 'mobile' && this.open) {
-				this.toggleMenu();
+				this.viewModel.isOpened = false;
 			}
 		});
 
@@ -92,12 +182,12 @@ class HamburgerMenu {
 		this.menuHammer = new Hammer(this.hamburgerMenu);
 		this.overlayHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.toggleMenu();
+				this.viewModel.isOpened = false;
 			}
 		});
 		this.menuHammer.on('swipeleft', () => {
 			if (this.open) {
-				this.toggleMenu();
+				this.viewModel.isOpened = false;
 			}
 		});
 		this.$pageContent.addClass('open-menu');
@@ -105,11 +195,30 @@ class HamburgerMenu {
 			this._toggleBrowseCategory();
 		});
 		this.$hamburgerIcon.on('click', () => {
-			this.toggleMenu();
+			// The icon is clickable only when menu is closed
+			this.viewModel.isOpened = true;
 		});
 		this.$hamburgerPopout.on('click', () => {
-			this.toggleMenu();
+			// The popout is clickable only when menu is opened
+			this.viewModel.isOpened = false;
 		});
+
+		this.viewModel.componentDidMount($('#js-hamburger-menu'));
+		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
+			if (propName !== 'isOpened') {
+				return;
+			}
+			let currentOpenStatus = this.open;
+			if (currentOpenStatus !== newValue) {
+				this.toggleMenu();
+			}
+		});
+	}
+
+	// Common interface for all component to setup view model. In the future, we'll have a manager
+	// to control the lifecycle of view model.
+	setupViewModel() {
+		this.viewModel = new HamburgerMenuVM();
 	}
 }
 

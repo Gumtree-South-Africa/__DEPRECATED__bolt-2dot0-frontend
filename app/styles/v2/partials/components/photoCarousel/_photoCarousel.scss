@@ -1,6 +1,9 @@
 .photo-switcher {
 	display: inline-block;
 	width: $photo-switcher-width;
+	float: left;
+	background-color: $postAdBackgroundColor;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
 
 	.icon-camera-v2 {
 		margin-top: 25%;

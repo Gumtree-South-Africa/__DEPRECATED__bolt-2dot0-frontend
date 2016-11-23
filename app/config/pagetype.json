@@ -27,6 +27,7 @@
 	    "MY_MESSAGE_PAGE" : "MyMessages",
 	    "SAVED_SEARCH" : "SavedSearch",
 	    "MY_PROMOTE_PAGE" : "MyAdsFeature",
+		"AD_PROMOTE_PAGE" : "AdPromote",
 	    "MY_ORDER_PAGE" : "MyOrderPage",
 	    "BEST_ADS" : "ResultsBest",
 	    "ORDER_SUCCESS" : "OrderSuccess",

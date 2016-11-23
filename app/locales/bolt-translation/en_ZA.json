@@ -1172,6 +1172,42 @@
 		},
 		"gallery" : {
 			"cardTitle": "Homepage gallery ads"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Try other images",
+					"message": "There is a problem with your image dimension"
+				},
+				"invalidSize": {
+					"title": "Try other images",
+					"message": "There is a problem with your image size"
+				},
+				"invalidType": {
+					"title": "Try other images",
+					"message": "There is a problem with your image type"
+				},
+				"colorspace": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				},
+				"firewall": {
+					"title": "Try again",
+					"message": "There is a problem with your network"
+				},
+				"picturesrv": {
+					"title": "Try again",
+					"message": "There is a problem uploading your image"
+				},
+				"corrupt": {
+					"title": "Try other images",
+					"message": "There is a problem with your image"
+				},
+				"unknown": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				}
+			}
 		}
 	},
 	"header": {
@@ -1257,6 +1293,7 @@
 		"placeholderText": "Type a location",
 		"locationAutoDesktop": "According to our system, this is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
@@ -1280,8 +1317,10 @@
 		"button": "Post FREE Ad"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Free Classifieds on Gumtree South Africa",
+			"tips": "It's easy, just upload a photo. You can add more photos and edit the details later.",
 			"desc": "Come to Gumtree South Africa, your local online classifieds site with undefined live classified listings. List free classifieds ads or buy and sell what you want for free!"
 		},
 		"confirm": {
@@ -1335,6 +1374,10 @@
 			"message": "This file contains an unsupported media type.",
 			"uploadBtn": "Upload a different photo",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Done",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"footer": {
@@ -1431,6 +1474,8 @@
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",
 				"price": "Price",
 				"description": "Description",
