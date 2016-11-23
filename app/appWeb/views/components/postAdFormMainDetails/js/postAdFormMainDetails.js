@@ -400,8 +400,8 @@ class PostAdFormMainDetails {
 			if (errorElements.length) {
 				let $highestFailure = errorElements.closestToOffset(0, 0);
 				let scrollTo = $highestFailure.offset().top - 50;
-				let viewportElement = $('.viewport');
-				viewportElement.animate({ scrollTop: Math.max(scrollTo + viewportElement.scrollTop(), 0) }, 200);
+				let bodyElement = $('body, html');
+				bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
 			}
 		}
 	}
@@ -504,8 +504,8 @@ class PostAdFormMainDetails {
 			if (errorElements.length) {
 				let $highestFailure = errorElements.closestToOffset(0, 0);
 				scrollTo = $highestFailure.offset().top - 50;
-				let viewportElement = $('.viewport');
-				viewportElement.animate({ scrollTop: Math.max(scrollTo + viewportElement.scrollTop(), 0) }, 200);
+				let bodyElement = $('body, html');
+				bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
 			}
 		}
 	}
