@@ -170,13 +170,23 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
+
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
+				//TODO: check to see if additional attributes should be displayed based on specific categories
+				data.displayMoreAttributes = true;
 				data.isOwnerAd = true;
 
-				// Merge Bapi Ad Data
+				//TODO: check if user is logged in
+				data.isUserLoggedIn = false;
+
+				//TODO: display real phone number
+				data.phoneNumber = "408-456-7890";
+				data.hiddenNumber = data.phoneNumber.split('-')[0] + '*******';
+
+				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
-				// TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
 				// if (this.req.app.locals.isSeoUrl === true) {
 				// 	let originalSeoUrl = this.req.originalUrl;
 				// 	let seoVipElt = data._links.find((elt) => {

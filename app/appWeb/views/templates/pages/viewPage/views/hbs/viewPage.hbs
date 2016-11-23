@@ -1,4 +1,5 @@
 {{#partial "content"}}
+    {{> (dynamic "topBanner")}}
 
     <div class="vip-left-columns">
         <div id="viewPage">
@@ -21,6 +22,11 @@
         <div class="seller-profile">
             {{> (dynamic "sellerProfile")}}
         </div>
+
+  		<div class="reply-form">
+              {{> (dynamic "replyForm")}}
+  		</div>
+    </div>
 
         {{> (dynamic "adStats") }}
         {{#block "vip-adstats"}}{{/block}}
@@ -59,5 +65,4 @@
         {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	</script>
-
 {{/partial}}
