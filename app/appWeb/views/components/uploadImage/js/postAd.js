@@ -127,6 +127,12 @@ class PostAd {
 			photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
 				this.viewModel.postAdFormMainDetails.imageUrls = [].concat(imgUrls);
 			});
+
+			let mobilePostAd = $('.mobile-upload-image');
+			if (mobilePostAd.length && window.getComputedStyle(mobilePostAd[0]).display !== 'none') {
+				// In mobile view
+				$('body, html').scrollTop(Math.max($('#mobileFileUpload').offset().top - 5, 0));
+			}
 		});
 	}
 

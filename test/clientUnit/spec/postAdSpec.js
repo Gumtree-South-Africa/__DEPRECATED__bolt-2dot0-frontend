@@ -1,6 +1,6 @@
 'use strict';
 
-let photoCarouselController = require("app/appWeb/views/components/photoCarousel/js/photoCarousel.js");
+let photoContainerController = require("app/appWeb/views/components/photoContainer/js/photoContainer.js");
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
 let uploadAdController = require("app/appWeb/views/components/uploadImage/js/postAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
@@ -176,16 +176,21 @@ describe('Post Ad', () => {
 	});
 
 	describe("upload image (desktop)", () => {
-		let $testArea;
 		beforeEach(() => {
-			$testArea = specHelper.setupTest("photoCarousel", {}, "es_MX");
-			specHelper.registerMockAjax('/eps', mockEpsResponse);
-			// Reset view model to avoid former tests affecting latter ones.
-			photoCarouselController.setupViewModel();
-			uploadAdController.setupViewModel();
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
 
-			spyOn(uploadAdController, 'handlePostResponse');
-			spyOn(postAdFormMainDetailsController, '_setupPolyfillForm');
+			specHelper.setupPageTest("postAd", {}, "es_MX");
+			specHelper.registerMockAjax('/eps', mockEpsResponse);
+
+			photoContainerController.initialize();
+			uploadImageController.initialize();
+			postAdModalController.initialize();
+			postAdFormMainDetailsController.initialize(false);
+			postAdFormMainDetailsController.onReady();
+			spinnerModalController.initialize();
+			uploadAdController.initialize();
+			uploadAdController.viewModel.componentDidMount();
 		});
 
 		it('should successfully post ad with created response', () => {
@@ -195,17 +200,11 @@ describe('Post Ad', () => {
 					redirectLink: '/'
 				}
 			});
-			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>`);
-			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+			spyOn(spinnerModalController, 'completeSpinner');
 
-			postAdModalController.initialize();
-			uploadAdController.initialize();
-			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
-			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+			expect(spinnerModalController.completeSpinner).toHaveBeenCalled();
 		});
 
 		it('should successfully post ad with deferred response', () => {
@@ -213,17 +212,11 @@ describe('Post Ad', () => {
 				state: 'AD_DEFERRED',
 				deferredLink: '/'
 			});
-			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>`);
-			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+			spyOn(spinnerModalController, 'completeSpinner');
 
-			postAdModalController.initialize();
-			uploadAdController.initialize();
-			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
 			let $postAdButton = $('#postAdBtn');
 			$postAdButton.click();
-			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+			expect(spinnerModalController.completeSpinner).toHaveBeenCalled();
 		});
 
 		it('should fail to post with no images', () => {
@@ -231,31 +224,20 @@ describe('Post Ad', () => {
 				state: 'AD_DEFERRED',
 				deferredLink: '/'
 			});
-			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>`);
-			// $testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+			photoContainerController.setFormValid(true);
 
-			postAdModalController.initialize();
-			uploadAdController.initialize();
 			let $postAdButton = $('#postAdBtn');
 			expect($postAdButton.hasClass('disabled')).toBeTruthy();
 		});
 
 		it('should error out with returned failed ajax', () => {
 			specHelper.registerMockAjax('/api/postad/create', {}, {fail: true, status: 500});
-			$testArea.append(`<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-				<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>`);
-			$testArea.append(`<div class='carousel-item'></div><div class='carousel-item'></div><div class='carousel-item'></div>`);
+			spyOn(spinnerModalController, 'hideModal');
 
-			postAdModalController.initialize();
-			uploadAdController.initialize();
-			uploadAdController.photoCarouselVM.updateImageUrls(['', '', '']);
+
 			let $postAdButton = $('#postAdBtn');
-			expect($postAdButton.hasClass('disabled')).toBeFalsy();
 			$postAdButton.click();
-			expect($postAdButton.hasClass('disabled')).toBeFalsy();
+			expect(spinnerModalController.hideModal).toHaveBeenCalled();
 		});
 	});
 });

@@ -122,6 +122,17 @@ let setupTest = (templateName, templateModel, locale) => {
 	return _prepareTemplate(templateName, templateModel);
 };
 
+let setupPageTest = (templateName, templateModel, locale) => {
+	clientHbsHelpers.setLocale(locale);
+	$("html").attr("data-locale", locale);
+	let template = window.TEST.Handlebars.partials[templateName];
+	template(templateModel);
+
+	template = window.TEST.Handlebars.compile('{{> override_content }}');
+	let dom = template(templateModel);
+	return $('#testArea').append(dom);
+};
+
 let mockGoogleLocationApi = () => {
 	registerMockAjax("https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&language=");
 	registerMockAjax("https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language=");
@@ -157,6 +168,7 @@ let unmockAllObjectProperties = () => {
 
 let exports = {
 	setupTest,
+	setupPageTest,
 	registerMockAjax,
 	setCookie,
 	getCookie,
