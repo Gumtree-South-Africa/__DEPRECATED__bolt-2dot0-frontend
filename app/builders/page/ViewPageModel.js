@@ -206,7 +206,7 @@ class ViewPageModel {
 						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
-				if (typeof data.sellerDetails.publicDetails.picture!=='undefined') {
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
 					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
 						if (profilePicture.size === 'LARGE') {
 							let picUrl = profilePicture.url;
