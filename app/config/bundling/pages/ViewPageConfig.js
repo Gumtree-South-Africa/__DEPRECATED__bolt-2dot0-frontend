@@ -18,7 +18,9 @@ module.exports = {
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"PageMain": "app/appWeb/views/templates/pages/viewPage/js/viewPage.js",
 			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
-			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js"
+		//	"ViewPageDetails": "app/appWeb/views/components/viewPageDetails/js/viewPageDetails.js",
+			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js",
+			"replyForm": "app/appWeb/views/components/replyForm/js/replyForm.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
