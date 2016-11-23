@@ -176,12 +176,11 @@ describe('Post Ad', () => {
 	});
 
 	describe("upload image (desktop)", () => {
-		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
 
-			$testArea = specHelper.setupPageTest("postAd", {}, "es_MX");
+			specHelper.setupPageTest("postAd", {}, "es_MX");
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
 
 			photoContainerController.initialize();
