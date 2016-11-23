@@ -56,18 +56,18 @@ describe('Post Ad', () => {
 	});
 
 	describe('Post Ad page', () => {
+		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 
-			specHelper.setupTest("postAd_es_MX", {
+			$testArea = specHelper.setupPageTest("postAd", {}, "es_MX");
 
-			}, "es_MX");
 			uploadImageController.initialize();
 			postAdModalController.initialize();
 			postAdFormMainDetailsController.initialize(false);
 			spinnerModalController.initialize();
 			uploadAdController.initialize();
-			uploadAdController.viewModel.componentDidMount();
+			uploadAdController.viewModel.componentDidMount($testArea);
 		});
 		it('should call IRS and set component status correctly when image is uploaded', () => {
 			specHelper.registerMockAjax('/api/postad/imagerecognition', { categoryId: 1 });
@@ -97,14 +97,12 @@ describe('Post Ad', () => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
 
-			$testArea = specHelper.setupTest("uploadImage", {
+			$testArea = specHelper.setupPageTest("postAd", {
 				eps: {
 					epsUploadExternalURL: '/eps',
 					isEbayDirectUploadEnabled: true
 				}
 			}, "es_MX");
-			// Used by editAdFormMainDetails.js
-			$testArea.append('<div id="js-main-detail-post"><input title="Title"></div>');
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
 			specHelper.registerMockAjax('/api/postad/imagerecognition', {});
 			file = {
@@ -117,7 +115,7 @@ describe('Post Ad', () => {
 			postAdFormMainDetailsController.initialize(false);
 			spinnerModalController.initialize();
 			uploadAdController.initialize();
-			uploadAdController.viewModel.componentDidMount();
+			uploadAdController.viewModel.componentDidMount($testArea);
 
 		});
 
@@ -147,10 +145,11 @@ describe('Post Ad', () => {
 	});
 
 	describe('Main detail form', () => {
+		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-			specHelper.setupTest("postAdFormMainDetails", {
+			$testArea = specHelper.setupPageTest("postAd", {
 				'footer': {
 					"baseJSUrl": '/public/js/'
 				}
@@ -164,7 +163,7 @@ describe('Post Ad', () => {
 			specHelper.mockObjectProperty(postAdFormMainDetailsController.viewModel, 'isFixMode', false);
 			spinnerModalController.initialize();
 			uploadAdController.initialize();
-			uploadAdController.viewModel.componentDidMount();
+			uploadAdController.viewModel.componentDidMount($testArea);
 		});
 
 		it('should be in fix mode for failed ajax', () => {
@@ -176,11 +175,12 @@ describe('Post Ad', () => {
 	});
 
 	describe("upload image (desktop)", () => {
+		let $testArea;
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
 
-			specHelper.setupPageTest("postAd", {}, "es_MX");
+			$testArea = specHelper.setupPageTest("postAd", {}, "es_MX");
 			specHelper.registerMockAjax('/eps', mockEpsResponse);
 
 			photoContainerController.initialize();
@@ -190,7 +190,7 @@ describe('Post Ad', () => {
 			postAdFormMainDetailsController.onReady();
 			spinnerModalController.initialize();
 			uploadAdController.initialize();
-			uploadAdController.viewModel.componentDidMount();
+			uploadAdController.viewModel.componentDidMount($testArea);
 		});
 
 		it('should successfully post ad with created response', () => {
