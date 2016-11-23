@@ -4,7 +4,7 @@
 
 .mobile-post-ad-wrapper {
 	position: fixed;
-	z-index: 1;
+	z-index: 5;
 
 
 	@include to-breakpoint($medium-break) {
