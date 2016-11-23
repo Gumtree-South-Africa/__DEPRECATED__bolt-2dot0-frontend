@@ -171,21 +171,12 @@ class ViewPageModel {
 					flags: advertData.adFlags,
 					map: {
 						defaultRadius: 2000, //2.0km default kilometers
-						 passedRadius: 50000
+						passedRadius: 50000
 					}
 				};
 
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
-				//TODO: check to see if additional attributes should be displayed based on specific categories
-				data.displayMoreAttributes = true;
 				data.isOwnerAd = true;
-
-				//TODO: check if user is logged in
-				data.isUserLoggedIn = false;
-
-				//TODO: display real phone number
-				data.phoneNumber = "408-456-7890";
-				data.hiddenNumber = data.phoneNumber.split('-')[0] + '*******';
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
@@ -217,31 +208,6 @@ class ViewPageModel {
 					});
 				}
 
-				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
-				data.siteLanguage = this.locale.split('_')[0];
-
-				var findStr = "center=";
-				var searchString = data.ogSignedUrl;
-				var endOf = -1;
-				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
-				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
-				data.map.locationLat = center[0];
-				data.map.locationLong = center[1];
-
-				data.map.finalRadius;
-				if(data.map.passedRadius === 0){
-					data.map.showPin = true;
-					data.map.showCircle = false;
-				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
-					data.map.showCircle = true;
-					data.map.finalRadius = data.map.defaultRadius;
-					data.map.showPin = false;
-				} else {
-					data.map.finalRadius = data.map.passedRadius;
-					data.map.showCircle = true;
-					data.map.showPin = false;
-				}
-
 				// Manipulate Ad Data
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
@@ -266,6 +232,35 @@ class ViewPageModel {
 							data.sellerDetails.publicDetails.displayPicture = picUrl;
 						}
 					});
+				}
+
+				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+				}
+
+				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
+				data.siteLanguage = this.locale.split('_')[0];
+
+				var findStr = "center=";
+				var searchString = data.ogSignedUrl;
+				var endOf = -1;
+				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
+				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
+				data.map.locationLat = center[0];
+				data.map.locationLong = center[1];
+
+				data.map.finalRadius;
+				if(data.map.passedRadius === 0){
+					data.map.showPin = true;
+					data.map.showCircle = false;
+				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
+					data.map.showCircle = true;
+					data.map.finalRadius = data.map.defaultRadius;
+					data.map.showPin = false;
+				} else {
+					data.map.finalRadius = data.map.passedRadius;
+					data.map.showCircle = true;
+					data.map.showPin = false;
 				}
 
 				let locationElt = data._links.find( (elt) => {
