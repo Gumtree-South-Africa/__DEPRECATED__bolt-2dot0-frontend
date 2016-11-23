@@ -141,7 +141,7 @@ class ViewPageModel {
 
 		this.dataPromiseFunctionMap.advert = () => {
 			return advertModelBuilder.resolveAllSettledPromises().then((results) => {
-				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
+				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSellerDetails', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
 				let advertData = {};
 				let advertIndex = 0;
 				_.each(results, (result) => {
@@ -161,19 +161,9 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					userId: 'testUser123',
-					viewCount: '44',
-					repliesCount: '3',
 					postedBy: 'Owner',
-					seller: {
-						fname: "Diego",
-						sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
-						profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
-						adsPosted: "14",
-						adsActive: "10",
-						emailVerified: true
-					},
 					features: advertData.adFeatures,
+					sellerDetails: advertData.adSellerDetails,
 					statistics: advertData.adStatistics,
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
@@ -185,9 +175,7 @@ class ViewPageModel {
 					}
 				};
 				//TODO: check to see if userId matches header data's userID to show favorite or edit
-				data.isOwnerAd = false;
-				//TODO: check to see if additional attributes should be displayed based on specific categories
-				data.displayMoreAttributes = true;
+				data.isOwnerAd = true;
 
 				// Merge Bapi Ad Data
 				_.extend(data, advertData.ad);
@@ -257,6 +245,15 @@ class ViewPageModel {
 						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
 						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+				if (typeof data.sellerDetails.publicDetails.picture!=='undefined') {
+					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
+						if (profilePicture.size === 'LARGE') {
+							let picUrl = profilePicture.url;
+							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
+							data.sellerDetails.publicDetails.displayPicture = picUrl;
+						}
 					});
 				}
 

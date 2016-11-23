@@ -1,27 +1,37 @@
-<div class="ad-statistics">
-    <div class="stats-views">
-		<div class="stat-count">
-            {{ adResult.statistics.viewCount }}
-		</div>
-		<div class="stat-label">
-            {{i18n "adStats.views"}}
-		</div>
-    </div>
-    <div class="stats-messages">
-		<div class="stat-count">
-			{{ adResult.statistics.replyCount }}
-
+{{#partial "vip-adstats"}}
+    {{#if this.advert.isOwnerAd}}
+        <div class="view-replies-count ad-desktop-only">
+            <div class="ad-view-count">{{this.advert.statistics.adStatsPublic.viewCount}}<div class="views-text">{{i18n "vip.details.views"}}</div></div>
+            <div class="ad-replies-count">{{this.advert.statistics.adStatsPublic.replyCount}}<div class="replies-text">{{i18n "vip.details.replies"}}</div></div>
         </div>
-		<div class="stat-label">
-            {{i18n "adStats.messages"}}
+    {{/if}}
+{{/partial}}
+
+{{#partial "edit-adstats"}}
+	<div class="ad-statistics">
+		<div class="stats-views">
+			<div class="stat-count">
+                {{ adResult.statistics.viewCount }}
+			</div>
+			<div class="stat-label">
+                {{i18n "adStats.views"}}
+			</div>
 		</div>
-    </div>
-    <!--<div class="stats-favs">-->
-        <!--<div class="stat-count">-->
-            <!--{{ adResult.statistics.favoriteCount }}-->
-        <!--</div>-->
-        <!--<div class="stat-label">-->
-            <!--{{i18n "adStats.favorites"}}-->
-        <!--</div>-->
-    <!--</div>-->
-</div>
+		<div class="stats-messages">
+			<div class="stat-count">
+                {{ adResult.statistics.replyCount }}
+			</div>
+			<div class="stat-label">
+                {{i18n "adStats.messages"}}
+			</div>
+		</div>
+		<!--<div class="stats-favs">-->
+		<!--<div class="stat-count">-->
+		<!--{{ adResult.statistics.favoriteCount }}-->
+		<!--</div>-->
+		<!--<div class="stat-label">-->
+		<!--{{i18n "adStats.favorites"}}-->
+		<!--</div>-->
+		<!--</div>-->
+	</div>
+{{/partial}}

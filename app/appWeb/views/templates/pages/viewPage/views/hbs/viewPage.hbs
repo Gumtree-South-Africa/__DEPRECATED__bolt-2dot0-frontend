@@ -29,6 +29,9 @@
         </div>
     </div>
 
+        {{> (dynamic "adStats") }}
+        {{#block "vip-adstats"}}{{/block}}
+
         {{> (dynamic "rightBanner")}}
 
         {{#if this.safetyTips}}
