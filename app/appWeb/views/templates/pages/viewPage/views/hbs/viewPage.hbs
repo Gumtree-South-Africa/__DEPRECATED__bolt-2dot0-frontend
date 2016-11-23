@@ -23,26 +23,23 @@
             {{> (dynamic "sellerProfile")}}
         </div>
 
+        {{> (dynamic "adStats") }}
+        {{#block "vip-adstats"}}{{/block}}
+
   		<div class="reply-form">
               {{> (dynamic "replyForm")}}
   		</div>
 
-      <div class="google-maps">
-          {{> (dynamic "gpsMap")}}
+        <div class="google-maps">
+            {{> (dynamic "gpsMap")}}
           {{#block "vip-map"}}{{/block}}
-      </div>
-    </div>
-
-        {{> (dynamic "adStats") }}
-        {{#block "vip-adstats"}}{{/block}}
+        </div>
 
         {{#if this.safetyTips}}
             <div class="vip-safety-tips">
                 {{> (dynamic "safetyTips") }}
 			</div>
         {{/if}}
-
-        {{> (dynamic "rightBanner")}}
     </div>
 
     {{> (dynamic "bottomBanner")}}
@@ -67,7 +64,6 @@
 			ptype: 'VIP'
 		};
 
-        {{#block "googleBannerAdsRightV2_Script"}}{{/block}}
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 	</script>
 {{/partial}}
