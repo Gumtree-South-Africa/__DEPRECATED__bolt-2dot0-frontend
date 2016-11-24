@@ -136,7 +136,6 @@ class HeaderModel {
 								if (!_.isEmpty(dataReturned)) {
 									// merge user cookie data
 									_.extend(data, dataReturned);
-
 									// build user profile
 									this.buildProfile(data);
 								}

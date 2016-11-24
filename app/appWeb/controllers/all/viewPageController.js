@@ -7,6 +7,9 @@ let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
+let config = require('config');
+
+const SITE_KEY = config.get('recaptcha.SITE_KEY');
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -94,6 +97,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.search = true;
 
 		modelData.redirectUrl = redirectUrl;
+		modelData.recaptchaSiteKey = SITE_KEY;
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 	}).fail((err) => {

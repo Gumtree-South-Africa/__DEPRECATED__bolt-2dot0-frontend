@@ -1566,6 +1566,26 @@
 			"adsPosted": "ADS POSTED",
 			"adsActive": "ACTIVE"
 		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "The email is not valid"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Missing report type"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Incorrect captcha"
+				},
+				{
+					"field": "adId",
+					"message": "Missing ad id"
+				}
+			]
+		},
 		"reply": {
 			"back": "BACK",
 			"messageSeller": "MESSAGE %s",
