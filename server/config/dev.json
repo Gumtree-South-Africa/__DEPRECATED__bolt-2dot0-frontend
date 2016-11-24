@@ -26,6 +26,7 @@
 			"availableFlagsAd"	:	"/bolt-api-webapp/v1/ads/flags",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
+			"flagAd"		:	"/bolt-api-webapp/v1/ads/{id}/actions/flag",
 			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
 			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
 			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",
@@ -43,6 +44,15 @@
 			"port"	: 9090,
 			"path"	: "/solr",
 			"version": "4.0"
+		}
+	},
+	"recaptcha": {
+		"server": {
+			"hostname": "www.google.com",
+      "protocol": "https:",
+      "method": "POST",
+      "path": "/recaptcha/api/siteverify",
+      "timeout": 2000
 		}
 	},
 	"kafka": {
