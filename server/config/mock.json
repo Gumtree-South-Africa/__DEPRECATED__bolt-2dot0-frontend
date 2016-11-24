@@ -26,6 +26,7 @@
 			"availableFlagsAd"	:	"/ads/flags",
 			"favoriteAd"		:	"/ads/{id}/favorites",
 			"specificAd"		:	"/ads/{id}",
+			"flagAd":	"/bolt-api-webapp/v1/ads/{id}/actions/flag",
 			"categoryAttributes":	"/categories/{catId}/attributes",
 			"authBoltLogin"		:	"/users/actions/login-with-bolt",
 			"authFbLogin"		:	"/users/actions/login-with-facebook",
@@ -45,6 +46,15 @@
 			"version": "4.0"
 		}
 	},
+  "recaptcha": {
+    "server": {
+      "hostname": "www.google.com",
+      "protocol": "https:",
+      "method": "POST",
+      "path": "/recaptcha/api/siteverify",
+      "timeout": 2000
+    }
+  },
 	"kafka": {
 		"server": {
 			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",

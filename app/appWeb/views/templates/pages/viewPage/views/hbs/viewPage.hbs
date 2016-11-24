@@ -32,6 +32,10 @@
             {{> (dynamic "replyForm")}}
         </div>
 
+        <div class="vip vip-flagad">
+            {{> (dynamic "flagAd")}}
+        </div>
+
         <div class="google-maps">
             {{> (dynamic "gpsMap")}}
           {{#block "vip-map"}}{{/block}}
@@ -57,21 +61,24 @@
 
 {{#partial "pageTailScripts"}}
 
-	<script>
-		var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
-		var googleTagAccountId = "{{this.header.googleTagAccountId}}";
-		var bP = {
+    {{#block "captchaTailsScripts"}}
+    {{/block}}
+
+    <script>
+        var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
+        var googleTagAccountId = "{{this.header.googleTagAccountId}}";
+        var bP = {
             {{#ifMobile this.device}}
-				accId: ("/" + googleTagAccountMobId + "/home").split(' ').join('_').replace(/\,|&_|'/g, ""),
+                accId: ("/" + googleTagAccountMobId + "/home").split(' ').join('_').replace(/\,|&_|'/g, ""),
             {{else}}
-				accId: ("/" + googleTagAccountId + "/home").split(' ').join('_').replace(/\,|&_|'/g, ""),
+                accId: ("/" + googleTagAccountId + "/home").split(' ').join('_').replace(/\,|&_|'/g, ""),
             {{/ifMobile}}
-			dc_ref: window.location.href,
-			kw: $('input[name=q]').val() || $('input[name=title]').val() || "no category",
-			loc: $('input[name=NlocName]').val(),
-			ptype: 'VIP'
-		};
+            dc_ref: window.location.href,
+            kw: $('input[name=q]').val() || $('input[name=title]').val() || "no category",
+            loc: $('input[name=NlocName]').val(),
+            ptype: 'VIP'
+        };
 
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
-	</script>
+    </script>
 {{/partial}}
