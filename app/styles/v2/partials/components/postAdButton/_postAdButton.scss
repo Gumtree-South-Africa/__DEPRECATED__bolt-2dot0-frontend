@@ -1,0 +1,80 @@
+.hidden {
+	display: none;
+}
+
+.mobile-post-ad-wrapper {
+	position: fixed;
+	z-index: 5;
+
+
+	@include to-breakpoint($medium-break) {
+		& {
+			position: absolute;
+		}
+	}
+
+	.inline-block {
+		display: inline-block;
+	}
+
+	.mobile-post-ad-modal-wrapper {
+		position: fixed;
+		background-color: white;
+		height: auto;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		margin: auto;
+		padding: 5px 20px;
+		@include from-breakpoint($medium-break) {
+			width: 60%;
+		}
+		.change-photo {
+			// To emphasize the other button, the "post" one
+			font-size: 80%;
+			text-align: center;
+			width: 25%;
+			float: right;
+			margin-top: 0.85em;
+			text-decoration: underline;
+		}
+	}
+
+	.mobile-post-ad-footer {
+		.modal-footer-mobile {
+			display: block;
+			@include from-breakpoint($medium-break) {
+				display: none;
+			}
+		}
+	}
+
+	h1 {
+		clear: both;
+		font: $h1;
+		text-align: center;
+		padding-top: 0.75em;
+		padding-bottom: 0.75em;
+	}
+
+	.mobile-post-ad-footer {
+		width: 60%;
+		padding: 10px 0 10px 20px;
+		margin: auto;
+		float: left;
+		@include from-breakpoint($medium-break) {
+			width: 75%;
+		}
+		.btn {
+			@include vivaBtn(off, 0.382em 0, 100%);
+			.btn-icon {
+				display: none;
+			}
+
+			&.disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
+		}
+	}
+}

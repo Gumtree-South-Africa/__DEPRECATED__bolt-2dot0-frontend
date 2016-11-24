@@ -2,13 +2,27 @@
 	margin: 0 auto;
 	max-width: 64em;
 	overflow-x: hidden;
-  background-color: $page-bgcolor;
+  	background-color: $page-bgcolor;
 }
-.footer-wrapper {
+.footer-wrapper{
 	margin: 0 auto;
 	max-width: 64em;
 }
 
+#home_topbanner{
+	margin: 0 auto;
+	width: 45.5em;
+}
+
+#ad-bottombanner{
+	margin: 0 auto;
+	width: 45.5em;
+}
+
+.icon-shepherd-pay-button{
+	display: block;
+	margin: 0 auto;
+}
 
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{

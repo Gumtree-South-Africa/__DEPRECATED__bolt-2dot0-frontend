@@ -3,11 +3,13 @@
 let cuid = require('cuid');
 
 let cwd = process.cwd();
+let abtestpagesJson = require(cwd + '/app/config/abtestpages.json');
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 
 
 let HP = {
@@ -152,7 +154,7 @@ let HP = {
 			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
 
 			// Menu Section (the one below the navbar)
-			if(homepageConfigData.sectionMenu !== null) {
+			if (homepageConfigData.sectionMenu !== null) {
 				modelData.sectionMenu = homepageConfigData.sectionMenu;
 			}
 		}
@@ -194,6 +196,11 @@ module.exports = (req, res, next) => {
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, res.locals.config.bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
+
+		modelData.eps = EpsModel();
+
+		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res) ||
+			pageControllerUtil.is2dot0Page(res, abtestpagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {

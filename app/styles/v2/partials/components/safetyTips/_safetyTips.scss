@@ -25,6 +25,12 @@ $textColor: white;
     }
 }
 
+.vip-safety-tips .safety-tips-card {
+	width: 100%;
+	margin: 0 auto;
+	display: block;
+}
+
 .safety-tips-card {
     min-height: 280px;
     width: 100%;
@@ -139,6 +145,13 @@ $textColor: white;
 .dfp-banner {
 	text-align: center;
    }
+
+
+@include in-breakpoint($no-break){
+	.vip-safety-tips .safety-tips-card {
+		max-width: 20em;
+	}
+}
 
 @include in-breakpoint($small-break) {
 	.safety-tips-card {

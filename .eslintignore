@@ -68,7 +68,6 @@ app/appWeb/views/components/siteFlow/js/app.js
 app/appWeb/views/components/skinBanner/js/app.js
 app/appWeb/views/components/smartBanner/js/app.js
 app/appWeb/views/components/socialMediaLinks/js/app.js
-app/appWeb/views/components/smartBannerInterstitial/js/app.js
 app/appWeb/views/components/speechRecognition/js/app.js
 app/appWeb/views/components/speechRecognition/js/speech.js
 app/appWeb/views/components/switchButton/js/app.js
@@ -85,6 +84,7 @@ app/appWeb/views/templates/pages/quickpost/js/quickpostPrecompilation.js
 app/appWeb/views/components/smartMobileBanner/js/smartMobileBanner.js
 app/appWeb/serviceWorkers/service-worker-registration.js
 app/appWeb/views/components/modal/js/locationModal.js
+app/appWeb/views/components/locationSelection/js/locationSelection.js
 
 server/services/category.js
 server/services/configservice.js

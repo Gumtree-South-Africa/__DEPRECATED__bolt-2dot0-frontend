@@ -457,7 +457,7 @@
   "header.menu.termCond": "Terms and Conditions",
   "header.suggested-links": "Suggested",
   "header.published": "Published in:",
-  
+
   "register.page.title": "Register on Gumtree",
   "register.title": "Start Registration",
   "register.facebook": "Register via Facebook",
@@ -1071,8 +1071,6 @@
   "smartbanner.free": "Free",
   "smartbanner.install": "Download",
   "smartbanner.open": "Open",
-  "smartbanner.interstitial.install": "DOWNLOAD IT NOW!",
-  "smartbanner.interstitial.continue-mobile": "or continue to the mobile site >",
   "header.country.label": "Singapore",
   "quickpost.pageTitle": "Sell Your Item",
   "quickpost.page.title": "Sell Your Item via Free Classifieds on Gumtree Singapore",
@@ -1266,13 +1264,44 @@
     },
     "gallery" : {
       "cardTitle": "Galería Principal"
+    },
+    "imageUpload": {
+      "error": {
+        "invalidDimension": {
+          "title": "Try other images",
+          "message": "There is a problem with your image dimension"
+        },
+        "invalidSize": {
+          "title": "Try other images",
+          "message": "There is a problem with your image size"
+        },
+        "invalidType": {
+          "title": "Try other images",
+          "message": "There is a problem with your image type"
+        },
+        "colorspace": {
+          "title": "Try other images",
+          "message": "There is a problem uploading your image"
+        },
+        "firewall": {
+          "title": "Try again",
+          "message": "There is a problem with your network"
+        },
+        "picturesrv": {
+          "title": "Try again",
+          "message": "There is a problem uploading your image"
+        },
+        "corrupt": {
+          "title": "Try other images",
+          "message": "There is a problem with your image"
+        },
+        "unknown": {
+          "title": "Try other images",
+          "message": "There is a problem uploading your image"
+        }
+      }
     }
   },
-  "smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
-	},
   "welcomescreen": {
   	"title": "Welcome!",
   	"description": "Earn money now!",
@@ -1299,7 +1328,7 @@
 			}
 		}
 	},
-	
+
 	"header": {
 		"catDropdown": {
 			"browse": "Explore",
@@ -1326,6 +1355,7 @@
 		"placeholderText": "Type your location",
 		"locationAutoDesktop": "This is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
@@ -1346,8 +1376,10 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"tips": "It's easy, just upload a photo. You can add more photos and edit the details later.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1401,6 +1433,10 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Done",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"postAdModal": {
@@ -1418,6 +1454,8 @@
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",
@@ -1496,6 +1534,28 @@
 			"emailVerified": "Email Verified",
 			"adsPosted": "ADS POSTED",
 			"adsActive": "ACTIVE"
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "The message is required",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Your email is required",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
 		}
 	}
 }

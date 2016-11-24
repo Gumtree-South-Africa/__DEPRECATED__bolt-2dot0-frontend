@@ -33,6 +33,15 @@ class AdService {
 		}), bapiHeaderValues, 'adService$viewAdStatistics');
 	}
 
+	viewAdSellerDetails(bapiHeaderValues, adId) {
+		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
+		queryEndpoint = queryEndpoint + '/seller-details';
+		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
+			method: 'GET',
+			path: queryEndpoint,
+		}), bapiHeaderValues, 'adService$viewAdSellerDetails');
+	}
+
 	viewAdSimilars(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
 		queryEndpoint = queryEndpoint + '/similars';

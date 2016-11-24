@@ -7,6 +7,7 @@ let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
 
@@ -79,11 +80,51 @@ class ViewPageModel {
 		}
 	}
 
+	/**
+	 * Prepare the display of attributes
+	 * @param data
+	 */
+	prepareDisplayAttributes(data) {
+		data.displayAttributes = [];
+		_.each(data.attributes, (attribute) => {
+			let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
+				return customAttribute.name === attribute.name;
+			});
+			if (typeof customAttributeObj !== 'undefined') {
+				let attr = {};
+				attr ['name'] = customAttributeObj.localizedName;
+				switch (customAttributeObj.allowedValueType) {
+					case 'NUMBER':
+						attr ['value'] = attribute.value.attributeValue;
+						break;
+					case 'LIST':
+						_.each(customAttributeObj.allowedValues, (allowedValues) => {
+							if (allowedValues.value == attribute.value.attributeValue) {
+								attr ['value'] = allowedValues.localizedValue;
+							}
+						});
+						break;
+					case 'DATE':
+						attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
+						break;
+					default:
+						attr ['value'] = '';
+				}
+				data.displayAttributes.push(attr);
+			}
+		});
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
+
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+		modelData.vip = {};
+		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
 	}
@@ -93,16 +134,14 @@ class ViewPageModel {
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
+		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
-
-		let adIdElements = advertModel.decodeLongAdId(this.adId);
-		console.log('******** ', adIdElements);
 
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.advert = () => {
 			return advertModelBuilder.resolveAllSettledPromises().then((results) => {
-				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
+				let advertPromiseArray = ['ad', 'adFeatures', 'adStatistics', 'adSellerDetails', 'adSimilars', 'adSellerOthers', 'adSeoUrls', 'adFlags'];
 				let advertData = {};
 				let advertIndex = 0;
 				_.each(results, (result) => {
@@ -122,40 +161,48 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					userId: 'testUser123',
-					viewCount: '44',
-					repliesCount: '3',
 					postedBy: 'Owner',
-					seller: {
-						fname: "Diego",
-						sellerAdsUrl: "https://www.vivanuncios.com.mx/u-anuncios-del-vendedor/jason-san-luis-potosi/v1u100019200p1",
-						profilePicUrl: "https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcQ8eND74terXyRmZXfyZRa6MgOSSQp55h0-69WTVQn4ab087Rwy",
-						adsPosted: "14",
-						adsActive: "10",
-						emailVerified: true
-					},
 					features: advertData.adFeatures,
+					sellerDetails: advertData.adSellerDetails,
 					statistics: advertData.adStatistics,
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags
+					flags: advertData.adFlags,
+					map: {
+						defaultRadius: 2000, //2.0km default kilometers
+						passedRadius: 2000
+					}
 				};
-				//TODO: check if it's real estate category for disclaimer
-				data.showAdditionalDisclaimers = true;
-				//TODO: check to see if userId matches header data's userID to show favorite or edit
-				data.isOwnerAd = false;
-				//TODO: check to see if additional attributes should be displayed based on specific categories
-				data.displayMoreAttributes = true;
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
+
+				// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+				// if (this.req.app.locals.isSeoUrl === true) {
+				// 	let originalSeoUrl = this.req.originalUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// 	if (originalSeoUrl !== dataSeoVipUrl) {
+				// 		res.redirect(dataSeoVipUrl);
+				// 		return;
+				// 	}
+				// 	data.seoVipUrl = dataSeoVipUrl;
+				// }
+
+				// Manipulate Ad Data
+
+				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
 
-				data.hasMultiplePictures = (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined' && data.pictures.sizeUrls.length>1);
+				// Pictures
+				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (data.pictures!=='undefined' && data.pictures.sizeUrls!=='undefined') {
+				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
+					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
 						let pic = picture['LARGE'];
 						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
@@ -165,55 +212,66 @@ class ViewPageModel {
 					});
 				}
 
-				// let seoVipElt = data._links.find( (elt) => {
-				// 	return elt.rel === "seoVipUrl";
-				// });
-				// data.seoVipUrl = seoVipElt.href;
+				// Seller Picture
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
+					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
+						if (profilePicture.size === 'LARGE') {
+							let picUrl = profilePicture.url;
+							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
+							data.sellerDetails.publicDetails.displayPicture = picUrl;
+						}
+					});
+				}
 
+				// Seller Contact
+				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+				}
+
+				// Map
+				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
+				data.siteLanguage = this.locale.split('_')[0];
+
+				var findStr = "center=";
+				var searchString = data.ogSignedUrl;
+				var endOf = -1;
+				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
+				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
+				data.map.locationLat = center[0];
+				data.map.locationLong = center[1];
+
+				data.map.finalRadius;
+				if(data.map.passedRadius === 0){
+					data.map.showPin = true;
+					data.map.showCircle = false;
+				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
+					data.map.showCircle = true;
+					data.map.finalRadius = data.map.defaultRadius;
+					data.map.showPin = false;
+				} else {
+					data.map.finalRadius = data.map.passedRadius;
+					data.map.showCircle = true;
+					data.map.showPin = false;
+				}
+
+				// Location
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
 				});
 				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
 
+				// Category
 				let categoryElt = data._links.find( (elt) => {
 					return elt.rel === "category";
 				});
 				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
 
+				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					data.displayAttributes = [];
-					_.each(data.attributes, (attribute) => {
-						let customAttributeObj = _.find(data.customAttributes, (customAttribute) => {
-							return customAttribute.name === attribute.name;
-						});
-						if (typeof customAttributeObj !== 'undefined') {
-							let attr = {};
-							attr ['name'] = customAttributeObj.localizedName;
-							switch (customAttributeObj.allowedValueType) {
-								case 'NUMBER':
-									attr ['value'] = attribute.value.attributeValue;
-									break;
-								case 'LIST':
-									_.each(customAttributeObj.allowedValues, (allowedValues) => {
-										if (allowedValues.value == attribute.value.attributeValue) {
-											attr ['value'] = allowedValues.localizedValue;
-										}
-									});
-									break;
-								case 'DATE':
-									attr ['value'] = StringUtils.formatDate(attribute.value.attributeValue);
-									break;
-								default:
-									attr ['value'] = '';
-							}
-							data.displayAttributes.push(attr);
-						}
-					});
-
-					console.log('$$$$$$$ ', data);
+					this.prepareDisplayAttributes(data);
 					return data;
 				});
 			});
@@ -235,12 +293,15 @@ class ViewPageModel {
 					}
 					++keywordIndex;
 				});
-				console.log('$$$$$$$ ', keywordData);
 				return keywordData;
 			}).fail((err) => {
 				console.warn(`error getting keywords data ${err}`);
 				return {};
 			});
+		};
+
+		this.dataPromiseFunctionMap.safetyTips = () => {
+			return safetyTipsModel.getSafetyTips();
 		};
 
 		this.dataPromiseFunctionMap.seo = () => {
