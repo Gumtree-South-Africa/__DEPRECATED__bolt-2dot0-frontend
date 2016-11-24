@@ -6,6 +6,8 @@ let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpl
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
+let CookieUtils = require('public/js/utils/CookieUtils.js');
+
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
@@ -72,10 +74,6 @@ class PostAd {
 
 	initialize() {
 		// Ignore button click if it's disabled
-		this.AD_STATES = {
-			AD_CREATED: "AD_CREATED",
-			AD_DEFERRED: "AD_DEFERRED"
-		};
 
 		this.$postAdButton = $('#postAdBtn');
 		this.$postAdButton.on('click', (e) => {
@@ -160,33 +158,13 @@ class PostAd {
 		}
 	}
 
-	hasImagesForUpload() {
-		// add red border to photo carousel if no photos
-		return $('.carousel-item').length !== 0;
-	}
-
-	getCookie(cname) {
-		let name = cname + "=";
-		let ca = document.cookie.split(';');
-		for (let i = 0; i < ca.length; i++) {
-			let c = ca[i];
-			while (c.charAt(0) === ' ') {
-				c = c.substring(1);
-			}
-			if (c.indexOf(name) === 0) {
-				return c.substring(name.length, c.length);
-			}
-		}
-		return "";
-	}
-
 	/**
 	 * Tries to get the location from the browser, defaults to timeout after 20 seconds, will setup geoId cookie when success
 	 * @param callback callback function that takes a string and a timeout to use with clearTimeout
 	 */
 	requestLocationFromBrowser(callback) {
 		let timeout;
-		if ("geolocation" in navigator && this.getCookie('geoId') === '') {
+		if ("geolocation" in navigator && CookieUtils.getCookie('geoId') === '') {
 			//Don't want to sit and wait forever in case geolocation isn't working
 			timeout = setTimeout(callback, 20000);
 			navigator.geolocation.getCurrentPosition((position) => {
@@ -225,7 +203,7 @@ class PostAd {
 	 * Tries to get the location from geoId, will setup geoId cookie when success
 	 */
 	getLatLngFromGeoCookie() {
-		let geoCookie = this.getCookie('geoId');
+		let geoCookie = CookieUtils.getCookie('geoId');
 		let lat, lng;
 		/*eslint-disable */
 		if (geoCookie !== "") {

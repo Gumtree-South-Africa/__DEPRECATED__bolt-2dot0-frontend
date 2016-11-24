@@ -1,21 +1,7 @@
 'use strict';
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
-
-function getCookie(cname) {
-	let name = cname + "=";
-	let ca = document.cookie.split(';'); //cookie array
-	for (let i = 0; i < ca.length; i++) {
-		let c = ca[i];
-		while (c.charAt(0) === ' ') {
-			c = c.substring(1);
-		}
-		if (c.indexOf(name) === 0) {
-			return c.substring(name.length, c.length);
-		}
-	}
-	return "";
-}
+let CookieUtils = require('public/js/utils/CookieUtils.js');
 
 /**
  * A welcome modal. When it's opened, the whole modal will be shown; while only the "post" button
@@ -105,7 +91,7 @@ class WelcomeModal {
 
 		domElement.find('.modal-wrapper .modal-close-section').on('click', () => this.isOpened = false);
 
-		if (getCookie('alreadyVisited') === "") {
+		if (CookieUtils.getCookie('alreadyVisited') === "") {
 			document.cookie = 'alreadyVisited=true';
 			this.isOpened = true;
 		}
