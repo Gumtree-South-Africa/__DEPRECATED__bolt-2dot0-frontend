@@ -87,9 +87,6 @@ class PhotoContainer {
 					validUrls.push(img);
 				}
 			}
-			if (this.imageUrlsUpdateCallback) {
-				this.imageUrlsUpdateCallback(validUrls);
-			}
 			this.viewModel.updateImageUrls(validUrls);
 		});
 
@@ -483,14 +480,6 @@ class PhotoContainer {
 	 */
 	setCategoryUpdateCallback(func) {
 		this.categoryUpdateCallback = func;
-	}
-
-	/**
-	 * Register image change call back when image container has photo add or delete
-	 * @param func
-	 */
-	setImageUrlsUpdateCallback(func) {
-		this.imageUrlsUpdateCallback = func;
 	}
 
 	setFormValid(isFormValid) {

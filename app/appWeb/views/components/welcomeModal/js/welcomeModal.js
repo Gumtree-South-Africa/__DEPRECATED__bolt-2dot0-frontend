@@ -1,7 +1,7 @@
 'use strict';
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
-let CookieUtils = require('public/js/utils/CookieUtils.js');
+let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
 /**
  * A welcome modal. When it's opened, the whole modal will be shown; while only the "post" button

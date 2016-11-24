@@ -6,16 +6,11 @@ let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpl
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
-let CookieUtils = require('public/js/utils/CookieUtils.js');
+let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
-		// True as default value to be consistent with default view
-		this.valid = true;
-
-		// Initialize old singleton components
-		this.spinnerModal = spinnerModal;
 	}
 
 	/**
@@ -23,20 +18,29 @@ class PostAdPageVM {
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMount(domElement) {
+		// Callback for all children components have been mounted
 		this.mobileUpload = mobileUpload.viewModel;
 		this.postAdModal = postAdModal.viewModel;
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
-		this.$infoTips = domElement.find(".info-tips");
+		this.photoContainer = photoContainer.viewModel;
+		this.spinnerModal = spinnerModal;
 
 		// Callback for old singleton components
-		this.spinnerModal.initialize();
+		spinnerModal.initialize();
+		mobileUpload.initialize();
+		postAdModal.initialize();
+		photoContainer.initialize();
+		postAdFormMainDetails.initialize();
+
+		this._$infoTips = domElement.find(".info-tips");
+		this._$submitButton = domElement.find('.post-submit-button .btn, .desktop-post-ad .post-ad-btn');
 
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
 			if (propName !== 'imageUrl' || !newValue) {
 				return;
 			}
 
-			this.$infoTips.hide();
+			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 
 			this.postAdFormMainDetails.imageUrls = [newValue];
@@ -60,10 +64,44 @@ class PostAdPageVM {
 
 		if (!this.mobileUpload.imageUrl) {
 			this.postAdModal.isShown = true;
+			this.postAdFormMainDetails.imageUrls = [];
 		} else {
 			this.postAdFormMainDetails.imageUrls = [this.mobileUpload.imageUrl];
 			this.postAdFormMainDetails.show();
 		}
+
+		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
+			if (propName === 'isValid' || propName === 'isFixMode' || propName === 'imageUrls') {
+				this._$submitButton.toggleClass('disabled', !this._canPost());
+			}
+		});
+		this._$submitButton.toggleClass('disabled', !this._canPost());
+
+		this._$submitButton.on('click', e => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			this.submit();
+		});
+
+		this.photoContainer.addImageUrlsChangeHandler(() => {
+			this.postAdFormMainDetails.imageUrls = [].concat(this.photoContainer.imageUrls);
+		});
+	}
+
+	_canPost() {
+		// Don't submit if no image or not resolve all fix problems
+		return this.postAdFormMainDetails.imageUrls && this.postAdFormMainDetails.imageUrls.length &&
+			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
+	}
+
+	submit() {
+		if (!this._canPost()) {
+			return;
+		}
+
+		window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
+		this._$submitButton.toggleClass('disabled', true);
+		photoContainer._ajaxPostForm();
 	}
 }
 
@@ -73,12 +111,6 @@ class PostAd {
 	}
 
 	initialize() {
-		// Ignore button click if it's disabled
-
-		this.$postAdButton = $('#postAdBtn');
-		this.$postAdButton.on('click', (e) => {
-			this.preventDisabledButtonClick(e);
-		});
 		this.messageError = $('.error-message');
 		this.messageModal = $('.message-modal');
 		this.inputDisabled = false;
@@ -96,22 +128,10 @@ class PostAd {
 			this.$errorMessageTitle,
 			{}
 		);
-		$("#postAdBtn .link-text").on("click", (e) => {
-			this.preventDisabledButtonClick(e);
-		});
 
 		$(document).ready(() => {
-			this.photoCarouselVM = this.getPhotoCarouselVM();
-			this.photoCarouselVM.addImageUrlsChangeHandler(() => this.updateValidStatus());
-			this.updateValidStatus();
 			this.viewModel.componentDidMount($(document.body));
 			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
-			this.viewModel.postAdFormMainDetails.propertyChanged.addHandler((propName, newValue) => {
-				if ((propName === 'isFixMode' || propName === 'isValid') && newValue) {
-						photoContainer.setFormValid(!this.viewModel.postAdFormMainDetails.isFixMode ||
-							this.viewModel.postAdFormMainDetails.isValid);
-				}
-			});
 			// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
 			this.requestLocationFromBrowser((locationType, timeout) => {
 					if (timeout !== undefined) {
@@ -121,9 +141,6 @@ class PostAd {
 			// TBD Need to refactor follow previous convention
 			photoContainer.setCategoryUpdateCallback((catId) => {
 				this.viewModel.postAdFormMainDetails.categoryId = catId;
-			});
-			photoContainer.setImageUrlsUpdateCallback((imgUrls) => {
-				this.viewModel.postAdFormMainDetails.imageUrls = [].concat(imgUrls);
 			});
 
 			let mobilePostAd = $('.mobile-upload-image');
@@ -138,24 +155,6 @@ class PostAd {
 	// to control the lifecycle of view model.
 	setupViewModel() {
 		this.viewModel = new PostAdPageVM();
-	}
-
-	// Get children view models. Should change to use DI in the future
-	getPhotoCarouselVM() {
-		// Currently photo carousel is a singleton.
-		return photoContainer.viewModel;
-	}
-
-	updateValidStatus() {
-		let newValidStatus = !!this.photoCarouselVM.imageUrls.length;
-		if (this.viewModel.valid !== newValidStatus) {
-			this.viewModel.valid = newValidStatus;
-			if (newValidStatus) {
-				this.$postAdButton.removeClass('disabled');
-			} else {
-				this.$postAdButton.addClass('disabled');
-			}
-		}
 	}
 
 	/**
@@ -183,43 +182,6 @@ class PostAd {
 		} else {
 			callback('cookie', timeout);
 		}
-	}
-
-	/**
-	 * this is the click handler for posting, checks to see if they can upload first before calling postAdDesktop
-	 * desktop only.
-	 * @param event
-	 */
-	preventDisabledButtonClick(event) {
-		if (this.$postAdButton.hasClass("disabled")) {
-			event.preventDefault();
-		} else {
-			this.$postAdButton.addClass('disabled');
-			postAdFormMainDetails._ajaxPostForm();
-		}
-	}
-
-	/**
-	 * Tries to get the location from geoId, will setup geoId cookie when success
-	 */
-	getLatLngFromGeoCookie() {
-		let geoCookie = CookieUtils.getCookie('geoId');
-		let lat, lng;
-		/*eslint-disable */
-		if (geoCookie !== "") {
-			let latLng = geoCookie.split('ng');
-			lat = Number(latLng[0]);
-			lng = Number(latLng[1]);
-		} else if (window.google && window.google.loader.ClientLocation) {
-			lat = Number(google.loader.ClientLocation.latitude);
-			lng = Number(google.loader.ClientLocation.longitude);
-			document.cookie = `geoId=${lat}ng${lng}`;
-			/*eslint-enable*/
-		} else {
-			console.warn('no geolocation provided');
-		}
-
-		return {lat: lat, lng: lng};
 	}
 }
 

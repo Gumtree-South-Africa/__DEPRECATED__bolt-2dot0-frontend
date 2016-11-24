@@ -10,6 +10,7 @@ let CategoryDropdownSelection = require(
 	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
 let PostFormCustomAttributes = require(
 	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
+let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
@@ -19,7 +20,6 @@ require('public/js/libraries/webshims/polyfiller.js');
 class PostAdFormMainDetailsVM {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-		this.handleGetLatLngFromGeoCookie = null;
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
@@ -87,6 +87,9 @@ class PostAdFormMainDetailsVM {
 				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
 			}
 		});
+		this._$postForm = domElement.find('.post-form');
+		this._$attributeForm = domElement.find('.post-ad-custom-attributes-form');
+		this._$descriptionField = domElement.find('.form-ad-description textarea');
 
 		// Initialize self properties from children
 		this.categoryId = this._categoryDropdownSelection.categoryId;
@@ -187,6 +190,90 @@ class PostAdFormMainDetailsVM {
 		this.$postAdForm.show();
 		// TODO Move below line out of this class
 		$('.viewport').addClass('covered');
+	}
+
+	/**
+	 * Tries to get the location from geoId, will setup geoId cookie when success
+	 */
+	_getLatLngFromGeoCookie() {
+		let geoCookie = CookieUtils.getCookie('geoId');
+		let lat, lng;
+		/*eslint-disable */
+		if (geoCookie !== "") {
+			let latLng = geoCookie.split('ng');
+			lat = Number(latLng[0]);
+			lng = Number(latLng[1]);
+		} else if (window.google && window.google.loader.ClientLocation) {
+			lat = Number(google.loader.ClientLocation.latitude);
+			lng = Number(google.loader.ClientLocation.longitude);
+			document.cookie = `geoId=${lat}ng${lng}`;
+			/*eslint-enable*/
+		} else {
+			console.warn('no geolocation provided');
+		}
+
+		return {lat: lat, lng: lng};
+	}
+
+	getAdPayload() {
+		let $dateFields = this._$postForm.find('input[type="date"]');
+		let serializedDates = $dateFields.serializeForm();
+		let serialized = this._$postForm.serializeForm();
+		let attrs = this._$attributeForm.serializeForm();
+		let categoryAttributes = [];
+
+		Object.keys(serializedDates).forEach((key) => {
+			let val = serializedDates[key];
+			if (val) {
+				attrs[key] = (new Date(val)).getTime() / 1000;
+			}
+		});
+
+		$.each(attrs, (field, value) => {
+			if (value !== '') {
+				categoryAttributes.push({
+					name: field,
+					value: value
+				});
+			}
+		});
+
+		/* Location Resolving start */
+		// 1. Try to get lat / lng from user selected location, base on google map auto complete
+		let lat = Number(serialized.locationLatitude);
+		let lng = Number(serialized.locationLongitude);
+		// 2. No location input, get lat / lng by default
+		if (!lat || !lng) {
+			//Try to get lat / lng from geoId cookie, if not exist will call google client location
+			let latLng = this._getLatLngFromGeoCookie();
+			lat = latLng.lat;
+			lng = latLng.lng;
+		}
+		/* Location Resolving end */
+
+		// Copy imageUrls to avoid changing original values
+		let imgUrls = [].concat(this.imageUrls);
+		let description = this._$descriptionField.val();
+		let payload = {
+			title: serialized.Title,
+			description: description,
+			categoryId: this.categoryId,
+			location: {
+				"latitude": lat,
+				"longitude": lng
+			},
+			categoryAttributes: categoryAttributes,
+			imageUrls: imgUrls
+		};
+
+		if (!this.isPriceExcluded) {
+			payload.price = {
+				currency: (serialized.currency) ? serialized.currency : 'MXN',
+				amount: Number(serialized.amount)
+			};
+		}
+
+		return payload;
 	}
 }
 
@@ -515,68 +602,11 @@ class PostAdFormMainDetails {
 	 * @private
 	 */
 	_ajaxPostForm() {
-		let $dateFields = this.$postForm.find('input[type="date"]');
-		let serializedDates = $dateFields.serializeForm();
-		let serialized = this.$postForm.serializeForm();
-		let attrs = this.$attributes.serializeForm();
-		let categoryAttributes = [];
-
-		Object.keys(serializedDates).forEach((key) => {
-			let val = serializedDates[key];
-			if (val) {
-				attrs[key] = (new Date(val)).getTime() / 1000;
-			}
-		});
-
-		$.each(attrs, (field, value) => {
-			if (value !== '') {
-				categoryAttributes.push({
-					name: field,
-					value: value
-				});
-			}
-		});
-
-		/* Location Resolving start */
-		// 1. Try to get lat / lng from user selected location, base on google map auto complete
-		let lat = Number(serialized.locationLatitude);
-		let lng = Number(serialized.locationLongitude);
-		// 2. No location input, get lat / lng by default
-		if (!lat || !lng) {
-			//Try to get lat / lng from geoId cookie, if not exist will call google client location
-			if (this.viewModel.handleGetLatLngFromGeoCookie) {
-				let latLng = this.viewModel.handleGetLatLngFromGeoCookie();
-				lat = latLng.lat;
-				lng = latLng.lng;
-			}
-		}
-		/* Location Resolving end */
-
-		// Copy imageUrls to avoid changing original values
-		let imgUrls = [].concat(this.viewModel.imageUrls);
-		let description = this.$textarea.val();
 		let payload = {
 			"ads": [
-				{
-					"title": serialized.Title,
-					"description": description,
-					"categoryId": this.viewModel.categoryId,
-					"location": {
-						"latitude": lat,
-						"longitude": lng
-					},
-					"categoryAttributes": categoryAttributes,
-					"imageUrls": imgUrls
-				}
+				this.viewModel.getAdPayload()
 			]
 		};
-
-		if (!this.viewModel.isPriceExcluded) {
-			payload.ads[0].price = {
-				"currency": (serialized.currency) ? serialized.currency : 'MXN',
-				"amount": Number(serialized.amount)
-			};
-		}
 
 		spinnerModal.showModal();
 
@@ -619,7 +649,7 @@ class PostAdFormMainDetails {
 
 		this.$changePhoto = $(".change-photo");
 
-		this.$postForm = this.$detailsSection.find('#post-form');
+		this.$postForm = this.$detailsSection.find('.post-form');
 		this.$downIcon = this.$detailsSection.find('.icon-down');
 		this.$upIcon = this.$detailsSection.find('.icon-up');
 		this.$locationLat = this.$detailsSection.find('#location-lat');
@@ -627,17 +657,6 @@ class PostAdFormMainDetails {
 
 		this.$titleField = this.$detailsSection.find('input[title="Title"]');
 		this.$textarea = this.$detailsSection.find('#description-input');
-
-		this.$submitButton.on('click', (e) => {
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
-			if (this.viewModel.imageUrls.length === 0 || (this.viewModel.isFixMode && !this.viewModel.isValid)) {
-				return;
-			}
-			this._toggleSubmitDisable(true);
-			this._ajaxPostForm();
-		});
 
 		this.$addDetail.on('click', (e) => {
 			if (this.$downIcon.css('display') === 'none' && this.$upIcon.css('display') === 'none') {
@@ -667,19 +686,12 @@ class PostAdFormMainDetails {
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
 		this.$titleField.on('change', () => {
-			this.viewModel.title = this.$titleField.val();
 			window.BOLT.trackEvents({"event": "PostAdTitle"});
 		});
 		this.$textarea.on('change', () => {
-			this.viewModel.description = this.$textarea.val();
 			window.BOLT.trackEvents({"event": "PostAdDescription"});
 		});
 		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
-			if (propName === 'isValid' || propName === 'isFixMode' || propName === 'imageUrls') {
-				this._toggleSubmitDisable(!this.viewModel.imageUrls || !this.viewModel.imageUrls.length ||
-					(this.viewModel.isFixMode && !this.viewModel.isValid));
-			}
-
 			if (propName === 'isFixMode' && !newValue) {
 				this.$postForm.find('.validation-error').removeClass('validation-error');
 			}
@@ -693,9 +705,7 @@ class PostAdFormMainDetails {
 
 
 		if (registerOnReady) {
-			$(document).ready(() => {
-				this.onReady();
-			});
+			this.onReady();
 		}
 
 		formChangeWarning.initialize();
