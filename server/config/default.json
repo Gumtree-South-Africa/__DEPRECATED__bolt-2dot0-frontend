@@ -27,6 +27,7 @@
 			"availableFlagsAd"	:	"/bolt-api-webapp/v1/ads/flags",
 			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
 			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
+			"flagAd"		:	"/bolt-api-webapp/v1/ads/{id}/actions/flag",
 			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
 			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
 			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",

@@ -110,6 +110,16 @@ class AdService {
 			path: queryEndpoint,
 		}), bapiHeaderValues, {}, 'adService$unfavoriteAd');
 	}
+
+	flagAd(bapiHeaderValues, adId) {
+		let queryEndpoint = config.get('BAPI.endpoints.flagAd');
+		queryEndpoint = queryEndpoint.replace('{id}', adId);
+
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, {}, 'adService$flagAd');
+	}
 }
 
 module.exports = new AdService();
