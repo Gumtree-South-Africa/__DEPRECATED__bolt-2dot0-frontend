@@ -298,7 +298,6 @@ class ViewPageModel {
 				let keywordIndex = 0;
 				_.each(results, (result) => {
 					if (result.state === "fulfilled") {
-						result.value.title = keywordTitles[keywordIndex];
 						result.value.menuTitles = keywordTitles;
 						result.value.total = results.length;
 						let value = result.value;
@@ -310,6 +309,7 @@ class ViewPageModel {
 					}
 					++keywordIndex;
 				});
+				console.log('keywordData', keywordData);
 				console.log('$$$$$$$ ', keywordData);
 				return keywordData;
 			}).fail((err) => {

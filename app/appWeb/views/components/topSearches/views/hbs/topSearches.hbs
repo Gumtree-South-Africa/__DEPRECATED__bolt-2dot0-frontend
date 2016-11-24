@@ -15,9 +15,6 @@
 			{{else}}
 				<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
 			{{/compare}}
-			{{#if hasTopLocations}}
-				<div class="top-locations-header top-headers"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
-			{{/if}}
 		{{/each}}
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
@@ -34,9 +31,11 @@
             {{/compare}}
         {{/each}}
 		</div>
+		{{#compare this.keywords.length ">" 7}}
 		<div class="jsOnly view-more-searches"
             data-view-less="{{i18n "footer.topSearches.viewLess"}}"
             data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
+		{{/compare}}
     </div>
 </div>
 {{/each}}

@@ -22,6 +22,7 @@
 	.top-searches-header {
 		&:first-child {
 			margin-left: 0px;
+			width: 22%;
 		}
 		display: inline-block;
 		margin-left: 10px;
@@ -86,6 +87,9 @@
 			.top-searches {
 				margin-left: 30px;
 				.top-searches-header {
+					&:first-child {
+						width: 100%;
+					}
 					&.desktop-hide {
 						display: none;
 					}

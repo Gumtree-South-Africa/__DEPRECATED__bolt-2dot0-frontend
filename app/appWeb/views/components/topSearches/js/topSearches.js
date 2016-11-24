@@ -17,8 +17,12 @@ let _toggleTabs = (event) => {
 	let indexTab = $(event.currentTarget).index();
 
 	this.$topSearches.addClass('mobile-hide');
-	this.$topSearches.eq(indexTab).removeClass('mobile-hide');
 	this.$topLocations.addClass('mobile-hide');
+	if(this.$topSearches.eq(indexTab).length < 1) {
+		this.$topLocations.removeClass('mobile-hide');
+	} else {
+		this.$topSearches.eq(indexTab).removeClass('mobile-hide');
+	}
 };
 
 let initialize = () => {
