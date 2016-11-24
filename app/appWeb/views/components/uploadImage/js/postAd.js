@@ -101,7 +101,7 @@ class PostAdPageVM {
 
 		window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
 		this._$submitButton.toggleClass('disabled', true);
-		photoContainer._ajaxPostForm();
+		postAdFormMainDetails._ajaxPostForm();
 	}
 }
 
