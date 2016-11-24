@@ -5,6 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let RegisterPageModel = require('../../../builders/page/RegisterPageModel');
 
 let extendModelData = (req, modelData) => {
@@ -25,6 +26,7 @@ let extendModelData = (req, modelData) => {
 
 router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.REGISTER_PAGE;
+	req.app.locals.abtestpage = abTestPagesJson.pages.R;
 	let registerPageModel = new RegisterPageModel(req, res);
 	let redirectUrl = req.query.redirect;
 

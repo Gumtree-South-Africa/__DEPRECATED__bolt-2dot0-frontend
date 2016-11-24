@@ -5,6 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
 
 let extendModelData = (req, modelData) => {
@@ -38,8 +39,11 @@ let extendModelData = (req, modelData) => {
 };
 
 router.get('/:id?', (req, res, next) => {
-	let adId = req.params.id;
+	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
+	req.app.locals.abtestpage = abTestPagesJson.pages.V;
 	req.app.locals.isSeoUrl = false;
+
+	let adId = req.params.id;
 	if(adId === undefined) {
 		// Parse adId from SEO URL
 		// Example of view seo url: /v-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+11+16-00-31-37-716/1001104219250910700294009
@@ -54,7 +58,7 @@ router.get('/:id?', (req, res, next) => {
 	}
 
 	// If not 2.0 context, then redirect to 1.0 VIP
-	if (!pageControllerUtil.is2dot0Version(res)) {
+	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		let redirectUrl = '';
 		if (req.app.locals.isSeoUrl === true) {
 			redirectUrl = req.originalUrl.replace('v-', 'a-'); // redirect to 1.0 SEO version of this page
@@ -65,7 +69,6 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
-	req.app.locals.pagetype = pageTypeJson.pagetype.VIP;
 	let viewPageModel = new ViewPageModel(req, res, adId);
 	let redirectUrl = req.query.redirect;
 
