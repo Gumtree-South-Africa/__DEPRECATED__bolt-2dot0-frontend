@@ -20,7 +20,8 @@ module.exports = {
 			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
 		//	"ViewPageDetails": "app/appWeb/views/components/viewPageDetails/js/viewPageDetails.js",
 			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js",
-			"replyForm": "app/appWeb/views/components/replyForm/js/replyForm.js"
+			"replyForm": "app/appWeb/views/components/replyForm/js/replyForm.js",
+			"FlagAd": "app/appWeb/views/components/flagAd/js/flagAd.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
