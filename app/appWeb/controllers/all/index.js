@@ -17,6 +17,7 @@ let completeRoutesMap = {
   '/search': './searchPageController',
   '/service-worker.js': './serviceWorkerController',
   '/view': './viewPageController',
+  '/flagad': './flagAdController',
   '/promotead' : './promoteAdController'
 };
 
