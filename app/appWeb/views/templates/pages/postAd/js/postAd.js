@@ -115,7 +115,7 @@ class PostAd {
 		this.requestLocationFromBrowser();
 		// TBD Need to refactor follow previous convention
 		photoContainer.setCategoryUpdateCallback((catId) => {
-			this.viewModel.postAdFormMainDetails.categoryId = catId;
+			this.postAdFormMainDetails.categoryId = catId;
 		});
 
 		$('.email-login-btn').on('click', () => {
