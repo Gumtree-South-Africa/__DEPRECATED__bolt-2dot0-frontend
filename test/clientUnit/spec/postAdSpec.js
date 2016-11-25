@@ -2,7 +2,7 @@
 
 let photoContainerController = require("app/appWeb/views/components/photoContainer/js/photoContainer.js");
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
-let uploadAdController = require("app/appWeb/views/components/uploadImage/js/postAd.js");
+let uploadAdController = require("app/appWeb/views/templates/pages/postAd/js/postAd.js");
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
