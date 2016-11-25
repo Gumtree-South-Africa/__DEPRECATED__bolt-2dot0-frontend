@@ -8,7 +8,8 @@
             {{#if this.advert.seoGroupName}}
 				<meta itemprop="url" content="{{this.advert.seoVipUrl}}" />
             {{/if}}
-            {{#if this.advert.isOwnerAd}}
+
+            {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
 				<div class="edit-favorite">{{i18n "vip.details.edit"}}
                     <a class="edit-favorite-icon edit-icon icon-apple-dark-gray" href="{{this.advert.editUrl}}">
                     </a>
@@ -17,7 +18,7 @@
 				<div class="edit-favorite">
                     <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.adId}}"></span>
                 </div>
-            {{/if}}
+            {{/compare}}
 		</div>
         <div class="price-update">
 			<div class="ad-price">{{this.advert.price.formattedAmount}}</div>

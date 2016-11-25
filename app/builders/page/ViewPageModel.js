@@ -172,21 +172,9 @@ class ViewPageModel {
 					flags: advertData.adFlags,
 					map: {
 						defaultRadius: 2000, //2.0km default kilometers
-						 passedRadius: 50000
+						passedRadius: 2000
 					}
 				};
-
-				//TODO: check to see if userId matches header data's userID to show favorite or edit
-				//TODO: check to see if additional attributes should be displayed based on specific categories
-				data.displayMoreAttributes = true;
-				data.isOwnerAd = true;
-
-				//TODO: check if user is logged in
-				data.isUserLoggedIn = false;
-
-				//TODO: display real phone number
-				data.phoneNumber = "408-456-7890";
-				data.hiddenNumber = data.phoneNumber.split('-')[0] + '*******';
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
@@ -203,8 +191,15 @@ class ViewPageModel {
 				// 		return;
 				// 	}
 				// 	data.seoVipUrl = dataSeoVipUrl;
-				// }g
+				// }
 
+				// Manipulate Ad Data
+
+				// Date
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
+				// Pictures
 				data.hasMultiplePictures = false;
 				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
@@ -218,6 +213,23 @@ class ViewPageModel {
 					});
 				}
 
+				// Seller Picture
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
+					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
+						if (profilePicture.size === 'LARGE') {
+							let picUrl = profilePicture.url;
+							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
+							data.sellerDetails.publicDetails.displayPicture = picUrl;
+						}
+					});
+				}
+
+				// Seller Contact
+				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+				}
+
+				// Map
 				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
 				data.siteLanguage = this.locale.split('_')[0];
 
@@ -243,48 +255,24 @@ class ViewPageModel {
 					data.map.showPin = false;
 				}
 
-				// Manipulate Ad Data
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
-
-				data.hasMultiplePictures = false;
-				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
-					data.hasMultiplePictures = data.pictures.sizeUrls.length>1 ? true : false;
-					_.each(data.pictures.sizeUrls, (picture) => {
-						let pic = picture['LARGE'];
-						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-					});
-				}
-				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
-					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
-						if (profilePicture.size === 'LARGE') {
-							let picUrl = profilePicture.url;
-							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
-							data.sellerDetails.publicDetails.displayPicture = picUrl;
-						}
-					});
-				}
-
+				// Location
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
 				});
 				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
 
+				// Category
 				let categoryElt = data._links.find( (elt) => {
 					return elt.rel === "category";
 				});
 				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
 
+				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-
 					return data;
 				});
 			});
@@ -309,7 +297,6 @@ class ViewPageModel {
 					}
 					++keywordIndex;
 				});
-				console.log('$$$$$$$ ', keywordData);
 				return keywordData;
 			}).fail((err) => {
 				console.warn(`error getting keywords data ${err}`);
