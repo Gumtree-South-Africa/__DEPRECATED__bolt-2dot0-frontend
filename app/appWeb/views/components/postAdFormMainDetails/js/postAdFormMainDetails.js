@@ -278,6 +278,115 @@ class PostAdFormMainDetailsVM {
 
 		return payload;
 	}
+
+	/**
+	 * mark the validation errors
+	 * @param $input
+	 * @param $accumlator
+	 * @returns {*}
+	 * @private
+	 */
+	_markValidationError($input, $accumlator) {
+		// add the validation error class to the input
+		$input.addClass('validation-error');
+		// set up click event to remove validation border
+		$input.one('click', () => {
+			$input.removeClass('validation-error');
+			this.isFormValid = !this.$postAdForm.find('.validation-error').length;
+		});
+		$input.one('change', () => {
+			// If clicking on a dropdown after editing a textbox, the scroll animation will start
+			// after dropdown is expanded, which will make the dropdown list away from the select
+			// box. So we should wait for a short time to ensure no input is focused on
+			setTimeout(() => {
+				let focusedElement = $(document.activeElement);
+				// Change but still focus on same element will trigger refocus
+				if ((focusedElement.length && focusedElement[0] === $input[0]) ||
+					(!focusedElement.is('input, select, textarea') &&
+					!focusedElement.parents('input, select, textarea').length)) {
+					this._focusFirstValidationError();
+				}
+			}, 100);
+		});
+
+		// if an $accumulator is passed in then add the dom input it,
+		// else create a new $accumulator
+		if (!$accumlator) {
+			$accumlator = $input;
+		} else {
+			$accumlator.add($input);
+		}
+
+		return $accumlator;
+	}
+
+	_focusFirstValidationError() {
+		if (this.isFixMode) {
+			let errorElements = this.$postAdForm.find('.validation-error');
+			if (errorElements.length) {
+				let $highestFailure = errorElements.closestToOffset(0, 0);
+				let scrollTo = $highestFailure.offset().top - 50;
+				let bodyElement = $('body, html');
+				bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
+			}
+		}
+	}
+
+	setValidationError(error) {
+		let $failedFields, scrollTo;
+		let isLocationMarked = false;
+		// node layer validation based on schema checking
+		if (error.hasOwnProperty("schemaErrors")) {
+			error.schemaErrors.forEach((schemaError) => {
+				// To be consistent with edit page
+				schemaError.field = schemaError.field.replace('data.ads.0', 'data');
+				let $input;
+				if (schemaError.field === 'data.location.latitude' ||
+					schemaError.field === 'data.location.longitude') {
+					// Handle latitude and longitue specially because the UI for them
+					// has been combined
+					if (isLocationMarked) {
+						return;
+					}
+					$input = $('[data-schema="data.location"]');
+				} else {
+					$input = $(`[data-schema="${schemaError.field}"]`);
+				}
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = this._markValidationError($input, $failedFields);
+			});
+		} else if (error.hasOwnProperty("bapiValidationFields")) {
+			// bapi validation errors
+			error.bapiValidationFields.forEach((attrName) => {
+				let $input = $(`[name="${attrName}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = this._markValidationError($input, $failedFields);
+			});
+		}
+
+		this.isFormValid = false;
+		// This should happen after all error fields been marked
+		this.isFixMode = true;
+
+		// if we have a failed field, scroll to 50px above the highest element on the page
+		let errorElements = this.$postAdForm.find('.validation-error');
+		if (errorElements.length) {
+			let $highestFailure = errorElements.closestToOffset(0, 0);
+			scrollTo = $highestFailure.offset().top - 50;
+			let bodyElement = $('body, html');
+			bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
+		}
+	}
 }
 
 class PostAdFormMainDetails {
@@ -441,115 +550,6 @@ class PostAdFormMainDetails {
 		this.$locationLat.val(location.lat);
 		this.$locationLng.val(location.long);
 		this.$locationLink.text(location.localizedName);
-	}
-
-	/**
-	 * mark the validation errors
-	 * @param $input
-	 * @param $accumlator
-	 * @returns {*}
-	 * @private
-	 */
-	_markValidationError($input, $accumlator) {
-		// add the validation error class to the input
-		$input.addClass('validation-error');
-		// set up click event to remove validation border
-		$input.one('click', () => {
-			$input.removeClass('validation-error');
-			this.viewModel.isFormValid = !this.$postForm.find('.validation-error').length;
-		});
-		$input.one('change', () => {
-			// If clicking on a dropdown after editing a textbox, the scroll animation will start
-			// after dropdown is expanded, which will make the dropdown list away from the select
-			// box. So we should wait for a short time to ensure no input is focused on
-			setTimeout(() => {
-				let focusedElement = $(document.activeElement);
-				// Change but still focus on same element will trigger refocus
-				if ((focusedElement.length && focusedElement[0] === $input[0]) ||
-					(!focusedElement.is('input, select, textarea') &&
-					!focusedElement.parents('input, select, textarea').length)) {
-					this._focusFirstValidationError();
-				}
-			}, 100);
-		});
-
-		// if an $accumulator is passed in then add the dom input it,
-		// else create a new $accumulator
-		if (!$accumlator) {
-			$accumlator = $input;
-		} else {
-			$accumlator.add($input);
-		}
-
-		return $accumlator;
-	}
-
-	_focusFirstValidationError() {
-		if (this.viewModel.isFixMode) {
-			let errorElements = this.$postForm.find('.validation-error');
-			if (errorElements.length) {
-				let $highestFailure = errorElements.closestToOffset(0, 0);
-				let scrollTo = $highestFailure.offset().top - 50;
-				let bodyElement = $('body, html');
-				bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
-			}
-		}
-	}
-
-	setValidationError(error) {
-		let $failedFields, scrollTo;
-		let isLocationMarked = false;
-		// node layer validation based on schema checking
-		if (error.hasOwnProperty("schemaErrors")) {
-			error.schemaErrors.forEach((schemaError) => {
-				// To be consistent with edit page
-				schemaError.field = schemaError.field.replace('data.ads.0', 'data');
-				let $input;
-				if (schemaError.field === 'data.location.latitude' ||
-					schemaError.field === 'data.location.longitude') {
-					// Handle latitude and longitue specially because the UI for them
-					// has been combined
-					if (isLocationMarked) {
-						return;
-					}
-					$input = $('[data-schema="data.location"]');
-				} else {
-					$input = $(`[data-schema="${schemaError.field}"]`);
-				}
-				let siblings = $input.siblings("input");
-				if (siblings.length === 1) {
-					$input = siblings;
-				}
-				// filtering out collision with meta tags
-				$input = $input.not("meta");
-				$failedFields = this._markValidationError($input, $failedFields);
-			});
-		} else if (error.hasOwnProperty("bapiValidationFields")) {
-			// bapi validation errors
-			error.bapiValidationFields.forEach((attrName) => {
-				let $input = $(`[name="${attrName}"]`);
-				let siblings = $input.siblings("input");
-				if (siblings.length === 1) {
-					$input = siblings;
-				}
-				// filtering out collision with meta tags
-				$input = $input.not("meta");
-				$failedFields = this._markValidationError($input, $failedFields);
-			});
-		}
-
-		this.viewModel.isFormValid = false;
-		// This should happen after all error fields been marked
-		this.viewModel.isFixMode = true;
-
-		// if we have a failed field, scroll to 50px above the highest element on the page
-		let errorElements = this.$postForm.find('.validation-error');
-		if (errorElements.length) {
-			let $highestFailure = errorElements.closestToOffset(0, 0);
-			scrollTo = $highestFailure.offset().top - 50;
-			let bodyElement = $('body, html');
-			bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
-		}
 	}
 
 	onReady() {
