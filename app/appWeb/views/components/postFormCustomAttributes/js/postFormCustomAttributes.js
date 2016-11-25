@@ -78,6 +78,8 @@ class PostFormCustomAttributes {
 				this._render(newValue);
 			}
 		});
+
+		this._bindDependencyEvents();
 	}
 
 	get categoryId() {

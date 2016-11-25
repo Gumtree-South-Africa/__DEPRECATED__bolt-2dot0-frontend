@@ -268,6 +268,10 @@ class PostAdFormMainDetailsVM {
 			},
 			categoryAttributes: categoryAttributes
 		};
+		if (serialized.adId) {
+			// Used in edit workflow
+			payload.adId = serialized.adId;
+		}
 
 		if (!this.isPriceExcluded) {
 			payload.price = {
