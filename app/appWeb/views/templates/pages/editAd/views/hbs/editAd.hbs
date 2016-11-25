@@ -11,14 +11,33 @@
 				{{> (dynamic "photoContainer") i18HeadTitle="Product Photos"}}
 			</div>
 			{{> (dynamic "postAdFormMainDetails") }}
-			<div class="button-area">
+			<div class="desktop-button-area">
 				<div class="btn-area-inner">
 					<div class="submit-btn-wrapper">
-						<button id="edit-submit-button" class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
+						<button class="edit-submit-button edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
 					</div>
 					<div class="cancel-link-wrapper">
-						<div id="cancel-button" class="cancel-form-link">
+						<div class="cancel-form-link cancel-button">
 							{{i18n "editAd.mainDetails.cancel"}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mobile-button-area">
+				<div class="mobile-post-ad-wrapper">
+					<div class="mobile-post-ad-modal-wrapper">
+						<div class="mobile-post-ad-modal">
+							<div class="mobile-post-ad-modal-overlay"></div>
+						</div>
+						<div class="mobile-post-ad-footer">
+							<div class="btn-wrapper">
+                                <a class="edit-submit-button btn">
+                                    <span class="sudolink">{{i18n "editAd.mainDetails.submit"}}</span>
+                                </a>
+                            </div>
+						</div>
+						<div class="cancel-link-wrapper">
+							<div class="mobile-cancel-form-link cancel-button">{{i18n "editAd.mainDetails.cancel"}}</div>
 						</div>
 					</div>
 				</div>

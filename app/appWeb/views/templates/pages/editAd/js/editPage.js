@@ -28,8 +28,8 @@ class EditAd {
 		photoContainer.initialize();
 		postAdFormMainDetails.initialize();
 
-		this._$submitButton = domElement.find('#edit-submit-button');
-		this._$cancelButton = domElement.find('#cancel-button');
+		this._$submitButton = domElement.find('.edit-submit-button');
+		this._$cancelButton = domElement.find('.cancel-button');
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {

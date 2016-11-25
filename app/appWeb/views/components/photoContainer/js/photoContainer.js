@@ -84,7 +84,7 @@ class PhotoContainer {
 		if (this.$initialImages.length > 0) {
 			this.latestPosition = 1;
 			this._updatePhotoContainerLayout();
-			this._uploadImageShowSpinnerWithFileSize(this.$initialImages.length);
+			//this._uploadImageShowSpinnerWithFileSize(this.$initialImages.length);
 			this.$initialImages.forEach((imageUrl) => {
 				let url = null;
 				if (imageUrl.SMALL) {

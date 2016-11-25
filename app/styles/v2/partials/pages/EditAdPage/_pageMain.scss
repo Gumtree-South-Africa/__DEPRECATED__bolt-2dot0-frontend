@@ -15,26 +15,14 @@ body {
 }
 
 .edit-ad-page {
+	.two-step {
+		display: none;
+	}
+	.one-step {
+		display: block;
+	}
 	.custom-attributes {
 		margin-bottom: 20px;
-	}
-
-	.icon-photo-close {
-		cursor: pointer;
-	}
-
-	.cover-photo {
-		display: none;
-		@include from-breakpoint($medium-break) {
-			display: block;
-		}
-	}
-
-	.ad-statistics {
-		display: none;
-		@include from-breakpoint($medium-break) {
-			display: block;
-		}
 	}
 
 	.validation-error {
@@ -118,7 +106,7 @@ body {
 	}
 
 
-	.button-area {
+	.desktop-button-area {
 		height: 80px;
 		padding: 15px 0;
 		margin-bottom: 10px;
@@ -210,7 +198,7 @@ body {
 		}
 	}
 
-	.mobile-edit-ad, .back-button {
+	.mobile-button-area {
 		display: none;
 	}
 
@@ -226,17 +214,9 @@ body {
 		margin-left: 1%;
 	}
 
-	.two-step {
-		display: block !important;
-	}
-	.one-step {
-		display: none !important;
-	}
-
 	.icon-down {
 		display: none;
 	}
-
 	.icon-up {
 		display: none;
 	}
@@ -265,15 +245,15 @@ body {
 		}
 	}
 
-	.button-area {
+	.desktop-button-area {
 		display: none;
 	}
 
-	.two-step {
-		display: none;
+	.mobile-cancel-form-link {
+		margin-top: 18px;
+		margin-right: 30px;
+		text-decoration: underline;
+		float: right;
 	}
 
-	.one-step {
-		display: block;
-	}
 }
