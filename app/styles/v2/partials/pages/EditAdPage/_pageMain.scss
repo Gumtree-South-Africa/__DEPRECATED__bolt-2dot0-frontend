@@ -123,7 +123,7 @@ body {
 		padding: 15px 0;
 		margin-bottom: 10px;
 		float: left;
-		width: 60%;
+		width: 58%;
 		vertical-align: top;
 		margin-left: calc(6% + 300px);
 		.btn-area-inner {
@@ -195,6 +195,21 @@ body {
 		}
 	}
 
+	.photo-switcher {
+		display: inline-block;
+		width: 300px; // Align with banner asset
+		float: left;
+		background-color: $postAdBackgroundColor;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		.image-container {
+			margin: 5% 5%;
+		}
+		.cover-photo-small {
+			width: 72px;
+			height: 72px;
+		}
+	}
+
 	.mobile-edit-ad, .back-button {
 		display: none;
 	}
@@ -204,7 +219,7 @@ body {
 	}
 
 	.main-detail-edit {
-		width: 60%;
+		width: 58%;
 		float: left;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
 		box-shadow: 1px 1px 6px $postAdShadowColor;
@@ -233,13 +248,31 @@ body {
 		// Magic number 73 is the height of post button layer
 		margin-bottom: 73px;
 	}
+
 	.main-detail-edit {
 		background-color: $mainDetailsBackgroundColor;
+		width: 100%;
+		float: left;
+	}
+
+	.photo-switcher {
+		.image-container {
+			margin: 0 5%;
+			.cover-photo-small {
+				width: 65px;
+				height: 65px;
+			}
+		}
+	}
+
+	.button-area {
+		display: none;
 	}
 
 	.two-step {
 		display: none;
 	}
+
 	.one-step {
 		display: block;
 	}

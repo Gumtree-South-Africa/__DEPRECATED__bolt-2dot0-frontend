@@ -72,6 +72,21 @@ $labelMargin: 8%;
 	}
 }
 
+.photo-switcher {
+	display: inline-block;
+	width: 300px; // Align with banner asset
+	float: left;
+	background-color: $postAdBackgroundColor;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
+	.image-container {
+		margin: 5% 5%;
+	}
+	.cover-photo-small {
+		width: 72px;
+		height: 72px;
+	}
+}
+
 @include from-breakpoint($medium-break) {
 	.post-ad-content {
 		position: relative;
