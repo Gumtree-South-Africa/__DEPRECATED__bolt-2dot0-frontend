@@ -1,5 +1,4 @@
 "use strict";
-let UploadMessageClass = require('./epsUpload').UploadMessageClass;
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
@@ -16,7 +15,7 @@ const AD_STATES = {
 };
 
 // View model for post ad page
-class PostAdPageVM {
+class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
 
@@ -111,6 +110,31 @@ class PostAdPageVM {
 		this.photoContainer.addImageUrlsChangeHandler(() => {
 			this.imageUrls = [].concat(this.photoContainer.imageUrls);
 		});
+
+		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
+		this._requestLocationFromBrowser();
+		// TBD Need to refactor follow previous convention
+		photoContainer.setCategoryUpdateCallback((catId) => {
+			this.viewModel.postAdFormMainDetails.categoryId = catId;
+		});
+
+		$('.email-login-btn').on('click', () => {
+			window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithEmail"}});
+		});
+
+		$('.facebook-button').on('click', () => {
+			window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithFacebook"}});
+		});
+
+		$('.register-link').on('click', () => {
+			window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"}});
+		});
+
+		let mobilePostAd = $('.mobile-upload-image');
+		if (mobilePostAd.length && window.getComputedStyle(mobilePostAd[0]).display !== 'none') {
+			// In mobile view
+			$('body, html').scrollTop(Math.max($('#mobileFileUpload').offset().top - 5, 0));
+		}
 	}
 
 	_canPost() {
@@ -203,98 +227,32 @@ class PostAdPageVM {
 			this.postAdFormMainDetails.setValidationError(errorObj);
 		}
 	}
-}
-
-class PostAd {
-	constructor() {
-		this.setupViewModel();
-	}
-
-	initialize() {
-		this.messageError = $('.error-message');
-		this.messageModal = $('.message-modal');
-		this.inputDisabled = false;
-		this.uploadImageContainer = $('.upload-image-container');
-		this.$uploadSpinner = this.uploadImageContainer.find('#js-upload-spinner');
-		this.$uploadProgress = this.uploadImageContainer.find('#js-upload-progress');
-		this.epsData = $('#js-eps-data');
-
-		this.$errorMessageTitle = $('#js-error-title');
-		this.uploadMessageClass = new UploadMessageClass(
-			//For error messages
-			this.epsData,
-			this.messageError,
-			this.messageModal,
-			this.$errorMessageTitle,
-			{}
-		);
-
-		$(document).ready(() => {
-			this.viewModel.componentDidMount($(document.body));
-			this.viewModel.postAdFormMainDetails.handleGetLatLngFromGeoCookie = () => this.getLatLngFromGeoCookie();
-			// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
-			this.requestLocationFromBrowser((locationType, timeout) => {
-					if (timeout !== undefined) {
-						clearTimeout(timeout);
-					}
-			});
-			// TBD Need to refactor follow previous convention
-			photoContainer.setCategoryUpdateCallback((catId) => {
-				this.viewModel.postAdFormMainDetails.categoryId = catId;
-			});
-
-			$('.email-login-btn').on('click', () => {
-				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithEmail"}});
-			});
-
-			$('.facebook-button').on('click', () => {
-				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithFacebook"}});
-			});
-
-			$('.register-link').on('click', () => {
-				window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"}});
-			});
-
-			let mobilePostAd = $('.mobile-upload-image');
-			if (mobilePostAd.length && window.getComputedStyle(mobilePostAd[0]).display !== 'none') {
-				// In mobile view
-				$('body, html').scrollTop(Math.max($('#mobileFileUpload').offset().top - 5, 0));
-			}
-		});
-	}
-
-	// Common interface for all component to setup view model. In the future, we'll have a manager
-	// to control the lifecycle of view model.
-	setupViewModel() {
-		this.viewModel = new PostAdPageVM();
-	}
 
 	/**
 	 * Tries to get the location from the browser, defaults to timeout after 20 seconds, will setup geoId cookie when success
 	 * @param callback callback function that takes a string and a timeout to use with clearTimeout
 	 */
-	requestLocationFromBrowser(callback) {
-		let timeout;
+	_requestLocationFromBrowser() {
 		if ("geolocation" in navigator && CookieUtils.getCookie('geoId') === '') {
 			//Don't want to sit and wait forever in case geolocation isn't working
-			timeout = setTimeout(callback, 20000);
 			navigator.geolocation.getCurrentPosition((position) => {
-					let lat = position.coords.latitude;
-					let lng = position.coords.longitude;
-					document.cookie = `geoId=${lat}ng${lng}`;
-					callback('geoLocation', timeout);
-				}, () => {
-					callback('geoFailed', timeout);
-				},
-				{
-					enableHighAccuracy: true,
-					maximumAge: 30000,
-					timeout: 27000
-				});
-		} else {
-			callback('cookie', timeout);
+				let lat = position.coords.latitude;
+				let lng = position.coords.longitude;
+				document.cookie = `geoId=${lat}ng${lng}`;
+			}, () => {}, {
+				enableHighAccuracy: true,
+				maximumAge: 30000,
+				timeout: 27000
+			});
 		}
 	}
 }
 
-module.exports = new PostAd();
+module.exports = {
+	initialize: function() {
+		$(document).ready(() => {
+			new PostAd().componentDidMount($(document.body));
+		});
+	},
+	PostAd
+};
