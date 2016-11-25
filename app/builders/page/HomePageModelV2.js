@@ -206,7 +206,6 @@ class HomePageModelV2 {
 			return keywordModel.resolveAllPromises().then((data) => {
 				let keywords = {};
 				keywords.top = data[0];
-				console.log(data[0].length);
 				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations'];
 				keywords.top.total = 1;
 				return keywords || {};

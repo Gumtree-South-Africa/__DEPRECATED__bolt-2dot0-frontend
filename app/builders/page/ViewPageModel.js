@@ -309,7 +309,6 @@ class ViewPageModel {
 					}
 					++keywordIndex;
 				});
-				console.log('keywordData', keywordData);
 				console.log('$$$$$$$ ', keywordData);
 				return keywordData;
 			}).fail((err) => {

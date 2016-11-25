@@ -5,12 +5,6 @@ let _showMoreSearches = () => {
 	this.$viewMoreSearches.text(
 		(this.$showMoreSearches.is(':visible'))
 		? this.viewLessText : this.viewMoreText);
-
-	if (this.$desktopSeo.is(':visible')) {
-		this.$desktopSeo.css('display', 'none');
-	} else {
-		this.$desktopSeo.css('display', 'block');
-	}
 };
 
 let _toggleTabs = (event) => {
@@ -26,7 +20,6 @@ let _toggleTabs = (event) => {
 };
 
 let initialize = () => {
-	this.$desktopSeo = $('.desktop-seo');
 	this.$viewMoreSearches = $('.view-more-searches');
 	this.$showMoreSearches = $('.show-more-searches');
 	this.$topSearchesHeader = $('.top-headers');
