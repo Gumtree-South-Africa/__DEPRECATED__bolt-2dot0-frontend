@@ -8,10 +8,14 @@ let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerM
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
+		this.propertyChanged = new SimpleEventEmitter();
+
+		this._imageUrls = [];
 	}
 
 	/**
@@ -37,6 +41,11 @@ class PostAdPageVM {
 		this._$infoTips = domElement.find(".info-tips");
 		this._$submitButton = domElement.find('#post-submit-button .btn, #postAdBtn');
 
+		this.propertyChanged.addHandler((propName/*, newValue*/) => {
+			if (propName !== 'imageUrls') {
+				this._$submitButton.toggleClass('disabled', !this._canPost());
+			}
+		});
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
 			if (propName !== 'imageUrl' || !newValue) {
 				return;
@@ -45,7 +54,7 @@ class PostAdPageVM {
 			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 
-			this.postAdFormMainDetails.imageUrls = [newValue];
+			this.imageUrls = [newValue];
 			this.spinnerModal.showModal();
 
 			$.ajax({
@@ -66,14 +75,14 @@ class PostAdPageVM {
 
 		if (!this.mobileUpload.imageUrl) {
 			this.postAdModal.isShown = true;
-			this.postAdFormMainDetails.imageUrls = [];
+			this.imageUrls = [];
 		} else {
-			this.postAdFormMainDetails.imageUrls = [this.mobileUpload.imageUrl];
+			this.imageUrls = [this.mobileUpload.imageUrl];
 			this.postAdFormMainDetails.show();
 		}
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
-			if (propName === 'isValid' || propName === 'isFixMode' || propName === 'imageUrls') {
+			if (propName === 'isValid' || propName === 'isFixMode') {
 				this._$submitButton.toggleClass('disabled', !this._canPost());
 			}
 		});
@@ -86,14 +95,26 @@ class PostAdPageVM {
 		});
 
 		this.photoContainer.addImageUrlsChangeHandler(() => {
-			this.postAdFormMainDetails.imageUrls = [].concat(this.photoContainer.imageUrls);
+			this.imageUrls = [].concat(this.photoContainer.imageUrls);
 		});
 	}
 
 	_canPost() {
 		// Don't submit if no image or not resolve all fix problems
-		return this.postAdFormMainDetails.imageUrls && this.postAdFormMainDetails.imageUrls.length &&
+		return this._imageUrls && this._imageUrls.length &&
 			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
+	}
+
+	get imageUrls() {
+		return this._imageUrls;
+	}
+
+	set imageUrls(newValue) {
+		if (this._imageUrls === newValue) {
+			return;
+		}
+		this._imageUrls = newValue;
+		this.propertyChanged.trigger('imageUrls', newValue);
 	}
 
 	submit() {
@@ -104,10 +125,11 @@ class PostAdPageVM {
 		window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
 		this._$submitButton.toggleClass('disabled', true);
 
+		let postAdPayload = this.postAdFormMainDetails.getAdPayload();
+		// Copy imageUrls to avoid changing original values
+		postAdPayload.imageUrls = [].concat(this._imageUrls);
 		let payload = {
-			"ads": [
-				this.postAdFormMainDetails.getAdPayload()
-			]
+			ads: [postAdPayload]
 		};
 
 		spinnerModal.showModal();

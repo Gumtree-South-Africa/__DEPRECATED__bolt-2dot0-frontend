@@ -21,8 +21,6 @@ class PostAdFormMainDetailsVM {
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
-		this._imageUrls = [];
-
 		this._isPriceExcluded = true;
 		this._isShown = false;
 		this._isFixMode = false;
@@ -182,18 +180,6 @@ class PostAdFormMainDetailsVM {
 		this.isValid = this._categoryDropdownSelection.isValid && this._isFormValid;
 	}
 
-	get imageUrls() {
-		return this._imageUrls;
-	}
-
-	set imageUrls(newValue) {
-		if (this._imageUrls === newValue) {
-			return;
-		}
-		this._imageUrls = newValue;
-		this.propertyChanged.trigger('imageUrls', newValue);
-	}
-
 	show() {
 		this.$postAdForm.show();
 		// TODO Move below line out of this class
@@ -272,8 +258,6 @@ class PostAdFormMainDetailsVM {
 		}
 		/* Location Resolving end */
 
-		// Copy imageUrls to avoid changing original values
-		let imgUrls = [].concat(this.imageUrls);
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
@@ -283,8 +267,7 @@ class PostAdFormMainDetailsVM {
 				"latitude": lat,
 				"longitude": lng
 			},
-			categoryAttributes: categoryAttributes,
-			imageUrls: imgUrls
+			categoryAttributes: categoryAttributes
 		};
 
 		if (!this.isPriceExcluded) {
