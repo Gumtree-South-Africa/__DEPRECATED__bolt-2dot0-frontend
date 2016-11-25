@@ -208,7 +208,8 @@ class HomePageModelV2 {
 				keywords.top = data[0];
 				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations'];
 				keywords.top.total = 1;
-				return keywords || {};
+
+				return keywords;
 			}).fail((err) => {
 				console.warn(`error getting topSearches data ${err}`);
 				return {};
