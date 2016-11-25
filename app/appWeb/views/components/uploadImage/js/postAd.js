@@ -33,7 +33,7 @@ class PostAdPageVM {
 		postAdFormMainDetails.initialize();
 
 		this._$infoTips = domElement.find(".info-tips");
-		this._$submitButton = domElement.find('.post-submit-button .btn, .desktop-post-ad .post-ad-btn');
+		this._$submitButton = domElement.find('#post-submit-button .btn, #postAdBtn');
 
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
 			if (propName !== 'imageUrl' || !newValue) {
