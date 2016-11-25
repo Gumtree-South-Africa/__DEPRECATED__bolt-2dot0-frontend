@@ -1,13 +1,16 @@
 {{#partial "content"}}
 	<section class="edit-ad-page">
-        {{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
-        <div class="edit-ad-content">
+		{{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
+		<div class="hidden">
+			{{> (dynamic "uploadImage")}}
+		</div>
+		<div class="edit-ad-content">
 			<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
 			<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
 			<div class="photo-switcher">
-                {{> (dynamic "photoContainer") i18HeadTitle="Product Photos"}}
+				{{> (dynamic "photoContainer") i18HeadTitle="Product Photos"}}
 			</div>
-            {{> (dynamic "postAdFormMainDetails") }}
+			{{> (dynamic "postAdFormMainDetails") }}
 			<div class="button-area">
 				<div class="btn-area-inner">
 					<div class="submit-btn-wrapper">
@@ -15,12 +18,12 @@
 					</div>
 					<div class="cancel-link-wrapper">
 						<div id="cancel-button" class="cancel-form-link">
-                            {{i18n "editAd.mainDetails.cancel"}}
+							{{i18n "editAd.mainDetails.cancel"}}
 						</div>
 					</div>
 				</div>
 			</div>
-        </div>
-    </section>
-    {{> (dynamic "spinnerModal")}}
+		</div>
+	</section>
+	{{> (dynamic "spinnerModal")}}
 {{/partial}}

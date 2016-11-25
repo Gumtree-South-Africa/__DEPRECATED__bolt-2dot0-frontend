@@ -68,6 +68,17 @@ class PhotoContainer {
 		this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
 		this.$errorMessageTitle = $('#js-error-title');
 
+		$("#imgUrls").on("click", () => {
+			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+			let validUrls = [];
+			for (let img of imgUrls) {
+				if (img) {
+					validUrls.push(img);
+				}
+			}
+			this.viewModel.updateImageUrls(validUrls);
+		});
+
 		// If server has initial image to render
 		this.$initialImages = JSON.parse($("#initialImages").text() || '{"sizeUrls": []}').sizeUrls;
 		if (this.$initialImages.length > 0) {
@@ -99,17 +110,6 @@ class PhotoContainer {
 		this.$imageUpload.on("change", (event) => {
 			this._uploadImageShowSpinner();
 			this.fileInputChange(event);
-		});
-
-		$("#imgUrls").on("click", () => {
-			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-			let validUrls = [];
-			for (let img of imgUrls) {
-				if (img) {
-					validUrls.push(img);
-				}
-			}
-			this.viewModel.updateImageUrls(validUrls);
 		});
 
 		this.$errorModalButton.click(() => {

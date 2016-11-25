@@ -98,6 +98,8 @@ class PostAdFormMainDetailsVM {
 
 		// Initialize self properties from children
 		this._categoryId = this._categoryDropdownSelection.categoryId;
+		// TODO Solve this ugly code
+		this.postFormCustomAttributes._categoryId = this._categoryId;
 	}
 
 	get categoryId() {
