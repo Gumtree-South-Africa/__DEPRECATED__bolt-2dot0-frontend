@@ -188,7 +188,7 @@ class PostAd {
 	}
 
 	_onSubmitSuccess(response) {
-		this.viewModel.isFormChangeWarning = false;
+		this.postAdFormMainDetails.isFormChangeWarning = false;
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
