@@ -55,10 +55,10 @@ $labelMargin: 8%;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 59.6%;
+		width: 63.7%;
 		vertical-align: top;
 		float: left;
-		margin-left: calc(6% + 300px);
+		margin-left: calc(1% + 300px);
 		margin-top: 1%;
 		margin-bottom: 2%;
 
@@ -73,6 +73,11 @@ $labelMargin: 8%;
 }
 
 @include from-breakpoint($medium-break) {
+	.post-ad-content {
+		position: relative;
+		max-width: 1168px;
+		margin: 0 auto;
+	}
 	.mobile-post-ad, .back-button {
 		display: none;
 	}
@@ -80,9 +85,8 @@ $labelMargin: 8%;
 	.desktop-post-ad {
 		display: block;
 	}
-
 	.main-detail-post {
-		width: 54%;
+		width: 58%;
 		float: left;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
 		box-shadow: 1px 1px 6px $postAdShadowColor;
@@ -120,6 +124,9 @@ $labelMargin: 8%;
 	.main-detail-post {
 		display:none;
 		background-color: $mainDetailsBackgroundColor;
+		.photo-switcher {
+			margin-left: 5%;
+		}
 	}
 
 	.two-step {

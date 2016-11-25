@@ -67,6 +67,28 @@ class PhotoContainer {
 		this.messageModal = $('.message-modal');
 		this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
 		this.$errorMessageTitle = $('#js-error-title');
+
+		// If server has initial image to render
+		this.$initialImages = JSON.parse($("#initialImages").text() || '{"sizeUrls": []}').sizeUrls;
+		if (this.$initialImages.length > 0) {
+			this.latestPosition = 1;
+			this._updatePhotoContainerLayout();
+			this._uploadImageShowSpinnerWithFileSize(this.$initialImages.length);
+			this.$initialImages.forEach((imageUrl) => {
+				let url = null;
+				if (imageUrl.SMALL) {
+					url = imageUrl.SMALL;
+				} else if (imageUrl.MEDIUM) {
+					url = imageUrl.MEDIUM;
+				} else if (imageUrl.LARGE) {
+					url = imageUrl.LARGE;
+				}
+				if (url) {
+					this._updatePhotoDivBackgroundImg(url);
+				}
+			});
+		}
+
 		this.$errorModalButton = this.messageModal.find('.btn');
 		this.$errorModalClose.click(() => {
 			this.messageModal.toggleClass('hidden');

@@ -1398,7 +1398,8 @@
 				"title": "Título del anuncio",
 				"remaining": "restantes",
 				"price": "Precio",
-				"addPhotos": "Agregar fotos",
+				"addPhotosStep": "1. Add photos",
+				"addPhotos": "Add photos",
 				"pricePlaceholder": "Preguntarme el precio"
 			},
 			"post": "Publicar",

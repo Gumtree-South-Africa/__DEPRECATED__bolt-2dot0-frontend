@@ -1315,6 +1315,7 @@
 				"title": "Título del anuncio",
 				"remaining": "restantes",
 				"price": "Precio",
+				"addPhotosStep": "1. Agregar fotos",
 				"addPhotos": "Agregar fotos",
 				"pricePlaceholder": "Preguntarme el precio"
 			},
