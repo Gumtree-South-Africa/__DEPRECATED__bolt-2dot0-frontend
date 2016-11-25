@@ -40,6 +40,15 @@ class PostAdPageVM {
 
 		this._$infoTips = domElement.find(".info-tips");
 		this._$submitButton = domElement.find('#post-submit-button .btn, #postAdBtn');
+		this._$changePhoto = $(".change-photo");
+
+		this._$changePhoto.on('click', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "eventLabel": "Retake Photo"});
+			// TODO Move this to mobileUpload
+			$("#mobileFileUpload").click();
+		});
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName !== 'imageUrls') {

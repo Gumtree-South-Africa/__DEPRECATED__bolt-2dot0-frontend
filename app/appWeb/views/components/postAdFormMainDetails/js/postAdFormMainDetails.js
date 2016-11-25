@@ -561,8 +561,6 @@ class PostAdFormMainDetails {
 		this.$locationLink = $("#post-location-input");
 		this.$addDetail = $(".post-add-detail");
 
-		this.$changePhoto = $(".change-photo");
-
 		this.$postForm = this.$detailsSection.find('.post-form');
 		this.$downIcon = this.$detailsSection.find('.icon-down');
 		this.$upIcon = this.$detailsSection.find('.icon-up');
@@ -582,13 +580,6 @@ class PostAdFormMainDetails {
 			this.$postForm.toggleClass('hidden');
 			this.$downIcon.toggleClass('hidden');
 			this.$upIcon.toggleClass('hidden');
-		});
-
-		this.$changePhoto.on('click', (e) => {
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdPhotoBegin", "eventLabel": "Retake Photo"});
-			$("#mobileFileUpload").click();
 		});
 
 		this._setupPolyfillForm();
