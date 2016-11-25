@@ -1,0 +1,47 @@
+.breadcrumbs {
+	color: $breadcrumbs-secondary-color;
+	font-size: 0.9em;
+	list-style: none;
+	margin: 1em 0;
+
+	a {
+		color: $breadcrumbs-primary-color;
+
+		&:hover {
+			color: inherit;
+		}
+	}
+
+	li {
+		display: inline-block;
+
+		&:last-child {
+			a {
+				color: inherit;
+				cursor: default;
+
+				&:hover {
+					color: inherit;
+					text-decoration: none;
+				}
+			}
+
+			.breadcrumb-separator {
+				display: none;
+			}
+		}
+	}
+}
+
+.breadcrumb-separator {
+	display: inline-block;
+	height: 10px;
+	margin: 0 4px;
+	width: 7px;
+}
+
+@include to-breakpoint($small-break) {
+	.breadcrumbs {
+		display: none;
+	}
+}
