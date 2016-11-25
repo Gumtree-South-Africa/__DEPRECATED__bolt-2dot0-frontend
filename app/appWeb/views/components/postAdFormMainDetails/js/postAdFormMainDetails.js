@@ -325,7 +325,7 @@ class PostAdFormMainDetails {
 		val = val.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
 		let count = val.length;
 		let maxLength = $input.attr("maxLength");
-		$label.find(".characters-available").text(`${Math.min(count, maxLength)}/${maxLength}`);
+		$label.find(".characters-available").text(`${Math.max(maxLength - count, 0)}/${maxLength}`);
 	}
 
 	/**
