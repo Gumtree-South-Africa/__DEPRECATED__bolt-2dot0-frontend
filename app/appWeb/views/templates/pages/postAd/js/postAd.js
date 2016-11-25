@@ -112,7 +112,7 @@ class PostAd {
 		});
 
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
-		this._requestLocationFromBrowser();
+		this.requestLocationFromBrowser();
 		// TBD Need to refactor follow previous convention
 		photoContainer.setCategoryUpdateCallback((catId) => {
 			this.viewModel.postAdFormMainDetails.categoryId = catId;
@@ -232,18 +232,27 @@ class PostAd {
 	 * Tries to get the location from the browser, defaults to timeout after 20 seconds, will setup geoId cookie when success
 	 * @param callback callback function that takes a string and a timeout to use with clearTimeout
 	 */
-	_requestLocationFromBrowser() {
+	requestLocationFromBrowser(callback) {
 		if ("geolocation" in navigator && CookieUtils.getCookie('geoId') === '') {
 			//Don't want to sit and wait forever in case geolocation isn't working
 			navigator.geolocation.getCurrentPosition((position) => {
 				let lat = position.coords.latitude;
 				let lng = position.coords.longitude;
 				document.cookie = `geoId=${lat}ng${lng}`;
-			}, () => {}, {
+				if (callback) {
+					callback('geoLocation');
+				}
+			}, () => {
+				if (callback) {
+					callback('geoFailed');
+				}
+			}, {
 				enableHighAccuracy: true,
 				maximumAge: 30000,
 				timeout: 27000
 			});
+		} else if (callback) {
+			callback('cookie');
 		}
 	}
 }
