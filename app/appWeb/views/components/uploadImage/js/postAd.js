@@ -10,6 +10,11 @@ let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.j
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
+const AD_STATES = {
+	AD_CREATED: "AD_CREATED",
+	AD_DEFERRED: "AD_DEFERRED"
+};
+
 // View model for post ad page
 class PostAdPageVM {
 	constructor() {
@@ -161,7 +166,7 @@ class PostAdPageVM {
 	_onSubmitSuccess(response) {
 		this.viewModel.isFormChangeWarning = false;
 		switch (response.state) {
-			case this.AD_STATES.AD_CREATED:
+			case AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
 					if (response.ad.redirectLinks.previp) {
 						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
@@ -172,7 +177,7 @@ class PostAdPageVM {
 					}
 				});
 				break;
-			case this.AD_STATES.AD_DEFERRED:
+			case AD_STATES.AD_DEFERRED:
 				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
 				spinnerModal.completeSpinner(() => {
 					loginModal.openModal({
@@ -236,6 +241,18 @@ class PostAd {
 			// TBD Need to refactor follow previous convention
 			photoContainer.setCategoryUpdateCallback((catId) => {
 				this.viewModel.postAdFormMainDetails.categoryId = catId;
+			});
+
+			$('.email-login-btn').on('click', () => {
+				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithEmail"}});
+			});
+
+			$('.facebook-button').on('click', () => {
+				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginWithFacebook"}});
+			});
+
+			$('.register-link').on('click', () => {
+				window.BOLT.trackEvents({"event": "UserRegisterBegin", "p": {"t": "PostAdRegister"}});
 			});
 
 			let mobilePostAd = $('.mobile-upload-image');

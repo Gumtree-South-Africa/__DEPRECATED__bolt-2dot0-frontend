@@ -553,10 +553,6 @@ class PostAdFormMainDetails {
 	}
 
 	onReady() {
-		this.AD_STATES = {
-			AD_CREATED: "AD_CREATED",
-			AD_DEFERRED: "AD_DEFERRED"
-		};
 		this.$detailsSection = $("#js-main-detail-post");
 		this.$locationLink = $("#post-location-input");
 		this.$addDetail = $(".post-add-detail");
@@ -607,7 +603,6 @@ class PostAdFormMainDetails {
 		locationModal.initialize((data) => {
 			this._setHiddenLocationInput(data);
 		});
-
 
 		if (registerOnReady) {
 			this.onReady();
