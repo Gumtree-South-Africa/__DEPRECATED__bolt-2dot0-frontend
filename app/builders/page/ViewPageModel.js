@@ -20,7 +20,6 @@ class ViewPageModel {
 		this.adId = adId;
 
 		this.fullDomainName = res.locals.config.hostname;
-		this.bapiConfigData = this.res.locals.config.bapiConfigData;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
 		this.locale = res.locals.config.locale;

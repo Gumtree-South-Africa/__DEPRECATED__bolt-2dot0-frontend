@@ -16,7 +16,7 @@ module.exports = function watch(gulp, plugins) {
 		del = require("del"),
 		fs = require("fs-extra");
 
-	let coverage = true,
+	let coverage = false,
 		ciMode = false,
 		browser = "chrome";
 
@@ -55,23 +55,23 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		// CLIENT UNIT TEST TASKS
-		gulp.task("testCleanTemplates", () => {
+		gulp.task("cleanTemplates", () => {
 			return del([
 				"app/templateStaging",
 				"test/clientUnit/helpers/webTemplates.js*"
 			]);
 		});
 
-		gulp.task('testStageTemplates', () => {
+		gulp.task('stageTemplates', () => {
 			return gulp.src("app/**/*.hbs")
 				.pipe(flatten())
 				.pipe(gulp.dest("app/templateStaging"));
 		});
 
-		gulp.task("testTemplateMaker", shell.task(["bash bin/scripts/templateMaker.sh test/clientUnit/helpers/webTemplates.js"]));
+		gulp.task("templateMaker", shell.task(["bash bin/scripts/templateMaker.sh test/clientUnit/helpers/webTemplates.js"]));
 
-		gulp.task('testPrecompileTemplates', (done) => {
-			runSequence("testCleanTemplates", "testStageTemplates", "testTemplateMaker", done)
+		gulp.task('precompileTemplates', (done) => {
+			runSequence("cleanTemplates", "stageTemplates", "templateMaker", done)
 		});
 
 
@@ -88,8 +88,7 @@ module.exports = function watch(gulp, plugins) {
 		});
 
 		gulp.task('test:clientUnit', function(done) {
-			// We also need to build template maker in webpack because clientHandlebars.js needs it
-			runSequence("webpackPrecompile2", "testPrecompileTemplates", "karma", done)
+			runSequence("precompileTemplates", "karma", done)
 		});
 
 		// SERVER UNIT TEST TASKS
