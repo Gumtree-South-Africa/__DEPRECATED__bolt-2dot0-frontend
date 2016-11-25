@@ -55,7 +55,7 @@ class PostAd {
 		});
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
-			if (propName !== 'imageUrls') {
+			if (propName === 'imageUrls') {
 				this._$submitButton.toggleClass('disabled', !this._canPost());
 			}
 		});
@@ -229,8 +229,8 @@ class PostAd {
 	}
 
 	/**
-	 * Tries to get the location from the browser, defaults to timeout after 20 seconds, will setup geoId cookie when success
-	 * @param callback callback function that takes a string and a timeout to use with clearTimeout
+	 * Tries to get the location from the browser and setup geoId cookie when success
+	 * @param callback callback function that takes a string
 	 */
 	requestLocationFromBrowser(callback) {
 		if ("geolocation" in navigator && CookieUtils.getCookie('geoId') === '') {
