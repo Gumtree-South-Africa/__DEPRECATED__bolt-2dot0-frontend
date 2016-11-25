@@ -218,7 +218,7 @@ body {
 		display: block;
 	}
 
-	.main-detail-edit {
+	.main-detail-post {
 		width: 58%;
 		float: left;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
@@ -249,7 +249,7 @@ body {
 		margin-bottom: 73px;
 	}
 
-	.main-detail-edit {
+	.main-detail-post {
 		background-color: $mainDetailsBackgroundColor;
 		width: 100%;
 		float: left;
