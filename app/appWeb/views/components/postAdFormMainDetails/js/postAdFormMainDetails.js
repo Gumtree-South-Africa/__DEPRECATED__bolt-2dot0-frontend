@@ -1,6 +1,5 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
-let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -558,11 +557,7 @@ class PostAdFormMainDetails {
 			AD_CREATED: "AD_CREATED",
 			AD_DEFERRED: "AD_DEFERRED"
 		};
-		this.epsUpload = new EpsUpload();
 		this.$detailsSection = $("#js-main-detail-post");
-		this.$attributes = $(".post-ad-custom-attributes-form");
-		this.$categorySelection = this.$detailsSection.find('#category-selection');
-		this.$submitButton = $('#post-submit-button');
 		this.$locationLink = $("#post-location-input");
 		this.$addDetail = $(".post-add-detail");
 
