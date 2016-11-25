@@ -1,9 +1,7 @@
 'use strict';
 let locationModal = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
-let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let CategoryDropdownSelection = require(
@@ -31,6 +29,7 @@ class PostAdFormMainDetailsVM {
 		this._isRequiredTitleAndDescription = false;
 		this._isValid = true;
 		this._isFormValid = true;
+		this._isFormChangeWarning = true;
 	}
 
 	/**
@@ -38,10 +37,13 @@ class PostAdFormMainDetailsVM {
 	 * @param domElement The jquery object for the root element of this component
 	 */
 	componentDidMount(domElement) {
+
 		// Callback for all children components have been mounted
 		this._categoryDropdownSelection.componentDidMound(domElement.find('.category-component'));
 		this.postFormCustomAttributes.componentDidMount(domElement.find('.post-ad-custom-attributes-form'));
 
+		// Callback for old singleton components
+		formChangeWarning.initialize();
 
 		// Register event or update property according to children components
 		this._categoryDropdownSelection.propertyChanged.addHandler((propName, newValue) => {
@@ -85,6 +87,12 @@ class PostAdFormMainDetailsVM {
 			} else if (propName === 'isRequiredTitleAndDescription') {
 				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
 				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
+			} else if (propName === 'isFormChangeWarning') {
+				if (newValue) {
+					formChangeWarning.enable();
+				} else {
+					formChangeWarning.disable();
+				}
 			}
 		});
 		this._$postForm = domElement.find('.post-form');
@@ -190,6 +198,19 @@ class PostAdFormMainDetailsVM {
 		this.$postAdForm.show();
 		// TODO Move below line out of this class
 		$('.viewport').addClass('covered');
+	}
+
+	get isFormChangeWarning() {
+		return this._isFormChangeWarning;
+	}
+
+	set isFormChangeWarning(newValue) {
+		newValue = !!newValue;
+		if (this._isFormChangeWarning === newValue) {
+			return;
+		}
+		this._isFormChangeWarning = newValue;
+		this.propertyChanged.trigger('isFormChangeWarning', newValue);
 	}
 
 	/**
@@ -493,145 +514,60 @@ class PostAdFormMainDetails {
 		}
 	}
 
-	/**
-	 * success callback for saving the edited ad
-	 * @param response
-	 * @private
-	 */
-	_successCallback(response) {
-		formChangeWarning.disable();
-		switch (response.state) {
-			case this.AD_STATES.AD_CREATED:
-				spinnerModal.completeSpinner(() => {
-					if (response.ad.redirectLinks.previp) {
-						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
-					} else if (response.ad.status === 'HOLD') {
-						window.location.href = '/edit/' + response.ad.id;
-					} else {
-						window.location.href = response.ad.redirectLinks.vip;
-					}
-				});
-				break;
-			case this.AD_STATES.AD_DEFERRED:
-				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
-				spinnerModal.completeSpinner(() => {
-					loginModal.openModal({
-						submitCb: () => {
-							window.location.href = response.defferedLink;
-						},
-						fbRedirectUrl: response.defferedLink,
-						links: response.links
-					});
-				});
-				break;
-			default:
-				break;
-		}
-	}
-
-	/**
-	 * failure callback for edit ad failing
-	 * @param error
-	 * @private
-	 */
-	_failureCallback(error) {
+	setValidationError(error) {
 		let $failedFields, scrollTo;
-		this.$submitButton.removeClass('disabled');
-		this.$submitButton.attr('disabled', false);
-		spinnerModal.hideModal();
-		// validation error
-		if (error.status === 400) {
-			let responseText = JSON.parse(error.responseText || '{}');
-			let isLocationMarked = false;
-			// node layer validation based on schema checking
-			if (responseText.hasOwnProperty("schemaErrors")) {
-				responseText.schemaErrors.forEach((schemaError) => {
-					// To be consistent with edit page
-					schemaError.field = schemaError.field.replace('data.ads.0', 'data');
-					let $input;
-					if (schemaError.field === 'data.location.latitude' ||
-						schemaError.field === 'data.location.longitude') {
-						// Handle latitude and longitue specially because the UI for them
-						// has been combined
-						if (isLocationMarked) {
-							return;
-						}
-						$input = $('[data-schema="data.location"]');
-					} else {
-						$input = $(`[data-schema="${schemaError.field}"]`);
+		let isLocationMarked = false;
+		// node layer validation based on schema checking
+		if (error.hasOwnProperty("schemaErrors")) {
+			error.schemaErrors.forEach((schemaError) => {
+				// To be consistent with edit page
+				schemaError.field = schemaError.field.replace('data.ads.0', 'data');
+				let $input;
+				if (schemaError.field === 'data.location.latitude' ||
+					schemaError.field === 'data.location.longitude') {
+					// Handle latitude and longitue specially because the UI for them
+					// has been combined
+					if (isLocationMarked) {
+						return;
 					}
-					let siblings = $input.siblings("input");
-					if (siblings.length === 1) {
-						$input = siblings;
-					}
-					// filtering out collision with meta tags
-					$input = $input.not("meta");
-					$failedFields = this._markValidationError($input, $failedFields);
-				});
-			} else if (responseText.hasOwnProperty("bapiValidationFields")) {
-				// bapi validation errors
-				responseText.bapiValidationFields.forEach((attrName) => {
-					let $input = $(`[name="${attrName}"]`);
-					let siblings = $input.siblings("input");
-					if (siblings.length === 1) {
-						$input = siblings;
-					}
-					// filtering out collision with meta tags
-					$input = $input.not("meta");
-					$failedFields = this._markValidationError($input, $failedFields);
-				});
-			}
-
-			this.viewModel.isFormValid = false;
-			// This should happen after all error fields been marked
-			this.viewModel.isFixMode = true;
-
-			// if we have a failed field, scroll to 50px above the highest element on the page
-			let errorElements = this.$postForm.find('.validation-error');
-			if (errorElements.length) {
-				let $highestFailure = errorElements.closestToOffset(0, 0);
-				scrollTo = $highestFailure.offset().top - 50;
-				let bodyElement = $('body, html');
-				bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
-			}
+					$input = $('[data-schema="data.location"]');
+				} else {
+					$input = $(`[data-schema="${schemaError.field}"]`);
+				}
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = this._markValidationError($input, $failedFields);
+			});
+		} else if (error.hasOwnProperty("bapiValidationFields")) {
+			// bapi validation errors
+			error.bapiValidationFields.forEach((attrName) => {
+				let $input = $(`[name="${attrName}"]`);
+				let siblings = $input.siblings("input");
+				if (siblings.length === 1) {
+					$input = siblings;
+				}
+				// filtering out collision with meta tags
+				$input = $input.not("meta");
+				$failedFields = this._markValidationError($input, $failedFields);
+			});
 		}
-	}
 
-	/**
-	 * ajax the post ad up to the server
-	 * @private
-	 */
-	_ajaxPostForm() {
-		let payload = {
-			"ads": [
-				this.viewModel.getAdPayload()
-			]
-		};
+		this.viewModel.isFormValid = false;
+		// This should happen after all error fields been marked
+		this.viewModel.isFixMode = true;
 
-		spinnerModal.showModal();
-
-		$.ajax({
-			url: '/api/postad/create',
-			type: 'POST',
-			data: JSON.stringify(payload),
-			dataType: 'json',
-			contentType: 'application/json',
-			success: (evt) => {
-				this._successCallback(evt);
-			},
-			error: (e) => {
-				this._failureCallback(e);
-			}
-		});
-	}
-
-	/**
-	 * toggle the submit button disable
-	 * @param shouldDisable
-	 * @private
-	 */
-	_toggleSubmitDisable(shouldDisable) {
-		this.$submitButton.find('a').toggleClass("disabled", shouldDisable);
+		// if we have a failed field, scroll to 50px above the highest element on the page
+		let errorElements = this.$postForm.find('.validation-error');
+		if (errorElements.length) {
+			let $highestFailure = errorElements.closestToOffset(0, 0);
+			scrollTo = $highestFailure.offset().top - 50;
+			let bodyElement = $('body, html');
+			bodyElement.animate({ scrollTop: Math.max(scrollTo + bodyElement.scrollTop(), 0) }, 200);
+		}
 	}
 
 	onReady() {
@@ -707,9 +643,6 @@ class PostAdFormMainDetails {
 		if (registerOnReady) {
 			this.onReady();
 		}
-
-		formChangeWarning.initialize();
-		spinnerModal.initialize();
 	}
 }
 

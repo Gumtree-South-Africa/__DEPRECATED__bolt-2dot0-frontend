@@ -13,8 +13,6 @@ module.exports = {
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
-			"LoginModal": "app/appWeb/views/components/loginModal/js/loginModal.js",
-			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
 			"PostAd": "app/appWeb/views/components/uploadImage/js/postAd.js"
 		},
 		"mobile": {},

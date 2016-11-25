@@ -5,6 +5,7 @@ let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainD
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
@@ -31,6 +32,7 @@ class PostAdPageVM {
 		postAdModal.initialize();
 		photoContainer.initialize();
 		postAdFormMainDetails.initialize();
+		loginModal.initialize();
 
 		this._$infoTips = domElement.find(".info-tips");
 		this._$submitButton = domElement.find('#post-submit-button .btn, #postAdBtn');
@@ -101,7 +103,69 @@ class PostAdPageVM {
 
 		window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
 		this._$submitButton.toggleClass('disabled', true);
-		postAdFormMainDetails._ajaxPostForm();
+
+		let payload = {
+			"ads": [
+				this.postAdFormMainDetails.getAdPayload()
+			]
+		};
+
+		spinnerModal.showModal();
+
+		$.ajax({
+			url: '/api/postad/create',
+			type: 'POST',
+			data: JSON.stringify(payload),
+			dataType: 'json',
+			contentType: 'application/json',
+			success: (response) => {
+				this._onSubmitSuccess(response);
+			},
+			error: (e) => {
+				this._onSubmitFail(e);
+			}
+		});
+	}
+
+	_onSubmitSuccess(response) {
+		this.viewModel.isFormChangeWarning = false;
+		switch (response.state) {
+			case this.AD_STATES.AD_CREATED:
+				spinnerModal.completeSpinner(() => {
+					if (response.ad.redirectLinks.previp) {
+						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
+					} else if (response.ad.status === 'HOLD') {
+						window.location.href = '/edit/' + response.ad.id;
+					} else {
+						window.location.href = response.ad.redirectLinks.vip;
+					}
+				});
+				break;
+			case this.AD_STATES.AD_DEFERRED:
+				window.BOLT.trackEvents({"event": "LoginBegin", "p": {"t": "PostAdLoginModal"}});
+				spinnerModal.completeSpinner(() => {
+					loginModal.openModal({
+						submitCb: () => {
+							window.location.href = response.defferedLink;
+						},
+						fbRedirectUrl: response.defferedLink,
+						links: response.links
+					});
+				});
+				break;
+			default:
+				break;
+		}
+	}
+
+	_onSubmitFail(error) {
+		this._$submitButton.toggleClass('disabled', false);
+		spinnerModal.hideModal();
+		// validation error
+		if (error.status === 400) {
+			let errorObj = JSON.parse(error.responseText || '{}');
+			this.postAdFormMainDetails.setValidationError(errorObj);
+		}
 	}
 }
 
