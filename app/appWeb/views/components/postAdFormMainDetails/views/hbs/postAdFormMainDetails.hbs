@@ -6,6 +6,7 @@
 	    <div class="icon-up hidden"></div>
 	</div>
 	<form class='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
+		{{#if this.adId}}<input type="hidden" name="adId" value="{{this.adId}}">{{/if}}
 		{{> (dynamic "categoryDropdownSelection")}}
 		<div class="form-ad-title form-field">
 			<div class="label-wrapper">

@@ -4,13 +4,10 @@
         <div class="edit-ad-content">
 			<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
 			<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
-			<div class="hidden">
-                {{> (dynamic "uploadImage")}}
-			</div>
 			<div class="photo-switcher">
                 {{> (dynamic "photoContainer") i18HeadTitle="Product Photos"}}
 			</div>
-            {{> (dynamic "editAdFormMainDetails") }}
+            {{> (dynamic "postAdFormMainDetails") }}
 			<div class="button-area">
 				<div class="btn-area-inner">
 					<div class="submit-btn-wrapper">
@@ -25,6 +22,5 @@
 			</div>
         </div>
     </section>
-    {{> (dynamic "modal")}}
     {{> (dynamic "spinnerModal")}}
 {{/partial}}

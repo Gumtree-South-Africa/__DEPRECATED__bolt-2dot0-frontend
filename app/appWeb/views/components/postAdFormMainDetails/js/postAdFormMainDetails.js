@@ -97,7 +97,7 @@ class PostAdFormMainDetailsVM {
 		this._$descriptionField = domElement.find('.form-ad-description textarea');
 
 		// Initialize self properties from children
-		this.categoryId = this._categoryDropdownSelection.categoryId;
+		this._categoryId = this._categoryDropdownSelection.categoryId;
 	}
 
 	get categoryId() {
@@ -268,6 +268,10 @@ class PostAdFormMainDetailsVM {
 			},
 			categoryAttributes: categoryAttributes
 		};
+		if (serialized.adId) {
+			// Used in edit workflow
+			payload.adId = serialized.adId;
+		}
 
 		if (!this.isPriceExcluded) {
 			payload.price = {

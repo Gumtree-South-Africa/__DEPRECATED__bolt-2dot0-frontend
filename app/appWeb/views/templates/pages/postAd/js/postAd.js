@@ -56,7 +56,7 @@ class PostAd {
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
-				this._$submitButton.toggleClass('disabled', !this._canPost());
+				this._$submitButton.toggleClass('disabled', !this._canSubmit());
 			}
 		});
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
@@ -93,14 +93,6 @@ class PostAd {
 			this.imageUrls = [this.mobileUpload.imageUrl];
 			this.postAdFormMainDetails.show();
 		}
-
-		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
-			if (propName === 'isValid' || propName === 'isFixMode') {
-				this._$submitButton.toggleClass('disabled', !this._canPost());
-			}
-		});
-		this._$submitButton.toggleClass('disabled', !this._canPost());
-
 		this._$submitButton.on('click', e => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
@@ -110,6 +102,13 @@ class PostAd {
 		this.photoContainer.addImageUrlsChangeHandler(() => {
 			this.imageUrls = [].concat(this.photoContainer.imageUrls);
 		});
+
+		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
+			if (propName === 'isValid' || propName === 'isFixMode') {
+				this._$submitButton.toggleClass('disabled', !this._canSubmit());
+			}
+		});
+		this._$submitButton.toggleClass('disabled', !this._canSubmit());
 
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
 		this.requestLocationFromBrowser();
@@ -137,7 +136,7 @@ class PostAd {
 		}
 	}
 
-	_canPost() {
+	_canSubmit() {
 		// Don't submit if no image or not resolve all fix problems
 		return this._imageUrls && this._imageUrls.length &&
 			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
@@ -156,7 +155,7 @@ class PostAd {
 	}
 
 	submit() {
-		if (!this._canPost()) {
+		if (!this._canSubmit()) {
 			return;
 		}
 
