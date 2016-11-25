@@ -176,7 +176,8 @@ describe('Edit Ad', () => {
 
 			spyOn(categorySelectionModal, "openModal").and.stub();
 
-			editAdFormMainDetailsController.initialize();
+			editAdFormMainDetailsController.initialize(false);
+			editAdFormMainDetailsController.onReady();
 
 			$testArea.find("#category-name-display").click();
 
@@ -188,7 +189,8 @@ describe('Edit Ad', () => {
 
 			spyOn(categorySelectionModal, "openModal").and.stub();
 
-			editAdFormMainDetailsController.initialize();
+			editAdFormMainDetailsController.initialize(false);
+			editAdFormMainDetailsController.onReady();
 
 			$testArea.find(".choose-category-button").click();
 
