@@ -1,14 +1,10 @@
 'use strict';
 
-let photoContainerController = require("app/appWeb/views/components/photoContainer/js/photoContainer.js");
 let uploadImageController = require("app/appWeb/views/components/uploadImage/js/mobileUpload.js");
 let PostAdController = require("app/appWeb/views/templates/pages/postAd/js/postAd.js").PostAd;
 let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.js');
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
-let postAdModalController = require("app/appWeb/views/components/postAdModal/js/postAdModal.js");
-let postAdFormMainDetailsController =
-	require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
