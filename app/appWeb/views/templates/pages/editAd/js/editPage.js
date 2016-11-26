@@ -65,6 +65,8 @@ class EditAd {
 		photoContainer.setCategoryUpdateCallback((catId) => {
 			this.postAdFormMainDetails.categoryId = catId;
 		});
+
+		this.postAdFormMainDetails.showChangeWarning = true;
 	}
 
 	_setSubmitButtonStatus() {

@@ -230,6 +230,14 @@ class PostAdFormMainDetailsVM {
 		this.propertyChanged.trigger('isFormChangeWarning', newValue);
 	}
 
+	get showChangeWarning() {
+		return this._categoryDropdownSelection._showChangeWarning;
+	}
+
+	set showChangeWarning(newValue) {
+		this._categoryDropdownSelection._showChangeWarning = newValue;
+	}
+
 	/**
 	 * Tries to get the location from geoId, will setup geoId cookie when success
 	 */

@@ -27,7 +27,7 @@ class CategoryDropdownSelection {
 		this._isLeaf = false;
 		this._isMustLeaf = false;
 		this._isValid = true;
-
+		this._showChangeWarning = false;
 		this.$leafCategorySelect = null;
 	}
 
@@ -39,6 +39,33 @@ class CategoryDropdownSelection {
 		this._emptyCategoryOptional = domElement.data('category-optional');
 		this._emptyCategoryRequired = domElement.data('category-required');
 		this.$categorySelection = domElement.find('.category-selection');
+		this.$categoryChangeConfirm = $(domElement.find('.change-category-confirm-wrapper'));
+		this.$closeConfirm = this.$categoryChangeConfirm.find('.modal-close-section');
+		this.$cancelConfirm = this.$categoryChangeConfirm.find('.cancel-button');
+		this.$changeConfirm = this.$categoryChangeConfirm.find('.btn');
+
+		this.$closeConfirm.on("click", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "EditAdUpdateCategoryCancel"});
+			this.$categoryChangeConfirm.toggleClass("hidden", true);
+		});
+
+		this.$cancelConfirm.on("click", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "EditAdUpdateCategoryCancel"});
+			this.$categoryChangeConfirm.toggleClass("hidden", true);
+		});
+
+		this.$changeConfirm.on("click", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "EditAdUpdateCategorySuccess"});
+			this.$categoryChangeConfirm.toggleClass("hidden", true);
+			this._showChangeWarning = false;  // Only need to confirm once
+			this._updateCatHierarchyArray(this.categoryIdTobeConfirm);
+		});
 
 		// Initialize property from DOM
 		let allCategoryValue = domElement.find('.all-categories').text();
@@ -231,12 +258,18 @@ class CategoryDropdownSelection {
 			// ignore level 0 (all Categories)
 			if (catId !== 0) {
 				let id = "#L" + index + "Category";
+
 				$(id).change((evt) => {
-					//Update category hierarchy Array length
-					this._hierarchyArray.length = index;
-					let newLastSelectedCatId = Number($(evt.currentTarget).val());
 					window.BOLT.trackEvents({"event": "PostAdCategory" + index});
-					this._updateCatHierarchyArray(newLastSelectedCatId);
+					//Update category hierarchy Array length
+					if (this._showChangeWarning) {
+						this.categoryIdTobeConfirm = Number($(evt.currentTarget).val());
+						this.$categoryChangeConfirm.toggleClass("hidden", false);
+					} else {
+						this._hierarchyArray.length = index;
+						let newLastSelectedCatId = Number($(evt.currentTarget).val());
+						this._updateCatHierarchyArray(newLastSelectedCatId);
+					}
 				});
 			}
 		});
