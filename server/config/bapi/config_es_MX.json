@@ -278,12 +278,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "keywords", "safetyTips", "seo", "topSearches"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "keywords", "safetyTips", "seo", "topSearches"
+					"advert", "keywords", "safetyTips", "seo"
 				]
 			}
 		},
