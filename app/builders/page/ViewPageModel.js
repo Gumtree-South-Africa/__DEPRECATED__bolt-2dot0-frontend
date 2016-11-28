@@ -279,6 +279,22 @@ class ViewPageModel {
 					data.map.showPin = false;
 				}
 
+				// Breadcrumbs
+				data.breadcrumbs = { };
+				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level')
+				data.breadcrumbs.locations.forEach((location, index) => {
+				  location.position = index + 1;
+				});
+				data.breadcrumbs.ad = {
+					_links: [{
+					    rel: 'self',
+					    href: `/view/${data.id}`,
+					    method: 'GET'
+					}],
+					position: data.breadcrumbs.locations.length + 1, // TODO: consider adding also categories/categoryLocation length
+					text: data.id
+			  	};
+
 				// Location
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
@@ -300,22 +316,6 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
-
-				// Breadcrumbs
-				data.breadcrumbs = { };
-				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level')
-				data.breadcrumbs.locations.forEach(function setPosition(location, index) {
-				  location.position = index + 1;
-				});
-				data.breadcrumbs.ad = {
-					_links: [{
-					    rel: 'self',
-					    href: `/view/${data.id}`,
-					    method: 'GET'
-					}],
-					position: data.breadcrumbs.locations.length + 1, // TODO: consider adding also categories/categoryLocation length
-					text: data.id
-			  	};
 
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
