@@ -91,6 +91,7 @@ class PostAd {
 			this.imageUrls = [];
 		} else {
 			this.imageUrls = [this.mobileUpload.imageUrl];
+			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 		}
 		this._$submitButton.on('click', e => {
