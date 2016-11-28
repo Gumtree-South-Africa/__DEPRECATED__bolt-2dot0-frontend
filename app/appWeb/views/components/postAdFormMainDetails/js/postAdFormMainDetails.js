@@ -14,6 +14,35 @@ let PostFormCustomAttributes = require(
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
 
+let inputNumericCheck = function(e) {
+	if ((e.keyCode > 57 || e.keyCode < 48)) {
+		switch (e.keyCode) {
+			case 8://backspace
+			case 9://tab
+			case 13://delete
+			case 37://left arrow
+			case 39://right arrow
+			case 189: //negative
+				break;
+			default:
+				e.preventDefault();
+				break;
+		}
+	} else if (e.ctrlKey) {
+		switch (e.keyCode) {
+			case 65: //Ctrl-a
+			case 67: // ctrl-c
+			case 86: // ctrl-v
+				break;
+			default:
+				e.preventDefault();
+				break;
+		}
+	} else if (e.shiftKey) {
+		//Prevent special characters (shift + number: !**@#%)
+		e.preventDefault();
+	}
+};
 
 // View model for post ad form main details
 class PostAdFormMainDetailsVM {
@@ -74,6 +103,7 @@ class PostAdFormMainDetailsVM {
 			e.stopImmediatePropagation();
 			window.BOLT.trackEvents({"event": "PostAdPrice"});
 		});
+		$(domElement.find(".price-input")).on('keydown', (e) => inputNumericCheck(e));
 		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isPriceExcluded') {
@@ -325,7 +355,7 @@ class PostAdFormMainDetails {
 		val = val.replace(/\r\n/g, "\n").replace(/\n/g, "\r\n");
 		let count = val.length;
 		let maxLength = $input.attr("maxLength");
-		$label.find(".characters-available").text(`${Math.min(count, maxLength)}/${maxLength}`);
+		$label.find(".characters-available").text(`${Math.max(maxLength - count, 0)}/${maxLength}`);
 	}
 
 	/**

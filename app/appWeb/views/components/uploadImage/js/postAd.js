@@ -60,6 +60,7 @@ class PostAdPageVM {
 			this.postAdModal.isShown = true;
 		} else {
 			this.postAdFormMainDetails.imageUrls = [this.mobileUpload.imageUrl];
+			this.$infoTips.hide();
 			this.postAdFormMainDetails.show();
 		}
 	}

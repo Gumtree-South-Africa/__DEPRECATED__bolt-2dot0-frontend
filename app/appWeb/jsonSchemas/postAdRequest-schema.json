@@ -22,12 +22,10 @@
 								"type": "string"
 							},
 							"latitude": {
-								"type": "number",
-								"required": true
+								"type": "number"
 							},
 							"longitude": {
-								"type": "number",
-								"required": true
+								"type": "number"
 							}
 						}
 					},
