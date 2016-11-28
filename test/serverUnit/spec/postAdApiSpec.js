@@ -294,36 +294,6 @@ describe('Post Ad Api', () => {
 		});
 	});
 
-	it('should respond with 400, result should contains json schema errors: lat/long required', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-				},
-				imageUrls: ["image"]
-			}]
-		};
-
-		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(2);
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location.latitude");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.location.longitude");
-					expect(jsonResult.schemaErrors[1].message).toBe("is required");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
 	it('should respond with 400, an empty ad, result should contains json schema: imageUrls required', (done) => {
 		let file = {
 			"ads": [{
