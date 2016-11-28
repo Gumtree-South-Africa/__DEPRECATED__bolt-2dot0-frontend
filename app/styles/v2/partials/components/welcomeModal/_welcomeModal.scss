@@ -70,6 +70,11 @@
             text-align: center;
             .btn {
 				@include vivaBtn(on, 0.35em, 90%);
+
+				&.disabled {
+					background-color: mix($button-bgcolor, $page-bgcolor, 50%);
+					cursor: not-allowed;
+				}
             }
         }
     }

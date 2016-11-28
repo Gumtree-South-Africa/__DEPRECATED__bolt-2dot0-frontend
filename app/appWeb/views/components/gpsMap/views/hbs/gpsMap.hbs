@@ -1,51 +1,66 @@
+<noscript>
+	<style type="text/css">
+		.jsOnly {display:none !important;}
+		.nonJsOnlyInlineBlock{display:inline-block !important;}
+		.nonJsOnlyBlock {display:block !important;}
+		.nonJsOnlyInline {display:inline !important;}
+	</style>
+</noscript>
 <div class="map-wrapper">
-    <div id="map"></div>
-    <div id="nowselling">
-        <span class="hiddenElt">{{json this.gpsMap}}</span>
-        <h2>{{i18n "gpsMap.label"}}</h2>
-        <span>{{digitGrouping this.gpsMap.totalAds ","}} {{i18n "gpsMap.items"}}</span>
-    </div>
+    {{#partial "homepage-map"}}
+		<div id="map"></div>
 
-    <!-- Replace the value of the key parameter with your own API key. -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&language=es&region={{this.country}}&callback=initMap" async defer>
-    </script>
+		<div id="nowselling">
+			<span class="hiddenElt">{{json this.gpsMap}}</span>
+			<h2>{{i18n "gpsMap.label"}}</h2>
+			<span>{{digitGrouping this.gpsMap.totalAds ","}} {{i18n "gpsMap.items"}}</span>
+		</div>
 
-    <div class="clear"></div>
+		<!-- Replace the value of the key parameter with your own API key. -->
+		<script src="https://maps.googleapis.com/maps/api/js?client=gme-marktplaats&channel=bt_mx&language=es&region={{this.country}}&callback=initMap" async defer>
+		</script>
 
-    {{!-- TODO: move style to components scss --}}
-    <style>
-        .hiddenElt{
-          display: none;
-        }
-        #map{
-            width: 100%;
-            height: 450px;
-        }
-        #nowselling h2{
-            font-weight: bold;
-            font-size: 1.5em;
-            margin-bottom: 0.4em;
-            opacity: 1;
-            padding-top: 0.3em;
-        }
-        #nowselling span{
-            opacity: 1;
-        }
-        #nowselling{
-            width: 65%;
-            max-width: 24em;
-            height: 90px;
-            position: relative;
-            top: -27em;
-            z-index: 20;
-            margin: 0 auto;
-            background-color: white;
-            text-align: center;
-            opacity: 0.9;
-            border-radius: 5px;
-            box-shadow: 1px 3px 6px;
-            margin-bottom: -5.7em;
-        }
-    </style>
+		<div class="clear"></div>
 
+        {{!-- TODO: move style to components scss --}}
+		<style>
+
+		</style>
+    {{/partial}}
+
+    {{#partial "vip-map"}}
+        <div class="jsOnly" id="map"></div>
+        <script>
+            function initVipMap() {
+                var centerPos = {lat: {{this.advert.map.locationLat}}, lng: {{this.advert.map.locationLong}} };
+                var map = new google.maps.Map(document.getElementById('map'), {
+                    zoom: 12,
+                    center: centerPos
+                });
+
+                {{#if this.advert.map.showPin}}
+                    var marker = new google.maps.Marker({
+                        map: map,
+                        position: new google.maps.LatLng({{this.advert.map.locationLat}}, {{this.advert.map.locationLong}}),
+                        title: 'marker location',
+                        icon: 'https://maps.google.com/mapfiles/ms/icons/orange-dot.png'
+                    });
+                {{/if}}
+
+                {{#if this.advert.map.showCircle}}
+                    var circle = new google.maps.Circle({
+                        map: map,
+                        radius: {{this.advert.map.finalRadius}},
+                        fillColor: '#FF9800',
+                        strokeColor: 'transparent',
+                        center: new google.maps.LatLng({{this.advert.map.locationLat}}, {{this.advert.map.locationLong}})
+                    });
+                {{/if}}
+            }
+        </script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?client=gme-marktplaats&channel=bt_mx&language={{this.advert.siteLanguage}}&region={{this.country}}&v=3.26&callback=initVipMap">
+        </script>
+		<noscript><div class="noscript-map-container"><img id="noscript-map" src="{{this.advert.ogSignedUrl}}"></div></noscript>
+    {{/partial}}
 </div>
+

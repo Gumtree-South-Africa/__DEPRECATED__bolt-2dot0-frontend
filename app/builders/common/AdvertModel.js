@@ -26,6 +26,9 @@ class AdvertModel {
 		let viewAdStatisticsFunction = () => {
 			return adService.viewAdStatistics(this.bapiHeaders, adId);
 		};
+		let viewAdSellerDetailsFunction = () => {
+			return adService.viewAdSellerDetails(this.bapiHeaders, adId);
+		};
 		let viewAdSimilarsFunction = () => {
 			return adService.viewAdSimilars(this.bapiHeaders, adId);
 		};
@@ -39,7 +42,7 @@ class AdvertModel {
 			return adService.viewAdFlags(this.bapiHeaders, adId);
 		};
 
-		return [viewAdFunction, viewAdFeaturesFunction, viewAdStatisticsFunction, viewAdSimilarsFunction, viewAdSellerOthersFunction, viewAdSeoUrlsFunction, viewAdFlagsFunction];
+		return [viewAdFunction, viewAdFeaturesFunction, viewAdStatisticsFunction, viewAdSellerDetailsFunction, viewAdSimilarsFunction, viewAdSellerOthersFunction, viewAdSeoUrlsFunction, viewAdFlagsFunction];
 	}
 
 	favoriteTheAd(adId) {

@@ -66,6 +66,11 @@
 	.js-post-button.btn-wrapper {
 		.btn {
 			@include vivaBtn(on, 0.85em 0, 100%);
+
+			&.disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
 		}
 	}
 }

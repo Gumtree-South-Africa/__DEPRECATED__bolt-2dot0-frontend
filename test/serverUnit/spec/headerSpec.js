@@ -88,7 +88,7 @@ describe('Header', () => {
 					expect(buttonText).toBe(i18n.header.postAd, 'i18n string for button is does not match');
 
 					let href = c$('a', button).attr('href');
-					expect(href).toBe('/post', 'the link href for the post ad button should link to post ad page');
+					expect(href).toBe('/post?&backUrl=./', 'the link href for the post ad button should link to post ad page');
 				})
 				.end(specHelper.finish(done));
 		});

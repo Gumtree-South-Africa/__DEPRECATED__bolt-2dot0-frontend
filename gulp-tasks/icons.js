@@ -138,16 +138,22 @@ let fallback = (done) => {
 			phantom.create()
 				.then((instance) => {
 					return generate(instance);
+				})
+				.catch((err) => {
+					console.error(err);
+					console.error(err.stack);
 				});
 		}
 	});
 };
 
 module.exports = function watch(gulp, plugins) {
-	return function(done) {
-		return gulp.src('public/svgs/**/*.svg')
-			.pipe(newer('public/css/.built_fallback'))
-			.pipe(svgmin())
-			.pipe(fallback(done));
-	}
+	return function() {
+		gulp.task('icons', (done) => {
+			return gulp.src('public/svgs/**/*.svg')
+				.pipe(newer('public/css/.built_fallback'))
+				.pipe(svgmin())
+				.pipe(fallback(done));
+		});
+	};
 };

@@ -112,6 +112,14 @@ class EditFormCustomAttributes {
 			method: "GET",
 			contentType: "application/json",
 			success: (customAttrData) => {
+				// Mixin required property
+				if (customAttrData.verticalCategory && customAttrData.verticalCategory.requiredCustomAttributes &&
+					customAttrData.verticalCategory.requiredCustomAttributes.length) {
+					let requiredAttributes = customAttrData.verticalCategory.requiredCustomAttributes;
+					customAttrData.customAttributes.forEach(
+						attr => attr.required = requiredAttributes.indexOf(attr.name) >= 0);
+				}
+
 				// render the new results and call the passed in callback
 				this._render(customAttrData);
 				postRenderCb(customAttrData);

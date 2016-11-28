@@ -47,7 +47,7 @@
 		.profile-item {
 			.item-icon {
 				&.icon-my-ads-active {
-					background-position: 24% 29.7%;
+					background-position: 0% 56%;
 					background-size: 198px;
 				}
 
@@ -60,7 +60,7 @@
 				color: $headerTextColor;
 				font-weight: 100!important;
 				&:hover {
-					color: $searchBarButtonMouseOverColor;
+					color: $searchBarButtonColor;
 				}
 			}
 		}

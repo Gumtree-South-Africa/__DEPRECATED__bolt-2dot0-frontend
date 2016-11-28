@@ -33,7 +33,9 @@
 			"authRegister"		:	"/bolt-api-webapp/v1/users",
 			"authActivate"		:	"/bolt-api-webapp/v1/users/{email}/actions/activate",
 			"authEmailExists"	:	"/bolt-api-webapp/v1/users/email/{email}",
-			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}"
+			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}",
+			"adFeatures"        :   "/bolt-api-webapp/v1/features?",
+			"categorySuggest"   :   "/bolt-api-webapp/v1/categories/action/suggestion?"
 	    }
 	},
 	"kafka": {
