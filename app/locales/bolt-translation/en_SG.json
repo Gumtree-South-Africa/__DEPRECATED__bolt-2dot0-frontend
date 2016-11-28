@@ -1450,11 +1450,15 @@
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
+		"productImages": "Product images",
 		"headerTitle": "Edita tu anuncio",
 		"mainDetails": {
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"attention": "Attention",
+				"warning": "Changing categories may cause data entered to be lost and require additional information to re-post the ad. ",
+				"updateConfirm": "Update category",
 				"categoryOptional": "Select category (optional)",
 				"categoryRequired": "Select category (required)",
 				"adTitle": "Título del anuncio",

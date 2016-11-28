@@ -1470,11 +1470,15 @@
 	},
 	"editAd": {
 		"reorderImages": "Reorder images",
+		"productImages": "Product images",
 		"headerTitle": "Edit your ad",
 		"mainDetails": {
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"attention": "Attention",
+				"warning": "Changing categories may cause data entered to be lost and require additional information to re-post the ad. ",
+				"updateConfirm": "Update category",
 				"categoryOptional": "Select category (optional)",
 				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",

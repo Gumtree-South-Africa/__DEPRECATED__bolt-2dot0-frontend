@@ -266,7 +266,7 @@ class PhotoContainer {
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
-		$(".drag-reorder").show();
+		$(".drag-reorder").toggleClass("hidden", false);
 	}
 
 	/**
@@ -328,10 +328,8 @@ class PhotoContainer {
 		document.addEventListener("dragover", function( event ) {
 			event.preventDefault();
 		}, false);
-
 		document.addEventListener("dragenter", function() {
 		}, false);
-
 		document.addEventListener("dragleave", function() {
 		}, false);
 		document.addEventListener("drop", function( event ) {
