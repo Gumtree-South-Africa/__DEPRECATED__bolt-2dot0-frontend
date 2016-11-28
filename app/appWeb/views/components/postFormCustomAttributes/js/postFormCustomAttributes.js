@@ -151,7 +151,7 @@ class PostFormCustomAttributes {
 	_insertSelectBoxOptions($selectBox, valuesArr) {
 		let appendString = "";
 		$selectBox.empty();
-		$selectBox.append('<option value="default" selected="selected"> --- </option>');
+		$selectBox.append('<option value="" selected="selected"> --- </option>');
 		valuesArr.forEach((val) => {
 			appendString += `<option value="${val.value}">${val.localizedValue}</option>`;
 		});
