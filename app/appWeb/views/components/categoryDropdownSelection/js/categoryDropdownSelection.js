@@ -29,6 +29,7 @@ class CategoryDropdownSelection {
 		this._isValid = true;
 
 		this.$leafCategorySelect = null;
+		this._cachedHierarchy = [];
 	}
 
 	/**
@@ -157,21 +158,69 @@ class CategoryDropdownSelection {
 	}
 
 	_traverseHierarchy(hierarchyArray) {
+		this.$leafCategorySelect = null;
+
 		let currentCategory = this._categoryTree;
-		// for each value in the hierarchy array, we navigate down in the tree
+		let hasDifferentParent = false;
+		let $lastDropdown = null;
+		// For each value in the hierarchy array, we navigate down in the tree
 		hierarchyArray.forEach((catId, index) => {
 			// ignore level 0 (all Categories)
-			if (catId !== 0) {
-				let nextLvCategory = {};
-				let id = "L" + index + "Category";
-				let select = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
+			if (catId === 0) {
+				return;
+			}
+			let nextLvCategory = {};
+			// There are three situations
+			// 1. Update selected value in existing dropdown
+			// 2. Update existing dropdown with total different value set (will not go into this branch with BOLT UI)
+			// 3. Create new dropdown
+			let id = 'L' + index + 'Category';
+			let $currentDropdown;
+			if (index <= this._cachedHierarchy.length) {
+				// Update existing dropdown
+				if (hasDifferentParent) {
+					// Update existing dropdown with total different value set
+					$currentDropdown = $('#' + id);
+					$currentDropdown.empty();
+					currentCategory.children.forEach((node) => {
+						let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
+						if (node.id === catId) {
+							option.attr("selected", "selected");
+							nextLvCategory = node;
+						}
+						$currentDropdown.append(option);
+					});
+				} else {
+					if (catId !== this._cachedHierarchy[index] || index === this._cachedHierarchy.length) {
+						$currentDropdown = $('#' + id);
+						// Removed empty value option
+						let $firstChild = $currentDropdown.children().first();
+						let firstChildValue = $firstChild.val();
+						if (!firstChildValue || !firstChildValue.length) {
+							$firstChild.remove();
+						}
+						// Update selected value in existing dropdown
+						if (catId !== Number($currentDropdown.val())) {
+							$currentDropdown.val(catId);
+						}
+						hasDifferentParent = true;
+					}
+					currentCategory.children.forEach((node) => {
+						if (node.id === catId) {
+							nextLvCategory = node;
+						}
+					});
+				}
+			} else {
+				// Create new dropdown
+				$currentDropdown = $(document.createElement('select')).attr("id", id).addClass("edit-ad-select-box");
 				currentCategory.children.forEach((node) => {
 					let option = $(document.createElement('option')).attr("value", node.id).html(node.localizedName);
 					if (node.id === catId) {
 						option.attr("selected", "selected");
 						nextLvCategory = node;
 					}
-					select.append(option);
+					$currentDropdown.append(option);
 				});
 				if (index >= 2) {
 					// Explicitly add category icons, as we can't use presudo element in select.
@@ -179,10 +228,23 @@ class CategoryDropdownSelection {
 					$(document.createElement('div')).addClass('category-arrow').addClass('icon-category-arrow')
 						.appendTo(this.$categorySelection);
 				}
-				this.$categorySelection.append(select);
-				currentCategory = nextLvCategory;
+				this.$categorySelection.append($currentDropdown);
+				$currentDropdown.change((evt) => {
+					window.BOLT.trackEvents({"event": "PostAdCategory" + index});
+					let newLastSelectedCatId = Number($(evt.currentTarget).val());
+					this.categoryId = newLastSelectedCatId;
+				});
 			}
+			$lastDropdown = $currentDropdown;
+			currentCategory = nextLvCategory;
 		});
+
+		// Remove not used dropdown
+		if ($lastDropdown) {
+			$lastDropdown.nextAll().remove();
+		} else {
+			this.$categorySelection.empty();
+		}
 
 		let isLeaf = !currentCategory.children || !currentCategory.children.length;
 
@@ -206,7 +268,7 @@ class CategoryDropdownSelection {
 			select.change((evt) => {
 				window.BOLT.trackEvents({"event": "PostAdCategory" + hierarchyArray.length});
 				let newLastSelectedCatId = Number($(evt.currentTarget).val());
-				this._updateCatHierarchyArray(newLastSelectedCatId);
+				this.categoryId = newLastSelectedCatId;
 			});
 			this.$leafCategorySelect = select;
 			this.$leafCategorySelect.toggleClass('validation-error', this._isFixMode && !this._isValid);
@@ -214,41 +276,14 @@ class CategoryDropdownSelection {
 
 		// This should only be set after this.$leafCategorySelect has been updated
 		this.isLeaf = isLeaf;
-	}
 
-	_updateCatHierarchyArray(newLastSelectedCatId) {
-		this._hierarchyArray.push(newLastSelectedCatId);
-		this.$categorySelection.empty();
-		this.$leafCategorySelect = null;
-		this._traverseHierarchy(this._hierarchyArray);
-		//Bind change event
-		this._bindEventForSelectedCat();
-		this.categoryId = newLastSelectedCatId;
-	}
-
-	_bindEventForSelectedCat() {
-		this._hierarchyArray.forEach((catId, index) => {
-			// ignore level 0 (all Categories)
-			if (catId !== 0) {
-				let id = "#L" + index + "Category";
-				$(id).change((evt) => {
-					//Update category hierarchy Array length
-					this._hierarchyArray.length = index;
-					let newLastSelectedCatId = Number($(evt.currentTarget).val());
-					window.BOLT.trackEvents({"event": "PostAdCategory" + index});
-					this._updateCatHierarchyArray(newLastSelectedCatId);
-				});
-			}
-		});
+		this._cachedHierarchy = hierarchyArray;
 	}
 
 	_updateCategory(newValue) {
-		this._hierarchyArray=[];
-		this.$categorySelection.empty();
-		this.$leafCategorySelect = null;
-		this._getCategoryHierarchy(this._categoryTree, newValue, this._hierarchyArray);
-		this._traverseHierarchy(this._hierarchyArray);
-		this._bindEventForSelectedCat();
+		let newHierarchy = [];
+		this._getCategoryHierarchy(this._categoryTree, newValue, newHierarchy);
+		this._traverseHierarchy(newHierarchy);
 	}
 
 	_updateEmptyOptionText() {
