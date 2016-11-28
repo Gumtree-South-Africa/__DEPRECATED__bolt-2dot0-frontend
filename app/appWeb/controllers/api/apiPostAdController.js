@@ -32,7 +32,6 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 	// store the requestJson ads in backend (deferred ad creation)
 	let draftAdModel = new DraftAdModel(model.bapiHeaders);
-
 	return draftAdModel.saveDraft(guid, requestJson).then(() => {
 		// the result is unused, it contains the guid we passed in
 		// Note: we don't know the user's identity, so it is possible someone could hijack this deferred ad using the guid
@@ -59,11 +58,19 @@ let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
 		res.send(response);
 		return;
 	}).fail((e) => {
-		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
-		res.status(500).send();
+		let errInfoObj;
+		if (e && e.bapiJson) {
+			errInfoObj = editAdErrorParser.parseErrors(e.bapiJson.details);
+		}
+		let bapiInfo = logger.logError(e);
+		// Save draft has failed
+		res.status(e.getStatusCode(500)).send({
+			error: "Save draft and get login reponse failed, see logs for details",
+			bapiJson: bapiInfo,
+			bapiValidationFields: errInfoObj
+		});
 		return;
 	});
-	return;
 };
 
 let getAdPostedResponse = (results) => {
@@ -187,7 +194,6 @@ router.post('/create', cors, (req, res) => {
 	};
 
 	verticalCategoryValidationPromise.then(() => {
-
 		// Step 6: Check if user has logged in
 		//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
 		if (!authenticationCookie) {
