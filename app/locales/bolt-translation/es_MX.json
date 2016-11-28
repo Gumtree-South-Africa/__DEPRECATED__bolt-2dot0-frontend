@@ -1577,7 +1577,7 @@
 			"emailPlaceholder": "Email Address - user@email.com",
 			"writeHere": "Write here...",
 			"phone": "PHONE (OPTIONAL)",
-			"showPhone": "Show Phone",
+			"showPhone": "Show phone",
 			"sendACopy": "Send a copy to my email",
 			"send": "Send",
 			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
