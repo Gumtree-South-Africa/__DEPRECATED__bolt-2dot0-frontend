@@ -193,8 +193,7 @@ body {
 			margin: 5% 5%;
 		}
 		.cover-photo-small {
-			width: 72px;
-			height: 72px;
+			margin: 2% 2.8%;
 		}
 	}
 
@@ -237,10 +236,10 @@ body {
 
 	.photo-switcher {
 		.image-container {
-			margin: 0 5%;
+			margin: 0 2%;
+			width: 100%;
 			.cover-photo-small {
-				width: 65px;
-				height: 65px;
+				margin: 2% 2%;
 			}
 		}
 	}

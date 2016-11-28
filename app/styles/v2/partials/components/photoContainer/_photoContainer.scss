@@ -75,7 +75,8 @@
 }
 
 .cover-photo-small {
-	margin: 2% 2.8%;
+	width: 72px;
+	height: 72px;
 	float:left;
 	border-radius: 5px;
 	@include cover-photo-common;

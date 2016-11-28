@@ -82,8 +82,7 @@ $labelMargin: 8%;
 		margin: 5% 5%;
 	}
 	.cover-photo-small {
-		width: 72px;
-		height: 72px;
+		margin: 2% 2.8%;
 	}
 }
 
@@ -140,7 +139,11 @@ $labelMargin: 8%;
 		display:none;
 		background-color: $mainDetailsBackgroundColor;
 		.photo-switcher {
-			margin-left: 5%;
+			margin: 0 2%;
+			width: 100%;
+			.cover-photo-small {
+				margin: 2% 2%;
+			}
 		}
 	}
 
