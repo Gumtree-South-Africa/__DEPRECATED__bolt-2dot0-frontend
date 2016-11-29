@@ -190,8 +190,8 @@ describe('Post Ad', () => {
 			});
 			spyOn(spinnerModalController, 'completeSpinner');
 
-			postAdController.imageUrls = ['http://fakeUrl/fakePath'];
-			postAdController.submit();
+			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
+			postAdController.submit(false);
 			expect(spinnerModalController.completeSpinner).toHaveBeenCalled();
 		});
 
@@ -202,8 +202,8 @@ describe('Post Ad', () => {
 			});
 			spyOn(spinnerModalController, 'completeSpinner');
 
-			postAdController.imageUrls = ['http://fakeUrl/fakePath'];
-			postAdController.submit();
+			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
+			postAdController.submit(false);
 			expect(spinnerModalController.completeSpinner).toHaveBeenCalled();
 		});
 
@@ -220,8 +220,8 @@ describe('Post Ad', () => {
 			specHelper.registerMockAjax('/api/postad/create', {}, {fail: true, status: 500});
 			spyOn(spinnerModalController, 'hideModal');
 
-			postAdController.imageUrls = ['http://fakeUrl/fakePath'];
-			postAdController.submit();
+			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
+			postAdController.submit(false);
 			expect(spinnerModalController.hideModal).toHaveBeenCalled();
 		});
 	});
