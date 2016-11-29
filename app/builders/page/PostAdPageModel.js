@@ -34,18 +34,18 @@ class PostAdPageModel {
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 		modelData.deferredAd = deferredAd;
-		let initialImage = decodeURIComponent(req.cookies['initialImage'] || '');
+		let initialImage = decodeURIComponent(this.req.cookies['initialImage'] || '');
 		if (initialImage === INVALID_COOKIE_VALUE) {
 			initialImage = '';
 		} else {
-			res.cookie('initialImage', INVALID_COOKIE_VALUE);
+			this.res.cookie('initialImage', INVALID_COOKIE_VALUE);
 		}
 		modelData.initialImage = initialImage;
-		let backUrl = decodeURIComponent(req.cookies['backUrl'] || '');
+		let backUrl = decodeURIComponent(this.req.cookies['backUrl'] || '');
 		if (backUrl === INVALID_COOKIE_VALUE) {
 			backUrl = '';
 		} else {
-			res.cookie('backUrl', INVALID_COOKIE_VALUE);
+			this.res.cookie('backUrl', INVALID_COOKIE_VALUE);
 		}
 		modelData.backUrl = backUrl;
 		this.getPageDataFunctions(modelData);
@@ -86,6 +86,8 @@ class PostAdPageModel {
 		modelData.seo = data['seo'] || {};
 
 		modelData.initialCategory = data['initialCategory'] || '';
+		modelData.initialImage = data.initialImage;
+		modelData.backUrl = data.backUrl;
 
 		return modelData;
 	}
