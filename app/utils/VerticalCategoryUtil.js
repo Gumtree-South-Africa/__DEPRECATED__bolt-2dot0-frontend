@@ -31,7 +31,7 @@ function fetchCategoryHierarchy(root, id) {
  */
 function getVerticalCategory(categoryId, categoryAllData, verticalCategories) {
 	let categoryHierarchy = fetchCategoryHierarchy(categoryAllData, categoryId);
-	if (!categoryHierarchy) {
+	if (!categoryHierarchy || !verticalCategories) {
 		return null;
 	}
 	for(let index = 0; index < categoryHierarchy.length; index++) {
@@ -60,7 +60,7 @@ function verticalCategoryValidate(ad, categoryAllData, verticalCategories, bapiH
 		return Q.resolve(null);
 	}
 	let categoryHierarchy = fetchCategoryHierarchy(categoryAllData, categoryId);
-	if (!categoryHierarchy) {
+	if (!categoryHierarchy || !verticalCategories) {
 		// This error will be handled by other validators
 		return Q.resolve(null);
 	}

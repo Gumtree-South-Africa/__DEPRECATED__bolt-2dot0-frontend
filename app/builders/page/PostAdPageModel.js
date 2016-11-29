@@ -12,6 +12,8 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let ImageRecognitionModel = require(cwd + '/app/builders/common/ImageRecognitionModel');
 let logger = require(`${cwd}/server/utils/logger`);
 
+const INVALID_COOKIE_VALUE = 'invalid';
+
 class PostAdPageModel {
 	constructor(req, res) {
 		this.req = req;
@@ -32,7 +34,20 @@ class PostAdPageModel {
 		let modelBuilder = new ModelBuilder(this.getPostAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 		modelData.deferredAd = deferredAd;
-		modelData.initialImage = this.req.query.initialImage || '';
+		let initialImage = decodeURIComponent(this.req.cookies['initialImage'] || '');
+		if (initialImage === INVALID_COOKIE_VALUE) {
+			initialImage = '';
+		} else {
+			this.res.cookie('initialImage', INVALID_COOKIE_VALUE);
+		}
+		modelData.initialImage = initialImage;
+		let backUrl = decodeURIComponent(this.req.cookies['backUrl'] || '');
+		if (backUrl === INVALID_COOKIE_VALUE) {
+			backUrl = '';
+		} else {
+			this.res.cookie('backUrl', INVALID_COOKIE_VALUE);
+		}
+		modelData.backUrl = backUrl;
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -71,6 +86,8 @@ class PostAdPageModel {
 		modelData.seo = data['seo'] || {};
 
 		modelData.initialCategory = data['initialCategory'] || '';
+		modelData.initialImage = data.initialImage;
+		modelData.backUrl = data.backUrl;
 
 		return modelData;
 	}
