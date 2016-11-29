@@ -56,6 +56,9 @@ class PostAdFormMainDetailsVM {
 		this._isValid = true;
 		this._isFormValid = true;
 		this._isFormChangeWarning = true;
+		this._isMustLeaf = false;
+
+		this._isVerticalCategory = false;
 	}
 
 	/**
@@ -86,8 +89,9 @@ class PostAdFormMainDetailsVM {
 			if (propName === 'customAttributeMetadata') {
 				if (newValue) {
 					this.isPriceExcluded = newValue.isPriceExcluded;
-					this._categoryDropdownSelection.isMustLeaf = this.isRequiredTitleAndDescription =
-						!!(newValue.verticalCategory && newValue.verticalCategory.id);
+					this._isVerticalCategory = !!(newValue.verticalCategory && newValue.verticalCategory.id);
+					this.isRequiredTitleAndDescription = this._isVerticalCategory;
+					this._categoryDropdownSelection.isMustLeaf = this._isMustLeaf || this._isVerticalCategory;
 				}
 			} else if (propName === 'isValid') {
 				this._refreshIsValid();
@@ -120,6 +124,8 @@ class PostAdFormMainDetailsVM {
 				} else {
 					formChangeWarning.disable();
 				}
+			} else if (propName === 'isMustLeaf') {
+				this._categoryDropdownSelection.isMustLeaf = newValue || this._isVerticalCategory;
 			}
 		});
 		this._$postForm = domElement.find('.post-form');
@@ -236,6 +242,19 @@ class PostAdFormMainDetailsVM {
 
 	set showChangeWarning(newValue) {
 		this._categoryDropdownSelection._showChangeWarning = newValue;
+	}
+
+	get isMustLeaf() {
+		return this._isMustLeaf;
+	}
+
+	set isMustLeaf(newValue) {
+		newValue = !!newValue;
+		if (this._isMustLeaf === newValue) {
+			return;
+		}
+		this._isMustLeaf = newValue;
+		this.propertyChanged.trigger('isMustLeaf', newValue);
 	}
 
 	/**
