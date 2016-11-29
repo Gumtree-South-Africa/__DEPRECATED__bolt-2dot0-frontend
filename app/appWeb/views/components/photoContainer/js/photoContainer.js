@@ -188,8 +188,8 @@ class PhotoContainer {
 			}
 			this._uploadImageHideSpinner();
 
-			// 5.If first image change, call category recognition
-			if (this.latestPosition === 1) {
+			// 5.If first image change and no image left, call category recognition
+			if (this.latestPosition === 1 && !this.getImageCount()) {
 				spinnerModal.showModal();
 				$.ajax({
 					url: '/api/postad/imagerecognition',
