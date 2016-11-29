@@ -76,9 +76,7 @@
 
 @include from-breakpoint($medium-break) {
 	.seller-profile-container {
-		margin-left: 5px;
-		margin-right: 5px;
-
+		
 		.email-icon {
 			position: relative;
 			top: 32px;
