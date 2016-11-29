@@ -53,7 +53,7 @@ class viewPageGallery {
 			this._escapeFn();
 		});
 
-		$('.container').on('click', '.slider-for', () => {
+		$('.container').on('click', '.slider-for, .icon-Zoom', () => {
 			let isMobile = $('.container .slider-nav').css('display') === 'none';
 			if(!isMobile) {
 					let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');

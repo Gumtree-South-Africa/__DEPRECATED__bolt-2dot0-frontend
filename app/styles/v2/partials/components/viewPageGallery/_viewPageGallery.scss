@@ -43,6 +43,13 @@
 .noScroll{
 	overflow: hidden;
 }
+.icon-Zoom{
+	position: absolute;
+	top: 417px;
+	left: 5px;
+	z-index: 9;
+	cursor: pointer;
+}
 
 @include to-breakpoint($small-break){
 	.zoomT{
@@ -89,6 +96,7 @@
     margin: 0;
     width: 100%;
 		margin-bottom: 0.2em;
+		margin-left: -0.5em;
 		li {
 		  position: relative;
 		  display: inline-block;
@@ -233,5 +241,8 @@
 			height: 320px;
 			margin: 0 auto;
 		}
+	}
+	.icon-Zoom{
+		display: none;
 	}
 }
