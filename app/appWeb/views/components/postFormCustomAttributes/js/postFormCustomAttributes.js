@@ -129,6 +129,9 @@ class PostFormCustomAttributes {
 			$(".post-ad-custom-attributes-form").find(".form-field").on("change", (e) => {
 				window.BOLT.trackEvents({"event": "PostAd" + $(e.currentTarget).attr("data-field")});
 			});
+
+			// polyfill the form to get date pickers
+			this.$form.updatePolyfill();
 		}
 	}
 

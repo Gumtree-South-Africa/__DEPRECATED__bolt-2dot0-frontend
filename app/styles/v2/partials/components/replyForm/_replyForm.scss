@@ -48,10 +48,10 @@
 		}
 
 		.viva-checkbox {
-			-ms-transform: scale(1.5); /* IE */
-			-moz-transform: scale(1.5); /* FF */
-			-webkit-transform: scale(1.5); /* Safari and Chrome */
-			-o-transform: scale(1.5); /* Opera */
+			-ms-transform: scale(1.0); /* IE */
+			-moz-transform: scale(1.0); /* FF */
+			-webkit-transform: scale(1.0); /* Safari and Chrome */
+			-o-transform: scale(1.0); /* Opera */
 			padding: 10px;
 		}
 
@@ -141,8 +141,6 @@
 
 @include from-breakpoint($medium-break){
 	.reply-form-container {
-		margin-left:5px;
-		margin-right:5px;
 		padding-left: 15px;
 		padding-right: 15px;
 		background-color: $common-background-color;

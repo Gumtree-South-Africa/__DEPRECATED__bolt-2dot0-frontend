@@ -3,7 +3,7 @@
 </div>
 <div class="input-wrapper">
 	<select name="{{this.name}}" class="edit-ad-select-box" data-attribute="{{this.name}}" {{#compare this.dependents.length ">" 0}}data-dependency="true"{{/compare}}>
-        <option value='' {{#ifIn parent.adResult.attributeValues this.canonicalName}}{{else}}selected="selected"{{/ifIn}}>
+        <option value='' {{#ifIn parent.adResult.attributeValues this.name}}{{else}}selected="selected"{{/ifIn}}>
             ---
         </option>
         {{#if this.allowedValues}}

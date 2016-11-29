@@ -22,20 +22,23 @@
 			<div class="input-wrapper">
 				<input title="amount" type="text" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
-					<label class="control">
-						<input type="radio" name="currency" value="MXN" checked="checked"{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
-						<div class="outer-circle">
-							<div class="inner-circle"></div>
-						</div>
-						<span class="currency-type">MXN</span>
-					</label>
-					<label class="control">
-						<input type="radio" name="currency" value="USD"/>
-						<div class="outer-circle">
-							<div class="inner-circle"></div>
-						</div>
-						<span class="currency-type">USD</span>
-					</label>
+					{{#each this.localCurrencies}}
+						<label class="control">
+							<input type="radio" name="currency" value="{{this}}"
+								{{#if this.deferredAd.ads}}
+									{{#compare  this.deferredAd.ads.0.price.currency "===" this}}
+								   checked="checked"
+									{{/compare }}
+								{{else if @first}}
+								   checked="checked"
+								{{/if}}
+							/>
+							<div class="outer-circle">
+								<div class="inner-circle"></div>
+							</div>
+							<span class="currency-type">{{this}}</span>
+						</label>
+					{{/each}}
 				</div>
 			</div>
 		</div>

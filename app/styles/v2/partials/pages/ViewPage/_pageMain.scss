@@ -24,35 +24,17 @@
 	margin: 0 auto;
 }
 
-//$show-susy-grid: true;
-
-.page{
-		margin: 0 auto;
-		max-width: 64em;
-	overflow-x: hidden;
-        background-color: $page-bgcolor;
-	}
-
-.footer-wrapper {
-	margin: 0 auto;
-	max-width: 64em;
-}
-
-//legacy color from Bolt 2.1 version
-.confirm-content,
-.error-content,
-.empty-state-content{
-	a{
-		color: #1E98D5;
-	}
+.content{
+	margin-top: 20px;
 }
 
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
-		@include span(3 of 6);
+		@include span(5 of 10);
+		margin-right: 20px;
 	}
 	.vip-right-columns{
-		@include span(3 of 6);
+		@include span(5 of 10);
 		margin-right: 0;
 	}
 }
