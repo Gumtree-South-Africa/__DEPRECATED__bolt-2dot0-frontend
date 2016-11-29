@@ -16,7 +16,7 @@
 				<input title="Title" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price form-field hidden">
+		<div class="form-ad-price form-field {{#if this.isPriceExcluded}}hidden{{/if}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
