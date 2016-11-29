@@ -74,6 +74,22 @@ $categoryArrowIconWidth: 13px;
 		margin-left: 5px;
 	}
 
+	// The required label on the right
+	.category-component .label-wrapper {
+		label {
+			width: initial;
+		}
+		&:after {
+			content: '*obligatorio';
+			float: right;
+			font-size: 10px;
+			color: $formLabelTextColor;
+			text-transform: uppercase;
+			margin-right: 6%;
+			margin-top: 5px;
+		}
+	}
+
 	.description-input {
 		height: 150px;
 		margin-left: $inputMargin;
@@ -116,6 +132,13 @@ $categoryArrowIconWidth: 13px;
 			&.validation-error {
 				border: 1px solid red;
 			}
+		}
+		
+		// overriding webshims styles to properly place button
+		.input-buttons {
+			position: absolute;
+			right: 45%;
+			top: 25%;
 		}
 
 		select {
