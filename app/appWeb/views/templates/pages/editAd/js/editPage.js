@@ -67,6 +67,7 @@ class EditAd {
 		});
 
 		this.postAdFormMainDetails.showChangeWarning = true;
+		this.postAdFormMainDetails.isMustLeaf = true;
 	}
 
 	_setSubmitButtonStatus() {
