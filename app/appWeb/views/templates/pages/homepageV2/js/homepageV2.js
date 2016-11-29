@@ -6,6 +6,7 @@ let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeM
 let Header = require('app/appWeb/views/components/headerV2/js/header.js').Header;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let EPS_CLIENT_ERROR_CODES = require('app/appWeb/views/components/uploadImage/js/epsUpload.js').EPS_CLIENT_ERROR_CODES;
+let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
 const FILE_SELECT_DEBOUNCE_TIMEOUT = 1000;
 
@@ -135,7 +136,9 @@ class HomePage {
 
 	_redirectToPostPage(imageUrl) {
 		window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
-		window.location.assign('./post?initialImage=' + encodeURIComponent(imageUrl) + '&backUrl=' + encodeURIComponent('./'));
+		CookieUtils.setCookie('initialImage', encodeURIComponent(imageUrl), 1);
+		CookieUtils.setCookie('backUrl', encodeURIComponent('./'), 1);
+		window.location.href = '/post';
 	}
 }
 
