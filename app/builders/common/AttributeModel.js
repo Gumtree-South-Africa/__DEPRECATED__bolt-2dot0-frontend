@@ -38,7 +38,7 @@ class AttributeModel {
 				}
 
 				if (depAttrValObj && depAttrValObj.value && depAttrValObj.value.attributeValue) {
-					attr.allowedValues.filter((val) => {
+					attr.allowedValues = attr.allowedValues.filter((val) => {
 						return val.dependencyValue === depAttrValObj.value.attributeValue;
 					});
 				} else {
