@@ -133,6 +133,13 @@ $categoryArrowIconWidth: 13px;
 				border: 1px solid red;
 			}
 		}
+		
+		// overriding webshims styles to properly place button
+		.input-buttons {
+			position: absolute;
+			right: 45%;
+			top: 25%;
+		}
 
 		select {
 			width: 88%;
