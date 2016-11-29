@@ -275,6 +275,10 @@ class PhotoContainer {
 	 */
 	_bindEventToNewPhotoUploadDiv(newDiv) {
 		newDiv.on('click', () => {
+			let url = newDiv.css("background-image");
+			if (url !== 'none') {
+				return; // With image click disable
+			}
 			this.clickFileInput();
 		});
 		newDiv.find(".delete-wrapper").on('click', (e) => {
