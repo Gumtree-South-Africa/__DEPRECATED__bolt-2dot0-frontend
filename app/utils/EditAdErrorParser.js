@@ -19,7 +19,12 @@ class EditAdErrorParser {
 			let parsedVal = this.parseError(err.message);
 
 			if (parsedVal.indexOf("categoryAttribute") >= 0) {
-				returnObj.push(parsedVal.split("-")[1].trim());
+				if (err.code === 'INVALID_PARAM_DEP2ATTRIBUTE') {
+					// Error message for DEP2ATTRIBUTE is "categoryAttribute-<dependentAttribute>-<errorField>"
+					returnObj.push(parsedVal.split("-")[2].trim());
+				} else {
+					returnObj.push(parsedVal.split("-")[1].trim());
+				}
 			} else {
 				returnObj.push(parsedVal);
 			}
