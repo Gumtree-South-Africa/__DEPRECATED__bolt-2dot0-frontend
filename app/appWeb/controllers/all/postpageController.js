@@ -15,8 +15,6 @@ let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 
-const INVALID_COOKIE_VALUE = 'invalid';
-
 let postAdData = {
 	extendModelData: (req, modelData) => {
 		modelData.header.pageType = modelData.pagename;
@@ -104,20 +102,6 @@ router.use('/', (req, res, next) => {
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
-		let initialImage = decodeURIComponent(req.cookies['initialImage'] || '');
-		if (initialImage === INVALID_COOKIE_VALUE) {
-			initialImage = '';
-		} else {
-			res.cookie('initialImage', INVALID_COOKIE_VALUE);
-		}
-		modelData.initialImage = initialImage;
-		let backUrl = decodeURIComponent(req.cookies['backUrl'] || '');
-		if (backUrl === INVALID_COOKIE_VALUE) {
-			backUrl = '';
-		} else {
-			res.cookie('backUrl', INVALID_COOKIE_VALUE);
-		}
-		modelData.backUrl = backUrl;
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected
