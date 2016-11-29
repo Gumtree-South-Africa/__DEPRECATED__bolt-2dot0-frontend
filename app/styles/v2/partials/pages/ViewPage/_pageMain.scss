@@ -30,11 +30,11 @@
 
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
-		@include span(5 of 10);
+		@include span(4 of 8);
 		margin-right: 20px;
 	}
 	.vip-right-columns{
-		@include span(5 of 10);
+		@include span(4 of 8);
 		margin-right: 0;
 	}
 }
