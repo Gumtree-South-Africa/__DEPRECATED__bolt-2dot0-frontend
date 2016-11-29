@@ -284,8 +284,7 @@ class PhotoContainer {
 			let urlNormal = imageDiv.attr("data-image");
 			imageDiv.css("background-image", "").toggleClass("no-photo", true);
 
-			this.imageCount--;
-			if (this.imageCount === 0) {
+			if (this.getImageCount() === 0) {
 				this.$postAdButton.toggleClass("disabled", true);
 			}
 			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
@@ -405,10 +404,27 @@ class PhotoContainer {
 		}
 		// parse file(s)
 		let files = evt.target.files;
+		// Set how many image uploaded yet
+		this.imageCount = this.getImageCount();
 		this._uploadImageShowSpinnerWithFileSize(files.length);
 		for (let i = 0; i < files.length; i++) {
 			this.parseFile(files[i]);
 		}
+	}
+	/**
+	 * fires when the file input has a new image, triggers eps upload
+	 * @param evt
+	 */
+	getImageCount() {
+		// Set how many image uploaded yet
+		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+		let count = 0;
+		imgUrls.forEach((img) => {
+			if (img) {
+				count++;
+			}
+		});
+		return count;
 	}
 	/**
 	 * prevent the user from repeatedly clicking the file input field and triggering a file selection window
@@ -443,9 +459,9 @@ class PhotoContainer {
 		reader.onloadend = () => {
 			if (this.imageCount < this.allowedUploads) {
 				// disable post while image uploads
-				this.$postAdButton.toggleClass("disabled", true);
 				// create image place holders
-				this.imageCount++;
+				this.imageCount++; // Update image to be upload count
+				this.$postAdButton.toggleClass("disabled", true);
 				this.uploadMessageClass.loadingMsg(this.imageCount - 1);
 				this.prepareForImageUpload(this.imageCount - 1, file);
 				this.$imageUpload.val('');
@@ -503,7 +519,7 @@ class PhotoContainer {
 	}
 
 	setFormValid(isFormValid) {
-		this.$postAdButton.toggleClass("disabled", !isFormValid || !this.imageCount);
+		this.$postAdButton.toggleClass("disabled", !isFormValid || !this.getImageCount());
 	}
 
 }
