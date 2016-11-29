@@ -141,8 +141,6 @@
 
 @include from-breakpoint($medium-break){
 	.reply-form-container {
-		margin-left:5px;
-		margin-right:5px;
 		padding-left: 15px;
 		padding-right: 15px;
 		background-color: $common-background-color;

@@ -3,8 +3,12 @@ $textColor: white;
     width: 100%;
     margin: .5em auto;
     height: auto;
+    //this is so wrong, we should never target breakpoint with pixels
+    //there are classes made for it for consistency etc.
+    //should be something like this @include breakpoint($medium-break){...}
+    //Please refactor every where you see it in this file
     @media(min-width: 768px) {
-        width: 97%;
+        width: 100%;
     }
 
     .advertisement-placeholder {
