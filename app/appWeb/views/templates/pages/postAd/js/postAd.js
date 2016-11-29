@@ -19,7 +19,8 @@ class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
 
-		this._imageUrls = [];
+		this._mobileImageUrls = [];
+		this._desktopImageUrls = [];
 	}
 
 	/**
@@ -43,7 +44,8 @@ class PostAd {
 		loginModal.initialize();
 
 		this._$infoTips = domElement.find(".info-tips");
-		this._$submitButton = domElement.find('#post-submit-button .btn, #postAdBtn');
+		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
+		this._$desktopSubmitButton = domElement.find('#postAdBtn');
 		this._$changePhoto = $(".change-photo");
 
 		this._$changePhoto.on('click', (e) => {
@@ -55,8 +57,10 @@ class PostAd {
 		});
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
-			if (propName === 'imageUrls') {
-				this._$submitButton.toggleClass('disabled', !this._canSubmit());
+			if (propName === 'mobileImageUrls') {
+				this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
+			} else if (propName === 'desktopImageUrls') {
+				this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
 			}
 		});
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
@@ -67,7 +71,7 @@ class PostAd {
 			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 
-			this.imageUrls = [newValue];
+			this.mobileImageUrls = [newValue];
 			this.spinnerModal.showModal();
 
 			$.ajax({
@@ -88,28 +92,41 @@ class PostAd {
 
 		if (!this.mobileUpload.imageUrl) {
 			this.postAdModal.isShown = true;
-			this.imageUrls = [];
+			this.mobileImageUrls = [];
 		} else {
-			this.imageUrls = [this.mobileUpload.imageUrl];
+			this.mobileImageUrls = [this.mobileUpload.imageUrl];
 			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 		}
-		this._$submitButton.on('click', e => {
+		this._$mobileSubmitButton.on('click', e => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			this.submit();
+			if (!this._canMobileSubmit()) {
+				return;
+			}
+			this.submit(true);
+		});
+		this._$desktopSubmitButton.on('click', e => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			if (!this._canDesktopSubmit()) {
+				return;
+			}
+			this.submit(false);
 		});
 
 		this.photoContainer.addImageUrlsChangeHandler(() => {
-			this.imageUrls = [].concat(this.photoContainer.imageUrls);
+			this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
 		});
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {
-				this._$submitButton.toggleClass('disabled', !this._canSubmit());
+				this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
+				this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
 			}
 		});
-		this._$submitButton.toggleClass('disabled', !this._canSubmit());
+		this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
+		this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
 
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
 		this.requestLocationFromBrowser();
@@ -137,35 +154,55 @@ class PostAd {
 		}
 	}
 
-	_canSubmit() {
+	_canMobileSubmit() {
 		// Don't submit if no image or not resolve all fix problems
-		return this._imageUrls && this._imageUrls.length &&
+		return this._mobileImageUrls && this._mobileImageUrls.length &&
 			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
 	}
 
-	get imageUrls() {
-		return this._imageUrls;
+	_canDesktopSubmit() {
+		// Don't submit if no image or not resolve all fix problems
+		return this._desktopImageUrls && this._desktopImageUrls.length &&
+			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
 	}
 
-	set imageUrls(newValue) {
-		if (this._imageUrls === newValue) {
+	get mobileImageUrls() {
+		return this._mobileImageUrls;
+	}
+
+	set mobileImageUrls(newValue) {
+		if (this._mobileImageUrls === newValue) {
 			return;
 		}
-		this._imageUrls = newValue;
-		this.propertyChanged.trigger('imageUrls', newValue);
+		this._mobileImageUrls = newValue;
+		this.propertyChanged.trigger('mobileImageUrls', newValue);
 	}
 
-	submit() {
-		if (!this._canSubmit()) {
+	get desktopImageUrls() {
+		return this._desktopImageUrls;
+	}
+
+	set desktopImageUrls(newValue) {
+		if (this._desktopImageUrls === newValue) {
+			return;
+		}
+		this._desktopImageUrls = newValue;
+		this.propertyChanged.trigger('desktopImageUrls', newValue);
+	}
+
+	submit(useMobileImages) {
+		if (!this._canMobileSubmit() && !this._canDesktopSubmit()) {
 			return;
 		}
 
 		window.BOLT.trackEvents({"event": "PostAdFreeAttempt"});
-		this._$submitButton.toggleClass('disabled', true);
+		this._$mobileSubmitButton.toggleClass('disabled', true);
+		this._$desktopSubmitButton.toggleClass('disabled', true);
 
 		let postAdPayload = this.postAdFormMainDetails.getAdPayload();
 		// Copy imageUrls to avoid changing original values
-		postAdPayload.imageUrls = [].concat(this._imageUrls);
+		postAdPayload.imageUrls = [].concat(
+			useMobileImages ? this._mobileImageUrls : this._desktopImageUrls);
 		let payload = {
 			ads: [postAdPayload]
 		};
@@ -219,7 +256,8 @@ class PostAd {
 	}
 
 	_onSubmitFail(error) {
-		this._$submitButton.toggleClass('disabled', false);
+		this._$mobileSubmitButton.toggleClass('disabled', false);
+		this._$desktopSubmitButton.toggleClass('disabled', false);
 		spinnerModal.hideModal();
 		// validation error
 		if (error.status === 400) {
