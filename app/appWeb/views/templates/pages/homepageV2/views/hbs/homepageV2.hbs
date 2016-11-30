@@ -17,6 +17,7 @@
         {{/if}}
 
         {{> (dynamic "modal")}}
+        {{#block "default-gmaps"}}{{/block}}
 
         {{#if this.appDownload}}
             {{> (dynamic "appDownloadSection")}}

@@ -6,12 +6,6 @@
     <div>Drag to pan around the image.</div>
   </div>
 
-  <!-- <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
-    <span class="currentImg">1</span>
-    <span class="separator">/</span>
-    <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
-  </div> -->
-
 {{#if this.device.isMobile}}
 	<div class="carousel-images extra">
     <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
@@ -28,12 +22,19 @@
 {{/if}}
 
 {{#unless this.device.isMobile}}
-  <div class="carousel-text slider-for">
-    {{#each this.advert.picturesToDisplay.testPictures}}
-      <div>
-        <img src="{{this}}" alt="{{@index}}"/>
-      </div>
-    {{/each}}
+  <div class="carousel-text">
+    <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
+      <span class="currentImg">1</span>
+      <span class="separator">/</span>
+      <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
+    </div>
+    <div class="slider-for">
+      {{#each this.advert.picturesToDisplay.testPictures}}
+        <div>
+          <img src="{{this}}" alt="{{@index}}"/>
+        </div>
+      {{/each}}
+    </div>
   </div>
 
   <div class="carousel-images slider-nav original">

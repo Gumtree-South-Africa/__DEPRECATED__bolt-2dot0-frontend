@@ -126,11 +126,22 @@
 	margin-bottom: 10px;
 	border-top: 2px solid $vivaGray2;
 }
+.slash-separator:last-child{
+	display:none;
+}
+
 
 @include from-breakpoint($medium-break) {
 	.ad-details-container {
 		.pri-attrs {
 			background-color: $vivaWhite;
+		}
+		.pri-props-name {
+			font-size: 18px;
+			font-weight: bolder;
+		}
+		.pri-props-value {
+			font-size: 16px;
 		}
 		#desktop-pri-props {
 			font-size: 18px;
