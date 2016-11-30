@@ -126,6 +126,14 @@
 	}
 }
 
+// For safari the delete icon pixel issue
+@media screen and (-webkit-min-device-pixel-ratio:1.5) {
+	.icon-photo-close {
+		width: 20px;
+		height: 19.2px !important;
+	}
+}
+
 .error-msg-wrapper {
 	width: 100%;
 	float: left;
