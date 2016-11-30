@@ -2,6 +2,53 @@
     {{> (dynamic "modal")}}
 
     {{> (dynamic "topBanner")}}
+    
+    
+    <div class="status-ad-banner-desktop">
+      {{!-- active, expired, pending, blocked, deleted --}}
+        {{#compare  this.advert.status "===" 'expired'}}
+          <div class="status-ad-banner">
+            <span class="alert-icon"></span>
+            <span>{{i18n "vip.details.expiredMessage"}}</span>
+            {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+              <a href="#">{{i18n "vip.details.activateNow"}}</a>
+            {{/compare}}
+          </div>
+        {{/compare}}
+
+        {{#compare  this.advert.status "===" 'pending'}}
+          <div class="status-ad-banner">
+            <span class="alert-icon"></span>
+            <span>{{i18n "vip.details.pendingMessage"}}</span>
+            {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+              <a href="#">{{i18n "vip.details.learnMore"}}</a>
+            {{/compare}}
+          </div>
+        {{/compare}}
+
+        {{#compare  this.advert.status "===" 'blocked'}}
+          <div class="status-ad-banner">
+            <span class="alert-icon"></span>
+            <span>{{i18n "vip.details.blockedMessage"}}</span>
+            {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+              <a href="#">{{i18n "vip.details.deletedStatus"}}</a>
+            {{/compare}}
+          </div>
+        {{/compare}}
+
+        {{#compare  this.advert.status "===" 'deleted'}}
+          <div class="status-ad-banner">
+            <span class="alert-icon"></span>
+            <span>{{i18n "vip.details.deletedMessage"}}</span>
+            {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+              <a href="#">{{i18n "vip.details.statusReason"}}</a>
+              and
+              <a href="#">{{i18n "vip.details.deletedStatus"}}</a>
+            {{/compare}}
+          </div>
+        {{/compare}}
+    </div>
+
 
     <div class="vip-left-columns">
         <div id="viewPage">
