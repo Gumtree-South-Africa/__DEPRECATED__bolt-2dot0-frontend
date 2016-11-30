@@ -1,5 +1,6 @@
 .isMobile .counter{
-	bottom: 37.65em;
+	bottom: 0.5em;
+	right: 0.2em;
 }
 .slider-for, .slider-mobile-for{
 	background-color: black;
@@ -25,6 +26,11 @@
 	text-align: center;
 	margin: 0 auto;
 	width: 80%;
+	position: relative;
+	&.extra{
+		background-color: #000;
+	  width: 100%;
+	}
 }
 .slick-prev, .slick-next{
 	display: none;
@@ -49,6 +55,12 @@
 	left: 5px;
 	z-index: 9;
 	cursor: pointer;
+	-moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
 }
 
 @include to-breakpoint($small-break){
@@ -165,6 +177,7 @@
 		.title {
 			margin-top: -5px;
 	    margin-bottom: 20px;
+			width: 90%;
 		}
 		.price{
 			margin-top: -15px;

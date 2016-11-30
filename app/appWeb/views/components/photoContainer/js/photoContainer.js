@@ -286,6 +286,7 @@ class PhotoContainer {
 			window.BOLT.trackEvents({"event": "PostAdPhotoRemove"});
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
+			imageDiv.attr("data-image","");
 			imageDiv.css("background-image", "").toggleClass("no-photo", true);
 
 			if (this.getImageCount() === 0) {
@@ -355,6 +356,8 @@ class PhotoContainer {
 			let toIndex = imgUrls.indexOf(toImg);
 			let fromImg = $(this.PhotoContainerDragged).attr("data-image");
 			let fromIndex = imgUrls.indexOf(fromImg);
+			$(event.target).attr("data-image", fromImg);
+			$(this.PhotoContainerDragged).attr("data-image", toImg);
 			imgUrls[toIndex] = fromImg;
 			imgUrls[fromIndex] = toImg;
 			$("#imgUrls").html(JSON.stringify(imgUrls));
