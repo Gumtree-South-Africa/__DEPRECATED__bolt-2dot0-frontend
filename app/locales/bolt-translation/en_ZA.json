@@ -1379,6 +1379,10 @@
 		"mobileUpload": {
 			"post": "Done",
 			"changePhoto": "Change Photo"
+		},
+		"mainDetails": {
+			"title": "Title",
+			"description": "Description"
 		}
 	},
 	"footer": {
