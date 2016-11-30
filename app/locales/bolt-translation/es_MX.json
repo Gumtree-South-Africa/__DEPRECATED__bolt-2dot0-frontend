@@ -1357,8 +1357,9 @@
 			"changePhoto": "Cambia <br>foto"
 		},
 		"mainDetails": {
-			"title": "Título",
-			"description": "Descripción"
+			"title": "título",
+			"description": "descripción",
+			"amount": "cantidad"
 		}
 	},
 	"footer": {

@@ -21,7 +21,7 @@
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="amount" type="text" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
+				<input title="{{i18n "postAd.mainDetails.amount"}}" type="text" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
 					<!-- TODO Update to use localCurrencies by combining logic in editAdFormMainDetails and in postAdForm -->
 					<label class="control">

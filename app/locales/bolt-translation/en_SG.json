@@ -1440,8 +1440,9 @@
 			"changePhoto": "Change Photo"
 		},
 		"mainDetails": {
-			"title": "Title",
-			"description": "Description"
+			"title": "title",
+			"description": "description",
+			"amount": "amount"
 		}
 	},
 	"postAdModal": {
