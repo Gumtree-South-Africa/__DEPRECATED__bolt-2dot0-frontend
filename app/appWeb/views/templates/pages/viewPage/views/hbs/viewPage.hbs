@@ -1,4 +1,6 @@
 {{#partial "content"}}
+    {{> (dynamic "modal")}}
+
     {{> (dynamic "topBanner")}}
 
     <div class="vip-left-columns">
@@ -34,12 +36,6 @@
             {{> (dynamic "gpsMap")}}
           {{#block "vip-map"}}{{/block}}
         </div>
-
-        {{#if this.safetyTips}}
-            <div class="vip-safety-tips">
-                {{> (dynamic "safetyTips") }}
-			</div>
-        {{/if}}
     </div>
 
     {{> (dynamic "bottomBanner")}}

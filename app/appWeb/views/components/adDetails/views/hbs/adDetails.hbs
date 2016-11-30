@@ -27,16 +27,32 @@
         <div class="clear-line"></div>
         <div class="category-pri-attrs">
             {{#each this.advert.displayAttributes}}
-                <div class="pri-props" id="desktop-pri-props">{{this.name}} : {{this.value}}</div>
+                <div class="pri-props">
+                    <span class="pri-props-name">{{this.name}} : </span>
+                    <span class="pri-props-value">{{this.value}}</span>
+                </div>
             {{/each}}
         </div>
         <div class="clear-line"></div>
 	</div>
     <div class="sec-attrs">
         <div class="ad-description">{{this.advert.description}}</div>
-        <div class="ad-category"><span class="category-attr">{{i18n "vip.details.category"}} </span><div>{{this.advert.categoryName}}</div></div>
+        <div class="ad-category">
+            <span class="category-attr">{{i18n "vip.details.category"}} </span>
+            <div>
+                {{#each this.advert.categoryPath}}
+                    {{#compare @index ">" 0}}
+                        <span><a href="{{this.href}}">{{this.localizedName}}</a></span>
+                        <span class="slash-separator">/</span>
+                    {{/compare}}
+                {{/each}}
+            </div>
+        </div>
         <div class="ad-user-attrs">
-            <div class="ad-location"><span class="location-attr">{{i18n "vip.details.location"}} </span><div>{{this.advert.location.name}}</div></div>
+            <div class="ad-location">
+                <span class="location-attr">{{i18n "vip.details.location"}} </span>
+                <div><a href="{{this.advert.locationDisplayHref}}">{{this.advert.locationDisplayName}}</a></div>
+            </div>
             <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span><div>{{this.advert.updatedDate}}</div></div>
             <div class="ad-posted-by"><span class="posted-by-attr">{{i18n "vip.details.postedby"}} </span><div>{{ this.advert.postedBy}}</div></div>
         </div>
