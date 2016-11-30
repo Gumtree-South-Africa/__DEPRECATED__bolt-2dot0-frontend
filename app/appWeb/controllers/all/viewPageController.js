@@ -70,6 +70,16 @@ router.get('/:id?', (req, res, next) => {
 	let redirectUrl = req.query.redirect;
 
 	viewPageModel.populateData().then((modelData) => {
+		// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
+		// if (this.req.app.locals.isSeoUrl === true) {
+		// 	let originalSeoUrl = this.req.originalUrl;
+		// 	let dataSeoVipUrl = modelData.advert.seoVipUrl;
+		// 	if (originalSeoUrl !== dataSeoVipUrl) {
+		// 		res.redirect(dataSeoVipUrl);
+		// 		return;
+		// 	}
+		// }
+
 		extendModelData(req, modelData);
 		modelData.adId = adId;
 
