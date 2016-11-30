@@ -9,10 +9,9 @@ class viewPageGallery {
 	* these functions are in here to be properly bound to this
 	* @param options
 	*/
-	initialize() {
+	initialize(imgLength) {
 
 		const MEDIUM_BREAKPOINT = 848;
-
 		$('.slider-mobile-for').not('.slick-initialized').slick({
 			dots: true,
 			arrows: false,
@@ -21,7 +20,6 @@ class viewPageGallery {
 
 		$('.slider-for').not('.slick-initialized').slick({
 			arrows: false,
-			fade: true,
 			infinite: true,
 			responsive: [
 				{
@@ -35,9 +33,9 @@ class viewPageGallery {
 		});
 
 		$('.slider-nav').not('.slick-initialized').slick({
-			slidesToShow: 5,
+			slidesToShow: imgLength,
+			//slidesToShow: 1,
 			slidesToScroll: 1,
-			//lazyLoad: 'ondemand',
 			asNavFor: '.slider-for',
 			focusOnSelect: true,
 			arrows: true,
@@ -102,10 +100,17 @@ class viewPageGallery {
 	}
 
 	updatePhotoCounter(idx, count) {
+		if(idx > count) {
+			count = count + 1;
+			idx = idx - 1;
+			$('.counter .currentImg').html((idx)%count);
+			return false;
+		}
 		if(((idx + 1) % count) === 0) {
 			count = count+1;
 		}
 		$('.counter .currentImg').html((idx+1)%count);
+
 	}
 
 	updateCarouselHeight() {

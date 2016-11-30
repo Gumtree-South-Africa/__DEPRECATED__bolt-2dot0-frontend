@@ -152,6 +152,7 @@ class DataLayerModel {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
 					case pagetypeJson.pagetype.POST_AD:
+					case pagetypeJson.pagetype.VIP:
 						data = {
 							'pageData': getPageData(this),
 							'userData': getUsereData(this),
@@ -191,4 +192,3 @@ class DataLayerModel {
 }
 
 module.exports = DataLayerModel;
-

@@ -4,6 +4,7 @@
 }
 .slider-for, .slider-mobile-for{
 	background-color: black;
+	overflow: hidden;
 }
 .slick-track{
 	margin: 0 auto;
@@ -21,6 +22,19 @@
 		background-size: cover;
 		background-position: 0px;
 	}
+	&.col1{
+		width:20%;
+	}
+	&.col2{
+		width:40%;
+	}
+	&.col3{
+		width:60%;
+	}
+	&.col4{
+		width:80%;
+	}
+
 }
 .carousel-images{
 	text-align: center;
@@ -242,7 +256,7 @@
 		}
 	}
 	.counter{
-		bottom: 6.5em;
+		bottom: 6em;
 	}
 }
 

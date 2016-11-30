@@ -1,10 +1,10 @@
 {{#partial "vip-adstats"}}
-    {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+    {{#if this.vip.showSellerStuff}}
         <div class="view-replies-count ad-desktop-only">
-            <div class="ad-view-count">{{this.advert.statistics.adStatsPublic.viewCount}}<div class="views-text">{{i18n "vip.details.views"}}</div></div>
-            <div class="ad-replies-count">{{this.advert.statistics.adStatsPublic.replyCount}}<div class="replies-text">{{i18n "vip.details.replies"}}</div></div>
+                <div class="ad-view-count">{{this.advert.statistics.adStatsPublic.viewCount}}<div class="views-text">{{i18n "vip.details.views"}}</div></div>
+                <div class="ad-replies-count">{{this.advert.statistics.adStatsPublic.replyCount}}<div class="replies-text">{{i18n "vip.details.replies"}}</div></div>
         </div>
-    {{/compare}}
+    {{/if}}
 {{/partial}}
 
 {{#partial "edit-adstats"}}

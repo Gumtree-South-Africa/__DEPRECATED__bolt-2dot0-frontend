@@ -82,17 +82,31 @@ class NoUIImageUploader {
 		}
 		this._uploadPromise = new Promise((resolve, reject) => {
 			this.imageWillUpload.trigger(fileName);
-			this._epsUpload.uploadToEps(0, file, (i, response) => {
-				// Success handler
-				resolve(response);
-			}, (i, response) => {
-				try {
-					// Fail handler
-					reject(this._extractClientError(response, fileName));
-				} catch(err) {
-					reject(err);
-				}
-			}, () => new window.XMLHttpRequest());
+
+			let loadData = (i, loadedFile) => {
+				this._epsUpload.uploadToEps(0, loadedFile, (index, response) => {
+					// Success handler
+					resolve(response);
+				}, (index, response) => {
+					try {
+						// Fail handler
+						reject(this._extractClientError(response, fileName));
+					} catch(err) {
+						reject(err);
+					}
+				}, () => new window.XMLHttpRequest());
+			};
+
+			let _this = this;
+			let onload = (thisFile) => {
+				return function() {
+					let resizedImageFile = _this._epsUpload.scaleAndCropImage(this, thisFile.type);
+					loadData(0, resizedImageFile);
+				};
+			};
+
+			this._epsUpload.prepareForImageUpload(0, file, loadData, onload);
+
 		}).then((response) => {
 			let urlObj = this._epsUpload.extractURLClass(response);
 			if (!urlObj) {

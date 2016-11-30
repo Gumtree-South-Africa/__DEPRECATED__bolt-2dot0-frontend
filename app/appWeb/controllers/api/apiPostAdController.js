@@ -239,14 +239,13 @@ router.get('/customattributes/:categoryId', cors, (req, res) => {
 		Number(req.params.categoryId), res.locals.config.categoryAllData,
 		res.locals.config.bapiConfigData.content.verticalCategories);
 
-	if (!verticalCategory) {
-		return res.json({});  // Only for vertical categories post support customer attributes
-	}
-
 	let attributeModel = new AttributeModel(model.bapiHeaders);
 
 	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
 		let processedCustomAttributesList = attributeModel.processCustomAttributesList(attributeData);
+		if (!verticalCategory) {
+			processedCustomAttributesList.customAttributes = {};  // Only for vertical categories post support customer attributes
+		}
 		processedCustomAttributesList.verticalCategory = verticalCategory;
 		res.json(processedCustomAttributesList);
 	}).fail((err) => {

@@ -56,6 +56,33 @@ class ViewPageModel {
 	}
 
 	/**
+	 * a function to walkdown the tree and return a path array
+	 * @param tree
+	 * @returns {Array}
+	 */
+	getPathFromTree(tree) {
+		let path = [];
+		let level = 0;
+		while(tree !== 'undefined') {
+			path[level] = {
+				id: tree.id,
+				localizedName: tree.localizedName,
+				localizedMobileName: tree.localizedMobileName,
+				lat: tree.latitude,
+				long: tree.longitude
+			};
+			let searchElt = tree._links.find( (elt) => {
+				return elt.rel === "search";
+			});
+			path[level++].href = searchElt.href;
+			tree = tree['children'];
+			if (typeof tree === 'undefined' || _.isEmpty(tree)) break;
+			tree = tree[0];
+		}
+		return path;
+	}
+
+	/**
 	 * a recursive function to return an array of breadcrumb category ids. (eg. [0, 30, 1110])
 	 * usage:
 	 * let result = []
@@ -121,9 +148,14 @@ class ViewPageModel {
 		modelData.footer = data.common.footer || {};
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
-
+		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+
 		modelData.vip = {};
+		modelData.vip.showSellerStuff = false;
+		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
+			modelData.vip.showSellerStuff = true;
+		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
@@ -178,21 +210,14 @@ class ViewPageModel {
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
-				// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
-				// if (this.req.app.locals.isSeoUrl === true) {
-				// 	let originalSeoUrl = this.req.originalUrl;
+				// Manipulate Ad Data
+
+				// // TODO: Get seoVipUrl
 				// 	let seoVipElt = data._links.find((elt) => {
 				// 		return elt.rel === "seoVipUrl";
 				// 	});
 				// 	let dataSeoVipUrl = seoVipElt.href;
-				// 	if (originalSeoUrl !== dataSeoVipUrl) {
-				// 		res.redirect(dataSeoVipUrl);
-				// 		return;
-				// 	}
-				// 	data.seoVipUrl = dataSeoVipUrl;
-				// }
-
-				// Manipulate Ad Data
+				// data.seoVipUrl = dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -259,12 +284,18 @@ class ViewPageModel {
 					return elt.rel === "location";
 				});
 				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
+				data.locationPath = this.getPathFromTree(data._embedded.location);
+				if (!_.isEmpty(data.locationPath)) {
+					data.locationDisplayName = data.locationPath[data.locationPath.length-1].localizedName;
+					data.locationDisplayHref = data.locationPath[data.locationPath.length-1].href;
+				}
 
 				// Category
 				let categoryElt = data._links.find( (elt) => {
 					return elt.rel === "category";
 				});
 				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+				data.categoryPath = this.getPathFromTree(data._embedded.category);
 
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
