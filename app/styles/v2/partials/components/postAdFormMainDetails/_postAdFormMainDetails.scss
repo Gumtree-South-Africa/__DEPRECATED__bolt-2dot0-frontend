@@ -110,6 +110,10 @@ $categoryArrowIconWidth: 13px;
 			display: none;
 		}
 
+		textarea {
+			border: 1px solid $vivaBlack;
+		}
+
 		input[type="text"], input[type="tel"], input[type="number"], input[type="date"], select {
 			width: $inputFieldWidth;
 			margin: 0 $inputMargin;
@@ -133,7 +137,7 @@ $categoryArrowIconWidth: 13px;
 				border: 1px solid red;
 			}
 		}
-		
+
 		// overriding webshims styles to properly place button
 		.input-buttons {
 			position: absolute;
