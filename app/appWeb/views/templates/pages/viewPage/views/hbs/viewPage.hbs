@@ -1,4 +1,6 @@
 {{#partial "content"}}
+    {{> (dynamic "modal")}}
+
     {{> (dynamic "topBanner")}}
 
     <div class="vip-left-columns">
@@ -26,20 +28,14 @@
         {{> (dynamic "adStats") }}
         {{#block "vip-adstats"}}{{/block}}
 
-  		<div class="reply-form">
-              {{> (dynamic "replyForm")}}
-  		</div>
+        <div class="reply-form">
+            {{> (dynamic "replyForm")}}
+        </div>
 
         <div class="google-maps">
             {{> (dynamic "gpsMap")}}
           {{#block "vip-map"}}{{/block}}
         </div>
-
-        {{#if this.safetyTips}}
-            <div class="vip-safety-tips">
-                {{> (dynamic "safetyTips") }}
-			</div>
-        {{/if}}
     </div>
 
     {{> (dynamic "bottomBanner")}}
