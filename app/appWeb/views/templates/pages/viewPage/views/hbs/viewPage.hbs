@@ -31,6 +31,8 @@
             <span class="alert-icon"></span>
             <span>{{i18n "vip.details.blockedMessage"}}</span>
             {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
+              <a href="#">{{i18n "vip.details.statusReason"}}</a>
+              |
               <a href="#">{{i18n "vip.details.deletedStatus"}}</a>
             {{/compare}}
           </div>
@@ -42,7 +44,7 @@
             <span>{{i18n "vip.details.deletedMessage"}}</span>
             {{#compare  this.header.id "===" this.advert.sellerDetails.id}}
               <a href="#">{{i18n "vip.details.statusReason"}}</a>
-              and
+              |
               <a href="#">{{i18n "vip.details.deletedStatus"}}</a>
             {{/compare}}
           </div>

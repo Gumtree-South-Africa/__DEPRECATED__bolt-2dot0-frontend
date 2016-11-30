@@ -1549,7 +1549,7 @@
 			"updated": "UPDATED",
 			"postedby": "POSTED BY",
 			"expiredMessage": "Este anuncio no está activo.",
-			"pendingMessage": "Este anuncio está pendiente de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Revisa tu correo electrónico.",
+			"pendingMessage": "Este anuncio está en proceso de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Por favor, revisa tu correo electrónico.",
 			"blockedMessage": "Este anuncio ha sido bloqueado.",
 			"deletedMessage": "Este anuncio ha sido eliminado.",
 			"activeStatus": "Activar",
