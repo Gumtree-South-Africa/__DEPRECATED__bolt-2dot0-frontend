@@ -18,7 +18,7 @@ describe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			`${endpoints.ads}?_forceExample=true&_statusCode=201`,
 			'test/serverUnit/mockData/postAd/postAdResponse.json');
 		// 'server/services/mockData/postAdResponse.json');
 
@@ -36,12 +36,10 @@ describe('Post Ad Api', () => {
 
 					let id = Number(jsonResult.ad.id);
 					expect(id).toEqual(jasmine.any(Number), `ad id value should be numeric`);
-
-					expect(jsonResult.ad.vipLink).toBeDefined('ad should have a vipLink');
+					expect(jsonResult.ad.redirectLinks).toBeDefined('ad should have a vipLink');
 					// the activateStatus is expected to cause a message to appear on the destination page
-					expect(jsonResult.ad.redirectLink).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
-
-					expect(jsonResult.ad.vipLink).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
+					expect(jsonResult.ad.redirectLinks.vip).toEqual(responseFile._links[1].href + "?activateStatus=adActivateSuccess");
+					expect(jsonResult.ad.redirectLinks.vip).toContain(jsonResult.ad.id, `link should contain id ${jsonResult.ad.id}`);
 				})
 				.end(specHelper.finish(done));
 		});
@@ -58,7 +56,7 @@ describe('Post Ad Api', () => {
 			'test/serverUnit/mockData/api/v1/UserHeaderInfo.json');
 
 		specHelper.registerMockEndpoint(
-			`${endpoints.quickpostAd}?_forceExample=true&_statusCode=201`,
+			`${endpoints.ads}?_forceExample=true&_statusCode=201`,
 			'server/services/mockData/postAdResponse.json', { failStatusCode: 500 });
 
 		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
@@ -291,36 +289,6 @@ describe('Post Ad Api', () => {
 					expect(jsonResult.schemaErrors.length).toBe(1, 'there should be schema errors');
 					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location.latitude");
 					expect(jsonResult.schemaErrors[0].message).toBe("is the wrong type");
-				})
-				.end(specHelper.finish(done));
-		});
-	});
-
-	it('should respond with 400, result should contains json schema errors: lat/long required', (done) => {
-		let file = {
-			"ads": [{
-				"location": {
-				},
-				imageUrls: ["image"]
-			}]
-		};
-
-		boltSupertest('/api/postad/create', 'vivanuncios.com.mx', 'POST').then((supertest) => {
-			supertest
-				.send(file)
-				.expect('Content-Type', 'application/json; charset=utf-8')
-				.expect((res) => {
-					expect(res.status).toBe(400);
-
-					let jsonResult = JSON.parse(res.text);
-					//console.log(JSON.stringify(jsonResult, null, 4));
-					expect(jsonResult.schemaErrors instanceof Array).toBeTruthy('there should be schema errors');
-
-					expect(jsonResult.schemaErrors.length).toBe(2);
-					expect(jsonResult.schemaErrors[0].field).toBe("data.ads.0.location.latitude");
-					expect(jsonResult.schemaErrors[0].message).toBe("is required");
-					expect(jsonResult.schemaErrors[1].field).toBe("data.ads.0.location.longitude");
-					expect(jsonResult.schemaErrors[1].message).toBe("is required");
 				})
 				.end(specHelper.finish(done));
 		});

@@ -22,12 +22,10 @@
 								"type": "string"
 							},
 							"latitude": {
-								"type": "number",
-								"required": true
+								"type": "number"
 							},
 							"longitude": {
-								"type": "number",
-								"required": true
+								"type": "number"
 							}
 						}
 					},
@@ -56,6 +54,19 @@
 						"required": true,
 						"items": {
 							"type": "string"
+						}
+					},
+					"categoryAttributes": {
+						"type": "array",
+						"items": {
+							"type": "object",
+							"properties": {
+								"name": { "type": "string" },
+								"required": [
+									"name",
+									"value"
+								]
+							}
 						}
 					}
 				}

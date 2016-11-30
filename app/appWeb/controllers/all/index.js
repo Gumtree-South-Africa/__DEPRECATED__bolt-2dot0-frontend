@@ -3,17 +3,39 @@
 let express = require('express');
 let router = express.Router();
 
-router.use('/activate', require('./activatePageController'));
-router.use('/register', require('./registerPageController'));
-router.use('/login', require('./loginPageController'));
-router.use('/logout', require('./logoutController'));
-router.use('/app-shell', require('./appShellController'));
-router.use('/manifest.json', require('./manifestController'));
-router.use('/service-worker.js', require('./serviceWorkerController'));
-router.use('/post', require('./postpageController'));
-router.use('/edit', require('./editpageController'));
-router.use('/quickpost', require('./quickpostController'));
-router.use('/view', require('./viewPageController'));
-router.use('/', require('./homepageController'));
+let completeRoutesMap = {
+  '/': './homepageController',
+  '/activate': './activatePageController',
+  '/app-shell': './appShellController',
+  '/edit': './editpageController',
+  '/login': './loginPageController',
+  '/logout': './logoutController',
+  '/manifest.json': './manifestController',
+  '/post': './postpageController',
+  '/quickpost': './quickpostController',
+  '/register': './registerPageController',
+  '/search': './searchPageController',
+  '/service-worker.js': './serviceWorkerController',
+  '/view': './viewPageController',
+  '/promotead' : './promoteAdController'
+};
+
+for (let route in completeRoutesMap) {
+	if (completeRoutesMap.hasOwnProperty(route)) {
+    	router.use(route, require(completeRoutesMap[route]));
+	}
+}
+
+
+let regexRoutesMap = {
+	'/:seo(v-[0-9A-Za-z-+\/]+)': './viewPageController'
+};
+
+for (let route in regexRoutesMap) {
+	if (regexRoutesMap.hasOwnProperty(route)) {
+		router.use(route, require(regexRoutesMap[route]));
+	}
+}
+
 
 module.exports = router;

@@ -3,8 +3,12 @@ $textColor: white;
     width: 100%;
     margin: .5em auto;
     height: auto;
+    //this is so wrong, we should never target breakpoint with pixels
+    //there are classes made for it for consistency etc.
+    //should be something like this @include breakpoint($medium-break){...}
+    //Please refactor every where you see it in this file
     @media(min-width: 768px) {
-        width: 97%;
+        width: 100%;
     }
 
     .advertisement-placeholder {
@@ -23,6 +27,12 @@ $textColor: white;
             margin: auto;
         }
     }
+}
+
+.vip-safety-tips .safety-tips-card {
+	width: 100%;
+	margin: 0 auto;
+	display: block;
 }
 
 .safety-tips-card {
@@ -139,6 +149,13 @@ $textColor: white;
 .dfp-banner {
 	text-align: center;
    }
+
+
+@include in-breakpoint($no-break){
+	.vip-safety-tips .safety-tips-card {
+		max-width: 20em;
+	}
+}
 
 @include in-breakpoint($small-break) {
 	.safety-tips-card {

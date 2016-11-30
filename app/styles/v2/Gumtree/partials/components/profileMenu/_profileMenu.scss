@@ -1,0 +1,50 @@
+.profile-dropdown {
+	border-radius: 0 2px 2px 2px;
+	min-width: 250px;
+	padding: 5px;
+	position: absolute;
+	width: auto;
+
+	.btn-wrapper {
+		margin: 5px 0 0;
+		width: 280px;
+
+		.btn {
+			padding: 0;
+		}
+
+		.hidden {
+			display: none;
+		}
+
+		.sudolink {
+			display: block;
+			line-height: 48px;
+		}
+	}
+
+	.profile-item {
+		.link-item {
+			line-height: 1;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+	}
+
+	.profile-item-text {
+		line-height: 1;
+	}
+}
+
+.profile {
+	.profile-dropdown {
+		.icon-my-ads-active {
+			background-size: 780%;
+			height: 16px;
+			margin-right: 1px;
+			width: 17px;
+		}
+	}
+}

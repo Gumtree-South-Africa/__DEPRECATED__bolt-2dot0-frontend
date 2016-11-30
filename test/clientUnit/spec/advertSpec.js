@@ -48,4 +48,17 @@ describe("Advert Details", () => {
 
 		done();
 	});
+
+	it("should display reply form", (done) => {
+
+		let $testArea = specHelper.setupTest("replyForm_es_MX", {}, "es_MX");
+
+		let $replyForm = $testArea.find(".reply-form-content");
+		expect($replyForm).toBeDefined('reply form should be defined');
+
+		let $sendButton = $testArea.find(".send-message-container");
+		expect($sendButton).toBeTruthy('send button should be shown');
+
+		done();
+	});
 });

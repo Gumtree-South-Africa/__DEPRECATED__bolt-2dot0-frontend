@@ -5,79 +5,143 @@ require("slick-carousel");
 class viewPageGallery {
 
 	/**
-	 * sets up all the variables and two functions (success and failure)
-	 * these functions are in here to be properly bound to this
-	 * @param options
-	 */
-	initialize(options) {
-		if (!options) {
-			options = {
-				slickOptions: {
-					arrows: false,
-					infinite: true,
-					slidesToShow: 1,
-					slidesToScroll: 1
-				},
-			};
-		}
+	* sets up all the variables and two functions (success and failure)
+	* these functions are in here to be properly bound to this
+	* @param options
+	*/
+	initialize(imgLength) {
 
-		this.$vipGallery = $('#vipGallery');
+		const MEDIUM_BREAKPOINT = 848;
+		$('.slider-mobile-for').not('.slick-initialized').slick({
+			dots: true,
+			arrows: false,
+			infinite: true
+		});
 
-		// Slick setup
-		this.$vipGallery.find('.vip-gallery').not('.slick-initialized').slick(options.slickOptions);
+		$('.slider-for').not('.slick-initialized').slick({
+			arrows: false,
+			infinite: true,
+			responsive: [
+				{
+					breakpoint: MEDIUM_BREAKPOINT,
+					settings: {
+						dots: true
+					}
+				}
+			],
+			asNavFor: '.slider-nav'
+		});
 
-		this.$vipGallery.find('.slick-arrow').addClass('icon-back');
+		$('.slider-nav').not('.slick-initialized').slick({
+			slidesToShow: imgLength,
+			//slidesToShow: 1,
+			slidesToScroll: 1,
+			asNavFor: '.slider-for',
+			focusOnSelect: true,
+			arrows: true,
+			infinite: true
+		});
 
-		this.$vipGallery.find('.slick-slide').on('click', (evt) => {
-			let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
-			let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
-			let cItems = document.querySelectorAll('.slick-carousel');
 
-			[].forEach.call(cItems, (item) => {
-				$(item).removeClass('selected');
-			});
+		$('.slick-arrow').addClass('icon-back');
+		$('.slider-nav .slick-current').addClass('selected');
+		$('.container .slider-nav .slick-current').focus();
 
-			$(evt.target).addClass('selected');
-			this.updateMainImage(evt);
+		$('.modal-closearea').on('click', () => {
+			this._escapeFn();
+		});
+
+		$('.container').on('click', '.slider-for, .icon-Zoom', () => {
+			let isMobile = $('.container .slider-nav').css('display') === 'none';
 			if(!isMobile) {
-				this.updatePhotoCounter(parseInt($(evt.target).attr('data-slick-index')), count);
+					let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
+					$('#vipOverlay .slider-nav').slick('setPosition');
+					$('#vipOverlay .slider-for').slick('setPosition');
+					$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
+					$('#vipOverlay').removeClass('hidden');
+					$('#vipOverlay .slider-nav .slick-current').focus();
+					$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
+					$('body').addClass('noScroll');
 			}
 		});
 
-		this.$vipGallery.find('.vip-gallery').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
-				event.stopPropagation();
-				event.preventDefault();
-				let isMobile = (this.$vipGallery.find('.main-bgImg').css('display') === 'none');
-				let count = parseInt(this.$vipGallery.find('.counter').attr('data-image-length'));
-				if(isMobile) {
-					this.updatePhotoCounter(nextSlide, count);
-				}
+		//Fix for when user don't have lots of images
+		$('.slick-slide').on('click', (evt) =>{
+			let nextSlide = parseInt($(evt.target).attr('data-slick-index')) || 0;
+			this._noArrows(nextSlide);
 		});
 
-		this.$vipGallery.find('.vip-gallery').on('breakpoint', () => {
-			$('.slick-arrow').addClass("icon-back");
+		$('.slider-nav, .slider-mobile-for').on('beforeChange', (event, slick, currentSlide, nextSlide) => {
+			event.stopPropagation();
+			event.preventDefault();
+			let count = parseInt($('.counter').attr('data-image-length'));
+			this.updatePhotoCounter(nextSlide, count);
+			return false;
 		});
 
-		// this.$vipGallery.find('.main-bgImg').on('click', (evt) => {
-		// 	evt.stopPropagation();
-		// 	evt.preventDefault();
-		// 	this.$vipGallery.find('.vip-gallery').clone().appendTo('#vipOverlay .vipOverlay-container');
-		// 	$('#vipOverlay .vipOverlay-container').not('.slick-initialized').slick(options.slickOptions);
-		// 	$('#vipOverlay').removeClass('hidden');
-		// });
+		$('.ZoomI').on('click doubleTap', (event) => {
+			event.stopPropagation();
+			event.preventDefault();
+			$('.ZoomI').addClass('hidden');
+			$('body').removeClass('hidden');
+		});
 
-	}
+		$(document).on('keyup', (evt) => {
+			switch (evt.keyCode) {
+				//escape key
+				case 27:
+				this._escapeFn();
+				break;
+				default:
+				break;
+			}
+		});
 
-	updateMainImage(event) {
-			let bgImg = $(event.target).context.style.backgroundImage;
-			this.$vipGallery.find('.main-bgImg').css('background-image', bgImg);
 	}
 
 	updatePhotoCounter(idx, count) {
+		if(idx > count) {
+			count = count + 1;
+			idx = idx - 1;
+			$('.counter .currentImg').html((idx)%count);
+			return false;
+		}
 		if(((idx + 1) % count) === 0) {
 			count = count+1;
 		}
-		this.$vipGallery.find('.counter .currentImg').html((idx+1)%count);
+		$('.counter .currentImg').html((idx+1)%count);
+
+	}
+
+	updateCarouselHeight() {
+		let fullImgHeight = $(window).height() - 90; //90 is the height of the white area with the text on the bottom
+		$('body').addClass('noScroll');
+		$('.container .slider-for').addClass('fullsize').css('height', fullImgHeight);
+	}
+
+	updateZoomImageHeight() {
+		let fullImgHeight = $(window).height() - 90; //90 is the height of the white area with the text on the bottom
+		$('body').addClass('noScroll');
+		$('.ZoomI').removeClass('hidden').addClass('fullsize').css('height', fullImgHeight);
+		$('.ZoomI img').css('height', fullImgHeight*2);
+	}
+
+	_noArrows(nextSlide) {
+		if($('.slick-next').length <= 0) {
+			let count = parseInt($('.counter').attr('data-image-length'));
+			this.updatePhotoCounter(nextSlide, count);
+			return false;
+		}
+	}
+
+	_escapeFn() {
+		if (!$('#vipOverlay').hasClass('hidden')) {
+			let slickIdx = $('#vipOverlay .slider-for .slick-current').attr('data-slick-index');
+			$('#vipOverlay').addClass('hidden');
+			$('body').removeClass('noScroll');
+			$('.container .slider-nav').slick('slickGoTo', slickIdx);
+			$('.container .slider-nav .slick-current').focus();
+		}
 	}
 
 }

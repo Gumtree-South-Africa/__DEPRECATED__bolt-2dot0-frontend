@@ -58,10 +58,5 @@ describe("Header V2", () => {
 
 		expect($hamburgerContents.hasClass("hamburger-open")).toBeTruthy();
 		expect($hamburgerContents.hasClass("hamburger-closed")).toBeFalsy();
-
-		$hamburgerIcon.click();
-
-		expect($hamburgerContents.hasClass("hamburger-open")).toBeFalsy();
-		expect($hamburgerContents.hasClass("hamburger-closed")).toBeTruthy();
 	});
 });

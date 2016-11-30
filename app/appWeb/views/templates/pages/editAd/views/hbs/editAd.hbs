@@ -19,6 +19,7 @@
 				<!--</div>-->
 				<div class="separator-div"></div>
                 {{> (dynamic "adStats") }}
+                {{#block "edit-adstats"}}{{/block}}
 			</div>
         {{/block}}
         {{> (dynamic "editAdFormMainDetails") }}
@@ -26,5 +27,6 @@
 
     {{> (dynamic "categorySelectionModal")}}
     {{> (dynamic "modal")}}
+    {{#block "default-maps"}}{{/block}}
     {{> (dynamic "spinnerModal")}}
 {{/partial}}

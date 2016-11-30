@@ -1068,8 +1068,6 @@
 	"smartbanner.free": "Free",
 	"smartbanner.install": "Download",
 	"smartbanner.open": "Open",
-	"smartbanner.interstitial.install": "DOWNLOAD IT NOW!",
-	"smartbanner.interstitial.continue-mobile": "or continue to the mobile site >",
 	"branchiosmartbanner.title": "Gumtree South Africa App",
 	"branchiosmartbanner.description": "Simple and easy to use. Fast to sale.",
 	"branchiosmartbanner.install": "Download",
@@ -1120,11 +1118,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "South Africa",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	"smartmobilebanner": {
-		"title": "Open App",
-		"mobilelink": "continue to mobile site >",
-		"branchiolink": "https://go.gumt.io/open"
-	},
     "welcomescreen": {
 		"title": "Welcome!",
 		"description": "Earn money now!",
@@ -1179,6 +1172,42 @@
 		},
 		"gallery" : {
 			"cardTitle": "Homepage gallery ads"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Try other images",
+					"message": "There is a problem with your image dimension"
+				},
+				"invalidSize": {
+					"title": "Try other images",
+					"message": "There is a problem with your image size"
+				},
+				"invalidType": {
+					"title": "Try other images",
+					"message": "There is a problem with your image type"
+				},
+				"colorspace": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				},
+				"firewall": {
+					"title": "Try again",
+					"message": "There is a problem with your network"
+				},
+				"picturesrv": {
+					"title": "Try again",
+					"message": "There is a problem uploading your image"
+				},
+				"corrupt": {
+					"title": "Try other images",
+					"message": "There is a problem with your image"
+				},
+				"unknown": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				}
+			}
 		}
 	},
 	"header": {
@@ -1264,6 +1293,7 @@
 		"placeholderText": "Type a location",
 		"locationAutoDesktop": "According to our system, this is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
@@ -1275,8 +1305,8 @@
 	},
 	"recentactivity": {
 		"message": {
-			"listing": "%s acaba de poner en venta %s %s",
-			"sold": "%s acaba de vender %s %s"
+			"listing": "%s just listed %s %s",
+			"sold": "%s just sold %s %s"
 		}
 	},
 	"gpsMap": {
@@ -1287,8 +1317,10 @@
 		"button": "Post FREE Ad"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Free Classifieds on Gumtree South Africa",
+			"tips": "It's easy, just upload a photo. You can add more photos and edit the details later.",
 			"desc": "Come to Gumtree South Africa, your local online classifieds site with undefined live classified listings. List free classifieds ads or buy and sell what you want for free!"
 		},
 		"confirm": {
@@ -1342,6 +1374,10 @@
 			"message": "This file contains an unsupported media type.",
 			"uploadBtn": "Upload a different photo",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Done",
+			"changePhoto": "Change Photo"
 		}
 	},
 	"footer": {
@@ -1438,6 +1474,8 @@
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",
 				"price": "Price",
 				"description": "Description",
@@ -1516,6 +1554,28 @@
 			"emailVerified": "Email Verified",
 			"adsPosted": "ADS POSTED",
 			"adsActive": "ACTIVE"
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "The message is required",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Your email is required",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
 		}
 	}
 }

@@ -300,11 +300,12 @@ $mobileTextboxWidth: 84%;
 				width: 100%;
 				border: 1px solid $searchBarTextBoxBorder;
 				height: 100%;
-
+				white-space: nowrap;
 				.location-text {
 					margin: 0;
 					max-width: 7em;
 				}
+
 			}
 
 			.loc-arrow-icon {

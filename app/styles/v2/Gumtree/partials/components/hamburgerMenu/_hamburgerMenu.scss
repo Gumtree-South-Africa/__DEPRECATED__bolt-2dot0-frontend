@@ -1,0 +1,75 @@
+.browse-categories {
+	.category-name {
+		a{color: $headerTextColor }
+		a:hover {
+			color: $searchBarButtonMouseOverColor;
+		}
+	}
+}
+
+.hamburger-contents {
+	font-family: $bodyFont;
+	padding: 10px;
+
+	&.hamburger-open {
+		min-width: 260px;
+	}
+}
+
+.menu-container {
+	margin: 0;
+	width: auto;
+
+	.js-post-button {
+		.btn {
+			line-height: 45.5px;
+			padding: 0 !important;
+
+			&:focus {
+				outline: none;
+			}
+		}
+	}
+
+	.profile-information {
+		.profile-dropdown {
+			padding: 0;
+
+			.btn-wrapper {
+				margin-top: 10px;
+
+				.btn {
+					padding: 0;
+				}
+			}
+		}
+
+		.profile-item {
+			.item-icon {
+				&.icon-my-ads-active {
+					background-position: 0% 56%;
+					background-size: 197px;
+				}
+
+				&.icon-favorites {
+					background-size: 2650%;
+				}
+			}
+
+			.link-item {
+				color: $headerTextColor;
+				font-weight: 100!important;
+				&:hover {
+					color: $searchBarButtonColor;
+				}
+			}
+		}
+	}
+
+	.profile-welcome-text {
+		display: block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		color: $headerTextColor;
+	}
+}

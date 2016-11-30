@@ -7,12 +7,18 @@ let cwd = process.cwd();
 let ModelBuilder = require(process.cwd() + '/app/builders/common/ModelBuilder');
 let cors = require(cwd + '/modules/cors');
 
+let editAdErrorParser = require(`${cwd}/app/utils/EditAdErrorParser.js`);
 let validator = require('is-my-json-valid');
 let schemaPostAd = require(cwd + '/app/appWeb/jsonSchemas/postAdRequest-schema.json');
 let UserModel = require(cwd + '/app/builders/common/UserModel.js');
 let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
+let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let logger = require(`${cwd}/server/utils/logger`);
+
+let VerticalCategoryUtil = require(`${cwd}/app/utils/VerticalCategoryUtil.js`);
+let BapiError = require(`${cwd}/server/services/bapi/BapiError.js`);
+let Q = require('q');
 
 
 
@@ -26,7 +32,6 @@ let getNotLoggedInResponsePromise = (model, machguidCookie, requestJson) => {
 
 	// store the requestJson ads in backend (deferred ad creation)
 	let draftAdModel = new DraftAdModel(model.bapiHeaders);
-
 	return draftAdModel.saveDraft(guid, requestJson).then(() => {
 		// the result is unused, it contains the guid we passed in
 		// Note: we don't know the user's identity, so it is possible someone could hijack this deferred ad using the guid
@@ -53,11 +58,19 @@ let forceUserToLogin = (model, machguidCookie, requestJson, res) => {
 		res.send(response);
 		return;
 	}).fail((e) => {
-		console.error(`getNotLoggedInResponsePromise failure ${e.message}`);
-		res.status(500).send();
+		let errInfoObj;
+		if (e && e.bapiJson) {
+			errInfoObj = editAdErrorParser.parseErrors(e.bapiJson.details);
+		}
+		let bapiInfo = logger.logError(e);
+		// Save draft has failed
+		res.status(e.getStatusCode(500)).send({
+			error: "Save draft and get login reponse failed, see logs for details",
+			bapiJson: bapiInfo,
+			bapiValidationFields: errInfoObj
+		});
 		return;
 	});
-	return;
 };
 
 let getAdPostedResponse = (results) => {
@@ -68,13 +81,12 @@ let getAdPostedResponse = (results) => {
 
 	response.ad = {
 		id: results.id,
-		vipLink: results.vipLink,
+		redirectLinks: results.redirectLinks,
 		status: results.adState
 	};
 
 	return response;
 };
-
 
 /**
  * route is /api/post/create
@@ -135,57 +147,116 @@ router.post('/create', cors, (req, res) => {
 	let postAdModel = new PostAdModel(model.bapiHeaders);
 	let userModel = new UserModel(model.bapiHeaders);
 
-	// Step 5: Check if user has logged in
-	//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
-	if (!authenticationCookie) {
-		forceUserToLogin(model, machguidCookie, requestJson, res);
-		return;
+	// Step 5: Validate against vertical category
+	let ads = requestJson.ads;
+	let verticalCategoryValidationPromise;
+	if (ads) {
+		verticalCategoryValidationPromise =
+			Q.all(ads.map(ad => VerticalCategoryUtil.verticalCategoryValidate(
+				ad, res.locals.config.categoryAllData,
+				res.locals.config.bapiConfigData.content.verticalCategories,
+				model.bapiHeaders))).then(errorsArray => {
+				let allErrors = [];
+				errorsArray.forEach(errors => {
+					if (errors && errors.length) {
+						allErrors = allErrors.concat(errors);
+					}
+				});
+				if (allErrors && allErrors.length) {
+					throw new BapiError('Vertical category validation failed', {
+						statusCode: 400,
+						bapiJson: {
+							statusCode: 400,
+							message: "Validation Errors",
+							details: allErrors
+						}
+					});
+				}
+
+			});
+	} else {
+		verticalCategoryValidationPromise = Q.resolve(null);
 	}
 
-	// Step 6: Validate authentication cookie is still good
-	userModel.getUserFromCookie().then( () => {
-		// user cookie checks out fine, go ahead and post the ad...
-
-		// Step 7: Post The Ad
-		postAdModel.postAd(requestJson).then((adResults) => {
-			let responseJson = getAdPostedResponse(adResults);
-
-			// redirect to VIP by default
-			let redirectLink = postAdModel.fixupVipUrl(responseJson.ad.vipLink);
-
-			// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
-			if (responseJson.ad.status === 'HOLD') {
-				redirectLink = '/edit/' + responseJson.ad.id;
-			}
-
-			responseJson.ad.redirectLink = redirectLink;
-			res.send(responseJson);
-			return;
-		}).fail((error) => {
-			let bapiInfo = logger.logError(error);
-			// post ad has failed
-			res.status(error.getStatusCode(500)).send({
-				error: "postAd failed, see logs for details",
-				bapiJson: bapiInfo
-			});
-			return;
+	let bapiErrorHandler = (error) => {
+		let errInfoObj;
+		if (error && error.bapiJson) {
+			errInfoObj = editAdErrorParser.parseErrors(error.bapiJson.details);
+		}
+		let bapiInfo = logger.logError(error);
+		// post ad has failed
+		res.status(error.getStatusCode(500)).send({
+			error: "postAd failed, see logs for details",
+			bapiJson: bapiInfo,
+			bapiValidationFields: errInfoObj
 		});
+		return;
+	};
 
-	}).fail((error) => {
-		if (error.statusCode && error.statusCode === 404) {
+	verticalCategoryValidationPromise.then(() => {
+		// Step 6: Check if user has logged in
+		//         If not logged in, save the ad in draft and force user to register / login via bolt / login via facebook
+		if (!authenticationCookie) {
 			forceUserToLogin(model, machguidCookie, requestJson, res);
 			return;
 		}
 
-		// user call has failed
-		console.error(`userService.getUserFromCookie failure ${error}`);
-		res.status(500).send({
-			error: "unable to validate user, see logs for details"
+
+		// Step 7: Validate authentication cookie is still good
+		userModel.getUserFromCookie().then( () => {
+			// user cookie checks out fine, go ahead and post the ad...
+
+
+			// Step 8: Post The Ad
+			postAdModel.postAd(requestJson).then((adResults) => {
+				let responseJson = getAdPostedResponse(adResults);
+				res.send(responseJson);
+				return;
+			}).fail(bapiErrorHandler);
+
+		}).fail((error) => {
+			if (error.statusCode && error.statusCode === 404) {
+				forceUserToLogin(model, machguidCookie, requestJson, res);
+				return;
+			}
+
+			// user call has failed
+			console.error(`userService.getUserFromCookie failure ${error}`);
+			res.status(500).send({
+				error: "unable to validate user, see logs for details"
+			});
+			return;
 		});
-		return;
-	});
+	}, bapiErrorHandler);
 
 });
 
+router.get('/customattributes/:categoryId', cors, (req, res) => {
+	let modelBuilder = new ModelBuilder();
+	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
+
+	let verticalCategory = VerticalCategoryUtil.getVerticalCategory(
+		Number(req.params.categoryId), res.locals.config.categoryAllData,
+		res.locals.config.bapiConfigData.content.verticalCategories);
+
+	if (!verticalCategory) {
+		return res.json({});  // Only for vertical categories post support customer attributes
+	}
+
+	let attributeModel = new AttributeModel(model.bapiHeaders);
+
+	attributeModel.getAllAttributes(req.params.categoryId).then((attributeData) => {
+		let processedCustomAttributesList = attributeModel.processCustomAttributesList(attributeData);
+		processedCustomAttributesList.verticalCategory = verticalCategory;
+		res.json(processedCustomAttributesList);
+	}).fail((err) => {
+		let bapiJson = logger.logError(err);
+		console.warn('getAllAttributes failed for categoryId: ' + req.params.categoryId + `, error: ${err}`);
+		return res.status(err.getStatusCode(500)).json({
+			error: "customattributes failed",
+			bapiJson: bapiJson
+		});
+	});
+});
 
 module.exports = router;

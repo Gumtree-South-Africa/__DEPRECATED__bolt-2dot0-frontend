@@ -44,6 +44,26 @@ let onReady = () => {
 	deepLink.initialize();
 };
 
+/**
+ * Header
+ *
+ * - Properties:
+ *   - hamburgerMenu
+ */
+class Header {
+	constructor() {
+	}
+
+	/**
+	 * Lifecycle callback which will be called when component has been loaded
+	 * @param domElement The jquery object for the root element of this component
+	 */
+	componentDidMount(/*domElement*/) {
+		// As hamburger menu is still a singleton, will initialize field here
+		this.hamburgerMenu = hamburgerMenu.viewModel;
+	}
+}
+
 // Note about registerOnReady - for tests only, call: .initialize(false) then invoke .onReady()
 let initialize = (registerOnReady = true) => {
 
@@ -67,5 +87,6 @@ let initialize = (registerOnReady = true) => {
 
 module.exports = {
 	onReady,
-	initialize
+	initialize,
+	Header
 };
