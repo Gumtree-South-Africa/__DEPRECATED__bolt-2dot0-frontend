@@ -118,6 +118,7 @@ class PostAd {
 		this.photoContainer.addImageUrlsChangeHandler(() => {
 			this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
 		});
+		this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {

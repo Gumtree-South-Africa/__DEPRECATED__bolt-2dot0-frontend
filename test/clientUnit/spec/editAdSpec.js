@@ -105,7 +105,7 @@ describe('Edit Ad', () => {
 			let $testArea = specHelper.setupTest("postFormCustomAttributes", editPageModel, "es_MX");
 			let newCatId = 64;
 
-			specHelper.registerMockAjax(`/api/postad/customattributes/${newCatId}`, customAttributeAjaxResponse);
+			specHelper.registerMockAjax(`/api/edit/customattributes/${newCatId}`, customAttributeAjaxResponse);
 
 			let postFormCustomAttributesController = new PostFormCustomAttributesController();
 			postFormCustomAttributesController.componentDidMount($testArea);
