@@ -1549,7 +1549,16 @@
 			"category": "CATEGORY",
 			"location": "LOCATION",
 			"updated": "UPDATED",
-			"postedby": "POSTED BY"
+			"postedby": "POSTED BY",
+			"expiredMessage": "This ad is no longer active.",
+			"pendingMessage": "This ad is pending approval. Ads may require a 24 hour period for customer review. Check your email details.",
+			"blockedMessage": "This ad is blocked.",
+			"deletedMessage": "This ad has been deleted.",
+			"activeStatus": "Active",
+			"activateNow": "Activate now",
+			"learnMore": "Learn More",
+			"deletedStatus": "Post FREE ad",
+			"statusReason": "Read our Terms and Conditions"
 		},
 		"seller": {
 			"emailVerified": "Email Verified",
