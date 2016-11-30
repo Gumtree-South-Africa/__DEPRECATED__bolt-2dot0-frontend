@@ -14,6 +14,9 @@ class EditAdErrorParser {
 
 	parseErrors(errors) {
 		let returnObj = [];
+		if (!errors) {
+			return returnObj;
+		}
 
 		errors.forEach((err) => {
 			let parsedVal = this.parseError(err.message);

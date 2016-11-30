@@ -127,6 +127,7 @@ class PostAd {
 		});
 		this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
 		this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
+		this.postAdFormMainDetails.postFormCustomAttributes.loadBaseUrl = '/api/postad/customattributes/';
 
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
 		this.requestLocationFromBrowser();

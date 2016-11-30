@@ -14,6 +14,8 @@ function initializeClientHbsIfNot() {
 	}
 }
 
+const DEFAULT_LOAD_BASE_URL = '/api/edit/customattributes/';
+
 /**
  * A form to fill in custom attributes.
  *
@@ -22,7 +24,9 @@ function initializeClientHbsIfNot() {
  *
  * - Properties:
  *   - categoryId
- *   - customAttributeMetadata, the metadata returned from /api/postad/customattributes/:categoryId
+ *   - loadBaseUrl, base url to load custom attribute metadata. This is because metadata of same category
+ *     from different URL can be different (for example, metadata for non-vertical category will be empty)
+ *   - customAttributeMetadata, the metadata returned from <loadBaseUrl>/:categoryId
  */
 class PostFormCustomAttributes {
 	constructor() {
@@ -32,6 +36,8 @@ class PostFormCustomAttributes {
 
 		this._categoryId = 0;
 		this._customAttributeMetadata = null;
+
+		this.loadBaseUrl = '';
 	}
 
 	/**
@@ -47,7 +53,7 @@ class PostFormCustomAttributes {
 			}
 
 			$.ajax({
-				url: `/api/postad/customattributes/${newValue}`,
+				url: (this.loadBaseUrl || DEFAULT_LOAD_BASE_URL) + newValue,
 				method: "GET",
 				contentType: "application/json",
 				success: (customAttrData) => {
