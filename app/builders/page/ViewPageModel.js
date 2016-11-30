@@ -148,7 +148,7 @@ class ViewPageModel {
 		modelData.footer = data.common.footer || {};
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
 		modelData.seo = data['seo'] || {};
-
+		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
