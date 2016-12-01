@@ -112,6 +112,10 @@ class NoUIImageUploader {
 			if (!urlObj) {
 				throw this._extractClientError(response, fileName);
 			}
+			urlObj.normal = this._transformEpsUrl(urlObj.normal);
+			if (urlObj.normal.toLowerCase().indexOf("https") < 0) {
+				urlObj.normal = urlObj.normal.replace('http', 'https');
+			}
 			this.imageDidUpload.trigger(null, urlObj);
 		}).catch((err) => {
 			if (!err.errorCode) {
@@ -137,6 +141,12 @@ class NoUIImageUploader {
 			errorCode: EpsUploadModule.getClientErrorCode(serverError),
 			fileName: fileName
 		};
+	}
+
+	//this needs to be removed when HTTPS for EPS gets a certificate
+	_transformEpsUrl(url) {
+		let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+		return newUrl;
 	}
 }
 
