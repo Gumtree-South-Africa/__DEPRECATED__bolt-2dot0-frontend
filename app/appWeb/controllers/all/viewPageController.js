@@ -53,6 +53,11 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
+	// Remove any extra query parameters from adId
+	if (adId.lastIndexOf('?') !== -1) {
+		adId = adId.substring(0, adId.lastIndexOf('?'));
+	}
+
 	// If not 2.0 context, then redirect to 1.0 VIP
 	if (!pageControllerUtil.is2dot0Version(res)) {
 		let redirectUrl = '';
