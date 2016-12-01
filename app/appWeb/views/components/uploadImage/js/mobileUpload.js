@@ -164,6 +164,12 @@ class MobileUpload {
 				return;
 			}
 			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+			if (url.normal) {
+				url.normal = this._transformEpsUrl(url.normal);
+				if (url.normal.toLowerCase().indexOf("https") < 0) {
+					url.normal = url.normal.replace('http', 'https');
+				}
+			}
 			this.handleImageUrlChanged(url.normal);
 		};
 
@@ -186,6 +192,12 @@ class MobileUpload {
 			this.uploadPhotoText.addClass('hidden');
 			this.imageHolder.css("background-image", `url("${this.viewModel.imageUrl}")`);
 		}
+	}
+
+	//this needs to be removed when HTTPS for EPS gets a certificate
+	_transformEpsUrl(url) {
+		let newUrl = url.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
+		return newUrl;
 	}
 
 	handleImageUrlChanged(url) {
