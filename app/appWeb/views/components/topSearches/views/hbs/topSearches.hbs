@@ -6,14 +6,19 @@
 		.nonJsOnlyInline {display:inline !important;}
 	</style>
 </noscript>
-
-<div class="tab-content searches-wrapper">
+{{#each this.topSearches}}
+<div class="tab-content searches-wrapper container-width-{{this.total}}">
     <div class="top-searches">
-		<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n "home.popular.searches"}}</span></div>
-		<div class="jsOnly top-locations-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span></div>
+		{{#each this.menuTitles}}
+			{{#compare @../index "==" @index}}
+				<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this}}</span></div>
+			{{else}}
+				<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
+			{{/compare}}
+		{{/each}}
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
-        {{#each this.topSearches}}
+				{{#each this.keywords}}
             {{#compare @index "<=" 5}}
                 <div class="nonJsOnlyInline top-content">
                     <a class="top-links" href="{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
@@ -26,8 +31,11 @@
             {{/compare}}
         {{/each}}
 		</div>
+		{{#compare this.keywords.length ">" 7}}
 		<div class="jsOnly view-more-searches"
             data-view-less="{{i18n "footer.topSearches.viewLess"}}"
             data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
+		{{/compare}}
     </div>
 </div>
+{{/each}}
