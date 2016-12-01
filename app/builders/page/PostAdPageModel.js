@@ -54,6 +54,7 @@ class PostAdPageModel {
 			// Converts the data from an array format to a JSON format
 			// for easy access from the client/controller
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
+			
 			return this.mapData(abstractPageModel.getBaseModelData(data), data);
 		}).fail((err) => {
 			console.error(err);

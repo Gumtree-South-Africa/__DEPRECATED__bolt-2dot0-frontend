@@ -122,4 +122,9 @@
             {{> (dynamic "searchbarV2") }}
         {{/if}}
     {{/unless}}
+
+    {{#if this.header.postAdHeader}}
+      {{> (dynamic "postAdHeader") titleKey=this.advert.description backKey="postAd.back" backUrl=this.backUrl }}
+    {{/if}}
+
 </div>

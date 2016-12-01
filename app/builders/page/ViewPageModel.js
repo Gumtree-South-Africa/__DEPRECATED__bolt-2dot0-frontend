@@ -33,13 +33,14 @@ class ViewPageModel {
 
 		let modelBuilder = new ModelBuilder(this.getViewPageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
-
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
+			this.modelData.header.postAdHeader = true;
+			this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
