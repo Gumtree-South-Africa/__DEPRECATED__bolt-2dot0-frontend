@@ -111,6 +111,8 @@ class PostAdPageModel {
 			if (modelData.adResult.pictures && modelData.adResult.pictures.sizeUrls.length === 1) {
 				modelData.initialImage = modelData.adResult.pictures.sizeUrls[0].LARGE;
 			}
+		} else {
+			modelData.shouldDefaultPrice = true;
 		}
 
 		return modelData;

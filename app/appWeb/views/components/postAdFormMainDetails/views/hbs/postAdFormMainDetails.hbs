@@ -23,29 +23,31 @@
 			<div class="input-wrapper">
 				<input title="{{i18n "postAd.mainDetails.amount"}}" type="text" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
-					<!-- TODO Update to use localCurrencies by combining logic in editAdFormMainDetails and in postAdForm -->
-					<label class="control">
-						<input type="radio" name="currency" value="MXN"
-						{{#if this.adResult}}
-						    {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}
-						{{else}}
-						    checked="checked"
-						{{/if}}/>
-						<div class="outer-circle">
-							<div class="inner-circle"></div>
-						</div>
-						<span class="currency-type">MXN</span>
-					</label>
-					<label class="control">
-						<input type="radio" name="currency" value="USD"
-						{{#if this.adResult}}
-						    {{#ifeq this.adResult.price.currency compare='USD'}}checked="checked"{{/ifeq}}
-						{{/if}}/>
-						<div class="outer-circle">
-							<div class="inner-circle"></div>
-						</div>
-						<span class="currency-type">USD</span>
-					</label>
+					{{#each this.localCurrencies}}
+						<label class="control">
+							<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}}/>
+							<div class="outer-circle">
+								<div class="inner-circle"></div>
+							</div>
+							<span class="currency-type">{{this}}</span>
+						</label>
+					{{/each}}
+					<!--
+                    <label class="control">
+                        <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">MXN</span>
+                    </label>
+                    <label class="control">
+                        <input type="radio" name="currency" value="USD" {{#ifeq this.adResult.price.currency compare='USD'}}checked="checked"{{/ifeq}}/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">USD</span>
+                    </label>
+                    -->
 				</div>
 			</div>
 		</div>
