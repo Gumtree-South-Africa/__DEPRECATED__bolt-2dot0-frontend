@@ -290,6 +290,8 @@ class ViewPageModel {
 					data.locationDisplayHref = data.locationPath[data.locationPath.length-1].href;
 				}
 
+				//replyform node
+
 				// Category
 				let categoryElt = data._links.find( (elt) => {
 					return elt.rel === "category";
