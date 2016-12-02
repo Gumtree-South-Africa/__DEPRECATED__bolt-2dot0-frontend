@@ -59,6 +59,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.eps = EpsModel();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 
+		modelData.isNewHP = true;
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {
 		console.error(err);
