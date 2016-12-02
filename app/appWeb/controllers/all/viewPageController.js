@@ -95,7 +95,17 @@ router.get('/:id?', (req, res, next) => {
 
 		modelData.redirectUrl = redirectUrl;
 
+
+		//Redirect validation status of advert
+		if (modelData.advert.status === 'deleted') {
+			console.log('deleted ad.. redirecting', modelData.advert);
+			res.redirect('/');
+			return;
+		}
+
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
+
+
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);
