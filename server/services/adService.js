@@ -116,7 +116,8 @@ class AdService {
 		if (locale === 'es_MX') {
 			locale='es_MX_VNS';
 		}
-		let queryEndpoint = '/rui-api/page/reply/model/' + locale;
+
+		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
 
 		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
 			method: 'POST',

@@ -36,6 +36,45 @@
 			"categorySuggest": "/v1/categories/action/suggestion?"
 		}
 	},
+	"RUI": {
+		"server": {
+			"host": "localhost",
+			"port": 80,
+			"parameters": null,
+			"timeout": 2000
+		},
+		"endpoints": {
+			"replyForm"			: 	"/rui-api/page/reply/model/",
+			"categoryHomePage"	:	"/v1/categories",
+			"locationHomePage"	:	"/v1/locations",
+			"topLocationsL2"	:	"/v1/locations/top/L2",
+			"userFromCookie" 	:	"/v1/users/logged-in-user-info",
+			"topKeywords" 		:	"/v1/keywords/top",
+			"trendingKeywords" 	:	"/v1/keywords/trending",
+			"suggestedKeywords" : 	"/v1/keywords/suggestions",
+			"relatedKeywords" 	: 	"/v1/keywords/related",
+			"homepageGallery" 	:	"/v1/ads/gallery",
+			"adStatistics" 		: 	"/v1/ads/statistics",
+			"configService"		:	"/v1/configs/nodeapp/settings.json",
+			"updateConfig"		:	"/v1/configs/nodeapp/settings",
+			"ads"				:	"/v1/ads",
+			"recentActivities"  :	"/v1/ads/activities/recent",
+			"trendingSearch"	: 	"/v1/ads/trending",
+			"draftAd"			:	"/v1/ads/drafts",
+			"availableFlagsAd"	:	"/v1/ads/flags",
+			"favoriteAd"		:	"/v1/ads/{id}/favorites",
+			"specificAd"		:	"/v1/ads/{id}",
+			"categoryAttributes":	"/v1/categories/{catId}/attributes",
+			"authBoltLogin"		:	"/v1/users/actions/login-with-bolt",
+			"authFbLogin"		:	"/v1/users/actions/login-with-facebook",
+			"authRegister"		:	"/v1/users",
+			"authActivate"		:	"/v1/users/{email}/actions/activate",
+			"authEmailExists"	:	"/v1/users/email/{email}",
+			"authPhoneExists"	:	"/v1/users/phone/{phone}",
+			"adFeatures"        :   "/v1/features?",
+			"categorySuggest"   :   "/v1/categories/action/suggestion?"
+		}
+	},
 	"solr": {
 		"server": {
 			"host": "solrvip.phx.ops.prod.bt.ecg.so",
