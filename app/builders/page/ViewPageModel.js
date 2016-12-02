@@ -189,6 +189,7 @@ class ViewPageModel {
 				});
 
 				// Basic Data for Ad Display
+				//please delete the attribute STATUS
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
