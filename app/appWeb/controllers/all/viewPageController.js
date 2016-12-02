@@ -12,7 +12,7 @@ let extendModelData = (req, modelData) => {
 	modelData.header.pageTitle = modelData.seo.pageTitle;
 	modelData.header.metaDescription = modelData.seo.description;
 	modelData.header.metaRobots = modelData.seo.robots;
-	modelData.header.canonical = modelData.header.homePageUrl;
+	modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
 	// CSS
 	if (modelData.header.min) {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
@@ -42,7 +42,6 @@ router.get('/:id?', (req, res, next) => {
 	req.app.locals.isSeoUrl = false;
 	if(adId === undefined) {
 		// Parse adId from SEO URL
-		// Example of view seo url: /v-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+11+16-00-31-37-716/1001104219250910700294009
 		adId = req.originalUrl.substring(req.originalUrl.lastIndexOf('/') + 1);
 		req.app.locals.isSeoUrl = true;
 	}
@@ -51,6 +50,11 @@ router.get('/:id?', (req, res, next) => {
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
+	}
+
+	// Remove any extra query parameters from adId
+	if (adId.lastIndexOf('?') !== -1) {
+		adId = adId.substring(0, adId.lastIndexOf('?'));
 	}
 
 	// If not 2.0 context, then redirect to 1.0 VIP
@@ -70,15 +74,14 @@ router.get('/:id?', (req, res, next) => {
 	let redirectUrl = req.query.redirect;
 
 	viewPageModel.populateData().then((modelData) => {
-		// // TODO: Check if seoVipUrl matches the originalUrl if the seoURL came in. If it doesnt, redirect to the correct seoVipUrl
-		// if (this.req.app.locals.isSeoUrl === true) {
-		// 	let originalSeoUrl = this.req.originalUrl;
-		// 	let dataSeoVipUrl = modelData.advert.seoVipUrl;
-		// 	if (originalSeoUrl !== dataSeoVipUrl) {
-		// 		res.redirect(dataSeoVipUrl);
-		// 		return;
-		// 	}
-		// }
+		if (req.app.locals.isSeoUrl === true) {
+			let originalSeoUrl = req.originalUrl;
+			let dataSeoVipUrl = modelData.advert.seoVipUrl.replace('a-', 'v-');
+			if (originalSeoUrl !== dataSeoVipUrl) {
+				res.redirect(dataSeoVipUrl);
+				return;
+			}
+		}
 
 		extendModelData(req, modelData);
 		modelData.adId = adId;
