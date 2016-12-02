@@ -1552,11 +1552,14 @@
 			"pendingMessage": "Este anuncio está en proceso de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Por favor, revisa tu correo electrónico.",
 			"blockedMessage": "Este anuncio ha sido bloqueado.",
 			"deletedMessage": "Este anuncio ha sido eliminado.",
-			"activeStatus": "Activar",
+			"postAdMessage": "Publica un anuncio gratis",
 			"activateNow": "Activar ahora",
 			"learnMore": "Saber más",
-			"deletedStatus": "Publicar un anuncio gratis",
-			"statusReason": "Leer nuestros Términos y Condiciones"
+			"statusReason": "Leer nuestros Términos y Condiciones",
+			"activateNowURL": "#",
+			"learnMoreURL": "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios/?q=aprobación&l=es&fs=Search&pn=1&vgroup1=PKB&c=PKB%3A&s=a000G00000POyaTQAT",
+			"postURL": "https://www.vivanuncios.com.mx/post",
+			"reasonURL": "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios/?q=aprobación&l=es&fs=Search&pn=1&vgroup1=PKB&c=PKB%3A&s=a000G00000POyaTQAT"
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
