@@ -2,10 +2,10 @@
     {{> (dynamic "modal")}}
 
     {{> (dynamic "topBanner")}}
-    
-    
-    {{> (dynamic "statusBanner") }}
 
+    <div class="status-ad-banner-mobile">
+      {{> (dynamic "statusBanner") }}
+    </div>
 
     <div class="vip-left-columns">
         <div id="viewPage">
@@ -25,6 +25,9 @@
     </div>
 
     <div class="vip-right-columns">
+        <div class="status-ad-banner-desktop">
+          {{> (dynamic "statusBanner") }}
+        </div>
         <div class="seller-profile">
             {{> (dynamic "sellerProfile")}}
         </div>
