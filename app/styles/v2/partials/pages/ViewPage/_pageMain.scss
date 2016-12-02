@@ -59,3 +59,21 @@
 		margin-right: 0;
 	}
 }
+
+@include from-breakpoint($small-break, $lt-ie9-class-name){
+	.status-ad-banner-mobile{
+		display:none;
+	}
+	.status-ad-banner-desktop{
+		display:block;
+	}
+}
+
+@include to-breakpoint($small-break, $lt-ie9-class-name){
+	.status-ad-banner-mobile{
+		display:block;
+	}
+	.status-ad-banner-desktop{
+		display:none;
+	}
+}
