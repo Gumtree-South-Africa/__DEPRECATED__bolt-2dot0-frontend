@@ -2,6 +2,7 @@
 
 let config = require('config');
 let bapiOptionsModel = require('./bapi/bapiOptionsModel');
+let ruiOptionsModel = require('.rui/ruiOptionsModel');
 let bapiService      = require('./bapi/bapiService');
 
 class AdService {
@@ -119,7 +120,7 @@ class AdService {
 
 		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
 
-		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: queryEndpoint,
 		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
