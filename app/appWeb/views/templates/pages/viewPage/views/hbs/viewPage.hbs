@@ -40,6 +40,22 @@
 
     {{> (dynamic "bottomBanner")}}
 
+
+    <div class="content-ad-tabs">
+    	<div class="adTabs">
+    		<ul>
+    			<li class="active"><span>Related</span></li>
+    			<li><span>Seller's Other Ads</span></li>
+    		</ul>
+    	</div>
+    	<div class="content-ads">
+    		{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.similars}}
+    	</div>
+      <div class="content-ads">
+    		{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.similars}}
+    	</div>
+    </div>
+
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal")}}
     {{/partial}}

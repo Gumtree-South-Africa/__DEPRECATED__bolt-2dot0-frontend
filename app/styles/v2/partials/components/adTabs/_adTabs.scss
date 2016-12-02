@@ -1,0 +1,40 @@
+.content-ad-tabs {
+  background-color: #F7F7F7; // VIVA
+  padding-bottom: 50px;
+  .adTabs {
+    display: table;
+  	margin: 0 auto;
+    ul {
+      max-width: 696px;
+    	list-style: none;
+    	padding: 20px 50px 12px 50px;
+      border-bottom: 1px solid #1E98D5; //VIVA
+      li {
+        display: inline;
+        padding: 12px;
+        color: #1E98D5; //VIVA
+        &.active {
+          border-bottom: 3px solid #1E98D5; //VIVA
+        }
+      }
+    }
+  }
+  & > .content-ads {
+      display: block;
+    & ~ .content-ads {
+      display: none;
+    }
+  }
+  .content-ads {
+    max-width: 920px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: 190px;
+    margin-top: 20px;
+    .tile-item {
+      width: 140px;
+      height: 180px;
+      padding-right: 15px;
+    }
+  }
+}
