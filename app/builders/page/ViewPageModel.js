@@ -19,6 +19,7 @@ class ViewPageModel {
 		this.res = res;
 		this.adId = adId;
 
+		this.prodEpsMode = this.req.app.locals.prodEpsMode;
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
@@ -213,11 +214,11 @@ class ViewPageModel {
 				// Manipulate Ad Data
 
 				// // TODO: Get seoVipUrl
-				// 	let seoVipElt = data._links.find((elt) => {
-				// 		return elt.rel === "seoVipUrl";
-				// 	});
-				// 	let dataSeoVipUrl = seoVipElt.href;
-				// data.seoVipUrl = dataSeoVipUrl;
+				let seoVipElt = data._links.find((elt) => {
+					return elt.rel === "seoVipUrl";
+				});
+				let dataSeoVipUrl = seoVipElt.href;
+				data.seoVipUrl = dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -229,11 +230,15 @@ class ViewPageModel {
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
 					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
-						let pic = picture['LARGE'];
-						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						let picUrl = picture['LARGE'];
+						if (!this.prodEpsMode) {
+							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+						}
+
+						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
 
@@ -242,6 +247,9 @@ class ViewPageModel {
 					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
 						if (profilePicture.size === 'LARGE') {
 							let picUrl = profilePicture.url;
+							if (!this.prodEpsMode) {
+								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+							}
 							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
 							data.sellerDetails.publicDetails.displayPicture = picUrl;
 						}
