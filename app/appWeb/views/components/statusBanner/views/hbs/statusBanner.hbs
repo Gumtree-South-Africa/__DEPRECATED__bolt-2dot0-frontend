@@ -1,9 +1,9 @@
 {{!-- active, expired, pending, blocked, deleted --}}
-{{#compare this.advert.status "!==" 'expired'}}
+{{#compare this.advert.status "===" 'expired'}}
   <div class="status-ad-banner">
     <span class="alert-icon"></span>
     <span>{{i18n "vip.details.expiredMessage"}}</span>
-    {{#compare this.header.id "!==" this.advert.sellerDetails.id}}
+    {{#compare this.header.id "===" this.advert.sellerDetails.id}}
       <a href="{{i18n 'vip.details.activateNowURL'}}">{{i18n "vip.details.activateNow"}}</a>
     {{/compare}}
   </div>
