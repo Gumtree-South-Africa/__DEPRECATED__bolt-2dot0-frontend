@@ -1581,7 +1581,15 @@
 			"showPhone": "Show phone",
 			"sendACopy": "Send a copy to my email",
 			"send": "Send",
-			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+			"canned": {
+				"imInterested": "Me interesa. Por favor contáctame.",
+				"isItStillAvailable": "¿Aún está disponible?",
+				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
+				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?",
+				"messagePlaceholder": "Escribe aquí..."
+			}
 		}
 	},
 	"search": {

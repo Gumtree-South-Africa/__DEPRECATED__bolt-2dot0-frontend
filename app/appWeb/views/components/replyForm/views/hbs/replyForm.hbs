@@ -25,6 +25,9 @@
                     <input class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
                     <div class="viva-labels">{{i18n "vip.reply.phone"}}</div>
                     <input class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" >
+                {{else}}
+                    <input class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
+                    <input class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
                 {{/unless}}
                 <div class="send-message-container"><input class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">

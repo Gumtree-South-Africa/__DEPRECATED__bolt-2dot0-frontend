@@ -110,6 +110,19 @@ class AdService {
 			path: queryEndpoint,
 		}), bapiHeaderValues, {}, 'adService$unfavoriteAd');
 	}
+
+	replyAd(bapiHeaderValues, replyForm) {
+		let locale = bapiHeaderValues.locale;
+		if (locale === 'es_MX') {
+			locale='es_MX_VNS';
+		}
+		let queryEndpoint = '/rui-api/page/reply/model/' + locale;
+
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
+	}
 }
 
 module.exports = new AdService();

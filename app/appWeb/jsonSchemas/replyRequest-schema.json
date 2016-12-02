@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"type": "object",
+	"required": true,
+	"properties": {
+		"adId": {
+			"type": "string",
+			"required": true
+		},
+		"name": {
+			"type": "string",
+			"required": true,
+			"maxLength": 128
+		},
+		"email": {
+			"type": "string",
+			"required": true,
+			"pattern": "^(([A-Za-z0-9-]+_+)|([A-Za-z0-9-]+\\-+)|([A-Za-z0-9-]+\\.+)|([A-Za-z0-9-]+\\++))*[A-Za-z0-9-_]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
+			"maxLength": 64
+		},
+		"phone": {
+			"type": "string",
+			"required": false,
+			"maxLength": 20
+		},
+		"sendAcopy": {
+			"type": "boolean",
+			"required": false
+		},
+		"message": {
+			"type": "string",
+			"required": true,
+			"maxLength": 4096
+		}
+	}
+}

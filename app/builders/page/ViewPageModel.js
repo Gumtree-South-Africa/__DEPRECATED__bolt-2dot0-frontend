@@ -158,6 +158,7 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
+		console.log('################### -->  ', modelData.header);
 		return modelData;
 	}
 

@@ -106,6 +106,10 @@
 			border-radius: 3px;
 			padding-top: 4px;
 			padding-bottom: 4px;
+
+			.hidden {
+				display: none;
+			}
 		}
 
 		.message-box-area {
