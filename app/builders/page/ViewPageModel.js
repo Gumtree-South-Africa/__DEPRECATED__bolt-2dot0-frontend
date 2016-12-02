@@ -193,6 +193,7 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
+					status: 'active',
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
