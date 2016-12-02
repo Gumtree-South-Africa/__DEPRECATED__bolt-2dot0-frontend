@@ -95,10 +95,9 @@ router.get('/:id?', (req, res, next) => {
 
 		modelData.redirectUrl = redirectUrl;
 
-
 		//Redirect validation status of advert
 		if (modelData.advert.status === 'deleted') {
-			console.log('deleted ad.. redirecting', modelData.advert);
+			//console.log('deleted ad.. redirecting', modelData.advert);
 			res.redirect('/');
 			return;
 		}
