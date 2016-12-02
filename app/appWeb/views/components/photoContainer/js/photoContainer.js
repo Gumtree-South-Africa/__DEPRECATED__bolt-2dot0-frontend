@@ -152,6 +152,7 @@ class PhotoContainer {
 		 * @private
 		 */
 		this._failure = (i, epsError) => {
+			window.BOLT.trackEvents({"event": this.pageType + "PhotoFail"});
 			let error = this.epsUpload.extractEPSServerError(epsError);
 			let toRemove = $(".carousel-item[data-item='" + i + "']");
 			toRemove.find('.spinner').toggleClass('hidden');

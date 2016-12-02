@@ -51,6 +51,7 @@ class EditAd {
 
 		this._$cancelButton.click(() => {
 			this.postAdFormMainDetails.isFormChangeWarning = false;
+			window.BOLT.trackEvents({"event": "EditAdCancel"});
 			window.location.href = '/my/ads.html';
 		});
 
@@ -116,9 +117,11 @@ class EditAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (response) => {
+				window.BOLT.trackEvents({"event": "EditAdSuccess"});
 				this._onSubmitSuccess(response);
 			},
 			error: (e) => {
+				window.BOLT.trackEvents({"event": "EditAdFail"});
 				this._onSubmitFail(e);
 			}
 		});
