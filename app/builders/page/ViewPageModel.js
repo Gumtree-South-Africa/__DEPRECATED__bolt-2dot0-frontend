@@ -56,6 +56,36 @@ class ViewPageModel {
 		];
 	}
 
+	getMapFromSignedUrl(signedMapUrl) {
+		let map = {
+			defaultRadius: 2000, //2.0km default kilometers
+			passedRadius: 2000
+		};
+
+		let findStr = "center=";
+		let endOf = -1;
+		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
+		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
+
+		map.locationLat = center[0];
+		map.locationLong = center[1];
+
+		if(map.passedRadius === 0){
+			map.showPin = true;
+			map.showCircle = false;
+		} else if(map.passedRadius === null || map.passedRadius === undefined) {
+			map.showCircle = true;
+			map.finalRadius = map.defaultRadius;
+			map.showPin = false;
+		} else {
+			map.finalRadius = map.passedRadius;
+			map.showCircle = true;
+			map.showPin = false;
+		}
+
+		return map;
+	}
+
 	/**
 	 * a function to walkdown the tree and return a path array
 	 * @param tree
@@ -201,11 +231,7 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags,
-					map: {
-						defaultRadius: 2000, //2.0km default kilometers
-						passedRadius: 2000
-					}
+					flags: advertData.adFlags
 				};
 
 				// Merge Bapi Ad data
@@ -262,30 +288,7 @@ class ViewPageModel {
 				}
 
 				// Map
-				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
-				data.siteLanguage = this.locale.split('_')[0];
-
-				var findStr = "center=";
-				var searchString = data.ogSignedUrl;
-				var endOf = -1;
-				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
-				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
-				data.map.locationLat = center[0];
-				data.map.locationLong = center[1];
-
-				data.map.finalRadius;
-				if(data.map.passedRadius === 0){
-					data.map.showPin = true;
-					data.map.showCircle = false;
-				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
-					data.map.showCircle = true;
-					data.map.finalRadius = data.map.defaultRadius;
-					data.map.showPin = false;
-				} else {
-					data.map.finalRadius = data.map.passedRadius;
-					data.map.showCircle = true;
-					data.map.showPin = false;
-				}
+				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
