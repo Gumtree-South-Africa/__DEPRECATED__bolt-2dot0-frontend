@@ -33,11 +33,10 @@ class PostFormCustomAttributes {
 		initializeClientHbsIfNot();
 
 		this.propertyChanged = new SimpleEventEmitter();
-
 		this._categoryId = 0;
 		this._customAttributeMetadata = null;
-
 		this.loadBaseUrl = '';
+		this.pageType = '';
 	}
 
 	/**
@@ -135,7 +134,7 @@ class PostFormCustomAttributes {
 			this._bindDependencyEvents();
 
 			$(".post-ad-custom-attributes-form").find(".form-field").on("change", (e) => {
-				window.BOLT.trackEvents({"event": "PostAd" + $(e.currentTarget).attr("data-field")});
+				window.BOLT.trackEvents({"event": this.pageType + $(e.currentTarget).attr("data-field")});
 			});
 
 			// polyfill the form to get date pickers

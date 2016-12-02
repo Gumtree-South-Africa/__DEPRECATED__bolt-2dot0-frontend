@@ -25,8 +25,8 @@ class EditAd {
 
 		// Callback for old singleton components
 		spinnerModal.initialize();
-		photoContainer.initialize();
-		postAdFormMainDetails.initialize();
+		photoContainer.initialize({pageType: "EditAd"});
+		postAdFormMainDetails.initialize({pageType: "EditAd"});
 
 		this._$submitButton = domElement.find('.edit-submit-button');
 		this._$cancelButton = domElement.find('.cancel-button');

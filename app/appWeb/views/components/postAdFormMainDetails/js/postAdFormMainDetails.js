@@ -1,5 +1,5 @@
 'use strict';
-let locationModal = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
+let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -101,11 +101,6 @@ class PostAdFormMainDetailsVM {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
-		$(this.$priceFormField).on('change', (e) => {
-			e.preventDefault();
-			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdPrice"});
-		});
 		$(domElement.find(".price-input")).on('keydown', (e) => inputNumericCheck(e));
 		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
@@ -626,16 +621,21 @@ class PostAdFormMainDetails {
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 
-		this.$titleField = this.$detailsSection.find('input[title="Title"]');
+		this.$titleField = this.$detailsSection.find('input[name="Title"]');
 		this.$textarea = this.$detailsSection.find('#description-input');
-
+		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
+		$(this.$priceFormField).on('change', (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": this.pageType + "Price"});
+		});
 		this.$addDetail.on('click', (e) => {
 			if (this.$downIcon.css('display') === 'none' && this.$upIcon.css('display') === 'none') {
 				return; // Don't fold up when no arrow icon display
 			}
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdFormFullDetail"});
+			window.BOLT.trackEvents({"event": this.pageType + "FormFullDetail"});
 			this.$postForm.toggleClass('hidden');
 			this.$downIcon.toggleClass('hidden');
 			this.$upIcon.toggleClass('hidden');
@@ -650,10 +650,10 @@ class PostAdFormMainDetails {
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
 		this.$titleField.on('change', () => {
-			window.BOLT.trackEvents({"event": "PostAdTitle"});
+			window.BOLT.trackEvents({"event": this.pageType + "Title"});
 		});
 		this.$textarea.on('change', () => {
-			window.BOLT.trackEvents({"event": "PostAdDescription"});
+			window.BOLT.trackEvents({"event": this.pageType + "Description"});
 		});
 		this.viewModel.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'isFixMode' && !newValue) {
@@ -662,14 +662,14 @@ class PostAdFormMainDetails {
 		});
 	}
 
-	initialize(registerOnReady = true) {
-		locationModal.initialize((data) => {
+	initialize(options) {
+		this.pageType = options ? options.pageType : "";
+		locationSelection.initialize((data) => {
 			this._setHiddenLocationInput(data);
-		});
-
-		if (registerOnReady) {
-			this.onReady();
-		}
+		}, {pageType: this.pageType});
+		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
+		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
+		this.onReady();
 	}
 }
 

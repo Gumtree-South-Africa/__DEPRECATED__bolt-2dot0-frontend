@@ -48,9 +48,12 @@ class PhotoContainer {
 	 * these functions are in here to be properly bound to this
 	 * @param
 	 */
-	initialize() {
+	initialize(options) {
 
 		this.allowedUploads = 12;
+		this.pageType = options ? options.pageType : "";
+		$("#initPageType").html(this.pageType);
+
 		//EPS setup
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
@@ -213,7 +216,7 @@ class PhotoContainer {
 			this._updatePhotoDivBackgroundImg(normalUrl);
 			// 7. Enable post button when image upload success
 			this.$postAdButton.toggleClass("disabled", false);
-			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
+			window.BOLT.trackEvents({"event": this.pageType + "PhotoSuccess"});
 		};
 	}
 
@@ -283,7 +286,7 @@ class PhotoContainer {
 		});
 		newDiv.find(".delete-wrapper").on('click', (e) => {
 			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdPhotoRemove"});
+			window.BOLT.trackEvents({"event": this.pageType + "PhotoRemove"});
 			let imageDiv = $(e.target.parentNode.parentNode);
 			let urlNormal = imageDiv.attr("data-image");
 			imageDiv.attr("data-image","");
@@ -342,7 +345,8 @@ class PhotoContainer {
 			}
 			event.preventDefault();
 			event.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "PostAdPhotoReorder"});
+
+			window.BOLT.trackEvents({"event": $("#initPageType").text() + "PhotoReorder"});
 
 			// 1.Swap background
 			let toBackgroundUrl = $(event.target).css("background-image");
@@ -445,7 +449,7 @@ class PhotoContainer {
 			setTimeout(() => {
 				this.disableImageSelection = false;
 			}, 3000);
-			window.BOLT.trackEvents({"event": "PostAdPhotoBegin"});
+			window.BOLT.trackEvents({"event": this.pageType + "PhotoBegin"});
 			this.$imageUpload.click();
 		}
 	}

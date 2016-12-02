@@ -39,8 +39,8 @@ class PostAd {
 		spinnerModal.initialize();
 		mobileUpload.initialize();
 		postAdModal.initialize();
-		photoContainer.initialize();
-		postAdFormMainDetails.initialize();
+		photoContainer.initialize({pageType: "PostAd"});
+		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
 
 		this._$infoTips = domElement.find(".info-tips");
