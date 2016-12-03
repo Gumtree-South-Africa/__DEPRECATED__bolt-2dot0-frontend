@@ -48,9 +48,9 @@ module.exports = function(locale) {
 
 	return function(req, res, next) {
 		// b2dot0Pages
+		// Set which pages have to be in 2.0 for each country
 		res.locals.b2dot0Pages = [];
 		if (locale === 'es_MX') {
-			// Set which pages have to be in 2.0
 			let pages = [];
 			pages.push(abtestpagesJson.pages.H);
 			pages.push(abtestpagesJson.pages.N);
@@ -59,15 +59,20 @@ module.exports = function(locale) {
 		}
 
 		// b1dot0Pages
+		// Set which pages have to be in 1.0 for each country
 		res.locals.b1dot0Pages = [];
 		if (locale === 'en_ZA') {
-			// Set which pages have to be in 1.0
 			let pages = [];
 			pages.push(abtestpagesJson.pages.P);
 			pages.push(abtestpagesJson.pages.E);
 			pages.push(abtestpagesJson.pages.V);
 			res.locals.b1dot0Pages = pages;
 		}
+		// Disabling this as we want to see how /view and /v- looks like in production, prevents redirect to 1.0
+		// else if (locale === 'es_MX') {
+		// 	let pages = [];
+		// 	pages.push(abtestpagesJson.pages.V);
+		// }
 
 		// b2dot0Version
 		if(locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
