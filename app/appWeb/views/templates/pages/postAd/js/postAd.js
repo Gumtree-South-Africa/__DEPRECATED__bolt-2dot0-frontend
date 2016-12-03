@@ -5,6 +5,7 @@ let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpl
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
+let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
 
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -18,7 +19,7 @@ const AD_STATES = {
 class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-
+		this.adFeatureSelection = new AdFeatureSelection();
 		this._mobileImageUrls = [];
 		this._desktopImageUrls = [];
 	}
@@ -43,6 +44,8 @@ class PostAd {
 		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
 
+		this._$postAdContent = domElement.find(".post-ad-content");
+		this._$featurePromote = domElement.find("#feature-promote");
 		this._$infoTips = domElement.find(".info-tips");
 		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
 		this._$desktopSubmitButton = domElement.find('#postAdBtn');
@@ -227,17 +230,33 @@ class PostAd {
 	}
 
 	_onSubmitSuccess(response) {
+
 		this.postAdFormMainDetails.isFormChangeWarning = false;
+
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
-					if (response.ad.redirectLinks.previp) {
-						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
-					} else if (response.ad.status === 'HOLD') {
-						window.location.href = '/edit/' + response.ad.id;
-					} else {
-						window.location.href = response.ad.redirectLinks.vip;
-					}
+					$.ajax({
+						url: '/api/promotead/features/' + this.postAdFormMainDetails.categoryId + '/' + this.postAdFormMainDetails.getLocatioinId() + '/' + response.ad.id,
+						method: "GET",
+						contentType: "application/json",
+						success: (features) => {
+							spinnerModal.completeSpinner(() => {
+								this._$postAdContent.toggleClass("hidden", true);
+								this._$featurePromote.toggleClass("hidden", false);
+								this.adFeatureSelection.render(features);
+							});
+						},
+						error: () => {
+							if (response.ad.redirectLinks.previp) {
+								window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
+							} else if (response.ad.status === 'HOLD') {
+								window.location.href = '/edit/' + response.ad.id;
+							} else {
+								window.location.href = response.ad.redirectLinks.vip;
+							}
+						}
+					});
 				});
 				break;
 			case AD_STATES.AD_DEFERRED:

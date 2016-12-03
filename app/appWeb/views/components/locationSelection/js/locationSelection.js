@@ -48,6 +48,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 
 				$('.search-textbox-container .location-text').html(resp.localizedName);
 				$('#modal-location').val(resp.localizedName);
+				$('#locationId').val(resp.id);
 				$('.confirm-button').removeClass('disable-click');
 				$('.change-loc').removeClass('hidden');
 			}
@@ -228,6 +229,12 @@ let initialize = (setValueCb, options) => {
 
 };
 
+let getLocationId = () => {
+	return $('#locationId').val();
+};
+
+
 module.exports = {
-	initialize
+	initialize,
+	getLocationId
 };

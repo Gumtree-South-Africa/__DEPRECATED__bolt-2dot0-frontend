@@ -1,6 +1,6 @@
 {{#partial "content"}}
-    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle" backKey="postAd.back" backUrl=this.backUrl }}
     <div class="post-ad-content">
+        {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle" backKey="postAd.back" backUrl=this.backUrl }}
         {{> (dynamic "postAdModal")}}
         {{> (dynamic "spinnerModal") }}
 		<div class="message-modal hidden">
@@ -72,5 +72,20 @@
 		</div>
         {{> (dynamic "loginModal") isHidden=true}}
     </div>
+	<section id="feature-promote" class="hidden">
+		<div id="promote-without-if" class="hidden">
+            {{> (dynamic "postAdHeader") titleKey="PROMTE THIS AD" }}
+		</div>
+		<div id="promote-with-if" class="hidden">
+            {{> (dynamic "postAdHeader") titleKey="POSTING FEE" }}
+            <div class="if-description">There is a fee for posting more than one <span class="if-category-name">Place Holder</span>
+            listing. <a href="" class="contact-support">Contact Business Services</a> for more information on bulk posting!</div>
+            <div class="if-ad-summary"></div>
+			<div class="cancel-link-wrapper">
+				<div class="cancel-button">{{i18n "editAd.mainDetails.cancel"}}</div>
+			</div>
+		</div>
+        {{> (dynamic "adFeatureSelection") model=this}}
+	</section>
 {{/partial}}
 

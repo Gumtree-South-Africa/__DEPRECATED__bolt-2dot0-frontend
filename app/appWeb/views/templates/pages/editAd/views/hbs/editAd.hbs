@@ -46,4 +46,13 @@
 	</section>
 	{{#block "default-gmaps"}}{{/block}}
 	{{> (dynamic "spinnerModal")}}
+	<section id="feature-promote" class="hidden">
+        <div id="promote-without-if" class="hidden">
+            {{> (dynamic "postAdHeader") titleKey="PROMTE THIS AD" }}
+        </div>
+		<div id="promote-with-if" class="hidden">
+            {{> (dynamic "postAdHeader") titleKey="POSTING FEE" }}
+        </div>
+        {{> (dynamic "adFeatureSelection") model=this}}
+	</section>
 {{/partial}}

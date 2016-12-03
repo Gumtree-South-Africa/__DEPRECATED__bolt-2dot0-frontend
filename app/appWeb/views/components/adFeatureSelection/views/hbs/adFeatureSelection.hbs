@@ -1,0 +1,20 @@
+<div class="ad-features">
+    <div>
+        <div class="promote-title">Promote this Ad (Optional)</div>
+		<div class="promote-hint">Promote and sell faster!</div>
+        {{#each this}}
+			<label for="{{this.displayNameKey}}">{{i18n this.displayNameKey}}</label>
+			<input class="input-checkbox" type="checkbox" name="{{this.displayNameKey}}">
+            <div class="form-field data-field="{{this.featureOptions.[0].featureTypeFieldName}}">
+            <div class="input-wrapper">
+                <select name="{{this.featureOptions.[0].featureTypeFieldName}}" class="edit-ad-select-box">
+                    {{#each this.featureOptions}}
+                        <option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | {{this.currency}}{{this.amount}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            </div>
+        {{/each}}
+    </div>
+</div>
+

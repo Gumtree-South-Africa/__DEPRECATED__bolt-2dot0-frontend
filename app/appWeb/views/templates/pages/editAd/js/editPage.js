@@ -2,6 +2,7 @@
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
@@ -9,7 +10,7 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
 class EditAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-
+		this.adFeatureSelection = new AdFeatureSelection();
 		this._imageUrls = [];
 	}
 
@@ -30,7 +31,10 @@ class EditAd {
 
 		this._$submitButton = domElement.find('.edit-submit-button');
 		this._$cancelButton = domElement.find('.cancel-button');
-
+		this._$editAdContent = domElement.find('.edit-ad-page');
+		this._$featurePromote = domElement.find("#feature-promote");
+		this._$promoteWithoutIf = domElement.find("#promote-without-if");
+		this._$promoteWithIf = domElement.find("#promote-with-if");
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
 				this._setSubmitButtonStatus();
@@ -128,12 +132,28 @@ class EditAd {
 	}
 
 	_onSubmitSuccess(response) {
+
 		this.postAdFormMainDetails.isFormChangeWarning = false;
-		spinnerModal.completeSpinner(() => {
-			if (response.redirectLink.previp) {
-				window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
-			} else {
-				window.location.href = response.redirectLink.vip;
+		$.ajax({
+			url: '/api/promotead/features/' + this.postAdFormMainDetails.categoryId + '/' + this.postAdFormMainDetails.getLocatioinId() + '/' + response.adId,
+			method: "GET",
+			contentType: "application/json",
+			success: (features) => {
+				spinnerModal.completeSpinner(() => {
+					this._$editAdContent.toggleClass("hidden", true);
+					this._$featurePromote.toggleClass("hidden", false);
+					this._$promoteWithoutIf.toggleClass("hidden", false);
+					this.adFeatureSelection.render(features);
+				});
+			},
+			error: () => {
+				spinnerModal.completeSpinner(() => {
+					if (response.redirectLink.previp) {
+						window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
+					} else {
+						window.location.href = response.redirectLink.vip;
+					}
+				});
 			}
 		});
 	}
