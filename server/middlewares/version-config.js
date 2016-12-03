@@ -58,6 +58,17 @@ module.exports = function(locale) {
 			res.locals.b2dot0Pages = pages;
 		}
 
+		// b1dot0Pages
+		res.locals.b1dot0Pages = [];
+		if (locale === 'en_ZA') {
+			// Set which pages have to be in 1.0
+			let pages = [];
+			pages.push(abtestpagesJson.pages.P);
+			pages.push(abtestpagesJson.pages.E);
+			pages.push(abtestpagesJson.pages.V);
+			res.locals.b1dot0Pages = pages;
+		}
+
 		// b2dot0Version
 		if(locale==='en_IE' || locale==='pl_PL' || locale==='es_AR') {
 			// ALWAYS enable 1.0

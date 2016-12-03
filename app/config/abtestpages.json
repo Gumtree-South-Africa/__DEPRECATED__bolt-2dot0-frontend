@@ -9,6 +9,7 @@
 		"R" : "RegisterPage",
 	    "V" : "VIP",
 	    "S" : "SRP",
+		"PR": "PromotePage",
 		"ER": "ERROR"
 	}
 }
