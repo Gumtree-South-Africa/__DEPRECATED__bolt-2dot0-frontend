@@ -6,6 +6,7 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PromoteAdPageModel = require(cwd + '/app/builders/page/PromoteAdPageModel');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
 let promoteAdData = {
 	extendModelData: (req, modelData) => {
@@ -38,6 +39,7 @@ router.get('/:id?', (req, res, next) => {
 	}
 
 	req.app.locals.pagetype = pagetypeJson.pagetype.AD_PROMOTE_PAGE;
+	req.app.locals.abtestpage = abTestPagesJson.pages.PR;
 	let promoteAdPageModel = new PromoteAdPageModel(req, res, adId);
 	let modelPromise = promoteAdPageModel.populateData();
 

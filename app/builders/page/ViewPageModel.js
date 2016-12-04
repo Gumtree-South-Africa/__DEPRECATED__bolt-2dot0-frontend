@@ -19,6 +19,7 @@ class ViewPageModel {
 		this.res = res;
 		this.adId = adId;
 
+		this.prodEpsMode = this.req.app.locals.prodEpsMode;
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
@@ -53,6 +54,36 @@ class ViewPageModel {
 				};
 			}
 		];
+	}
+
+	getMapFromSignedUrl(signedMapUrl) {
+		let map = {
+			defaultRadius: 2000, //2.0km default kilometers
+			passedRadius: 2000
+		};
+
+		let findStr = "center=";
+		let endOf = -1;
+		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
+		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
+
+		map.locationLat = center[0];
+		map.locationLong = center[1];
+
+		if(map.passedRadius === 0){
+			map.showPin = true;
+			map.showCircle = false;
+		} else if(map.passedRadius === null || map.passedRadius === undefined) {
+			map.showCircle = true;
+			map.finalRadius = map.defaultRadius;
+			map.showPin = false;
+		} else {
+			map.finalRadius = map.passedRadius;
+			map.showCircle = true;
+			map.showPin = false;
+		}
+
+		return map;
 	}
 
 	/**
@@ -201,11 +232,7 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags,
-					map: {
-						defaultRadius: 2000, //2.0km default kilometers
-						passedRadius: 2000
-					}
+					flags: advertData.adFlags
 				};
 
 				// Merge Bapi Ad data
@@ -214,11 +241,11 @@ class ViewPageModel {
 				// Manipulate Ad Data
 
 				// // TODO: Get seoVipUrl
-				// 	let seoVipElt = data._links.find((elt) => {
-				// 		return elt.rel === "seoVipUrl";
-				// 	});
-				// 	let dataSeoVipUrl = seoVipElt.href;
-				// data.seoVipUrl = dataSeoVipUrl;
+				let seoVipElt = data._links.find((elt) => {
+					return elt.rel === "seoVipUrl";
+				});
+				let dataSeoVipUrl = seoVipElt.href;
+				data.seoVipUrl = dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -230,11 +257,15 @@ class ViewPageModel {
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
 					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
-						let pic = picture['LARGE'];
-						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						let picUrl = picture['LARGE'];
+						if (!this.prodEpsMode) {
+							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+						}
+
+						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
 
@@ -243,6 +274,9 @@ class ViewPageModel {
 					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
 						if (profilePicture.size === 'LARGE') {
 							let picUrl = profilePicture.url;
+							if (!this.prodEpsMode) {
+								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+							}
 							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
 							data.sellerDetails.publicDetails.displayPicture = picUrl;
 						}
@@ -255,30 +289,7 @@ class ViewPageModel {
 				}
 
 				// Map
-				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
-				data.siteLanguage = this.locale.split('_')[0];
-
-				var findStr = "center=";
-				var searchString = data.ogSignedUrl;
-				var endOf = -1;
-				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
-				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
-				data.map.locationLat = center[0];
-				data.map.locationLong = center[1];
-
-				data.map.finalRadius;
-				if(data.map.passedRadius === 0){
-					data.map.showPin = true;
-					data.map.showCircle = false;
-				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
-					data.map.showCircle = true;
-					data.map.finalRadius = data.map.defaultRadius;
-					data.map.showPin = false;
-				} else {
-					data.map.finalRadius = data.map.passedRadius;
-					data.map.showCircle = true;
-					data.map.showPin = false;
-				}
+				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
