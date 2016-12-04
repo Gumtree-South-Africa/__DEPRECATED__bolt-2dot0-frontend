@@ -5,6 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let SearchPageModel = require('../../../builders/page/SearchPageModel');
 
 let extendModelData = (req, modelData) => {
@@ -45,6 +46,7 @@ router.get('/:keyword?', (req, res, next) => {
 	}
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.RESULTS_SEARCH;
+	req.app.locals.abtestpage = abTestPagesJson.pages.S;
 	let searchPageModel = new SearchPageModel(req, res, keyword);
 	let redirectUrl = req.query.redirect;
 

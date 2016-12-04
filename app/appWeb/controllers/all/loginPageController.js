@@ -5,6 +5,7 @@ let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let LoginPageModel = require('../../../builders/page/LoginPageModel');
 let passport = require('passport');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
@@ -28,6 +29,7 @@ let extendModelData = (req, modelData) => {
 
 router.get('/', (req, res, next) => {
 	req.app.locals.pagetype = pageTypeJson.pagetype.LOGIN_PAGE;
+	req.app.locals.abtestpage = abTestPagesJson.pages.L;
 	let loginPageModel = new LoginPageModel(req, res);
 	let redirectUrl = req.query.redirect;
 	let showTerms = req.query.showTerms;
