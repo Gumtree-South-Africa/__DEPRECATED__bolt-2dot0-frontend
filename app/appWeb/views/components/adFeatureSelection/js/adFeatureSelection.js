@@ -51,6 +51,7 @@ class AdFeatureSelection {
 
 			$(this.$form.find(".input-checkbox")).on("click", () => {
 				this.$form.find(".mobile-cancel").toggleClass("hidden", true);
+				this.$form.find(".cancel-link").toggleClass("hidden", true);
 				this.$form.find(".mobile-checkout").toggleClass("hidden", false);
 				this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 			});

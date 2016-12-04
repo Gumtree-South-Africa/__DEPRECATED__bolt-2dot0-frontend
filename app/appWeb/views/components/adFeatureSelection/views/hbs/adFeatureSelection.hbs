@@ -13,7 +13,7 @@
 						</div>
 						<div class="feature-checkbox-label">{{i18n this.displayNameKey}}</div>
 						<div class="feature-options">
-							<select name="{{this.name}}" class="edit-ad-select-box">
+							<select name="{{this.name}}">
                                 {{#each this.featureOptions}}
 									<option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | {{this.currency}}{{this.amount}}</option>
                                 {{/each}}
@@ -56,6 +56,11 @@
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="desktop-cancel">
+        <a class="cancel-link">
+            <span>No Thanks, Continue to Post My Ad</span>
+        </a>
 	</div>
 	<div class="mobile-cancel">
 		<div class="cancel-modal-wrapper">
