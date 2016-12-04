@@ -1,12 +1,12 @@
 "use strict";
 
-let initialize = () => {
+let initialize = (options) => {
 	let locale = $('html').data('locale');
 	window.Handlebars = require("../../../../node_modules/handlebars/dist/handlebars.runtime.min.js");
 	require("../../precompTemplates.js");
 
 	let clientHelpers = require("./clientHbsHelpers.js");
-	clientHelpers.initialize(Handlebars);
+	clientHelpers.initialize(Handlebars, options);
 	if (locale) {
 		clientHelpers.setLocale(locale);
 	}

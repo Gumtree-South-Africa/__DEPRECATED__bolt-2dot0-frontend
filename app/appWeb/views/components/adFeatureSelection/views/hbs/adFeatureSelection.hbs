@@ -1,20 +1,71 @@
 <div class="ad-features">
-    <div>
-        <div class="promote-title">Promote this Ad (Optional)</div>
-		<div class="promote-hint">Promote and sell faster!</div>
-        {{#each this}}
-			<label for="{{this.displayNameKey}}">{{i18n this.displayNameKey}}</label>
-			<input class="input-checkbox" type="checkbox" name="{{this.displayNameKey}}">
-            <div class="form-field data-field="{{this.featureOptions.[0].featureTypeFieldName}}">
-            <div class="input-wrapper">
-                <select name="{{this.featureOptions.[0].featureTypeFieldName}}" class="edit-ad-select-box">
-                    {{#each this.featureOptions}}
-                        <option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | {{this.currency}}{{this.amount}}</option>
-                    {{/each}}
-                </select>
-            </div>
-            </div>
-        {{/each}}
+    <div class='promote-form'>
+		<form id="promote-checkout-form" method="POST" action="../my/promote.html">
+			<div class="promote-title">{{i18n "feature.promotetitle"}}</div>
+			<div class="promote-hint">{{i18n "feature.promotehint"}}</div>
+            {{#each this}}
+				<div class="feature-wrapper">
+					<div class="feature-checkbox">
+						<input class="input-checkbox" type="checkbox" name="{{this.displayNameKey}}">
+					</div>
+					<div class="feature-checkbox-label">{{i18n this.displayNameKey}}</div>
+					<div class="feature-options">
+						<select name="{{this.name}}" class="edit-ad-select-box">
+                            {{#each this.featureOptions}}
+								<option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | {{this.currency}}{{this.amount}}</option>
+                            {{/each}}
+						</select>
+					</div>
+				</div>
+            {{/each}}
+		</form>
     </div>
+	<div class="desktop-checkout hidden">
+		<div class="desktop-checkout-container">
+			<div class="checkout-btn-wrapper">
+				<button class="checkout-button" type="submit">Checkout</button>
+			</div>
+			<div class="checkout-price">
+				<div class="price-content">
+					Total:<span class="price-amount"></span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-checkout hidden">
+		<div class="mobile-checkout-container">
+			<div class="checkout-modal-wrapper">
+				<div class="checkout-modal">
+					<div class="checkout-modal-overlay"></div>
+				</div>
+				<div class="checkout-footer">
+					<div class="btn-wrapper">
+						<a class="checkout-button btn">
+							<span class="sudolink">Checkout</span>
+						</a>
+					</div>
+				</div>
+				<div class="checkout-price">
+					<div class="price-content">
+						Total:<span class="price-amount"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="mobile-cancel">
+		<div class="cancel-modal-wrapper">
+			<div class="cancel-modal">
+				<div class="cancel-modal-overlay"></div>
+			</div>
+			<div class="cancel-footer">
+				<div class="btn-wrapper">
+					<a class="cancel-button btn">
+						<span class="sudolink">No Thanks, View My Ad</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
 </div>
 

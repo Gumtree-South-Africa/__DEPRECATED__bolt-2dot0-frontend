@@ -21,8 +21,15 @@ let _walkAndReplace = (translation, values) => {
 	return tempTranslation;
 };
 
-let _getTranslation = (key) => {
-	return translations[key];
+let _getTranslation = (keys) => {
+	let keyNames = keys.split('.');
+	let result = translations;
+	keyNames.forEach((name) => {
+		if (result[name]) {
+			result = result[name];
+		}
+	});
+	return result;
 };
 
 let _loadPartial = (name) => {
@@ -33,7 +40,12 @@ let setLocale = (newLocale) => {
 	locale = newLocale;
 };
 
-let initialize = (Handlebars) => {
+let initialize = (Handlebars, options) => {
+
+	if (options) {
+		translations = JSON.parse($("#" + options.translationBlockId).text());
+	}
+
 	Handlebars.registerHelper("partial", (name, options) => {
 			if (!name) {
 				return;

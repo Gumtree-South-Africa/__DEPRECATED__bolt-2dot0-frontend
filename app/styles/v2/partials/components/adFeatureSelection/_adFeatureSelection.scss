@@ -1,0 +1,206 @@
+.ad-features {
+	.promote-form {
+		height: 390px;
+		border: 0.125em solid $vivaGreen1;
+		margin-top: -11px;
+		border-radius: 2px;
+		background-color: $mainDetailsBackgroundColor;
+	}
+	margin-bottom: 10px;
+	.promote-title {
+		padding-top: 0.618em;
+		padding-bottom: 0.382em;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
+	}
+	.promote-hint {
+		padding-bottom: 15px;
+		text-align: center;
+		font-size: small;
+		color: $formLabelTextColor;
+	}
+	.feature-wrapper {
+		width: 100%;
+		float: left;
+		margin-left: 4%;
+		.feature-checkbox {
+			width: 6%;
+			margin-top: 2%;
+			float: left;
+		}
+		.feature-checkbox-label {
+			width: 50%;
+			margin-top: 2%;
+			margin-left: 2%;
+			float: left;
+			font-size: 14px;
+			color: $vivaGreen1;
+			display: inline-block;
+		}
+		.feature-options {
+			width: 35%;
+			margin-bottom: 3%;
+			margin-right: 4%;
+			float: left;
+		}
+	}
+	input {
+		height: 20px;
+		width: 20px;
+		margin: 0 auto;
+	}
+
+	select {
+		// this is for firefox only.  percentage text indent is bigger
+		// on firefox than chrome/safari etc.
+		@-moz-document url-prefix() {
+			text-indent: 1% !important;
+		}
+		height: 33px;
+		text-indent: 1%;
+		border-radius: 1px;
+		width: 125px;
+		padding: 0 calc(1% - 1px);
+		font-size: 11.5px;
+		border: 1px solid $vivaGreen1;
+		background-color: white;
+	}
+
+	.desktop-checkout {
+		.desktop-checkout-container {
+			height: 80px;
+			padding: 15px 0;
+			margin-bottom: 10px;
+			float: left;
+			width: 58%;
+			vertical-align: top;
+			margin-left: calc(6% + 300px);
+			.checkout-btn-wrapper {
+				width: 100%;
+				.checkout-button {
+					margin-top: auto !important;
+					margin-bottom: auto !important;
+					cursor: pointer;
+					width: 100%;
+					color: $formSubmitButtonTextColor;
+					background-color: $formSubmitButtonColor;
+					border-style: none;
+					border-radius: 2px;
+					height: 45px;
+					font-size: 18px;
+					&:disabled {
+						cursor: not-allowed !important;
+						opacity: .5;
+					}
+				}
+			}
+			.checkout-price {
+				margin-bottom: 10px;
+				width: 100%;
+				float: left;
+				.price-content {
+					margin-top: 9px;
+					text-align: center;
+					color: $formCancelTextColor;
+					font-size: 18px;
+					height: 40px;
+				}
+			}
+		}
+	}
+
+	.mobile-checkout {
+		position: fixed;
+		z-index: 5;
+		.mobile-checkout-container {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			padding: 5px 20px;
+		}
+
+		.checkout-footer {
+			width: 60%;
+			margin: auto;
+			float: left;
+			.btn {
+				@include vivaBtn(off, 0.382em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+				&.disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+		.checkout-price {
+			padding: 10px;
+			float: right;
+			margin-right: 10px;
+		}
+	}
+
+	.mobile-cancel {
+		position: fixed;
+		z-index: 5;
+		.cancel-modal-wrapper {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			padding: 5px 20px;
+		}
+
+		.cancel-footer {
+			width: 100%;
+			margin: auto;
+			float: left;
+			.btn {
+				@include vivaBtn(off, 0.382em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+				&.disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+
+	@include from-breakpoint($medium-break) {
+		.mobile-checkout-container {
+			display: none;
+		}
+		.desktop-checkout-container {
+			display: block;
+		}
+		.mobile-cancel {
+			display: none;
+		}
+	}
+	@include to-breakpoint($small-break) {
+		.desktop-checkout-container {
+			display: none;
+		}
+		.mobile-checkout-container {
+			display: block;
+		}
+		.mobile-cancel-form-link {
+			margin-top: 18px;
+			margin-right: 30px;
+			text-decoration: underline;
+			float: right;
+		}
+	}
+}
+

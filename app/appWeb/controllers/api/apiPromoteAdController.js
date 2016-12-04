@@ -17,6 +17,12 @@ router.get('/features/:categoryId/:locationId/:adId', cors, (req, res, next) => 
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	model.FeatureModel = new FeatureModel(model.bapiHeaders);
 	model.FeatureModel.getAvailableFeatures(categoryId, locationId, res.locals.config.locale, adId).then((modelData) => {
+		modelData.forEach((feature) => {
+			feature.featureOptions.forEach((option) => {
+				feature.name = option.featureTypeFieldName;
+				option.fieldValue = adId + "|" + option.fieldValue;
+			});
+		});
 		res.status(200).send(modelData);
 		return;
 	}).fail((err) => {

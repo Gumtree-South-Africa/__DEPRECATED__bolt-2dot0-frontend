@@ -10,7 +10,7 @@ let clientHbsInitialized = false;
 function initializeClientHbsIfNot() {
 	if (!clientHbsInitialized) {
 		clientHbsInitialized = true;
-		clientHbs.initialize();
+		clientHbs.initialize({translationBlockId: "translation-block"});
 	}
 }
 /**
@@ -31,15 +31,6 @@ class AdFeatureSelection {
 		this.propertyChanged = new SimpleEventEmitter();
 		this.features = null;
 	}
-
-	get adId() {
-		return this._adId;
-	}
-
-	set adId(newValue) {
-		this._adId = newValue;
-	}
-
 	/**
 	 * renders the custom attributes using handlebars client side templating
 	 * @param modelData js object to use for templating
@@ -58,8 +49,16 @@ class AdFeatureSelection {
 			// unwrapping the dom to remove the div already in the page as this.$form
 			this.$form.append($(newDomString).unwrap());
 
-			$(".post-ad-custom-attributes-form").find(".form-field").on("change", (e) => {
-				window.BOLT.trackEvents({"event": this.pageType + $(e.currentTarget).attr("data-field")});
+			$(this.$form.find(".input-checkbox")).on("click", (e) => {
+				this.$form.find(".mobile-cancel").toggleClass("hidden", true);
+				this.$form.find(".mobile-checkout").toggleClass("hidden", false);
+				this.$form.find(".desktop-checkout").toggleClass("hidden", false);
+			});
+
+			$(this.$form.find(".checkout-button")).on("click", (e) => {
+				e.preventDefault();
+				e.stopImmediatePropagation();
+				this.$form.find("#promote-checkout-form").submit();
 			});
 		}
 	}
