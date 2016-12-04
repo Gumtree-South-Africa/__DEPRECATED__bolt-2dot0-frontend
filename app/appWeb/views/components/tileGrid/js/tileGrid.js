@@ -294,7 +294,7 @@ class TileGrid {
 			this.tileCards[tileCard.getName()] = tileCard;	// map of card state keyed by name
 
 			// pull configuration data from data attributes laid in by HBS into the DOM
-			tileCard.viewMoreAjaxOffset = 1;										// gallery
+			tileCard.viewMoreAjaxOffset = 2;										// gallery
 			tileCard.viewMorePageSize = $(cardElement).data('view-more-page-size');		// gallery
 			tileCard.viewMoreFilterIncrement = $(cardElement).data('view-more-filter-increment');	// trending
 			tileCard.currentFilterThreshold = tileCard.viewMoreFilterIncrement;		// trending - initial filter setting

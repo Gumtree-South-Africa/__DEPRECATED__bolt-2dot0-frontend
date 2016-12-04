@@ -14,6 +14,7 @@ let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
 let postAdData = {
 	extendModelData: (req, modelData) => {
@@ -35,12 +36,14 @@ let postAdData = {
 };
 
 router.use('/', (req, res, next) => {
-	if (!pageControllerUtil.is2dot0Version(res)) {
+	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
+	req.app.locals.abtestpage = abTestPagesJson.pages.P;
+
+	// Redirects
+	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;
 	}
-
-	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 
 	let deferredAdPromise = Q.fcall(() => {
 		if (req.query.guid) {

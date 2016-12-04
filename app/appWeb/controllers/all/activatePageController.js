@@ -4,9 +4,10 @@ let express = require('express');
 let router = express.Router();
 let cwd = process.cwd();
 let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
-let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let ActivatePageModel = require('../../../builders/page/ActivatePageModel');
 
+let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -53,6 +54,7 @@ router.get('/:emailAddress', (req, res, next) => {
 	activateParams.emailAddress = req.params.emailAddress;
 
 	req.app.locals.pagetype = pageTypeJson.pagetype.ACTIVATE_PAGE;
+	req.app.locals.abtestpage = abTestPagesJson.pages.A;
 	let activatePageModel = new ActivatePageModel(req, res, activateParams);
 	let redirectUrl = req.query.redirect;
 

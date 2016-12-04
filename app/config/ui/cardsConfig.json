@@ -20,7 +20,7 @@
 		"galleryCard": {
 			"queryEndpoint": "BAPI.endpoints.homepageGallery",
 			"queryParameters": {
-				"offset": "0",
+				"offset": "1",
 				"limit": "16"
 			},
 			"templateConfig": {
