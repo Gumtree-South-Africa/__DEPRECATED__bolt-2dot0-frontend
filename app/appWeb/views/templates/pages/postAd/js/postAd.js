@@ -50,6 +50,8 @@ class PostAd {
 		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
 		this._$desktopSubmitButton = domElement.find('#postAdBtn');
 		this._$changePhoto = $(".change-photo");
+		this._$promoteWithoutIf = domElement.find("#promote-without-if");
+		this._$promoteWithIf = domElement.find("#promote-with-if");
 
 		this._$changePhoto.on('click', (e) => {
 			e.preventDefault();
@@ -244,6 +246,7 @@ class PostAd {
 							spinnerModal.completeSpinner(() => {
 								this._$postAdContent.toggleClass("hidden", true);
 								this._$featurePromote.toggleClass("hidden", false);
+								this._$promoteWithoutIf.toggleClass("hidden", false);
 								this.adFeatureSelection.render(features);
 							});
 						},

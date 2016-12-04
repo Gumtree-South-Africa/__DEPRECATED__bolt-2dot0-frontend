@@ -47,11 +47,28 @@
 	{{#block "default-gmaps"}}{{/block}}
 	{{> (dynamic "spinnerModal")}}
 	<section id="feature-promote" class="hidden">
-        <div id="promote-without-if" class="hidden">
+        <div id="promote-without-inf" class="hidden">
             {{> (dynamic "postAdHeader") titleKey="PROMTE THIS AD" }}
         </div>
-		<div id="promote-with-if" class="hidden">
+		<div id="promote-with-inf" class="hidden">
             {{> (dynamic "postAdHeader") titleKey="POSTING FEE" }}
+			<div class="inf-description">There is a fee for posting more than one <span class="inf-category-name">Place Holder</span>
+				listing. <a href="" class="contact-support">Contact Business Services</a> for more information on bulk posting!</div>
+            <div class="inf-container">
+                <div class="inf-header">
+                    <div class="ad-inf-description"><span class="inf-category"></span> Posting Fee</div>
+                    <div class="inf-amount"></div>
+                </div>
+				<div class="separator-div"></div>
+                <div class="ad-summary">
+                    <div class="ad-first-pic"></div>
+                    <div class="ad-title"></div>
+                    <div class="ad-price"></div>
+                </div>
+            </div>
+			<div class="inf-cancel">
+				<a class="inf-cancel-button">{{i18n "editAd.mainDetails.cancel"}}</a>
+			</div>
         </div>
         {{> (dynamic "adFeatureSelection") model=this}}
 	</section>

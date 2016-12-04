@@ -1,8 +1,9 @@
 .ad-features {
 	.promote-form {
-		border: 0.125em solid $vivaGreen1;
+		border: 1px solid $vivaGreen1;
 		border-radius: 2px;
-		background-color: $mainDetailsBackgroundColor;
+		background-color: $vivaGray8;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
 		@include to-breakpoint($small-break) {
 			margin-top: -11px;
 			height: 390px;
@@ -66,6 +67,11 @@
 			margin-right: 4%;
 			float: left;
 		}
+		.separator-div {
+			&:after {
+				background: color(foxtail, medium);
+			}
+		}
 	}
 	input {
 		height: 20px;
@@ -99,9 +105,8 @@
 	.desktop-checkout {
 		.desktop-checkout-container {
 			padding: 15px 0;
-			margin-bottom: 10px;
 			width: 1024px;
-			margin: 0 auto;
+			margin: 0 auto 10px auto;
 			position: relative;
 			.checkout-btn-wrapper {
 				width: 40%;
@@ -126,7 +131,7 @@
 			}
 			.checkout-price {
 				margin-bottom: 10px;
-				width: 40%;
+				width: 20%;
 				float: left;
 				.price-content {
 					margin-top: 9px;
@@ -134,6 +139,9 @@
 					color: $formCancelTextColor;
 					font-size: 18px;
 					height: 40px;
+					.price-amount {
+						color: $vivaGreen1;
+					}
 				}
 			}
 		}

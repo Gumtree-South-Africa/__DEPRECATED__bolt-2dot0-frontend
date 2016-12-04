@@ -173,6 +173,69 @@ body {
 	}
 }
 
+.inf-description {
+	text-align: center;
+	color: $formLabelTextColor;
+	font-size: small;
+	margin: 20px;
+	.contact-support {
+		text-decoration: underline;
+	}
+}
+.inf-container {
+	max-width: 1024px;
+	height: 170px;
+	background-color: $vivaGray8;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
+	margin:3%;
+
+	@include from-breakpoint($medium-break) {
+		position: relative;
+		max-width: 1024px;
+		margin: -11px auto 40px auto;
+	}
+
+	.ad-inf-description {
+		font-size: large;
+		color: $formLabelTextColor;
+		padding: 10px 20px 0px 20px;
+	}
+	.inf-amount {
+		color: $vivaGreen1;
+	}
+	.ad-summary {
+		.ad-first-pic {
+			width: 72px;
+			height: 72px;
+			margin-left: 20px;
+			float: left;
+			border-radius: 2px;
+			cursor: pointer;
+			position: relative;
+			box-shadow: 1px 1px 6px $postAdShadowColor;
+			background-size: contain;
+			background-position: center;
+			background-repeat: no-repeat;
+		}
+		.ad-title {
+			font-size:large;
+			margin: auto 10px auto 120px;
+		}
+		.ad-price {
+			font-size:large;
+			margin: auto 10px auto 120px;
+		}
+	}
+}
+.inf-cancel {
+	margin-bottom: 20px;
+	.inf-cancel-button {
+		margin-left: 40%;
+		text-decoration: underline;
+		color: $formLabelTextColor;
+	}
+}
+
 @include from-breakpoint($medium-break) {
 	.edit-ad-content {
 		position: relative;
@@ -219,6 +282,9 @@ body {
 	.icon-up {
 		display: none;
 	}
+	.inf-cancel {
+		display: none;
+	}
 }
 
 @include to-breakpoint($small-break) {
@@ -257,5 +323,4 @@ body {
 		text-decoration: underline;
 		float: right;
 	}
-
 }

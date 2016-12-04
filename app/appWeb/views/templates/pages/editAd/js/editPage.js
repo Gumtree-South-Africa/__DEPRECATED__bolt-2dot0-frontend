@@ -33,8 +33,8 @@ class EditAd {
 		this._$cancelButton = domElement.find('.cancel-button');
 		this._$editAdContent = domElement.find('.edit-ad-page');
 		this._$featurePromote = domElement.find("#feature-promote");
-		this._$promoteWithoutIf = domElement.find("#promote-without-if");
-		this._$promoteWithIf = domElement.find("#promote-with-if");
+		this._$promoteWithoutInf = domElement.find("#promote-without-inf");
+		this._$promoteWithInf = domElement.find("#promote-with-inf");
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
 				this._setSubmitButtonStatus();
@@ -122,7 +122,7 @@ class EditAd {
 			contentType: 'application/json',
 			success: (response) => {
 				window.BOLT.trackEvents({"event": "EditAdSuccess"});
-				this._onSubmitSuccess(response);
+				this._onSubmitSuccess(response, adPayload);
 			},
 			error: (e) => {
 				window.BOLT.trackEvents({"event": "EditAdFail"});
@@ -131,7 +131,12 @@ class EditAd {
 		});
 	}
 
-	_onSubmitSuccess(response) {
+	_onSubmitSuccess(response, adInfo) {
+		/* With Insertion Fee */
+		$(this._$promoteWithInf.find(".ad-first-pic")).css("background-image", "url('" + adInfo.imageUrls[0] + "')");
+		$(this._$promoteWithInf.find(".inf-amount")).html(response.innsetionFee);
+		$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
+		$(this._$promoteWithInf.find(".ad-price")).html(adInfo.price.amount + " " + adInfo.price.currency);
 
 		this.postAdFormMainDetails.isFormChangeWarning = false;
 		$.ajax({
@@ -142,7 +147,8 @@ class EditAd {
 				spinnerModal.completeSpinner(() => {
 					this._$editAdContent.toggleClass("hidden", true);
 					this._$featurePromote.toggleClass("hidden", false);
-					this._$promoteWithoutIf.toggleClass("hidden", false);
+					//this._$promoteWithoutInf.toggleClass("hidden", false);
+					this._$promoteWithInf.toggleClass("hidden", false);
 					this.adFeatureSelection.render(features);
 				});
 			},
