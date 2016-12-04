@@ -49,7 +49,7 @@ class AdFeatureSelection {
 			// unwrapping the dom to remove the div already in the page as this.$form
 			this.$form.append($(newDomString).unwrap());
 
-			$(this.$form.find(".input-checkbox")).on("click", (e) => {
+			$(this.$form.find(".input-checkbox")).on("click", () => {
 				this.$form.find(".mobile-cancel").toggleClass("hidden", true);
 				this.$form.find(".mobile-checkout").toggleClass("hidden", false);
 				this.$form.find(".desktop-checkout").toggleClass("hidden", false);

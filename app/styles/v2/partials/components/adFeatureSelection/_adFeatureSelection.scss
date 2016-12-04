@@ -1,10 +1,26 @@
 .ad-features {
 	.promote-form {
-		height: 390px;
 		border: 0.125em solid $vivaGreen1;
-		margin-top: -11px;
 		border-radius: 2px;
 		background-color: $mainDetailsBackgroundColor;
+		@include to-breakpoint($small-break) {
+			margin-top: -11px;
+			height: 390px;
+		}
+		@include from-breakpoint($medium-break) {
+			position: relative;
+			max-width: 1168px;
+			height: 440px;
+			margin: -11px auto 0 auto;
+			.desktop-banner {
+				width:300px;
+				margin-left: 65px;
+			}
+			.desktop-checkout {
+				margin-left: 400px;
+				margin-right: 15%;
+			}
+		}
 	}
 	margin-bottom: 10px;
 	.promote-title {
