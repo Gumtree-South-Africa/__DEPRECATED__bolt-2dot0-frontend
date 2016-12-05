@@ -218,8 +218,8 @@ describe('Card/Tile Grid', () => {
 				card: galleryCardModel
 			};
 
-			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=3&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
-			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=2&limit=${model.card.config.viewMorePageSize}`, galleryCardModelNoMore);
+			specHelper.registerMockAjax(`/api/ads/gallery/card?offset=1&limit=${model.card.config.viewMorePageSize}`, galleryCardModel);
 			specHelper.registerMockAjax('/api/ads/favorite', {} );	// empty object since we're not expecting a result
 			// spyOn(tileGridController, '_redirectToSearch').and.callFake(() => {
 			// });

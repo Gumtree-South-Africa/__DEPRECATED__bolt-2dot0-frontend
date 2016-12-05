@@ -15,363 +15,14 @@ body {
 }
 
 .edit-ad-page {
+	.two-step {
+		display: none;
+	}
+	.one-step {
+		display: block;
+	}
 	.custom-attributes {
 		margin-bottom: 20px;
-	}
-
-	.icon-photo-close {
-		cursor: pointer;
-	}
-
-	.cover-photo {
-		display: none;
-		@include from-breakpoint($medium-break) {
-			display: block;
-		}
-	}
-
-	.ad-statistics {
-		display: none;
-		@include from-breakpoint($medium-break) {
-			display: block;
-		}
-	}
-	.photo-carousel {
-		width: 100%;
-
-		@include from-breakpoint($medium-break) {
-			width: 50%;
-			float: left;
-		}
-
-		.carousel-item {
-			height: auto;
-		}
-
-		.add-photo-item {
-			height: auto;
-		}
-
-		.reorder-images-link {
-			width: 100%;
-			margin-top: 20px;
-			text-align: center;
-
-			.reorder-images-link-text {
-				text-decoration: underline;
-				font-size: 21px;
-
-				&:hover {
-					cursor: pointer;
-				}
-			}
-		}
-
-		.photo-switcher {
-			width: 100%;
-
-			.cover-photo {
-				width: 90%;
-				max-width: 450px;
-				height: 450px;
-				&.no-photo {
-					.icon-camera-v2 {
-						width: 100px;
-						height: 100px;
-					}
-				}
-			}
-
-			.slick-carousel {
-				.add-photo-item {
-					.icon-text-wrapper {
-						.icon-camera-v2 {
-							width: 50px;
-							height: 50px;
-							@include from-breakpoint($medium-break) {
-								width: 30px;
-								height: 30px;
-							}
-						}
-						.add-photo-text {
-							font-size: 12px;
-						}
-					}
-				}
-			}
-		}
-	}
-
-	.main-detail-edit {
-		width: 100%;
-		background-color: $mainDetailsBackgroundColor;
-
-		select, input {
-			height: 33px;
-		}
-
-		select {
-			// this is for firefox only.  percentage text indent is bigger
-			// on firefox than chrome/safari etc.
-			@-moz-document url-prefix() {
-				text-indent: 1% !important;
-			}
-
-			text-indent: 2%;
-
-			padding: 0 !important;
-			border-radius: 0;
-		}
-
-		.choose-category-button {
-			&.btn-wrapper {
-				width: 84%;
-			}
-
-			.btn {
-				margin-top: 7px;
-				margin-bottom: 7px;
-				padding-top: 11px;
-				padding-bottom: 10px;
-				padding-left: 0;
-				padding-right: 0;
-			}
-		}
-
-		@include from-breakpoint($medium-break) {
-			width: 47%;
-			margin-right: 3%;
-			float: left;
-		}
-
-		button {
-			&:disabled {
-				cursor: not-allowed !important;
-				opacity: .5;
-			}
-		}
-
-		.main-details-title {
-			width: 100%;
-			padding: 25px 0;
-			font-size: 20px;
-			line-height: 1;
-			text-align: center;
-			color: $mainDetailsTitleTextColor;
-		}
-
-		.submit-btn-wrapper {
-			width: 100%;
-
-			@include from-breakpoint($medium-break) {
-				width: 70%;
-				float: left;
-
-				.edit-ad-submit {
-					margin-top: auto !important;
-					margin-bottom: auto !important;
-				}
-			}
-
-			.edit-ad-submit {
-				cursor: pointer;
-				width: 100%;
-				color: $formSubmitButtonTextColor;
-				background-color: $formSubmitButtonColor;
-				border-style: none;
-				height: 45px;
-				font-size: 18px;
-			}
-		}
-
-		.cancel-link-wrapper {
-			margin-bottom: 10px;
-			margin-top: 10px;
-			width: 100%;
-
-			@include from-breakpoint($medium-break) {
-				width: 25%;
-				float: left;
-				margin-top: 0;
-
-				.cancel-form-link {
-					margin-top: 9px;
-				}
-			}
-
-			.cancel-form-link {
-				text-align: center;
-				color: $formCancelTextColor;
-				font-size: 18px;
-				height: 40px;
-				text-decoration: underline;
-
-				&:hover {
-					cursor: pointer;
-				}
-			}
-		}
-
-		.ad-website-link-wrapper {
-			text-align: center;
-			a {
-				color: $addWebsiteLinkTextColor;
-				font-size: 18px;
-				text-decoration: underline;
-			}
-		}
-
-		.label-wrapper {
-			width: 100%;
-			margin: 5px 0;
-
-			label {
-				text-transform: uppercase;
-				width: $labelWidth;
-				margin: 0 0 0 $labelMargin;
-				font-size: 10px;
-				color: $formLabelTextColor;
-				display: inline-block; // this fixes text wrapping on smaller devices
-			}
-
-			.suggested-cat {
-				width: $labelWidth;
-				margin: 0 $labelMargin;
-				font-size: 13px;
-				color: $categoryDisplayTextColor;
-				font-style: italic;
-			}
-		}
-
-		.form-field.required-field label:after {
-			content: '*';
-			color: red;
-			margin-left: 5px;
-		}
-
-		.location-link {
-			background-color: white;
-			padding-left: 10px;
-			color: $vivaBlack;
-
-			&:hover {
-				cursor: pointer;
-				text-decoration: underline;
-			}
-		}
-
-		.description-input {
-			height: 150px;
-			margin-left: $inputMargin;
-			resize: none;
-			width: $inputWidth;
-			padding: 0 calc(2% - 1px);
-		}
-
-		.form-ad-title .input-wrapper input {
-			width: $inputWidth !important;
-		}
-
-		.input-wrapper {
-			width: 100%;
-			position: relative;
-
-			.leaf-node-warning {
-				width: $labelWidth;
-				margin: 0 $labelMargin;
-				font-size: 13px;
-				color: $vivaOrange;
-			}
-
-			.step-controls {
-				display: none;
-			}
-
-			input[type="text"], input[type="tel"], input[type="number"], input[type="date"], .location-link, select {
-				width: $inputFieldWidth;
-				margin: 0 $inputMargin;
-				padding: 0 calc(2% - 1px);
-				font-size: 1em;
-
-				border: 1px solid $vivaBlack;
-
-				&.price-input {
-					width: $inputFieldWidth;
-
-					@media(max-width: 450px) {
-						width: 30%;
-					}
-
-					margin: 0 0 0 $inputMargin;
-				}
-
-				&.user-error,
-				&.validation-error {
-					border: 1px solid red;
-				}
-			}
-
-			// overriding webshims styles to properly place button
-			.input-buttons {
-				position: absolute;
-				right: 45%;
-				top: 25%;
-			}
-
-			div.location-link {
-				padding: 3.5px calc(2% - 1px);
-			}
-
-			select {
-				width: 50%;
-				margin: 0 44% 0 $inputMargin;
-
-				border: 1px solid $vivaBlack;
-			}
-
-			.category-name-display {
-				color: #478BCD;
-				width: $labelWidth;
-				margin: 0 $labelMargin;
-
-				.hier-link {
-					text-decoration: underline;
-				}
-
-				&:hover {
-					cursor: pointer;
-				}
-			}
-		}
-
-		.location-warning {
-			width: 100%;
-			margin: 15px 0;
-			.location-warning-text {
-				width: $labelWidth;
-				margin: 0 $labelMargin;
-				color: #FF9800;
-				font-size: 13px;
-			}
-		}
-
-		.button-area {
-			padding-top: 20px;
-			background-color: $buttonAreaBackgroundColor;
-			width: 100%;
-			height: 80px;
-			padding-bottom: 10px;
-
-			@include from-breakpoint($medium-break) {
-				height: 40px;
-				background-color: $mainDetailsBackgroundColor;
-			}
-
-			.btn-area-inner {
-				width: 84%;
-				margin: 0 auto;
-			}
-		}
 	}
 
 	.validation-error {
@@ -453,6 +104,56 @@ body {
 		}
 		/* End custom radio btns */
 	}
+
+
+	.desktop-button-area {
+		height: 80px;
+		padding: 15px 0;
+		margin-bottom: 10px;
+		float: left;
+		width: 58%;
+		vertical-align: top;
+		margin-left: calc(6% + 300px);
+		.btn-area-inner {
+			width: 100%;
+			margin: 0 auto;
+			.submit-btn-wrapper {
+				width: 100%;
+				.edit-ad-submit {
+					margin-top: auto !important;
+					margin-bottom: auto !important;
+					cursor: pointer;
+					width: 100%;
+					color: $formSubmitButtonTextColor;
+					background-color: $formSubmitButtonColor;
+					border-style: none;
+					border-radius: 2px;
+					height: 45px;
+					font-size: 18px;
+					&:disabled {
+						cursor: not-allowed !important;
+						opacity: .5;
+					}
+				}
+			}
+			.cancel-link-wrapper {
+				margin-bottom: 10px;
+				width: 100%;
+				float: left;
+				.cancel-form-link {
+					margin-top: 9px;
+					text-align: center;
+					color: $formCancelTextColor;
+					font-size: 18px;
+					height: 40px;
+					text-decoration: underline;
+					&:hover {
+						cursor: pointer;
+					}
+				}
+			}
+		}
+	}
 }
 
 .separator-div {
@@ -463,11 +164,98 @@ body {
 	margin-bottom: 15px;
 	&:after {
 		content: "";
-		background: $formSeparatorBarColor;
+		background-color: $categorySelectionActiveListRowBgColor;
 		position: absolute;
 		bottom: 0;
 		height: 1px;
 		left: 5%;
 		right: 5%;
 	}
+}
+
+@include from-breakpoint($medium-break) {
+	.edit-ad-content {
+		position: relative;
+		max-width: 1168px;
+		margin: 0 auto;
+		.photo-switcher {
+			margin-left: 5%;
+		}
+	}
+
+	.photo-switcher {
+		display: inline-block;
+		width: 300px; // Align with banner asset
+		float: left;
+		background-color: $postAdBackgroundColor;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		.image-container {
+			margin: 5% 5%;
+		}
+		.cover-photo-small {
+			margin: 2% 2.8%;
+		}
+	}
+
+	.mobile-button-area {
+		display: none;
+	}
+
+	.desktop-edit-ad {
+		display: block;
+	}
+
+	.main-detail-post {
+		width: 58%;
+		float: left;
+		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		margin-left: 1%;
+	}
+
+	.icon-down {
+		display: none;
+	}
+	.icon-up {
+		display: none;
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.viewport .footer-wrapper {
+		// To ensure nothing in page is covered by post button overlay
+		// Magic number 73 is the height of post button layer
+		margin-bottom: 73px;
+	}
+
+	.main-detail-post {
+		background-color: $mainDetailsBackgroundColor;
+		width: 100%;
+		float: left;
+	}
+
+	.photo-switcher {
+		.image-container {
+			margin: 0 2%;
+			width: 100%;
+			.cover-photo-small {
+				margin: 2% 2%;
+			}
+		}
+		.drag-reorder {
+			display: none;
+		}
+	}
+
+	.desktop-button-area {
+		display: none;
+	}
+
+	.mobile-cancel-form-link {
+		margin-top: 18px;
+		margin-right: 30px;
+		text-decoration: underline;
+		float: right;
+	}
+
 }

@@ -172,7 +172,7 @@ let _preventDefault = (e) => {
  * Initialize
  * Sets up module for use and binds events to the dom
  */
-let initialize = (setValueCb) => {
+let initialize = (setValueCb, options) => {
 	this.$locale = $('html').attr('data-locale');
 	this.$locmodal = $('#modal-location');
 	this.$modal = $('#locationModal');
@@ -207,7 +207,7 @@ let initialize = (setValueCb) => {
 	$('.current-location').on('click', function(e) {
 		e.preventDefault();
 		e.stopImmediatePropagation();
-		window.BOLT.trackEvents({"event": "PostAdCurrentLocation"});
+		window.BOLT.trackEvents({"event": options.pageType + "CurrentLocation"});
 		$('#modal-location').addClass('spinner').attr('disabled', true);
 		_geoFindMe();
 	});
@@ -222,7 +222,7 @@ let initialize = (setValueCb) => {
 	);
 	google.maps.event.addListener(this.$autocomplete, 'place_changed', function() {
 		$('#modal-location').addClass('spinner').attr('disabled', true);
-		window.BOLT.trackEvents({"event": "PostAdManualLocation"});
+		window.BOLT.trackEvents({"event": options.pageType + "ManualLocation"});
 		_geoAutoComplete();
 	});
 
