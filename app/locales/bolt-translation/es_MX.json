@@ -1354,7 +1354,7 @@
 			"error": "Error"
 		},
 		"mobileUpload": {
-			"post": "Listo",
+			"post": "Terminar",
 			"changePhoto": "Cambia <br>foto"
 		},
 		"mainDetails": {
