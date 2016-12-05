@@ -282,6 +282,10 @@ class PostAdFormMainDetailsVM {
 		return locationSelection.getLocationId();
 	}
 
+	getCategorySelectionName() {
+		return this._categoryDropdownSelection.getCategorySelectionName();
+	}
+
 	getAdPayload() {
 		let $dateFields = this._$postForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();

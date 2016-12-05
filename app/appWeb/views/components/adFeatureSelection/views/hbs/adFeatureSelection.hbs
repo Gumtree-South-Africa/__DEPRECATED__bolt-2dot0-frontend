@@ -9,18 +9,19 @@
                 {{#each this}}
 					<div class="feature-wrapper">
 						<div class="feature-checkbox">
-							<input class="input-checkbox" type="checkbox" name="{{this.displayNameKey}}">
+							<input class="input-checkbox" type="checkbox" name="{{this.name}}">
 						</div>
 						<div class="feature-checkbox-label">{{i18n this.displayNameKey}}</div>
 						<div class="feature-options">
 							<select name="{{this.name}}">
                                 {{#each this.featureOptions}}
-									<option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | {{this.currency}}{{this.amount}}</option>
+									<option class="non-default" value="{{this.fieldValue}}">{{this.duration}} {{this.durationTimeUnit}} | ${{this.amount}}</option>
                                 {{/each}}
 							</select>
 						</div>
 					</div>
                 {{/each}}
+				<input id="insertionFee" class="hidden" type="number" name="insertionFee">
 			</form>
         </div>
     </div>
@@ -54,6 +55,9 @@
 						Total:<span class="price-amount"></span>
 					</div>
 				</div>
+				<a class="cancel-link">
+                    <span>Cancel</span>
+                </a>
 			</div>
 		</div>
 	</div>

@@ -105,6 +105,10 @@ class CategoryDropdownSelection {
 		this._updateCategory(this._categoryId);
 	}
 
+	getCategorySelectionName() {
+		return this.$categorySelection.find("select").last().find("option[selected='selected']").html();
+	}
+
 	get categoryId() {
 		return this._categoryId;
 	}

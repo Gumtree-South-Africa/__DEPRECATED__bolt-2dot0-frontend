@@ -3,6 +3,7 @@ let photoContainer = require('app/appWeb/views/components/photoContainer/js/phot
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
+let AdInsertionFee = require('app/appWeb/views/components/adInsertionFee/js/adInsertionFee.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
@@ -11,6 +12,7 @@ class EditAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
 		this.adFeatureSelection = new AdFeatureSelection();
+		this.adInsertionFee = new AdInsertionFee();
 		this._imageUrls = [];
 	}
 
@@ -34,7 +36,9 @@ class EditAd {
 		this._$editAdContent = domElement.find('.edit-ad-page');
 		this._$featurePromote = domElement.find("#feature-promote");
 		this._$promoteWithoutInf = domElement.find("#promote-without-inf");
-		this._$promoteWithInf = domElement.find("#promote-with-inf");
+		this.adInsertionFee.componentDidMount(domElement);
+		this.adFeatureSelection.componentDidMount(domElement);
+
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
 				this._setSubmitButtonStatus();
@@ -132,11 +136,6 @@ class EditAd {
 	}
 
 	_onSubmitSuccess(response, adInfo) {
-		/* With Insertion Fee */
-		$(this._$promoteWithInf.find(".ad-first-pic")).css("background-image", "url('" + adInfo.imageUrls[0] + "')");
-		$(this._$promoteWithInf.find(".inf-amount")).html(response.innsetionFee);
-		$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
-		$(this._$promoteWithInf.find(".ad-price")).html(adInfo.price.amount + " " + adInfo.price.currency);
 
 		this.postAdFormMainDetails.isFormChangeWarning = false;
 		$.ajax({
@@ -147,9 +146,12 @@ class EditAd {
 				spinnerModal.completeSpinner(() => {
 					this._$editAdContent.toggleClass("hidden", true);
 					this._$featurePromote.toggleClass("hidden", false);
-					//this._$promoteWithoutInf.toggleClass("hidden", false);
-					this._$promoteWithInf.toggleClass("hidden", false);
-					this.adFeatureSelection.render(features);
+					if (response.insertionFee) {
+						this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink.vip);
+					} else {
+						this._$promoteWithoutInf.toggleClass("hidden", false);
+					}
+					this.adFeatureSelection.render(features, response.insertionFee, response.redirectLink.vip);
 				});
 			},
 			error: () => {

@@ -87,7 +87,7 @@ $labelMargin: 8%;
 }
 
 @include from-breakpoint($medium-break) {
-	.post-ad-content {
+	.post-ad-page {
 		position: relative;
 		max-width: 1168px;
 		margin: 0 auto;

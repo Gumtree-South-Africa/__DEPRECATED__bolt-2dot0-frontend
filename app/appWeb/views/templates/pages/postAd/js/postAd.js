@@ -6,6 +6,7 @@ let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModa
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
 let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
+let AdInsertionFee = require('app/appWeb/views/components/adInsertionFee/js/adInsertionFee.js');
 
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -20,6 +21,7 @@ class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
 		this.adFeatureSelection = new AdFeatureSelection();
+		this.adInsertionFee = new AdInsertionFee();
 		this._mobileImageUrls = [];
 		this._desktopImageUrls = [];
 	}
@@ -44,14 +46,15 @@ class PostAd {
 		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
 
-		this._$postAdContent = domElement.find(".post-ad-content");
+		this._$postAdContent = domElement.find(".post-ad-page");
 		this._$featurePromote = domElement.find("#feature-promote");
 		this._$infoTips = domElement.find(".info-tips");
 		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
 		this._$desktopSubmitButton = domElement.find('#postAdBtn');
 		this._$changePhoto = $(".change-photo");
-		this._$promoteWithoutIf = domElement.find("#promote-without-if");
-		this._$promoteWithIf = domElement.find("#promote-with-if");
+		this._$promoteWithoutInf = domElement.find("#promote-without-if");
+		this.adInsertionFee.componentDidMount(domElement);
+		this.adFeatureSelection.componentDidMount(domElement);
 
 		this._$changePhoto.on('click', (e) => {
 			e.preventDefault();
@@ -223,7 +226,7 @@ class PostAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (response) => {
-				this._onSubmitSuccess(response);
+				this._onSubmitSuccess(response, postAdPayload);
 			},
 			error: (e) => {
 				this._onSubmitFail(e);
@@ -231,7 +234,7 @@ class PostAd {
 		});
 	}
 
-	_onSubmitSuccess(response) {
+	_onSubmitSuccess(response, adInfo) {
 
 		this.postAdFormMainDetails.isFormChangeWarning = false;
 
@@ -246,9 +249,13 @@ class PostAd {
 							spinnerModal.completeSpinner(() => {
 								this._$postAdContent.toggleClass("hidden", true);
 								this._$featurePromote.toggleClass("hidden", false);
-								this._$promoteWithoutIf.toggleClass("hidden", false);
-								this.adFeatureSelection.render(features);
-							});
+								if (response.insertionFee) {
+									this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
+								} else {
+									this._$promoteWithoutInf.toggleClass("hidden", false);
+								}
+								this.adFeatureSelection.render(features, response.insertionFee, response.ad.redirectLinks.vip);
+								});
 						},
 						error: () => {
 							if (response.ad.redirectLinks.previp) {

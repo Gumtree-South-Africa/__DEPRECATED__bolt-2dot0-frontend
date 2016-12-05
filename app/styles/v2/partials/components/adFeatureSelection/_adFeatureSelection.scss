@@ -10,7 +10,7 @@
 		}
 		@include from-breakpoint($medium-break) {
 			position: relative;
-			max-width: 1168px;
+			max-width: 960px;
 			height: 440px;
 			margin: -11px auto 0 auto;
 			.desktop-banner {
@@ -87,6 +87,7 @@
 		}
 		height: 33px;
 		text-indent: 1%;
+		text-transform: lowercase;
 		border-radius: 1px;
 		padding: 0 calc(1% - 1px);
 		border: 1px solid $vivaGreen1;
