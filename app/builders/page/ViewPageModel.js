@@ -190,6 +190,9 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
+		// need to change 'deleted' to advert.status from bapi and verify sellerStuf is working right
+		modelData.advert.statusBanner = this.getStatusBanner('deleted', modelData.vip.showSellerStuff);
+
 		return modelData;
 	}
 
@@ -214,6 +217,52 @@ class ViewPageModel {
 		} else {
 			return inputArr;
 		}
+	}
+	getStatusBanner(state, isOwner){
+		let s = {
+			'expired': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
+			'pending': {
+				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.pendingStatusBannerLinkMessage',
+					url: 'vip.details.pendingStatusBannerLinkURL'
+				}]
+			},
+			'blocked': {
+				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.blockedStatusBannerLinkMessage',
+					url: 'vip.details.blockedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.blockedStatusBannerReasonMessage',
+					url: 'vip.details.blockedStatusBannerReasonURL'
+				}]
+			},
+			'deleted': {
+				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.deletedStatusBannerLinkMessage',
+					url: 'vip.details.deletedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.deletedStatusBannerReasonMessage',
+					url: 'vip.details.deletedStatusBannerReasonURL'
+				}]
+			}
+		}
+
+		if (!isOwner) {
+			delete s[state].ownerDetails;
+		}
+
+		return s[state];
 	}
 
 	getPageDataFunctions(modelData) {
@@ -248,6 +297,7 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
+					status: 'pending',
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,

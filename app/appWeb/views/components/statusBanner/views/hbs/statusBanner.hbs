@@ -1,0 +1,14 @@
+{{!-- active, expired, pending, blocked, deleted --}}
+{{#if this.advert.statusBanner}}
+  <div class="status-ad-banner">
+    <span class="alert-icon"></span>
+    <span>{{i18n this.advert.statusBanner.statusBannerMessage}}</span>
+      {{#if this.advert.statusBanner.ownerDetails}}    
+        <div class='status-ad-banner-links'>
+          {{#each this.advert.statusBanner.ownerDetails as |text|}}
+              <span><a href="{{i18n text.url}}">{{i18n text.message}}</a></span>
+          {{/each}}
+        </div>
+      {{/if}}
+  </div>
+{{/if}}
