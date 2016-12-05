@@ -70,7 +70,7 @@ class AdFeatureSelection {
 			let price = this._getFeaturePrice(feature);
 			this._updateFeatures(feature, checked, price);
 			this.$form.find(".mobile-cancel").toggleClass("hidden", true);
-			this.$form.find(".cancel-link").toggleClass("hidden", true);
+			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
 			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
 			this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 		});
