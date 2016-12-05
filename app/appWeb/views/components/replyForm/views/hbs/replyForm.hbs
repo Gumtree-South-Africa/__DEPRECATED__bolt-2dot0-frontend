@@ -17,19 +17,19 @@
                 <div class="interested-message-container"><input class="viva-checkbox" type="checkbox"><span class="interested-message">{{i18n "vip.reply.interested"}}</span></div>
                 <div class="where-message-container"><input class="viva-checkbox" type="checkbox"><span class="where-message">{{i18n "vip.reply.whenNWhere"}}</span></div>
                 <div class="viva-labels"><span>{{i18n "vip.reply.message"}}*</span><span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-                <textarea class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.messageValidate"}}')" required></textarea>
+                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.messageValidate"}}')" required></textarea>
                 {{#unless this.header.id}}
                     <div class="viva-labels">{{i18n "vip.reply.name"}}</div>
-                    <input class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.name'}}">
+                    <input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.name'}}">
                     <div class="viva-labels">{{i18n "vip.reply.email"}}</div>
-                    <input class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
+                    <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
                     <div class="viva-labels">{{i18n "vip.reply.phone"}}</div>
-                    <input class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" >
+                    <input name="phoneNumber" class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" >
                 {{else}}
-                    <input class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
-                    <input class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
+                    <input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
+                    <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
                 {{/unless}}
-                <div class="send-message-container"><input class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
+                <div class="send-message-container"><input name="isSendMeCopyEmail" class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
                 <div class="vip-terms">{{i18n "vip.reply.terms" 'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones' 'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
             </div>

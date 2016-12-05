@@ -3,11 +3,15 @@
 	"type": "object",
 	"required": true,
 	"properties": {
+		"machineId": {
+			"type": "string",
+			"required": false
+		},
 		"adId": {
 			"type": "string",
 			"required": true
 		},
-		"name": {
+		"buyerName": {
 			"type": "string",
 			"required": true,
 			"maxLength": 128
@@ -18,19 +22,27 @@
 			"pattern": "^(([A-Za-z0-9-]+_+)|([A-Za-z0-9-]+\\-+)|([A-Za-z0-9-]+\\.+)|([A-Za-z0-9-]+\\++))*[A-Za-z0-9-_]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
 			"maxLength": 64
 		},
-		"phone": {
+		"phoneNumber": {
 			"type": "string",
 			"required": false,
 			"maxLength": 20
 		},
-		"sendAcopy": {
+		"isSendMeCopyEmail": {
 			"type": "boolean",
 			"required": false
 		},
-		"message": {
+		"replyMessage": {
 			"type": "string",
 			"required": true,
 			"maxLength": 4096
+		},
+		"fileName": {
+			"type": "string",
+			"required": false
+		},
+		"rand": {
+			"type": "string",
+			"required": false
 		}
 	}
 }

@@ -46,35 +46,7 @@
 			"timeout": 2000
 		},
 		"endpoints": {
-			"replyForm"			: 	"/rui-api/page/reply/model/",
-			"categoryHomePage"	:	"/bolt-api-webapp/v1/categories",
-			"locationHomePage"	:	"/bolt-api-webapp/v1/locations",
-			"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
-			"userFromCookie" 	:	"/bolt-api-webapp/v1/users/logged-in-user-info",
-			"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top",
-			"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending",
-			"suggestedKeywords" : 	"/bolt-api-webapp/v1/keywords/suggestions",
-			"relatedKeywords" 	: 	"/bolt-api-webapp/v1/keywords/related",
-			"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
-			"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
-			"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
-			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
-			"ads"				:	"/bolt-api-webapp/v1/ads",
-			"recentActivities"  :	"/bolt-api-webapp/v1/ads/activities/recent",
-			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending",
-			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
-			"availableFlagsAd"	:	"/bolt-api-webapp/v1/ads/flags",
-			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
-			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
-			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
-			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
-			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",
-			"authRegister"		:	"/bolt-api-webapp/v1/users",
-			"authActivate"		:	"/bolt-api-webapp/v1/users/{email}/actions/activate",
-			"authEmailExists"	:	"/bolt-api-webapp/v1/users/email/{email}",
-			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}",
-			"adFeatures"        :   "/bolt-api-webapp/v1/features?",
-			"categorySuggest"   :   "/bolt-api-webapp/v1/categories/action/suggestion?"
+			"replyForm": "/rui-api/page/reply/model/"
 		}
 	},
 	"kafka": {

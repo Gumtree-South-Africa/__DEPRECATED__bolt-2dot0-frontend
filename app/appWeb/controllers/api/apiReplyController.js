@@ -27,19 +27,20 @@ router.post('/', cors, (req, res) => {
 
 	// Validate the body
 	if (req.body.adId && req.body.message) {
+		let modelBuilder = new ModelBuilder();
+		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
+
 		let replyForm = {
+			machineId: req.app.locals.machineid,
 			adId: req.body.adId,
-			buyerName: req.body.name,
+			buyerName: req.body.buyerName,
 			email: req.body.email,
-			phoneNumber: req.body.phone || '',
-			replyMessage: req.body.message,
-			isSendMeCopyEmail: req.body.sendAcopy || false,
+			phoneNumber: req.body.phoneNumber || '',
+			replyMessage: req.body.replyMessage,
+			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
 			fileName: '',
 			rand: ''
 		};
-
-		let modelBuilder = new ModelBuilder();
-		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 		model.advertModel.replyToTheAd(replyForm).then(() => {
