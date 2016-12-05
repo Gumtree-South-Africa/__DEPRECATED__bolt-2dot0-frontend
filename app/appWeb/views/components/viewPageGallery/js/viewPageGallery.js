@@ -42,7 +42,7 @@ class viewPageGallery {
 			infinite: true
 		});
 
-
+		//Initialize
 		$('.slick-arrow').addClass('icon-back');
 		$('.slider-nav .slick-current').addClass('selected');
 		$('.container .slider-nav .slick-current').focus();
@@ -52,17 +52,23 @@ class viewPageGallery {
 		});
 
 		$('.container').on('click', '.slider-for, .icon-Zoom', () => {
-			let isMobile = $('.container .slider-nav').css('display') === 'none';
-			if(!isMobile) {
-					let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
-					$('#vipOverlay .slider-nav').slick('setPosition');
-					$('#vipOverlay .slider-for').slick('setPosition');
-					$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
-					$('#vipOverlay').removeClass('hidden');
-					$('#vipOverlay .slider-nav .slick-current').focus();
-					$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
-					$('body').addClass('noScroll');
-			}
+			console.log('hi123');
+			$('.zoomHolder2 img').pinchzoomer();
+			// let isMobile = $('.container .slider-nav').css('display') === 'none';
+			// if(!isMobile) {
+			// 		let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
+			// 		$('#vipOverlay .slider-nav').slick('setPosition');
+			// 		$('#vipOverlay .slider-for').slick('setPosition');
+			// 		$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
+			// 		$('#vipOverlay').removeClass('hidden');
+			// 		$('#vipOverlay .slider-nav .slick-current').focus();
+			// 		$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
+			// 		$('body').addClass('noScroll');
+			// } else {
+			// 	//isMobile
+			// 	console.log('is it mobile?');
+			// 	$('.container .slider-mobile-for .slick-current img').pinchzoomer();
+			// }
 		});
 
 		//Fix for when user don't have lots of images

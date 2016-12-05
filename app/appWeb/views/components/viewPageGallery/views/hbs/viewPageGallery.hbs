@@ -2,7 +2,10 @@
   <div class="zoomHolder">
     <img data-src="{{this.advert.picturesToDisplay.testPictures}}" data-elem="pinchzoomer"/>
   </div>
-  <span class="icon-Zoom"></span>
+  <div class="zoomHolder2">
+    <img data-src="{{this.advert.picturesToDisplay.testPictures}}" data-elem="bg"/>
+  </div>
+  <span class="icon-Zoom" style="border: 1px solid red; display:inline-block"></span>
   <div class="zoomI hidden"></div>
   <div class="zoomT hidden">
     <div>Pinch in and out to zoom.</div>
@@ -18,7 +21,7 @@
     </div>
     <div class="slider-mobile-for">
     {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt={{@index}}/>
+			<img class="slick-carousel" src="{{this}}" alt="{{@index}}" data-src="{{this}}" data-elem="bg"/>
 		{{/each}}
     </div>
 	</div>
