@@ -29,10 +29,11 @@
 }
 
 .status-ad-banner{
-		padding: 10px 20px 20px 10px;
+		padding: 10px 20px 10px 10px;
 		margin-bottom: 10px;
 		background: $expiredAdBackground;
 		color: $expiredAdText;
+		box-shadow: 1px 2px 4px #747474;
 		a{
 			color: $expiredAdLink;
 			text-decoration: underline;
@@ -46,6 +47,10 @@
 	    width: 40px;
 	    height: 30px;
 	    top: 8px;
+		}
+		.status-ad-banner-links{
+			font-size: 14px;
+			padding-top: 10px;
 		}
 	}
 

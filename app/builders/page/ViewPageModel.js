@@ -243,12 +243,13 @@ class ViewPageModel {
 				});
 
 				// Basic Data for Ad Display
-				//please delete the attribute STATUS
+				//please delete the attribute STATUS 
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					status: 'active',
+					status: 'blocked',
+					statusBanner: stateVal('blocked'),
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
@@ -258,6 +259,37 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
+
+				function stateVal(state){
+					// Comparar si es el dueno del anuncio
+					let s = {
+						'expired': {
+							statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+							statusBannerLinkMessage: 'vip.details.expiredStatusBannerLinkMessage',
+							statusBannerLinkURL: 'vip.details.expiredStatusBannerLinkURL'
+						},
+						'pending': {
+							statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+							statusBannerLinkMessage: 'vip.details.pendingStatusBannerLinkMessage',
+							statusBannerLinkURL: 'vip.details.pendingStatusBannerLinkURL'
+						},
+						'blocked': {
+							statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
+							statusBannerLinkMessage: 'vip.details.blockedStatusBannerLinkMessage',
+							statusBannerLinkURL: 'vip.details.blockedStatusBannerLinkURL',
+							statusBannerReasonMessage: 'vip.details.blockedStatusBannerReasonMessage',
+							statusBannerReasonURL: 'vip.details.blockedStatusBannerReasonURL'
+						},
+						'deleted': {
+							statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
+							statusBannerLinkMessage: 'vip.details.deletedStatusBannerLinkMessage',
+							statusBannerLinkURL: 'vip.details.deletedStatusBannerLinkURL',
+							statusBannerReasonMessage: 'vip.details.deletedStatusBannerReasonMessage',
+							statusBannerReasonURL: 'vip.details.deletedStatusBannerReasonURL'
+						}
+					}
+					return s[state];
+				}
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);

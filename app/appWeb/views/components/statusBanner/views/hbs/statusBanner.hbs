@@ -1,44 +1,20 @@
 {{!-- active, expired, pending, blocked, deleted --}}
-{{#compare this.advert.status "===" 'expired'}}
+{{#compare this.advert.status '!==' 'active'}}
   <div class="status-ad-banner">
     <span class="alert-icon"></span>
-    <span>{{i18n "vip.details.expiredMessage"}}</span>
+    <span>{{i18n this.advert.statusBanner.statusBannerMessage}}</span>
     {{#compare this.header.id "===" this.advert.sellerDetails.id}}
-      <a href="{{i18n 'vip.details.activateNowURL'}}">{{i18n "vip.details.activateNow"}}</a>
-    {{/compare}}
-  </div>
-{{/compare}}
-
-{{#compare this.advert.status "===" 'pending'}}
-  <div class="status-ad-banner">
-    <span class="alert-icon"></span>
-    <span>{{i18n "vip.details.pendingMessage"}}</span>
-    {{#compare this.header.id "===" this.advert.sellerDetails.id}}
-      <a href="{{i18n 'vip.details.learnMoreURL'}}">{{i18n "vip.details.learnMore"}}</a>
-    {{/compare}}
-  </div>
-{{/compare}}
-
-{{#compare this.advert.status "===" 'blocked'}}
-  <div class="status-ad-banner">
-    <span class="alert-icon"></span>
-    <span>{{i18n "vip.details.blockedMessage"}}</span>
-    {{#compare this.header.id "===" this.advert.sellerDetails.id}}
-      <a href="{{i18n 'vip.details.reasonURL'}}">{{i18n "vip.details.statusReason"}}</a>
-      |
-      <a href="{{i18n 'vip.details.postURL'}}">{{i18n "vip.details.postAdMessage"}}</a>
-    {{/compare}}
-  </div>
-{{/compare}}
-
-{{#compare this.advert.status "===" 'deleted'}}
-  <div class="status-ad-banner">
-    <span class="alert-icon"></span>
-    <span>{{i18n "vip.details.deletedMessage"}}</span>
-    {{#compare this.header.id "===" this.advert.sellerDetails.id}}
-      <a href="{{i18n 'vip.details.reasonURL'}}">{{i18n "vip.details.statusReason"}}</a>
-      |
-      <a href="{{i18n 'vip.details.postURL'}}">{{i18n "vip.details.postAdMessage"}}</a>
+      <div class='status-ad-banner-links'>
+          <a href="{{i18n this.advert.statusBanner.statusBannerLinkURL}}">{{i18n this.advert.statusBanner.statusBannerLinkMessage}}</a>
+        {{#compare this.advert.status '===' 'blocked'}}
+          |
+          <a href="{{i18n this.advert.statusBanner.statusBannerReasonURL}}">{{i18n this.advert.statusBanner.statusBannerReasonMessage}}</a>
+        {{/compare}}
+        {{#compare this.advert.status '===' 'deleted'}}
+          |
+          <a href="{{i18n this.advert.statusBanner.statusBannerReasonURL}}">{{i18n this.advert.statusBanner.statusBannerReasonMessage}}</a>
+        {{/compare}}
+      </div>
     {{/compare}}
   </div>
 {{/compare}}
