@@ -10,8 +10,8 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-
 let _ = require('underscore');
+let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
 	constructor(req, res, adId) {
@@ -151,6 +151,7 @@ class ViewPageModel {
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
 				attr ['name'] = customAttributeObj.localizedName;
+				attr ['attrName'] = customAttributeObj.name;
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -183,7 +184,7 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = false;
+		modelData.vip.showSellerStuff = true;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
@@ -191,6 +192,29 @@ class ViewPageModel {
 
 		console.log('################### -->  ', modelData.header);
 		return modelData;
+	}
+
+	orderArr(inputArr, locale, categoryId) {
+		let inputLocaleObj = displayAttributesConfig[locale];
+		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		let newArr = [];
+
+		if (inputCategoryIdArr.length > 0) {
+			for (let i = 0; i < inputCategoryIdArr.length; i++) {
+				let arrIndex = _.findIndex(inputArr, {
+					attrName: inputCategoryIdArr[i]
+				})
+				if(arrIndex !== -1) {
+					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
+					newArr.push(inputArr[arrIndex]);
+				} else {
+					continue;
+				}
+			}
+			return newArr;
+		} else {
+			return inputArr;
+		}
 	}
 
 	getPageDataFunctions(modelData) {
@@ -317,6 +341,7 @@ class ViewPageModel {
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
+					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
 					return data;
 				});
 			});

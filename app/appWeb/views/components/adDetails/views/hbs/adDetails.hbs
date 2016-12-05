@@ -11,7 +11,7 @@
 
             {{#if this.vip.showSellerStuff}}
                 <div class="edit-favorite">{{i18n "vip.details.edit"}}
-                    <a class="edit-favorite-icon edit-icon icon-apple-dark-gray" href="{{this.advert.editUrl}}">
+                    <a class="edit-favorite-icon edit-icon icon-vivaedit" href="{{this.advert.editUrl}}">
                     </a>
                 </div>
             {{else}}
@@ -22,21 +22,23 @@
 		</div>
         <div class="price-update">
 			<div class="ad-price">{{this.advert.price.formattedAmount}}</div>
-			<div class="ad-last-updated"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}}</div>
+			<div class="ad-last-posted"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}} <span>{{i18n "vip.details.daysago"}}</span></div>
         </div>
         <div class="clear-line"></div>
-        <div class="category-pri-attrs">
-            {{#each this.advert.displayAttributes}}
-                <div class="pri-props">
-                    <span class="pri-props-name">{{this.name}} : </span>
-                    <span class="pri-props-value">{{this.value}}</span>
-                </div>
-            {{/each}}
-        </div>
-        <div class="clear-line"></div>
+        {{#if this.advert.orderedArr}}
+			<div class="category-pri-attrs">
+                {{#each this.advert.orderedArr}}
+					<div class="pri-props">
+						<span class="pri-props-name">{{this.capsName}}</span>
+						<span class="pri-props-value">{{this.value}}</span>
+					</div>
+                {{/each}}
+			</div>
+			<div class="clear-line"></div>
+        {{/if}}
 	</div>
     <div class="sec-attrs">
-        <div class="ad-description">{{this.advert.description}}</div>
+        <div class="ad-description">{{{this.advert.description}}}</div>
         <div class="ad-category">
             <span class="category-attr">{{i18n "vip.details.category"}} </span>
             <div>
@@ -53,8 +55,17 @@
                 <span class="location-attr">{{i18n "vip.details.location"}} </span>
                 <div><a href="{{this.advert.locationDisplayHref}}">{{this.advert.locationDisplayName}}</a></div>
             </div>
-            <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span><div>{{this.advert.updatedDate}}</div></div>
+            <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span>
+                <div>
+                    {{#if this.advert.updatedDate}}
+                        {{this.advert.updatedDate}} <span>{{i18n "vip.details.daysago"}}</span>
+                    {{else}}
+                        <span>-</span>
+                    {{/if}}
+                </div>
+            </div>
             <div class="ad-posted-by"><span class="posted-by-attr">{{i18n "vip.details.postedby"}} </span><div>{{ this.advert.postedBy}}</div></div>
         </div>
     </div>
+	<div class="clear-line"></div>
 </div>

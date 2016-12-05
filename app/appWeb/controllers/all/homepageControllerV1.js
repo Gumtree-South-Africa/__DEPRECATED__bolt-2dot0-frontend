@@ -182,7 +182,7 @@ let HP = {
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=0&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
