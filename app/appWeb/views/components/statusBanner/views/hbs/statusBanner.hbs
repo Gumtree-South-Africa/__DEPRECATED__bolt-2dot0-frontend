@@ -1,20 +1,14 @@
 {{!-- active, expired, pending, blocked, deleted --}}
-{{#compare this.advert.status '!==' 'active'}}
+{{#if this.advert.statusBanner}}
   <div class="status-ad-banner">
     <span class="alert-icon"></span>
     <span>{{i18n this.advert.statusBanner.statusBannerMessage}}</span>
-    {{#compare this.header.id "===" this.advert.sellerDetails.id}}
-      <div class='status-ad-banner-links'>
-          <a href="{{i18n this.advert.statusBanner.statusBannerLinkURL}}">{{i18n this.advert.statusBanner.statusBannerLinkMessage}}</a>
-        {{#compare this.advert.status '===' 'blocked'}}
-          |
-          <a href="{{i18n this.advert.statusBanner.statusBannerReasonURL}}">{{i18n this.advert.statusBanner.statusBannerReasonMessage}}</a>
-        {{/compare}}
-        {{#compare this.advert.status '===' 'deleted'}}
-          |
-          <a href="{{i18n this.advert.statusBanner.statusBannerReasonURL}}">{{i18n this.advert.statusBanner.statusBannerReasonMessage}}</a>
-        {{/compare}}
-      </div>
-    {{/compare}}
+      {{#if this.advert.statusBanner.ownerDetails}}    
+        <div class='status-ad-banner-links'>
+          {{#each this.advert.statusBanner.ownerDetails as |text|}}
+              <span><a href="{{i18n text.url}}">{{i18n text.message}}</a></span>
+          {{/each}}
+        </div>
+      {{/if}}
   </div>
-{{/compare}}
+{{/if}}

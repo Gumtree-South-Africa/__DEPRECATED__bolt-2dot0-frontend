@@ -10,8 +10,8 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
+
 let _ = require('underscore');
-let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
 	constructor(req, res, adId) {
@@ -19,7 +19,6 @@ class ViewPageModel {
 		this.res = res;
 		this.adId = adId;
 
-		this.prodEpsMode = this.req.app.locals.prodEpsMode;
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
@@ -54,36 +53,6 @@ class ViewPageModel {
 				};
 			}
 		];
-	}
-
-	getMapFromSignedUrl(signedMapUrl) {
-		let map = {
-			defaultRadius: 2000, //2.0km default kilometers
-			passedRadius: 2000
-		};
-
-		let findStr = "center=";
-		let endOf = -1;
-		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
-		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
-
-		map.locationLat = center[0];
-		map.locationLong = center[1];
-
-		if(map.passedRadius === 0){
-			map.showPin = true;
-			map.showCircle = false;
-		} else if(map.passedRadius === null || map.passedRadius === undefined) {
-			map.showCircle = true;
-			map.finalRadius = map.defaultRadius;
-			map.showPin = false;
-		} else {
-			map.finalRadius = map.passedRadius;
-			map.showCircle = true;
-			map.showPin = false;
-		}
-
-		return map;
 	}
 
 	/**
@@ -151,7 +120,6 @@ class ViewPageModel {
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
 				attr ['name'] = customAttributeObj.localizedName;
-				attr ['attrName'] = customAttributeObj.name;
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -190,29 +158,57 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
+		// need to change 'deleted' to advert.status from bapi and verify sellerStuf is working right
+		modelData.advert.statusBanner = this.getStatusBanner('deleted', modelData.vip.showSellerStuff);
+
 		return modelData;
 	}
 
-	orderArr(inputArr, locale, categoryId) {
-		let inputLocaleObj = displayAttributesConfig[locale];
-		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
-		let newArr = [];
-
-		if (inputCategoryIdArr.length > 0) {
-			for (let i = 0; i < inputCategoryIdArr.length; i++) {
-				let arrIndex = _.findIndex(inputArr, {
-					attrName: inputCategoryIdArr[i]
-				})
-				if(arrIndex !== -1) {
-					newArr.push(inputArr[arrIndex]);
-				} else {
-					continue;
-				}
+	getStatusBanner(state, isOwner){
+		let s = {
+			'expired': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
+			'pending': {
+				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.pendingStatusBannerLinkMessage',
+					url: 'vip.details.pendingStatusBannerLinkURL'
+				}]
+			},
+			'blocked': {
+				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.blockedStatusBannerLinkMessage',
+					url: 'vip.details.blockedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.blockedStatusBannerReasonMessage',
+					url: 'vip.details.blockedStatusBannerReasonURL'
+				}]
+			},
+			'deleted': {
+				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.deletedStatusBannerLinkMessage',
+					url: 'vip.details.deletedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.deletedStatusBannerReasonMessage',
+					url: 'vip.details.deletedStatusBannerReasonURL'
+				}]
 			}
-			return newArr;
-		} else {
-			return inputArr;
 		}
+
+		if (!isOwner) {
+			delete s[state].ownerDetails;
+		}
+
+		return s[state];
 	}
 
 	getPageDataFunctions(modelData) {
@@ -243,13 +239,11 @@ class ViewPageModel {
 				});
 
 				// Basic Data for Ad Display
-				//please delete the attribute STATUS 
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
 					status: 'blocked',
-					statusBanner: stateVal('blocked'),
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
@@ -257,39 +251,12 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags
-				};
-
-				function stateVal(state){
-					// Comparar si es el dueno del anuncio
-					let s = {
-						'expired': {
-							statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.expiredStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.expiredStatusBannerLinkURL'
-						},
-						'pending': {
-							statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.pendingStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.pendingStatusBannerLinkURL'
-						},
-						'blocked': {
-							statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.blockedStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.blockedStatusBannerLinkURL',
-							statusBannerReasonMessage: 'vip.details.blockedStatusBannerReasonMessage',
-							statusBannerReasonURL: 'vip.details.blockedStatusBannerReasonURL'
-						},
-						'deleted': {
-							statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.deletedStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.deletedStatusBannerLinkURL',
-							statusBannerReasonMessage: 'vip.details.deletedStatusBannerReasonMessage',
-							statusBannerReasonURL: 'vip.details.deletedStatusBannerReasonURL'
-						}
+					flags: advertData.adFlags,
+					map: {
+						defaultRadius: 2000, //2.0km default kilometers
+						passedRadius: 2000
 					}
-					return s[state];
-				}
+				};
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
@@ -297,11 +264,11 @@ class ViewPageModel {
 				// Manipulate Ad Data
 
 				// // TODO: Get seoVipUrl
-				let seoVipElt = data._links.find((elt) => {
-					return elt.rel === "seoVipUrl";
-				});
-				let dataSeoVipUrl = seoVipElt.href;
-				data.seoVipUrl = dataSeoVipUrl;
+				// 	let seoVipElt = data._links.find((elt) => {
+				// 		return elt.rel === "seoVipUrl";
+				// 	});
+				// 	let dataSeoVipUrl = seoVipElt.href;
+				// data.seoVipUrl = dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -313,15 +280,11 @@ class ViewPageModel {
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
 					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
-						let picUrl = picture['LARGE'];
-						if (!this.prodEpsMode) {
-							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-						}
-
-						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						let pic = picture['LARGE'];
+						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
 
@@ -330,9 +293,6 @@ class ViewPageModel {
 					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
 						if (profilePicture.size === 'LARGE') {
 							let picUrl = profilePicture.url;
-							if (!this.prodEpsMode) {
-								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-							}
 							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
 							data.sellerDetails.publicDetails.displayPicture = picUrl;
 						}
@@ -345,7 +305,30 @@ class ViewPageModel {
 				}
 
 				// Map
-				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
+				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
+				data.siteLanguage = this.locale.split('_')[0];
+
+				var findStr = "center=";
+				var searchString = data.ogSignedUrl;
+				var endOf = -1;
+				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
+				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
+				data.map.locationLat = center[0];
+				data.map.locationLong = center[1];
+
+				data.map.finalRadius;
+				if(data.map.passedRadius === 0){
+					data.map.showPin = true;
+					data.map.showCircle = false;
+				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
+					data.map.showCircle = true;
+					data.map.finalRadius = data.map.defaultRadius;
+					data.map.showPin = false;
+				} else {
+					data.map.finalRadius = data.map.passedRadius;
+					data.map.showCircle = true;
+					data.map.showPin = false;
+				}
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
@@ -371,7 +354,6 @@ class ViewPageModel {
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
 					return data;
 				});
 			});
