@@ -41,15 +41,11 @@ class PostAdPageModel {
 		let initialImage = decodeURIComponent(this.req.cookies['initialImage'] || '');
 		if (initialImage === INVALID_COOKIE_VALUE) {
 			initialImage = '';
-		} else {
-			this.res.cookie('initialImage', INVALID_COOKIE_VALUE);
 		}
 		modelData.initialImage = initialImage;
 		let backUrl = decodeURIComponent(this.req.cookies['backUrl'] || '');
 		if (backUrl === INVALID_COOKIE_VALUE) {
 			backUrl = '';
-		} else {
-			this.res.cookie('backUrl', INVALID_COOKIE_VALUE);
 		}
 		modelData.backUrl = backUrl;
 		this.getPageDataFunctions(modelData);
