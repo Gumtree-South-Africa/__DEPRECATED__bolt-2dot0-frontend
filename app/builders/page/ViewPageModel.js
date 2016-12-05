@@ -190,6 +190,10 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
+		// need to change 'deleted' to advert.status from bapi and verify sellerStuff is working right
+		//console.log('#########################', modelData.advert.status, '##################################################')
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.status, modelData.vip.showSellerStuff);
+
 		return modelData;
 	}
 
@@ -214,6 +218,52 @@ class ViewPageModel {
 		} else {
 			return inputArr;
 		}
+	}
+	getStatusBanner(state, isOwner){
+		let s = {
+			'expired': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
+			'pending': {
+				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.pendingStatusBannerLinkMessage',
+					url: 'vip.details.pendingStatusBannerLinkURL'
+				}]
+			},
+			'blocked': {
+				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.blockedStatusBannerLinkMessage',
+					url: 'vip.details.blockedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.blockedStatusBannerReasonMessage',
+					url: 'vip.details.blockedStatusBannerReasonURL'
+				}]
+			},
+			'deleted': {
+				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.deletedStatusBannerLinkMessage',
+					url: 'vip.details.deletedStatusBannerLinkURL'
+				},
+				{
+					message: 'vip.details.deletedStatusBannerReasonMessage',
+					url: 'vip.details.deletedStatusBannerReasonURL'
+				}]
+			}
+		}
+
+		if (!isOwner) {
+			delete s[state].ownerDetails;
+		}
+
+		return s[state];
 	}
 
 	getPageDataFunctions(modelData) {
@@ -244,13 +294,11 @@ class ViewPageModel {
 				});
 
 				// Basic Data for Ad Display
-				//please delete the attribute STATUS 
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					status: 'blocked',
-					statusBanner: stateVal('blocked'),
+					status: (['active', 'expired', 'pending', 'deleted', 'blocked'])[_.random(0,4)],
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
@@ -260,37 +308,6 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
-
-				function stateVal(state){
-					// Comparar si es el dueno del anuncio
-					let s = {
-						'expired': {
-							statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.expiredStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.expiredStatusBannerLinkURL'
-						},
-						'pending': {
-							statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.pendingStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.pendingStatusBannerLinkURL'
-						},
-						'blocked': {
-							statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.blockedStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.blockedStatusBannerLinkURL',
-							statusBannerReasonMessage: 'vip.details.blockedStatusBannerReasonMessage',
-							statusBannerReasonURL: 'vip.details.blockedStatusBannerReasonURL'
-						},
-						'deleted': {
-							statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
-							statusBannerLinkMessage: 'vip.details.deletedStatusBannerLinkMessage',
-							statusBannerLinkURL: 'vip.details.deletedStatusBannerLinkURL',
-							statusBannerReasonMessage: 'vip.details.deletedStatusBannerReasonMessage',
-							statusBannerReasonURL: 'vip.details.deletedStatusBannerReasonURL'
-						}
-					}
-					return s[state];
-				}
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);

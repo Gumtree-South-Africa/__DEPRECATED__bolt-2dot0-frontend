@@ -28,32 +28,6 @@
 	margin-top: 20px;
 }
 
-.status-ad-banner{
-		padding: 10px 20px 10px 10px;
-		margin-bottom: 10px;
-		background: $expiredAdBackground;
-		color: $expiredAdText;
-		box-shadow: 1px 2px 4px #747474;
-		a{
-			color: $expiredAdLink;
-			text-decoration: underline;
-		}
-		.alert-icon{
-			background: url(../../../../../images/alert.svg);
-	    display: inline-block;
-	    position: relative;
-	    background-repeat: no-repeat;
-	    background-size: 100% 100%;
-	    width: 40px;
-	    height: 30px;
-	    top: 8px;
-		}
-		.status-ad-banner-links{
-			font-size: 14px;
-			padding-top: 10px;
-		}
-	}
-
 @include from-breakpoint($medium-break, $lt-ie9-class-name){
 	.vip-left-columns{
 		@include span(4 of 8);
@@ -62,23 +36,5 @@
 	.vip-right-columns{
 		@include span(4 of 8);
 		margin-right: 0;
-	}
-}
-
-@include from-breakpoint($small-break, $lt-ie9-class-name){
-	.status-ad-banner-mobile{
-		display:none;
-	}
-	.status-ad-banner-desktop{
-		display:block;
-	}
-}
-
-@include to-breakpoint($small-break, $lt-ie9-class-name){
-	.status-ad-banner-mobile{
-		display:block;
-	}
-	.status-ad-banner-desktop{
-		display:none;
 	}
 }
