@@ -41,6 +41,8 @@ class ViewPageModel {
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
+			this.modelData.header.postAdHeader = true;
+  		this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
