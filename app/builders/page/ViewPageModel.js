@@ -316,19 +316,15 @@ class ViewPageModel {
 
 				// Breadcrumbs
 				data.breadcrumbs = { };
-				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level')
+				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+				data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
 				  location.position = index + 1;
 				});
-				data.breadcrumbs.ad = {
-					_links: [{
-					    rel: 'self',
-					    href: `/view/${data.id}`,
-					    method: 'GET'
-					}],
-					position: data.breadcrumbs.locations.length + 1, // TODO: consider adding also categories/categoryLocation length
-					text: data.id
-			  	};
+				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+				data.breadcrumbs.categories.forEach((category, index) => {
+				  category.position = data.breadcrumbs.locations.length + index + 1;
+				});
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
