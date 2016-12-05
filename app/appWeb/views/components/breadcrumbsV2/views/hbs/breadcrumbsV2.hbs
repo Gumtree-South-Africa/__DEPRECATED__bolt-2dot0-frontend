@@ -1,3 +1,4 @@
+{{#if this.breadcrumbs}}
 <ol class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
     {{#each this.breadcrumbs.locations as |location|}}
     <li class="breadcrumb-location" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
@@ -9,17 +10,14 @@
     </li>
     {{/each}}
 
-    {{#if this.breadcrumbs.categoryLocation}}
-    {{! TODO: Put here category location link }}
-    {{/if}}
-
-    {{#if this.breadcrumbs.ad}}
-    <li class="breadcrumb-ad" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-        <meta content="{{ this.breadcrumbs.ad._links.[0].href }}" itemprop="url">
-        <a itemprop="item" href="{{ this.breadcrumbs.ad._links.[0].href }}">
-            <span itemprop="name">{{ i18n 'mc.ad.prefix' }} {{ this.breadcrumbs.ad.text }}</span>
+    {{#each this.breadcrumbs.categories as |category|}}
+    <li class="breadcrumb-category" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <meta content="{{ category._links.[0].href }}" itemprop="url">
+        <a itemprop="item" href="{{ category._links.[0].href }}">
+            <span itemprop="name">{{ category.text }} {{ i18n 'srp.category_in_location' }} {{ category.locationInText }}</span>
         </a>
-        <i class="breadcrumb-separator icon-chevron-right" content="{{ this.breadcrumbs.ad.position }}" itemprop="position"></i>
+        <i class="breadcrumb-separator icon-chevron-right" content="{{ category.position }}" itemprop="position"></i>
     </li>
-    {{/if}}
+    {{/each}}
 </ol>
+{{/if}}
