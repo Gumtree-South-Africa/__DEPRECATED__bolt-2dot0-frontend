@@ -42,7 +42,7 @@ describe('Top Searches', () => {
 
 					let c$ = cheerio.load(res.text);
 					let searchHeader = c$('.search-header-text');
-					expect(searchHeader.length).toBe(2, 'selector should produce 2 element for search header');
+					expect(searchHeader.length).toBe(1, 'selector should produce 1 element for search header');
 				})
 				.end(specHelper.finish(done));
 		});
@@ -54,7 +54,7 @@ describe('Top Searches', () => {
 				.set('Cookie', 'b2dot0Version=2.0')
 				.expect((res) => {
 					let c$ = cheerio.load(res.text);
-					expect(c$('.searches-wrapper').length).toBe(1, 'selector should produce 1 element for top searches');
+					expect(c$('.searches-wrapper').length).toBe(0, 'selector should produce 0 element for top searches');
 					expect(res.status).toBe(200);
 				})
 				.end(specHelper.finish(done));

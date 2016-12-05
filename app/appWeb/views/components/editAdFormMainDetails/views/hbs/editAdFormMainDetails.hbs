@@ -1,5 +1,4 @@
 <div id="js-main-detail-edit" class="main-detail-edit">
-    {{> (dynamic "shareAdCard") }}
 	<div class="main-details-title">
         {{i18n "editAd.mainDetails.title"}}
 	</div>
@@ -7,18 +6,7 @@
         <input id="location-lat" type="hidden" data-schema="data.location.latitude" name="locationLatitude" value="{{this.adResult.location.latitude}}">
         <input id="location-lng" type="hidden" data-schema="data.location.longitude" name="locationLongitude" value="{{this.adResult.location.longitude}}">
         <input type="hidden" name="adId" value="{{this.adId}}">
-		<div class="form-category">
-			<div class="label-wrapper">
-				<label for="adCategory">{{i18n "editAd.mainDetails.labels.category"}}</label>
-				<div class="suggested-cat">* {{i18n "editAd.mainDetails.suggestedCategory"}}</div>
-			</div>
-			<div class="input-wrapper">
-				<div id="category-name-display" data-schema="data.categoryId" class="category-name-display"></div>
-				<div class="leaf-node-warning hidden">{{i18n "editAd.mainDetails.leafNodeWarning"}}</div>
-                <input id="category-id" value="{{this.adResult.categoryId}}" type="hidden" />
-                {{> (dynamic "button") extraClasses='choose-category-button' iconName='' buttonLink="#" i18nPath="postad.contact.change"}}
-			</div>
-		</div>
+        {{> (dynamic "categoryDropdownSelection")}}
 		<div class="separator-div"></div>
 		<div class="form-ad-title form-field {{#if this.verticalCategory}}required-field{{/if}}">
 			<div class="label-wrapper">
@@ -73,33 +61,9 @@
 			</div>
 		</div>
 		<div class="separator-div"></div>
-		<div class="form-location-selection">
-			<div class="label-wrapper">
-				<label for="adLocation">{{i18n "editAd.mainDetails.labels.location"}}</label>
-			</div>
-			<div class="input-wrapper">
-				<div id="edit-location-input" role="link" class="location-link" data-default-location="{{i18n "location.defaultcity"}}">{{this.adResult.location.name}}</div>
-			</div>
-			<div class="location-warning">
-				<div class="location-warning-text">
-                    {{i18n "editAd.mainDetails.locationWarning"}}
-				</div>
-			</div>
-		</div>
         <section id="custom-attributes">
             {{> (dynamic "editFormCustomAttributes") model=this}}
         </section>
-		<div class="button-area">
-            <div class="btn-area-inner">
-				<div class="submit-btn-wrapper">
-					<button id="edit-submit-button" class="edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
-				</div>
-				<div class="cancel-link-wrapper">
-					<div id="cancel-button" class="cancel-form-link">
-                        {{i18n "editAd.mainDetails.cancel"}}
-					</div>
-				</div>
-            </div>
-		</div>
+        {{> (dynamic "locationSelection")}}
 	</form>
 </div>

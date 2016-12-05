@@ -250,6 +250,7 @@
 	"home.popular-searches": "Popular",
 	"home.popular.searches": "Top searches",
 	"home.trending-searches": "Trending",
+	"home.suggested-searches": "Suggested",
 	"home.user.registered": "Congratulations and welcome! You have registered successfully at Gumtree.",
 	"home.ad.notyetactive": "Oops, the ad you are looking for is not yet live. Check back very soon!",
 	"home.reset.password.success": "Your password has been changed successfully.",
@@ -1339,6 +1340,7 @@
 				"title": "Ad title",
 				"remaining": "remaining",
 				"price": "Price",
+				"addPhotosStep": "1. Add photos",
 				"addPhotos": "Add photos",
 				"pricePlaceholder": "Contact for price"
 			},
@@ -1378,6 +1380,11 @@
 		"mobileUpload": {
 			"post": "Done",
 			"changePhoto": "Change Photo"
+		},
+		"mainDetails": {
+			"title": "title",
+			"description": "description",
+			"amount": "amount"
 		}
 	},
 	"footer": {
@@ -1469,11 +1476,15 @@
 	},
 	"editAd": {
 		"reorderImages": "Reorder images",
+		"productImages": "Product images",
 		"headerTitle": "Edit your ad",
 		"mainDetails": {
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"attention": "Attention",
+				"warning": "Changing categories may cause data entered to be lost and require additional information to re-post the ad. ",
+				"updateConfirm": "Update category",
 				"categoryOptional": "Select category (optional)",
 				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",
