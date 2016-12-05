@@ -2,7 +2,7 @@
 
 let config = require('config');
 let bapiOptionsModel = require('./bapi/bapiOptionsModel');
-let ruiOptionsModel = require('.rui/ruiOptionsModel');
+let ruiOptionsModel = require('./rui/ruiOptionsModel');
 let bapiService      = require('./bapi/bapiService');
 
 class AdService {
