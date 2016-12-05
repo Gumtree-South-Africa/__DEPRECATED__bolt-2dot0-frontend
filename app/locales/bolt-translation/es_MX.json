@@ -1316,6 +1316,7 @@
 				"title": "Título del anuncio",
 				"remaining": "restantes",
 				"price": "Precio",
+				"addPhotosStep": "1. Agregar fotos",
 				"addPhotos": "Agregar fotos",
 				"pricePlaceholder": "Preguntarme el precio"
 			},
@@ -1355,6 +1356,11 @@
 		"mobileUpload": {
 			"post": "Listo",
 			"changePhoto": "Cambia <br>foto"
+		},
+		"mainDetails": {
+			"title": "título",
+			"description": "descripción",
+			"amount": "cantidad"
 		}
 	},
 	"footer": {
@@ -1439,11 +1445,15 @@
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
+		"productImages": "Imágenes del producto",
 		"headerTitle": "Edita tu anuncio",
 		"mainDetails": {
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"attention": "Atención",
+				"warning": "Cambiar de categorías puede hacer que los datos ingresados se pierdan y que se requiera más información para volver a publicar el anuncio. ",
+				"updateConfirm": "Actualizar la categoría",
 				"categoryOptional": "Seleccionar categoría (opcional)",
 				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",

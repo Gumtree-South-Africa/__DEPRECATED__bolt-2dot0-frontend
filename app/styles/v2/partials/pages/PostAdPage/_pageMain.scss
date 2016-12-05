@@ -55,10 +55,10 @@ $labelMargin: 8%;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 59.6%;
+		width: 63.7%;
 		vertical-align: top;
 		float: left;
-		margin-left: calc(6% + 300px);
+		margin-left: calc(1% + 300px);
 		margin-top: 1%;
 		margin-bottom: 2%;
 
@@ -72,7 +72,26 @@ $labelMargin: 8%;
 	}
 }
 
+.photo-switcher {
+	display: inline-block;
+	width: 300px; // Align with banner asset
+	float: left;
+	background-color: $postAdBackgroundColor;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
+	.image-container {
+		margin: 5% 5%;
+	}
+	.cover-photo-small {
+		margin: 2% 2.8%;
+	}
+}
+
 @include from-breakpoint($medium-break) {
+	.post-ad-content {
+		position: relative;
+		max-width: 1168px;
+		margin: 0 auto;
+	}
 	.mobile-post-ad, .back-button {
 		display: none;
 	}
@@ -80,9 +99,8 @@ $labelMargin: 8%;
 	.desktop-post-ad {
 		display: block;
 	}
-
 	.main-detail-post {
-		width: 54%;
+		width: 58%;
 		float: left;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
 		box-shadow: 1px 1px 6px $postAdShadowColor;
@@ -114,12 +132,21 @@ $labelMargin: 8%;
 @include to-breakpoint($small-break) {
 	.viewport.covered .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
-		// Magic number 73 is the height of post button layer
-		margin-bottom: 73px;
+		// Magic number 49 is the one to ensure the bottom of footer is exactly at the top of overlay
+		// Actually the overlay's height is 73px, but post page will load one image which will adds to
+		// the height of body after footer, so that image's height should be calculated.
+		margin-bottom: 49px;
 	}
 	.main-detail-post {
 		display:none;
 		background-color: $mainDetailsBackgroundColor;
+		.photo-switcher {
+			margin: 0 2%;
+			width: 100%;
+			.cover-photo-small {
+				margin: 2% 2%;
+			}
+		}
 	}
 
 	.two-step {

@@ -5,40 +5,49 @@
 	    <div class="icon-down"></div>
 	    <div class="icon-up hidden"></div>
 	</div>
-	<form id='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
+	<form class='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
+		{{#if this.adId}}<input type="hidden" name="adId" value="{{this.adId}}">{{/if}}
 		{{> (dynamic "categoryDropdownSelection")}}
 		<div class="form-ad-title form-field">
 			<div class="label-wrapper">
 				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="Title" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
+				<input title="{{i18n "postAd.mainDetails.title"}}" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price form-field hidden">
+		<div class="form-ad-price form-field {{#if this.isPriceExcluded}}hidden{{/if}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
 			<div class="input-wrapper">
-				<input title="amount" type="text" name="amount" data-schema="data.price.amount" data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
+				<input title="{{i18n "postAd.mainDetails.amount"}}" type="text" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
 					{{#each this.localCurrencies}}
 						<label class="control">
-							<input type="radio" name="currency" value="{{this}}"
-								{{#if this.deferredAd.ads}}
-									{{#compare  this.deferredAd.ads.0.price.currency "===" this}}
-								   checked="checked"
-									{{/compare }}
-								{{else if @first}}
-								   checked="checked"
-								{{/if}}
-							/>
+							<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}}/>
 							<div class="outer-circle">
 								<div class="inner-circle"></div>
 							</div>
 							<span class="currency-type">{{this}}</span>
 						</label>
 					{{/each}}
+					<!--
+                    <label class="control">
+                        <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">MXN</span>
+                    </label>
+                    <label class="control">
+                        <input type="radio" name="currency" value="USD" {{#ifeq this.adResult.price.currency compare='USD'}}checked="checked"{{/ifeq}}/>
+                        <div class="outer-circle">
+                            <div class="inner-circle"></div>
+                        </div>
+                        <span class="currency-type">USD</span>
+                    </label>
+                    -->
 				</div>
 			</div>
 		</div>
@@ -47,7 +56,7 @@
 				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
 			</div>
 			<div class="input-wrapper">
-				<textarea id='description-input' data-schema="data.description" class="description-input" name="description" title="description" maxlength="4000">{{{this.adResult.description}}}</textarea>
+				<textarea id='description-input' data-schema="data.description" class="description-input" name="description" title="{{i18n "postAd.mainDetails.description"}}" maxlength="4000">{{{this.adResult.description}}}</textarea>
 			</div>
 		</div>
 		<div class="separator-div"></div>

@@ -1,8 +1,8 @@
 'use strict';
 
-let editAdFormMainDetailsController = require("app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js");
-let editFormCustomAttributesController = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
-let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
+let PostFormCustomAttributesController = require("app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js");
+let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
+let EditAdController = require("app/appWeb/views/templates/pages/editAd/js/editPage.js").EditAd;
 let specHelper = require('../helpers/commonSpecHelper.js');
 
 //let mockGoogleAutoCompleteData = "window.google=window.google||{};google.maps=google.maps||{};google.maps.__gjsload__(\'places\',function(_){\'use strict\';var Qw=function(a,b){try{_.Ib(window.HTMLInputElement,\"HTMLInputElement\")(a)}catch(c){if(_.Fb(c),!a)return}\r\n_.J(\"places_impl\",(0,_.v)(function(c){this.setValues(b||{});c.b(this,a);_.Ie(a)},this))},Rw=function(){this.b=null;_.J(\"places_impl\",(0,_.v)(function(a){this.b=a.l()},this))},Sw=function(a){this.b=null;_.J(\"places_impl\",(0,_.v)(function(b){this.b=b.f(a)},this))},Tw=function(a,b){_.J(\"places_impl\",(0,_.v)(function(c){c.j(this,a);this.setValues(b||{})},this))};_.w(Qw,_.G);Qw.prototype.setTypes=_.wc(\"types\",_.Kb(_.$g));Qw.prototype.setComponentRestrictions=_.wc(\"componentRestrictions\");_.xc(Qw.prototype,{place:null,bounds:_.Ob(_.Ud)});Rw.prototype.getPlacePredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getPlacePredictions(a,b)},this))};Rw.prototype.getPredictions=Rw.prototype.getPlacePredictions;Rw.prototype.getQueryPredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getQueryPredictions(a,b)},this))};_.r=Sw.prototype;_.r.getDetails=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getDetails(a,b)},this))};_.r.nearbySearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.nearbySearch(a,b)},this))};_.r.search=Sw.prototype.nearbySearch;_.r.textSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.textSearch(a,b)},this))};_.r.radarSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.radarSearch(a,b)},this))};_.w(Tw,_.G);_.xc(Tw.prototype,{places:null,bounds:_.Ob(_.Ud)});_.Lc.google.maps.places={PlacesService:Sw,PlacesServiceStatus:{OK:_.ha,UNKNOWN_ERROR:_.ka,OVER_QUERY_LIMIT:_.ia,REQUEST_DENIED:_.ja,INVALID_REQUEST:_.ca,ZERO_RESULTS:_.la,NOT_FOUND:_.ga},AutocompleteService:Rw,Autocomplete:Qw,SearchBox:Tw,RankBy:{PROMINENCE:0,DISTANCE:1},RatingLevel:{GOOD:0,VERY_GOOD:1,EXCELLENT:2,EXTRAORDINARY:3}};_.mc(\"places\",{});});";
@@ -22,7 +22,6 @@ let mockEditAdResponse = {
 //	}
 //};
 
-let mockCategoryTree = require("../mock/categoryTree.json");
 let editPageModel = require("../mockData/editPageModel.json");
 let customAttributeAjaxResponse = require("../mockData/customAttributesAjaxResponse.json");
 let dependentAttributesModel = require("../mockData/dependentAttributesModel.json");
@@ -33,28 +32,18 @@ describe('Edit Ad', () => {
 		let editPageModelCopy = JSON.parse(JSON.stringify(editPageModel));
 		editPageModelCopy.customAttributes = customAttributeAjaxResponse.customAttributes;
 		let failPayload = {"error":"error updating ad, see logs for details","bapiJson":{"message":"Validation Errors","details":[{"code":"INVALID_PARAM_ATTRIBUTE","message":"Param: categoryAttribute-Youtube, Value: 3000, Message: Invalid param"}]},"bapiValidationFields":["Youtube"]};
-		let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModelCopy, "es_MX");
+		let $testArea = specHelper.setupTest("postAdFormMainDetails", editPageModelCopy, "es_MX");
 
 		specHelper.mockWebshim();
 
-		specHelper.registerMockAjax('/api/edit/update', failPayload, {fail: true, status: 400});
-
-		editAdFormMainDetailsController.initialize(false);
-		editAdFormMainDetailsController.onReady();
-
-		spyOn(editAdFormMainDetailsController, "_validatePhotoCarousel").and.callFake(() => {
-			return true; // fake validation for the photo carousel to true
-		});
-
-
-		$testArea.find('#edit-submit-button').click();
-
+		postAdFormMainDetailsController.initialize();
+		postAdFormMainDetailsController.viewModel.setValidationError(failPayload);
 		expect($testArea.find('[name="Youtube"]').hasClass("validation-error")).toBeTruthy();
 	});
 
 	it("should make ajax call when button is clicked", () => {
 		specHelper.mockGoogleLocationApi();
-		let $testArea = specHelper.setupTest("editAdFormMainDetails_es_MX", {
+		let $testArea = specHelper.setupPageTest('editAd', {
 			categoryCurrentHierarchy: "[0, 3]",
 			footer: {
 				"baseJSUrl": "/public/js/"
@@ -63,8 +52,8 @@ describe('Edit Ad', () => {
 
 		specHelper.mockWebshim();
 
-		editAdFormMainDetailsController.initialize();
-		editAdFormMainDetailsController.onReady();
+		let editAdController = new EditAdController();
+		editAdController.componentDidMount($testArea);
 		specHelper.disableFormWarning();
 		specHelper.registerMockAjax('/api/edit/update', mockEditAdResponse, {
 			success: (returnData) => {
@@ -113,33 +102,28 @@ describe('Edit Ad', () => {
 
 	describe("Custom Attribute Rendering", () => {
 		it("should render custom attributes on category changes", () => {
-			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
+			let $testArea = specHelper.setupTest("postFormCustomAttributes", editPageModel, "es_MX");
 			let newCatId = 64;
-			editFormCustomAttributesController.initialize();
 
 			specHelper.registerMockAjax(`/api/edit/customattributes/${newCatId}`, customAttributeAjaxResponse);
 
-			let spyStuff = {
-				postRenderCb: () => {
-					expect($testArea.find('[data-field="ForSaleBy"]').length).toEqual(1);
-					expect($testArea.find('[data-field="Youtube"]').length).toEqual(1);
-				}
-			};
+			let postFormCustomAttributesController = new PostFormCustomAttributesController();
+			postFormCustomAttributesController.componentDidMount($testArea);
+			postFormCustomAttributesController.categoryId = newCatId;
 
-			spyOn(spyStuff, "postRenderCb").and.callThrough();
-
-			editFormCustomAttributesController.updateCustomAttributes(spyStuff.postRenderCb, newCatId);
-			expect(spyStuff.postRenderCb).toHaveBeenCalled();
+			expect($testArea.find('[data-field="ForSaleBy"]').length).toEqual(1);
+			expect($testArea.find('[data-field="Youtube"]').length).toEqual(1);
 		});
 
 		it("should render custom attributes on category changes", () => {
 			let $makeOptions, $modelOptions;
-			let $testArea = specHelper.setupTest("editFormCustomAttributes", dependentAttributesModel.templateModel, "es_MX");
+			let $testArea = specHelper.setupTest("postFormCustomAttributes", dependentAttributesModel.templateModel, "es_MX");
 
 			specHelper.registerMockAjax(`/api/edit/attributedependencies`, dependentAttributesModel.dependencies.Pontiac);
 			specHelper.registerMockAjax(`/api/edit/attributedependencies`, dependentAttributesModel.dependencies.Ford);
 
-			editFormCustomAttributesController.initialize();
+			let postFormCustomAttributesController = new PostFormCustomAttributesController();
+			postFormCustomAttributesController.componentDidMount($testArea);
 
 			let $makeSelect = $testArea.find('select[name="Make"]');
 			let $modelSelect = $testArea.find('select[name="Model"]');
@@ -170,13 +154,15 @@ describe('Edit Ad', () => {
 
 	});
 
-	describe("Category Selection Modal", () => {
+	// This should be updated to use category dropdown selection
+	/*describe("Category Selection Modal", () => {
 		it("should open the category selection modal when pressing the breadcrumb links", () => {
 			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
 
 			spyOn(categorySelectionModal, "openModal").and.stub();
 
-			editAdFormMainDetailsController.initialize();
+			editAdFormMainDetailsController.initialize(false);
+			editAdFormMainDetailsController.onReady();
 
 			$testArea.find("#category-name-display").click();
 
@@ -188,7 +174,8 @@ describe('Edit Ad', () => {
 
 			spyOn(categorySelectionModal, "openModal").and.stub();
 
-			editAdFormMainDetailsController.initialize();
+			editAdFormMainDetailsController.initialize(false);
+			editAdFormMainDetailsController.onReady();
 
 			$testArea.find(".choose-category-button").click();
 
@@ -325,5 +312,5 @@ describe('Edit Ad', () => {
 
 			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeTruthy();
 		});
-	});
+	});*/
 });
