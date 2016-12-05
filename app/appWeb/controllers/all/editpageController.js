@@ -7,6 +7,7 @@ let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControll
 let EditAdPageModel = require(cwd + '/app/builders/page/EditAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
 let EditAdPage = {
 	extendModelData: (req, modelData) => {
@@ -27,13 +28,16 @@ let EditAdPage = {
 };
 
 router.get('/:id?', (req, res, next) => {
+	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
+	req.app.locals.abtestpage = abTestPagesJson.pages.E;
+
 	let adId = req.params.id;
 	if (adId === undefined) {
 		res.redirect('/');
 		return;
 	}
 
-	if (!pageControllerUtil.is2dot0Version(res)) {
+	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;
 	}
@@ -46,7 +50,6 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
-	req.app.locals.pagetype = pagetypeJson.pagetype.EDIT_AD;
 	let editAdPageModel = new EditAdPageModel(req, res, adId);
 	let modelPromise = editAdPageModel.populateData();
 
