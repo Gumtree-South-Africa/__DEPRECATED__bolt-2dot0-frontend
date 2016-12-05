@@ -96,7 +96,7 @@
 		}
 	}
 
-	@include to-breakpoint($medium-break) {
+	@include to-breakpoint($small-break) {
 		.h1-text {
 			margin-left: 10px;
 			margin-right: 10px;
