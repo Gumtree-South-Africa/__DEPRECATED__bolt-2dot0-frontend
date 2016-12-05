@@ -1,57 +1,30 @@
 {
-	"locationsAndAd": {
-		"breadcrumbs": {
-			"ad": {
-				"text": "110423023",
-				"position": 3,
-				"_links": [{
-					"rel": "self",
-					"href": "/view/110423023",
-					"method": "GET"
-				}]
-			},
-			"locations": [{
-				"text": "Distrito Federal",
-				"level": 1,
-				"position": 1,
-				"_links": [{
-					"rel": "search",
-					"href": "/s-distrito-federal/v1l1008p1",
-					"method": "GET"
-				}]
-			}, {
-				"text": "Cuauhtémoc",
-				"level": 2,
-				"position": 2,
-				"_links": [{
-					"rel": "search",
-					"href": "/s-cuauhtemoc-df/v1l10270p1",
-					"method": "GET"
-				}]
-			}]
-		}
-	},
-	"locationsOnly": {
-		"breadcrumbs": {
-			"locations": [{
-				"text": "Distrito Federal",
-				"level": 1,
-				"position": 1,
-				"_links": [{
-					"rel": "search",
-					"href": "/s-distrito-federal/v1l1008p1",
-					"method": "GET"
-				}]
-			}, {
-				"text": "Cuauhtémoc",
-				"level": 2,
-				"position": 2,
-				"_links": [{
-					"rel": "search",
-					"href": "/s-cuauhtemoc-df/v1l10270p1",
-					"method": "GET"
-				}]
-			}]
-		}
-	}
+    "empty": {
+        "breadcrumbs": {}
+    },
+    "filledUp": {
+        "breadcrumbs": {
+            "locations": [{
+                "text": "Distrito Federal",
+                "level": 1,
+                "_links": [{
+                    "rel": "search",
+                    "href": "/s-distrito-federal/v1l1008p1",
+                    "method": "GET"
+                }],
+                "position": 1
+            }],
+            "categories": [{
+                "text": "Vehículos",
+                "locationInText": "Cuauhtémoc",
+                "level": 1,
+                "_links": [{
+                    "rel": "search",
+                    "href": "/s-venta-vehiculos/cuauhtemoc-df/v1c64l10270p1",
+                    "method": "GET"
+                }],
+                "position": 2
+            }]
+        }
+    }
 }
