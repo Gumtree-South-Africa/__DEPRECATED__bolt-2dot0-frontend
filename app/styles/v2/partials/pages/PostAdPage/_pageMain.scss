@@ -72,6 +72,28 @@ $labelMargin: 8%;
 	}
 }
 
+.separator-div {
+	height: 1px;
+	position: relative;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	&:after {
+		content: "";
+		background-color: $categorySelectionActiveListRowBgColor;
+		position: absolute;
+		bottom: 0;
+		height: 1px;
+		left: 5%;
+		right: 5%;
+	}
+}
+.inf-container {
+	.inf-amount {
+		margin-top: -25px !important;
+	}
+}
+
 .photo-switcher {
 	display: inline-block;
 	width: 300px; // Align with banner asset
