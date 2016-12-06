@@ -6,7 +6,7 @@
 		box-shadow: 1px 1px 6px $postAdShadowColor;
 		@include to-breakpoint($small-break) {
 			margin-top: -11px;
-			height: 390px;
+			height: 440px;
 		}
 		@include from-breakpoint($medium-break) {
 			position: relative;
@@ -17,7 +17,7 @@
 				width:300px;
 				margin-left: 65px;
 			}
-			.desktop-checkout {
+			.promote-feature {
 				margin-left: 400px;
 				margin-right: 15%;
 			}
@@ -93,7 +93,7 @@
 		border: 1px solid $vivaGreen1;
 		background-color: white;
 		@include to-breakpoint($small-break) {
-			width: 125px;
+			width: 100%;
 			font-size: 11.5px;
 		}
 
@@ -132,8 +132,9 @@
 			}
 			.checkout-price {
 				margin-bottom: 10px;
-				width: 20%;
+				width: 5%;
 				float: left;
+				margin-left: 15%;
 				.price-content {
 					margin-top: 9px;
 					text-align: center;
@@ -144,6 +145,13 @@
 						color: $vivaGreen1;
 					}
 				}
+			}
+			.checkout-cancel {
+				margin-top: 9px;
+				text-decoration: underline;
+				font-size: large;
+				text-align: center;
+				margin-right: 10%;
 			}
 		}
 	}
@@ -178,9 +186,9 @@
 			}
 		}
 		.checkout-price {
-			padding: 10px;
-			float: right;
-			margin-right: 10px;
+			padding: 10px 0 10px 0;
+			float: left;
+			margin-left: 5%;
 		}
 	}
 

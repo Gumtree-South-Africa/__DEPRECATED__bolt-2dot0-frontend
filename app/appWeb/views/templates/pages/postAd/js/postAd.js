@@ -254,7 +254,7 @@ class PostAd {
 								} else {
 									this._$promoteWithoutInf.toggleClass("hidden", false);
 								}
-								this.adFeatureSelection.render(features, response.insertionFee, response.ad.redirectLinks.vip);
+								this.adFeatureSelection.render(features, response.ad.id, response.insertionFee, response.ad.redirectLinks.vip);
 								});
 						},
 						error: () => {

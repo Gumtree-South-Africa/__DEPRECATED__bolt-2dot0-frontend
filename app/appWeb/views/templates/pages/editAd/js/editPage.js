@@ -151,7 +151,7 @@ class EditAd {
 					} else {
 						this._$promoteWithoutInf.toggleClass("hidden", false);
 					}
-					this.adFeatureSelection.render(features, response.insertionFee, response.redirectLink.vip);
+					this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink.vip);
 				});
 			},
 			error: () => {

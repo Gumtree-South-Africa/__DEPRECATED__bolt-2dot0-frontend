@@ -13,18 +13,7 @@ function initializeClientHbsIfNot() {
 		clientHbs.initialize({translationBlockId: "translation-block"});
 	}
 }
-/**
- * A form to fill in custom attributes.
- *
- * - Events:
- *   - propertyChanged, triggered with propertyName and newValue
- *
- * - Properties:
- *   - categoryId
- *   - loadBaseUrl, base url to load custom attribute metadata. This is because metadata of same category
- *     from different URL can be different (for example, metadata for non-vertical category will be empty)
- *   - customAttributeMetadata, the metadata returned from <loadBaseUrl>/:categoryId
- */
+
 class AdFeatureSelection {
 	constructor() {
 		initializeClientHbsIfNot();
@@ -39,20 +28,10 @@ class AdFeatureSelection {
 	 * @param modelData js object to use for templating
 	 * @private
 	 */
-	render(modelData, insertionFee, cancelLink) {
+	render(modelData, adId, insertionFee, cancelLink) {
 		// empty the contents of the form
 		this.$form.empty();
-		this.totalPrice = 0;
-		if(insertionFee) {
-			$(this.$form.find("#insertionFee")).val(insertionFee);
-			this.totalPrice = insertionFee;
-		}
-		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
-
-		this.unSelectedFeatures = [];
-		modelData.forEach((item) => {
-			this.unSelectedFeatures.push(item.name);
-		});
+		this.insertionFee = 0;
 
 		if (modelData) {
 			// generate the dom string using handlebars
@@ -61,47 +40,62 @@ class AdFeatureSelection {
 			this.$form.append($(newDomString).unwrap());
 			this._bindEvent();
 		}
+
+		if(insertionFee) {
+			let infInput = $(document.createElement('input')).attr("name", "insertionFee").addClass("hidden").val(adId + "|insertionFee");
+			this.$form.find(".insertionFee-wrapper").html(infInput);
+			this.insertionFee = insertionFee;
+		}
+		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
 	}
 
 	_bindEvent() {
-		$(this.$form.find(".input-checkbox")).on("click", (e) => {
-			let checked = $(e.target).prop("checked");
-			let feature = $(e.target).prop("name");
-			let price = this._getFeaturePrice(feature);
-			this._updateFeatures(feature, checked, price);
+
+		// Feature Checkbox event
+		$(this.$form.find(".input-checkbox")).on("click", () => {
+			this._updateCheckoutPrice();
 			this.$form.find(".mobile-cancel").toggleClass("hidden", true);
 			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
 			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
 			this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 		});
 
+		// Feature option event
+		$(this.$form.find("select")).change(() => {
+			this._updateCheckoutPrice();
+		});
+
+		// Feature checkout submit event
 		$(this.$form.find(".checkout-button")).on("click", (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			this.unSelectedFeatures.forEach((item) => {
-				$(this.$form.find("select[name='" + item + "']")).prop("name", ""); // Don't checkout unsubmit feature
-			});
+			// Clean unsupported fields for 1.0 promote
+			for (let input of this.$form.find("input[type='checkbox']")) {
+				if (input && !($(input).prop("checked"))) {
+					let name = $(input).prop("name");
+					$(this.$form.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
+				}
+			}
+			this.$form.find("input[type='checkbox']").prop('name','');
 			this.$form.find("#promote-checkout-form").submit();
 		});
 	}
 
-	_getFeaturePrice(feature) {
+	_updateCheckoutPrice() {
+		let price = this.insertionFee;
+		for (let input of this.$form.find("input[type='checkbox']")) {
+			if (input && $(input).prop("checked")) {
+				let name = $(input).prop("name");
+				price += this._getFeatureOptionPrice(name);
+			}
+		}
+		this.$form.find(".price-amount").text("$" + price);
+	}
+
+	_getFeatureOptionPrice(feature) {
 		let select = this.$form.find("select[name='" + feature + "']");
 		let selectVal = select.val();
 		return new Number(select.find("option[value='" + selectVal + "']").html().match(/\$(\d+)+/)[1]);
-	}
-
-	_updateFeatures(feature, flag, price) {
-		if (flag === true) {
-			this.unSelectedFeatures = this.unSelectedFeatures.filter((item) => {
-				return item !== feature;
-			});
-			this.totalPrice += price;
-		} else {
-			this.unSelectedFeatures.push(feature);
-			this.totalPrice -= price;
-		}
-		this.$form.find(".price-amount").text("$" + this.totalPrice);
 	}
 }
 

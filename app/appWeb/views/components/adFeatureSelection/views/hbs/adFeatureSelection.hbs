@@ -4,7 +4,7 @@
 		<div class="promote-hint">{{i18n "feature.promotehint"}}</div>
         <div class="desktop-banner">
         </div>
-        <div class="desktop-checkout">
+        <div class="promote-feature">
 			<form id="promote-checkout-form" method="POST" action="../my/promote.html">
                 {{#each this}}
 					<div class="feature-wrapper">
@@ -21,21 +21,24 @@
 						</div>
 					</div>
                 {{/each}}
-				<input id="insertionFee" class="hidden" type="number" name="insertionFee">
+				<div class="insertionFee-wrapper">
+                </div>
 			</form>
         </div>
     </div>
 	<div class="desktop-checkout hidden">
 		<div class="desktop-checkout-container">
-			<div class="checkout-btn-wrapper">
-				<button class="checkout-button" type="submit">Checkout</button>
-			</div>
 			<div class="checkout-price">
 				<div class="price-content">
 					Total:<span class="price-amount"></span>
 				</div>
 			</div>
-			<a class="cancel-link">Cancel</a>
+			<div class="checkout-btn-wrapper">
+				<button class="checkout-button" type="submit">Checkout</button>
+			</div>
+            <div class="checkout-cancel">
+				<a class="cancel-link">Cancel</a>
+            </div>
 		</div>
 	</div>
 	<div class="mobile-checkout hidden">
