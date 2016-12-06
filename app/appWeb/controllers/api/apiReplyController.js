@@ -28,7 +28,7 @@ router.post('/', cors, (req, res) => {
 	// Validate the body
 	if (req.body.adId && req.body.replyMessage) {
 		let replyForm = {
-			machineId: req.app.locals.machineid,
+			machineId: req.app.locals.machineid || '',
 			adId: req.body.adId,
 			buyerName: req.body.buyerName,
 			email: req.body.email,
@@ -41,7 +41,7 @@ router.post('/', cors, (req, res) => {
 		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 		model.advertModel.replyToTheAd(replyForm).then(() => {
-			res.status(200).send(JSON.stringify({status: 'OK'}));	// returning {} since consumer will expect json
+			res.status(200).send({});	// returning {} since consumer will expect json
 		}).fail((err) => {
 			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code

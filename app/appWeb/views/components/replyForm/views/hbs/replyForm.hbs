@@ -29,6 +29,7 @@
                 {{else}}
                     <input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
                     <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
+					<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
                 <div class="send-message-container"><input name="isSendMeCopyEmail" class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
