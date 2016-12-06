@@ -1,0 +1,14 @@
+<div class="content-ad-tabs">
+	<div class="adTabs">
+		<ul>
+			<li class="active"><span>{{i18n "vip.ads.similar"}}</span></li>
+			<li><span>{{i18n "vip.ads.sellers"}}</span></li>
+		</ul>
+	</div>
+	<div class="content-ads">
+		{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.similars}}
+	</div>
+	<div class="content-ads">
+		{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.sellerOtherAds}}
+	</div>
+</div>

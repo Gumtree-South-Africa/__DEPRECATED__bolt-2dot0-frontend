@@ -1,40 +1,71 @@
 .content-ad-tabs {
-  background-color: #F7F7F7; // VIVA
   padding-bottom: 50px;
+  background-color: #F7F7F7;
+  background-color: $common-background-color;
   .adTabs {
     display: table;
-  	margin: 0 auto;
+    margin: 0 auto;
     ul {
       max-width: 696px;
-    	list-style: none;
-    	padding: 20px 50px 12px 50px;
-      border-bottom: 1px solid #1E98D5; //VIVA
+      list-style: none;
+      padding: 20px 50px 12px 50px;
+      border-bottom: 1px solid $border-color-line;
       li {
         display: inline;
+        cursor: pointer;
         padding: 12px;
-        color: #1E98D5; //VIVA
+        color: $text-menu-ads;
         &.active {
-          border-bottom: 3px solid #1E98D5; //VIVA
+          border-bottom: 3px solid $border-color-line;
         }
       }
     }
   }
   & > .content-ads {
       display: block;
-    & ~ .content-ads {
-      display: none;
-    }
+      & ~ .content-ads {
+        display: none;
+      }
+      &.ad-display {
+        display: block;
+      }
+      &.ad-hide {
+        display: none;
+      }
+
   }
   .content-ads {
     max-width: 920px;
     margin: 0 auto;
     overflow: hidden;
-    height: 190px;
+    height: 380px;
     margin-top: 20px;
     .tile-item {
-      width: 140px;
+      width: 45%;
       height: 180px;
-      padding-right: 15px;
+      &:nth-child(even) {
+        padding-left: 30px;
+      }
+    }
+  }
+}
+
+@include from-breakpoint($medium-break){
+  .content-ad-tabs {
+    .content-ads {
+      height: 190px;
+      .tile-container {
+        display: table;
+        .tile-item {
+          width: 135px;
+          height: 180px;
+          padding-left: 15px;
+          display: table-cell;
+          &:nth-child(even) {
+            padding-left: 15px;
+          }
+        }
+      }
     }
   }
 }
