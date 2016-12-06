@@ -26,10 +26,7 @@ router.post('/', cors, (req, res) => {
 	}
 
 	// Validate the body
-	if (req.body.adId && req.body.message) {
-		let modelBuilder = new ModelBuilder();
-		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
-
+	if (req.body.adId && req.body.replyMessage) {
 		let replyForm = {
 			machineId: req.app.locals.machineid,
 			adId: req.body.adId,
@@ -37,28 +34,25 @@ router.post('/', cors, (req, res) => {
 			email: req.body.email,
 			phoneNumber: req.body.phoneNumber || '',
 			replyMessage: req.body.replyMessage,
-			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
-			fileName: '',
-			rand: ''
+			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false
 		};
 
+		let modelBuilder = new ModelBuilder();
+		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 		model.advertModel.replyToTheAd(replyForm).then(() => {
-			res.status(200).send({});	// returning {} since consumer will expect json
-			return;
+			res.status(200).send(JSON.stringify({status: 'OK'}));	// returning {} since consumer will expect json
 		}).fail((err) => {
 			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code
 				error: "unable to reply to ad, see logs for details",
 				bapiInfo: bapiInfo
 			});
-			return;
 		});
 	} else {
 		res.status(400).send({
 			error: "adId not found in the request"
 		});
-		return;
 	}
 });
 

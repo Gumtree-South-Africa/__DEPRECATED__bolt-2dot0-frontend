@@ -11,7 +11,7 @@
             </div>
         {{/if}}
 
-        <form class="main-content">
+        <form action="/api/ads/reply" method="post" class="main-content">
             <div class="reply-form-content">
                 <div class="login-message-container"><span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>{{#unless this.header.id}}<span class="desktop-paren">(</span><a class=login-link href="/login.html">{{i18n "vip.reply.login"}} </a><span>{{i18n "vip.reply.loginMessage"}}</span><span class="desktop-paren">)</span>{{/unless}}</div>
                 <div class="interested-message-container"><input class="viva-checkbox" type="checkbox"><span class="interested-message">{{i18n "vip.reply.interested"}}</span></div>
@@ -25,6 +25,7 @@
                     <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
                     <div class="viva-labels">{{i18n "vip.reply.phone"}}</div>
                     <input name="phoneNumber" class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" >
+                    <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{else}}
                     <input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
                     <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
