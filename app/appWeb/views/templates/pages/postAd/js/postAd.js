@@ -249,12 +249,12 @@ class PostAd {
 							spinnerModal.completeSpinner(() => {
 								this._$postAdContent.toggleClass("hidden", true);
 								this._$featurePromote.toggleClass("hidden", false);
-								if (response.insertionFee) {
-									this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
+								if (response.ad.insertionFee) {
+									this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
 								} else {
 									this._$promoteWithoutInf.toggleClass("hidden", false);
 								}
-								this.adFeatureSelection.render(features, response.ad.id, response.insertionFee, response.ad.redirectLinks.vip);
+								this.adFeatureSelection.render(features, response.ad.id, response.ad.insertionFee, response.ad.redirectLinks.vip);
 								});
 						},
 						error: () => {

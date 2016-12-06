@@ -82,7 +82,8 @@ let getAdPostedResponse = (results) => {
 	response.ad = {
 		id: results.id,
 		redirectLinks: results.redirectLinks,
-		status: results.adState
+		status: results.adState,
+		insertionFee: results.insertionFee
 	};
 
 	return response;
