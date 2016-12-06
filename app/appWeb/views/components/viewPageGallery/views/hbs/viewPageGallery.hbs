@@ -1,11 +1,4 @@
 <div class="container {{#if this.device.isMobile}}isMobile{{/if}}">
-  <div class="zoomHolder">
-    <img data-src="{{this.advert.picturesToDisplay.testPictures}}" data-elem="pinchzoomer"/>
-  </div>
-  <div class="zoomHolder2">
-    <img data-src="{{this.advert.picturesToDisplay.testPictures}}" data-elem="bg"/>
-  </div>
-  <span class="icon-Zoom" style="border: 1px solid red; display:inline-block"></span>
   <div class="zoomI hidden"></div>
   <div class="zoomT hidden">
     <div>Pinch in and out to zoom.</div>
@@ -13,7 +6,9 @@
   </div>
 
 {{#if this.device.isMobile}}
+  <div class="zoomHolder" style="margin-top: -2em;"></div>
 	<div class="carousel-images extra">
+    <span class="icon-Zoom"></span>
     <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
       <span class="currentImg">1</span>
       <span class="separator">/</span>
@@ -21,7 +16,7 @@
     </div>
     <div class="slider-mobile-for">
     {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt="{{@index}}" data-src="{{this}}" data-elem="bg"/>
+			<img class="slick-carousel" src="{{this}}" alt="{{@index}}"/>
 		{{/each}}
     </div>
 	</div>
@@ -29,6 +24,7 @@
 
 {{#unless this.device.isMobile}}
   <div class="carousel-text">
+    <span class="icon-Zoom"></span>
     <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
       <span class="currentImg">1</span>
       <span class="separator">/</span>

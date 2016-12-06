@@ -65,8 +65,8 @@
 }
 .icon-Zoom{
 	position: absolute;
-	top: 417px;
 	left: 5px;
+	bottom: 0.2em;
 	z-index: 9;
 	cursor: pointer;
 	-moz-transform: scaleX(-1);
@@ -85,8 +85,8 @@
 	 	z-index: 7;
 	 	width: 100%;
 	 	text-align: center;
-	 	padding-top: 20px;
-	 	padding-bottom: 20px;
+	 	padding-top: 30px;
+	 	padding-bottom: 30px;
  	}
 	.zoomI{
 		height: 500px;
@@ -258,6 +258,9 @@
 	.counter{
 		bottom: 6em;
 	}
+	.icon-Zoom{
+		top: 417px;
+	}
 }
 
 @include in-breakpoint($no-break){
@@ -270,6 +273,9 @@
 		}
 	}
 	.icon-Zoom{
-		display: none;
+		display: block;
+		&.hidden{
+			display: none;
+		}
 	}
 }
