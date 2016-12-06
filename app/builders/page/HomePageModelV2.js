@@ -204,7 +204,12 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
-				return data[0].keywords || {};
+				let keywords = {};
+				keywords.top = data[0];
+				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations'];
+				keywords.top.total = 1;
+
+				return keywords;
 			}).fail((err) => {
 				console.warn(`error getting topSearches data ${err}`);
 				return {};

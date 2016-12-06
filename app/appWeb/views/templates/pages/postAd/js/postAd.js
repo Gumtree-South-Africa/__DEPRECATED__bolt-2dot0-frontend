@@ -16,6 +16,8 @@ const AD_STATES = {
 	AD_DEFERRED: "AD_DEFERRED"
 };
 
+const INVALID_COOKIE_VALUE = 'invalid';
+
 // View model for post ad page
 class PostAd {
 	constructor() {
@@ -162,6 +164,13 @@ class PostAd {
 			// In mobile view
 			$('body, html').scrollTop(Math.max($('#mobileFileUpload').offset().top - 5, 0));
 		}
+
+		// Remove cookie (if exist) from other page
+		// The cookies are designed to be used only once. However, ABTest prevents us from removing
+		// cookie in server side. The removal of cookie has to be executed after ABTest redirect. So
+		// it's added here, which is the last code run on page load
+		CookieUtils.setCookie('initialImage', INVALID_COOKIE_VALUE, 1);
+		CookieUtils.setCookie('backUrl', INVALID_COOKIE_VALUE, 1);
 	}
 
 	_canMobileSubmit() {

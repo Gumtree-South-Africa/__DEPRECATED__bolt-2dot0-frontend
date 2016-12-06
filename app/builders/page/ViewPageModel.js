@@ -10,8 +10,8 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-
 let _ = require('underscore');
+let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
 	constructor(req, res, adId) {
@@ -19,6 +19,7 @@ class ViewPageModel {
 		this.res = res;
 		this.adId = adId;
 
+		this.prodEpsMode = this.req.app.locals.prodEpsMode;
 		this.fullDomainName = res.locals.config.hostname;
 		this.baseDomainSuffix = res.locals.config.baseDomainSuffix;
 		this.basePort = res.locals.config.basePort;
@@ -53,6 +54,36 @@ class ViewPageModel {
 				};
 			}
 		];
+	}
+
+	getMapFromSignedUrl(signedMapUrl) {
+		let map = {
+			defaultRadius: 2000, //2.0km default kilometers
+			passedRadius: 2000
+		};
+
+		let findStr = "center=";
+		let endOf = -1;
+		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
+		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
+
+		map.locationLat = center[0];
+		map.locationLong = center[1];
+
+		if(map.passedRadius === 0){
+			map.showPin = true;
+			map.showCircle = false;
+		} else if(map.passedRadius === null || map.passedRadius === undefined) {
+			map.showCircle = true;
+			map.finalRadius = map.defaultRadius;
+			map.showPin = false;
+		} else {
+			map.finalRadius = map.passedRadius;
+			map.showCircle = true;
+			map.showPin = false;
+		}
+
+		return map;
 	}
 
 	/**
@@ -120,6 +151,7 @@ class ViewPageModel {
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
 				attr ['name'] = customAttributeObj.localizedName;
+				attr ['attrName'] = customAttributeObj.name;
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -152,13 +184,36 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = false;
+		modelData.vip.showSellerStuff = true;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
+	}
+
+	orderArr(inputArr, locale, categoryId) {
+		let inputLocaleObj = displayAttributesConfig[locale];
+		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		let newArr = [];
+
+		if (inputCategoryIdArr.length > 0) {
+			for (let i = 0; i < inputCategoryIdArr.length; i++) {
+				let arrIndex = _.findIndex(inputArr, {
+					attrName: inputCategoryIdArr[i]
+				})
+				if(arrIndex !== -1) {
+					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
+					newArr.push(inputArr[arrIndex]);
+				} else {
+					continue;
+				}
+			}
+			return newArr;
+		} else {
+			return inputArr;
+		}
 	}
 
 	getPageDataFunctions(modelData) {
@@ -200,11 +255,7 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					flags: advertData.adFlags,
-					map: {
-						defaultRadius: 2000, //2.0km default kilometers
-						passedRadius: 2000
-					}
+					flags: advertData.adFlags
 				};
 
 				// Merge Bapi Ad data
@@ -213,11 +264,11 @@ class ViewPageModel {
 				// Manipulate Ad Data
 
 				// // TODO: Get seoVipUrl
-				// 	let seoVipElt = data._links.find((elt) => {
-				// 		return elt.rel === "seoVipUrl";
-				// 	});
-				// 	let dataSeoVipUrl = seoVipElt.href;
-				// data.seoVipUrl = dataSeoVipUrl;
+				let seoVipElt = data._links.find((elt) => {
+					return elt.rel === "seoVipUrl";
+				});
+				let dataSeoVipUrl = seoVipElt.href;
+				data.seoVipUrl = dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -229,11 +280,15 @@ class ViewPageModel {
 				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
 					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
 					_.each(data.pictures.sizeUrls, (picture) => {
-						let pic = picture['LARGE'];
-						data.picturesToDisplay.thumbnails.push(pic.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(pic.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(pic.replace('$_19.JPG', '$_20.JPG'));
+						let picUrl = picture['LARGE'];
+						if (!this.prodEpsMode) {
+							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+						}
+
+						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
 					});
 				}
 
@@ -242,6 +297,9 @@ class ViewPageModel {
 					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
 						if (profilePicture.size === 'LARGE') {
 							let picUrl = profilePicture.url;
+							if (!this.prodEpsMode) {
+								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+							}
 							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
 							data.sellerDetails.publicDetails.displayPicture = picUrl;
 						}
@@ -254,30 +312,7 @@ class ViewPageModel {
 				}
 
 				// Map
-				data.ogSignedUrl = "https://maps.googleapis.com/maps/api/staticmap?center=-32.707145,26.295239&zoom=13&size=300x300&sensor=false&markers=color:orange%7C-32.707145,26.295239&client=gme-marktplaats&channel=bt_za&signature=uC2V76Pe_CI5VmRtRXxmdgkO0YQ=";
-				data.siteLanguage = this.locale.split('_')[0];
-
-				var findStr = "center=";
-				var searchString = data.ogSignedUrl;
-				var endOf = -1;
-				endOf = searchString.lastIndexOf(findStr) > 0 ? searchString.lastIndexOf(findStr) + findStr.length : endOf;
-				var center = searchString.slice(endOf, searchString.indexOf('&')).split(',');
-				data.map.locationLat = center[0];
-				data.map.locationLong = center[1];
-
-				data.map.finalRadius;
-				if(data.map.passedRadius === 0){
-					data.map.showPin = true;
-					data.map.showCircle = false;
-				} else if(data.map.passedRadius === null || data.map.passedRadius === undefined) {
-					data.map.showCircle = true;
-					data.map.finalRadius = data.map.defaultRadius;
-					data.map.showPin = false;
-				} else {
-					data.map.finalRadius = data.map.passedRadius;
-					data.map.showCircle = true;
-					data.map.showPin = false;
-				}
+				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
@@ -303,6 +338,7 @@ class ViewPageModel {
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
+					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
 					return data;
 				});
 			});
@@ -311,10 +347,13 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.keywords = () => {
 			return keywordModel.resolveAllSettledPromises().then((results) => {
 				let keywordPromiseArray = ['top', 'trending', 'suggested'];
+				let keywordTitles = ['home.popular.searches', 'home.trending-searches', 'home.suggested-searches'];
 				let keywordData = {};
 				let keywordIndex = 0;
 				_.each(results, (result) => {
 					if (result.state === "fulfilled") {
+						result.value.menuTitles = keywordTitles;
+						result.value.total = results.length;
 						let value = result.value;
 						keywordData[keywordPromiseArray[keywordIndex]] = value;
 					} else {

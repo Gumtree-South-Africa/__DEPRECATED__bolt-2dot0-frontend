@@ -46,6 +46,10 @@ class PostFormCustomAttributes {
 	componentDidMount(domElement) {
 		this.$form = domElement;
 
+		$(".post-ad-custom-attributes-form").find(".form-field").on("change", (e) => {
+			window.BOLT.trackEvents({"event": this.pageType + $(e.currentTarget).attr("data-field")});
+		});
+
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName !== 'categoryId') {
 				return;

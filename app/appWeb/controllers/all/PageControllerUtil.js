@@ -31,9 +31,15 @@ PageControllerUtil.prototype.preController = function(req, res) {
  * @param {Object} response
  * @return {JSON}
  */
-PageControllerUtil.prototype.is2dot0Version = function(res) {
+PageControllerUtil.prototype.is2dot0Version = function(res, abtestpage) {
 	let is2dot0 = false;
-	if (res.locals.b2dot0Version) {
+	let is2dot0Page = this.is2dot0Page(res, abtestpage);
+	let is1dot0Page = this.is1dot0Page(res, abtestpage);
+	if (is2dot0Page && !is1dot0Page) {
+		is2dot0 = true;
+	} else if (is1dot0Page && !is2dot0Page) {
+		is2dot0 = false;
+	} else if (res.locals.b2dot0Version) {
 		is2dot0 = true;
 	}
 
@@ -62,6 +68,27 @@ PageControllerUtil.prototype.is2dot0Page = function(res, abtestpage) {
 	return is2dot0;
 };
 
+/**
+ * @method is1dot0Page
+ * @description Checks if it is 1dot0 page based on b2dot0Pages
+ * @param {Object} response
+ * @return {JSON}
+ */
+PageControllerUtil.prototype.is1dot0Page = function(res, abtestpage) {
+	let is1dot0 = false;
+	if (res.locals.b1dot0Pages) {
+		let pages = res.locals.b1dot0Pages;
+		for (let i=0; i<pages.length; i++) {
+			if (pages[i] === abtestpage) {
+				res.locals.b2dot0PageVersion = false;
+				is1dot0 = true;
+				break;
+			}
+		}
+	}
+
+	return is1dot0;
+};
 
 
 /**

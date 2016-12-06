@@ -3,12 +3,12 @@
 let cuid = require('cuid');
 
 let cwd = process.cwd();
-let abtestpagesJson = require(cwd + '/app/config/abtestpages.json');
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 
 
@@ -160,7 +160,7 @@ let HP = {
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=0&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
@@ -182,12 +182,13 @@ let HP = {
  */
 
 module.exports = (req, res, next) => {
+	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
+
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
-	// Retrieve Data from Model Builders
-	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
 
+	// Retrieve Data from Model Builders
 	let homepage = new HomepageModel(req, res);
 	let modelPromise = homepage.populateData();
 
@@ -199,8 +200,7 @@ module.exports = (req, res, next) => {
 
 		modelData.eps = EpsModel();
 
-		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res) ||
-			pageControllerUtil.is2dot0Page(res, abtestpagesJson.pages.P);
+		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {

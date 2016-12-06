@@ -222,7 +222,7 @@ body {
 }
 
 @include to-breakpoint($small-break) {
-	.viewport.covered .footer-wrapper {
+	.viewport .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
 		// Magic number 73 is the height of post button layer
 		margin-bottom: 73px;

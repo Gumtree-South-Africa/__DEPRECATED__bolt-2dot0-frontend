@@ -249,6 +249,22 @@ $categoryArrowIconWidth: 13px;
 		margin-left: 25px;
 	}
 
+	.form-ad-price .input-wrapper {
+		// This is to show dollar sign in price field.
+		// For other sites, please adjust content and the padding-left for price-input
+		// ZA: R, SG: $, IE: €, PL: zł
+		&::before {
+			content: "$";
+			position: absolute;
+			margin-left: calc(6% + 7px);
+			margin-top: 6px;
+		}
+
+		.price-input {
+			padding-left: 18px;
+		}
+	}
+
 	// TODO Move this to location-selection when edit page has been refactored
 	.location-selection-input {
 		margin-right: 0 !important;
