@@ -190,7 +190,6 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
-		console.log('################### -->  ', modelData.header);
 		return modelData;
 	}
 
@@ -325,8 +324,6 @@ class ViewPageModel {
 					data.locationDisplayName = data.locationPath[data.locationPath.length-1].localizedName;
 					data.locationDisplayHref = data.locationPath[data.locationPath.length-1].href;
 				}
-
-				//replyform node
 
 				// Category
 				let categoryElt = data._links.find( (elt) => {
