@@ -200,6 +200,11 @@ module.exports = (req, res, next) => {
 
 		modelData.eps = EpsModel();
 
+		// Temp fix for BOLT-25001. As discussed with defect creator, we'll not send CD25 for homepage in MX.
+		if (res.locals.config.locale === 'es_MX' &&
+			modelData.dataLayer && modelData.dataLayer.userData) {
+			modelData.dataLayer.userData.hideSessionLvTstGrp = true;
+		}
 		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
