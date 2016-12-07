@@ -2,6 +2,7 @@
 let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
@@ -215,6 +216,27 @@ class ViewPageModel {
 		}
 	}
 
+	getConfigurationCard(data) {
+		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
+		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
+		data.similars.moreDataAvailable = false;
+		data.sellerOtherAds.moreDataAvailable = false;
+
+		console.log('data.similars', data.similars);
+		if(data.similars.ads.length > 6) {
+			data.similars.moreDataAvailable = true;
+		}
+
+		if(data.sellerOtherAds.ads.length > 6) {
+			data.sellerOtherAds.moreDataAvailable = true;
+		}
+
+		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0,6);
+		data.similars.ads = data.similars.ads.slice(0,6);
+
+		return data;
+	}
+
 	getPageDataFunctions(modelData) {
 		let advertModel = new AdvertModel(modelData.bapiHeaders);
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
@@ -256,6 +278,9 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
+
+				//Add  card configuration
+				this.getConfigurationCard(data);
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);

@@ -29,12 +29,32 @@
 				"showSellers": true,
 				"showFavorites": true
 			}
+		},
+		"similarCardTab": {
+			"templateConfig": {
+				"viewMorePageSize": 6,
+				"clientJsHandlerCssClass": "use-isotope-handler",
+				"showSellers": true,
+				"showFavorites": true
+			}
+		},
+		"sellerOtherCardTab": {
+			"templateConfig": {
+				"viewMorePageSize": 6,
+				"clientJsHandlerCssClass": "use-isotope-handler",
+				"showSellers": true,
+				"showFavorites": true
+			}
 		}
 	},
 	"cardsByPage": {
 		"homePage": [
 			"trendingCard",
 			"galleryCard"
+		],
+		"viewPage": [
+			"similarCardTab",
+			"sellerOtherCardTab"
 		]
 	}
 }
