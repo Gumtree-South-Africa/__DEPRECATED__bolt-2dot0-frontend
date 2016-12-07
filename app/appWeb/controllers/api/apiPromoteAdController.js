@@ -8,15 +8,15 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let FeatureModel = require(cwd + '/app/builders/common/FeatureModel');
 
 // route is /api/promotead/features
-router.get('/features/:categoryId/:locationId/:adId', cors, (req, res, next) => {
-	let categoryId = req.params.categoryId;
-	let locationId = req.params.locationId;
-	let adId = req.params.adId;
+router.get('/features', cors, (req, res, next) => {
+	let categoryId = req.query.categoryId;
+	let locationId = req.query.locationId;
+	let adId = req.query.adId;
 
 	let modelBuilder = new ModelBuilder();
 	let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 	model.FeatureModel = new FeatureModel(model.bapiHeaders);
-	model.FeatureModel.getAvailableFeatures(categoryId, locationId, res.locals.config.locale, adId).then((modelData) => {
+	model.FeatureModel.getAvailableFeatures(categoryId, locationId, adId).then((modelData) => {
 		modelData.forEach((feature) => {
 			feature.featureOptions.forEach((option) => {
 				feature.name = option.featureTypeFieldName;

@@ -41,6 +41,16 @@ class AdFeatureSelection {
 			this._bindEvent();
 		}
 
+		modelData.forEach((feature) => {
+			let name = feature.name;
+			feature.featureOptions.forEach((option) => {
+				if (option.selectedFromPreview) {
+					$(this.$form.find("input[name='" + name + "']")).prop("disabled", true).prop("checked", true).addClass("disabled");
+					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).addClass("disabled");
+				}
+			});
+		});
+
 		if(insertionFee) {
 			let infInput = $(document.createElement('input')).attr("name", "insertionFee").addClass("hidden").val(adId + "|insertionFee");
 			this.$form.find(".insertionFee-wrapper").html(infInput);

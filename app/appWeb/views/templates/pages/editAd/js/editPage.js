@@ -139,9 +139,15 @@ class EditAd {
 
 		this.postAdFormMainDetails.isFormChangeWarning = false;
 		$.ajax({
-			url: '/api/promotead/features/' + this.postAdFormMainDetails.categoryId + '/' + this.postAdFormMainDetails.getLocatioinId() + '/' + response.adId,
-			method: "GET",
-			contentType: "application/json",
+			url: '/api/promotead/features',
+			data: {
+				categoryId: this.postAdFormMainDetails.categoryId,
+				locationId: this.postAdFormMainDetails.getLocatioinId(),
+				adId: response.adId
+			},
+			type: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
 			success: (features) => {
 				spinnerModal.completeSpinner(() => {
 					this._$editAdContent.toggleClass("hidden", true);

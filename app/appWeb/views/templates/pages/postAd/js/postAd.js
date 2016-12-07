@@ -251,9 +251,15 @@ class PostAd {
 			case AD_STATES.AD_CREATED:
 				spinnerModal.completeSpinner(() => {
 					$.ajax({
-						url: '/api/promotead/features/' + this.postAdFormMainDetails.categoryId + '/' + this.postAdFormMainDetails.getLocatioinId() + '/' + response.ad.id,
-						method: "GET",
-						contentType: "application/json",
+						url: '/api/promotead/features',
+						data: {
+							categoryId: this.postAdFormMainDetails.categoryId,
+							locationId: this.postAdFormMainDetails.getLocatioinId(),
+							adId: response.ad.id
+						},
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
 						success: (features) => {
 							spinnerModal.completeSpinner(() => {
 								this._$postAdContent.toggleClass("hidden", true);
