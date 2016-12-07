@@ -1592,6 +1592,7 @@
 	"promote": {
 		"postingFee": "Posting fee",
 		"require": "Required",
+		"contactMe": "Contact for Price",
 		"promoteThisAd": "Promote this ad",
 		"promoteSellFast": "Promote and sell faster",
 		"insertionFeeHint": "There is a fee for posting more than one ",

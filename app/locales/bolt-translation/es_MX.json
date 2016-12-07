@@ -1604,6 +1604,7 @@
 	"promote": {
 		"postingFee": "Tarifa de publicación",
 		"require": "Obligatorio",
+		"contactMe": "Contactar",
 		"promoteThisAd": "Promocionar este anuncio",
 		"promoteSellFast": "Promocionar y vender más rápido",
 		"insertionFeeHint": "Hay una tarifa por publicar más de un anuncio en la categoría de ",
