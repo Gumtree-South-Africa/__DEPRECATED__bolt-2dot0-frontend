@@ -12,7 +12,7 @@
 			"name": "hp-recent",
 			"maxElements": 7,
 			"maxAge": 86400000,
-			"bapiTimeout": 1000,
+			"bapiTimeout": 2000,
 			"reload": 3600000,
 			"service": "/server/services/recentactivity",
 			"method": "getRecentActivities"

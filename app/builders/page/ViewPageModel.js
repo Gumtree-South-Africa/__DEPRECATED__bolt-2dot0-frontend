@@ -185,7 +185,7 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = false;
+		modelData.vip.showSellerStuff = true;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
@@ -205,6 +205,7 @@ class ViewPageModel {
 					attrName: inputCategoryIdArr[i]
 				})
 				if(arrIndex !== -1) {
+					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
 					newArr.push(inputArr[arrIndex]);
 				} else {
 					continue;
