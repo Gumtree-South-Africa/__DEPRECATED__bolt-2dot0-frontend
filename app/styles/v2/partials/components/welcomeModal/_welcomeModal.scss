@@ -120,6 +120,9 @@
 .icon-web-phone, .icon-web-email, .icon-web-sms{
   top: 0.2em;
 }
+.icon-web-sms{
+  margin-right: 0.3em;
+}
 .duText{
   position: relative;
   top: -0.4em;
@@ -134,7 +137,7 @@
 }
 
 @include from-breakpoint($medium-break) {
-    .modal-wrapper, .welcome-footer, .welcome-wrapper {
+    .modal-wrapper, .welcome-footer, .welcome-wrapper, .sticky-contact {
         display: none;
     }
 }
