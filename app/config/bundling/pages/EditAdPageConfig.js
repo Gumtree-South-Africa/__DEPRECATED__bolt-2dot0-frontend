@@ -14,9 +14,7 @@ module.exports = {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
-			"UploadSuccessModal": "app/appWeb/views/components/uploadSuccessModal/js/uploadSuccessModal.js",
-			"PageMain": "app/appWeb/views/templates/pages/editAd/js/editPage.js",
-			"EditAdFormMainDetails": "app/appWeb/views/components/editAdFormMainDetails/js/editAdFormMainDetails.js"
+			"PageMain": "app/appWeb/views/templates/pages/editAd/js/editPage.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority

@@ -103,6 +103,7 @@ class EditAdPageModel {
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.category = data.category || {};
+		modelData.initialCategory = {suggestion: { categoryId: modelData.adResult.categoryId }} || '';
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
 		modelData.adResult.attributeValues = {};

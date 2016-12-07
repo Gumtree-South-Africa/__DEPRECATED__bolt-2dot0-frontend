@@ -21,146 +21,145 @@
 		}
 	}
 }
+.photo-container-title {
+	width: 100%;
+	padding: 0.618em 0;
+	text-align: center;
+	font-size: large;
+	color: $formLabelTextColor;
+}
 
-.photo-switcher {
-	display: inline-block;
-	width: 300px;  // Align with banner asset
+.drag-reorder {
+	width: 100%;
 	float: left;
-	margin-left: 5%;
-	background-color: $postAdBackgroundColor;
-	box-shadow: 1px 1px 6px $postAdShadowColor;
+	padding: 1em 0;
+	text-align: center;
+	font-size: medium;
+	color: $formLabelTextColor;
+}
 
-	.photo-container-title {
-		padding: 0.618em 0;
-		text-align: center;
-		font-size: large;
-		color: $formLabelTextColor;
-	}
-	.drag-reorder {
-		padding: 1em 0;
-		text-align: center;
-		font-size: medium;
-		color: $formLabelTextColor;
-	}
+.photo-limits {
+	width: 100%;
+	float: left;
+	padding: 1em 0;
+	text-align: center;
+	font-size: medium;
+	color: $formLabelTextColor;
+}
 
-	.photo-limits {
-		padding: 1em 0;
-		text-align: center;
-		font-size: medium;
-		color: $formLabelTextColor;
-	}
+.icon-camera-v2 {
+	margin-top: 15%;
+	margin-left: 50%;
+	transform: translateX(-50%);
+	opacity: 0.6;
+}
+
+.cover-photo-big {
+	width: 120px;
+	height: 120px;
+	margin: 0 auto;
+	margin-top: 10%;
+	margin-bottom: 10%;
+	padding: 1px;
+	@include cover-photo-common;
+	@include delete-wrapper-mix;
 
 	.icon-camera-v2 {
-		margin-top: 15%;
-		margin-left: 50%;
-		transform: translateX(-50%);
-		opacity: 0.6;
+		width: 50px;
+		height: 50px;
+}
+
+.add-photo-text {
+	font-size: medium;
+}
+}
+
+.cover-photo-small {
+	width: 72px;
+	height: 72px;
+	float:left;
+	border-radius: 5px;
+	@include cover-photo-common;
+	@include delete-wrapper-mix;
+
+	.icon-camera-v2 {
+		width: 21.5px;
+		height: 18.8px;
 	}
 
-	.image-container {
-		margin: 5% 5%;
+	.add-photo-text {
+		font-size: small;
 	}
+}
 
-	.cover-photo-big {
-		width: 120px;
-		height: 120px;
-		margin: 0 auto;
-		margin-top: 10%;
-		margin-bottom: 10%;
-		padding: 1px;
-		@include cover-photo-common;
-		@include delete-wrapper-mix;
+.red-border {
+	padding: 0;
+	border: 2px solid red;
+}
 
-		.icon-camera-v2 {
-			width: 50px;
-			height: 50px;
-		}
+.icon-camera-v2, .add-photo-text {
+	display: none;
+}
 
-		.add-photo-text {
-			font-size: medium;
-		}
-	}
-
-	.cover-photo-small {
-		width: 72px;
-		height: 72px;
-		margin: 2% 2.8%;
-		float:left;
-		border-radius: 5px;
-		@include cover-photo-common;
-		@include delete-wrapper-mix;
-
-		.icon-camera-v2 {
-			width: 21.5px;
-			height: 18.8px;
-		}
-
-		.add-photo-text {
-			font-size: small;
-		}
-	}
-
-	.red-border {
-		padding: 0;
-		border: 2px solid red;
-	}
-
-
-
-	.icon-camera-v2, .add-photo-text {
+.no-photo {
+	.delete-wrapper {
 		display: none;
 	}
 
-	.no-photo {
-		.delete-wrapper {
-			display: none;
-		}
-
-		.icon-camera-v2 {
-			display: block;
-		}
-
-		.add-photo-text {
-			display: block;
-			text-align: center;
-			color: $postAdTextGray;
-		}
+	.icon-camera-v2 {
+		display: block;
 	}
 
-	.delete-wrapper {
-		position: relative;
-		.icon-photo-close {
-			position: absolute;
-			right: -6px;
-			top: -6px;
-		}
-	}
-
-	.error-msg-wrapper {
-		min-height: 21px;
-		font-size: 14px;
+	.add-photo-text {
+		display: block;
 		text-align: center;
+		color: $postAdTextGray;
+	}
+}
 
-		.hidden {
-			display: none !important;
-		}
+.delete-wrapper {
+	position: relative;
+	.icon-photo-close {
+		position: absolute;
+		right: -6px;
+		top: -6px;
+	}
+}
 
-		div {
-			display: inline-block;
-		}
+// For safari the delete icon pixel issue
+@media screen and (-webkit-min-device-pixel-ratio:1.5) {
+	.icon-photo-close {
+		width: 20px;
+		height: 19.2px !important;
+	}
+}
 
-		.max-photo-msg {
-			color: $photoCarouselMaxPhotosMsgColor;
-		}
+.error-msg-wrapper {
+	width: 100%;
+	float: left;
+	min-height: 21px;
+	font-size: 14px;
+	text-align: center;
 
-		.photos-required-msg {
-			color: $photoCarouselRequiredMsgColor;
-		}
+	.hidden {
+		display: none !important;
+	}
 
-		.icon-contextual-info {
-			vertical-align: sub;
-			width: 15px;
-			height: 15px;
-		}
+	div {
+		display: inline-block;
+	}
+
+	.max-photo-msg {
+		color: $photoCarouselMaxPhotosMsgColor;
+	}
+
+	.photos-required-msg {
+		color: $photoCarouselRequiredMsgColor;
+	}
+
+	.icon-contextual-info {
+		vertical-align: sub;
+		width: 15px;
+		height: 15px;
 	}
 }
