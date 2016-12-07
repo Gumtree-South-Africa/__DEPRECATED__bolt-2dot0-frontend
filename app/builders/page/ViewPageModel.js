@@ -318,6 +318,7 @@ class ViewPageModel {
 				data.breadcrumbs = { };
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
 				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+				data.breadcrumbs.locations.shift();
 				data.breadcrumbs.locations.forEach((location, index) => {
 				  location.position = index + 1;
 				});
