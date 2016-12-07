@@ -1,0 +1,35 @@
+<div class="form-map-conponent">
+    <div class="title">{{i18n "postad.location.title"}}</div>
+    <div class="map-form">
+        <div class="search-location">
+            <input id="autocompleteTextBox" class="textbox" type="text" onfocus="formMap.geolocate(true)"></input>
+            <button id="setLocationButton" class="setLocationButton" type="button" onclick="formMap.setLocation()">Set Location</button>
+        </div>
+        <div class="map-component">
+            
+            <div class="map-plugin">
+                <div id="map"></div>
+                <div class="google-maps">
+                    <script async defer 
+                        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAKV5SyEHCpZlZUoyKQTSkE3BPQZ25WY2o&libraries=places&callback=formMap.configMap"></script>
+                </div>
+            </div>
+        </div>
+        <div class="location-settings">
+            <div class="description">
+                {{i18n "postad.location.instructions"}}
+            </div>
+
+            <div class="checkbox">
+                <div class="toggle">
+                    <input id="checkGeolocation" type="checkbox" class="toggle-input" checked="checked" onchange="formMap.getLocation()">
+                    <label for="checkGeolocation" class="toggle-label"></label>
+                </div>
+                <div class="label"> 
+                    <span>{{i18n "postad.location.uselocation"}}</span>
+                    {{i18n "postad.location.uselocation.instructions" }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
