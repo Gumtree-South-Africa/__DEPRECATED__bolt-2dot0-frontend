@@ -1,8 +1,9 @@
 .breadcrumbs {
 	color: $breadcrumbs-secondary-color;
-	font-size: 0.9em;
+	cursor: default;
+	font-size: 12px;
 	list-style: none;
-	margin: 1em 0;
+	margin: 20px 0;
 
 	a {
 		color: $breadcrumbs-primary-color;
@@ -16,15 +17,6 @@
 		display: inline-block;
 
 		&:last-child {
-			a {
-				color: inherit;
-				cursor: default;
-
-				&:hover {
-					color: inherit;
-					text-decoration: none;
-				}
-			}
 
 			.breadcrumb-separator {
 				display: none;
@@ -34,6 +26,7 @@
 }
 
 .breadcrumb-separator {
+	color: $breadcrumbs-primary-color;
 	display: inline-block;
 	height: 10px;
 	margin: 0 4px;

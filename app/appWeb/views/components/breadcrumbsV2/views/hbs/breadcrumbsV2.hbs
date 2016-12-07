@@ -6,7 +6,7 @@
         <a itemprop="item" href="{{ location._links.[0].href }}">
             <span itemprop="name">{{ location.text }}</span>
         </a>
-        <i class="breadcrumb-separator icon-chevron-right" content="{{ location.position }}" itemprop="position"></i>
+        <span class="breadcrumb-separator" content="{{ location.position }}" itemprop="position">&gt;</span>
     </li>
     {{/each}}
 
@@ -16,7 +16,7 @@
         <a itemprop="item" href="{{ category._links.[0].href }}">
             <span itemprop="name">{{ category.text }} {{ i18n 'srp.category_in_location' }} {{ category.locationInText }}</span>
         </a>
-        <i class="breadcrumb-separator icon-chevron-right" content="{{ category.position }}" itemprop="position"></i>
+        <span class="breadcrumb-separator" content="{{ category.position }}" itemprop="position">&gt;</span>
     </li>
     {{/each}}
 </ol>
