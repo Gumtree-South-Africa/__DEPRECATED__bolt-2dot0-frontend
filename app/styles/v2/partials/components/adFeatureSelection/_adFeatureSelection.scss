@@ -28,12 +28,12 @@
 		box-shadow: 1px 1px 6px $postAdShadowColor;
 		@include to-breakpoint($small-break) {
 			margin-top: -11px;
-			height: 440px;
+			height: 400px;
 		}
 		@include from-breakpoint($medium-break) {
 			position: relative;
 			max-width: 960px;
-			height: 440px;
+			height: 350px;
 			margin: -11px auto 0 auto;
 			.desktop-banner {
 				width:300px;
@@ -161,9 +161,9 @@
 			}
 			.checkout-price {
 				margin-bottom: 10px;
-				width: 5%;
+				width: 10%;
 				float: left;
-				margin-left: 15%;
+				margin-left: 10%;
 				.price-content {
 					margin-top: 9px;
 					text-align: center;
@@ -255,6 +255,9 @@
 		text-decoration: underline;
 		margin: 1.5%;
 		font-size: large;
+		.cancel-link {
+			color: $formLabelTextColor;
+		}
 	}
 
 	@include from-breakpoint($medium-break) {

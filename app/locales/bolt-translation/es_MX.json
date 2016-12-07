@@ -1600,5 +1600,15 @@
 			"title": "Para anunciar tu bien o servicio, entra en Vivanuncios",
 			"desc": "Si quieres vender un producto o servicio -no importa cuál sea- publícalo en Vivanuncios. El sitio web ideal para ofrecer todos tus artículos."
 		}
+	},
+	"promote": {
+		"postingFee": "Tarifa de publicación",
+		"require": "Obligatorio",
+		"promoteThisAd": "Promocionar este anuncio",
+		"promoteSellFast": "Promocionar y vender más rápido",
+		"insertionFeeHint": "Hay una tarifa por publicar más de un anuncio en la categoría de ",
+		"contact": "Consulta Gumtree for Business ",
+		"contactAppend": "para obtener más información sobre anuncios en bloque.",
+		"noThanks": "No gracias, quiero ver mi anuncio"
 	}
 }

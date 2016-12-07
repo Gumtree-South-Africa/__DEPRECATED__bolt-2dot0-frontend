@@ -1588,5 +1588,15 @@
 			"send": "Send",
 			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
 		}
+	},
+	"promote": {
+		"postingFee": "Posting fee",
+		"require": "Required",
+		"promoteThisAd": "Promote this ad",
+		"promoteSellFast": "Promote and sell faster",
+		"insertionFeeHint": "There is a fee for posting more than one ",
+		"contact": "Check Gumtree for Business ",
+		"contactAppend": "for more information on bulk posting.",
+		"noThanks": "No thanks, view my ad"
 	}
 }

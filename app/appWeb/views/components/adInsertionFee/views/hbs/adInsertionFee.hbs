@@ -1,12 +1,12 @@
 <div id="promote-with-inf" class="hidden">
-    {{> (dynamic "postAdHeader") titleKey="POSTING FEE" }}
-	<div class="inf-description">There is a fee for posting more than one <span class="inf-category-name"></span>
-		listing. <a href="" class="contact-support">Contact Business Services</a> for more information on bulk posting!</div>
+    {{> (dynamic "postAdHeader") titleKey="promote.postingFee" }}
+	<div class="inf-description">{{i18n "promote.insertionFeeHint"}} <span class="inf-category-name"></span>.
+		<a href="" class="contact-support">{{i18n "promote.contact"}}</a> {{i18n "promote.contactAppend"}}</div>
 	<div class="inf-container">
 		<div class="inf-header">
 			<div class="ad-inf-description">
                 <span class="inf-category-name"></span>
-				<span class="inf-post-fee">Posting Fee (required)</span>
+				<span class="inf-post-fee">{{i18n "promote.postingFee"}} ({{i18n "promote.require"}})</span>
             </div>
             <div class="inf-amount"></div>
 		</div>
