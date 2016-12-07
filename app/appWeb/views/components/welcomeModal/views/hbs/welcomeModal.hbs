@@ -18,6 +18,15 @@
 
 		<div class="welcome-footer">
 			<div class="modal-footer stickybottom">
+				<div class="sticky-contact">
+					<div class="contact-wrapper">
+						<div class="contact-title">Contact Diego</div>
+						<div class="stickyBtn left"><span class="icon-web-phone"></span><span class="duText">CALL</span></div>
+						<div class="stickyBtn right"><span class="icon-web-email"></span><span class="duText">EMAIL</span></div>
+						<div class="stickyBtn center"><span class="icon-web-sms"></span><span class="duText">SMS</span></div>
+						<div class="clear"></div>
+					</div>
+				</div>
 				{{#if this.imageUploadFromHome}}
 					{{> (dynamic "button") i18nPath="postad.button" buttonLink="#" hideIcon=false iconName="icon-post" extraClasses='login-button directly-post'}}
 				{{else}}

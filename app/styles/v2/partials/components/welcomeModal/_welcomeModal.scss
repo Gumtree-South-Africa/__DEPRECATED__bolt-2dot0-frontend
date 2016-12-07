@@ -80,6 +80,35 @@
     }
 }
 
+.sticky-contact{
+  width: 100%;
+  background-color: orange;
+  padding-bottom: 1.5em;
+  text-align: center;
+  .contact-title{
+    text-align: center;
+    color: white;
+  }
+  .contact-wrapper{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .stickyBtn{
+    background-color: white;
+    color: orange;
+    width: 30%;
+    &.left{
+      float: left;
+    }
+    &.right{
+      float: right;
+    }
+    &.center{
+      margin: 0 auto;
+    }
+  }
+}
+
 @include in-breakpoint($no-break) {
  .modal-open {
    position: fixed;
