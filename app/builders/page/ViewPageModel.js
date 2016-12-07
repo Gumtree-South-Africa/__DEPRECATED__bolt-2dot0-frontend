@@ -317,13 +317,14 @@ class ViewPageModel {
 				// Breadcrumbs
 				data.breadcrumbs = { };
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
-				data.breadcrumbs.locations.pop();
+				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
 				  location.position = index + 1;
 				});
 				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
 				data.breadcrumbs.categories.forEach((category, index) => {
 				  category.position = data.breadcrumbs.locations.length + index + 1;
+				  category.locationInText = data.breadcrumbs.leafLocation.text;
 				});
 
 				// Location
