@@ -38,7 +38,7 @@
 	},
 	"RUI": {
 		"server": {
-			"host": "localhost",
+			"host": "www.vivanuncios.com.mx",
 			"port": 80,
 			"parameters": null,
 			"timeout": 2000
