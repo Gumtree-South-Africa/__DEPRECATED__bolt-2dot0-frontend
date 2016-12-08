@@ -1,6 +1,10 @@
 <div id="locationModal" class="location-selection">
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
-	<div class="location-selection-container">
+    {{#if this.eps.googleMapKey}}
+		<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?v=3&key={{this.eps.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+    {{else}}
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+    {{/if}}
+    <div class="location-selection-container">
         {{!-- this should change depending on the modal content --}}
 			<div class="location-selection-info">{{i18n 'modal.yourLocation'}}*</div>
 			<div class="location-selection-field container">

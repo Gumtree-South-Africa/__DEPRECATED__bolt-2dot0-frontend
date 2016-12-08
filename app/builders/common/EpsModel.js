@@ -11,6 +11,7 @@ module.exports = () => {
 
 		'epsToken': config.get('eps.epsToken'),
 
-		'isEbayDirectUploadEnabled': config.get('eps.IsEbayDirectUL')
+		'isEbayDirectUploadEnabled': config.get('eps.IsEbayDirectUL'),
+		'googleMapKey': config.get('vmGoogleMapKeys') ? config.get('vmGoogleMapKeys')[Math.floor(Math.random() * 4)] : false,
 	};
 };

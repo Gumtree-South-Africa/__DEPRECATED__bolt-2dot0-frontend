@@ -94,5 +94,11 @@
 	"abTest": {
 		"type": "google",
 		"experimentId": ""
-	}
+	},
+	"vmGoogleMapKeys": [
+		"AIzaSyDI1jWZMcGtH58ixNnDpeFNhaxEmb6GiMs",
+		"AIzaSyCSvHE3dJbrLdHB1KGekXaUWA7IhQUnchE",
+		"AIzaSyD30ZQIvKQtXhCl6jOrDSPQy36kjoUFzuc",
+		"AIzaSyC-KXzeKImhRfF4td1fERqLqC55U9kO2a8"
+	]
 }
