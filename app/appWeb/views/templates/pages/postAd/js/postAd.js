@@ -253,33 +253,29 @@ class PostAd {
 					$.ajax({
 						url: '/api/promotead/features',
 						data: {
-							categoryId: this.postAdFormMainDetails.categoryId,
-							locationId: this.postAdFormMainDetails.getLocatioinId(),
 							adId: response.ad.id
 						},
 						type: 'GET',
 						dataType: 'json',
 						contentType: 'application/json',
 						success: (features) => {
-							spinnerModal.completeSpinner(() => {
-								this._$postAdContent.toggleClass("hidden", true);
-								this._$featurePromote.toggleClass("hidden", false);
-								if (response.ad.insertionFee) {
-									this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
-								} else {
-									this._$promoteWithoutInf.toggleClass("hidden", false);
-								}
-								this.adFeatureSelection.render(features, response.ad.id, response.ad.insertionFee, response.ad.redirectLinks.vip);
+							if (!features.length) {
+								this._redirectWithoutUpselling(response);
+							} else {
+								spinnerModal.completeSpinner(() => {
+									this._$postAdContent.toggleClass("hidden", true);
+									this._$featurePromote.toggleClass("hidden", false);
+									if (response.ad.insertionFee) {
+										this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
+									} else {
+										this._$promoteWithoutInf.toggleClass("hidden", false);
+									}
+									this.adFeatureSelection.render(features, response.ad.id, response.ad.insertionFee, response.ad.redirectLinks.vip);
 								});
+							}
 						},
 						error: () => {
-							if (response.ad.redirectLinks.previp) {
-								window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
-							} else if (response.ad.status === 'HOLD') {
-								window.location.href = '/edit/' + response.ad.id;
-							} else {
-								window.location.href = response.ad.redirectLinks.vip;
-							}
+							this._redirectWithoutUpselling(response);
 						}
 					});
 				});
@@ -299,6 +295,18 @@ class PostAd {
 			default:
 				break;
 		}
+	}
+
+	_redirectWithoutUpselling(response) {
+		spinnerModal.completeSpinner(() => {
+			if (response.ad.redirectLinks.previp) {
+				window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
+			} else if (response.ad.status === 'HOLD') {
+				window.location.href = '/edit/' + response.ad.id;
+			} else {
+				window.location.href = response.ad.redirectLinks.vip;
+			}
+		});
 	}
 
 	_onSubmitFail(error) {

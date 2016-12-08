@@ -149,25 +149,33 @@ class EditAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (features) => {
-				spinnerModal.completeSpinner(() => {
-					this._$editAdContent.toggleClass("hidden", true);
-					this._$featurePromote.toggleClass("hidden", false);
-					if (response.insertionFee) {
-						this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink.vip);
-					} else {
-						this._$promoteWithoutInf.toggleClass("hidden", false);
-					}
-					this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink.vip);
-				});
+				if (!features.length) {
+					this._redirectWithoutUpselling(response);
+				} else {
+					spinnerModal.completeSpinner(() => {
+						this._$editAdContent.toggleClass("hidden", true);
+						this._$featurePromote.toggleClass("hidden", false);
+						if (response.insertionFee) {
+							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink.vip);
+						} else {
+							this._$promoteWithoutInf.toggleClass("hidden", false);
+						}
+						this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink.vip);
+					});
+				}
 			},
 			error: () => {
-				spinnerModal.completeSpinner(() => {
-					if (response.redirectLink.previp) {
-						window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
-					} else {
-						window.location.href = response.redirectLink.vip;
-					}
-				});
+				this._redirectWithoutUpselling(response);
+			}
+		});
+	}
+
+	_redirectWithoutUpselling(response) {
+		spinnerModal.completeSpinner(() => {
+			if (response.redirectLink.previp) {
+				window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;
+			} else {
+				window.location.href = response.redirectLink.vip;
 			}
 		});
 	}
