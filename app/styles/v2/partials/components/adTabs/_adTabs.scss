@@ -84,15 +84,19 @@
     }
     .content-ads {
       height: auto;
-      .tile-container {
-        display: table;
-        .tile-item {
-          width: 135px;
-          height: 180px;
-          padding-left: 15px;
-          display: inline-block !important;
-          &:nth-child(even) {
+      .tile-grid-width-container {
+        overflow: hidden;
+        height: 190px;
+        .tile-container {
+          display: table;
+          .tile-item {
+            width: 135px;
+            height: 180px;
             padding-left: 15px;
+            display: inline-block !important;
+            &:nth-child(even) {
+              padding-left: 15px;
+            }
           }
         }
       }
