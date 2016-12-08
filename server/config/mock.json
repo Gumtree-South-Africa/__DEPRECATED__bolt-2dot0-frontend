@@ -39,7 +39,7 @@
 	},
 	"RUI": {
 		"server": {
-			"host": "localhost",
+			"host": "",
 			"port": 5000,
 			"parameters": null,
 			"timeout": 200
