@@ -1,32 +1,49 @@
 {{#partial "content"}}
 	<section class="edit-ad-page">
-		<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
-		<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
-		<div id="image-urls" class="hidden">{{json this.adResult.pictures}}</div>
-        {{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
+		{{> (dynamic "postAdHeader") titleKey="editAd.headerTitle"}}
 		<div class="hidden">
-            {{> (dynamic "uploadImage")}}
+			{{> (dynamic "uploadImage")}}
 		</div>
-        {{#block "editPhotoCarousel"}}
-			<div class="photo-carousel">
-				<div class="photo-switcher">
-                    {{> (dynamic "photoCarousel")}}
-				</div>
-				<!--<div class="reorder-images-link">-->
-                    <!--<span role="link" class="reorder-images-link-text">-->
-                        <!--{{i18n "editAd.reorderImages"}}-->
-                    <!--</span>-->
-				<!--</div>-->
-				<div class="separator-div"></div>
-                {{> (dynamic "adStats") }}
-                {{#block "edit-adstats"}}{{/block}}
+		<div class="edit-ad-content">
+			<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
+			<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
+			<div class="photo-switcher">
+				{{> (dynamic "photoContainer") i18HeadTitle="editAd.productImages"}}
 			</div>
-        {{/block}}
-        {{> (dynamic "editAdFormMainDetails") }}
-    </section>
-
-    {{> (dynamic "categorySelectionModal")}}
-    {{> (dynamic "modal")}}
-    {{#block "default-gmaps"}}{{/block}}
-    {{> (dynamic "spinnerModal")}}
+			{{> (dynamic "postAdFormMainDetails") }}
+			<div class="desktop-button-area">
+				<div class="btn-area-inner">
+					<div class="submit-btn-wrapper">
+						<button class="edit-submit-button edit-ad-submit" type="submit">{{i18n "editAd.mainDetails.submit"}}</button>
+					</div>
+					<div class="cancel-link-wrapper">
+						<div class="cancel-form-link cancel-button">
+							{{i18n "editAd.mainDetails.cancel"}}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mobile-button-area">
+				<div class="mobile-post-ad-wrapper">
+					<div class="mobile-post-ad-modal-wrapper">
+						<div class="mobile-post-ad-modal">
+							<div class="mobile-post-ad-modal-overlay"></div>
+						</div>
+						<div class="mobile-post-ad-footer">
+							<div class="btn-wrapper">
+                                <a class="edit-submit-button btn">
+                                    <span class="sudolink">{{i18n "editAd.mainDetails.submit"}}</span>
+                                </a>
+                            </div>
+						</div>
+						<div class="cancel-link-wrapper">
+							<div class="mobile-cancel-form-link cancel-button">{{i18n "editAd.mainDetails.cancel"}}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	{{#block "default-gmaps"}}{{/block}}
+	{{> (dynamic "spinnerModal")}}
 {{/partial}}

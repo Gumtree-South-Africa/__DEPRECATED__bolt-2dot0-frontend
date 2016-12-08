@@ -160,7 +160,7 @@ let HP = {
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=0&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
@@ -199,7 +199,6 @@ module.exports = (req, res, next) => {
 		HP.deleteMarketoCookie(res, modelData);
 
 		modelData.eps = EpsModel();
-
 		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);

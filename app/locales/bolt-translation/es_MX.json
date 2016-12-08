@@ -1316,6 +1316,7 @@
 				"title": "Título del anuncio",
 				"remaining": "restantes",
 				"price": "Precio",
+				"addPhotosStep": "1. Agregar fotos",
 				"addPhotos": "Agregar fotos",
 				"pricePlaceholder": "Preguntarme el precio"
 			},
@@ -1353,8 +1354,13 @@
 			"error": "Error"
 		},
 		"mobileUpload": {
-			"post": "Listo",
+			"post": "Terminar",
 			"changePhoto": "Cambia <br>foto"
+		},
+		"mainDetails": {
+			"title": "título",
+			"description": "descripción",
+			"amount": "cantidad"
 		}
 	},
 	"footer": {
@@ -1439,11 +1445,15 @@
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
+		"productImages": "Imágenes del producto",
 		"headerTitle": "Edita tu anuncio",
 		"mainDetails": {
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"attention": "Atención",
+				"warning": "Cambiar de categorías puede hacer que los datos ingresados se pierdan y que se requiera más información para volver a publicar el anuncio. ",
+				"updateConfirm": "Actualizar la categoría",
 				"categoryOptional": "Seleccionar categoría (opcional)",
 				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",
@@ -1458,7 +1468,7 @@
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
 			"leafNodeWarning": "Por favor selecciona la categoría y subcategoría que coincida más con tu anuncio para guardar los cambios.",
-			"submit": "Listo",
+			"submit": "Terminar",
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
 			"adWebsiteLink": "Agrega un enlace a tu sitio web"
@@ -1540,20 +1550,21 @@
 			"itemid": "Anuncios #%s"
 		},
 		"details": {
-			"edit": "Edit",
-			"favorite": "Favorite",
-			"posted": "Posted",
-			"views": "VIEWS",
-			"replies": "REPLIES",
-			"category": "CATEGORY",
-			"location": "LOCATION",
-			"updated": "UPDATED",
-			"postedby": "POSTED BY"
+			"edit": "Editar",
+			"favorite": "Favorito",
+			"posted": "Publicado",
+			"views": "VISTAS",
+			"replies": "RESPUESTAS",
+			"category": "CATEGORÍA",
+			"location": "UBICACIÓN",
+			"updated": "ACTUALIZADO",
+			"postedby": "PUBLICADO POR",
+			"daysago": "HACE"
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
-			"adsPosted": "ADS POSTED",
-			"adsActive": "ACTIVE"
+			"adsPosted": "ANUNCIOS PUBLICADOS",
+			"adsActive": "ACTIVO"
 		},
 		"disclaimer": {
 			"disclosure": "Consejos de seguridad - Tu seguridad es importante. Aprende a reducir los riesgos en la compra-venta.",
@@ -1562,25 +1573,25 @@
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
 		},
 		"reply": {
-			"back": "BACK",
-			"messageSeller": "MESSAGE %s",
-			"login": "Login",
-			"loginMessage": "to send messages faster!",
-			"sendMessage": "Send a Message",
-			"interested": "I'm interested. Please contact me",
-			"whenNWhere": "When and where can I see it?",
-			"message": "MESSAGE",
+			"back": "ATRÁS",
+			"messageSeller": "ENVIAR MENSAJE A %s",
+			"login": "Inicia sesión",
+			"loginMessage": "para enviar mensajes más rápido!",
+			"sendMessage": "Enviar un mensaje",
+			"interested": "Estoy interesado. Por favor, contáctenme.",
+			"whenNWhere": "¿Dónde y cuándo puedo verlo?",
+			"message": "MENSAJE",
 			"messageValidate": "Se requiere de un mensaje",
-			"required": "REQUIRED",
-			"name": "NAME",
-			"email": "EMAIL ADDRESS*",
+			"required": "OBLIGATORIO",
+			"name": "NOMBRE",
+			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
 			"emailValidate": "Es necesario tu correo electrónico",
-			"emailPlaceholder": "Email Address - user@email.com",
-			"writeHere": "Write here...",
-			"phone": "PHONE (OPTIONAL)",
-			"showPhone": "Show phone",
-			"sendACopy": "Send a copy to my email",
-			"send": "Send",
+			"emailPlaceholder": "Correo electrónico: user@email.com",
+			"writeHere": "Escribir texto aquí...",
+			"phone": "NÚMERO DE TELÉFONO (OPCIONAL)",
+			"showPhone": "Mostrar número de teléfono",
+			"sendACopy": "Enviar una copia a mi correo electrónico",
+			"send": "Enviar",
 			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
 		}
 	},
