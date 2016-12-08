@@ -23,13 +23,13 @@ $photo-switcher-width: 30%;
  		};
  		.icon-back-other{
  			display: inline-block;
+			position: relative;
+			top: 0.1em;
  		}
 		a {
 			margin-left: 2px;
 			color: $postAdHeaderBlue;
 			font-weight: bold;
-    	position: relative;
-    	bottom: 0.34em;
 		}
 	}
 
