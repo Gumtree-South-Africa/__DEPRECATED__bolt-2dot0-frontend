@@ -150,7 +150,7 @@ class viewPageGallery {
 			$('.slider-mobile-for, .welcome-wrapper, .counter, .icon-Zoom').removeClass('hidden');
 			$('body').removeClass('noScroll');
 			$('.zoomHolder').removeClass('zoomview');
-			$('.post-ad-header .title-text').html($('.item-details .ad-description').html());
+			$('.post-ad-header .title-text').html($('.item-details .ad-title').html());
 			$('.zoomHolder').html('');
 			return false;
 		}
