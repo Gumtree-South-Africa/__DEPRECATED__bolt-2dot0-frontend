@@ -4,6 +4,11 @@
   background-color: $common-background-color;
   float: left;
   width: 100%;
+  .empty-message {
+    display: table;
+    margin: 0 auto;
+    color: $empty-message;
+  }
   .adTabs {
     display: table;
     margin: 0 auto;
@@ -72,16 +77,6 @@
 
 @include from-breakpoint($medium-break){
   .content-ad-tabs {
-    .empty-message {
-      display: table;
-      margin: 0 auto;
-      color: $empty-message;
-    }
-    .ad-tabs {
-      ul {
-        padding: 20px 50px 12px 50px;
-      }
-    }
     .content-ads {
       height: auto;
       .tile-grid-width-container {
