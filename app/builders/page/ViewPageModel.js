@@ -223,17 +223,16 @@ class ViewPageModel {
 		data.similars.moreDataAvailable = false;
 		data.sellerOtherAds.moreDataAvailable = false;
 
-		console.log('data.similars', data.similars);
-		if(data.similars.ads.length > 6) {
+		if(data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
 			data.similars.moreDataAvailable = true;
 		}
 
-		if(data.sellerOtherAds.ads.length > 6) {
+		if(data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
 			data.sellerOtherAds.moreDataAvailable = true;
 		}
 
-		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0,6);
-		data.similars.ads = data.similars.ads.slice(0,6);
+		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
+		data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
 
 		return data;
 	}

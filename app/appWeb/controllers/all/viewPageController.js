@@ -7,7 +7,6 @@ let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
-let cardMock = require(`${cwd}/test/clientUnit/mockData/galleryCardModel.json`);
 
 let extendModelData = (req, modelData) => {
 	modelData.header.pageType = modelData.pagename;
@@ -95,8 +94,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.search = true;
 
 		modelData.redirectUrl = redirectUrl;
-		modelData.card = cardMock;
-		console.log('modelData.advert',modelData.advert);
+
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 	}).fail((err) => {
 		console.error(err);
