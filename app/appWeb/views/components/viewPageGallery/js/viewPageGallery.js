@@ -45,6 +45,13 @@ class viewPageGallery {
 		//Initialize
 		$('.slick-arrow').addClass('icon-back');
 		$('.slider-nav .slick-current').addClass('selected');
+
+		//this is a fix for BOLT-25136: PM wants to always have ellipsis after 60 characters.
+		//Using CSS and max-width does not always give 60 since we have word-wrap etc...
+		if($('.item-details .ad-title').html().length > 60) {
+			$('.post-ad-header .title-text').html(this._substring($('.item-details .ad-title').html()));
+		}
+
 		$('.container .slider-nav .slick-current').focus();
 
 		$('.modal-closearea').on('click', () => {
@@ -150,7 +157,7 @@ class viewPageGallery {
 			$('.slider-mobile-for, .welcome-wrapper, .counter, .icon-Zoom').removeClass('hidden');
 			$('body').removeClass('noScroll');
 			$('.zoomHolder').removeClass('zoomview');
-			$('.post-ad-header .title-text').html($('.item-details .ad-title').html());
+			$('.post-ad-header .title-text').html(this._substring($('.item-details .ad-title').html()));
 			$('.zoomHolder').html('');
 			return false;
 		}
@@ -172,6 +179,13 @@ class viewPageGallery {
 			$('.container .slider-nav').slick('slickGoTo', slickIdx);
 			$('.container .slider-nav .slick-current').focus();
 		}
+	}
+
+	_substring(title) {
+		let isMobile = ($('.slider-mobile-for').length > 0);
+		let indxChar = (isMobile) ? title.length-1 : 60;
+		let subtitle = title.substring(0,indxChar) + " ...";
+		return subtitle;
 	}
 
 }
