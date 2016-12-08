@@ -259,6 +259,115 @@
 			color: $formLabelTextColor;
 		}
 	}
+	.feature-more {
+		display: inline-block;
+		height: 16px;
+		width: 16px;
+		margin: 0 0 -2.5px 2.5px;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.feature-info-overlay {
+		position: fixed;
+		z-index: 10;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+
+		.close-text {
+			color: gray;
+			font-size: .8em;
+			vertical-align: middle;
+			margin-right: 0.5em;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.icon-close-small {
+			display: inline-block;
+			vertical-align: middle;
+			cursor: pointer;
+		}
+
+		.modal-close-section {
+			margin-right: 8px;
+			float: right;
+			cursor: pointer;
+
+			&:hover {
+				.close-text {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.modal-wrapper {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			width: 90%;
+			top: 35%;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+
+		.h1-text {
+			clear: both;
+			font: $h1;
+			color: $formLabelTextColor;
+			text-align: center;
+		}
+
+		.feature-content-info {
+			font: $h4;
+			text-align: left;
+			color: $formLabelTextColor;
+			padding: 1em;
+			margin: auto 5%;
+		}
+
+		.close-footer {
+			width: 90%;
+			margin: auto 5% 20px 5%;
+			.btn {
+				@include vivaBtn(off, 0.45em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+			}
+			.cancel-button {
+				text-align: center;
+				text-decoration: underline;
+				cursor: pointer;
+				margin: 10px 0;
+			}
+		}
+
+		@include from-breakpoint($medium-break) {
+			.modal-wrapper {
+				width: 60%;
+			}
+
+			.footer {
+				width: 75%;
+			}
+		}
+
+		@include to-breakpoint($small-break) {
+			.h1-text {
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+		}
+	}
 
 	@include from-breakpoint($medium-break) {
 		.mobile-checkout-container {

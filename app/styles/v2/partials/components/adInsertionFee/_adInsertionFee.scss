@@ -23,12 +23,10 @@
 		font-size: large;
 		color: $formLabelTextColor;
 		padding: 10px 0px 0px 20px;
-		max-width: 250px;
 	}
 	.inf-amount {
 		color: $vivaGreen1;
 		float: right;
-		margin-top: -50px;
 		margin-right: 20px;
 		&:before {
 			content: "$";
@@ -74,8 +72,23 @@
 	}
 }
 
+@include to-breakpoint($small-break) {
+	.ad-inf-description {
+		max-width: 250px;
+	}
+	.inf-amount {
+		margin-top: -50px;
+	}
+}
+
 @include from-breakpoint($medium-break) {
 	.inf-cancel {
 		display: none;
+	}
+	.ad-inf-description {
+		max-width: 500px;
+	}
+	.inf-amount {
+		margin-top: -25px;
 	}
 }

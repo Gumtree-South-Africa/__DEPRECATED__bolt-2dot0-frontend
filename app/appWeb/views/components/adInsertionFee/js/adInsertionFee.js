@@ -13,6 +13,7 @@ class AdInsertionFee {
 		$(this._$promoteWithInf.find(".inf-amount")).html(innsetionFee);
 		$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
 		if (adInfo.price.amount) {
+			// Display currency for non-locale price
 			$(this._$promoteWithInf.find(".ad-price")).html(adInfo.price.amount + " " + (adInfo.price.currency === "MXN" ? "" : adInfo.price.currency));
 		} else {
 			$(this._$promoteWithInf.find(".ad-price")).toggleClass("hidden", true);

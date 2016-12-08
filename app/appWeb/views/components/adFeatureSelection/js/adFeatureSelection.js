@@ -6,6 +6,8 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
 let clientHbs = require("public/js/common/utils/clientHandlebars.js");
 
 let clientHbsInitialized = false;
+// List of supported feature here
+const FEATURES_LIST = ["bumpUpXY", "topAd", "hpGallery", "urgent", "highlight", "srpGallery", "WebSiteUrl"];
 
 function initializeClientHbsIfNot() {
 	if (!clientHbsInitialized) {
@@ -73,6 +75,26 @@ class AdFeatureSelection {
 		// Feature option event
 		$(this.$form.find("select")).change(() => {
 			this._updateCheckoutPrice();
+		});
+
+		$(this.$form.find(".feature-more")).on("click", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			let featureName = $(e.currentTarget).attr("name");
+			FEATURES_LIST.forEach((item) => {
+				if (item !== featureName) {
+					this.$form.find(".title-" + item).toggleClass("hidden", true);
+					this.$form.find(".info-" + item).toggleClass("hidden", true);
+				}
+			});
+			this.$form.find(".feature-info-overlay").toggleClass("hidden", false);
+		});
+
+		$(this.$form.find(".modal-close-section,.btn")).on("click", (e) => {
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			this.$form.find(".feature-title,.feature-content-info").toggleClass("hidden", false);
+			this.$form.find(".feature-info-overlay").toggleClass("hidden", true);
 		});
 
 		// Feature checkout submit event

@@ -20,6 +20,7 @@ router.get('/features', cors, (req, res, next) => {
 		modelData.forEach((feature) => {
 			feature.featureOptions.forEach((option) => {
 				feature.name = option.featureTypeFieldName;
+				feature.i18nNameKey = "feature.displayname." + feature.name;
 				option.fieldValue = adId + "|" + option.fieldValue;
 			});
 		});

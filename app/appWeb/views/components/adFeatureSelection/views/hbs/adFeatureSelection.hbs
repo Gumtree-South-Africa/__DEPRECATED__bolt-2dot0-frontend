@@ -10,8 +10,8 @@
 					<div class="feature-wrapper">
 						<div class="feature-checkbox">
 							<input class="input-checkbox" type="checkbox" id="{{this.name}}" name="{{this.name}}">
-                            <label for="{{this.name}}">{{i18n this.displayNameKey}}<span class="icon-icon-moreinfo"></span>
-                            </label>
+                            <label for="{{this.name}}">{{i18n this.i18nNameKey}}</label>
+							<span class="feature-more icon-icon-moreinfo" name="{{this.name}}"></span>
                         </div>
 						<div class="feature-options">
 							<select name="{{this.name}}">
@@ -77,6 +77,41 @@
 				<div class="btn-wrapper">
 					<a class="cancel-link cancel-button btn">
 						<span class="sudolink">{{i18n "feature.noThanks"}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="feature-info-overlay hidden">
+		<div class="modal-wrapper">
+			<div class="feature-overlay-modal">
+				<div class="overlay"></div>
+				<div class="modal-container">
+					<div class="modal-close-section">
+						<span class="close-text">{{i18n "feature.close"}}</span>
+						<span class="icon-close-small"></span>
+					</div>
+				</div>
+				<h1 class="feature-title h1-text  title-bumpUpXY">{{i18n "feature.displayname.bumpUpXY"}}</h1>
+				<div class="feature-content-info  info-bumpUpXY">{{i18n "feature.description.bumpUpXY"}}</div>
+				<h1 class="feature-title h1-text  title-topAd">{{i18n "feature.displayname.topAd"}}</h1>
+				<div class="feature-content-info  info-topAd">{{i18n "feature.description.topAd"}}</div>
+				<h1 class="feature-title h1-text  title-hpGallery">{{i18n "feature.displayname.hpGallery"}}</h1>
+				<div class="feature-content-info  info-hpGallery">{{i18n "feature.description.hpGallery"}}</div>
+				<h1 class="feature-title h1-text  title-urgent">{{i18n "feature.displayname.urgent"}}</h1>
+				<div class="feature-content-info  info-urgent">{{i18n "feature.description.urgent"}}</div>
+				<h1 class="feature-title h1-text  title-highlight">{{i18n "feature.displayname.highlight"}}</h1>
+				<div class="feature-content-info  info-highlight">{{i18n "feature.description.highlight"}}</div>
+				<h1 class="feature-title h1-text  title-srpGallery">{{i18n "feature.displayname.srpGallery"}}</h1>
+				<div class="feature-content-info  info-srpGallery">{{i18n "feature.description.srpGallery"}}</div>
+				<h1 class="feature-title h1-text  title-WebSiteUrl">{{i18n "feature.displayname.WebSiteUrl"}}</h1>
+				<div class="feature-content-info  info-WebSiteUrl">{{i18n "feature.description.WebSiteUrl"}}</div>
+			</div>
+			<div class="close-footer">
+				<div class="btn-wrapper">
+					<a class="btn" href="">
+						<span class="sudolink">{{i18n "feature.close"}}</span>
+						<span class="hidden btn-icon"></span>
 					</a>
 				</div>
 			</div>
