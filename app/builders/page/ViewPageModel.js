@@ -246,7 +246,7 @@ class ViewPageModel {
 				// Basic Data for Ad Display
 				let data = {
 					adId: this.adId,
-					editUrl: "/edit/" + this.adId,
+					editUrl: '/edit/' + this.adId,
 					seoGroupName: 'Automobiles',
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
