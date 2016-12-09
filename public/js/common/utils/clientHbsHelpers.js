@@ -22,14 +22,18 @@ let _walkAndReplace = (translation, values) => {
 };
 
 let _getTranslation = (keys) => {
-	let keyNames = keys.split('.');
-	let result = translations;
-	keyNames.forEach((name) => {
-		if (result[name]) {
-			result = result[name];
-		}
-	});
-	return result;
+	if (translations[key]) {
+		return translations[key];
+	} else {
+		let keyNames = keys.split('.');
+		let result = translations;
+		keyNames.forEach((name) => {
+			if (result[name]) {
+				result = result[name];
+			}
+		});
+		return result;
+	}
 };
 
 let _loadPartial = (name) => {
