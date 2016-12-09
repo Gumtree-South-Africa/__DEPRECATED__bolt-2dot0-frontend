@@ -64,6 +64,7 @@ router.post('/', (req, res) => {
           });   
         });
       } else {
+        // TODO: Send 400 HTTP Code when there is an error instead of the 200
         res.send({
           success: false,
           errors: []
