@@ -9,7 +9,7 @@
 		{{#if this.advert.similars.ads}}
 			{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.similars}}
 			<div class="card-view-more">
-		      <a class="link{{#unless this.advert.similars.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.similars._links.0.href}}" y="f">
+		      <a class="link{{#unless this.advert.similars.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.similars.viemMoreLink.0._links.0.href}}" y="f">
 					<span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
 					<span class="no-underline">&nbsp;&gt;</span></a>
 			</div>
@@ -21,12 +21,12 @@
 		{{#if this.advert.sellerOtherAds.ads}}
 			{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.sellerOtherAds}}
 			<div class="card-view-more">
-					<a class="link{{#unless this.advert.sellerOtherAds.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.sellerOtherAds._links.0.href}}" y="f">
+					<a class="link{{#unless this.advert.sellerOtherAds.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.sellerDetails.publicDetails.sellerOtherInfoUrl}}" y="f">
 					<span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
 					<span class="no-underline">&nbsp;&gt;</span></a>
 			</div>
 			{{else}}
-					<span class="empty-message">{{i18n "vip.ads.emptyad"}}</span>
+					<span class="empty-message">{{i18n "vip.ads.emptyad"}}</span>			
 		{{/if}}
 	</div>
 </div>

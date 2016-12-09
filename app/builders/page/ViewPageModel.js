@@ -227,6 +227,7 @@ class ViewPageModel {
 
 		if(data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
 			data.similars.moreDataAvailable = true;
+			data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
 		}
 
 		if(data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
@@ -280,9 +281,6 @@ class ViewPageModel {
 					seoUrls: advertData.adSeoUrls,
 					flags: advertData.adFlags
 				};
-
-				//Add  card configuration
-				this.getConfigurationCard(data);
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
@@ -374,6 +372,9 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
+				//Add  card configuration
+				this.getConfigurationCard(data);
 
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
