@@ -60,9 +60,6 @@ class AdFeatureSelection {
 			this.insertionFee = insertionFee;
 		}
 		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
-		$(this.$form.find(".cancel-link")).click(() =>{
-			window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd"});
-		});
 	}
 
 	_bindEvent() {
@@ -105,7 +102,7 @@ class AdFeatureSelection {
 			this.$form.find(".feature-info-overlay").toggleClass("hidden", false);
 		});
 
-		$(this.$form.find(".modal-close-section,.btn")).on("click", (e) => {
+		$(this.$form.find(".feature-info-overlay").find(".modal-close-section, .btn")).on("click", (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.$form.find(".feature-title,.feature-content-info").toggleClass("hidden", false);
@@ -126,6 +123,14 @@ class AdFeatureSelection {
 			}
 			this.$form.find("input[type='checkbox']").prop('name','');
 			this.$form.find("#promote-checkout-form").submit();
+		});
+
+		$(this.$form.find(".desktop-cancel.cancel-link")).click(() =>{
+			window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd"});
+		});
+
+		$(this.$form.find(".checkout-cancel.cancel-link")).click(() =>{
+			window.BOLT.trackEvents({"event": this.pageType + "UpsellBack"});
 		});
 	}
 
