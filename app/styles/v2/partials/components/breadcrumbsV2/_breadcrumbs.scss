@@ -1,0 +1,40 @@
+.breadcrumbs {
+	color: $breadcrumbs-secondary-color;
+	cursor: default;
+	font-size: 12px;
+	list-style: none;
+	margin: 20px 0;
+
+	a {
+		color: $breadcrumbs-primary-color;
+
+		&:hover {
+			color: inherit;
+		}
+	}
+
+	li {
+		display: inline-block;
+
+		&:last-child {
+
+			.breadcrumb-separator {
+				display: none;
+			}
+		}
+	}
+}
+
+.breadcrumb-separator {
+	color: $breadcrumbs-primary-color;
+	display: inline-block;
+	height: 10px;
+	margin: 0 4px;
+	width: 7px;
+}
+
+@include to-breakpoint($small-break) {
+	.breadcrumbs {
+		display: none;
+	}
+}

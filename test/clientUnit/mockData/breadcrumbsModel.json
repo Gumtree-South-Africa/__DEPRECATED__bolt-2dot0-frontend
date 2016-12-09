@@ -1,0 +1,30 @@
+{
+    "empty": {
+        "breadcrumbs": {}
+    },
+    "filledUp": {
+        "breadcrumbs": {
+            "locations": [{
+                "text": "Distrito Federal",
+                "level": 1,
+                "_links": [{
+                    "rel": "search",
+                    "href": "/s-distrito-federal/v1l1008p1",
+                    "method": "GET"
+                }],
+                "position": 1
+            }],
+            "categories": [{
+                "text": "Vehículos",
+                "locationInText": "Cuauhtémoc",
+                "level": 1,
+                "_links": [{
+                    "rel": "search",
+                    "href": "/s-venta-vehiculos/cuauhtemoc-df/v1c64l10270p1",
+                    "method": "GET"
+                }],
+                "position": 2
+            }]
+        }
+    }
+}

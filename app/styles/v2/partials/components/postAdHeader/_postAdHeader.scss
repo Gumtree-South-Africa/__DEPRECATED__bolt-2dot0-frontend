@@ -9,7 +9,6 @@ $photo-switcher-width: 30%;
 	height: 25px;
 	width: 100%;
 	color: $postAdHeaderBlue;
-	margin-bottom: $item-margin;
 	padding-top: 10px;
 	padding-bottom: 5px;
 	font-size: 14px;
@@ -18,17 +17,25 @@ $photo-switcher-width: 30%;
 
 	.header-back {
 		float: left;
-		margin-left: 6%;
-
+		margin-left: 6px;
+ 		@include from-breakpoint($medium-break){
+ 			display: none;
+ 		};
+ 		.icon-back-other{
+ 			display: inline-block;
+ 		}
 		a {
 			margin-left: 2px;
 			color: $postAdHeaderBlue;
+			font-weight: bold;
+    	position: relative;
+    	bottom: 0.34em;
 		}
 	}
 
 	.header-accent {
 		font-size: 0;
-		margin-top: 6px;
+		margin-top: 7px;
 		background: $postAdHeaderBlue;
 		line-height: 3px;
 		color: $postAdHeaderBlue;
@@ -42,5 +49,19 @@ $photo-switcher-width: 30%;
 		text-align: center;
 		font-weight: bold;
 	}
+	.title-text{
+ 		width: 15em;
+ 		max-height: 21px;
+ 		@include from-breakpoint($medium-break){
+ 			width: 30em;
+ 		}
+     overflow: hidden;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     text-overflow: ellipsis;
+     -o-text-overflow: ellipsis;
+     -moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+ 	}
 
 }
