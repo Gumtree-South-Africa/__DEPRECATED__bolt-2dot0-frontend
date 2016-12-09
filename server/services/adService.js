@@ -120,7 +120,7 @@ class AdService {
 
 		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
 
-		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, {
+		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, bapiHeaderValues.locale, {
 			method: 'POST',
 			path: queryEndpoint,
 		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
