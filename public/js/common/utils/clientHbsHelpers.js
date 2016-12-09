@@ -44,11 +44,7 @@ let setLocale = (newLocale) => {
 	locale = newLocale;
 };
 
-let initialize = (Handlebars, options) => {
-
-	if (options) {
-		translations = JSON.parse($("#" + options.translationBlockId).text());
-	}
+let initialize = (Handlebars) => {
 
 	Handlebars.registerHelper("partial", (name, options) => {
 			if (!name) {

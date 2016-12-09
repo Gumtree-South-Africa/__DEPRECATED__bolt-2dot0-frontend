@@ -12,7 +12,7 @@ const FEATURES_LIST = ["bumpUpXY", "topAd", "hpGallery", "urgent", "highlight", 
 function initializeClientHbsIfNot() {
 	if (!clientHbsInitialized) {
 		clientHbsInitialized = true;
-		clientHbs.initialize({translationBlockId: "translation-block"});
+		clientHbs.initialize();
 	}
 }
 
