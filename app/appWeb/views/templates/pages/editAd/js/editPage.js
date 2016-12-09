@@ -38,6 +38,8 @@ class EditAd {
 		this._$promoteWithoutInf = domElement.find("#promote-without-inf");
 		this.adInsertionFee.componentDidMount(domElement);
 		this.adFeatureSelection.componentDidMount(domElement);
+		this.adInsertionFee.pageType = "EditAd";
+		this.adFeatureSelection.pageType = "EditAd";
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
@@ -156,11 +158,11 @@ class EditAd {
 						this._$editAdContent.toggleClass("hidden", true);
 						this._$featurePromote.toggleClass("hidden", false);
 						if (response.insertionFee) {
-							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink.vip);
+							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink && response.redirectLink.vip);
 						} else {
 							this._$promoteWithoutInf.toggleClass("hidden", false);
 						}
-						this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink.vip);
+						this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink && response.redirectLink.vip);
 					});
 				}
 			},

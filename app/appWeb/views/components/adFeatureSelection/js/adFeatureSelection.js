@@ -20,6 +20,7 @@ class AdFeatureSelection {
 	constructor() {
 		initializeClientHbsIfNot();
 		this.propertyChanged = new SimpleEventEmitter();
+		this.pageType = "";
 	}
 
 	componentDidMount(domElement) {
@@ -59,13 +60,25 @@ class AdFeatureSelection {
 			this.insertionFee = insertionFee;
 		}
 		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
+		$(this.$form.find(".cancel-link")).click((e) =>{
+			e.preventDefault();
+			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd"});
+		});
 	}
 
 	_bindEvent() {
 
 		// Feature Checkbox event
-		$(this.$form.find(".input-checkbox")).on("click", () => {
+		$(this.$form.find(".input-checkbox")).on("click", (e) => {
 			this._updateCheckoutPrice();
+			let featureName = $(e.currentTarget).attr("name");
+			let checked = $(e.currentTarget).prop("checked");
+			if (checked) {
+				window.BOLT.trackEvents({"event": featureName + "Selected"});
+			} else {
+				window.BOLT.trackEvents({"event": featureName + "Deselected"});
+			}
 			this.$form.find(".mobile-cancel").toggleClass("hidden", true);
 			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
 			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
@@ -73,7 +86,10 @@ class AdFeatureSelection {
 		});
 
 		// Feature option event
-		$(this.$form.find("select")).change(() => {
+		$(this.$form.find("select")).change((e) => {
+			let featureName = $(e.currentTarget).attr("name");
+			let duration = this._getFeatureOptionDuration(featureName);
+			window.BOLT.trackEvents({"event": featureName, "eventLabel": duration});
 			this._updateCheckoutPrice();
 		});
 
@@ -81,6 +97,7 @@ class AdFeatureSelection {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			let featureName = $(e.currentTarget).attr("name");
+			window.BOLT.trackEvents({"event": featureName + "MoreInfo"});
 			FEATURES_LIST.forEach((item) => {
 				if (item !== featureName) {
 					this.$form.find(".title-" + item).toggleClass("hidden", true);
@@ -101,6 +118,7 @@ class AdFeatureSelection {
 		$(this.$form.find(".checkout-button")).on("click", (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
+			window.BOLT.trackEvents({"event": "FeatureAdBegin"});
 			// Clean unsupported fields for 1.0 promote
 			for (let input of this.$form.find("input[type='checkbox']")) {
 				if (input && !($(input).prop("checked"))) {
@@ -128,6 +146,11 @@ class AdFeatureSelection {
 		let select = this.$form.find("select[name='" + feature + "']");
 		let selectVal = select.val();
 		return new Number(select.find("option[value='" + selectVal + "']").html().match(/\$(\d+)+/)[1]);
+	}
+	_getFeatureOptionDuration(feature) {
+		let select = this.$form.find("select[name='" + feature + "']");
+		let selectVal = select.val();
+		return select.find("option[value='" + selectVal + "']").html().split("|")[0];
 	}
 }
 

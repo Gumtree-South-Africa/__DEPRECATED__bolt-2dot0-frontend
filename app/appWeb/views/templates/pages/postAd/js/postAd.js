@@ -57,6 +57,8 @@ class PostAd {
 		this._$promoteWithoutInf = domElement.find("#promote-without-if");
 		this.adInsertionFee.componentDidMount(domElement);
 		this.adFeatureSelection.componentDidMount(domElement);
+		this.adInsertionFee.pageType = "PostAd";
+		this.adFeatureSelection.pageType = "PostAd";
 
 		this._$changePhoto.on('click', (e) => {
 			e.preventDefault();
