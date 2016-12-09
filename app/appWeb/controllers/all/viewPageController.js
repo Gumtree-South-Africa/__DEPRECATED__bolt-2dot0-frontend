@@ -97,7 +97,7 @@ router.get('/:id?', (req, res, next) => {
 
 		//Redirect deleted ads
 		if (modelData.advert.status === 'deleted') {
-			res.redirect('/');
+			res.status(404).send();
 			return;
 		}
 
