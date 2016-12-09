@@ -160,6 +160,14 @@ class viewPageGallery {
 			$('.post-ad-header .title-text').html(this._substring($('.item-details .ad-title').html()));
 			$('.zoomHolder').html('');
 			return false;
+		}	else {
+			// not in Zoom view
+			if (document.referrer.indexOf(window.location.host) !== -1) {
+				window.location.href = $('.header-back a').attr('href');
+			} else {
+				history.go(-1);
+				return false;
+			}
 		}
 	}
 
