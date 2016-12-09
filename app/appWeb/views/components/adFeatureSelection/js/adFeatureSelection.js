@@ -49,9 +49,14 @@ class AdFeatureSelection {
 			feature.featureOptions.forEach((option) => {
 				if (option.selectedFromPreview) {
 					$(this.$form.find("input[name='" + name + "']")).prop("disabled", true).prop("checked", true).addClass("disabled");
+					$(this.$form.find("label[for='" + name + "']")).addClass("disabled");
 					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).addClass("disabled");
+					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).toggleClass("select-disable", true);
 				}
 			});
+			if (feature.featureOptions.length === 1) {
+				$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).toggleClass("select-disable", true);
+			}
 		});
 
 		if(insertionFee) {

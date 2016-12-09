@@ -46,9 +46,9 @@
 		}
 	}
 	margin-bottom: 10px;
+
 	.promote-title {
 		padding-top: 0.618em;
-		padding-bottom: 0.382em;
 		text-align: center;
 		font-size: large;
 		color: $formLabelTextColor;
@@ -59,6 +59,13 @@
 			margin: -12px -1px auto auto;
 		}
 	}
+	.promote-optional {
+		padding-bottom: 0.618em;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
+	}
+
 	.feature-wrapper {
 		float: left;
 		width: 100%;
@@ -125,6 +132,12 @@
 			font-size: small;
 		}
 	}
+	.select-disable {
+		background-color: $vivaGray8 !important;
+		border: 1px solid $vivaGray8 !important;
+		color: black !important;
+	}
+
 	.price-content {
 		color: $formLabelTextColor;
 		.price-amount {
