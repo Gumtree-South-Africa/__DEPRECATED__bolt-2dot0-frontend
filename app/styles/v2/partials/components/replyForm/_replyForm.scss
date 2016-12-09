@@ -79,6 +79,7 @@
 		.send-message-container {
 			margin-button: 10px;
 			margin-left: 5px;
+			margin-top: 5px;
 			.send-message {
 				margin-left: 5px;
 				position: relative;
@@ -136,6 +137,25 @@
 
 	.vip-terms {
 		font-size: 10px;
+	}
+
+	input[type="file"] {
+		display: none;
+	}
+
+	.custom-file-upload {
+		color: $vivaBlue;
+		font-size: 12px;
+		border-radius: 3px;
+		border: 1px solid $vivaBlue;
+		display: inline-block;
+		padding: 5px 20px;
+		cursor: pointer;
+	}
+	.file-text {
+		font-size: 10px;
+		color: $vivaGray1;
+		margin-left: 10px;
 	}
 }
 
