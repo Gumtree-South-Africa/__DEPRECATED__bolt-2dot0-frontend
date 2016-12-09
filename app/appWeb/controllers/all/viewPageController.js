@@ -96,10 +96,33 @@ router.get('/:id?', (req, res, next) => {
 		modelData.redirectUrl = redirectUrl;
 
 		//Redirect deleted ads
-		if (modelData.advert.status === 'deleted') {
-			res.status(404).send();
-			return;
+		let today = new Date().getTime();
+    let expired = modelData.advert.expirationDate;
+    let difference = today - expired;
+		let daysLeft = Math.floor(difference / 86400000);
+		if(modelData.advert.statusInfo.status === 'DELETED') {
+			switch(modelData.advert.statusInfo.statusReason) {
+				case 'DELETED__USER__DELETED': 
+				// code block
+				if (daysLeft > 0 && daysLeft < 60) {
+					modelData.advert.statusInfo.status = 'EXPIRED';
+				} else if(daysLeft > 60) {
+					return res.status(410).redirect('/');
+				}
+
+				break;
+				case 'DELETED__ADMIN__DELETED':
+				// code block
+				if(daysLeft > 60) {
+					return res.status(410).redirect('/');
+				}
+				break;
+				default:
+				// default case
+				break;
+			}			
 		}
+
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 

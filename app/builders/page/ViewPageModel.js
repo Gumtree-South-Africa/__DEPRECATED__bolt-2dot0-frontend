@@ -190,9 +190,8 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
-		// need to change 'deleted' to advert.status from bapi and verify sellerStuff is working right
-		//console.log('#########################', modelData.advert.status, '##################################################')
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.status, modelData.vip.showSellerStuff);
+		//Status Banner
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.status, modelData.vip.showSellerStuff);
 
 		return modelData;
 	}
@@ -219,23 +218,24 @@ class ViewPageModel {
 			return inputArr;
 		}
 	}
+	//getStatusBanner
 	getStatusBanner(state, isOwner){
 		let s = {
-			'expired': {
+			'EXPIRED': {
 				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.expiredStatusBannerLinkMessage',
 					url: 'vip.details.expiredStatusBannerLinkURL'
 				}]
 			},
-			'pending': {
+			'PENDING': {
 				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.pendingStatusBannerLinkMessage',
 					url: 'vip.details.pendingStatusBannerLinkURL'
 				}]
 			},
-			'blocked': {
+			'BLOCKED': {
 				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.blockedStatusBannerLinkMessage',
@@ -246,7 +246,7 @@ class ViewPageModel {
 					url: 'vip.details.blockedStatusBannerReasonURL'
 				}]
 			},
-			'deleted': {
+			'DELETED': {
 				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.deletedStatusBannerLinkMessage',
@@ -298,7 +298,6 @@ class ViewPageModel {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
 					seoGroupName: 'Automobiles',
-					status: (['active', 'expired', 'pending', 'deleted', 'blocked'])[_.random(0,4)],
 					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
@@ -364,6 +363,8 @@ class ViewPageModel {
 
 				// Map
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
+
+				console.log('***************************',JSON.stringify(data),'***************************');
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
