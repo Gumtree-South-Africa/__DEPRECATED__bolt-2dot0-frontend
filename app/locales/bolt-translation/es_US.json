@@ -206,6 +206,7 @@
 	"postad.location.instructions": "Tap on the map to drag and move your location. Your exact location will not be made public.",
 	"postad.location.uselocation": "Use approximate location.",
   "postad.location.uselocation.instructions" : "(Select to display a pin on the map)",
+  "postad.location.setLocation" : "Set location",
   "previewad.notice.text": "Tu anuncio no está publicado aún.  Por favor revísalo y haz clic en Publicar.",
   "previewad.edit.text": "Editar",
   "previewad.postyourad.text": "Publica tu anuncio",

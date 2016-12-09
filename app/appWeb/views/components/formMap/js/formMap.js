@@ -1,16 +1,15 @@
 'use strict';
 
-let googleCircles = [];
+let googleRanges = [];
 let googleMarker = [];
 class FormMap {
 	constructor() {
-		this.htmlElements = {
-			autocomplete: "autocompleteTextBox",
-			map: "map",
-			geolocation: "checkGeolocation",
-			setLocation: "setLocationButton"
-		};
-		this.zoom = 14;
+		this.HtmlMap = $("#map");
+		this.HtmlAutocomplete = $("#autocompleteTextBox");
+		this.HtmlEnableLocation = $("#checkGeolocation");
+		this.HtmlSetLocation = $("#setLocationButton");
+		this.zoom = 18;
+		this.accuracy = 5;
 		this.map;
 		this.placeSearch;
 		this.autocomplete;
@@ -30,73 +29,86 @@ class FormMap {
 	}
 
 	initAutocomplete() {
-		let element = document.getElementById(this.htmlElements.autocomplete);
-		this.autocomplete = new google.maps.places.Autocomplete(element, { types: ['geocode'] });
+		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'] });
 		this.autocomplete.bindTo('bounds', this.map);
 
 		let that = this.autocomplete;
 		this.autocomplete.addListener('place_changed', () => {
 			let place = that.getPlace();
-			$("#" + this.htmlElements.autocomplete).removeClass("error");
+			this.HtmlAutocomplete.removeClass("error");
 			if (!place.geometry) {
-				$("#" + this.htmlElements.autocomplete).addClass("error");
-				$("#" + this.htmlElements.autocomplete).blur();
+				this.HtmlAutocomplete.addClass("error");
+				this.HtmlAutocomplete.blur();
 				return;
 			} else {
-				$("#" + this.htmlElements.autocomplete).blur();
+				this.HtmlAutocomplete.blur();
 				this.expandViewportToFitPlace(this.map, place);
 			}
 		});
 	}
 
 	configMap() {
-		let mapDiv = document.getElementById(this.htmlElements.map);
-		this.map = new google.maps.Map(mapDiv, {
+		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: this.position,
 			zoom: this.zoom,
 			disableDefaultUI: true
 		});
 		
 		this.map.addListener('center_changed', () => {
-			$("#" + this.htmlElements.setLocation).addClass("active");
-			$("#" + this.htmlElements.autocomplete).addClass("inactive");
+			this.HtmlSetLocation.addClass("active");
+			this.HtmlAutocomplete.addClass("inactive");
 		});
 		this.initAutocomplete();
 		this.setLocation();
 	}
 
 	setLocation() {
-		$("#" + this.htmlElements.setLocation).removeClass("active");
-		$("#" + this.htmlElements.autocomplete).removeClass("inactive");
+		this.HtmlSetLocation.removeClass("active");
+		this.HtmlAutocomplete.removeClass("inactive");
 
-		$("#" + this.htmlElements.setLocation).addClass("inactive");
-		$("#" + this.htmlElements.autocomplete).addClass("active");
+		this.HtmlSetLocation.addClass("inactive");
+		this.HtmlAutocomplete.addClass("active");
 
 		this.removeAllMarker();
-		this.removeAllCircles();
+		this.removeAllRanges();
 		this.addMarker();
-		this.addCircle(2);
+		this.addRange(500);
 	}
 
 	getLocation() {
-		let value = document.getElementById(this.htmlElements.geolocation).checked;
+		let value = this.HtmlEnableLocation[0].checked;
 		this.geolocate(value);
+	}
+	
+	getPosition() {
+		let cords = this.map.getCenter();
+		let pos = {
+			lat: cords.lat(),
+			lng: cords.lng()
+		};
+		return pos;
 	}
 
 	geolocate(enable) {
 		if (enable) {
 			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition((position) => {
+				navigator.geolocation.getCurrentPosition(function(position) {
 					let geolocation = {
 						lat: position.coords.latitude,
 						lng: position.coords.longitude
 					};
 					let circle = new google.maps.Circle({
 						center: geolocation,
-						radius: position.coords.accuracy
+						radius: position.coords.accuracy,
+						map: this.map,
 					});
 					this.autocomplete.setBounds(circle.getBounds());
-					this.position = geolocation;
+					this.map.setCenter(geolocation);
+					this.map.setZoom(17);
+					this.removeAllMarker();
+					this.removeAllRanges();
+					this.addMarker();
+					this.addRange(500);
 				});
 			}
 		} else {
@@ -104,30 +116,40 @@ class FormMap {
 		}
 	}
 
-	addCircle(km) {
+	addRange(meters) {
 		let center = this.map.getCenter();
-		let tempCicle = new google.maps.Circle({
+		let tempRange = new google.maps.Circle({
 			strokeColor: '#FF9800',
 			strokeOpacity: 0.8,
 			strokeWeight: 2,
 			fillColor: '#FF9800',
 			fillOpacity: 0.35,
 			center: center,
-			radius: Math.sqrt(km) * 1000
+			radius: Math.sqrt(meters) * this.accuracy
 		});
-		tempCicle.setMap(this.map);
-		googleCircles.push(tempCicle);
+		tempRange.setMap(this.map);
+		googleRanges.push(tempRange);
 	}
 
-	removeAllCircles() {
-		for(let i=0; i < googleCircles.length; i++) {
-			googleCircles[i].setMap(null);
+	removeAllRanges() {
+		for(let i=0; i < googleRanges.length; i++) {
+			googleRanges[i].setMap(null);
 		}
-		googleCircles = new Array();
+		googleRanges = new Array();
 	}
 
 	addMarker() {
 		let center = this.map.getCenter();
+		let tempMarker = new google.maps.Marker({
+			position: center,
+			title: 'MyLocation'
+		});
+		tempMarker.setMap(this.map);
+		googleMarker.push(tempMarker);
+	}
+
+	addMarkerCustom(lat, lng) {
+		let center = { lat: lat, lng: lng };
 		let tempMarker = new google.maps.Marker({
 			position: center,
 			title: 'MyLocation'
@@ -147,7 +169,7 @@ class FormMap {
 let initialize = () => {
 	window.formMap = new FormMap();
 	window.formMap.geolocate(true);
-	window.googleCircles = googleCircles;
+	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 };
 
