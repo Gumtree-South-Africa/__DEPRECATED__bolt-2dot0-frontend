@@ -60,9 +60,7 @@ class AdFeatureSelection {
 			this.insertionFee = insertionFee;
 		}
 		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
-		$(this.$form.find(".cancel-link")).click((e) =>{
-			e.preventDefault();
-			e.stopImmediatePropagation();
+		$(this.$form.find(".cancel-link")).click(() =>{
 			window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd"});
 		});
 	}

@@ -21,9 +21,7 @@ class AdInsertionFee {
 		}
 		$(this._$promoteWithInf.find(".inf-category-name")).html(categorySelectedName);
 		$(this._$promoteWithInf.find(".inf-cancel-button")).prop("href", cancelLink);
-		$(this._$promoteWithInf.find(".inf-cancel-button")).click((e) => {
-			e.preventDefault();
-			e.stopImmediatePropagation();
+		$(this._$promoteWithInf.find(".inf-cancel-button")).click(() => {
 			window.BOLT.trackEvents({"event": this.pageType + "UpsellBack"});
 		});
 		this._$promoteWithInf.toggleClass("hidden", false);
