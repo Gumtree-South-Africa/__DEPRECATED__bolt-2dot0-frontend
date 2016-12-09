@@ -73,6 +73,7 @@ router.post('/', (req, res) => {
     })
     .fail(err => {
       console.error(err);
+      // TODO: Send 400 HTTP Code when there is an error instead of the 200
       res.send({
         success: false,
         errors: []
