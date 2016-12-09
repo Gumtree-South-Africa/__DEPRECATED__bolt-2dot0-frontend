@@ -22,8 +22,8 @@ let _walkAndReplace = (translation, values) => {
 };
 
 let _getTranslation = (keys) => {
-	if (translations[key]) {
-		return translations[key];
+	if (translations[keys]) {
+		return translations[keys];
 	} else {
 		let keyNames = keys.split('.');
 		let result = translations;
