@@ -316,6 +316,19 @@ class ViewPageModel {
 				// Map
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
+				// Breadcrumbs
+				data.breadcrumbs = { };
+				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+				data.breadcrumbs.locations.forEach((location, index) => {
+				  location.position = index + 1;
+				});
+				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+				data.breadcrumbs.categories.forEach((category, index) => {
+				  category.position = data.breadcrumbs.locations.length + index + 1;
+				  category.locationInText = data.breadcrumbs.leafLocation.text;
+				});
+
 				// Location
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
@@ -337,6 +350,7 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
