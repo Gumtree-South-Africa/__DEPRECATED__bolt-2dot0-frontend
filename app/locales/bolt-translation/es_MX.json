@@ -1562,7 +1562,7 @@
 			"location": "UBICACIÓN",
 			"updated": "ACTUALIZADO",
 			"postedby": "PUBLICADO POR",
-			"daysago": "HACE"
+			"daysago": "Hace"
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
