@@ -78,6 +78,20 @@
 }
 
 @include to-breakpoint($small-break){
+	.postAdHeader{
+		margin-top: -1em;
+	}
+	.inZoomMode{
+		float: left;
+    font-weight: bold;
+    margin-left: 0.5em;
+		.icon-back-other {
+			display: inline-block;
+	    position: relative;
+	    top: 0.1em;
+	    margin-right: 0.15em;
+		}
+	}
 	.zoomT{
 	 	position: fixed;
 	 	background-color: white;

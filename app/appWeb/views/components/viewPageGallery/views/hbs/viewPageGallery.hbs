@@ -14,9 +14,9 @@
       <span class="separator">/</span>
       <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
     </div>
-    <div class="slider-mobile-for">
+    <div class="slider-mobile-for" data-elem="pinchzoomer">
     {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt="{{@index}}"/>
+			<img class="slick-carousel" src="{{this}}" alt="{{@index}}" />
 		{{/each}}
     </div>
 	</div>
