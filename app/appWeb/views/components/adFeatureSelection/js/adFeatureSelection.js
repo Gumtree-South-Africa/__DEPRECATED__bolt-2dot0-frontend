@@ -127,7 +127,7 @@ class AdFeatureSelection {
 				if (!($(input).prop("checked"))) {
 					$(this.$form.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
 				} else {
-					$(this.$form.find("select[name='" + name + "']")).prop("disabled", false) // enable for submit
+					$(this.$form.find("select[name='" + name + "']")).prop("disabled", false); // enable for submit
 				}
 			}
 			this.$form.find("input[type='checkbox']").prop('name','');
