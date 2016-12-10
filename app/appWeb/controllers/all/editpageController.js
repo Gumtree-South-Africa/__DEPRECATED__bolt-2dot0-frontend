@@ -6,6 +6,7 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let EditAdPageModel = require(cwd + '/app/builders/page/EditAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
@@ -60,6 +61,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
