@@ -124,7 +124,7 @@ class AdFeatureSelection {
 					continue;
 				}
 				let name = $(input).prop("name");
-				if (!($(input).prop("checked"))) {
+				if (!($(input).prop("checked")) || ($(input).prop("disabled"))) {
 					$(this.$form.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
 				} else {
 					$(this.$form.find("select[name='" + name + "']")).prop("disabled", false); // enable for submit
@@ -146,7 +146,7 @@ class AdFeatureSelection {
 	_updateCheckoutPrice() {
 		let price = this.insertionFee;
 		for (let input of this.$form.find("input[type='checkbox']")) {
-			if (input && $(input).prop("checked")) {
+			if (input && $(input).prop("checked") && !$(input).prop("disabled")) {
 				let name = $(input).prop("name");
 				price += this._getFeatureOptionPrice(name);
 			}
