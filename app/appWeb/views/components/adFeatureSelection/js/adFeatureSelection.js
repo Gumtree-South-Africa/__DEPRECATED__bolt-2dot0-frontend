@@ -50,8 +50,7 @@ class AdFeatureSelection {
 				if (option.selectedFromPreview) {
 					$(this.$form.find("input[name='" + name + "']")).prop("disabled", true).prop("checked", true).addClass("disabled");
 					$(this.$form.find("label[for='" + name + "']")).addClass("disabled");
-					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).addClass("disabled");
-					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).toggleClass("select-disable", true);
+					$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).addClass("disabled").toggleClass("select-disable", true);
 				}
 			});
 			if (feature.featureOptions.length === 1) {
@@ -121,9 +120,14 @@ class AdFeatureSelection {
 			window.BOLT.trackEvents({"event": "FeatureAdBegin"});
 			// Clean unsupported fields for 1.0 promote
 			for (let input of this.$form.find("input[type='checkbox']")) {
-				if (input && !($(input).prop("checked"))) {
-					let name = $(input).prop("name");
+				if (!input) {
+					continue;
+				}
+				let name = $(input).prop("name");
+				if (!($(input).prop("checked"))) {
 					$(this.$form.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
+				} else {
+					$(this.$form.find("select[name='" + name + "']")).prop("disabled", false) // enable for submit
 				}
 			}
 			this.$form.find("input[type='checkbox']").prop('name','');
