@@ -1599,5 +1599,34 @@
 		"contact": "Check Gumtree for Business ",
 		"contactAppend": "for more information on bulk posting.",
 		"noThanks": "No thanks, view my ad"
+	},
+	"feature": {
+		"promotetitle": "Promote this ad",
+		"promotehint": "Promote and sell faster",
+		"displayname": {
+			"bumpUpXY": "Bump up",
+			"topAd": "Top ad",
+			"hpGallery": "Homepage gallery",
+			"urgent": "Urgent",
+			"highlight": "Highlights",
+			"srpGallery": "Category gallery",
+			"WebSiteUrl": "Website link"
+		},
+		"description": {
+			"bumpUpXY": "Bump Up is an affordable way to make your ad more successful, because ads higher in the category are seen by more people and get more replies. Bump Up will move your ad back to the top of the listings, just below any 'Top Ads', until more ads in the category are posted.",
+			"topAd": "Top Ads appear at the top of ad listed in a category's page for multiple days. More people read and reply to these Ads because of their prominent position on top of category listings over a long time period.",
+			"hpGallery": "Homepage Gallery is a section on the homepage where your Ads can be displayed for several days. More people read and reply to these Ads because of their prominent position on the homepage.",
+			"urgent": "An urgent label appears next to your ad in listings and search results. Users can search specifically for Urgent ads. Ideal if you need to sell, rent or hire quickly. Ads are marked as Urgent for 7 days.",
+			"highlight": "Highlighted ads stand out from the other ads on the search and browse results due to the darker background colour. Highlighted Ads have greater visibility and therefore could receive more visits and replies. Ads are marked as Highlight for 7 days.",
+			"srpGallery": "Your ad appears in a section at the top of a category's page. More people read and reply to top ads because of their prominent position. You can choose to make your ad on top for days subject to your choice.",
+			"WebSiteUrl": "Your website link will show on your ad page so other users can visit your site in one click. Allow users to see more information on whatever you're selling."
+		},
+		"total": "Total",
+		"cancel": "Cancel",
+		"checkout": "Checkout",
+		"noThanks": "No thanks, view my ad",
+		"close": "Close",
+		"addUrl": "Add URL",
+		"optional": "optional"
 	}
 }
