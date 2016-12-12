@@ -12,12 +12,16 @@ class AdInsertionFee {
 		$(this._$promoteWithInf.find(".ad-first-pic")).css("background-image", "url('" + adInfo.imageUrls[0] + "')");
 		$(this._$promoteWithInf.find(".inf-amount")).html(innsetionFee);
 		$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
-		if (adInfo.price && adInfo.price.amount) {
-			// Display currency for non-locale price
-			$(this._$promoteWithInf.find(".ad-price")).html(adInfo.price.amount + " " + (adInfo.price.currency === "MXN" ? "" : adInfo.price.currency));
+		if (adInfo.price) {
+			if (adInfo.price.amount) {
+				// Display currency for non-locale price
+				$(this._$promoteWithInf.find(".ad-price")).html(adInfo.price.amount + " " + (adInfo.price.currency === "MXN" ? "" : adInfo.price.currency));
+			} else {
+				$(this._$promoteWithInf.find(".ad-price")).toggleClass("hidden", true);
+				$(this._$promoteWithInf.find(".ad-price-contact-me")).toggleClass("hidden", false);
+			}
 		} else {
 			$(this._$promoteWithInf.find(".ad-price")).toggleClass("hidden", true);
-			$(this._$promoteWithInf.find(".ad-price-contact-me")).toggleClass("hidden", false);
 		}
 		$(this._$promoteWithInf.find(".inf-category-name")).html(categorySelectedName);
 		$(this._$promoteWithInf.find(".inf-cancel-button")).prop("href", cancelLink);
