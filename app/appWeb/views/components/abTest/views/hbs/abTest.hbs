@@ -1,7 +1,7 @@
 {{#block "abTest"}}
     {{#ifeq this.header.analytics.enableABTest compare='true'}}
         {{#if this.header.abtestExperimentId}}
-            {{#unless this.isNewHP}}
+            {{#if this.dataLayer.userData.request2dot0Version}}
 				<!-- Google Analytics Content Experiment code -->
 				<script>function utmx_section(){}function utmx(){}(function(){var
 						k='{{this.header.abtestExperimentId}}',d=document,l=d.location,c=d.cookie;
@@ -16,7 +16,7 @@
 							'" type="text/javascript" charset="utf-8"><\/sc'+'ript>')})();
 				</script><script>utmx('url','A/B');</script>
 				<!-- End of Google Analytics Content Experiment code -->
-            {{/unless}}
+            {{/if}}
         {{/if}}
     {{/ifeq}}
 {{/block}}
