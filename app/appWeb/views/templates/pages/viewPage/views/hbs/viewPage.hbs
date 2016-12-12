@@ -1,6 +1,8 @@
 {{#partial "content"}}
     {{> (dynamic "modal")}}
 
+    {{> (dynamic "breadcrumbsV2") breadcrumbs=this.advert.breadcrumbs}}
+
     {{> (dynamic "topBanner")}}
 
     <div class="status-ad-banner-mobile">

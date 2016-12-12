@@ -41,6 +41,8 @@ class ViewPageModel {
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
+			this.modelData.header.postAdHeader = true;
+  		this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
@@ -364,7 +366,18 @@ class ViewPageModel {
 				// Map
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
-				console.log('***************************',JSON.stringify(data),'***************************');
+				// Breadcrumbs
+				data.breadcrumbs = { };
+				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+				data.breadcrumbs.locations.forEach((location, index) => {
+				  location.position = index + 1;
+				});
+				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+				data.breadcrumbs.categories.forEach((category, index) => {
+				  category.position = data.breadcrumbs.locations.length + index + 1;
+				  category.locationInText = data.breadcrumbs.leafLocation.text;
+				});
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
@@ -387,6 +400,7 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
