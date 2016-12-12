@@ -24,7 +24,6 @@
     },
     "comments": {
       "type": "string",
-      "pattern": "([^\\s])",
       "required": false
     }
   }

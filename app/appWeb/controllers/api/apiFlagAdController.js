@@ -15,7 +15,7 @@ const express           = require('express'),
 router.post('/', (req, res) => {
   const SECRET_KEY = config.get('recaptcha.SECRET_KEY');
   
-  let jsonPayload = isMyJsonValid(flagAdSchema, {greedy: true });
+  let jsonPayload = isMyJsonValid(flagAdSchema, {greedy: true});
   let isPayloadValid = jsonPayload(req.body);
   
   let adId = req.body.adId;
