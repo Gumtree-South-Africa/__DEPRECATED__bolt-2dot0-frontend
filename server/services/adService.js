@@ -2,6 +2,7 @@
 
 let config = require('config');
 let bapiOptionsModel = require('./bapi/bapiOptionsModel');
+let ruiOptionsModel = require('./rui/ruiOptionsModel');
 let bapiService      = require('./bapi/bapiService');
 
 class AdService {
@@ -109,6 +110,20 @@ class AdService {
 			method: 'DELETE',
 			path: queryEndpoint,
 		}), bapiHeaderValues, {}, 'adService$unfavoriteAd');
+	}
+
+	replyAd(bapiHeaderValues, replyForm) {
+		let locale = bapiHeaderValues.locale;
+		if (locale === 'es_MX') {
+			locale='es_MX_VNS';
+		}
+
+		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
+
+		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, bapiHeaderValues.locale, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
 	}
 }
 

@@ -265,6 +265,9 @@ class ViewPageModel {
 
 				// Manipulate Ad Data
 
+				// TODO check if it's jobs category
+				data.isJobAd = false;
+
 				// // TODO: Get seoVipUrl
 				let seoVipElt = data._links.find((elt) => {
 					return elt.rel === "seoVipUrl";
@@ -309,8 +312,9 @@ class ViewPageModel {
 				}
 				
 				// Seller Contact
+				data.sellerDetails.contactInfo.phone = '1234567890'
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}
 
 				// Map

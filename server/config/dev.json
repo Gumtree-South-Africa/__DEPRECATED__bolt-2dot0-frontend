@@ -37,6 +37,17 @@
 			"categorySuggest"   :   "/bolt-api-webapp/v1/categories/action/suggestion?"
 	    }
 	},
+	"RUI": {
+		"server": {
+			"host": "",
+			"port": 80,
+			"parameters": null,
+			"timeout": 2000
+		},
+		"endpoints": {
+			"replyForm": "/rui-api/page/reply/model/"
+		}
+	},
 	"solr": {
 		"server": {
 			"host"	: "localhost",

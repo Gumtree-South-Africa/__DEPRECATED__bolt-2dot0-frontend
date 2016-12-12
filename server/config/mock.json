@@ -37,6 +37,17 @@
 			"categorySuggest"   :   "/categories/action/suggestion?"
 	    }
 	},
+	"RUI": {
+		"server": {
+			"host": "",
+			"port": 5000,
+			"parameters": null,
+			"timeout": 200
+		},
+		"endpoints": {
+			"replyForm"			: 	"/rui-api/page/reply/model/"
+		}
+	},
 	"solr": {
 		"server": {
 			"host"	: "localhost",
