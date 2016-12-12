@@ -199,7 +199,6 @@ module.exports = (req, res, next) => {
 		HP.deleteMarketoCookie(res, modelData);
 
 		modelData.eps = EpsModel();
-
 		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
