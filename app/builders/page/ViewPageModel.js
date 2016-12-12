@@ -266,7 +266,7 @@ class ViewPageModel {
 				// Manipulate Ad Data
 
 				// TODO check if it's jobs category
-				data.isJobAd = true;
+				data.isJobAd = false;
 
 				// // TODO: Get seoVipUrl
 				let seoVipElt = data._links.find((elt) => {

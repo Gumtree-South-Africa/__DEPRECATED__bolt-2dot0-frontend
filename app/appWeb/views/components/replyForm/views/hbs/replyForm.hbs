@@ -1,5 +1,17 @@
 {{#partial "replyFormContainer"}}
     <div class="reply-form-container">
+
+		<!--<div id="replyModal" class="modal modal-cp desktop-only">-->
+			<!--<div class="modal-overlay"></div>-->
+			<!--<div class="modal-container">-->
+				<!--<div>{{i18n "vip.reply.messageSent"}}</div>-->
+			<!--</div>-->
+		<!--</div>-->
+
+        <!--<div class="mobile-only">-->
+            <!--{{i18n "vip.reply.messageSent"}}-->
+        <!--</div>-->
+
         {{#if this.advert.sellerDetails.contactInfo.phone}}
             <div class="phone-header-desktop">
                 <div><span class="phone-icon icon-phone-orange"></span><span class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
@@ -26,6 +38,7 @@
                     <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
 					<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
+
                 {{#if this.advert.isJobAd}}
                     <div class="viva-labels">{{i18n "vip.reply.attachAFile"}}</div>
 					<label for="file-upload" class="custom-file-upload">
