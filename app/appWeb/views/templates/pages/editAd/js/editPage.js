@@ -68,7 +68,6 @@ class EditAd {
 		});
 
 		this.postAdFormMainDetails.showChangeWarning = true;
-		this.postAdFormMainDetails.isMustLeaf = true;
 		this.postAdFormMainDetails.postFormCustomAttributes.loadBaseUrl = '/api/edit/customattributes/';
 	}
 
