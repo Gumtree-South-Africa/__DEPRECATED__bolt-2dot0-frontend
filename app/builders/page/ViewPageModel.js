@@ -312,6 +312,7 @@ class ViewPageModel {
 				}
 
 				// Seller Contact
+				data.sellerDetails.contactInfo.phone = '1234567890'
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
 					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}

@@ -1,17 +1,24 @@
 {{#partial "replyFormContainer"}}
+	<div id="replyModal" class="message-sent modal modal-cp desktop-only hide">
+		<div class="modal-overlay"></div>
+		<div class="modal-container">
+            <div class="desktop-header">
+				<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}</span>
+                <div class="close-button">CLOSE
+                    <div class="icon-close"></div>
+                </div>
+            </div>
+			<div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
+			<div class="return-button">Return to Browsing</div>
+		</div>
+	</div>
+
+	<div class="message-sent mobile-only hide">
+        <div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
+        <div class="return-button">Return to Browsing</div>
+	</div>
+
     <div class="reply-form-container">
-
-		<!--<div id="replyModal" class="modal modal-cp desktop-only">-->
-			<!--<div class="modal-overlay"></div>-->
-			<!--<div class="modal-container">-->
-				<!--<div>{{i18n "vip.reply.messageSent"}}</div>-->
-			<!--</div>-->
-		<!--</div>-->
-
-        <!--<div class="mobile-only">-->
-            <!--{{i18n "vip.reply.messageSent"}}-->
-        <!--</div>-->
-
         {{#if this.advert.sellerDetails.contactInfo.phone}}
             <div class="phone-header-desktop">
                 <div><span class="phone-icon icon-phone-orange"></span><span class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
@@ -23,7 +30,7 @@
                 <div class="login-message-container"><span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>{{#unless this.header.id}}<span class="desktop-paren">(</span><a class=login-link href="/login.html">{{i18n "vip.reply.login"}} </a><span>{{i18n "vip.reply.loginMessage"}}</span><span class="desktop-paren">)</span>{{/unless}}</div>
                 <div class="interested-message-container"><input class="viva-checkbox" type="checkbox"><span class="interested-message">{{i18n "vip.reply.interested"}}</span></div>
                 <div class="where-message-container"><input class="viva-checkbox" type="checkbox"><span class="where-message">{{i18n "vip.reply.whenNWhere"}}</span></div>
-                <div class="viva-labels"><span>{{i18n "vip.reply.message"}}*</span><span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
+                <div class="viva-labels"><span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}*</span><span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
                 <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.messageValidate"}}')" required></textarea>
                 {{#unless this.header.id}}
                     <div class="viva-labels">{{i18n "vip.reply.name"}}</div>

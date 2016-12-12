@@ -5,6 +5,39 @@
 .mobile-only {
 	display: block;
 }
+
+.message-sent {
+	.return-button {
+		color: $vivaWhite;
+		background-color: $vivaOrange;
+		margin: 10px auto;
+		width: 95%;
+		height: 40px;
+		font-size: 18px;
+		border-radius: 3px;
+		text-shadow:none !important;
+		border:none !important;
+		box-shadow:none !important;
+		text-align: center;
+		padding-top: 15px;
+		cursor: pointer;
+	}
+	.close-button {
+		float: right;
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.icon-close {
+		display: inline-block;
+	}
+
+	.message-sent-text {
+		text-align: center;
+		margin-top: 5px;
+	}
+}
+
 .reply-form-container {
 	margin-top: 5px;
 
