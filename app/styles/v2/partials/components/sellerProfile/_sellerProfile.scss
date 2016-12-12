@@ -76,17 +76,9 @@
 
 @include from-breakpoint($medium-break) {
 	.seller-profile-container {
-		
-		.email-icon {
-			position: relative;
-			top: 32px;
-			float: left;
-			left: 235px;
-		}
 		.user-ads {
 			.ads-active-text {
 				padding-right: 10px;
-				border-right: 1px solid;
 				border-color: $vivaGray2;
 				padding-top: 6px;
 			}
