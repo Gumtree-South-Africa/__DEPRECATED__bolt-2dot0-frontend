@@ -11,7 +11,6 @@ let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 
-
 let HP = {
 	/**
 	 * Special header data for HomePage
@@ -208,4 +207,3 @@ module.exports = (req, res, next) => {
 		next(err);
 	});
 };
-

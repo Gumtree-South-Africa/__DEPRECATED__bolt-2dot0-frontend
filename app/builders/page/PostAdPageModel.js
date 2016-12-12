@@ -8,6 +8,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
@@ -143,6 +144,7 @@ class PostAdPageModel {
 		let seo = new SeoModel(modelData.bapiHeaders);
 		let imageRecognitionModel = new ImageRecognitionModel(modelData.bapiHeaders);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.initialCategory = () => {
@@ -214,6 +216,22 @@ class PostAdPageModel {
 
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getPostSeoInfo();
+		};
+
+		// when we don't have a geoCookie, we shouldn't make the call
+		this.dataPromiseFunctionMap.locationlatlong = () => {
+			if (modelData.geoLatLngObj === null) {
+				return locationModel.getLocationLatLongByIpAddress().then((data) => {
+						return {
+							lat: data.latitude,
+							lon: data.longitude
+						};
+				}).catch((err) => {
+					console.warn(`error getting ip address ${err}`);
+				});
+			}
+
+			return modelData.geoLatLngObj;
 		};
 	}
 }
