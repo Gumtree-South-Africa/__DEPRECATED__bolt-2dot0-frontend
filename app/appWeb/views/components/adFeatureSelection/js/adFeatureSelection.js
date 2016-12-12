@@ -107,7 +107,17 @@ class AdFeatureSelection {
 			this.$form.find(".feature-info-overlay").toggleClass("hidden", false);
 		});
 
-		$(this.$form.find(".feature-info-overlay").find(".modal-close-section, .btn")).on("click", (e) => {
+		$(this.$form.find(".feature-info-overlay")).on("click", (e) => {
+			let target = $(e.target);
+			if (target.hasClass("feature-overlay-modal")
+			|| (target.hasClass("modal-container"))
+			|| (target.hasClass("feature-title"))
+			|| (target.hasClass("feature-content-info"))
+			|| (target.hasClass("modal-wrapper"))
+			|| (target.hasClass("close-footer"))
+			|| (target.hasClass("btn-wrapper"))) {
+				return;
+			}
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			this.$form.find(".feature-title,.feature-content-info").toggleClass("hidden", false);
