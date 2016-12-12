@@ -1,0 +1,23 @@
+{{#if this.breadcrumbs}}
+<ol class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">
+    {{#each this.breadcrumbs.locations as |location|}}
+    <li class="breadcrumb-location" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <meta content="{{ location._links.[0].href }}" itemprop="url">
+        <a itemprop="item" href="{{ location._links.[0].href }}">
+            <span itemprop="name">{{ location.text }}</span>
+        </a>
+        <span class="breadcrumb-separator" content="{{ location.position }}" itemprop="position">&gt;</span>
+    </li>
+    {{/each}}
+
+    {{#each this.breadcrumbs.categories as |category|}}
+    <li class="breadcrumb-category" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
+        <meta content="{{ category._links.[0].href }}" itemprop="url">
+        <a itemprop="item" href="{{ category._links.[0].href }}">
+            <span itemprop="name">{{ category.text }} {{ i18n 'srp.category_in_location' }} {{ category.locationInText }}</span>
+        </a>
+        <span class="breadcrumb-separator" content="{{ category.position }}" itemprop="position">&gt;</span>
+    </li>
+    {{/each}}
+</ol>
+{{/if}}
