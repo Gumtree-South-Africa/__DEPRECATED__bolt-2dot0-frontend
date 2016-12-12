@@ -54,7 +54,7 @@ router.post('/', (req, res) => {
               console.error(err);
               console.error(err.stack);
               // Right now this is only for convenience
-              // if we send a 4XX code then the JS request fails and we get the message as a string
+              // if we send a 4XX code then the JS request fails and we get the message as a string,
               // we will need to parse and then show the errors
               // TODO: Send 400 HTTP Code when there is an error instead of the 200
               res.send({
