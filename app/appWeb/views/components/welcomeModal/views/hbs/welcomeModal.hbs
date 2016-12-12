@@ -18,10 +18,22 @@
 
 		<div class="welcome-footer">
 			<div class="modal-footer stickybottom">
-				{{#if this.imageUploadFromHome}}
-					{{> (dynamic "button") i18nPath="postad.button" buttonLink="#" hideIcon=false iconName="icon-post" extraClasses='login-button directly-post'}}
+				{{#if this.hasReplyForm}}
+				<div class="sticky-contact">
+					<div class="contact-wrapper">
+						<div class="contact-title">Contact Diego</div>
+						<div class="stickyBtn left"><span class="icon-web-phone show-icon"></span><span class="duText">CALL</span></div>
+						<div class="stickyBtn right"><span class="icon-web-email show-icon"></span><span class="duText">EMAIL</span></div>
+						<div class="stickyBtn center"><span class="icon-web-sms show-icon"></span><span class="duText">SMS</span></div>
+						<div class="clear"></div>
+					</div>
+				</div>
 				{{else}}
-					{{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
+					{{#if this.imageUploadFromHome}}
+						{{> (dynamic "button") i18nPath="postad.button" buttonLink="#" hideIcon=false iconName="icon-post" extraClasses='login-button directly-post'}}
+					{{else}}
+						{{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
+					{{/if}}
 				{{/if}}
 			</div>
 		</div>
