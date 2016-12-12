@@ -16,7 +16,7 @@ class AdInsertionFee {
 
 		// Current
 		if (adInfo.title.length > MAX_TITLE_LENGTH) {
-			$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title.substring(0, MAX_TITLE_LENGTH) + "... ");
+			$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title.substring(0, MAX_TITLE_LENGTH) + ". . . ");
 		} else {
 			$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
 		}
