@@ -77,6 +77,7 @@ class viewPageGallery {
 				 $('body').addClass('noScroll');
 				 $('.post-ad-header .title-text').html('ZOOM VIEW');
 				 $('.zoomHolder').addClass('zoomview');
+				 $('.slick-dots').addClass('bottomPos'); 
 				 this.updateZoomImageHeight();
 			}
 		});
