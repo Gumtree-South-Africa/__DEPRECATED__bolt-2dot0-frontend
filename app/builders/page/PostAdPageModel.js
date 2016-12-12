@@ -165,7 +165,9 @@ class PostAdPageModel {
 
 		this.dataPromiseFunctionMap.user = () => {
 			let userModel = new UserModel(modelData.bapiHeaders);
-			return userModel.getUserFromCookie();
+			return userModel.getUserFromCookie().fail(() => {
+				return Q.resolve(null);
+			});
 		};
 
 		this.dataPromiseFunctionMap.adDraft = () => {
