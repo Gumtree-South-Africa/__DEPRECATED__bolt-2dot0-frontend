@@ -1562,7 +1562,7 @@
 			"daysago": "Hace",
 			"expiredStatusBannerMessage": "Este anuncio ha expirado.",
 			"expiredStatusBannerLinkMessage": "Activar ahora",
-			"expiredStatusBannerLinkURL": "###",
+			"expiredStatusBannerLinkURL": "/postActivate.html?adId=%sguid=%s",
 			"pendingStatusBannerMessage": "Este anuncio está en proceso de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Por favor, revisa tu correo electrónico.",
 			"pendingStatusBannerLinkMessage": "Saber más",
 			"pendingStatusBannerLinkURL": "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios/?q=aprobación&l=es&fs=Search&pn=1&vgroup1=PKB&c=PKB%3A&s=a000G00000POyaTQAT",
