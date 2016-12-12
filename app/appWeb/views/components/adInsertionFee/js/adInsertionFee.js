@@ -2,6 +2,8 @@
 
 'use strict';
 
+const MAX_TITLE_LENGTH = 30;
+
 class AdInsertionFee {
 
 	componentDidMount(domElement) {
@@ -11,7 +13,14 @@ class AdInsertionFee {
 	updateInsertionFee(adInfo, innsetionFee, categorySelectedName, cancelLink) {
 		$(this._$promoteWithInf.find(".ad-first-pic")).css("background-image", "url('" + adInfo.imageUrls[0] + "')");
 		$(this._$promoteWithInf.find(".inf-amount")).html(innsetionFee);
-		$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
+
+		// Current
+		if (adInfo.title.length > MAX_TITLE_LENGTH) {
+			$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title.substring(0, MAX_TITLE_LENGTH) + "... ");
+		} else {
+			$(this._$promoteWithInf.find(".ad-title")).html(adInfo.title);
+		}
+
 		if (adInfo.price) {
 			if (adInfo.price.amount) {
 				// Display currency for non-locale price
