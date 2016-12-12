@@ -41,14 +41,14 @@
 				 }
 				&.error {
 					border: 2px solid red;
-					width: calc(96% - 4px);
-					
+					// width: calc(96% - 4px);
 				}
 			}
 			.setLocationButton {
-				background: #FF9800;
+				// background: #FF9800;
+				background: none;
 				border: none;
-				color: #fff;
+				color: #1D98D4;
 				padding: 8px 10px;
 				text-align: center;
 				outline: none;

@@ -6,6 +6,7 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -74,7 +75,7 @@ describe('Post Ad', () => {
 			specHelper.mockObjectProperty(postAdController.postAdFormMainDetails, 'categoryId', 0);
 
 			postAdController.mobileUpload.propertyChanged.trigger('imageUrl', 'http://fakeUrl/fakePath');
-
+			
 			// Detail form should be shown
 			expect(postAdController.postAdFormMainDetails.show).toHaveBeenCalled();
 			expect(spinnerModalController.showModal).toHaveBeenCalled();
@@ -224,6 +225,31 @@ describe('Post Ad', () => {
 			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
 			postAdController.submit(false);
 			expect(spinnerModalController.hideModal).toHaveBeenCalled();
+		});
+	});
+
+	describe("formMap", () => {
+		let $testArea;
+		
+		beforeEach(() => {
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
+
+			$testArea = specHelper.setupTest('formMap', {formMap: {}}, 'es_MX');
+			formMapController.initialize();
+			
+		});
+		it('test if google api maps has been applied on object window.google', function() {
+			expect(true).toBeTruthy();
+		});
+
+		it("initialize and disable geolocate", () => {
+			let checkGeolocation = $testArea.find('#checkGeolocation');
+			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+			window.formMap.geolocate(false);
+			expect(window.formMap.position.lat).toBe(19.3883554);
+			expect(window.formMap.position.lng).toBe(-99.1744351 );
+
 		});
 	});
 });

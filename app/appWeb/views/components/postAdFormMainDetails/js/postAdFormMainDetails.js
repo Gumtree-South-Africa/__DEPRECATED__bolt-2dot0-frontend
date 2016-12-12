@@ -1,5 +1,5 @@
 'use strict';
-let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
+// let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -664,9 +664,9 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		locationSelection.initialize((data) => {
-			this._setHiddenLocationInput(data);
-		}, {pageType: this.pageType});
+		// locationSelection.initialize((data) => {
+		// 	this._setHiddenLocationInput(data);
+		// }, {pageType: this.pageType});
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();

@@ -7,15 +7,15 @@ class FormMap {
 		this.HtmlMap = $("#map");
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
 		this.HtmlEnableLocation = $("#checkGeolocation");
-		this.HtmlSetLocation = $("#setLocationButton");
-		this.zoom = 18;
+		this.HtmlSetLocation = $("#setCurrentLocationButton");
+		
+		this.zoom = 17;
 		this.accuracy = 5;
 		this.map;
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
 		this.position = { lat: 19.3883554, lng: -99.1744351 };
-		
 	}
 
 	expandViewportToFitPlace(map, place) {
@@ -43,6 +43,7 @@ class FormMap {
 			} else {
 				this.HtmlAutocomplete.blur();
 				this.expandViewportToFitPlace(this.map, place);
+				this.setLocation();
 			}
 		});
 	}
@@ -54,21 +55,24 @@ class FormMap {
 			disableDefaultUI: true
 		});
 		
-		this.map.addListener('center_changed', () => {
-			this.HtmlSetLocation.addClass("active");
-			this.HtmlAutocomplete.addClass("inactive");
-		});
+		this.HtmlSetLocation.addClass("active");
+		this.HtmlAutocomplete.addClass("inactive");
+		// this.map.addListener('center_changed', () => {
+		// 	// this.HtmlSetLocation.addClass("active");
+		// 	// this.HtmlAutocomplete.addClass("inactive");
+			
+		// });
 		this.initAutocomplete();
 		this.setLocation();
 	}
 
 	setLocation() {
-		this.HtmlSetLocation.removeClass("active");
-		this.HtmlAutocomplete.removeClass("inactive");
+		// this.HtmlSetLocation.removeClass("active");
+		// this.HtmlAutocomplete.removeClass("inactive");
 
-		this.HtmlSetLocation.addClass("inactive");
-		this.HtmlAutocomplete.addClass("active");
-
+		// this.HtmlSetLocation.addClass("inactive");
+		// this.HtmlAutocomplete.addClass("active");
+		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
 		this.addMarker();
@@ -89,6 +93,16 @@ class FormMap {
 		return pos;
 	}
 
+	setCurrentPosition() {
+		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
+    	this.map.setCenter(latLng);
+		this.map.setZoom(this.zoom);
+		this.removeAllMarker();
+		this.removeAllRanges();
+		this.addMarker();
+		this.addRange(500);
+	}
+
 	geolocate(enable) {
 		if (enable) {
 			if (navigator.geolocation) {
@@ -104,7 +118,7 @@ class FormMap {
 					});
 					this.autocomplete.setBounds(circle.getBounds());
 					this.map.setCenter(geolocation);
-					this.map.setZoom(17);
+					this.map.setZoom(this.zoom);
 					this.removeAllMarker();
 					this.removeAllRanges();
 					this.addMarker();
@@ -127,6 +141,7 @@ class FormMap {
 			center: center,
 			radius: Math.sqrt(meters) * this.accuracy
 		});
+		// console.log(tempRange.radius);
 		tempRange.setMap(this.map);
 		googleRanges.push(tempRange);
 	}
@@ -171,6 +186,10 @@ let initialize = () => {
 	window.formMap.geolocate(true);
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
+
+	window.formMap.HtmlSetLocation.click(() => {
+		window.formMap.setCurrentPosition();
+	});
 };
 
 
