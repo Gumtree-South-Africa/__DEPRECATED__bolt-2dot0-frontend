@@ -10,8 +10,8 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-
 let _ = require('underscore');
+let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
 	constructor(req, res, adId) {
@@ -41,6 +41,8 @@ class ViewPageModel {
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
+			this.modelData.header.postAdHeader = true;
+  		this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
@@ -151,6 +153,7 @@ class ViewPageModel {
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
 				attr ['name'] = customAttributeObj.localizedName;
+				attr ['attrName'] = customAttributeObj.name;
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -183,13 +186,36 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = false;
+		modelData.vip.showSellerStuff = true;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
+	}
+
+	orderArr(inputArr, locale, categoryId) {
+		let inputLocaleObj = displayAttributesConfig[locale];
+		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		let newArr = [];
+
+		if (inputCategoryIdArr.length > 0) {
+			for (let i = 0; i < inputCategoryIdArr.length; i++) {
+				let arrIndex = _.findIndex(inputArr, {
+					attrName: inputCategoryIdArr[i]
+				})
+				if(arrIndex !== -1) {
+					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
+					newArr.push(inputArr[arrIndex]);
+				} else {
+					continue;
+				}
+			}
+			return newArr;
+		} else {
+			return inputArr;
+		}
 	}
 
 	getPageDataFunctions(modelData) {
@@ -290,6 +316,19 @@ class ViewPageModel {
 				// Map
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
+				// Breadcrumbs
+				data.breadcrumbs = { };
+				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+				data.breadcrumbs.locations.forEach((location, index) => {
+				  location.position = index + 1;
+				});
+				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+				data.breadcrumbs.categories.forEach((category, index) => {
+				  category.position = data.breadcrumbs.locations.length + index + 1;
+				  category.locationInText = data.breadcrumbs.leafLocation.text;
+				});
+
 				// Location
 				let locationElt = data._links.find( (elt) => {
 					return elt.rel === "location";
@@ -311,9 +350,11 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
+					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
 					return data;
 				});
 			});

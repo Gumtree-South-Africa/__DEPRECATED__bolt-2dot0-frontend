@@ -30,6 +30,7 @@ let getUsereData = function(scope) {
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
         'daysSinceRegistration': '',
+		'hideSessionLvTstGrp': scope.hideSessionLvTstGrp,
 		'sessionLvTstGrp': scope.sessionLvTstGrp,
 		'request2dot0Version': scope.request2dot0Version
 	};
@@ -104,7 +105,11 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
-		this.sessionLvTstGrp = res.locals.b2dot0PageVersion ? 'V2' : 'V1';
+
+		// Temp fix for BOLT-25001. As discussed with defect creator, we'll not send CD25 for homepage in MX.
+		// TODO remove this when we have a final solution for BOLT-25001
+		this.hideSessionLvTstGrp = this.locale === 'es_MX' && this.pagetype === pagetypeJson.pagetype.HOMEPAGEV2;
+		this.sessionLvTstGrp = res.locals.b2dot0PageVersion ? "V2" : "V1";
 		this.request2dot0Version = res.locals.b2dot0PageVersion;
 	}
 

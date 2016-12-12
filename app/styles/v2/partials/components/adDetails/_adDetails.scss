@@ -16,7 +16,8 @@
 				font-size: 14px;
 				float: right;
 				font-weight: 100;
-				margin-right: 10px;
+				position: relative;
+				margin-right: 6px;
 				.edit-favorite-icon {
 					position: relative;
 					top: 10px;
@@ -34,7 +35,7 @@
 				font-weight: bold;
 				padding-left: 15px;
 			}
-			.ad-last-updated {
+			.ad-last-posted {
 				margin-right: 10px;
 				display: inline;
 				float: right;
@@ -59,13 +60,21 @@
 					width: 50%;
 					display:inline-block;
 				}
+				.pri-props-name {
+					font-weight: bold;
+				}
+				.pri-props-value {
+					margin-left: 10px;
+				}
 			}
 		}
 	}
 	.sec-attrs {
+		width: 100%;
 		display: inline-block;
-		margin: 10px 20px;
+		padding: 10px;
 		.ad-description {
+			margin-bottom: 20px;
 			color: $vivaGray1;
 			font-size: 12px;
 			.ad-phone {
@@ -82,7 +91,6 @@
 		.ad-user-attrs {
 			margin-top: 10px;
 			padding-bottom: 15px;
-			border-bottom: 1px solid $vivaGray2;
 		}
 		.ad-location {
 			position:relative;

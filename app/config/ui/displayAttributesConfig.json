@@ -1,0 +1,129 @@
+{
+	"es_MX": {
+		"15": [
+			"GenderFashionType",
+			"ClothAccessoryType",
+			"ForSaleBy"
+		],
+		"32": [
+			"PropertySaleRentType",
+			"AreaInMeters",
+			"Parking",
+			"DwellingForSaleBy"
+		],
+		"35": [
+			"PropertyType",
+			"VacationLocationType",
+			"AreaInMeters",
+			"NumberBedrooms",
+			"VacationOccupancyType",
+			"Furnished",
+			"Smoking",
+			"Parking",
+			"PetsAllowed",
+			"ForRentBy"
+		],
+		"65": [
+			"AlmVehicleBrand",
+			"AlmVehicleModel",
+			"CarYear",
+			"CarMileageInKms",
+			"CarBodyType",
+			"AlmCarColor",
+			"CarTransmission",
+			"DriveTrain",
+			"AlmCarFuelType",
+			"AirConditioning",
+			"ForSaleBy"
+		],
+		"66": [
+			"AlmVehicleBrand",
+			"AlmVehicleModel",
+			"CarYear",
+			"CarMileageInKms",
+			"AlmCarColor",
+			"CarTransmission",
+			"AlmCarFuelType",
+			"AirConditioning",
+			"ForSaleBy"
+		],
+		"68": [
+			"AlmVehicleBrand",
+			"AlmVehicleModel",
+			"CarYear",
+			"CarMileageInKms",
+			"CarBodyType",
+			"AlmCarColor",
+			"CarTransmission",
+			"DriveTrain",
+			"AlmCarFuelType",
+			"AirConditioning",
+			"ForSaleBy"
+		],
+		"69": [
+			"AlmVehicleBrand",
+			"AlmVehicleModel",
+			"CarEngineDisplacement",
+			"CarYear",
+			"CarMileageInKms",
+			"AlmCarColor",
+			"AlmCarFuelType",
+			"ForSaleBy"
+		],
+		"90": [
+			"DwellingType",
+			"AreaInMeters",
+			"NumberBedrooms",
+			"NumberBathrooms",
+			"Furnished",
+			"Smoking",
+			"Parking",
+			"ForRentBy",
+			"PetsAllowed"
+		],
+		"91": [
+			"AlmVehicleBrand",
+			"AlmVehicleModel",
+			"CarYear",
+			"CarMileageInKms",
+			"AlmCarColor",
+			"CarTransmission",
+			"DriveTrain",
+			"AlmCarFuelType",
+			"AirConditioning",
+			"ForSaleBy"
+		],
+		"1097": [
+			"DwellingType",
+			"AreaInMeters",
+			"NumberBedrooms",
+			"NumberBathrooms",
+			"DwellingForSaleBy",
+			"Parking"
+		],
+		"1098": [
+			"PropertyType",
+			"AreaInMeters",
+			"NumberBedrooms",
+			"NumberBathrooms",
+			"Parking",
+			"ForRentBy"
+		],
+		"1099": [
+			"NumberBedrooms",
+			"Parking",
+			"ForRentBy"
+		],
+		"1112": [
+			"PropertySaleRentType",
+			"AreaInMeters",
+			"Parking",
+			"DwellingForSaleBy"
+		],
+		"1113": [
+			"AreaInMeters",
+			"Parking",
+			"DwellingForSaleBy"
+		]
+	}
+}
