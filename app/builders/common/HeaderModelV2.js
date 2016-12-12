@@ -110,16 +110,18 @@ class HeaderModel {
 				if ((typeof this.searchLocIdCookie !== 'undefined') && !_.isEmpty(this.searchLocIdCookie)) {
 					data.cookieLocationId = this.searchLocIdCookie;
 
-					if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
-						data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
-					} else {
-						data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
-					}
+					if (typeof this.locationIdNameMap !== 'undefined') {
+						if (typeof this.locationIdNameMap[data.cookieLocationId] === 'object') {
+							data.cookieLocationName = this.i18n.__('searchbar.locationDisplayname.prefix', this.locationIdNameMap[data.cookieLocationId].value);
+						} else {
+							data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
+						}
 
-					let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
-					promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
-						data.categoryList = categoryList;
-					}));
+						let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
+						promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
+							data.categoryList = categoryList;
+						}));
+					}
 				}
 
 				// If authCookie present, make a call to user BAPI to retrieve user info and set in model

@@ -8,9 +8,11 @@
         <!--[if (IE 8)&!(IEMobile)]>
         <span class="icon-caret-down"></span>
         <![endif]-->
-        
-        {{#unlessMobile this.device}} 
-            <script type="text/plain">{{{json this.locationdropdown}}}</script>
+
+        {{#unlessMobile this.device}}
+            {{#if this.locationdropdown}}
+                <script type="text/plain">{{{json this.locationdropdown}}}</script>
+            {{/if}}
         {{/unlessMobile}}
     </div>
 {{/if}}
