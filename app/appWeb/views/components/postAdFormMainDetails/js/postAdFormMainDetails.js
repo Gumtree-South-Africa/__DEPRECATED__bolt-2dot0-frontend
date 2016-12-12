@@ -421,6 +421,11 @@ class PostAdFormMainDetailsVM {
 		} else if (error.hasOwnProperty("bapiValidationFields")) {
 			// bapi validation errors
 			error.bapiValidationFields.forEach((attrName) => {
+				if (attrName === 'Category') {
+					// Error for category should be handled by category dropdown selection
+					this._categoryDropdownSelection.isValid = false;
+					return;
+				}
 				let $input = $(`[name="${attrName}"]`);
 				let siblings = $input.siblings("input");
 				if (siblings.length === 1) {
