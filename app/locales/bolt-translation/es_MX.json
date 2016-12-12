@@ -1579,6 +1579,10 @@
 					"message": "El correo electrónico no es válido"
 				},
 				{
+					"field": "comments",
+					"message": "Tu comentario es muy largo, máximo 4096 caracteres"
+				},
+				{
 					"field": "flagAdType",
 					"message": "Falta el tipo de reporte"
 				},

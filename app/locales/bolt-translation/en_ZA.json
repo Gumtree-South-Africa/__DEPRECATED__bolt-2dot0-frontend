@@ -1573,6 +1573,10 @@
 					"message": "The email is not valid"
 				},
 				{
+					"field": "comments",
+					"message": "The comment is too long, maximun is 4096 characters"
+				},
+				{
 					"field": "flagAdType",
 					"message": "Missing report type"
 				},

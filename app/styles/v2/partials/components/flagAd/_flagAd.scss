@@ -154,6 +154,15 @@ $formMarginLeft: 6%;
   }
 
   .comments-input {
+    &.error{
+      border-color: red;
+      &+p.error {
+        display: block;
+        color: red;
+        margin-bottom: 0;
+        margin-left: 33px;
+      }
+    }
     height: 150px;
   }
 
