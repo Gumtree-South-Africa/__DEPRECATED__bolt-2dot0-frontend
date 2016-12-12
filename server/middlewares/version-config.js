@@ -101,6 +101,9 @@ module.exports = function(locale) {
 		// b2dot0PageVersion
 		res.locals.b2dot0PageVersion = res.locals.b2dot0Version;
 
+		// b2dot0Cookie
+		res.locals.b2dot0CookieVersion = req.cookies.b2dot0Version === '2.0';
+
 		// call next middleware
 		next();
 	};
