@@ -45,8 +45,10 @@ class HomePageModelV2 {
 			this.useGeo = true;
 		} else {
 			// Check if searchLocIdCookie is not the root location, then send in lat/long
-			if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
-				this.useGeo = true;
+			if (typeof this.locationdropdown !== 'undefined') {
+				if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+					this.useGeo = true;
+				}
 			}
 		}
 	}
