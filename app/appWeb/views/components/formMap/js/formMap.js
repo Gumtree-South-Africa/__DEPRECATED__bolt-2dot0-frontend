@@ -8,7 +8,6 @@ class FormMap {
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
-		
 		this.zoom = 17;
 		this.accuracy = 5;
 		this.map;
@@ -16,6 +15,10 @@ class FormMap {
 		this.autocomplete;
 		this.useGeolocation;
 		this.position = { lat: 19.3883554, lng: -99.1744351 };
+		this.icons = {
+			current: '/public/icons/map/location-current.svg',
+			fakeAd: '/public/icons/map/location-marker.svg'
+		};
 	}
 
 	expandViewportToFitPlace(map, place) {
@@ -75,7 +78,7 @@ class FormMap {
 		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
-		this.addMarker();
+		// this.addMarker();
 		this.addRange(500);
 	}
 
@@ -99,8 +102,9 @@ class FormMap {
 		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
-		this.addMarker();
+		// this.addMarker();
 		this.addRange(500);
+		this.HtmlAutocomplete.val();
 	}
 
 	geolocate(enable) {
@@ -121,7 +125,7 @@ class FormMap {
 					this.map.setZoom(this.zoom);
 					this.removeAllMarker();
 					this.removeAllRanges();
-					this.addMarker();
+					// this.addMarker();
 					this.addRange(500);
 				});
 			}
@@ -153,12 +157,21 @@ class FormMap {
 		googleRanges = new Array();
 	}
 
+	// addFakeLocation() {
+
+	// }
+
 	addMarker() {
 		let center = this.map.getCenter();
+		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
+		let icon = googleMarker.length === 0 ? this.icons[0] : this.icons[1]; 
+
 		let tempMarker = new google.maps.Marker({
 			position: center,
-			title: 'MyLocation'
+			title: label, 
+			icon: icon
 		});
+
 		tempMarker.setMap(this.map);
 		googleMarker.push(tempMarker);
 	}
