@@ -136,6 +136,11 @@
 		background-color: $vivaGray8 !important;
 		border: 1px solid $vivaGray8 !important;
 		color: black !important;
+			/*for firefox*/
+		-moz-appearance: none;
+			/*for chrome*/
+		-webkit-appearance:none;
+		appearance: none;
 	}
 
 	.price-content {
