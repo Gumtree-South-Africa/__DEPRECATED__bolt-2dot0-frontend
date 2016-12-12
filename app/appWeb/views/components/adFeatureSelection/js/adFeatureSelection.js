@@ -41,6 +41,7 @@ class AdFeatureSelection {
 			let newDomString = clientHbs.renderTemplate(`adFeatureSelection`, modelData);
 			// unwrapping the dom to remove the div already in the page as this.$form
 			this.$form.append($(newDomString).unwrap());
+			window.scrollTo(0, 0);
 			this._bindEvent();
 		}
 
