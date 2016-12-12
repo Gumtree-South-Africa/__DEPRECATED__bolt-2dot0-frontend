@@ -61,7 +61,7 @@ router.get('/:id?', (req, res, next) => {
 		adId = adId.substring(0, adId.lastIndexOf('?'));
 	}
 
-	// If not 2.0 context, then redirect to 1.0 VIP
+	// AB: If not 2.0 context, then redirect to 1.0 VIP
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		let redirectUrl = '';
 		if (req.app.locals.isSeoUrl === true) {
