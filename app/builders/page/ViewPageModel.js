@@ -2,6 +2,7 @@
 let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
@@ -218,6 +219,27 @@ class ViewPageModel {
 		}
 	}
 
+	getConfigurationCard(data) {
+		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
+		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
+		data.similars.moreDataAvailable = false;
+		data.sellerOtherAds.moreDataAvailable = false;
+
+		if(data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
+			data.similars.moreDataAvailable = true;
+			data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
+		}
+
+		if(data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
+			data.sellerOtherAds.moreDataAvailable = true;
+		}
+
+		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
+		data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
+
+		return data;
+	}
+
 	getPageDataFunctions(modelData) {
 		let advertModel = new AdvertModel(modelData.bapiHeaders);
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
@@ -351,6 +373,9 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
+				//Add  card configuration
+				this.getConfigurationCard(data);
 
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));

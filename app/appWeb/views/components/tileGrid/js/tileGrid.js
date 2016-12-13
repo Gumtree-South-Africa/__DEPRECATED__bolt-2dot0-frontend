@@ -230,7 +230,7 @@ class TileGrid {
 	 * @private
 	 */
 	_filterFunction(index, itemElem) {
-		let state = this.tileCards[$(itemElem).closest('.card').data('card-name')];
+		let state = this.tileCards[$(itemElem).closest('.card').data('card-name')] || {};
 		if (state.cardName == "galleryCard") {
 			return true;
 		}
