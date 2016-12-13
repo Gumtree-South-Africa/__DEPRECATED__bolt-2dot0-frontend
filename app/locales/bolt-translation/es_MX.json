@@ -1360,7 +1360,8 @@
 		"mainDetails": {
 			"title": "título",
 			"description": "descripción",
-			"amount": "cantidad"
+			"amount": "cantidad",
+			"phone": "teléfono"
 		}
 	},
 	"footer": {
@@ -1459,6 +1460,7 @@
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",
+				"phone": "Teléfono",
 				"location": "Ciudad, zona o código postal"
 			},
 			"titleRestrictions": {

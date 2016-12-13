@@ -315,6 +315,7 @@ class PostAdFormMainDetailsVM {
 		let payload = {
 			title: serialized.Title,
 			description: description,
+			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
 				"latitude": lat,
