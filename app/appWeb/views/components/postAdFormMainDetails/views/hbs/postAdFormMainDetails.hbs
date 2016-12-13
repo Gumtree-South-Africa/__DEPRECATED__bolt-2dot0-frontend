@@ -51,6 +51,25 @@
 				</div>
 			</div>
 		</div>
+		<div class="form-ad-phone form-field">
+			<div class="label-wrapper">
+				<label for="phone">{{i18n "editAd.mainDetails.labels.phone"}}</label>
+			</div>
+			<div class="input-wrapper">
+				<input title="{{i18n "postAd.mainDetails.phone"}}" data-schema="data.phone" name="Phone" type="number"
+					{{#if this.adResult.phone}}
+					   value="{{this.adResult.phone}}"
+					{{else}}
+						{{#if this.defaultPhoneNumber}}
+					   value="{{this.defaultPhoneNumber}}"
+						{{else}}
+					   value=""
+						{{/if}}
+					{{/if}}
+					   value="{{this.adResult.title}}"
+					   min="0" pattern="[0-9]*" inputmode="numeric">
+			</div>
+		</div>
 		<div class="form-ad-description form-field">
 			<div class="label-wrapper">
 				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
