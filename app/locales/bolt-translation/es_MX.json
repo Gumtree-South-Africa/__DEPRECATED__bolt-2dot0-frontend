@@ -1567,7 +1567,8 @@
 		"seller": {
 			"emailVerified": "Email Verificado",
 			"adsPosted": "ANUNCIOS PUBLICADOS",
-			"adsActive": "ACTIVO"
+			"adsActive": "ACTIVO",
+			"defaultUserName": "Usuario Vivanuncios"
 		},
 		"disclaimer": {
 			"disclosure": "Consejos de seguridad - Tu seguridad es importante. Aprende a reducir los riesgos en la compra-venta.",

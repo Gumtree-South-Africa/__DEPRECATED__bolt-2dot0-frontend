@@ -1564,7 +1564,8 @@
 		"seller": {
 			"emailVerified": "Email Verified",
 			"adsPosted": "ADS POSTED",
-			"adsActive": "ACTIVE"
+			"adsActive": "ACTIVE",
+			"defaultUserName": "Gumtree User"
 		},
 		"reply": {
 			"back": "BACK",
