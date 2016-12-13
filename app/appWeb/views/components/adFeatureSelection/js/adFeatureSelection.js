@@ -27,7 +27,7 @@ class AdFeatureSelection {
 		this.$form = domElement.find(".ad-features");
 	}
 	/**
-	 * renders the custom attributes using handlebars client side templating
+	 * renders the feature attributes using handlebars client side templating
 	 * @param modelData js object to use for templating
 	 * @private
 	 */
@@ -191,4 +191,4 @@ class AdFeatureSelection {
 	}
 }
 
-module.exports = AdFeatureSelection;
+module.exports = new AdFeatureSelection();

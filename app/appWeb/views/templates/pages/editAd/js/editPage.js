@@ -11,7 +11,6 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
 class EditAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-		this.adFeatureSelection = new AdFeatureSelection();
 		this.adInsertionFee = new AdInsertionFee();
 		this._imageUrls = [];
 	}
@@ -25,6 +24,7 @@ class EditAd {
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
 		this.photoContainer = photoContainer.viewModel;
 		this.spinnerModal = spinnerModal;
+		this.adFeatureSelection = AdFeatureSelection;
 
 		// Callback for old singleton components
 		spinnerModal.initialize();

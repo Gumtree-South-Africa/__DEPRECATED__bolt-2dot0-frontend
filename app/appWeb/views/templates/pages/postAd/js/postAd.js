@@ -22,7 +22,6 @@ const INVALID_COOKIE_VALUE = 'invalid';
 class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-		this.adFeatureSelection = new AdFeatureSelection();
 		this.adInsertionFee = new AdInsertionFee();
 		this._mobileImageUrls = [];
 		this._desktopImageUrls = [];
@@ -39,6 +38,7 @@ class PostAd {
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
 		this.photoContainer = photoContainer.viewModel;
 		this.spinnerModal = spinnerModal;
+		this.adFeatureSelection = AdFeatureSelection;
 
 		// Callback for old singleton components
 		spinnerModal.initialize();
