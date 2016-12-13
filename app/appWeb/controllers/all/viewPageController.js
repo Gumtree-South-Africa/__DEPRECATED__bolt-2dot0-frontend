@@ -36,6 +36,7 @@ let extendModelData = (req, modelData) => {
 	}
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'Zoom.min.js');
 };
 
 router.get('/:id?', (req, res, next) => {
@@ -61,7 +62,7 @@ router.get('/:id?', (req, res, next) => {
 		adId = adId.substring(0, adId.lastIndexOf('?'));
 	}
 
-	// If not 2.0 context, then redirect to 1.0 VIP
+	// AB: If not 2.0 context, then redirect to 1.0 VIP
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		let redirectUrl = '';
 		if (req.app.locals.isSeoUrl === true) {

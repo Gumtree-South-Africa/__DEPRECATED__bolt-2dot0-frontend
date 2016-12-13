@@ -12,6 +12,7 @@ let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let ImageRecognitionModel = require(cwd + '/app/builders/common/ImageRecognitionModel');
+let UserModel = require(cwd + '/app/builders/common/UserModel');
 let logger = require(`${cwd}/server/utils/logger`);
 let Q = require('q');
 let _ = require('underscore');
@@ -114,6 +115,7 @@ class PostAdPageModel {
 		} else {
 			modelData.shouldDefaultPrice = true;
 		}
+		modelData.defaultPhoneNumber = data.user && data.user.phone;
 		return modelData;
 	}
 
@@ -161,6 +163,17 @@ class PostAdPageModel {
 			} else {
 				return {"suggestion": {"categoryId": ""}};
 			}
+		};
+
+		this.dataPromiseFunctionMap.user = () => {
+			if (!modelData.bapiHeaders.authTokenValue) {
+				// Quick return for not-logged in user
+				return Q.resolve(null);
+			}
+			let userModel = new UserModel(modelData.bapiHeaders);
+			return userModel.getUserFromCookie().fail(() => {
+				return Q.resolve(null);
+			});
 		};
 
 		this.dataPromiseFunctionMap.adDraft = () => {

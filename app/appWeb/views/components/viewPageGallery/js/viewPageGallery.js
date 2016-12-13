@@ -42,28 +42,46 @@ class viewPageGallery {
 			infinite: true
 		});
 
-
+		//Initialize
 		$('.slick-arrow').addClass('icon-back');
 		$('.slider-nav .slick-current').addClass('selected');
+
+		//this is a fix for BOLT-25136: PM wants to always have ellipsis after 60 characters.
+		//Using CSS and max-width does not always give 60 since we have word-wrap etc...
+		if($('.item-details .ad-title').html().length > 60) {
+			$('.post-ad-header .title-text').html(this._substring($('.item-details .ad-title').html()));
+		}
+
 		$('.container .slider-nav .slick-current').focus();
 
 		$('.modal-closearea').on('click', () => {
 			this._escapeFn();
 		});
 
-		$('.container').on('click', '.slider-for, .icon-Zoom', () => {
-			let isMobile = $('.container .slider-nav').css('display') === 'none';
+		$('.container').on('click', '.slider-for, .slider-mobile-for, .icon-Zoom', () => {
+			let isMobile = ($('.slider-mobile-for').length > 0);
 			if(!isMobile) {
-					let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
-					$('#vipOverlay .slider-nav').slick('setPosition');
-					$('#vipOverlay .slider-for').slick('setPosition');
-					$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
-					$('#vipOverlay').removeClass('hidden');
-					$('#vipOverlay .slider-nav .slick-current').focus();
-					$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
-					$('body').addClass('noScroll');
+				let slickIdx = $('.container .slider-for .slick-current').attr('data-slick-index');
+				$('#vipOverlay .slider-nav').slick('setPosition');
+				$('#vipOverlay .slider-for').slick('setPosition');
+				$('#vipOverlay .slider-nav').slick('slickGoTo', parseInt(slickIdx));
+				$('#vipOverlay').removeClass('hidden');
+				$('#vipOverlay .slider-nav .slick-current').focus();
+				$('#vipOverlay').find('.slider-nav').slick('slickCurrentSlide');
+				$('body').addClass('noScroll');
+			} else {
+				//isMobile
+				window.scrollTo(0,0);
+				 $('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').addClass('hidden');
+				 $('.zoomT, .inZoomMode').removeClass('hidden');
+				 $('body').addClass('noScroll');
+				 $('.post-ad-header .title-text').html('ZOOM VIEW');
+				 $('.zoomHolder').addClass('zoomview');
+				 $('.slick-dots').addClass('bottomPos'); 
+				 this.updateZoomImageHeight();
 			}
 		});
+
 
 		//Fix for when user don't have lots of images
 		$('.slick-slide').on('click', (evt) =>{
@@ -79,11 +97,12 @@ class viewPageGallery {
 			return false;
 		});
 
-		$('.ZoomI').on('click doubleTap', (event) => {
-			event.stopPropagation();
-			event.preventDefault();
-			$('.ZoomI').addClass('hidden');
-			$('body').removeClass('hidden');
+		$('.header-wrapper').on('click', '.post-ad-header .header-back', () => {
+			this.backFn();
+		});
+
+		$('.header-wrapper').on('click', '.inZoomMode', () => {
+			this.backFromZoomFn();
 		});
 
 		$(document).on('keyup', (evt) => {
@@ -120,10 +139,30 @@ class viewPageGallery {
 	}
 
 	updateZoomImageHeight() {
-		let fullImgHeight = $(window).height() - 90; //90 is the height of the white area with the text on the bottom
-		$('body').addClass('noScroll');
-		$('.ZoomI').removeClass('hidden').addClass('fullsize').css('height', fullImgHeight);
-		$('.ZoomI img').css('height', fullImgHeight*2);
+		let fullImgHeight = $(window).height() - ($('.header-wrapper').height() + $('.zoomT').height());
+		$('.slider-mobile-for .slick-slide').css("height", fullImgHeight);
+		$('.carousel-images.extra').css("height", fullImgHeight - 50);
+	}
+
+	backFromZoomFn() {
+		if($('.zoomHolder').is('.zoomview')) {
+			$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').removeClass('hidden');
+			$('.zoomT, .inZoomMode').addClass('hidden');
+			$('body').removeClass('noScroll');
+			$('.zoomHolder').removeClass('zoomview');
+			$('.post-ad-header .title-text').html(this._substring($('.item-details .ad-title').html()));
+			return false;
+		}
+	}
+
+	backFn() {
+		// not in Zoom view
+		if (document.referrer.indexOf(window.location.host) !== -1) {
+			window.location.href = $('.header-back a').attr('href');
+		} else {
+			history.go(-1);
+			return false;
+		}
 	}
 
 	_noArrows(nextSlide) {
@@ -142,6 +181,13 @@ class viewPageGallery {
 			$('.container .slider-nav').slick('slickGoTo', slickIdx);
 			$('.container .slider-nav .slick-current').focus();
 		}
+	}
+
+	_substring(title) {
+		let isMobile = ($('.slider-mobile-for').length > 0);
+		let indxChar = (isMobile) ? title.length : 60;
+		let subtitle = title.substring(0,indxChar) + " ...";
+		return subtitle;
 	}
 
 }

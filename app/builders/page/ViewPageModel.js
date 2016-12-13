@@ -186,7 +186,7 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = true;
+		modelData.vip.showSellerStuff = false;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
@@ -261,6 +261,7 @@ class ViewPageModel {
 				};
 
 				// Merge Bapi Ad data
+				console.log('******************** -->>>> ', advertData.adSeoUrls);
 				_.extend(data, advertData.ad);
 
 				// Manipulate Ad Data
@@ -307,7 +308,7 @@ class ViewPageModel {
 						}
 					});
 				}
-
+				
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
 					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
@@ -317,7 +318,7 @@ class ViewPageModel {
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Breadcrumbs
-				data.breadcrumbs = { };
+				data.breadcrumbs = {};
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
 				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
