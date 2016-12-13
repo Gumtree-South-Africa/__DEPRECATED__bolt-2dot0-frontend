@@ -59,31 +59,38 @@ class ViewPageModel {
 		];
 	}
 
+	/**
+	 * Map Data
+	 * @param signedMapUrl
+	 * @returns {{defaultRadius: number, passedRadius: number}}
+	 */
 	getMapFromSignedUrl(signedMapUrl) {
 		let map = {
 			defaultRadius: 2000, //2.0km default kilometers
 			passedRadius: 2000
 		};
 
-		let findStr = "center=";
-		let endOf = -1;
-		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
-		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
+		if (typeof signedMapUrl !== 'undefined') {
+			let findStr = "center=";
+			let endOf = -1;
+			endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
+			let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
 
-		map.locationLat = center[0];
-		map.locationLong = center[1];
+			map.locationLat = center[0];
+			map.locationLong = center[1];
 
-		if(map.passedRadius === 0){
-			map.showPin = true;
-			map.showCircle = false;
-		} else if(map.passedRadius === null || map.passedRadius === undefined) {
-			map.showCircle = true;
-			map.finalRadius = map.defaultRadius;
-			map.showPin = false;
-		} else {
-			map.finalRadius = map.passedRadius;
-			map.showCircle = true;
-			map.showPin = false;
+			if (map.passedRadius === 0) {
+				map.showPin = true;
+				map.showCircle = false;
+			} else if (map.passedRadius === null || map.passedRadius === undefined) {
+				map.showCircle = true;
+				map.finalRadius = map.defaultRadius;
+				map.showPin = false;
+			} else {
+				map.finalRadius = map.passedRadius;
+				map.showCircle = true;
+				map.showPin = false;
+			}
 		}
 
 		return map;
@@ -153,8 +160,11 @@ class ViewPageModel {
 			});
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
+				// name
 				attr ['name'] = customAttributeObj.localizedName;
+				// attrName
 				attr ['attrName'] = customAttributeObj.name;
+				// attrValue
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -177,6 +187,92 @@ class ViewPageModel {
 		});
 	}
 
+	/**
+	 * Order Ad Attributes
+	 * @param inputArr
+	 * @param locale
+	 * @param categoryId
+	 * @returns {*}
+	 */
+	orderAndLinkAttributes(inputArr, locale, categoryId, seoUrls) {
+		let inputLocaleObj = displayAttributesConfig[locale];
+		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		let newArr = [];
+
+		if (inputCategoryIdArr.length > 0) {
+			for (let i = 0; i < inputCategoryIdArr.length; i++) {
+				let arrIndex = _.findIndex(inputArr, {
+					attrName: inputCategoryIdArr[i]
+				});
+				if(arrIndex !== -1) {
+					let attr = JSON.parse(JSON.stringify(inputArr[arrIndex]));
+					// capsName
+					attr.capsName = attr.name.toUpperCase();
+					// seoUrl link
+					if (typeof seoUrls !== 'undefined') {
+						_.each(seoUrls.makeModel, (makeModel) => {
+							if (makeModel.text === attr.value) {
+								if (attr.attrName === 'AlmVehicleBrand') {
+									let makeModelElt = makeModel._links.find( (elt) => {
+										return elt.rel === "search";
+									});
+									attr.seoUrl = makeModelElt.href;
+								}
+								if (attr.attrName === 'AlmVehicleModel') {
+									let makeModelElt = makeModel._links.find( (elt) => {
+										return elt.rel === "search";
+									});
+									attr.seoUrl = makeModelElt.href;
+								}
+							}
+						});
+					}
+					newArr.push(attr);
+				} else {
+					continue;
+				}
+			}
+			return newArr;
+		} else {
+			return inputArr;
+		}
+	}
+
+	/**
+	 * Similar / Seller Other Ads Data
+	 * @param data
+	 * @returns {*}
+	 */
+	getOtherAdsCard(data) {
+		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
+		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
+		data.similars.moreDataAvailable = false;
+		data.sellerOtherAds.moreDataAvailable = false;
+
+		if (typeof data.similars.ads !== 'undefined') {
+			if (data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
+				data.similars.moreDataAvailable = true;
+				data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
+			}
+			data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
+			if (!this.req.app.locals.prodEpsMode) {
+				data.similars.ads = JSON.parse(JSON.stringify(data.similars.ads).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
+		}
+
+		if (typeof data.sellerOtherAds.ads !== 'undefined') {
+			if (data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
+				data.sellerOtherAds.moreDataAvailable = true;
+			}
+			data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
+			if (!this.req.app.locals.prodEpsMode) {
+				data.sellerOtherAds.ads = JSON.parse(JSON.stringify(data.sellerOtherAds.ads).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
+		}
+
+		return data;
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
@@ -194,50 +290,6 @@ class ViewPageModel {
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		return modelData;
-	}
-
-	orderArr(inputArr, locale, categoryId) {
-		let inputLocaleObj = displayAttributesConfig[locale];
-		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
-		let newArr = [];
-
-		if (inputCategoryIdArr.length > 0) {
-			for (let i = 0; i < inputCategoryIdArr.length; i++) {
-				let arrIndex = _.findIndex(inputArr, {
-					attrName: inputCategoryIdArr[i]
-				})
-				if(arrIndex !== -1) {
-					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
-					newArr.push(inputArr[arrIndex]);
-				} else {
-					continue;
-				}
-			}
-			return newArr;
-		} else {
-			return inputArr;
-		}
-	}
-
-	getConfigurationCard(data) {
-		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
-		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
-		data.similars.moreDataAvailable = false;
-		data.sellerOtherAds.moreDataAvailable = false;
-
-		if(data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
-			data.similars.moreDataAvailable = true;
-			data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
-		}
-
-		if(data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
-			data.sellerOtherAds.moreDataAvailable = true;
-		}
-
-		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
-		data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
-
-		return data;
 	}
 
 	getPageDataFunctions(modelData) {
@@ -283,12 +335,11 @@ class ViewPageModel {
 				};
 
 				// Merge Bapi Ad data
-				console.log('******************** -->>>> ', advertData.adSeoUrls);
 				_.extend(data, advertData.ad);
 
 				// Manipulate Ad Data
 
-				// // TODO: Get seoVipUrl
+				// seoVipUrl
 				let seoVipElt = data._links.find((elt) => {
 					return elt.rel === "seoVipUrl";
 				});
@@ -330,7 +381,7 @@ class ViewPageModel {
 						}
 					});
 				}
-				
+
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
 					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
@@ -374,13 +425,13 @@ class ViewPageModel {
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 
-				//Add  card configuration
-				this.getConfigurationCard(data);
+				// Similar-Ads/Seller-Other-Ads configuration
+				this.getOtherAdsCard(data);
 
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
+					data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
 					return data;
 				});
 			});

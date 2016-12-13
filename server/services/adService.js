@@ -8,7 +8,7 @@ class AdService {
 
 	viewAd(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
-		queryEndpoint = queryEndpoint + '?_expand=category,location,seller-stats,tracking';
+		queryEndpoint = queryEndpoint + '?_expand=category,location,tracking';
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
 			path: queryEndpoint,
