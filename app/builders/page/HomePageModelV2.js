@@ -139,6 +139,7 @@ class HomePageModelV2 {
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
+
 					return result;
 				}).fail((err) => {
 					console.warn(`error getting card data ${err}`);
