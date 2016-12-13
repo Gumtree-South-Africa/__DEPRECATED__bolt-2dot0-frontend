@@ -12,6 +12,8 @@ module.exports = {
 	"outputEntry": "app/appWeb/views/templates/pages/viewPage/js/viewPage",
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
+			"TileGrid": "app/appWeb/views/components/tileGrid/js/tileGrid.js",
+			"adTabs": "app/appWeb/views/components/adTabs/js/adTabs.js",
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",

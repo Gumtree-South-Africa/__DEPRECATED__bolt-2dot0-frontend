@@ -1,0 +1,100 @@
+.content-ad-tabs {
+  padding-bottom: 40px;
+  background-color: #F7F7F7;
+  background-color: $common-background-color;
+  float: left;
+  width: 100%;
+  .empty-message {
+    display: table;
+    margin: 0 auto;
+    color: $empty-message;
+  }
+  .adTabs {
+    display: table;
+    margin: 0 auto;
+    ul {
+      max-width: 696px;
+      list-style: none;
+      padding: 20px 30px 12px 30px;
+      border-bottom: 1px solid $border-color-line;
+      li {
+        display: inline;
+        cursor: pointer;
+        padding: 12px;
+        color: $text-menu-ads;
+        &.active {
+          border-bottom: 3px solid $border-color-line;
+        }
+      }
+    }
+  }
+  & > .content-ads {
+      display: block;
+      & ~ .content-ads {
+        display: none;
+      }
+      &.ad-display {
+        display: block;
+      }
+      &.ad-hide {
+        display: none;
+      }
+
+  }
+  .content-ads {
+    max-width: 920px;
+    margin: 0 auto;
+    overflow: hidden;
+    height: auto;
+    margin-top: 20px;
+    .tile-container {
+      width: 100% !important;
+      .tile-item {
+        width: 45%;
+        height: 180px;
+
+        position: relative !important;
+        float: left;
+        &:nth-child(-n+6) {
+           display: inline-block !important;
+        }
+        &:nth-child(even) {
+          padding-left: 25px;
+        }
+      }
+    }
+    .card-view-more {
+      display: table;
+      margin: 0 auto;
+      margin-top: 10px;
+      a {
+        color: $link-view-more;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+@include from-breakpoint($medium-break){
+  .content-ad-tabs {
+    .content-ads {
+      height: auto;
+      .tile-grid-width-container {
+        overflow: hidden;
+        height: 190px;
+        .tile-container {
+          display: table;
+          .tile-item {
+            width: 135px;
+            height: 180px;
+            padding-left: 15px;
+            display: inline-block !important;
+            &:nth-child(even) {
+              padding-left: 15px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

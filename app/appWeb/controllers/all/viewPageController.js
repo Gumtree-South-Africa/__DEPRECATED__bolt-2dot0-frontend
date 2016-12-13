@@ -39,6 +39,7 @@ let extendModelData = (req, modelData) => {
 	}
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
+	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'Zoom.min.js');
 };
 
 router.get('/:id?', (req, res, next) => {

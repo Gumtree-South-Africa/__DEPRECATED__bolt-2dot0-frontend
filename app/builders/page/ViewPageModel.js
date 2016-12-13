@@ -2,6 +2,7 @@
 let cwd = process.cwd();
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
@@ -186,7 +187,7 @@ class ViewPageModel {
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
-		modelData.vip.showSellerStuff = true;
+		modelData.vip.showSellerStuff = false;
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
@@ -216,6 +217,27 @@ class ViewPageModel {
 		} else {
 			return inputArr;
 		}
+	}
+
+	getConfigurationCard(data) {
+		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
+		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
+		data.similars.moreDataAvailable = false;
+		data.sellerOtherAds.moreDataAvailable = false;
+
+		if(data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
+			data.similars.moreDataAvailable = true;
+			data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
+		}
+
+		if(data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
+			data.sellerOtherAds.moreDataAvailable = true;
+		}
+
+		data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
+		data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
+
+		return data;
 	}
 
 	getPageDataFunctions(modelData) {
@@ -261,6 +283,7 @@ class ViewPageModel {
 				};
 
 				// Merge Bapi Ad data
+				console.log('******************** -->>>> ', advertData.adSeoUrls);
 				_.extend(data, advertData.ad);
 
 				// Manipulate Ad Data
@@ -307,7 +330,7 @@ class ViewPageModel {
 						}
 					});
 				}
-
+				
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
 					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
@@ -317,7 +340,7 @@ class ViewPageModel {
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Breadcrumbs
-				data.breadcrumbs = { };
+				data.breadcrumbs = {};
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
 				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
@@ -350,6 +373,9 @@ class ViewPageModel {
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
+				//Add  card configuration
+				this.getConfigurationCard(data);
 
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
