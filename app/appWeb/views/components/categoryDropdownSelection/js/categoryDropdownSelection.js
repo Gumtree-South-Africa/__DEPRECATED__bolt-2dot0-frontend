@@ -106,7 +106,8 @@ class CategoryDropdownSelection {
 	}
 
 	getCategorySelectionName() {
-		return this.$categorySelection.find("select").last().find("option[selected='selected']").html();
+		let val = this.$categorySelection.find("select").last().val();
+		return this.$categorySelection.find("select").last().find("option[value='" + val + "']").html();
 	}
 
 	get categoryId() {

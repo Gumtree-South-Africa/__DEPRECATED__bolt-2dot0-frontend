@@ -145,6 +145,8 @@ class AdFeatureSelection {
 					$(cloneForm.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
 				} else {
 					$(cloneForm.find("select[name='" + name + "']")).prop("disabled", false); // enable for submit
+					let val = $(this.$form.find("#promote-checkout-form")).find("select[name='" + name + "']").val();
+					$(cloneForm.find("select[name='" + name + "']")).val(val);
 				}
 			}
 			cloneForm.find("input[type='checkbox']").prop('name','');
