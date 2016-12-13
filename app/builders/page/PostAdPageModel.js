@@ -49,6 +49,9 @@ class PostAdPageModel {
 			backUrl = '';
 		}
 		modelData.backUrl = backUrl;
+		abstractPageModel.addToClientTranslation(modelData, [
+			"feature"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -78,6 +81,7 @@ class PostAdPageModel {
 	}
 
 	mapData(modelData, data) {
+		modelData.clientTranslations = data.clientTranslations;
 		modelData.deferredAd = data.deferredAd;
 		modelData.header = data.common.header || {};
 		modelData.header.canonical = modelData.header.canonical + "/post";
@@ -111,9 +115,7 @@ class PostAdPageModel {
 		} else {
 			modelData.shouldDefaultPrice = true;
 		}
-
 		modelData.defaultPhoneNumber = data.user && data.user.phone;
-
 		return modelData;
 	}
 
