@@ -32,11 +32,20 @@
 		@include from-breakpoint($medium-break) {
 			position: relative;
 			max-width: 960px;
-			height: 350px;
+			height: 395px;
 			margin: 0 auto;
 			.desktop-banner {
 				width:300px;
+				height: 300px;
 				margin-left: 65px;
+				float: left;
+				// TODO: Use a locale neutral image for common part and use MX one for only MX site
+				background-image: url('../../../../../images/es_MX/anuncio-calidad.jpg');
+
+				&::after {
+					content: '';
+					clear: both;
+				}
 			}
 			.promote-feature {
 				margin-left: 400px;
