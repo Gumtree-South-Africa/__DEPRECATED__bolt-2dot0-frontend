@@ -15,7 +15,7 @@ let locale = $("html").data("locale");
 let _walkAndReplace = (translation, values) => {
 	let tempTranslation = translation;
 	values.forEach((val) => {
-		tempTranslation = tempTranslation.replace("%s", val);
+		tempTranslation = tempTranslation.replace ? tempTranslation.replace("%s", val) : tempTranslation;
 	});
 
 	return tempTranslation;
