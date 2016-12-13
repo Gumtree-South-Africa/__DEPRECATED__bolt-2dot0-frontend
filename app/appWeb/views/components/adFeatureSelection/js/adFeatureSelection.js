@@ -59,12 +59,14 @@ class AdFeatureSelection {
 			}
 		});
 
+		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
+
 		if(insertionFee) {
 			let infInput = $(document.createElement('input')).attr("name", "insertionFee").addClass("hidden").val(adId + "|insertionFee");
 			this.$form.find(".insertionFee-wrapper").html(infInput);
 			this.insertionFee = insertionFee;
+			this._updateCheckoutPrice();
 		}
-		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
 	}
 
 	_bindEvent() {
@@ -79,10 +81,6 @@ class AdFeatureSelection {
 			} else {
 				window.BOLT.trackEvents({"event": featureName + "Deselected"});
 			}
-			this.$form.find(".mobile-cancel").toggleClass("hidden", true);
-			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
-			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
-			this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 		});
 		$(this.$form.find(".feature-description .label-of-checkbox")).on("click", (e) => {
 			let featureName = $(e.currentTarget).attr("name");
@@ -167,6 +165,10 @@ class AdFeatureSelection {
 			}
 		}
 		this.$form.find(".price-amount").text("$" + price);
+		this.$form.find(".mobile-cancel").toggleClass("hidden", true);
+		this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
+		this.$form.find(".mobile-checkout").toggleClass("hidden", false);
+		this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 	}
 
 	_getFeatureOptionPrice(feature) {
