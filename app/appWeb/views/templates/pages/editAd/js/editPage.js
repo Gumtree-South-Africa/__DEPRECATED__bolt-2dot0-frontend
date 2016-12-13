@@ -157,6 +157,7 @@ class EditAd {
 					this._redirectWithoutUpselling(response);
 				} else {
 					spinnerModal.completeSpinner(() => {
+						$('.viewport').toggleClass('promotion-covered', true);
 						this._$editAdContent.toggleClass("hidden", true);
 						this._$featurePromote.toggleClass("hidden", false);
 						if (response.insertionFee) {

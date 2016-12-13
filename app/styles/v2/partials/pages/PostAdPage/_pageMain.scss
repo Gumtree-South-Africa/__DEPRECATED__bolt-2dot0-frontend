@@ -166,6 +166,15 @@ $labelMargin: 8%;
 			margin-bottom: 49px;
 		}
 	}
+
+	.viewport.promotion-covered .footer-wrapper {
+		// To ensure nothing in page is covered by no promotion button overlay
+		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
+		// Actually the overlay's height is 53px, but post page will load one image which will adds to
+		// the height of body after footer, so that image's height should be calculated.
+		margin-bottom: 29px;
+	}
+
 	.main-detail-post {
 		display:none;
 		background-color: $mainDetailsBackgroundColor;

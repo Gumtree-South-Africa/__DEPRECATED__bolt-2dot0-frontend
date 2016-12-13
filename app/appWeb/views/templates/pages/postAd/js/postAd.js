@@ -270,6 +270,7 @@ class PostAd {
 								this._redirectWithoutUpselling(response);
 							} else {
 								spinnerModal.completeSpinner(() => {
+									$('.viewport').toggleClass('promotion-covered', true);
 									this._$postAdContent.toggleClass("hidden", true);
 									this._$featurePromote.toggleClass("hidden", false);
 									if (response.ad.insertionFee) {

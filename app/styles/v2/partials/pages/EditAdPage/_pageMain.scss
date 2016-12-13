@@ -235,6 +235,12 @@ body {
 		}
 	}
 
+	.viewport.promotion-covered .footer-wrapper {
+		// To ensure nothing in page is covered by post button overlay
+		// Magic number 53 is the height of no promotion button layer
+		margin-bottom: 53px;
+	}
+
 	.main-detail-post {
 		background-color: $mainDetailsBackgroundColor;
 		width: 100%;
