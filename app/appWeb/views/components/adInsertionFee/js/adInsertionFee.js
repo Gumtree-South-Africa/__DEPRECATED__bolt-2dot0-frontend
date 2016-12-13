@@ -10,7 +10,7 @@ class AdInsertionFee {
 		this._$promoteWithInf = domElement.find("#promote-with-inf");
 	}
 
-	updateInsertionFee(adInfo, innsetionFee, categorySelectedName, cancelLink) {
+	updateInsertionFee(adInfo, innsetionFee, categorySelectedName) {
 		$(this._$promoteWithInf.find(".ad-first-pic")).css("background-image", "url('" + adInfo.imageUrls[0] + "')");
 		$(this._$promoteWithInf.find(".inf-amount")).html(innsetionFee);
 
@@ -33,7 +33,7 @@ class AdInsertionFee {
 			$(this._$promoteWithInf.find(".ad-price")).toggleClass("hidden", true);
 		}
 		$(this._$promoteWithInf.find(".inf-category-name")).html(categorySelectedName);
-		$(this._$promoteWithInf.find(".inf-cancel-button")).prop("href", cancelLink);
+		//$(this._$promoteWithInf.find(".inf-cancel-button")).prop("href", cancelLink);
 		$(this._$promoteWithInf.find(".inf-cancel-button")).click(() => {
 			window.BOLT.trackEvents({"event": this.pageType + "UpsellBack"});
 		});

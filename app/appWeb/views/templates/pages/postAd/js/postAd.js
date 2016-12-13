@@ -237,6 +237,11 @@ class PostAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (response) => {
+				if (response.ad.insertionFee) {
+					window.BOLT.trackEvents({"event": "PostAdPaidCreated"});
+				} else {
+					window.BOLT.trackEvents({"event": "PostAdFreeSuccess"});
+				}
 				this._onSubmitSuccess(response, postAdPayload);
 			},
 			error: (e) => {
@@ -268,7 +273,7 @@ class PostAd {
 									this._$postAdContent.toggleClass("hidden", true);
 									this._$featurePromote.toggleClass("hidden", false);
 									if (response.ad.insertionFee) {
-										this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.ad.redirectLinks.vip);
+										this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName());
 									} else {
 										this._$promoteWithoutInf.toggleClass("hidden", false);
 									}

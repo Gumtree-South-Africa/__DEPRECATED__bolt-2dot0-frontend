@@ -157,7 +157,7 @@ class EditAd {
 						this._$editAdContent.toggleClass("hidden", true);
 						this._$featurePromote.toggleClass("hidden", false);
 						if (response.insertionFee) {
-							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName(), response.redirectLink && response.redirectLink.vip);
+							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName());
 						} else {
 							this._$promoteWithoutInf.toggleClass("hidden", false);
 						}

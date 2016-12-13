@@ -58,8 +58,11 @@ class AdFeatureSelection {
 				$(this.$form.find("select[name='" + name + "']")).prop("disabled", true).toggleClass("select-disable", true);
 			}
 		});
-
-		$(this.$form.find(".cancel-link")).prop("href", cancelLink);
+		if (insertionFee) {
+			$(this.$form.find(".cancel-link")).prop("href", "/my/ads.html");
+		} else {
+			$(this.$form.find(".cancel-link")).prop("href", cancelLink);
+		}
 
 		if(insertionFee) {
 			let infInput = $(document.createElement('input')).attr("name", "insertionFee").addClass("hidden").val(adId + "|insertionFee");
