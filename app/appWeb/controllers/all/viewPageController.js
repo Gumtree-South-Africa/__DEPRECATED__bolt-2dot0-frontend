@@ -14,6 +14,10 @@ let extendModelData = (req, modelData) => {
 	modelData.header.metaDescription = modelData.seo.description;
 	modelData.header.metaRobots = modelData.seo.robots;
 	modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
+	modelData.header.pageUrl = modelData.header.viewPageUrl;
+	if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+		modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
+	}
 	// CSS
 	if (modelData.header.min) {
 		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
