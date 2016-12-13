@@ -150,7 +150,8 @@ class AdFeatureSelection {
 				}
 			}
 			cloneForm.find("input[type='checkbox']").prop('name','');
-			cloneForm.submit();
+			$(cloneForm.attr("id","")).toggleClass("hidden", true);
+			cloneForm.appendTo("body").submit();
 		});
 
 		$(this.$form.find(".desktop-cancel .cancel-link")).click(() =>{
