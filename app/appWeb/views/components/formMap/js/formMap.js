@@ -15,6 +15,7 @@ class FormMap {
 		this.autocomplete;
 		this.useGeolocation;
 		this.position = { lat: 19.3883554, lng: -99.1744351 };
+		this.meters = 1000;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
@@ -55,18 +56,20 @@ class FormMap {
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: this.position,
 			zoom: this.zoom,
-			disableDefaultUI: true
+			disableDefaultUI: true,
 		});
+		
 		
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
-		// this.map.addListener('center_changed', () => {
-		// 	// this.HtmlSetLocation.addClass("active");
-		// 	// this.HtmlAutocomplete.addClass("inactive");
-			
-		// });
+		this.map.addListener('dragend', () => {
+			// this.HtmlSetLocation.addClass("active");
+			// this.HtmlAutocomplete.addClass("inactive");
+			this.setLocation();
+		});
 		this.initAutocomplete();
 		this.setLocation();
+		
 	}
 
 	setLocation() {
@@ -75,11 +78,11 @@ class FormMap {
 
 		// this.HtmlSetLocation.addClass("inactive");
 		// this.HtmlAutocomplete.addClass("active");
-		this.map.setZoom(this.zoom);
+		// this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
 		// this.addMarker();
-		this.addRange(500);
+		this.addRange(this.meters);
 	}
 
 	getLocation() {
@@ -103,7 +106,7 @@ class FormMap {
 		this.removeAllMarker();
 		this.removeAllRanges();
 		// this.addMarker();
-		this.addRange(500);
+		this.addRange(this.meters);
 		this.HtmlAutocomplete.val();
 	}
 
@@ -126,7 +129,7 @@ class FormMap {
 					this.removeAllMarker();
 					this.removeAllRanges();
 					// this.addMarker();
-					this.addRange(500);
+					this.addRange(this.meters);
 				});
 			}
 		} else {
@@ -157,14 +160,39 @@ class FormMap {
 		googleRanges = new Array();
 	}
 
-	// addFakeLocation() {
+	randomNumber(value, range) {
+		let result = 0;
+		let real = (" " + value).split(".")[0];
+		let decimal = (" " + value).split(".")[1];
+		let minimunRange = decimal - range;
+		let maximusRange = decimal - range;
+		result = Math.round( Math.random() * (maximusRange - minimunRange) + minimunRange);
+		return parseFloat(real + "." + result); 
+	}
 
-	// }
+	addFakeLocation() {
+		let center = this.map.getCenter();
+		let radius = (Math.sqrt(this.meters) * this.meters) * 2;
+		let fkLat = this.randomNumber(center.lat(), radius);
+		let fkLng = this.randomNumber(center.lng(), radius);
+		let fakePosition = { lat: fkLat, lng: fkLng };
+		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
+
+		let tempMarker = new google.maps.Marker({
+			position: fakePosition,
+			title: label, 
+			icon: icon
+		});
+
+		tempMarker.setMap(this.map);
+		googleMarker.push(tempMarker);
+	}
 
 	addMarker() {
 		let center = this.map.getCenter();
 		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons[0] : this.icons[1]; 
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
 
 		let tempMarker = new google.maps.Marker({
 			position: center,
@@ -202,6 +230,14 @@ let initialize = () => {
 
 	window.formMap.HtmlSetLocation.click(() => {
 		window.formMap.setCurrentPosition();
+	});
+
+	window.formMap.HtmlAutocomplete.focus(() => {
+		window.formMap.geolocate(true);
+	});
+
+	window.formMap.HtmlEnableLocation.change(() => {
+		window.formMap.getLocation();
 	});
 };
 

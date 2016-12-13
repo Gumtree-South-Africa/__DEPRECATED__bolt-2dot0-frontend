@@ -111,6 +111,7 @@
 			.description {
 				font-size: 12px;
 				width: 40%;
+				margin-top: 4px;
 			}
 			.checkbox {
 				width: 60%;
@@ -131,7 +132,7 @@
 		.localization-stats {}
 	}
 }
-// * * { outline: 1px dashed mediumvioletred; }
+
 .checkbox {
 	overflow: hidden;
 	.label {
@@ -195,7 +196,7 @@
 			-o-transition: background 0.4s;
 			transition: background 0.4s;
 
-			content: 'Yes';
+			content: 'Si';
 			background-color: #dddddd;
 			font-size: 12px;
 			padding-right: 10px;
@@ -236,10 +237,40 @@
 		}
 		input:checked + label:after {
 			margin-left: 40px;
-			content: 'Yes';
+			content: 'Si';
 			background-color: #1D98D4;
 			border: none;
 			color: #fff;
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.search-location {
+		margin-bottom: 10px;
+		overflow: hidden;
+		.textbox {
+			font-size: 15px;
+			width: calc(96% - 182px) !important;
+			&.inactive {
+				width: calc(96% - 182px) !important;
+			}
+		}
+		.setLocationButton {
+			width: 170px !important;
+			font-size: 15px;
+			&.active {
+				width: 170px !important;
+				margin-right: 0px !important;
+			}
+		}
+	}
+	.location-settings {
+		.description {
+			display: none;
+		}
+		.checkbox {
+			width: 100% !important;
 		}
 	}
 }
