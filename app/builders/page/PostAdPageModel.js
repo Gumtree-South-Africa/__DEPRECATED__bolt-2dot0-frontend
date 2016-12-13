@@ -164,6 +164,10 @@ class PostAdPageModel {
 		};
 
 		this.dataPromiseFunctionMap.user = () => {
+			if (!modelData.bapiHeaders.authTokenValue) {
+				// Quick return for not-logged in user
+				return Q.resolve(null);
+			}
 			let userModel = new UserModel(modelData.bapiHeaders);
 			return userModel.getUserFromCookie().fail(() => {
 				return Q.resolve(null);
