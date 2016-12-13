@@ -4,7 +4,7 @@
 			"host": "api.bolt.ebayclassifieds.com.phx.ops.prod.bt.ecg.so",
 			"port": 80,
 			"parameters": null,
-			"timeout": 2000
+			"timeout": 3000
 		},
 		"endpoints": {
 			"categoryHomePage": "/v1/categories",

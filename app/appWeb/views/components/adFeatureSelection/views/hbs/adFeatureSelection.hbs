@@ -1,0 +1,124 @@
+<div class="ad-features">
+    <div class='promote-form'>
+		<div class="promote-title">{{i18n "feature.promotehint"}}<span class="icon-corner-lightning"></span></div>
+		<div class="promote-optional">({{i18n "feature.optional"}})</div>
+		<div class="desktop-banner">
+        </div>
+        <div class="promote-feature">
+			<form id="promote-checkout-form" method="POST" action="../my/promote.html">
+                {{#each this}}
+					<div class="feature-wrapper">
+						<div class="feature-checkbox">
+							<input class="input-checkbox" type="checkbox" id="{{this.name}}" name="{{this.name}}">
+                            <label for="{{this.name}}"> </label>
+                        </div>
+                        <div class="feature-description">
+                            <span class="label-of-checkbox" name="{{this.name}}">{{i18n this.i18nNameKey}}</span>
+							<span class="feature-more icon-icon-moreinfo" name="{{this.name}}"></span>
+                        </div>
+						<div class="feature-options">
+							<select name="{{this.name}}">
+                                {{#each this.featureOptions}}
+									<option value="{{this.fieldValue}}" {{#ifeq this.selectedFromPreview compare=true}}selected="selected"{{/ifeq}}>{{this.duration}} {{this.durationTimeUnit}} | ${{this.amount}}</option>
+                                {{/each}}
+							</select>
+						</div>
+					</div>
+                {{/each}}
+				<div class="insertionFee-wrapper">
+                </div>
+			</form>
+        </div>
+    </div>
+	<div class="desktop-checkout hidden">
+		<div class="desktop-checkout-container">
+			<div class="checkout-price">
+				<div class="price-content">
+                    {{i18n "feature.total"}} <span class="price-amount"></span>
+				</div>
+			</div>
+			<div class="checkout-btn-wrapper">
+				<button class="checkout-button" type="submit">{{i18n "feature.checkout"}}</button>
+			</div>
+            <div class="checkout-cancel">
+				<a class="cancel-link">{{i18n "feature.cancel"}}</a>
+            </div>
+		</div>
+	</div>
+	<div class="mobile-checkout hidden">
+		<div class="mobile-checkout-container">
+			<div class="checkout-modal-wrapper">
+				<div class="checkout-modal">
+					<div class="checkout-modal-overlay"></div>
+				</div>
+				<div class="checkout-footer">
+					<div class="btn-wrapper">
+						<a class="checkout-button btn">
+							<span class="sudolink">{{i18n "feature.checkout"}}</span>
+						</a>
+					</div>
+				</div>
+				<div class="checkout-price">
+					<div class="price-content">
+                        {{i18n "feature.total"}} <span class="price-amount"></span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="desktop-cancel">
+        <a class="cancel-link">
+            <span>{{i18n "feature.noThanks"}}</span>
+        </a>
+	</div>
+	<div class="mobile-cancel">
+		<div class="cancel-modal-wrapper">
+			<div class="cancel-modal">
+				<div class="cancel-modal-overlay"></div>
+			</div>
+			<div class="cancel-footer">
+				<div class="btn-wrapper">
+					<a class="cancel-link cancel-button btn">
+						<span class="sudolink">{{i18n "feature.noThanks"}}</span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="feature-info-overlay hidden">
+		<div class="modal-wrapper">
+			<div class="feature-overlay-modal">
+				<div class="overlay"></div>
+				<div class="modal-container">
+					<div class="modal-close-section">
+						<span class="close-text">{{i18n "feature.close"}}</span>
+						<span class="icon-close-small"></span>
+					</div>
+				</div>
+				<h1 class="feature-title h1-text  title-bumpUpXY">{{i18n "feature.displayname.bumpUpXY"}}</h1>
+				<div class="feature-content-info  info-bumpUpXY">{{i18n "feature.description.bumpUpXY"}}</div>
+				<h1 class="feature-title h1-text  title-topAd">{{i18n "feature.displayname.topAd"}}</h1>
+				<div class="feature-content-info  info-topAd">{{i18n "feature.description.topAd"}}</div>
+				<h1 class="feature-title h1-text  title-hpGallery">{{i18n "feature.displayname.hpGallery"}}</h1>
+				<div class="feature-content-info  info-hpGallery">{{i18n "feature.description.hpGallery"}}</div>
+				<h1 class="feature-title h1-text  title-urgent">{{i18n "feature.displayname.urgent"}}</h1>
+				<div class="feature-content-info  info-urgent">{{i18n "feature.description.urgent"}}</div>
+				<h1 class="feature-title h1-text  title-highlight">{{i18n "feature.displayname.highlight"}}</h1>
+				<div class="feature-content-info  info-highlight">{{i18n "feature.description.highlight"}}</div>
+				<h1 class="feature-title h1-text  title-srpGallery">{{i18n "feature.displayname.srpGallery"}}</h1>
+				<div class="feature-content-info  info-srpGallery">{{i18n "feature.description.srpGallery"}}</div>
+				<h1 class="feature-title h1-text  title-WebSiteUrl">{{i18n "feature.displayname.WebSiteUrl"}}</h1>
+				<div class="feature-content-info  info-WebSiteUrl">{{i18n "feature.description.WebSiteUrl"}}</div>
+			</div>
+			<div class="close-footer">
+				<div class="btn-wrapper">
+					<a class="btn" href="">
+						<span class="sudolink">{{i18n "feature.close"}}</span>
+						<span class="hidden btn-icon"></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+

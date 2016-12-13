@@ -61,7 +61,7 @@ function preserveStats(stats) {
 			return;
 		}
 		// Send stats to anyone interested in them but don't send metrics if no endpoint
-		console.log(genLogMsg('BOLT NodeJS Monitoring Agent: ' + JSON.stringify(stats)));
+		// console.log(genLogMsg('BOLT NodeJS Monitoring Agent: ' + JSON.stringify(stats)));
 		sendMetricsToGraphite(stats);
 		// theEmitter.emit('monitorNodeStats', stats);
 	}
