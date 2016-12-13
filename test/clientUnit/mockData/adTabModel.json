@@ -1,0 +1,301 @@
+{
+  "similar": {
+    "_links":[
+      { "rel": "self",
+       "href": "/ads/1001104700010910705670909/similars?offset=0&limit=7",
+       "method": "GET"
+      },
+      { "rel": "next",
+       "href": "/ads/1001104700010910705670909/similars?offset=7&limit=7",
+       "method": "GET"
+      },
+      { "rel": "previous", "href": null, "method": "GET" }
+    ],
+    "ads":[
+     { "id": "110212770",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-41-34-348/1001102127700910676385609",
+       "title": "Post House Ad From bapi at 2016-09-07 09:41:34.348",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     },
+     {
+       "id": "110212773",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-43-18-988/1001102127730910676386309",
+       "title": "Post House Ad From bapi at 2016-09-07 09:43:18.988",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     },
+     {
+       "id": "110212765",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-40-32-103/1001102127650910676385109",
+       "title": "Post House Ad From bapi at 2016-09-07 09:40:32.103",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     },
+     {
+       "id": "110212859",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-41-17-318/1001102128590910676385309",
+       "title": "Post House Ad From bapi at 2016-09-07 09:41:17.318",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     },
+     {
+       "id": "110212907",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-52-40-807/1001102129070910676400409",
+       "title": "Post House Ad From bapi at 2016-09-07 09:52:40.807",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     },
+     {
+       "id": "110212902",
+       "viewSeoUrl": "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+09+07-09-52-39-207/1001102129020910676410009",
+       "title": "Post House Ad From bapi at 2016-09-07 09:52:39.207",
+       "price": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "picture": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }]
+     }
+    ],
+    "total": 24412,
+    "limit": 7,
+    "offset": 0
+  },
+  "sellerOtherAds": {
+    "_links":
+     [
+       { "rel": "self",
+         "href": "/ads/1001104657040910675400109/seller-other-ads?offset=0&limit=20",
+         "method": "GET"
+       },
+       { "rel": "next",
+         "href": "/ads/1001104657040910675400109/seller-other-ads?offset=20&limit=20",
+         "method": "GET"
+       },
+       { "rel": "previous", "href": null, "method": "GET" }
+     ],
+   "ads": [
+     {
+       "id": "110465800",
+       "viewSeoUrl": "/a-venta-camiones/coyoacan/ohodoq-ojdqjd/1001104658000910675400109",
+       "title": "ohodoq ojdqjd",
+       "description": "dqjdj jdpqojd",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 66,
+       "creationDate": 1480508543000,
+       "adId": "1001104658000910675400109",
+       "lat": 25,
+       "lng": -75
+     },
+     {
+       "id": "110465701",
+       "viewSeoUrl": "/a-mascotas/coyoacan/anuncio-publicado-por-riven/1001104657010910675400109",
+       "title": "Anuncio publicado por riven",
+       "description": "Anuncio publicado por riven en Coyoacán. Categoría generada por Vivanuncios para este anuncio: Mascotas",
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 1120,
+       "creationDate": 1480508444000,
+       "adId": "1001104657010910675400109",
+       "lat": 25,
+       "lng": -75
+     },
+     {
+       "id": "110465700",
+       "viewSeoUrl": "/a-venta-terrenos/dr-pedro-r-bernabe/hdihojd-odqowdjoq/1001104657000910675400109",
+       "title": "hdihojd odqowdjoq",
+       "description": "djoiqjwodjq oidjoqjod odjoqwjdoq odjqojodwq",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 31,
+       "creationDate": 1480508418000,
+       "adId": "1001104657000910675400109",
+       "lat": 25,
+       "lng": -75
+     },
+     {
+       "id": "110464523",
+       "viewSeoUrl": "/a-computadoras-electronica/tijuana/ad-from-bdd-redesign-2016+11+30-17-43-18/1001104645230910675400109",
+       "title": "Ad from BDD redesign 2016-11-30 17:43:18",
+       "description": "Ad from BDD redesign 2016-11-30 17:43:18. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Computadoras y electrónica",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 3,
+       "creationDate": 1480499067000,
+       "adId": "1001104645230910675400109",
+       "lat": 32.514946,
+       "lng": -117.038246
+     },
+     { "id": "110464520",
+       "viewSeoUrl": "/a-bebes-ninos-embarazadas/tijuana/ad-from-bdd-redesign-2016+11+30-17-29-32/1001104645200910675400109",
+       "title": "Ad from BDD redesign 2016-11-30 17:29:32",
+       "description": "Ad from BDD redesign 2016-11-30 17:29:32. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Bebés, niños, embarazadas",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 5,
+       "creationDate": 1480498244000,
+       "adId": "1001104645200910675400109",
+       "seller": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "lat": 32.514946,
+       "lng": -117.038246
+     },
+     {
+       "id": "110464621",
+       "viewSeoUrl": "/a-bebes-ninos-embarazadas/tijuana/ad-from-bdd-redesign-2016+11+30-17-08-30/1001104646210910675400109",
+       "title": "Ad from BDD redesign 2016-11-30 17:08:30",
+       "description": "Ad from BDD redesign 2016-11-30 17:08:30. Anuncio publicado por riven en Tijuana. Categoría generada por Vivanuncios para este anuncio: Bebés, niños, embarazadas",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 5,
+       "creationDate": 1480496932000,
+       "adId": "1001104646210910675400109",
+       "lat": 32.514946,
+       "lng": -117.038246
+     },
+     {
+       "id": "110464620",
+       "viewSeoUrl": "/a-mascotas/canitas-de-felipe-pescador/anuncio-publicado-por-riven/1001104646200910675400109",
+       "title": "Anuncio publicado por riven",
+       "description": "Anuncio publicado por riven en Cañitas de Felipe Pescador. Categoría generada por Vivanuncios para este anuncio: Mascotas",
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 1120,
+       "creationDate": 1480495880000,
+       "adId": "1001104646200910675400109",
+       "lat": 23.6345,
+       "lng": -102.55279
+     },
+     {
+       "id": "110459506",
+       "viewSeoUrl": "/a-moda/cuauhtemoc/bbf2-+-anuncio-publicado-por-riven/1001104595060910675400109",
+       "title": "bbf2 - Anuncio publicado por riven",
+       "description": "kdn qwidoqhow",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 15,
+       "creationDate": 1480312971000,
+       "adId": "1001104595060910675400109",
+       "seller": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "lat": 28.6329957,
+       "lng": -106.06910040000002
+     },
+     {
+       "id": "110459503",
+       "viewSeoUrl": "/a-hogar/isla-mujeres/anuncio-publicado-por-riven/1001104595030910675400109",
+       "title": "Anuncio publicado por riven",
+       "description": "Anuncio publicado por riven en Isla Mujeres. Categoría generada por Vivanuncios para este anuncio: Hogar",
+       "adPrice": {
+   				"priceType": "FIXED",
+   				"currency": "MXN",
+   				"amount": 535
+ 			  },
+       "pictures": [{
+         "size": "NORMAL",
+         "url": "http://img.classistatic.com/crop/100x100/i.ebayimg.com/00/s/NjI0WDQ2OA==/z/vLMAAOxy4dNSy40T/$_19.JPG"
+       }],
+       "categoryId": 1,
+       "creationDate": 1480312096000,
+       "adId": "1001104595030910675400109",
+       "lat": 21.239697,
+       "lng": -86.73787
+     }
+    ],
+    "total": 327,
+    "limit": 20,
+    "offset": 0
+  }
+}

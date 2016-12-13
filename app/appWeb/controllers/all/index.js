@@ -28,7 +28,7 @@ for (let route in completeRoutesMap) {
 
 
 let regexRoutesMap = {
-	'/:seo(v-[0-9A-Za-z-+\/]+)': './viewPageController'
+	'/:seo(v-[0-9A-Za-z-+%\/]+)': './viewPageController'
 };
 
 for (let route in regexRoutesMap) {

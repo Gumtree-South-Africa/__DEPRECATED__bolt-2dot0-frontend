@@ -8,34 +8,56 @@ let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
 
-let extendModelData = (req, modelData) => {
-	modelData.header.pageType = modelData.pagename;
-	modelData.header.pageTitle = modelData.seo.pageTitle;
-	modelData.header.metaDescription = modelData.seo.description;
-	modelData.header.metaRobots = modelData.seo.robots;
-	modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
-	// CSS
-	if (modelData.header.min) {
-		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
-	} else {
-		modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
-	}
-	// JS
-	if (!modelData.footer.min) {
-		if (modelData.header.enableLighterVersionForMobile) {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
-		} else {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+let VIP = {
+	extendHeaderData: (req, modelData) => {
+		modelData.header.pageType = modelData.pagename;
+		modelData.header.pageTitle = modelData.seo.pageTitle;
+		modelData.header.metaDescription = modelData.seo.description;
+		modelData.header.metaRobots = modelData.seo.robots;
+		modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
+		modelData.header.pageUrl = modelData.header.viewPageUrl;
+		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
+			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 		}
-	} else {
-		if (modelData.header.enableLighterVersionForMobile) {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
+		// CSS
+		if (modelData.header.min) {
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
 		} else {
-			modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
 		}
+		// VIP Header Page Messages
+		VIP.buildHeaderPageMessages(req, modelData);
+	},
+	buildHeaderPageMessages: (req, modelData) => {
+		modelData.header.pageMessages = {};
+		switch (req.query.status) {
+			case 'adInactive':
+				modelData.header.pageMessages.success = 'home.ad.notyetactive';
+				break;
+			default:
+				modelData.header.pageMessages.success = '';
+				modelData.header.pageMessages.error = '';
+		}
+	},
+	extendFooterData: (req, modelData) => {
+		// JS
+		if (!modelData.footer.min) {
+			if (modelData.header.enableLighterVersionForMobile) {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
+			} else {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+			}
+		} else {
+			if (modelData.header.enableLighterVersionForMobile) {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
+			} else {
+				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
+			}
+		}
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'Zoom.min.js');
 	}
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
-	modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 };
 
 router.get('/:id?', (req, res, next) => {
@@ -86,13 +108,13 @@ router.get('/:id?', (req, res, next) => {
 			}
 		}
 
-		extendModelData(req, modelData);
-		modelData.adId = adId;
+		VIP.extendHeaderData(req, modelData);
+		VIP.extendFooterData(req, modelData);
 
+		modelData.adId = adId;
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.search = true;
-
 		modelData.redirectUrl = redirectUrl;
 
 		//Redirect deleted ads
