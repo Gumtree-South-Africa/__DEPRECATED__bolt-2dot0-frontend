@@ -80,9 +80,9 @@ class AdFeatureSelection {
 			let featureName = $(e.currentTarget).attr("name");
 			let checked = $(e.currentTarget).prop("checked");
 			if (checked) {
-				window.BOLT.trackEvents({"event": featureName + "Selected"});
+				window.BOLT.trackEvents({"event": featureName + "Selected", "eventLabel": ""});
 			} else {
-				window.BOLT.trackEvents({"event": featureName + "Deselected"});
+				window.BOLT.trackEvents({"event": featureName + "Deselected", "eventLabel": ""});
 			}
 		});
 		$(this.$form.find(".feature-description .label-of-checkbox")).on("click", (e) => {
@@ -102,7 +102,7 @@ class AdFeatureSelection {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			let featureName = $(e.currentTarget).attr("name");
-			window.BOLT.trackEvents({"event": featureName + "MoreInfo"});
+			window.BOLT.trackEvents({"event": featureName + "MoreInfo", "eventLabel": ""});
 			FEATURES_LIST.forEach((item) => {
 				if (item !== featureName) {
 					this.$form.find(".title-" + item).toggleClass("hidden", true);
@@ -133,7 +133,7 @@ class AdFeatureSelection {
 		$(this.$form.find(".checkout-button")).on("click", (e) => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": "FeatureAdBegin"});
+			window.BOLT.trackEvents({"event": "FeatureAdBegin", "eventLabel": ""});
 			let cloneForm = $(this.$form.find("#promote-checkout-form")).clone(true);
 			// Clean unsupported fields for 1.0 promote
 			for (let input of cloneForm.find("input[type='checkbox']")) {
@@ -151,12 +151,20 @@ class AdFeatureSelection {
 			cloneForm.submit();
 		});
 
-		$(this.$form.find(".desktop-cancel.cancel-link")).click(() =>{
-			window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd"});
+		$(this.$form.find(".desktop-cancel .cancel-link")).click(() =>{
+			if (this.insertionFee) {
+				window.BOLT.trackEvents({"event": this.pageType + "UpsellBack", "eventLabel": ""});
+			} else {
+				window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd", "eventLabel": ""});
+			}
 		});
 
-		$(this.$form.find(".checkout-cancel.cancel-link")).click(() =>{
-			window.BOLT.trackEvents({"event": this.pageType + "UpsellBack"});
+		$(this.$form.find(".checkout-cancel .cancel-link")).click(() =>{
+			if (this.insertionFee) {
+				window.BOLT.trackEvents({"event": this.pageType + "UpsellBack", "eventLabel": ""});
+			} else {
+				window.BOLT.trackEvents({"event": this.pageType + "ViewMyAd", "eventLabel": ""});
+			}
 		});
 	}
 

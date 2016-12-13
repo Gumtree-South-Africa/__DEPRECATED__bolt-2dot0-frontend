@@ -127,6 +127,9 @@ class EditAd {
 			contentType: 'application/json',
 			success: (response) => {
 				window.BOLT.trackEvents({"event": "EditAdSuccess"});
+				if (response.insertionFee) {
+					window.BOLT.trackEvents({"event": "EditAdPaidCreated"});
+				}
 				this._onSubmitSuccess(response, adPayload);
 			},
 			error: (e) => {
