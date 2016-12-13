@@ -1,6 +1,7 @@
 'use strict';
 
 let viewPageGallery = require('app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js');
+let replyForm = require('app/appWeb/views/components/replyForm/js/replyForm.js');
 
 // BEGIN: fix for 2, 3, 4 and 5 images
 let constImgLength = parseInt($('.container .counter').attr('data-image-length'));
@@ -39,6 +40,7 @@ switch (constImgLength) {
 
 let initialize = () => {
 	viewPageGallery.initialize(constImgLength);
+	replyForm.initialize();
 };
 
 module.exports = {
