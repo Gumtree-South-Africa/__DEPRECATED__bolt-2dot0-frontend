@@ -355,11 +355,16 @@ class ViewPageModel {
 			}
 		}
 
-		if (!isOwner) {
+		if (!isOwner && (typeof s[state] !== 'undefined')) {
 			delete s[state].ownerDetails;
 		}
 
-		return s[state];
+		if(typeof s[state] !== 'undefined'){
+			return s[state];
+		}else{
+			return false;
+		}
+
 	}
 
 	getPageDataFunctions(modelData) {
