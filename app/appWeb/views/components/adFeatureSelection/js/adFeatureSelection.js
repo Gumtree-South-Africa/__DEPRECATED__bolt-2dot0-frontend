@@ -165,10 +165,18 @@ class AdFeatureSelection {
 			}
 		}
 		this.$form.find(".price-amount").text("$" + price);
-		this.$form.find(".mobile-cancel").toggleClass("hidden", true);
-		this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
-		this.$form.find(".mobile-checkout").toggleClass("hidden", false);
-		this.$form.find(".desktop-checkout").toggleClass("hidden", false);
+		if (price) {
+			this.$form.find(".mobile-cancel").toggleClass("hidden", true);
+			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", true);
+			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
+			this.$form.find(".desktop-checkout").toggleClass("hidden", false);
+		} else {
+			this.$form.find(".mobile-cancel").toggleClass("hidden", false);
+			this.$form.find(".desktop-cancel").find(".cancel-link").toggleClass("hidden", false);
+			this.$form.find(".mobile-checkout").toggleClass("hidden", true);
+			this.$form.find(".desktop-checkout").toggleClass("hidden", true);
+		}
+
 	}
 
 	_getFeatureOptionPrice(feature) {
