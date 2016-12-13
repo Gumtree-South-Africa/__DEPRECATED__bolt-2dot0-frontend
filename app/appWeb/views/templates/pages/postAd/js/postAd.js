@@ -237,11 +237,6 @@ class PostAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (response) => {
-				if (response.ad.insertionFee) {
-					window.BOLT.trackEvents({"event": "PostAdPaidCreated"});
-				} else {
-					window.BOLT.trackEvents({"event": "PostAdFreeSuccess"});
-				}
 				this._onSubmitSuccess(response, postAdPayload);
 			},
 			error: (e) => {
@@ -256,6 +251,11 @@ class PostAd {
 
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
+				if (response.ad && response.ad.insertionFee) {
+					window.BOLT.trackEvents({"event": "PostAdPaidCreated"});
+				} else {
+					window.BOLT.trackEvents({"event": "PostAdFreeSuccess"});
+				}
 				spinnerModal.completeSpinner(() => {
 					$.ajax({
 						url: '/api/promotead/features',

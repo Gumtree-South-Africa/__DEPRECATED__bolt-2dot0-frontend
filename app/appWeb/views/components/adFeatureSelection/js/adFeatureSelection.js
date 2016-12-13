@@ -134,20 +134,21 @@ class AdFeatureSelection {
 			e.preventDefault();
 			e.stopImmediatePropagation();
 			window.BOLT.trackEvents({"event": "FeatureAdBegin"});
+			let cloneForm = $(this.$form.find("#promote-checkout-form")).clone(true);
 			// Clean unsupported fields for 1.0 promote
-			for (let input of this.$form.find("input[type='checkbox']")) {
+			for (let input of cloneForm.find("input[type='checkbox']")) {
 				if (!input) {
 					continue;
 				}
 				let name = $(input).prop("name");
 				if (!($(input).prop("checked")) || ($(input).prop("disabled"))) {
-					$(this.$form.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
+					$(cloneForm.find("select[name='" + name + "']")).prop("name", ""); // Don't checkout un-submit feature
 				} else {
-					$(this.$form.find("select[name='" + name + "']")).prop("disabled", false); // enable for submit
+					$(cloneForm.find("select[name='" + name + "']")).prop("disabled", false); // enable for submit
 				}
 			}
-			this.$form.find("input[type='checkbox']").prop('name','');
-			this.$form.find("#promote-checkout-form").submit();
+			cloneForm.find("input[type='checkbox']").prop('name','');
+			cloneForm.submit();
 		});
 
 		$(this.$form.find(".desktop-cancel.cancel-link")).click(() =>{
