@@ -27,14 +27,13 @@
 		background-color: $vivaGray8;
 		box-shadow: 1px 1px 6px $postAdShadowColor;
 		@include to-breakpoint($small-break) {
-			margin-top: -11px;
 			height: 400px;
 		}
 		@include from-breakpoint($medium-break) {
 			position: relative;
 			max-width: 960px;
 			height: 350px;
-			margin: -11px auto 0 auto;
+			margin: 0 auto;
 			.desktop-banner {
 				width:300px;
 				margin-left: 65px;
@@ -74,16 +73,28 @@
 		margin-left: 4%;
 		.feature-checkbox {
 			float: left;
-			color: $vivaGreen1;
 			display: inline-block;
+			width: 18px;
+			@include to-breakpoint($small-break) {
+				margin-top: 2%;
+			}
+			@include from-breakpoint($medium-break) {
+				margin-top: 2%;
+			}
+		}
+		.feature-description {
+			float: left;
+			color: $vivaGreen1;
+			cursor: pointer;
+			margin-left: 5px;
 			@include to-breakpoint($small-break) {
 				font-size: 14px;
-				margin-top: 2%;
-				width: 60%;
+				margin-top: 2.5%;
+				width: 50%;
 			}
 			@include from-breakpoint($medium-break) {
 				font-size: medium;
-				margin-top: 1%;
+				margin-top: 2%;
 				width: 80%;
 			}
 		}

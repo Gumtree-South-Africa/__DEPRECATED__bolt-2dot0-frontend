@@ -84,6 +84,10 @@ class AdFeatureSelection {
 			this.$form.find(".mobile-checkout").toggleClass("hidden", false);
 			this.$form.find(".desktop-checkout").toggleClass("hidden", false);
 		});
+		$(this.$form.find(".feature-description .label-of-checkbox")).on("click", (e) => {
+			let featureName = $(e.currentTarget).attr("name");
+			$("input[name='" + featureName + "']").click();
+		});
 
 		// Feature option event
 		$(this.$form.find("select")).change((e) => {
