@@ -3,14 +3,24 @@
 let config = require('config');
 let bapiOptionsModel = require("./bapi/bapiOptionsModel");
 let bapiService      = require("./bapi/bapiService");
-let avfQueryPlaceholder = "categoryId={categoryId}&locationId={locationId}&adId={adId}";
 class FeatureService {
-	getAvailableFeatures(bapiHeaderValues, categoryId, locationId, locale, adId) {
-		//return config.get('BAPI.endpoints.adFeatures') + avfQueryPlaceholder.replace('{categoryId}', categoryId).replace('{locationId}', locationId).replace('{adId}', adId);
+	getAvailableFeatures(bapiHeaderValues, categoryId, locationId, adId) {
+		let queryParameter = "";
+		if (categoryId) {
+			queryParameter += "categoryId=" + categoryId;
+		}
+
+		if (locationId) {
+			queryParameter += (queryParameter ? "&locationId=" : "locationId=") + locationId;
+		}
+
+		if (adId) {
+			queryParameter += (queryParameter ? "&adId=" : "adId=") + adId;
+		}
 
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
-			path: config.get('BAPI.endpoints.adFeatures') + avfQueryPlaceholder.replace('{categoryId}', categoryId).replace('{locationId}', locationId).replace('{adId}', adId),
+			path: config.get('BAPI.endpoints.adFeatures') + queryParameter,
 		}), bapiHeaderValues, 'Features');
 	}
 }

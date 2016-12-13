@@ -28,6 +28,13 @@ module.exports = [
 	], "bundleName": "HomePageV2Legacy.min.js"
 	},{
 		"dest": rootDir + "/public/jsmin", "src": [
+		rootDir + "/public/js/libraries/zoom/jquery.mousewheel.min.js",
+		rootDir + "/public/js/libraries/zoom/hammer.min.js",
+		rootDir + "/public/js/libraries/zoom/TweenMax.min.js",
+		rootDir + "/public/js/libraries/zoom/jquery.pinchzoomer.min.js"
+	], "bundleName": "Zoom.min.js"
+	},{
+		"dest": rootDir + "/public/jsmin", "src": [
 		rootDir + "/public/js/common/tracking/Analytics.js"
 	], "bundleName": "AnalyticsLegacyBundle.min.js"
 	},{
