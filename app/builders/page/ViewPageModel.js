@@ -1,5 +1,6 @@
 'use strict';
 let cwd = process.cwd();
+let _ = require('underscore');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
@@ -11,7 +12,6 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-let _ = require('underscore');
 let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
@@ -277,8 +277,27 @@ class ViewPageModel {
 		modelData = _.extend(modelData, data);
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
+
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
+
 		modelData.seo = data['seo'] || {};
+		if (!_.isEmpty(modelData.seo)) {
+			if (typeof modelData.seo.pageTitle !== 'undefined') {
+				let pageTitle = modelData.seo.pageTitle;
+				pageTitle = pageTitle.replace('adTitle', data.advert.title);
+				pageTitle = pageTitle.replace('locationSeoWord', data.advert.locationDisplayName);
+				pageTitle = pageTitle.replace('country', modelData.footer.brandName);
+				pageTitle = pageTitle.replace('adId', data.advert.adId);
+				modelData.seo.pageTitle = pageTitle;
+			}
+			if (typeof modelData.seo.description !== 'undefined') {
+				let description = modelData.seo.description;
+				description = description.replace('description', data.advert.description.substring(0,140));
+				description = description.replace('adId', data.advert.adId);
+				modelData.seo.description = description;
+			}
+		}
+
 		modelData.dataLayer = data['common'].dataLayer || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
