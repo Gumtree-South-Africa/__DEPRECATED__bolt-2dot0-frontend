@@ -53,18 +53,13 @@ class FormMap {
 	}
 
 	configMap() {
-		if(this.position.lat === 22.084192691413616) {
-			this.map = new google.maps.Map(this.HtmlMap[0], {
-				center: this.position,
-				disableDefaultUI: true,
-			});
-		} else {
-			this.map = new google.maps.Map(this.HtmlMap[0], {
-				center: this.position,
-				zoom: this.zoom,
-				disableDefaultUI: true,
-			});
-		}
+		this.geolocate();
+		let tempzoom = !this.position || this.position.lat === 22.084192691413616 ? 4 : this.zoom;
+		this.map = new google.maps.Map(this.HtmlMap[0], {
+			center: this.position,
+			zoom: tempzoom,
+			disableDefaultUI: true,
+		});
 
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
@@ -111,6 +106,9 @@ class FormMap {
 	}
 
 	geolocate() {
+		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
+		this.position = this.position ? this.position : { lat: 23.3650375, lng: -111.5740098 }; 
+
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition (function(position) {
 				let geolocation = {
@@ -132,9 +130,6 @@ class FormMap {
 				// this.addMarker();
 				this.addRange(this.meters);
 			});
-		} else {
-			// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-			this.position = this.position ? this.position : { lat: 23.3650375, lng: -111.5740098 }; 
 		}
 	}
 
