@@ -236,9 +236,10 @@ let initialize = () => {
 	});
 
 	window.formMap.HtmlAutocomplete.focus(() => {
-		window.formMap.removeAllMarker();
-		window.formMap.removeAllRanges();
-		window.formMap.addMarker();
+		window.formMap.geolocate();
+		// window.formMap.removeAllMarker();
+		// window.formMap.removeAllRanges();
+		// window.formMap.addMarker();
 		// window.formMap.addRange(window.formMap.meters);
 	});
 
