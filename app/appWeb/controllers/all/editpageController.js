@@ -61,7 +61,10 @@ router.get('/:id?', (req, res, next) => {
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
-
+		modelData.locationlatlong = {
+			lat: modelData.adResult.location.latitude,
+			long: modelData.adResult.location.longitude
+		};
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {
 		console.error(err);

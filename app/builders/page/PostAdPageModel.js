@@ -85,6 +85,7 @@ class PostAdPageModel {
 		modelData.dataLayer = data.common.dataLayer || {};
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
+		modelData.locationlatlong = data['locationlatlong'] || {};
 
 		modelData.initialCategory = data['initialCategory'] || '';
 		modelData.initialImage = data.initialImage;
@@ -220,18 +221,14 @@ class PostAdPageModel {
 
 		// when we don't have a geoCookie, we shouldn't make the call
 		this.dataPromiseFunctionMap.locationlatlong = () => {
-			if (modelData.geoLatLngObj === null) {
-				return locationModel.getLocationLatLongByIpAddress().then((data) => {
-						return {
-							lat: data.latitude,
-							lon: data.longitude
-						};
-				}).catch((err) => {
-					console.warn(`error getting ip address ${err}`);
-				});
-			}
-
-			return modelData.geoLatLngObj;
+			return locationModel.getLocationLatLongByIpAddress().then((data) => {
+					return {
+						lat: data.latitude,
+						lon: data.longitude
+					};
+			}).catch((err) => {
+				console.warn(`error getting ip address ${err}`);
+			});
 		};
 	}
 }
