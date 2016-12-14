@@ -13,7 +13,8 @@ module.exports = {
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
-			"PostAd": "app/appWeb/views/templates/pages/postAd/js/postAd.js"
+			"PostAd": "app/appWeb/views/templates/pages/postAd/js/postAd.js",
+			"FormMap": "app/appWeb/views/components/formMap/js/formMap.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority
