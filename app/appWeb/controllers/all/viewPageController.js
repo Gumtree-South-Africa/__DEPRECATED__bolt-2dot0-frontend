@@ -39,31 +39,37 @@ let VIP = {
 			query = queryObj;
 		}
 		// Switch on status
-		switch (query.status) {
-			case 'adInactive':
-				modelData.header.pageMessages.success = 'home.ad.notyetactive';
-				break;
-			default:
-				modelData.header.pageMessages.success = '';
-				modelData.header.pageMessages.error = '';
+		if (typeof query.status !== 'undefined') {
+			switch (query.status) {
+				case 'adInactive':
+					modelData.header.pageMessages.success = 'home.ad.notyetactive';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.error = '';
+			}
 		}
 		// Switch on activateStatus
-		switch (query.activateStatus) {
-			case 'adActivateSuccess':
-				modelData.header.pageMessages.success = 'home.ad.notyetactive';
-				break;
-			default:
-				modelData.header.pageMessages.success = '';
-				modelData.header.pageMessages.error = '';
+		if (typeof query.activateStatus !== 'undefined') {
+			switch (query.activateStatus) {
+				case 'adActivateSuccess':
+					modelData.header.pageMessages.success = 'home.ad.notyetactive';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.error = '';
+			}
 		}
 		// Switch on resumeAbandonedOrderError
-		switch (query.resumeAbandonedOrderError) {
-			case 'adFeaturePaid':
-				modelData.header.pageMessages.success = 'abandonedorder.adFeaturePaid.one_ad';
-				break;
-			default:
-				modelData.header.pageMessages.success = '';
-				modelData.header.pageMessages.error = '';
+		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
+			switch (query.resumeAbandonedOrderError) {
+				case 'adFeaturePaid':
+					modelData.header.pageMessages.success = 'abandonedorder.adFeaturePaid.one_ad';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.error = '';
+			}
 		}
 	},
 	extendFooterData: (req, modelData) => {
