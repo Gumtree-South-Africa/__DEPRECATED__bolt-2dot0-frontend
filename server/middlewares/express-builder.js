@@ -108,7 +108,7 @@ function BuildApp(siteObj, loggingEnabled) {
 			app.locals.prodEpsMode = false;
 
 			if (app.locals.config) {
-				app.locals.config.basePort = typeof process.env.PORT !== 'undefined' ? ':' + process.env.PORT : '';
+				app.locals.config.basePort = typeof process.env.SSL_PORT !== 'undefined' ? ':' + process.env.SSL_PORT : '';
 			}
 
 			// assets for local developments and populates  app.locals.jsAssets
