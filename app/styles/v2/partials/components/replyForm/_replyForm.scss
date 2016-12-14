@@ -6,6 +6,12 @@
 	display: block;
 }
 
+.fix {
+	width: 100%;
+	position: fixed;
+	top: 0;
+}
+
 .message-sent {
 	.return-button {
 		color: $vivaWhite;
@@ -40,6 +46,7 @@
 
 .reply-form-container {
 	margin-top: 5px;
+	position: relative;
 
 	.main-content {
 		margin: 15px 10px;
