@@ -238,10 +238,10 @@ class PostAdPageModel {
 		// when we don't have a geoCookie, we shouldn't make the call
 		this.dataPromiseFunctionMap.locationlatlong = () => {
 			return locationModel.getLocationLatLongByIpAddress().then((data) => {
-					return {
+					return JSON.stringify({
 						lat: data.latitude,
 						lng: data.longitude
-					};
+					});
 			}).catch((err) => {
 				console.warn(`error getting ip address ${err}`);
 			});
