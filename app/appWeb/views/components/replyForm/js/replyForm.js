@@ -49,9 +49,9 @@ class replyForm {
 
 			$('.show-phone').on('click', function() {
 				$('.hidden-phone').addClass('hide');
+				$('.real-phone').text(window.atob($realPhone));
 				$('.real-phone').removeClass('hide');
 				$('.show-phone').addClass('hide');
-				$('.real-phone').text(window.atob($encodedPhone));
 			});
 
 			$('#vip-send-button').on('click', function() {
