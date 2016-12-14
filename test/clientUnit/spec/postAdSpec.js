@@ -29,6 +29,44 @@ let mockPostAdResponse = {
 	]
 };
 
+window.stubGoogleAPIS = function() {
+	return window.google = {
+		maps: {
+			Circle: function() {
+				return {
+					setMap: function() { }
+				};
+			},
+			LatLng: function() { },
+			Map: function() {
+				return {
+					fitBounds: function() { },
+					getCenter: function() { },
+					setCenter: function() { },
+					setZoom: function() { }, 
+					addListener: function() {
+						return {
+							dragend: function() {}
+						};
+					},
+				};
+			},
+			addListener: function() {},
+			Marker: function() { },
+			places: {
+				Autocomplete: function() {
+					return {
+						bindTo: function() { },
+						addListener: function() {
+						 },
+						setBounds: function() { }
+					};
+				}
+			}
+		}
+	};
+};
+
 describe('Post Ad', () => {
 
 	it('should open and close the login modal when called', () => {
@@ -41,7 +79,7 @@ describe('Post Ad', () => {
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
 
-		loginModalController.openModal({links:{emailLogin:'',register:'',facebookLogin:''}});
+		loginModalController.openModal({ links: { emailLogin: '', register: '', facebookLogin: '' } });
 
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeFalsy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeFalsy();
@@ -61,7 +99,8 @@ describe('Post Ad', () => {
 			$testArea = specHelper.setupPageTest('postAd', {
 				footer: {
 					baseJSUrl: '/public/js/'
-				}}, 'es_MX');
+				}
+			}, 'es_MX');
 
 			postAdController = new PostAdController();
 			postAdController.componentDidMount($testArea);
@@ -75,7 +114,7 @@ describe('Post Ad', () => {
 			specHelper.mockObjectProperty(postAdController.postAdFormMainDetails, 'categoryId', 0);
 
 			postAdController.mobileUpload.propertyChanged.trigger('imageUrl', 'http://fakeUrl/fakePath');
-			
+
 			// Detail form should be shown
 			expect(postAdController.postAdFormMainDetails.show).toHaveBeenCalled();
 			expect(spinnerModalController.showModal).toHaveBeenCalled();
@@ -219,7 +258,7 @@ describe('Post Ad', () => {
 		});
 
 		it('should error out with returned failed ajax', () => {
-			specHelper.registerMockAjax('/api/postad/create', {}, {fail: true, status: 500});
+			specHelper.registerMockAjax('/api/postad/create', {}, { fail: true, status: 500 });
 			spyOn(spinnerModalController, 'hideModal');
 
 			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
@@ -234,12 +273,29 @@ describe('Post Ad', () => {
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-
-			$testArea = specHelper.setupTest('formMap', {formMap: {}}, 'es_MX');
+			window.stubGoogleAPIS();
+			// window.fakeGeoLocation();
+			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
-			
+			window.formMap.configMap();
+		});	
+		it('test if google api maps has been applied on object window.google', () => {
+			spyOn(window.google.maps, 'Map');
+			this.map = new google.maps.Map($(".map")[0], {
+				center: this.position,
+				zoom: this.zoom,
+				disableDefaultUI: true,
+			});
+			expect(google.maps.Map).toHaveBeenCalled();
 		});
-		it('test if google api maps has been applied on object window.google', function() {
+
+		it('test events in component', () => {
+			$testArea.find("#autocompleteTextBox").val("Polanco");
+			$testArea.find('#setCurrentLocationButton').click();
+			$testArea.find('#autocompleteTextBox').val("Test");
+			$testArea.find('#autocompleteTextBox').focus();
+			$testArea.find('#checkGeolocation').change();
+			// expect(window.addEventListener).toHaveBeenCalledWith('place_changed', listeners.place_changed, false);
 			expect(true).toBeTruthy();
 		});
 
@@ -248,8 +304,19 @@ describe('Post Ad', () => {
 			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
 			window.formMap.geolocate(false);
 			expect(window.formMap.position.lat).toBe(19.3883554);
-			expect(window.formMap.position.lng).toBe(-99.1744351 );
+			expect(window.formMap.position.lng).toBe(-99.1744351);
+		});
 
+		it('search in autocomplete and set in map', () => {
+			$testArea.find("#autocompleteTextBox").val("Polanco");
+			$testArea.find("#autocompleteTextBox").trigger("place_changed");
+			expect(true).toBeTruthy();
+		});
+
+		it('drag and drop map and paint range',( ) => {
+			// var api = spyOn(window.google.maps, 'Map');
+			$testArea.find("#map").trigger("dragend");
+			expect(true).toBeTruthy();
 		});
 	});
 });

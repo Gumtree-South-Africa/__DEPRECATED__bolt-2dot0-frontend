@@ -14,7 +14,7 @@ class FormMap {
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
-		this.position = { lat: 19.3883554, lng: -99.1744351 };
+		this.position;
 		this.meters = 1000;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
@@ -53,13 +53,19 @@ class FormMap {
 	}
 
 	configMap() {
-		this.map = new google.maps.Map(this.HtmlMap[0], {
-			center: this.position,
-			zoom: this.zoom,
-			disableDefaultUI: true,
-		});
-		
-		
+		if(this.position.lat === 22.084192691413616) {
+			this.map = new google.maps.Map(this.HtmlMap[0], {
+				center: this.position,
+				disableDefaultUI: true,
+			});
+		} else {
+			this.map = new google.maps.Map(this.HtmlMap[0], {
+				center: this.position,
+				zoom: this.zoom,
+				disableDefaultUI: true,
+			});
+		}
+
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
@@ -69,16 +75,10 @@ class FormMap {
 		});
 		this.initAutocomplete();
 		this.setLocation();
-		
+
 	}
 
 	setLocation() {
-		// this.HtmlSetLocation.removeClass("active");
-		// this.HtmlAutocomplete.removeClass("inactive");
-
-		// this.HtmlSetLocation.addClass("inactive");
-		// this.HtmlAutocomplete.addClass("active");
-		// this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
 		// this.addMarker();
@@ -89,7 +89,7 @@ class FormMap {
 		let value = this.HtmlEnableLocation[0].checked;
 		this.geolocate(value);
 	}
-	
+
 	getPosition() {
 		let cords = this.map.getCenter();
 		let pos = {
@@ -101,7 +101,7 @@ class FormMap {
 
 	setCurrentPosition() {
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
-    	this.map.setCenter(latLng);
+		this.map.setCenter(latLng);
 		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
@@ -110,30 +110,31 @@ class FormMap {
 		this.HtmlAutocomplete.val();
 	}
 
-	geolocate(enable) {
-		if (enable) {
-			if (navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(function(position) {
-					let geolocation = {
-						lat: position.coords.latitude,
-						lng: position.coords.longitude
-					};
-					let circle = new google.maps.Circle({
-						center: geolocation,
-						radius: position.coords.accuracy,
-						map: this.map,
-					});
-					this.autocomplete.setBounds(circle.getBounds());
-					this.map.setCenter(geolocation);
-					this.map.setZoom(this.zoom);
-					this.removeAllMarker();
-					this.removeAllRanges();
-					// this.addMarker();
-					this.addRange(this.meters);
+	geolocate() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition (function(position) {
+				let geolocation = {
+					lat: position.coords.latitude,
+					lng: position.coords.longitude
+				};
+				let circle = new google.maps.Circle({
+					center: geolocation,
+					radius: position.coords.accuracy,
+					map: this.map,
 				});
-			}
+
+				this.position = geolocation;
+				this.autocomplete.setBounds(circle.getBounds());
+				this.map.setCenter(geolocation);
+				this.map.setZoom(this.zoom);
+				this.removeAllMarker();
+				this.removeAllRanges();
+				// this.addMarker();
+				this.addRange(this.meters);
+			});
 		} else {
-			this.position = { lat: 19.3883554, lng: -99.1744351 };
+			// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
+			this.position = this.position ? this.position : { lat: 23.3650375, lng: -111.5740098 }; 
 		}
 	}
 
@@ -154,7 +155,7 @@ class FormMap {
 	}
 
 	removeAllRanges() {
-		for(let i=0; i < googleRanges.length; i++) {
+		for (let i = 0; i < googleRanges.length; i++) {
 			googleRanges[i].setMap(null);
 		}
 		googleRanges = new Array();
@@ -166,8 +167,8 @@ class FormMap {
 		let decimal = (" " + value).split(".")[1];
 		let minimunRange = decimal - range;
 		let maximusRange = decimal - range;
-		result = Math.round( Math.random() * (maximusRange - minimunRange) + minimunRange);
-		return parseFloat(real + "." + result); 
+		result = Math.round(Math.random() * (maximusRange - minimunRange) + minimunRange);
+		return parseFloat(real + "." + result);
 	}
 
 	addFakeLocation() {
@@ -177,11 +178,11 @@ class FormMap {
 		let fkLng = this.randomNumber(center.lng(), radius);
 		let fakePosition = { lat: fkLat, lng: fkLng };
 		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
 
 		let tempMarker = new google.maps.Marker({
 			position: fakePosition,
-			title: label, 
+			title: label,
 			icon: icon
 		});
 
@@ -192,11 +193,11 @@ class FormMap {
 	addMarker() {
 		let center = this.map.getCenter();
 		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
 
 		let tempMarker = new google.maps.Marker({
 			position: center,
-			title: label, 
+			title: label,
 			icon: icon
 		});
 
@@ -215,7 +216,7 @@ class FormMap {
 	}
 
 	removeAllMarker() {
-		for(let i=0; i < googleMarker.length; i++) {
+		for (let i = 0; i < googleMarker.length; i++) {
 			googleMarker[i].setMap(null);
 		}
 		googleMarker = new Array();
@@ -224,7 +225,9 @@ class FormMap {
 
 let initialize = () => {
 	window.formMap = new FormMap();
-	window.formMap.geolocate(true);
+	// set the current location via data in node
+	window.formMap.position = { lat: 22.084192691413616, lng: -99.85026892290445 };
+	window.formMap.geolocate();
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 
@@ -233,7 +236,10 @@ let initialize = () => {
 	});
 
 	window.formMap.HtmlAutocomplete.focus(() => {
-		window.formMap.geolocate(true);
+		window.formMap.removeAllMarker();
+		window.formMap.removeAllRanges();
+		window.formMap.addMarker();
+		// window.formMap.addRange(window.formMap.meters);
 	});
 
 	window.formMap.HtmlEnableLocation.change(() => {
