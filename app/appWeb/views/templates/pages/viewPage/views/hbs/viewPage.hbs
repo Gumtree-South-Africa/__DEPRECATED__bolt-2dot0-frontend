@@ -12,6 +12,12 @@
             <div class="item-details">
               {{> (dynamic "adDetails")}}
             </div>
+
+            {{#if this.flagAd}}
+                <div class="vip vip-flagad">
+                    {{> (dynamic "flagAd")}}
+                </div>
+            {{/if}}
         </div>
 
         {{#if this.vip.payWithShepherd}}
@@ -33,12 +39,6 @@
         <div class="reply-form">
             {{> (dynamic "replyForm")}}
         </div>
-
-        {{#if this.flagAd}}
-        <div class="vip vip-flagad">
-            {{> (dynamic "flagAd")}}
-        </div>
-        {{/if}}
 
         <div class="google-maps">
             {{> (dynamic "gpsMap")}}

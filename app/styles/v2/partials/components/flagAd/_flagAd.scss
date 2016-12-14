@@ -6,16 +6,20 @@ $formMarginLeft: 6%;
 
 .vip-flagad {
   .title {
-    color: #747474;
-    display: inline-block;
+    &:hover {
+      text-decoration: none;
+    }
+    color: #1E98D5;
+    display: block;
     font-weight: bold;
-    margin-bottom: 8px;
-    margin-left: $formMarginLeft;
-    padding-top: 15px;
+    margin: 0 auto;
+    width: 50%;
+    .icon-warning-sign {
+      display: inline-block;
+      margin-bottom: -2px;
+    }
   }
   .flagad-container {
-    background-color:  #f7f7f7;
-    
     p.error{
       display: none;
     }
@@ -195,7 +199,7 @@ $formMarginLeft: 6%;
     display: inline-block;
     position: relative;
     top: -4px;
-    left: 1.1px;
+    left: 2.1px;
     width: 12px;
     height: 12px;
     background: #FFFFFF;
