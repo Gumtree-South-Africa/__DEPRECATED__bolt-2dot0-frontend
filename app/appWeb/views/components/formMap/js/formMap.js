@@ -64,8 +64,6 @@ class FormMap {
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
-			// this.HtmlSetLocation.addClass("active");
-			// this.HtmlAutocomplete.addClass("inactive");
 			this.setLocation();
 		});
 		this.initAutocomplete();
@@ -76,7 +74,6 @@ class FormMap {
 	setLocation() {
 		this.removeAllMarker();
 		this.removeAllRanges();
-		// this.addMarker();
 		this.addRange(this.meters);
 	}
 
@@ -100,7 +97,6 @@ class FormMap {
 		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
-		// this.addMarker();
 		this.addRange(this.meters);
 		this.HtmlAutocomplete.val();
 	}
@@ -127,7 +123,6 @@ class FormMap {
 				this.map.setZoom(this.zoom);
 				this.removeAllMarker();
 				this.removeAllRanges();
-				// this.addMarker();
 				this.addRange(this.meters);
 			});
 		}
@@ -144,7 +139,6 @@ class FormMap {
 			center: center,
 			radius: Math.sqrt(meters) * this.accuracy
 		});
-		// console.log(tempRange.radius);
 		tempRange.setMap(this.map);
 		googleRanges.push(tempRange);
 	}
@@ -232,10 +226,6 @@ let initialize = () => {
 
 	window.formMap.HtmlAutocomplete.focus(() => {
 		window.formMap.geolocate();
-		// window.formMap.removeAllMarker();
-		// window.formMap.removeAllRanges();
-		// window.formMap.addMarker();
-		// window.formMap.addRange(window.formMap.meters);
 	});
 
 	window.formMap.HtmlEnableLocation.change(() => {

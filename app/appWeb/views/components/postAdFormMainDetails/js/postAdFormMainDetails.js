@@ -275,13 +275,6 @@ class PostAdFormMainDetailsVM {
 		return {lat: lat, lng: lng};
 	}
 
-	/**
-	 * Get location id from location selection modal
-	 */
-	/*	getLocatioinId() {
-			return locationSelection.getLocationId();
-		}
-	*/
 	getCategorySelectionName() {
 		return this._categoryDropdownSelection.getCategorySelectionName();
 	}
@@ -681,9 +674,6 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		// locationSelection.initialize((data) => {
-		// 	this._setHiddenLocationInput(data);
-		// }, {pageType: this.pageType});
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();
