@@ -1,5 +1,6 @@
 'use strict';
 let cwd = process.cwd();
+let _ = require('underscore');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
@@ -11,7 +12,6 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-let _ = require('underscore');
 let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
