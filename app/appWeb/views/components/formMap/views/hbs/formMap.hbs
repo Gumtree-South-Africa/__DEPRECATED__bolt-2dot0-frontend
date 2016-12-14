@@ -1,18 +1,18 @@
-<div class="form-map-conponent">
+<div class="form-map-conponent" data-google-map="{{this.googleMap}}" data-post-location="{{this.locationlatlong}}">
     <div class="title">{{i18n "postad.location.title"}}</div>
     <div class="map-form">
         <div class="search-location">
             <input id='autocompleteTextBox' class='textbox' type='text' placeholder='{{i18n "postad.location.placeholder"}}'></input>
-            <button id="setCurrentLocationButton" class="setLocationButton" type="button"> 
+            <button id="setCurrentLocationButton" class="setLocationButton" type="button">
                 <img src="/public/icons/map/location-arrow.svg" alt="">
                  {{i18n "postad.location.setLocation"}}</button>
         </div>
         <div class="map-component">
-            
-            <div class="map-plugin"> 
+
+            <div class="map-plugin">
                 <div id="map"></div>
                 <div class="google-maps">
-                    <script async defer 
+                    <script async defer
                         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8Bl9yJHqPve3b9b4KdBo3ISqdlM8RDhs&libraries=places&callback=formMap.configMap"></script>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                     <input id="checkGeolocation" type="checkbox" class="toggle-input" checked="checked">
                     <label for="checkGeolocation" class="toggle-label"></label>
                 </div>
-                <div class="label"> 
+                <div class="label">
                     <span>{{i18n "postad.location.uselocation"}}</span><br>
                     {{i18n "postad.location.uselocation.instructions" }}
                 </div>

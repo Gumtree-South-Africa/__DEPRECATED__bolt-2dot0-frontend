@@ -240,7 +240,7 @@ class PostAdPageModel {
 			return locationModel.getLocationLatLongByIpAddress().then((data) => {
 					return {
 						lat: data.latitude,
-						lon: data.longitude
+						lng: data.longitude
 					};
 			}).catch((err) => {
 				console.warn(`error getting ip address ${err}`);

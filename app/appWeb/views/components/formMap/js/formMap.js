@@ -8,13 +8,15 @@ class FormMap {
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
+		this.googleMap = $(".form-map-conponent").data("google-map");
+		this.postLocation = $(".form-map-conponent").data("post-location");
 		this.zoom = 17;
 		this.accuracy = 5;
 		this.map;
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
-		this.position = { lat: 19.3883554, lng: -99.1744351 };
+		this.position = this.postLocation || this.googleMap.location;
 		this.meters = 1000;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
@@ -58,8 +60,8 @@ class FormMap {
 			zoom: this.zoom,
 			disableDefaultUI: true,
 		});
-		
-		
+
+
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
@@ -69,7 +71,7 @@ class FormMap {
 		});
 		this.initAutocomplete();
 		this.setLocation();
-		
+
 	}
 
 	setLocation() {
@@ -89,7 +91,7 @@ class FormMap {
 		let value = this.HtmlEnableLocation[0].checked;
 		this.geolocate(value);
 	}
-	
+
 	getPosition() {
 		let cords = this.map.getCenter();
 		let pos = {
@@ -167,7 +169,7 @@ class FormMap {
 		let minimunRange = decimal - range;
 		let maximusRange = decimal - range;
 		result = Math.round( Math.random() * (maximusRange - minimunRange) + minimunRange);
-		return parseFloat(real + "." + result); 
+		return parseFloat(real + "." + result);
 	}
 
 	addFakeLocation() {
@@ -177,11 +179,11 @@ class FormMap {
 		let fkLng = this.randomNumber(center.lng(), radius);
 		let fakePosition = { lat: fkLat, lng: fkLng };
 		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
 
 		let tempMarker = new google.maps.Marker({
 			position: fakePosition,
-			title: label, 
+			title: label,
 			icon: icon
 		});
 
@@ -192,11 +194,11 @@ class FormMap {
 	addMarker() {
 		let center = this.map.getCenter();
 		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd; 
+		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
 
 		let tempMarker = new google.maps.Marker({
 			position: center,
-			title: label, 
+			title: label,
 			icon: icon
 		});
 
@@ -228,6 +230,7 @@ let initialize = () => {
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 
+	console.log();
 	window.formMap.HtmlSetLocation.click(() => {
 		window.formMap.setCurrentPosition();
 	});

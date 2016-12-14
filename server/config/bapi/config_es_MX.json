@@ -52,6 +52,13 @@
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
 	},
+	"googleMap": {
+		"sizeRadio": 1000,
+		"location": {
+			"lat": 23.3650375,
+			"lng": -111.5740098
+		}
+	},
 	"footer" : {
 		"cookieNotice"						: "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx",
 		"privacyPolicy"						: "https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx",
