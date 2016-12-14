@@ -2,6 +2,8 @@
 let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
+let AdInsertionFee = require('app/appWeb/views/components/adInsertionFee/js/adInsertionFee.js');
 
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
@@ -9,7 +11,7 @@ let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js')
 class EditAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-
+		this.adInsertionFee = new AdInsertionFee();
 		this._imageUrls = [];
 	}
 
@@ -22,6 +24,7 @@ class EditAd {
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
 		this.photoContainer = photoContainer.viewModel;
 		this.spinnerModal = spinnerModal;
+		this.adFeatureSelection = AdFeatureSelection;
 
 		// Callback for old singleton components
 		spinnerModal.initialize();
@@ -30,6 +33,13 @@ class EditAd {
 
 		this._$submitButton = domElement.find('.edit-submit-button');
 		this._$cancelButton = domElement.find('.cancel-button');
+		this._$editAdContent = domElement.find('.edit-ad-page');
+		this._$featurePromote = domElement.find("#feature-promote");
+		this._$promoteWithoutInf = domElement.find("#promote-without-inf");
+		this.adInsertionFee.componentDidMount(domElement);
+		this.adFeatureSelection.componentDidMount(domElement);
+		this.adInsertionFee.pageType = "EditAd";
+		this.adFeatureSelection.pageType = "EditAd";
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'imageUrls') {
@@ -68,7 +78,6 @@ class EditAd {
 		});
 
 		this.postAdFormMainDetails.showChangeWarning = true;
-		this.postAdFormMainDetails.isMustLeaf = true;
 		this.postAdFormMainDetails.postFormCustomAttributes.loadBaseUrl = '/api/edit/customattributes/';
 	}
 
@@ -118,7 +127,10 @@ class EditAd {
 			contentType: 'application/json',
 			success: (response) => {
 				window.BOLT.trackEvents({"event": "EditAdSuccess"});
-				this._onSubmitSuccess(response);
+				if (response.insertionFee) {
+					window.BOLT.trackEvents({"event": "EditAdPaidCreated"});
+				}
+				this._onSubmitSuccess(response, adPayload);
 			},
 			error: (e) => {
 				window.BOLT.trackEvents({"event": "EditAdFail"});
@@ -127,8 +139,43 @@ class EditAd {
 		});
 	}
 
-	_onSubmitSuccess(response) {
+	_onSubmitSuccess(response, adInfo) {
+
 		this.postAdFormMainDetails.isFormChangeWarning = false;
+		$.ajax({
+			url: '/api/promotead/features',
+			data: {
+				categoryId: this.postAdFormMainDetails.categoryId,
+				locationId: this.postAdFormMainDetails.getLocatioinId(),
+				adId: response.adId
+			},
+			type: 'GET',
+			dataType: 'json',
+			contentType: 'application/json',
+			success: (features) => {
+				if (!features.length) {
+					this._redirectWithoutUpselling(response);
+				} else {
+					spinnerModal.completeSpinner(() => {
+						$('.viewport').toggleClass('promotion-covered', true);
+						this._$editAdContent.toggleClass("hidden", true);
+						this._$featurePromote.toggleClass("hidden", false);
+						if (response.insertionFee) {
+							this.adInsertionFee.updateInsertionFee(adInfo, response.insertionFee, this.postAdFormMainDetails.getCategorySelectionName());
+						} else {
+							this._$promoteWithoutInf.toggleClass("hidden", false);
+						}
+						this.adFeatureSelection.render(features, response.adId, response.insertionFee, response.redirectLink && response.redirectLink.vip);
+					});
+				}
+			},
+			error: () => {
+				this._redirectWithoutUpselling(response);
+			}
+		});
+	}
+
+	_redirectWithoutUpselling(response) {
 		spinnerModal.completeSpinner(() => {
 			if (response.redirectLink.previp) {
 				window.location.href = response.redirectLink.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.redirectLink.previpRedirect;

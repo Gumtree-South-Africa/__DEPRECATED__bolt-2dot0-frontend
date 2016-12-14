@@ -25,12 +25,16 @@
 			<div class="ad-last-posted"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}} <span>{{i18n "vip.details.daysago"}}</span></div>
         </div>
         <div class="clear-line"></div>
-        {{#if this.advert.orderedArr}}
+        {{#if this.advert.orderedAttributes}}
 			<div class="category-pri-attrs">
-                {{#each this.advert.orderedArr}}
+                {{#each this.advert.orderedAttributes}}
 					<div class="pri-props">
 						<span class="pri-props-name">{{this.capsName}}</span>
-						<span class="pri-props-value">{{this.value}}</span>
+                        {{#if this.seoUrl}}
+						    <a href="{{this.seoUrl}}"><span class="pri-props-value">{{this.value}}</span></a>
+                        {{else}}
+                            <span class="pri-props-value">{{this.value}}</span>
+                        {{/if}}
 					</div>
                 {{/each}}
 			</div>

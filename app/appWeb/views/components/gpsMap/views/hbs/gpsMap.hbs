@@ -35,7 +35,9 @@
                 var centerPos = {lat: {{this.advert.map.locationLat}}, lng: {{this.advert.map.locationLong}} };
                 var map = new google.maps.Map(document.getElementById('map'), {
                     zoom: 12,
-                    center: centerPos
+                    center: centerPos,
+                    disableDefaultUI: true,
+                    zoomControl: true
                 });
 
                 {{#if this.advert.map.showPin}}

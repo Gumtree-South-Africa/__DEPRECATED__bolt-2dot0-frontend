@@ -1,76 +1,84 @@
 {{#partial "content"}}
-    {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle" backKey="postAd.back" backUrl=this.backUrl }}
-    <div class="post-ad-content">
-        {{> (dynamic "postAdModal")}}
-        {{> (dynamic "spinnerModal") }}
-		<div class="message-modal hidden">
-			<div class="message">
-				<div class="error-modal-container">
-					<div id='js-close-error-modal' class="error-modal-close-section">
-						<div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
-						<div class="inline-block icon-close"></div>
-					</div>
-					<h1 class="error-title">
-						<div class="error-icon icon-unsupported-file-format"></div>
-						<div class="error-title-text" id="js-error-title">
-                            {{i18n "postAd.unsupportedFileModal.error"}}
-						</div>
-					</h1>
-					<div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
-					<div class="error-modal-footer">
-                        {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="mobile-post-ad mobile-upload-image">
-			<input type="hidden" name="initialImage" value="{{this.initialImage}}">
-            {{> (dynamic "uploadImage")}}
-			<div class="info-tips">{{i18n "postAd.page.tips"}}</div>
-		</div>
-		<div class="mobile-post-ad">
-			<div class="mobile-post-ad-wrapper">
-				<div class="mobile-post-ad-modal-wrapper">
-					<div class="mobile-post-ad-modal">
-						<div class="mobile-post-ad-modal-overlay"></div>
-					</div>
+    <div class="post-ad-page">
+        {{> (dynamic "postAdHeader") titleKey="postAd.confirm.pageTitle" backKey="postAd.back" backUrl=this.backUrl }}
+		<div class="post-ad-content">
+            {{> (dynamic "postAdModal")}}
+            {{> (dynamic "spinnerModal") }}
+            <div class="message-modal hidden">
+                <div class="message">
+                    <div class="error-modal-container">
+                        <div id='js-close-error-modal' class="error-modal-close-section">
+                            <div class="inline-block close-text">{{i18n "postAdModal.close"}}</div>
+                            <div class="inline-block icon-close"></div>
+                        </div>
+                        <h1 class="error-title">
+                            <div class="error-icon icon-unsupported-file-format"></div>
+                            <div class="error-title-text" id="js-error-title">
+                                {{i18n "postAd.unsupportedFileModal.error"}}
+                            </div>
+                        </h1>
+                        <div class="error-message">{{i18n "postAd.unsupportedFileModal.message"}}</div>
+                        <div class="error-modal-footer">
+                            {{> (dynamic "button") hideIcon=true extraClasses='error-modal-button' i18nPath='postAd.unsupportedFileModal.uploadBtn'}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mobile-post-ad mobile-upload-image">
+                <input type="hidden" name="initialImage" value="{{this.initialImage}}">
+                {{> (dynamic "uploadImage")}}
+                <div class="info-tips">{{i18n "postAd.page.tips"}}</div>
+            </div>
+            <div class="mobile-post-ad">
+                <div class="mobile-post-ad-wrapper">
+                    <div class="mobile-post-ad-modal-wrapper">
+                        <div class="mobile-post-ad-modal">
+                            <div class="mobile-post-ad-modal-overlay"></div>
+                        </div>
 
-					<div id="post-submit-button" class="mobile-post-ad-footer">
-						<div class="modal-footer">
-							<div class="btn-wrapper">
-								<a class="btn disabled">
-									<span class="sudolink">{{i18n "postAd.mobileUpload.post"}}</span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<div class="change-photo">
-						<div>
-							<div>
-								<a class="" href="">
-									<span class="">{{i18n "postAd.mobileUpload.changePhoto"}}</span>
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div class="desktop-post-ad margin-auto">
-			<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
-			<div class="photo-switcher">
-                {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
-			</div>
-		</div>
-        {{> (dynamic "postAdFormMainDetails")}}
-		<div class="desktop-post-ad margin-auto">
-			<div class="input-form">
-				<a id="postAdBtn" class="post-ad-btn btn-wrapper">
-					<span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-				</a>
-			</div>
-		</div>
-
-        {{> (dynamic "loginModal") isHidden=true}}
+                        <div id="post-submit-button" class="mobile-post-ad-footer">
+                            <div class="modal-footer">
+                                <div class="btn-wrapper">
+                                    <a class="btn disabled">
+                                        <span class="sudolink">{{i18n "postAd.mobileUpload.post"}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="change-photo">
+                            <div>
+                                <div>
+                                    <a class="" href="">
+                                        <span class="">{{i18n "postAd.mobileUpload.changePhoto"}}</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="desktop-post-ad margin-auto">
+                <div class="directions">{{i18n "postAd.createAds.directions"}}</div>
+                <div class="photo-switcher">
+                    {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
+                </div>
+            </div>
+            {{> (dynamic "postAdFormMainDetails")}}
+            <div class="desktop-post-ad margin-auto">
+                <div class="input-form">
+                    <a id="postAdBtn" class="post-ad-btn btn-wrapper">
+                        <span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+                    </a>
+                </div>
+            </div>
+            {{> (dynamic "loginModal") isHidden=true}}
+        </div>
     </div>
+	<section id="feature-promote" class="hidden">
+		<div id="promote-without-if" class="hidden">
+            {{> (dynamic "postAdHeader") titleKey="promote.promoteThisAd" backUrl="" }}
+		</div>
+        {{> (dynamic "adInsertionFee") }}
+        {{> (dynamic "adFeatureSelection") model=this}}
+	</section>
 {{/partial}}

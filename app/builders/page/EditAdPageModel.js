@@ -36,6 +36,9 @@ class EditAdPageModel {
 		let modelBuilder = new ModelBuilder(this.getEditAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 
+		abstractPageModel.addToClientTranslation(modelData, [
+			"feature"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {

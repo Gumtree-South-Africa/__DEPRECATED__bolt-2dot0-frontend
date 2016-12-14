@@ -1,0 +1,32 @@
+<div class="content-ad-tabs">
+	<div class="adTabs">
+		<ul>
+			<li class="active"><span>{{i18n "vip.ads.similar"}}</span></li>
+			<li><span>{{i18n "vip.ads.sellers"}}</span></li>
+		</ul>
+	</div>
+	<div class="content-ads">
+		{{#if this.advert.similars.ads}}
+			{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.similars}}
+			<div class="card-view-more">
+		      <a class="link{{#unless this.advert.similars.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.similars.viemMoreLink.0._links.0.href}}" y="f">
+					<span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
+					<span class="no-underline">&nbsp;&gt;</span></a>
+			</div>
+			{{else}}
+					<span class="empty-message">{{i18n "vip.ads.emptyad"}}</span>
+		{{/if}}
+	</div>
+	<div class="content-ads">
+		{{#if this.advert.sellerOtherAds.ads}}
+			{{> (dynamic "tileGrid" this.locale) tileGrid=this.advert.sellerOtherAds}}
+			<div class="card-view-more">
+					<a class="link{{#unless this.advert.sellerOtherAds.moreDataAvailable}} hidden{{/unless}}" href="{{this.advert.sellerDetails.publicDetails.sellerOtherInfoUrl}}" y="f">
+					<span class="underline">{{i18n "homepage.popularSearches.viewMore"}}</span>
+					<span class="no-underline">&nbsp;&gt;</span></a>
+			</div>
+			{{else}}
+					<span class="empty-message">{{i18n "vip.ads.emptyad"}}</span>			
+		{{/if}}
+	</div>
+</div>

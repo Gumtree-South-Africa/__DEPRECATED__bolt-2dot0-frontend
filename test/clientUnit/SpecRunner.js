@@ -14,3 +14,5 @@ require("./spec/registrationFormSpec.js");
 require("./spec/photoCarouselSpec.js");
 require("./spec/advertSpec.js");
 require("./spec/topSearchesSpec.js");
+require('./spec/breadcrumbsSpec.js');
+require("./spec/adTabsSpec.js");

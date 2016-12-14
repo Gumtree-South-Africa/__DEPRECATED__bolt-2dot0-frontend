@@ -87,14 +87,14 @@ class CategoryDropdownSelection {
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'categoryId') {
 				this._updateCategory(newValue);
+				// Change category will reset valid status
+				this.isValid = true;
 			} else if (propName === 'isMustLeaf') {
 				this._updateEmptyOptionText(newValue);
 			}
 		});
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
-			if (propName === 'isMustLeaf' || propName === 'isLeaf') {
-				this.isValid = !this._isMustLeaf || this._isLeaf;
-			} else if (propName === 'isValid' || propName === 'isFixMode') {
+			if (propName === 'isValid' || propName === 'isFixMode') {
 				if (!this.$leafCategorySelect) {
 					return;
 				}
@@ -103,6 +103,11 @@ class CategoryDropdownSelection {
 		});
 
 		this._updateCategory(this._categoryId);
+	}
+
+	getCategorySelectionName() {
+		let val = this.$categorySelection.find("select").last().val();
+		return this.$categorySelection.find("select").last().find("option[value='" + val + "']").html();
 	}
 
 	get categoryId() {

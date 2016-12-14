@@ -13,6 +13,7 @@ let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let ImageRecognitionModel = require(cwd + '/app/builders/common/ImageRecognitionModel');
+let UserModel = require(cwd + '/app/builders/common/UserModel');
 let logger = require(`${cwd}/server/utils/logger`);
 let Q = require('q');
 let _ = require('underscore');
@@ -49,6 +50,9 @@ class PostAdPageModel {
 			backUrl = '';
 		}
 		modelData.backUrl = backUrl;
+		abstractPageModel.addToClientTranslation(modelData, [
+			"feature"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -78,6 +82,7 @@ class PostAdPageModel {
 	}
 
 	mapData(modelData, data) {
+		modelData.clientTranslations = data.clientTranslations;
 		modelData.deferredAd = data.deferredAd;
 		modelData.header = data.common.header || {};
 		modelData.header.canonical = modelData.header.canonical + "/post";
@@ -112,7 +117,7 @@ class PostAdPageModel {
 		} else {
 			modelData.shouldDefaultPrice = true;
 		}
-
+		modelData.defaultPhoneNumber = data.user && data.user.phone;
 		return modelData;
 	}
 
@@ -161,6 +166,17 @@ class PostAdPageModel {
 			} else {
 				return {"suggestion": {"categoryId": ""}};
 			}
+		};
+
+		this.dataPromiseFunctionMap.user = () => {
+			if (!modelData.bapiHeaders.authTokenValue) {
+				// Quick return for not-logged in user
+				return Q.resolve(null);
+			}
+			let userModel = new UserModel(modelData.bapiHeaders);
+			return userModel.getUserFromCookie().fail(() => {
+				return Q.resolve(null);
+			});
 		};
 
 		this.dataPromiseFunctionMap.adDraft = () => {

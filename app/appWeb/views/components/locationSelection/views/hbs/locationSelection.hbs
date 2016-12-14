@@ -18,6 +18,7 @@
                            {{else}}
 						       placeholder="{{i18n 'modal.placeholderText'}}"
                            {{/if}}/>
+					<input id="locationId" type="hidden" data-schema="data.location.id" name="locationId" value="{{this.adResult.location.id}}">
 					<input id="location-lat" type="hidden" data-schema="data.location.latitude" name="locationLatitude" value="{{this.adResult.location.latitude}}">
 					<input id="location-lng" type="hidden" data-schema="data.location.longitude" name="locationLongitude" value="{{this.adResult.location.longitude}}">
                 </div>
