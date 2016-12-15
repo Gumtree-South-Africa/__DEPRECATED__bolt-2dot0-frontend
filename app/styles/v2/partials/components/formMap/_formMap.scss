@@ -1,3 +1,5 @@
+@import "../../blueprint/colors";
+
 .form-map-conponent {
 	padding: 0px 6%;
 
@@ -5,31 +7,22 @@
 		text-transform: uppercase;
 		font-size: 10px;
 		display: inline-block;
-		color: #8E8E93;
+		color: $formMap-title-color;
 		margin-left: 2%;
         margin-bottom: 7px;
 	}
 	.map-form {
-		// background: red;
-
 		.search-location {
 			margin-bottom: 10px;
 			overflow: hidden;
 			.textbox {
-				border: 1px solid #333333;
+				border: 1px solid $formMap-text-color;
 				margin-right: 0px;
 				width: calc(96% - 2px);
 				padding: 0 calc(2% - 1px);
 				float: left;
 				font-size: 16px;
-				-webkit-transition: border 0.4s;
-				-moz-transition: border 0.4s;
-				-o-transition: border 0.4s;
 				transition: border 0.4s;
-
-				-webkit-transition: width 0.4s;
-				-moz-transition: width 0.4s;
-				-o-transition: width 0.4s;
 				transition: width 0.4s;
 
 				&.active {
@@ -39,16 +32,13 @@
 					width: calc(96% - 192px);
 				 }
 				&.error {
-					border: 2px solid red;
-					// width: calc(96% - 4px);
+					border: 2px solid $formMap-error-input;
 				}
 			}
 			.setLocationButton {
-				// background: #FF9800;
 				background: none;
 				border: none;
-				color: #1D98D4;
-				// padding: 8px 10px;
+				color: $formMap-buton-color;
 				text-align: center;
 				outline: none;
 				width: 180px;
@@ -56,15 +46,7 @@
 				margin-right: -180px;
 				height: 32px;
 				line-height: 32px;
-
-				-webkit-transition: width 0.4s;
-				-moz-transition: width 0.4s;
-				-o-transition: width 0.4s;
 				transition: width 0.4s;
-
-				-webkit-transition: margin 0.4s;
-				-moz-transition: margin 0.4s;
-				-o-transition: margin 0.4s;
 				transition: margin 0.4s;
 
 				&.active {
@@ -88,7 +70,7 @@
 			margin: 10px 0;
 			.map-plugin {
 				height: 400px;
-				background: #e3e3e3;
+				background: $formMap-background;
 				width: 100%;
 
 				#map {
@@ -129,7 +111,6 @@
 				}
 			}
 		}
-		.localization-stats {}
 	}
 }
 
@@ -168,13 +149,8 @@
 			padding: 2px;
 			width: 78px;
 			height: 25px;
-			background: #fff;
-			border: 1px solid #dddddd;
-			// -webkit-border-radius: 25px;
-			// -moz-border-radius: 25px;
-			// -ms-border-radius: 25px;
-			// -o-border-radius: 25px;
-			// border-radius: 25px;
+			background: $color-white;
+			border: 1px solid $color-white-75;
 		}
 		input + label:before, input + label:after {
 			display: block;
@@ -185,51 +161,32 @@
 		}
 		input + label:before {
 			right: 1px;
-			background-color: #f1f1f1;
-			// -webkit-border-radius: 25px;
-			// -moz-border-radius: 25px;
-			// -ms-border-radius: 25px;
-			// -o-border-radius: 25px;
-			// border-radius: 25px;
-			-webkit-transition: background 0.4s;
-			-moz-transition: background 0.4s;
-			-o-transition: background 0.4s;
+			background-color: $color-white-85;
 			transition: background 0.4s;
 
 			content: 'Si';
-			background-color: #dddddd;
+			background-color: $color-white-75;
 			font-size: 12px;
 			padding-right: 10px;
 			line-height: 25px;
 		}
 		input + label:after {
 			width: 40px;
-			background-color: #1D98D4;
-			// -webkit-border-radius: 100%;
-			// -moz-border-radius: 100%;
-			// -ms-border-radius: 100%;
-			// -o-border-radius: 100%;
-			// border-radius: 100%;
-			// -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-			// -moz-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-			// box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-			-webkit-transition: margin 0.4s;
-			-moz-transition: margin 0.4s;
-			-o-transition: margin 0.4s;
+			background-color: $formMap-buton-color;
 			transition: margin 0.4s;
 
-			color: #fff;
+			color: $color-white;
 			content: 'No';
 			font-size: 9pt;
 			text-align: center;
 			line-height: 27px;
-			border-right: 1px solid #dddddd;
+			border-right: 1px solid $color-white-75;
 		}
 		input:checked + label:before {
-			// background-color: #1D98D4;
-			background-color: #dddddd;
+			// background-color: $formMap-buton-color;
+			background-color: $color-white-75;
 			content: 'No';
-			color: #333;
+			color: $color-black-95;
 			text-align: left;
 			font-size: 12px;
 			padding-left: 10px;
@@ -238,9 +195,9 @@
 		input:checked + label:after {
 			margin-left: 40px;
 			content: 'Si';
-			background-color: #1D98D4;
+			background-color: $formMap-buton-color;
 			border: none;
-			color: #fff;
+			color: $color-white;
 		}
 	}
 }

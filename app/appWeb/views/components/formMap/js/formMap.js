@@ -10,7 +10,7 @@ class FormMap {
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
 		this.googleMap = $(".form-map-conponent").data("google-map");
 		this.postLocation = $(".form-map-conponent").data("post-location");
-		this.position = this.postLocation || this.googleMap.location;
+		this.position = this.googleMap.location;
 
 		this.zoom = 17;
 		this.accuracy = 5;
@@ -56,24 +56,17 @@ class FormMap {
 	}
 
 	configMap() {
-		if(this.position.lat === 22.084192691413616) {
-			this.map = new google.maps.Map(this.HtmlMap[0], {
-				center: this.position,
-				disableDefaultUI: true,
-			});
-		} else {
-			this.map = new google.maps.Map(this.HtmlMap[0], {
-				center: this.position,
-				zoom: this.zoom,
-				disableDefaultUI: true,
-			});
-		}
+		this.geolocate();
+		let tempzoom = !this.position || this.position.lat === 22.084192691413616 ? 4 : this.zoom;
+		this.map = new google.maps.Map(this.HtmlMap[0], {
+			center: this.position,
+			zoom: tempzoom,
+			disableDefaultUI: true,
+		});
 
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
-			// this.HtmlSetLocation.addClass("active");
-			// this.HtmlAutocomplete.addClass("inactive");
 			this.setLocation();
 		});
 		this.initAutocomplete();
@@ -84,7 +77,6 @@ class FormMap {
 	setLocation() {
 		this.removeAllMarker();
 		this.removeAllRanges();
-		// this.addMarker();
 		this.addRange(this.meters);
 	}
 
@@ -108,12 +100,14 @@ class FormMap {
 		this.map.setZoom(this.zoom);
 		this.removeAllMarker();
 		this.removeAllRanges();
-		// this.addMarker();
 		this.addRange(this.meters);
 		this.HtmlAutocomplete.val();
 	}
 
 	geolocate() {
+		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
+		this.position = this.googleMap.location;
+
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition (function(position) {
 
@@ -134,12 +128,8 @@ class FormMap {
 				this.map.setZoom(this.zoom);
 				this.removeAllMarker();
 				this.removeAllRanges();
-				// this.addMarker();
 				this.addRange(this.meters);
 			});
-		} else {
-			// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-			this.position = this.postLocation || this.googleMap.location;
 		}
 	}
 
@@ -154,7 +144,6 @@ class FormMap {
 			center: center,
 			radius: Math.sqrt(meters) * this.accuracy
 		});
-		// console.log(tempRange.radius);
 		tempRange.setMap(this.map);
 		googleRanges.push(tempRange);
 	}
@@ -242,10 +231,7 @@ let initialize = () => {
 	});
 
 	window.formMap.HtmlAutocomplete.focus(() => {
-		window.formMap.removeAllMarker();
-		window.formMap.removeAllRanges();
-		window.formMap.addMarker();
-		// window.formMap.addRange(window.formMap.meters);
+		window.formMap.geolocate();
 	});
 
 	window.formMap.HtmlEnableLocation.change(() => {
