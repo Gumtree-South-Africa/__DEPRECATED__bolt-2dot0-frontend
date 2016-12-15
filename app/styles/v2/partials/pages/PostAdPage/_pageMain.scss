@@ -156,6 +156,11 @@ $labelMargin: 8%;
 }
 
 @include to-breakpoint($small-break) {
+	.footer-wrapper {
+		// Default at start
+		margin-bottom: 49px;
+	}
+
 	.viewport.covered {
 		overflow-x: hidden;
 		.footer-wrapper {
@@ -172,7 +177,7 @@ $labelMargin: 8%;
 		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
 		// Actually the overlay's height is 53px, but post page will load one image which will adds to
 		// the height of body after footer, so that image's height should be calculated.
-		margin-bottom: 29px;
+		margin-bottom: 39px;
 	}
 
 	.main-detail-post {
