@@ -7,6 +7,8 @@ class replyForm {
 	 * @param options
 	 */
 	initialize() {
+		this.$headerHeight = $('.header-wrapper').height();
+		console.log('ORIGINAL HEIGHT', this.$headerHeight);
 		$(document).ready(() => {
 			let $realPhone = $('.real-phone').text();
 			let $encodedPhone = window.btoa($realPhone);
@@ -41,16 +43,12 @@ class replyForm {
 	_messageSeller() {
 		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
-		let $headerHeight = this._setHeaderHeight();
-		$('.reply-form').css('top', $headerHeight + 'px');
+		console.log('BEFORE HEIGHT-------------', this.$headerHeight);
 		$('.header-wrapper').addClass('fixed-header');
 		$replyFormContainer.removeClass('desktop-only');
+		console.log('after height', this.$headerHeight);
 		$replyForm.addClass('fixed');
-	}
-
-	_setHeaderHeight() {
-		let $headerHeight = $('.header-wrapper').height();
-		return $headerHeight;
+		$replyForm.css('top', this.$headerHeight + 'px');
 	}
 }
 

@@ -113,6 +113,7 @@ class AdService {
 	}
 
 	replyAd(bapiHeaderValues, replyForm) {
+		console.log(bapiHeaderValues);
 		let locale = bapiHeaderValues.locale;
 		if (locale === 'es_MX') {
 			locale='es_MX_VNS';
