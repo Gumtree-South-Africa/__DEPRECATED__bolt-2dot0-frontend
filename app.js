@@ -27,6 +27,10 @@ let allLocales = 'es_MX,es_AR,en_ZA,en_IE,pl_PL,en_SG';
 // If SITES param is passed as input param, load only those countries
 let siteLocales = process.env.SITES || allLocales;
 
+// For dev usage
+let environmentConfig = require('config');
+let proxy = require('http-proxy-middleware');
+
 
 /*
  * Create Main App
@@ -89,6 +93,54 @@ let createSiteApps = () => {
 
 				siteApp.use(appConfig.mainRoute, appObj);
 			});
+
+			// In develop mode, add proxy so that Node can proxy to RUI server.
+			// This should be registered after all routing.
+
+			// To use that, you should add config in your xxx.json in server/config
+			// A sample is:
+			// "devFeatures": {
+			//     "ruiProxy": {
+			//         "domainBase": "sharon-fp003-4464.slc01.dev.ebayc3.com",
+			//         "port": 443
+			//     }
+			// }
+			
+			if (siteApp.locals.devMode) {
+				let ruiProxyConfig = environmentConfig.get('devFeatures.ruiProxy');
+				if (ruiProxyConfig && ruiProxyConfig.domainBase) {
+					// By default, we will use HTTPS no matter what protocol for current site
+					let ruiPort = ruiProxyConfig.port || 443;
+					let defaultTarget = `https://${ruiProxyConfig.domainBase}:${ruiPort}`;
+					let proxyMiddlewareConfig = {
+						target: defaultTarget,
+						changeOrigin: true,
+						xfwd: true,
+						autoRewrite: true,
+						// Don't verify SSL as it's develop mode
+						secure: false,
+						router: (req) => {
+							let hostname = req.vhost && req.vhost.hostname;
+							if (!hostname) {
+								return defaultTarget;
+							}
+							let hostnameIndex = hostname.indexOf(siteApp.locals.config.hostname);
+							if (hostnameIndex < 0) {
+								return defaultTarget;
+							}
+							let ruiDomain = hostname.substring(
+								0, hostnameIndex + siteApp.locals.config.hostname.length);
+							return `https://${ruiDomain}.${ruiProxyConfig.domainBase}:${ruiPort}`;
+						}
+					};
+					if (ruiProxyConfig.basePath) {
+						proxyMiddlewareConfig.pathRewrite = {
+							'^/': ruiProxyConfig.basePath
+						};
+					}
+					siteApp.use(proxy(proxyMiddlewareConfig));
+				}
+			}
 
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
