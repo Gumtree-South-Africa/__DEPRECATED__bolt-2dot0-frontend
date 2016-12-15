@@ -1,7 +1,9 @@
 'use strict';
 let cwd = process.cwd();
+let _ = require('underscore');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
 let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
@@ -10,7 +12,6 @@ let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
 let StringUtils = require(cwd + '/app/utils/StringUtils');
-let _ = require('underscore');
 let displayAttributesConfig = require(cwd + '/app/config/ui/displayAttributesConfig.json');
 
 class ViewPageModel {
@@ -58,31 +59,38 @@ class ViewPageModel {
 		];
 	}
 
+	/**
+	 * Map Data
+	 * @param signedMapUrl
+	 * @returns {{defaultRadius: number, passedRadius: number}}
+	 */
 	getMapFromSignedUrl(signedMapUrl) {
 		let map = {
 			defaultRadius: 2000, //2.0km default kilometers
 			passedRadius: 2000
 		};
 
-		let findStr = "center=";
-		let endOf = -1;
-		endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
-		let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
+		if (typeof signedMapUrl !== 'undefined') {
+			let findStr = "center=";
+			let endOf = -1;
+			endOf = signedMapUrl.lastIndexOf(findStr) > 0 ? signedMapUrl.lastIndexOf(findStr) + findStr.length : endOf;
+			let center = signedMapUrl.slice(endOf, signedMapUrl.indexOf('&')).split(',');
 
-		map.locationLat = center[0];
-		map.locationLong = center[1];
+			map.locationLat = center[0];
+			map.locationLong = center[1];
 
-		if(map.passedRadius === 0){
-			map.showPin = true;
-			map.showCircle = false;
-		} else if(map.passedRadius === null || map.passedRadius === undefined) {
-			map.showCircle = true;
-			map.finalRadius = map.defaultRadius;
-			map.showPin = false;
-		} else {
-			map.finalRadius = map.passedRadius;
-			map.showCircle = true;
-			map.showPin = false;
+			if (map.passedRadius === 0) {
+				map.showPin = true;
+				map.showCircle = false;
+			} else if (map.passedRadius === null || map.passedRadius === undefined) {
+				map.showCircle = true;
+				map.finalRadius = map.defaultRadius;
+				map.showPin = false;
+			} else {
+				map.finalRadius = map.passedRadius;
+				map.showCircle = true;
+				map.showPin = false;
+			}
 		}
 
 		return map;
@@ -152,8 +160,11 @@ class ViewPageModel {
 			});
 			if (typeof customAttributeObj !== 'undefined') {
 				let attr = {};
+				// name
 				attr ['name'] = customAttributeObj.localizedName;
+				// attrName
 				attr ['attrName'] = customAttributeObj.name;
+				// attrValue
 				switch (customAttributeObj.allowedValueType) {
 					case 'NUMBER':
 						attr ['value'] = attribute.value.attributeValue;
@@ -176,26 +187,14 @@ class ViewPageModel {
 		});
 	}
 
-	mapData(modelData, data) {
-		modelData = _.extend(modelData, data);
-		modelData.header = data.common.header || {};
-		modelData.footer = data.common.footer || {};
-		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
-		modelData.seo = data['seo'] || {};
-		modelData.dataLayer = data['common'].dataLayer || {};
-		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
-
-		modelData.vip = {};
-		modelData.vip.showSellerStuff = true;
-		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
-			modelData.vip.showSellerStuff = true;
-		}
-		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
-
-		return modelData;
-	}
-
-	orderArr(inputArr, locale, categoryId) {
+	/**
+	 * Order Ad Attributes
+	 * @param inputArr
+	 * @param locale
+	 * @param categoryId
+	 * @returns {*}
+	 */
+	orderAndLinkAttributes(inputArr, locale, categoryId, seoUrls) {
 		let inputLocaleObj = displayAttributesConfig[locale];
 		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
 		let newArr = [];
@@ -204,10 +203,31 @@ class ViewPageModel {
 			for (let i = 0; i < inputCategoryIdArr.length; i++) {
 				let arrIndex = _.findIndex(inputArr, {
 					attrName: inputCategoryIdArr[i]
-				})
+				});
 				if(arrIndex !== -1) {
-					inputArr[arrIndex].capsName = inputArr[arrIndex].name.toUpperCase();
-					newArr.push(inputArr[arrIndex]);
+					let attr = JSON.parse(JSON.stringify(inputArr[arrIndex]));
+					// capsName
+					attr.capsName = attr.name.toUpperCase();
+					// seoUrl link
+					if (typeof seoUrls !== 'undefined') {
+						_.each(seoUrls.makeModel, (makeModel) => {
+							if (makeModel.text === attr.value) {
+								if (attr.attrName === 'AlmVehicleBrand') {
+									let makeModelElt = makeModel._links.find( (elt) => {
+										return elt.rel === "search";
+									});
+									attr.seoUrl = makeModelElt.href;
+								}
+								if (attr.attrName === 'AlmVehicleModel') {
+									let makeModelElt = makeModel._links.find( (elt) => {
+										return elt.rel === "search";
+									});
+									attr.seoUrl = makeModelElt.href;
+								}
+							}
+						});
+					}
+					newArr.push(attr);
 				} else {
 					continue;
 				}
@@ -216,6 +236,79 @@ class ViewPageModel {
 		} else {
 			return inputArr;
 		}
+	}
+
+	/**
+	 * Similar / Seller Other Ads Data
+	 * @param data
+	 * @returns {*}
+	 */
+	getOtherAdsCard(data) {
+		data.similars.config = cardsConfig.cards.similarCardTab.templateConfig;
+		data.sellerOtherAds.config = cardsConfig.cards.sellerOtherCardTab.templateConfig;
+		data.similars.moreDataAvailable = false;
+		data.sellerOtherAds.moreDataAvailable = false;
+
+		if (typeof data.similars.ads !== 'undefined') {
+			if (data.similars.ads.length > cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize) {
+				data.similars.moreDataAvailable = true;
+				data.similars.viemMoreLink = data.breadcrumbs.categories.slice(-1);
+			}
+			data.similars.ads = data.similars.ads.slice(0, cardsConfig.cards.similarCardTab.templateConfig.viewMorePageSize);
+			if (!this.req.app.locals.prodEpsMode) {
+				data.similars.ads = JSON.parse(JSON.stringify(data.similars.ads).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
+		}
+
+		if (typeof data.sellerOtherAds.ads !== 'undefined') {
+			if (data.sellerOtherAds.ads.length > cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize) {
+				data.sellerOtherAds.moreDataAvailable = true;
+			}
+			data.sellerOtherAds.ads = data.sellerOtherAds.ads.slice(0, cardsConfig.cards.sellerOtherCardTab.templateConfig.viewMorePageSize);
+			if (!this.req.app.locals.prodEpsMode) {
+				data.sellerOtherAds.ads = JSON.parse(JSON.stringify(data.sellerOtherAds.ads).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+			}
+		}
+
+		return data;
+	}
+
+	mapData(modelData, data) {
+		modelData = _.extend(modelData, data);
+		modelData.header = data.common.header || {};
+		modelData.footer = data.common.footer || {};
+
+		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
+
+		modelData.seo = data['seo'] || {};
+		if (!_.isEmpty(modelData.seo)) {
+			if (typeof modelData.seo.pageTitle !== 'undefined') {
+				let pageTitle = modelData.seo.pageTitle;
+				pageTitle = pageTitle.replace('adTitle', data.advert.title);
+				pageTitle = pageTitle.replace('locationSeoWord', data.advert.locationDisplayName);
+				pageTitle = pageTitle.replace('country', modelData.footer.brandName);
+				pageTitle = pageTitle.replace('adId', data.advert.adId);
+				modelData.seo.pageTitle = pageTitle;
+			}
+			if (typeof modelData.seo.description !== 'undefined') {
+				let description = modelData.seo.description;
+				description = description.replace('description', data.advert.description.substring(0,140));
+				description = description.replace('adId', data.advert.adId);
+				modelData.seo.description = description;
+			}
+		}
+
+		modelData.dataLayer = data['common'].dataLayer || {};
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+
+		modelData.vip = {};
+		modelData.vip.showSellerStuff = false;
+		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
+			modelData.vip.showSellerStuff = true;
+		}
+		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
+
+		return modelData;
 	}
 
 	getPageDataFunctions(modelData) {
@@ -265,7 +358,7 @@ class ViewPageModel {
 
 				// Manipulate Ad Data
 
-				// // TODO: Get seoVipUrl
+				// seoVipUrl
 				let seoVipElt = data._links.find((elt) => {
 					return elt.rel === "seoVipUrl";
 				});
@@ -317,7 +410,7 @@ class ViewPageModel {
 				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
 				// Breadcrumbs
-				data.breadcrumbs = { };
+				data.breadcrumbs = {};
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
 				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
@@ -351,10 +444,13 @@ class ViewPageModel {
 				data.categoryCurrentHierarchy = [];
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 
+				// Similar-Ads/Seller-Other-Ads configuration
+				this.getOtherAdsCard(data);
+
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 					this.prepareDisplayAttributes(data);
-					data.orderedArr = this.orderArr(data.displayAttributes, this.locale, data.categoryId);
+					data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
 					return data;
 				});
 			});

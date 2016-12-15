@@ -72,6 +72,32 @@ $labelMargin: 8%;
 	}
 }
 
+.separator-div {
+	height: 1px;
+	position: relative;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	&:after {
+		content: "";
+		background-color: $categorySelectionActiveListRowBgColor;
+		position: absolute;
+		bottom: 0;
+		height: 1px;
+		left: 5%;
+		right: 5%;
+	}
+}
+
+.post-ad-header {
+	z-index: 1;
+}
+.inf-container {
+	.inf-amount {
+		margin-top: -25px !important;
+	}
+}
+
 .photo-switcher {
 	display: inline-block;
 	width: 300px; // Align with banner asset
@@ -130,13 +156,25 @@ $labelMargin: 8%;
 }
 
 @include to-breakpoint($small-break) {
-	.viewport.covered .footer-wrapper {
-		// To ensure nothing in page is covered by post button overlay
-		// Magic number 49 is the one to ensure the bottom of footer is exactly at the top of overlay
-		// Actually the overlay's height is 73px, but post page will load one image which will adds to
-		// the height of body after footer, so that image's height should be calculated.
-		margin-bottom: 49px;
+	.viewport.covered {
+		overflow-x: hidden;
+		.footer-wrapper {
+			// To ensure nothing in page is covered by post button overlay
+			// Magic number 49 is the one to ensure the bottom of footer is exactly at the top of overlay
+			// Actually the overlay's height is 73px, but post page will load one image which will adds to
+			// the height of body after footer, so that image's height should be calculated.
+			margin-bottom: 49px;
+		}
 	}
+
+	.viewport.promotion-covered .footer-wrapper {
+		// To ensure nothing in page is covered by no promotion button overlay
+		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
+		// Actually the overlay's height is 53px, but post page will load one image which will adds to
+		// the height of body after footer, so that image's height should be calculated.
+		margin-bottom: 29px;
+	}
+
 	.main-detail-post {
 		display:none;
 		background-color: $mainDetailsBackgroundColor;

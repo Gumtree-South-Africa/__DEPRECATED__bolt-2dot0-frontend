@@ -70,7 +70,7 @@ PageControllerUtil.prototype.is2dot0Page = function(res, abtestpage) {
 
 /**
  * @method is1dot0Page
- * @description Checks if it is 1dot0 page based on b2dot0Pages
+ * @description Checks if it is 1dot0 page based on b1dot0Pages
  * @param {Object} response
  * @return {JSON}
  */

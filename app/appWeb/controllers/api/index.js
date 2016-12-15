@@ -11,5 +11,6 @@ router.use('/postad', require('./apiPostAdController'));
 router.use('/edit', require('./apiEditAdController'));
 router.use('/auth', require('./apiAuthController'));
 router.use('/postad/imagerecognition', require('./apiImageRecognitionController'));
+router.use('/promotead', require('./apiPromoteAdController'));
 
 module.exports = router;

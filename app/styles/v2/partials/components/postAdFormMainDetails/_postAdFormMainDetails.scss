@@ -98,7 +98,7 @@ $categoryArrowIconWidth: 13px;
 		padding: 0 calc(2% - 1px);
 	}
 
-	.form-ad-title .input-wrapper input {
+	.form-ad-title .input-wrapper input, .form-ad-phone .input-wrapper input {
 		width: $inputWidth !important;
 	}
 
@@ -132,7 +132,10 @@ $categoryArrowIconWidth: 13px;
 				margin: 0 0 0 $inputMargin;
 			}
 
-			&.user-error,
+			// Currently we don't handle the error from webshims so showing user-error has no meaning
+			// to user but adding confusion. Will add back following line when we have front-end
+			// checking work.
+			// &.user-error,
 			&.validation-error {
 				border: 1px solid red;
 			}
