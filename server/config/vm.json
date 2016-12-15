@@ -39,7 +39,7 @@
 	},
 	"RUI": {
 		"server": {
-			"host": "",
+			"host": "sharon-fp003-4464.slc01.dev.ebayc3.com",
 			"port": 80,
 			"parameters": null,
 			"timeout": 2000

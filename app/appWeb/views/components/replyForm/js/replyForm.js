@@ -1,38 +1,3 @@
-// 'use strict';
-//
-// let initialize = () => {
-// 	//TODO btoa atob the number
-// 	$(document).ready(() => {
-// 		let $realPhone = $('.real-phone').text();
-// 		let $encodedPhone = window.btoa($realPhone);
-// 		$('.real-phone').text($encodedPhone);
-//
-// 		$('.show-phone').on('click', function() {
-// 			$('.hidden-phone').addClass('hide');
-// 			$('.real-phone').removeClass('hide');
-// 			$('.show-phone').addClass('hide');
-// 			$('.real-phone').text(window.atob($encodedPhone));
-// 		});
-//
-// 		$('#vip-send-button').on('click', function() {
-// 			$('.reply-form-container').addClass('hide');
-// 			$('.message-sent').removeClass('hide');
-// 		});
-//
-// 		$('.return-button').on('click', function() {
-// 			$('.message-sent').addClass('hide');
-// 		});
-//
-// 		$('.close-button').on('click', function() {
-// 			$('.message-sent').addClass('hide');
-// 		});
-// 	});
-// };
-//
-// module.exports = {
-// 	initialize
-// };
-
 'use strict';
 
 class replyForm {
@@ -74,11 +39,18 @@ class replyForm {
 	}
 
 	_messageSeller() {
+		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
-		let $offsetTop = 190;
-		$('.header-wrapper').addClass('fix');
+		let $headerHeight = this._setHeaderHeight();
+		$('.reply-form').css('top', $headerHeight + 'px');
+		$('.header-wrapper').addClass('fixed-header');
 		$replyFormContainer.removeClass('desktop-only');
-		$("html,body").animate({ scrollTop: $replyFormContainer.offset().top - $offsetTop }, "fast");
+		$replyForm.addClass('fixed');
+	}
+
+	_setHeaderHeight() {
+		let $headerHeight = $('.header-wrapper').height();
+		return $headerHeight;
 	}
 }
 

@@ -383,11 +383,6 @@
 	"vip.cancel": "Cancelar",
 	"vip.reply.your.name": "Nombre",
 	"vip.reply.your.email": "Ej: user@email.com",
-	"vip.reply.canned.imInterested": "Me interesa. Por favor contáctame.",
-	"vip.reply.canned.isItStillAvailable": "¿Aún está disponible?",
-	"vip.reply.canned.whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
-	"vip.reply.canned.whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
-	"vip.reply.canned.wouldYouShareAdditionalPics": "¿Tienes más fotografías?",
 	"vip.reply.canned.messagePlaceholder": "Escribe aquí...",
 	"vip.policymessage": "Al hacer clic en “Enviar” acepta los <a href=\"%s\" target=\"_self\">Términos y Condiciones</a> y la <a href=\"%s\" target=\"_self\">Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
 	"vip.map": "Mapa",
@@ -1594,7 +1589,8 @@
 			"emailValidate": "Es necesario tu correo electrónico",
 			"emailPlaceholder": "Correo electrónico: user@email.com",
 			"writeHere": "Escribir texto aquí...",
-			"phone": "NÚMERO DE TELÉFONO (OPCIONAL)",
+			"phone": "NÚMERO DE TELÉFONO",
+			"phoneOptional": "(OPCIONAL)",
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
@@ -1602,7 +1598,15 @@
 			"browseFiles": "Browse Files",
 			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
-			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+			"canned": {
+				"imInterested": "Me interesa. Por favor contáctame.",
+				"isItStillAvailable": "¿Aún está disponible?",
+				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
+				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
+			}
 		}
 	},
 	"search": {
