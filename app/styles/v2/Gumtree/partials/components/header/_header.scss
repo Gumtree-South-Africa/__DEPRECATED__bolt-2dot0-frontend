@@ -80,6 +80,12 @@
 			position: absolute;
 			left: 0;
 			top: 100%;
+			background-color: $vivaGray4;
+			padding-left: 280px;
+			padding-top: 20px;
+    		padding-bottom: 20px;
+			margin-left: -300px;
+			min-width: 735px;
 
 			.menu-item {
 				border-bottom-color: $headerMenuItemSeparatorColor;
