@@ -12,9 +12,10 @@ let config = require('config');
 
 
 module.exports = () => {
-	if (config.get('vmGoogleMapKeys')) {
+	let keyConfig = config.get('vmGoogleMapKeys');
+	if (keyConfig) {
 		return {
-			'googleMapKey': config.get('vmGoogleMapKeys')[Math.floor(Math.random() * 7)]
+			'googleMapKey': keyConfig[Math.floor(Math.random() * keyConfig.length)]
 		};
 	} else {
 		return {
