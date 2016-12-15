@@ -366,6 +366,9 @@ class ViewPageModel {
 				let dataSeoVipUrl = seoVipElt.href;
 				data.seoVipUrl = dataSeoVipUrl;
 
+				// loginRedirectUrl
+				data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
 				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
