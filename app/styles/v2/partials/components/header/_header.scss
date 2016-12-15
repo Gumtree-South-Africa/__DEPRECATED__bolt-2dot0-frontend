@@ -285,7 +285,6 @@ $dropdown-width: 220px;
 
 		.menu-dropdown {
 			margin-top: -1px; // works with item-text to hide top border
-
 			font-weight: $fontWeightBold;
 			font-size: $fontSizeH4;
 			text-align: left;
@@ -293,14 +292,20 @@ $dropdown-width: 220px;
 			border: 1px solid $headerMenuBorderColor;
 			display: inline-block;
 			white-space: nowrap;
+			margin-left: -350px;
+			min-width: 755px;
+			padding-left: 330px;
+			padding-top: 20px;
+			padding-bottom: 20px;
 
 			&.hidden {
 				display: none;
 			}
 
 			.menu-item {
-				border-bottom: 1px solid $headerMenuItemSeparatorColor;
-				padding-right: 1em;
+				// border-bottom: 1px solid $headerMenuItemSeparatorColor;
+				width: 280px;
+				float: left;
 
 				&:last-child {
 					border-bottom: none;
@@ -310,8 +315,8 @@ $dropdown-width: 220px;
 			// link items should take the entire space of menu-item
 			.link-item {
 				display: block;
-				padding-top: 10px;
-				padding-bottom: 10px;
+				padding-top: 5px;
+				padding-bottom: 5px;
 			}
 
 			.item-primary-text {
