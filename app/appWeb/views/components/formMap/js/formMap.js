@@ -19,11 +19,13 @@ class FormMap {
 		this.autocomplete;
 		this.useGeolocation;
 		this.position = locationMock;
+		this.currentLocation;
 		this.meters = 1000;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
+		this.googleMapKey = "AIzaSyD4WwjknKeEhHXtOuhMf_E-w66C-BlHaWY";
 	}
 
 	expandViewportToFitPlace(map, place) {
@@ -107,7 +109,7 @@ class FormMap {
 
 	geolocate() {
 		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-		this.position = this.position ? this.position : locationMexicoMock;
+		this.position = this.position ? this.position : locationMock;
 		try	{
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition ((gps) => {
@@ -187,7 +189,6 @@ let initialize = () => {
 	window.formMap = new FormMap();
 	// set the current location via data in node
 	window.formMap.configMap();
-	window.formMap.position = locationMexicoMock;
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 
