@@ -236,18 +236,18 @@
 		},
 		"PostAdForm": {
 			"desktop" 	: {
-				"models" : ["seo", "initialCategory", "adDraft", "user", "locationlatlong"]
+				"models" : ["seo", "initialCategory", "adDraft", "user"]
 			},
 			"mobile" 	: {
-				"models" : ["seo", "initialCategory", "adDraft", "user", "locationlatlong"]
+				"models" : ["seo", "initialCategory", "adDraft", "user"]
 			}
 		},
 		"EditAdForm": {
 			"desktop" 	: {
-				"models" : ["locationlatlong", "adResult", "seo", "locationlatlong"]
+				"models" : ["locationlatlong", "adResult", "seo"]
 			},
 			"mobile" 	: {
-				"models" : ["locationlatlong", "adResult", "seo", "locationlatlong"]
+				"models" : ["locationlatlong", "adResult", "seo"]
 			}
 		},
 		"LoginPage": {
