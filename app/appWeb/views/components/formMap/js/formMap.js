@@ -57,7 +57,7 @@ class FormMap {
 	}
 
 	configMap() {
-		this.geolocate();
+		
 		let tempzoom = locationMexicoMock ? 4 : this.zoom;
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: locationMexicoMock,
@@ -107,7 +107,7 @@ class FormMap {
 
 	geolocate() {
 		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-		this.position = this.position ? this.position : locationMock;
+		this.position = this.position ? this.position : locationMexicoMock;
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition (function(position) {
@@ -115,20 +115,15 @@ class FormMap {
 					lat: position.coords.latitude,
 					lng: position.coords.longitude
 				};
-				let circle = new google.maps.Circle({
-					center: geolocation,
-					radius: position.coords.accuracy,
-					map: this.map,
-				});
-
 				this.position = geolocation;
-				this.autocomplete.setBounds(circle.getBounds());
-				this.map.setCenter(this.position);
-				this.map.setZoom(this.zoom);
-				this.removeAllMarker();
-				this.removeAllRanges();
-				this.addRange(this.meters);
 			});
+		}
+		if(this.map) {
+			this.map.setCenter(this.position);
+			this.map.setZoom(this.zoom);
+			this.removeAllMarker();
+			this.removeAllRanges();
+			this.addRange(this.meters);
 		}
 	}
 
@@ -219,12 +214,13 @@ class FormMap {
 let initialize = () => {
 	window.formMap = new FormMap();
 	// set the current location via data in node
-	window.formMap.position = locationMock;
-	window.formMap.geolocate();
+	window.formMap.configMap();
+	window.formMap.position = locationMexicoMock;
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 
 	window.formMap.HtmlSetLocation.click(() => {
+		window.formMap.geolocate();
 		window.formMap.setCurrentPosition();
 	});
 
