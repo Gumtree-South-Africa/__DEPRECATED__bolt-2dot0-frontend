@@ -108,16 +108,17 @@ class FormMap {
 	geolocate() {
 		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
 		this.position = this.position ? this.position : locationMexicoMock;
-
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition (function(gps) {
-				let geolocation = {
-					lat: gps.coords.latitude,
-					lng: gps.coords.longitude
-				};
-				this.position = geolocation;
-			});
+		try	{
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition ((gps) => {
+					this.position.lat = gps.coords.latitude;
+					this.position.lng = gps.coords.longitude;
+				});
+			}
+		} catch(error) {
+			this.position = this.position ? this.position : locationMock;
 		}
+		
 		if(this.map) {
 			this.map.setCenter(this.position);
 			this.map.setZoom(this.zoom);
@@ -147,35 +148,6 @@ class FormMap {
 			googleRanges[i].setMap(null);
 		}
 		googleRanges = new Array();
-	}
-
-	randomNumber(value, range) {
-		let result = 0;
-		let real = (" " + value).split(".")[0];
-		let decimal = (" " + value).split(".")[1];
-		let minimunRange = decimal - range;
-		let maximusRange = decimal + range;
-		result = Math.round(Math.random() * (maximusRange - minimunRange) + minimunRange);
-		return parseFloat(real + "." + result);
-	}
-
-	addFakeLocation() {
-		let center = this.map.getCenter();
-		let radius = (Math.sqrt(this.meters) * this.meters) * 2;
-		let fkLat = this.randomNumber(center.lat(), radius);
-		let fkLng = this.randomNumber(center.lng(), radius);
-		let fakePosition = { lat: fkLat, lng: fkLng };
-		let label = googleMarker.length === 0 ? "Current Location" : "Fake Location";
-		let icon = googleMarker.length === 0 ? this.icons.current : this.icons.fakeAd;
-
-		let tempMarker = new google.maps.Marker({
-			position: fakePosition,
-			title: label,
-			icon: icon
-		});
-
-		tempMarker.setMap(this.map);
-		googleMarker.push(tempMarker);
 	}
 
 	addMarker() {
@@ -222,10 +194,6 @@ let initialize = () => {
 	window.formMap.HtmlSetLocation.click(() => {
 		window.formMap.geolocate();
 		window.formMap.setCurrentPosition();
-	});
-
-	window.formMap.HtmlAutocomplete.focus(() => {
-		window.formMap.geolocate();
 	});
 
 	window.formMap.HtmlEnableLocation.change(() => {
