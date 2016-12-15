@@ -110,8 +110,7 @@ let createSiteApps = () => {
 				let ruiProxyConfig = null;
 				try {
 					ruiProxyConfig = environmentConfig.get('devFeatures.ruiProxy');
-				}
-				catch(e) {
+				} catch(e) {
 					// It's OK to not having this config
 				}
 				if (ruiProxyConfig && ruiProxyConfig.domainBase) {
