@@ -110,10 +110,10 @@ class FormMap {
 		this.position = this.position ? this.position : locationMexicoMock;
 
 		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition (function(position) {
+			navigator.geolocation.getCurrentPosition (function(gps) {
 				let geolocation = {
-					lat: position.coords.latitude,
-					lng: position.coords.longitude
+					lat: gps.coords.latitude,
+					lng: gps.coords.longitude
 				};
 				this.position = geolocation;
 			});

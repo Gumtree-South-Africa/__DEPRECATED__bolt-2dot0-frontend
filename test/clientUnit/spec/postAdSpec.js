@@ -250,15 +250,6 @@ describe('Post Ad', () => {
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
-		it('test events in component', () => {
-			spyOn(window.formMap, 'setLocation');
-			$testArea.find("#autocompleteTextBox").val("Polanco");
-			$testArea.find('#setCurrentLocationButton').click();
-			$testArea.find('#autocompleteTextBox').val("Test");
-			$testArea.find('#autocompleteTextBox').focus();
-			$testArea.find('#checkGeolocation').change();
-		});
-
 		it("initialize and disable geolocate", () => {
 			let checkGeolocation = $testArea.find('#checkGeolocation');
 			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
@@ -267,11 +258,5 @@ describe('Post Ad', () => {
 			expect(window.formMap.position.lng).toBe(-99.1744351);
 		});
 
-		it('search in autocomplete and set in map', () => {
-			spyOn(window.formMap, 'initAutocomplete');
-			$testArea.find("#autocompleteTextBox").val("Polanco");
-			$testArea.find("#autocompleteTextBox").trigger("place_changed");
-			expect(window.formMap.initAutocomplete).toHaveBeenCalled();
-		});
 	});
 });
