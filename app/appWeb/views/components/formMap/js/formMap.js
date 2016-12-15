@@ -11,8 +11,8 @@ class FormMap {
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
-		this.googleMap = $(".form-map-conponent").data("google-map");
-		this.postLocation = $(".form-map-conponent").data("post-location");
+		this.googleMap = $(".form-map-component").data("google-map");
+		this.postLocation = $(".form-map-component").data("post-location");
 		this.zoom = 17;
 		this.accuracy = 5;
 		this.map;

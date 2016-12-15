@@ -54,7 +54,7 @@
 	},
 	"googleMap": {
 		"sizeRadio": 1000,
-		"location": {
+		"defaultLocation": {
 			"lat": 23.3650375,
 			"lng": -111.5740098
 		}
