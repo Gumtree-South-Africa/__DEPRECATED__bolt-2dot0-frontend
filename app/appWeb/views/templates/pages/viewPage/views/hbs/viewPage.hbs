@@ -38,6 +38,9 @@
             {{> (dynamic "gpsMap")}}
             {{#block "vip-map"}}{{/block}}
         </div>
+
+        {{> (dynamic "nativeAdBanner")}}
+        {{#block "NativeAdCalculator"}}{{/block}}
     </div>
 
     {{> (dynamic "adTabs")}}
@@ -79,6 +82,7 @@
 		};
 
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+        {{#block "NativeAd_Script"}}{{/block}}
 	</script>
 
     {{#partial "Adsense-Script-ext"}}
