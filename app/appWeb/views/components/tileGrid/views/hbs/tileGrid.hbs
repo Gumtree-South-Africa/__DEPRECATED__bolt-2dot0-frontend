@@ -10,7 +10,7 @@
         {{!-- now we iterate the items --}}
         {{#each this.tileGrid.ads}}
             <div data-index="{{@index}}" class="tile-item">
-                {{> (dynamic "adTile" ../locale) this config=../tileGrid.config}}
+                {{> (dynamic "adTile" ../locale) this config=../tileGrid.config homePageUrl=../homePageUrl}}
             </div>
         {{/each}}
 

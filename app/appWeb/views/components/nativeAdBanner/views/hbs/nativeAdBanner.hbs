@@ -1,0 +1,48 @@
+{{#partial "NativeAd"}}
+    <div id="vip-native-ad" class="native-ad"></div>
+{{/partial}}
+
+{{#partial "NativeAd_Script"}}
+    BOLT.displayBanner( $.extend({slotDim: [300,30], slotId : 'vip-native-ad', price : '{{model.content.vipBannerTargetMap.price}}', currency : '{{model.content.vipBannerTargetMap.currency}}'},bP));
+{{/partial}}
+
+{{#partial "NativeAdCalculator"}}
+    {{#if model.content.featureModel}}
+        <form id="vip_iframe_partner_form" target="vip_iframe_partner"
+              method="post" action="{{model.content.featureModel.refURL}}">
+            {{#each model.content.featureModel.extraParams}}
+                <input type="hidden" name="{{@key}}" value="{{this}}"/>
+            {{/each}}
+
+            {{#with model.content.ad.attrModelMap.Title}}
+                <input type="hidden" name="{{this.name}}" value="{{this.value}}"/>
+            {{/with}}
+
+            {{#with model.content.ad.attrModelMap.Price}}
+                <input type="hidden" name="{{this.name}}"  value="{{this.amount}}"/>
+            {{/with}}
+
+            {{#with model.content.ad.attrModelMap.Price}}
+                <input type="hidden" name="currency"  value="{{this.currency}}"/>
+            {{/with}}
+
+            {{#with model.content.ad.id}}
+                <input type="hidden" name="id" value="{{this}}"/>
+            {{/with}}
+
+            {{#with model.content.ad.categoryName}}
+                <input type="hidden" name="categoryName" value="{{this}}"/>
+            {{/with}}
+
+            {{#with model.content.ad.locationName}}
+                <input type="hidden" name="locationName" value="{{this}}"/>
+            {{/with}}
+
+            {{#with model.content.featureModel.refURL}}
+                <input type="hidden" name="refURL" value="{{this}}"/>
+            {{/with}}
+
+        </form>
+        <iframe name="vip_iframe_partner" id="native-calculator" width=355px" height="500px"></iframe>
+    {{/if}}
+{{/partial}}
