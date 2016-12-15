@@ -2,6 +2,10 @@
 
 let googleRanges = [];
 let googleMarker = [];
+// this is a mock location 
+let locationMock = { lat: 19.3883633, lng: -99.1744249 };
+let locationMexicoMock = { lat: 23.0876058, lng: -101.8926682 };
+
 class FormMap {
 	constructor() {
 		this.HtmlMap = $("#map");
@@ -14,7 +18,7 @@ class FormMap {
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
-		this.position;
+		this.position = locationMock;
 		this.meters = 1000;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
@@ -54,9 +58,9 @@ class FormMap {
 
 	configMap() {
 		this.geolocate();
-		let tempzoom = !this.position || this.position.lat === 22.084192691413616 ? 4 : this.zoom;
+		let tempzoom = locationMexicoMock ? 4 : this.zoom;
 		this.map = new google.maps.Map(this.HtmlMap[0], {
-			center: this.position,
+			center: locationMexicoMock,
 			zoom: tempzoom,
 			disableDefaultUI: true,
 		});
@@ -103,7 +107,7 @@ class FormMap {
 
 	geolocate() {
 		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-		this.position = this.position ? this.position : { lat: 23.3650375, lng: -111.5740098 }; 
+		this.position = this.position ? this.position : locationMock;
 
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition (function(position) {
@@ -119,7 +123,7 @@ class FormMap {
 
 				this.position = geolocation;
 				this.autocomplete.setBounds(circle.getBounds());
-				this.map.setCenter(geolocation);
+				this.map.setCenter(this.position);
 				this.map.setZoom(this.zoom);
 				this.removeAllMarker();
 				this.removeAllRanges();
@@ -155,7 +159,7 @@ class FormMap {
 		let real = (" " + value).split(".")[0];
 		let decimal = (" " + value).split(".")[1];
 		let minimunRange = decimal - range;
-		let maximusRange = decimal - range;
+		let maximusRange = decimal + range;
 		result = Math.round(Math.random() * (maximusRange - minimunRange) + minimunRange);
 		return parseFloat(real + "." + result);
 	}
@@ -215,7 +219,7 @@ class FormMap {
 let initialize = () => {
 	window.formMap = new FormMap();
 	// set the current location via data in node
-	window.formMap.position = { lat: 22.084192691413616, lng: -99.85026892290445 };
+	window.formMap.position = locationMock;
 	window.formMap.geolocate();
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
