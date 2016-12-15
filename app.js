@@ -105,9 +105,15 @@ let createSiteApps = () => {
 			//         "port": 443
 			//     }
 			// }
-			
+
 			if (siteApp.locals.devMode) {
-				let ruiProxyConfig = environmentConfig.get('devFeatures.ruiProxy');
+				let ruiProxyConfig = null;
+				try {
+					ruiProxyConfig = environmentConfig.get('devFeatures.ruiProxy');
+				}
+				catch(e) {
+					// It's OK to not having this config
+				}
 				if (ruiProxyConfig && ruiProxyConfig.domainBase) {
 					// By default, we will use HTTPS no matter what protocol for current site
 					let ruiPort = ruiProxyConfig.port || 443;
