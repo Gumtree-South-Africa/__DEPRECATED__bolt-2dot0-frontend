@@ -201,12 +201,6 @@ module.exports = {
 	initialize: function() {
 		$(document).ready(() => {
 			new EditAd().componentDidMount($(document.body));
-
-			// console.log(window.formMap);
-			if(window.formMap) {
-			 	window.formMap.position = { lat: 18.3883554, lng: -99.1744351 };
-				//  console.log(window.formMap.position);
-			}
 		});
 	},
 	EditAd

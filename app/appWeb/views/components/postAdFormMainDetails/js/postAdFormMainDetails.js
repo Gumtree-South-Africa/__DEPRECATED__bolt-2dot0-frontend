@@ -1,7 +1,5 @@
 'use strict';
-// let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let CategoryDropdownSelection = require(
 	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
@@ -315,6 +313,12 @@ class PostAdFormMainDetailsVM {
 		}
 		/* Location Resolving end */
 
+		// get position selecte on formMap component
+		let position = { lat: lat, lng: lng };
+		if(window.formMap) {
+			position = window.formMap.getPosition();
+		}
+		
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
@@ -322,8 +326,8 @@ class PostAdFormMainDetailsVM {
 			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
-				"latitude": lat,
-				"longitude": lng
+				"latitude": position.lat,
+				"longitude": position.lng
 			},
 			categoryAttributes: categoryAttributes
 		};

@@ -29,44 +29,6 @@ let mockPostAdResponse = {
 	]
 };
 
-window.stubGoogleAPIS = function() {
-	return window.google = {
-		maps: {
-			Circle: function() {
-				return {
-					setMap: function() { }
-				};
-			},
-			LatLng: function() { },
-			Map: function() {
-				return {
-					fitBounds: function() { },
-					getCenter: function() { },
-					setCenter: function() { },
-					setZoom: function() { }, 
-					addListener: function() {
-						return {
-							dragend: function() {}
-						};
-					},
-				};
-			},
-			addListener: function() {},
-			Marker: function() { },
-			places: {
-				Autocomplete: function() {
-					return {
-						bindTo: function() { },
-						addListener: function() {
-						 },
-						setBounds: function() { }
-					};
-				}
-			}
-		}
-	};
-};
-
 describe('Post Ad', () => {
 
 	it('should open and close the login modal when called', () => {
@@ -273,8 +235,7 @@ describe('Post Ad', () => {
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-			window.stubGoogleAPIS();
-			// window.fakeGeoLocation();
+			
 			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
 			window.formMap.configMap();
@@ -290,13 +251,12 @@ describe('Post Ad', () => {
 		});
 
 		it('test events in component', () => {
+			spyOn(window.formMap, 'setLocation');
 			$testArea.find("#autocompleteTextBox").val("Polanco");
 			$testArea.find('#setCurrentLocationButton').click();
 			$testArea.find('#autocompleteTextBox').val("Test");
 			$testArea.find('#autocompleteTextBox').focus();
 			$testArea.find('#checkGeolocation').change();
-			// expect(window.addEventListener).toHaveBeenCalledWith('place_changed', listeners.place_changed, false);
-			expect(true).toBeTruthy();
 		});
 
 		it("initialize and disable geolocate", () => {
@@ -308,15 +268,10 @@ describe('Post Ad', () => {
 		});
 
 		it('search in autocomplete and set in map', () => {
+			spyOn(window.formMap, 'initAutocomplete');
 			$testArea.find("#autocompleteTextBox").val("Polanco");
 			$testArea.find("#autocompleteTextBox").trigger("place_changed");
-			expect(true).toBeTruthy();
-		});
-
-		it('drag and drop map and paint range',( ) => {
-			// var api = spyOn(window.google.maps, 'Map');
-			$testArea.find("#map").trigger("dragend");
-			expect(true).toBeTruthy();
+			expect(window.formMap.initAutocomplete).toHaveBeenCalled();
 		});
 	});
 });
