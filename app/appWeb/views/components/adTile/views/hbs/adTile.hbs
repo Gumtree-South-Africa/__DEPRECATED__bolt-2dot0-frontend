@@ -3,7 +3,7 @@
     <span class="featured-bolt icon-featured-white"></span>
     {{#if config.showSellers}}
         {{!-- seller link goes away of there is no url but the icon will remain --}}
-        {{#if this.seller.profileImage}}<a href="{{this.seller.soiSeoUrl}}" class="tile-seller-link">{{/if}}
+        {{#if this.seller.profileImage}}<a href="{{homePageUrl}}{{this.seller.soiSeoUrl}}" class="tile-seller-link">{{/if}}
             <span class="inline-block user-photo">
                 {{#if this.seller.profileImage}}
                     <img src="" class="lazy profile-image" data-original="{{this.seller.profileImage}}13.JPG">
@@ -35,6 +35,6 @@
         {{/if}}
     </section>
     <div>
-        <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{this.viewSeoUrl}}"></a>
+        <a class="tile-link" data-gtm="pc|AdModuleClick|eventLabel|PopularAds" href="{{homePageUrl}}{{this.viewSeoUrl}}"></a>
     </div>
 </span>

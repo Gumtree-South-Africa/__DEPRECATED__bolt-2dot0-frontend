@@ -15,12 +15,12 @@
         {{#each this.topLocations}}
             {{#compare @index "<=" 5}}
 				<div class="nonJsOnlyInline top-content">
-					<a class="top-links" href="{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
+					<a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
 				</div>
             {{/compare}}
             {{#compare @index ">" 5}}
 				<div class="nonJsOnlyInline hide top-content show-more-locations">
-					<a class="top-links" href="{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
+					<a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
 				</div>
             {{/compare}}
         {{/each}}

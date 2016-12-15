@@ -42,21 +42,26 @@
 
         <div class="google-maps">
             {{> (dynamic "gpsMap")}}
-          {{#block "vip-map"}}{{/block}}
+            {{#block "vip-map"}}{{/block}}
         </div>
+
+        {{> (dynamic "nativeAdBanner")}}
+        {{#block "NativeAdCalculator"}}{{/block}}
     </div>
-  </div>
 
-  {{> (dynamic "bottomBanner")}}
+    {{> (dynamic "adTabs")}}
 
-  {{> (dynamic "adTabs")}}
-  <div class="seo-wrapper">
-         <h1>{{i18n "home.h1Tag"}}</h1>
-          {{> (dynamic "topSearches") topSearches = this.keywords}}
-  </div>
-</div>
+    <div class="vip-sponsoredads">
+        {{> (dynamic "adsense")}}
+        {{#block "AdsenseBottom-Content"}}{{/block}}
+    </div>
 
+    {{> (dynamic "bottomBanner")}}
 
+    <div class="seo-wrapper">
+        <h1>{{i18n "home.h1Tag"}}</h1>
+        {{> (dynamic "topSearches") topSearches=this.keywords homePageUrl=this.header.homePageUrl}}
+    </div>
 
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal") hasReplyForm=true}}
@@ -86,5 +91,11 @@
         };
 
         {{#block "googleBannerAdsBottom_Script"}}{{/block}}
-    </script>
+        {{#block "NativeAd_Script"}}{{/block}}
+	</script>
+
+    {{#partial "Adsense-Script-ext"}}
+        init(x.desktopNumAdsTop, x.desktopNumAdsBottom, x.desktopSiteLinks, x.desktopPubId, true, '#FFFFF0', 120, 80);
+    {{/partial}}
+    {{#block "Adsense-Script"}}{{/block}}
 {{/partial}}

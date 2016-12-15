@@ -105,16 +105,9 @@
 			position: relative;
 			display: inline-block;
 			width: 32%;
+			float:right;
+
 			.last-updated-attr {
-				font-size: 12px;
-				color: $vivaGray1;
-			}
-		}
-		.ad-posted-by {
-			position: relative;
-			display: inline-block;
-			width: 32%;
-			.posted-by-attr {
 				font-size: 12px;
 				color: $vivaGray1;
 			}
@@ -158,10 +151,6 @@
 		.sec-attrs {
 			.ad-last-updated {
 				text-align: center;
-			}
-
-			.ad-posted-by {
-				text-align: right;
 			}
 
 			.ad-desktop-only {
