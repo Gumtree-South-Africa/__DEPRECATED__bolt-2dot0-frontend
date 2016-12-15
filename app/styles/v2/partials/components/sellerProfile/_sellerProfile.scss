@@ -36,7 +36,7 @@
   	text-overflow: ellipsis;
 		width: 50%;
 		max-width: 9em;
-		@include from-breakpoint($medium-break);
+		@include from-breakpoint($medium-break){
 			max-width: 14.5em;
 		}
 	}
