@@ -493,6 +493,8 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getVIPSeoInfo();
 		};
+
+		this.dataPromiseFunctionMap.flagAd = () => "flagAd";
 	}
 }
 
