@@ -347,12 +347,12 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "keywords", "safetyTips", "seo"
+					"advert", "keywords", "safetyTips", "seo", "flagAd"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "keywords", "safetyTips", "seo"
+					"advert", "keywords", "safetyTips", "seo", "flagAd"
 				]
 			}
 		},

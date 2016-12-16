@@ -1567,6 +1567,30 @@
 			"adsActive": "ACTIVE",
 			"defaultUserName": "Gumtree User"
 		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "The email is not valid"
+				},
+				{
+					"field": "comments",
+					"message": "The comment is too long, maximun is 4096 characters"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Missing report type"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Incorrect captcha"
+				},
+				{
+					"field": "adId",
+					"message": "Missing ad id"
+				}
+			]
+		},
 		"reply": {
 			"back": "BACK",
 			"messageSeller": "MESSAGE %s",

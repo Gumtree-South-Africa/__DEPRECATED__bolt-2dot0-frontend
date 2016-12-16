@@ -126,6 +126,16 @@ class AdService {
 			replyHost: replyForm.hostname
 		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
 	}
+
+	flagAd(bapiHeaderValues, adId, postData) {
+		let queryEndpoint = config.get('BAPI.endpoints.flagAd');
+		queryEndpoint = queryEndpoint.replace('{id}', adId);
+
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, postData, 'adService$flagAd');
+	}
 }
 
 module.exports = new AdService();
