@@ -75,7 +75,17 @@ a, [data-uri], [data-o-uri], .sudo-link, span[href] {
 
 a, [data-uri], [data-o-uri], .sudo-link, span[href],
 a:visited, [data-uri]:visited, [data-o-uri]:visited, .sudo-link:visited, span[href]:visited {
-  color: $vivaBlack;
+  color: $vivaBlue;
+}
+
+a:hover, [data-uri]:hover, [data-o-uri]:hover, .sudo-link:hover, span[href]:hover {
+  color: $vivaOtherBlack;
+}
+
+.search form .select ul li a {
+  font-size: 0.875em;
+  line-height: 1.5em;
+  @include ellipsis;
 }
 
 .sudolink{

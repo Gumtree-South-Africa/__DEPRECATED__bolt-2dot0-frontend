@@ -1,0 +1,101 @@
+<label class="title reported-ad hide">
+  <span>{{i18n "vip.flagad.anuncioReportado"}}</span>
+</label>
+
+<div class="unreported-ad flagad-container">
+  
+  <a class="title" href="javascript:void(0)">
+    {{#block "icon-warning-sign"}}
+    <span class="icon-warning-sign"></span>
+    {{/block}}
+    <span class="label">{{i18n "vip.flagad.title"}}</span>
+    <span class="caret-icon-area icon-caret-right"></span>
+  </a>
+
+  <form class="flagAd tallForm" method="post" action="/api/ads/flag" novalidate>
+
+    <input type="hidden" name="adId" value="{{this.advert.adId}}" />
+    <input type="hidden" name="captchaToken" value="" />
+    <p class='error'></p>
+
+
+    <div class="form-field">
+      <div class="label-wrapper">
+        <label>{{i18n "vip.flagad.reason"}}</label>
+      </div>
+      <ul>
+        {{#each this.advert.flags.reasons}}
+        <li>
+          <label class="control">
+            <input type="radio" class="radio-btn" name="flagAdType" value="{{this.name}}" {{#compare @index "==" 0}} checked="checked"{{/compare}}/>
+            <div class="outer-circle">
+              <div class="inner-circle"></div>
+            </div>
+            <span class="flag-type">{{i18n this.displayNameKey}}</span>
+          </label>
+        </li>
+        {{/each}}
+      </ul>
+    </div>
+
+    <div class="form-field">
+      <div class="label-wrapper">
+        <label for="email">{{i18n "vip.flagad.email"}}</label>
+      </div>
+      <div class="input-wrapper">
+      {{#if this.header.isUserLoggedIn}}
+        <input class='email-input' disabled="disabled" title="email" name="email" type="email" value="{{this.header.userEmail}}"/>
+      {{else}}
+        <input class='email-input' title="email" name="email" type="email" value=""/>
+      {{/if}}
+      <p class='error'></p>
+      </div>
+    </div>
+
+    <div class="form-field">
+      <div class="label-wrapper">
+        <label for="comments">{{i18n "vip.flagad.comments"}}&nbsp;<span class="optional">({{i18n "optional.text"}})</span></label>
+      </div>
+      <div class="input-wrapper">
+        <textarea class="comments-input" name="comments" title="comments" maxlength="4096"></textarea>
+        <p class='error'></p>
+      </div>
+    </div>
+
+    {{#partial "captchaTailsScripts"}}
+    <script type="text/javascript">
+      var expiredCallback = function () {
+        $('input[name="captchaToken"]').val('');
+        $('form.flagAd button.action-button').prop('disabled', true);
+      };
+      var canSubmit = function (res) {
+        $('input[name="captchaToken"]').val(res);
+        $('form.flagAd button.action-button').prop('disabled', false);
+      };
+      var onloadCallback = function() {
+        grecaptcha.render('g-recaptcha', {
+          'sitekey': '{{this.recaptchaSiteKey}}',
+          'expired-callback': expiredCallback,
+          'callback': canSubmit
+        });
+      };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onloadCallback&render=explicit" async defer>
+    {{/partial}}
+
+    <div class="form-field">
+      <div id="g-recaptcha"></div>
+    </div>
+
+    <label class='privacypolicy'>
+      {{#block "PrivacyPolicyArea"}}
+        {{{i18n "vip.flagad.termCond" this.footer.termOfUse}}}
+      {{/block}}
+    </label>
+    <div class="button-area">
+      <button class="action-button" disabled="disabled" type="submit">{{i18n "vip.flagad.report"}}</button>
+      <button class="action-button cancel" type="button" name="cancel">{{i18n "vip.cancel"}}</button>
+    </div>
+  </form>
+  </script>
+</div>

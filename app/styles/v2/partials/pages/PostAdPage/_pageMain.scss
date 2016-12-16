@@ -49,7 +49,7 @@ $labelMargin: 8%;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
 		display: inline-block;
-		padding: 12px 5px;
+		padding: 11.5px 5px;
 		font: bold 1.125em Lato;
 		text-align: center;
 		&:hover {
@@ -156,7 +156,7 @@ $labelMargin: 8%;
 }
 
 @include to-breakpoint($small-break) {
-	.viewport.covered {
+	.viewport {
 		overflow-x: hidden;
 		.footer-wrapper {
 			// To ensure nothing in page is covered by post button overlay
@@ -172,7 +172,7 @@ $labelMargin: 8%;
 		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
 		// Actually the overlay's height is 53px, but post page will load one image which will adds to
 		// the height of body after footer, so that image's height should be calculated.
-		margin-bottom: 29px;
+		margin-bottom: 39px;
 	}
 
 	.main-detail-post {
