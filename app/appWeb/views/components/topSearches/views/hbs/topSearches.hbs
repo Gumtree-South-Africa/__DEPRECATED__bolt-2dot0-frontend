@@ -7,35 +7,35 @@
 	</style>
 </noscript>
 {{#each this.topSearches}}
-<div class="tab-content searches-wrapper container-width-{{this.total}}">
-    <div class="top-searches">
-		{{#each this.menuTitles}}
-			{{#compare @../index "==" @index}}
-				<div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this}}</span></div>
-			{{else}}
-				<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
-			{{/compare}}
-		{{/each}}
-        <div class="seo-line desktop-hide"></div>
-        <div class="top-content-wrapper">
-				{{#each this.keywords}}
-            {{#compare @index "<=" 5}}
-                <div class="nonJsOnlyInline top-content">
-                    <a class="top-links" href="{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
-                </div>
+    <div class="tab-content searches-wrapper container-width-{{this.total}}">
+        <div class="top-searches">
+            {{#each this.menuTitles}}
+                {{#compare @../index "==" @index}}
+                    <div class="top-searches-header top-headers"><span class="top-headers-text search-header-text thick-underline">{{i18n this}}</span></div>
+                {{else}}
+                    <div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text location-header-text">{{i18n this}}</span></div>
+                {{/compare}}
+            {{/each}}
+            <div class="seo-line desktop-hide"></div>
+            <div class="top-content-wrapper">
+                {{#each this.keywords}}
+                    {{#compare @index "<=" 5}}
+                        <div class="nonJsOnlyInline top-content">
+                            <a class="top-links" href="{{../../homePageUrl}}{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
+                        </div>
+                    {{/compare}}
+                    {{#compare @index ">" 5}}
+                        <div class="nonJsOnlyInline hide top-content show-more-searches">
+                            <a class="top-links" href="{{../../homePageUrl}}{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
+                        </div>
+                    {{/compare}}
+                {{/each}}
+            </div>
+            {{#compare this.keywords.length ">" 7}}
+            <div class="jsOnly view-more-searches"
+                data-view-less="{{i18n "footer.topSearches.viewLess"}}"
+                data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
             {{/compare}}
-            {{#compare @index ">" 5}}
-				<div class="nonJsOnlyInline hide top-content show-more-searches">
-					<a class="top-links" href="{{_links.[0].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopSearches">{{text}}</a>
-				</div>
-            {{/compare}}
-        {{/each}}
-		</div>
-		{{#compare this.keywords.length ">" 7}}
-		<div class="jsOnly view-more-searches"
-            data-view-less="{{i18n "footer.topSearches.viewLess"}}"
-            data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
-		{{/compare}}
+        </div>
     </div>
-</div>
 {{/each}}

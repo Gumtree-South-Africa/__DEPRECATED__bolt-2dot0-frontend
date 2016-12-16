@@ -11,7 +11,7 @@
 	{{#partial "Adsense-Script"}}
 		<script src="https://www.google.com/adsense/search/ads.js" type="text/javascript"></script>
 		<script type="text/javascript" charset="utf-8">
-			var x = {{{model.content.adsenseParamsJson}}};
+			var x = {{json this.footer.adsenseConfig.default}};
 
 	        var defaultBlock = {
 	             'lines':'3',
@@ -33,7 +33,7 @@
 	        };
 	        var defaultBlock_ext = {
 	            //defaultvalue
-	            'adIconUrl':'{{model.header.noPhotoUrl}}',
+	            'adIconUrl':'{{this.header.noPhotoUrl}}',
 	            'adIconSpacingAbove' : 5,
 	            'adIconSpacingBefore' : 6,
 	            'adIconSpacingAfter' : 10,
@@ -115,7 +115,7 @@
 	                }
 	                targetArr.push(adblock2);
 	            }
-	            new google.ads.search.Ads(pageOptions, targetArr);
+	            // new google.ads.search.Ads(pageOptions, targetArr);
 	        }
 
 		    {{#block "Adsense-Script-ext"}}{{/block}}

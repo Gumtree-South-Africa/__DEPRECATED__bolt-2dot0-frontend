@@ -38,6 +38,7 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
+	// AB: If not 2.0 context, then redirect to 1.0 Edit
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;

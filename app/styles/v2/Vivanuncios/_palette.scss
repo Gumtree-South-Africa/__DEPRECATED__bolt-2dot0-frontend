@@ -4,6 +4,7 @@
 
 //Primary Color
 $vivaBlack: #333333;
+$vivaOtherBlack: #1F1F1F;
 $vivaWhite: #FFFFFF;
 $vivaOrange: #FF9800;
 // gray  palette colors
@@ -31,6 +32,8 @@ $vivaBlue7: #478BCD;
 
 $vivaRed: red;
 
+$vivaYellow: #FF9800;
+
 /* latin-ext */
 @font-face {
     font-family: 'Lato';
@@ -38,4 +41,3 @@ $vivaRed: red;
     font-weight: 400;
     src: local('Lato Regular'), local('Lato-Regular'), url('../../../../../fonts/Lato-Regular.ttf') format("truetype");
 }
-

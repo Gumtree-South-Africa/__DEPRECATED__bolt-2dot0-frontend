@@ -41,7 +41,7 @@ router.use('/', (req, res, next) => {
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 	req.app.locals.abtestpage = abTestPagesJson.pages.P;
 
-	// Redirects
+	// AB: If not 2.0 context, then redirect to 1.0 Post
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;

@@ -275,6 +275,17 @@ class PostAdFormMainDetailsVM {
 		return {lat: lat, lng: lng};
 	}
 
+	/**
+	 * Get location id from location selection modal
+	 */
+	getLocatioinId() {
+		return locationSelection.getLocationId();
+	}
+
+	getCategorySelectionName() {
+		return this._categoryDropdownSelection.getCategorySelectionName();
+	}
+
 	getAdPayload() {
 		let $dateFields = this._$postForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();
@@ -315,6 +326,7 @@ class PostAdFormMainDetailsVM {
 		let payload = {
 			title: serialized.Title,
 			description: description,
+			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
 				"latitude": lat,
@@ -421,6 +433,11 @@ class PostAdFormMainDetailsVM {
 		} else if (error.hasOwnProperty("bapiValidationFields")) {
 			// bapi validation errors
 			error.bapiValidationFields.forEach((attrName) => {
+				if (attrName === 'Category') {
+					// Error for category should be handled by category dropdown selection
+					this._categoryDropdownSelection.isValid = false;
+					return;
+				}
 				let $input = $(`[name="${attrName}"]`);
 				let siblings = $input.siblings("input");
 				if (siblings.length === 1) {

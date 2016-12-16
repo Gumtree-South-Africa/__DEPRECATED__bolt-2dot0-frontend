@@ -28,6 +28,8 @@ let HP = {
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 		}
+		// OG
+		modelData.header.ogUrl = modelData.header.logoUrlOpenGraph;
 
 		// CSS
 		if (modelData.header.min) {

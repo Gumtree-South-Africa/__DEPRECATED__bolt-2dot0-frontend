@@ -8,8 +8,8 @@ class FeatureModel {
 		this.bapiHeaders = bapiHeaders;
 	}
 
-	getAvailableFeatures(categoryId, locationId, locale, adId) {
-		return featureService.getAvailableFeatures(this.bapiHeaders, categoryId, locationId, locale, adId);
+	getAvailableFeatures(categoryId, locationId, adId) {
+		return featureService.getAvailableFeatures(this.bapiHeaders, categoryId, locationId, adId);
 	}
 }
 

@@ -1,0 +1,22 @@
+<svg width="50" height="50" viewBox="0 0 50 50" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <title>
+    Corner Lightning
+  </title>
+  <defs>
+    <path id="c" d="M0 0h48v48z"/>
+    <filter x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox" id="b">
+      <feOffset dy="1" in="SourceAlpha" result="shadowOffsetOuter1"/>
+      <feGaussianBlur stdDeviation=".5" in="shadowOffsetOuter1" result="shadowBlurOuter1"/>
+      <feColorMatrix values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.240036232 0" in="shadowBlurOuter1"/>
+    </filter>
+    <path d="M33.84 18.058h-3.946L28 6h9.6l-1.156 7.2H40L36.4 30l-2.56-11.942z" id="a"/>
+    <mask id="d" x="0" y="0" width="12" height="24" fill="#fff">
+      <use xlink:href="#a"/>
+    </mask>
+  </defs>
+  <g transform="translate(1)" fill="none" fill-rule="evenodd">
+    <use fill="#000" filter="url(#b)" xlink:href="#c"/>
+    <use fill="#87BC1C" xlink:href="#c"/>
+    <use stroke="#FFF" mask="url(#d)" stroke-width="2" fill="#FFF" xlink:href="#a"/>
+  </g>
+</svg>
