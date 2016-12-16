@@ -1,7 +1,7 @@
 <div class="card card-{{this.card.config.cardName}}" data-card-name="{{this.card.config.cardName}}" data-view-more-filter-increment="{{this.card.config.viewMoreFilterIncrement}}" data-view-more-page-size="{{this.card.config.viewMorePageSize}}">
 	<div class="card-title">{{i18n i18nTitle}}
         {{#if i18nSubtitle}}
-		<span class="link inline-block underline card-title-cp">{{i18n i18nSubtitle}}</span>
+		<span class="link inline-block underline card-title-cp">{{i18n i18nSubtitle}}{{#if i18nSubtitle2}} {{i18n i18nSubtitle2}}{{/if}}</span>
         {{/if}}
 	</div>
     {{> (dynamic "tileGrid" this.locale) tileGrid=this.card homePageUrl=this.header.homePageUrl}}
