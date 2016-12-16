@@ -50,6 +50,7 @@
     "hammerjs": "2.0.8",
     "handlebars": "4.0.5",
     "helmet": "1.3.0",
+    "http-proxy-middleware": "^0.17.3",
     "https": "1.0.0",
     "i18n-2": "0.6.3",
     "imports-loader": "0.6.5",

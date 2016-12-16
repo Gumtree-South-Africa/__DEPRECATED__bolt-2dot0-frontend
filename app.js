@@ -90,6 +90,16 @@ let createSiteApps = () => {
 				siteApp.use(appConfig.mainRoute, appObj);
 			});
 
+			// In develop mode, add proxy so that Node can proxy to RUI server.
+			// This should be registered after all routing.
+
+			if (siteApp.locals.devMode) {
+				let ruiProxyMiddleware = require('./server/middlewares/rui-proxy')(siteApp);
+				if (ruiProxyMiddleware) {
+					siteApp.use(ruiProxyMiddleware);
+				}
+			}
+
 			// Setup Vhost per supported site
 			app.use(vhost(new RegExp(siteApp.locals.config.hostnameRegex), siteApp));
 		});
