@@ -1,0 +1,31 @@
+{
+  "type": "object",
+  "properties": {
+    "email": {
+      "type": "string",
+      "pattern": "^(([A-Za-z0-9-]+_+)|([A-Za-z0-9-]+\\-+)|([A-Za-z0-9-]+\\.+)|([A-Za-z0-9-]+\\++))*[A-Za-z0-9-_]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
+      "minLength": 6,
+      "maxLength": 256
+    },
+    "flagAdType": {
+      "type": "string",
+      "pattern": "([^\\s])",
+      "required": true
+    },
+    "captchaToken": {
+      "type": "string",
+      "pattern": "([^\\s])",
+      "required": true
+    },
+    "adId": {
+      "type": "string",
+      "pattern": "([^\\s])",
+      "required": true
+    },
+    "comments": {
+      "type": "string",
+      "maxLength": 4096,
+      "required": false
+    }
+  }
+}

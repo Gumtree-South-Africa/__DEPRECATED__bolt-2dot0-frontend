@@ -238,7 +238,7 @@ body {
 	.viewport.promotion-covered .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
 		// Magic number 53 is the height of no promotion button layer
-		margin-bottom: 53px;
+		margin-bottom: 63px;
 	}
 
 	.main-detail-post {
@@ -266,7 +266,7 @@ body {
 
 	.mobile-cancel-form-link {
 		margin-top: 18px;
-		margin-right: 30px;
+		margin-right: 12px;
 		text-decoration: underline;
 		float: right;
 	}

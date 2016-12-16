@@ -383,11 +383,6 @@
 	"vip.cancel": "Cancelar",
 	"vip.reply.your.name": "Nombre",
 	"vip.reply.your.email": "Ej: user@email.com",
-	"vip.reply.canned.imInterested": "Me interesa. Por favor contáctame.",
-	"vip.reply.canned.isItStillAvailable": "¿Aún está disponible?",
-	"vip.reply.canned.whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
-	"vip.reply.canned.whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
-	"vip.reply.canned.wouldYouShareAdditionalPics": "¿Tienes más fotografías?",
 	"vip.reply.canned.messagePlaceholder": "Escribe aquí...",
 	"vip.policymessage": "Al hacer clic en “Enviar” acepta los <a href=\"%s\" target=\"_self\">Términos y Condiciones</a> y la <a href=\"%s\" target=\"_self\">Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
 	"vip.map": "Mapa",
@@ -1594,6 +1589,30 @@
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
 		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "El correo electrónico no es válido"
+				},
+				{
+					"field": "comments",
+					"message": "Tu comentario es muy largo, máximo 4096 caracteres"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Falta el tipo de reporte"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Captcha incorrecto"
+				},
+				{
+					"field": "adId",
+					"message": "Falta el id del anuncio"
+				}
+			]
+		},
 		"reply": {
 			"back": "ATRÁS",
 			"messageSeller": "ENVIAR MENSAJE A %s",
@@ -1610,11 +1629,20 @@
 			"emailValidate": "Es necesario tu correo electrónico",
 			"emailPlaceholder": "Correo electrónico: user@email.com",
 			"writeHere": "Escribir texto aquí...",
-			"phone": "NÚMERO DE TELÉFONO (OPCIONAL)",
+			"phone": "NÚMERO DE TELÉFONO",
+			"phoneOptional": "(OPCIONAL)",
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
-			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+			"canned": {
+				"imInterested": "Me interesa. Por favor contáctame.",
+				"isItStillAvailable": "¿Aún está disponible?",
+				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
+				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
+			}
 		}
 	},
 	"search": {

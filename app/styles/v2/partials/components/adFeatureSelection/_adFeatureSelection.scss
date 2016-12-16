@@ -234,7 +234,7 @@
 			left: 0;
 			right: 0;
 			margin: auto;
-			padding: 5px 20px;
+			padding: 10px 20px;
 		}
 
 		.checkout-footer {
@@ -242,7 +242,7 @@
 			margin: auto;
 			float: left;
 			.btn {
-				@include vivaBtn(off, 0.382em 0, 100%);
+				@include vivaBtn(off, 0.445em 0, 100%);
 				.btn-icon {
 					display: none;
 				}
@@ -270,7 +270,7 @@
 			left: 0;
 			right: 0;
 			margin: auto;
-			padding: 5px 20px;
+			padding: 10px 20px;
 		}
 
 		.cancel-footer {
@@ -278,7 +278,7 @@
 			margin: auto;
 			float: left;
 			.btn {
-				@include vivaBtn(off, 0.382em 0, 100%);
+				@include vivaBtn(off, 0.445em 0, 100%);
 				.btn-icon {
 					display: none;
 				}
@@ -377,7 +377,7 @@
 			width: 90%;
 			margin: auto 5% 20px 5%;
 			.btn {
-				@include vivaBtn(off, 0.45em 0, 100%);
+				@include vivaBtn(off, 0.445em 0, 100%);
 				.btn-icon {
 					display: none;
 				}
