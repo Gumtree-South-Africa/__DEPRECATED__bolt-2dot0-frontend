@@ -156,12 +156,7 @@ $labelMargin: 8%;
 }
 
 @include to-breakpoint($small-break) {
-	.footer-wrapper {
-		// Default at start
-		margin-bottom: 49px;
-	}
-
-	.viewport.covered {
+	.viewport {
 		overflow-x: hidden;
 		.footer-wrapper {
 			// To ensure nothing in page is covered by post button overlay
