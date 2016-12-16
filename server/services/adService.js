@@ -113,7 +113,6 @@ class AdService {
 	}
 
 	replyAd(bapiHeaderValues, replyForm) {
-		console.log(bapiHeaderValues);
 		let locale = bapiHeaderValues.locale;
 		if (locale === 'es_MX') {
 			locale='es_MX_VNS';
@@ -121,9 +120,10 @@ class AdService {
 
 		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
 
-		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, bapiHeaderValues.locale, {
+		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: queryEndpoint,
+			replyHost: replyForm.hostname
 		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
 	}
 }

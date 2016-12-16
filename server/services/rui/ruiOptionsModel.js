@@ -1,20 +1,22 @@
 'use strict';
-let initFromConfig = function(config, locale, initDefaults) {
+let initFromConfig = function(config, initDefaults) {
 	let ruiOptions = initDefaults;
 	if (initDefaults === undefined) {
 		// none specified, provide some
 		ruiOptions = {
-			path: "/",
-			method: "",
-			headers: {}
+			path: '/',
+			method: '',
+			headers: {},
+			replyHost: ''
 		};
 	}
-	let host = config.get('RUI.server.host');
+	ruiOptions.host = 'www.' + initDefaults.replyHost;
+	let configHost = config.get('RUI.server.host');
 
-	// these picked up from config:
-	// ruiOptions.host = config.get('RUI.server.host');
+	if (configHost !== ''){
+		ruiOptions.host = ruiOptions.host + '.' + configHost;
+	}
 
-	ruiOptions.host = host;
 	ruiOptions.port = config.get('RUI.server.port');
 	ruiOptions.parameters = config.get('RUI.server.parameters');
 	ruiOptions.timeout = (initDefaults !== undefined) ? (initDefaults.timeout || config.get('RUI.server.timeout')) : config.get('RUI.server.timeout');

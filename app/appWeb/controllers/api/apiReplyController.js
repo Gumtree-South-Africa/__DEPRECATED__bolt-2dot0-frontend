@@ -15,6 +15,7 @@ let logger = require(`${cwd}/server/utils/logger`);
 // route is /api/ads/reply
 router.post('/', cors, (req, res) => {
 	// Validate the incoming JSON
+
 	let validate = validator(replySchema);
 	let valid = validate(req.body);
 	if (!valid) {
@@ -25,6 +26,8 @@ router.post('/', cors, (req, res) => {
 		return;
 	}
 
+
+
 	// Validate the body
 	if (req.body.adId && req.body.replyMessage) {
 		let replyForm = {
@@ -34,16 +37,17 @@ router.post('/', cors, (req, res) => {
 			email: req.body.email,
 			phoneNumber: req.body.phoneNumber || '',
 			replyMessage: req.body.replyMessage,
-			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false
+			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
+			seoUrl: req.body.seoUrl,
+			hostname: res.locals.config.hostname
 		};
-
-		replyForm.seoUrl = req.body.seoUrl;
 
 		let modelBuilder = new ModelBuilder();
 		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 		model.advertModel.replyToTheAd(replyForm).then(() => {
-			res.status(301).redirect(replyForm.seoUrl + '/?adActivateStatus=AdReplySuccess'); //redirect with appended URL
+			res.status(200);
+			// res.status(301).redirect(replyForm.seoUrl + '/?adActivateStatus=AdReplySuccess'); //redirect with appended URL
 		}).fail((err) => {
 			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code

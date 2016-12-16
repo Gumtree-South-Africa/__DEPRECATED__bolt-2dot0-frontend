@@ -25,7 +25,7 @@ var makeHeaders = function (bapiHeaderValues) {
 		headers['X-BOLT-USER-AGENT'] = bapiHeaderValues.useragent;
 	}
 	if (typeof bapiHeaderValues.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaderValues.authTokenValue)) {
-		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;		
+		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;
 	}
 	return headers;
 };
