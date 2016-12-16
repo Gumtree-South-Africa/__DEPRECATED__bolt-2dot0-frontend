@@ -25,7 +25,6 @@ class FormMap {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
-		this.googleMapKey = "AIzaSyD4WwjknKeEhHXtOuhMf_E-w66C-BlHaWY";
 	}
 
 	expandViewportToFitPlace(map, place) {
@@ -195,10 +194,6 @@ let initialize = () => {
 	window.formMap.HtmlSetLocation.click(() => {
 		window.formMap.geolocate();
 		window.formMap.setCurrentPosition();
-	});
-
-	window.formMap.HtmlEnableLocation.change(() => {
-		window.formMap.getLocation();
 	});
 };
 
