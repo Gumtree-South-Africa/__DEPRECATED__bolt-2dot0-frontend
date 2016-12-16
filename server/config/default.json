@@ -41,9 +41,10 @@
   },
   "RUI": {
     "server": {
-      "host": "",
-      "port": 80,
+      "host": "localhost",
+      "port": 8443,
       "parameters": null,
+	  "protocol": "https:",
       "timeout": 2000
     },
     "endpoints": {

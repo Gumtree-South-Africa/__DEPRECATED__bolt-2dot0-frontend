@@ -40,13 +40,14 @@
   },
   "RUI": {
     "server": {
-      "host": "",
-      "port": 80,
+      "host": "docker_host_machine",
+      "port": 443,
       "parameters": null,
+	  "protocol": "https:",
       "timeout": 2000
     },
     "endpoints": {
-      "replyForm"     :   "/rui-api/page/reply/model/"
+      "replyForm":   "/rui-api/page/reply/model/"
     }
   },
   "solr": {
@@ -67,7 +68,7 @@
       "path": "/recaptcha/api/siteverify",
       "timeout": 2000
     }
-  },  
+  },
   "kafka": {
     "server": {
       "host": "elastic-01-6467.phx01.dev.ebayc3.com",

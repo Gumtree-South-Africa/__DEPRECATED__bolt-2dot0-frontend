@@ -40,13 +40,13 @@
   },
   "RUI": {
     "server": {
-      "host": "",
+      "host": "localhost",
       "port": 5000,
       "parameters": null,
       "timeout": 200
     },
     "endpoints": {
-      "replyForm"     :   "/rui-api/page/reply/model/"
+      "replyForm":   "/rui-api/page/reply/model/"
     }
   },
   "solr": {

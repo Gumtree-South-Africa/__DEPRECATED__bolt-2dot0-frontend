@@ -17,9 +17,12 @@ let initFromConfig = function(config, initDefaults) {
 		ruiOptions.host = ruiOptions.host + '.' + configHost;
 	}
 
+	ruiOptions.protocol = config.get('RUI.server.protocol');
 	ruiOptions.port = config.get('RUI.server.port');
 	ruiOptions.parameters = config.get('RUI.server.parameters');
 	ruiOptions.timeout = (initDefaults !== undefined) ? (initDefaults.timeout || config.get('RUI.server.timeout')) : config.get('RUI.server.timeout');
+
+	ruiOptions.rejectUnauthorized = false;
 
 	return ruiOptions;
 };

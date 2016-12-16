@@ -38,11 +38,12 @@
       "categorySuggest"   : "/boltapi/v1/categories/action/suggestion?"
     }
   },
-    "RUI": {
+  "RUI": {
     "server": {
-      "host": "",
-      "port": 80,
+      "host": "localhost",
+      "port": 443,
       "parameters": null,
+	  "protocol": "https:",
       "timeout": 2000
     },
     "endpoints": {

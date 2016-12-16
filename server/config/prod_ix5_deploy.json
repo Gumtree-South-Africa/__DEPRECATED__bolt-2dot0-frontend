@@ -40,8 +40,9 @@
   "RUI": {
 		"server": {
 			"host": "",
-			"port": 80,
+			"port": 443,
 			"parameters": null,
+			"protocol": "https:",
 			"timeout": 2000
 		},
 		"endpoints": {

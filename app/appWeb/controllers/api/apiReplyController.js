@@ -46,8 +46,8 @@ router.post('/', cors, (req, res) => {
 		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);
 		model.advertModel = new AdvertModel(model.bapiHeaders);
 		model.advertModel.replyToTheAd(replyForm).then(() => {
-			res.status(200);
-			// res.status(301).redirect(replyForm.seoUrl + '/?adActivateStatus=AdReplySuccess'); //redirect with appended URL
+			res.status(301).redirect(replyForm.seoUrl + '?adActivateStatus=AdReplySuccess'); //redirect with appended URL
+			return;
 		}).fail((err) => {
 			let bapiInfo = logger.logError(err);
 			res.status(err.getStatusCode(500)).send({// 500 default status code

@@ -39,9 +39,10 @@
   },
   "RUI": {
     "server": {
-      "host": "",
-      "port": 80,
+      "host": "lnp.qa-bolt.com",
+      "port": 443,
       "parameters": null,
+	  "protocol": "https:",
       "timeout": 2000
     },
     "endpoints": {
