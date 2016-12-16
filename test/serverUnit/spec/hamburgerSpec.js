@@ -83,7 +83,8 @@ describe('Hamburger', () => {
 						expect(map.has(name)).toBe(true, `link ${name} should be in the mock data`);
 						let link = map.get(name);
 						let href = element.attr('href');
-						expect(element.attr('href')).toBe(link,
+						let host = "https://" + "www.vivanuncios.com.mx";
+						expect(element.attr('href')).toBe(host +link,
 							`expected link for ${name} to be ${link}, got ${href}`);
 					});
 				})
