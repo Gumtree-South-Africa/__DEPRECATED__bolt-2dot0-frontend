@@ -30,6 +30,11 @@ $cardHeaderPadding: 20px;
 
     .underline {
         text-decoration: underline;
+
+		[class*=icon-] {
+			display: inline-block;
+			margin-bottom: -5px;
+		}
     }
 
     .card-view-more {
@@ -71,4 +76,23 @@ $cardHeaderPadding: 20px;
 
 	}
 
+}
+
+.card-trendingCard {
+	.card-title {
+		font-size: 18px;
+		font-weight: bold;
+	}
+
+	.underline {
+		display: block;
+        font-size: 14px;
+		margin-top: 5px;
+		text-decoration: none;
+
+		[class*=icon-] {
+			display: inline-block;
+			margin-bottom: -5px;
+		}
+    }
 }
