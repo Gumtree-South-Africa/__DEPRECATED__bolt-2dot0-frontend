@@ -8,7 +8,7 @@ class AdService {
 
 	viewAd(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
-		queryEndpoint = queryEndpoint + '?_expand=category,location,tracking';
+		queryEndpoint = queryEndpoint + '?_expand=category,location,reply-info';
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
 			path: queryEndpoint,
@@ -109,6 +109,16 @@ class AdService {
 			method: 'DELETE',
 			path: queryEndpoint,
 		}), bapiHeaderValues, {}, 'adService$unfavoriteAd');
+	}
+
+	flagAd(bapiHeaderValues, adId, postData) {
+		let queryEndpoint = config.get('BAPI.endpoints.flagAd');
+		queryEndpoint = queryEndpoint.replace('{id}', adId);
+
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, postData, 'adService$flagAd');
 	}
 }
 

@@ -287,13 +287,13 @@ class ViewPageModel {
 				pageTitle = pageTitle.replace('adTitle', data.advert.title);
 				pageTitle = pageTitle.replace('locationSeoWord', data.advert.locationDisplayName);
 				pageTitle = pageTitle.replace('country', modelData.footer.brandName);
-				pageTitle = pageTitle.replace('adId', data.advert.adId);
+				pageTitle = pageTitle.replace('adId', data.advert.id);
 				modelData.seo.pageTitle = pageTitle;
 			}
 			if (typeof modelData.seo.description !== 'undefined') {
 				let description = modelData.seo.description;
 				description = description.replace('description', data.advert.description.substring(0,140));
-				description = description.replace('adId', data.advert.adId);
+				description = description.replace('adId', data.advert.id);
 				modelData.seo.description = description;
 			}
 		}
@@ -350,6 +350,7 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
+					replyInfo: advertData.ad._embedded['reply-info'],
 					flags: advertData.adFlags
 				};
 
@@ -364,6 +365,9 @@ class ViewPageModel {
 				});
 				let dataSeoVipUrl = seoVipElt.href;
 				data.seoVipUrl = dataSeoVipUrl;
+
+				// loginRedirectUrl
+				data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
 
 				// Date
 				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
@@ -489,6 +493,8 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getVIPSeoInfo();
 		};
+
+		this.dataPromiseFunctionMap.flagAd = () => "flagAd";
 	}
 }
 

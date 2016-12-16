@@ -116,12 +116,12 @@ class HeaderModel {
 						} else {
 							data.cookieLocationName = this.locationIdNameMap[data.cookieLocationId] || '';
 						}
-
-						let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
-						promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
-							data.categoryList = categoryList;
-						}));
 					}
+
+					let categoryModel = new CategoryModel(this.bapiHeaders, 1, this.searchLocIdCookie);
+					promises.push(categoryModel.getCategoriesWithLocId().then((categoryList) => {
+						data.categoryList = categoryList;
+					}));
 				}
 
 				// If authCookie present, make a call to user BAPI to retrieve user info and set in model
@@ -138,7 +138,6 @@ class HeaderModel {
 								if (!_.isEmpty(dataReturned)) {
 									// merge user cookie data
 									_.extend(data, dataReturned);
-
 									// build user profile
 									this.buildProfile(data);
 								}
