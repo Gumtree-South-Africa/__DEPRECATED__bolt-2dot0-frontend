@@ -1,84 +1,13 @@
-<div class="container {{#if this.device.isMobile}}isMobile{{/if}}">
-  <div class="zoomI hidden"></div>
-  <div class="zoomT hidden">
-    <div>Pinch in and out to zoom.</div>
-    <div>Drag to pan around the image.</div>
-  </div>
-
-{{#if this.device.isMobile}}
-  <div class="zoomHolder" style="margin-top: -2em;"></div>
-	<div class="carousel-images extra">
-    <span class="icon-Zoom"></span>
-    <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
-      <span class="currentImg">1</span>
-      <span class="separator">/</span>
-      <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
-    </div>
-    <div class="slider-mobile-for" data-elem="pinchzoomer">
-    {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt="{{@index}}" />
-		{{/each}}
-    </div>
-	</div>
-{{/if}}
-
-{{#unless this.device.isMobile}}
-  <div class="carousel-text">
-    <span class="icon-Zoom"></span>
-    <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
-      <span class="currentImg">1</span>
-      <span class="separator">/</span>
-      <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
-    </div>
-    <div class="slider-for">
-      {{#each this.advert.picturesToDisplay.testPictures}}
-        <div>
-          <img src="{{this}}" alt="{{@index}}"/>
-        </div>
-      {{/each}}
-    </div>
-  </div>
-
-  <div class="carousel-images slider-nav original">
-    {{#each this.advert.picturesToDisplay.testPictures}}
-      <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
-    {{/each}}
-  </div>
-
-</div>
-
-<div id="vipOverlay" class="modal hidden">
-  <div class="modal-overlay"></div>
-  <div class="modal-container">
-    <div class="title">{{this.advert.title}}</div>
-    <div class="price">{{this.advert.price.formattedAmount}}</div>
-    <div class="modal-close-section">
-      <div class="modal-closearea">
-        <span class="close-text">{{i18n "modal.close"}}</span>
-        <span class="icon-close"></span>
-      </div>
-    </div>
-
-    <div class="counter" data-image-length="{{this.advert.picturesToDisplay.testPictures.length}}">
-      <span class="currentImg">1</span>
-      <span class="separator">/</span>
-      <span class="totalImg">{{this.advert.picturesToDisplay.testPictures.length}}</span>
-    </div>
-
-    <div class="carousel-text slider-for">
-      {{#each this.advert.picturesToDisplay.testPictures}}
-        <div>
-          <img src="{{this}}" alt="{{@index}}"/>
-        </div>
-      {{/each}}
-    </div>
-
-    <div class="carousel-images slider-nav slider-nav-overlay">
-      {{#each this.advert.picturesToDisplay.testPictures}}
-        <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
-      {{/each}}
-    </div>
-
+<div class="main-background">
+  <div class="main">
+    <span class="vertical-alignment-helper"></span>
+    <img src="{{this.advert.picturesToDisplay.testPictures.[0]}}"/>
   </div>
 </div>
-{{/unless}}
+<div class="slider-nav">
+  {{#each this.advert.picturesToDisplay.testPictures}}
+    <div>
+      <img data-lazy="{{this}}" alt="{{@index}}"/>
+    </div>
+  {{/each}}
+</div>
