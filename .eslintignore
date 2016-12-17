@@ -23,8 +23,7 @@ app/appWeb/controllers/all/homepageController.js
 app/appWeb/controllers/all/messagepageController.js
 app/appWeb/controllers/all/quickpostController.js
 app/appWeb/controllers/api/apiGalleryController.js
-app/appWeb/serviceWorkers/service-worker-es_MX.js
-app/appWeb/serviceWorkers/service-worker-es_MX-local.js
+app/appWeb/serviceWorkers/service-worker.js
 app/appWeb/views/components/adBottomBanner/js/app.js
 app/appWeb/views/components/adCarousel/js/adCarousel.js
 app/appWeb/views/components/adCarousel/js/app.js

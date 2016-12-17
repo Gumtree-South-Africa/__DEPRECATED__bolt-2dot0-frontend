@@ -10,7 +10,7 @@ var GA_ORIGIN = /https?:\/\/((www|ssl)\.)?google-analytics\.com/;
 
 var CACHE_VERSION = 1;
 var CURRENT_CACHES = {
-	'homepage': 'vivanuncios-homepage-v' + CACHE_VERSION,
+	'homepage': '{brand}-{country}-homepage-v' + CACHE_VERSION,
 	'offline-analytics': 'offline-analytics-v' + CACHE_VERSION
 };
 var PRECACHE = '$$$toolbox-cache$$$';
@@ -137,12 +137,12 @@ if (cacheObj){
 
 	// cache images from crop server : max of 300 entries, cached for 1 week
 	if (cacheObj.cropCache.length > 0) {
-		addToCache('/(.*)', toolbox.networkFirst, cacheObj.cropCache, 'vivanuncios-dynamic-images', 300, 86400);
+		addToCache('/(.*)', toolbox.networkFirst, cacheObj.cropCache, '{brand}-{country}-dynamic-images', 300, 86400);
 	}
 
 	// cache images from eps server : max of 300 entries, cached for 1 week
 	if (cacheObj.epsCache.length > 0) {
-		addToCache('/(.*)', toolbox.networkFirst, cacheObj.epsCache, 'vivanuncios-dynamic-images', 300, 86400);
+		addToCache('/(.*)', toolbox.networkFirst, cacheObj.epsCache, '{brand}-{country}-dynamic-images', 300, 86400);
 	}
 }
 

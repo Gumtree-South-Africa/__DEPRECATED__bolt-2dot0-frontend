@@ -3,18 +3,18 @@ module.exports = {
 	"preCachePaths":
 	{
 		"css": [
-			'v2/Vivanuncios/MX/es_MX/Main.css',
-			'es_MX/es_MX.css',
-			'es_MX/fallback.css',
-			'es_MX/icons.css',
-			'es_MX/sprite.css'
+			'v2/{brand}/{country}/{locale}/Main.css',
+			'{locale}/{locale}.css',
+			'{locale}/fallback.css',
+			'{locale}/icons.css',
+			'{locale}/sprite.css'
 		],
 		"cssmin": [
-			'v2/Vivanuncios/MX/es_MX/Main.min.css',
-			'es_MX/es_MX.css',
-			'es_MX/fallback.css',
-			'es_MX/icons.css',
-			'es_MX/sprite.css'
+			'v2/{brand}/{country}/{locale}/Main.min.css',
+			'{locale}/{locale}.css',
+			'{locale}/fallback.css',
+			'{locale}/icons.css',
+			'{locale}/sprite.css'
 		],
 		"js": [
 			'jQuery.min.js',
@@ -28,12 +28,12 @@ module.exports = {
 	"homepageCachePaths":
 	{
 		"css": [
-			'v2/Vivanuncios/MX/es_MX/HomePage.css',
-			'es_MX/svg/sprite.css-*.svg'
+			'v2/{brand}/{country}/{locale}/HomePage.css',
+			'{locale}/svg/sprite.css-*.svg'
 		],
 		"cssmin": [
-			'v2/Vivanuncios/MX/es_MX/HomePage.min.css',
-			'es_MX/svg/sprite.css-*.svg'
+			'v2/{brand}/{country}/{locale}/HomePage.min.css',
+			'{locale}/svg/sprite.css-*.svg'
 		],
 		"icons": [
 			'icon_call.svg',
@@ -47,11 +47,11 @@ module.exports = {
 		],
 		"images": [
 			'carousel-arrow-right.png',
-			'es_MX/appstore.svg',
-			'es_MX/googleplay.svg',
-			'es_MX/logo.png',
-			'es_MX/rating.png',
-			'es_MX/appdownload_mobile.jpg',
+			'{locale}/appstore.svg',
+			'{locale}/googleplay.svg',
+			'{locale}/logo.png',
+			'{locale}/rating.png',
+			'{locale}/appdownload_mobile.jpg',
 			'safety-tips-1.jpg',
 			'Agent01.jpg',
 			'Agent02.jpg',
@@ -62,11 +62,11 @@ module.exports = {
 		],
 		"js": [
 			'HomePageV2Legacy.min.js',
-			'HomePage_mobile_es_MX.js'
+			'HomePage_mobile_{locale}.js'
 		],
 		"jsmin": [
 			'HomePageV2Legacy.min.js',
-			'HomePage_mobile_es_MX.js'
+			'HomePage_mobile_{locale}.js'
 		]
 	}
 };
