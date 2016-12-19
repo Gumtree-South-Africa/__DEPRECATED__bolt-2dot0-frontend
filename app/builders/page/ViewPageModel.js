@@ -342,8 +342,6 @@ class ViewPageModel {
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
-					seoGroupName: 'Automobiles',
-					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
 					statistics: advertData.adStatistics,
