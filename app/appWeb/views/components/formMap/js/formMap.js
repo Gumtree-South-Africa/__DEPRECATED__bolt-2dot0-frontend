@@ -18,7 +18,7 @@ class FormMap {
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
-		this.position = locationMock;
+		this.position = locationMexicoMock;
 		this.currentLocation;
 		this.meters = 1000;
 		this.icons = {
@@ -59,21 +59,24 @@ class FormMap {
 
 	configMap() {
 		
-		let tempzoom = locationMexicoMock ? 4 : this.zoom;
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: locationMexicoMock,
-			zoom: tempzoom,
-			disableDefaultUI: true,
+			zoom: 4,
+			disableDefaultUI: true
 		});
+		google.maps.event.trigger(this.map, "resize");
+
+		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
 			this.setLocation();
 		});
-		this.initAutocomplete();
-		this.setLocation();
-
+	
+		this.map.addListener('idle',() => {
+			google.maps.event.trigger(this.map, "resize");
+		});
 	}
 
 	setLocation() {
@@ -190,11 +193,7 @@ let initialize = () => {
 	window.formMap.configMap();
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
-
-	window.formMap.HtmlSetLocation.click(() => {
-		window.formMap.geolocate();
-		window.formMap.setCurrentPosition();
-	});
+	window.locationMexicoMock = locationMexicoMock;
 };
 
 
