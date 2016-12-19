@@ -4,6 +4,8 @@ let PostFormCustomAttributesController = require("app/appWeb/views/components/po
 let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 let EditAdController = require("app/appWeb/views/templates/pages/editAd/js/editPage.js").EditAd;
 let specHelper = require('../helpers/commonSpecHelper.js');
+let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
+
 
 //let mockGoogleAutoCompleteData = "window.google=window.google||{};google.maps=google.maps||{};google.maps.__gjsload__(\'places\',function(_){\'use strict\';var Qw=function(a,b){try{_.Ib(window.HTMLInputElement,\"HTMLInputElement\")(a)}catch(c){if(_.Fb(c),!a)return}\r\n_.J(\"places_impl\",(0,_.v)(function(c){this.setValues(b||{});c.b(this,a);_.Ie(a)},this))},Rw=function(){this.b=null;_.J(\"places_impl\",(0,_.v)(function(a){this.b=a.l()},this))},Sw=function(a){this.b=null;_.J(\"places_impl\",(0,_.v)(function(b){this.b=b.f(a)},this))},Tw=function(a,b){_.J(\"places_impl\",(0,_.v)(function(c){c.j(this,a);this.setValues(b||{})},this))};_.w(Qw,_.G);Qw.prototype.setTypes=_.wc(\"types\",_.Kb(_.$g));Qw.prototype.setComponentRestrictions=_.wc(\"componentRestrictions\");_.xc(Qw.prototype,{place:null,bounds:_.Ob(_.Ud)});Rw.prototype.getPlacePredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getPlacePredictions(a,b)},this))};Rw.prototype.getPredictions=Rw.prototype.getPlacePredictions;Rw.prototype.getQueryPredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getQueryPredictions(a,b)},this))};_.r=Sw.prototype;_.r.getDetails=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getDetails(a,b)},this))};_.r.nearbySearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.nearbySearch(a,b)},this))};_.r.search=Sw.prototype.nearbySearch;_.r.textSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.textSearch(a,b)},this))};_.r.radarSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.radarSearch(a,b)},this))};_.w(Tw,_.G);_.xc(Tw.prototype,{places:null,bounds:_.Ob(_.Ud)});_.Lc.google.maps.places={PlacesService:Sw,PlacesServiceStatus:{OK:_.ha,UNKNOWN_ERROR:_.ka,OVER_QUERY_LIMIT:_.ia,REQUEST_DENIED:_.ja,INVALID_REQUEST:_.ca,ZERO_RESULTS:_.la,NOT_FOUND:_.ga},AutocompleteService:Rw,Autocomplete:Qw,SearchBox:Tw,RankBy:{PROMINENCE:0,DISTANCE:1},RatingLevel:{GOOD:0,VERY_GOOD:1,EXCELLENT:2,EXTRAORDINARY:3}};_.mc(\"places\",{});});";
 //let mockLocationData = {"results":[{"address_components":[{"long_name":"Mexico City","short_name":"México D.F.","types":["locality","political"]},{"long_name":"Mexico City","short_name":"D.F.","types":["administrative_area_level_1","political"]},{"long_name":"Mexico","short_name":"MX","types":["country","political"]}],"formatted_address":"Mexico City, Mexico","geometry":{"bounds":{"northeast":{"lat":19.5927572,"lng":-98.9604482},"southwest":{"lat":19.1887101,"lng":-99.3267771}},"location":{"lat":19.4326077,"lng":-99.133208},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":19.5927572,"lng":-98.9604482},"southwest":{"lat":19.1887101,"lng":-99.3267771}}},"place_id":"ChIJB3UJ2yYAzoURQeheJnYQBlQ","types":["locality","political"]}],"status":"OK"};
@@ -152,6 +154,33 @@ describe('Edit Ad', () => {
 			expect($($modelOptions[1]).attr("value")).toEqual("Mustang"); // default value plus (Trans Am, Fire Bird)
 		});
 
+	});
+
+	describe("formMap", () => {
+		let $testArea;
+
+		beforeEach(() => {
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
+
+			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
+			formMapController.initialize();
+			window.formMap.configMap();
+		});
+		it('test if google api maps has been applied on object window.google', () => {
+			spyOn(window.google.maps, 'Map');
+			this.map = new google.maps.Map($(".map")[0], {
+				center: this.position,
+				zoom: this.zoom,
+				disableDefaultUI: true,
+			});
+			expect(google.maps.Map).toHaveBeenCalled();
+		});
+
+		it("initialize and disable geolocate", () => {
+			let checkGeolocation = $testArea.find('#checkGeolocation');
+			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+		});
 	});
 
 	// This should be updated to use category dropdown selection

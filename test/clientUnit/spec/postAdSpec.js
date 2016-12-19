@@ -236,7 +236,7 @@ describe('Post Ad', () => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
 
-			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
+			$testArea = specHelper.setupTest('formMap', { locationLatLong: {lat: 1, lng: 1} }, 'es_MX');
 			formMapController.initialize();
 			window.formMap.configMap();
 		});
@@ -253,10 +253,6 @@ describe('Post Ad', () => {
 		it("initialize and disable geolocate", () => {
 			let checkGeolocation = $testArea.find('#checkGeolocation');
 			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
-	//		window.formMap.geolocate(false);
-	//		expect(window.formMap.position.lat).toBe(19.3883554);
-	//		expect(window.formMap.position.lng).toBe(-99.1744351);
 		});
-
 	});
 });

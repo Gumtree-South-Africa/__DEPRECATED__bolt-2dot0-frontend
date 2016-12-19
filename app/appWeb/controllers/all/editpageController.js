@@ -64,7 +64,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMap);
 
-		modelData.locationlatlong = JSON.stringify({
+		modelData.locationLatLong = JSON.stringify({
 			lat: modelData.adResult.location.latitude,
 			lng: modelData.adResult.location.longitude
 		});
