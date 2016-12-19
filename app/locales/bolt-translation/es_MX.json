@@ -1560,7 +1560,7 @@
 			"updated": "ACTUALIZADO",
 			"postedby": "PUBLICADO POR",
 			"daysago": "Hace",
-			"expiredStatusBannerMessage": "Este anuncio ha expirado.",
+			"expiredStatusBannerMessage": "Este anuncio no se encuentra activo.",
 			"expiredStatusBannerLinkMessage": "Activar ahora",
 			"expiredStatusBannerLinkURL": "/postActivate.html?adId=%sguid=%s",
 			"pendingStatusBannerMessage": "Este anuncio está en proceso de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Por favor, revisa tu correo electrónico.",

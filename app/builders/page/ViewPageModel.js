@@ -309,7 +309,10 @@ class ViewPageModel {
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 
 		//Status Banner
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.status, modelData.vip.showSellerStuff);
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		console.log('**************',modelData.advert.statusInfo.status, '**************')
+		console.log('@@@@@@@@@@@@@@@@@@@@@@@@',modelData.advert.statusInfo, '@@@@@@@@@@@@@@@@@@@@@@@@')
+		console.log('**************',modelData.advert.statusInfo.statusReason, '**************')
 
 		return modelData;
 	}
@@ -317,21 +320,21 @@ class ViewPageModel {
 	//getStatusBanner
 	getStatusBanner(state, isOwner){
 		let s = {
-			'EXPIRED': {
+			'DELETED__SYSTEM__TIMEDOUT': {
 				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.expiredStatusBannerLinkMessage',
 					url: 'vip.details.expiredStatusBannerLinkURL'
 				}]
 			},
-			'PENDING': {
+			'PENDING__USER__CONFIRMED': {
 				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.pendingStatusBannerLinkMessage',
 					url: 'vip.details.pendingStatusBannerLinkURL'
 				}]
 			},
-			'BLOCKED': {
+			'BLOCKED__TNS_CHECKED': {
 				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.blockedStatusBannerLinkMessage',
@@ -342,7 +345,7 @@ class ViewPageModel {
 					url: 'vip.details.blockedStatusBannerReasonURL'
 				}]
 			},
-			'DELETED': {
+			'DELETED__ADMIN__DELETED': {
 				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.deletedStatusBannerLinkMessage',
