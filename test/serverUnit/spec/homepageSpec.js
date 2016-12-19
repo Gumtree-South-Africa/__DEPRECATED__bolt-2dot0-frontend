@@ -81,8 +81,6 @@ describe('Server to hit HomePage', function() {
 						// Item 1, priceType: MXN
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[0].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
 						expect(trendingItem.find(".price-text").text()).not.toContain("USD");
 
@@ -90,8 +88,6 @@ describe('Server to hit HomePage', function() {
 						trendingItem = c$('.tile-item').next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[1].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
 						expect(trendingItem.find(".price-text").text()).toContain("USD");
 
@@ -99,8 +95,6 @@ describe('Server to hit HomePage', function() {
 						trendingItem = c$('.tile-item').next().next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[2].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 
 						// Item 4, no profile image

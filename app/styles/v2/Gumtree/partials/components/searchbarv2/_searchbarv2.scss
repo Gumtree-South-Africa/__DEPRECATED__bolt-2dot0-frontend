@@ -4,12 +4,15 @@
 	max-width: 942px;
 	padding: 15px 40px;
 
+	&.is-typing .search-bar .location-link .location-text {
+		margin-top: 0;
+	}
+
 	.type-ahead-results-wrapper, .search-bar {
-		width: auto;
+		width: calc(100% - 40px)
 	}
 
 	.search-bar {
-		width: auto;
 
 		.divider {
 			border-color: $searchBarTextBoxBorder;
@@ -85,10 +88,6 @@
 
 @include from-breakpoint($large-break) {
 	.search-controls {
-		.search-bar {
-			width: auto
-		}
-
 		.search-loc-icon {
 			margin-top: 0;
 		}
@@ -116,7 +115,7 @@
 
 @include to-breakpoint($small-break) {
 	.search-controls {
-		padding: 15px 25px;
+		padding: 15px 0;
 
 		.search-bar {
 			.location-link {
