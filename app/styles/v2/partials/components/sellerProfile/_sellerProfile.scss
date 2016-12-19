@@ -31,6 +31,14 @@
 		display: inline-block;
 		color: $vivaGray1;
 		padding-left: 10px;
+		white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+		width: 50%;
+		max-width: 9em;
+		@include from-breakpoint($medium-break){
+			max-width: 14.5em;
+		}
 	}
 
 	.user-active {
@@ -46,12 +54,19 @@
 	}
 
 	.email-icon {
-		display:block;
-		float:right;
-		width:30px;
-		height:30px;
+		display: block;
+		float: right;
+		width: 30px;
+		height: 30px;
 		position: relative;
-		right: 66px;
+		right: 48px;
+
+	}
+	.icon-email-verified{
+		top: 2px;
+	}
+	.icon-email-non-verified{
+		top: 0px;
 	}
 
 	.user-ads {

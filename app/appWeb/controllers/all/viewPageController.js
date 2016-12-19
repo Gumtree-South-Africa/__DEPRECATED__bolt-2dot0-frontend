@@ -8,9 +8,13 @@ let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
+let config = require('config');
+
+const SITE_KEY = config.get('recaptcha.SITE_KEY');
 
 let VIP = {
 	extendHeaderData: (req, modelData) => {
+		// SEO
 		modelData.header.pageType = modelData.pagename;
 		modelData.header.pageTitle = modelData.seo.pageTitle;
 		modelData.header.metaDescription = modelData.seo.description;
@@ -18,8 +22,12 @@ let VIP = {
 		modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
 		modelData.header.pageUrl = modelData.header.viewPageUrl;
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
+			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'viewad/' + modelData.advert.id;
 		}
+		// OG
+		modelData.header.ogUrl = _.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0];
+		// Recaptcha
+		modelData.header.recaptchaSiteKey = SITE_KEY;
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');

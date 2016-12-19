@@ -236,7 +236,7 @@ describe('Post Ad', () => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
 
-			$testArea = specHelper.setupTest('formMap', { locationLatLong: {lat: 1, lng: 1} }, 'es_MX');
+			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
 			window.formMap.configMap();
 		});

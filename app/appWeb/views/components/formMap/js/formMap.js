@@ -12,8 +12,8 @@ class FormMap {
 		this.zoom = 17;
 		this.accuracy = 5;
 		this.map;
-		this.googleMap = $(".form-map-conponent").data("google-map");
-		this.locationAd = $(".form-map-conponent").data("location-ad");
+		this.googleMap = $(".form-map-component").data("google-map");
+		this.locationAd = $(".form-map-component").data("location-ad");
 		this.placeSearch;
 		this.autocomplete;
 		this.useGeolocation;
@@ -61,15 +61,13 @@ class FormMap {
 			zoom: tempzoom,
 			disableDefaultUI: true,
 		});
+		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
 			this.setLocation();
 		});
-		this.initAutocomplete();
-		this.setLocation();
-
 	}
 
 	setLocation() {
@@ -183,24 +181,12 @@ class FormMap {
 
 let initialize = () => {
 	window.formMap = new FormMap();
-	this.googleMap = $(".form-map-conponent").data("google-map");
-	this.locationAd = $(".form-map-conponent").data("location-ad");
+	this.googleMap = $(".form-map-component").data("google-map");
+	this.locationAd = $(".form-map-component").data("location-ad");
 	// set the current location via data in node
-
 	window.formMap.setPosition();
-
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
-
-
-	window.formMap.HtmlSetLocation.click(() => {
-		window.formMap.geolocate();
-		window.formMap.setCurrentPosition();
-	});
-
-	window.formMap.HtmlEnableLocation.change(() => {
-		window.formMap.getLocation();
-	});
 };
 
 

@@ -1,4 +1,4 @@
-<div class="form-map-conponent" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+<div class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
     <div class="title">{{i18n "postad.location.title"}}</div>
     <div class="map-form">
         <div class="search-location">
@@ -12,7 +12,11 @@
             <div class="map-plugin">
                 <div id="map"></div>
                 <div class="google-maps">
-                    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+                    {{#if this.googleMapAuth.googleMapKey}}
+                		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{this.googleMapAuth.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+                    {{else}}
+                		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+                    {{/if}}
                 </div>
             </div>
         </div>

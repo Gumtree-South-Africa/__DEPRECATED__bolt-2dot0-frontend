@@ -162,7 +162,13 @@ describe('Edit Ad', () => {
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-
+			this.navigator = {
+				geolocation: function() {
+					return {
+						getCurrentPosition: function() { }
+					};
+				}
+			};
 			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
 			window.formMap.configMap();
