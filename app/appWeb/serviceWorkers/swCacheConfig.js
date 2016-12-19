@@ -50,12 +50,16 @@ module.exports = {
 			'{locale}/appstore.svg',
 			'{locale}/googleplay.svg',
 			'{locale}/logo.png',
+			'{locale}/logo_v2.png',
 			'{locale}/rating.png',
 			'{locale}/appdownload_mobile.jpg',
-			'safety-tips-1.jpg',
-			'Agent01.jpg',
-			'Agent02.jpg',
-			'Agent03.jpg'
+			'{locale}/loading-circle-complete.gif',
+			'{locale}/loading-circle.gif',
+			'{locale}/shield.png',
+			'{locale}/Agent01-50.jpg',
+			'{locale}/Agent02-50.jpg',
+			'{locale}/Agent03-50.jpg',
+			'safety-tips.jpg'
 		],
 		"fonts": [
 			'Lato-Regular.ttf'
