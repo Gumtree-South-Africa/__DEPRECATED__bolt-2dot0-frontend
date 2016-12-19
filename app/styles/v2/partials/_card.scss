@@ -1,5 +1,3 @@
-@import "../theme";
-
 $cardHeaderPadding: 20px;
 
 .card {
@@ -30,11 +28,6 @@ $cardHeaderPadding: 20px;
 
     .underline {
         text-decoration: underline;
-
-		[class*=icon-] {
-			display: inline-block;
-			margin-bottom: -5px;
-		}
     }
 
     .card-view-more {
@@ -82,17 +75,42 @@ $cardHeaderPadding: 20px;
 	.card-title {
 		font-size: 18px;
 		font-weight: bold;
+		white-space: nowrap;
 	}
 
 	.underline {
-		display: block;
-        font-size: 14px;
-		margin-top: 5px;
 		text-decoration: none;
 
 		[class*=icon-] {
 			display: inline-block;
-			margin-bottom: -5px;
+			margin: 0 0 -3px 3px;
 		}
     }
+}
+
+@include to-breakpoint($small-break) {
+	.card-trendingCard {
+		.card-title {
+			margin: auto;
+			width: 300px;
+
+			span {
+				display: block;
+
+				&:first-child {
+					float: left;
+				}
+
+				&:last-child {
+					overflow: hidden;
+					text-overflow: ellipsis;
+				}
+			}
+
+			[class*=icon-] {
+				display: inline-block;
+				margin: 0 -2px -3px 5px;
+			}
+		}
+	}
 }
