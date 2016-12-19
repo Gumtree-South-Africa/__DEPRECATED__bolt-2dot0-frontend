@@ -14,13 +14,6 @@ let _showMoreLocations = () => {
 	}
 };
 
-let _toggleTabs = () => {
-	this.$topLocations.removeClass('mobile-hide');
-	this.$topSearches.addClass('mobile-hide');
-	this.$locationHeaderText.addClass('thick-underline');
-	this.$searchHeadertext.removeClass('thick-underline');
-};
-
 let initialize = () => {
 	this.$desktopSeo = $('.desktop-seo');
 	this.$viewMoreLocations = $('.view-more-locations');
@@ -35,7 +28,6 @@ let initialize = () => {
 	this.viewLessText = this.$viewMoreLocations.data('view-less');
 
 	this.$viewMoreLocations.on('click', _showMoreLocations);
-	this.$topLocationsHeader.on('click', _toggleTabs);
 };
 
 module.exports = {

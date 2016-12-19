@@ -250,6 +250,7 @@
 	"home.popular-searches": "Popular",
 	"home.popular.searches": "Top searches",
 	"home.trending-searches": "Trending",
+	"home.suggested-searches": "Suggested",
 	"home.user.registered": "Congratulations and welcome! You have registered successfully at Gumtree.",
 	"home.ad.notyetactive": "Oops, the ad you are looking for is not yet live. Check back very soon!",
 	"home.reset.password.success": "Your password has been changed successfully.",
@@ -1068,8 +1069,6 @@
 	"smartbanner.free": "Free",
 	"smartbanner.install": "Download",
 	"smartbanner.open": "Open",
-	"smartbanner.interstitial.install": "DOWNLOAD IT NOW!",
-	"smartbanner.interstitial.continue-mobile": "or continue to the mobile site >",
 	"branchiosmartbanner.title": "Gumtree South Africa App",
 	"branchiosmartbanner.description": "Simple and easy to use. Fast to sale.",
 	"branchiosmartbanner.install": "Download",
@@ -1120,11 +1119,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "South Africa",
 	"postad.image.upload.failure": "Unfortunately, an error has occurred while loading images",
-	"smartmobilebanner": {
-		"title": "Open App",
-		"mobilelink": "continue to mobile site >",
-		"branchiolink": "https://go.gumt.io/open"
-	},
     "welcomescreen": {
 		"title": "Welcome!",
 		"description": "Earn money now!",
@@ -1179,6 +1173,42 @@
 		},
 		"gallery" : {
 			"cardTitle": "Homepage gallery ads"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Try other images",
+					"message": "There is a problem with your image dimension"
+				},
+				"invalidSize": {
+					"title": "Try other images",
+					"message": "There is a problem with your image size"
+				},
+				"invalidType": {
+					"title": "Try other images",
+					"message": "There is a problem with your image type"
+				},
+				"colorspace": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				},
+				"firewall": {
+					"title": "Try again",
+					"message": "There is a problem with your network"
+				},
+				"picturesrv": {
+					"title": "Try again",
+					"message": "There is a problem uploading your image"
+				},
+				"corrupt": {
+					"title": "Try other images",
+					"message": "There is a problem with your image"
+				},
+				"unknown": {
+					"title": "Try other images",
+					"message": "There is a problem uploading your image"
+				}
+			}
 		}
 	},
 	"header": {
@@ -1264,6 +1294,7 @@
 		"placeholderText": "Type a location",
 		"locationAutoDesktop": "According to our system, this is the nearest location",
 		"locationAutoMobile": "Nearest location",
+		"locationWarning": "Your exact location will not be published",
 		"info": "City, Zone or Region"
 	},
 	"sectionMenu": {
@@ -1275,8 +1306,8 @@
 	},
 	"recentactivity": {
 		"message": {
-			"listing": "%s acaba de poner en venta %s %s",
-			"sold": "%s acaba de vender %s %s"
+			"listing": "%s just listed %s %s",
+			"sold": "%s just sold %s %s"
 		}
 	},
 	"gpsMap": {
@@ -1287,8 +1318,10 @@
 		"button": "Post FREE Ad"
 	},
 	"postAd": {
+		"back": "Back",
 		"page": {
 			"title": "Free Classifieds on Gumtree South Africa",
+			"tips": "It's easy, just upload a photo. You can add more photos and edit the details later.",
 			"desc": "Come to Gumtree South Africa, your local online classifieds site with undefined live classified listings. List free classifieds ads or buy and sell what you want for free!"
 		},
 		"confirm": {
@@ -1307,6 +1340,7 @@
 				"title": "Ad title",
 				"remaining": "remaining",
 				"price": "Price",
+				"addPhotosStep": "1. Add photos",
 				"addPhotos": "Add photos",
 				"pricePlaceholder": "Contact for price"
 			},
@@ -1342,6 +1376,15 @@
 			"message": "This file contains an unsupported media type.",
 			"uploadBtn": "Upload a different photo",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Done",
+			"changePhoto": "Change Photo"
+		},
+		"mainDetails": {
+			"title": "title",
+			"description": "description",
+			"amount": "amount"
 		}
 	},
 	"footer": {
@@ -1433,11 +1476,17 @@
 	},
 	"editAd": {
 		"reorderImages": "Reorder images",
+		"productImages": "Product images",
 		"headerTitle": "Edit your ad",
 		"mainDetails": {
 			"title": "Add details",
 			"labels": {
 				"category": "Category",
+				"attention": "Attention",
+				"warning": "Changing categories may cause data entered to be lost and require additional information to re-post the ad. ",
+				"updateConfirm": "Update category",
+				"categoryOptional": "Select category (optional)",
+				"categoryRequired": "Select category (required)",
 				"adTitle": "Ad title",
 				"price": "Price",
 				"description": "Description",
@@ -1499,5 +1548,110 @@
 				"12": "Dic"
 			}
 		}
+	},
+	"vip": {
+		"details": {
+			"edit": "Edit",
+			"favorite": "Favorite",
+			"posted": "Posted",
+			"views": "VIEWS",
+			"replies": "REPLIES",
+			"category": "CATEGORY",
+			"location": "LOCATION",
+			"updated": "UPDATED",
+			"postedby": "POSTED BY"
+		},
+		"seller": {
+			"emailVerified": "Email Verified",
+			"adsPosted": "ADS POSTED",
+			"adsActive": "ACTIVE",
+			"defaultUserName": "Gumtree User"
+		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "The email is not valid"
+				},
+				{
+					"field": "comments",
+					"message": "The comment is too long, maximun is 4096 characters"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Missing report type"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Incorrect captcha"
+				},
+				{
+					"field": "adId",
+					"message": "Missing ad id"
+				}
+			]
+		},
+		"reply": {
+			"back": "BACK",
+			"messageSeller": "MESSAGE %s",
+			"login": "Login",
+			"loginMessage": "to send messages faster!",
+			"sendMessage": "Send a Message",
+			"interested": "I'm interested. Please contact me",
+			"whenNWhere": "When and where can I see it?",
+			"message": "MESSAGE",
+			"messageValidate": "The message is required",
+			"required": "REQUIRED",
+			"name": "NAME",
+			"email": "EMAIL ADDRESS*",
+			"emailValidate": "Your email is required",
+			"emailPlaceholder": "Email Address - user@email.com",
+			"writeHere": "Write here...",
+			"phone": "PHONE (OPTIONAL)",
+			"showPhone": "Show Phone",
+			"sendACopy": "Send a copy to my email",
+			"send": "Send",
+			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
+		}
+	},
+	"promote": {
+		"postingFee": "Posting fee",
+		"require": "Required",
+		"contactMe": "Contact for Price",
+		"promoteThisAd": "Promote this ad",
+		"promoteSellFast": "Promote and sell faster",
+		"insertionFeeHint": "There is a fee for posting more than one ",
+		"contact": "Check Gumtree for Business ",
+		"contactAppend": "for more information on bulk posting.",
+		"noThanks": "No thanks, view my ad"
+	},
+	"feature": {
+		"promotetitle": "Promote this ad",
+		"promotehint": "Promote and sell faster",
+		"displayname": {
+			"bumpUpXY": "Bump up",
+			"topAd": "Top ad",
+			"hpGallery": "Homepage gallery",
+			"urgent": "Urgent",
+			"highlight": "Highlights",
+			"srpGallery": "Category gallery",
+			"WebSiteUrl": "Website link"
+		},
+		"description": {
+			"bumpUpXY": "Bump Up is an affordable way to make your ad more successful, because ads higher in the category are seen by more people and get more replies. Bump Up will move your ad back to the top of the listings, just below any 'Top Ads', until more ads in the category are posted.",
+			"topAd": "Top Ads appear at the top of ad listed in a category's page for multiple days. More people read and reply to these Ads because of their prominent position on top of category listings over a long time period.",
+			"hpGallery": "Homepage Gallery is a section on the homepage where your Ads can be displayed for several days. More people read and reply to these Ads because of their prominent position on the homepage.",
+			"urgent": "An urgent label appears next to your ad in listings and search results. Users can search specifically for Urgent ads. Ideal if you need to sell, rent or hire quickly. Ads are marked as Urgent for 7 days.",
+			"highlight": "Highlighted ads stand out from the other ads on the search and browse results due to the darker background colour. Highlighted Ads have greater visibility and therefore could receive more visits and replies. Ads are marked as Highlight for 7 days.",
+			"srpGallery": "Your ad appears in a section at the top of a category's page. More people read and reply to top ads because of their prominent position. You can choose to make your ad on top for days subject to your choice.",
+			"WebSiteUrl": "Your website link will show on your ad page so other users can visit your site in one click. Allow users to see more information on whatever you're selling."
+		},
+		"total": "Total",
+		"cancel": "Cancel",
+		"checkout": "Checkout",
+		"noThanks": "No thanks, view my ad",
+		"close": "Close",
+		"addUrl": "Add URL",
+		"optional": "optional"
 	}
 }

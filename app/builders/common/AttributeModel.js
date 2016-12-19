@@ -28,7 +28,8 @@ class AttributeModel {
 			"Email"
 		];
 
-		let customAttributes = attributes.filter((attr) => {
+		let customAttributes = attributes.map((attr) => {
+			let toReturn = attr;
 			if (attr.dependencies && attr.dependencies.length > 0) {
 				let depAttrValObj;
 				if (adData) {
@@ -37,19 +38,23 @@ class AttributeModel {
 					});
 				}
 
+				// Attr is the one in cache, so we can't change any of its property value.
+				toReturn = _.extend({}, attr);
 				if (depAttrValObj && depAttrValObj.value && depAttrValObj.value.attributeValue) {
-					attr.allowedValues.filter((val) => {
+					toReturn.allowedValues = toReturn.allowedValues.filter((val) => {
 						return val.dependencyValue === depAttrValObj.value.attributeValue;
 					});
 				} else {
-					attr.allowedValues = [];
+					toReturn.allowedValues = [];
 				}
 			}
 
-			if (attr.name === "Price") {
+			if (toReturn.name === "Price") {
 				isPriceExcluded = false;
 			}
 
+			return toReturn;
+		}).filter((attr) => {
 			return !_.contains(commonAttributesToExclude, attr.name);
 		});
 

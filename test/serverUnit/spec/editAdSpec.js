@@ -71,17 +71,17 @@ describe('Edit Ad Page', () => {
 				.set('Cookie', 'b2dot0Version=2.0;bt_auth=Bear XXX')
 				.expect((res) => {
 					expect(res.status).toBe(200);
-
+					
 					let c$ = cheerio.load(res.text);
-					expect(c$(`input[title='Title']`).val()).toBe(mockData.title);
+					expect(c$(`input[name='Title']`).val()).toBe(mockData.title);
 					expect(c$(`#description-input`).text()).toBe(mockData.description);
-					expect(c$(`input[title='amount']`).val()).toBe(`${mockData.price.amount}`);
+					expect(c$(`input[name='amount']`).val()).toBe(`${mockData.price.amount}`);
 					expect(c$(`input[value='USD']`).is(':checked')).toBeTruthy();
 
 					expect(c$(`input[name='AlmVehicleBrand']`).val()).toBe(mockData.attributes[0].value.attributeValue);
 					expect(c$(`input[name='AlmVehicleModel']`).val()).toBe(mockData.attributes[2].value.attributeValue);
 
-					let imageJson = JSON.parse(c$('#image-urls').text()).sizeUrls;
+					let imageJson = JSON.parse(c$('#initialImages').text()).sizeUrls;
 					expect(imageJson.length).toBe(2);
 					// mimicking the replace for fixing self signed ssl cert issue on ebayimg.sandbox.ebay domain
 					expect(imageJson[0].LARGE).toBe(mockData.pictures.sizeUrls[0].LARGE.replace( "ebayimg.sandbox.ebay", "sandbox.ebayimg"));

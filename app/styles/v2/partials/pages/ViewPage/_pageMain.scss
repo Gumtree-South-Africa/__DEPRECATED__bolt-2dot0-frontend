@@ -1,7 +1,58 @@
-.view-page-container {
-	.view-content-container {
-		left: 0;
-		right: 0;
-		margin: auto;
+.page{
+	margin: 0 auto;
+	max-width: 64em;
+	overflow-x: hidden;
+  	background-color: $page-bgcolor;
+}
+.footer-wrapper{
+	margin: 0 auto;
+	max-width: 64em;
+}
+
+#home_topbanner{
+	margin: 0 auto;
+	width: 45.5em;
+}
+
+#ad-bottombanner{
+	margin: 0 auto;
+	width: 45.5em;
+}
+
+.vip-sponsoredads {
+	width: 100%;
+}
+
+.native-ad{
+	width:250px;
+	overflow:hidden;
+}
+
+.icon-shepherd-pay-button{
+	display: block;
+	margin: 0 auto;
+}
+
+.content{
+	margin-top: 20px;
+}
+
+@include from-breakpoint($medium-break, $lt-ie9-class-name){
+	.vip-left-columns{
+		@include span(4 of 8);
+		margin-right: 20px;
+	}
+	.vip-right-columns{
+		@include span(4 of 8);
+		margin-right: 0;
 	}
 }
+
+$item-margin: 10px;
+$photo-switcher-width: 30%;
+
+$inputWidth: 84%;
+$inputFieldWidth: 46%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;

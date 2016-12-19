@@ -59,9 +59,9 @@ describe('Post Ad Page', () => {
 				.expect((res) => {
 					expect(res.status).toBe(200);
 					let c$ = cheerio.load(res.text);
-					expect(c$('.header-text .title-text').text().trim()).toBe(i18n.postAd.confirm.pageTitle);
-					expect(c$('.didKnow-text').text().trim()).toBe(i18n.postAd.confirm.didYouKnow);
-					expect(c$('.confirm-tip').text().trim()).toBe(i18n.postAd.confirm.tip);
+					expect(c$('#promote-without-if .header-text .title-text').text().trim()).toBe(i18n.promote.promoteThisAd);
+					//expect(c$('.didKnow-text').text().trim()).toBe(i18n.postAd.confirm.didYouKnow);
+					//expect(c$('.confirm-tip').text().trim()).toBe(i18n.postAd.confirm.tip);
 					expect(c$('.directions').text().trim()).toBe(i18n.postAd.createAds.directions);
 					expect(c$('.post-ad-btn .link-text').text().trim()).toBe(`${i18n.postAd.createAds.post} ${i18n.postAd.createAds.ad}`);
 				})

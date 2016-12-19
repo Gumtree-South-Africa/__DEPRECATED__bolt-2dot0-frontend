@@ -206,9 +206,8 @@ $dropdown-width: 220px;
 			}
 
 			.btn {
-				@include vivaBtn(on, 10px);
+				@include vivaBtn(on, 0.445em 0);
 				min-width: 205px;
-				padding: 10px 0;
 
 				.sudolink {
 					vertical-align: middle;

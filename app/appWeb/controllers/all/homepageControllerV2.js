@@ -8,6 +8,9 @@ let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
+let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 
 
 let HP = {
@@ -25,6 +28,8 @@ let HP = {
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 		}
+		// OG
+		modelData.header.ogUrl = modelData.header.logoUrlOpenGraph;
 
 		// CSS
 		if (modelData.header.min) {
@@ -152,13 +157,13 @@ let HP = {
 			modelData.content.seeAllUrl = homepageConfigData.adCarouselSeeAllUrl;
 
 			// Menu Section (the one below the navbar)
-			if(homepageConfigData.sectionMenu !== null) {
+			if (homepageConfigData.sectionMenu !== null) {
 				modelData.sectionMenu = homepageConfigData.sectionMenu;
 			}
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=0&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;
@@ -180,12 +185,13 @@ let HP = {
  */
 
 module.exports = (req, res, next) => {
+	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
+
 	if (!req.cookies['anonUsrId']) {
 		res.cookie('anonUsrId', cuid(), {'httpOnly': true});
 	}
-	// Retrieve Data from Model Builders
-	req.app.locals.pagetype = pagetypeJson.pagetype.HOMEPAGEV2;
 
+	// Retrieve Data from Model Builders
 	let homepage = new HomepageModel(req, res);
 	let modelPromise = homepage.populateData();
 
@@ -194,6 +200,10 @@ module.exports = (req, res, next) => {
 		HP.extendFooterData(modelData);
 		HP.buildContentData(modelData, res.locals.config.bapiConfigData);
 		HP.deleteMarketoCookie(res, modelData);
+
+		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
+		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {

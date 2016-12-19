@@ -16,11 +16,15 @@
 				font-size: 14px;
 				float: right;
 				font-weight: 100;
-				margin-right: 10px;
+				position: relative;
+				margin-right: 6px;
 				.edit-favorite-icon {
 					position: relative;
 					top: 10px;
 					display:inline-block;
+				}
+				.icon-heart-orange {
+					left: -2px;
 				}
 			}
 		}
@@ -31,7 +35,7 @@
 				font-weight: bold;
 				padding-left: 15px;
 			}
-			.ad-last-updated {
+			.ad-last-posted {
 				margin-right: 10px;
 				display: inline;
 				float: right;
@@ -56,46 +60,25 @@
 					width: 50%;
 					display:inline-block;
 				}
+				.pri-props-name {
+					font-weight: bold;
+				}
+				.pri-props-value {
+					margin-left: 10px;
+				}
 			}
 		}
 	}
 	.sec-attrs {
+		width: 100%;
 		display: inline-block;
-		margin: 10px 20px;
+		padding: 10px;
 		.ad-description {
+			margin-bottom: 20px;
 			color: $vivaGray1;
 			font-size: 12px;
 			.ad-phone {
 				color: $vivaBlue;
-			}
-		}
-		.view-replies-count {
-			margin: 10px 0px;
-			padding: 10px 0px;
-			width: 100%;
-			border-top: 1px solid $vivaGray2;
-			border-bottom: 1px solid $vivaGray2;
-
-			.ad-view-count {
-				display: inline-block;
-				text-align: center;
-				width: 48%;
-				border-right: 1px solid $vivaGray2;
-				font-size: 18px;
-				.views-text {
-					font-size: 14px;
-					color: $vivaGray1;
-				}
-			}
-			.ad-replies-count {
-				text-align: center;
-				display: inline-block;
-				width: 48%;
-				font-size: 18px;
-				.replies-text {
-					font-size: 14px;
-					color: $vivaGray1;
-				}
 			}
 		}
 		.ad-category {
@@ -108,7 +91,6 @@
 		.ad-user-attrs {
 			margin-top: 10px;
 			padding-bottom: 15px;
-			border-bottom: 1px solid $vivaGray2;
 		}
 		.ad-location {
 			position:relative;
@@ -123,16 +105,9 @@
 			position: relative;
 			display: inline-block;
 			width: 32%;
+			float:right;
+
 			.last-updated-attr {
-				font-size: 12px;
-				color: $vivaGray1;
-			}
-		}
-		.ad-posted-by {
-			position: relative;
-			display: inline-block;
-			width: 32%;
-			.posted-by-attr {
 				font-size: 12px;
 				color: $vivaGray1;
 			}
@@ -152,12 +127,22 @@
 	margin-bottom: 10px;
 	border-top: 2px solid $vivaGray2;
 }
+.slash-separator:last-child{
+	display:none;
+}
+
 
 @include from-breakpoint($medium-break) {
 	.ad-details-container {
-		width: 50%;
 		.pri-attrs {
 			background-color: $vivaWhite;
+		}
+		.pri-props-name {
+			font-size: 18px;
+			font-weight: bolder;
+		}
+		.pri-props-value {
+			font-size: 16px;
 		}
 		#desktop-pri-props {
 			font-size: 18px;
@@ -166,10 +151,6 @@
 		.sec-attrs {
 			.ad-last-updated {
 				text-align: center;
-			}
-
-			.ad-posted-by {
-				text-align: right;
 			}
 
 			.ad-desktop-only {

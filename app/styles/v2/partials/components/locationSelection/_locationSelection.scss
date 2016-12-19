@@ -1,0 +1,89 @@
+.location-selection{
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  .location-selection-container{
+      width: 100%;
+      position: relative;
+      top: 0em;
+      max-width: 23em;
+  }
+}
+
+.location-selection {
+  .location-selection-info{
+	  text-transform: uppercase;
+	  margin: 0 0 0 8%;
+	  font-size: 10px;
+	  display: inline-block;
+	  color: $vivaGray3;
+  }
+  .location-selection-field{
+    position: relative;
+    .icon-location-v2{
+		margin-top: 0.3em;
+		cursor: pointer;
+    }
+    .icon-placeholder2{
+      border: 1px solid blue;
+      float: left;
+    }
+	.current-location {
+		width: 80%;
+		margin: 1% 44% 1% 1%;
+		.icon-location-marker {
+			margin: 0 0 0 8%;
+			display: block;
+			float: left;
+			width: 20px;
+			height: 20px;
+		}
+	}
+	.location-input {
+		background: transparent;
+		.location-selection-input {
+			width: 88%;
+			margin: 0 4.2%;
+			padding: 0 calc(2% - 1px);
+			border: 1px solid #333333;
+			position: relative;
+			text-indent: 2%;
+		}
+	}
+  }
+}
+
+.pac-container{
+	.pac-item {
+		.pac-icon {
+			display: none;
+		}
+	}
+}
+
+.stop-scrolling {
+	height: 100%;
+	overflow: hidden;
+}
+
+.disable-click {
+	pointer-events: none;
+	opacity: 0.5;
+}
+
+.change-loc {
+	font: $p2;
+	color: $modal-info;
+	margin-top: 0.25em;
+	margin-left: 1em;
+}
+
+@include from-breakpoint($small-break) {
+	.location-selection {
+		margin-left: 4%;
+		// So that margin-left + width = 100%
+		width: 96%;
+		margin-bottom: 2%;
+	}
+}

@@ -24,6 +24,8 @@ let HP = {
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 		}
+		// OG
+		modelData.header.ogUrl = modelData.header.logoUrlOpenGraph;
 
 		// CSS
 		modelData.header.pageCSSUrl = modelData.header.baseCSSUrl + 'HomePage.css';
@@ -182,7 +184,7 @@ let HP = {
 		}
 
 		// Gallery AJAX
-		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=1&limit=16';
+		modelData.content.galleryAdsAjaxInitUrl = '/api/ads/gallery?offset=0&limit=16';
 
 		// Search Bar
 		modelData.content.disableSearchbar = false;

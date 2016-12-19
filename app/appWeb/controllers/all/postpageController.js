@@ -6,6 +6,8 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
+
 let Q = require('q');
 
 // todo: temporary until these can be absracted out into a model
@@ -14,6 +16,7 @@ let DraftAdModel = require(cwd + '/app/builders/common/DraftAdModel.js');
 let PostAdModel = require(cwd + '/app/builders/common/PostAdModel.js');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
+let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
 let postAdData = {
 	extendModelData: (req, modelData) => {
@@ -35,12 +38,14 @@ let postAdData = {
 };
 
 router.use('/', (req, res, next) => {
-	if (!pageControllerUtil.is2dot0Version(res)) {
+	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
+	req.app.locals.abtestpage = abTestPagesJson.pages.P;
+
+	// AB: If not 2.0 context, then redirect to 1.0 Post
+	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;
 	}
-
-	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 
 	let deferredAdPromise = Q.fcall(() => {
 		if (req.query.guid) {
@@ -60,10 +65,11 @@ router.use('/', (req, res, next) => {
 
 				return postAdModel.postAd(draftAd).then((adResult) => {
 					// deferred ad resolved, redirect to VIP
-					let redirectLink = postAdModel.fixupVipUrl(adResult.vipLink);
-
-					// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
-					if (adResult.adState === 'HOLD') {
+					let redirectLink = adResult.redirectLinks.vip;
+					if (adResult.redirectLinks.previp) {
+						redirectLink = adResult.redirectLinks.previp + '&redirectUrl=https://www.' + res.locals.config.hostname + res.locals.config.baseDomainSuffix + res.locals.config.basePort + adResult.redirectLinks.previpRedirect;
+					} else if (adResult.status === 'HOLD') {
+						// if Ad is on HOLD, then we know Insertion-Fee may be needed, redirect to EDIT
 						redirectLink = '/edit/' + adResult.id;
 					}
 
@@ -97,11 +103,11 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
-
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected

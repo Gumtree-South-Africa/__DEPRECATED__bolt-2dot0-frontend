@@ -1,5 +1,4 @@
 @import  "../../theme";
-@import  "../../../../../../node_modules/slick-carousel/slick/slick.scss";
 @import  "../../../partials/pages/EditAdPage/pageMain";
 @import  "../../../partials/components/postAdHeader/postAdHeader";
 @import  "../../../partials/components/modal/modal";
@@ -8,7 +7,12 @@
 @import  "../../../partials/components/footerV2/footerV2";
 @import  "../../../partials/components/hamburgerMenu/hamburgerMenu";
 @import  "../../../partials/components/shareAdCard/shareAdCard";
-@import  "../../../partials/components/photoCarousel/photoCarousel";
-@import  "../../../partials/components/adStats/adStats";
-@import "../../../partials/components/categorySelectionModal/categorySelectionModal";
+@import  "../../../partials/components/photoContainer/photoContainer";
 @import "../../../partials/components/spinnerModal/spinnerModal";
+@import  "../../../partials/components/locationSelection/locationSelection";
+@import  "../../../partials/components/postAdFormMainDetails/postAdFormMainDetails";
+@import  "../../../partials/components/adFeatureSelection/adFeatureSelection";
+@import  "../../../partials/components/adInsertionFee/adInsertionFee";
+@import  "../../../partials/components/postAdButton/postAdButton";
+@import  "../../../partials/components/categoryDropdownSelection/categoryDropdownSelection";
+

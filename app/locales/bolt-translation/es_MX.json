@@ -266,6 +266,7 @@
 	"home.popular-searches": "Populares",
 	"home.popular.searches": "Populares",
 	"home.trending-searches": "Tendencias",
+	"home.suggested-searches": "Sugeridos",
 	"home.user.registered": "¡Felicitaciones y bienvenido! Tu registro en Vivanuncios ha sido exitoso.",
 	"home.ad.notyetactive": "¡Hola! El anuncio que buscas no está disponible aún en Vivanuncios. ¡Por favor vuelve pronto para verlo!",
 	"home.reset.password.success": "Tu contraseña ha sido cambiada exitosamente.",
@@ -382,11 +383,6 @@
 	"vip.cancel": "Cancelar",
 	"vip.reply.your.name": "Nombre",
 	"vip.reply.your.email": "Ej: user@email.com",
-	"vip.reply.canned.imInterested": "Me interesa. Por favor contáctame.",
-	"vip.reply.canned.isItStillAvailable": "¿Aún está disponible?",
-	"vip.reply.canned.whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
-	"vip.reply.canned.whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
-	"vip.reply.canned.wouldYouShareAdditionalPics": "¿Tienes más fotografías?",
 	"vip.reply.canned.messagePlaceholder": "Escribe aquí...",
 	"vip.policymessage": "Al hacer clic en “Enviar” acepta los <a href=\"%s\" target=\"_self\">Términos y Condiciones</a> y la <a href=\"%s\" target=\"_self\">Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
 	"vip.map": "Mapa",
@@ -419,6 +415,9 @@
 	"vip.attribute.label.location": "Ubicación",
 	"vip.reply.attachmentUpload.title": "Adjuntar un archivo",
 	"vip.reply.attachmentUpload.help": "(máximo 1MB)",
+	"vip.ads.similar": "Relacionados",
+	"vip.ads.sellers": "Otros anuncios",
+	"vip.ads.emptyad": "No hay anuncios",
 	"footer.toplocations": "Los Mejores Lugares",
 	"footer.bestof": "Los Mejores Anuncios de Vivanuncios",
 	"footer.cr.$$": "Copyright © 2014-2016 eBay.  Todos los derechos reservados.",
@@ -1095,8 +1094,6 @@
 	"smartbanner.free": "Gratis",
 	"smartbanner.install": "Descargar",
 	"smartbanner.open": "Abrir",
-	"smartbanner.interstitial.install": "DESCÁRGALA YA!",
-	"smartbanner.interstitial.continue-mobile": "o continuar al sitio móvil >",
 	"my-ads.sellerbadge.label.large": "Grande",
 	"my-ads.sellerbadge.label.small": "Chico",
 	"branchiosmartbanner.title": "Vivanuncios",
@@ -1149,11 +1146,6 @@
 	"quickpost.empty": "",
 	"location.defaultcity": "M\u00E9xico",
 	"postad.button": "Publica Gratis",
-	"smartmobilebanner": {
-		"title": "Abre la App",
-		"mobilelink": "o continúa en el sitio móvil >>",
-		"branchiolink": "https://go.vivanunc.io/gana-dinero"
-	},
     "welcomescreen": {
 		"title": "¡Bienvenido!",
 		"description": "¡Gana dinero ahora!",
@@ -1172,7 +1164,9 @@
 	"postad": {
 		"upload": {
 			"photo": "Sube una foto",
-			"photos": "Sube foto(s)"
+			"photos": "Sube foto(s)",
+			"photoLimits" : "Cargar hasta 12 fotos",
+			"dragReOrder": "Toca y arrastra para reacomodarlas"
 		},
 		"image": {
 			"upload": {
@@ -1210,7 +1204,44 @@
 		},
 		"gallery" : {
 			"cardTitle": "Galería Principal"
+		},
+		"imageUpload": {
+			"error": {
+				"invalidDimension": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con las dimensiones de tu imagen"
+				},
+				"invalidSize": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tamaño de tu imagen"
+				},
+				"invalidType": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con el tipo de imagen"
+				},
+				"colorspace": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"firewall": {
+					"title": "Intenta nuevamente",
+					"message": "Hay una problema con tu conxion a internet"
+				},
+				"picturesrv": {
+					"title": "Intenta nuevamente",
+					"message": "Hay un problema para cargar tu imagen"
+				},
+				"corrupt": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema con tu imagen"
+				},
+				"unknown": {
+					"title": "Intenta con otras imágenes",
+					"message": "Hay un problema para cargar tu imagen"
+				}
+			}
 		}
+
 	},
 	"header": {
 		"catDropdown": {
@@ -1238,7 +1269,10 @@
 		"placeholderText": "Escribe una ubicación",
 		"locationAutoDesktop": "De acuerdo a nuestro sistema, ésta es la ubicación más cercana",
 		"locationAutoMobile": "Ubicación más cercana",
-		"info": "Ciudad, Colonia o Delegaci\u00F3n"
+		"locationWarning": "Tu ubicación exacta no se publicará",
+		"info": "Ciudad, Colonia o Delegaci\u00F3n",
+		"currentLocation": "Ubicación actual",
+		"yourLocation": "Ubicación de tu anuncio"
 	},
 	"sectionMenu": {
 		"cars": "Veh\u00EDculos",
@@ -1258,8 +1292,10 @@
 		"items": "artículos"
 	},
 	"postAd": {
+		"back": "Volver",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
+			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1278,6 +1314,7 @@
 				"title": "Título del anuncio",
 				"remaining": "restantes",
 				"price": "Precio",
+				"addPhotosStep": "1. Agregar fotos",
 				"addPhotos": "Agregar fotos",
 				"pricePlaceholder": "Preguntarme el precio"
 			},
@@ -1313,6 +1350,16 @@
 			"message": "Este archivo contiene un formato multimedia no admitido.",
 			"uploadBtn": "Cargar una foto diferente",
 			"error": "Error"
+		},
+		"mobileUpload": {
+			"post": "Terminar",
+			"changePhoto": "Cambia <br>foto"
+		},
+		"mainDetails": {
+			"title": "título",
+			"description": "descripción",
+			"amount": "cantidad",
+			"phone": "teléfono"
 		}
 	},
 	"footer": {
@@ -1336,9 +1383,9 @@
 				"vivablog": "Blog de Vivanuncios",
 				"vivabusiness": "Vivanuncios para negocios",
 				"rules": "Reglas para publicar anuncios",
-				"staysafe": "Mantente Seguro",
+				"staysafe": "Mantente seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
-                "protool": "Agentes Inmobiliarios",
+                "protool": "Agentes inmobiliarios",
                 "protoollink": "https://protool.vivanuncios.com.mx/"
 			},
 			"legal": {
@@ -1348,30 +1395,30 @@
 				"cookies": "Cookies"
 			},
 			"business": {
-				"business": "Agentes Inmobiliarios",
-				"protool": "La Tienda de Semi Nuevos",
-				"stores": "La Tienda Vivanuncios"
+				"business": "Agentes inmobiliarios",
+				"protool": "La tienda de semi nuevos",
+				"stores": "La tienda Vivanuncios"
 			},
 			"explore": {
 				"explore": "Explorar",
 				"classifieds": "Sitios de clasificados de eBay",
-				"mobile": "Aplicaciones Móviles",
+				"mobile": "Aplicaciones móviles",
 				"partners": "Socios",
 				"carprice": "Guía de precios de autos",
 				"location": "Ubicaciones",
                 "locationlink": "https://www.vivanuncios.com.mx/pages/localidades/",
                 "topsearches": "Búsquedas destacadas",
                 "topsearcheslink": "https://www.vivanuncios.com.mx/t-busquedas-destacadas/todos-los-anuncios/v1b0",
-				"priceIndex": "Previos de Inmuebles"
+				"priceIndex": "Precios de inmuebles"
 			},
 			"tips": {
 				"tips": "Consejos y ayuda",
 				"help": "Páginas de ayuda",
 				"helplink": "https://ayuda.vivanuncios.com.mx",
-				"onlinesafety": "Seguridad en Internet",
+				"onlinesafety": "Seguridad en internet",
 				"vivaguides": "Guías de Vivanuncios",
 				"givefeedback": "Comentar",
-				"listingRules": "Reglas para Publicar Anuncios"
+				"listingRules": "Reglas para publicar anuncios"
 			}
 		},
 		"topSearches": {
@@ -1397,24 +1444,31 @@
 	},
 	"editAd": {
 		"reorderImages": "Volver a ordenar imágenes",
+		"productImages": "Imágenes del producto",
 		"headerTitle": "Edita tu anuncio",
 		"mainDetails": {
 			"title": "Agregar detalles",
 			"labels": {
 				"category": "Categoría",
+				"attention": "Atención",
+				"warning": "Cambiar de categorías puede hacer que los datos ingresados se pierdan y que se requiera más información para volver a publicar el anuncio. ",
+				"updateConfirm": "Actualizar la categoría",
+				"categoryOptional": "Seleccionar categoría (opcional)",
+				"categoryRequired": "Seleccionar categoría (obligatorio)",
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",
+				"phone": "Teléfono",
 				"location": "Ciudad, zona o código postal"
 			},
 			"titleRestrictions": {
-				"minimumAvailable": "Disponsibles: ",
+				"minimumAvailable": "Disponibles: ",
 				"characters": " caracter(es)"
 			},
 			"askMe": "Preguntarme",
 			"suggestedCategory": "Esta categoría ha sido sugerida por Vivanuncios",
 			"leafNodeWarning": "Por favor selecciona la categoría y subcategoría que coincida más con tu anuncio para guardar los cambios.",
-			"submit": "Listo",
+			"submit": "Terminar",
 			"cancel": "Cancelar",
 			"locationWarning": "Tu ubicación exacta no se publicará",
 			"adWebsiteLink": "Agrega un enlace a tu sitio web"
@@ -1496,15 +1550,129 @@
 			"itemid": "Anuncios #%s"
 		},
 		"details": {
-			"edit": "Edit",
-			"favorite": "Favorite",
-			"posted": "Posted",
-			"views": "VIEWS",
-			"replies": "REPLIES",
-			"category": "CATEGORY",
-			"location": "LOCATION",
-			"updated": "UPDATED",
-			"postedby": "POSTED BY"
+			"edit": "Editar",
+			"favorite": "Favorito",
+			"posted": "Publicado",
+			"views": "VISTAS",
+			"replies": "RESPUESTAS",
+			"category": "CATEGORÍA",
+			"location": "UBICACIÓN",
+			"updated": "ACTUALIZADO",
+			"postedby": "PUBLICADO POR",
+			"daysago": "Hace"
+		},
+		"seller": {
+			"emailVerified": "Email Verificado",
+			"adsPosted": "ANUNCIOS PUBLICADOS",
+			"adsActive": "ACTIVO",
+			"defaultUserName": "Usuario Vivanuncios"
+		},
+		"disclaimer": {
+			"disclosure": "Consejos de seguridad - Tu seguridad es importante. Aprende a reducir los riesgos en la compra-venta.",
+			"moreInfo": "Más información.",
+			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
+			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
+		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "El correo electrónico no es válido"
+				},
+				{
+					"field": "comments",
+					"message": "Tu comentario es muy largo, máximo 4096 caracteres"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Falta el tipo de reporte"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Captcha incorrecto"
+				},
+				{
+					"field": "adId",
+					"message": "Falta el id del anuncio"
+				}
+			]
+		},
+		"reply": {
+			"back": "ATRÁS",
+			"messageSeller": "ENVIAR MENSAJE A %s",
+			"login": "Inicia sesión",
+			"loginMessage": "para enviar mensajes más rápido!",
+			"sendMessage": "Enviar un mensaje",
+			"interested": "Estoy interesado. Por favor, contáctenme.",
+			"whenNWhere": "¿Dónde y cuándo puedo verlo?",
+			"message": "MENSAJE",
+			"messageValidate": "Se requiere de un mensaje",
+			"required": "OBLIGATORIO",
+			"name": "NOMBRE",
+			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
+			"emailValidate": "Es necesario tu correo electrónico",
+			"emailPlaceholder": "Correo electrónico: user@email.com",
+			"writeHere": "Escribir texto aquí...",
+			"phone": "NÚMERO DE TELÉFONO",
+			"phoneOptional": "(OPCIONAL)",
+			"showPhone": "Mostrar número de teléfono",
+			"sendACopy": "Enviar una copia a mi correo electrónico",
+			"send": "Enviar",
+			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+			"canned": {
+				"imInterested": "Me interesa. Por favor contáctame.",
+				"isItStillAvailable": "¿Aún está disponible?",
+				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
+				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
+			}
 		}
+	},
+	"search": {
+		"page": {
+			"title": "Para anunciar tu bien o servicio, entra en Vivanuncios",
+			"desc": "Si quieres vender un producto o servicio -no importa cuál sea- publícalo en Vivanuncios. El sitio web ideal para ofrecer todos tus artículos."
+		}
+	},
+	"promote": {
+		"postingFee": "Tarifa de publicación",
+		"require": "Obligatorio",
+		"contactMe": "Contactar",
+		"promoteThisAd": "Promocionar este anuncio",
+		"promoteSellFast": "Promocionar y vender más rápido",
+		"insertionFeeHint": "Hay una tarifa por publicar más de un anuncio en la categoría de ",
+		"contact": "Consulta Gumtree for Business ",
+		"contactAppend": "para obtener más información sobre anuncios en bloque.",
+		"noThanks": "No gracias, quiero ver mi anuncio"
+	},
+	"feature": {
+		"promotetitle": "Promocionar este anuncio",
+		"promotehint": "Promocionar y vender más rápido",
+		"displayname": {
+			"bumpUpXY": "Mejorar la posición en las búsquedas",
+			"topAd": "Anuncio superior",
+			"hpGallery": "Galería de la página de inicio",
+			"urgent": "Urgente",
+			"highlight": "Anuncios destacados",
+			"srpGallery": "Galería de categorías",
+			"WebSiteUrl": "Enlace al sitio web"
+		},
+		"description": {
+			"bumpUpXY": "La opción Mejorar la posición en las búsquedas es una manera asequible que hacer que tus anuncios tengan más visitas, ya que al ubicarse en los primeros lugares dentro de la categoría serán vistos por más gente y obtendrán más respuestas. La opción Mejorar la posición en las búsquedas subirá tu anuncio a los primeros lugares de la lista, debajo de los \"Anuncios superiores\". De forma automática, subiremos tu anuncio 10 veces en 5 días.",
+			"topAd": "La opción Mejorar la posición en las búsquedas es una manera asequible que hacer que tus anuncios tengan más visitas, ya que al ubicarse en los primeros lugares dentro de la categoría serán vistos por más gente y obtendrán más respuestas. La opción Mejorar la posición en las búsquedas subirá tu anuncio a los primeros lugares de la lista de anuncios, debajo de los \"Anuncios superiores\", hasta que se publiquen más anuncios en la categoría.",
+			"hpGallery": "La Galería de la página de inicio es una sección de dicha página en donde tus anuncios se pueden exhibir durante varios días. Muchas más personas leen y responden estos anuncios debido a su posición destacada en la página de inicio.",
+			"urgent": "En las listas de anuncios y los resultados de búsquedas aparecerá una etiqueta de \"urgente\" junto a tu anuncio. Los usuarios pueden buscar específicamente anuncios etiquetados \"urgentes\". Esto es ideal si tienes apuro por vender, rentar o contratar. Los anuncios se marcan como \"urgentes\" durante 7 días.",
+			"highlight": "Los anuncios destacados sobresalen entre el resto de los anuncios que aparecen en los resultados de búsqueda y exploración debido a que tienen un fondo de color más oscuro. Los Anuncios destacados tienen mayor visibilidad y, por lo tanto, podrían recibir más cantidad de visitas y respuestas. Los anuncios se marcan como \"destacados\" durante 7 días.",
+			"srpGallery": "Tu anuncio aparecerá en una sección en  la parte superior de la página de una categoría Muchas más personas leen y responden los anuncios que se encuentran en la parte superior debido a su posición destacada. Puedes elegir que tu anuncio aparezca en la parte superior la cantidad de días que quieras.",
+			"WebSiteUrl": "El enlace a tu sitio web aparecerá en la página de tu anuncio para que otros usuarios puedan visitarlo con tan solo un clic. Haz que los usuarios obtengan más información sobre lo que estás vendiendo."
+		},
+		"total": "Total",
+		"cancel": "Cancelar",
+		"checkout": "Proceder al pago",
+		"noThanks": "No gracias, quiero ver mi anuncio",
+		"close": "Cerrar",
+		"addUrl": "Agregar URL",
+		"optional": "Opcional"
 	}
 }

@@ -67,14 +67,27 @@ SeoService.prototype.getLoginSeoData = function(bapiHeaders) {
 }
 
 /**
+ * Gets a list of SEO info for seo Page
+ */
+SeoService.prototype.getSearchPageSeoData = function(bapiHeaders) {
+	// console.info('Inside SearchPage SeoService');
+
+	var seoData = {};
+	seoData.pageTitle = 'search.page.title';
+	seoData.description = 'search.page.desc';
+	seoData.robots = 'index,follow';
+	return seoData;
+}
+
+/**
  * Gets a list of SEO info for VIP
  */
 SeoService.prototype.getVIPSeoData = function(bapiHeaders) {
 	// console.info('Inside VIP SeoService');
 
 	var seoData = {};
-	seoData.pageTitle = 'title | locationSeoWord | adId';
-	seoData.description = 'description trimmed to 140 chars...adId';
+	seoData.pageTitle = 'adTitle | locationSeoWord | country | adId';
+	seoData.description = 'description...adId';
 	seoData.robots = 'index,follow';
 	return seoData;
 }

@@ -41,7 +41,7 @@ describe('Top Locations', () => {
 
 					let c$ = cheerio.load(res.text);
 					let locationHeader = c$('.location-header-text');
-					expect(locationHeader.length).toBe(2, 'selector should produce 2 element for location header');
+					expect(locationHeader.length).toBe(1, 'selector should produce 1 element for location header');
 				})
 				.end(specHelper.finish(done));
 		});

@@ -209,7 +209,8 @@ module.exports  =  {
 			}
 			let entry = object[field];
 			if (!isNaN(entry)) {
-				return (entry === Number(value)) ? options.fn(this) : options.inverse(this);
+				// isNaN('2119') is false, so we need to wrap both entry and value
+				return (Number(entry) === Number(value)) ? options.fn(this) : options.inverse(this);
 			} else {
 				return (entry === value) ? options.fn(this) : options.inverse(this);
 			}

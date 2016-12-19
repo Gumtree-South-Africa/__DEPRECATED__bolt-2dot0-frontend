@@ -1,0 +1,104 @@
+.hidden {
+	display: none;
+}
+
+.change-category-confirm-wrapper {
+	position: fixed;
+	z-index: 10;
+	top: 0;
+	right: 0;
+	left: 0;
+	bottom: 0;
+	background-color: rgba(0, 0, 0, 0.5);
+
+	.inline-block {
+		display: inline-block;
+	}
+
+	.close-text {
+		color: gray;
+		font-size: .8em;
+		vertical-align: middle;
+		margin-right: 0.5em;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	.icon-close-small {
+		display: inline-block;
+		vertical-align: middle;
+		cursor: pointer;
+	}
+
+	.modal-close-section {
+		margin-right: 8px;
+		float: right;
+		cursor: pointer;
+
+		&:hover {
+			.close-text {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	.modal-wrapper {
+		position: fixed;
+		background-color: white;
+		height: auto;
+		width: 90%;
+		top: 35%;
+		left: 0;
+		right: 0;
+		margin: auto;
+	}
+
+	h1 {
+		clear: both;
+		font: $h1;
+		text-align: center;
+	}
+
+	.modal-info {
+		font: $h4;
+		text-align: center;
+		color: gray;
+		padding: 1em;
+	}
+
+	.confirm-footer {
+		width: 90%;
+		margin: auto;
+		.btn {
+			@include vivaBtn(off, 0.445em 0, 100%);
+			.btn-icon {
+				display: none;
+			}
+		}
+		.cancel-button {
+			text-align: center;
+			text-decoration: underline;
+			cursor: pointer;
+			margin: 10px 0;
+		}
+	}
+
+	@include from-breakpoint($medium-break) {
+		.modal-wrapper {
+			width: 60%;
+		}
+
+		.footer {
+			width: 75%;
+		}
+	}
+
+	@include to-breakpoint($small-break) {
+		.h1-text {
+			margin-left: 10px;
+			margin-right: 10px;
+		}
+	}
+}

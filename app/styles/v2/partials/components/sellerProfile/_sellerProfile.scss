@@ -1,0 +1,112 @@
+.seller-profile-container {
+	box-shadow: 1px 2px 4px $vivaGray1;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid $common-background-color;
+	background-color: $common-background-color;
+	cursor: pointer;
+	.seller-panel:hover{
+		text-decoration: none;
+	}
+
+	.seller-pic {
+		position: relative;
+		height: 100%;
+		width: 100%;
+		margin-left: 10px;
+	}
+	.user-avatar {
+		background-size:100% 100%;
+		height: 50px;
+		width: 50px;
+		-moz-border-radius: 100%;
+		-webkit-border-radius: 100%;
+		border-radius: 100%;
+		float: left;
+		border: 1px solid $vivaOrange;
+		margin-left: 7px;
+	}
+
+	.user-fname {
+		display: inline-block;
+		color: $vivaGray1;
+		padding-left: 10px;
+		white-space: nowrap;
+  	overflow: hidden;
+  	text-overflow: ellipsis;
+		width: 50%;
+		max-width: 9em;
+		@include from-breakpoint($medium-break){
+			max-width: 14.5em;
+		}
+	}
+
+	.user-active {
+		display: inline-block;
+		color: $vivaGreen1;
+	}
+
+	.email-verified-text {
+		font-size: 9px;
+		line-height: 9px;
+		margin-left: 30px;
+		color: $vivaGray1;
+	}
+
+	.email-icon {
+		display: block;
+		float: right;
+		width: 30px;
+		height: 30px;
+		position: relative;
+		right: 48px;
+
+	}
+	.icon-email-verified{
+		top: 2px;
+	}
+	.icon-email-non-verified{
+		top: 0px;
+	}
+
+	.user-ads {
+		left: 10px;
+		position: relative;
+		margin-top: 5px;
+
+		.user-ads-posted {
+			color: $vivaOrange;
+		}
+
+		.user-ads-active {
+			color: $vivaGreen1;
+			margin-left: 10px;
+			padding-left: 10px;
+			border-left: 1px solid;
+			border-color: $vivaGray2;
+		}
+
+		.ads-posted-text, .ads-active-text{
+			font-size: 10px;
+			color: $vivaGray1;
+			margin-left: 5px;
+		}
+
+		.ads-active-text {
+			position: relative;
+			top: -1px;
+		}
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.seller-profile-container {
+		.user-ads {
+			.ads-active-text {
+				padding-right: 10px;
+				border-color: $vivaGray2;
+				padding-top: 6px;
+			}
+		}
+	}
+}

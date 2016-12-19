@@ -30,7 +30,8 @@ let getUsereData = function(scope) {
 		'accountType': '',
 	    'accountCreationDate': (typeof scope.usercreationdate === 'undefined' || scope.usercreationdate === null) ? '' : (scope.usercreationdate),
         'daysSinceRegistration': '',
-		'sessionLvTstGrp': scope.sessionLvTstGrp
+		'sessionLvTstGrp': scope.sessionLvTstGrp,
+		'request2dot0Version': scope.request2dot0Version
 	};
 };
 
@@ -103,7 +104,9 @@ class DataLayerModel {
 		this.brandName = res.locals.config.name;
 		this.country = res.locals.config.country;
 		this.pagetype = req.app.locals.pagetype;
-		this.sessionLvTstGrp = res.locals.b2dot0PageVersion ? "V2" : "V1";
+
+		this.sessionLvTstGrp = (res.locals.b2dot0PageVersion && res.locals.b2dot0CookieVersion) ? "V2" : "V1";
+		this.request2dot0Version = res.locals.b2dot0PageVersion;
 	}
 
 	getModelBuilder() {
@@ -152,6 +155,7 @@ class DataLayerModel {
 					case pagetypeJson.pagetype.HOMEPAGE:
 					case pagetypeJson.pagetype.HOMEPAGEV2:
 					case pagetypeJson.pagetype.POST_AD:
+					case pagetypeJson.pagetype.VIP:
 						data = {
 							'pageData': getPageData(this),
 							'userData': getUsereData(this),
@@ -191,4 +195,3 @@ class DataLayerModel {
 }
 
 module.exports = DataLayerModel;
-

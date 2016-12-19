@@ -59,13 +59,18 @@
 		margin: 1em auto auto;
 		.btn {
 			width: 100%;
-			padding: 0.875em 0;
+			padding: 0.445em 0;
 		}
 	}
 
 	.js-post-button.btn-wrapper {
 		.btn {
-			@include vivaBtn(on, 0.85em 0, 100%);
+			@include vivaBtn(on, 0.445em 0, 100%);
+
+			&.disabled {
+				opacity: 0.5;
+				cursor: not-allowed;
+			}
 		}
 	}
 }
@@ -130,7 +135,7 @@ $borderColor: $headerMenuItemSeparatorColor;
 	.profile-item {
 		.item-icon {
 			margin-left: 0;
-			width: 26px;
+			width: 25px;
 			height: 25px;
 			background-size: 2750%;
 

@@ -1,8 +1,7 @@
 .post-ad-form-container {
-	background-color: $postAdBackgroundColor;
-	box-shadow: 1px 1px 6px $postAdShadowColor;
-
 	.input-form {
+		background-color: $postAdBackgroundColor;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
 		float: right;
 		width: 99% - $photo-switcher-width;
 		padding-top: 10px;
@@ -68,6 +67,11 @@
 
 		.control {
 			margin-right: 10px;
+
+			&:only-of-type{
+				.outer-circle{display:none;}
+				.currency-type{cursor: default;}
+			}
 		}
 
 		// Checked

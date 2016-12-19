@@ -9,16 +9,36 @@ $photo-switcher-width: 30%;
 	height: 25px;
 	width: 100%;
 	color: $postAdHeaderBlue;
-	margin-bottom: $item-margin;
-	padding-top: 10px;
+	// Distance between logo and post-ad-header should be 18px
+	// As distance between logo bottom to header-wrapper bottom is 7px and that between post-ad-header text-top and
+	// post-ad-header top around 5px (font related), the padding here should be 6px
+	padding-top: 6px;
 	padding-bottom: 5px;
 	font-size: 14px;
 	background-color: $postAdHeaderBackground;
 	border-bottom: 1px solid $postAdHeaderBlue;
 
+	.header-back {
+		float: left;
+		margin-left: 6px;
+ 		@include from-breakpoint($medium-break){
+ 			display: none;
+ 		};
+ 		.icon-back-other{
+ 			display: inline-block;
+			position: relative;
+			top: 0.1em;
+ 		}
+		a {
+			margin-left: 2px;
+			color: $postAdHeaderBlue;
+			font-weight: bold;
+		}
+	}
+
 	.header-accent {
 		font-size: 0;
-		margin-top: 6px;
+		margin-top: 7px;
 		background: $postAdHeaderBlue;
 		line-height: 3px;
 		color: $postAdHeaderBlue;
@@ -32,5 +52,23 @@ $photo-switcher-width: 30%;
 		text-align: center;
 		font-weight: bold;
 	}
+	.title-text{
+ 		max-width: 15em;
+ 		max-height: 21px;
+		@include to-breakpoint($small-break){
+			text-align: center;
+			padding: 0em 1em;
+		}
+ 		@include from-breakpoint($medium-break){
+ 			max-width: 30em;
+ 		}
+     overflow: hidden;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+     text-overflow: ellipsis;
+     -o-text-overflow: ellipsis;
+     -moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+ 	}
 
 }

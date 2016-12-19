@@ -11,6 +11,7 @@ let EditAdModel = require(cwd + '/app/builders/common/EditAdModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
+let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
 
 let _ = require('underscore');
@@ -35,6 +36,9 @@ class EditAdPageModel {
 		let modelBuilder = new ModelBuilder(this.getEditAdData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
 
+		abstractPageModel.addToClientTranslation(modelData, [
+			"feature"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
@@ -102,6 +106,7 @@ class EditAdPageModel {
 		modelData.header = data.common.header || {};
 		modelData.footer = data.common.footer || {};
 		modelData.category = data.category || {};
+		modelData.initialCategory = {suggestion: { categoryId: modelData.adResult.categoryId }} || '';
 		modelData.categoryData = this.res.locals.config.categoryflattened;
 		modelData.seo = data['seo'] || {};
 		modelData.adResult.attributeValues = {};
@@ -134,6 +139,21 @@ class EditAdPageModel {
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
+
+					// Mixin "required" flag for attributes of vertical categories
+					let verticalCategory = VerticalCategoryUtil.getVerticalCategory(
+						data.categoryId, modelData.categoryAll,
+						this.res.locals.config.bapiConfigData.content.verticalCategories);
+					if (verticalCategory) {
+						modelData.customAttributes = modelData.customAttributes.map(attr => {
+							let mixedAttr = {};
+							_.extend(mixedAttr, attr);
+							mixedAttr.required = verticalCategory.requiredCustomAttributes.indexOf(attr.name) !== -1;
+							return mixedAttr;
+						});
+						modelData.verticalCategory = verticalCategory;
+					}
+
 					return data;
 				});
 

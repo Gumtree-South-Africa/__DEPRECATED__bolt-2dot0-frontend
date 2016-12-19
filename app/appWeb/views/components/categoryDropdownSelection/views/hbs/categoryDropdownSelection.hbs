@@ -1,0 +1,36 @@
+<div class="category-component form-field required-field" data-field="Category"
+	data-category-optional="{{i18n "editAd.mainDetails.labels.categoryOptional"}}"
+	 data-category-required="{{i18n "editAd.mainDetails.labels.categoryRequired"}}">
+	<div class="all-categories hidden">{{json this.categoryAll}}</div>
+	<div class="initial-category hidden">{{json this.initialCategory}}</div>
+	<div class="label-wrapper">
+		<label for="category-selection">{{i18n "editAd.mainDetails.labels.category"}}</label>
+	</div>
+	<div id='category-selection' class="category-selection input-wrapper"></div>
+
+    <div class="change-category-confirm-wrapper hidden">
+        <div class="modal-wrapper">
+            <div class="confirm-modal">
+                <div class="overlay"></div>
+                <div class="modal-container">
+                    <div class="modal-close-section">
+                        <span class="close-text">{{i18n "postAdModal.close"}}</span>
+                        <span class="icon-close-small"></span>
+                    </div>
+                </div>
+                <h1 class="h1-text">{{i18n "editAd.mainDetails.labels.attention"}}</h1>
+                <div class="modal-info">{{i18n "editAd.mainDetails.labels.warning"}}</div>
+            </div>
+            <div class="confirm-footer">
+                <div class="btn-wrapper">
+                    <a class="btn" href="">
+                        <span class="sudolink">{{i18n "editAd.mainDetails.labels.updateConfirm"}}</span>
+                        <span class="hidden btn-icon"></span>
+                    </a>
+                </div>
+                <div class="cancel-button">{{i18n "editAd.mainDetails.cancel"}}</div>
+            </div>
+        </div>
+    </div>
+</div>
+

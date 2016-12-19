@@ -18,7 +18,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
     {{#block "smartBannerContainer"}}{{/block}}
-    {{#block "smartBannerInterstitialContainer"}}{{/block}}
     {{#block "branchioSmartBanner"}}{{/block}}
     {{#block "metaGoogleSearchBox"}}{{/block}}
 
@@ -28,7 +27,7 @@
     {{#if this.header.pageUrl}}
         <meta property="og:title" content="{{i18n this.header.pageTitle}}"/>
         <meta property="og:type" content="{{this.header.type}}"/>
-        <meta property="og:image" content='{{#block "ogImg"}}{{this.header.logoUrlOpenGraph}}{{/block}}'/>
+        <meta property="og:image" content='{{#block "ogImg"}}{{this.header.ogUrl}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
         <meta property="og:country-name" content="{{i18n 'header.country.label'}}"/>

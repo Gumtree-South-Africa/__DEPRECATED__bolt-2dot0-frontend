@@ -1,0 +1,197 @@
+.reply-form-container {
+	margin-top: 5px;
+	.fake-header-mobile {
+		display: block;
+		background-color: $common-background-color;
+		padding-top: 15px;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $vivaBlue2;
+		padding-left: 10px;
+		padding-right: 10px;
+
+		.logo {
+			display: block;
+			text-align: center;
+			height: 24px;
+			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
+			background-size: contain;
+			margin-bottom: 15px;
+		}
+
+		.left-arrow {
+			display: inline-block;
+			color: $vivaBlue;
+		}
+
+		.back-button {
+			color: $vivaBlue2;
+			margin-left: 5px;
+			cursor: pointer;
+		}
+
+		.message-highlight {
+			color: $vivaBlue2;
+			margin-left: 30px;
+			border-bottom: 4px solid $vivaBlue2;
+			padding-bottom: 10px;
+		}
+	}
+
+	.main-content {
+		margin: 15px 10px;
+		color: $vivaGray1;
+
+		.reply-form-content {
+			.login-link {
+				text-decoration: underline;
+			}
+		}
+
+		.viva-checkbox {
+			-ms-transform: scale(1.2); /* IE */
+			-moz-transform: scale(1.2); /* FF */
+			-webkit-transform: scale(1.2); /* Safari and Chrome */
+			-o-transform: scale(1.2); /* Opera */
+			padding: 10px;
+		}
+
+		.login-message-container {
+			padding-top:15px;
+			margin-bottom: 15px;
+			.desktop-message {
+				display: none;
+			}
+			.desktop-paren {
+				display: none;
+			}
+		}
+
+		.interested-message-container, .where-message-container {
+			margin-bottom: 10px;
+			margin-left: 5px;
+			.interested-message, .where-message {
+				margin-left: 5px;
+				position: relative;
+				top: 1px;
+			}
+		}
+
+		.send-message-container {
+			margin-button: 10px;
+			margin-left: 5px;
+			.send-message {
+				margin-left: 5px;
+				position: relative;
+				top: 1px;
+			}
+		}
+
+		.viva-labels {
+			font-size: 10px;
+			margin-bottom: 3px;
+			margin-left: 5px;
+			color: $vivaGray1;
+		}
+
+		.float-right {
+			float: right;
+			margin-right: 10px;
+		}
+
+		.box-area {
+			border: 1px solid $vivaGray1;
+			margin-bottom: 10px;
+			width: 95%;
+			padding-left: 5px;
+			border-radius: 3px;
+			padding-top: 4px;
+			padding-bottom: 4px;
+		}
+
+		.message-box-area {
+			height: 80px;
+		}
+
+		#vip-send-button {
+			color: $vivaWhite;
+			background-color: $vivaOrange;
+			margin: 10px auto;
+			width: 98%;
+			height: 45px;
+			font-size: 16px;
+			border-radius: 3px;
+			text-shadow:none !important;
+			border:none !important;
+			box-shadow:none !important;
+		}
+	}
+
+	.phone-header-desktop {
+		display: none;
+	}
+
+	.vip-terms {
+		font-size: 10px;
+	}
+}
+
+.hide {
+	display: none !important;
+}
+
+@include from-breakpoint($medium-break){
+	.reply-form-container {
+		padding-left: 15px;
+		padding-right: 15px;
+		background-color: $common-background-color;
+		.fake-header-mobile {
+			display: none;
+		}
+
+		.phone-header-desktop {
+			color: $vivaGray1;
+			display: block;
+			border-bottom: 1px solid $vivaGray2;
+			margin-left: 10px;
+			margin-right: 10px;
+			padding-top: 10px;
+			padding-bottom: 10px;
+
+			.show-phone {
+				cursor: pointer;
+				text-decoration: underline;
+			}
+
+			.phone-icon {
+				display: inline-block;
+				position: relative;
+				width: 20px;
+				height: 25px;
+				top: 8px;
+				margin-right: 5px;
+			}
+
+			.float-right {
+				display: inline-block;
+				position:relative;
+				top: 8px;
+				float: right;
+			}
+		}
+
+		.main-content {
+			.reply-form-content {
+				.login-message-container {
+					.desktop-message {
+						font-weight: bold;
+						display: inline-block;
+						margin-right: 10px;
+					}
+					.desktop-paren {
+						display: inline;
+					}
+				}
+			}
+		}
+	}
+}

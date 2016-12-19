@@ -1,6 +1,12 @@
 $item-margin: 10px;
 $photo-switcher-width: 30%;
 
+$inputWidth: 84%;
+$inputFieldWidth: 46%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;
+
 .margin-auto {
 	width: 90%;
 	margin: 0 auto;
@@ -15,18 +21,11 @@ $photo-switcher-width: 30%;
 }
 
 .mobile-post-ad {
-	.didKnow-text, .confirm-tip {
-		width: 90%;
+	.info-tips {
+		width: 70%;
 		text-align: center;
-		margin: 20px auto;
-	}
-
-	.didKnow-text {
-		font-size: 30px;
-	}
-
-	.confirm-tip {
-		font-size: 18px;
+		margin: 10% auto;
+		font-size: 20px;
 		color: $postAdTextGray;
 	}
 }
@@ -39,6 +38,7 @@ $photo-switcher-width: 30%;
 		font-size: 18px;
 		color: $postAdTextGray;
 		margin-bottom: 15px;
+		text-align: center;
 	}
 
 	.post-ad-btn {
@@ -49,15 +49,18 @@ $photo-switcher-width: 30%;
 		background-color: $button-bgcolor;
 		border-radius: 2px;
 		display: inline-block;
-		padding: 12px;
+		padding: 11.5px 5px;
 		font: bold 1.125em Lato;
 		text-align: center;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 80%;
-		margin: 20px 10%;
+		width: 63.7%;
 		vertical-align: top;
+		float: left;
+		margin-left: calc(1% + 300px);
+		margin-top: 1%;
+		margin-bottom: 2%;
 
 		&.disabled {
 			opacity: 0.5;
@@ -69,13 +72,81 @@ $photo-switcher-width: 30%;
 	}
 }
 
+.separator-div {
+	height: 1px;
+	position: relative;
+	width: 100%;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	&:after {
+		content: "";
+		background-color: $categorySelectionActiveListRowBgColor;
+		position: absolute;
+		bottom: 0;
+		height: 1px;
+		left: 5%;
+		right: 5%;
+	}
+}
+
+.post-ad-header {
+	z-index: 1;
+}
+.inf-container {
+	.inf-amount {
+		margin-top: -25px !important;
+	}
+}
+
+.photo-switcher {
+	display: inline-block;
+	width: 300px; // Align with banner asset
+	float: left;
+	background-color: $postAdBackgroundColor;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
+	.image-container {
+		margin: 5% 5%;
+	}
+	.cover-photo-small {
+		margin: 2% 2.8%;
+	}
+}
+
 @include from-breakpoint($medium-break) {
+	.post-ad-content {
+		position: relative;
+		max-width: 1168px;
+		margin: 0 auto;
+	}
 	.mobile-post-ad, .back-button {
 		display: none;
 	}
 
 	.desktop-post-ad {
 		display: block;
+	}
+	.main-detail-post {
+		width: 58%;
+		float: left;
+		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		margin-left: 1%;
+		display: block !important; //TBD, need to find why another breakpoint created
+	}
+
+	.two-step {
+		display: block !important;
+	}
+	.one-step {
+		display: none !important;
+	}
+
+	.icon-down {
+		display: none;
+	}
+
+	.icon-up {
+		display: none;
 	}
 }
 
@@ -84,8 +155,42 @@ $photo-switcher-width: 30%;
 	margin: auto;
 }
 
-@media(min-width: 768px) and (max-width:769px) {
-	.containment {
-		min-height: 733px;
+@include to-breakpoint($small-break) {
+	.viewport {
+		overflow-x: hidden;
+		.footer-wrapper {
+			// To ensure nothing in page is covered by post button overlay
+			// Magic number 49 is the one to ensure the bottom of footer is exactly at the top of overlay
+			// Actually the overlay's height is 73px, but post page will load one image which will adds to
+			// the height of body after footer, so that image's height should be calculated.
+			margin-bottom: 49px;
+		}
+	}
+
+	.viewport.promotion-covered .footer-wrapper {
+		// To ensure nothing in page is covered by no promotion button overlay
+		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
+		// Actually the overlay's height is 53px, but post page will load one image which will adds to
+		// the height of body after footer, so that image's height should be calculated.
+		margin-bottom: 39px;
+	}
+
+	.main-detail-post {
+		display:none;
+		background-color: $mainDetailsBackgroundColor;
+		.photo-switcher {
+			margin: 0 2%;
+			width: 100%;
+			.cover-photo-small {
+				margin: 2% 2%;
+			}
+		}
+	}
+
+	.two-step {
+		display: none;
+	}
+	.one-step {
+		display: block;
 	}
 }

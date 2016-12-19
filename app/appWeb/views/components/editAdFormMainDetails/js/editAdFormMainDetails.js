@@ -3,12 +3,16 @@ let locationModal = require("app/appWeb/views/components/modal/js/locationModal.
 let EpsUpload = require('app/appWeb/views/components/uploadImage/js/epsUpload').EpsUpload;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let categorySelectionModal = require("app/appWeb/views/components/categorySelectionModal/js/categorySelectionModal.js");
+let CategoryDropdownSelection = require('app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
 let customAttributes = require("app/appWeb/views/components/editFormCustomAttributes/js/editFormCustomAttributes.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
 
 class EditAdFormMainDetails {
+	constructor() {
+		this._categoryDropdownSelection = new CategoryDropdownSelection();
+	}
 
 	/**
 	 * setup scroll to functionality for validation failure
@@ -375,11 +379,7 @@ class EditAdFormMainDetails {
 	_openCatSelectModal() {
 		categorySelectionModal.openModal({
 			currentHierarchy: this.currentHierarchy.slice(0), // clone the hierachy and pass it in
-			onSaveCb: (hierarchy, breadcrumbs) => {
-				// empty out the category link area
-				this.$categoryChangeLink.empty();
-				// add the new text to the category breadcrumb hierarchy area
-				this.$categoryChangeLink.append(breadcrumbs);
+			onSaveCb: (hierarchy) => {
 
 				// check to make sure we saved a leaf node
 				let isLeafNode = categorySelectionModal.isLeafCategory(hierarchy);
@@ -396,9 +396,19 @@ class EditAdFormMainDetails {
 				customAttributes.updateCustomAttributes((data) => {
 					// toggle price field based on if its excluded from new category
 					this._toggleShowPriceField(data.isPriceExcluded);
+
+					// toggle required-field for title and description
+					this.$detailsSection.find('.form-ad-title').toggleClass('required-field', !!data.verticalCategory);
+					this.$detailsSection.find('.form-ad-description').toggleClass('required-field', !!data.verticalCategory);
+
 					// polyfill the form to get date pickers
 					this.$detailsSection.find("form").updatePolyfill();
 				}, newCatId);
+
+				// remove validation-error in title and description
+				this.$detailsSection.find('[name=Title]').removeClass('validation-error');
+				this.$detailsSection.find('[name=description]').removeClass('validation-error');
+
 				// save the current hierarchy that was returned
 				this.currentHierarchy = hierarchy;
 			}
@@ -433,7 +443,6 @@ class EditAdFormMainDetails {
 		this.$locationLink = $("#edit-location-input");
 
 		this.defaultLocation = this.$locationLink.data("default-location");
-		this.$categoryChangeLink = this.$detailsSection.find("#category-name-display");
 		this.$currentHierarchy = $("#selected-cat-hierarchy");
 		this.currentHierarchy = JSON.parse(this.$currentHierarchy.text() || "[]");
 		this.$priceFormField = this.$detailsSection.find(".form-ad-price");
@@ -448,9 +457,10 @@ class EditAdFormMainDetails {
 		this.$locationLat = this.$detailsSection.find('#location-lat');
 		this.$locationLng = this.$detailsSection.find('#location-lng');
 		this.$textarea = this.$detailsSection.find('#description-input');
-		this.$categoryChangeLink.append(categorySelectionModal.getFullBreadCrumbText(this.currentHierarchy));
 
-		let isLeafNode = categorySelectionModal.isLeafCategory(this.currentHierarchy);
+		this._categoryDropdownSelection.componentDidMound(this.$detailsSection.find('.category-component'));
+
+		let isLeafNode = this._categoryDropdownSelection.isLeaf;
 		this._toggleSubmitDisable(!isLeafNode);
 		this._toggleShowLeafNodeWarning(isLeafNode);
 
@@ -472,9 +482,7 @@ class EditAdFormMainDetails {
 		this.$detailsSection.find(".choose-category-button").click(() => {
 			this._openCatSelectModal();
 		});
-		this.$categoryChangeLink.click(() => {
-			this._openCatSelectModal();
-		});
+
 
 		this._bindCharacterCountEvents(this.$detailsSection.find('input[title="Title"]'), this.$detailsSection.find('label[for="Title"]'));
 		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
@@ -486,8 +494,7 @@ class EditAdFormMainDetails {
 		locationModal.initialize((data) => {
 			this._setHiddenLocationInput(data);
 		});
-		categorySelectionModal.initialize();
-
+		categorySelectionModal.initialize(); // TBD need to rmv
 		if (registerOnReady) {
 			$(document).ready(() => {
 				this.onReady();

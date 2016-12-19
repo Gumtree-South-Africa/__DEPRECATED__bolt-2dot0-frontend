@@ -1,7 +1,7 @@
 <div id="edit-ad-custom-attributes-form" class="custom-attributes">
     <div>
         {{#each this.customAttributes}}
-			<div class="form-field" data-field="{{this.name}}">
+            <div class="form-field {{#if this.required}}required-field{{/if}}" data-field="{{this.name}}">
                 {{#compare this.allowedValueType "===" "LIST"}}
                     {{> (base "editFormSelectBox") this parent=../model}}
                 {{/compare}}
@@ -13,7 +13,7 @@
                         {{> (base "editFormTextbox") this parent=../model}}
                     {{/compare}}
                 {{/compare}}
-			</div>
+            </div>
         {{/each}}
     </div>
 </div>

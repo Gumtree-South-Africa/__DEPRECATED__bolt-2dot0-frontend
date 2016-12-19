@@ -15,14 +15,25 @@ let locale = $("html").data("locale");
 let _walkAndReplace = (translation, values) => {
 	let tempTranslation = translation;
 	values.forEach((val) => {
-		tempTranslation = tempTranslation.replace("%s", val);
+		tempTranslation = tempTranslation.replace ? tempTranslation.replace("%s", val) : tempTranslation;
 	});
 
 	return tempTranslation;
 };
 
-let _getTranslation = (key) => {
-	return translations[key];
+let _getTranslation = (keys) => {
+	if (translations[keys]) {
+		return translations[keys];
+	} else {
+		let keyNames = keys.split('.');
+		let result = translations;
+		keyNames.forEach((name) => {
+			if (result[name]) {
+				result = result[name];
+			}
+		});
+		return result;
+	}
 };
 
 let _loadPartial = (name) => {
@@ -34,6 +45,7 @@ let setLocale = (newLocale) => {
 };
 
 let initialize = (Handlebars) => {
+
 	Handlebars.registerHelper("partial", (name, options) => {
 			if (!name) {
 				return;

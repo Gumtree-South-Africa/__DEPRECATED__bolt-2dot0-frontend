@@ -45,8 +45,10 @@ class HomePageModelV2 {
 			this.useGeo = true;
 		} else {
 			// Check if searchLocIdCookie is not the root location, then send in lat/long
-			if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
-				this.useGeo = true;
+			if (typeof this.locationdropdown !== 'undefined') {
+				if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+					this.useGeo = true;
+				}
 			}
 		}
 	}
@@ -137,6 +139,7 @@ class HomePageModelV2 {
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
+
 					return result;
 				}).fail((err) => {
 					console.warn(`error getting card data ${err}`);
@@ -204,7 +207,12 @@ class HomePageModelV2 {
 
 		this.dataPromiseFunctionMap.topSearches = () => {
 			return keywordModel.resolveAllPromises().then((data) => {
-				return data[0].keywords || {};
+				let keywords = {};
+				keywords.top = data[0];
+				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations'];
+				keywords.top.total = 1;
+
+				return keywords;
 			}).fail((err) => {
 				console.warn(`error getting topSearches data ${err}`);
 				return {};

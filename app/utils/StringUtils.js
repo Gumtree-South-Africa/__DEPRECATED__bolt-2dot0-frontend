@@ -62,6 +62,23 @@ var StringUtils = (function() {
 			return stripComments.html(text, false);
 		}, stripComments: function(text) {
 			return stripComments(text, false);
+		},
+		formatDate: function(date) {
+			if (date) {
+				let month = date.monthOfYear.toString();
+				let day = date.dayOfMonth.toString();
+
+				if (month.length === 1) {
+					month = "0" + month;
+				}
+
+				if (day.length === 1) {
+					day = "0" + day;
+				}
+				return `${date.year}-${month}-${day}`;
+			} else {
+				return null;
+			}
 		}
 	};
 })();

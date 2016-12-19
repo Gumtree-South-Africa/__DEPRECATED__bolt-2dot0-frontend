@@ -80,6 +80,75 @@
 			"googleAdWidth"						: "300",
 			"googleAdHeight"					: "250"
 		},
+		"adsenseConfig": {
+			"default": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "2",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_SRP_sitewide,MX_VNS_SRP_L1,MX_VNS_SRP_L2,MX_VNS_SRP_L3",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-search",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"zeroAds": {
+				"desktopNumAdsTop": "2",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "5",
+				"mobileNumAdsBottom": "0",
+				"numRepeated": "2",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "false",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "l_l0,l_l1,l_l2,l_l3",
+				"emptyResultChannel": "MX_VNS_ZSRP_sitewide,MX_VNS_ZSRP_L1,MX_VNS_ZSRP_L2",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-search",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"vip": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "0",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_VIP",
+				"emptyResultChannel": "MX_VNS_VIP",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-vip",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"seovip": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "0",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_VIP_r",
+				"emptyResultChannel": "MX_VNS_VIP_r",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-vip",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			}
+		},
 		"seoBolt"							:	{
 			"enabled"							: true,
 			"blogUrl" 							: "https://vivedf.vivanuncios.com.mx/",
@@ -183,10 +252,24 @@
 		  	"defaultKeywordsCount"	: 15
 		},
 		"localCurrencies": ["MXN", "USD"],
-		 "quickpost" : {
+		"quickpost" : {
 			"currencyDisplay"    : true,
 			"currency"           : ["MXN:MXN","USD:USD"]
-        }
+		},
+		"verticalCategories": [{
+			"id": 30,
+			"requiredCustomAttributes": ["DwellingType", "NumberBedrooms", "NumberBathrooms"]
+		}, {
+			"id": 64,
+			"requiredCustomAttributes": ["AlmVehicleBrand", "AlmVehicleModel", "CarYear", "CarMileageInKms"]
+		}, {
+			"id": 36,
+			"requiredCustomAttributes": ["JobType"]
+		}],
+		"vip" : {
+			"defaultKeywordsCount"	: 6,
+			"payWithShepherd": false
+		}
 	},
 	"bapi" : {
 		"HomepageV2": {
@@ -215,10 +298,10 @@
 		},
 		"PostAdForm": {
 			"desktop" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory", "adDraft", "user"]
 			},
 			"mobile" 	: {
-				"models" : ["seo"]
+				"models" : ["seo", "initialCategory", "adDraft", "user"]
 			}
 		},
 		"EditAdForm": {
@@ -264,13 +347,33 @@
 		"VIP": {
 			"desktop": {
 				"models": [
-					"advert", "seo"
+					"advert", "keywords", "safetyTips", "seo", "flagAd"
 				]
 			},
 			"mobile": {
 				"models": [
-					"advert", "seo"
+					"advert", "keywords", "safetyTips", "seo", "flagAd"
 				]
+			}
+		},
+		"AdPromote": {
+			"desktop": {
+				"models": [
+					"advert", "seo", "adResult"
+				]
+			},
+			"mobile": {
+				"models": [
+					"advert", "seo", "adResult"
+				]
+			}
+		},
+		"ResultsSearch": {
+			"desktop": {
+				"models": ["seo"]
+			},
+			"mobile": {
+				"models": ["seo"]
 			}
 		}
 	}

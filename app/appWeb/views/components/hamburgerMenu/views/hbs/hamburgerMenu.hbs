@@ -2,7 +2,11 @@
 <div id="js-body-overlay" class="body-overlay"></div>
 <div id='js-hamburger-menu' class="hamburger-popout hamburger-contents hamburger-closed">
 	<div class="menu-container">
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+		{{#if this.imageUploadFromHome}}
+			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button directly-post' iconName='icon-post' i18nPath="header.postAd"}}
+		{{else}}
+			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+		{{/if}}
 
         {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
@@ -37,7 +41,7 @@
 			<ul class="l0-categories">
 				<li class="hidden">
 					<div class="category-name" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}">
-						<a href="{{this.header.categoryList._links.[1].href}}">
+						<a href="{{this.header.homePageUrl}}{{this.header.categoryList._links.[1].href}}">
                             {{this.category.localizedName}}
 						</a>
 					</div>
@@ -48,7 +52,7 @@
                 {{#each this.header.categoryList.children}}
 					<li class="hidden">
 						<div class="category-name">
-							<a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}">
+							<a href="{{../this.header.homePageUrl}}{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}">
                                 {{this.localizedName}}
 							</a>
 						</div>
