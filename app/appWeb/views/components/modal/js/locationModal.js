@@ -217,7 +217,7 @@ let initialize = (setValueCb) => {
 		_openModal(this.$locmodal);
 	});
 
-	$('.card-title-cp').on('click', function() {
+	$('.card-title').on('click', function() {
 		$modalCp.removeClass('hiddenElt');
 	});
 

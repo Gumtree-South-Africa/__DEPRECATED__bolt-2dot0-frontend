@@ -76,6 +76,10 @@ $cardHeaderPadding: 20px;
 		font-size: 18px;
 		font-weight: bold;
 		white-space: nowrap;
+
+		span {
+			cursor: pointer;
+		}
 	}
 
 	.underline {
