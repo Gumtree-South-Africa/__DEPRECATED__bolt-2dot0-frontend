@@ -6,6 +6,8 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
+
 let Q = require('q');
 
 // todo: temporary until these can be absracted out into a model
@@ -101,6 +103,7 @@ router.use('/', (req, res, next) => {
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;

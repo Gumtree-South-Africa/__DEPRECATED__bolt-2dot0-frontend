@@ -56,7 +56,7 @@
       "path": "/recaptcha/api/siteverify",
       "timeout": 2000
     }
-  },  
+  },
   "kafka": {
     "server": {
       "host": "elastic-01-6467.phx01.dev.ebayc3.com",
@@ -106,5 +106,11 @@
   "abTest": {
     "type": "google",
     "experimentId": ""
-  }
+  },
+  "vmGoogleMapKeys": [
+    "AIzaSyDI1jWZMcGtH58ixNnDpeFNhaxEmb6GiMs", "AIzaSyCSvHE3dJbrLdHB1KGekXaUWA7IhQUnchE",
+    "AIzaSyD30ZQIvKQtXhCl6jOrDSPQy36kjoUFzuc", "AIzaSyC-KXzeKImhRfF4td1fERqLqC55U9kO2a8",
+    "AIzaSyDt6necQQsA96SC2OnZbAa3qW2ymzTxq2s", "AIzaSyAX9mgnXf2mRqatLYrRsNuZLtPd3Spi1lE",
+    "AIzaSyCkFm6fuKlKKsHHHpITxUxlD7EFff3DUZA"
+  ]
 }

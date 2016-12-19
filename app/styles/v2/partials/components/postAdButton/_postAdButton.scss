@@ -59,14 +59,14 @@
 
 	.mobile-post-ad-footer {
 		width: 60%;
-		padding: 10px 0 10px 20px;
+		padding: 10px 0 10px 0;
 		margin: auto;
 		float: left;
 		@include from-breakpoint($medium-break) {
 			width: 75%;
 		}
 		.btn {
-			@include vivaBtn(off, 0.382em 0, 100%);
+			@include vivaBtn(off, 0.445em 0, 100%);
 			.btn-icon {
 				display: none;
 			}

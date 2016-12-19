@@ -26,6 +26,8 @@ let VIP = {
 		}
 		// OG
 		modelData.header.ogUrl = _.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0];
+		// Recaptcha
+		modelData.header.recaptchaSiteKey = SITE_KEY;
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
@@ -157,7 +159,6 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.search = true;
-		modelData.recaptchaSiteKey = SITE_KEY;
 		modelData.redirectPrevUrl = redirectPrevUrl;
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);

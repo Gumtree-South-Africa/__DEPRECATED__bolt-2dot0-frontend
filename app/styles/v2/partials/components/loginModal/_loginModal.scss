@@ -34,9 +34,8 @@
 
 	.login-title {
 		font-weight: bold;
-		margin-top: 10px;
 		margin-bottom: 15px;
-		font-size: 24px;
+		font-size: 20px;
 	}
 
 	.email-login-btn, .facebook-button {
@@ -45,8 +44,15 @@
 
 	.email-login-btn {
 		width: 90%;
-		margin-top: 25px;
+		margin-top: 15px;
 		margin-bottom: 15px;
+		.btn {
+			padding: 0.715em 0;
+			font-size: 1.1em;
+			.sudolink {
+				vertical-align: top;
+			}
+		}
 	}
 
 	.facebook-button {
@@ -67,7 +73,7 @@
 			border-radius: 2px;
 			display: inline-block;
 			font: bold 1.125em Lato;
-			padding: 0.875em 0;
+			padding: 0.794em 0;
 			text-align: center;
 			&:hover {
 				text-decoration: none;
