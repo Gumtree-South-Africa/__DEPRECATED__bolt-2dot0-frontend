@@ -3,7 +3,12 @@
 		<div class="modal-overlay"></div>
 		<div class="modal-container">
             <div class="desktop-header">
-				<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}</span>
+                {{#if this.advert.sellerDetails.contactInfo.name}}
+					<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}</span>
+                {{else}}
+                    {{i18n "vip.seller.defaultUserName"}}
+                {{/if}}
+
                 <div class="close-button">CLOSE
                     <div class="icon-close"></div>
                 </div>

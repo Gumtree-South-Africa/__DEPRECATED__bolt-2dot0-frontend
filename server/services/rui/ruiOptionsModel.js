@@ -13,7 +13,7 @@ let initFromConfig = function(config, initDefaults) {
 	ruiOptions.host = 'www.' + initDefaults.replyHost;
 	let configHost = config.get('RUI.server.host');
 
-	if (configHost !== ''){
+	if (configHost !== '') {
 		ruiOptions.host = ruiOptions.host + '.' + configHost;
 	}
 

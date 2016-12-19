@@ -8,8 +8,8 @@ class replyForm {
 	 */
 	initialize() {
 		this.$headerHeight = $('.header-wrapper').height();
-		console.log('ORIGINAL HEIGHT', this.$headerHeight);
 		$(document).ready(() => {
+			// let adActivateStatus = this._getURLParameter('adActivateStatus') || '';
 			let $realPhone = $('.real-phone').text();
 			let $encodedPhone = window.btoa($realPhone);
 			$('.real-phone').text($encodedPhone);
@@ -40,13 +40,15 @@ class replyForm {
 		});
 	}
 
+	_getURLParameter(name) {
+		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+	}
+
 	_messageSeller() {
 		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
-		console.log('BEFORE HEIGHT-------------', this.$headerHeight);
 		$('.header-wrapper').addClass('fixed-header');
 		$replyFormContainer.removeClass('desktop-only');
-		console.log('after height', this.$headerHeight);
 		$replyForm.addClass('fixed');
 		$replyForm.css('top', this.$headerHeight + 'px');
 	}
