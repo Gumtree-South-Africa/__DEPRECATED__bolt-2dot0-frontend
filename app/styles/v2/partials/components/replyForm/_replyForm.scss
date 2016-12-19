@@ -56,7 +56,7 @@
 	position: relative;
 
 	.main-content {
-		margin: 15px 10px;
+		margin: 20px 10px;
 		color: $vivaGray1;
 
 		.reply-form-content {
@@ -86,10 +86,10 @@
 
 		.interested-message-container, .where-message-container {
 			margin-bottom: 10px;
-			margin-left: 5px;
 			.interested-message, .where-message {
 				margin-left: 5px;
 				position: relative;
+				top: -1px;
 			}
 		}
 
@@ -100,6 +100,7 @@
 			.send-message {
 				margin-left: 5px;
 				position: relative;
+				top: -1px;
 			}
 		}
 
@@ -117,7 +118,6 @@
 
 		.box-area {
 			border: 1px solid $vivaGray1;
-			margin-bottom: 10px;
 			width: 95%;
 			padding-left: 5px;
 			border-radius: 3px;
@@ -152,6 +152,7 @@
 	}
 
 	.vip-terms {
+		margin: 10px;
 		font-size: 10px;
 	}
 
@@ -340,6 +341,16 @@
 
 		.main-content {
 			.reply-form-content {
+				.viva-checkbox {
+					-ms-transform: scale(1.2); /* IE */
+					-moz-transform: scale(1.2); /* FF */
+					-webkit-transform: scale(1.2); /* Safari and Chrome */
+					-o-transform: scale(1.2); /* Opera */
+					padding: 10px;
+					position: relative;
+					top: -1px;
+				}
+
 				.login-message-container {
 					.desktop-message {
 						font-weight: bold;

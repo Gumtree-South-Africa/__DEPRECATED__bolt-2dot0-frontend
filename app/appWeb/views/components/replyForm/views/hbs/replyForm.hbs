@@ -45,7 +45,7 @@
 
                 {{#unless this.header.id}}
                     <span class="viva-labels">{{i18n "vip.reply.name"}}</span>
-                    <input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.name'}}">
+                    <input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sname'}}">
                     <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
                     <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
                     <span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
@@ -54,10 +54,10 @@
                     {{else}}
                         <span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
                     {{/if}}
-                    <input name="phoneNumber" class="box-area" type="text" placeholder="{{i18n 'vip.reply.phone'}}" {{#if this.advert.replyInfo.phoneRequired}}required{{/if}}>
+                    <input name="phoneNumber" class="box-area" type="text" placeholder="{{i18n 'vip.reply.sphone'}}" {{#if this.advert.replyInfo.phoneRequired}}required{{/if}}>
 					<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{else}}
-					<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.name'}}" value="{{this.header.profileName}}">
+					<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
 					<input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required />
 					<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{/unless}}
