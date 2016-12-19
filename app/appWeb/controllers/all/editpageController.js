@@ -45,7 +45,7 @@ router.get('/:id?', (req, res, next) => {
 
 	// If user is not logged in, force user to login; and on login success it comes back to edit
 	let authenticationCookie = req.cookies['bt_auth'];
-	if (authenticationCookie) {
+	if (!authenticationCookie) {
 		let returnUrl = `/edit/${adId}`;
 		res.redirect(`/login.html?redirect=${returnUrl}`);
 		return;
@@ -62,10 +62,12 @@ router.get('/:id?', (req, res, next) => {
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
-		modelData.locationlatlong = {
+		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMap);
+
+		modelData.locationlatlong = JSON.stringify({
 			lat: modelData.adResult.location.latitude,
 			lng: modelData.adResult.location.longitude
-		};
+		});
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {
 		console.error(err);
