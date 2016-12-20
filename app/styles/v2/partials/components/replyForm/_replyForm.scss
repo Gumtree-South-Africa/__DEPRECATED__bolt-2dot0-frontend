@@ -23,8 +23,6 @@
 	.return-button {
 		color: $vivaWhite;
 		background-color: $vivaOrange;
-		margin: 10px auto;
-		width: 95%;
 		height: 40px;
 		font-size: 18px;
 		border-radius: 3px;
@@ -34,6 +32,11 @@
 		text-align: center;
 		padding-top: 15px;
 		cursor: pointer;
+		position: fixed;
+		bottom: 20px;
+		width:90%;
+		margin: 0 0 0 -45%;
+		left:50%;
 
 		& a {
 			color: $vivaWhite;
@@ -51,8 +54,14 @@
 	}
 
 	.message-sent-text {
+		color: $vivaGray1;
 		text-align: center;
 		margin-top: 5px;
+		position: fixed;
+		top: 50%;
+		width: 90%;
+		margin: 0 0 0 -45%;
+		left:50%;
 	}
 }
 
@@ -197,6 +206,39 @@
 		display: none;
 	}
 
+	#replyModal {
+		.return-button {
+			position: relative;
+			margin: 0 auto;
+			width: 70%;
+			margin-top: 30px;
+			left: 0;
+			bottom: 0;
+			top: 88px;
+			line-height: 10px;
+			height: 25px;
+		}
+
+		.desktop-message-text {
+			color: $vivaBlue;
+			font-size: 12px;
+		}
+
+		.close-button {
+			font-size: 12px;
+		}
+
+		.message-sent-text {
+			position: relative;
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 50px;
+			left: 0;
+			display: block;
+			top: 40px;
+		}
+	}
+
 	@mixin modal(){
 	position: fixed;
 	height: 100%;
@@ -204,14 +246,15 @@
 	top: 0;
 	z-index: 200;
 	left: 0;
-	> .modal-overlay{
+
+		> .modal-overlay {
 		background-color: $modal-bgcolor;
 		opacity: 0.5;
 		position: absolute;
 		height: 100%;
 		width: 100%;
-	}
-	> .modal-container{
+		}
+		> .modal-container {
 		background-color: white;
 		width: 80%;
 		position: relative;
@@ -268,6 +311,28 @@
 				float: left;
 			}
 		}
+		.modal-container {
+			.desktop-header {
+				padding: 5px;
+				background-color: $common-background-color;
+				border-bottom: 1px solid $vivaGray2;
+
+				.desktop-message-text {
+					padding-left: 10px;
+				}
+
+				.close-icon-font {
+					display: inline-block;
+					position: relative;
+					left: 2px;
+				}
+			}
+			height: 300px;
+			width: 350px;
+			top: 120px;
+			padding: 0;
+		}
+
 		input{
 			border: transparent;
 			width: 98%;
@@ -302,20 +367,10 @@
 		opacity: 0.5;
 	}
 
-	.change-loc {
-		font: $p2;
-		color: $modal-info;
-		margin-top: 0.25em;
-		margin-left: 1em;
-	}
-
 	.reply-form-container {
 		padding-left: 15px;
 		padding-right: 15px;
 		background-color: $common-background-color;
-		.fake-header-mobile {
-			display: none;
-		}
 
 		.phone-header-desktop {
 			color: $vivaGray1;

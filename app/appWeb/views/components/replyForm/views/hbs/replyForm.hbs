@@ -4,12 +4,12 @@
 		<div class="modal-container">
             <div class="desktop-header">
                 {{#if this.advert.sellerDetails.contactInfo.name}}
-					<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}</span>
+					<span class="desktop-message-text">{{i18n "vip.reply.message-small" this.advert.sellerDetails.contactInfo.name}}</span>
                 {{else}}
-					<span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}</span>
+					<span class="desktop-message-text">{{i18n "vip.reply.message-small" ''}}{{i18n 'vip.seller.defaultUserName'}}</span>
                 {{/if}}
                 <div class="close-button">{{i18n 'vip.reply.close'}}
-                    <div class="icon-close"></div>
+                    <div class="icon-close-small-bold close-icon-font"></div>
                 </div>
             </div>
 			<div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>

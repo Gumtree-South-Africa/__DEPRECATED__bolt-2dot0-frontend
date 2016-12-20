@@ -1606,6 +1606,7 @@
 			"interested": "Estoy interesado. Por favor, contáctenme.",
 			"whenNWhere": "¿Dónde y cuándo puedo verlo?",
 			"message": "MENSAJE %s",
+			"message-small": "Mensaje %s",
 			"messageValidate": "Se requiere de un mensaje",
 			"required": "OBLIGATORIO",
 			"name": "NOMBRE",
