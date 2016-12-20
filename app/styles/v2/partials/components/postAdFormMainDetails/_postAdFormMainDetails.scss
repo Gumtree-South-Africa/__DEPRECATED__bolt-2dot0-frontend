@@ -68,9 +68,15 @@ $categoryArrowIconWidth: 13px;
 		}
 	}
 
-	.form-field.required-field label:after {
+	.form-field.required-field > .label-wrapper > label:after {
 		content: '*';
 		color: red;
+		margin-left: 5px;
+	}
+
+	.form-field.optional-field > .label-wrapper > label:after {
+		content: '(Opcional)';
+		text-transform: none;
 		margin-left: 5px;
 	}
 
