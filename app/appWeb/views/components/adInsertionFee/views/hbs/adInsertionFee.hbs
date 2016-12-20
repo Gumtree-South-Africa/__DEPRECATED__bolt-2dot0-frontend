@@ -1,0 +1,24 @@
+<div id="promote-with-inf" class="hidden">
+    {{> (dynamic "postAdHeader") titleKey="promote.postingFee" backUrl="" }}
+	<div class="inf-description">{{i18n "promote.insertionFeeHint"}} <span class="inf-category-name"></span>.
+		<a href="{{i18n 'footer.sitemap.aboutus.protoollink'}}" class="contact-support">{{i18n "promote.contact"}}</a> {{i18n "promote.contactAppend"}}</div>
+	<div class="inf-container">
+		<div class="inf-header">
+			<div class="ad-inf-description">
+                <span class="inf-category-name"></span>
+				<span class="inf-post-fee">{{i18n "promote.postingFee"}} ({{i18n "promote.require"}})</span>
+            </div>
+            <div class="inf-amount"></div>
+		</div>
+		<div class="separator-div"></div>
+		<div class="ad-summary">
+			<div class="ad-first-pic"></div>
+			<div class="ad-title"></div>
+			<div class="ad-price"></div>
+			<div class="ad-price-contact-me hidden">{{i18n "promote.contactMe"}}</div>
+		</div>
+	</div>
+	<div class="inf-cancel">
+		<a class="inf-cancel-button" href="/my/ads.html">{{i18n "editAd.mainDetails.cancel"}}</a>
+	</div>
+</div>

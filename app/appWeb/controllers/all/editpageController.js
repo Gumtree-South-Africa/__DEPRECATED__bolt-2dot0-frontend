@@ -6,6 +6,7 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let EditAdPageModel = require(cwd + '/app/builders/page/EditAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 
@@ -37,6 +38,7 @@ router.get('/:id?', (req, res, next) => {
 		return;
 	}
 
+	// AB: If not 2.0 context, then redirect to 1.0 Edit
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html?adId=' + adId);	// redirect to 1.0 version of this page
 		return;
@@ -60,6 +62,7 @@ router.get('/:id?', (req, res, next) => {
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);

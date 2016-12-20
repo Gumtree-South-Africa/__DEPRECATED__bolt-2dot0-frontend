@@ -12,15 +12,18 @@ module.exports = {
 	"outputEntry": "app/appWeb/views/templates/pages/viewPage/js/viewPage",
 	"common": {
 		"core": { // common->core is the base of the pages bundle and has the lowest priority
+			"TileGrid": "app/appWeb/views/components/tileGrid/js/tileGrid.js",
+			"adTabs": "app/appWeb/views/components/adTabs/js/adTabs.js",
 			"Header": "app/appWeb/views/components/headerV2/js/header.js",
 			"SearchBar": "app/appWeb/views/components/searchbarV2/js/searchbarV2.js",
-			"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js",
 			"Footer": "app/appWeb/views/components/footerV2/js/footer.js",
 			"PageMain": "app/appWeb/views/templates/pages/viewPage/js/viewPage.js",
 			"AdDetails": "app/appWeb/views/components/adDetails/js/adDetails.js",
 			"ViewPageGallery": "app/appWeb/views/components/viewPageGallery/js/viewPageGallery.js",
 			"replyForm": "app/appWeb/views/components/replyForm/js/replyForm.js",
-			"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js"
+			"TopSearches": "app/appWeb/views/components/topSearches/js/topSearches.js",
+			"FlagAd": "app/appWeb/views/components/flagAd/js/flagAd.js",
+			"ModalLocation": "app/appWeb/views/components/modal/js/locationModal.js"
 		},
 		"mobile": {},
 		"desktop": {} // common locale and device specific has the second highest priority

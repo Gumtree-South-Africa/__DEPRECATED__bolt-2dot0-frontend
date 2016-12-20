@@ -86,8 +86,8 @@ SeoService.prototype.getVIPSeoData = function(bapiHeaders) {
 	// console.info('Inside VIP SeoService');
 
 	var seoData = {};
-	seoData.pageTitle = 'title | locationSeoWord | adId';
-	seoData.description = 'description trimmed to 140 chars...adId';
+	seoData.pageTitle = 'adTitle | locationSeoWord | country | adId';
+	seoData.description = 'description...adId';
 	seoData.robots = 'index,follow';
 	return seoData;
 }

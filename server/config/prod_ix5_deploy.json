@@ -1,97 +1,110 @@
 {
-	"BAPI": {
-		"server": {
-			"host": "api.bolt.ebayclassifieds.com.ix5.ops.prod.bt.ecg.so",
-			"port": 80,
-			"parameters": null,
-			"timeout": 1000
-		},
-		"endpoints": {
-			"categoryHomePage": "/v1/categories",
-			"locationHomePage": "/v1/locations",
-			"topLocationsL2": "/v1/locations/top/L2",
-			"userFromCookie": "/v1/users/logged-in-user-info",
-			"topKeywords": "/v1/keywords/top",
-			"trendingKeywords": "/v1/keywords/trending",
-			"suggestedKeywords": "/v1/keywords/suggestions",
-			"relatedKeywords": "/v1/keywords/related",
-			"homepageGallery": "/v1/ads/gallery",
-			"adStatistics": "/v1/ads/statistics",
-			"configService": "/v1/configs/nodeapp/settings.json",
-			"ads": "/v1/ads",
-			"recentActivities": "/v1/ads/activities/recent",
-			"trendingSearch": "/v1/ads/trending",
-			"draftAd": "/v1/ads/drafts",
-			"availableFlagsAd": "/v1/ads/flags",
-			"specificAd": "/v1/ads/{id}",
-			"favoriteAd": "/v1/ads/{id}/favorites",
-			"categoryAttributes": "/v1/categories/{catId}/attributes",
-			"authBoltLogin": "/v1/users/actions/login-with-bolt",
-			"authFbLogin": "/v1/users/actions/login-with-facebook",
-			"authRegister": "/v1/users",
-			"authActivate": "/v1/users/{email}/actions/activate",
-			"authEmailExists": "/v1/users/email/{email}",
-			"authPhoneExists": "/v1/users/phone/{phone}",
-			"adFeatures": "/v1/features?",
-			"categorySuggest": "/v1/categories/action/suggestion?"
-		}
-	},
-	"solr": {
-		"server": {
-			"host": "solrvip.ix5.ops.prod.bt.ecg.so",
-			"port": 8080,
-			"path": "/solr",
-			"version": "4.0"
-		}
-	},
-	"kafka": {
-		"server": {
-			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port": 2181,
-			"topic": "node_log"
-		}
-	},
-	"graphite": {
-		"server": {
-			"host": "graphite.ix5.ops.prod.bt.ecg.so",
-			"port": 2003,
-			"interval": 30
-		}
-	},
-	"eps": {
-		"epsUploadExternalURL": "https://msa-b1.cgi5.ebay.com/ws/eBayISAPI.dll?EpsBasic",
-		"epsToken": "AgAAAA**AQAAAA**aAAAAA**ChOCUQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AEmISmAJSEpwidj6x9nY+seQ**iFABAA**AAMAAA**IB0nQiem8a8xCL08yFP7FvxqlIQXsxVo2WA7iP02FAVraDUljrRbO//WKL/wf+dAr5kZhNKQJmH0/OlU9BsXudSVdmRBxgISzogAkMkUXaUU/Sn+F13QttnrDk/VnVQ0K0hKCqQMNjrl1eD/kqVb0tspZ51m67f5ZL7rMf74QBj/LvCZMu9qkqe2Cb9P0JkXR3JNNAqfbuXysX+BdcOlkAc899I2bYjSCvhNWJ83dDjQ4pOF3i/dsxW3Pj8L56XvqgiR/dTbNPhjtR5R6xnZZ/ixUJ6if2GWfRc3qPOFVr1gczdhc3AGj/eyCtdpOfW1SZHfj8dIjooWI2wq7bI+Qd1IbUjxA2Qvs+6YqmBL3l8UzNL7rxwLw1CvXsrNYOgThJOrzXUnWsudY7CFFCZJLpqQPeCIo4QeCiXqCrj3d5TqiJ0RThFFQg46YT5eI6FFEg8HaMp2ibb2a7v/4/ijlI+iqXUVBYcgRnOGYPLNQGg5yTQSID8eFY0vxG94yfpGI7NiudZDfpxxWyjaNbzk0nygg/2/jm3eov1U6YuNnRzIHysvvOOZT+g6tzM2yGVuLdyQurEZy6afsKAJNc6mZJEKcZDwLsArPmyb0MDUp3Z2WhzSQwDsmv4CUIOikl5fjS/E4UzFqJyWkxlymUdC65U6oic8q4C4/Nyvswlh59YKRnSgmIXnN8Orn48fujd0e4YWtw/nh/yd+m553mDcoqDU4JxZWSBTtZPdWukZE9EIyGMHbapCPURtXmWIL6Ql",
-		"IsEbayDirectUL": true
-	},
-	"cdn": {
-		"server": {
-			"eps": {
-				"host": "https://i.ebayimg.com/"
-			},
-			"crop": {
-				"host": "https://img.classistatic.com/crop/"
-			}
-		}
-	},
-	"static": {
-		"server": {
-			"host": "securet9.classistatic.com",
-			"port": null,
-			"version": "2.0.134"
-		},
-		"baseSVGDataUrl": "/data-icon-css/",
-		"baseCSSUrl": "/css/",
-		"baseJSUrl": "/js/",
-		"baseJSMinUrl": "/jsmin/",
-		"baseImageUrl": "/images/",
-		"mainJSUrl": "/js/main.js",
-		"baseUrl": "/",
-		"baseFontUrl": "/fonts/",
-		"baseIconUrl": "/icons/",
-		"min": true
-	},
-	"abTest": {
-		"type": "google",
-		"experimentId": ""
-	}
+  "BAPI": {
+    "server": {
+      "host": "api.bolt.ebayclassifieds.com.ix5.ops.prod.bt.ecg.so",
+      "port": 80,
+      "parameters": null,
+      "timeout": 3000
+    },
+    "endpoints": {
+      "categoryHomePage": "/v1/categories",
+      "locationHomePage": "/v1/locations",
+      "topLocationsL2": "/v1/locations/top/L2",
+      "userFromCookie": "/v1/users/logged-in-user-info",
+      "topKeywords": "/v1/keywords/top",
+      "trendingKeywords": "/v1/keywords/trending",
+      "suggestedKeywords": "/v1/keywords/suggestions",
+      "relatedKeywords": "/v1/keywords/related",
+      "homepageGallery": "/v1/ads/gallery",
+      "adStatistics": "/v1/ads/statistics",
+      "configService": "/v1/configs/nodeapp/settings.json",
+      "ads": "/v1/ads",
+      "recentActivities": "/v1/ads/activities/recent",
+      "trendingSearch": "/v1/ads/trending",
+      "draftAd": "/v1/ads/drafts",
+      "availableFlagsAd": "/v1/ads/flags",
+      "specificAd": "/v1/ads/{id}",
+      "favoriteAd": "/v1/ads/{id}/favorites",
+      "flagAd"            : "/v1/ads/{id}/actions/flag",
+      "categoryAttributes": "/v1/categories/{catId}/attributes",
+      "authBoltLogin": "/v1/users/actions/login-with-bolt",
+      "authFbLogin": "/v1/users/actions/login-with-facebook",
+      "authRegister": "/v1/users",
+      "authActivate": "/v1/users/{email}/actions/activate",
+      "authEmailExists": "/v1/users/email/{email}",
+      "authPhoneExists": "/v1/users/phone/{phone}",
+      "adFeatures": "/v1/features?",
+      "categorySuggest": "/v1/categories/action/suggestion?"
+    }
+  },
+  "solr": {
+    "server": {
+      "host": "solrvip.ix5.ops.prod.bt.ecg.so",
+      "port": 8080,
+      "path": "/solr",
+      "version": "4.0"
+    }
+  },
+ "recaptcha": {
+    "SITE_KEY": "6LeKWQ0UAAAAALV6TCyLA4NIEayLGeonQl85sRK0",
+    "SECRET_KEY": "6LeKWQ0UAAAAAMum1smeI18dWngRdIg9TXtSEETv",
+    "server": {
+      "hostname": "www.google.com",
+      "protocol": "https:",
+      "method": "POST",
+      "path": "/recaptcha/api/siteverify",
+      "timeout": 2000
+    }
+  },
+  "kafka": {
+    "server": {
+      "host": "elastic-01-6467.phx01.dev.ebayc3.com",
+      "port": 2181,
+      "topic": "node_log"
+    }
+  },
+  "graphite": {
+    "server": {
+      "host": "graphite.ix5.ops.prod.bt.ecg.so",
+      "port": 2003,
+      "interval": 30
+    }
+  },
+  "eps": {
+    "epsUploadExternalURL": "https://msa-b1.cgi5.ebay.com/ws/eBayISAPI.dll?EpsBasic",
+    "epsToken": "AgAAAA**AQAAAA**aAAAAA**ChOCUQ**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6AEmISmAJSEpwidj6x9nY+seQ**iFABAA**AAMAAA**IB0nQiem8a8xCL08yFP7FvxqlIQXsxVo2WA7iP02FAVraDUljrRbO//WKL/wf+dAr5kZhNKQJmH0/OlU9BsXudSVdmRBxgISzogAkMkUXaUU/Sn+F13QttnrDk/VnVQ0K0hKCqQMNjrl1eD/kqVb0tspZ51m67f5ZL7rMf74QBj/LvCZMu9qkqe2Cb9P0JkXR3JNNAqfbuXysX+BdcOlkAc899I2bYjSCvhNWJ83dDjQ4pOF3i/dsxW3Pj8L56XvqgiR/dTbNPhjtR5R6xnZZ/ixUJ6if2GWfRc3qPOFVr1gczdhc3AGj/eyCtdpOfW1SZHfj8dIjooWI2wq7bI+Qd1IbUjxA2Qvs+6YqmBL3l8UzNL7rxwLw1CvXsrNYOgThJOrzXUnWsudY7CFFCZJLpqQPeCIo4QeCiXqCrj3d5TqiJ0RThFFQg46YT5eI6FFEg8HaMp2ibb2a7v/4/ijlI+iqXUVBYcgRnOGYPLNQGg5yTQSID8eFY0vxG94yfpGI7NiudZDfpxxWyjaNbzk0nygg/2/jm3eov1U6YuNnRzIHysvvOOZT+g6tzM2yGVuLdyQurEZy6afsKAJNc6mZJEKcZDwLsArPmyb0MDUp3Z2WhzSQwDsmv4CUIOikl5fjS/E4UzFqJyWkxlymUdC65U6oic8q4C4/Nyvswlh59YKRnSgmIXnN8Orn48fujd0e4YWtw/nh/yd+m553mDcoqDU4JxZWSBTtZPdWukZE9EIyGMHbapCPURtXmWIL6Ql",
+    "IsEbayDirectUL": true
+  },
+  "cdn": {
+    "server": {
+      "eps": {
+        "host": "https://i.ebayimg.com/"
+      },
+      "crop": {
+        "host": "https://img.classistatic.com/crop/"
+      }
+    }
+  },
+  "static": {
+    "server": {
+      "host": "securet9.classistatic.com",
+      "port": null,
+      "version": "2.0.135"
+    },
+    "baseSVGDataUrl": "/data-icon-css/",
+    "baseCSSUrl": "/css/",
+    "baseJSUrl": "/js/",
+    "baseJSMinUrl": "/jsmin/",
+    "baseImageUrl": "/images/",
+    "mainJSUrl": "/js/main.js",
+    "baseUrl": "/",
+    "baseFontUrl": "/fonts/",
+    "baseIconUrl": "/icons/",
+    "min": true
+  },
+  "abTest": {
+    "type": "google",
+    "experimentId": ""
+  },
+  "vmGoogleMapKeys": ""
 }

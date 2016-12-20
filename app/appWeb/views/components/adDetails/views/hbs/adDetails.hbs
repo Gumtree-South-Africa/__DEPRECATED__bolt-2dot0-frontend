@@ -1,17 +1,15 @@
 <div class="ad-details-container">
 	<div class="pri-attrs">
         <div class="title-fav">
-			<h1 class="item-title" {{#if this.advert.seoGroupName}} itemprop="name"{{/if}}>
+			<h2 class="item-title" itemprop="name">
 				<span class="ad-title">{{this.advert.title}}</span>
                 {{#if this.advert.isUrgent}}<span class="urgentBtn">{{i18n "feature.post.urgent"}}</span>{{/if}}
-			</h1>
-            {{#if this.advert.seoGroupName}}
-				<meta itemprop="url" content="{{this.advert.seoVipUrl}}" />
-            {{/if}}
+			</h2>
+			<meta itemprop="url" content="{{this.advert.seoVipUrl}}" />
 
             {{#if this.vip.showSellerStuff}}
                 <div class="edit-favorite">{{i18n "vip.details.edit"}}
-                    <a class="edit-favorite-icon edit-icon icon-vivaedit" href="{{this.advert.editUrl}}">
+                    <a class="edit-favorite-icon edit-icon icon-vivaedit" href="{{this.header.homePageUrl}}{{this.advert.editUrl}}">
                     </a>
                 </div>
             {{else}}
@@ -21,16 +19,20 @@
             {{/if}}
 		</div>
         <div class="price-update">
-			<div class="ad-price">{{this.advert.price.formattedAmount}}</div>
+            {{> (dynamic "priceDisplay")}}
 			<div class="ad-last-posted"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}} <span>{{i18n "vip.details.daysago"}}</span></div>
         </div>
         <div class="clear-line"></div>
-        {{#if this.advert.orderedArr}}
+        {{#if this.advert.orderedAttributes}}
 			<div class="category-pri-attrs">
-                {{#each this.advert.orderedArr}}
+                {{#each this.advert.orderedAttributes}}
 					<div class="pri-props">
 						<span class="pri-props-name">{{this.capsName}}</span>
-						<span class="pri-props-value">{{this.value}}</span>
+                        {{#if this.seoUrl}}
+						    <a href="{{../this.header.homePageUrl}}{{this.seoUrl}}"><span class="pri-props-value">{{this.value}}</span></a>
+                        {{else}}
+                            <span class="pri-props-value">{{this.value}}</span>
+                        {{/if}}
 					</div>
                 {{/each}}
 			</div>
@@ -44,7 +46,7 @@
             <div>
                 {{#each this.advert.categoryPath}}
                     {{#compare @index ">" 0}}
-                        <span><a href="{{this.href}}">{{this.localizedName}}</a></span>
+                        <span><a href="{{../this.header.homePageUrl}}{{this.href}}">{{this.localizedName}}</a></span>
                         <span class="slash-separator">/</span>
                     {{/compare}}
                 {{/each}}
@@ -53,7 +55,7 @@
         <div class="ad-user-attrs">
             <div class="ad-location">
                 <span class="location-attr">{{i18n "vip.details.location"}} </span>
-                <div><a href="{{this.advert.locationDisplayHref}}">{{this.advert.locationDisplayName}}</a></div>
+                <div><a href="{{this.header.homePageUrl}}{{this.advert.locationDisplayHref}}">{{this.advert.locationDisplayName}}</a></div>
             </div>
             <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span>
                 <div>
@@ -64,7 +66,6 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="ad-posted-by"><span class="posted-by-attr">{{i18n "vip.details.postedby"}} </span><div>{{ this.advert.postedBy}}</div></div>
         </div>
     </div>
 	<div class="clear-line"></div>

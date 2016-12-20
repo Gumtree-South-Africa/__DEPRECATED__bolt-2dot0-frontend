@@ -111,8 +111,10 @@ class PostAdFormMainDetailsVM {
 			} else if (propName === 'isFormValid') {
 				this._refreshIsValid();
 			} else if (propName === 'isRequiredTitleAndDescription') {
-				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
-				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
+				domElement.find('.form-ad-title').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
+				domElement.find('.form-ad-description').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
 			} else if (propName === 'isFormChangeWarning') {
 				if (newValue) {
 					formChangeWarning.enable();
@@ -275,6 +277,17 @@ class PostAdFormMainDetailsVM {
 		return {lat: lat, lng: lng};
 	}
 
+	/**
+	 * Get location id from location selection modal
+	 */
+	getLocatioinId() {
+		return locationSelection.getLocationId();
+	}
+
+	getCategorySelectionName() {
+		return this._categoryDropdownSelection.getCategorySelectionName();
+	}
+
 	getAdPayload() {
 		let $dateFields = this._$postForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();
@@ -315,6 +328,7 @@ class PostAdFormMainDetailsVM {
 		let payload = {
 			title: serialized.Title,
 			description: description,
+			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
 				"latitude": lat,
@@ -421,6 +435,11 @@ class PostAdFormMainDetailsVM {
 		} else if (error.hasOwnProperty("bapiValidationFields")) {
 			// bapi validation errors
 			error.bapiValidationFields.forEach((attrName) => {
+				if (attrName === 'Category') {
+					// Error for category should be handled by category dropdown selection
+					this._categoryDropdownSelection.isValid = false;
+					return;
+				}
 				let $input = $(`[name="${attrName}"]`);
 				let siblings = $input.siblings("input");
 				if (siblings.length === 1) {
@@ -642,9 +661,6 @@ class PostAdFormMainDetails {
 		});
 
 		this._setupPolyfillForm();
-
-		this._bindCharacterCountEvents(this.$titleField, this.$detailsSection.find('label[for="Title"]'));
-		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
 
 		this._setupScrollTo();
 

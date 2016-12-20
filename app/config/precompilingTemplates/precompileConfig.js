@@ -12,5 +12,6 @@ module.exports = {
 		"app/appWeb/views/components/editFormSelectBox/views/hbs/*.hbs",
 		"app/appWeb/views/components/editFormDateInput/views/hbs/*.hbs",
 		"app/appWeb/views/components/postFormCustomAttributes/views/hbs/*.hbs",
+		"app/appWeb/views/components/adFeatureSelection/views/hbs/*.hbs",
 	]
 };
