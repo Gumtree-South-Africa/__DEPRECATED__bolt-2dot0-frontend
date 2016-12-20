@@ -12,3 +12,9 @@
       {{/if}}
   </div>
 {{/if}}
+{{#if this.statusBanner }}
+  <div class="status-ad-banner">
+    <span class="alert-icon"></span>
+    <span>{{i18n this.statusBanner.statusBannerMessage}}</span>
+  </div>
+{{/if}}

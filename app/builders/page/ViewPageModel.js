@@ -327,6 +327,13 @@ class ViewPageModel {
 					url: 'vip.details.expiredStatusBannerLinkURL'
 				}]
 			},
+			'DELETED__USER__DELETED': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
 			'PENDING__USER__CONFIRMED': {
 				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
 				ownerDetails: [{
@@ -334,7 +341,7 @@ class ViewPageModel {
 					url: 'vip.details.pendingStatusBannerLinkURL'
 				}]
 			},
-			'BLOCKED__TNS_CHECKED': {
+			'BLOCKED__TNS__CHECKED': {
 				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.blockedStatusBannerLinkMessage',

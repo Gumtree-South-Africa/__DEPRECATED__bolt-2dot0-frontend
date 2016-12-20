@@ -40,6 +40,10 @@ let HP = {
 
 		// Header Page Messages
 		HP.buildHeaderPageMessages(req, modelData);
+
+	 //Status banner for HomePage when ad has been deleted or expired
+		modelData.statusBanner = HP.statusBannerHomePage(req);
+
 	},
 
 	/**
@@ -87,6 +91,27 @@ let HP = {
 				break;
 		}
 	},
+
+	/**
+	 * Status banner for HomePage when ad has expired or pending
+	 */
+	statusBannerHomePage: (req) => {
+		let s = {
+			'expired': {
+				statusBannerMessage: 'homepage.expiredStatusBannerMessage'
+			},
+			'pending': {
+				statusBannerMessage: 'homepage.pendingStatusBannerMessage'
+			}
+		};
+
+		if (typeof s[req.query['statusAd']] !== 'undefined') {
+			return s[req.query['statusAd']];
+		} else {
+			return false;
+		}
+	},
+
 
 	/**
 	 * Special footer data for HomePage

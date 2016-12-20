@@ -4,6 +4,8 @@
 
         {{> (dynamic "topBanner")}}
 
+        {{> (dynamic "statusBanner") }}
+
         {{#if this.trendingCard}}
             {{> (dynamic "card") card=this.trendingCard
                 i18nTitle="homepage.popularSearches.popularIn"

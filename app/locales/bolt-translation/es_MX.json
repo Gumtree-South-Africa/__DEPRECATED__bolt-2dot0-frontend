@@ -1175,6 +1175,8 @@
 		}
 	},
 	"homepage": {
+		"expiredStatusBannerMessage": "Lo sentimos. Este anuncio no se encuentra activo. Intenta otra búsqueda.",
+		"pendingStatusBannerMessage": "Este anuncio está en proceso de aprobación. Los anuncios pueden requerir 24 horas para ser aprobados. Por favor, revisa tu correo electrónico.",
 		"popularSearches": {
 			"popularIn": "Popular en",
 			"yourNeighborhood": "Tu Colonia",

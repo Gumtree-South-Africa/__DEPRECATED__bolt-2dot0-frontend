@@ -1,60 +1,49 @@
 {
   "BAPI": {
-    "server": {
-      "host": "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
-      "port": 80,
-      "parameters": null,
+      "server": {
+        "host": "jac-vm1-9723.slc01.dev.ebayc3.com",
+      "path": "/bapi/api",
+        "port": 80,
+        "parameters": null,
       "timeout": 2000
-    },
-    "endpoints": {
-      "categoryHomePage"  : "/boltapi/v1/categories",
-      "locationHomePage"  : "/boltapi/v1/locations",
-      "topLocationsL2"    : "/boltapi/v1/locations/top/L2",
-      "userFromCookie"    : "/boltapi/v1/users/logged-in-user-info",
-      "topKeywords"       : "/boltapi/v1/keywords/top",
-      "trendingKeywords"  : "/boltapi/v1/keywords/trending",
-      "suggestedKeywords" : "/boltapi/v1/keywords/suggestions",
-      "relatedKeywords"   : "/boltapi/v1/keywords/related",
-      "homepageGallery"   : "/boltapi/v1/ads/gallery",
-      "adStatistics"      : "/boltapi/v1/ads/statistics",
-      "configService"     : "/boltapi/v1/configs/nodeapp/settings.json",
-      "updateConfig"      : "/boltapi/v1/configs/nodeapp/settings",
-      "ads"               : "/boltapi/v1/ads",
+      },
+      "endpoints": {
+        "categoryHomePage"  : "/boltapi/v1/categories",
+        "locationHomePage"  : "/boltapi/v1/locations",
+        "topLocationsL2"  : "/boltapi/v1/locations/top/L2",
+        "userFromCookie"  : "/boltapi/v1/users/logged-in-user-info",
+        "topKeywords"     : "/boltapi/v1/keywords/top",
+        "trendingKeywords"  : "/boltapi/v1/keywords/trending",
+      "suggestedKeywords" :   "/boltapi/v1/keywords/suggestions",
+      "relatedKeywords"   :   "/boltapi/v1/keywords/related",
+        "homepageGallery"   : "/boltapi/v1/ads/gallery",
+        "adStatistics"    :   "/boltapi/v1/ads/statistics",
+        "configService"   : "/boltapi/v1/configs/nodeapp/settings.json",
+      "updateConfig"    : "/boltapi/v1/configs/nodeapp/settings",
+        "ads"       : "/boltapi/v1/ads",
       "recentActivities"  : "/boltapi/v1/ads/activities/recent",
-      "trendingSearch"    : "/boltapi/v1/ads/trending",
-      "draftAd"           : "/boltapi/v1/ads/drafts",
+      "trendingSearch"  :   "/boltapi/v1/ads/trending",
+      "draftAd"     : "/boltapi/v1/ads/drafts",
       "availableFlagsAd"  : "/boltapi/v1/ads/flags",
-      "favoriteAd"        : "/boltapi/v1/ads/{id}/favorites",
-      "specificAd"        : "/boltapi/v1/ads/{id}",
-      "flagAd"            : "/boltapi/v1/ads/{id}/actions/flag",
+      "favoriteAd"    : "/boltapi/v1/ads/{id}/favorites",
+      "specificAd"    : "/boltapi/v1/ads/{id}",
       "categoryAttributes": "/boltapi/v1/categories/{catId}/attributes",
-      "authBoltLogin"     : "/boltapi/v1/users/actions/login-with-bolt",
-      "authFbLogin"       : "/boltapi/v1/users/actions/login-with-facebook",
-      "authRegister"      : "/boltapi/v1/users",
-      "authActivate"      : "/boltapi/v1/users/{email}/actions/activate",
-      "authEmailExists"   : "/boltapi/v1/users/email/{email}",
-      "authPhoneExists"   : "/boltapi/v1/users/phone/{phone}",
-      "adFeatures"        : "/boltapi/v1/features?",
-      "categorySuggest"   : "/boltapi/v1/categories/action/suggestion?"
-    }
+      "authBoltLogin"   : "/boltapi/v1/users/actions/login-with-bolt",
+      "authFbLogin"   : "/boltapi/v1/users/actions/login-with-facebook",
+      "authRegister"    : "/boltapi/v1/users",
+      "authActivate"    : "/boltapi/v1/users/{email}/actions/activate",
+      "authEmailExists" : "/boltapi/v1/users/email/{email}",
+      "authPhoneExists" : "/boltapi/v1/users/phone/{phone}",
+      "adFeatures"        :   "/boltapi/v1/features?",
+      "categorySuggest"   :   "/boltapi/v1/categories/action/suggestion?"
+      }
   },
   "solr": {
     "server": {
-      "host"  : "sharon-fp003-4464.slc01.dev.ebayc3.com",
+      "host"  : "jac-vm1-9723.slc01.dev.ebayc3.com",
       "port"  : 9090,
       "path"  : "/solr",
       "version": "4.0"
-    }
-  },
-  "recaptcha": {
-    "SITE_KEY": "6LeKWQ0UAAAAALV6TCyLA4NIEayLGeonQl85sRK0",
-    "SECRET_KEY": "6LeKWQ0UAAAAAMum1smeI18dWngRdIg9TXtSEETv",
-    "server": {
-      "hostname": "www.google.com",
-      "protocol": "https:",
-      "method": "POST",
-      "path": "/recaptcha/api/siteverify",
-      "timeout": 2000
     }
   },
   "kafka": {
@@ -66,9 +55,10 @@
   },
   "graphite": {
     "server": {
-      "host"  : "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
-      "port"  : 2003,
-      "interval" : 30
+        "host"  : "jac-vm1-9723.slc01.dev.ebayc3.com",
+        "path": "/graphite",
+        "port"  : 2003,
+        "interval" : 30
     }
   },
   "eps": {
@@ -106,6 +96,5 @@
   "abTest": {
     "type": "google",
     "experimentId": ""
-  },
-  "vmGoogleMapKeys": ""
+  }
 }
