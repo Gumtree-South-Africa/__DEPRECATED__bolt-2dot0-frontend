@@ -127,7 +127,7 @@ describe('Post Ad', () => {
 			uploadImageController.loadData(0, file);
 
 			let $imagePreview = $testArea.find('.user-image');
-			let imageUrl = imageHelper.convertThumbImgURL18(imageHelper.getThumbImgURL(mockEpsResponse));
+			let imageUrl = imageHelper.convertThumbImgURL20(imageHelper.getThumbImgURL(mockEpsResponse));
 			imageUrl = imageUrl.replace('http://', 'https://')
 				.replace('i.ebayimg.sandbox.ebay.com', 'i.sandbox.ebayimg.com');
 			// phantomJS will strip out the quotes, so we strip the quotes to succeed in Chrome

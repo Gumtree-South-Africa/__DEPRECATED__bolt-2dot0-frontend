@@ -156,23 +156,27 @@ $labelMargin: 8%;
 }
 
 @include to-breakpoint($small-break) {
+	.footer-wrapper {
+		display: none;
+	}
+
 	.viewport {
 		overflow-x: hidden;
-		.footer-wrapper {
+		.containment {
 			// To ensure nothing in page is covered by post button overlay
-			// Magic number 49 is the one to ensure the bottom of footer is exactly at the top of overlay
+			// Magic number 49 is the one to ensure the bottom of containment is exactly at the top of overlay
 			// Actually the overlay's height is 73px, but post page will load one image which will adds to
-			// the height of body after footer, so that image's height should be calculated.
+			// the height of body after containment, so that image's height should be calculated.
 			margin-bottom: 49px;
 		}
 	}
 
-	.viewport.promotion-covered .footer-wrapper {
+	.viewport.promotion-covered .containment {
 		// To ensure nothing in page is covered by no promotion button overlay
-		// Magic number 29 is the one to ensure the bottom of footer is exactly at the top of overlay
-		// Actually the overlay's height is 53px, but post page will load one image which will adds to
-		// the height of body after footer, so that image's height should be calculated.
-		margin-bottom: 39px;
+		// Magic number 41 is the one to ensure the bottom of containmnt is exactly at the top of overlay
+		// Actually the overlay's height is 65px, but post page will load one image which will adds to
+		// the height of body after containment, so that image's height should be calculated.
+		margin-bottom: 41px;
 	}
 
 	.main-detail-post {
