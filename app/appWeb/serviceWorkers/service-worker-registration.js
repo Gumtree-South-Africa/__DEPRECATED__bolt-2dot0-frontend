@@ -117,37 +117,40 @@ function initializePushNotification() {
 	// We need the service worker registration to check for a subscription
 	navigator.serviceWorker.ready.then(function(serviceWorkerRegistration) {
 		console.log(':^)', serviceWorkerRegistration);
-
 		serviceWorkerRegistration.pushManager.getSubscription()
-			.then(function(existingSubscription) {
+			.then(existingSubscription => {
 				if (existingSubscription) {
 					subscribe(existingSubscription);
 				} else {
-					serviceWorkerRegistration.pushManager.subscribe({userVisibleOnly: true})
-						.then(function(newSubscription) {
-							if (!newSubscription) {
-								return;
-							}
+					serviceWorkerRegistration.pushManager.subscribe({"userVisibleOnly": true}).then(newSubscription => {
+						console.log('######################################## --------------- ', newSubscription);
+						if (!newSubscription) {
+							return;
+						}
 
-							// endpoint: https://android.googleapis.com/gcm/send/
-							// API Key : AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58
-							// sender Id:  759612781184
-							// Example Subscription: eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j
-							// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
+						// endpoint: https://android.googleapis.com/gcm/send/
+						// API Key : AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58
+						// sender Id:  759612781184
+						// Example Subscription: eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j
+						// Request: curl --header "Authorization: key=AIzaSyB8-dMAv3nCziuF2VpdfP_Jr4fwowiJl58" --header "Content-Type: application/json" https://android.googleapis.com/gcm/send -d "{\"registration_ids\":[\"eM3cPdPRE2I:APA91bFs1faZVtcG3-0Y8eVUw6t6yvB87QJht7NQll_R-IjGMkKdwRtxE26zPYaOcAuHlPmqDCKF0LSajhCPij9RAYF-I-ZhdiyyCpGspC8vHe2REhitfcqy0pFxBPR_Uz6e7V0TAZ3j\"]}"
 
-							let subscriptionChanged = false;
-							let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
-							if(subscriptionFromCookieStr === '') {
+						let subscriptionChanged = false;
+						let subscriptionFromCookieStr = CookieUtils.getCookie('GCMSubscription');
+						if(subscriptionFromCookieStr === '') {
+							console.log('$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ --------------- ', newSubscription);
+							subscribe(newSubscription);
+						} else {
+							console.log('***************************************** --------------- ');
+							let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
+							subscriptionChanged = (newSubscription.endpoint !== subscriptionFromCookie.endpoint);
+							if (subscriptionChanged) {
+								unsubscribe(subscriptionFromCookie);
 								subscribe(newSubscription);
-							} else {
-								let subscriptionFromCookie = JSON.parse(subscriptionFromCookieStr);
-								subscriptionChanged = (newSubscription.endpoint !== subscriptionFromCookie.endpoint);
-								if (subscriptionChanged) {
-									unsubscribe(subscriptionFromCookie);
-									subscribe(newSubscription);
-								}
 							}
-						});
+						}
+					}).catch(error => {
+						console.log('ERROR ', error);
+					});
 				}
 			});
 	}).catch(function(err) {
@@ -160,9 +163,9 @@ if ('serviceWorker' in navigator) {
 	// It won't be able to control pages unless it's located at the same level or higher than them.
 	// *Don't* register service worker file in, e.g., a scripts/ sub-directory!
 	// See https://github.com/slightlyoff/ServiceWorker/issues/468
-	navigator.serviceWorker.register('/service-worker.js').then(function(reg) {
+	navigator.serviceWorker.register('/service-worker.js').then(registration => {
 		// updatefound is fired if service-worker.js changes.
-		reg.onupdatefound = function() {
+		registration.onupdatefound = function() {
 			// The updatefound event implies that reg.installing is set; see
 			// https://slightlyoff.github.io/ServiceWorker/spec/service_worker/index.html#service-worker-container-updatefound-event
 			let installingWorker = reg.installing;
