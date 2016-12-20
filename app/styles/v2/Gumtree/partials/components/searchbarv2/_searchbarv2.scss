@@ -9,7 +9,7 @@
 	}
 
 	.type-ahead-results-wrapper, .search-bar {
-		width: calc(100% - 40px)
+		width: 100%;
 	}
 
 	.search-bar {
@@ -118,6 +118,8 @@
 		padding: 15px 0;
 
 		.search-bar {
+			width: calc(100% - 50px);
+
 			.location-link {
 				padding: 0 6px;
 			}
