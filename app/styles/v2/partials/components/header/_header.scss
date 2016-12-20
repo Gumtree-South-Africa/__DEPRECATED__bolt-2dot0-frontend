@@ -30,10 +30,12 @@ $dropdown-width: 220px;
 		z-index: 9;
 		position: relative;
 		max-width: 1168px;
-		height: 65px;
+		height: 45px;
 		color: $headerTextColor;
 		margin: 0 auto;
-
+		@include from-breakpoint($medium-break) {
+			height: 65px;
+		}
 
 		a {
 			color: $headerTextColor;
@@ -42,13 +44,13 @@ $dropdown-width: 220px;
 
 		.mobile-menu {
 			position: absolute;
-			top: 36px;
+			top: 15px;
 			left: 25px;
 		}
 
-		.app-icon {
+		.post-icon {
 			position: absolute;
-			top: 34px;
+			top: 15px;
 			right: 25px;
 		}
 
@@ -68,7 +70,7 @@ $dropdown-width: 220px;
 			margin: auto;
 
 			display: inline-block;
-			margin-top: 34px;
+			margin-top: 15px;
 			margin-bottom: 11px;
 			width: 200px;
 			height: 24px;

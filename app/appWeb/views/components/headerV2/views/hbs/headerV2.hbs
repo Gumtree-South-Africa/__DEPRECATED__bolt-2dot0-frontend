@@ -10,8 +10,8 @@
         </a>
         {{#unless this.header.distractionFree}}
             <div id="js-hamburger-icon" class="mobile-only mobile-menu icon-hamburger"></div>
-            <a id='js-deeplink' href="https://go.vivanunc.io/a/key_live_ognT7X8BUKIBbFhWnhI5KlnhyxcKDuU4?%24deeplink_path=home">
-                <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-apple-dark-gray{{else}}icon-android-dark-gray{{/if}}"></div>
+            <a href="/post">
+                <div class="mobile-only post-icon icon-post-button"></div>
             </a>
             <div class="left-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
                 {{#if this.header.isUserLoggedIn}}

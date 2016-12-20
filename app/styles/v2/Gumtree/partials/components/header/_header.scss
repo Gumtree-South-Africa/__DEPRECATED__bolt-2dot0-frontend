@@ -14,13 +14,16 @@
 		height: auto;
 		margin: auto;
 		max-width: 942px;
-		padding: 20px 40px 0;
+		padding: 15px 40px 0;
+		@include from-breakpoint($medium-break) {
+			padding: 20px 40px 0;
+		}
 		a{
 			font-weight: normal;
 		}
 
-		.app-icon {
-			top: 25px;
+		.post-icon {
+			top: 15px;
 		}
 
 		.item-text {
@@ -87,7 +90,7 @@
 		}
 
 		.mobile-menu {
-			top: 25px
+			top: 15px
 		}
 
 		.post-ad-button	{
@@ -221,7 +224,7 @@
 				left: 50%;
 				margin: 0 0 0 -63.5px;
 				position: absolute;
-				top: 18px;
+				top: 9px;
 			}
 		}
 	}
