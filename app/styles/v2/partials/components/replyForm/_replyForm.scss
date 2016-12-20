@@ -86,11 +86,12 @@
 		}
 
 		.viva-checkbox {
-			-ms-transform: scale(1.2); /* IE */
-			-moz-transform: scale(1.2); /* FF */
-			-webkit-transform: scale(1.2); /* Safari and Chrome */
-			-o-transform: scale(1.2); /* Opera */
+			-ms-transform: scale(1.1); /* IE */
+			-moz-transform: scale(1.1); /* FF */
+			-webkit-transform: scale(1.1); /* Safari and Chrome */
+			-o-transform: scale(1.1); /* Opera */
 			padding: 10px;
+			margin-right: 5px;
 		}
 
 		.login-message-container {
@@ -406,10 +407,10 @@
 		.main-content {
 			.reply-form-content {
 				.viva-checkbox {
-					-ms-transform: scale(1.2); /* IE */
-					-moz-transform: scale(1.2); /* FF */
-					-webkit-transform: scale(1.2); /* Safari and Chrome */
-					-o-transform: scale(1.2); /* Opera */
+					-ms-transform: scale(1.0); /* IE */
+					-moz-transform: scale(1.0); /* FF */
+					-webkit-transform: scale(1.0); /* Safari and Chrome */
+					-o-transform: scale(1.0); /* Opera */
 					padding: 10px;
 					position: relative;
 					top: -1px;
