@@ -227,7 +227,7 @@
 	"postad.location.uselocation": "Mostar ubicación exacta",
 	"postad.location.uselocation.instructions" : "(se desplegará un marcador en el mapa)",
 	"postad.location.setLocation" : "Ubicación actual",
-	"postad.location.placeholder": "Ciudad, calle o código postal",
+	"postad.location.placeholder": "Añade tu dirección",
 	"previewad.notice.text": "Tu anuncio no está publicado aún.  Por favor revísalo y haz clic en Publicar.",
 	"previewad.edit.text": "Editar",
 	"previewad.postyourad.text": "Publica tu anuncio",
