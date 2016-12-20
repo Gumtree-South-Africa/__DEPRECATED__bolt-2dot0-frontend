@@ -1632,7 +1632,9 @@
 				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
 				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
 				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
-			}
+			},
+			"close": "Cerrar",
+			"returnToBrowsing": "Return to Browsing"
 		}
 	},
 	"search": {

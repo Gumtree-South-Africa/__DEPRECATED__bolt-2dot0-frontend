@@ -9,10 +9,21 @@ class replyForm {
 	initialize() {
 		this.$headerHeight = $('.header-wrapper').height();
 		$(document).ready(() => {
-			// let adActivateStatus = this._getURLParameter('adActivateStatus') || '';
+			let adActivateStatus = this._getURLParameter('adActivateStatus') || '';
+
+			if (adActivateStatus === 'AdReplySuccess') {
+				if ($(window).width() < 848){
+					this._messageSeller();
+				}
+
+				$('.reply-form-container').addClass('hide');
+				$('.message-sent').removeClass('hide');
+			}
+
 			let $realPhone = $('.real-phone').text();
 			let $encodedPhone = window.btoa($realPhone);
 			$('.real-phone').text($encodedPhone);
+
 
 			$('.show-phone').on('click', function() {
 				$('.hidden-phone').addClass('hide');
@@ -21,9 +32,26 @@ class replyForm {
 				$('.show-phone').addClass('hide');
 			});
 
+			document.addEventListener('invalid', (function() {
+				return function(e) {
+					e.preventDefault();
+				};
+			})(), true);
+
 			$('#vip-send-button').on('click', function() {
-				$('.reply-form-container').addClass('hide');
-				$('.message-sent').removeClass('hide');
+				if ($('.message-box-area').val() === '') {
+					$('.fe-message-validation').removeClass('hide');
+					return;
+				} else {
+					$('.fe-message-validation').addClass('hide');
+				}
+
+				if ($('.email-box-area').val() === '') {
+					$('.fe-email-validation').removeClass('hide');
+					return;
+				} else {
+					$('.fe-email-validation').addClass('hide');
+				}
 			});
 
 			$('.return-button').on('click', function() {

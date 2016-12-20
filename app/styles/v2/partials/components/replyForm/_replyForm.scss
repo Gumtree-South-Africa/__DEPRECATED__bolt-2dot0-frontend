@@ -34,6 +34,11 @@
 		text-align: center;
 		padding-top: 15px;
 		cursor: pointer;
+
+		& a {
+			color: $vivaWhite;
+			text-decoration: none;
+		}
 	}
 	.close-button {
 		float: right;
@@ -63,6 +68,12 @@
 			.login-link {
 				text-decoration: underline;
 			}
+			.fe-email-validation {
+				color: $vivaRed;
+			}
+			.fe-message-validation {
+				color: $vivaRed;
+			}
 		}
 
 		.viva-checkbox {
@@ -74,7 +85,6 @@
 		}
 
 		.login-message-container {
-			padding-top:15px;
 			margin-bottom: 15px;
 			.desktop-message {
 				display: none;

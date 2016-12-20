@@ -6,15 +6,14 @@
                 {{#if this.advert.sellerDetails.contactInfo.name}}
 					<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}</span>
                 {{else}}
-                    {{i18n "vip.seller.defaultUserName"}}
+					<span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}</span>
                 {{/if}}
-
-                <div class="close-button">CLOSE
+                <div class="close-button">{{i18n 'vip.reply.close'}}
                     <div class="icon-close"></div>
                 </div>
             </div>
 			<div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
-			<div class="return-button">Return to Browsing</div>
+			<div class="return-button"><a href="{{this.advert.breadcrumbs.link}}" />{{i18n 'vip.reply.returnToBrowsing'}}</div>
 		</div>
 	</div>
 
@@ -45,14 +44,23 @@
                     <div class="interested-message-container"><input class="viva-checkbox" type="checkbox"><span class="interested-message">{{i18n this}}</span></div>
                 {{/each}}
 
-                <div class="viva-labels"><span>{{i18n "vip.reply.message"}}*</span><span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.messageValidate"}}')" required></textarea>
+                <div class="viva-labels">
+                    {{#if this.advert.sellerDetails.contactInfo.name}}
+						<span>{{i18n "vip.reply.message" this.advert.sellerDetails.contactInfo.name}}*</span>
+                    {{else}}
+						<span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}*</span>
+                    {{/if}}
+
+                    <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
+                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
+                <div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                 {{#unless this.header.id}}
                     <span class="viva-labels">{{i18n "vip.reply.name"}}</span>
                     <input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sname'}}">
                     <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
-                    <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" oninvalid="this.setCustomValidity('{{i18n "vip.reply.emailValidate"}}')" required />
+                    <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required />
+                    <div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
                     <span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
                     {{#if this.advert.replyInfo.phoneRequired}}
                         <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span>
