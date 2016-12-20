@@ -168,7 +168,7 @@ router.get('/:id?', (req, res, next) => {
 		let daysLeft = Math.floor(difference / 86400000);
 		let statusAd;
 		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
-			if(daysLeft < 60) {
+			if(daysLeft > 60) {
 				statusAd = '?statusAd=expired';
 				return res.status(410).redirect('/' + statusAd);
 			}
@@ -176,7 +176,7 @@ router.get('/:id?', (req, res, next) => {
 		}
 
 		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
-			if(daysLeft < 60) {
+			if(daysLeft > 60) {
 				statusAd = '?statusAd=pending';
 				return res.status(410).redirect('/' + statusAd);
 			}
