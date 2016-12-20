@@ -7,6 +7,7 @@ class FormMap {
 	constructor() {
 		this.HtmlMap = $("#map");
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
+		this.errorMessageMap = $(".errorMessageMap");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
 		this.zoom = 17;
@@ -16,11 +17,45 @@ class FormMap {
 		this.locationAd = $(".form-map-component").data("location-ad");
 		this.placeSearch;
 		this.autocomplete;
+		this.validationCoordinates = {};
 		this.useGeolocation;
 		this.meters = this.googleMap.sizeRadio;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
+		};
+		this.validateCountry = (coordinates) => {
+			return new Promise(function(success, reject) {
+				if (!coordinates) {
+			  	return success(false);
+				}
+				let geocoder = new google.maps.Geocoder(),
+						latlng = new google.maps.LatLng(coordinates.lat, coordinates.lng);
+
+				geocoder.geocode({'latLng': latlng}, function(results, status) {
+					let countryShortName, i;
+					try {
+						if (status === 'OK') {
+							if(results[0]) {
+								for(i = 0; i < results[0].address_components.length; i++) {
+									if(results[0].address_components[i].types[0] === "country") {
+										countryShortName = results[0].address_components[i].short_name;
+									}
+								}
+								if(countryShortName === window.formMap.country) {
+									window.formMap.HtmlAutocomplete.val(results[0].formatted_address);
+									success(coordinates);
+								} else {
+									window.formMap.errorMessageMap.html(window.formMap.googleMap.errorMessage).show();
+								}
+							}
+						}
+						success(false);
+					} catch (ex) {
+						reject(ex);
+					}
+				});
+			});
 		};
 	}
 
@@ -60,6 +95,7 @@ class FormMap {
 			center: window.formMap.position,
 			zoom: tempzoom,
 			disableDefaultUI: true,
+			componentRestrictions: 'MX'
 		});
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 
@@ -91,6 +127,7 @@ class FormMap {
 	}
 
 	setCurrentPosition() {
+		window.formMap.errorMessageMap.hide();
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
 		this.map.setCenter(latLng);
 		this.map.setZoom(this.zoom);
@@ -108,11 +145,16 @@ class FormMap {
 						lat: gps.coords.latitude,
 						lng: gps.coords.longitude
 					};
-					window.formMap.setCurrentPosition();
+					window.formMap.validateCountry(this.position).then(function(result) {
+						if (result) {
+							window.formMap.position = result;
+							window.formMap.setCurrentPosition();
+						}
+					});
 				});
 			}
 		} catch(error) {
-			console.log(error);
+			return window.formMap.position;
 		}
 	}
 
@@ -171,11 +213,15 @@ class FormMap {
 	}
 
 	setPosition() {
-		window.formMap.position = this.locationAd || this.googleMap.defaultLocation;
-		window.formMap.configMap();
-		if(!this.locationAd) {
-			window.formMap.geolocate();
-		}
+		this.validateCountry(this.locationAd).then(function(result) {
+			window.formMap.position = result || window.formMap.googleMap.defaultLocation;
+			window.formMap.configMap();
+			if(!result) {
+				window.formMap.geolocate();
+			} else {
+				window.formMap.setCurrentPosition();
+			}
+		});
 	}
 }
 
@@ -183,12 +229,13 @@ let initialize = () => {
 	window.formMap = new FormMap();
 	this.googleMap = $(".form-map-component").data("google-map");
 	this.locationAd = $(".form-map-component").data("location-ad");
+	window.formMap.country = $(".form-map-component").data("google-map").country;
+
 	// set the current location via data in node
 	window.formMap.setPosition();
 	window.googleRanges = googleRanges;
 	window.googleMarker = googleMarker;
 };
-
 
 module.exports = {
 	initialize
