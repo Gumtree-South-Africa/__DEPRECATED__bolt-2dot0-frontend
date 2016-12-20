@@ -101,8 +101,6 @@ describe('Server to hit HomePage', function() {
 						trendingItem = c$('.tile-item').next().next().next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[3].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("div.profile-image").hasClass('icon-header-profile-out'))
-							.toBe(true, 'Placeholder profile icon is missing');
 						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 					})
 					.end(specHelper.finish(done));
