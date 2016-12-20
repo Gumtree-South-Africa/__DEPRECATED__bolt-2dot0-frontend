@@ -98,7 +98,7 @@ class NoUIImageUploader {
 			};
 
 			let _this = this;
-			let onload = (thisFile) => {
+			let onload = (i, thisFile) => {
 				return function() {
 					let resizedImageFile = _this._epsUpload.scaleAndCropImage(this, thisFile.type);
 					loadData(0, resizedImageFile);
@@ -112,7 +112,8 @@ class NoUIImageUploader {
 			if (!urlObj) {
 				throw this._extractClientError(response, fileName);
 			}
-			urlObj.normal = this._transformEpsUrl(urlObj.normal);
+			// Use a high resolution image
+			urlObj.normal = this._epsUpload.convertThumbImgURL20(this._transformEpsUrl(urlObj.normal));
 			if (urlObj.normal.toLowerCase().indexOf("https") < 0) {
 				urlObj.normal = urlObj.normal.replace('http', 'https');
 			}

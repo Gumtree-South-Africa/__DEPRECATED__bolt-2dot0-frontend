@@ -11,9 +11,10 @@
 			>.tile-item{
 				//margin: 0;
 				.controls{
-					background: rgba(0,0,0,0.5);
+					background: linear-gradient(0deg, black, transparent);
 					height: 40px;
-					border-radius:0;
+					border-bottom-right-radius: $panelCornerBorderRadius;
+					border-bottom-left-radius: $panelCornerBorderRadius;
 				}
 				.tile-link{
 					//background: red;
@@ -32,5 +33,5 @@
 				//width: 140px;
 			}
 		}
-	}	
+	}
 }
