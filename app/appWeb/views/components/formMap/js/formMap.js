@@ -59,6 +59,21 @@ class FormMap {
 		};
 	}
 
+	getUrlParameter(sParam) {
+		let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+			sURLVariables = sPageURL.split('&'),
+			sParameterName,
+			i;
+
+		for (i = 0; i < sURLVariables.length; i++) {
+			sParameterName = sURLVariables[i].split('=');
+
+			if (sParameterName[0] === sParam) {
+				return sParameterName[1] === undefined ? true : sParameterName[1];
+			}
+		}
+	}
+
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
 			map.fitBounds(place.geometry.viewport);
@@ -91,12 +106,19 @@ class FormMap {
 
 	configMap() {
 		let tempzoom = this.locationAd ? this.zoom : 4;
+		let validator = this.getUrlParameter('BOLT24812');
+		if(!validator) {
+			return;
+		}
+
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: window.formMap.position,
 			zoom: tempzoom,
 			disableDefaultUI: true,
 			componentRestrictions: 'MX'
 		});
+
+		google.maps.event.trigger(this.map, "resize");
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
