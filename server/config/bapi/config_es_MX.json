@@ -52,9 +52,9 @@
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
 	},
-	"googleMap": {
+	"googleMapConfiguration": {
 		"country": "MX",
-		"errorMessage" : "Lo sentimos, Vivanuncios sólo está disponible en México",
+		"errorMessage" : "No podemos usar tu ubicación actual. Añádela manualmente",
 		"sizeRadio": 1000,
 		"defaultLocation": {
 			"lat": 23.3650375,

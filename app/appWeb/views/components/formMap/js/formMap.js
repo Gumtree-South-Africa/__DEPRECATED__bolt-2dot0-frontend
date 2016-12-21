@@ -226,8 +226,6 @@ class FormMap {
 
 let initialize = () => {
 	window.formMap = new FormMap();
-	this.googleMap = $(".form-map-component").data("google-map");
-	this.locationAd = $(".form-map-component").data("location-ad");
 	window.formMap.country = $(".form-map-component").data("google-map").country;
 
 	// set the current location via data in node
