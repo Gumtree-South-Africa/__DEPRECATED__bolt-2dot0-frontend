@@ -142,10 +142,6 @@
 			border-radius: 3px;
 			padding-top: 4px;
 			padding-bottom: 4px;
-
-			.hidden {
-				display: none;
-			}
 		}
 
 		.message-box-area {
@@ -199,7 +195,7 @@
 	display: none !important;
 }
 
-@include from-breakpoint($medium-break){
+@include from-breakpoint($medium-break) {
 	.desktop-only {
 		display: block;
 	}
@@ -240,74 +236,76 @@
 		}
 	}
 
-	@mixin modal(){
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	z-index: 200;
-	left: 0;
-
-		> .modal-overlay {
-		background-color: $modal-bgcolor;
-		opacity: 0.5;
-		position: absolute;
+	@mixin modal() {
+		position: fixed;
 		height: 100%;
 		width: 100%;
+		top: 0;
+		z-index: 200;
+		left: 0;
+
+		> .modal-overlay {
+			background-color: $modal-bgcolor;
+			opacity: 0.5;
+			position: absolute;
+			height: 100%;
+			width: 100%;
 		}
 		> .modal-container {
-		background-color: white;
-		width: 80%;
-		position: relative;
-		top: 0em;
-		margin: 2em auto;
-		padding: 1em;
-		max-width: 23em;
-		min-height: 14em;
-		> .modal-close-section{
-			text-align: right;
-			cursor: pointer;
-			color: gray;
-			font-size: 0.8em;
-			:hover{
-				.close-text {
-					text-decoration: underline;
-				}
-			}
-			> div .close-text {
-				vertical-align: middle;
-				margin-right: 0.5em;
-			}
-			> div .icon-close{
-				display: inline-block;
-				vertical-align: middle;
+			background-color: white;
+			width: 80%;
+			position: relative;
+			top: 0em;
+			margin: 2em auto;
+			padding: 1em;
+			max-width: 23em;
+			min-height: 14em;
+			> .modal-close-section {
+				text-align: right;
 				cursor: pointer;
+				color: gray;
+				font-size: 0.8em;
+				:hover {
+					.close-text {
+						text-decoration: underline;
+					}
+				}
+				> div .close-text {
+					vertical-align: middle;
+					margin-right: 0.5em;
+				}
+				> div .icon-close {
+					display: inline-block;
+					vertical-align: middle;
+					cursor: pointer;
+				}
 			}
 		}
 	}
-}
 
-	.modal {
+	#replyModal {
+		.modal {
+		}
 		.modal-header-message {
 			font: $h3;
 			text-align: center;
 			margin-top: 0.5em;
 			margin-bottom: 0.6em;
 		}
-		.modal-info{
+		.modal-info {
 			font: $p2;
 			color: $modal-info;
 			margin-top: 1em;
 			margin-bottom: 0.25em;
 			margin-left: 1em;
 		}
-		.modal-field{
+		.modal-field {
 			position: relative;
-			.icon-placeholder1{
+			.icon-placeholder1 {
 				border: 1px solid green;
 				float: left;
 			}
-			.icon-placeholder2{
+			.icon-placeholder2 {
 				border: 1px solid blue;
 				float: left;
 			}
@@ -334,18 +332,18 @@
 			padding: 0;
 		}
 
-		input{
+		input {
 			border: transparent;
 			width: 98%;
 			height: 2em;
 			margin-left: 0.5em;
 			margin-top: 0.3em;
-			&:focus{
+			&:focus {
 				border: transparent;
 				outline: none;
 			}
 		}
-		.btn-wrapper{
+		.btn-wrapper {
 			margin-top: 2em;
 		}
 	}

@@ -57,7 +57,7 @@ router.post('/', cors, (req, res) => {
 		});
 	} else {
 		res.status(400).send({
-			error: "adId not found in the request"
+			error: "The request could not be understood by the server due to malformed syntax"
 		});
 	}
 });

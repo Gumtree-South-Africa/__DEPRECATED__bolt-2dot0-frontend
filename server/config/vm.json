@@ -39,14 +39,14 @@
 	}
   },
   "RUI": {
-		"server": {
-			"host": "sharon-fp003-4464.slc01.dev.ebayc3.com",
-			"port": 443,
-			"parameters": null,
-			"protocol": "https:",
-			"timeout": 2000
+      "server": {
+	      "host": "sharon-fp003-4464.slc01.dev.ebayc3.com",
+		   "port": 443,
+		   "parameters": null,
+		   "protocol": "https:",
+		   "timeout": 2000
 		},
-		"endpoints": {
+		    "endpoints": {
 			"replyForm": 	"/rui-api/page/reply/model/"
 		}
   },
