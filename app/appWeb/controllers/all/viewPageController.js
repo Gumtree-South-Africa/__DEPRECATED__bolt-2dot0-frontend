@@ -24,8 +24,6 @@ let VIP = {
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'viewad/' + modelData.advert.id;
 		}
-		// OG
-		modelData.header.ogUrl = _.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0];
 		// Recaptcha
 		modelData.header.recaptchaSiteKey = SITE_KEY;
 		// CSS

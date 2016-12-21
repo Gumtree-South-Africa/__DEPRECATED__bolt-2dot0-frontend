@@ -16,7 +16,7 @@
     </div>
     <div class="slider-mobile-for" data-elem="pinchzoomer">
     {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt="{{@index}}" />
+			<img class="slick-carousel" src="{{this}}" alt="{{../this.advert.title}}" />
 		{{/each}}
     </div>
 	</div>
@@ -33,7 +33,7 @@
     <div class="slider-for">
       {{#each this.advert.picturesToDisplay.testPictures}}
         <div>
-          <img src="{{this}}" alt="{{@index}}"/>
+          <img src="{{this}}" alt="{{../this.advert.title}}"/>
         </div>
       {{/each}}
     </div>
@@ -41,7 +41,7 @@
 
   <div class="carousel-images slider-nav original">
     {{#each this.advert.picturesToDisplay.testPictures}}
-      <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
+      <img class="slick-carousel" src="{{this}}" alt={{../this.advert.title}}/>
     {{/each}}
   </div>
 
@@ -68,14 +68,14 @@
     <div class="carousel-text slider-for">
       {{#each this.advert.picturesToDisplay.testPictures}}
         <div>
-          <img src="{{this}}" alt="{{@index}}"/>
+          <img src="{{this}}" alt="{{../this.advert.title}}"/>
         </div>
       {{/each}}
     </div>
 
     <div class="carousel-images slider-nav slider-nav-overlay">
       {{#each this.advert.picturesToDisplay.testPictures}}
-        <img class="slick-carousel" src="{{this}}" alt={{@index}}/>
+        <img class="slick-carousel" src="{{this}}" alt={{../this.advert.title}}/>
       {{/each}}
     </div>
 
