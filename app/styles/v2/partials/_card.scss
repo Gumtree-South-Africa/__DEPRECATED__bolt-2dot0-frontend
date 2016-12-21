@@ -94,9 +94,11 @@ $cardHeaderPadding: 20px;
 
 @include to-breakpoint($small-break) {
 	.card-trendingCard {
+		text-align: center;
+
 		.card-title {
-			margin: auto;
-			width: 300px;
+			display: inline-block;
+			max-width: 300px;
 
 			span {
 				display: block;
