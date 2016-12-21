@@ -310,7 +310,9 @@ class ViewPageModel {
 
 		//Status Banner
 		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+
 		console.log('**************',modelData.advert.statusInfo.status, '**************')
+		console.log('**************',JSON.stringify(modelData), '**************')
 		console.log('@@@@@@@@@@@@@@@@@@@@@@@@',modelData.advert.statusInfo, '@@@@@@@@@@@@@@@@@@@@@@@@')
 		console.log('**************',modelData.advert.statusInfo.statusReason, '**************')
 
