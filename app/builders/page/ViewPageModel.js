@@ -42,8 +42,6 @@ class ViewPageModel {
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
-			this.modelData.header.postAdHeader = true;
-  		this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
@@ -275,7 +273,14 @@ class ViewPageModel {
 
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
+
 		modelData.header = data.common.header || {};
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+		modelData.header.postAdHeader = true;
+		modelData.backUrl = (typeof data.advert.categoryPath!=='undefined' ? modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href : '');
+		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
+			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
+
 		modelData.footer = data.common.footer || {};
 
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
@@ -284,22 +289,21 @@ class ViewPageModel {
 		if (!_.isEmpty(modelData.seo)) {
 			if (typeof modelData.seo.pageTitle !== 'undefined') {
 				let pageTitle = modelData.seo.pageTitle;
-				pageTitle = pageTitle.replace('adTitle', data.advert.title);
-				pageTitle = pageTitle.replace('locationSeoWord', data.advert.locationDisplayName);
+				pageTitle = pageTitle.replace('adTitle', (typeof data.advert.title!=='undefined' ? data.advert.title : ''));
+				pageTitle = pageTitle.replace('locationSeoWord', (typeof data.advert.locationDisplayName!=='undefined' ? data.advert.locationDisplayName: ''));
 				pageTitle = pageTitle.replace('country', modelData.footer.brandName);
-				pageTitle = pageTitle.replace('adId', data.advert.id);
+				pageTitle = pageTitle.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
 				modelData.seo.pageTitle = pageTitle;
 			}
 			if (typeof modelData.seo.description !== 'undefined') {
 				let description = modelData.seo.description;
-				description = description.replace('description', data.advert.description.substring(0,140));
-				description = description.replace('adId', data.advert.id);
+				description = description.replace('description',(typeof data.advert.description!=='undefined' ? data.advert.description.substring(0,140) : ''));
+				description = description.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
 				modelData.seo.description = description;
 			}
 		}
 
 		modelData.dataLayer = data['common'].dataLayer || {};
-		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
 		modelData.vip.showSellerStuff = false;
@@ -332,8 +336,7 @@ class ViewPageModel {
 						advertData[advertPromiseArray[advertIndex]] = value;
 					} else {
 						let reason = result.reason;
-						console.error('Error in Ad Service : ', reason);
-						advertData[advertPromiseArray[advertIndex]] = {};
+						advertData[advertPromiseArray[advertIndex]] = reason;
 					}
 					++advertIndex;
 				});
@@ -348,46 +351,11 @@ class ViewPageModel {
 					similars: advertData.adSimilars,
 					sellerOtherAds: advertData.adSellerOthers,
 					seoUrls: advertData.adSeoUrls,
-					replyInfo: advertData.ad._embedded['reply-info'],
 					flags: advertData.adFlags
 				};
 
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
-
-				// Manipulate Ad Data
-
-				// seoVipUrl
-				let seoVipElt = data._links.find((elt) => {
-					return elt.rel === "seoVipUrl";
-				});
-				let dataSeoVipUrl = seoVipElt.href;
-				data.seoVipUrl = dataSeoVipUrl;
-
-				// loginRedirectUrl
-				data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
-
-				// Date
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
-
-				// Pictures
-				data.hasMultiplePictures = false;
-				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
-					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
-					_.each(data.pictures.sizeUrls, (picture) => {
-						let picUrl = picture['LARGE'];
-						if (!this.prodEpsMode) {
-							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-						}
-
-						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
-					});
-				}
 
 				// Seller Picture
 				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
@@ -416,45 +384,87 @@ class ViewPageModel {
 				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
 				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
 				data.breadcrumbs.locations.forEach((location, index) => {
-				  location.position = index + 1;
+					location.position = index + 1;
 				});
 				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
 				data.breadcrumbs.categories.forEach((category, index) => {
-				  category.position = data.breadcrumbs.locations.length + index + 1;
-				  category.locationInText = data.breadcrumbs.leafLocation.text;
+					category.position = data.breadcrumbs.locations.length + index + 1;
+					category.locationInText = data.breadcrumbs.leafLocation.text;
 				});
-
-				// Location
-				let locationElt = data._links.find( (elt) => {
-					return elt.rel === "location";
-				});
-				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
-				data.locationPath = this.getPathFromTree(data._embedded.location);
-				if (!_.isEmpty(data.locationPath)) {
-					data.locationDisplayName = data.locationPath[data.locationPath.length-1].localizedName;
-					data.locationDisplayHref = data.locationPath[data.locationPath.length-1].href;
-				}
-
-				// Category
-				let categoryElt = data._links.find( (elt) => {
-					return elt.rel === "category";
-				});
-				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
-				data.categoryPath = this.getPathFromTree(data._embedded.category);
-
-				// Category Attributes
-				data.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 
 				// Similar-Ads/Seller-Other-Ads configuration
 				this.getOtherAdsCard(data);
 
-				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
-					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					this.prepareDisplayAttributes(data);
-					data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
+				// This will handle the cases when BAPI returns 404 for certain ad states, and we would like to know why
+				if (data.name === 'BapiError') {
+					data.adErrorDetail = data.bapiJson.details;
+					data.adErrorDetailMessage = data.adErrorDetail[0].message;
 					return data;
-				});
+				} else {
+					// seoVipUrl
+					let seoVipElt = data._links.find((elt) => {
+						return elt.rel === "seoVipUrl";
+					});
+					let dataSeoVipUrl = seoVipElt.href;
+					data.seoVipUrl = dataSeoVipUrl;
+
+					// loginRedirectUrl
+					data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+
+					// Date
+					data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime()) / (24 * 3600 * 1000));
+					data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime()) / (24 * 3600 * 1000));
+
+					// Pictures
+					data.hasMultiplePictures = false;
+					data.picturesToDisplay = {thumbnails: [], images: [], largestPictures: [], testPictures: []};
+					if (typeof data.pictures !== 'undefined' && typeof data.pictures.sizeUrls !== 'undefined') {
+						data.hasMultiplePictures = data.pictures.sizeUrls.length > 1;
+						_.each(data.pictures.sizeUrls, (picture) => {
+							let picUrl = picture['LARGE'];
+							if (!this.prodEpsMode) {
+								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+							}
+
+							data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+							data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+							data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+							data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						});
+					}
+
+					// Reply Info
+					data.replyInfo = (advertData.ad.errorDetail === 'undefined') ? advertData.ad._embedded['reply-info'] : {};
+
+					// Location
+					let locationElt = data._links.find((elt) => {
+						return elt.rel === "location";
+					});
+					data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
+					data.locationPath = this.getPathFromTree(data._embedded.location);
+					if (!_.isEmpty(data.locationPath)) {
+						data.locationDisplayName = data.locationPath[data.locationPath.length - 1].localizedName;
+						data.locationDisplayHref = data.locationPath[data.locationPath.length - 1].href;
+					}
+
+					// Category
+					let categoryElt = data._links.find((elt) => {
+						return elt.rel === "category";
+					});
+					data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+					data.categoryPath = this.getPathFromTree(data._embedded.category);
+
+					// Category Attributes
+					data.categoryCurrentHierarchy = [];
+					this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
+					return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+						_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+						this.prepareDisplayAttributes(data);
+						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
+						return data;
+					});
+				}
 			});
 		};
 
