@@ -39,6 +39,7 @@ module.exports = {
 			'icon_call.svg',
 			'icon_chat.svg',
 			'icon_email.svg',
+			'icon_email_{country}.svg',
 			'icon_social_facebook.svg',
 			'icon_social_google_plus.svg',
 			'icon_social_pinterest.svg',
@@ -46,23 +47,24 @@ module.exports = {
 			'icon_social_youtube.svg'
 		],
 		"images": [
-			'carousel-arrow-right.png',
 			'{locale}/appstore.svg',
 			'{locale}/googleplay.svg',
 			'{locale}/logo.png',
 			'{locale}/logo_v2.png',
-			'{locale}/rating.png',
-			'{locale}/appdownload_mobile.jpg',
+			'{locale}/appdownload_mobile.jpg	',
 			'{locale}/loading-circle-complete.gif',
 			'{locale}/loading-circle.gif',
 			'{locale}/shield.png',
 			'{locale}/Agent01-50.jpg',
 			'{locale}/Agent02-50.jpg',
 			'{locale}/Agent03-50.jpg',
-			'safety-tips.jpg'
+			'{locale}/Agent04-50.jpg',
+			'{locale}/safety-tips.jpg'
 		],
 		"fonts": [
-			'Lato-Regular.ttf'
+			'Lato-Regular.ttf',
+			'Chivo-Regular.ttf',
+			'Montserrat-Regular.otf'
 		],
 		"js": [
 			'HomePageV2Legacy.min.js',
