@@ -56,6 +56,8 @@
 		"country": "MX",
 		"errorMessage" : "No podemos usar tu ubicación actual. Añádela manualmente",
 		"sizeRadio": 1000,
+		"zoom": 16,
+		"accuracy": 5,
 		"defaultLocation": {
 			"lat": 23.3650375,
 			"lng": -111.5740098

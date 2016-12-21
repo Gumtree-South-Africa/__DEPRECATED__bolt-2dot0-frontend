@@ -10,11 +10,11 @@ class FormMap {
 		this.errorMessageMap = $(".errorMessageMap");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
-		this.zoom = 17;
-		this.accuracy = 5;
-		this.map;
 		this.googleMap = $(".form-map-component").data("google-map");
 		this.locationAd = $(".form-map-component").data("location-ad");
+		this.zoom = this.googleMap.zoom;
+		this.accuracy = this.googleMap.accuracy;
+		this.map;
 		this.placeSearch;
 		this.autocomplete;
 		this.validationCoordinates = {};
@@ -98,7 +98,6 @@ class FormMap {
 			componentRestrictions: 'MX'
 		});
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
