@@ -1177,8 +1177,8 @@
 	"homepage": {
 		"popularSearches": {
 			"marker": "<i class=\"icon-location-marker-alternate\"></i>",
-			"popular": "Anuncios populares",
-			"popularIn": "Anuncios populares en",
+			"popular": "Anuncios",
+			"popularIn": "Anuncios cerca de",
 			"promptLocation": "Seleccionar Ubicación",
 			"viewMore": "Ver más"
 		},
