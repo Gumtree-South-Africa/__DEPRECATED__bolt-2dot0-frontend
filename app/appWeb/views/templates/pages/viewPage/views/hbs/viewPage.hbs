@@ -64,8 +64,30 @@
     </div>
 
     {{#partial "welcomeModal"}}
-        {{> (dynamic "welcomeModal") hasReplyForm=true}}
+        {{#if showPostOverlay}}
+            {{> (dynamic "welcomeModal") }}
+        {{else}}
+            {{> (dynamic "welcomeModal") hasReplyForm=true}}
+        {{/if}}
     {{/partial}}
+
+    {{#partial "welcomeText"}}
+        {{#if showPostOverlay}}
+            <div class="from-post-container">
+                <input type="hidden" class="from-post-flag" value="true"
+                    data-post-more-text="{{i18n "vip.postOverlay.postMore"}}">
+                {{#ifeq activateStatus compare="adActivateSuccess" }}
+                    <h2>{{i18n "vip.postOverlay.postTitle"}}</h2>
+                {{/ifeq}}
+                {{#unlessEq activateStatus compare="adActivateSuccess" }}
+                    <h2>{{i18n "vip.postOverlay.title"}}</h2>
+                {{/unlessEq}}
+                <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
+                <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n "vip.postOverlay.edit"}}</a></div>
+            </div>
+        {{/if}}
+    {{/partial}}
+
 
 {{/partial}}
 

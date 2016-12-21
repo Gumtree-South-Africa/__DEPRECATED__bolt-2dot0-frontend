@@ -48,6 +48,32 @@
 	}
 }
 
+// This part is for post overlay
+.welcome-wrapper .modal.post-overlay {
+	display: block;
+
+	.from-post-container {
+		padding: 0 5px;
+	}
+
+	.modal-container {
+		height: initial;
+		min-height: initial;
+		
+		// To ensure the post button will not cover other parts
+		padding-bottom: 65px;
+	}
+
+	.edit-link {
+		margin-top: 1em;
+
+		a {
+			color: $modal-info;
+			text-decoration: underline;
+		}
+	}
+}
+
 $item-margin: 10px;
 $photo-switcher-width: 30%;
 

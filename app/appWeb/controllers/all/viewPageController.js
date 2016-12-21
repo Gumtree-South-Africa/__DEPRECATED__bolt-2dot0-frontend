@@ -161,6 +161,12 @@ router.get('/:id?', (req, res, next) => {
 		modelData.search = true;
 		modelData.redirectPrevUrl = redirectPrevUrl;
 
+		// Post overlay means the overlay around post button with title, description and link to edit page.
+		// It only shows when post / edit ad without feature purchase or IF.
+		modelData.activateStatus = req.query.activateStatus;
+		modelData.showPostOverlay =
+			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 	}).fail((err) => {
 		console.error(err);

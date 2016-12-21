@@ -36,9 +36,33 @@ switch (constImgLength) {
 }
 //END
 
+function showPostOverlayIfNeeded() {
+	let postOverlayFlag = $('.from-post-flag');
+	if (!postOverlayFlag.length) {
+		return;
+	}
+	let shouldShowPostOverlay = postOverlayFlag.val();
+	if (shouldShowPostOverlay !== 'true') {
+		return;
+	}
+	let postMoreText = postOverlayFlag.data('post-more-text');
+	if (postMoreText) {
+		$('.welcome-wrapper .btn .sudolink').text(postMoreText);
+	}
+	$('.welcome-wrapper .modal').addClass('post-overlay');
+
+	// TODO Reuse code in welcomeModal when the logic of determining whether to show is separated from cookie reading
+	$('.welcome-wrapper .modal-close-section').on('click', () => {
+		$('.welcome-wrapper .modal').fadeOut('slow', () => {
+			$('.welcome-wrapper .modal').removeClass('modal');
+		});
+	});
+}
+
 
 let initialize = () => {
 	viewPageGallery.initialize(constImgLength);
+	showPostOverlayIfNeeded();
 };
 
 module.exports = {
