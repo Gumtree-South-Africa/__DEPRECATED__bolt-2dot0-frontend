@@ -165,12 +165,16 @@ router.get('/:id?', (req, res, next) => {
     let difference = today - expired;
 		let daysLeft = Math.floor(difference / 86400000);
 		let statusAd;
-		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
+		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
 			if(daysLeft > 60) {
 				statusAd = '?statusAd=expired';
 				return res.status(410).redirect('/' + statusAd);
 			}
-			
+		}
+
+		if( (modelData.advert.statusInfo.status === 'BLOCKED' && modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED') || (modelData.advert.statusInfo.status === 'DELETED' && modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') ) {
+				statusAd = '?statusAd=expired';
+				return res.status(410).redirect('/' + statusAd);
 		}
 
 		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {

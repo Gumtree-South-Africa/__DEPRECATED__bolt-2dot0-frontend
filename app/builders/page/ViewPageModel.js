@@ -315,10 +315,12 @@ class ViewPageModel {
 		//Status Banner
 		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 
+		/*
 		console.log('**************',modelData.advert.statusInfo.status, '**************')
 		console.log('**************',JSON.stringify(modelData), '**************')
 		console.log('@@@@@@@@@@@@@@@@@@@@@@@@',modelData.advert.statusInfo, '@@@@@@@@@@@@@@@@@@@@@@@@')
 		console.log('**************',modelData.advert.statusInfo.statusReason, '**************')
+		*/
 
 		return modelData;
 	}
@@ -467,6 +469,19 @@ class ViewPageModel {
 				if (data.name === 'BapiError') {
 					data.adErrorDetail = data.bapiJson.details;
 					data.adErrorDetailMessage = data.adErrorDetail[0].message;
+
+					if (data.adErrorDetailMessage.indexOf('DELETED')) {
+						data.statusInfo = {
+							status: 'DELETED',
+							statusReason: 'DELETED__ADMIN__DELETED'
+						};
+					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
+						data.statusInfo = {
+							status: 'BLOCKED',
+							statusReason: 'BLOCKED__TNS__CHECKED'
+						};
+					}
+
 					return data;
 				} else {
 					// seoVipUrl
