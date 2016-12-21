@@ -54,7 +54,7 @@
 	},
 	"googleMap": {
 		"country": "MX",
-		"errorMessage" : "Lo sentimos.  Vivanuncios sólo está disponible en México",
+		"errorMessage" : "Lo sentimos, Vivanuncios sólo está disponible en México",
 		"sizeRadio": 1000,
 		"defaultLocation": {
 			"lat": 23.3650375,

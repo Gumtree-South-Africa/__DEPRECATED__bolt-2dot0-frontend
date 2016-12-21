@@ -16,7 +16,7 @@ module.exports = function watch(gulp, plugins) {
 		del = require("del"),
 		fs = require("fs-extra");
 
-	let coverage = true,
+	let coverage = false,
 		ciMode = false,
 		browser = "chrome";
 

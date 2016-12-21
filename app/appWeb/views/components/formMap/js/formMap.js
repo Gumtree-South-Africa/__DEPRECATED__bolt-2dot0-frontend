@@ -127,7 +127,6 @@ class FormMap {
 	}
 
 	setCurrentPosition() {
-		window.formMap.errorMessageMap.hide();
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
 		this.map.setCenter(latLng);
 		this.map.setZoom(this.zoom);
