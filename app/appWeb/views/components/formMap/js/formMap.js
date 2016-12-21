@@ -5,6 +5,20 @@ let googleMarker = [];
 // this is a mock location 
 let locationMock = { lat: 19.3883633, lng: -99.1744249 };
 let locationMexicoMock = { lat: 23.49125085380051, lng: -100.15682835625 };
+let getUrlParameter = (sParam) => {
+	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+};
 
 class FormMap {
 	constructor() {
@@ -27,20 +41,7 @@ class FormMap {
 		};
 	}
 	
-	getUrlParameter(sParam) {
-		let sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			sURLVariables = sPageURL.split('&'),
-			sParameterName,
-			i;
-
-		for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
-
-			if (sParameterName[0] === sParam) {
-				return sParameterName[1] === undefined ? true : sParameterName[1];
-			}
-		}
-	}
+	
 
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
@@ -73,11 +74,6 @@ class FormMap {
 	}
 
 	configMap() {
-		let validator = this.getUrlParameter('BOLT24812');
-		if(!validator) {
-			return;
-		}
-		
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: locationMexicoMock,
 			zoom: 4,
@@ -205,12 +201,17 @@ class FormMap {
 }
 
 let initialize = () => {
-	window.formMap = new FormMap();
-	// set the current location via data in node
-	window.formMap.configMap();
-	window.googleRanges = googleRanges;
-	window.googleMarker = googleMarker;
-	window.locationMexicoMock = locationMexicoMock;
+	window.getUrlParameter = getUrlParameter;
+	let validator = window.getUrlParameter('BOLT24812');
+	if(validator || validator === 1) {
+		window.formMap = new FormMap();
+		// set the current location via data in node
+		window.formMap.configMap();
+		window.googleRanges = googleRanges;
+		window.googleMarker = googleMarker;
+		window.locationMexicoMock = locationMexicoMock;
+	}
+	
 };
 
 
