@@ -684,9 +684,12 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		locationSelection.initialize((data) => {
- 			this._setHiddenLocationInput(data);
- 		}, {pageType: this.pageType});
+		let validator = window.getUrlParameter('BOLT24812');
+		if(!validator) {
+			locationSelection.initialize((data) => {
+				this._setHiddenLocationInput(data);
+			}, {pageType: this.pageType});
+		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();

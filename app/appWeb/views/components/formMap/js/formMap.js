@@ -2,6 +2,20 @@
 
 let googleRanges = [];
 let googleMarker = [];
+let getUrlParameter = (sParam) => {
+	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+};
 
 class FormMap {
 	constructor() {
@@ -59,21 +73,6 @@ class FormMap {
 		};
 	}
 
-	getUrlParameter(sParam) {
-		let sPageURL = decodeURIComponent(window.location.search.substring(1)),
-			sURLVariables = sPageURL.split('&'),
-			sParameterName,
-			i;
-
-		for (i = 0; i < sURLVariables.length; i++) {
-			sParameterName = sURLVariables[i].split('=');
-
-			if (sParameterName[0] === sParam) {
-				return sParameterName[1] === undefined ? true : sParameterName[1];
-			}
-		}
-	}
-
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
 			map.fitBounds(place.geometry.viewport);
@@ -106,11 +105,6 @@ class FormMap {
 
 	configMap() {
 		let tempzoom = this.locationAd ? this.zoom : 4;
-		let validator = this.getUrlParameter('BOLT24812');
-		if(!validator) {
-			return;
-		}
-
 		this.map = new google.maps.Map(this.HtmlMap[0], {
 			center: window.formMap.position,
 			zoom: tempzoom,
@@ -246,13 +240,16 @@ class FormMap {
 }
 
 let initialize = () => {
-	window.formMap = new FormMap();
-	window.formMap.country = $(".form-map-component").data("google-map").country;
-
-	// set the current location via data in node
-	window.formMap.setPosition();
-	window.googleRanges = googleRanges;
-	window.googleMarker = googleMarker;
+	window.getUrlParameter = getUrlParameter;
+	let validator = window.getUrlParameter('BOLT24812');
+	if(validator || validator === 1) {
+		window.formMap = new FormMap();
+		window.formMap.country = $(".form-map-component").data("google-map").country;
+		// set the current location via data in node
+		window.formMap.setPosition();
+		window.googleRanges = googleRanges;
+		window.googleMarker = googleMarker;
+	}
 };
 
 module.exports = {
