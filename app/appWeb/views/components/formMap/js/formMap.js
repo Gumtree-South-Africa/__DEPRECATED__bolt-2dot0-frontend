@@ -4,7 +4,7 @@ let googleRanges = [];
 let googleMarker = [];
 // this is a mock location 
 let locationMock = { lat: 19.3883633, lng: -99.1744249 };
-let locationMexicoMock = { lat: 23.0876058, lng: -101.8926682 };
+let locationMexicoMock = { lat: 23.49125085380051, lng: -100.15682835625 };
 
 class FormMap {
 	constructor() {
@@ -65,9 +65,7 @@ class FormMap {
 			disableDefaultUI: true
 		});
 		google.maps.event.trigger(this.map, "resize");
-
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
-
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('dragend', () => {
