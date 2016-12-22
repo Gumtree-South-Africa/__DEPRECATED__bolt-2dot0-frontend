@@ -1288,7 +1288,7 @@
 		"postAd": "Post FREE Ad"
 	},
 	"modal": {
-		"close": "Close",
+		"close": "CLOSE",
 		"buttonText": "Confirm",
 		"message": "Change your location",
 		"placeholderText": "Type a location",
