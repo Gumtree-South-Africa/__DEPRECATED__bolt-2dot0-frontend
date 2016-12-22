@@ -22,7 +22,9 @@
 			{{#if this.isBuyerPage}}
 				<div class="sticky-contact">
 					<div class="contact-wrapper">
-						<div class="contact-title">Contact {{this.advert.sellerDetails.contactInfo.name}}</div>
+						<div class="contact-title">
+							<span>Contact {{#if this.advert.sellerDetails.contactInfo.name}}{{this.advert.sellerDetails.contactInfo.name}}{{else}}{{i18n "vip.seller.user"}}{{/if}}</span>
+						</div>
 						<div class="stickyBtn left">
 							<a href="tel:{{this.advert.sellerDetails.contactInfo.phone}}" class="button telephone">
 								<span class="icon-web-phone show-icon"></span><span class="duText">CALL</span>
