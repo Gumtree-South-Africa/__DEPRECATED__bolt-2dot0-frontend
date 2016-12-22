@@ -203,8 +203,8 @@ class FormMap {
 let initialize = () => {
 	window.getUrlParameter = getUrlParameter;
 	let validator = window.getUrlParameter('BOLT24812');
+	window.formMap = new FormMap();
 	if(validator || validator === 1) {
-		window.formMap = new FormMap();
 		// set the current location via data in node
 		window.formMap.configMap();
 		window.googleRanges = googleRanges;

@@ -6,7 +6,8 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
+// For a moment no longer required the Masterplan of formMap that is only available the markup
+// let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -28,9 +29,16 @@ let mockPostAdResponse = {
 		}
 	]
 };
+let mockGetUrlParameters = () => {
+	window.getUrlParameter = function(value) { 
+		return value; 
+	};
+};
+mockGetUrlParameters();
 
 describe('Post Ad', () => {
-
+	
+	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
 			isHidden: true,
@@ -229,34 +237,5 @@ describe('Post Ad', () => {
 		});
 	});
 
-	describe("formMap", () => {
-		let $testArea;
-		
-		beforeEach(() => {
-			specHelper.mockGoogleLocationApi();
-			specHelper.mockWebshim();
-			
-			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
-			formMapController.initialize();
-			window.formMap.configMap();
-		});	
-		it('test if google api maps has been applied on object window.google', () => {
-			spyOn(window.google.maps, 'Map');
-			this.map = new google.maps.Map($(".map")[0], {
-				center: this.position,
-				zoom: this.zoom,
-				disableDefaultUI: true,
-			});
-			expect(google.maps.Map).toHaveBeenCalled();
-		});
-
-		it("initialize and disable geolocate", () => {
-			let checkGeolocation = $testArea.find('#checkGeolocation');
-			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
-			window.formMap.geolocate(false);
-			expect(window.formMap.position.lat).toBe(19.3883554);
-			expect(window.formMap.position.lng).toBe(-99.1744351);
-		});
-
-	});
+	
 });
