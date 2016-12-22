@@ -53,6 +53,13 @@ class replyForm {
 					$('.fe-email-validation').addClass('hide');
 				}
 
+				if ($('.phone-box-area').val() === '' && $('.phone-box-area').data('id') === true) {
+					$('.fe-phone-validation').removeClass('hide');
+					return;
+				} else {
+					$('.fe-phone-validation').addClass('hide');
+				}
+
 				let $originalMessage = JSON.parse(JSON.stringify($('.message-box-area').val()));
 				let $finalMessage = $originalMessage;
 				$('.canned-checkbox:checkbox:checked').each(function() {

@@ -1626,6 +1626,7 @@
 			"writeHere": "Escribir texto aquí...",
 			"phone": "NÚMERO DE TELÉFONO",
 			"sphone": "Número de teléfono",
+			"phoneValidate": "Por favor agrega un número telefónico válido.",
 			"phoneOptional": "(OPCIONAL)",
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
