@@ -180,6 +180,9 @@ let mockGoogleLocationApi = () => {
 						setBounds: function() { }
 					};
 				}
+			},
+			event: {
+				addListener: function() {}
 			}
 		}
 	};

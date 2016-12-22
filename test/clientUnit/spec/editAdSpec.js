@@ -158,11 +158,11 @@ describe('Edit Ad', () => {
 
 	describe("formMap", () => {
 		let $testArea;
-
+		window.getUrlParameter(true);
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-			this.navigator = {
+			 this.navigator = {
 				geolocation: function() {
 					return {
 						getCurrentPosition: function() { }
@@ -171,7 +171,6 @@ describe('Edit Ad', () => {
 			};
 			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
-			window.formMap.configMap();
 		});
 		it('test if google api maps has been applied on object window.google', () => {
 			spyOn(window.google.maps, 'Map');
