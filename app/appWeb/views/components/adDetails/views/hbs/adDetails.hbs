@@ -21,7 +21,7 @@
 		</div>
         <div class="price-update">
             {{> (dynamic "priceDisplay")}}
-			<div class="ad-last-posted"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}} <span>{{i18n "vip.details.daysago"}}</span></div>
+			<div class="ad-last-posted"><span>{{i18n "vip.details.posted"}} </span>{{this.advert.postedDate}}</div>
         </div>
         <div class="clear-line"></div>
         {{#if this.advert.orderedAttributes}}
@@ -62,7 +62,7 @@
             <div class="ad-last-updated"><span class="last-updated-attr">{{i18n "vip.details.updated"}} </span>
                 <div>
                     {{#if this.advert.updatedDate}}
-                        {{this.advert.updatedDate}} <span>{{i18n "vip.details.daysago"}}</span>
+                        {{this.advert.updatedDate}}
                     {{else}}
                         <span>-</span>
                     {{/if}}
