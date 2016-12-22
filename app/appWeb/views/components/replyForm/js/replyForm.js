@@ -39,7 +39,7 @@ class replyForm {
 			})(), true);
 
 			$('#vip-send-button').on('click', function() {
-				if ($('.message-box-area').val() === '' && $('.interested-checkbox').prop('checked') === false && $('.where-checkbox').prop('checked') === false) {
+				if ($('.message-box-area').val() === '' && $('.canned-checkbox:checkbox:checked').length === 0) {
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				} else {
@@ -55,14 +55,10 @@ class replyForm {
 
 				let $originalMessage = JSON.parse(JSON.stringify($('.message-box-area').val()));
 				let $finalMessage = $originalMessage;
-				let $interestedMessage = $('.interested-message').text();
-				let $whereMessage = $('.where-message').text();
-				if ($('.interested-checkbox').prop('checked') === true) {
-					$finalMessage = $finalMessage + $interestedMessage;
-				}
-				if ($('.where-checkbox').prop('checked') === true){
-					$finalMessage = $finalMessage + $whereMessage;
-				}
+				$('.canned-checkbox:checkbox:checked').each(function() {
+					$finalMessage = $finalMessage + ' ' + $(this).data('id');
+				});
+
 				$('.message-box-area').val($finalMessage);
 			});
 

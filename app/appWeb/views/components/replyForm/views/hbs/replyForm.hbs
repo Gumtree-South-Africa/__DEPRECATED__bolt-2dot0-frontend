@@ -42,9 +42,9 @@
 
                 {{#each this.advert.replyInfo.cannedReplyKeys}}
                     {{#compare @index "<" 1}}
-                        <div class="interested-message-container"><input class="interested-checkbox viva-checkbox" type="checkbox" checked><span class="interested-message">{{i18n this}}</span></div>
+                        <div class="canned-message-container"><input data-id="{{i18n this}}" class="canned-checkbox viva-checkbox" type="checkbox" checked><span class="canned-message">{{i18n this}}</span></div>
                     {{else}}
-                        <div class="where-message-container"><input class="where-checkbox viva-checkbox" type="checkbox"><span class="where-message">{{i18n this}}</span></div>
+                        <div class="canned-message-container"><input data-id="{{i18n this}}" class="canned-checkbox viva-checkbox" type="checkbox"><span class="canned-message">{{i18n this}}</span></div>
                     {{/compare}}
                 {{/each}}
 
