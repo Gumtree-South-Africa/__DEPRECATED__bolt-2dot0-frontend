@@ -82,6 +82,11 @@
 		<section id="custom-attributes">
 			{{> (dynamic "postFormCustomAttributes") model=this}}
 		</section>
-		{{> (dynamic "locationSelection")}}
+
+		{{#if this.enableComponents}}
+			{{> (dynamic "formMap")}}
+		{{else}}
+			{{> (dynamic "locationSelection")}}
+		{{/if}}
 	</form>
 </div>
