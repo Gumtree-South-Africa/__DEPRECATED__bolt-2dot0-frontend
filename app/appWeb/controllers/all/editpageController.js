@@ -59,6 +59,7 @@ router.get('/:id?', (req, res, next) => {
 		EditAdPage.extendModelData(req, modelData);
 		modelData.adId = adId;
 
+		modelData.enableComponents = req.query.BOLT24748 === '1' ? true : false;
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();

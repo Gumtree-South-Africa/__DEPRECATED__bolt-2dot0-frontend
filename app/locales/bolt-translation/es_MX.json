@@ -1270,7 +1270,7 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "Cerrar",
+		"close": "CERRAR",
 		"buttonText": "Confirmar",
 		"message": "Cambia tu Ubicación",
 		"placeholderText": "Escribe una ubicación",

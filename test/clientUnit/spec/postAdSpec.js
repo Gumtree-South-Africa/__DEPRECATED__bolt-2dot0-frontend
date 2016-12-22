@@ -6,7 +6,10 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
+let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
+let locationSelectionController =require('app/appWeb/views/components/locationSelection/js/locationSelection.js');
+// For a moment no longer required the Masterplan of formMap that is only available the markup
+// let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -28,9 +31,16 @@ let mockPostAdResponse = {
 		}
 	]
 };
+let mockGetUrlParameters = () => {
+	window.getUrlParameter = function(value) {
+		return value;
+	};
+};
+mockGetUrlParameters();
 
 describe('Post Ad', () => {
-
+	locationSelectionController.initialize({});
+	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
 			isHidden: true,
@@ -231,7 +241,7 @@ describe('Post Ad', () => {
 
 	describe("formMap", () => {
 		let $testArea;
-
+		window.getUrlParameter(true);
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();

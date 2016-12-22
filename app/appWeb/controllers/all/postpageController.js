@@ -102,7 +102,7 @@ router.use('/', (req, res, next) => {
 		postAdData.extendModelData(req, modelData);
 
 		// shows the new components in development
-		modelData.enableComponents = req.query.BOLT24812 === '1' ? true : false;
+		modelData.enableComponents = req.query.BOLT24748 === '1' ? true : false;
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
