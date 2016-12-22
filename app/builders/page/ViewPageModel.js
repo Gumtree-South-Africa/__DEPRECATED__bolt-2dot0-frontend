@@ -307,11 +307,12 @@ class ViewPageModel {
 
 		modelData.vip = {};
 		modelData.vip.showSellerStuff = false;
+
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
-
+		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff)
 		return modelData;
 	}
 
