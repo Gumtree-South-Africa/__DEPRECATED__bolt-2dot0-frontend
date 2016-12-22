@@ -33,7 +33,7 @@
 		},
 		"replyMessage": {
 			"type": "string",
-			"required": true,
+			"required": false,
 			"maxLength": 4096
 		},
 		"fileName": {
