@@ -39,12 +39,13 @@
     }
   },
   "RUI": {
-    "server": {
+	"server": {
       "host": "docker_host_machine",
       "port": 443,
       "parameters": null,
 	  "protocol": "https:",
-      "timeout": 2000
+      "timeout": 2000,
+	  "prependBrandToHost": false
     },
     "endpoints": {
       "replyForm":   "/rui-api/page/reply/model/"

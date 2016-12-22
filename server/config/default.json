@@ -45,7 +45,8 @@
       "port": 8443,
       "parameters": null,
 	  "protocol": "https:",
-      "timeout": 2000
+      "timeout": 2000,
+	  "prependBrandToHost": true
     },
     "endpoints": {
       "replyForm": "/rui-api/page/reply/model/"
