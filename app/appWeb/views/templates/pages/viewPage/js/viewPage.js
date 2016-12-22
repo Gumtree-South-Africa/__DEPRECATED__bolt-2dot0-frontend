@@ -51,10 +51,16 @@ function showPostOverlayIfNeeded() {
 	}
 	$('.welcome-wrapper .modal').addClass('post-overlay');
 
-	// TODO Reuse code in welcomeModal when the logic of determining whether to show is separated from cookie reading
-	$('.welcome-wrapper .modal-close-section').on('click', () => {
+	// Click on any modal should close both ones
+	$('.post-overlay .modal-close-section').on('click', () => {
+		// Attention if modal is not shown as a result of media query, fadeOut will do nothing.
+		// So a css setting is added to ensure the result.
 		$('.welcome-wrapper .modal').fadeOut('slow', () => {
 			$('.welcome-wrapper .modal').removeClass('modal');
+			$('.welcome-wrapper .modal').css('display', 'none');
+		});
+		$('.post-overlay.desktop-only').fadeOut('slow', () => {
+			$('.post-overlay.desktop-only').css('display', 'none');
 		});
 	});
 }
