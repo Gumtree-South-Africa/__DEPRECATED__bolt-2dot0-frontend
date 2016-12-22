@@ -5,7 +5,7 @@
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
     "dev": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=dev gulp --noLintHalt",
-    "vm": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp --noLintHalt",
+    "vm": "npm install && SITES=es_MX PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp --noLintHalt",
     "vmp1": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost PAGE_VER=v1 NODE_ENV=vm gulp ",
     "vmp2": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost PAGE_VER=v2 NODE_ENV=vm gulp",
     "pp": "npm install && NODE_ENV=pp_phx_deploy gulp",
@@ -65,6 +65,7 @@
     "masonry-layout": "4.1.1",
     "measured": "1.1.0",
     "method-override": "2.3.5",
+    "moment": "2.17.1",
     "morgan": "1.6.1",
     "nanotimer": "0.3.14",
     "node-uuid": "1.4.7",
