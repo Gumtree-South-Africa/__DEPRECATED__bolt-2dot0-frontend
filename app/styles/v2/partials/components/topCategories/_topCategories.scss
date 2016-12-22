@@ -1,8 +1,5 @@
 .seo-wrapper {
   .top-categories-header {
-    display: inline-block;
-    padding-right: 20px;
-    font-weight: bold;
   }
 }
 .view-more-categories {
@@ -11,23 +8,4 @@
 }
 
 @include from-breakpoint($medium-break){
-  .seo-wrapper {
-    .categories-wrapper {
-      width: 46%;
-      display: inline-block;
-      vertical-align: top;
-      .top-categories {
-        .top-categories-header {
-          display: block;
-        }
-      }
-    }
-  }
-  .view-more-categories {
-    &:hover {
-      text-decoration: underline;
-    }
-    cursor: pointer;
-    text-align: center;
-  }
 }

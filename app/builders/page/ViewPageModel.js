@@ -444,7 +444,7 @@ class ViewPageModel {
 
 				// Category Attributes
 				data.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+				// this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
 
 				// Similar-Ads/Seller-Other-Ads configuration
 				this.getOtherAdsCard(data);

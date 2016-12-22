@@ -212,7 +212,7 @@ class HomePageModelV2 {
 				let keywords = {};
 				keywords.top = data[0];
 				keywords.top.menuTitles = ['home.popular.searches', 'footer.toplocations', 'footer.topCategories'];
-				keywords.top.total = 1;
+				keywords.top.total = 3;
 
 				return keywords;
 			}).fail((err) => {
