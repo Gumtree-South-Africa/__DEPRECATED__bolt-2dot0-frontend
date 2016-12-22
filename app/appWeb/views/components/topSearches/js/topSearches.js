@@ -20,7 +20,6 @@ let _showMoreSearches = () => {
 };
 
 let _toggleTabs = (event) => {
-	console.log('neto');
 	let indexTab = $(event.currentTarget).index();
 	this.$tabs.addClass('mobile-hide');
 	this.$tabs.eq(indexTab).removeClass('mobile-hide');
