@@ -53,13 +53,17 @@ class replyForm {
 					$('.fe-email-validation').addClass('hide');
 				}
 
-				let $originalMessage = $('.message-box-area').val();
+				let $originalMessage = JSON.parse(JSON.stringify($('.message-box-area').val()));
+				let $finalMessage = $originalMessage;
 				let $interestedMessage = $('.interested-message').text();
 				let $whereMessage = $('.where-message').text();
-				if ($('.interested-checkbox').prop('checked') === true || $('.where-checkbox').prop('checked') === true) {
-					let $finalMessage = $interestedMessage + $whereMessage + $originalMessage;
-					$('.message-box-area').val($finalMessage);
+				if ($('.interested-checkbox').prop('checked') === true) {
+					$finalMessage = $finalMessage + $interestedMessage;
 				}
+				if ($('.where-checkbox').prop('checked') === true){
+					$finalMessage = $finalMessage + $whereMessage;
+				}
+				$('.message-box-area').val($finalMessage);
 			});
 
 			$('.return-button').on('click', function() {
