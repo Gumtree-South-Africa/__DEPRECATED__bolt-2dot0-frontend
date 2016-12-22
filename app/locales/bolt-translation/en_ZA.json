@@ -1146,8 +1146,10 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular ads in your",
-			"yourNeighborhood": "neighbourhood",
+			"marker": "<i class=\"icon-location-marker-alternate\"></i>",
+			"popular": "Popular Ads",
+			"popularIn": "Popular Ads Near",
+			"promptLocation": "Select Location",
 			"viewMore": "View more"
 		},
 		"searchbar": {
@@ -1287,7 +1289,7 @@
 		"postAd": "Post FREE Ad"
 	},
 	"modal": {
-		"close": "Close",
+		"close": "CLOSE",
 		"buttonText": "Confirm",
 		"message": "Change your location",
 		"placeholderText": "Type a location",

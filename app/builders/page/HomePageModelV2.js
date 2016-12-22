@@ -68,7 +68,8 @@ class HomePageModelV2 {
 		abstractPageModel.addToClientTranslation(modelData, [
 			"recentactivity.message.listing",
 			"recentactivity.message.sold",
-			"homepage.trending.contact"
+			"homepage.trending.contact",
+			"currency.format"
 		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {

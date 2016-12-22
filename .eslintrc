@@ -14,7 +14,8 @@
 	"globals": {
 		//place settings for globals here, such as
 		"requirejs": true,
-		"Handlebars": true
+		"Handlebars": true,
+		"google": true
 	},
 	"rules": {
 		//    "off" or 0 - turn the rule off

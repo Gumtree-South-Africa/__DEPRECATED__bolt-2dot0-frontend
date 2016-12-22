@@ -222,6 +222,13 @@
 	"postad.completeness.addaddress": "Agregando una dirección",
 	"postad.completeness.moreinfo": "Dando más información de tu anuncio usando los menús en la forma de entrada",
 	"postad.error.header": "¡Ya casi! ¡Por favor corrige la siguiente información en tu anuncio y haz clic en PUBLICAR cuando esté listo!",
+	"postad.location.title": "Tu ubicación *",
+	"postad.location.instructions.mobile": "Toca el mapa y arrástralo para seleccionar o cambiar tu ubicación. Tu ubicación exacta NO será publicada a menos de que así lo especifiques.",
+	"postad.location.instructions.desktop": "Haz click en el mapa y arrástralo para seleccionar o cambiar tu ubicación. Tu ubicación exacta NO será publicada a menos de que así lo especifiques.",
+	"postad.location.uselocation": "PUBLICAR MI UBICACIÓN EXACTA",
+	"postad.location.uselocation.instructions" : "(Se mostrará un marcador en el mapa)",
+	"postad.location.setLocation" : "Ubicación actual",
+	"postad.location.placeholder": "Añade tu dirección",
 	"previewad.notice.text": "Tu anuncio no está publicado aún.  Por favor revísalo y haz clic en Publicar.",
 	"previewad.edit.text": "Editar",
 	"previewad.postyourad.text": "Publica tu anuncio",
@@ -1176,8 +1183,10 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
+			"marker": "<i class=\"icon-location-marker-alternate\"></i>",
+			"popular": "Anuncios",
+			"popularIn": "Anuncios cerca de",
+			"promptLocation": "Seleccionar Ubicación",
 			"viewMore": "Ver más"
 		},
 		"searchbar": {
@@ -1263,7 +1272,7 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "Cerrar",
+		"close": "CERRAR",
 		"buttonText": "Confirmar",
 		"message": "Cambia tu Ubicación",
 		"placeholderText": "Escribe una ubicación",

@@ -14,7 +14,7 @@
                 </div>
             {{else}}
                 <div class="edit-favorite">
-                    <span class="edit-favorite-icon favorite-icon favorite-btn icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.adId}}"></span>
+                    <span class="edit-favorite-icon favorite-icon icon-heart-gray" role="button" data-adid="{{this.advert.adId}}" data-short-adid="{{this.advert.id}}"></span>
                 </div>
             {{/if}}
 		</div>
@@ -24,19 +24,19 @@
         </div>
         <div class="clear-line"></div>
         {{#if this.advert.orderedAttributes}}
-			<div class="category-pri-attrs">
-                {{#each this.advert.orderedAttributes}}
-					<div class="pri-props">
-						<span class="pri-props-name">{{this.capsName}}</span>
-                        {{#if this.seoUrl}}
-						    <a href="{{../this.header.homePageUrl}}{{this.seoUrl}}"><span class="pri-props-value">{{this.value}}</span></a>
-                        {{else}}
-                            <span class="pri-props-value">{{this.value}}</span>
-                        {{/if}}
-					</div>
-                {{/each}}
-			</div>
-			<div class="clear-line"></div>
+					<ul class="category-pri-attrs">
+						{{#each this.advert.orderedAttributes}}
+							<li class="pri-props">
+								<span class="pri-props-name">{{this.capsName}}</span>
+								{{#if this.seoUrl}}
+								<a href="{{../this.header.homePageUrl}}{{this.seoUrl}}"><span class="pri-props-value">{{this.value}}</span></a>
+								{{else}}
+								<span class="pri-props-value">{{this.value}}</span>
+								{{/if}}
+							</li>
+							{{/each}}
+					</ul>
+					<div class="clear-line"></div>
         {{/if}}
 	</div>
     <div class="sec-attrs">

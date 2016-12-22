@@ -1,13 +1,12 @@
 'use strict';
-let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let CategoryDropdownSelection = require(
 	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
 let PostFormCustomAttributes = require(
 	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
+let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
@@ -278,12 +277,11 @@ class PostAdFormMainDetailsVM {
 	}
 
 	/**
-	 * Get location id from location selection modal
-	 */
-	getLocatioinId() {
-		return locationSelection.getLocationId();
-	}
-
+ 	 * Get location id from location selection modal
+ 	 */
+ 	getLocatioinId() {
+ 		return locationSelection.getLocationId();
+ 	}
 	getCategorySelectionName() {
 		return this._categoryDropdownSelection.getCategorySelectionName();
 	}
@@ -324,6 +322,12 @@ class PostAdFormMainDetailsVM {
 		}
 		/* Location Resolving end */
 
+		// get position selecte on formMap component
+		let position = { lat: lat, lng: lng };
+		if(window.formMap) {
+			position = window.formMap.getPosition();
+		}
+		
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
@@ -331,8 +335,8 @@ class PostAdFormMainDetailsVM {
 			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
-				"latitude": lat,
-				"longitude": lng
+				"latitude": position.lat,
+				"longitude": position.lng
 			},
 			categoryAttributes: categoryAttributes
 		};
@@ -680,9 +684,12 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		locationSelection.initialize((data) => {
-			this._setHiddenLocationInput(data);
-		}, {pageType: this.pageType});
+		let validator = window.getUrlParameter('BOLT24812');
+		if(!validator) {
+			locationSelection.initialize((data) => {
+				this._setHiddenLocationInput(data);
+			}, {pageType: this.pageType});
+		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();
