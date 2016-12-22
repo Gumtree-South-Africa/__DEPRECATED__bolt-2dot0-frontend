@@ -24,16 +24,11 @@
 				<input title="{{i18n "postAd.mainDetails.amount"}}" type="number" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
 					{{#each this.localCurrencies}}
-						<label class="control">
-							<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}} id="price-choose-{{this}}"/>
-							<label for="price-choose-{{this}}" class="currency-label {{#ifeq @index compare=0}}first-currency{{/ifeq}}">{{this}}</label>
-							<!--div class="outer-circle">
-								<div class="inner-circle"></div>
-							</div>
-							<span class="currency-type">{{this}}</span-->
-						</label>
+						<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}} id="price-choose-{{this}}"/>
+						<label for="price-choose-{{this}}" class="currency-label {{#ifeq @index compare=0}}first-currency{{/ifeq}}">{{this}}</label>
 					{{/each}}
-					<!--
+					<a role="button" class="currency-bg" aria-hidden="true" tabindex="-1">&nbsp;</a>
+					{{!--
                     <label class="control">
                         <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
                         <div class="outer-circle">
@@ -48,7 +43,7 @@
                         </div>
                         <span class="currency-type">USD</span>
                     </label>
-                    -->
+                    --}}
 				</div>
 			</div>
 		</div>

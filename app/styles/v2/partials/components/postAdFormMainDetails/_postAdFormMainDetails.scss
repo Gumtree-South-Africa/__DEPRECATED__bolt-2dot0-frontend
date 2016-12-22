@@ -254,32 +254,49 @@ $categoryArrowIconWidth: 13px;
 	}
 
 	.form-ad-price .radio-group {
+		// To make currency-bg work
+		position: relative;
 		float: right;
 		margin-right: 6%;
 
 		vertical-align: middle;
 		line-height: 33px;
 
-		.control {
-			float: left;
-			margin: 0;
-		}
-
 		.currency-label {
+			float: left;
 			display: inline-block;
 			text-align: center;
 			width: 60px;
 			border: 1px solid #D4D4D4;
 
-			&.first-currency {
-				border-right: none;
-			}
+			// To ensure it's above currency-bg
+			z-index: 2;
+			position: relative;
+
+			transition: color .3s ease-out;
 		}
 
 		input[type="radio"]:checked + .currency-label {
 			border: 1px solid $vivaGray1;
-			background-color: $vivaBlue;
 			color: $vivaWhite;
+		}
+
+		.currency-bg {
+			z-index: 1;
+			position: absolute;
+			width: 60px;
+			border: 1px solid $vivaGray1;
+			background-color: $vivaBlue;
+			top: 0;
+			right: 0;
+
+			transition: right .3s ease-out;
+		}
+		input[type="radio"]:checked ~ input[type="radio"] ~ .currency-bg {
+			right: 62px;
+		}
+		input[type="radio"]:checked ~ input[type="radio"] ~ input[type="radio"] ~ .currency-bg {
+			right: 124px;
 		}
 
 		&::after {
