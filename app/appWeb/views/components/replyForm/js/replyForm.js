@@ -39,7 +39,7 @@ class replyForm {
 			})(), true);
 
 			$('#vip-send-button').on('click', function() {
-				if ($('.message-box-area').val() === '' && $('.viva-checkbox').prop('checked') === false) {
+				if ($('.message-box-area').val() === '' && $('.interested-checkbox').prop('checked') === false && $('.where-checkbox').prop('checked') === false) {
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				} else {
@@ -51,6 +51,14 @@ class replyForm {
 					return;
 				} else {
 					$('.fe-email-validation').addClass('hide');
+				}
+
+				let $originalMessage = $('.message-box-area').val();
+				let $interestedMessage = $('.interested-message').text();
+				let $whereMessage = $('.where-message').text();
+				if ($('.interested-checkbox').prop('checked') === true || $('.where-checkbox').prop('checked') === true) {
+					let $finalMessage = $interestedMessage + $whereMessage + $originalMessage;
+					$('.message-box-area').val($finalMessage);
 				}
 			});
 

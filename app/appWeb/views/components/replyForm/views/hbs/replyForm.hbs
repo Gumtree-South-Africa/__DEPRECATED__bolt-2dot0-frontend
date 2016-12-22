@@ -34,7 +34,7 @@
                 <div class="login-message-container">
                     <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
                     {{#unless this.header.id}}
-                        <span class="desktop-paren">(</span><span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}"></span>{{i18n "vip.reply.login"}}</a>
+                        <span class="desktop-paren">(</span><span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n "vip.reply.login"}}</a></span>
                         <span>{{i18n "vip.reply.loginMessage"}}</span>
                         <span class="desktop-paren">)</span>
                     {{/unless}}
@@ -42,9 +42,9 @@
 
                 {{#each this.advert.replyInfo.cannedReplyKeys}}
                     {{#compare @index "<" 1}}
-                        <div class="interested-message-container"><input class="viva-checkbox" type="checkbox" checked><span class="interested-message">{{i18n this}}</span></div>
+                        <div class="interested-message-container"><input class="interested-checkbox viva-checkbox" type="checkbox" checked><span class="interested-message">{{i18n this}}</span></div>
                     {{else}}
-                        <div class="where-message-container"><input class="viva-checkbox" type="checkbox"><span class="where-message">{{i18n this}}</span></div>
+                        <div class="where-message-container"><input class="where-checkbox viva-checkbox" type="checkbox"><span class="where-message">{{i18n this}}</span></div>
                     {{/compare}}
                 {{/each}}
 
@@ -111,7 +111,7 @@
 				<div class="login-message-container">
 					<span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
                     {{#unless this.header.id}}
-						<span class="desktop-paren">(</span><span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}"></span>{{i18n "vip.reply.login"}}</a>
+						<span class="desktop-paren">(</span><span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n "vip.reply.login"}}</a></span>
 						<span>{{i18n "vip.reply.loginMessage"}}</span>
 						<span class="desktop-paren">)</span>
                     {{/unless}}
