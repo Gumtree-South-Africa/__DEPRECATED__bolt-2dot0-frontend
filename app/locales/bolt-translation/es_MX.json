@@ -1183,8 +1183,10 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
+			"marker": "<i class=\"icon-location-marker-alternate\"></i>",
+			"popular": "Anuncios",
+			"popularIn": "Anuncios cerca de",
+			"promptLocation": "Seleccionar Ubicación",
 			"viewMore": "Ver más"
 		},
 		"searchbar": {

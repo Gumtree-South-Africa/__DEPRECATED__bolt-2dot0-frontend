@@ -60,9 +60,7 @@ describe('Server to hit HomePage', function() {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.trending-card')).toBeDefined();
 						expect(c$('.card-trendingCard .card-title').text())
-							.toContain(i18n.homepage.popularSearches.popularIn, 'i18n string should match');
-						expect(c$('.card-trendingCard .card-title').text())
-							.toContain(i18n.homepage.popularSearches.yourNeighborhood, 'i18n string should match');
+							.toContain(i18n.homepage.popularSearches.promptLocation, 'i18n string should match');
 						expect(c$('.tile-item').length).toBe(mockTrending.ads.length);
 					})
 					.end(specHelper.finish(done));
