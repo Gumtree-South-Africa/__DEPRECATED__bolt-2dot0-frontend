@@ -307,22 +307,17 @@ class ViewPageModel {
 
 		modelData.vip = {};
 		modelData.vip.showSellerStuff = false;
+
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
+		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
+		return modelData;
 
 		//Status Banner
 		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 
-		/*
-		console.log('**************',modelData.advert.statusInfo.status, '**************')
-		console.log('**************',JSON.stringify(modelData), '**************')
-		console.log('@@@@@@@@@@@@@@@@@@@@@@@@',modelData.advert.statusInfo, '@@@@@@@@@@@@@@@@@@@@@@@@')
-		console.log('**************',modelData.advert.statusInfo.statusReason, '**************')
-		*/
-
-		return modelData;
 	}
 
 	//getStatusBanner
@@ -406,17 +401,12 @@ class ViewPageModel {
 				_.extend(data, advertData.ad);
 
 				// Seller Picture
-				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
-					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
-						if (profilePicture.size === 'LARGE') {
-							let picUrl = profilePicture.url;
-							if (!this.prodEpsMode) {
-								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-							}
-							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
-							data.sellerDetails.publicDetails.displayPicture = picUrl;
-						}
-					});
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.pictureUrl!=='undefined') {
+					let picUrl = data.sellerDetails.publicDetails.pictureUrl + '14.JPG';
+					if (!this.prodEpsMode) {
+						picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+					}
+					data.sellerDetails.publicDetails.displayPicture = picUrl;
 				}
 
 				// Seller Contact
@@ -495,7 +485,7 @@ class ViewPageModel {
 					}
 
 					// Reply Info
-					data.replyInfo = (advertData.ad.errorDetail === 'undefined') ? advertData.ad._embedded['reply-info'] : {};
+					data.replyInfo = advertData.ad._embedded['reply-info'];
 
 					// Location
 					let locationElt = data._links.find((elt) => {
