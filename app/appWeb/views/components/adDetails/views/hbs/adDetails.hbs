@@ -8,7 +8,8 @@
 			<meta itemprop="url" content="{{this.advert.seoVipUrl}}" />
 
             {{#if this.vip.showSellerStuff}}
-                <div class="edit-favorite">{{i18n "vip.details.edit"}}
+                <div class="edit-favorite">
+                    <a href="{{this.header.homePageUrl}}{{this.advert.editUrl}}">{{i18n "vip.details.edit"}}</a>
                     <a class="edit-favorite-icon edit-icon icon-vivaedit" href="{{this.header.homePageUrl}}{{this.advert.editUrl}}">
                     </a>
                 </div>
@@ -41,6 +42,7 @@
 	</div>
     <div class="sec-attrs">
         <div class="ad-description">{{{this.advert.description}}}</div>
+        <div class="clear-line"></div>
         <div class="ad-category">
             <span class="category-attr">{{i18n "vip.details.category"}} </span>
             <div>
