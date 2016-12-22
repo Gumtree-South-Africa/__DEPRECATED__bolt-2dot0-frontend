@@ -98,7 +98,8 @@
         </form>
     </div>
 
-	<div class="reply-form-container desktop-only nonJsOnlyInlineBlock">
+	<noscript>
+        <div class="reply-form-container desktop-only nonJsOnlyInlineBlock">
         {{#if this.advert.sellerDetails.contactInfo.phone}}
 			<div class="phone-header-desktop">
 				<div><span class="phone-icon icon-phone-orange"></span><span class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
@@ -172,7 +173,8 @@
 				<input name="seoUrl" class="hidden" value="{{this.advert.seoVipUrl}}">
 			</div>
 		</form>
-	</div>
+	    </div>
+	</noscript>
 {{/partial}}
 
 
