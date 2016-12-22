@@ -13,6 +13,37 @@ let config = require('config');
 const SITE_KEY = config.get('recaptcha.SITE_KEY');
 
 let VIP = {
+	redirectBasedOnAdStatus: (req, res, modelData) => {
+		//Redirect deleted ads
+		let today = new Date().getTime();
+    let expired = modelData.advert.expirationDate;
+    let difference = today - expired;
+		let daysLeft = Math.floor(difference / 86400000);
+		let statusAd;
+		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
+			if(daysLeft > 60) {
+				statusAd = '?statusAd=expired';
+				res.status(410).redirect('/' + statusAd);
+				return;
+			}
+		}
+
+		if( (modelData.advert.statusInfo.status === 'BLOCKED' && modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED') || (modelData.advert.statusInfo.status === 'DELETED' && modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') ) {
+				statusAd = '?statusAd=expired';
+				res.status(410).redirect('/' + statusAd);
+				return;
+		}
+
+		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
+			if(daysLeft > 60) {
+				statusAd = '?statusAd=pending';
+				res.status(410).redirect('/' + statusAd);
+				return;
+			}
+		}
+
+
+	},
 	extendHeaderData: (req, modelData) => {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
@@ -148,7 +179,7 @@ router.get('/:id?', (req, res, next) => {
 				return;
 			}
 		}
-
+		VIP.redirectBasedOnAdStatus(req, res, modelData);
 		VIP.extendHeaderData(req, modelData);
 		VIP.buildHeaderPageMessages(query, modelData);
 		VIP.extendFooterData(req, modelData);
@@ -158,33 +189,6 @@ router.get('/:id?', (req, res, next) => {
 		modelData.footer.distractionFree = false;
 		modelData.search = true;
 		modelData.redirectPrevUrl = redirectPrevUrl;
-
-		//Redirect deleted ads
-		let today = new Date().getTime();
-    let expired = modelData.advert.expirationDate;
-    let difference = today - expired;
-		let daysLeft = Math.floor(difference / 86400000);
-		let statusAd;
-		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
-			if(daysLeft > 60) {
-				statusAd = '?statusAd=expired';
-				return res.status(410).redirect('/' + statusAd);
-			}
-		}
-
-		if( (modelData.advert.statusInfo.status === 'BLOCKED' && modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED') || (modelData.advert.statusInfo.status === 'DELETED' && modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') ) {
-				statusAd = '?statusAd=expired';
-				return res.status(410).redirect('/' + statusAd);
-		}
-
-		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
-			if(daysLeft > 60) {
-				statusAd = '?statusAd=pending';
-				return res.status(410).redirect('/' + statusAd);
-			}
-			
-		}
-
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 

@@ -348,28 +348,6 @@ class ViewPageModel {
 					message: 'vip.details.pendingStatusBannerLinkMessage',
 					url: 'vip.details.pendingStatusBannerLinkURL'
 				}]
-			},
-			'BLOCKED__TNS__CHECKED': {
-				statusBannerMessage: 'vip.details.blockedStatusBannerMessage',
-				ownerDetails: [{
-					message: 'vip.details.blockedStatusBannerLinkMessage',
-					url: 'vip.details.blockedStatusBannerLinkURL'
-				},
-				{
-					message: 'vip.details.blockedStatusBannerReasonMessage',
-					url: 'vip.details.blockedStatusBannerReasonURL'
-				}]
-			},
-			'DELETED__ADMIN__DELETED': {
-				statusBannerMessage: 'vip.details.deletedStatusBannerMessage',
-				ownerDetails: [{
-					message: 'vip.details.deletedStatusBannerLinkMessage',
-					url: 'vip.details.deletedStatusBannerLinkURL'
-				},
-				{
-					message: 'vip.details.deletedStatusBannerReasonMessage',
-					url: 'vip.details.deletedStatusBannerReasonURL'
-				}]
 			}
 		}
 
