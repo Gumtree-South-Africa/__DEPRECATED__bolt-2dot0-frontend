@@ -1567,8 +1567,7 @@
 			"category": "CATEGORÍA",
 			"location": "UBICACIÓN",
 			"updated": "ACTUALIZADO",
-			"postedby": "PUBLICADO POR",
-			"daysago": "Hace"
+			"postedby": "PUBLICADO POR"
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
