@@ -14,13 +14,18 @@
 	width: 45.5em;
 }
 
-#ad-bottombanner{
-	margin: 0 auto;
-	width: 45.5em;
+.vip-bottom-banner-container {
+	position: relative;
+	padding: 20px 0;
+	#ad-bottombanner {
+		margin: 0 auto;
+		width: 45.5em;
+	}
 }
 
 .vip-sponsoredads {
 	width: 100%;
+	padding: 20px 0;
 }
 
 .native-ad{
