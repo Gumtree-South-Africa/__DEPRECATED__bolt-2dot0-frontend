@@ -105,7 +105,12 @@
   {{/partial}}
 
   {{#partial "welcomeModal"}}
-    {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
+    {{!-- Remove the condition when this.vip.showBuyerStuff is correct --}}
+    {{#if showPostOverlay}}
+      {{> (dynamic "welcomeModal") }}
+    {{else}}
+      {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
+    {{/if}}
   {{/partial}}
 
 
