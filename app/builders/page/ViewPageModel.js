@@ -430,7 +430,7 @@ class ViewPageModel {
 					}
 
 					// Reply Info
-					data.replyInfo = (advertData.ad.errorDetail === 'undefined') ? advertData.ad._embedded['reply-info'] : {};
+					data.replyInfo = advertData.ad._embedded['reply-info'];
 
 					// Location
 					let locationElt = data._links.find((elt) => {
