@@ -56,7 +56,7 @@
                     {{/if}}
 
                     <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
+                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}"></textarea>
                 <div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                 {{#unless this.header.id}}
@@ -118,7 +118,7 @@
 
                 {{#each this.advert.replyInfo.cannedReplyKeys}}
                     {{#compare @index "<" 1}}
-						<div class="interested-message-container"><input class="viva-checkbox" type="checkbox" checked><span class="interested-message">{{i18n this}}</span></div>
+						<div class="interested-message-container"><input class="viva-checkbox checked-checkbox" type="checkbox" checked><span class="interested-message">{{i18n this}}</span></div>
                     {{else}}
 						<div class="where-message-container"><input class="viva-checkbox" type="checkbox"><span class="where-message">{{i18n this}}</span></div>
                     {{/compare}}
@@ -130,9 +130,9 @@
                     {{else}}
 						<span>{{i18n "vip.reply.message" ''}}{{i18n 'vip.seller.defaultUserName'}}*</span>
                     {{/if}}
-
-					<span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-				<textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
+                    <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span>
+                </div>
+				<textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}"></textarea>
 				<div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                 {{#unless this.header.id}}

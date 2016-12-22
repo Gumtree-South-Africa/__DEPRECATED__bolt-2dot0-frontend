@@ -39,7 +39,7 @@ class replyForm {
 			})(), true);
 
 			$('#vip-send-button').on('click', function() {
-				if ($('.message-box-area').val() === '') {
+				if ($('.message-box-area').val() === '' && $('.viva-checkbox').prop('checked') === false) {
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				} else {
