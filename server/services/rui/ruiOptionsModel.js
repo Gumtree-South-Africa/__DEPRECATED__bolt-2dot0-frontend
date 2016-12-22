@@ -14,11 +14,13 @@ let initFromConfig = function(config, initDefaults) {
 	ruiOptions.host = 'www.' + initDefaults.replyHost;
 
 	let configHost = config.get('RUI.server.host');
-	let configPrependBrandToHost = config.get('RUI.server.prependBrandToHost') || true;
+	let configPrependBrandToHost = config.get('RUI.server.prependBrandToHost');
 	if (configPrependBrandToHost === true) {
 		if (configHost !== '') {
 			ruiOptions.host = ruiOptions.host + '.' + configHost;
 		}
+	} else {
+		ruiOptions.host = configHost;
 	}
 
 	ruiOptions.protocol = config.get('RUI.server.protocol');
