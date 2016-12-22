@@ -90,6 +90,7 @@ class AdDetails {
 	_onFavoriteClick(event) {
 		let target = $(event.target);
 
+		// get long ad id
 		let adId = target.data('adid');  // using attribute data-adid;
 		if (!adId) {
 			console.warn("unable to favorite item, missing ad id");
@@ -103,9 +104,9 @@ class AdDetails {
 			return;
 		}
 
-		// since another tile could have the same id (the same tile in two separate cards), toggle them all
 		this.toggleFavorite(target);
 
+		// get list of ids from cookie
 		let ids = this._getIdMapFromCookie('watchlist');
 		let action;
 		if (target.hasClass("icon-heart-orange")) {
@@ -147,6 +148,14 @@ class AdDetails {
 		$favoriteButton.click((evt) => {
 			this._onFavoriteClick(evt);
 		});
+
+		let shortAdId = $favoriteButton.data('short-adid');	// using attribute data-short-adid
+		let ids = this._getIdMapFromCookie('watchlist');
+
+		// since another tile could have the same id (the same tile in two separate cards), toggle them all
+		if (ids[shortAdId] !== undefined) {
+			this.toggleFavorite($favoriteButton);
+		}
 	}
 
 	/**

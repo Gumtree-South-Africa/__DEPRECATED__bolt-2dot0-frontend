@@ -20,7 +20,7 @@ let VIP = {
 		modelData.header.metaDescription = modelData.seo.description;
 		modelData.header.metaRobots = modelData.seo.robots;
 		modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
-		modelData.header.pageUrl = modelData.header.viewPageUrl;
+		modelData.header.pageUrl = modelData.header.viewPageUrl.replace('v-', 'a-');
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'viewad/' + modelData.advert.id;
 		}
