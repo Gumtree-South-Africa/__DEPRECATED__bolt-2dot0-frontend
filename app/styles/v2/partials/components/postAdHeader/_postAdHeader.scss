@@ -65,13 +65,14 @@ $photo-switcher-width: 30%;
  		@include from-breakpoint($medium-break){
  			max-width: 30em;
  		}
-     overflow: hidden;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     text-overflow: ellipsis;
-     -o-text-overflow: ellipsis;
-     -moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		overflow: hidden;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		-moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		text-transform: uppercase;
  	}
 
 }
