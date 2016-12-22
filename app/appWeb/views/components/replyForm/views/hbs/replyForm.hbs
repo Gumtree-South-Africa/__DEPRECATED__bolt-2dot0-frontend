@@ -13,7 +13,7 @@
                 </div>
             </div>
 			<div class="message-sent-text">{{i18n "vip.reply.messageSent"}}</div>
-			<div class="return-button"><a href="{{this.advert.breadcrumbs.link}}" />{{i18n 'vip.reply.returnToBrowsing'}}</div>
+			<div class="return-button"><a href="{{this.advert.breadcrumbs.link}}"></a>{{i18n 'vip.reply.returnToBrowsing'}}</div>
 		</div>
 	</div>
 
@@ -34,7 +34,7 @@
                 <div class="login-message-container">
                     <span class="desktop-message">{{i18n "vip.reply.sendMessage"}}</span>
                     {{#unless this.header.id}}
-                        <span class="desktop-paren">(</span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}">{{i18n "vip.reply.login"}}</a>
+                        <span class="desktop-paren">(</span><span><a class=login-link href="{{this.header.homePageUrl}}{{this.advert.loginRedirectUrl}}"></span>{{i18n "vip.reply.login"}}</a>
                         <span>{{i18n "vip.reply.loginMessage"}}</span>
                         <span class="desktop-paren">)</span>
                     {{/unless}}

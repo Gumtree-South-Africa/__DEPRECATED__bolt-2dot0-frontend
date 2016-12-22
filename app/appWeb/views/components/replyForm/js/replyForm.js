@@ -12,7 +12,7 @@ class replyForm {
 			let adActivateStatus = this._getURLParameter('adActivateStatus') || '';
 
 			if (adActivateStatus === 'AdReplySuccess') {
-				if ($(window).width() < 848){
+				if ($(window).width() < 848) {
 					this._messageSeller();
 				}
 
