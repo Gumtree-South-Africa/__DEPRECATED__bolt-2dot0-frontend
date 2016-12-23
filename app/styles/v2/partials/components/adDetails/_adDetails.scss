@@ -47,11 +47,11 @@
 		}
 		.category-pri-attrs {
 			margin-left: 10px;
-    	margin-right: 5px;
+    		margin-right: 5px;
 			.pri-props {
 				width: 49%;
 				font-size: 14px;
-    		margin-bottom: 10px;
+    			margin-bottom: 10px;
 				&:nth-child(even){
 					float: right;
 					vertical-align: middle;
@@ -61,15 +61,15 @@
 				}
 				.pri-props-name {
 					font-weight: bold;
-			    margin-right: 10px;
-			    vertical-align: middle;
+				    margin-right: 10px;
+				    vertical-align: middle;
 				}
 				.pri-props-value {
 					white-space: nowrap;
-			    display: inline-block;
-			    text-overflow: ellipsis;
-			    overflow: hidden;
-			    vertical-align: middle;
+				    display: inline-block;
+				    text-overflow: ellipsis;
+				    overflow: hidden;
+				    vertical-align: middle;
 				}
 			}
 		}
@@ -170,6 +170,28 @@
 
 			.ad-mobile-only {
 				display: none;
+			}
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.ad-details-container {
+		.pri-attrs {
+			.category-pri-attrs {
+				.pri-props {
+					.pri-props-value {
+						font-size: 12px;
+					}
+				}
+			}
+		}
+
+		.sec-attrs {
+			[class*="attr"] {
+				+ * {
+					font-size: 12px;
+				}
 			}
 		}
 	}
