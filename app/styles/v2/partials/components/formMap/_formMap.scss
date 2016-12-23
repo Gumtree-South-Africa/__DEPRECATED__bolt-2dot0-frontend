@@ -4,12 +4,19 @@
 	padding: 0px 6%;
 
 	.title {
+		width: 100%;
 		text-transform: uppercase;
 		font-size: 10px;
 		display: inline-block;
 		color: $formMap-title-color;
 		margin-left: 2%;
-        margin-bottom: 7px;
+    margin-bottom: 7px;
+		.errorMessageMap {
+			display: none;
+			float: right;
+	    color: red;
+	    padding-right: 12px;
+		}
 	}
 	.map-form {
 		.search-location {
