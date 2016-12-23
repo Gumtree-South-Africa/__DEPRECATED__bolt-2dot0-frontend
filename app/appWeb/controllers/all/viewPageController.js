@@ -20,24 +20,24 @@ let VIP = {
     let difference = today - expired;
 		let daysLeft = Math.floor(difference / 86400000);
 		let statusAd;
-		if(modelData.advert.statusInfo.status === 'DELETED' && (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' )) {
+		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
 			if(daysLeft > 60) {
 				statusAd = '?statusAd=expired';
-				res.status(410).redirect('/' + statusAd);
+				res.redirect('/' + statusAd);
 				return;
 			}
 		}
 
-		if( (modelData.advert.statusInfo.status === 'BLOCKED' && modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED') || (modelData.advert.statusInfo.status === 'DELETED' && modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') ) {
-				statusAd = '?statusAd=expired';
-				res.status(410).redirect('/' + statusAd);
-				return;
+		if( modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ){
+			statusAd = '?statusAd=expired';
+			res.redirect('/' + statusAd);
+			return;
 		}
 
 		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
 			if(daysLeft > 60) {
 				statusAd = '?statusAd=pending';
-				res.status(410).redirect('/' + statusAd);
+				res.redirect('/' + statusAd);
 				return;
 			}
 		}

@@ -313,31 +313,24 @@ class ViewPageModel {
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
 		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
+		//Status Banner
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason,modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 		return modelData;
 
-		//Status Banner
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 
 	}
 
 	//getStatusBanner
-	getStatusBanner(state, isOwner){
+	getStatusBanner(reason, isOwner){
 		let s = {
-			'DELETED__SYSTEM__TIMEDOUT': {
+			'EXPIRED': {
 				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.expiredStatusBannerLinkMessage',
 					url: 'vip.details.expiredStatusBannerLinkURL'
 				}]
 			},
-			'DELETED__USER__DELETED': {
-				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
-				ownerDetails: [{
-					message: 'vip.details.expiredStatusBannerLinkMessage',
-					url: 'vip.details.expiredStatusBannerLinkURL'
-				}]
-			},
-			'PENDING__USER__CONFIRMED': {
+			'PENDING': {
 				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
 				ownerDetails: [{
 					message: 'vip.details.pendingStatusBannerLinkMessage',
@@ -346,12 +339,41 @@ class ViewPageModel {
 			}
 		}
 
-		if (!isOwner && (typeof s[state] !== 'undefined')) {
-			delete s[state].ownerDetails;
+		let states = {
+			'PENDING__ADMIN__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__UPDATED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__REPOSTED': {
+				state: 'PENDING'
+			},
+			'DELETED__USER__DELETED': {
+				state: 'EXPIRED'
+			},
+			'DELETED__SYSTEM__TIMEDOUT': {
+				state: 'EXPIRED'
+			},
+			'DELETED__ADMIN__DELETED': {
+				state: 'EXPIRED'
+			},
+			'BLOCKED__TNS__CHECKED': {
+				state: 'EXPIRED'
+			}
 		}
 
-		if(typeof s[state] !== 'undefined'){
-			return s[state];
+		if (!isOwner && (typeof states[reason] !== 'undefined')) {
+			let a = states[reason].state;
+			delete s[a].ownerDetails;
+		}
+
+		if(typeof states[reason] !== 'undefined'){
+			let a = states[reason].state;
+			return s[a];
 		}else{
 			return false;
 		}
