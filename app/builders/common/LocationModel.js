@@ -1,9 +1,6 @@
 'use strict';
 
 let locationService = require(process.cwd() + '/server/services/location');
-let iplocation = require('iplocation');
-let network = require('network');
-
 let Q = require("q");
 
 /**
@@ -41,29 +38,6 @@ class LocationModel {
 		}
 		return locationService.getLatLongResults(this.bapiHeaders, location, checkLeafLocations);
 	}
-
-	/**
-	 * Returns location by Ip address
-	 *
-	 * may return a rejected promise if no ip was passed, avoid external call with bad payload
-	 */
-	 getLocationLatLongByIpAddress() {
-			return new Promise(function(resolve, reject) {
-				network.get_public_ip(function(err, ip) {
-		      if (err) {
-						reject(err);
-					} else {
-						iplocation(ip, function(error, res) {
-		 					if (error) {
-								reject(error);
-							} else {
-								resolve(res);
-							}
-	 					});
-					}
-	    	});
-			});
-		}
 }
 
 module.exports = LocationModel;
