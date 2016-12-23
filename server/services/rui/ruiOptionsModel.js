@@ -27,11 +27,11 @@ let initFromConfig = function(config, initDefaults) {
 	ruiOptions.protocol = config.get('RUI.server.protocol');
 	ruiOptions.port = config.get('RUI.server.port');
 	ruiOptions.parameters = config.get('RUI.server.parameters');
-	ruiOptions.timeout = (ruiOptions !== undefined) ? (ruiOptions.timeout || config.get('RUI.server.timeout')) : config.get('RUI.server.timeout');
+	ruiOptions.timeout = (ruiOptions.timeout !== undefined) ? ruiOptions.timeout : config.get('RUI.server.timeout');
+	ruiOptions.useProxy = config.get('RUI.server.useProxy');
 
 	ruiOptions.rejectUnauthorized = false;
 
-	console.log('RUIOPTIONS!!!!!!!!!!!!!----------', ruiOptions);
 	return ruiOptions;
 };
 
