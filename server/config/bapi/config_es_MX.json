@@ -323,49 +323,35 @@
 		"ActivatePage": {
 			"desktop": {
 				"models": [
-					"seo", "activate"
-				]
+					"seo", "activate"]
 			},
 			"mobile": {
 				"models": [
-					"seo", "activate"
-				]
+					"seo", "activate"]
 			}
 		},
 		"RegisterPage": {
 			"desktop": {
-				"models": [
-					"seo"
-				]
+				"models": ["seo"]
 			},
 			"mobile": {
-				"models": [
-					"seo"
-				]
+				"models": ["seo"]
 			}
 		},
 		"VIP": {
 			"desktop": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo", "flagAd"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo", "flagAd"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
 			}
 		},
 		"AdPromote": {
 			"desktop": {
-				"models": [
-					"advert", "seo", "adResult"
-				]
+				"models": ["advert", "seo", "adResult"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "seo", "adResult"
-				]
+				"models": ["advert", "seo", "adResult"]
 			}
 		},
 		"ResultsSearch": {
