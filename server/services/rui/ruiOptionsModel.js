@@ -12,15 +12,15 @@ let initFromConfig = function(config, initDefaults) {
 		};
 	}
 
-	ruiOptions.host = 'www.' + ruiOptions.replyHost;
+	ruiOptions.hostname = 'www.' + ruiOptions.replyHost;
 
 	let configHost = config.get('RUI.server.host');
 	let configUseBasedomainsuffix = config.get('RUI.server.useBasedomainsuffix');
 	if (configUseBasedomainsuffix === true) {
-		ruiOptions.host = ruiOptions.host + ruiOptions.replyBasedomainSuffix;
+		ruiOptions.hostname = ruiOptions.hostname + ruiOptions.replyBasedomainSuffix;
 	} else {
 		if (configHost !== '') {
-			ruiOptions.host = ruiOptions.host + '.' + configHost;
+			ruiOptions.hostname = ruiOptions.hostname + '.' + configHost;
 		}
 	}
 

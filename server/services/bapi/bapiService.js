@@ -69,7 +69,15 @@ var augmentPathWithParams = function(path, parametersString, extraParameters) {
 var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
-	bapiOptions.headers = makeHeaders(bapiHeaderValues);
+	bapiOptions.headers = {};
+	if(typeof bapiOptions.path !== 'undefined'){
+		if (!bapiOptions.path.startsWith('/rui-api/')) {
+			bapiOptions.headers = makeHeaders(bapiHeaderValues);
+		}
+	} else {
+		bapiOptions.headers = makeHeaders(bapiHeaderValues);
+	}
+
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters, bapiOptions.extraParameters);
 
 	// Invoke BAPI request
@@ -95,7 +103,15 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceName){
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
-	bapiOptions.headers = makeHeaders(bapiHeaderValues);
+	bapiOptions.headers = {};
+	if(typeof bapiOptions.path !== 'undefined'){
+		if (!bapiOptions.path.startsWith('/rui-api/')) {
+			bapiOptions.headers = makeHeaders(bapiHeaderValues);
+		}
+	} else {
+		bapiOptions.headers = makeHeaders(bapiHeaderValues);
+	}
+
 	bapiOptions.headers['Content-Type'] = 'application/json';
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
@@ -105,6 +121,9 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 		// we're in mock mode, and we need to tell mock server to return a 201 (Created), otherwise it will send us 500, because a 200 is not available
 		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
 	}
+
+	console.log('BAPIIIIHEADERS--------------------', bapiOptions);
+	console.log('Postdata--------------------', postData);
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
