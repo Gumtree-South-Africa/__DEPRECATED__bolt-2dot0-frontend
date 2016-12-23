@@ -426,7 +426,7 @@ class ViewPageModel {
 				  category.locationInText = data.breadcrumbs.leafLocation.text;
 				});
 
-				data.breadcrumbs.link = data.breadcrumbs.categories[0]._links[0].href;
+				data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length-1]._links[0].href;
 
 				// Location
 				let locationElt = data._links.find( (elt) => {

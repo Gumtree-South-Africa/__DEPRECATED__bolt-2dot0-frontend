@@ -77,7 +77,7 @@
 	"buyer.name.no.percent": "El símbolo de porcentaje (%) no está permitido",
 	"reply.message.empty": "Se requiere de un mensaje",
 	"reply.message.too.long": "El mensaje debe contener 4,096 caracteres como máximo",
-	"vip.reply.your.phoneNumber": "Teléfono (Opcional)",
+	"vip.reply.your.phoneNumber": "Teléfono (opcional)",
 	"vip.reply.your.phoneNumberOptional": "opcional",
 	"vip.reply.optional.text": "Opcional",
 	"srp.reply.contact": "Contactar",
@@ -383,15 +383,15 @@
 	"vip.print": "Imprimir",
 	"vip.report": "Denunciar",
 	"vip.posted-on": "%s",
-	"vip.send-email": "Contacta al Anunciante",
+	"vip.send-email": "Contacta al anunciante",
 	"vip.send-email-short": "E-mail",
 	"vip.send.$$": "Enviar",
 	"vip.send.to.seller": "Enviar al Anunciante",
 	"vip.cancel": "Cancelar",
 	"vip.reply.your.name": "Nombre",
-	"vip.reply.your.email": "Ej: user@email.com",
+	"vip.reply.your.email": "Ej: usario@email.com",
 	"vip.reply.canned.messagePlaceholder": "Escribe aquí...",
-	"vip.policymessage": "Al hacer clic en “Enviar” acepta los <a href=\"%s\" target=\"_self\">Términos y Condiciones</a> y la <a href=\"%s\" target=\"_self\">Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+	"vip.policymessage": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 	"vip.map": "Mapa",
 	"vip.results": "Atrás",
 	"vip.user.$$": "usuario",
@@ -1635,9 +1635,9 @@
 			"browseFiles": "Browse Files",
 			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
-			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 			"canned": {
-				"imInterested": "Me interesa. Por favor contáctame.",
+				"imInterested": "Me interesa, por favor contáctame.",
 				"isItStillAvailable": "¿Aún está disponible?",
 				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
 				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
@@ -1645,7 +1645,7 @@
 				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
 			},
 			"close": "Cerrar",
-			"returnToBrowsing": "Return to Browsing"
+			"returnToBrowsing": "Seguir navegando"
 		}
 	},
 	"search": {
