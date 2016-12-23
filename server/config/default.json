@@ -39,6 +39,19 @@
       "categorySuggest"   : "/bolt-api-webapp/v1/categories/action/suggestion?"
     }
   },
+  "RUI": {
+    "server": {
+      "host": "localhost",
+      "port": 8443,
+      "parameters": null,
+	  "protocol": "https:",
+      "timeout": 2000,
+	  "useBasedomainsuffix": false
+    },
+    "endpoints": {
+      "replyForm": "/rui-api/page/reply/model/"
+    }
+  },
   "recaptcha": {
     "SITE_KEY": "6LeKWQ0UAAAAALV6TCyLA4NIEayLGeonQl85sRK0",
     "SECRET_KEY": "6LeKWQ0UAAAAAMum1smeI18dWngRdIg9TXtSEETv",

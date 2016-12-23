@@ -3,6 +3,13 @@
 $item-top-padding: 26px;
 $dropdown-width: 220px;
 
+.fixed-header {
+	height: 100%;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
+
 .header-wrapper {
 	background: $common-background-color;
 	border-bottom: 2px solid $vivaBlue2;

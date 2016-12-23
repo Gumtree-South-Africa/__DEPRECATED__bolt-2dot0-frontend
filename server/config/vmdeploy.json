@@ -38,6 +38,19 @@
       "categorySuggest"   : "/boltapi/v1/categories/action/suggestion?"
     }
   },
+  "RUI": {
+    "server": {
+      "host": "localhost",
+      "port": 443,
+      "parameters": null,
+	  "protocol": "https:",
+      "timeout": 2000,
+	  "useBasedomainsuffix": false
+    },
+    "endpoints": {
+      "replyForm": "/rui-api/page/reply/model/"
+    }
+  },
   "solr": {
     "server": {
       "host"  : "localhost",

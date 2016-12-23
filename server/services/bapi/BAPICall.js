@@ -17,13 +17,13 @@ var BAPICall = function () {
 };
 
 let parseResponse = (res, argData, serializedData) => {
-  
+
   let data = {}, body = '';
 
   return Q.Promise((resolve, reject) => {
-    
+
     res.setEncoding('utf8');
-    
+
     res.on('data', d => {
         body += d.toString('utf-8');
     });
@@ -60,11 +60,11 @@ let parseResponse = (res, argData, serializedData) => {
 }
 
 let setupConnection = params => {
-  
+
   let options         = params.options,
       argData         = params.argData,
       serializedData  = params.serializedData;
-  
+
   return Q.Promise((resolve, reject) => {
     let mod = options.protocol === 'https:' ? https : http;
     let request = mod.request(options, res => {
