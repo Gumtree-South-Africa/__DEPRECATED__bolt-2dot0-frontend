@@ -11,6 +11,13 @@
 
             <div class="clear-line"></div>
 
+            {{#ifMobile this.device}}
+                <div class="seller-profile">
+                    {{> (dynamic "sellerProfile")}}
+                </div>
+                <div class="clear-line"></div>
+            {{/ifMobile}}
+
             <div class="item-details">
                 {{> (dynamic "adDetails")}}
             </div>
@@ -31,9 +38,11 @@
     </div>
 
     <div class="vip-right-columns">
-        <div class="seller-profile">
-            {{> (dynamic "sellerProfile")}}
-        </div>
+        {{#unlessMobile this.device}}
+            <div class="seller-profile">
+                {{> (dynamic "sellerProfile")}}
+            </div>
+        {{/unlessMobile}}
 
         {{> (dynamic "adStats") }}
         {{#block "vip-adstats"}}{{/block}}
