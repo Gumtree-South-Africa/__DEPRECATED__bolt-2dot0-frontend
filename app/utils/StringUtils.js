@@ -62,6 +62,8 @@ var StringUtils = (function() {
 			return stripComments.html(text, false);
 		}, stripComments: function(text) {
 			return stripComments(text, false);
+		}, stripHtml: function(html) {
+			return String(html).replace(/<[\s\S]*?>/g, '').replace(/"/g, '').replace(/'/g, '')
 		},
 		formatDate: function(date) {
 			if (date) {

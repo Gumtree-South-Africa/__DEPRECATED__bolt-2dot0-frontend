@@ -101,7 +101,7 @@ server/utils/kafka.js
 server/utils/marketo.js
 server/utils/monitor-event-loop.js
 
-server/services/bapi/BAPICall.js
+server/services/protocols/RESTCall.js
 server/services/bapi/bapiOptions.js
 server/services/bapi/bapiPromiseGet.js
 server/services/bapi/bapiPromisePost.js

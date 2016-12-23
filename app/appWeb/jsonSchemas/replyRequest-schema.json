@@ -1,0 +1,48 @@
+{
+	"$schema": "http://json-schema.org/draft-04/schema",
+	"type": "object",
+	"required": true,
+	"properties": {
+		"machineId": {
+			"type": "string",
+			"required": false
+		},
+		"adId": {
+			"type": "string",
+			"required": true
+		},
+		"buyerName": {
+			"type": "string",
+			"required": true,
+			"maxLength": 128
+		},
+		"email": {
+			"type": "string",
+			"required": true,
+			"pattern": "^(([A-Za-z0-9-]+_+)|([A-Za-z0-9-]+\\-+)|([A-Za-z0-9-]+\\.+)|([A-Za-z0-9-]+\\++))*[A-Za-z0-9-_]+@((\\w+\\-+)|(\\w+\\.))*\\w{1,63}\\.[a-zA-Z]{2,6}$",
+			"maxLength": 64
+		},
+		"phoneNumber": {
+			"type": "string",
+			"required": false,
+			"maxLength": 20
+		},
+		"isSendMeCopyEmail": {
+			"type": "boolean",
+			"required": false
+		},
+		"replyMessage": {
+			"type": "string",
+			"required": true,
+			"maxLength": 4096
+		},
+		"fileName": {
+			"type": "string",
+			"required": false
+		},
+		"rand": {
+			"type": "string",
+			"required": false
+		}
+	}
+}

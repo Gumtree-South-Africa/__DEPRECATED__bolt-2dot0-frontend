@@ -1632,19 +1632,27 @@
 			"sendMessage": "Enviar un mensaje",
 			"interested": "Estoy interesado. Por favor, contáctenme.",
 			"whenNWhere": "¿Dónde y cuándo puedo verlo?",
-			"message": "MENSAJE",
+			"message": "MENSAJE %s",
+			"message-small": "Mensaje %s",
 			"messageValidate": "Se requiere de un mensaje",
 			"required": "OBLIGATORIO",
 			"name": "NOMBRE",
+			"sname": "Nombre",
 			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
 			"emailValidate": "Es necesario tu correo electrónico",
 			"emailPlaceholder": "Correo electrónico: user@email.com",
 			"writeHere": "Escribir texto aquí...",
 			"phone": "NÚMERO DE TELÉFONO",
+			"sphone": "Número de teléfono",
+			"phoneValidate": "Por favor agrega un número telefónico válido.",
 			"phoneOptional": "(OPCIONAL)",
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
+			"attachAFile": "ATTACH A FILE (OPTIONAL)",
+			"browseFiles": "Browse Files",
+			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
+			"messageSent": "Tu mensaje ha sido enviado!",
 			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
 			"canned": {
 				"imInterested": "Me interesa. Por favor contáctame.",
@@ -1653,7 +1661,9 @@
 				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
 				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
 				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
-			}
+			},
+			"close": "Cerrar",
+			"returnToBrowsing": "Return to Browsing"
 		}
 	},
 	"search": {
