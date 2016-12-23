@@ -9,17 +9,27 @@
         <div id="viewPage">
             {{> (dynamic "viewPageGallery")}}
 
-            <div class="clear-line"></div>
+            {{#ifMobile this.device}}
+                <div class="seller-profile">
+                    {{> (dynamic "sellerProfile")}}
+                </div>
+                {{> (dynamic "adStats") }}
+                {{#block "vip-adstats"}}{{/block}}
+            {{else}}
+                <div class="clear-line"></div>
+            {{/ifMobile}}
 
             <div class="item-details">
                 {{> (dynamic "adDetails")}}
             </div>
 
-            {{#if this.flagAd}}
-                <div class="vip vip-flagad">
-                    {{> (dynamic "flagAd")}}
-                </div>
-            {{/if}}
+            {{#unlessMobile this.device}}
+                {{#if this.flagAd}}
+                    <div class="vip vip-flagad">
+                        {{> (dynamic "flagAd")}}
+                    </div>
+                {{/if}}
+            {{/unlessMobile}}
         </div>
 
         {{#if this.vip.payWithShepherd}}
@@ -31,12 +41,13 @@
     </div>
 
     <div class="vip-right-columns">
-        <div class="seller-profile">
-            {{> (dynamic "sellerProfile")}}
-        </div>
-
-        {{> (dynamic "adStats") }}
-        {{#block "vip-adstats"}}{{/block}}
+        {{#unlessMobile this.device}}
+            <div class="seller-profile">
+                {{> (dynamic "sellerProfile")}}
+            </div>
+            {{> (dynamic "adStats") }}
+            {{#block "vip-adstats"}}{{/block}}
+        {{/unlessMobile}}
 
         <div class="reply-form">
             {{> (dynamic "replyForm")}}
@@ -46,6 +57,15 @@
             {{> (dynamic "gpsMap")}}
             {{#block "vip-map"}}{{/block}}
         </div>
+
+        {{#ifMobile this.device}}
+            {{#if this.flagAd}}
+                <div class="clear-line"></div>
+                <div class="vip vip-flagad">
+                    {{> (dynamic "flagAd")}}
+                </div>
+            {{/if}}
+        {{/ifMobile}}
 
         {{> (dynamic "nativeAdBanner")}}
         {{#block "NativeAdCalculator"}}{{/block}}
@@ -59,12 +79,12 @@
 
     {{> (dynamic "adTabs")}}
 
-    <div class="clear"></div>
-
     <div class="vip-sponsoredads">
         {{> (dynamic "adsense")}}
         {{#block "AdsenseBottom-Content"}}{{/block}}
     </div>
+
+    <div class="clear"></div>
 
     <div class="seo-wrapper">
         <h1>{{i18n "home.h1Tag"}}</h1>

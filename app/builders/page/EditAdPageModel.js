@@ -12,7 +12,6 @@ let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
-let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 
 let _ = require('underscore');
 
@@ -120,8 +119,6 @@ class EditAdPageModel {
 	getPageDataFunctions(modelData) {
 		let editAdModel = new EditAdModel(modelData.bapiHeaders, this.req.app.locals.prodEpsMode);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
-		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
-
 		let seo = new SeoModel(modelData.bapiHeaders);
 
 		this.dataPromiseFunctionMap = {};
@@ -160,22 +157,6 @@ class EditAdPageModel {
 				});
 
 			});
-		};
-
-		// when we don't have a geoCookie, we shouldn't make the call
-		this.dataPromiseFunctionMap.locationlatlong = () => {
-			if (modelData.geoLatLngObj === null) {
-				return locationModel.getLocationLatLongByIpAddress().then((data) => {
-						return {
-							lat: data.latitude,
-							lon: data.longitude
-						};
-				}).catch((err) => {
-					console.warn(`error getting ip ${err}`);
-				});
-			}
-
-			return modelData.geoLatLngObj;
 		};
 	}
 }

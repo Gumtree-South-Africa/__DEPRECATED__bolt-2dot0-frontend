@@ -37,8 +37,8 @@ let mockGetUrlParameters = () => {
 
 
 mockGetUrlParameters();
-
 describe('Post Ad', () => {
+	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
 			isHidden: true,
