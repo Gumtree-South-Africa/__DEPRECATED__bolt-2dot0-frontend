@@ -4,8 +4,6 @@ var config = require('config');
 
 var bapiOptions = require('./bapi/bapiOptions')(config);
 var Q = require('q');
-let iplocation = require('iplocation');
-let network = require('network');
 
 /**
  * @description A service class that talks to Location BAPI
