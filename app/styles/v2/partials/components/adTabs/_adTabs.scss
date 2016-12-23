@@ -3,10 +3,11 @@
   background-color: #F7F7F7;
   background-color: $common-background-color;
   float: left;
+  height: 490px;
   width: 100%;
   .empty-message {
     display: table;
-    margin: 0 auto;
+    margin: 100px auto;
     color: $empty-message;
   }
   .adTabs {
@@ -77,6 +78,7 @@
 
 @include from-breakpoint($medium-break){
   .content-ad-tabs {
+    height: 310px;
     .content-ads {
       height: auto;
       .tile-grid-width-container {
