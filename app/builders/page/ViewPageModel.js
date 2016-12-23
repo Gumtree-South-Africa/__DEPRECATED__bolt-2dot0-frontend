@@ -299,6 +299,11 @@ class ViewPageModel {
 				let description = modelData.seo.description;
 				description = description.replace('description',(typeof data.advert.description!=='undefined' ? data.advert.description.substring(0,140) : ''));
 				description = description.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
+				description = StringUtils.unescapeUrl(description);
+				description = StringUtils.unescapeEmail(description);
+				description = StringUtils.fixNewline(description);
+				description = StringUtils.stripHtml(description);
+				description = StringUtils.stripCommentHtml(description);
 				modelData.seo.description = description;
 			}
 		}
@@ -358,6 +363,39 @@ class ViewPageModel {
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
+				// Manipulate Ad Data
+
+				let seoVipElt = data._links.find((elt) => {
+					return elt.rel === "seoVipUrl";
+				});
+				let dataSeoVipUrl = seoVipElt.href;
+				data.seoVipUrl = dataSeoVipUrl;
+
+				// loginRedirectUrl
+				data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+
+				// Date
+				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
+				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
+
+				// Pictures
+				data.hasMultiplePictures = false;
+				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
+				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
+					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
+					_.each(data.pictures.sizeUrls, (picture) => {
+						let picUrl = picture['LARGE'];
+						if (!this.prodEpsMode) {
+							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+						}
+
+						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+					});
+				}
+
 				// Seller Picture
 				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.pictureUrl!=='undefined') {
 					let picUrl = data.sellerDetails.publicDetails.pictureUrl + '14.JPG';
@@ -369,7 +407,7 @@ class ViewPageModel {
 
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}
 
 				// Map
@@ -384,8 +422,15 @@ class ViewPageModel {
 				});
 				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
 				data.breadcrumbs.categories.forEach((category, index) => {
-					category.position = data.breadcrumbs.locations.length + index + 1;
-					category.locationInText = data.breadcrumbs.leafLocation.text;
+				  category.position = data.breadcrumbs.locations.length + index + 1;
+				  category.locationInText = data.breadcrumbs.leafLocation.text;
+				});
+
+				data.breadcrumbs.link = data.breadcrumbs.categories[0]._links[0].href;
+
+				// Location
+				let locationElt = data._links.find( (elt) => {
+					return elt.rel === "location";
 				});
 
 				// Similar-Ads/Seller-Other-Ads configuration

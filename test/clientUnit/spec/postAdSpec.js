@@ -30,14 +30,14 @@ let mockPostAdResponse = {
 	]
 };
 let mockGetUrlParameters = () => {
-	window.getUrlParameter = function(value) { 
-		return value; 
+	window.getUrlParameter = function(value) {
+		return value;
 	};
+	$('html').attr('data-locale', 'es_MX');
 };
 mockGetUrlParameters();
-
 describe('Post Ad', () => {
-	
+
 	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
@@ -237,5 +237,5 @@ describe('Post Ad', () => {
 		});
 	});
 
-	
+
 });

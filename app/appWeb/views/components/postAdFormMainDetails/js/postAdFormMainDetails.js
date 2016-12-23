@@ -7,9 +7,25 @@ let PostFormCustomAttributes = require(
 	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
+let formMap = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
+
+let getUrlParameter = (sParam) => {
+	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+};
 
 let inputNumericCheck = function(e) {
 	if ((e.keyCode > 57 || e.keyCode < 48)) {
@@ -327,7 +343,7 @@ class PostAdFormMainDetailsVM {
 		if(window.formMap) {
 			position = window.formMap.getPosition();
 		}
-		
+
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
@@ -684,11 +700,14 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
+		window.getUrlParameter = getUrlParameter;
 		let validator = window.getUrlParameter('BOLT24812');
 		if(!validator) {
 			locationSelection.initialize((data) => {
 				this._setHiddenLocationInput(data);
 			}, {pageType: this.pageType});
+		} else {
+			formMap.initialize();
 		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
