@@ -181,9 +181,9 @@ let mockGoogleLocationApi = () => {
 					};
 				}
 			},
-			event: {
+ 			event: {
 				addListener: function() {}
-			}
+ 			}
 		}
 	};
 };

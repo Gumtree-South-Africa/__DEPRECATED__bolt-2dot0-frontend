@@ -102,8 +102,8 @@ class FormMap {
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
-		this.map.addListener('dragend', () => {
-			this.setLocation();
+		this.map.addListener('idle',() => {
+			google.maps.event.trigger(this.map, "resize");
 		});
 	}
 

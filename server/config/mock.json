@@ -38,6 +38,18 @@
       "categorySuggest"   : "/categories/action/suggestion?"
     }
   },
+  "RUI": {
+    "server": {
+      "host": "localhost",
+      "port": 5000,
+      "parameters": null,
+      "timeout": 200,
+	  "useBasedomainsuffix": false
+    },
+    "endpoints": {
+      "replyForm":   "/rui-api/page/reply/model/"
+    }
+  },
   "solr": {
     "server": {
       "host"  : "localhost",

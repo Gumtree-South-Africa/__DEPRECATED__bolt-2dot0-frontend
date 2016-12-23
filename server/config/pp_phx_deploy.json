@@ -37,6 +37,19 @@
       "categorySuggest": "/v1/categories/action/suggestion?"
     }
   },
+  "RUI": {
+    "server": {
+      "host": "staging2.qa-bolt.com",
+      "port": 443,
+      "parameters": null,
+	  "protocol": "https:",
+      "timeout": 2000,
+	  "useBasedomainsuffix": false
+    },
+    "endpoints": {
+      "replyForm": "/rui-api/page/reply/model/"
+    }
+  },
   "solr": {
     "server": {
       "host": "solrvip.phx.ops.pp.bt.ecg.so",
