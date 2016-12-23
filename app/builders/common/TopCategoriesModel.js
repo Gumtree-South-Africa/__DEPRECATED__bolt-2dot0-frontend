@@ -18,7 +18,7 @@ class TopCategoriesModel {
 
   get categories() {
     if(this.enabled) {
-      return this.res.locals.config.bapiConfigData.topCategories;
+      return this.res.locals.config.bapiConfigData.content.homepageV2.topCategories;
     } else {
       return [];
     }

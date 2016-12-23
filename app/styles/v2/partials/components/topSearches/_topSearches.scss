@@ -92,6 +92,10 @@
 			display: none;
 		}
 		.tab-content {
+			.top-searches, .top-locations, .top-categories {
+				padding-right: 20px;
+				padding-left: 20px;
+			}
 			display: inline-block;
 			vertical-align: top;
 			&.container-width-1 {
@@ -143,7 +147,6 @@
 			}
 			.top-links {
 				position: relative;
-				left: 5%;
 				width: 49%;
 			}
 		}

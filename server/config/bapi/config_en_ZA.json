@@ -1,118 +1,4 @@
 {
-	"topCategories": [
-		{
-		  "text": "Renta inmuebles",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-inmuebles/v1c1098p1"
-		},
-		{
-		  "text": "Autos en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-autos-camionetas/v1c81p1"
-		},
-		{
-		  "text": "Cuartos en renta ",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-cuartos/v1c1099p1"
-		},
-		{
-		  "text": "Inmuebles de venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-inmuebles/v1c1097p1"
-		},
-		{
-		  "text": "Camionetas en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta+camionetas/v1c68p1"
-		},
-		{
-		  "text": "Carros usados en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-autos/v1c65p1"
-		},
-		{
-		  "text": "Carros en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-vehiculos/v1c64p1"
-		},
-		{
-		  "text": "Motos en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-motos/v1c69p1"
-		},
-		{
-		  "text": "Bolsa de trabajo ",
-		  "link": "https://www.vivanuncios.com.mx/s-ofertas-empleo/v1c1150p1"
-		},
-		{
-		  "text": "Terrenos en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-terrenos/v1c31p1"
-		},
-		{
-		  "text": "Propiedades comerciales",
-		  "link": "https://www.vivanuncios.com.mx/s-inmuebles-comerciales/v1c1110p1"
-		},
-		{
-		  "text": "Bodegas y mini bodegas ",
-		  "link": "https://www.vivanuncios.com.mx/s-bodegas/v1c33p1"
-		},
-		{
-		  "text": "Rentas vacacionales",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-vacacional/v1c35p1"
-		},
-		{
-		  "text": "Autopartes ",
-		  "link": "https://www.vivanuncios.com.mx/s-autopartes-repuestos-y-servicios/v1c85p1"
-		},
-		{
-		  "text": "Camiones y comerciales ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-camiones/v1c66p1"
-		},
-		{
-		  "text": "Computadoras y accesorios",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-computacion/v1c6p1"
-		},
-		{
-		  "text": "Consolas y videojuegos ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-videojuegos/v1c18p1"
-		},
-		{
-		  "text": "Audio-tv-foto-video",
-		  "link": "https://www.vivanuncios.com.mx/s-audio-tv-foto-video/v1c1071p1"
-		},
-		{
-		  "text": "Muebles",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-muebles/v1c9p1"
-		},
-		{
-		  "text": "Decoración y arte",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-decoracion/v1c1075p1"
-		},
-		{
-		  "text": "Electrodomésticos",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-electrodomesticos/v1c1076p1"
-		},
-		{
-		  "text": "Jardín y construcción",
-		  "link": "https://www.vivanuncios.com.mx/s-jardin-herramientas/v1c1077p1"
-		},
-		{
-		  "text": "Ropa de bebés y niños",
-		  "link": "https://www.vivanuncios.com.mx/s-ropa-bebes/v1c1060p1"
-		},
-		{
-		  "text": "Juegos y juguetes",
-		  "link": "https://www.vivanuncios.com.mx/s-juegos-juguetes/v1c1058p1"
-		},
-		{
-		  "text": "Maquinaria y equipamiento",
-		  "link": "https://www.vivanuncios.com.mx/s-maquinaria-equipamiento/v1c1232p1"
-		},
-		{
-		  "text": "Deportes y pasatiempos ",
-		  "link": "https://www.vivanuncios.com.mx/s-deportes-pasatiempos/v1c7p1"
-		},
-		{
-		  "text": "Música, películas, libros",
-		  "link": "https://www.vivanuncios.com.mx/s-musica-peliculas-libros/v1c13p1"
-		},
-		{
-		  "text": "Coleccionables, antigüedades ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-coleccionables/v1c1100p1"
-		}
-	],
 	"header": {
 		"type" 							: "website",
 		"localeOpenGraph" 				: "en_ZA",
@@ -210,6 +96,120 @@
 			"safetyLink": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB:Gumtree_basics",
 			"distractionFree": false,
 			"showTopBanner": false,
+			"topCategories": [
+				{
+				  "text": "Cars for sale",
+				  "link": "https://www.gumtree.co.za/s-cars-bakkies/v1c9077"
+				},
+				{
+				  "text": "Auto parts",
+				  "link": "https://www.gumtree.co.za/s-auto-parts-accessories/v1c9026p1"
+				},
+				{
+				  "text": "Motorcycles for sale",
+				  "link": "https://www.gumtree.co.za/s-motorcycles-scooters/v1c9027p1"
+				},
+				{
+				  "text": "Motorcycle parts",
+				  "link": "https://www.gumtree.co.za/s-motorcycle-parts-accessories/v1c9215p1"
+				},
+				{
+				  "text": "Caravans & Trailers",
+				  "link": "https://www.gumtree.co.za/s-caravans-trailers/v1c9028p1"
+				},
+				{
+				  "text": "Farm equipment",
+				  "link": "https://www.gumtree.co.za/s-farm-vehicles-equipment/v1c9135p1"
+				},
+				{
+				  "text": "Houses for sale",
+				  "link": "https://www.gumtree.co.za/s-houses-flats-for-sale/v1c9074p1"
+				},
+				{
+				  "text": "Flats for rent",
+				  "link": "https://www.gumtree.co.za/s-houses-flats-for-rent/v1c9078p1"
+				},
+				{
+				  "text": "Commercial property for sale",
+				  "link": "https://www.gumtree.co.za/s-commercial-properties/v1c9072p1"
+				},
+				{
+				  "text": "Plots of land for sale",
+				  "link": "https://www.gumtree.co.za/s-land-plots-for-sale/v1c9137p1"
+				},
+				{
+				  "text": "Holiday homes for sale & rent",
+				  "link": "https://www.gumtree.co.za/s-holiday-homes/v1c9070p1"
+				},
+				{
+				  "text": "Antiques for sale",
+				  "link": "https://www.gumtree.co.za/s-antiques-collectables/v1c9180p1"
+				},
+				{
+				  "text": "Furniture",
+				  "link": "https://www.gumtree.co.za/s-furniture/v1c9181p1"
+				},
+				{
+				  "text": "Home appliances",
+				  "link": "https://www.gumtree.co.za/s-home-appliances/v1c9184p1"
+				},
+				{
+				  "text": "Phones for sale",
+				  "link": "https://www.gumtree.co.za/s-mobile-phones-telephones/v1c9198p1"
+				},
+				{
+				  "text": "Computers for sale",
+				  "link": "https://www.gumtree.co.za/s-computers/v1c9199p1"
+				},
+				{
+				  "text": "Laptops for sale",
+				  "link": "https://www.gumtree.co.za/s-pc-laptops/v1c9438p1"
+				},
+				{
+				  "text": "Mobile phones",
+				  "link": "https://www.gumtree.co.za/s-mobile-phones/v1c9419p1"
+				},
+				{
+				  "text": "Cameras for sale",
+				  "link": "https://www.gumtree.co.za/s-cameras-video-cameras/v1c9200p1"
+				},
+				{
+				  "text": "Video games & consoles",
+				  "link": "https://www.gumtree.co.za/s-video-games-consoles/v1c9201p1"
+				},
+				{
+				  "text": "TVs for sale",
+				  "link": "https://www.gumtree.co.za/s-tvs/v1c9521p1"
+				},
+				{
+				  "text": "Audio & music equipment",
+				  "link": "https://www.gumtree.co.za/s-audio-music-equipment/v1c9203p1"
+				},
+				{
+				  "text": "Boats for sale",
+				  "link": "https://www.gumtree.co.za/s-boats-jet-skis/v1c9102p1"
+				},
+				{
+				  "text": "Boats parts",
+				  "link": "https://www.gumtree.co.za/s-boat-parts-accessories/v1c9104p1"
+				},
+				{
+				  "text": "Sports, bikes, & fitness",
+				  "link": "https://www.gumtree.co.za/s-sports-bicycles-fitness/v1c9204p1"
+				},
+				{
+				  "text": "Children's Furniture",
+				  "link": "https://www.gumtree.co.za/s-children-s-furniture/v1c9187p1"
+				},
+				{
+				  "text": "Clothing for sale",
+				  "link": "https://www.gumtree.co.za/s-clothing/v1c9193p1"
+				},
+				{
+				  "text": "Kid's toys for sale",
+				  "link": "https://www.gumtree.co.za/s-toys/v1c9192p1"
+				}
+			],
 			"reviews" : [
 				{
 					"primaryImageUrl": "tamie_k.jpg",

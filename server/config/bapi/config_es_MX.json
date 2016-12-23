@@ -1,118 +1,4 @@
 {
-	"topCategories": [
-		{
-		  "text": "Renta inmuebles",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-inmuebles/v1c1098p1"
-		},
-		{
-		  "text": "Autos en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-autos-camionetas/v1c81p1"
-		},
-		{
-		  "text": "Cuartos en renta ",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-cuartos/v1c1099p1"
-		},
-		{
-		  "text": "Inmuebles de venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-inmuebles/v1c1097p1"
-		},
-		{
-		  "text": "Camionetas en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta+camionetas/v1c68p1"
-		},
-		{
-		  "text": "Carros usados en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-autos/v1c65p1"
-		},
-		{
-		  "text": "Carros en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-vehiculos/v1c64p1"
-		},
-		{
-		  "text": "Motos en venta ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-motos/v1c69p1"
-		},
-		{
-		  "text": "Bolsa de trabajo ",
-		  "link": "https://www.vivanuncios.com.mx/s-ofertas-empleo/v1c1150p1"
-		},
-		{
-		  "text": "Terrenos en venta",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-terrenos/v1c31p1"
-		},
-		{
-		  "text": "Propiedades comerciales",
-		  "link": "https://www.vivanuncios.com.mx/s-inmuebles-comerciales/v1c1110p1"
-		},
-		{
-		  "text": "Bodegas y mini bodegas ",
-		  "link": "https://www.vivanuncios.com.mx/s-bodegas/v1c33p1"
-		},
-		{
-		  "text": "Rentas vacacionales",
-		  "link": "https://www.vivanuncios.com.mx/s-renta-vacacional/v1c35p1"
-		},
-		{
-		  "text": "Autopartes ",
-		  "link": "https://www.vivanuncios.com.mx/s-autopartes-repuestos-y-servicios/v1c85p1"
-		},
-		{
-		  "text": "Camiones y comerciales ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-camiones/v1c66p1"
-		},
-		{
-		  "text": "Computadoras y accesorios",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-computacion/v1c6p1"
-		},
-		{
-		  "text": "Consolas y videojuegos ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-videojuegos/v1c18p1"
-		},
-		{
-		  "text": "Audio-tv-foto-video",
-		  "link": "https://www.vivanuncios.com.mx/s-audio-tv-foto-video/v1c1071p1"
-		},
-		{
-		  "text": "Muebles",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-muebles/v1c9p1"
-		},
-		{
-		  "text": "Decoración y arte",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-decoracion/v1c1075p1"
-		},
-		{
-		  "text": "Electrodomésticos",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-electrodomesticos/v1c1076p1"
-		},
-		{
-		  "text": "Jardín y construcción",
-		  "link": "https://www.vivanuncios.com.mx/s-jardin-herramientas/v1c1077p1"
-		},
-		{
-		  "text": "Ropa de bebés y niños",
-		  "link": "https://www.vivanuncios.com.mx/s-ropa-bebes/v1c1060p1"
-		},
-		{
-		  "text": "Juegos y juguetes",
-		  "link": "https://www.vivanuncios.com.mx/s-juegos-juguetes/v1c1058p1"
-		},
-		{
-		  "text": "Maquinaria y equipamiento",
-		  "link": "https://www.vivanuncios.com.mx/s-maquinaria-equipamiento/v1c1232p1"
-		},
-		{
-		  "text": "Deportes y pasatiempos ",
-		  "link": "https://www.vivanuncios.com.mx/s-deportes-pasatiempos/v1c7p1"
-		},
-		{
-		  "text": "Música, películas, libros",
-		  "link": "https://www.vivanuncios.com.mx/s-musica-peliculas-libros/v1c13p1"
-		},
-		{
-		  "text": "Coleccionables, antigüedades ",
-		  "link": "https://www.vivanuncios.com.mx/s-venta-coleccionables/v1c1100p1"
-		}
-	],
 	"header" : {
 		"type" 								: "website",
 		"localeOpenGraph" 					: "es_MX",
@@ -282,6 +168,120 @@
 			"safetyLink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"distractionFree": false,
 			"showTopBanner": false,
+			"topCategories": [
+				{
+				  "text": "Renta inmuebles",
+				  "link": "https://www.vivanuncios.com.mx/s-renta-inmuebles/v1c1098p1"
+				},
+				{
+				  "text": "Autos en venta ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-autos-camionetas/v1c81p1"
+				},
+				{
+				  "text": "Cuartos en renta ",
+				  "link": "https://www.vivanuncios.com.mx/s-renta-cuartos/v1c1099p1"
+				},
+				{
+				  "text": "Inmuebles de venta ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-inmuebles/v1c1097p1"
+				},
+				{
+				  "text": "Camionetas en venta",
+				  "link": "https://www.vivanuncios.com.mx/s-venta+camionetas/v1c68p1"
+				},
+				{
+				  "text": "Carros usados en venta ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-autos/v1c65p1"
+				},
+				{
+				  "text": "Carros en venta",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-vehiculos/v1c64p1"
+				},
+				{
+				  "text": "Motos en venta ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-motos/v1c69p1"
+				},
+				{
+				  "text": "Bolsa de trabajo ",
+				  "link": "https://www.vivanuncios.com.mx/s-ofertas-empleo/v1c1150p1"
+				},
+				{
+				  "text": "Terrenos en venta",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-terrenos/v1c31p1"
+				},
+				{
+				  "text": "Propiedades comerciales",
+				  "link": "https://www.vivanuncios.com.mx/s-inmuebles-comerciales/v1c1110p1"
+				},
+				{
+				  "text": "Bodegas y mini bodegas ",
+				  "link": "https://www.vivanuncios.com.mx/s-bodegas/v1c33p1"
+				},
+				{
+				  "text": "Rentas vacacionales",
+				  "link": "https://www.vivanuncios.com.mx/s-renta-vacacional/v1c35p1"
+				},
+				{
+				  "text": "Autopartes ",
+				  "link": "https://www.vivanuncios.com.mx/s-autopartes-repuestos-y-servicios/v1c85p1"
+				},
+				{
+				  "text": "Camiones y comerciales ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-camiones/v1c66p1"
+				},
+				{
+				  "text": "Computadoras y accesorios",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-computacion/v1c6p1"
+				},
+				{
+				  "text": "Consolas y videojuegos ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-videojuegos/v1c18p1"
+				},
+				{
+				  "text": "Audio-tv-foto-video",
+				  "link": "https://www.vivanuncios.com.mx/s-audio-tv-foto-video/v1c1071p1"
+				},
+				{
+				  "text": "Muebles",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-muebles/v1c9p1"
+				},
+				{
+				  "text": "Decoración y arte",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-decoracion/v1c1075p1"
+				},
+				{
+				  "text": "Electrodomésticos",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-electrodomesticos/v1c1076p1"
+				},
+				{
+				  "text": "Jardín y construcción",
+				  "link": "https://www.vivanuncios.com.mx/s-jardin-herramientas/v1c1077p1"
+				},
+				{
+				  "text": "Ropa de bebés y niños",
+				  "link": "https://www.vivanuncios.com.mx/s-ropa-bebes/v1c1060p1"
+				},
+				{
+				  "text": "Juegos y juguetes",
+				  "link": "https://www.vivanuncios.com.mx/s-juegos-juguetes/v1c1058p1"
+				},
+				{
+				  "text": "Maquinaria y equipamiento",
+				  "link": "https://www.vivanuncios.com.mx/s-maquinaria-equipamiento/v1c1232p1"
+				},
+				{
+				  "text": "Deportes y pasatiempos ",
+				  "link": "https://www.vivanuncios.com.mx/s-deportes-pasatiempos/v1c7p1"
+				},
+				{
+				  "text": "Música, películas, libros",
+				  "link": "https://www.vivanuncios.com.mx/s-musica-peliculas-libros/v1c13p1"
+				},
+				{
+				  "text": "Coleccionables, antigüedades ",
+				  "link": "https://www.vivanuncios.com.mx/s-venta-coleccionables/v1c1100p1"
+				}
+			],
 			"reviews" : [
 				{
 					"primaryImageUrl": "yessenia_r.jpg",
