@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Q = require('q');
 
-var bapi = require('./BAPICall');
+var rest = require(process.cwd() + '/server/services/protocols/RESTCall');
 
 var makeHeaders = function (bapiHeaderValues) {
 	// Add Headers
@@ -69,20 +69,12 @@ var augmentPathWithParams = function(path, parametersString, extraParameters) {
 var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
-	bapiOptions.headers = {};
-	if(typeof bapiOptions.path !== 'undefined'){
-		if (!bapiOptions.path.startsWith('/rui-api/')) {
-			bapiOptions.headers = makeHeaders(bapiHeaderValues);
-		}
-	} else {
-		bapiOptions.headers = makeHeaders(bapiHeaderValues);
-	}
-
+	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters, bapiOptions.extraParameters);
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return bapi.doGet(bapiOptions, null).then((output) => {
+	return rest.doGet(bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
@@ -103,15 +95,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceName){
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
-	bapiOptions.headers = {};
-	if(typeof bapiOptions.path !== 'undefined'){
-		if (!bapiOptions.path.startsWith('/rui-api/')) {
-			bapiOptions.headers = makeHeaders(bapiHeaderValues);
-		}
-	} else {
-		bapiOptions.headers = makeHeaders(bapiHeaderValues);
-	}
-
+	bapiOptions.headers = makeHeaders(bapiHeaderValues);
 	bapiOptions.headers['Content-Type'] = 'application/json';
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
@@ -127,7 +111,7 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return bapi.doPost(postData, bapiOptions, null).then((output) => {
+	return rest.doPost(postData, bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
