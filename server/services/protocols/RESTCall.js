@@ -77,15 +77,18 @@ let setupConnection = params => {
 	return Q.Promise((resolve, reject) => {
 		let mod = options.protocol === 'https:' ? https : http;
 
-		if (!_.isEmpty(proxyHost) && !_.isEmpty(proxyPort)) {
-			let proxy = {
-				hostname: proxyHost,
-				port: proxyPort
-			};
-			let proxymod = options.protocol === 'https:' ? httpsProxyAgent : httpProxyAgent;
-			let agent = new proxymod(proxy);
-			options.agent = agent;
-			console.log('$$$$$$$$$$$$$$$$$$', agent);
+		if ((typeof options.useProxy !== 'undefined') && (options.useProxy === true)) {
+			if (!_.isEmpty(proxyHost) && !_.isEmpty(proxyPort)) {
+				let proxy = {
+					hostname: proxyHost,
+					port: proxyPort
+				};
+				let proxymod = options.protocol === 'https:' ? httpsProxyAgent : httpProxyAgent;
+				let agent = new proxymod(proxy);
+				options.agent = agent;
+
+				console.log('$$$$$$$$$$$$$$$$$$', agent);
+			}
 		}
 
 		let request = mod.request(options, res => {
