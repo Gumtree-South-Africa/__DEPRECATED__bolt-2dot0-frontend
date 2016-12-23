@@ -60,9 +60,7 @@ describe('Server to hit HomePage', function() {
 						let c$ = cheerio.load(res.text);
 						expect(c$('.trending-card')).toBeDefined();
 						expect(c$('.card-trendingCard .card-title').text())
-							.toContain(i18n.homepage.popularSearches.popularIn, 'i18n string should match');
-						expect(c$('.card-trendingCard .card-title').text())
-							.toContain(i18n.homepage.popularSearches.yourNeighborhood, 'i18n string should match');
+							.toContain(i18n.homepage.popularSearches.promptLocation, 'i18n string should match');
 						expect(c$('.tile-item').length).toBe(mockTrending.ads.length);
 					})
 					.end(specHelper.finish(done));
@@ -81,8 +79,6 @@ describe('Server to hit HomePage', function() {
 						// Item 1, priceType: MXN
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[0].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[0].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
 						expect(trendingItem.find(".price-text").text()).not.toContain("USD");
 
@@ -90,8 +86,6 @@ describe('Server to hit HomePage', function() {
 						trendingItem = c$('.tile-item').next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[1].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[1].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain("$50,000");
 						expect(trendingItem.find(".price-text").text()).toContain("USD");
 
@@ -99,16 +93,12 @@ describe('Server to hit HomePage', function() {
 						trendingItem = c$('.tile-item').next().next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[2].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("img.lazy.profile-image").attr('data-original'))
-							.toBe(mockTrending.ads[2].seller.profileImage + "13.JPG", 'Missing lazy load profile image');
 						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 
 						// Item 4, no profile image
 						trendingItem = c$('.tile-item').next().next().next();
 						expect(trendingItem.find("img.lazy.ad-image").attr('data-original'))
 							.toBe(mockTrending.ads[3].pictures[0].url, 'Missing lazy load product url');
-						expect(trendingItem.find("div.profile-image").hasClass('icon-header-profile-out'))
-							.toBe(true, 'Placeholder profile icon is missing');
 						expect(trendingItem.find(".price-text").text()).toContain(i18n.homepage.trending.contact);
 					})
 					.end(specHelper.finish(done));

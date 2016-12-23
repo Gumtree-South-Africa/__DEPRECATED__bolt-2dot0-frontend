@@ -5,9 +5,17 @@
         {{> (dynamic "topBanner")}}
 
         {{#if this.trendingCard}}
-            {{> (dynamic "card") card=this.trendingCard
-                i18nTitle="homepage.popularSearches.popularIn"
-                i18nSubtitle="homepage.popularSearches.yourNeighborhood" }}
+            {{#if this.locationlatlong.localizedName}}
+                {{> (dynamic "card") card=this.trendingCard
+                    i18nTitle="homepage.popularSearches.popularIn"
+                    i18nSubtitle="homepage.popularSearches.marker"
+                    i18nSubtitle2=this.locationlatlong.localizedName }}
+            {{else}}
+                {{> (dynamic "card") card=this.trendingCard
+                    i18nTitle="homepage.popularSearches.popular"
+                    i18nSubtitle="homepage.popularSearches.marker"
+                    i18nSubtitle2="homepage.popularSearches.promptLocation" }}
+            {{/if}}
         {{/if}}
 
         {{#if this.recentActivities}}
@@ -39,8 +47,8 @@
 
 		<div class="seo-wrapper">
            <h1>{{i18n "home.h1Tag"}}</h1>
-            {{> (dynamic "topSearches")}}
-            {{> (dynamic "topLocations")}}
+            {{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
+            {{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
 		</div>
 
         {{> (dynamic "bottomBanner") }}

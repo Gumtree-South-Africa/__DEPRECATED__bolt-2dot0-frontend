@@ -32,7 +32,7 @@
                     </div>
                     <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
                         <li class="menu-item">
-                            <a href="{{this.header.categoryList._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}" title="{{this.header.categoryList.localizedName}}" class="link-item"
+                            <a href="{{this.header.homePageUrl}}{{this.header.categoryList._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}" title="{{this.header.categoryList.localizedName}}" class="link-item"
                                data-id="{{this.header.categoryList.id}}">
                                 <span class="item-primary-text">{{this.header.categoryList.localizedName}}</span>
                                 {{!-- item secondary is for category "counts", out for MVP
@@ -42,7 +42,7 @@
                         </li>
                         {{#each this.header.categoryList.children}}
                             <li class="menu-item">
-                                <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
+                                <a href="{{../this.header.homePageUrl}}{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
                                    data-id="{{this.id}}">
                                     <span class="item-primary-text">{{this.localizedName}}</span>
                                     {{!-- item secondary is for category "counts", out for MVP
@@ -124,7 +124,7 @@
     {{/unless}}
 
     {{#if this.header.postAdHeader}}
-      {{> (dynamic "postAdHeader") titleKey=this.advert.description backKey="postAd.back" backUrl=this.backUrl }}
+      {{> (dynamic "postAdHeader") titleKey=this.advert.title backKey="postAd.back" backUrl=this.backUrl }}
    {{/if}}
-   
+
 </div>

@@ -8,15 +8,15 @@
 	<form class='post-form' method="POST" action="#" data-publicJs-url="{{footer.baseJSUrl}}">
 		{{#if this.adId}}<input type="hidden" name="adId" value="{{this.adId}}">{{/if}}
 		{{> (dynamic "categoryDropdownSelection")}}
-		<div class="form-ad-title form-field">
+		<div class="form-ad-title form-field optional-field">
 			<div class="label-wrapper">
-				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
+				<label for="Title">{{i18n "editAd.mainDetails.labels.adTitle"}}</label>
 			</div>
 			<div class="input-wrapper">
 				<input title="{{i18n "postAd.mainDetails.title"}}" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price form-field {{#if this.isPriceExcluded}}hidden{{/if}}">
+		<div class="form-ad-price form-field optional-field {{#if this.isPriceExcluded}}hidden{{/if}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
@@ -51,9 +51,28 @@
 				</div>
 			</div>
 		</div>
-		<div class="form-ad-description form-field">
+		<div class="form-ad-phone form-field optional-field">
 			<div class="label-wrapper">
-				<label for="description">{{i18n "editAd.mainDetails.labels.description"}} ({{i18n "editAd.mainDetails.titleRestrictions.minimumAvailable"}}<span class="characters-available"></span>{{i18n "editAd.mainDetails.titleRestrictions.characters"}})</label>
+				<label for="phone">{{i18n "editAd.mainDetails.labels.phone"}}</label>
+			</div>
+			<div class="input-wrapper">
+				<input title="{{i18n "postAd.mainDetails.phone"}}" data-schema="data.phone" name="Phone" type="number"
+					{{#if this.adResult.phone}}
+					   value="{{this.adResult.phone}}"
+					{{else}}
+						{{#if this.defaultPhoneNumber}}
+					   value="{{this.defaultPhoneNumber}}"
+						{{else}}
+					   value=""
+						{{/if}}
+					{{/if}}
+					   value="{{this.adResult.title}}"
+					   min="0" pattern="[0-9]*" inputmode="numeric">
+			</div>
+		</div>
+		<div class="form-ad-description form-field optional-field">
+			<div class="label-wrapper">
+				<label for="description">{{i18n "editAd.mainDetails.labels.description"}}</label>
 			</div>
 			<div class="input-wrapper">
 				<textarea id='description-input' data-schema="data.description" class="description-input" name="description" title="{{i18n "postAd.mainDetails.description"}}" maxlength="4000">{{{this.adResult.description}}}</textarea>
@@ -63,6 +82,11 @@
 		<section id="custom-attributes">
 			{{> (dynamic "postFormCustomAttributes") model=this}}
 		</section>
-		{{> (dynamic "locationSelection")}}
+
+		{{#if this.enableComponents}}
+			{{> (dynamic "formMap")}}
+		{{else}}
+			{{> (dynamic "locationSelection")}}
+		{{/if}}
 	</form>
 </div>

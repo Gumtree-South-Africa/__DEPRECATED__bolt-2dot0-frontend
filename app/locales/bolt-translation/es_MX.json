@@ -77,7 +77,7 @@
 	"buyer.name.no.percent": "El símbolo de porcentaje (%) no está permitido",
 	"reply.message.empty": "Se requiere de un mensaje",
 	"reply.message.too.long": "El mensaje debe contener 4,096 caracteres como máximo",
-	"vip.reply.your.phoneNumber": "Teléfono (Opcional)",
+	"vip.reply.your.phoneNumber": "Teléfono (opcional)",
 	"vip.reply.your.phoneNumberOptional": "opcional",
 	"vip.reply.optional.text": "Opcional",
 	"srp.reply.contact": "Contactar",
@@ -222,6 +222,13 @@
 	"postad.completeness.addaddress": "Agregando una dirección",
 	"postad.completeness.moreinfo": "Dando más información de tu anuncio usando los menús en la forma de entrada",
 	"postad.error.header": "¡Ya casi! ¡Por favor corrige la siguiente información en tu anuncio y haz clic en PUBLICAR cuando esté listo!",
+	"postad.location.title": "Tu ubicación *",
+	"postad.location.instructions.mobile": "Toca el mapa y arrástralo para seleccionar o cambiar tu ubicación. Tu ubicación exacta NO será publicada a menos de que así lo especifiques.",
+	"postad.location.instructions.desktop": "Haz click en el mapa y arrástralo para seleccionar o cambiar tu ubicación. Tu ubicación exacta NO será publicada a menos de que así lo especifiques.",
+	"postad.location.uselocation": "PUBLICAR MI UBICACIÓN EXACTA",
+	"postad.location.uselocation.instructions" : "(Se mostrará un marcador en el mapa)",
+	"postad.location.setLocation" : "Ubicación actual",
+	"postad.location.placeholder": "Añade tu dirección",
 	"previewad.notice.text": "Tu anuncio no está publicado aún.  Por favor revísalo y haz clic en Publicar.",
 	"previewad.edit.text": "Editar",
 	"previewad.postyourad.text": "Publica tu anuncio",
@@ -376,20 +383,15 @@
 	"vip.print": "Imprimir",
 	"vip.report": "Denunciar",
 	"vip.posted-on": "%s",
-	"vip.send-email": "Contacta al Anunciante",
+	"vip.send-email": "Contacta al anunciante",
 	"vip.send-email-short": "E-mail",
 	"vip.send.$$": "Enviar",
 	"vip.send.to.seller": "Enviar al Anunciante",
 	"vip.cancel": "Cancelar",
 	"vip.reply.your.name": "Nombre",
-	"vip.reply.your.email": "Ej: user@email.com",
-	"vip.reply.canned.imInterested": "Me interesa. Por favor contáctame.",
-	"vip.reply.canned.isItStillAvailable": "¿Aún está disponible?",
-	"vip.reply.canned.whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
-	"vip.reply.canned.whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
-	"vip.reply.canned.wouldYouShareAdditionalPics": "¿Tienes más fotografías?",
+	"vip.reply.your.email": "Ej: usario@email.com",
 	"vip.reply.canned.messagePlaceholder": "Escribe aquí...",
-	"vip.policymessage": "Al hacer clic en “Enviar” acepta los <a href=\"%s\" target=\"_self\">Términos y Condiciones</a> y la <a href=\"%s\" target=\"_self\">Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing.",
+	"vip.policymessage": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 	"vip.map": "Mapa",
 	"vip.results": "Atrás",
 	"vip.user.$$": "usuario",
@@ -420,6 +422,9 @@
 	"vip.attribute.label.location": "Ubicación",
 	"vip.reply.attachmentUpload.title": "Adjuntar un archivo",
 	"vip.reply.attachmentUpload.help": "(máximo 1MB)",
+	"vip.ads.similar": "Relacionados",
+	"vip.ads.sellers": "Otros anuncios",
+	"vip.ads.emptyad": "No hay anuncios",
 	"footer.toplocations": "Los Mejores Lugares",
 	"footer.bestof": "Los Mejores Anuncios de Vivanuncios",
 	"footer.cr.$$": "Copyright © 2014-2016 eBay.  Todos los derechos reservados.",
@@ -1178,8 +1183,10 @@
 	},
 	"homepage": {
 		"popularSearches": {
-			"popularIn": "Popular en",
-			"yourNeighborhood": "Tu Colonia",
+			"marker": "<i class=\"icon-location-marker-alternate\"></i>",
+			"popular": "Anuncios",
+			"popularIn": "Anuncios cerca de",
+			"promptLocation": "Seleccionar Ubicación",
 			"viewMore": "Ver más"
 		},
 		"searchbar": {
@@ -1265,7 +1272,7 @@
 		"postAd": "Publica Gratis"
 	},
 	"modal": {
-		"close": "Cerrar",
+		"close": "CERRAR",
 		"buttonText": "Confirmar",
 		"message": "Cambia tu Ubicación",
 		"placeholderText": "Escribe una ubicación",
@@ -1294,7 +1301,7 @@
 		"items": "artículos"
 	},
 	"postAd": {
-		"back": "Atrás",
+		"back": "Volver",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
 			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
@@ -1360,7 +1367,8 @@
 		"mainDetails": {
 			"title": "título",
 			"description": "descripción",
-			"amount": "cantidad"
+			"amount": "cantidad",
+			"phone": "teléfono"
 		}
 	},
 	"footer": {
@@ -1459,6 +1467,7 @@
 				"adTitle": "Título del anuncio",
 				"price": "Precio",
 				"description": "Descripción",
+				"phone": "Teléfono",
 				"location": "Ciudad, zona o código postal"
 			},
 			"titleRestrictions": {
@@ -1558,19 +1567,43 @@
 			"category": "CATEGORÍA",
 			"location": "UBICACIÓN",
 			"updated": "ACTUALIZADO",
-			"postedby": "PUBLICADO POR",
-			"daysago": "Hace"
+			"postedby": "PUBLICADO POR"
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
 			"adsPosted": "ANUNCIOS PUBLICADOS",
-			"adsActive": "ACTIVO"
+			"adsActive": "ACTIVO",
+			"defaultUserName": "Usuario Vivanuncios"
 		},
 		"disclaimer": {
 			"disclosure": "Consejos de seguridad - Tu seguridad es importante. Aprende a reducir los riesgos en la compra-venta.",
 			"moreInfo": "Más información.",
 			"moreInfoUrl": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"realEstateDisclaimer": "CUIDADO: Los inmuebles que se presentan en esta sección pueden estar sujetos a algún procedimiento judicial que no ha concluido. Usted es responsable de asegurarse que cumple con todas las leyes aplicables relacionadas con los artículos que usted compre o venda."
+		},
+		"flag" : {
+			"errorMessages": [
+				{
+					"field": "email",
+					"message": "El correo electrónico no es válido"
+				},
+				{
+					"field": "comments",
+					"message": "Tu comentario es muy largo, máximo 4096 caracteres"
+				},
+				{
+					"field": "flagAdType",
+					"message": "Falta el tipo de reporte"
+				},
+				{
+					"field": "captchaToken",
+					"message": "Captcha incorrecto"
+				},
+				{
+					"field": "adId",
+					"message": "Falta el id del anuncio"
+				}
+			]
 		},
 		"reply": {
 			"back": "ATRÁS",
@@ -1580,19 +1613,38 @@
 			"sendMessage": "Enviar un mensaje",
 			"interested": "Estoy interesado. Por favor, contáctenme.",
 			"whenNWhere": "¿Dónde y cuándo puedo verlo?",
-			"message": "MENSAJE",
+			"message": "MENSAJE %s",
+			"message-small": "Mensaje %s",
 			"messageValidate": "Se requiere de un mensaje",
 			"required": "OBLIGATORIO",
 			"name": "NOMBRE",
+			"sname": "Nombre",
 			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
 			"emailValidate": "Es necesario tu correo electrónico",
 			"emailPlaceholder": "Correo electrónico: user@email.com",
 			"writeHere": "Escribir texto aquí...",
-			"phone": "NÚMERO DE TELÉFONO (OPCIONAL)",
+			"phone": "NÚMERO DE TELÉFONO",
+			"sphone": "Número de teléfono",
+			"phoneValidate": "Por favor agrega un número telefónico válido.",
+			"phoneOptional": "(OPCIONAL)",
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
-			"terms": "Al hacer clic en \"Enviar\" acepta los <a href=\"%s\" target=\"_blank\">Términos y Condiciones</a> y la<a href=\"%s\" target=\"_blank\"> Notificación de Privacidad</a> y está de acuerdo en recibir nuestras comunicaciones de marketing."
+			"attachAFile": "ATTACH A FILE (OPTIONAL)",
+			"browseFiles": "Browse Files",
+			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
+			"messageSent": "Tu mensaje ha sido enviado!",
+			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
+			"canned": {
+				"imInterested": "Me interesa, por favor contáctame.",
+				"isItStillAvailable": "¿Aún está disponible?",
+				"whatIsYourPrice": "¿Cuál es el precio? ¿Negociable?",
+				"whenAndWhereCanISeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"whenWhereICanSeeIt": "¿Cuándo y dónde puedo verlo/a?",
+				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
+			},
+			"close": "Cerrar",
+			"returnToBrowsing": "Seguir navegando"
 		}
 	},
 	"search": {
@@ -1600,5 +1652,45 @@
 			"title": "Para anunciar tu bien o servicio, entra en Vivanuncios",
 			"desc": "Si quieres vender un producto o servicio -no importa cuál sea- publícalo en Vivanuncios. El sitio web ideal para ofrecer todos tus artículos."
 		}
+	},
+	"promote": {
+		"postingFee": "Tarifa de publicación",
+		"require": "Obligatorio",
+		"contactMe": "Contactar",
+		"promoteThisAd": "Promocionar este anuncio",
+		"promoteSellFast": "Promocionar y vender más rápido",
+		"insertionFeeHint": "Hay una tarifa por publicar más de un anuncio en la categoría de ",
+		"contact": "Consulta Gumtree for Business ",
+		"contactAppend": "para obtener más información sobre anuncios en bloque.",
+		"noThanks": "No gracias, quiero ver mi anuncio"
+	},
+	"feature": {
+		"promotetitle": "Promocionar este anuncio",
+		"promotehint": "Promocionar y vender más rápido",
+		"displayname": {
+			"bumpUpXY": "Mejorar la posición en las búsquedas",
+			"topAd": "Anuncio superior",
+			"hpGallery": "Galería de la página de inicio",
+			"urgent": "Urgente",
+			"highlight": "Anuncios destacados",
+			"srpGallery": "Galería de categorías",
+			"WebSiteUrl": "Enlace al sitio web"
+		},
+		"description": {
+			"bumpUpXY": "La opción Mejorar la posición en las búsquedas es una manera asequible que hacer que tus anuncios tengan más visitas, ya que al ubicarse en los primeros lugares dentro de la categoría serán vistos por más gente y obtendrán más respuestas. La opción Mejorar la posición en las búsquedas subirá tu anuncio a los primeros lugares de la lista, debajo de los \"Anuncios superiores\". De forma automática, subiremos tu anuncio 10 veces en 5 días.",
+			"topAd": "La opción Mejorar la posición en las búsquedas es una manera asequible que hacer que tus anuncios tengan más visitas, ya que al ubicarse en los primeros lugares dentro de la categoría serán vistos por más gente y obtendrán más respuestas. La opción Mejorar la posición en las búsquedas subirá tu anuncio a los primeros lugares de la lista de anuncios, debajo de los \"Anuncios superiores\", hasta que se publiquen más anuncios en la categoría.",
+			"hpGallery": "La Galería de la página de inicio es una sección de dicha página en donde tus anuncios se pueden exhibir durante varios días. Muchas más personas leen y responden estos anuncios debido a su posición destacada en la página de inicio.",
+			"urgent": "En las listas de anuncios y los resultados de búsquedas aparecerá una etiqueta de \"urgente\" junto a tu anuncio. Los usuarios pueden buscar específicamente anuncios etiquetados \"urgentes\". Esto es ideal si tienes apuro por vender, rentar o contratar. Los anuncios se marcan como \"urgentes\" durante 7 días.",
+			"highlight": "Los anuncios destacados sobresalen entre el resto de los anuncios que aparecen en los resultados de búsqueda y exploración debido a que tienen un fondo de color más oscuro. Los Anuncios destacados tienen mayor visibilidad y, por lo tanto, podrían recibir más cantidad de visitas y respuestas. Los anuncios se marcan como \"destacados\" durante 7 días.",
+			"srpGallery": "Tu anuncio aparecerá en una sección en  la parte superior de la página de una categoría Muchas más personas leen y responden los anuncios que se encuentran en la parte superior debido a su posición destacada. Puedes elegir que tu anuncio aparezca en la parte superior la cantidad de días que quieras.",
+			"WebSiteUrl": "El enlace a tu sitio web aparecerá en la página de tu anuncio para que otros usuarios puedan visitarlo con tan solo un clic. Haz que los usuarios obtengan más información sobre lo que estás vendiendo."
+		},
+		"total": "Total",
+		"cancel": "Cancelar",
+		"checkout": "Proceder al pago",
+		"noThanks": "No gracias, quiero ver mi anuncio",
+		"close": "Cerrar",
+		"addUrl": "Agregar URL",
+		"optional": "Opcional"
 	}
 }

@@ -45,8 +45,10 @@ class HomePageModelV2 {
 			this.useGeo = true;
 		} else {
 			// Check if searchLocIdCookie is not the root location, then send in lat/long
-			if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
-				this.useGeo = true;
+			if (typeof this.locationdropdown !== 'undefined') {
+				if (parseInt(this.searchLocIdCookie) !== this.locationdropdown.id) {
+					this.useGeo = true;
+				}
 			}
 		}
 	}
@@ -65,7 +67,8 @@ class HomePageModelV2 {
 		abstractPageModel.addToClientTranslation(modelData, [
 			"recentactivity.message.listing",
 			"recentactivity.message.sold",
-			"homepage.trending.contact"
+			"homepage.trending.contact",
+			"currency.format"
 		]);
 		return modelBuilder.resolveAllPromises(arrFunctions)
 			.then((data) => {
@@ -137,6 +140,7 @@ class HomePageModelV2 {
 				return cardsModel.getCardItemsData(cardName, cardParams).then( (result) => {
 					// augment the API result data with some additional card driven config for templates to use
 					result.config = cardsModel.getTemplateConfigForCard(cardName);
+
 					return result;
 				}).fail((err) => {
 					console.warn(`error getting card data ${err}`);

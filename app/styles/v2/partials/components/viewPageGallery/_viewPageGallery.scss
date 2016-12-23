@@ -65,8 +65,8 @@
 }
 .icon-Zoom{
 	position: absolute;
-	top: 417px;
 	left: 5px;
+	bottom: 0.2em;
 	z-index: 9;
 	cursor: pointer;
 	-moz-transform: scaleX(-1);
@@ -78,6 +78,28 @@
 }
 
 @include to-breakpoint($small-break){
+	.post-ad-header{
+		margin-top: -1em;
+		.header-back a{
+			position: relative;
+    	top: -3.5px;
+		}
+	}
+	.inZoomMode{
+		float: left;
+    font-weight: bold;
+    margin-left: 0.5em;
+		.icon-back-other {
+			display: inline-block;
+	    position: relative;
+	    top: -0.17em;
+	    margin-right: 0.15em;
+			+ span {
+				position: relative;
+    		top: -0.18em;
+			}
+		}
+	}
 	.zoomT{
 	 	position: fixed;
 	 	background-color: white;
@@ -85,8 +107,8 @@
 	 	z-index: 7;
 	 	width: 100%;
 	 	text-align: center;
-	 	padding-top: 20px;
-	 	padding-bottom: 20px;
+	 	padding-top: 30px;
+	 	padding-bottom: 30px;
  	}
 	.zoomI{
 		height: 500px;
@@ -258,6 +280,9 @@
 	.counter{
 		bottom: 6em;
 	}
+	.icon-Zoom{
+		top: 417px;
+	}
 }
 
 @include in-breakpoint($no-break){
@@ -270,6 +295,13 @@
 		}
 	}
 	.icon-Zoom{
-		display: none;
+		display: block;
+		&.hidden{
+			display: none;
+		}
 	}
+}
+
+.slick-dots.bottomPos{
+	bottom: 3em;
 }

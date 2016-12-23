@@ -165,12 +165,18 @@ class MobileUpload {
 			}
 			window.BOLT.trackEvents({"event": "PostAdPhotoSuccess"});
 			if (url.normal) {
-				url.normal = this._transformEpsUrl(url.normal);
+				// Use a high resolution image
+				url.normal = this.epsUpload.convertThumbImgURL20(this._transformEpsUrl(url.normal));
 				if (url.normal.toLowerCase().indexOf("https") < 0) {
 					url.normal = url.normal.replace('http', 'https');
 				}
 			}
 			this.handleImageUrlChanged(url.normal);
+			// display map 
+			if(window.formMap) {
+				google.maps.event.trigger(window.formMap.map, "resize");
+				window.formMap.map.setCenter(window.formMap.position);
+			}
 		};
 
 		/**

@@ -62,11 +62,13 @@ var StringUtils = (function() {
 			return stripComments.html(text, false);
 		}, stripComments: function(text) {
 			return stripComments(text, false);
+		}, stripHtml: function(html) {
+			return String(html).replace(/<[\s\S]*?>/g, '').replace(/"/g, '').replace(/'/g, '')
 		},
 		formatDate: function(date) {
 			if (date) {
-				let month = thisVal.monthOfYear.toString();
-				let day = thisVal.dayOfMonth.toString();
+				let month = date.monthOfYear.toString();
+				let day = date.dayOfMonth.toString();
 
 				if (month.length === 1) {
 					month = "0" + month;
@@ -75,7 +77,7 @@ var StringUtils = (function() {
 				if (day.length === 1) {
 					day = "0" + day;
 				}
-				return `${thisVal.year}-${month}-${day}`;
+				return `${date.year}-${month}-${day}`;
 			} else {
 				return null;
 			}

@@ -7,7 +7,7 @@
 		bottom: 0;
 	  }
 	}
-	
+
 
   } @else {
 	form{
@@ -59,9 +59,9 @@
 			*{
 				vertical-align: middle;
 			}
-			
+
 			input[type="checkbox"]{
-			   
+
                 @include checkbox-input;
                 background-color: #fff;
             }
@@ -98,11 +98,11 @@
 	.hide {
 		display: none !important;
 	}
-}	
+}
 
 .vip-contact{
 	@include user-interactionform-toggle("on");
-}	
+}
 
 
 
@@ -122,7 +122,7 @@
 @include from-breakpoint($large-break, $lt-ie9-class-name){
 .usr-interactions {
 		@include usr-interactions-lrg;
-	} 
+	}
 
 }
 

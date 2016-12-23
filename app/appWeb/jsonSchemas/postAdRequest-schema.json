@@ -48,6 +48,9 @@
 							}
 						}
 					},
+					"phone": {
+						"type": "string"
+					},
 					"imageUrls": {
 						"type": "array",
 						"minItems": 1,

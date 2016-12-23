@@ -1,5 +1,9 @@
 <div id="locationModal" class="location-selection">
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+    {{#if this.googleMapAuth.googleMapKey}}
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{this.googleMapAuth.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+    {{else}}
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&client=gme-marktplaats&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
+    {{/if}}
 	<div class="location-selection-container">
         {{!-- this should change depending on the modal content --}}
 			<div class="location-selection-info">{{i18n 'modal.yourLocation'}}*</div>
@@ -18,6 +22,7 @@
                            {{else}}
 						       placeholder="{{i18n 'modal.placeholderText'}}"
                            {{/if}}/>
+					<input id="locationId" type="hidden" data-schema="data.location.id" name="locationId" value="{{this.adResult.location.id}}">
 					<input id="location-lat" type="hidden" data-schema="data.location.latitude" name="locationLatitude" value="{{this.adResult.location.latitude}}">
 					<input id="location-lng" type="hidden" data-schema="data.location.longitude" name="locationLongitude" value="{{this.adResult.location.longitude}}">
                 </div>

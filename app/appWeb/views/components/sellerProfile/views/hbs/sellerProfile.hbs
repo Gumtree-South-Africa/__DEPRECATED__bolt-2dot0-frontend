@@ -1,24 +1,30 @@
-<a href="{{this.advert.seller.sellerAdsUrl}}">
 <div class="seller-profile-container">
-    <div class="seller-pic">
-    {{#if this.advert.sellerDetails.publicDetails.displayPicture}}
-		<img class="user-avatar" src="{{this.advert.sellerDetails.publicDetails.displayPicture}}">
-    {{else}}
-        <div class="icon-header-profile-out user-avatar"></div>
-    {{/if}}
-    </div>
+    <a class="seller-panel" href="{{this.header.homePageUrl}}{{this.advert.sellerDetails.publicDetails.sellerOtherInfoUrl}}">
+        <div class="seller-pic">
+        {{#if this.advert.sellerDetails.publicDetails.displayPicture}}
+            <img class="user-avatar" src="{{this.advert.sellerDetails.publicDetails.displayPicture}}">
+        {{else}}
+            <div class="icon-header-profile-out user-avatar"></div>
+        {{/if}}
+        </div>
 
-    <a class="user-fname" href="{{this.advert.sellerDetails.publicDetails.sellerOtherInfoUrl}}">{{this.advert.sellerDetails.contactInfo.name}}</a>
+        <span class="user-fname">
+            {{#if this.advert.sellerDetails.contactInfo.name}}
+                {{this.advert.sellerDetails.contactInfo.name}}
+            {{else}}
+                {{i18n "vip.seller.defaultUserName"}}
+            {{/if}}
+        </span>
 
-    {{#if this.advert.sellerDetails.reputation.isEmailVerified}}
-		<div class="email-icon icon-email-verified"><div class="email-verified-text">{{i18n "vip.seller.emailVerified"}}</div></div>
-    {{else}}
-        <div class="email-icon icon-email-non-verified"></div>
-    {{/if}}
+        {{#if this.advert.sellerDetails.reputation.isEmailVerified}}
+            <div class="email-icon icon-email-verified"><div class="email-verified-text">{{i18n "vip.seller.emailVerified"}}</div></div>
+        {{else}}
+            <div class="email-icon icon-email-non-verified"></div>
+        {{/if}}
 
-	<div class="user-ads">
-		<span class="user-ads-posted">{{this.advert.sellerDetails.statistics.adsPosted}}</span><span class="ads-posted-text">{{i18n "vip.seller.adsPosted"}}</span>
-		<span class="user-ads-active">{{this.advert.sellerDetails.statistics.adsActive}}</span><span class="ads-active-text">{{i18n "vip.seller.adsActive"}}</span>
-	</div>
+        <div class="user-ads">
+            <span class="user-ads-posted">{{this.advert.sellerDetails.statistics.adsPosted}}</span><span class="ads-posted-text">{{i18n "vip.seller.adsPosted"}}</span>
+            <span class="user-ads-active"><span class="user-active">{{this.advert.sellerDetails.statistics.adsActive}}</span></span><span class="ads-active-text">{{i18n "vip.seller.adsActive"}}</span>
+        </div>
+    </a>
 </div>
-</a>

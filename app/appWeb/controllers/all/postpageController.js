@@ -6,6 +6,8 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
+
 let Q = require('q');
 
 // todo: temporary until these can be absracted out into a model
@@ -39,7 +41,7 @@ router.use('/', (req, res, next) => {
 	req.app.locals.pagetype = pagetypeJson.pagetype.POST_AD;
 	req.app.locals.abtestpage = abTestPagesJson.pages.P;
 
-	// Redirects
+	// AB: If not 2.0 context, then redirect to 1.0 Post
 	if (!pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		res.redirect('/post.html');	// redirect to 1.0 version of this page
 		return;
@@ -98,9 +100,13 @@ router.use('/', (req, res, next) => {
 		return modelPromise;
 	}).then((modelData) => {
 		postAdData.extendModelData(req, modelData);
+
+		// shows the new components in development
+		modelData.enableComponents = req.query.BOLT24812 === '1' ? true : false;
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;

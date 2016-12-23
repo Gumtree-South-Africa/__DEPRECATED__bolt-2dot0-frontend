@@ -2,13 +2,14 @@
 
 let config = require('config');
 let bapiOptionsModel = require('./bapi/bapiOptionsModel');
+let ruiOptionsModel = require('./rui/ruiOptionsModel');
 let bapiService      = require('./bapi/bapiService');
 
 class AdService {
 
 	viewAd(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
-		queryEndpoint = queryEndpoint + '?_expand=category,location,seller-stats,tracking';
+		queryEndpoint = queryEndpoint + '?_expand=category,location,reply-info';
 		return bapiService.bapiPromiseGet(bapiOptionsModel.initFromConfig(config, {
 			method: 'GET',
 			path: queryEndpoint,
@@ -109,6 +110,32 @@ class AdService {
 			method: 'DELETE',
 			path: queryEndpoint,
 		}), bapiHeaderValues, {}, 'adService$unfavoriteAd');
+	}
+
+	replyAd(bapiHeaderValues, replyForm) {
+		let locale = bapiHeaderValues.locale;
+		if (locale === 'es_MX') {
+			locale='es_MX_VNS';
+		}
+
+		let queryEndpoint = config.get('RUI.endpoints.replyForm') + locale;
+
+		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+			replyHost: replyForm.hostname,
+			replyBasedomainSuffix: replyForm.basedomainsuffix
+		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
+	}
+
+	flagAd(bapiHeaderValues, adId, postData) {
+		let queryEndpoint = config.get('BAPI.endpoints.flagAd');
+		queryEndpoint = queryEndpoint.replace('{id}', adId);
+
+		return bapiService.bapiPromisePost(bapiOptionsModel.initFromConfig(config, {
+			method: 'POST',
+			path: queryEndpoint,
+		}), bapiHeaderValues, postData, 'adService$flagAd');
 	}
 }
 

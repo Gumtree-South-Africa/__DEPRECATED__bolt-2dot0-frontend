@@ -17,6 +17,7 @@ router.get('/', (req, res, next) => {
 
 	req.app.locals.abtestpage = abTestPagesJson.pages.H;
 
+	// AB: If not 2.0 context, then redirect to 1.0 Homepage
 	if (pageControllerUtil.is2dot0Version(res, req.app.locals.abtestpage)) {
 		homepageControllerV2(req, res, next);
 	} else {

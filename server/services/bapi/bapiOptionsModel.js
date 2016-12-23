@@ -13,7 +13,7 @@ var initFromConfig = function(config, initDefaults) {
 	bapiOptions.host = config.get('BAPI.server.host');
 	bapiOptions.port = config.get('BAPI.server.port');
 	bapiOptions.parameters = config.get('BAPI.server.parameters');
-	bapiOptions.timeout = (initDefaults !== undefined) ? (initDefaults.timeout || config.get('BAPI.server.timeout')) : config.get('BAPI.server.timeout');
+	bapiOptions.timeout = (bapiOptions.timeout !== undefined) ? bapiOptions.timeout : config.get('BAPI.server.timeout');
 
 	return bapiOptions;
 };

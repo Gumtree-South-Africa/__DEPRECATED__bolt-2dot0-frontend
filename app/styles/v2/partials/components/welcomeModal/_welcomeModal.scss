@@ -69,7 +69,7 @@
         .btn-wrapper {
             text-align: center;
             .btn {
-				@include vivaBtn(on, 0.35em, 90%);
+				@include vivaBtn(on, 0.445em, 90%);
 
 				&.disabled {
 					background-color: mix($button-bgcolor, $page-bgcolor, 50%);
@@ -80,6 +80,61 @@
     }
 }
 
+.sticky-contact{
+  width: 100%;
+  background-color: $button-bgcolor;
+  padding-bottom: 1em;
+  text-align: center;
+  bottom: 0;
+  position: fixed;
+  .contact-title{
+    text-align: center;
+    color: white;
+    margin-bottom: 0.5em;
+  }
+  .contact-wrapper{
+    margin-left: 5%;
+    margin-right: 5%;
+  }
+  .stickyBtn{
+    background-color: white;
+    width: 30%;
+    height: 40px;
+    cursor: pointer;
+    a{
+      color: $button-bgcolor;
+      background-color: white;
+      width: 100%;
+      height: 40px;
+      display: inline-block;
+    }
+    &.left{
+      float: left;
+    }
+    &.right{
+      float: right;
+    }
+    &.center{
+      margin: 0 auto;
+    }
+  }
+}
+.show-icon{
+  display: inline-block;
+  position: relative;
+}
+.icon-web-phone, .icon-web-email, .icon-web-sms{
+  top: 0.2em;
+}
+.icon-web-sms{
+  margin-right: 0.3em;
+}
+.duText{
+  position: relative;
+  top: -0.4em;
+  font-size: 0.8em;
+}
+
 @include in-breakpoint($no-break) {
  .modal-open {
    position: fixed;
@@ -88,7 +143,7 @@
 }
 
 @include from-breakpoint($medium-break) {
-    .modal-wrapper, .welcome-footer, .welcome-wrapper {
+    .modal-wrapper, .welcome-footer, .welcome-wrapper, .sticky-contact {
         display: none;
     }
 }

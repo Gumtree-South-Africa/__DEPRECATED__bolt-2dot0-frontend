@@ -1,0 +1,443 @@
+:root input[type=checkbox].input-checkbox {
+	position: absolute;
+	left: -9999em; // large arbitrary random number
+	&+label {
+		user-select:none;
+		cursor: pointer;
+		&:before {
+			content: " \b ";
+			user-select:none;
+			height: 18px;
+			width: 18px;
+			display: inline-block;
+			vertical-align: middle;
+			margin:0.2em 0.5em 0.25em 0;
+		}
+	}
+}
+
+.ad-features {
+	.disabled {
+		cursor: not-allowed !important;
+		opacity: .5;
+	}
+	.promote-form {
+		border: 1px solid $vivaGreen1;
+		border-radius: 2px;
+		background-color: $vivaGray8;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		@include to-breakpoint($small-break) {
+			height: 400px;
+		}
+		@include from-breakpoint($medium-break) {
+			position: relative;
+			max-width: 960px;
+			height: 395px;
+			margin: 0 auto;
+			.desktop-banner {
+				width:300px;
+				height: 300px;
+				margin-left: 65px;
+				float: left;
+				// TODO: Use a locale neutral image for common part and use MX one for only MX site
+				background-image: url('../../../../../images/es_MX/anuncio-calidad.jpg');
+
+				&::after {
+					content: '';
+					clear: both;
+				}
+			}
+			.promote-feature {
+				margin-left: 400px;
+				margin-right: 15%;
+			}
+		}
+	}
+	margin-bottom: 10px;
+
+	.promote-title {
+		padding-top: 0.618em;
+		margin-left: 50px;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
+		.icon-corner-lightning {
+			background-repeat: no-repeat;
+			display: inline-block;
+			float: right;
+			margin: -12px -1px auto auto;
+		}
+	}
+	.promote-optional {
+		padding-bottom: 0.618em;
+		margin-left: 50px;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
+	}
+
+	.feature-wrapper {
+		float: left;
+		width: 100%;
+		margin-left: 4%;
+		.feature-checkbox {
+			float: left;
+			display: inline-block;
+			width: 18px;
+			@include to-breakpoint($small-break) {
+				margin-top: 2%;
+			}
+			@include from-breakpoint($medium-break) {
+				margin-top: 2%;
+			}
+		}
+		.feature-description {
+			float: left;
+			color: $vivaGreen1;
+			cursor: pointer;
+			margin-left: 5px;
+			@include to-breakpoint($small-break) {
+				font-size: 14px;
+				margin-top: 2.5%;
+				width: 50%;
+			}
+			@include from-breakpoint($medium-break) {
+				font-size: medium;
+				margin-top: 2%;
+			}
+		}
+		.feature-options {
+			float: right;
+			@include to-breakpoint($small-break) {
+				width: 35%;
+				font-size: 14px;
+				margin-bottom: 14px;
+				margin-right: 2%;
+			}
+			@include from-breakpoint($medium-break) {
+				font-size: medium;
+				margin: 1% auto 1% auto;
+				margin-right: 4%;
+				width: 10%;
+			}
+		}
+		.separator-div {
+			&:after {
+				background: color(foxtail, medium);
+			}
+		}
+	}
+
+	select {
+		// this is for firefox only.  percentage text indent is bigger
+		// on firefox than chrome/safari etc.
+		@-moz-document url-prefix() {
+			text-indent: 1% !important;
+		}
+		height: 33px;
+		text-indent: 1%;
+		text-transform: lowercase;
+		border-radius: 1px;
+		padding: 0 calc(1% - 1px);
+		border: 1px solid $vivaGreen1;
+		background-color: white;
+		@include to-breakpoint($small-break) {
+			width: 110px;
+			font-size: 11.5px;
+			float: right;
+			margin-right: 15%;
+		}
+
+		@include from-breakpoint($medium-break) {
+			width: 150px;
+			font-size: small;
+		}
+	}
+	.select-disable {
+		background-color: $vivaGray8 !important;
+		border: 1px solid $vivaGray8 !important;
+		color: black !important;
+			/*for firefox*/
+		-moz-appearance: none;
+			/*for chrome*/
+		-webkit-appearance:none;
+		appearance: none;
+	}
+
+	.price-content {
+		color: $formLabelTextColor;
+		.price-amount {
+			color: $vivaGreen1;
+		}
+	}
+
+	.desktop-checkout {
+		.desktop-checkout-container {
+			padding: 15px 0;
+			width: 1024px;
+			margin: 0 auto 10px auto;
+			position: relative;
+			.checkout-btn-wrapper {
+				width: 40%;
+				float: left;
+				margin-left: 100px;
+				.checkout-button {
+					margin-top: auto !important;
+					margin-bottom: auto !important;
+					cursor: pointer;
+					width: 100%;
+					color: $formSubmitButtonTextColor;
+					background-color: $formSubmitButtonColor;
+					border-style: none;
+					border-radius: 2px;
+					height: 45px;
+					font-size: 18px;
+					&:disabled {
+						cursor: not-allowed !important;
+						opacity: .5;
+					}
+				}
+			}
+			.checkout-price {
+				margin-bottom: 10px;
+				width: 10%;
+				float: left;
+				margin-left: 10%;
+				.price-content {
+					margin-top: 9px;
+					text-align: center;
+					font-size: 18px;
+					height: 40px;
+				}
+			}
+			.checkout-cancel {
+				margin-top: 9px;
+				text-decoration: underline;
+				font-size: large;
+				text-align: center;
+				margin-right: 10%;
+				.cancel-link {
+					color: $formLabelTextColor;
+				}
+			}
+		}
+	}
+
+	.mobile-checkout {
+		position: fixed;
+		z-index: 5;
+		.mobile-checkout-container {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			padding: 10px 20px;
+		}
+
+		.checkout-footer {
+			width: 60%;
+			margin: auto;
+			float: left;
+			.btn {
+				@include vivaBtn(off, 0.445em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+				&.disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+		.checkout-price {
+			padding: 10px 0 10px 0;
+			float: left;
+			margin-left: 5%;
+		}
+	}
+
+	.mobile-cancel {
+		position: fixed;
+		z-index: 5;
+		.cancel-modal-wrapper {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			margin: auto;
+			padding: 10px 20px;
+		}
+
+		.cancel-footer {
+			width: 100%;
+			margin: auto;
+			float: left;
+			.btn {
+				@include vivaBtn(off, 0.445em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+				&.disabled {
+					opacity: 0.5;
+					cursor: not-allowed;
+				}
+			}
+		}
+	}
+	.desktop-cancel {
+		text-align: center;
+		text-decoration: underline;
+		margin: 1.5%;
+		font-size: large;
+		.cancel-link {
+			color: $formLabelTextColor;
+		}
+	}
+	.feature-more {
+		display: inline-block;
+		height: 16px;
+		width: 16px;
+		margin: 0 0 -2.5px 2.5px;
+	}
+
+	.hidden {
+		display: none;
+	}
+
+	.feature-info-overlay {
+		position: fixed;
+		z-index: 10;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+
+		.close-text {
+			color: gray;
+			font-size: .8em;
+			vertical-align: middle;
+			margin-right: 0.5em;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+
+		.icon-close-small {
+			display: inline-block;
+			vertical-align: middle;
+			cursor: pointer;
+		}
+
+		.modal-close-section {
+			margin-right: 8px;
+			float: right;
+			cursor: pointer;
+
+			&:hover {
+				.close-text {
+					text-decoration: underline;
+				}
+			}
+		}
+
+		.modal-wrapper {
+			position: fixed;
+			background-color: white;
+			height: auto;
+			width: 90%;
+			top: 15%;
+			left: 0;
+			right: 0;
+			margin: auto;
+		}
+
+		.h1-text {
+			clear: both;
+			font: $h1;
+			color: $formLabelTextColor;
+			text-align: center;
+		}
+
+		.feature-content-info {
+			font: $h4;
+			text-align: left;
+			color: $formLabelTextColor;
+			padding: 1em;
+			margin: auto 5%;
+		}
+
+		.close-footer {
+			width: 90%;
+			margin: auto 5% 20px 5%;
+			.btn {
+				@include vivaBtn(off, 0.445em 0, 100%);
+				.btn-icon {
+					display: none;
+				}
+			}
+			.cancel-button {
+				text-align: center;
+				text-decoration: underline;
+				cursor: pointer;
+				margin: 10px 0;
+			}
+		}
+
+		@include from-breakpoint($medium-break) {
+			.modal-wrapper {
+				width: 50%;
+			}
+
+			.footer {
+				width: 75%;
+			}
+		}
+
+		@include to-breakpoint($small-break) {
+			.h1-text {
+				margin-left: 10px;
+				margin-right: 10px;
+			}
+		}
+	}
+
+	@include from-breakpoint($medium-break) {
+		.mobile-checkout-container {
+			display: none;
+		}
+		.desktop-checkout-container {
+			display: block;
+		}
+		.mobile-cancel {
+			display: none;
+		}
+		.desktop-cancel {
+			display: block;
+		}
+	}
+	@include to-breakpoint($small-break) {
+		.desktop-checkout-container {
+			display: none;
+		}
+		.mobile-checkout-container {
+			display: block;
+		}
+		.mobile-cancel-form-link {
+			margin-top: 18px;
+			margin-right: 30px;
+			text-decoration: underline;
+			float: right;
+		}
+		.desktop-cancel {
+			display: none;
+		}
+	}
+}
+

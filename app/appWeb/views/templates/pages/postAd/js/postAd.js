@@ -5,6 +5,8 @@ let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpl
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let loginModal = require('app/appWeb/views/components/loginModal/js/loginModal.js');
+let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
+let AdInsertionFee = require('app/appWeb/views/components/adInsertionFee/js/adInsertionFee.js');
 
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
@@ -20,7 +22,7 @@ const INVALID_COOKIE_VALUE = 'invalid';
 class PostAd {
 	constructor() {
 		this.propertyChanged = new SimpleEventEmitter();
-
+		this.adInsertionFee = new AdInsertionFee();
 		this._mobileImageUrls = [];
 		this._desktopImageUrls = [];
 	}
@@ -36,6 +38,7 @@ class PostAd {
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
 		this.photoContainer = photoContainer.viewModel;
 		this.spinnerModal = spinnerModal;
+		this.adFeatureSelection = AdFeatureSelection;
 
 		// Callback for old singleton components
 		spinnerModal.initialize();
@@ -45,10 +48,17 @@ class PostAd {
 		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
 
+		this._$postAdContent = domElement.find(".post-ad-page");
+		this._$featurePromote = domElement.find("#feature-promote");
 		this._$infoTips = domElement.find(".info-tips");
 		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
 		this._$desktopSubmitButton = domElement.find('#postAdBtn');
 		this._$changePhoto = $(".change-photo");
+		this._$promoteWithoutInf = domElement.find("#promote-without-if");
+		this.adInsertionFee.componentDidMount(domElement);
+		this.adFeatureSelection.componentDidMount(domElement);
+		this.adInsertionFee.pageType = "PostAd";
+		this.adFeatureSelection.pageType = "PostAd";
 
 		this._$changePhoto.on('click', (e) => {
 			e.preventDefault();
@@ -227,7 +237,7 @@ class PostAd {
 			dataType: 'json',
 			contentType: 'application/json',
 			success: (response) => {
-				this._onSubmitSuccess(response);
+				this._onSubmitSuccess(response, postAdPayload);
 			},
 			error: (e) => {
 				this._onSubmitFail(e);
@@ -235,18 +245,47 @@ class PostAd {
 		});
 	}
 
-	_onSubmitSuccess(response) {
+	_onSubmitSuccess(response, adInfo) {
+
 		this.postAdFormMainDetails.isFormChangeWarning = false;
+
 		switch (response.state) {
 			case AD_STATES.AD_CREATED:
+				if (response.ad && response.ad.insertionFee) {
+					window.BOLT.trackEvents({"event": "PostAdPaidCreated"});
+				} else {
+					window.BOLT.trackEvents({"event": "PostAdFreeSuccess"});
+				}
 				spinnerModal.completeSpinner(() => {
-					if (response.ad.redirectLinks.previp) {
-						window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
-					} else if (response.ad.status === 'HOLD') {
-						window.location.href = '/edit/' + response.ad.id;
-					} else {
-						window.location.href = response.ad.redirectLinks.vip;
-					}
+					$.ajax({
+						url: '/api/promotead/features',
+						data: {
+							adId: response.ad.id
+						},
+						type: 'GET',
+						dataType: 'json',
+						contentType: 'application/json',
+						success: (features) => {
+							if (!features.length) {
+								this._redirectWithoutUpselling(response);
+							} else {
+								spinnerModal.completeSpinner(() => {
+									$('.viewport').toggleClass('promotion-covered', true);
+									this._$postAdContent.toggleClass("hidden", true);
+									this._$featurePromote.toggleClass("hidden", false);
+									if (response.ad.insertionFee) {
+										this.adInsertionFee.updateInsertionFee(adInfo, response.ad.insertionFee, this.postAdFormMainDetails.getCategorySelectionName());
+									} else {
+										this._$promoteWithoutInf.toggleClass("hidden", false);
+									}
+									this.adFeatureSelection.render(features, response.ad.id, response.ad.insertionFee, response.ad.redirectLinks.vip);
+								});
+							}
+						},
+						error: () => {
+							this._redirectWithoutUpselling(response);
+						}
+					});
 				});
 				break;
 			case AD_STATES.AD_DEFERRED:
@@ -264,6 +303,18 @@ class PostAd {
 			default:
 				break;
 		}
+	}
+
+	_redirectWithoutUpselling(response) {
+		spinnerModal.completeSpinner(() => {
+			if (response.ad.redirectLinks.previp) {
+				window.location.href = response.ad.redirectLinks.previp + '&redirectUrl=' + window.location.protocol + '//' + window.location.host + response.ad.redirectLinks.previpRedirect;
+			} else if (response.ad.status === 'HOLD') {
+				window.location.href = '/edit/' + response.ad.id;
+			} else {
+				window.location.href = response.ad.redirectLinks.vip;
+			}
+		});
 	}
 
 	_onSubmitFail(error) {

@@ -1,16 +1,31 @@
 'use strict';
-let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let CategoryDropdownSelection = require(
 	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
 let PostFormCustomAttributes = require(
 	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
+let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
+let formMap = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
+
+let getUrlParameter = (sParam) => {
+	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+};
 
 let inputNumericCheck = function(e) {
 	if ((e.keyCode > 57 || e.keyCode < 48)) {
@@ -111,8 +126,10 @@ class PostAdFormMainDetailsVM {
 			} else if (propName === 'isFormValid') {
 				this._refreshIsValid();
 			} else if (propName === 'isRequiredTitleAndDescription') {
-				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
-				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
+				domElement.find('.form-ad-title').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
+				domElement.find('.form-ad-description').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
 			} else if (propName === 'isFormChangeWarning') {
 				if (newValue) {
 					formChangeWarning.enable();
@@ -275,6 +292,16 @@ class PostAdFormMainDetailsVM {
 		return {lat: lat, lng: lng};
 	}
 
+	/**
+ 	 * Get location id from location selection modal
+ 	 */
+ 	getLocatioinId() {
+ 		return locationSelection.getLocationId();
+ 	}
+	getCategorySelectionName() {
+		return this._categoryDropdownSelection.getCategorySelectionName();
+	}
+
 	getAdPayload() {
 		let $dateFields = this._$postForm.find('input[type="date"]');
 		let serializedDates = $dateFields.serializeForm();
@@ -311,14 +338,21 @@ class PostAdFormMainDetailsVM {
 		}
 		/* Location Resolving end */
 
+		// get position selecte on formMap component
+		let position = { lat: lat, lng: lng };
+		if(window.formMap) {
+			position = window.formMap.getPosition();
+		}
+
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
 			description: description,
+			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
-				"latitude": lat,
-				"longitude": lng
+				"latitude": position.lat,
+				"longitude": position.lng
 			},
 			categoryAttributes: categoryAttributes
 		};
@@ -421,6 +455,11 @@ class PostAdFormMainDetailsVM {
 		} else if (error.hasOwnProperty("bapiValidationFields")) {
 			// bapi validation errors
 			error.bapiValidationFields.forEach((attrName) => {
+				if (attrName === 'Category') {
+					// Error for category should be handled by category dropdown selection
+					this._categoryDropdownSelection.isValid = false;
+					return;
+				}
 				let $input = $(`[name="${attrName}"]`);
 				let siblings = $input.siblings("input");
 				if (siblings.length === 1) {
@@ -643,9 +682,6 @@ class PostAdFormMainDetails {
 
 		this._setupPolyfillForm();
 
-		this._bindCharacterCountEvents(this.$titleField, this.$detailsSection.find('label[for="Title"]'));
-		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
-
 		this._setupScrollTo();
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
@@ -664,9 +700,15 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		locationSelection.initialize((data) => {
-			this._setHiddenLocationInput(data);
-		}, {pageType: this.pageType});
+		window.getUrlParameter = getUrlParameter;
+		let validator = window.getUrlParameter('BOLT24812');
+		if(!validator) {
+			locationSelection.initialize((data) => {
+				this._setHiddenLocationInput(data);
+			}, {pageType: this.pageType});
+		} else {
+			formMap.initialize();
+		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();

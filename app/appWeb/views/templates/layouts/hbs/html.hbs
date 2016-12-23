@@ -27,7 +27,7 @@
     {{#if this.header.pageUrl}}
         <meta property="og:title" content="{{i18n this.header.pageTitle}}"/>
         <meta property="og:type" content="{{this.header.type}}"/>
-        <meta property="og:image" content='{{#block "ogImg"}}{{this.header.logoUrlOpenGraph}}{{/block}}'/>
+        <meta property="og:image" content='{{#block "ogImg"}}{{{this.header.ogUrl}}}{{/block}}'/>
         <meta property="og:url" content="{{this.header.pageUrl}}"/>
         <meta property="og:site_name" content="{{this.header.brandName}}"/>
         <meta property="og:country-name" content="{{i18n 'header.country.label'}}"/>
@@ -105,9 +105,7 @@
                      {{#with this.dataLayer.userData.loggedIn}}dl["u"]["li"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.accountCreationDate}}dl["u"]["a_cre"] ="{{this}}";{{/with}}
                      {{#with this.dataLayer.userData.daysSinceRegistration}}dl["u"]["dsr"] ="{{this}}";{{/with}}
-                     {{#unless this.dataLayer.userData.hideSessionLvTstGrp}}
-                         {{#with this.dataLayer.userData.sessionLvTstGrp}}dl["u"]["tg"]["stg"] ="{{this}}";{{/with}}
-                     {{/unless}}
+                     {{#with this.dataLayer.userData.sessionLvTstGrp}}dl["u"]["tg"]["stg"] ="{{this}}";{{/with}}
                      {{#block "dataLayerSpecifics"}}{{/block}}
                 dl["c"]={};
                 dl["c"]["c"]={};

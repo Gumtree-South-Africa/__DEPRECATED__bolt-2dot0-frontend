@@ -156,6 +156,10 @@ body {
 	}
 }
 
+.post-ad-header {
+	z-index: 1;
+}
+
 .separator-div {
 	height: 1px;
 	position: relative;
@@ -222,10 +226,19 @@ body {
 }
 
 @include to-breakpoint($small-break) {
-	.viewport .footer-wrapper {
+	.viewport {
+		overflow-x: hidden;
+		.footer-wrapper {
+			// To ensure nothing in page is covered by post button overlay
+			// Magic number 73 is the height of post button layer
+			margin-bottom: 73px;
+		}
+	}
+
+	.viewport.promotion-covered .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
-		// Magic number 73 is the height of post button layer
-		margin-bottom: 73px;
+		// Magic number 53 is the height of no promotion button layer
+		margin-bottom: 63px;
 	}
 
 	.main-detail-post {
@@ -253,9 +266,8 @@ body {
 
 	.mobile-cancel-form-link {
 		margin-top: 18px;
-		margin-right: 30px;
+		margin-right: 12px;
 		text-decoration: underline;
 		float: right;
 	}
-
 }

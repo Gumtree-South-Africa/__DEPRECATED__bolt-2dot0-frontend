@@ -14,9 +14,22 @@
 	width: 45.5em;
 }
 
-#ad-bottombanner{
-	margin: 0 auto;
-	width: 45.5em;
+.vip-bottom-banner-container {
+	position: relative;
+	#ad-bottombanner {
+		margin: 0 auto;
+		width: 45.5em;
+	}
+}
+
+.vip-sponsoredads {
+	width: 100%;
+	padding: 20px 0;
+}
+
+.native-ad{
+	width:250px;
+	overflow:hidden;
 }
 
 .icon-shepherd-pay-button{
@@ -37,4 +50,16 @@
 		@include span(4 of 8);
 		margin-right: 0;
 	}
+	.vip-bottom-banner-container {
+		padding: 20px 0;
+	}
 }
+
+$item-margin: 10px;
+$photo-switcher-width: 30%;
+
+$inputWidth: 84%;
+$inputFieldWidth: 46%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;

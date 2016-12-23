@@ -247,14 +247,10 @@
 		},
 		"VIP": {
 			"desktop": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo"]
 			}
 		}
 	}
