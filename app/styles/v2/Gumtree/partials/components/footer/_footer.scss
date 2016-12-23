@@ -80,17 +80,6 @@
 			
 		}
 	}
-	.social-container{
-		margin:0;
-		display: inline-table;
-		padding-top:20px;
-		.social-icon-wrapper{
-			margin:0;
-			.social-icon{
-				margin-top: 0;
-			}
-		}
-	}
 	.footer-download{
 		position: inherit;
 		right: inherit;
@@ -166,48 +155,6 @@
 //:::::::: Small Only::::::::::
 @include to-breakpoint($small-break){
 	.footer-wrapper{
-		.social-container{
-			display:none;
-			.social-icon-wrapper{
-				width: 20%;
-			}
-    }
-    .mobile-only.social-container{
-    	display: block;
-    	padding-bottom: 20px;
-    }
-		.customer-service-container{
-			height:auto;
-			.team-photos{
-				width:100%;
-				.user-photo-wrapper{
-					width: 25%;
-					max-width: 25%;
-					.user-photo{
-						height: 50px;
-						width: 50px;
-					}
-				}
-			}
-			.support-wrapper{
-				text-align: left;
-				padding: 12px 12px 0 12px;
-				display: inline-table;
-				margin: 0px;
-				.support-container{
-					display: inline-block;
-					margin: 0;
-					.support-text, .support-icon{
-						margin:0;
-					}
-					.mobile-only.support-text, .chat-icon + .support-text{
-						display:inline;
-						padding-left: 5px;
-					}
-				}
-			}
-		}
-
 		.footer-download{
 			display: inline-block;
 			width: 100%;
@@ -217,28 +164,5 @@
 				padding: 0 0 9px 0;
 			}
 		}
-	}
-}
-
-//:::::::: Desktop Only::::::::::
-@include from-breakpoint($medium-break){
-	.footer-wrapper{
-
-		.desktop-only.social-container{
-			display: inline-table;
-			padding-left: 2.5%;
-		}
-		.mobile-only.social-container{
-			display: none;
-			padding-bottom: 20px;
-		}
-
-		.customer-service-container{
-			.support-wrapper{
-				text-align: right;
-				padding-right: 25px;
-			}
-		}
-
 	}
 }

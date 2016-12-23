@@ -358,16 +358,12 @@
 
 		.social-container {
 			width: 400px;
+			display: inline-block;
 
 			.social-icon-wrapper {
 				width: 20%;
 				margin: auto;
 			}
-
-			&.desktop-only {
-				display: inline-block;
-			}
-
 		}
 
 		.footer-download {

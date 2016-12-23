@@ -1379,10 +1379,10 @@
 		},
 		"sitemap": {
 			"aboutus": {
-				"aboutus": "Acerca de nosotros",
+				"aboutus": "ACERCA DE",
 				"aboutviva": "Acerca de Vivanuncios",
 				"vivablog": "Blog de Vivanuncios",
-				"vivabusiness": "Vivanuncios para negocios",
+				"vivabusiness": "NEGOCIOS",
 				"rules": "Reglas para publicar anuncios",
 				"staysafe": "Mantente seguro",
                 "staysafelink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
@@ -1401,7 +1401,7 @@
 				"stores": "La tienda Vivanuncios"
 			},
 			"explore": {
-				"explore": "Explorar",
+				"explore": "EXPLORAR",
 				"classifieds": "Sitios de clasificados de eBay",
 				"mobile": "Aplicaciones móviles",
 				"partners": "Socios",
@@ -1413,7 +1413,7 @@
 				"priceIndex": "Precios de inmuebles"
 			},
 			"tips": {
-				"tips": "Consejos y ayuda",
+				"tips": "AYUDA",
 				"help": "Páginas de ayuda",
 				"helplink": "https://ayuda.vivanuncios.com.mx",
 				"onlinesafety": "Seguridad en internet",
