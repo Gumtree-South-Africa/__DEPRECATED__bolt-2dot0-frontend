@@ -106,9 +106,6 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
 	}
 
-	console.log('BAPIIIIHEADERS--------------------', bapiOptions);
-	console.log('Postdata--------------------', postData);
-
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
 	return rest.doPost(postData, bapiOptions, null).then((output) => {
