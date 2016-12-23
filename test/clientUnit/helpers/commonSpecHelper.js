@@ -158,7 +158,16 @@ let mockGoogleLocationApi = () => {
 			Map: function() {
 				return {
 					fitBounds: function() { },
-					getCenter: function() { },
+					getCenter: function() {
+						return { 
+							lat: function() { 
+								return 19.3883633;
+							}, 
+							lng: function() { 
+								return -99.1744249; 
+							} 
+						};
+					 },
 					setCenter: function() { },
 					setOptions: function() { },
 					setZoom: function() { },
@@ -170,7 +179,11 @@ let mockGoogleLocationApi = () => {
 				};
 			},
 			addListener: function() {},
-			Marker: function() { },
+			Marker: function() { 
+				return {
+					setMap: function() {}
+				};
+			},
 			places: {
 				Autocomplete: function() {
 					return {
@@ -182,8 +195,9 @@ let mockGoogleLocationApi = () => {
 				}
 			},
 			event: {
-				addListener: function() {}
-			}
+				addListener: function() {},
+				trigger: function() {}
+			},
 		}
 	};
 };
