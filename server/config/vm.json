@@ -1,7 +1,7 @@
 {
   "BAPI": {
 	"server": {
-	  "host": "api.bolt.ebayclassifieds.com.lindu002-6657.phx01.dev.ebayc3.com",
+	  "host": "api.bolt.ebayclassifieds.com.sharon-fp003-4464.slc01.dev.ebayc3.com",
 	  "port": 80,
 	  "parameters": null,
 	  "timeout": 2000
@@ -40,7 +40,7 @@
   },
   "RUI": {
 		"server": {
-			"host": "lindu002-6657.phx01.dev.ebayc3.com",
+			"host": "sharon-fp003-4464.slc01.dev.ebayc3.com",
 			"port": 443,
 			"parameters": null,
 			"protocol": "https:",
