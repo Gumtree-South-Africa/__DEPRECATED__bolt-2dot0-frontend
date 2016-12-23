@@ -2,23 +2,9 @@
 
 let googleRanges = [];
 let googleMarker = [];
-// this is a mock location 
+// this is a mock location
 let locationMock = { lat: 19.3883633, lng: -99.1744249 };
 let locationMexicoMock = { lat: 23.49125085380051, lng: -100.15682835625 };
-let getUrlParameter = (sParam) => {
-	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
-		sURLVariables = sPageURL.split('&'),
-		sParameterName,
-		i;
-
-	for (i = 0; i < sURLVariables.length; i++) {
-		sParameterName = sURLVariables[i].split('=');
-
-		if (sParameterName[0] === sParam) {
-			return sParameterName[1] === undefined ? true : sParameterName[1];
-		}
-	}
-};
 
 class FormMap {
 	constructor() {
@@ -40,8 +26,8 @@ class FormMap {
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
 	}
-	
-	
+
+
 
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
@@ -86,7 +72,7 @@ class FormMap {
 		this.map.addListener('dragend', () => {
 			this.setLocation();
 		});
-	
+
 		this.map.addListener('idle',() => {
 			google.maps.event.trigger(this.map, "resize");
 		});
@@ -135,7 +121,7 @@ class FormMap {
 		} catch(error) {
 			this.position = this.position ? this.position : locationMock;
 		}
-		
+
 		if(this.map) {
 			this.map.setCenter(this.position);
 			this.map.setZoom(this.zoom);
@@ -201,17 +187,16 @@ class FormMap {
 }
 
 let initialize = () => {
-	window.getUrlParameter = getUrlParameter;
 	let validator = window.getUrlParameter('BOLT24812');
-	window.formMap = new FormMap();
 	if(validator || validator === 1) {
+		window.formMap = new FormMap();
 		// set the current location via data in node
 		window.formMap.configMap();
 		window.googleRanges = googleRanges;
 		window.googleMarker = googleMarker;
 		window.locationMexicoMock = locationMexicoMock;
 	}
-	
+
 };
 
 
