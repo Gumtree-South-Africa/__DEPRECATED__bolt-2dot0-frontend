@@ -299,6 +299,11 @@ class ViewPageModel {
 				let description = modelData.seo.description;
 				description = description.replace('description',(typeof data.advert.description!=='undefined' ? data.advert.description.substring(0,140) : ''));
 				description = description.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
+				description = StringUtils.unescapeUrl(description);
+				description = StringUtils.unescapeEmail(description);
+				description = StringUtils.fixNewline(description);
+				description = StringUtils.stripHtml(description);
+				description = StringUtils.stripCommentHtml(description);
 				modelData.seo.description = description;
 			}
 		}

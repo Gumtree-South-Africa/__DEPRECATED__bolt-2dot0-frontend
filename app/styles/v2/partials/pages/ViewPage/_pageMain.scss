@@ -16,7 +16,6 @@
 
 .vip-bottom-banner-container {
 	position: relative;
-	padding: 20px 0;
 	#ad-bottombanner {
 		margin: 0 auto;
 		width: 45.5em;
@@ -50,6 +49,9 @@
 	.vip-right-columns{
 		@include span(4 of 8);
 		margin-right: 0;
+	}
+	.vip-bottom-banner-container {
+		padding: 20px 0;
 	}
 }
 
