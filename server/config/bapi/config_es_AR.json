@@ -1,5 +1,4 @@
 {
-	"topCategories": [],
 	"header" : {
 		"type" 								: "website",
 		"localeOpenGraph" 					: "es_AR",
@@ -80,6 +79,7 @@
 	},
 	"content" : {
 		"homepage" : {
+			"topCategories": [],
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: null,
 			"bingMeta"				: null,

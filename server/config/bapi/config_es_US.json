@@ -1,5 +1,4 @@
 {
-	"topCategories": [],
 	"header" : {
 		"type" 								: "website",
 		"localeOpenGraph" 					: "es_LA",
@@ -84,6 +83,7 @@
 	},
 	"content" : {
 		"homepage" : {
+			"topCategories": [],
 			"topHomePageAdBanner"	: false,
 			"homepageBanners"		: ["banner-publica.jpg", "banner-auto.gif", "banner-cv.gif"],
 			"bingMeta"				: "<meta name=\"msvalidate.01\" content=\"E03E7C8B4B4E1A0234A8D2042FD326E8\" />",
