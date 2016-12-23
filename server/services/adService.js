@@ -123,7 +123,8 @@ class AdService {
 		return bapiService.bapiPromisePost(ruiOptionsModel.initFromConfig(config, {
 			method: 'POST',
 			path: queryEndpoint,
-			replyHost: replyForm.hostname
+			replyHost: replyForm.hostname,
+			replyBasedomainSuffix: replyForm.basedomainsuffix
 		}), bapiHeaderValues, JSON.stringify(replyForm), 'adService$RUI$replyAd');
 	}
 

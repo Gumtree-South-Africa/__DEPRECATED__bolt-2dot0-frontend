@@ -44,7 +44,7 @@
       "port": 5000,
       "parameters": null,
       "timeout": 200,
-	  "prependBrandToHost": false
+	  "useBasedomainsuffix": false
     },
     "endpoints": {
       "replyForm":   "/rui-api/page/reply/model/"

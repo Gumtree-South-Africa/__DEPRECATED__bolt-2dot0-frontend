@@ -45,7 +45,7 @@
       "parameters": null,
 	  "protocol": "https:",
       "timeout": 2000,
-	  "prependBrandToHost": false
+	  "useBasedomainsuffix": true
     },
     "endpoints": {
       "replyForm":   "/rui-api/page/reply/model/"

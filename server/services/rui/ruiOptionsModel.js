@@ -7,26 +7,27 @@ let initFromConfig = function(config, initDefaults) {
 			path: '/',
 			method: '',
 			headers: {},
-			replyHost: ''
+			replyHost: '',
+			replyBasedomainSuffix: ''
 		};
 	}
 
-	ruiOptions.host = 'www.' + initDefaults.replyHost;
+	ruiOptions.host = 'www.' + ruiOptions.replyHost;
 
 	let configHost = config.get('RUI.server.host');
-	let configPrependBrandToHost = config.get('RUI.server.prependBrandToHost');
-	if (configPrependBrandToHost === true) {
+	let configUseBasedomainsuffix = config.get('RUI.server.useBasedomainsuffix');
+	if (configUseBasedomainsuffix === true) {
+		ruiOptions.host = ruiOptions.host + ruiOptions.replyBasedomainSuffix;
+	} else {
 		if (configHost !== '') {
 			ruiOptions.host = ruiOptions.host + '.' + configHost;
 		}
-	} else {
-		ruiOptions.host = configHost;
 	}
 
 	ruiOptions.protocol = config.get('RUI.server.protocol');
 	ruiOptions.port = config.get('RUI.server.port');
 	ruiOptions.parameters = config.get('RUI.server.parameters');
-	ruiOptions.timeout = (initDefaults !== undefined) ? (initDefaults.timeout || config.get('RUI.server.timeout')) : config.get('RUI.server.timeout');
+	ruiOptions.timeout = (ruiOptions !== undefined) ? (ruiOptions.timeout || config.get('RUI.server.timeout')) : config.get('RUI.server.timeout');
 
 	ruiOptions.rejectUnauthorized = false;
 

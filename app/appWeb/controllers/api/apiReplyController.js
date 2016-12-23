@@ -39,7 +39,8 @@ router.post('/', cors, (req, res) => {
 			replyMessage: req.body.replyMessage,
 			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
 			seoUrl: req.body.seoUrl,
-			hostname: res.locals.config.hostname
+			hostname: res.locals.config.hostname,
+			basedomainsuffix: res.locals.config.baseDomainSuffix
 		};
 
 		let modelBuilder = new ModelBuilder();
