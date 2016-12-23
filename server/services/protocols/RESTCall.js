@@ -86,8 +86,6 @@ let setupConnection = params => {
 				let proxymod = options.protocol === 'https:' ? httpsProxyAgent : httpProxyAgent;
 				let agent = new proxymod(proxy);
 				options.agent = agent;
-
-				console.log('$$$$$$$$$$$$$$$$$$', agent);
 			}
 		}
 

@@ -32,7 +32,6 @@ let initFromConfig = function(config, initDefaults) {
 
 	ruiOptions.rejectUnauthorized = false;
 
-	console.log('RUIOPTIONS!!!!!!!!!!!!!----------', ruiOptions);
 	return ruiOptions;
 };
 

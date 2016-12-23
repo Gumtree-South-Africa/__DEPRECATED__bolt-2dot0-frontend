@@ -1,6 +1,7 @@
 'use strict';
 let cwd = process.cwd();
 let _ = require('underscore');
+let moment = require('moment');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
@@ -393,6 +394,8 @@ class ViewPageModel {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
+		moment.locale(this.locale.split('_')[0]);
+
 		this.dataPromiseFunctionMap = {};
 
 		this.dataPromiseFunctionMap.advert = () => {
@@ -490,7 +493,7 @@ class ViewPageModel {
 				  category.locationInText = data.breadcrumbs.leafLocation.text;
 				});
 
-				data.breadcrumbs.link = data.breadcrumbs.categories[0]._links[0].href;
+				data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length-1]._links[0].href;
 
 				// Location
 				let locationElt = data._links.find( (elt) => {
@@ -530,8 +533,8 @@ class ViewPageModel {
 					data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
 
 					// Date
-					data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime()) / (24 * 3600 * 1000));
-					data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime()) / (24 * 3600 * 1000));
+					data.postedDate = moment(data.postedDate).fromNow();
+					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
 
 					// Pictures
 					data.hasMultiplePictures = false;
