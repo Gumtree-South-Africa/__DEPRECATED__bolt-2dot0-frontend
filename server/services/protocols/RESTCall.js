@@ -3,10 +3,15 @@
 const fs = require('fs'),
 	async = require('async'),
 	http = require('http'),
+	httpProxyAgent = require('http-proxy-agent'),
 	https = require('https'),
+	httpsProxyAgent = require('https-proxy-agent'),
 	_ = require('underscore'),
 	Q = require('q'),
 	BapiError = require(`${process.cwd()}/server/services/bapi/BapiError`);
+
+let proxyHost = process.env.PROXY_HOST || '';
+let proxyPort = process.env.PROXY_PORT || '';
 
 
 /**
@@ -71,6 +76,18 @@ let setupConnection = params => {
 
 	return Q.Promise((resolve, reject) => {
 		let mod = options.protocol === 'https:' ? https : http;
+
+		if (!_.isEmpty(proxyHost) && !_.isEmpty(proxyPort)) {
+			let proxy = {
+				hostname: proxyHost,
+				port: proxyPort
+			};
+			let proxymod = options.protocol === 'https:' ? httpsProxyAgent : httpProxyAgent;
+			let agent = new proxymod(proxy);
+			options.agent = agent;
+			console.log('$$$$$$$$$$$$$$$$$$', agent);
+		}
+
 		let request = mod.request(options, res => {
 			resolve(parseResponse(res, argData, serializedData));
 		});
@@ -85,7 +102,6 @@ let setupConnection = params => {
 		request.on('error', (ex) => {
 			reject(ex);
 		});
-
 
 		if (!_.isEmpty(serializedData)) {
 			request.write(serializedData);
