@@ -105,6 +105,7 @@ class FormMap {
 		this.map.addListener('idle',() => {
 			google.maps.event.trigger(this.map, "resize");
 		});
+		this.initAutocomplete();
 	}
 
 	setLocation() {
