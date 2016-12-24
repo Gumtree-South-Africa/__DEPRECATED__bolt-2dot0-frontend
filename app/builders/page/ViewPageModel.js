@@ -277,19 +277,21 @@ class ViewPageModel {
 	 * @param data
 	 */
 	setAdStatus(data) {
-		data.statusInfo.isPending = false;
-		data.statusInfo.isActive = false;
-		data.statusInfo.isDeleted = false;
-		data.statusInfo.isBlocked = false;
-		switch(data.statusInfo.status) {
-			case 'PENDING':
-				data.statusInfo.isPending = true;
-				break;
-			case 'ACTIVE':
-				data.statusInfo.isActive = true;
-				break;
-			default:
-				data.statusInfo.isActive = false;
+		if (typeof data.statusInfo !== 'undefined') {
+			data.statusInfo.isPending = false;
+			data.statusInfo.isActive = false;
+			data.statusInfo.isDeleted = false;
+			data.statusInfo.isBlocked = false;
+			switch (data.statusInfo.status) {
+				case 'PENDING':
+					data.statusInfo.isPending = true;
+					break;
+				case 'ACTIVE':
+					data.statusInfo.isActive = true;
+					break;
+				default:
+					data.statusInfo.isActive = false;
+			}
 		}
 	}
 

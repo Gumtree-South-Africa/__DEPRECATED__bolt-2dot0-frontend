@@ -24,25 +24,23 @@ let VIP = {
 		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
 			if(daysLeft > 60) {
 				redirectUrl = '/?statusAd=adInactive';
-				res.redirect(redirectUrl);
-				return;
+				return redirectUrl;
 			}
 		}
 
 		if( modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ){
 			redirectUrl = '/?status=adInactive';
-			res.redirect(redirectUrl);
-			return;
+			return redirectUrl;
 		}
-
 
 		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
 			if(daysLeft > 60) {
 				redirectUrl = '/?status=adPending';
-				res.redirect(redirectUrl);
-				return;
+				return redirectUrl;
 			}
 		}
+
+		return null;
 	},
 	extendHeaderData: (req, modelData) => {
 		// SEO
@@ -180,13 +178,12 @@ router.get('/:id?', (req, res, next) => {
 			}
 		}
 
-		if( modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ){
-			let redirectUrl = '/?status=adInactive';
-			res.redirect(redirectUrl);
+		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
+		if (redirectUrlByStatus !== null) {
+			res.redirect(redirectUrlByStatus);
 			return;
 		}
 
-		VIP.redirectBasedOnAdStatus(req, res, modelData);
 		VIP.extendHeaderData(req, modelData);
 		VIP.buildHeaderPageMessages(query, modelData);
 		VIP.extendFooterData(req, modelData);
