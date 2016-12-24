@@ -63,7 +63,7 @@
                     {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
                 </div>
             </div>
-            {{> (dynamic "postAdFormMainDetails") enableComponents = this.enableComponents }}
+            {{> (dynamic "postAdFormMainDetails") enableComponents = this.enableComponents locationlatlong = this.locationlatlong googleMap=this.googleMap}}
             <div class="desktop-post-ad margin-auto">
                 <div class="input-form">
                     <a id="postAdBtn" class="post-ad-btn btn-wrapper">
@@ -82,4 +82,3 @@
         {{> (dynamic "adFeatureSelection") model=this}}
 	</section>
 {{/partial}}
-

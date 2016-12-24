@@ -2,32 +2,62 @@
 
 let googleRanges = [];
 let googleMarker = [];
-// this is a mock location
-let locationMock = { lat: 19.3883633, lng: -99.1744249 };
-let locationMexicoMock = { lat: 23.49125085380051, lng: -100.15682835625 };
 
 class FormMap {
 	constructor() {
 		this.HtmlMap = $("#map");
 		this.HtmlAutocomplete = $("#autocompleteTextBox");
+		this.errorMessageMap = $(".errorMessageMap");
 		this.HtmlEnableLocation = $("#checkGeolocation");
 		this.HtmlSetLocation = $("#setCurrentLocationButton");
-		this.zoom = 17;
-		this.accuracy = 5;
+		this.googleMap = $(".form-map-component").data("google-map");
+		this.locationAd = $(".form-map-component").data("location-ad");
+		this.zoom = this.googleMap.zoom;
+		this.accuracy = this.googleMap.accuracy;
 		this.map;
 		this.placeSearch;
 		this.autocomplete;
+		this.validationCoordinates = {};
 		this.useGeolocation;
-		this.position = locationMexicoMock;
-		this.currentLocation;
-		this.meters = 1000;
+		this.meters = this.googleMap.sizeRadio;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
+		this.validateCountry = (coordinates) => {
+			return new Promise(function(success, reject) {
+				if (!coordinates) {
+			  	return success(false);
+				}
+				let geocoder = new google.maps.Geocoder(),
+						latlng = new google.maps.LatLng(coordinates.lat, coordinates.lng);
+
+				geocoder.geocode({'latLng': latlng}, function(results, status) {
+					let countryShortName, i;
+					try {
+						if (status === 'OK') {
+							if(results[0]) {
+								for(i = 0; i < results[0].address_components.length; i++) {
+									if(results[0].address_components[i].types[0] === "country") {
+										countryShortName = results[0].address_components[i].short_name;
+									}
+								}
+								if(countryShortName === window.formMap.country) {
+									window.formMap.HtmlAutocomplete.val(results[0].formatted_address);
+									success(coordinates);
+								} else {
+									window.formMap.errorMessageMap.html(window.formMap.googleMap.errorMessage).show();
+								}
+							}
+						}
+						success(false);
+					} catch (ex) {
+						reject(ex);
+					}
+				});
+			});
+		};
 	}
-
-
 
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
@@ -60,19 +90,18 @@ class FormMap {
 	}
 
 	configMap() {
+		let tempzoom = this.locationAd ? this.zoom : 4;
 		this.map = new google.maps.Map(this.HtmlMap[0], {
-			center: locationMexicoMock,
-			zoom: 4,
-			disableDefaultUI: true
+			center: window.formMap.position,
+			zoom: tempzoom,
+			disableDefaultUI: true,
+			componentRestrictions: 'MX'
 		});
+
 		google.maps.event.trigger(this.map, "resize");
 		this.map.setOptions({draggable: false, zoomControl: false, scrollwheel: false, disableDoubleClickZoom: true});
 		this.HtmlSetLocation.addClass("active");
 		this.HtmlAutocomplete.addClass("inactive");
-		this.map.addListener('dragend', () => {
-			this.setLocation();
-		});
-
 		this.map.addListener('idle',() => {
 			google.maps.event.trigger(this.map, "resize");
 		});
@@ -109,25 +138,23 @@ class FormMap {
 	}
 
 	geolocate() {
-		// the coords is the map of mexico { lat: 23.3650375, lng: -111.5740098 }
-		this.position = this.position ? this.position : locationMock;
 		try	{
 			if (navigator.geolocation) {
 				navigator.geolocation.getCurrentPosition ((gps) => {
-					this.position.lat = gps.coords.latitude;
-					this.position.lng = gps.coords.longitude;
+					this.position = {
+						lat: gps.coords.latitude,
+						lng: gps.coords.longitude
+					};
+					window.formMap.validateCountry(this.position).then(function(result) {
+						if (result) {
+							window.formMap.position = result;
+							window.formMap.setCurrentPosition();
+						}
+					});
 				});
 			}
 		} catch(error) {
-			this.position = this.position ? this.position : locationMock;
-		}
-
-		if(this.map) {
-			this.map.setCenter(this.position);
-			this.map.setZoom(this.zoom);
-			this.removeAllMarker();
-			this.removeAllRanges();
-			this.addRange(this.meters);
+			return window.formMap.position;
 		}
 	}
 
@@ -184,21 +211,28 @@ class FormMap {
 		}
 		googleMarker = new Array();
 	}
+
+	setPosition() {
+		this.validateCountry(this.locationAd).then(function(result) {
+			window.formMap.position = result || window.formMap.googleMap.defaultLocation;
+			window.formMap.configMap();
+			if(!result) {
+				window.formMap.geolocate();
+			} else {
+				window.formMap.setCurrentPosition();
+			}
+		});
+	}
 }
 
 let initialize = () => {
-	let validator = window.getUrlParameter('BOLT24812');
-	if(validator || validator === 1) {
-		window.formMap = new FormMap();
-		// set the current location via data in node
-		window.formMap.configMap();
-		window.googleRanges = googleRanges;
-		window.googleMarker = googleMarker;
-		window.locationMexicoMock = locationMexicoMock;
-	}
-
+	window.formMap = new FormMap();
+	window.formMap.country = $(".form-map-component").data("google-map").country;
+	// set the current location via data in node
+	window.formMap.setPosition();
+	window.googleRanges = googleRanges;
+	window.googleMarker = googleMarker;
 };
-
 
 module.exports = {
 	initialize

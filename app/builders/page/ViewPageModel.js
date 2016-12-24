@@ -603,7 +603,6 @@ class ViewPageModel {
 						keywordData[keywordPromiseArray[keywordIndex]] = value;
 					} else {
 						let reason = result.reason;
-						console.error('Error in Keyword Service : ', reason);
 						keywordData[keywordPromiseArray[keywordIndex]] = {};
 					}
 					++keywordIndex;

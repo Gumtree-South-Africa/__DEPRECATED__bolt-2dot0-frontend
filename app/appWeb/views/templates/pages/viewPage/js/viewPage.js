@@ -29,8 +29,8 @@ switch (constImgLength) {
 		$('.slider-nav').addClass('col3');
 		break;
 	case 4:
-			$('.slider-nav').addClass('col4');
-			break;
+		$('.slider-nav').addClass('col4');
+		break;
 	default:
 		break;
 }

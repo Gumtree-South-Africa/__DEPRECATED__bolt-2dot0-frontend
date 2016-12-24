@@ -1588,6 +1588,11 @@
 			"deletedStatusBannerReasonMessage": "Leer nuestros Términos y Condiciones",
 			"deletedStatusBannerReasonURL": "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/Lo-que-no-se-permite-en-vivanuncios/?q=aprobación&l=es&fs=Search&pn=1&vgroup1=PKB&c=PKB%3A&s=a000G00000POyaTQAT"
 		},
+		"gallery": {
+			"zoomTitle": "Vista con zoom",
+			"zoomTip1": "Pellizca con dos dedos para utilizar el zoom.",
+			"zoomTip2": "Arrastra para mover la imagen."
+		},
 		"seller": {
 			"emailVerified": "Email Verificado",
 			"adsPosted": "ANUNCIOS PUBLICADOS",
@@ -1663,7 +1668,13 @@
 				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
 			},
 			"close": "Cerrar",
-			"returnToBrowsing": "Seguir navegando"
+			"returnToBrowsing": "Seguir navegando",
+			"action": {
+				"contact": "Contact",
+				"call": "Llamar",
+				"text": "SMS",
+				"message": "Mensaje"
+			}
 		}
 	},
 	"search": {

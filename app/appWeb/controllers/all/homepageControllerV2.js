@@ -12,7 +12,6 @@ let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 
-
 let HP = {
 	/**
 	 * Special header data for HomePage
@@ -237,4 +236,3 @@ module.exports = (req, res, next) => {
 		next(err);
 	});
 };
-
