@@ -23,7 +23,7 @@ let VIP = {
 		let redirectUrl;
 		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
 			if(daysLeft > 60) {
-				redirectUrl = '/?statusAd=adInactive';
+				redirectUrl = '/?status=adInactive';
 				return redirectUrl;
 			}
 		}
