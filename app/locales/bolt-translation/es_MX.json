@@ -1569,6 +1569,11 @@
 			"updated": "ACTUALIZADO",
 			"postedby": "PUBLICADO POR"
 		},
+		"gallery": {
+			"zoomTitle": "Vista con zoom",
+			"zoomTip1": "Pellizca con dos dedos para utilizar el zoom.",
+			"zoomTip2": "Arrastra para mover la imagen."
+		},
 		"seller": {
 			"emailVerified": "Email Verificado",
 			"adsPosted": "ANUNCIOS PUBLICADOS",
@@ -1644,7 +1649,13 @@
 				"wouldYouShareAdditionalPics": "¿Tienes más fotografías?"
 			},
 			"close": "Cerrar",
-			"returnToBrowsing": "Seguir navegando"
+			"returnToBrowsing": "Seguir navegando",
+			"action": {
+				"contact": "Contact",
+				"call": "Llamar",
+				"text": "SMS",
+				"message": "Mensaje"
+			}
 		}
 	},
 	"search": {
