@@ -17,7 +17,7 @@ let VIP = {
 		//Redirect deleted ads
 		let today = new Date().getTime();
     	let expired = modelData.advert.expirationDate;
-    	let difference = today - expired;
+    	let difference = expired - today;
 		let daysLeft = Math.floor(difference / 86400000);
 
 		let redirectUrl;
