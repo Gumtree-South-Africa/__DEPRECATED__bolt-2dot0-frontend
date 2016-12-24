@@ -272,11 +272,24 @@ class ViewPageModel {
 		return data;
 	}
 
-	getReplyForm(status){
-		if(status === 'ACTIVE'){
-			return true;
-		}else{
-			return false;
+	/**
+	 * Set Ad status for later use
+	 * @param data
+	 */
+	setAdStatus(data) {
+		data.statusInfo.isPending = false;
+		data.statusInfo.isActive = false;
+		data.statusInfo.isDeleted = false;
+		data.statusInfo.isBlocked = false;
+		switch(data.statusInfo.status) {
+			case 'PENDING':
+				data.statusInfo.isPending = true;
+				break;
+			case 'ACTIVE':
+				data.statusInfo.isActive = true;
+				break;
+			default:
+				data.statusInfo.isActive = false;
 		}
 	}
 
@@ -391,8 +404,6 @@ class ViewPageModel {
 		//Status Banner
 		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 
-		//show replyForm if ACTIVE
-		modelData.advert.showReplyFormIfActiveStatus = this.getReplyForm(modelData.advert.statusInfo.status);
 		return modelData;
 	}
 
@@ -454,6 +465,9 @@ class ViewPageModel {
 					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}
 
+				// Ad Status
+				this.setAdStatus(data);
+
 				// This will handle the cases when BAPI returns 404 for certain ad states, and we would like to know why
 				if (data.name === 'BapiError') {
 					data.adErrorDetail = data.bapiJson.details;
@@ -462,18 +476,21 @@ class ViewPageModel {
 					if (data.adErrorDetailMessage.indexOf('DELETED')) {
 						data.statusInfo = {
 							status: 'DELETED',
-							statusReason: 'DELETED__ADMIN__DELETED'
+							statusReason: 'DELETED__ADMIN__DELETED',
+							isDeleted: true
 						};
 					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
 						data.statusInfo = {
 							status: 'BLOCKED',
-							statusReason: 'BLOCKED__TNS__CHECKED'
+							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
 						};
 					}
 
 					return data;
 				} else {
 					// Manipulate Ad Data
+
 					// seoVipUrl
 					let seoVipElt = data._links.find((elt) => {
 						return elt.rel === "seoVipUrl";
@@ -512,22 +529,24 @@ class ViewPageModel {
 					// Map
 					data.map = this.getMapFromSignedUrl(data.signedMapUrl);
 
-					// Breadcrumbs
-					data.breadcrumbs = {};
-					data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
-					data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
-					data.breadcrumbs.locations.forEach((location, index) => {
-						location.position = index + 1;
-					});
-					data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
-					data.breadcrumbs.categories.forEach((category, index) => {
-						category.position = data.breadcrumbs.locations.length + index + 1;
-						category.locationInText = data.breadcrumbs.leafLocation.text;
-					});
-					data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length-1]._links[0].href;
+					if (data.statusInfo.isActive) {
+						// Breadcrumbs
+						data.breadcrumbs = {};
+						data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+						data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+						data.breadcrumbs.locations.forEach((location, index) => {
+							location.position = index + 1;
+						});
+						data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+						data.breadcrumbs.categories.forEach((category, index) => {
+							category.position = data.breadcrumbs.locations.length + index + 1;
+							category.locationInText = data.breadcrumbs.leafLocation.text;
+						});
+						data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length - 1]._links[0].href;
 
-					// Similar-Ads/Seller-Other-Ads configuration
-					this.getOtherAdsCard(data);
+						// Similar-Ads/Seller-Other-Ads configuration
+						this.getOtherAdsCard(data);
+					}
 
 					// Location
 					let locationElt = data._links.find((elt) => {
