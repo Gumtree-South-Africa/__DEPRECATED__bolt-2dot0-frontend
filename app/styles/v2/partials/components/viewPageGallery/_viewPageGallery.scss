@@ -5,6 +5,16 @@
 .slider-for, .slider-mobile-for{
 	background-color: black;
 	overflow: hidden;
+
+	&::after {
+		background: linear-gradient( 0deg, rgba(0, 0, 0, 0.5), transparent );
+		bottom: 0;
+		content: '';
+		display: block;
+		height: 140px;
+		position: absolute;
+		width: 100%;
+	}
 }
 .slick-track{
 	margin: 0 auto;
@@ -137,14 +147,16 @@
 	}
 	.slick-dots {
 		bottom: 0;
-		position: absolute;
-    list-style: none;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    width: 100%;
 		margin-bottom: 0.2em;
 		margin-left: -0.5em;
+		position: absolute;
+	    list-style: none;
+	    margin: 0;
+	    padding: 0;
+	    text-align: center;
+	    width: 100%;
+		z-index: 1;
+
 		li {
 		  position: relative;
 		  display: inline-block;
