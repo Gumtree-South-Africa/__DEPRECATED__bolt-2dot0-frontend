@@ -1,4 +1,4 @@
-{{#compare this.advert.status "===" 'active'}}
+{{#if this.advert.showReplyFormIfActiveStatus}}
   {{#partial "replyFormContainer"}}
 	<div id="replyModal" class="message-sent modal modal-cp desktop-only hide">
 		<div class="modal-overlay"></div>
@@ -181,7 +181,7 @@
     		</div>
     	</noscript>
     {{/partial}}
-{{/compare}}
+{{/if}}
 
 
 

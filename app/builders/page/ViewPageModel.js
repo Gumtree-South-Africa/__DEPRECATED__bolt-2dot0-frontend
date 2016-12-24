@@ -272,6 +272,14 @@ class ViewPageModel {
 		return data;
 	}
 
+	getReplyForm(status){
+		if(status === 'ACTIVE'){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	/**
 	 * Builds the Status Messages to be displayed
 	 */
@@ -381,7 +389,10 @@ class ViewPageModel {
 		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
 
 		//Status Banner
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason,modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+
+		//show replyForm if ACTIVE
+		modelData.advert.showReplyFormIfActiveStatus = this.getReplyForm(modelData.advert.statusInfo.status);
 		return modelData;
 	}
 
