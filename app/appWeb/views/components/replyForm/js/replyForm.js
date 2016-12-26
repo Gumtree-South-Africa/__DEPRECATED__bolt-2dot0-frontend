@@ -20,15 +20,13 @@ class replyForm {
 				$('.message-sent').removeClass('hide');
 			}
 
-			let $realPhone = $('.real-phone').text();
-			let $encodedPhone = window.btoa($realPhone);
-			$('.real-phone').text($encodedPhone);
-
+			let $realPhone = $('.real-phone');
+			$realPhone.text(window.btoa($realPhone.text()));
 
 			$('.show-phone').on('click', function() {
 				$('.hidden-phone').addClass('hide');
-				$('.real-phone').text(window.atob($realPhone));
-				$('.real-phone').removeClass('hide');
+				$realPhone.text(window.atob($realPhone.text()));
+				$realPhone.removeClass('hide');
 				$('.show-phone').addClass('hide');
 			});
 

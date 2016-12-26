@@ -4,6 +4,8 @@
 
         {{> (dynamic "topBanner")}}
 
+        {{> (dynamic "statusBanner") }}
+
         {{#if this.trendingCard}}
             {{#if this.locationlatlong.localizedName}}
                 {{> (dynamic "card") card=this.trendingCard
