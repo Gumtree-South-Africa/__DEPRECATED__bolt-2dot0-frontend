@@ -5,9 +5,13 @@
 
     {{> (dynamic "topBanner")}}
 
-    <div class="vip-left-columns">
-        <div id="viewPage">
-            {{> (dynamic "viewPageGallery")}}
+  <div class="status-ad-banner-mobile">
+    {{> (dynamic "statusBanner") }}
+  </div>
+
+  <div class="vip-left-columns">
+    <div id="viewPage">
+      {{> (dynamic "viewPageGallery")}}
 
             {{#ifMobile this.device}}
                 <div class="seller-profile">
@@ -41,6 +45,9 @@
     </div>
 
     <div class="vip-right-columns">
+        <div class="status-ad-banner-desktop">
+          {{> (dynamic "statusBanner") }}
+        </div>
         {{#unlessMobile this.device}}
             <div class="seller-profile">
                 {{> (dynamic "sellerProfile")}}
@@ -99,6 +106,7 @@
 
 
 {{#partial "pageTailScripts"}}
+
 
     <script>
         var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";

@@ -160,6 +160,7 @@ let mockGoogleLocationApi = () => {
 					fitBounds: function() { },
 					getCenter: function() { },
 					setCenter: function() { },
+					setOptions: function() { },
 					setZoom: function() { },
 					addListener: function() {
 						return {

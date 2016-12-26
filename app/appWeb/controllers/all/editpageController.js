@@ -59,12 +59,17 @@ router.get('/:id?', (req, res, next) => {
 		EditAdPage.extendModelData(req, modelData);
 		modelData.adId = adId;
 
+		modelData.enableComponents = req.query.BOLT24748 === '1' ? true : false;
 		modelData.header.distractionFree = false;
 		modelData.footer.distractionFree = false;
 		modelData.eps = EpsModel();
 		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
-
+		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMapConfiguration);
+		modelData.locationLatLong = JSON.stringify({
+			lat: modelData.adResult.location.latitude,
+			lng: modelData.adResult.location.longitude
+		});
 		pageControllerUtil.postController(req, res, next, 'editAd/views/hbs/editAd_', modelData);
 	}).fail((err) => {
 		console.error(err);
