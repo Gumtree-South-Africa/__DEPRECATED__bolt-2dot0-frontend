@@ -32,6 +32,7 @@ class FormMap {
 				let geocoder = new google.maps.Geocoder(),
 						latlng = new google.maps.LatLng(coordinates.lat, coordinates.lng);
 
+				/* istanbul ignore next */
 				geocoder.geocode({'latLng': latlng}, function(results, status) {
 					let countryShortName, i;
 					try {
@@ -70,10 +71,11 @@ class FormMap {
 	}
 
 	initAutocomplete() {
-		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'] });
+		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'], componentRestrictions: {country: window.formMap.country}});
 		this.autocomplete.bindTo('bounds', this.map);
 
 		let that = this.autocomplete;
+		/* istanbul ignore next */
 		this.autocomplete.addListener('place_changed', () => {
 			let place = that.getPlace();
 			this.HtmlAutocomplete.removeClass("error");
@@ -95,7 +97,7 @@ class FormMap {
 			center: window.formMap.position,
 			zoom: tempzoom,
 			disableDefaultUI: true,
-			componentRestrictions: 'MX'
+			componentRestrictions: window.formMap.country
 		});
 
 		google.maps.event.trigger(this.map, "resize");
@@ -117,15 +119,6 @@ class FormMap {
 	getLocation() {
 		let value = this.HtmlEnableLocation[0].checked;
 		this.geolocate(value);
-	}
-
-	getPosition() {
-		let cords = this.map.getCenter();
-		let pos = {
-			lat: cords.lat(),
-			lng: cords.lng()
-		};
-		return pos;
 	}
 
 	setCurrentPosition() {

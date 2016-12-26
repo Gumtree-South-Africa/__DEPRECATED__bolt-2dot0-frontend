@@ -7,7 +7,6 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
-
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
 	IsEbayDirectUL: true
@@ -235,15 +234,13 @@ describe('Post Ad', () => {
 	});
 
 	describe("formMap", () => {
-		let $testArea;
 		window.getUrlParameter(true);
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
-
-			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
 			formMapController.initialize();
 		});
+
 		it('test if google api maps has been applied on object window.google', () => {
 			spyOn(window.google.maps, 'Map');
 			this.map = new google.maps.Map($(".map")[0], {
@@ -254,9 +251,9 @@ describe('Post Ad', () => {
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
-		it("initialize and disable geolocate", () => {
-			let checkGeolocation = $testArea.find('#checkGeolocation');
-			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
+		it("autocomplete test", () => {
+			window.formMap.initAutocomplete();
+			expect(window.formMap.HtmlAutocomplete).toBeDefined();
 		});
 	});
 });

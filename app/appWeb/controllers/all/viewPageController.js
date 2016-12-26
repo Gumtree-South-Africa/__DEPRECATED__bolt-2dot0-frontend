@@ -28,7 +28,7 @@ let VIP = {
 			}
 		}
 
-		if( modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ){
+		if( modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ) {
 			redirectUrl = '/?status=adInactive';
 			return redirectUrl;
 		}
