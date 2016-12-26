@@ -25,6 +25,7 @@ class FormMap {
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
+		this.secondsGetposition = 2;
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
@@ -76,6 +77,19 @@ class FormMap {
 		this.HtmlAutocomplete.addClass("inactive");
 		this.map.addListener('idle',() => {
 			google.maps.event.trigger(this.map, "resize");
+		});
+
+		// enables the behavior of get a location valid after 2 seconds of having dragged the map
+		this.map.addListener('dragend', () => {
+			setTimeout(() => {
+				this.position = this.getPosition();
+				window.formMap.validateCountry(this.position).then(function(result) {
+					if (result) {
+						window.formMap.position = result;
+						window.formMap.setCurrentPosition();
+					}
+				});
+			}, this.secondsGetposition * 1000);	
 		});
 	}
 
@@ -147,6 +161,8 @@ class FormMap {
 					});
 				});
 			}
+
+			this.map.setOptions({draggable: true, zoomControl: true, scrollwheel: true, disableDoubleClickZoom: false});
 		} catch(error) {
 			return window.formMap.position;
 		}
