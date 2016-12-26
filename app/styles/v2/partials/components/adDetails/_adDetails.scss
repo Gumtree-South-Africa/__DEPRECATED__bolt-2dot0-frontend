@@ -66,11 +66,14 @@
 				}
 				.pri-props-value {
 				    display: inline-block;
-					color: $adPropertyValue;
 				    overflow: hidden;
 				    text-overflow: ellipsis;
 				    vertical-align: middle;
 					white-space: nowrap;
+
+					&:not(a) {
+						color: $adPropertyValue;
+					}
 				}
 			}
 		}
@@ -144,8 +147,12 @@
 	margin-bottom: 10px;
 	border-top: 2px solid $vivaGray2;
 }
-.slash-separator:last-child{
-	display:none;
+.slash-separator {
+	color: $text-menu-ads;
+
+	&:last-child {
+		display:none;
+	}
 }
 
 @include in-breakpoint($no-break) {
