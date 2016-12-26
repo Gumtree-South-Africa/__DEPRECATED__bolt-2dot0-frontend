@@ -147,8 +147,12 @@
 	margin-bottom: 10px;
 	border-top: 2px solid $vivaGray2;
 }
-.slash-separator:last-child{
-	display:none;
+.slash-separator {
+	color: $text-menu-ads;
+
+	&:last-child {
+		display:none;
+	}
 }
 
 @include in-breakpoint($no-break) {
