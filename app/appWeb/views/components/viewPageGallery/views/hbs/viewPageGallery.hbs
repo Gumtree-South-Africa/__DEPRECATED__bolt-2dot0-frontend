@@ -1,8 +1,8 @@
 <div class="container {{#if this.device.isMobile}}isMobile{{/if}}">
   <div class="zoomI hidden"></div>
   <div class="zoomT hidden">
-    <div>Pinch in and out to zoom.</div>
-    <div>Drag to pan around the image.</div>
+    <div>{{i18n "vip.gallery.zoomTip1"}}</div>
+    <div>{{i18n "vip.gallery.zoomTip2"}}</div>
   </div>
 
 {{#if this.device.isMobile}}
@@ -55,7 +55,7 @@
     <div class="modal-close-section">
       <div class="modal-closearea">
         <span class="close-text">{{i18n "modal.close"}}</span>
-        <span class="icon-close"></span>
+        <span class="icon-close-small-bold close-icon-font"></span>
       </div>
     </div>
 

@@ -63,6 +63,9 @@ let HP = {
 			case 'adInactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
 				break;
+			case 'adPending':
+				modelData.header.pageMessages.success = 'homepage.pendingStatusBannerMessage';
+				break;
 			case 'resetPassword':
 				modelData.header.pageMessages.success = 'home.reset.password.success';
 				modelData.header.pageType = pagetypeJson.pagetype.PASSWORD_RESET_SUCCESS;
