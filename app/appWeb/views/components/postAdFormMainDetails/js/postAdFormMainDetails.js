@@ -700,8 +700,7 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		window.getUrlParameter = getUrlParameter;
-		let validator = window.getUrlParameter('BOLT24812');
+		let validator = getUrlParameter('BOLT24748');
 		if(!validator) {
 			locationSelection.initialize((data) => {
 				this._setHiddenLocationInput(data);

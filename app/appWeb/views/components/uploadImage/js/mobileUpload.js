@@ -280,6 +280,3 @@ class MobileUpload {
 }
 
 module.exports = new MobileUpload();
-
-
-

@@ -3,7 +3,7 @@
   background-color: #F7F7F7;
   background-color: $common-background-color;
   float: left;
-  height: 490px;
+  min-height: 310px;
   width: 100%;
   .empty-message {
     display: table;

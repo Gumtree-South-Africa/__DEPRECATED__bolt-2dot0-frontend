@@ -13,7 +13,6 @@ let BasePageModel = require(cwd + '/app/builders/common/BasePageModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let VerticalCategoryUtil = require(cwd + '/app/utils/VerticalCategoryUtil.js');
 
-
 let _ = require('underscore');
 
 class EditAdPageModel {
