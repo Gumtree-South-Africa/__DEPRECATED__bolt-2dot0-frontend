@@ -144,19 +144,7 @@
 }
 
 @media (max-width: 479px) {
-    .duText {
-        display: none;
-    }
-
     .show-icon {
-        margin: 0;
-    }
-
-    .sticky-contact {
-        .stickyBtn {
-            a {
-                line-height: 37px;
-            }
-        }
+        display: none;
     }
 }
