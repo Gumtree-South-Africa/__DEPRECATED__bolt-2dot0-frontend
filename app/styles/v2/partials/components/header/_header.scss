@@ -16,8 +16,16 @@ $dropdown-width: 220px;
 	@include from-breakpoint($medium-break) {
 		position: relative;
 	}
-	z-index: 2;
-
+	z-index: 4;
+	&.hidden-search {
+		height: 116px;
+		.search-controls {
+			display: none;
+		}
+		.post-ad-header {
+			margin-top: 1em;
+		}
+	}
 	.headerV2 {
 		z-index: 9;
 		position: relative;
