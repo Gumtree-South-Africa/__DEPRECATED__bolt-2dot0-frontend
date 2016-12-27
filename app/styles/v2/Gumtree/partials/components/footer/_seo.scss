@@ -48,16 +48,15 @@
 @include from-breakpoint($medium-break){
 	.seo-wrapper{
 		.locations-wrapper, .searches-wrapper, .categories-wrapper {
-			display: inline-block;
-			vertical-align: top;
+			// display: inline-block;
+			// vertical-align: top;
 		}
 		.tab-content {
-			width: 33%;
+			// width: 33%;
 			margin:0;
 			text-align: center;
 			.top-content{
-				float: left;
-				width: 49%;
+				// width: 49%;
 			}
 			.top-content-wrapper .top-content .top-links{
 				position: relative;

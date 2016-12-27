@@ -2,7 +2,6 @@
 	&:first-child {
 		margin-left: 0px;
 	}
-	font-weight: bold;
 }
 
 .seo-line {
@@ -24,7 +23,7 @@
 
 .thick-underline {
 	border-bottom: 3px solid #fafafa;
-	padding-bottom: 6px;
+	padding-bottom: 4px;
 }
 
 @include from-breakpoint($medium-break) {
