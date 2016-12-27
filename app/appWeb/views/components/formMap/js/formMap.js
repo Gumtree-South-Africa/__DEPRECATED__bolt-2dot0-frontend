@@ -118,11 +118,10 @@ class FormMap {
 	expandViewportToFitPlace(map, place) {
 		if (place.geometry.viewport) {
 			map.fitBounds(place.geometry.viewport);
-			map.setZoom(this.zoom);
 		} else {
 			map.setCenter(place.geometry.location);
-			map.setZoom(this.zoom);
 		}
+		map.setZoom(this.zoom);
 	}
 
 	// get coords of current position of map
