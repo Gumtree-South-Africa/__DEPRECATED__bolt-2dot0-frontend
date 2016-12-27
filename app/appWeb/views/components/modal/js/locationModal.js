@@ -184,10 +184,11 @@ let _refreshPage = () => {
 let _closeModal = () => {
 	document.removeEventListener('touchmove', _preventDefault, false);
 	$('body').removeClass('stop-scrolling');
+	console.log(this.setValueCb, this.valueCbLocation);
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
 	} else {
-		_refreshPage();
+		this.$locationText.text(this.$locmodal.val());
 	}
 };
 
@@ -199,6 +200,7 @@ let _closeModal = () => {
 let initialize = (setValueCb) => {
 	this.$locale = $('html').attr('data-locale');
 	this.$locmodal = $('#modal-location');
+	this.$locationText = $('.location-text');
 	this.$modal = $('#locationModal');
 
 	this.langs = this.$locale.split('_')[0];
