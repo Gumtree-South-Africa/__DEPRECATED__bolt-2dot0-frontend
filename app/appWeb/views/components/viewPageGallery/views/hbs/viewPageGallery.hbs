@@ -1,8 +1,8 @@
 <div class="container {{#if this.device.isMobile}}isMobile{{/if}}">
   <div class="zoomI hidden"></div>
   <div class="zoomT hidden">
-    <div>Pinch in and out to zoom.</div>
-    <div>Drag to pan around the image.</div>
+    <div>{{i18n "vip.gallery.zoomTip1"}}</div>
+    <div>{{i18n "vip.gallery.zoomTip2"}}</div>
   </div>
 
 {{#if this.device.isMobile}}
@@ -16,7 +16,7 @@
     </div>
     <div class="slider-mobile-for" data-elem="pinchzoomer">
     {{#each this.advert.picturesToDisplay.testPictures}}
-			<img class="slick-carousel" src="{{this}}" alt="{{../this.advert.title}}" />
+			<img class="slick-carousel" src="{{{this}}}" alt="{{../this.advert.title}}" />
 		{{/each}}
     </div>
 	</div>
@@ -33,7 +33,7 @@
     <div class="slider-for">
       {{#each this.advert.picturesToDisplay.testPictures}}
         <div>
-          <img src="{{this}}" alt="{{../this.advert.title}}"/>
+          <img src="{{{this}}}" alt="{{../this.advert.title}}"/>
         </div>
       {{/each}}
     </div>
@@ -41,7 +41,7 @@
 
   <div class="carousel-images slider-nav original">
     {{#each this.advert.picturesToDisplay.testPictures}}
-      <img class="slick-carousel" src="{{this}}" alt={{../this.advert.title}}/>
+      <img class="slick-carousel" src="{{{this}}}" alt={{../this.advert.title}}/>
     {{/each}}
   </div>
 
@@ -55,7 +55,7 @@
     <div class="modal-close-section">
       <div class="modal-closearea">
         <span class="close-text">{{i18n "modal.close"}}</span>
-        <span class="icon-close"></span>
+        <span class="icon-close-small-bold close-icon-font"></span>
       </div>
     </div>
 
@@ -68,14 +68,14 @@
     <div class="carousel-text slider-for">
       {{#each this.advert.picturesToDisplay.testPictures}}
         <div>
-          <img src="{{this}}" alt="{{../this.advert.title}}"/>
+          <img src="{{{this}}}" alt="{{../this.advert.title}}"/>
         </div>
       {{/each}}
     </div>
 
     <div class="carousel-images slider-nav slider-nav-overlay">
       {{#each this.advert.picturesToDisplay.testPictures}}
-        <img class="slick-carousel" src="{{this}}" alt={{../this.advert.title}}/>
+        <img class="slick-carousel" src="{{{this}}}" alt={{../this.advert.title}}/>
       {{/each}}
     </div>
 

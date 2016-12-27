@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Q = require('q');
 
-var bapi = require('./BAPICall');
+var rest = require(process.cwd() + '/server/services/protocols/RESTCall');
 
 var makeHeaders = function (bapiHeaderValues) {
 	// Add Headers
@@ -25,7 +25,7 @@ var makeHeaders = function (bapiHeaderValues) {
 		headers['X-BOLT-USER-AGENT'] = bapiHeaderValues.useragent;
 	}
 	if (typeof bapiHeaderValues.authTokenValue !== 'undefined' && !_.isEmpty(bapiHeaderValues.authTokenValue)) {
-		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;		
+		headers['Authorization'] = 'Bearer ' +  bapiHeaderValues.authTokenValue;
 	}
 	return headers;
 };
@@ -74,7 +74,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return bapi.doGet(bapiOptions, null).then((output) => {
+	return rest.doGet(bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
@@ -108,7 +108,7 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return bapi.doPost(postData, bapiOptions, null).then((output) => {
+	return rest.doPost(postData, bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};

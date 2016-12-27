@@ -82,6 +82,10 @@
 		<section id="custom-attributes">
 			{{> (dynamic "postFormCustomAttributes") model=this}}
 		</section>
-		{{> (dynamic "locationSelection")}}
+		{{#if this.enableComponents}}
+			{{> (dynamic "formMap" locationlatlong = this.locationlatlong googleMap=this.googleMap)}}
+		{{else}}
+			{{> (dynamic "locationSelection")}}
+		{{/if}}
 	</form>
 </div>

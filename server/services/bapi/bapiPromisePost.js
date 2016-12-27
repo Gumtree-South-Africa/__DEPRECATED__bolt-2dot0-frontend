@@ -3,7 +3,7 @@
 var _ = require('underscore');
 var Q = require('q');
 
-let bapi = require('./BAPICall');
+let rest = require(process.cwd() + '/server/services/protocols/RESTCall');
 
 module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaders.locale} ${bapiHeaders.requestId}`);
@@ -44,7 +44,7 @@ module.exports = function(bapiOptions, bapiHeaders, postData, serviceName){
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return bapi.doPost(postData, bapiOptions, null).then((output) => {
+	return rest.doPost(postData, bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};

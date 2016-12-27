@@ -53,14 +53,11 @@ $photo-switcher-width: 30%;
 		font-weight: bold;
 	}
 	.title-text{
- 		max-width: 7em;
+ 		max-width: 12em;
  		max-height: 21px;
 		@include to-breakpoint($small-break){
 			text-align: center;
 			padding: 0em 1em;
-		}
-		@include in-breakpoint($small-break){
-				max-width: 7em;
 		}
  		@include from-breakpoint($medium-break){
  			max-width: 30em;

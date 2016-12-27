@@ -12,7 +12,6 @@ let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 
-
 let HP = {
 	/**
 	 * Special header data for HomePage
@@ -63,6 +62,9 @@ let HP = {
 				break;
 			case 'adInactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
+				break;
+			case 'adPending':
+				modelData.header.pageMessages.success = 'homepage.pendingStatusBannerMessage';
 				break;
 			case 'resetPassword':
 				modelData.header.pageMessages.success = 'home.reset.password.success';
@@ -212,4 +214,3 @@ module.exports = (req, res, next) => {
 		next(err);
 	});
 };
-

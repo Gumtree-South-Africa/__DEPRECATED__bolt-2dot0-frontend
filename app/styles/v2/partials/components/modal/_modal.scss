@@ -34,12 +34,19 @@
           > div .close-text {
             vertical-align: middle;
             margin-right: 0.5em;
+		    font-size: 12px;
           }
           > div .icon-close{
               display: inline-block;
               vertical-align: middle;
 			  cursor: pointer;
           }
+		  .close-icon-font {
+			  display: inline-block;
+			  position: relative;
+			  top: 2px;
+			  right: 1px;
+		  }
       }
   }
 }
@@ -102,11 +109,3 @@
 	pointer-events: none;
 	opacity: 0.5;
 }
-
-.change-loc {
-	font: $p2;
-	color: $modal-info;
-	margin-top: 0.25em;
-	margin-left: 1em;
-}
-
