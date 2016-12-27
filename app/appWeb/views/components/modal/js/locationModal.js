@@ -184,7 +184,6 @@ let _refreshPage = () => {
 let _closeModal = () => {
 	document.removeEventListener('touchmove', _preventDefault, false);
 	$('body').removeClass('stop-scrolling');
-	console.log(this.setValueCb, this.valueCbLocation);
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
 	} else {
