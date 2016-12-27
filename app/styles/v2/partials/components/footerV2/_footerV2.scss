@@ -366,8 +366,19 @@
 		}
 
 		.social-container {
-			width: 400px;
+			width: 50%;
 			display: inline-block;
+			padding-left:10px;
+
+			.social-info-text{
+				float: left;
+				padding-top: 15px;
+			}
+			.social-info-icons{
+				display: inline-block;
+			    width: 70%;
+			    float: left;
+			}
 
 			.social-icon-wrapper {
 				width: 20%;

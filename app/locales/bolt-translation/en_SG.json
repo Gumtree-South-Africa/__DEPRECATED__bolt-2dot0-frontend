@@ -1143,7 +1143,9 @@
     "help": {
       "heretohelp": "Meet our customer team",
       "contact": "Contact us",
-      "contactDF": "Customer care"
+      "contactDF": "Customer care",
+      "followUs": "FOLLOW US ON: "
+
     },
     "support": {
       "contact": "Contact us"
