@@ -55,6 +55,61 @@
 	}
 }
 
+// This part is for post overlay
+.welcome-wrapper .modal.post-overlay {
+	display: block;
+
+	.from-post-container {
+		padding: 0 5px;
+	}
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		// To ensure the post button will not cover other parts
+		padding-bottom: 65px;
+	}
+}
+.post-overlay.desktop-only {
+	text-align: center;
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		width: 340px;
+		top: 25%;
+	}
+
+	h2 {
+		font: $h2;
+		font-weight: $fontWeightBold;
+		color: $vivaBlack;
+	}
+
+	.edit-link {
+		margin-top: 1em;
+	}
+
+	.btn-wrapper {
+		margin-top: 0.5em;
+	}
+}
+// Common part for both desktop and mobile
+.modal.post-overlay {
+	.edit-link {
+		margin-top: 1em;
+
+		a {
+			color: $modal-info;
+			text-decoration: underline;
+		}
+	}
+}
+
 $item-margin: 10px;
 $photo-switcher-width: 30%;
 
