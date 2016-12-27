@@ -20,7 +20,32 @@
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
-			<div class="input-wrapper">
+			<div class="input-wrapper price-type">
+				<div class="radio-group" data-schema="data.price.priceType">
+					<label class="control" for="price-choose-fixed">
+						<input type="radio" id="price-choose-fixed" name="pricetype" value="FIXED" {{#ifeq this.adResult.price.priceType compare='FIXED'}}checked="checked"{{/ifeq}}{{#unless this.adResult.price.priceType}}checked="checked"{{/unless}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.fixed"}}</span>
+					</label>
+					<label class="control" for="price-choose-make-offer">
+						<input type="radio" id="price-choose-make-offer" name="pricetype" value="MAKE_OFFER" {{#ifeq this.adResult.price.priceType compare='MAKE_OFFER'}}checked="checked"{{/ifeq}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.make_offer"}}</span>
+					</label>
+					<label class="control" for="price-choose-contact-me">
+						<input type="radio" id="price-choose-contact-me" name="pricetype" value="CONTACT_ME" {{#ifeq this.adResult.price.priceType compare='CONTACT_ME'}}checked="checked"{{/ifeq}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.contact_me"}}</span>
+					</label>
+				</div>
+			</div>
+			<div class="input-wrapper price-amount {{#ifeq this.adResult.price.priceType compare='CONTACT_ME'}}hidden{{/ifeq}}">
 				<input title="{{i18n "postAd.mainDetails.amount"}}" type="number" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
 					{{#each this.localCurrencies}}

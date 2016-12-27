@@ -186,17 +186,8 @@ $categoryArrowIconWidth: 13px;
 		border: 1px solid red !important;
 	}
 
-	.radio-group {
-		margin-left: 15px;
-		display: inline-block;
-
-		@media(max-width: 475px) {
-			margin-left: 5px;
-
-			.control {
-				margin-right: 5px;
-			}
-		}
+	.form-ad-price .price-type .radio-group {
+		margin-left: 6%;
 
 		/* Begin custom radio btns */
 		// Hide default browser input
@@ -208,15 +199,12 @@ $categoryArrowIconWidth: 13px;
 
 		.control {
 			margin-right: 10px;
+			cursor: pointer;
 		}
 
 		// Checked
 		.control input:checked ~ .outer-circle .inner-circle {
 			background: $vivaOrange;
-		}
-
-		.currency-type {
-			cursor: pointer;
 		}
 
 		.control input:checked ~ .currency-type {
@@ -229,7 +217,7 @@ $categoryArrowIconWidth: 13px;
 			display: inline-block;
 			position: relative;
 			top: -4px;
-			left: 2.1px;
+			left: 2px;
 			width: 12px;
 			height: 12px;
 			background: #FFFFFF;
@@ -253,7 +241,11 @@ $categoryArrowIconWidth: 13px;
 		/* End custom radio btns */
 	}
 
-	.form-ad-price .radio-group {
+	.form-ad-price .price-amount {
+		margin-top: 10px;
+	}
+
+	.form-ad-price .price-amount .radio-group {
 		// To make currency-bg work
 		position: relative;
 		float: right;
@@ -268,6 +260,8 @@ $categoryArrowIconWidth: 13px;
 			text-align: center;
 			width: 60px;
 			border: 1px solid #D4D4D4;
+
+			cursor: pointer;
 
 			// To ensure it's above currency-bg
 			z-index: 2;
@@ -293,10 +287,10 @@ $categoryArrowIconWidth: 13px;
 			transition: right .3s ease-out;
 		}
 		input[type="radio"]:checked ~ input[type="radio"] ~ .currency-bg {
-			right: 62px;
+			right: 61px;
 		}
 		input[type="radio"]:checked ~ input[type="radio"] ~ input[type="radio"] ~ .currency-bg {
-			right: 124px;
+			right: 123px;
 		}
 
 		&::after {
@@ -305,7 +299,7 @@ $categoryArrowIconWidth: 13px;
 		}
 	}
 
-	.form-ad-price .input-wrapper {
+	.form-ad-price .price-amount.input-wrapper {
 		// This is to show dollar sign in price field.
 		// For other sites, please adjust content and the padding-left for price-input
 		// ZA: R, SG: $, IE: €, PL: zł

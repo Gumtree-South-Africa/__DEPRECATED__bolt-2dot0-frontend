@@ -57,6 +57,8 @@ let inputNumericCheck = function(e) {
 	}
 };
 
+const DEFAULT_PRICE_TYPE = 'FIXED';
+
 // View model for post ad form main details
 class PostAdFormMainDetailsVM {
 	constructor() {
@@ -64,6 +66,7 @@ class PostAdFormMainDetailsVM {
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
+		this._priceType = DEFAULT_PRICE_TYPE;
 		this._isPriceExcluded = true;
 		this._isShown = false;
 		this._isFixMode = false;
@@ -116,6 +119,7 @@ class PostAdFormMainDetailsVM {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
+		this.$priceAmountField = domElement.find('.price-amount');
 		$(domElement.find(".price-input")).on('keydown', (e) => inputNumericCheck(e));
 		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
@@ -138,11 +142,19 @@ class PostAdFormMainDetailsVM {
 				}
 			} else if (propName === 'isMustLeaf') {
 				this._categoryDropdownSelection.isMustLeaf = newValue || this._isVerticalCategory;
+			} else if (propName === 'priceType') {
+				this.$priceAmountField.toggleClass('hidden', newValue === 'CONTACT_ME');
 			}
 		});
 		this._$postForm = domElement.find('.post-form');
 		this._$attributeForm = domElement.find('.post-ad-custom-attributes-form');
 		this._$descriptionField = domElement.find('.form-ad-description textarea');
+		domElement.find('input[name=pricetype]').on('change', (e) => {
+			let currentElement = $(e.currentTarget);
+			if (currentElement.prop('checked')) {
+				this.priceType = currentElement.val();
+			}
+		});
 
 		// Initialize self properties from children
 		this._categoryId = this._categoryDropdownSelection.categoryId;
@@ -157,6 +169,18 @@ class PostAdFormMainDetailsVM {
 	set categoryId(newValue) {
 		this._categoryDropdownSelection.categoryId = newValue;
 		this.postFormCustomAttributes.categoryId = newValue;
+	}
+
+	get priceType() {
+		return this._priceType;
+	}
+
+	set priceType(newValue) {
+		if (this._priceType === newValue) {
+			return;
+		}
+		this._priceType = newValue;
+		this.propertyChanged.trigger('priceType', newValue);
 	}
 
 	get isPriceExcluded() {
@@ -363,6 +387,7 @@ class PostAdFormMainDetailsVM {
 
 		if (!this.isPriceExcluded) {
 			payload.price = {
+				priceType: serialized.pricetype,
 				currency: (serialized.currency) ? serialized.currency : 'MXN',
 				amount: Number(serialized.amount)
 			};
