@@ -1,0 +1,26 @@
+// This file defines all the common class about layout. The class here should be able to be applied
+// to any page.
+// All CSS rules are mobile first. That means it should reflect the mobile layout without any media query.
+// Desktop layout should only be applied via @include from-breakpoint($medium-break).
+// Direct dependencies: _mixins.scss
+
+.hidden {
+	display: none;
+}
+
+.desktop-only {
+	display: none;
+}
+
+// We don't need to do special thing for mobile-only in mobile view
+// So mobile-only is not defined here.
+
+@include from-breakpoint($medium-break) {
+	.desktop-only {
+		display: block;
+	}
+
+	.mobile-only {
+		display: none;
+	}
+}
