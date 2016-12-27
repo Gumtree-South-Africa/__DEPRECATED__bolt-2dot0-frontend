@@ -15,9 +15,27 @@ $dropdown-width: 220px;
 	border-bottom: 2px solid $vivaBlue2;
 	@include from-breakpoint($medium-break) {
 		position: relative;
+		&.hidden-search {
+			height: auto !important;
+			.search-controls {
+				display: block !important;
+			}
+			.post-ad-header {
+				margin-top: -1em !important;
+			}
+		}
 	}
 	z-index: 4;
 	&.hidden-search {
+			@include from-breakpoint($medium-break) {
+					height: auto;
+					.search-controls {
+						display: block;
+					}
+					.post-ad-header {
+						margin-top: -1em;
+					}
+			}
 		height: 116px;
 		.search-controls {
 			display: none;
