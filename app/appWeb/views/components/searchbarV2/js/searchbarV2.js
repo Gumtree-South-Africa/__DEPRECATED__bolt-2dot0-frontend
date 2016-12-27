@@ -62,9 +62,8 @@ class SearchBar {
 	 */
 	_displayTypeAheadResults(results) {
 		let hasResults = results.items.length > 0;
-		let $ul = this.$typeAheadResults.find("ul");
 
-		$ul.empty();
+		this.$results.empty();
 
 		if (hasResults) {
 			this._unbindTypeAheadResultsEvents();
@@ -78,7 +77,7 @@ class SearchBar {
 				// so the terms should all be in preferred location anyway
 				// if we don't have a cookie, we might get terms back from other locations, but we aren't going to pass them along to the SRP
 				let templateString = `<li class="type-ahead-results-row"><a class="type-ahead-link" href="/search.html?q=${result.keyword}&locId=${result.location}&catId=${result.category}">${result.keyword}</a></li>`;
-				$ul.append(templateString);
+				this.$results.append(templateString);
 			});
 
 			// handler to update search bar text with clicked link
@@ -201,17 +200,14 @@ class SearchBar {
 		return this.$searchControls && this.$searchControls.length > 0;
 	}
 
-	closeAutoComplete(dontClearText, dontFocusTextbox) {
-		if (!this.$searchTextbox.val()) {
+	closeAutoComplete(forceClose) {
+		if (forceClose || !this.$searchTextbox.val()) {
+			this.$searchTextbox.val('');
 			this.$searchTextbox.blur();
+			this.$results.empty();
 			this._setIsTyping(false);
 		} else {
-			if (!dontClearText) {
-				this.$searchTextbox.val('');
-			}
-			if (!dontFocusTextbox) {
-				this.$searchTextbox.focus();
-			}
+			this.$searchTextbox.val('');
 		}
 	}
 
@@ -227,6 +223,7 @@ class SearchBar {
 
 		this.$searchTextbox = this.$searchControls.find("input.search-textbox");
 		this.$typeAheadResults = this.$searchControls.find("#type-ahead-results");
+		this.$results = this.$typeAheadResults.find("ul");
 		this.$searchButton = this.$searchControls.find(".search-button");
 
 		if (this.$searchTextbox.length > 0) {
@@ -244,7 +241,7 @@ class SearchBar {
 			});
 
 			this.$searchMask.on('click', () => {
-				this.closeAutoComplete(true, true);
+				this.closeAutoComplete(true);
 			});
 
 			this.$searchTextbox.on('keyup', (evt) => {
