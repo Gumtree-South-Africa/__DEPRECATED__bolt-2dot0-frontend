@@ -1,37 +1,34 @@
-<div class="safety-tips-container">
-    <div class="safety-tips-card">
-        <div class="safetyTips">
-            <div class="image-container">
-                <div class="safety-block block-left">
-                    <div class="image image-left">
+<div class="safety-tips-wrapper">
+    <div class="safety-tips-container">
+        {{> (dynamic "rightBanner")}}
+        <div class="safety-tips-card">
+            <div class="safetyTips">
+                <div class="image-container">
+                    <div class="safety-block block-left">
+                        <div class="image image-left">
+                        </div>
                     </div>
                 </div>
+    			<div class="text-container">
+                    <div class="title">
+                        <div class="item safety-icon">
+
+                        </div>
+                        <h2 class="item safety-text">
+                            {{i18n "homepage.safetyTips.title"}}
+                        </h2>
+                    </div>
+                    <div class="help-text help-text-left">
+                        {{this.safetyTips.one}}
+                    </div>
+                    <h3 class="faq">
+                        <a href="{{this.safetyTips.safetyLink}}">
+                            {{i18n "homepage.safetyTips.faq"}}
+                        </a>
+                    </h3>
+                </div>
             </div>
-			<div class="title">
-				<div class="item safety-icon">
-
-				</div>
-				<h2 class="item safety-text">
-                    {{i18n "homepage.safetyTips.title"}}
-				</h2>
-			</div>
-			<div class="help-text help-text-left">
-                {{this.safetyTips.one}}
-			</div>
-            <h3 class="faq">
-                <a href="{{this.safetyTips.safetyLink}}">
-                    {{i18n "homepage.safetyTips.faq"}}
-                </a>
-            </h3>
         </div>
-    </div>
-
-	<div class="dfp-banner">
-        {{> (dynamic "rightBanner")}}
         {{> (dynamic "rightBottomBanner")}}
-		<div class="clear"></div>
-	</div>
-
-	<div class="clear"></div>
-
+    </div>
 </div>
