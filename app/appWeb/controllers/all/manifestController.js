@@ -29,7 +29,7 @@ router.get('/', (req, res, next) => {
 			"name": res.locals.config.name,
 			"background_color": "#2F3BA2",
 			"theme_color": "#512DA8",
-			"start_url": "/?v=10122d18",
+			"start_url": "/?utm_source=homescreen&v=10122d18",
 			"display": "standalone",
 			"orientation": "portrait",
 			"icons": [
