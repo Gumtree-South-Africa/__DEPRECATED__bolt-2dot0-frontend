@@ -203,6 +203,7 @@ class SearchBar {
 
 	closeAutoComplete(dontClearText, dontFocusTextbox) {
 		if (!this.$searchTextbox.val()) {
+			this.$searchTextbox.blur();
 			this._setIsTyping(false);
 		} else {
 			if (!dontClearText) {
@@ -261,7 +262,7 @@ class SearchBar {
 						evt.preventDefault();
 						break;
 					case 27:
-						this.closeAutoComplete(true);
+						this.closeAutoComplete();
 						evt.preventDefault();
 						break;
 					default:
