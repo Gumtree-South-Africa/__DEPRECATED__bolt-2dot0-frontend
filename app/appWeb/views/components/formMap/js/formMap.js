@@ -25,7 +25,7 @@ class FormMap {
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
-		this.secondsGetposition = 2;
+		this.secondsSetposition = this.googleMap.secondsSetposition;
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
@@ -89,7 +89,7 @@ class FormMap {
 						window.formMap.setCurrentPosition();
 					}
 				});
-			}, this.secondsGetposition * 1000);	
+			}, this.secondsSetposition * 1000);	
 		});
 	}
 
