@@ -228,8 +228,8 @@ class CategoryDropdownSelection {
 						$currentDropdown.append(option);
 					});
 				} else {
+					$currentDropdown = $('#' + id);
 					if (catId !== this._cachedHierarchy[index] || index === this._cachedHierarchy.length) {
-						$currentDropdown = $('#' + id);
 						// Removed empty value option
 						let $firstChild = $currentDropdown.children().first();
 						let firstChildValue = $firstChild.val();

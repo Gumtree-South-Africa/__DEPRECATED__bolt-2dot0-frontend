@@ -36,9 +36,39 @@ switch (constImgLength) {
 }
 //END
 
+function showPostOverlayIfNeeded() {
+	let postOverlayFlag = $('.from-post-flag');
+	if (!postOverlayFlag.length) {
+		return;
+	}
+	let shouldShowPostOverlay = postOverlayFlag.val();
+	if (shouldShowPostOverlay !== 'true') {
+		return;
+	}
+	let postMoreText = postOverlayFlag.data('post-more-text');
+	if (postMoreText) {
+		$('.welcome-wrapper .btn .sudolink').text(postMoreText);
+	}
+	$('.welcome-wrapper .modal').addClass('post-overlay');
+
+	// Click on any modal should close both ones
+	$('.post-overlay .modal-close-section').on('click', () => {
+		// Attention if modal is not shown as a result of media query, fadeOut will do nothing.
+		// So a css setting is added to ensure the result.
+		$('.welcome-wrapper .modal').fadeOut('slow', () => {
+			$('.welcome-wrapper .modal').removeClass('modal');
+			$('.welcome-wrapper .modal').css('display', 'none');
+		});
+		$('.post-overlay.desktop-only').fadeOut('slow', () => {
+			$('.post-overlay.desktop-only').css('display', 'none');
+		});
+	});
+}
+
 
 let initialize = () => {
 	viewPageGallery.initialize(constImgLength);
+	showPostOverlayIfNeeded();
 };
 
 module.exports = {
