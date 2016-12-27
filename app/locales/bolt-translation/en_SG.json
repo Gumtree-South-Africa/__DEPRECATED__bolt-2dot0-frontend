@@ -1176,7 +1176,8 @@
         "help": "Gumtree help pages",
         "safetytips": "Online safety tips",
         "contact": "Contact Gumtree",
-        "scams": "Report scams or fraud"
+        "scams": "Report scams or fraud",
+        "contactButton": "Contact Us"
       },
       "business": {
         "business": "Agentes Inmobiliarios",
