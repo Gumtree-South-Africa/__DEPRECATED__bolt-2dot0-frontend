@@ -16,12 +16,13 @@
 				<input title="{{i18n "postAd.mainDetails.title"}}" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price form-field optional-field {{#if this.isPriceExcluded}}hidden{{/if}}">
+		<div class="form-ad-price form-field optional-field {{#unless this.priceAttribute}}hidden{{/unless}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
 			<div class="input-wrapper price-type">
 				<div class="radio-group" data-schema="data.price.priceType">
+					{{!-- All categories with price support fixed price type and having it here will reduce the effort --}}
 					<label class="control" for="price-choose-fixed">
 						<input type="radio" id="price-choose-fixed" name="pricetype" value="FIXED" {{#ifeq this.adResult.price.priceType compare='FIXED'}}checked="checked"{{/ifeq}}{{#unless this.adResult.price.priceType}}checked="checked"{{/unless}}/>
 						<div class="outer-circle">
@@ -29,14 +30,14 @@
 						</div>
 						<span class="price-type">{{i18n "pricetype.fixed"}}</span>
 					</label>
-					<label class="control" for="price-choose-make-offer">
+					<label class="control {{#unless this.allowedPriceTypes.MAKE_OFFER}}hidden{{/unless}}" for="price-choose-make-offer">
 						<input type="radio" id="price-choose-make-offer" name="pricetype" value="MAKE_OFFER" {{#ifeq this.adResult.price.priceType compare='MAKE_OFFER'}}checked="checked"{{/ifeq}}/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>
 						</div>
 						<span class="price-type">{{i18n "pricetype.make_offer"}}</span>
 					</label>
-					<label class="control" for="price-choose-contact-me">
+					<label class="control {{#unless this.allowedPriceTypes.CONTACT_ME}}hidden{{/unless}}" for="price-choose-contact-me">
 						<input type="radio" id="price-choose-contact-me" name="pricetype" value="CONTACT_ME" {{#ifeq this.adResult.price.priceType compare='CONTACT_ME'}}checked="checked"{{/ifeq}}/>
 						<div class="outer-circle">
 							<div class="inner-circle"></div>

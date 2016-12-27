@@ -100,7 +100,8 @@ class PostAdPageModel {
 			modelData.adResult.attributes.forEach((attribute) => {
 				modelData.adResult.attributeValues[attribute.name] = attribute.value.attributeValue;
 			});
-			modelData.isPriceExcluded = data.isPriceExcluded;
+			modelData.priceAttribute = data.priceAttribute;
+			modelData.allowedPriceTypes = data.allowedPriceTypes;
 			modelData.customAttributes = data.customAttributes;
 			modelData.verticalCategory = data.verticalCategory;
 			modelData.categoryCurrentHierarchy = data.categoryCurrentHierarchy;
@@ -182,11 +183,6 @@ class PostAdPageModel {
 			}
 			let data = modelData.deferredAd.ads[0];
 
-			// if we have no price or have an unknown currency, default price
-			if (!data.price || (data.price.currency !== "MXN" && data.price.currency !== "USD")) {
-				modelData.shouldDefaultPrice = true;
-			}
-
 			if (data.imageUrls) {
 				data.pictures = {
 					sizeUrls: data.imageUrls.map(imageUrl => {
@@ -209,6 +205,27 @@ class PostAdPageModel {
 			this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 			return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 				_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
+
+				if (modelData.priceAttribute) {
+					// if we have no price or have an unknown currency, default price
+					if (!data.price || (modelData.priceAttribute.currencyAllowedValues &&
+						modelData.priceAttribute.currencyAllowedValues.indexOf(data.price.currency) < 0)) {
+						modelData.shouldDefaultPrice = true;
+					}
+
+					// TODO Use Handlebar helper IfInArray if created because the policy is using Handlebar helper as little as possible
+					modelData.allowedPriceTypes = {};
+					if (modelData.priceAttribute.priceTypeAllowedValues) {
+						modelData.priceAttribute.priceTypeAllowedValues.forEach((value) => {
+							modelData.allowedPriceTypes[value] = true;
+						});
+					}
+				}
+
+				// if we have no price or have an unknown currency, default price
+				if (!data.price || (data.price.currency !== "MXN" && data.price.currency !== "USD")) {
+					modelData.shouldDefaultPrice = true;
+				}
 
 				// Mixin "required" flag for attributes of vertical categories
 				let verticalCategory = VerticalCategoryUtil.getVerticalCategory(

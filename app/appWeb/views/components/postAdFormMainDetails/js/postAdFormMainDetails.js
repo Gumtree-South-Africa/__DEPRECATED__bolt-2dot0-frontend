@@ -67,7 +67,7 @@ class PostAdFormMainDetailsVM {
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
 		this._priceType = DEFAULT_PRICE_TYPE;
-		this._isPriceExcluded = true;
+		this._priceAttribute = {};
 		this._isShown = false;
 		this._isFixMode = false;
 		this._isRequiredTitleAndDescription = false;
@@ -106,7 +106,29 @@ class PostAdFormMainDetailsVM {
 		this.postFormCustomAttributes.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'customAttributeMetadata') {
 				if (newValue) {
-					this.isPriceExcluded = newValue.isPriceExcluded;
+					this.priceAttribute = newValue.priceAttribute;
+					if (newValue.priceAttribute && newValue.priceAttribute.priceTypeAllowedValues) {
+						let priceTypeAllowedValues = newValue.priceAttribute.priceTypeAllowedValues;
+						let needResetPriceType = false;
+						// Hide unsupported price type
+						let notSupportMakeOffer = priceTypeAllowedValues.indexOf('MAKE_OFFER') < 0;
+						domElement.find('[for="price-choose-make-offer"]').toggleClass('hidden', notSupportMakeOffer);
+						if (this.priceType === 'MAKE_OFFER' && notSupportMakeOffer) {
+							needResetPriceType = true;
+						}
+						let notSupportContactMe = priceTypeAllowedValues.indexOf('CONTACT_ME') < 0;
+						domElement.find('[for="price-choose-contact-me"]').toggleClass('hidden', notSupportContactMe);
+						if (this.priceType === 'CONTACT_ME' && notSupportContactMe) {
+							needResetPriceType = true;
+						}
+
+						// Reset default value
+						if (needResetPriceType) {
+							domElement.find('#price-choose-fixed').click();
+							domElement.find('[name="amount"]').val('0');
+						}
+					}
+
 					this._isVerticalCategory = !!(newValue.verticalCategory && newValue.verticalCategory.id);
 					this.isRequiredTitleAndDescription = this._isVerticalCategory;
 					this._categoryDropdownSelection.isMustLeaf = this._isMustLeaf || this._isVerticalCategory;
@@ -121,10 +143,9 @@ class PostAdFormMainDetailsVM {
 		this.$priceFormField = domElement.find(".form-ad-price");
 		this.$priceAmountField = domElement.find('.price-amount');
 		$(domElement.find(".price-input")).on('keydown', (e) => inputNumericCheck(e));
-		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
-			if (propName === 'isPriceExcluded') {
-				this.$priceFormField.toggleClass('hidden', newValue);
+			if (propName === 'priceAttribute') {
+				this.$priceFormField.toggleClass('hidden', !newValue);
 			} else if (propName === 'isFixMode') {
 				this._categoryDropdownSelection.isFixMode = newValue;
 			} else if (propName === 'isFormValid') {
@@ -155,6 +176,7 @@ class PostAdFormMainDetailsVM {
 				this.priceType = currentElement.val();
 			}
 		});
+		this.priceType = domElement.find('input[name=pricetype]:checked').val() || DEFAULT_PRICE_TYPE;
 
 		// Initialize self properties from children
 		this._categoryId = this._categoryDropdownSelection.categoryId;
@@ -183,17 +205,16 @@ class PostAdFormMainDetailsVM {
 		this.propertyChanged.trigger('priceType', newValue);
 	}
 
-	get isPriceExcluded() {
-		return this._isPriceExcluded;
+	get priceAttribute() {
+		return this._priceAttribute;
 	}
 
-	set isPriceExcluded(newValue) {
-		newValue = !!newValue;
-		if (this._isPriceExcluded === newValue) {
+	set priceAttribute(newValue) {
+		if (this._priceAttribute === newValue) {
 			return;
 		}
-		this._isPriceExcluded = newValue;
-		this.propertyChanged.trigger('isPriceExcluded', newValue);
+		this._priceAttribute = newValue;
+		this.propertyChanged.trigger('priceAttribute', newValue);
 	}
 
 	get isFixMode() {
@@ -385,7 +406,7 @@ class PostAdFormMainDetailsVM {
 			payload.adId = serialized.adId;
 		}
 
-		if (!this.isPriceExcluded) {
+		if (this.priceAttribute) {
 			payload.price = {
 				priceType: serialized.pricetype,
 				currency: (serialized.currency) ? serialized.currency : 'MXN',
