@@ -1,9 +1,9 @@
 //:::::::: Desktop / Medium / Small ::::::::::
-
+.footer-background{
+	background-color: $footerMainBackgroundColor;
+}
 .footer-wrapper{
 	font-family: $bodyFont;
-	//margin: 0 auto;
-  //max-width: 64em;
 	&,& a{
 		color: $footerMainTextColor;
 		background-color: $footerMainBackgroundColor;
@@ -77,7 +77,7 @@
 			.menu-items{
 				margin: 15px 0 0 0;
 			}
-			
+
 		}
 	}
 	.footer-download{
@@ -147,7 +147,7 @@
   		.menu-items{
   			margin: 15px 0 0 0;
   		}
-  		
+
   	}
   }
 }

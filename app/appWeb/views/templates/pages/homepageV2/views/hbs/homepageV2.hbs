@@ -47,16 +47,9 @@
         {{/if}}
 
 
-		<div class="seo-wrapper">
-           <h1>{{i18n "home.h1Tag"}}</h1>
-            {{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
-            {{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
-		</div>
-
         {{> (dynamic "bottomBanner") }}
 
 	</div>
-
     <input type="hidden" id="imageUploadFromHome" value="{{this.imageUploadFromHome}}">
 
     {{#if this.imageUploadFromHome}}

@@ -1,3 +1,6 @@
+.footer-background{
+	background-color: black;
+}
 .footer-wrapper {
 	width: 100%;
 	overflow-x: hidden;
@@ -121,7 +124,7 @@
 			width: 40%;
 			position: absolute;
 			right: 0;
-			bottom: 40px;
+			bottom: 35px;
 		}
 		text-align: center;
 	}
@@ -317,13 +320,13 @@
 		}
 
 		.menu-category {
-			span {
-				font-size: 18px
-			}
 			float: left;
 			width: 22%;
 			text-align: center;
-			margin-top: 28px;
+			margin-top: 10px;
+			span {
+				font-size: 18px
+			}
 			.menu-items {
 				display: block;
 				margin-top: 28px;
@@ -397,7 +400,7 @@
 			width: initial;
 			margin-left: 20px;
 			margin-right: 20px;
-			margin-top: 15px;
+			//margin-top: 15px;
 		}
 		.support-wrapper {
 			display: inline-block;

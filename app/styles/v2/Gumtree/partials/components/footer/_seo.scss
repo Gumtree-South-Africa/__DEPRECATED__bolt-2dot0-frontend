@@ -1,8 +1,11 @@
 //:::::::: Desktop / Medium / Small ::::::::::
+.seo-background{
+	margin: 0 auto;
+  	background-color: $footerSeoBackgroundColor;
+}
 .seo-wrapper{
   font-family: $footerMainTextFont;
   background-color: $footerSeoBackgroundColor;
-  display:inline-block;
   &,.top-links{color: $footerMainTextColor;}
   h1{
     font-weight: 500;
