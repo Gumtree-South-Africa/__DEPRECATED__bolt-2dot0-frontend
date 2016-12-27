@@ -93,11 +93,6 @@
 
     <div class="clear"></div>
 
-    <div class="seo-wrapper">
-        <h1>{{i18n "home.h1Tag"}}</h1>
-        {{> (dynamic "topSearches") topSearches=this.keywords homePageUrl=this.header.homePageUrl}}
-    </div>
-
   {{#if showPostOverlay}}
     <input type="hidden" class="from-post-flag" value="true"
                data-post-more-text="{{i18n "vip.postOverlay.postMore"}}">

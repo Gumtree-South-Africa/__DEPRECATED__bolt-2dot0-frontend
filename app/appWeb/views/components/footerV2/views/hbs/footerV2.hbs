@@ -1,10 +1,20 @@
+{{#compare this.header.pageType '===' 'VIP'}}
 <div class="seo-background">
     <div class="seo-wrapper">
+        <h1>{{i18n "home.h1Tag"}}</h1>
+        {{> (dynamic "topSearches") topSearches=this.keywords homePageUrl=this.header.homePageUrl}}
+    </div>
+</div>
+{{/compare}}
+{{#compare this.header.pageType '===' 'HomepageV2'}}
+<div class="seo-background">
+	<div class="seo-wrapper">
        <h1>{{i18n "home.h1Tag"}}</h1>
         {{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
         {{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
-    </div>
+	</div>
 </div>
+{{/compare}}
 
 <div class="footer-background">
 	<div class="footer-wrapper">
