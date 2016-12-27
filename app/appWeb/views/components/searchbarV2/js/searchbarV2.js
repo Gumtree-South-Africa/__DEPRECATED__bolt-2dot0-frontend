@@ -62,14 +62,12 @@ class SearchBar {
 	 */
 	_displayTypeAheadResults(results) {
 		let hasResults = results.items.length > 0;
-		this._setIsTyping(hasResults);
+		let $ul = this.$typeAheadResults.find("ul");
+
+		$ul.empty();
+
 		if (hasResults) {
-
-			let $ul = this.$typeAheadResults.find("ul");
-
 			this._unbindTypeAheadResultsEvents();
-			// remove existing results
-			$ul.empty();
 
 			// insert new results into the results container
 			results.items.forEach((result) => {
@@ -204,12 +202,15 @@ class SearchBar {
 	}
 
 	closeAutoComplete(dontClearText, dontFocusTextbox) {
-		this._setIsTyping(false);
-		if (!dontClearText) {
-			this.$searchTextbox.val('');
-		}
-		if (!dontFocusTextbox) {
-			this.$searchTextbox.focus();
+		if (!this.$searchTextbox.val()) {
+			this._setIsTyping(false);
+		} else {
+			if (!dontClearText) {
+				this.$searchTextbox.val('');
+			}
+			if (!dontFocusTextbox) {
+				this.$searchTextbox.focus();
+			}
 		}
 	}
 
@@ -234,11 +235,11 @@ class SearchBar {
 			this.$searchTextbox.on(eventName, () => {
 				let textBoxVal = this.$searchTextbox.val();
 				// _setIsTyping(textBoxVal !== "");
-				if (textBoxVal === "") {
-					// make sure we close it when the text is empty (it may have been opened because we had results)
-					this._setIsTyping(false);
-				}
 				this._newTypeAhead(textBoxVal);
+			});
+
+			this.$searchTextbox.on('focus', () => {
+				this._setIsTyping(true);
 			});
 
 			this.$searchMask.on('click', () => {
