@@ -16,23 +16,45 @@
 				<input title="{{i18n "postAd.mainDetails.title"}}" maxlength="100" data-schema="data.title" name="Title" type="text" value="{{this.adResult.title}}"/>
 			</div>
 		</div>
-		<div class="form-ad-price form-field optional-field {{#if this.isPriceExcluded}}hidden{{/if}}">
+		<div class="form-ad-price form-field optional-field {{#unless this.priceAttribute}}hidden{{/unless}}">
 			<div class="label-wrapper">
 				<label for="amount">{{i18n "editAd.mainDetails.labels.price"}}</label>
 			</div>
-			<div class="input-wrapper">
+			<div class="input-wrapper price-type">
+				<div class="radio-group" data-schema="data.price.priceType">
+					{{!-- All categories with price support fixed price type and having it here will reduce the effort --}}
+					<label class="control" for="price-choose-fixed">
+						<input type="radio" id="price-choose-fixed" name="pricetype" value="FIXED" {{#ifeq this.adResult.price.priceType compare='FIXED'}}checked="checked"{{/ifeq}}{{#unless this.adResult.price.priceType}}checked="checked"{{/unless}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.fixed"}}</span>
+					</label>
+					<label class="control {{#unless this.allowedPriceTypes.MAKE_OFFER}}hidden{{/unless}}" for="price-choose-make-offer">
+						<input type="radio" id="price-choose-make-offer" name="pricetype" value="MAKE_OFFER" {{#ifeq this.adResult.price.priceType compare='MAKE_OFFER'}}checked="checked"{{/ifeq}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.make_offer"}}</span>
+					</label>
+					<label class="control {{#unless this.allowedPriceTypes.CONTACT_ME}}hidden{{/unless}}" for="price-choose-contact-me">
+						<input type="radio" id="price-choose-contact-me" name="pricetype" value="CONTACT_ME" {{#ifeq this.adResult.price.priceType compare='CONTACT_ME'}}checked="checked"{{/ifeq}}/>
+						<div class="outer-circle">
+							<div class="inner-circle"></div>
+						</div>
+						<span class="price-type">{{i18n "pricetype.contact_me"}}</span>
+					</label>
+				</div>
+			</div>
+			<div class="input-wrapper price-amount {{#ifeq this.adResult.price.priceType compare='CONTACT_ME'}}hidden{{/ifeq}}">
 				<input title="{{i18n "postAd.mainDetails.amount"}}" type="number" name="amount" data-schema="data.price.amount" {{#if this.adResult}}value={{this.adResult.price.amount}}{{/if}} data-validation="NUMBER" placeholder="{{i18n "editAd.mainDetails.askMe"}}" class="price-input"/>
 				<div class="radio-group" data-schema="data.price.currency">
 					{{#each this.localCurrencies}}
-						<label class="control">
-							<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}}/>
-							<div class="outer-circle">
-								<div class="inner-circle"></div>
-							</div>
-							<span class="currency-type">{{this}}</span>
-						</label>
+						<input type="radio" name="currency" value="{{this}}" {{#ifeq ../this.adResult.price.currency compare=this}}checked="checked"{{/ifeq}}{{#if ../this.shouldDefaultPrice}}{{#if @first}}checked="checked"{{/if}}{{/if}} id="price-choose-{{this}}"/>
+						<label for="price-choose-{{this}}" class="currency-label {{#ifeq @index compare=0}}first-currency{{/ifeq}}">{{this}}</label>
 					{{/each}}
-					<!--
+					<a role="button" class="currency-bg" aria-hidden="true" tabindex="-1">&nbsp;</a>
+					{{!--
                     <label class="control">
                         <input type="radio" name="currency" value="MXN" {{#ifeq this.adResult.price.currency compare='MXN'}}checked="checked"{{/ifeq}}{{#if this.shouldDefaultPrice}}checked="checked"{{/if}}/>
                         <div class="outer-circle">
@@ -47,7 +69,7 @@
                         </div>
                         <span class="currency-type">USD</span>
                     </label>
-                    -->
+                    --}}
 				</div>
 			</div>
 		</div>
