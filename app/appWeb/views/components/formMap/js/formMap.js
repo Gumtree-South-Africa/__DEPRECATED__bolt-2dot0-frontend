@@ -152,6 +152,15 @@ class FormMap {
 		}
 	}
 
+	getPosition() {
+		let cords = this.map.getCenter();
+		let pos = {
+			lat: cords.lat(),
+			lng: cords.lng()
+		};
+		return pos;
+	}
+
 	addRange(meters) {
 		let center = this.map.getCenter();
 		let tempRange = new google.maps.Circle({
