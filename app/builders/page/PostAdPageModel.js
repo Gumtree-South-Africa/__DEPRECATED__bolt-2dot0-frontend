@@ -191,6 +191,14 @@ class PostAdPageModel {
 				};
 			}
 
+			if (data.price && (data.price.priceType !== 'FIXED' &&
+				data.price.priceType !== 'MAKE_OFFER' && data.price.priceType !== 'CONTACT_ME')) {
+				// Change unsupported price type to be fixed with 0
+				data.price.priceType = 'FIXED';
+				data.price.amount = 0;
+				// formattedAmount will not be used in post / edit page
+			}
+
 			if (data.categoryId === null || data.categoryId === undefined) {
 				return Q.resolve(data);
 			}

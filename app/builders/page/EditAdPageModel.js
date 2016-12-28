@@ -131,6 +131,14 @@ class EditAdPageModel {
 			return editAdModel.getAd(this.adId).then((data) => {
 				modelData.categoryCurrentHierarchy = [];
 
+				if (data.price && (data.price.priceType !== 'FIXED' &&
+					data.price.priceType !== 'MAKE_OFFER' && data.price.priceType !== 'CONTACT_ME')) {
+					// Change unsupported price type to be fixed with 0
+					data.price.priceType = 'FIXED';
+					data.price.amount = 0;
+					// formattedAmount will not be used in post / edit page
+				}
+
 				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, modelData.categoryCurrentHierarchy);
 				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 					_.extend(modelData, attributeModel.processCustomAttributesList(attributes, data));
