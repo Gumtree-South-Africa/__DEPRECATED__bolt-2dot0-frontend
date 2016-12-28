@@ -1306,7 +1306,7 @@
 		"back": "Volver",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
-			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
+			"tips": "Es muy sencillo, al menos una foto. Puedes agregar más fotos y editar los detalles después.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1316,7 +1316,7 @@
 			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "Es muy sencillo, al menos una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1654,9 +1654,9 @@
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
-			"attachAFile": "ATTACH A FILE (OPTIONAL)",
-			"browseFiles": "Browse Files",
-			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
+			"attachAFile": "ADJUNTAR UN ARCHIVO (OPCIONAL)",
+			"browseFiles": "Explorar Archivos",
+			"pdfOrDoc": "Solo PDF o DOC. Máximo 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
 			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 			"canned": {
@@ -1670,7 +1670,7 @@
 			"close": "Cerrar",
 			"returnToBrowsing": "Seguir navegando",
 			"action": {
-				"contact": "Contact",
+				"contact": "Contacta a",
 				"call": "Llamar",
 				"text": "SMS",
 				"message": "Mensaje"
@@ -1680,7 +1680,7 @@
 			"title": "Tu anuncio ha sido actualizado",
 			"postTitle": "Tu anuncio ha sido publicado",
 			"description": "Tip: Recuerda agregar más fotos y tener mayores oportunidades de vender",
-			"edit": "Edita mi anucio",
+			"edit": "Edita mi anuncio",
 			"postMore": "Publicar más anuncios"
 		}
 	},

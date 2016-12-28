@@ -3088,7 +3088,32 @@
       1
    ],
    "customAttributes": [],
-   "isPriceExcluded": false,
+   "priceAttribute": {
+      "name": "Price",
+      "canonicalName": "precio",
+      "localizedName": "Precio",
+      "priceType": "LIST",
+      "priceTypeAllowedValues": [
+         "FIXED",
+         "FREE",
+         "MAKE_OFFER",
+         "BARTER_SWAP",
+         "CONTACT_ME"
+      ],
+      "currency": "LIST",
+      "currencyAllowedValues": [
+         "MXN",
+         "USD"
+      ],
+      "amount": "NUMBER"
+   },
+   "allowedPriceTypes": {
+      "FIXED": true,
+      "FREE": true,
+      "MAKE_OFFER": true,
+      "BARTER_SWAP": true,
+      "CONTACT_ME": true
+   },
    "adResult": {
       "id": 110267908,
       "title": "1978 Pontiac Trans Am",
