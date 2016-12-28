@@ -18,6 +18,17 @@ let customAttributeAjaxResponse = require("../mockData/customAttributesAjaxRespo
 let dependentAttributesModel = require("../mockData/dependentAttributesModel.json");
 
 describe('Edit Ad', () => {
+	beforeEach(() => {
+		// Don't run polyfill for form as it will throw following error on CI client UT
+		// TypeError: Assignment to constant variable.
+		// at t (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25768:227)
+		// at Object.test (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25787:143)
+		// at Object._polyfill (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25481:272)
+		// at Object.a.extend.polyfill (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25476:269)
+		// at PostAdFormMainDetails._setupPolyfillForm (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:24059:94)
+		spyOn(postAdFormMainDetailsController, '_setupPolyfillForm');
+	});
+
 	it("should validate edit ad fields on submit", () => {
 		specHelper.mockGoogleLocationApi();
 		let editPageModelCopy = JSON.parse(JSON.stringify(editPageModel));

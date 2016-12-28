@@ -177,6 +177,10 @@ body {
 	}
 }
 
+.mobile-post-ad-footer {
+	width: 60%;
+}
+
 @include from-breakpoint($medium-break) {
 	.edit-ad-content {
 		position: relative;
@@ -245,6 +249,7 @@ body {
 		background-color: $mainDetailsBackgroundColor;
 		width: 100%;
 		float: left;
+		margin-top: 20px;
 	}
 
 	.photo-switcher {

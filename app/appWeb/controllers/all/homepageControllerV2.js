@@ -8,7 +8,7 @@ let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
-let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
+//let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
 let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 
@@ -205,7 +205,7 @@ module.exports = (req, res, next) => {
 
 		modelData.eps = EpsModel();
 		modelData.googleMapAuth = GoogleMapAuth();
-		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
+		//modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {
