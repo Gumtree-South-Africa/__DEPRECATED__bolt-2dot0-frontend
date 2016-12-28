@@ -1670,11 +1670,18 @@
 			"close": "Cerrar",
 			"returnToBrowsing": "Seguir navegando",
 			"action": {
-				"contact": "Contact",
+				"contact": "Contacta a",
 				"call": "Llamar",
 				"text": "SMS",
 				"message": "Mensaje"
 			}
+		},
+		"postOverlay": {
+			"title": "Tu anuncio ha sido actualizado",
+			"postTitle": "Tu anuncio ha sido publicado",
+			"description": "Tip: Recuerda agregar más fotos y tener mayores oportunidades de vender",
+			"edit": "Edita mi anucio",
+			"postMore": "Publicar más anuncios"
 		}
 	},
 	"search": {
