@@ -408,10 +408,19 @@ class PostAdFormMainDetailsVM {
 
 		if (this.priceAttribute) {
 			payload.price = {
-				priceType: serialized.pricetype,
-				currency: (serialized.currency) ? serialized.currency : 'MXN',
-				amount: Number(serialized.amount)
+				priceType: serialized.pricetype
 			};
+			if (serialized.currency) {
+				payload.price.currency = serialized.currency;
+			} else {
+				if (this.priceAttribute.currencyAllowedValues && this.priceAttribute.currencyAllowedValues.length) {
+					payload.price.currency = this.priceAttribute.currencyAllowedValues[0];
+				}
+				payload.price.currency = payload.price.currency || 'USD';
+			}
+			if (serialized.amount) {
+				payload.price.amount = Number(serialized.amount);
+			}
 		}
 
 		return payload;
