@@ -186,16 +186,16 @@ $categoryArrowIconWidth: 13px;
 		border: 1px solid red !important;
 	}
 
+	/* Begin custom radio btns */
+	// Hide default browser input
+	.form-ad-price .radio-group input[type="radio"] {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+	}
+
 	.form-ad-price .price-type .radio-group {
 		margin-left: 6%;
-
-		/* Begin custom radio btns */
-		// Hide default browser input
-		input[type="radio"] {
-			position: absolute;
-			z-index: -1;
-			opacity: 0;
-		}
 
 		.control {
 			margin-right: 10px;
