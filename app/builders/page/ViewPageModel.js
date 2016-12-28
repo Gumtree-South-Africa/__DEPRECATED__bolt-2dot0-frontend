@@ -417,7 +417,7 @@ class ViewPageModel {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
-		moment.locale(this.locale.split('_')[0]);
+		moment.locale(modelData.lang);
 
 		this.dataPromiseFunctionMap = {};
 

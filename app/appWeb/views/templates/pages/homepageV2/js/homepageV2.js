@@ -1,20 +1,21 @@
 'use strict';
-
+/*
 let NoUIImageUploader =
 	require('app/appWeb/views/components/noUIImageUploader/js/noUIImageUploader.js').NoUIImageUploader;
+*/
 let WelcomeModal = require('app/appWeb/views/components/welcomeModal/js/welcomeModal.js');
 let Header = require('app/appWeb/views/components/headerV2/js/header.js').Header;
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let EPS_CLIENT_ERROR_CODES = require('app/appWeb/views/components/uploadImage/js/epsUpload.js').EPS_CLIENT_ERROR_CODES;
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
 
-const FILE_SELECT_DEBOUNCE_TIMEOUT = 1000;
+//const FILE_SELECT_DEBOUNCE_TIMEOUT = 1000;
 
 // Home page
 class HomePage {
 	constructor() {
 		// Initialize components
-		this.noUIImageUploader = new NoUIImageUploader();
+		//this.noUIImageUploader = new NoUIImageUploader();
 		this.welcomeModal = new WelcomeModal();
 		this.header = new Header();
 
@@ -30,7 +31,7 @@ class HomePage {
 		this._isFileSelectBlocking = false;
 
 		// This flag is to switch whether image can be uploaded from home
-		this._canImageUploadFromHome = false;
+		// this._canImageUploadFromHome = false;
 	}
 
 	/**
@@ -41,62 +42,67 @@ class HomePage {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		// However, this property is different because it decides whether to mount
 		// children components. So it should be initialized first.
-		this._canImageUploadFromHome = domElement.find('#imageUploadFromHome').val() === 'true';
+		//this._canImageUploadFromHome = domElement.find('#imageUploadFromHome').val() === 'true';
 
-		if (this._canImageUploadFromHome) {
-			// Callback for all children components have been mounted
-			this.noUIImageUploader.componentDidMount(domElement.find('.no-ui-image-uploader'));
-			this.welcomeModal.componentDidMount(domElement.find('.welcome-wrapper'));
-			this.header.componentDidMount(domElement.find('.header-wrapper'));
+		//if (this._canImageUploadFromHome) {
 
-			// Callback for old singleton components
-			this.spinnerModal.initialize();
+		// Callback for all children components have been mounted
+		//this.noUIImageUploader.componentDidMount(domElement.find('.no-ui-image-uploader'));
+		this.welcomeModal.componentDidMount(domElement.find('.welcome-wrapper'));
+		this.header.componentDidMount(domElement.find('.header-wrapper'));
 
-			// Register event or update property according to children components
-			this.noUIImageUploader.imageWillUpload.addHandler(() => this._imageWillUpload());
-			this.noUIImageUploader.imageDidUpload.addHandler(
-				(err, resultUrlObj) => this._imageDidUpload(err, resultUrlObj));
-			this.welcomeModal.postButtonClicked.addHandler(() => this._startUploading());
-			this.header.hamburgerMenu.postButtonClicked.addHandler(() => this._startUploading());
+		// Callback for old singleton components
+		this.spinnerModal.initialize();
 
-			// Initialize self properties from DOM, usually done after mounting all children components.
-			let $uploadFailureMessages = $('#uploadFailureMessages');
-			this._errorMessages = {};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION] = {
-				title: $uploadFailureMessages.data('invalid-dimension-title'),
-				message: $uploadFailureMessages.data('invalid-dimension-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_SIZE] = {
-				title: $uploadFailureMessages.data('invalid-size-title'),
-				message: $uploadFailureMessages.data('invalid-size-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_TYPE] = {
-				title: $uploadFailureMessages.data('invalid-type-title'),
-				message: $uploadFailureMessages.data('invalid-type-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.COLOR_SPACE] = {
-				title: $uploadFailureMessages.data('colorspace-title'),
-				message: $uploadFailureMessages.data('colorspace-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.FIREWALL] = {
-				title: $uploadFailureMessages.data('firewall-title'),
-				message: $uploadFailureMessages.data('firewall-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.PICTURE_SRV] = {
-				title: $uploadFailureMessages.data('picturesrv-title'),
-				message: $uploadFailureMessages.data('picturesrv-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.CORRUPT] = {
-				title: $uploadFailureMessages.data('corrupt-title'),
-				message: $uploadFailureMessages.data('corrupt-message')
-			};
-			this._errorMessages[EPS_CLIENT_ERROR_CODES.UNKNOWN] = {
-				title: $uploadFailureMessages.data('unknown-title'),
-				message: $uploadFailureMessages.data('unknown-message')
-			};
-		}
+		// Register event or update property according to children components
+		/*
+		this.noUIImageUploader.imageWillUpload.addHandler(() => this._imageWillUpload());
+		this.noUIImageUploader.imageDidUpload.addHandler(
+			(err, resultUrlObj) => this._imageDidUpload(err, resultUrlObj));
+		this.welcomeModal.postButtonClicked.addHandler(() => this._startUploading());
+		this.header.hamburgerMenu.postButtonClicked.addHandler(() => this._startUploading());
+	    */
+
+		// Initialize self properties from DOM, usually done after mounting all children components.
+		let $uploadFailureMessages = $('#uploadFailureMessages');
+		this._errorMessages = {};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_DIMENSION] = {
+			title: $uploadFailureMessages.data('invalid-dimension-title'),
+			message: $uploadFailureMessages.data('invalid-dimension-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_SIZE] = {
+			title: $uploadFailureMessages.data('invalid-size-title'),
+			message: $uploadFailureMessages.data('invalid-size-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.INVALID_TYPE] = {
+			title: $uploadFailureMessages.data('invalid-type-title'),
+			message: $uploadFailureMessages.data('invalid-type-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.COLOR_SPACE] = {
+			title: $uploadFailureMessages.data('colorspace-title'),
+			message: $uploadFailureMessages.data('colorspace-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.FIREWALL] = {
+			title: $uploadFailureMessages.data('firewall-title'),
+			message: $uploadFailureMessages.data('firewall-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.PICTURE_SRV] = {
+			title: $uploadFailureMessages.data('picturesrv-title'),
+			message: $uploadFailureMessages.data('picturesrv-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.CORRUPT] = {
+			title: $uploadFailureMessages.data('corrupt-title'),
+			message: $uploadFailureMessages.data('corrupt-message')
+		};
+		this._errorMessages[EPS_CLIENT_ERROR_CODES.UNKNOWN] = {
+			title: $uploadFailureMessages.data('unknown-title'),
+			message: $uploadFailureMessages.data('unknown-message')
+		};
+		/* When visit this page, go back url cookie set */
+		CookieUtils.setCookie('backUrl', encodeURIComponent('./'), 1);
 	}
 
+	/*
 	_startUploading() {
 		if (this._isFileSelectBlocking) {
 			return;
@@ -109,6 +115,7 @@ class HomePage {
 			this._isFileSelectBlocking = false;
 		}, FILE_SELECT_DEBOUNCE_TIMEOUT);
 	}
+
 
 	_imageWillUpload() {
 		this._isFileSelectBlocking = false;
@@ -140,6 +147,7 @@ class HomePage {
 		CookieUtils.setCookie('backUrl', encodeURIComponent('./'), 1);
 		window.location.href = '/post';
 	}
+	*/
 }
 
 // this is where we require what the page needs, so we can bundle per-page
