@@ -17,39 +17,40 @@ let _toggleBrowseMenu = (shouldClose) => {
 };
 
 let showL1HideL2 = () => {
-
-	//$('#js-cat-dropdown').show();
 	$('.parent-l1').show();
 	$('.child-l2').addClass('hidden');
 	 _menuL2leaveOpen = false;
 };
 
 let hideL1ShowL2 = (except) => {
-   $('.parent-l1').hide();
-   except.hide();
-   _menuL2leaveOpen = true;
-   let children = '#' + except.attr('data-submenu');
-   $(children).removeClass('hidden');
+	$('.parent-l1').hide();
+	except.hide();
+	_menuL2leaveOpen = true;
 
-   let categoryTitle = $(except[0].innerHTML + ' span').text();
-   if ($('.subCatMenuHeader .subcat-title:eq(1)').length !== 0) {
-	   $(children + ' .subCatMenuHeader .subcat-title:eq(1)').text(categoryTitle);
-   }
+	let children = '#' + except.attr('data-submenu');
+	$(children).removeClass('hidden');
+
+	let categoryTitle = $(except[0].innerHTML + ' span').text();
+
+	if ($('.subCatMenuHeader .subcat-title:eq(1)').length !== 0) {
+		$(children + ' .subCatMenuHeader .subcat-title:eq(1)').text(categoryTitle);
+	}
 };
 
 let setupMenu = () => {
 	if ($('div#button-back').length !== 0) {
 		showL1HideL2();
 	}
+
 	$('.child-l2').addClass('hidden');
 	$('.parent-l1').click(function(e) {
 		e.preventDefault();
 	    hideL1ShowL2($(this));
-	   });
+	});
 
-   $('#js-cat-dropdown').on('click', '.back-button', showL1HideL2).on('click', '.link-item.l2', function() {
-	 _toggleBrowseMenu();
- });
+	$('#js-cat-dropdown').on('click', '.back-button', showL1HideL2).on('click', '.link-item.l2', function() {
+		 _toggleBrowseMenu();
+ 	});
 };
 
 let _toggleProfileMenu = (shouldClose) => {
@@ -65,22 +66,17 @@ let _toggleProfileMenu = (shouldClose) => {
 // onReady separated out for easy testing
 let onReady = () => {
 	this.$header.find('.browse').on('click', () => {
-		//_toggleBrowseMenu();
 	}).mouseenter(() => {
 		_toggleBrowseMenu(false);
-
-
 	}).mouseleave(() => {
 		if (!_menuL2leaveOpen) {
 			_toggleBrowseMenu(true);
 		}
-
-
 	});
+
 	this.$header.find('.menu-item.parent-l1').on('click', () => {
 		_toggleBrowseMenu(false);
 	});
-
 
 	this.$header.find('.profile').on('click', () => {
 		_toggleProfileMenu();
