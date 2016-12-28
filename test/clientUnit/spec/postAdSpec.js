@@ -8,6 +8,7 @@ let loginModalController = require("app/appWeb/views/components/loginModal/js/lo
 //let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
+let formMapMock = require('../mockData/formMapMock.json');
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -251,10 +252,12 @@ describe('Post Ad', () => {
 	});
 
 	describe("formMap", () => {
+		let $testArea;
 		window.getUrlParameter(true);
 		beforeEach(() => {
 			specHelper.mockGoogleLocationApi();
 			specHelper.mockWebshim();
+			$testArea = specHelper.setupTest('formMap', {googleMap: formMapMock.googleMapConfiguration}, 'es_MX');
 			formMapController.initialize();
 		});
 
@@ -265,6 +268,10 @@ describe('Post Ad', () => {
 				zoom: this.zoom,
 				disableDefaultUI: true,
 			});
+
+			let $googleMap = $testArea.find('.form-map-component');
+			expect($googleMap.hasClass('form-map-component')).toBeTruthy('should display formMap component');
+
 			expect(google.maps.Map).toHaveBeenCalled();
 		});
 
