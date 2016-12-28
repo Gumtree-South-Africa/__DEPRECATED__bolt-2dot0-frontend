@@ -4,7 +4,7 @@ let deepLink = require('app/appWeb/views/components/headerV2/js/deepLink.js');
 let hamburgerMenu = require("app/appWeb/views/components/hamburgerMenu/js/hamburgerMenu.js");
 require("app/appWeb/views/components/profileMenu/js/profileMenu.js").initialize();
 
-window._menuL2leaveOpen = false;
+let _menuL2leaveOpen = false;
 
 let _toggleBrowseMenu = (shouldClose) => {
 	if (shouldClose === undefined) {
@@ -21,14 +21,13 @@ let showL1HideL2 = () => {
 	//$('#js-cat-dropdown').show();
 	$('.parent-l1').show();
 	$('.child-l2').addClass('hidden');
-	 window._menuL2leaveOpen = false;
-	 console.log('hghghghghg ' + window._menuL2leaveOpen);
+	 _menuL2leaveOpen = false;
 };
 
 let hideL1ShowL2 = (except) => {
    $('.parent-l1').hide();
    except.hide();
-   window._menuL2leaveOpen = true;
+   _menuL2leaveOpen = true;
    let children = '#' + except.attr('data-submenu');
    $(children).removeClass('hidden');
 
@@ -50,7 +49,6 @@ let setupMenu = () => {
 
    $('#js-cat-dropdown').on('click', '.back-button', showL1HideL2).on('click', '.link-item.l2', function() {
 	 _toggleBrowseMenu();
-	//  console.info('Ocultado');
  });
 };
 
@@ -70,18 +68,14 @@ let onReady = () => {
 		//_toggleBrowseMenu();
 	}).mouseenter(() => {
 		_toggleBrowseMenu(false);
-		if ($('#js-cat-dropdown').mouseenter) {
-			console.log('mouseenter = true');
-		}
+
 
 	}).mouseleave(() => {
-		if (!window._menuL2leaveOpen) {
+		if (!_menuL2leaveOpen) {
 			_toggleBrowseMenu(true);
 		}
 
-		if ($('#js-cat-dropdown').mouseleave) {
-			console.log('mouseleave = true');
-		}
+
 	});
 	this.$header.find('.menu-item.parent-l1').on('click', () => {
 		_toggleBrowseMenu(false);
