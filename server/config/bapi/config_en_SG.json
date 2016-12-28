@@ -1,4 +1,5 @@
 {
+	"topCategories": [],
 	"header" : {
 		"type" 					: "website",
 		"localeOpenGraph" 			: "en_SG",
@@ -173,6 +174,120 @@
 					"description": "Me es muy util y es muy facil de encontrar lo que necesito",
 					"rating": "4"
 				}
+			],
+			"topCategories": [
+				{
+					"text": "Permanent Jobs and Full time Jobs",
+					"link": "https://www.gumtree.sg/s-permanent-full+time-jobs/v1c79p1"
+				},
+				{
+					"text": "Part time Ad-hoc Jobs",
+					"link": "https://www.gumtree.sg/s-part+time-ad+hoc-jobs/v1c75p1"
+				},
+				{
+					"text": "Resumes",
+					"link": "https://www.gumtree.sg/s-post-your-resume/v1c282p1"
+				},
+				{
+					"text": "New, Used & Rental Cars",
+					"link": "https://www.gumtree.sg/s-new-used-rental-cars/v1c19p1"
+				},
+				{
+					"text": "Vans & Campervans",
+					"link": "https://www.gumtree.sg/s-vans-campervans/v1c84p1"
+				},
+				{
+					"text": "Motorcycles, Scooters & Motorbikes ",
+					"link": "https://www.gumtree.sg/s-motorcycles-scooters-motorbikes/v1c20p1"
+				},
+				{
+					"text": "Trucks ",
+					"link": "https://www.gumtree.sg/s-trucks/v1c85p1"
+				},
+				{
+					"text": "Car Parts",
+					"link": "https://www.gumtree.sg/s-car-parts-accessories/v1c51p1"
+				},
+				{
+					"text": "Room for Rent & Flat Share ",
+					"link": "https://www.gumtree.sg/s-room-for-rent-flat-share/v1c10p1"
+				},
+				{
+					"text": "Property for Rent",
+					"link": "https://www.gumtree.sg/s-property-for-rent/v1c12p1"
+				},
+				{
+					"text": "Properties for Sale",
+					"link": "https://www.gumtree.sg/s-properties-for-sale/v1c38p1"
+				},
+				{
+					"text": "Commercial Property",
+					"link": "https://www.gumtree.sg/s-commercial-property/v1c13p1"
+				},
+				{
+					"text": "Car Park & Storage ",
+					"link": "https://www.gumtree.sg/s-car-park-storage/v1c37p1"
+				},
+				{
+					"text": "Home Furnishing",
+					"link": "https://www.gumtree.sg/s-home-furnishing/v1c44p1"
+				},
+				{
+					"text": "Clothes & Accessories",
+					"link": "https://www.gumtree.sg/s-clothes-accessories/v1c41p1"
+				},
+				{
+					"text": "Electronics",
+					"link": "https://www.gumtree.sg/s-electronics/v1c146p1"
+				},
+				{
+					"text": "Mobile Phones",
+					"link": "https://www.gumtree.sg/s-mobile-phones/v1c46p1"
+				},
+				{
+					"text": "Baby & Children Stuff",
+					"link": "https://www.gumtree.sg/s-baby-children/v1c88p1"
+				},
+				{
+					"text": "Health & Beauty  ",
+					"link": "https://www.gumtree.sg/s-health-beauty/v1c313p1"
+				},
+				{
+					"text": "Antiques & Collectibles",
+					"link": "https://www.gumtree.sg/s-antiques-collectibles/v1c17p1"
+				},
+				{
+					"text": "Toys & Games ",
+					"link": "https://www.gumtree.sg/s-toys-games/v1c86p1"
+				},
+				{
+					"text": "Sports & Fitness ",
+					"link": "https://www.gumtree.sg/s-sports-fitness/v1c47p1"
+				},
+				{
+					"text": "Books & Magazines",
+					"link": "https://www.gumtree.sg/s-books-magazines/v1c18p1"
+				},
+				{
+					"text": "Music & Movies ",
+					"link": "https://www.gumtree.sg/s-music-movies/v1c87p1"
+				},
+				{
+					"text": "Tickets",
+					"link": "https://www.gumtree.sg/s-tickets/v1c264p1"
+				},
+				{
+					"text": "Building & Trades Services ",
+					"link": "https://www.gumtree.sg/s-building-trades/v1c33p1"
+				},
+				{
+					"text": "Freelance Services ",
+					"link": "https://www.gumtree.sg/s-computer-telecom-freelance/v1c34p1"
+				},
+				{
+					"text": "Beauty Services",
+					"link": "https://www.gumtree.sg/s-health-beauty-well-being/v1c35p1"
+				}
 			]
 	  	},
 		"homepage" : {
@@ -197,10 +312,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "appDownload", "trendingCard", "search", "topSearches", "topCategories", "topLocations", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {
