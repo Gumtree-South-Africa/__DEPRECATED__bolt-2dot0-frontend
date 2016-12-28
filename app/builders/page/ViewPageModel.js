@@ -1,6 +1,7 @@
 'use strict';
 let cwd = process.cwd();
 let _ = require('underscore');
+let moment = require('moment');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
@@ -271,6 +272,90 @@ class ViewPageModel {
 		return data;
 	}
 
+	/**
+	 * Set Ad status for later use
+	 * @param data
+	 */
+	setAdStatus(data) {
+		if (typeof data.statusInfo !== 'undefined') {
+			data.statusInfo.isPending = false;
+			data.statusInfo.isActive = false;
+			data.statusInfo.isDeleted = false;
+			data.statusInfo.isBlocked = false;
+			switch (data.statusInfo.status) {
+				case 'PENDING':
+					data.statusInfo.isPending = true;
+					break;
+				case 'ACTIVE':
+					data.statusInfo.isActive = true;
+					break;
+				default:
+					data.statusInfo.isActive = false;
+			}
+		}
+	}
+
+	/**
+	 * Builds the Status Messages to be displayed
+	 */
+	getStatusBanner(reason, isOwner){
+		let s = {
+			'EXPIRED': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
+			'PENDING': {
+				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.pendingStatusBannerLinkMessage',
+					url: 'vip.details.pendingStatusBannerLinkURL'
+				}]
+			}
+		}
+
+		let states = {
+			'PENDING__ADMIN__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__UPDATED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__REPOSTED': {
+				state: 'PENDING'
+			},
+			'DELETED__USER__DELETED': {
+				state: 'EXPIRED'
+			},
+			'DELETED__SYSTEM__TIMEDOUT': {
+				state: 'EXPIRED'
+			},
+			'DELETED__ADMIN__DELETED': {
+				state: 'EXPIRED'
+			},
+			'BLOCKED__TNS__CHECKED': {
+				state: 'EXPIRED'
+			}
+		}
+
+		if (!isOwner && (typeof states[reason] !== 'undefined')) {
+			let a = states[reason].state;
+			delete s[a].ownerDetails;
+		}
+
+		if(typeof states[reason] !== 'undefined'){
+			let a = states[reason].state;
+			return s[a];
+		}else{
+			return false;
+		}
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
 
@@ -299,6 +384,11 @@ class ViewPageModel {
 				let description = modelData.seo.description;
 				description = description.replace('description',(typeof data.advert.description!=='undefined' ? data.advert.description.substring(0,140) : ''));
 				description = description.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
+				description = StringUtils.unescapeUrl(description);
+				description = StringUtils.unescapeEmail(description);
+				description = StringUtils.fixNewline(description);
+				description = StringUtils.stripHtml(description);
+				description = StringUtils.stripCommentHtml(description);
 				modelData.seo.description = description;
 			}
 		}
@@ -307,12 +397,15 @@ class ViewPageModel {
 
 		modelData.vip = {};
 		modelData.vip.showSellerStuff = false;
-
 		if ((typeof modelData.header.id!=='undefined') && (typeof modelData.advert.sellerDetails.id!=='undefined') && (modelData.header.id === modelData.advert.sellerDetails.id)) {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
-		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff)
+		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
+
+		//Status Banner
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+
 		return modelData;
 	}
 
@@ -323,6 +416,8 @@ class ViewPageModel {
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
+
+		moment.locale(this.locale.split('_')[0]);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -369,34 +464,35 @@ class ViewPageModel {
 
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}
 
-				// Map
-				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
-
-				// Breadcrumbs
-				data.breadcrumbs = {};
-				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
-				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
-				data.breadcrumbs.locations.forEach((location, index) => {
-					location.position = index + 1;
-				});
-				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
-				data.breadcrumbs.categories.forEach((category, index) => {
-					category.position = data.breadcrumbs.locations.length + index + 1;
-					category.locationInText = data.breadcrumbs.leafLocation.text;
-				});
-
-				// Similar-Ads/Seller-Other-Ads configuration
-				this.getOtherAdsCard(data);
+				// Ad Status
+				this.setAdStatus(data);
 
 				// This will handle the cases when BAPI returns 404 for certain ad states, and we would like to know why
 				if (data.name === 'BapiError') {
 					data.adErrorDetail = data.bapiJson.details;
 					data.adErrorDetailMessage = data.adErrorDetail[0].message;
+
+					if (data.adErrorDetailMessage.indexOf('DELETED')) {
+						data.statusInfo = {
+							status: 'DELETED',
+							statusReason: 'DELETED__ADMIN__DELETED',
+							isDeleted: true
+						};
+					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
+						data.statusInfo = {
+							status: 'BLOCKED',
+							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
+						};
+					}
+
 					return data;
 				} else {
+					// Manipulate Ad Data
+
 					// seoVipUrl
 					let seoVipElt = data._links.find((elt) => {
 						return elt.rel === "seoVipUrl";
@@ -408,8 +504,8 @@ class ViewPageModel {
 					data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
 
 					// Date
-					data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime()) / (24 * 3600 * 1000));
-					data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime()) / (24 * 3600 * 1000));
+					data.postedDate = moment(data.postedDate).fromNow();
+					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
 
 					// Pictures
 					data.hasMultiplePictures = false;
@@ -431,6 +527,28 @@ class ViewPageModel {
 
 					// Reply Info
 					data.replyInfo = advertData.ad._embedded['reply-info'];
+
+					// Map
+					data.map = this.getMapFromSignedUrl(data.signedMapUrl);
+
+					if (data.statusInfo.isActive) {
+						// Breadcrumbs
+						data.breadcrumbs = {};
+						data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+						data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+						data.breadcrumbs.locations.forEach((location, index) => {
+							location.position = index + 1;
+						});
+						data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+						data.breadcrumbs.categories.forEach((category, index) => {
+							category.position = data.breadcrumbs.locations.length + index + 1;
+							category.locationInText = data.breadcrumbs.leafLocation.text;
+						});
+						data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length - 1]._links[0].href;
+
+						// Similar-Ads/Seller-Other-Ads configuration
+						this.getOtherAdsCard(data);
+					}
 
 					// Location
 					let locationElt = data._links.find((elt) => {
@@ -478,7 +596,6 @@ class ViewPageModel {
 						keywordData[keywordPromiseArray[keywordIndex]] = value;
 					} else {
 						let reason = result.reason;
-						console.error('Error in Keyword Service : ', reason);
 						keywordData[keywordPromiseArray[keywordIndex]] = {};
 					}
 					++keywordIndex;

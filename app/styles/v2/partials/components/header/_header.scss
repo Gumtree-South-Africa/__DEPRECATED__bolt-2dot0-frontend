@@ -3,14 +3,47 @@
 $item-top-padding: 26px;
 $dropdown-width: 220px;
 
+.fixed-header {
+	height: 100%;
+	overflow: hidden;
+	position: fixed;
+	width: 100%;
+}
+
 .header-wrapper {
 	background: $common-background-color;
 	border-bottom: 2px solid $vivaBlue2;
 	@include from-breakpoint($medium-break) {
 		position: relative;
+		&.hidden-search {
+			height: auto !important;
+			.search-controls {
+				display: block !important;
+			}
+			.post-ad-header {
+				margin-top: -1em !important;
+			}
+		}
 	}
-	z-index: 2;
-
+	z-index: 4;
+	&.hidden-search {
+			@include from-breakpoint($medium-break) {
+					height: auto;
+					.search-controls {
+						display: block;
+					}
+					.post-ad-header {
+						margin-top: -1em;
+					}
+			}
+		height: 116px;
+		.search-controls {
+			display: none;
+		}
+		.post-ad-header {
+			margin-top: 1em;
+		}
+	}
 	.headerV2 {
 		z-index: 9;
 		position: relative;

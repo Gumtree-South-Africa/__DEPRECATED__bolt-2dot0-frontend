@@ -100,6 +100,9 @@ router.use('/', (req, res, next) => {
 		return modelPromise;
 	}).then((modelData) => {
 		postAdData.extendModelData(req, modelData);
+
+		// shows the new components in development
+		modelData.enableComponents = req.query.BOLT24748 === '1' ? true : false;
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
@@ -108,6 +111,7 @@ router.use('/', (req, res, next) => {
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
+		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMapConfiguration);
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected

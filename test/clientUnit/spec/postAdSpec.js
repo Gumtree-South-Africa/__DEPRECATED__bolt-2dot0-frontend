@@ -6,6 +6,7 @@ let ImageHelper = require('app/appWeb/views/components/uploadImage/js/epsUpload.
 let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
+let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -27,9 +28,15 @@ let mockPostAdResponse = {
 		}
 	]
 };
-
+let mockGetUrlParameters = () => {
+	window.getUrlParameter = function(value) {
+		return value;
+	};
+	$('html').attr('data-locale', 'es_MX');
+};
+mockGetUrlParameters();
 describe('Post Ad', () => {
-
+	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
 			isHidden: true,
@@ -40,7 +47,7 @@ describe('Post Ad', () => {
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeTruthy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeTruthy();
 
-		loginModalController.openModal({links:{emailLogin:'',register:'',facebookLogin:''}});
+		loginModalController.openModal({ links: { emailLogin: '', register: '', facebookLogin: '' } });
 
 		expect($testArea.find('#login-modal').hasClass("hidden")).toBeFalsy();
 		expect($testArea.find('#login-modal-mask').hasClass("hidden")).toBeFalsy();
@@ -60,14 +67,14 @@ describe('Post Ad', () => {
 			$testArea = specHelper.setupPageTest('postAd', {
 				footer: {
 					baseJSUrl: '/public/js/'
-				}}, 'es_MX');
+				}
+			}, 'es_MX');
 
 			postAdController = new PostAdController();
 			postAdController.componentDidMount($testArea);
 		});
 		it('should call IRS and set component status correctly when image is uploaded', () => {
 			specHelper.registerMockAjax('/api/postad/imagerecognition', { categoryId: 1 });
-
 			spyOn(postAdController.postAdFormMainDetails, 'show');
 			spyOn(spinnerModalController, 'showModal').and.callThrough();
 			spyOn(spinnerModalController, 'completeSpinner').and.callFake(completionCb => completionCb());
@@ -218,12 +225,38 @@ describe('Post Ad', () => {
 		});
 
 		it('should error out with returned failed ajax', () => {
-			specHelper.registerMockAjax('/api/postad/create', {}, {fail: true, status: 500});
+			specHelper.registerMockAjax('/api/postad/create', {}, { fail: true, status: 500 });
 			spyOn(spinnerModalController, 'hideModal');
 
 			postAdController.desktopImageUrls = ['http://fakeUrl/fakePath'];
 			postAdController.submit(false);
 			expect(spinnerModalController.hideModal).toHaveBeenCalled();
+		});
+	});
+
+	describe("formMap", () => {
+		let $testArea;
+		window.getUrlParameter(true);
+		beforeEach(() => {
+			specHelper.mockGoogleLocationApi();
+			specHelper.mockWebshim();
+
+			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
+			formMapController.initialize();
+		});
+		it('test if google api maps has been applied on object window.google', () => {
+			spyOn(window.google.maps, 'Map');
+			this.map = new google.maps.Map($(".map")[0], {
+				center: this.position,
+				zoom: this.zoom,
+				disableDefaultUI: true,
+			});
+			expect(google.maps.Map).toHaveBeenCalled();
+		});
+
+		it("initialize and disable geolocate", () => {
+			let checkGeolocation = $testArea.find('#checkGeolocation');
+			expect(checkGeolocation.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
 		});
 	});
 });

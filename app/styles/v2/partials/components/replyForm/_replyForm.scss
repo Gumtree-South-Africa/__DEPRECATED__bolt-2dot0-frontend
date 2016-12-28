@@ -1,62 +1,109 @@
-.reply-form-container {
-	margin-top: 5px;
-	.fake-header-mobile {
-		display: block;
-		background-color: $common-background-color;
+.reply-form {
+	width: 100%;
+}
+
+.desktop-only {
+	display:none;
+}
+
+.mobile-only {
+	display: block;
+}
+
+.fixed {
+	bottom: 0;
+	position: fixed;
+	overflow-y: scroll;
+	overflow-x: hidden;
+	background-color: white;
+	z-index: 9000;
+	@include from-breakpoint($medium-break) {
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+		top: 0 !important;
+	}
+}
+
+.message-sent {
+	.return-button {
+		color: $vivaWhite;
+		background-color: $vivaOrange;
+		height: 40px;
+		font-size: 18px;
+		border-radius: 3px;
+		text-shadow:none !important;
+		border:none !important;
+		box-shadow:none !important;
+		text-align: center;
 		padding-top: 15px;
-		padding-bottom: 10px;
-		border-bottom: 1px solid $vivaBlue2;
-		padding-left: 10px;
-		padding-right: 10px;
+		cursor: pointer;
+		position: fixed;
+		bottom: 20px;
+		width:90%;
+		margin: 0 0 0 -45%;
+		left:50%;
 
-		.logo {
-			display: block;
-			text-align: center;
-			height: 24px;
-			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
-			background-size: contain;
-			margin-bottom: 15px;
-		}
-
-		.left-arrow {
-			display: inline-block;
-			color: $vivaBlue;
-		}
-
-		.back-button {
-			color: $vivaBlue2;
-			margin-left: 5px;
-			cursor: pointer;
-		}
-
-		.message-highlight {
-			color: $vivaBlue2;
-			margin-left: 30px;
-			border-bottom: 4px solid $vivaBlue2;
-			padding-bottom: 10px;
+		& a {
+			color: $vivaWhite;
+			text-decoration: none;
 		}
 	}
+	.close-button {
+		float: right;
+		display: inline-block;
+		cursor: pointer;
+	}
+
+	.icon-close {
+		display: inline-block;
+	}
+
+	.message-sent-text {
+		color: $vivaGray1;
+		text-align: center;
+		margin-top: 5px;
+		position: fixed;
+		top: 50%;
+		width: 90%;
+		margin: 0 0 0 -45%;
+		left:50%;
+	}
+}
+
+.reply-form-container {
+	margin-top: 5px;
+	position: relative;
 
 	.main-content {
-		margin: 15px 10px;
+		margin: 20px 10px;
 		color: $vivaGray1;
 
 		.reply-form-content {
 			.login-link {
 				text-decoration: underline;
 			}
+			.fe-email-validation {
+				color: $vivaRed;
+			}
+			.fe-message-validation {
+				color: $vivaRed;
+			}
+			.fe-phone-validation {
+				color: $vivaRed;
+			}
 		}
 
 		.viva-checkbox {
-			-ms-transform: scale(1.2); /* IE */
-			-moz-transform: scale(1.2); /* FF */
-			-webkit-transform: scale(1.2); /* Safari and Chrome */
-			-o-transform: scale(1.2); /* Opera */
+			-ms-transform: scale(1.1); /* IE */
+			-moz-transform: scale(1.1); /* FF */
+			-webkit-transform: scale(1.1); /* Safari and Chrome */
+			-o-transform: scale(1.1); /* Opera */
 			padding: 10px;
+			margin-right: 5px;
 		}
 
 		.login-message-container {
-			padding-top:15px;
 			margin-bottom: 15px;
 			.desktop-message {
 				display: none;
@@ -66,23 +113,22 @@
 			}
 		}
 
-		.interested-message-container, .where-message-container {
+		.canned-message-container {
 			margin-bottom: 10px;
-			margin-left: 5px;
-			.interested-message, .where-message {
+			.canned-message {
 				margin-left: 5px;
 				position: relative;
-				top: 1px;
+				top: -1px;
 			}
 		}
 
 		.send-message-container {
 			margin-button: 10px;
-			margin-left: 5px;
+			margin-top: 5px;
 			.send-message {
 				margin-left: 5px;
 				position: relative;
-				top: 1px;
+				top: -1px;
 			}
 		}
 
@@ -100,7 +146,6 @@
 
 		.box-area {
 			border: 1px solid $vivaGray1;
-			margin-bottom: 10px;
 			width: 95%;
 			padding-left: 5px;
 			border-radius: 3px;
@@ -131,22 +176,210 @@
 	}
 
 	.vip-terms {
+		margin: 10px;
 		font-size: 10px;
+		padding-bottom: 20px;
+	}
+
+	input[type="file"] {
+		display: none;
+	}
+
+	.custom-file-upload {
+		color: $vivaBlue;
+		font-size: 12px;
+		border-radius: 3px;
+		border: 1px solid $vivaBlue;
+		display: inline-block;
+		padding: 5px 20px;
+		cursor: pointer;
+	}
+	.file-text {
+		font-size: 10px;
+		color: $vivaGray1;
+		margin-left: 10px;
 	}
 }
 
 .hide {
-	display: none !important;
+	display: none;
 }
 
-@include from-breakpoint($medium-break){
+@include from-breakpoint($medium-break) {
+	.desktop-only {
+		display: block;
+	}
+	.mobile-only {
+		display: none;
+	}
+
+	#replyModal {
+		.return-button {
+			position: relative;
+			margin: 0 auto;
+			width: 70%;
+			margin-top: 30px;
+			left: 0;
+			bottom: 0;
+			top: 88px;
+			line-height: 10px;
+			height: 25px;
+		}
+
+		.desktop-message-text {
+			color: $vivaBlue;
+			font-size: 12px;
+		}
+
+		.close-button {
+			font-size: 12px;
+		}
+
+		.message-sent-text {
+			position: relative;
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 50px;
+			left: 0;
+			display: block;
+			top: 40px;
+		}
+	}
+
+	@mixin modal() {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+		top: 0;
+		z-index: 200;
+		left: 0;
+
+		> .modal-overlay {
+			background-color: $modal-bgcolor;
+			opacity: 0.5;
+			position: absolute;
+			height: 100%;
+			width: 100%;
+		}
+		> .modal-container {
+			background-color: white;
+			width: 80%;
+			position: relative;
+			top: 0em;
+			margin: 2em auto;
+			padding: 1em;
+			max-width: 23em;
+			min-height: 14em;
+			> .modal-close-section {
+				text-align: right;
+				cursor: pointer;
+				color: gray;
+				font-size: 0.8em;
+				:hover {
+					.close-text {
+						text-decoration: underline;
+					}
+				}
+				> div .close-text {
+					vertical-align: middle;
+					margin-right: 0.5em;
+				}
+				> div .icon-close {
+					display: inline-block;
+					vertical-align: middle;
+					cursor: pointer;
+				}
+			}
+		}
+	}
+
+	#replyModal {
+		.modal {
+		}
+		.modal-header-message {
+			font: $h3;
+			text-align: center;
+			margin-top: 0.5em;
+			margin-bottom: 0.6em;
+		}
+		.modal-info {
+			font: $p2;
+			color: $modal-info;
+			margin-top: 1em;
+			margin-bottom: 0.25em;
+			margin-left: 1em;
+		}
+		.modal-field {
+			position: relative;
+			.icon-placeholder1 {
+				border: 1px solid green;
+				float: left;
+			}
+			.icon-placeholder2 {
+				border: 1px solid blue;
+				float: left;
+			}
+		}
+		.modal-container {
+			.desktop-header {
+				padding: 5px;
+				background-color: $common-background-color;
+				border-bottom: 1px solid $vivaGray2;
+
+				.desktop-message-text {
+					padding-left: 10px;
+				}
+
+				.close-icon-font {
+					display: inline-block;
+					position: relative;
+					left: 2px;
+				}
+			}
+			height: 300px;
+			width: 350px;
+			top: 120px;
+			padding: 0;
+		}
+
+		input {
+			border: transparent;
+			width: 98%;
+			height: 2em;
+			margin-left: 0.5em;
+			margin-top: 0.3em;
+			&:focus {
+				border: transparent;
+				outline: none;
+			}
+		}
+		.btn-wrapper {
+			margin-top: 2em;
+		}
+	}
+
+	.pac-container{
+		.pac-item {
+			.pac-icon {
+				display: none;
+			}
+		}
+	}
+
+	.stop-scrolling {
+		height: 100%;
+		overflow: hidden;
+	}
+
+	.disable-click {
+		pointer-events: none;
+		opacity: 0.5;
+	}
+
 	.reply-form-container {
 		padding-left: 15px;
 		padding-right: 15px;
 		background-color: $common-background-color;
-		.fake-header-mobile {
-			display: none;
-		}
 
 		.phone-header-desktop {
 			color: $vivaGray1;
@@ -181,6 +414,16 @@
 
 		.main-content {
 			.reply-form-content {
+				.viva-checkbox {
+					-ms-transform: scale(1.0); /* IE */
+					-moz-transform: scale(1.0); /* FF */
+					-webkit-transform: scale(1.0); /* Safari and Chrome */
+					-o-transform: scale(1.0); /* Opera */
+					padding: 10px;
+					position: relative;
+					top: -1px;
+				}
+
 				.login-message-container {
 					.desktop-message {
 						font-weight: bold;

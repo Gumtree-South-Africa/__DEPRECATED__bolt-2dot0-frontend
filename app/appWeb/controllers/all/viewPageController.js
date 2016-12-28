@@ -13,6 +13,35 @@ let config = require('config');
 const SITE_KEY = config.get('recaptcha.SITE_KEY');
 
 let VIP = {
+	redirectBasedOnAdStatus: (req, res, modelData) => {
+		//Redirect deleted ads
+		let today = new Date().getTime();
+    	let expired = modelData.advert.expirationDate;
+    	let difference = expired - today;
+		let daysLeft = Math.floor(difference / 86400000);
+
+		let redirectUrl;
+		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
+			if(daysLeft > 60) {
+				redirectUrl = '/?status=adInactive';
+				return redirectUrl;
+			}
+		}
+
+		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ) {
+			redirectUrl = '/?status=adInactive';
+			return redirectUrl;
+		}
+
+		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
+			if(daysLeft > 60) {
+				redirectUrl = '/?status=adPending';
+				return redirectUrl;
+			}
+		}
+
+		return null;
+	},
 	extendHeaderData: (req, modelData) => {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
@@ -149,6 +178,12 @@ router.get('/:id?', (req, res, next) => {
 			}
 		}
 
+		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
+		if (redirectUrlByStatus !== null) {
+			res.redirect(redirectUrlByStatus);
+			return;
+		}
+
 		VIP.extendHeaderData(req, modelData);
 		VIP.buildHeaderPageMessages(query, modelData);
 		VIP.extendFooterData(req, modelData);
@@ -159,7 +194,14 @@ router.get('/:id?', (req, res, next) => {
 		modelData.search = true;
 		modelData.redirectPrevUrl = redirectPrevUrl;
 
+		// Post overlay means the overlay around post button with title, description and link to edit page.
+		// It only shows when post / edit ad without feature purchase or IF.
+		modelData.activateStatus = req.query.activateStatus;
+		modelData.showPostOverlay =
+			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
+
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);

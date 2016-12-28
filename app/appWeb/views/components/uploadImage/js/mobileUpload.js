@@ -172,6 +172,11 @@ class MobileUpload {
 				}
 			}
 			this.handleImageUrlChanged(url.normal);
+			// display map 
+			if(window.formMap) {
+				google.maps.event.trigger(window.formMap.map, "resize");
+				window.formMap.map.setCenter(window.formMap.position);
+			}
 		};
 
 		/**
@@ -275,6 +280,3 @@ class MobileUpload {
 }
 
 module.exports = new MobileUpload();
-
-
-
