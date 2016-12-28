@@ -1654,9 +1654,9 @@
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
-			"attachAFile": "ATTACH A FILE (OPTIONAL)",
-			"browseFiles": "Browse Files",
-			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
+			"attachAFile": "ADJUNTAR UN ARCHIVO (OPCIONAL)",
+			"browseFiles": "Explorar Archivos",
+			"pdfOrDoc": "Solo PDF o DOC. Máximo 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
 			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 			"canned": {
