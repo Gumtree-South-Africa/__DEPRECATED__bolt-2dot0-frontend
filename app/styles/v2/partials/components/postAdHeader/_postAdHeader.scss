@@ -52,7 +52,7 @@ $photo-switcher-width: 30%;
 		font-weight: bold;
 	}
 	.title-text{
- 		max-width: 12em;
+ 		max-width: 15em;
  		max-height: 21px;
 		@include to-breakpoint($small-break){
 			text-align: center;
