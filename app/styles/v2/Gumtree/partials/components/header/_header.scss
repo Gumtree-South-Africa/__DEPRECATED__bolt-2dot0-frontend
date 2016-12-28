@@ -30,6 +30,10 @@
 			max-width: none;
 			padding: 20px 5px 12px;
 			z-index: 1;
+
+			&.menu-open {
+				color: $subCatMenuHeaderColor;
+			}
 		}
 
 		.left-items {
@@ -39,7 +43,7 @@
 
 			&.logged-out {
 				left: auto;
-				margin-left: 11%;
+				margin-left: 5%;
 
 				.post-ad-button {
 					margin-left: 35px;
@@ -74,21 +78,72 @@
 		}
 
 		.menu-dropdown {
-			border-radius: 0 2px 2px 2px;
-			line-height: 20px;
-			padding: 5px;
-			position: absolute;
-			left: 0;
-			top: 100%;
-			background-color: $vivaGray4;
-			padding-left: 280px;
-			padding-top: 20px;
-    		padding-bottom: 20px;
-			margin-left: -300px;
-			min-width: 735px;
+			min-width: 860px;
 
 			.menu-item {
-				border-bottom-color: $headerMenuItemSeparatorColor;
+				height: 37px;
+				color: $subCatMenuHeaderColor;
+			}
+
+			.menu-item a span {
+				height: 37px;
+				color: $subCatMenuHeaderColor;
+			}
+
+			.menu-item:hover a span{
+				// background-color: $headerMenuItemHighlightColor;
+				font-weight: $fontWeightBold;
+				color: $headerMenuBorderColor;
+			}
+		}
+
+		.child-l2 {
+
+			.subCatMenuHeader {
+				color: $subCatMenuHeaderColor;
+				width: 970px;
+				.back-button {
+					.icon-down {
+						margin-top: 14px;
+						fill: $subCatMenuHeaderColor;
+					}
+
+				}
+
+				.subcat-title {
+					padding: 12px 0 10px 0;
+					font-weight: $fontWeightNormal;
+				}
+
+				.icon-vip-back {
+
+				}
+				 span {
+
+				}
+			}
+
+			.menu-dropdown-l2 {
+
+				&.hidden {
+				}
+
+				.subcat-title {
+
+				}
+				&:last-child {
+
+				}
+				.l2 {
+
+				}
+
+				.l2:hover{
+					color: $menuHoverColor;
+				}
+				.l2:hover a span{
+					color: $menuHoverColor;
+				}
 			}
 		}
 
