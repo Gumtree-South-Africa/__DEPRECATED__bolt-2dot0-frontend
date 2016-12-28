@@ -1,13 +1,13 @@
 'use strict';
 
-let _showMoreLocations = () => {
-	this.$showMoreLocations.toggleClass('hide');
-	this.$showMoreLocations.is(':visible') ?
-		this.$viewMoreLocations.html([
+let _showMoreCategories = () => {
+	this.$showMoreCategories.toggleClass('hide');
+	this.$showMoreCategories.is(':visible') ?
+		this.$viewMoreCategories.html([
 			$('<span>', { 'text': this.viewLessText}),
 			$('<span>', { 'class': 'no-underline', 'text': '\u00A0\u2227'})
 		]) :
-		this.$viewMoreLocations.html([
+		this.$viewMoreCategories.html([
 			$('<span>', { 'text': this.viewMoreText}),
 			$('<span>', { 'class': 'no-underline', text: '\u00A0>'})
 		]);
@@ -21,13 +21,13 @@ let _showMoreLocations = () => {
 
 let initialize = () => {
 	this.$desktopSeo = $('.desktop-seo');
-	this.$viewMoreLocations = $('.view-more-locations');
-	this.$showMoreLocations = $('.show-more-locations');
+	this.$viewMoreCategories = $('.view-more-categories');
+	this.$showMoreCategories = $('.show-more-categories');
 
-	this.viewMoreText = this.$viewMoreLocations.data('view-more');
-	this.viewLessText = this.$viewMoreLocations.data('view-less');
+	this.viewMoreText = this.$viewMoreCategories.data('view-more');
+	this.viewLessText = this.$viewMoreCategories.data('view-less');
 
-	this.$viewMoreLocations.on('click', _showMoreLocations);
+	this.$viewMoreCategories.on('click', _showMoreCategories);
 };
 
 module.exports = {
