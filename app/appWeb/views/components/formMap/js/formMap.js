@@ -24,8 +24,11 @@ class FormMap {
 			current: '/public/icons/map/location-current.svg',
 			fakeAd: '/public/icons/map/location-marker.svg'
 		};
+		this.dragmap = false;
+		this.modalActive = false;
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
 		this.secondsSetposition = this.googleMap.secondsSetposition;
+		
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
@@ -44,6 +47,7 @@ class FormMap {
 										countryShortName = results[0].address_components[i].short_name;
 									}
 								}
+								window.formMap.errorMessageMap.html(window.formMap.googleMap.errorMessage).hide();
 								if(countryShortName === window.formMap.country) {
 									window.formMap.HtmlAutocomplete.val(results[0].formatted_address);
 									success(coordinates);
@@ -79,11 +83,17 @@ class FormMap {
 			google.maps.event.trigger(this.map, "resize");
 		});
 
+		this.map.addListener('drag', () => {
+			this.dragmap = true;
+		});
 		// enables the behavior of get a location valid after 2 seconds of having dragged the map
 		this.map.addListener('dragend', () => {
+			this.dragmap = false;
 			setTimeout(() => {
-				this.position = this.getPosition();
-				window.formMap.validateCountry(this.position).then(function(result) {
+				if(this.dragmap) {
+					return;
+				}
+				window.formMap.validateCountry(this.getPosition()).then(function(result) {
 					if (result) {
 						window.formMap.position = result;
 						window.formMap.setCurrentPosition();
@@ -247,11 +257,41 @@ let initialize = () => {
 	window.googleMarker = googleMarker;
 
 	// Events setup
-	$('#switchRangeMarker').change(function() {
+	$('#switchRangeMarker').change(() => {
 		if(window.formMap.position) {
 			window.formMap.setMark();	
 		}
     });
+
+	$("#close-modal").click(() => {
+		if(window.formMap.modalActive) {
+			$("#form-map-overlay").removeClass("active");
+			$("#form-map-component").removeClass("active");
+			$("#autocompleteTextBox").removeClass("modalState");
+			$("#setCurrentLocationButton").removeClass("modalState");
+			window.formMap.modalActive = false; 
+		}
+	});
+
+	$("#confirmLocationButton").click(() => {
+		if(window.formMap.modalActive) {
+			$("#form-map-overlay").removeClass("active");
+			$("#form-map-component").removeClass("active");
+			$("#autocompleteTextBox").removeClass("modalState");
+			$("#setCurrentLocationButton").removeClass("modalState");
+			window.formMap.modalActive = false; 
+		}
+	});
+	
+	$("#map").click(() => {
+		if(!window.formMap.modalActive) {
+			$("#form-map-overlay").addClass("active");
+			$("#form-map-component").addClass("active");
+			$("#autocompleteTextBox").addClass("modalState");
+			$("#setCurrentLocationButton").addClass("modalState");
+			window.formMap.modalActive = true; 
+		}
+	});
 };
 
 module.exports = {

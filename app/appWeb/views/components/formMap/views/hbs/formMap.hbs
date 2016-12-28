@@ -1,4 +1,9 @@
-<div class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+<div id="form-map-overlay" class="form-map-overlay"></div>
+<div id="form-map-component" class="form-map-component" data-google-map="{{this.googleMap}}" data-location-ad="{{this.locationLatLong}}">
+    <div id="close-modal" class="close-modal">
+        <span class="close-text">{{i18n "feature.legend.close"}}</span>
+        <img class="close-icon-small" src="/public/icons/close.svg" alt="">
+    </div>
     <div class="title">{{i18n "postad.location.title"}} <span class="errorMessageMap"></span></div>
     <div class="map-form">
         <div class="search-location">
@@ -8,8 +13,9 @@
                  {{i18n "postad.location.setLocation"}}</button>
         </div>
         <div class="map-component">
-
             <div class="map-plugin">
+                <button id="confirmLocationButton" class="confirmLocationButton" type="button">
+                 {{i18n "postad.location.confirmButton"}}</button>
                 <div id="map"></div>
                 <div class="google-maps">
                     {{#if this.googleMapAuth.googleMapKey}}

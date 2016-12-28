@@ -229,6 +229,7 @@
 	"postad.location.uselocation.instructions" : "(Se mostrará un marcador en el mapa)",
 	"postad.location.setLocation" : "Ubicación actual",
 	"postad.location.placeholder": "Añade tu dirección",
+	"postad.location.confirmButton": "Confirmar ubicación",
 	"previewad.notice.text": "Tu anuncio no está publicado aún.  Por favor revísalo y haz clic en Publicar.",
 	"previewad.edit.text": "Editar",
 	"previewad.postyourad.text": "Publica tu anuncio",
