@@ -261,7 +261,7 @@ class PostAd {
 
 	submit(/* useMobileImages */) {
 		//if (!this._canMobileSubmit() && !this._canDesktopSubmit()) {
-		if (!this._canSubmit() && !this._canSubmit()) {
+		if (!this._canSubmit()) {
 			return;
 		}
 
