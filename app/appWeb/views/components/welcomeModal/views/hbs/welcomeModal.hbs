@@ -44,12 +44,15 @@
 					</div>
 				</div>
 				{{else}}
+				<!--
 					{{#if this.imageUploadFromHome}}
 						{{> (dynamic "button") i18nPath="postad.button" buttonLink="#" hideIcon=false iconName="icon-post" extraClasses='login-button directly-post'}}
 					{{else}}
 						{{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
 					{{/if}}
-				{{/if}}
+                -->
+                    {{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
+                {{/if}}
 			</div>
 		</div>
 	</div>

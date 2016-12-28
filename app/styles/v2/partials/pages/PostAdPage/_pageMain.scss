@@ -37,6 +37,7 @@ $labelMargin: 8%;
 	.directions {
 		font-size: 18px;
 		color: $postAdTextGray;
+		margin-top: 5px;
 		margin-bottom: 15px;
 		text-align: center;
 	}
@@ -55,10 +56,10 @@ $labelMargin: 8%;
 		&:hover {
 			text-decoration: none;
 		}
-		width: 63.7%;
+		width: 57.3%;
 		vertical-align: top;
 		float: left;
-		margin-left: calc(1% + 300px);
+		margin-left: calc(6% + 300px);
 		margin-top: 1%;
 		margin-bottom: 2%;
 
@@ -98,26 +99,39 @@ $labelMargin: 8%;
 	}
 }
 
-.photo-switcher {
-	display: inline-block;
-	width: 300px; // Align with banner asset
-	float: left;
+.photo-container-start {
 	background-color: $postAdBackgroundColor;
 	box-shadow: 1px 1px 6px $postAdShadowColor;
 	.image-container {
 		margin: 5% 5%;
 	}
-	.cover-photo-small {
-		margin: 2% 2.8%;
-	}
 }
 
 @include from-breakpoint($medium-break) {
+	.post-main-detail-hidden-for-mobile {
+		display: block !important;
+	}
+
 	.post-ad-content {
 		position: relative;
 		max-width: 1168px;
 		margin: 0 auto;
 	}
+
+	.photo-switcher {
+		float: left;
+		margin-left: 5%;
+		width: 300px; // Align with banner asset
+		background-color: $postAdBackgroundColor;
+		box-shadow: 1px 1px 6px $postAdShadowColor;
+		.image-container {
+			margin: 5% 5%;
+		}
+		.cover-photo-small {
+			margin: 2% 2.8%;
+		}
+	}
+
 	.mobile-post-ad, .back-button {
 		display: none;
 	}
@@ -131,14 +145,13 @@ $labelMargin: 8%;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
 		box-shadow: 1px 1px 6px $postAdShadowColor;
 		margin-left: 1%;
-		display: block !important; //TBD, need to find why another breakpoint created
 	}
 
 	.two-step {
-		display: block !important;
+		display: block;
 	}
 	.one-step {
-		display: none !important;
+		display: none;
 	}
 
 	.icon-down {
@@ -153,6 +166,10 @@ $labelMargin: 8%;
 .image-upload-progress {
 	width: 100%;
 	margin: auto;
+}
+
+.mobile-post-ad-footer {
+	width: 100%;
 }
 
 @include to-breakpoint($small-break) {
@@ -179,22 +196,40 @@ $labelMargin: 8%;
 		margin-bottom: 41px;
 	}
 
+	.post-main-detail-hidden-for-mobile {
+		display: none;
+	}
+
 	.main-detail-post {
-		display:none;
+		width: 100% !important;
+		float: left;
+		margin-top: 20px;
 		background-color: $mainDetailsBackgroundColor;
-		.photo-switcher {
+	}
+
+	.photo-switcher {
+		.image-container {
 			margin: 0 2%;
 			width: 100%;
 			.cover-photo-small {
 				margin: 2% 2%;
 			}
 		}
+		.drag-reorder {
+			display: none;
+		}
+	}
+
+	.photo-container-start {
+		margin: 20px auto 0 auto;
+		width: 300px; // Align with banner asset
+		height: 300px;
 	}
 
 	.two-step {
-		display: none;
+		display: block;
 	}
 	.one-step {
-		display: block;
+		display: none;
 	}
 }

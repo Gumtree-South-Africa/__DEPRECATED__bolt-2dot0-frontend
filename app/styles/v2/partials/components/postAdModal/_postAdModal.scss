@@ -3,6 +3,9 @@
 }
 
 .post-ad-wrapper {
+	@include to-breakpoint($small-break) {
+		display: none;
+	}
 	position: fixed;
 	z-index: 10;
 	top: 0;
