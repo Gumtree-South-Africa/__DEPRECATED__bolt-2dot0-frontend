@@ -7,6 +7,7 @@ let specHelper = require('../helpers/commonSpecHelper.js');
 let loginModalController = require("app/appWeb/views/components/loginModal/js/loginModal.js");
 let spinnerModalController = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let formMapController =require('app/appWeb/views/components/formMap/js/formMap.js');
+let postAdFormMainDetailsController = require("app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js");
 
 let mockEpsResponse = 'VERSION:2;http://i.ebayimg.sandbox.ebay.com/00/s/ODAwWDM4Ng==/z/iYgAAOSwGvNXo388/$_1.JPG?set_id=8800005007';
 let imageHelper = new ImageHelper.EpsUpload({
@@ -36,6 +37,17 @@ let mockGetUrlParameters = () => {
 };
 mockGetUrlParameters();
 describe('Post Ad', () => {
+	beforeEach(() => {
+		// Don't run polyfill for form as it will throw following error on CI client UT
+		// TypeError: Assignment to constant variable.
+		// at t (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25768:227)
+		// at Object.test (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25787:143)
+		// at Object._polyfill (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25481:272)
+		// at Object.a.extend.polyfill (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:25476:269)
+		// at PostAdFormMainDetails._setupPolyfillForm (/src/bolt-2dot0-frontend/test/clientUnit/SpecRunner.js:24059:94)
+		spyOn(postAdFormMainDetailsController, '_setupPolyfillForm');
+	});
+
 	window.getUrlParameter(true);
 	it('should open and close the login modal when called', () => {
 		let $testArea = specHelper.setupTest("loginModal", {
