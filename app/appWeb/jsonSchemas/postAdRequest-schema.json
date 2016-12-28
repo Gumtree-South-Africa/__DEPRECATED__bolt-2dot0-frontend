@@ -32,6 +32,17 @@
 					"price": {
 						"type": "object",
 						"properties": {
+							"priceType": {
+								"type": "string",
+								"enum": [
+									"FIXED",
+									"FREE",
+									"MAKE_OFFER",
+									"BARTER_SWAP",
+									"CONTACT_ME"
+								],
+								"required": true
+							},
 							"currency": {
 								"type": "string",
 								"enum": [
