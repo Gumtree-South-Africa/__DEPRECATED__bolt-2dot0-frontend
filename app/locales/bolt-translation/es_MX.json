@@ -1374,6 +1374,8 @@
 		}
 	},
 	"footer": {
+		"toplocations": "Los Mejores Lugares",
+		"topCategories": "Categorías",
 		"help": {
 			"heretohelp": "Estamos aquí para ayudarte",
 			"sendemail": "Envía un correo electrónico",
