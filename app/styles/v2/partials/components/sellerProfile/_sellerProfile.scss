@@ -73,7 +73,19 @@
 		left: 10px;
 		position: relative;
 		margin-top: 5px;
+		@include to-breakpoint($small-break) {
+			left: 5px;
+		}
 
+		.user-ads-posted, .user-ads-active {
+			@include to-breakpoint($small-break) {
+				width: 38px;
+				max-width: 38px;
+				overflow: hidden;
+			}
+		}
+
+		
 		.user-ads-posted {
 			color: $vivaOrange;
 		}
@@ -90,6 +102,9 @@
 			font-size: 10px;
 			color: $vivaGray1;
 			margin-left: 5px;
+			@include to-breakpoint($small-break) {
+				font-size: 6.5pt;
+			}
 		}
 
 		.ads-active-text {
