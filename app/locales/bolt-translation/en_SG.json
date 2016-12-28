@@ -1389,7 +1389,7 @@
 			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "Es muy sencillo, al menos una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1566,6 +1566,13 @@
 			"sendACopy": "Send a copy to my email",
 			"send": "Send",
 			"terms": "By clicking \"Send\" you accept the <a href=\"%s\" target=\"_blank\">Terms of Use</a> and <a href=\"%s\" target=\"_blank\">Privacy Notice</a> and agree to receive newsletters and promo offers from us."
+		},
+		"postOverlay": {
+			"title": "Your ad is updated",
+			"postTitle": "Your Ad is Posted",
+			"description": "Tip: Add more photos to increase your chances of selling quickly",
+			"edit": "Edit My Ad",
+			"postMore": "Post More Ads"
 		}
 	},
 	"promote": {

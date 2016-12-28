@@ -6,63 +6,88 @@
 			"parameters": null,
 			"timeout": 2000
 		},
-	    "endpoints": {
-	    	"categoryHomePage"	:	"/bolt-api-webapp/v1/categories",
-	    	"locationHomePage"	:	"/bolt-api-webapp/v1/locations",
-	    	"topLocationsL2"	:	"/bolt-api-webapp/v1/locations/top/L2",
-	    	"userFromCookie" 	:	"/bolt-api-webapp/v1/users/logged-in-user-info",
-	    	"topKeywords" 		:	"/bolt-api-webapp/v1/keywords/top",
-	    	"trendingKeywords" 	:	"/bolt-api-webapp/v1/keywords/trending",
-			"suggestedKeywords" : 	"/bolt-api-webapp/v1/keywords/suggestions",
-			"relatedKeywords" 	: 	"/bolt-api-webapp/v1/keywords/related",
-	    	"homepageGallery" 	:	"/bolt-api-webapp/v1/ads/gallery",
-	    	"adStatistics" 		: 	"/bolt-api-webapp/v1/ads/statistics",
-	    	"configService"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings.json",
-			"updateConfig"		:	"/bolt-api-webapp/v1/configs/nodeapp/settings",
-		  	"ads"				:	"/bolt-api-webapp/v1/ads",
-			"recentActivities"	:	"/bolt-api-webapp/v1/ads/activities/recent",
-			"trendingSearch"	: 	"/bolt-api-webapp/v1/ads/trending",
-			"draftAd"			:	"/bolt-api-webapp/v1/ads/drafts",
-			"availableFlagsAd"	:	"/bolt-api-webapp/v1/ads/flags",
-			"specificAd"		:	"/bolt-api-webapp/v1/ads/{id}",
-			"favoriteAd"		:	"/bolt-api-webapp/v1/ads/{id}/favorites",
-			"categoryAttributes":	"/bolt-api-webapp/v1/categories/{catId}/attributes",
-			"authBoltLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-bolt",
-			"authFbLogin"		:	"/bolt-api-webapp/v1/users/actions/login-with-facebook",
-			"authRegister"		:	"/bolt-api-webapp/v1/users",
-			"authActivate"		:	"/bolt-api-webapp/v1/users/{email}/actions/activate",
-			"authEmailExists"	:	"/bolt-api-webapp/v1/users/email/{email}",
-			"authPhoneExists"	:	"/bolt-api-webapp/v1/users/phone/{phone}",
-			"adFeatures"        :   "/bolt-api-webapp/v1/features?",
-			"categorySuggest"   :   "/bolt-api-webapp/v1/categories/action/suggestion?"
-	    }
+		"endpoints": {
+			"categoryHomePage": "/bolt-api-webapp/v1/categories",
+			"locationHomePage": "/bolt-api-webapp/v1/locations",
+			"topLocationsL2": "/bolt-api-webapp/v1/locations/top/L2",
+			"userFromCookie": "/bolt-api-webapp/v1/users/logged-in-user-info",
+			"topKeywords": "/bolt-api-webapp/v1/keywords/top",
+			"trendingKeywords": "/bolt-api-webapp/v1/keywords/trending",
+			"suggestedKeywords": "/bolt-api-webapp/v1/keywords/suggestions",
+			"relatedKeywords": "/bolt-api-webapp/v1/keywords/related",
+			"homepageGallery": "/bolt-api-webapp/v1/ads/gallery",
+			"adStatistics": "/bolt-api-webapp/v1/ads/statistics",
+			"configService": "/bolt-api-webapp/v1/configs/nodeapp/settings.json",
+			"updateConfig": "/bolt-api-webapp/v1/configs/nodeapp/settings",
+			"ads": "/bolt-api-webapp/v1/ads",
+			"recentActivities": "/bolt-api-webapp/v1/ads/activities/recent",
+			"trendingSearch": "/bolt-api-webapp/v1/ads/trending",
+			"draftAd": "/bolt-api-webapp/v1/ads/drafts",
+			"availableFlagsAd": "/bolt-api-webapp/v1/ads/flags",
+			"specificAd": "/bolt-api-webapp/v1/ads/{id}",
+			"favoriteAd": "/bolt-api-webapp/v1/ads/{id}/favorites",
+			"flagAd": "/bolt-api-webapp/v1/ads/{id}/actions/flag",
+			"categoryAttributes": "/bolt-api-webapp/v1/categories/{catId}/attributes",
+			"authBoltLogin": "/bolt-api-webapp/v1/users/actions/login-with-bolt",
+			"authFbLogin": "/bolt-api-webapp/v1/users/actions/login-with-facebook",
+			"authRegister": "/bolt-api-webapp/v1/users",
+			"authActivate": "/bolt-api-webapp/v1/users/{email}/actions/activate",
+			"authEmailExists": "/bolt-api-webapp/v1/users/email/{email}",
+			"authPhoneExists": "/bolt-api-webapp/v1/users/phone/{phone}",
+			"adFeatures": "/bolt-api-webapp/v1/features?",
+			"categorySuggest": "/bolt-api-webapp/v1/categories/action/suggestion?"
+		}
+	},
+	"RUI": {
+		"server": {
+			"host": "localhost",
+			"port": 8443,
+			"parameters": null,
+			"protocol": "https:",
+			"timeout": 2000,
+			"useBasedomainsuffix": false
+		},
+		"endpoints": {
+			"replyForm": "/rui-api/page/reply/model/"
+		}
 	},
 	"solr": {
 		"server": {
-			"host"	: "localhost",
-			"port"	: 9090,
-			"path"	: "/solr",
+			"host": "localhost",
+			"port": 9090,
+			"path": "/solr",
 			"version": "4.0"
+		}
+	},
+	"recaptcha": {
+		"SITE_KEY": "6LeKWQ0UAAAAALV6TCyLA4NIEayLGeonQl85sRK0",
+		"SECRET_KEY": "6LeKWQ0UAAAAAMum1smeI18dWngRdIg9TXtSEETv",
+		"server": {
+			"hostname": "www.google.com",
+			"protocol": "https:",
+			"method": "POST",
+			"path": "/recaptcha/api/siteverify",
+			"timeout": 2000
 		}
 	},
 	"kafka": {
 		"server": {
-			"host"	: "elastic-01-6467.phx01.dev.ebayc3.com",
-			"port"	: 2181,
-			"topic" : "node_log"
+			"host": "elastic-01-6467.phx01.dev.ebayc3.com",
+			"port": 2181,
+			"topic": "node_log"
 		}
 	},
 	"graphite": {
 		"server": {
-			"host"		: "10.65.201.202",
-			"port"		: 2003,
-			"interval" 	: 30
+			"host": "10.65.201.202",
+			"port": 2003,
+			"interval": 30
 		}
 	},
 	"eps": {
-		"epsUploadExternalURL" : "https://msa-b1.sandbox.ebay.com/ws/eBayISAPI.dll?EpsBasic",
-		"epsToken" : "AgAAAA**AQAAAA**aAAAAA**yeFbVA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GhCJGLpAydj6x9nY+seQ**X60BAA**AAMAAA**N7T4wsT9Ju+MfgG2V/6QpTHVbPJ9PDG6nNDMyS0hoWLI+4mi4xCKmSmhHvqn1tomMK2On4AHgsg6tk8zB0kUlUtaMEvySDyNJDi9IFw7tsOiy+Jmh9yrZXSiQ0DvYbr37XRGT3upJo7RcpKW9tUDiIkrpI4N6oZNV0UaL8DZxMXQFQIooedrao0vtDmLMZkaqhl9/EhpmnfSszT2UA5LkYeSihU2x6j1Wg45+iRNVV0+oFoPgI3nK50WxIyBBVd2rWaBW0rm76rEdL6J9MFwVhQ3/HPfSjeTjtytzzUIcVyBUKF9jk1gj/1JXdXhy23iXWO2XbWR9SJg7xedyDXktpp5e+JZIjTUmvEH9DTW9gmONwmDzAD7t40xuCAc5b56I35aa5kM7s+sUR7TjvsGkmG9l8w1MDZfko8RxTXDiUN1Kg0zUp2lmvHHTkv0keSmxexs8JTY9pjLVd8m0e3xURAqfIMGdYJnj+mcJek5ZQZUgOgPG6Mor+j7XHqf2SIW6mOlvHOL3F4nST2QEDRdgnCAEeS3G5V/CiiQizOX2TWBJ3q6huo5EaN5x8RR6giCMWfbdrnbfPDz6lboR680sBZVgOqSoI5HcjohTXB2QsfD7kUqy3GImaK4SchEZ7JHyaAw51wkp8pMVmtN5hZhgzbiyQkefkpVYiA64Bz0MwQuK6QgIXhm5JW+zUY84mXOrXNrAP2fDglT8SCc7pm1zNj2E61OT17b9+Mm8DU3WLcaAAkMKG1FnkGZZcmD0Lfn",
-		"IsEbayDirectUL" : true
+		"epsUploadExternalURL": "https://msa-b1.sandbox.ebay.com/ws/eBayISAPI.dll?EpsBasic",
+		"epsToken": "AgAAAA**AQAAAA**aAAAAA**yeFbVA**nY+sHZ2PrBmdj6wVnY+sEZ2PrA2dj6wFk4GhCJGLpAydj6x9nY+seQ**X60BAA**AAMAAA**N7T4wsT9Ju+MfgG2V/6QpTHVbPJ9PDG6nNDMyS0hoWLI+4mi4xCKmSmhHvqn1tomMK2On4AHgsg6tk8zB0kUlUtaMEvySDyNJDi9IFw7tsOiy+Jmh9yrZXSiQ0DvYbr37XRGT3upJo7RcpKW9tUDiIkrpI4N6oZNV0UaL8DZxMXQFQIooedrao0vtDmLMZkaqhl9/EhpmnfSszT2UA5LkYeSihU2x6j1Wg45+iRNVV0+oFoPgI3nK50WxIyBBVd2rWaBW0rm76rEdL6J9MFwVhQ3/HPfSjeTjtytzzUIcVyBUKF9jk1gj/1JXdXhy23iXWO2XbWR9SJg7xedyDXktpp5e+JZIjTUmvEH9DTW9gmONwmDzAD7t40xuCAc5b56I35aa5kM7s+sUR7TjvsGkmG9l8w1MDZfko8RxTXDiUN1Kg0zUp2lmvHHTkv0keSmxexs8JTY9pjLVd8m0e3xURAqfIMGdYJnj+mcJek5ZQZUgOgPG6Mor+j7XHqf2SIW6mOlvHOL3F4nST2QEDRdgnCAEeS3G5V/CiiQizOX2TWBJ3q6huo5EaN5x8RR6giCMWfbdrnbfPDz6lboR680sBZVgOqSoI5HcjohTXB2QsfD7kUqy3GImaK4SchEZ7JHyaAw51wkp8pMVmtN5hZhgzbiyQkefkpVYiA64Bz0MwQuK6QgIXhm5JW+zUY84mXOrXNrAP2fDglT8SCc7pm1zNj2E61OT17b9+Mm8DU3WLcaAAkMKG1FnkGZZcmD0Lfn",
+		"IsEbayDirectUL": true
 	},
 	"cdn": {
 		"server": {
@@ -76,23 +101,24 @@
 	},
 	"static": {
 		"server": {
-			"host"		: null,
-			"port"		: null,
-			"version"	: null
+			"host": null,
+			"port": null,
+			"version": null
 		},
-		"baseSVGDataUrl"	: "/public/data-icon-css/",
-		"baseCSSUrl"	: "/public/css/",
-		"baseJSUrl"		: "/public/js/",
-		"baseJSMinUrl"	: "/public/jsmin/",
-		"baseImageUrl"	: "/public/images/",
-		"mainJSUrl"		: "/public/js/main.js",
-		"baseUrl"		: "/public/",
-		"baseFontUrl"	: "/public/fonts/",
-		"baseIconUrl"	: "/public/icons/",
-		"min"			: false
+		"baseSVGDataUrl": "/public/data-icon-css/",
+		"baseCSSUrl": "/public/css/",
+		"baseJSUrl": "/public/js/",
+		"baseJSMinUrl": "/public/jsmin/",
+		"baseImageUrl": "/public/images/",
+		"mainJSUrl": "/public/js/main.js",
+		"baseUrl": "/public/",
+		"baseFontUrl": "/public/fonts/",
+		"baseIconUrl": "/public/icons/",
+		"min": false
 	},
 	"abTest": {
 		"type": "google",
 		"experimentId": ""
-	}
+	},
+	"vmGoogleMapKeys": ""
 }

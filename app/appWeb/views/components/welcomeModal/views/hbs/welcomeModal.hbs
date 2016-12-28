@@ -15,38 +15,44 @@
 
 			</div>
 		</div>
-		git
+
 		<div class="welcome-footer">
 			<div class="modal-footer stickybottom">
-				{{#if this.hasReplyForm}}
+
+			{{#if this.isBuyerPage}}
 				<div class="sticky-contact">
 					<div class="contact-wrapper">
-						<div class="contact-title">Contact {{this.advert.sellerDetails.contactInfo.name}}</div>
+						<div class="contact-title">
+							<span>{{i18n "vip.reply.action.contact"}} {{#if this.advert.sellerDetails.contactInfo.name}}{{this.advert.sellerDetails.contactInfo.name}}{{else}}{{i18n "vip.seller.user"}}{{/if}}</span>
+						</div>
 						<div class="stickyBtn left">
 							<a href="tel:{{this.advert.sellerDetails.contactInfo.phone}}" class="button telephone">
-								<span class="icon-web-phone show-icon"></span><span class="duText">CALL</span>
-						</a>
+								<span class="icon-web-phone show-icon"></span><span class="duText">{{i18n "vip.reply.action.call"}}</span>
+						    </a>
 						</div>
 						<div class="stickyBtn right">
 							<a class="button email">
-								<span class="icon-web-email show-icon"></span><span class="duText">MESSAGE</span>
+								<span class="icon-web-email show-icon"></span><span class="duText">{{i18n "vip.reply.action.message"}}</span>
 							</a>
 						</div>
 						<div class="stickyBtn center">
 							<a href="sms:{{this.advert.sellerDetails.contactInfo.phone}}&body=RE: {{{this.advert.title}}}" class="button sms">
-								<span class="icon-web-sms show-icon"></span><span class="duText">SMS</span>
+								<span class="icon-web-sms show-icon"></span><span class="duText">{{i18n "vip.reply.action.text"}}</span>
 							</a>
 						</div>
 						<div class="clear"></div>
 					</div>
 				</div>
 				{{else}}
+				<!--
 					{{#if this.imageUploadFromHome}}
 						{{> (dynamic "button") i18nPath="postad.button" buttonLink="#" hideIcon=false iconName="icon-post" extraClasses='login-button directly-post'}}
 					{{else}}
 						{{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
 					{{/if}}
-				{{/if}}
+                -->
+                    {{> (dynamic "button") i18nPath="postad.button" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" extraClasses='login-button'}}
+                {{/if}}
 			</div>
 		</div>
 	</div>

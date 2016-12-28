@@ -4,6 +4,9 @@
 		<div class="post-ad-content">
             {{> (dynamic "postAdModal")}}
             {{> (dynamic "spinnerModal") }}
+			<div class="hidden">
+                {{> (dynamic "uploadImage")}}
+			</div>
             <div class="message-modal hidden">
                 <div class="message">
                     <div class="error-modal-container">
@@ -24,13 +27,27 @@
                     </div>
                 </div>
             </div>
-            <div class="mobile-post-ad mobile-upload-image">
-                <input type="hidden" name="initialImage" value="{{this.initialImage}}">
-                {{> (dynamic "uploadImage")}}
-                <div class="info-tips">{{i18n "postAd.page.tips"}}</div>
+			<div class="desktop-post-ad margin-auto">
+				<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
+			</div>
+            <div class="photo-switcher photo-container-start">
+                {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
+            </div>
+			<div class="mobile-post-ad">
+				<div class="info-tips">{{i18n "postAd.page.tips"}}</div>
+			</div>
+			<div class="post-main-detail-hidden-for-mobile">
+                {{> (dynamic "postAdFormMainDetails") enableComponents = this.enableComponents locationlatlong = this.locationlatlong googleMap=this.googleMap}}
+            </div>
+            <div class="desktop-post-ad">
+                <div class="input-form">
+                    <a id="postAdBtn" class="post-ad-btn btn-wrapper">
+                        <span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
+                    </a>
+                </div>
             </div>
             <div class="mobile-post-ad">
-                <div class="mobile-post-ad-wrapper">
+                <div class="mobile-post-ad-wrapper hidden">
                     <div class="mobile-post-ad-modal-wrapper">
                         <div class="mobile-post-ad-modal">
                             <div class="mobile-post-ad-modal-overlay"></div>
@@ -45,6 +62,7 @@
                                 </div>
                             </div>
                         </div>
+                        <!--
                         <div class="change-photo">
                             <div>
                                 <div>
@@ -54,21 +72,8 @@
                                 </div>
                             </div>
                         </div>
+                        -->
                     </div>
-                </div>
-            </div>
-            <div class="desktop-post-ad margin-auto">
-                <div class="directions">{{i18n "postAd.createAds.directions"}}</div>
-                <div class="photo-switcher">
-                    {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
-                </div>
-            </div>
-            {{> (dynamic "postAdFormMainDetails")}}
-            <div class="desktop-post-ad margin-auto">
-                <div class="input-form">
-                    <a id="postAdBtn" class="post-ad-btn btn-wrapper">
-                        <span class="link-text">{{i18n "postAd.createAds.post"}} {{i18n "postAd.createAds.ad"}}</span>
-                    </a>
                 </div>
             </div>
             {{> (dynamic "loginModal") isHidden=true}}
@@ -82,4 +87,3 @@
         {{> (dynamic "adFeatureSelection") model=this}}
 	</section>
 {{/partial}}
-

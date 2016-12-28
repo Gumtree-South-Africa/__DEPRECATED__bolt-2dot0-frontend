@@ -12,7 +12,7 @@
 			"templateConfig": {
 				"viewMoreFilterIncrement": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showSellers": true,
+				"showSellers": false,
 				"showFavorites": true
 			}
 		},
@@ -26,7 +26,7 @@
 			"templateConfig": {
 				"viewMorePageSize": 16,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showSellers": true,
+				"showSellers": false,
 				"showFavorites": true
 			}
 		},
@@ -34,7 +34,7 @@
 			"templateConfig": {
 				"viewMorePageSize": 6,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showSellers": true,
+				"showSellers": false,
 				"showFavorites": true
 			}
 		},
@@ -42,7 +42,7 @@
 			"templateConfig": {
 				"viewMorePageSize": 6,
 				"clientJsHandlerCssClass": "use-isotope-handler",
-				"showSellers": true,
+				"showSellers": false,
 				"showFavorites": true
 			}
 		}

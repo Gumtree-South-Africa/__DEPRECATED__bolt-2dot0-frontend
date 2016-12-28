@@ -71,6 +71,10 @@ class AdvertModel {
 		}
 		return elements;
 	}
+
+	replyToTheAd(replyForm) {
+		return adService.replyAd(this.bapiHeaders, replyForm);
+	}
 }
 
 

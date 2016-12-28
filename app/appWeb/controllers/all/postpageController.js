@@ -6,6 +6,8 @@ let cwd = process.cwd();
 let pageControllerUtil = require(cwd + '/app/appWeb/controllers/all/PageControllerUtil');
 let PostAdPageModel = require(cwd + '/app/builders/page/PostAdPageModel');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
+
 let Q = require('q');
 
 // todo: temporary until these can be absracted out into a model
@@ -98,13 +100,18 @@ router.use('/', (req, res, next) => {
 		return modelPromise;
 	}).then((modelData) => {
 		postAdData.extendModelData(req, modelData);
+
+		// shows the new components in development
+		modelData.enableComponents = req.query.BOLT24748 === '1' ? true : false;
 		modelData.header.distractionFree = true;
 		modelData.footer.distractionFree = true;
 		modelData.eps = EpsModel();
+		modelData.googleMapAuth = GoogleMapAuth();
 		modelData.localCurrencies = res.locals.config.bapiConfigData.content.localCurrencies;
 		modelData.termsOfUseLink = res.locals.config.bapiConfigData.footer.termOfUse;
 		modelData.privacyPolicyLink = res.locals.config.bapiConfigData.footer.privacyPolicy;
 		modelData.cookieNoticeLink = res.locals.config.bapiConfigData.footer.cookieNotice;
+		modelData.googleMap = JSON.stringify(res.locals.config.bapiConfigData.googleMapConfiguration);
 		pageControllerUtil.postController(req, res, next, 'postAd/views/hbs/postAd_', modelData);
 	}).fail((err) => {
 		// check to see if its a redirect, the only case where a specific object (not Error) is expected

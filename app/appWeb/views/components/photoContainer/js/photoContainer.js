@@ -56,6 +56,7 @@ class PhotoContainer {
 
 		//EPS setup
 		this.epsData = $('#js-eps-data');
+		this.photoSwitcher = $('.photo-switcher');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.EPS = {};
 		this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
@@ -180,7 +181,8 @@ class PhotoContainer {
 				console.error("Failed to extract url class!");
 				return this._failure(i, response);
 			}
-			let normalUrl = this.transformEpsUrl(url.normal);
+			// Use a high resolution image
+			let normalUrl = this.epsUpload.convertThumbImgURL20(this.transformEpsUrl(url.normal));
 			if (url.normal.toLowerCase().indexOf("https") < 0) {
 				normalUrl = normalUrl.replace('http', 'https');
 			}
@@ -270,6 +272,7 @@ class PhotoContainer {
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
+		this.photoSwitcher.toggleClass("photo-container-start", false);
 		$(".drag-reorder").toggleClass("hidden", false);
 	}
 

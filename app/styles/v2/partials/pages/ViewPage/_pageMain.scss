@@ -14,9 +14,22 @@
 	width: 45.5em;
 }
 
-#ad-bottombanner{
-	margin: 0 auto;
-	width: 45.5em;
+.vip-bottom-banner-container {
+	position: relative;
+	#ad-bottombanner {
+		margin: 0 auto;
+		width: 45.5em;
+	}
+}
+
+.vip-sponsoredads {
+	width: 100%;
+	padding: 20px 0;
+}
+
+.native-ad{
+	width:250px;
+	overflow:hidden;
 }
 
 .icon-shepherd-pay-button{
@@ -37,4 +50,71 @@
 		@include span(4 of 8);
 		margin-right: 0;
 	}
+	.vip-bottom-banner-container {
+		padding: 20px 0;
+	}
 }
+
+// This part is for post overlay
+.welcome-wrapper .modal.post-overlay {
+	display: block;
+
+	.from-post-container {
+		padding: 0 5px;
+	}
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		// To ensure the post button will not cover other parts
+		padding-bottom: 65px;
+	}
+}
+.post-overlay.desktop-only {
+	text-align: center;
+
+	.modal-container {
+		// TODO Find out why modal sets that explicitly and fix it in welcomeModal
+		height: initial;
+		min-height: initial;
+
+		width: 340px;
+		top: 25%;
+	}
+
+	h2 {
+		font: $h2;
+		font-weight: $fontWeightBold;
+		color: $vivaBlack;
+	}
+
+	.edit-link {
+		margin-top: 1em;
+	}
+
+	.btn-wrapper {
+		margin-top: 0.5em;
+	}
+}
+// Common part for both desktop and mobile
+.modal.post-overlay {
+	.edit-link {
+		margin-top: 1em;
+
+		a {
+			color: $modal-info;
+			text-decoration: underline;
+		}
+	}
+}
+
+$item-margin: 10px;
+$photo-switcher-width: 30%;
+
+$inputWidth: 84%;
+$inputFieldWidth: 46%;
+$inputMargin: 6%;
+$labelWidth: 86%;
+$labelMargin: 8%;

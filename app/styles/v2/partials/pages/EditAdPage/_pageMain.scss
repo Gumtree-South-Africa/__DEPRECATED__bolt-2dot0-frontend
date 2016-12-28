@@ -177,6 +177,10 @@ body {
 	}
 }
 
+.mobile-post-ad-footer {
+	width: 60%;
+}
+
 @include from-breakpoint($medium-break) {
 	.edit-ad-content {
 		position: relative;
@@ -238,13 +242,14 @@ body {
 	.viewport.promotion-covered .footer-wrapper {
 		// To ensure nothing in page is covered by post button overlay
 		// Magic number 53 is the height of no promotion button layer
-		margin-bottom: 53px;
+		margin-bottom: 63px;
 	}
 
 	.main-detail-post {
 		background-color: $mainDetailsBackgroundColor;
 		width: 100%;
 		float: left;
+		margin-top: 20px;
 	}
 
 	.photo-switcher {
@@ -266,7 +271,7 @@ body {
 
 	.mobile-cancel-form-link {
 		margin-top: 18px;
-		margin-right: 30px;
+		margin-right: 12px;
 		text-decoration: underline;
 		float: right;
 	}

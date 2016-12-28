@@ -9,7 +9,10 @@ $photo-switcher-width: 30%;
 	height: 25px;
 	width: 100%;
 	color: $postAdHeaderBlue;
-	padding-top: 10px;
+	// Distance between logo and post-ad-header should be 18px
+	// As distance between logo bottom to header-wrapper bottom is 7px and that between post-ad-header text-top and
+	// post-ad-header top around 5px (font related), the padding here should be 6px
+	padding-top: 6px;
 	padding-bottom: 5px;
 	font-size: 14px;
 	background-color: $postAdHeaderBackground;
@@ -24,7 +27,6 @@ $photo-switcher-width: 30%;
  		.icon-back-other{
  			display: inline-block;
 			position: relative;
-			top: 0.1em;
  		}
 		a {
 			margin-left: 2px;
@@ -59,13 +61,14 @@ $photo-switcher-width: 30%;
  		@include from-breakpoint($medium-break){
  			max-width: 30em;
  		}
-     overflow: hidden;
-     white-space: nowrap;
-     overflow: hidden;
-     text-overflow: ellipsis;
-     text-overflow: ellipsis;
-     -o-text-overflow: ellipsis;
-     -moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		overflow: hidden;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		text-overflow: ellipsis;
+		-o-text-overflow: ellipsis;
+		-moz-binding: url(assets/xml/ellipsis.xml#ellipsis);
+		text-transform: uppercase;
  	}
 
 }

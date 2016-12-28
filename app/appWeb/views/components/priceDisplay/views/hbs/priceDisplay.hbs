@@ -1,0 +1,42 @@
+{{#partial "PriceAmountDisplay"}}
+    <span class="value" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        {{#compare this.advert.price.priceType "===" "FIXED"}}
+            {{#compare this.advert.price.formattedAmount "===" "0"}}
+                    <span class="ad-price">{{i18n "pricetype.contact_me"}}</span>
+            {{else}}
+                    <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+            {{/compare}}
+        {{else}}
+                <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+        {{/compare}}
+
+        <meta itemprop="price" content="{{this.advert.price.formattedAmount}}" />
+        <meta itemprop="priceCurrency" content="{{this.advert.price.currency}}" />
+    </span>
+{{/partial}}
+
+{{#with this.advert}}
+    {{#compare price.priceType "===" "FREE"}}
+            <span class="value">{{i18n "pricetype.free"}}</span>
+    {{/compare}}
+
+    {{#compare price.priceType "===" "CONTACT_ME"}}
+            <span class="value">{{i18n "pricetype.contact_me"}}</span>
+    {{/compare}}
+
+    {{#compare price.priceType "===" "BARTER_SWAP"}}
+            <span class="value">{{i18n "pricetype.barter_swap"}}</span>
+    {{/compare}}
+{{/with}}
+
+{{#compare this.advert.price.priceType "===" "MAKE_OFFER"}}
+    {{#block "PriceAmountDisplayMakeOffer"}}
+        {{#block "PriceAmountDisplay"}}{{/block}}
+    {{/block}}
+        <span class="value make-offer">{{i18n "pricetype.make_offer"}}</span>
+{{/compare}}
+
+{{#compare this.advert.price.priceType "===" "FIXED"}}
+    {{#block "PriceAmountDisplay"}}
+    {{/block}}
+{{/compare}}

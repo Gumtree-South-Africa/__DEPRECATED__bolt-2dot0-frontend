@@ -59,13 +59,13 @@
 		margin: 1em auto auto;
 		.btn {
 			width: 100%;
-			padding: 0.875em 0;
+			padding: 0.445em 0;
 		}
 	}
 
 	.js-post-button.btn-wrapper {
 		.btn {
-			@include vivaBtn(on, 0.85em 0, 100%);
+			@include vivaBtn(on, 0.445em 0, 100%);
 
 			&.disabled {
 				opacity: 0.5;
@@ -149,7 +149,11 @@ $borderColor: $headerMenuItemSeparatorColor;
 		}
 		.link-item {
 			padding: 15px;
+			@include to-breakpoint($small-break) {
+				font-size: 83%;
+			}
 		}
+		
 	}
 }
 
@@ -190,3 +194,4 @@ $borderColor: $headerMenuItemSeparatorColor;
 	overflow: hidden;
 	height: 100%;
 }
+

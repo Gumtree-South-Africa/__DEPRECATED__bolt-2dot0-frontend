@@ -5,6 +5,9 @@ let CookieUtils = require("public/js/common/utils/CookieUtils.js");
 
 
 class AdDetails {
+	constructor() {
+		this.pendingServerSync = false;		// used when getting watchlist cookie async (typ. after logout)
+	}
 
 	/**
 	 * favorite the ad (to the server, assume user is logged in)
@@ -82,6 +85,50 @@ class AdDetails {
 	}
 
 	/**
+	 * sets the watchlist cookie by calling the server
+	 * RUI based API call, this is intentionally NOT a node API, only RUI currently supports this function
+	 * uses flag pendingServerSync to prevent recursion
+	 * @param success function to be called async
+	 * @param $tiles the collection of tiles to be sync'd
+	 * @private
+	 */
+	_serverSyncFavorites(success, $favoriteButton) {
+		//
+		$.ajax({
+			url: `/rui-api/synchwatchlist/model/synch/${$('html').data('locale')}`,
+			type: 'GET',
+			success: () => {
+				success($favoriteButton);
+			},
+			error: () => {
+				// when running locally but without RUI, we expect a 404
+				console.warn('failed to sync favorites with server');
+				this.pendingServerSync = false;
+			}
+		});
+	}
+
+	/**
+	 * show the highlight state for each ad id in the cookie
+	 * transparently will ajax to server when there are no ids (logout clears watchlist cookie,
+	 * this assumes user subsequently logged in, to get a fresh cookie we sync from server)
+	 * @param $tiles (typ. expects to receive all tiles, regardless of which card it belongs to,
+	 * can also receive tiles that have been newly ajaxed in)
+	 */
+	_syncFavoriteCookieWithTiles($favoriteButton) {
+		let favoriteIds = this.getCookieFavoriteIds();
+		if (favoriteIds.length === 0 && !this.pendingServerSync) {
+			// lets call sync with the server, we may be in a freshly logged in scenario
+			console.warn('no favorites cookie, going to try sync favorites with server');
+			this.pendingServerSync = true;
+			// when the server sync finished, we're going to come back here, use pending flag to prevent infinite recursion
+			this._serverSyncFavorites(this._syncFavoriteCookieWithTiles.bind(this), $favoriteButton);
+			return;
+		}
+		this.pendingServerSync = false;
+	}
+
+	/**
 	 * Favorite Click to toggle the state of a favorite,
 	 * saved to both cookie and server (when bt_auth present)
 	 * @param event
@@ -90,6 +137,7 @@ class AdDetails {
 	_onFavoriteClick(event) {
 		let target = $(event.target);
 
+		// get long ad id
 		let adId = target.data('adid');  // using attribute data-adid;
 		if (!adId) {
 			console.warn("unable to favorite item, missing ad id");
@@ -103,9 +151,9 @@ class AdDetails {
 			return;
 		}
 
-		// since another tile could have the same id (the same tile in two separate cards), toggle them all
 		this.toggleFavorite(target);
 
+		// get list of ids from cookie
 		let ids = this._getIdMapFromCookie('watchlist');
 		let action;
 		if (target.hasClass("icon-heart-orange")) {
@@ -147,6 +195,16 @@ class AdDetails {
 		$favoriteButton.click((evt) => {
 			this._onFavoriteClick(evt);
 		});
+
+		this._syncFavoriteCookieWithTiles($favoriteButton);
+
+		let shortAdId = $favoriteButton.data('short-adid');	// using attribute data-short-adid
+		let ids = this._getIdMapFromCookie('watchlist');
+
+		// since another tile could have the same id (the same tile in two separate cards), toggle them all
+		if (ids[shortAdId] !== undefined) {
+			this.toggleFavorite($favoriteButton);
+		}
 	}
 
 	/**

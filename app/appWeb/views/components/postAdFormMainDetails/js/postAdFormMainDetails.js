@@ -1,16 +1,31 @@
 'use strict';
-let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
 let formChangeWarning = require('public/js/common/utils/formChangeWarning.js');
-
 let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let CategoryDropdownSelection = require(
 	'app/appWeb/views/components/categoryDropdownSelection/js/categoryDropdownSelection.js');
 let PostFormCustomAttributes = require(
 	'app/appWeb/views/components/postFormCustomAttributes/js/postFormCustomAttributes.js');
 let CookieUtils = require('public/js/common/utils/CookieUtils.js');
+let locationSelection = require("app/appWeb/views/components/locationSelection/js/locationSelection.js");
+let formMap = require("app/appWeb/views/components/formMap/js/formMap.js");
 
 require('public/js/common/utils/JQueryUtil.js');
 require('public/js/libraries/webshims/polyfiller.js');
+
+let getUrlParameter = (sParam) => {
+	let sPageURL = decodeURIComponent(window.location.search.substring(1)),
+		sURLVariables = sPageURL.split('&'),
+		sParameterName,
+		i;
+
+	for (i = 0; i < sURLVariables.length; i++) {
+		sParameterName = sURLVariables[i].split('=');
+
+		if (sParameterName[0] === sParam) {
+			return sParameterName[1] === undefined ? true : sParameterName[1];
+		}
+	}
+};
 
 let inputNumericCheck = function(e) {
 	if ((e.keyCode > 57 || e.keyCode < 48)) {
@@ -42,6 +57,8 @@ let inputNumericCheck = function(e) {
 	}
 };
 
+const DEFAULT_PRICE_TYPE = 'FIXED';
+
 // View model for post ad form main details
 class PostAdFormMainDetailsVM {
 	constructor() {
@@ -49,7 +66,8 @@ class PostAdFormMainDetailsVM {
 		this._categoryDropdownSelection = new CategoryDropdownSelection();
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
-		this._isPriceExcluded = true;
+		this._priceType = DEFAULT_PRICE_TYPE;
+		this._priceAttribute = {};
 		this._isShown = false;
 		this._isFixMode = false;
 		this._isRequiredTitleAndDescription = false;
@@ -88,7 +106,29 @@ class PostAdFormMainDetailsVM {
 		this.postFormCustomAttributes.propertyChanged.addHandler((propName, newValue) => {
 			if (propName === 'customAttributeMetadata') {
 				if (newValue) {
-					this.isPriceExcluded = newValue.isPriceExcluded;
+					this.priceAttribute = newValue.priceAttribute;
+					if (newValue.priceAttribute && newValue.priceAttribute.priceTypeAllowedValues) {
+						let priceTypeAllowedValues = newValue.priceAttribute.priceTypeAllowedValues;
+						let needResetPriceType = false;
+						// Hide unsupported price type
+						let notSupportMakeOffer = priceTypeAllowedValues.indexOf('MAKE_OFFER') < 0;
+						domElement.find('[for="price-choose-make-offer"]').toggleClass('hidden', notSupportMakeOffer);
+						if (this.priceType === 'MAKE_OFFER' && notSupportMakeOffer) {
+							needResetPriceType = true;
+						}
+						let notSupportContactMe = priceTypeAllowedValues.indexOf('CONTACT_ME') < 0;
+						domElement.find('[for="price-choose-contact-me"]').toggleClass('hidden', notSupportContactMe);
+						if (this.priceType === 'CONTACT_ME' && notSupportContactMe) {
+							needResetPriceType = true;
+						}
+
+						// Reset default value
+						if (needResetPriceType) {
+							domElement.find('#price-choose-fixed').click();
+							domElement.find('[name="amount"]').val('0');
+						}
+					}
+
 					this._isVerticalCategory = !!(newValue.verticalCategory && newValue.verticalCategory.id);
 					this.isRequiredTitleAndDescription = this._isVerticalCategory;
 					this._categoryDropdownSelection.isMustLeaf = this._isMustLeaf || this._isVerticalCategory;
@@ -101,18 +141,20 @@ class PostAdFormMainDetailsVM {
 		// Initialize self properties from DOM, usually done after mounting all children components.
 		this.$postAdForm = domElement;
 		this.$priceFormField = domElement.find(".form-ad-price");
+		this.$priceAmountField = domElement.find('.price-amount');
 		$(domElement.find(".price-input")).on('keydown', (e) => inputNumericCheck(e));
-		this._isPriceExcluded = this.$priceFormField.hasClass('hidden');
 		this.propertyChanged.addHandler((propName, newValue) => {
-			if (propName === 'isPriceExcluded') {
-				this.$priceFormField.toggleClass('hidden', newValue);
+			if (propName === 'priceAttribute') {
+				this.$priceFormField.toggleClass('hidden', !newValue);
 			} else if (propName === 'isFixMode') {
 				this._categoryDropdownSelection.isFixMode = newValue;
 			} else if (propName === 'isFormValid') {
 				this._refreshIsValid();
 			} else if (propName === 'isRequiredTitleAndDescription') {
-				domElement.find('.form-ad-title').toggleClass('required-field', newValue);
-				domElement.find('.form-ad-description').toggleClass('required-field', newValue);
+				domElement.find('.form-ad-title').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
+				domElement.find('.form-ad-description').toggleClass('required-field', newValue)
+					.toggleClass('optional-field', !newValue);
 			} else if (propName === 'isFormChangeWarning') {
 				if (newValue) {
 					formChangeWarning.enable();
@@ -121,11 +163,20 @@ class PostAdFormMainDetailsVM {
 				}
 			} else if (propName === 'isMustLeaf') {
 				this._categoryDropdownSelection.isMustLeaf = newValue || this._isVerticalCategory;
+			} else if (propName === 'priceType') {
+				this.$priceAmountField.toggleClass('hidden', newValue === 'CONTACT_ME');
 			}
 		});
 		this._$postForm = domElement.find('.post-form');
 		this._$attributeForm = domElement.find('.post-ad-custom-attributes-form');
 		this._$descriptionField = domElement.find('.form-ad-description textarea');
+		domElement.find('input[name=pricetype]').on('change', (e) => {
+			let currentElement = $(e.currentTarget);
+			if (currentElement.prop('checked')) {
+				this.priceType = currentElement.val();
+			}
+		});
+		this.priceType = domElement.find('input[name=pricetype]:checked').val() || DEFAULT_PRICE_TYPE;
 
 		// Initialize self properties from children
 		this._categoryId = this._categoryDropdownSelection.categoryId;
@@ -142,17 +193,28 @@ class PostAdFormMainDetailsVM {
 		this.postFormCustomAttributes.categoryId = newValue;
 	}
 
-	get isPriceExcluded() {
-		return this._isPriceExcluded;
+	get priceType() {
+		return this._priceType;
 	}
 
-	set isPriceExcluded(newValue) {
-		newValue = !!newValue;
-		if (this._isPriceExcluded === newValue) {
+	set priceType(newValue) {
+		if (this._priceType === newValue) {
 			return;
 		}
-		this._isPriceExcluded = newValue;
-		this.propertyChanged.trigger('isPriceExcluded', newValue);
+		this._priceType = newValue;
+		this.propertyChanged.trigger('priceType', newValue);
+	}
+
+	get priceAttribute() {
+		return this._priceAttribute;
+	}
+
+	set priceAttribute(newValue) {
+		if (this._priceAttribute === newValue) {
+			return;
+		}
+		this._priceAttribute = newValue;
+		this.propertyChanged.trigger('priceAttribute', newValue);
 	}
 
 	get isFixMode() {
@@ -276,12 +338,11 @@ class PostAdFormMainDetailsVM {
 	}
 
 	/**
-	 * Get location id from location selection modal
-	 */
-	getLocatioinId() {
-		return locationSelection.getLocationId();
-	}
-
+ 	 * Get location id from location selection modal
+ 	 */
+ 	getLocatioinId() {
+ 		return locationSelection.getLocationId();
+ 	}
 	getCategorySelectionName() {
 		return this._categoryDropdownSelection.getCategorySelectionName();
 	}
@@ -322,6 +383,12 @@ class PostAdFormMainDetailsVM {
 		}
 		/* Location Resolving end */
 
+		// get position selecte on formMap component
+		let position = { lat: lat, lng: lng };
+		if(window.formMap) {
+			position = window.formMap.getPosition();
+		}
+
 		let description = this._$descriptionField.val();
 		let payload = {
 			title: serialized.Title,
@@ -329,8 +396,8 @@ class PostAdFormMainDetailsVM {
 			phone: serialized.Phone,
 			categoryId: this.categoryId,
 			location: {
-				"latitude": lat,
-				"longitude": lng
+				"latitude": position.lat,
+				"longitude": position.lng
 			},
 			categoryAttributes: categoryAttributes
 		};
@@ -339,11 +406,21 @@ class PostAdFormMainDetailsVM {
 			payload.adId = serialized.adId;
 		}
 
-		if (!this.isPriceExcluded) {
+		if (this.priceAttribute) {
 			payload.price = {
-				currency: (serialized.currency) ? serialized.currency : 'MXN',
-				amount: Number(serialized.amount)
+				priceType: serialized.pricetype
 			};
+			if (serialized.currency) {
+				payload.price.currency = serialized.currency;
+			} else {
+				if (this.priceAttribute.currencyAllowedValues && this.priceAttribute.currencyAllowedValues.length) {
+					payload.price.currency = this.priceAttribute.currencyAllowedValues[0];
+				}
+				payload.price.currency = payload.price.currency || 'USD';
+			}
+			if (serialized.amount) {
+				payload.price.amount = Number(serialized.amount);
+			}
 		}
 
 		return payload;
@@ -660,9 +737,6 @@ class PostAdFormMainDetails {
 
 		this._setupPolyfillForm();
 
-		this._bindCharacterCountEvents(this.$titleField, this.$detailsSection.find('label[for="Title"]'));
-		this._bindCharacterCountEvents(this.$textarea, this.$detailsSection.find('label[for="description"]'));
-
 		this._setupScrollTo();
 
 		this.viewModel.componentDidMount($("#js-main-detail-post"));
@@ -681,9 +755,14 @@ class PostAdFormMainDetails {
 
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
-		locationSelection.initialize((data) => {
-			this._setHiddenLocationInput(data);
-		}, {pageType: this.pageType});
+		let validator = getUrlParameter('BOLT24748');
+		if(!validator) {
+			locationSelection.initialize((data) => {
+				this._setHiddenLocationInput(data);
+			}, {pageType: this.pageType});
+		} else {
+			formMap.initialize();
+		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;
 		this.onReady();

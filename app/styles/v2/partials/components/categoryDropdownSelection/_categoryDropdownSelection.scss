@@ -72,7 +72,7 @@
 		width: 90%;
 		margin: auto;
 		.btn {
-			@include vivaBtn(off, 0.45em 0, 100%);
+			@include vivaBtn(off, 0.445em 0, 100%);
 			.btn-icon {
 				display: none;
 			}

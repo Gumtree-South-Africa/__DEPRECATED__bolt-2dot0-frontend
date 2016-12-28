@@ -19,12 +19,11 @@ let CookieUtils = require('public/js/common/utils/CookieUtils.js');
  */
 class WelcomeModal {
 	constructor() {
-		this.postButtonClicked = new SimpleEventEmitter();
+		//this.postButtonClicked = new SimpleEventEmitter();
 		this.propertyChanged = new SimpleEventEmitter();
 
-		this._isPostDirectly = false;
-
-		this._isPostAllowed = true;
+		//this._isPostDirectly = false;
+		//this._isPostAllowed = true;
 		this._isOpened = false;
 		this._title = '';
 		this._message = '';
@@ -36,7 +35,8 @@ class WelcomeModal {
 	 */
 	componentDidMount(domElement) {
 		// Bind property and event
-		this._isPostDirectly = domElement.find('.login-button').hasClass('directly-post');
+		//this._isPostDirectly = domElement.find('.login-button').hasClass('directly-post');
+		/*
 		this._$postButton = domElement.find('.login-button a');
 		this.propertyChanged.addHandler((propName, newValue) => {
 			if (propName !== 'isPostAllowed') {
@@ -55,7 +55,7 @@ class WelcomeModal {
 			// Use new way of post, upload image on the page
 			this._$postButton.on('click', evt => this._handlePostButtonClicked(evt));
 		}
-
+		*/
 		this._$modal = domElement.find('.modal-wrapper .modal');
 		this._$footer = domElement.find('.welcome-footer');
 		this._$title = domElement.find('.modal-container h2');
@@ -96,7 +96,7 @@ class WelcomeModal {
 			this.isOpened = true;
 		}
 	}
-
+	/*
 	_handlePostButtonClicked(evt) {
 		evt.preventDefault();
 		evt.stopImmediatePropagation();
@@ -120,6 +120,7 @@ class WelcomeModal {
 		this._isPostAllowed = newValue;
 		this.propertyChanged.trigger('isPostAllowed', newValue);
 	}
+	*/
 
 	get isOpened() {
 		return this._isOpened;

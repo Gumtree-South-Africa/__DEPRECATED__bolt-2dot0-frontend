@@ -8,9 +8,9 @@ let HomepageModel = require(cwd + '/app/builders/page/HomePageModelV2');
 let marketoService = require(cwd + '/server/utils/marketo');
 let Base64 = require(process.cwd() + '/app/utils/Base64');
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
-let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
+//let abTestPagesJson = require(cwd + '/app/config/abtestpages.json');
 let EpsModel = require(cwd + '/app/builders/common/EpsModel');
-
+let GoogleMapAuth = require(cwd + '/app/builders/common/GoogleMapAuth');
 
 let HP = {
 	/**
@@ -27,6 +27,8 @@ let HP = {
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
 			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
 		}
+		// OG
+		modelData.header.ogUrl = modelData.header.logoUrlOpenGraph;
 
 		// CSS
 		if (modelData.header.min) {
@@ -60,6 +62,9 @@ let HP = {
 				break;
 			case 'adInactive':
 				modelData.header.pageMessages.success = 'home.ad.notyetactive';
+				break;
+			case 'adPending':
+				modelData.header.pageMessages.success = 'homepage.pendingStatusBannerMessage';
 				break;
 			case 'resetPassword':
 				modelData.header.pageMessages.success = 'home.reset.password.success';
@@ -199,7 +204,8 @@ module.exports = (req, res, next) => {
 		HP.deleteMarketoCookie(res, modelData);
 
 		modelData.eps = EpsModel();
-		modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
+		modelData.googleMapAuth = GoogleMapAuth();
+		//modelData.imageUploadFromHome = pageControllerUtil.is2dot0Version(res, abTestPagesJson.pages.P);
 
 		pageControllerUtil.postController(req, res, next, 'homepageV2/views/hbs/homepageV2_', modelData);
 	}).fail((err) => {
@@ -208,4 +214,3 @@ module.exports = (req, res, next) => {
 		next(err);
 	});
 };
-

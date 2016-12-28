@@ -52,6 +52,17 @@
 		"locationDropdownLevel"				: 1,
 		"categoryDropdownLevel"				: 2
 	},
+	"googleMapConfiguration": {
+		"country": "MX",
+		"errorMessage" : "No podemos usar tu ubicación actual. Añádela manualmente",
+		"sizeRadio": 1000,
+		"zoom": 16,
+		"accuracy": 5,
+		"defaultLocation": {
+			"lat": 23.49125085380051,
+			"lng": -100.15682835625
+		}
+	},
 	"footer" : {
 		"cookieNotice"						: "https://ayuda.vivanuncios.com.mx/MX/articles/es/KB_Article/cookie-policy-mx",
 		"privacyPolicy"						: "https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx",
@@ -79,6 +90,75 @@
 			"googleAdSlot"						: "2586422330",
 			"googleAdWidth"						: "300",
 			"googleAdHeight"					: "250"
+		},
+		"adsenseConfig": {
+			"default": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "2",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_SRP_sitewide,MX_VNS_SRP_L1,MX_VNS_SRP_L2,MX_VNS_SRP_L3",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-search",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"zeroAds": {
+				"desktopNumAdsTop": "2",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "5",
+				"mobileNumAdsBottom": "0",
+				"numRepeated": "2",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "false",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "l_l0,l_l1,l_l2,l_l3",
+				"emptyResultChannel": "MX_VNS_ZSRP_sitewide,MX_VNS_ZSRP_L1,MX_VNS_ZSRP_L2",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-search",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"vip": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "0",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_VIP",
+				"emptyResultChannel": "MX_VNS_VIP",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-vip",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			},
+			"seovip": {
+				"desktopNumAdsTop": "0",
+				"desktopNumAdsBottom": "3",
+				"mobileNumAdsTop": "0",
+				"mobileNumAdsBottom": "3",
+				"numRepeated": "0",
+				"longerHeadlines": "false",
+				"desktopSiteLinks": "true",
+				"mobileSiteLinks": "false",
+				"browseSearchChannel": "MX_VNS_VIP_r",
+				"emptyResultChannel": "MX_VNS_VIP_r",
+				"mobilePubId": "ebay-mobile-vivanuncios-mx",
+				"desktopPubId": "ebay-vivanuncios-mx-vip",
+				"colorTitleLink": "#4A4A4A",
+				"rolloverAdBackgroundColor": "#f0f0f0",
+				"mobileClickableBackground": "true"
+			}
 		},
 		"seoBolt"							:	{
 			"enabled"							: true,
@@ -254,49 +334,35 @@
 		"ActivatePage": {
 			"desktop": {
 				"models": [
-					"seo", "activate"
-				]
+					"seo", "activate"]
 			},
 			"mobile": {
 				"models": [
-					"seo", "activate"
-				]
+					"seo", "activate"]
 			}
 		},
 		"RegisterPage": {
 			"desktop": {
-				"models": [
-					"seo"
-				]
+				"models": ["seo"]
 			},
 			"mobile": {
-				"models": [
-					"seo"
-				]
+				"models": ["seo"]
 			}
 		},
 		"VIP": {
 			"desktop": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "keywords", "safetyTips", "seo"
-				]
+				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
 			}
 		},
 		"AdPromote": {
 			"desktop": {
-				"models": [
-					"advert", "seo", "adResult"
-				]
+				"models": ["advert", "seo", "adResult"]
 			},
 			"mobile": {
-				"models": [
-					"advert", "seo", "adResult"
-				]
+				"models": ["advert", "seo", "adResult"]
 			}
 		},
 		"ResultsSearch": {

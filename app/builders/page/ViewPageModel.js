@@ -1,6 +1,7 @@
 'use strict';
 let cwd = process.cwd();
 let _ = require('underscore');
+let moment = require('moment');
 
 let pagetypeJson = require(cwd + '/app/config/pagetype.json');
 let cardsConfig = require(cwd + '/app/config/ui/cardsConfig.json');
@@ -42,8 +43,6 @@ class ViewPageModel {
 		return modelBuilder.resolveAllPromises(arrFunctions).then((data) => {
 			data = abstractPageModel.convertListToObject(data, arrFunctions, modelData);
 			this.modelData = this.mapData(abstractPageModel.getBaseModelData(data), data);
-			this.modelData.header.postAdHeader = true;
-  		this.modelData.backUrl = modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href;
 			return this.modelData;
 		});
 	}
@@ -273,9 +272,100 @@ class ViewPageModel {
 		return data;
 	}
 
+	/**
+	 * Set Ad status for later use
+	 * @param data
+	 */
+	setAdStatus(data) {
+		if (typeof data.statusInfo !== 'undefined') {
+			data.statusInfo.isPending = false;
+			data.statusInfo.isActive = false;
+			data.statusInfo.isDeleted = false;
+			data.statusInfo.isBlocked = false;
+			switch (data.statusInfo.status) {
+				case 'PENDING':
+					data.statusInfo.isPending = true;
+					break;
+				case 'ACTIVE':
+					data.statusInfo.isActive = true;
+					break;
+				default:
+					data.statusInfo.isActive = false;
+			}
+		}
+	}
+
+	/**
+	 * Builds the Status Messages to be displayed
+	 */
+	getStatusBanner(reason, isOwner){
+		let s = {
+			'EXPIRED': {
+				statusBannerMessage: 'vip.details.expiredStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.expiredStatusBannerLinkMessage',
+					url: 'vip.details.expiredStatusBannerLinkURL'
+				}]
+			},
+			'PENDING': {
+				statusBannerMessage: 'vip.details.pendingStatusBannerMessage',
+				ownerDetails: [{
+					message: 'vip.details.pendingStatusBannerLinkMessage',
+					url: 'vip.details.pendingStatusBannerLinkURL'
+				}]
+			}
+		}
+
+		let states = {
+			'PENDING__ADMIN__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__CONFIRMED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__UPDATED': {
+				state: 'PENDING'
+			},
+			'PENDING__USER__REPOSTED': {
+				state: 'PENDING'
+			},
+			'DELETED__USER__DELETED': {
+				state: 'EXPIRED'
+			},
+			'DELETED__SYSTEM__TIMEDOUT': {
+				state: 'EXPIRED'
+			},
+			'DELETED__ADMIN__DELETED': {
+				state: 'EXPIRED'
+			},
+			'BLOCKED__TNS__CHECKED': {
+				state: 'EXPIRED'
+			}
+		}
+
+		if (!isOwner && (typeof states[reason] !== 'undefined')) {
+			let a = states[reason].state;
+			delete s[a].ownerDetails;
+		}
+
+		if(typeof states[reason] !== 'undefined'){
+			let a = states[reason].state;
+			return s[a];
+		}else{
+			return false;
+		}
+	}
+
 	mapData(modelData, data) {
 		modelData = _.extend(modelData, data);
+
 		modelData.header = data.common.header || {};
+		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
+		modelData.header.postAdHeader = true;
+		modelData.backUrl = (typeof data.advert.categoryPath!=='undefined' ? modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href : '');
+		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
+			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
+
 		modelData.footer = data.common.footer || {};
 
 		modelData.safetyTips.safetyLink = this.bapiConfigData.content.homepageV2.safetyLink;
@@ -284,22 +374,26 @@ class ViewPageModel {
 		if (!_.isEmpty(modelData.seo)) {
 			if (typeof modelData.seo.pageTitle !== 'undefined') {
 				let pageTitle = modelData.seo.pageTitle;
-				pageTitle = pageTitle.replace('adTitle', data.advert.title);
-				pageTitle = pageTitle.replace('locationSeoWord', data.advert.locationDisplayName);
+				pageTitle = pageTitle.replace('adTitle', (typeof data.advert.title!=='undefined' ? data.advert.title : ''));
+				pageTitle = pageTitle.replace('locationSeoWord', (typeof data.advert.locationDisplayName!=='undefined' ? data.advert.locationDisplayName: ''));
 				pageTitle = pageTitle.replace('country', modelData.footer.brandName);
-				pageTitle = pageTitle.replace('adId', data.advert.adId);
+				pageTitle = pageTitle.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
 				modelData.seo.pageTitle = pageTitle;
 			}
 			if (typeof modelData.seo.description !== 'undefined') {
 				let description = modelData.seo.description;
-				description = description.replace('description', data.advert.description.substring(0,140));
-				description = description.replace('adId', data.advert.adId);
+				description = description.replace('description',(typeof data.advert.description!=='undefined' ? data.advert.description.substring(0,140) : ''));
+				description = description.replace('adId', (typeof data.advert.id!=='undefined' ? data.advert.id: ''));
+				description = StringUtils.unescapeUrl(description);
+				description = StringUtils.unescapeEmail(description);
+				description = StringUtils.fixNewline(description);
+				description = StringUtils.stripHtml(description);
+				description = StringUtils.stripCommentHtml(description);
 				modelData.seo.description = description;
 			}
 		}
 
 		modelData.dataLayer = data['common'].dataLayer || {};
-		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 
 		modelData.vip = {};
 		modelData.vip.showSellerStuff = false;
@@ -307,6 +401,10 @@ class ViewPageModel {
 			modelData.vip.showSellerStuff = true;
 		}
 		modelData.vip.payWithShepherd = this.bapiConfigData.content.vip.payWithShepherd;
+		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
+
+		//Status Banner
+		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
 
 		return modelData;
 	}
@@ -318,6 +416,8 @@ class ViewPageModel {
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
+
+		moment.locale(this.locale.split('_')[0]);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -332,8 +432,7 @@ class ViewPageModel {
 						advertData[advertPromiseArray[advertIndex]] = value;
 					} else {
 						let reason = result.reason;
-						console.error('Error in Ad Service : ', reason);
-						advertData[advertPromiseArray[advertIndex]] = {};
+						advertData[advertPromiseArray[advertIndex]] = reason;
 					}
 					++advertIndex;
 				});
@@ -342,8 +441,6 @@ class ViewPageModel {
 				let data = {
 					adId: this.adId,
 					editUrl: "/edit/" + this.adId,
-					seoGroupName: 'Automobiles',
-					postedBy: 'Owner',
 					features: advertData.adFeatures,
 					sellerDetails: advertData.adSellerDetails,
 					statistics: advertData.adStatistics,
@@ -356,103 +453,132 @@ class ViewPageModel {
 				// Merge Bapi Ad data
 				_.extend(data, advertData.ad);
 
-				// Manipulate Ad Data
-
-				// seoVipUrl
-				let seoVipElt = data._links.find((elt) => {
-					return elt.rel === "seoVipUrl";
-				});
-				let dataSeoVipUrl = seoVipElt.href;
-				data.seoVipUrl = dataSeoVipUrl;
-
-				// Date
-				data.postedDate = Math.round((new Date().getTime() - new Date(data.postedDate).getTime())/(24*3600*1000));
-				data.updatedDate = Math.round((new Date().getTime() - new Date(data.lastUserEditDate).getTime())/(24*3600*1000));
-
-				// Pictures
-				data.hasMultiplePictures = false;
-				data.picturesToDisplay = { thumbnails: [], images: [], largestPictures: [], testPictures: []};
-				if (typeof data.pictures!=='undefined' && typeof data.pictures.sizeUrls!=='undefined') {
-					data.hasMultiplePictures = data.pictures.sizeUrls.length>1;
-					_.each(data.pictures.sizeUrls, (picture) => {
-						let picUrl = picture['LARGE'];
-						if (!this.prodEpsMode) {
-							picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-						}
-
-						data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
-						data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
-						data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
-						data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
-					});
-				}
-
 				// Seller Picture
-				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.picture!=='undefined') {
-					_.each(data.sellerDetails.publicDetails.picture, (profilePicture) => {
-						if (profilePicture.size === 'LARGE') {
-							let picUrl = profilePicture.url;
-							if (!this.prodEpsMode) {
-								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
-							}
-							picUrl = picUrl.replace('$_20.JPG', '$_14.JPG');
-							data.sellerDetails.publicDetails.displayPicture = picUrl;
-						}
-					});
+				if (typeof data.sellerDetails!=='undefined' && typeof data.sellerDetails.publicDetails!=='undefined' && typeof data.sellerDetails.publicDetails.pictureUrl!=='undefined') {
+					let picUrl = data.sellerDetails.publicDetails.pictureUrl + '14.JPG';
+					if (!this.prodEpsMode) {
+						picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+					}
+					data.sellerDetails.publicDetails.displayPicture = picUrl;
 				}
 
 				// Seller Contact
 				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.split('-')[0] + '*******';
+					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
 				}
 
-				// Map
-				data.map = this.getMapFromSignedUrl(data.signedMapUrl);
+				// Ad Status
+				this.setAdStatus(data);
 
-				// Breadcrumbs
-				data.breadcrumbs = {};
-				data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
-				data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
-				data.breadcrumbs.locations.forEach((location, index) => {
-				  location.position = index + 1;
-				});
-				data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
-				data.breadcrumbs.categories.forEach((category, index) => {
-				  category.position = data.breadcrumbs.locations.length + index + 1;
-				  category.locationInText = data.breadcrumbs.leafLocation.text;
-				});
+				// This will handle the cases when BAPI returns 404 for certain ad states, and we would like to know why
+				if (data.name === 'BapiError') {
+					data.adErrorDetail = data.bapiJson.details;
+					data.adErrorDetailMessage = data.adErrorDetail[0].message;
 
-				// Location
-				let locationElt = data._links.find( (elt) => {
-					return elt.rel === "location";
-				});
-				data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
-				data.locationPath = this.getPathFromTree(data._embedded.location);
-				if (!_.isEmpty(data.locationPath)) {
-					data.locationDisplayName = data.locationPath[data.locationPath.length-1].localizedName;
-					data.locationDisplayHref = data.locationPath[data.locationPath.length-1].href;
-				}
+					if (data.adErrorDetailMessage.indexOf('DELETED')) {
+						data.statusInfo = {
+							status: 'DELETED',
+							statusReason: 'DELETED__ADMIN__DELETED',
+							isDeleted: true
+						};
+					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
+						data.statusInfo = {
+							status: 'BLOCKED',
+							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
+						};
+					}
 
-				// Category
-				let categoryElt = data._links.find( (elt) => {
-					return elt.rel === "category";
-				});
-				data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
-				data.categoryPath = this.getPathFromTree(data._embedded.category);
-
-				// Category Attributes
-				data.categoryCurrentHierarchy = [];
-				this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
-
-				// Similar-Ads/Seller-Other-Ads configuration
-				this.getOtherAdsCard(data);
-
-				return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
-					_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
-					this.prepareDisplayAttributes(data);
-					data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
 					return data;
-				});
+				} else {
+					// Manipulate Ad Data
+
+					// seoVipUrl
+					let seoVipElt = data._links.find((elt) => {
+						return elt.rel === "seoVipUrl";
+					});
+					let dataSeoVipUrl = seoVipElt.href;
+					data.seoVipUrl = dataSeoVipUrl;
+
+					// loginRedirectUrl
+					data.loginRedirectUrl = "/login.html?redirect=" + dataSeoVipUrl;
+
+					// Date
+					data.postedDate = moment(data.postedDate).fromNow();
+					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
+
+					// Pictures
+					data.hasMultiplePictures = false;
+					data.picturesToDisplay = {thumbnails: [], images: [], largestPictures: [], testPictures: []};
+					if (typeof data.pictures !== 'undefined' && typeof data.pictures.sizeUrls !== 'undefined') {
+						data.hasMultiplePictures = data.pictures.sizeUrls.length > 1;
+						_.each(data.pictures.sizeUrls, (picture) => {
+							let picUrl = picture['LARGE'];
+							if (!this.prodEpsMode) {
+								picUrl = JSON.parse(JSON.stringify(picUrl).replace(/i\.ebayimg\.sandbox\.ebay\.com/g, 'i.sandbox.ebayimg.com'));
+							}
+
+							data.picturesToDisplay.thumbnails.push(picUrl.replace('$_19.JPG', '$_14.JPG'));
+							data.picturesToDisplay.images.push(picUrl.replace('$_19.JPG', '$_25.JPG'));
+							data.picturesToDisplay.largestPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+							data.picturesToDisplay.testPictures.push(picUrl.replace('$_19.JPG', '$_20.JPG'));
+						});
+					}
+
+					// Reply Info
+					data.replyInfo = advertData.ad._embedded['reply-info'];
+
+					// Map
+					data.map = this.getMapFromSignedUrl(data.signedMapUrl);
+
+					if (data.statusInfo.isActive) {
+						// Breadcrumbs
+						data.breadcrumbs = {};
+						data.breadcrumbs.locations = _.sortBy(data.seoUrls.locations, 'level');
+						data.breadcrumbs.leafLocation = data.breadcrumbs.locations.pop();
+						data.breadcrumbs.locations.forEach((location, index) => {
+							location.position = index + 1;
+						});
+						data.breadcrumbs.categories = _.sortBy(data.seoUrls.categoryLocation, 'level');
+						data.breadcrumbs.categories.forEach((category, index) => {
+							category.position = data.breadcrumbs.locations.length + index + 1;
+							category.locationInText = data.breadcrumbs.leafLocation.text;
+						});
+						data.breadcrumbs.returnToBrowsingLink = data.breadcrumbs.categories[data.breadcrumbs.categories.length - 1]._links[0].href;
+
+						// Similar-Ads/Seller-Other-Ads configuration
+						this.getOtherAdsCard(data);
+					}
+
+					// Location
+					let locationElt = data._links.find((elt) => {
+						return elt.rel === "location";
+					});
+					data.locationId = locationElt.href.substring(locationElt.href.lastIndexOf('/') + 1);
+					data.locationPath = this.getPathFromTree(data._embedded.location);
+					if (!_.isEmpty(data.locationPath)) {
+						data.locationDisplayName = data.locationPath[data.locationPath.length - 1].localizedName;
+						data.locationDisplayHref = data.locationPath[data.locationPath.length - 1].href;
+					}
+
+					// Category
+					let categoryElt = data._links.find((elt) => {
+						return elt.rel === "category";
+					});
+					data.categoryId = categoryElt.href.substring(categoryElt.href.lastIndexOf('/') + 1);
+					data.categoryPath = this.getPathFromTree(data._embedded.category);
+
+					// Category Attributes
+					data.categoryCurrentHierarchy = [];
+					this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+
+					return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
+						_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
+						this.prepareDisplayAttributes(data);
+						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
+						return data;
+					});
+				}
 			});
 		};
 
@@ -470,7 +596,6 @@ class ViewPageModel {
 						keywordData[keywordPromiseArray[keywordIndex]] = value;
 					} else {
 						let reason = result.reason;
-						console.error('Error in Keyword Service : ', reason);
 						keywordData[keywordPromiseArray[keywordIndex]] = {};
 					}
 					++keywordIndex;
@@ -489,6 +614,8 @@ class ViewPageModel {
 		this.dataPromiseFunctionMap.seo = () => {
 			return seo.getVIPSeoInfo();
 		};
+
+		this.dataPromiseFunctionMap.flagAd = () => "flagAd";
 	}
 }
 

@@ -92,7 +92,7 @@ $recentactivity-bgcolor:$vivaGray2;
 // use the naming convention: <where used><thing (font, color, etc)>
 
 $cardBackgroundColor: $vivaGray4;
-$cardLinksColor: $gumOrange;
+$cardLinksColor: color(crane, shade);
 
 $cardStatsFont: $gum-p3;
 $cardHeadersFont: $gum-h4;
@@ -166,6 +166,7 @@ $getAppCardMainBlue: $vivaBlue6;
 
 $gallerySponsoredTextColor: $vivaGray10;
 $galleryViewMoreColor: $vivaGreen1;
+$panelCornerBorderRadius: 7px;
 
 // Ad Tile
 
@@ -228,3 +229,10 @@ $locale: ZA;
 $menuHoverColor: $gumBlack;
 $menuDropdownBackgroundColor: $gumWhite;
 $subCatMenuHeaderColor: color(swirl, shade);
+
+// VIP
+$adPropertyValue: color(swirl);
+$expiredAdBackground: color(crane,base);
+$expiredAdText: $gumWhite;
+$expiredAdLink: color(foxtail,base);
+$text-menu-ads: color(crane);

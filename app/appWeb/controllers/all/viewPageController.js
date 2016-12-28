@@ -8,18 +8,53 @@ let pageControllerUtil = require('../../controllers/all/PageControllerUtil');
 let pageTypeJson = require(`${cwd}/app/config/pagetype.json`);
 let abTestPagesJson = require(`${cwd}/app/config/abtestpages.json`);
 let ViewPageModel = require('../../../builders/page/ViewPageModel');
+let config = require('config');
+
+const SITE_KEY = config.get('recaptcha.SITE_KEY');
 
 let VIP = {
+	redirectBasedOnAdStatus: (req, res, modelData) => {
+		//Redirect deleted ads
+		let today = new Date().getTime();
+    	let expired = modelData.advert.expirationDate;
+    	let difference = expired - today;
+		let daysLeft = Math.floor(difference / 86400000);
+
+		let redirectUrl;
+		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
+			if(daysLeft > 60) {
+				redirectUrl = '/?status=adInactive';
+				return redirectUrl;
+			}
+		}
+
+		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ) {
+			redirectUrl = '/?status=adInactive';
+			return redirectUrl;
+		}
+
+		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
+			if(daysLeft > 60) {
+				redirectUrl = '/?status=adPending';
+				return redirectUrl;
+			}
+		}
+
+		return null;
+	},
 	extendHeaderData: (req, modelData) => {
+		// SEO
 		modelData.header.pageType = modelData.pagename;
 		modelData.header.pageTitle = modelData.seo.pageTitle;
 		modelData.header.metaDescription = modelData.seo.description;
 		modelData.header.metaRobots = modelData.seo.robots;
 		modelData.header.canonical = modelData.header.viewPageUrl.replace('v-', 'a-');
-		modelData.header.pageUrl = modelData.header.viewPageUrl;
+		modelData.header.pageUrl = modelData.header.viewPageUrl.replace('v-', 'a-');
 		if (modelData.header.seoDeepLinkingBaseUrlAndroid) {
-			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'home';
+			modelData.header.seoDeeplinkingUrlAndroid = modelData.header.seoDeepLinkingBaseUrlAndroid + 'viewad/' + modelData.advert.id;
 		}
+		// Recaptcha
+		modelData.header.recaptchaSiteKey = SITE_KEY;
 		// CSS
 		if (modelData.header.min) {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.min.css');
@@ -49,17 +84,6 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
-		// Switch on activateStatus
-		if (typeof query.activateStatus !== 'undefined') {
-			switch (query.activateStatus) {
-				case 'adActivateSuccess':
-					modelData.header.pageMessages.success = 'home.ad.notyetactive';
-					break;
-				default:
-					modelData.header.pageMessages.success = '';
-					modelData.header.pageMessages.error = '';
-			}
-		}
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
 			switch (query.resumeAbandonedOrderError) {
@@ -71,6 +95,7 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
+		// Not switch on activateStatus when they are handled by post overlay. Other cases should still go here.
 	},
 	extendFooterData: (req, modelData) => {
 		// JS
@@ -143,6 +168,12 @@ router.get('/:id?', (req, res, next) => {
 			}
 		}
 
+		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
+		if (redirectUrlByStatus !== null) {
+			res.redirect(redirectUrlByStatus);
+			return;
+		}
+
 		VIP.extendHeaderData(req, modelData);
 		VIP.buildHeaderPageMessages(query, modelData);
 		VIP.extendFooterData(req, modelData);
@@ -153,7 +184,14 @@ router.get('/:id?', (req, res, next) => {
 		modelData.search = true;
 		modelData.redirectPrevUrl = redirectPrevUrl;
 
+		// Post overlay means the overlay around post button with title, description and link to edit page.
+		// It only shows when post / edit ad without feature purchase or IF.
+		modelData.activateStatus = req.query.activateStatus;
+		modelData.showPostOverlay =
+			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
+
 	}).fail((err) => {
 		console.error(err);
 		console.error(err.stack);

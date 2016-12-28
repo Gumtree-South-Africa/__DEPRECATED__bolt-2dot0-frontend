@@ -9,11 +9,22 @@ let _toggleTabsAd = (event) => {
   this.$adtabMenu.eq(indexTab).addClass('active');
 };
 
+let _loadImages = () => {
+	this.$imgs.lazyload({
+		'skip_invisible': true,
+		'effect' : 'fadeIn',
+		'effect_speed': 500
+	});
+};
+
 let initialize = () => {
     this.$adtabMenu = $('.adTabs ul li');
     this.$contentAds = $('.content-ads');
-
-    this.$adtabMenu.on('click', _toggleTabsAd);
+		this.$imgs = $('img.lazy');
+		this.$adtabMenu
+			.on('click', _toggleTabsAd)
+			.one('click', _loadImages);
+		this.$adtabMenu.first().trigger('click');
 };
 
 module.exports = {
