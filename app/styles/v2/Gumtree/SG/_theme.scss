@@ -139,7 +139,7 @@ $headerMainTextFont: $bodyFont; //Chivo Font
 $headerBorderColor: color(melon);
 $headerMainBorderColor: color(melon);
 
-$headerMenuBorderColor: $gumWhite;
+$headerMenuBorderColor: color(swirl, shade); //$gumWhite;
 $headerMenuItemSecondaryColor: $vivaGray6;
 $headerMenuItemSeparatorColor: color(taupe,shade);
 $headerMessagesBackgroundColor: color(melon);
@@ -223,3 +223,8 @@ $footerCircleBorderColor: color(rock, dark);
 //Any Image/Icon
 $photoFolder: en_SG;
 $locale: SG;
+
+//Category Menu
+$menuHoverColor: color(swirl, shade);
+$menuDropdownBackgroundColor: $gumWhite;
+$subCatMenuHeaderColor: color(swirl, shade);

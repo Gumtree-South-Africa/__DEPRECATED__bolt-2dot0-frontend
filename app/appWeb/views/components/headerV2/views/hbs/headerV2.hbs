@@ -27,11 +27,12 @@
                 {{/if}}
                 <div id='js-browse-dropdown' class="browse">
                     <div id='js-browse-item-text' class="item-text">
-                        {{i18n "header.catDropdown.browse"}}
+                        {{i18n "header.catDropdown.browseCategories"}}
                         <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                     </div>
+                    <div id="L1">
                     <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
-                        <li class="menu-item">
+                        <li class="menu-item parent-l1">
                             <a href="{{this.header.categoryList._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.header.categoryList.localizedName}}" title="{{this.header.categoryList.localizedName}}" class="link-item"
                                data-id="{{this.header.categoryList.id}}">
                                 <span class="item-primary-text">{{this.header.categoryList.localizedName}}</span>
@@ -41,29 +42,40 @@
                             </a>
                         </li>
                         {{#each this.header.categoryList.children}}
-                            <li class="menu-item">
-                                <a href="{{this._links.[1].href}}" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item"
-                                   data-id="{{this.id}}">
+                            <li id="browse-subcat{{@index}}" class="menu-item parent-l1" data-submenu="L2-{{@index}}">
+                                <a href="#" data-gtm="pc|NavHeaderClick|eventLabel|Browse:{{this.localizedName}}" title="{{this.localizedName}}" class="link-item" data-id="{{this.id}}">
                                     <span class="item-primary-text">{{this.localizedName}}</span>
                                     {{!-- item secondary is for category "counts", out for MVP
                                     <span class="item-secondary-text">(tbd)</span>
                                     --}}
                                 </a>
-                                {{!-- l2 categories removed from sprint 4 7/14/16
-                                https://jira.corp.ebay.com/browse/BOLT-22118
-                                    <ul class="menu-dropdown-l2">
-                                    {{#each this.children}}
-                                        <li class="menu-item l2">
-                                            <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
-                                                <span class="item-primary-text">{{this.localizedName}}</span>
-                                            </a>
-                                        </li>
-                                    {{/each}}
-                                    </ul>
-                                --}}
+
+
                             </li>
+                            {{!-- l2 categories removed from sprint 4 7/14/16
+                            https://jira.corp.ebay.com/browse/BOLT-22118 --}}
+                            <div id="L2-{{@index}}" class="child-l2" >
+                                <div class="subCatMenuHeader">
+                                    <div id="button-back" class="subcat-title back-button">
+                                        <div class="icon-down"></div>
+                                        <span>Back</span>
+                                    </div>
+                                    <div class="subcat-title"></div>
+                                </div>
+                                <ul class="menu-dropdown-l2" >
+                                {{#each this.children}}
+                                    <li class="menu-item l2">
+                                        <a href="{{this._links.[1].href}}" title="{{this.localizedName}}" data-id="{{this.id}}" class="link-item l2">
+                                            <span class="item-primary-text">{{this.localizedName}}</span>
+                                        </a>
+                                    </li>
+                                {{/each}}
+                                </ul>
+                            </div>
+
                         {{/each}}
                     </ul>
+                </div>
                 </div>
                 {{!-- post ad button --}}
                 {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
