@@ -293,6 +293,7 @@
 				"trending"		: "#",
 				"goods"			: "/s-home-garden/v1c9175p1",
 				"cars"			: "/s-automotive-vehicles/v1c5p1",
+				"carsAndBakkies": "/s-cars-bakkies/v1c9077p1",
 				"realEstate"	: "/s-property/v1c2p1",
 				"jobs"			: "/s-jobs/v1c8p1"
 			},

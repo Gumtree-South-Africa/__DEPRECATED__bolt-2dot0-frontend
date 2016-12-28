@@ -2,98 +2,113 @@ $feedTextSize: 16px;
 $feedTotalHeight: 100px;
 $tileTopBotPadding: 18px;
 $feedTileHeight: $feedTotalHeight - $tileTopBotPadding - $tileTopBotPadding;
+$tileWidth: 300px;
+$borderWidth: 1px;
+$cardsSpacing: 20px;
 
-.feed-tiles {
-	background-color: $vivaWhite;
-	margin: 0.5em 2% 0;
-	height: $feedTotalHeight;
-	width: 96%;
-
-    .feed-tile {
-		&:not(:first-child){
-			display: none;
-		}
-		float: left;
-		width: 100%;
-		border: 1px solid #D4D4D4;
-		background-color: $common-background-color;
-		font-size: 0; //remove gap between a tags
-
-		a {
-			display: inline-block;
-			height: $feedTileHeight;
-			padding: $tileTopBotPadding 0;
-
-			&.user-link {
-				width: 18%;
-			}
-			&.page-link {
-				width: 82%;
-			}
-		}
-
-        .feed-text-wrapper, .user-photo-wrapper {
-			position: relative;
-			width: 100%;
-			height: 100%;
-		}
-
-        .feed-text {
-            .bold {
-                font-weight: bold;
-            }
-            color: $vivaGray1;
-            font-size: $feedTextSize;
-            margin-left: 10px;
-			margin-right: 7px;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            line-height: 1;
-        }
-
-		.user-avatar {
-			background-size:100% 100%;
-			height: 40px;
-			width: 40px;
-			-moz-border-radius: 100%;
-			-webkit-border-radius: 100%;
-			border-radius: 100%;
-			float: left;
-			border:1px solid #FF9800;
-			margin-left: 7px;
-		}
-    }
-}
-
-@include from-breakpoint($medium-break){
-    .feed-tiles {
-        .feed-tile {
-			&:not(:first-child) {
-				display: block;
-			}
-            width: 32%;
-            margin: 0px 0px 0px 5px;
-			.user-avatar {
-				margin-top: 18.75%;
-			}
-        }
-    }
-}
-
-@include to-breakpoint($medium-break){
-    .feed-tiles {
-        .feed-tile {
-			margin-bottom: 5px;
-        }
-    }
-}
-
-@include in-breakpoint($small-break){
+.refresh-div {
+	text-align: center;
+	padding-top: $cardsSpacing;
 	.feed-tiles {
-		.feed-tile {
+		background-color: $vivaWhite;
+		height: $feedTotalHeight;
+		display: inline-block;
+		margin: 0 auto;
+	    .feed-tile {
+			background-color: $common-background-color;
+			border: $borderWidth solid #D4D4D4;
+			float: left;
+			font-size: 0; //remove gap between a tags
+			margin: 0px $cardsSpacing 0 0;
+            &:last-child {
+            	margin: 0;
+            }
+			text-align: left;
+			width: $tileWidth - $borderWidth * 2;
+			a {
+				display: inline-block;
+				height: $feedTileHeight;
+				padding: $tileTopBotPadding 0;
+
+				&.user-link {
+					width: 18%;
+				}
+				&.page-link {
+					width: 82%;
+				}
+			}
+
+	        .feed-text-wrapper, .user-photo-wrapper {
+				position: relative;
+				width: 100%;
+				height: 100%;
+			}
+
+	        .feed-text {
+	            .bold {
+	                font-weight: bold;
+	            }
+	            color: $vivaGray1;
+	            font-size: $feedTextSize;
+	            margin-left: 10px;
+				margin-right: 7px;
+	            position: absolute;
+	            top: 50%;
+	            transform: translateY(-50%);
+	            line-height: 1;
+	        }
+
 			.user-avatar {
-				margin-top: 9.375%;
+				background-size:100% 100%;
+				height: 40px;
+				width: 40px;
+				-moz-border-radius: 100%;
+				-webkit-border-radius: 100%;
+				border-radius: 100%;
+				float: left;
+				border:1px solid #FF9800;
+				margin-left: 7px;
+			}
+	    }
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.refresh-div {
+	    .feed-tiles {
+	    	max-width: 940px;
+	        .feed-tile {
+	            margin: 0px 20px 0 0;
+				.user-avatar {
+					margin-top: 18.75%;
+				}
+	        }
+	    }
+	}
+}
+
+@include to-breakpoint($medium-break) {
+	.refresh-div {
+		.feed-tiles {
+			.feed-tile {
+				&:nth-child(even) {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.refresh-div {
+		.feed-tiles {
+			.feed-tile {
+				&:first-child {
+					margin: 0;
+				}
+				&:not(:first-child) {
+					display: none;
+				}
 			}
 		}
 	}
