@@ -49,6 +49,8 @@ class PostAd {
 		loginModal.initialize();
 
 		this._$postAdContent = domElement.find(".post-ad-page");
+		this._$postAdFormMainDetail = domElement.find(".post-main-detail-hidden-for-mobile");
+		this._$mobilePostAdWrapper = domElement.find(".mobile-post-ad-wrapper");
 		this._$featurePromote = domElement.find("#feature-promote");
 		this._$infoTips = domElement.find(".info-tips");
 		this._$mobileSubmitButton = domElement.find('#post-submit-button .btn');
@@ -69,10 +71,16 @@ class PostAd {
 		});
 
 		this.propertyChanged.addHandler((propName/*, newValue*/) => {
+			/*
 			if (propName === 'mobileImageUrls') {
 				this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
 			} else if (propName === 'desktopImageUrls') {
 				this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
+			}
+			*/
+			if (propName === 'ImageUrls') {
+				this._$mobileSubmitButton.toggleClass('disabled', !this._canSubmit());
+				this._$desktopSubmitButton.toggleClass('disabled', !this._canSubmit());
 			}
 		});
 		this.mobileUpload.propertyChanged.addHandler((propName, newValue) => {
@@ -81,7 +89,8 @@ class PostAd {
 			}
 
 			this._$infoTips.hide();
-			this.postAdFormMainDetails.show();
+			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);
+			this._$mobilePostAdWrapper.toggleClass("hidden", false);
 
 			this.mobileImageUrls = [newValue];
 			this.spinnerModal.showModal();
@@ -101,7 +110,8 @@ class PostAd {
 				}
 			});
 		});
-
+		this.ImageUrls = [];
+		/*
 		if (!this.mobileUpload.imageUrl) {
 			this.postAdModal.isShown = true;
 			this.mobileImageUrls = [];
@@ -110,36 +120,52 @@ class PostAd {
 			this._$infoTips.hide();
 			this.postAdFormMainDetails.show();
 		}
+		*/
 		this._$mobileSubmitButton.on('click', e => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			if (!this._canMobileSubmit()) {
+			//if (!this._canMobileSubmit()) {
+			if (!this._canSubmit()) {
 				return;
 			}
-			this.submit(true);
+			//this.submit(true);
+			this.submit();
 		});
 		this._$desktopSubmitButton.on('click', e => {
 			e.preventDefault();
 			e.stopImmediatePropagation();
-			if (!this._canDesktopSubmit()) {
+			//if (!this._canDesktopSubmit()) {
+			if (!this._canSubmit()) {
 				return;
 			}
-			this.submit(false);
+			//this.submit(false);
+			this.submit();
 		});
-
+		/*
 		this.photoContainer.addImageUrlsChangeHandler(() => {
 			this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
 		});
 		this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
+		*/
+		this.photoContainer.addImageUrlsChangeHandler(() => {
+			this.ImageUrls = [].concat(this.photoContainer.imageUrls);
+		});
+		this.ImageUrls = [].concat(this.photoContainer.imageUrls);
+
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {
-				this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
-				this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
+				this._$mobileSubmitButton.toggleClass('disabled', !this._canSubmit());
+				this._$desktopSubmitButton.toggleClass('disabled', !this._canSubmit());
 			}
 		});
+		/*
 		this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
 		this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
+		*/
+		this._$mobileSubmitButton.toggleClass('disabled', !this._canSubmit());
+		this._$desktopSubmitButton.toggleClass('disabled', !this._canSubmit());
+
 		this.postAdFormMainDetails.postFormCustomAttributes.loadBaseUrl = '/api/postad/customattributes/';
 
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
@@ -147,6 +173,9 @@ class PostAd {
 		// TBD Need to refactor follow previous convention
 		photoContainer.setCategoryUpdateCallback((catId) => {
 			this.postAdFormMainDetails.categoryId = catId;
+			this._$infoTips.hide();
+			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);
+			this._$mobilePostAdWrapper.toggleClass("hidden", false);
 		});
 
 		$('.email-login-btn').on('click', () => {
@@ -174,7 +203,7 @@ class PostAd {
 		CookieUtils.setCookie('initialImage', INVALID_COOKIE_VALUE, 1);
 		CookieUtils.setCookie('backUrl', INVALID_COOKIE_VALUE, 1);
 	}
-
+	/*
 	_canMobileSubmit() {
 		// Don't submit if no image or not resolve all fix problems
 		return this._mobileImageUrls && this._mobileImageUrls.length &&
@@ -186,7 +215,25 @@ class PostAd {
 		return this._desktopImageUrls && this._desktopImageUrls.length &&
 			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
 	}
+	*/
+	_canSubmit() {
+		// Don't submit if no image or not resolve all fix problems
+		return this._ImageUrls && this._ImageUrls.length &&
+			(!this.postAdFormMainDetails.isFixMode || this.postAdFormMainDetails.isValid);
+	}
 
+	get ImageUrls() {
+		return this._ImageUrls;
+	}
+
+	set ImageUrls(newValue) {
+		if (this._ImageUrls === newValue) {
+			return;
+		}
+		this._ImageUrls = newValue;
+		this.propertyChanged.trigger('ImageUrls', newValue);
+	}
+	/*
 	get mobileImageUrls() {
 		return this._mobileImageUrls;
 	}
@@ -210,9 +257,11 @@ class PostAd {
 		this._desktopImageUrls = newValue;
 		this.propertyChanged.trigger('desktopImageUrls', newValue);
 	}
+	*/
 
-	submit(useMobileImages) {
-		if (!this._canMobileSubmit() && !this._canDesktopSubmit()) {
+	submit(/* useMobileImages */) {
+		//if (!this._canMobileSubmit() && !this._canDesktopSubmit()) {
+		if (!this._canSubmit() && !this._canSubmit()) {
 			return;
 		}
 
@@ -222,8 +271,11 @@ class PostAd {
 
 		let postAdPayload = this.postAdFormMainDetails.getAdPayload();
 		// Copy imageUrls to avoid changing original values
+		/*
 		postAdPayload.imageUrls = [].concat(
 			useMobileImages ? this._mobileImageUrls : this._desktopImageUrls);
+		*/
+		postAdPayload.imageUrls = [].concat(this._ImageUrls);
 		let payload = {
 			ads: [postAdPayload]
 		};
