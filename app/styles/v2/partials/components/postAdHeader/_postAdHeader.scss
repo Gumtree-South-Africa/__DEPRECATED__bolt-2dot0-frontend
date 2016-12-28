@@ -27,7 +27,6 @@ $photo-switcher-width: 30%;
  		.icon-back-other{
  			display: inline-block;
 			position: relative;
-			top: -0.17em;
  		}
 		a {
 			margin-left: 2px;
@@ -53,7 +52,7 @@ $photo-switcher-width: 30%;
 		font-weight: bold;
 	}
 	.title-text{
- 		max-width: 12em;
+ 		max-width: 15em;
  		max-height: 21px;
 		@include to-breakpoint($small-break){
 			text-align: center;
