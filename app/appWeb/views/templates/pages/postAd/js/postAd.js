@@ -155,8 +155,8 @@ class PostAd {
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
 			if (propName === 'isValid' || propName === 'isFixMode') {
-				this._$mobileSubmitButton.toggleClass('disabled', !this._canMobileSubmit());
-				this._$desktopSubmitButton.toggleClass('disabled', !this._canDesktopSubmit());
+				this._$mobileSubmitButton.toggleClass('disabled', !this._canSubmit());
+				this._$desktopSubmitButton.toggleClass('disabled', !this._canSubmit());
 			}
 		});
 		/*
