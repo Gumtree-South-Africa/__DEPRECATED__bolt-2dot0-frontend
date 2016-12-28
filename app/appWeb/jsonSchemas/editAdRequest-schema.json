@@ -34,6 +34,7 @@
 		"price": {
 			"type": "object",
 			"properties": {
+				"priceType": { "type": "string" },
 				"currency": { "type": "string" },
 				"amount": { "type": "number" }
 			}

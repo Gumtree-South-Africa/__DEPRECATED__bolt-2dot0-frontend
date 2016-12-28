@@ -17,7 +17,7 @@ class AttributeModel {
 
 	// this function processes the custom attribute list for displaying an already existing ad
 	processCustomAttributesList(attributes, adData) {
-		let isPriceExcluded = true;
+		let priceAttribute = null;
 		let commonAttributesToExclude = [
 			"Description",
 			"Price",
@@ -50,7 +50,7 @@ class AttributeModel {
 			}
 
 			if (toReturn.name === "Price") {
-				isPriceExcluded = false;
+				priceAttribute = toReturn;
 			}
 
 			return toReturn;
@@ -60,7 +60,7 @@ class AttributeModel {
 
 		return {
 			customAttributes,
-			isPriceExcluded
+			priceAttribute
 		};
 	}
 
