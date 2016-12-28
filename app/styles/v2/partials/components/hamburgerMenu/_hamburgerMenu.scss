@@ -149,7 +149,11 @@ $borderColor: $headerMenuItemSeparatorColor;
 		}
 		.link-item {
 			padding: 15px;
+			@include to-breakpoint($small-break) {
+				font-size: 83%;
+			}
 		}
+		
 	}
 }
 
@@ -190,3 +194,4 @@ $borderColor: $headerMenuItemSeparatorColor;
 	overflow: hidden;
 	height: 100%;
 }
+

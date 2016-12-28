@@ -1,69 +1,44 @@
 $textColor: white;
-.safety-tips-container {
-    width: 100%;
-    margin: .5em auto;
-    height: auto;
-    //this is so wrong, we should never target breakpoint with pixels
-    //there are classes made for it for consistency etc.
-    //should be something like this @include breakpoint($medium-break){...}
-    //Please refactor every where you see it in this file
-    @media(min-width: 768px) {
-        width: 100%;
-    }
+$maxWidtCards: 300px;
+$minHeightCards: 250px;
+$cardsSpacing: 20px;
+$imageContainerHeight: 130px;
+$textContainerHeight: 120px;
 
-    .advertisement-placeholder {
-        display: none;
-        width: 33.3334%;
-        height: 316px;
-        float: left;
-        @media(min-width: 768px) {
-            display: inline-block;
-        }
-        .ad {
-            background-size: contain;
-            background-position: center;
-            width: 90%;
-            height: 100%;
-            margin: auto;
-        }
-    }
+.safety-tips-wrapper {
+	text-align: center;
+	padding-top: 18px;
+	padding-bottom: $cardsSpacing;
+	.safety-tips-container {
+	    height: auto;
+	    display: inline-block;
+	    margin: 0 auto;
+	}
 }
 
 .vip-safety-tips .safety-tips-card {
 	width: 100%;
-	margin: 0 auto;
 	display: block;
 }
 
+.safety-tips-card, .home_rghtbanner, .home_rghtbanner2 {
+	display: inline-block;
+	height: auto;
+	vertical-align: top;
+	width: $maxWidtCards;
+	height: $minHeightCards;
+}
+
 .safety-tips-card {
-    min-height: 280px;
-    width: 100%;
-    display: inline-block;
     text-align: center;
     background-color: $safety-card-background-color;
-    float: left;
-    margin-bottom: 0.5em;
-
-    @media (min-width: 768px) {
-        width: 27.6667%;;
-    }
 
     .safetyTips {
-		height: 320px;
-		@media (min-width: 768px) {
-			height: 280px;
-		}
-        max-width: 800px;
-        width: 100%;
-        margin: auto;
-        position: relative;
-
+		height: 250px;
         .title {
 			padding-top: 10px;
         }
-
         .safety-icon {
-			margin-right: 6px;
 			width: 24px;
 			height: 25px;
 			background-image: url("../../../../../images/es_MX/shield.png");
@@ -71,21 +46,17 @@ $textColor: white;
             display: inline-block;
             align-self: center;
         }
-
         .safety-text {
             display: inline-block;
-            height: 36px;
         }
 
         .safety-block {
             max-width: 100%;
             width: 100%;
-            float: left;
             @media (min-width: 768px) {
 
             }
             &.block-right {
-                margin-left: 10px;
                 display: none;
                 @media (min-width: 768px) {
                     display: inline-block;
@@ -95,33 +66,25 @@ $textColor: white;
         }
 
 		.image-container {
-			height: 193px;
-			@media (min-width: 768px) {
-				height: 151px;
-			}
+			height: $imageContainerHeight;
+		}
+		.text-container {
+			height: $textContainerHeight;
 		}
 
         .image {
-            height: 193px;
+            height: $imageContainerHeight;
             background-repeat: no-repeat;
             background-position: center;
             background-size: cover;
-            @media (min-width: 768px) {
-                height: 151px;
-            }
             &.image-left {
                 background-image: url('../../../../../images/safety-tips.jpg');
             }
         }
 
         .faq {
-			position: absolute;
-			bottom: 22px;
-            width: 100%;
-            padding-top: 5px;
-            clear: both;
-			font: $h3;
-			line-height: 29px;
+            padding-top: 15px;
+			font: $h4;
 			color: $textColor;
         }
 
@@ -132,8 +95,7 @@ $textColor: white;
         }
 
         h2 {
-            font: $h1;
-            line-height: 37px;
+            font: $h2;
             font-weight: bold;
 			color: $textColor;
         }
@@ -141,75 +103,40 @@ $textColor: white;
         .help-text {
             font: $p2;
 			color: $textColor;
+			padding-top: 15px;
         }
     }
 }
 
-
-.dfp-banner {
-	text-align: center;
-   }
-
-
-@include in-breakpoint($no-break){
-	.vip-safety-tips .safety-tips-card {
-		max-width: 20em;
-	}
-}
-
-@include in-breakpoint($small-break) {
-	.safety-tips-card {
-		width: 100%;
-		margin-bottom: 1.5em;
-		display: none;
-	}
-	.home_rghtbanner {
-		float: left;
-	}
-
-	.dfp-banner {
-		margin-left: 3em
-	}
-
-}
-
-@include in-breakpoint($medium-break) {
-	.safety-tips-container {
-		width: 64em;
-	}
-	.safety-tips-card {
-		width: 24.6667%;
-        margin-left: 25px;
-	}
-}
-
 @include from-breakpoint($medium-break) {
-
-	.home_rghtbanner {
-		float: left;
-		width: 31%;
-		height: 280px;
-		margin: auto 10px;
-		text-align: center;
-		margin-right: 22px;
+	.safety-tips-wrapper {
+	    .safety-tips-container {
+	        .safety-tips-card, .home_rghtbanner {
+	            margin: 0px 18px 0 0;
+	        }
+	    }
 	}
+}
 
-	.home_rghtbanner2 {
-		float: left;
-		width: 31%;
-		height: 280px;
-		margin: auto;
-		text-align: center;
+@include to-breakpoint($medium-break) {
+	.safety-tips-wrapper {
+		.safety-tips-container {
+			.safety-tips-card {
+				display: none;
+			}
+		}
 	}
+}
 
-	.safety-tips-container {
-		height: 280px;
-
+@include to-breakpoint($small-break) {
+	.safety-tips-wrapper {
+		.safety-tips-container {
+			.home_rghtbanner {
+				margin: 0;
+			}
+			.safety-tips-card, .home_rghtbanner2 {
+				display: none;
+			}
+		}
 	}
-
-	.safety-tips-card {
-		margin-right: 12px;
-		width: 30%;
-	}
-
 }
