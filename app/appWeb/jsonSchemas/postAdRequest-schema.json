@@ -34,7 +34,6 @@
 						"properties": {
 							"currency": {
 								"type": "string",
-								"required": true,
 								"enum": [
 									"USD",
 									"MXN",
@@ -43,8 +42,7 @@
 								]
 							},
 							"amount": {
-								"type": "number",
-								"required": true
+								"type": "number"
 							}
 						}
 					},
