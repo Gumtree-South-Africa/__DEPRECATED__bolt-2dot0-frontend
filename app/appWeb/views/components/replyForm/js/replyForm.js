@@ -84,7 +84,7 @@ class replyForm {
 		return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.search) || [null, ''])[1].replace(/\+/g, '%20')) || null;
 	}
 
-	_messageSeller() {
+  	_messageSeller() {
 		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
 		$('.header-wrapper').addClass('fixed-header hidden-search');
@@ -92,7 +92,17 @@ class replyForm {
 		$replyForm.addClass('fixed');
 		this.$headerHeight = $('.header-wrapper').height();
 		$replyForm.css('top', this.$headerHeight + 'px');
-	}
+		$('.header-back').addClass('hidden');
+		$('.header-backed').removeClass('hidden').click(() => this._hideMessageSeller());
+  	}
+
+  	_hideMessageSeller() {
+		let $replyForm = $('.reply-form');
+		let $replyFormContainer = $('.reply-form-container');
+		$('.header-wrapper').removeClass('fixed-header hidden-search');
+		$replyFormContainer.addClass('desktop-only');
+		$replyForm.removeClass('fixed');
+  	}
 }
 
 module.exports = new replyForm ();

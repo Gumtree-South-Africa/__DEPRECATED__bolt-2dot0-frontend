@@ -5,307 +5,309 @@ $categoryArrowIconWidth: 13px;
 $formMarginLeft: 6%;
 
 .vip-flagad {
-  .title {
-    &:hover {
-      text-decoration: none;
-    }
-    color: #1E98D5;
-    display: block;
-    font-weight: bold;
-    margin: 0 auto;
-    width: 50%;
-    @include to-breakpoint($small-break) {
-        width: 100% !important;
-        text-align: center !important;
-    }
-    .icon-warning-sign {
-      display: inline-block;
-      margin-bottom: -2px;
-      width: 22px;
-      height: 20px;
-    }
-  }
-  
+	padding-bottom: 10px;
+	.title {
+		&:hover {
+			text-decoration: none;
+		}
+		&.reported-ad.hide {
+			display: none;
+		}
+		color: #1E98D5;
+		display: block;
+		font-weight: bold;
+		margin: 0 auto;
+		width: 50%;
+		@include to-breakpoint($small-break) {
+			width: 100% !important;
+			text-align: center !important;
+		}
+		.icon-warning-sign {
+			display: inline-block;
+			margin-bottom: -2px;
+			width: 22px;
+			height: 20px;
+		}
+	}
 
-  .flagad-container {
-    p.error{
-      display: none;
-    }
-    overflow: hidden;
-    &.state-changed {
-      .tallForm {
-        height: auto;
-      }
-    }
-    .tallForm {
-      height: 0px;
-      label.privacypolicy {
-        color: #747474;
-        font-size: 10px;
-        margin-left: $formMarginLeft;
-        display: inline-block;
-        a {
-          color: #333333;
-        }
-      }
-    }
-    .button-area{
-      margin-left: $formMarginLeft;
-      button {
-        &:disabled {
-          cursor: not-allowed;
-          opacity: 0.5;
-        }
-        &.cancel {
-          background-color: buttonface;
-        }
-        color: white;
-        cursor: pointer;
-        background-color: $button-bgcolor;
-        border-radius: 2px;
-        border-style: inherit;
-        display: inline-block;
-        padding: 12px 5px;
-        font: bold 1.125em Lato;
-        text-align: center;
-        &:hover {
-          text-decoration: none;
-        }
-        width: 40%;
-        vertical-align: top;
-        margin-top: 1%;
-        margin-bottom: 2%;
-        &.disabled {
-          opacity: 0.5;
-        }
 
-        .link-text {
-          color: white;
-        }
-      }
-    }
-  }
-  .post-add-detail {
-    padding: 0.618em 0;
-    text-align: center;
-    font-size: large;
-    color: $formLabelTextColor;
+	.flagad-container {
+		p.error{
+			display: none;
+		}
+		overflow: hidden;
+		.tallForm {
+			width: 100%;
+			&.hide {
+				display: none;
+			}
+			label.privacypolicy {
+				color: #747474;
+				font-size: 10px;
+				margin-left: $formMarginLeft;
+				display: inline-block;
+				a {
+					color: #333333;
+				}
+			}
+		}
+		.button-area{
+			margin-left: $formMarginLeft;
+			button {
+				&:disabled {
+					cursor: not-allowed;
+					opacity: 0.5;
+				}
+				&.cancel {
+					background-color: buttonface;
+				}
+				color: white;
+				cursor: pointer;
+				background-color: $button-bgcolor;
+				border-radius: 2px;
+				border-style: inherit;
+				display: inline-block;
+				padding: 12px 5px;
+				font: bold 1.125em Lato;
+				text-align: center;
+				&:hover {
+					text-decoration: none;
+				}
+				width: 40%;
+				vertical-align: top;
+				margin-top: 1%;
+				margin-bottom: 2%;
+				&.disabled {
+					opacity: 0.5;
+				}
 
-    .icon-down, .icon-up {
-      float: right;
-      margin-right: 15%;
-      margin-top: -17px;
-      cursor: pointer;
-    }
-  }
+				.link-text {
+					color: white;
+				}
+			}
+		}
+	}
+	.post-add-detail {
+		padding: 0.618em 0;
+		text-align: center;
+		font-size: large;
+		color: $formLabelTextColor;
 
-  select, input {
-    height: 33px;
-  }
+		.icon-down, .icon-up {
+			float: right;
+			margin-right: 15%;
+			margin-top: -17px;
+			cursor: pointer;
+		}
+	}
 
-  .main-details-title {
-    width: 100%;
-    padding: 25px 0;
-    font-size: 20px;
-    line-height: 1;
-    text-align: center;
-    color: $mainDetailsTitleTextColor;
-  }
+	select, input {
+		height: 33px;
+	}
 
-  .label-wrapper {
-    width: 100%;
-    margin: 5px 0;
+	.main-details-title {
+		width: 100%;
+		padding: 25px 0;
+		font-size: 20px;
+		line-height: 1;
+		text-align: center;
+		color: $mainDetailsTitleTextColor;
+	}
 
-    label {
-      text-transform: uppercase;
-      width: $labelWidth;
-      margin: 0 0 0 $labelMargin;
-      font-size: 10px;
-      color: $formLabelTextColor;
-      display: inline-block; // this fixes text wrapping on smaller devices
-    }
-  }
+	.label-wrapper {
+		width: 100%;
+		margin: 5px 0;
 
-  .form-field {
-    &.required-field label:after {
-      content: '*';
-      color: red;
-      margin-left: 5px;
-    }
-    & ul {
-      margin-left: $formMarginLeft;
-    }
-    & > #g-recaptcha {
-      margin-left: $formMarginLeft;
-    }
-  }
+		label {
+			text-transform: uppercase;
+			width: $labelWidth;
+			margin: 0 0 0 $labelMargin;
+			font-size: 10px;
+			color: $formLabelTextColor;
+	  display: inline-block; // this fixes text wrapping on smaller devices
+	}
+}
 
-  .email-input, .comments-input {
-    border-color: #999999;
-    border-radius: 3px;
-    border-width: 1px;
-    margin-left: $inputMargin;
-    padding: 0 calc(2% - 1px);
-    resize: none;
-    width: $inputWidth;
-  }
+.form-field {
+	&.required-field label:after {
+		content: '*';
+		color: red;
+		margin-left: 5px;
+	}
+	& ul {
+		margin-left: $formMarginLeft;
+	}
+	& > #g-recaptcha {
+		margin-left: $formMarginLeft;
+	}
+}
 
-  .email-input {
-    &.error{
-      border-color: red;
-      &+p.error {
-        display: block;
-        color: red;
-        margin-bottom: 0;
-        margin-left: 33px;
-      }
-    }
-    &:disabled {
-      background: #e6e6e6;
-    }
-  }
+.email-input, .comments-input {
+	border-color: #999999;
+	border-radius: 3px;
+	border-width: 1px;
+	margin-left: $inputMargin;
+	padding: 0 calc(2% - 1px);
+	resize: none;
+	width: $inputWidth;
+}
 
-  .comments-input {
-    &.error{
-      border-color: red;
-      &+p.error {
-        display: block;
-        color: red;
-        margin-bottom: 0;
-        margin-left: 33px;
-      }
-    }
-    height: 150px;
-  }
+.email-input {
+	&.error{
+		border-color: red;
+		&+p.error {
+			display: block;
+			color: red;
+			margin-bottom: 0;
+			margin-left: 33px;
+		}
+	}
+	&:disabled {
+		background: #e6e6e6;
+	}
+}
 
-  input[type="radio"] {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-  }
+.comments-input {
+	&.error{
+		border-color: red;
+		&+p.error {
+			display: block;
+			color: red;
+			margin-bottom: 0;
+			margin-left: 33px;
+		}
+	}
+	height: 150px;
+}
 
-  .control {
-    margin-right: 10px;
-  }
+input[type="radio"] {
+	position: absolute;
+	z-index: -1;
+	opacity: 0;
+}
+
+.control {
+	margin-right: 10px;
+}
 
   // Checked
   .control input:checked ~ .outer-circle .inner-circle {
-    background: $vivaOrange;
+  	background: $vivaOrange;
   }
 
   .flag-type {
-    cursor: pointer;
+  	cursor: pointer;
   }
 
   .control input:checked ~ .flag-type {
-    color: black;
-    font-weight: bold;
-    display: inline-block;
+  	color: black;
+  	font-weight: bold;
+  	display: inline-block;
   }
 
   .inner-circle {
-    display: inline-block;
-    position: relative;
-    top: -4px;
-    left: 2.1px;
-    width: 12px;
-    height: 12px;
-    background: #FFFFFF;
-    border-radius: 50%;
-    z-index: 1;
+  	display: inline-block;
+  	position: relative;
+  	top: -4px;
+  	left: 2.1px;
+  	width: 12px;
+  	height: 12px;
+  	background: #FFFFFF;
+  	border-radius: 50%;
+  	z-index: 1;
   }
 
   .outer-circle {
-    cursor: pointer;
-    display: inline-block;
-    position: relative;
-    top: 3px;
-    left: 0;
-    width: 16px;
-    height: 16px;
-    margin-right: 5px;
-    background: #FFFFFF;
-    border: 1px solid black;
-    border-radius: 50%;
-    & + .flag-type {
-      color: #747474;
-      font-weight: normal;
-    }
+  	cursor: pointer;
+  	display: inline-block;
+  	position: relative;
+  	top: 3px;
+  	left: 0;
+  	width: 16px;
+  	height: 16px;
+  	margin-right: 5px;
+  	background: #FFFFFF;
+  	border: 1px solid black;
+  	border-radius: 50%;
+  	& + .flag-type {
+  		color: #747474;
+  		font-weight: normal;
+  	}
   }
 
   .input-wrapper {
-    width: 100%;
-    position: relative;
+  	width: 100%;
+  	position: relative;
   }
 
   .validation-error {
-    border: 1px solid red !important;
+  	border: 1px solid red !important;
   }
 
   .radio-group {
-    margin-left: 15px;
-    display: inline-block;
+  	margin-left: 15px;
+  	display: inline-block;
 
-    @media(max-width: 475px) {
-      margin-left: 5px;
+  	@media(max-width: 475px) {
+  		margin-left: 5px;
 
-      .control {
-        margin-right: 5px;
-      }
-    }
+  		.control {
+  			margin-right: 5px;
+  		}
+  	}
 
-    /* Begin custom radio btns */
-    // Hide default browser input
-    input[type="radio"] {
-      position: absolute;
-      z-index: -1;
-      opacity: 0;
-    }
+  	/* Begin custom radio btns */
+	// Hide default browser input
+	input[type="radio"] {
+		position: absolute;
+		z-index: -1;
+		opacity: 0;
+	}
 
-    .control {
-      margin-right: 10px;
-    }
+	.control {
+		margin-right: 10px;
+	}
 
-    // Checked
-    .control input:checked ~ .outer-circle .inner-circle {
-      background: $vivaOrange;
-    }
+	// Checked
+	.control input:checked ~ .outer-circle .inner-circle {
+		background: $vivaOrange;
+	}
 
-    .flag-type {
-      cursor: pointer;
-    }
+	.flag-type {
+		cursor: pointer;
+	}
 
-    .control input:checked ~ .flag-type {
-      color: black;
-      font-weight: bold;
-      display: inline-block;
-    }
+	.control input:checked ~ .flag-type {
+		color: black;
+		font-weight: bold;
+		display: inline-block;
+	}
 
-    .inner-circle {
-      display: inline-block;
-      position: relative;
-      top: -4px;
-      left: 2.1px;
-      width: 12px;
-      height: 12px;
-      background: #FFFFFF;
-      border-radius: 50%;
-      z-index: 1;
-    }
+	.inner-circle {
+		display: inline-block;
+		position: relative;
+		top: -4px;
+		left: 2.1px;
+		width: 12px;
+		height: 12px;
+		background: #FFFFFF;
+		border-radius: 50%;
+		z-index: 1;
+	}
 
-    .outer-circle {
-      cursor: pointer;
-      display: inline-block;
-      position: relative;
-      top: 3px;
-      left: 0;
-      width: 16px;
-      height: 16px;
-      margin-right: 5px;
-      background: #FFFFFF;
-      border: 1px solid black;
-      border-radius: 50%;
-    }
-    /* End custom radio btns */
-  }
+	.outer-circle {
+		cursor: pointer;
+		display: inline-block;
+		position: relative;
+		top: 3px;
+		left: 0;
+		width: 16px;
+		height: 16px;
+		margin-right: 5px;
+		background: #FFFFFF;
+		border: 1px solid black;
+		border-radius: 50%;
+	}
+	/* End custom radio btns */
+}
 }
