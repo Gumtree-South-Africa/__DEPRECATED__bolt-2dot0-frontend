@@ -2,20 +2,16 @@
 	&:first-child {
 		margin-left: 0px;
 	}
-	margin-left: 10px;
-	font-weight: bold;
 }
 
 .seo-line {
-	margin-top: 6px;
 	border-bottom: 1px solid #fafafa;
-	width: 95%;
+	width: 99%;
+	margin-top: -1px;
 }
 
 .top-content {
-	margin-top: 20px;
 	cursor: pointer;
-
 	.top-links {
 		color: #fafafa;
 	}
@@ -25,17 +21,9 @@
 	padding-bottom: 5px;
 }
 
-.top-links {
-	text-decoration: underline;
-}
-
 .thick-underline {
 	border-bottom: 3px solid #fafafa;
-}
-
-.view-more-locations {
-	margin-top: 20px;
-	cursor: pointer;
+	padding-bottom: 4px;
 }
 
 @include from-breakpoint($medium-break) {
@@ -44,15 +32,6 @@
 		display: none;
 	}
 
-	.seo-wrapper {
-		.locations-wrapper {
-			display: inline-block;
-			width: 46%;
-		}
-		.top-content-wrapper {
-			padding-left: 18px;
-		}
-	}
 	.top-content {
 		&:nth-child(even){
 			display:inline;
@@ -70,9 +49,6 @@
 		border-bottom: 0px;
 	}
 	.view-more-locations {
-		&:hover {
-			text-decoration: underline;
-		}
 		text-align: center;
 		cursor: pointer;
 	}

@@ -437,7 +437,6 @@
 	"footer.motors.h-l": "Cars H-L",
 	"footer.motors.m-o": "Cars M-O",
 	"footer.motors.p-z": "Cars P-Z",
-	"footer.toplocations": "Top locations",
 	"footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
 	"error404.message": "\"We’re sorry, this page does not exist\" <br /><a href=\"%s\">Please go to the homepage</a>",
 	"error410.message": "Sorry, this ad is no longer available.",
@@ -1303,6 +1302,7 @@
 		"trending": "Trending",
 		"goods": "Home & Garden",
 		"cars": "Automotive Vehicles",
+		"carsAndBakkies": "Cars & Bakkies",
 		"realEstate": "Property",
 		"jobs": "Jobs"
 	},
@@ -1459,6 +1459,7 @@
 			"viewLess": "View less"
 		},
 		"toplocations": "Top locations",
+		"topCategories": "Categories",
 		"download": {
 			"download": "Download the App",
 			"itunes": "Available on the App Store",

@@ -1199,15 +1199,14 @@
 			"title": "Vivanuncios Te Cuida",
 			"faq": "Consejos de seguridad",
 			"tip": [
-				"Consejos de cómo protegerte en internet",
+				"Cómo protegerte en internet",
 				"¿Vivanuncios coopera con las autoridades?",
 				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+				"¿Cómo me mantengo seguro usando Vivanuncios?",
 				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
+				"He sido víctima de una estafa",
 				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+				"He reportado un anuncio por error"
 			]
 		},
 		"trending": {
@@ -1374,6 +1373,8 @@
 		}
 	},
 	"footer": {
+		"toplocations": "Los Mejores Lugares",
+		"topCategories": "Categorías",
 		"help": {
 			"heretohelp": "Estamos aquí para ayudarte",
 			"sendemail": "Envía un correo electrónico",

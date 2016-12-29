@@ -1,1 +1,20 @@
+{{#partial 'sectionMenuList'}}
+<ul class="sectionMenu">
+    <li>
+        <a class="active" href="{{this.sectionMenu.trending}}" data-gtm="pc|NavSubHeaderClick|eventLabel|Trending" title="{{i18n "sectionMenu.trending"}}">{{i18n "sectionMenu.trending"}}</a>
+    </li>
+    <li>
+        <a href="{{this.sectionMenu.goods}}" data-gtm="pc|NavSubHeaderClick|eventLabel|Goods" title="{{i18n "sectionMenu.goods"}}">{{i18n "sectionMenu.goods"}}</a>
+    </li>
+    <li>
+        <a href="{{this.sectionMenu.cars}}" data-gtm="pc|NavSubHeaderClick|eventLabel|Cars" title="{{i18n "sectionMenu.cars"}}">{{i18n "sectionMenu.cars"}}</a>
+    </li>
+    <li>
+        <a href="{{this.sectionMenu.realEstate}}" data-gtm="pc|NavSubHeaderClick|eventLabel|Real Estate" title="{{i18n "sectionMenu.realEstate"}}">{{i18n "sectionMenu.realEstate"}}</a>
+    </li>
+    <li>
+        <a href="{{this.sectionMenu.jobs}}" data-gtm="pc|NavSubHeaderClick|eventLabel|Jobs" title="{{i18n "sectionMenu.jobs"}}">{{i18n "sectionMenu.jobs"}}</a>
+    </li>
+</ul>
+{{/partial}}
 {{> (base "sectionMenu")}}
