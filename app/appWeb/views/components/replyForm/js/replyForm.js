@@ -29,6 +29,11 @@ class replyForm {
 				$('.show-phone').hide();
 			});
 
+			/* Convert checkbox value on/off to true/false */
+			$('.is-send-me-copy-email').on('click', function(e) {
+				$("input[name='isSendMeCopyEmail']").val($(e.currentTarget).prop("checked"));
+			});
+
 			document.addEventListener('invalid', (function() {
 				return function(e) {
 					e.preventDefault();
