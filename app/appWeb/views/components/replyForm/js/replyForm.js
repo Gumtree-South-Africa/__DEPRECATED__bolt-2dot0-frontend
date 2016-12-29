@@ -26,7 +26,12 @@ class replyForm {
 				$('.hidden-phone').addClass('hide');
 				$realPhone.text(window.atob($realPhone.text()));
 				$realPhone.removeClass('hide');
-				$('.show-phone').addClass('hide');
+				$('.show-phone').hide();
+			});
+
+			/* Convert checkbox value on/off to true/false */
+			$('.is-send-me-copy-email').on('click', function(e) {
+				$("input[name='isSendMeCopyEmail']").val($(e.currentTarget).prop("checked"));
 			});
 
 			document.addEventListener('invalid', (function() {

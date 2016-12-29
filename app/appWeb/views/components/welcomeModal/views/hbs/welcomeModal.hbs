@@ -25,22 +25,24 @@
 						<div class="contact-title">
 							<span>{{i18n "vip.reply.action.contact"}} {{#if this.advert.sellerDetails.contactInfo.name}}{{this.advert.sellerDetails.contactInfo.name}}{{else}}{{i18n "vip.seller.user"}}{{/if}}</span>
 						</div>
-						<div class="stickyBtn left">
-							<a href="tel:{{this.advert.sellerDetails.contactInfo.phone}}" class="button telephone">
-								<span class="icon-web-phone show-icon"></span><span class="duText">{{i18n "vip.reply.action.call"}}</span>
-						    </a>
+                        <div>
+                            {{#if this.advert.phone}}
+    						<div class="stickyBtn">
+    							<a href="tel:{{this.advert.phone}}" class="button telephone">
+    								<span class="icon-web-phone show-icon"></span><span class="duText">{{i18n "vip.reply.action.call"}}</span>
+    						    </a>
+    						</div><!--
+                            --><div class="stickyBtn">
+    							<a href="sms:{{this.advert.phone}}&body=RE: {{{this.advert.title}}}" class="button sms">
+    								<span class="icon-web-sms show-icon"></span><span class="duText">{{i18n "vip.reply.action.text"}}</span>
+    							</a>
+    						</div><!--
+                            -->{{/if}}<div class="stickyBtn">
+    							<a class="button email">
+    								<span class="icon-web-email show-icon"></span><span class="duText">{{i18n "vip.reply.action.message"}}</span>
+    							</a>
+    						</div>
 						</div>
-						<div class="stickyBtn right">
-							<a class="button email">
-								<span class="icon-web-email show-icon"></span><span class="duText">{{i18n "vip.reply.action.message"}}</span>
-							</a>
-						</div>
-						<div class="stickyBtn center">
-							<a href="sms:{{this.advert.sellerDetails.contactInfo.phone}}&body=RE: {{{this.advert.title}}}" class="button sms">
-								<span class="icon-web-sms show-icon"></span><span class="duText">{{i18n "vip.reply.action.text"}}</span>
-							</a>
-						</div>
-						<div class="clear"></div>
 					</div>
 				</div>
 				{{else}}

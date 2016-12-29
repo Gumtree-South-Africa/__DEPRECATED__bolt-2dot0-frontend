@@ -30,9 +30,13 @@
 			<div class="desktop-post-ad margin-auto">
 				<div class="directions">{{i18n "postAd.createAds.directions"}}</div>
 			</div>
-            <div class="photo-switcher photo-container-start">
-                {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
+            <div class="photo-wrapper-container">
+				<div class="photo-switcher photo-container-start">
+                    {{> (dynamic "photoContainer") i18HeadTitle="postAd.createAds.form.addPhotosStep"}}
+				</div>
+				<div class="icon-post-edit-ad-banner"></div>
             </div>
+
 			<div class="mobile-post-ad">
 				<div class="info-tips">{{i18n "postAd.page.tips"}}</div>
 			</div>
