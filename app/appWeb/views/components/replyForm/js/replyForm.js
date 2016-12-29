@@ -16,6 +16,7 @@ class replyForm {
 				}
 
 				$('.reply-form-container').addClass('hide');
+				$('#vip-send-button').attr('data-gtm', 'pc|VIP|R2SEmailAttempt');
 				$('.message-sent').removeClass('hide');
 			}
 

@@ -28,17 +28,17 @@
                         <div>
                             {{#if this.advert.phone}}
     						<div class="stickyBtn">
-    							<a href="tel:{{this.advert.phone}}" class="button telephone">
+    							<a href="tel:{{this.advert.phone}}" class="button telephone" data-gtm='pc|{{ this.header.pageType}}|R2SPhoneBegin'>
     								<span class="icon-web-phone show-icon"></span><span class="duText">{{i18n "vip.reply.action.call"}}</span>
     						    </a>
     						</div><!--
                             --><div class="stickyBtn">
-    							<a href="sms:{{this.advert.phone}}&body=RE: {{{this.advert.title}}}" class="button sms">
+    							<a href="sms:{{this.advert.phone}}&body=RE: {{{this.advert.title}}}" class="button sms" data-gtm='pc|{{ this.header.pageType}}|R2SSMSBegin'>
     								<span class="icon-web-sms show-icon"></span><span class="duText">{{i18n "vip.reply.action.text"}}</span>
     							</a>
     						</div><!--
                             -->{{/if}}<div class="stickyBtn">
-    							<a class="button email">
+    							<a class="button email" data-gtm='pc|{{ this.header.pageType}}|R2SEmailBegin'>
     								<span class="icon-web-email show-icon"></span><span class="duText">{{i18n "vip.reply.action.message"}}</span>
     							</a>
     						</div>
