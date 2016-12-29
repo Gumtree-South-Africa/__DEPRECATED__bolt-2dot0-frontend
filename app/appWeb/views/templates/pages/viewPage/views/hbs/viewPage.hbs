@@ -114,12 +114,7 @@
                 <span class="icon-close"></span>
               </div>
             </div>
-            {{#ifeq activateStatus compare="adActivateSuccess" }}
-              <h2 class="modal-header-message">{{i18n "vip.postOverlay.postTitle"}}</h2>
-            {{/ifeq}}
-            {{#unlessEq activateStatus compare="adActivateSuccess" }}
-              <h2 class="modal-header-message">{{i18n "vip.postOverlay.title"}}</h2>
-            {{/unlessEq}}
+            <h2 class="modal-header-message">{{i18n postOverlayTitleKey}}</h2>
             <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
             <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n "vip.postOverlay.edit"}}</a></div>
             {{> (dynamic "button") i18nPath="vip.postOverlay.postMore" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" }}
@@ -132,12 +127,7 @@
     {{#unless this.vip.showBuyerStuff}}
       {{#if showPostOverlay}}
         <div class="from-post-container">
-          {{#ifeq activateStatus compare="adActivateSuccess" }}
-            <h2>{{i18n "vip.postOverlay.postTitle"}}</h2>
-          {{/ifeq}}
-          {{#unlessEq activateStatus compare="adActivateSuccess" }}
-            <h2>{{i18n "vip.postOverlay.title"}}</h2>
-          {{/unlessEq}}
+          <h2>{{i18n postOverlayTitleKey}}</h2>
           <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
           <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n "vip.postOverlay.edit"}}</a></div>
         </div>
