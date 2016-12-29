@@ -463,8 +463,8 @@ class ViewPageModel {
 				}
 
 				// Seller Contact
-				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
+				if (data.phone) {
+					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
 				}
 
 				// Ad Status
