@@ -26,7 +26,7 @@ class replyForm {
 				$('.hidden-phone').addClass('hide');
 				$realPhone.text(window.atob($realPhone.text()));
 				$realPhone.removeClass('hide');
-				$('.show-phone').addClass('hide');
+				$('.show-phone').hide();
 			});
 
 			document.addEventListener('invalid', (function() {
