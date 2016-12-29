@@ -83,6 +83,10 @@ class replyForm {
 		$('.welcome-wrapper .email').on('click', () => {
 			this._messageSeller();
 		});
+
+		$('.header-wrapper').on('click', '.inZoomMode', () => {
+			this.backFromReplyFn();
+		});
 	}
 
 	_getURLParameter(name) {
@@ -97,6 +101,14 @@ class replyForm {
 		$replyForm.addClass('fixed');
 		this.$headerHeight = $('.header-wrapper').height();
 		$replyForm.css('top', this.$headerHeight + 'px');
+		$('.zoomT, .inZoomMode').removeClass('hidden');
+	}
+
+	backFromReplyFn() {
+		$('.header-wrapper').removeClass('fixed-header hidden-search');
+		$('.reply-form-container').addClass('desktop-only');
+		$('.reply-form').removeClass('fixed');
+		$('.zoomT, .inZoomMode').addClass('hidden');
 	}
 }
 
