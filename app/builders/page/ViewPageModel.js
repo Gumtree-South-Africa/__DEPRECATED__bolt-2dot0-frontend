@@ -417,7 +417,7 @@ class ViewPageModel {
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
-		moment.locale(this.locale.split('_')[0]);
+		moment.locale(modelData.lang);
 
 		this.dataPromiseFunctionMap = {};
 
@@ -463,8 +463,8 @@ class ViewPageModel {
 				}
 
 				// Seller Contact
-				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
+				if (data.phone) {
+					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
 				}
 
 				// Ad Status

@@ -7,7 +7,6 @@ class replyForm {
 	 * @param options
 	 */
 	initialize() {
-		this.$headerHeight = $('.header-wrapper').height();
 		$(document).ready(() => {
 			let adActivateStatus = this._getURLParameter('adActivateStatus') || '';
 
@@ -27,7 +26,7 @@ class replyForm {
 				$('.hidden-phone').addClass('hide');
 				$realPhone.text(window.atob($realPhone.text()));
 				$realPhone.removeClass('hide');
-				$('.show-phone').addClass('hide');
+				$('.show-phone').hide();
 			});
 
 			document.addEventListener('invalid', (function() {
@@ -88,9 +87,10 @@ class replyForm {
 	_messageSeller() {
 		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
-		$('.header-wrapper').addClass('fixed-header');
+		$('.header-wrapper').addClass('fixed-header hidden-search');
 		$replyFormContainer.removeClass('desktop-only');
 		$replyForm.addClass('fixed');
+		this.$headerHeight = $('.header-wrapper').height();
 		$replyForm.css('top', this.$headerHeight + 'px');
 	}
 }

@@ -3,6 +3,7 @@
         {
             "title": "Test Ad 1",
             "price": {
+                "priceType": "FIXED",
                 "amount": 200.00,
                 "currency": "USD"
             },

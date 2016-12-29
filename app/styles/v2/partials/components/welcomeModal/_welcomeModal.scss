@@ -97,25 +97,22 @@
     margin-right: 5%;
   }
   .stickyBtn{
-    background-color: white;
-    width: 30%;
-    height: 40px;
     cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    width: 30%;
+
+    + .stickyBtn {
+        margin-left: 5%;
+    }
+
     a{
       color: $button-bgcolor;
       background-color: white;
+      border-radius: 3px;
       width: 100%;
       line-height: 40px;
       display: inline-block;
-    }
-    &.left{
-      float: left;
-    }
-    &.right{
-      float: right;
-    }
-    &.center{
-      margin: 0 auto;
     }
   }
 }
@@ -143,7 +140,7 @@
     }
 }
 
-@media (max-width: 479px) {
+@media (max-width: 359px) {
     .show-icon {
         display: none;
     }

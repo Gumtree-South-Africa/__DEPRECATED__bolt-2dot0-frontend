@@ -3,6 +3,7 @@
 		{
 			"title": "Test Ad",
 			"price": {
+				"priceType": "FIXED",
 				"amount": 200.00,
 				"currency": "MXN"
 			},

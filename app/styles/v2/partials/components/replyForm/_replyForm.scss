@@ -17,6 +17,12 @@
 	overflow-x: hidden;
 	background-color: white;
 	z-index: 9000;
+	@include from-breakpoint($medium-break) {
+		position: relative;
+		overflow: hidden;
+		z-index: 1;
+		top: 0 !important;
+	}
 }
 
 .message-sent {
@@ -196,7 +202,7 @@
 }
 
 .hide {
-	display: none !important;
+	display: none;
 }
 
 @include from-breakpoint($medium-break) {

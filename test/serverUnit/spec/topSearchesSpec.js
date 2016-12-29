@@ -42,7 +42,8 @@ describe('Top Searches', () => {
 
 					let c$ = cheerio.load(res.text);
 					let searchHeader = c$('.search-header-text');
-					expect(searchHeader.length).toBe(1, 'selector should produce 1 element for search header');
+					expect(searchHeader.length).toBe(2, 'selector should produce 2 element for search header');
+					// It looks like there is two header-text one for mobile and one for desktop, so this value shouldn't be 2?
 				})
 				.end(specHelper.finish(done));
 		});
