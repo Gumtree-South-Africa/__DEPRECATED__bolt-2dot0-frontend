@@ -91,6 +91,7 @@ class PostAd {
 			this._$infoTips.hide();
 			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);
 			this._$mobilePostAdWrapper.toggleClass("hidden", false);
+			this.postAdModal.hiddenModel();
 
 			this.mobileImageUrls = [newValue];
 			this.spinnerModal.showModal();
@@ -176,6 +177,7 @@ class PostAd {
 			this._$infoTips.hide();
 			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);
 			this._$mobilePostAdWrapper.toggleClass("hidden", false);
+			this.postAdModal.hiddenModel();
 		});
 
 		$('.email-login-btn').on('click', () => {
