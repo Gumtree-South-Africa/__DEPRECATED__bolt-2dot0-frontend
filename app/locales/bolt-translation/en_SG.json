@@ -1532,6 +1532,7 @@
 	"vip": {
 		"details": {
 			"edit": "Edit",
+			"zoomView": "zoom view",
 			"favorite": "Favorite",
 			"posted": "Posted",
 			"views": "VIEWS",

@@ -36,7 +36,9 @@ class ViewPageModel {
 
 		let modelBuilder = new ModelBuilder(this.getViewPageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
-
+		abstractPageModel.addToClientTranslation(modelData, [
+			"vip.details.zoomView"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 
