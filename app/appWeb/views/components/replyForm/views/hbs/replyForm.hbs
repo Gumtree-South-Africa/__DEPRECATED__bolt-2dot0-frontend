@@ -62,7 +62,7 @@
                     {{/if}}
 
                     <span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}"></textarea>
+                <textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
                 <div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                 {{#unless this.header.id}}
@@ -82,7 +82,7 @@
                     <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{else}}
 					<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
-					<input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
+                    <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
 					<span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
                     <input name="phoneNumber" class="phone-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sphone'}}" data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if this.advert.replyInfo.phoneRequired}} required {{/if}}>
 					<div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
@@ -145,13 +145,13 @@
                             {{/if}}
 
     						<span class="viva-labels float-right">*{{i18n "vip.reply.required"}}</span></div>
-    					<textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}"></textarea>
+    					<textarea name="replyMessage" class="message-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.writeHere'}}" required></textarea>
     					<div class="hide fe-message-validation">{{i18n "vip.reply.messageValidate"}}</div>
 
                         {{#unless this.header.id}}
     						<span class="viva-labels">{{i18n "vip.reply.name"}}</span>
     						<input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sname'}}">
-    						<span class="viva-labels">{{i18n "vip.reply.email"}}</span>
+                            <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
     						<input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
     						<div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
     						<span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
@@ -165,7 +165,7 @@
     						<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                         {{else}}
     						<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
-    						<input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
+                            <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
     						<span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
     						<input name="phoneNumber" class="phone-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sphone'}}" data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if this.advert.replyInfo.phoneRequired}} required {{/if}}>
     						<div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
