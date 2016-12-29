@@ -192,6 +192,11 @@ $labelMargin: 8%;
 		display: none;
 	}
 
+	// Hidden img which fail to load on post, since we avoid ads in post flow.
+	img[alt="Rocket Fuel"] {
+		display: none;
+	}
+
 	.viewport {
 		overflow-x: hidden;
 		.containment {
