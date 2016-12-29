@@ -473,11 +473,6 @@ class ViewPageModel {
 					data.sellerDetails.publicDetails.displayPicture = picUrl;
 				}
 
-				// Seller Contact
-				if (data.phone) {
-					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
-				}
-
 				// Ad Status
 				this.setAdStatus(data);
 
@@ -496,6 +491,12 @@ class ViewPageModel {
 						data.statusInfo = {
 							status: 'BLOCKED',
 							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
+						};
+					} else if (data.adErrorDetailMessage.indexOf('DELAYED')) {
+						data.statusInfo = {
+							status: 'DELAYED',
+							statusReason: 'DELAYED__TNS__CHECKED',
 							isBlocked: true
 						};
 					}
@@ -517,6 +518,11 @@ class ViewPageModel {
 					// Date
 					data.postedDate = moment(data.postedDate).fromNow();
 					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
+
+					// Ad Contact
+					if (data.phone) {
+						data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
+					}
 
 					// Pictures
 					data.hasMultiplePictures = false;

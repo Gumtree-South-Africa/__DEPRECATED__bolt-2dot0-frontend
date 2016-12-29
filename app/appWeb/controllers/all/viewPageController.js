@@ -28,7 +28,12 @@ let VIP = {
 			}
 		}
 
-		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ) {
+		if(modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
+			redirectUrl = '410';
+			return redirectUrl;
+		}
+
+		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
 			redirectUrl = '/?status=adInactive';
 			return redirectUrl;
 		}
@@ -159,6 +164,19 @@ router.get('/:id?', (req, res, next) => {
 
 	let viewPageModel = new ViewPageModel(req, res, adId);
 	viewPageModel.populateData().then((modelData) => {
+		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
+		if (redirectUrlByStatus !== null) {
+			if (redirectUrlByStatus === '410') {
+				let err = {
+					status: 410
+				};
+				next(err);
+			} else {
+				res.redirect(redirectUrlByStatus);
+			}
+			return;
+		}
+
 		if (req.app.locals.isSeoUrl === true) {
 			let originalSeoUrl = originalUrl;
 			let dataSeoVipUrl = modelData.advert.seoVipUrl.replace('a-', 'v-');
@@ -166,12 +184,6 @@ router.get('/:id?', (req, res, next) => {
 				res.redirect(dataSeoVipUrl);
 				return;
 			}
-		}
-
-		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
-		if (redirectUrlByStatus !== null) {
-			res.redirect(redirectUrlByStatus);
-			return;
 		}
 
 		VIP.extendHeaderData(req, modelData);
