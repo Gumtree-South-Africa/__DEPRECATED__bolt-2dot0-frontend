@@ -29,6 +29,11 @@ class replyForm {
 				$('.show-phone').hide();
 			});
 
+			/* Convert checkbox value on/off to true/false */
+			$('.is-send-me-copy-email').on('click', function(e) {
+				$("input[name='isSendMeCopyEmail']").val($(e.currentTarget).prop("checked"));
+			});
+
 			document.addEventListener('invalid', (function() {
 				return function(e) {
 					e.preventDefault();
@@ -36,11 +41,15 @@ class replyForm {
 			})(), true);
 
 			$('#vip-send-button').on('click', function() {
-				if ($('.message-box-area').val() === '' && $('.canned-checkbox:checkbox:checked').length === 0) {
+				$('.fe-message-validation').addClass('hide');
+
+				if($(".canned-checkbox").prop("checked")){
+					$(".message-box-area").val($(".canned-message").html());
+				}
+
+				if($(".message-box-area").val() === ''){
 					$('.fe-message-validation').removeClass('hide');
 					return;
-				} else {
-					$('.fe-message-validation').addClass('hide');
 				}
 
 				if ($('.email-box-area').val() === '') {
@@ -78,6 +87,10 @@ class replyForm {
 		$('.welcome-wrapper .email').on('click', () => {
 			this._messageSeller();
 		});
+
+		$('.header-wrapper').on('click', '.inZoomMode', () => {
+			this.backFromReplyFn();
+		});
 	}
 
 	_getURLParameter(name) {
@@ -92,6 +105,14 @@ class replyForm {
 		$replyForm.addClass('fixed');
 		this.$headerHeight = $('.header-wrapper').height();
 		$replyForm.css('top', this.$headerHeight + 'px');
+		$('.zoomT, .inZoomMode').removeClass('hidden');
+	}
+
+	backFromReplyFn() {
+		$('.header-wrapper').removeClass('fixed-header hidden-search');
+		$('.reply-form-container').addClass('desktop-only');
+		$('.reply-form').removeClass('fixed');
+		$('.zoomT, .inZoomMode').addClass('hidden');
 	}
 }
 

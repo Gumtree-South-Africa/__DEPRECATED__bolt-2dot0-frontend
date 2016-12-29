@@ -1,5 +1,5 @@
 {{#unless this.header.distractionFree}}
-{{> (dynamic "hamburgerMenu")}}
+    {{> (dynamic "hamburgerMenu")}}
 {{/unless}}
 
 <div id="search-mask" class="search-mask hidden"></div>
@@ -124,7 +124,6 @@
     {{/unless}}
 
     {{#if this.header.postAdHeader}}
-      {{> (dynamic "postAdHeader") titleKey=this.advert.title backKey="postAd.back" backUrl=this.backUrl }}
-   {{/if}}
-
+        {{> (dynamic "postAdHeader") titleKey=this.advert.title backKey="postAd.back" backUrl=this.backUrl }}
+    {{/if}}
 </div>

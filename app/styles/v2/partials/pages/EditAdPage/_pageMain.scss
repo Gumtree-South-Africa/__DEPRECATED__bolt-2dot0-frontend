@@ -111,9 +111,9 @@ body {
 		padding: 15px 0;
 		margin-bottom: 10px;
 		float: left;
-		width: 58%;
+		width: 56%;
 		vertical-align: top;
-		margin-left: calc(6% + 300px);
+		margin-left: calc(6% + 320px);
 		.btn-area-inner {
 			width: 100%;
 			margin: 0 auto;
@@ -181,6 +181,14 @@ body {
 	width: 60%;
 }
 
+.icon-post-edit-ad-banner {
+	margin-left: calc(5% - 7px);
+	margin-top: 15px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	float: left;
+}
+
 @include from-breakpoint($medium-break) {
 	.edit-ad-content {
 		position: relative;
@@ -205,6 +213,12 @@ body {
 		}
 	}
 
+	.photo-wrapper-container {
+		float: left;
+		width: 320px;
+		margin-left: 5%;
+	}
+
 	.mobile-button-area {
 		display: none;
 	}
@@ -214,7 +228,7 @@ body {
 	}
 
 	.main-detail-post {
-		width: 58%;
+		width: 56%;
 		float: left;
 		background-color: $postAdBackgroundColor !important; //TBD, need to find why another breakpoint created
 		box-shadow: 1px 1px 6px $postAdShadowColor;
@@ -263,6 +277,10 @@ body {
 		.drag-reorder {
 			display: none;
 		}
+	}
+
+	.icon-post-edit-ad-banner {
+		display: none;
 	}
 
 	.desktop-button-area {

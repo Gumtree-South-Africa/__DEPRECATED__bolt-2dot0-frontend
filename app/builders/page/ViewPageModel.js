@@ -36,7 +36,9 @@ class ViewPageModel {
 
 		let modelBuilder = new ModelBuilder(this.getViewPageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
-
+		abstractPageModel.addToClientTranslation(modelData, [
+			"vip.details.zoomView"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 
@@ -193,9 +195,18 @@ class ViewPageModel {
 	 * @param categoryId
 	 * @returns {*}
 	 */
-	orderAndLinkAttributes(inputArr, locale, categoryId, seoUrls) {
+	orderAndLinkAttributes(inputArr, locale, categoryId, categoryCurrentHierarchy, seoUrls) {
 		let inputLocaleObj = displayAttributesConfig[locale];
 		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		if (inputCategoryIdArr.length === 0) {
+			for (let i = categoryCurrentHierarchy.length - 1; i >= 0; i--) {
+				let index = categoryCurrentHierarchy[i];
+				inputCategoryIdArr = inputLocaleObj[index] || [];
+				if (inputCategoryIdArr.length > 0) {
+					break;
+				}
+			}
+		}
 		let newArr = [];
 
 		if (inputCategoryIdArr.length > 0) {
@@ -362,7 +373,6 @@ class ViewPageModel {
 		modelData.header = data.common.header || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 		modelData.header.postAdHeader = true;
-		modelData.backUrl = (typeof data.advert.categoryPath!=='undefined' ? modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href : '');
 		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
 
@@ -462,11 +472,6 @@ class ViewPageModel {
 					data.sellerDetails.publicDetails.displayPicture = picUrl;
 				}
 
-				// Seller Contact
-				if (data.phone) {
-					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
-				}
-
 				// Ad Status
 				this.setAdStatus(data);
 
@@ -485,6 +490,12 @@ class ViewPageModel {
 						data.statusInfo = {
 							status: 'BLOCKED',
 							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
+						};
+					} else if (data.adErrorDetailMessage.indexOf('DELAYED')) {
+						data.statusInfo = {
+							status: 'DELAYED',
+							statusReason: 'DELAYED__TNS__CHECKED',
 							isBlocked: true
 						};
 					}
@@ -506,6 +517,11 @@ class ViewPageModel {
 					// Date
 					data.postedDate = moment(data.postedDate).fromNow();
 					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
+
+					// Ad Contact
+					if (data.phone) {
+						data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
+					}
 
 					// Pictures
 					data.hasMultiplePictures = false;
@@ -570,12 +586,12 @@ class ViewPageModel {
 
 					// Category Attributes
 					data.categoryCurrentHierarchy = [];
-					this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+					this.getCategoryHierarchy(modelData.categoryAll, Number(data.categoryId), data.categoryCurrentHierarchy);
 
 					return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 						_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 						this.prepareDisplayAttributes(data);
-						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
+						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.categoryCurrentHierarchy, data.seoUrls);
 						return data;
 					});
 				}

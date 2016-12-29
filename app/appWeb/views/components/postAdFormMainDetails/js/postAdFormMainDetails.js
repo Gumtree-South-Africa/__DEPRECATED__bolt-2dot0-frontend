@@ -67,7 +67,10 @@ class PostAdFormMainDetailsVM {
 		this.postFormCustomAttributes = new PostFormCustomAttributes();
 
 		this._priceType = DEFAULT_PRICE_TYPE;
-		this._priceAttribute = {};
+		// Default priceAttribute from server is null, so we use undefined here to be different from it.
+		// Otherwise if original category has price but new category doesn't, property changed event will
+		// not be triggered.
+		this._priceAttribute = undefined;
 		this._isShown = false;
 		this._isFixMode = false;
 		this._isRequiredTitleAndDescription = false;
@@ -756,12 +759,12 @@ class PostAdFormMainDetails {
 	initialize(options) {
 		this.pageType = options ? options.pageType : "";
 		let validator = getUrlParameter('BOLT24748');
-		if(!validator) {
+		if(validator === '1') {
+			formMap.initialize();
+		} else {
 			locationSelection.initialize((data) => {
 				this._setHiddenLocationInput(data);
 			}, {pageType: this.pageType});
-		} else {
-			formMap.initialize();
 		}
 		this.viewModel._categoryDropdownSelection.pageType = this.pageType;
 		this.viewModel.postFormCustomAttributes.pageType = this.pageType;

@@ -23,6 +23,15 @@
 			"PetsAllowed",
 			"ForRentBy"
 		],
+		"36": [
+			"JobType",
+			"Title",
+			"Description",
+			"Phone",
+			"Email",
+			"Address",
+			"UserName"
+		],
 		"65": [
 			"AlmVehicleBrand",
 			"AlmVehicleModel",
