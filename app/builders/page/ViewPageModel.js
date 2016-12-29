@@ -36,7 +36,9 @@ class ViewPageModel {
 
 		let modelBuilder = new ModelBuilder(this.getViewPageData());
 		let modelData = modelBuilder.initModelData(this.res.locals, this.req.app.locals, this.req.cookies);
-
+		abstractPageModel.addToClientTranslation(modelData, [
+			"vip.details.zoomView"
+		]);
 		this.getPageDataFunctions(modelData);
 		let arrFunctions = abstractPageModel.getArrFunctionPromises(this.req, this.res, this.dataPromiseFunctionMap, pageModelConfig);
 
@@ -193,9 +195,18 @@ class ViewPageModel {
 	 * @param categoryId
 	 * @returns {*}
 	 */
-	orderAndLinkAttributes(inputArr, locale, categoryId, seoUrls) {
+	orderAndLinkAttributes(inputArr, locale, categoryId, categoryCurrentHierarchy, seoUrls) {
 		let inputLocaleObj = displayAttributesConfig[locale];
 		let inputCategoryIdArr = inputLocaleObj[categoryId] || [];
+		if (inputCategoryIdArr.length === 0) {
+			for (let i = categoryCurrentHierarchy.length - 1; i >= 0; i--) {
+				let index = categoryCurrentHierarchy[i];
+				inputCategoryIdArr = inputLocaleObj[index] || [];
+				if (inputCategoryIdArr.length > 0) {
+					break;
+				}
+			}
+		}
 		let newArr = [];
 
 		if (inputCategoryIdArr.length > 0) {
@@ -463,8 +474,8 @@ class ViewPageModel {
 				}
 
 				// Seller Contact
-				if (typeof data.sellerDetails.contactInfo !== 'undefined' && typeof data.sellerDetails.contactInfo.phone !== 'undefined') {
-					data.sellerDetails.contactInfo.phoneHiddenNumber = data.sellerDetails.contactInfo.phone.substr(0,3) + '*******';
+				if (data.phone) {
+					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
 				}
 
 				// Ad Status
@@ -570,12 +581,12 @@ class ViewPageModel {
 
 					// Category Attributes
 					data.categoryCurrentHierarchy = [];
-					this.getCategoryHierarchy(modelData.categoryAll, data.categoryId, data.categoryCurrentHierarchy);
+					this.getCategoryHierarchy(modelData.categoryAll, Number(data.categoryId), data.categoryCurrentHierarchy);
 
 					return attributeModel.getAllAttributes(data.categoryId).then((attributes) => {
 						_.extend(data, attributeModel.processCustomAttributesList(attributes, data));
 						this.prepareDisplayAttributes(data);
-						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.seoUrls);
+						data.orderedAttributes = this.orderAndLinkAttributes(data.displayAttributes, this.locale, data.categoryId, data.categoryCurrentHierarchy, data.seoUrls);
 						return data;
 					});
 				}

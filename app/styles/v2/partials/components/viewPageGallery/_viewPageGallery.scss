@@ -128,7 +128,7 @@
 	.slider-for, .slider-mobile-for{
 		width: 100%;
 		img {
-			object-fit: cover;
+			object-fit: contain;
 			height: 28em;
 			margin: 0 auto;
 		}
@@ -238,7 +238,7 @@
 		}
 		.slick-slide{
 			img{
-				object-fit: cover;
+				object-fit: contain;
 				height: 28em;
 				margin: 0 auto;
 			}
@@ -255,6 +255,7 @@
 				.slick-carousel{
 					max-width: inherit;
 					height: 70px ;
+					object-fit: cover;
 				}
 			}
 			&.slick-current{

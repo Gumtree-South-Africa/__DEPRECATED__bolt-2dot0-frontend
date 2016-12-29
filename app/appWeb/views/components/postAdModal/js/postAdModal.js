@@ -33,6 +33,10 @@ class PostAdModalVM {
 		this._isShown = newValue;
 		this._handleIsShownChanged(newValue);
 	}
+
+	hiddenModel() {
+		this.$wrapper.toggleClass('hidden', true);
+	}
 }
 
 class PostAdModal {

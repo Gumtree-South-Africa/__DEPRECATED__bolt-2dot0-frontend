@@ -7,8 +7,11 @@
 		<div class="edit-ad-content">
 			<div id="category-tree" class="hidden">{{json this.categoryAll}}</div>
 			<div id="selected-cat-hierarchy" class="hidden">{{json this.categoryCurrentHierarchy}}</div>
-			<div class="photo-switcher">
-				{{> (dynamic "photoContainer") i18HeadTitle="editAd.productImages"}}
+			<div class="photo-wrapper-container">
+				<div class="photo-switcher">
+                    {{> (dynamic "photoContainer") i18HeadTitle="editAd.productImages"}}
+				</div>
+				<div class="icon-post-edit-ad-banner"></div>
 			</div>
 			{{> (dynamic "postAdFormMainDetails") }}
 			<div class="desktop-button-area">

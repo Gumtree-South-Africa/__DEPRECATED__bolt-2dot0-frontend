@@ -24,9 +24,14 @@
 	</div>
 
     <div class="reply-form-container desktop-only">
-        {{#if this.advert.sellerDetails.contactInfo.phone}}
+        {{#if this.advert.phone}}
             <div class="phone-header-desktop">
-              <div><span class="phone-icon icon-phone-orange"></span><span class="hidden-phone">{{this.advert.sellerDetails.contactInfo.phoneHiddenNumber}}</span><span class="real-phone hide">{{this.advert.sellerDetails.contactInfo.phone}}</span><span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span></div>
+              <div>
+                  <span class="phone-icon icon-phone-orange"></span>
+                  <span class="hidden-phone">{{this.advert.phoneHiddenNumber}}</span>
+                  <span class="real-phone hide">{{this.advert.phone}}</span>
+                  <span class="float-right show-phone">{{i18n "vip.reply.showPhone"}}</span>
+              </div>
             </div>
         {{/if}}
 
@@ -93,7 +98,11 @@
 					<span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
                 {{/if}}
 
-                <div class="send-message-container"><input class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
+                <div class="send-message-container">
+                    <input class="viva-checkbox is-send-me-copy-email" type="checkbox">
+					<input class="hidden" name="isSendMeCopyEmail" value="false">
+                    <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
+                </div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
                 <div class="vip-terms">{{i18n "vip.reply.terms" 'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones' 'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
                 <input name="seoUrl" class="hidden" value="{{this.advert.seoVipUrl}}">
@@ -172,7 +181,11 @@
     						<span class="file-text">{{i18n "vip.reply.pdfOrDoc"}}</span>
                         {{/if}}
 
-    					<div class="send-message-container"><input class="viva-checkbox" type="checkbox"><span class="send-message">{{i18n "vip.reply.sendACopy"}}</span></div>
+                        <div class="send-message-container">
+                            <input class="viva-checkbox is-send-me-copy-email" type="checkbox">
+							<input class="hidden" name="isSendMeCopyEmail" value="false">
+                            <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
+                        </div>
     					<input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
     					<div class="vip-terms">{{i18n "vip.reply.terms" 'https://ayuda.vivanuncios.com.mx/MX/Terminos_y_Condiciones' 'https://ayuda.vivanuncios.com.mx/MX/Privacidad_mx'}}</div>
     					<input name="seoUrl" class="hidden" value="{{this.advert.seoVipUrl}}">
