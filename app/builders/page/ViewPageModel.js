@@ -373,7 +373,6 @@ class ViewPageModel {
 		modelData.header = data.common.header || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 		modelData.header.postAdHeader = true;
-		modelData.backUrl = (typeof data.advert.categoryPath!=='undefined' ? modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href : '');
 		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
 
