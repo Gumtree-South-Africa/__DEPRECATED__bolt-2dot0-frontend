@@ -18,6 +18,7 @@ class AbstractPageModel extends BasePageModel {
 		let modelData = {};
 
 		modelData.env = data.env;
+		modelData.lang = data.lang;
 		modelData.locale = data.locale;
 		modelData.country = data.country;
 		modelData.site = data.site;

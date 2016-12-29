@@ -46,12 +46,12 @@
                 i18nTitle="homepage.gallery.cardTitle" }}
         {{/if}}
 
-
-
         {{> (dynamic "bottomBanner") }}
 
     </div>
 
+
+    <!--
     <input type="hidden" id="imageUploadFromHome" value="{{this.imageUploadFromHome}}">
 
     {{#if this.imageUploadFromHome}}
@@ -59,10 +59,10 @@
 
         {{> (dynamic "spinnerModal") }}
     {{/if}}
-
+    -->
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal")}}
-
+        <!--
         {{#if this.imageUploadFromHome}}
             <input type="hidden" id="uploadFailureMessages"
                 data-invalid-dimension-title="{{i18n "homepage.imageUpload.error.invalidDimension.title"}}"
@@ -81,8 +81,8 @@
                 data-corrupt-message="{{i18n "homepage.imageUpload.error.corrupt.message"}}"
                 data-unknown-title="{{i18n "homepage.imageUpload.error.unknown.title"}}"
                 data-unknown-message="{{i18n "homepage.imageUpload.error.unknown.message"}}">
-
         {{/if}}
+        -->
     {{/partial}}
 {{/partial}}
 
