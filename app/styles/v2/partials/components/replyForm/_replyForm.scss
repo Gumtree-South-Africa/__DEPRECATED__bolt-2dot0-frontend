@@ -168,6 +168,8 @@
 			text-shadow:none !important;
 			border:none !important;
 			box-shadow:none !important;
+			// On iOS, it will become transparent for upper half which makes it look like disabled
+			-webkit-appearance: none;
 		}
 	}
 
