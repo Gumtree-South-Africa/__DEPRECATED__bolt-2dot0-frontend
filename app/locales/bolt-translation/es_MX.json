@@ -1565,6 +1565,7 @@
 		},
 		"details": {
 			"edit": "Editar",
+			"zoomView": "vista de zoom",
 			"favorite": "Favorito",
 			"posted": "Publicado",
 			"views": "VISTAS",
@@ -1599,7 +1600,7 @@
 		"seller": {
 			"emailVerified": "Email Verificado",
 			"adsPosted": "ANUNCIOS PUBLICADOS",
-			"adsActive": "ACTIVO",
+			"adsActive": "ACTIVOS",
 			"defaultUserName": "Usuario Vivanuncios"
 		},
 		"disclaimer": {
