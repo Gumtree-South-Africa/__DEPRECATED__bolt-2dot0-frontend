@@ -189,6 +189,8 @@ router.get('/:id?', (req, res, next) => {
 		modelData.activateStatus = req.query.activateStatus;
 		modelData.showPostOverlay =
 			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+		modelData.postOverlayTitleKey = (modelData.activateStatus === 'adActivateSuccess') ?
+			'vip.postOverlay.postTitle' : 'vip.postOverlay.title';
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 
