@@ -298,17 +298,10 @@
 ;
 }
 
-.footer-explore .menu-category .menu-items {
-	margin-bottom: 52px;
-}
-
 .footer-inner-wrappper .inner {
 	margin-bottom: 32px;
 }
 
-.footer-links div:nth-child(3).expanded .footer-explore {
-	margin-bottom: -3px;
-}
 
 @include from-breakpoint($medium-break) {
 	.footer-wrapper {
