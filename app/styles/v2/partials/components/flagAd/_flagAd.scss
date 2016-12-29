@@ -4,6 +4,76 @@ $categoryArrowTopOffset: 10px;
 $categoryArrowIconWidth: 13px;
 $formMarginLeft: 6%;
 
+@mixin desktop-header() {
+	background-color: $common-background-color;
+	border-bottom: 1px solid $vivaGray2;
+	padding: 5px;
+	.desktop-message-text {
+		color: $vivaBlue;
+		font-size: 12px;
+		padding-left: 10px;
+		.icon-warning-sign {
+			display: inline-block;
+		    height: 1em;
+		    position: relative;
+		    top: 2px;
+		    width: 1em;
+		}
+	}
+	.close-button {
+		cursor: pointer;
+		display: inline-block;
+		font-size: 12px;
+		float: right;
+		.close-icon-font {
+			display: inline-block;
+			position: relative;
+			left: 2px;
+		}
+	}
+}
+
+#flagAdModal {
+	overflow-y: scroll;
+	input {
+		border: 1px solid #999999;
+	}
+	.modal-overlay {
+		position: fixed;
+		top: 0;
+		bottom: 0;
+		right: 0;
+		left: 0;
+	}
+	.modal-container {
+		.desktop-header {
+			@include desktop-header();
+		}
+		background-color: white;
+		padding: 0;
+		max-width: 30em;
+		margin-top: 5em;
+	}
+	.ad-details {
+		width: 89%;
+    	margin: 20px auto 10px;
+    	height: 50px;
+    	img {
+    		float: left;
+    	}
+    	.details {
+    		float: left;
+    		margin-left: 10px;
+    		p {
+    			margin: 0;
+    			&.ad-price {
+    				font-weight: bold;
+    			}
+    		}
+    	}
+	}
+}
+
 .vip-flagad {
 	padding-bottom: 10px;
 	.title {

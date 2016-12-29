@@ -43,11 +43,11 @@ class replyForm {
 			$('#vip-send-button').on('click', function() {
 				$('.fe-message-validation').addClass('hide');
 
-				if($(".canned-checkbox").prop("checked")){
+				if($(".canned-checkbox").prop("checked")) {
 					$(".message-box-area").val($(".canned-message").html());
 				}
 
-				if($(".message-box-area").val() === ''){
+				if($(".message-box-area").val() === '') {
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				}

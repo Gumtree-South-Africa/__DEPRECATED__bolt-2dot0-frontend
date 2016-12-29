@@ -1,5 +1,21 @@
 'use strict';
 
+let _preventDefault = (e) => {
+	e.preventDefault();
+};
+
+let showFormModal = () => {
+	document.addEventListener('touchmove', _preventDefault, false);
+	$('#flagAdModal').removeClass('hiddenElt');
+	$('body').addClass('stop-scrolling');
+};
+
+let hideFormModal = () => {
+	document.addEventListener('touchmove', _preventDefault, false);
+	$('#flagAdModal').addClass('hiddenElt');
+	$('body').removeClass('stop-scrolling');
+};
+
 let hideFormTakeOver = () => {
 	let $replyForm = this.$form;
 	$('.header-wrapper').removeClass('fixed-header hidden-search');
@@ -36,6 +52,7 @@ let submitForm = event => {
 		this.$container.find('textarea, input:not(:disabled)').removeClass('error');
 		if(response.success) {
 			hideFormTakeOver();
+			hideFormModal();
 			this.$container.remove();
 			this.$adReported.removeClass('hide');
 		} else {
@@ -50,19 +67,31 @@ let submitForm = event => {
 };
 
 let initialize = () => {
-
+	console.log('neto');
 	this.$container = $('.flagad-container');
 	this.$adReported = $('.vip-flagad > .reported-ad');
-	this.$form = $('.flagad-container > form.flagAd.tallForm');
+	this.$form = $('.flagad-container form.flagAd.tallForm');
 
 	let title = $('.unreported-ad > a.title');
 	this.reportLabel = title.find('.label').text();
 	this.$headerTitle = $('.post-ad-header .title-text');
 	this.headerTitleText = $('.post-ad-header .title-text').text();
 
-	title.on('click', showFormTakeOver);
+	title.on('click', () => {
+		if(this.$form.hasClass('form-in-modal')) {
+			showFormModal();
+		} else {
+			showFormTakeOver();
+		}
+	});
 
-	$('button.action-button.cancel, .header-backed').click(hideFormTakeOver);
+	$('button.action-button.cancel, .header-backed, #flagAdModal .close-button').click(() => {
+		if(this.$form.hasClass('form-in-modal')) {
+			hideFormModal();
+		} else {
+			hideFormTakeOver();
+		}
+	});
 
 	this.$form.on('submit', submitForm);
 };
