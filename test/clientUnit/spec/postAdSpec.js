@@ -285,6 +285,7 @@ describe('Post Ad', () => {
 
 		it("uses precise location ", () => {		
 			let switchRangeMarker = $testArea.find('#switchRangeMarker');
+			window.formMap.enableComponents = true;
 			switchRangeMarker.prop('checked', 'checked');		
 			window.formMap.setMark();
 			expect(window.formMap.typeMark).toBeTruthy();
@@ -320,7 +321,7 @@ describe('Post Ad', () => {
 			window.formMap.position = { lat: 19.3883633, lng: -99.1744249 };
 			switchRangeMarker.prop('checked', 'checked');		
 			window.formMap.setMark();
-			expect(window.formMap.typeMark).toBeTruthy();
+			expect(window.formMap.typeMark).toBeFalsy();
 
 			// autocomplete on place_changed
 			$("#autocompleteTextBox").val('Polanco V Sección, Ciudad de México');
