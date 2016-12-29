@@ -1,34 +1,46 @@
 <noscript>
-	<style type="text/css">
-		.jsOnly {display:none !important;}
-		.nonJsOnlyInlineBlock{display:inline-block !important;}
-		.nonJsOnlyBlock {display:block !important;}
-		.nonJsOnlyInline {display:inline !important;}
-	</style>
+    <style type="text/css">
+        .jsOnly {display:none !important;}
+        .nonJsOnlyInlineBlock{display:inline-block !important;}
+        .nonJsOnlyBlock {display:block !important;}
+        .nonJsOnlyInline {display:inline !important;}
+    </style>
 </noscript>
-<div class="tab-content locations-wrapper">
-	<div class="nonJsOnlyInline top-locations mobile-hide">
-		<div class="jsOnly top-searches-header top-headers desktop-hide"><span class="top-headers-text search-header-text">{{i18n "home.popular.searches"}}</span></div>
-		<div class="top-locations-header top-headers"><span class="top-headers-text location-header-text thick-underline">{{i18n "footer.toplocations"}}</span></div>
+<div class="tab-content locations-wrapper container-width-3">
+    <div class="nonJsOnlyInline top-locations mobile-hide">
+
+        <div class="jsOnly top-searches-header top-headers desktop-hide">
+            <span class="top-headers-text search-header-text">{{i18n "home.popular.searches"}}</span>
+        </div>
+        <div class="top-locations-header top-headers thick-underline">
+            <span class="top-headers-text location-header-text">{{i18n "footer.toplocations"}}</span>
+        </div>
+        <div class="jsOnly top-categories-header top-headers desktop-hide">
+            <span class="top-headers-text category-header-text">{{i18n "footer.topCategories"}}</span>
+        </div>
+
         <div class="seo-line desktop-hide"></div>
         <div class="top-content-wrapper">
         {{#each this.topLocations}}
-            {{#compare @index "<=" 5}}
-				<div class="nonJsOnlyInline top-content">
-					<a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
-				</div>
+            {{#compare @index "<=" 7}}
+                <div class="nonJsOnlyInline top-content">
+                    <a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
+                </div>
             {{/compare}}
-            {{#compare @index ">" 5}}
-				<div class="nonJsOnlyInline hide top-content show-more-locations">
-					<a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
-				</div>
+            {{#compare @index ">" 7}}
+                <div class="nonJsOnlyInline hide top-content show-more-locations">
+                    <a class="top-links" href="{{../homePageUrl}}{{_links.[1].href}}" data-gtm="pc|NavFooterClick|eventLabel|TopLocations">{{localizedName}}</a>
+                </div>
             {{/compare}}
         {{/each}}
-		</div>
-		{{#compare this.topLocations.length ">" 7}}
-			<div class="jsOnly view-more-locations"
-				 data-view-less="{{i18n "footer.topSearches.viewLess"}}"
-				 data-view-more="{{i18n "footer.topSearches.viewMore"}}">{{i18n "footer.topSearches.viewMore"}}</div>
-		{{/compare}}
+        </div>
+        {{#compare this.topLocations.length ">" 7}}
+        <div class="jsOnly view-more-locations"
+            data-view-less="{{i18n "footer.topSearches.viewLess"}}"
+            data-view-more="{{i18n "footer.topSearches.viewMore"}}">
+            <span>{{i18n "footer.topSearches.viewMore"}}</span>
+            <span class="no-underline">&nbsp;></span>
+        </div>
+        {{/compare}}
     </div>
 </div>

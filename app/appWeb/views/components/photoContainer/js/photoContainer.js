@@ -56,6 +56,7 @@ class PhotoContainer {
 
 		//EPS setup
 		this.epsData = $('#js-eps-data');
+		this.photoSwitcher = $('.photo-switcher');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.EPS = {};
 		this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
@@ -271,6 +272,7 @@ class PhotoContainer {
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
+		this.photoSwitcher.toggleClass("photo-container-start", false);
 		$(".drag-reorder").toggleClass("hidden", false);
 	}
 

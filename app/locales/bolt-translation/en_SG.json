@@ -1171,6 +1171,7 @@
   "footer.our-sites": "Our classifieds sites",
   "footer": {
     "toplocations": "Top locations",
+    "topCategories": "Categories",
     "help": {
       "heretohelp": "Meet our customer team",
       "contact": "Contact us",
@@ -1389,7 +1390,7 @@
 			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "Es muy sencillo, al menos una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1531,6 +1532,7 @@
 	"vip": {
 		"details": {
 			"edit": "Edit",
+			"zoomView": "zoom view",
 			"favorite": "Favorite",
 			"posted": "Posted",
 			"views": "VIEWS",

@@ -84,17 +84,6 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
-		// Switch on activateStatus
-		if (typeof query.activateStatus !== 'undefined') {
-			switch (query.activateStatus) {
-				case 'adActivateSuccess':
-					modelData.header.pageMessages.success = 'home.ad.notyetactive';
-					break;
-				default:
-					modelData.header.pageMessages.success = '';
-					modelData.header.pageMessages.error = '';
-			}
-		}
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
 			switch (query.resumeAbandonedOrderError) {
@@ -106,6 +95,7 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
+		// Not switch on activateStatus when they are handled by post overlay. Other cases should still go here.
 	},
 	extendFooterData: (req, modelData) => {
 		// JS
@@ -199,6 +189,8 @@ router.get('/:id?', (req, res, next) => {
 		modelData.activateStatus = req.query.activateStatus;
 		modelData.showPostOverlay =
 			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+		modelData.postOverlayTitleKey = (modelData.activateStatus === 'adActivateSuccess') ?
+			'vip.postOverlay.postTitle' : 'vip.postOverlay.title';
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 

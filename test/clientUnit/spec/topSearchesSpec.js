@@ -26,14 +26,12 @@ describe('Top Searches', () => {
 			expect($tapContent.hasClass('searches-wrapper')).toBeTruthy('should display keywords list');
 
 			let $topHeaders = $testArea.find('.top-headers');
-			let $topHeadersText = $testArea.find('.top-headers-text');
 			$topHeaders.click();
-			expect($topHeadersText.hasClass('thick-underline')).toBeTruthy('should choose current tab');
+			expect($topHeaders.hasClass('thick-underline')).toBeTruthy('should choose current tab');
 
 			let $topHeadersLocations = $testAreaLocations.find('.top-headers');
-			let $locationHeaderText = $testAreaLocations.find('.location-header-text');
 			$topHeadersLocations.click();
-			expect($locationHeaderText.hasClass('thick-underline')).toBeTruthy('should choose current tab Locations');
+			expect($topHeadersLocations.hasClass('thick-underline')).toBeTruthy('should choose current tab Locations');
 
 
 			let $viewMoreSearches = $testArea.find('.view-more-searches');
