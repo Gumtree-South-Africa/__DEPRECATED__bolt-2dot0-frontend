@@ -1,19 +1,20 @@
 {{#partial "content"}}
+
     {{> (dynamic "modal")}}
 
     {{> (dynamic "breadcrumbsV2") breadcrumbs=this.advert.breadcrumbs}}
 
     {{> (dynamic "topBanner")}}
 
-  <div class="status-ad-banner-mobile">
-    {{> (dynamic "statusBanner") }}
-  </div>
+    <div class="status-ad-banner-mobile">
+        {{> (dynamic "statusBanner") }}
+    </div>
 
-  <div class="vip-left-columns">
-    <div id="viewPage">
-      {{#if this.advert.picturesToDisplay.testPictures.length}}
-        {{> (dynamic "viewPageGallery")}}
-      {{/if}}
+    <div class="vip-left-columns">
+        <div id="viewPage">
+            {{#if this.advert.picturesToDisplay.testPictures.length}}
+                {{> (dynamic "viewPageGallery")}}
+            {{/if}}
 
             {{#ifMobile this.device}}
                 <div class="seller-profile">
@@ -48,7 +49,7 @@
 
     <div class="vip-right-columns">
         <div class="status-ad-banner-desktop">
-          {{> (dynamic "statusBanner") }}
+            {{> (dynamic "statusBanner") }}
         </div>
         {{#unlessMobile this.device}}
             <div class="seller-profile">
@@ -101,43 +102,45 @@
     </div>
 
     {{#unless this.vip.showBuyerStuff}}
-      {{#if showPostOverlay}}
-        <input type="hidden" class="from-post-flag" value="true"
-             data-post-more-text="{{i18n "vip.postOverlay.postMore"}}">
-        <div class="post-overlay modal desktop-only">
-          <div class="modal-overlay"></div>
-          <div class="modal-container">
-            <div class="modal-close-section">
-              {{!-- This DIV is to meet structure asked by modal.scss but I don't know why it's needed --}}
-              <div>
-                <span class="close-text">{{i18n "welcomescreen.close"}}</span>
-                <span class="icon-close"></span>
-              </div>
+        {{#if showPostOverlay}}
+            <input type="hidden" class="from-post-flag" value="true"
+                   data-post-more-text="{{i18n "vip.postOverlay.postMore"}}">
+            <div class="post-overlay modal desktop-only">
+                <div class="modal-overlay"></div>
+                <div class="modal-container">
+                    <div class="modal-close-section">
+                        {{!-- This DIV is to meet structure asked by modal.scss but I don't know why it's needed --}}
+                        <div>
+                            <span class="close-text">{{i18n "welcomescreen.close"}}</span>
+                            <span class="icon-close"></span>
+                        </div>
+                    </div>
+                    <h2 class="modal-header-message">{{i18n postOverlayTitleKey}}</h2>
+                    <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
+                    <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n
+                        "vip.postOverlay.edit"}}</a></div>
+                    {{> (dynamic "button") i18nPath="vip.postOverlay.postMore" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" }}
+                </div>
             </div>
-            <h2 class="modal-header-message">{{i18n postOverlayTitleKey}}</h2>
-            <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
-            <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n "vip.postOverlay.edit"}}</a></div>
-            {{> (dynamic "button") i18nPath="vip.postOverlay.postMore" gtmEvent="pc|PostAdBegin" buttonLink="/post" hideIcon=false iconName="icon-post" }}
-          </div>
-        </div>
-      {{/if}}
+        {{/if}}
     {{/unless}}
 
-  {{#partial "welcomeText"}}
-    {{#unless this.vip.showBuyerStuff}}
-      {{#if showPostOverlay}}
-        <div class="from-post-container">
-          <h2>{{i18n postOverlayTitleKey}}</h2>
-          <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
-          <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n "vip.postOverlay.edit"}}</a></div>
-        </div>
-      {{/if}}
-    {{/unless}}
-  {{/partial}}
+    {{#partial "welcomeText"}}
+        {{#unless this.vip.showBuyerStuff}}
+            {{#if showPostOverlay}}
+                <div class="from-post-container">
+                    <h2>{{i18n postOverlayTitleKey}}</h2>
+                    <div class="modal-info">{{i18n "vip.postOverlay.description"}}</div>
+                    <div class="edit-link"><a data-gtm="pc|EditAdBegin" href="/edit/{{adId}}">{{i18n
+                        "vip.postOverlay.edit"}}</a></div>
+                </div>
+            {{/if}}
+        {{/unless}}
+    {{/partial}}
 
-  {{#partial "welcomeModal"}}
-    {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
-  {{/partial}}
+    {{#partial "welcomeModal"}}
+        {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
+    {{/partial}}
 
 
 {{/partial}}
@@ -161,9 +164,9 @@
             ptype: 'VIP'
         };
 
-        {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+            {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 
-        {{#block "NativeAd_Script"}}{{/block}}
+            {{#block "NativeAd_Script"}}{{/block}}
     </script>
 
     {{#partial "Adsense-Script-ext"}}

@@ -373,7 +373,6 @@ class ViewPageModel {
 		modelData.header = data.common.header || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
 		modelData.header.postAdHeader = true;
-		modelData.backUrl = (typeof data.advert.categoryPath!=='undefined' ? modelData.advert.categoryPath[parseInt(modelData.advert.categoryPath.length) - 1].href : '');
 		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
 
@@ -473,11 +472,6 @@ class ViewPageModel {
 					data.sellerDetails.publicDetails.displayPicture = picUrl;
 				}
 
-				// Seller Contact
-				if (data.phone) {
-					data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
-				}
-
 				// Ad Status
 				this.setAdStatus(data);
 
@@ -496,6 +490,12 @@ class ViewPageModel {
 						data.statusInfo = {
 							status: 'BLOCKED',
 							statusReason: 'BLOCKED__TNS__CHECKED',
+							isBlocked: true
+						};
+					} else if (data.adErrorDetailMessage.indexOf('DELAYED')) {
+						data.statusInfo = {
+							status: 'DELAYED',
+							statusReason: 'DELAYED__TNS__CHECKED',
 							isBlocked: true
 						};
 					}
@@ -517,6 +517,11 @@ class ViewPageModel {
 					// Date
 					data.postedDate = moment(data.postedDate).fromNow();
 					data.updatedDate = data.lastUserEditDate ? moment(data.lastUserEditDate).fromNow() : data.lastUserEditDate;
+
+					// Ad Contact
+					if (data.phone) {
+						data.phoneHiddenNumber = data.phone.substr(0,3) + '*******';
+					}
 
 					// Pictures
 					data.hasMultiplePictures = false;
