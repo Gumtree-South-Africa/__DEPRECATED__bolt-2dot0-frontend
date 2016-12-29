@@ -187,6 +187,7 @@ let _closeModal = () => {
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
 	} else {
+		this.$locationInput.val(escape(this.searchLocIdCookieOldValue));
 		this.$locationText.text(this.$locmodal.val());
 	}
 };
@@ -199,6 +200,7 @@ let _closeModal = () => {
 let initialize = (setValueCb) => {
 	this.$locale = $('html').attr('data-locale');
 	this.$locmodal = $('#modal-location');
+	this.$locationInput = $('[name=locId]');
 	this.$locationText = $('.location-text');
 	this.$modal = $('#locationModal');
 
