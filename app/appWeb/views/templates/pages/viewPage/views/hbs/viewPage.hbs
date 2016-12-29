@@ -11,7 +11,9 @@
 
   <div class="vip-left-columns">
     <div id="viewPage">
-      {{> (dynamic "viewPageGallery")}}
+      {{#if this.advert.picturesToDisplay.testPictures.length}}
+        {{> (dynamic "viewPageGallery")}}
+      {{/if}}
 
             {{#ifMobile this.device}}
                 <div class="seller-profile">
