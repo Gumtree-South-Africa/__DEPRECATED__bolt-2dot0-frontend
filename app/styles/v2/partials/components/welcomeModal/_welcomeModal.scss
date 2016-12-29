@@ -97,9 +97,15 @@
     margin-right: 5%;
   }
   .stickyBtn{
-    width: 30%;
-    height: 40px;
     cursor: pointer;
+    display: inline-block;
+    height: 40px;
+    width: 30%;
+
+    + .stickyBtn {
+        margin-left: 5%;
+    }
+
     a{
       color: $button-bgcolor;
       background-color: white;
@@ -107,15 +113,6 @@
       width: 100%;
       line-height: 40px;
       display: inline-block;
-    }
-    &.left{
-      float: left;
-    }
-    &.right{
-      float: right;
-    }
-    &.center{
-      margin: 0 auto;
     }
   }
 }
