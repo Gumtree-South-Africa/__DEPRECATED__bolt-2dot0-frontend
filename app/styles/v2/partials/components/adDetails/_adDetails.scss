@@ -93,6 +93,8 @@
 			margin: -5px 20px -10px 0px;
 			color: $vivaGray1;
 			font-size: 14px;
+			overflow-wrap: break-word;
+    	word-wrap: break-word;
 			.ad-phone {
 				color: $vivaBlue;
 			}
