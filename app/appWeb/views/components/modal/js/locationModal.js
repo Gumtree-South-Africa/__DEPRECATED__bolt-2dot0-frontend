@@ -188,8 +188,12 @@ let _closeModal = () => {
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
 	} else {
-		this.$locationInput.val(this.searchLocIdCookieValue);
-		this.$locationText.text(this.$locmodal.val());
+		if(this.$searchMask.hasClass('is-typing') && $(window).width() < 848) {
+			this.$locationInput.val(this.searchLocIdCookieValue);
+			this.$locationText.text(this.$locmodal.val());
+		} else {
+			_refreshPage();
+		}
 	}
 };
 
@@ -204,6 +208,7 @@ let initialize = (setValueCb) => {
 	this.$locationInput = $('[name=locId]');
 	this.$locationText = $('.location-text');
 	this.$modal = $('#locationModal');
+	this.$searchMask = $('.search-mask');
 
 	this.langs = this.$locale.split('_')[0];
 	this.country = this.$locale.split('_')[1];
