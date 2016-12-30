@@ -1684,6 +1684,18 @@
 			"description": "Tip: Recuerda agregar más fotos y tener mayores oportunidades de vender",
 			"edit": "Edita mi anuncio",
 			"postMore": "Publicar más anuncios"
+		},
+		"headerMessage": {
+			"success": "\u00A1Felicidades! Tu anuncio ha sido publicado. Recuerda agregar m\u00E1s informaci\u00F3n y tener mayores oportunidades de vender. Edita y mejora tu anuncio.",
+			"successNotYetActive": "\u00A1Gracias! Hemos recibido tu anuncio y estamos revis\u00E1ndolo. Te avisaremos una vez quede publicado.",
+			"alreadyActivated": "Tu anuncio ha sido activado",
+			"flagged": "Anuncio reportado exitosamente",
+			"repostSuccess": "\u00A1Felicidades! Tu anuncio ha sido renovado exitosamente.",
+			"paymentForInsertionFeeSuccess": "Recibimos tu solicitud y pago. Mostraremos tu anuncio en Vivanuncios en breve.",
+			"paymentForFeaturePending": "Gracias por su pago que actualmente se encuentra en proceso. La promoci\u00F3n / oferta se activar\u00E1 al recibir el pago.",
+			"paymentForActivateSuccess": "Vivanuncios recibi\u00F3 tu solicitud de promoci\u00F3n y pago. \u00A1M\u00E1s visitantes a tu anuncio vienen en camino!",
+			"paymentForFeatureSuccessEditRepost": "\u00A1Felicitaciones! Vivanuncios proces\u00F3 tu pago exitosamente. Tu anuncio y promoci\u00F3n est\u00E1n activos en Vivanuncios para atraer m\u00E1s visitantes.",
+			"paymentForFeatureSuccess": "\u00A1Felicitaciones! Ya est\u00E1s promoviendo tus anuncios exitosamente."
 		}
 	},
 	"search": {
