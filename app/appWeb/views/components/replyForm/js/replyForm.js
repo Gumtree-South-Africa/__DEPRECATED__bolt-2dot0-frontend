@@ -109,6 +109,7 @@ class replyForm {
 		$('.reply-form-container').addClass('desktop-only');
 		$('.reply-form').removeClass('fixed');
 		$('.zoomT, .inZoomMode').addClass('hidden');
+		$('.message-sent').removeClass('mobile-only').addClass('hidden');
 	}
 }
 
