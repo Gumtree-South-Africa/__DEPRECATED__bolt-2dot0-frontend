@@ -128,7 +128,7 @@
 	.slider-for, .slider-mobile-for{
 		width: 100%;
 		img {
-			object-fit: cover;
+			object-fit: contain;
 			height: 28em;
 			margin: 0 auto;
 		}

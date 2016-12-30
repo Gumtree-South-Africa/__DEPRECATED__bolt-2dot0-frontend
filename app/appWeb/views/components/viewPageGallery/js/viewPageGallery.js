@@ -73,13 +73,13 @@ class viewPageGallery {
 			} else {
 				//isMobile
 				window.scrollTo(0,0);
-				 $('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').addClass('hidden');
-				 $('.zoomT, .inZoomMode').removeClass('hidden');
-				 $('body').addClass('noScroll');
-				 $('.post-ad-header .title-text').html(this._getTranslation("vip.details.zoomView"));
-				 $('.zoomHolder').addClass('zoomview');
-				 $('.slick-dots').addClass('bottomPos');
-				 this.updateZoomImageHeight();
+				$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').addClass('hidden');
+				$('.zoomT, .inZoomMode').removeClass('hidden');
+				$('body').addClass('noScroll');
+				$('.post-ad-header .title-text').html(this._getTranslation("vip.details.zoomView"));
+				$('.zoomHolder').addClass('zoomview');
+				$('.slick-dots').addClass('bottomPos');
+				this.updateZoomImageHeight();
 			}
 		});
 

@@ -4,10 +4,20 @@
             {{#compare this.advert.price.amount "===" 0}}
                     <span class="ad-price">{{i18n "pricetype.contact_me"}}</span>
             {{else}}
-                    <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+                    <span class="ad-price">
+                        {{this.advert.price.formattedAmount}}
+                        {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
+                            {{this.advert.price.currency}}
+                        {{/compare}}
+                    </span>
             {{/compare}}
         {{else}}
-                <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+                <span class="ad-price">
+                    {{this.advert.price.formattedAmount}}
+                    {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
+                        {{this.advert.price.currency}}
+                    {{/compare}}
+                </span>
         {{/compare}}
 
         <meta itemprop="price" content="{{this.advert.price.formattedAmount}}" />
