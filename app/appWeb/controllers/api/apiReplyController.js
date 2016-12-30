@@ -37,7 +37,7 @@ router.post('/', cors, (req, res) => {
 			email: req.body.email,
 			phoneNumber: req.body.phoneNumber || '',
 			replyMessage: req.body.replyMessage,
-			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
+			isSendMeCopyEmail: Boolean(req.body.isSendMeCopyEmail) || false, // convert on to true, null to false
 			seoUrl: req.body.seoUrl,
 			hostname: res.locals.config.hostname,
 			basedomainsuffix: res.locals.config.baseDomainSuffix
