@@ -50,3 +50,8 @@
     {{#block "PriceAmountDisplay"}}
     {{/block}}
 {{/compare}}
+
+{{#unless this.advert.price}}
+	{{!-- Have a placeholder to ensure separate line will NOT cover ad-last-posted --}}
+	<span class="value">&nbsp;</span>
+{{/unless}}
