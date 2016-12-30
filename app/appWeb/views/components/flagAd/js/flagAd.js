@@ -67,7 +67,6 @@ let submitForm = event => {
 };
 
 let initialize = () => {
-	console.log('neto');
 	this.$container = $('.flagad-container');
 	this.$adReported = $('.vip-flagad > .reported-ad');
 	this.$form = $('.flagad-container form.flagAd.tallForm');
