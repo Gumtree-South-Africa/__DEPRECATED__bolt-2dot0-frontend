@@ -39,11 +39,11 @@ class replyForm {
 				$('.fe-message-validation').addClass('hide');
 
 				let message = $(".message-box-area").val();
-				if($(".canned-checkbox").prop("checked") && message === ''){
+				if($(".canned-checkbox").prop("checked") && message === '') {
 					$(".message-box-area").val(message + $(".canned-message").html());
 				}
 
-				if($(".message-box-area").val() === ''){
+				if($(".message-box-area").val() === '') {
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				}
