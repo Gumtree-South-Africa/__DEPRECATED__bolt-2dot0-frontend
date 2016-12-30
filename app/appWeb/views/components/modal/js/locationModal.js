@@ -32,6 +32,7 @@ let _geoShowMyLocation = (geoCookieValue) => {
 				if ((typeof this.setValueCb === 'undefined') || (this.setValueCb === null)) {
 					let searchLocIdValue = escape(resp.id);
 					if (searchLocIdValue!==null && searchLocIdValue!=='') {
+						this.searchLocIdCookieValue = searchLocIdValue;
 						CookieUtils.setCookie('searchLocId', searchLocIdValue, 365);
 					}
 					let searchLocNameValue = escape(resp.localizedName);
@@ -187,7 +188,7 @@ let _closeModal = () => {
 	if (this.setValueCb) {
 		this.setValueCb(this.valueCbLocation);
 	} else {
-		this.$locationInput.val(escape(this.searchLocIdCookieOldValue));
+		this.$locationInput.val(this.searchLocIdCookieValue);
 		this.$locationText.text(this.$locmodal.val());
 	}
 };
