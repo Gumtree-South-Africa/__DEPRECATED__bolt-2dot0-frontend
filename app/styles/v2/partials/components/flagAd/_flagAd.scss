@@ -14,10 +14,10 @@ $formMarginLeft: 6%;
 		padding-left: 10px;
 		.icon-warning-sign {
 			display: inline-block;
-		    height: 1em;
-		    position: relative;
-		    top: 2px;
-		    width: 1em;
+			height: 1em;
+			position: relative;
+			top: 2px;
+			width: 1em;
 		}
 	}
 	.close-button {
@@ -56,21 +56,21 @@ $formMarginLeft: 6%;
 	}
 	.ad-details {
 		width: 89%;
-    	margin: 20px auto 10px;
-    	height: 50px;
-    	img {
-    		float: left;
-    	}
-    	.details {
-    		float: left;
-    		margin-left: 10px;
-    		p {
-    			margin: 0;
-    			&.ad-price {
-    				font-weight: bold;
-    			}
-    		}
-    	}
+		margin: 20px auto 10px;
+		height: 50px;
+		img {
+			float: left;
+		}
+		.details {
+			float: left;
+			margin-left: 10px;
+			p {
+				margin: 0;
+				&.ad-price {
+					font-weight: bold;
+				}
+			}
+		}
 	}
 }
 
@@ -262,71 +262,71 @@ input[type="radio"] {
 
   // Checked
   .control input:checked ~ .outer-circle .inner-circle {
-  	background: $vivaOrange;
+	background: $vivaOrange;
   }
 
   .flag-type {
-  	cursor: pointer;
+	cursor: pointer;
   }
 
   .control input:checked ~ .flag-type {
-  	color: black;
-  	font-weight: bold;
-  	display: inline-block;
+	color: black;
+	font-weight: bold;
+	display: inline-block;
   }
 
   .inner-circle {
-  	display: inline-block;
-  	position: relative;
-  	top: -4px;
-  	left: 2.1px;
-  	width: 12px;
-  	height: 12px;
-  	background: #FFFFFF;
-  	border-radius: 50%;
-  	z-index: 1;
+	display: inline-block;
+	position: relative;
+	top: -4px;
+	left: 2.1px;
+	width: 12px;
+	height: 12px;
+	background: #FFFFFF;
+	border-radius: 50%;
+	z-index: 1;
   }
 
   .outer-circle {
-  	cursor: pointer;
-  	display: inline-block;
-  	position: relative;
-  	top: 3px;
-  	left: 0;
-  	width: 16px;
-  	height: 16px;
-  	margin-right: 5px;
-  	background: #FFFFFF;
-  	border: 1px solid black;
-  	border-radius: 50%;
-  	& + .flag-type {
-  		color: #747474;
-  		font-weight: normal;
-  	}
+	cursor: pointer;
+	display: inline-block;
+	position: relative;
+	top: 3px;
+	left: 0;
+	width: 16px;
+	height: 16px;
+	margin-right: 5px;
+	background: #FFFFFF;
+	border: 1px solid black;
+	border-radius: 50%;
+	& + .flag-type {
+		color: #747474;
+		font-weight: normal;
+	}
   }
 
   .input-wrapper {
-  	width: 100%;
-  	position: relative;
+	width: 100%;
+	position: relative;
   }
 
   .validation-error {
-  	border: 1px solid red !important;
+	border: 1px solid red !important;
   }
 
   .radio-group {
-  	margin-left: 15px;
-  	display: inline-block;
+	margin-left: 15px;
+	display: inline-block;
 
-  	@media(max-width: 475px) {
-  		margin-left: 5px;
+	@media(max-width: 475px) {
+		margin-left: 5px;
 
-  		.control {
-  			margin-right: 5px;
-  		}
-  	}
+		.control {
+			margin-right: 5px;
+		}
+	}
 
-  	/* Begin custom radio btns */
+	/* Begin custom radio btns */
 	// Hide default browser input
 	input[type="radio"] {
 		position: absolute;

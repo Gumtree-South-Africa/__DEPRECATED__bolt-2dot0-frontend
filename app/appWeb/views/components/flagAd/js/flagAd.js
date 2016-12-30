@@ -43,7 +43,7 @@ let submitForm = event => {
 	let params = {
 		"adId": this.$form.find("[name='adId']").val(),
 		"captchaToken": this.$form.find("[name='captchaToken']").val(),
-		"flagAdType": this.$form.find(":checked").val(),
+		"flagAdType": this.$form.find("[name='flagAdType']:checked").val(),
 		"email": this.$form.find("[name='email']").val(),
 		"comments":this.$form.find("[name='comments']").val()
 	};
