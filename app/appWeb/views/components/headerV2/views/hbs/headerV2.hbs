@@ -14,20 +14,9 @@
                 <div class="mobile-only app-icon {{#if this.header.isIphone}}icon-apple-dark-gray{{else}}icon-android-dark-gray{{/if}}"></div>
             </a>
             <div class="left-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
-                {{#if this.header.isUserLoggedIn}}
-                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
-                        <div class="messages icon-messages-blue">
-                            {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
-                                <div class="number-messages">
-                                    {{this.header.converstionInfo.totalUnreadMessageCount}}
-                                </div>
-                            {{/compare}}
-                        </div>
-                    </span>
-                {{/if}}
                 <div id='js-browse-dropdown' class="browse">
                     <div id='js-browse-item-text' class="item-text">
-                        {{i18n "header.catDropdown.browse"}}
+                        {{i18n "header.catDropdown.browseCategories"}}
                         <div id="js-browse-header-item-icon" class="header-item-icon icon-down"></div>
                     </div>
                     <ul id="js-cat-dropdown" class="menu-dropdown browse-dropdown hidden">
@@ -66,10 +55,25 @@
                     </ul>
                 </div>
                 {{!-- post ad button --}}
-                {{> (dynamic "button") extraClasses='post-ad-button'  gtmEvent='pc|PostAdBegin' iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+                {{> (dynamic "button") extraClasses='post-ad-button left-item' hideIcon=true gtmEvent='pc|PostAdBegin' buttonLink="/post" i18nPath="header.postAd"}}
             </div>
-
             <div class="right-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
+                <span class="rot-link-toConvert right-item messages{{#unless this.header.isUserLoggedIn}}  logged-out{{/unless}}" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
+                    <div class="icon-messages-blue">
+                        {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
+                            <div class="number-messages">
+                                {{this.header.converstionInfo.totalUnreadMessageCount}}
+                            </div>
+                        {{/compare}}
+                    </div>
+                </span>
+                {{#if this.header.isUserLoggedIn}}
+                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
+                        <div class="my-ads right-item">
+                            {{i18n "header.myAds"}}
+                        </div>
+                    </span>
+                {{/if}}
                 <div class="profile right-item">
                     <div id="js-profile-item-text" class="item-text">
                         <div class="profile-icon
@@ -102,18 +106,6 @@
                         {{> (dynamic "profileMenu")}}
                     </div>
                 </div>
-                {{#if this.header.isUserLoggedIn}}
-					<span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
-                        <div class="my-ads right-item">
-                            {{i18n "header.myAds"}}
-						</div>
-                    </span>
-                {{/if}}
-				<a href="{{this.footer.helpUrl}}" data-gtm="npc|NavHeaderClick|eventLabel|HelpClick">
-					<div class="help right-item">
-                        {{i18n "header.help"}}
-					</div>
-				</a>
             </div>
         {{/unless}}
     </div>
