@@ -29,11 +29,6 @@ class replyForm {
 				$('.show-phone').hide();
 			});
 
-			/* Convert checkbox value on/off to true/false */
-			$('.is-send-me-copy-email').on('click', function(e) {
-				$("input[name='isSendMeCopyEmail']").val($(e.currentTarget).prop("checked"));
-			});
-
 			document.addEventListener('invalid', (function() {
 				return function(e) {
 					e.preventDefault();
@@ -43,11 +38,12 @@ class replyForm {
 			$('#vip-send-button').on('click', function() {
 				$('.fe-message-validation').addClass('hide');
 
-				if($(".canned-checkbox").prop("checked")) {
-					$(".message-box-area").val($(".canned-message").html());
+				let message = $(".message-box-area").val();
+				if($(".canned-checkbox").prop("checked") && message === ''){
+					$(".message-box-area").val(message + $(".canned-message").html());
 				}
 
-				if($(".message-box-area").val() === '') {
+				if($(".message-box-area").val() === ''){
 					$('.fe-message-validation').removeClass('hide');
 					return;
 				}

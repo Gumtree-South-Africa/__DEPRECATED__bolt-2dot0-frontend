@@ -157,6 +157,11 @@ $form-element-error-color: #FF7282;
 		.message {
 			font-size: 0.85em;
 			line-height: 1.75em;
+
+			width: initial;
+			// To make message not covered by close button.
+			// Width of close button is 20px + 2em but padding-right of gl-message is 1.5em
+			padding-right: calc(20px + 0.5em);
 		}
 
 		.close_btn {
