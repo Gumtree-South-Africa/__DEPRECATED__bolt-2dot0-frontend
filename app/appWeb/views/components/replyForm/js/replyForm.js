@@ -38,8 +38,9 @@ class replyForm {
 			$('#vip-send-button').on('click', function() {
 				$('.fe-message-validation').addClass('hide');
 
-				if($(".canned-checkbox").prop("checked")){
-					$(".message-box-area").val($(".canned-message").html());
+				let message = $(".message-box-area").val();
+				if($(".canned-checkbox").prop("checked") && message === ''){
+					$(".message-box-area").val(message + $(".canned-message").html());
 				}
 
 				if($(".message-box-area").val() === ''){
