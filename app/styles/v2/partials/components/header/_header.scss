@@ -48,10 +48,12 @@ $dropdown-width: 220px;
 		z-index: 9;
 		position: relative;
 		max-width: 1168px;
-		height: 65px;
+		height: 43px;
 		color: $headerTextColor;
 		margin: 0 auto;
-
+		@include from-breakpoint($medium-break) {
+			height: 71px;
+		}
 
 		a {
 			color: $headerTextColor;
@@ -60,7 +62,7 @@ $dropdown-width: 220px;
 
 		.mobile-menu {
 			position: absolute;
-			top: 36px;
+			top: 17px;
 			left: 25px;
 		}
 
@@ -86,17 +88,15 @@ $dropdown-width: 220px;
 			margin: auto;
 
 			display: inline-block;
-			margin-top: 34px;
-			margin-bottom: 11px;
+			margin-top: 15px;
+			margin-bottom: 15px;
 			width: 200px;
-			height: 24px;
+			height: 28px;
 			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
 			background-size: contain;
 			@include from-breakpoint($medium-break) {
-				margin-left: 40px;
-				margin-top: 23px;
-				height: 100%;
-				top: -18px;
+				margin: 0 0 0 40px;
+				top: 29px;
 			}
 		}
 
@@ -104,14 +104,15 @@ $dropdown-width: 220px;
 			z-index: 10;
 			position: absolute;
 			left: 29%;
-			width: 50%;
+			width: 39.62%;
 			text-align: center;
 			display: none;
 			@include from-breakpoint($medium-break) {
 				display: inline-block;
 			}
 			&.logged-out {
-				left: calc(29% + 52px);
+				margin-left: 6.36%;
+				margin-left: calc((100% - 848px) * 0.3735); // desired margin / (max width - min width) = 65 / (1022 - 848) = 0.3735
 			}
 
 			.logo, .messages, .browse {
@@ -119,17 +120,9 @@ $dropdown-width: 220px;
 				top: 50%;
 			}
 
-			.messages {
-				position: relative;
-				left: 10px;
-				margin-top: 24px;
-				margin-right: 2%;
-			}
-
 			.browse {
 				position: relative;
-				width: 16%;
-				min-width: 81px;
+				width: 170px;
 
 				&.item-text {
 					padding-top: $item-top-padding;
@@ -176,7 +169,14 @@ $dropdown-width: 220px;
 				}
 			}
 
+			.messages {
+				margin: 31px 20px 10px 40px;
+			}
+
+
 			.profile {
+				width: 158px;
+
 				&.normal-pad-top {
 					padding-top: $item-top-padding;
 				}
@@ -227,12 +227,11 @@ $dropdown-width: 220px;
 
 		.post-ad-button {
 			top: 0;
-			float: left;
 
 			margin: 0;
 			border-radius: 2px;
-			margin-top: 15px;
-			margin-bottom: 15px;
+			margin-top: 20px;
+			margin-bottom: 20px;
 			display: none;
 			@include from-breakpoint($medium-break) {
 				display: inline-block;
@@ -240,24 +239,19 @@ $dropdown-width: 220px;
 
 			.btn {
 				@include vivaBtn(on, 0.445em 0);
-				min-width: 205px;
+				height: 30px;
 
 				.sudolink {
 					vertical-align: middle;
-				}
-				.icon-camera {
-					height: 25px;
 				}
 			}
 		}
 
 		.right-item {
-			width: 192px;
-			margin-right: 5px;
-			float: left;
+			float: right;
 
 			.item-text {
-				padding-top: 15px;
+				padding-top: 20px;
 			}
 		}
 
@@ -275,7 +269,7 @@ $dropdown-width: 220px;
 			border-width: 0 1px;
 			border-style: solid;
 			border-color: transparent;
-			padding: 26px 0 26px 5px;
+			padding: 30px 0 30px 5px;
 
 			&.menu-open {
 				background-color: $common-background-color;
