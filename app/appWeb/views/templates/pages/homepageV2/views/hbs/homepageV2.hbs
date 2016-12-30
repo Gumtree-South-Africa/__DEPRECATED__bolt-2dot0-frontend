@@ -46,6 +46,8 @@
                 i18nTitle="homepage.gallery.cardTitle" }}
         {{/if}}
 
+        {{> (dynamic "bottomBanner") }}
+
 		<div class="seo-wrapper">
             {{> (dynamic "topSearches") homePageUrl=this.header.homePageUrl}}
             {{> (dynamic "topLocations") homePageUrl=this.header.homePageUrl}}
@@ -53,8 +55,6 @@
                 {{> (dynamic "topCategories")}}
             {{/if}}
 		</div>
-
-        {{> (dynamic "bottomBanner") }}
 
 	</div>
     <!--
