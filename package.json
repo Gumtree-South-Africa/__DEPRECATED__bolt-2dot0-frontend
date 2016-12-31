@@ -5,7 +5,7 @@
   "scripts": {
     "mock": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=mock gulp --noLintHalt",
     "dev": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=dev gulp --noLintHalt",
-    "vm": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp --noLintHalt",
+    "vm": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost NODE_ENV=vm gulp --noLintHalt SITES=es_MX",
     "vmp1": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost PAGE_VER=v1 NODE_ENV=vm gulp ",
     "vmp2": "npm install && PORT=8000 SSL_PORT=7443 BASEDOMAINSUFFIX=localhost PAGE_VER=v2 NODE_ENV=vm gulp",
     "pp": "npm install && NODE_ENV=pp_phx_deploy PROXY_HOST=pp-squidvip.phx.ops.pp.bt.ecg.so PROXY_PORT=3128 gulp",

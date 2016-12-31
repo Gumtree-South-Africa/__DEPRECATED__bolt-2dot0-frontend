@@ -35,40 +35,15 @@ class replyForm {
 				};
 			})(), true);
 
-			$('#vip-send-button').on('click', function() {
-				$('.fe-message-validation').addClass('hide');
+			$('#vip-send-button').on('click', () => {
+				this.validateForm();
+			});
 
-				let message = $(".message-box-area").val();
-				if($(".canned-checkbox").prop("checked") && message === '') {
-					$(".message-box-area").val(message + $(".canned-message").html());
+			$(".main-content").submit((e) => {
+				e.preventDefault();
+				if(this.validateForm()) {
+					$(".main-content")[0].submit();
 				}
-
-				if($(".message-box-area").val() === '') {
-					$('.fe-message-validation').removeClass('hide');
-					return;
-				}
-
-				if ($('.email-box-area').val() === '') {
-					$('.fe-email-validation').removeClass('hide');
-					return;
-				} else {
-					$('.fe-email-validation').addClass('hide');
-				}
-
-				if ($('.phone-box-area').val() === '' && $('.phone-box-area').data('id') === true) {
-					$('.fe-phone-validation').removeClass('hide');
-					return;
-				} else {
-					$('.fe-phone-validation').addClass('hide');
-				}
-
-				let $originalMessage = JSON.parse(JSON.stringify($('.message-box-area').val()));
-				let $finalMessage = $originalMessage;
-				$('.canned-checkbox:checkbox:checked').each(function() {
-					$finalMessage = $finalMessage + ' ' + $(this).data('id');
-				});
-
-				$('.message-box-area').val($finalMessage);
 			});
 
 			$('.return-button').on('click', function() {
@@ -87,6 +62,67 @@ class replyForm {
 		$('.header-wrapper').on('click', '.inZoomMode', () => {
 			this.backFromReplyFn();
 		});
+	}
+
+	// Evalues email adress 
+	// SUPPORT
+	// acounttamail@.domain.com && acounttamail@.domain.com.country
+	validateEmail(email) {
+		let regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+		return regex.test(email);
+	}
+
+	// Evalues a phone number 
+	// SUPPORT
+	// (123) 456 7899
+	// (123).456.7899
+	// (123)-456-7899
+	// 123-456-7899
+	// 123 456 7899
+	// 1234567899
+	validatePhone(phone) {
+		let regex = /\(?([0-9]{3})\)?([ .-]?)([0-9]{3})\2([0-9]{4})/i;
+		return regex.test(phone);
+	}
+
+	// validate the fields in all form and end show warning messages of all invalid fields 
+	validateForm() {
+		let errorStack = new Array();
+		//Reset error messages
+		$('.fe-message-validation').addClass('hide');
+		$('.fe-email-validation').addClass('hide');
+		$('.fe-phone-validation').addClass('hide');
+
+
+		// beggin validate fields
+		let message = $(".message-box-area").val();
+		if($(".canned-checkbox").prop("checked") && message === '') {
+			$(".message-box-area").val(message + $(".canned-message").html());
+		}
+
+		if($(".message-box-area").val() === '') {
+			$('.fe-message-validation').removeClass('hide');
+			errorStack.push(false);
+		}
+
+		let email = $('.email-box-area').val();
+		if (!this.validateEmail(email)) {
+			$('.fe-email-validation').removeClass('hide');
+			errorStack.push(false);
+		} else {
+			$('.fe-email-validation').addClass('hide');
+		}
+		let phone = $('.phone-box-area').val();
+		if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
+			$('.fe-phone-validation').removeClass('hide');
+			errorStack.push(false);
+		} else {
+			$('.fe-phone-validation').addClass('hide');
+		}
+
+		// if no exist any error the length of object errorStack should be equal to 0 
+		// and return TRUE else length is diferent to 0 the result is FALSE 
+		return errorStack.length === 0;
 	}
 
 	_getURLParameter(name) {
