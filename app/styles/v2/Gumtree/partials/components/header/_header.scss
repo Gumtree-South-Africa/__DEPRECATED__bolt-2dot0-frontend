@@ -6,7 +6,6 @@
 
 	.headerV2 {
 		font-family: $bodyFont;
-		max-width: 1024px;
 
 		.mobile-menu {
 			top: 26px
@@ -23,29 +22,14 @@
 		}
 
 		.left-items {
-
 			.browse {
-				// margin-left is 0px on vw=848px and goes up to 65px on vw=1024px
+				// margin-left is 0px on vw=848px and goes up to 65px on vw=1104px
 				margin-left: calc((100% - 424px) * 65 / (552 - 424));
 			}
 
 			.post-ad-button {
-				// margin-left is 0px on vw=848px and goes up to 78px on vw=1024px
+				// margin-left is 0px on vw=848px and goes up to 78px on vw=1104px
 				margin-left: calc((100% - 424px) * 78 / (552 - 424));
-			}
-		}
-
-		.right-items {
-
-			.messages {
-				// margin-left is 0px on vw=848px and goes up to 40px on vw=1024px
-				margin-left: calc((100% - 424px) * 40 / (552 - 424));
-			}
-
-			.my-ads {
-				display: block;
-				// margin-left is 0px on vw=848px and goes up to 30px on vw=1024px
-				margin-left: calc((100% - 424px) * 30 / (552 - 424));
 			}
 		}
 
