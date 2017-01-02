@@ -13,7 +13,7 @@
             <a href="{{this.header.postAdPageUrl}}">
                 <div class="mobile-only post-icon icon-post-button"></div>
             </a>
-            <div class="left-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
+            <div class="left-items">
                 <div id='js-browse-dropdown' class="browse">
                     <div id='js-browse-item-text' class="item-text">
                         {{i18n "header.catDropdown.browseCategories"}}
@@ -55,10 +55,10 @@
                     </ul>
                 </div>
                 {{!-- post ad button --}}
-                {{> (dynamic "button") extraClasses='post-ad-button left-item' hideIcon=true gtmEvent='pc|PostAdBegin' buttonLink="/post" i18nPath="header.postAd"}}
+                {{> (dynamic "button") extraClasses='post-ad-button' hideIcon=true gtmEvent='pc|PostAdBegin' buttonLink="/post" i18nPath="header.postAd"}}
             </div>
-            <div class="right-items{{#unless this.header.isUserLoggedIn}} logged-out{{/unless}}">
-                <span class="rot-link-toConvert right-item messages{{#unless this.header.isUserLoggedIn}}  logged-out{{/unless}}" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
+            <div class="right-items">
+                <span class="rot-link-toConvert messages" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
                     <div class="icon-messages-blue">
                         {{#compare this.header.converstionInfo.totalUnreadMessageCount ">" 0}}
                             <div class="number-messages">
@@ -72,7 +72,7 @@
                         {{i18n "header.myAds"}}
                     </span>
                 {{/if}}
-                <div class="profile right-item">
+                <div class="profile">
                     <div id="js-profile-item-text" class="item-text">
                         <div class="profile-icon
                             {{#if this.header.currentProfileImageUrl}}
