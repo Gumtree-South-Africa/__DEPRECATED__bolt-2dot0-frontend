@@ -68,10 +68,8 @@
                     </div>
                 </span>
                 {{#if this.header.isUserLoggedIn}}
-                    <span class="rot-link-toConvert" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
-                        <div class="my-ads right-item">
-                            {{i18n "header.myAds"}}
-                        </div>
+                    <span class="rot-link-toConvert my-ads" data-o-uri="{{obfuscateUrl this.header.myAdsURL}}" data-gtm="npc|NavHeaderClick|eventLabel|MyAds">
+                        {{i18n "header.myAds"}}
                     </span>
                 {{/if}}
                 <div class="profile right-item">
@@ -84,22 +82,19 @@
                             {{/if}}"
 
                             {{#if this.header.currentProfileImageUrl}}
-                                 style="background-image:url('{{this.header.currentProfileImageUrl}}'); background-size: contain;"
+                                 style="background-image:url('{{this.header.currentProfileImageUrl}}');"
                             {{/if}}>
                         </div>
+                        <div class="username-wrapper">
                         {{#if this.header.isUserLoggedIn}}
-							<div class="username-wrapper">
-                            {{#if this.header.profileName}}
-                                <div class="username">{{i18n "header.userDropdown.title"}}, {{this.header.profileName}}!</div>
-                            {{else}}
-                                <div class="username">{{i18n "header.userDropdown.title"}}!</div>
-                            {{/if}}
+                            <div class="username">
+                                {{i18n "header.userDropdown.title"}}{{#if this.header.profileName}}, {{this.header.profileName}}{{/if}}!
                             </div>
-                            <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                         {{else}}
                             {{i18n "header.menu.my.gumtree"}}
-                            <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                         {{/if}}
+                        </div>
+                        <div id="js-profile-header-item-icon" class="header-item-icon icon-down"></div>
                     </div>
                     {{!-- profile dropdown --}}
                     <div id="js-profile-dropdown" class="hidden">
