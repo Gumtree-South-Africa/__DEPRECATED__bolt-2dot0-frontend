@@ -42,9 +42,29 @@ class replyForm {
 			$(".main-content").submit((e) => {
 				e.preventDefault();
 				if(this.validateForm()) {
+					$('.message-box-area').val(this.cleanupValue($('.message-box-area').val()));
+					$('.name-box-area').val(this.cleanupValue($('.name-box-area').val()));
 					$(".main-content")[0].submit();
 				}
 			});
+
+			$(".email-box-area").on('change', (() => {
+				let email = $('.email-box-area').val();
+				if (!this.validateEmail(email)) {
+					$('.fe-email-validation').removeClass('hide');
+				} else {
+					$('.fe-email-validation').addClass('hide');
+				}
+			}));
+
+			$(".phone-box-area").on('change', (() => {
+				let phone = $('.phone-box-area').val();
+				if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
+					$('.fe-phone-validation').removeClass('hide');
+				} else {
+					$('.fe-phone-validation').addClass('hide');
+				}
+			}));
 
 			$('.return-button').on('click', function() {
 				$('.message-sent').addClass('hide');
@@ -85,6 +105,10 @@ class replyForm {
 		return regex.test(phone);
 	}
 
+	cleanupValue(value) {
+		return JSON.parse(JSON.stringify(value));
+	}
+
 	// validate the fields in all form and end show warning messages of all invalid fields 
 	validateForm() {
 		let errorStack = new Array();
@@ -92,7 +116,7 @@ class replyForm {
 		$('.fe-message-validation').addClass('hide');
 		$('.fe-email-validation').addClass('hide');
 		$('.fe-phone-validation').addClass('hide');
-
+		$('.fe-name-validation').addClass('hide');
 
 		// beggin validate fields
 		let message = $(".message-box-area").val();
@@ -103,6 +127,14 @@ class replyForm {
 		if($(".message-box-area").val() === '') {
 			$('.fe-message-validation').removeClass('hide');
 			errorStack.push(false);
+		}
+
+		let name = $(".name-box-area").val();
+		if(name === '') {
+			$('.fe-name-validation').removeClass('hide');
+			errorStack.push(false);
+		} else {
+			$('.fe-name-validation').addClass('hide');
 		}
 
 		let email = $('.email-box-area').val();

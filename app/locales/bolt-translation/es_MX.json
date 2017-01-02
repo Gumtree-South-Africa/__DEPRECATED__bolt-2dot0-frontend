@@ -1644,6 +1644,7 @@
 			"messageValidate": "Se requiere de un mensaje",
 			"required": "OBLIGATORIO",
 			"name": "NOMBRE",
+			"nameValidate": "Es necesario tu nombre",
 			"sname": "Nombre",
 			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
 			"emailValidate": "Es necesario tu correo electrónico",
