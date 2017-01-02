@@ -97,7 +97,7 @@ class replyForm {
 		// beggin validate fields
 		let message = $(".message-box-area").val();
 		if($(".canned-checkbox").prop("checked") && message === '') {
-			$(".message-box-area").val(message + $(".canned-message").html());
+			$(".message-box-area").val($(".canned-message").html());
 		}
 
 		if($(".message-box-area").val() === '') {
@@ -112,6 +112,7 @@ class replyForm {
 		} else {
 			$('.fe-email-validation').addClass('hide');
 		}
+		
 		let phone = $('.phone-box-area').val();
 		if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
 			$('.fe-phone-validation').removeClass('hide');
