@@ -203,6 +203,9 @@
 			}
 			.support-text {
 				margin-left: 10px;
+				&.mobile-only {
+					display: inline-block;
+				}
 			}
 		}
 	}
