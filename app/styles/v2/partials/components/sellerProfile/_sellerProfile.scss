@@ -28,12 +28,13 @@
 	}
 
 	.user-fname {
+		font-weight: bold;
 		display: inline-block;
 		color: $vivaGray1;
 		padding-left: 10px;
 		white-space: nowrap;
-  	overflow: hidden;
-  	text-overflow: ellipsis;
+		overflow: hidden;
+		text-overflow: ellipsis;
 		width: 50%;
 		max-width: 9em;
 		@include from-breakpoint($medium-break){
@@ -51,6 +52,7 @@
 		line-height: 9px;
 		margin-left: 30px;
 		color: $vivaGray1;
+		text-transform: uppercase;
 	}
 
 	.email-icon {
@@ -59,7 +61,7 @@
 		width: 30px;
 		height: 30px;
 		position: relative;
-		right: 48px;
+		right: 62px;
 
 	}
 	.icon-email-verified{
@@ -85,7 +87,7 @@
 			}
 		}
 
-		
+
 		.user-ads-posted {
 			color: $vivaOrange;
 		}

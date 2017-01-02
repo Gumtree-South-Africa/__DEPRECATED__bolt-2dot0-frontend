@@ -68,8 +68,9 @@
                 {{#unless this.header.id}}
                     <span class="viva-labels">{{i18n "vip.reply.name"}}</span>
                     <input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sname'}}">
+                    <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
                     <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
-                    <input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
+                    <input name="email" class="box-area email-box-area" type="email" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
                     <div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
                     <span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
                     {{#if this.advert.replyInfo.phoneRequired}}
@@ -82,7 +83,8 @@
                     <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                 {{else}}
 					<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
-                    <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
+                    <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
+                    <input name="email" class="box-area email-box-area hidden" type="email" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
 					<span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
                     <input name="phoneNumber" class="phone-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sphone'}}" data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if this.advert.replyInfo.phoneRequired}} required {{/if}}>
 					<div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
@@ -99,8 +101,7 @@
                 {{/if}}
 
                 <div class="send-message-container">
-                    <input class="viva-checkbox is-send-me-copy-email" type="checkbox">
-					<input class="hidden" name="isSendMeCopyEmail" value="false">
+                    <input class="viva-checkbox" name="isSendMeCopyEmail" checked="checked" type="checkbox">
                     <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
                 </div>
                 <input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">
@@ -151,8 +152,9 @@
                         {{#unless this.header.id}}
     						<span class="viva-labels">{{i18n "vip.reply.name"}}</span>
     						<input name="buyerName" class="name-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sname'}}">
+                            <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
                             <span class="viva-labels">{{i18n "vip.reply.email"}}</span>
-    						<input name="email" class="box-area email-box-area" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
+    						<input name="email" class="box-area email-box-area" type="email" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" required/>
     						<div class="hide fe-email-validation">{{i18n "vip.reply.emailValidate"}}</div>
     						<span class="viva-labels">{{i18n "vip.reply.phone"}}</span>
                             {{#if this.advert.replyInfo.phoneRequired}}
@@ -165,7 +167,8 @@
     						<input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
                         {{else}}
     						<input name="buyerName" class="name-box-area box-area hidden" type="text" placeholder="{{i18n 'vip.reply.sname'}}" value="{{this.header.profileName}}">
-                            <input name="email" class="box-area email-box-area hidden" type="text" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
+                            <div class="hide fe-name-validation">{{i18n "vip.reply.nameValidate"}}</div>
+                            <input name="email" class="box-area email-box-area hidden" type="email" placeholder="{{i18n 'vip.reply.emailPlaceholder'}}" value="{{this.header.userEmail}}" required/>
     						<span class="viva-labels">{{i18n "vip.reply.phone"}}</span><span class="viva-labels">{{i18n "vip.reply.phoneOptional"}}</span>
     						<input name="phoneNumber" class="phone-box-area box-area" type="text" placeholder="{{i18n 'vip.reply.sphone'}}" data-id="{{this.advert.replyInfo.phoneRequired}}" {{#if this.advert.replyInfo.phoneRequired}} required {{/if}}>
     						<div class="hide fe-phone-validation">{{i18n "vip.reply.phoneValidate"}}</div>
@@ -182,8 +185,7 @@
                         {{/if}}
 
                         <div class="send-message-container">
-                            <input class="viva-checkbox is-send-me-copy-email" type="checkbox">
-							<input class="hidden" name="isSendMeCopyEmail" value="false">
+                            <input class="viva-checkbox" name="isSendMeCopyEmail" checked="checked" type="checkbox">
                             <span class="send-message">{{i18n "vip.reply.sendACopy"}}</span>
                         </div>
     					<input type="submit" value="{{i18n 'vip.reply.send'}}" id="vip-send-button">

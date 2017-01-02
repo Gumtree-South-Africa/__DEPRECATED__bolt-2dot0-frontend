@@ -8,7 +8,7 @@
 				font-size: 24px;
 				font-weight: bold;
 				float: left;
-				padding-left: 15px;
+				padding-left: 10px;
 				width: 65%;
 			}
 			.edit-favorite {
@@ -30,7 +30,7 @@
 				display: inline;
 				font-size: 20px;
 				font-weight: bold;
-				padding-left: 15px;
+				padding-left: 10px;
 			}
 			.ad-last-posted {
 				color: $vivaGray1;
@@ -61,8 +61,11 @@
 				}
 				.pri-props-name {
 					font-weight: bold;
-				    margin-right: 10px;
-				    vertical-align: middle;
+			    margin-right: 10px;
+			    vertical-align: middle;
+					@include in-breakpoint($no-break) {
+						font-size: 12px;
+					}
 				}
 				.pri-props-value {
 				    display: inline-block;
@@ -81,7 +84,6 @@
 	.sec-attrs {
 		width: 100%;
 		display: inline-block;
-		padding: 10px;
 
 		[class*="attr"] {
 			+ * {
@@ -90,14 +92,17 @@
 		}
 
 		.ad-description {
-			margin: -5px 20px -10px 0px;
+			margin: 5px 20px 0px 10px;
 			color: $vivaGray1;
 			font-size: 14px;
+			overflow-wrap: break-word;
+    	word-wrap: break-word;
 			.ad-phone {
 				color: $vivaBlue;
 			}
 		}
 		.ad-category {
+			margin: 20px 10px 0px 10px;
 			@include to-breakpoint($small-break) {
 				padding-right: 19px;
 			}
@@ -108,8 +113,7 @@
 			}
 		}
 		.ad-user-attrs {
-			margin-top: 10px;
-			padding-bottom: 15px;
+			margin: 10px 10px 5px 10px;
 		}
 		.ad-location {
 			position:relative;
@@ -170,7 +174,7 @@
 			background-color: $vivaWhite;
 		}
 		.pri-props-name {
-			font-size: 18px;
+			font-size: 16px;
 			font-weight: bolder;
 		}
 		.pri-props-value {

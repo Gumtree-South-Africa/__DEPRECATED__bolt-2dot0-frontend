@@ -37,11 +37,17 @@ router.post('/', cors, (req, res) => {
 			email: req.body.email,
 			phoneNumber: req.body.phoneNumber || '',
 			replyMessage: req.body.replyMessage,
-			isSendMeCopyEmail: req.body.isSendMeCopyEmail || false,
 			seoUrl: req.body.seoUrl,
 			hostname: res.locals.config.hostname,
 			basedomainsuffix: res.locals.config.baseDomainSuffix
 		};
+		/*
+		* Since we call rui reply, follow it's convention,
+		* only set isSendMeCopyEmail when isSendMeCopyEmail is checked.
+		 */
+		if (req.body.isSendMeCopyEmail) {
+			replyForm.isSendMeCopyEmail = req.body.isSendMeCopyEmail;
+		}
 
 		let modelBuilder = new ModelBuilder();
 		let model = modelBuilder.initModelData(res.locals, req.app.locals, req.cookies);

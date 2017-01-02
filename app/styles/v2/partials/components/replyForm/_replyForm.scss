@@ -26,6 +26,7 @@
 }
 
 .message-sent {
+	height: 100%;
 	.return-button {
 		color: $vivaWhite;
 		background-color: $vivaOrange;
@@ -38,7 +39,7 @@
 		text-align: center;
 		padding-top: 15px;
 		cursor: pointer;
-		position: fixed;
+		position: absolute;
 		bottom: 20px;
 		width:90%;
 		margin: 0 0 0 -45%;
@@ -63,8 +64,8 @@
 		color: $vivaGray1;
 		text-align: center;
 		margin-top: 5px;
-		position: fixed;
-		top: 50%;
+		position: absolute;
+		top: 42%;
 		width: 90%;
 		margin: 0 0 0 -45%;
 		left:50%;
@@ -84,6 +85,9 @@
 				text-decoration: underline;
 			}
 			.fe-email-validation {
+				color: $vivaRed;
+			}
+			.fe-name-validation {
 				color: $vivaRed;
 			}
 			.fe-message-validation {
@@ -168,6 +172,8 @@
 			text-shadow:none !important;
 			border:none !important;
 			box-shadow:none !important;
+			// On iOS, it will become transparent for upper half which makes it look like disabled
+			-webkit-appearance: none;
 		}
 	}
 

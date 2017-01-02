@@ -89,6 +89,49 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
+
+		// Switch on activateStatus
+		if (typeof query.activateStatus !== 'undefined') {
+			switch (query.activateStatus) {
+				case 'pendingAdActivateSuccess':
+					if (modelData.advert.statusInfo && modelData.advert.statusInfo.status === 'ACTIVE') {
+						modelData.header.pageMessages.success = 'vip.headerMessage.success';
+					} else {
+						modelData.header.pageMessages.success = 'vip.headerMessage.successNotYetActive';
+					}
+					break;
+				case 'adAlreadyActivated':
+					modelData.header.pageMessages.warning = 'vip.headerMessage.alreadyActivated';
+					break;
+				case 'adFlagged':
+					modelData.header.pageMessages.success = 'vip.headerMessage.flagged';
+					break;
+				case 'adReposted':
+					modelData.header.pageMessages.success = 'vip.headerMessage.repostSuccess';
+					break;
+				case 'adActivateSuccessWithIFPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForInsertionFeeSuccess';
+					break;
+				case 'adActivateSuccessWithPendingPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeaturePending';
+					break;
+				case 'adActivateSuccessWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForActivateSuccess';
+					break;
+				case 'adEditedWithPayment':
+				case 'adRepostedWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccessEditRepost';
+					break;
+				case 'adFeaturePaymentSuccess':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccess';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
+					modelData.header.pageMessages.error = '';
+			}
+		}
+
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
 			switch (query.resumeAbandonedOrderError) {
@@ -100,7 +143,6 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
-		// Not switch on activateStatus when they are handled by post overlay. Other cases should still go here.
 	},
 	extendFooterData: (req, modelData) => {
 		// JS
