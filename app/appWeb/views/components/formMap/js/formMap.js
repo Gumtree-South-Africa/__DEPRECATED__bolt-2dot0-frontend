@@ -81,17 +81,21 @@ class FormMap {
 			google.maps.event.trigger(this.map, "resize");
 		});
 
+		this.map.addListener('drag', () => {
+			this.position = this.getPosition();
+			this.setCurrentPosition();
+		});
+
 		// enables the behavior of get a location valid after 2 seconds of having dragged the map
 		this.map.addListener('dragend', () => {
 			setTimeout(() => {
-				this.position = this.getPosition();
-				window.formMap.validateCountry(this.position).then(function(result) {
+				this.validateCountry(this.getPosition()).then((result) => {
 					if (result) {
-						window.formMap.position = result;
-						window.formMap.setCurrentPosition();
+						this.position = result;
+						this.setCurrentPosition();
 					}
 				});
-			}, this.secondsSetposition * 1000);	
+			}, this.secondsSetposition * 500);	
 		});
 	}
 
@@ -137,10 +141,12 @@ class FormMap {
 	}
 
 	// ser the current position of user
-	setCurrentPosition() {
+	setCurrentPosition(zoom) {
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
 		this.map.setCenter(latLng);
-		this.map.setZoom(this.zoom);
+		if(zoom) {
+			this.map.setZoom(zoom);
+		}
 		this.HtmlAutocomplete.val();
 		this.setMark();
 	}
@@ -154,10 +160,10 @@ class FormMap {
 						lat: gps.coords.latitude,
 						lng: gps.coords.longitude
 					};
-					window.formMap.validateCountry(this.position).then(function(result) {
+					window.formMap.validateCountry(this.position).then((result) => {
 						if (result) {
 							window.formMap.position = result;
-							window.formMap.setCurrentPosition();
+							window.formMap.setCurrentPosition(this.zoom);
 						}
 					});
 				});
@@ -220,7 +226,7 @@ class FormMap {
 			if(!result) {
 				window.formMap.geolocate();
 			} else {
-				window.formMap.setCurrentPosition();
+				window.formMap.setCurrentPosition(this.zoom);
 			}
 		});
 	}
@@ -230,14 +236,15 @@ class FormMap {
 		if(!this.enableComponents) {
 			return;
 		}
-		this._removeAllMarker();
-		this._removeAllRanges();
+		
 		this.typeMark= this.HtmlSwitchRangeMarker.is(":checked");
 		if(this.typeMark) {
 			// if is true set a marker in map (use precise location)
+			this._removeAllMarker();
 			this._addMarker();
 		} else {
 			// if is false set a range (use aproximate location)
+			this._removeAllRanges();
 			this._addRange(this.meters);
 		}
 	}
