@@ -42,7 +42,11 @@ class replyForm {
 			$(".main-content").submit((e) => {
 				e.preventDefault();
 				if(this.validateForm()) {
-					$('.message-box-area').val(this.cleanupValue($('.message-box-area').val()));
+					let message = $(".message-box-area").val();
+					if($(".canned-checkbox").prop("checked") && message !== '') {
+						message = $(".canned-message").html() + "\n" + message;
+					}
+					$('.message-box-area').val(this.cleanupValue(message));
 					$('.name-box-area').val(this.cleanupValue($('.name-box-area').val()));
 					$(".main-content")[0].submit();
 				}
