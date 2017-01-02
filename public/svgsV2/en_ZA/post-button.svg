@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="35px" height="28px" viewBox="0 0 35 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 41.2 (35397) - http://www.bohemiancoding.com/sketch -->
+    <title>Post Button</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Top-bar" transform="translate(-303.000000, -34.000000)">
+            <g id="Post-Button" transform="translate(303.000000, 35.000000)">
+                <g id="Camera" transform="translate(11.000000, 0.000000)" stroke-width="2">
+                    <path d="M11.1271402,2.8771081 L10.4228627,0.740841858 C10.2771195,0.298313519 9.86743883,0 9.40621482,0 L5.59378518,0 C5.13256117,0 4.72332484,0.298313519 4.57713727,0.740841858 L3.87285977,2.8771081 L0.48477398,3.2032762 C0.210172404,3.22978297 0,3.46340199 0,3.74239701 L0,12.4581836 C0,12.7573956 0.239943125,13 0.535872978,13 L14.4645714,13 C14.7600569,13 15,12.7573956 15,12.4581836 L15,3.74239701 C15,3.46340199 14.7902719,3.22978297 14.515226,3.2032762 L11.1271402,2.8771081 L11.1271402,2.8771081 Z" id="Stroke-1" stroke="#F66429"></path>
+                    <path d="M10.8,7.42857143 C10.8,9.13792672 9.32243572,10.5238095 7.5,10.5238095 C5.67756428,10.5238095 4.2,9.13792672 4.2,7.42857143 C4.2,5.71921614 5.67756428,4.33333333 7.5,4.33333333 C9.32243572,4.33333333 10.8,5.71921614 10.8,7.42857143 L10.8,7.42857143 Z" id="Stroke-3" stroke="#F66429"></path>
+                </g>
+                <text id="POST-AD" font-family="Lato-Regular, Lato" font-size="8" font-weight="normal" letter-spacing="0.333333313" fill="#F66429">
+                    <tspan x="0" y="26">POST AD</tspan>
+                </text>
+            </g>
+        </g>
+    </g>
+</svg>
