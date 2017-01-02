@@ -69,6 +69,12 @@ $dropdown-width: 220px;
 			left: 25px;
 		}
 
+		.post-icon {
+			position: absolute;
+			top: 15px;
+			right: 25px;
+		}
+
 		.mobile-only {
 			display: inline-block;
 			@include from-breakpoint($medium-break) {
