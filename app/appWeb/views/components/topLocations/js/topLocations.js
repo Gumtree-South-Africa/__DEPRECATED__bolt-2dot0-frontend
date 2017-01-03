@@ -1,11 +1,16 @@
 'use strict';
 
-
 let _showMoreLocations = () => {
 	this.$showMoreLocations.toggleClass('hide');
-	this.$viewMoreLocations.text(
-		(this.$showMoreLocations.is(':visible'))
-		? this.viewLessText : this.viewMoreText);
+	this.$showMoreLocations.is(':visible') ?
+		this.$viewMoreLocations.html([
+			$('<span>', { 'text': this.viewLessText}),
+			$('<span>', { 'class': 'no-underline', 'text': '\u00A0\u2227'})
+		]) :
+		this.$viewMoreLocations.html([
+			$('<span>', { 'text': this.viewMoreText}),
+			$('<span>', { 'class': 'no-underline', text: '\u00A0>'})
+		]);
 
 	if (this.$desktopSeo.is(':visible')) {
 		this.$desktopSeo.css('display', 'none');
@@ -18,11 +23,6 @@ let initialize = () => {
 	this.$desktopSeo = $('.desktop-seo');
 	this.$viewMoreLocations = $('.view-more-locations');
 	this.$showMoreLocations = $('.show-more-locations');
-	this.$topLocationsHeader = $('.top-locations-header');
-	this.$topSearches = $('.top-searches');
-	this.$topLocations = $('.top-locations');
-	this.$locationHeaderText = $('.location-header-text');
-	this.$searchHeadertext = $('.search-header-text');
 
 	this.viewMoreText = this.$viewMoreLocations.data('view-more');
 	this.viewLessText = this.$viewMoreLocations.data('view-less');

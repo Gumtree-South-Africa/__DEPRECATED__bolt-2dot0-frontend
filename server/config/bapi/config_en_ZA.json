@@ -96,6 +96,120 @@
 			"safetyLink": "https://help.gumtree.co.za/pkb_Home?l=en_US&c=PublicKB:Gumtree_basics",
 			"distractionFree": false,
 			"showTopBanner": false,
+			"topCategories": [
+				{
+				  "text": "Cars for sale",
+				  "link": "/s-cars-bakkies/v1c9077"
+				},
+				{
+				  "text": "Auto parts",
+				  "link": "/s-auto-parts-accessories/v1c9026p1"
+				},
+				{
+				  "text": "Motorcycles for sale",
+				  "link": "/s-motorcycles-scooters/v1c9027p1"
+				},
+				{
+				  "text": "Motorcycle parts",
+				  "link": "/s-motorcycle-parts-accessories/v1c9215p1"
+				},
+				{
+				  "text": "Caravans & Trailers",
+				  "link": "/s-caravans-trailers/v1c9028p1"
+				},
+				{
+				  "text": "Farm equipment",
+				  "link": "/s-farm-vehicles-equipment/v1c9135p1"
+				},
+				{
+				  "text": "Houses for sale",
+				  "link": "/s-houses-flats-for-sale/v1c9074p1"
+				},
+				{
+				  "text": "Flats for rent",
+				  "link": "/s-houses-flats-for-rent/v1c9078p1"
+				},
+				{
+				  "text": "Commercial property for sale",
+				  "link": "/s-commercial-properties/v1c9072p1"
+				},
+				{
+				  "text": "Plots of land for sale",
+				  "link": "/s-land-plots-for-sale/v1c9137p1"
+				},
+				{
+				  "text": "Holiday homes for sale & rent",
+				  "link": "/s-holiday-homes/v1c9070p1"
+				},
+				{
+				  "text": "Antiques for sale",
+				  "link": "/s-antiques-collectables/v1c9180p1"
+				},
+				{
+				  "text": "Furniture",
+				  "link": "/s-furniture/v1c9181p1"
+				},
+				{
+				  "text": "Home appliances",
+				  "link": "/s-home-appliances/v1c9184p1"
+				},
+				{
+				  "text": "Phones for sale",
+				  "link": "/s-mobile-phones-telephones/v1c9198p1"
+				},
+				{
+				  "text": "Computers for sale",
+				  "link": "/s-computers/v1c9199p1"
+				},
+				{
+				  "text": "Laptops for sale",
+				  "link": "/s-pc-laptops/v1c9438p1"
+				},
+				{
+				  "text": "Mobile phones",
+				  "link": "/s-mobile-phones/v1c9419p1"
+				},
+				{
+				  "text": "Cameras for sale",
+				  "link": "/s-cameras-video-cameras/v1c9200p1"
+				},
+				{
+				  "text": "Video games & consoles",
+				  "link": "/s-video-games-consoles/v1c9201p1"
+				},
+				{
+				  "text": "TVs for sale",
+				  "link": "/s-tvs/v1c9521p1"
+				},
+				{
+				  "text": "Audio & music equipment",
+				  "link": "/s-audio-music-equipment/v1c9203p1"
+				},
+				{
+				  "text": "Boats for sale",
+				  "link": "/s-boats-jet-skis/v1c9102p1"
+				},
+				{
+				  "text": "Boats parts",
+				  "link": "/s-boat-parts-accessories/v1c9104p1"
+				},
+				{
+				  "text": "Sports, bikes, & fitness",
+				  "link": "/s-sports-bicycles-fitness/v1c9204p1"
+				},
+				{
+				  "text": "Children's Furniture",
+				  "link": "/s-children-s-furniture/v1c9187p1"
+				},
+				{
+				  "text": "Clothing for sale",
+				  "link": "/s-clothing/v1c9193p1"
+				},
+				{
+				  "text": "Kid's toys for sale",
+				  "link": "/s-toys/v1c9192p1"
+				}
+			],
 			"reviews" : [
 				{
 					"primaryImageUrl": "tamie_k.jpg",
@@ -179,6 +293,7 @@
 				"trending"		: "#",
 				"goods"			: "/s-home-garden/v1c9175p1",
 				"cars"			: "/s-automotive-vehicles/v1c5p1",
+				"carsAndBakkies": "/s-cars-bakkies/v1c9077p1",
 				"realEstate"	: "/s-property/v1c2p1",
 				"jobs"			: "/s-jobs/v1c8p1"
 			},
@@ -207,10 +322,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {

@@ -1171,6 +1171,7 @@
   "footer.our-sites": "Our classifieds sites",
   "footer": {
     "toplocations": "Top locations",
+    "topCategories": "Categories",
     "help": {
       "heretohelp": "Meet our customer team",
       "contact": "Contact us",
@@ -1389,7 +1390,7 @@
 			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "Es muy sencillo, al menos una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1531,6 +1532,7 @@
 	"vip": {
 		"details": {
 			"edit": "Edit",
+			"zoomView": "zoom view",
 			"favorite": "Favorite",
 			"posted": "Posted",
 			"views": "VIEWS",
@@ -1573,6 +1575,18 @@
 			"description": "Tip: Add more photos to increase your chances of selling quickly",
 			"edit": "Edit My Ad",
 			"postMore": "Post More Ads"
+		},
+		"headerMessage": {
+			"success": "Congratulations! Your ad is active and will be visible to all of our users shortly.",
+			"successNotYetActive": "Thank you! We received your activation request. Your ad will be on Gumtree shortly.",
+			"alreadyActivated": "Your ad has been activated",
+			"flagged": "Ad flagged successfully",
+			"repostSuccess": "Congratulations! Your ad has been reposted.",
+			"paymentForInsertionFeeSuccess": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly.",
+			"paymentForFeaturePending": "Payment for feature is pending",
+			"paymentForActivateSuccess": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly with the option you selected to attract more visitors to your ad.",
+			"paymentForFeatureSuccessEditRepost": "Congratulations! We processed your payment and your ad is now live with the premium features to attract more visitors.",
+			"paymentForFeatureSuccess": "Congratulations! You have successfully purchased promotions for your ad(s)."
 		}
 	},
 	"promote": {

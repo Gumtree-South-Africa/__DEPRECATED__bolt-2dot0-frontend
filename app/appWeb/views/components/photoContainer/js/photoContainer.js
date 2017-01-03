@@ -56,6 +56,7 @@ class PhotoContainer {
 
 		//EPS setup
 		this.epsData = $('#js-eps-data');
+		this.photoSwitcher = $('.photo-switcher');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.EPS = {};
 		this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
@@ -205,6 +206,11 @@ class PhotoContainer {
 					success: (result) => spinnerModal.completeSpinner(() => {
 						if (this.categoryUpdateCallback) {
 							this.categoryUpdateCallback(result.categoryId);
+							// Do not delete these sentences this resolved the refresh error on map in formMap
+							if(window.formMap) {
+								google.maps.event.trigger(window.formMap.map, "resize");
+								window.formMap.setPosition();
+							}
 						}
 					}),
 					error: (err) => {
@@ -219,6 +225,7 @@ class PhotoContainer {
 			// 7. Enable post button when image upload success
 			this.$postAdButton.toggleClass("disabled", false);
 			window.BOLT.trackEvents({"event": this.pageType + "PhotoSuccess"});
+			
 		};
 	}
 
@@ -271,6 +278,7 @@ class PhotoContainer {
 			$("#photo-0").parent().append(newDiv);
 			newDiv=newDiv.clone();
 		}
+		this.photoSwitcher.toggleClass("photo-container-start", false);
 		$(".drag-reorder").toggleClass("hidden", false);
 	}
 

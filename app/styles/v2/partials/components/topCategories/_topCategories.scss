@@ -1,0 +1,11 @@
+.seo-wrapper {
+  .top-categories-header {
+  }
+}
+.view-more-categories {
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@include from-breakpoint($medium-break){
+}

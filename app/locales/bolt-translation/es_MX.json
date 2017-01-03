@@ -1200,15 +1200,14 @@
 			"title": "Vivanuncios Te Cuida",
 			"faq": "Consejos de seguridad",
 			"tip": [
-				"Consejos de cómo protegerte en internet",
+				"Cómo protegerte en internet",
 				"¿Vivanuncios coopera con las autoridades?",
 				"¿Cómo mantengo mi cuenta de usuario segura?",
-				"¿Como comprador cómo me mantengo seguro usando Vivanuncios?",
-				"¿Como vendedor cómo me mantengo seguro usando Vivanuncios?",
+				"¿Cómo me mantengo seguro usando Vivanuncios?",
 				"¿Cuáles son los fraudes más comunes?",
-				"¿Qué puedo hacer si he sido víctima de una estafa?",
+				"He sido víctima de una estafa",
 				"¿Cómo reportar un anuncio?",
-				"He reportado un anuncio por error. ¿Pueden borrar el reporte por mi?"
+				"He reportado un anuncio por error"
 			]
 		},
 		"trending": {
@@ -1307,7 +1306,7 @@
 		"back": "Volver",
 		"page": {
 			"title": "Publicar Anuncios Gratis | Publicar Clasificados Gratis | Vivanuncios",
-			"tips": "Es muy sencillo, solo sube una foto. Puedes agregar más fotos y editar los detalles después.",
+			"tips": "Es muy sencillo, al menos una foto. Puedes agregar más fotos y editar los detalles después.",
 			"desc": "Publicar Anuncios Gratis en México. Publicar Clasificados Gratis y Vender sin Costo. Clasificados GRATIS. Publica tus Anuncios sin Costo. Vivanuncios"
 		},
 		"confirm": {
@@ -1317,7 +1316,7 @@
 			"tip": "Puedes ir a la página Mis anuncios para ver tus anuncios y agregar más detalles."
 		},
 		"createAds": {
-			"directions": "Es muy sencillo, solo sube una foto y publica. Puedes agregar más fotos y editar los detalles después.",
+			"directions": "Es muy sencillo, al menos una foto y publica. Puedes agregar más fotos y editar los detalles después.",
 			"error":{
 				"maxPhotos": "Máx. 12. ¡Que tu anuncio brille!",
 				"photoRequired": "Foto requerida"
@@ -1375,6 +1374,8 @@
 		}
 	},
 	"footer": {
+		"toplocations": "Los Mejores Lugares",
+		"topCategories": "Categorías",
 		"help": {
 			"heretohelp": "Estamos aquí para ayudarte",
 			"sendemail": "Envía un correo electrónico",
@@ -1563,6 +1564,7 @@
 		},
 		"details": {
 			"edit": "Editar",
+			"zoomView": "Ver Zoom",
 			"favorite": "Favorito",
 			"posted": "Publicado",
 			"views": "VISTAS",
@@ -1596,8 +1598,8 @@
 		},
 		"seller": {
 			"emailVerified": "Email Verificado",
-			"adsPosted": "ANUNCIOS PUBLICADOS",
-			"adsActive": "ACTIVO",
+			"adsPosted": "PUBLICACIONES",
+			"adsActive": "ACTIVAS",
 			"defaultUserName": "Usuario Vivanuncios"
 		},
 		"disclaimer": {
@@ -1643,6 +1645,7 @@
 			"messageValidate": "Se requiere de un mensaje",
 			"required": "OBLIGATORIO",
 			"name": "NOMBRE",
+			"nameValidate": "Es necesario tu nombre",
 			"sname": "Nombre",
 			"email": "DIRECCIÓN DE CORREO ELECTRÓNICO*",
 			"emailValidate": "Es necesario tu correo electrónico",
@@ -1655,9 +1658,9 @@
 			"showPhone": "Mostrar número de teléfono",
 			"sendACopy": "Enviar una copia a mi correo electrónico",
 			"send": "Enviar",
-			"attachAFile": "ATTACH A FILE (OPTIONAL)",
-			"browseFiles": "Browse Files",
-			"pdfOrDoc": "PDF or DOC Only. Max of 1MB",
+			"attachAFile": "ADJUNTAR UN ARCHIVO (OPCIONAL)",
+			"browseFiles": "Explorar Archivos",
+			"pdfOrDoc": "Solo PDF o DOC. Máximo 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
 			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 			"canned": {
@@ -1681,8 +1684,20 @@
 			"title": "Tu anuncio ha sido actualizado",
 			"postTitle": "Tu anuncio ha sido publicado",
 			"description": "Tip: Recuerda agregar más fotos y tener mayores oportunidades de vender",
-			"edit": "Edita mi anucio",
+			"edit": "Edita mi anuncio",
 			"postMore": "Publicar más anuncios"
+		},
+		"headerMessage": {
+			"success": "\u00A1Felicidades! Tu anuncio ha sido publicado. Recuerda agregar m\u00E1s informaci\u00F3n y tener mayores oportunidades de vender. Edita y mejora tu anuncio.",
+			"successNotYetActive": "\u00A1Gracias! Hemos recibido tu anuncio y estamos revis\u00E1ndolo. Te avisaremos una vez quede publicado.",
+			"alreadyActivated": "Tu anuncio ha sido activado",
+			"flagged": "Anuncio reportado exitosamente",
+			"repostSuccess": "\u00A1Felicidades! Tu anuncio ha sido renovado exitosamente.",
+			"paymentForInsertionFeeSuccess": "Recibimos tu solicitud y pago. Mostraremos tu anuncio en Vivanuncios en breve.",
+			"paymentForFeaturePending": "Gracias por su pago que actualmente se encuentra en proceso. La promoci\u00F3n / oferta se activar\u00E1 al recibir el pago.",
+			"paymentForActivateSuccess": "Vivanuncios recibi\u00F3 tu solicitud de promoci\u00F3n y pago. \u00A1M\u00E1s visitantes a tu anuncio vienen en camino!",
+			"paymentForFeatureSuccessEditRepost": "\u00A1Felicitaciones! Vivanuncios proces\u00F3 tu pago exitosamente. Tu anuncio y promoci\u00F3n est\u00E1n activos en Vivanuncios para atraer m\u00E1s visitantes.",
+			"paymentForFeatureSuccess": "\u00A1Felicitaciones! Ya est\u00E1s promoviendo tus anuncios exitosamente."
 		}
 	},
 	"search": {

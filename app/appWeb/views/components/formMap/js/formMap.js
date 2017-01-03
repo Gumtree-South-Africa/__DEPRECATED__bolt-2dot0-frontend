@@ -28,7 +28,7 @@ class FormMap {
 		this.modalActive = false;
 		this.typeMark = this.HtmlSwitchRangeMarker[0].checked;
 		this.secondsSetposition = this.googleMap.secondsSetposition;
-		
+		this.enableComponents = false;
 		this.validateCountry = (coordinates) => {
 			return new Promise(function(success, reject) {
 				if (!coordinates) {
@@ -55,6 +55,7 @@ class FormMap {
 									window.formMap.errorMessageMap.html(window.formMap.googleMap.errorMessage).show();
 								}
 							}
+							window.formMap.enableComponents = true;
 						}
 						success(false);
 					} catch (ex) {
@@ -85,7 +86,10 @@ class FormMap {
 
 		this.map.addListener('drag', () => {
 			this.dragmap = true;
+			this.position = this.getPosition();
+			this.setCurrentPosition();
 		});
+
 		// enables the behavior of get a location valid after 2 seconds of having dragged the map
 		this.map.addListener('dragend', () => {
 			this.dragmap = false;
@@ -93,13 +97,13 @@ class FormMap {
 				if(this.dragmap) {
 					return;
 				}
-				window.formMap.validateCountry(this.getPosition()).then(function(result) {
+				this.validateCountry(this.getPosition()).then((result) => {
 					if (result) {
-						window.formMap.position = result;
-						window.formMap.setCurrentPosition();
+						this.position = result;
+						this.setCurrentPosition();
 					}
 				});
-			}, this.secondsSetposition * 1000);	
+			}, this.secondsSetposition * 500);	
 		});
 	}
 
@@ -145,12 +149,14 @@ class FormMap {
 	}
 
 	// ser the current position of user
-	setCurrentPosition() {
+	setCurrentPosition(zoom) {
 		let latLng = new google.maps.LatLng(this.position.lat, this.position.lng);
 		this.map.setCenter(latLng);
-		this.map.setZoom(this.zoom);
-		this.setMark();
+		if(zoom) {
+			this.map.setZoom(zoom);
+		}
 		this.HtmlAutocomplete.val();
+		this.setMark();
 	}
 
 	// enable gps of current user vis HTML5
@@ -162,10 +168,10 @@ class FormMap {
 						lat: gps.coords.latitude,
 						lng: gps.coords.longitude
 					};
-					window.formMap.validateCountry(this.position).then(function(result) {
+					window.formMap.validateCountry(this.position).then((result) => {
 						if (result) {
 							window.formMap.position = result;
-							window.formMap.setCurrentPosition();
+							window.formMap.setCurrentPosition(this.zoom);
 						}
 					});
 				});
@@ -179,7 +185,7 @@ class FormMap {
 
 	// add range in map 
 	_addRange(meters) {
-		let center = this.map.getCenter();
+		let center = this.map.position ? this.map.position : this.map.getCenter();
 		let tempRange = new google.maps.Circle({
 			strokeColor: '#FF9800',
 			strokeOpacity: 0.8,
@@ -203,7 +209,7 @@ class FormMap {
 
 	// add marker in map
 	_addMarker() {
-		let center = this.map.getCenter();
+		let center = this.map.position ? this.map.position : this.map.getCenter();
 		let tempMarker = new google.maps.Marker({
 			position: center,
 			icon: this.icons.fakeAd
@@ -228,13 +234,16 @@ class FormMap {
 			if(!result) {
 				window.formMap.geolocate();
 			} else {
-				window.formMap.setCurrentPosition();
+				window.formMap.setCurrentPosition(this.zoom);
 			}
 		});
 	}
 
 	// uses proximity location or precise location 
 	setMark() {
+		if(!this.enableComponents) {
+			return;
+		}
 		this._removeAllMarker();
 		this._removeAllRanges();
 		this.typeMark= this.HtmlSwitchRangeMarker.is(":checked");
@@ -257,7 +266,11 @@ let initialize = () => {
 	window.googleMarker = googleMarker;
 
 	// Events setup
-	$('#switchRangeMarker').change(() => {
+	$("#setCurrentLocationButton").click(() => {
+		window.formMap.setPosition();
+	});
+
+	$('#switchRangeMarker').change(function() {
 		if(window.formMap.position) {
 			window.formMap.setMark();	
 		}

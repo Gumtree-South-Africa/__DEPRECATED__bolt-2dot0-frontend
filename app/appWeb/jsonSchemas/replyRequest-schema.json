@@ -28,7 +28,7 @@
 			"maxLength": 20
 		},
 		"isSendMeCopyEmail": {
-			"type": "boolean",
+			"type": "string",
 			"required": false
 		},
 		"replyMessage": {

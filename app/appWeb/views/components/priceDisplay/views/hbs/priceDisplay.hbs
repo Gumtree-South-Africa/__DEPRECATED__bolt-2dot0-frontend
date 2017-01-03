@@ -1,13 +1,23 @@
 {{#partial "PriceAmountDisplay"}}
     <span class="value" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
         {{#compare this.advert.price.priceType "===" "FIXED"}}
-            {{#compare this.advert.price.formattedAmount "===" "0"}}
+            {{#compare this.advert.price.amount "===" 0}}
                     <span class="ad-price">{{i18n "pricetype.contact_me"}}</span>
             {{else}}
-                    <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+                    <span class="ad-price">
+                        {{this.advert.price.formattedAmount}}
+                        {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
+                            {{this.advert.price.currency}}
+                        {{/compare}}
+                    </span>
             {{/compare}}
         {{else}}
-                <span class="ad-price">{{this.advert.price.formattedAmount}}</span>
+                <span class="ad-price">
+                    {{this.advert.price.formattedAmount}}
+                    {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
+                        {{this.advert.price.currency}}
+                    {{/compare}}
+                </span>
         {{/compare}}
 
         <meta itemprop="price" content="{{this.advert.price.formattedAmount}}" />
@@ -40,3 +50,8 @@
     {{#block "PriceAmountDisplay"}}
     {{/block}}
 {{/compare}}
+
+{{#unless this.advert.price}}
+	{{!-- Have a placeholder to ensure separate line will NOT cover ad-last-posted --}}
+	<span class="value">&nbsp;</span>
+{{/unless}}

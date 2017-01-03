@@ -28,7 +28,12 @@ let VIP = {
 			}
 		}
 
-		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED' ) {
+		if(modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
+			redirectUrl = '410';
+			return redirectUrl;
+		}
+
+		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
 			redirectUrl = '/?status=adInactive';
 			return redirectUrl;
 		}
@@ -84,17 +89,49 @@ let VIP = {
 					modelData.header.pageMessages.error = '';
 			}
 		}
+
 		// Switch on activateStatus
 		if (typeof query.activateStatus !== 'undefined') {
 			switch (query.activateStatus) {
-				case 'adActivateSuccess':
-					modelData.header.pageMessages.success = 'home.ad.notyetactive';
+				case 'pendingAdActivateSuccess':
+					if (modelData.advert.statusInfo && modelData.advert.statusInfo.status === 'ACTIVE') {
+						modelData.header.pageMessages.success = 'vip.headerMessage.success';
+					} else {
+						modelData.header.pageMessages.success = 'vip.headerMessage.successNotYetActive';
+					}
+					break;
+				case 'adAlreadyActivated':
+					modelData.header.pageMessages.warning = 'vip.headerMessage.alreadyActivated';
+					break;
+				case 'adFlagged':
+					modelData.header.pageMessages.success = 'vip.headerMessage.flagged';
+					break;
+				case 'adReposted':
+					modelData.header.pageMessages.success = 'vip.headerMessage.repostSuccess';
+					break;
+				case 'adActivateSuccessWithIFPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForInsertionFeeSuccess';
+					break;
+				case 'adActivateSuccessWithPendingPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeaturePending';
+					break;
+				case 'adActivateSuccessWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForActivateSuccess';
+					break;
+				case 'adEditedWithPayment':
+				case 'adRepostedWithPayment':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccessEditRepost';
+					break;
+				case 'adFeaturePaymentSuccess':
+					modelData.header.pageMessages.success = 'vip.headerMessage.paymentForFeatureSuccess';
 					break;
 				default:
 					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
 					modelData.header.pageMessages.error = '';
 			}
 		}
+
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
 			switch (query.resumeAbandonedOrderError) {
@@ -169,6 +206,19 @@ router.get('/:id?', (req, res, next) => {
 
 	let viewPageModel = new ViewPageModel(req, res, adId);
 	viewPageModel.populateData().then((modelData) => {
+		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
+		if (redirectUrlByStatus !== null) {
+			if (redirectUrlByStatus === '410') {
+				let err = {
+					status: 410
+				};
+				next(err);
+			} else {
+				res.redirect(redirectUrlByStatus);
+			}
+			return;
+		}
+
 		if (req.app.locals.isSeoUrl === true) {
 			let originalSeoUrl = originalUrl;
 			let dataSeoVipUrl = modelData.advert.seoVipUrl.replace('a-', 'v-');
@@ -176,12 +226,6 @@ router.get('/:id?', (req, res, next) => {
 				res.redirect(dataSeoVipUrl);
 				return;
 			}
-		}
-
-		let redirectUrlByStatus = VIP.redirectBasedOnAdStatus(req, res, modelData);
-		if (redirectUrlByStatus !== null) {
-			res.redirect(redirectUrlByStatus);
-			return;
 		}
 
 		VIP.extendHeaderData(req, modelData);
@@ -199,6 +243,8 @@ router.get('/:id?', (req, res, next) => {
 		modelData.activateStatus = req.query.activateStatus;
 		modelData.showPostOverlay =
 			modelData.activateStatus === 'adActivateSuccess' || modelData.activateStatus === 'adEdited';
+		modelData.postOverlayTitleKey = (modelData.activateStatus === 'adActivateSuccess') ?
+			'vip.postOverlay.postTitle' : 'vip.postOverlay.title';
 
 		pageControllerUtil.postController(req, res, next, 'viewPage/views/hbs/viewPage_', modelData);
 

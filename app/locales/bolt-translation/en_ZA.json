@@ -437,7 +437,6 @@
 	"footer.motors.h-l": "Cars H-L",
 	"footer.motors.m-o": "Cars M-O",
 	"footer.motors.p-z": "Cars P-Z",
-	"footer.toplocations": "Top locations",
 	"footer.copyright": "Copyright © 2014-2016 eBay.  All rights reserved.",
 	"error404.message": "\"We’re sorry, this page does not exist\" <br /><a href=\"%s\">Please go to the homepage</a>",
 	"error410.message": "Sorry, this ad is no longer available.",
@@ -1303,6 +1302,7 @@
 		"trending": "Trending",
 		"goods": "Home & Garden",
 		"cars": "Automotive Vehicles",
+		"carsAndBakkies": "Cars & Bakkies",
 		"realEstate": "Property",
 		"jobs": "Jobs"
 	},
@@ -1459,6 +1459,7 @@
 			"viewLess": "View less"
 		},
 		"toplocations": "Top locations",
+		"topCategories": "Categories",
 		"download": {
 			"download": "Download the App",
 			"itunes": "Available on the App Store",
@@ -1554,6 +1555,7 @@
 	"vip": {
 		"details": {
 			"edit": "Edit",
+			"zoomView": "zoom view",
 			"favorite": "Favorite",
 			"posted": "Posted",
 			"views": "VIEWS",
@@ -1637,6 +1639,18 @@
 			"description": "Tip: Add more photos to increase your chances of selling quickly",
 			"edit": "Edit My Ad",
 			"postMore": "Post More Ads"
+		},
+		"headerMessage": {
+			"success": "Congratulations! Your ad is active and will be visible to all of our users shortly.",
+			"successNotYetActive": "Thank you! We received your activation request. Your ad will be on Gumtree shortly.",
+			"alreadyActivated": "Your ad has been activated",
+			"flagged": "Ad flagged successfully",
+			"repostSuccess": "Congratulations! Your ad has been reposted.",
+			"paymentForInsertionFeeSuccess": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly.",
+			"paymentForFeaturePending": "Payment for feature is pending",
+			"paymentForActivateSuccess": "Thanks! We received your payment and your ad activation request. Your ad will appear on Gumtree shortly with the option you selected to attract more visitors to your ad.",
+			"paymentForFeatureSuccessEditRepost": "Congratulations! We processed your payment and your ad is now live with the premium features to attract more visitors.",
+			"paymentForFeatureSuccess": "Congratulations! You have successfully purchased promotions for your ad(s)."
 		}
 	},
 	"promote": {

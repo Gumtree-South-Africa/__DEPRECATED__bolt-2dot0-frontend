@@ -180,6 +180,120 @@
 			"safetyLink": "https://ayuda.vivanuncios.com.mx/MX?lang=es&l=es&c=PKB%3AConsejos_de_Seguridad",
 			"distractionFree": false,
 			"showTopBanner": false,
+			"topCategories": [
+				{
+				  "text": "Renta inmuebles",
+				  "link": "/s-renta-inmuebles/v1c1098p1"
+				},
+				{
+				  "text": "Autos en venta ",
+				  "link": "/s-venta-autos-camionetas/v1c81p1"
+				},
+				{
+				  "text": "Cuartos en renta ",
+				  "link": "/s-renta-cuartos/v1c1099p1"
+				},
+				{
+				  "text": "Inmuebles de venta ",
+				  "link": "/s-venta-inmuebles/v1c1097p1"
+				},
+				{
+				  "text": "Camionetas en venta",
+				  "link": "/s-venta+camionetas/v1c68p1"
+				},
+				{
+				  "text": "Carros usados en venta ",
+				  "link": "/s-venta-autos/v1c65p1"
+				},
+				{
+				  "text": "Carros en venta",
+				  "link": "/s-venta-vehiculos/v1c64p1"
+				},
+				{
+				  "text": "Motos en venta ",
+				  "link": "/s-venta-motos/v1c69p1"
+				},
+				{
+				  "text": "Bolsa de trabajo ",
+				  "link": "/s-ofertas-empleo/v1c1150p1"
+				},
+				{
+				  "text": "Terrenos en venta",
+				  "link": "/s-venta-terrenos/v1c31p1"
+				},
+				{
+				  "text": "Propiedades comerciales",
+				  "link": "/s-inmuebles-comerciales/v1c1110p1"
+				},
+				{
+				  "text": "Bodegas y mini bodegas ",
+				  "link": "/s-bodegas/v1c33p1"
+				},
+				{
+				  "text": "Rentas vacacionales",
+				  "link": "/s-renta-vacacional/v1c35p1"
+				},
+				{
+				  "text": "Autopartes ",
+				  "link": "/s-autopartes-repuestos-y-servicios/v1c85p1"
+				},
+				{
+				  "text": "Camiones y comerciales ",
+				  "link": "/s-venta-camiones/v1c66p1"
+				},
+				{
+				  "text": "Computadoras y accesorios",
+				  "link": "/s-venta-computacion/v1c6p1"
+				},
+				{
+				  "text": "Consolas y videojuegos ",
+				  "link": "/s-venta-videojuegos/v1c18p1"
+				},
+				{
+				  "text": "Audio-tv-foto-video",
+				  "link": "/s-audio-tv-foto-video/v1c1071p1"
+				},
+				{
+				  "text": "Muebles",
+				  "link": "/s-venta-muebles/v1c9p1"
+				},
+				{
+				  "text": "Decoración y arte",
+				  "link": "/s-venta-decoracion/v1c1075p1"
+				},
+				{
+				  "text": "Electrodomésticos",
+				  "link": "/s-venta-electrodomesticos/v1c1076p1"
+				},
+				{
+				  "text": "Jardín y construcción",
+				  "link": "/s-jardin-herramientas/v1c1077p1"
+				},
+				{
+				  "text": "Ropa de bebés y niños",
+				  "link": "/s-ropa-bebes/v1c1060p1"
+				},
+				{
+				  "text": "Juegos y juguetes",
+				  "link": "/s-juegos-juguetes/v1c1058p1"
+				},
+				{
+				  "text": "Maquinaria y equipamiento",
+				  "link": "/s-maquinaria-equipamiento/v1c1232p1"
+				},
+				{
+				  "text": "Deportes y pasatiempos ",
+				  "link": "/s-deportes-pasatiempos/v1c7p1"
+				},
+				{
+				  "text": "Música, películas, libros",
+				  "link": "/s-musica-peliculas-libros/v1c13p1"
+				},
+				{
+				  "text": "Coleccionables, antigüedades ",
+				  "link": "/s-venta-coleccionables/v1c1100p1"
+				}
+			],
 			"reviews" : [
 				{
 					"primaryImageUrl": "yessenia_r.jpg",
@@ -286,10 +400,10 @@
 	"bapi" : {
 		"HomepageV2": {
 			"desktop": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "galleryCard", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "galleryCard", "adstatistics"]
 			},
 			"mobile": {
-				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "locationlatlong", "seo", "adstatistics"]
+				"models": ["safetyTips", "recentActivities", "trendingCard", "search", "topSearches", "topLocations", "topCategories", "locationlatlong", "seo", "adstatistics"]
 			}
 		},
 		"Homepage" : {
