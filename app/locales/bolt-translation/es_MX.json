@@ -1660,6 +1660,7 @@
 			"browseFiles": "Explorar Archivos",
 			"pdfOrDoc": "Solo PDF o DOC. Máximo 1MB",
 			"messageSent": "Tu mensaje ha sido enviado!",
+			"sendMessageAgain": "Enviar otro mensaje",
 			"terms": "Al hacer clic en “Enviar” aceptas nuestros <a href=\"%s\" target=\"_self\">Términos y Condiciones</a>, <a href=\"%s\" target=\"_self\">Políticas de Privacidad</a> y recibir comunicaciones de marketing.",
 			"canned": {
 				"imInterested": "Me interesa, por favor contáctame.",
