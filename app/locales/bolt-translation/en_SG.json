@@ -1347,7 +1347,8 @@
 		},
 		"myAds": "My ads",
 		"help": "Help",
-		"postAd": "Post FREE Ad"
+		"postAd": "Post FREE Ad",
+		"postAdPageUrl": "/post"
 	},
 	"modal": {
 		"close": "Close",
