@@ -13,9 +13,9 @@ class replyForm {
 			if (adActivateStatus === 'AdReplySuccess') {
 				if ($(window).width() < 848) {
 					this._messageSeller();
+				} else {
+					$('.reply-form-container').addClass('hide');
 				}
-
-				$('.reply-form-container').addClass('hide');
 				$('.message-sent').removeClass('hide');
 			}
 
@@ -76,6 +76,15 @@ class replyForm {
 
 			$('.close-button').on('click', function() {
 				$('.message-sent').addClass('hide');
+			});
+
+			$('.send-message-text').on('click', function() {
+				$('.message-sent').addClass('hide');
+				$('.reply-form-container').removeClass('hide');
+				$('.message-box-area').focus();
+				if ($(window).width() < 848) {
+					$('.welcome-wrapper .email').trigger( 'click' );
+				}
 			});
 		});
 
