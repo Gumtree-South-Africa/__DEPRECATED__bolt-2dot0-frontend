@@ -289,14 +289,6 @@ $mobileTextboxWidth: 84%;
 		}
 
 		.search-bar {
-			button {
-				height: 79px;
-
-				.button-content-container {
-					line-height: 70px;
-				}
-			}
-
 			.location-link {
 				right: inherit;
 				width: 100%;
@@ -500,6 +492,20 @@ $mobileTextboxWidth: 84%;
 					.location-text {
 						margin-top: 1%;
 					}
+				}
+			}
+		}
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.search-controls.is-typing {
+		.search-bar {
+			button {
+				height: 79px;
+
+				.button-content-container {
+					line-height: 70px;
 				}
 			}
 		}
