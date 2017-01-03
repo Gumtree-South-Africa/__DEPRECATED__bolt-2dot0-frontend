@@ -1,6 +1,6 @@
 {
 	"header" : {
-		"postAdPageUrl"			: "/post.html",
+		"postAdPageUrl"			: "/post",
 		"signInURL"				: "/login.html",
 		"watchListUrl"			: "/mywatchlist.html",
 		"myMessageUrl"			: "/my/message.html",
