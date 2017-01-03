@@ -6,10 +6,10 @@
 		{{#if this.imageUploadFromHome}}
 			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button directly-post' iconName='icon-post' i18nPath="header.postAd"}}
 		{{else}}
-			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+			{{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="header.postAdPageUrl" i18nPath="header.postAd"}}
 		{{/if}}
         -->
-        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="/post" i18nPath="header.postAd"}}
+        {{> (dynamic "button") hideIcon=false extraClasses='js-hamburger-post js-post-button' gtmEvent="pc|PostAdBegin" iconName='icon-post' buttonLink="header.postAdPageUrl" i18nPath="header.postAd"}}
 
         {{#if this.header.isUserLoggedIn}}
 			<div class="menu-profile">
