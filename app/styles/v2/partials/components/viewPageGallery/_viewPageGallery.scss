@@ -311,13 +311,13 @@
 			margin: 8px 3px 3px 3px;
 		}
 	}
-	.modal > .modal-container {
-		max-width: 40em;
-	}
 	#vipOverlay{
 		.counter{
 			bottom: 8.5em;
 			right: 2em;
+		}
+		.modal-container {
+			max-width: 40em;
 		}
 		&> .modal-container > .modal-close-section{
 			position: absolute;
