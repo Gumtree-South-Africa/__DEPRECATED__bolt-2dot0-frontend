@@ -480,19 +480,19 @@ class ViewPageModel {
 					data.adErrorDetail = data.bapiJson.details;
 					data.adErrorDetailMessage = data.adErrorDetail[0].message;
 
-					if (data.adErrorDetailMessage.indexOf('DELETED')) {
+					if (data.adErrorDetailMessage.indexOf('DELETED') > 0) {
 						data.statusInfo = {
 							status: 'DELETED',
 							statusReason: 'DELETED__ADMIN__DELETED',
 							isDeleted: true
 						};
-					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
+					} else if (data.adErrorDetailMessage.indexOf('BLOCKED') > 0) {
 						data.statusInfo = {
 							status: 'BLOCKED',
 							statusReason: 'BLOCKED__TNS__CHECKED',
 							isBlocked: true
 						};
-					} else if (data.adErrorDetailMessage.indexOf('DELAYED')) {
+					} else if (data.adErrorDetailMessage.indexOf('DELAYED') > 0) {
 						data.statusInfo = {
 							status: 'DELAYED',
 							statusReason: 'DELAYED__TNS__CHECKED',
