@@ -236,15 +236,14 @@ class FormMap {
 		if(!this.enableComponents) {
 			return;
 		}
-		
+		this._removeAllMarker();
+		this._removeAllRanges();
 		this.typeMark= this.HtmlSwitchRangeMarker.is(":checked");
 		if(this.typeMark) {
 			// if is true set a marker in map (use precise location)
-			this._removeAllMarker();
 			this._addMarker();
 		} else {
 			// if is false set a range (use aproximate location)
-			this._removeAllRanges();
 			this._addRange(this.meters);
 		}
 	}
