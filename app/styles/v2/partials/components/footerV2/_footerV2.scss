@@ -203,9 +203,6 @@
 			}
 			.support-text {
 				margin-left: 10px;
-				&.mobile-only {
-					display: inline-block;
-				}
 			}
 		}
 	}
@@ -302,6 +299,20 @@
 
 .footer-links div:nth-child(3).expanded .footer-explore {
 	margin-bottom: -3px;
+}
+
+@include to-breakpoint($small-break) {
+	.footer-wrapper {
+		.support-wrapper {
+			.support-container {
+				.support-text {
+					&.mobile-only {
+						display: inline-block;
+					}
+				}
+			}
+		}
+	}
 }
 
 @include from-breakpoint($medium-break) {
