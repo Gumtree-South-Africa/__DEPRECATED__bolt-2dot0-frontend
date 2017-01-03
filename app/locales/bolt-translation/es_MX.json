@@ -1270,7 +1270,8 @@
 		},
 		"myAds": "Mis anuncios",
 		"help": "Ayuda",
-		"postAd": "Publica Gratis"
+		"postAd": "Publica Gratis",
+		"postAdPageUrl": "/post"
 	},
 	"modal": {
 		"close": "CERRAR",
