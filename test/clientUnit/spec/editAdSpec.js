@@ -5,24 +5,13 @@ let postAdFormMainDetailsController = require("app/appWeb/views/components/postA
 let EditAdController = require("app/appWeb/views/templates/pages/editAd/js/editPage.js").EditAd;
 let specHelper = require('../helpers/commonSpecHelper.js');
 let formMapController = require("app/appWeb/views/components/formMap/js/formMap.js");
-
-
-//let mockGoogleAutoCompleteData = "window.google=window.google||{};google.maps=google.maps||{};google.maps.__gjsload__(\'places\',function(_){\'use strict\';var Qw=function(a,b){try{_.Ib(window.HTMLInputElement,\"HTMLInputElement\")(a)}catch(c){if(_.Fb(c),!a)return}\r\n_.J(\"places_impl\",(0,_.v)(function(c){this.setValues(b||{});c.b(this,a);_.Ie(a)},this))},Rw=function(){this.b=null;_.J(\"places_impl\",(0,_.v)(function(a){this.b=a.l()},this))},Sw=function(a){this.b=null;_.J(\"places_impl\",(0,_.v)(function(b){this.b=b.f(a)},this))},Tw=function(a,b){_.J(\"places_impl\",(0,_.v)(function(c){c.j(this,a);this.setValues(b||{})},this))};_.w(Qw,_.G);Qw.prototype.setTypes=_.wc(\"types\",_.Kb(_.$g));Qw.prototype.setComponentRestrictions=_.wc(\"componentRestrictions\");_.xc(Qw.prototype,{place:null,bounds:_.Ob(_.Ud)});Rw.prototype.getPlacePredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getPlacePredictions(a,b)},this))};Rw.prototype.getPredictions=Rw.prototype.getPlacePredictions;Rw.prototype.getQueryPredictions=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getQueryPredictions(a,b)},this))};_.r=Sw.prototype;_.r.getDetails=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.getDetails(a,b)},this))};_.r.nearbySearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.nearbySearch(a,b)},this))};_.r.search=Sw.prototype.nearbySearch;_.r.textSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.textSearch(a,b)},this))};_.r.radarSearch=function(a,b){_.J(\"places_impl\",(0,_.v)(function(){this.b.radarSearch(a,b)},this))};_.w(Tw,_.G);_.xc(Tw.prototype,{places:null,bounds:_.Ob(_.Ud)});_.Lc.google.maps.places={PlacesService:Sw,PlacesServiceStatus:{OK:_.ha,UNKNOWN_ERROR:_.ka,OVER_QUERY_LIMIT:_.ia,REQUEST_DENIED:_.ja,INVALID_REQUEST:_.ca,ZERO_RESULTS:_.la,NOT_FOUND:_.ga},AutocompleteService:Rw,Autocomplete:Qw,SearchBox:Tw,RankBy:{PROMINENCE:0,DISTANCE:1},RatingLevel:{GOOD:0,VERY_GOOD:1,EXCELLENT:2,EXTRAORDINARY:3}};_.mc(\"places\",{});});";
-//let mockLocationData = {"results":[{"address_components":[{"long_name":"Mexico City","short_name":"México D.F.","types":["locality","political"]},{"long_name":"Mexico City","short_name":"D.F.","types":["administrative_area_level_1","political"]},{"long_name":"Mexico","short_name":"MX","types":["country","political"]}],"formatted_address":"Mexico City, Mexico","geometry":{"bounds":{"northeast":{"lat":19.5927572,"lng":-98.9604482},"southwest":{"lat":19.1887101,"lng":-99.3267771}},"location":{"lat":19.4326077,"lng":-99.133208},"location_type":"APPROXIMATE","viewport":{"northeast":{"lat":19.5927572,"lng":-98.9604482},"southwest":{"lat":19.1887101,"lng":-99.3267771}}},"place_id":"ChIJB3UJ2yYAzoURQeheJnYQBlQ","types":["locality","political"]}],"status":"OK"};
-//let mockLatLongData = {"id":201,"localizedName":"Mexico City","level":"L0","isLeaf":false,"_links":[{"rel":"self","href":"/locations/90/-70.5","method":"GET"}]};
+let formMapMock =require('../mockData/formMapMock.json');
 
 let mockEditAdResponse = {
 	redirectLink : {
 		vip: "/a-venta-inmuebles/2-de-octubre/post-house-ad-from-bapi-at-2016+07+22-00-57-24-085/1001100557900910658758009?activateStatus=adEdited"
 	}
 };
-//let mockEditAdWithPaymentResponse = {
-//	redirectLink : {
-//		vip: "/a-elektronarzedzia/buk/ad-posted-by-shuochen-ebay-com/1001000002000910000000009?activateStatus=adEdited",
-//		previp: "/payment/payment.html?orderId=101016200",
-//		previpRedirect: "/a-elektronarzedzia/buk/ad-posted-by-shuochen-ebay-com/1001000002000910000000009?activateStatus=adActivateSuccessWithIFPayment"
-//	}
-//};
 
 let editPageModel = require("../mockData/editPageModel.json");
 let customAttributeAjaxResponse = require("../mockData/customAttributesAjaxResponse.json");
@@ -180,9 +169,14 @@ describe('Edit Ad', () => {
 					};
 				}
 			};
-			$testArea = specHelper.setupTest('formMap', { formMap: {} }, 'es_MX');
+			$testArea = specHelper.setupTest('formMap', { googleMap: formMapMock.googleMapConfiguration, locationlatlong: formMapMock.locationlatlong }, 'es_MX');
 			formMapController.initialize();
+			window.formMap.locationAd = {
+				lat: 23.49125085380051,
+		    	lng: -100.15682835625
+			};
 		});
+
 		it('test if google api maps has been applied on object window.google', () => {
 			spyOn(window.google.maps, 'Map');
 			this.map = new google.maps.Map($(".map")[0], {
@@ -199,165 +193,12 @@ describe('Edit Ad', () => {
 			switchRangeMarker.trigger("click");
 			expect(switchRangeMarker.hasClass('toggle-input')).toBeTruthy('should be display checkbox control');
 		});
+
+		it("initialize and disable geolocate", () => {
+			let checkGeolocation = $testArea.find('#checkGeolocation');
+			window.formMap.validateCountry(window.formMap.locationAd);
+			window.google.maps.Geocoder.geocode = jasmine.createSpy();
+			expect(checkGeolocation.hasClass('toggle-input')).toBe(false);
+		});
 	});
-
-	// This should be updated to use category dropdown selection
-	/*describe("Category Selection Modal", () => {
-		it("should open the category selection modal when pressing the breadcrumb links", () => {
-			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
-
-			spyOn(categorySelectionModal, "openModal").and.stub();
-
-			editAdFormMainDetailsController.initialize(false);
-			editAdFormMainDetailsController.onReady();
-
-			$testArea.find("#category-name-display").click();
-
-			expect(categorySelectionModal.openModal).toHaveBeenCalled();
-		});
-
-		it("should open the category selection modal when pressing the change button links", () => {
-			let $testArea = specHelper.setupTest("editAdFormMainDetails", editPageModel, "es_MX");
-
-			spyOn(categorySelectionModal, "openModal").and.stub();
-
-			editAdFormMainDetailsController.initialize(false);
-			editAdFormMainDetailsController.onReady();
-
-			$testArea.find(".choose-category-button").click();
-
-			expect(categorySelectionModal.openModal).toHaveBeenCalled();
-		});
-
-		it("should open with an empty category hierarchy at all categories", () => {
-			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
-
-			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
-
-			categorySelectionModal.initialize();
-
-			categorySelectionModal.openModal({
-				currentHierarchy: []
-			});
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
-			let $listItems = $testArea.find(".list-item");
-			expect($listItems.length).toBeGreaterThan(0);
-			expect($listItems.length).toEqual(mockCategoryTree.children.length);
-			$testArea.find(".list-item").each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[i].localizedName);
-			});
-		});
-
-		it("should open with a selected category and its list if selected category is not a leaf", () => {
-			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
-
-			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
-
-			categorySelectionModal.initialize();
-
-			categorySelectionModal.openModal({
-				currentHierarchy: [0, 5]
-			});
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel > Automotive Vehicles");
-			let $listItems = $testArea.find(".list-item");
-
-			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeFalsy();
-
-			$testArea.find("#clear-text-btn").click();
-
-			expect($listItems.length).toBeGreaterThan(0);
-			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			$listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			});
-		});
-
-		it("should allow you to press a breadcrumb link to go backwards", () => {
-			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
-
-			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
-
-			categorySelectionModal.initialize();
-
-			categorySelectionModal.openModal({
-				currentHierarchy: [0, 5]
-			});
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel > Automotive Vehicles");
-			let $listItems = $testArea.find(".list-item");
-
-			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeFalsy();
-
-			$testArea.find("#clear-text-btn").click();
-
-			expect($listItems.length).toBeGreaterThan(0);
-			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			$listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			});
-
-			$testArea.find(".hier-link").first().click();
-			$listItems = $testArea.find(".list-item");
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
-			expect($listItems.length).toEqual(mockCategoryTree.children.length);
-			$listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[i].localizedName);
-			});
-		});
-
-
-		it("should let you drill into menus", () => {
-			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
-
-			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
-
-			categorySelectionModal.initialize();
-
-			categorySelectionModal.openModal({
-				currentHierarchy: [0]
-			});
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
-
-			$testArea.find(".list-item").first().click();
-
-			let $listItems = $testArea.find(".list-item");
-
-			expect($listItems.length).toBeGreaterThan(0);
-			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			$listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			});
-		});
-
-		it("should stage a leaf node", () => {
-			let $testArea = specHelper.setupTest("categorySelectionModal", {}, "es_MX");
-
-			$testArea.append(`<div id="category-tree">${JSON.stringify(mockCategoryTree)}</div>`);
-
-			categorySelectionModal.initialize();
-
-			categorySelectionModal.openModal({
-				currentHierarchy: [0]
-			});
-
-			expect($testArea.find(".current-hierarchy").text()).toEqual("editAd.categorySelect.rootLabel");
-
-			$testArea.find(".list-item").first().click();
-
-			let $listItems = $testArea.find(".list-item");
-
-			expect($listItems.length).toEqual(mockCategoryTree.children[0].children.length);
-			$listItems.each((i, item) => {
-				expect($(item).text()).toEqual(mockCategoryTree.children[0].children[i].localizedName);
-			});
-
-			$listItems.first().click();
-
-			expect($testArea.find("#category-selection-modal").hasClass("staged")).toBeTruthy();
-		});
-	});*/
 });

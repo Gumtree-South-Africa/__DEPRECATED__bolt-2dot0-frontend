@@ -37,6 +37,7 @@ class FormMap {
 				let geocoder = new google.maps.Geocoder(),
 						latlng = new google.maps.LatLng(coordinates.lat, coordinates.lng);
 
+				/* istanbul ignore next */
 				geocoder.geocode({'latLng': latlng}, function(results, status) {
 					let countryShortName, i;
 					try {
@@ -109,10 +110,11 @@ class FormMap {
 
 	// function enables autocomplete
 	initAutocomplete() {
-		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'] });
+		this.autocomplete = new google.maps.places.Autocomplete(this.HtmlAutocomplete[0], { types: ['geocode'], componentRestrictions: {country: window.formMap.country}});
 		this.autocomplete.bindTo('bounds', this.map);
 
 		let that = this.autocomplete;
+		/* istanbul ignore next */
 		this.autocomplete.addListener('place_changed', () => {
 			let place = that.getPlace();
 			this.HtmlAutocomplete.removeClass("error");

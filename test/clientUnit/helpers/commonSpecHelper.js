@@ -154,6 +154,11 @@ let mockGoogleLocationApi = () => {
 					setMap: function() { }
 				};
 			},
+			Geocoder: function() {
+				return {
+					geocode: function() {}
+				};
+			},
 			LatLng: function() { },
 			Map: function() {
 				return {
@@ -179,7 +184,7 @@ let mockGoogleLocationApi = () => {
 				};
 			},
 			addListener: function() {},
-			Marker: function() { 
+			Marker: function() {
 				return {
 					setMap: function() {}
 				};
@@ -189,7 +194,9 @@ let mockGoogleLocationApi = () => {
 					return {
 						bindTo: function() { },
 						addListener: function() {
-						 },
+							return;
+						},
+						getPlace: function() { },
 						setBounds: function() { }
 					};
 				}
