@@ -83,16 +83,16 @@ $dropdown-width: 220px;
 		}
 
 		.logo {
-			position: absolute;
-			left: 0;
-			right: 0;
-			margin: 0 auto;
-
-			display: inline-block;
-			width: 200px;
-			height: 28px;
-			background: url("../../../../../images/es_MX/logo_v2.png") no-repeat 50% 50%;
+			background: url("../../../../../images/#{$photoFolder}/logo_v2.png") no-repeat 50% 50%;
 			background-size: contain;
+			display: inline-block;
+			left: 0;
+			margin: 0 auto;
+			position: absolute;
+			right: 0;
+			height: 28px;
+			width: 200px;
+
 			@include from-breakpoint($medium-break) {
 				float: left;
 				margin: 9px 0;
