@@ -205,14 +205,13 @@ describe('Header', () => {
 					let data = specHelper.getMockDataByLocale("categories", "categories", "es_MX");
 					let map = new Map();
 
-					// add the root "All Categories"
-					map.set(data.id, data);
-
 					// only expecting L1 categories
 					for (let child of data.children) {
 						// setup a key we can use to lookup the category
-						let key = child.id;
-						map.set(key, child);
+						child.children.forEach(item => {
+							let key = item.id;
+							map.set(key, item);
+						});
 					}
 
 					let c$ = cheerio.load(res.text);
@@ -221,15 +220,17 @@ describe('Header', () => {
 					expect(catUl.hasClass('hidden')).toBe(true, 'cat dropdown should be hidden');
 
 					let mainMenuItemText = c$('#js-browse-item-text').text().trim();
-					expect(mainMenuItemText).toBe(i18n.header.catDropdown.browse, 'i18n string for category main menu item should match');
+					expect(mainMenuItemText).toBe(i18n.header.catDropdown.browseCategories, 'i18n string for category main menu item should match');
 
 					let linkCount = 0;
-					c$('a', catUl).each((i, el) => {
+					c$('.menu-item.l2 a', catUl).each((i, el) => {
 						linkCount++;
 						// lookup the metadata we need to validate from the map
 						let stringId = c$(el).attr('data-id');
 						let id = parseInt(stringId);
 						expect(id).toEqual(jasmine.any(Number), `link with id ${stringId} should be numeric`);
+
+
 						expect(map.has(id)).toBe(true, `link with id ${id} should be found in mock data`);
 						let mapValue = map.get(id);
 
