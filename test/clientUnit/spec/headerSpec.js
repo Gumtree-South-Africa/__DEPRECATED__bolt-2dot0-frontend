@@ -19,8 +19,8 @@ describe("Header V2", () => {
 		expect($catDropdown.hasClass("hidden")).toBeTruthy("category dropdown should be hidden on initial load");
 
 		let $catButton = $testArea.find(".browse");
-		$catButton.click();
-		expect($catDropdown.hasClass("hidden")).toBeFalsy("category dropdown should be visible after click");
+		$catButton.trigger('mouseenter');
+		expect($catDropdown.hasClass("hidden")).toBeFalsy("category dropdown should be visible after hover");
 
 
 		let $profileDropdown = $testArea.find("#js-profile-dropdown");
