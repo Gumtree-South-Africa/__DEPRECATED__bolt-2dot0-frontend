@@ -146,7 +146,6 @@ $mobileTextboxWidth: 84%;
 			display: block;
 			float: left;
 			margin-top: 5px;
-			max-width: 3em;
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
@@ -291,7 +290,11 @@ $mobileTextboxWidth: 84%;
 
 		.search-bar {
 			button {
-				height: 83px;
+				height: 79px;
+
+				.button-content-container {
+					line-height: 70px;
+				}
 			}
 
 			.location-link {
@@ -302,7 +305,7 @@ $mobileTextboxWidth: 84%;
 				white-space: nowrap;
 				.location-text {
 					margin: 0;
-					max-width: 7em;
+					max-width: 80%;
 				}
 
 			}
@@ -473,6 +476,10 @@ $mobileTextboxWidth: 84%;
 	.search-controls {
 		.search-bar {
 			height: $mobileSearchBarHeight;
+
+			.location-text {
+				max-width: calc(100% - 25px);
+			}
 
 			.search-button {
 				.button-content-container {
