@@ -55,7 +55,7 @@
                     </ul>
                 </div>
                 {{!-- post ad button --}}
-                {{> (dynamic "button") extraClasses='post-ad-button' hideIcon=true gtmEvent='pc|PostAdBegin' buttonLink="/post" i18nPath="header.postAd"}}
+                {{> (dynamic "button") extraClasses='post-ad-button' hideIcon=true gtmEvent='pc|PostAdBegin' buttonLink='header.postAdPageUrl' i18nPath='header.postAd'}}
             </div>
             <div class="right-items">
                 <span class="rot-link-toConvert messages" data-o-uri="{{obfuscateUrl this.header.myMessageUrl}}" data-gtm="pc|NavHeaderClick|eventLabel|MessageIcon">
