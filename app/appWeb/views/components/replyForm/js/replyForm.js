@@ -23,8 +23,12 @@ class replyForm {
 			$realPhone.text(window.btoa($realPhone.text()));
 
 			$('.show-phone').on('click', function() {
+				let realPhoneNumber = window.atob($realPhone.text());
 				$('.hidden-phone').addClass('hide');
-				$realPhone.text(window.atob($realPhone.text()));
+				$realPhone.html($('<a>', {
+					"text": realPhoneNumber,
+					"href": "tel:" + realPhoneNumber
+				}));
 				$realPhone.removeClass('hide');
 				$('.show-phone').hide();
 			});
@@ -97,7 +101,7 @@ class replyForm {
 		});
 	}
 
-	// Evalues email adress 
+	// Evalues email adress
 	// SUPPORT
 	// acounttamail@.domain.com && acounttamail@.domain.com.country
 	validateEmail(email) {
@@ -105,7 +109,7 @@ class replyForm {
 		return regex.test(email);
 	}
 
-	// Evalues a phone number 
+	// Evalues a phone number
 	// SUPPORT
 	// (123) 456 7899
 	// (123).456.7899
@@ -122,7 +126,7 @@ class replyForm {
 		return JSON.parse(JSON.stringify(value));
 	}
 
-	// validate the fields in all form and end show warning messages of all invalid fields 
+	// validate the fields in all form and end show warning messages of all invalid fields
 	validateForm() {
 		let errorStack = new Array();
 		//Reset error messages
@@ -157,7 +161,7 @@ class replyForm {
 		} else {
 			$('.fe-email-validation').addClass('hide');
 		}
-		
+
 		let phone = $('.phone-box-area').val();
 		if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
 			$('.fe-phone-validation').removeClass('hide');
@@ -166,8 +170,8 @@ class replyForm {
 			$('.fe-phone-validation').addClass('hide');
 		}
 
-		// if no exist any error the length of object errorStack should be equal to 0 
-		// and return TRUE else length is diferent to 0 the result is FALSE 
+		// if no exist any error the length of object errorStack should be equal to 0
+		// and return TRUE else length is diferent to 0 the result is FALSE
 		return errorStack.length === 0;
 	}
 

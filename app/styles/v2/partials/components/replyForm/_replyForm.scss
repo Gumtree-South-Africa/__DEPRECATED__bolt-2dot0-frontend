@@ -441,6 +441,12 @@
 				top: 8px;
 				float: right;
 			}
+			.real-phone > a {
+				&, &:active, &:visited, &:hover {
+					color: $vivaGray1;
+					text-decoration: none;
+				}
+			}
 		}
 
 		.main-content {
