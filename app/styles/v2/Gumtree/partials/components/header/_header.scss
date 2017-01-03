@@ -16,8 +16,6 @@
 		}
 
 		.logo {
-			background: url("../../../../../images/#{$photoFolder}/logo_gumtree.png") no-repeat 50% 50%;
-			background-size: contain;
 			height: 46px;
 			width: 170px;
 			@include from-breakpoint($medium-break) {
