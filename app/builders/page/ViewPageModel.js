@@ -9,6 +9,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
@@ -424,6 +425,7 @@ class ViewPageModel {
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
@@ -622,6 +624,18 @@ class ViewPageModel {
 				return {};
 			});
 		};
+
+		// when we don't have a geoCookie, we shouldn't make the call
+		if (modelData.geoLatLngObj) {
+			this.dataPromiseFunctionMap.locationlatlong = () => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj, false).then((data) => {
+					return data;
+				}).fail((err) => {
+					console.warn(`error getting locationlatlong data ${err}`);
+					return {};
+				});
+			};
+		}
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();
