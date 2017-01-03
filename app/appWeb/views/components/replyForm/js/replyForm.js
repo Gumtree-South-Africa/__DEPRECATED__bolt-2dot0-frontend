@@ -180,6 +180,7 @@ class replyForm {
 	}
 
 	_messageSeller() {
+		$('body').addClass('stop-scrolling');
 		let $replyForm = $('.reply-form');
 		let $replyFormContainer = $('.reply-form-container');
 		$('.header-wrapper').addClass('fixed-header hidden-search');
@@ -191,6 +192,7 @@ class replyForm {
 	}
 
 	backFromReplyFn() {
+		$('body').removeClass('stop-scrolling');
 		$('.header-wrapper').removeClass('fixed-header hidden-search');
 		$('.reply-form-container').addClass('desktop-only');
 		$('.reply-form').removeClass('fixed');
