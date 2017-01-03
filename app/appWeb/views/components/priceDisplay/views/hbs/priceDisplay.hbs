@@ -1,57 +1,69 @@
-{{#partial "PriceAmountDisplay"}}
+{{#partial "PriceAmountMeta"}}
+    <meta itemprop="price" content="{{this.advert.price.formattedAmount}}"/>
+    <meta itemprop="priceCurrency" content="{{this.advert.price.currency}}"/>
+{{/partial}}
+
+{{#partial "PriceAmountDisplayFixed"}}
     <span class="value" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-        {{#compare this.advert.price.priceType "===" "FIXED"}}
-            {{#compare this.advert.price.amount "===" 0}}
-                    <span class="ad-price">{{i18n "pricetype.contact_me"}}</span>
-            {{else}}
-                    <span class="ad-price">
-                        {{this.advert.price.formattedAmount}}
-                        {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
-                            {{this.advert.price.currency}}
-                        {{/compare}}
-                    </span>
-            {{/compare}}
+        {{#compare this.advert.price.amount "===" 0}}
+                <span class="ad-price">{{i18n "pricetype.contact_me"}}</span>
         {{else}}
                 <span class="ad-price">
-                    {{this.advert.price.formattedAmount}}
+                {{this.advert.price.formattedAmount}}
                     {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
                         {{this.advert.price.currency}}
                     {{/compare}}
-                </span>
+            </span>
         {{/compare}}
 
-        <meta itemprop="price" content="{{this.advert.price.formattedAmount}}" />
-        <meta itemprop="priceCurrency" content="{{this.advert.price.currency}}" />
+        {{#block "PriceAmountMeta"}}
+        {{/block}}
+    </span>
+{{/partial}}
+
+{{#partial "PriceAmountDisplayMakeOffer"}}
+    <span class="value" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
+        {{#compare this.advert.price.amount "!==" 0}}
+            <span class="ad-price">
+                {{this.advert.price.formattedAmount}}
+                {{#compare this.advert.price.currency '!==' this.config.bapiConfigData.content.localCurrencies.[0]}}
+                    {{this.advert.price.currency}}
+                {{/compare}}
+            </span>
+        {{/compare}}
+
+        <span class="value make-offer">{{i18n "pricetype.make_offer"}}</span>
+
+        {{#block "PriceAmountMeta"}}
+        {{/block}}
     </span>
 {{/partial}}
 
 {{#with this.advert}}
     {{#compare price.priceType "===" "FREE"}}
-            <span class="value">{{i18n "pricetype.free"}}</span>
+        <span class="value">{{i18n "pricetype.free"}}</span>
     {{/compare}}
 
     {{#compare price.priceType "===" "CONTACT_ME"}}
-            <span class="value">{{i18n "pricetype.contact_me"}}</span>
+        <span class="value">{{i18n "pricetype.contact_me"}}</span>
     {{/compare}}
 
     {{#compare price.priceType "===" "BARTER_SWAP"}}
-            <span class="value">{{i18n "pricetype.barter_swap"}}</span>
+        <span class="value">{{i18n "pricetype.barter_swap"}}</span>
     {{/compare}}
 {{/with}}
 
 {{#compare this.advert.price.priceType "===" "MAKE_OFFER"}}
     {{#block "PriceAmountDisplayMakeOffer"}}
-        {{#block "PriceAmountDisplay"}}{{/block}}
     {{/block}}
-        <span class="value make-offer">{{i18n "pricetype.make_offer"}}</span>
 {{/compare}}
 
 {{#compare this.advert.price.priceType "===" "FIXED"}}
-    {{#block "PriceAmountDisplay"}}
+    {{#block "PriceAmountDisplayFixed"}}
     {{/block}}
 {{/compare}}
 
 {{#unless this.advert.price}}
-	{{!-- Have a placeholder to ensure separate line will NOT cover ad-last-posted --}}
-	<span class="value">&nbsp;</span>
+{{!-- Have a placeholder to ensure separate line will NOT cover ad-last-posted --}}
+    <span class="value">&nbsp;</span>
 {{/unless}}

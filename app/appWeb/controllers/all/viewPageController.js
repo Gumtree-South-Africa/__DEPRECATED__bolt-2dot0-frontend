@@ -20,32 +20,23 @@ let VIP = {
     	let difference = expired - today;
 		let daysLeft = Math.floor(difference / 86400000);
 
-		let redirectUrl;
-		if(modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT' ) {
-			if(daysLeft > 60) {
+		let redirectUrl = null;
+		if (typeof modelData.advert.statusInfo !== 'undefined') {
+			if (modelData.advert.statusInfo.statusReason === 'DELETED__USER__DELETED' || modelData.advert.statusInfo.statusReason === 'DELETED__SYSTEM__TIMEDOUT') {
+				if (daysLeft > 60) {
+					redirectUrl = '/?status=adInactive';
+				}
+			} else if (modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
+				redirectUrl = '410';
+			} else if (modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
 				redirectUrl = '/?status=adInactive';
-				return redirectUrl;
+			} else if (modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
+				if (daysLeft > 60) {
+					redirectUrl = '/?status=adPending';
+				}
 			}
 		}
-
-		if(modelData.advert.statusInfo.statusReason === 'DELETED__ADMIN__DELETED') {
-			redirectUrl = '410';
-			return redirectUrl;
-		}
-
-		if(modelData.advert.statusInfo.statusReason === 'BLOCKED__TNS__CHECKED' || modelData.advert.statusInfo.statusReason === 'DELAYED__TNS__CHECKED') {
-			redirectUrl = '/?status=adInactive';
-			return redirectUrl;
-		}
-
-		if(modelData.advert.statusInfo.status === 'PENDING' && (modelData.advert.statusInfo.statusReason === 'PENDING__ADMIN__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__CONFIRMED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__UPDATED' || modelData.advert.statusInfo.statusReason === 'PENDING__USER__REPOSTED' )) {
-			if(daysLeft > 60) {
-				redirectUrl = '/?status=adPending';
-				return redirectUrl;
-			}
-		}
-
-		return null;
+		return redirectUrl;
 	},
 	extendHeaderData: (req, modelData) => {
 		// SEO
@@ -189,6 +180,11 @@ router.get('/:id?', (req, res, next) => {
 	// If no adId, redirect to homepage.
 	if (adId === undefined) {
 		res.redirect('/');
+		return;
+	}
+	if (adId === "preloader.gif") {
+		console.warn('This adId is not a number');
+		next();
 		return;
 	}
 

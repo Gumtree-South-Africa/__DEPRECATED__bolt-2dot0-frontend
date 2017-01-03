@@ -415,7 +415,9 @@ class ViewPageModel {
 		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
 
 		//Status Banner
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		if (typeof modelData.advert.statusInfo !== 'undefined') {
+			modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		}
 
 		return modelData;
 	}
