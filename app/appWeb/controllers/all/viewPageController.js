@@ -38,6 +38,7 @@ let VIP = {
 		}
 		return redirectUrl;
 	},
+
 	extendHeaderData: (req, modelData) => {
 		// SEO
 		modelData.header.pageType = modelData.pagename;
@@ -58,6 +59,7 @@ let VIP = {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/ViewPage.css');
 		}
 	},
+
 	buildHeaderPageMessages: (query, modelData) => {
 		modelData.header.pageMessages = {};
 		if (typeof query !== 'object') {
@@ -68,17 +70,6 @@ let VIP = {
 				queryObj[pair[0]] = decodeURIComponent(pair[1] || '');
 			});
 			query = queryObj;
-		}
-		// Switch on status
-		if (typeof query.status !== 'undefined') {
-			switch (query.status) {
-				case 'adInactive':
-					modelData.header.pageMessages.success = 'home.ad.notyetactive';
-					break;
-				default:
-					modelData.header.pageMessages.success = '';
-					modelData.header.pageMessages.error = '';
-			}
 		}
 
 		// Switch on activateStatus
@@ -135,8 +126,10 @@ let VIP = {
 			}
 		}
 	},
+
 	extendFooterData: (req, modelData) => {
 		// JS
+		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 		if (!modelData.footer.min) {
 			if (modelData.header.enableLighterVersionForMobile) {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_desktop_${modelData.locale}.js`);
@@ -150,7 +143,6 @@ let VIP = {
 				modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + `ViewPage_mobile_${modelData.locale}.js`);
 			}
 		}
-		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'HomePageV2Legacy.min.js');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'Zoom.min.js');
 	}
