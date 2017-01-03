@@ -26,11 +26,16 @@
 			}
 		}
 		.price-update {
+			padding-left: 10px;
 			.ad-price {
 				display: inline;
 				font-size: 20px;
 				font-weight: bold;
-				padding-left: 10px;
+			}
+			.value {
+				display: inline;
+				font-size: 20px;
+				font-weight: bold;
 			}
 			.ad-last-posted {
 				color: $vivaGray1;
