@@ -10,7 +10,7 @@ class PhotoContainerMobile extends PhotoContainer {
 	}
 
 	getPageTypeSelect() {
-		return "#initPageType";
+		return ".initPageType";
 	}
 
 	getPhotoDivSelect() {
@@ -27,13 +27,18 @@ class PhotoContainerMobile extends PhotoContainer {
 		this.swiper.slideTo(this.latestPosition-1, 1000, false);
 	}
 
+	uploadImageShowSpinner() {
+		super.uploadImageShowSpinner();
+		this.swiper.slideTo(this.latestPosition, 1000, false);
+	}
+
 	/**
 	 * sets up all the variables and two functions (success and failure)
 	 * these functions are in here to be properly bound to this
 	 * @param
 	 */
-	initialize(options) {
-		super.initialize(options, $(".photo-container-mobile"));
+	initialize(options, docElement) {
+		this.$photoContainer = $(docElement.find(".photo-container-mobile"));
 		this.swiper = new Swiper('.swiper-container', {
 			pagination: '.swiper-pagination',
 			effect: 'coverflow',
@@ -49,7 +54,7 @@ class PhotoContainerMobile extends PhotoContainer {
 				slideShadows : true
 			}
 		});
-		this.$photoContainer = $(".photo-container-mobile");
+		super.initialize(options, this.$photoContainer);
 		this.$imageUrls = $(this.$photoContainer.find(".imgUrls"));
 
 		$(this.$photoContainer.find(".delete-wrapper")).on('click', (e) => {
@@ -87,7 +92,7 @@ class PhotoContainerMobile extends PhotoContainer {
 	 */
 	_uploadImageShowSpinner() {
 		this._updateLatestPhotoPosition();
-		let photoDiv = $(this.getPhotoDivSelect());
+		let photoDiv = $(this.$photoContainer.find(this.getPhotoDivSelect()));
 		let coverPhoto = $(photoDiv[this.latestPosition]);
 		$(coverPhoto.find('.add-photo-text')).toggleClass('spinner',true);
 	}

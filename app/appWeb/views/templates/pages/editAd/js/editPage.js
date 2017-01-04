@@ -1,5 +1,6 @@
 "use strict";
-let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
+let photoContainerMobile = require('app/appWeb/views/components/photoContainerMobile/js/photoContainerMobile.js');
+let photoContainerDesktop = require('app/appWeb/views/components/photoContainerDesktop/js/photoContainerDesktop.js');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
 let AdFeatureSelection = require('app/appWeb/views/components/adFeatureSelection/js/adFeatureSelection.js');
@@ -22,13 +23,15 @@ class EditAd {
 	componentDidMount(domElement) {
 		// Callback for all children components have been mounted\
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
-		this.photoContainer = photoContainer.viewModel;
+		this.photoContainerMobile = photoContainerMobile.viewModel;
+		this.photoContainerDesktop = photoContainerDesktop.viewModel;
 		this.spinnerModal = spinnerModal;
 		this.adFeatureSelection = AdFeatureSelection;
 
 		// Callback for old singleton components
 		spinnerModal.initialize();
-		photoContainer.initialize({pageType: "EditAd"});
+		photoContainerMobile.initialize({pageType: "EditAd"}, $(domElement.find(".photo-switcher")));
+		photoContainerDesktop.initialize({pageType: "EditAd"}, $(domElement.find(".photo-switcher")));
 		postAdFormMainDetails.initialize({pageType: "EditAd"});
 
 		this._$submitButton = domElement.find('.edit-submit-button');
@@ -65,15 +68,25 @@ class EditAd {
 			window.location.href = '/my/ads.html';
 		});
 
-		this.photoContainer.addImageUrlsChangeHandler(() => {
-			this.imageUrls = [].concat(this.photoContainer.imageUrls);
+		this.photoContainerMobile.addImageUrlsChangeHandler(() => {
+			this.ImageUrls = [].concat(this.photoContainerMobile.imageUrls);
+			photoContainerDesktop.syncImages(this.ImageUrls);
 		});
-		this.imageUrls = [].concat(this.photoContainer.imageUrls);
+		this.photoContainerDesktop.addImageUrlsChangeHandler(() => {
+			this.ImageUrls = [].concat(this.photoContainerDesktop.imageUrls);
+			photoContainerMobile.syncImages(this.ImageUrls);
+		});
+		// Mobile and Desktop shared same inital url
+		this.imageUrls = [].concat(this.photoContainerMobile.imageUrls);
 
 		this._setSubmitButtonStatus();
 
 		// TBD Need to refactor follow previous convention
-		photoContainer.setCategoryUpdateCallback((catId) => {
+		photoContainerMobile.setCategoryUpdateCallback((catId) => {
+			this.postAdFormMainDetails.categoryId = catId;
+		});
+		// TBD Need to refactor follow previous convention
+		photoContainerDesktop.setCategoryUpdateCallback((catId) => {
 			this.postAdFormMainDetails.categoryId = catId;
 		});
 

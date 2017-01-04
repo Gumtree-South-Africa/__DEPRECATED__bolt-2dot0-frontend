@@ -1,6 +1,5 @@
 'use strict';
 
-require("slick-carousel");
 let PhotoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
 
 let isPhotoDivAndDraggable = function(target) {
@@ -40,13 +39,14 @@ class PhotoContainerDesktop extends PhotoContainer {
 	 * @param
 	 */
 	initialize(options, docElement) {
-		super.initialize(options, $(docElement.find(".photo-container-desktop")));
-		$(docElement.find(this.getPageTypeSelect())).html(options ? options.pageType : "");
+		this.$photoSwitcher = docElement;
 		this.$photoContainer = $(docElement.find(".photo-container-desktop"));
 		this.$initialPhoto = $(this.$photoContainer.find(".cover-photo-big"));
-		this.$imageUrls = $(this.$photoContainer.find(".imgUrls"));
-		this.$photoSwitcher = docElement;
 
+		super.initialize(options, $(docElement.find(".photo-container-desktop")));
+
+		$(docElement.find(this.getPageTypeSelect())).html(options ? options.pageType : "");
+		this.$imageUrls = $(this.$photoContainer.find(".imgUrls"));
 		// Clicking empty cover photo OR 'add photo' carousel item should open file selector
 		this.$initialPhoto.on('click', () => {
 			this.clickFileInput();
@@ -175,7 +175,7 @@ class PhotoContainerDesktop extends PhotoContainer {
 			imgUrls[fromIndex] = toImg;
 			$(this.$imageUrls).html(JSON.stringify(imgUrls));
 			// 3.Trigger image array change event
-			this.$imageUrls.click();
+			$(this.$imageUrls).click();
 		}, false);
 
 		/*

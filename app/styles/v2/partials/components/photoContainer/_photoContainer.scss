@@ -1,7 +1,8 @@
 @mixin cover-photo-common {
 	cursor: pointer;
 	position: relative;
-	border: 1px solid black;
+	border: 1px solid $postAdShadowColor;
+	box-shadow: 1px 1px 6px $postAdShadowColor;
 	background-size: contain;
 	background-position: center;
 	background-repeat: no-repeat;

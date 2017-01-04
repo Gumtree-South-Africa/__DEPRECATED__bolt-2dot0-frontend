@@ -56,7 +56,7 @@ class PhotoContainer {
 	syncImages(urls) {
 		this.latestPosition = 0;
 		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
-		photoDiv.css("background-image", "");
+		photoDiv.css("background-image", "").toggleClass("no-photo", true);
 		this.updatePhotoContainerLayout();
 		urls.forEach((imageUrl) => {
 			this._setPhotoDivBackgroundImg(imageUrl);
@@ -85,10 +85,10 @@ class PhotoContainer {
 	 */
 	initialize(options, docElement) {
 		this.$docElement = docElement;
-		this.allowedUploads = 12;
 		this.pageType = options ? options.pageType : "";
 		this.$imageUrls = $(docElement.find(".imgUrls"));
-		//EPS setup
+
+		// EPS setup start
 		this.epsData = $('#js-eps-data');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.EPS = {};
@@ -96,15 +96,16 @@ class PhotoContainer {
 		this.EPS.token = this.epsData.data('eps-token');
 		this.EPS.url = this.epsData.data('eps-url');
 		this.epsUpload = new EpsUpload(this.EPS);
-		this.$postAdButton = $('#postAdBtn');
-		this.imageCount = 0;
-		this.latestPosition = 0;
-
 		this.messageError = $('.error-message');
 		this.messageModal = $('.message-modal');
 		this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
 		this.$errorMessageTitle = $('#js-error-title');
+		// EPS setup end
 
+		this.allowedUploads = 12;
+		this.imageCount = 0;
+		this.latestPosition = 0;
+		this.$postAdButton = $('#postAdBtn');  // TBD should refactor
 		this.$imageUrls.on("click", () => {
 			let imgUrls = JSON.parse(this.$imageUrls.text() || "[]");
 			let validUrls = [];
@@ -180,9 +181,6 @@ class PhotoContainer {
 		this._failure = (i, epsError) => {
 			window.BOLT.trackEvents({"event": this.pageType + "PhotoFail"});
 			let error = this.epsUpload.extractEPSServerError(epsError);
-			let toRemove = $(".carousel-item[data-item='" + i + "']");
-			toRemove.find('.spinner').toggleClass('hidden');
-
 			this.uploadMessageClass.translateErrorCodes(i, error);
 			return epsError;
 		};
@@ -372,6 +370,7 @@ class PhotoContainer {
 				this.$imageUpload.val('');
 			} else {
 				console.warn('No more than 12 images can be uploaded');
+				// TBD should refactor
 				$(".error-msg-wrapper").removeClass("hidden");
 				$("#max-photo-msg").removeClass("hidden");
 				$("#carousel-info-icon").removeClass("hidden");

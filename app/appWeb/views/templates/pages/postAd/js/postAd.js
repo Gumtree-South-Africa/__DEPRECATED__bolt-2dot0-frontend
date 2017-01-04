@@ -46,7 +46,7 @@ class PostAd {
 		spinnerModal.initialize();
 		mobileUpload.initialize();
 		postAdModal.initialize();
-		photoContainerMobile.initialize({pageType: "PostAd"});
+		photoContainerMobile.initialize({pageType: "PostAd"}, $(domElement.find(".photo-switcher")));
 		photoContainerDesktop.initialize({pageType: "PostAd"}, $(domElement.find(".photo-switcher")));
 		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
