@@ -9,6 +9,7 @@ let ModelBuilder = require(cwd + '/app/builders/common/ModelBuilder');
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel');
 let AttributeModel = require(cwd + '/app/builders/common/AttributeModel.js');
 let KeywordModel= require(cwd + '/app/builders/common/KeywordModel');
+let LocationModel = require(cwd + '/app/builders/common/LocationModel');
 let SeoModel = require(cwd + '/app/builders/common/SeoModel');
 let SafetyTipsModel = require(cwd + '/app/builders/common/SafetyTipsModel');
 let AbstractPageModel = require(cwd + '/app/builders/common/AbstractPageModel');
@@ -372,9 +373,12 @@ class ViewPageModel {
 
 		modelData.header = data.common.header || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
-		modelData.header.postAdHeader = true;
 		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
+		modelData.header.unifiedHeader = true;
+		modelData.header.unifiedHeaderTitle = modelData.advert.title;
+		modelData.header.unifiedHeaderBackUrl = (typeof modelData.advert.breadcrumbs !== 'undefined') ? modelData.advert.breadcrumbs.returnToBrowsingLink : "./";
+		modelData.backUrl = "";
 
 		modelData.footer = data.common.footer || {};
 
@@ -414,7 +418,9 @@ class ViewPageModel {
 		modelData.vip.showBuyerStuff = !(modelData.vip.showSellerStuff);
 
 		//Status Banner
-		modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		if (typeof modelData.advert.statusInfo !== 'undefined') {
+			modelData.advert.statusBanner = this.getStatusBanner(modelData.advert.statusInfo.statusReason, modelData.vip.showSellerStuff);
+		}
 
 		return modelData;
 	}
@@ -424,6 +430,7 @@ class ViewPageModel {
 		let advertModelBuilder = advertModel.getModelBuilder(this.adId);
 		let attributeModel = new AttributeModel(modelData.bapiHeaders);
 		let keywordModel = (new KeywordModel(modelData.bapiHeaders, this.bapiConfigData.content.vip.defaultKeywordsCount)).getModelBuilder(this.adId);
+		let locationModel = new LocationModel(modelData.bapiHeaders, 1);
 		let safetyTipsModel = new SafetyTipsModel(this.req, this.res);
 		let seo = new SeoModel(modelData.bapiHeaders);
 
@@ -480,19 +487,19 @@ class ViewPageModel {
 					data.adErrorDetail = data.bapiJson.details;
 					data.adErrorDetailMessage = data.adErrorDetail[0].message;
 
-					if (data.adErrorDetailMessage.indexOf('DELETED')) {
+					if (data.adErrorDetailMessage.indexOf('DELETED') > 0) {
 						data.statusInfo = {
 							status: 'DELETED',
 							statusReason: 'DELETED__ADMIN__DELETED',
 							isDeleted: true
 						};
-					} else if (data.adErrorDetailMessage.indexOf('BLOCKED')) {
+					} else if (data.adErrorDetailMessage.indexOf('BLOCKED') > 0) {
 						data.statusInfo = {
 							status: 'BLOCKED',
 							statusReason: 'BLOCKED__TNS__CHECKED',
 							isBlocked: true
 						};
-					} else if (data.adErrorDetailMessage.indexOf('DELAYED')) {
+					} else if (data.adErrorDetailMessage.indexOf('DELAYED') > 0) {
 						data.statusInfo = {
 							status: 'DELAYED',
 							statusReason: 'DELAYED__TNS__CHECKED',
@@ -622,6 +629,18 @@ class ViewPageModel {
 				return {};
 			});
 		};
+
+		// when we don't have a geoCookie, we shouldn't make the call
+		if (modelData.geoLatLngObj) {
+			this.dataPromiseFunctionMap.locationlatlong = () => {
+				return locationModel.getLocationLatLong(modelData.geoLatLngObj, false).then((data) => {
+					return data;
+				}).fail((err) => {
+					console.warn(`error getting locationlatlong data ${err}`);
+					return {};
+				});
+			};
+		}
 
 		this.dataPromiseFunctionMap.safetyTips = () => {
 			return safetyTipsModel.getSafetyTips();

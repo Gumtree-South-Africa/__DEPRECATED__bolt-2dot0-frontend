@@ -3,12 +3,14 @@
 		"15": [
 			"GenderFashionType",
 			"ClothAccessoryType",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"32": [
 			"PropertySaleRentType",
 			"AreaInMeters",
 			"Parking",
+			"AvailabilityStartDate",
 			"DwellingForSaleBy"
 		],
 		"35": [
@@ -21,6 +23,7 @@
 			"Smoking",
 			"Parking",
 			"PetsAllowed",
+			"AvailabilityStartDate",
 			"ForRentBy"
 		],
 		"36": [
@@ -43,6 +46,7 @@
 			"DriveTrain",
 			"AlmCarFuelType",
 			"AirConditioning",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"66": [
@@ -54,6 +58,7 @@
 			"CarTransmission",
 			"AlmCarFuelType",
 			"AirConditioning",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"68": [
@@ -67,6 +72,7 @@
 			"DriveTrain",
 			"AlmCarFuelType",
 			"AirConditioning",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"69": [
@@ -77,6 +83,7 @@
 			"CarMileageInKms",
 			"AlmCarColor",
 			"AlmCarFuelType",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"90": [
@@ -87,6 +94,7 @@
 			"Furnished",
 			"Smoking",
 			"Parking",
+			"AvailabilityStartDate",
 			"ForRentBy",
 			"PetsAllowed"
 		],
@@ -100,6 +108,7 @@
 			"DriveTrain",
 			"AlmCarFuelType",
 			"AirConditioning",
+			"AvailabilityStartDate",
 			"ForSaleBy"
 		],
 		"1097": [
@@ -107,6 +116,7 @@
 			"AreaInMeters",
 			"NumberBedrooms",
 			"NumberBathrooms",
+			"AvailabilityStartDate",
 			"DwellingForSaleBy",
 			"Parking"
 		],
@@ -116,22 +126,26 @@
 			"NumberBedrooms",
 			"NumberBathrooms",
 			"Parking",
+			"AvailabilityStartDate",
 			"ForRentBy"
 		],
 		"1099": [
 			"NumberBedrooms",
 			"Parking",
+			"AvailabilityStartDate",
 			"ForRentBy"
 		],
 		"1112": [
 			"PropertySaleRentType",
 			"AreaInMeters",
 			"Parking",
+			"AvailabilityStartDate",
 			"DwellingForSaleBy"
 		],
 		"1113": [
 			"AreaInMeters",
 			"Parking",
+			"AvailabilityStartDate",
 			"DwellingForSaleBy"
 		]
 	}

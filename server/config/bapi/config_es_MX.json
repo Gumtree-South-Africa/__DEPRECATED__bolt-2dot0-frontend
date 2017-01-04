@@ -465,10 +465,10 @@
 		},
 		"VIP": {
 			"desktop": {
-				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
+				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo", "flagAd"]
 			},
 			"mobile": {
-				"models": ["advert", "keywords", "safetyTips", "seo", "flagAd"]
+				"models": ["advert", "keywords", "locationlatlong", "safetyTips", "seo", "flagAd"]
 			}
 		},
 		"AdPromote": {

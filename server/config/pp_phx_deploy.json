@@ -104,7 +104,7 @@
 		"server": {
 			"host": "static.staging2.qa-bolt.com",
 			"port": null,
-			"version": "2.0.135"
+			"version": "2.0.136"
 		},
 		"baseSVGDataUrl": "/data-icon-css/",
 		"baseCSSUrl": "/css/",

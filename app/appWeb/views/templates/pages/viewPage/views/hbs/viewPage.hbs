@@ -1,3 +1,5 @@
+<input type="hidden" class="messaging-flag" value="{{this.header.messagingFlag}}">
+
 {{#partial "content"}}
 
     {{> (dynamic "modal")}}
@@ -41,8 +43,8 @@
 
         {{#if this.vip.payWithShepherd}}
             <div>
-      <span class="icon-shepherd-pay-button" data-target='_blank' data-gtm="pc|ShepherdClick"
-            data-uri="https://www.paywithshepherd.com/gumtree_buyer/buy_now?remote_url={{this.header.viewPageUrl}}"></span>
+                <span class="icon-shepherd-pay-button" data-target='_blank' data-gtm="pc|ShepherdClick"
+                    data-uri="https://www.paywithshepherd.com/gumtree_buyer/buy_now?remote_url={{this.header.viewPageUrl}}"></span>
             </div>
         {{/if}}
     </div>
@@ -141,14 +143,10 @@
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
     {{/partial}}
-
-
 {{/partial}}
 
 
 {{#partial "pageTailScripts"}}
-
-
     <script>
         var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
         var googleTagAccountId = "{{this.header.googleTagAccountId}}";
@@ -164,9 +162,9 @@
             ptype: 'VIP'
         };
 
-            {{#block "googleBannerAdsBottom_Script"}}{{/block}}
+        {{#block "googleBannerAdsBottom_Script"}}{{/block}}
 
-            {{#block "NativeAd_Script"}}{{/block}}
+        {{#block "NativeAd_Script"}}{{/block}}
     </script>
 
     {{#partial "Adsense-Script-ext"}}

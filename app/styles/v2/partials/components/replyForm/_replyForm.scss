@@ -16,6 +16,8 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 	background-color: white;
+	height: 100%;
+	width: 100%;
 	z-index: 9000;
 	@include from-breakpoint($medium-break) {
 		position: relative;
@@ -26,6 +28,7 @@
 }
 
 .message-sent {
+	height: 100%;
 	.return-button {
 		color: $vivaWhite;
 		background-color: $vivaOrange;
@@ -38,7 +41,7 @@
 		text-align: center;
 		padding-top: 15px;
 		cursor: pointer;
-		position: fixed;
+		position: absolute;
 		bottom: 20px;
 		width:90%;
 		margin: 0 0 0 -45%;
@@ -63,8 +66,21 @@
 		color: $vivaGray1;
 		text-align: center;
 		margin-top: 5px;
-		position: fixed;
-		top: 50%;
+		position: absolute;
+		top: 37%;
+		width: 90%;
+		margin: 0 0 0 -45%;
+		left:50%;
+	}
+
+	.send-message-text {
+		color: $vivaGray1;
+		text-align: center;
+		margin-top: 5px;
+		position: absolute;
+		text-decoration: underline;
+		cursor: pointer;
+		top: 43%;
 		width: 90%;
 		margin: 0 0 0 -45%;
 		left:50%;
@@ -84,6 +100,9 @@
 				text-decoration: underline;
 			}
 			.fe-email-validation {
+				color: $vivaRed;
+			}
+			.fe-name-validation {
 				color: $vivaRed;
 			}
 			.fe-message-validation {
@@ -168,6 +187,8 @@
 			text-shadow:none !important;
 			border:none !important;
 			box-shadow:none !important;
+			// On iOS, it will become transparent for upper half which makes it look like disabled
+			-webkit-appearance: none;
 		}
 	}
 
@@ -218,10 +239,9 @@
 			position: relative;
 			margin: 0 auto;
 			width: 70%;
-			margin-top: 30px;
 			left: 0;
 			bottom: 0;
-			top: 88px;
+			top: 65px;
 			line-height: 10px;
 			height: 25px;
 		}
@@ -233,14 +253,26 @@
 
 		.close-button {
 			font-size: 12px;
+			padding: 5px 15px 0px 0px;
 		}
 
 		.message-sent-text {
 			position: relative;
 			margin: 0 auto;
 			text-align: center;
-			margin-top: 50px;
 			left: 0;
+			display: block;
+			top: 40px;
+		}
+
+		.send-message-text {
+			position: relative;
+			margin: 0 auto;
+			text-align: center;
+			margin-top: 10px;
+			left: 0;
+			text-decoration: underline;
+			cursor: pointer;
 			display: block;
 			top: 40px;
 		}
@@ -336,10 +368,11 @@
 					left: 2px;
 				}
 			}
-			height: 300px;
+			height: 200px;
 			width: 350px;
 			top: 120px;
 			padding: 0;
+			background-color: $headerBackgroundColor;
 		}
 
 		input {
@@ -409,6 +442,12 @@
 				position:relative;
 				top: 8px;
 				float: right;
+			}
+			.real-phone > a {
+				&, &:active, &:visited, &:hover {
+					color: $vivaGray1;
+					text-decoration: none;
+				}
 			}
 		}
 
