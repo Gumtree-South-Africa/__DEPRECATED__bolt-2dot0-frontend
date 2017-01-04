@@ -9,7 +9,6 @@ let cors = require(cwd + '/modules/cors');
 
 let AdvertModel = require(cwd + '/app/builders/common/AdvertModel.js');
 let logger = require(`${cwd}/server/utils/logger`);
-let BapiError = require(`${cwd}/server/services/bapi/BapiError.js`);
 
 router.post('/:adId/inc-view-count', cors, (req, res) => {
 	let modelBuilder = new ModelBuilder();
