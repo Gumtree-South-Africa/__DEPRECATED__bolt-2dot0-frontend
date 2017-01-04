@@ -1,3 +1,5 @@
+<input type="hidden" class="messaging-flag" value="{{this.header.messagingFlag}}">
+
 {{#partial "content"}}
 
     {{> (dynamic "modal")}}
@@ -141,14 +143,10 @@
     {{#partial "welcomeModal"}}
         {{> (dynamic "welcomeModal") isBuyerPage=this.vip.showBuyerStuff}}
     {{/partial}}
-
-
 {{/partial}}
 
 
 {{#partial "pageTailScripts"}}
-
-
     <script>
         var googleTagAccountMobId = "{{this.header.googleTagAccountMobId}}";
         var googleTagAccountId = "{{this.header.googleTagAccountId}}";

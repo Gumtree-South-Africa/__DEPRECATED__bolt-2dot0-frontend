@@ -1678,6 +1678,10 @@
 				"call": "Llamar",
 				"text": "SMS",
 				"message": "Mensaje"
+			},
+			"error": {
+				"server": "Lo sentimos. Por favor, intenta nuevamente.",
+				"validation": "Lo sentimos. Por favor, necesita completar la información que falta."
 			}
 		},
 		"postOverlay": {

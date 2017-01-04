@@ -28,7 +28,7 @@ let initFromConfig = function(config, initDefaults) {
 	ruiOptions.port = config.get('RUI.server.port');
 	ruiOptions.parameters = config.get('RUI.server.parameters');
 	ruiOptions.timeout = (ruiOptions.timeout !== undefined) ? ruiOptions.timeout : config.get('RUI.server.timeout');
-	ruiOptions.useProxy = config.get('RUI.server.useProxy');
+	ruiOptions.useProxy = (typeof config.get('RUI.server').proxy !== 'undefined') ? config.get('RUI.server.useProxy') : false;
 
 	ruiOptions.rejectUnauthorized = false;
 
