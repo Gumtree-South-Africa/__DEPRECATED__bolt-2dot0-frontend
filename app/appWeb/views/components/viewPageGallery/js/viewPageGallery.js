@@ -73,7 +73,7 @@ class viewPageGallery {
 			} else {
 				//isMobile
 				window.scrollTo(0,0);
-				$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').addClass('hidden');
+				$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back-page').addClass('hidden');
 				$('.zoomT, .inZoomMode').removeClass('hidden');
 				$('body').addClass('noScroll');
 				$('.post-ad-header .title-text').html(this._getTranslation("vip.details.zoomView"));
@@ -98,7 +98,7 @@ class viewPageGallery {
 			return false;
 		});
 
-		$('.header-wrapper').on('click', '.post-ad-header .header-back', () => {
+		$('.header-wrapper').on('click', '.post-ad-header .header-back-page', () => {
 			this.backFn();
 		});
 
@@ -147,7 +147,7 @@ class viewPageGallery {
 
 	backFromZoomFn() {
 		if($('.zoomHolder').is('.zoomview')) {
-			$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back').removeClass('hidden');
+			$('.welcome-wrapper, .isMobile .icon-Zoom, .header-back-page, .header-back-component').removeClass('hidden');
 			$('.zoomT, .inZoomMode').addClass('hidden');
 			$('body').removeClass('noScroll');
 			$('.zoomHolder').removeClass('zoomview');
@@ -159,7 +159,7 @@ class viewPageGallery {
 	backFn() {
 		// not in Zoom view
 		if (document.referrer.indexOf(window.location.host) !== -1) {
-			window.location.href = $('.header-back a').attr('href');
+			window.location.href = $('.header-back-page a').attr('href');
 		} else {
 			history.go(-1);
 			return false;

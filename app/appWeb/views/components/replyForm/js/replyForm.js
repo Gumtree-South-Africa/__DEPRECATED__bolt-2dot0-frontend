@@ -188,7 +188,8 @@ class replyForm {
 		$replyForm.addClass('fixed');
 		this.$headerHeight = $('.header-wrapper').height();
 		$replyForm.css('top', this.$headerHeight + 'px');
-		$('.zoomT, .inZoomMode').removeClass('hidden');
+		$('.header-back-page').addClass('hidden');
+		$('.header-back-component').removeClass('hidden');
 	}
 
 	backFromReplyFn() {
@@ -196,7 +197,8 @@ class replyForm {
 		$('.header-wrapper').removeClass('fixed-header hidden-search');
 		$('.reply-form-container').addClass('desktop-only');
 		$('.reply-form').removeClass('fixed');
-		$('.zoomT, .inZoomMode').addClass('hidden');
+		$('.header-back-page').removeClass('hidden');
+		$('.header-back-component').addClass('hidden');
 		$('.message-sent').removeClass('mobile-only').addClass('hidden');
 	}
 }
