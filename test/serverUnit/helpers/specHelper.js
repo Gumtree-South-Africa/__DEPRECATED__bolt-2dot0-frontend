@@ -158,6 +158,7 @@ module.exports.boltSupertest = (route, host, method) => {
 
 	spyOn(bapiService, 'doGet').and.callFake(fakeEndpoint);
 	spyOn(bapiService, 'doPost').and.callFake(fakeEndpoint);
+	spyOn(bapiService, 'doConnectWithBody').and.callFake(fakeEndpoint);
 
 	/**
 	 * Waits for all the express apps to finish loading
