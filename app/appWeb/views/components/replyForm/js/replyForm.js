@@ -76,7 +76,7 @@ class replyForm {
 
 			$(".phone-box-area").on('change', (() => {
 				let phone = $('.phone-box-area').val();
-				if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
+				if (!this.validatePhone(phone)) {
 					$('.fe-phone-validation').removeClass('hide');
 				} else {
 					$('.fe-phone-validation').addClass('hide');
