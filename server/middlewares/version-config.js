@@ -63,9 +63,7 @@ module.exports = function(locale) {
 		res.locals.b1dot0Pages = [];
 		if (locale === 'en_ZA') {
 			let pages = [];
-			pages.push(abtestpagesJson.pages.P);
-			pages.push(abtestpagesJson.pages.E);
-			pages.push(abtestpagesJson.pages.V);
+			pages.push(abtestpagesJson.pages.S);
 			res.locals.b1dot0Pages = pages;
 		}
 		// Disabling this as we want to see how /view and /v- looks like in production, prevents redirect to 1.0
