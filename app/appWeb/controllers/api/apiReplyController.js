@@ -15,17 +15,13 @@ let logger = require(`${cwd}/server/utils/logger`);
 // route is /api/ads/reply
 router.post('/', cors, (req, res) => {
 	// Validate the incoming JSON
-
 	let validate = validator(replySchema);
 	let valid = validate(req.body);
 	if (!valid) {
-		res.contentType = "application/json";
-		res.status(400).send({
-			schemaErrors: validate.errors
-		});
+		console.warn('ValidationError: Reply to Ad:', req.body.seoUrl);
+		res.status(301).redirect(req.body.seoUrl + '?replyStatus=validationError'); //redirect with appended URL
 		return;
 	}
-
 
 
 	// Validate the body
@@ -57,15 +53,15 @@ router.post('/', cors, (req, res) => {
 			return;
 		}).fail((err) => {
 			let bapiInfo = logger.logError(err);
-			res.status(err.getStatusCode(500)).send({// 500 default status code
-				error: "unable to reply to ad, see logs for details",
-				bapiInfo: bapiInfo
-			});
+			console.warn('ServerError: Reply to Ad:', req.body.seoUrl);
+			console.warn(bapiInfo);
+			res.status(301).redirect(replyForm.seoUrl + '?replyStatus=serverError'); //redirect with appended URL
+			return;
 		});
 	} else {
-		res.status(400).send({
-			error: "The request could not be understood by the server due to malformed syntax"
-		});
+		console.warn('MissingFieldsError: Reply to Ad:', req.body.seoUrl);
+		res.status(301).redirect(req.body.seoUrl + '?replyStatus=validationError'); //redirect with appended URL
+		return;
 	}
 });
 

@@ -184,8 +184,7 @@ class PostAdFormMainDetailsVM {
 		if (priceAttrStr) {
 			try {
 				this.priceAttribute = JSON.parse(priceAttrStr);
-			}
-			catch (e) {
+			} catch (e) {
 				// Do nothing for JSON parse error
 			}
 		}

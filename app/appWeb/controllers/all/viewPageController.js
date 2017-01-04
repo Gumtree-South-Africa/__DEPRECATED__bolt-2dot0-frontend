@@ -61,6 +61,7 @@ let VIP = {
 	},
 
 	buildHeaderPageMessages: (query, modelData) => {
+		modelData.header.messagingFlag = false;
 		modelData.header.pageMessages = {};
 		if (typeof query !== 'object') {
 			let queryObj = {};
@@ -74,6 +75,7 @@ let VIP = {
 
 		// Switch on activateStatus
 		if (typeof query.activateStatus !== 'undefined') {
+			modelData.header.messagingFlag = true;
 			switch (query.activateStatus) {
 				case 'pendingAdActivateSuccess':
 					if (modelData.advert.statusInfo && modelData.advert.statusInfo.status === 'ACTIVE') {
@@ -116,12 +118,31 @@ let VIP = {
 
 		// Switch on resumeAbandonedOrderError
 		if (typeof query.resumeAbandonedOrderError !== 'undefined') {
+			modelData.header.messagingFlag = true;
 			switch (query.resumeAbandonedOrderError) {
 				case 'adFeaturePaid':
 					modelData.header.pageMessages.success = 'abandonedorder.adFeaturePaid.one_ad';
 					break;
 				default:
 					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
+					modelData.header.pageMessages.error = '';
+			}
+		}
+
+		// Switch on replyStatus
+		if (typeof query.replyStatus !== 'undefined') {
+			modelData.header.messagingFlag = true;
+			switch (query.replyStatus) {
+				case 'serverError':
+					modelData.header.pageMessages.error = 'vip.reply.error.server';
+					break;
+				case 'validationError':
+					modelData.header.pageMessages.error = 'vip.reply.error.validation';
+					break;
+				default:
+					modelData.header.pageMessages.success = '';
+					modelData.header.pageMessages.warning = '';
 					modelData.header.pageMessages.error = '';
 			}
 		}

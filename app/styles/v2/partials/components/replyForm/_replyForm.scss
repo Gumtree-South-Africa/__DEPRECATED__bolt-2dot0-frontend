@@ -16,6 +16,8 @@
 	overflow-y: scroll;
 	overflow-x: hidden;
 	background-color: white;
+	height: 100%;
+	width: 100%;
 	z-index: 9000;
 	@include from-breakpoint($medium-break) {
 		position: relative;

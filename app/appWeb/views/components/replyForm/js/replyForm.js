@@ -56,6 +56,15 @@ class replyForm {
 				}
 			});
 
+			$(".name-box-area").on('change', (() => {
+				let email = $('.name-box-area').val();
+				if (!this.validateName(email)) {
+					$('.fe-name-validation').removeClass('hide');
+				} else {
+					$('.fe-name-validation').addClass('hide');
+				}
+			}));
+
 			$(".email-box-area").on('change', (() => {
 				let email = $('.email-box-area').val();
 				if (!this.validateEmail(email)) {
@@ -67,7 +76,7 @@ class replyForm {
 
 			$(".phone-box-area").on('change', (() => {
 				let phone = $('.phone-box-area').val();
-				if (!this.validatePhone(phone) && $('.phone-box-area').data('id') === true) {
+				if (!this.validatePhone(phone)) {
 					$('.fe-phone-validation').removeClass('hide');
 				} else {
 					$('.fe-phone-validation').addClass('hide');
@@ -99,6 +108,14 @@ class replyForm {
 		$('.header-wrapper').on('click', '.inZoomMode', () => {
 			this.backFromReplyFn();
 		});
+	}
+
+	// Evalues name
+	validateName(name) {
+		if (name === '') {
+			return false;
+		}
+		return true;
 	}
 
 	// Evalues email adress
@@ -147,7 +164,7 @@ class replyForm {
 		}
 
 		let name = $(".name-box-area").val();
-		if(name === '') {
+		if(!this.validateName(name)) {
 			$('.fe-name-validation').removeClass('hide');
 			errorStack.push(false);
 		} else {

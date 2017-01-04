@@ -377,7 +377,7 @@ class ViewPageModel {
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
 		modelData.header.unifiedHeader = true;
 		modelData.header.unifiedHeaderTitle = modelData.advert.title;
-		modelData.header.unifiedHeaderBackUrl = (modelData.advert.breadcrumbs !== 'undefined') ? modelData.advert.breadcrumbs.returnToBrowsingLink : "./";
+		modelData.header.unifiedHeaderBackUrl = (typeof modelData.advert.breadcrumbs !== 'undefined') ? modelData.advert.breadcrumbs.returnToBrowsingLink : "./";
 		modelData.backUrl = "";
 
 		modelData.footer = data.common.footer || {};
