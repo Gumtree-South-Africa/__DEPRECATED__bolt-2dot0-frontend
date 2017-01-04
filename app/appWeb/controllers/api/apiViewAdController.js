@@ -17,6 +17,8 @@ router.post('/:adId/inc-view-count', cors, (req, res) => {
 	advertModel.addViewCount(req.params.adId).then((attributes) => {
 		res.json(attributes);
 	}).fail((err) => {
+		console.error(err);
+		console.error(err.stack);
 		let bapiJson = logger.logError(err);
 		return res.status(err.getStatusCode(500)).json({
 			error: "inc-view-count failed",
