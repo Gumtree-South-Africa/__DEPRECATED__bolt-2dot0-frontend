@@ -17,6 +17,9 @@ var BOLT = BOLT || {};
 			if (bannerParams.tile) {
 				slot.setTargeting("tile", bannerParams.tile);
 			}
+			if (bannerParams.adPos) {
+				slot.setTargeting("adpos", bannerParams.adPos);
+			}
 			if (bannerParams.price) {
 				slot.setTargeting("price", bannerParams.price);
 				slot.setTargeting("currency", bannerParams.currency);
@@ -27,6 +30,7 @@ var BOLT = BOLT || {};
 				.setTargeting("kw", bannerParams.kw)
 				.setTargeting("dc_ref", bannerParams.dc_ref)
 				.setTargeting("ptype", bannerParams.ptype)
+				.setTargeting("login", bannerParams.login);
 
 			googletag.pubads();
 
