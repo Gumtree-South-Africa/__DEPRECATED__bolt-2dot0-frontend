@@ -31,6 +31,7 @@ let postAdData = {
 		} else {
 			modelData.header.containerCSS.push(modelData.header.localeCSSPath + '/PostAdPage.css');
 		}
+		modelData.header.containerCSS.push('https://cdnjs.cloudflare.com/ajax/libs/Swiper/3.4.1/css/swiper.min.css');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'AnalyticsLegacyBundle.min.js');
 		modelData.footer.javascripts.push(modelData.footer.baseJSMinUrl + 'PostAd_desktop_' + modelData.locale + '.js');
 		modelData.footer.javascripts.push('https://www.google.com/jsapi');

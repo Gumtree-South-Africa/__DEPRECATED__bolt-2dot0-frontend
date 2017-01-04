@@ -1,5 +1,6 @@
 "use strict";
-let photoContainer = require('app/appWeb/views/components/photoContainer/js/photoContainer.js');
+let photoContainerMobile = require('app/appWeb/views/components/photoContainerMobile/js/photoContainerMobile.js');
+let photoContainerDesktop = require('app/appWeb/views/components/photoContainerDesktop/js/photoContainerDesktop.js');
 let postAdFormMainDetails = require('app/appWeb/views/components/postAdFormMainDetails/js/postAdFormMainDetails.js');
 let mobileUpload = require('app/appWeb/views/components/uploadImage/js/mobileUpload.js');
 let postAdModal = require('app/appWeb/views/components/postAdModal/js/postAdModal.js');
@@ -36,7 +37,8 @@ class PostAd {
 		this.mobileUpload = mobileUpload.viewModel;
 		this.postAdModal = postAdModal.viewModel;
 		this.postAdFormMainDetails = postAdFormMainDetails.viewModel;
-		this.photoContainer = photoContainer.viewModel;
+		this.photoContainerMobile = photoContainerMobile.viewModel;
+		this.photoContainerDesktop = photoContainerDesktop.viewModel;
 		this.spinnerModal = spinnerModal;
 		this.adFeatureSelection = AdFeatureSelection;
 
@@ -44,7 +46,8 @@ class PostAd {
 		spinnerModal.initialize();
 		mobileUpload.initialize();
 		postAdModal.initialize();
-		photoContainer.initialize({pageType: "PostAd"});
+		photoContainerMobile.initialize({pageType: "PostAd"});
+		photoContainerDesktop.initialize({pageType: "PostAd"}, $(domElement.find(".photo-switcher")));
 		postAdFormMainDetails.initialize({pageType: "PostAd"});
 		loginModal.initialize();
 
@@ -148,10 +151,16 @@ class PostAd {
 		});
 		this.desktopImageUrls = [].concat(this.photoContainer.imageUrls);
 		*/
-		this.photoContainer.addImageUrlsChangeHandler(() => {
-			this.ImageUrls = [].concat(this.photoContainer.imageUrls);
+		this.photoContainerMobile.addImageUrlsChangeHandler(() => {
+			this.ImageUrls = [].concat(this.photoContainerMobile.imageUrls);
+			photoContainerDesktop.syncImages(this.ImageUrls);
 		});
-		this.ImageUrls = [].concat(this.photoContainer.imageUrls);
+		this.photoContainerDesktop.addImageUrlsChangeHandler(() => {
+			this.ImageUrls = [].concat(this.photoContainerDesktop.imageUrls);
+			photoContainerMobile.syncImages(this.ImageUrls);
+		});
+		// Mobile and Desktop shared same inital url
+		this.ImageUrls = [].concat(this.photoContainerMobile.imageUrls);
 
 
 		this.postAdFormMainDetails.propertyChanged.addHandler((propName/*, newValue*/) => {
@@ -172,7 +181,14 @@ class PostAd {
 		// Try to get lat / lng from from the browser if no GeoId cookie, also will update GeoId cookie if not exist
 		this.requestLocationFromBrowser();
 		// TBD Need to refactor follow previous convention
-		photoContainer.setCategoryUpdateCallback((catId) => {
+		photoContainerMobile.setCategoryUpdateCallback((catId) => {
+			this.postAdFormMainDetails.categoryId = catId;
+			this._$infoTips.hide();
+			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);
+			this._$mobilePostAdWrapper.toggleClass("hidden", false);
+			this.postAdModal.hiddenModel();
+		});
+		photoContainerDesktop.setCategoryUpdateCallback((catId) => {
 			this.postAdFormMainDetails.categoryId = catId;
 			this._$infoTips.hide();
 			this._$postAdFormMainDetail.toggleClass("post-main-detail-hidden-for-mobile", false);

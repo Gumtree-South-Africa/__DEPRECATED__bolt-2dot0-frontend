@@ -1,0 +1,36 @@
+.photo-container-mobile {
+	.cover-photo-big {
+		margin: 10px auto 10% auto;
+		border-radius: 2px;
+		.icon-camera-v2 {
+			width: 70px;
+			height: 70px;
+		}
+		.photo-wrapper {
+			margin-top: 50px;
+		}
+		.delete-wrapper {
+			margin-right: -5px;
+			margin-top: -5px;
+		}
+	}
+}
+
+// For safari the delete icon pixel issue
+@media screen and (-webkit-min-device-pixel-ratio:1.5) {
+	.icon-photo-close {
+		width: 20px;
+		height: 21px !important;
+	}
+}
+
+.swiper-container {
+	width: 300px;
+	height: 300px;
+}
+.swiper-slide {
+	background-position: center;
+	background-size: cover;
+	width: 200px !important;
+	height: 200px !important;
+}

@@ -67,11 +67,10 @@
 	.icon-camera-v2 {
 		width: 50px;
 		height: 50px;
-}
-
-.add-photo-text {
-	font-size: medium;
-}
+	}
+	.add-photo-text {
+		font-size: medium;
+	}
 }
 
 .cover-photo-small {
@@ -161,5 +160,23 @@
 		vertical-align: sub;
 		width: 15px;
 		height: 15px;
+	}
+}
+
+@include to-breakpoint($small-break) {
+	.photo-container-desktop {
+		display: none;
+	}
+	.photo-container-mobile {
+		display: block;
+	}
+}
+
+@include from-breakpoint($medium-break) {
+	.photo-container-desktop {
+		display: block;
+	}
+	.photo-container-mobile {
+		display: none;
 	}
 }

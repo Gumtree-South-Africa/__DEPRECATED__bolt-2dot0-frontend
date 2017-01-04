@@ -1,17 +1,26 @@
-<div id="initialImages" class="hidden">{{json this.adResult.pictures}}</div>
 <div class="photo-container-title">
-	{{i18n i18HeadTitle}}
+    {{i18n i18HeadTitle}}
 </div>
-<div class="image-container">
-	<div id="photo-0" class="cover-photo-big no-photo">
-		<div class="delete-wrapper">
-			<div class="icon-photo-close"></div>
-		</div>
-
-		<div class="photo-wrapper">
-			<div class="icon-camera-v2"></div>
-			<div class="add-photo-text">{{i18n "postAd.createAds.form.addPhotos"}}</div>
-		</div>
+<div class="photo-container-desktop">
+    {{> (dynamic "photoContainerDesktop") }}
+	<div class="hidden">
+		<form method="post" novalidate="novalidate">
+			<div class="file-input-wrapper">
+				<input class="file-input" type="file" name="pic" accept="image/*" id="desktopFileUpload" multiple>
+			</div>
+		</form>
+		<div class="imgUrls hidden"></div>
+	</div>
+</div>
+<div class="photo-container-mobile">
+    {{> (dynamic "photoContainerMobile") }}
+	<div class="hidden">
+		<form method="post" novalidate="novalidate">
+			<div class="file-input-wrapper">
+				<input class="file-input" type="file" name="pic" accept="image/*" multiple>
+			</div>
+		</form>
+		<div class="imgUrls hidden"></div>
 	</div>
 </div>
 <div class="photo-limits">
@@ -26,11 +35,6 @@
 	<div class="photos-required-msg hidden">{{i18n "postAd.createAds.error.photoRequired"}}</div>
 </div>
 <div class="hidden">
-    <form method="post" novalidate="novalidate">
-        <div class="file-input-wrapper">
-            <input class="file-input" type="file" name="pic" accept="image/*" id="desktopFileUpload" multiple>
-        </div>
-    </form>
-	<div id="imgUrls" class="hidden"></div>
-	<div id="initPageType" class="hidden"></div>
+	<div class="initPageType hidden"></div>
+	<div id="initialImages" class="hidden">{{json this.adResult.pictures}}</div>
 </div>

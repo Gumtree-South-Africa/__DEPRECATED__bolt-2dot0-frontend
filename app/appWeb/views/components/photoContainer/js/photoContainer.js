@@ -1,16 +1,9 @@
 'use strict';
 
-require("slick-carousel");
 let EpsUpload = require('../../uploadImage/js/epsUpload').EpsUpload;
 let UploadMessageClass = require('../../uploadImage/js/epsUpload').UploadMessageClass;
-let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 let spinnerModal = require('app/appWeb/views/components/spinnerModal/js/spinnerModal.js');
-
-let isPhotoDivAndDraggable = function(target) {
-	let id = $(target).attr('id');
-	let url = $(target).css("background-image");
-	return (id && id.indexOf('photo') !== -1 && url !== 'none') ;
-};
+let SimpleEventEmitter = require('public/js/common/utils/SimpleEventEmitter.js');
 
 // View model for photo carousel
 class PhotoCarouselVM {
@@ -43,20 +36,60 @@ class PhotoContainer {
 		this.viewModel = new PhotoCarouselVM();
 	}
 
+	getPhotoDivSelect() {
+		throw new Error("Need to implement!");
+	}
+
+	/**
+	 * Update photo container div image background
+	 * @param urlNormal
+	 */
+	updatePhotoDivBackgroundImg(urlNormal) {
+		this._setPhotoDivBackgroundImg(urlNormal);
+		this.$imageUrls.click();
+	}
+
+	/**
+	 * Update photo container div images background when layout size change
+	 * @param urlNormal
+	 */
+	syncImages(urls) {
+		this.latestPosition = 0;
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		photoDiv.css("background-image", "");
+		this.updatePhotoContainerLayout();
+		urls.forEach((imageUrl) => {
+			this._setPhotoDivBackgroundImg(imageUrl);
+		});
+	}
+
+	/**
+	 * Update photo container div image background
+	 * @param urlNormal
+	 * @private
+	 */
+	_setPhotoDivBackgroundImg(urlNormal) {
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		let coverPhoto = $(photoDiv[this.latestPosition]);
+		coverPhoto.css("background-image", "url('" + urlNormal + "')").attr("data-image", urlNormal).toggleClass('no-photo',false);
+		let imgUrls = JSON.parse(this.$imageUrls.text() || "[]");
+		imgUrls[this.latestPosition] = urlNormal;
+		this._updateLatestPhotoPosition();
+		this.$imageUrls.html(JSON.stringify(imgUrls));
+	}
+
 	/**
 	 * sets up all the variables and two functions (success and failure)
 	 * these functions are in here to be properly bound to this
 	 * @param
 	 */
-	initialize(options) {
-
+	initialize(options, docElement) {
+		this.$docElement = docElement;
 		this.allowedUploads = 12;
 		this.pageType = options ? options.pageType : "";
-		$("#initPageType").html(this.pageType);
-
+		this.$imageUrls = $(docElement.find(".imgUrls"));
 		//EPS setup
 		this.epsData = $('#js-eps-data');
-		this.photoSwitcher = $('.photo-switcher');
 		this.uploadImageContainer = $('.upload-image-container');
 		this.EPS = {};
 		this.EPS.IsEbayDirectUL = this.epsData.data('eps-isebaydirectul');
@@ -72,8 +105,8 @@ class PhotoContainer {
 		this.$errorModalClose = this.messageModal.find('#js-close-error-modal');
 		this.$errorMessageTitle = $('#js-error-title');
 
-		$("#imgUrls").on("click", () => {
-			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+		this.$imageUrls.on("click", () => {
+			let imgUrls = JSON.parse(this.$imageUrls.text() || "[]");
 			let validUrls = [];
 			for (let img of imgUrls) {
 				if (img) {
@@ -82,13 +115,17 @@ class PhotoContainer {
 			}
 			this.viewModel.updateImageUrls(validUrls);
 		});
+		this.$imageUpload = $($(docElement.find(".file-input-wrapper")).find('input[name="pic"]'));
+		//listen for file uploads
+		this.$imageUpload.on("change", (event) => {
+			this.uploadImageShowSpinner();
+			this.fileInputChange(event);
+		});
 
 		// If server has initial image to render
 		this.$initialImages = JSON.parse($("#initialImages").text() || '{"sizeUrls": []}').sizeUrls;
 		if (this.$initialImages.length > 0) {
-			this.latestPosition = 1;
-			this._updatePhotoContainerLayout();
-			//this._uploadImageShowSpinnerWithFileSize(this.$initialImages.length);
+			this.updatePhotoContainerLayout();
 			this.$initialImages.forEach((imageUrl) => {
 				let url = null;
 				if (imageUrl.SMALL) {
@@ -99,7 +136,7 @@ class PhotoContainer {
 					url = imageUrl.LARGE;
 				}
 				if (url) {
-					this._updatePhotoDivBackgroundImg(url);
+					this.updatePhotoDivBackgroundImg(url);
 				}
 			});
 		}
@@ -107,13 +144,6 @@ class PhotoContainer {
 		this.$errorModalButton = this.messageModal.find('.btn');
 		this.$errorModalClose.click(() => {
 			this.messageModal.toggleClass('hidden');
-		});
-
-		this.$imageUpload = $(".file-input-wrapper").find('input[name="pic"]');
-		//listen for file uploads
-		this.$imageUpload.on("change", (event) => {
-			this._uploadImageShowSpinner();
-			this.fileInputChange(event);
 		});
 
 		this.$errorModalButton.click(() => {
@@ -140,11 +170,6 @@ class PhotoContainer {
 				}
 			}
 		);
-
-		// Clicking empty cover photo OR 'add photo' carousel item should open file selector
-		$("#photo-0").on('click', () => {
-			this.clickFileInput();
-		});
 
 		/**
 		 * failure case for eps upload, in the initialize function to get arrow function this binding
@@ -189,13 +214,12 @@ class PhotoContainer {
 
 			// 4.For the first time, update the photo layout
 			if (this.latestPosition === 0) {
-				this._updatePhotoContainerLayout();
-				this.latestPosition++;
+				this.updatePhotoContainerLayout();
 			}
 			this._uploadImageHideSpinner();
 
-			// 5.If first image change and no image left, call category recognition
-			if (this.latestPosition === 1 && !this.getImageCount()) {
+			// 5.If first image change or no image left after delete, call category recognition
+			if (this.latestPosition === 0 && !this.getImageCount()) {
 				spinnerModal.showModal();
 				$.ajax({
 					url: '/api/postad/imagerecognition',
@@ -216,7 +240,7 @@ class PhotoContainer {
 			}
 
 			// 6. Update image background url
-			this._updatePhotoDivBackgroundImg(normalUrl);
+			this.updatePhotoDivBackgroundImg(normalUrl);
 			// 7. Enable post button when image upload success
 			this.$postAdButton.toggleClass("disabled", false);
 			window.BOLT.trackEvents({"event": this.pageType + "PhotoSuccess"});
@@ -227,9 +251,9 @@ class PhotoContainer {
 	 * Find next position for image upload
 	 */
 	_updateLatestPhotoPosition() {
-		// The image in single layout will replace the first image in multiple layout
-		for (let i=1; i<=this.allowedUploads; i++) {
-			if ($('#photo-' + i).css("background-image") === "none") {
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		for (let i=0; i<=photoDiv.length; i++) {
+			if ($(photoDiv[i]).css("background-image") === "none") {
 				this.latestPosition = i;
 				break;
 			}
@@ -237,154 +261,20 @@ class PhotoContainer {
 	}
 
 	/**
-	 * Update photo container div image background
-	 * @param urlNormal
-	 * @param thumbUrl
-	 * @private
-	 */
-	_updatePhotoDivBackgroundImg(urlNormal) {
-		let coverPhoto = $('#photo-' + this.latestPosition);
-		coverPhoto.css("background-image", "url('" + urlNormal + "')").attr("data-image", urlNormal).toggleClass('no-photo',false);
-		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-		imgUrls[this.latestPosition] = urlNormal;
-		this._updateLatestPhotoPosition();
-		$("#imgUrls").html(JSON.stringify(imgUrls));
-		$("#imgUrls").click();
-	}
-	/**
 	 * Change photo container layout when upload first image
-	 * @private
 	 */
-	_updatePhotoContainerLayout() {
-		// 1.Using the first camera photo div as template
-		let newDiv = $("#photo-0").clone();
-		// 2.Adjust style for multiple photo laylout
-		newDiv.removeClass("cover-photo-big").addClass("cover-photo-small").attr("draggable", "true");
-		newDiv.find(".add-photo-text").css("font-size", "small");
-		$(newDiv.find(".add-photo-text")).toggleClass('spinner',false);
-		// 3.Hide the first camera photo div
-		$("#photo-0").hide();
-		$(".photo-limits").hide();
-		// 4.Create multiple photo upload layout
-		for (let j = 1; j <= this.allowedUploads; j++) {
-			newDiv.attr("id", "photo-" + j);
-			this._bindEventToNewPhotoUploadDiv(newDiv);
-			$("#photo-0").parent().append(newDiv);
-			newDiv=newDiv.clone();
-		}
-		this.photoSwitcher.toggleClass("photo-container-start", false);
-		$(".drag-reorder").toggleClass("hidden", false);
-	}
-
-	/**
-	 * Bind event to later cloned new photo div
-	 * @private
-	 */
-	_bindEventToNewPhotoUploadDiv(newDiv) {
-		newDiv.on('click', () => {
-			let url = newDiv.css("background-image");
-			if (url !== 'none') {
-				return; // With image click disable
-			}
-			this.clickFileInput();
-		});
-		newDiv.find(".delete-wrapper").on('click', (e) => {
-			e.stopImmediatePropagation();
-			window.BOLT.trackEvents({"event": this.pageType + "PhotoRemove"});
-			let imageDiv = $(e.target.parentNode.parentNode);
-			let urlNormal = imageDiv.attr("data-image");
-			imageDiv.attr("data-image","");
-			imageDiv.css("background-image", "").toggleClass("no-photo", true);
-
-			if (this.getImageCount() === 0) {
-				this.$postAdButton.toggleClass("disabled", true);
-			}
-			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-			let position = imgUrls.indexOf(urlNormal);
-			if (position !== -1) {
-				imgUrls[position] = null;
-				$("#imgUrls").html(JSON.stringify(imgUrls));
-				$("#imgUrls").click();
-			}
-		});
-
-		/*
-		* Drag and Reorder event start
-		* */
-		document.addEventListener("drag", function() {
-		}, false);
-
-		document.addEventListener("dragstart", function( event ) {
-			if (!isPhotoDivAndDraggable(event.target)) {
-				return;
-			}
-			if (event.dataTransfer) {
-				event.dataTransfer.setData("text/plain", "Workaround for FireFox!");
-			}
-			// store a ref. on the dragged elem
-			this.PhotoContainerDragged = event.target;
-			// make it half transparent
-			event.target.style.opacity = .5;
-		}, false);
-
-		document.addEventListener("dragend", function( event ) {
-			if (!isPhotoDivAndDraggable(event.target)) {
-				return;
-			}
-			// reset the transparency
-			event.target.style.opacity = "";
-		}, false);
-
-		/* events fired on the drop targets */
-		document.addEventListener("dragover", function( event ) {
-			event.preventDefault();
-		}, false);
-		document.addEventListener("dragenter", function() {
-		}, false);
-		document.addEventListener("dragleave", function() {
-		}, false);
-		document.addEventListener("drop", function( event ) {
-			if (!isPhotoDivAndDraggable(event.target)) {
-				return;
-			}
-			event.preventDefault();
-			event.stopImmediatePropagation();
-
-			window.BOLT.trackEvents({"event": $("#initPageType").text() + "PhotoReorder"});
-
-			// 1.Swap background
-			let toBackgroundUrl = $(event.target).css("background-image");
-			let fromBackgroundUrl = $(this.PhotoContainerDragged).css("background-image");
-			$(event.target).css("background-image", fromBackgroundUrl);
-			$(this.PhotoContainerDragged).css("background-image", toBackgroundUrl);
-
-			// 2.Swap image array
-			let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
-			let toImg = $(event.target).attr("data-image");
-			let toIndex = imgUrls.indexOf(toImg);
-			let fromImg = $(this.PhotoContainerDragged).attr("data-image");
-			let fromIndex = imgUrls.indexOf(fromImg);
-			$(event.target).attr("data-image", fromImg);
-			$(this.PhotoContainerDragged).attr("data-image", toImg);
-			imgUrls[toIndex] = fromImg;
-			imgUrls[fromIndex] = toImg;
-			$("#imgUrls").html(JSON.stringify(imgUrls));
-			// 3.Trigger image array change event
-			$("#imgUrls").click();
-		}, false);
-
-		/*
-		 * Drag and Reorder event end
-		 * */
+	updatePhotoContainerLayout() {
+		// Default Implementation is empty
 	}
 
 	/**
 	 * Display spinner when uploading image
-	 * @private
 	 */
-	_uploadImageShowSpinner() {
+	uploadImageShowSpinner() {
 		this._updateLatestPhotoPosition();
-		$($('#photo-' + this.latestPosition).find('.add-photo-text')).toggleClass('spinner',true);
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		let coverPhoto = $(photoDiv[this.latestPosition]);
+		$(coverPhoto.find('.add-photo-text')).toggleClass('spinner',true);
 	}
 
 	/**
@@ -392,19 +282,19 @@ class PhotoContainer {
 	 * @private
 	 */
 	_uploadImageHideSpinner() {
-		$($('#photo-' + this.latestPosition).find('.add-photo-text')).toggleClass('spinner',false);
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		let coverPhoto = $(photoDiv[this.latestPosition]);
+		$(coverPhoto.find('.add-photo-text')).toggleClass('spinner',false);
 	}
 	/**
 	 * For multiple layout, show spinner accord to file count
 	 * @private
 	 */
 	_uploadImageShowSpinnerWithFileSize(size) {
-		if (this.latestPosition === 0) {
-			return;
-		}
-		for (let i=1, updated=0; updated < size && i <= this.allowedUploads; i++) {
-			if ($('#photo-' + i).css("background-image") === "none") {
-				$($('#photo-' + i).find('.add-photo-text')).toggleClass('spinner',true);
+		let photoDiv = $(this.$docElement.find(this.getPhotoDivSelect()));
+		for (let i=0, updated=0; updated < size && i <= photoDiv.length; i++) {
+			if ($(photoDiv[i]).css("background-image") === "none") {
+				$($(photoDiv[i]).find('.add-photo-text')).toggleClass('spinner',true);
 				updated++;
 			}
 		}
@@ -432,7 +322,7 @@ class PhotoContainer {
 	 */
 	getImageCount() {
 		// Set how many image uploaded yet
-		let imgUrls = JSON.parse($("#imgUrls").text() || "[]");
+		let imgUrls = JSON.parse(this.$imageUrls.text() || "[]");
 		let count = 0;
 		imgUrls.forEach((img) => {
 			if (img) {
@@ -539,4 +429,4 @@ class PhotoContainer {
 
 }
 
-module.exports = new PhotoContainer();
+module.exports = PhotoContainer;
