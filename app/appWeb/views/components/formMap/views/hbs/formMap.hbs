@@ -14,9 +14,10 @@
         </div>
         <div class="map-component">
             <div class="map-plugin">
-                <button id="confirmLocationButton" class="confirmLocationButton" type="button">
-                 {{i18n "postad.location.confirmButton"}}</button>
                 <div id="map"></div>
+                <div id="map-overlay">
+                    {{i18n "postad.location.searching"}}
+                </div>
                 <div class="google-maps">
                     {{#if this.googleMapAuth.googleMapKey}}
                 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?v=3&key={{this.googleMapAuth.googleMapKey}}&channel=bt_mx&libraries=places&language={{this.lang}}"></script>
@@ -28,6 +29,9 @@
         </div>
         <div class="location-settings">
             <div class="description">
+                <button id="confirmLocationButton" class="confirmLocationButton" type="button">
+                 {{i18n "postad.location.confirmButton"}}</button>
+
                 <div class="only-desktop">
                     {{i18n "postad.location.instructions.desktop"}}
                 </div>

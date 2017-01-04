@@ -57,6 +57,7 @@
 		"errorMessage" : "No podemos usar tu ubicación actual. Añádela manualmente",
 		"sizeRadio": 1000,
 		"zoom": 16,
+		"zoomMax": 12,
 		"accuracy": 5,
 		"defaultLocation": {
 			"lat": 23.49125085380051,

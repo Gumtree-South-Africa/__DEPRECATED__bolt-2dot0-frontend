@@ -107,22 +107,20 @@
 						height: 418px;
 						height: 100%;
 					}
-					.confirmLocationButton {
-						@include to-breakpoint($small-break) {
-							display: block;
-							position: absolute;
-							left: 0;
-							right: 0;
-							margin: 0 auto;
-							width: 200px;
-							z-index: 9;
-							top: 78%;
-						}
-					}
 					#map {
 						@include to-breakpoint($small-break) {
 							height: 418px;
 							height: 100%;
+						}
+					}
+					#map-overlay {
+						@include to-breakpoint($small-break) {
+							height: 418px;
+							height: 100%;
+							margin-top: -162%;
+							line-height: 500px;
+							font-size: 16px;
+
 						}
 					}
 				}
@@ -132,8 +130,31 @@
 				@include to-breakpoint($small-break) {
 					margin: 0;
 				}
+				.confirmLocationButton {
+					display: block;
+					padding: 10px 20%;
+
+					@include to-breakpoint($small-break) {
+						display: block;
+						position: absolute;
+						left: 0;
+						right: 0;
+						margin: 0 auto;
+						padding: 10px 20px;
+						width: 200px;
+						z-index: 6;
+						top: 78%;
+					}
+				}
 				.description {
 					@include to-breakpoint($small-break) {
+						margin: 0;
+						padding: 0;
+						div {
+							display: none !important;
+						}
+					}
+					div {
 						display: none;
 					}
 				}
@@ -197,10 +218,12 @@
 				width: calc(96% - 192px);
 
 				&.modalState {
-					width: calc(96% - 2px);
+					width: 100%;
 				}
 				&.error {
 					border: 2px solid $formMap-error-input;
+					color: $formMap-error-input;
+    				font-size: 10pt;
 				}
 			}
 			
@@ -237,28 +260,46 @@
 				height: 250px;
 				background: $formMap-background;
 				width: 100%;
-
+				@include to-breakpoint($small-break) { 
+					height: 200px;
+				}
 				#map {
 					height: 250px;
 					width: 100%;
+					@include to-breakpoint($small-break) { 
+						height: 200px;
+					}
+				}
+				#map-overlay {
+					height: 250px;
+					width: 0%;
+					background: #fff;
+					opacity: 0.8;
+					position: relative;
+					z-index: 0;
+					margin-top: -250px;
+					display: none;
+					line-height: 250px;
+					text-align: center;
+					color: #333;
+					font-size: 16px;
+
+					@include to-breakpoint($small-break) { 
+						height: 200px;
+						margin-top: -200px;
+						line-height: 200px;
+						font-size: 16px;
+					}
+					&.active {
+						display: block;
+						z-index: 9;
+						width: 100%
+					}
 				}
 			}
 			.map-text {
 				margin-top: 10px;
 				font-size: 16px;
-			}
-			.confirmLocationButton {
-				background: none;
-				border: none;
-				cursor: pointer;
-				background: #FF9800;
-				color: #fff;
-				font-size: 12pt;
-				font-weight: bold;
-				padding: 10px 20px;
-				text-align: center;
-				width: auto;
-				display: none;
 			}
 		}
 		.location-settings {
@@ -289,6 +330,24 @@
 						text-transform: uppercase;
 					}
 					
+				}
+			}
+			.confirmLocationButton {
+				background: none;
+				border: none;
+				cursor: pointer;
+				background: #FF9800;
+				color: #fff;
+				font-size: 12pt;
+				font-weight: bold;
+				padding: 10px 20px;
+				text-align: center;
+				width: auto;
+				display: none;
+				transition: background 200ms ease-in-out;
+				&:disabled {
+					background: #ffe0b3;
+					color: #fff;
 				}
 			}
 		}
@@ -410,14 +469,6 @@
 			}
 		}
 	}
-	.map-component {
-			.map-plugin {
-				height: 200px;
-				#map {
-					height: 200px;
-				}
-			}
-		}
 	.location-settings {
 		.description {
 			width: 100% !important;
