@@ -26,6 +26,7 @@
 			"favoriteAd": "/v1/ads/{id}/favorites",
 			"specificAd": "/v1/ads/{id}",
 			"flagAd": "/v1/ads/{id}/actions/flag",
+			"adIncCounts": "/v1/ads/{id}/statistics/actions/inc-counts",
 			"categoryAttributes": "/v1/categories/{catId}/attributes",
 			"authBoltLogin": "/v1/users/actions/login-with-bolt",
 			"authFbLogin": "/v1/users/actions/login-with-facebook",

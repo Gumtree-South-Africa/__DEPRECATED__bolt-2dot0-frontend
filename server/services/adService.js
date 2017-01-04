@@ -140,7 +140,6 @@ class AdService {
 
 	addViewCount(bapiHeaderValues, adId) {
 		let queryEndpoint = config.get('BAPI.endpoints.specificAd').replace('{id}', adId);
-		queryEndpoint = queryEndpoint + '/statistics/actions/inc-counts';
 		return bapiService.bapiPromisePatch(bapiOptionsModel.initFromConfig(config, {
 			method: 'PATCH',
 			path: queryEndpoint,

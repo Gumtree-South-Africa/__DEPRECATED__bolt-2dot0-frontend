@@ -27,6 +27,7 @@
 			"specificAd": "/boltapi/v1/ads/{id}",
 			"favoriteAd": "/boltapi/v1/ads/{id}/favorites",
 			"flagAd": "/boltapi/v1/ads/{id}/actions/flag",
+			"adIncCounts": "/boltapi/v1/ads/{id}/statistics/actions/inc-counts",
 			"categoryAttributes": "/boltapi/v1/categories/{catId}/attributes",
 			"authBoltLogin": "/boltapi/v1/users/actions/login-with-bolt",
 			"authFbLogin": "/boltapi/v1/users/actions/login-with-facebook",
