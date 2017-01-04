@@ -17,7 +17,7 @@ $photo-switcher-width: 30%;
 	font-size: 14px;
 	background-color: $postAdHeaderBackground;
 	border-bottom: 1px solid $postAdHeaderBlue;
-	@include to-breakpoint($small-break) { 
+	@include to-breakpoint($small-break) {
 		font-size: 10pt;
 	}
 
@@ -27,7 +27,7 @@ $photo-switcher-width: 30%;
  		@include from-breakpoint($medium-break){
  			display: none;
  		};
-		@include to-breakpoint($small-break) { 
+		@include to-breakpoint($small-break) {
 			font-size: 8pt;
 			margin-top: 4px;
 		}
@@ -39,7 +39,31 @@ $photo-switcher-width: 30%;
 			margin-left: 2px;
 			color: $postAdHeaderBlue;
 			font-weight: bold;
-			@include to-breakpoint($small-break) { 
+			@include to-breakpoint($small-break) {
+				top: -1.5px !important;
+			}
+		}
+	}
+
+	.header-back-page {
+		float: left;
+		margin-left: 6px;
+		@include from-breakpoint($medium-break){
+			display: none;
+		};
+		@include to-breakpoint($small-break) {
+			font-size: 8pt;
+			margin-top: 4px;
+		}
+		.icon-back-other{
+			display: inline-block;
+			position: relative;
+		}
+		a {
+			margin-left: 2px;
+			color: $postAdHeaderBlue;
+			font-weight: bold;
+			@include to-breakpoint($small-break) {
 				top: -1.5px !important;
 			}
 		}
@@ -60,11 +84,11 @@ $photo-switcher-width: 30%;
 		left: 50%;
 		text-align: center;
 		font-weight: bold;
-		@include to-breakpoint($small-break) { 
+		@include to-breakpoint($small-break) {
 			max-width: 190px;
     		width: 190px;
 		}
-		
+
 	}
 	.title-text{
  		max-width: 15em;

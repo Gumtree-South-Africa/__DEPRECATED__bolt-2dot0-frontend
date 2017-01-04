@@ -84,6 +84,8 @@ function incrementViewCount() {
 
 
 let initialize = () => {
+	$('.header-back-page').removeClass('hidden');
+	$('.header-back-component').addClass('hidden');
 	viewPageGallery.initialize(constImgLength);
 	showPostOverlayIfNeeded();
 	incrementViewCount();
