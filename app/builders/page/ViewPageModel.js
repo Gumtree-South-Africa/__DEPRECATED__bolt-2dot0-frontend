@@ -373,9 +373,12 @@ class ViewPageModel {
 
 		modelData.header = data.common.header || {};
 		modelData.header.viewPageUrl = modelData.header.homePageUrl + this.req.originalUrl;
-		modelData.header.postAdHeader = true;
 		modelData.header.ogUrl = (typeof data.advert.picturesToDisplay!=='undefined' ?
 			(_.isEmpty(modelData.advert.picturesToDisplay.testPictures) ? modelData.header.logoUrlOpenGraph : modelData.advert.picturesToDisplay.testPictures[0]): '');
+		modelData.header.unifiedHeader = true;
+		modelData.header.unifiedHeaderTitle = modelData.advert.title;
+		modelData.header.unifiedHeaderBackUrl = (modelData.advert.breadcrumbs !== 'undefined') ? modelData.advert.breadcrumbs.returnToBrowsingLink : "./";
+		modelData.backUrl = "";
 
 		modelData.footer = data.common.footer || {};
 

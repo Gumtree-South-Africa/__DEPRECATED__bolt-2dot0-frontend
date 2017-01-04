@@ -180,6 +180,14 @@ class PostAdFormMainDetailsVM {
 			}
 		});
 		this.priceType = domElement.find('input[name=pricetype]:checked').val() || DEFAULT_PRICE_TYPE;
+		let priceAttrStr = domElement.find('.price-attribute-info').text();
+		if (priceAttrStr) {
+			try {
+				this.priceAttribute = JSON.parse(priceAttrStr);
+			} catch (e) {
+				// Do nothing for JSON parse error
+			}
+		}
 
 		// Initialize self properties from children
 		this._categoryId = this._categoryDropdownSelection.categoryId;
