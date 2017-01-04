@@ -105,9 +105,6 @@ describe('Header', () => {
 					let header = c$('.headerV2');
 					expect(header.length).toBe(1, 'selector should produce 1 element for header');
 
-					let mainMenuItemText = c$('.help', header).text().trim();
-					expect(mainMenuItemText).toBe(i18n.header.help, 'i18n string for help menu item should match');
-
 					//Will uncomment it out once the https Branch goes live
 					//let href = c$('a:has(div.help)', header).attr('href');
 					//expect(href).toBe('http://ayuda.vivanuncios.com.mx/MX/', 'the link href for help should link to the help page');	// todo: define where these should link to
@@ -221,7 +218,7 @@ describe('Header', () => {
 					expect(catUl.hasClass('hidden')).toBe(true, 'cat dropdown should be hidden');
 
 					let mainMenuItemText = c$('#js-browse-item-text').text().trim();
-					expect(mainMenuItemText).toBe(i18n.header.catDropdown.browse, 'i18n string for category main menu item should match');
+					expect(mainMenuItemText).toBe(i18n.header.catDropdown.browseCategories, 'i18n string for category main menu item should match');
 
 					let linkCount = 0;
 					c$('a', catUl).each((i, el) => {
