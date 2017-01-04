@@ -10,6 +10,8 @@
         {{> (dynamic "statusBanner") }}
     </div>
 
+    <input name="adId" class="hidden" type="text" value="{{this.advert.adId}}">
+
     <div class="vip-left-columns">
         <div id="viewPage">
             {{#if this.advert.picturesToDisplay.testPictures.length}}

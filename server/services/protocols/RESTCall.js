@@ -22,7 +22,7 @@ var RESTCall = function() {
 	// By default, we ignore errors and we still call a callback if provided.
 };
 
-let parseResponse = (res, argData, serializedData) => {
+let parseResponse = (res, argData) => {
 
 	let data = {}, body = '';
 
@@ -90,7 +90,7 @@ let setupConnection = params => {
 		}
 
 		let request = mod.request(options, res => {
-			resolve(parseResponse(res, argData, serializedData));
+			resolve(parseResponse(res, argData));
 		});
 
 		request.on("socket", (socket) => {
@@ -131,8 +131,8 @@ RESTCall.prototype = {
 	},
 
 	/**
-	 * @method doPost
-	 * @description Does a REST POST call directly with the options
+	 * @method doConnectWithBody
+	 * @description Does a REST call directly with the options and body
 	 *     passed in the constructor
 	 * @param {String} serializedData Serialized parameters passed as part of the request
 	 * @param {Object} options JSON with the call information
@@ -141,10 +141,24 @@ RESTCall.prototype = {
 	 *     pass it to the callback function)
 	 * @public
 	 */
-	doPost: function(serializedData, options, argData) {
+	doConnectWithBody: function(serializedData, options, argData) {
 		return setupConnection({options: options, argData: argData, serializedData: serializedData});
 	}
 }; // End prototype
+
+/**
+ * @method doPost
+ * @description Does a REST POST call directly with the options
+ *     passed in the constructor
+ * @param {String} serializedData Serialized parameters passed as part of the request
+ * @param {Object} options JSON with the call information
+ * @param {Object} argData (Optional) JSON with the data to be merged with the data
+ *     retrieved from the BAPI call (we merge the 2 data structures and
+ *     pass it to the callback function)
+ * @public
+ */
+// It's actually an alias for doConnectWithBody
+RESTCall.prototype.doPost = RESTCall.prototype.doConnectWithBody;
 
 
 // Export our 'class'

@@ -90,9 +90,7 @@ var bapiPromiseGet = function(bapiOptions, bapiHeaderValues, serviceName){
 	});
 };
 
-
-
-var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceName){
+function bapiPromiseForConnectWithBody(bapiOptions, bapiHeaderValues, bodyData, serviceName) {
 	console.time(`${process.pid} Instrument-BAPI-${serviceName} ${bapiHeaderValues.locale}`);
 
 	bapiOptions.headers = makeHeaders(bapiHeaderValues);
@@ -100,15 +98,16 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 	bapiOptions.path = augmentPathWithParams(bapiOptions.path, bapiOptions.parameters);
 
 	// special fix when running in mock mode (using server/config/mock.json) during POST
-	if ((serviceName === "saveDraftAd" || serviceName === "postAd" || serviceName === 'authRegister') &&
-		(bapiOptions.parameters && bapiOptions.parameters.indexOf("_statusCode=200") > -1)) {
+	if (bapiOptions.method === 'POST' && (
+		(serviceName === "saveDraftAd" || serviceName === "postAd" || serviceName === 'authRegister') &&
+			(bapiOptions.parameters && bapiOptions.parameters.indexOf("_statusCode=200") > -1))) {
 		// we're in mock mode, and we need to tell mock server to return a 201 (Created), otherwise it will send us 500, because a 200 is not available
 		bapiOptions.path = bapiOptions.path.replace("_statusCode=200", "_statusCode=201");
 	}
 
 	// Invoke BAPI request
 	// console.info(serviceName + 'Service: About to call ' + serviceName + ' BAPI');
-	return rest.doPost(postData, bapiOptions, null).then((output) => {
+	return rest.doConnectWithBody(bodyData, bapiOptions, null).then((output) => {
 		// console.info(serviceName + 'Service: Callback from ' + serviceName + ' BAPI');
 		if(typeof output === undefined || output.statusCode) {
 			var bapiError = {};
@@ -122,7 +121,11 @@ var bapiPromisePost = function(bapiOptions, bapiHeaderValues, postData, serviceN
 			return output;
 		}
 	});
-};
+}
+
+// Two alias
+var bapiPromisePost = bapiPromiseForConnectWithBody;
+var bapiPromisePatch = bapiPromiseForConnectWithBody;
 
 // returns string formatted for use in BAPI api's
 // format is (<lat>,<long>)
@@ -132,4 +135,5 @@ var bapiFormatLatLng = (geoLatLngObj) => {
 
 module.exports.bapiPromisePost = bapiPromisePost;
 module.exports.bapiPromiseGet = bapiPromiseGet;
+module.exports.bapiPromisePatch = bapiPromisePatch;
 module.exports.bapiFormatLatLng = bapiFormatLatLng;

@@ -75,6 +75,10 @@ class AdvertModel {
 	replyToTheAd(replyForm) {
 		return adService.replyAd(this.bapiHeaders, replyForm);
 	}
+
+	addViewCount(adId) {
+		return adService.addViewCount(this.bapiHeaders, adId);
+	}
 }
 
 

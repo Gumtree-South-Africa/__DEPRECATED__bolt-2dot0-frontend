@@ -65,10 +65,28 @@ function showPostOverlayIfNeeded() {
 	});
 }
 
+function incrementViewCount() {
+	// TODO Get it from other places or from URL
+	let adId = $('input[name="adId"]').val();
+	if (!adId) {
+		return;
+	}
+
+	$.ajax({
+		url: `/api/view/${adId}/inc-view-count`,
+		type: 'POST',
+		data: '{}',	// Currently no content needed
+		dataType: 'json',
+		contentType: 'application/json'
+	});
+	// Currently we don't take further action no matter whether it's success or not
+}
+
 
 let initialize = () => {
 	viewPageGallery.initialize(constImgLength);
 	showPostOverlayIfNeeded();
+	incrementViewCount();
 };
 
 module.exports = {
