@@ -1,8 +1,192 @@
 @import "../../blueprint/colors";
 
+.form-map-overlay {
+	position: absolute;
+	background-color: rgba(255, 255, 255, 1);;
+	box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+	transition: background-color 0.4s ease-in-out;
+	transition: box-shadow 0.4s ease-in-out;
+
+	&.active {
+		position: fixed;
+		z-index: 8;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		background-color: rgba(0, 0, 0, 0.5);
+		box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.75);
+	}
+
+	@include to-breakpoint($small-break) {
+		display: none;
+	}
+}
+
 .form-map-component {
 	padding: 0px 6%;
+	@include to-breakpoint($small-break) {
+		padding: 0;
+	}
+	&.active {
+		position: fixed;
+		z-index: 9;
+		background: #fff;
+		top: 10%;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		margin: 0 auto;
+		width: 600px;
+		height: 405px;
+		padding: 15px;
 
+		@include to-breakpoint($small-break) {
+			top: 0;
+			width: 100%;
+			height: 100%;
+			padding: 0px;
+		}
+
+		.close-modal {
+			float: right;
+			display: block;
+			@include to-breakpoint($small-break) {
+				display: none;
+			}
+		}
+		.title {
+			font-size: 11pt;
+			width: 100%;
+    		text-align: center;
+			@include to-breakpoint($small-break) {
+				display: none;
+			}
+
+			.errorMessageMap {
+				width: 100%;
+				text-align: center;
+				font-size: 10px;
+			}
+		}
+		
+		.map-form {
+			@include to-breakpoint($small-break) {
+				margin: 0;
+				padding: 0;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+			}
+			.search-location {
+				@include to-breakpoint($small-break) {
+					position: absolute;
+					overflow: initial;
+					z-index: 8;
+					width: 90%;
+					margin: 0 auto;
+					left: 0;
+					right: 0;
+					margin-top: 9px;
+				}
+				.textbox {
+					@include to-breakpoint($small-break) {
+						width: calc(96% - 2px) !important;
+					}
+				}
+			}
+			.map-component {
+				@include to-breakpoint($small-break) {
+					margin: 0;
+					height: 418px;
+					height: 91%;
+				}
+				.map-plugin {
+					@include to-breakpoint($small-break) {
+						margin: 0;
+						height: 418px;
+						height: 100%;
+					}
+					#map {
+						@include to-breakpoint($small-break) {
+							height: 418px;
+							height: 100%;
+						}
+					}
+					#map-overlay {
+						@include to-breakpoint($small-break) {
+							height: 418px;
+							height: 100%;
+							margin-top: -162%;
+							line-height: 500px;
+							font-size: 16px;
+
+						}
+					}
+				}
+			}
+			.location-settings {
+				padding-right: 10px;
+				@include to-breakpoint($small-break) {
+					margin: 0;
+				}
+				.confirmLocationButton {
+					display: block;
+					padding: 10px 20%;
+
+					@include to-breakpoint($small-break) {
+						display: block;
+						position: absolute;
+						left: 0;
+						right: 0;
+						margin: 0 auto;
+						padding: 10px 20px;
+						width: 200px;
+						z-index: 6;
+						top: 78%;
+					}
+				}
+				.description {
+					@include to-breakpoint($small-break) {
+						margin: 0;
+						padding: 0;
+						div {
+							display: none !important;
+						}
+					}
+					div {
+						display: none;
+					}
+				}
+				.checkbox {
+					@include to-breakpoint($small-break) {
+						padding-top: 3%;
+					}  
+					.label {
+						font-size: 8pt;
+    					line-height: 10pt;
+					}
+				}
+			}
+		}
+		
+	}
+	.close-modal {
+		display: none;
+		cursor: pointer;
+		position: absolute;
+		right: 15px;		
+		.close-text {
+			color: gray;
+			font-size: 13px;
+			vertical-align: middle;
+			margin-right: 0.5em;
+		}
+		.close-icon-small {
+			width: 14px;
+			height: 14px;
+		}
+	}
 	.title {
 		width: 100%;
 		text-transform: uppercase;
@@ -10,12 +194,12 @@
 		display: inline-block;
 		color: $formMap-title-color;
 		margin-left: 2%;
-    margin-bottom: 7px;
+    	margin-bottom: 7px;
 		.errorMessageMap {
 			display: none;
 			float: right;
-	    color: red;
-	    padding-right: 12px;
+			color: red;
+			padding-right: 12px;
 		}
 	}
 	.map-form {
@@ -31,17 +215,18 @@
 				font-size: 16px;
 				transition: border 0.4s;
 				transition: width 0.4s;
+				width: calc(96% - 192px);
 
-				&.active {
-					width: calc(96% - 2px);
+				&.modalState {
+					width: 100%;
 				}
-				&.inactive {
-					width: calc(96% - 192px);
-				 }
 				&.error {
 					border: 2px solid $formMap-error-input;
+					color: $formMap-error-input;
+    				font-size: 10pt;
 				}
 			}
+			
 			.setLocationButton {
 				background: none;
 				border: none;
@@ -50,18 +235,14 @@
 				outline: none;
 				width: 180px;
 				float: right;
-				margin-right: -180px;
+				margin-right: 0px;
 				height: 32px;
 				line-height: 32px;
 				transition: width 0.4s;
 				transition: margin 0.4s;
 
-				&.active {
-					width: 180px;
-					margin-right: 0px !important;
-				}
-				&.inactive {
-					margin-left: -180px;
+				&.modalState {
+					margin-right: -180px !important;
 				}
 
 				img {
@@ -79,10 +260,41 @@
 				height: 250px;
 				background: $formMap-background;
 				width: 100%;
-
+				@include to-breakpoint($small-break) { 
+					height: 200px;
+				}
 				#map {
 					height: 250px;
 					width: 100%;
+					@include to-breakpoint($small-break) { 
+						height: 200px;
+					}
+				}
+				#map-overlay {
+					height: 250px;
+					width: 0%;
+					background: #fff;
+					opacity: 0.8;
+					position: relative;
+					z-index: 0;
+					margin-top: -250px;
+					display: none;
+					line-height: 250px;
+					text-align: center;
+					color: #333;
+					font-size: 16px;
+
+					@include to-breakpoint($small-break) { 
+						height: 200px;
+						margin-top: -200px;
+						line-height: 200px;
+						font-size: 16px;
+					}
+					&.active {
+						display: block;
+						z-index: 9;
+						width: 100%
+					}
 				}
 			}
 			.map-text {
@@ -118,6 +330,24 @@
 						text-transform: uppercase;
 					}
 					
+				}
+			}
+			.confirmLocationButton {
+				background: none;
+				border: none;
+				cursor: pointer;
+				background: #FF9800;
+				color: #fff;
+				font-size: 12pt;
+				font-weight: bold;
+				padding: 10px 20px;
+				text-align: center;
+				width: auto;
+				display: none;
+				transition: background 200ms ease-in-out;
+				&:disabled {
+					background: #ffe0b3;
+					color: #fff;
 				}
 			}
 		}
@@ -239,14 +469,6 @@
 			}
 		}
 	}
-	.map-component {
-			.map-plugin {
-				height: 200px;
-				#map {
-					height: 200px;
-				}
-			}
-		}
 	.location-settings {
 		.description {
 			width: 100% !important;
