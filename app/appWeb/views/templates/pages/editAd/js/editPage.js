@@ -69,12 +69,12 @@ class EditAd {
 		});
 
 		this.photoContainerMobile.addImageUrlsChangeHandler(() => {
-			this.ImageUrls = [].concat(this.photoContainerMobile.imageUrls);
-			photoContainerDesktop.syncImages(this.ImageUrls);
+			this.imageUrls = [].concat(this.photoContainerMobile.imageUrls);
+			photoContainerDesktop.syncImages(this.imageUrls);
 		});
 		this.photoContainerDesktop.addImageUrlsChangeHandler(() => {
-			this.ImageUrls = [].concat(this.photoContainerDesktop.imageUrls);
-			photoContainerMobile.syncImages(this.ImageUrls);
+			this.imageUrls = [].concat(this.photoContainerDesktop.imageUrls);
+			photoContainerMobile.syncImages(this.imageUrls);
 		});
 		// Mobile and Desktop shared same inital url
 		this.imageUrls = [].concat(this.photoContainerMobile.imageUrls);
