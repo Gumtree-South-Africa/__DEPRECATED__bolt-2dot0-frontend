@@ -173,7 +173,7 @@ function CacheBapiData(siteApp, requestId) {
 			  	let categories = loadCategoryData(bapiHeaders, categoryDropdownLevel);
 
 				// Load All Category Data from BAPI
-				let allCategories = loadAllCategoryData(bapiHeaders, 3);
+				let allCategories = loadAllCategoryData(bapiHeaders, 4);
 
 				// Load All Location Data from BAPI
 				let allLocations = loadAllLocationData(bapiHeaders, 3);

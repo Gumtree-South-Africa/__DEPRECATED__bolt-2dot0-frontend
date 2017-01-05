@@ -48,9 +48,6 @@ $photo-switcher-width: 30%;
 	.header-back-page {
 		float: left;
 		margin-left: 6px;
-		@include from-breakpoint($medium-break){
-			display: none;
-		};
 		@include to-breakpoint($small-break) {
 			font-size: 8pt;
 			margin-top: 4px;

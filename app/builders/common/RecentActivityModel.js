@@ -4,26 +4,45 @@ let Q = require('q');
 
 let recentActivityService = require(process.cwd() + '/server/services/recentactivity');
 let recentActivityConfig = require(process.cwd() + '/app/config/ui/recentActivityConfig.json');
+let VerticalCategoryUtil = require(process.cwd() + '/app/utils/VerticalCategoryUtil.js');
 let _ = require('underscore');
 _.templateSettings = {
 	interpolate: /\{([\s\S]+?)\}/g
 };
 
 class RecentActivityModel {
-	constructor(bapiHeaderValues, prodEpsMode) {
+	constructor(bapiHeaderValues, prodEpsMode, categoryAllData) {
 		this.bapiHeaderValues = bapiHeaderValues;
 		this.prodEpsMode = prodEpsMode;
+		this.categoryAllData = categoryAllData;
 	}
 
 	isSold(feed) {
 		return !(feed.action === 'LISTED');
 	}
 
+	_findFilteredId(filterCategories, categoryId) {
+		if (!this.categoryAllData) {
+			return null;
+		}
+		let hierarchy = VerticalCategoryUtil.fetchCategoryHierarchy(this.categoryAllData, categoryId);
+		if (!hierarchy || !hierarchy.length) {
+			return null;
+		}
+		for(let index = hierarchy.length - 1; index >= 0; index--) {
+			let toReturn = filterCategories[hierarchy[index].id];
+			if (toReturn) {
+				return toReturn;
+			}
+		}
+		return null;
+	}
+
 	filterArr(inputArr, locale) {
 		let inputLocale = recentActivityConfig[locale];
 
-		let res = _.reduceRight(inputArr, function(a, b) {
-			let id = inputLocale[b['categoryId']];
+		let res = _.reduceRight(inputArr, (a, b) => {
+			let id = this._findFilteredId(inputLocale, b.categoryId);
 			if (id) {
 				let attributes = [], prefix;
 				id.type.forEach(t => {
