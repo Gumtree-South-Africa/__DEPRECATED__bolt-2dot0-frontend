@@ -24,6 +24,7 @@ class FormMap {
 		this.useGeolocation;
 		this.position;
 		this.positionTemp;
+		this.placeTemp;
 		this.meters = this.googleMap.sizeRadio;
 		this.icons = {
 			current: '/public/icons/map/location-current.svg',
@@ -107,7 +108,7 @@ class FormMap {
 				this.validateCountry(this.getPosition()).then((result) => {
 					if (result) {
 						this.position = result;
-						this.setCurrentPosition();
+						this.setCurrentPosition(null, this.position);						
 						$("#confirmLocationButton").prop('disabled', false);
 						this.stateError = false;
 					} else {
@@ -142,7 +143,9 @@ class FormMap {
 			} else {
 				this.HtmlAutocomplete.blur();
 				this.expandViewportToFitPlace(this.map, place);
-				this.setMark();
+				// this.setCurrentPosition(this.zoom, this.getPosition());
+				this.position = this.getPosition();
+				this.setMark(this.getPosition());
 			}
 		});
 	}
@@ -334,7 +337,8 @@ let initialize = () => {
 
 	$("#close-modal").click(() => {
 		if(!window.formMap.stateError) {
-			window.formMap.position = window.formMap.positionTemp;			
+			window.formMap.position = window.formMap.positionTemp;		
+			$("#autocompleteTextBox").val(window.formMap.placeTemp);	
 			window.formMap.setModal(false);
 			window.formMap.resize();
 			window.formMap.setMark();	
@@ -357,9 +361,10 @@ let initialize = () => {
 		}
 		if(!$("#form-map-overlay").hasClass("active")) {
 			window.formMap.positionTemp = window.formMap.position;
+			window.formMap.placeTemp = $("#autocompleteTextBox").val();
+			window.formMap.setModal(true);
+			window.formMap.resize();
 		}
-		window.formMap.setModal(true);
-		window.formMap.resize();
 	});
 };
 
